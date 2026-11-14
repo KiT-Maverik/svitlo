@@ -1,11 +1,11 @@
 # Unified Mathematics Lesson editorial source — provisional; pending independent approval.
 config:
-  id: "1ff67a82-6c5d-53a6-bf25-89141153cd2c"
-  slug: "planTwoStepSolution"
-  type: "lesson"
-  skills: ["126e3b5b-fa90-4f68-8efc-05b0117611c3"]
+  id: '1ff67a82-6c5d-53a6-bf25-89141153cd2c'
+  slug: 'planTwoStepSolution'
+  type: 'lesson'
+  skills: ['126e3b5b-fa90-4f68-8efc-05b0117611c3']
   params:
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -13,628 +13,628 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "Plan Two Steps Before You Calculate"
+      en: 'Plan Two Steps Before You Calculate'
   section:
     items:
       section1:
         config:
-          id: "fbe56bf4-4c28-41f3-aa69-759aae15db51"
-          slug: "section1"
-          type: "content"
+          id: 'fbe56bf4-4c28-41f3-aa69-759aae15db51'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A question that hides another question"
+              en: 'A question that hides another question'
             navigationLabel:
-              en: "A question that hides another question"
+              en: 'A question that hides another question'
           content:
             items:
               text1:
                 config:
-                  id: "6d74f0ca-efba-4415-a17e-3af861daf8d3"
-                  slug: "text1"
-                  type: "text"
+                  id: '6d74f0ca-efba-4415-a17e-3af861daf8d3'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A classroom shelf has 8 red books and 7 blue books. 6 books are borrowed. How many books remain on the shelf?"
+                      en: 'A classroom shelf has 8 red books and 7 blue books. 6 books are borrowed. How many books remain on the shelf?'
                 production:
-                  purpose: "A question that hides another question: text resource at position 1 (source provisional)"
-                  specification: "1. **`text` Resource:** “A classroom shelf has **8 red books** and **7 blue books**. **6 books** are borrowed. How many books remain on the shelf?” Ask: “Can you subtract six from the total before you know how many books were there?” Let the learner predict what must be found first."
+                  purpose: 'A question that hides another question: text resource at position 1 (source provisional)'
+                  specification: '1. **`text` Resource:** “A classroom shelf has **8 red books** and **7 blue books**. **6 books** are borrowed. How many books remain on the shelf?” Ask: “Can you subtract six from the total before you know how many books were there?” Let the learner predict what must be found first.'
               scene2:
                 config:
-                  id: "3adea6b6-3ca9-4ddb-bf1f-8a70f0e0c845"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '3adea6b6-3ca9-4ddb-bf1f-8a70f0e0c845'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "red books: eight"
+                        instruction: 'red books: eight'
                 production:
-                  purpose: "A question that hides another question; source Scene twoStepPlanner.scene-spec.md; use 2"
+                  purpose: 'A question that hides another question; source Scene twoStepPlanner.scene-spec.md; use 2'
                   specification: |-
                     # Two-Step Dependency Planner — Scene Specification
-                    
+
                     **Status:** Provisional Draft awaiting explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** [Lesson Content](.this config.yaml), Sections 1–4; [Draft Methodologist Brief](.this config.yaml).
                     **Implementation:** New proposed prop-free and self-contained Scene. No Question, Quiz, assessment, persistence or Note API.
-                    
+
                     ## Pedagogical purpose and mathematical invariant
-                    
+
                     A two-step word problem has an **intermediate quantity** whose value is needed to determine the final unknown. The learner should name the first missing quantity, justify the first operation, use its result meaningfully in the second operation, and check the unit and final question. A “two-step” requirement is not a demand for a prescribed sequence of button clicks or a specific arrangement of symbols; the Scene must acknowledge mathematically valid alternative decompositions if they respect the stated relationships.
-                    
+
                     ## Scenario entry A — first find total, then remaining (Section 1)
-                    
+
                     Story: “There are **8 red books** and **7 blue books** on a shelf. **6 books** are borrowed. How many books remain?” Display separate cards for known red eight, known blue seven, borrowed six, unknown initial total, unknown remaining total. Learner selects the intermediate question: “How many books were on the shelf before borrowing?” and then a second question “How many remain afterward?” The model draws labeled dependency connections; the nonvisual alternative is an ordered two-card plan.
-                    
+
                     Expected **first step** 8 + 7 = **15 books initially**. Expected **second step** 15 − 6 = **9 books remaining**. If the learner picks just 8 − 6 = 2 as final, explain “The original total includes both red and blue books; two does not answer what remains on the whole shelf.” Do not declare _every_ alternative reordering invalid; e.g., a properly justified nonnegative decomposition may get the same total. If the child stops at 15, explain that 15 answers the first question, not the final question. Every correct result retains the unit “books”.
-                    
+
                     ## Scenario entry B — comparison first, then combine (Section 2)
-                    
+
                     Story: “Ava has **12 stickers**. Sam has **3 fewer** than Ava. How many do they have **together**?” The intermediate card must be **Sam's count**, initially unknown; the final card is combined count, also unknown. Learner may choose plan order and operations. Correct first step: 12 − 3 = **9 stickers for Sam**. Correct second step: 12 + 9 = **21 stickers together**. If the child chooses 12 + 3 for Sam, explain that “fewer” means Sam has less than Ava. If the child submits 9 as final, explain that this counts only Sam's stickers. If they submit 12 + 3 = 15 as together, explain that the number three is a **difference**, not Sam's total. Reconstruct all relationships in a labeled pair of quantity bars rather than only displaying a red/green result.
-                    
+
                     ## Scenario entry C — what must come first? (Section 3)
-                    
+
                     Reuse Ava/Sam quantitative story **only in a new independent initial state**. Show two incomplete _meaningful_ step cards:
-                    
+
                     - “Find Sam: 12 − 3 = ?”
                     - “Find combined total: 12 + Sam's stickers = ?”
                       Ask which can be completed with the known data and why. If the learner attempts the combined total first, do not mark their attempt as a generic wrong choice; say “We still need to know Sam's amount. Which step supplies it?” After the child reveals nine stickers for Sam (or opts to “Show why”), complete the second card 12 + 9 = 21. Include a label identifying the intermediate result, not a novel runtime state contract.
-                    
+
                     ## Scenario entry D — independent transfer (Section 4)
-                    
+
                     Story: “Mila has **14 shells**. Theo has **5 fewer shells** than Mila. How many shells do they have altogether?” Start with blank first/second plan cards, not with a completed number line. Child identifies unknown Theo=?, combined total=?, then selects two operations with named outputs. Correct first **14 − 5 = 9 shells for Theo**; correct second **14 + 9 = 23 shells combined**. Optional hint 1 “Who has fewer?”; hint 2 “Which person's amount is still unknown?” Neither hint automatically supplies the final total. Feedback for **9** as final: “That is Theo's count, but the question asks for both together.” Feedback for **14 + 5**: “Five is the difference from Mila, not Theo's amount.” A valid alternative strategy may be accepted with a relation-preserving explanation; no arbitrary uniqueness claim.
-                    
+
                     ## Objects and interaction state
-                    
+
                     Represent a story with known quantity cards, named missing-quantity cards, semantic dependency edges (both visual and an equivalent textual ordered list), optional step expression choices, intermediate value with unit, final answer with unit, independent hints, “Explain plan”, “Reset”. State includes which intermediate is named, the ordered plan, calculated values and revealed explanations. Arithmetic is derived from displayed quantities: 8+7=15; 15−6=9; 12−3=9; 12+9=21; 14−5=9; 14+9=23. If a step produces a number but uses an incorrect _role_, the Scene must explain the relationship error rather than judge only its arithmetic. There is no mandatory drag/arrow drawing; sequence is selectable by accessible ordered controls.
-                    
+
                     Every entry is a self-contained prop-free Scene. No Section-to-Section state is assumed; future implementation may internally reuse helpers. A “Show the answer” control provides the full two-question plan even without an attempt. Incorrect decisions are formative and revisable; never serialize correctness or claim Skill mastery.
-                    
+
                     ## Visual, language, offline and accessibility
-                    
+
                     Place the final question visibly at the top throughout, with intermediate question labeled **first** and final labeled **second**. Diagram edges are numbered and textually described (“Sam's value feeds into combined total”); do not communicate causality using arrow direction alone. A screen-reader user can navigate the exact ordered plan, numeric operands, units, dependencies and why specific alternative plans fail. Keyboard, switch and touch alternatives must offer all operations and feedback without dragging, pointing accuracy, speech, sound or timed interactions. RTL adapts control flow and names but does not reverse chronological/story dependencies or subtraction operands. Genuine translations for all supported locales must cover names, unit grammar, mathematical read-outs, hints, and feedback. Use focus visibility, color-independent statuses, reduced motion, 200% zoom and small-screen reflow. Complete offline operation is an **implementation requirement after download**, not an assertion of a current PWA feature.
-                    
+
                     ## Acceptance scenarios for Coding Agent
-                    
+
                     1. Books: intermediate total 15 books; final 9 books after six borrowed. Reject 15 as the final response and explain any plan that ignores the blue books.
                     2. Stickers: Sam 12−3=9; combined 12+9=21. Explain the meaning of both nine and twenty-one distinctly.
                     3. A comparison-first plan can be described in text and diagram without a drag dependency; intermediate value becomes usable in the second step.
                     4. Shells transfer: Theo 14−5=9, combined 14+9=23; nine alone is not the final.
                     5. User-controlled hints, explanation and reset remain available; no score, backend call or persistent record is produced.
                     6. Keyboard, screen-reader, RTL, reduced-motion, zoom/mobile and offline-downloaded modes convey identical numerical dependencies.
-                    
+
                     ## Approval and technical dependencies
-                    
+
                     A generic Scene Resource can render an eventual ReactNode, but this Scene and its localization are **not implemented**. Coding Agent must verify actual context, create no-props Scene entries and tests, validate WCAG 2.2 AA and true offline readiness, and obtain separate Methodologist/Scene approvals. No invented API, Question, Quiz, scores or Note event should be introduced.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **`scene` Resource (proposed):** Two-Step Dependency Planner (full Scene specification embedded in this config.yaml), entry A. Separate the cards “red books: eight”, “blue books: seven”, “borrowed: six”, “total before borrowing: ?”, “remaining books: ?”. The learner connects the two unknowns with text-labeled dependency arrows (or uses a simple ordered choice panel), without performing arithmetic immediately.
-                  productionNotes: "Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               text3:
                 config:
-                  id: "6b74eda4-edba-40ef-a37e-3e1e63dafbf9"
-                  slug: "text3"
-                  type: "text"
+                  id: '6b74eda4-edba-40ef-a37e-3e1e63dafbf9'
+                  slug: 'text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Find the original total: 8 + 7 = 15 books."
+                      en: 'Find the original total: 8 + 7 = 15 books.'
                 production:
-                  purpose: "A question that hides another question: text resource at position 3 (source provisional)"
-                  specification: "3. **`text`:** First plan card: “Find the original total: **8 + 7 = 15 books**.” Second: “Find those remaining: **15 − 6 = 9 books**.” Wrong plan “8 − 6 = 2” feedback: “That only subtracts from the red group, but we need the total on the shelf. We were not told that the six were all borrowed from red.” A mathematically valid alternative decomposition must not be globally declared invalid; the point is preserving the **meaning** of the quantities."
+                  purpose: 'A question that hides another question: text resource at position 3 (source provisional)'
+                  specification: '3. **`text`:** First plan card: “Find the original total: **8 + 7 = 15 books**.” Second: “Find those remaining: **15 − 6 = 9 books**.” Wrong plan “8 − 6 = 2” feedback: “That only subtracts from the red group, but we need the total on the shelf. We were not told that the six were all borrowed from red.” A mathematically valid alternative decomposition must not be globally declared invalid; the point is preserving the **meaning** of the quantities.'
               markdown4:
                 config:
-                  id: "f3339467-9b80-4930-a190-84897ecb9a6a"
-                  slug: "markdown4"
-                  type: "markdown"
+                  id: 'f3339467-9b80-4930-a190-84897ecb9a6a'
+                  slug: 'markdown4'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The first answer, **15**, helps us answer the second question. It is **not the final answer**. We can name it: ‘original total of books’."
+                      en: 'The first answer, **15**, helps us answer the second question. It is **not the final answer**. We can name it: ‘original total of books’.'
                 production:
-                  purpose: "A question that hides another question: markdown resource at position 4 (source provisional)"
-                  specification: "4. **`markdown`:** “The first answer, **15**, helps us answer the second question. It is **not the final answer**. We can name it: ‘original total of books’.”"
-            order: ["text1", "scene2", "text3", "markdown4"]
+                  purpose: 'A question that hides another question: markdown resource at position 4 (source provisional)'
+                  specification: '4. **`markdown`:** “The first answer, **15**, helps us answer the second question. It is **not the final answer**. We can name it: ‘original total of books’.”'
+            order: ['text1', 'scene2', 'text3', 'markdown4']
         production:
-          purpose: "identify what the final question depends on._"
-          pedagogicalIntent: "Original Section 1: A question that hides another question (provisional draft)"
+          purpose: 'identify what the final question depends on._'
+          pedagogicalIntent: 'Original Section 1: A question that hides another question (provisional draft)'
           productionNotes: |-
             _Purpose: identify what the final question depends on._
-            
+
             1. **`text` Resource:** “A classroom shelf has **8 red books** and **7 blue books**. **6 books** are borrowed. How many books remain on the shelf?” Ask: “Can you subtract six from the total before you know how many books were there?” Let the learner predict what must be found first.
             2. **`scene` Resource (proposed):** Two-Step Dependency Planner (full Scene specification embedded in this config.yaml), entry A. Separate the cards “red books: eight”, “blue books: seven”, “borrowed: six”, “total before borrowing: ?”, “remaining books: ?”. The learner connects the two unknowns with text-labeled dependency arrows (or uses a simple ordered choice panel), without performing arithmetic immediately.
             3. **`text`:** First plan card: “Find the original total: **8 + 7 = 15 books**.” Second: “Find those remaining: **15 − 6 = 9 books**.” Wrong plan “8 − 6 = 2” feedback: “That only subtracts from the red group, but we need the total on the shelf. We were not told that the six were all borrowed from red.” A mathematically valid alternative decomposition must not be globally declared invalid; the point is preserving the **meaning** of the quantities.
             4. **`markdown`:** “The first answer, **15**, helps us answer the second question. It is **not the final answer**. We can name it: ‘original total of books’.”
       section2:
         config:
-          id: "fee570ad-4d28-4386-a969-7407ab15d698"
-          slug: "section2"
-          type: "content"
+          id: 'fee570ad-4d28-4386-a969-7407ab15d698'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "The plan has to answer the final question"
+              en: 'The plan has to answer the final question'
             navigationLabel:
-              en: "The plan has to answer the final question"
+              en: 'The plan has to answer the final question'
           content:
             items:
               text1:
                 config:
-                  id: "744fe38f-972e-4474-8614-2119828e36ee"
-                  slug: "text1"
-                  type: "text"
+                  id: '744fe38f-972e-4474-8614-2119828e36ee'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Ava has 12 stickers. Sam has 3 fewer stickers than Ava. How many stickers do they have together? Which is the first missing number?"
+                      en: 'Ava has 12 stickers. Sam has 3 fewer stickers than Ava. How many stickers do they have together? Which is the first missing number?'
                 production:
-                  purpose: "The plan has to answer the final question: text resource at position 1 (source provisional)"
-                  specification: "1. **`text`:** “Ava has **12 stickers**. Sam has **3 fewer stickers than Ava**. How many stickers do **they have together**? Which is the first missing number?”"
+                  purpose: 'The plan has to answer the final question: text resource at position 1 (source provisional)'
+                  specification: '1. **`text`:** “Ava has **12 stickers**. Sam has **3 fewer stickers than Ava**. How many stickers do **they have together**? Which is the first missing number?”'
               scene2:
                 config:
-                  id: "01023469-99ad-4fb4-8786-16c753f5d082"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '01023469-99ad-4fb4-8786-16c753f5d082'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
                         instruction: "Find Sam's amount"
                 production:
-                  purpose: "The plan has to answer the final question; source Scene twoStepPlanner.scene-spec.md; use 2"
+                  purpose: 'The plan has to answer the final question; source Scene twoStepPlanner.scene-spec.md; use 2'
                   specification: |-
                     # Two-Step Dependency Planner — Scene Specification
-                    
+
                     **Status:** Provisional Draft awaiting explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** [Lesson Content](.this config.yaml), Sections 1–4; [Draft Methodologist Brief](.this config.yaml).
                     **Implementation:** New proposed prop-free and self-contained Scene. No Question, Quiz, assessment, persistence or Note API.
-                    
+
                     ## Pedagogical purpose and mathematical invariant
-                    
+
                     A two-step word problem has an **intermediate quantity** whose value is needed to determine the final unknown. The learner should name the first missing quantity, justify the first operation, use its result meaningfully in the second operation, and check the unit and final question. A “two-step” requirement is not a demand for a prescribed sequence of button clicks or a specific arrangement of symbols; the Scene must acknowledge mathematically valid alternative decompositions if they respect the stated relationships.
-                    
+
                     ## Scenario entry A — first find total, then remaining (Section 1)
-                    
+
                     Story: “There are **8 red books** and **7 blue books** on a shelf. **6 books** are borrowed. How many books remain?” Display separate cards for known red eight, known blue seven, borrowed six, unknown initial total, unknown remaining total. Learner selects the intermediate question: “How many books were on the shelf before borrowing?” and then a second question “How many remain afterward?” The model draws labeled dependency connections; the nonvisual alternative is an ordered two-card plan.
-                    
+
                     Expected **first step** 8 + 7 = **15 books initially**. Expected **second step** 15 − 6 = **9 books remaining**. If the learner picks just 8 − 6 = 2 as final, explain “The original total includes both red and blue books; two does not answer what remains on the whole shelf.” Do not declare _every_ alternative reordering invalid; e.g., a properly justified nonnegative decomposition may get the same total. If the child stops at 15, explain that 15 answers the first question, not the final question. Every correct result retains the unit “books”.
-                    
+
                     ## Scenario entry B — comparison first, then combine (Section 2)
-                    
+
                     Story: “Ava has **12 stickers**. Sam has **3 fewer** than Ava. How many do they have **together**?” The intermediate card must be **Sam's count**, initially unknown; the final card is combined count, also unknown. Learner may choose plan order and operations. Correct first step: 12 − 3 = **9 stickers for Sam**. Correct second step: 12 + 9 = **21 stickers together**. If the child chooses 12 + 3 for Sam, explain that “fewer” means Sam has less than Ava. If the child submits 9 as final, explain that this counts only Sam's stickers. If they submit 12 + 3 = 15 as together, explain that the number three is a **difference**, not Sam's total. Reconstruct all relationships in a labeled pair of quantity bars rather than only displaying a red/green result.
-                    
+
                     ## Scenario entry C — what must come first? (Section 3)
-                    
+
                     Reuse Ava/Sam quantitative story **only in a new independent initial state**. Show two incomplete _meaningful_ step cards:
-                    
+
                     - “Find Sam: 12 − 3 = ?”
                     - “Find combined total: 12 + Sam's stickers = ?”
                       Ask which can be completed with the known data and why. If the learner attempts the combined total first, do not mark their attempt as a generic wrong choice; say “We still need to know Sam's amount. Which step supplies it?” After the child reveals nine stickers for Sam (or opts to “Show why”), complete the second card 12 + 9 = 21. Include a label identifying the intermediate result, not a novel runtime state contract.
-                    
+
                     ## Scenario entry D — independent transfer (Section 4)
-                    
+
                     Story: “Mila has **14 shells**. Theo has **5 fewer shells** than Mila. How many shells do they have altogether?” Start with blank first/second plan cards, not with a completed number line. Child identifies unknown Theo=?, combined total=?, then selects two operations with named outputs. Correct first **14 − 5 = 9 shells for Theo**; correct second **14 + 9 = 23 shells combined**. Optional hint 1 “Who has fewer?”; hint 2 “Which person's amount is still unknown?” Neither hint automatically supplies the final total. Feedback for **9** as final: “That is Theo's count, but the question asks for both together.” Feedback for **14 + 5**: “Five is the difference from Mila, not Theo's amount.” A valid alternative strategy may be accepted with a relation-preserving explanation; no arbitrary uniqueness claim.
-                    
+
                     ## Objects and interaction state
-                    
+
                     Represent a story with known quantity cards, named missing-quantity cards, semantic dependency edges (both visual and an equivalent textual ordered list), optional step expression choices, intermediate value with unit, final answer with unit, independent hints, “Explain plan”, “Reset”. State includes which intermediate is named, the ordered plan, calculated values and revealed explanations. Arithmetic is derived from displayed quantities: 8+7=15; 15−6=9; 12−3=9; 12+9=21; 14−5=9; 14+9=23. If a step produces a number but uses an incorrect _role_, the Scene must explain the relationship error rather than judge only its arithmetic. There is no mandatory drag/arrow drawing; sequence is selectable by accessible ordered controls.
-                    
+
                     Every entry is a self-contained prop-free Scene. No Section-to-Section state is assumed; future implementation may internally reuse helpers. A “Show the answer” control provides the full two-question plan even without an attempt. Incorrect decisions are formative and revisable; never serialize correctness or claim Skill mastery.
-                    
+
                     ## Visual, language, offline and accessibility
-                    
+
                     Place the final question visibly at the top throughout, with intermediate question labeled **first** and final labeled **second**. Diagram edges are numbered and textually described (“Sam's value feeds into combined total”); do not communicate causality using arrow direction alone. A screen-reader user can navigate the exact ordered plan, numeric operands, units, dependencies and why specific alternative plans fail. Keyboard, switch and touch alternatives must offer all operations and feedback without dragging, pointing accuracy, speech, sound or timed interactions. RTL adapts control flow and names but does not reverse chronological/story dependencies or subtraction operands. Genuine translations for all supported locales must cover names, unit grammar, mathematical read-outs, hints, and feedback. Use focus visibility, color-independent statuses, reduced motion, 200% zoom and small-screen reflow. Complete offline operation is an **implementation requirement after download**, not an assertion of a current PWA feature.
-                    
+
                     ## Acceptance scenarios for Coding Agent
-                    
+
                     1. Books: intermediate total 15 books; final 9 books after six borrowed. Reject 15 as the final response and explain any plan that ignores the blue books.
                     2. Stickers: Sam 12−3=9; combined 12+9=21. Explain the meaning of both nine and twenty-one distinctly.
                     3. A comparison-first plan can be described in text and diagram without a drag dependency; intermediate value becomes usable in the second step.
                     4. Shells transfer: Theo 14−5=9, combined 14+9=23; nine alone is not the final.
                     5. User-controlled hints, explanation and reset remain available; no score, backend call or persistent record is produced.
                     6. Keyboard, screen-reader, RTL, reduced-motion, zoom/mobile and offline-downloaded modes convey identical numerical dependencies.
-                    
+
                     ## Approval and technical dependencies
-                    
+
                     A generic Scene Resource can render an eventual ReactNode, but this Scene and its localization are **not implemented**. Coding Agent must verify actual context, create no-props Scene entries and tests, validate WCAG 2.2 AA and true offline readiness, and obtain separate Methodologist/Scene approvals. No invented API, Question, Quiz, scores or Note event should be introduced.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **`scene` Resource (proposed):** Planner entry B shows named known Ava=12, comparison gap 3, Sam=?, combined total=?. Learner first chooses “Find Sam's amount” and builds **12 − 3 = 9 stickers**. Next chooses “Add Ava's and Sam's amounts” and builds **12 + 9 = 21 stickers**.
-                  productionNotes: "Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               text3:
                 config:
-                  id: "764fe6b5-992e-479a-8414-1df3808e33c8"
-                  slug: "text3"
-                  type: "text"
+                  id: '764fe6b5-992e-479a-8414-1df3808e33c8'
+                  slug: 'text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Nine answers how many Sam has, not how many they have together."
+                      en: 'Nine answers how many Sam has, not how many they have together.'
                 production:
-                  purpose: "The plan has to answer the final question: text resource at position 3 (source provisional)"
+                  purpose: 'The plan has to answer the final question: text resource at position 3 (source provisional)'
                   specification: "3. **`text`, feedback:** For stopping at 9: “Nine answers **how many Sam has**, not how many they have together.” For 12+3=15 as Sam: “Three fewer means Sam has _less_ than Ava.” For directly 12+3=15 as total: “This adds Ava's amount to the _difference_, not Sam's amount.” For 21: “Together they have twenty-one stickers: twelve plus nine.”"
               markdown4:
                 config:
-                  id: "32718cbe-e0c8-4ded-942c-fa3ca511ca13"
-                  slug: "markdown4"
-                  type: "markdown"
+                  id: '32718cbe-e0c8-4ded-942c-fa3ca511ca13'
+                  slug: 'markdown4'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A good plan names both questions: **First, how many does Sam have? Second, how many do they have together?**"
+                      en: 'A good plan names both questions: **First, how many does Sam have? Second, how many do they have together?**'
                 production:
-                  purpose: "The plan has to answer the final question: markdown resource at position 4 (source provisional)"
-                  specification: "4. **`markdown`:** “A good plan names both questions: **First, how many does Sam have? Second, how many do they have together?**”"
-            order: ["text1", "scene2", "text3", "markdown4"]
+                  purpose: 'The plan has to answer the final question: markdown resource at position 4 (source provisional)'
+                  specification: '4. **`markdown`:** “A good plan names both questions: **First, how many does Sam have? Second, how many do they have together?**”'
+            order: ['text1', 'scene2', 'text3', 'markdown4']
         production:
-          purpose: "distinguish a meaningful first calculation from a complete solution._"
-          pedagogicalIntent: "Original Section 2: The plan has to answer the final question (provisional draft)"
+          purpose: 'distinguish a meaningful first calculation from a complete solution._'
+          pedagogicalIntent: 'Original Section 2: The plan has to answer the final question (provisional draft)'
           productionNotes: |-
             _Purpose: distinguish a meaningful first calculation from a complete solution._
-            
+
             1. **`text`:** “Ava has **12 stickers**. Sam has **3 fewer stickers than Ava**. How many stickers do **they have together**? Which is the first missing number?”
             2. **`scene` Resource (proposed):** Planner entry B shows named known Ava=12, comparison gap 3, Sam=?, combined total=?. Learner first chooses “Find Sam's amount” and builds **12 − 3 = 9 stickers**. Next chooses “Add Ava's and Sam's amounts” and builds **12 + 9 = 21 stickers**.
             3. **`text`, feedback:** For stopping at 9: “Nine answers **how many Sam has**, not how many they have together.” For 12+3=15 as Sam: “Three fewer means Sam has _less_ than Ava.” For directly 12+3=15 as total: “This adds Ava's amount to the _difference_, not Sam's amount.” For 21: “Together they have twenty-one stickers: twelve plus nine.”
             4. **`markdown`:** “A good plan names both questions: **First, how many does Sam have? Second, how many do they have together?**”
       section3:
         config:
-          id: "fde56f1a-4e28-4519-a869-7274ac15d82b"
-          slug: "section3"
-          type: "content"
+          id: 'fde56f1a-4e28-4519-a869-7274ac15d82b'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Change the steps, inspect the dependency"
+              en: 'Change the steps, inspect the dependency'
             navigationLabel:
-              en: "Change the steps, inspect the dependency"
+              en: 'Change the steps, inspect the dependency'
           content:
             items:
               text1:
                 config:
-                  id: "0a4e6878-f3ce-47bb-84a4-c34a2cc75f6d"
-                  slug: "text1"
-                  type: "text"
+                  id: '0a4e6878-f3ce-47bb-84a4-c34a2cc75f6d'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
                       en: "You are handed these two proposed steps for Ava and Sam: A. 12 + Sam's stickers; B. 12 − 3. Which one can you complete using the known information _right now_?"
                 production:
-                  purpose: "Change the steps, inspect the dependency: text resource at position 1 (source provisional)"
+                  purpose: 'Change the steps, inspect the dependency: text resource at position 1 (source provisional)'
                   specification: "1. **`text`:** “You are handed these two proposed steps for Ava and Sam: **A. 12 + Sam's stickers**; **B. 12 − 3**. Which one can you complete using the known information _right now_?”"
               scene2:
                 config:
-                  id: "bed72af0-ec1c-405d-bb27-0636e3990fe3"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'bed72af0-ec1c-405d-bb27-0636e3990fe3'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "combined total"
+                        instruction: 'combined total'
                 production:
-                  purpose: "Change the steps, inspect the dependency; source Scene twoStepPlanner.scene-spec.md; use 2"
+                  purpose: 'Change the steps, inspect the dependency; source Scene twoStepPlanner.scene-spec.md; use 2'
                   specification: |-
                     # Two-Step Dependency Planner — Scene Specification
-                    
+
                     **Status:** Provisional Draft awaiting explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** [Lesson Content](.this config.yaml), Sections 1–4; [Draft Methodologist Brief](.this config.yaml).
                     **Implementation:** New proposed prop-free and self-contained Scene. No Question, Quiz, assessment, persistence or Note API.
-                    
+
                     ## Pedagogical purpose and mathematical invariant
-                    
+
                     A two-step word problem has an **intermediate quantity** whose value is needed to determine the final unknown. The learner should name the first missing quantity, justify the first operation, use its result meaningfully in the second operation, and check the unit and final question. A “two-step” requirement is not a demand for a prescribed sequence of button clicks or a specific arrangement of symbols; the Scene must acknowledge mathematically valid alternative decompositions if they respect the stated relationships.
-                    
+
                     ## Scenario entry A — first find total, then remaining (Section 1)
-                    
+
                     Story: “There are **8 red books** and **7 blue books** on a shelf. **6 books** are borrowed. How many books remain?” Display separate cards for known red eight, known blue seven, borrowed six, unknown initial total, unknown remaining total. Learner selects the intermediate question: “How many books were on the shelf before borrowing?” and then a second question “How many remain afterward?” The model draws labeled dependency connections; the nonvisual alternative is an ordered two-card plan.
-                    
+
                     Expected **first step** 8 + 7 = **15 books initially**. Expected **second step** 15 − 6 = **9 books remaining**. If the learner picks just 8 − 6 = 2 as final, explain “The original total includes both red and blue books; two does not answer what remains on the whole shelf.” Do not declare _every_ alternative reordering invalid; e.g., a properly justified nonnegative decomposition may get the same total. If the child stops at 15, explain that 15 answers the first question, not the final question. Every correct result retains the unit “books”.
-                    
+
                     ## Scenario entry B — comparison first, then combine (Section 2)
-                    
+
                     Story: “Ava has **12 stickers**. Sam has **3 fewer** than Ava. How many do they have **together**?” The intermediate card must be **Sam's count**, initially unknown; the final card is combined count, also unknown. Learner may choose plan order and operations. Correct first step: 12 − 3 = **9 stickers for Sam**. Correct second step: 12 + 9 = **21 stickers together**. If the child chooses 12 + 3 for Sam, explain that “fewer” means Sam has less than Ava. If the child submits 9 as final, explain that this counts only Sam's stickers. If they submit 12 + 3 = 15 as together, explain that the number three is a **difference**, not Sam's total. Reconstruct all relationships in a labeled pair of quantity bars rather than only displaying a red/green result.
-                    
+
                     ## Scenario entry C — what must come first? (Section 3)
-                    
+
                     Reuse Ava/Sam quantitative story **only in a new independent initial state**. Show two incomplete _meaningful_ step cards:
-                    
+
                     - “Find Sam: 12 − 3 = ?”
                     - “Find combined total: 12 + Sam's stickers = ?”
                       Ask which can be completed with the known data and why. If the learner attempts the combined total first, do not mark their attempt as a generic wrong choice; say “We still need to know Sam's amount. Which step supplies it?” After the child reveals nine stickers for Sam (or opts to “Show why”), complete the second card 12 + 9 = 21. Include a label identifying the intermediate result, not a novel runtime state contract.
-                    
+
                     ## Scenario entry D — independent transfer (Section 4)
-                    
+
                     Story: “Mila has **14 shells**. Theo has **5 fewer shells** than Mila. How many shells do they have altogether?” Start with blank first/second plan cards, not with a completed number line. Child identifies unknown Theo=?, combined total=?, then selects two operations with named outputs. Correct first **14 − 5 = 9 shells for Theo**; correct second **14 + 9 = 23 shells combined**. Optional hint 1 “Who has fewer?”; hint 2 “Which person's amount is still unknown?” Neither hint automatically supplies the final total. Feedback for **9** as final: “That is Theo's count, but the question asks for both together.” Feedback for **14 + 5**: “Five is the difference from Mila, not Theo's amount.” A valid alternative strategy may be accepted with a relation-preserving explanation; no arbitrary uniqueness claim.
-                    
+
                     ## Objects and interaction state
-                    
+
                     Represent a story with known quantity cards, named missing-quantity cards, semantic dependency edges (both visual and an equivalent textual ordered list), optional step expression choices, intermediate value with unit, final answer with unit, independent hints, “Explain plan”, “Reset”. State includes which intermediate is named, the ordered plan, calculated values and revealed explanations. Arithmetic is derived from displayed quantities: 8+7=15; 15−6=9; 12−3=9; 12+9=21; 14−5=9; 14+9=23. If a step produces a number but uses an incorrect _role_, the Scene must explain the relationship error rather than judge only its arithmetic. There is no mandatory drag/arrow drawing; sequence is selectable by accessible ordered controls.
-                    
+
                     Every entry is a self-contained prop-free Scene. No Section-to-Section state is assumed; future implementation may internally reuse helpers. A “Show the answer” control provides the full two-question plan even without an attempt. Incorrect decisions are formative and revisable; never serialize correctness or claim Skill mastery.
-                    
+
                     ## Visual, language, offline and accessibility
-                    
+
                     Place the final question visibly at the top throughout, with intermediate question labeled **first** and final labeled **second**. Diagram edges are numbered and textually described (“Sam's value feeds into combined total”); do not communicate causality using arrow direction alone. A screen-reader user can navigate the exact ordered plan, numeric operands, units, dependencies and why specific alternative plans fail. Keyboard, switch and touch alternatives must offer all operations and feedback without dragging, pointing accuracy, speech, sound or timed interactions. RTL adapts control flow and names but does not reverse chronological/story dependencies or subtraction operands. Genuine translations for all supported locales must cover names, unit grammar, mathematical read-outs, hints, and feedback. Use focus visibility, color-independent statuses, reduced motion, 200% zoom and small-screen reflow. Complete offline operation is an **implementation requirement after download**, not an assertion of a current PWA feature.
-                    
+
                     ## Acceptance scenarios for Coding Agent
-                    
+
                     1. Books: intermediate total 15 books; final 9 books after six borrowed. Reject 15 as the final response and explain any plan that ignores the blue books.
                     2. Stickers: Sam 12−3=9; combined 12+9=21. Explain the meaning of both nine and twenty-one distinctly.
                     3. A comparison-first plan can be described in text and diagram without a drag dependency; intermediate value becomes usable in the second step.
                     4. Shells transfer: Theo 14−5=9, combined 14+9=23; nine alone is not the final.
                     5. User-controlled hints, explanation and reset remain available; no score, backend call or persistent record is produced.
                     6. Keyboard, screen-reader, RTL, reduced-motion, zoom/mobile and offline-downloaded modes convey identical numerical dependencies.
-                    
+
                     ## Approval and technical dependencies
-                    
+
                     A generic Scene Resource can render an eventual ReactNode, but this Scene and its localization are **not implemented**. Coding Agent must verify actual context, create no-props Scene entries and tests, validate WCAG 2.2 AA and true offline readiness, and obtain separate Methodologist/Scene approvals. No invented API, Question, Quiz, scores or Note event should be introduced.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **`scene` Resource (proposed):** Planner entry C. The “combined total” step displays “Sam's stickers: ?” until the learner completes the intermediate **B**. If the learner attempts A first, respond: “To combine Ava's and Sam's amounts, we must know Sam's count. Finding it first gives nine.” If B first, unlock the meaningful input “Sam = 9” and let A become **12+9=21**. This is **conceptual dependency**, not an arbitrary software gate; offer a complete explanation without requiring a successful click.
-                  productionNotes: "Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               text3:
                 config:
-                  id: "0c4e6b9e-f5ce-4ae1-82a4-c0242ac75c47"
-                  slug: "text3"
-                  type: "text"
+                  id: '0c4e6b9e-f5ce-4ae1-82a4-c0242ac75c47'
+                  slug: 'text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
                       en: "The story listed Ava's twelve, then three fewer, then the question about the total. A plan follows which quantities are needed. Different valid strategies may still reach the same result."
                 production:
-                  purpose: "Change the steps, inspect the dependency: text resource at position 3 (source provisional)"
+                  purpose: 'Change the steps, inspect the dependency: text resource at position 3 (source provisional)'
                   specification: "3. **`text`:** “The story listed Ava's twelve, then three fewer, then the question about the total. A plan follows **which quantities are needed**. Different valid strategies may still reach the same result.”"
-            order: ["text1", "scene2", "text3"]
+            order: ['text1', 'scene2', 'text3']
         production:
-          purpose: "show why step order follows missing information rather than the order of numbers in a sentence._"
-          pedagogicalIntent: "Original Section 3: Change the steps, inspect the dependency (provisional draft)"
+          purpose: 'show why step order follows missing information rather than the order of numbers in a sentence._'
+          pedagogicalIntent: 'Original Section 3: Change the steps, inspect the dependency (provisional draft)'
           productionNotes: |-
             _Purpose: show why step order follows missing information rather than the order of numbers in a sentence._
-            
+
             1. **`text`:** “You are handed these two proposed steps for Ava and Sam: **A. 12 + Sam's stickers**; **B. 12 − 3**. Which one can you complete using the known information _right now_?”
             2. **`scene` Resource (proposed):** Planner entry C. The “combined total” step displays “Sam's stickers: ?” until the learner completes the intermediate **B**. If the learner attempts A first, respond: “To combine Ava's and Sam's amounts, we must know Sam's count. Finding it first gives nine.” If B first, unlock the meaningful input “Sam = 9” and let A become **12+9=21**. This is **conceptual dependency**, not an arbitrary software gate; offer a complete explanation without requiring a successful click.
             3. **`text`:** “The story listed Ava's twelve, then three fewer, then the question about the total. A plan follows **which quantities are needed**. Different valid strategies may still reach the same result.”
       section4:
         config:
-          id: "f8e5673b-4f28-46ac-a769-70e1b115e00a"
-          slug: "section4"
-          type: "content"
+          id: 'f8e5673b-4f28-46ac-a769-70e1b115e00a'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Independent transfer: draw a short plan"
+              en: 'Independent transfer: draw a short plan'
             navigationLabel:
-              en: "Independent transfer: draw a short plan"
+              en: 'Independent transfer: draw a short plan'
           content:
             items:
               text1:
                 config:
-                  id: "8ad6069d-0dc8-42c2-971a-3c03934ba488"
-                  slug: "text1"
-                  type: "text"
+                  id: '8ad6069d-0dc8-42c2-971a-3c03934ba488'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Mila has 14 shells. Theo has 5 fewer shells than Mila. How many shells do they have altogether? Give yourself two questions to answer, then choose operations."
+                      en: 'Mila has 14 shells. Theo has 5 fewer shells than Mila. How many shells do they have altogether? Give yourself two questions to answer, then choose operations.'
                 production:
-                  purpose: "Independent transfer: draw a short plan: text resource at position 1 (source provisional)"
-                  specification: "1. **`text`:** “Mila has **14 shells**. Theo has **5 fewer shells than Mila**. **How many shells do they have altogether?** Give yourself two questions to answer, then choose operations.”"
+                  purpose: 'Independent transfer: draw a short plan: text resource at position 1 (source provisional)'
+                  specification: '1. **`text`:** “Mila has **14 shells**. Theo has **5 fewer shells than Mila**. **How many shells do they have altogether?** Give yourself two questions to answer, then choose operations.”'
               scene2:
                 config:
-                  id: "cf3e03f3-5ebf-491e-a2d8-7595f40c8660"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'cf3e03f3-5ebf-491e-a2d8-7595f40c8660'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Who has fewer?"
+                        instruction: 'Who has fewer?'
                 production:
-                  purpose: "Independent transfer: draw a short plan; source Scene twoStepPlanner.scene-spec.md; use 2"
+                  purpose: 'Independent transfer: draw a short plan; source Scene twoStepPlanner.scene-spec.md; use 2'
                   specification: |-
                     # Two-Step Dependency Planner — Scene Specification
-                    
+
                     **Status:** Provisional Draft awaiting explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** [Lesson Content](.this config.yaml), Sections 1–4; [Draft Methodologist Brief](.this config.yaml).
                     **Implementation:** New proposed prop-free and self-contained Scene. No Question, Quiz, assessment, persistence or Note API.
-                    
+
                     ## Pedagogical purpose and mathematical invariant
-                    
+
                     A two-step word problem has an **intermediate quantity** whose value is needed to determine the final unknown. The learner should name the first missing quantity, justify the first operation, use its result meaningfully in the second operation, and check the unit and final question. A “two-step” requirement is not a demand for a prescribed sequence of button clicks or a specific arrangement of symbols; the Scene must acknowledge mathematically valid alternative decompositions if they respect the stated relationships.
-                    
+
                     ## Scenario entry A — first find total, then remaining (Section 1)
-                    
+
                     Story: “There are **8 red books** and **7 blue books** on a shelf. **6 books** are borrowed. How many books remain?” Display separate cards for known red eight, known blue seven, borrowed six, unknown initial total, unknown remaining total. Learner selects the intermediate question: “How many books were on the shelf before borrowing?” and then a second question “How many remain afterward?” The model draws labeled dependency connections; the nonvisual alternative is an ordered two-card plan.
-                    
+
                     Expected **first step** 8 + 7 = **15 books initially**. Expected **second step** 15 − 6 = **9 books remaining**. If the learner picks just 8 − 6 = 2 as final, explain “The original total includes both red and blue books; two does not answer what remains on the whole shelf.” Do not declare _every_ alternative reordering invalid; e.g., a properly justified nonnegative decomposition may get the same total. If the child stops at 15, explain that 15 answers the first question, not the final question. Every correct result retains the unit “books”.
-                    
+
                     ## Scenario entry B — comparison first, then combine (Section 2)
-                    
+
                     Story: “Ava has **12 stickers**. Sam has **3 fewer** than Ava. How many do they have **together**?” The intermediate card must be **Sam's count**, initially unknown; the final card is combined count, also unknown. Learner may choose plan order and operations. Correct first step: 12 − 3 = **9 stickers for Sam**. Correct second step: 12 + 9 = **21 stickers together**. If the child chooses 12 + 3 for Sam, explain that “fewer” means Sam has less than Ava. If the child submits 9 as final, explain that this counts only Sam's stickers. If they submit 12 + 3 = 15 as together, explain that the number three is a **difference**, not Sam's total. Reconstruct all relationships in a labeled pair of quantity bars rather than only displaying a red/green result.
-                    
+
                     ## Scenario entry C — what must come first? (Section 3)
-                    
+
                     Reuse Ava/Sam quantitative story **only in a new independent initial state**. Show two incomplete _meaningful_ step cards:
-                    
+
                     - “Find Sam: 12 − 3 = ?”
                     - “Find combined total: 12 + Sam's stickers = ?”
                       Ask which can be completed with the known data and why. If the learner attempts the combined total first, do not mark their attempt as a generic wrong choice; say “We still need to know Sam's amount. Which step supplies it?” After the child reveals nine stickers for Sam (or opts to “Show why”), complete the second card 12 + 9 = 21. Include a label identifying the intermediate result, not a novel runtime state contract.
-                    
+
                     ## Scenario entry D — independent transfer (Section 4)
-                    
+
                     Story: “Mila has **14 shells**. Theo has **5 fewer shells** than Mila. How many shells do they have altogether?” Start with blank first/second plan cards, not with a completed number line. Child identifies unknown Theo=?, combined total=?, then selects two operations with named outputs. Correct first **14 − 5 = 9 shells for Theo**; correct second **14 + 9 = 23 shells combined**. Optional hint 1 “Who has fewer?”; hint 2 “Which person's amount is still unknown?” Neither hint automatically supplies the final total. Feedback for **9** as final: “That is Theo's count, but the question asks for both together.” Feedback for **14 + 5**: “Five is the difference from Mila, not Theo's amount.” A valid alternative strategy may be accepted with a relation-preserving explanation; no arbitrary uniqueness claim.
-                    
+
                     ## Objects and interaction state
-                    
+
                     Represent a story with known quantity cards, named missing-quantity cards, semantic dependency edges (both visual and an equivalent textual ordered list), optional step expression choices, intermediate value with unit, final answer with unit, independent hints, “Explain plan”, “Reset”. State includes which intermediate is named, the ordered plan, calculated values and revealed explanations. Arithmetic is derived from displayed quantities: 8+7=15; 15−6=9; 12−3=9; 12+9=21; 14−5=9; 14+9=23. If a step produces a number but uses an incorrect _role_, the Scene must explain the relationship error rather than judge only its arithmetic. There is no mandatory drag/arrow drawing; sequence is selectable by accessible ordered controls.
-                    
+
                     Every entry is a self-contained prop-free Scene. No Section-to-Section state is assumed; future implementation may internally reuse helpers. A “Show the answer” control provides the full two-question plan even without an attempt. Incorrect decisions are formative and revisable; never serialize correctness or claim Skill mastery.
-                    
+
                     ## Visual, language, offline and accessibility
-                    
+
                     Place the final question visibly at the top throughout, with intermediate question labeled **first** and final labeled **second**. Diagram edges are numbered and textually described (“Sam's value feeds into combined total”); do not communicate causality using arrow direction alone. A screen-reader user can navigate the exact ordered plan, numeric operands, units, dependencies and why specific alternative plans fail. Keyboard, switch and touch alternatives must offer all operations and feedback without dragging, pointing accuracy, speech, sound or timed interactions. RTL adapts control flow and names but does not reverse chronological/story dependencies or subtraction operands. Genuine translations for all supported locales must cover names, unit grammar, mathematical read-outs, hints, and feedback. Use focus visibility, color-independent statuses, reduced motion, 200% zoom and small-screen reflow. Complete offline operation is an **implementation requirement after download**, not an assertion of a current PWA feature.
-                    
+
                     ## Acceptance scenarios for Coding Agent
-                    
+
                     1. Books: intermediate total 15 books; final 9 books after six borrowed. Reject 15 as the final response and explain any plan that ignores the blue books.
                     2. Stickers: Sam 12−3=9; combined 12+9=21. Explain the meaning of both nine and twenty-one distinctly.
                     3. A comparison-first plan can be described in text and diagram without a drag dependency; intermediate value becomes usable in the second step.
                     4. Shells transfer: Theo 14−5=9, combined 14+9=23; nine alone is not the final.
                     5. User-controlled hints, explanation and reset remain available; no score, backend call or persistent record is produced.
                     6. Keyboard, screen-reader, RTL, reduced-motion, zoom/mobile and offline-downloaded modes convey identical numerical dependencies.
-                    
+
                     ## Approval and technical dependencies
-                    
+
                     A generic Scene Resource can render an eventual ReactNode, but this Scene and its localization are **not implemented**. Coding Agent must verify actual context, create no-props Scene entries and tests, validate WCAG 2.2 AA and true offline readiness, and obtain separate Methodologist/Scene approvals. No invented API, Question, Quiz, scores or Note event should be introduced.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **`scene` Resource (proposed):** Planner entry D. Show the complete story with empty intermediate/final cards; provide keyboard/touch selection of known roles, unknown Theo=?, combined total=? and operations. Hints are optional: “Who has fewer?” and “Whose number is still missing?” Expected first **14 − 5 = 9 shells (Theo)**; second **14 + 9 = 23 shells (combined)**.
-                  productionNotes: "Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               text3:
                 config:
-                  id: "88d60377-0bc8-4f9c-991a-3f29954ba7ae"
-                  slug: "text3"
-                  type: "text"
+                  id: '88d60377-0bc8-4f9c-991a-3f29954ba7ae'
+                  slug: 'text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
                       en: "That is Theo's amount, but the question says _altogether_."
                 production:
-                  purpose: "Independent transfer: draw a short plan: text resource at position 3 (source provisional)"
+                  purpose: 'Independent transfer: draw a short plan: text resource at position 3 (source provisional)'
                   specification: "3. **`text`, feedback:** If answer 9 only: “That is Theo's amount, but the question says _altogether_.” If 14+5=19: “Five is the **difference**, not Theo's count.” If 23: “Theo has nine, Mila has fourteen, and together they have twenty-three.” Allow a mathematical alternative plan only if both quantities and dependency can be explained consistently."
               markdown4:
                 config:
-                  id: "1c2de2e8-de6a-4a2f-bdff-54bad5350079"
-                  slug: "markdown4"
-                  type: "markdown"
+                  id: '1c2de2e8-de6a-4a2f-bdff-54bad5350079'
+                  slug: 'markdown4'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**Recall:** Identify the final unknown. Ask **what missing quantity must be found first?** Give that intermediate a name and unit, then use it in the second step."
+                      en: '**Recall:** Identify the final unknown. Ask **what missing quantity must be found first?** Give that intermediate a name and unit, then use it in the second step.'
                 production:
-                  purpose: "Independent transfer: draw a short plan: markdown resource at position 4 (source provisional)"
-                  specification: "4. **`markdown`:** “**Recall:** Identify the final unknown. Ask **what missing quantity must be found first?** Give that intermediate a name and unit, then use it in the second step.”"
-            order: ["text1", "scene2", "text3", "markdown4"]
+                  purpose: 'Independent transfer: draw a short plan: markdown resource at position 4 (source provisional)'
+                  specification: '4. **`markdown`:** “**Recall:** Identify the final unknown. Ask **what missing quantity must be found first?** Give that intermediate a name and unit, then use it in the second step.”'
+            order: ['text1', 'scene2', 'text3', 'markdown4']
         production:
-          purpose: "learners select the intermediate before seeing the operations._"
-          pedagogicalIntent: "Original Section 4: Independent transfer: draw a short plan (provisional draft)"
+          purpose: 'learners select the intermediate before seeing the operations._'
+          pedagogicalIntent: 'Original Section 4: Independent transfer: draw a short plan (provisional draft)'
           productionNotes: |-
             _Purpose: learners select the intermediate before seeing the operations._
-            
+
             1. **`text`:** “Mila has **14 shells**. Theo has **5 fewer shells than Mila**. **How many shells do they have altogether?** Give yourself two questions to answer, then choose operations.”
             2. **`scene` Resource (proposed):** Planner entry D. Show the complete story with empty intermediate/final cards; provide keyboard/touch selection of known roles, unknown Theo=?, combined total=? and operations. Hints are optional: “Who has fewer?” and “Whose number is still missing?” Expected first **14 − 5 = 9 shells (Theo)**; second **14 + 9 = 23 shells (combined)**.
             3. **`text`, feedback:** If answer 9 only: “That is Theo's amount, but the question says _altogether_.” If 14+5=19: “Five is the **difference**, not Theo's count.” If 23: “Theo has nine, Mila has fourteen, and together they have twenty-three.” Allow a mathematical alternative plan only if both quantities and dependency can be explained consistently.
             4. **`markdown`:** “**Recall:** Identify the final unknown. Ask **what missing quantity must be found first?** Give that intermediate a name and unit, then use it in the second step.”
-    order: ["section1", "section2", "section3", "section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Plan Two Steps Before You Calculate — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: planTwoStepSolution
     Methodologist status: Draft
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Build a dependency-aware plan for a word problem requiring an intermediate unknown before the final answer. Contrast two-step structures: combine then subtract, and compare then combine, to prevent rote memorization of a single operation sequence.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 3.** Select conceptual depth and expected independence according to these prerequisites, not a numerical grade ceiling on the canonical Skill. Plan for developing reading fluency, optional teacher/adult mediation, accessible symbols, working-memory scaffolding and multiple response modes. All examples remain legible and comprehensible without sound, exact pointer control or high-speed interaction.
-    
+
     ## Prerequisites
-    
+
     - [identifyKnownUnknown.data.ts](../../../../data/skills/problemSolving/conditions/skills/identifyKnownUnknown.data.ts): separate supplied quantities and the asked-for result.
     - [oneStepModel.data.ts](../../../../data/skills/problemSolving/models/skills/oneStepModel.data.ts): represent a one-step relation with a named unknown.
     - [chooseOperationAddSub.data.ts](../../../../data/skills/problemSolving/models/skills/chooseOperationAddSub.data.ts): select addition/subtraction from roles rather than keywords.
     - Compute additions/subtractions within 100, understand ‘fewer than’ additive comparison and units.
-    
+
     ## Target Skills
-    
+
     - [twoStepPlan.data.ts](../../../../data/skills/problemSolving/planning/skills/twoStepPlan.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Identify an intermediate question that must be answered before the final question can be resolved.
     - Sequence two justified operations while preserving the meaning and units of the intermediate result.
     - Explain why a proposed single-operation answer does not address the actual final question.
     - Independently plan (and optionally carry out) a comparison-then-combine task without a prebuilt operation sequence; recognize a valid alternative strategy when it preserves all relationships.
-    
+
     ## Essential subject matter
-    
+
     For ‘A shelf has 8 red books and 7 blue books; 6 books are borrowed; how many remain?’, first find 8+7=15 books (original total), then 15−6=9 books (remain). The first answer is an **intermediate**, not the final result. A second structure: ‘Ava has 12 stickers; Sam has 3 fewer than Ava; how many have they together?’ first Sam=12−3=9 stickers; then 12+9=21 stickers. A child who only calculates 12−3 answers Sam's amount, not the _combined_ question. Other mathematically valid strategies may exist, so never assert an arbitrary sequence of arithmetic symbols is the unique legitimate plan; dependency and units are central.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Begin with a visibly missing intermediate total and explicit plan cards, execute and name the intermediate, contrast a different dependency graph using ‘fewer than’, then transfer to a new comparison-then-combine context with no supplied plan. Ask the learner to justify what the intermediate answers in words.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     The first result is always the final answer; automatically add every numeral, choose steps by word order alone, misuse ‘fewer than’ as 12+3, omit the known person's amount in final total, or assert a valid alternative ordering is always wrong. Restrict to two essential steps and nonnegative counts within 100. No 3-step/variable/rate/ratio planning or grading outcomes.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     English text is an **editorial source**, not a finished multilingual translation. Before implementation every learner-visible prompt, story, diagram label, mathematical reading, control name, feedback statement and nonvisual alternative needs **genuine, meaning-preserving translation for all current supported locales**, with no silent English fallback. Mathematical operand order, chronological events, and quantitative meaning must remain stable in RTL; adapt layout semantically rather than mirror all graphics. Offer keyboard, touch and switch alternatives to dragging, explicit textual names and values rather than color-only cues, predictable focus, zoom/mobile reflow, reduced motion and equivalent auditory/nonvisual explanations. All lesson-critical resources and feedback should be available after offline download; this is a **target** requiring future implementation checks, not a promise that PWA/Note persistence is implemented.
-    
+
     ## Sources and factual verification
-    
+
     - [twoStepPlan.data.ts](../../../../data/skills/problemSolving/planning/skills/twoStepPlan.data.ts) — directly linked Mathematics canonical Skill data; confirm exact source/UUID and domain-local composition, not a generated Markdown authority.
     - [Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — independent Methodologist and Screenwriter artifacts and approval boundaries.
     - [Internationalization and Accessibility](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) — current inclusive localization design requirements.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) — optional international reference for a broad progression, **not** a claim of Curriculum alignment.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. This Lesson is standalone and Program-neutral.
-    
+
     ## Open editorial decisions
-    
+
     - Editor to confirm Grade 3 use of additive comparison as a prerequisite and accept that the proposed intermediate-first strategy is scaffolded but not mathematically unique.
     - The generated Playground taxonomy view is a shared coordinator-owned artifact and may not yet include newly migrated SkillGroups; formal taxonomy approval must be independently confirmed. Do not mistake the presence of a canonical source Code object for a new editorial sign-off.
     - Methodologist/editor must explicitly approve this Draft Brief before Content or Scene specifications become formally approved; current parallel drafts are **provisional**.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, pending explicit approval.** The Screenwriter's provisional Content (incorporated in this config.yaml) and proposed Scene (full Scene specification embedded in this config.yaml) are independently reviewable, not evidence that the Methodologist gate passed. No runtime Lesson, Question, Quiz, grade, scoring or Note persistence was implemented.
-  purpose: "Plan Two Steps Before You Calculate: preserve existing standalone Lesson plan without new assessments or Scene implementation"
+  purpose: 'Plan Two Steps Before You Calculate: preserve existing standalone Lesson plan without new assessments or Scene implementation'
   productionNotes: |-
     Provisional Screenwriter source (not approved), originally content.md; all introductory, global and review material:
-    
+
     # Plan Two Steps Before You Calculate — Lesson Content
-    
+
     **Screenwriter status:** Provisional Draft — pending Methodologist Brief (incorporated in this config.yaml) approval.  
     **Program dependence:** None. **Technical state:** Not implemented. **Language:** English editorial source only.
-    
+
     ## Teaching rationale and instructional contract
-    
+
     The learner must see the difference between **an intermediate answer** and **the final question** and create a dependency-aware plan. Do not impose a magic two-step formula or treat every two-operation string as equivalent to an explanation. The Lesson exposes two distinct dependencies—**find a whole, then subtract** and **find someone's amount, then combine two amounts**—before an independent transfer. This is not a graded Quiz or evidence of mastery.
-    
-    
-    
+
+
+
     ## Accessibility, implementation and editorial scope
-    
+
     Each Section is an **ordered single vertical sequence** of `text`, `markdown` and **proposed** `scene` resources; the planner's internal diagram may use responsive spatial layout, but sibling Resources do not become columns. Two-Step Dependency Planner (full Scene specification embedded in this config.yaml) is specified, not implemented. No Question/Quiz, score, storage, Notes or Program quests have been generated. Prompts and explanations are fully authored as English editorial source, not as production locale files.
-    
+
     The Scene spec must offer **two equivalent paths**: a diagram with accessible quantity and dependency labels, and a purely text-based ordered plan choosing first and second steps. Never require drag/hover, color recognition, motion/audio or speech. Screen readers announce intermediate versus final results and units; keyboard/switch users navigate a stable logical order. In RTL, adapt presentation while retaining causal quantity dependency, mathematical operand order and named person relationships. Translate all strings, units, feedback, numbers and aria-like labels genuinely for all required locales before development; do not silently fall back to English. Reduced motion, responsive zoom and locally available offline contents/feedback are necessary implementation targets, not claims of already shipped capability. The Draft Brief (incorporated in this config.yaml) requires explicit approval before any formal Content or Scene approval.
-    
+
     Source-language-only English draft; intended locale list follows the current Engine supported language set (ar, be, bn, de, en, es, et, fr, he, hi, id, ja, ka, kk, ko, lt, lv, mr, ms, pl, pt, qm, ta, te, tr, uk, ur, vi, zh), with genuine translations required before implementation. No formal independent approval is implied.

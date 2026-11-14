@@ -1,122 +1,122 @@
 config:
-  id: "5970a4da-d9db-575d-aacd-a5b8c4d61952"
-  slug: "subtractionMeaning"
-  type: "lesson"
-  skills: ["48c9e5d7-43c0-414d-b760-788292403331"]
+  id: '5970a4da-d9db-575d-aacd-a5b8c4d61952'
+  slug: 'subtractionMeaning'
+  type: 'lesson'
+  skills: ['48c9e5d7-43c0-414d-b760-788292403331']
   params:
     requireQuiz: false
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "What Does Subtraction Tell Us?"
+      en: 'What Does Subtraction Tell Us?'
   section:
     items:
       section1:
         config:
-          id: "8974f3c2-0997-5d21-9423-73c28309e59f"
-          slug: "section1"
-          type: "content"
+          id: '8974f3c2-0997-5d21-9423-73c28309e59f'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What Is Left?"
+              en: 'What Is Left?'
             navigationLabel:
-              en: "What Is Left?"
+              en: 'What Is Left?'
           content:
             items:
               text1:
                 config:
-                  id: "82e8ca93-8522-5af0-8423-4a932e0126e2"
-                  slug: "text1"
-                  type: "text"
+                  id: '82e8ca93-8522-5af0-8423-4a932e0126e2'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "There are 9 counters. Take away 4. How many are left?"
+                      en: 'There are 9 counters. Take away 4. How many are left?'
                 production:
-                  purpose: "Provisional learner prompt/feedback"
+                  purpose: 'Provisional learner prompt/feedback'
               scene1:
                 config:
-                  id: "e1a3d14c-d226-5211-90bb-514cf995fa2b"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'e1a3d14c-d226-5211-90bb-514cf995fa2b'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "There are 9 counters. Take away 4. How many are left?"
+                        instruction: 'There are 9 counters. Take away 4. How many are left?'
                 production:
                   specification: |
                     # Subtraction Stories Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: What Does Subtraction Tell Us? (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objective(s): Model removing, comparing and finding a missing part with a correct subtraction equality. Methodologist Brief (embedded in this Lesson config.yaml) (Draft).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     The interactive comparison of **three situations with the same numbers** reveals what subtraction means beyond physically taking something away. The learner observes why “five” can mean five remaining, five more or five in an unknown part; the numeric relationship is conserved but the story semantics differ.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Removal: 9 originally, remove 4, 5 remain. Comparison: two unchanged collections 9 and 4, match 4 pairs and see 5 surplus in the larger. Missing part: 9 total, known 4, unknown 5. Transfer uses 8 and 3, difference 5, in the same three interpretations. No negative values, exceeding 20, invented sum or inequality. In comparison, do NOT remove from either collection. In missing-part, do NOT hide the only visible evidence of the unknown group's count.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Remove entry:** Render 9 counters and an action “Remove 4.” On activation, move exactly four to a labeled removed area. “Five are left”; display 9−4=5. Wrong predictions 4/6 get a counting explanation and retry.
                     2. **Compare entry:** Two rows of 9 and 4. “Match the groups” links four pairs while both rows stay intact; mark five extra in the larger. Feedback for summing 9+4: “That finds the combined total, not how many more.”
                     3. **Missing entry:** Show a whole of nine with four in the known group and five unlabelled counters in the other. “Reveal missing part” labels five and shows 9−4=5 and 4+5=9.
                     4. **Transfer entry:** Choose one of three 8-versus-3/8-take-away-3/8-whole-3-known contexts; render each explicitly with story-specific action. Then show 8−3=5 and ask “What does five mean in THIS story?”
                     5. Every entry has “Show steps,” “Read the model,” “Reset,” and supports bypassing predictions. Interpretive feedback is narrative, not a scored answer report.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independent prop-free Scene entries, one per Section, with mode encoded in editorial placement rather than invented public props. Coding Agent may reuse internals while keeping state separate.
                     - Stateful counters, known/removed/matched/missing roles, story selection, optional prediction, reveal state, and explanation log. Removing preserves original = removed + remaining; comparing preserves both starting collections; unknown-part preserves whole = known + missing.
                     - Arithmetic exact: 9−4=5 and 8−3=5; no response may claim 9+4=5 or that a comparison required literal deletion. Reset returns to initial case without modifying any other Section.
                     - No scoring, per-learner progress/analytics or Skill mastery mechanics.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple high-contrast countable HTML/SVG counters; group borders and text labels distinguish roles. Matching/removed objects are tracked in labeled areas. Learner-controlled subtle transformations, instant state transitions under reduced motion. No decorative narrative or asset generation; audio optional with equivalent text.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate “taken away,” “left,” “more than,” “difference,” “known part” and “whole” accurately for all required locales. Ordered accessible state lists provide equivalent interaction and role labels without vision, dragging or color. Keyboard/switch/touch-friendly controls, screen-reader announcements, 200% zoom, child-size targets, RTL semantic math order and reduced-motion equivalence. Offline deterministic model/feedback after complete locale download; no network or audio dependence.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Removal 9−4=5 leaves five of the original nine and tracks four removed.
                     2. Comparison of 9 and 4 pairs four from both groups, leaves five unmatched only in larger, deletes nothing.
                     3. Whole nine split known four + missing five, check four+five=nine.
                     4. Transfer 8−3=5 has three distinct verbal answer roles depending on selected story; no context mismatch.
                     5. Wrong predictions are reversible with explanations; reveal/reset works without graded result.
                     6. Complete keyboard/screen reader/RTL/reduced-motion/offline alternatives reproduce all meanings and counts.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Typed scene/renderer are available; this Scene family is proposed, not implemented, and requires approved upstream Brief and Scene spec, prop-free components with own tests and locale data. Assessment Architect alone approves graded questions. Do not invent Score/Note/public mode APIs.
-                  purpose: "What Is Left?: independent placement"
-                  productionNotes: "Original subtractionStoriesLab.scene-spec.md variant belongs to What Is Left?; see Section productionNotes. Unique stable Scene ID."
+                  purpose: 'What Is Left?: independent placement'
+                  productionNotes: 'Original subtractionStoriesLab.scene-spec.md variant belongs to What Is Left?; see Section productionNotes. Unique stable Scene ID.'
               markdown1:
                 config:
-                  id: "cfb7d871-2cb7-5d8a-8a1a-58710c4b8d70"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'cfb7d871-2cb7-5d8a-8a1a-58710c4b8d70'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Nine was our starting number. We took away four. Five are left: **9 − 4 = 5**."
+                      en: 'Nine was our starting number. We took away four. Five are left: **9 − 4 = 5**.'
                 production:
-                  purpose: "Provisional instructional explanation"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Make removal and a remainder visible."
+          purpose: 'Make removal and a remainder visible.'
           productionNotes: |-
             - Purpose / learning outcome: Make removal and a remainder visible.
             - Current shape: LessonSection_Config.
@@ -132,106 +132,106 @@ config:
             - Dependencies: bespoke Scene is not implemented.
       section2:
         config:
-          id: "8874f22f-0697-5868-9323-722f8409e732"
-          slug: "section2"
-          type: "content"
+          id: '8874f22f-0697-5868-9323-722f8409e732'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "How Many More?"
+              en: 'How Many More?'
             navigationLabel:
-              en: "How Many More?"
+              en: 'How Many More?'
           content:
             items:
               text1:
                 config:
-                  id: "582a0772-afef-5f9d-9964-87725a02fe83"
-                  slug: "text1"
-                  type: "text"
+                  id: '582a0772-afef-5f9d-9964-87725a02fe83'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "One collection has 9 counters. Another has 4. How many MORE are in the larger collection?"
+                      en: 'One collection has 9 counters. Another has 4. How many MORE are in the larger collection?'
                 production:
-                  purpose: "Provisional learner prompt/feedback"
+                  purpose: 'Provisional learner prompt/feedback'
               scene1:
                 config:
-                  id: "a3913a1b-36c0-5086-92a8-ba1b3442a05c"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'a3913a1b-36c0-5086-92a8-ba1b3442a05c'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "One collection has 9 counters. Another has 4. How many MORE are in the larger collection?"
+                        instruction: 'One collection has 9 counters. Another has 4. How many MORE are in the larger collection?'
                 production:
                   specification: |
                     # Subtraction Stories Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: What Does Subtraction Tell Us? (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objective(s): Model removing, comparing and finding a missing part with a correct subtraction equality. Methodologist Brief (embedded in this Lesson config.yaml) (Draft).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     The interactive comparison of **three situations with the same numbers** reveals what subtraction means beyond physically taking something away. The learner observes why “five” can mean five remaining, five more or five in an unknown part; the numeric relationship is conserved but the story semantics differ.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Removal: 9 originally, remove 4, 5 remain. Comparison: two unchanged collections 9 and 4, match 4 pairs and see 5 surplus in the larger. Missing part: 9 total, known 4, unknown 5. Transfer uses 8 and 3, difference 5, in the same three interpretations. No negative values, exceeding 20, invented sum or inequality. In comparison, do NOT remove from either collection. In missing-part, do NOT hide the only visible evidence of the unknown group's count.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Remove entry:** Render 9 counters and an action “Remove 4.” On activation, move exactly four to a labeled removed area. “Five are left”; display 9−4=5. Wrong predictions 4/6 get a counting explanation and retry.
                     2. **Compare entry:** Two rows of 9 and 4. “Match the groups” links four pairs while both rows stay intact; mark five extra in the larger. Feedback for summing 9+4: “That finds the combined total, not how many more.”
                     3. **Missing entry:** Show a whole of nine with four in the known group and five unlabelled counters in the other. “Reveal missing part” labels five and shows 9−4=5 and 4+5=9.
                     4. **Transfer entry:** Choose one of three 8-versus-3/8-take-away-3/8-whole-3-known contexts; render each explicitly with story-specific action. Then show 8−3=5 and ask “What does five mean in THIS story?”
                     5. Every entry has “Show steps,” “Read the model,” “Reset,” and supports bypassing predictions. Interpretive feedback is narrative, not a scored answer report.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independent prop-free Scene entries, one per Section, with mode encoded in editorial placement rather than invented public props. Coding Agent may reuse internals while keeping state separate.
                     - Stateful counters, known/removed/matched/missing roles, story selection, optional prediction, reveal state, and explanation log. Removing preserves original = removed + remaining; comparing preserves both starting collections; unknown-part preserves whole = known + missing.
                     - Arithmetic exact: 9−4=5 and 8−3=5; no response may claim 9+4=5 or that a comparison required literal deletion. Reset returns to initial case without modifying any other Section.
                     - No scoring, per-learner progress/analytics or Skill mastery mechanics.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple high-contrast countable HTML/SVG counters; group borders and text labels distinguish roles. Matching/removed objects are tracked in labeled areas. Learner-controlled subtle transformations, instant state transitions under reduced motion. No decorative narrative or asset generation; audio optional with equivalent text.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate “taken away,” “left,” “more than,” “difference,” “known part” and “whole” accurately for all required locales. Ordered accessible state lists provide equivalent interaction and role labels without vision, dragging or color. Keyboard/switch/touch-friendly controls, screen-reader announcements, 200% zoom, child-size targets, RTL semantic math order and reduced-motion equivalence. Offline deterministic model/feedback after complete locale download; no network or audio dependence.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Removal 9−4=5 leaves five of the original nine and tracks four removed.
                     2. Comparison of 9 and 4 pairs four from both groups, leaves five unmatched only in larger, deletes nothing.
                     3. Whole nine split known four + missing five, check four+five=nine.
                     4. Transfer 8−3=5 has three distinct verbal answer roles depending on selected story; no context mismatch.
                     5. Wrong predictions are reversible with explanations; reveal/reset works without graded result.
                     6. Complete keyboard/screen reader/RTL/reduced-motion/offline alternatives reproduce all meanings and counts.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Typed scene/renderer are available; this Scene family is proposed, not implemented, and requires approved upstream Brief and Scene spec, prop-free components with own tests and locale data. Assessment Architect alone approves graded questions. Do not invent Score/Note/public mode APIs.
-                  purpose: "How Many More?: independent placement"
-                  productionNotes: "Original subtractionStoriesLab.scene-spec.md variant belongs to How Many More?; see Section productionNotes. Unique stable Scene ID."
+                  purpose: 'How Many More?: independent placement'
+                  productionNotes: 'Original subtractionStoriesLab.scene-spec.md variant belongs to How Many More?; see Section productionNotes. Unique stable Scene ID.'
               markdown1:
                 config:
-                  id: "f9f075a0-10ff-53c7-b452-f5a0e251ba81"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'f9f075a0-10ff-53c7-b452-f5a0e251ba81'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "Four counters can be matched with four of the nine. **Five extra counters** are in the larger group. We write **9 − 4 = 5**, even though we didn't take away any counters."
                 production:
-                  purpose: "Provisional instructional explanation"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "How Many More?"
+          purpose: 'How Many More?'
           productionNotes: |-
             - Purpose: Recognize comparison subtraction that leaves both quantities intact.
             - Current shape: LessonSection_Config.
@@ -246,106 +246,106 @@ config:
             - Dependencies: same Scene family, second independently initialized prop-free entry.
       section3:
         config:
-          id: "8774f09c-0797-59fb-9223-709c8509e8c5"
-          slug: "section3"
-          type: "content"
+          id: '8774f09c-0797-59fb-9223-709c8509e8c5'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What Part Is Missing?"
+              en: 'What Part Is Missing?'
             navigationLabel:
-              en: "What Part Is Missing?"
+              en: 'What Part Is Missing?'
           content:
             items:
               text1:
                 config:
-                  id: "56e75981-f945-59de-9821-d981746ebce4"
-                  slug: "text1"
-                  type: "text"
+                  id: '56e75981-f945-59de-9821-d981746ebce4'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "There are 9 counters altogether. We know about a part of 4. How many belong to the other part?"
+                      en: 'There are 9 counters altogether. We know about a part of 4. How many belong to the other part?'
                 production:
-                  purpose: "Provisional learner prompt/feedback"
+                  purpose: 'Provisional learner prompt/feedback'
               scene1:
                 config:
-                  id: "0b36a152-bfe5-557f-ba4e-2152e8d02efd"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '0b36a152-bfe5-557f-ba4e-2152e8d02efd'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "There are 9 counters altogether. We know about a part of 4. How many belong to the other part?"
+                        instruction: 'There are 9 counters altogether. We know about a part of 4. How many belong to the other part?'
                 production:
                   specification: |
                     # Subtraction Stories Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: What Does Subtraction Tell Us? (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objective(s): Model removing, comparing and finding a missing part with a correct subtraction equality. Methodologist Brief (embedded in this Lesson config.yaml) (Draft).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     The interactive comparison of **three situations with the same numbers** reveals what subtraction means beyond physically taking something away. The learner observes why “five” can mean five remaining, five more or five in an unknown part; the numeric relationship is conserved but the story semantics differ.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Removal: 9 originally, remove 4, 5 remain. Comparison: two unchanged collections 9 and 4, match 4 pairs and see 5 surplus in the larger. Missing part: 9 total, known 4, unknown 5. Transfer uses 8 and 3, difference 5, in the same three interpretations. No negative values, exceeding 20, invented sum or inequality. In comparison, do NOT remove from either collection. In missing-part, do NOT hide the only visible evidence of the unknown group's count.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Remove entry:** Render 9 counters and an action “Remove 4.” On activation, move exactly four to a labeled removed area. “Five are left”; display 9−4=5. Wrong predictions 4/6 get a counting explanation and retry.
                     2. **Compare entry:** Two rows of 9 and 4. “Match the groups” links four pairs while both rows stay intact; mark five extra in the larger. Feedback for summing 9+4: “That finds the combined total, not how many more.”
                     3. **Missing entry:** Show a whole of nine with four in the known group and five unlabelled counters in the other. “Reveal missing part” labels five and shows 9−4=5 and 4+5=9.
                     4. **Transfer entry:** Choose one of three 8-versus-3/8-take-away-3/8-whole-3-known contexts; render each explicitly with story-specific action. Then show 8−3=5 and ask “What does five mean in THIS story?”
                     5. Every entry has “Show steps,” “Read the model,” “Reset,” and supports bypassing predictions. Interpretive feedback is narrative, not a scored answer report.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independent prop-free Scene entries, one per Section, with mode encoded in editorial placement rather than invented public props. Coding Agent may reuse internals while keeping state separate.
                     - Stateful counters, known/removed/matched/missing roles, story selection, optional prediction, reveal state, and explanation log. Removing preserves original = removed + remaining; comparing preserves both starting collections; unknown-part preserves whole = known + missing.
                     - Arithmetic exact: 9−4=5 and 8−3=5; no response may claim 9+4=5 or that a comparison required literal deletion. Reset returns to initial case without modifying any other Section.
                     - No scoring, per-learner progress/analytics or Skill mastery mechanics.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple high-contrast countable HTML/SVG counters; group borders and text labels distinguish roles. Matching/removed objects are tracked in labeled areas. Learner-controlled subtle transformations, instant state transitions under reduced motion. No decorative narrative or asset generation; audio optional with equivalent text.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate “taken away,” “left,” “more than,” “difference,” “known part” and “whole” accurately for all required locales. Ordered accessible state lists provide equivalent interaction and role labels without vision, dragging or color. Keyboard/switch/touch-friendly controls, screen-reader announcements, 200% zoom, child-size targets, RTL semantic math order and reduced-motion equivalence. Offline deterministic model/feedback after complete locale download; no network or audio dependence.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Removal 9−4=5 leaves five of the original nine and tracks four removed.
                     2. Comparison of 9 and 4 pairs four from both groups, leaves five unmatched only in larger, deletes nothing.
                     3. Whole nine split known four + missing five, check four+five=nine.
                     4. Transfer 8−3=5 has three distinct verbal answer roles depending on selected story; no context mismatch.
                     5. Wrong predictions are reversible with explanations; reveal/reset works without graded result.
                     6. Complete keyboard/screen reader/RTL/reduced-motion/offline alternatives reproduce all meanings and counts.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Typed scene/renderer are available; this Scene family is proposed, not implemented, and requires approved upstream Brief and Scene spec, prop-free components with own tests and locale data. Assessment Architect alone approves graded questions. Do not invent Score/Note/public mode APIs.
-                  purpose: "What Part Is Missing?: independent placement"
-                  productionNotes: "Original subtractionStoriesLab.scene-spec.md variant belongs to What Part Is Missing?; see Section productionNotes. Unique stable Scene ID."
+                  purpose: 'What Part Is Missing?: independent placement'
+                  productionNotes: 'Original subtractionStoriesLab.scene-spec.md variant belongs to What Part Is Missing?; see Section productionNotes. Unique stable Scene ID.'
               markdown1:
                 config:
-                  id: "a58a0b7b-32ff-595c-9fec-8b7bd8f4c55e"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'a58a0b7b-32ff-595c-9fec-8b7bd8f4c55e'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The whole is nine. We know four. **9 − 4 = 5** finds the part we did not know. Four and five make nine."
+                      en: 'The whole is nine. We know four. **9 − 4 = 5** finds the part we did not know. Four and five make nine.'
                 production:
-                  purpose: "Provisional instructional explanation"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "What Part Is Missing?"
+          purpose: 'What Part Is Missing?'
           productionNotes: |-
             - Purpose: Recognize the unknown-part model without reinterpreting it as an unrelated Skill.
             - Current shape: LessonSection_Config.
@@ -360,106 +360,106 @@ config:
             - Dependencies: new Scene placement.
       section4:
         config:
-          id: "8674ef09-0c97-51da-9123-6f097e09ddc0"
-          slug: "section4"
-          type: "content"
+          id: '8674ef09-0c97-51da-9123-6f097e09ddc0'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Same Equation, Different Questions"
+              en: 'Same Equation, Different Questions'
             navigationLabel:
-              en: "Same Equation, Different Questions"
+              en: 'Same Equation, Different Questions'
           content:
             items:
               markdown1:
                 config:
-                  id: "57144e82-8669-5c59-9176-ce82a5446c2f"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '57144e82-8669-5c59-9176-ce82a5446c2f'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Try three questions. (A) 8 blocks, remove 3: what remains? (B) 8 blocks versus 3: how many more? (C) 8 in all and 3 known: what other part?"
+                      en: 'Try three questions. (A) 8 blocks, remove 3: what remains? (B) 8 blocks versus 3: how many more? (C) 8 in all and 3 known: what other part?'
                 production:
-                  purpose: "Provisional instructional explanation"
+                  purpose: 'Provisional instructional explanation'
               scene1:
                 config:
-                  id: "c61b4169-670e-5d54-b532-c1696460100e"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'c61b4169-670e-5d54-b532-c1696460100e'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Try three questions. (A) 8 blocks, remove 3: what remains? (B) 8 blocks versus 3: how many more? (C) 8 in all and 3 known: what other part?"
+                        instruction: 'Try three questions. (A) 8 blocks, remove 3: what remains? (B) 8 blocks versus 3: how many more? (C) 8 in all and 3 known: what other part?'
                 production:
                   specification: |
                     # Subtraction Stories Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: What Does Subtraction Tell Us? (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objective(s): Model removing, comparing and finding a missing part with a correct subtraction equality. Methodologist Brief (embedded in this Lesson config.yaml) (Draft).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     The interactive comparison of **three situations with the same numbers** reveals what subtraction means beyond physically taking something away. The learner observes why “five” can mean five remaining, five more or five in an unknown part; the numeric relationship is conserved but the story semantics differ.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Removal: 9 originally, remove 4, 5 remain. Comparison: two unchanged collections 9 and 4, match 4 pairs and see 5 surplus in the larger. Missing part: 9 total, known 4, unknown 5. Transfer uses 8 and 3, difference 5, in the same three interpretations. No negative values, exceeding 20, invented sum or inequality. In comparison, do NOT remove from either collection. In missing-part, do NOT hide the only visible evidence of the unknown group's count.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Remove entry:** Render 9 counters and an action “Remove 4.” On activation, move exactly four to a labeled removed area. “Five are left”; display 9−4=5. Wrong predictions 4/6 get a counting explanation and retry.
                     2. **Compare entry:** Two rows of 9 and 4. “Match the groups” links four pairs while both rows stay intact; mark five extra in the larger. Feedback for summing 9+4: “That finds the combined total, not how many more.”
                     3. **Missing entry:** Show a whole of nine with four in the known group and five unlabelled counters in the other. “Reveal missing part” labels five and shows 9−4=5 and 4+5=9.
                     4. **Transfer entry:** Choose one of three 8-versus-3/8-take-away-3/8-whole-3-known contexts; render each explicitly with story-specific action. Then show 8−3=5 and ask “What does five mean in THIS story?”
                     5. Every entry has “Show steps,” “Read the model,” “Reset,” and supports bypassing predictions. Interpretive feedback is narrative, not a scored answer report.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independent prop-free Scene entries, one per Section, with mode encoded in editorial placement rather than invented public props. Coding Agent may reuse internals while keeping state separate.
                     - Stateful counters, known/removed/matched/missing roles, story selection, optional prediction, reveal state, and explanation log. Removing preserves original = removed + remaining; comparing preserves both starting collections; unknown-part preserves whole = known + missing.
                     - Arithmetic exact: 9−4=5 and 8−3=5; no response may claim 9+4=5 or that a comparison required literal deletion. Reset returns to initial case without modifying any other Section.
                     - No scoring, per-learner progress/analytics or Skill mastery mechanics.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple high-contrast countable HTML/SVG counters; group borders and text labels distinguish roles. Matching/removed objects are tracked in labeled areas. Learner-controlled subtle transformations, instant state transitions under reduced motion. No decorative narrative or asset generation; audio optional with equivalent text.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate “taken away,” “left,” “more than,” “difference,” “known part” and “whole” accurately for all required locales. Ordered accessible state lists provide equivalent interaction and role labels without vision, dragging or color. Keyboard/switch/touch-friendly controls, screen-reader announcements, 200% zoom, child-size targets, RTL semantic math order and reduced-motion equivalence. Offline deterministic model/feedback after complete locale download; no network or audio dependence.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Removal 9−4=5 leaves five of the original nine and tracks four removed.
                     2. Comparison of 9 and 4 pairs four from both groups, leaves five unmatched only in larger, deletes nothing.
                     3. Whole nine split known four + missing five, check four+five=nine.
                     4. Transfer 8−3=5 has three distinct verbal answer roles depending on selected story; no context mismatch.
                     5. Wrong predictions are reversible with explanations; reveal/reset works without graded result.
                     6. Complete keyboard/screen reader/RTL/reduced-motion/offline alternatives reproduce all meanings and counts.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Typed scene/renderer are available; this Scene family is proposed, not implemented, and requires approved upstream Brief and Scene spec, prop-free components with own tests and locale data. Assessment Architect alone approves graded questions. Do not invent Score/Note/public mode APIs.
-                  purpose: "Same Equation, Different Questions: independent placement"
-                  productionNotes: "Original subtractionStoriesLab.scene-spec.md variant belongs to Same Equation, Different Questions; see Section productionNotes. Unique stable Scene ID."
+                  purpose: 'Same Equation, Different Questions: independent placement'
+                  productionNotes: 'Original subtractionStoriesLab.scene-spec.md variant belongs to Same Equation, Different Questions; see Section productionNotes. Unique stable Scene ID.'
               markdown2:
                 config:
-                  id: "56144cef-8369-57a0-9076-ccefa6446dc2"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '56144cef-8369-57a0-9076-ccefa6446dc2'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Each question uses **8 − 3 = 5**. Five can be the remainder, the difference or the missing part. The numbers are the same; what the answer tells us depends on the question."
+                      en: 'Each question uses **8 − 3 = 5**. Five can be the remainder, the difference or the missing part. The numbers are the same; what the answer tells us depends on the question.'
                 production:
-                  purpose: "Provisional instructional explanation"
-            order: ["markdown1","scene1","markdown2"]
+                  purpose: 'Provisional instructional explanation'
+            order: ['markdown1', 'scene1', 'markdown2']
         production:
-          purpose: "Same Equation, Different Questions"
+          purpose: 'Same Equation, Different Questions'
           productionNotes: |-
             - Purpose: Transfer from the triple contrast to short novel numbers.
             - Current shape: LessonSection_Config.
@@ -472,83 +472,83 @@ config:
             - Accessibility: Identical reasoning with ordered labels and keyboard controls; texts stand independently of audio/graphics.
             - Notes: revisit three short Notes; no new one.
             - Dependencies: new transfer entry with separate state.
-    order: ["section1","section2","section3","section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # What Does Subtraction Tell Us? — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: subtractionMeaning
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Establish three meanings of subtraction: removing part of a collection, comparing two quantities to find their difference, and finding an unknown part of a known whole. These are different situations represented by the same arithmetic relationship, not three separate new Skills.
-    
+
     ## Target audience
-    
+
     Children aged 6–8, grades 1–2. Early counters and addition within 20; short spoken/printed prompts, manipulatives and accessible equivalents for mixed reading fluency.
-    
+
     ## Prerequisites
-    
+
     - Count and compare small nonnegative whole-number collections up to 20.
     - Understand parts making a whole and be able to count what remains or what is missing.
     - Recognize subtraction and equals signs with support; no written algorithm or column subtraction required.
-    
+
     ## Target Skills
-    
+
     - [subtractMeaning.data.ts](../../../../data/skills/arithmetic/subtraction/skills/subtractMeaning.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Identify whether a story asks what remains after removal, how much more one quantity has than another, or which part of a known whole is missing.
     - Demonstrate each situation with countable objects or equivalent numerical descriptions.
     - Represent all three contexts using an accurate subtraction equality within 20, naming what the numbers mean.
     - Explain why the same subtraction equation can answer different story questions, while keeping each story's known and unknown roles clear.
-    
+
     ## Essential subject matter
-    
+
     Removing: 9 counters, remove 4, 5 remain, so 9 − 4 = 5. Comparing: 9 objects in one group and 4 in another, five **more** in the first, so 9 − 4 = 5. Missing part: 9 altogether, 4 are known, the missing part is 5, so 9 − 4 = 5. A subtraction is not always literal physical removal: comparison may leave both collections intact. Negative answers, formal unknown-variable notation, long multi-step stories and subtraction algorithms are outside scope.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Start with familiar “take away” and visible counters. Preserve the same values to contrast comparison and missing-part roles without forcing a new computation. Invite selection of the story type, representation, equality and explanatory answer. Move from counters to an independent short word problem.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Children may remove four in the comparison story instead of keeping both groups; compare by combining 9 and 4; subtract the wrong way around; mistake “missing” as physically lost; or assume every subtraction always means taking objects away. Explicitly contrast asking “How many remain?” with “How many more?” Use nonnegative whole numbers with minuends no larger than 20.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Translate “left”, “more than”, “difference”, “missing part”, “whole”, “take away” distinctly; do not depend on physical left/right placement, culture-specific stories, colored counters, narration or dragging. Present equivalent structured descriptions of both groups, keyboard controls, RTL-safe number order and local offline feedback.
-    
+
     ## Sources and factual verification
-    
+
     - [Code-generated Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md), current methodological definition of subtractMeaning.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) Grade 1 Operations and Algebraic Thinking, comparison reference only.
     - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), representation and mathematical language guidance.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. Independent introductory subtraction lesson usable without a Program.
-    
+
     ## Open editorial decisions
-    
+
     - Confirm that removal, comparison and missing-part models belong in one scope for this audience, as the atomic source Skill explicitly encompasses all three.
     - Confirm the examples within 20 and the expected prior familiarity with subtraction notation.
-    
+
     ## Methodologist handoff
-    
+
     Draft awaiting explicit editor approval. Screenwriter must retain all three interpretations and show the contrast; no automatic assessment or implementation follows from this Brief.
   productionNotes: |
     # What Does Subtraction Tell Us? — Content
-    
+
     Status: Draft — provisional Screenwriter draft pending approval of the new Methodologist Brief
     Target Lesson: content/playground/Data/Lessons/1/subtractionMeaning/
     Audience: Children 6–8, grades 1–2, counting and part–whole concepts within 20
@@ -556,24 +556,24 @@ production:
     Learning outcomes: removal, comparison and missing-part roles; mathematical model and accurate subtraction equality for each; explain common numerical structure.
     Target Skills: As linked in the Methodologist Brief (one direct canonical subtractMeaning.data.ts link)
     Program dependence: None
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     **Subtraction can answer three different questions using one number relationship.** We keep the values nine, four and five stable while changing the story, so a child sees the difference between what the numbers _do_ in the situation and the operation written as 9 − 4 = 5. We do not present comparing groups as secretly removing counters. This avoids teaching subtraction as just an action of taking objects away.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. Take away four of nine; count five remaining.
     2. Put nine next to four without removing anything; pair four objects and identify five more in the larger collection.
     3. Show a whole of nine split into a visible group of four and an unlabeled remainder; find five missing counters.
     4. Look at three new short questions, choose a meaningful subtraction and explain the role of the answer.
-    
+
     No Program narrative, arbitrary timer, reward or scored quiz.
-    
+
     ## SECTION PLAN
-    
+
     ### Section 1 — What Is Left?
-    
+
     - Purpose / learning outcome: Make removal and a remainder visible.
     - Current shape: LessonSection_Config.
     - Ordered blocks, single vertical column:
@@ -586,9 +586,9 @@ production:
     - Accessibility/RTL: Ordered accessible text of original, removed and remaining; focusable controls and no drag; operand order stable.
     - Note: “Subtraction can find what remains” after the full nine-minus-four demonstration (planned, not wired).
     - Dependencies: bespoke Scene is not implemented.
-    
+
     ### Section 2 — How Many More?
-    
+
     - Purpose: Recognize comparison subtraction that leaves both quantities intact.
     - Current shape: LessonSection_Config.
     - Ordered blocks:
@@ -600,9 +600,9 @@ production:
     - Accessibility: Pairing has a text equivalent “4 pairs matched, 5 extras”; native buttons, no color-only differences.
     - Note: “Subtraction can show the difference between amounts” after comparing, planned.
     - Dependencies: same Scene family, second independently initialized prop-free entry.
-    
+
     ### Section 3 — What Part Is Missing?
-    
+
     - Purpose: Recognize the unknown-part model without reinterpreting it as an unrelated Skill.
     - Current shape: LessonSection_Config.
     - Ordered blocks:
@@ -614,9 +614,9 @@ production:
     - Accessibility: Unknown label read as “missing part”; structured whole/known/other counts, no hidden objects needed for reasoning.
     - Note: “Whole minus known part can reveal the missing part” after checking 4+5=9, planned.
     - Dependencies: new Scene placement.
-    
+
     ### Section 4 — Same Equation, Different Questions
-    
+
     - Purpose: Transfer from the triple contrast to short novel numbers.
     - Current shape: LessonSection_Config.
     - Ordered blocks:
@@ -628,39 +628,39 @@ production:
     - Accessibility: Identical reasoning with ordered labels and keyboard controls; texts stand independently of audio/graphics.
     - Notes: revisit three short Notes; no new one.
     - Dependencies: new transfer entry with separate state.
-    
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Subtraction Stories Lab (Scene specification subtractionStoriesLab embedded below) — one reviewable design with distinct prop-free entries for removal, comparison, missing-part and transfer.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. “Subtraction can find what remains” after Section 1.
     2. “Subtraction can show the difference between amounts” after Section 2.
     3. “Whole − known part = missing part” after Section 3.
-    
+
     These cues are planned, not wired. There is no Note API, unlock persistence, compiled revision view or automatic spaced review. Unlocking does not prove mastery.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Prediction, inspection and explanation are instructional feedback, not scored Questions. Assessment Architect later decides how to distinguish the three meanings in valid items and score them without conflating with the separate unknown-addend Skill. Current Lesson adapter's select-one support does not prove any proposed Scene is implemented.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     All prompts, controls, feedback and Notes need genuine supported-language translations, not English fallback. “How many are left,” “how many more,” “how much is missing” must remain semantically distinct. Counter displays have equivalently operable ordered text lists; keyboard/touch/screen-reader, large-type, reduced-motion, mobile and semantic RTL support. All text and Scene calculations must be accessible offline after the selected content package is downloaded. No video/audio/image resource dependency.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     General LessonSection_Config, text/markdown/scene types and generic renderer are verified. Subtraction Stories Lab is **proposed**, requires editor-approved Scene spec and later prop-free React implementation/testing with selected locale context. Image/audio/video/code are typed but unsupported as generic Section resources; youtube lacks a resource config. Notes and offline sync are planned, not implemented. No typed Lesson, Quiz or Question data created.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Methodologist Brief (embedded in this Lesson config.yaml) — currently Draft, requires separate approval before Screenwriter script can be promoted.
     - [Generated Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md).
     - [Create Lesson Content Skill](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Editorial decision: confirm one Lesson may include all three interpretations and child-ready examples; this mirrors the existing atomic Skill rather than adding competencies.
     - No educational efficacy or curriculum certification claimed by these illustrative activities.
-    
+
     ## HANDOFF
-    
+
     Provisional Draft script and Draft Scene specification are provided **for review, not implementation**. The Methodologist Brief is not yet approved; editor first approves it, then separately reviews this script and Scene spec. Afterward Scene Designer, Coding Agent and Assessment Architect may proceed through independently authorized workflows.

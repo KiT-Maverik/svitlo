@@ -1,370 +1,370 @@
 config:
-  id: "770bbeff-9398-5d1e-989a-15c51fe0bc0e"
-  slug: "sameMathDifferentModels"
-  type: "lesson"
-  skills: ["6e59c042-7eed-4fb0-83dc-836b3808bca7"]
+  id: '770bbeff-9398-5d1e-989a-15c51fe0bc0e'
+  slug: 'sameMathDifferentModels'
+  type: 'lesson'
+  skills: ['6e59c042-7eed-4fb0-83dc-836b3808bca7']
   params:
     requireQuiz: false
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "One Relationship, Four Ways to Show It"
+      en: 'One Relationship, Four Ways to Show It'
   section:
     items:
       section1FourDoorsToTheSameChange:
         config:
-          id: "ceebb814-435e-4de5-8593-227a171f0b53"
-          slug: "section1FourDoorsToTheSameChange"
-          type: "content"
+          id: 'ceebb814-435e-4de5-8593-227a171f0b53'
+          slug: 'section1FourDoorsToTheSameChange'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Four doors to the same change"
+              en: 'Four doors to the same change'
             navigationLabel:
-              en: "Four doors to the same change"
+              en: 'Four doors to the same change'
           content:
             items:
               text1:
                 config:
-                  id: "3dcb13d9-b08b-4d84-822e-eceb1aa37556"
-                  slug: "text1"
-                  type: "text"
+                  id: '3dcb13d9-b08b-4d84-822e-eceb1aa37556'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "There are **8 beads** in a jar. **3** more are dropped in. How can we show what happened in more than one way? Predict whether every picture showing the numbers 8 and 3 tells the same story."
+                      en: 'There are **8 beads** in a jar. **3** more are dropped in. How can we show what happened in more than one way? Predict whether every picture showing the numbers 8 and 3 tells the same story.'
               representationBridge:
                 config:
-                  id: "d4334429-5d46-401a-8416-8fb3661cbfec"
-                  slug: "representationBridge"
-                  type: "scene"
+                  id: 'd4334429-5d46-401a-8416-8fb3661cbfec'
+                  slug: 'representationBridge'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Representation Bridge"
+                      en: 'Representation Bridge'
                 production:
                   specification: |
                     # Representation Bridge — Scene Specification
-                    
+
                     **Status:** Provisional Draft pending explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** Lesson Content (editorial text integrated into this config.yaml), Sections 1–4; Draft Methodologist Brief (editorial text integrated into this config.yaml).
                     **Availability:** A proposed Scene, not an implemented React component. All future public Scene entries are self-contained, prop-free and independently resettable.
-                    
+
                     ## Concept and learning purpose
-                    
+
                     Translate among **four modes**—countable objects, a labeled quantitative diagram, verbal description, and numeric expression—without changing the meaning. Preserve the **starting amount, amount entering or leaving, unknown and eventual result**, not merely the digits in each representation. Different objects or colors may represent the same quantitative relationship; diagrams showing the same numbers but reversed actions do not. The learner must make and justify conversions in both directions.
-                    
+
                     ## Educational experience: independent Scene entries
-                    
+
                     ### Entry A — from objects to diagram to symbols (Section 1)
-                    
+
                     Show eight beads in a jar and a distinct incoming group of three beads. Start with a learner prediction: “Would every picture with an eight and a three tell the same story?” Offer a “Show diagram” control producing explicit **before=8, incoming=3, after=?** labels, and then “Say it in words” revealing “Eight beads, three more arrive.” Show expression **8 + 3**, with optional “Find total” revealing **11**. Any colors used are secondary to count/role labels. The invariant is _eight initial plus three incoming_, not a particular spatial layout. If the learner associates the group with removal, explain “The three enter the jar rather than leave.”
-                    
+
                     ### Entry B — the same digits do not guarantee the same model (Section 2)
-                    
+
                     Show two diagrams, each featuring 8 and 3 but different action types. Diagram A labels **initial 8, add 3**, expression 8 + 3 = **11**. Diagram B labels **initial 8, remove 3**, expression 8 − 3 = **5**. Learner matches the sentence “Three more beads arrive” to A. Wrong-choice feedback: “Both use the numbers eight and three, but one joins them while the other removes them.” Ask which quantity changed and how; numeric equality alone is not enough. Make diagram B visually and textually accessible even without color or motion.
-                    
+
                     ### Entry C — from a diagram back to words and symbols (Section 3)
-                    
+
                     Display a labeled diagram with a known starting group of **12** tokens, **5** marked removed, and an unknown remainder. Offer three verbal alternatives:
-                    
+
                     - “Twelve tokens; five are taken away; how many remain?” (accurate).
                     - “Twelve tokens; five are added; how many now?” (wrong relation).
                     - “Five tokens; twelve removed; how many remain?” (wrong starting amount).
                       The learner chooses and can request the symbolic form **12 − 5**, with optional evaluation **7**. For the second, explain “The diagram marks five leaving.” For the third, explain “The twelve is the original whole; five is the amount removed.” A choice is formative, not scored.
-                    
+
                     ### Entry D — independently construct equivalent modes (Section 4)
-                    
+
                     Narrative: “Ten shells on a table, four shells moved into a bag. How many remain on the table?” Offer a diagram editor with explicit labels and accessible select controls, plus text response choices to prevent mandatory drawing. A correct diagram labels ten initial and four removed, one sentence conveys the same action, and expression **10 − 4** gives result **6** if evaluated. If child supplies **10 + 4**, say “The shells moved away _from_ the table; nothing was added to the table.” If they set four as initial group, say “Four is the number moved, not the original amount.” If the story input is incomplete, allow “Show a complete model” without penalty.
-                    
+
                     ## States, objects, invariants and reset
-                    
+
                     - Each entry has fixed localized story and immutable mathematical quantities, model view mode, current verbal/symbolic choice, explicit role labels (start, arriving/removed, unknown), optional calculation reveal, hint and feedback state.
                     - Diagram lengths, number of discrete counters and symbolic operands must be linked to the _same labeled quantities_. Do not use physically scaled but numerically inconsistent bars. Never infer meaning from color or picture orientation alone.
                     - Translation between modes is correct only if both numeric quantities and their **roles and relation** are preserved. Identical numerals with different operations are non-equivalent.
                     - Reset restores the single entry; there is no hidden cross-Section memory, score, Question model or Note storage.
                     - Each Scene entry is independently configured at design/implementation time while public React components take no props; do not invent an API or Resource-config property to vary the scenario.
-                    
+
                     ## Visual and nonvisual equivalent direction
-                    
+
                     Four representations can be shown in one internally responsive Scene, but not as arbitrary multi-column sibling Section Resources. Each mode has a separate textual ledger: “Ten initially; four removed; remainder unknown,” which a screen reader can inspect before results are revealed. Keyboard, switch and touch users select roles, representation modes and feedback without drag; optional pointer interaction is never required. In RTL, preserve temporal/quantitative relationships and minus operand order rather than simply mirroring diagrams. Each count, group title, label, hint, alternative text and feedback must receive genuine translations for all supported locales. Controls use visible focus, no color-only status, sufficient target size, reduced-motion instant reveal and 200% zoom/mobile reflow. The chosen lesson should operate with all selected assets offline **after implementation and download**; current offline infrastructure is not asserted.
-                    
+
                     ## Acceptance cases
-                    
+
                     1. Eight start plus three arrive translates consistently into counters, before/add/after diagram, words, 8+3 and (if evaluated) 11.
                     2. Same 8 and 3 with removal instead translates to 8−3=5 and is not equivalent to addition.
                     3. Twelve with five removed yields a valid verbal story and 12−5=7, not an addition or a reversal of initial/removed roles.
                     4. Ten shells with four moved away yield 10−4=6; choosing 10+4 receives action-specific feedback.
                     5. Different arrangements of equal-unit counters with identical role labels may still encode the same relationship.
                     6. Every entry resets independently and provides no-assessment, nonvisual, keyboard, RTL, zoomed, reduced-motion and offline-equivalent paths.
-                    
+
                     ## Editorial and technical handoff
-                    
+
                     Only generic Scene rendering is currently known. A Coding Agent must implement prop-free entry Scenes, locale content, mathematical invariants and tests, verify accessible controls and actual download behavior, and secure required approvals. No React/runtime Lesson code, Question, Quiz, mastery, scoring or Note persistence belongs in this specification.
-                  purpose: "Proposed interactive Scene for Four doors to the same change"
+                  purpose: 'Proposed interactive Scene for Four doors to the same change'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               text2:
                 config:
-                  id: "3acb0f20-b38b-423d-832e-ee7e19a373c3"
-                  slug: "text2"
-                  type: "text"
+                  id: '3acb0f20-b38b-423d-832e-ee7e19a373c3'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The colors and arrangement change, but we still start with eight and add three. That means the final quantity can be calculated as eleven."
+                      en: 'The colors and arrangement change, but we still start with eight and add three. That means the final quantity can be calculated as eleven.'
               markdown3:
                 config:
-                  id: "9ac3b769-3d05-4458-9e59-0fd34cda2c4a"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '9ac3b769-3d05-4458-9e59-0fd34cda2c4a'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Models are different ways to explain the **same relationship**. A diagram is good when it names what the numbers mean; a symbol is short, but we still need to know the story behind it."
-            order: ["text1","representationBridge","text2","markdown3"]
+                      en: 'Models are different ways to explain the **same relationship**. A diagram is good when it names what the numbers mean; a symbol is short, but we still need to know the story behind it.'
+            order: ['text1', 'representationBridge', 'text2', 'markdown3']
         production:
-          purpose: "Four doors to the same change"
+          purpose: 'Four doors to the same change'
           pedagogicalIntent: |
             ### Section 1 — Four doors to the same change
-            
+
             _Purpose: perceive what stays invariant across differently presented forms._
-            
+
             1. **`text` Resource:** “There are **8 beads** in a jar. **3** more are dropped in. How can we show what happened in more than one way? Predict whether every picture showing the numbers 8 and 3 tells the same story.”
             2. **`scene` Resource (proposed):** Representation Bridge (Scene specification embedded in this config.yaml), entry A. Start with 8 discrete counters and a separate incoming group of 3. Learner reveals a labeled before/add/after diagram with **before=8**, **added=3**, **after=?**. Then reveal a sentence “Eight beads, then three added” and symbolic **8 + 3**, optionally **8 + 3 = 11**. Each mode is independently describable through text.
             3. **`text` Resource:** “The colors and arrangement change, but we still start with eight and add three. That means the final quantity can be calculated as eleven.”
             4. **`markdown` Resource:** “Models are different ways to explain the **same relationship**. A diagram is good when it names what the numbers mean; a symbol is short, but we still need to know the story behind it.”
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section2ABeautifulPictureCanBeTheWrongModel:
         config:
-          id: "57396a10-202e-4a4f-a445-ba1a5244a7c1"
-          slug: "section2ABeautifulPictureCanBeTheWrongModel"
-          type: "content"
+          id: '57396a10-202e-4a4f-a445-ba1a5244a7c1'
+          slug: 'section2ABeautifulPictureCanBeTheWrongModel'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A beautiful picture can be the wrong model"
+              en: 'A beautiful picture can be the wrong model'
             navigationLabel:
-              en: "A beautiful picture can be the wrong model"
+              en: 'A beautiful picture can be the wrong model'
           content:
             items:
               text1:
                 config:
-                  id: "c4b6fb45-ed9a-4a92-98e0-198bf7a37190"
-                  slug: "text1"
-                  type: "text"
+                  id: 'c4b6fb45-ed9a-4a92-98e0-198bf7a37190'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Two diagrams both show **8** and **3**. One joins three new beads to eight; the other marks three beads as removed from eight. Do they tell the same story?"
+                      en: 'Two diagrams both show **8** and **3**. One joins three new beads to eight; the other marks three beads as removed from eight. Do they tell the same story?'
               representationBridge:
                 config:
-                  id: "aea0a18d-d2c1-4350-be1d-f6134cb176ee"
-                  slug: "representationBridge"
-                  type: "scene"
+                  id: 'aea0a18d-d2c1-4350-be1d-f6134cb176ee'
+                  slug: 'representationBridge'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Representation Bridge"
+                      en: 'Representation Bridge'
                 production:
                   specification: |
                     # Representation Bridge — Scene Specification
-                    
+
                     **Status:** Provisional Draft pending explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** Lesson Content (editorial text integrated into this config.yaml), Sections 1–4; Draft Methodologist Brief (editorial text integrated into this config.yaml).
                     **Availability:** A proposed Scene, not an implemented React component. All future public Scene entries are self-contained, prop-free and independently resettable.
-                    
+
                     ## Concept and learning purpose
-                    
+
                     Translate among **four modes**—countable objects, a labeled quantitative diagram, verbal description, and numeric expression—without changing the meaning. Preserve the **starting amount, amount entering or leaving, unknown and eventual result**, not merely the digits in each representation. Different objects or colors may represent the same quantitative relationship; diagrams showing the same numbers but reversed actions do not. The learner must make and justify conversions in both directions.
-                    
+
                     ## Educational experience: independent Scene entries
-                    
+
                     ### Entry A — from objects to diagram to symbols (Section 1)
-                    
+
                     Show eight beads in a jar and a distinct incoming group of three beads. Start with a learner prediction: “Would every picture with an eight and a three tell the same story?” Offer a “Show diagram” control producing explicit **before=8, incoming=3, after=?** labels, and then “Say it in words” revealing “Eight beads, three more arrive.” Show expression **8 + 3**, with optional “Find total” revealing **11**. Any colors used are secondary to count/role labels. The invariant is _eight initial plus three incoming_, not a particular spatial layout. If the learner associates the group with removal, explain “The three enter the jar rather than leave.”
-                    
+
                     ### Entry B — the same digits do not guarantee the same model (Section 2)
-                    
+
                     Show two diagrams, each featuring 8 and 3 but different action types. Diagram A labels **initial 8, add 3**, expression 8 + 3 = **11**. Diagram B labels **initial 8, remove 3**, expression 8 − 3 = **5**. Learner matches the sentence “Three more beads arrive” to A. Wrong-choice feedback: “Both use the numbers eight and three, but one joins them while the other removes them.” Ask which quantity changed and how; numeric equality alone is not enough. Make diagram B visually and textually accessible even without color or motion.
-                    
+
                     ### Entry C — from a diagram back to words and symbols (Section 3)
-                    
+
                     Display a labeled diagram with a known starting group of **12** tokens, **5** marked removed, and an unknown remainder. Offer three verbal alternatives:
-                    
+
                     - “Twelve tokens; five are taken away; how many remain?” (accurate).
                     - “Twelve tokens; five are added; how many now?” (wrong relation).
                     - “Five tokens; twelve removed; how many remain?” (wrong starting amount).
                       The learner chooses and can request the symbolic form **12 − 5**, with optional evaluation **7**. For the second, explain “The diagram marks five leaving.” For the third, explain “The twelve is the original whole; five is the amount removed.” A choice is formative, not scored.
-                    
+
                     ### Entry D — independently construct equivalent modes (Section 4)
-                    
+
                     Narrative: “Ten shells on a table, four shells moved into a bag. How many remain on the table?” Offer a diagram editor with explicit labels and accessible select controls, plus text response choices to prevent mandatory drawing. A correct diagram labels ten initial and four removed, one sentence conveys the same action, and expression **10 − 4** gives result **6** if evaluated. If child supplies **10 + 4**, say “The shells moved away _from_ the table; nothing was added to the table.” If they set four as initial group, say “Four is the number moved, not the original amount.” If the story input is incomplete, allow “Show a complete model” without penalty.
-                    
+
                     ## States, objects, invariants and reset
-                    
+
                     - Each entry has fixed localized story and immutable mathematical quantities, model view mode, current verbal/symbolic choice, explicit role labels (start, arriving/removed, unknown), optional calculation reveal, hint and feedback state.
                     - Diagram lengths, number of discrete counters and symbolic operands must be linked to the _same labeled quantities_. Do not use physically scaled but numerically inconsistent bars. Never infer meaning from color or picture orientation alone.
                     - Translation between modes is correct only if both numeric quantities and their **roles and relation** are preserved. Identical numerals with different operations are non-equivalent.
                     - Reset restores the single entry; there is no hidden cross-Section memory, score, Question model or Note storage.
                     - Each Scene entry is independently configured at design/implementation time while public React components take no props; do not invent an API or Resource-config property to vary the scenario.
-                    
+
                     ## Visual and nonvisual equivalent direction
-                    
+
                     Four representations can be shown in one internally responsive Scene, but not as arbitrary multi-column sibling Section Resources. Each mode has a separate textual ledger: “Ten initially; four removed; remainder unknown,” which a screen reader can inspect before results are revealed. Keyboard, switch and touch users select roles, representation modes and feedback without drag; optional pointer interaction is never required. In RTL, preserve temporal/quantitative relationships and minus operand order rather than simply mirroring diagrams. Each count, group title, label, hint, alternative text and feedback must receive genuine translations for all supported locales. Controls use visible focus, no color-only status, sufficient target size, reduced-motion instant reveal and 200% zoom/mobile reflow. The chosen lesson should operate with all selected assets offline **after implementation and download**; current offline infrastructure is not asserted.
-                    
+
                     ## Acceptance cases
-                    
+
                     1. Eight start plus three arrive translates consistently into counters, before/add/after diagram, words, 8+3 and (if evaluated) 11.
                     2. Same 8 and 3 with removal instead translates to 8−3=5 and is not equivalent to addition.
                     3. Twelve with five removed yields a valid verbal story and 12−5=7, not an addition or a reversal of initial/removed roles.
                     4. Ten shells with four moved away yield 10−4=6; choosing 10+4 receives action-specific feedback.
                     5. Different arrangements of equal-unit counters with identical role labels may still encode the same relationship.
                     6. Every entry resets independently and provides no-assessment, nonvisual, keyboard, RTL, zoomed, reduced-motion and offline-equivalent paths.
-                    
+
                     ## Editorial and technical handoff
-                    
+
                     Only generic Scene rendering is currently known. A Coding Agent must implement prop-free entry Scenes, locale content, mathematical invariants and tests, verify accessible controls and actual download behavior, and secure required approvals. No React/runtime Lesson code, Question, Quiz, mastery, scoring or Note persistence belongs in this specification.
-                  purpose: "Proposed interactive Scene for A beautiful picture can be the wrong model"
+                  purpose: 'Proposed interactive Scene for A beautiful picture can be the wrong model'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               text2:
                 config:
-                  id: "c1b6f68c-ec9a-48ff-99e0-1b1efaa37649"
-                  slug: "text2"
-                  type: "text"
+                  id: 'c1b6f68c-ec9a-48ff-99e0-1b1efaa37649'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "We did not change the digits; we changed the **relationship**. Matching numbers is not enough to make representations equivalent."
-            order: ["text1","representationBridge","text2"]
+                      en: 'We did not change the digits; we changed the **relationship**. Matching numbers is not enough to make representations equivalent.'
+            order: ['text1', 'representationBridge', 'text2']
         production:
-          purpose: "A beautiful picture can be the wrong model"
+          purpose: 'A beautiful picture can be the wrong model'
           pedagogicalIntent: |
             ### Section 2 — A beautiful picture can be the wrong model
-            
+
             _Purpose: separate using the same numerals from preserving what those numerals mean._
-            
+
             1. **`text`:** “Two diagrams both show **8** and **3**. One joins three new beads to eight; the other marks three beads as removed from eight. Do they tell the same story?” Give the learner room to predict before reveal.
             2. **`scene` Resource (proposed):** Representation Bridge entry B. Present two explicitly labeled diagrams: **A: 8 initial, +3 incoming**; **B: 8 initial, −3 removed**. Their expressions are **8+3=11** and **8−3=5**. Ask learners to match “three arrive” to A and explain why B fails. Wrong feedback: “Both show the numbers eight and three, but one **adds** three and the other **removes** three.”
             3. **`text`:** “We did not change the digits; we changed the **relationship**. Matching numbers is not enough to make representations equivalent.”
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section3WorkBackwardFromADiagramOrSymbol:
         config:
-          id: "ccd6f2d2-e860-4883-8484-b2e0ad3a8191"
-          slug: "section3WorkBackwardFromADiagramOrSymbol"
-          type: "content"
+          id: 'ccd6f2d2-e860-4883-8484-b2e0ad3a8191'
+          slug: 'section3WorkBackwardFromADiagramOrSymbol'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Work backward from a diagram or symbol"
+              en: 'Work backward from a diagram or symbol'
             navigationLabel:
-              en: "Work backward from a diagram or symbol"
+              en: 'Work backward from a diagram or symbol'
           content:
             items:
               text1:
                 config:
-                  id: "c21bee23-e22f-4d86-853d-1c55e71bc960"
-                  slug: "text1"
-                  type: "text"
+                  id: 'c21bee23-e22f-4d86-853d-1c55e71bc960'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Here is a diagram: a collection of **12 tokens** with **5** marked as taken away, and a remaining group not yet counted. Tell a story that matches what the diagram says."
+                      en: 'Here is a diagram: a collection of **12 tokens** with **5** marked as taken away, and a remaining group not yet counted. Tell a story that matches what the diagram says.'
               representationBridge:
                 config:
-                  id: "eb67763b-27dd-455c-87a5-9add7370e9be"
-                  slug: "representationBridge"
-                  type: "scene"
+                  id: 'eb67763b-27dd-455c-87a5-9add7370e9be'
+                  slug: 'representationBridge'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Representation Bridge"
+                      en: 'Representation Bridge'
                 production:
                   specification: |
                     # Representation Bridge — Scene Specification
-                    
+
                     **Status:** Provisional Draft pending explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** Lesson Content (editorial text integrated into this config.yaml), Sections 1–4; Draft Methodologist Brief (editorial text integrated into this config.yaml).
                     **Availability:** A proposed Scene, not an implemented React component. All future public Scene entries are self-contained, prop-free and independently resettable.
-                    
+
                     ## Concept and learning purpose
-                    
+
                     Translate among **four modes**—countable objects, a labeled quantitative diagram, verbal description, and numeric expression—without changing the meaning. Preserve the **starting amount, amount entering or leaving, unknown and eventual result**, not merely the digits in each representation. Different objects or colors may represent the same quantitative relationship; diagrams showing the same numbers but reversed actions do not. The learner must make and justify conversions in both directions.
-                    
+
                     ## Educational experience: independent Scene entries
-                    
+
                     ### Entry A — from objects to diagram to symbols (Section 1)
-                    
+
                     Show eight beads in a jar and a distinct incoming group of three beads. Start with a learner prediction: “Would every picture with an eight and a three tell the same story?” Offer a “Show diagram” control producing explicit **before=8, incoming=3, after=?** labels, and then “Say it in words” revealing “Eight beads, three more arrive.” Show expression **8 + 3**, with optional “Find total” revealing **11**. Any colors used are secondary to count/role labels. The invariant is _eight initial plus three incoming_, not a particular spatial layout. If the learner associates the group with removal, explain “The three enter the jar rather than leave.”
-                    
+
                     ### Entry B — the same digits do not guarantee the same model (Section 2)
-                    
+
                     Show two diagrams, each featuring 8 and 3 but different action types. Diagram A labels **initial 8, add 3**, expression 8 + 3 = **11**. Diagram B labels **initial 8, remove 3**, expression 8 − 3 = **5**. Learner matches the sentence “Three more beads arrive” to A. Wrong-choice feedback: “Both use the numbers eight and three, but one joins them while the other removes them.” Ask which quantity changed and how; numeric equality alone is not enough. Make diagram B visually and textually accessible even without color or motion.
-                    
+
                     ### Entry C — from a diagram back to words and symbols (Section 3)
-                    
+
                     Display a labeled diagram with a known starting group of **12** tokens, **5** marked removed, and an unknown remainder. Offer three verbal alternatives:
-                    
+
                     - “Twelve tokens; five are taken away; how many remain?” (accurate).
                     - “Twelve tokens; five are added; how many now?” (wrong relation).
                     - “Five tokens; twelve removed; how many remain?” (wrong starting amount).
                       The learner chooses and can request the symbolic form **12 − 5**, with optional evaluation **7**. For the second, explain “The diagram marks five leaving.” For the third, explain “The twelve is the original whole; five is the amount removed.” A choice is formative, not scored.
-                    
+
                     ### Entry D — independently construct equivalent modes (Section 4)
-                    
+
                     Narrative: “Ten shells on a table, four shells moved into a bag. How many remain on the table?” Offer a diagram editor with explicit labels and accessible select controls, plus text response choices to prevent mandatory drawing. A correct diagram labels ten initial and four removed, one sentence conveys the same action, and expression **10 − 4** gives result **6** if evaluated. If child supplies **10 + 4**, say “The shells moved away _from_ the table; nothing was added to the table.” If they set four as initial group, say “Four is the number moved, not the original amount.” If the story input is incomplete, allow “Show a complete model” without penalty.
-                    
+
                     ## States, objects, invariants and reset
-                    
+
                     - Each entry has fixed localized story and immutable mathematical quantities, model view mode, current verbal/symbolic choice, explicit role labels (start, arriving/removed, unknown), optional calculation reveal, hint and feedback state.
                     - Diagram lengths, number of discrete counters and symbolic operands must be linked to the _same labeled quantities_. Do not use physically scaled but numerically inconsistent bars. Never infer meaning from color or picture orientation alone.
                     - Translation between modes is correct only if both numeric quantities and their **roles and relation** are preserved. Identical numerals with different operations are non-equivalent.
                     - Reset restores the single entry; there is no hidden cross-Section memory, score, Question model or Note storage.
                     - Each Scene entry is independently configured at design/implementation time while public React components take no props; do not invent an API or Resource-config property to vary the scenario.
-                    
+
                     ## Visual and nonvisual equivalent direction
-                    
+
                     Four representations can be shown in one internally responsive Scene, but not as arbitrary multi-column sibling Section Resources. Each mode has a separate textual ledger: “Ten initially; four removed; remainder unknown,” which a screen reader can inspect before results are revealed. Keyboard, switch and touch users select roles, representation modes and feedback without drag; optional pointer interaction is never required. In RTL, preserve temporal/quantitative relationships and minus operand order rather than simply mirroring diagrams. Each count, group title, label, hint, alternative text and feedback must receive genuine translations for all supported locales. Controls use visible focus, no color-only status, sufficient target size, reduced-motion instant reveal and 200% zoom/mobile reflow. The chosen lesson should operate with all selected assets offline **after implementation and download**; current offline infrastructure is not asserted.
-                    
+
                     ## Acceptance cases
-                    
+
                     1. Eight start plus three arrive translates consistently into counters, before/add/after diagram, words, 8+3 and (if evaluated) 11.
                     2. Same 8 and 3 with removal instead translates to 8−3=5 and is not equivalent to addition.
                     3. Twelve with five removed yields a valid verbal story and 12−5=7, not an addition or a reversal of initial/removed roles.
                     4. Ten shells with four moved away yield 10−4=6; choosing 10+4 receives action-specific feedback.
                     5. Different arrangements of equal-unit counters with identical role labels may still encode the same relationship.
                     6. Every entry resets independently and provides no-assessment, nonvisual, keyboard, RTL, zoomed, reduced-motion and offline-equivalent paths.
-                    
+
                     ## Editorial and technical handoff
-                    
+
                     Only generic Scene rendering is currently known. A Coding Agent must implement prop-free entry Scenes, locale content, mathematical invariants and tests, verify accessible controls and actual download behavior, and secure required approvals. No React/runtime Lesson code, Question, Quiz, mastery, scoring or Note persistence belongs in this specification.
-                  purpose: "Proposed interactive Scene for Work backward from a diagram or symbol"
+                  purpose: 'Proposed interactive Scene for Work backward from a diagram or symbol'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               markdown2:
                 config:
-                  id: "36c4ce68-a0ec-47ad-9332-02e2091540c7"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '36c4ce68-a0ec-47ad-9332-02e2091540c7'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A useful translation keeps **starting amount, change, unknown** and units. It is not enough to draw approximately the same number of shapes."
-            order: ["text1","representationBridge","markdown2"]
+                      en: 'A useful translation keeps **starting amount, change, unknown** and units. It is not enough to draw approximately the same number of shapes.'
+            order: ['text1', 'representationBridge', 'markdown2']
         production:
-          purpose: "Work backward from a diagram or symbol"
+          purpose: 'Work backward from a diagram or symbol'
           pedagogicalIntent: |
             ### Section 3 — Work backward from a diagram or symbol
-            
+
             _Purpose: convert from an unfamiliar mode into accurate words._
-            
+
             1. **`text`:** “Here is a diagram: a collection of **12 tokens** with **5** marked as taken away, and a remaining group not yet counted. Tell a story that matches what the diagram says.”
             2. **`scene` Resource (proposed):** Representation Bridge entry C. Allow selection among verbal descriptions:
                - A: “Twelve tokens, five removed; how many remain?” **Correct.**
@@ -372,228 +372,234 @@ config:
                - C: “Five tokens, twelve removed.” **Incorrect starting quantity and impossible nonnegative model.**
                  Reveal **12−5=7** after learner inspection. Incorrect A/B choice feedback: “The diagram marks five leaving, not arriving.” Incorrect C feedback: “Twelve was the amount you began with.”
             3. **`markdown`:** “A useful translation keeps **starting amount, change, unknown** and units. It is not enough to draw approximately the same number of shapes.”
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section4YourNewStoryYourRepresentations:
         config:
-          id: "dd659875-d193-4eea-86e6-e497f681ef1c"
-          slug: "section4YourNewStoryYourRepresentations"
-          type: "content"
+          id: 'dd659875-d193-4eea-86e6-e497f681ef1c'
+          slug: 'section4YourNewStoryYourRepresentations'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Your new story, your representations"
+              en: 'Your new story, your representations'
             navigationLabel:
-              en: "Your new story, your representations"
+              en: 'Your new story, your representations'
           content:
             items:
               text1:
                 config:
-                  id: "8ba54a14-9fee-425b-9ba1-53fa64986401"
-                  slug: "text1"
-                  type: "text"
+                  id: '8ba54a14-9fee-425b-9ba1-53fa64986401'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A table has **10 shells**. A child moves **4 shells** into a bag. Build or choose **a new diagram, one sentence and one expression** that all describe the shells remaining on the table."
+                      en: 'A table has **10 shells**. A child moves **4 shells** into a bag. Build or choose **a new diagram, one sentence and one expression** that all describe the shells remaining on the table.'
               representationBridge:
                 config:
-                  id: "a9a84a2a-e665-4663-ad06-29a843070c21"
-                  slug: "representationBridge"
-                  type: "scene"
+                  id: 'a9a84a2a-e665-4663-ad06-29a843070c21'
+                  slug: 'representationBridge'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Representation Bridge"
+                      en: 'Representation Bridge'
                 production:
                   specification: |
                     # Representation Bridge — Scene Specification
-                    
+
                     **Status:** Provisional Draft pending explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** Lesson Content (editorial text integrated into this config.yaml), Sections 1–4; Draft Methodologist Brief (editorial text integrated into this config.yaml).
                     **Availability:** A proposed Scene, not an implemented React component. All future public Scene entries are self-contained, prop-free and independently resettable.
-                    
+
                     ## Concept and learning purpose
-                    
+
                     Translate among **four modes**—countable objects, a labeled quantitative diagram, verbal description, and numeric expression—without changing the meaning. Preserve the **starting amount, amount entering or leaving, unknown and eventual result**, not merely the digits in each representation. Different objects or colors may represent the same quantitative relationship; diagrams showing the same numbers but reversed actions do not. The learner must make and justify conversions in both directions.
-                    
+
                     ## Educational experience: independent Scene entries
-                    
+
                     ### Entry A — from objects to diagram to symbols (Section 1)
-                    
+
                     Show eight beads in a jar and a distinct incoming group of three beads. Start with a learner prediction: “Would every picture with an eight and a three tell the same story?” Offer a “Show diagram” control producing explicit **before=8, incoming=3, after=?** labels, and then “Say it in words” revealing “Eight beads, three more arrive.” Show expression **8 + 3**, with optional “Find total” revealing **11**. Any colors used are secondary to count/role labels. The invariant is _eight initial plus three incoming_, not a particular spatial layout. If the learner associates the group with removal, explain “The three enter the jar rather than leave.”
-                    
+
                     ### Entry B — the same digits do not guarantee the same model (Section 2)
-                    
+
                     Show two diagrams, each featuring 8 and 3 but different action types. Diagram A labels **initial 8, add 3**, expression 8 + 3 = **11**. Diagram B labels **initial 8, remove 3**, expression 8 − 3 = **5**. Learner matches the sentence “Three more beads arrive” to A. Wrong-choice feedback: “Both use the numbers eight and three, but one joins them while the other removes them.” Ask which quantity changed and how; numeric equality alone is not enough. Make diagram B visually and textually accessible even without color or motion.
-                    
+
                     ### Entry C — from a diagram back to words and symbols (Section 3)
-                    
+
                     Display a labeled diagram with a known starting group of **12** tokens, **5** marked removed, and an unknown remainder. Offer three verbal alternatives:
-                    
+
                     - “Twelve tokens; five are taken away; how many remain?” (accurate).
                     - “Twelve tokens; five are added; how many now?” (wrong relation).
                     - “Five tokens; twelve removed; how many remain?” (wrong starting amount).
                       The learner chooses and can request the symbolic form **12 − 5**, with optional evaluation **7**. For the second, explain “The diagram marks five leaving.” For the third, explain “The twelve is the original whole; five is the amount removed.” A choice is formative, not scored.
-                    
+
                     ### Entry D — independently construct equivalent modes (Section 4)
-                    
+
                     Narrative: “Ten shells on a table, four shells moved into a bag. How many remain on the table?” Offer a diagram editor with explicit labels and accessible select controls, plus text response choices to prevent mandatory drawing. A correct diagram labels ten initial and four removed, one sentence conveys the same action, and expression **10 − 4** gives result **6** if evaluated. If child supplies **10 + 4**, say “The shells moved away _from_ the table; nothing was added to the table.” If they set four as initial group, say “Four is the number moved, not the original amount.” If the story input is incomplete, allow “Show a complete model” without penalty.
-                    
+
                     ## States, objects, invariants and reset
-                    
+
                     - Each entry has fixed localized story and immutable mathematical quantities, model view mode, current verbal/symbolic choice, explicit role labels (start, arriving/removed, unknown), optional calculation reveal, hint and feedback state.
                     - Diagram lengths, number of discrete counters and symbolic operands must be linked to the _same labeled quantities_. Do not use physically scaled but numerically inconsistent bars. Never infer meaning from color or picture orientation alone.
                     - Translation between modes is correct only if both numeric quantities and their **roles and relation** are preserved. Identical numerals with different operations are non-equivalent.
                     - Reset restores the single entry; there is no hidden cross-Section memory, score, Question model or Note storage.
                     - Each Scene entry is independently configured at design/implementation time while public React components take no props; do not invent an API or Resource-config property to vary the scenario.
-                    
+
                     ## Visual and nonvisual equivalent direction
-                    
+
                     Four representations can be shown in one internally responsive Scene, but not as arbitrary multi-column sibling Section Resources. Each mode has a separate textual ledger: “Ten initially; four removed; remainder unknown,” which a screen reader can inspect before results are revealed. Keyboard, switch and touch users select roles, representation modes and feedback without drag; optional pointer interaction is never required. In RTL, preserve temporal/quantitative relationships and minus operand order rather than simply mirroring diagrams. Each count, group title, label, hint, alternative text and feedback must receive genuine translations for all supported locales. Controls use visible focus, no color-only status, sufficient target size, reduced-motion instant reveal and 200% zoom/mobile reflow. The chosen lesson should operate with all selected assets offline **after implementation and download**; current offline infrastructure is not asserted.
-                    
+
                     ## Acceptance cases
-                    
+
                     1. Eight start plus three arrive translates consistently into counters, before/add/after diagram, words, 8+3 and (if evaluated) 11.
                     2. Same 8 and 3 with removal instead translates to 8−3=5 and is not equivalent to addition.
                     3. Twelve with five removed yields a valid verbal story and 12−5=7, not an addition or a reversal of initial/removed roles.
                     4. Ten shells with four moved away yield 10−4=6; choosing 10+4 receives action-specific feedback.
                     5. Different arrangements of equal-unit counters with identical role labels may still encode the same relationship.
                     6. Every entry resets independently and provides no-assessment, nonvisual, keyboard, RTL, zoomed, reduced-motion and offline-equivalent paths.
-                    
+
                     ## Editorial and technical handoff
-                    
+
                     Only generic Scene rendering is currently known. A Coding Agent must implement prop-free entry Scenes, locale content, mathematical invariants and tests, verify accessible controls and actual download behavior, and secure required approvals. No React/runtime Lesson code, Question, Quiz, mastery, scoring or Note persistence belongs in this specification.
-                  purpose: "Proposed interactive Scene for Your new story, your representations"
+                  purpose: 'Proposed interactive Scene for Your new story, your representations'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               text2:
                 config:
-                  id: "8ea54ecd-a0ee-43ee-9aa1-526761985f48"
-                  slug: "text2"
-                  type: "text"
+                  id: '8ea54ecd-a0ee-43ee-9aa1-526761985f48'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "If one of your forms has **four shells arriving** while the others show **four leaving**, they are not the same story. Fix the one that changed the relationship."
+                      en: 'If one of your forms has **four shells arriving** while the others show **four leaving**, they are not the same story. Fix the one that changed the relationship.'
               markdown3:
                 config:
-                  id: "117db188-cda5-46e3-8cb2-dcfeefe14121"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '117db188-cda5-46e3-8cb2-dcfeefe14121'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**Recall:** When moving between objects, diagrams, words and expressions, keep the **roles and relationships** the same. A number alone never tells the entire story."
-            order: ["text1","representationBridge","text2","markdown3"]
+                      en: '**Recall:** When moving between objects, diagrams, words and expressions, keep the **roles and relationships** the same. A number alone never tells the entire story.'
+            order: ['text1', 'representationBridge', 'text2', 'markdown3']
         production:
-          purpose: "Your new story, your representations"
+          purpose: 'Your new story, your representations'
           pedagogicalIntent: |
             ### Section 4 — Your new story, your representations
-            
+
             _Purpose: independent transfer to a different object and a different initial quantity._
-            
+
             1. **`text`:** “A table has **10 shells**. A child moves **4 shells** into a bag. Build or choose **a new diagram, one sentence and one expression** that all describe the shells remaining on the table.”
             2. **`scene` Resource (proposed):** Representation Bridge entry D, fresh scenario. The learner uses choice cards or accessible text input to produce a diagram with **10 starting shells**, **4 removed**, **? remain**; sentence “Ten shells, four moved away”, expression **10 − 4**. Feedback if choose **10+4**: “Those four leave the table, so their quantity cannot be added to what remains here.” Wrong diagram with 4 initial: “Four is the number moved, not the initial total.” On reveal **10−4=6 shells**. A learner may explain by selecting the role descriptions without needing to speak or write.
             3. **`text`:** “If one of your forms has **four shells arriving** while the others show **four leaving**, they are not the same story. Fix the one that changed the relationship.”
             4. **`markdown`:** “**Recall:** When moving between objects, diagrams, words and expressions, keep the **roles and relationships** the same. A number alone never tells the entire story.”
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
-    order: ["section1FourDoorsToTheSameChange","section2ABeautifulPictureCanBeTheWrongModel","section3WorkBackwardFromADiagramOrSymbol","section4YourNewStoryYourRepresentations"]
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+    order:
+      [
+        'section1FourDoorsToTheSameChange',
+        'section2ABeautifulPictureCanBeTheWrongModel',
+        'section3WorkBackwardFromADiagramOrSymbol',
+        'section4YourNewStoryYourRepresentations',
+      ]
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # One Relationship, Four Ways to Show It — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: sameMathDifferentModels
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Teach deliberate conversion among concrete objects, a quantified diagram, a verbal description and a numeric expression. Verify that all representations preserve **which amount is initial, what changes, and which amount is sought**, not simply share two numerals.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 2.** Select conceptual depth and expected independence according to these prerequisites, not a numerical grade ceiling on the canonical Skill. Plan for developing reading fluency, optional teacher/adult mediation, accessible symbols, working-memory scaffolding and multiple response modes. All examples remain legible and comprehensible without sound, exact pointer control or high-speed interaction.
-    
+
     ## Prerequisites
-    
+
     - [oneStepModel.data.ts](../../../../data/skills/problemSolving/models/skills/oneStepModel.data.ts): construct a one-operation quantitative representation.
     - [readNumericExpressions.data.ts](../../../../data/skills/algebra/expressions/skills/readNumericExpressions.data.ts): read addition/subtraction expressions and the order of operands.
     - Recognize parts/whole, count within 20, and describe add/remove situations in simple language.
-    
+
     ## Target Skills
-    
+
     - [multipleRepresentations.data.ts](../../../../data/skills/reasoning/representations/skills/multipleRepresentations.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Translate an addition story into matching counters, a labeled part–whole diagram, words and a numerical expression.
     - Translate a removal diagram or expression back into a faithful verbal scenario, preserving the initial and removed amounts.
     - Reject a diagram or story that preserves the same numerals but reverses the relationship (e.g. adds instead of removes).
     - Explain a representational choice through one invariant quantity/role relationship rather than visual resemblance.
-    
+
     ## Essential subject matter
-    
+
     For ‘There are 8 beads and 3 are added’, equivalent forms are eight counters joined with three incoming counters; a diagram with known part 8 and incoming part 3 with unknown total; ‘eight, then three more’; and 8 + 3 = 11 if evaluated. For ‘There are 12 tokens and 5 are taken away’, a correct diagram begins with 12 and marks 5 as removed, leaving 7; numerical relation 12 − 5 = 7. A picture with eight counters and three _removed_ cannot represent ‘three added’ merely because it features 8 and 3. Diagram bar lengths must follow equal-unit counts or explicit scales; shape/color/layout is not an independent mathematical fact.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Begin by preserving counts across two equivalent visual arrangements, connect concrete to a labeled diagram and then to words/symbols, contrast an incorrect reversal with identical numerals, and transfer to an unfamiliar context where the learner authors a verbal or symbolic translation.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     A model with the same two numbers is necessarily equivalent; regrouping colors changes cardinality; the diagram's direction can be read independently of labels; the equation's order can be casually reversed for subtraction. Limit to one-step add/remove quantities within 20; exclude nonlinear scale, multi-step equations, fractions, vague unlabeled diagrams, or claiming all imaginable representational forms have been assessed.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     English text is an **editorial source**, not a finished multilingual translation. Before implementation every learner-visible prompt, story, diagram label, mathematical reading, control name, feedback statement and nonvisual alternative needs **genuine, meaning-preserving translation for all current supported locales**, with no silent English fallback. Mathematical operand order, chronological events, and quantitative meaning must remain stable in RTL; adapt layout semantically rather than mirror all graphics. Offer keyboard, touch and switch alternatives to dragging, explicit textual names and values rather than color-only cues, predictable focus, zoom/mobile reflow, reduced motion and equivalent auditory/nonvisual explanations. All lesson-critical resources and feedback should be available after offline download; this is a **target** requiring future implementation checks, not a promise that PWA/Note persistence is implemented.
-    
+
     ## Sources and factual verification
-    
+
     - [multipleRepresentations.data.ts](../../../../data/skills/reasoning/representations/skills/multipleRepresentations.data.ts) — directly linked Mathematics canonical Skill data; confirm exact source/UUID and domain-local composition, not a generated Markdown authority.
     - [Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — independent Methodologist and Screenwriter artifacts and approval boundaries.
     - [Internationalization and Accessibility](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) — current inclusive localization design requirements.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) — optional international reference for a broad progression, **not** a claim of Curriculum alignment.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. This Lesson is standalone and Program-neutral.
-    
+
     ## Open editorial decisions
-    
+
     - This represents conversion _between_ modes rather than a repeat of oneStepModel model construction; the editor must verify that transfer between representations is independently demonstrated.
     - The generated Playground taxonomy view is a shared coordinator-owned artifact and may not yet include newly migrated SkillGroups; formal taxonomy approval must be independently confirmed. Do not mistake the presence of a canonical source Code object for a new editorial sign-off.
     - Methodologist/editor must explicitly approve this Draft Brief before Content or Scene specifications become formally approved; current parallel drafts are **provisional**.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, pending explicit approval.** The Screenwriter's provisional Content (editorial text integrated into this config.yaml) and proposed Scene (Scene specification embedded in this config.yaml) are independently reviewable, not evidence that the Methodologist gate passed. No runtime Lesson, Question, Quiz, grade, scoring or Note persistence was implemented.
   productionNotes: |-
     Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
-    
+
     # One Relationship, Four Ways to Show It — Lesson Content
-    
+
     **Screenwriter status:** Provisional Draft — pending Methodologist Brief (editorial text integrated into this config.yaml) approval.  
     **Implementation:** None; proposed Scenes are not React components. **Program dependence:** None.  
     **Working language:** English editorial source; full multilingual localization remains future work.
-    
+
     ## Experience rationale
-    
+
     This Lesson is **not** another task merely to choose a model of a story. Children must make deliberate transformations **in both directions** between concrete objects, a labeled diagram, a verbal description and a symbolic expression, checking that the same mathematical relationship survives. The experience varies surface pictures but keeps the roles of quantities explicit. A full diagram-to-symbol-to-words cycle matters more than many lookalike quizzes.
-    
-    
+
+
     ## Source-of-truth and production boundaries
-    
+
     Use a **single vertical column** of ordered `text`, `markdown` and proposed `scene` Resources for each Section. The Representation Bridge (Scene specification embedded in this config.yaml) is a _new proposed Scene_ with a separate specification; the generic renderer can handle Scene resources but this interaction is **not implemented**. There is no runtime lesson, Question, Quiz, scoring, mastery or Note persistence.
-    
+
     No translation is delivered by this English editorial file. Localization must preserve linguistic differences between “moved into bag”, “removed”, “joined”, and “remaining”, as well as math syntax, all feedback and nonvisual explanations for every supported locale. RTL changes layout and logical reading order, not the meaning of before/after or arithmetic operands. Every model needs a screen-reader-equivalent list of labeled quantities and relational actions; provide keyboard/switch/touch controls and a nondrag alternative, obvious visible focus, no color-only differences, reduced-motion reveal and zoom/mobile reflow. Offline equivalence is a **future implementation requirement for downloadable selected locale resources**, not an existing feature claim. The Brief and all Scene proposals remain Draft pending Methodologist/editor approval.
-    
-    
+
+
     Migration status: provisional draft; pending independent approvals, translation and implementation.

@@ -1,112 +1,112 @@
 config:
-  id: "0de9cfa9-ea0a-5fe8-9f47-e3a32c076992"
-  slug: "additionAssociative"
-  type: "lesson"
+  id: '0de9cfa9-ea0a-5fe8-9f47-e3a32c076992'
+  slug: 'additionAssociative'
+  type: 'lesson'
   skills:
-    - "4754301d-73dc-4b7f-b146-3c8f14a9a3e1"
+    - '4754301d-73dc-4b7f-b146-3c8f14a9a3e1'
   params:
     requireQuiz: false
     languages:
-      - "en"
-      - "pl"
-      - "uk"
-      - "qm"
+      - 'en'
+      - 'pl'
+      - 'uk'
+      - 'qm'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Three Addends, Different Groups"
+      en: 'Three Addends, Different Groups'
   section:
     items:
       section1:
         config:
-          id: "0de9cfa9-ea0a-5fe8-9f47-000000000004"
-          slug: "section1"
-          type: "content"
+          id: '0de9cfa9-ea0a-5fe8-9f47-000000000004'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Three Collections Make Nine"
+              en: 'Three Collections Make Nine'
             navigationLabel:
-              en: "Three Collections Make Nine"
+              en: 'Three Collections Make Nine'
           content:
             items:
               section1Text1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-000000000001"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-000000000001'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Three separate groups have 2, 3 and 4 counters. How many counters in all?"
+                      en: 'Three separate groups have 2, 3 and 4 counters. How many counters in all?'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "- **Learner-facing text resource (supported):** “Three separate groups have 2, 3 and 4 counters. How many counters in all?”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '- **Learner-facing text resource (supported):** “Three separate groups have 2, 3 and 4 counters. How many counters in all?”'
               section1Scene1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-000000000002"
-                  slug: "section1Scene1"
-                  type: "scene"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-000000000002'
+                  slug: 'section1Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Three separate groups have 2, 3 and 4 counters. How many counters in all?"
+                        instruction: 'Three separate groups have 2, 3 and 4 counters. How many counters in all?'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Grouping Brackets Playground — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: `Three Addends, Different Groups Content` (source preserved in this YAML), Sections 1–4
                     Methodologist objectives: Count three collections of 2,3,4 objects as a constant whole of nine. Calculate (2+3)+4=9 and 2+(3+4)=9 using the same nine counters, explaining intermediate five and seven. Distinguish **regrouping** without changing any addend from changing a value or swapping order. Choose a convenient grouping for 6+4+3, making ten first and confirming that both legal groupings give thirteen. `Methodologist Brief` (source preserved in this YAML) (Draft, not approved).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Let learners discover that the sum of three addends does not depend on which pair is combined first. Keep the addends and their roles intact, compare (2+3)+4 with 2+(3+4), and use the freedom of grouping to choose an efficient calculation. Unlike swapping addends, changing parentheses does not exchange operand order.
-                    
+
                     Learners are active in the mathematical transformation and see every count, intermediate step and verification. The Scene is not an unscored imitation of a Quiz; it provides concrete controlled exploration and exact feedback.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     For any three whole-number addends a,b,c, (a+b)+c = a+(b+c). Concrete case (2+3)+4=5+4=9 vs 2+(3+4)=2+7=9. Different grouping, same three original sets: 2,3,4. Transfer (6+4)+3=10+3=13 vs 6+(4+3)=6+7=13. Parentheses indicate which addition is done first, not new objects. Preserve original left-to-right addend order for this teaching example. This property extends to more addends, but the lesson's scope is exactly three addends and totals ≤20.
-                    
+
                     Believing a different intermediate total means the final sum changes, moving a counter from one original addend into another while still reporting unchanged groups, or treating parentheses as extra added quantities. Associativity regroups adjacent addends; commutativity swaps their positions. In 2+3+4, inner totals 5 and 7 differ but both final results equal nine.
-                    
+
                     **Invariant:** Total of original disjoint sets is unchanged by choosing parentheses; for [2,3,4] total nine under both groupings, for [6,4,3] total thirteen. No addend value or order changes when toggling grouping; only the highlighted pair and intermediate subtotal change.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1, Three Collections Make Nine:** Prompt “Three separate groups have 2, 3 and 4 counters. How many counters in all?”. Display 2,3,4 counters as three persistently labeled disjoint collections with unique IDs; allow learner to count all nine without grouping first. Learner can reveal or predict before seeing the full equality. Display: **2 + 3 + 4 = 9**. Explanation: Two, three and four make nine counters. We will keep those same nine while changing which pair is counted first. Corrective feedback: If learner says five, show they have only counted the first two groups; if seven, show that only the last two have been counted.
-                    
+
                     2. **Section 2, First Two Together:** Prompt “What if we add the first two groups before the third?”. Learner selects a bracket around first pair (2+3), sees a subtotal of five, then includes the third group of four to obtain nine; labels stay attached to original groups. Learner can reveal or predict before seeing the full equality. Display: **(2 + 3) + 4 = 5 + 4 = 9**. Explanation: The first two groups make five. Then five plus four makes nine. Nothing was created or lost when we counted them as a subtotal. Corrective feedback: If a child reports five as final, point out the third group of four remains to be counted.
-                    
+
                     3. **Section 3, Last Two Together:** Prompt “Now add the last two groups first. Is the result still nine?”. On learner command, reset only subtotal emphasis and bracket 3+4, show seven, then combine with first group two for nine. Display both bracketings side by side _inside the Scene_. Learner can reveal or predict before seeing the full equality. Display: **2 + (3 + 4) = 2 + 7 = 9**. Explanation: Three and four make seven, then two plus seven makes nine. The subtotal changed from five to seven; the final sum stayed nine. Corrective feedback: If the learner thinks seven is the new final answer, show that the initial two counters are still part of the whole.
-                    
+
                     4. **Section 4, Group Six, Four and Three:** Prompt “For 6 + 4 + 3, which pair could make ten first?”. A transfer set 6,4,3 keeps thirteen unique counters; learner chooses (6+4)+3 or 6+(4+3) and inspects first subtotal ten vs seven. Both finish at thirteen. Learner can reveal or predict before seeing the full equality. Display: **(6 + 4) + 3 = 13; 6 + (4 + 3) = 13**. Explanation: Six and four make a useful ten. Adding three makes thirteen. Or four and three make seven, then six plus seven makes thirteen. Grouping helps us choose a convenient calculation. Corrective feedback: A learner who believes 6+(4+3)=16 receives a precise 4+3=7 and 6+7=13 recount; no group has changed in size.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four _independent prop-free Scene entries_, one per Section. Section mode is editorial, not a public React prop or Resource_Config discriminator. Implementer may share internal math utilities but must not share per-learner UI state across placements.
                     - Objects and semantics: Three labeled counter trays remain in a fixed spatial sequence while a large accessible bracket and subtotal ribbon move between the first and last adjacent pairs. Do not exchange tray order when changing parentheses. Use labeled objects, native controls for each action, ordered numerical text ledger, prediction buttons, explanation and Reset/Undo.
                     - State: Fixed original addend arrays [2,3,4] or [6,4,3], stable counter identities, chosen grouping first-two/last-two, subtotal, reveal and expression comparison; placements independently reset.
                     - Rules: Total of original disjoint sets is unchanged by choosing parentheses; for [2,3,4] total nine under both groupings, for [6,4,3] total thirteen. No addend value or order changes when toggling grouping; only the highlighted pair and intermediate subtotal change. The UI must not silently change actual mathematical objects when a child selects a wrong option; incorrect statements are explicitly identified as _trials_, not true equalities.
                     - All instruction available on reveal without forced guesses. No grader, Note API, score event or achievement state.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Three labeled counter trays remain in a fixed spatial sequence while a large accessible bracket and subtotal ribbon move between the first and last adjacent pairs. Do not exchange tray order when changing parentheses. Render using lightweight HTML/SVG with explicit quantities and large labels, rather than remote/generated image assets. Motion is initiated by learner and may be stepped through or skipped; reduced motion shows identical before/after numerical states instantly. No WebGL, mandatory narration, video, music, external resources or reward graphics.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, errors, accessible labels, counts, status and control names genuinely translated across complete supported locale roster (English source is not fallback). Semantic LTR/RTL rules preserve order of mathematical operands and the meanings of exchanges, pairings and groups. A keyboard/switch/touch user can execute each step with large focusable controls and inspect the ordered textual state ledger; screen reader announces changes once. 200% zoom, reduced motion, child-size targets, responsive mobile, non-color-only signals and equivalent offline local computation after full download are required. No timed, drag-only or speech-recognition path.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Three groups 2,3,4 contain exactly nine counters.
                     2. First grouping (2+3)+4 produces intermediate five and final nine.
                     3. Second grouping 2+(3+4) produces intermediate seven and final nine.
@@ -114,29 +114,29 @@ config:
                     5. Incorrect predictions yield the documented numerical explanation without a score; retry and full reveal remain possible.
                     6. Reset and independent Section entries do not leak state; no counters duplicated or secretly removed.
                     7. Keyboard, screen-reader, semantic RTL, reduced-motion, zoom/mobile and downloaded offline state yield the same arithmetic and explanation.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Section Scene renderer exists; **Grouping Brackets Playground is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Explicitly separate associativity (parentheses) from previously taught addition commutativity (operand order); make-ten as an efficient example must support, not replace, the three-addend rule.
                   productionNotes: "This placement in Three Collections Make Nine refers to groupingBracketsPlayground.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section1Markdown1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-000000000003"
-                  slug: "section1Markdown1"
-                  type: "markdown"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-000000000003'
+                  slug: 'section1Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Two, three and four make nine counters. We will keep those same nine while changing which pair is counted first."
+                      en: 'Two, three and four make nine counters. We will keep those same nine while changing which pair is counted first.'
                 production:
-                  purpose: "Original markdown resource from source Screenwriter draft"
-                  specification: "- **Learner-facing markdown resource (supported):** “Two, three and four make nine counters. We will keep those same nine while changing which pair is counted first.” Exact expression: **2 + 3 + 4 = 9**."
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '- **Learner-facing markdown resource (supported):** “Two, three and four make nine counters. We will keep those same nine while changing which pair is counted first.” Exact expression: **2 + 3 + 4 = 9**.'
             order:
-              - "section1Text1"
-              - "section1Scene1"
-              - "section1Markdown1"
+              - 'section1Text1'
+              - 'section1Scene1'
+              - 'section1Markdown1'
         production:
-          purpose: "Three Collections Make Nine"
+          purpose: 'Three Collections Make Nine'
           pedagogicalIntent: |-
             - **Purpose/outcome:** Count three collections of 2,3,4 objects as a constant whole of nine.
             - **Typed structure:** One ordered `LessonSection_Config` with text, scene, markdown resources in a single vertical column.
@@ -149,94 +149,94 @@ config:
             - **Accessibility, locale and RTL:** Native touch, keyboard and screen-reader operations; exact group roles and equations read in correct math order across RTL; full real translations and reduced-motion equivalence, including offline use.
             - **Proposed unlocked Note(s):** None in this Section.
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
       section2:
         config:
-          id: "0de9cfa9-ea0a-5fe8-9f47-000000000008"
-          slug: "section2"
-          type: "content"
+          id: '0de9cfa9-ea0a-5fe8-9f47-000000000008'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "First Two Together"
+              en: 'First Two Together'
             navigationLabel:
-              en: "First Two Together"
+              en: 'First Two Together'
           content:
             items:
               section2Text1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-000000000005"
-                  slug: "section2Text1"
-                  type: "text"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-000000000005'
+                  slug: 'section2Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "What if we add the first two groups before the third?"
+                      en: 'What if we add the first two groups before the third?'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "- **Learner-facing text resource (supported):** “What if we add the first two groups before the third?”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '- **Learner-facing text resource (supported):** “What if we add the first two groups before the third?”'
               section2Scene1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-000000000006"
-                  slug: "section2Scene1"
-                  type: "scene"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-000000000006'
+                  slug: 'section2Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "What if we add the first two groups before the third?"
+                        instruction: 'What if we add the first two groups before the third?'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Grouping Brackets Playground — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: `Three Addends, Different Groups Content` (source preserved in this YAML), Sections 1–4
                     Methodologist objectives: Count three collections of 2,3,4 objects as a constant whole of nine. Calculate (2+3)+4=9 and 2+(3+4)=9 using the same nine counters, explaining intermediate five and seven. Distinguish **regrouping** without changing any addend from changing a value or swapping order. Choose a convenient grouping for 6+4+3, making ten first and confirming that both legal groupings give thirteen. `Methodologist Brief` (source preserved in this YAML) (Draft, not approved).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Let learners discover that the sum of three addends does not depend on which pair is combined first. Keep the addends and their roles intact, compare (2+3)+4 with 2+(3+4), and use the freedom of grouping to choose an efficient calculation. Unlike swapping addends, changing parentheses does not exchange operand order.
-                    
+
                     Learners are active in the mathematical transformation and see every count, intermediate step and verification. The Scene is not an unscored imitation of a Quiz; it provides concrete controlled exploration and exact feedback.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     For any three whole-number addends a,b,c, (a+b)+c = a+(b+c). Concrete case (2+3)+4=5+4=9 vs 2+(3+4)=2+7=9. Different grouping, same three original sets: 2,3,4. Transfer (6+4)+3=10+3=13 vs 6+(4+3)=6+7=13. Parentheses indicate which addition is done first, not new objects. Preserve original left-to-right addend order for this teaching example. This property extends to more addends, but the lesson's scope is exactly three addends and totals ≤20.
-                    
+
                     Believing a different intermediate total means the final sum changes, moving a counter from one original addend into another while still reporting unchanged groups, or treating parentheses as extra added quantities. Associativity regroups adjacent addends; commutativity swaps their positions. In 2+3+4, inner totals 5 and 7 differ but both final results equal nine.
-                    
+
                     **Invariant:** Total of original disjoint sets is unchanged by choosing parentheses; for [2,3,4] total nine under both groupings, for [6,4,3] total thirteen. No addend value or order changes when toggling grouping; only the highlighted pair and intermediate subtotal change.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1, Three Collections Make Nine:** Prompt “Three separate groups have 2, 3 and 4 counters. How many counters in all?”. Display 2,3,4 counters as three persistently labeled disjoint collections with unique IDs; allow learner to count all nine without grouping first. Learner can reveal or predict before seeing the full equality. Display: **2 + 3 + 4 = 9**. Explanation: Two, three and four make nine counters. We will keep those same nine while changing which pair is counted first. Corrective feedback: If learner says five, show they have only counted the first two groups; if seven, show that only the last two have been counted.
-                    
+
                     2. **Section 2, First Two Together:** Prompt “What if we add the first two groups before the third?”. Learner selects a bracket around first pair (2+3), sees a subtotal of five, then includes the third group of four to obtain nine; labels stay attached to original groups. Learner can reveal or predict before seeing the full equality. Display: **(2 + 3) + 4 = 5 + 4 = 9**. Explanation: The first two groups make five. Then five plus four makes nine. Nothing was created or lost when we counted them as a subtotal. Corrective feedback: If a child reports five as final, point out the third group of four remains to be counted.
-                    
+
                     3. **Section 3, Last Two Together:** Prompt “Now add the last two groups first. Is the result still nine?”. On learner command, reset only subtotal emphasis and bracket 3+4, show seven, then combine with first group two for nine. Display both bracketings side by side _inside the Scene_. Learner can reveal or predict before seeing the full equality. Display: **2 + (3 + 4) = 2 + 7 = 9**. Explanation: Three and four make seven, then two plus seven makes nine. The subtotal changed from five to seven; the final sum stayed nine. Corrective feedback: If the learner thinks seven is the new final answer, show that the initial two counters are still part of the whole.
-                    
+
                     4. **Section 4, Group Six, Four and Three:** Prompt “For 6 + 4 + 3, which pair could make ten first?”. A transfer set 6,4,3 keeps thirteen unique counters; learner chooses (6+4)+3 or 6+(4+3) and inspects first subtotal ten vs seven. Both finish at thirteen. Learner can reveal or predict before seeing the full equality. Display: **(6 + 4) + 3 = 13; 6 + (4 + 3) = 13**. Explanation: Six and four make a useful ten. Adding three makes thirteen. Or four and three make seven, then six plus seven makes thirteen. Grouping helps us choose a convenient calculation. Corrective feedback: A learner who believes 6+(4+3)=16 receives a precise 4+3=7 and 6+7=13 recount; no group has changed in size.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four _independent prop-free Scene entries_, one per Section. Section mode is editorial, not a public React prop or Resource_Config discriminator. Implementer may share internal math utilities but must not share per-learner UI state across placements.
                     - Objects and semantics: Three labeled counter trays remain in a fixed spatial sequence while a large accessible bracket and subtotal ribbon move between the first and last adjacent pairs. Do not exchange tray order when changing parentheses. Use labeled objects, native controls for each action, ordered numerical text ledger, prediction buttons, explanation and Reset/Undo.
                     - State: Fixed original addend arrays [2,3,4] or [6,4,3], stable counter identities, chosen grouping first-two/last-two, subtotal, reveal and expression comparison; placements independently reset.
                     - Rules: Total of original disjoint sets is unchanged by choosing parentheses; for [2,3,4] total nine under both groupings, for [6,4,3] total thirteen. No addend value or order changes when toggling grouping; only the highlighted pair and intermediate subtotal change. The UI must not silently change actual mathematical objects when a child selects a wrong option; incorrect statements are explicitly identified as _trials_, not true equalities.
                     - All instruction available on reveal without forced guesses. No grader, Note API, score event or achievement state.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Three labeled counter trays remain in a fixed spatial sequence while a large accessible bracket and subtotal ribbon move between the first and last adjacent pairs. Do not exchange tray order when changing parentheses. Render using lightweight HTML/SVG with explicit quantities and large labels, rather than remote/generated image assets. Motion is initiated by learner and may be stepped through or skipped; reduced motion shows identical before/after numerical states instantly. No WebGL, mandatory narration, video, music, external resources or reward graphics.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, errors, accessible labels, counts, status and control names genuinely translated across complete supported locale roster (English source is not fallback). Semantic LTR/RTL rules preserve order of mathematical operands and the meanings of exchanges, pairings and groups. A keyboard/switch/touch user can execute each step with large focusable controls and inspect the ordered textual state ledger; screen reader announces changes once. 200% zoom, reduced motion, child-size targets, responsive mobile, non-color-only signals and equivalent offline local computation after full download are required. No timed, drag-only or speech-recognition path.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Three groups 2,3,4 contain exactly nine counters.
                     2. First grouping (2+3)+4 produces intermediate five and final nine.
                     3. Second grouping 2+(3+4) produces intermediate seven and final nine.
@@ -244,29 +244,29 @@ config:
                     5. Incorrect predictions yield the documented numerical explanation without a score; retry and full reveal remain possible.
                     6. Reset and independent Section entries do not leak state; no counters duplicated or secretly removed.
                     7. Keyboard, screen-reader, semantic RTL, reduced-motion, zoom/mobile and downloaded offline state yield the same arithmetic and explanation.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Section Scene renderer exists; **Grouping Brackets Playground is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Explicitly separate associativity (parentheses) from previously taught addition commutativity (operand order); make-ten as an efficient example must support, not replace, the three-addend rule.
                   productionNotes: "This placement in First Two Together refers to groupingBracketsPlayground.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section2Markdown1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-000000000007"
-                  slug: "section2Markdown1"
-                  type: "markdown"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-000000000007'
+                  slug: 'section2Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The first two groups make five. Then five plus four makes nine. Nothing was created or lost when we counted them as a subtotal."
+                      en: 'The first two groups make five. Then five plus four makes nine. Nothing was created or lost when we counted them as a subtotal.'
                 production:
-                  purpose: "Original markdown resource from source Screenwriter draft"
-                  specification: "- **Learner-facing markdown resource (supported):** “The first two groups make five. Then five plus four makes nine. Nothing was created or lost when we counted them as a subtotal.” Exact expression: **(2 + 3) + 4 = 5 + 4 = 9**."
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '- **Learner-facing markdown resource (supported):** “The first two groups make five. Then five plus four makes nine. Nothing was created or lost when we counted them as a subtotal.” Exact expression: **(2 + 3) + 4 = 5 + 4 = 9**.'
             order:
-              - "section2Text1"
-              - "section2Scene1"
-              - "section2Markdown1"
+              - 'section2Text1'
+              - 'section2Scene1'
+              - 'section2Markdown1'
         production:
-          purpose: "First Two Together"
+          purpose: 'First Two Together'
           pedagogicalIntent: |-
             - **Purpose/outcome:** Calculate (2+3)+4=9 and 2+(3+4)=9 using the same nine counters, explaining intermediate five and seven.
             - **Typed structure:** One ordered `LessonSection_Config` with text, scene, markdown resources in a single vertical column.
@@ -279,94 +279,94 @@ config:
             - **Accessibility, locale and RTL:** Native touch, keyboard and screen-reader operations; exact group roles and equations read in correct math order across RTL; full real translations and reduced-motion equivalence, including offline use.
             - **Proposed unlocked Note(s):** “With three addends, we can add the first two or last two first.” after the complete model and explanation have been shown (planned, not wired).
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
       section3:
         config:
-          id: "0de9cfa9-ea0a-5fe8-9f47-00000000000c"
-          slug: "section3"
-          type: "content"
+          id: '0de9cfa9-ea0a-5fe8-9f47-00000000000c'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Last Two Together"
+              en: 'Last Two Together'
             navigationLabel:
-              en: "Last Two Together"
+              en: 'Last Two Together'
           content:
             items:
               section3Text1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-000000000009"
-                  slug: "section3Text1"
-                  type: "text"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-000000000009'
+                  slug: 'section3Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Now add the last two groups first. Is the result still nine?"
+                      en: 'Now add the last two groups first. Is the result still nine?'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "- **Learner-facing text resource (supported):** “Now add the last two groups first. Is the result still nine?”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '- **Learner-facing text resource (supported):** “Now add the last two groups first. Is the result still nine?”'
               section3Scene1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-00000000000a"
-                  slug: "section3Scene1"
-                  type: "scene"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-00000000000a'
+                  slug: 'section3Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Now add the last two groups first. Is the result still nine?"
+                        instruction: 'Now add the last two groups first. Is the result still nine?'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Grouping Brackets Playground — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: `Three Addends, Different Groups Content` (source preserved in this YAML), Sections 1–4
                     Methodologist objectives: Count three collections of 2,3,4 objects as a constant whole of nine. Calculate (2+3)+4=9 and 2+(3+4)=9 using the same nine counters, explaining intermediate five and seven. Distinguish **regrouping** without changing any addend from changing a value or swapping order. Choose a convenient grouping for 6+4+3, making ten first and confirming that both legal groupings give thirteen. `Methodologist Brief` (source preserved in this YAML) (Draft, not approved).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Let learners discover that the sum of three addends does not depend on which pair is combined first. Keep the addends and their roles intact, compare (2+3)+4 with 2+(3+4), and use the freedom of grouping to choose an efficient calculation. Unlike swapping addends, changing parentheses does not exchange operand order.
-                    
+
                     Learners are active in the mathematical transformation and see every count, intermediate step and verification. The Scene is not an unscored imitation of a Quiz; it provides concrete controlled exploration and exact feedback.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     For any three whole-number addends a,b,c, (a+b)+c = a+(b+c). Concrete case (2+3)+4=5+4=9 vs 2+(3+4)=2+7=9. Different grouping, same three original sets: 2,3,4. Transfer (6+4)+3=10+3=13 vs 6+(4+3)=6+7=13. Parentheses indicate which addition is done first, not new objects. Preserve original left-to-right addend order for this teaching example. This property extends to more addends, but the lesson's scope is exactly three addends and totals ≤20.
-                    
+
                     Believing a different intermediate total means the final sum changes, moving a counter from one original addend into another while still reporting unchanged groups, or treating parentheses as extra added quantities. Associativity regroups adjacent addends; commutativity swaps their positions. In 2+3+4, inner totals 5 and 7 differ but both final results equal nine.
-                    
+
                     **Invariant:** Total of original disjoint sets is unchanged by choosing parentheses; for [2,3,4] total nine under both groupings, for [6,4,3] total thirteen. No addend value or order changes when toggling grouping; only the highlighted pair and intermediate subtotal change.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1, Three Collections Make Nine:** Prompt “Three separate groups have 2, 3 and 4 counters. How many counters in all?”. Display 2,3,4 counters as three persistently labeled disjoint collections with unique IDs; allow learner to count all nine without grouping first. Learner can reveal or predict before seeing the full equality. Display: **2 + 3 + 4 = 9**. Explanation: Two, three and four make nine counters. We will keep those same nine while changing which pair is counted first. Corrective feedback: If learner says five, show they have only counted the first two groups; if seven, show that only the last two have been counted.
-                    
+
                     2. **Section 2, First Two Together:** Prompt “What if we add the first two groups before the third?”. Learner selects a bracket around first pair (2+3), sees a subtotal of five, then includes the third group of four to obtain nine; labels stay attached to original groups. Learner can reveal or predict before seeing the full equality. Display: **(2 + 3) + 4 = 5 + 4 = 9**. Explanation: The first two groups make five. Then five plus four makes nine. Nothing was created or lost when we counted them as a subtotal. Corrective feedback: If a child reports five as final, point out the third group of four remains to be counted.
-                    
+
                     3. **Section 3, Last Two Together:** Prompt “Now add the last two groups first. Is the result still nine?”. On learner command, reset only subtotal emphasis and bracket 3+4, show seven, then combine with first group two for nine. Display both bracketings side by side _inside the Scene_. Learner can reveal or predict before seeing the full equality. Display: **2 + (3 + 4) = 2 + 7 = 9**. Explanation: Three and four make seven, then two plus seven makes nine. The subtotal changed from five to seven; the final sum stayed nine. Corrective feedback: If the learner thinks seven is the new final answer, show that the initial two counters are still part of the whole.
-                    
+
                     4. **Section 4, Group Six, Four and Three:** Prompt “For 6 + 4 + 3, which pair could make ten first?”. A transfer set 6,4,3 keeps thirteen unique counters; learner chooses (6+4)+3 or 6+(4+3) and inspects first subtotal ten vs seven. Both finish at thirteen. Learner can reveal or predict before seeing the full equality. Display: **(6 + 4) + 3 = 13; 6 + (4 + 3) = 13**. Explanation: Six and four make a useful ten. Adding three makes thirteen. Or four and three make seven, then six plus seven makes thirteen. Grouping helps us choose a convenient calculation. Corrective feedback: A learner who believes 6+(4+3)=16 receives a precise 4+3=7 and 6+7=13 recount; no group has changed in size.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four _independent prop-free Scene entries_, one per Section. Section mode is editorial, not a public React prop or Resource_Config discriminator. Implementer may share internal math utilities but must not share per-learner UI state across placements.
                     - Objects and semantics: Three labeled counter trays remain in a fixed spatial sequence while a large accessible bracket and subtotal ribbon move between the first and last adjacent pairs. Do not exchange tray order when changing parentheses. Use labeled objects, native controls for each action, ordered numerical text ledger, prediction buttons, explanation and Reset/Undo.
                     - State: Fixed original addend arrays [2,3,4] or [6,4,3], stable counter identities, chosen grouping first-two/last-two, subtotal, reveal and expression comparison; placements independently reset.
                     - Rules: Total of original disjoint sets is unchanged by choosing parentheses; for [2,3,4] total nine under both groupings, for [6,4,3] total thirteen. No addend value or order changes when toggling grouping; only the highlighted pair and intermediate subtotal change. The UI must not silently change actual mathematical objects when a child selects a wrong option; incorrect statements are explicitly identified as _trials_, not true equalities.
                     - All instruction available on reveal without forced guesses. No grader, Note API, score event or achievement state.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Three labeled counter trays remain in a fixed spatial sequence while a large accessible bracket and subtotal ribbon move between the first and last adjacent pairs. Do not exchange tray order when changing parentheses. Render using lightweight HTML/SVG with explicit quantities and large labels, rather than remote/generated image assets. Motion is initiated by learner and may be stepped through or skipped; reduced motion shows identical before/after numerical states instantly. No WebGL, mandatory narration, video, music, external resources or reward graphics.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, errors, accessible labels, counts, status and control names genuinely translated across complete supported locale roster (English source is not fallback). Semantic LTR/RTL rules preserve order of mathematical operands and the meanings of exchanges, pairings and groups. A keyboard/switch/touch user can execute each step with large focusable controls and inspect the ordered textual state ledger; screen reader announces changes once. 200% zoom, reduced motion, child-size targets, responsive mobile, non-color-only signals and equivalent offline local computation after full download are required. No timed, drag-only or speech-recognition path.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Three groups 2,3,4 contain exactly nine counters.
                     2. First grouping (2+3)+4 produces intermediate five and final nine.
                     3. Second grouping 2+(3+4) produces intermediate seven and final nine.
@@ -374,29 +374,29 @@ config:
                     5. Incorrect predictions yield the documented numerical explanation without a score; retry and full reveal remain possible.
                     6. Reset and independent Section entries do not leak state; no counters duplicated or secretly removed.
                     7. Keyboard, screen-reader, semantic RTL, reduced-motion, zoom/mobile and downloaded offline state yield the same arithmetic and explanation.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Section Scene renderer exists; **Grouping Brackets Playground is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Explicitly separate associativity (parentheses) from previously taught addition commutativity (operand order); make-ten as an efficient example must support, not replace, the three-addend rule.
                   productionNotes: "This placement in Last Two Together refers to groupingBracketsPlayground.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section3Markdown1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-00000000000b"
-                  slug: "section3Markdown1"
-                  type: "markdown"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-00000000000b'
+                  slug: 'section3Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Three and four make seven, then two plus seven makes nine. The subtotal changed from five to seven; the final sum stayed nine."
+                      en: 'Three and four make seven, then two plus seven makes nine. The subtotal changed from five to seven; the final sum stayed nine.'
                 production:
-                  purpose: "Original markdown resource from source Screenwriter draft"
-                  specification: "- **Learner-facing markdown resource (supported):** “Three and four make seven, then two plus seven makes nine. The subtotal changed from five to seven; the final sum stayed nine.” Exact expression: **2 + (3 + 4) = 2 + 7 = 9**."
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '- **Learner-facing markdown resource (supported):** “Three and four make seven, then two plus seven makes nine. The subtotal changed from five to seven; the final sum stayed nine.” Exact expression: **2 + (3 + 4) = 2 + 7 = 9**.'
             order:
-              - "section3Text1"
-              - "section3Scene1"
-              - "section3Markdown1"
+              - 'section3Text1'
+              - 'section3Scene1'
+              - 'section3Markdown1'
         production:
-          purpose: "Last Two Together"
+          purpose: 'Last Two Together'
           pedagogicalIntent: |-
             - **Purpose/outcome:** Distinguish **regrouping** without changing any addend from changing a value or swapping order.
             - **Typed structure:** One ordered `LessonSection_Config` with text, scene, markdown resources in a single vertical column.
@@ -409,94 +409,94 @@ config:
             - **Accessibility, locale and RTL:** Native touch, keyboard and screen-reader operations; exact group roles and equations read in correct math order across RTL; full real translations and reduced-motion equivalence, including offline use.
             - **Proposed unlocked Note(s):** “Only the grouping changes; every original addend and the final total stay the same.” after the complete model and explanation have been shown (planned, not wired).
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
       section4:
         config:
-          id: "0de9cfa9-ea0a-5fe8-9f47-000000000010"
-          slug: "section4"
-          type: "content"
+          id: '0de9cfa9-ea0a-5fe8-9f47-000000000010'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Group Six, Four and Three"
+              en: 'Group Six, Four and Three'
             navigationLabel:
-              en: "Group Six, Four and Three"
+              en: 'Group Six, Four and Three'
           content:
             items:
               section4Text1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-00000000000d"
-                  slug: "section4Text1"
-                  type: "text"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-00000000000d'
+                  slug: 'section4Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "For 6 + 4 + 3, which pair could make ten first?"
+                      en: 'For 6 + 4 + 3, which pair could make ten first?'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "- **Learner-facing text resource (supported):** “For 6 + 4 + 3, which pair could make ten first?”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '- **Learner-facing text resource (supported):** “For 6 + 4 + 3, which pair could make ten first?”'
               section4Scene1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-00000000000e"
-                  slug: "section4Scene1"
-                  type: "scene"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-00000000000e'
+                  slug: 'section4Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "For 6 + 4 + 3, which pair could make ten first?"
+                        instruction: 'For 6 + 4 + 3, which pair could make ten first?'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Grouping Brackets Playground — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: `Three Addends, Different Groups Content` (source preserved in this YAML), Sections 1–4
                     Methodologist objectives: Count three collections of 2,3,4 objects as a constant whole of nine. Calculate (2+3)+4=9 and 2+(3+4)=9 using the same nine counters, explaining intermediate five and seven. Distinguish **regrouping** without changing any addend from changing a value or swapping order. Choose a convenient grouping for 6+4+3, making ten first and confirming that both legal groupings give thirteen. `Methodologist Brief` (source preserved in this YAML) (Draft, not approved).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Let learners discover that the sum of three addends does not depend on which pair is combined first. Keep the addends and their roles intact, compare (2+3)+4 with 2+(3+4), and use the freedom of grouping to choose an efficient calculation. Unlike swapping addends, changing parentheses does not exchange operand order.
-                    
+
                     Learners are active in the mathematical transformation and see every count, intermediate step and verification. The Scene is not an unscored imitation of a Quiz; it provides concrete controlled exploration and exact feedback.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     For any three whole-number addends a,b,c, (a+b)+c = a+(b+c). Concrete case (2+3)+4=5+4=9 vs 2+(3+4)=2+7=9. Different grouping, same three original sets: 2,3,4. Transfer (6+4)+3=10+3=13 vs 6+(4+3)=6+7=13. Parentheses indicate which addition is done first, not new objects. Preserve original left-to-right addend order for this teaching example. This property extends to more addends, but the lesson's scope is exactly three addends and totals ≤20.
-                    
+
                     Believing a different intermediate total means the final sum changes, moving a counter from one original addend into another while still reporting unchanged groups, or treating parentheses as extra added quantities. Associativity regroups adjacent addends; commutativity swaps their positions. In 2+3+4, inner totals 5 and 7 differ but both final results equal nine.
-                    
+
                     **Invariant:** Total of original disjoint sets is unchanged by choosing parentheses; for [2,3,4] total nine under both groupings, for [6,4,3] total thirteen. No addend value or order changes when toggling grouping; only the highlighted pair and intermediate subtotal change.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1, Three Collections Make Nine:** Prompt “Three separate groups have 2, 3 and 4 counters. How many counters in all?”. Display 2,3,4 counters as three persistently labeled disjoint collections with unique IDs; allow learner to count all nine without grouping first. Learner can reveal or predict before seeing the full equality. Display: **2 + 3 + 4 = 9**. Explanation: Two, three and four make nine counters. We will keep those same nine while changing which pair is counted first. Corrective feedback: If learner says five, show they have only counted the first two groups; if seven, show that only the last two have been counted.
-                    
+
                     2. **Section 2, First Two Together:** Prompt “What if we add the first two groups before the third?”. Learner selects a bracket around first pair (2+3), sees a subtotal of five, then includes the third group of four to obtain nine; labels stay attached to original groups. Learner can reveal or predict before seeing the full equality. Display: **(2 + 3) + 4 = 5 + 4 = 9**. Explanation: The first two groups make five. Then five plus four makes nine. Nothing was created or lost when we counted them as a subtotal. Corrective feedback: If a child reports five as final, point out the third group of four remains to be counted.
-                    
+
                     3. **Section 3, Last Two Together:** Prompt “Now add the last two groups first. Is the result still nine?”. On learner command, reset only subtotal emphasis and bracket 3+4, show seven, then combine with first group two for nine. Display both bracketings side by side _inside the Scene_. Learner can reveal or predict before seeing the full equality. Display: **2 + (3 + 4) = 2 + 7 = 9**. Explanation: Three and four make seven, then two plus seven makes nine. The subtotal changed from five to seven; the final sum stayed nine. Corrective feedback: If the learner thinks seven is the new final answer, show that the initial two counters are still part of the whole.
-                    
+
                     4. **Section 4, Group Six, Four and Three:** Prompt “For 6 + 4 + 3, which pair could make ten first?”. A transfer set 6,4,3 keeps thirteen unique counters; learner chooses (6+4)+3 or 6+(4+3) and inspects first subtotal ten vs seven. Both finish at thirteen. Learner can reveal or predict before seeing the full equality. Display: **(6 + 4) + 3 = 13; 6 + (4 + 3) = 13**. Explanation: Six and four make a useful ten. Adding three makes thirteen. Or four and three make seven, then six plus seven makes thirteen. Grouping helps us choose a convenient calculation. Corrective feedback: A learner who believes 6+(4+3)=16 receives a precise 4+3=7 and 6+7=13 recount; no group has changed in size.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four _independent prop-free Scene entries_, one per Section. Section mode is editorial, not a public React prop or Resource_Config discriminator. Implementer may share internal math utilities but must not share per-learner UI state across placements.
                     - Objects and semantics: Three labeled counter trays remain in a fixed spatial sequence while a large accessible bracket and subtotal ribbon move between the first and last adjacent pairs. Do not exchange tray order when changing parentheses. Use labeled objects, native controls for each action, ordered numerical text ledger, prediction buttons, explanation and Reset/Undo.
                     - State: Fixed original addend arrays [2,3,4] or [6,4,3], stable counter identities, chosen grouping first-two/last-two, subtotal, reveal and expression comparison; placements independently reset.
                     - Rules: Total of original disjoint sets is unchanged by choosing parentheses; for [2,3,4] total nine under both groupings, for [6,4,3] total thirteen. No addend value or order changes when toggling grouping; only the highlighted pair and intermediate subtotal change. The UI must not silently change actual mathematical objects when a child selects a wrong option; incorrect statements are explicitly identified as _trials_, not true equalities.
                     - All instruction available on reveal without forced guesses. No grader, Note API, score event or achievement state.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Three labeled counter trays remain in a fixed spatial sequence while a large accessible bracket and subtotal ribbon move between the first and last adjacent pairs. Do not exchange tray order when changing parentheses. Render using lightweight HTML/SVG with explicit quantities and large labels, rather than remote/generated image assets. Motion is initiated by learner and may be stepped through or skipped; reduced motion shows identical before/after numerical states instantly. No WebGL, mandatory narration, video, music, external resources or reward graphics.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, errors, accessible labels, counts, status and control names genuinely translated across complete supported locale roster (English source is not fallback). Semantic LTR/RTL rules preserve order of mathematical operands and the meanings of exchanges, pairings and groups. A keyboard/switch/touch user can execute each step with large focusable controls and inspect the ordered textual state ledger; screen reader announces changes once. 200% zoom, reduced motion, child-size targets, responsive mobile, non-color-only signals and equivalent offline local computation after full download are required. No timed, drag-only or speech-recognition path.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Three groups 2,3,4 contain exactly nine counters.
                     2. First grouping (2+3)+4 produces intermediate five and final nine.
                     3. Second grouping 2+(3+4) produces intermediate seven and final nine.
@@ -504,29 +504,29 @@ config:
                     5. Incorrect predictions yield the documented numerical explanation without a score; retry and full reveal remain possible.
                     6. Reset and independent Section entries do not leak state; no counters duplicated or secretly removed.
                     7. Keyboard, screen-reader, semantic RTL, reduced-motion, zoom/mobile and downloaded offline state yield the same arithmetic and explanation.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Section Scene renderer exists; **Grouping Brackets Playground is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Explicitly separate associativity (parentheses) from previously taught addition commutativity (operand order); make-ten as an efficient example must support, not replace, the three-addend rule.
                   productionNotes: "This placement in Group Six, Four and Three refers to groupingBracketsPlayground.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section4Markdown1:
                 config:
-                  id: "0de9cfa9-ea0a-5fe8-9f47-00000000000f"
-                  slug: "section4Markdown1"
-                  type: "markdown"
+                  id: '0de9cfa9-ea0a-5fe8-9f47-00000000000f'
+                  slug: 'section4Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Six and four make a useful ten. Adding three makes thirteen. Or four and three make seven, then six plus seven makes thirteen. Grouping helps us choose a convenient calculation."
+                      en: 'Six and four make a useful ten. Adding three makes thirteen. Or four and three make seven, then six plus seven makes thirteen. Grouping helps us choose a convenient calculation.'
                 production:
-                  purpose: "Original markdown resource from source Screenwriter draft"
-                  specification: "- **Learner-facing markdown resource (supported):** “Six and four make a useful ten. Adding three makes thirteen. Or four and three make seven, then six plus seven makes thirteen. Grouping helps us choose a convenient calculation.” Exact expression: **(6 + 4) + 3 = 13; 6 + (4 + 3) = 13**."
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '- **Learner-facing markdown resource (supported):** “Six and four make a useful ten. Adding three makes thirteen. Or four and three make seven, then six plus seven makes thirteen. Grouping helps us choose a convenient calculation.” Exact expression: **(6 + 4) + 3 = 13; 6 + (4 + 3) = 13**.'
             order:
-              - "section4Text1"
-              - "section4Scene1"
-              - "section4Markdown1"
+              - 'section4Text1'
+              - 'section4Scene1'
+              - 'section4Markdown1'
         production:
-          purpose: "Group Six, Four and Three"
+          purpose: 'Group Six, Four and Three'
           pedagogicalIntent: |-
             - **Purpose/outcome:** Choose a convenient grouping for 6+4+3, making ten first and confirming that both legal groupings give thirteen.
             - **Typed structure:** One ordered `LessonSection_Config` with text, scene, markdown resources in a single vertical column.
@@ -539,152 +539,152 @@ config:
             - **Accessibility, locale and RTL:** Native touch, keyboard and screen-reader operations; exact group roles and equations read in correct math order across RTL; full real translations and reduced-motion equivalence, including offline use.
             - **Proposed unlocked Note(s):** “With three addends, we can add the first two or last two first.” after the complete model and explanation have been shown (planned, not wired).
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - "section1"
-      - "section2"
-      - "section3"
-      - "section4"
+      - 'section1'
+      - 'section2'
+      - 'section3'
+      - 'section4'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Three Addends, Different Groups — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: additionAssociative
     Methodologist status: Draft
     Primary audience: **Grade 2** within grades 1–3
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Let learners discover that the sum of three addends does not depend on which pair is combined first. Keep the addends and their roles intact, compare (2+3)+4 with 2+(3+4), and use the freedom of grouping to choose an efficient calculation. Unlike swapping addends, changing parentheses does not exchange operand order.
-    
+
     ## Target audience
-    
+
     Grade 2. The prerequisite knowledge, not an age stereotype, determines placement. The canonical Skill itself remains grade-independent.
-    
+
     ## Prerequisites
-    
+
     - Count and add at least three small collections, each up to 9 objects.
     - Understand a total formed by adding two quantities and read '+' and '='.
     - Distinguish rearranging groups from adding or removing objects; familiarity with commutative addition helps but is not required.
-    
+
     ## Target Skills
-    
+
     - [associativeAddition.data.ts](../../../../data/skills/arithmetic/addition/skills/associativeAddition.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Count three collections of 2,3,4 objects as a constant whole of nine.
     - Calculate (2+3)+4=9 and 2+(3+4)=9 using the same nine counters, explaining intermediate five and seven.
     - Distinguish **regrouping** without changing any addend from changing a value or swapping order.
     - Choose a convenient grouping for 6+4+3, making ten first and confirming that both legal groupings give thirteen.
-    
+
     ## Essential subject matter
-    
+
     For any three whole-number addends a,b,c, (a+b)+c = a+(b+c). Concrete case (2+3)+4=5+4=9 vs 2+(3+4)=2+7=9. Different grouping, same three original sets: 2,3,4. Transfer (6+4)+3=10+3=13 vs 6+(4+3)=6+7=13. Parentheses indicate which addition is done first, not new objects. Preserve original left-to-right addend order for this teaching example. This property extends to more addends, but the lesson's scope is exactly three addends and totals ≤20.
-    
+
     ## Conceptual progression and dependencies
-    
+
     1. Three Collections Make Nine: Display 2,3,4 counters as three persistently labeled disjoint collections with unique IDs; allow learner to count all nine without grouping first.
     2. First Two Together: Learner selects a bracket around first pair (2+3), sees a subtotal of five, then includes the third group of four to obtain nine; labels stay attached to original groups.
     3. Last Two Together: On learner command, reset only subtotal emphasis and bracket 3+4, show seven, then combine with first group two for nine. Display both bracketings side by side _inside the Scene_.
     4. Group Six, Four and Three: A transfer set 6,4,3 keeps thirteen unique counters; learner chooses (6+4)+3 or 6+(4+3) and inspects first subtotal ten vs seven. Both finish at thirteen.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Believing a different intermediate total means the final sum changes, moving a counter from one original addend into another while still reporting unchanged groups, or treating parentheses as extra added quantities. Associativity regroups adjacent addends; commutativity swaps their positions. In 2+3+4, inner totals 5 and 7 differ but both final results equal nine.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     All child-facing strings require genuine translations across the supported language roster; no silent fallbacks. The mathematical model must provide countable text/keyboard/screen reader equivalents, semantic RTL math, accessible labels for each group and exchange, reduced motion, touch targets, zoom and offline feedback after content download. Source copy is English editorial material, not a release locale implementation.
-    
+
     ## Sources and factual verification
-    
+
     - [Canonical Skill Code](../../../../data/skills/arithmetic/addition/skills/associativeAddition.data.ts), unchanged Mathematics entity, UUID and translations.
     - [English Playground Skill taxonomy](../../../../docs/generated/skills/taxonomy.en.md), coordinator-owned generated view that must be regenerated after integration.
     - [Common Core mathematics standards](https://corestandards.org/mathematics-standards/) as a comparative reference only; not a national curriculum approval.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. Grade 2 is the primary intended audience for this Lesson, not a numerical depth ceiling for the Skill.
-    
+
     ## Open editorial decisions
-    
+
     - Explicitly separate associativity (parentheses) from previously taught addition commutativity (operand order); make-ten as an efficient example must support, not replace, the three-addend rule.
     - Confirm learner accessibility, semantic localization, exact state invariants and audience readiness before implementation.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, not approved.** Provisional Screenwriter documents may accompany this Brief for review, but do not imply editor approval, scored assessment, implementation or live Lesson registration.
-  purpose: "Let learners discover that the sum of three addends does not depend on which pair is combined first. Keep the addends and their roles intact, compare (2+3)+4 with 2+(3+4), and use the freedom of grouping to choose an efficient calculation. Unlike swapping addends, changing parentheses does not exchange operand order."
-  audience: "Target grades and prerequisites in the complete methodology."
+  purpose: 'Let learners discover that the sum of three addends does not depend on which pair is combined first. Keep the addends and their roles intact, compare (2+3)+4 with 2+(3+4), and use the freedom of grouping to choose an efficient calculation. Unlike swapping addends, changing parentheses does not exchange operand order.'
+  audience: 'Target grades and prerequisites in the complete methodology.'
   productionNotes: |-
     # Three Addends, Different Groups — Content
-    
+
     Status: Draft — provisional Screenwriter content pending Methodologist Brief approval
     Target Lesson: content/playground/Data/Lessons/1/additionAssociative/
     Audience: **Grade 2**, with prerequisites: Count and add at least three small collections, each up to 9 objects. Understand a total formed by adding two quantities and read '+' and '='. Distinguish rearranging groups from adding or removing objects; familiarity with commutative addition helps but is not required.
     Methodologist source: `Methodologist Brief` (source preserved in this YAML) (Draft, not approved)
     Target Skill: `associativeAddition.data.ts`, canonical and directly linked in Brief
     Program dependence: None
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Let learners discover that the sum of three addends does not depend on which pair is combined first. Keep the addends and their roles intact, compare (2+3)+4 with 2+(3+4), and use the freedom of grouping to choose an efficient calculation. Unlike swapping addends, changing parentheses does not exchange operand order.
-    
+
     For any three whole-number addends a,b,c, (a+b)+c = a+(b+c). Concrete case (2+3)+4=5+4=9 vs 2+(3+4)=2+7=9. Different grouping, same three original sets: 2,3,4. Transfer (6+4)+3=10+3=13 vs 6+(4+3)=6+7=13. Parentheses indicate which addition is done first, not new objects. Preserve original left-to-right addend order for this teaching example. This property extends to more addends, but the lesson's scope is exactly three addends and totals ≤20.
-    
+
     The child learns by making a prediction, controlling the mathematical model and explaining the observed invariant. It is not a generic article followed by a quiz. All choices are instructional, not score-bearing.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Three Collections Make Nine:** Display 2,3,4 counters as three persistently labeled disjoint collections with unique IDs; allow learner to count all nine without grouping first.
     2. **First Two Together:** Learner selects a bracket around first pair (2+3), sees a subtotal of five, then includes the third group of four to obtain nine; labels stay attached to original groups.
     3. **Last Two Together:** On learner command, reset only subtotal emphasis and bracket 3+4, show seven, then combine with first group two for nine. Display both bracketings side by side _inside the Scene_.
     4. **Group Six, Four and Three:** A transfer set 6,4,3 keeps thirteen unique counters; learner chooses (6+4)+3 or 6+(4+3) and inspects first subtotal ten vs seven. Both finish at thirteen.
-    
+
     ## SECTION PLAN
-    
-    
-    
-    
+
+
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - `Grouping Brackets Playground` (former groupingBracketsPlayground.scene-spec.md; specification embedded in this YAML) — four self-contained prop-free Scene entries, one per Section; existing generic Scene resource permits future embedding, but this particular component does not yet exist.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. “With three addends, we can add the first two or last two first.” — proposed after the first corresponding fully explained demonstration, not as proof of a correct guess.
     2. “Only the grouping changes; every original addend and the final total stay the same.” — proposed after the first corresponding fully explained demonstration, not as proof of a correct guess.
-    
+
     Notes are _planned and not wired_. Do not invent existing Note IDs, unlock events, learner persistence, revision sheet or spaced scheduler; a Note reveal is not proof of mastery.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     The independent Section 4 example gives a new configuration and explanatory numerical feedback. Assessment Architect later decides validated scored Question types, Skill attribution, retry thresholds and evidence of mastery; the current Lesson Question adapter supports select-one but is **not** an implementation of these bespoke Scenes. No Quiz_Config or scored Question records are authored.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Every child-facing phrase, control, count, description, error and Note requires genuine translation to all supported locales; never silently fall back to English. All physical groups, exchanges, pairs and alternative representations must be operable through a fully equivalent ordered text/keyboard interface and screen-reader announcement, including semantic direction for RTL while retaining exact math operand identities. WCAG 2.2 AA, clear focus, child-sized controls, high contrast, 200% zoom, mobile/low-end devices and reduced motion apply equally. After the selected locale/content is downloaded, the entire model, arithmetic and feedback must work offline without video/audio/drag/network dependencies.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     Current generic LessonSection_Config renderer supports text, markdown and scene resources. Proposed: Grouping Brackets Playground, four separate prop-free placements with real locale context and own accessibility/unit tests, pending approval. Typed-only image/audio/video/code resources and YouTube are not needed. Notes/review/offline package systems are separate product dependencies, not claimed implemented. No runtime Lesson, Question, Quiz or scoring code built in this delivery.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - `Methodologist Brief` (source preserved in this YAML), Draft, not yet approved.
     - [Canonical Skill file](../../../../data/skills/arithmetic/addition/skills/associativeAddition.data.ts), directly copied from Mathematics.
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Explicitly separate associativity (parentheses) from previously taught addition commutativity (operand order); make-ten as an efficient example must support, not replace, the three-addend rule.
     - Shared taxonomy overview is coordinator-owned and intentionally not regenerated by this agent.
-    
+
     ## HANDOFF
-    
+
     Provisional Draft Content and Draft Scene spec for review. Editor approves Methodologist Brief first, then Content/Scene separately. Later Scene Designer, Coding Agent and Assessment Architect work only with separate authorization. No other Lesson edits or runtime changes.

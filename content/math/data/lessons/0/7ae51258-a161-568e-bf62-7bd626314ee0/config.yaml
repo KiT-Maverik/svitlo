@@ -1,11 +1,11 @@
 # Unified Mathematics Lesson editorial source — provisional; pending independent approval.
 config:
-  id: "7ae51258-a161-568e-bf62-7bd626314ee0"
-  slug: "followingRouteDirections"
-  type: "lesson"
-  skills: ["1defe702-c0b3-4760-aea0-2d2861933d5f"]
+  id: '7ae51258-a161-568e-bf62-7bd626314ee0'
+  slug: 'followingRouteDirections'
+  type: 'lesson'
+  skills: ['1defe702-c0b3-4760-aea0-2d2861933d5f']
   params:
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -13,126 +13,126 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "Follow and Explain a Route"
+      en: 'Follow and Explain a Route'
   section:
     items:
       section1:
         config:
-          id: "9114e125-99c7-45a2-ba8f-008342724fd0"
-          slug: "section1"
-          type: "content"
+          id: '9114e125-99c7-45a2-ba8f-008342724fd0'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A Turn Is Not a Step"
+              en: 'A Turn Is Not a Step'
             navigationLabel:
-              en: "A Turn Is Not a Step"
+              en: 'A Turn Is Not a Step'
           content:
             items:
               text1:
                 config:
-                  id: "4b22f627-32c5-46c0-8d82-e305767a5c86"
-                  slug: "text1"
-                  type: "text"
+                  id: '4b22f627-32c5-46c0-8d82-e305767a5c86'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Here is an explorer. The arrow on its head points up. If it turns right, does it move into another square, or only face another way? Choose, then check."
+                      en: 'Here is an explorer. The arrow on its head points up. If it turns right, does it move into another square, or only face another way? Choose, then check.'
                 production:
-                  purpose: "A Turn Is Not a Step: text resource at position 1 (source provisional)"
-                  specification: "1. **text — currently rendered:** \"Here is an explorer. The arrow on its head points up. If it turns right, does it move into another square, or only face another way? Choose, then check.\""
+                  purpose: 'A Turn Is Not a Step: text resource at position 1 (source provisional)'
+                  specification: '1. **text — currently rendered:** "Here is an explorer. The arrow on its head points up. If it turns right, does it move into another square, or only face another way? Choose, then check."'
               scene2:
                 config:
-                  id: "a796f851-3831-4688-a57d-842bc5c9162a"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'a796f851-3831-4688-a57d-842bc5c9162a'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Same square, new direction"
+                        instruction: 'Same square, new direction'
                 production:
-                  purpose: "A Turn Is Not a Step; source Scene routeExplorer.scene-spec.md; use 2"
+                  purpose: 'A Turn Is Not a Step; source Scene routeExplorer.scene-spec.md; use 2'
                   specification: |-
                     # Route Explorer — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: [Follow and Explain a Route](.this config.yaml), Sections 1–4
                     Methodologist objectives: [Draft Brief](.this config.yaml) — give and follow **ordered route directions** relative to an explicit starting heading. Do not invent another Skill.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A route is an ordered sequence of state changes. The learner sees, predicts and manipulates the explorer's _heading_ separately from its _position_, watches an instruction tape applied in order, then gives new instructions for a target. Changing initial heading or order can change the destination even when command words do not change.
-                    
+
                     Core learner voice: "**A turn changes where I face. Forward changes where I am. The next instruction uses my new direction.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - The map is a bounded, obstacle-free 5×5 discrete square grid. Model coordinates (column, row): 0–4 in each axis; (0,0) at map top-left. The numerical coordinates are editorial/test labels **not demanded** in the child's UI.
                     - Headings: **north** = row −1 (toward map top), **east** = column +1 (toward map right), **south** = row +1, **west** = column −1. Headings describe fixed **map direction**, not interface text direction or device compass.
                     - Commands: **Forward one** moves one square along current heading, heading unchanged. **Turn right** rotates 90° clockwise in place; **Turn left** rotates 90° counterclockwise in place. Neither turn changes square.
                     - Coordinates and heading update **sequentially**, not in a batch of unordered choices. A path crossing a map edge is invalid; do not wrap, jump, or pretend the explorer moved.
                     - No diagonal/45° turns, obstacles, shortest-path requirement, virtual heading inferred from UI language, real-world compass, timing, grades or unlocked states.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Placement A — Turn Without Walking (Section 1)
-                    
+
                     1. Display explorer at (2,2) heading **north**; outer square grid stable. Label arrow "Facing map top".
                     2. Text: "**Turn right. Does the explorer change squares?**" Two accessible choices: "Same square, another direction" / "Moves one square". Before reveal, keep choices undoable.
                     3. "Show turn" rotates arrow **north → east**; position remains (2,2). State statement: "Same square (middle), now facing map right."
                     4. Wrong "moves" response gets: "Its square did not change. A turn changes the arrow." Correct gets: "Yes. It turned but did not walk."
                     5. Offer a contrasting **Forward one** from reset: start north (2,2) → (2,1) still north; show difference between actions. Reset restores original placement.
-                    
+
                     ### Placement B — Execute a Command Tape (Section 2)
-                    
+
                     1. Fixed start (2,2) facing north; tape with three commands: **Forward, Right, Forward**. Before each command, allow prediction of the new heading or square.
                     2. Step 1: forward → **(2,1), north**. Step 2: right → **(2,1), east**. Step 3: forward → **(3,1), east**.
                     3. Show readable log after each step. On request, compare arrow _before/after_ one command.
                     4. For destination (2,0): "That would mean forward twice with no turn. The turn made the last step go right." For (3,2): "The first forward already took us up a square."
                     5. "Undo" restores both coordinates and heading from the previous logged state; "Replay" and reset produce identical transitions.
-                    
+
                     ### Placement C — Change One Variable (Section 3)
-                    
+
                     1. Same tape **Forward, Right, Forward**, same starting (2,2), but **east** start heading. Prediction: "Will we finish where we did before?"
                     2. Progression: (2,2) east → **(3,2) east** → **(3,2) south** → **(3,3) south**. Display prior (3,1) north-start finish only as an optional textual comparison.
                     3. Restore original north heading and instead reorder tape **Right, Forward, Forward**. Progression: (2,2) north → **(2,2) east** → **(3,2) east** → **(4,2) east**.
                     4. Explanation: "We changed the start arrow once, then changed command order. Both changes led elsewhere in these examples." Not a claim that any route reorder _always_ changes its finish.
                     5. Both comparison paths remain reviewable by textual ordered state lists, even if lines visually overlap.
-                    
+
                     ### Placement D — Author and Debug a Route (Section 4)
-                    
+
                     1. New preset start (1,3), heading north, target square (2,2). Command editor has insert, remove, move up/down, and reset buttons; optional reorder drag never required.
                     2. Maximum six commands, using the exact three allowed actions. One valid tape is **Forward, Right, Forward**, ending (2,2) east.
                     3. Execute stepwise or review full trace with each state. Do **not** compare the tape to one hard-coded answer: other sequences reaching (2,2) are valid when **only destination** is requested.
                     4. If an attempt goes to a different square, show **first divergent command** only relative to a displayed sample route _when comparison is requested_, without claiming other valid routes are wrong; otherwise describe the resulting position and ask which action to revise.
                     5. Edge example: at (4,2) facing east, "Forward" would leave grid. Action is not applied; explain: "No square lies beyond the right edge. Turn or change your route." Do not silently clamp while marking a command successful.
                     6. Optional new prompt "End at target facing map right" may introduce heading as an explicit extra condition; do not evaluate heading when the only target criterion is square location.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** 25 discrete squares, explorer icon with direction arrow, starting square marker, optional destination, visible command tape, step counter, replay/undo/reset controls, optional route footprints, **structured textual state log**.
                     - **State per placement:** initial coordinates/heading; tape; executed command index; ordered history of (position,heading) pairs; learner prediction and feedback disclosure; local layout mode.
                     - **No external props:** each placement is a standalone, prop-free Scene root/entry with fixed editorial preset. If implementation shares internal code, public roots remain prop-free and derive text from real Lesson locale context. Do not invent a `mode` or `commands` runtime prop.
                     - **Invariant:** a turn preserves (x,y); forward preserves heading; all positions stay inside grid; undo exactly inverses recorded state, including facing.
                     - **Nonvisual control:** action sequence editor is an accessible ordered list. "Move command earlier/later" changes order intentionally, not browser focus order. Log can be read in sequence independently of animation.
                     - **Feedback:** reason about first incorrect assumption, not accuracy scores. No timeouts, randomization, event contracts or persisted progress.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use stable SVG/grid, distinguish heading arrow from move trail. A turn animation may show one quarter-rotation but must not look like the avatar jumped. A step should move exactly one cell (or switch instantly). Show visible labels for source and destination, with optional before/after ghosting; avoid excessive motion for young learners. No remote maps, sound dependency or decorative plot.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Translate every command, prediction, button, heading/destination explanation, status and screen-reader label for all supported locales; missing translations block release.
                     - **RTL is not a mirror of the map coordinate system:** "right turn" is clockwise relative to avatar heading in _every_ locale. If the entire diagram is mirrored for presentation, mathematical mapping and recorded results must be consistently remapped and tested; safer default is to preserve the fixed instructional map and mirror only UI layout/direction.
                     - All actions available by buttons/keyboard/switch; no forced drag/voice/precision. Visible focus, large touch targets, line/shape cues independent of color, no timing.
                     - For nonvisual learners, the log says e.g. "At middle square (row 3, column 3), facing map top; after forward, row 2, column 3, same facing." Rows/columns in descriptions are 1-indexed (not the internal 0-index coordinates); keep that distinction explicit in tests and localized copy.
                     - Respect reduced motion, reading order, live-region announcement throttling, mobile zoom and large fonts. All outcomes and explanations work fully offline after selected locale and Scene assets are downloaded.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. From (2,2) north, **Right** gives **(2,2) east** (no movement); **Forward** from the original reset gives **(2,1) north**.
                     2. From (2,2) north, Forward→Right→Forward ends **(3,1) east** with exact intermediate states in this specification.
                     3. From (2,2) east, the _same tape_ ends **(3,3) south**.
@@ -141,32 +141,32 @@ config:
                     6. At (4,2) east, invalid Forward leaves state unchanged and tells the learner **why**.
                     7. Undo/replay/reset are deterministic; distinct placement state never leaks into another Section.
                     8. Keyboard/RTL/nonvisual/reduced-motion/mobile/offline modes present the same route math, no color or spatial pointer dependency.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The `scene` block type and generic Section renderer exist; **Route Explorer does not**. Engineer must implement the specified deterministic model, independent prop-free placement roots, genuine Scene locale translations and tests. Confirm actual Lesson Scene context and renderer registration separately. Formal approval of this spec is pending Methodologist approval; no runtime Lesson, Question/Quiz scoring, route telemetry, Note event or persistence is authorized.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **scene — Resource type and renderer exist; proposed new Scene:** Route Explorer (full Scene specification embedded in this config.yaml), stage A, preset start (2, 2) facing toward map top. Two prediction alternatives: "Same square, new direction" / "Moves one square". Clear "Show turn" reveals arrow pointing toward map right while explorer stays (2, 2).
-                  productionNotes: "Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               markdown3:
                 config:
-                  id: "cb28d71f-122c-4d94-b626-4085edf3151a"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: 'cb28d71f-122c-4d94-b626-4085edf3151a'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "A **turn** changes the direction we face. A **forward step** changes our square. Turning right from 'facing top' makes us face 'toward the map's right edge'. We have not moved yet."
                 production:
-                  purpose: "A Turn Is Not a Step: markdown resource at position 3 (source provisional)"
-                  specification: "3. **markdown — currently rendered:** \"A **turn** changes the direction we face. A **forward step** changes our square. Turning right from 'facing top' makes us face 'toward the map's right edge'. We have not moved yet.\""
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'A Turn Is Not a Step: markdown resource at position 3 (source provisional)'
+                  specification: '3. **markdown — currently rendered:** "A **turn** changes the direction we face. A **forward step** changes our square. Turning right from ''facing top'' makes us face ''toward the map''s right edge''. We have not moved yet."'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Distinguish a change of heading from a change of position."
-          pedagogicalIntent: "Original Section 1: A Turn Is Not a Step (provisional draft)"
+          purpose: 'Distinguish a change of heading from a change of position.'
+          pedagogicalIntent: 'Original Section 1: A Turn Is Not a Step (provisional draft)'
           productionNotes: |-
             - **Purpose:** Distinguish a change of heading from a change of position.
             - **Section contract:** `LessonSection_Config`, one ordered vertical Resource sequence.
@@ -180,121 +180,121 @@ config:
             - **Proposed Note:** After the turn reveal, "Turning changes direction, not position" (planned, no Note API).
       section2:
         config:
-          id: "8e14dc6c-98c7-440f-bb8f-021645725489"
-          slug: "section2"
-          type: "content"
+          id: '8e14dc6c-98c7-440f-bb8f-021645725489'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Follow One Instruction at a Time"
+              en: 'Follow One Instruction at a Time'
             navigationLabel:
-              en: "Follow One Instruction at a Time"
+              en: 'Follow One Instruction at a Time'
           content:
             items:
               text1:
                 config:
-                  id: "4a53be02-dc28-4941-9eff-0a64fa6d114b"
-                  slug: "text1"
-                  type: "text"
+                  id: '4a53be02-dc28-4941-9eff-0a64fa6d114b'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Start in the middle, facing the top of the map. We have three instructions. Where will you be after each one? You can look back at an earlier step."
+                      en: 'Start in the middle, facing the top of the map. We have three instructions. Where will you be after each one? You can look back at an earlier step.'
                 production:
-                  purpose: "Follow One Instruction at a Time: text resource at position 1 (source provisional)"
-                  specification: "1. **text — currently rendered:** \"Start in the middle, facing the top of the map. We have three instructions. Where will you be after each one? You can look back at an earlier step.\""
+                  purpose: 'Follow One Instruction at a Time: text resource at position 1 (source provisional)'
+                  specification: '1. **text — currently rendered:** "Start in the middle, facing the top of the map. We have three instructions. Where will you be after each one? You can look back at an earlier step."'
               scene2:
                 config:
-                  id: "4815505e-368f-497f-a6fa-2ac4859fd30d"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '4815505e-368f-497f-a6fa-2ac4859fd30d'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Follow One Instruction at a Time"
+                        instruction: 'Follow One Instruction at a Time'
                 production:
-                  purpose: "Follow One Instruction at a Time; source Scene routeExplorer.scene-spec.md; use 2"
+                  purpose: 'Follow One Instruction at a Time; source Scene routeExplorer.scene-spec.md; use 2'
                   specification: |-
                     # Route Explorer — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: [Follow and Explain a Route](.this config.yaml), Sections 1–4
                     Methodologist objectives: [Draft Brief](.this config.yaml) — give and follow **ordered route directions** relative to an explicit starting heading. Do not invent another Skill.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A route is an ordered sequence of state changes. The learner sees, predicts and manipulates the explorer's _heading_ separately from its _position_, watches an instruction tape applied in order, then gives new instructions for a target. Changing initial heading or order can change the destination even when command words do not change.
-                    
+
                     Core learner voice: "**A turn changes where I face. Forward changes where I am. The next instruction uses my new direction.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - The map is a bounded, obstacle-free 5×5 discrete square grid. Model coordinates (column, row): 0–4 in each axis; (0,0) at map top-left. The numerical coordinates are editorial/test labels **not demanded** in the child's UI.
                     - Headings: **north** = row −1 (toward map top), **east** = column +1 (toward map right), **south** = row +1, **west** = column −1. Headings describe fixed **map direction**, not interface text direction or device compass.
                     - Commands: **Forward one** moves one square along current heading, heading unchanged. **Turn right** rotates 90° clockwise in place; **Turn left** rotates 90° counterclockwise in place. Neither turn changes square.
                     - Coordinates and heading update **sequentially**, not in a batch of unordered choices. A path crossing a map edge is invalid; do not wrap, jump, or pretend the explorer moved.
                     - No diagonal/45° turns, obstacles, shortest-path requirement, virtual heading inferred from UI language, real-world compass, timing, grades or unlocked states.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Placement A — Turn Without Walking (Section 1)
-                    
+
                     1. Display explorer at (2,2) heading **north**; outer square grid stable. Label arrow "Facing map top".
                     2. Text: "**Turn right. Does the explorer change squares?**" Two accessible choices: "Same square, another direction" / "Moves one square". Before reveal, keep choices undoable.
                     3. "Show turn" rotates arrow **north → east**; position remains (2,2). State statement: "Same square (middle), now facing map right."
                     4. Wrong "moves" response gets: "Its square did not change. A turn changes the arrow." Correct gets: "Yes. It turned but did not walk."
                     5. Offer a contrasting **Forward one** from reset: start north (2,2) → (2,1) still north; show difference between actions. Reset restores original placement.
-                    
+
                     ### Placement B — Execute a Command Tape (Section 2)
-                    
+
                     1. Fixed start (2,2) facing north; tape with three commands: **Forward, Right, Forward**. Before each command, allow prediction of the new heading or square.
                     2. Step 1: forward → **(2,1), north**. Step 2: right → **(2,1), east**. Step 3: forward → **(3,1), east**.
                     3. Show readable log after each step. On request, compare arrow _before/after_ one command.
                     4. For destination (2,0): "That would mean forward twice with no turn. The turn made the last step go right." For (3,2): "The first forward already took us up a square."
                     5. "Undo" restores both coordinates and heading from the previous logged state; "Replay" and reset produce identical transitions.
-                    
+
                     ### Placement C — Change One Variable (Section 3)
-                    
+
                     1. Same tape **Forward, Right, Forward**, same starting (2,2), but **east** start heading. Prediction: "Will we finish where we did before?"
                     2. Progression: (2,2) east → **(3,2) east** → **(3,2) south** → **(3,3) south**. Display prior (3,1) north-start finish only as an optional textual comparison.
                     3. Restore original north heading and instead reorder tape **Right, Forward, Forward**. Progression: (2,2) north → **(2,2) east** → **(3,2) east** → **(4,2) east**.
                     4. Explanation: "We changed the start arrow once, then changed command order. Both changes led elsewhere in these examples." Not a claim that any route reorder _always_ changes its finish.
                     5. Both comparison paths remain reviewable by textual ordered state lists, even if lines visually overlap.
-                    
+
                     ### Placement D — Author and Debug a Route (Section 4)
-                    
+
                     1. New preset start (1,3), heading north, target square (2,2). Command editor has insert, remove, move up/down, and reset buttons; optional reorder drag never required.
                     2. Maximum six commands, using the exact three allowed actions. One valid tape is **Forward, Right, Forward**, ending (2,2) east.
                     3. Execute stepwise or review full trace with each state. Do **not** compare the tape to one hard-coded answer: other sequences reaching (2,2) are valid when **only destination** is requested.
                     4. If an attempt goes to a different square, show **first divergent command** only relative to a displayed sample route _when comparison is requested_, without claiming other valid routes are wrong; otherwise describe the resulting position and ask which action to revise.
                     5. Edge example: at (4,2) facing east, "Forward" would leave grid. Action is not applied; explain: "No square lies beyond the right edge. Turn or change your route." Do not silently clamp while marking a command successful.
                     6. Optional new prompt "End at target facing map right" may introduce heading as an explicit extra condition; do not evaluate heading when the only target criterion is square location.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** 25 discrete squares, explorer icon with direction arrow, starting square marker, optional destination, visible command tape, step counter, replay/undo/reset controls, optional route footprints, **structured textual state log**.
                     - **State per placement:** initial coordinates/heading; tape; executed command index; ordered history of (position,heading) pairs; learner prediction and feedback disclosure; local layout mode.
                     - **No external props:** each placement is a standalone, prop-free Scene root/entry with fixed editorial preset. If implementation shares internal code, public roots remain prop-free and derive text from real Lesson locale context. Do not invent a `mode` or `commands` runtime prop.
                     - **Invariant:** a turn preserves (x,y); forward preserves heading; all positions stay inside grid; undo exactly inverses recorded state, including facing.
                     - **Nonvisual control:** action sequence editor is an accessible ordered list. "Move command earlier/later" changes order intentionally, not browser focus order. Log can be read in sequence independently of animation.
                     - **Feedback:** reason about first incorrect assumption, not accuracy scores. No timeouts, randomization, event contracts or persisted progress.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use stable SVG/grid, distinguish heading arrow from move trail. A turn animation may show one quarter-rotation but must not look like the avatar jumped. A step should move exactly one cell (or switch instantly). Show visible labels for source and destination, with optional before/after ghosting; avoid excessive motion for young learners. No remote maps, sound dependency or decorative plot.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Translate every command, prediction, button, heading/destination explanation, status and screen-reader label for all supported locales; missing translations block release.
                     - **RTL is not a mirror of the map coordinate system:** "right turn" is clockwise relative to avatar heading in _every_ locale. If the entire diagram is mirrored for presentation, mathematical mapping and recorded results must be consistently remapped and tested; safer default is to preserve the fixed instructional map and mirror only UI layout/direction.
                     - All actions available by buttons/keyboard/switch; no forced drag/voice/precision. Visible focus, large touch targets, line/shape cues independent of color, no timing.
                     - For nonvisual learners, the log says e.g. "At middle square (row 3, column 3), facing map top; after forward, row 2, column 3, same facing." Rows/columns in descriptions are 1-indexed (not the internal 0-index coordinates); keep that distinction explicit in tests and localized copy.
                     - Respect reduced motion, reading order, live-region announcement throttling, mobile zoom and large fonts. All outcomes and explanations work fully offline after selected locale and Scene assets are downloaded.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. From (2,2) north, **Right** gives **(2,2) east** (no movement); **Forward** from the original reset gives **(2,1) north**.
                     2. From (2,2) north, Forward→Right→Forward ends **(3,1) east** with exact intermediate states in this specification.
                     3. From (2,2) east, the _same tape_ ends **(3,3) south**.
@@ -303,32 +303,32 @@ config:
                     6. At (4,2) east, invalid Forward leaves state unchanged and tells the learner **why**.
                     7. Undo/replay/reset are deterministic; distinct placement state never leaks into another Section.
                     8. Keyboard/RTL/nonvisual/reduced-motion/mobile/offline modes present the same route math, no color or spatial pointer dependency.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The `scene` block type and generic Section renderer exist; **Route Explorer does not**. Engineer must implement the specified deterministic model, independent prop-free placement roots, genuine Scene locale translations and tests. Confirm actual Lesson Scene context and renderer registration separately. Formal approval of this spec is pending Methodologist approval; no runtime Lesson, Question/Quiz scoring, route telemetry, Note event or persistence is authorized.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **scene — proposed:** Route Explorer (full Scene specification embedded in this config.yaml), stage B, starting at (2, 2), heading north. Command tape: **Forward one → Turn right → Forward one**. Reveal one at a time; action log must show:
-                  productionNotes: "Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               markdown3:
                 config:
-                  id: "0451b4b6-1738-4561-bf9c-67b823364433"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '0451b4b6-1738-4561-bf9c-67b823364433'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "We walked one square up, turned on the spot, then walked one square to the map's right. The **second forward** used our new direction. The order helped decide where we arrived."
                 production:
-                  purpose: "Follow One Instruction at a Time: markdown resource at position 3 (source provisional)"
-                  specification: "3. **markdown — currently rendered:** \"We walked one square up, turned on the spot, then walked one square to the map's right. The **second forward** used our new direction. The order helped decide where we arrived.\""
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Follow One Instruction at a Time: markdown resource at position 3 (source provisional)'
+                  specification: '3. **markdown — currently rendered:** "We walked one square up, turned on the spot, then walked one square to the map''s right. The **second forward** used our new direction. The order helped decide where we arrived."'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Track ordered commands and update orientation before moving."
-          pedagogicalIntent: "Original Section 2: Follow One Instruction at a Time (provisional draft)"
+          purpose: 'Track ordered commands and update orientation before moving.'
+          pedagogicalIntent: 'Original Section 2: Follow One Instruction at a Time (provisional draft)'
           productionNotes: |-
             - **Purpose:** Track ordered commands and update orientation before moving.
             - **Section contract:** `LessonSection_Config`, one vertical Resource sequence.
@@ -345,121 +345,121 @@ config:
             - **Access:** Text log is primary, not a decorative transcript; every command and resulting state has a readable label. Fixed map directions never change with browser text direction.
       section3:
         config:
-          id: "8f14ddff-97c7-427c-bc8f-03a9447252f6"
-          slug: "section3"
-          type: "content"
+          id: '8f14ddff-97c7-427c-bc8f-03a9447252f6'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Same Commands, Different Ending?"
+              en: 'Same Commands, Different Ending?'
             navigationLabel:
-              en: "Same Commands, Different Ending?"
+              en: 'Same Commands, Different Ending?'
           content:
             items:
               text1:
                 config:
-                  id: "f00e5091-f968-4772-a33f-c26bf17ae644"
-                  slug: "text1"
-                  type: "text"
+                  id: 'f00e5091-f968-4772-a33f-c26bf17ae644'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "What if we use the same three instructions, but start by facing the right edge of the map? Do we get to the same square? Decide before you run the route."
+                      en: 'What if we use the same three instructions, but start by facing the right edge of the map? Do we get to the same square? Decide before you run the route.'
                 production:
-                  purpose: "Same Commands, Different Ending?: text resource at position 1 (source provisional)"
-                  specification: "1. **text — currently rendered:** \"What if we use the same three instructions, but start by facing the **right edge** of the map? Do we get to the same square? Decide before you run the route.\""
+                  purpose: 'Same Commands, Different Ending?: text resource at position 1 (source provisional)'
+                  specification: '1. **text — currently rendered:** "What if we use the same three instructions, but start by facing the **right edge** of the map? Do we get to the same square? Decide before you run the route."'
               scene2:
                 config:
-                  id: "76d1ef2f-7aa5-4bae-a94d-0d2d6deff5a4"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '76d1ef2f-7aa5-4bae-a94d-0d2d6deff5a4'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Same Commands, Different Ending?"
+                        instruction: 'Same Commands, Different Ending?'
                 production:
-                  purpose: "Same Commands, Different Ending?; source Scene routeExplorer.scene-spec.md; use 2"
+                  purpose: 'Same Commands, Different Ending?; source Scene routeExplorer.scene-spec.md; use 2'
                   specification: |-
                     # Route Explorer — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: [Follow and Explain a Route](.this config.yaml), Sections 1–4
                     Methodologist objectives: [Draft Brief](.this config.yaml) — give and follow **ordered route directions** relative to an explicit starting heading. Do not invent another Skill.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A route is an ordered sequence of state changes. The learner sees, predicts and manipulates the explorer's _heading_ separately from its _position_, watches an instruction tape applied in order, then gives new instructions for a target. Changing initial heading or order can change the destination even when command words do not change.
-                    
+
                     Core learner voice: "**A turn changes where I face. Forward changes where I am. The next instruction uses my new direction.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - The map is a bounded, obstacle-free 5×5 discrete square grid. Model coordinates (column, row): 0–4 in each axis; (0,0) at map top-left. The numerical coordinates are editorial/test labels **not demanded** in the child's UI.
                     - Headings: **north** = row −1 (toward map top), **east** = column +1 (toward map right), **south** = row +1, **west** = column −1. Headings describe fixed **map direction**, not interface text direction or device compass.
                     - Commands: **Forward one** moves one square along current heading, heading unchanged. **Turn right** rotates 90° clockwise in place; **Turn left** rotates 90° counterclockwise in place. Neither turn changes square.
                     - Coordinates and heading update **sequentially**, not in a batch of unordered choices. A path crossing a map edge is invalid; do not wrap, jump, or pretend the explorer moved.
                     - No diagonal/45° turns, obstacles, shortest-path requirement, virtual heading inferred from UI language, real-world compass, timing, grades or unlocked states.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Placement A — Turn Without Walking (Section 1)
-                    
+
                     1. Display explorer at (2,2) heading **north**; outer square grid stable. Label arrow "Facing map top".
                     2. Text: "**Turn right. Does the explorer change squares?**" Two accessible choices: "Same square, another direction" / "Moves one square". Before reveal, keep choices undoable.
                     3. "Show turn" rotates arrow **north → east**; position remains (2,2). State statement: "Same square (middle), now facing map right."
                     4. Wrong "moves" response gets: "Its square did not change. A turn changes the arrow." Correct gets: "Yes. It turned but did not walk."
                     5. Offer a contrasting **Forward one** from reset: start north (2,2) → (2,1) still north; show difference between actions. Reset restores original placement.
-                    
+
                     ### Placement B — Execute a Command Tape (Section 2)
-                    
+
                     1. Fixed start (2,2) facing north; tape with three commands: **Forward, Right, Forward**. Before each command, allow prediction of the new heading or square.
                     2. Step 1: forward → **(2,1), north**. Step 2: right → **(2,1), east**. Step 3: forward → **(3,1), east**.
                     3. Show readable log after each step. On request, compare arrow _before/after_ one command.
                     4. For destination (2,0): "That would mean forward twice with no turn. The turn made the last step go right." For (3,2): "The first forward already took us up a square."
                     5. "Undo" restores both coordinates and heading from the previous logged state; "Replay" and reset produce identical transitions.
-                    
+
                     ### Placement C — Change One Variable (Section 3)
-                    
+
                     1. Same tape **Forward, Right, Forward**, same starting (2,2), but **east** start heading. Prediction: "Will we finish where we did before?"
                     2. Progression: (2,2) east → **(3,2) east** → **(3,2) south** → **(3,3) south**. Display prior (3,1) north-start finish only as an optional textual comparison.
                     3. Restore original north heading and instead reorder tape **Right, Forward, Forward**. Progression: (2,2) north → **(2,2) east** → **(3,2) east** → **(4,2) east**.
                     4. Explanation: "We changed the start arrow once, then changed command order. Both changes led elsewhere in these examples." Not a claim that any route reorder _always_ changes its finish.
                     5. Both comparison paths remain reviewable by textual ordered state lists, even if lines visually overlap.
-                    
+
                     ### Placement D — Author and Debug a Route (Section 4)
-                    
+
                     1. New preset start (1,3), heading north, target square (2,2). Command editor has insert, remove, move up/down, and reset buttons; optional reorder drag never required.
                     2. Maximum six commands, using the exact three allowed actions. One valid tape is **Forward, Right, Forward**, ending (2,2) east.
                     3. Execute stepwise or review full trace with each state. Do **not** compare the tape to one hard-coded answer: other sequences reaching (2,2) are valid when **only destination** is requested.
                     4. If an attempt goes to a different square, show **first divergent command** only relative to a displayed sample route _when comparison is requested_, without claiming other valid routes are wrong; otherwise describe the resulting position and ask which action to revise.
                     5. Edge example: at (4,2) facing east, "Forward" would leave grid. Action is not applied; explain: "No square lies beyond the right edge. Turn or change your route." Do not silently clamp while marking a command successful.
                     6. Optional new prompt "End at target facing map right" may introduce heading as an explicit extra condition; do not evaluate heading when the only target criterion is square location.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** 25 discrete squares, explorer icon with direction arrow, starting square marker, optional destination, visible command tape, step counter, replay/undo/reset controls, optional route footprints, **structured textual state log**.
                     - **State per placement:** initial coordinates/heading; tape; executed command index; ordered history of (position,heading) pairs; learner prediction and feedback disclosure; local layout mode.
                     - **No external props:** each placement is a standalone, prop-free Scene root/entry with fixed editorial preset. If implementation shares internal code, public roots remain prop-free and derive text from real Lesson locale context. Do not invent a `mode` or `commands` runtime prop.
                     - **Invariant:** a turn preserves (x,y); forward preserves heading; all positions stay inside grid; undo exactly inverses recorded state, including facing.
                     - **Nonvisual control:** action sequence editor is an accessible ordered list. "Move command earlier/later" changes order intentionally, not browser focus order. Log can be read in sequence independently of animation.
                     - **Feedback:** reason about first incorrect assumption, not accuracy scores. No timeouts, randomization, event contracts or persisted progress.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use stable SVG/grid, distinguish heading arrow from move trail. A turn animation may show one quarter-rotation but must not look like the avatar jumped. A step should move exactly one cell (or switch instantly). Show visible labels for source and destination, with optional before/after ghosting; avoid excessive motion for young learners. No remote maps, sound dependency or decorative plot.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Translate every command, prediction, button, heading/destination explanation, status and screen-reader label for all supported locales; missing translations block release.
                     - **RTL is not a mirror of the map coordinate system:** "right turn" is clockwise relative to avatar heading in _every_ locale. If the entire diagram is mirrored for presentation, mathematical mapping and recorded results must be consistently remapped and tested; safer default is to preserve the fixed instructional map and mirror only UI layout/direction.
                     - All actions available by buttons/keyboard/switch; no forced drag/voice/precision. Visible focus, large touch targets, line/shape cues independent of color, no timing.
                     - For nonvisual learners, the log says e.g. "At middle square (row 3, column 3), facing map top; after forward, row 2, column 3, same facing." Rows/columns in descriptions are 1-indexed (not the internal 0-index coordinates); keep that distinction explicit in tests and localized copy.
                     - Respect reduced motion, reading order, live-region announcement throttling, mobile zoom and large fonts. All outcomes and explanations work fully offline after selected locale and Scene assets are downloaded.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. From (2,2) north, **Right** gives **(2,2) east** (no movement); **Forward** from the original reset gives **(2,1) north**.
                     2. From (2,2) north, Forward→Right→Forward ends **(3,1) east** with exact intermediate states in this specification.
                     3. From (2,2) east, the _same tape_ ends **(3,3) south**.
@@ -468,32 +468,32 @@ config:
                     6. At (4,2) east, invalid Forward leaves state unchanged and tells the learner **why**.
                     7. Undo/replay/reset are deterministic; distinct placement state never leaks into another Section.
                     8. Keyboard/RTL/nonvisual/reduced-motion/mobile/offline modes present the same route math, no color or spatial pointer dependency.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The `scene` block type and generic Section renderer exist; **Route Explorer does not**. Engineer must implement the specified deterministic model, independent prop-free placement roots, genuine Scene locale translations and tests. Confirm actual Lesson Scene context and renderer registration separately. Formal approval of this spec is pending Methodologist approval; no runtime Lesson, Question/Quiz scoring, route telemetry, Note event or persistence is authorized.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **scene — proposed:** Route Explorer (full Scene specification embedded in this config.yaml), stage C. Same start (2, 2), heading **east**. Commands still Forward → Right → Forward. Exact progression: (3, 2), east → (3, 2), south → **(3, 3), south**. Show previous path faintly but keep the second path and spoken/text descriptions independently distinguishable. Next show **Right → Forward → Forward** from the original north-facing (2, 2), ending **(4, 2), east**.
-                  productionNotes: "Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               markdown3:
                 config:
-                  id: "77242bd1-6e2e-48c6-a701-bd53fc240818"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '77242bd1-6e2e-48c6-a701-bd53fc240818'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Starting direction matters: one route finished toward the top-right, the other toward the bottom-right. Order matters too: turning _before_ both forward steps sent us across the row. We used the same kinds of moves, but not in the same order."
+                      en: 'Starting direction matters: one route finished toward the top-right, the other toward the bottom-right. Order matters too: turning _before_ both forward steps sent us across the row. We used the same kinds of moves, but not in the same order.'
                 production:
-                  purpose: "Same Commands, Different Ending?: markdown resource at position 3 (source provisional)"
-                  specification: "3. **markdown — currently rendered:** \"Starting direction matters: one route finished toward the top-right, the other toward the bottom-right. Order matters too: turning _before_ both forward steps sent us across the row. We used the same kinds of moves, but not in the same order.\""
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Same Commands, Different Ending?: markdown resource at position 3 (source provisional)'
+                  specification: '3. **markdown — currently rendered:** "Starting direction matters: one route finished toward the top-right, the other toward the bottom-right. Order matters too: turning _before_ both forward steps sent us across the row. We used the same kinds of moves, but not in the same order."'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Expose dependency on the initial heading and instruction order."
-          pedagogicalIntent: "Original Section 3: Same Commands, Different Ending? (provisional draft)"
+          purpose: 'Expose dependency on the initial heading and instruction order.'
+          pedagogicalIntent: 'Original Section 3: Same Commands, Different Ending? (provisional draft)'
           productionNotes: |-
             - **Purpose:** Expose dependency on the initial heading and instruction order.
             - **Section contract:** `LessonSection_Config`, one vertical Resource sequence.
@@ -506,121 +506,121 @@ config:
             - **Proposed Note:** After counterexample, "A route needs a starting direction and instructions in order" (planned).
       section4:
         config:
-          id: "8c14d946-96c7-40e9-bd8f-053c477257af"
-          slug: "section4"
-          type: "content"
+          id: '8c14d946-96c7-40e9-bd8f-053c477257af'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Tell Someone How to Get There"
+              en: 'Tell Someone How to Get There'
             navigationLabel:
-              en: "Tell Someone How to Get There"
+              en: 'Tell Someone How to Get There'
           content:
             items:
               text1:
                 config:
-                  id: "e6e6c6b4-2fa9-4d2b-93b2-87b250f49461"
-                  slug: "text1"
-                  type: "text"
+                  id: 'e6e6c6b4-2fa9-4d2b-93b2-87b250f49461'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A new explorer starts in the left part of the map, facing up. The target is one square up and one square to its right. Can you give a short set of commands? Say what each command does."
+                      en: 'A new explorer starts in the left part of the map, facing up. The target is one square up and one square to its right. Can you give a short set of commands? Say what each command does.'
                 production:
-                  purpose: "Tell Someone How to Get There: text resource at position 1 (source provisional)"
-                  specification: "1. **text — currently rendered:** \"A new explorer starts in the left part of the map, facing up. The target is one square up and one square to its right. Can you give a short set of commands? Say what each command does.\""
+                  purpose: 'Tell Someone How to Get There: text resource at position 1 (source provisional)'
+                  specification: '1. **text — currently rendered:** "A new explorer starts in the left part of the map, facing up. The target is one square up and one square to its right. Can you give a short set of commands? Say what each command does."'
               scene2:
                 config:
-                  id: "bb070bf4-4641-43ed-81e9-36eed88a8e9f"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'bb070bf4-4641-43ed-81e9-36eed88a8e9f'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Tell Someone How to Get There"
+                        instruction: 'Tell Someone How to Get There'
                 production:
-                  purpose: "Tell Someone How to Get There; source Scene routeExplorer.scene-spec.md; use 2"
+                  purpose: 'Tell Someone How to Get There; source Scene routeExplorer.scene-spec.md; use 2'
                   specification: |-
                     # Route Explorer — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: [Follow and Explain a Route](.this config.yaml), Sections 1–4
                     Methodologist objectives: [Draft Brief](.this config.yaml) — give and follow **ordered route directions** relative to an explicit starting heading. Do not invent another Skill.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A route is an ordered sequence of state changes. The learner sees, predicts and manipulates the explorer's _heading_ separately from its _position_, watches an instruction tape applied in order, then gives new instructions for a target. Changing initial heading or order can change the destination even when command words do not change.
-                    
+
                     Core learner voice: "**A turn changes where I face. Forward changes where I am. The next instruction uses my new direction.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - The map is a bounded, obstacle-free 5×5 discrete square grid. Model coordinates (column, row): 0–4 in each axis; (0,0) at map top-left. The numerical coordinates are editorial/test labels **not demanded** in the child's UI.
                     - Headings: **north** = row −1 (toward map top), **east** = column +1 (toward map right), **south** = row +1, **west** = column −1. Headings describe fixed **map direction**, not interface text direction or device compass.
                     - Commands: **Forward one** moves one square along current heading, heading unchanged. **Turn right** rotates 90° clockwise in place; **Turn left** rotates 90° counterclockwise in place. Neither turn changes square.
                     - Coordinates and heading update **sequentially**, not in a batch of unordered choices. A path crossing a map edge is invalid; do not wrap, jump, or pretend the explorer moved.
                     - No diagonal/45° turns, obstacles, shortest-path requirement, virtual heading inferred from UI language, real-world compass, timing, grades or unlocked states.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Placement A — Turn Without Walking (Section 1)
-                    
+
                     1. Display explorer at (2,2) heading **north**; outer square grid stable. Label arrow "Facing map top".
                     2. Text: "**Turn right. Does the explorer change squares?**" Two accessible choices: "Same square, another direction" / "Moves one square". Before reveal, keep choices undoable.
                     3. "Show turn" rotates arrow **north → east**; position remains (2,2). State statement: "Same square (middle), now facing map right."
                     4. Wrong "moves" response gets: "Its square did not change. A turn changes the arrow." Correct gets: "Yes. It turned but did not walk."
                     5. Offer a contrasting **Forward one** from reset: start north (2,2) → (2,1) still north; show difference between actions. Reset restores original placement.
-                    
+
                     ### Placement B — Execute a Command Tape (Section 2)
-                    
+
                     1. Fixed start (2,2) facing north; tape with three commands: **Forward, Right, Forward**. Before each command, allow prediction of the new heading or square.
                     2. Step 1: forward → **(2,1), north**. Step 2: right → **(2,1), east**. Step 3: forward → **(3,1), east**.
                     3. Show readable log after each step. On request, compare arrow _before/after_ one command.
                     4. For destination (2,0): "That would mean forward twice with no turn. The turn made the last step go right." For (3,2): "The first forward already took us up a square."
                     5. "Undo" restores both coordinates and heading from the previous logged state; "Replay" and reset produce identical transitions.
-                    
+
                     ### Placement C — Change One Variable (Section 3)
-                    
+
                     1. Same tape **Forward, Right, Forward**, same starting (2,2), but **east** start heading. Prediction: "Will we finish where we did before?"
                     2. Progression: (2,2) east → **(3,2) east** → **(3,2) south** → **(3,3) south**. Display prior (3,1) north-start finish only as an optional textual comparison.
                     3. Restore original north heading and instead reorder tape **Right, Forward, Forward**. Progression: (2,2) north → **(2,2) east** → **(3,2) east** → **(4,2) east**.
                     4. Explanation: "We changed the start arrow once, then changed command order. Both changes led elsewhere in these examples." Not a claim that any route reorder _always_ changes its finish.
                     5. Both comparison paths remain reviewable by textual ordered state lists, even if lines visually overlap.
-                    
+
                     ### Placement D — Author and Debug a Route (Section 4)
-                    
+
                     1. New preset start (1,3), heading north, target square (2,2). Command editor has insert, remove, move up/down, and reset buttons; optional reorder drag never required.
                     2. Maximum six commands, using the exact three allowed actions. One valid tape is **Forward, Right, Forward**, ending (2,2) east.
                     3. Execute stepwise or review full trace with each state. Do **not** compare the tape to one hard-coded answer: other sequences reaching (2,2) are valid when **only destination** is requested.
                     4. If an attempt goes to a different square, show **first divergent command** only relative to a displayed sample route _when comparison is requested_, without claiming other valid routes are wrong; otherwise describe the resulting position and ask which action to revise.
                     5. Edge example: at (4,2) facing east, "Forward" would leave grid. Action is not applied; explain: "No square lies beyond the right edge. Turn or change your route." Do not silently clamp while marking a command successful.
                     6. Optional new prompt "End at target facing map right" may introduce heading as an explicit extra condition; do not evaluate heading when the only target criterion is square location.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** 25 discrete squares, explorer icon with direction arrow, starting square marker, optional destination, visible command tape, step counter, replay/undo/reset controls, optional route footprints, **structured textual state log**.
                     - **State per placement:** initial coordinates/heading; tape; executed command index; ordered history of (position,heading) pairs; learner prediction and feedback disclosure; local layout mode.
                     - **No external props:** each placement is a standalone, prop-free Scene root/entry with fixed editorial preset. If implementation shares internal code, public roots remain prop-free and derive text from real Lesson locale context. Do not invent a `mode` or `commands` runtime prop.
                     - **Invariant:** a turn preserves (x,y); forward preserves heading; all positions stay inside grid; undo exactly inverses recorded state, including facing.
                     - **Nonvisual control:** action sequence editor is an accessible ordered list. "Move command earlier/later" changes order intentionally, not browser focus order. Log can be read in sequence independently of animation.
                     - **Feedback:** reason about first incorrect assumption, not accuracy scores. No timeouts, randomization, event contracts or persisted progress.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use stable SVG/grid, distinguish heading arrow from move trail. A turn animation may show one quarter-rotation but must not look like the avatar jumped. A step should move exactly one cell (or switch instantly). Show visible labels for source and destination, with optional before/after ghosting; avoid excessive motion for young learners. No remote maps, sound dependency or decorative plot.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Translate every command, prediction, button, heading/destination explanation, status and screen-reader label for all supported locales; missing translations block release.
                     - **RTL is not a mirror of the map coordinate system:** "right turn" is clockwise relative to avatar heading in _every_ locale. If the entire diagram is mirrored for presentation, mathematical mapping and recorded results must be consistently remapped and tested; safer default is to preserve the fixed instructional map and mirror only UI layout/direction.
                     - All actions available by buttons/keyboard/switch; no forced drag/voice/precision. Visible focus, large touch targets, line/shape cues independent of color, no timing.
                     - For nonvisual learners, the log says e.g. "At middle square (row 3, column 3), facing map top; after forward, row 2, column 3, same facing." Rows/columns in descriptions are 1-indexed (not the internal 0-index coordinates); keep that distinction explicit in tests and localized copy.
                     - Respect reduced motion, reading order, live-region announcement throttling, mobile zoom and large fonts. All outcomes and explanations work fully offline after selected locale and Scene assets are downloaded.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. From (2,2) north, **Right** gives **(2,2) east** (no movement); **Forward** from the original reset gives **(2,1) north**.
                     2. From (2,2) north, Forward→Right→Forward ends **(3,1) east** with exact intermediate states in this specification.
                     3. From (2,2) east, the _same tape_ ends **(3,3) south**.
@@ -629,32 +629,32 @@ config:
                     6. At (4,2) east, invalid Forward leaves state unchanged and tells the learner **why**.
                     7. Undo/replay/reset are deterministic; distinct placement state never leaks into another Section.
                     8. Keyboard/RTL/nonvisual/reduced-motion/mobile/offline modes present the same route math, no color or spatial pointer dependency.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The `scene` block type and generic Section renderer exist; **Route Explorer does not**. Engineer must implement the specified deterministic model, independent prop-free placement roots, genuine Scene locale translations and tests. Confirm actual Lesson Scene context and renderer registration separately. Formal approval of this spec is pending Methodologist approval; no runtime Lesson, Question/Quiz scoring, route telemetry, Note event or persistence is authorized.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **scene — proposed:** Route Explorer (full Scene specification embedded in this config.yaml), stage D. Start (1, 3), facing north; target (2, 2). Author short instruction tape, maximum six steps, with accessible insert/replace/remove/reorder button controls. Suggested efficient solution **Forward → Turn right → Forward**. Reveal result (2, 2), facing east. A different valid route may be accepted if it reaches the same **square** when the prompt only specifies destination, not final heading; preserve exact command simulation rather than matching one memorized string.
-                  productionNotes: "Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               markdown3:
                 config:
-                  id: "99161628-719f-4e13-9d64-2d067b26f701"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '99161628-719f-4e13-9d64-2d067b26f701'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Check the **start**, the **arrow** and **each command**. If the explorer arrives elsewhere, look at the first instruction where the route changed. You can fix that step and try again."
+                      en: 'Check the **start**, the **arrow** and **each command**. If the explorer arrives elsewhere, look at the first instruction where the route changed. You can fix that step and try again.'
                 production:
-                  purpose: "Tell Someone How to Get There: markdown resource at position 3 (source provisional)"
-                  specification: "3. **markdown — currently rendered:** \"Check the **start**, the **arrow** and **each command**. If the explorer arrives elsewhere, look at the first instruction where the route changed. You can fix that step and try again.\""
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Tell Someone How to Get There: markdown resource at position 3 (source provisional)'
+                  specification: '3. **markdown — currently rendered:** "Check the **start**, the **arrow** and **each command**. If the explorer arrives elsewhere, look at the first instruction where the route changed. You can fix that step and try again."'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Independent transfer: supply and verify a short route, diagnose a wrong turn."
-          pedagogicalIntent: "Original Section 4: Tell Someone How to Get There (provisional draft)"
+          purpose: 'Independent transfer: supply and verify a short route, diagnose a wrong turn.'
+          pedagogicalIntent: 'Original Section 4: Tell Someone How to Get There (provisional draft)'
           productionNotes: |-
             - **Purpose:** Independent transfer: supply and verify a short route, diagnose a wrong turn.
             - **Section contract:** `LessonSection_Config`, one vertical Resource sequence.
@@ -664,90 +664,90 @@ config:
               3. **markdown — currently rendered:** "Check the **start**, the **arrow** and **each command**. If the explorer arrives elsewhere, look at the first instruction where the route changed. You can fix that step and try again."
             - **Feedback:** If a route includes a blocked edge move, explain which square is out of bounds, do not silently wrap. If an alternative arrives at the goal with a different final heading, "You reached the target. You are facing another way; that is fine because we only asked for the square." Offer a distinct optional challenge to finish facing east, clearly labeled as optional.
             - **Independent practice handoff:** The child can verbally teach a short route to a person using two visible reference landmarks. No scoring or mastery decision.
-    order: ["section1", "section2", "section3", "section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Follow and Explain a Route — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: followingRouteDirections
     Methodologist status: Draft
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Build on relative-position language by reasoning about **ordered moves and turns** with a stated starting orientation. Unlike simply naming an object's position, a route requires the learner to maintain a changing heading as actions are executed.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 2 (approximately 7–8).** Primary Grade 2 (approximately 7–8 years). Learners can distinguish left/right relative to a facing person and can sequence three or four actions with counters. Directions must be available in short written and read-aloud alternatives. Provide no-drag and nonvisual route descriptions.
-    
+
     **Instructional depth:** One-square forward moves and quarter-turns on an obstacle-free small map (e.g. 5×5). No compass bearing, coordinates input, diagonal movement, rotations by 45°, algorithm notation, pathfinding optimization or timed puzzles. This is not the separate grid-map creation Skill.
-    
+
     ## Prerequisites
-    
+
     [positionWords.data.ts](../../../../data/skills/geometry/orientation/skills/positionWords.data.ts): describe locations relative to an observer and distinguish left/right as viewpoint-relative. Count a few equal steps, recognize an initial facing arrow and remember short ordered instructions. Learners who confuse left/right need a front-facing avatar and reversible turn demonstration.
-    
+
     ## Target Skills
-    
+
     - [spatialOrientationPath.data.ts](../../../../data/skills/geometry/orientation/skills/spatialOrientationPath.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Predict the destination reached by a short route from a clearly identified starting square **and initial heading**.
     - Distinguish a left/right **turn** (change in heading, no movement) from a **forward step** (change in position), using the updated heading.
     - Give an ordered sequence of actions to guide another observer along a simple route and explain why changing initial heading or command order can change the result.
     - Diagnose a wrong route by identifying the first instruction at which the explorer's position or heading diverged.
-    
+
     ## Essential subject matter
-    
+
     A route is an **ordered procedure** acting on a state (position, heading). Represent an explorer as a square of a discrete path plus a visible arrow. **Turn right/left** rotates the heading by 90° while keeping the explorer in its square; **forward one** changes the position by one adjacent square in the current heading. A starting heading is essential. On a grid, east→right turn→south and north→right turn→east, so the same list of instructions can give different destinations from the same starting square. No compass-rose knowledge is required; headings can be named 'toward the top/right/bottom/left of the map' in explicit map coordinates. Prefer short paths without obstacles.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Revisit a named viewpoint from the previous relative-position Lesson. First expose a single right turn without movement. Then combine 'forward, right, forward' from a fixed start. Predict the effect of the **same commands with a changed initial heading**. Finally contrast sequences with commands reordered and ask the learner to detect where paths separate. Fade the arrow scaffolding only after the learner can verbalize orientation.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Thinking that turning right moves one square to the right; interpreting 'right' as always the right edge of the screen; treating actions as an unordered bag; forgetting a turn changed subsequent forward direction; mirroring route commands when the interface language changes. A four-command counterexample must be checked with exact coordinates before publication.
-    
+
     **Explicit exclusions:** One-square forward moves and quarter-turns on an obstacle-free small map (e.g. 5×5). No compass bearing, coordinates input, diagonal movement, rotations by 45°, algorithm notation, pathfinding optimization or timed puzzles. This is not the separate grid-map creation Skill.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     All explanations, controls, Scene cues, alternative descriptions, feedback and eventual Note text require genuine translations in the supported locales with no missing-language fallback. For spatial direction, apply genuine semantic RTL adaptation rather than indiscriminate mirroring of geometry or mathematical order. For measurement, keep scale meaning and cm labels intact regardless of UI direction. Make learner actions possible by keyboard/switch/touch, with semantic equivalents to any visual manipulation, audible content fully captioned, reduced-motion alternatives, visible focus, readable targets and WCAG 2.2 AA review. The complete Lesson and its feedback must work offline after a verified download; this is an intended capability, not an existing implementation claim.
-    
+
     ## Sources and factual verification
-    
+
     - [spatialOrientationPath.data.ts](../../../../data/skills/geometry/orientation/skills/spatialOrientationPath.data.ts) — immutable canonical Mathematics Skill data copied from `content/math/data/skills/` with its UUID, translations and methodological description preserved.
     - [Studio Methodologist persona](../../../../../../studio/personas/methodist.persona.md) and [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — editorial scope and workflow.
     - Playground taxonomy view (historical generated taxonomy view unavailable; canonical Skill data is authoritative) — currently stale for these newly migrated domain Skills; coordinator regeneration is required before it can confirm their inclusion.
-    
+
     The examples are checked against the precise canonical Skill description, not treated as evidence of compliance with any particular jurisdiction's curriculum.
-    
+
     ## Curriculum / Program compatibility
-    
+
     No Program or national Curriculum assigned. This standalone Lesson may later be referenced by multiple curricula, but the chosen Grade 2 depth is a Lesson decision only and **does not alter the grade-independent Skill definition**.
-    
+
     ## Open editorial decisions
-    
+
     - Editor to confirm the level of route abstraction (map squares and quarter-turns) is appropriate for Grade 2; do not treat the route builder as a new Skill or a graded task.
     - **Approval gate:** this Brief has not received explicit Methodologist approval. Accompanying `content.md` and Scene spec are **provisional Drafts under the batch-specific user authorization**, not formally approved Lesson Content.
-    
+
     ## Methodologist handoff
-    
+
     Review the intended audience, prerequisite chain, bounded mathematical examples and misconceptions before changing this Brief from Draft to Approved. The Educational Screenwriter's proposed Sections and Scene are separate editorial artifacts and may be revised if the Brief changes. No runtime Lesson component, Question, Quiz, scoring, Note persistence or content publication is authorized.
-  purpose: "Follow and Explain a Route: preserve existing standalone Lesson plan without new assessments or Scene implementation"
+  purpose: 'Follow and Explain a Route: preserve existing standalone Lesson plan without new assessments or Scene implementation'
   productionNotes: |-
     Provisional Screenwriter source (not approved), originally content.md; all introductory, global and review material:
-    
+
     # Follow and Explain a Route — Lesson Content
-    
+
     Status: **Provisional Draft — pending Methodologist approval; not an approved lesson.**
     Target Lesson: `content/playground/Data/Lessons/1/followingRouteDirections/`
     Audience: **Grade 2** (approximately 7–8), early/mixed readers, including learners using keyboards, switch input or nonvisual text
@@ -755,60 +755,60 @@ production:
     Target Skills: `spatialOrientationPath.data.ts` as linked in the Brief (prerequisite `positionWords.data.ts`); do not replace or broaden the canonical definition.
     Program dependence: None
     Implementation state: editorial script only; neither this Lesson nor its custom Scene is implemented.
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     **"Turning changes which way you face. Moving forward changes where you are."** A small explorer follows a short series of instructions. Its route depends on the **starting square**, the **direction of its arrow** and the **order** of instructions. Learners first predict a single move, then control and replay a route, then write a route for somebody else. The visual map is a model, not a game with scores.
-    
+
     The map is **5 columns × 5 rows**. For editorial verification, (column, row) runs from (0, 0) at map top-left to (4, 4) at bottom-right; these coordinates are internal to the specification, not required vocabulary for children. "Forward one" enters the adjacent square in the current heading; "turn right/left" rotates the arrow **in place by 90°**. No diagonal or backward moves. The learner can always inspect an ordered action log rather than memorize a long command sequence.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Notice:** Can the arrow turn without the explorer leaving its square? Predict and reveal.
     2. **Build and trace:** Execute "forward, turn right, forward" from a known start, one instruction at a time.
     3. **Disrupt a hidden assumption:** Replay the same instructions with a different initial heading, then try the same instruction multiset in a different order.
     4. **Transfer:** Guide the explorer on a fresh map without copying an already displayed route, and explain a first wrong step.
-    
+
     No required speed, rewards, random variation, completion-as-mastery claims, scored Question or Quiz.
-    
+
     ## SECTION PLAN
-    
-    
-    
+
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Route Explorer (full Scene specification embedded in this config.yaml) — one proposed prop-free custom Scene with **separate self-contained placement presets**; no reusable React props or invented runtime mode API.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. "Turning changes direction, not position." Proposed after Section 1's exact arrow-change reveal.
     2. "A route needs a starting direction and an order." Proposed after the contrasting paths in Section 3.
-    
+
     These are short Git-authored **future** recall cues, not lesson summaries. Note type, IDs, unlock events, persistence and user revision sheets are **not implemented or assumed**.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     In Section 4, invite an unscored attempt from a fresh start. A future Assessment Architect may design independent assessments varying start direction, command order and end position without reusing the taught solutions verbatim. A correct single route is **not** evidence of durable mastery; scheduled recall is separate future capability.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Every learner-facing instruction, dynamic command-state summary and feedback requires genuine translations in all configured locales. **Left/right in the map's geometric model remains defined relative to the explorer's heading**, not to the reader's UI direction. In RTL UI, labels/buttons may reorder semantically but a right turn **must not** become a left turn. Keyboard controls for adding/reordering commands and step-by-step exploration are mandatory equivalents to any drag. Expose current square and heading textually; offer reduced-motion instant updates, visible focus, no color-only paths, large targets and screen-reader-friendly change announcements. All required functionality and translations must work offline after download; no remote maps.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     - Available renderer types verified: `text`, `markdown`, `scene` (generic Section renderer); no live Route Explorer exists yet.
     - Proposed: deterministic route model, per-placement self-contained Scene instance, genuine localized text and nonvisual control/log.
     - Platform/Scene Designer must verify actual locale provider integration, event lifecycle, tests, mobile behavior and offline packaging. No imaginary state API or Note persistence.
     - No runtime Lesson data, Question, Quiz, correctness engine or scoring is authored.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Draft Methodologist Brief (incorporated in this config.yaml), linked canonical Skill data and the Studio Lesson/Scene contracts.
     - Editor: confirm whether route orientation shown as arrows without compass vocabulary is sufficient and whether the optional final-heading challenge should stay optional.
     - The Brief is **Draft**; Section text and Scene are **provisional**, not approved.
-    
+
     ## HANDOFF
-    
+
     Methodologist confirms depth and approved outcomes before these draft Section beats are formalized. Screenwriter/editor checks that every route and contrast is mathematically exact. Scene Designer implements only from an **approved** Scene spec. Assessment Architect separately authors any scored work.
-    
+
     Source-language-only English draft; intended locale list follows the current Engine supported language set (ar, be, bn, de, en, es, et, fr, he, hi, id, ja, ka, kk, ko, lt, lv, mr, ms, pl, pt, qm, ta, te, tr, uk, ur, vi, zh), with genuine translations required before implementation. No formal independent approval is implied.

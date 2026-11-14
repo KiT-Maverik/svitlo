@@ -1,11 +1,11 @@
 # Draft editorial migration, not approved; no runtime Scene implementation.
 config:
-  id: "2c8adf96-4ea8-5767-8f93-ee80e228489c"
-  slug: "additionZero"
-  type: "lesson"
-  skills: ["97f896aa-10ee-47a1-9348-25b222ca748d"]
+  id: '2c8adf96-4ea8-5767-8f93-ee80e228489c'
+  slug: 'additionZero'
+  type: 'lesson'
+  skills: ['97f896aa-10ee-47a1-9348-25b222ca748d']
   params:
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -13,95 +13,95 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "Adding Nothing Changes Nothing"
+      en: 'Adding Nothing Changes Nothing'
   section:
     items:
       section1:
         config:
-          id: "6d72e9f3-4712-4c94-b988-07c5045df01e"
-          slug: "section1"
-          type: "content"
+          id: '6d72e9f3-4712-4c94-b988-07c5045df01e'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A Tray of Six and an Empty Tray"
+              en: 'A Tray of Six and an Empty Tray'
             navigationLabel:
-              en: "A Tray of Six and an Empty Tray"
+              en: 'A Tray of Six and an Empty Tray'
           content:
             items:
               text1:
                 config:
-                  id: "a478a376-c197-4459-be03-e3e4251caaaf"
-                  slug: "text1"
-                  type: "text"
+                  id: 'a478a376-c197-4459-be03-e3e4251caaaf'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "One tray has six counters. The other is empty. How many in both trays together?"
+                      en: 'One tray has six counters. The other is empty. How many in both trays together?'
                 production:
-                  purpose: "A Tray of Six and an Empty Tray; authored text block 1"
-                  specification: "1. **text (supported):** “One tray has six counters. The other is empty. How many in both trays together?”"
+                  purpose: 'A Tray of Six and an Empty Tray; authored text block 1'
+                  specification: '1. **text (supported):** “One tray has six counters. The other is empty. How many in both trays together?”'
               scene2:
                 config:
-                  id: "d8ce60ba-35d5-4807-bb9c-8f44b222dc09"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'd8ce60ba-35d5-4807-bb9c-8f44b222dc09'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "A Tray of Six and an Empty Tray"
+                        instruction: 'A Tray of Six and an Empty Tray'
                 production:
-                  purpose: "A Tray of Six and an Empty Tray; authored scene block 2"
+                  purpose: 'A Tray of Six and an Empty Tray; authored scene block 2'
                   specification: |-
                     # Zero Addition Explorer — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: [Adding Nothing Changes Nothing Content](.this config.yaml), Sections 1–4
                     Methodologist objectives: Explain that 6+0=6 using six objects and an empty contribution. Explain that 0+6=6 gives the same total despite different zero position. Distinguish an empty addend from an empty total and from an actual new contribution. Predict the sum for a fresh number (9+0 and 0+9) and verify without compulsory counting. [Methodologist Brief](.this config.yaml) (Draft, not approved)
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Show that zero contributes no objects to an addition, so the starting amount remains. Treat a+0=a and 0+a=a as the same value with different positions for the zero addend; contrast adding zero with starting from zero, not with subtraction.
-                    
+
                     Each learner action must preserve or change quantities exactly as the narrated context requires. The Scene's instructional feedback is not a correct/incorrect mastery engine.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Nonnegative whole numbers 0–20; initial examples 6+0=6, 0+6=6, contrast 6+2=8 and boundary 0+0=0, transfer 9+0=9 and 0+9=9. No generalized discussion of different number systems.
-                    
+
                     **Misconceptions and forbidden depictions:** The child may think a displayed zero means all objects disappear, or that zero at the front makes the sum zero. Adding zero must not be shown as a 'zero-sized' ghost counter or as removing objects. Never use an arbitrary visual position or color as the only evidence of object roles. Any reported equality must match actual object counts in its own story.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1 / A Tray of Six and an Empty Tray:** Prompt “One tray has six counters. The other is empty. How many in both trays together?” Initial and learner actions: Show six countable counters in one labeled tray and an empty tray labeled 0. Learner counts both, may reveal '6 from first, 0 from second' and sees six total. The numerical conclusion is **6 + 0 = 6**. Feedback and explanation: We combined six counters with no counters. None were added to the six, so there are still six. For a misconception: If zero chosen as sum, show the original six still present; if seven chosen, show no extra object in the empty tray. Hints and full reveal are available at every step.
-                    
+
                     2. **Section 2 / The Empty Tray Comes First:** Prompt “If the empty tray is written first, does the answer change?” Initial and learner actions: Learner changes from 6+0 to 0+6, with exactly six objects still present. Accessible 'first tray zero; second six; total six' counters. The numerical conclusion is **0 + 6 = 6**. Feedback and explanation: The first addend is zero, but the second has six. Together they still make six. The place of zero doesn't make the counters disappear. For a misconception: Choosing zero gets a concrete group-by-group readout; don't presume the whole commutativity theorem is already learned. Hints and full reveal are available at every step.
-                    
+
                     3. **Section 3 / No Contribution or Two More?:** Prompt “What happens when we add zero to six? What if we add two instead?” Initial and learner actions: Two independent trials begin with six: 6+0=6 and 6+2=8. Learner picks the added amount and sees exact resulting count without modifying the other trial. The numerical conclusion is **6 + 0 = 6; 6 + 2 = 8**. Feedback and explanation: Zero adds no objects. Two adds two objects. The difference is the amount contributed, not a magical rule changing all totals to zero. For a misconception: If the learner predicts eight for the zero case, display no arrivals; if six for +2, show the two distinct added counters. Hints and full reveal are available at every step.
-                    
+
                     4. **Section 4 / Try Nine and the Boundary:** Prompt “What is nine plus zero? What about zero plus nine? What about zero plus zero?” Initial and learner actions: Offer three independent cases, predict/reveal totals nine, nine and zero, with explicit text ledger and optional counter pictures. The numerical conclusion is **9 + 0 = 9; 0 + 9 = 9; 0 + 0 = 0**. Feedback and explanation: A number plus zero stays the number, whichever side zero is on. Zero plus zero is zero because neither addend contributes any objects. For a misconception: Mistaking 0+9 for zero triggers a 'second addend nine' readout; 0+0=9 is rejected by both empty collections. Hints and full reveal are available at every step.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four Section-specific self-contained **prop-free** entries. State does not leak across Section instances. Exact component paths/registration chosen by Coding Agent; editorial placement is not a new public `mode` prop.
                     - **Objects:** countable counters, semantically named initial and added/combined groups, numeric equations, keyboard-operable action buttons, prediction candidates if useful, readable steps and reset/explanation controls.
                     - **State:** independent placement example, initial count, contribution count, position of zero, displayed group labels, candidate and visible explanation; no score.
                     - **Invariants:** each described initial group, incoming/other contribution and current whole must be numerically consistent with the declared example. An object belongs to exactly one counted source contribution, and an optional wrong choice cannot silently mutate the true model.
                     - Reset restores the initial data for that entry, reveal is available without answering; no QuizState, score, mastery event, token reward or persisted assessment.
                     - Every action provides a deterministic text readout of before/after, not a visual-only change.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use simple high-contrast HTML/SVG counters and labeled bowls/trays, with clear group boundaries and large numbers. Move only the explicitly newly arriving objects in a growth story; do not invent arrivals in a union story. Optional step-by-step transitions are user-controlled. Reduced-motion provides identical before/after count ledger and contextual explanations immediately. No external audio/video/image or WebGL required.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every phrase, group role, action label, status and feedback to all supported locales; no English fallback. An accessible ordered numeric ledger and keyboard/touch/switch controls must let a screen-reader user carry out each operation and inspect totals, without relying on vision, precise dragging, sound or speed. Math expressions keep semantically correct operands and operators in RTL; don't mirror object quantities into incorrect roles. Visible focus, 200% zoom, child-size targets, reduced motion, mobile/weak-device and offline operation after downloaded content package are acceptance requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 6+0=6 retains six objects and visibly/textually represents zero added.
                     2. 0+6=6 remains six with explicit role identification.
                     3. The 6+0 and 6+2 trials have different totals (6 and 8) without shared state leakage.
@@ -109,139 +109,139 @@ config:
                     5. Prediction mistakes produce exact numerical explanatory feedback and permit retry or complete reveal without score.
                     6. Section placements reset independently and preserve model counts and equation roles.
                     7. Keyboard, screen reader, semantic RTL, zoom/mobile, reduced motion and downloaded offline logic provide identical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Existing generic `scene` Resource and Lesson rendering are available; **Zero Addition Explorer itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: Keep empty trays perceptible in screen-reader mode: an empty collection needs a real textual description, not invisible graphic content.
-                    
+
                     ## Placement 1: A Tray of Six and an Empty Tray
-                    
+
                     2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 1 entry. Show six countable counters in one labeled tray and an empty tray labeled 0. Learner counts both, may reveal '6 from first, 0 from second' and sees six total.
-                  productionNotes: "Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "7edd6e6a-4cd9-4fe9-a275-593821bab097"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '7edd6e6a-4cd9-4fe9-a275-593821bab097'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "We combined six counters with no counters. None were added to the six, so there are still six."
+                      en: 'We combined six counters with no counters. None were added to the six, so there are still six.'
                 production:
-                  purpose: "A Tray of Six and an Empty Tray; authored markdown block 3"
-                  specification: "3. **markdown (supported):** “We combined six counters with no counters. None were added to the six, so there are still six.” Display the mathematical statement **6 + 0 = 6** as readable symbolic text."
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'A Tray of Six and an Empty Tray; authored markdown block 3'
+                  specification: '3. **markdown (supported):** “We combined six counters with no counters. None were added to the six, so there are still six.” Display the mathematical statement **6 + 0 = 6** as readable symbolic text.'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "A Tray of Six and an Empty Tray"
-          pedagogicalIntent: "Original Section 1 — A Tray of Six and an Empty Tray; authoring draft only"
+          purpose: 'A Tray of Six and an Empty Tray'
+          pedagogicalIntent: 'Original Section 1 — A Tray of Six and an Empty Tray; authoring draft only'
           productionNotes: |-
             **Purpose and outcome:** Explain that 6+0=6 using six objects and an empty contribution.
-            
+
             **Ordered resource blocks (one vertical LessonSection_Config):**
-            
+
             1. **text (supported):** “One tray has six counters. The other is empty. How many in both trays together?”
             2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 1 entry. Show six countable counters in one labeled tray and an empty tray labeled 0. Learner counts both, may reveal '6 from first, 0 from second' and sees six total.
             3. **markdown (supported):** “We combined six counters with no counters. None were added to the six, so there are still six.” Display the mathematical statement **6 + 0 = 6** as readable symbolic text.
-            
+
             **Learner action and interaction:** Show six countable counters in one labeled tray and an empty tray labeled 0. Learner counts both, may reveal '6 from first, 0 from second' and sees six total. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
-            
+
             **Specific misconception response:** If zero chosen as sum, show the original six still present; if seven chosen, show no extra object in the empty tray.
-            
+
             **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
-            
+
             **Transition:** Keep the model available and move to the next contrast only after the current example has been fully explained.
-            
+
             **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
-            
+
             **Proposed unlocked Note:** “Adding zero keeps the total unchanged.” after the whole demonstration and explanation are available (planned, not wired).
-            
+
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
       section2:
         config:
-          id: "6e72eb86-4a12-414d-b688-030c035dee8b"
-          slug: "section2"
-          type: "content"
+          id: '6e72eb86-4a12-414d-b688-030c035dee8b'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "The Empty Tray Comes First"
+              en: 'The Empty Tray Comes First'
             navigationLabel:
-              en: "The Empty Tray Comes First"
+              en: 'The Empty Tray Comes First'
           content:
             items:
               text1:
                 config:
-                  id: "86fee977-007c-42ec-aef5-84f1b0b1d4ae"
-                  slug: "text1"
-                  type: "text"
+                  id: '86fee977-007c-42ec-aef5-84f1b0b1d4ae'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "If the empty tray is written first, does the answer change?"
+                      en: 'If the empty tray is written first, does the answer change?'
                 production:
-                  purpose: "The Empty Tray Comes First; authored text block 1"
-                  specification: "1. **text (supported):** “If the empty tray is written first, does the answer change?”"
+                  purpose: 'The Empty Tray Comes First; authored text block 1'
+                  specification: '1. **text (supported):** “If the empty tray is written first, does the answer change?”'
               scene2:
                 config:
-                  id: "c9bb8681-c9d6-4bdc-868d-a58fce16a642"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'c9bb8681-c9d6-4bdc-868d-a58fce16a642'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "The Empty Tray Comes First"
+                        instruction: 'The Empty Tray Comes First'
                 production:
-                  purpose: "The Empty Tray Comes First; authored scene block 2"
+                  purpose: 'The Empty Tray Comes First; authored scene block 2'
                   specification: |-
                     # Zero Addition Explorer — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: [Adding Nothing Changes Nothing Content](.this config.yaml), Sections 1–4
                     Methodologist objectives: Explain that 6+0=6 using six objects and an empty contribution. Explain that 0+6=6 gives the same total despite different zero position. Distinguish an empty addend from an empty total and from an actual new contribution. Predict the sum for a fresh number (9+0 and 0+9) and verify without compulsory counting. [Methodologist Brief](.this config.yaml) (Draft, not approved)
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Show that zero contributes no objects to an addition, so the starting amount remains. Treat a+0=a and 0+a=a as the same value with different positions for the zero addend; contrast adding zero with starting from zero, not with subtraction.
-                    
+
                     Each learner action must preserve or change quantities exactly as the narrated context requires. The Scene's instructional feedback is not a correct/incorrect mastery engine.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Nonnegative whole numbers 0–20; initial examples 6+0=6, 0+6=6, contrast 6+2=8 and boundary 0+0=0, transfer 9+0=9 and 0+9=9. No generalized discussion of different number systems.
-                    
+
                     **Misconceptions and forbidden depictions:** The child may think a displayed zero means all objects disappear, or that zero at the front makes the sum zero. Adding zero must not be shown as a 'zero-sized' ghost counter or as removing objects. Never use an arbitrary visual position or color as the only evidence of object roles. Any reported equality must match actual object counts in its own story.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1 / A Tray of Six and an Empty Tray:** Prompt “One tray has six counters. The other is empty. How many in both trays together?” Initial and learner actions: Show six countable counters in one labeled tray and an empty tray labeled 0. Learner counts both, may reveal '6 from first, 0 from second' and sees six total. The numerical conclusion is **6 + 0 = 6**. Feedback and explanation: We combined six counters with no counters. None were added to the six, so there are still six. For a misconception: If zero chosen as sum, show the original six still present; if seven chosen, show no extra object in the empty tray. Hints and full reveal are available at every step.
-                    
+
                     2. **Section 2 / The Empty Tray Comes First:** Prompt “If the empty tray is written first, does the answer change?” Initial and learner actions: Learner changes from 6+0 to 0+6, with exactly six objects still present. Accessible 'first tray zero; second six; total six' counters. The numerical conclusion is **0 + 6 = 6**. Feedback and explanation: The first addend is zero, but the second has six. Together they still make six. The place of zero doesn't make the counters disappear. For a misconception: Choosing zero gets a concrete group-by-group readout; don't presume the whole commutativity theorem is already learned. Hints and full reveal are available at every step.
-                    
+
                     3. **Section 3 / No Contribution or Two More?:** Prompt “What happens when we add zero to six? What if we add two instead?” Initial and learner actions: Two independent trials begin with six: 6+0=6 and 6+2=8. Learner picks the added amount and sees exact resulting count without modifying the other trial. The numerical conclusion is **6 + 0 = 6; 6 + 2 = 8**. Feedback and explanation: Zero adds no objects. Two adds two objects. The difference is the amount contributed, not a magical rule changing all totals to zero. For a misconception: If the learner predicts eight for the zero case, display no arrivals; if six for +2, show the two distinct added counters. Hints and full reveal are available at every step.
-                    
+
                     4. **Section 4 / Try Nine and the Boundary:** Prompt “What is nine plus zero? What about zero plus nine? What about zero plus zero?” Initial and learner actions: Offer three independent cases, predict/reveal totals nine, nine and zero, with explicit text ledger and optional counter pictures. The numerical conclusion is **9 + 0 = 9; 0 + 9 = 9; 0 + 0 = 0**. Feedback and explanation: A number plus zero stays the number, whichever side zero is on. Zero plus zero is zero because neither addend contributes any objects. For a misconception: Mistaking 0+9 for zero triggers a 'second addend nine' readout; 0+0=9 is rejected by both empty collections. Hints and full reveal are available at every step.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four Section-specific self-contained **prop-free** entries. State does not leak across Section instances. Exact component paths/registration chosen by Coding Agent; editorial placement is not a new public `mode` prop.
                     - **Objects:** countable counters, semantically named initial and added/combined groups, numeric equations, keyboard-operable action buttons, prediction candidates if useful, readable steps and reset/explanation controls.
                     - **State:** independent placement example, initial count, contribution count, position of zero, displayed group labels, candidate and visible explanation; no score.
                     - **Invariants:** each described initial group, incoming/other contribution and current whole must be numerically consistent with the declared example. An object belongs to exactly one counted source contribution, and an optional wrong choice cannot silently mutate the true model.
                     - Reset restores the initial data for that entry, reveal is available without answering; no QuizState, score, mastery event, token reward or persisted assessment.
                     - Every action provides a deterministic text readout of before/after, not a visual-only change.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use simple high-contrast HTML/SVG counters and labeled bowls/trays, with clear group boundaries and large numbers. Move only the explicitly newly arriving objects in a growth story; do not invent arrivals in a union story. Optional step-by-step transitions are user-controlled. Reduced-motion provides identical before/after count ledger and contextual explanations immediately. No external audio/video/image or WebGL required.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every phrase, group role, action label, status and feedback to all supported locales; no English fallback. An accessible ordered numeric ledger and keyboard/touch/switch controls must let a screen-reader user carry out each operation and inspect totals, without relying on vision, precise dragging, sound or speed. Math expressions keep semantically correct operands and operators in RTL; don't mirror object quantities into incorrect roles. Visible focus, 200% zoom, child-size targets, reduced motion, mobile/weak-device and offline operation after downloaded content package are acceptance requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 6+0=6 retains six objects and visibly/textually represents zero added.
                     2. 0+6=6 remains six with explicit role identification.
                     3. The 6+0 and 6+2 trials have different totals (6 and 8) without shared state leakage.
@@ -249,139 +249,139 @@ config:
                     5. Prediction mistakes produce exact numerical explanatory feedback and permit retry or complete reveal without score.
                     6. Section placements reset independently and preserve model counts and equation roles.
                     7. Keyboard, screen reader, semantic RTL, zoom/mobile, reduced motion and downloaded offline logic provide identical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Existing generic `scene` Resource and Lesson rendering are available; **Zero Addition Explorer itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: Keep empty trays perceptible in screen-reader mode: an empty collection needs a real textual description, not invisible graphic content.
-                    
+
                     ## Placement 2: The Empty Tray Comes First
-                    
+
                     2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 2 entry. Learner changes from 6+0 to 0+6, with exactly six objects still present. Accessible 'first tray zero; second six; total six' counters.
-                  productionNotes: "Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "0fd95a0f-9f5e-4c70-a0e9-6431054a52b2"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '0fd95a0f-9f5e-4c70-a0e9-6431054a52b2'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "The first addend is zero, but the second has six. Together they still make six. The place of zero doesn't make the counters disappear."
                 production:
-                  purpose: "The Empty Tray Comes First; authored markdown block 3"
+                  purpose: 'The Empty Tray Comes First; authored markdown block 3'
                   specification: "3. **markdown (supported):** “The first addend is zero, but the second has six. Together they still make six. The place of zero doesn't make the counters disappear.” Display the mathematical statement **0 + 6 = 6** as readable symbolic text."
-            order: ["text1", "scene2", "markdown3"]
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "The Empty Tray Comes First"
-          pedagogicalIntent: "Original Section 2 — The Empty Tray Comes First; authoring draft only"
+          purpose: 'The Empty Tray Comes First'
+          pedagogicalIntent: 'Original Section 2 — The Empty Tray Comes First; authoring draft only'
           productionNotes: |-
             **Purpose and outcome:** Explain that 0+6=6 gives the same total despite different zero position.
-            
+
             **Ordered resource blocks (one vertical LessonSection_Config):**
-            
+
             1. **text (supported):** “If the empty tray is written first, does the answer change?”
             2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 2 entry. Learner changes from 6+0 to 0+6, with exactly six objects still present. Accessible 'first tray zero; second six; total six' counters.
             3. **markdown (supported):** “The first addend is zero, but the second has six. Together they still make six. The place of zero doesn't make the counters disappear.” Display the mathematical statement **0 + 6 = 6** as readable symbolic text.
-            
+
             **Learner action and interaction:** Learner changes from 6+0 to 0+6, with exactly six objects still present. Accessible 'first tray zero; second six; total six' counters. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
-            
+
             **Specific misconception response:** Choosing zero gets a concrete group-by-group readout; don't presume the whole commutativity theorem is already learned.
-            
+
             **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
-            
+
             **Transition:** Keep the model available and move to the next contrast only after the current example has been fully explained.
-            
+
             **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
-            
+
             **Proposed unlocked Note:** “Zero can be either addend: a+0 and 0+a both equal a.” after the whole demonstration and explanation are available (planned, not wired).
-            
+
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
       section3:
         config:
-          id: "6f72ed19-4912-4fba-b788-049f025decf8"
-          slug: "section3"
-          type: "content"
+          id: '6f72ed19-4912-4fba-b788-049f025decf8'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "No Contribution or Two More?"
+              en: 'No Contribution or Two More?'
             navigationLabel:
-              en: "No Contribution or Two More?"
+              en: 'No Contribution or Two More?'
           content:
             items:
               text1:
                 config:
-                  id: "8a423348-60a3-442b-b796-4de2732acfed"
-                  slug: "text1"
-                  type: "text"
+                  id: '8a423348-60a3-442b-b796-4de2732acfed'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "What happens when we add zero to six? What if we add two instead?"
+                      en: 'What happens when we add zero to six? What if we add two instead?'
                 production:
-                  purpose: "No Contribution or Two More?; authored text block 1"
-                  specification: "1. **text (supported):** “What happens when we add zero to six? What if we add two instead?”"
+                  purpose: 'No Contribution or Two More?; authored text block 1'
+                  specification: '1. **text (supported):** “What happens when we add zero to six? What if we add two instead?”'
               scene2:
                 config:
-                  id: "be7dd020-600d-48ed-9062-60be32232963"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'be7dd020-600d-48ed-9062-60be32232963'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "No Contribution or Two More?"
+                        instruction: 'No Contribution or Two More?'
                 production:
-                  purpose: "No Contribution or Two More?; authored scene block 2"
+                  purpose: 'No Contribution or Two More?; authored scene block 2'
                   specification: |-
                     # Zero Addition Explorer — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: [Adding Nothing Changes Nothing Content](.this config.yaml), Sections 1–4
                     Methodologist objectives: Explain that 6+0=6 using six objects and an empty contribution. Explain that 0+6=6 gives the same total despite different zero position. Distinguish an empty addend from an empty total and from an actual new contribution. Predict the sum for a fresh number (9+0 and 0+9) and verify without compulsory counting. [Methodologist Brief](.this config.yaml) (Draft, not approved)
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Show that zero contributes no objects to an addition, so the starting amount remains. Treat a+0=a and 0+a=a as the same value with different positions for the zero addend; contrast adding zero with starting from zero, not with subtraction.
-                    
+
                     Each learner action must preserve or change quantities exactly as the narrated context requires. The Scene's instructional feedback is not a correct/incorrect mastery engine.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Nonnegative whole numbers 0–20; initial examples 6+0=6, 0+6=6, contrast 6+2=8 and boundary 0+0=0, transfer 9+0=9 and 0+9=9. No generalized discussion of different number systems.
-                    
+
                     **Misconceptions and forbidden depictions:** The child may think a displayed zero means all objects disappear, or that zero at the front makes the sum zero. Adding zero must not be shown as a 'zero-sized' ghost counter or as removing objects. Never use an arbitrary visual position or color as the only evidence of object roles. Any reported equality must match actual object counts in its own story.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1 / A Tray of Six and an Empty Tray:** Prompt “One tray has six counters. The other is empty. How many in both trays together?” Initial and learner actions: Show six countable counters in one labeled tray and an empty tray labeled 0. Learner counts both, may reveal '6 from first, 0 from second' and sees six total. The numerical conclusion is **6 + 0 = 6**. Feedback and explanation: We combined six counters with no counters. None were added to the six, so there are still six. For a misconception: If zero chosen as sum, show the original six still present; if seven chosen, show no extra object in the empty tray. Hints and full reveal are available at every step.
-                    
+
                     2. **Section 2 / The Empty Tray Comes First:** Prompt “If the empty tray is written first, does the answer change?” Initial and learner actions: Learner changes from 6+0 to 0+6, with exactly six objects still present. Accessible 'first tray zero; second six; total six' counters. The numerical conclusion is **0 + 6 = 6**. Feedback and explanation: The first addend is zero, but the second has six. Together they still make six. The place of zero doesn't make the counters disappear. For a misconception: Choosing zero gets a concrete group-by-group readout; don't presume the whole commutativity theorem is already learned. Hints and full reveal are available at every step.
-                    
+
                     3. **Section 3 / No Contribution or Two More?:** Prompt “What happens when we add zero to six? What if we add two instead?” Initial and learner actions: Two independent trials begin with six: 6+0=6 and 6+2=8. Learner picks the added amount and sees exact resulting count without modifying the other trial. The numerical conclusion is **6 + 0 = 6; 6 + 2 = 8**. Feedback and explanation: Zero adds no objects. Two adds two objects. The difference is the amount contributed, not a magical rule changing all totals to zero. For a misconception: If the learner predicts eight for the zero case, display no arrivals; if six for +2, show the two distinct added counters. Hints and full reveal are available at every step.
-                    
+
                     4. **Section 4 / Try Nine and the Boundary:** Prompt “What is nine plus zero? What about zero plus nine? What about zero plus zero?” Initial and learner actions: Offer three independent cases, predict/reveal totals nine, nine and zero, with explicit text ledger and optional counter pictures. The numerical conclusion is **9 + 0 = 9; 0 + 9 = 9; 0 + 0 = 0**. Feedback and explanation: A number plus zero stays the number, whichever side zero is on. Zero plus zero is zero because neither addend contributes any objects. For a misconception: Mistaking 0+9 for zero triggers a 'second addend nine' readout; 0+0=9 is rejected by both empty collections. Hints and full reveal are available at every step.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four Section-specific self-contained **prop-free** entries. State does not leak across Section instances. Exact component paths/registration chosen by Coding Agent; editorial placement is not a new public `mode` prop.
                     - **Objects:** countable counters, semantically named initial and added/combined groups, numeric equations, keyboard-operable action buttons, prediction candidates if useful, readable steps and reset/explanation controls.
                     - **State:** independent placement example, initial count, contribution count, position of zero, displayed group labels, candidate and visible explanation; no score.
                     - **Invariants:** each described initial group, incoming/other contribution and current whole must be numerically consistent with the declared example. An object belongs to exactly one counted source contribution, and an optional wrong choice cannot silently mutate the true model.
                     - Reset restores the initial data for that entry, reveal is available without answering; no QuizState, score, mastery event, token reward or persisted assessment.
                     - Every action provides a deterministic text readout of before/after, not a visual-only change.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use simple high-contrast HTML/SVG counters and labeled bowls/trays, with clear group boundaries and large numbers. Move only the explicitly newly arriving objects in a growth story; do not invent arrivals in a union story. Optional step-by-step transitions are user-controlled. Reduced-motion provides identical before/after count ledger and contextual explanations immediately. No external audio/video/image or WebGL required.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every phrase, group role, action label, status and feedback to all supported locales; no English fallback. An accessible ordered numeric ledger and keyboard/touch/switch controls must let a screen-reader user carry out each operation and inspect totals, without relying on vision, precise dragging, sound or speed. Math expressions keep semantically correct operands and operators in RTL; don't mirror object quantities into incorrect roles. Visible focus, 200% zoom, child-size targets, reduced motion, mobile/weak-device and offline operation after downloaded content package are acceptance requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 6+0=6 retains six objects and visibly/textually represents zero added.
                     2. 0+6=6 remains six with explicit role identification.
                     3. The 6+0 and 6+2 trials have different totals (6 and 8) without shared state leakage.
@@ -389,139 +389,139 @@ config:
                     5. Prediction mistakes produce exact numerical explanatory feedback and permit retry or complete reveal without score.
                     6. Section placements reset independently and preserve model counts and equation roles.
                     7. Keyboard, screen reader, semantic RTL, zoom/mobile, reduced motion and downloaded offline logic provide identical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Existing generic `scene` Resource and Lesson rendering are available; **Zero Addition Explorer itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: Keep empty trays perceptible in screen-reader mode: an empty collection needs a real textual description, not invisible graphic content.
-                    
+
                     ## Placement 3: No Contribution or Two More?
-                    
+
                     2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 3 entry. Two independent trials begin with six: 6+0=6 and 6+2=8. Learner picks the added amount and sees exact resulting count without modifying the other trial.
-                  productionNotes: "Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "75c3ddcc-f5d5-4513-99cc-27963d38d65d"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '75c3ddcc-f5d5-4513-99cc-27963d38d65d'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Zero adds no objects. Two adds two objects. The difference is the amount contributed, not a magical rule changing all totals to zero."
+                      en: 'Zero adds no objects. Two adds two objects. The difference is the amount contributed, not a magical rule changing all totals to zero.'
                 production:
-                  purpose: "No Contribution or Two More?; authored markdown block 3"
-                  specification: "3. **markdown (supported):** “Zero adds no objects. Two adds two objects. The difference is the amount contributed, not a magical rule changing all totals to zero.” Display the mathematical statement **6 + 0 = 6; 6 + 2 = 8** as readable symbolic text."
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'No Contribution or Two More?; authored markdown block 3'
+                  specification: '3. **markdown (supported):** “Zero adds no objects. Two adds two objects. The difference is the amount contributed, not a magical rule changing all totals to zero.” Display the mathematical statement **6 + 0 = 6; 6 + 2 = 8** as readable symbolic text.'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "No Contribution or Two More?"
-          pedagogicalIntent: "Original Section 3 — No Contribution or Two More?; authoring draft only"
+          purpose: 'No Contribution or Two More?'
+          pedagogicalIntent: 'Original Section 3 — No Contribution or Two More?; authoring draft only'
           productionNotes: |-
             **Purpose and outcome:** Distinguish an empty addend from an empty total and from an actual new contribution.
-            
+
             **Ordered resource blocks (one vertical LessonSection_Config):**
-            
+
             1. **text (supported):** “What happens when we add zero to six? What if we add two instead?”
             2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 3 entry. Two independent trials begin with six: 6+0=6 and 6+2=8. Learner picks the added amount and sees exact resulting count without modifying the other trial.
             3. **markdown (supported):** “Zero adds no objects. Two adds two objects. The difference is the amount contributed, not a magical rule changing all totals to zero.” Display the mathematical statement **6 + 0 = 6; 6 + 2 = 8** as readable symbolic text.
-            
+
             **Learner action and interaction:** Two independent trials begin with six: 6+0=6 and 6+2=8. Learner picks the added amount and sees exact resulting count without modifying the other trial. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
-            
+
             **Specific misconception response:** If the learner predicts eight for the zero case, display no arrivals; if six for +2, show the two distinct added counters.
-            
+
             **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
-            
+
             **Transition:** Keep the model available and move to the next contrast only after the current example has been fully explained.
-            
+
             **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
-            
+
             **Proposed unlocked Note:** “Adding zero keeps the total unchanged.” after the whole demonstration and explanation are available (planned, not wired).
-            
+
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
       section4:
         config:
-          id: "7072eeac-4412-47db-b487-ffe6095df7fd"
-          slug: "section4"
-          type: "content"
+          id: '7072eeac-4412-47db-b487-ffe6095df7fd'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Try Nine and the Boundary"
+              en: 'Try Nine and the Boundary'
             navigationLabel:
-              en: "Try Nine and the Boundary"
+              en: 'Try Nine and the Boundary'
           content:
             items:
               text1:
                 config:
-                  id: "8bf3d991-c1b1-493e-97bc-d557a2ec9f1c"
-                  slug: "text1"
-                  type: "text"
+                  id: '8bf3d991-c1b1-493e-97bc-d557a2ec9f1c'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "What is nine plus zero? What about zero plus nine? What about zero plus zero?"
+                      en: 'What is nine plus zero? What about zero plus nine? What about zero plus zero?'
                 production:
-                  purpose: "Try Nine and the Boundary; authored text block 1"
-                  specification: "1. **text (supported):** “What is nine plus zero? What about zero plus nine? What about zero plus zero?”"
+                  purpose: 'Try Nine and the Boundary; authored text block 1'
+                  specification: '1. **text (supported):** “What is nine plus zero? What about zero plus nine? What about zero plus zero?”'
               scene2:
                 config:
-                  id: "e1289a2f-640c-4af2-b0f5-4de17e5ab0ec"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'e1289a2f-640c-4af2-b0f5-4de17e5ab0ec'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Try Nine and the Boundary"
+                        instruction: 'Try Nine and the Boundary'
                 production:
-                  purpose: "Try Nine and the Boundary; authored scene block 2"
+                  purpose: 'Try Nine and the Boundary; authored scene block 2'
                   specification: |-
                     # Zero Addition Explorer — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: [Adding Nothing Changes Nothing Content](.this config.yaml), Sections 1–4
                     Methodologist objectives: Explain that 6+0=6 using six objects and an empty contribution. Explain that 0+6=6 gives the same total despite different zero position. Distinguish an empty addend from an empty total and from an actual new contribution. Predict the sum for a fresh number (9+0 and 0+9) and verify without compulsory counting. [Methodologist Brief](.this config.yaml) (Draft, not approved)
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Show that zero contributes no objects to an addition, so the starting amount remains. Treat a+0=a and 0+a=a as the same value with different positions for the zero addend; contrast adding zero with starting from zero, not with subtraction.
-                    
+
                     Each learner action must preserve or change quantities exactly as the narrated context requires. The Scene's instructional feedback is not a correct/incorrect mastery engine.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Nonnegative whole numbers 0–20; initial examples 6+0=6, 0+6=6, contrast 6+2=8 and boundary 0+0=0, transfer 9+0=9 and 0+9=9. No generalized discussion of different number systems.
-                    
+
                     **Misconceptions and forbidden depictions:** The child may think a displayed zero means all objects disappear, or that zero at the front makes the sum zero. Adding zero must not be shown as a 'zero-sized' ghost counter or as removing objects. Never use an arbitrary visual position or color as the only evidence of object roles. Any reported equality must match actual object counts in its own story.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1 / A Tray of Six and an Empty Tray:** Prompt “One tray has six counters. The other is empty. How many in both trays together?” Initial and learner actions: Show six countable counters in one labeled tray and an empty tray labeled 0. Learner counts both, may reveal '6 from first, 0 from second' and sees six total. The numerical conclusion is **6 + 0 = 6**. Feedback and explanation: We combined six counters with no counters. None were added to the six, so there are still six. For a misconception: If zero chosen as sum, show the original six still present; if seven chosen, show no extra object in the empty tray. Hints and full reveal are available at every step.
-                    
+
                     2. **Section 2 / The Empty Tray Comes First:** Prompt “If the empty tray is written first, does the answer change?” Initial and learner actions: Learner changes from 6+0 to 0+6, with exactly six objects still present. Accessible 'first tray zero; second six; total six' counters. The numerical conclusion is **0 + 6 = 6**. Feedback and explanation: The first addend is zero, but the second has six. Together they still make six. The place of zero doesn't make the counters disappear. For a misconception: Choosing zero gets a concrete group-by-group readout; don't presume the whole commutativity theorem is already learned. Hints and full reveal are available at every step.
-                    
+
                     3. **Section 3 / No Contribution or Two More?:** Prompt “What happens when we add zero to six? What if we add two instead?” Initial and learner actions: Two independent trials begin with six: 6+0=6 and 6+2=8. Learner picks the added amount and sees exact resulting count without modifying the other trial. The numerical conclusion is **6 + 0 = 6; 6 + 2 = 8**. Feedback and explanation: Zero adds no objects. Two adds two objects. The difference is the amount contributed, not a magical rule changing all totals to zero. For a misconception: If the learner predicts eight for the zero case, display no arrivals; if six for +2, show the two distinct added counters. Hints and full reveal are available at every step.
-                    
+
                     4. **Section 4 / Try Nine and the Boundary:** Prompt “What is nine plus zero? What about zero plus nine? What about zero plus zero?” Initial and learner actions: Offer three independent cases, predict/reveal totals nine, nine and zero, with explicit text ledger and optional counter pictures. The numerical conclusion is **9 + 0 = 9; 0 + 9 = 9; 0 + 0 = 0**. Feedback and explanation: A number plus zero stays the number, whichever side zero is on. Zero plus zero is zero because neither addend contributes any objects. For a misconception: Mistaking 0+9 for zero triggers a 'second addend nine' readout; 0+0=9 is rejected by both empty collections. Hints and full reveal are available at every step.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four Section-specific self-contained **prop-free** entries. State does not leak across Section instances. Exact component paths/registration chosen by Coding Agent; editorial placement is not a new public `mode` prop.
                     - **Objects:** countable counters, semantically named initial and added/combined groups, numeric equations, keyboard-operable action buttons, prediction candidates if useful, readable steps and reset/explanation controls.
                     - **State:** independent placement example, initial count, contribution count, position of zero, displayed group labels, candidate and visible explanation; no score.
                     - **Invariants:** each described initial group, incoming/other contribution and current whole must be numerically consistent with the declared example. An object belongs to exactly one counted source contribution, and an optional wrong choice cannot silently mutate the true model.
                     - Reset restores the initial data for that entry, reveal is available without answering; no QuizState, score, mastery event, token reward or persisted assessment.
                     - Every action provides a deterministic text readout of before/after, not a visual-only change.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use simple high-contrast HTML/SVG counters and labeled bowls/trays, with clear group boundaries and large numbers. Move only the explicitly newly arriving objects in a growth story; do not invent arrivals in a union story. Optional step-by-step transitions are user-controlled. Reduced-motion provides identical before/after count ledger and contextual explanations immediately. No external audio/video/image or WebGL required.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every phrase, group role, action label, status and feedback to all supported locales; no English fallback. An accessible ordered numeric ledger and keyboard/touch/switch controls must let a screen-reader user carry out each operation and inspect totals, without relying on vision, precise dragging, sound or speed. Math expressions keep semantically correct operands and operators in RTL; don't mirror object quantities into incorrect roles. Visible focus, 200% zoom, child-size targets, reduced motion, mobile/weak-device and offline operation after downloaded content package are acceptance requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 6+0=6 retains six objects and visibly/textually represents zero added.
                     2. 0+6=6 remains six with explicit role identification.
                     3. The 6+0 and 6+2 trials have different totals (6 and 8) without shared state leakage.
@@ -529,193 +529,193 @@ config:
                     5. Prediction mistakes produce exact numerical explanatory feedback and permit retry or complete reveal without score.
                     6. Section placements reset independently and preserve model counts and equation roles.
                     7. Keyboard, screen reader, semantic RTL, zoom/mobile, reduced motion and downloaded offline logic provide identical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Existing generic `scene` Resource and Lesson rendering are available; **Zero Addition Explorer itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: Keep empty trays perceptible in screen-reader mode: an empty collection needs a real textual description, not invisible graphic content.
-                    
+
                     ## Placement 4: Try Nine and the Boundary
-                    
+
                     2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 4 entry. Offer three independent cases, predict/reveal totals nine, nine and zero, with explicit text ledger and optional counter pictures.
-                  productionNotes: "Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "da1944d1-de48-46e2-b14b-4def2ff3e600"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: 'da1944d1-de48-46e2-b14b-4def2ff3e600'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A number plus zero stays the number, whichever side zero is on. Zero plus zero is zero because neither addend contributes any objects."
+                      en: 'A number plus zero stays the number, whichever side zero is on. Zero plus zero is zero because neither addend contributes any objects.'
                 production:
-                  purpose: "Try Nine and the Boundary; authored markdown block 3"
-                  specification: "3. **markdown (supported):** “A number plus zero stays the number, whichever side zero is on. Zero plus zero is zero because neither addend contributes any objects.” Display the mathematical statement **9 + 0 = 9; 0 + 9 = 9; 0 + 0 = 0** as readable symbolic text."
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Try Nine and the Boundary; authored markdown block 3'
+                  specification: '3. **markdown (supported):** “A number plus zero stays the number, whichever side zero is on. Zero plus zero is zero because neither addend contributes any objects.” Display the mathematical statement **9 + 0 = 9; 0 + 9 = 9; 0 + 0 = 0** as readable symbolic text.'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Try Nine and the Boundary"
-          pedagogicalIntent: "Original Section 4 — Try Nine and the Boundary; authoring draft only"
+          purpose: 'Try Nine and the Boundary'
+          pedagogicalIntent: 'Original Section 4 — Try Nine and the Boundary; authoring draft only'
           productionNotes: |-
             **Purpose and outcome:** Predict the sum for a fresh number (9+0 and 0+9) and verify without compulsory counting.
-            
+
             **Ordered resource blocks (one vertical LessonSection_Config):**
-            
+
             1. **text (supported):** “What is nine plus zero? What about zero plus nine? What about zero plus zero?”
             2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 4 entry. Offer three independent cases, predict/reveal totals nine, nine and zero, with explicit text ledger and optional counter pictures.
             3. **markdown (supported):** “A number plus zero stays the number, whichever side zero is on. Zero plus zero is zero because neither addend contributes any objects.” Display the mathematical statement **9 + 0 = 9; 0 + 9 = 9; 0 + 0 = 0** as readable symbolic text.
-            
+
             **Learner action and interaction:** Offer three independent cases, predict/reveal totals nine, nine and zero, with explicit text ledger and optional counter pictures. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
-            
+
             **Specific misconception response:** Mistaking 0+9 for zero triggers a 'second addend nine' readout; 0+0=9 is rejected by both empty collections.
-            
+
             **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
-            
+
             **Transition:** Offer a short voluntary explanation of the numerical relationship; end without a scored completion condition.
-            
+
             **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
-            
+
             **Proposed unlocked Note:** “Zero can be either addend: a+0 and 0+a both equal a.” after the whole demonstration and explanation are available (planned, not wired).
-            
+
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
-    order: ["section1", "section2", "section3", "section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Adding Nothing Changes Nothing — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: additionZero
     Methodologist status: Draft
     Primary audience: **Grade 1** (selected by topic difficulty and prerequisites)
     Program dependence: None
     Code: Not implemented
-    
+
     ## Educational purpose
-    
+
     Show that zero contributes no objects to an addition, so the starting amount remains. Treat a+0=a and 0+a=a as the same value with different positions for the zero addend; contrast adding zero with starting from zero, not with subtraction.
-    
+
     ## Target audience
-    
+
     Grade 1 learners, typically ages 6–8 within the project's grades 1–3 scope. Audience decisions are **Lesson-specific**; the canonical Skill itself has no grade ceiling.
-    
+
     ## Prerequisites
-    
+
     Know zero represents no objects, count a set to 10, and understand adding objects means combining contributions. Basic + and = recognition with text support.
-    
+
     ## Target Skills
-    
+
     - [addZero.data.ts](../../../../data/skills/arithmetic/addition/skills/addZero.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Explain that 6+0=6 using six objects and an empty contribution.
     - Explain that 0+6=6 gives the same total despite different zero position.
     - Distinguish an empty addend from an empty total and from an actual new contribution.
     - Predict the sum for a fresh number (9+0 and 0+9) and verify without compulsory counting.
-    
+
     ## Essential subject matter
-    
+
     Nonnegative whole numbers 0–20; initial examples 6+0=6, 0+6=6, contrast 6+2=8 and boundary 0+0=0, transfer 9+0=9 and 0+9=9. No generalized discussion of different number systems.
-    
+
     ## Conceptual progression and dependencies
-    
+
     1. A Tray of Six and an Empty Tray: Show six countable counters in one labeled tray and an empty tray labeled 0. Learner counts both, may reveal '6 from first, 0 from second' and sees six total.
     2. The Empty Tray Comes First: Learner changes from 6+0 to 0+6, with exactly six objects still present. Accessible 'first tray zero; second six; total six' counters.
     3. No Contribution or Two More?: Two independent trials begin with six: 6+0=6 and 6+2=8. Learner picks the added amount and sees exact resulting count without modifying the other trial.
     4. Try Nine and the Boundary: Offer three independent cases, predict/reveal totals nine, nine and zero, with explicit text ledger and optional counter pictures.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     The child may think a displayed zero means all objects disappear, or that zero at the front makes the sum zero. Adding zero must not be shown as a 'zero-sized' ghost counter or as removing objects.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Every mathematical role and child-facing prompt requires genuine supported-language translations with no English fallback. All interactions have equivalent numeric state lists and native keyboard/touch controls, screen-reader explanations, child-sized targets, RTL-correct operand order, reduced-motion and offline deterministic behavior after selected-locale download. No compulsory drag, audio or speech.
-    
+
     ## Sources and factual verification
-    
+
     - Generated Skill taxonomy (historical generated taxonomy; Skill code remains authoritative) for current Playground; this shared generated file must be updated by the coordinator after integration.
     - The canonical linked Mathematics Skill source, preserving exact UUID and description.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) for general international comparison, not a claim of aligned national Curriculum.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Standalone, Program-neutral. Primary teaching audience is Grade 1; no national curriculum mapping presumed.
-    
+
     ## Open editorial decisions
-    
+
     - Keep empty trays perceptible in screen-reader mode: an empty collection needs a real textual description, not invisible graphic content.
     - Editorial validation required for the examples, learner readiness and mathematics before runtime build.
-    
+
     ## Methodologist handoff
-    
+
     **Draft requiring explicit editor approval.** The accompanying Screenwriter draft is **provisional** and not proof of Methodologist approval or authorization for code/assessment.
-  purpose: "Adding Nothing Changes Nothing"
+  purpose: 'Adding Nothing Changes Nothing'
   productionNotes: |-
     Provisional English-only Screenwriter source. Full original introduction, lesson-wide requirements, dependencies and review handoff:
-    
+
     # Adding Nothing Changes Nothing — Content
-    
+
     Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
     Target Lesson: content/playground/Data/Lessons/1/additionZero/
     Primary audience: **Grade 1**, with prior knowledge: Know zero represents no objects, count a set to 10, and understand adding objects means combining contributions. Basic + and = recognition with text support.
     Methodologist source: Methodologist Brief (incorporated in this config.yaml) — Draft, not approved
     Target Skill: `addZero.data.ts` directly linked in the Brief, canonical definition unchanged
     Program dependence: None
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Show that zero contributes no objects to an addition, so the starting amount remains. Treat a+0=a and 0+a=a as the same value with different positions for the zero addend; contrast adding zero with starting from zero, not with subtraction.
-    
+
     Nonnegative whole numbers 0–20; initial examples 6+0=6, 0+6=6, contrast 6+2=8 and boundary 0+0=0, transfer 9+0=9 and 0+9=9. No generalized discussion of different number systems.
-    
+
     Learners build and examine exact numerical relationships before being told a rule. Every incorrect candidate is used to reveal a specific mismatch; hints and the full explanation are never locked by a score.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **A Tray of Six and an Empty Tray.** Show six countable counters in one labeled tray and an empty tray labeled 0. Learner counts both, may reveal '6 from first, 0 from second' and sees six total.
     2. **The Empty Tray Comes First.** Learner changes from 6+0 to 0+6, with exactly six objects still present. Accessible 'first tray zero; second six; total six' counters.
     3. **No Contribution or Two More?.** Two independent trials begin with six: 6+0=6 and 6+2=8. Learner picks the added amount and sees exact resulting count without modifying the other trial.
     4. **Try Nine and the Boundary.** Offer three independent cases, predict/reveal totals nine, nine and zero, with explicit text ledger and optional counter pictures.
-    
+
     ## SECTION PLAN
-    
-    
-    
+
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Zero Addition Explorer (Scene specification embedded in this config.yaml): four distinct self-contained prop-free Scene placements, separately initialized in Sections 1–4. No public `mode` prop or additional Resource_Config field is assumed.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. “Adding zero keeps the total unchanged.” — proposed when the relevant conceptual demonstration has been experienced and explained.
     2. “Zero can be either addend: a+0 and 0+a both equal a.” — proposed when the relevant conceptual demonstration has been experienced and explained.
-    
+
     Notes and unlock events are planned, not wired. Do not claim personal persistence, an offline revision sheet or spaced-repetition scheduling. A Note reveal is not mastery evidence.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Offer three independent cases, predict/reveal totals nine, nine and zero, with explicit text ledger and optional counter pictures. Learner predictions are formative; Assessment Architect must independently design valid, scored Question_Config items, Skill attribution, hints/retry thresholds and mastery criteria. These illustrative answer choices are not ready-to-ship Quiz data. The current Question adapter's select-one support is not a substitute for implementing custom Scenes.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Translate all child-facing text, mathematical terminology, status announcements, Notes and accessible controls into the complete supported locale set with no silent English fallback. Equivalent ordered text/tables must let learners inspect and operate each object-count and equation state without sight, drag or sound. Maintain semantic LTR/RTL operand/number order; keyboard/touch/switch control, WCAG 2.2 AA, large targets, focus, reduced motion, zoom/mobile compatibility. Run all deterministic calculations and feedback offline after a full chosen-locale download; do not invent remote services.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     The generic LessonSection renderer supports `text`, `markdown`, `scene`, and its Lesson Section contract orders resources vertically. Zero Addition Explorer is **proposed, not implemented**, with separate Section entry components/localized context and own tests required after approval. No image/audio/video/code generic blocks or YouTube integration used. Notes, review scheduling and download/sync facilities must not be represented as already implemented. No runtime Lesson Config, Quiz, Question or scoring artifacts created.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Methodologist Brief (incorporated in this config.yaml), awaiting explicit editor approval.
     - Canonical `addZero.data.ts` linked from the Brief; the shared generated taxonomy is coordinated separately.
     - [Create Lesson Content Skill](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Keep empty trays perceptible in screen-reader mode: an empty collection needs a real textual description, not invisible graphic content.
-    
+
     ## HANDOFF
-    
+
     This is one **provisional Draft** Content document with the separately reviewable Draft Scene spec. Editor first approves the Methodologist Brief, then evaluates Content and Scene. Scene Designer, Coding Agent and Assessment Architect proceed only with separate authorization. Do not rewrite canon Skills, create scored Questions, or change unrelated Lessons.
-    
+
     Source locale is English. Planned supported languages follow the 29 currently defined Engine locales; verify exact lesson-specific locale scope editorially. No translations, scored Quiz, Question Bank, Flashcard Bank, assets, or Scene implementations were produced. Methodology/Screenwriter approval remains pending.

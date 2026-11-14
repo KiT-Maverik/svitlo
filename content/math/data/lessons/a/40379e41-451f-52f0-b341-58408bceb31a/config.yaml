@@ -1,72 +1,72 @@
 config:
-  id: "40379e41-451f-52f0-b341-58408bceb31a"
-  slug: "whichOutcomeIsMoreLikely"
-  type: "lesson"
-  skills: ["a2a4702d-d512-4459-a699-a4fd874670ac"]
+  id: '40379e41-451f-52f0-b341-58408bceb31a'
+  slug: 'whichOutcomeIsMoreLikely'
+  type: 'lesson'
+  skills: ['a2a4702d-d512-4459-a699-a4fd874670ac']
   params:
     requireQuiz: false
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Which Outcome Is More Likely?"
+      en: 'Which Outcome Is More Likely?'
   section:
     items:
       section1BothColorsArePossibleButAreTheyEqual:
         config:
-          id: "5f1fde62-a7b6-40d3-b11f-80285c048369"
-          slug: "section1BothColorsArePossibleButAreTheyEqual"
-          type: "content"
+          id: '5f1fde62-a7b6-40d3-b11f-80285c048369'
+          slug: 'section1BothColorsArePossibleButAreTheyEqual'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Both colors are possible—but are they equal?"
+              en: 'Both colors are possible—but are they equal?'
             navigationLabel:
-              en: "Both colors are possible—but are they equal?"
+              en: 'Both colors are possible—but are they equal?'
           content:
             items:
               text1:
                 config:
-                  id: "ca2a58b3-4352-4ed6-8c61-415d7ce85698"
-                  slug: "text1"
-                  type: "text"
+                  id: 'ca2a58b3-4352-4ed6-8c61-415d7ce85698'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "This spinner has five equally sized slices: four blue, one yellow. We assume the pointer is equally likely to land anywhere around the circle. Could yellow appear? Is it as likely as blue?"
+                      en: 'This spinner has five equally sized slices: four blue, one yellow. We assume the pointer is equally likely to land anywhere around the circle. Could yellow appear? Is it as likely as blue?'
               chanceSpinnerLab:
                 config:
-                  id: "fc172d3b-ee2d-4ba4-bff1-90a971eb24f2"
-                  slug: "chanceSpinnerLab"
-                  type: "scene"
+                  id: 'fc172d3b-ee2d-4ba4-bff1-90a971eb24f2'
+                  slug: 'chanceSpinnerLab'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "ChanceSpinnerLab"
+                      en: 'ChanceSpinnerLab'
                 production:
                   specification: |
                     # ChanceSpinnerLab — Interactive Scene Specification
-                    
+
                     **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
                     **Lesson:** Which Outcome Is More Likely? — Content (editorial text integrated into this config.yaml)
                     **Methodologist source:** Draft Brief (editorial text integrated into this config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [likelihoodLanguage.data.ts](../../../../../data/skills/probability/events/skills/likelihoodLanguage.data.ts)
-                    
+
                     ## Pedagogical role
-                    
+
                     Distinguish an event being possible from it being more or less likely, compare chances only under clearly specified spinner conditions and account for whether outcomes are equally likely.
-                    
+
                     **Why a custom interactive Scene is warranted:** The prior lessons established certain/impossible events and complete outcome lists; comparisons of likelihood require inspecting how the possible results are distributed, not just naming them. Choose between four predetermined spinners, toggle visibility of individual sector labels and total color coverage, predict which color is more/equally/less likely, request an explanation, reset. Optional single spin animation must not alter the logical comparison; avoid reliance on randomness or streaks. Local state, prop-free, no invented APIs.
-                    
+
                     This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
-                    
+
                     ## Model, essential visual states and verifiable answers
-                    
+
                     | State / preset          | Concrete representation                                           | Explanation / correct conclusion                                                |
                     | ----------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------- |
                     | Five equal sectors      | B,B,B,B,Y; each 72°; uniform pointer direction                    | Blue more likely than yellow; yellow possible                                   |
@@ -75,20 +75,20 @@ config:
                     | Transfer six sectors    | Y,Y,Y,Y,B,B; each 60°; uniform pointer direction                  | Yellow more likely than blue; blue remains possible                             |
                     | No spin taken           | Current spinner unchanged, no observed outcomes                   | The chance comparison follows from stated conditions, not a recorded trial      |
                     | Learner choice mistake  | Any possible-but-less-likely choice incorrectly marked impossible | Explicit available-sector evidence and retry                                    |
-                    
+
                     **Model scope and limitation:** Comparison assumes a uniform pointer direction over angular positions and no physical spin bias. Without the stated fairness model, the number of colored slices alone may not establish real probabilities.
-                    
+
                     ## Learner controls, transitions and no-penalty recovery
-                    
+
                     1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
                     2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
                     3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
                     4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
                     5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
                     6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
-                    
+
                     ## Required explanatory feedback and errors
-                    
+
                     - **Both colors are possible—but are they equal? / Yellow impossible:** “The yellow sector is small in number, not missing. The pointer could land there.”
                     - **Both colors are possible—but are they equal? / Equal chances:** “The five slices are equally sized and have equal chance individually. Four are blue and one is yellow.”
                     - **Equal chances require equal coverage / Blue more likely:** “Both colors cover exactly two equal-sized slices. Neither has more of the circle.”
@@ -98,113 +98,113 @@ config:
                     - **New spinner, make a justified prediction / Blue impossible:** “There are two blue slices. Blue can happen even though there are more yellow slices.”
                     - **New spinner, make a justified prediction / Yellow certain:** “The spinner also has blue slices. More likely does not mean guaranteed.”
                     - **New spinner, make a justified prediction / Equal chance:** “Four equally likely slices are yellow, while only two are blue. The coverage is not the same.”
-                    
+
                     **Exclude:** Formal probability calculations, probability fractions/percentages, sampling variation over repeated runs, dependent events and biased spin mechanisms belong elsewhere. A physical spinner is only treated as uniform when explicitly stated.
-                    
+
                     ## Equivalent participation without sight, color, drag or hearing
-                    
+
                     A linearized list of colored sector labels, exact equal/unequal sector sizes and the total angle or half-circle coverage of each color supports every prediction without seeing colors or geometry. Keyboard choices are equally expressive.
-                    
+
                     All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
-                    
+
                     ## Internationalization, access, mobile and offline acceptance
-                    
+
                     Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
-                    
+
                     ## Coding Agent and Assessment Architect handoff
-                    
+
                     **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
-                  purpose: "Proposed interactive Scene for Both colors are possible—but are they equal?"
+                  purpose: 'Proposed interactive Scene for Both colors are possible—but are they equal?'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               markdown2:
                 config:
-                  id: "9337b858-8a85-4f5d-8479-a61ad144514f"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '9337b858-8a85-4f5d-8479-a61ad144514f'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Yellow can happen, so it is possible. But blue covers four of five equal slices and yellow only one. Blue is more likely; yellow is less likely—not impossible."
-            order: ["text1","chanceSpinnerLab","markdown2"]
+                      en: 'Yellow can happen, so it is possible. But blue covers four of five equal slices and yellow only one. Blue is more likely; yellow is less likely—not impossible.'
+            order: ['text1', 'chanceSpinnerLab', 'markdown2']
         production:
-          purpose: "Both colors are possible—but are they equal?"
+          purpose: 'Both colors are possible—but are they equal?'
           pedagogicalIntent: |
             ### Section 1 — Both colors are possible—but are they equal?
-            
+
             **Purpose / intended outcome:** Move beyond binary possible/impossible claims.
-            
+
             **Blocks, in the required top-to-bottom order:**
-            
+
             1. **`text` — existing Resource block type.** “This spinner has five equally sized slices: four blue, one yellow. We assume the pointer is equally likely to land anywhere around the circle. Could yellow appear? Is it as likely as blue?”
-            
+
             2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** ChanceSpinnerLab (Scene specification embedded in this config.yaml): ChanceSpinnerLab preset '4 blue, 1 yellow': view five equal labelled sectors. Select possible/impossible for yellow, then compare 'blue more likely', 'yellow more likely', 'equally likely' with direct sector evidence.
-            
+
             3. **`markdown` — existing Resource block type.** “Yellow can happen, so it is possible. But blue covers four of five equal slices and yellow only one. Blue is more likely; yellow is less likely—not impossible.”
-            
+
             **What the learner actually does:** Differentiate yellow possible from yellow equally likely without an actual spin.
-            
+
             **Specific explanatory feedback:**
-            
+
             - _Yellow impossible_: “The yellow sector is small in number, not missing. The pointer could land there.”
             - _Equal chances_: “The five slices are equally sized and have equal chance individually. Four are blue and one is yellow.”
-            
+
             **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Provide a text inventory 'sectors B,B,B,B,Y equal chance each' and counts in addition to color. The explanation remains available even if the learner chooses not to answer before moving on.
-            
+
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section2EqualChancesRequireEqualCoverage:
         config:
-          id: "8828c86e-f7c7-4bef-8858-ba24db950495"
-          slug: "section2EqualChancesRequireEqualCoverage"
-          type: "content"
+          id: '8828c86e-f7c7-4bef-8858-ba24db950495'
+          slug: 'section2EqualChancesRequireEqualCoverage'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Equal chances require equal coverage"
+              en: 'Equal chances require equal coverage'
             navigationLabel:
-              en: "Equal chances require equal coverage"
+              en: 'Equal chances require equal coverage'
           content:
             items:
               markdown1:
                 config:
-                  id: "e23956ad-20df-4460-8d4b-62f3377660ce"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'e23956ad-20df-4460-8d4b-62f3377660ce'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Now our spinner has four equal slices: two blue and two yellow. Which color is more likely?"
+                      en: 'Now our spinner has four equal slices: two blue and two yellow. Which color is more likely?'
               chanceSpinnerLab:
                 config:
-                  id: "00bd68a7-0fae-4d50-a84c-34e5aa6e773e"
-                  slug: "chanceSpinnerLab"
-                  type: "scene"
+                  id: '00bd68a7-0fae-4d50-a84c-34e5aa6e773e'
+                  slug: 'chanceSpinnerLab'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "ChanceSpinnerLab"
+                      en: 'ChanceSpinnerLab'
                 production:
                   specification: |
                     # ChanceSpinnerLab — Interactive Scene Specification
-                    
+
                     **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
                     **Lesson:** Which Outcome Is More Likely? — Content (editorial text integrated into this config.yaml)
                     **Methodologist source:** Draft Brief (editorial text integrated into this config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [likelihoodLanguage.data.ts](../../../../../data/skills/probability/events/skills/likelihoodLanguage.data.ts)
-                    
+
                     ## Pedagogical role
-                    
+
                     Distinguish an event being possible from it being more or less likely, compare chances only under clearly specified spinner conditions and account for whether outcomes are equally likely.
-                    
+
                     **Why a custom interactive Scene is warranted:** The prior lessons established certain/impossible events and complete outcome lists; comparisons of likelihood require inspecting how the possible results are distributed, not just naming them. Choose between four predetermined spinners, toggle visibility of individual sector labels and total color coverage, predict which color is more/equally/less likely, request an explanation, reset. Optional single spin animation must not alter the logical comparison; avoid reliance on randomness or streaks. Local state, prop-free, no invented APIs.
-                    
+
                     This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
-                    
+
                     ## Model, essential visual states and verifiable answers
-                    
+
                     | State / preset          | Concrete representation                                           | Explanation / correct conclusion                                                |
                     | ----------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------- |
                     | Five equal sectors      | B,B,B,B,Y; each 72°; uniform pointer direction                    | Blue more likely than yellow; yellow possible                                   |
@@ -213,20 +213,20 @@ config:
                     | Transfer six sectors    | Y,Y,Y,Y,B,B; each 60°; uniform pointer direction                  | Yellow more likely than blue; blue remains possible                             |
                     | No spin taken           | Current spinner unchanged, no observed outcomes                   | The chance comparison follows from stated conditions, not a recorded trial      |
                     | Learner choice mistake  | Any possible-but-less-likely choice incorrectly marked impossible | Explicit available-sector evidence and retry                                    |
-                    
+
                     **Model scope and limitation:** Comparison assumes a uniform pointer direction over angular positions and no physical spin bias. Without the stated fairness model, the number of colored slices alone may not establish real probabilities.
-                    
+
                     ## Learner controls, transitions and no-penalty recovery
-                    
+
                     1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
                     2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
                     3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
                     4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
                     5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
                     6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
-                    
+
                     ## Required explanatory feedback and errors
-                    
+
                     - **Both colors are possible—but are they equal? / Yellow impossible:** “The yellow sector is small in number, not missing. The pointer could land there.”
                     - **Both colors are possible—but are they equal? / Equal chances:** “The five slices are equally sized and have equal chance individually. Four are blue and one is yellow.”
                     - **Equal chances require equal coverage / Blue more likely:** “Both colors cover exactly two equal-sized slices. Neither has more of the circle.”
@@ -236,113 +236,113 @@ config:
                     - **New spinner, make a justified prediction / Blue impossible:** “There are two blue slices. Blue can happen even though there are more yellow slices.”
                     - **New spinner, make a justified prediction / Yellow certain:** “The spinner also has blue slices. More likely does not mean guaranteed.”
                     - **New spinner, make a justified prediction / Equal chance:** “Four equally likely slices are yellow, while only two are blue. The coverage is not the same.”
-                    
+
                     **Exclude:** Formal probability calculations, probability fractions/percentages, sampling variation over repeated runs, dependent events and biased spin mechanisms belong elsewhere. A physical spinner is only treated as uniform when explicitly stated.
-                    
+
                     ## Equivalent participation without sight, color, drag or hearing
-                    
+
                     A linearized list of colored sector labels, exact equal/unequal sector sizes and the total angle or half-circle coverage of each color supports every prediction without seeing colors or geometry. Keyboard choices are equally expressive.
-                    
+
                     All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
-                    
+
                     ## Internationalization, access, mobile and offline acceptance
-                    
+
                     Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
-                    
+
                     ## Coding Agent and Assessment Architect handoff
-                    
+
                     **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
-                  purpose: "Proposed interactive Scene for Equal chances require equal coverage"
+                  purpose: 'Proposed interactive Scene for Equal chances require equal coverage'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               text2:
                 config:
-                  id: "c1a91752-c572-489f-9cae-733059099aed"
-                  slug: "text2"
-                  type: "text"
+                  id: 'c1a91752-c572-489f-9cae-733059099aed'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Blue and yellow each cover two of the four equally likely slices. Neither is favored. It is not certain which color appears on one spin."
-            order: ["markdown1","chanceSpinnerLab","text2"]
+                      en: 'Blue and yellow each cover two of the four equally likely slices. Neither is favored. It is not certain which color appears on one spin.'
+            order: ['markdown1', 'chanceSpinnerLab', 'text2']
         production:
-          purpose: "Equal chances require equal coverage"
+          purpose: 'Equal chances require equal coverage'
           pedagogicalIntent: |
             ### Section 2 — Equal chances require equal coverage
-            
+
             **Purpose / intended outcome:** Distinguish a balanced spinner from an unbalanced one under the same assumptions.
-            
+
             **Blocks, in the required top-to-bottom order:**
-            
+
             1. **`markdown` — existing Resource block type.** “Now our spinner has four equal slices: two blue and two yellow. Which color is more likely?”
-            
+
             2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** ChanceSpinnerLab (Scene specification embedded in this config.yaml): Switch to a four-equal-sector preset with B,B,Y,Y, and optionally lay the pairs side by side to see matching angle coverage. Choose 'same chance' and explain.
-            
+
             3. **`text` — existing Resource block type.** “Blue and yellow each cover two of the four equally likely slices. Neither is favored. It is not certain which color appears on one spin.”
-            
+
             **What the learner actually does:** Inspect matching two-color coverage, choosing equally likely.
-            
+
             **Specific explanatory feedback:**
-            
+
             - _Blue more likely_: “Both colors cover exactly two equal-sized slices. Neither has more of the circle.”
             - _Blue certain_: “There are yellow slices too. Equal chances do not tell us the next result.”
-            
+
             **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Express '2 equal sectors versus 2 equal sectors' in text, not only shaded wedges. The explanation remains available even if the learner chooses not to answer before moving on.
-            
+
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section3ALargeSliceCanMatterMoreThanSeveralSmallOnes:
         config:
-          id: "b7e13000-6741-4fe1-94d0-e306fce7f34f"
-          slug: "section3ALargeSliceCanMatterMoreThanSeveralSmallOnes"
-          type: "content"
+          id: 'b7e13000-6741-4fe1-94d0-e306fce7f34f'
+          slug: 'section3ALargeSliceCanMatterMoreThanSeveralSmallOnes'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A large slice can matter more than several small ones"
+              en: 'A large slice can matter more than several small ones'
             navigationLabel:
-              en: "A large slice can matter more than several small ones"
+              en: 'A large slice can matter more than several small ones'
           content:
             items:
               text1:
                 config:
-                  id: "28dd27f5-2346-4db0-afb1-24f7bec08b92"
-                  slug: "text1"
-                  type: "text"
+                  id: '28dd27f5-2346-4db0-afb1-24f7bec08b92'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Look carefully. This spinner has one large blue half-circle and two small yellow quarter-circles. Are there more yellow slices? Does that make yellow more likely?"
+                      en: 'Look carefully. This spinner has one large blue half-circle and two small yellow quarter-circles. Are there more yellow slices? Does that make yellow more likely?'
               chanceSpinnerLab:
                 config:
-                  id: "29f2d161-bff3-4d2a-8715-06ffa5820e30"
-                  slug: "chanceSpinnerLab"
-                  type: "scene"
+                  id: '29f2d161-bff3-4d2a-8715-06ffa5820e30'
+                  slug: 'chanceSpinnerLab'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "ChanceSpinnerLab"
+                      en: 'ChanceSpinnerLab'
                 production:
                   specification: |
                     # ChanceSpinnerLab — Interactive Scene Specification
-                    
+
                     **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
                     **Lesson:** Which Outcome Is More Likely? — Content (editorial text integrated into this config.yaml)
                     **Methodologist source:** Draft Brief (editorial text integrated into this config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [likelihoodLanguage.data.ts](../../../../../data/skills/probability/events/skills/likelihoodLanguage.data.ts)
-                    
+
                     ## Pedagogical role
-                    
+
                     Distinguish an event being possible from it being more or less likely, compare chances only under clearly specified spinner conditions and account for whether outcomes are equally likely.
-                    
+
                     **Why a custom interactive Scene is warranted:** The prior lessons established certain/impossible events and complete outcome lists; comparisons of likelihood require inspecting how the possible results are distributed, not just naming them. Choose between four predetermined spinners, toggle visibility of individual sector labels and total color coverage, predict which color is more/equally/less likely, request an explanation, reset. Optional single spin animation must not alter the logical comparison; avoid reliance on randomness or streaks. Local state, prop-free, no invented APIs.
-                    
+
                     This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
-                    
+
                     ## Model, essential visual states and verifiable answers
-                    
+
                     | State / preset          | Concrete representation                                           | Explanation / correct conclusion                                                |
                     | ----------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------- |
                     | Five equal sectors      | B,B,B,B,Y; each 72°; uniform pointer direction                    | Blue more likely than yellow; yellow possible                                   |
@@ -351,20 +351,20 @@ config:
                     | Transfer six sectors    | Y,Y,Y,Y,B,B; each 60°; uniform pointer direction                  | Yellow more likely than blue; blue remains possible                             |
                     | No spin taken           | Current spinner unchanged, no observed outcomes                   | The chance comparison follows from stated conditions, not a recorded trial      |
                     | Learner choice mistake  | Any possible-but-less-likely choice incorrectly marked impossible | Explicit available-sector evidence and retry                                    |
-                    
+
                     **Model scope and limitation:** Comparison assumes a uniform pointer direction over angular positions and no physical spin bias. Without the stated fairness model, the number of colored slices alone may not establish real probabilities.
-                    
+
                     ## Learner controls, transitions and no-penalty recovery
-                    
+
                     1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
                     2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
                     3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
                     4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
                     5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
                     6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
-                    
+
                     ## Required explanatory feedback and errors
-                    
+
                     - **Both colors are possible—but are they equal? / Yellow impossible:** “The yellow sector is small in number, not missing. The pointer could land there.”
                     - **Both colors are possible—but are they equal? / Equal chances:** “The five slices are equally sized and have equal chance individually. Four are blue and one is yellow.”
                     - **Equal chances require equal coverage / Blue more likely:** “Both colors cover exactly two equal-sized slices. Neither has more of the circle.”
@@ -374,113 +374,113 @@ config:
                     - **New spinner, make a justified prediction / Blue impossible:** “There are two blue slices. Blue can happen even though there are more yellow slices.”
                     - **New spinner, make a justified prediction / Yellow certain:** “The spinner also has blue slices. More likely does not mean guaranteed.”
                     - **New spinner, make a justified prediction / Equal chance:** “Four equally likely slices are yellow, while only two are blue. The coverage is not the same.”
-                    
+
                     **Exclude:** Formal probability calculations, probability fractions/percentages, sampling variation over repeated runs, dependent events and biased spin mechanisms belong elsewhere. A physical spinner is only treated as uniform when explicitly stated.
-                    
+
                     ## Equivalent participation without sight, color, drag or hearing
-                    
+
                     A linearized list of colored sector labels, exact equal/unequal sector sizes and the total angle or half-circle coverage of each color supports every prediction without seeing colors or geometry. Keyboard choices are equally expressive.
-                    
+
                     All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
-                    
+
                     ## Internationalization, access, mobile and offline acceptance
-                    
+
                     Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
-                    
+
                     ## Coding Agent and Assessment Architect handoff
-                    
+
                     **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
-                  purpose: "Proposed interactive Scene for A large slice can matter more than several small ones"
+                  purpose: 'Proposed interactive Scene for A large slice can matter more than several small ones'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               markdown2:
                 config:
-                  id: "ccf38302-f0c9-4fb7-9953-cbfc611116f9"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: 'ccf38302-f0c9-4fb7-9953-cbfc611116f9'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "There are two yellow slices but together they take the same half of the circle as the one blue slice. Under our uniform-spin rule, the colors are equally likely. Count possible coverage, not just pieces."
-            order: ["text1","chanceSpinnerLab","markdown2"]
+                      en: 'There are two yellow slices but together they take the same half of the circle as the one blue slice. Under our uniform-spin rule, the colors are equally likely. Count possible coverage, not just pieces.'
+            order: ['text1', 'chanceSpinnerLab', 'markdown2']
         production:
-          purpose: "A large slice can matter more than several small ones"
+          purpose: 'A large slice can matter more than several small ones'
           pedagogicalIntent: |
             ### Section 3 — A large slice can matter more than several small ones
-            
+
             **Purpose / intended outcome:** Expose the limit of sector-counting as a chance heuristic.
-            
+
             **Blocks, in the required top-to-bottom order:**
-            
+
             1. **`text` — existing Resource block type.** “Look carefully. This spinner has one large blue half-circle and two small yellow quarter-circles. Are there more yellow slices? Does that make yellow more likely?”
-            
+
             2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** ChanceSpinnerLab (Scene specification embedded in this config.yaml): Preset unequal sectors: Blue one 180° sector, Yellow two 90° sectors; pointer direction is uniform. Highlight half-circle coverage and show blue total 180°, yellow total 180°. Count sectors separately from total coverage.
-            
+
             3. **`markdown` — existing Resource block type.** “There are two yellow slices but together they take the same half of the circle as the one blue slice. Under our uniform-spin rule, the colors are equally likely. Count possible coverage, not just pieces.”
-            
+
             **What the learner actually does:** Compare both region count and total angular coverage, then state the correct qualitative relation.
-            
+
             **Specific explanatory feedback:**
-            
+
             - _Yellow more likely because two slices_: “The yellow slices are each smaller. Together they cover one half, the same as blue's single half.”
             - _Blue certain_: “Half the circle is yellow. Yellow remains possible.”
-            
+
             **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Provide numerical angle totals 180°/180° plus simple 'half of circle versus half'; the angle degree value is optional, not a new required Skill. The explanation remains available even if the learner chooses not to answer before moving on.
-            
+
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section4NewSpinnerMakeAJustifiedPrediction:
         config:
-          id: "6654829e-f5a7-4467-b4b8-469cd089733d"
-          slug: "section4NewSpinnerMakeAJustifiedPrediction"
-          type: "content"
+          id: '6654829e-f5a7-4467-b4b8-469cd089733d'
+          slug: 'section4NewSpinnerMakeAJustifiedPrediction'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "New spinner, make a justified prediction"
+              en: 'New spinner, make a justified prediction'
             navigationLabel:
-              en: "New spinner, make a justified prediction"
+              en: 'New spinner, make a justified prediction'
           content:
             items:
               markdown1:
                 config:
-                  id: "d2ea1a3d-f6e2-4548-b267-117b66b59f66"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'd2ea1a3d-f6e2-4548-b267-117b66b59f66'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A new fair spinner has six equal slices. Four are yellow and two are blue. Which color is more likely? Could the other color still appear?"
+                      en: 'A new fair spinner has six equal slices. Four are yellow and two are blue. Which color is more likely? Could the other color still appear?'
               chanceSpinnerLab:
                 config:
-                  id: "5d837357-e559-4168-8e50-067dec1bef66"
-                  slug: "chanceSpinnerLab"
-                  type: "scene"
+                  id: '5d837357-e559-4168-8e50-067dec1bef66'
+                  slug: 'chanceSpinnerLab'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "ChanceSpinnerLab"
+                      en: 'ChanceSpinnerLab'
                 production:
                   specification: |
                     # ChanceSpinnerLab — Interactive Scene Specification
-                    
+
                     **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
                     **Lesson:** Which Outcome Is More Likely? — Content (editorial text integrated into this config.yaml)
                     **Methodologist source:** Draft Brief (editorial text integrated into this config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [likelihoodLanguage.data.ts](../../../../../data/skills/probability/events/skills/likelihoodLanguage.data.ts)
-                    
+
                     ## Pedagogical role
-                    
+
                     Distinguish an event being possible from it being more or less likely, compare chances only under clearly specified spinner conditions and account for whether outcomes are equally likely.
-                    
+
                     **Why a custom interactive Scene is warranted:** The prior lessons established certain/impossible events and complete outcome lists; comparisons of likelihood require inspecting how the possible results are distributed, not just naming them. Choose between four predetermined spinners, toggle visibility of individual sector labels and total color coverage, predict which color is more/equally/less likely, request an explanation, reset. Optional single spin animation must not alter the logical comparison; avoid reliance on randomness or streaks. Local state, prop-free, no invented APIs.
-                    
+
                     This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
-                    
+
                     ## Model, essential visual states and verifiable answers
-                    
+
                     | State / preset          | Concrete representation                                           | Explanation / correct conclusion                                                |
                     | ----------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------- |
                     | Five equal sectors      | B,B,B,B,Y; each 72°; uniform pointer direction                    | Blue more likely than yellow; yellow possible                                   |
@@ -489,20 +489,20 @@ config:
                     | Transfer six sectors    | Y,Y,Y,Y,B,B; each 60°; uniform pointer direction                  | Yellow more likely than blue; blue remains possible                             |
                     | No spin taken           | Current spinner unchanged, no observed outcomes                   | The chance comparison follows from stated conditions, not a recorded trial      |
                     | Learner choice mistake  | Any possible-but-less-likely choice incorrectly marked impossible | Explicit available-sector evidence and retry                                    |
-                    
+
                     **Model scope and limitation:** Comparison assumes a uniform pointer direction over angular positions and no physical spin bias. Without the stated fairness model, the number of colored slices alone may not establish real probabilities.
-                    
+
                     ## Learner controls, transitions and no-penalty recovery
-                    
+
                     1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
                     2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
                     3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
                     4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
                     5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
                     6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
-                    
+
                     ## Required explanatory feedback and errors
-                    
+
                     - **Both colors are possible—but are they equal? / Yellow impossible:** “The yellow sector is small in number, not missing. The pointer could land there.”
                     - **Both colors are possible—but are they equal? / Equal chances:** “The five slices are equally sized and have equal chance individually. Four are blue and one is yellow.”
                     - **Equal chances require equal coverage / Blue more likely:** “Both colors cover exactly two equal-sized slices. Neither has more of the circle.”
@@ -512,217 +512,223 @@ config:
                     - **New spinner, make a justified prediction / Blue impossible:** “There are two blue slices. Blue can happen even though there are more yellow slices.”
                     - **New spinner, make a justified prediction / Yellow certain:** “The spinner also has blue slices. More likely does not mean guaranteed.”
                     - **New spinner, make a justified prediction / Equal chance:** “Four equally likely slices are yellow, while only two are blue. The coverage is not the same.”
-                    
+
                     **Exclude:** Formal probability calculations, probability fractions/percentages, sampling variation over repeated runs, dependent events and biased spin mechanisms belong elsewhere. A physical spinner is only treated as uniform when explicitly stated.
-                    
+
                     ## Equivalent participation without sight, color, drag or hearing
-                    
+
                     A linearized list of colored sector labels, exact equal/unequal sector sizes and the total angle or half-circle coverage of each color supports every prediction without seeing colors or geometry. Keyboard choices are equally expressive.
-                    
+
                     All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
-                    
+
                     ## Internationalization, access, mobile and offline acceptance
-                    
+
                     Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
-                    
+
                     ## Coding Agent and Assessment Architect handoff
-                    
+
                     **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
-                  purpose: "Proposed interactive Scene for New spinner, make a justified prediction"
+                  purpose: 'Proposed interactive Scene for New spinner, make a justified prediction'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               text2:
                 config:
-                  id: "facaaac2-3683-4df7-a05f-fac88d471215"
-                  slug: "text2"
-                  type: "text"
+                  id: 'facaaac2-3683-4df7-a05f-fac88d471215'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Yellow is more likely because it covers four of six equal slices. Blue is still possible because two blue slices remain. Neither result is guaranteed on one spin."
-            order: ["markdown1","chanceSpinnerLab","text2"]
+                      en: 'Yellow is more likely because it covers four of six equal slices. Blue is still possible because two blue slices remain. Neither result is guaranteed on one spin.'
+            order: ['markdown1', 'chanceSpinnerLab', 'text2']
         production:
-          purpose: "New spinner, make a justified prediction"
+          purpose: 'New spinner, make a justified prediction'
           pedagogicalIntent: |
             ### Section 4 — New spinner, make a justified prediction
-            
+
             **Purpose / intended outcome:** Independent qualitative comparison without overpromising the actual draw.
-            
+
             **Blocks, in the required top-to-bottom order:**
-            
+
             1. **`markdown` — existing Resource block type.** “A new fair spinner has six equal slices. Four are yellow and two are blue. Which color is more likely? Could the other color still appear?”
-            
+
             2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** ChanceSpinnerLab (Scene specification embedded in this config.yaml): Transfer preset six equal sectors, Y,Y,Y,Y,B,B. Hide relative-chance labels until the learner chooses which is more likely and whether blue is possible.
-            
+
             3. **`text` — existing Resource block type.** “Yellow is more likely because it covers four of six equal slices. Blue is still possible because two blue slices remain. Neither result is guaranteed on one spin.”
-            
+
             **What the learner actually does:** Identify yellow as more likely, blue as still possible, and explain the evidence.
-            
+
             **Specific explanatory feedback:**
-            
+
             - _Blue impossible_: “There are two blue slices. Blue can happen even though there are more yellow slices.”
             - _Yellow certain_: “The spinner also has blue slices. More likely does not mean guaranteed.”
             - _Equal chance_: “Four equally likely slices are yellow, while only two are blue. The coverage is not the same.”
-            
+
             **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Choose via keyboard-labelled chance options and verify from an ordered sector list. The explanation remains available even if the learner chooses not to answer before moving on.
-            
+
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
-    order: ["section1BothColorsArePossibleButAreTheyEqual","section2EqualChancesRequireEqualCoverage","section3ALargeSliceCanMatterMoreThanSeveralSmallOnes","section4NewSpinnerMakeAJustifiedPrediction"]
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+    order:
+      [
+        'section1BothColorsArePossibleButAreTheyEqual',
+        'section2EqualChancesRequireEqualCoverage',
+        'section3ALargeSliceCanMatterMoreThanSeveralSmallOnes',
+        'section4NewSpinnerMakeAJustifiedPrediction',
+      ]
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # Which Outcome Is More Likely? — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: whichOutcomeIsMoreLikely
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Distinguish an event being possible from it being more or less likely, compare chances only under clearly specified spinner conditions and account for whether outcomes are equally likely.
-    
+
     **Why this Lesson now:** The prior lessons established certain/impossible events and complete outcome lists; comparisons of likelihood require inspecting how the possible results are distributed, not just naming them.
-    
+
     ## Target audience
-    
+
     **Grade 3, approximately ages 8–9.** Choose this grade independently of the previous Lesson's age: target complexity and prerequisites justify the depth. Learners may have variable reading fluency, numeracy speed, vision, motor control and language proficiency; offer equivalent meaningful visual and nonvisual actions. The Skills themselves remain grade-independent.
-    
+
     ## Prerequisites
-    
+
     - Identify certain, impossible and possible events (`certainImpossible`).
     - List possible outcomes for a fully specified random experiment (`listOutcomes`).
     - Recognize equal-area angular sectors and compare small category counts using concrete models.
-    
+
     No Program completion is required; these are underlying knowledge needs only. Missing prerequisites should trigger scaffold or a separate prior Lesson rather than silently redefining the target Skill.
-    
+
     ## Target Skills
-    
+
     - [likelihoodLanguage.data.ts](../../../../data/skills/probability/events/skills/likelihoodLanguage.data.ts)
-    
+
     The single Skill is not a Question format; its defined competency is the target of instruction.
-    
+
     ## Expected learning outcomes
-    
+
     - For a fair spinner with five equal sectors, four blue and one yellow, explain why blue is more likely while neither color is certain.
     - For a fair spinner with four equal sectors, two blue and two yellow, identify equal chances for the two colors.
     - Explain that merely 'possible' does not imply fifty-fifty and that a result not seen in a few spins can still be possible.
     - Identify that counting differently sized sectors as if each were equally likely can give a misleading comparison.
     - Use a new six-equal-sector spinner (four yellow, two blue) to predict which color is more likely and justify the prediction without computing percentages.
-    
+
     These are instructional opportunities and observable behaviors; one correct selection or a revealed model is not a validated mastery claim.
-    
+
     ## Essential subject matter
-    
+
     - Probability describes how likely an event is under a stated experiment. A possible event may be more likely, less likely or equally likely than another possible event.
     - Under the explicitly assumed uniform pointer direction, each equal angular sector of a well-designed spinner has equal chance. Five equal sectors with four blue and one yellow therefore make blue more likely.
     - Four equal sectors, two blue and two yellow, make the two colors equally likely. Both remain possible; neither is certain.
     - A spinner with one half-circle blue region and two quarter-circle yellow regions has blue and yellow each covering half the total angle, despite one blue region and two yellow regions. Counting visible sectors is not sufficient when sector sizes differ.
     - The result of a single fair spin cannot be guaranteed based only on which color is more likely. Some realized sequences can omit a possible color, but it remains possible under unchanged rules.
-    
+
     **Instructional depth:** Qualitative comparison of two colored outcomes, a uniformly random spinner with equal angular sectors as the main model (4–6 sections), and one deliberately unequal-sector contrast. Do not calculate probability fractions, percentages or odds, claim certainty from a finite sample, or assume all physical methods are fair.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Activate the prerequisite representation, elicit a prediction before explanation, expose the mathematical condition using an inspectable model, contrast it with a tempting misconception, then let the learner transfer to a new case with optional hints. This progression specifies what must become clear, not a mandated Section-type pattern. The Screenwriter controls delivery and detailed interactions provisionally; no scoring or automatic progress API is assumed.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     - Possible means exactly 50% probable.
     - The color with the most sectors is always more likely even when sectors have unequal angular sizes.
     - More likely means certain, so the less likely color cannot appear.
     - A few sample outcomes prove a spinner must favor the color that appeared most.
     - Changing the spinner's rules or angle distribution does not affect the chance comparison.
-    
+
     **Hard exclusions and postponed Skills:** Formal probability calculations, probability fractions/percentages, sampling variation over repeated runs, dependent events and biased spin mechanisms belong elsewhere. A physical spinner is only treated as uniform when explicitly stated.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     All runtime text, accessible descriptions, controls, feedback and optional audio must eventually be genuinely translated into every supported locale. No fake translations, placeholder dictionaries, missing locales or unauthorized language fallback. Use proper localized mathematical vocabulary and numeric formatting; preserve math and factual diagram relations while adapting semantic LTR/RTL reading order. Ensure full keyboard/touch, nonvisual, reduced-motion and small-screen equivalent experiences and WCAG 2.2 AA targets. Once delivered, the entire lesson, Scene and feedback must work offline on weak devices; this is an engineering requirement, not a claim of current functionality.
-    
+
     ## Sources and factual verification
-    
+
     - [likelihoodLanguage.data.ts](../../../../data/skills/probability/events/skills/likelihoodLanguage.data.ts) — canonical Mathematics Skill with UUID, names and methodological descriptions preserved.
     - [Lesson architecture](../../../../../../studio/docs/entities/lesson.md), [Lesson Content](../../../../../../studio/docs/entities/lesson-content.md), [Section](../../../../../../studio/docs/entities/section.md) and [Program](../../../../../../studio/docs/entities/program.md) for editorial and ownership boundaries.
     - The provisional Scene's worked examples provide explicitly stated values and assumptions for mathematical verification; editorial approval remains pending.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Standalone and Program-neutral. No national curriculum compatibility is asserted. Grade is an instructional design choice, not taxonomy content.
-    
+
     ## Open editorial decisions
-    
+
     - **Editor:** approve Grade 3, prerequisite assumptions, target Skills, depth and misconception treatment.
     - **Editor:** review the proposed transfer case and the separate Scene specification; their status is provisional until the Methodologist Brief is approved.
     - **Coding Agent / later QA:** review accessibility, localization completeness, offline delivery and Lesson/Scene implementation under their separate workflows; do not infer implementation from this document.
-    
+
     ## Methodologist handoff
-    
+
     **Draft only.** No formal Methodologist approval gate has passed. The accompanying Content and Scene documents were prepared provisionally under the batch instruction and require independent Screenwriter/Scene approval before engineering. No runtime lesson data, Questions, Quizzes, assessment engine or score is authorized here.
   productionNotes: |-
     Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
-    
+
     # Which Outcome Is More Likely? — Lesson Content
-    
+
     **Editorial status: Provisional Draft — pending Methodologist approval (not formally approved).**
     **Audience:** Grade 3, approximately ages 8–9.
     **Source brief:** Draft Methodologist Brief (editorial text integrated into this config.yaml).
     **Target Skills:**
-    
+
     - [likelihoodLanguage.data.ts](../../../../data/skills/probability/events/skills/likelihoodLanguage.data.ts)
       **Lesson:** standalone, Program-neutral; no runtime Lesson, Quiz, Question, score or completed Scene is implemented.
-    
+
     ## The learner's experience
-    
+
     Distinguish an event being possible from it being more or less likely, compare chances only under clearly specified spinner conditions and account for whether outcomes are equally likely.
-    
+
     The prior lessons established certain/impossible events and complete outcome lists; comparisons of likelihood require inspecting how the possible results are distributed, not just naming them.
-    
+
     Choose between four predetermined spinners, toggle visibility of individual sector labels and total color coverage, predict which color is more/equally/less likely, request an explanation, reset. Optional single spin animation must not alter the logical comparison; avoid reliance on randomness or streaks. Local state, prop-free, no invented APIs.
-    
+
     **Teaching boundary:** Qualitative comparison of two colored outcomes, a uniformly random spinner with equal angular sectors as the main model (4–6 sections), and one deliberately unequal-sector contrast. Do not calculate probability fractions, percentages or odds, claim certainty from a finite sample, or assume all physical methods are fair. The activity must explain why an answer fits rather than merely reward a selection. Every comparison uses a specified whole, time scale, unit or random experiment, as appropriate. Wrong answers receive evidence-based feedback and a no-penalty retry.
-    
+
     ## Ordered learning journey
-    
+
     1. **Both colors are possible—but are they equal?:** Move beyond binary possible/impossible claims.
     2. **Equal chances require equal coverage:** Distinguish a balanced spinner from an unbalanced one under the same assumptions.
     3. **A large slice can matter more than several small ones:** Expose the limit of sector-counting as a chance heuristic.
     4. **New spinner, make a justified prediction:** Independent qualitative comparison without overpromising the actual draw.
-    
+
     The general Sections below use a **single vertical top-to-bottom column** of typed Resource blocks. `text`, `markdown` and `scene` are available block types; the named **ChanceSpinnerLab Scene is proposed and not implemented**. No separate 'Theory' or 'Practice' TypeScript discriminators are invented.
-    
+
     ## Section plan and learner-facing copy
-    
-    
+
+
     ## New custom Scene handoff
-    
+
     - ChanceSpinnerLab (Scene specification embedded in this config.yaml) — Screenwriter's provisional design, not implemented. It is self-contained, local-state and prop-free; any preset switches are internal rather than fake public props.
     - Every Section points to the same specification because its cases cover the whole conceptual progression; each rendered Scene occurrence must remain an independently initialized instance, not depend on another Section's state.
-    
+
     ## Independent transfer
-    
+
     For six equal sectors with four yellow and two blue, yellow is more likely but blue still possible.
-    
+
     Give the learner a fresh problem before revealing its answer, allow one useful optional hint, and then offer a worked explanation. A learner may answer verbally to an adult or via equivalent selectable controls; no assumed speech API. Transfer is instructional practice, not proof of validated mastery.
-    
+
     ## Proposed unlocked recall Note (not wired)
-    
+
     “Possible is not always half-and-half; compare chances using the actual experiment and coverage.”
-    
+
     Proposed moment: when Section 3's important contrasting example has been explored and accurately explained. **Note entity, unlock events, persistence, offline Notes sync and spaced review scheduling are planned concepts, not current implemented capabilities.** Do not block the Lesson on Note events.
-    
+
     ## Delivery and review readiness
-    
+
     - **Existing typed Resources:** `text`, `markdown`, `scene` with single-column Section ordering.
     - **Proposed:** the named interactive Scene, all its data presets, localized learner-facing text, accessibility alternatives, Scene tests and future offline package.
     - **Not designed here:** Questions, Quiz, graded response banks, mastery evaluation, score thresholds, new Resource types, API contracts or Program storyline.
-    
+
     Complete authentic localization, meaningful RTL, keyboard/touch/screen-reader equivalents, reduced motion, narrow screens, WCAG 2.2 AA and offline/weak-device parity are future implementation gates, not current claims. Methodologist, Screenwriter and Scene review statuses remain Draft until explicit editor approval.
-    
-    
+
+
     Migration status: provisional draft; pending independent approvals, translation and implementation.

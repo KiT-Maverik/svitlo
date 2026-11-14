@@ -1,101 +1,101 @@
 config:
-  id: "a2e4e6fe-9b2e-5dbd-abf5-e91b70f8ba64"
-  slug: "countByTwosWithPairs"
-  type: "lesson"
-  skills: ["f227f79b-0196-46b8-a227-8b7991729cc5"]
+  id: 'a2e4e6fe-9b2e-5dbd-abf5-e91b70f8ba64'
+  slug: 'countByTwosWithPairs'
+  type: 'lesson'
+  skills: ['f227f79b-0196-46b8-a227-8b7991729cc5']
   params:
     requireQuiz: false
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Two at a Time: Counting Pairs"
+      en: 'Two at a Time: Counting Pairs'
   section:
     items:
       section1PairStepWorkbench:
         config:
-          id: "834bdaf8-43bd-4e93-9f5a-14de5be490a1"
-          slug: "section1PairStepWorkbench"
-          type: "content"
+          id: '834bdaf8-43bd-4e93-9f5a-14de5be490a1'
+          slug: 'section1PairStepWorkbench'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Pair-Step Workbench"
+              en: 'Pair-Step Workbench'
             navigationLabel:
-              en: "Pair-Step Workbench"
+              en: 'Pair-Step Workbench'
           content:
             items:
               text1:
                 config:
-                  id: "71394ded-3390-4496-aff0-df6f09ebd270"
-                  slug: "text1"
-                  type: "text"
+                  id: '71394ded-3390-4496-aff0-df6f09ebd270'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Add one pair at a time. What totals do you see after one, two, three pairs?"
+                      en: 'Add one pair at a time. What totals do you see after one, two, three pairs?'
               pairStepWorkbench:
                 config:
-                  id: "31f5ea54-49eb-43eb-951c-6852d152a909"
-                  slug: "pairStepWorkbench"
-                  type: "scene"
+                  id: '31f5ea54-49eb-43eb-951c-6852d152a909'
+                  slug: 'pairStepWorkbench'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Pair-Step Workbench"
+                      en: 'Pair-Step Workbench'
                 production:
                   specification: |
                     # Pair-Step Workbench — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist and independent Scene approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Two at a Time: Counting Pairs Content (editorial text integrated into this config.yaml), Section 1
                     Methodologist objectives: Methodologist Brief (editorial text integrated into this config.yaml) (**Draft, not approved**)
                     Implementation status: Proposed standalone **prop-free Scene**, not implemented
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Make +2 observable as the consequence of adding one distinct pair and retain separate counters for pairs and individual objects.
-                    
+
                     **Underlying number relationship:** A pair contains exactly two items, so each additional separate pair increases the total number of items by two, while the count of pairs increases by one. Starting with zero objects and adding pairs gives totals 0,2,4,6,8,10: one pair has 2 objects, three pairs 6, five pairs 10. Six pairs contain 12 individual items; seven pairs contain 14. Counting by twos means repeated +2 and can also start at 1: one loose object plus successive pairs gives 1,3,5,7,9. Thus 'count by twos' does not mean every starting number is even; the start is a separate fact. Group count and item count are distinct.
-                    
+
                     The child must be able to change or examine the representation, form a prediction, see the exact model and explain why a plausible wrong shortcut fails.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     **Initial state:** Empty workbench with pair shelf; a new-pair action produces two separately named mittens joined as pair 1, pair 2, etc., up to five pairs. Two ledgers show number of pairs and total individual mittens.
-                    
+
                     **Model and invariant:** List of complete disjoint pair IDs, exactly two child object IDs per pair, totalItems = 2×pairCount, current prediction, step log and reset. Adding a pair increments pairCount by 1 and itemCount by 2; no loose mittens in this first Scene.
-                    
+
                     **Numerical and pedagogical limits:** Grade 2: up to seven concrete pairs (14 objects) and one-loose-plus-four-pairs transfer (9 objects). No general multiplication theorem, memorized times tables, abstract parity proof, fraction pairs or large counts. This differs from algebra's `numberPatterns`: the target is pair quantity and constant group addition, not inferring arbitrary unknown rules.
-                    
+
                     **Boundary case / nuance:** A pair cannot be partially added or contain three objects; Add Pair is the only quantity-increasing action. A child may inspect individual members whenever wanted; source pair/member IDs must remain unique.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Beat 1 — Add one pair at a time. What totals do you see after one, two, three pairs?
-                    
+
                     1. **Invitation:** “Add one pair at a time. What totals do you see after one, two, three pairs?”
                     2. **Controllable investigation:** Add pairs 1,2,3; observe totals 2,4,6. Compare groups count 3 with item count 6.
                     3. **Correct visible consequence:** After three groups of two, there are six individual mittens.
                     4. **Worked number evidence:** 3 pairs, 6 mittens; 2→4→6.
                     5. **Mistaken or incomplete route:** If three objects is predicted, point to two individual members in each of three distinct groups: 2+2+2.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ### Beat 2 — Keep adding until you have five pairs. How many mittens now?
-                    
+
                     1. **Invitation:** “Keep adding until you have five pairs. How many mittens now?”
                     2. **Controllable investigation:** Add pair 4 then pair 5, advancing total 8 then 10 without recounting from the first mitten.
                     3. **Correct visible consequence:** Five pairs have ten mittens; each addition increased total by two.
                     4. **Worked number evidence:** 4 pairs=8; 5 pairs=10.
                     5. **Mistaken or incomplete route:** If nine is predicted, count the last pair's two members added to the earlier eight: 8+2=10.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Semantic objects:** Named countable group members, ticks, operands or operator controls, each with stable identity, a visible state and an equivalent ordered textual ledger.
                     - **Control map:** Add one full pair; Remove last pair; Predict next object total; Reveal per-pair ledger; Reset.
                     - **Deterministic state:** The numbers, chosen preset, group members, selected values, prediction, Reveal state and Reset all come from the self-contained Scene's own constants and actions, not caller props.
@@ -103,19 +103,19 @@ config:
                     - **Independence:** The proposed component has **no props** and no mutable state shared with a Lesson or another Scene; each Section contains its own independently resettable placement.
                     - **Boundaries:** A pair cannot be partially added or contain three objects; Add Pair is the only quantity-increasing action. A child may inspect individual members whenever wanted; source pair/member IDs must remain unique.
                     - **Assessment boundary:** Prediction and feedback are formative only. No Question bank, Quiz, correct-answer security contract, mastery metric, score, persistent Note event, timed completion or invented platform API.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use lightweight HTML/SVG or ordinary semantic controls for individual items and groups, with a concise number ledger. Animation may highlight an interval, pair or new group but may never be the only carrier of information; reduced-motion mode updates state immediately. No required audio, live external service, asset generation or ornamental 3D. If optional sound is added later, localized captions/transcripts and downloaded media must preserve full learning.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     The two ledgers are separately labelled 'number of pairs' and 'number of mittens'. Announce 'pair 4 added, two mittens, total eight' without color-only markers; keyboard and switch add a whole pair without dragging.
-                    
+
                     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 0→1→2→3 pairs produces 0→2→4→6 objects.
                     2. Five pairs have exactly ten separate items.
                     3. Removing a pair decreases pair count by one and object count by two.
@@ -124,29 +124,29 @@ config:
                     6. For Beat 2, verify exact expected result: 4 pairs=8; 5 pairs=10. Test plausible wrong response: If nine is predicted, count the last pair's two members added to the earlier eight: 8+2=10.
                     7. All interactions work by keyboard, switch and touch with full nonvisual ledger, correct semantic RTL, reduced motion, mobile/high zoom and identical downloaded-offline mathematics.
                     8. Reset affects this Scene only, not another Section; no scoring or unimplemented Note event is emitted.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Each custom Scene is independently initialized, self-contained and **prop-free**; no caller supplies mode or numerical props. Scenarios and variables reside in that Scene's own authored module once implemented. The generic `scene` Resource type is supported, but this particular Scene has **not** been implemented. No invented API, registration, event, Note persistence, assessment, score or mastery side effect is assumed.
-                    
+
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
-                  purpose: "Proposed interactive Scene for Pair-Step Workbench"
+                  purpose: 'Proposed interactive Scene for Pair-Step Workbench'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               markdown2:
                 config:
-                  id: "543132ca-1c07-4d1d-abba-eec438078b77"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '543132ca-1c07-4d1d-abba-eec438078b77'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "After three groups of two, there are six individual mittens. 3 pairs, 6 mittens; 2→4→6."
-            order: ["text1","pairStepWorkbench","markdown2"]
+                      en: 'After three groups of two, there are six individual mittens. 3 pairs, 6 mittens; 2→4→6.'
+            order: ['text1', 'pairStepWorkbench', 'markdown2']
         production:
-          purpose: "Pair-Step Workbench"
+          purpose: 'Pair-Step Workbench'
           pedagogicalIntent: |
             ### Section 1 — Pair-Step Workbench
-            
+
             - **Learning purpose:** Make +2 observable as the consequence of adding one distinct pair and retain separate counters for pairs and individual objects.
             - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
             - **Ordered content blocks, top to bottom:**
@@ -154,80 +154,80 @@ config:
               2. **`scene` — generic type exists, **specific Scene proposed**:** Pair-Step Workbench (Scene specification embedded in this config.yaml). Empty workbench with pair shelf; a new-pair action produces two separately named mittens joined as pair 1, pair 2, etc., up to five pairs. Two ledgers show number of pairs and total individual mittens.
               3. **`markdown` — existing generic renderer:** “After three groups of two, there are six individual mittens. 3 pairs, 6 mittens; 2→4→6.”
             - **Learner action and responsive feedback:**
-            
+
             **Beat 1 — “Add one pair at a time. What totals do you see after one, two, three pairs?”** Add pairs 1,2,3; observe totals 2,4,6. Compare groups count 3 with item count 6.
-            
+
             **Learner-visible result:** After three groups of two, there are six individual mittens.
-            
+
             **Worked numerical evidence:** 3 pairs, 6 mittens; 2→4→6.
-            
+
             **Feedback for a plausible misconception:** If three objects is predicted, point to two individual members in each of three distinct groups: 2+2+2.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             **Beat 2 — “Keep adding until you have five pairs. How many mittens now?”** Add pair 4 then pair 5, advancing total 8 then 10 without recounting from the first mitten.
-            
+
             **Learner-visible result:** Five pairs have ten mittens; each addition increased total by two.
-            
+
             **Worked numerical evidence:** 4 pairs=8; 5 pairs=10.
-            
+
             **Feedback for a plausible misconception:** If nine is predicted, count the last pair's two members added to the earlier eight: 8+2=10.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             - **Controls and accessibility:** Add one full pair; Remove last pair; Predict next object total; Reveal per-pair ledger; Reset. The two ledgers are separately labelled 'number of pairs' and 'number of mittens'. Announce 'pair 4 added, two mittens, total eight' without color-only markers; keyboard and switch add a whole pair without dragging.
             - **Cause-and-effect explanation:** List of complete disjoint pair IDs, exactly two child object IDs per pair, totalItems = 2×pairCount, current prediction, step log and reset. Adding a pair increments pairCount by 1 and itemCount by 2; no loose mittens in this first Scene. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
             - **Boundary reasoning:** A pair cannot be partially added or contain three objects; Add Pair is the only quantity-increasing action. A child may inspect individual members whenever wanted; source pair/member IDs must remain unique.
             - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section2PairsAreNotSingleObjects:
         config:
-          id: "b48a954e-f7af-41bb-8c9a-107c0f8040f9"
-          slug: "section2PairsAreNotSingleObjects"
-          type: "content"
+          id: 'b48a954e-f7af-41bb-8c9a-107c0f8040f9'
+          slug: 'section2PairsAreNotSingleObjects'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Pairs Are Not Single Objects"
+              en: 'Pairs Are Not Single Objects'
             navigationLabel:
-              en: "Pairs Are Not Single Objects"
+              en: 'Pairs Are Not Single Objects'
           content:
             items:
               text1:
                 config:
-                  id: "acccec1f-1540-499e-aa1a-88e1deedada8"
-                  slug: "text1"
-                  type: "text"
+                  id: 'acccec1f-1540-499e-aa1a-88e1deedada8'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A table has four pairs of mittens. Does that mean four mittens or eight mittens?"
+                      en: 'A table has four pairs of mittens. Does that mean four mittens or eight mittens?'
               markdown2:
                 config:
-                  id: "825e4d54-e6e7-44d5-82d7-b1eeaae124bf"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '825e4d54-e6e7-44d5-82d7-b1eeaae124bf'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Eight mittens. There are four **groups** and each group contains **two**. Count by two: 2, 4, 6, 8. The number of pairs (four) and the number of mittens (eight) answer different questions."
+                      en: 'Eight mittens. There are four **groups** and each group contains **two**. Count by two: 2, 4, 6, 8. The number of pairs (four) and the number of mittens (eight) answer different questions.'
               markdown3:
                 config:
-                  id: "835e4ee7-e5e7-4342-83d7-b381a9e1232c"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '835e4ee7-e5e7-4342-83d7-b381a9e1232c'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A sequence that begins at one may still add two each time: one loose mitten, then 3, 5 and 7 after whole pairs are added."
-            order: ["text1","markdown2","markdown3"]
+                      en: 'A sequence that begins at one may still add two each time: one loose mitten, then 3, 5 and 7 after whole pairs are added.'
+            order: ['text1', 'markdown2', 'markdown3']
         production:
-          purpose: "Pairs Are Not Single Objects"
+          purpose: 'Pairs Are Not Single Objects'
           pedagogicalIntent: |
             ### Section 2 — Pairs Are Not Single Objects
-            
+
             - **Purpose and expected learner thinking:** Distinguish the mathematical invariant from a familiar but misleading shortcut; retrieve a rule without a score.
             - **Current implementation shape:** `LessonSection_Config`, a single vertical content column (no Quiz).
             - **Ordered content blocks:**
@@ -237,89 +237,89 @@ config:
             - **Meaningful feedback:** The example explicitly contrasts the likely mistaken response with a countable or numeric explanation. Child may reason before reading; current `text`/`markdown` renderers are **not** claimed to provide a delayed-answer or true-response validation widget.
             - **Accessibility and pacing:** Brief accessible written language, no sensory dependency. The explanatory text remains available to every learner and is never hidden behind a timed action.
             - **Transition:** Section 3 changes numbers or objects and asks for independent reasoning. The first Scene's state is not carried into the second.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section3TwoStepTransfer:
         config:
-          id: "890bc1c2-2479-4649-9707-73a09b1dfef7"
-          slug: "section3TwoStepTransfer"
-          type: "content"
+          id: '890bc1c2-2479-4649-9707-73a09b1dfef7'
+          slug: 'section3TwoStepTransfer'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Two-Step Transfer"
+              en: 'Two-Step Transfer'
             navigationLabel:
-              en: "Two-Step Transfer"
+              en: 'Two-Step Transfer'
           content:
             items:
               text1:
                 config:
-                  id: "03592893-b60a-4778-b711-56158b3c23da"
-                  slug: "text1"
-                  type: "text"
+                  id: '03592893-b60a-4778-b711-56158b3c23da'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Six pairs of socks are on a shelf. Without counting every sock, how many socks? Add one more pair."
+                      en: 'Six pairs of socks are on a shelf. Without counting every sock, how many socks? Add one more pair.'
               twoStepTransfer:
                 config:
-                  id: "6d91cebe-38ae-41b9-8960-00e0fd3acea3"
-                  slug: "twoStepTransfer"
-                  type: "scene"
+                  id: '6d91cebe-38ae-41b9-8960-00e0fd3acea3'
+                  slug: 'twoStepTransfer'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Two-Step Transfer"
+                      en: 'Two-Step Transfer'
                 production:
                   specification: |
                     # Two-Step Transfer — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist and independent Scene approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Two at a Time: Counting Pairs Content (editorial text integrated into this config.yaml), Section 3
                     Methodologist objectives: Methodologist Brief (editorial text integrated into this config.yaml) (**Draft, not approved**)
                     Implementation status: Proposed standalone **prop-free Scene**, not implemented
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Transfer +2 grouping to a novel setting with more groups, then contrast a starting amount of one with adding groups of two.
-                    
+
                     **Underlying number relationship:** A pair contains exactly two items, so each additional separate pair increases the total number of items by two, while the count of pairs increases by one. Starting with zero objects and adding pairs gives totals 0,2,4,6,8,10: one pair has 2 objects, three pairs 6, five pairs 10. Six pairs contain 12 individual items; seven pairs contain 14. Counting by twos means repeated +2 and can also start at 1: one loose object plus successive pairs gives 1,3,5,7,9. Thus 'count by twos' does not mean every starting number is even; the start is a separate fact. Group count and item count are distinct.
-                    
+
                     The child must be able to change or examine the representation, form a prediction, see the exact model and explain why a plausible wrong shortcut fails.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     **Initial state:** Challenge 1: six separately numbered two-object pairs of socks, one more pair can be added (seven pairs). Challenge 2: one loose bead and separate two-bead strips; up to four whole strips can be added.
-                    
+
                     **Model and invariant:** Selected preset (sock pairs or one loose bead plus strips); immutable start amount 0 for sock preset or 1 for bead preset, count of whole two-item groups and total=start+2×groups. Independent prediction, explanation and local reset.
-                    
+
                     **Numerical and pedagogical limits:** Grade 2: up to seven concrete pairs (14 objects) and one-loose-plus-four-pairs transfer (9 objects). No general multiplication theorem, memorized times tables, abstract parity proof, fraction pairs or large counts. This differs from algebra's `numberPatterns`: the target is pair quantity and constant group addition, not inferring arbitrary unknown rules.
-                    
+
                     **Boundary case / nuance:** A +2 step never discards the one starting bead; sock challenge cannot silently count pair units as individual units; switching presets resets only the transfer Scene.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Beat 1 — Six pairs of socks are on a shelf. Without counting every sock, how many socks? Add one more pair.
-                    
+
                     1. **Invitation:** “Six pairs of socks are on a shelf. Without counting every sock, how many socks? Add one more pair.”
                     2. **Controllable investigation:** Inspect six pair labels, apply 2,4,6,8,10,12, then add pair seven to show 14 socks.
                     3. **Correct visible consequence:** Six pairs contain twelve socks; seven pairs contain fourteen.
                     4. **Worked number evidence:** 6×2=12; (6+1) pairs=14 socks, represented through repeated +2.
                     5. **Mistaken or incomplete route:** If six or seven socks chosen, distinguish pairs from individual socks and enumerate 2 for each complete pair.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ### Beat 2 — Start with one loose bead. Add pairs of beads. What totals do you visit?
-                    
+
                     1. **Invitation:** “Start with one loose bead. Add pairs of beads. What totals do you visit?”
                     2. **Controllable investigation:** Keep the single initial bead fixed and add four two-bead strips one at a time. Read 1,3,5,7,9.
                     3. **Correct visible consequence:** The total always rises by two even though all displayed totals are odd.
                     4. **Worked number evidence:** 1→3→5→7→9: step +2 with initial 1.
                     5. **Mistaken or incomplete route:** If even totals predicted because the jump is two, distinguish the one loose starting bead from each later pair; 1+2=3.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Semantic objects:** Named countable group members, ticks, operands or operator controls, each with stable identity, a visible state and an equivalent ordered textual ledger.
                     - **Control map:** Choose scenario; Add one group of two; Inspect total count and group count; Predict; Reveal; Reset.
                     - **Deterministic state:** The numbers, chosen preset, group members, selected values, prediction, Reveal state and Reset all come from the self-contained Scene's own constants and actions, not caller props.
@@ -327,19 +327,19 @@ config:
                     - **Independence:** The proposed component has **no props** and no mutable state shared with a Lesson or another Scene; each Section contains its own independently resettable placement.
                     - **Boundaries:** A +2 step never discards the one starting bead; sock challenge cannot silently count pair units as individual units; switching presets resets only the transfer Scene.
                     - **Assessment boundary:** Prediction and feedback are formative only. No Question bank, Quiz, correct-answer security contract, mastery metric, score, persistent Note event, timed completion or invented platform API.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use lightweight HTML/SVG or ordinary semantic controls for individual items and groups, with a concise number ledger. Animation may highlight an interval, pair or new group but may never be the only carrier of information; reduced-motion mode updates state immediately. No required audio, live external service, asset generation or ornamental 3D. If optional sound is added later, localized captions/transcripts and downloaded media must preserve full learning.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Ordered ledger names preset start, group count, item count and every +2 increase. Equivalent keyboard actions and meaningful numeric labels work in both LTR/RTL without requiring visual grouping.
-                    
+
                     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Six pairs=12 individual socks; seven pairs=14.
                     2. One loose plus four pairs=9 objects with totals 1,3,5,7,9.
                     3. Switching scenarios cannot carry over group counts.
@@ -348,29 +348,29 @@ config:
                     6. For Beat 2, verify exact expected result: 1→3→5→7→9: step +2 with initial 1. Test plausible wrong response: If even totals predicted because the jump is two, distinguish the one loose starting bead from each later pair; 1+2=3.
                     7. All interactions work by keyboard, switch and touch with full nonvisual ledger, correct semantic RTL, reduced motion, mobile/high zoom and identical downloaded-offline mathematics.
                     8. Reset affects this Scene only, not another Section; no scoring or unimplemented Note event is emitted.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Each custom Scene is independently initialized, self-contained and **prop-free**; no caller supplies mode or numerical props. Scenarios and variables reside in that Scene's own authored module once implemented. The generic `scene` Resource type is supported, but this particular Scene has **not** been implemented. No invented API, registration, event, Note persistence, assessment, score or mastery side effect is assumed.
-                    
+
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
-                  purpose: "Proposed interactive Scene for Two-Step Transfer"
+                  purpose: 'Proposed interactive Scene for Two-Step Transfer'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               markdown2:
                 config:
-                  id: "235011b8-d9ff-4c2f-803c-f4a2ee9f4171"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '235011b8-d9ff-4c2f-803c-f4a2ee9f4171'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Six pairs contain twelve socks; seven pairs contain fourteen. 6×2=12; (6+1) pairs=14 socks, represented through repeated +2."
-            order: ["text1","twoStepTransfer","markdown2"]
+                      en: 'Six pairs contain twelve socks; seven pairs contain fourteen. 6×2=12; (6+1) pairs=14 socks, represented through repeated +2.'
+            order: ['text1', 'twoStepTransfer', 'markdown2']
         production:
-          purpose: "Two-Step Transfer"
+          purpose: 'Two-Step Transfer'
           pedagogicalIntent: |
             ### Section 3 — Two-Step Transfer
-            
+
             - **Learning purpose:** Transfer +2 grouping to a novel setting with more groups, then contrast a starting amount of one with adding groups of two.
             - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
             - **Ordered content blocks, top to bottom:**
@@ -378,131 +378,131 @@ config:
               2. **`scene` — generic type exists, **specific Scene proposed**:** Two-Step Transfer (Scene specification embedded in this config.yaml). Challenge 1: six separately numbered two-object pairs of socks, one more pair can be added (seven pairs). Challenge 2: one loose bead and separate two-bead strips; up to four whole strips can be added.
               3. **`markdown` — existing generic renderer:** “Six pairs contain twelve socks; seven pairs contain fourteen. 6×2=12; (6+1) pairs=14 socks, represented through repeated +2.”
             - **Learner action and responsive feedback:**
-            
+
             **Beat 1 — “Six pairs of socks are on a shelf. Without counting every sock, how many socks? Add one more pair.”** Inspect six pair labels, apply 2,4,6,8,10,12, then add pair seven to show 14 socks.
-            
+
             **Learner-visible result:** Six pairs contain twelve socks; seven pairs contain fourteen.
-            
+
             **Worked numerical evidence:** 6×2=12; (6+1) pairs=14 socks, represented through repeated +2.
-            
+
             **Feedback for a plausible misconception:** If six or seven socks chosen, distinguish pairs from individual socks and enumerate 2 for each complete pair.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             **Beat 2 — “Start with one loose bead. Add pairs of beads. What totals do you visit?”** Keep the single initial bead fixed and add four two-bead strips one at a time. Read 1,3,5,7,9.
-            
+
             **Learner-visible result:** The total always rises by two even though all displayed totals are odd.
-            
+
             **Worked numerical evidence:** 1→3→5→7→9: step +2 with initial 1.
-            
+
             **Feedback for a plausible misconception:** If even totals predicted because the jump is two, distinguish the one loose starting bead from each later pair; 1+2=3.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             - **Controls and accessibility:** Choose scenario; Add one group of two; Inspect total count and group count; Predict; Reveal; Reset. Ordered ledger names preset start, group count, item count and every +2 increase. Equivalent keyboard actions and meaningful numeric labels work in both LTR/RTL without requiring visual grouping.
             - **Cause-and-effect explanation:** Selected preset (sock pairs or one loose bead plus strips); immutable start amount 0 for sock preset or 1 for bead preset, count of whole two-item groups and total=start+2×groups. Independent prediction, explanation and local reset. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
             - **Boundary reasoning:** A +2 step never discards the one starting bead; sock challenge cannot silently count pair units as individual units; switching presets resets only the transfer Scene.
             - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
-    order: ["section1PairStepWorkbench","section2PairsAreNotSingleObjects","section3TwoStepTransfer"]
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+    order: ['section1PairStepWorkbench', 'section2PairsAreNotSingleObjects', 'section3TwoStepTransfer']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # Two at a Time: Counting Pairs — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: countByTwosWithPairs
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Skip-count by two as repeated addition of equal pairs of objects, explaining why the number of pairs and the number of individual objects differ. Understand that the start value matters for the resulting number sequence.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 2.** Grade 2 learners who can make separate pairs, identify odd and even using leftovers, and count through twenty. Support is concrete and slow enough that multiplication symbols or arithmetic fact fluency are unnecessary.
-    
+
     The Grade determines this particular Lesson's pedagogical depth; canonical Skills remain grade-neutral.
-    
+
     ## Prerequisites
-    
+
     - One-to-one counting, cardinality and distinction between pair and single object (`oneToOne`, `basicCardinality`).
     - Pair making from the prior `evenOdd` Lesson (no independent mastery inferred).
     - Forward number sequence to twenty and the idea that a step adds a fixed quantity, with an explicit two-object model.
-    
+
     ## Target Skills
-    
+
     - [countBy2.data.ts](../../../../data/skills/counting/steps/skills/countBy2.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Form and count up to five distinct two-object groups and obtain totals 2,4,6,8,10.
     - Explain that three pairs have six objects, while five pairs have ten, and that pair count differs from item count.
     - Predict and verify the total for six and seven new pairs without beginning to count every object from one.
     - With one loose item already present, continue a +2 sequence 1,3,5,7,9 and explain why it is still counting by twos.
-    
+
     These are intended learning outcomes and observable formative explanations, not guaranteed mastered competencies or validation thresholds.
-    
+
     ## Essential subject matter
-    
+
     A pair contains exactly two items, so each additional separate pair increases the total number of items by two, while the count of pairs increases by one. Starting with zero objects and adding pairs gives totals 0,2,4,6,8,10: one pair has 2 objects, three pairs 6, five pairs 10. Six pairs contain 12 individual items; seven pairs contain 14. Counting by twos means repeated +2 and can also start at 1: one loose object plus successive pairs gives 1,3,5,7,9. Thus 'count by twos' does not mean every starting number is even; the start is a separate fact. Group count and item count are distinct.
-    
+
     **Reference models that must remain correct:** 3 pairs, 6 mittens; 2→4→6. 4 pairs=8; 5 pairs=10. 6×2=12; (6+1) pairs=14 socks, represented through repeated +2. 1→3→5→7→9: step +2 with initial 1. Every model needs an equivalent explicit spoken/written number description, not decorative illustration alone.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Recognize a two-item pair → add one complete pair per learner action, count how the total changes → contrast group and object totals → transfer to six/seven pairs in a changed context → show a one-item start and equal +2 jumps to distinguish step size from initial parity.
-    
+
     The interdependent target Skills are taught together only where they share an intelligible representation. They retain their own independently assessable taxonomy identities. Do not infer cross-domain Skill mastery from completing one interaction.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     **Likely confusions:** Saying five pairs means five objects; adding one when another pair arrives; counting pair members as if they were two different groups; assuming a +2 sequence can never contain odd numbers; choosing 6 for six pairs rather than 12.
-    
+
     **Pedagogical depth and exclusions:** Grade 2: up to seven concrete pairs (14 objects) and one-loose-plus-four-pairs transfer (9 objects). No general multiplication theorem, memorized times tables, abstract parity proof, fraction pairs or large counts. This differs from algebra's `numberPatterns`: the target is pair quantity and constant group addition, not inferring arbitrary unknown rules.
-    
+
     **Boundary and incomplete-case decisions:** A pair cannot be partially added or contain three objects; Add Pair is the only quantity-increasing action. A child may inspect individual members whenever wanted; source pair/member IDs must remain unique. A +2 step never discards the one starting bead; sock challenge cannot silently count pair units as individual units; switching presets resets only the transfer Scene.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-    
+
     English texts below are canonical editorial examples for later localization, not real locale data or implemented runtime. Audio is never required for understanding. An accessible alternative must preserve the **same** learning objective, rather than replace the essential interaction with a weaker 'lite' illustration.
-    
+
     ## Sources and factual verification
-    
+
     - Canonical Skill `*.data.ts` files linked directly above, originally copied byte-for-byte from Mathematics `main` without changing UUIDs, definitions or translations.
     - [Lesson Editorial Architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — Methodologist/Screenwriter ownership and approval.
     - [Learning Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md) — explanation, manipulation, contrast and transfer.
     - [Localization and Inclusive Access](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) and [Offline-First Product Requirements](../../../../../../studio/docs/architecture/offline-first-and-device-compatibility.md).
-    
+
     All arithmetic and numerical model cases above were checked by explicit step, group or relation reasoning; no national curriculum coverage is inferred.
-    
+
     ## Curriculum / Program compatibility
-    
+
     No specific curriculum specified or claimed. This Lesson is a standalone, Program-neutral educational unit.
-    
+
     ## Open editorial decisions
-    
+
     - Editor/Methodologist: explicitly approve Grade 2, target Skill selection, prerequisites, depth and the core contrasts before promoting this Brief.
     - Editor: review the two proposed Scene models and ensure their nonvisual, RTL and locale versions teach mathematically identical relationships.
     - Coding/QA roles: confirm all supported locale dictionaries, low-device/offline delivery and accessible input alternatives when authorized. No Scene is implemented at this stage.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, not editor-approved.** The corresponding `content.md` and Scene specifications are **Provisional Drafts under the explicit batch instruction**. This exception does not mark the normal Methodologist or Screenwriter approval gates as passed. No React Scene, runtime Lesson, Question, Quiz, score, mastery, persistent Note or fake platform event is authorized.
   productionNotes: |-
     Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
-    
+
     # Two at a Time: Counting Pairs — Content
-    
+
     Status: **Provisional Draft — pending Methodologist approval**
     Target Lesson: `content/playground/Data/Lessons/1/countByTwosWithPairs/`
     Audience: Grade 2; Grade 2 learners who can make separate pairs, identify odd and even using leftovers, and count through twenty. Support is concrete and slow enough that multiplication symbols or arithmetic fact fluency are unnecessary.
@@ -510,52 +510,52 @@ production:
     Target Skills: exactly the canonical source-file links in the Brief (not redefined or copied here)
     Program dependence: None
     Runtime Lesson / Scene implementation: Not implemented
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Skip-count by two as repeated addition of equal pairs of objects, explaining why the number of pairs and the number of individual objects differ. Understand that the start value matters for the resulting number sequence.
-    
+
     **What must become clear:** A pair contains exactly two items, so each additional separate pair increases the total number of items by two, while the count of pairs increases by one. Starting with zero objects and adding pairs gives totals 0,2,4,6,8,10: one pair has 2 objects, three pairs 6, five pairs 10. Six pairs contain 12 individual items; seven pairs contain 14. Counting by twos means repeated +2 and can also start at 1: one loose object plus successive pairs gives 1,3,5,7,9. Thus 'count by twos' does not mean every starting number is even; the start is a separate fact. Group count and item count are distinct.
-    
+
     **Pedagogical premise:** A learner is not merely recognizing a displayed fact. The first interactive Scene gives control over a concrete model and exposes a critical contrast. A compact explanatory/reflection Section invites retrieval and makes errors understandable. The second Scene independently changes the numbers or representation, so successful reasoning requires applying the mathematical rule rather than reproducing the original picture. Every key feedback branch explains _why_ an answer differs from the model.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Notice and predict:** “Add one pair at a time. What totals do you see after one, two, three pairs?” The learner selects a possible result and then operates the first model without mandatory score, narration or timer.
     2. **Manipulate and inspect:** 3 pairs, 6 mittens; 2→4→6. 4 pairs=8; 5 pairs=10. Both a simple visual model and an accessible item/number ledger show the same mathematics.
     3. **Explain and retrieve:** A table has four pairs of mittens. Does that mean four mittens or eight mittens? Invite a spoken, private or accessible text-based explanation before reading the worked answer.
     4. **Transfer independently:** Six pairs of socks are on a shelf. Without counting every sock, how many socks? Add one more pair. A different representation offers a new reasoned problem, with misconception-targeted feedback and an optional full reveal.
     5. **Summarize for future recall:** a short proposed Note captures the enduring idea without attempting to assess mastery or create a persistent unlocked event.
-    
+
     ## SECTION PLAN
-    
-    
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Pair-Step Workbench (Scene specification embedded in this config.yaml) — independently initialised concrete explanation and contrast.
     - Two-Step Transfer (Scene specification embedded in this config.yaml) — independently initialised transfer with new numbers/representation.
-    
+
     Both Scenes are **proposed**, distinct and prop-free. Each is represented by one typed `scene` Resource in an otherwise single-column Section; no new Section type, imaginary mode prop, generated image, fake API, scoring or React component is authored.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. **after showing five pairs and their objects:** “Each new pair adds two objects. Five pairs contain ten objects.” — proposed after the model is examined and its explanation is available, without requiring a correct score. **Planned, not wired.**
     2. **after the one-loose-object transfer:** “Counting by twos always adds two; the first amount can still be odd.” — proposed after the model is examined and its explanation is available, without requiring a correct score. **Planned, not wired.**
-    
+
     These are concise independently useful retrieval anchors, not Lesson summaries. A real Note entity, stable identity, unlock contract, learner state, revision sheet, synchronization and spaced scheduling remain separately unimplemented or unverified.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Sections 1 and 3 provide learner-operated practice, concrete counterexamples, and explicit formative reasoning. Section 2 offers reflection and retrieval. The final Section's changed representation can show whether the learner used the rule, but one correct selection is **not** evidence of independent Skill mastery. Graded Question/Quiz design, correctness validity, scoring, retry policy and Skill attribution belong to a separate Learning Assessment Architect stage.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-    
+
     These documents include **English editorial source text only**. Full real translations for all supported locales, including Scene dictionaries, alt descriptions and optional Notes, must precede implementation. Do not silently invent fallback translations or new language codes.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     | Capability                                                    | Status                                            | Owner / next work                                                    |
     | ------------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------- |
     | General `LessonSection_Config` with ordered `Resource_Config` | Existing TypeScript contract                      | Coding Agent builds Lesson later                                     |
@@ -565,16 +565,16 @@ production:
     | Complete downloaded-offline experience                        | Product target; not verified implemented          | PWA/dependency integration and airplane-mode E2E                     |
     | Lesson Notes and unlock/storage                               | Planned, unverified runtime                       | Separate architecture and implementation                             |
     | Scored Questions, Quizzes, mastery and progress claims        | Not authored                                      | Separate Assessment Architect                                        |
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Draft Methodologist Brief (editorial text integrated into this config.yaml) and its actual canonical Skill file links.
     - [Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md), [Section entity](../../../../../../studio/docs/entities/section.md), [Learning Experience Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
     - Open: explicit Methodologist grade and target Skill approval, separate Content and Scene review, genuine complete translations, RTL/nonvisual interaction details, and full offline packaging before coding.
-    
+
     ## HANDOFF
-    
+
     **Provisional Screenwriter Draft — Methodologist approval has not occurred.** Implementers may inspect these source-grounded plans but must not treat them as approved React/runtime Lesson data, Question/Quiz items, scores, mastery data, Note events or working offline/locale support.
-    
-    
+
+
     Migration status: provisional draft; pending independent approvals, translation and implementation.

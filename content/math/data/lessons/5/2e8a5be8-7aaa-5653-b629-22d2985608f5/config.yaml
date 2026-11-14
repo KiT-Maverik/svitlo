@@ -1,621 +1,621 @@
 config:
-  id: "2e8a5be8-7aaa-5653-b629-22d2985608f5"
-  slug: "readAndWriteExpressions"
-  type: "lesson"
-  skills: ["2429be16-34f7-4857-8144-f2d550931872"]
+  id: '2e8a5be8-7aaa-5653-b629-22d2985608f5'
+  slug: 'readAndWriteExpressions'
+  type: 'lesson'
+  skills: ['2429be16-34f7-4857-8144-f2d550931872']
   params:
     requireQuiz: false
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Read and Write a Number Expression"
+      en: 'Read and Write a Number Expression'
   section:
     items:
       section1:
         config:
-          id: "e6367435-a6c8-575e-b0e4-f43535880ae8"
-          slug: "section1"
-          type: "content"
+          id: 'e6367435-a6c8-575e-b0e4-f43535880ae8'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What does “seven plus four” mean?"
+              en: 'What does “seven plus four” mean?'
             navigationLabel:
-              en: "What does “seven plus four” mean?"
+              en: 'What does “seven plus four” mean?'
           content:
             items:
               text1:
                 config:
-                  id: "bdb16cd4-c058-5def-beeb-ecd4ba478e1d"
-                  slug: "text1"
-                  type: "text"
+                  id: 'bdb16cd4-c058-5def-beeb-ecd4ba478e1d'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Seven shells are here. Four more shells arrive. What could we write to **show that change**?"
+                      en: 'Seven shells are here. Four more shells arrive. What could we write to **show that change**?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "0495f64d-7984-5190-b3ad-764dfff65406"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '0495f64d-7984-5190-b3ad-764dfff65406'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Seven shells are here. Four more shells arrive. What could we write to **show that change**?"
+                        instruction: 'Seven shells are here. Four more shells arrive. What could we write to **show that change**?'
                 production:
                   specification: |
                     # Expression Reader — Scene Specification
-                    
+
                     **Status:** Provisional Draft — pending Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** Lesson Content (embedded in this Lesson config.yaml), Sections 1–4; Draft Methodologist Brief (embedded in this Lesson config.yaml).
                     **Availability:** New proposed self-contained, prop-free Scene; neither React implementation nor translations exist yet.
-                    
+
                     ## Learner purpose and mathematical contract
-                    
+
                     This Scene teaches translation from quantities and words into a correct **numeric expression**, without conflating expression, evaluated number and equality. All counters, symbols and text must agree on the **start**, **change** and **operation**. An expression is not automatically an equality. Correct mathematical calculations can still be the _wrong output type_ when the instruction specifically requests an expression.
-                    
+
                     ## Learner journey, choices and feedback
-                    
+
                     ### Entry A — seven plus four (Section 1)
-                    
+
                     Display seven initial shell counters and four labeled incoming counters; final total is initially hidden. Offer 7 + 4, 7 − 4 and 4 − 7 as focusable choices. A correct 7 + 4 selection receives “Seven joined with four: the expression describes the change.” For 7 − 4: “That would remove four, but four arrived.” For 4 − 7: “That would start with four, then remove seven.” Optional “Reveal value” shows eleven; the original expression remains 7 + 4, distinct from its value 11 or equality 7 + 4 = 11.
-                    
+
                     ### Entry B — nine minus three (Section 2)
-                    
+
                     Show nine grapes in a bowl and three marked as eaten. Preserve nine as the known initial count, three as the amount removed, the remainder as unknown. Offer 9 − 3, 3 − 9, and 9 + 3. The first matches the story and may reveal six remaining grapes. 3 − 9 is not a valid representation of the start/remove roles and is outside the allowed nonnegative model. 9 + 3 would add rather than remove grapes. Ask how “subtract three from nine” is written: nine first, then subtract three. Feedback always names the known quantities, not only “try again”.
-                    
+
                     ### Entry C — expression, value, statement (Section 3)
-                    
+
                     Present three labeled cards: 6 + 2, 8, and 6 + 2 = 8. Learner classifies them as expression, value, and complete equality respectively with accessible select-then-category controls; no drag is required. If asked to write only an expression, selecting the equality receives “That is mathematically true but includes a claim, not just the requested expression.” Selecting 8 receives “That is the result rather than the operation.” Provide a free “Explain all three” reveal, plus a short independent reading of 10 − 4 as words without requiring calculation.
-                    
+
                     ### Entry D — independent transfer (Section 4)
-                    
+
                     Story: fourteen tokens in a jar, four taken out. Present empty operation slots or an accessible text entry. Expected expression: 14 − 4. If 4 − 14, explain that fourteen is the initial count. If 14 + 4, explain that removal lowers the number remaining. If 14 − 4 = 10, explain that it is a _true equality_ but the requested output was an expression; show 14 − 4 as the precise response. Optional hints: “Which amount starts?” then “Were tokens added or removed?” Optional answer reveal shows ten tokens remain only after the initial expression is clear.
-                    
+
                     ## Objects, state and invariants
-                    
+
                     A fixed scenario (numbers, unit, start/change relation), ordered symbolic slots or choices, a precise counter depiction, optional hint/reveal state and local Reset. Each Section entry starts independently without props or shared state. Underlying arithmetic must match displayed quantities in every visible mode: 7+4=11; 9−3=6; 6+2=8; 14−4=10. Learner guesses change the _chosen representation_, never the original narrative data. An equality is not labeled numerically false merely because the instruction asked for an expression. This Scene is an explanatory interaction, not a Question or scoring contract.
-                    
+
                     ## Accessibility, localization and offline intent
-                    
+
                     Use readable textual ledger (“nine start, three leave, remaining unknown”) alongside optional animated counters. Every operation and counter group has screen-reader description; tab/keyboard/switch/touch choices are fully usable without dragging or hovering. Announce expression, numeric value and complete equality distinctly, not solely via color or placement. RTL preserves mathematical operand order and the meaning of “subtract three from nine”, with bidi-safe numeric runs and semantically reordered controls. All strings, hints, alternative descriptions and feedback require actual translations into each supported locale; no silent English fallback. Reduced motion, focus visibility, high contrast, zoom/mobile reflow and equivalent offline content after downloading are requirements, not claims of already implemented features.
-                    
+
                     ## Acceptance examples
-                    
+
                     1. 7+4 is the matching expression; 7−4 and 4−7 each receive exact role feedback; value eleven is optional.
                     2. 9−3, not 3−9 or 9+3, represents removal and gives six remaining.
                     3. 6+2, 8, 6+2=8 belong to expression, value and equality categories respectively.
                     4. 14−4 is the requested expression; 14−4=10 is true but a different type of artifact.
                     5. Hint and reveal work without scoring; reset does not change another Section.
                     6. Keyboard, screen reader, RTL, mobile zoom, reduced motion and downloaded offline path convey identical quantities and explanations.
-                    
+
                     ## Implementation dependencies and editorial handoff
-                    
+
                     The generic Scene resource is renderable today, but this Scene and all required locale dictionaries are proposed. Coding Agent must verify actual Scene context, create a prop-free component and tests, and meet WCAG 2.2 AA. No invented APIs, Question/Quiz, learner-state persistence, grading or Note events. Approval remains outstanding.
-                  purpose: "What does “seven plus four” mean?"
-                  productionNotes: "Source Scene expressionReader.scene-spec.md; independent placement for What does “seven plus four” mean?. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'What does “seven plus four” mean?'
+                  productionNotes: 'Source Scene expressionReader.scene-spec.md; independent placement for What does “seven plus four” mean?. Variant/feedback retained under parent Section productionNotes.'
               text2:
                 config:
-                  id: "c0b1718d-c158-5f82-81eb-f18db7478964"
-                  slug: "text2"
-                  type: "text"
+                  id: 'c0b1718d-c158-5f82-81eb-f18db7478964'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Yes: you join the seven shells and the four arriving shells."
+                      en: 'Yes: you join the seven shells and the four arriving shells.'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               markdown1:
                 config:
-                  id: "472d776e-cb80-59fd-818f-f76e82106a47"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '472d776e-cb80-59fd-818f-f76e82106a47'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A **numerical expression** uses numbers and operations to describe a value: **7 + 4**. It does not need to show its answer yet. **7 + 4 = 11** is a complete equality saying what the expression equals."
+                      en: 'A **numerical expression** uses numbers and operations to describe a value: **7 + 4**. It does not need to show its answer yet. **7 + 4 = 11** is a complete equality saying what the expression equals.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","text2","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'text2', 'markdown1']
         production:
-          purpose: "What does “seven plus four” mean?"
+          purpose: 'What does “seven plus four” mean?'
           productionNotes: |-
             _Purpose: connect everyday quantity joining to an expression, before requiring a result._
-            
+
             1. **`text` Resource:** “Seven shells are here. Four more shells arrive. What could we write to **show that change**?” Let learners predict a notation before any answer is supplied.
             2. **`scene` Resource (proposed):** Expression Reader (Scene specification expressionReader embedded in the corresponding Scene node), entry A. Display a labeled group of **7** shells with an incoming group of **4**. Learner chooses between the expressions **7 + 4**, **7 − 4**, and **4 − 7**, with keyboard/touch controls. After selection, the learner may reveal the number **11** of shells, but **7 + 4** remains displayed as the original expression.
             3. **`text` Resource, feedback:** For 7 + 4: “Yes: you join the seven shells and the four arriving shells.” For 7 − 4: “Subtracting four would remove shells, but four arrived.” For 4 − 7: “This would begin with four and take away seven; that is not the story.”
             4. **`markdown` Resource:** “A **numerical expression** uses numbers and operations to describe a value: **7 + 4**. It does not need to show its answer yet. **7 + 4 = 11** is a complete equality saying what the expression equals.” This is a meaning distinction, not a demand to memorize terminology without a model.
       section2:
         config:
-          id: "e3366f7c-a5c8-55cb-ade4-ef7c38880fa1"
-          slug: "section2"
-          type: "content"
+          id: 'e3366f7c-a5c8-55cb-ade4-ef7c38880fa1'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Reading from left to right is not enough"
+              en: 'Reading from left to right is not enough'
             navigationLabel:
-              en: "Reading from left to right is not enough"
+              en: 'Reading from left to right is not enough'
           content:
             items:
               text1:
                 config:
-                  id: "d2dbefe1-1d34-5dee-9416-6fe18f7b5970"
-                  slug: "text1"
-                  type: "text"
+                  id: 'd2dbefe1-1d34-5dee-9416-6fe18f7b5970'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A bowl starts with **9** grapes. **3** are eaten. Say the change in words, then write an expression."
+                      en: 'A bowl starts with **9** grapes. **3** are eaten. Say the change in words, then write an expression.'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "d8bf9ab2-c66c-53ef-87d7-1ab29b5cd591"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'd8bf9ab2-c66c-53ef-87d7-1ab29b5cd591'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "A bowl starts with **9** grapes. **3** are eaten. Say the change in words, then write an expression."
+                        instruction: 'A bowl starts with **9** grapes. **3** are eaten. Say the change in words, then write an expression.'
                 production:
                   specification: |
                     # Expression Reader — Scene Specification
-                    
+
                     **Status:** Provisional Draft — pending Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** Lesson Content (embedded in this Lesson config.yaml), Sections 1–4; Draft Methodologist Brief (embedded in this Lesson config.yaml).
                     **Availability:** New proposed self-contained, prop-free Scene; neither React implementation nor translations exist yet.
-                    
+
                     ## Learner purpose and mathematical contract
-                    
+
                     This Scene teaches translation from quantities and words into a correct **numeric expression**, without conflating expression, evaluated number and equality. All counters, symbols and text must agree on the **start**, **change** and **operation**. An expression is not automatically an equality. Correct mathematical calculations can still be the _wrong output type_ when the instruction specifically requests an expression.
-                    
+
                     ## Learner journey, choices and feedback
-                    
+
                     ### Entry A — seven plus four (Section 1)
-                    
+
                     Display seven initial shell counters and four labeled incoming counters; final total is initially hidden. Offer 7 + 4, 7 − 4 and 4 − 7 as focusable choices. A correct 7 + 4 selection receives “Seven joined with four: the expression describes the change.” For 7 − 4: “That would remove four, but four arrived.” For 4 − 7: “That would start with four, then remove seven.” Optional “Reveal value” shows eleven; the original expression remains 7 + 4, distinct from its value 11 or equality 7 + 4 = 11.
-                    
+
                     ### Entry B — nine minus three (Section 2)
-                    
+
                     Show nine grapes in a bowl and three marked as eaten. Preserve nine as the known initial count, three as the amount removed, the remainder as unknown. Offer 9 − 3, 3 − 9, and 9 + 3. The first matches the story and may reveal six remaining grapes. 3 − 9 is not a valid representation of the start/remove roles and is outside the allowed nonnegative model. 9 + 3 would add rather than remove grapes. Ask how “subtract three from nine” is written: nine first, then subtract three. Feedback always names the known quantities, not only “try again”.
-                    
+
                     ### Entry C — expression, value, statement (Section 3)
-                    
+
                     Present three labeled cards: 6 + 2, 8, and 6 + 2 = 8. Learner classifies them as expression, value, and complete equality respectively with accessible select-then-category controls; no drag is required. If asked to write only an expression, selecting the equality receives “That is mathematically true but includes a claim, not just the requested expression.” Selecting 8 receives “That is the result rather than the operation.” Provide a free “Explain all three” reveal, plus a short independent reading of 10 − 4 as words without requiring calculation.
-                    
+
                     ### Entry D — independent transfer (Section 4)
-                    
+
                     Story: fourteen tokens in a jar, four taken out. Present empty operation slots or an accessible text entry. Expected expression: 14 − 4. If 4 − 14, explain that fourteen is the initial count. If 14 + 4, explain that removal lowers the number remaining. If 14 − 4 = 10, explain that it is a _true equality_ but the requested output was an expression; show 14 − 4 as the precise response. Optional hints: “Which amount starts?” then “Were tokens added or removed?” Optional answer reveal shows ten tokens remain only after the initial expression is clear.
-                    
+
                     ## Objects, state and invariants
-                    
+
                     A fixed scenario (numbers, unit, start/change relation), ordered symbolic slots or choices, a precise counter depiction, optional hint/reveal state and local Reset. Each Section entry starts independently without props or shared state. Underlying arithmetic must match displayed quantities in every visible mode: 7+4=11; 9−3=6; 6+2=8; 14−4=10. Learner guesses change the _chosen representation_, never the original narrative data. An equality is not labeled numerically false merely because the instruction asked for an expression. This Scene is an explanatory interaction, not a Question or scoring contract.
-                    
+
                     ## Accessibility, localization and offline intent
-                    
+
                     Use readable textual ledger (“nine start, three leave, remaining unknown”) alongside optional animated counters. Every operation and counter group has screen-reader description; tab/keyboard/switch/touch choices are fully usable without dragging or hovering. Announce expression, numeric value and complete equality distinctly, not solely via color or placement. RTL preserves mathematical operand order and the meaning of “subtract three from nine”, with bidi-safe numeric runs and semantically reordered controls. All strings, hints, alternative descriptions and feedback require actual translations into each supported locale; no silent English fallback. Reduced motion, focus visibility, high contrast, zoom/mobile reflow and equivalent offline content after downloading are requirements, not claims of already implemented features.
-                    
+
                     ## Acceptance examples
-                    
+
                     1. 7+4 is the matching expression; 7−4 and 4−7 each receive exact role feedback; value eleven is optional.
                     2. 9−3, not 3−9 or 9+3, represents removal and gives six remaining.
                     3. 6+2, 8, 6+2=8 belong to expression, value and equality categories respectively.
                     4. 14−4 is the requested expression; 14−4=10 is true but a different type of artifact.
                     5. Hint and reveal work without scoring; reset does not change another Section.
                     6. Keyboard, screen reader, RTL, mobile zoom, reduced motion and downloaded offline path convey identical quantities and explanations.
-                    
+
                     ## Implementation dependencies and editorial handoff
-                    
+
                     The generic Scene resource is renderable today, but this Scene and all required locale dictionaries are proposed. Coding Agent must verify actual Scene context, create a prop-free component and tests, and meet WCAG 2.2 AA. No invented APIs, Question/Quiz, learner-state persistence, grading or Note events. Approval remains outstanding.
-                  purpose: "Reading from left to right is not enough"
-                  productionNotes: "Source Scene expressionReader.scene-spec.md; independent placement for Reading from left to right is not enough. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Reading from left to right is not enough'
+                  productionNotes: 'Source Scene expressionReader.scene-spec.md; independent placement for Reading from left to right is not enough. Variant/feedback retained under parent Section productionNotes.'
               text2:
                 config:
-                  id: "cfdbeb28-1c34-5c5b-9116-6b28927b5e29"
-                  slug: "text2"
-                  type: "text"
+                  id: 'cfdbeb28-1c34-5c5b-9116-6b28927b5e29'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Nine is the starting amount; three are removed."
+                      en: 'Nine is the starting amount; three are removed.'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               markdown1:
                 config:
-                  id: "c308875b-c0c2-55cc-bd6b-075b9dc8840a"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'c308875b-c0c2-55cc-bd6b-075b9dc8840a'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The phrase ‘**subtract three from nine**’ means **9 − 3**. The word _from_ reverses the order we might hear the numbers in the sentence; mathematical roles, not word position, decide the expression."
+                      en: 'The phrase ‘**subtract three from nine**’ means **9 − 3**. The word _from_ reverses the order we might hear the numbers in the sentence; mathematical roles, not word position, decide the expression.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","text2","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'text2', 'markdown1']
         production:
-          purpose: "Reading from left to right is not enough"
+          purpose: 'Reading from left to right is not enough'
           productionNotes: |-
             _Purpose: protect the mathematical roles of the operands, especially in subtraction phrases._
-            
+
             1. **`text`:** “A bowl starts with **9** grapes. **3** are eaten. Say the change in words, then write an expression.” Offer a short silent prediction.
             2. **`scene` Resource (proposed):** Expression Reader, independent entry B. Fixed initial group 9 and a clearly labeled removed group 3. Learner chooses between **9 − 3**, **3 − 9**, and **9 + 3**, then reveals remaining **6**. The UI preserves the chronological source: start → take away.
             3. **`text`, feedback:** For 9 − 3: “Nine is the starting amount; three are removed.” For 3 − 9: “The expression would start with three, then remove nine. But the bowl **started with nine**.” For addition: “The three leave the bowl; they are not added.”
             4. **`markdown`:** “The phrase ‘**subtract three from nine**’ means **9 − 3**. The word _from_ reverses the order we might hear the numbers in the sentence; mathematical roles, not word position, decide the expression.”
       section3:
         config:
-          id: "e436710f-a4c8-5438-aee4-f10f37880e0e"
-          slug: "section3"
-          type: "content"
+          id: 'e436710f-a4c8-5438-aee4-f10f37880e0e'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "An expression is not the same thing as a full equation"
+              en: 'An expression is not the same thing as a full equation'
             navigationLabel:
-              en: "An expression is not the same thing as a full equation"
+              en: 'An expression is not the same thing as a full equation'
           content:
             items:
               text1:
                 config:
-                  id: "5a4d4052-7022-502d-9b87-c052f3ab1fdf"
-                  slug: "text1"
-                  type: "text"
+                  id: '5a4d4052-7022-502d-9b87-c052f3ab1fdf'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The teacher says: ‘Write **an expression** for the sum of six and two.’ Which card answers that instruction: **6 + 2**, **6 + 2 = 8**, or **8**?"
+                      en: 'The teacher says: ‘Write **an expression** for the sum of six and two.’ Which card answers that instruction: **6 + 2**, **6 + 2 = 8**, or **8**?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "1e89be7b-55f7-5736-8da1-3e7bde6da5a0"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '1e89be7b-55f7-5736-8da1-3e7bde6da5a0'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "The teacher says: ‘Write **an expression** for the sum of six and two.’ Which card answers that instruction: **6 + 2**, **6 + 2 = 8**, or **8**?"
+                        instruction: 'The teacher says: ‘Write **an expression** for the sum of six and two.’ Which card answers that instruction: **6 + 2**, **6 + 2 = 8**, or **8**?'
                 production:
                   specification: |
                     # Expression Reader — Scene Specification
-                    
+
                     **Status:** Provisional Draft — pending Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** Lesson Content (embedded in this Lesson config.yaml), Sections 1–4; Draft Methodologist Brief (embedded in this Lesson config.yaml).
                     **Availability:** New proposed self-contained, prop-free Scene; neither React implementation nor translations exist yet.
-                    
+
                     ## Learner purpose and mathematical contract
-                    
+
                     This Scene teaches translation from quantities and words into a correct **numeric expression**, without conflating expression, evaluated number and equality. All counters, symbols and text must agree on the **start**, **change** and **operation**. An expression is not automatically an equality. Correct mathematical calculations can still be the _wrong output type_ when the instruction specifically requests an expression.
-                    
+
                     ## Learner journey, choices and feedback
-                    
+
                     ### Entry A — seven plus four (Section 1)
-                    
+
                     Display seven initial shell counters and four labeled incoming counters; final total is initially hidden. Offer 7 + 4, 7 − 4 and 4 − 7 as focusable choices. A correct 7 + 4 selection receives “Seven joined with four: the expression describes the change.” For 7 − 4: “That would remove four, but four arrived.” For 4 − 7: “That would start with four, then remove seven.” Optional “Reveal value” shows eleven; the original expression remains 7 + 4, distinct from its value 11 or equality 7 + 4 = 11.
-                    
+
                     ### Entry B — nine minus three (Section 2)
-                    
+
                     Show nine grapes in a bowl and three marked as eaten. Preserve nine as the known initial count, three as the amount removed, the remainder as unknown. Offer 9 − 3, 3 − 9, and 9 + 3. The first matches the story and may reveal six remaining grapes. 3 − 9 is not a valid representation of the start/remove roles and is outside the allowed nonnegative model. 9 + 3 would add rather than remove grapes. Ask how “subtract three from nine” is written: nine first, then subtract three. Feedback always names the known quantities, not only “try again”.
-                    
+
                     ### Entry C — expression, value, statement (Section 3)
-                    
+
                     Present three labeled cards: 6 + 2, 8, and 6 + 2 = 8. Learner classifies them as expression, value, and complete equality respectively with accessible select-then-category controls; no drag is required. If asked to write only an expression, selecting the equality receives “That is mathematically true but includes a claim, not just the requested expression.” Selecting 8 receives “That is the result rather than the operation.” Provide a free “Explain all three” reveal, plus a short independent reading of 10 − 4 as words without requiring calculation.
-                    
+
                     ### Entry D — independent transfer (Section 4)
-                    
+
                     Story: fourteen tokens in a jar, four taken out. Present empty operation slots or an accessible text entry. Expected expression: 14 − 4. If 4 − 14, explain that fourteen is the initial count. If 14 + 4, explain that removal lowers the number remaining. If 14 − 4 = 10, explain that it is a _true equality_ but the requested output was an expression; show 14 − 4 as the precise response. Optional hints: “Which amount starts?” then “Were tokens added or removed?” Optional answer reveal shows ten tokens remain only after the initial expression is clear.
-                    
+
                     ## Objects, state and invariants
-                    
+
                     A fixed scenario (numbers, unit, start/change relation), ordered symbolic slots or choices, a precise counter depiction, optional hint/reveal state and local Reset. Each Section entry starts independently without props or shared state. Underlying arithmetic must match displayed quantities in every visible mode: 7+4=11; 9−3=6; 6+2=8; 14−4=10. Learner guesses change the _chosen representation_, never the original narrative data. An equality is not labeled numerically false merely because the instruction asked for an expression. This Scene is an explanatory interaction, not a Question or scoring contract.
-                    
+
                     ## Accessibility, localization and offline intent
-                    
+
                     Use readable textual ledger (“nine start, three leave, remaining unknown”) alongside optional animated counters. Every operation and counter group has screen-reader description; tab/keyboard/switch/touch choices are fully usable without dragging or hovering. Announce expression, numeric value and complete equality distinctly, not solely via color or placement. RTL preserves mathematical operand order and the meaning of “subtract three from nine”, with bidi-safe numeric runs and semantically reordered controls. All strings, hints, alternative descriptions and feedback require actual translations into each supported locale; no silent English fallback. Reduced motion, focus visibility, high contrast, zoom/mobile reflow and equivalent offline content after downloading are requirements, not claims of already implemented features.
-                    
+
                     ## Acceptance examples
-                    
+
                     1. 7+4 is the matching expression; 7−4 and 4−7 each receive exact role feedback; value eleven is optional.
                     2. 9−3, not 3−9 or 9+3, represents removal and gives six remaining.
                     3. 6+2, 8, 6+2=8 belong to expression, value and equality categories respectively.
                     4. 14−4 is the requested expression; 14−4=10 is true but a different type of artifact.
                     5. Hint and reveal work without scoring; reset does not change another Section.
                     6. Keyboard, screen reader, RTL, mobile zoom, reduced motion and downloaded offline path convey identical quantities and explanations.
-                    
+
                     ## Implementation dependencies and editorial handoff
-                    
+
                     The generic Scene resource is renderable today, but this Scene and all required locale dictionaries are proposed. Coding Agent must verify actual Scene context, create a prop-free component and tests, and meet WCAG 2.2 AA. No invented APIs, Question/Quiz, learner-state persistence, grading or Note events. Approval remains outstanding.
-                  purpose: "An expression is not the same thing as a full equation"
-                  productionNotes: "Source Scene expressionReader.scene-spec.md; independent placement for An expression is not the same thing as a full equation. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'An expression is not the same thing as a full equation'
+                  productionNotes: 'Source Scene expressionReader.scene-spec.md; independent placement for An expression is not the same thing as a full equation. Variant/feedback retained under parent Section productionNotes.'
               text2:
                 config:
-                  id: "594d3ebf-6d22-5b74-9a87-bebff4ab2172"
-                  slug: "text2"
-                  type: "text"
+                  id: '594d3ebf-6d22-5b74-9a87-bebff4ab2172'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "That statement is true, but the request was only for the calculation expression."
+                      en: 'That statement is true, but the request was only for the calculation expression.'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               markdown1:
                 config:
-                  id: "12ea1f00-86f1-5277-8d4c-9f00d4a240cd"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '12ea1f00-86f1-5277-8d4c-9f00d4a240cd'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**Expression:** 10 − 4. **Value:** 6. **Equality:** 10 − 4 = 6."
+                      en: '**Expression:** 10 − 4. **Value:** 6. **Equality:** 10 − 4 = 6.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","text2","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'text2', 'markdown1']
         production:
-          purpose: "An expression is not the same thing as a full equation"
+          purpose: 'An expression is not the same thing as a full equation'
           productionNotes: |-
             _Purpose: contrast a mathematical fragment describing a calculation with a statement comparing values._
-            
+
             1. **`text`:** “The teacher says: ‘Write **an expression** for the sum of six and two.’ Which card answers that instruction: **6 + 2**, **6 + 2 = 8**, or **8**?”
             2. **`scene` Resource (proposed):** Expression Reader, entry C, displays these three distinct cards. Each card is read accessibly. The learner sorts them under **expression**, **complete equality**, and **value** with choices; sorting is instructional, not a scored Question. Explain each: **6 + 2** is the asked-for expression; **6 + 2 = 8** adds a true claim; **8** is only its value. After choice, invite the child to read **10 − 4** aloud, without calculating it first.
             3. **`text`, feedback:** For choosing the equality, “That statement is true, but the request was only for the calculation expression.” For choosing eight, “Eight tells the value, not the operation.” For choosing 6 + 2, “This shows both amounts and how they are connected.”
             4. **`markdown`:** Optional recall: “**Expression:** 10 − 4. **Value:** 6. **Equality:** 10 − 4 = 6.” Do not imply every expression must always be calculated in the Lesson.
       section4:
         config:
-          id: "e1366c56-abc8-5f3d-abe4-ec563a8812c7"
-          slug: "section4"
-          type: "content"
+          id: 'e1366c56-abc8-5f3d-abe4-ec563a8812c7'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Make an expression for a fresh situation"
+              en: 'Make an expression for a fresh situation'
             navigationLabel:
-              en: "Make an expression for a fresh situation"
+              en: 'Make an expression for a fresh situation'
           content:
             items:
               text1:
                 config:
-                  id: "ebd1a107-3bae-595c-ad0c-2107acda9fea"
-                  slug: "text1"
-                  type: "text"
+                  id: 'ebd1a107-3bae-595c-ad0c-2107acda9fea'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "There are **14** tokens in a jar. **4** tokens are taken out. Without writing the answer yet, create a numeric expression for what remains."
+                      en: 'There are **14** tokens in a jar. **4** tokens are taken out. Without writing the answer yet, create a numeric expression for what remains.'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "e3cd67f8-21f7-57e5-92e4-e7f88f75e743"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'e3cd67f8-21f7-57e5-92e4-e7f88f75e743'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "There are **14** tokens in a jar. **4** tokens are taken out. Without writing the answer yet, create a numeric expression for what remains."
+                        instruction: 'There are **14** tokens in a jar. **4** tokens are taken out. Without writing the answer yet, create a numeric expression for what remains.'
                 production:
                   specification: |
                     # Expression Reader — Scene Specification
-                    
+
                     **Status:** Provisional Draft — pending Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** Lesson Content (embedded in this Lesson config.yaml), Sections 1–4; Draft Methodologist Brief (embedded in this Lesson config.yaml).
                     **Availability:** New proposed self-contained, prop-free Scene; neither React implementation nor translations exist yet.
-                    
+
                     ## Learner purpose and mathematical contract
-                    
+
                     This Scene teaches translation from quantities and words into a correct **numeric expression**, without conflating expression, evaluated number and equality. All counters, symbols and text must agree on the **start**, **change** and **operation**. An expression is not automatically an equality. Correct mathematical calculations can still be the _wrong output type_ when the instruction specifically requests an expression.
-                    
+
                     ## Learner journey, choices and feedback
-                    
+
                     ### Entry A — seven plus four (Section 1)
-                    
+
                     Display seven initial shell counters and four labeled incoming counters; final total is initially hidden. Offer 7 + 4, 7 − 4 and 4 − 7 as focusable choices. A correct 7 + 4 selection receives “Seven joined with four: the expression describes the change.” For 7 − 4: “That would remove four, but four arrived.” For 4 − 7: “That would start with four, then remove seven.” Optional “Reveal value” shows eleven; the original expression remains 7 + 4, distinct from its value 11 or equality 7 + 4 = 11.
-                    
+
                     ### Entry B — nine minus three (Section 2)
-                    
+
                     Show nine grapes in a bowl and three marked as eaten. Preserve nine as the known initial count, three as the amount removed, the remainder as unknown. Offer 9 − 3, 3 − 9, and 9 + 3. The first matches the story and may reveal six remaining grapes. 3 − 9 is not a valid representation of the start/remove roles and is outside the allowed nonnegative model. 9 + 3 would add rather than remove grapes. Ask how “subtract three from nine” is written: nine first, then subtract three. Feedback always names the known quantities, not only “try again”.
-                    
+
                     ### Entry C — expression, value, statement (Section 3)
-                    
+
                     Present three labeled cards: 6 + 2, 8, and 6 + 2 = 8. Learner classifies them as expression, value, and complete equality respectively with accessible select-then-category controls; no drag is required. If asked to write only an expression, selecting the equality receives “That is mathematically true but includes a claim, not just the requested expression.” Selecting 8 receives “That is the result rather than the operation.” Provide a free “Explain all three” reveal, plus a short independent reading of 10 − 4 as words without requiring calculation.
-                    
+
                     ### Entry D — independent transfer (Section 4)
-                    
+
                     Story: fourteen tokens in a jar, four taken out. Present empty operation slots or an accessible text entry. Expected expression: 14 − 4. If 4 − 14, explain that fourteen is the initial count. If 14 + 4, explain that removal lowers the number remaining. If 14 − 4 = 10, explain that it is a _true equality_ but the requested output was an expression; show 14 − 4 as the precise response. Optional hints: “Which amount starts?” then “Were tokens added or removed?” Optional answer reveal shows ten tokens remain only after the initial expression is clear.
-                    
+
                     ## Objects, state and invariants
-                    
+
                     A fixed scenario (numbers, unit, start/change relation), ordered symbolic slots or choices, a precise counter depiction, optional hint/reveal state and local Reset. Each Section entry starts independently without props or shared state. Underlying arithmetic must match displayed quantities in every visible mode: 7+4=11; 9−3=6; 6+2=8; 14−4=10. Learner guesses change the _chosen representation_, never the original narrative data. An equality is not labeled numerically false merely because the instruction asked for an expression. This Scene is an explanatory interaction, not a Question or scoring contract.
-                    
+
                     ## Accessibility, localization and offline intent
-                    
+
                     Use readable textual ledger (“nine start, three leave, remaining unknown”) alongside optional animated counters. Every operation and counter group has screen-reader description; tab/keyboard/switch/touch choices are fully usable without dragging or hovering. Announce expression, numeric value and complete equality distinctly, not solely via color or placement. RTL preserves mathematical operand order and the meaning of “subtract three from nine”, with bidi-safe numeric runs and semantically reordered controls. All strings, hints, alternative descriptions and feedback require actual translations into each supported locale; no silent English fallback. Reduced motion, focus visibility, high contrast, zoom/mobile reflow and equivalent offline content after downloading are requirements, not claims of already implemented features.
-                    
+
                     ## Acceptance examples
-                    
+
                     1. 7+4 is the matching expression; 7−4 and 4−7 each receive exact role feedback; value eleven is optional.
                     2. 9−3, not 3−9 or 9+3, represents removal and gives six remaining.
                     3. 6+2, 8, 6+2=8 belong to expression, value and equality categories respectively.
                     4. 14−4 is the requested expression; 14−4=10 is true but a different type of artifact.
                     5. Hint and reveal work without scoring; reset does not change another Section.
                     6. Keyboard, screen reader, RTL, mobile zoom, reduced motion and downloaded offline path convey identical quantities and explanations.
-                    
+
                     ## Implementation dependencies and editorial handoff
-                    
+
                     The generic Scene resource is renderable today, but this Scene and all required locale dictionaries are proposed. Coding Agent must verify actual Scene context, create a prop-free component and tests, and meet WCAG 2.2 AA. No invented APIs, Question/Quiz, learner-state persistence, grading or Note events. Approval remains outstanding.
-                  purpose: "Make an expression for a fresh situation"
-                  productionNotes: "Source Scene expressionReader.scene-spec.md; independent placement for Make an expression for a fresh situation. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Make an expression for a fresh situation'
+                  productionNotes: 'Source Scene expressionReader.scene-spec.md; independent placement for Make an expression for a fresh situation. Variant/feedback retained under parent Section productionNotes.'
               text2:
                 config:
-                  id: "ecd1a29a-3eae-5e15-ae0c-229aabda9e57"
-                  slug: "text2"
-                  type: "text"
+                  id: 'ecd1a29a-3eae-5e15-ae0c-229aabda9e57'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Four is the amount removed, not the starting amount."
+                      en: 'Four is the amount removed, not the starting amount.'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               markdown1:
                 config:
-                  id: "6f7d3525-5e72-5b66-a9df-b52594508ba8"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '6f7d3525-5e72-5b66-a9df-b52594508ba8'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Before you write symbols, ask: **What amount starts? What changes? What action connects them?** A good expression describes that relationship. You can work out its value afterward."
+                      en: 'Before you write symbols, ask: **What amount starts? What changes? What action connects them?** A good expression describes that relationship. You can work out its value afterward.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","text2","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'text2', 'markdown1']
         production:
-          purpose: "Make an expression for a fresh situation"
+          purpose: 'Make an expression for a fresh situation'
           productionNotes: |-
             _Purpose: independently translate a story to symbols, with progressive hints rather than a token quiz._
-            
+
             1. **`text`:** “There are **14** tokens in a jar. **4** tokens are taken out. Without writing the answer yet, create a numeric expression for what remains.”
             2. **`scene` Resource (proposed):** Expression Reader, entry D, begins with a story and empty symbol slots. Learner may choose digits, + or −, or use a simple accessible text field. First optional hint: “Which number is in the jar at the beginning?” Second hint: “Does ‘taken out’ join or remove?” Valid expression: **14 − 4**.
             3. **`text`, feedback:** For **4 − 14**: “Four is the amount removed, not the starting amount.” For **14 + 4**: “The tokens were taken out, not put in.” For **14 − 4 = 10**: “The calculation is right, but you wrote a complete equality. Show only the expression **14 − 4** for this request.” Confirm by revealing ten _only if the learner asks_.
             4. **`markdown`:** “Before you write symbols, ask: **What amount starts? What changes? What action connects them?** A good expression describes that relationship. You can work out its value afterward.”
-    order: ["section1","section2","section3","section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # Read and Write a Number Expression — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: readAndWriteExpressions
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Establish that a numerical expression represents a quantitative calculation and has a value, but is not itself an equality. Convert between age-appropriate oral/verbal arithmetic relationships and correct symbolic expressions while preserving the order of operands.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 2.** Select conceptual depth and expected independence according to these prerequisites, not a numerical grade ceiling on the canonical Skill. Plan for developing reading fluency, optional teacher/adult mediation, accessible symbols, working-memory scaffolding and multiple response modes. All examples remain legible and comprehensible without sound, exact pointer control or high-speed interaction.
-    
+
     ## Prerequisites
-    
+
     - Count and compare nonnegative whole numbers at least to 20.
     - Know the meanings of addition and subtraction and recognize + and −; subtraction is not commutative.
     - A concrete add/remove model may support initial learners; evaluation is useful for verification but **not** the defining outcome of this Skill.
-    
+
     ## Target Skills
-    
+
     - [readNumericExpressions.data.ts](../../../../data/skills/algebra/expressions/skills/readNumericExpressions.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Read a complete numeric expression such as 7 + 4 as ‘seven plus four’ and distinguish it from the complete statement 7 + 4 = 11.
     - Write an expression from a precise quantity relationship, including correct operand order in ‘take 3 away from 9’ → 9 − 3.
     - Match written/verbal expressions and simple counter models, explaining the roles of numerals and the operation sign without relying on computation alone.
     - Reject a reversed subtraction that does not describe the same relationship.
-    
+
     ## Essential subject matter
-    
+
     An expression contains numerals and mathematical operations and _denotes a value_ without asserting a comparison to another value. `7 + 4` is an expression; `7 + 4 = 11` is a numerical equality (statement). `9 − 3` describes starting with nine and removing three; `3 − 9` does not represent that situation. Examples within 0–20 include `6 + 2`, `10 − 4`, `8 + 5`; a verbal phrase ‘five less than twelve’ means 12 − 5, not 5 − 12. Parentheses may appear in canonical expressions, but formal order-of-operations, nested grouping, variables, multi-operation precedence, and expression simplification are not outcomes in this introductory Lesson.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Start with concrete joined/removed groups, ask the learner to describe the operation aloud, compare the expression with the _equation that includes its value_, and write a corresponding expression from a fresh verbal relationship. Include reversed subtraction as the discriminating nonexample; vary the story context for independent transfer.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Writing an equals sign and answer when asked for only an expression; reading 9 − 3 as ‘subtract nine from three’; assuming an expression must already show an answer; blindly swapping subtraction terms. Keep number ranges 0–20 with nonnegative results, avoid order-of-operations rules and variable notation.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     English text is an **editorial source**, not a finished multilingual translation. Before implementation every learner-visible prompt, story, diagram label, mathematical reading, control name, feedback statement and nonvisual alternative needs **genuine, meaning-preserving translation for all current supported locales**, with no silent English fallback. Mathematical operand order, chronological events, and quantitative meaning must remain stable in RTL; adapt layout semantically rather than mirror all graphics. Offer keyboard, touch and switch alternatives to dragging, explicit textual names and values rather than color-only cues, predictable focus, zoom/mobile reflow, reduced motion and equivalent auditory/nonvisual explanations. All lesson-critical resources and feedback should be available after offline download; this is a **target** requiring future implementation checks, not a promise that PWA/Note persistence is implemented.
-    
+
     ## Sources and factual verification
-    
+
     - [readNumericExpressions.data.ts](../../../../data/skills/algebra/expressions/skills/readNumericExpressions.data.ts) — directly linked Mathematics canonical Skill data; confirm exact source/UUID and domain-local composition, not a generated Markdown authority.
     - [Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — independent Methodologist and Screenwriter artifacts and approval boundaries.
     - [Internationalization and Accessibility](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) — current inclusive localization design requirements.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) — optional international reference for a broad progression, **not** a claim of Curriculum alignment.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. This Lesson is standalone and Program-neutral.
-    
+
     ## Open editorial decisions
-    
+
     - Grade 2 focus is on additive/subtractive expressions only; later Lessons may teach multiplication, parentheses and full evaluation without changing the Skill definition.
     - The generated Playground taxonomy view is a shared coordinator-owned artifact and may not yet include newly migrated SkillGroups; formal taxonomy approval must be independently confirmed. Do not mistake the presence of a canonical source Code object for a new editorial sign-off.
     - Methodologist/editor must explicitly approve this Draft Brief before Content or Scene specifications become formally approved; current parallel drafts are **provisional**.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, pending explicit approval.** The Screenwriter's provisional Content (embedded in this Lesson config.yaml) and proposed Scene (Scene specification expressionReader embedded in the corresponding Scene node) are independently reviewable, not evidence that the Methodologist gate passed. No runtime Lesson, Question, Quiz, grade, scoring or Note persistence was implemented.
   productionNotes: |
     # Read and Write a Number Expression — Lesson Content
-    
+
     **Screenwriter status:** Provisional Draft — **Methodologist Brief not approved**.  
     **Methodologist source:** Draft Brief (embedded in this Lesson config.yaml). **Program dependence:** None. **Lesson implementation:** Not implemented.  
     **Editorial source language:** English, pending genuine locale-by-locale production translations.
-    
+
     ## Learning experience — what the learner does
-    
+
     The learner does not merely calculate totals. The central task is to **understand and construct a numerical expression that faithfully represents the described operation**. Expression, mathematical statement and numeric result are distinguished explicitly. Use short written and optional spoken prompts plus manipulations with a fully equivalent keyboard/select alternative.
-    
+
     ### Section 1 — What does “seven plus four” mean?
-    
+
     _Purpose: connect everyday quantity joining to an expression, before requiring a result._
-    
+
     1. **`text` Resource:** “Seven shells are here. Four more shells arrive. What could we write to **show that change**?” Let learners predict a notation before any answer is supplied.
     2. **`scene` Resource (proposed):** Expression Reader (Scene specification expressionReader embedded in the corresponding Scene node), entry A. Display a labeled group of **7** shells with an incoming group of **4**. Learner chooses between the expressions **7 + 4**, **7 − 4**, and **4 − 7**, with keyboard/touch controls. After selection, the learner may reveal the number **11** of shells, but **7 + 4** remains displayed as the original expression.
     3. **`text` Resource, feedback:** For 7 + 4: “Yes: you join the seven shells and the four arriving shells.” For 7 − 4: “Subtracting four would remove shells, but four arrived.” For 4 − 7: “This would begin with four and take away seven; that is not the story.”
     4. **`markdown` Resource:** “A **numerical expression** uses numbers and operations to describe a value: **7 + 4**. It does not need to show its answer yet. **7 + 4 = 11** is a complete equality saying what the expression equals.” This is a meaning distinction, not a demand to memorize terminology without a model.
-    
+
     ### Section 2 — Reading from left to right is not enough
-    
+
     _Purpose: protect the mathematical roles of the operands, especially in subtraction phrases._
-    
+
     1. **`text`:** “A bowl starts with **9** grapes. **3** are eaten. Say the change in words, then write an expression.” Offer a short silent prediction.
     2. **`scene` Resource (proposed):** Expression Reader, independent entry B. Fixed initial group 9 and a clearly labeled removed group 3. Learner chooses between **9 − 3**, **3 − 9**, and **9 + 3**, then reveals remaining **6**. The UI preserves the chronological source: start → take away.
     3. **`text`, feedback:** For 9 − 3: “Nine is the starting amount; three are removed.” For 3 − 9: “The expression would start with three, then remove nine. But the bowl **started with nine**.” For addition: “The three leave the bowl; they are not added.”
     4. **`markdown`:** “The phrase ‘**subtract three from nine**’ means **9 − 3**. The word _from_ reverses the order we might hear the numbers in the sentence; mathematical roles, not word position, decide the expression.”
-    
+
     ### Section 3 — An expression is not the same thing as a full equation
-    
+
     _Purpose: contrast a mathematical fragment describing a calculation with a statement comparing values._
-    
+
     1. **`text`:** “The teacher says: ‘Write **an expression** for the sum of six and two.’ Which card answers that instruction: **6 + 2**, **6 + 2 = 8**, or **8**?”
     2. **`scene` Resource (proposed):** Expression Reader, entry C, displays these three distinct cards. Each card is read accessibly. The learner sorts them under **expression**, **complete equality**, and **value** with choices; sorting is instructional, not a scored Question. Explain each: **6 + 2** is the asked-for expression; **6 + 2 = 8** adds a true claim; **8** is only its value. After choice, invite the child to read **10 − 4** aloud, without calculating it first.
     3. **`text`, feedback:** For choosing the equality, “That statement is true, but the request was only for the calculation expression.” For choosing eight, “Eight tells the value, not the operation.” For choosing 6 + 2, “This shows both amounts and how they are connected.”
     4. **`markdown`:** Optional recall: “**Expression:** 10 − 4. **Value:** 6. **Equality:** 10 − 4 = 6.” Do not imply every expression must always be calculated in the Lesson.
-    
+
     ### Section 4 — Make an expression for a fresh situation
-    
+
     _Purpose: independently translate a story to symbols, with progressive hints rather than a token quiz._
-    
+
     1. **`text`:** “There are **14** tokens in a jar. **4** tokens are taken out. Without writing the answer yet, create a numeric expression for what remains.”
     2. **`scene` Resource (proposed):** Expression Reader, entry D, begins with a story and empty symbol slots. Learner may choose digits, + or −, or use a simple accessible text field. First optional hint: “Which number is in the jar at the beginning?” Second hint: “Does ‘taken out’ join or remove?” Valid expression: **14 − 4**.
     3. **`text`, feedback:** For **4 − 14**: “Four is the amount removed, not the starting amount.” For **14 + 4**: “The tokens were taken out, not put in.” For **14 − 4 = 10**: “The calculation is right, but you wrote a complete equality. Show only the expression **14 − 4** for this request.” Confirm by revealing ten _only if the learner asks_.
     4. **`markdown`:** “Before you write symbols, ask: **What amount starts? What changes? What action connects them?** A good expression describes that relationship. You can work out its value afterward.”
-    
+
     ## Screenwriter production handoff and boundaries
-    
+
     General Section Resources are ordered **top to bottom in one column**. `text`, `markdown` and `scene` are recognized types in the inspected generic Playground renderer; **this Expression Reader Scene is proposed**, requires localization and React implementation later, and has a separate Scene specification (Scene specification expressionReader embedded in the corresponding Scene node). No arbitrary section discriminator, Questions, Quiz, grading, mastery tracking or Notes state is introduced.
-    
+
     The editorial English phrases are **not translated lesson resources**. Every prompt, mathematical speech, accessible control, feedback and example must be translated truly for all configured locales without English fallback. In RTL, preserve expression operand order and speech semantics, specifically “subtract three from nine”; adapt layout and focus order rather than flipping numbers. Counters must have text-count equivalents; all choices work with keyboard/switch/touch, readable zoom, visible focus, reduced motion and high contrast independent of color. All selected learning resources and feedback must be available offline **after an implemented download path**, not presumed present now. The approval gate for the Brief and Scene remains open.

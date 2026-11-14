@@ -1,17 +1,17 @@
 config:
-  id: "e55acf3f-df47-5de8-a2a4-56f016b33bb2"
-  slug: "numberLineToTwenty"
-  type: "lesson"
+  id: 'e55acf3f-df47-5de8-a2a4-56f016b33bb2'
+  slug: 'numberLineToTwenty'
+  type: 'lesson'
   skills:
-    - "b0ee8874-a540-48d4-bcc4-8075e49526ce"
-    - "f1f3fcb5-c6ce-4542-817a-a9eca6b79453"
+    - 'b0ee8874-a540-48d4-bcc4-8075e49526ce'
+    - 'f1f3fcb5-c6ce-4542-817a-a9eca6b79453'
   params:
     requireQuiz: false
     languages:
-      - "en"
-      - "pl"
-      - "uk"
-      - "qm"
+      - 'en'
+      - 'pl'
+      - 'uk'
+      - 'qm'
     sections:
       allowNavigation: true
       allowSkipping: true
@@ -23,90 +23,90 @@ config:
     items:
       section1:
         config:
-          id: "e55acf3f-df47-5de8-a2a4-000000000004"
-          slug: "section1"
-          type: "content"
+          id: 'e55acf3f-df47-5de8-a2a4-000000000004'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Equal-Tick Trail"
+              en: 'Equal-Tick Trail'
             navigationLabel:
-              en: "Equal-Tick Trail"
+              en: 'Equal-Tick Trail'
           content:
             items:
               text1:
                 config:
-                  id: "e55acf3f-df47-5de8-a2a4-000000000001"
-                  slug: "text1"
-                  type: "text"
+                  id: 'e55acf3f-df47-5de8-a2a4-000000000001'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?"
+                      en: 'Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line:   1. **`text` — existing generic renderer:** “Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?”"
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line:   1. **`text` — existing generic renderer:** “Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?”'
               scene1:
                 config:
-                  id: "e55acf3f-df47-5de8-a2a4-000000000002"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'e55acf3f-df47-5de8-a2a4-000000000002'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?"
+                        instruction: 'Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?'
                 production:
-                  purpose: "Unimplemented proposed interactive Scene"
+                  purpose: 'Unimplemented proposed interactive Scene'
                   specification: |-
                     # Equal-Tick Trail — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist and independent Scene approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: `A Number's Place on the Line Content` (source preserved in config.yaml), Section 1
                     Methodologist objectives: `Methodologist Brief` (source preserved in config.yaml) (**Draft, not approved**)
                     Implementation status: Proposed standalone **prop-free Scene**, not implemented
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Experience numeric position and equal one-unit intervals rather than a decorative run of labels.
-                    
+
                     **Underlying number relationship:** The number line has positions 0,1,…,20 in numerical order with one **equal-length unit interval** between adjacent integers. In conventional number-line coordinates, larger values lie to the right and smaller values to the left; the arrow labelled increasing and ordered tick list always determine meaning, regardless of interface RTL direction. From tick 10, two unit moves reach 12 (via 11); from 5, three unit moves reach 8 (5→6, 6→7, 7→8). Immediately before 10 is 9, immediately after 10 is 11. Strictly between 7 and 11 lie 8,9,10 (not the endpoints). Inside the shown 0–20 segment, no predecessor of 0 and no successor of 20 are displayed; this is a display boundary, not a claim numbers do not continue.
-                    
+
                     The child must be able to change or examine the representation, form a prediction, see the exact model and explain why a plausible wrong shortcut fails.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     **Initial state:** A mathematically fixed horizontal line with integer ticks 0–20. Consecutive tick centres have the same geometric spacing. A labelled increasing-direction arrow points toward increasing values; current marker at 10. On mobile, the visible window may scroll over this unchanged 21-tick model, with keyboard-accessible numeric list for the entire range.
-                    
+
                     **Model and invariant:** Integers 0 through 20, fixed unit spacing, current tick, target tick, step ledger, revealed interval count and explanation. Each Step +1 advances exactly one tick and one equal-length interval. Step −1 traverses one interval in the opposite direction. Window scrolling must never change the scale.
-                    
+
                     **Numerical and pedagogical limits:** Grade 1: integers 0–20, horizontal equally spaced fixed unit increments, before/after and the finite set of numbers strictly between endpoints. Do not teach signed numbers, rational interpolation, arbitrary scales, inequality symbols as the lesson target, graphical mirroring as mathematical reversal or formal coordinate arithmetic.
-                    
+
                     **Boundary case / nuance:** A requested step beyond 0 or 20 says 'outside the displayed 0–20 segment' rather than declaring an impossible mathematical operation; never wrap the marker to the opposite end.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Beat 1 — Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?
-                    
+
                     1. **Invitation:** “Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?”
                     2. **Controllable investigation:** Activate Step +1 twice, with marker moving 10→11→12 and revealing both equal-length gaps.
                     3. **Correct visible consequence:** The marker arrives at 12 after two distinct equal unit intervals.
                     4. **Worked number evidence:** 10 + 1 + 1 = 12; two equal gaps.
                     5. **Mistaken or incomplete route:** For 11, display the two traversed intervals 10→11 (first), 11→12 (second). For 13, show that the extra third interval was not requested.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ### Beat 2 — Between 5 and 8, how many one-unit moves are needed?
-                    
+
                     1. **Invitation:** “Between 5 and 8, how many one-unit moves are needed?”
                     2. **Controllable investigation:** Switch fixed preset to marker 5, target 8; move 5→6→7→8, recording each interval and separately listing interior ticks.
                     3. **Correct visible consequence:** Three moves; two interior numbers (6 and 7) but three gaps.
                     4. **Worked number evidence:** 5→6→7→8: 3 intervals, 2 intermediate numbers.
                     5. **Mistaken or incomplete route:** If two selected, explain that 6 and 7 are intermediate labels, while the gaps are 5–6, 6–7, 7–8.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Semantic objects:** Named countable group members, ticks, operands or operator controls, each with stable identity, a visible state and an equivalent ordered textual ledger.
                     - **Control map:** Choose target tick, Step +1, Step −1, Show counted intervals, Reset, Reveal. An ordered numeric input/list alternative permits selection without dragging or fine tapping.
                     - **Deterministic state:** The numbers, chosen preset, group members, selected values, prediction, Reveal state and Reset all come from the self-contained Scene's own constants and actions, not caller props.
@@ -114,19 +114,19 @@ config:
                     - **Independence:** The proposed component has **no props** and no mutable state shared with a Lesson or another Scene; each Section contains its own independently resettable placement.
                     - **Boundaries:** A requested step beyond 0 or 20 says 'outside the displayed 0–20 segment' rather than declaring an impossible mathematical operation; never wrap the marker to the opposite end.
                     - **Assessment boundary:** Prediction and feedback are formative only. No Question bank, Quiz, correct-answer security contract, mastery metric, score, persistent Note event, timed completion or invented platform API.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use lightweight HTML/SVG or ordinary semantic controls for individual items and groups, with a concise number ledger. Animation may highlight an interval, pair or new group but may never be the only carrier of information; reduced-motion mode updates state immediately. No required audio, live external service, asset generation or ornamental 3D. If optional sound is added later, localized captions/transcripts and downloaded media must preserve full learning.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Keep the increasing arrow and exact tick order mathematically fixed under RTL; announce marker, target and numbered interval list. Allow scroll/zoom without compressing 21 ticks to illegibility; native buttons and entire ordered list work without visual geometry.
-                    
+
                     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. All 20 unit gaps have equal length, both visually and conceptually.
                     2. At 10, two +1 moves end at 12.
                     3. At 5, three +1 moves end at 8; intermediate labels are 6 and 7.
@@ -135,31 +135,31 @@ config:
                     6. For Beat 2, verify exact expected result: 5→6→7→8: 3 intervals, 2 intermediate numbers. Test plausible wrong response: If two selected, explain that 6 and 7 are intermediate labels, while the gaps are 5–6, 6–7, 7–8.
                     7. All interactions work by keyboard, switch and touch with full nonvisual ledger, correct semantic RTL, reduced motion, mobile/high zoom and identical downloaded-offline mathematics.
                     8. Reset affects this Scene only, not another Section; no scoring or unimplemented Note event is emitted.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Each custom Scene is independently initialized, self-contained and **prop-free**; no caller supplies mode or numerical props. Scenarios and variables reside in that Scene's own authored module once implemented. The generic `scene` Resource type is supported, but this particular Scene has **not** been implemented. No invented API, registration, event, Note persistence, assessment, score or mastery side effect is assumed.
-                    
+
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
-                  productionNotes: "Unique Scene placement scene1 in Equal-Tick Trail. Original:   2. **`scene` — generic type exists, **specific Scene proposed**:** `Equal-Tick Trail` (specification preserved in config.yaml). A mathematically fixed horizontal line with integer ticks 0–20. Consecutive tick centres have the same geometric spacing. A labelled increasing-direction arrow points toward increasing values; current marker at 10. On mobile, the visible window may scroll over this unchanged 21-tick model, with keyboard-accessible numeric list for the entire range.. Status: provisional only."
+                  productionNotes: 'Unique Scene placement scene1 in Equal-Tick Trail. Original:   2. **`scene` — generic type exists, **specific Scene proposed**:** `Equal-Tick Trail` (specification preserved in config.yaml). A mathematically fixed horizontal line with integer ticks 0–20. Consecutive tick centres have the same geometric spacing. A labelled increasing-direction arrow points toward increasing values; current marker at 10. On mobile, the visible window may scroll over this unchanged 21-tick model, with keyboard-accessible numeric list for the entire range.. Status: provisional only.'
               markdown1:
                 config:
-                  id: "e55acf3f-df47-5de8-a2a4-000000000003"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'e55acf3f-df47-5de8-a2a4-000000000003'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The marker arrives at 12 after two distinct equal unit intervals. 10 + 1 + 1 = 12; two equal gaps."
+                      en: 'The marker arrives at 12 after two distinct equal unit intervals. 10 + 1 + 1 = 12; two equal gaps.'
                 production:
-                  purpose: "Learner-facing authored markdown resource"
-                  specification: "Authored resource line:   3. **`markdown` — existing generic renderer:** “The marker arrives at 12 after two distinct equal unit intervals. 10 + 1 + 1 = 12; two equal gaps.”"
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line:   3. **`markdown` — existing generic renderer:** “The marker arrives at 12 after two distinct equal unit intervals. 10 + 1 + 1 = 12; two equal gaps.”'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Equal-Tick Trail"
+          purpose: 'Equal-Tick Trail'
           pedagogicalIntent: |-
             - **Learning purpose:** Experience numeric position and equal one-unit intervals rather than a decorative run of labels.
             - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
@@ -168,88 +168,88 @@ config:
               2. **`scene` — generic type exists, **specific Scene proposed**:** `Equal-Tick Trail` (specification preserved in config.yaml). A mathematically fixed horizontal line with integer ticks 0–20. Consecutive tick centres have the same geometric spacing. A labelled increasing-direction arrow points toward increasing values; current marker at 10. On mobile, the visible window may scroll over this unchanged 21-tick model, with keyboard-accessible numeric list for the entire range.
               3. **`markdown` — existing generic renderer:** “The marker arrives at 12 after two distinct equal unit intervals. 10 + 1 + 1 = 12; two equal gaps.”
             - **Learner action and responsive feedback:**
-            
+
             **Beat 1 — “Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?”** Activate Step +1 twice, with marker moving 10→11→12 and revealing both equal-length gaps.
-            
+
             **Learner-visible result:** The marker arrives at 12 after two distinct equal unit intervals.
-            
+
             **Worked numerical evidence:** 10 + 1 + 1 = 12; two equal gaps.
-            
+
             **Feedback for a plausible misconception:** For 11, display the two traversed intervals 10→11 (first), 11→12 (second). For 13, show that the extra third interval was not requested.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             **Beat 2 — “Between 5 and 8, how many one-unit moves are needed?”** Switch fixed preset to marker 5, target 8; move 5→6→7→8, recording each interval and separately listing interior ticks.
-            
+
             **Learner-visible result:** Three moves; two interior numbers (6 and 7) but three gaps.
-            
+
             **Worked numerical evidence:** 5→6→7→8: 3 intervals, 2 intermediate numbers.
-            
+
             **Feedback for a plausible misconception:** If two selected, explain that 6 and 7 are intermediate labels, while the gaps are 5–6, 6–7, 7–8.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             - **Controls and accessibility:** Choose target tick, Step +1, Step −1, Show counted intervals, Reset, Reveal. An ordered numeric input/list alternative permits selection without dragging or fine tapping. Keep the increasing arrow and exact tick order mathematically fixed under RTL; announce marker, target and numbered interval list. Allow scroll/zoom without compressing 21 ticks to illegibility; native buttons and entire ordered list work without visual geometry.
             - **Cause-and-effect explanation:** Integers 0 through 20, fixed unit spacing, current tick, target tick, step ledger, revealed interval count and explanation. Each Step +1 advances exactly one tick and one equal-length interval. Step −1 traverses one interval in the opposite direction. Window scrolling must never change the scale. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
             - **Boundary reasoning:** A requested step beyond 0 or 20 says 'outside the displayed 0–20 segment' rather than declaring an impossible mathematical operation; never wrap the marker to the opposite end.
             - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
-          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
       section2:
         config:
-          id: "e55acf3f-df47-5de8-a2a4-000000000008"
-          slug: "section2"
-          type: "content"
+          id: 'e55acf3f-df47-5de8-a2a4-000000000008'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "How Many Hops?"
+              en: 'How Many Hops?'
             navigationLabel:
-              en: "How Many Hops?"
+              en: 'How Many Hops?'
           content:
             items:
               text1:
                 config:
-                  id: "e55acf3f-df47-5de8-a2a4-000000000005"
-                  slug: "text1"
-                  type: "text"
+                  id: 'e55acf3f-df47-5de8-a2a4-000000000005'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
                       en: "From 5 to 8, how many one-unit moves do you make? Why isn't the answer two?"
                 production:
-                  purpose: "Learner-facing authored text resource"
+                  purpose: 'Learner-facing authored text resource'
                   specification: "Authored resource line:   1. **`text` — existing renderer:** “From 5 to 8, how many one-unit moves do you make? Why isn't the answer two?”"
               markdown1:
                 config:
-                  id: "e55acf3f-df47-5de8-a2a4-000000000006"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'e55acf3f-df47-5de8-a2a4-000000000006'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Three: 5→6, then 6→7, then 7→8. There are two numbers strictly inside the endpoints (6 and 7), but three gaps to travel."
+                      en: 'Three: 5→6, then 6→7, then 7→8. There are two numbers strictly inside the endpoints (6 and 7), but three gaps to travel.'
                 production:
-                  purpose: "Learner-facing authored markdown resource"
-                  specification: "Authored resource line:   2. **`markdown` — existing renderer:** “Three: 5→6, then 6→7, then 7→8. There are two numbers strictly inside the endpoints (6 and 7), but three gaps to travel.”"
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line:   2. **`markdown` — existing renderer:** “Three: 5→6, then 6→7, then 7→8. There are two numbers strictly inside the endpoints (6 and 7), but three gaps to travel.”'
               markdown2:
                 config:
-                  id: "e55acf3f-df47-5de8-a2a4-000000000007"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: 'e55acf3f-df47-5de8-a2a4-000000000007'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "Counting ticks and counting the intervals between ticks are different questions. A line's numbers still increase in their declared direction if the page uses RTL."
                 production:
-                  purpose: "Learner-facing authored markdown resource"
+                  purpose: 'Learner-facing authored markdown resource'
                   specification: "Authored resource line:   3. **`markdown` — existing renderer:** “Counting ticks and counting the intervals between ticks are different questions. A line's numbers still increase in their declared direction if the page uses RTL.”"
             order:
-              - "text1"
-              - "markdown1"
-              - "markdown2"
+              - 'text1'
+              - 'markdown1'
+              - 'markdown2'
         production:
-          purpose: "How Many Hops?"
+          purpose: 'How Many Hops?'
           pedagogicalIntent: |-
             - **Purpose and expected learner thinking:** Distinguish the mathematical invariant from a familiar but misleading shortcut; retrieve a rule without a score.
             - **Current implementation shape:** `LessonSection_Config`, a single vertical content column (no Quiz).
@@ -260,93 +260,93 @@ config:
             - **Meaningful feedback:** The example explicitly contrasts the likely mistaken response with a countable or numeric explanation. Child may reason before reading; current `text`/`markdown` renderers are **not** claimed to provide a delayed-answer or true-response validation widget.
             - **Accessibility and pacing:** Brief accessible written language, no sensory dependency. The explanatory text remains available to every learner and is never hidden behind a timed action.
             - **Transition:** Section 3 changes numbers or objects and asks for independent reasoning. The first Scene's state is not carried into the second.
-          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
       section3:
         config:
-          id: "e55acf3f-df47-5de8-a2a4-00000000000c"
-          slug: "section3"
-          type: "content"
+          id: 'e55acf3f-df47-5de8-a2a4-00000000000c'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Between the Ticks"
+              en: 'Between the Ticks'
             navigationLabel:
-              en: "Between the Ticks"
+              en: 'Between the Ticks'
           content:
             items:
               text1:
                 config:
-                  id: "e55acf3f-df47-5de8-a2a4-000000000009"
-                  slug: "text1"
-                  type: "text"
+                  id: 'e55acf3f-df47-5de8-a2a4-000000000009'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Find the number just before 10 and just after 10."
+                      en: 'Find the number just before 10 and just after 10.'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line:   1. **`text` — existing generic renderer:** “Find the number just before 10 and just after 10.”"
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line:   1. **`text` — existing generic renderer:** “Find the number just before 10 and just after 10.”'
               scene1:
                 config:
-                  id: "e55acf3f-df47-5de8-a2a4-00000000000a"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'e55acf3f-df47-5de8-a2a4-00000000000a'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Find the number just before 10 and just after 10."
+                        instruction: 'Find the number just before 10 and just after 10.'
                 production:
-                  purpose: "Unimplemented proposed interactive Scene"
+                  purpose: 'Unimplemented proposed interactive Scene'
                   specification: |-
                     # Between the Ticks — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist and independent Scene approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: `A Number's Place on the Line Content` (source preserved in config.yaml), Section 3
                     Methodologist objectives: `Methodologist Brief` (source preserved in config.yaml) (**Draft, not approved**)
                     Implementation status: Proposed standalone **prop-free Scene**, not implemented
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Use an explicit line segment to determine predecessor, successor and all intermediate integers instead of guessing from visual proximity.
-                    
+
                     **Underlying number relationship:** The number line has positions 0,1,…,20 in numerical order with one **equal-length unit interval** between adjacent integers. In conventional number-line coordinates, larger values lie to the right and smaller values to the left; the arrow labelled increasing and ordered tick list always determine meaning, regardless of interface RTL direction. From tick 10, two unit moves reach 12 (via 11); from 5, three unit moves reach 8 (5→6, 6→7, 7→8). Immediately before 10 is 9, immediately after 10 is 11. Strictly between 7 and 11 lie 8,9,10 (not the endpoints). Inside the shown 0–20 segment, no predecessor of 0 and no successor of 20 are displayed; this is a display boundary, not a claim numbers do not continue.
-                    
+
                     The child must be able to change or examine the representation, form a prediction, see the exact model and explain why a plausible wrong shortcut fails.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     **Initial state:** Same invariant 0–20 scale, independently initialized marker at 10 and accessible numeric selection. Two fixed endpoint probes: 7 & 11, then 12 & 16. Strict between means excluding highlighted endpoint labels.
-                    
+
                     **Model and invariant:** Selected query mode (previous/next/strict-between), known target(s), selected answers, ordered line labels and explicit endpoint inclusion setting (always false for strictly between). Source values remain fixed.
-                    
+
                     **Numerical and pedagogical limits:** Grade 1: integers 0–20, horizontal equally spaced fixed unit increments, before/after and the finite set of numbers strictly between endpoints. Do not teach signed numbers, rational interpolation, arbitrary scales, inequality symbols as the lesson target, graphical mirroring as mathematical reversal or formal coordinate arithmetic.
-                    
+
                     **Boundary case / nuance:** For 0, say 'no number immediately before 0 in this displayed segment'; for 20, say 'no number immediately after 20 in this displayed segment.' Outside 0–20 is not studied or declared nonexistent.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Beat 1 — Find the number just before 10 and just after 10.
-                    
+
                     1. **Invitation:** “Find the number just before 10 and just after 10.”
                     2. **Controllable investigation:** Select 9 and 11 on the line, explaining each is exactly one adjacent unit interval from 10.
                     3. **Correct visible consequence:** 9 is immediately before 10; 11 is immediately after it.
                     4. **Worked number evidence:** 9, 10, 11: immediate neighbors differ by one.
                     5. **Mistaken or incomplete route:** If 8 chosen for before, show 8→9→10 is two intervals, so 9 is the immediate neighbor.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ### Beat 2 — Which whole numbers lie strictly between 7 and 11? Then try between 12 and 16.
-                    
+
                     1. **Invitation:** “Which whole numbers lie strictly between 7 and 11? Then try between 12 and 16.”
                     2. **Controllable investigation:** Mark 8,9,10 for 7–11, then independently transfer to 13,14,15 for 12–16. Read results as an ordered list.
                     3. **Correct visible consequence:** 8,9,10 lie strictly between 7 and 11; 13,14,15 lie strictly between 12 and 16.
                     4. **Worked number evidence:** 7 | 8,9,10 | 11 and 12 | 13,14,15 | 16.
                     5. **Mistaken or incomplete route:** If 7 or 11 selected, show endpoints are the limits, not inside. If 9 alone, point out unmarked valid 8 and 10.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Semantic objects:** Named countable group members, ticks, operands or operator controls, each with stable identity, a visible state and an equivalent ordered textual ledger.
                     - **Control map:** Choose previous/next/between task, select integer labels in an ordered list, Explain with highlighted unit gaps, Reset. No precision click or drag required.
                     - **Deterministic state:** The numbers, chosen preset, group members, selected values, prediction, Reveal state and Reset all come from the self-contained Scene's own constants and actions, not caller props.
@@ -354,19 +354,19 @@ config:
                     - **Independence:** The proposed component has **no props** and no mutable state shared with a Lesson or another Scene; each Section contains its own independently resettable placement.
                     - **Boundaries:** For 0, say 'no number immediately before 0 in this displayed segment'; for 20, say 'no number immediately after 20 in this displayed segment.' Outside 0–20 is not studied or declared nonexistent.
                     - **Assessment boundary:** Prediction and feedback are formative only. No Question bank, Quiz, correct-answer security contract, mastery metric, score, persistent Note event, timed completion or invented platform API.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use lightweight HTML/SVG or ordinary semantic controls for individual items and groups, with a concise number ledger. Animation may highlight an interval, pair or new group but may never be the only carrier of information; reduced-motion mode updates state immediately. No required audio, live external service, asset generation or ornamental 3D. If optional sound is added later, localized captions/transcripts and downloaded media must preserve full learning.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Full ordered integer list and query description convey all spatial meaning. Nonvisual selection of the set of between values; the mathematical order is not reversed by RTL or a moving viewport.
-                    
+
                     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Previous/next of 10 are 9/11.
                     2. Between 7 and 11 returns exactly [8,9,10].
                     3. Between 12 and 16 returns exactly [13,14,15].
@@ -375,31 +375,31 @@ config:
                     6. For Beat 2, verify exact expected result: 7 | 8,9,10 | 11 and 12 | 13,14,15 | 16. Test plausible wrong response: If 7 or 11 selected, show endpoints are the limits, not inside. If 9 alone, point out unmarked valid 8 and 10.
                     7. All interactions work by keyboard, switch and touch with full nonvisual ledger, correct semantic RTL, reduced motion, mobile/high zoom and identical downloaded-offline mathematics.
                     8. Reset affects this Scene only, not another Section; no scoring or unimplemented Note event is emitted.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Each custom Scene is independently initialized, self-contained and **prop-free**; no caller supplies mode or numerical props. Scenarios and variables reside in that Scene's own authored module once implemented. The generic `scene` Resource type is supported, but this particular Scene has **not** been implemented. No invented API, registration, event, Note persistence, assessment, score or mastery side effect is assumed.
-                    
+
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
-                  productionNotes: "Unique Scene placement scene1 in Between the Ticks. Original:   2. **`scene` — generic type exists, **specific Scene proposed**:** `Between the Ticks` (specification preserved in config.yaml). Same invariant 0–20 scale, independently initialized marker at 10 and accessible numeric selection. Two fixed endpoint probes: 7 & 11, then 12 & 16. Strict between means excluding highlighted endpoint labels.. Status: provisional only."
+                  productionNotes: 'Unique Scene placement scene1 in Between the Ticks. Original:   2. **`scene` — generic type exists, **specific Scene proposed**:** `Between the Ticks` (specification preserved in config.yaml). Same invariant 0–20 scale, independently initialized marker at 10 and accessible numeric selection. Two fixed endpoint probes: 7 & 11, then 12 & 16. Strict between means excluding highlighted endpoint labels.. Status: provisional only.'
               markdown1:
                 config:
-                  id: "e55acf3f-df47-5de8-a2a4-00000000000b"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'e55acf3f-df47-5de8-a2a4-00000000000b'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "9 is immediately before 10; 11 is immediately after it. 9, 10, 11: immediate neighbors differ by one."
+                      en: '9 is immediately before 10; 11 is immediately after it. 9, 10, 11: immediate neighbors differ by one.'
                 production:
-                  purpose: "Learner-facing authored markdown resource"
-                  specification: "Authored resource line:   3. **`markdown` — existing generic renderer:** “9 is immediately before 10; 11 is immediately after it. 9, 10, 11: immediate neighbors differ by one.”"
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line:   3. **`markdown` — existing generic renderer:** “9 is immediately before 10; 11 is immediately after it. 9, 10, 11: immediate neighbors differ by one.”'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Between the Ticks"
+          purpose: 'Between the Ticks'
           pedagogicalIntent: |-
             - **Learning purpose:** Use an explicit line segment to determine predecessor, successor and all intermediate integers instead of guessing from visual proximity.
             - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
@@ -408,135 +408,135 @@ config:
               2. **`scene` — generic type exists, **specific Scene proposed**:** `Between the Ticks` (specification preserved in config.yaml). Same invariant 0–20 scale, independently initialized marker at 10 and accessible numeric selection. Two fixed endpoint probes: 7 & 11, then 12 & 16. Strict between means excluding highlighted endpoint labels.
               3. **`markdown` — existing generic renderer:** “9 is immediately before 10; 11 is immediately after it. 9, 10, 11: immediate neighbors differ by one.”
             - **Learner action and responsive feedback:**
-            
+
             **Beat 1 — “Find the number just before 10 and just after 10.”** Select 9 and 11 on the line, explaining each is exactly one adjacent unit interval from 10.
-            
+
             **Learner-visible result:** 9 is immediately before 10; 11 is immediately after it.
-            
+
             **Worked numerical evidence:** 9, 10, 11: immediate neighbors differ by one.
-            
+
             **Feedback for a plausible misconception:** If 8 chosen for before, show 8→9→10 is two intervals, so 9 is the immediate neighbor.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             **Beat 2 — “Which whole numbers lie strictly between 7 and 11? Then try between 12 and 16.”** Mark 8,9,10 for 7–11, then independently transfer to 13,14,15 for 12–16. Read results as an ordered list.
-            
+
             **Learner-visible result:** 8,9,10 lie strictly between 7 and 11; 13,14,15 lie strictly between 12 and 16.
-            
+
             **Worked numerical evidence:** 7 | 8,9,10 | 11 and 12 | 13,14,15 | 16.
-            
+
             **Feedback for a plausible misconception:** If 7 or 11 selected, show endpoints are the limits, not inside. If 9 alone, point out unmarked valid 8 and 10.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             - **Controls and accessibility:** Choose previous/next/between task, select integer labels in an ordered list, Explain with highlighted unit gaps, Reset. No precision click or drag required. Full ordered integer list and query description convey all spatial meaning. Nonvisual selection of the set of between values; the mathematical order is not reversed by RTL or a moving viewport.
             - **Cause-and-effect explanation:** Selected query mode (previous/next/strict-between), known target(s), selected answers, ordered line labels and explicit endpoint inclusion setting (always false for strictly between). Source values remain fixed. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
             - **Boundary reasoning:** For 0, say 'no number immediately before 0 in this displayed segment'; for 20, say 'no number immediately after 20 in this displayed segment.' Outside 0–20 is not studied or declared nonexistent.
             - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
-          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
     order:
-      - "section1"
-      - "section2"
-      - "section3"
+      - 'section1'
+      - 'section2'
+      - 'section3'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # A Number's Place on the Line — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: numberLineToTwenty
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Treat a number line as a sequence of equally spaced numerical positions, not as a row of arbitrary pictures. Use those positions to find adjacent and intermediate whole numbers and explain the count of unit intervals.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 1.** Learners who read numerals 0–20, can step forward and backward by one, and notice that evenly spaced tick marks form an ordered measuring representation. Grade 1 learners need a slow, move-one-step version with explicit labels rather than proportional-distance calculations in notation.
-    
+
     The Grade determines this particular Lesson's pedagogical depth; canonical Skills remain grade-neutral.
-    
+
     ## Prerequisites
-    
+
     - One-to-one counting and cardinality for collections to twenty (`oneToOne`, `basicCardinality`).
     - Forward and backward sequence of whole numbers within twenty (`forward20`, `backward20`) and reading their numerals (`readWrite20`).
     - Distinguish a counted interval from the number of interior tick marks; this distinction is developed by the Lesson, not assumed.
-    
+
     ## Target Skills
-    
+
     - [numberLine20.data.ts](../../../../data/skills/numeration/numberLine/skills/numberLine20.data.ts)
     - [beforeAfterBetween.data.ts](../../../../data/skills/numeration/numberLine/skills/beforeAfterBetween.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Locate a labelled integer up to 20 on a correctly spaced number line and explain that consecutive ticks differ by one.
     - Move exactly two unit intervals from 10 to 12 and three from 5 to 8, distinguishing intervals from internal ticks.
     - Name the immediately previous and next numbers for interior values such as 10, and distinguish a segment endpoint from a claim about all whole numbers.
     - Identify all whole numbers strictly between two displayed endpoints, including 8,9,10 between 7 and 11.
     - Transfer to a fresh section of the 0–20 line and justify a missing intermediate number.
-    
+
     These are intended learning outcomes and observable formative explanations, not guaranteed mastered competencies or validation thresholds.
-    
+
     ## Essential subject matter
-    
+
     The number line has positions 0,1,…,20 in numerical order with one **equal-length unit interval** between adjacent integers. In conventional number-line coordinates, larger values lie to the right and smaller values to the left; the arrow labelled increasing and ordered tick list always determine meaning, regardless of interface RTL direction. From tick 10, two unit moves reach 12 (via 11); from 5, three unit moves reach 8 (5→6, 6→7, 7→8). Immediately before 10 is 9, immediately after 10 is 11. Strictly between 7 and 11 lie 8,9,10 (not the endpoints). Inside the shown 0–20 segment, no predecessor of 0 and no successor of 20 are displayed; this is a display boundary, not a claim numbers do not continue.
-    
+
     **Reference models that must remain correct:** 10 + 1 + 1 = 12; two equal gaps. 5→6→7→8: 3 intervals, 2 intermediate numbers. 9, 10, 11: immediate neighbors differ by one. 7 | 8,9,10 | 11 and 12 | 13,14,15 | 16. Every model needs an equivalent explicit spoken/written number description, not decorative illustration alone.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Concrete count words already known → explore equal tick spacing and step-by-one movements → contrast steps with intermediate tick count → independently name before/after → identify all strictly between → transfer to a different section of the same mathematical coordinate system.
-    
+
     The interdependent target Skills are taught together only where they share an intelligible representation. They retain their own independently assessable taxonomy identities. Do not infer cross-domain Skill mastery from completing one interaction.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     **Likely confusions:** Counting 5→8 as two steps because two interior ticks are visible; treating unevenly spaced labels as a number line with an equal unit scale; including endpoints as strictly between; imagining that 20 has no next number in all mathematics; reversing numeric order because the UI is RTL.
-    
+
     **Pedagogical depth and exclusions:** Grade 1: integers 0–20, horizontal equally spaced fixed unit increments, before/after and the finite set of numbers strictly between endpoints. Do not teach signed numbers, rational interpolation, arbitrary scales, inequality symbols as the lesson target, graphical mirroring as mathematical reversal or formal coordinate arithmetic.
-    
+
     **Boundary and incomplete-case decisions:** A requested step beyond 0 or 20 says 'outside the displayed 0–20 segment' rather than declaring an impossible mathematical operation; never wrap the marker to the opposite end. For 0, say 'no number immediately before 0 in this displayed segment'; for 20, say 'no number immediately after 20 in this displayed segment.' Outside 0–20 is not studied or declared nonexistent.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-    
+
     English texts below are canonical editorial examples for later localization, not real locale data or implemented runtime. Audio is never required for understanding. An accessible alternative must preserve the **same** learning objective, rather than replace the essential interaction with a weaker 'lite' illustration.
-    
+
     ## Sources and factual verification
-    
+
     - Canonical Skill `*.data.ts` files linked directly above, originally copied byte-for-byte from Mathematics `main` without changing UUIDs, definitions or translations.
     - [Lesson Editorial Architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — Methodologist/Screenwriter ownership and approval.
     - [Learning Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md) — explanation, manipulation, contrast and transfer.
     - [Localization and Inclusive Access](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) and [Offline-First Product Requirements](../../../../../../studio/docs/architecture/offline-first-and-device-compatibility.md).
-    
+
     All arithmetic and numerical model cases above were checked by explicit step, group or relation reasoning; no national curriculum coverage is inferred.
-    
+
     ## Curriculum / Program compatibility
-    
+
     No specific curriculum specified or claimed. This Lesson is a standalone, Program-neutral educational unit.
-    
+
     ## Open editorial decisions
-    
+
     - Editor/Methodologist: explicitly approve Grade 1, target Skill selection, prerequisites, depth and the core contrasts before promoting this Brief.
     - Editor: review the two proposed Scene models and ensure their nonvisual, RTL and locale versions teach mathematically identical relationships.
     - Coding/QA roles: confirm all supported locale dictionaries, low-device/offline delivery and accessible input alternatives when authorized. No Scene is implemented at this stage.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, not editor-approved.** The corresponding `content.md` and Scene specifications are **Provisional Drafts under the explicit batch instruction**. This exception does not mark the normal Methodologist or Screenwriter approval gates as passed. No React Scene, runtime Lesson, Question, Quiz, score, mastery, persistent Note or fake platform event is authorized.
-  purpose: "Treat a number line as a sequence of equally spaced numerical positions, not as a row of arbitrary pictures. Use those positions to find adjacent and intermediate whole numbers and explain the count of unit intervals."
-  audience: "See complete Grade, prerequisite and exclusions in methodology."
+  purpose: 'Treat a number line as a sequence of equally spaced numerical positions, not as a row of arbitrary pictures. Use those positions to find adjacent and intermediate whole numbers and explain the count of unit intervals.'
+  audience: 'See complete Grade, prerequisite and exclusions in methodology.'
   productionNotes: |-
     # A Number's Place on the Line — Content
-    
+
     Status: **Provisional Draft — pending Methodologist approval**
     Target Lesson: `content/playground/Data/Lessons/1/numberLineToTwenty/`
     Audience: Grade 1; Learners who read numerals 0–20, can step forward and backward by one, and notice that evenly spaced tick marks form an ordered measuring representation. Grade 1 learners need a slow, move-one-step version with explicit labels rather than proportional-distance calculations in notation.
@@ -544,27 +544,27 @@ production:
     Target Skills: exactly the canonical source-file links in the Brief (not redefined or copied here)
     Program dependence: None
     Runtime Lesson / Scene implementation: Not implemented
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Treat a number line as a sequence of equally spaced numerical positions, not as a row of arbitrary pictures. Use those positions to find adjacent and intermediate whole numbers and explain the count of unit intervals.
-    
+
     **What must become clear:** The number line has positions 0,1,…,20 in numerical order with one **equal-length unit interval** between adjacent integers. In conventional number-line coordinates, larger values lie to the right and smaller values to the left; the arrow labelled increasing and ordered tick list always determine meaning, regardless of interface RTL direction. From tick 10, two unit moves reach 12 (via 11); from 5, three unit moves reach 8 (5→6, 6→7, 7→8). Immediately before 10 is 9, immediately after 10 is 11. Strictly between 7 and 11 lie 8,9,10 (not the endpoints). Inside the shown 0–20 segment, no predecessor of 0 and no successor of 20 are displayed; this is a display boundary, not a claim numbers do not continue.
-    
+
     **Pedagogical premise:** A learner is not merely recognizing a displayed fact. The first interactive Scene gives control over a concrete model and exposes a critical contrast. A compact explanatory/reflection Section invites retrieval and makes errors understandable. The second Scene independently changes the numbers or representation, so successful reasoning requires applying the mathematical rule rather than reproducing the original picture. Every key feedback branch explains _why_ an answer differs from the model.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Notice and predict:** “Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?” The learner selects a possible result and then operates the first model without mandatory score, narration or timer.
     2. **Manipulate and inspect:** 10 + 1 + 1 = 12; two equal gaps. 5→6→7→8: 3 intervals, 2 intermediate numbers. Both a simple visual model and an accessible item/number ledger show the same mathematics.
     3. **Explain and retrieve:** From 5 to 8, how many one-unit moves do you make? Why isn't the answer two? Invite a spoken, private or accessible text-based explanation before reading the worked answer.
     4. **Transfer independently:** Find the number just before 10 and just after 10. A different representation offers a new reasoned problem, with misconception-targeted feedback and an optional full reveal.
     5. **Summarize for future recall:** a short proposed Note captures the enduring idea without attempting to assess mastery or create a persistent unlocked event.
-    
+
     ## SECTION PLAN
-    
+
     ### Section 1 — Equal-Tick Trail
-    
+
     - **Learning purpose:** Experience numeric position and equal one-unit intervals rather than a decorative run of labels.
     - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
     - **Ordered content blocks, top to bottom:**
@@ -572,35 +572,35 @@ production:
       2. **`scene` — generic type exists, **specific Scene proposed**:** `Equal-Tick Trail` (specification preserved in config.yaml). A mathematically fixed horizontal line with integer ticks 0–20. Consecutive tick centres have the same geometric spacing. A labelled increasing-direction arrow points toward increasing values; current marker at 10. On mobile, the visible window may scroll over this unchanged 21-tick model, with keyboard-accessible numeric list for the entire range.
       3. **`markdown` — existing generic renderer:** “The marker arrives at 12 after two distinct equal unit intervals. 10 + 1 + 1 = 12; two equal gaps.”
     - **Learner action and responsive feedback:**
-    
+
     **Beat 1 — “Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?”** Activate Step +1 twice, with marker moving 10→11→12 and revealing both equal-length gaps.
-    
+
     **Learner-visible result:** The marker arrives at 12 after two distinct equal unit intervals.
-    
+
     **Worked numerical evidence:** 10 + 1 + 1 = 12; two equal gaps.
-    
+
     **Feedback for a plausible misconception:** For 11, display the two traversed intervals 10→11 (first), 11→12 (second). For 13, show that the extra third interval was not requested.
-    
+
     Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-    
+
     **Beat 2 — “Between 5 and 8, how many one-unit moves are needed?”** Switch fixed preset to marker 5, target 8; move 5→6→7→8, recording each interval and separately listing interior ticks.
-    
+
     **Learner-visible result:** Three moves; two interior numbers (6 and 7) but three gaps.
-    
+
     **Worked numerical evidence:** 5→6→7→8: 3 intervals, 2 intermediate numbers.
-    
+
     **Feedback for a plausible misconception:** If two selected, explain that 6 and 7 are intermediate labels, while the gaps are 5–6, 6–7, 7–8.
-    
+
     Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-    
+
     - **Controls and accessibility:** Choose target tick, Step +1, Step −1, Show counted intervals, Reset, Reveal. An ordered numeric input/list alternative permits selection without dragging or fine tapping. Keep the increasing arrow and exact tick order mathematically fixed under RTL; announce marker, target and numbered interval list. Allow scroll/zoom without compressing 21 ticks to illegibility; native buttons and entire ordered list work without visual geometry.
     - **Cause-and-effect explanation:** Integers 0 through 20, fixed unit spacing, current tick, target tick, step ledger, revealed interval count and explanation. Each Step +1 advances exactly one tick and one equal-length interval. Step −1 traverses one interval in the opposite direction. Window scrolling must never change the scale. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
     - **Boundary reasoning:** A requested step beyond 0 or 20 says 'outside the displayed 0–20 segment' rather than declaring an impossible mathematical operation; never wrap the marker to the opposite end.
     - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
     - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
-    
+
     ### Section 2 — How Many Hops?
-    
+
     - **Purpose and expected learner thinking:** Distinguish the mathematical invariant from a familiar but misleading shortcut; retrieve a rule without a score.
     - **Current implementation shape:** `LessonSection_Config`, a single vertical content column (no Quiz).
     - **Ordered content blocks:**
@@ -610,9 +610,9 @@ production:
     - **Meaningful feedback:** The example explicitly contrasts the likely mistaken response with a countable or numeric explanation. Child may reason before reading; current `text`/`markdown` renderers are **not** claimed to provide a delayed-answer or true-response validation widget.
     - **Accessibility and pacing:** Brief accessible written language, no sensory dependency. The explanatory text remains available to every learner and is never hidden behind a timed action.
     - **Transition:** Section 3 changes numbers or objects and asks for independent reasoning. The first Scene's state is not carried into the second.
-    
+
     ### Section 3 — Between the Ticks
-    
+
     - **Learning purpose:** Use an explicit line segment to determine predecessor, successor and all intermediate integers instead of guessing from visual proximity.
     - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
     - **Ordered content blocks, top to bottom:**
@@ -620,59 +620,59 @@ production:
       2. **`scene` — generic type exists, **specific Scene proposed**:** `Between the Ticks` (specification preserved in config.yaml). Same invariant 0–20 scale, independently initialized marker at 10 and accessible numeric selection. Two fixed endpoint probes: 7 & 11, then 12 & 16. Strict between means excluding highlighted endpoint labels.
       3. **`markdown` — existing generic renderer:** “9 is immediately before 10; 11 is immediately after it. 9, 10, 11: immediate neighbors differ by one.”
     - **Learner action and responsive feedback:**
-    
+
     **Beat 1 — “Find the number just before 10 and just after 10.”** Select 9 and 11 on the line, explaining each is exactly one adjacent unit interval from 10.
-    
+
     **Learner-visible result:** 9 is immediately before 10; 11 is immediately after it.
-    
+
     **Worked numerical evidence:** 9, 10, 11: immediate neighbors differ by one.
-    
+
     **Feedback for a plausible misconception:** If 8 chosen for before, show 8→9→10 is two intervals, so 9 is the immediate neighbor.
-    
+
     Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-    
+
     **Beat 2 — “Which whole numbers lie strictly between 7 and 11? Then try between 12 and 16.”** Mark 8,9,10 for 7–11, then independently transfer to 13,14,15 for 12–16. Read results as an ordered list.
-    
+
     **Learner-visible result:** 8,9,10 lie strictly between 7 and 11; 13,14,15 lie strictly between 12 and 16.
-    
+
     **Worked numerical evidence:** 7 | 8,9,10 | 11 and 12 | 13,14,15 | 16.
-    
+
     **Feedback for a plausible misconception:** If 7 or 11 selected, show endpoints are the limits, not inside. If 9 alone, point out unmarked valid 8 and 10.
-    
+
     Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-    
+
     - **Controls and accessibility:** Choose previous/next/between task, select integer labels in an ordered list, Explain with highlighted unit gaps, Reset. No precision click or drag required. Full ordered integer list and query description convey all spatial meaning. Nonvisual selection of the set of between values; the mathematical order is not reversed by RTL or a moving viewport.
     - **Cause-and-effect explanation:** Selected query mode (previous/next/strict-between), known target(s), selected answers, ordered line labels and explicit endpoint inclusion setting (always false for strictly between). Source values remain fixed. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
     - **Boundary reasoning:** For 0, say 'no number immediately before 0 in this displayed segment'; for 20, say 'no number immediately after 20 in this displayed segment.' Outside 0–20 is not studied or declared nonexistent.
     - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
     - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
-    
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - `Equal-Tick Trail` (specification preserved in config.yaml) — independently initialised concrete explanation and contrast.
     - `Between the Ticks` (specification preserved in config.yaml) — independently initialised transfer with new numbers/representation.
-    
+
     Both Scenes are **proposed**, distinct and prop-free. Each is represented by one typed `scene` Resource in an otherwise single-column Section; no new Section type, imaginary mode prop, generated image, fake API, scoring or React component is authored.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. **after the first equal-interval traverse:** “On a number line, each neighboring whole-number tick is one equal unit apart.” — proposed after the model is examined and its explanation is available, without requiring a correct score. **Planned, not wired.**
     2. **after the between-numbers transfer:** “Between two numbers means the whole numbers greater than the first and less than the second.” — proposed after the model is examined and its explanation is available, without requiring a correct score. **Planned, not wired.**
-    
+
     These are concise independently useful retrieval anchors, not Lesson summaries. A real Note entity, stable identity, unlock contract, learner state, revision sheet, synchronization and spaced scheduling remain separately unimplemented or unverified.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Sections 1 and 3 provide learner-operated practice, concrete counterexamples, and explicit formative reasoning. Section 2 offers reflection and retrieval. The final Section's changed representation can show whether the learner used the rule, but one correct selection is **not** evidence of independent Skill mastery. Graded Question/Quiz design, correctness validity, scoring, retry policy and Skill attribution belong to a separate Learning Assessment Architect stage.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-    
+
     These documents include **English editorial source text only**. Full real translations for all supported locales, including Scene dictionaries, alt descriptions and optional Notes, must precede implementation. Do not silently invent fallback translations or new language codes.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     | Capability                                                    | Status                                            | Owner / next work                                                    |
     | ------------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------- |
     | General `LessonSection_Config` with ordered `Resource_Config` | Existing TypeScript contract                      | Coding Agent builds Lesson later                                     |
@@ -682,13 +682,13 @@ production:
     | Complete downloaded-offline experience                        | Product target; not verified implemented          | PWA/dependency integration and airplane-mode E2E                     |
     | Lesson Notes and unlock/storage                               | Planned, unverified runtime                       | Separate architecture and implementation                             |
     | Scored Questions, Quizzes, mastery and progress claims        | Not authored                                      | Separate Assessment Architect                                        |
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - `Draft Methodologist Brief` (source preserved in config.yaml) and its actual canonical Skill file links.
     - [Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md), [Section entity](../../../../../../studio/docs/entities/section.md), [Learning Experience Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
     - Open: explicit Methodologist grade and target Skill approval, separate Content and Scene review, genuine complete translations, RTL/nonvisual interaction details, and full offline packaging before coding.
-    
+
     ## HANDOFF
-    
+
     **Provisional Screenwriter Draft — Methodologist approval has not occurred.** Implementers may inspect these source-grounded plans but must not treat them as approved React/runtime Lesson data, Question/Quiz items, scores, mastery data, Note events or working offline/locale support.

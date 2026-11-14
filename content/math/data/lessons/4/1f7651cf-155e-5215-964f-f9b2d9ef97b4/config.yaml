@@ -1,539 +1,545 @@
 config:
-  id: "1f7651cf-155e-5215-964f-f9b2d9ef97b4"
-  slug: "chooseAdditionOrSubtraction"
-  type: "lesson"
-  skills: ["52f1bc76-4795-452b-b241-4dc3099063e6"]
+  id: '1f7651cf-155e-5215-964f-f9b2d9ef97b4'
+  slug: 'chooseAdditionOrSubtraction'
+  type: 'lesson'
+  skills: ['52f1bc76-4795-452b-b241-4dc3099063e6']
   params:
     requireQuiz: false
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Which Operation Fits the Story?"
+      en: 'Which Operation Fits the Story?'
   section:
     items:
       section1WhatHappensToTheCollection:
         config:
-          id: "a8f5a774-3819-434d-965d-720a271771ab"
-          slug: "section1WhatHappensToTheCollection"
-          type: "content"
+          id: 'a8f5a774-3819-434d-965d-720a271771ab'
+          slug: 'section1WhatHappensToTheCollection'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What happens to the collection?"
+              en: 'What happens to the collection?'
             navigationLabel:
-              en: "What happens to the collection?"
+              en: 'What happens to the collection?'
           content:
             items:
               text1:
                 config:
-                  id: "4fba3639-2f38-44ec-b655-097bb29b834e"
-                  slug: "text1"
-                  type: "text"
+                  id: '4fba3639-2f38-44ec-b655-097bb29b834e'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "There are **7 shells** in a box. We add **5 more shells**. How many now?"
+                      en: 'There are **7 shells** in a box. We add **5 more shells**. How many now?'
               storyRelationshipSwitch:
                 config:
-                  id: "23f35140-1df8-480d-8f90-11fabef287a7"
-                  slug: "storyRelationshipSwitch"
-                  type: "scene"
+                  id: '23f35140-1df8-480d-8f90-11fabef287a7'
+                  slug: 'storyRelationshipSwitch'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Story Relationship Switch"
+                      en: 'Story Relationship Switch'
                 production:
                   specification: |
                     # Story Relationship Switch — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist/editor approval**  
                     Owner: Educational Screenwriter  
                     Parent: Lesson Content (editorial text integrated into this config.yaml), Sections 1–4; Draft Brief (editorial text integrated into this config.yaml)  
                     Implementation: New **proposed**, self-contained, prop-free Scene; not yet available.
-                    
+
                     ## Conceptual purpose
-                    
+
                     Operation selection follows the relationship of **known and unknown quantities**, not a word trigger. A contrast pair contains the same word “more” but switches who has the greater quantity. The Scene must keep that relationship explicit with labeled groups, without making longer bars a substitute for countable equal units.
-                    
+
                     ## Learner actions and feedback per entry
-                    
+
                     **Entry A, Section 1:** Story 1: 7 shells in a box, 5 added → “before=7; change=+5; after=?” Learner predicts growth, selects 7+5=? (not 7−5=?), then reveals **12 shells**. Wrong subtraction feedback: “Five arrive and nothing leaves.” Story 2 is an independent starting state: 12 cards, 5 given away → 12−5=**7**. Wrong addition feedback: “Giving away reduces the collection; it cannot leave seventeen cards.”
-                    
+
                     **Entry B, Section 2, unknown larger:** “Ava has 9 beads; Sam has 4 more than Ava; how many does Sam have?” Label known Ava=9, unknown Sam, positive gap 4. Sam has **13** by 9+4. If 9−4 chosen: “Five is smaller than nine, so it cannot be Sam's amount when Sam has four more.”
-                    
+
                     **Entry C, Section 2, unknown smaller:** “Ava has 9 beads; Ava has 4 more than Sam; how many does Sam have?” Preserve the numbers 9 and 4 and the word “more,” but shift the greater-amount role to Ava; Sam has **5**, by 9−4. Show 5+4=9 as a relational check. If 13 chosen: “That would make Sam larger than Ava, contradicting the question.”
-                    
+
                     **Entry D, Section 3, known whole:** Fifteen markers total, six in a drawing box, remaining markers in a writing box. The learner first labels 15 as known whole, 6 as known part and ? as other part. Choose 15−6=**9 markers**. If 15+6 chosen: “Six is already inside the total fifteen; adding it again counts those markers twice.”
-                    
+
                     **Entry E, Section 4, independent transfer:** “Lina has 11 pencils. Lina has 3 more than Tom. How many does Tom have?” Show only the text and empty known/unknown roles. Expected “Lina is larger”, 11−3=**8**, reverse-check 8+3=11. A proposed 14 would make Tom greater and contradict the story. Hint 1: “Who has more?” Hint 2: “The smaller amount plus three equals eleven.” Reveal explanation on demand without grading.
-                    
+
                     ## Objects, state, calculation invariants
-                    
+
                     Use complete localized story text, names attached to labeled unit-counted bars, known/unknown markers, a question label, operation options, optional comparison of exact totals, hints and reset. A single Scene entry owns its own active scenario and interactive choices. Mathematical evaluation must use the displayed operands and role relationship. No user action may switch the known person without visibly changing the story and mathematical model. The same word “more” is not an input to the mathematical rule; the roles are.
-                    
+
                     ## Presentation and universal access
-                    
+
                     Place the relationship label, counts and comparison question in close reading order; illustrate larger/smaller with named equal-unit groups plus numerals, not solely bar direction. Keyboard/tap/switch users can make every selection and reveal the relation without mandatory dragging. All feedback is textual as well as optionally visual. Screen readers must announce each entity, quantity, larger/smaller relation and selected operation. RTL may reorder layout, not reverse which entity has more, the arrow's logical target or the subtraction operands. Provide meaningful real translations for all supported locales, zoom/reflow, visible focus, reduced-motion/static state and full offline functionality after implementation/download. Optional audio requires equal text.
-                    
+
                     ## Acceptance cases for implementation
-                    
+
                     - 7+5=12 shells, 12−5=7 cards; directional changes correctly explained.
                     - Ava=9, Sam 4 more gives Sam=13. Ava=9, Ava 4 more than Sam gives Sam=5. Both contain “more.”
                     - Known whole 15 and known part 6 → missing part 9, not 21.
                     - Lina 11 and three more than Tom → Tom 8, not 14.
                     - Every wrong choice points to the violated quantity relationship; learners can revise choices and see explanations without a score.
                     - Independent reset, keyboard, screen-reader, RTL, zoom, reduced motion and offline scenarios preserve exact mathematics.
-                    
+
                     ## Dependencies
-                    
+
                     The generic Playground renderer supports Scene resources, but this specific Scene is unimplemented. Coding Agent must validate actual context, semantic locales, WCAG 2.2 AA and tests before release. No invented API, Question correctness model, mastery record or Note persistence is authorized.
-                  purpose: "Proposed interactive Scene for What happens to the collection?"
+                  purpose: 'Proposed interactive Scene for What happens to the collection?'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               text2:
                 config:
-                  id: "4cba3180-3238-49a5-b755-0b0eb19b81bb"
-                  slug: "text2"
-                  type: "text"
+                  id: '4cba3180-3238-49a5-b755-0b0eb19b81bb'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Now there are **12 cards** and **5 are given away**. What changes?"
+                      en: 'Now there are **12 cards** and **5 are given away**. What changes?'
               markdown3:
                 config:
-                  id: "decb8449-2a0d-4e70-8f0f-fb8338fce852"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: 'decb8449-2a0d-4e70-8f0f-fb8338fce852'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "When you know the parts being joined, addition finds the whole. When some of a known collection leaves, subtraction finds what remains."
-            order: ["text1","storyRelationshipSwitch","text2","markdown3"]
+                      en: 'When you know the parts being joined, addition finds the whole. When some of a known collection leaves, subtraction finds what remains.'
+            order: ['text1', 'storyRelationshipSwitch', 'text2', 'markdown3']
         production:
-          purpose: "What happens to the collection?"
+          purpose: 'What happens to the collection?'
           pedagogicalIntent: |
             ### Section 1 — What happens to the collection?
-            
+
             _Purpose: connect addition/subtraction to visible changes, not language cues._
-            
+
             1. **`text`:** “There are **7 shells** in a box. We add **5 more shells**. How many now?” Ask learners to predict whether the collection grows or shrinks before choosing a symbol.
             2. **`scene` resource, proposed:** Story Relationship Switch (Scene specification embedded in this config.yaml), entry A. Child places seven known shells and five incoming shells in a labeled before/change/after model. Choose either **7 + 5 = ?** or **7 − 5 = ?**, then reveal: twelve shells. Wrong-choice feedback: “No shells were removed; five came in.” Right-choice feedback: “The new amount includes both groups.”
             3. **`text`:** “Now there are **12 cards** and **5 are given away**. What changes?” Child predicts fewer, then compares **12 − 5 = 7** with the impossible **12 + 5 = 17** for cards remaining. If addition chosen: “Giving away does not add cards to the starting collection.”
             4. **`markdown`:** “When you know the parts being joined, addition finds the whole. When some of a known collection leaves, subtraction finds what remains.”
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section2TheSameWordCanTellDifferentStories:
         config:
-          id: "2764dbe0-3649-49a9-9f69-b1ce16bc14cf"
-          slug: "section2TheSameWordCanTellDifferentStories"
-          type: "content"
+          id: '2764dbe0-3649-49a9-9f69-b1ce16bc14cf'
+          slug: 'section2TheSameWordCanTellDifferentStories'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "The same word can tell different stories"
+              en: 'The same word can tell different stories'
             navigationLabel:
-              en: "The same word can tell different stories"
+              en: 'The same word can tell different stories'
           content:
             items:
               text1:
                 config:
-                  id: "55d3fd55-62a7-4ad8-9acf-249fa9e7a112"
-                  slug: "text1"
-                  type: "text"
+                  id: '55d3fd55-62a7-4ad8-9acf-249fa9e7a112'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Ava has **9 beads**. Sam has **4 more beads than Ava**. How many beads does Sam have?"
+                      en: 'Ava has **9 beads**. Sam has **4 more beads than Ava**. How many beads does Sam have?'
               storyRelationshipSwitch:
                 config:
-                  id: "bd9ce16c-4355-4f59-afab-b8debde8cccb"
-                  slug: "storyRelationshipSwitch"
-                  type: "scene"
+                  id: 'bd9ce16c-4355-4f59-afab-b8debde8cccb'
+                  slug: 'storyRelationshipSwitch'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Story Relationship Switch"
+                      en: 'Story Relationship Switch'
                 production:
                   specification: |
                     # Story Relationship Switch — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist/editor approval**  
                     Owner: Educational Screenwriter  
                     Parent: Lesson Content (editorial text integrated into this config.yaml), Sections 1–4; Draft Brief (editorial text integrated into this config.yaml)  
                     Implementation: New **proposed**, self-contained, prop-free Scene; not yet available.
-                    
+
                     ## Conceptual purpose
-                    
+
                     Operation selection follows the relationship of **known and unknown quantities**, not a word trigger. A contrast pair contains the same word “more” but switches who has the greater quantity. The Scene must keep that relationship explicit with labeled groups, without making longer bars a substitute for countable equal units.
-                    
+
                     ## Learner actions and feedback per entry
-                    
+
                     **Entry A, Section 1:** Story 1: 7 shells in a box, 5 added → “before=7; change=+5; after=?” Learner predicts growth, selects 7+5=? (not 7−5=?), then reveals **12 shells**. Wrong subtraction feedback: “Five arrive and nothing leaves.” Story 2 is an independent starting state: 12 cards, 5 given away → 12−5=**7**. Wrong addition feedback: “Giving away reduces the collection; it cannot leave seventeen cards.”
-                    
+
                     **Entry B, Section 2, unknown larger:** “Ava has 9 beads; Sam has 4 more than Ava; how many does Sam have?” Label known Ava=9, unknown Sam, positive gap 4. Sam has **13** by 9+4. If 9−4 chosen: “Five is smaller than nine, so it cannot be Sam's amount when Sam has four more.”
-                    
+
                     **Entry C, Section 2, unknown smaller:** “Ava has 9 beads; Ava has 4 more than Sam; how many does Sam have?” Preserve the numbers 9 and 4 and the word “more,” but shift the greater-amount role to Ava; Sam has **5**, by 9−4. Show 5+4=9 as a relational check. If 13 chosen: “That would make Sam larger than Ava, contradicting the question.”
-                    
+
                     **Entry D, Section 3, known whole:** Fifteen markers total, six in a drawing box, remaining markers in a writing box. The learner first labels 15 as known whole, 6 as known part and ? as other part. Choose 15−6=**9 markers**. If 15+6 chosen: “Six is already inside the total fifteen; adding it again counts those markers twice.”
-                    
+
                     **Entry E, Section 4, independent transfer:** “Lina has 11 pencils. Lina has 3 more than Tom. How many does Tom have?” Show only the text and empty known/unknown roles. Expected “Lina is larger”, 11−3=**8**, reverse-check 8+3=11. A proposed 14 would make Tom greater and contradict the story. Hint 1: “Who has more?” Hint 2: “The smaller amount plus three equals eleven.” Reveal explanation on demand without grading.
-                    
+
                     ## Objects, state, calculation invariants
-                    
+
                     Use complete localized story text, names attached to labeled unit-counted bars, known/unknown markers, a question label, operation options, optional comparison of exact totals, hints and reset. A single Scene entry owns its own active scenario and interactive choices. Mathematical evaluation must use the displayed operands and role relationship. No user action may switch the known person without visibly changing the story and mathematical model. The same word “more” is not an input to the mathematical rule; the roles are.
-                    
+
                     ## Presentation and universal access
-                    
+
                     Place the relationship label, counts and comparison question in close reading order; illustrate larger/smaller with named equal-unit groups plus numerals, not solely bar direction. Keyboard/tap/switch users can make every selection and reveal the relation without mandatory dragging. All feedback is textual as well as optionally visual. Screen readers must announce each entity, quantity, larger/smaller relation and selected operation. RTL may reorder layout, not reverse which entity has more, the arrow's logical target or the subtraction operands. Provide meaningful real translations for all supported locales, zoom/reflow, visible focus, reduced-motion/static state and full offline functionality after implementation/download. Optional audio requires equal text.
-                    
+
                     ## Acceptance cases for implementation
-                    
+
                     - 7+5=12 shells, 12−5=7 cards; directional changes correctly explained.
                     - Ava=9, Sam 4 more gives Sam=13. Ava=9, Ava 4 more than Sam gives Sam=5. Both contain “more.”
                     - Known whole 15 and known part 6 → missing part 9, not 21.
                     - Lina 11 and three more than Tom → Tom 8, not 14.
                     - Every wrong choice points to the violated quantity relationship; learners can revise choices and see explanations without a score.
                     - Independent reset, keyboard, screen-reader, RTL, zoom, reduced motion and offline scenarios preserve exact mathematics.
-                    
+
                     ## Dependencies
-                    
+
                     The generic Playground renderer supports Scene resources, but this specific Scene is unimplemented. Coding Agent must validate actual context, semantic locales, WCAG 2.2 AA and tests before release. No invented API, Question correctness model, mastery record or Note persistence is authorized.
-                  purpose: "Proposed interactive Scene for The same word can tell different stories"
+                  purpose: 'Proposed interactive Scene for The same word can tell different stories'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               text2:
                 config:
-                  id: "52d3f89c-65a7-4f91-9bcf-2632a8e79f7f"
-                  slug: "text2"
-                  type: "text"
+                  id: '52d3f89c-65a7-4f91-9bcf-2632a8e79f7f'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Now change **who** has more: Ava has **9 beads** and Ava has **4 more than Sam**. How many does **Sam** have? The word ‘more’ stayed, but which person is the larger group?"
+                      en: 'Now change **who** has more: Ava has **9 beads** and Ava has **4 more than Sam**. How many does **Sam** have? The word ‘more’ stayed, but which person is the larger group?'
               markdown3:
                 config:
-                  id: "3b95f575-7ec1-48fc-936b-8f674df402e6"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '3b95f575-7ec1-48fc-936b-8f674df402e6'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "Don't ask whether the story says ‘more’ or ‘less’. Ask: **Who has what? Which amount is unknown?**"
-            order: ["text1","storyRelationshipSwitch","text2","markdown3"]
+            order: ['text1', 'storyRelationshipSwitch', 'text2', 'markdown3']
         production:
-          purpose: "The same word can tell different stories"
+          purpose: 'The same word can tell different stories'
           pedagogicalIntent: |
             ### Section 2 — The same word can tell different stories
-            
+
             _Purpose: reveal the failure of keyword matching._
-            
+
             1. **`text`:** “Ava has **9 beads**. Sam has **4 more beads than Ava**. How many beads does Sam have?” Invite a prediction, then label Ava as the smaller known amount.
             2. **`scene` resource, proposed:** Switch entry B. Display labeled Ava=9, Sam=?, gap=4. Place a four-counter extension on Sam's bar and display **9 + 4 = 13**. Feedback if 9−4 selected: “Sam has four _more_, so Sam must have _more than nine_, not five.”
             3. **`text`:** “Now change **who** has more: Ava has **9 beads** and Ava has **4 more than Sam**. How many does **Sam** have? The word ‘more’ stayed, but which person is the larger group?”
             4. **`scene` resource, proposed:** Switch entry C preserves the labeled bars and swaps the relational arrow, not just the operation. Gap 4 lies between Sam and Ava; Sam=9−4=**5**. For 13: “If Sam had thirteen, Ava could not have four more than Sam while Ava has nine.” For 5: “Five plus four matches Ava's nine.”
             5. **`markdown`:** “Don't ask whether the story says ‘more’ or ‘less’. Ask: **Who has what? Which amount is unknown?**”
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section3ChooseFirstThenCalculate:
         config:
-          id: "b7882ba1-e969-4668-ad9b-fa3f8d4806b6"
-          slug: "section3ChooseFirstThenCalculate"
-          type: "content"
+          id: 'b7882ba1-e969-4668-ad9b-fa3f8d4806b6'
+          slug: 'section3ChooseFirstThenCalculate'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Choose first, then calculate"
+              en: 'Choose first, then calculate'
             navigationLabel:
-              en: "Choose first, then calculate"
+              en: 'Choose first, then calculate'
           content:
             items:
               text1:
                 config:
-                  id: "7d9a9570-1dbe-4d9d-88b1-ec0274331667"
-                  slug: "text1"
-                  type: "text"
+                  id: '7d9a9570-1dbe-4d9d-88b1-ec0274331667'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A class has **15 markers**. **6 markers** belong in a drawing box; the rest belong in a writing box. How many markers belong in the writing box?"
+                      en: 'A class has **15 markers**. **6 markers** belong in a drawing box; the rest belong in a writing box. How many markers belong in the writing box?'
               storyRelationshipSwitch:
                 config:
-                  id: "d76c0c61-6083-4544-a968-9e1bfe6f5416"
-                  slug: "storyRelationshipSwitch"
-                  type: "scene"
+                  id: 'd76c0c61-6083-4544-a968-9e1bfe6f5416'
+                  slug: 'storyRelationshipSwitch'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Story Relationship Switch"
+                      en: 'Story Relationship Switch'
                 production:
                   specification: |
                     # Story Relationship Switch — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist/editor approval**  
                     Owner: Educational Screenwriter  
                     Parent: Lesson Content (editorial text integrated into this config.yaml), Sections 1–4; Draft Brief (editorial text integrated into this config.yaml)  
                     Implementation: New **proposed**, self-contained, prop-free Scene; not yet available.
-                    
+
                     ## Conceptual purpose
-                    
+
                     Operation selection follows the relationship of **known and unknown quantities**, not a word trigger. A contrast pair contains the same word “more” but switches who has the greater quantity. The Scene must keep that relationship explicit with labeled groups, without making longer bars a substitute for countable equal units.
-                    
+
                     ## Learner actions and feedback per entry
-                    
+
                     **Entry A, Section 1:** Story 1: 7 shells in a box, 5 added → “before=7; change=+5; after=?” Learner predicts growth, selects 7+5=? (not 7−5=?), then reveals **12 shells**. Wrong subtraction feedback: “Five arrive and nothing leaves.” Story 2 is an independent starting state: 12 cards, 5 given away → 12−5=**7**. Wrong addition feedback: “Giving away reduces the collection; it cannot leave seventeen cards.”
-                    
+
                     **Entry B, Section 2, unknown larger:** “Ava has 9 beads; Sam has 4 more than Ava; how many does Sam have?” Label known Ava=9, unknown Sam, positive gap 4. Sam has **13** by 9+4. If 9−4 chosen: “Five is smaller than nine, so it cannot be Sam's amount when Sam has four more.”
-                    
+
                     **Entry C, Section 2, unknown smaller:** “Ava has 9 beads; Ava has 4 more than Sam; how many does Sam have?” Preserve the numbers 9 and 4 and the word “more,” but shift the greater-amount role to Ava; Sam has **5**, by 9−4. Show 5+4=9 as a relational check. If 13 chosen: “That would make Sam larger than Ava, contradicting the question.”
-                    
+
                     **Entry D, Section 3, known whole:** Fifteen markers total, six in a drawing box, remaining markers in a writing box. The learner first labels 15 as known whole, 6 as known part and ? as other part. Choose 15−6=**9 markers**. If 15+6 chosen: “Six is already inside the total fifteen; adding it again counts those markers twice.”
-                    
+
                     **Entry E, Section 4, independent transfer:** “Lina has 11 pencils. Lina has 3 more than Tom. How many does Tom have?” Show only the text and empty known/unknown roles. Expected “Lina is larger”, 11−3=**8**, reverse-check 8+3=11. A proposed 14 would make Tom greater and contradict the story. Hint 1: “Who has more?” Hint 2: “The smaller amount plus three equals eleven.” Reveal explanation on demand without grading.
-                    
+
                     ## Objects, state, calculation invariants
-                    
+
                     Use complete localized story text, names attached to labeled unit-counted bars, known/unknown markers, a question label, operation options, optional comparison of exact totals, hints and reset. A single Scene entry owns its own active scenario and interactive choices. Mathematical evaluation must use the displayed operands and role relationship. No user action may switch the known person without visibly changing the story and mathematical model. The same word “more” is not an input to the mathematical rule; the roles are.
-                    
+
                     ## Presentation and universal access
-                    
+
                     Place the relationship label, counts and comparison question in close reading order; illustrate larger/smaller with named equal-unit groups plus numerals, not solely bar direction. Keyboard/tap/switch users can make every selection and reveal the relation without mandatory dragging. All feedback is textual as well as optionally visual. Screen readers must announce each entity, quantity, larger/smaller relation and selected operation. RTL may reorder layout, not reverse which entity has more, the arrow's logical target or the subtraction operands. Provide meaningful real translations for all supported locales, zoom/reflow, visible focus, reduced-motion/static state and full offline functionality after implementation/download. Optional audio requires equal text.
-                    
+
                     ## Acceptance cases for implementation
-                    
+
                     - 7+5=12 shells, 12−5=7 cards; directional changes correctly explained.
                     - Ava=9, Sam 4 more gives Sam=13. Ava=9, Ava 4 more than Sam gives Sam=5. Both contain “more.”
                     - Known whole 15 and known part 6 → missing part 9, not 21.
                     - Lina 11 and three more than Tom → Tom 8, not 14.
                     - Every wrong choice points to the violated quantity relationship; learners can revise choices and see explanations without a score.
                     - Independent reset, keyboard, screen-reader, RTL, zoom, reduced motion and offline scenarios preserve exact mathematics.
-                    
+
                     ## Dependencies
-                    
+
                     The generic Playground renderer supports Scene resources, but this specific Scene is unimplemented. Coding Agent must validate actual context, semantic locales, WCAG 2.2 AA and tests before release. No invented API, Question correctness model, mastery record or Note persistence is authorized.
-                  purpose: "Proposed interactive Scene for Choose first, then calculate"
+                  purpose: 'Proposed interactive Scene for Choose first, then calculate'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               text2:
                 config:
-                  id: "809a9a29-1abe-48e4-87b1-ea6f753317fa"
-                  slug: "text2"
-                  type: "text"
+                  id: '809a9a29-1abe-48e4-87b1-ea6f753317fa'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "What makes the answer reasonable?"
-            order: ["text1","storyRelationshipSwitch","text2"]
+                      en: 'What makes the answer reasonable?'
+            order: ['text1', 'storyRelationshipSwitch', 'text2']
         production:
-          purpose: "Choose first, then calculate"
+          purpose: 'Choose first, then calculate'
           pedagogicalIntent: |
             ### Section 3 — Choose first, then calculate
-            
+
             _Purpose: avoid accidental correct answers from trial calculations._
-            
+
             1. **`text`:** “A class has **15 markers**. **6 markers** belong in a drawing box; the rest belong in a writing box. How many markers belong in the writing box?” Ask children to label **known whole 15**, **known part 6**, **unknown other part**.
             2. **`scene` resource, proposed:** Switch entry D, without an operation offered first. The learner chooses a verbal relationship (“two parts make fifteen” or “two new groups join fifteen”) and then chooses **15 − 6 = ?**. Reveal **9 markers**. If choose addition: “Fifteen is the whole collection already; adding six counts that part twice.”
             3. **`text`:** “What makes the answer reasonable?” Nine and six total fifteen and belong to the same whole.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section4IndependentTransferTheWordingTrap:
         config:
-          id: "1d19b7a5-f7de-45fe-8222-e4a3ae5e887c"
-          slug: "section4IndependentTransferTheWordingTrap"
-          type: "content"
+          id: '1d19b7a5-f7de-45fe-8222-e4a3ae5e887c'
+          slug: 'section4IndependentTransferTheWordingTrap'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Independent transfer: the wording trap"
+              en: 'Independent transfer: the wording trap'
             navigationLabel:
-              en: "Independent transfer: the wording trap"
+              en: 'Independent transfer: the wording trap'
           content:
             items:
               text1:
                 config:
-                  id: "b7bf2344-eedb-408f-8a8c-2ca669fb40e1"
-                  slug: "text1"
-                  type: "text"
+                  id: 'b7bf2344-eedb-408f-8a8c-2ca669fb40e1'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Lina has **11 pencils**. Lina has **3 more pencils than Tom**. How many pencils does **Tom** have? Tell which amount is larger _before_ choosing the calculation."
+                      en: 'Lina has **11 pencils**. Lina has **3 more pencils than Tom**. How many pencils does **Tom** have? Tell which amount is larger _before_ choosing the calculation.'
               storyRelationshipSwitch:
                 config:
-                  id: "b40fbf95-e621-4d2e-b856-c90fa2ed03b8"
-                  slug: "storyRelationshipSwitch"
-                  type: "scene"
+                  id: 'b40fbf95-e621-4d2e-b856-c90fa2ed03b8'
+                  slug: 'storyRelationshipSwitch'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Story Relationship Switch"
+                      en: 'Story Relationship Switch'
                 production:
                   specification: |
                     # Story Relationship Switch — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist/editor approval**  
                     Owner: Educational Screenwriter  
                     Parent: Lesson Content (editorial text integrated into this config.yaml), Sections 1–4; Draft Brief (editorial text integrated into this config.yaml)  
                     Implementation: New **proposed**, self-contained, prop-free Scene; not yet available.
-                    
+
                     ## Conceptual purpose
-                    
+
                     Operation selection follows the relationship of **known and unknown quantities**, not a word trigger. A contrast pair contains the same word “more” but switches who has the greater quantity. The Scene must keep that relationship explicit with labeled groups, without making longer bars a substitute for countable equal units.
-                    
+
                     ## Learner actions and feedback per entry
-                    
+
                     **Entry A, Section 1:** Story 1: 7 shells in a box, 5 added → “before=7; change=+5; after=?” Learner predicts growth, selects 7+5=? (not 7−5=?), then reveals **12 shells**. Wrong subtraction feedback: “Five arrive and nothing leaves.” Story 2 is an independent starting state: 12 cards, 5 given away → 12−5=**7**. Wrong addition feedback: “Giving away reduces the collection; it cannot leave seventeen cards.”
-                    
+
                     **Entry B, Section 2, unknown larger:** “Ava has 9 beads; Sam has 4 more than Ava; how many does Sam have?” Label known Ava=9, unknown Sam, positive gap 4. Sam has **13** by 9+4. If 9−4 chosen: “Five is smaller than nine, so it cannot be Sam's amount when Sam has four more.”
-                    
+
                     **Entry C, Section 2, unknown smaller:** “Ava has 9 beads; Ava has 4 more than Sam; how many does Sam have?” Preserve the numbers 9 and 4 and the word “more,” but shift the greater-amount role to Ava; Sam has **5**, by 9−4. Show 5+4=9 as a relational check. If 13 chosen: “That would make Sam larger than Ava, contradicting the question.”
-                    
+
                     **Entry D, Section 3, known whole:** Fifteen markers total, six in a drawing box, remaining markers in a writing box. The learner first labels 15 as known whole, 6 as known part and ? as other part. Choose 15−6=**9 markers**. If 15+6 chosen: “Six is already inside the total fifteen; adding it again counts those markers twice.”
-                    
+
                     **Entry E, Section 4, independent transfer:** “Lina has 11 pencils. Lina has 3 more than Tom. How many does Tom have?” Show only the text and empty known/unknown roles. Expected “Lina is larger”, 11−3=**8**, reverse-check 8+3=11. A proposed 14 would make Tom greater and contradict the story. Hint 1: “Who has more?” Hint 2: “The smaller amount plus three equals eleven.” Reveal explanation on demand without grading.
-                    
+
                     ## Objects, state, calculation invariants
-                    
+
                     Use complete localized story text, names attached to labeled unit-counted bars, known/unknown markers, a question label, operation options, optional comparison of exact totals, hints and reset. A single Scene entry owns its own active scenario and interactive choices. Mathematical evaluation must use the displayed operands and role relationship. No user action may switch the known person without visibly changing the story and mathematical model. The same word “more” is not an input to the mathematical rule; the roles are.
-                    
+
                     ## Presentation and universal access
-                    
+
                     Place the relationship label, counts and comparison question in close reading order; illustrate larger/smaller with named equal-unit groups plus numerals, not solely bar direction. Keyboard/tap/switch users can make every selection and reveal the relation without mandatory dragging. All feedback is textual as well as optionally visual. Screen readers must announce each entity, quantity, larger/smaller relation and selected operation. RTL may reorder layout, not reverse which entity has more, the arrow's logical target or the subtraction operands. Provide meaningful real translations for all supported locales, zoom/reflow, visible focus, reduced-motion/static state and full offline functionality after implementation/download. Optional audio requires equal text.
-                    
+
                     ## Acceptance cases for implementation
-                    
+
                     - 7+5=12 shells, 12−5=7 cards; directional changes correctly explained.
                     - Ava=9, Sam 4 more gives Sam=13. Ava=9, Ava 4 more than Sam gives Sam=5. Both contain “more.”
                     - Known whole 15 and known part 6 → missing part 9, not 21.
                     - Lina 11 and three more than Tom → Tom 8, not 14.
                     - Every wrong choice points to the violated quantity relationship; learners can revise choices and see explanations without a score.
                     - Independent reset, keyboard, screen-reader, RTL, zoom, reduced motion and offline scenarios preserve exact mathematics.
-                    
+
                     ## Dependencies
-                    
+
                     The generic Playground renderer supports Scene resources, but this specific Scene is unimplemented. Coding Agent must validate actual context, semantic locales, WCAG 2.2 AA and tests before release. No invented API, Question correctness model, mastery record or Note persistence is authorized.
-                  purpose: "Proposed interactive Scene for Independent transfer: the wording trap"
+                  purpose: 'Proposed interactive Scene for Independent transfer: the wording trap'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               text2:
                 config:
-                  id: "babf27fd-efdb-4222-898c-2b1366fb3c28"
-                  slug: "text2"
-                  type: "text"
+                  id: 'babf27fd-efdb-4222-898c-2b1366fb3c28'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "If Tom had fourteen, Tom would have more than Lina, but the story says Lina has more."
+                      en: 'If Tom had fourteen, Tom would have more than Lina, but the story says Lina has more.'
               markdown3:
                 config:
-                  id: "6daf1518-840f-4e77-b6cd-fb3a6f0beb81"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '6daf1518-840f-4e77-b6cd-fb3a6f0beb81'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**Recall:** Follow the quantities and their roles; the same word can accompany different operations."
-            order: ["text1","storyRelationshipSwitch","text2","markdown3"]
+                      en: '**Recall:** Follow the quantities and their roles; the same word can accompany different operations.'
+            order: ['text1', 'storyRelationshipSwitch', 'text2', 'markdown3']
         production:
-          purpose: "Independent transfer: the wording trap"
+          purpose: 'Independent transfer: the wording trap'
           pedagogicalIntent: |
             ### Section 4 — Independent transfer: the wording trap
-            
+
             _Purpose: transfer to a comparison without a supplied model._
-            
+
             1. **`text`:** “Lina has **11 pencils**. Lina has **3 more pencils than Tom**. How many pencils does **Tom** have? Tell which amount is larger _before_ choosing the calculation.”
             2. **`scene` resource, proposed:** Fresh comparison with empty role labels. Learner chooses “Lina larger” and **11 − 3 = 8**. Optional hint exposes the comparison bar without disclosing the operation; full reveal checks **8 + 3 = 11**.
             3. **`text`:** Feedback for 14: “If Tom had fourteen, Tom would have more than Lina, but the story says Lina has more.” Feedback for 8: “Tom has eight and Lina has three more: eleven.”
             4. **`markdown`:** “**Recall:** Follow the quantities and their roles; the same word can accompany different operations.”
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
-    order: ["section1WhatHappensToTheCollection","section2TheSameWordCanTellDifferentStories","section3ChooseFirstThenCalculate","section4IndependentTransferTheWordingTrap"]
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+    order:
+      [
+        'section1WhatHappensToTheCollection',
+        'section2TheSameWordCanTellDifferentStories',
+        'section3ChooseFirstThenCalculate',
+        'section4IndependentTransferTheWordingTrap',
+      ]
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # Which Operation Fits the Story? — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: chooseAdditionOrSubtraction
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Teach meaningful operation selection from known/unknown roles and quantitative relationships rather than searching for trigger words. This extends a one-step model into a reasoned choice of addition or subtraction.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 2.** Intended for children with variable reading fluency and prior mathematical experience. The selected classroom depth is a Lesson decision, **not** an age/grade restriction on any Skill. Provide plain-language, optional read-aloud, text alternatives and multiple ways to respond without relying on motor precision or speech.
-    
+
     ## Prerequisites
-    
+
     - Distinguish known and unknown quantities; represent an add-to or take-from story with a one-step model; calculate sums and differences within 20; understand that comparison statements distinguish a larger and a smaller quantity.
-    
+
     ## Target Skills
-    
+
     - [chooseOperationAddSub.data.ts](../../../../data/skills/problemSolving/models/skills/chooseOperationAddSub.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Identify whether a situation is about combining known parts, removing a part, or comparing two quantities.
     - Match a one-step story and diagram to addition or subtraction and justify the operation using the unknown's role.
     - Explain why the same word 'more' can correspond to either addition or subtraction depending on which quantity is unknown.
-    
+
     ## Essential subject matter
-    
+
     Choice of operation depends on the structural relationship. If 9 beads belong to Ava and Sam has 4 more than Ava, Sam has 9 + 4 = 13. If Ava has 9 beads and 4 more than Sam, Sam has 9 − 4 = 5. The word 'more' appears in both; the reference quantity and sought quantity differ. A take-away context ('12 cards, 5 given away') needs 12 − 5 = 7; a combine context ('7 shells plus 5 shells') needs 7 + 5 = 12. A picture or bar model labels which count is known, which is missing and how they relate.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Begin with transparent add-to and take-from changes, connect each to a model, then vary the location of the unknown in an additive comparison while keeping the word 'more' constant. Finally have learners justify a choice before any calculation and check it against the story.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Automatic 'more' → add or 'left' → subtract; confusing which character has the greater quantity; treating the difference as the total; selecting an operation by numerals alone. Use nonnegative whole numbers and one-step stories within 20; exclude multiplication, division, two-step comparisons, hidden unit conversions and equations requiring unlearned inverse operations.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     The English examples are **canonical editorial source text**, not completed learner-facing translations. Translate all prompts, labels, units, feedback, accessible names and diagram annotations for each supported locale, without invented translations or English fallbacks. Preserve mathematical operation order and causal relationships in RTL, with semantic rather than automatic mirroring. Provide equally informative visible and nonvisual representations, keyboard/switch and touch alternatives, high contrast with no color-only answers, reduced-motion behavior, zoom/reflow and no timed-only tasks. The full experience and instructional feedback must be downloadable for offline learning as an implementation goal; no claim is made that Playground currently implements the required PWA caching or Note persistence.
-    
+
     ## Sources and factual verification
-    
+
     - [chooseOperationAddSub.data.ts](../../../../data/skills/problemSolving/models/skills/chooseOperationAddSub.data.ts) — canonical Mathematics Skill object transferred from `main`; UUID and methodological definition must not be altered.
     - [Svitlo Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — separation of Brief, Content and Scene ownership.
     - [Common Core State Standards for Mathematics](https://corestandards.org/mathematics-standards/) — supplementary progression reference; **not** evidence of a named Curriculum's alignment or a substitute for editorial approval.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. This Lesson is independent of any Program or Curriculum.
-    
+
     ## Open editorial decisions
-    
+
     - Editor to confirm learner readiness for comparison wording at Grade 2 and that no out-of-domain comparison Skill is silently added as a target; comparison is the instructional example, while operation choice is the assessed domain goal.
     - Screenwriter material is authorized as **provisional Draft only**; Methodologist approval has not occurred. Further implementation requires distinct architectural, localization and accessibility review.
-    
+
     ## Methodologist handoff
-    
+
     **Draft pending explicit Methodologist/editor approval.** Proposed Content (editorial text integrated into this config.yaml) and Scene specification (Scene specification embedded in this config.yaml) are parallel review artifacts, not approved implementation instructions. Do not infer mastery, introduce new Skills, or add Questions, Quizzes, scoring, persistence or runtime data from this Brief.
   productionNotes: |-
     Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
-    
+
     # Which Operation Fits the Story? — Lesson Content
-    
+
     **Screenwriter status:** Provisional Draft — pending Methodologist approval (editorial text integrated into this config.yaml). **Runtime:** not implemented. **Program dependence:** none. **Language:** English editorial source, not localized production copy.
-    
+
     ## Editorial experience
-    
+
     The learner must **read the relationship and the unknown** before choosing an operation. A surprising pair of stories with the same word “more” provides the conceptual pivot. No operation is selected by a keyword rule; the proposed Scene lets learners inspect _what the quantities refer to_.
-    
-    
+
+
     ## Production / access and editorial dependencies
-    
+
     All general Section blocks appear **top-to-bottom** and use verified `text`/`markdown` plus **proposed** `scene` kinds. This is formative interaction, not a Question or a Quiz. Every comparison bar must have accessible semantic labels for larger/smaller and known/unknown; no dependence on horizontal direction, a red/green color, drag-only or narration-only. RTL must retain the logical larger-than relationship and operation order while adapting label layout. Provide keyboard/touch/switch controls, spoken-equivalent descriptions, reduced motion, zoom/mobile reflow, localized story grammar, complete real translations for all supported locales and an offline bundle in future implementation. Do not imply these capabilities are already delivered or invent persistence APIs.
-    
+
     No runtime configuration, grading, scoring, Question, Quiz or Notes. All Content and Scene specifications (Scene specification embedded in this config.yaml) remain provisional until editor approval of the Brief (editorial text integrated into this config.yaml).
-    
-    
+
+
     Migration status: provisional draft; pending independent approvals, translation and implementation.

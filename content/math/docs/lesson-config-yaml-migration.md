@@ -45,19 +45,19 @@ This is **only** a source representation migration. A Lesson is complete for thi
 
 Balanced roughly by source bytes, not arbitrary UUID order; 10 Lessons each for Agents 1–10, 9 for Agent 11. No overlaps. All paths below are relative to `content/math/`.
 
-| Agent | Lessons | Scene specs | Approx source size | Child branch |
-| --- | ---: | ---: | ---: | --- |
-| 1 | 10 | 12 | ~271 KiB | `agent/math-unified-yaml-01` |
-| 2 | 10 | 12 | ~271 KiB | `agent/math-unified-yaml-02` |
-| 3 | 10 | 11 | ~268 KiB | `agent/math-unified-yaml-03` |
-| 4 | 10 | 11 | ~271 KiB | `agent/math-unified-yaml-04` |
-| 5 | 10 | 14 | ~268 KiB | `agent/math-unified-yaml-05` |
-| 6 | 10 | 13 | ~270 KiB | `agent/math-unified-yaml-06` |
-| 7 | 10 | 11 | ~270 KiB | `agent/math-unified-yaml-07` |
-| 8 | 10 | 12 | ~270 KiB | `agent/math-unified-yaml-08` |
-| 9 | 10 | 11 | ~268 KiB | `agent/math-unified-yaml-09` |
-| 10 | 10 | 12 | ~268 KiB | `agent/math-unified-yaml-10` |
-| 11 | 9 | 12 | ~255 KiB | `agent/math-unified-yaml-11` |
+| Agent | Lessons | Scene specs | Approx source size | Child branch                 |
+| ----- | ------: | ----------: | -----------------: | ---------------------------- |
+| 1     |      10 |          12 |           ~271 KiB | `agent/math-unified-yaml-01` |
+| 2     |      10 |          12 |           ~271 KiB | `agent/math-unified-yaml-02` |
+| 3     |      10 |          11 |           ~268 KiB | `agent/math-unified-yaml-03` |
+| 4     |      10 |          11 |           ~271 KiB | `agent/math-unified-yaml-04` |
+| 5     |      10 |          14 |           ~268 KiB | `agent/math-unified-yaml-05` |
+| 6     |      10 |          13 |           ~270 KiB | `agent/math-unified-yaml-06` |
+| 7     |      10 |          11 |           ~270 KiB | `agent/math-unified-yaml-07` |
+| 8     |      10 |          12 |           ~270 KiB | `agent/math-unified-yaml-08` |
+| 9     |      10 |          11 |           ~268 KiB | `agent/math-unified-yaml-09` |
+| 10    |      10 |          12 |           ~268 KiB | `agent/math-unified-yaml-10` |
+| 11    |       9 |          12 |           ~255 KiB | `agent/math-unified-yaml-11` |
 
 ### Agent 1: 10 Lessons / 12 legacy Scene specs
 
@@ -222,7 +222,6 @@ Owned branch: `agent/math-unified-yaml-11`. The only editable source folders are
 - `data/lessons/f/c0992609-0bc1-5b0f-b84f-6cb09acd1ebf/` (1 Scene spec)
 - `data/lessons/7/ce649c04-655d-558c-afd1-b287421cb697/` (1 Scene spec)
 - `data/lessons/6/d12b7bda-d840-50e2-91a6-ac57b4cc9b96/` (1 Scene spec)
-
 
 ## Integration acceptance checklist
 

@@ -1,99 +1,99 @@
 config:
-  id: "f51c30a9-ec23-5989-89e0-90c1f4855ab9"
-  slug: "multiplicationByZeroAndOne"
-  type: "lesson"
-  skills: ["ab67e3dd-2c8e-4633-8673-c46409c70e74"]
+  id: 'f51c30a9-ec23-5989-89e0-90c1f4855ab9'
+  slug: 'multiplicationByZeroAndOne'
+  type: 'lesson'
+  skills: ['ab67e3dd-2c8e-4633-8673-c46409c70e74']
   params:
     requireQuiz: false
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Multiplying by Zero and One"
+      en: 'Multiplying by Zero and One'
   section:
     items:
       section1:
         config:
-          id: "af4a393b-c7e8-5c04-b9f8-b93b8aaf354e"
-          slug: "section1"
-          type: "content"
+          id: 'af4a393b-c7e8-5c04-b9f8-b93b8aaf354e'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Four Empty Groups"
+              en: 'Four Empty Groups'
             navigationLabel:
-              en: "Four Empty Groups"
+              en: 'Four Empty Groups'
           content:
             items:
               text1:
                 config:
-                  id: "fdc7b51e-691b-5fc9-bf02-351e6ccc8c1f"
-                  slug: "text1"
-                  type: "text"
+                  id: 'fdc7b51e-691b-5fc9-bf02-351e6ccc8c1f'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "There are four boxes. Each has ZERO counters. How many counters altogether?"
+                      en: 'There are four boxes. Each has ZERO counters. How many counters altogether?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "17f726bf-29df-582a-870e-a6bfe23a9ee0"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '17f726bf-29df-582a-870e-a6bfe23a9ee0'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "There are four boxes. Each has ZERO counters. How many counters altogether?"
+                        instruction: 'There are four boxes. Each has ZERO counters. How many counters altogether?'
                 production:
                   specification: |
                     # Zero and One Multiplication Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Multiplying by Zero and One Content (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Explain 4×0=0 with four groups that each contain zero items, and 0×4=0 with zero groups of four. Explain 4×1=4 with four groups of one, and 1×4=4 with one group of four. Apply a×0=0 and a×1=a to further whole-number examples without needing a picture every time. Distinguish 4+0=4 from 4×0=0, identifying the operation as well as the special factor. Methodologist Brief (embedded in this Lesson config.yaml), not approved.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Develop two distinct multiplication laws with evidence from small groups and numerical reasoning: multiplying a whole number by zero gives zero, while multiplying it by one leaves the same number. Neither property means that adding or subtracting zero works in the same way. The browser interaction invites evidence-based predictions and explicitly compares results, not a decorative animation or a hidden scoring event.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Zero is absorbing for multiplication: a × 0 = 0 (also 0 × a = 0); one is the multiplicative identity: a × 1 = a (and 1 × a = a). Use 4×0=0, 0×4=0, 4×1=4, 1×4=4 and transfer 7×0=0, 7×1=7. Concrete equal-group models demonstrate cases but are not claimed to prove the law for every number domain; the source Skill's formal generality remains unchanged. Keep age-appropriate whole numbers 0–20. Claiming four groups of zero have four objects; confusing zero groups with one empty group; thinking any operation with zero produces zero, so 4+0=0; thinking ×1 adds one to the original; treating zero as an invalid multiplication factor because division by zero is forbidden. Do not conflate multiplication by zero with division by zero. **Invariant:** For each n, n×0=0 and n×1=n, 0×n=0 and 1×n=n; countable objects and textual group counts match the expression exactly. Addition comparison n+0=n remains separate. Empty group vs no group remain distinct representations.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Placement 1 — Four Empty Groups:** Prompt “There are four boxes. Each has ZERO counters. How many counters altogether?”. Show four labeled empty trays; child inspects each and counts zero total; display 4×0=0 without adding a phantom object. Explain “Four groups of zero contain no counters. Four times zero is zero: 4 × 0 = 0.”. **If mistaken:** For 'four counters', explain that four counts the boxes, not the counters in the boxes. The same group-size fact holds for each empty group. Learner may show every step without guessing.
-                    
+
                     2. **Placement 2 — Zero Groups Is Still Zero:** Prompt “What if we have ZERO groups of four counters? How many counters are in those groups?”. Switch from four empty groups to no groups, show 0×4=0. Keep the difference between 'four empty boxes' and 'no boxes' in the accessible ledger. Explain “Zero groups of four contain zero counters. The pictures differ, but both products are zero.”. **If mistaken:** If child claims four, report that no group exists to hold the four objects. Avoid dividing by zero claims here. Learner may show every step without guessing.
-                    
+
                     3. **Placement 3 — One Changes Nothing:** Prompt “Compare FOUR groups of ONE with ONE group of FOUR. How many counters in each?”. Display four individually labeled one-counter trays (4×1) and then one four-counter tray (1×4); give learner-controlled switch and exact ledger. Explain “4 × 1 = 4 and 1 × 4 = 4. One group of four is four; four groups of one also make four.”. **If mistaken:** For five, distinguish multiplication 4×1=4 from addition 4+1=5. Keep the original four counters counted exactly once. Learner may show every step without guessing.
-                    
+
                     4. **Placement 4 — Test a New Number:** Prompt “Without drawing first: what are 7 × 0 and 7 × 1? And what is 7 + 0?”. Offer numerical trial choices for 7×0, 7×1 and contrasting 7+0; child can reveal seven single counters, seven empty groups or one seven-counter group. Explain “7 × 0 = 0; 7 × 1 = 7; 7 + 0 = 7. The operation matters. Multiplying by zero is not the same as adding zero.”. **If mistaken:** If learner says seven for 7×0, show empty groups; if zero for 7+0, explain that adding no objects leaves the seven already present. Learner may show every step without guessing.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized self-contained prop-free Scene entries; Section-specific "mode" is an editorial label, not a public React prop or invented Resource field.
                     - Objects: labeled row/group counters, exact numerals and expressions, progressive reveal, multiple optional selection controls, accessible ordered state ledger, Reset/Undo/Explain controls.
                     - **State:** Whole-number example n=4 or 7, factor zero/one, group-count-first meaning, empty/one-counter/group-of-n placements, selected numerical trial, revealed explanation and current example.
                     - **Invariant:** For each n, n×0=0 and n×1=n, 0×n=0 and 1×n=n; countable objects and textual group counts match the expression exactly. Addition comparison n+0=n remains separate. Empty group vs no group remain distinct representations. Validate each user action against the model; wrong trial expressions must be marked as not matching, not shown as true identities.
                     - No state stores mastery, score, threshold, question grading or personal analytics. Hints and explanatory reveal are never locked by correctness.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Compact countable dots/group containers with legible text and numeric labels. User-paced rotate/switch/reveal transitions may guide attention; under reduced motion all states and quantities appear immediately with equivalent reasoning. No required photos, generated artwork, audio, WebGL, streamed video, narrator or rewards.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, operation names, counts, status, errors and aria labels require actual translations for all supported locales; English is source only. In RTL, factor/order and group/row meanings retain correct semantics and increasing/rotating directions are explicitly described. A screen-reader user has fully operable numbered state lists and native controls giving identical choices/transformations, not just image descriptions. Visible focus, switch/keyboard/touch operation, large targets, responsive/zoomed mobile display and reduced-motion parity are required. After download all calculations, alternatives and localized feedback must run offline, without audio, color-only signals or drag/speech requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Four Empty Groups: Show four labeled empty trays; child inspects each and counts zero total; display 4×0=0 without adding a phantom object. Correct evidence: Four groups of zero contain no counters. Four times zero is zero: 4 × 0 = 0.
                     2. Zero Groups Is Still Zero: Switch from four empty groups to no groups, show 0×4=0. Keep the difference between 'four empty boxes' and 'no boxes' in the accessible ledger. Correct evidence: Zero groups of four contain zero counters. The pictures differ, but both products are zero.
                     3. One Changes Nothing: Display four individually labeled one-counter trays (4×1) and then one four-counter tray (1×4); give learner-controlled switch and exact ledger. Correct evidence: 4 × 1 = 4 and 1 × 4 = 4. One group of four is four; four groups of one also make four.
@@ -101,26 +101,26 @@ config:
                     5. Wrong predictions trigger the specific numerical explanatory feedback for that model, with retry/reveal and no score.
                     6. Reset and independent Section instances do not leak state.
                     7. Nonvisual, keyboard, RTL, zoom, reduced-motion, low-end-device and downloaded offline states preserve the same mathematical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic scene resource renderer exists; **Zero and One Multiplication Lab itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: The canonical Skill combines ×0 and ×1 as approved. Keep the two laws distinct in the teaching and do not split the taxonomy without explicit editorial approval. Verify that a zero-sized group is unambiguously represented nonvisually.
-                  purpose: "Four Empty Groups"
-                  productionNotes: "Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for Four Empty Groups. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Four Empty Groups'
+                  productionNotes: 'Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for Four Empty Groups. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "321e239c-de61-5f53-ac80-a39cadb7f20d"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '321e239c-de61-5f53-ac80-a39cadb7f20d'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Four groups of zero contain no counters. Four times zero is zero: 4 × 0 = 0."
+                      en: 'Four groups of zero contain no counters. Four times zero is zero: 4 × 0 = 0.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Four Empty Groups"
+          purpose: 'Four Empty Groups'
           productionNotes: |-
             - **Outcome:** Explain 4×0=0 with four groups that each contain zero items, and 0×4=0 with zero groups of four.
             - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
@@ -136,83 +136,83 @@ config:
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
       section2:
         config:
-          id: "b04a3ace-cae8-50bd-baf8-bace89af33bb"
-          slug: "section2"
-          type: "content"
+          id: 'b04a3ace-cae8-50bd-baf8-bace89af33bb'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Zero Groups Is Still Zero"
+              en: 'Zero Groups Is Still Zero'
             navigationLabel:
-              en: "Zero Groups Is Still Zero"
+              en: 'Zero Groups Is Still Zero'
           content:
             items:
               text1:
                 config:
-                  id: "6663659f-60c0-5edc-a79d-e59f0430db9e"
-                  slug: "text1"
-                  type: "text"
+                  id: '6663659f-60c0-5edc-a79d-e59f0430db9e'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "What if we have ZERO groups of four counters? How many counters are in those groups?"
+                      en: 'What if we have ZERO groups of four counters? How many counters are in those groups?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "4ab30360-fda2-5065-b9ca-8360af7ec23f"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '4ab30360-fda2-5065-b9ca-8360af7ec23f'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "What if we have ZERO groups of four counters? How many counters are in those groups?"
+                        instruction: 'What if we have ZERO groups of four counters? How many counters are in those groups?'
                 production:
                   specification: |
                     # Zero and One Multiplication Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Multiplying by Zero and One Content (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Explain 4×0=0 with four groups that each contain zero items, and 0×4=0 with zero groups of four. Explain 4×1=4 with four groups of one, and 1×4=4 with one group of four. Apply a×0=0 and a×1=a to further whole-number examples without needing a picture every time. Distinguish 4+0=4 from 4×0=0, identifying the operation as well as the special factor. Methodologist Brief (embedded in this Lesson config.yaml), not approved.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Develop two distinct multiplication laws with evidence from small groups and numerical reasoning: multiplying a whole number by zero gives zero, while multiplying it by one leaves the same number. Neither property means that adding or subtracting zero works in the same way. The browser interaction invites evidence-based predictions and explicitly compares results, not a decorative animation or a hidden scoring event.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Zero is absorbing for multiplication: a × 0 = 0 (also 0 × a = 0); one is the multiplicative identity: a × 1 = a (and 1 × a = a). Use 4×0=0, 0×4=0, 4×1=4, 1×4=4 and transfer 7×0=0, 7×1=7. Concrete equal-group models demonstrate cases but are not claimed to prove the law for every number domain; the source Skill's formal generality remains unchanged. Keep age-appropriate whole numbers 0–20. Claiming four groups of zero have four objects; confusing zero groups with one empty group; thinking any operation with zero produces zero, so 4+0=0; thinking ×1 adds one to the original; treating zero as an invalid multiplication factor because division by zero is forbidden. Do not conflate multiplication by zero with division by zero. **Invariant:** For each n, n×0=0 and n×1=n, 0×n=0 and 1×n=n; countable objects and textual group counts match the expression exactly. Addition comparison n+0=n remains separate. Empty group vs no group remain distinct representations.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Placement 1 — Four Empty Groups:** Prompt “There are four boxes. Each has ZERO counters. How many counters altogether?”. Show four labeled empty trays; child inspects each and counts zero total; display 4×0=0 without adding a phantom object. Explain “Four groups of zero contain no counters. Four times zero is zero: 4 × 0 = 0.”. **If mistaken:** For 'four counters', explain that four counts the boxes, not the counters in the boxes. The same group-size fact holds for each empty group. Learner may show every step without guessing.
-                    
+
                     2. **Placement 2 — Zero Groups Is Still Zero:** Prompt “What if we have ZERO groups of four counters? How many counters are in those groups?”. Switch from four empty groups to no groups, show 0×4=0. Keep the difference between 'four empty boxes' and 'no boxes' in the accessible ledger. Explain “Zero groups of four contain zero counters. The pictures differ, but both products are zero.”. **If mistaken:** If child claims four, report that no group exists to hold the four objects. Avoid dividing by zero claims here. Learner may show every step without guessing.
-                    
+
                     3. **Placement 3 — One Changes Nothing:** Prompt “Compare FOUR groups of ONE with ONE group of FOUR. How many counters in each?”. Display four individually labeled one-counter trays (4×1) and then one four-counter tray (1×4); give learner-controlled switch and exact ledger. Explain “4 × 1 = 4 and 1 × 4 = 4. One group of four is four; four groups of one also make four.”. **If mistaken:** For five, distinguish multiplication 4×1=4 from addition 4+1=5. Keep the original four counters counted exactly once. Learner may show every step without guessing.
-                    
+
                     4. **Placement 4 — Test a New Number:** Prompt “Without drawing first: what are 7 × 0 and 7 × 1? And what is 7 + 0?”. Offer numerical trial choices for 7×0, 7×1 and contrasting 7+0; child can reveal seven single counters, seven empty groups or one seven-counter group. Explain “7 × 0 = 0; 7 × 1 = 7; 7 + 0 = 7. The operation matters. Multiplying by zero is not the same as adding zero.”. **If mistaken:** If learner says seven for 7×0, show empty groups; if zero for 7+0, explain that adding no objects leaves the seven already present. Learner may show every step without guessing.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized self-contained prop-free Scene entries; Section-specific "mode" is an editorial label, not a public React prop or invented Resource field.
                     - Objects: labeled row/group counters, exact numerals and expressions, progressive reveal, multiple optional selection controls, accessible ordered state ledger, Reset/Undo/Explain controls.
                     - **State:** Whole-number example n=4 or 7, factor zero/one, group-count-first meaning, empty/one-counter/group-of-n placements, selected numerical trial, revealed explanation and current example.
                     - **Invariant:** For each n, n×0=0 and n×1=n, 0×n=0 and 1×n=n; countable objects and textual group counts match the expression exactly. Addition comparison n+0=n remains separate. Empty group vs no group remain distinct representations. Validate each user action against the model; wrong trial expressions must be marked as not matching, not shown as true identities.
                     - No state stores mastery, score, threshold, question grading or personal analytics. Hints and explanatory reveal are never locked by correctness.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Compact countable dots/group containers with legible text and numeric labels. User-paced rotate/switch/reveal transitions may guide attention; under reduced motion all states and quantities appear immediately with equivalent reasoning. No required photos, generated artwork, audio, WebGL, streamed video, narrator or rewards.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, operation names, counts, status, errors and aria labels require actual translations for all supported locales; English is source only. In RTL, factor/order and group/row meanings retain correct semantics and increasing/rotating directions are explicitly described. A screen-reader user has fully operable numbered state lists and native controls giving identical choices/transformations, not just image descriptions. Visible focus, switch/keyboard/touch operation, large targets, responsive/zoomed mobile display and reduced-motion parity are required. After download all calculations, alternatives and localized feedback must run offline, without audio, color-only signals or drag/speech requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Four Empty Groups: Show four labeled empty trays; child inspects each and counts zero total; display 4×0=0 without adding a phantom object. Correct evidence: Four groups of zero contain no counters. Four times zero is zero: 4 × 0 = 0.
                     2. Zero Groups Is Still Zero: Switch from four empty groups to no groups, show 0×4=0. Keep the difference between 'four empty boxes' and 'no boxes' in the accessible ledger. Correct evidence: Zero groups of four contain zero counters. The pictures differ, but both products are zero.
                     3. One Changes Nothing: Display four individually labeled one-counter trays (4×1) and then one four-counter tray (1×4); give learner-controlled switch and exact ledger. Correct evidence: 4 × 1 = 4 and 1 × 4 = 4. One group of four is four; four groups of one also make four.
@@ -220,26 +220,26 @@ config:
                     5. Wrong predictions trigger the specific numerical explanatory feedback for that model, with retry/reveal and no score.
                     6. Reset and independent Section instances do not leak state.
                     7. Nonvisual, keyboard, RTL, zoom, reduced-motion, low-end-device and downloaded offline states preserve the same mathematical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic scene resource renderer exists; **Zero and One Multiplication Lab itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: The canonical Skill combines ×0 and ×1 as approved. Keep the two laws distinct in the teaching and do not split the taxonomy without explicit editorial approval. Verify that a zero-sized group is unambiguously represented nonvisually.
-                  purpose: "Zero Groups Is Still Zero"
-                  productionNotes: "Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for Zero Groups Is Still Zero. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Zero Groups Is Still Zero'
+                  productionNotes: 'Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for Zero Groups Is Still Zero. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "c242e38d-81d2-58e6-bca5-638d1d93321c"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'c242e38d-81d2-58e6-bca5-638d1d93321c'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Zero groups of four contain zero counters. The pictures differ, but both products are zero."
+                      en: 'Zero groups of four contain zero counters. The pictures differ, but both products are zero.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Zero Groups Is Still Zero"
+          purpose: 'Zero Groups Is Still Zero'
           productionNotes: |-
             - **Outcome:** Explain 4×1=4 with four groups of one, and 1×4=4 with one group of four.
             - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
@@ -255,83 +255,83 @@ config:
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
       section3:
         config:
-          id: "b14a3c61-c9e8-5f2a-bbf8-bc6188af3228"
-          slug: "section3"
-          type: "content"
+          id: 'b14a3c61-c9e8-5f2a-bbf8-bc6188af3228'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "One Changes Nothing"
+              en: 'One Changes Nothing'
             navigationLabel:
-              en: "One Changes Nothing"
+              en: 'One Changes Nothing'
           content:
             items:
               text1:
                 config:
-                  id: "89a55630-7a2c-519b-8adf-d63035e3635d"
-                  slug: "text1"
-                  type: "text"
+                  id: '89a55630-7a2c-519b-8adf-d63035e3635d'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Compare FOUR groups of ONE with ONE group of FOUR. How many counters in each?"
+                      en: 'Compare FOUR groups of ONE with ONE group of FOUR. How many counters in each?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "56779451-63a6-5f84-858f-1451d7843c46"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '56779451-63a6-5f84-858f-1451d7843c46'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Compare FOUR groups of ONE with ONE group of FOUR. How many counters in each?"
+                        instruction: 'Compare FOUR groups of ONE with ONE group of FOUR. How many counters in each?'
                 production:
                   specification: |
                     # Zero and One Multiplication Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Multiplying by Zero and One Content (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Explain 4×0=0 with four groups that each contain zero items, and 0×4=0 with zero groups of four. Explain 4×1=4 with four groups of one, and 1×4=4 with one group of four. Apply a×0=0 and a×1=a to further whole-number examples without needing a picture every time. Distinguish 4+0=4 from 4×0=0, identifying the operation as well as the special factor. Methodologist Brief (embedded in this Lesson config.yaml), not approved.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Develop two distinct multiplication laws with evidence from small groups and numerical reasoning: multiplying a whole number by zero gives zero, while multiplying it by one leaves the same number. Neither property means that adding or subtracting zero works in the same way. The browser interaction invites evidence-based predictions and explicitly compares results, not a decorative animation or a hidden scoring event.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Zero is absorbing for multiplication: a × 0 = 0 (also 0 × a = 0); one is the multiplicative identity: a × 1 = a (and 1 × a = a). Use 4×0=0, 0×4=0, 4×1=4, 1×4=4 and transfer 7×0=0, 7×1=7. Concrete equal-group models demonstrate cases but are not claimed to prove the law for every number domain; the source Skill's formal generality remains unchanged. Keep age-appropriate whole numbers 0–20. Claiming four groups of zero have four objects; confusing zero groups with one empty group; thinking any operation with zero produces zero, so 4+0=0; thinking ×1 adds one to the original; treating zero as an invalid multiplication factor because division by zero is forbidden. Do not conflate multiplication by zero with division by zero. **Invariant:** For each n, n×0=0 and n×1=n, 0×n=0 and 1×n=n; countable objects and textual group counts match the expression exactly. Addition comparison n+0=n remains separate. Empty group vs no group remain distinct representations.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Placement 1 — Four Empty Groups:** Prompt “There are four boxes. Each has ZERO counters. How many counters altogether?”. Show four labeled empty trays; child inspects each and counts zero total; display 4×0=0 without adding a phantom object. Explain “Four groups of zero contain no counters. Four times zero is zero: 4 × 0 = 0.”. **If mistaken:** For 'four counters', explain that four counts the boxes, not the counters in the boxes. The same group-size fact holds for each empty group. Learner may show every step without guessing.
-                    
+
                     2. **Placement 2 — Zero Groups Is Still Zero:** Prompt “What if we have ZERO groups of four counters? How many counters are in those groups?”. Switch from four empty groups to no groups, show 0×4=0. Keep the difference between 'four empty boxes' and 'no boxes' in the accessible ledger. Explain “Zero groups of four contain zero counters. The pictures differ, but both products are zero.”. **If mistaken:** If child claims four, report that no group exists to hold the four objects. Avoid dividing by zero claims here. Learner may show every step without guessing.
-                    
+
                     3. **Placement 3 — One Changes Nothing:** Prompt “Compare FOUR groups of ONE with ONE group of FOUR. How many counters in each?”. Display four individually labeled one-counter trays (4×1) and then one four-counter tray (1×4); give learner-controlled switch and exact ledger. Explain “4 × 1 = 4 and 1 × 4 = 4. One group of four is four; four groups of one also make four.”. **If mistaken:** For five, distinguish multiplication 4×1=4 from addition 4+1=5. Keep the original four counters counted exactly once. Learner may show every step without guessing.
-                    
+
                     4. **Placement 4 — Test a New Number:** Prompt “Without drawing first: what are 7 × 0 and 7 × 1? And what is 7 + 0?”. Offer numerical trial choices for 7×0, 7×1 and contrasting 7+0; child can reveal seven single counters, seven empty groups or one seven-counter group. Explain “7 × 0 = 0; 7 × 1 = 7; 7 + 0 = 7. The operation matters. Multiplying by zero is not the same as adding zero.”. **If mistaken:** If learner says seven for 7×0, show empty groups; if zero for 7+0, explain that adding no objects leaves the seven already present. Learner may show every step without guessing.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized self-contained prop-free Scene entries; Section-specific "mode" is an editorial label, not a public React prop or invented Resource field.
                     - Objects: labeled row/group counters, exact numerals and expressions, progressive reveal, multiple optional selection controls, accessible ordered state ledger, Reset/Undo/Explain controls.
                     - **State:** Whole-number example n=4 or 7, factor zero/one, group-count-first meaning, empty/one-counter/group-of-n placements, selected numerical trial, revealed explanation and current example.
                     - **Invariant:** For each n, n×0=0 and n×1=n, 0×n=0 and 1×n=n; countable objects and textual group counts match the expression exactly. Addition comparison n+0=n remains separate. Empty group vs no group remain distinct representations. Validate each user action against the model; wrong trial expressions must be marked as not matching, not shown as true identities.
                     - No state stores mastery, score, threshold, question grading or personal analytics. Hints and explanatory reveal are never locked by correctness.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Compact countable dots/group containers with legible text and numeric labels. User-paced rotate/switch/reveal transitions may guide attention; under reduced motion all states and quantities appear immediately with equivalent reasoning. No required photos, generated artwork, audio, WebGL, streamed video, narrator or rewards.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, operation names, counts, status, errors and aria labels require actual translations for all supported locales; English is source only. In RTL, factor/order and group/row meanings retain correct semantics and increasing/rotating directions are explicitly described. A screen-reader user has fully operable numbered state lists and native controls giving identical choices/transformations, not just image descriptions. Visible focus, switch/keyboard/touch operation, large targets, responsive/zoomed mobile display and reduced-motion parity are required. After download all calculations, alternatives and localized feedback must run offline, without audio, color-only signals or drag/speech requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Four Empty Groups: Show four labeled empty trays; child inspects each and counts zero total; display 4×0=0 without adding a phantom object. Correct evidence: Four groups of zero contain no counters. Four times zero is zero: 4 × 0 = 0.
                     2. Zero Groups Is Still Zero: Switch from four empty groups to no groups, show 0×4=0. Keep the difference between 'four empty boxes' and 'no boxes' in the accessible ledger. Correct evidence: Zero groups of four contain zero counters. The pictures differ, but both products are zero.
                     3. One Changes Nothing: Display four individually labeled one-counter trays (4×1) and then one four-counter tray (1×4); give learner-controlled switch and exact ledger. Correct evidence: 4 × 1 = 4 and 1 × 4 = 4. One group of four is four; four groups of one also make four.
@@ -339,26 +339,26 @@ config:
                     5. Wrong predictions trigger the specific numerical explanatory feedback for that model, with retry/reveal and no score.
                     6. Reset and independent Section instances do not leak state.
                     7. Nonvisual, keyboard, RTL, zoom, reduced-motion, low-end-device and downloaded offline states preserve the same mathematical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic scene resource renderer exists; **Zero and One Multiplication Lab itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: The canonical Skill combines ×0 and ×1 as approved. Keep the two laws distinct in the teaching and do not split the taxonomy without explicit editorial approval. Verify that a zero-sized group is unambiguously represented nonvisually.
-                  purpose: "One Changes Nothing"
-                  productionNotes: "Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for One Changes Nothing. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'One Changes Nothing'
+                  productionNotes: 'Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for One Changes Nothing. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "efc5a1ca-a94f-5c49-aa28-21ca237be687"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'efc5a1ca-a94f-5c49-aa28-21ca237be687'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "4 × 1 = 4 and 1 × 4 = 4. One group of four is four; four groups of one also make four."
+                      en: '4 × 1 = 4 and 1 × 4 = 4. One group of four is four; four groups of one also make four.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "One Changes Nothing"
+          purpose: 'One Changes Nothing'
           productionNotes: |-
             - **Outcome:** Apply a×0=0 and a×1=a to further whole-number examples without needing a picture every time.
             - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
@@ -374,83 +374,83 @@ config:
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
       section4:
         config:
-          id: "b24a3df4-c4e8-574b-bcf8-bdf48faf3d2d"
-          slug: "section4"
-          type: "content"
+          id: 'b24a3df4-c4e8-574b-bcf8-bdf48faf3d2d'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Test a New Number"
+              en: 'Test a New Number'
             navigationLabel:
-              en: "Test a New Number"
+              en: 'Test a New Number'
           content:
             items:
               text1:
                 config:
-                  id: "f8b618b9-4246-536e-b9f0-98b967c8b5cc"
-                  slug: "text1"
-                  type: "text"
+                  id: 'f8b618b9-4246-536e-b9f0-98b967c8b5cc'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Without drawing first: what are 7 × 0 and 7 × 1? And what is 7 + 0?"
+                      en: 'Without drawing first: what are 7 × 0 and 7 × 1? And what is 7 + 0?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "c431cf7a-a216-5c6f-b349-4f7a0b0736f5"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'c431cf7a-a216-5c6f-b349-4f7a0b0736f5'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Without drawing first: what are 7 × 0 and 7 × 1? And what is 7 + 0?"
+                        instruction: 'Without drawing first: what are 7 × 0 and 7 × 1? And what is 7 + 0?'
                 production:
                   specification: |
                     # Zero and One Multiplication Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Multiplying by Zero and One Content (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Explain 4×0=0 with four groups that each contain zero items, and 0×4=0 with zero groups of four. Explain 4×1=4 with four groups of one, and 1×4=4 with one group of four. Apply a×0=0 and a×1=a to further whole-number examples without needing a picture every time. Distinguish 4+0=4 from 4×0=0, identifying the operation as well as the special factor. Methodologist Brief (embedded in this Lesson config.yaml), not approved.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Develop two distinct multiplication laws with evidence from small groups and numerical reasoning: multiplying a whole number by zero gives zero, while multiplying it by one leaves the same number. Neither property means that adding or subtracting zero works in the same way. The browser interaction invites evidence-based predictions and explicitly compares results, not a decorative animation or a hidden scoring event.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Zero is absorbing for multiplication: a × 0 = 0 (also 0 × a = 0); one is the multiplicative identity: a × 1 = a (and 1 × a = a). Use 4×0=0, 0×4=0, 4×1=4, 1×4=4 and transfer 7×0=0, 7×1=7. Concrete equal-group models demonstrate cases but are not claimed to prove the law for every number domain; the source Skill's formal generality remains unchanged. Keep age-appropriate whole numbers 0–20. Claiming four groups of zero have four objects; confusing zero groups with one empty group; thinking any operation with zero produces zero, so 4+0=0; thinking ×1 adds one to the original; treating zero as an invalid multiplication factor because division by zero is forbidden. Do not conflate multiplication by zero with division by zero. **Invariant:** For each n, n×0=0 and n×1=n, 0×n=0 and 1×n=n; countable objects and textual group counts match the expression exactly. Addition comparison n+0=n remains separate. Empty group vs no group remain distinct representations.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Placement 1 — Four Empty Groups:** Prompt “There are four boxes. Each has ZERO counters. How many counters altogether?”. Show four labeled empty trays; child inspects each and counts zero total; display 4×0=0 without adding a phantom object. Explain “Four groups of zero contain no counters. Four times zero is zero: 4 × 0 = 0.”. **If mistaken:** For 'four counters', explain that four counts the boxes, not the counters in the boxes. The same group-size fact holds for each empty group. Learner may show every step without guessing.
-                    
+
                     2. **Placement 2 — Zero Groups Is Still Zero:** Prompt “What if we have ZERO groups of four counters? How many counters are in those groups?”. Switch from four empty groups to no groups, show 0×4=0. Keep the difference between 'four empty boxes' and 'no boxes' in the accessible ledger. Explain “Zero groups of four contain zero counters. The pictures differ, but both products are zero.”. **If mistaken:** If child claims four, report that no group exists to hold the four objects. Avoid dividing by zero claims here. Learner may show every step without guessing.
-                    
+
                     3. **Placement 3 — One Changes Nothing:** Prompt “Compare FOUR groups of ONE with ONE group of FOUR. How many counters in each?”. Display four individually labeled one-counter trays (4×1) and then one four-counter tray (1×4); give learner-controlled switch and exact ledger. Explain “4 × 1 = 4 and 1 × 4 = 4. One group of four is four; four groups of one also make four.”. **If mistaken:** For five, distinguish multiplication 4×1=4 from addition 4+1=5. Keep the original four counters counted exactly once. Learner may show every step without guessing.
-                    
+
                     4. **Placement 4 — Test a New Number:** Prompt “Without drawing first: what are 7 × 0 and 7 × 1? And what is 7 + 0?”. Offer numerical trial choices for 7×0, 7×1 and contrasting 7+0; child can reveal seven single counters, seven empty groups or one seven-counter group. Explain “7 × 0 = 0; 7 × 1 = 7; 7 + 0 = 7. The operation matters. Multiplying by zero is not the same as adding zero.”. **If mistaken:** If learner says seven for 7×0, show empty groups; if zero for 7+0, explain that adding no objects leaves the seven already present. Learner may show every step without guessing.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized self-contained prop-free Scene entries; Section-specific "mode" is an editorial label, not a public React prop or invented Resource field.
                     - Objects: labeled row/group counters, exact numerals and expressions, progressive reveal, multiple optional selection controls, accessible ordered state ledger, Reset/Undo/Explain controls.
                     - **State:** Whole-number example n=4 or 7, factor zero/one, group-count-first meaning, empty/one-counter/group-of-n placements, selected numerical trial, revealed explanation and current example.
                     - **Invariant:** For each n, n×0=0 and n×1=n, 0×n=0 and 1×n=n; countable objects and textual group counts match the expression exactly. Addition comparison n+0=n remains separate. Empty group vs no group remain distinct representations. Validate each user action against the model; wrong trial expressions must be marked as not matching, not shown as true identities.
                     - No state stores mastery, score, threshold, question grading or personal analytics. Hints and explanatory reveal are never locked by correctness.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Compact countable dots/group containers with legible text and numeric labels. User-paced rotate/switch/reveal transitions may guide attention; under reduced motion all states and quantities appear immediately with equivalent reasoning. No required photos, generated artwork, audio, WebGL, streamed video, narrator or rewards.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, operation names, counts, status, errors and aria labels require actual translations for all supported locales; English is source only. In RTL, factor/order and group/row meanings retain correct semantics and increasing/rotating directions are explicitly described. A screen-reader user has fully operable numbered state lists and native controls giving identical choices/transformations, not just image descriptions. Visible focus, switch/keyboard/touch operation, large targets, responsive/zoomed mobile display and reduced-motion parity are required. After download all calculations, alternatives and localized feedback must run offline, without audio, color-only signals or drag/speech requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Four Empty Groups: Show four labeled empty trays; child inspects each and counts zero total; display 4×0=0 without adding a phantom object. Correct evidence: Four groups of zero contain no counters. Four times zero is zero: 4 × 0 = 0.
                     2. Zero Groups Is Still Zero: Switch from four empty groups to no groups, show 0×4=0. Keep the difference between 'four empty boxes' and 'no boxes' in the accessible ledger. Correct evidence: Zero groups of four contain zero counters. The pictures differ, but both products are zero.
                     3. One Changes Nothing: Display four individually labeled one-counter trays (4×1) and then one four-counter tray (1×4); give learner-controlled switch and exact ledger. Correct evidence: 4 × 1 = 4 and 1 × 4 = 4. One group of four is four; four groups of one also make four.
@@ -458,26 +458,26 @@ config:
                     5. Wrong predictions trigger the specific numerical explanatory feedback for that model, with retry/reveal and no score.
                     6. Reset and independent Section instances do not leak state.
                     7. Nonvisual, keyboard, RTL, zoom, reduced-motion, low-end-device and downloaded offline states preserve the same mathematical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic scene resource renderer exists; **Zero and One Multiplication Lab itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: The canonical Skill combines ×0 and ×1 as approved. Keep the two laws distinct in the teaching and do not split the taxonomy without explicit editorial approval. Verify that a zero-sized group is unambiguously represented nonvisually.
-                  purpose: "Test a New Number"
-                  productionNotes: "Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for Test a New Number. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Test a New Number'
+                  productionNotes: 'Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for Test a New Number. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "00430ba3-e422-534c-baa5-8ba328efe7f6"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '00430ba3-e422-534c-baa5-8ba328efe7f6'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "7 × 0 = 0; 7 × 1 = 7; 7 + 0 = 7. The operation matters. Multiplying by zero is not the same as adding zero."
+                      en: '7 × 0 = 0; 7 × 1 = 7; 7 + 0 = 7. The operation matters. Multiplying by zero is not the same as adding zero.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Test a New Number"
+          purpose: 'Test a New Number'
           productionNotes: |-
             - **Outcome:** Distinguish 4+0=4 from 4×0=0, identifying the operation as well as the special factor.
             - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
@@ -491,83 +491,83 @@ config:
             - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
             - **Proposed Note:** “Any number times one stays that number.” after this meaning has been explained (planned only).
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-    order: ["section1","section2","section3","section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # Multiplying by Zero and One — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: multiplicationByZeroAndOne
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Develop two distinct multiplication laws with evidence from small groups and numerical reasoning: multiplying a whole number by zero gives zero, while multiplying it by one leaves the same number. Neither property means that adding or subtracting zero works in the same way.
-    
+
     ## Target audience
-    
+
     Children aged 6–8 who can interpret small multiplication expressions and distinguish zero objects, one group and one in each group. This is an autonomous Lesson and does not presume particular Program or class placement.
-    
+
     ## Prerequisites
-    
+
     - Recognize 0 as no objects and 1 as one object or one group, with clear role descriptions.
     - Read equal-group multiplication as group count × group size and check a small total.
     - Count small sets, including an empty set, and read a simple numerical equality.
-    
+
     ## Target Skills
-    
+
     - [by0And1.data.ts](../../../../data/skills/arithmetic/multiply/skills/by0And1.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Explain 4×0=0 with four groups that each contain zero items, and 0×4=0 with zero groups of four.
     - Explain 4×1=4 with four groups of one, and 1×4=4 with one group of four.
     - Apply a×0=0 and a×1=a to further whole-number examples without needing a picture every time.
     - Distinguish 4+0=4 from 4×0=0, identifying the operation as well as the special factor.
-    
+
     ## Essential subject matter
-    
+
     Zero is absorbing for multiplication: a × 0 = 0 (also 0 × a = 0); one is the multiplicative identity: a × 1 = a (and 1 × a = a). Use 4×0=0, 0×4=0, 4×1=4, 1×4=4 and transfer 7×0=0, 7×1=7. Concrete equal-group models demonstrate cases but are not claimed to prove the law for every number domain; the source Skill's formal generality remains unchanged. Keep age-appropriate whole numbers 0–20.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Contrasting empty and nonempty groups → see four groups with zero in each → compare four groups of one against one group of four → reason about new whole numbers and contrast multiplication with addition.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Claiming four groups of zero have four objects; confusing zero groups with one empty group; thinking any operation with zero produces zero, so 4+0=0; thinking ×1 adds one to the original; treating zero as an invalid multiplication factor because division by zero is forbidden. Do not conflate multiplication by zero with division by zero.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Translate exact operation terminology and group/array quantities into every supported locale; no English fallbacks or ambiguous left/right/row labels. Provide semantically correct RTL math, keyboard/touch/assistive equivalents for all models, accessible text count ledger, reduced-motion equivalence, mobile zoom and deterministic offline use after selected locale assets are downloaded. No required audio/video, drag gesture or time limit.
-    
+
     ## Sources and factual verification
-    
+
     - [Generated Code taxonomy](../../../../docs/generated/skills/taxonomy.en.md) plus the linked Skill Code source, preserving its mathematical domain boundaries.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), early multiplication as comparative context only.
     - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), concrete-to-symbolic explanatory support.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified; Program-neutral. No national grade certification claimed.
-    
+
     ## Open editorial decisions
-    
+
     - The canonical Skill combines ×0 and ×1 as approved. Keep the two laws distinct in the teaching and do not split the taxonomy without explicit editorial approval. Verify that a zero-sized group is unambiguously represented nonvisually.
     - Confirm age-appropriate numerical bounds and mathematically accurate representation in RTL/nonvisual modes.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, not approved.** Screenwriter output is a provisional adjacent draft for review, not an authorization to code Scenes, Quiz items or Mastery signals.
   productionNotes: |
     # Multiplying by Zero and One — Content
-    
+
     Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
     Target Lesson: content/playground/Data/Lessons/1/multiplicationByZeroAndOne/
     Audience: Children aged 6–8 who can interpret small multiplication expressions and distinguish zero objects, one group and one in each group
@@ -575,24 +575,24 @@ production:
     Learning outcomes: Explain 4×0=0 with four groups that each contain zero items, and 0×4=0 with zero groups of four. Explain 4×1=4 with four groups of one, and 1×4=4 with one group of four. Apply a×0=0 and a×1=a to further whole-number examples without needing a picture every time. Distinguish 4+0=4 from 4×0=0, identifying the operation as well as the special factor.
     Target Skill: `by0And1.data.ts` linked directly in the Brief; canonical Code unchanged
     Program dependence: None
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Develop two distinct multiplication laws with evidence from small groups and numerical reasoning: multiplying a whole number by zero gives zero, while multiplying it by one leaves the same number. Neither property means that adding or subtracting zero works in the same way. Zero is absorbing for multiplication: a × 0 = 0 (also 0 × a = 0); one is the multiplicative identity: a × 1 = a (and 1 × a = a). Use 4×0=0, 0×4=0, 4×1=4, 1×4=4 and transfer 7×0=0, 7×1=7. Concrete equal-group models demonstrate cases but are not claimed to prove the law for every number domain; the source Skill's formal generality remains unchanged. Keep age-appropriate whole numbers 0–20.
-    
+
     The child must manipulate or inspect the numerical evidence before receiving a rule, and then apply it with less support. Keep model, labels, equations and feedback adjacent. No mandatory scored Quiz, reward sequence or fictional Program narrative.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Four Empty Groups:** Show four labeled empty trays; child inspects each and counts zero total; display 4×0=0 without adding a phantom object.
     2. **Zero Groups Is Still Zero:** Switch from four empty groups to no groups, show 0×4=0. Keep the difference between 'four empty boxes' and 'no boxes' in the accessible ledger.
     3. **One Changes Nothing:** Display four individually labeled one-counter trays (4×1) and then one four-counter tray (1×4); give learner-controlled switch and exact ledger.
     4. **Test a New Number:** Offer numerical trial choices for 7×0, 7×1 and contrasting 7+0; child can reveal seven single counters, seven empty groups or one seven-counter group.
-    
+
     ## SECTION PLAN
-    
+
     ### Section 1 — Four Empty Groups
-    
+
     - **Outcome:** Explain 4×0=0 with four groups that each contain zero items, and 0×4=0 with zero groups of four.
     - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
     - **Ordered blocks:**
@@ -605,9 +605,9 @@ production:
     - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
     - **Proposed Note:** “Any number times zero equals zero.” after this meaning has been explained (planned only).
     - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-    
+
     ### Section 2 — Zero Groups Is Still Zero
-    
+
     - **Outcome:** Explain 4×1=4 with four groups of one, and 1×4=4 with one group of four.
     - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
     - **Ordered blocks:**
@@ -620,9 +620,9 @@ production:
     - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
     - **Proposed Note:** “Any number times zero equals zero.” after this meaning has been explained (planned only).
     - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-    
+
     ### Section 3 — One Changes Nothing
-    
+
     - **Outcome:** Apply a×0=0 and a×1=a to further whole-number examples without needing a picture every time.
     - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
     - **Ordered blocks:**
@@ -635,9 +635,9 @@ production:
     - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
     - **Proposed Note:** “Any number times one stays that number.” after this meaning has been explained (planned only).
     - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-    
+
     ### Section 4 — Test a New Number
-    
+
     - **Outcome:** Distinguish 4+0=4 from 4×0=0, identifying the operation as well as the special factor.
     - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
     - **Ordered blocks:**
@@ -650,38 +650,38 @@ production:
     - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
     - **Proposed Note:** “Any number times one stays that number.” after this meaning has been explained (planned only).
     - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-    
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Zero and One Multiplication Lab (Scene specification zeroOneMultiplicationLab embedded in the corresponding Scene node) — four standalone prop-free placement entries; specific Scene not yet implemented.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. “Any number times zero equals zero.” — proposed after first complete relevant worked observation and explanation.
     2. “Any number times one stays that number.” — proposed after first complete relevant worked observation and explanation.
-    
+
     Notes are editorial intentions only: no Note API, unlock event, persistence, review sheet, scheduler or mastery record is implemented. Future revision pages should contain only actually unlocked cues.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Contrasting empty and nonempty groups → see four groups with zero in each → compare four groups of one against one group of four → reason about new whole numbers and contrast multiplication with addition. The final example permits independent prediction, optional hints and transparent corrective feedback. These trial states are formative; Assessment Architect independently validates any scored Question, criterion for Skill evidence, answer alternatives and retries. A correct example is not proof of general property mastery. The existing select-one Question adapter is not the proposed Scene.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Every learner prompt, error, status, numerical quantity description, accessible name and Note requires a genuine translation for every supported locale, no silent English fallback. Provide equivalent operable text/table views for all group/array models. Math operator/factor/row meaning remains intact under RTL and when zoomed, with native keyboard/switch/touch controls, ample targets, visible focus and screen-reader announcements. Reduced motion shows identical numerical transitions. All deterministic interactions and chosen locale data must work offline on weak devices once downloaded, without audio/image/video/remote checking/dragging requirements.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     Generic `LessonSection_Config`, text, markdown and `scene` Resource rendering exist. Zero and One Multiplication Lab is proposed, requires its own approved Scene specification, prop-free localized implementations and tests. Other image/audio/video/code Resource kinds are typed-only in the generic renderer and YouTube is not a supported resource config; not required. Notes, automatic review and complete download machinery are not assumed implemented. No graded Question, Quiz or TypeScript runtime Lesson created.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Methodologist Brief (embedded in this Lesson config.yaml), currently Draft and explicitly not approved.
     - [Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md).
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Editorial: The canonical Skill combines ×0 and ×1 as approved. Keep the two laws distinct in the teaching and do not split the taxonomy without explicit editorial approval. Verify that a zero-sized group is unambiguously represented nonvisually.
     - Technical: implement consistent semantic model for supported locales, RTL and offline.
-    
+
     ## HANDOFF
-    
+
     Provisional Draft Content and separate Draft Scene specification. **Review order:** editor approves Methodologist Brief, then Content and Scene before Design Scene or Coding Agent implementation. Assessment Architect alone creates graded evidence. Do not modify Skill IDs, other Lessons or Program narratives.

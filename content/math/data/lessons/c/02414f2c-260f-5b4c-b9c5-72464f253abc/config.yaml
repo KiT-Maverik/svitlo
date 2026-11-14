@@ -1,25 +1,25 @@
 config:
-  id: "02414f2c-260f-5b4c-b9c5-72464f253abc"
-  slug: "coveringShapesWithUnitSquares"
-  type: "lesson"
-  skills: ["6b0d5eb1-8d6f-448d-b1db-051779916e97"]
+  id: '02414f2c-260f-5b4c-b9c5-72464f253abc'
+  slug: 'coveringShapesWithUnitSquares'
+  type: 'lesson'
+  skills: ['6b0d5eb1-8d6f-448d-b1db-051779916e97']
   params:
     requireQuiz: false
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "How Much Flat Space? Count Equal Squares"
+      en: 'How Much Flat Space? Count Equal Squares'
   section:
     items:
       section1:
         config:
-          id: "893d47a4-95c2-5f13-93eb-c7a477a1e3ad"
-          slug: "section1"
-          type: "content"
+          id: '893d47a4-95c2-5f13-93eb-c7a477a1e3ad'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
@@ -30,20 +30,20 @@ config:
             items:
               text1:
                 config:
-                  id: "fe029969-fc6d-5116-bf3d-196969f2284c"
-                  slug: "text1"
-                  type: "text"
+                  id: 'fe029969-fc6d-5116-bf3d-196969f2284c'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
                       en: "One shape is long and thin. Another looks like steps. Which one covers more flat space? Don't decide from the border yet—what could we count inside?"
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "9ba1464a-73a1-5cc7-8ab8-c64af2467675"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '9ba1464a-73a1-5cc7-8ab8-c64af2467675'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
@@ -52,20 +52,20 @@ config:
                 production:
                   specification: |
                     # Unit-Square Coverage Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: How Much Flat Space? Count Equal Squares (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Draft Methodologist Brief (embedded in this Lesson config.yaml) — determine area by covering an interior region with _equal unit squares without gaps or overlaps_, distinguish coverage from exterior border and invalid units. The activity is **not** a new Skill, scored Question or perimeter assessment.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Children should be able to **build a covering**, notice why counting tiles is meaningful only when all units are the same size and each required cell is covered exactly once, and see that unlike-looking outlines may enclose equal area. The interaction begins with a prediction, proceeds by deliberate tile/cell inspection and finishes with an explanation accessible without vision.
-                    
+
                     Learner-facing thesis: "**Count the same-size squares that fill the inside. A gap or two tiles on the same square means the covering is not finished fairly.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Model uses a **discrete square grid**. A basic tile covers exactly one 1×1 **abstract unit square**. **Unit square** is a unit of area, not length and not a real physical square centimeter. Cell identity uses (column,row) coordinates solely for specification/testing, **not** formal coordinate-plane instruction.
                     - Region R = {(1,1),(2,1),(3,1),(1,2),(2,2),(3,2)}, a **2-row × 3-column rectangle**; its area is exactly **6 square units**.
                     - Region S = {(1,1),(2,1),(3,1),(1,2),(2,2),(1,3)}, a **stair-step** region with row counts 3+2+1=**6**; it is connected and its outline is different from R.
@@ -75,44 +75,44 @@ config:
                     - Changing outline topology, visual color, whole-shape rotation or screen zoom does not affect the number of equal unit-square cells _if the set of cells remains the same size_; do not claim any arbitrary resize preserves physical area. We compare only whole-cell examples, not fractional cells/curves.
                     - A 2×2 tile covers **4 one-by-one unit squares**. Two nonoverlapping 2×2 tiles cover **8** unit squares, whereas two nonoverlapping 1×1 tiles cover **2**. Equal raw tile counts with different tile areas **cannot** be compared directly.
                     - Boundary/perimeter is a different property. This model may reveal an outside outline but **must not require computing perimeter**.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — Where Is the Area? (Section 1)
-                    
+
                     1. Display outlines of R (rectangle) and S (stepped region) in separate but identically scaled diagrams. Hide full square-cell subdivisions at first, except for a clear shared reference **one unit square**.
                     2. Ask: "Which covers more _inside space_: rectangle R, steps S, or equal?" Predictions remain editable before "Show squares".
                     3. Reveal cells **row by row** (R: 3+3, S: 3+2+1). Textual state for each: "R: row one three, row two three, total six equal square units"; "S: row one three, row two two, row three one, total six".
                     4. Feedback for "S larger because more corners": "Corners describe an outside border; **six** same-size inside squares cover each." Feedback for "R larger because longer": "A longer appearance does not replace counting full inside cells." Correct "equal": "Both have six square units."
                     5. "Inspect border" traces/explains the boundary but never reveals an unrequested perimeter value. Reset hides totals and returns to prediction state without changing region geometry.
-                    
+
                     ### B — Cover Exactly Once (Section 2)
-                    
+
                     1. R is a fixed grid target of six cells. The learner chooses a target **row** (1 or 2) and **column** (1,2,3), then presses "Place one unit tile." Each new tile is the same 1×1 size.
                     2. Display both **number of placed tile objects** and **number of different cells covered**; these can diverge after an overlap. No pointer precision/drag is necessary.
                     3. After six **distinct** placements in R, show status "six tiles, six different cells covered, no overlaps or gaps" and area "**6 square units**".
                     4. Deliberate overlapping attempt (e.g., second tile in cell (1,1)) gets a visible/accessible error state "This square is already covered; a second tile does not cover a new unit square." The duplicate can be rejected for ordinary practice or explicitly shown in "Show mistake" diagnostic mode with an occupancy counter of 2; **must not silently count it as another covered cell**.
                     5. "Undo last", "Next empty cell", "Count remaining empty cells", "Clear" are accessible. Exact uncovered cells are named. If five distinct cells are covered, report "five covered, one hole"—not "five square units of the shape" (the **target region still has area six**).
                     6. Optional "Show mistake" preset of 6 tile objects on 5 different cells supplies a reversible explanation; no grades, retry penalty or mastery event.
-                    
+
                     ### C — Compare Different Regions (Section 3)
-                    
+
                     1. Display R, S and T with the **same 1×1 unit-square size**. Totals initially unlabelled; accessible mode gives the ordered row descriptions without prematurely listing total if a child wants to reason from the row counts.
                     2. "Count next row/cell" reveals R=6, S=6, T=5, and "Compare" shows **R=S>T**, with units "**square units**".
                     3. Feedback for believing R>S because it is more rectangular: "The rows add to six for both, so their covered regions are equal." For T chosen larger: "T has **five** unit cells; R and S each have **six**."
                     4. Offer "Rotate region view" as visual-only presentation transform with **no change to set size or area**; its text summary must explicitly preserve the six-cell count.
                     5. Every shape has a complete row-by-row textual cell list. Reset restores all comparison reveals independently.
-                    
+
                     ### D — Repair Overlap and Challenge Unit Consistency (Section 4)
-                    
+
                     1. Target R (six cells). Six 1×1 tile objects initially placed so **two tile objects both occupy (2,1)**, **(3,2) is uncovered**, and every other R cell has occupancy one. Thus 6 objects, **5 distinct cells covered**, one overlap, one empty. "Find a missing square" and "Find overlap" are explicit choices; no color reliance.
                     2. "Move upper tile from (2,1) to (3,2)" yields occupancy exactly 1 for all six cells and an exact covering of 6 square units.
                     3. Show a separate fair-unit diagnostic: a nonoverlapping pair of 2×2 tiles covers **8** basic 1×1 squares; a pair of 1×1 tiles covers **2**. Ask "Do both use the same area unit?" Correct: no. Show subdivision ledger on reveal.
                     4. Independent final transfer: new U region (3+1=4 cells), four identical small tiles, learner identifies and covers all four unique cells. No computed perimeter. If a fifth duplicate is placed, explain that region still has four unique cells.
                     5. In correct and erroneous cases, give evidence statements, not correctness badges. Follow "Try again" with a clean, deterministic local reset.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** four precisely defined target cell sets R,S,T,U; fixed unit-square tile; optional 2×2 comparison tile; cell-selector controls; placement history; per-cell occupancy counters; row/cell count log; prediction/reveal/hint/reset.
                     - **State per independent Section placement:** region preset; current prediction; occupied-cell multiset or occupancy map; currently highlighted row/cell; reveal stage; localized feedback. Region definitions are **constants**; learner cannot edit boundaries into non-grid/fractional shapes.
                     - **Invariants:** target region area = size of its cell set; full valid tiling iff **each target cell occupancy=1** and no outside occupied cells; overlap never counts twice toward distinct coverage; identical unit square area 1; two 2×2 units occupy total 8 basic cells when nonoverlapping.
@@ -120,20 +120,20 @@ config:
                     - **Reset:** per placement restores original target, predication state, initial tiles and reveal state (D includes its deliberate flawed preplacement). No state leakage between Sections.
                     - **Public component contract:** a Scene root for each placement is **prop-free**, reads locale from **actual verified Lesson context** and owns its state. Shared private helpers can receive internal configuration, not external runtime `region`, `locale`, `mode`, `onCheck` props.
                     - **Feedback contract:** tell the learner _what was covered_, not just "right/wrong". No Quiz, grading, external event, persistent Note or account requirement.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use uncluttered square grids with true equal-sized cells, visible boundary thicker than interior seams and clear tile/cell coordinates for accessibility. A boundary comparison never relies solely on a stylized shape; each region's unit-square cells are inspectable. Overlap indicated with an explicit **2** occupancy badge and pattern/layer cue, missing cell with **empty** label, not hue alone. Optional short tile placement motions, with reduced-motion instant replacement. No externally generated images or video necessary, no real pixel-area calibration claims.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Genuine translations of all prompts, "inside", "border", "unit square", cell labels, "overlap", "missing", "covered", units, explanations and recall Notes for each configured language; no fallback substitutions.
                     - Math/geometry state is independent of UI LTR/RTL; if grid layout is mirrored, the cell coordinate descriptions **must** be remapped consistently. Safer default: fixed grid coordinate convention with RTL surrounding UI adapted semantically. Neither direction changes R=6/S=6/T=5.
                     - Screen reader learns target cells by row and column, occupancy state for each, number of distinct covered cells and uncovered/duplicate locations; can place/undo a tile by buttons. No forced drag, pixel targeting, audio/animations, color-only states or hidden tiny labels.
                     - Visible focus, large touch targets, reduced motion, 200% text, logical announcements, keyboard/switch parity and WCAG 2.2 AA review. Preserve all math and actions on weak devices and offline after actual package+locale download; PWA availability is **not asserted**.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. R has 2×3=**6** distinct unit squares; S has 3+2+1=**6**; T has 3+2=**5**, so **R=S>T** despite different outlines.
                     2. Under complete R coverage, exactly six 1×1 tile objects occupy six distinct target cells with no holes or duplicates.
                     3. A second tile placed on (1,1) cannot make a new covered square; ordinary exercise rejects duplicate or explicit demonstration records occupancy 2.
@@ -143,24 +143,24 @@ config:
                     7. Rigidly rotating/recoloring a region's display does not change its defined unit-cell count; zoom never claims physical cm².
                     8. User reset isolates each Section placement; no inaccessible drag-only step, no grading or Note event.
                     9. Keyboard, screen reader, RTL, reduced motion, mobile zoom and full post-download offline use present exactly the same coverage validity and feedback.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic `scene` Resource rendering exists; **Unit-Square Coverage Lab does not**. Coding Agent must implement approved Section presets via self-contained prop-free roots, locale provider hooks, exact cell-set/occupancy invariants, automated tests, accessible manipulation and offline assets when ready. Methodologist and Scene approvals are missing; no production Lesson, Quiz/Question, scoring, analytics, persisted Notes or release artifact is added in this batch.
                   purpose: "The Border Isn't the Space Inside"
                   productionNotes: "Source Scene unitSquareCoverageLab.scene-spec.md; independent placement for The Border Isn't the Space Inside. Variant/feedback retained under parent Section productionNotes."
               markdown1:
                 config:
-                  id: "c7201c73-184f-5ce4-8182-9c732ede0276"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'c7201c73-184f-5ce4-8182-9c732ede0276'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The **area** is the amount of **flat inside space** a region covers. Both shapes cover **six equal square cells**, even though their outside borders look different. Counting border segments is a different question."
+                      en: 'The **area** is the amount of **flat inside space** a region covers. Both shapes cover **six equal square cells**, even though their outside borders look different. Counting border segments is a different question.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
           purpose: "The Border Isn't the Space Inside"
           productionNotes: |-
@@ -175,55 +175,55 @@ config:
             - **Planned Note after reveal:** "Area tells how much flat space a shape covers."
       section2:
         config:
-          id: "8c3d4c5d-96c2-50a6-96eb-cc5d74a1def4"
-          slug: "section2"
-          type: "content"
+          id: '8c3d4c5d-96c2-50a6-96eb-cc5d74a1def4'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "One Tile for Every Cell"
+              en: 'One Tile for Every Cell'
             navigationLabel:
-              en: "One Tile for Every Cell"
+              en: 'One Tile for Every Cell'
           content:
             items:
               text1:
                 config:
-                  id: "231dfdfc-317e-5b17-a458-7dfc0148b1b9"
-                  slug: "text1"
-                  type: "text"
+                  id: '231dfdfc-317e-5b17-a458-7dfc0148b1b9'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "This rectangle has two rows of three empty squares. We have matching square tiles. Where will you put the next tile so **every square is covered exactly once**?"
+                      en: 'This rectangle has two rows of three empty squares. We have matching square tiles. Where will you put the next tile so **every square is covered exactly once**?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "f04fe005-0ba0-50e8-9f67-600542f8aa7a"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'f04fe005-0ba0-50e8-9f67-600542f8aa7a'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "This rectangle has two rows of three empty squares. We have matching square tiles. Where will you put the next tile so **every square is covered exactly once**?"
+                        instruction: 'This rectangle has two rows of three empty squares. We have matching square tiles. Where will you put the next tile so **every square is covered exactly once**?'
                 production:
                   specification: |
                     # Unit-Square Coverage Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: How Much Flat Space? Count Equal Squares (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Draft Methodologist Brief (embedded in this Lesson config.yaml) — determine area by covering an interior region with _equal unit squares without gaps or overlaps_, distinguish coverage from exterior border and invalid units. The activity is **not** a new Skill, scored Question or perimeter assessment.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Children should be able to **build a covering**, notice why counting tiles is meaningful only when all units are the same size and each required cell is covered exactly once, and see that unlike-looking outlines may enclose equal area. The interaction begins with a prediction, proceeds by deliberate tile/cell inspection and finishes with an explanation accessible without vision.
-                    
+
                     Learner-facing thesis: "**Count the same-size squares that fill the inside. A gap or two tiles on the same square means the covering is not finished fairly.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Model uses a **discrete square grid**. A basic tile covers exactly one 1×1 **abstract unit square**. **Unit square** is a unit of area, not length and not a real physical square centimeter. Cell identity uses (column,row) coordinates solely for specification/testing, **not** formal coordinate-plane instruction.
                     - Region R = {(1,1),(2,1),(3,1),(1,2),(2,2),(3,2)}, a **2-row × 3-column rectangle**; its area is exactly **6 square units**.
                     - Region S = {(1,1),(2,1),(3,1),(1,2),(2,2),(1,3)}, a **stair-step** region with row counts 3+2+1=**6**; it is connected and its outline is different from R.
@@ -233,44 +233,44 @@ config:
                     - Changing outline topology, visual color, whole-shape rotation or screen zoom does not affect the number of equal unit-square cells _if the set of cells remains the same size_; do not claim any arbitrary resize preserves physical area. We compare only whole-cell examples, not fractional cells/curves.
                     - A 2×2 tile covers **4 one-by-one unit squares**. Two nonoverlapping 2×2 tiles cover **8** unit squares, whereas two nonoverlapping 1×1 tiles cover **2**. Equal raw tile counts with different tile areas **cannot** be compared directly.
                     - Boundary/perimeter is a different property. This model may reveal an outside outline but **must not require computing perimeter**.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — Where Is the Area? (Section 1)
-                    
+
                     1. Display outlines of R (rectangle) and S (stepped region) in separate but identically scaled diagrams. Hide full square-cell subdivisions at first, except for a clear shared reference **one unit square**.
                     2. Ask: "Which covers more _inside space_: rectangle R, steps S, or equal?" Predictions remain editable before "Show squares".
                     3. Reveal cells **row by row** (R: 3+3, S: 3+2+1). Textual state for each: "R: row one three, row two three, total six equal square units"; "S: row one three, row two two, row three one, total six".
                     4. Feedback for "S larger because more corners": "Corners describe an outside border; **six** same-size inside squares cover each." Feedback for "R larger because longer": "A longer appearance does not replace counting full inside cells." Correct "equal": "Both have six square units."
                     5. "Inspect border" traces/explains the boundary but never reveals an unrequested perimeter value. Reset hides totals and returns to prediction state without changing region geometry.
-                    
+
                     ### B — Cover Exactly Once (Section 2)
-                    
+
                     1. R is a fixed grid target of six cells. The learner chooses a target **row** (1 or 2) and **column** (1,2,3), then presses "Place one unit tile." Each new tile is the same 1×1 size.
                     2. Display both **number of placed tile objects** and **number of different cells covered**; these can diverge after an overlap. No pointer precision/drag is necessary.
                     3. After six **distinct** placements in R, show status "six tiles, six different cells covered, no overlaps or gaps" and area "**6 square units**".
                     4. Deliberate overlapping attempt (e.g., second tile in cell (1,1)) gets a visible/accessible error state "This square is already covered; a second tile does not cover a new unit square." The duplicate can be rejected for ordinary practice or explicitly shown in "Show mistake" diagnostic mode with an occupancy counter of 2; **must not silently count it as another covered cell**.
                     5. "Undo last", "Next empty cell", "Count remaining empty cells", "Clear" are accessible. Exact uncovered cells are named. If five distinct cells are covered, report "five covered, one hole"—not "five square units of the shape" (the **target region still has area six**).
                     6. Optional "Show mistake" preset of 6 tile objects on 5 different cells supplies a reversible explanation; no grades, retry penalty or mastery event.
-                    
+
                     ### C — Compare Different Regions (Section 3)
-                    
+
                     1. Display R, S and T with the **same 1×1 unit-square size**. Totals initially unlabelled; accessible mode gives the ordered row descriptions without prematurely listing total if a child wants to reason from the row counts.
                     2. "Count next row/cell" reveals R=6, S=6, T=5, and "Compare" shows **R=S>T**, with units "**square units**".
                     3. Feedback for believing R>S because it is more rectangular: "The rows add to six for both, so their covered regions are equal." For T chosen larger: "T has **five** unit cells; R and S each have **six**."
                     4. Offer "Rotate region view" as visual-only presentation transform with **no change to set size or area**; its text summary must explicitly preserve the six-cell count.
                     5. Every shape has a complete row-by-row textual cell list. Reset restores all comparison reveals independently.
-                    
+
                     ### D — Repair Overlap and Challenge Unit Consistency (Section 4)
-                    
+
                     1. Target R (six cells). Six 1×1 tile objects initially placed so **two tile objects both occupy (2,1)**, **(3,2) is uncovered**, and every other R cell has occupancy one. Thus 6 objects, **5 distinct cells covered**, one overlap, one empty. "Find a missing square" and "Find overlap" are explicit choices; no color reliance.
                     2. "Move upper tile from (2,1) to (3,2)" yields occupancy exactly 1 for all six cells and an exact covering of 6 square units.
                     3. Show a separate fair-unit diagnostic: a nonoverlapping pair of 2×2 tiles covers **8** basic 1×1 squares; a pair of 1×1 tiles covers **2**. Ask "Do both use the same area unit?" Correct: no. Show subdivision ledger on reveal.
                     4. Independent final transfer: new U region (3+1=4 cells), four identical small tiles, learner identifies and covers all four unique cells. No computed perimeter. If a fifth duplicate is placed, explain that region still has four unique cells.
                     5. In correct and erroneous cases, give evidence statements, not correctness badges. Follow "Try again" with a clean, deterministic local reset.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** four precisely defined target cell sets R,S,T,U; fixed unit-square tile; optional 2×2 comparison tile; cell-selector controls; placement history; per-cell occupancy counters; row/cell count log; prediction/reveal/hint/reset.
                     - **State per independent Section placement:** region preset; current prediction; occupied-cell multiset or occupancy map; currently highlighted row/cell; reveal stage; localized feedback. Region definitions are **constants**; learner cannot edit boundaries into non-grid/fractional shapes.
                     - **Invariants:** target region area = size of its cell set; full valid tiling iff **each target cell occupancy=1** and no outside occupied cells; overlap never counts twice toward distinct coverage; identical unit square area 1; two 2×2 units occupy total 8 basic cells when nonoverlapping.
@@ -278,20 +278,20 @@ config:
                     - **Reset:** per placement restores original target, predication state, initial tiles and reveal state (D includes its deliberate flawed preplacement). No state leakage between Sections.
                     - **Public component contract:** a Scene root for each placement is **prop-free**, reads locale from **actual verified Lesson context** and owns its state. Shared private helpers can receive internal configuration, not external runtime `region`, `locale`, `mode`, `onCheck` props.
                     - **Feedback contract:** tell the learner _what was covered_, not just "right/wrong". No Quiz, grading, external event, persistent Note or account requirement.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use uncluttered square grids with true equal-sized cells, visible boundary thicker than interior seams and clear tile/cell coordinates for accessibility. A boundary comparison never relies solely on a stylized shape; each region's unit-square cells are inspectable. Overlap indicated with an explicit **2** occupancy badge and pattern/layer cue, missing cell with **empty** label, not hue alone. Optional short tile placement motions, with reduced-motion instant replacement. No externally generated images or video necessary, no real pixel-area calibration claims.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Genuine translations of all prompts, "inside", "border", "unit square", cell labels, "overlap", "missing", "covered", units, explanations and recall Notes for each configured language; no fallback substitutions.
                     - Math/geometry state is independent of UI LTR/RTL; if grid layout is mirrored, the cell coordinate descriptions **must** be remapped consistently. Safer default: fixed grid coordinate convention with RTL surrounding UI adapted semantically. Neither direction changes R=6/S=6/T=5.
                     - Screen reader learns target cells by row and column, occupancy state for each, number of distinct covered cells and uncovered/duplicate locations; can place/undo a tile by buttons. No forced drag, pixel targeting, audio/animations, color-only states or hidden tiny labels.
                     - Visible focus, large touch targets, reduced motion, 200% text, logical announcements, keyboard/switch parity and WCAG 2.2 AA review. Preserve all math and actions on weak devices and offline after actual package+locale download; PWA availability is **not asserted**.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. R has 2×3=**6** distinct unit squares; S has 3+2+1=**6**; T has 3+2=**5**, so **R=S>T** despite different outlines.
                     2. Under complete R coverage, exactly six 1×1 tile objects occupy six distinct target cells with no holes or duplicates.
                     3. A second tile placed on (1,1) cannot make a new covered square; ordinary exercise rejects duplicate or explicit demonstration records occupancy 2.
@@ -301,26 +301,26 @@ config:
                     7. Rigidly rotating/recoloring a region's display does not change its defined unit-cell count; zoom never claims physical cm².
                     8. User reset isolates each Section placement; no inaccessible drag-only step, no grading or Note event.
                     9. Keyboard, screen reader, RTL, reduced motion, mobile zoom and full post-download offline use present exactly the same coverage validity and feedback.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic `scene` Resource rendering exists; **Unit-Square Coverage Lab does not**. Coding Agent must implement approved Section presets via self-contained prop-free roots, locale provider hooks, exact cell-set/occupancy invariants, automated tests, accessible manipulation and offline assets when ready. Methodologist and Scene approvals are missing; no production Lesson, Quiz/Question, scoring, analytics, persisted Notes or release artifact is added in this batch.
-                  purpose: "One Tile for Every Cell"
-                  productionNotes: "Source Scene unitSquareCoverageLab.scene-spec.md; independent placement for One Tile for Every Cell. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'One Tile for Every Cell'
+                  productionNotes: 'Source Scene unitSquareCoverageLab.scene-spec.md; independent placement for One Tile for Every Cell. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "55f65f86-90b4-56d5-9058-df86f1a634a3"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '55f65f86-90b4-56d5-9058-df86f1a634a3'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "We used **six identical tiles** and covered six **different squares**. That makes **six square units of area**. If two tiles share a cell and another cell stays empty, the shape is not fully covered correctly."
+                      en: 'We used **six identical tiles** and covered six **different squares**. That makes **six square units of area**. If two tiles share a cell and another cell stays empty, the shape is not fully covered correctly.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "One Tile for Every Cell"
+          purpose: 'One Tile for Every Cell'
           productionNotes: |-
             - **Purpose:** build an exact equal-square covering without gaps or overlaps.
             - **Section contract:** `LessonSection_Config`, one vertical content stack.
@@ -333,55 +333,55 @@ config:
             - **Navigation:** "Next empty cell", "Undo last placement", "Reset", optional guided row coverage; all controls have nonvisual equivalents.
       section3:
         config:
-          id: "8b3d4aca-97c2-5239-95eb-caca75a1e087"
-          slug: "section3"
-          type: "content"
+          id: '8b3d4aca-97c2-5239-95eb-caca75a1e087'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Different Outlines, Different Amounts?"
+              en: 'Different Outlines, Different Amounts?'
             navigationLabel:
-              en: "Different Outlines, Different Amounts?"
+              en: 'Different Outlines, Different Amounts?'
           content:
             items:
               text1:
                 config:
-                  id: "ba10413b-ef35-5ee8-bb4a-c13b679106aa"
-                  slug: "text1"
-                  type: "text"
+                  id: 'ba10413b-ef35-5ee8-bb4a-c13b679106aa'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A rectangular region covers six unit squares. A stepped region also covers six. A shorter step-shaped region covers five. Which pair has equal area?"
+                      en: 'A rectangular region covers six unit squares. A stepped region also covers six. A shorter step-shaped region covers five. Which pair has equal area?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "8293b024-6d15-5579-b1ab-3024220fbe03"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '8293b024-6d15-5579-b1ab-3024220fbe03'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "A rectangular region covers six unit squares. A stepped region also covers six. A shorter step-shaped region covers five. Which pair has equal area?"
+                        instruction: 'A rectangular region covers six unit squares. A stepped region also covers six. A shorter step-shaped region covers five. Which pair has equal area?'
                 production:
                   specification: |
                     # Unit-Square Coverage Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: How Much Flat Space? Count Equal Squares (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Draft Methodologist Brief (embedded in this Lesson config.yaml) — determine area by covering an interior region with _equal unit squares without gaps or overlaps_, distinguish coverage from exterior border and invalid units. The activity is **not** a new Skill, scored Question or perimeter assessment.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Children should be able to **build a covering**, notice why counting tiles is meaningful only when all units are the same size and each required cell is covered exactly once, and see that unlike-looking outlines may enclose equal area. The interaction begins with a prediction, proceeds by deliberate tile/cell inspection and finishes with an explanation accessible without vision.
-                    
+
                     Learner-facing thesis: "**Count the same-size squares that fill the inside. A gap or two tiles on the same square means the covering is not finished fairly.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Model uses a **discrete square grid**. A basic tile covers exactly one 1×1 **abstract unit square**. **Unit square** is a unit of area, not length and not a real physical square centimeter. Cell identity uses (column,row) coordinates solely for specification/testing, **not** formal coordinate-plane instruction.
                     - Region R = {(1,1),(2,1),(3,1),(1,2),(2,2),(3,2)}, a **2-row × 3-column rectangle**; its area is exactly **6 square units**.
                     - Region S = {(1,1),(2,1),(3,1),(1,2),(2,2),(1,3)}, a **stair-step** region with row counts 3+2+1=**6**; it is connected and its outline is different from R.
@@ -391,44 +391,44 @@ config:
                     - Changing outline topology, visual color, whole-shape rotation or screen zoom does not affect the number of equal unit-square cells _if the set of cells remains the same size_; do not claim any arbitrary resize preserves physical area. We compare only whole-cell examples, not fractional cells/curves.
                     - A 2×2 tile covers **4 one-by-one unit squares**. Two nonoverlapping 2×2 tiles cover **8** unit squares, whereas two nonoverlapping 1×1 tiles cover **2**. Equal raw tile counts with different tile areas **cannot** be compared directly.
                     - Boundary/perimeter is a different property. This model may reveal an outside outline but **must not require computing perimeter**.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — Where Is the Area? (Section 1)
-                    
+
                     1. Display outlines of R (rectangle) and S (stepped region) in separate but identically scaled diagrams. Hide full square-cell subdivisions at first, except for a clear shared reference **one unit square**.
                     2. Ask: "Which covers more _inside space_: rectangle R, steps S, or equal?" Predictions remain editable before "Show squares".
                     3. Reveal cells **row by row** (R: 3+3, S: 3+2+1). Textual state for each: "R: row one three, row two three, total six equal square units"; "S: row one three, row two two, row three one, total six".
                     4. Feedback for "S larger because more corners": "Corners describe an outside border; **six** same-size inside squares cover each." Feedback for "R larger because longer": "A longer appearance does not replace counting full inside cells." Correct "equal": "Both have six square units."
                     5. "Inspect border" traces/explains the boundary but never reveals an unrequested perimeter value. Reset hides totals and returns to prediction state without changing region geometry.
-                    
+
                     ### B — Cover Exactly Once (Section 2)
-                    
+
                     1. R is a fixed grid target of six cells. The learner chooses a target **row** (1 or 2) and **column** (1,2,3), then presses "Place one unit tile." Each new tile is the same 1×1 size.
                     2. Display both **number of placed tile objects** and **number of different cells covered**; these can diverge after an overlap. No pointer precision/drag is necessary.
                     3. After six **distinct** placements in R, show status "six tiles, six different cells covered, no overlaps or gaps" and area "**6 square units**".
                     4. Deliberate overlapping attempt (e.g., second tile in cell (1,1)) gets a visible/accessible error state "This square is already covered; a second tile does not cover a new unit square." The duplicate can be rejected for ordinary practice or explicitly shown in "Show mistake" diagnostic mode with an occupancy counter of 2; **must not silently count it as another covered cell**.
                     5. "Undo last", "Next empty cell", "Count remaining empty cells", "Clear" are accessible. Exact uncovered cells are named. If five distinct cells are covered, report "five covered, one hole"—not "five square units of the shape" (the **target region still has area six**).
                     6. Optional "Show mistake" preset of 6 tile objects on 5 different cells supplies a reversible explanation; no grades, retry penalty or mastery event.
-                    
+
                     ### C — Compare Different Regions (Section 3)
-                    
+
                     1. Display R, S and T with the **same 1×1 unit-square size**. Totals initially unlabelled; accessible mode gives the ordered row descriptions without prematurely listing total if a child wants to reason from the row counts.
                     2. "Count next row/cell" reveals R=6, S=6, T=5, and "Compare" shows **R=S>T**, with units "**square units**".
                     3. Feedback for believing R>S because it is more rectangular: "The rows add to six for both, so their covered regions are equal." For T chosen larger: "T has **five** unit cells; R and S each have **six**."
                     4. Offer "Rotate region view" as visual-only presentation transform with **no change to set size or area**; its text summary must explicitly preserve the six-cell count.
                     5. Every shape has a complete row-by-row textual cell list. Reset restores all comparison reveals independently.
-                    
+
                     ### D — Repair Overlap and Challenge Unit Consistency (Section 4)
-                    
+
                     1. Target R (six cells). Six 1×1 tile objects initially placed so **two tile objects both occupy (2,1)**, **(3,2) is uncovered**, and every other R cell has occupancy one. Thus 6 objects, **5 distinct cells covered**, one overlap, one empty. "Find a missing square" and "Find overlap" are explicit choices; no color reliance.
                     2. "Move upper tile from (2,1) to (3,2)" yields occupancy exactly 1 for all six cells and an exact covering of 6 square units.
                     3. Show a separate fair-unit diagnostic: a nonoverlapping pair of 2×2 tiles covers **8** basic 1×1 squares; a pair of 1×1 tiles covers **2**. Ask "Do both use the same area unit?" Correct: no. Show subdivision ledger on reveal.
                     4. Independent final transfer: new U region (3+1=4 cells), four identical small tiles, learner identifies and covers all four unique cells. No computed perimeter. If a fifth duplicate is placed, explain that region still has four unique cells.
                     5. In correct and erroneous cases, give evidence statements, not correctness badges. Follow "Try again" with a clean, deterministic local reset.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** four precisely defined target cell sets R,S,T,U; fixed unit-square tile; optional 2×2 comparison tile; cell-selector controls; placement history; per-cell occupancy counters; row/cell count log; prediction/reveal/hint/reset.
                     - **State per independent Section placement:** region preset; current prediction; occupied-cell multiset or occupancy map; currently highlighted row/cell; reveal stage; localized feedback. Region definitions are **constants**; learner cannot edit boundaries into non-grid/fractional shapes.
                     - **Invariants:** target region area = size of its cell set; full valid tiling iff **each target cell occupancy=1** and no outside occupied cells; overlap never counts twice toward distinct coverage; identical unit square area 1; two 2×2 units occupy total 8 basic cells when nonoverlapping.
@@ -436,20 +436,20 @@ config:
                     - **Reset:** per placement restores original target, predication state, initial tiles and reveal state (D includes its deliberate flawed preplacement). No state leakage between Sections.
                     - **Public component contract:** a Scene root for each placement is **prop-free**, reads locale from **actual verified Lesson context** and owns its state. Shared private helpers can receive internal configuration, not external runtime `region`, `locale`, `mode`, `onCheck` props.
                     - **Feedback contract:** tell the learner _what was covered_, not just "right/wrong". No Quiz, grading, external event, persistent Note or account requirement.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use uncluttered square grids with true equal-sized cells, visible boundary thicker than interior seams and clear tile/cell coordinates for accessibility. A boundary comparison never relies solely on a stylized shape; each region's unit-square cells are inspectable. Overlap indicated with an explicit **2** occupancy badge and pattern/layer cue, missing cell with **empty** label, not hue alone. Optional short tile placement motions, with reduced-motion instant replacement. No externally generated images or video necessary, no real pixel-area calibration claims.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Genuine translations of all prompts, "inside", "border", "unit square", cell labels, "overlap", "missing", "covered", units, explanations and recall Notes for each configured language; no fallback substitutions.
                     - Math/geometry state is independent of UI LTR/RTL; if grid layout is mirrored, the cell coordinate descriptions **must** be remapped consistently. Safer default: fixed grid coordinate convention with RTL surrounding UI adapted semantically. Neither direction changes R=6/S=6/T=5.
                     - Screen reader learns target cells by row and column, occupancy state for each, number of distinct covered cells and uncovered/duplicate locations; can place/undo a tile by buttons. No forced drag, pixel targeting, audio/animations, color-only states or hidden tiny labels.
                     - Visible focus, large touch targets, reduced motion, 200% text, logical announcements, keyboard/switch parity and WCAG 2.2 AA review. Preserve all math and actions on weak devices and offline after actual package+locale download; PWA availability is **not asserted**.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. R has 2×3=**6** distinct unit squares; S has 3+2+1=**6**; T has 3+2=**5**, so **R=S>T** despite different outlines.
                     2. Under complete R coverage, exactly six 1×1 tile objects occupy six distinct target cells with no holes or duplicates.
                     3. A second tile placed on (1,1) cannot make a new covered square; ordinary exercise rejects duplicate or explicit demonstration records occupancy 2.
@@ -459,26 +459,26 @@ config:
                     7. Rigidly rotating/recoloring a region's display does not change its defined unit-cell count; zoom never claims physical cm².
                     8. User reset isolates each Section placement; no inaccessible drag-only step, no grading or Note event.
                     9. Keyboard, screen reader, RTL, reduced motion, mobile zoom and full post-download offline use present exactly the same coverage validity and feedback.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic `scene` Resource rendering exists; **Unit-Square Coverage Lab does not**. Coding Agent must implement approved Section presets via self-contained prop-free roots, locale provider hooks, exact cell-set/occupancy invariants, automated tests, accessible manipulation and offline assets when ready. Methodologist and Scene approvals are missing; no production Lesson, Quiz/Question, scoring, analytics, persisted Notes or release artifact is added in this batch.
-                  purpose: "Different Outlines, Different Amounts?"
-                  productionNotes: "Source Scene unitSquareCoverageLab.scene-spec.md; independent placement for Different Outlines, Different Amounts?. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Different Outlines, Different Amounts?'
+                  productionNotes: 'Source Scene unitSquareCoverageLab.scene-spec.md; independent placement for Different Outlines, Different Amounts?. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "6f39a969-209d-5d92-a99c-296972a5d068"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '6f39a969-209d-5d92-a99c-296972a5d068'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "R and S each cover six **same-size squares**; they have **equal area**. T covers only five of those squares, so its area is **one square unit smaller**. We counted _inside cells_, not sides or corners."
+                      en: 'R and S each cover six **same-size squares**; they have **equal area**. T covers only five of those squares, so its area is **one square unit smaller**. We counted _inside cells_, not sides or corners.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Different Outlines, Different Amounts?"
+          purpose: 'Different Outlines, Different Amounts?'
           productionNotes: |-
             - **Purpose:** compare area by common units rather than shape appearance.
             - **Section contract:** `LessonSection_Config`.
@@ -494,55 +494,55 @@ config:
             - **Planned Note:** "Equal areas can have different outlines."
       section4:
         config:
-          id: "863d42eb-98c2-53cc-90eb-c2eb72a1dbce"
-          slug: "section4"
-          type: "content"
+          id: '863d42eb-98c2-53cc-90eb-c2eb72a1dbce'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Does Six Tiles Always Mean Six Square Units?"
+              en: 'Does Six Tiles Always Mean Six Square Units?'
             navigationLabel:
-              en: "Does Six Tiles Always Mean Six Square Units?"
+              en: 'Does Six Tiles Always Mean Six Square Units?'
           content:
             items:
               text1:
                 config:
-                  id: "00f0b28e-352f-56b1-822b-328e6ef5fe9f"
-                  slug: "text1"
-                  type: "text"
+                  id: '00f0b28e-352f-56b1-822b-328e6ef5fe9f'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Look carefully: someone laid **six tiles**, but **two cover the same square**, and one square in the target is still empty. Have they covered a six-square area correctly?"
+                      en: 'Look carefully: someone laid **six tiles**, but **two cover the same square**, and one square in the target is still empty. Have they covered a six-square area correctly?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "ec4c988f-b86e-59e2-9b64-188fc979de60"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'ec4c988f-b86e-59e2-9b64-188fc979de60'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Look carefully: someone laid **six tiles**, but **two cover the same square**, and one square in the target is still empty. Have they covered a six-square area correctly?"
+                        instruction: 'Look carefully: someone laid **six tiles**, but **two cover the same square**, and one square in the target is still empty. Have they covered a six-square area correctly?'
                 production:
                   specification: |
                     # Unit-Square Coverage Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: How Much Flat Space? Count Equal Squares (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Draft Methodologist Brief (embedded in this Lesson config.yaml) — determine area by covering an interior region with _equal unit squares without gaps or overlaps_, distinguish coverage from exterior border and invalid units. The activity is **not** a new Skill, scored Question or perimeter assessment.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Children should be able to **build a covering**, notice why counting tiles is meaningful only when all units are the same size and each required cell is covered exactly once, and see that unlike-looking outlines may enclose equal area. The interaction begins with a prediction, proceeds by deliberate tile/cell inspection and finishes with an explanation accessible without vision.
-                    
+
                     Learner-facing thesis: "**Count the same-size squares that fill the inside. A gap or two tiles on the same square means the covering is not finished fairly.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Model uses a **discrete square grid**. A basic tile covers exactly one 1×1 **abstract unit square**. **Unit square** is a unit of area, not length and not a real physical square centimeter. Cell identity uses (column,row) coordinates solely for specification/testing, **not** formal coordinate-plane instruction.
                     - Region R = {(1,1),(2,1),(3,1),(1,2),(2,2),(3,2)}, a **2-row × 3-column rectangle**; its area is exactly **6 square units**.
                     - Region S = {(1,1),(2,1),(3,1),(1,2),(2,2),(1,3)}, a **stair-step** region with row counts 3+2+1=**6**; it is connected and its outline is different from R.
@@ -552,44 +552,44 @@ config:
                     - Changing outline topology, visual color, whole-shape rotation or screen zoom does not affect the number of equal unit-square cells _if the set of cells remains the same size_; do not claim any arbitrary resize preserves physical area. We compare only whole-cell examples, not fractional cells/curves.
                     - A 2×2 tile covers **4 one-by-one unit squares**. Two nonoverlapping 2×2 tiles cover **8** unit squares, whereas two nonoverlapping 1×1 tiles cover **2**. Equal raw tile counts with different tile areas **cannot** be compared directly.
                     - Boundary/perimeter is a different property. This model may reveal an outside outline but **must not require computing perimeter**.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — Where Is the Area? (Section 1)
-                    
+
                     1. Display outlines of R (rectangle) and S (stepped region) in separate but identically scaled diagrams. Hide full square-cell subdivisions at first, except for a clear shared reference **one unit square**.
                     2. Ask: "Which covers more _inside space_: rectangle R, steps S, or equal?" Predictions remain editable before "Show squares".
                     3. Reveal cells **row by row** (R: 3+3, S: 3+2+1). Textual state for each: "R: row one three, row two three, total six equal square units"; "S: row one three, row two two, row three one, total six".
                     4. Feedback for "S larger because more corners": "Corners describe an outside border; **six** same-size inside squares cover each." Feedback for "R larger because longer": "A longer appearance does not replace counting full inside cells." Correct "equal": "Both have six square units."
                     5. "Inspect border" traces/explains the boundary but never reveals an unrequested perimeter value. Reset hides totals and returns to prediction state without changing region geometry.
-                    
+
                     ### B — Cover Exactly Once (Section 2)
-                    
+
                     1. R is a fixed grid target of six cells. The learner chooses a target **row** (1 or 2) and **column** (1,2,3), then presses "Place one unit tile." Each new tile is the same 1×1 size.
                     2. Display both **number of placed tile objects** and **number of different cells covered**; these can diverge after an overlap. No pointer precision/drag is necessary.
                     3. After six **distinct** placements in R, show status "six tiles, six different cells covered, no overlaps or gaps" and area "**6 square units**".
                     4. Deliberate overlapping attempt (e.g., second tile in cell (1,1)) gets a visible/accessible error state "This square is already covered; a second tile does not cover a new unit square." The duplicate can be rejected for ordinary practice or explicitly shown in "Show mistake" diagnostic mode with an occupancy counter of 2; **must not silently count it as another covered cell**.
                     5. "Undo last", "Next empty cell", "Count remaining empty cells", "Clear" are accessible. Exact uncovered cells are named. If five distinct cells are covered, report "five covered, one hole"—not "five square units of the shape" (the **target region still has area six**).
                     6. Optional "Show mistake" preset of 6 tile objects on 5 different cells supplies a reversible explanation; no grades, retry penalty or mastery event.
-                    
+
                     ### C — Compare Different Regions (Section 3)
-                    
+
                     1. Display R, S and T with the **same 1×1 unit-square size**. Totals initially unlabelled; accessible mode gives the ordered row descriptions without prematurely listing total if a child wants to reason from the row counts.
                     2. "Count next row/cell" reveals R=6, S=6, T=5, and "Compare" shows **R=S>T**, with units "**square units**".
                     3. Feedback for believing R>S because it is more rectangular: "The rows add to six for both, so their covered regions are equal." For T chosen larger: "T has **five** unit cells; R and S each have **six**."
                     4. Offer "Rotate region view" as visual-only presentation transform with **no change to set size or area**; its text summary must explicitly preserve the six-cell count.
                     5. Every shape has a complete row-by-row textual cell list. Reset restores all comparison reveals independently.
-                    
+
                     ### D — Repair Overlap and Challenge Unit Consistency (Section 4)
-                    
+
                     1. Target R (six cells). Six 1×1 tile objects initially placed so **two tile objects both occupy (2,1)**, **(3,2) is uncovered**, and every other R cell has occupancy one. Thus 6 objects, **5 distinct cells covered**, one overlap, one empty. "Find a missing square" and "Find overlap" are explicit choices; no color reliance.
                     2. "Move upper tile from (2,1) to (3,2)" yields occupancy exactly 1 for all six cells and an exact covering of 6 square units.
                     3. Show a separate fair-unit diagnostic: a nonoverlapping pair of 2×2 tiles covers **8** basic 1×1 squares; a pair of 1×1 tiles covers **2**. Ask "Do both use the same area unit?" Correct: no. Show subdivision ledger on reveal.
                     4. Independent final transfer: new U region (3+1=4 cells), four identical small tiles, learner identifies and covers all four unique cells. No computed perimeter. If a fifth duplicate is placed, explain that region still has four unique cells.
                     5. In correct and erroneous cases, give evidence statements, not correctness badges. Follow "Try again" with a clean, deterministic local reset.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** four precisely defined target cell sets R,S,T,U; fixed unit-square tile; optional 2×2 comparison tile; cell-selector controls; placement history; per-cell occupancy counters; row/cell count log; prediction/reveal/hint/reset.
                     - **State per independent Section placement:** region preset; current prediction; occupied-cell multiset or occupancy map; currently highlighted row/cell; reveal stage; localized feedback. Region definitions are **constants**; learner cannot edit boundaries into non-grid/fractional shapes.
                     - **Invariants:** target region area = size of its cell set; full valid tiling iff **each target cell occupancy=1** and no outside occupied cells; overlap never counts twice toward distinct coverage; identical unit square area 1; two 2×2 units occupy total 8 basic cells when nonoverlapping.
@@ -597,20 +597,20 @@ config:
                     - **Reset:** per placement restores original target, predication state, initial tiles and reveal state (D includes its deliberate flawed preplacement). No state leakage between Sections.
                     - **Public component contract:** a Scene root for each placement is **prop-free**, reads locale from **actual verified Lesson context** and owns its state. Shared private helpers can receive internal configuration, not external runtime `region`, `locale`, `mode`, `onCheck` props.
                     - **Feedback contract:** tell the learner _what was covered_, not just "right/wrong". No Quiz, grading, external event, persistent Note or account requirement.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use uncluttered square grids with true equal-sized cells, visible boundary thicker than interior seams and clear tile/cell coordinates for accessibility. A boundary comparison never relies solely on a stylized shape; each region's unit-square cells are inspectable. Overlap indicated with an explicit **2** occupancy badge and pattern/layer cue, missing cell with **empty** label, not hue alone. Optional short tile placement motions, with reduced-motion instant replacement. No externally generated images or video necessary, no real pixel-area calibration claims.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Genuine translations of all prompts, "inside", "border", "unit square", cell labels, "overlap", "missing", "covered", units, explanations and recall Notes for each configured language; no fallback substitutions.
                     - Math/geometry state is independent of UI LTR/RTL; if grid layout is mirrored, the cell coordinate descriptions **must** be remapped consistently. Safer default: fixed grid coordinate convention with RTL surrounding UI adapted semantically. Neither direction changes R=6/S=6/T=5.
                     - Screen reader learns target cells by row and column, occupancy state for each, number of distinct covered cells and uncovered/duplicate locations; can place/undo a tile by buttons. No forced drag, pixel targeting, audio/animations, color-only states or hidden tiny labels.
                     - Visible focus, large touch targets, reduced motion, 200% text, logical announcements, keyboard/switch parity and WCAG 2.2 AA review. Preserve all math and actions on weak devices and offline after actual package+locale download; PWA availability is **not asserted**.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. R has 2×3=**6** distinct unit squares; S has 3+2+1=**6**; T has 3+2=**5**, so **R=S>T** despite different outlines.
                     2. Under complete R coverage, exactly six 1×1 tile objects occupy six distinct target cells with no holes or duplicates.
                     3. A second tile placed on (1,1) cannot make a new covered square; ordinary exercise rejects duplicate or explicit demonstration records occupancy 2.
@@ -620,26 +620,26 @@ config:
                     7. Rigidly rotating/recoloring a region's display does not change its defined unit-cell count; zoom never claims physical cm².
                     8. User reset isolates each Section placement; no inaccessible drag-only step, no grading or Note event.
                     9. Keyboard, screen reader, RTL, reduced motion, mobile zoom and full post-download offline use present exactly the same coverage validity and feedback.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic `scene` Resource rendering exists; **Unit-Square Coverage Lab does not**. Coding Agent must implement approved Section presets via self-contained prop-free roots, locale provider hooks, exact cell-set/occupancy invariants, automated tests, accessible manipulation and offline assets when ready. Methodologist and Scene approvals are missing; no production Lesson, Quiz/Question, scoring, analytics, persisted Notes or release artifact is added in this batch.
-                  purpose: "Does Six Tiles Always Mean Six Square Units?"
-                  productionNotes: "Source Scene unitSquareCoverageLab.scene-spec.md; independent placement for Does Six Tiles Always Mean Six Square Units?. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Does Six Tiles Always Mean Six Square Units?'
+                  productionNotes: 'Source Scene unitSquareCoverageLab.scene-spec.md; independent placement for Does Six Tiles Always Mean Six Square Units?. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "d8b0e46c-c177-50cb-9313-646cb3a60c8d"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'd8b0e46c-c177-50cb-9313-646cb3a60c8d'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Six tiles can be placed unfairly: an overlap counts a square twice and leaves a gap. To measure area, use the **same-size square unit** and count each **different covered square** once. Tiles of different sizes are different units."
+                      en: 'Six tiles can be placed unfairly: an overlap counts a square twice and leaves a gap. To measure area, use the **same-size square unit** and count each **different covered square** once. Tiles of different sizes are different units.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Does Six Tiles Always Mean Six Square Units?"
+          purpose: 'Does Six Tiles Always Mean Six Square Units?'
           productionNotes: |-
             - **Purpose:** transfer the invariant and expose unfair counting.
             - **Section contract:** `LessonSection_Config`.
@@ -649,86 +649,86 @@ config:
               3. **markdown — currently rendered:** "Six tiles can be placed unfairly: an overlap counts a square twice and leaves a gap. To measure area, use the **same-size square unit** and count each **different covered square** once. Tiles of different sizes are different units."
             - **Feedback:** Before repair: "Only five different unit squares are covered; one is still empty." After repair: "Each of the six is covered exactly once: six square units." For comparing large versus small tile counts: "Both have two pieces, but one piece is not the same area unit in both pictures." If the learner treats decorative grid lines as measured area: "Only the filled _regions_ between lines count."
             - **Transfer:** Unseen four-cell L-shaped region (rows 3+1) with a selection of equal unit tiles; learner covers and explains "four square units", including the equal-unit rule. No scored correctness recording.
-    order: ["section1","section2","section3","section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # How Much Flat Space? Count Equal Squares — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: coveringShapesWithUnitSquares
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Introduce **area as the amount of plane region covered**, not the length around its outside. Children first use equal square tiles to cover a simple region _exactly_, without gaps or overlaps, then compare regions by square counts. This is a prerequisite for reasoning about pieces that can be rearranged while preserving total area.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 2, approximately ages 7–8.** Grade 2, approximately 7–8 years, learners who know flat shapes and can count small collections. Include early-reader short prompts, large grid positions, no-drag tile placement, complete accessible text descriptions and a unit-square ledger.
-    
+
     ## Prerequisites
-    
+
     - Recognize a rectangle and another flat region from earlier [identify2dShapes.data.ts](../../../../data/skills/geometry/figures/skills/identify2dShapes.data.ts).
     - Count equal items up to 12, understand one-to-one matching, and distinguish a shape's inside from its outer edge. Familiarity with equal **length** pieces from [nonstandardLength.data.ts](../../../../data/skills/measurement/length/skills/nonstandardLength.data.ts) is helpful but does not substitute for area.
-    
+
     ## Target Skills
-    
+
     - [areaAsCovering.data.ts](../../../../data/skills/geometry/area/skills/areaAsCovering.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Explain that area describes how much **flat interior region** a shape covers, rather than the perimeter or number of corners.
     - Cover a supplied region made from whole unit cells with equal 1×1 square tiles **without gaps or overlaps**, identifying every covered cell exactly once.
     - Report simple areas such as a 2-row × 3-column region as **6 square units**, and a five-cell step shape as **5 square units**, without requiring the multiplication formula.
     - Explain why different unit-tile sizes cannot be compared by bare tile counts and why stretching/recoloring the outline without changing the region's unit-cell coverage is not an area change.
-    
+
     ## Essential subject matter
-    
+
     Area of a planar region quantifies its two-dimensional **coverage** in square units. On a square grid each full cell is one **unit square**. The 2×3 rectangle has rows of three cells (1+1+1)+(1+1+1)=**6 square units**. A step-shaped region with rows of three and two unit squares has **5 square units**. Every counted tile has the **same area**; no tile overlaps another and no intended cell remains uncovered. Coloring or rotating a rigid region does not change its area. The border describes the region's boundary, not its coverage: a tall narrow shape and wide squat shape can have equal area despite distinct outlines. Different-shaped regions may use the same six unit tiles. A large square tile and small square tile are **not interchangeable counting units**. Avoid claims about partial-cell areas or physical cm², because no calibrated screen size or fractional measurement is used.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Start with two shapes whose borders look unlike each other but that cover the same number of equal cells. Model placing one tile per cell, with visible and verbal coverage state. Examine an intentionally empty gap and an overlapped tile as invalid coverage. Count the rectangular region by rows, then cover a five-cell step shape. Conclude with an independently shown rearranged six-cell outline to distinguish total region coverage from exterior border appearance.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Area is the amount of outline; a shape with more corners must cover more; counting the same overlapped cell twice makes the region bigger; a hole can be ignored while still claiming full coverage; rectangles require multiplying length×width before area can be understood; six large squares and six small squares necessarily cover equal area; a screen pixel is a physical centimeter.
-    
+
     **Instructional depth / explicit exclusions:** Small polygonal filled regions made of **4–12 whole 1×1 grid cells**, no cut or fractional squares, no area formulas or multiplication requirement, no conversion to real-world square centimeters, no calculus, no composite subtraction, no perimeter equation. Contrasting boundaries is illustrative; **perimeter** is not independently assessed. These are **Lesson boundaries**; the canonical Skill object remains grade-neutral and unchanged.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Every learner-visible prompt, feedback, dynamic state description, diagram label, ruler/scale symbol, unit expression, alt description, optional transcript and proposed recall Note requires authentic localization into **every supported textbook locale**, with **no silent English fallback or placeholder translation**. Reading direction can change layout but must never change the invariant square-cell area, rigid-piece count, one-liter measure or scale tick values. For nonvisual learners provide a complete meaningful ordered list of the model's unit cells, pieces, pours or graduation marks. Each manipulation must be operable via touch, keyboard/switch and appropriately labeled controls without precision dragging. Use WCAG 2.2 AA targets/contrast/focus, understandable low-reading-load copy, accessible text scaling, reduced motion, equivalent low-end performance and complete post-download offline activity. These are design requirements, **not existing infrastructure claims**.
-    
+
     ## Sources and factual verification
-    
+
     - [areaAsCovering.data.ts](../../../../data/skills/geometry/area/skills/areaAsCovering.data.ts) — canonical Mathematics Skill source from `content/math/`; copied byte-for-byte (UUID, multilingual data, methodological description unchanged) into this textbook's local Skill tree.
     - [Methodologist persona](../../../../../../studio/personas/methodist.persona.md), [separate editorial artifact policy](../../../../../../studio/docs/architecture/lesson-editorial-document.md), [Lesson entity definition](../../../../../../studio/docs/entities/lesson.md) — editorial roles, Program-neutral scope and approval boundaries.
     - [Playground generated taxonomy view](../../../../docs/generated/skills/taxonomy.en.md) — **stale for newly transferred Skills** until coordinator integration/regeneration; the canonical source files above, not this view, are the identity authority.
-    
+
     Mathematical/measurement illustrative cases must be reviewed against the exact Skill definition; no country-specific curriculum was assigned and no external instrument calibration has been verified.
-    
+
     ## Curriculum / Program compatibility
-    
+
     No national Program or Curriculum specified. The Lesson is independently usable and may be sequenced differently by future Programs. Grade 2 denotes bounded **pedagogical depth**, not a modification to the global Skill's definition.
-    
+
     ## Open editorial decisions
-    
+
     - Editor: confirm whether the five-cell step outline is suitably readable in Grade 2. The key conceptual boundary is **region coverage** versus boundary; perimeter measurement remains deferred.
     - **Methodologist approval required:** This Brief is Draft. Associated `content.md` and `scenes/*.scene-spec.md` in this batch are **provisional screenwriter drafts**, prepared under user batch authorization ahead of formal Brief approval. They must be revised if this Brief changes.
-    
+
     ## Methodologist handoff
-    
+
     Review prerequisites, mathematical examples, misconceptions and audience demands before any explicit Approved status. The Screenwriter owns the provisional Section experience; future approved Scene Designer work must remain within it. Assessment Architect separately owns any Question, Quiz, grading and evidence model. No React Scene, runtime Lesson config, published locale content, Note persistence or generated registries is included.
   productionNotes: |
     # How Much Flat Space? Count Equal Squares — Lesson Content
-    
+
     Status: **Provisional Draft — Methodologist approval pending; NOT approved for implementation**
     Target Lesson: `content/playground/Data/Lessons/1/coveringShapesWithUnitSquares/`
     Audience: **Grade 2**, approximately ages 7–8; early/mixed readers; equivalent nonvisual, keyboard and touch participation
@@ -737,26 +737,26 @@ production:
     Target Skills: `areaAsCovering.data.ts` as linked directly in the Methodologist Brief; no perimeter Skill is assessed.
     Program dependence: None
     Implementation: **editorial-only**; Section `text`, `markdown`, and `scene` types exist but no custom Scene or runtime Lesson is implemented.
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     **"Area is the space inside a flat shape. Count the equal squares that cover it."** A border helps show _where_ a flat region stops, but counting the border does not tell us how much interior space it covers. A regular square grid lets the learner **build evidence**: one **identical 1×1 square tile** covers one grid cell, no gaps or double counting. Two shapes can have different-looking outlines and still cover six identical squares. A mistaken overlap or missing cell becomes a concrete counterexample rather than an abstract correction.
-    
+
     This Lesson intentionally uses **whole-cell planar regions**, not a general formula or a calibrated centimetre-square measure. "Unit square" is an **abstract equal area unit**. The onscreen rectangle may change size under zoom but its cell count stays fixed.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Predict** which of two differently outlined shapes covers more interior space. Resist counting corners or length of border.
     2. **Cover** a 2-row × 3-column region with exactly six equal tiles, marking cells as covered and checking gaps/overlaps.
     3. **Compare** a 2×3 rectangle with a six-square stepped region and a five-square region by counting interior coverage, not visual shape.
     4. **Debug** a tempting error: two tiles on the same cell and a hole elsewhere; six physical tiles do not necessarily cover six different cells. Notice that changing tile size changes the unit.
-    
+
     The learner acts before each result and hears a **reason**, not an automatic grade.
-    
+
     ## SECTION PLAN
-    
+
     ### Section 1 — The Border Isn't the Space Inside
-    
+
     - **Purpose:** separate the inside region from its enclosing outline.
     - **Section contract:** `LessonSection_Config` with vertically ordered content.
     - **Ordered Resource blocks:**
@@ -766,9 +766,9 @@ production:
     - **Explanatory feedback:** If learner predicts stepped region is larger from its jagged edge: "The extra corners did not make extra inside squares. Count the spaces: six and six." If they predict the rectangle is larger because it looks longer: "Width alone is not the whole inside. Look at every equal square." For equal: "Yes: the six unit squares make the areas match."
     - **Access and pacing:** Both outlines have ordered row-by-row cell lists; no shape color or border thickness conveys the area. The learner can reveal one row at a time in text or diagram, with direct reveal for reduced motion.
     - **Planned Note after reveal:** "Area tells how much flat space a shape covers."
-    
+
     ### Section 2 — One Tile for Every Cell
-    
+
     - **Purpose:** build an exact equal-square covering without gaps or overlaps.
     - **Section contract:** `LessonSection_Config`, one vertical content stack.
     - **Ordered Resource blocks:**
@@ -778,9 +778,9 @@ production:
     - **Learner feedback:** On duplicated cell: "That cell already has a tile. A second tile does not cover a _new_ square. Try a different empty cell." On a missing cell: "We still see one empty square inside the region, so our covering isn't finished." On complete: "All six different cells are covered, one tile per cell, with no gaps."
     - **Reflection checkpoint (not assessment):** Ask "Did we count six pieces of plastic or six _different covered unit squares_?" Reveal why the latter is necessary. No Quiz or mastery progress.
     - **Navigation:** "Next empty cell", "Undo last placement", "Reset", optional guided row coverage; all controls have nonvisual equivalents.
-    
+
     ### Section 3 — Different Outlines, Different Amounts?
-    
+
     - **Purpose:** compare area by common units rather than shape appearance.
     - **Section contract:** `LessonSection_Config`.
     - **Ordered Resource blocks:**
@@ -793,9 +793,9 @@ production:
       3. **markdown — currently rendered:** "R and S each cover six **same-size squares**; they have **equal area**. T covers only five of those squares, so its area is **one square unit smaller**. We counted _inside cells_, not sides or corners."
     - **Learner action and feedback:** If R and S are declared different by outline: "Different outline doesn't guarantee different area; both contain six identical cells." If T assumed larger because it has more corners: "Count its filled squares, not its turns." Show row-wise count and labelled region names in both visual and accessible modes.
     - **Planned Note:** "Equal areas can have different outlines."
-    
+
     ### Section 4 — Does Six Tiles Always Mean Six Square Units?
-    
+
     - **Purpose:** transfer the invariant and expose unfair counting.
     - **Section contract:** `LessonSection_Config`.
     - **Ordered Resource blocks:**
@@ -804,38 +804,38 @@ production:
       3. **markdown — currently rendered:** "Six tiles can be placed unfairly: an overlap counts a square twice and leaves a gap. To measure area, use the **same-size square unit** and count each **different covered square** once. Tiles of different sizes are different units."
     - **Feedback:** Before repair: "Only five different unit squares are covered; one is still empty." After repair: "Each of the six is covered exactly once: six square units." For comparing large versus small tile counts: "Both have two pieces, but one piece is not the same area unit in both pictures." If the learner treats decorative grid lines as measured area: "Only the filled _regions_ between lines count."
     - **Transfer:** Unseen four-cell L-shaped region (rows 3+1) with a selection of equal unit tiles; learner covers and explains "four square units", including the equal-unit rule. No scored correctness recording.
-    
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Unit-Square Coverage Lab (Scene specification unitSquareCoverageLab embedded in the corresponding Scene node) — a **proposed** deterministic, prop-free Scene specification with four independent Section presets and equivalent cell-list interaction.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. Section 1 after six-cell comparison: "Area is the flat region inside the border."
     2. Section 2 after full exact coverage: "Cover with equal square units, no gaps or overlaps."
     3. Section 3 after comparing R and S: "Different outlines can have equal area."
-    
+
     Only short future Git-authored recall cues are planned. There is no verified Note type, unlock event, revision sheet, persistence or scheduling engine; do not present these as live UI.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Four-cell transfer and overlap diagnosis are **unscored formative** interactions. Assessment Architect can later create separately assessed regions with varied square-unit arrangements and distractors for border-versus-interior confusion, including nonvisual equivalent modalities; a single correct count does **not** prove durable mastery. Spaced retrieval is a future separately authorized feature.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Every learner-facing phrase, unit-square description, dynamic ledger, control, feedback and Note must be genuinely localized into supported locales with no missing-language fallback. RTL may reorder textual explanations but must **not** change cell counts, region topology or which shape is larger. All regions have a complete row-by-row cell inventory, explicit target/occupied/empty status, and keyboard/switch/touch methods to place one tile in a named cell. Visual color cannot be the only distinction between uncovered, overlapped and correct; status is labeled. Responsive scaling and reduced motion must preserve equal cells and all instructional content. A user without mouse, sight, audio or fast device must be able to reason and act equivalently, including when the Lesson is fully available offline after a successful download. WCAG 2.2 AA is a release target, not an implementation claim.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     Existing `text`, `markdown`, and `scene` Resource types are supported by the present Playground Section renderer. The custom grid Scene, genuine translations, local content assets, automated tests, Lesson publication and Note mechanism **do not exist**. A future Coding Agent must verify real Scene context and implement independently testable **prop-free public roots**, using internal helpers only. This editorial package adds no runtime `Lesson` config, React code, Question, Quiz, score or external service.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Draft Methodologist Brief (embedded in this Lesson config.yaml) and its linked exact canonical area Skill source.
     - Editor: check that the first comparison's 3+2+1 staircase shows **six** whole equal cells and no accidental disconnected or fractional area.
     - Editor: check area-coverage feedback stays distinct from perimeter measurement; do not silently merge Skills.
     - Brief remains Draft; Content/Scene are provisional, pending explicit approval.
-    
+
     ## HANDOFF
-    
+
     Methodologist approves audience, area-unit model and scope first. Screenwriter/editor reviews all learner text and demonstrated states. Scene Designer can implement only after approval of the complete Scene spec; Assessment Architect defines any scored evidence separately. No production implementation is authorized here.

@@ -1,11 +1,11 @@
 # Draft editorial migration, not approved; no runtime Scene implementation.
 config:
-  id: "6efa755e-ebf9-5c46-a00f-21e34111eb5c"
-  slug: "calculateChangeInEuros"
-  type: "lesson"
-  skills: ["56a4bd47-1221-489d-a11a-577d07bcb9af"]
+  id: '6efa755e-ebf9-5c46-a00f-21e34111eb5c'
+  slug: 'calculateChangeInEuros'
+  type: 'lesson'
+  skills: ['56a4bd47-1221-489d-a11a-577d07bcb9af']
   params:
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -13,14 +13,14 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "How Much Change Comes Back?"
+      en: 'How Much Change Comes Back?'
   section:
     items:
       section1:
         config:
-          id: "92921210-d5e6-4953-a4ab-40b2a33d7505"
-          slug: "section1"
-          type: "content"
+          id: '92921210-d5e6-4953-a4ab-40b2a33d7505'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
@@ -31,21 +31,21 @@ config:
             items:
               text1:
                 config:
-                  id: "d00a6345-dcc0-4356-bbcd-8c03eb116624"
-                  slug: "text1"
-                  type: "text"
+                  id: 'd00a6345-dcc0-4356-bbcd-8c03eb116624'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A €6 item is paid with €10. How many euros should come back?"
+                      en: 'A €6 item is paid with €10. How many euros should come back?'
                 production:
                   purpose: "Cashier's Change Workbench; authored text block 1"
-                  specification: "1. **`text` — existing generic renderer:** “A €6 item is paid with €10. How many euros should come back?”"
+                  specification: '1. **`text` — existing generic renderer:** “A €6 item is paid with €10. How many euros should come back?”'
               scene2:
                 config:
-                  id: "3ac1da6b-92e5-479a-a91f-6595bca4a284"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '3ac1da6b-92e5-479a-a91f-6595bca4a284'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
@@ -55,69 +55,69 @@ config:
                   purpose: "Cashier's Change Workbench; authored scene block 2"
                   specification: |-
                     # Cashier's Change Workbench — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist and independent Scene approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: [How Much Change Comes Back? Content](.this config.yaml), Section 1
                     Methodologist objectives: [Draft Methodologist Brief](.this config.yaml), not yet approved
                     Implementation: **proposed independent, self-contained prop-free Scene**, not built
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Reveal the causal mathematical principle in an operable first model. Compute change as the nonnegative difference between sufficient payment and price; verify by adding price and change to get the paid amount, distinguishing both exact payment and insufficient payment from positive change.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     **Canonical mathematical rule:** For payment M at least price P in the same currency, change C=M−P and price+change=payment. Example: €10 paid for €6 yields €4, using two real €2 coins; €10 paid for €7 yields €3, using €2+€1. €15 paid as €10+€5 for a €11 purchase yields €4, since 11+4=15. Proposed €3 change on an €8 item paid with €10 is wrong because 8+3=11>10; €2 is correct. If €5 is paid for a price of €8, payment is insufficient by €3 and there is no nonnegative returned change. Exact €10 paid for €10 price returns €0. Never present negative euros as cash returned or invent ordinary euro coins of denomination €3 or €4.
-                    
+
                     **Initial state:** Price tag €6, paid by a real €10 banknote, empty return tray with accessible choices of actual €1/€2 coins. A second independent price tag €7 with the same payment.
-                    
+
                     **Authoritative model:** Selected case, price and payment sum, individual selected returned cash-piece IDs, computed return value, missing difference, verification expression and Reset. Price+return is checked against actual paid value.
-                    
+
                     **Instructional boundary:** Do not offer nonstandard €3 or €4 single coins as if valid. The current payment is sufficient for both Scene cases.
-                    
+
                     No displayed answer, aria readout, animation result or feedback may contradict the object counts, place values, numeric order, exact group membership or real face values in the model.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Beat 1 — A €6 item is paid with €10. How many euros should come back?
-                    
+
                     - **Exact learner-facing invitation:** “A €6 item is paid with €10. How many euros should come back?”
                     - **Controllable investigation:** Build €4 in the return tray with two €2 coins, then check €6+€4=€10.
                     - **Observed correct consequence:** Exactly €4 change is due; two €2 coins are a valid return.
                     - **Evidence from actual model:** €10−€6=€4; €6+€4=€10.
                     - **Misconception-sensitive feedback and repair:** For €3, show €6+€3=€9 and the missing euro; for €6, show €6+€6=€12 exceeds the payment.
                     - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
-                    
+
                     ### Beat 2 — An item costs €7 and is paid with €10. Can you return real coins?
-                    
+
                     - **Exact learner-facing invitation:** “An item costs €7 and is paid with €10. Can you return real coins?”
                     - **Controllable investigation:** Select the alternate case and add one €2 and one €1 coin, then check the sum.
                     - **Observed correct consequence:** €3 change, composed as a genuine €2 coin and €1 coin.
                     - **Evidence from actual model:** €10−€7=€3; €7+€2+€1=€10.
                     - **Misconception-sensitive feedback and repair:** For only €2, price+return is €9; for €4 the sum €11 exceeds the payment.
                     - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects and controls:** Stable unique group/counter/card/cash identifiers, explicit numbers and roles, text ledger, prediction and explanations. Choose €6/€10 or €7/€10 case, Add/Remove €1 or €2 coin, Inspect amount paid, Check return equation, Reveal, Reset.
                     - **Invariants and consistency:** Selected case, price and payment sum, individual selected returned cash-piece IDs, computed return value, missing difference, verification expression and Reset. Price+return is checked against actual paid value. All derived visual and text values use a single authoritative local state. One object cannot be counted, paired or removed twice unless an action legitimately reverses a previous change.
                     - **Self-contained:** No props, external mode, new Resource kind, cross-Section mutable state or unverified event API. Each new Scene's pedagogical constants must be defined inside its own future component.
                     - **Reset and feedback:** Reset restores this Scene's own initial state and does not change another Section. Incorrect or partial states produce a specific cause-and-effect explanation.
                     - **Assessment boundary:** No timed pass, Question/Quiz, scoring, mastery attribution, persistent Note unlock or fabricated analytics hook.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Lightweight labelled HTML/SVG or semantic native controls are sufficient; maintain exact countable items and visually discoverable relationships at small sizes. If animations help, make them learner-paced with a reduced-motion instantaneous alternative. No mandatory audio, precision drag, externally fetched imagery or 3D asset. Money appears only as clearly schematic euro cards with real denominations; do not imply copyrighted currency images have been provided.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Separate semantic ledger fields Price, Paid, Returned, Check. Every coin has value/kind and stable ID; keyboard and screen reader can build exactly the same change amount without dragging.
-                    
+
                     All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. €10−€6 yields €4, with €6+€4=€10 verification.
                     2. €10−€7 yields €3 with valid €2+€1 coin return.
                     3. Any amount chosen recomputes price+returned from actual denomination values.
@@ -126,30 +126,30 @@ config:
                     6. Beat 2 correct model: €10−€7=€3; €7+€2+€1=€10. Test misconception route: For only €2, price+return is €9; for €4 the sum €11 exceeds the payment.
                     7. Complete the same task with keyboard, switch, screen reader, RTL, reduced motion, mobile/high zoom and downloaded selected-language offline resources; the numerical result and instructional explanation are identical.
                     8. Reset only this Scene and verify no other Section's state changed and no score, mastery or Note event occurred.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     This is a **proposed** Scene. Generic `scene` Resource rendering exists; Cashier's Change Workbench does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
-                    
+
                     ## Placement 1: Cashier's Change Workbench
-                    
+
                     2. **`scene` — generic type supported, bespoke implementation proposed:** Cashier's Change Workbench (Scene specification embedded in this config.yaml). Price tag €6, paid by a real €10 banknote, empty return tray with accessible choices of actual €1/€2 coins. A second independent price tag €7 with the same payment.
-                  productionNotes: "Proposed unimplemented Scene, sourced from cashierChangeWorkbench.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from cashierChangeWorkbench.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "44fc1fc5-7366-4a4a-8997-9cdb3f400e78"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '44fc1fc5-7366-4a4a-8997-9cdb3f400e78'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Exactly €4 change is due; two €2 coins are a valid return. €10−€6=€4; €6+€4=€10."
+                      en: 'Exactly €4 change is due; two €2 coins are a valid return. €10−€6=€4; €6+€4=€10.'
                 production:
                   purpose: "Cashier's Change Workbench; authored markdown block 3"
-                  specification: "3. **`markdown` — existing generic renderer:** “Exactly €4 change is due; two €2 coins are a valid return. €10−€6=€4; €6+€4=€10.”"
-            order: ["text1", "scene2", "markdown3"]
+                  specification: '3. **`markdown` — existing generic renderer:** “Exactly €4 change is due; two €2 coins are a valid return. €10−€6=€4; €6+€4=€10.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Develop the principle through a manipulable concrete model and a counterexample."
+          purpose: 'Develop the principle through a manipulable concrete model and a counterexample.'
           pedagogicalIntent: "Original Section 1 — Cashier's Change Workbench; authoring draft only"
           productionNotes: |-
             - **Purpose:** Develop the principle through a manipulable concrete model and a counterexample.
@@ -168,9 +168,9 @@ config:
             - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Change is the part of sufficient payment left after the price: price + change = amount paid.” is planned only, with no event or persistence.
       section2:
         config:
-          id: "959216c9-d6e6-4ae6-a3ab-3f1fa03d704c"
-          slug: "section2"
-          type: "content"
+          id: '959216c9-d6e6-4ae6-a3ab-3f1fa03d704c'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
@@ -181,33 +181,33 @@ config:
             items:
               text1:
                 config:
-                  id: "c459d3f8-8650-4857-8fcb-b4625b6e8f31"
-                  slug: "text1"
-                  type: "text"
+                  id: 'c459d3f8-8650-4857-8fcb-b4625b6e8f31'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "An item is €8. You hand over €10. A cashier offers €3 back. Does the price plus return match what you paid?"
+                      en: 'An item is €8. You hand over €10. A cashier offers €3 back. Does the price plus return match what you paid?'
                 production:
                   purpose: "Check the Cashier's Result; authored text block 1"
-                  specification: "1. **`text` (existing renderer):** “An item is €8. You hand over €10. A cashier offers €3 back. Does the price plus return match what you paid?”"
+                  specification: '1. **`text` (existing renderer):** “An item is €8. You hand over €10. A cashier offers €3 back. Does the price plus return match what you paid?”'
               markdown2:
                 config:
-                  id: "4accb0af-5953-4f5c-b891-77a9ae17c2de"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '4accb0af-5953-4f5c-b891-77a9ae17c2de'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "No: 8+3=11, but you paid 10. The right return is €2 because 8+2=10."
+                      en: 'No: 8+3=11, but you paid 10. The right return is €2 because 8+2=10.'
                 production:
                   purpose: "Check the Cashier's Result; authored markdown block 2"
-                  specification: "2. **`markdown` (existing renderer):** “No: 8+3=11, but you paid 10. The right return is €2 because 8+2=10.”"
+                  specification: '2. **`markdown` (existing renderer):** “No: 8+3=11, but you paid 10. The right return is €2 because 8+2=10.”'
               markdown3:
                 config:
-                  id: "49ccaf1c-5a54-40ef-b791-7616af17c471"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '49ccaf1c-5a54-40ef-b791-7616af17c471'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
@@ -215,9 +215,9 @@ config:
                 production:
                   purpose: "Check the Cashier's Result; authored markdown block 3"
                   specification: "3. **`markdown` (existing renderer):** “When €5 is offered for a €8 cost, €3 more is needed; this isn't negative change. Exact €10 for €10 means zero change.”"
-            order: ["text1", "markdown2", "markdown3"]
+            order: ['text1', 'markdown2', 'markdown3']
         production:
-          purpose: "Retrieve a numerical invariant and contrast it with a likely mistaken shortcut without score or response validation."
+          purpose: 'Retrieve a numerical invariant and contrast it with a likely mistaken shortcut without score or response validation.'
           pedagogicalIntent: "Original Section 2 — Check the Cashier's Result; authoring draft only"
           productionNotes: |-
             - **Purpose:** Retrieve a numerical invariant and contrast it with a likely mistaken shortcut without score or response validation.
@@ -231,106 +231,106 @@ config:
             - **Navigation and access:** The explanation remains legible to a screen reader and does not require a visual page transition, sound or animation.
       section3:
         config:
-          id: "94921536-d7e6-4c79-a2ab-3d8ca13d71df"
-          slug: "section3"
-          type: "content"
+          id: '94921536-d7e6-4c79-a2ab-3d8ca13d71df'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Receipt and Payment Inspector"
+              en: 'Receipt and Payment Inspector'
             navigationLabel:
-              en: "Receipt and Payment Inspector"
+              en: 'Receipt and Payment Inspector'
           content:
             items:
               text1:
                 config:
-                  id: "cfb8b0e7-7046-4d28-872a-eb71299b1e22"
-                  slug: "text1"
-                  type: "text"
+                  id: 'cfb8b0e7-7046-4d28-872a-eb71299b1e22'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A €11 item is paid with one €10 and one €5 note. How much should be returned?"
+                      en: 'A €11 item is paid with one €10 and one €5 note. How much should be returned?'
                 production:
-                  purpose: "Receipt and Payment Inspector; authored text block 1"
-                  specification: "1. **`text` — existing generic renderer:** “A €11 item is paid with one €10 and one €5 note. How much should be returned?”"
+                  purpose: 'Receipt and Payment Inspector; authored text block 1'
+                  specification: '1. **`text` — existing generic renderer:** “A €11 item is paid with one €10 and one €5 note. How much should be returned?”'
               scene2:
                 config:
-                  id: "6614ef11-4bae-4600-a29e-010f78f811fe"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '6614ef11-4bae-4600-a29e-010f78f811fe'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Receipt and Payment Inspector"
+                        instruction: 'Receipt and Payment Inspector'
                 production:
-                  purpose: "Receipt and Payment Inspector; authored scene block 2"
+                  purpose: 'Receipt and Payment Inspector; authored scene block 2'
                   specification: |-
                     # Receipt and Payment Inspector — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist and independent Scene approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: [How Much Change Comes Back? Content](.this config.yaml), Section 3
                     Methodologist objectives: [Draft Methodologist Brief](.this config.yaml), not yet approved
                     Implementation: **proposed independent, self-contained prop-free Scene**, not built
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Transfer the rule into a changed number/item context without the first Scene's state or answer. Compute change as the nonnegative difference between sufficient payment and price; verify by adding price and change to get the paid amount, distinguishing both exact payment and insufficient payment from positive change.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     **Canonical mathematical rule:** For payment M at least price P in the same currency, change C=M−P and price+change=payment. Example: €10 paid for €6 yields €4, using two real €2 coins; €10 paid for €7 yields €3, using €2+€1. €15 paid as €10+€5 for a €11 purchase yields €4, since 11+4=15. Proposed €3 change on an €8 item paid with €10 is wrong because 8+3=11>10; €2 is correct. If €5 is paid for a price of €8, payment is insufficient by €3 and there is no nonnegative returned change. Exact €10 paid for €10 price returns €0. Never present negative euros as cash returned or invent ordinary euro coins of denomination €3 or €4.
-                    
+
                     **Initial state:** Four independently selectable cases: price €11, paid €10+€5 notes (=€15); price €8, paid €10 with proposed €3 return; price €8, paid €5 (short); price €10, paid €10 (exact).
-                    
+
                     **Authoritative model:** Selected fixed case, authentic payment pieces with stable values, total paid, price, proposed return, sufficient/exact/insufficient classification, revealed equality check and Reset. Insufficient payment is shown as shortfall separately, never negative returned money.
-                    
+
                     **Instructional boundary:** The shortfall is labelled '€3 more needed', not a financial recommendation or a negative change. The user does not perform a real checkout.
-                    
+
                     No displayed answer, aria readout, animation result or feedback may contradict the object counts, place values, numeric order, exact group membership or real face values in the model.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Beat 1 — A €11 item is paid with one €10 and one €5 note. How much should be returned?
-                    
+
                     - **Exact learner-facing invitation:** “A €11 item is paid with one €10 and one €5 note. How much should be returned?”
                     - **Controllable investigation:** Show actual payment €10+€5=€15, then compute difference €15−€11, checking €11+€4=€15.
                     - **Observed correct consequence:** €4 change is due on €15 paid for €11.
                     - **Evidence from actual model:** €10+€5=€15; €15−€11=€4; €11+€4=€15.
                     - **Misconception-sensitive feedback and repair:** If €5 suggested, price+return becomes €16; if 'two euros' chosen, show the two cash pieces have face values ten and five.
                     - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
-                    
+
                     ### Beat 2 — The cashier returns €3 for a €8 item paid with €10. Check it; what about too little or exact payment?
-                    
+
                     - **Exact learner-facing invitation:** “The cashier returns €3 for a €8 item paid with €10. Check it; what about too little or exact payment?”
                     - **Controllable investigation:** Calculate €8+€3=€11 to reject the return, correct to €2, then inspect €5 paid for €8 (short €3) and €10 paid for €10 (return €0).
                     - **Observed correct consequence:** €2 is correct; insufficient €5-for-€8 is not change; exact €10 gives €0 return.
                     - **Evidence from actual model:** €8+€2=€10; €8−€5=€3 shortfall; €10−€10=€0 change.
                     - **Misconception-sensitive feedback and repair:** If negative change proposed for the short payment, distinguish three euros still owed from euros handed back. If exact payment returns a coin, price+return exceeds money paid.
                     - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects and controls:** Stable unique group/counter/card/cash identifiers, explicit numbers and roles, text ledger, prediction and explanations. Choose case, Predict change or payment status, Inspect pieces and payment total, Test price+return equality, Reveal expected change/shortfall, Reset.
                     - **Invariants and consistency:** Selected fixed case, authentic payment pieces with stable values, total paid, price, proposed return, sufficient/exact/insufficient classification, revealed equality check and Reset. Insufficient payment is shown as shortfall separately, never negative returned money. All derived visual and text values use a single authoritative local state. One object cannot be counted, paired or removed twice unless an action legitimately reverses a previous change.
                     - **Self-contained:** No props, external mode, new Resource kind, cross-Section mutable state or unverified event API. Each new Scene's pedagogical constants must be defined inside its own future component.
                     - **Reset and feedback:** Reset restores this Scene's own initial state and does not change another Section. Incorrect or partial states produce a specific cause-and-effect explanation.
                     - **Assessment boundary:** No timed pass, Question/Quiz, scoring, mastery attribution, persistent Note unlock or fabricated analytics hook.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Lightweight labelled HTML/SVG or semantic native controls are sufficient; maintain exact countable items and visually discoverable relationships at small sizes. If animations help, make them learner-paced with a reduced-motion instantaneous alternative. No mandatory audio, precision drag, externally fetched imagery or 3D asset. Money appears only as clearly schematic euro cards with real denominations; do not imply copyrighted currency images have been provided.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Read each payment piece, paid total, price, claimed return, and checked equality separately. Under RTL the mathematical addition/subtraction and money-unit interpretation remain unchanged.
-                    
+
                     All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. €11 price with €15 paid yields €4 change.
                     2. False €3 return on €8 paid €10 is rejected, €2 accepted.
                     3. €5 for €8 is insufficient by €3 without negative change.
@@ -339,31 +339,31 @@ config:
                     6. Beat 2 correct model: €8+€2=€10; €8−€5=€3 shortfall; €10−€10=€0 change. Test misconception route: If negative change proposed for the short payment, distinguish three euros still owed from euros handed back. If exact payment returns a coin, price+return exceeds money paid.
                     7. Complete the same task with keyboard, switch, screen reader, RTL, reduced motion, mobile/high zoom and downloaded selected-language offline resources; the numerical result and instructional explanation are identical.
                     8. Reset only this Scene and verify no other Section's state changed and no score, mastery or Note event occurred.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     This is a **proposed** Scene. Generic `scene` Resource rendering exists; Receipt and Payment Inspector does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
-                    
+
                     ## Placement 3: Receipt and Payment Inspector
-                    
+
                     2. **`scene` — generic type supported, bespoke implementation proposed:** Receipt and Payment Inspector (Scene specification embedded in this config.yaml). Four independently selectable cases: price €11, paid €10+€5 notes (=€15); price €8, paid €10 with proposed €3 return; price €8, paid €5 (short); price €10, paid €10 (exact).
-                  productionNotes: "Proposed unimplemented Scene, sourced from receiptAndPaymentInspector.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from receiptAndPaymentInspector.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "b55c1ddf-316e-4aac-beae-b2b1c959a8d6"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: 'b55c1ddf-316e-4aac-beae-b2b1c959a8d6'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "€4 change is due on €15 paid for €11. €10+€5=€15; €15−€11=€4; €11+€4=€15."
+                      en: '€4 change is due on €15 paid for €11. €10+€5=€15; €15−€11=€4; €11+€4=€15.'
                 production:
-                  purpose: "Receipt and Payment Inspector; authored markdown block 3"
-                  specification: "3. **`markdown` — existing generic renderer:** “€4 change is due on €15 paid for €11. €10+€5=€15; €15−€11=€4; €11+€4=€15.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Receipt and Payment Inspector; authored markdown block 3'
+                  specification: '3. **`markdown` — existing generic renderer:** “€4 change is due on €15 paid for €11. €10+€5=€15; €15−€11=€4; €11+€4=€15.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Apply the principle to unfamiliar quantities or representations, not replay the first model."
-          pedagogicalIntent: "Original Section 3 — Receipt and Payment Inspector; authoring draft only"
+          purpose: 'Apply the principle to unfamiliar quantities or representations, not replay the first model.'
+          pedagogicalIntent: 'Original Section 3 — Receipt and Payment Inspector; authoring draft only'
           productionNotes: |-
             - **Purpose:** Apply the principle to unfamiliar quantities or representations, not replay the first model.
             - **Current Section contract:** `LessonSection_Config`, one **vertically ordered nonempty** list of typed resources, not a Quiz.
@@ -379,104 +379,104 @@ config:
             - **Instructional boundary:** The shortfall is labelled '€3 more needed', not a financial recommendation or a negative change. The user does not perform a real checkout.
             - **Accessibility and RTL:** Read each payment piece, paid total, price, claimed return, and checked equality separately. Under RTL the mathematical addition/subtraction and money-unit interpretation remain unchanged. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
             - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Insufficient payment has a shortfall, not returned change; exact payment gives zero change.” is planned only, with no event or persistence.
-    order: ["section1", "section2", "section3"]
+    order: ['section1', 'section2', 'section3']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # How Much Change Comes Back? — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: calculateChangeInEuros
     Methodologist status: Draft
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Compute change as the nonnegative difference between sufficient payment and price; verify by adding price and change to get the paid amount, distinguishing both exact payment and insufficient payment from positive change.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 2.** Grade 2 learners with concrete whole-euro amount composition and subtraction/missing-part reasoning. All checkout objects are schematic; no financial transaction or spending data is recorded. This Grade is a pedagogical choice of the Lesson, never a ceiling on the independent canonical Skill.
-    
+
     ## Prerequisites
-    
+
     Recognize euro coins and notes (`recognizeDenominations`) and sum/compare amounts (`composeAmount`, `compareAmounts`). Know subtraction or missing-addend reasoning within 20 from mathematics. Euro remains the named instructional currency in every language.
-    
+
     ## Target Skills
-    
+
     - [calculateChange.data.ts](../../../../data/skills/money/transactions/skills/calculateChange.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Find €4 change on €10 paid for €6 and check the €6+€4=€10 equality.
     - Find €3 change on €10 paid for €7 and compose it from €2+€1.
     - For €11 cost with €15 paid as two real notes, compute/verify €4 change.
     - Reject a cashier's €3 return on €8 paid with €10 and correct it to €2.
     - Recognize €5 payment for €8 is insufficient by €3, and €10 for €10 has €0 change.
-    
+
     The outcomes are intentions for formative explanation, not validated Skill-mastery evidence.
-    
+
     ## Essential subject matter
-    
+
     For payment M at least price P in the same currency, change C=M−P and price+change=payment. Example: €10 paid for €6 yields €4, using two real €2 coins; €10 paid for €7 yields €3, using €2+€1. €15 paid as €10+€5 for a €11 purchase yields €4, since 11+4=15. Proposed €3 change on an €8 item paid with €10 is wrong because 8+3=11>10; €2 is correct. If €5 is paid for a price of €8, payment is insufficient by €3 and there is no nonnegative returned change. Exact €10 paid for €10 price returns €0. Never present negative euros as cash returned or invent ordinary euro coins of denomination €3 or €4.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Recall euro denomination value → find the missing amount between price and sufficient payment → build change with genuine coins → check price+return=paid → transfer to composite payment → detect over-return and insufficient/exact cases.
-    
+
     The pedagogically related Skills remain independently assessable objects with their own original UUIDs. No aggregate Skill definition or invented override is created.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     **Common misconceptions:** Subtracting payment from cost and treating a negative as returned change; treating the price itself as change; counting the number of cash pieces rather than value; believing exact payment gives money back; accepting a cashier's return without checking the price+return equality.
-    
+
     **Target depth and exclusions:** Whole-euro prices/payments through €15, authentic €1,€2 coins and €5,€10 notes, simple paid≥price core examples and insufficient/exact boundary. No cents, budgeting, unit prices, taxes, discounts or speed calculations.
-    
+
     **Exact examples:**
-    
+
     - €10−€6=€4; €6+€4=€10.
     - €10−€7=€3; €7+€2+€1=€10.
     - €10+€5=€15; €15−€11=€4; €11+€4=€15.
     - €8+€2=€10; €8−€5=€3 shortfall; €10−€10=€0 change.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
-    
+
     English is editorial source copy, not a completed locale implementation. For the money lesson the euro is an **explicit case-study currency** in all locales, and another real currency would require separate verified denominations, texts and editorial approval.
-    
+
     ## Sources and factual verification
-    
+
     - Canonical Skill source files in the Target Skills section, preserved byte-for-byte in the earlier migration from Mathematics `main`.
     - [Lesson Editorial Architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md), [Learning Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
     - [Internationalization/Accessibility](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) and [Offline Architecture](../../../../../../studio/docs/architecture/offline-first-and-device-compatibility.md).
     - [ECB euro coins](https://www.ecb.europa.eu/euro/coins/html/index.en.html) and [ECB banknotes](https://www.ecb.europa.eu/euro/banknotes/current/html/index.en.html): actual euro denomination references for the preceding money case study.
-    
+
     No named national Curriculum or attainment standards are claimed.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Standalone, Program-neutral. Lesson sequence derives from prerequisite relationships, not a national course binding.
-    
+
     ## Open editorial decisions
-    
+
     - Editor to approve Grade 2, canonical targets, numerical boundaries, prerequisite claims and proposed contrasting examples.
     - Editor to review every Content and proposed Scene separately after the Methodologist Brief; localization and offline/accessibility implementations need QA.
     - Money cases use fictional classroom prices but real EUR denominations; confirm currency choice for target readers before implementation.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, not approved.** The accompanying Content and Scene specs are **Provisional Drafts under the explicit batch instruction**, not evidence that the normal Methodologist approval gate has passed. No React, runtime Lesson, Questions, Quiz, scores, mastery evidence, Note storage or undocumented API is authorized.
-  purpose: "How Much Change Comes Back?"
+  purpose: 'How Much Change Comes Back?'
   productionNotes: |-
     Provisional English-only Screenwriter source. Full original introduction, lesson-wide requirements, dependencies and review handoff:
-    
+
     # How Much Change Comes Back? — Content
-    
+
     Status: **Provisional Draft — pending Methodologist approval**
     Target Lesson: `content/playground/Data/Lessons/1/calculateChangeInEuros/`
     Primary audience: Grade 2
@@ -484,53 +484,53 @@ production:
     Target Skills: exactly the canonical linked Skill files in the Brief; no copied UUIDs or alternate taxonomy
     Program dependence: None
     Runtime Lesson: **Not implemented**
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Compute change as the nonnegative difference between sufficient payment and price; verify by adding price and change to get the paid amount, distinguishing both exact payment and insufficient payment from positive change.
-    
+
     **Exact mathematical foundation and reference model:** For payment M at least price P in the same currency, change C=M−P and price+change=payment. Example: €10 paid for €6 yields €4, using two real €2 coins; €10 paid for €7 yields €3, using €2+€1. €15 paid as €10+€5 for a €11 purchase yields €4, since 11+4=15. Proposed €3 change on an €8 item paid with €10 is wrong because 8+3=11>10; €2 is correct. If €5 is paid for a price of €8, payment is insufficient by €3 and there is no nonnegative returned change. Exact €10 paid for €10 price returns €0. Never present negative euros as cash returned or invent ordinary euro coins of denomination €3 or €4.
-    
+
     The learner actively constructs or changes a representation, predicts its effect and explains a discrepancy. The Lesson does **not** consist of a long Markdown lecture plus a token quiz. One Scene provides the guided causal encounter, a short reflection section retrieves the rule and challenges a shortcut, and a **different** second Scene tests the rule with changed numbers and a new context. Correct answers are accompanied by verifiable evidence, not praise alone.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Question and prediction:** “A €6 item is paid with €10. How many euros should come back?” Learner can think or select an outcome before acting, but is not forced to make a guess.
     2. **Manipulate and notice:** €10−€6=€4; €6+€4=€10. €10−€7=€3; €7+€2+€1=€10. An object/amount/count ledger connects concrete items with the written numbers.
     3. **Explain the counterexample:** An item is €8. You hand over €10. A cashier offers €3 back. Does the price plus return match what you paid? Child attempts a reasoning response before the short worked explanation.
     4. **Independent transfer:** A €11 item is paid with one €10 and one €5 note. How much should be returned? The second Scene has its own state and a new number, item or money configuration; it is not a prop-mode clone.
     5. **Conclude and retrieve:** The final worked example and the planned Note express the enduring principle without a time limit, score or mastery claim.
-    
+
     ## SECTION PLAN
-    
-    
-    
+
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Cashier's Change Workbench (Scene specification embedded in this config.yaml) — distinct concrete exploration.
     - Receipt and Payment Inspector (Scene specification embedded in this config.yaml) — separately initialized changed-context transfer.
-    
+
     Both are **proposed prop-free Scene components**, not existing React code. Generic `scene` Resource support alone does not implement the named Scenes, and no new Resource discriminator, Scene mode prop or undocumented app context is assumed.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. “Change is the part of sufficient payment left after the price: price + change = amount paid.” — after the first worked contrast, independently of the answer given.
     2. “Insufficient payment has a shortfall, not returned change; exact payment gives zero change.” — after inspecting the transfer case's worked reasoning.
-    
+
     Each Note is a concise future recall cue, **not** an implemented unlocked Note entity. Note IDs, unlock events, persistence, synchronization, revision sheets and spaced retrieval schedules require separate architectural review and implementation.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Guided manipulation in Section 1, short verbal retrieval in Section 2 and different-context transfer in Section 3 create varied formative practice. Their completion is not a validated measure of mastery of each target Skill. Any future scored Question, Quiz, correct-answer security, thresholds, retry policy or formal assessment evidence belongs to the Learning Assessment Architect and is deliberately absent.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
-    
+
     Learner-facing samples in this Markdown are **English editorial source only**. No translation dictionaries or alternative locale content are falsely claimed. Euro amounts must stay EUR in every language; a different currency requires verified denominations and an approved separate pedagogical adaptation.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     | Feature                                                   | Verified / proposed                      | Later responsibility                                 |
     | --------------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------- |
     | `LessonSection_Config` with ordered `Resource_Config`     | Existing TypeScript contract             | Coding Agent assembles only after editorial approval |
@@ -540,15 +540,15 @@ production:
     | Selected-language offline Lesson and asset download       | Product target, unverified               | PWA/integration and offline E2E                      |
     | Notes, revision sheet, progress, persistent mastery       | Planned or unverified, not wired         | Separate architecture                                |
     | Questions, Quizzes, grading                               | Not authored                             | Assessment Architect                                 |
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Draft Methodologist Brief (incorporated in this config.yaml), which links directly to canonical Skills.
     - [Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md), [Section entity](../../../../../../studio/docs/entities/section.md), [Learning Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
     - Editor must approve the Brief first, then Content and each Scene separately. Full locale translation and all nonvisual/RTL/offline behavior need implementation-stage tests.
-    
+
     ## HANDOFF
-    
+
     **Provisional Screenwriter Draft, not Approved.** No React components, runtime Lesson data, scored Questions, Quiz, mastery, Notes persistence or assumed existing offline feature were created.
-    
+
     Source locale is English. Planned supported languages follow the 29 currently defined Engine locales; verify exact lesson-specific locale scope editorially. No translations, scored Quiz, Question Bank, Flashcard Bank, assets, or Scene implementations were produced. Methodology/Screenwriter approval remains pending.

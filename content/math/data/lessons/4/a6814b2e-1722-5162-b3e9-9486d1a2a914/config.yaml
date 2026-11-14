@@ -1,863 +1,863 @@
 config:
-  id: "a6814b2e-1722-5162-b3e9-9486d1a2a914"
-  slug: "findingUnknownAddend"
-  type: "lesson"
+  id: 'a6814b2e-1722-5162-b3e9-9486d1a2a914'
+  slug: 'findingUnknownAddend'
+  type: 'lesson'
   skills:
-    - "a01ad4cb-5aeb-44ee-ba4b-913b384b3178"
+    - 'a01ad4cb-5aeb-44ee-ba4b-913b384b3178'
   params:
     requireQuiz: false
     languages:
-      - "en"
-      - "pl"
-      - "uk"
-      - "qm"
+      - 'en'
+      - 'pl'
+      - 'uk'
+      - 'qm'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Finding an Unknown Addend"
+      en: 'Finding an Unknown Addend'
   section:
     items:
       section1OnePartIsMissing:
         config:
-          id: "08be0572-eb88-897d-8ae7-ceba09d1c2b5"
-          slug: "section1OnePartIsMissing"
-          type: "content"
+          id: '08be0572-eb88-897d-8ae7-ceba09d1c2b5'
+          slug: 'section1OnePartIsMissing'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "One Part Is Missing"
+              en: 'One Part Is Missing'
             navigationLabel:
-              en: "One Part Is Missing"
+              en: 'One Part Is Missing'
           content:
             items:
               section1Text1:
                 config:
-                  id: "95f53179-8247-8e34-8c88-9ca81b3aa3e5"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: '95f53179-8247-8e34-8c88-9ca81b3aa3e5'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "There are 12 counters altogether. We can see a group of 5. The other part has no number yet. How many counters are in that part?"
+                      en: 'There are 12 counters altogether. We can see a group of 5. The other part has no number yet. How many counters are in that part?'
                 production:
-                  purpose: "Legacy text block of One Part Is Missing; provisional draft."
-                  specification: "  1. **text — available now:** “There are 12 counters altogether. We can see a group of 5. The other part has no number yet. How many counters are in that part?”"
+                  purpose: 'Legacy text block of One Part Is Missing; provisional draft.'
+                  specification: '  1. **text — available now:** “There are 12 counters altogether. We can see a group of 5. The other part has no number yet. How many counters are in that part?”'
               scene1Block2:
                 config:
-                  id: "ed3c23ba-9f6c-89c6-8d30-1fd6cf60f5aa"
-                  slug: "scene1Block2"
-                  type: "scene"
+                  id: 'ed3c23ba-9f6c-89c6-8d30-1fd6cf60f5aa'
+                  slug: 'scene1Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "There are 12 counters altogether. We can see a group of 5. The other part has no number yet. How many counters are in that part?"
+                        instruction: 'There are 12 counters altogether. We can see a group of 5. The other part has no number yet. How many counters are in that part?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in One Part Is Missing. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in One Part Is Missing. Not approved or implemented.'
                   specification: |
-                      # Part–Whole Workbench — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Finding an Unknown Addend Content (preserved in this Lesson's production notes), Sections 1 “One Part Is Missing” and 2 “Take Away the Known Part”
-                      Methodologist objective(s): Recognize a whole and its two parts, locate an unknown addend, derive missing part by subtraction and confirm that adding the parts restores the given sum. Methodologist Brief (preserved in production.methodology)
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      The child experiences “unknown addend” as **a specific quantity of objects already included in a known total**, not as a magic symbol or an extra pile to add on. By separating a known part from the whole and preserving the total, the child sees why subtraction identifies the missing part, then reconnects the result with the original addition equality.
-                      
-                      Canonical child-facing idea: “There are 12 counters altogether. Five are in this part. How many are in the other part?” Then: “Take the five we know away from the whole. Count the ones left.”
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - A valid example has a nonnegative whole W and a nonnegative known part K with 0 ≤ K ≤ W ≤ 20. The unknown part is U = W − K. The mathematical statement is K + U = W, and U + K = W is equally true.
-                      - Section 1 fixed data: W=12, K=5, U=7. All **12 counter positions remain visible and countable**; the missing part's number label is hidden initially. Never conceal the only evidence of the missing number behind an inaccessible cover.
-                      - Section 2 fixed data: W=12, K=5, U=7; show 12 − 5 = 7 by separating exactly five counters, not deleting or changing the original total. Then restore 5 + 7 = 12. Optional transfer W=10, K=4, U=6.
-                      - Do not equate physically moving five counters with changing the whole from twelve to seven; the seven counters are the remainder, while the original whole always has twelve counters. On-screen text must distinguish original whole from remainder.
-                      - One whole with precisely two parts is sufficient; no negative answers, fraction parts, multiple hidden addends or multi-step equation solving.
-                      - Boundary cases: W=K implies U=0 (a legitimate empty missing part), W=0/K=0 implies U=0; invalid input K>W must not be offered. The Section’s default examples avoid an empty-counter visual at first, but the model must be mathematically honest if a boundary is reached.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      **Section 1 / observation entry (prop-free placement)**
-                      
-                      1. A large number “12 altogether” names the whole. Show twelve individually countable counters (such as outlines or identical dots) in a tidy, stable arrangement.
-                      2. Draw a clear divider after five counters and label that cluster “5 we know.” The other counters remain countable but the numeric label is “?” or “missing part.” Read the relationship out loud as text: “5 plus a missing number equals 12.”
-                      3. Ask “How many counters are in the other part?” Offer optional response choices 6 / 7 / 8 or buttons “Count the rest” and “Show both parts.” A learner does **not** need to answer to obtain the explanation.
-                      4. If 7: “There are seven in the other part. Five and seven make twelve.” If 6: “Five and six make eleven, not twelve. Count the remaining counters.” If 8: “Five and eight make thirteen, more than our whole.” Reveal the exact remaining counter count, not a bare wrong/right icon.
-                      5. After inspection, show “5 + 7 = 12” immediately beside the model. Invite “Point to the whole” and “Point to the known part,” with equivalent text controls and response via accessible selection.
-                      6. “Reset” restores the unlabeled group and clears the choice; “Show the full explanation” always available.
-                      
-                      **Section 2 / guided subtraction entry (independent state)**
-                      
-                      1. Begin with the same twelve counters, all still present. Ask: “We already know five of the twelve. What happens if we move those five to a separate part?”
-                      2. “Separate the 5” moves exactly the known five to a labeled sub-area and announces “12 altogether; 5 separated; 7 left in the other part.” Both clusters remain visible so none of the whole disappears.
-                      3. The equivalent numbers display “12 − 5 = 7.” Select “Put the two parts together” to rejoin the clusters and display “5 + 7 = 12,” stressing **the whole stayed twelve**.
-                      4. Learner may do “Separate,” “Count remaining,” and “Put together” in their preferred order where logically possible; if they request “Put together” before separation, the explanatory text says “The parts are already together.”
-                      5. Offer “Try ten and four” using W=10, K=4; exact steps show 10 − 4 = 6 and 4 + 6 = 10. Feedback: “Removing the known part from the whole finds the unknown part.”
-                      6. Optional “Show me” completes all steps for a learner who does not use manual controls; the step-by-step text remains navigable afterwards. No Quiz status, points or timer.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - **Objects:** total label, ordered counter collection, clear fixed part boundary, two labeled sub-containers, optional uncovered numeral for unknown, associated equality and subtraction statements, response buttons, focusable count/reveal/restore controls, accessible status log.
-                      - **Scene placements:** Section 1 observation and Section 2 guided subtraction are **distinct self-contained prop-free Scene entries**, each initialized for its narrative point. The Scene specification names editorial entry experiences; it does not introduce a React prop named mode or a new Resource_Config field. The Coding Agent may reuse internal code but must isolate both states.
-                      - **State, observation:** W=12, K=5, U=7 (computed, not user-managed secret); whether unknown label is displayed, chosen guess, whether a group count has been exposed, active model explanation.
-                      - **State, guided:** fixed example choice 12/5 or 10/4, current representation (combined vs separated), which numerical statements are revealed, explanation visibility.
-                      - **Invariant:** exactly W counters across both parts at all times, exactly K counters in the known part, exactly W−K in missing part. No counter duplication/deletion when rearranging; never show inconsistent labels or a sum unequal to W as “checked.”
-                      - **Control constraints:** switching example resets grouping and clearly announces the new whole and known quantity. Disabled transitions must explain why and cannot strand the learner. Return/reset should not affect other Sections.
-                      - **Incorrect prediction:** demonstrate the actual addition against W (“5 + 6 is 11, but the whole is 12”), then allow a new guess or the reveal. Never produce a correctness score, persistent assessment record or a diagnosis.
-                      - **No hidden answer security claim:** this is formative teaching; the child may always access the explanatory values. Scoring/answer-concealment policy is not specified here.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Use simple high-contrast counter shapes arranged in groups that a child can track without visual clutter. Show grouping by spacing, outlines and words, never hue alone. In the subtraction view, move the known group smoothly into a separate clearly labeled area; the total label remains fixed at twelve to avoid implying conservation failure. For reduced motion, show the final separated groups immediately with the exact same numeric statements. No photographic image asset, audio track, video, WebGL or online data is needed. Narration, if eventually offered, is an additional localized representation with identical text.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - All learner strings, spoken-equivalent descriptions, control names, status messages, mathematical terms, screen-reader labels and optional Note references need genuine translations across Svitlo's required languages; English here is editorial source, not a fallback.
-                      - Announce the missing box semantically as “missing number” or “unknown addend”; the equation 5 + □ = 12 must keep proper mathematical order in LTR and RTL contexts even if surrounding labels adapt to RTL.
-                      - The **equivalent nonvisual model is explicit**, e.g. “whole: twelve counters; known part: five; remaining part: seven; twelve minus five equals seven.” It must be available through accessible text/list, not only SVG alt text. A blind learner can invoke each state action and hear/read the result without seeing dots.
-                      - Native keyboard-operable buttons, visible focus, adequately sized touch targets, screen-reader announcements for changed groups, no time limits, no drag-only demand, no reliance on color or audio. Arrange control order logically for each locale.
-                      - For dyscalculia or memory support, keep all existing counter groups and numeric parts visible during reasoning; permit replay and step-by-step guidance. At zoom and narrow mobile width, use a vertical arrangement and structured text without shrinking counters below usable sizes.
-                      - All counters, calculations, translated text and explanations must work with locally available assets after download. No streaming, cloud calculation or speech recognition dependency.
-                      - If semantics cannot be preserved for any access mode, flag an actual a11y blocker during implementation; do not silently replace interactive reasoning with a static answer.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. **Default observation:** exactly twelve counter positions, a known group of five, remaining group of seven with its numeral hidden; the accessible total remains twelve.
-                      2. **Correct prediction:** choosing seven reveals “5 + 7 = 12,” with a visible/restated seven-counter remaining part.
-                      3. **Wrong predictions:** six yields 5 + 6 = 11, eight yields 5 + 8 = 13; feedback identifies mismatch with twelve, allows hint or retry, and never scores.
-                      4. **Separate and restore:** with W=12, K=5, separate known five → seven remain; show 12 − 5 = 7; restore → 5 + 7 = 12 and original whole preserved.
-                      5. **Transfer example:** W=10, K=4 → U=6, subtraction 10 − 4 = 6 and restored addition 4 + 6 = 10.
-                      6. **Edge case and invalid input:** W=K reveals a genuine zero missing part; W=0/K=0 gives zero; K>W is unavailable; no negative counter count.
-                      7. **State isolation:** Reset in Section 2 does not reveal or alter Section 1. Revisiting Section 1 always starts from its defined observation state.
-                      8. **Equivalent access:** all numeric facts, count transitions and feedback work through keyboard and screen reader, RTL, reduced motion, low-end mobile and complete offline availability after download.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      - Existing: Scene Resource type and generic Lesson renderer, locale context pattern in existing Playground Scenes.
-                      - **Proposed:** new Part–Whole Workbench Scene component(s) with both editorial placements, local calculation/model, complete supported-language translations and own tests. Must be approved before running Design Scene.
-                      - Coding Agent decides precise component/state sharing, but the component(s) must remain prop-free at public Scene interface and use validated localization source/context rather than novel unapproved APIs.
-                      - Avoid extra rendering dependencies. If counters cannot be meaningfully represented nonvisually, engineer equivalent accessible state/control flow rather than hiding the model.
-                      - This is formative explanation and practice, not an Assessment Architect-designed scored Question or evidence of Skill mastery.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — type and renderer available; custom Scene proposed:** Part–Whole Workbench (preserved in Scene production.specification), observation placement: present a whole frame with 12 clearly countable positions, a known group of 5, and a still-unlabeled complementary group. A reversible cover hides the complementary label, _not the counters needed for reasoning_. Child can count or request grouping assistance.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Part–Whole Workbench — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding an Unknown Addend Content (preserved in this Lesson's production notes), Sections 1 “One Part Is Missing” and 2 “Take Away the Known Part”
+                    Methodologist objective(s): Recognize a whole and its two parts, locate an unknown addend, derive missing part by subtraction and confirm that adding the parts restores the given sum. Methodologist Brief (preserved in production.methodology)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The child experiences “unknown addend” as **a specific quantity of objects already included in a known total**, not as a magic symbol or an extra pile to add on. By separating a known part from the whole and preserving the total, the child sees why subtraction identifies the missing part, then reconnects the result with the original addition equality.
+
+                    Canonical child-facing idea: “There are 12 counters altogether. Five are in this part. How many are in the other part?” Then: “Take the five we know away from the whole. Count the ones left.”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A valid example has a nonnegative whole W and a nonnegative known part K with 0 ≤ K ≤ W ≤ 20. The unknown part is U = W − K. The mathematical statement is K + U = W, and U + K = W is equally true.
+                    - Section 1 fixed data: W=12, K=5, U=7. All **12 counter positions remain visible and countable**; the missing part's number label is hidden initially. Never conceal the only evidence of the missing number behind an inaccessible cover.
+                    - Section 2 fixed data: W=12, K=5, U=7; show 12 − 5 = 7 by separating exactly five counters, not deleting or changing the original total. Then restore 5 + 7 = 12. Optional transfer W=10, K=4, U=6.
+                    - Do not equate physically moving five counters with changing the whole from twelve to seven; the seven counters are the remainder, while the original whole always has twelve counters. On-screen text must distinguish original whole from remainder.
+                    - One whole with precisely two parts is sufficient; no negative answers, fraction parts, multiple hidden addends or multi-step equation solving.
+                    - Boundary cases: W=K implies U=0 (a legitimate empty missing part), W=0/K=0 implies U=0; invalid input K>W must not be offered. The Section’s default examples avoid an empty-counter visual at first, but the model must be mathematically honest if a boundary is reached.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 1 / observation entry (prop-free placement)**
+
+                    1. A large number “12 altogether” names the whole. Show twelve individually countable counters (such as outlines or identical dots) in a tidy, stable arrangement.
+                    2. Draw a clear divider after five counters and label that cluster “5 we know.” The other counters remain countable but the numeric label is “?” or “missing part.” Read the relationship out loud as text: “5 plus a missing number equals 12.”
+                    3. Ask “How many counters are in the other part?” Offer optional response choices 6 / 7 / 8 or buttons “Count the rest” and “Show both parts.” A learner does **not** need to answer to obtain the explanation.
+                    4. If 7: “There are seven in the other part. Five and seven make twelve.” If 6: “Five and six make eleven, not twelve. Count the remaining counters.” If 8: “Five and eight make thirteen, more than our whole.” Reveal the exact remaining counter count, not a bare wrong/right icon.
+                    5. After inspection, show “5 + 7 = 12” immediately beside the model. Invite “Point to the whole” and “Point to the known part,” with equivalent text controls and response via accessible selection.
+                    6. “Reset” restores the unlabeled group and clears the choice; “Show the full explanation” always available.
+
+                    **Section 2 / guided subtraction entry (independent state)**
+
+                    1. Begin with the same twelve counters, all still present. Ask: “We already know five of the twelve. What happens if we move those five to a separate part?”
+                    2. “Separate the 5” moves exactly the known five to a labeled sub-area and announces “12 altogether; 5 separated; 7 left in the other part.” Both clusters remain visible so none of the whole disappears.
+                    3. The equivalent numbers display “12 − 5 = 7.” Select “Put the two parts together” to rejoin the clusters and display “5 + 7 = 12,” stressing **the whole stayed twelve**.
+                    4. Learner may do “Separate,” “Count remaining,” and “Put together” in their preferred order where logically possible; if they request “Put together” before separation, the explanatory text says “The parts are already together.”
+                    5. Offer “Try ten and four” using W=10, K=4; exact steps show 10 − 4 = 6 and 4 + 6 = 10. Feedback: “Removing the known part from the whole finds the unknown part.”
+                    6. Optional “Show me” completes all steps for a learner who does not use manual controls; the step-by-step text remains navigable afterwards. No Quiz status, points or timer.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** total label, ordered counter collection, clear fixed part boundary, two labeled sub-containers, optional uncovered numeral for unknown, associated equality and subtraction statements, response buttons, focusable count/reveal/restore controls, accessible status log.
+                    - **Scene placements:** Section 1 observation and Section 2 guided subtraction are **distinct self-contained prop-free Scene entries**, each initialized for its narrative point. The Scene specification names editorial entry experiences; it does not introduce a React prop named mode or a new Resource_Config field. The Coding Agent may reuse internal code but must isolate both states.
+                    - **State, observation:** W=12, K=5, U=7 (computed, not user-managed secret); whether unknown label is displayed, chosen guess, whether a group count has been exposed, active model explanation.
+                    - **State, guided:** fixed example choice 12/5 or 10/4, current representation (combined vs separated), which numerical statements are revealed, explanation visibility.
+                    - **Invariant:** exactly W counters across both parts at all times, exactly K counters in the known part, exactly W−K in missing part. No counter duplication/deletion when rearranging; never show inconsistent labels or a sum unequal to W as “checked.”
+                    - **Control constraints:** switching example resets grouping and clearly announces the new whole and known quantity. Disabled transitions must explain why and cannot strand the learner. Return/reset should not affect other Sections.
+                    - **Incorrect prediction:** demonstrate the actual addition against W (“5 + 6 is 11, but the whole is 12”), then allow a new guess or the reveal. Never produce a correctness score, persistent assessment record or a diagnosis.
+                    - **No hidden answer security claim:** this is formative teaching; the child may always access the explanatory values. Scoring/answer-concealment policy is not specified here.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use simple high-contrast counter shapes arranged in groups that a child can track without visual clutter. Show grouping by spacing, outlines and words, never hue alone. In the subtraction view, move the known group smoothly into a separate clearly labeled area; the total label remains fixed at twelve to avoid implying conservation failure. For reduced motion, show the final separated groups immediately with the exact same numeric statements. No photographic image asset, audio track, video, WebGL or online data is needed. Narration, if eventually offered, is an additional localized representation with identical text.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - All learner strings, spoken-equivalent descriptions, control names, status messages, mathematical terms, screen-reader labels and optional Note references need genuine translations across Svitlo's required languages; English here is editorial source, not a fallback.
+                    - Announce the missing box semantically as “missing number” or “unknown addend”; the equation 5 + □ = 12 must keep proper mathematical order in LTR and RTL contexts even if surrounding labels adapt to RTL.
+                    - The **equivalent nonvisual model is explicit**, e.g. “whole: twelve counters; known part: five; remaining part: seven; twelve minus five equals seven.” It must be available through accessible text/list, not only SVG alt text. A blind learner can invoke each state action and hear/read the result without seeing dots.
+                    - Native keyboard-operable buttons, visible focus, adequately sized touch targets, screen-reader announcements for changed groups, no time limits, no drag-only demand, no reliance on color or audio. Arrange control order logically for each locale.
+                    - For dyscalculia or memory support, keep all existing counter groups and numeric parts visible during reasoning; permit replay and step-by-step guidance. At zoom and narrow mobile width, use a vertical arrangement and structured text without shrinking counters below usable sizes.
+                    - All counters, calculations, translated text and explanations must work with locally available assets after download. No streaming, cloud calculation or speech recognition dependency.
+                    - If semantics cannot be preserved for any access mode, flag an actual a11y blocker during implementation; do not silently replace interactive reasoning with a static answer.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **Default observation:** exactly twelve counter positions, a known group of five, remaining group of seven with its numeral hidden; the accessible total remains twelve.
+                    2. **Correct prediction:** choosing seven reveals “5 + 7 = 12,” with a visible/restated seven-counter remaining part.
+                    3. **Wrong predictions:** six yields 5 + 6 = 11, eight yields 5 + 8 = 13; feedback identifies mismatch with twelve, allows hint or retry, and never scores.
+                    4. **Separate and restore:** with W=12, K=5, separate known five → seven remain; show 12 − 5 = 7; restore → 5 + 7 = 12 and original whole preserved.
+                    5. **Transfer example:** W=10, K=4 → U=6, subtraction 10 − 4 = 6 and restored addition 4 + 6 = 10.
+                    6. **Edge case and invalid input:** W=K reveals a genuine zero missing part; W=0/K=0 gives zero; K>W is unavailable; no negative counter count.
+                    7. **State isolation:** Reset in Section 2 does not reveal or alter Section 1. Revisiting Section 1 always starts from its defined observation state.
+                    8. **Equivalent access:** all numeric facts, count transitions and feedback work through keyboard and screen reader, RTL, reduced motion, low-end mobile and complete offline availability after download.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    - Existing: Scene Resource type and generic Lesson renderer, locale context pattern in existing Playground Scenes.
+                    - **Proposed:** new Part–Whole Workbench Scene component(s) with both editorial placements, local calculation/model, complete supported-language translations and own tests. Must be approved before running Design Scene.
+                    - Coding Agent decides precise component/state sharing, but the component(s) must remain prop-free at public Scene interface and use validated localization source/context rather than novel unapproved APIs.
+                    - Avoid extra rendering dependencies. If counters cannot be meaningfully represented nonvisually, engineer equivalent accessible state/control flow rather than hiding the model.
+                    - This is formative explanation and practice, not an Assessment Architect-designed scored Question or evidence of Skill mastery.
+
+
+                    ## Original placement
+
+                      2. **scene — type and renderer available; custom Scene proposed:** Part–Whole Workbench (preserved in Scene production.specification), observation placement: present a whole frame with 12 clearly countable positions, a known group of 5, and a still-unlabeled complementary group. A reversible cover hides the complementary label, _not the counters needed for reasoning_. Child can count or request grouping assistance.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section1Markdown3:
                 config:
-                  id: "45d837c1-ad11-834a-800d-809668c4e41d"
-                  slug: "section1Markdown3"
-                  type: "markdown"
+                  id: '45d837c1-ad11-834a-800d-809668c4e41d'
+                  slug: 'section1Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The 12 counters are the whole. The 5 counters are one part. We are finding the other part. We can write this as **5 + □ = 12**. The box stands for one number."
+                      en: 'The 12 counters are the whole. The 5 counters are one part. We are finding the other part. We can write this as **5 + □ = 12**. The box stands for one number.'
                 production:
-                  purpose: "Legacy markdown block of One Part Is Missing; provisional draft."
-                  specification: "  3. **markdown — available now:** “The 12 counters are the whole. The 5 counters are one part. We are finding the other part. We can write this as **5 + □ = 12**. The box stands for one number.”"
+                  purpose: 'Legacy markdown block of One Part Is Missing; provisional draft.'
+                  specification: '  3. **markdown — available now:** “The 12 counters are the whole. The 5 counters are one part. We are finding the other part. We can write this as **5 + □ = 12**. The box stands for one number.”'
             order:
-              - "section1Text1"
-              - "scene1Block2"
-              - "section1Markdown3"
+              - 'section1Text1'
+              - 'scene1Block2'
+              - 'section1Markdown3'
         production:
-          purpose: "Identify the whole, known part, and missing part; understand □ as one unknown quantity, not a direction to compute the visible numbers together."
-          pedagogicalIntent: "Identify the whole, known part, and missing part; understand □ as one unknown quantity, not a direction to compute the visible numbers together."
+          purpose: 'Identify the whole, known part, and missing part; understand □ as one unknown quantity, not a direction to compute the visible numbers together.'
+          pedagogicalIntent: 'Identify the whole, known part, and missing part; understand □ as one unknown quantity, not a direction to compute the visible numbers together.'
           productionNotes: |
-              ### Section 1 — One Part Is Missing
-              
-              - Purpose / learning outcome: Identify the whole, known part, and missing part; understand □ as one unknown quantity, not a direction to compute the visible numbers together.
-              - Current implementation shape: LessonSection_Config; nonempty ordered single-column resources.
-              - Ordered content blocks (top to bottom):
-                1. **text — available now:** “There are 12 counters altogether. We can see a group of 5. The other part has no number yet. How many counters are in that part?”
-                2. **scene — type and renderer available; custom Scene proposed:** Part–Whole Workbench (preserved in Scene production.specification), observation placement: present a whole frame with 12 clearly countable positions, a known group of 5, and a still-unlabeled complementary group. A reversible cover hides the complementary label, _not the counters needed for reasoning_. Child can count or request grouping assistance.
-                3. **markdown — available now:** “The 12 counters are the whole. The 5 counters are one part. We are finding the other part. We can write this as **5 + □ = 12**. The box stands for one number.”
-              - Core explanation and learner-facing text: **Whole** means all twelve counters; a **part** means a group within them. The box is the number of counters in the unnamed part. The equal sign states the sum of both parts must be twelve.
-              - Illustration / model / interaction: A 12-position strip with a clear separator after 5; all positions can be counted even before revealing the missing group’s numeral. Equal groups are NOT presumed. Avoid interpreting a picture as five plus twelve objects.
-              - Learner action, observations and explanatory feedback: “Show the two parts” highlights 5 and 7 without revealing a trick answer first; after counting, reveal “5 counters and 7 counters make 12.” A wrong prediction receives “Let’s count the other part. There are 7 counters there,” without shame or a point total.
-              - Navigation and transition: Show the complete 5 + 7 = 12 composition before transitioning from counting to subtraction. No accuracy gate.
-              - Accessibility, locale and RTL requirements: Ordered text equivalent “whole 12; known part 5; remaining part has 7 positions”; keyboard buttons for count/reveal; no reliance on color or precise dragging. □ must be announced as “missing number.” Preserve mathematical operand order under RTL.
-              - Proposed unlocked Note(s) at this moment: Note 1 “A sum is a whole made from parts.” Proposed after the complete 12 = 5 + 7 model is observed; planned, not wired.
-              - Implementation dependencies and review notes: New Workbench Scene is proposed; type text/markdown and generic scene resource rendering are available. Choice/prediction is formative only.
-              
+            ### Section 1 — One Part Is Missing
+
+            - Purpose / learning outcome: Identify the whole, known part, and missing part; understand □ as one unknown quantity, not a direction to compute the visible numbers together.
+            - Current implementation shape: LessonSection_Config; nonempty ordered single-column resources.
+            - Ordered content blocks (top to bottom):
+              1. **text — available now:** “There are 12 counters altogether. We can see a group of 5. The other part has no number yet. How many counters are in that part?”
+              2. **scene — type and renderer available; custom Scene proposed:** Part–Whole Workbench (preserved in Scene production.specification), observation placement: present a whole frame with 12 clearly countable positions, a known group of 5, and a still-unlabeled complementary group. A reversible cover hides the complementary label, _not the counters needed for reasoning_. Child can count or request grouping assistance.
+              3. **markdown — available now:** “The 12 counters are the whole. The 5 counters are one part. We are finding the other part. We can write this as **5 + □ = 12**. The box stands for one number.”
+            - Core explanation and learner-facing text: **Whole** means all twelve counters; a **part** means a group within them. The box is the number of counters in the unnamed part. The equal sign states the sum of both parts must be twelve.
+            - Illustration / model / interaction: A 12-position strip with a clear separator after 5; all positions can be counted even before revealing the missing group’s numeral. Equal groups are NOT presumed. Avoid interpreting a picture as five plus twelve objects.
+            - Learner action, observations and explanatory feedback: “Show the two parts” highlights 5 and 7 without revealing a trick answer first; after counting, reveal “5 counters and 7 counters make 12.” A wrong prediction receives “Let’s count the other part. There are 7 counters there,” without shame or a point total.
+            - Navigation and transition: Show the complete 5 + 7 = 12 composition before transitioning from counting to subtraction. No accuracy gate.
+            - Accessibility, locale and RTL requirements: Ordered text equivalent “whole 12; known part 5; remaining part has 7 positions”; keyboard buttons for count/reveal; no reliance on color or precise dragging. □ must be announced as “missing number.” Preserve mathematical operand order under RTL.
+            - Proposed unlocked Note(s) at this moment: Note 1 “A sum is a whole made from parts.” Proposed after the complete 12 = 5 + 7 model is observed; planned, not wired.
+            - Implementation dependencies and review notes: New Workbench Scene is proposed; type text/markdown and generic scene resource rendering are available. Choice/prediction is formative only.
+
       section2TakeAwayTheKnownPart:
         config:
-          id: "74911b29-7690-80f2-86fc-a25584fd698e"
-          slug: "section2TakeAwayTheKnownPart"
-          type: "content"
+          id: '74911b29-7690-80f2-86fc-a25584fd698e'
+          slug: 'section2TakeAwayTheKnownPart'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Take Away the Known Part"
+              en: 'Take Away the Known Part'
             navigationLabel:
-              en: "Take Away the Known Part"
+              en: 'Take Away the Known Part'
           content:
             items:
               section2Markdown1:
                 config:
-                  id: "ee4e5844-9eb8-8044-8653-5c73b6a50473"
-                  slug: "section2Markdown1"
-                  type: "markdown"
+                  id: 'ee4e5844-9eb8-8044-8653-5c73b6a50473'
+                  slug: 'section2Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "We know the whole is 12. We already know 5 of those counters. Count what is left: **12 − 5 = 7**. So the missing part is 7."
+                      en: 'We know the whole is 12. We already know 5 of those counters. Count what is left: **12 − 5 = 7**. So the missing part is 7.'
                 production:
-                  purpose: "Legacy markdown block of Take Away the Known Part; provisional draft."
-                  specification: "  1. **markdown — available now:** “We know the whole is 12. We already know 5 of those counters. Count what is left: **12 − 5 = 7**. So the missing part is 7.”"
+                  purpose: 'Legacy markdown block of Take Away the Known Part; provisional draft.'
+                  specification: '  1. **markdown — available now:** “We know the whole is 12. We already know 5 of those counters. Count what is left: **12 − 5 = 7**. So the missing part is 7.”'
               scene2Block2:
                 config:
-                  id: "c0fca762-ba93-87dd-890b-a14d536481f2"
-                  slug: "scene2Block2"
-                  type: "scene"
+                  id: 'c0fca762-ba93-87dd-890b-a14d536481f2'
+                  slug: 'scene2Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "We know the whole is 12. We already know 5 of those counters. Count what is left: **12 − 5 = 7**. So the missing part is 7."
+                        instruction: 'We know the whole is 12. We already know 5 of those counters. Count what is left: **12 − 5 = 7**. So the missing part is 7.'
                 production:
-                  purpose: "Independently initialized Scene occurrence in Take Away the Known Part. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in Take Away the Known Part. Not approved or implemented.'
                   specification: |
-                      # Part–Whole Workbench — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Finding an Unknown Addend Content (preserved in this Lesson's production notes), Sections 1 “One Part Is Missing” and 2 “Take Away the Known Part”
-                      Methodologist objective(s): Recognize a whole and its two parts, locate an unknown addend, derive missing part by subtraction and confirm that adding the parts restores the given sum. Methodologist Brief (preserved in production.methodology)
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      The child experiences “unknown addend” as **a specific quantity of objects already included in a known total**, not as a magic symbol or an extra pile to add on. By separating a known part from the whole and preserving the total, the child sees why subtraction identifies the missing part, then reconnects the result with the original addition equality.
-                      
-                      Canonical child-facing idea: “There are 12 counters altogether. Five are in this part. How many are in the other part?” Then: “Take the five we know away from the whole. Count the ones left.”
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - A valid example has a nonnegative whole W and a nonnegative known part K with 0 ≤ K ≤ W ≤ 20. The unknown part is U = W − K. The mathematical statement is K + U = W, and U + K = W is equally true.
-                      - Section 1 fixed data: W=12, K=5, U=7. All **12 counter positions remain visible and countable**; the missing part's number label is hidden initially. Never conceal the only evidence of the missing number behind an inaccessible cover.
-                      - Section 2 fixed data: W=12, K=5, U=7; show 12 − 5 = 7 by separating exactly five counters, not deleting or changing the original total. Then restore 5 + 7 = 12. Optional transfer W=10, K=4, U=6.
-                      - Do not equate physically moving five counters with changing the whole from twelve to seven; the seven counters are the remainder, while the original whole always has twelve counters. On-screen text must distinguish original whole from remainder.
-                      - One whole with precisely two parts is sufficient; no negative answers, fraction parts, multiple hidden addends or multi-step equation solving.
-                      - Boundary cases: W=K implies U=0 (a legitimate empty missing part), W=0/K=0 implies U=0; invalid input K>W must not be offered. The Section’s default examples avoid an empty-counter visual at first, but the model must be mathematically honest if a boundary is reached.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      **Section 1 / observation entry (prop-free placement)**
-                      
-                      1. A large number “12 altogether” names the whole. Show twelve individually countable counters (such as outlines or identical dots) in a tidy, stable arrangement.
-                      2. Draw a clear divider after five counters and label that cluster “5 we know.” The other counters remain countable but the numeric label is “?” or “missing part.” Read the relationship out loud as text: “5 plus a missing number equals 12.”
-                      3. Ask “How many counters are in the other part?” Offer optional response choices 6 / 7 / 8 or buttons “Count the rest” and “Show both parts.” A learner does **not** need to answer to obtain the explanation.
-                      4. If 7: “There are seven in the other part. Five and seven make twelve.” If 6: “Five and six make eleven, not twelve. Count the remaining counters.” If 8: “Five and eight make thirteen, more than our whole.” Reveal the exact remaining counter count, not a bare wrong/right icon.
-                      5. After inspection, show “5 + 7 = 12” immediately beside the model. Invite “Point to the whole” and “Point to the known part,” with equivalent text controls and response via accessible selection.
-                      6. “Reset” restores the unlabeled group and clears the choice; “Show the full explanation” always available.
-                      
-                      **Section 2 / guided subtraction entry (independent state)**
-                      
-                      1. Begin with the same twelve counters, all still present. Ask: “We already know five of the twelve. What happens if we move those five to a separate part?”
-                      2. “Separate the 5” moves exactly the known five to a labeled sub-area and announces “12 altogether; 5 separated; 7 left in the other part.” Both clusters remain visible so none of the whole disappears.
-                      3. The equivalent numbers display “12 − 5 = 7.” Select “Put the two parts together” to rejoin the clusters and display “5 + 7 = 12,” stressing **the whole stayed twelve**.
-                      4. Learner may do “Separate,” “Count remaining,” and “Put together” in their preferred order where logically possible; if they request “Put together” before separation, the explanatory text says “The parts are already together.”
-                      5. Offer “Try ten and four” using W=10, K=4; exact steps show 10 − 4 = 6 and 4 + 6 = 10. Feedback: “Removing the known part from the whole finds the unknown part.”
-                      6. Optional “Show me” completes all steps for a learner who does not use manual controls; the step-by-step text remains navigable afterwards. No Quiz status, points or timer.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - **Objects:** total label, ordered counter collection, clear fixed part boundary, two labeled sub-containers, optional uncovered numeral for unknown, associated equality and subtraction statements, response buttons, focusable count/reveal/restore controls, accessible status log.
-                      - **Scene placements:** Section 1 observation and Section 2 guided subtraction are **distinct self-contained prop-free Scene entries**, each initialized for its narrative point. The Scene specification names editorial entry experiences; it does not introduce a React prop named mode or a new Resource_Config field. The Coding Agent may reuse internal code but must isolate both states.
-                      - **State, observation:** W=12, K=5, U=7 (computed, not user-managed secret); whether unknown label is displayed, chosen guess, whether a group count has been exposed, active model explanation.
-                      - **State, guided:** fixed example choice 12/5 or 10/4, current representation (combined vs separated), which numerical statements are revealed, explanation visibility.
-                      - **Invariant:** exactly W counters across both parts at all times, exactly K counters in the known part, exactly W−K in missing part. No counter duplication/deletion when rearranging; never show inconsistent labels or a sum unequal to W as “checked.”
-                      - **Control constraints:** switching example resets grouping and clearly announces the new whole and known quantity. Disabled transitions must explain why and cannot strand the learner. Return/reset should not affect other Sections.
-                      - **Incorrect prediction:** demonstrate the actual addition against W (“5 + 6 is 11, but the whole is 12”), then allow a new guess or the reveal. Never produce a correctness score, persistent assessment record or a diagnosis.
-                      - **No hidden answer security claim:** this is formative teaching; the child may always access the explanatory values. Scoring/answer-concealment policy is not specified here.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Use simple high-contrast counter shapes arranged in groups that a child can track without visual clutter. Show grouping by spacing, outlines and words, never hue alone. In the subtraction view, move the known group smoothly into a separate clearly labeled area; the total label remains fixed at twelve to avoid implying conservation failure. For reduced motion, show the final separated groups immediately with the exact same numeric statements. No photographic image asset, audio track, video, WebGL or online data is needed. Narration, if eventually offered, is an additional localized representation with identical text.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - All learner strings, spoken-equivalent descriptions, control names, status messages, mathematical terms, screen-reader labels and optional Note references need genuine translations across Svitlo's required languages; English here is editorial source, not a fallback.
-                      - Announce the missing box semantically as “missing number” or “unknown addend”; the equation 5 + □ = 12 must keep proper mathematical order in LTR and RTL contexts even if surrounding labels adapt to RTL.
-                      - The **equivalent nonvisual model is explicit**, e.g. “whole: twelve counters; known part: five; remaining part: seven; twelve minus five equals seven.” It must be available through accessible text/list, not only SVG alt text. A blind learner can invoke each state action and hear/read the result without seeing dots.
-                      - Native keyboard-operable buttons, visible focus, adequately sized touch targets, screen-reader announcements for changed groups, no time limits, no drag-only demand, no reliance on color or audio. Arrange control order logically for each locale.
-                      - For dyscalculia or memory support, keep all existing counter groups and numeric parts visible during reasoning; permit replay and step-by-step guidance. At zoom and narrow mobile width, use a vertical arrangement and structured text without shrinking counters below usable sizes.
-                      - All counters, calculations, translated text and explanations must work with locally available assets after download. No streaming, cloud calculation or speech recognition dependency.
-                      - If semantics cannot be preserved for any access mode, flag an actual a11y blocker during implementation; do not silently replace interactive reasoning with a static answer.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. **Default observation:** exactly twelve counter positions, a known group of five, remaining group of seven with its numeral hidden; the accessible total remains twelve.
-                      2. **Correct prediction:** choosing seven reveals “5 + 7 = 12,” with a visible/restated seven-counter remaining part.
-                      3. **Wrong predictions:** six yields 5 + 6 = 11, eight yields 5 + 8 = 13; feedback identifies mismatch with twelve, allows hint or retry, and never scores.
-                      4. **Separate and restore:** with W=12, K=5, separate known five → seven remain; show 12 − 5 = 7; restore → 5 + 7 = 12 and original whole preserved.
-                      5. **Transfer example:** W=10, K=4 → U=6, subtraction 10 − 4 = 6 and restored addition 4 + 6 = 10.
-                      6. **Edge case and invalid input:** W=K reveals a genuine zero missing part; W=0/K=0 gives zero; K>W is unavailable; no negative counter count.
-                      7. **State isolation:** Reset in Section 2 does not reveal or alter Section 1. Revisiting Section 1 always starts from its defined observation state.
-                      8. **Equivalent access:** all numeric facts, count transitions and feedback work through keyboard and screen reader, RTL, reduced motion, low-end mobile and complete offline availability after download.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      - Existing: Scene Resource type and generic Lesson renderer, locale context pattern in existing Playground Scenes.
-                      - **Proposed:** new Part–Whole Workbench Scene component(s) with both editorial placements, local calculation/model, complete supported-language translations and own tests. Must be approved before running Design Scene.
-                      - Coding Agent decides precise component/state sharing, but the component(s) must remain prop-free at public Scene interface and use validated localization source/context rather than novel unapproved APIs.
-                      - Avoid extra rendering dependencies. If counters cannot be meaningfully represented nonvisually, engineer equivalent accessible state/control flow rather than hiding the model.
-                      - This is formative explanation and practice, not an Assessment Architect-designed scored Question or evidence of Skill mastery.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — resource supported; custom Scene proposed:** Part–Whole Workbench (preserved in Scene production.specification), guided subtraction placement: child selects or watches “Separate the known 5,” sees 7 remaining from the same unchanged twelve, then restores the two parts to make twelve.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Part–Whole Workbench — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding an Unknown Addend Content (preserved in this Lesson's production notes), Sections 1 “One Part Is Missing” and 2 “Take Away the Known Part”
+                    Methodologist objective(s): Recognize a whole and its two parts, locate an unknown addend, derive missing part by subtraction and confirm that adding the parts restores the given sum. Methodologist Brief (preserved in production.methodology)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The child experiences “unknown addend” as **a specific quantity of objects already included in a known total**, not as a magic symbol or an extra pile to add on. By separating a known part from the whole and preserving the total, the child sees why subtraction identifies the missing part, then reconnects the result with the original addition equality.
+
+                    Canonical child-facing idea: “There are 12 counters altogether. Five are in this part. How many are in the other part?” Then: “Take the five we know away from the whole. Count the ones left.”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A valid example has a nonnegative whole W and a nonnegative known part K with 0 ≤ K ≤ W ≤ 20. The unknown part is U = W − K. The mathematical statement is K + U = W, and U + K = W is equally true.
+                    - Section 1 fixed data: W=12, K=5, U=7. All **12 counter positions remain visible and countable**; the missing part's number label is hidden initially. Never conceal the only evidence of the missing number behind an inaccessible cover.
+                    - Section 2 fixed data: W=12, K=5, U=7; show 12 − 5 = 7 by separating exactly five counters, not deleting or changing the original total. Then restore 5 + 7 = 12. Optional transfer W=10, K=4, U=6.
+                    - Do not equate physically moving five counters with changing the whole from twelve to seven; the seven counters are the remainder, while the original whole always has twelve counters. On-screen text must distinguish original whole from remainder.
+                    - One whole with precisely two parts is sufficient; no negative answers, fraction parts, multiple hidden addends or multi-step equation solving.
+                    - Boundary cases: W=K implies U=0 (a legitimate empty missing part), W=0/K=0 implies U=0; invalid input K>W must not be offered. The Section’s default examples avoid an empty-counter visual at first, but the model must be mathematically honest if a boundary is reached.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 1 / observation entry (prop-free placement)**
+
+                    1. A large number “12 altogether” names the whole. Show twelve individually countable counters (such as outlines or identical dots) in a tidy, stable arrangement.
+                    2. Draw a clear divider after five counters and label that cluster “5 we know.” The other counters remain countable but the numeric label is “?” or “missing part.” Read the relationship out loud as text: “5 plus a missing number equals 12.”
+                    3. Ask “How many counters are in the other part?” Offer optional response choices 6 / 7 / 8 or buttons “Count the rest” and “Show both parts.” A learner does **not** need to answer to obtain the explanation.
+                    4. If 7: “There are seven in the other part. Five and seven make twelve.” If 6: “Five and six make eleven, not twelve. Count the remaining counters.” If 8: “Five and eight make thirteen, more than our whole.” Reveal the exact remaining counter count, not a bare wrong/right icon.
+                    5. After inspection, show “5 + 7 = 12” immediately beside the model. Invite “Point to the whole” and “Point to the known part,” with equivalent text controls and response via accessible selection.
+                    6. “Reset” restores the unlabeled group and clears the choice; “Show the full explanation” always available.
+
+                    **Section 2 / guided subtraction entry (independent state)**
+
+                    1. Begin with the same twelve counters, all still present. Ask: “We already know five of the twelve. What happens if we move those five to a separate part?”
+                    2. “Separate the 5” moves exactly the known five to a labeled sub-area and announces “12 altogether; 5 separated; 7 left in the other part.” Both clusters remain visible so none of the whole disappears.
+                    3. The equivalent numbers display “12 − 5 = 7.” Select “Put the two parts together” to rejoin the clusters and display “5 + 7 = 12,” stressing **the whole stayed twelve**.
+                    4. Learner may do “Separate,” “Count remaining,” and “Put together” in their preferred order where logically possible; if they request “Put together” before separation, the explanatory text says “The parts are already together.”
+                    5. Offer “Try ten and four” using W=10, K=4; exact steps show 10 − 4 = 6 and 4 + 6 = 10. Feedback: “Removing the known part from the whole finds the unknown part.”
+                    6. Optional “Show me” completes all steps for a learner who does not use manual controls; the step-by-step text remains navigable afterwards. No Quiz status, points or timer.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** total label, ordered counter collection, clear fixed part boundary, two labeled sub-containers, optional uncovered numeral for unknown, associated equality and subtraction statements, response buttons, focusable count/reveal/restore controls, accessible status log.
+                    - **Scene placements:** Section 1 observation and Section 2 guided subtraction are **distinct self-contained prop-free Scene entries**, each initialized for its narrative point. The Scene specification names editorial entry experiences; it does not introduce a React prop named mode or a new Resource_Config field. The Coding Agent may reuse internal code but must isolate both states.
+                    - **State, observation:** W=12, K=5, U=7 (computed, not user-managed secret); whether unknown label is displayed, chosen guess, whether a group count has been exposed, active model explanation.
+                    - **State, guided:** fixed example choice 12/5 or 10/4, current representation (combined vs separated), which numerical statements are revealed, explanation visibility.
+                    - **Invariant:** exactly W counters across both parts at all times, exactly K counters in the known part, exactly W−K in missing part. No counter duplication/deletion when rearranging; never show inconsistent labels or a sum unequal to W as “checked.”
+                    - **Control constraints:** switching example resets grouping and clearly announces the new whole and known quantity. Disabled transitions must explain why and cannot strand the learner. Return/reset should not affect other Sections.
+                    - **Incorrect prediction:** demonstrate the actual addition against W (“5 + 6 is 11, but the whole is 12”), then allow a new guess or the reveal. Never produce a correctness score, persistent assessment record or a diagnosis.
+                    - **No hidden answer security claim:** this is formative teaching; the child may always access the explanatory values. Scoring/answer-concealment policy is not specified here.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use simple high-contrast counter shapes arranged in groups that a child can track without visual clutter. Show grouping by spacing, outlines and words, never hue alone. In the subtraction view, move the known group smoothly into a separate clearly labeled area; the total label remains fixed at twelve to avoid implying conservation failure. For reduced motion, show the final separated groups immediately with the exact same numeric statements. No photographic image asset, audio track, video, WebGL or online data is needed. Narration, if eventually offered, is an additional localized representation with identical text.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - All learner strings, spoken-equivalent descriptions, control names, status messages, mathematical terms, screen-reader labels and optional Note references need genuine translations across Svitlo's required languages; English here is editorial source, not a fallback.
+                    - Announce the missing box semantically as “missing number” or “unknown addend”; the equation 5 + □ = 12 must keep proper mathematical order in LTR and RTL contexts even if surrounding labels adapt to RTL.
+                    - The **equivalent nonvisual model is explicit**, e.g. “whole: twelve counters; known part: five; remaining part: seven; twelve minus five equals seven.” It must be available through accessible text/list, not only SVG alt text. A blind learner can invoke each state action and hear/read the result without seeing dots.
+                    - Native keyboard-operable buttons, visible focus, adequately sized touch targets, screen-reader announcements for changed groups, no time limits, no drag-only demand, no reliance on color or audio. Arrange control order logically for each locale.
+                    - For dyscalculia or memory support, keep all existing counter groups and numeric parts visible during reasoning; permit replay and step-by-step guidance. At zoom and narrow mobile width, use a vertical arrangement and structured text without shrinking counters below usable sizes.
+                    - All counters, calculations, translated text and explanations must work with locally available assets after download. No streaming, cloud calculation or speech recognition dependency.
+                    - If semantics cannot be preserved for any access mode, flag an actual a11y blocker during implementation; do not silently replace interactive reasoning with a static answer.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **Default observation:** exactly twelve counter positions, a known group of five, remaining group of seven with its numeral hidden; the accessible total remains twelve.
+                    2. **Correct prediction:** choosing seven reveals “5 + 7 = 12,” with a visible/restated seven-counter remaining part.
+                    3. **Wrong predictions:** six yields 5 + 6 = 11, eight yields 5 + 8 = 13; feedback identifies mismatch with twelve, allows hint or retry, and never scores.
+                    4. **Separate and restore:** with W=12, K=5, separate known five → seven remain; show 12 − 5 = 7; restore → 5 + 7 = 12 and original whole preserved.
+                    5. **Transfer example:** W=10, K=4 → U=6, subtraction 10 − 4 = 6 and restored addition 4 + 6 = 10.
+                    6. **Edge case and invalid input:** W=K reveals a genuine zero missing part; W=0/K=0 gives zero; K>W is unavailable; no negative counter count.
+                    7. **State isolation:** Reset in Section 2 does not reveal or alter Section 1. Revisiting Section 1 always starts from its defined observation state.
+                    8. **Equivalent access:** all numeric facts, count transitions and feedback work through keyboard and screen reader, RTL, reduced motion, low-end mobile and complete offline availability after download.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    - Existing: Scene Resource type and generic Lesson renderer, locale context pattern in existing Playground Scenes.
+                    - **Proposed:** new Part–Whole Workbench Scene component(s) with both editorial placements, local calculation/model, complete supported-language translations and own tests. Must be approved before running Design Scene.
+                    - Coding Agent decides precise component/state sharing, but the component(s) must remain prop-free at public Scene interface and use validated localization source/context rather than novel unapproved APIs.
+                    - Avoid extra rendering dependencies. If counters cannot be meaningfully represented nonvisually, engineer equivalent accessible state/control flow rather than hiding the model.
+                    - This is formative explanation and practice, not an Assessment Architect-designed scored Question or evidence of Skill mastery.
+
+
+                    ## Original placement
+
+                      2. **scene — resource supported; custom Scene proposed:** Part–Whole Workbench (preserved in Scene production.specification), guided subtraction placement: child selects or watches “Separate the known 5,” sees 7 remaining from the same unchanged twelve, then restores the two parts to make twelve.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section2Text3:
                 config:
-                  id: "b0c10d9b-dd24-8324-88e3-ea55a50694ea"
-                  slug: "section2Text3"
-                  type: "text"
+                  id: 'b0c10d9b-dd24-8324-88e3-ea55a50694ea'
+                  slug: 'section2Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "We did not change the whole. We found the part we did not know. When one part is missing, we can subtract the known part from the whole."
+                      en: 'We did not change the whole. We found the part we did not know. When one part is missing, we can subtract the known part from the whole.'
                 production:
-                  purpose: "Legacy text block of Take Away the Known Part; provisional draft."
-                  specification: "  3. **text — available now:** “We did not change the whole. We found the part we did not know. When one part is missing, we can subtract the known part from the whole.”"
+                  purpose: 'Legacy text block of Take Away the Known Part; provisional draft.'
+                  specification: '  3. **text — available now:** “We did not change the whole. We found the part we did not know. When one part is missing, we can subtract the known part from the whole.”'
             order:
-              - "section2Markdown1"
-              - "scene2Block2"
-              - "section2Text3"
+              - 'section2Markdown1'
+              - 'scene2Block2'
+              - 'section2Text3'
         production:
-          purpose: "Explain how subtracting the known addend from the sum identifies the other addend."
-          pedagogicalIntent: "Explain how subtracting the known addend from the sum identifies the other addend."
+          purpose: 'Explain how subtracting the known addend from the sum identifies the other addend.'
+          pedagogicalIntent: 'Explain how subtracting the known addend from the sum identifies the other addend.'
           productionNotes: |
-              ### Section 2 — Take Away the Known Part
-              
-              - Purpose / learning outcome: Explain how subtracting the known addend from the sum identifies the other addend.
-              - Current implementation shape: LessonSection_Config.
-              - Ordered content blocks (top to bottom):
-                1. **markdown — available now:** “We know the whole is 12. We already know 5 of those counters. Count what is left: **12 − 5 = 7**. So the missing part is 7.”
-                2. **scene — resource supported; custom Scene proposed:** Part–Whole Workbench (preserved in Scene production.specification), guided subtraction placement: child selects or watches “Separate the known 5,” sees 7 remaining from the same unchanged twelve, then restores the two parts to make twelve.
-                3. **text — available now:** “We did not change the whole. We found the part we did not know. When one part is missing, we can subtract the known part from the whole.”
-              - Core explanation and learner-facing text: Subtraction **12 − 5 = 7** finds the missing addend; restoration **5 + 7 = 12** checks the part–whole relationship. Neither “subtract the visible five from itself” nor “add five to twelve” gives the missing part.
-              - Illustration / model / interaction: Maintain the same 12 counters while the known five are _separated_ to a distinct labeled area. The remaining seven are counted, with a corresponding number sentence. Show one shorter transfer example with whole 10, known 4, remaining 6.
-              - Learner action, observations and explanatory feedback: Offer controls “Separate the 5,” “Count what remains,” “Put the parts together,” “Show the subtraction,” and “Try 10 and 4.” For 10 − 4: “Six counters remain. Four and six make ten.” If learner first selects 5 as the missing part for 12 and 5: “Five is the part we already knew. Count the other counters.”
-              - Navigation and transition: Compare both equivalent views—whole minus known equals missing, and known plus missing equals whole—then move to a different position for the box.
-              - Accessibility, locale and RTL requirements: Narrate exact totals, moved counts, operation symbols and results; accessible linear list/table of whole, known and unknown parts. Operations must not change mathematical meaning when display direction changes. Animation may be disabled with the identical before/after explanation.
-              - Proposed unlocked Note(s) at this moment: Note 2 “Whole − known part = missing part.” Proposed after seeing both 12 − 5 = 7 and 5 + 7 = 12; planned, not wired.
-              - Implementation dependencies and review notes: No new mathematical Skill is created by this concrete representation; building the Scene requires its separately approved specification.
-              
+            ### Section 2 — Take Away the Known Part
+
+            - Purpose / learning outcome: Explain how subtracting the known addend from the sum identifies the other addend.
+            - Current implementation shape: LessonSection_Config.
+            - Ordered content blocks (top to bottom):
+              1. **markdown — available now:** “We know the whole is 12. We already know 5 of those counters. Count what is left: **12 − 5 = 7**. So the missing part is 7.”
+              2. **scene — resource supported; custom Scene proposed:** Part–Whole Workbench (preserved in Scene production.specification), guided subtraction placement: child selects or watches “Separate the known 5,” sees 7 remaining from the same unchanged twelve, then restores the two parts to make twelve.
+              3. **text — available now:** “We did not change the whole. We found the part we did not know. When one part is missing, we can subtract the known part from the whole.”
+            - Core explanation and learner-facing text: Subtraction **12 − 5 = 7** finds the missing addend; restoration **5 + 7 = 12** checks the part–whole relationship. Neither “subtract the visible five from itself” nor “add five to twelve” gives the missing part.
+            - Illustration / model / interaction: Maintain the same 12 counters while the known five are _separated_ to a distinct labeled area. The remaining seven are counted, with a corresponding number sentence. Show one shorter transfer example with whole 10, known 4, remaining 6.
+            - Learner action, observations and explanatory feedback: Offer controls “Separate the 5,” “Count what remains,” “Put the parts together,” “Show the subtraction,” and “Try 10 and 4.” For 10 − 4: “Six counters remain. Four and six make ten.” If learner first selects 5 as the missing part for 12 and 5: “Five is the part we already knew. Count the other counters.”
+            - Navigation and transition: Compare both equivalent views—whole minus known equals missing, and known plus missing equals whole—then move to a different position for the box.
+            - Accessibility, locale and RTL requirements: Narrate exact totals, moved counts, operation symbols and results; accessible linear list/table of whole, known and unknown parts. Operations must not change mathematical meaning when display direction changes. Animation may be disabled with the identical before/after explanation.
+            - Proposed unlocked Note(s) at this moment: Note 2 “Whole − known part = missing part.” Proposed after seeing both 12 − 5 = 7 and 5 + 7 = 12; planned, not wired.
+            - Implementation dependencies and review notes: No new mathematical Skill is created by this concrete representation; building the Scene requires its separately approved specification.
+
       section3TheBoxCanBeOnEitherSideOfThePlus:
         config:
-          id: "4f75a745-a5d2-882b-8e79-1820b4ded74e"
-          slug: "section3TheBoxCanBeOnEitherSideOfThePlus"
-          type: "content"
+          id: '4f75a745-a5d2-882b-8e79-1820b4ded74e'
+          slug: 'section3TheBoxCanBeOnEitherSideOfThePlus'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "The Box Can Be on Either Side of the Plus"
+              en: 'The Box Can Be on Either Side of the Plus'
             navigationLabel:
-              en: "The Box Can Be on Either Side of the Plus"
+              en: 'The Box Can Be on Either Side of the Plus'
           content:
             items:
               section3Text1:
                 config:
-                  id: "f82eb4e6-319e-80c6-855a-d30a9cea972a"
-                  slug: "section3Text1"
-                  type: "text"
+                  id: 'f82eb4e6-319e-80c6-855a-d30a9cea972a'
+                  slug: 'section3Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Look at these two equalities: **5 + □ = 12** and **□ + 5 = 12**. Where is the box now? Did the whole or the known part change?"
+                      en: 'Look at these two equalities: **5 + □ = 12** and **□ + 5 = 12**. Where is the box now? Did the whole or the known part change?'
                 production:
-                  purpose: "Legacy text block of The Box Can Be on Either Side of the Plus; provisional draft."
-                  specification: "  1. **text — available now:** “Look at these two equalities: **5 + □ = 12** and **□ + 5 = 12**. Where is the box now? Did the whole or the known part change?”"
+                  purpose: 'Legacy text block of The Box Can Be on Either Side of the Plus; provisional draft.'
+                  specification: '  1. **text — available now:** “Look at these two equalities: **5 + □ = 12** and **□ + 5 = 12**. Where is the box now? Did the whole or the known part change?”'
               scene3Block2:
                 config:
-                  id: "d8e851ec-cce9-8b78-816c-43e6356d0972"
-                  slug: "scene3Block2"
-                  type: "scene"
+                  id: 'd8e851ec-cce9-8b78-816c-43e6356d0972'
+                  slug: 'scene3Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Look at these two equalities: **5 + □ = 12** and **□ + 5 = 12**. Where is the box now? Did the whole or the known part change?"
+                        instruction: 'Look at these two equalities: **5 + □ = 12** and **□ + 5 = 12**. Where is the box now? Did the whole or the known part change?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in The Box Can Be on Either Side of the Plus. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in The Box Can Be on Either Side of the Plus. Not approved or implemented.'
                   specification: |
-                      # Addition Equality Verifier — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Finding an Unknown Addend Content (preserved in this Lesson's production notes), Sections 3 “The Box Can Be on Either Side of the Plus” and 4 “Put Your Number Back and Check”
-                      Methodologist objective(s): Identify the unknown addend in either position and verify its candidate value by substituting into the ORIGINAL addition equality. Methodologist Brief (preserved in production.methodology)
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      A missing addend is not “whatever appears after plus.” It is an unknown part whose value must make the entire equality true. The child sees the same relationship in different addend arrangements, then **tests the candidate inside the original equation**. Comparing the two sides makes the equals sign a relation, not just a prompt to write an answer.
-                      
-                      Canonical child-facing statement: “The box can be first or second. Put your number into the box. Do the two sides show the same amount?”
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Valid initial examples use nonnegative whole numbers W ≤ 20, known addend K with 0 ≤ K ≤ W, unknown U=W−K. Both K + □ = W and □ + K = W have the same missing value U.
-                      - **Section 3 fixed pair:** 5 + □ = 12 and □ + 5 = 12. Correct candidate is 7; substitution yields 5 + 7 = 12 and 7 + 5 = 12. A five-counter known part and seven-counter unknown part together comprise the original whole of twelve.
-                      - **Section 3 optional transfer:** 4 + □ = 9 and □ + 4 = 9; candidate 5 gives 4 + 5 = 9 and 5 + 4 = 9. Wrong candidate 4 gives 4 + 4 = 8, so cannot satisfy the original sum of nine.
-                      - **Section 4 independent task:** □ + 6 = 14, candidate set 7 / 8 / 9. Substitution checks are respectively 7 + 6 = 13 (not 14), 8 + 6 = 14 (matches), 9 + 6 = 15 (not 14). The inverse subtraction 14 − 6 = 8 explains how to find the candidate, not a replacement for checking the original addition.
-                      - **Section 4 optional transfer:** 4 + □ = 9, candidate 5, check 4 + 5 = 9.
-                      - For the Brief’s extreme error example, 5 + 17 = 22 ≠ 12; this can be shown as an arithmetic comparison in explanatory text, not as a new counter example outside the ≤20 initial-model scope.
-                      - Equality is mathematical equivalence of the evaluated left and right quantities. Do not treat "=" as an operation instruction and do not move the unknown to the right side of "=" as an unrelated Skill. The two addend placements have the same result by addition commutativity in these natural-number examples; a rote commutativity lesson is out of scope.
-                      - The Scene is instructional; its deterministic matching feedback is **not a scored Quiz or a validated mastery decision**.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      **Section 3 / position-comparison placement**
-                      
-                      1. Show 5 + □ = 12, with a 12-counter whole split into five known counters and seven counters whose numeral is hidden. Prompt **“Which part is the box? What number makes the two sides equal?”**
-                      2. Permit choosing 5, 6 or 7, or pressing “Show the parts”. Selecting 7 replaces the box and displays **“5 + 7 = 12. Both sides are 12.”** Selecting 5 gives **“5 + 5 = 10. That is not 12.”** Selecting 6 gives **“5 + 6 = 11. That is not 12.”** Do not give feedback solely as red/green or a score.
-                      3. Present **□ + 5 = 12** with exactly the same whole and the same part sizes. Prompt **“Now the box moved. Did the whole change?”** Learner may substitute the same seven. The check reads **“7 + 5 = 12.”** Show that the total and known part did not change.
-                      4. Show both complete equalities as consecutive, clearly labeled rows. Ask **“Is the missing number different because the box moved?”** Reveal **“No. It is still seven. Five and seven make twelve in either order.”**
-                      5. Optional example toggle: **4 + □ = 9** and **□ + 4 = 9**, correct missing part five. Retain optional object/count support; do not presume the child knows commutativity by name.
-                      6. Learner can reset or select “Show why” at any stage; no compulsory success gate.
-                      
-                      **Section 4 / independent substitution placement**
-                      
-                      1. In an independently initialized Scene, show **□ + 6 = 14** and clear text **“Find the missing part. Put your number in the box. Then check the addition.”** Do not initially expose the result.
-                      2. Optional “Show the parts” reveals a model of fourteen counters with a known six; “Show a hint” says **“If you know the whole and one part, subtract that part from the whole.”** These aids do not change the learning goal.
-                      3. Offer **7 / 8 / 9** as formative selections. A candidate is inserted into the **same original equation**; explicitly compute both sides and compare:
-                         - 7: **“7 + 6 = 13. The right side is 14. They are not equal.”**
-                         - 8: **“8 + 6 = 14. Both sides are 14. This number fits.”**
-                         - 9: **“9 + 6 = 15. That is one more than 14. They are not equal.”**
-                      4. If the first choice is not 8, retain the visible failed substitution and ask **“Could another number make both sides fourteen?”** Allow a second choice without erasing why the earlier one failed.
-                      5. “Show how to find it” reveals **“14 − 6 = 8; now check 8 + 6 = 14.”** Present subtraction and verification as two connected but distinct steps.
-                      6. Optional transfer **4 + □ = 9** follows exactly the same logic, with missing value 5 and check 4 + 5 = 9.
-                      7. End prompt **“How do you know your missing number works?”** The learner may read the verified equality, choose a reasoning sentence, type a short phrase or explain aloud to another person. No speech recognition or forced written response is required.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - **Object set:** accessible full original equality, missing-number box, labeled countable whole/known/unknown parts, ordered numeric candidate buttons, substitution display, evaluated left-hand total, right-hand total, explanation panel, hint, reset/try-other-example controls.
-                      - **Placement independence:** Two self-contained, prop-free Scene entries; position-comparison and independent-check are **editorial presentations**, not a new React mode prop or Resource_Config field. Coding Agent may share internal logic while preserving initial state and locale isolation.
-                      - **State:** current original equality and missing position, known addend, whole, candidate(s) tried, last substituted equality, result of direct numeric comparison, help level, explanation visibility, optional transfer example. Reset restores the original unseen candidate, not a hidden “correctness score”.
-                      - **Calculation rule:** On choosing candidate C, render the original expression with □ replaced by C, evaluate LHS using addition, compare exactly with the stated RHS W, and explain the result. The displayed check must not silently rewrite the original equality as a subtraction problem.
-                      - **Mathematical invariant:** The only _valid missing value_ for K + U = W or U + K = W in the approved nonnegative domain is W−K. Other candidates must be shown as failed substitutions with their actual sums. The UI may display an incorrect equality temporarily, but must label it clearly as **not equal**, never a true mathematical identity.
-                      - **Control state:** The child may request explanation without choosing, switch between positions in Section 3 and switch to transfer only on explicit request. Every switch announces the original equality and resets dependent state. Cross-Section state is not shared.
-                      - **Out-of-range cases:** No example with negative unknown or sum above twenty is set as an initial task. When evaluating a wrong candidate that would produce a sum above 20, use accurate numerical text rather than inventing uncountable/overflow counter visuals.
-                      - **No scoring:** All responses are transitory formative comparisons, not Question_Config answer persistence, diagnostic statistics or a mastered Skill event.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Display one large, legible expression and a simple counter part/whole representation. Show the _candidate substitution_ as a visible replacement of the box, followed by the evaluated left and right numerical values; mark **“equal”** or **“not equal”** in words as well as optional icons. Use subtle transitions to call attention to which position changed, but avoid a balance scale animation that falsely implies different operations or physical weights. Present equations in correct mathematical reading order in every layout. No required media asset, narration, video, remote computation, mascot or visual reward.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - Genuine translations required for **all** learner-facing controls, hints, feedback, equation descriptions and accessible status messages in every supported locale; retain mathematically meaningful terms and a child-friendly explanation for addend/whole/sum.
-                      - For screen readers, speak **“missing first addend plus six equals fourteen”** or **“five plus missing second addend equals twelve”** as appropriate, and on testing announce the _full substituted equality_, result and match status. A structured text comparison must enable all reasoning without viewing the counters.
-                      - RTL: preserve the order and identities of numeric operands/equalities; do not blindly flip mathematical glyphs or make the unknown appear in the wrong addend role. Surrounding controls may use locale-specific logical ordering.
-                      - Accessible native buttons, visible focus, high contrast, ample hit areas for children, no drag-only interactions, no compulsory typing/voice or timed expiry. Counter group sizes also available through text and optional simple numerals for dyscalculia support.
-                      - Reduced-motion mode shows identical substituted numbers and outcomes instantly. Zoom and narrow-screen layouts may stack the model and original equality while preserving the same Section and Scene behavior.
-                      - All expression evaluation, models, feedback and complete localized resources must function offline once downloaded. No AI checking, network call, WebGL, speech recognition or external media requirement.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. **Second unknown:** 5 + □ = 12; candidate 7 → 5 + 7 = 12, explicit both sides equal.
-                      2. **Wrong value:** candidate 5 → 5 + 5 = 10 ≠ 12, and candidate 6 → 5 + 6 = 11 ≠ 12; learner may inspect explanation and retry.
-                      3. **First unknown:** □ + 5 = 12; candidate 7 → 7 + 5 = 12. The model retains the original twelve and five.
-                      4. **Position change:** toggling the missing addend position never changes the fixed whole or known part, and updates the accessible equation description.
-                      5. **New case:** □ + 6 = 14; candidate 7 → 13 vs 14 mismatch; 8 → 14 vs 14 match; 9 → 15 vs 14 mismatch. No fabricated score.
-                      6. **Two-step solution:** after “Show how,” display **14 − 6 = 8** AND **8 + 6 = 14** explicitly, with the addition identified as verification of the original equality.
-                      7. **Transfer:** 4 + □ = 9 yields 5; substitution 4 + 5 = 9. An erroneous 4 + 4 = 8 is not approved as equal.
-                      8. **Help/reset:** learner can access complete explanation before answering, retry freely, reset, and revisit the other placement without state leakage.
-                      9. **Equivalent modes:** keyboard, screen reader, RTL, reduced motion, 200% zoom, mobile screen and offline after download all display the same evaluated equalities and explanation semantics.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      - Generic Lesson Section scene resources and React rendering currently exist in Playground; **Addition Equality Verifier itself is proposed, not implemented**.
-                      - Editor approves this Scene specification before Design Scene implementation; Coding Agent validates per-Section isolated prop-free entries, locale context and real typed-content integration. Each implemented Scene has its own tests and WCAG 2.2 AA access review.
-                      - Assessment Architect must separately determine any later scored Question/Quiz item, Skill attribution, validity and result policy; do not reuse these formative choices as assessment without review.
-                      - No new taxonomy Skill, Math source change, public Scene prop, scoring event or Note API is authorized by this script.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — resource supported; custom Scene proposed:** Addition Equality Verifier (preserved in Scene production.specification), position-comparison placement: place the same five-and-seven part model under both arrangements, invite selection of which addend is missing, and substitute 7 into either place. Compare each displayed sum with 12.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Addition Equality Verifier — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding an Unknown Addend Content (preserved in this Lesson's production notes), Sections 3 “The Box Can Be on Either Side of the Plus” and 4 “Put Your Number Back and Check”
+                    Methodologist objective(s): Identify the unknown addend in either position and verify its candidate value by substituting into the ORIGINAL addition equality. Methodologist Brief (preserved in production.methodology)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A missing addend is not “whatever appears after plus.” It is an unknown part whose value must make the entire equality true. The child sees the same relationship in different addend arrangements, then **tests the candidate inside the original equation**. Comparing the two sides makes the equals sign a relation, not just a prompt to write an answer.
+
+                    Canonical child-facing statement: “The box can be first or second. Put your number into the box. Do the two sides show the same amount?”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Valid initial examples use nonnegative whole numbers W ≤ 20, known addend K with 0 ≤ K ≤ W, unknown U=W−K. Both K + □ = W and □ + K = W have the same missing value U.
+                    - **Section 3 fixed pair:** 5 + □ = 12 and □ + 5 = 12. Correct candidate is 7; substitution yields 5 + 7 = 12 and 7 + 5 = 12. A five-counter known part and seven-counter unknown part together comprise the original whole of twelve.
+                    - **Section 3 optional transfer:** 4 + □ = 9 and □ + 4 = 9; candidate 5 gives 4 + 5 = 9 and 5 + 4 = 9. Wrong candidate 4 gives 4 + 4 = 8, so cannot satisfy the original sum of nine.
+                    - **Section 4 independent task:** □ + 6 = 14, candidate set 7 / 8 / 9. Substitution checks are respectively 7 + 6 = 13 (not 14), 8 + 6 = 14 (matches), 9 + 6 = 15 (not 14). The inverse subtraction 14 − 6 = 8 explains how to find the candidate, not a replacement for checking the original addition.
+                    - **Section 4 optional transfer:** 4 + □ = 9, candidate 5, check 4 + 5 = 9.
+                    - For the Brief’s extreme error example, 5 + 17 = 22 ≠ 12; this can be shown as an arithmetic comparison in explanatory text, not as a new counter example outside the ≤20 initial-model scope.
+                    - Equality is mathematical equivalence of the evaluated left and right quantities. Do not treat "=" as an operation instruction and do not move the unknown to the right side of "=" as an unrelated Skill. The two addend placements have the same result by addition commutativity in these natural-number examples; a rote commutativity lesson is out of scope.
+                    - The Scene is instructional; its deterministic matching feedback is **not a scored Quiz or a validated mastery decision**.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 3 / position-comparison placement**
+
+                    1. Show 5 + □ = 12, with a 12-counter whole split into five known counters and seven counters whose numeral is hidden. Prompt **“Which part is the box? What number makes the two sides equal?”**
+                    2. Permit choosing 5, 6 or 7, or pressing “Show the parts”. Selecting 7 replaces the box and displays **“5 + 7 = 12. Both sides are 12.”** Selecting 5 gives **“5 + 5 = 10. That is not 12.”** Selecting 6 gives **“5 + 6 = 11. That is not 12.”** Do not give feedback solely as red/green or a score.
+                    3. Present **□ + 5 = 12** with exactly the same whole and the same part sizes. Prompt **“Now the box moved. Did the whole change?”** Learner may substitute the same seven. The check reads **“7 + 5 = 12.”** Show that the total and known part did not change.
+                    4. Show both complete equalities as consecutive, clearly labeled rows. Ask **“Is the missing number different because the box moved?”** Reveal **“No. It is still seven. Five and seven make twelve in either order.”**
+                    5. Optional example toggle: **4 + □ = 9** and **□ + 4 = 9**, correct missing part five. Retain optional object/count support; do not presume the child knows commutativity by name.
+                    6. Learner can reset or select “Show why” at any stage; no compulsory success gate.
+
+                    **Section 4 / independent substitution placement**
+
+                    1. In an independently initialized Scene, show **□ + 6 = 14** and clear text **“Find the missing part. Put your number in the box. Then check the addition.”** Do not initially expose the result.
+                    2. Optional “Show the parts” reveals a model of fourteen counters with a known six; “Show a hint” says **“If you know the whole and one part, subtract that part from the whole.”** These aids do not change the learning goal.
+                    3. Offer **7 / 8 / 9** as formative selections. A candidate is inserted into the **same original equation**; explicitly compute both sides and compare:
+                       - 7: **“7 + 6 = 13. The right side is 14. They are not equal.”**
+                       - 8: **“8 + 6 = 14. Both sides are 14. This number fits.”**
+                       - 9: **“9 + 6 = 15. That is one more than 14. They are not equal.”**
+                    4. If the first choice is not 8, retain the visible failed substitution and ask **“Could another number make both sides fourteen?”** Allow a second choice without erasing why the earlier one failed.
+                    5. “Show how to find it” reveals **“14 − 6 = 8; now check 8 + 6 = 14.”** Present subtraction and verification as two connected but distinct steps.
+                    6. Optional transfer **4 + □ = 9** follows exactly the same logic, with missing value 5 and check 4 + 5 = 9.
+                    7. End prompt **“How do you know your missing number works?”** The learner may read the verified equality, choose a reasoning sentence, type a short phrase or explain aloud to another person. No speech recognition or forced written response is required.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Object set:** accessible full original equality, missing-number box, labeled countable whole/known/unknown parts, ordered numeric candidate buttons, substitution display, evaluated left-hand total, right-hand total, explanation panel, hint, reset/try-other-example controls.
+                    - **Placement independence:** Two self-contained, prop-free Scene entries; position-comparison and independent-check are **editorial presentations**, not a new React mode prop or Resource_Config field. Coding Agent may share internal logic while preserving initial state and locale isolation.
+                    - **State:** current original equality and missing position, known addend, whole, candidate(s) tried, last substituted equality, result of direct numeric comparison, help level, explanation visibility, optional transfer example. Reset restores the original unseen candidate, not a hidden “correctness score”.
+                    - **Calculation rule:** On choosing candidate C, render the original expression with □ replaced by C, evaluate LHS using addition, compare exactly with the stated RHS W, and explain the result. The displayed check must not silently rewrite the original equality as a subtraction problem.
+                    - **Mathematical invariant:** The only _valid missing value_ for K + U = W or U + K = W in the approved nonnegative domain is W−K. Other candidates must be shown as failed substitutions with their actual sums. The UI may display an incorrect equality temporarily, but must label it clearly as **not equal**, never a true mathematical identity.
+                    - **Control state:** The child may request explanation without choosing, switch between positions in Section 3 and switch to transfer only on explicit request. Every switch announces the original equality and resets dependent state. Cross-Section state is not shared.
+                    - **Out-of-range cases:** No example with negative unknown or sum above twenty is set as an initial task. When evaluating a wrong candidate that would produce a sum above 20, use accurate numerical text rather than inventing uncountable/overflow counter visuals.
+                    - **No scoring:** All responses are transitory formative comparisons, not Question_Config answer persistence, diagnostic statistics or a mastered Skill event.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Display one large, legible expression and a simple counter part/whole representation. Show the _candidate substitution_ as a visible replacement of the box, followed by the evaluated left and right numerical values; mark **“equal”** or **“not equal”** in words as well as optional icons. Use subtle transitions to call attention to which position changed, but avoid a balance scale animation that falsely implies different operations or physical weights. Present equations in correct mathematical reading order in every layout. No required media asset, narration, video, remote computation, mascot or visual reward.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Genuine translations required for **all** learner-facing controls, hints, feedback, equation descriptions and accessible status messages in every supported locale; retain mathematically meaningful terms and a child-friendly explanation for addend/whole/sum.
+                    - For screen readers, speak **“missing first addend plus six equals fourteen”** or **“five plus missing second addend equals twelve”** as appropriate, and on testing announce the _full substituted equality_, result and match status. A structured text comparison must enable all reasoning without viewing the counters.
+                    - RTL: preserve the order and identities of numeric operands/equalities; do not blindly flip mathematical glyphs or make the unknown appear in the wrong addend role. Surrounding controls may use locale-specific logical ordering.
+                    - Accessible native buttons, visible focus, high contrast, ample hit areas for children, no drag-only interactions, no compulsory typing/voice or timed expiry. Counter group sizes also available through text and optional simple numerals for dyscalculia support.
+                    - Reduced-motion mode shows identical substituted numbers and outcomes instantly. Zoom and narrow-screen layouts may stack the model and original equality while preserving the same Section and Scene behavior.
+                    - All expression evaluation, models, feedback and complete localized resources must function offline once downloaded. No AI checking, network call, WebGL, speech recognition or external media requirement.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **Second unknown:** 5 + □ = 12; candidate 7 → 5 + 7 = 12, explicit both sides equal.
+                    2. **Wrong value:** candidate 5 → 5 + 5 = 10 ≠ 12, and candidate 6 → 5 + 6 = 11 ≠ 12; learner may inspect explanation and retry.
+                    3. **First unknown:** □ + 5 = 12; candidate 7 → 7 + 5 = 12. The model retains the original twelve and five.
+                    4. **Position change:** toggling the missing addend position never changes the fixed whole or known part, and updates the accessible equation description.
+                    5. **New case:** □ + 6 = 14; candidate 7 → 13 vs 14 mismatch; 8 → 14 vs 14 match; 9 → 15 vs 14 mismatch. No fabricated score.
+                    6. **Two-step solution:** after “Show how,” display **14 − 6 = 8** AND **8 + 6 = 14** explicitly, with the addition identified as verification of the original equality.
+                    7. **Transfer:** 4 + □ = 9 yields 5; substitution 4 + 5 = 9. An erroneous 4 + 4 = 8 is not approved as equal.
+                    8. **Help/reset:** learner can access complete explanation before answering, retry freely, reset, and revisit the other placement without state leakage.
+                    9. **Equivalent modes:** keyboard, screen reader, RTL, reduced motion, 200% zoom, mobile screen and offline after download all display the same evaluated equalities and explanation semantics.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    - Generic Lesson Section scene resources and React rendering currently exist in Playground; **Addition Equality Verifier itself is proposed, not implemented**.
+                    - Editor approves this Scene specification before Design Scene implementation; Coding Agent validates per-Section isolated prop-free entries, locale context and real typed-content integration. Each implemented Scene has its own tests and WCAG 2.2 AA access review.
+                    - Assessment Architect must separately determine any later scored Question/Quiz item, Skill attribution, validity and result policy; do not reuse these formative choices as assessment without review.
+                    - No new taxonomy Skill, Math source change, public Scene prop, scoring event or Note API is authorized by this script.
+
+
+                    ## Original placement
+
+                      2. **scene — resource supported; custom Scene proposed:** Addition Equality Verifier (preserved in Scene production.specification), position-comparison placement: place the same five-and-seven part model under both arrangements, invite selection of which addend is missing, and substitute 7 into either place. Compare each displayed sum with 12.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section3Markdown3:
                 config:
-                  id: "fbb3e291-7df3-800c-8cc8-d9cf8a885b52"
-                  slug: "section3Markdown3"
-                  type: "markdown"
+                  id: 'fbb3e291-7df3-800c-8cc8-d9cf8a885b52'
+                  slug: 'section3Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "In both equalities, **12** is the whole and **5** is the known part. The missing part is **7**. We can check: **5 + 7 = 12** and **7 + 5 = 12**. The place of the box changed, but the part did not."
+                      en: 'In both equalities, **12** is the whole and **5** is the known part. The missing part is **7**. We can check: **5 + 7 = 12** and **7 + 5 = 12**. The place of the box changed, but the part did not.'
                 production:
-                  purpose: "Legacy markdown block of The Box Can Be on Either Side of the Plus; provisional draft."
-                  specification: "  3. **markdown — available now:** “In both equalities, **12** is the whole and **5** is the known part. The missing part is **7**. We can check: **5 + 7 = 12** and **7 + 5 = 12**. The place of the box changed, but the part did not.”"
+                  purpose: 'Legacy markdown block of The Box Can Be on Either Side of the Plus; provisional draft.'
+                  specification: '  3. **markdown — available now:** “In both equalities, **12** is the whole and **5** is the known part. The missing part is **7**. We can check: **5 + 7 = 12** and **7 + 5 = 12**. The place of the box changed, but the part did not.”'
             order:
-              - "section3Text1"
-              - "scene3Block2"
-              - "section3Markdown3"
+              - 'section3Text1'
+              - 'scene3Block2'
+              - 'section3Markdown3'
         production:
-          purpose: "Identify the missing addend when it is first or second and keep the equals sign as a comparison of equal amounts."
-          pedagogicalIntent: "Identify the missing addend when it is first or second and keep the equals sign as a comparison of equal amounts."
+          purpose: 'Identify the missing addend when it is first or second and keep the equals sign as a comparison of equal amounts.'
+          pedagogicalIntent: 'Identify the missing addend when it is first or second and keep the equals sign as a comparison of equal amounts.'
           productionNotes: |
-              ### Section 3 — The Box Can Be on Either Side of the Plus
-              
-              - Purpose / learning outcome: Identify the missing addend when it is first or second and keep the equals sign as a comparison of equal amounts.
-              - Current implementation shape: LessonSection_Config.
-              - Ordered content blocks (top to bottom):
-                1. **text — available now:** “Look at these two equalities: **5 + □ = 12** and **□ + 5 = 12**. Where is the box now? Did the whole or the known part change?”
-                2. **scene — resource supported; custom Scene proposed:** Addition Equality Verifier (preserved in Scene production.specification), position-comparison placement: place the same five-and-seven part model under both arrangements, invite selection of which addend is missing, and substitute 7 into either place. Compare each displayed sum with 12.
-                3. **markdown — available now:** “In both equalities, **12** is the whole and **5** is the known part. The missing part is **7**. We can check: **5 + 7 = 12** and **7 + 5 = 12**. The place of the box changed, but the part did not.”
-              - Core explanation and learner-facing text: Addends are parts being joined; their order can change without changing their sum. A missing addend is not necessarily the number after the plus sign. Equal sign means both sides have the same value.
-              - Illustration / model / interaction: Two vertically stacked equalities shown _sequentially_, not two sibling Resource blocks side-by-side. The internal Scene may position addend models for comparison. A separate check with 4 + □ = 9 and □ + 4 = 9 is available after the shared example.
-              - Learner action, observations and explanatory feedback: Learner identifies the box and proposes 7 for each. If a child treats the box as “whatever comes after equals,” show the exact original expression with the box marked; if 5 is proposed, display “5 + 5 = 10, not 12.” Reveal without penalizing and offer retry.
-              - Navigation and transition: Pose “How do we make sure our missing number is right?” then lead to substitution in a new equality.
-              - Accessibility, locale and RTL requirements: Label both expressions “first equality” and “second equality”; screen reader says “missing first addend” vs “missing second addend”; keep the mathematical reading order unaltered in RTL; avoid using placement alone as instruction.
-              - Proposed unlocked Note(s) at this moment: No new Note; invite recall of Note 2 with the other addend position.
-              - Implementation dependencies and review notes: Scene is proposed. No scored select-one Question is implied by identification of the blank.
-              
+            ### Section 3 — The Box Can Be on Either Side of the Plus
+
+            - Purpose / learning outcome: Identify the missing addend when it is first or second and keep the equals sign as a comparison of equal amounts.
+            - Current implementation shape: LessonSection_Config.
+            - Ordered content blocks (top to bottom):
+              1. **text — available now:** “Look at these two equalities: **5 + □ = 12** and **□ + 5 = 12**. Where is the box now? Did the whole or the known part change?”
+              2. **scene — resource supported; custom Scene proposed:** Addition Equality Verifier (preserved in Scene production.specification), position-comparison placement: place the same five-and-seven part model under both arrangements, invite selection of which addend is missing, and substitute 7 into either place. Compare each displayed sum with 12.
+              3. **markdown — available now:** “In both equalities, **12** is the whole and **5** is the known part. The missing part is **7**. We can check: **5 + 7 = 12** and **7 + 5 = 12**. The place of the box changed, but the part did not.”
+            - Core explanation and learner-facing text: Addends are parts being joined; their order can change without changing their sum. A missing addend is not necessarily the number after the plus sign. Equal sign means both sides have the same value.
+            - Illustration / model / interaction: Two vertically stacked equalities shown _sequentially_, not two sibling Resource blocks side-by-side. The internal Scene may position addend models for comparison. A separate check with 4 + □ = 9 and □ + 4 = 9 is available after the shared example.
+            - Learner action, observations and explanatory feedback: Learner identifies the box and proposes 7 for each. If a child treats the box as “whatever comes after equals,” show the exact original expression with the box marked; if 5 is proposed, display “5 + 5 = 10, not 12.” Reveal without penalizing and offer retry.
+            - Navigation and transition: Pose “How do we make sure our missing number is right?” then lead to substitution in a new equality.
+            - Accessibility, locale and RTL requirements: Label both expressions “first equality” and “second equality”; screen reader says “missing first addend” vs “missing second addend”; keep the mathematical reading order unaltered in RTL; avoid using placement alone as instruction.
+            - Proposed unlocked Note(s) at this moment: No new Note; invite recall of Note 2 with the other addend position.
+            - Implementation dependencies and review notes: Scene is proposed. No scored select-one Question is implied by identification of the blank.
+
       section4PutYourNumberBackAndCheck:
         config:
-          id: "825c668a-e4a7-8b36-83ab-d896d550552a"
-          slug: "section4PutYourNumberBackAndCheck"
-          type: "content"
+          id: '825c668a-e4a7-8b36-83ab-d896d550552a'
+          slug: 'section4PutYourNumberBackAndCheck'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Put Your Number Back and Check"
+              en: 'Put Your Number Back and Check'
             navigationLabel:
-              en: "Put Your Number Back and Check"
+              en: 'Put Your Number Back and Check'
           content:
             items:
               section4Markdown1:
                 config:
-                  id: "53ad291b-3af0-80a9-860f-3cd46f520566"
-                  slug: "section4Markdown1"
-                  type: "markdown"
+                  id: '53ad291b-3af0-80a9-860f-3cd46f520566'
+                  slug: 'section4Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A new equality: **□ + 6 = 14**. The whole is 14. One part is 6. What is the other part? You can count counters or subtract. Then put your number in the box and check the addition."
+                      en: 'A new equality: **□ + 6 = 14**. The whole is 14. One part is 6. What is the other part? You can count counters or subtract. Then put your number in the box and check the addition.'
                 production:
-                  purpose: "Legacy markdown block of Put Your Number Back and Check; provisional draft."
-                  specification: "  1. **markdown — available now:** “A new equality: **□ + 6 = 14**. The whole is 14. One part is 6. What is the other part? You can count counters or subtract. Then put your number in the box and check the addition.”"
+                  purpose: 'Legacy markdown block of Put Your Number Back and Check; provisional draft.'
+                  specification: '  1. **markdown — available now:** “A new equality: **□ + 6 = 14**. The whole is 14. One part is 6. What is the other part? You can count counters or subtract. Then put your number in the box and check the addition.”'
               scene4Block2:
                 config:
-                  id: "fc5f56cb-602b-8be3-8df0-b5d60184a8fe"
-                  slug: "scene4Block2"
-                  type: "scene"
+                  id: 'fc5f56cb-602b-8be3-8df0-b5d60184a8fe'
+                  slug: 'scene4Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "A new equality: **□ + 6 = 14**. The whole is 14. One part is 6. What is the other part? You can count counters or subtract. Then put your number in the box and check the addition."
+                        instruction: 'A new equality: **□ + 6 = 14**. The whole is 14. One part is 6. What is the other part? You can count counters or subtract. Then put your number in the box and check the addition.'
                 production:
-                  purpose: "Independently initialized Scene occurrence in Put Your Number Back and Check. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in Put Your Number Back and Check. Not approved or implemented.'
                   specification: |
-                      # Addition Equality Verifier — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Finding an Unknown Addend Content (preserved in this Lesson's production notes), Sections 3 “The Box Can Be on Either Side of the Plus” and 4 “Put Your Number Back and Check”
-                      Methodologist objective(s): Identify the unknown addend in either position and verify its candidate value by substituting into the ORIGINAL addition equality. Methodologist Brief (preserved in production.methodology)
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      A missing addend is not “whatever appears after plus.” It is an unknown part whose value must make the entire equality true. The child sees the same relationship in different addend arrangements, then **tests the candidate inside the original equation**. Comparing the two sides makes the equals sign a relation, not just a prompt to write an answer.
-                      
-                      Canonical child-facing statement: “The box can be first or second. Put your number into the box. Do the two sides show the same amount?”
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Valid initial examples use nonnegative whole numbers W ≤ 20, known addend K with 0 ≤ K ≤ W, unknown U=W−K. Both K + □ = W and □ + K = W have the same missing value U.
-                      - **Section 3 fixed pair:** 5 + □ = 12 and □ + 5 = 12. Correct candidate is 7; substitution yields 5 + 7 = 12 and 7 + 5 = 12. A five-counter known part and seven-counter unknown part together comprise the original whole of twelve.
-                      - **Section 3 optional transfer:** 4 + □ = 9 and □ + 4 = 9; candidate 5 gives 4 + 5 = 9 and 5 + 4 = 9. Wrong candidate 4 gives 4 + 4 = 8, so cannot satisfy the original sum of nine.
-                      - **Section 4 independent task:** □ + 6 = 14, candidate set 7 / 8 / 9. Substitution checks are respectively 7 + 6 = 13 (not 14), 8 + 6 = 14 (matches), 9 + 6 = 15 (not 14). The inverse subtraction 14 − 6 = 8 explains how to find the candidate, not a replacement for checking the original addition.
-                      - **Section 4 optional transfer:** 4 + □ = 9, candidate 5, check 4 + 5 = 9.
-                      - For the Brief’s extreme error example, 5 + 17 = 22 ≠ 12; this can be shown as an arithmetic comparison in explanatory text, not as a new counter example outside the ≤20 initial-model scope.
-                      - Equality is mathematical equivalence of the evaluated left and right quantities. Do not treat "=" as an operation instruction and do not move the unknown to the right side of "=" as an unrelated Skill. The two addend placements have the same result by addition commutativity in these natural-number examples; a rote commutativity lesson is out of scope.
-                      - The Scene is instructional; its deterministic matching feedback is **not a scored Quiz or a validated mastery decision**.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      **Section 3 / position-comparison placement**
-                      
-                      1. Show 5 + □ = 12, with a 12-counter whole split into five known counters and seven counters whose numeral is hidden. Prompt **“Which part is the box? What number makes the two sides equal?”**
-                      2. Permit choosing 5, 6 or 7, or pressing “Show the parts”. Selecting 7 replaces the box and displays **“5 + 7 = 12. Both sides are 12.”** Selecting 5 gives **“5 + 5 = 10. That is not 12.”** Selecting 6 gives **“5 + 6 = 11. That is not 12.”** Do not give feedback solely as red/green or a score.
-                      3. Present **□ + 5 = 12** with exactly the same whole and the same part sizes. Prompt **“Now the box moved. Did the whole change?”** Learner may substitute the same seven. The check reads **“7 + 5 = 12.”** Show that the total and known part did not change.
-                      4. Show both complete equalities as consecutive, clearly labeled rows. Ask **“Is the missing number different because the box moved?”** Reveal **“No. It is still seven. Five and seven make twelve in either order.”**
-                      5. Optional example toggle: **4 + □ = 9** and **□ + 4 = 9**, correct missing part five. Retain optional object/count support; do not presume the child knows commutativity by name.
-                      6. Learner can reset or select “Show why” at any stage; no compulsory success gate.
-                      
-                      **Section 4 / independent substitution placement**
-                      
-                      1. In an independently initialized Scene, show **□ + 6 = 14** and clear text **“Find the missing part. Put your number in the box. Then check the addition.”** Do not initially expose the result.
-                      2. Optional “Show the parts” reveals a model of fourteen counters with a known six; “Show a hint” says **“If you know the whole and one part, subtract that part from the whole.”** These aids do not change the learning goal.
-                      3. Offer **7 / 8 / 9** as formative selections. A candidate is inserted into the **same original equation**; explicitly compute both sides and compare:
-                         - 7: **“7 + 6 = 13. The right side is 14. They are not equal.”**
-                         - 8: **“8 + 6 = 14. Both sides are 14. This number fits.”**
-                         - 9: **“9 + 6 = 15. That is one more than 14. They are not equal.”**
-                      4. If the first choice is not 8, retain the visible failed substitution and ask **“Could another number make both sides fourteen?”** Allow a second choice without erasing why the earlier one failed.
-                      5. “Show how to find it” reveals **“14 − 6 = 8; now check 8 + 6 = 14.”** Present subtraction and verification as two connected but distinct steps.
-                      6. Optional transfer **4 + □ = 9** follows exactly the same logic, with missing value 5 and check 4 + 5 = 9.
-                      7. End prompt **“How do you know your missing number works?”** The learner may read the verified equality, choose a reasoning sentence, type a short phrase or explain aloud to another person. No speech recognition or forced written response is required.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - **Object set:** accessible full original equality, missing-number box, labeled countable whole/known/unknown parts, ordered numeric candidate buttons, substitution display, evaluated left-hand total, right-hand total, explanation panel, hint, reset/try-other-example controls.
-                      - **Placement independence:** Two self-contained, prop-free Scene entries; position-comparison and independent-check are **editorial presentations**, not a new React mode prop or Resource_Config field. Coding Agent may share internal logic while preserving initial state and locale isolation.
-                      - **State:** current original equality and missing position, known addend, whole, candidate(s) tried, last substituted equality, result of direct numeric comparison, help level, explanation visibility, optional transfer example. Reset restores the original unseen candidate, not a hidden “correctness score”.
-                      - **Calculation rule:** On choosing candidate C, render the original expression with □ replaced by C, evaluate LHS using addition, compare exactly with the stated RHS W, and explain the result. The displayed check must not silently rewrite the original equality as a subtraction problem.
-                      - **Mathematical invariant:** The only _valid missing value_ for K + U = W or U + K = W in the approved nonnegative domain is W−K. Other candidates must be shown as failed substitutions with their actual sums. The UI may display an incorrect equality temporarily, but must label it clearly as **not equal**, never a true mathematical identity.
-                      - **Control state:** The child may request explanation without choosing, switch between positions in Section 3 and switch to transfer only on explicit request. Every switch announces the original equality and resets dependent state. Cross-Section state is not shared.
-                      - **Out-of-range cases:** No example with negative unknown or sum above twenty is set as an initial task. When evaluating a wrong candidate that would produce a sum above 20, use accurate numerical text rather than inventing uncountable/overflow counter visuals.
-                      - **No scoring:** All responses are transitory formative comparisons, not Question_Config answer persistence, diagnostic statistics or a mastered Skill event.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Display one large, legible expression and a simple counter part/whole representation. Show the _candidate substitution_ as a visible replacement of the box, followed by the evaluated left and right numerical values; mark **“equal”** or **“not equal”** in words as well as optional icons. Use subtle transitions to call attention to which position changed, but avoid a balance scale animation that falsely implies different operations or physical weights. Present equations in correct mathematical reading order in every layout. No required media asset, narration, video, remote computation, mascot or visual reward.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - Genuine translations required for **all** learner-facing controls, hints, feedback, equation descriptions and accessible status messages in every supported locale; retain mathematically meaningful terms and a child-friendly explanation for addend/whole/sum.
-                      - For screen readers, speak **“missing first addend plus six equals fourteen”** or **“five plus missing second addend equals twelve”** as appropriate, and on testing announce the _full substituted equality_, result and match status. A structured text comparison must enable all reasoning without viewing the counters.
-                      - RTL: preserve the order and identities of numeric operands/equalities; do not blindly flip mathematical glyphs or make the unknown appear in the wrong addend role. Surrounding controls may use locale-specific logical ordering.
-                      - Accessible native buttons, visible focus, high contrast, ample hit areas for children, no drag-only interactions, no compulsory typing/voice or timed expiry. Counter group sizes also available through text and optional simple numerals for dyscalculia support.
-                      - Reduced-motion mode shows identical substituted numbers and outcomes instantly. Zoom and narrow-screen layouts may stack the model and original equality while preserving the same Section and Scene behavior.
-                      - All expression evaluation, models, feedback and complete localized resources must function offline once downloaded. No AI checking, network call, WebGL, speech recognition or external media requirement.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. **Second unknown:** 5 + □ = 12; candidate 7 → 5 + 7 = 12, explicit both sides equal.
-                      2. **Wrong value:** candidate 5 → 5 + 5 = 10 ≠ 12, and candidate 6 → 5 + 6 = 11 ≠ 12; learner may inspect explanation and retry.
-                      3. **First unknown:** □ + 5 = 12; candidate 7 → 7 + 5 = 12. The model retains the original twelve and five.
-                      4. **Position change:** toggling the missing addend position never changes the fixed whole or known part, and updates the accessible equation description.
-                      5. **New case:** □ + 6 = 14; candidate 7 → 13 vs 14 mismatch; 8 → 14 vs 14 match; 9 → 15 vs 14 mismatch. No fabricated score.
-                      6. **Two-step solution:** after “Show how,” display **14 − 6 = 8** AND **8 + 6 = 14** explicitly, with the addition identified as verification of the original equality.
-                      7. **Transfer:** 4 + □ = 9 yields 5; substitution 4 + 5 = 9. An erroneous 4 + 4 = 8 is not approved as equal.
-                      8. **Help/reset:** learner can access complete explanation before answering, retry freely, reset, and revisit the other placement without state leakage.
-                      9. **Equivalent modes:** keyboard, screen reader, RTL, reduced motion, 200% zoom, mobile screen and offline after download all display the same evaluated equalities and explanation semantics.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      - Generic Lesson Section scene resources and React rendering currently exist in Playground; **Addition Equality Verifier itself is proposed, not implemented**.
-                      - Editor approves this Scene specification before Design Scene implementation; Coding Agent validates per-Section isolated prop-free entries, locale context and real typed-content integration. Each implemented Scene has its own tests and WCAG 2.2 AA access review.
-                      - Assessment Architect must separately determine any later scored Question/Quiz item, Skill attribution, validity and result policy; do not reuse these formative choices as assessment without review.
-                      - No new taxonomy Skill, Math source change, public Scene prop, scoring event or Note API is authorized by this script.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — generic scene renderer available; custom Scene proposed:** Addition Equality Verifier (preserved in Scene production.specification), independent-check placement: offer candidate values **7 / 8 / 9** with optional “Show the parts,” compute the resulting sum transparently, and compare it to 14. The child can reset or request the full explanation.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Addition Equality Verifier — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding an Unknown Addend Content (preserved in this Lesson's production notes), Sections 3 “The Box Can Be on Either Side of the Plus” and 4 “Put Your Number Back and Check”
+                    Methodologist objective(s): Identify the unknown addend in either position and verify its candidate value by substituting into the ORIGINAL addition equality. Methodologist Brief (preserved in production.methodology)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A missing addend is not “whatever appears after plus.” It is an unknown part whose value must make the entire equality true. The child sees the same relationship in different addend arrangements, then **tests the candidate inside the original equation**. Comparing the two sides makes the equals sign a relation, not just a prompt to write an answer.
+
+                    Canonical child-facing statement: “The box can be first or second. Put your number into the box. Do the two sides show the same amount?”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Valid initial examples use nonnegative whole numbers W ≤ 20, known addend K with 0 ≤ K ≤ W, unknown U=W−K. Both K + □ = W and □ + K = W have the same missing value U.
+                    - **Section 3 fixed pair:** 5 + □ = 12 and □ + 5 = 12. Correct candidate is 7; substitution yields 5 + 7 = 12 and 7 + 5 = 12. A five-counter known part and seven-counter unknown part together comprise the original whole of twelve.
+                    - **Section 3 optional transfer:** 4 + □ = 9 and □ + 4 = 9; candidate 5 gives 4 + 5 = 9 and 5 + 4 = 9. Wrong candidate 4 gives 4 + 4 = 8, so cannot satisfy the original sum of nine.
+                    - **Section 4 independent task:** □ + 6 = 14, candidate set 7 / 8 / 9. Substitution checks are respectively 7 + 6 = 13 (not 14), 8 + 6 = 14 (matches), 9 + 6 = 15 (not 14). The inverse subtraction 14 − 6 = 8 explains how to find the candidate, not a replacement for checking the original addition.
+                    - **Section 4 optional transfer:** 4 + □ = 9, candidate 5, check 4 + 5 = 9.
+                    - For the Brief’s extreme error example, 5 + 17 = 22 ≠ 12; this can be shown as an arithmetic comparison in explanatory text, not as a new counter example outside the ≤20 initial-model scope.
+                    - Equality is mathematical equivalence of the evaluated left and right quantities. Do not treat "=" as an operation instruction and do not move the unknown to the right side of "=" as an unrelated Skill. The two addend placements have the same result by addition commutativity in these natural-number examples; a rote commutativity lesson is out of scope.
+                    - The Scene is instructional; its deterministic matching feedback is **not a scored Quiz or a validated mastery decision**.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 3 / position-comparison placement**
+
+                    1. Show 5 + □ = 12, with a 12-counter whole split into five known counters and seven counters whose numeral is hidden. Prompt **“Which part is the box? What number makes the two sides equal?”**
+                    2. Permit choosing 5, 6 or 7, or pressing “Show the parts”. Selecting 7 replaces the box and displays **“5 + 7 = 12. Both sides are 12.”** Selecting 5 gives **“5 + 5 = 10. That is not 12.”** Selecting 6 gives **“5 + 6 = 11. That is not 12.”** Do not give feedback solely as red/green or a score.
+                    3. Present **□ + 5 = 12** with exactly the same whole and the same part sizes. Prompt **“Now the box moved. Did the whole change?”** Learner may substitute the same seven. The check reads **“7 + 5 = 12.”** Show that the total and known part did not change.
+                    4. Show both complete equalities as consecutive, clearly labeled rows. Ask **“Is the missing number different because the box moved?”** Reveal **“No. It is still seven. Five and seven make twelve in either order.”**
+                    5. Optional example toggle: **4 + □ = 9** and **□ + 4 = 9**, correct missing part five. Retain optional object/count support; do not presume the child knows commutativity by name.
+                    6. Learner can reset or select “Show why” at any stage; no compulsory success gate.
+
+                    **Section 4 / independent substitution placement**
+
+                    1. In an independently initialized Scene, show **□ + 6 = 14** and clear text **“Find the missing part. Put your number in the box. Then check the addition.”** Do not initially expose the result.
+                    2. Optional “Show the parts” reveals a model of fourteen counters with a known six; “Show a hint” says **“If you know the whole and one part, subtract that part from the whole.”** These aids do not change the learning goal.
+                    3. Offer **7 / 8 / 9** as formative selections. A candidate is inserted into the **same original equation**; explicitly compute both sides and compare:
+                       - 7: **“7 + 6 = 13. The right side is 14. They are not equal.”**
+                       - 8: **“8 + 6 = 14. Both sides are 14. This number fits.”**
+                       - 9: **“9 + 6 = 15. That is one more than 14. They are not equal.”**
+                    4. If the first choice is not 8, retain the visible failed substitution and ask **“Could another number make both sides fourteen?”** Allow a second choice without erasing why the earlier one failed.
+                    5. “Show how to find it” reveals **“14 − 6 = 8; now check 8 + 6 = 14.”** Present subtraction and verification as two connected but distinct steps.
+                    6. Optional transfer **4 + □ = 9** follows exactly the same logic, with missing value 5 and check 4 + 5 = 9.
+                    7. End prompt **“How do you know your missing number works?”** The learner may read the verified equality, choose a reasoning sentence, type a short phrase or explain aloud to another person. No speech recognition or forced written response is required.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Object set:** accessible full original equality, missing-number box, labeled countable whole/known/unknown parts, ordered numeric candidate buttons, substitution display, evaluated left-hand total, right-hand total, explanation panel, hint, reset/try-other-example controls.
+                    - **Placement independence:** Two self-contained, prop-free Scene entries; position-comparison and independent-check are **editorial presentations**, not a new React mode prop or Resource_Config field. Coding Agent may share internal logic while preserving initial state and locale isolation.
+                    - **State:** current original equality and missing position, known addend, whole, candidate(s) tried, last substituted equality, result of direct numeric comparison, help level, explanation visibility, optional transfer example. Reset restores the original unseen candidate, not a hidden “correctness score”.
+                    - **Calculation rule:** On choosing candidate C, render the original expression with □ replaced by C, evaluate LHS using addition, compare exactly with the stated RHS W, and explain the result. The displayed check must not silently rewrite the original equality as a subtraction problem.
+                    - **Mathematical invariant:** The only _valid missing value_ for K + U = W or U + K = W in the approved nonnegative domain is W−K. Other candidates must be shown as failed substitutions with their actual sums. The UI may display an incorrect equality temporarily, but must label it clearly as **not equal**, never a true mathematical identity.
+                    - **Control state:** The child may request explanation without choosing, switch between positions in Section 3 and switch to transfer only on explicit request. Every switch announces the original equality and resets dependent state. Cross-Section state is not shared.
+                    - **Out-of-range cases:** No example with negative unknown or sum above twenty is set as an initial task. When evaluating a wrong candidate that would produce a sum above 20, use accurate numerical text rather than inventing uncountable/overflow counter visuals.
+                    - **No scoring:** All responses are transitory formative comparisons, not Question_Config answer persistence, diagnostic statistics or a mastered Skill event.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Display one large, legible expression and a simple counter part/whole representation. Show the _candidate substitution_ as a visible replacement of the box, followed by the evaluated left and right numerical values; mark **“equal”** or **“not equal”** in words as well as optional icons. Use subtle transitions to call attention to which position changed, but avoid a balance scale animation that falsely implies different operations or physical weights. Present equations in correct mathematical reading order in every layout. No required media asset, narration, video, remote computation, mascot or visual reward.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Genuine translations required for **all** learner-facing controls, hints, feedback, equation descriptions and accessible status messages in every supported locale; retain mathematically meaningful terms and a child-friendly explanation for addend/whole/sum.
+                    - For screen readers, speak **“missing first addend plus six equals fourteen”** or **“five plus missing second addend equals twelve”** as appropriate, and on testing announce the _full substituted equality_, result and match status. A structured text comparison must enable all reasoning without viewing the counters.
+                    - RTL: preserve the order and identities of numeric operands/equalities; do not blindly flip mathematical glyphs or make the unknown appear in the wrong addend role. Surrounding controls may use locale-specific logical ordering.
+                    - Accessible native buttons, visible focus, high contrast, ample hit areas for children, no drag-only interactions, no compulsory typing/voice or timed expiry. Counter group sizes also available through text and optional simple numerals for dyscalculia support.
+                    - Reduced-motion mode shows identical substituted numbers and outcomes instantly. Zoom and narrow-screen layouts may stack the model and original equality while preserving the same Section and Scene behavior.
+                    - All expression evaluation, models, feedback and complete localized resources must function offline once downloaded. No AI checking, network call, WebGL, speech recognition or external media requirement.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **Second unknown:** 5 + □ = 12; candidate 7 → 5 + 7 = 12, explicit both sides equal.
+                    2. **Wrong value:** candidate 5 → 5 + 5 = 10 ≠ 12, and candidate 6 → 5 + 6 = 11 ≠ 12; learner may inspect explanation and retry.
+                    3. **First unknown:** □ + 5 = 12; candidate 7 → 7 + 5 = 12. The model retains the original twelve and five.
+                    4. **Position change:** toggling the missing addend position never changes the fixed whole or known part, and updates the accessible equation description.
+                    5. **New case:** □ + 6 = 14; candidate 7 → 13 vs 14 mismatch; 8 → 14 vs 14 match; 9 → 15 vs 14 mismatch. No fabricated score.
+                    6. **Two-step solution:** after “Show how,” display **14 − 6 = 8** AND **8 + 6 = 14** explicitly, with the addition identified as verification of the original equality.
+                    7. **Transfer:** 4 + □ = 9 yields 5; substitution 4 + 5 = 9. An erroneous 4 + 4 = 8 is not approved as equal.
+                    8. **Help/reset:** learner can access complete explanation before answering, retry freely, reset, and revisit the other placement without state leakage.
+                    9. **Equivalent modes:** keyboard, screen reader, RTL, reduced motion, 200% zoom, mobile screen and offline after download all display the same evaluated equalities and explanation semantics.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    - Generic Lesson Section scene resources and React rendering currently exist in Playground; **Addition Equality Verifier itself is proposed, not implemented**.
+                    - Editor approves this Scene specification before Design Scene implementation; Coding Agent validates per-Section isolated prop-free entries, locale context and real typed-content integration. Each implemented Scene has its own tests and WCAG 2.2 AA access review.
+                    - Assessment Architect must separately determine any later scored Question/Quiz item, Skill attribution, validity and result policy; do not reuse these formative choices as assessment without review.
+                    - No new taxonomy Skill, Math source change, public Scene prop, scoring event or Note API is authorized by this script.
+
+
+                    ## Original placement
+
+                      2. **scene — generic scene renderer available; custom Scene proposed:** Addition Equality Verifier (preserved in Scene production.specification), independent-check placement: offer candidate values **7 / 8 / 9** with optional “Show the parts,” compute the resulting sum transparently, and compare it to 14. The child can reset or request the full explanation.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section4Markdown3:
                 config:
-                  id: "6dc1412e-2dc4-8969-8a9f-623baa9a4a7c"
-                  slug: "section4Markdown3"
-                  type: "markdown"
+                  id: '6dc1412e-2dc4-8969-8a9f-623baa9a4a7c'
+                  slug: 'section4Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The missing part is **14 − 6 = 8**. Check in the original equality: **8 + 6 = 14**. Both sides are 14, so the missing number fits. If they are different, we need to try again.” Optional transfer “4 + □ = 9"
+                      en: 'The missing part is **14 − 6 = 8**. Check in the original equality: **8 + 6 = 14**. Both sides are 14, so the missing number fits. If they are different, we need to try again.” Optional transfer “4 + □ = 9'
                 production:
-                  purpose: "Legacy markdown block of Put Your Number Back and Check; provisional draft."
-                  specification: "  3. **markdown — available now:** After the attempt: “The missing part is **14 − 6 = 8**. Check in the original equality: **8 + 6 = 14**. Both sides are 14, so the missing number fits. If they are different, we need to try again.” Optional transfer “4 + □ = 9” uses 9 − 4 = 5 and check 4 + 5 = 9."
+                  purpose: 'Legacy markdown block of Put Your Number Back and Check; provisional draft.'
+                  specification: '  3. **markdown — available now:** After the attempt: “The missing part is **14 − 6 = 8**. Check in the original equality: **8 + 6 = 14**. Both sides are 14, so the missing number fits. If they are different, we need to try again.” Optional transfer “4 + □ = 9” uses 9 − 4 = 5 and check 4 + 5 = 9.'
             order:
-              - "section4Markdown1"
-              - "scene4Block2"
-              - "section4Markdown3"
+              - 'section4Markdown1'
+              - 'scene4Block2'
+              - 'section4Markdown3'
         production:
-          purpose: "Independently find an unknown addend in a new case and verify by substitution into the _original addition_, noticing a mismatch when an incorrect candidate is tested."
-          pedagogicalIntent: "Independently find an unknown addend in a new case and verify by substitution into the _original addition_, noticing a mismatch when an incorrect candidate is tested."
+          purpose: 'Independently find an unknown addend in a new case and verify by substitution into the _original addition_, noticing a mismatch when an incorrect candidate is tested.'
+          pedagogicalIntent: 'Independently find an unknown addend in a new case and verify by substitution into the _original addition_, noticing a mismatch when an incorrect candidate is tested.'
           productionNotes: |
-              ### Section 4 — Put Your Number Back and Check
-              
-              - Purpose / learning outcome: Independently find an unknown addend in a new case and verify by substitution into the _original addition_, noticing a mismatch when an incorrect candidate is tested.
-              - Current implementation shape: LessonSection_Config. No required Quiz_Config and no validated Question object.
-              - Ordered content blocks (top to bottom):
-                1. **markdown — available now:** “A new equality: **□ + 6 = 14**. The whole is 14. One part is 6. What is the other part? You can count counters or subtract. Then put your number in the box and check the addition.”
-                2. **scene — generic scene renderer available; custom Scene proposed:** Addition Equality Verifier (preserved in Scene production.specification), independent-check placement: offer candidate values **7 / 8 / 9** with optional “Show the parts,” compute the resulting sum transparently, and compare it to 14. The child can reset or request the full explanation.
-                3. **markdown — available now:** After the attempt: “The missing part is **14 − 6 = 8**. Check in the original equality: **8 + 6 = 14**. Both sides are 14, so the missing number fits. If they are different, we need to try again.” Optional transfer “4 + □ = 9” uses 9 − 4 = 5 and check 4 + 5 = 9.
-              - Core explanation and learner-facing text: The inverse subtraction **proposes** the missing value; inserting the value back into the exact original equality **verifies** it. A correct subtraction alone is not the required substitution check.
-              - Illustration / model / interaction: First show the unknown with no visible hint, then use a 14-counter whole and six known counters on demand. A numeric comparison of “left side” and “right side” makes the verification objective.
-              - Learner action, observations and explanatory feedback: 7 → “7 + 6 = 13, but the whole should be 14.” 9 → “9 + 6 = 15, which is one more than 14.” 8 → “8 + 6 = 14. Both sides are the same.” Show “14 − 6 = 8” after a hint or reveal, not as an unexplained grading key. An intentional misconception contrast can say “5 + 17 = 22, not 12,” so **adding** known five and whole twelve cannot solve 5 + □ = 12.
-              - Navigation and transition: End with an optional prompt “Tell how you found the missing part and how you checked it.” Speaking is optional; the learner may select a reasoning sentence, type, or simply inspect the full explanation. No performance score, reward, forced retry or future-program dependency.
-              - Accessibility, locale and RTL requirements: Numeric candidates and substituted equality are screen-reader accessible; all state changes announced in text, with clear keyboard focus, touch-friendly targets and RTL-safe equations. No drag-only or compulsory speech input.
-              - Proposed unlocked Note(s) at this moment: Note 3 “Check the missing part in the original addition.” Proposed after at least one complete checked substitution is _shown and explained_, regardless of whether the child guessed correctly.
-              - Implementation dependencies and review notes: The Scene is an instructional interaction, not an Assessment Architect-reviewed Quiz. Math examples are editorial prompts; assessment thresholds and question validity remain separate.
-              
+            ### Section 4 — Put Your Number Back and Check
+
+            - Purpose / learning outcome: Independently find an unknown addend in a new case and verify by substitution into the _original addition_, noticing a mismatch when an incorrect candidate is tested.
+            - Current implementation shape: LessonSection_Config. No required Quiz_Config and no validated Question object.
+            - Ordered content blocks (top to bottom):
+              1. **markdown — available now:** “A new equality: **□ + 6 = 14**. The whole is 14. One part is 6. What is the other part? You can count counters or subtract. Then put your number in the box and check the addition.”
+              2. **scene — generic scene renderer available; custom Scene proposed:** Addition Equality Verifier (preserved in Scene production.specification), independent-check placement: offer candidate values **7 / 8 / 9** with optional “Show the parts,” compute the resulting sum transparently, and compare it to 14. The child can reset or request the full explanation.
+              3. **markdown — available now:** After the attempt: “The missing part is **14 − 6 = 8**. Check in the original equality: **8 + 6 = 14**. Both sides are 14, so the missing number fits. If they are different, we need to try again.” Optional transfer “4 + □ = 9” uses 9 − 4 = 5 and check 4 + 5 = 9.
+            - Core explanation and learner-facing text: The inverse subtraction **proposes** the missing value; inserting the value back into the exact original equality **verifies** it. A correct subtraction alone is not the required substitution check.
+            - Illustration / model / interaction: First show the unknown with no visible hint, then use a 14-counter whole and six known counters on demand. A numeric comparison of “left side” and “right side” makes the verification objective.
+            - Learner action, observations and explanatory feedback: 7 → “7 + 6 = 13, but the whole should be 14.” 9 → “9 + 6 = 15, which is one more than 14.” 8 → “8 + 6 = 14. Both sides are the same.” Show “14 − 6 = 8” after a hint or reveal, not as an unexplained grading key. An intentional misconception contrast can say “5 + 17 = 22, not 12,” so **adding** known five and whole twelve cannot solve 5 + □ = 12.
+            - Navigation and transition: End with an optional prompt “Tell how you found the missing part and how you checked it.” Speaking is optional; the learner may select a reasoning sentence, type, or simply inspect the full explanation. No performance score, reward, forced retry or future-program dependency.
+            - Accessibility, locale and RTL requirements: Numeric candidates and substituted equality are screen-reader accessible; all state changes announced in text, with clear keyboard focus, touch-friendly targets and RTL-safe equations. No drag-only or compulsory speech input.
+            - Proposed unlocked Note(s) at this moment: Note 3 “Check the missing part in the original addition.” Proposed after at least one complete checked substitution is _shown and explained_, regardless of whether the child guessed correctly.
+            - Implementation dependencies and review notes: The Scene is an instructional interaction, not an Assessment Architect-reviewed Quiz. Math examples are editorial prompts; assessment thresholds and question validity remain separate.
+
     order:
-      - "section1OnePartIsMissing"
-      - "section2TakeAwayTheKnownPart"
-      - "section3TheBoxCanBeOnEitherSideOfThePlus"
-      - "section4PutYourNumberBackAndCheck"
+      - 'section1OnePartIsMissing'
+      - 'section2TakeAwayTheKnownPart'
+      - 'section3TheBoxCanBeOnEitherSideOfThePlus'
+      - 'section4PutYourNumberBackAndCheck'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
-      # Finding an Unknown Addend — Methodologist Brief
-      
-      Date: 2026-10-30
-      Slug: findingUnknownAddend
-      Methodologist status: Draft
-      Code: [Not implemented](#)
-      Program dependence: None
-      
-      ## Educational purpose
-      
-      Introduce an unknown addend as a missing part of a known whole and connect part–whole reasoning with subtraction as the inverse of addition. The learning goal is to find a missing quantity while preserving equality, not to memorize a blank-filling trick.
-      
-      ## Target audience
-      
-      Children aged 6–8 in grades 1–2 who are learning to read equations and solve addition/subtraction situations. Assume uneven literacy; pair a short written equality with a spoken description and a concrete part–whole model. Avoid requiring verbal explanation as the only way to show understanding.
-      
-      ## Prerequisites
-      
-      - Count and compare quantities within the selected range and understand a total as made from parts.
-      - Add and subtract small nonnegative whole numbers, with objects or a number line as needed.
-      - Interpret an equals sign as a relationship between two equal quantities, not merely a signal to write an answer.
-      
-      ## Target Skills
-      
-      - [unknownAddend.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/algebra/unknowns/skills/unknownAddend.data.ts)
-      
-      ## Expected learning outcomes
-      
-      - Identify which part of an addition relation is unknown in both □ + 5 = 12 and 5 + □ = 12.
-      - Explain that the whole is the total and removing the known part leaves the missing part.
-      - Find the missing addend using subtraction in an age-appropriate number domain (initially totals up to 20), with an optional model.
-      - Check the proposed value by substituting it into the **original addition equality**, and notice when the resulting sum is wrong.
-      
-      ## Essential subject matter
-      
-      An **addend** is a quantity being added; the **sum** is the total. In 5 + □ = 12, the missing addend is 7 because 12 − 5 = 7 and 5 + 7 = 12. Likewise, □ + 5 = 12 has the same unknown value. Part–whole representations make the inverse relationship visible: a whole of twelve counters, five known, leaves seven unknown. Subtraction works here because the sum and known addend are given and the task is within nonnegative whole numbers. The equality has the same meaning with the unknown on the left or right and with a placeholder or a verbal description. Future recall should anchor “whole minus known part gives missing part” together with the obligation to check it.
-      
-      ## Conceptual progression and dependencies
-      
-      Connect physical part–whole models to written equalities. Show how a complete known addition can be decomposed into its parts before introducing a missing component. Relate removing the known part from the whole to subtraction, then verify by restoring the parts and comparing with the whole. Gradually shift to equations without objects and to contextual stories where the missing part occurs in different positions. The Screenwriter chooses the learner actions and pacing.
-      
-      ## Misconceptions, examples and boundaries
-      
-      Common confusions: taking the known addend **away from itself**; adding the visible addend to the total; believing the blank must always be after the plus sign; treating the equals sign as “calculate what follows”; or checking only the subtraction rather than the original addition. Counterexample: if 5 + □ = 12, choosing 17 by adding 5 + 12 fails substitution. Include sums within 20 and no negative unknowns, fractions, or multi-step symbolic equation solving.
-      
-      ## Localization, accessibility and offline intent
-      
-      Translate “addend”, “sum”, “whole”, “part”, and “equals” carefully and do not substitute culturally specific objects that distort quantity. Ensure equation reading remains correct for both LTR and RTL presentations; keep mathematical operator order semantically stable. Support counting by audio/text, tactile-friendly physical substitutes, keyboard-accessible input/selection, screen-reader description of missing boxes, adjustable text size and number line descriptions. Offline resources and feedback must be complete once downloaded; do not assume an online checker.
-      
-      ## Sources and factual verification
-      
-      - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), especially 1.OA.D.8 (unknown number in an addition/subtraction equation) and 2.OA.A.1 (unknowns in word problems); reference only, not automatic alignment.
-      - [IES/WWC, Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), recommendations for explicit mathematical language and linked concrete/abstract representations.
-      - [Playground generated English taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), canonical methodological description for unknownAddend.
-      
-      ## Curriculum / Program compatibility
-      
-      Not specified. The Lesson remains autonomous and can be placed in an appropriate Grade 1–2 sequence after part–whole number concepts.
-      
-      ## Open editorial decisions
-      
-      - None affecting taxonomy identity. Editor should review the proposed initial number range (totals within 20) and whether subtraction support is sufficient for the intended learners.
-      
-      ## Methodologist handoff
-      
-      Draft for explicit editor approval. After approval, the Screenwriter can develop ways to reveal an unknown part through quantity models, inverse operations and substitution, but must not equate a single correct response with independent mastery.
+    # Finding an Unknown Addend — Methodologist Brief
+
+    Date: 2026-10-30
+    Slug: findingUnknownAddend
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Introduce an unknown addend as a missing part of a known whole and connect part–whole reasoning with subtraction as the inverse of addition. The learning goal is to find a missing quantity while preserving equality, not to memorize a blank-filling trick.
+
+    ## Target audience
+
+    Children aged 6–8 in grades 1–2 who are learning to read equations and solve addition/subtraction situations. Assume uneven literacy; pair a short written equality with a spoken description and a concrete part–whole model. Avoid requiring verbal explanation as the only way to show understanding.
+
+    ## Prerequisites
+
+    - Count and compare quantities within the selected range and understand a total as made from parts.
+    - Add and subtract small nonnegative whole numbers, with objects or a number line as needed.
+    - Interpret an equals sign as a relationship between two equal quantities, not merely a signal to write an answer.
+
+    ## Target Skills
+
+    - [unknownAddend.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/algebra/unknowns/skills/unknownAddend.data.ts)
+
+    ## Expected learning outcomes
+
+    - Identify which part of an addition relation is unknown in both □ + 5 = 12 and 5 + □ = 12.
+    - Explain that the whole is the total and removing the known part leaves the missing part.
+    - Find the missing addend using subtraction in an age-appropriate number domain (initially totals up to 20), with an optional model.
+    - Check the proposed value by substituting it into the **original addition equality**, and notice when the resulting sum is wrong.
+
+    ## Essential subject matter
+
+    An **addend** is a quantity being added; the **sum** is the total. In 5 + □ = 12, the missing addend is 7 because 12 − 5 = 7 and 5 + 7 = 12. Likewise, □ + 5 = 12 has the same unknown value. Part–whole representations make the inverse relationship visible: a whole of twelve counters, five known, leaves seven unknown. Subtraction works here because the sum and known addend are given and the task is within nonnegative whole numbers. The equality has the same meaning with the unknown on the left or right and with a placeholder or a verbal description. Future recall should anchor “whole minus known part gives missing part” together with the obligation to check it.
+
+    ## Conceptual progression and dependencies
+
+    Connect physical part–whole models to written equalities. Show how a complete known addition can be decomposed into its parts before introducing a missing component. Relate removing the known part from the whole to subtraction, then verify by restoring the parts and comparing with the whole. Gradually shift to equations without objects and to contextual stories where the missing part occurs in different positions. The Screenwriter chooses the learner actions and pacing.
+
+    ## Misconceptions, examples and boundaries
+
+    Common confusions: taking the known addend **away from itself**; adding the visible addend to the total; believing the blank must always be after the plus sign; treating the equals sign as “calculate what follows”; or checking only the subtraction rather than the original addition. Counterexample: if 5 + □ = 12, choosing 17 by adding 5 + 12 fails substitution. Include sums within 20 and no negative unknowns, fractions, or multi-step symbolic equation solving.
+
+    ## Localization, accessibility and offline intent
+
+    Translate “addend”, “sum”, “whole”, “part”, and “equals” carefully and do not substitute culturally specific objects that distort quantity. Ensure equation reading remains correct for both LTR and RTL presentations; keep mathematical operator order semantically stable. Support counting by audio/text, tactile-friendly physical substitutes, keyboard-accessible input/selection, screen-reader description of missing boxes, adjustable text size and number line descriptions. Offline resources and feedback must be complete once downloaded; do not assume an online checker.
+
+    ## Sources and factual verification
+
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), especially 1.OA.D.8 (unknown number in an addition/subtraction equation) and 2.OA.A.1 (unknowns in word problems); reference only, not automatic alignment.
+    - [IES/WWC, Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), recommendations for explicit mathematical language and linked concrete/abstract representations.
+    - [Playground generated English taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), canonical methodological description for unknownAddend.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. The Lesson remains autonomous and can be placed in an appropriate Grade 1–2 sequence after part–whole number concepts.
+
+    ## Open editorial decisions
+
+    - None affecting taxonomy identity. Editor should review the proposed initial number range (totals within 20) and whether subtraction support is sufficient for the intended learners.
+
+    ## Methodologist handoff
+
+    Draft for explicit editor approval. After approval, the Screenwriter can develop ways to reveal an unknown part through quantity models, inverse operations and substitution, but must not equate a single correct response with independent mastery.
   productionNotes: |
-      Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
-      
-      ## Former Screenwriter introduction
-      
-      # Finding an Unknown Addend — Content
-      
-      Status: Draft
-      Target Lesson: content/playground/Data/Lessons/1/findingUnknownAddend/ (Playground)
-      Audience: Children aged 6–8 in grades 1–2; beginning addition and subtraction, unequal reading fluency, optional manipulatives and nonverbal access
-      Approved Methodologist source: Methodologist Brief (preserved in production.methodology) — editor authorized treating the existing Briefs as approved for this workflow test; the source file still says Methodologist status: Draft and requires separate editorial reconciliation before publication
-      Learning outcomes: identify the missing addend in either position; understand the whole as known and unknown parts; use total minus known part to find the missing part (initially within 20); verify by restoring the missing value in the ORIGINAL addition equality
-      Target Skills: As approved and directly linked in the Methodologist Brief (unknownAddend.data.ts); no copied or invented Skill identities
-      Program dependence: None
-      
-      ## INSTRUCTIONAL CONCEPT
-      
-      A sum names a **whole** made from two **parts**. When one part is known and the whole is known, the other part can be found by subtraction. The equals sign says the quantities on its two sides are equal—not “the answer comes next.” Finding a candidate is only half the reasoning: replacing the box in the original addition must make the complete equality true.
-      
-      Make the invisible _part_ visible with counters before presenting the inverse subtraction. Then preserve meaning as the empty box moves from right addend to left addend. End with a fresh case in which the learner reconstructs the missing part and checks the original equality. Every example is nonnegative whole-number arithmetic with sum at most 20; no negative numbers, long equation-solving transformations, multiple unknowns, or timed fact drills.
-      
-      The experience is Program-neutral and does not turn correctness in a Scene into a Quiz, score, mastery record, or new Skill.
-      
-      ## LEARNER JOURNEY
-      
-      1. **Notice the missing part:** twelve counters are a whole; five are in the known part and the remaining counters are not labeled yet. The child predicts how many are missing.
-      2. **Discover a reliable method:** start from the whole, separate the known part, and read the leftover as a subtraction; restore both parts and see that their total is unchanged.
-      3. **Read either arrangement:** compare 5 + □ = 12 and □ + 5 = 12. Both describe a whole of twelve with one known part five.
-      4. **Try and check:** independently find the unknown in □ + 6 = 14, then substitute the proposed value into the _original_ addition and compare its sum with fourteen. Offer hints and a complete explanation without penalty.
-      
-      Each Section is short and learner-paced; text and mathematical actions use one consistent concrete representation. Hints remain optional and never conceal the explanation from a child who cannot yet calculate independently.
-      
-      ## SECTION PLAN
-      
-      
-      ## Former Screenwriter closing notes
-      
-      ## CUSTOM SCENE SPECIFICATIONS
-      
-      - Part–Whole Workbench (preserved in Scene production.specification): self-contained Scene for Sections 1–2; observation and guided-subtraction placements, different initial states, no public React props assumed.
-      - Addition Equality Verifier (preserved in Scene production.specification): self-contained Scene for Sections 3–4; position-comparison and independent-substitution placements, no invented scoring APIs.
-      
-      Both are **proposed** and have separate Draft scene specifications. The generic scene resource exists; these Scene components have not been implemented.
-      
-      ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-      
-      1. **Note 1: “A sum is a whole made from parts.”** Proposed reveal after the twelve-counter model has been assembled as five plus seven in Section 1.
-      2. **Note 2: “Whole − known part = missing part.”** Proposed reveal after Section 2 explicitly connects 12 − 5 = 7 and 5 + 7 = 12.
-      3. **Note 3: “Check the missing part in the original addition.”** Proposed reveal after Section 4 displays and explains a checked substitution.
-      
-      All Notes are **planned, not wired**: no real Note type, unlock event, personal persistence, automatic revision sheet or spaced-review scheduler is assumed. If later implemented, an individual learner's review sheet contains only that learner's unlocked cues in pedagogical order. An unlocked Note is not evidence of Skill mastery.
-      
-      ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-      
-      - **Concept-building:** In Sections 1–2, count parts of a whole, separate the known group, and restore it; explain the two operations' relationship.
-      - **Varied presentation:** Section 3 moves the box to the first addend; optional 4 + □ = 9 and □ + 4 = 9 cases distinguish position from mathematical role.
-      - **Independent transfer:** In Section 4, □ + 6 = 14 is followed by explicit substitution and comparison. Help and full explanation remain available regardless of the learner's answer.
-      - **Assessment Architect:** Decide whether a formal Quiz should be created, separately validate any items, correct/incorrect alternatives, actual Skill attribution, success thresholds, retries and mastery evidence. None of the Scene interactions are scored. The observed Lesson adapter currently supports select-one-answer only despite more QuestionType labels in contracts.
-      - **Retrieval:** Revisit the same part/whole relation with varied numbers and opposite box placement later if a separate review system is authorized; no automatic spaced repetition exists here.
-      
-      ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-      
-      The canonical script is in English for specialist review; **all** learner-visible strings, counts, labels, state announcements, accessible names, feedback and Notes must have genuine supported-language translations before production. No locale is silently omitted or replaced by an English copy. Terminology: translate “addend,” “sum,” “part,” “whole,” “equals,” and “missing” accurately, using child-friendly explanation before formal terms. Equation order and mathematical meaning must remain correct under LTR and RTL; do not mirror operand positions geometrically without considering the equality. Every counter representation has an equivalent structured text list (“whole 12, known 5, missing 7”) and arithmetic statement. Use large controls, keyboard focus, nonvisual output, speech-independent choices, high contrast, reduced-motion state transitions and alternatives for dyscalculia. Do not infer a diagnosis from activity.
-      
-      **Offline and low device:** after downloading the required package, selected locale, text, scene code and assets, all reasoning and feedback must be available offline. A simple HTML/SVG counter model and deterministic addition/subtraction are sufficient; no online evaluator, AI, WebGL, streaming audio or video dependency. The fallback access mode must preserve the entire mathematical relationship, not silently remove the manipulation or checking.
-      
-      **Renderer verification:** Existing general Section resources support text, markdown and scene. Image/audio/video/code exist in types but not the current generic renderer; youtube is a label without a supported config. None are required. Lesson Sections keep a vertical ordered block column; scenes may organize internal model panels.
-      
-      ## PRODUCTION / PLATFORM DEPENDENCIES
-      
-      | Item                                                                             | Status                                                 | Owner / action                                                                                         |
-      | -------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-      | LessonSection_Config, text, markdown, scene resource types and generic rendering | Verified in current code                               | Coding Agent assembles reviewed localized resources after editorial approval                           |
-      | Part–Whole Workbench and Addition Equality Verifier                              | Proposed Scenes; not implemented                       | Scene Designer builds prop-free components with unit tests from approved specs                         |
-      | Scene placement-specific initial state and per-Scene localization                | Integration review required                            | Coding Agent chooses safe separate entries; no invented mode props or runtime fields                   |
-      | Optional reflection / KnowledgeCheckpoint                                        | Existing widget through wrapper Scene; unscored        | Not necessary; embedded Scene explanations suffice                                                     |
-      | Quiz_Config and broader QuestionType values                                      | Typed / partially integrated                           | Assessment Architect owns any future scored work; only select-one integrated in current Lesson adapter |
-      | Image/audio/video/code general blocks                                            | Typed-only in current generic renderer                 | Not needed here                                                                                        |
-      | YouTube                                                                          | Label only, not supported by generic Resource_Config   | Not used                                                                                               |
-      | Lesson Notes, offline download/sync, spaced review                               | Product requirements/planned; not verified implemented | Separate future engineering work; no fabricated API                                                    |
-      
-      ## EDITORIAL SOURCES AND OPEN QUESTIONS
-      
-      - Methodologist Brief (preserved in production.methodology): canonical scope, age group, prerequisite knowledge, mathematical examples and one target Skill.
-      - [Generated English Skill taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md): canonical methodological definition of finding an unknown addend; Skill source link is in the Brief.
-      - [Create Lesson Content workflow](https://github.com/KiT-Maverik/svitlo/blob/main/studio/skills/lesson-workflow/create-lesson-content.skill.md): role boundaries, Source/Resource/Section contracts, Scene specification handoff.
-      - [Common Core mathematics reference](https://corestandards.org/mathematics-standards/) and [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26): references already identified by the Methodologist; comparison/instructional rationale only, not asserted national Curriculum approval.
-      - **Methodologist metadata:** editor verbally approved these five Briefs for workflow testing, while on-disk status is still Draft. Keep the Methodologist-owned file unchanged; synchronize approval status through a separate explicitly authorized editorial update before publication.
-      - **Editorial review:** Verify the initial total ≤20, chosen counter model and movement from second to first addend; confirm no mandatory Quiz is desired.
-      - **Engineering review:** Confirm isolated prop-free Scene placements, correct locale selection and fully accessible/offline model implementation.
-      
-      ## HANDOFF
-      
-      This Draft specifies an ordered four-Section experience and two independent Draft Scene specs in the already existing findingUnknownAddend Lesson directory. Once the editor approves Content and each Scene spec, the Scene Designer can implement the scenes, Coding Agent can assemble localized typed resources, and Assessment Architect can independently propose valid graded evidence if required. **Stop at documents; do not change Briefs, Skill Code, existing Scenes, other Lessons or implementation.**
+    Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
+
+    ## Former Screenwriter introduction
+
+    # Finding an Unknown Addend — Content
+
+    Status: Draft
+    Target Lesson: content/playground/Data/Lessons/1/findingUnknownAddend/ (Playground)
+    Audience: Children aged 6–8 in grades 1–2; beginning addition and subtraction, unequal reading fluency, optional manipulatives and nonverbal access
+    Approved Methodologist source: Methodologist Brief (preserved in production.methodology) — editor authorized treating the existing Briefs as approved for this workflow test; the source file still says Methodologist status: Draft and requires separate editorial reconciliation before publication
+    Learning outcomes: identify the missing addend in either position; understand the whole as known and unknown parts; use total minus known part to find the missing part (initially within 20); verify by restoring the missing value in the ORIGINAL addition equality
+    Target Skills: As approved and directly linked in the Methodologist Brief (unknownAddend.data.ts); no copied or invented Skill identities
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    A sum names a **whole** made from two **parts**. When one part is known and the whole is known, the other part can be found by subtraction. The equals sign says the quantities on its two sides are equal—not “the answer comes next.” Finding a candidate is only half the reasoning: replacing the box in the original addition must make the complete equality true.
+
+    Make the invisible _part_ visible with counters before presenting the inverse subtraction. Then preserve meaning as the empty box moves from right addend to left addend. End with a fresh case in which the learner reconstructs the missing part and checks the original equality. Every example is nonnegative whole-number arithmetic with sum at most 20; no negative numbers, long equation-solving transformations, multiple unknowns, or timed fact drills.
+
+    The experience is Program-neutral and does not turn correctness in a Scene into a Quiz, score, mastery record, or new Skill.
+
+    ## LEARNER JOURNEY
+
+    1. **Notice the missing part:** twelve counters are a whole; five are in the known part and the remaining counters are not labeled yet. The child predicts how many are missing.
+    2. **Discover a reliable method:** start from the whole, separate the known part, and read the leftover as a subtraction; restore both parts and see that their total is unchanged.
+    3. **Read either arrangement:** compare 5 + □ = 12 and □ + 5 = 12. Both describe a whole of twelve with one known part five.
+    4. **Try and check:** independently find the unknown in □ + 6 = 14, then substitute the proposed value into the _original_ addition and compare its sum with fourteen. Offer hints and a complete explanation without penalty.
+
+    Each Section is short and learner-paced; text and mathematical actions use one consistent concrete representation. Hints remain optional and never conceal the explanation from a child who cannot yet calculate independently.
+
+    ## SECTION PLAN
+
+
+    ## Former Screenwriter closing notes
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Part–Whole Workbench (preserved in Scene production.specification): self-contained Scene for Sections 1–2; observation and guided-subtraction placements, different initial states, no public React props assumed.
+    - Addition Equality Verifier (preserved in Scene production.specification): self-contained Scene for Sections 3–4; position-comparison and independent-substitution placements, no invented scoring APIs.
+
+    Both are **proposed** and have separate Draft scene specifications. The generic scene resource exists; these Scene components have not been implemented.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. **Note 1: “A sum is a whole made from parts.”** Proposed reveal after the twelve-counter model has been assembled as five plus seven in Section 1.
+    2. **Note 2: “Whole − known part = missing part.”** Proposed reveal after Section 2 explicitly connects 12 − 5 = 7 and 5 + 7 = 12.
+    3. **Note 3: “Check the missing part in the original addition.”** Proposed reveal after Section 4 displays and explains a checked substitution.
+
+    All Notes are **planned, not wired**: no real Note type, unlock event, personal persistence, automatic revision sheet or spaced-review scheduler is assumed. If later implemented, an individual learner's review sheet contains only that learner's unlocked cues in pedagogical order. An unlocked Note is not evidence of Skill mastery.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    - **Concept-building:** In Sections 1–2, count parts of a whole, separate the known group, and restore it; explain the two operations' relationship.
+    - **Varied presentation:** Section 3 moves the box to the first addend; optional 4 + □ = 9 and □ + 4 = 9 cases distinguish position from mathematical role.
+    - **Independent transfer:** In Section 4, □ + 6 = 14 is followed by explicit substitution and comparison. Help and full explanation remain available regardless of the learner's answer.
+    - **Assessment Architect:** Decide whether a formal Quiz should be created, separately validate any items, correct/incorrect alternatives, actual Skill attribution, success thresholds, retries and mastery evidence. None of the Scene interactions are scored. The observed Lesson adapter currently supports select-one-answer only despite more QuestionType labels in contracts.
+    - **Retrieval:** Revisit the same part/whole relation with varied numbers and opposite box placement later if a separate review system is authorized; no automatic spaced repetition exists here.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    The canonical script is in English for specialist review; **all** learner-visible strings, counts, labels, state announcements, accessible names, feedback and Notes must have genuine supported-language translations before production. No locale is silently omitted or replaced by an English copy. Terminology: translate “addend,” “sum,” “part,” “whole,” “equals,” and “missing” accurately, using child-friendly explanation before formal terms. Equation order and mathematical meaning must remain correct under LTR and RTL; do not mirror operand positions geometrically without considering the equality. Every counter representation has an equivalent structured text list (“whole 12, known 5, missing 7”) and arithmetic statement. Use large controls, keyboard focus, nonvisual output, speech-independent choices, high contrast, reduced-motion state transitions and alternatives for dyscalculia. Do not infer a diagnosis from activity.
+
+    **Offline and low device:** after downloading the required package, selected locale, text, scene code and assets, all reasoning and feedback must be available offline. A simple HTML/SVG counter model and deterministic addition/subtraction are sufficient; no online evaluator, AI, WebGL, streaming audio or video dependency. The fallback access mode must preserve the entire mathematical relationship, not silently remove the manipulation or checking.
+
+    **Renderer verification:** Existing general Section resources support text, markdown and scene. Image/audio/video/code exist in types but not the current generic renderer; youtube is a label without a supported config. None are required. Lesson Sections keep a vertical ordered block column; scenes may organize internal model panels.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    | Item                                                                             | Status                                                 | Owner / action                                                                                         |
+    | -------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+    | LessonSection_Config, text, markdown, scene resource types and generic rendering | Verified in current code                               | Coding Agent assembles reviewed localized resources after editorial approval                           |
+    | Part–Whole Workbench and Addition Equality Verifier                              | Proposed Scenes; not implemented                       | Scene Designer builds prop-free components with unit tests from approved specs                         |
+    | Scene placement-specific initial state and per-Scene localization                | Integration review required                            | Coding Agent chooses safe separate entries; no invented mode props or runtime fields                   |
+    | Optional reflection / KnowledgeCheckpoint                                        | Existing widget through wrapper Scene; unscored        | Not necessary; embedded Scene explanations suffice                                                     |
+    | Quiz_Config and broader QuestionType values                                      | Typed / partially integrated                           | Assessment Architect owns any future scored work; only select-one integrated in current Lesson adapter |
+    | Image/audio/video/code general blocks                                            | Typed-only in current generic renderer                 | Not needed here                                                                                        |
+    | YouTube                                                                          | Label only, not supported by generic Resource_Config   | Not used                                                                                               |
+    | Lesson Notes, offline download/sync, spaced review                               | Product requirements/planned; not verified implemented | Separate future engineering work; no fabricated API                                                    |
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Methodologist Brief (preserved in production.methodology): canonical scope, age group, prerequisite knowledge, mathematical examples and one target Skill.
+    - [Generated English Skill taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md): canonical methodological definition of finding an unknown addend; Skill source link is in the Brief.
+    - [Create Lesson Content workflow](https://github.com/KiT-Maverik/svitlo/blob/main/studio/skills/lesson-workflow/create-lesson-content.skill.md): role boundaries, Source/Resource/Section contracts, Scene specification handoff.
+    - [Common Core mathematics reference](https://corestandards.org/mathematics-standards/) and [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26): references already identified by the Methodologist; comparison/instructional rationale only, not asserted national Curriculum approval.
+    - **Methodologist metadata:** editor verbally approved these five Briefs for workflow testing, while on-disk status is still Draft. Keep the Methodologist-owned file unchanged; synchronize approval status through a separate explicitly authorized editorial update before publication.
+    - **Editorial review:** Verify the initial total ≤20, chosen counter model and movement from second to first addend; confirm no mandatory Quiz is desired.
+    - **Engineering review:** Confirm isolated prop-free Scene placements, correct locale selection and fully accessible/offline model implementation.
+
+    ## HANDOFF
+
+    This Draft specifies an ordered four-Section experience and two independent Draft Scene specs in the already existing findingUnknownAddend Lesson directory. Once the editor approves Content and each Scene spec, the Scene Designer can implement the scenes, Coding Agent can assemble localized typed resources, and Assessment Architect can independently propose valid graded evidence if required. **Stop at documents; do not change Briefs, Skill Code, existing Scenes, other Lessons or implementation.**

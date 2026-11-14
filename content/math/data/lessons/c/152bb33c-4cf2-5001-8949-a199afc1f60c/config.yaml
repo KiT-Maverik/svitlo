@@ -1,681 +1,681 @@
 config:
-  id: "152bb33c-4cf2-5001-8949-a199afc1f60c"
-  slug: "partsMakeAWhole"
-  type: "lesson"
+  id: '152bb33c-4cf2-5001-8949-a199afc1f60c'
+  slug: 'partsMakeAWhole'
+  type: 'lesson'
   skills:
-    - "adb1adc5-7f54-495d-a65f-e8754a2a0748"
+    - 'adb1adc5-7f54-495d-a65f-e8754a2a0748'
   params:
     requireQuiz: false
     languages:
-      - "en"
-      - "pl"
-      - "uk"
-      - "qm"
+      - 'en'
+      - 'pl'
+      - 'uk'
+      - 'qm'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Parts Make a Whole"
+      en: 'Parts Make a Whole'
   section:
     items:
       section1TwoPiecesOfTheSameCollection:
         config:
-          id: "f3fa5142-599d-455c-8aad-d5b530ca01ab"
-          slug: "section1TwoPiecesOfTheSameCollection"
-          type: "content"
+          id: 'f3fa5142-599d-455c-8aad-d5b530ca01ab'
+          slug: 'section1TwoPiecesOfTheSameCollection'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Two pieces of the same collection"
+              en: 'Two pieces of the same collection'
             navigationLabel:
-              en: "Two pieces of the same collection"
+              en: 'Two pieces of the same collection'
           content:
             items:
               section1Text1:
                 config:
-                  id: "d3b4f116-3b9d-49e0-80d5-7e8c48fcd67a"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: 'd3b4f116-3b9d-49e0-80d5-7e8c48fcd67a'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "There are **6 red buttons** and **4 blue buttons** in a box. These are all the buttons. How many buttons altogether?"
+                      en: 'There are **6 red buttons** and **4 blue buttons** in a box. These are all the buttons. How many buttons altogether?'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "1. **`text` Resource:** “There are **6 red buttons** and **4 blue buttons** in a box. These are all the buttons. How many buttons altogether?” Ask for a prediction. Do not display a total before the child sees the pieces."
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **`text` Resource:** “There are **6 red buttons** and **4 blue buttons** in a box. These are all the buttons. How many buttons altogether?” Ask for a prediction. Do not display a total before the child sees the pieces.'
               section1Scene2:
                 config:
-                  id: "df8f11b8-4477-4e71-890e-0684c2f6394d"
-                  slug: "section1Scene2"
-                  type: "scene"
+                  id: 'df8f11b8-4477-4e71-890e-0684c2f6394d'
+                  slug: 'section1Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "There are **6 red buttons** and **4 blue buttons** in a box. These are all the buttons. How many buttons altogether?"
+                        instruction: 'There are **6 red buttons** and **4 blue buttons** in a box. These are all the buttons. How many buttons altogether?'
                 production:
-                  purpose: "Provisional Scene placement in Two pieces of the same collection, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in Two pieces of the same collection, self-contained and not implemented'
                   specification: |
-                      # Part–Whole Partition Lab — Scene Specification
-                      
-                      **Status:** Provisional Draft — pending Methodologist/editor approval.  
-                      **Owner:** Educational Screenwriter.  
-                      **Parent:** Lesson Content (full original source: this Lesson's production notes), Sections 1–4; Draft Brief (full original source: production.methodology).  
-                      **Technical status:** New proposed prop-free, self-contained Scene; not implemented.
-                      
-                      ## Mathematical invariant and learner purpose
-                      
-                      Two **disjoint** groups cover exactly one counted whole. When part A and part B are both known, whole = A + B. When whole and a part are known, missing part = whole − known part, with nonnegative count and an explicit premise that there are no additional categories. Preserve object count when changing the question from unknown whole to unknown part. A color shift or a new hidden label never creates or destroys objects. Learner actions are for instruction, not a scored Question or proof of Skill mastery.
-                      
-                      ## Scenario A — two known parts, unknown whole (Section 1)
-                      
-                      Display **6 red buttons** and **4 blue buttons** as two countable, separately labeled piles. Ask “How many buttons altogether?” with the total hidden. A learner can use an accessible **Join groups** action (not mandatory drag), revealing 10 in a whole tray and the expression **6 + 4 = 10 buttons**. If learner predicts 6, explain “That is only the red group; the blue group has four more buttons.” If a learner guesses 14, show the six-plus-four count rather than only a correctness icon. Maintain source group labels after joining. A “Split again” action reveals the original partition without changing the total.
-                      
-                      ## Scenario B — known whole, unknown part (Section 2)
-                      
-                      Begin with one full tray of **10 buttons**, exactly six labeled red; the other four remain as **unknown ‘all the rest are blue’**. Ask which amount is included inside the whole rather than a separate amount added to ten. Learner selects a missing-part value with stepper, number entry, or optional token placement; 4 gives **10 − 6 = 4**, and reverse recombination **6 + 4 = 10**. For 16, say “Ten already includes six red; adding six again double-counts those buttons.” For candidate 5, say “Six and five would make eleven, more than the known whole ten.”
-                      
-                      ## Scenario C — change the question, not the objects (Section 3)
-                      
-                      A stable **ten-button** collection consists of six red and four blue. Independently present three question cards:
-                      
-                      1. **Whole unknown:** given 6 and 4 → 6 + 4 = **10**.
-                      2. **Blue part unknown:** whole 10 and red 6 → 10 − 6 = **4**.
-                      3. **Red part unknown:** whole 10 and blue 4 → 10 − 4 = **6**.
-                         Optional fourth variant: all ten red and “rest blue” yields **10 − 10 = 0 blue**. A user can inspect which role has the question mark and request an explanation before answering. Wrong operation feedback must identify whether the whole was _already_ known; no keyword-only arithmetic. Each question card opens as a new local starting state, independent of Sections A/B.
-                      
-                      ## Scenario D — independent transfer (Section 4)
-                      
-                      Story: 15 marbles in a bag, 9 green, **all remaining are yellow**. Show a fifteen-unit tray; nine have green-group labels and six have unassigned part labels. Learner proposes the yellow count, then performs a two-stage visual/text check: subtract 9 from whole 15 → **6 yellow**; add 9 + 6 → **15 whole**. Candidate 24 gets “You counted the nine green again”; candidate 7 yields “Nine and seven would be sixteen, not fifteen.” Hints “Fifteen includes the nine green” and “What joins nine to make fifteen?” plus “Reveal full explanation” are always available.
-                      
-                      ## Interactions, state and calculation integrity
-                      
-                      Store scenario-local declared whole/count roles, the displayed tokens, the learner's candidate, optional reveal of whole and part labels, hint level, explanatory state. All totals derive from the actual stored counts, never a visual CSS width. When a role is hidden, it is labeled **unknown** rather than removed from the model. A “Join groups” state must not duplicate tokens. All units are explicit “buttons” or “marbles”. Support zero-part cases. The conditional premise “these are all the groups” is essential; no implicit third color. Reset restores only the active instance. A shared internal helper is allowed, but _public Scene components take absolutely no props_; do not add Resource_Config scenario attributes.
-                      
-                      ## Visual/audio, inclusivity, localization and offline
-                      
-                      Offer a diagram with equal-sized counted elements and a **text ledger**: “Whole ten; red part six; blue part four” or pre-reveal “blue part unknown”. Screen readers can navigate this without visual color, and can hear or read every change and calculation; focus is managed around reveals. Provide keyboard/switch/tap controls for joining, assigning and adjusting counters, never drag-only; visible focus, large targets, reflow/zoom and reduced-motion instant feedback. Color may help group recognition but names and quantities must convey it independently. RTL preserves math operand roles and the whole/parts concept; translate every story, number, question, alt description, unit and feedback genuinely into each supported locale. All resources and interactions must work offline after a future selected-package download; do not assert the existing app implements caching.
-                      
-                      ## Acceptance cases for eventual tests
-                      
-                      - Six red and four blue disjoint buttons total ten without double counting.
-                      - Whole ten, six red, all rest blue → four blue; six plus four reconstructs ten.
-                      - Question switch preserves same counts but changes requested unknown among 10, 4 and 6.
-                      - Whole ten with all ten red → zero blue is valid.
-                      - Fifteen marbles, nine green → six yellow; nine plus six equals fifteen. Candidates 24 and 7 get relation-specific feedback.
-                      - Text/screen-reader, keyboard, touch, RTL, zoom/reduced-motion and downloaded-offline modes have equivalent mathematical facts.
-                      - Scene does not persist answers, score, or claim mastery.
-                      
-                      ## Dependencies and open approvals
-                      
-                      The generic Scene Resource exists, but this custom Scene, locale dictionaries, accessible handlers and tests do not. Coding Agent must verify actual Playground context and implement/validate after explicit editor approval. No code, Question, Quiz, scoring, backend, persistence or Note event is authorized by this specification.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                      2. **`scene` Resource (proposed):** Part–Whole Partition Lab (full original source: Scene production.specification), entry A. Show six individually countable red tokens and four blue tokens. The learner groups both parts into one visible tray with the group labels preserved. Reveal **6 + 4 = 10 buttons**.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Part–Whole Partition Lab — Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist/editor approval.  
+                    **Owner:** Educational Screenwriter.  
+                    **Parent:** Lesson Content (full original source: this Lesson's production notes), Sections 1–4; Draft Brief (full original source: production.methodology).  
+                    **Technical status:** New proposed prop-free, self-contained Scene; not implemented.
+
+                    ## Mathematical invariant and learner purpose
+
+                    Two **disjoint** groups cover exactly one counted whole. When part A and part B are both known, whole = A + B. When whole and a part are known, missing part = whole − known part, with nonnegative count and an explicit premise that there are no additional categories. Preserve object count when changing the question from unknown whole to unknown part. A color shift or a new hidden label never creates or destroys objects. Learner actions are for instruction, not a scored Question or proof of Skill mastery.
+
+                    ## Scenario A — two known parts, unknown whole (Section 1)
+
+                    Display **6 red buttons** and **4 blue buttons** as two countable, separately labeled piles. Ask “How many buttons altogether?” with the total hidden. A learner can use an accessible **Join groups** action (not mandatory drag), revealing 10 in a whole tray and the expression **6 + 4 = 10 buttons**. If learner predicts 6, explain “That is only the red group; the blue group has four more buttons.” If a learner guesses 14, show the six-plus-four count rather than only a correctness icon. Maintain source group labels after joining. A “Split again” action reveals the original partition without changing the total.
+
+                    ## Scenario B — known whole, unknown part (Section 2)
+
+                    Begin with one full tray of **10 buttons**, exactly six labeled red; the other four remain as **unknown ‘all the rest are blue’**. Ask which amount is included inside the whole rather than a separate amount added to ten. Learner selects a missing-part value with stepper, number entry, or optional token placement; 4 gives **10 − 6 = 4**, and reverse recombination **6 + 4 = 10**. For 16, say “Ten already includes six red; adding six again double-counts those buttons.” For candidate 5, say “Six and five would make eleven, more than the known whole ten.”
+
+                    ## Scenario C — change the question, not the objects (Section 3)
+
+                    A stable **ten-button** collection consists of six red and four blue. Independently present three question cards:
+
+                    1. **Whole unknown:** given 6 and 4 → 6 + 4 = **10**.
+                    2. **Blue part unknown:** whole 10 and red 6 → 10 − 6 = **4**.
+                    3. **Red part unknown:** whole 10 and blue 4 → 10 − 4 = **6**.
+                       Optional fourth variant: all ten red and “rest blue” yields **10 − 10 = 0 blue**. A user can inspect which role has the question mark and request an explanation before answering. Wrong operation feedback must identify whether the whole was _already_ known; no keyword-only arithmetic. Each question card opens as a new local starting state, independent of Sections A/B.
+
+                    ## Scenario D — independent transfer (Section 4)
+
+                    Story: 15 marbles in a bag, 9 green, **all remaining are yellow**. Show a fifteen-unit tray; nine have green-group labels and six have unassigned part labels. Learner proposes the yellow count, then performs a two-stage visual/text check: subtract 9 from whole 15 → **6 yellow**; add 9 + 6 → **15 whole**. Candidate 24 gets “You counted the nine green again”; candidate 7 yields “Nine and seven would be sixteen, not fifteen.” Hints “Fifteen includes the nine green” and “What joins nine to make fifteen?” plus “Reveal full explanation” are always available.
+
+                    ## Interactions, state and calculation integrity
+
+                    Store scenario-local declared whole/count roles, the displayed tokens, the learner's candidate, optional reveal of whole and part labels, hint level, explanatory state. All totals derive from the actual stored counts, never a visual CSS width. When a role is hidden, it is labeled **unknown** rather than removed from the model. A “Join groups” state must not duplicate tokens. All units are explicit “buttons” or “marbles”. Support zero-part cases. The conditional premise “these are all the groups” is essential; no implicit third color. Reset restores only the active instance. A shared internal helper is allowed, but _public Scene components take absolutely no props_; do not add Resource_Config scenario attributes.
+
+                    ## Visual/audio, inclusivity, localization and offline
+
+                    Offer a diagram with equal-sized counted elements and a **text ledger**: “Whole ten; red part six; blue part four” or pre-reveal “blue part unknown”. Screen readers can navigate this without visual color, and can hear or read every change and calculation; focus is managed around reveals. Provide keyboard/switch/tap controls for joining, assigning and adjusting counters, never drag-only; visible focus, large targets, reflow/zoom and reduced-motion instant feedback. Color may help group recognition but names and quantities must convey it independently. RTL preserves math operand roles and the whole/parts concept; translate every story, number, question, alt description, unit and feedback genuinely into each supported locale. All resources and interactions must work offline after a future selected-package download; do not assert the existing app implements caching.
+
+                    ## Acceptance cases for eventual tests
+
+                    - Six red and four blue disjoint buttons total ten without double counting.
+                    - Whole ten, six red, all rest blue → four blue; six plus four reconstructs ten.
+                    - Question switch preserves same counts but changes requested unknown among 10, 4 and 6.
+                    - Whole ten with all ten red → zero blue is valid.
+                    - Fifteen marbles, nine green → six yellow; nine plus six equals fifteen. Candidates 24 and 7 get relation-specific feedback.
+                    - Text/screen-reader, keyboard, touch, RTL, zoom/reduced-motion and downloaded-offline modes have equivalent mathematical facts.
+                    - Scene does not persist answers, score, or claim mastery.
+
+                    ## Dependencies and open approvals
+
+                    The generic Scene Resource exists, but this custom Scene, locale dictionaries, accessible handlers and tests do not. Coding Agent must verify actual Playground context and implement/validate after explicit editor approval. No code, Question, Quiz, scoring, backend, persistence or Note event is authorized by this specification.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **`scene` Resource (proposed):** Part–Whole Partition Lab (full original source: Scene production.specification), entry A. Show six individually countable red tokens and four blue tokens. The learner groups both parts into one visible tray with the group labels preserved. Reveal **6 + 4 = 10 buttons**.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section1Text3:
                 config:
-                  id: "c6217c7e-75c7-4dd5-8387-b1f06061705b"
-                  slug: "section1Text3"
-                  type: "text"
+                  id: 'c6217c7e-75c7-4dd5-8387-b1f06061705b'
+                  slug: 'section1Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Ten counts all the buttons, with no overlap: six red and four blue."
+                      en: 'Ten counts all the buttons, with no overlap: six red and four blue.'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "3. **`text`, feedback:** “Ten counts all the buttons, with no overlap: six red and four blue.” If they answer six: “That is only the red part. We also have four blue buttons.” If they answer fourteen: “We had six red and four blue, not six plus an already known total.”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '3. **`text`, feedback:** “Ten counts all the buttons, with no overlap: six red and four blue.” If they answer six: “That is only the red part. We also have four blue buttons.” If they answer fourteen: “We had six red and four blue, not six plus an already known total.”'
               section1Markdown4:
                 config:
-                  id: "d4fcbea6-3120-4252-8dbf-94e718632813"
-                  slug: "section1Markdown4"
-                  type: "markdown"
+                  id: 'd4fcbea6-3120-4252-8dbf-94e718632813'
+                  slug: 'section1Markdown4'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A **whole** can be made of **parts**. The parts together make the whole when every object belongs to exactly one part."
+                      en: 'A **whole** can be made of **parts**. The parts together make the whole when every object belongs to exactly one part.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "4. **`markdown`:** “A **whole** can be made of **parts**. The parts together make the whole when every object belongs to exactly one part.”"
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '4. **`markdown`:** “A **whole** can be made of **parts**. The parts together make the whole when every object belongs to exactly one part.”'
             order:
-              - "section1Text1"
-              - "section1Scene2"
-              - "section1Text3"
-              - "section1Markdown4"
+              - 'section1Text1'
+              - 'section1Scene2'
+              - 'section1Text3'
+              - 'section1Markdown4'
         production:
-          purpose: "Two pieces of the same collection"
-          pedagogicalIntent: "Two pieces of the same collection"
+          purpose: 'Two pieces of the same collection'
+          pedagogicalIntent: 'Two pieces of the same collection'
           productionNotes: |
-              ### Section 1 — Two pieces of the same collection
-              
-              _Purpose: observe a known-part/known-part situation and reconstruct the unknown whole._
-              
-              1. **`text` Resource:** “There are **6 red buttons** and **4 blue buttons** in a box. These are all the buttons. How many buttons altogether?” Ask for a prediction. Do not display a total before the child sees the pieces.
-              2. **`scene` Resource (proposed):** Part–Whole Partition Lab (full original source: Scene production.specification), entry A. Show six individually countable red tokens and four blue tokens. The learner groups both parts into one visible tray with the group labels preserved. Reveal **6 + 4 = 10 buttons**.
-              3. **`text`, feedback:** “Ten counts all the buttons, with no overlap: six red and four blue.” If they answer six: “That is only the red part. We also have four blue buttons.” If they answer fourteen: “We had six red and four blue, not six plus an already known total.”
-              4. **`markdown`:** “A **whole** can be made of **parts**. The parts together make the whole when every object belongs to exactly one part.”
-              
+            ### Section 1 — Two pieces of the same collection
+
+            _Purpose: observe a known-part/known-part situation and reconstruct the unknown whole._
+
+            1. **`text` Resource:** “There are **6 red buttons** and **4 blue buttons** in a box. These are all the buttons. How many buttons altogether?” Ask for a prediction. Do not display a total before the child sees the pieces.
+            2. **`scene` Resource (proposed):** Part–Whole Partition Lab (full original source: Scene production.specification), entry A. Show six individually countable red tokens and four blue tokens. The learner groups both parts into one visible tray with the group labels preserved. Reveal **6 + 4 = 10 buttons**.
+            3. **`text`, feedback:** “Ten counts all the buttons, with no overlap: six red and four blue.” If they answer six: “That is only the red part. We also have four blue buttons.” If they answer fourteen: “We had six red and four blue, not six plus an already known total.”
+            4. **`markdown`:** “A **whole** can be made of **parts**. The parts together make the whole when every object belongs to exactly one part.”
+
       section2SameCollectionDifferentUnknown:
         config:
-          id: "dbd37331-be6a-4e01-8b89-c3087e304e38"
-          slug: "section2SameCollectionDifferentUnknown"
-          type: "content"
+          id: 'dbd37331-be6a-4e01-8b89-c3087e304e38'
+          slug: 'section2SameCollectionDifferentUnknown'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Same collection, different unknown"
+              en: 'Same collection, different unknown'
             navigationLabel:
-              en: "Same collection, different unknown"
+              en: 'Same collection, different unknown'
           content:
             items:
               section2Text1:
                 config:
-                  id: "9d6942d7-e427-4063-8563-8259fc2de0ed"
-                  slug: "section2Text1"
-                  type: "text"
+                  id: '9d6942d7-e427-4063-8563-8259fc2de0ed'
+                  slug: 'section2Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "This time the box has **10 buttons in total**. **6 are red; all the rest are blue.** How many are blue? We still have the same ten buttons."
+                      en: 'This time the box has **10 buttons in total**. **6 are red; all the rest are blue.** How many are blue? We still have the same ten buttons.'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "1. **`text`:** “This time the box has **10 buttons in total**. **6 are red; all the rest are blue.** How many are blue? We still have the same ten buttons.”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **`text`:** “This time the box has **10 buttons in total**. **6 are red; all the rest are blue.** How many are blue? We still have the same ten buttons.”'
               section2Scene2:
                 config:
-                  id: "2e665328-12c3-4931-8bd8-c596b77d5f8f"
-                  slug: "section2Scene2"
-                  type: "scene"
+                  id: '2e665328-12c3-4931-8bd8-c596b77d5f8f'
+                  slug: 'section2Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "This time the box has **10 buttons in total**. **6 are red; all the rest are blue.** How many are blue? We still have the same ten buttons."
+                        instruction: 'This time the box has **10 buttons in total**. **6 are red; all the rest are blue.** How many are blue? We still have the same ten buttons.'
                 production:
-                  purpose: "Provisional Scene placement in Same collection, different unknown, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in Same collection, different unknown, self-contained and not implemented'
                   specification: |
-                      # Part–Whole Partition Lab — Scene Specification
-                      
-                      **Status:** Provisional Draft — pending Methodologist/editor approval.  
-                      **Owner:** Educational Screenwriter.  
-                      **Parent:** Lesson Content (full original source: this Lesson's production notes), Sections 1–4; Draft Brief (full original source: production.methodology).  
-                      **Technical status:** New proposed prop-free, self-contained Scene; not implemented.
-                      
-                      ## Mathematical invariant and learner purpose
-                      
-                      Two **disjoint** groups cover exactly one counted whole. When part A and part B are both known, whole = A + B. When whole and a part are known, missing part = whole − known part, with nonnegative count and an explicit premise that there are no additional categories. Preserve object count when changing the question from unknown whole to unknown part. A color shift or a new hidden label never creates or destroys objects. Learner actions are for instruction, not a scored Question or proof of Skill mastery.
-                      
-                      ## Scenario A — two known parts, unknown whole (Section 1)
-                      
-                      Display **6 red buttons** and **4 blue buttons** as two countable, separately labeled piles. Ask “How many buttons altogether?” with the total hidden. A learner can use an accessible **Join groups** action (not mandatory drag), revealing 10 in a whole tray and the expression **6 + 4 = 10 buttons**. If learner predicts 6, explain “That is only the red group; the blue group has four more buttons.” If a learner guesses 14, show the six-plus-four count rather than only a correctness icon. Maintain source group labels after joining. A “Split again” action reveals the original partition without changing the total.
-                      
-                      ## Scenario B — known whole, unknown part (Section 2)
-                      
-                      Begin with one full tray of **10 buttons**, exactly six labeled red; the other four remain as **unknown ‘all the rest are blue’**. Ask which amount is included inside the whole rather than a separate amount added to ten. Learner selects a missing-part value with stepper, number entry, or optional token placement; 4 gives **10 − 6 = 4**, and reverse recombination **6 + 4 = 10**. For 16, say “Ten already includes six red; adding six again double-counts those buttons.” For candidate 5, say “Six and five would make eleven, more than the known whole ten.”
-                      
-                      ## Scenario C — change the question, not the objects (Section 3)
-                      
-                      A stable **ten-button** collection consists of six red and four blue. Independently present three question cards:
-                      
-                      1. **Whole unknown:** given 6 and 4 → 6 + 4 = **10**.
-                      2. **Blue part unknown:** whole 10 and red 6 → 10 − 6 = **4**.
-                      3. **Red part unknown:** whole 10 and blue 4 → 10 − 4 = **6**.
-                         Optional fourth variant: all ten red and “rest blue” yields **10 − 10 = 0 blue**. A user can inspect which role has the question mark and request an explanation before answering. Wrong operation feedback must identify whether the whole was _already_ known; no keyword-only arithmetic. Each question card opens as a new local starting state, independent of Sections A/B.
-                      
-                      ## Scenario D — independent transfer (Section 4)
-                      
-                      Story: 15 marbles in a bag, 9 green, **all remaining are yellow**. Show a fifteen-unit tray; nine have green-group labels and six have unassigned part labels. Learner proposes the yellow count, then performs a two-stage visual/text check: subtract 9 from whole 15 → **6 yellow**; add 9 + 6 → **15 whole**. Candidate 24 gets “You counted the nine green again”; candidate 7 yields “Nine and seven would be sixteen, not fifteen.” Hints “Fifteen includes the nine green” and “What joins nine to make fifteen?” plus “Reveal full explanation” are always available.
-                      
-                      ## Interactions, state and calculation integrity
-                      
-                      Store scenario-local declared whole/count roles, the displayed tokens, the learner's candidate, optional reveal of whole and part labels, hint level, explanatory state. All totals derive from the actual stored counts, never a visual CSS width. When a role is hidden, it is labeled **unknown** rather than removed from the model. A “Join groups” state must not duplicate tokens. All units are explicit “buttons” or “marbles”. Support zero-part cases. The conditional premise “these are all the groups” is essential; no implicit third color. Reset restores only the active instance. A shared internal helper is allowed, but _public Scene components take absolutely no props_; do not add Resource_Config scenario attributes.
-                      
-                      ## Visual/audio, inclusivity, localization and offline
-                      
-                      Offer a diagram with equal-sized counted elements and a **text ledger**: “Whole ten; red part six; blue part four” or pre-reveal “blue part unknown”. Screen readers can navigate this without visual color, and can hear or read every change and calculation; focus is managed around reveals. Provide keyboard/switch/tap controls for joining, assigning and adjusting counters, never drag-only; visible focus, large targets, reflow/zoom and reduced-motion instant feedback. Color may help group recognition but names and quantities must convey it independently. RTL preserves math operand roles and the whole/parts concept; translate every story, number, question, alt description, unit and feedback genuinely into each supported locale. All resources and interactions must work offline after a future selected-package download; do not assert the existing app implements caching.
-                      
-                      ## Acceptance cases for eventual tests
-                      
-                      - Six red and four blue disjoint buttons total ten without double counting.
-                      - Whole ten, six red, all rest blue → four blue; six plus four reconstructs ten.
-                      - Question switch preserves same counts but changes requested unknown among 10, 4 and 6.
-                      - Whole ten with all ten red → zero blue is valid.
-                      - Fifteen marbles, nine green → six yellow; nine plus six equals fifteen. Candidates 24 and 7 get relation-specific feedback.
-                      - Text/screen-reader, keyboard, touch, RTL, zoom/reduced-motion and downloaded-offline modes have equivalent mathematical facts.
-                      - Scene does not persist answers, score, or claim mastery.
-                      
-                      ## Dependencies and open approvals
-                      
-                      The generic Scene Resource exists, but this custom Scene, locale dictionaries, accessible handlers and tests do not. Coding Agent must verify actual Playground context and implement/validate after explicit editor approval. No code, Question, Quiz, scoring, backend, persistence or Note event is authorized by this specification.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                      2. **`scene` Resource (proposed):** Partition Lab entry B starts with a full ten-unit tray labeled “whole 10”, six marked red and four unnamed “rest”. The child identifies which amount is **already included** in the ten and predicts the unknown part. Let them uncover 10 − 6 = **4 blue buttons**, then rejoin parts.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Part–Whole Partition Lab — Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist/editor approval.  
+                    **Owner:** Educational Screenwriter.  
+                    **Parent:** Lesson Content (full original source: this Lesson's production notes), Sections 1–4; Draft Brief (full original source: production.methodology).  
+                    **Technical status:** New proposed prop-free, self-contained Scene; not implemented.
+
+                    ## Mathematical invariant and learner purpose
+
+                    Two **disjoint** groups cover exactly one counted whole. When part A and part B are both known, whole = A + B. When whole and a part are known, missing part = whole − known part, with nonnegative count and an explicit premise that there are no additional categories. Preserve object count when changing the question from unknown whole to unknown part. A color shift or a new hidden label never creates or destroys objects. Learner actions are for instruction, not a scored Question or proof of Skill mastery.
+
+                    ## Scenario A — two known parts, unknown whole (Section 1)
+
+                    Display **6 red buttons** and **4 blue buttons** as two countable, separately labeled piles. Ask “How many buttons altogether?” with the total hidden. A learner can use an accessible **Join groups** action (not mandatory drag), revealing 10 in a whole tray and the expression **6 + 4 = 10 buttons**. If learner predicts 6, explain “That is only the red group; the blue group has four more buttons.” If a learner guesses 14, show the six-plus-four count rather than only a correctness icon. Maintain source group labels after joining. A “Split again” action reveals the original partition without changing the total.
+
+                    ## Scenario B — known whole, unknown part (Section 2)
+
+                    Begin with one full tray of **10 buttons**, exactly six labeled red; the other four remain as **unknown ‘all the rest are blue’**. Ask which amount is included inside the whole rather than a separate amount added to ten. Learner selects a missing-part value with stepper, number entry, or optional token placement; 4 gives **10 − 6 = 4**, and reverse recombination **6 + 4 = 10**. For 16, say “Ten already includes six red; adding six again double-counts those buttons.” For candidate 5, say “Six and five would make eleven, more than the known whole ten.”
+
+                    ## Scenario C — change the question, not the objects (Section 3)
+
+                    A stable **ten-button** collection consists of six red and four blue. Independently present three question cards:
+
+                    1. **Whole unknown:** given 6 and 4 → 6 + 4 = **10**.
+                    2. **Blue part unknown:** whole 10 and red 6 → 10 − 6 = **4**.
+                    3. **Red part unknown:** whole 10 and blue 4 → 10 − 4 = **6**.
+                       Optional fourth variant: all ten red and “rest blue” yields **10 − 10 = 0 blue**. A user can inspect which role has the question mark and request an explanation before answering. Wrong operation feedback must identify whether the whole was _already_ known; no keyword-only arithmetic. Each question card opens as a new local starting state, independent of Sections A/B.
+
+                    ## Scenario D — independent transfer (Section 4)
+
+                    Story: 15 marbles in a bag, 9 green, **all remaining are yellow**. Show a fifteen-unit tray; nine have green-group labels and six have unassigned part labels. Learner proposes the yellow count, then performs a two-stage visual/text check: subtract 9 from whole 15 → **6 yellow**; add 9 + 6 → **15 whole**. Candidate 24 gets “You counted the nine green again”; candidate 7 yields “Nine and seven would be sixteen, not fifteen.” Hints “Fifteen includes the nine green” and “What joins nine to make fifteen?” plus “Reveal full explanation” are always available.
+
+                    ## Interactions, state and calculation integrity
+
+                    Store scenario-local declared whole/count roles, the displayed tokens, the learner's candidate, optional reveal of whole and part labels, hint level, explanatory state. All totals derive from the actual stored counts, never a visual CSS width. When a role is hidden, it is labeled **unknown** rather than removed from the model. A “Join groups” state must not duplicate tokens. All units are explicit “buttons” or “marbles”. Support zero-part cases. The conditional premise “these are all the groups” is essential; no implicit third color. Reset restores only the active instance. A shared internal helper is allowed, but _public Scene components take absolutely no props_; do not add Resource_Config scenario attributes.
+
+                    ## Visual/audio, inclusivity, localization and offline
+
+                    Offer a diagram with equal-sized counted elements and a **text ledger**: “Whole ten; red part six; blue part four” or pre-reveal “blue part unknown”. Screen readers can navigate this without visual color, and can hear or read every change and calculation; focus is managed around reveals. Provide keyboard/switch/tap controls for joining, assigning and adjusting counters, never drag-only; visible focus, large targets, reflow/zoom and reduced-motion instant feedback. Color may help group recognition but names and quantities must convey it independently. RTL preserves math operand roles and the whole/parts concept; translate every story, number, question, alt description, unit and feedback genuinely into each supported locale. All resources and interactions must work offline after a future selected-package download; do not assert the existing app implements caching.
+
+                    ## Acceptance cases for eventual tests
+
+                    - Six red and four blue disjoint buttons total ten without double counting.
+                    - Whole ten, six red, all rest blue → four blue; six plus four reconstructs ten.
+                    - Question switch preserves same counts but changes requested unknown among 10, 4 and 6.
+                    - Whole ten with all ten red → zero blue is valid.
+                    - Fifteen marbles, nine green → six yellow; nine plus six equals fifteen. Candidates 24 and 7 get relation-specific feedback.
+                    - Text/screen-reader, keyboard, touch, RTL, zoom/reduced-motion and downloaded-offline modes have equivalent mathematical facts.
+                    - Scene does not persist answers, score, or claim mastery.
+
+                    ## Dependencies and open approvals
+
+                    The generic Scene Resource exists, but this custom Scene, locale dictionaries, accessible handlers and tests do not. Coding Agent must verify actual Playground context and implement/validate after explicit editor approval. No code, Question, Quiz, scoring, backend, persistence or Note event is authorized by this specification.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **`scene` Resource (proposed):** Partition Lab entry B starts with a full ten-unit tray labeled “whole 10”, six marked red and four unnamed “rest”. The child identifies which amount is **already included** in the ten and predicts the unknown part. Let them uncover 10 − 6 = **4 blue buttons**, then rejoin parts.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section2Text3:
                 config:
-                  id: "a4f1229b-16ab-4117-8742-ef4215185cce"
-                  slug: "section2Text3"
-                  type: "text"
+                  id: 'a4f1229b-16ab-4117-8742-ef4215185cce'
+                  slug: 'section2Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Ten is the total already; six are included in it. Adding six counts red buttons a second time."
+                      en: 'Ten is the total already; six are included in it. Adding six counts red buttons a second time.'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "3. **`text`, feedback:** For 16: “Ten is the total already; six are included in it. Adding six counts red buttons a second time.” For 4: “Six red and four blue fit the whole ten.”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '3. **`text`, feedback:** For 16: “Ten is the total already; six are included in it. Adding six counts red buttons a second time.” For 4: “Six red and four blue fit the whole ten.”'
               section2Markdown4:
                 config:
-                  id: "ebfe7f48-86d8-4a47-8de6-484ed0c08d41"
-                  slug: "section2Markdown4"
-                  type: "markdown"
+                  id: 'ebfe7f48-86d8-4a47-8de6-484ed0c08d41'
+                  slug: 'section2Markdown4'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Known **whole + one known part** tells us the other part by subtraction. Check it by adding the parts together again."
+                      en: 'Known **whole + one known part** tells us the other part by subtraction. Check it by adding the parts together again.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "4. **`markdown`:** “Known **whole + one known part** tells us the other part by subtraction. Check it by adding the parts together again.”"
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '4. **`markdown`:** “Known **whole + one known part** tells us the other part by subtraction. Check it by adding the parts together again.”'
             order:
-              - "section2Text1"
-              - "section2Scene2"
-              - "section2Text3"
-              - "section2Markdown4"
+              - 'section2Text1'
+              - 'section2Scene2'
+              - 'section2Text3'
+              - 'section2Markdown4'
         production:
-          purpose: "Same collection, different unknown"
-          pedagogicalIntent: "Same collection, different unknown"
+          purpose: 'Same collection, different unknown'
+          pedagogicalIntent: 'Same collection, different unknown'
           productionNotes: |
-              ### Section 2 — Same collection, different unknown
-              
-              _Purpose: distinguish a known whole from a missing part._
-              
-              1. **`text`:** “This time the box has **10 buttons in total**. **6 are red; all the rest are blue.** How many are blue? We still have the same ten buttons.”
-              2. **`scene` Resource (proposed):** Partition Lab entry B starts with a full ten-unit tray labeled “whole 10”, six marked red and four unnamed “rest”. The child identifies which amount is **already included** in the ten and predicts the unknown part. Let them uncover 10 − 6 = **4 blue buttons**, then rejoin parts.
-              3. **`text`, feedback:** For 16: “Ten is the total already; six are included in it. Adding six counts red buttons a second time.” For 4: “Six red and four blue fit the whole ten.”
-              4. **`markdown`:** “Known **whole + one known part** tells us the other part by subtraction. Check it by adding the parts together again.”
-              
+            ### Section 2 — Same collection, different unknown
+
+            _Purpose: distinguish a known whole from a missing part._
+
+            1. **`text`:** “This time the box has **10 buttons in total**. **6 are red; all the rest are blue.** How many are blue? We still have the same ten buttons.”
+            2. **`scene` Resource (proposed):** Partition Lab entry B starts with a full ten-unit tray labeled “whole 10”, six marked red and four unnamed “rest”. The child identifies which amount is **already included** in the ten and predicts the unknown part. Let them uncover 10 − 6 = **4 blue buttons**, then rejoin parts.
+            3. **`text`, feedback:** For 16: “Ten is the total already; six are included in it. Adding six counts red buttons a second time.” For 4: “Six red and four blue fit the whole ten.”
+            4. **`markdown`:** “Known **whole + one known part** tells us the other part by subtraction. Check it by adding the parts together again.”
+
       section3TheQuestionCanChangeNotTheObjects:
         config:
-          id: "33e5b147-fb71-4ed1-8552-2c2d7dc693bb"
-          slug: "section3TheQuestionCanChangeNotTheObjects"
-          type: "content"
+          id: '33e5b147-fb71-4ed1-8552-2c2d7dc693bb'
+          slug: 'section3TheQuestionCanChangeNotTheObjects'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "The question can change, not the objects"
+              en: 'The question can change, not the objects'
             navigationLabel:
-              en: "The question can change, not the objects"
+              en: 'The question can change, not the objects'
           content:
             items:
               section3Text1:
                 config:
-                  id: "26c20993-970e-4e87-83ed-679ea221108a"
-                  slug: "section3Text1"
-                  type: "text"
+                  id: '26c20993-970e-4e87-83ed-679ea221108a'
+                  slug: 'section3Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Here are 10 counters: 6 belong to the red group and 4 to the blue group. If we hide **the total**, what would we need to find? If we hide **the blue part**, what changes?"
+                      en: 'Here are 10 counters: 6 belong to the red group and 4 to the blue group. If we hide **the total**, what would we need to find? If we hide **the blue part**, what changes?'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "1. **`text`:** “Here are 10 counters: 6 belong to the red group and 4 to the blue group. If we hide **the total**, what would we need to find? If we hide **the blue part**, what changes?”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **`text`:** “Here are 10 counters: 6 belong to the red group and 4 to the blue group. If we hide **the total**, what would we need to find? If we hide **the blue part**, what changes?”'
               section3Scene2:
                 config:
-                  id: "51285c88-c2be-40bc-8381-23a4a017ef90"
-                  slug: "section3Scene2"
-                  type: "scene"
+                  id: '51285c88-c2be-40bc-8381-23a4a017ef90'
+                  slug: 'section3Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Here are 10 counters: 6 belong to the red group and 4 to the blue group. If we hide **the total**, what would we need to find? If we hide **the blue part**, what changes?"
+                        instruction: 'Here are 10 counters: 6 belong to the red group and 4 to the blue group. If we hide **the total**, what would we need to find? If we hide **the blue part**, what changes?'
                 production:
-                  purpose: "Provisional Scene placement in The question can change, not the objects, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in The question can change, not the objects, self-contained and not implemented'
                   specification: |
-                      # Part–Whole Partition Lab — Scene Specification
-                      
-                      **Status:** Provisional Draft — pending Methodologist/editor approval.  
-                      **Owner:** Educational Screenwriter.  
-                      **Parent:** Lesson Content (full original source: this Lesson's production notes), Sections 1–4; Draft Brief (full original source: production.methodology).  
-                      **Technical status:** New proposed prop-free, self-contained Scene; not implemented.
-                      
-                      ## Mathematical invariant and learner purpose
-                      
-                      Two **disjoint** groups cover exactly one counted whole. When part A and part B are both known, whole = A + B. When whole and a part are known, missing part = whole − known part, with nonnegative count and an explicit premise that there are no additional categories. Preserve object count when changing the question from unknown whole to unknown part. A color shift or a new hidden label never creates or destroys objects. Learner actions are for instruction, not a scored Question or proof of Skill mastery.
-                      
-                      ## Scenario A — two known parts, unknown whole (Section 1)
-                      
-                      Display **6 red buttons** and **4 blue buttons** as two countable, separately labeled piles. Ask “How many buttons altogether?” with the total hidden. A learner can use an accessible **Join groups** action (not mandatory drag), revealing 10 in a whole tray and the expression **6 + 4 = 10 buttons**. If learner predicts 6, explain “That is only the red group; the blue group has four more buttons.” If a learner guesses 14, show the six-plus-four count rather than only a correctness icon. Maintain source group labels after joining. A “Split again” action reveals the original partition without changing the total.
-                      
-                      ## Scenario B — known whole, unknown part (Section 2)
-                      
-                      Begin with one full tray of **10 buttons**, exactly six labeled red; the other four remain as **unknown ‘all the rest are blue’**. Ask which amount is included inside the whole rather than a separate amount added to ten. Learner selects a missing-part value with stepper, number entry, or optional token placement; 4 gives **10 − 6 = 4**, and reverse recombination **6 + 4 = 10**. For 16, say “Ten already includes six red; adding six again double-counts those buttons.” For candidate 5, say “Six and five would make eleven, more than the known whole ten.”
-                      
-                      ## Scenario C — change the question, not the objects (Section 3)
-                      
-                      A stable **ten-button** collection consists of six red and four blue. Independently present three question cards:
-                      
-                      1. **Whole unknown:** given 6 and 4 → 6 + 4 = **10**.
-                      2. **Blue part unknown:** whole 10 and red 6 → 10 − 6 = **4**.
-                      3. **Red part unknown:** whole 10 and blue 4 → 10 − 4 = **6**.
-                         Optional fourth variant: all ten red and “rest blue” yields **10 − 10 = 0 blue**. A user can inspect which role has the question mark and request an explanation before answering. Wrong operation feedback must identify whether the whole was _already_ known; no keyword-only arithmetic. Each question card opens as a new local starting state, independent of Sections A/B.
-                      
-                      ## Scenario D — independent transfer (Section 4)
-                      
-                      Story: 15 marbles in a bag, 9 green, **all remaining are yellow**. Show a fifteen-unit tray; nine have green-group labels and six have unassigned part labels. Learner proposes the yellow count, then performs a two-stage visual/text check: subtract 9 from whole 15 → **6 yellow**; add 9 + 6 → **15 whole**. Candidate 24 gets “You counted the nine green again”; candidate 7 yields “Nine and seven would be sixteen, not fifteen.” Hints “Fifteen includes the nine green” and “What joins nine to make fifteen?” plus “Reveal full explanation” are always available.
-                      
-                      ## Interactions, state and calculation integrity
-                      
-                      Store scenario-local declared whole/count roles, the displayed tokens, the learner's candidate, optional reveal of whole and part labels, hint level, explanatory state. All totals derive from the actual stored counts, never a visual CSS width. When a role is hidden, it is labeled **unknown** rather than removed from the model. A “Join groups” state must not duplicate tokens. All units are explicit “buttons” or “marbles”. Support zero-part cases. The conditional premise “these are all the groups” is essential; no implicit third color. Reset restores only the active instance. A shared internal helper is allowed, but _public Scene components take absolutely no props_; do not add Resource_Config scenario attributes.
-                      
-                      ## Visual/audio, inclusivity, localization and offline
-                      
-                      Offer a diagram with equal-sized counted elements and a **text ledger**: “Whole ten; red part six; blue part four” or pre-reveal “blue part unknown”. Screen readers can navigate this without visual color, and can hear or read every change and calculation; focus is managed around reveals. Provide keyboard/switch/tap controls for joining, assigning and adjusting counters, never drag-only; visible focus, large targets, reflow/zoom and reduced-motion instant feedback. Color may help group recognition but names and quantities must convey it independently. RTL preserves math operand roles and the whole/parts concept; translate every story, number, question, alt description, unit and feedback genuinely into each supported locale. All resources and interactions must work offline after a future selected-package download; do not assert the existing app implements caching.
-                      
-                      ## Acceptance cases for eventual tests
-                      
-                      - Six red and four blue disjoint buttons total ten without double counting.
-                      - Whole ten, six red, all rest blue → four blue; six plus four reconstructs ten.
-                      - Question switch preserves same counts but changes requested unknown among 10, 4 and 6.
-                      - Whole ten with all ten red → zero blue is valid.
-                      - Fifteen marbles, nine green → six yellow; nine plus six equals fifteen. Candidates 24 and 7 get relation-specific feedback.
-                      - Text/screen-reader, keyboard, touch, RTL, zoom/reduced-motion and downloaded-offline modes have equivalent mathematical facts.
-                      - Scene does not persist answers, score, or claim mastery.
-                      
-                      ## Dependencies and open approvals
-                      
-                      The generic Scene Resource exists, but this custom Scene, locale dictionaries, accessible handlers and tests do not. Coding Agent must verify actual Playground context and implement/validate after explicit editor approval. No code, Question, Quiz, scoring, backend, persistence or Note event is authorized by this specification.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                      2. **`scene` Resource (proposed):** Entry C offers the same 6/4/10 partition with one role hidden at a time: unknown total: **6 + 4 = ?**; unknown second part: **10 − 6 = ?**; unknown first part: **10 − 4 = ?**. The learner chooses the matching role, not a word trigger. Give immediate reasoned feedback and reveal on demand. Values are 10, 4 and 6 respectively.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Part–Whole Partition Lab — Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist/editor approval.  
+                    **Owner:** Educational Screenwriter.  
+                    **Parent:** Lesson Content (full original source: this Lesson's production notes), Sections 1–4; Draft Brief (full original source: production.methodology).  
+                    **Technical status:** New proposed prop-free, self-contained Scene; not implemented.
+
+                    ## Mathematical invariant and learner purpose
+
+                    Two **disjoint** groups cover exactly one counted whole. When part A and part B are both known, whole = A + B. When whole and a part are known, missing part = whole − known part, with nonnegative count and an explicit premise that there are no additional categories. Preserve object count when changing the question from unknown whole to unknown part. A color shift or a new hidden label never creates or destroys objects. Learner actions are for instruction, not a scored Question or proof of Skill mastery.
+
+                    ## Scenario A — two known parts, unknown whole (Section 1)
+
+                    Display **6 red buttons** and **4 blue buttons** as two countable, separately labeled piles. Ask “How many buttons altogether?” with the total hidden. A learner can use an accessible **Join groups** action (not mandatory drag), revealing 10 in a whole tray and the expression **6 + 4 = 10 buttons**. If learner predicts 6, explain “That is only the red group; the blue group has four more buttons.” If a learner guesses 14, show the six-plus-four count rather than only a correctness icon. Maintain source group labels after joining. A “Split again” action reveals the original partition without changing the total.
+
+                    ## Scenario B — known whole, unknown part (Section 2)
+
+                    Begin with one full tray of **10 buttons**, exactly six labeled red; the other four remain as **unknown ‘all the rest are blue’**. Ask which amount is included inside the whole rather than a separate amount added to ten. Learner selects a missing-part value with stepper, number entry, or optional token placement; 4 gives **10 − 6 = 4**, and reverse recombination **6 + 4 = 10**. For 16, say “Ten already includes six red; adding six again double-counts those buttons.” For candidate 5, say “Six and five would make eleven, more than the known whole ten.”
+
+                    ## Scenario C — change the question, not the objects (Section 3)
+
+                    A stable **ten-button** collection consists of six red and four blue. Independently present three question cards:
+
+                    1. **Whole unknown:** given 6 and 4 → 6 + 4 = **10**.
+                    2. **Blue part unknown:** whole 10 and red 6 → 10 − 6 = **4**.
+                    3. **Red part unknown:** whole 10 and blue 4 → 10 − 4 = **6**.
+                       Optional fourth variant: all ten red and “rest blue” yields **10 − 10 = 0 blue**. A user can inspect which role has the question mark and request an explanation before answering. Wrong operation feedback must identify whether the whole was _already_ known; no keyword-only arithmetic. Each question card opens as a new local starting state, independent of Sections A/B.
+
+                    ## Scenario D — independent transfer (Section 4)
+
+                    Story: 15 marbles in a bag, 9 green, **all remaining are yellow**. Show a fifteen-unit tray; nine have green-group labels and six have unassigned part labels. Learner proposes the yellow count, then performs a two-stage visual/text check: subtract 9 from whole 15 → **6 yellow**; add 9 + 6 → **15 whole**. Candidate 24 gets “You counted the nine green again”; candidate 7 yields “Nine and seven would be sixteen, not fifteen.” Hints “Fifteen includes the nine green” and “What joins nine to make fifteen?” plus “Reveal full explanation” are always available.
+
+                    ## Interactions, state and calculation integrity
+
+                    Store scenario-local declared whole/count roles, the displayed tokens, the learner's candidate, optional reveal of whole and part labels, hint level, explanatory state. All totals derive from the actual stored counts, never a visual CSS width. When a role is hidden, it is labeled **unknown** rather than removed from the model. A “Join groups” state must not duplicate tokens. All units are explicit “buttons” or “marbles”. Support zero-part cases. The conditional premise “these are all the groups” is essential; no implicit third color. Reset restores only the active instance. A shared internal helper is allowed, but _public Scene components take absolutely no props_; do not add Resource_Config scenario attributes.
+
+                    ## Visual/audio, inclusivity, localization and offline
+
+                    Offer a diagram with equal-sized counted elements and a **text ledger**: “Whole ten; red part six; blue part four” or pre-reveal “blue part unknown”. Screen readers can navigate this without visual color, and can hear or read every change and calculation; focus is managed around reveals. Provide keyboard/switch/tap controls for joining, assigning and adjusting counters, never drag-only; visible focus, large targets, reflow/zoom and reduced-motion instant feedback. Color may help group recognition but names and quantities must convey it independently. RTL preserves math operand roles and the whole/parts concept; translate every story, number, question, alt description, unit and feedback genuinely into each supported locale. All resources and interactions must work offline after a future selected-package download; do not assert the existing app implements caching.
+
+                    ## Acceptance cases for eventual tests
+
+                    - Six red and four blue disjoint buttons total ten without double counting.
+                    - Whole ten, six red, all rest blue → four blue; six plus four reconstructs ten.
+                    - Question switch preserves same counts but changes requested unknown among 10, 4 and 6.
+                    - Whole ten with all ten red → zero blue is valid.
+                    - Fifteen marbles, nine green → six yellow; nine plus six equals fifteen. Candidates 24 and 7 get relation-specific feedback.
+                    - Text/screen-reader, keyboard, touch, RTL, zoom/reduced-motion and downloaded-offline modes have equivalent mathematical facts.
+                    - Scene does not persist answers, score, or claim mastery.
+
+                    ## Dependencies and open approvals
+
+                    The generic Scene Resource exists, but this custom Scene, locale dictionaries, accessible handlers and tests do not. Coding Agent must verify actual Playground context and implement/validate after explicit editor approval. No code, Question, Quiz, scoring, backend, persistence or Note event is authorized by this specification.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **`scene` Resource (proposed):** Entry C offers the same 6/4/10 partition with one role hidden at a time: unknown total: **6 + 4 = ?**; unknown second part: **10 − 6 = ?**; unknown first part: **10 − 4 = ?**. The learner chooses the matching role, not a word trigger. Give immediate reasoned feedback and reveal on demand. Values are 10, 4 and 6 respectively.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section3Text3:
                 config:
-                  id: "929e8074-2eab-48b7-8623-38396a1660fa"
-                  slug: "section3Text3"
-                  type: "text"
+                  id: '929e8074-2eab-48b7-8623-38396a1660fa'
+                  slug: 'section3Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Our counted objects did not change. The question changed. A part cannot be more than the whole when these are the only nonoverlapping parts."
+                      en: 'Our counted objects did not change. The question changed. A part cannot be more than the whole when these are the only nonoverlapping parts.'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "3. **`text`:** “Our counted objects did not change. The question changed. A part cannot be more than the whole when these are the only nonoverlapping parts.”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '3. **`text`:** “Our counted objects did not change. The question changed. A part cannot be more than the whole when these are the only nonoverlapping parts.”'
               section3Markdown4:
                 config:
-                  id: "e64d630d-a927-4c37-8dcf-f0fec2a52fc4"
-                  slug: "section3Markdown4"
-                  type: "markdown"
+                  id: 'e64d630d-a927-4c37-8dcf-f0fec2a52fc4'
+                  slug: 'section3Markdown4'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "If all 10 are red, and the rest are blue, **10 − 10 = 0 blue buttons**."
+                      en: 'If all 10 are red, and the rest are blue, **10 − 10 = 0 blue buttons**.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "4. **`markdown`:** Optional zero-part contrast: “If all 10 are red, and the rest are blue, **10 − 10 = 0 blue buttons**.” Zero is a valid missing-part result."
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '4. **`markdown`:** Optional zero-part contrast: “If all 10 are red, and the rest are blue, **10 − 10 = 0 blue buttons**.” Zero is a valid missing-part result.'
             order:
-              - "section3Text1"
-              - "section3Scene2"
-              - "section3Text3"
-              - "section3Markdown4"
+              - 'section3Text1'
+              - 'section3Scene2'
+              - 'section3Text3'
+              - 'section3Markdown4'
         production:
-          purpose: "The question can change, not the objects"
-          pedagogicalIntent: "The question can change, not the objects"
+          purpose: 'The question can change, not the objects'
+          pedagogicalIntent: 'The question can change, not the objects'
           productionNotes: |
-              ### Section 3 — The question can change, not the objects
-              
-              _Purpose: practice shifting which quantity is unknown, not guessing keywords._
-              
-              1. **`text`:** “Here are 10 counters: 6 belong to the red group and 4 to the blue group. If we hide **the total**, what would we need to find? If we hide **the blue part**, what changes?”
-              2. **`scene` Resource (proposed):** Entry C offers the same 6/4/10 partition with one role hidden at a time: unknown total: **6 + 4 = ?**; unknown second part: **10 − 6 = ?**; unknown first part: **10 − 4 = ?**. The learner chooses the matching role, not a word trigger. Give immediate reasoned feedback and reveal on demand. Values are 10, 4 and 6 respectively.
-              3. **`text`:** “Our counted objects did not change. The question changed. A part cannot be more than the whole when these are the only nonoverlapping parts.”
-              4. **`markdown`:** Optional zero-part contrast: “If all 10 are red, and the rest are blue, **10 − 10 = 0 blue buttons**.” Zero is a valid missing-part result.
-              
+            ### Section 3 — The question can change, not the objects
+
+            _Purpose: practice shifting which quantity is unknown, not guessing keywords._
+
+            1. **`text`:** “Here are 10 counters: 6 belong to the red group and 4 to the blue group. If we hide **the total**, what would we need to find? If we hide **the blue part**, what changes?”
+            2. **`scene` Resource (proposed):** Entry C offers the same 6/4/10 partition with one role hidden at a time: unknown total: **6 + 4 = ?**; unknown second part: **10 − 6 = ?**; unknown first part: **10 − 4 = ?**. The learner chooses the matching role, not a word trigger. Give immediate reasoned feedback and reveal on demand. Values are 10, 4 and 6 respectively.
+            3. **`text`:** “Our counted objects did not change. The question changed. A part cannot be more than the whole when these are the only nonoverlapping parts.”
+            4. **`markdown`:** Optional zero-part contrast: “If all 10 are red, and the rest are blue, **10 − 10 = 0 blue buttons**.” Zero is a valid missing-part result.
+
       section4IndependentTransferInANewContext:
         config:
-          id: "cfe540da-cc37-4759-8b5e-6ab5f88cad36"
-          slug: "section4IndependentTransferInANewContext"
-          type: "content"
+          id: 'cfe540da-cc37-4759-8b5e-6ab5f88cad36'
+          slug: 'section4IndependentTransferInANewContext'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Independent transfer in a new context"
+              en: 'Independent transfer in a new context'
             navigationLabel:
-              en: "Independent transfer in a new context"
+              en: 'Independent transfer in a new context'
           content:
             items:
               section4Text1:
                 config:
-                  id: "321bd4ea-3eaf-4759-87a2-5a05bb16a9b6"
-                  slug: "section4Text1"
-                  type: "text"
+                  id: '321bd4ea-3eaf-4759-87a2-5a05bb16a9b6'
+                  slug: 'section4Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A bag has **15 marbles**. **9** are green. **All the remaining marbles are yellow**. How many yellow marbles? Show why your answer makes one whole."
+                      en: 'A bag has **15 marbles**. **9** are green. **All the remaining marbles are yellow**. How many yellow marbles? Show why your answer makes one whole.'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "1. **`text`:** “A bag has **15 marbles**. **9** are green. **All the remaining marbles are yellow**. How many yellow marbles? Show why your answer makes one whole.”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **`text`:** “A bag has **15 marbles**. **9** are green. **All the remaining marbles are yellow**. How many yellow marbles? Show why your answer makes one whole.”'
               section4Scene2:
                 config:
-                  id: "98d889c4-9954-4686-8751-8f7e56dda03c"
-                  slug: "section4Scene2"
-                  type: "scene"
+                  id: '98d889c4-9954-4686-8751-8f7e56dda03c'
+                  slug: 'section4Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "A bag has **15 marbles**. **9** are green. **All the remaining marbles are yellow**. How many yellow marbles? Show why your answer makes one whole."
+                        instruction: 'A bag has **15 marbles**. **9** are green. **All the remaining marbles are yellow**. How many yellow marbles? Show why your answer makes one whole.'
                 production:
-                  purpose: "Provisional Scene placement in Independent transfer in a new context, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in Independent transfer in a new context, self-contained and not implemented'
                   specification: |
-                      # Part–Whole Partition Lab — Scene Specification
-                      
-                      **Status:** Provisional Draft — pending Methodologist/editor approval.  
-                      **Owner:** Educational Screenwriter.  
-                      **Parent:** Lesson Content (full original source: this Lesson's production notes), Sections 1–4; Draft Brief (full original source: production.methodology).  
-                      **Technical status:** New proposed prop-free, self-contained Scene; not implemented.
-                      
-                      ## Mathematical invariant and learner purpose
-                      
-                      Two **disjoint** groups cover exactly one counted whole. When part A and part B are both known, whole = A + B. When whole and a part are known, missing part = whole − known part, with nonnegative count and an explicit premise that there are no additional categories. Preserve object count when changing the question from unknown whole to unknown part. A color shift or a new hidden label never creates or destroys objects. Learner actions are for instruction, not a scored Question or proof of Skill mastery.
-                      
-                      ## Scenario A — two known parts, unknown whole (Section 1)
-                      
-                      Display **6 red buttons** and **4 blue buttons** as two countable, separately labeled piles. Ask “How many buttons altogether?” with the total hidden. A learner can use an accessible **Join groups** action (not mandatory drag), revealing 10 in a whole tray and the expression **6 + 4 = 10 buttons**. If learner predicts 6, explain “That is only the red group; the blue group has four more buttons.” If a learner guesses 14, show the six-plus-four count rather than only a correctness icon. Maintain source group labels after joining. A “Split again” action reveals the original partition without changing the total.
-                      
-                      ## Scenario B — known whole, unknown part (Section 2)
-                      
-                      Begin with one full tray of **10 buttons**, exactly six labeled red; the other four remain as **unknown ‘all the rest are blue’**. Ask which amount is included inside the whole rather than a separate amount added to ten. Learner selects a missing-part value with stepper, number entry, or optional token placement; 4 gives **10 − 6 = 4**, and reverse recombination **6 + 4 = 10**. For 16, say “Ten already includes six red; adding six again double-counts those buttons.” For candidate 5, say “Six and five would make eleven, more than the known whole ten.”
-                      
-                      ## Scenario C — change the question, not the objects (Section 3)
-                      
-                      A stable **ten-button** collection consists of six red and four blue. Independently present three question cards:
-                      
-                      1. **Whole unknown:** given 6 and 4 → 6 + 4 = **10**.
-                      2. **Blue part unknown:** whole 10 and red 6 → 10 − 6 = **4**.
-                      3. **Red part unknown:** whole 10 and blue 4 → 10 − 4 = **6**.
-                         Optional fourth variant: all ten red and “rest blue” yields **10 − 10 = 0 blue**. A user can inspect which role has the question mark and request an explanation before answering. Wrong operation feedback must identify whether the whole was _already_ known; no keyword-only arithmetic. Each question card opens as a new local starting state, independent of Sections A/B.
-                      
-                      ## Scenario D — independent transfer (Section 4)
-                      
-                      Story: 15 marbles in a bag, 9 green, **all remaining are yellow**. Show a fifteen-unit tray; nine have green-group labels and six have unassigned part labels. Learner proposes the yellow count, then performs a two-stage visual/text check: subtract 9 from whole 15 → **6 yellow**; add 9 + 6 → **15 whole**. Candidate 24 gets “You counted the nine green again”; candidate 7 yields “Nine and seven would be sixteen, not fifteen.” Hints “Fifteen includes the nine green” and “What joins nine to make fifteen?” plus “Reveal full explanation” are always available.
-                      
-                      ## Interactions, state and calculation integrity
-                      
-                      Store scenario-local declared whole/count roles, the displayed tokens, the learner's candidate, optional reveal of whole and part labels, hint level, explanatory state. All totals derive from the actual stored counts, never a visual CSS width. When a role is hidden, it is labeled **unknown** rather than removed from the model. A “Join groups” state must not duplicate tokens. All units are explicit “buttons” or “marbles”. Support zero-part cases. The conditional premise “these are all the groups” is essential; no implicit third color. Reset restores only the active instance. A shared internal helper is allowed, but _public Scene components take absolutely no props_; do not add Resource_Config scenario attributes.
-                      
-                      ## Visual/audio, inclusivity, localization and offline
-                      
-                      Offer a diagram with equal-sized counted elements and a **text ledger**: “Whole ten; red part six; blue part four” or pre-reveal “blue part unknown”. Screen readers can navigate this without visual color, and can hear or read every change and calculation; focus is managed around reveals. Provide keyboard/switch/tap controls for joining, assigning and adjusting counters, never drag-only; visible focus, large targets, reflow/zoom and reduced-motion instant feedback. Color may help group recognition but names and quantities must convey it independently. RTL preserves math operand roles and the whole/parts concept; translate every story, number, question, alt description, unit and feedback genuinely into each supported locale. All resources and interactions must work offline after a future selected-package download; do not assert the existing app implements caching.
-                      
-                      ## Acceptance cases for eventual tests
-                      
-                      - Six red and four blue disjoint buttons total ten without double counting.
-                      - Whole ten, six red, all rest blue → four blue; six plus four reconstructs ten.
-                      - Question switch preserves same counts but changes requested unknown among 10, 4 and 6.
-                      - Whole ten with all ten red → zero blue is valid.
-                      - Fifteen marbles, nine green → six yellow; nine plus six equals fifteen. Candidates 24 and 7 get relation-specific feedback.
-                      - Text/screen-reader, keyboard, touch, RTL, zoom/reduced-motion and downloaded-offline modes have equivalent mathematical facts.
-                      - Scene does not persist answers, score, or claim mastery.
-                      
-                      ## Dependencies and open approvals
-                      
-                      The generic Scene Resource exists, but this custom Scene, locale dictionaries, accessible handlers and tests do not. Coding Agent must verify actual Playground context and implement/validate after explicit editor approval. No code, Question, Quiz, scoring, backend, persistence or Note event is authorized by this specification.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                      2. **`scene` Resource (proposed):** Partition Lab entry D supplies a fifteen-unit model with nine labeled green; child fills the unknown yellow group using a number picker or counter increment/decrement, then checks **15 − 9 = 6** and **9 + 6 = 15**. First hint: “Fifteen includes the nine green.” Second hint: “What goes with nine to make fifteen?”
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Part–Whole Partition Lab — Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist/editor approval.  
+                    **Owner:** Educational Screenwriter.  
+                    **Parent:** Lesson Content (full original source: this Lesson's production notes), Sections 1–4; Draft Brief (full original source: production.methodology).  
+                    **Technical status:** New proposed prop-free, self-contained Scene; not implemented.
+
+                    ## Mathematical invariant and learner purpose
+
+                    Two **disjoint** groups cover exactly one counted whole. When part A and part B are both known, whole = A + B. When whole and a part are known, missing part = whole − known part, with nonnegative count and an explicit premise that there are no additional categories. Preserve object count when changing the question from unknown whole to unknown part. A color shift or a new hidden label never creates or destroys objects. Learner actions are for instruction, not a scored Question or proof of Skill mastery.
+
+                    ## Scenario A — two known parts, unknown whole (Section 1)
+
+                    Display **6 red buttons** and **4 blue buttons** as two countable, separately labeled piles. Ask “How many buttons altogether?” with the total hidden. A learner can use an accessible **Join groups** action (not mandatory drag), revealing 10 in a whole tray and the expression **6 + 4 = 10 buttons**. If learner predicts 6, explain “That is only the red group; the blue group has four more buttons.” If a learner guesses 14, show the six-plus-four count rather than only a correctness icon. Maintain source group labels after joining. A “Split again” action reveals the original partition without changing the total.
+
+                    ## Scenario B — known whole, unknown part (Section 2)
+
+                    Begin with one full tray of **10 buttons**, exactly six labeled red; the other four remain as **unknown ‘all the rest are blue’**. Ask which amount is included inside the whole rather than a separate amount added to ten. Learner selects a missing-part value with stepper, number entry, or optional token placement; 4 gives **10 − 6 = 4**, and reverse recombination **6 + 4 = 10**. For 16, say “Ten already includes six red; adding six again double-counts those buttons.” For candidate 5, say “Six and five would make eleven, more than the known whole ten.”
+
+                    ## Scenario C — change the question, not the objects (Section 3)
+
+                    A stable **ten-button** collection consists of six red and four blue. Independently present three question cards:
+
+                    1. **Whole unknown:** given 6 and 4 → 6 + 4 = **10**.
+                    2. **Blue part unknown:** whole 10 and red 6 → 10 − 6 = **4**.
+                    3. **Red part unknown:** whole 10 and blue 4 → 10 − 4 = **6**.
+                       Optional fourth variant: all ten red and “rest blue” yields **10 − 10 = 0 blue**. A user can inspect which role has the question mark and request an explanation before answering. Wrong operation feedback must identify whether the whole was _already_ known; no keyword-only arithmetic. Each question card opens as a new local starting state, independent of Sections A/B.
+
+                    ## Scenario D — independent transfer (Section 4)
+
+                    Story: 15 marbles in a bag, 9 green, **all remaining are yellow**. Show a fifteen-unit tray; nine have green-group labels and six have unassigned part labels. Learner proposes the yellow count, then performs a two-stage visual/text check: subtract 9 from whole 15 → **6 yellow**; add 9 + 6 → **15 whole**. Candidate 24 gets “You counted the nine green again”; candidate 7 yields “Nine and seven would be sixteen, not fifteen.” Hints “Fifteen includes the nine green” and “What joins nine to make fifteen?” plus “Reveal full explanation” are always available.
+
+                    ## Interactions, state and calculation integrity
+
+                    Store scenario-local declared whole/count roles, the displayed tokens, the learner's candidate, optional reveal of whole and part labels, hint level, explanatory state. All totals derive from the actual stored counts, never a visual CSS width. When a role is hidden, it is labeled **unknown** rather than removed from the model. A “Join groups” state must not duplicate tokens. All units are explicit “buttons” or “marbles”. Support zero-part cases. The conditional premise “these are all the groups” is essential; no implicit third color. Reset restores only the active instance. A shared internal helper is allowed, but _public Scene components take absolutely no props_; do not add Resource_Config scenario attributes.
+
+                    ## Visual/audio, inclusivity, localization and offline
+
+                    Offer a diagram with equal-sized counted elements and a **text ledger**: “Whole ten; red part six; blue part four” or pre-reveal “blue part unknown”. Screen readers can navigate this without visual color, and can hear or read every change and calculation; focus is managed around reveals. Provide keyboard/switch/tap controls for joining, assigning and adjusting counters, never drag-only; visible focus, large targets, reflow/zoom and reduced-motion instant feedback. Color may help group recognition but names and quantities must convey it independently. RTL preserves math operand roles and the whole/parts concept; translate every story, number, question, alt description, unit and feedback genuinely into each supported locale. All resources and interactions must work offline after a future selected-package download; do not assert the existing app implements caching.
+
+                    ## Acceptance cases for eventual tests
+
+                    - Six red and four blue disjoint buttons total ten without double counting.
+                    - Whole ten, six red, all rest blue → four blue; six plus four reconstructs ten.
+                    - Question switch preserves same counts but changes requested unknown among 10, 4 and 6.
+                    - Whole ten with all ten red → zero blue is valid.
+                    - Fifteen marbles, nine green → six yellow; nine plus six equals fifteen. Candidates 24 and 7 get relation-specific feedback.
+                    - Text/screen-reader, keyboard, touch, RTL, zoom/reduced-motion and downloaded-offline modes have equivalent mathematical facts.
+                    - Scene does not persist answers, score, or claim mastery.
+
+                    ## Dependencies and open approvals
+
+                    The generic Scene Resource exists, but this custom Scene, locale dictionaries, accessible handlers and tests do not. Coding Agent must verify actual Playground context and implement/validate after explicit editor approval. No code, Question, Quiz, scoring, backend, persistence or Note event is authorized by this specification.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **`scene` Resource (proposed):** Partition Lab entry D supplies a fifteen-unit model with nine labeled green; child fills the unknown yellow group using a number picker or counter increment/decrement, then checks **15 − 9 = 6** and **9 + 6 = 15**. First hint: “Fifteen includes the nine green.” Second hint: “What goes with nine to make fifteen?”
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section4Text3:
                 config:
-                  id: "af564473-5f63-455f-8e28-0ab22e1d5b9e"
-                  slug: "section4Text3"
-                  type: "text"
+                  id: 'af564473-5f63-455f-8e28-0ab22e1d5b9e'
+                  slug: 'section4Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Adding the known part to the whole would count green marbles twice."
+                      en: 'Adding the known part to the whole would count green marbles twice.'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "3. **`text`, feedback:** Candidate 24: “Adding the known part to the whole would count green marbles twice.” Candidate 6: “Nine green plus six yellow makes the full fifteen.” Give an explanation choice, text/speech to an adult, or voluntary typed response."
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '3. **`text`, feedback:** Candidate 24: “Adding the known part to the whole would count green marbles twice.” Candidate 6: “Nine green plus six yellow makes the full fifteen.” Give an explanation choice, text/speech to an adult, or voluntary typed response.'
               section4Markdown4:
                 config:
-                  id: "1bba9cd7-12d2-4ed0-829b-26c82bf374cf"
-                  slug: "section4Markdown4"
-                  type: "markdown"
+                  id: '1bba9cd7-12d2-4ed0-829b-26c82bf374cf'
+                  slug: 'section4Markdown4'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**Recall:** Parts join to make a whole. If the whole is known, remove one known part to find the other. Always check the complete partition."
+                      en: '**Recall:** Parts join to make a whole. If the whole is known, remove one known part to find the other. Always check the complete partition.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "4. **`markdown`:** “**Recall:** Parts join to make a whole. If the whole is known, remove one known part to find the other. Always check the complete partition.”"
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '4. **`markdown`:** “**Recall:** Parts join to make a whole. If the whole is known, remove one known part to find the other. Always check the complete partition.”'
             order:
-              - "section4Text1"
-              - "section4Scene2"
-              - "section4Text3"
-              - "section4Markdown4"
+              - 'section4Text1'
+              - 'section4Scene2'
+              - 'section4Text3'
+              - 'section4Markdown4'
         production:
-          purpose: "Independent transfer in a new context"
-          pedagogicalIntent: "Independent transfer in a new context"
+          purpose: 'Independent transfer in a new context'
+          pedagogicalIntent: 'Independent transfer in a new context'
           productionNotes: |
-              ### Section 4 — Independent transfer in a new context
-              
-              _Purpose: discover an unknown part from a total and check by recombining._
-              
-              1. **`text`:** “A bag has **15 marbles**. **9** are green. **All the remaining marbles are yellow**. How many yellow marbles? Show why your answer makes one whole.”
-              2. **`scene` Resource (proposed):** Partition Lab entry D supplies a fifteen-unit model with nine labeled green; child fills the unknown yellow group using a number picker or counter increment/decrement, then checks **15 − 9 = 6** and **9 + 6 = 15**. First hint: “Fifteen includes the nine green.” Second hint: “What goes with nine to make fifteen?”
-              3. **`text`, feedback:** Candidate 24: “Adding the known part to the whole would count green marbles twice.” Candidate 6: “Nine green plus six yellow makes the full fifteen.” Give an explanation choice, text/speech to an adult, or voluntary typed response.
-              4. **`markdown`:** “**Recall:** Parts join to make a whole. If the whole is known, remove one known part to find the other. Always check the complete partition.”
-              
+            ### Section 4 — Independent transfer in a new context
+
+            _Purpose: discover an unknown part from a total and check by recombining._
+
+            1. **`text`:** “A bag has **15 marbles**. **9** are green. **All the remaining marbles are yellow**. How many yellow marbles? Show why your answer makes one whole.”
+            2. **`scene` Resource (proposed):** Partition Lab entry D supplies a fifteen-unit model with nine labeled green; child fills the unknown yellow group using a number picker or counter increment/decrement, then checks **15 − 9 = 6** and **9 + 6 = 15**. First hint: “Fifteen includes the nine green.” Second hint: “What goes with nine to make fifteen?”
+            3. **`text`, feedback:** Candidate 24: “Adding the known part to the whole would count green marbles twice.” Candidate 6: “Nine green plus six yellow makes the full fifteen.” Give an explanation choice, text/speech to an adult, or voluntary typed response.
+            4. **`markdown`:** “**Recall:** Parts join to make a whole. If the whole is known, remove one known part to find the other. Always check the complete partition.”
+
     order:
-      - "section1TwoPiecesOfTheSameCollection"
-      - "section2SameCollectionDifferentUnknown"
-      - "section3TheQuestionCanChangeNotTheObjects"
-      - "section4IndependentTransferInANewContext"
+      - 'section1TwoPiecesOfTheSameCollection'
+      - 'section2SameCollectionDifferentUnknown'
+      - 'section3TheQuestionCanChangeNotTheObjects'
+      - 'section4IndependentTransferInANewContext'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
-      # Parts Make a Whole — Methodologist Brief
-      
-      Date: 2026-10-31
-      Slug: partsMakeAWhole
-      Methodologist status: Draft
-      Code: [Not implemented](#)
-      Program dependence: None
-      
-      ## Educational purpose
-      
-      Extend familiar add-to and take-from models into a reusable part–whole relationship. Learners decide whether the whole or one part is unknown, rather than choosing an operation from a word such as 'altogether' in isolation. This focuses on unknown quantity roles across multiple short contexts; it does not repeat the basic one-step modeling lesson.
-      
-      ## Target audience
-      
-      Children in **Grades 1–2** with variable literacy, numeric fluency and communication needs. Grade selection determines the proposed Lesson depth, not a ceiling on the canonical Skill's scope. Use concise language, concrete representations before symbolic abstraction when helpful, learner-controlled pacing, alternative response modes and relevant prerequisite refreshers.
-      
-      ## Prerequisites
-      
-      - Count and compare concrete collections within 20, including zero.
-      - Use addition to combine disjoint counted groups and subtraction to determine a remaining subset.
-      - Identify given quantities and the one quantity asked for; know that a part does not exceed a nonnegative whole.
-      
-      ## Target Skills
-      
-      - [partWholeAddsub.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/problemSolving/parts/skills/partWholeAddsub.data.ts)
-      
-      ## Expected learning outcomes
-      
-      - Given two disjoint parts, reconstruct the whole and name its unit: 6 + 4 = 10 buttons.
-      - Given the whole and one part, recover the other part with subtraction: 10 − 6 = 4 buttons.
-      - Translate the same part–whole relationship into two distinct problem questions (unknown whole versus unknown part) without changing the total or counted objects.
-      - Explain why adding the known whole to a known part double-counts objects, and check a missing part by recombining parts.
-      
-      ## Essential subject matter
-      
-      A finite whole partitioned into two disjoint parts has total W = A + B. If A and B are known, W follows by addition. If W and A are known with 0 ≤ A ≤ W, then B = W − A; recombining A + B must reproduce W. Example: 6 red buttons and 4 blue buttons are 10 buttons. If there are 10 buttons total and 6 are red, 4 must be blue, provided red and blue form a complete two-part partition. The colors are identifiers of the two nonoverlapping groups, not mathematical operations. If extra colors could be present, the 'rest are blue' premise must be explicit. The fact 6 + 4 = 10 supports both contexts but the unknown role differs.
-      
-      ## Conceptual progression and dependencies
-      
-      Start by composing known parts physically. Preserve the same ten counters while the question changes from 'How many altogether?' to 'How many are blue?' Then interpret a labeled part–whole bar with the whole visibly named. Finally solve an unfamiliar two-part partition and check by recombining, without a supplied operation clue.
-      
-      ## Misconceptions, examples and boundaries
-      
-      Avoid treating every mentioned number as a part to add, claiming that a known whole can be added to one of its included parts, forgetting that parts must be disjoint, and assuming 10 − 6 = 4 means 'six were physically removed'. Work in nonnegative integer counts within 20, including a zero part; do not cover fractions, overlapping Venn sets, ratios, more than two unknown components or general set algebra.
-      
-      ## Localization, accessibility and offline intent
-      
-      The English copy is **editorial source text**, not ready multilingual Lesson content. Before implementation, translate every learner-visible explanation, prompt, accessible description, symbol reading and feedback accurately into all supported locales; no English placeholders, invented translation or silent fallback. RTL adaptations preserve numeric operand order, mathematical relations and temporal dependencies rather than indiscriminate mirroring. All diagram/picture meanings must exist in readable, screen-reader-accessible text. Provide keyboard, switch and touch alternatives to any manipulation; use distinct labels beyond colors, visible focus, zoom/reflow, reduced motion and no timed-only requirements. Offline completeness requires all selected locale strings, resources and interactive feedback after download; this is an implementation target, not a statement about currently working PWA support.
-      
-      ## Sources and factual verification
-      
-      - [partWholeAddsub.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/problemSolving/parts/skills/partWholeAddsub.data.ts) — canonical Mathematics Skill Code and methodological scope, copied without changing UUIDs or localization.
-      - [Lesson Editorial Artifacts](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/lesson-editorial-document.md) — separate Brief/Content/Scene ownership and explicit approval policy.
-      - [Internationalization and Accessibility](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/internationalization-and-accessibility.md) — locale and inclusive design requirements.
-      - [Common Core State Standards for Mathematics](https://corestandards.org/mathematics-standards/) — optional age-sequence reference, not an assertion of Curriculum alignment.
-      
-      ## Curriculum / Program compatibility
-      
-      Not specified. This standalone Lesson is Program-neutral and does not presume compatibility with an unreviewed Curriculum.
-      
-      ## Open editorial decisions
-      
-      - The distinction from buildOneStepProblemModel is a stable two-part partition and the reversal of which part/whole is missing, not simply an additional animated equation.
-      - Formal Methodologist/editor approval and required localized content remain outstanding; the Content (full original source: this Lesson's production notes) and Scene specification (full original source: Scene production.specification) are **provisional Draft** parallel review artifacts, not approved Screenwriter deliverables.
-      - The coordinator owns the shared Playground skills index and generated taxonomy. Domain-local copied Code does not itself prove that the generated taxonomy or all external editorial gates have been refreshed.
-      
-      ## Methodologist handoff
-      
-      **Draft pending explicit approval.** Following review, the Screenwriter may revise the independently authored Content and Scene specs. Do not infer mastery from a prediction, an on-screen interaction, a completed calculation or a voluntary explanation. No runtime Lesson, Question, Quiz, scoring, progress or Note API is created.
+    # Parts Make a Whole — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: partsMakeAWhole
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Extend familiar add-to and take-from models into a reusable part–whole relationship. Learners decide whether the whole or one part is unknown, rather than choosing an operation from a word such as 'altogether' in isolation. This focuses on unknown quantity roles across multiple short contexts; it does not repeat the basic one-step modeling lesson.
+
+    ## Target audience
+
+    Children in **Grades 1–2** with variable literacy, numeric fluency and communication needs. Grade selection determines the proposed Lesson depth, not a ceiling on the canonical Skill's scope. Use concise language, concrete representations before symbolic abstraction when helpful, learner-controlled pacing, alternative response modes and relevant prerequisite refreshers.
+
+    ## Prerequisites
+
+    - Count and compare concrete collections within 20, including zero.
+    - Use addition to combine disjoint counted groups and subtraction to determine a remaining subset.
+    - Identify given quantities and the one quantity asked for; know that a part does not exceed a nonnegative whole.
+
+    ## Target Skills
+
+    - [partWholeAddsub.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/problemSolving/parts/skills/partWholeAddsub.data.ts)
+
+    ## Expected learning outcomes
+
+    - Given two disjoint parts, reconstruct the whole and name its unit: 6 + 4 = 10 buttons.
+    - Given the whole and one part, recover the other part with subtraction: 10 − 6 = 4 buttons.
+    - Translate the same part–whole relationship into two distinct problem questions (unknown whole versus unknown part) without changing the total or counted objects.
+    - Explain why adding the known whole to a known part double-counts objects, and check a missing part by recombining parts.
+
+    ## Essential subject matter
+
+    A finite whole partitioned into two disjoint parts has total W = A + B. If A and B are known, W follows by addition. If W and A are known with 0 ≤ A ≤ W, then B = W − A; recombining A + B must reproduce W. Example: 6 red buttons and 4 blue buttons are 10 buttons. If there are 10 buttons total and 6 are red, 4 must be blue, provided red and blue form a complete two-part partition. The colors are identifiers of the two nonoverlapping groups, not mathematical operations. If extra colors could be present, the 'rest are blue' premise must be explicit. The fact 6 + 4 = 10 supports both contexts but the unknown role differs.
+
+    ## Conceptual progression and dependencies
+
+    Start by composing known parts physically. Preserve the same ten counters while the question changes from 'How many altogether?' to 'How many are blue?' Then interpret a labeled part–whole bar with the whole visibly named. Finally solve an unfamiliar two-part partition and check by recombining, without a supplied operation clue.
+
+    ## Misconceptions, examples and boundaries
+
+    Avoid treating every mentioned number as a part to add, claiming that a known whole can be added to one of its included parts, forgetting that parts must be disjoint, and assuming 10 − 6 = 4 means 'six were physically removed'. Work in nonnegative integer counts within 20, including a zero part; do not cover fractions, overlapping Venn sets, ratios, more than two unknown components or general set algebra.
+
+    ## Localization, accessibility and offline intent
+
+    The English copy is **editorial source text**, not ready multilingual Lesson content. Before implementation, translate every learner-visible explanation, prompt, accessible description, symbol reading and feedback accurately into all supported locales; no English placeholders, invented translation or silent fallback. RTL adaptations preserve numeric operand order, mathematical relations and temporal dependencies rather than indiscriminate mirroring. All diagram/picture meanings must exist in readable, screen-reader-accessible text. Provide keyboard, switch and touch alternatives to any manipulation; use distinct labels beyond colors, visible focus, zoom/reflow, reduced motion and no timed-only requirements. Offline completeness requires all selected locale strings, resources and interactive feedback after download; this is an implementation target, not a statement about currently working PWA support.
+
+    ## Sources and factual verification
+
+    - [partWholeAddsub.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/problemSolving/parts/skills/partWholeAddsub.data.ts) — canonical Mathematics Skill Code and methodological scope, copied without changing UUIDs or localization.
+    - [Lesson Editorial Artifacts](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/lesson-editorial-document.md) — separate Brief/Content/Scene ownership and explicit approval policy.
+    - [Internationalization and Accessibility](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/internationalization-and-accessibility.md) — locale and inclusive design requirements.
+    - [Common Core State Standards for Mathematics](https://corestandards.org/mathematics-standards/) — optional age-sequence reference, not an assertion of Curriculum alignment.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. This standalone Lesson is Program-neutral and does not presume compatibility with an unreviewed Curriculum.
+
+    ## Open editorial decisions
+
+    - The distinction from buildOneStepProblemModel is a stable two-part partition and the reversal of which part/whole is missing, not simply an additional animated equation.
+    - Formal Methodologist/editor approval and required localized content remain outstanding; the Content (full original source: this Lesson's production notes) and Scene specification (full original source: Scene production.specification) are **provisional Draft** parallel review artifacts, not approved Screenwriter deliverables.
+    - The coordinator owns the shared Playground skills index and generated taxonomy. Domain-local copied Code does not itself prove that the generated taxonomy or all external editorial gates have been refreshed.
+
+    ## Methodologist handoff
+
+    **Draft pending explicit approval.** Following review, the Screenwriter may revise the independently authored Content and Scene specs. Do not infer mastery from a prediction, an on-screen interaction, a completed calculation or a voluntary explanation. No runtime Lesson, Question, Quiz, scoring, progress or Note API is created.
   productionNotes: |
-      All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
-      
-      ## Original Screenwriter introduction
-      
-      # Parts Make a Whole — Lesson Content
-      
-      **Screenwriter status:** Provisional Draft, pending explicit Methodologist approval.  
-      **Source:** Draft Methodologist Brief (full original source: production.methodology). **Program dependence:** None. **Implementation:** None.  
-      **Language:** English editorial source, not yet translated for runtime delivery.
-      
-      ## Learning experience
-      
-      The learner will work with **one stable two-part partition** in several forms. The central discovery is that 6 and 4 are known parts of the same ten counters, and changing **what is asked** changes the useful operation without changing the objects. Do not repeat the earlier one-step-model Lesson as a generic “which operation?” chooser: here the same whole/parts relation is intentionally reversed.
-      
-      
-      ## Original Screenwriter concluding notes
-      
-      ## Production, accuracy, accessibility and review
-      
-      Every general Section is an **ordered single vertical column** of available `text`/`markdown` and **proposed** `scene` resources. The Partition Lab (full original source: Scene production.specification) has a separate spec; it does not exist in runtime. All groups are explicitly nonoverlapping, and “rest are blue/yellow” means there are exactly two categories. Do not use vague mixed-group illustrations, silently introduce a third category, or treat a 10-unit whole as an additional group to add. This is non-scored instruction, not a Question, Quiz, mastery decision or Note event.
-      
-      All words, units, accessible group descriptions, feedback and symbolic reading require authentic translations for all supported locales. In RTL maintain the causal part/whole roles and operand order, not a mirrored arithmetic claim. Every draggable/manipulable object has a keyboard/switch/tap alternative and nonvisual numerical ledger. Use focus management, large targets, reduced-motion/static equivalent, high-contrast non-color-only group identity, small-screen zoom and offline-complete selected-language assets once implemented. The current app's PWA state is not assumed. This Content is **provisional**, pending approval of its Draft Brief (full original source: production.methodology).
+    All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
+
+    ## Original Screenwriter introduction
+
+    # Parts Make a Whole — Lesson Content
+
+    **Screenwriter status:** Provisional Draft, pending explicit Methodologist approval.  
+    **Source:** Draft Methodologist Brief (full original source: production.methodology). **Program dependence:** None. **Implementation:** None.  
+    **Language:** English editorial source, not yet translated for runtime delivery.
+
+    ## Learning experience
+
+    The learner will work with **one stable two-part partition** in several forms. The central discovery is that 6 and 4 are known parts of the same ten counters, and changing **what is asked** changes the useful operation without changing the objects. Do not repeat the earlier one-step-model Lesson as a generic “which operation?” chooser: here the same whole/parts relation is intentionally reversed.
+
+
+    ## Original Screenwriter concluding notes
+
+    ## Production, accuracy, accessibility and review
+
+    Every general Section is an **ordered single vertical column** of available `text`/`markdown` and **proposed** `scene` resources. The Partition Lab (full original source: Scene production.specification) has a separate spec; it does not exist in runtime. All groups are explicitly nonoverlapping, and “rest are blue/yellow” means there are exactly two categories. Do not use vague mixed-group illustrations, silently introduce a third category, or treat a 10-unit whole as an additional group to add. This is non-scored instruction, not a Question, Quiz, mastery decision or Note event.
+
+    All words, units, accessible group descriptions, feedback and symbolic reading require authentic translations for all supported locales. In RTL maintain the causal part/whole roles and operand order, not a mirrored arithmetic claim. Every draggable/manipulable object has a keyboard/switch/tap alternative and nonvisual numerical ledger. Use focus management, large targets, reduced-motion/static equivalent, high-contrast non-color-only group identity, small-screen zoom and offline-complete selected-language assets once implemented. The current app's PWA state is not assumed. This Content is **provisional**, pending approval of its Draft Brief (full original source: production.methodology).

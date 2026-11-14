@@ -1,76 +1,76 @@
 config:
-  id: "6c497c47-6b4e-5d41-8db4-176c3d031c69"
-  slug: "fractionsDependOnTheWhole"
-  type: "lesson"
-  skills: ["ff4e8348-80c0-49dd-8f49-191c9673b3e4","24ae675d-82dc-4eb4-94fe-adc96f15e452"]
+  id: '6c497c47-6b4e-5d41-8db4-176c3d031c69'
+  slug: 'fractionsDependOnTheWhole'
+  type: 'lesson'
+  skills: ['ff4e8348-80c0-49dd-8f49-191c9673b3e4', '24ae675d-82dc-4eb4-94fe-adc96f15e452']
   params:
     requireQuiz: false
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Same Fraction, Different Whole"
+      en: 'Same Fraction, Different Whole'
   section:
     items:
       section1:
         config:
-          id: "4e3f0f92-26a1-53a9-98ed-8f927fd19463"
-          slug: "section1"
-          type: "content"
+          id: '4e3f0f92-26a1-53a9-98ed-8f927fd19463'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Which whole did we start with?"
+              en: 'Which whole did we start with?'
             navigationLabel:
-              en: "Which whole did we start with?"
+              en: 'Which whole did we start with?'
           content:
             items:
               text1:
                 config:
-                  id: "7e3768e3-8e71-54d8-bf71-e8e3df682866"
-                  slug: "text1"
-                  type: "text"
+                  id: '7e3768e3-8e71-54d8-bf71-e8e3df682866'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Here are two rectangles made from equal-sized square tiles. One contains eight tiles, the other sixteen. If we take half of each, do we take the same number of tiles?"
+                      en: 'Here are two rectangles made from equal-sized square tiles. One contains eight tiles, the other sixteen. If we take half of each, do we take the same number of tiles?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "26869fbc-276c-5c09-959e-1fbc945dd5f7"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '26869fbc-276c-5c09-959e-1fbc945dd5f7'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Here are two rectangles made from equal-sized square tiles. One contains eight tiles, the other sixteen. If we take half of each, do we take the same number of tiles?"
+                        instruction: 'Here are two rectangles made from equal-sized square tiles. One contains eight tiles, the other sixteen. If we take half of each, do we take the same number of tiles?'
                 production:
                   specification: |
                     # WholeSizeExplorer — Interactive Scene Specification
-                    
+
                     **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
                     **Lesson Content:** Same Fraction, Different Whole (embedded in this Lesson config.yaml)
                     **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [wholeDependence.data.ts](../../../../data/skills/fractions/representation/skills/wholeDependence.data.ts)
                     - [oneAsFraction.data.ts](../../../../data/skills/fractions/representation/skills/oneAsFraction.data.ts)
-                    
+
                     ## Educational purpose and intended web interaction
-                    
+
                     Explain why a fraction of a larger whole has greater absolute area than the same fraction of a smaller whole, and show that selecting all n equal parts of any chosen whole is n/n = 1.
-                    
+
                     An interactive area explorer showing reference whole explicitly; identical cell-size grids make absolute area honest. Select 'small 4×2' or 'large 8×2', partition by two, or choose one 12-cell strip partitioned into 2,3,4 equal pieces. Reveal selected area and normalized fraction labels, with independent keyboard/text controls.
-                    
+
                     **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
-                    
+
                     ## Exact factual models and required states
-                    
+
                     | Preset/state             | Model shown or described                                                         | Correct observation and explanatory result |
                     | ------------------------ | -------------------------------------------------------------------------------- | ------------------------------------------ |
                     | **Small half**           | 4×2 whole, 8 equal unit squares, split 2+2 columns, 1 of 2 equal parts selected  | 1/2 of 8 square units = 4 square units     |
@@ -80,22 +80,22 @@ config:
                     | **Complete by quarters** | 12-square strip, 4 equal groups of 3 squares, all groups selected                | 4/4 = 1 whole; area 12 square units        |
                     | **Fresh small complete** | 2×3 rectangle, three strips each 2 squares, all selected                         | 3/3=1 of this six-square whole             |
                     | **Fresh large complete** | 4×3 rectangle, three strips each 4 squares, all selected                         | 3/3=1 of this twelve-square whole          |
-                    
+
                     **Validity boundary:** Rectangles measured in congruent grid squares; halves, thirds, quarters and n/n for n=2,3,4 only. Show same-share/different-amount and complete-whole reconstruction. Exclude comparisons of unrelated units, formal fraction equivalence beyond the full-whole identity, fractions above one, fraction multiplication or calculating a fraction of arbitrary quantities.
-                    
+
                     ## Learner actions, transitions and recovery
-                    
+
                     Select the reference whole with named buttons, select one half or all equal parts, change the allowed n preset within the same whole, and reveal/check area counts. Reset to a single named initial state. No precise drawing, freehand slicing, public props, persistence or fake score events.
-                    
+
                     1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
                     2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
                     3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
                     4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
                     5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
                     6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
-                    
+
                     ## Detailed explanatory feedback
-                    
+
                     - **Which whole did we start with?: Same number.** “The wholes are different sizes: 8 versus 16 squares. Their halves cover 4 versus 8 squares, even though both are written 1/2.”
                     - **Which whole did we start with?: One half confirmed.** “Correct share, but also check the area: 4 of 8 squares versus 8 of 16.”
                     - **One whole from all its parts: Three wholes.** “Three thirds are three _parts_ of one whole. They fit within its original border and fill it once.”
@@ -104,115 +104,115 @@ config:
                     - **The number of cuts does not change 'all': 12/12 assumed.** “Our examples use 2, 3 or 4 equal parts; the fraction counts parts, not individual drawn grid squares.”
                     - **Two different complete wholes: Both six squares.** “One garden is twice as large in congruent squares. Count the full borders: six squares versus twelve.”
                     - **Two different complete wholes: 1/3 selected.** “All three strips were selected, not only one. That is 3/3 of each whole.”
-                    
+
                     **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
-                    
+
                     ## Accessible equivalent path
-                    
+
                     A nonvisual table states each whole's dimensions, unit-square count, equal-part count, selected-part count and selected area. User selects 'small'/'large' and part counts with native keyboard-friendly controls. The same mathematical comparison is possible without perceiving the diagram.
-                    
+
                     All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
-                    
+
                     ## Locale / RTL / offline / weak-device requirements
-                    
+
                     Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
-                    
+
                     ## Implementation boundary and test handoff
-                    
+
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
-                  purpose: "Which whole did we start with?"
-                  productionNotes: "Source Scene WholeSizeExplorer.scene-spec.md; independent placement for Which whole did we start with?. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Which whole did we start with?'
+                  productionNotes: 'Source Scene WholeSizeExplorer.scene-spec.md; independent placement for Which whole did we start with?. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "fb5b97e1-51c0-5622-b5be-17e1cc6869d4"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'fb5b97e1-51c0-5622-b5be-17e1cc6869d4'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Half of the small whole covers four square tiles. Half of the large whole covers eight. Both are called one half because each is half of its own whole."
+                      en: 'Half of the small whole covers four square tiles. Half of the large whole covers eight. Both are called one half because each is half of its own whole.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Which whole did we start with?"
+          purpose: 'Which whole did we start with?'
           productionNotes: |-
             **Learning purpose:** Make the reference whole explicit before comparing its fractional part.
-            
+
             **Ordered blocks (single outer column):**
-            
+
             1. **`text` Resource (available block type):** “Here are two rectangles made from equal-sized square tiles. One contains eight tiles, the other sixteen. If we take half of each, do we take the same number of tiles?”
-            
+
             2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** WholeSizeExplorer (Scene specification WholeSizeExplorer embedded in the corresponding Scene node). Compare a 4×2 whole and an 8×2 whole side-by-side at the same tile scale, first with whole borders highlighted, then select half of each via labelled buttons.
-            
+
             3. **`markdown` Resource (available block type):** “Half of the small whole covers four square tiles. Half of the large whole covers eight. Both are called one half because each is half of its own whole.”
-            
+
             **Meaningful learner action:** Predict whether the two absolute half-areas match; identify original whole and select halves.
-            
+
             **Explanatory feedback for anticipated choices:**
-            
+
             - **Same number:** “The wholes are different sizes: 8 versus 16 squares. Their halves cover 4 versus 8 squares, even though both are written 1/2.”
             - **One half confirmed:** “Correct share, but also check the area: 4 of 8 squares versus 8 of 16.”
-            
+
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-            
+
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
       section2:
         config:
-          id: "4d3f0dff-23a1-5ef0-97ed-8dff80d195f6"
-          slug: "section2"
-          type: "content"
+          id: '4d3f0dff-23a1-5ef0-97ed-8dff80d195f6'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "One whole from all its parts"
+              en: 'One whole from all its parts'
             navigationLabel:
-              en: "One whole from all its parts"
+              en: 'One whole from all its parts'
           content:
             items:
               text1:
                 config:
-                  id: "7ff1d1c2-bef0-57a5-812c-51c27a5606a7"
-                  slug: "text1"
-                  type: "text"
+                  id: '7ff1d1c2-bef0-57a5-812c-51c27a5606a7'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "One long strip has been cut into three equal pieces. If we choose all three, how much of the whole is selected?"
+                      en: 'One long strip has been cut into three equal pieces. If we choose all three, how much of the whole is selected?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "14f8f48b-94da-5dde-8410-748b71f9ed18"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '14f8f48b-94da-5dde-8410-748b71f9ed18'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "One long strip has been cut into three equal pieces. If we choose all three, how much of the whole is selected?"
+                        instruction: 'One long strip has been cut into three equal pieces. If we choose all three, how much of the whole is selected?'
                 production:
                   specification: |
                     # WholeSizeExplorer — Interactive Scene Specification
-                    
+
                     **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
                     **Lesson Content:** Same Fraction, Different Whole (embedded in this Lesson config.yaml)
                     **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [wholeDependence.data.ts](../../../../data/skills/fractions/representation/skills/wholeDependence.data.ts)
                     - [oneAsFraction.data.ts](../../../../data/skills/fractions/representation/skills/oneAsFraction.data.ts)
-                    
+
                     ## Educational purpose and intended web interaction
-                    
+
                     Explain why a fraction of a larger whole has greater absolute area than the same fraction of a smaller whole, and show that selecting all n equal parts of any chosen whole is n/n = 1.
-                    
+
                     An interactive area explorer showing reference whole explicitly; identical cell-size grids make absolute area honest. Select 'small 4×2' or 'large 8×2', partition by two, or choose one 12-cell strip partitioned into 2,3,4 equal pieces. Reveal selected area and normalized fraction labels, with independent keyboard/text controls.
-                    
+
                     **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
-                    
+
                     ## Exact factual models and required states
-                    
+
                     | Preset/state             | Model shown or described                                                         | Correct observation and explanatory result |
                     | ------------------------ | -------------------------------------------------------------------------------- | ------------------------------------------ |
                     | **Small half**           | 4×2 whole, 8 equal unit squares, split 2+2 columns, 1 of 2 equal parts selected  | 1/2 of 8 square units = 4 square units     |
@@ -222,22 +222,22 @@ config:
                     | **Complete by quarters** | 12-square strip, 4 equal groups of 3 squares, all groups selected                | 4/4 = 1 whole; area 12 square units        |
                     | **Fresh small complete** | 2×3 rectangle, three strips each 2 squares, all selected                         | 3/3=1 of this six-square whole             |
                     | **Fresh large complete** | 4×3 rectangle, three strips each 4 squares, all selected                         | 3/3=1 of this twelve-square whole          |
-                    
+
                     **Validity boundary:** Rectangles measured in congruent grid squares; halves, thirds, quarters and n/n for n=2,3,4 only. Show same-share/different-amount and complete-whole reconstruction. Exclude comparisons of unrelated units, formal fraction equivalence beyond the full-whole identity, fractions above one, fraction multiplication or calculating a fraction of arbitrary quantities.
-                    
+
                     ## Learner actions, transitions and recovery
-                    
+
                     Select the reference whole with named buttons, select one half or all equal parts, change the allowed n preset within the same whole, and reveal/check area counts. Reset to a single named initial state. No precise drawing, freehand slicing, public props, persistence or fake score events.
-                    
+
                     1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
                     2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
                     3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
                     4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
                     5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
                     6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
-                    
+
                     ## Detailed explanatory feedback
-                    
+
                     - **Which whole did we start with?: Same number.** “The wholes are different sizes: 8 versus 16 squares. Their halves cover 4 versus 8 squares, even though both are written 1/2.”
                     - **Which whole did we start with?: One half confirmed.** “Correct share, but also check the area: 4 of 8 squares versus 8 of 16.”
                     - **One whole from all its parts: Three wholes.** “Three thirds are three _parts_ of one whole. They fit within its original border and fill it once.”
@@ -246,64 +246,64 @@ config:
                     - **The number of cuts does not change 'all': 12/12 assumed.** “Our examples use 2, 3 or 4 equal parts; the fraction counts parts, not individual drawn grid squares.”
                     - **Two different complete wholes: Both six squares.** “One garden is twice as large in congruent squares. Count the full borders: six squares versus twelve.”
                     - **Two different complete wholes: 1/3 selected.** “All three strips were selected, not only one. That is 3/3 of each whole.”
-                    
+
                     **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
-                    
+
                     ## Accessible equivalent path
-                    
+
                     A nonvisual table states each whole's dimensions, unit-square count, equal-part count, selected-part count and selected area. User selects 'small'/'large' and part counts with native keyboard-friendly controls. The same mathematical comparison is possible without perceiving the diagram.
-                    
+
                     All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
-                    
+
                     ## Locale / RTL / offline / weak-device requirements
-                    
+
                     Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
-                    
+
                     ## Implementation boundary and test handoff
-                    
+
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
-                  purpose: "One whole from all its parts"
-                  productionNotes: "Source Scene WholeSizeExplorer.scene-spec.md; independent placement for One whole from all its parts. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'One whole from all its parts'
+                  productionNotes: 'Source Scene WholeSizeExplorer.scene-spec.md; independent placement for One whole from all its parts. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "b47c5150-ea72-5dff-aede-d150569c72c5"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'b47c5150-ea72-5dff-aede-d150569c72c5'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Three thirds means all three equal pieces of the same whole. Together they cover the entire strip: 3/3 = 1 whole."
+                      en: 'Three thirds means all three equal pieces of the same whole. Together they cover the entire strip: 3/3 = 1 whole.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "One whole from all its parts"
+          purpose: 'One whole from all its parts'
           productionNotes: |-
             **Learning purpose:** Rebuild a reference whole by selecting every equal part.
-            
+
             **Ordered blocks (single outer column):**
-            
+
             1. **`text` Resource (available block type):** “One long strip has been cut into three equal pieces. If we choose all three, how much of the whole is selected?”
-            
+
             2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** WholeSizeExplorer (Scene specification WholeSizeExplorer embedded in the corresponding Scene node). Use a twelve-square strip divided 4+4+4. First select 1/3, then 2/3, then all 3/3. Highlight the original border and total selected area.
-            
+
             3. **`markdown` Resource (available block type):** “Three thirds means all three equal pieces of the same whole. Together they cover the entire strip: 3/3 = 1 whole.”
-            
+
             **Meaningful learner action:** Build 1/3, 2/3, 3/3 and explain why the final selection equals the whole.
-            
+
             **Explanatory feedback for anticipated choices:**
-            
+
             - **Three wholes:** “Three thirds are three _parts_ of one whole. They fit within its original border and fill it once.”
             - **2/3 for all:** “Two of the three equal pieces leave one unselected; to cover the whole we need three of three.”
-            
+
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-            
+
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
       section3:
         config:
-          id: "4c3f0c6c-24a1-5083-96ed-8c6c81d19789"
-          slug: "section3"
-          type: "content"
+          id: '4c3f0c6c-24a1-5083-96ed-8c6c81d19789'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
@@ -314,47 +314,47 @@ config:
             items:
               markdown1:
                 config:
-                  id: "00ecee6b-7136-5af4-bb4f-6e6b7c397b02"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '00ecee6b-7136-5af4-bb4f-6e6b7c397b02'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "We can divide one strip into two equal parts, three equal parts, or four equal parts. What fraction do we get if we choose all the parts each time?"
+                      en: 'We can divide one strip into two equal parts, three equal parts, or four equal parts. What fraction do we get if we choose all the parts each time?'
                 production:
-                  purpose: "Source explanatory copy"
+                  purpose: 'Source explanatory copy'
               scene1:
                 config:
-                  id: "235f9482-6afc-5f97-9277-1482790276e9"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '235f9482-6afc-5f97-9277-1482790276e9'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "We can divide one strip into two equal parts, three equal parts, or four equal parts. What fraction do we get if we choose all the parts each time?"
+                        instruction: 'We can divide one strip into two equal parts, three equal parts, or four equal parts. What fraction do we get if we choose all the parts each time?'
                 production:
                   specification: |
                     # WholeSizeExplorer — Interactive Scene Specification
-                    
+
                     **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
                     **Lesson Content:** Same Fraction, Different Whole (embedded in this Lesson config.yaml)
                     **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [wholeDependence.data.ts](../../../../data/skills/fractions/representation/skills/wholeDependence.data.ts)
                     - [oneAsFraction.data.ts](../../../../data/skills/fractions/representation/skills/oneAsFraction.data.ts)
-                    
+
                     ## Educational purpose and intended web interaction
-                    
+
                     Explain why a fraction of a larger whole has greater absolute area than the same fraction of a smaller whole, and show that selecting all n equal parts of any chosen whole is n/n = 1.
-                    
+
                     An interactive area explorer showing reference whole explicitly; identical cell-size grids make absolute area honest. Select 'small 4×2' or 'large 8×2', partition by two, or choose one 12-cell strip partitioned into 2,3,4 equal pieces. Reveal selected area and normalized fraction labels, with independent keyboard/text controls.
-                    
+
                     **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
-                    
+
                     ## Exact factual models and required states
-                    
+
                     | Preset/state             | Model shown or described                                                         | Correct observation and explanatory result |
                     | ------------------------ | -------------------------------------------------------------------------------- | ------------------------------------------ |
                     | **Small half**           | 4×2 whole, 8 equal unit squares, split 2+2 columns, 1 of 2 equal parts selected  | 1/2 of 8 square units = 4 square units     |
@@ -364,22 +364,22 @@ config:
                     | **Complete by quarters** | 12-square strip, 4 equal groups of 3 squares, all groups selected                | 4/4 = 1 whole; area 12 square units        |
                     | **Fresh small complete** | 2×3 rectangle, three strips each 2 squares, all selected                         | 3/3=1 of this six-square whole             |
                     | **Fresh large complete** | 4×3 rectangle, three strips each 4 squares, all selected                         | 3/3=1 of this twelve-square whole          |
-                    
+
                     **Validity boundary:** Rectangles measured in congruent grid squares; halves, thirds, quarters and n/n for n=2,3,4 only. Show same-share/different-amount and complete-whole reconstruction. Exclude comparisons of unrelated units, formal fraction equivalence beyond the full-whole identity, fractions above one, fraction multiplication or calculating a fraction of arbitrary quantities.
-                    
+
                     ## Learner actions, transitions and recovery
-                    
+
                     Select the reference whole with named buttons, select one half or all equal parts, change the allowed n preset within the same whole, and reveal/check area counts. Reset to a single named initial state. No precise drawing, freehand slicing, public props, persistence or fake score events.
-                    
+
                     1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
                     2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
                     3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
                     4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
                     5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
                     6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
-                    
+
                     ## Detailed explanatory feedback
-                    
+
                     - **Which whole did we start with?: Same number.** “The wholes are different sizes: 8 versus 16 squares. Their halves cover 4 versus 8 squares, even though both are written 1/2.”
                     - **Which whole did we start with?: One half confirmed.** “Correct share, but also check the area: 4 of 8 squares versus 8 of 16.”
                     - **One whole from all its parts: Three wholes.** “Three thirds are three _parts_ of one whole. They fit within its original border and fill it once.”
@@ -388,115 +388,115 @@ config:
                     - **The number of cuts does not change 'all': 12/12 assumed.** “Our examples use 2, 3 or 4 equal parts; the fraction counts parts, not individual drawn grid squares.”
                     - **Two different complete wholes: Both six squares.** “One garden is twice as large in congruent squares. Count the full borders: six squares versus twelve.”
                     - **Two different complete wholes: 1/3 selected.** “All three strips were selected, not only one. That is 3/3 of each whole.”
-                    
+
                     **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
-                    
+
                     ## Accessible equivalent path
-                    
+
                     A nonvisual table states each whole's dimensions, unit-square count, equal-part count, selected-part count and selected area. User selects 'small'/'large' and part counts with native keyboard-friendly controls. The same mathematical comparison is possible without perceiving the diagram.
-                    
+
                     All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
-                    
+
                     ## Locale / RTL / offline / weak-device requirements
-                    
+
                     Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
-                    
+
                     ## Implementation boundary and test handoff
-                    
+
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: "The number of cuts does not change 'all'"
                   productionNotes: "Source Scene WholeSizeExplorer.scene-spec.md; independent placement for The number of cuts does not change 'all'. Variant/feedback retained under parent Section productionNotes."
               text1:
                 config:
-                  id: "4896c551-a72b-5586-89d1-45519deabeb8"
-                  slug: "text1"
-                  type: "text"
+                  id: '4896c551-a72b-5586-89d1-45519deabeb8'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "All two halves make 2/2 = 1. All three thirds make 3/3 = 1. All four quarters make 4/4 = 1. It is still one complete strip."
+                      en: 'All two halves make 2/2 = 1. All three thirds make 3/3 = 1. All four quarters make 4/4 = 1. It is still one complete strip.'
                 production:
-                  purpose: "Source prompt or feedback"
-            order: ["markdown1","scene1","text1"]
+                  purpose: 'Source prompt or feedback'
+            order: ['markdown1', 'scene1', 'text1']
         production:
           purpose: "The number of cuts does not change 'all'"
           productionNotes: |-
             **Learning purpose:** Generalize n/n across equal partitions and avoid equating it with two wholes.
-            
+
             **Ordered blocks (single outer column):**
-            
+
             1. **`markdown` Resource (available block type):** “We can divide one strip into two equal parts, three equal parts, or four equal parts. What fraction do we get if we choose all the parts each time?”
-            
+
             2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** WholeSizeExplorer (Scene specification WholeSizeExplorer embedded in the corresponding Scene node). Hold the twelve-square whole fixed while toggling splits 6+6, 4+4+4 and 3+3+3+3. An 'Select all' action reveals 2/2, 3/3, 4/4 and the same full area each time.
-            
+
             3. **`text` Resource (available block type):** “All two halves make 2/2 = 1. All three thirds make 3/3 = 1. All four quarters make 4/4 = 1. It is still one complete strip.”
-            
+
             **Meaningful learner action:** Select all parts for every partition, explain what denominator and numerator each count.
-            
+
             **Explanatory feedback for anticipated choices:**
-            
+
             - **4/4 greater than 2/2:** “Both select every equal part of one unchanged strip. They cover the same whole, even though four cuts make smaller parts.”
             - **12/12 assumed:** “Our examples use 2, 3 or 4 equal parts; the fraction counts parts, not individual drawn grid squares.”
-            
+
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-            
+
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
       section4:
         config:
-          id: "4b3f0ad9-29a1-5862-95ed-8ad982d1991c"
-          slug: "section4"
-          type: "content"
+          id: '4b3f0ad9-29a1-5862-95ed-8ad982d1991c'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Two different complete wholes"
+              en: 'Two different complete wholes'
             navigationLabel:
-              en: "Two different complete wholes"
+              en: 'Two different complete wholes'
           content:
             items:
               text1:
                 config:
-                  id: "59d77b08-b2d1-52b3-9b11-fb082d1abe01"
-                  slug: "text1"
-                  type: "text"
+                  id: '59d77b08-b2d1-52b3-9b11-fb082d1abe01'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Two gardens are divided into three equal strips each. The first covers six unit squares; the second covers twelve. If all three strips are selected, what fraction of each garden is chosen?"
+                      en: 'Two gardens are divided into three equal strips each. The first covers six unit squares; the second covers twelve. If all three strips are selected, what fraction of each garden is chosen?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "052f3699-29a8-56ec-b446-b699be1dd6d2"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '052f3699-29a8-56ec-b446-b699be1dd6d2'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Two gardens are divided into three equal strips each. The first covers six unit squares; the second covers twelve. If all three strips are selected, what fraction of each garden is chosen?"
+                        instruction: 'Two gardens are divided into three equal strips each. The first covers six unit squares; the second covers twelve. If all three strips are selected, what fraction of each garden is chosen?'
                 production:
                   specification: |
                     # WholeSizeExplorer — Interactive Scene Specification
-                    
+
                     **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
                     **Lesson Content:** Same Fraction, Different Whole (embedded in this Lesson config.yaml)
                     **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [wholeDependence.data.ts](../../../../data/skills/fractions/representation/skills/wholeDependence.data.ts)
                     - [oneAsFraction.data.ts](../../../../data/skills/fractions/representation/skills/oneAsFraction.data.ts)
-                    
+
                     ## Educational purpose and intended web interaction
-                    
+
                     Explain why a fraction of a larger whole has greater absolute area than the same fraction of a smaller whole, and show that selecting all n equal parts of any chosen whole is n/n = 1.
-                    
+
                     An interactive area explorer showing reference whole explicitly; identical cell-size grids make absolute area honest. Select 'small 4×2' or 'large 8×2', partition by two, or choose one 12-cell strip partitioned into 2,3,4 equal pieces. Reveal selected area and normalized fraction labels, with independent keyboard/text controls.
-                    
+
                     **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
-                    
+
                     ## Exact factual models and required states
-                    
+
                     | Preset/state             | Model shown or described                                                         | Correct observation and explanatory result |
                     | ------------------------ | -------------------------------------------------------------------------------- | ------------------------------------------ |
                     | **Small half**           | 4×2 whole, 8 equal unit squares, split 2+2 columns, 1 of 2 equal parts selected  | 1/2 of 8 square units = 4 square units     |
@@ -506,22 +506,22 @@ config:
                     | **Complete by quarters** | 12-square strip, 4 equal groups of 3 squares, all groups selected                | 4/4 = 1 whole; area 12 square units        |
                     | **Fresh small complete** | 2×3 rectangle, three strips each 2 squares, all selected                         | 3/3=1 of this six-square whole             |
                     | **Fresh large complete** | 4×3 rectangle, three strips each 4 squares, all selected                         | 3/3=1 of this twelve-square whole          |
-                    
+
                     **Validity boundary:** Rectangles measured in congruent grid squares; halves, thirds, quarters and n/n for n=2,3,4 only. Show same-share/different-amount and complete-whole reconstruction. Exclude comparisons of unrelated units, formal fraction equivalence beyond the full-whole identity, fractions above one, fraction multiplication or calculating a fraction of arbitrary quantities.
-                    
+
                     ## Learner actions, transitions and recovery
-                    
+
                     Select the reference whole with named buttons, select one half or all equal parts, change the allowed n preset within the same whole, and reveal/check area counts. Reset to a single named initial state. No precise drawing, freehand slicing, public props, persistence or fake score events.
-                    
+
                     1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
                     2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
                     3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
                     4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
                     5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
                     6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
-                    
+
                     ## Detailed explanatory feedback
-                    
+
                     - **Which whole did we start with?: Same number.** “The wholes are different sizes: 8 versus 16 squares. Their halves cover 4 versus 8 squares, even though both are written 1/2.”
                     - **Which whole did we start with?: One half confirmed.** “Correct share, but also check the area: 4 of 8 squares versus 8 of 16.”
                     - **One whole from all its parts: Three wholes.** “Three thirds are three _parts_ of one whole. They fit within its original border and fill it once.”
@@ -530,306 +530,306 @@ config:
                     - **The number of cuts does not change 'all': 12/12 assumed.** “Our examples use 2, 3 or 4 equal parts; the fraction counts parts, not individual drawn grid squares.”
                     - **Two different complete wholes: Both six squares.** “One garden is twice as large in congruent squares. Count the full borders: six squares versus twelve.”
                     - **Two different complete wholes: 1/3 selected.** “All three strips were selected, not only one. That is 3/3 of each whole.”
-                    
+
                     **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
-                    
+
                     ## Accessible equivalent path
-                    
+
                     A nonvisual table states each whole's dimensions, unit-square count, equal-part count, selected-part count and selected area. User selects 'small'/'large' and part counts with native keyboard-friendly controls. The same mathematical comparison is possible without perceiving the diagram.
-                    
+
                     All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
-                    
+
                     ## Locale / RTL / offline / weak-device requirements
-                    
+
                     Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
-                    
+
                     ## Implementation boundary and test handoff
-                    
+
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
-                  purpose: "Two different complete wholes"
-                  productionNotes: "Source Scene WholeSizeExplorer.scene-spec.md; independent placement for Two different complete wholes. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Two different complete wholes'
+                  productionNotes: 'Source Scene WholeSizeExplorer.scene-spec.md; independent placement for Two different complete wholes. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "4f47c3b2-746b-5711-89aa-43b2caaf37fb"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '4f47c3b2-746b-5711-89aa-43b2caaf37fb'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Both gardens are fully selected: 3/3 = 1 of each garden. Their areas differ: six and twelve square units. The same fraction does not mean the same absolute area when the whole changes."
+                      en: 'Both gardens are fully selected: 3/3 = 1 of each garden. Their areas differ: six and twelve square units. The same fraction does not mean the same absolute area when the whole changes.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Two different complete wholes"
+          purpose: 'Two different complete wholes'
           productionNotes: |-
             **Learning purpose:** Independent transfer distinguishes equal proportion from unequal absolute amount.
-            
+
             **Ordered blocks (single outer column):**
-            
+
             1. **`text` Resource (available block type):** “Two gardens are divided into three equal strips each. The first covers six unit squares; the second covers twelve. If all three strips are selected, what fraction of each garden is chosen?”
-            
+
             2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** WholeSizeExplorer (Scene specification WholeSizeExplorer embedded in the corresponding Scene node). Fresh presets 2×3 and 4×3 rectangles divided into equal strips. Learner chooses 3/3 or 1/3 for each and reports whether their actual areas match before revealing counts.
-            
+
             3. **`markdown` Resource (available block type):** “Both gardens are fully selected: 3/3 = 1 of each garden. Their areas differ: six and twelve square units. The same fraction does not mean the same absolute area when the whole changes.”
-            
+
             **Meaningful learner action:** Explain 3/3 of both different-sized wholes and contrast absolute areas.
-            
+
             **Explanatory feedback for anticipated choices:**
-            
+
             - **Both six squares:** “One garden is twice as large in congruent squares. Count the full borders: six squares versus twelve.”
             - **1/3 selected:** “All three strips were selected, not only one. That is 3/3 of each whole.”
-            
+
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-            
+
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-    order: ["section1","section2","section3","section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # Same Fraction, Different Whole — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: fractionsDependOnTheWhole
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Explain why a fraction of a larger whole has greater absolute area than the same fraction of a smaller whole, and show that selecting all n equal parts of any chosen whole is n/n = 1.
-    
+
     **Pedagogical rationale and placement:** Begin with the whole already established in the prior fraction Lessons; distinguish equal fractional share from equal absolute amount, then reconstruct the chosen whole from all of its equal parts. These are complementary facets of the reference whole, but remain two independent canonical competencies.
-    
+
     Multiple independently assessable Skills are deliberately taught through one coherent reference model; they remain separate competencies with unchanged canonical IDs.
-    
+
     ## Target audience
-    
+
     **Primary grade: Grade 3; ages approximately 8–9.** This depth follows the stated prerequisites, not an arbitrary one-Skill-per-Grade or one-Lesson-per-Skill mapping. Design for emerging literacy, mixed language proficiency, variable math fluency and accessibility needs. Use short concrete learner-facing copy, clear audible/textual alternatives and non-motor-precision inputs. The canonical Skills have no Grade ceiling.
-    
+
     ## Prerequisites
-    
+
     - Identify the chosen whole and fair equal-area partitions.
     - Read unit fractions 1/2, 1/3 and 1/4; distinguish numerator (selected) from denominator (equal pieces of the whole).
     - Compare rectangular areas measured in congruent grid squares; count to 16.
-    
+
     Previously transferred, pedagogically adjacent Skills: `wholeAndEqualParts`, `unitFractionModel`, `unitFractionRead`, `denominatorMeaning`, `numeratorMeaning`, `nonUnitModel`. The Lesson itself must remain standalone and Program-neutral; a learner with the equivalent knowledge need not complete any named preceding Lesson.
-    
+
     ## Target Skills
-    
+
     - [wholeDependence.data.ts](../../../../data/skills/fractions/representation/skills/wholeDependence.data.ts)
     - [oneAsFraction.data.ts](../../../../data/skills/fractions/representation/skills/oneAsFraction.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - In a small 4×2 rectangle and a large 8×2 rectangle, identify half of each as 4 and 8 equal unit squares respectively.
     - State that the fraction 1/2 is the same _share_ of each own whole but does not imply identical absolute areas.
     - Reconstruct a complete selected whole as 2/2, 3/3 or 4/4 when all equal parts are selected.
     - Explain why the symbol 1 (one whole) is valid for each 2/2, 3/3 and 4/4 even when the partition count changes.
     - Independently distinguish 3/3 of a six-cell rectangle from 3/3 of a twelve-cell rectangle: both are complete wholes, with different absolute areas.
-    
+
     These observable outcomes state what the Lesson intends to teach and invite learners to demonstrate. Neither a single correct choice nor completion of a Section guarantees validated mastery of an individual Skill.
-    
+
     ## Essential subject matter
-    
+
     - A fraction is a proportion relative to one explicitly chosen reference whole. The same fraction of differently sized wholes may have different areas, lengths or quantities.
     - A 4×2 whole has area eight congruent unit squares; half of it contains four. An 8×2 whole has area sixteen; half contains eight. Neither fraction label changes when the reference whole changes.
     - For any positive n, selecting all n equal parts of the same whole gives n/n. Two halves 2/2, three thirds 3/3, and four quarters 4/4 each cover exactly the chosen whole, so each equals 1.
     - The same mathematical proportion can be represented by different partitions of the same whole (2/2 versus 4/4), and can represent a different absolute amount if the _whole_ changes.
     - A fair comparison of actual amounts requires the units to be comparable; both models use congruent unit squares, not differently scaled pictures.
-    
+
     **Depth selected for this audience:** Rectangles measured in congruent grid squares; halves, thirds, quarters and n/n for n=2,3,4 only. Show same-share/different-amount and complete-whole reconstruction. Exclude comparisons of unrelated units, formal fraction equivalence beyond the full-whole identity, fractions above one, fraction multiplication or calculating a fraction of arbitrary quantities.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Build on the listed prerequisites, expose the _reference_ (whole size, hour and minute scale, pictograph key, or random-experiment conditions) before asking the learner to reason. Move from a familiar case to an interactive contrast that makes a common misconception visible, then apply the correct rule in an independent fresh example. The Screenwriter chooses presentation, interactions and number of Sections; the Methodologist owns content limits and accuracy. Supporting representations teach a Skill; they do not create additional Skill IDs.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     - Half of a larger whole must equal half of a smaller whole because the written fraction is identical.
     - 2/2 means two wholes rather than all two halves of one whole.
     - The denominator alone changes how large the original whole is.
     - A picture looks equally big on the screen, so its fractional part must be equal in real area.
-    
+
     **Explicit exclusions:** Rectangles measured in congruent grid squares; halves, thirds, quarters and n/n for n=2,3,4 only. Show same-share/different-amount and complete-whole reconstruction. Exclude comparisons of unrelated units, formal fraction equivalence beyond the full-whole identity, fractions above one, fraction multiplication or calculating a fraction of arbitrary quantities. Do not implicitly extend the canonical Skill description, invent new taxonomy entities or treat any exercise format as a separately approved Skill.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Complete authentic translation of all learner-facing text, mathematical terminology, captions, nonvisual model descriptions, controls, hints and feedback is mandatory for every standard locale at implementation. No English replacement text, fake dictionaries, silent fallbacks or `allLocales` assertions of incomplete coverage. Adapt layout and narrative order semantically for RTL without reversing mathematical truth. Require meaningful keyboard/touch/screen-reader participation, visible focus, adequate targets, high contrast, static reduced-motion representation, small-screen readability and WCAG 2.2 AA testing. Once downloaded, the complete Lesson, Scene and explanatory feedback must run offline on low-resource devices. These are requirements, not claims that runtime assets or PWA flows exist.
-    
+
     ## Sources and factual verification
-    
+
     - [wholeDependence.data.ts](../../../../data/skills/fractions/representation/skills/wholeDependence.data.ts) — canonical Mathematics Skill object and methodological description.
     - [oneAsFraction.data.ts](../../../../data/skills/fractions/representation/skills/oneAsFraction.data.ts) — canonical Mathematics Skill object and methodological description.
     - Studio [Lesson](../../../../../../studio/docs/entities/lesson.md), [Lesson Content](../../../../../../studio/docs/entities/lesson-content.md), [Section](../../../../../../studio/docs/entities/section.md) and [Program](../../../../../../studio/docs/entities/program.md) contracts.
     - Scene specification below records fully specified examples and truth conditions for subsequent mathematical and editorial review.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. Standalone and Program-neutral. Do not claim formal Ukrainian or international Curriculum alignment without reviewing a concrete Curriculum.
-    
+
     ## Open editorial decisions
-    
+
     - **Editor/Methodologist:** verify Grade 3 audience, prerequisite suitability, target Skills, depth and treatment of the listed misconceptions.
     - **Editor/Screenwriter:** approve the provisional Section plan and separately review the custom Scene specification only after the Methodologist Brief is accepted.
     - **Engineering/QA:** accessible equivalence, locale coverage, offline behavior, tests and runtime Section integration remain future implementation work, not established behavior.
-    
+
     ## Methodologist handoff
-    
+
     **Draft pending editorial approval.** Companion Content and Scene specifications are _provisional_ under the explicit batch instruction; their creation does not satisfy or bypass the Methodologist approval gate. No runtime Lesson_Config, Question, Quiz, React Scene, scoring, storage API or Note implementation is authorized by this handoff.
   productionNotes: |
     # Same Fraction, Different Whole — Lesson Content
-    
+
     **Status: Provisional Draft — pending Methodologist approval.**
     **Methodologist input:** Draft Brief (embedded in this Lesson config.yaml) (**not approved**).
     **Primary audience:** Grade 3, ages 8–9.
     **Target canonical Skills:**
-    
+
     - [wholeDependence.data.ts](../../../../data/skills/fractions/representation/skills/wholeDependence.data.ts)
     - [oneAsFraction.data.ts](../../../../data/skills/fractions/representation/skills/oneAsFraction.data.ts)
       **Independence:** standalone Playground Lesson; no Program storyline, mascot, reward, mission or past learner state required.
       **Implementation:** editorial Content only. No runtime Lesson, Questions, Quizzes, scoring, registered custom Scenes or locale bundles created.
-    
+
     ## Instructional concept
-    
+
     Explain why a fraction of a larger whole has greater absolute area than the same fraction of a smaller whole, and show that selecting all n equal parts of any chosen whole is n/n = 1.
-    
+
     Begin with the whole already established in the prior fraction Lessons; distinguish equal fractional share from equal absolute amount, then reconstruct the chosen whole from all of its equal parts. These are complementary facets of the reference whole, but remain two independent canonical competencies.
-    
+
     The core web opportunity is **learner-controlled inspection of a mathematical model**, not merely an illustration: An interactive area explorer showing reference whole explicitly; identical cell-size grids make absolute area honest. Select 'small 4×2' or 'large 8×2', partition by two, or choose one 12-cell strip partitioned into 2,3,4 equal pieces. Reveal selected area and normalized fraction labels, with independent keyboard/text controls.
-    
+
     Every example is bounded: Rectangles measured in congruent grid squares; halves, thirds, quarters and n/n for n=2,3,4 only. Show same-share/different-amount and complete-whole reconstruction. Exclude comparisons of unrelated units, formal fraction equivalence beyond the full-whole identity, fractions above one, fraction multiplication or calculating a fraction of arbitrary quantities.
-    
+
     ## Learner journey and ordered Sections
-    
+
     1. **Which whole did we start with?** — Make the reference whole explicit before comparing its fractional part.
     2. **One whole from all its parts** — Rebuild a reference whole by selecting every equal part.
     3. **The number of cuts does not change 'all'** — Generalize n/n across equal partitions and avoid equating it with two wholes.
     4. **Two different complete wholes** — Independent transfer distinguishes equal proportion from unequal absolute amount.
-    
+
     Use a vertical single-column order of typed Resource blocks within each general Section: `text`, `markdown` and the existing `scene` Resource type. The named **WholeSizeExplorer** is a new proposed Scene, not yet implemented, and each appearance must be self-contained rather than depending on earlier Section state. A generic Scene renderer does not mean this particular educational interaction is available. No new Section discriminators or hidden readiness APIs are implied.
-    
+
     ## Section-by-Section learning experience
-    
+
     ### Section 1 — Which whole did we start with?
-    
+
     **Learning purpose:** Make the reference whole explicit before comparing its fractional part.
-    
+
     **Ordered blocks (single outer column):**
-    
+
     1. **`text` Resource (available block type):** “Here are two rectangles made from equal-sized square tiles. One contains eight tiles, the other sixteen. If we take half of each, do we take the same number of tiles?”
-    
+
     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** WholeSizeExplorer (Scene specification WholeSizeExplorer embedded in the corresponding Scene node). Compare a 4×2 whole and an 8×2 whole side-by-side at the same tile scale, first with whole borders highlighted, then select half of each via labelled buttons.
-    
+
     3. **`markdown` Resource (available block type):** “Half of the small whole covers four square tiles. Half of the large whole covers eight. Both are called one half because each is half of its own whole.”
-    
+
     **Meaningful learner action:** Predict whether the two absolute half-areas match; identify original whole and select halves.
-    
+
     **Explanatory feedback for anticipated choices:**
-    
+
     - **Same number:** “The wholes are different sizes: 8 versus 16 squares. Their halves cover 4 versus 8 squares, even though both are written 1/2.”
     - **One half confirmed:** “Correct share, but also check the area: 4 of 8 squares versus 8 of 16.”
-    
+
     **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-    
+
     **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-    
+
     ### Section 2 — One whole from all its parts
-    
+
     **Learning purpose:** Rebuild a reference whole by selecting every equal part.
-    
+
     **Ordered blocks (single outer column):**
-    
+
     1. **`text` Resource (available block type):** “One long strip has been cut into three equal pieces. If we choose all three, how much of the whole is selected?”
-    
+
     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** WholeSizeExplorer (Scene specification WholeSizeExplorer embedded in the corresponding Scene node). Use a twelve-square strip divided 4+4+4. First select 1/3, then 2/3, then all 3/3. Highlight the original border and total selected area.
-    
+
     3. **`markdown` Resource (available block type):** “Three thirds means all three equal pieces of the same whole. Together they cover the entire strip: 3/3 = 1 whole.”
-    
+
     **Meaningful learner action:** Build 1/3, 2/3, 3/3 and explain why the final selection equals the whole.
-    
+
     **Explanatory feedback for anticipated choices:**
-    
+
     - **Three wholes:** “Three thirds are three _parts_ of one whole. They fit within its original border and fill it once.”
     - **2/3 for all:** “Two of the three equal pieces leave one unselected; to cover the whole we need three of three.”
-    
+
     **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-    
+
     **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-    
+
     ### Section 3 — The number of cuts does not change 'all'
-    
+
     **Learning purpose:** Generalize n/n across equal partitions and avoid equating it with two wholes.
-    
+
     **Ordered blocks (single outer column):**
-    
+
     1. **`markdown` Resource (available block type):** “We can divide one strip into two equal parts, three equal parts, or four equal parts. What fraction do we get if we choose all the parts each time?”
-    
+
     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** WholeSizeExplorer (Scene specification WholeSizeExplorer embedded in the corresponding Scene node). Hold the twelve-square whole fixed while toggling splits 6+6, 4+4+4 and 3+3+3+3. An 'Select all' action reveals 2/2, 3/3, 4/4 and the same full area each time.
-    
+
     3. **`text` Resource (available block type):** “All two halves make 2/2 = 1. All three thirds make 3/3 = 1. All four quarters make 4/4 = 1. It is still one complete strip.”
-    
+
     **Meaningful learner action:** Select all parts for every partition, explain what denominator and numerator each count.
-    
+
     **Explanatory feedback for anticipated choices:**
-    
+
     - **4/4 greater than 2/2:** “Both select every equal part of one unchanged strip. They cover the same whole, even though four cuts make smaller parts.”
     - **12/12 assumed:** “Our examples use 2, 3 or 4 equal parts; the fraction counts parts, not individual drawn grid squares.”
-    
+
     **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-    
+
     **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-    
+
     ### Section 4 — Two different complete wholes
-    
+
     **Learning purpose:** Independent transfer distinguishes equal proportion from unequal absolute amount.
-    
+
     **Ordered blocks (single outer column):**
-    
+
     1. **`text` Resource (available block type):** “Two gardens are divided into three equal strips each. The first covers six unit squares; the second covers twelve. If all three strips are selected, what fraction of each garden is chosen?”
-    
+
     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** WholeSizeExplorer (Scene specification WholeSizeExplorer embedded in the corresponding Scene node). Fresh presets 2×3 and 4×3 rectangles divided into equal strips. Learner chooses 3/3 or 1/3 for each and reports whether their actual areas match before revealing counts.
-    
+
     3. **`markdown` Resource (available block type):** “Both gardens are fully selected: 3/3 = 1 of each garden. Their areas differ: six and twelve square units. The same fraction does not mean the same absolute area when the whole changes.”
-    
+
     **Meaningful learner action:** Explain 3/3 of both different-sized wholes and contrast absolute areas.
-    
+
     **Explanatory feedback for anticipated choices:**
-    
+
     - **Both six squares:** “One garden is twice as large in congruent squares. Count the full borders: six squares versus twelve.”
     - **1/3 selected:** “All three strips were selected, not only one. That is 3/3 of each whole.”
-    
+
     **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-    
+
     **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-    
+
     ## Custom Scene specifications
-    
+
     - WholeSizeExplorer (Scene specification WholeSizeExplorer embedded in the corresponding Scene node) — proposed interactive, prop-free self-contained Scene. Review its pedagogical cases, state changes, feedback, accessibility alternatives and reset. It is a written specification, **not** a React component.
-    
+
     ## Independent transfer and reflection
-    
+
     With a 2×3 rectangle and a 4×3 rectangle each split into three equal strips, all parts selected are 3/3=1 of their respective wholes; the selected absolute areas are six and twelve squares.
-    
+
     Present the unfamiliar case before revealing the worked result. The learner may request a hint and review a full explanation; speech input is optional to a nearby adult rather than an assumed speech-recognition system. An unscored transfer response informs learning but is not validated mastery.
-    
+
     ## Lesson Notes — planned, not implemented
-    
+
     **Concise cue:** “A fraction names a share of a chosen whole; n/n uses all n equal parts and makes one whole.”
-    
+
     **Proposed unlock moment:** after the learner has examined the critical comparison in Section 3 and can explain what made the examples different. There is no verified Note entity, unlock event, persistent study sheet, spaced-repetition scheduler or offline Notes sync; the Lesson must remain understandable without those features.
-    
+
     ## Assessment and technical handoff
-    
+
     These interactions are formative, explanatory and unscored. An Assessment Architect owns later Question banks, diagnostic validity, Quiz behavior, scoring thresholds and mastery evidence. A Coding Agent owns runtime Lesson/Section data, Scene implementation, translations, assets, tests, registration and packaging. The Scene's feasibility, full supported locale coverage, WCAG 2.2 AA access, true RTL, reduced motion, mobile and offline parity are **release requirements, not existing implementation claims**.
-    
+
     ## Open editorial questions
-    
+
     - Confirm the Methodologist's selected scope before approving this Content.
     - Review explanatory language and any potentially ambiguous model assumptions in the Scene with domain specialist.
     - Review all locale-specific labels, numerals and conventions, and provide accurate genuine translations before implementation.
-    
+
     **Editorial status remains Provisional Draft.**

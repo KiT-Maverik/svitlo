@@ -1,10 +1,10 @@
 config:
-  id: "d12b7bda-d840-50e2-91a6-ac57b4cc9b96"
-  slug: "unknownMinuend"
-  type: "lesson"
-  skills: ["9b035dee-91cf-4e5a-ad29-c64100da3964"]
+  id: 'd12b7bda-d840-50e2-91a6-ac57b4cc9b96'
+  slug: 'unknownMinuend'
+  type: 'lesson'
+  skills: ['9b035dee-91cf-4e5a-ad29-c64100da3964']
   params:
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -12,7 +12,7 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "Finding an Unknown Minuend"
+      en: 'Finding an Unknown Minuend'
   flashcards:
     items: {}
     order: []
@@ -20,105 +20,105 @@ config:
     items:
       section1HowManyWereThereAtFirst:
         config:
-          id: "f5dc4f64-3a00-4dcf-aaf1-1f7afed9d79d"
-          slug: "section1HowManyWereThereAtFirst"
-          type: "content"
+          id: 'f5dc4f64-3a00-4dcf-aaf1-1f7afed9d79d'
+          slug: 'section1HowManyWereThereAtFirst'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "How Many Were There at First?"
+              en: 'How Many Were There at First?'
             navigationLabel:
-              en: "How Many Were There at First?"
+              en: 'How Many Were There at First?'
           content:
             items:
               text1:
                 config:
-                  id: "73534b29-57c2-4212-8ab5-01eb939cf93c"
-                  slug: "text1"
-                  type: "text"
+                  id: '73534b29-57c2-4212-8ab5-01eb939cf93c'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Someone took away 4 counters. You can still see 7. How many counters were there before?"
+                      en: 'Someone took away 4 counters. You can still see 7. How many counters were there before?'
               beforeAfterBuilder:
                 config:
-                  id: "24ba2f57-060c-4372-96b3-dded70a09f40"
-                  slug: "beforeAfterBuilder"
-                  type: "scene"
+                  id: '24ba2f57-060c-4372-96b3-dded70a09f40'
+                  slug: 'beforeAfterBuilder'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Before and After Builder"
+                      en: 'Before and After Builder'
                 production:
                   specification: |
                     # Before and After Builder — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Finding an Unknown Minuend (original now embedded in this config.yaml), Sections 1–4
                     Methodologist objective(s): Recover an unknown beginning amount by combining removed and remaining parts and verify by substituting in original subtraction. Methodologist Brief (original now embedded in this config.yaml), Draft.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A child can directly observe that removed and remaining quantities partition the original whole. Returning removed counters to the remaining ones reconstructs a hidden beginning; substitution shows why the result belongs in the **first** position of □ − b = c. Visuals must preserve the distinction between original amount and current amount.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Initial missing-start case: removed 4, remaining 7, original 11. Derived 4+7=11; verified 11−4=7.
                     - Role contrast: □−4=7 has missing beginning 11; 11−□=7 has missing taken-away amount 4. A guess of 11 for the second box yields 11−11=0, not 7.
                     - Transfer: □−3=5 gives 8, verified 8−3=5. Wrong candidates 7 and 9 give 4 and 6 respectively.
                     - All concrete totals 0–20, nonnegative whole-number subtraction only. A guess 3 for □−4=7 gives no valid nonnegative removal interpretation; do not display it as a mathematically valid answer.
                     - Invariant: original = removed + remaining, and original − removed = remaining. No disappearing/duplicated counters.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Hidden beginning / Section 1:** Display exactly four counters in a “taken away” tray and seven in a “left” tray. Hide only the starting total label. Offer “Count taken away,” “Count left,” “Put them together,” “Show solution.” Combining restores eleven, with a complete accessible text count.
                     2. **Equation / Section 2:** Display □−4=7 and choices 3,7,11. Candidate is inserted at first position in the unchanged original equality. For 7: “7 minus 4 gives 3, not 7”; for 3: “We cannot take away four from three counters in this nonnegative model, and it would not leave seven”; for 11: “11 minus 4 leaves 7, so it fits.” Always permit reset/reveal.
                     3. **Role comparison / Section 3:** Show the two original equations □−4=7 and 11−□=7 in sequential named panels. Ask which quantity each box represents. Show first box = starting whole 11, second box = removed part 4. Feedback ties role to visible group, not glyph position alone.
                     4. **Transfer / Section 4:** Start fresh □−3=5, without giving the model unless requested. Choices 7/8/9 or “Show both parts”; explain 7−3=4, 8−3=5, 9−3=6. Conclude by showing 3+5=8 and substitution 8−3=5.
                     5. In all cases offer “Read the model,” “Show why,” “Reset” and non-scored hints; no mandatory guessing or success gate.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     Four independent prop-free Scene entries (one per Section); **no new React mode prop** is implied. Internal code may be shared with separated state and locale bindings. Objects: ordered group trays, total/removed/remaining ledger, optional candidate buttons, original equation, substitution line, explanation and reset/reveal. The candidate may temporarily show a failed _trial_ clearly marked “does not equal,” not a true identity. Reset returns entry-specific amounts and hidden states, not a hidden assessment score. Each action recomputes exact integer arithmetic and never changes original total except when switching to a named transfer example.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple two-tray and reunited-counter representation in lightweight HTML/SVG, large numerals and explicit part labels. A reversible group merge may animate briefly under user control; reduced motion shows identical counts instantly. Do not use a visual effect as the sole explanation, background quest, external video, audio or required image.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Every learner string and feedback, status, aria label and text ledger must be genuinely localized into all supported languages. RTL retains minuend/subtrahend roles and equation operand order rather than mechanically flipping mathematical expressions. A nonvisual learner can activate “recombine” and hear/read “four removed plus seven left equals eleven originally,” then check 11−4=7. Native keyboard/touch/switch controls, visible focus, zoomed/mobile layout, non-color feedback, reduced motion and offline local math must provide equivalent actions. No drag-only, timed or voice-recognition requirement.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Combining four removed and seven remaining produces eleven original with 4+7=11, not 3 or 7.
                     2. Inserting 11 into □−4=7 produces 11−4=7; 7 yields 3; 3 is invalid in the stated nonnegative model.
                     3. Comparing □−4=7 vs 11−□=7 identifies starting 11 vs removed 4 with explicit labels.
                     4. Transfer □−3=5 gives 8, and trials 7/9 give 4/6; a child may reveal the answer without guessing.
                     5. Reset, hints and different Section placements remain isolated; no score recorded.
                     6. Keyboard, screen reader, RTL, reduced motion, mobile/zoom and offline operation expose identical groups/equalities.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene Resource rendering is available; this specific Scene is proposed and awaits Methodologist Brief approval, editor-approved spec, Design Scene implementation and own tests. Coding Agent resolves independent prop-free entrypoints, real locale context and offline integration; Assessment Architect independently owns graded items.
-                  purpose: "Proposed interactive Scene for How Many Were There at First?"
-                  productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
+                  purpose: 'Proposed interactive Scene for How Many Were There at First?'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
               markdown2:
                 config:
-                  id: "544045c6-63db-4579-896b-734098f80533"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '544045c6-63db-4579-896b-734098f80533'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The 4 taken away and 7 left were all there at the start. Put them together: **4 + 7 = 11**. There were eleven before anything was removed."
-            order: ["text1","beforeAfterBuilder","markdown2"]
+                      en: 'The 4 taken away and 7 left were all there at the start. Put them together: **4 + 7 = 11**. There were eleven before anything was removed.'
+            order: ['text1', 'beforeAfterBuilder', 'markdown2']
         production:
-          purpose: "How Many Were There at First?"
+          purpose: 'How Many Were There at First?'
           pedagogicalIntent: |
             ### Section 1 — How Many Were There at First?
-            
+
             - Purpose / learning outcome: Recognize the unknown as the _starting_ collection.
             - Current implementation shape: LessonSection_Config, vertical ordered Resource blocks.
             - Ordered content blocks:
@@ -131,109 +131,109 @@ config:
             - Accessibility, locale, RTL: Explicit “removed 4 / remaining 7 / originally ?” list, nonvisual rebuild button, locale-resolved words, RTL-safe □ position.
             - Proposed unlocked Note: “Starting whole = taken away + left,” planned after the two groups are reunited.
             - Dependencies: New bespoke Scene; not yet implemented.
-            
-          productionNotes: "Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved."
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
       section2FillTheFirstBox:
         config:
-          id: "32dada0f-26c8-40e8-965b-3fad7678d3b6"
-          slug: "section2FillTheFirstBox"
-          type: "content"
+          id: '32dada0f-26c8-40e8-965b-3fad7678d3b6'
+          slug: 'section2FillTheFirstBox'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Fill the First Box"
+              en: 'Fill the First Box'
             navigationLabel:
-              en: "Fill the First Box"
+              en: 'Fill the First Box'
           content:
             items:
               markdown1:
                 config:
-                  id: "8dd45000-4398-4047-b658-3e7652bb1385"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '8dd45000-4398-4047-b658-3e7652bb1385'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Here is the same story: **□ − 4 = 7**. The box is where the starting amount goes. We found it by adding **7 + 4 = 11**."
+                      en: 'Here is the same story: **□ − 4 = 7**. The box is where the starting amount goes. We found it by adding **7 + 4 = 11**.'
               beforeAfterBuilder:
                 config:
-                  id: "81bf9732-e058-4433-b51f-3ad0accb6961"
-                  slug: "beforeAfterBuilder"
-                  type: "scene"
+                  id: '81bf9732-e058-4433-b51f-3ad0accb6961'
+                  slug: 'beforeAfterBuilder'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Before and After Builder"
+                      en: 'Before and After Builder'
                 production:
                   specification: |
                     # Before and After Builder — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Finding an Unknown Minuend (original now embedded in this config.yaml), Sections 1–4
                     Methodologist objective(s): Recover an unknown beginning amount by combining removed and remaining parts and verify by substituting in original subtraction. Methodologist Brief (original now embedded in this config.yaml), Draft.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A child can directly observe that removed and remaining quantities partition the original whole. Returning removed counters to the remaining ones reconstructs a hidden beginning; substitution shows why the result belongs in the **first** position of □ − b = c. Visuals must preserve the distinction between original amount and current amount.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Initial missing-start case: removed 4, remaining 7, original 11. Derived 4+7=11; verified 11−4=7.
                     - Role contrast: □−4=7 has missing beginning 11; 11−□=7 has missing taken-away amount 4. A guess of 11 for the second box yields 11−11=0, not 7.
                     - Transfer: □−3=5 gives 8, verified 8−3=5. Wrong candidates 7 and 9 give 4 and 6 respectively.
                     - All concrete totals 0–20, nonnegative whole-number subtraction only. A guess 3 for □−4=7 gives no valid nonnegative removal interpretation; do not display it as a mathematically valid answer.
                     - Invariant: original = removed + remaining, and original − removed = remaining. No disappearing/duplicated counters.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Hidden beginning / Section 1:** Display exactly four counters in a “taken away” tray and seven in a “left” tray. Hide only the starting total label. Offer “Count taken away,” “Count left,” “Put them together,” “Show solution.” Combining restores eleven, with a complete accessible text count.
                     2. **Equation / Section 2:** Display □−4=7 and choices 3,7,11. Candidate is inserted at first position in the unchanged original equality. For 7: “7 minus 4 gives 3, not 7”; for 3: “We cannot take away four from three counters in this nonnegative model, and it would not leave seven”; for 11: “11 minus 4 leaves 7, so it fits.” Always permit reset/reveal.
                     3. **Role comparison / Section 3:** Show the two original equations □−4=7 and 11−□=7 in sequential named panels. Ask which quantity each box represents. Show first box = starting whole 11, second box = removed part 4. Feedback ties role to visible group, not glyph position alone.
                     4. **Transfer / Section 4:** Start fresh □−3=5, without giving the model unless requested. Choices 7/8/9 or “Show both parts”; explain 7−3=4, 8−3=5, 9−3=6. Conclude by showing 3+5=8 and substitution 8−3=5.
                     5. In all cases offer “Read the model,” “Show why,” “Reset” and non-scored hints; no mandatory guessing or success gate.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     Four independent prop-free Scene entries (one per Section); **no new React mode prop** is implied. Internal code may be shared with separated state and locale bindings. Objects: ordered group trays, total/removed/remaining ledger, optional candidate buttons, original equation, substitution line, explanation and reset/reveal. The candidate may temporarily show a failed _trial_ clearly marked “does not equal,” not a true identity. Reset returns entry-specific amounts and hidden states, not a hidden assessment score. Each action recomputes exact integer arithmetic and never changes original total except when switching to a named transfer example.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple two-tray and reunited-counter representation in lightweight HTML/SVG, large numerals and explicit part labels. A reversible group merge may animate briefly under user control; reduced motion shows identical counts instantly. Do not use a visual effect as the sole explanation, background quest, external video, audio or required image.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Every learner string and feedback, status, aria label and text ledger must be genuinely localized into all supported languages. RTL retains minuend/subtrahend roles and equation operand order rather than mechanically flipping mathematical expressions. A nonvisual learner can activate “recombine” and hear/read “four removed plus seven left equals eleven originally,” then check 11−4=7. Native keyboard/touch/switch controls, visible focus, zoomed/mobile layout, non-color feedback, reduced motion and offline local math must provide equivalent actions. No drag-only, timed or voice-recognition requirement.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Combining four removed and seven remaining produces eleven original with 4+7=11, not 3 or 7.
                     2. Inserting 11 into □−4=7 produces 11−4=7; 7 yields 3; 3 is invalid in the stated nonnegative model.
                     3. Comparing □−4=7 vs 11−□=7 identifies starting 11 vs removed 4 with explicit labels.
                     4. Transfer □−3=5 gives 8, and trials 7/9 give 4/6; a child may reveal the answer without guessing.
                     5. Reset, hints and different Section placements remain isolated; no score recorded.
                     6. Keyboard, screen reader, RTL, reduced motion, mobile/zoom and offline operation expose identical groups/equalities.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene Resource rendering is available; this specific Scene is proposed and awaits Methodologist Brief approval, editor-approved spec, Design Scene implementation and own tests. Coding Agent resolves independent prop-free entrypoints, real locale context and offline integration; Assessment Architect independently owns graded items.
-                  purpose: "Proposed interactive Scene for Fill the First Box"
-                  productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
+                  purpose: 'Proposed interactive Scene for Fill the First Box'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
               text2:
                 config:
-                  id: "55865fbf-e156-4f64-b300-a9056c757cfa"
-                  slug: "text2"
-                  type: "text"
+                  id: '55865fbf-e156-4f64-b300-a9056c757cfa'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Check: **11 − 4 = 7**. That is the number still left. Both parts of the story fit."
-            order: ["markdown1","beforeAfterBuilder","text2"]
+                      en: 'Check: **11 − 4 = 7**. That is the number still left. Both parts of the story fit.'
+            order: ['markdown1', 'beforeAfterBuilder', 'text2']
         production:
-          purpose: "Fill the First Box"
+          purpose: 'Fill the First Box'
           pedagogicalIntent: |
             ### Section 2 — Fill the First Box
-            
+
             - Purpose / outcome: Link reconstruction to □ − 4 = 7 and check it.
             - Current implementation shape: LessonSection_Config.
             - Ordered content blocks:
@@ -245,109 +245,109 @@ config:
             - Accessibility: Full original and substituted equations read aloud in text descriptions, screen-reader equality verdict, no hidden correctness signal.
             - Note: “Check by putting the number in the original subtraction,” planned after a verified substitution.
             - Dependencies: Scene-based formative checking only.
-            
-          productionNotes: "Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved."
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
       section3WhichNumberIsMissing:
         config:
-          id: "1a9fad43-a42f-49ce-8282-b91d32e77098"
-          slug: "section3WhichNumberIsMissing"
-          type: "content"
+          id: '1a9fad43-a42f-49ce-8282-b91d32e77098'
+          slug: 'section3WhichNumberIsMissing'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Which Number Is Missing?"
+              en: 'Which Number Is Missing?'
             navigationLabel:
-              en: "Which Number Is Missing?"
+              en: 'Which Number Is Missing?'
           content:
             items:
               text1:
                 config:
-                  id: "6c36b446-dda8-4c9f-b3f2-cebc18a3710d"
-                  slug: "text1"
-                  type: "text"
+                  id: '6c36b446-dda8-4c9f-b3f2-cebc18a3710d'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Compare **□ − 4 = 7** with **11 − □ = 7**. Which box is the starting number? Which box is the amount removed?"
+                      en: 'Compare **□ − 4 = 7** with **11 − □ = 7**. Which box is the starting number? Which box is the amount removed?'
               beforeAfterBuilder:
                 config:
-                  id: "e1e1296e-07a2-4a69-ae4c-4fc0ec413c23"
-                  slug: "beforeAfterBuilder"
-                  type: "scene"
+                  id: 'e1e1296e-07a2-4a69-ae4c-4fc0ec413c23'
+                  slug: 'beforeAfterBuilder'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Before and After Builder"
+                      en: 'Before and After Builder'
                 production:
                   specification: |
                     # Before and After Builder — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Finding an Unknown Minuend (original now embedded in this config.yaml), Sections 1–4
                     Methodologist objective(s): Recover an unknown beginning amount by combining removed and remaining parts and verify by substituting in original subtraction. Methodologist Brief (original now embedded in this config.yaml), Draft.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A child can directly observe that removed and remaining quantities partition the original whole. Returning removed counters to the remaining ones reconstructs a hidden beginning; substitution shows why the result belongs in the **first** position of □ − b = c. Visuals must preserve the distinction between original amount and current amount.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Initial missing-start case: removed 4, remaining 7, original 11. Derived 4+7=11; verified 11−4=7.
                     - Role contrast: □−4=7 has missing beginning 11; 11−□=7 has missing taken-away amount 4. A guess of 11 for the second box yields 11−11=0, not 7.
                     - Transfer: □−3=5 gives 8, verified 8−3=5. Wrong candidates 7 and 9 give 4 and 6 respectively.
                     - All concrete totals 0–20, nonnegative whole-number subtraction only. A guess 3 for □−4=7 gives no valid nonnegative removal interpretation; do not display it as a mathematically valid answer.
                     - Invariant: original = removed + remaining, and original − removed = remaining. No disappearing/duplicated counters.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Hidden beginning / Section 1:** Display exactly four counters in a “taken away” tray and seven in a “left” tray. Hide only the starting total label. Offer “Count taken away,” “Count left,” “Put them together,” “Show solution.” Combining restores eleven, with a complete accessible text count.
                     2. **Equation / Section 2:** Display □−4=7 and choices 3,7,11. Candidate is inserted at first position in the unchanged original equality. For 7: “7 minus 4 gives 3, not 7”; for 3: “We cannot take away four from three counters in this nonnegative model, and it would not leave seven”; for 11: “11 minus 4 leaves 7, so it fits.” Always permit reset/reveal.
                     3. **Role comparison / Section 3:** Show the two original equations □−4=7 and 11−□=7 in sequential named panels. Ask which quantity each box represents. Show first box = starting whole 11, second box = removed part 4. Feedback ties role to visible group, not glyph position alone.
                     4. **Transfer / Section 4:** Start fresh □−3=5, without giving the model unless requested. Choices 7/8/9 or “Show both parts”; explain 7−3=4, 8−3=5, 9−3=6. Conclude by showing 3+5=8 and substitution 8−3=5.
                     5. In all cases offer “Read the model,” “Show why,” “Reset” and non-scored hints; no mandatory guessing or success gate.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     Four independent prop-free Scene entries (one per Section); **no new React mode prop** is implied. Internal code may be shared with separated state and locale bindings. Objects: ordered group trays, total/removed/remaining ledger, optional candidate buttons, original equation, substitution line, explanation and reset/reveal. The candidate may temporarily show a failed _trial_ clearly marked “does not equal,” not a true identity. Reset returns entry-specific amounts and hidden states, not a hidden assessment score. Each action recomputes exact integer arithmetic and never changes original total except when switching to a named transfer example.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple two-tray and reunited-counter representation in lightweight HTML/SVG, large numerals and explicit part labels. A reversible group merge may animate briefly under user control; reduced motion shows identical counts instantly. Do not use a visual effect as the sole explanation, background quest, external video, audio or required image.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Every learner string and feedback, status, aria label and text ledger must be genuinely localized into all supported languages. RTL retains minuend/subtrahend roles and equation operand order rather than mechanically flipping mathematical expressions. A nonvisual learner can activate “recombine” and hear/read “four removed plus seven left equals eleven originally,” then check 11−4=7. Native keyboard/touch/switch controls, visible focus, zoomed/mobile layout, non-color feedback, reduced motion and offline local math must provide equivalent actions. No drag-only, timed or voice-recognition requirement.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Combining four removed and seven remaining produces eleven original with 4+7=11, not 3 or 7.
                     2. Inserting 11 into □−4=7 produces 11−4=7; 7 yields 3; 3 is invalid in the stated nonnegative model.
                     3. Comparing □−4=7 vs 11−□=7 identifies starting 11 vs removed 4 with explicit labels.
                     4. Transfer □−3=5 gives 8, and trials 7/9 give 4/6; a child may reveal the answer without guessing.
                     5. Reset, hints and different Section placements remain isolated; no score recorded.
                     6. Keyboard, screen reader, RTL, reduced motion, mobile/zoom and offline operation expose identical groups/equalities.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene Resource rendering is available; this specific Scene is proposed and awaits Methodologist Brief approval, editor-approved spec, Design Scene implementation and own tests. Coding Agent resolves independent prop-free entrypoints, real locale context and offline integration; Assessment Architect independently owns graded items.
-                  purpose: "Proposed interactive Scene for Which Number Is Missing?"
-                  productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
+                  purpose: 'Proposed interactive Scene for Which Number Is Missing?'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
               markdown2:
                 config:
-                  id: "e04a006d-3728-45d4-9035-b2b3ed79fd6a"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: 'e04a006d-3728-45d4-9035-b2b3ed79fd6a'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "In the first equation, **11** was missing at the start. In the second, we already have 11 and must find the amount taken away: **4**. The blank's place changes the question."
-            order: ["text1","beforeAfterBuilder","markdown2"]
+            order: ['text1', 'beforeAfterBuilder', 'markdown2']
         production:
-          purpose: "Which Number Is Missing?"
+          purpose: 'Which Number Is Missing?'
           pedagogicalIntent: |
             ### Section 3 — Which Number Is Missing?
-            
+
             - Purpose: Distinguish missing _starting whole_ from missing _removed amount_, avoiding rule confusion.
             - Current implementation shape: LessonSection_Config.
             - Ordered blocks:
@@ -360,109 +360,109 @@ config:
             - Accessibility: Labels “first number / amount taken away / remainder” and linear alternative to any visual highlighting.
             - Note: No additional Note; revisit role distinction.
             - Dependencies: Independent prop-free placement, same approved scenario.
-            
-          productionNotes: "Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved."
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
       section4BuildANewBeginning:
         config:
-          id: "aa628794-86a6-4269-b76f-82b659f96353"
-          slug: "section4BuildANewBeginning"
-          type: "content"
+          id: 'aa628794-86a6-4269-b76f-82b659f96353'
+          slug: 'section4BuildANewBeginning'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Build a New Beginning"
+              en: 'Build a New Beginning'
             navigationLabel:
-              en: "Build a New Beginning"
+              en: 'Build a New Beginning'
           content:
             items:
               text1:
                 config:
-                  id: "3c0f6759-ec82-4d98-b93e-b26703eb0d56"
-                  slug: "text1"
-                  type: "text"
+                  id: '3c0f6759-ec82-4d98-b93e-b26703eb0d56'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "**□ − 3 = 5**. Three counters were taken away. Five remain. What was the first number?"
+                      en: '**□ − 3 = 5**. Three counters were taken away. Five remain. What was the first number?'
               beforeAfterBuilder:
                 config:
-                  id: "9f633447-4d9b-4474-8208-ee617087bdbe"
-                  slug: "beforeAfterBuilder"
-                  type: "scene"
+                  id: '9f633447-4d9b-4474-8208-ee617087bdbe'
+                  slug: 'beforeAfterBuilder'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Before and After Builder"
+                      en: 'Before and After Builder'
                 production:
                   specification: |
                     # Before and After Builder — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Finding an Unknown Minuend (original now embedded in this config.yaml), Sections 1–4
                     Methodologist objective(s): Recover an unknown beginning amount by combining removed and remaining parts and verify by substituting in original subtraction. Methodologist Brief (original now embedded in this config.yaml), Draft.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A child can directly observe that removed and remaining quantities partition the original whole. Returning removed counters to the remaining ones reconstructs a hidden beginning; substitution shows why the result belongs in the **first** position of □ − b = c. Visuals must preserve the distinction between original amount and current amount.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Initial missing-start case: removed 4, remaining 7, original 11. Derived 4+7=11; verified 11−4=7.
                     - Role contrast: □−4=7 has missing beginning 11; 11−□=7 has missing taken-away amount 4. A guess of 11 for the second box yields 11−11=0, not 7.
                     - Transfer: □−3=5 gives 8, verified 8−3=5. Wrong candidates 7 and 9 give 4 and 6 respectively.
                     - All concrete totals 0–20, nonnegative whole-number subtraction only. A guess 3 for □−4=7 gives no valid nonnegative removal interpretation; do not display it as a mathematically valid answer.
                     - Invariant: original = removed + remaining, and original − removed = remaining. No disappearing/duplicated counters.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Hidden beginning / Section 1:** Display exactly four counters in a “taken away” tray and seven in a “left” tray. Hide only the starting total label. Offer “Count taken away,” “Count left,” “Put them together,” “Show solution.” Combining restores eleven, with a complete accessible text count.
                     2. **Equation / Section 2:** Display □−4=7 and choices 3,7,11. Candidate is inserted at first position in the unchanged original equality. For 7: “7 minus 4 gives 3, not 7”; for 3: “We cannot take away four from three counters in this nonnegative model, and it would not leave seven”; for 11: “11 minus 4 leaves 7, so it fits.” Always permit reset/reveal.
                     3. **Role comparison / Section 3:** Show the two original equations □−4=7 and 11−□=7 in sequential named panels. Ask which quantity each box represents. Show first box = starting whole 11, second box = removed part 4. Feedback ties role to visible group, not glyph position alone.
                     4. **Transfer / Section 4:** Start fresh □−3=5, without giving the model unless requested. Choices 7/8/9 or “Show both parts”; explain 7−3=4, 8−3=5, 9−3=6. Conclude by showing 3+5=8 and substitution 8−3=5.
                     5. In all cases offer “Read the model,” “Show why,” “Reset” and non-scored hints; no mandatory guessing or success gate.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     Four independent prop-free Scene entries (one per Section); **no new React mode prop** is implied. Internal code may be shared with separated state and locale bindings. Objects: ordered group trays, total/removed/remaining ledger, optional candidate buttons, original equation, substitution line, explanation and reset/reveal. The candidate may temporarily show a failed _trial_ clearly marked “does not equal,” not a true identity. Reset returns entry-specific amounts and hidden states, not a hidden assessment score. Each action recomputes exact integer arithmetic and never changes original total except when switching to a named transfer example.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple two-tray and reunited-counter representation in lightweight HTML/SVG, large numerals and explicit part labels. A reversible group merge may animate briefly under user control; reduced motion shows identical counts instantly. Do not use a visual effect as the sole explanation, background quest, external video, audio or required image.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Every learner string and feedback, status, aria label and text ledger must be genuinely localized into all supported languages. RTL retains minuend/subtrahend roles and equation operand order rather than mechanically flipping mathematical expressions. A nonvisual learner can activate “recombine” and hear/read “four removed plus seven left equals eleven originally,” then check 11−4=7. Native keyboard/touch/switch controls, visible focus, zoomed/mobile layout, non-color feedback, reduced motion and offline local math must provide equivalent actions. No drag-only, timed or voice-recognition requirement.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Combining four removed and seven remaining produces eleven original with 4+7=11, not 3 or 7.
                     2. Inserting 11 into □−4=7 produces 11−4=7; 7 yields 3; 3 is invalid in the stated nonnegative model.
                     3. Comparing □−4=7 vs 11−□=7 identifies starting 11 vs removed 4 with explicit labels.
                     4. Transfer □−3=5 gives 8, and trials 7/9 give 4/6; a child may reveal the answer without guessing.
                     5. Reset, hints and different Section placements remain isolated; no score recorded.
                     6. Keyboard, screen reader, RTL, reduced motion, mobile/zoom and offline operation expose identical groups/equalities.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene Resource rendering is available; this specific Scene is proposed and awaits Methodologist Brief approval, editor-approved spec, Design Scene implementation and own tests. Coding Agent resolves independent prop-free entrypoints, real locale context and offline integration; Assessment Architect independently owns graded items.
-                  purpose: "Proposed interactive Scene for Build a New Beginning"
-                  productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
+                  purpose: 'Proposed interactive Scene for Build a New Beginning'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
               markdown2:
                 config:
-                  id: "a6d9c156-5637-484f-b2a0-b5cc8a0345dd"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: 'a6d9c156-5637-484f-b2a0-b5cc8a0345dd'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Put the parts together: **3 + 5 = 8**. Check **8 − 3 = 5**. Eight was the starting whole."
-            order: ["text1","beforeAfterBuilder","markdown2"]
+                      en: 'Put the parts together: **3 + 5 = 8**. Check **8 − 3 = 5**. Eight was the starting whole.'
+            order: ['text1', 'beforeAfterBuilder', 'markdown2']
         production:
-          purpose: "Build a New Beginning"
+          purpose: 'Build a New Beginning'
           pedagogicalIntent: |
             ### Section 4 — Build a New Beginning
-            
+
             - Purpose: Apply the concept without repeating the eleven-counter story.
             - Current shape: LessonSection_Config.
             - Ordered blocks:
@@ -474,85 +474,91 @@ config:
             - Accessibility: Text-only equivalent of candidate inspection and the original expression, clear focus/touch and RTL operation order.
             - Notes: Recall “starting whole = taken away + left.”
             - Dependencies: Scenes proposed, no formal assessment.
-            
-          productionNotes: "Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved."
-    order: ["section1HowManyWereThereAtFirst","section2FillTheFirstBox","section3WhichNumberIsMissing","section4BuildANewBeginning"]
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+    order:
+      [
+        'section1HowManyWereThereAtFirst',
+        'section2FillTheFirstBox',
+        'section3WhichNumberIsMissing',
+        'section4BuildANewBeginning',
+      ]
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # Finding an Unknown Minuend — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: unknownMinuend
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Help children reconstruct an unknown _starting whole_ in a subtraction. When the amount removed and the amount remaining are known, putting those two parts back together finds the original whole. This is the inverse relation behind □ − 4 = 7, so □ = 7 + 4 = 11. A reliable answer is checked by substitution into the **original subtraction**, not by accepting a plausible sum.
-    
+
     ## Target audience
-    
+
     Children aged approximately 6–8 (grades 1–2) who understand concrete subtraction, addition within 20 and the equals sign as a relationship. Provide support for emerging readers, numeracy differences and nonvisual participation; use counters and short bilingual-ready sentences before formal component vocabulary.
-    
+
     ## Prerequisites
-    
+
     - Count, add and subtract whole-number amounts within 20, using counters if needed.
     - Interpret “taken away,” “left,” and “started with” as distinct quantities.
     - Know that whole = removed part + remaining part; understand a blank denotes one unknown number.
     - Recognize equality rather than reading the equals sign as a command.
-    
+
     ## Target Skills
-    
+
     - [unknownMinuend.data.ts](../../../../data/skills/algebra/unknowns/skills/unknownMinuend.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Identify the missing first number in □ − 4 = 7 as the _starting whole_, not what was removed.
     - Reconstruct the starting whole by combining 4 removed and 7 remaining: 7 + 4 = 11.
     - Model the part–whole reconstruction physically, visually or with an equivalent accessible number record.
     - Verify the candidate in the original equality 11 − 4 = 7 and distinguish this calculation from finding an unknown subtrahend.
-    
+
     ## Essential subject matter
-    
+
     The minuend is the quantity from which another amount is subtracted. For nonnegative whole numbers, if □ − b = c, the original amount is b + c. In the story “Four were taken away and seven remain,” the removed group and remaining group together represent the original eleven; they are **not two newly added collections** unrelated to the story. The written check is 11 − 4 = 7. An unknown subtrahend instead has a known starting whole and remainder; its inverse rule is different. For this age group use totals up to 20 and no negative results.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Begin with a known whole and a fully explained removal, then obscure _only_ the original whole's numeral while keeping removed and remaining quantities visible. Reconstruct the original by combining two known parts, express the addition and restore the number into the original subtraction. Contrast positions of the blank without requiring formal symbolic rearrangement. Transfer to a fresh example with smaller prompts.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Common errors: answer 3 by subtracting 7 − 4 rather than reconstructing the whole; treat 7 as the whole because it is after the equals sign; add 4 to the hidden number twice; or check only 7 + 4, never 11 − 4. Use □ − 4 = 7 → 11; □ − 3 = 5 → 8. Contrasting 11 − □ = 7 is **not** the same unknown; its missing value is 4. Avoid negative, fractional, multi-unknown and algebraic-transformation tasks.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Distinguish “starting amount,” “removed” and “left” across locales; translate minuend with a child-friendly explanation before technical term. The box is read as “unknown starting number.” Counters have a full text/keyboard-operable equivalent and legible arithmetic under RTL. Optional narration is duplicated in text. Every model, feedback state and required translation should function offline once downloaded.
-    
+
     ## Sources and factual verification
-    
+
     - [Playground generated Skill taxonomy](../../../../docs/generated/skills/taxonomy.en.md), canonical unknownMinuend methodological description.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), early-grade unknown-number problems for comparison, not claimed automatic Curriculum alignment.
     - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), explicit language and linked concrete/symbolic models.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. Independent Lesson, no required Program or national grade mapping.
-    
+
     ## Open editorial decisions
-    
+
     - Editor: verify totals ≤20 and that the child first sees concrete reconstruction before symbolic notation.
     - Editor: approve a brief comparison with unknown subtrahend without expanding this Lesson into the separate Skill.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, pending explicit editorial approval.** Following approval, Screenwriter may design active part reconstruction and original-equality checking while preserving the single Skill. No scored Question or implementation authorization is inferred.
   productionNotes: |-
     All content.md text outside ordered Sections — editorial premise, accessibility, global feedback, production and dependencies:
-    
+
     # Finding an Unknown Minuend — Content
-    
+
     Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
     Target Lesson: content/playground/Data/Lessons/1/unknownMinuend/
     Audience: Children aged 6–8 with part–whole counting, simple addition/subtraction within 20
@@ -560,55 +566,55 @@ production:
     Learning outcomes: recover a missing starting whole from amount removed and amount left; add those parts; verify in original subtraction; distinguish blank positions.
     Target Skills: As directly linked in Methodologist Brief; no duplicate skill definitions
     Program dependence: None
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Subtraction can hide the **starting quantity**, not just the answer. We can work backward by _putting removed and remaining counters together_. If four were taken away and seven remain, there had to be eleven to begin with. The discovery is visible before the formula: **7 + 4 = 11**, and the decisive check is **11 − 4 = 7**. The model must not confuse a missing minuend with a missing amount removed.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. Notice the removed four and remaining seven without a stated beginning.
     2. Reconstruct the whole from both groups, count eleven and connect to addition.
     3. Compare □ − 4 = 7 with 11 − □ = 7 to see why the unknown’s position matters.
     4. Transfer to □ − 3 = 5, independently suggest eight and check 8 − 3 = 5.
-    
+
     ## SECTION PLAN
-    
-    
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Before and After Builder (Scene specification embedded in this config.yaml) — four independently initialized prop-free Scene entries for reconstruction, checking, role comparison and transfer.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     - “Starting whole = taken away + left.” Unlock proposal after a physical/textual reconstruction of eleven.
     - “Check in the original subtraction.” Unlock after the first complete checked substitution.
-    
+
     Notes are planned, not wired; no Note events, learner-specific persistence, review sheet or spaced scheduler exists by implication. Revealing a Note does not establish mastery.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Counter reconstruction and numerical candidate feedback are formative practice. Assessment Architect may later create validated items for unknownMinuend while separating evidence from unknownSubtrahend. No scored Question, threshold or mastery inference is specified. The current generic Lesson renderer supports text/markdown/scene blocks; the Quiz adapter's select-one support is not an implementation of these Scenes.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     All strings/feedback/aria/Notes need genuine translations across supported locales, without English fallback. The meanings of original, removed and remaining are differentiated in short readable text; the counter grouping is fully operable through keyboard, touch and screen readers with an equivalent state ledger. Use semantic RTL order, visible focus, large targets, reduced motion, zoom/mobile and low-device HTML/SVG, and complete offline local calculations after content download. Speech recognition and drag are not required.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     Available: LessonSection_Config and general text, markdown and scene rendering. Proposed: Before and After Builder, independent scene entrypoints, full translations and tests. Image/audio/video/code blocks are typed-only in the generic renderer; YouTube has no supported resource config; none needed. Notes/sync/review scheduler not claimed implemented. Assessment Architect separately owns scored work.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Methodologist Brief (original now embedded in this config.yaml) (Draft, not approved).
     - [English generated Skill taxonomy](../../../../docs/generated/skills/taxonomy.en.md).
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Approve the new Brief before promoting this provisional script; confirm how much unknown-subtrahend contrast belongs here.
     - No particular national Curriculum or efficacy outcome asserted.
-    
+
     ## HANDOFF
-    
+
     Provisional Draft script and separately reviewable Draft Scene spec, not authorized for coding until Methodologist and Scene/editor gates have passed. No runtime data, graded Questions, taxonomy modifications or Program story in this handoff.
-    
-    
+
+
     Editorial state: provisional draft; pending independent approval. Locales beyond English are intended but not yet translated.

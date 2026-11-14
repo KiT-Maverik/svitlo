@@ -1,104 +1,104 @@
 config:
-  id: "bfe95acc-8884-5586-ada1-593aa6c93261"
-  slug: "compareNumbersWithSymbols"
-  type: "lesson"
-  skills: ["b3fc5e27-fc9d-48cc-b429-7ee2febbefbb"]
+  id: 'bfe95acc-8884-5586-ada1-593aa6c93261'
+  slug: 'compareNumbersWithSymbols'
+  type: 'lesson'
+  skills: ['b3fc5e27-fc9d-48cc-b429-7ee2febbefbb']
   params:
     requireQuiz: false
-    languages: ["en", "pl", "uk", "qm"]
+    languages: ['en', 'pl', 'uk', 'qm']
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Say It With a Sign: Less, Greater, Equal"
+      en: 'Say It With a Sign: Less, Greater, Equal'
   section:
     items:
       section1:
         config:
-          id: "ebf33a02-e54d-5f59-b6a1-ba0229a2be83"
-          slug: "section1"
-          type: "content"
+          id: 'ebf33a02-e54d-5f59-b6a1-ba0229a2be83'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Relation Card Lab"
+              en: 'Relation Card Lab'
             navigationLabel:
-              en: "Relation Card Lab"
+              en: 'Relation Card Lab'
           content:
             items:
               text1:
                 config:
-                  id: "afd55fd3-734e-5b88-b10f-dfd3eaaf5386"
-                  slug: "text1"
-                  type: "text"
+                  id: 'afd55fd3-734e-5b88-b10f-dfd3eaaf5386'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Eight dots on the first side and twelve on the second. Which sign makes the sentence true?"
+                      en: 'Eight dots on the first side and twelve on the second. Which sign makes the sentence true?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "af10e88c-9be9-5019-9e28-688cb429e997"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'af10e88c-9be9-5019-9e28-688cb429e997'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Eight dots on the first side and twelve on the second. Which sign makes the sentence true?"
+                        instruction: 'Eight dots on the first side and twelve on the second. Which sign makes the sentence true?'
                 production:
                   specification: |
                     # Relation Card Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist and independent Scene approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Say It With a Sign: Less, Greater, Equal Content (embedded in this Lesson config.yaml), Section 1
                     Methodologist objectives: Methodologist Brief (embedded in this Lesson config.yaml) (**Draft, not approved**)
                     Implementation status: Proposed standalone **prop-free Scene**, not implemented
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Link each of the three glyphs to an actual pair of quantities with the choice of sign explained by visible cardinal evidence.
-                    
+
                     **Underlying number relationship:** The statement a < b means a is less than b, a > b means a is greater than b, and a = b means they have equal values. For 8 and 12, 8 < 12 is true, while 12 > 8 expresses the **same** quantitative relationship after swapping operand order. Leaving < in place after swapping makes 12 < 8 false. Equality stays equality after swapping the same values: 7 = 7 in either order. The glyphs are mathematical operators with fixed operand order; they are not words to mirror for Arabic/Hebrew layout. The mathematical pair is isolated directionally so the left operand and right operand remain the intended numbers.
-                    
+
                     The child must be able to change or examine the representation, form a prediction, see the exact model and explain why a plausible wrong shortcut fails.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     **Initial state:** Two separate baskets of identical counters, left basket 8 and right basket 12; sign slot with <, > and =; a second independent preset with 7 and 7 displayed at different spacing. All operators appear in a dedicated mathematically left-to-right expression region even inside RTL text.
-                    
+
                     **Model and invariant:** Two canonical integer values, selected sign, numeric evidence ledger, current preset, reveal state. Displayed left and right operand identities are fixed by the math expression, not by CSS page order. No counter removal on choosing a sign.
-                    
+
                     **Numerical and pedagogical limits:** Grade 2, pairs of nonnegative integers 0–20, comparisons justified by quantity models or an equal-scale line; no chain inequalities, negative values, decimals, algebraic equation solving or crocodile-mouth mnemonic as the sole explanation.
-                    
+
                     **Boundary case / nuance:** Do not imply the sign choice is a score; a child can inspect exact quantities before or after a prediction. Equal-value counts require the same sign even when one visual row is longer.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Beat 1 — Eight dots on the first side and twelve on the second. Which sign makes the sentence true?
-                    
+
                     1. **Invitation:** “Eight dots on the first side and twelve on the second. Which sign makes the sentence true?”
                     2. **Controllable investigation:** Count or inspect both groups, select < between numeral 8 and numeral 12, and show a strict lower/higher quantity comparison.
                     3. **Correct visible consequence:** 8 < 12, read eight is less than twelve.
                     4. **Worked number evidence:** 8 < 12; 12 is four more than 8, so they are not equal.
                     5. **Mistaken or incomplete route:** For >, show 8 is not more than 12. For =, line up eight one-to-one pairs and reveal four unmatched dots on the twelve side.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ### Beat 2 — Seven dots are spread widely and seven are close together. What sign belongs between 7 and 7?
-                    
+
                     1. **Invitation:** “Seven dots are spread widely and seven are close together. What sign belongs between 7 and 7?”
                     2. **Controllable investigation:** Inspect paired count ledger for both seven-dot groups and choose = despite different spacing.
                     3. **Correct visible consequence:** 7 = 7; layout does not change the total.
                     4. **Worked number evidence:** 7 = 7, whether spread or close together.
                     5. **Mistaken or incomplete route:** For < or >, pair all seven dots one-to-one with none unmatched, then show the two written 7s.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Semantic objects:** Named countable group members, ticks, operands or operator controls, each with stable identity, a visible state and an equivalent ordered textual ledger.
                     - **Control map:** Choose <, > or =; inspect left/right counted values; choose 8&12 or 7&7 preset; explain/reveal; reset.
                     - **Deterministic state:** The numbers, chosen preset, group members, selected values, prediction, Reveal state and Reset all come from the self-contained Scene's own constants and actions, not caller props.
@@ -106,19 +106,19 @@ config:
                     - **Independence:** The proposed component has **no props** and no mutable state shared with a Lesson or another Scene; each Section contains its own independently resettable placement.
                     - **Boundaries:** Do not imply the sign choice is a score; a child can inspect exact quantities before or after a prediction. Equal-value counts require the same sign even when one visual row is longer.
                     - **Assessment boundary:** Prediction and feedback are formative only. No Question bank, Quiz, correct-answer security contract, mastery metric, score, persistent Note event, timed completion or invented platform API.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use lightweight HTML/SVG or ordinary semantic controls for individual items and groups, with a concise number ledger. Animation may highlight an interval, pair or new group but may never be the only carrier of information; reduced-motion mode updates state immediately. No required audio, live external service, asset generation or ornamental 3D. If optional sound is added later, localized captions/transcripts and downloaded media must preserve full learning.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Expose expression as 'eight less than twelve' and an isolated accessible math string '8 < 12'; fully focusable sign picker and count ledger. RTL reading direction localizes prose, not operand or operator order.
-                    
+
                     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 8 and 12 accepts <, rejects > and = with distinct reasoning.
                     2. 7 and 7 accepts = regardless of spacing.
                     3. Sign choice changes only the proposed comparison, not either underlying count.
@@ -127,28 +127,28 @@ config:
                     6. For Beat 2, verify exact expected result: 7 = 7, whether spread or close together. Test plausible wrong response: For < or >, pair all seven dots one-to-one with none unmatched, then show the two written 7s.
                     7. All interactions work by keyboard, switch and touch with full nonvisual ledger, correct semantic RTL, reduced motion, mobile/high zoom and identical downloaded-offline mathematics.
                     8. Reset affects this Scene only, not another Section; no scoring or unimplemented Note event is emitted.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Each custom Scene is independently initialized, self-contained and **prop-free**; no caller supplies mode or numerical props. Scenarios and variables reside in that Scene's own authored module once implemented. The generic `scene` Resource type is supported, but this particular Scene has **not** been implemented. No invented API, registration, event, Note persistence, assessment, score or mastery side effect is assumed.
-                    
+
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
-                  purpose: "Relation Card Lab"
-                  productionNotes: "Source Scene relationCardLab.scene-spec.md; independent placement for Relation Card Lab. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Relation Card Lab'
+                  productionNotes: 'Source Scene relationCardLab.scene-spec.md; independent placement for Relation Card Lab. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "fcc56cb1-6f12-5c32-b727-ecb1204078f4"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'fcc56cb1-6f12-5c32-b727-ecb1204078f4'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "8 < 12, read eight is less than twelve. 8 < 12; 12 is four more than 8, so they are not equal."
+                      en: '8 < 12, read eight is less than twelve. 8 < 12; 12 is four more than 8, so they are not equal.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Relation Card Lab"
+          purpose: 'Relation Card Lab'
           productionNotes: |-
             - **Learning purpose:** Link each of the three glyphs to an actual pair of quantities with the choice of sign explained by visible cardinal evidence.
             - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
@@ -157,27 +157,27 @@ config:
               2. **`scene` — generic type exists, **specific Scene proposed**:** Relation Card Lab (Scene specification relationCardLab embedded in the corresponding Scene node). Two separate baskets of identical counters, left basket 8 and right basket 12; sign slot with <, > and =; a second independent preset with 7 and 7 displayed at different spacing. All operators appear in a dedicated mathematically left-to-right expression region even inside RTL text.
               3. **`markdown` — existing generic renderer:** “8 < 12, read eight is less than twelve. 8 < 12; 12 is four more than 8, so they are not equal.”
             - **Learner action and responsive feedback:**
-            
+
             **Beat 1 — “Eight dots on the first side and twelve on the second. Which sign makes the sentence true?”** Count or inspect both groups, select < between numeral 8 and numeral 12, and show a strict lower/higher quantity comparison.
-            
+
             **Learner-visible result:** 8 < 12, read eight is less than twelve.
-            
+
             **Worked numerical evidence:** 8 < 12; 12 is four more than 8, so they are not equal.
-            
+
             **Feedback for a plausible misconception:** For >, show 8 is not more than 12. For =, line up eight one-to-one pairs and reveal four unmatched dots on the twelve side.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             **Beat 2 — “Seven dots are spread widely and seven are close together. What sign belongs between 7 and 7?”** Inspect paired count ledger for both seven-dot groups and choose = despite different spacing.
-            
+
             **Learner-visible result:** 7 = 7; layout does not change the total.
-            
+
             **Worked numerical evidence:** 7 = 7, whether spread or close together.
-            
+
             **Feedback for a plausible misconception:** For < or >, pair all seven dots one-to-one with none unmatched, then show the two written 7s.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             - **Controls and accessibility:** Choose <, > or =; inspect left/right counted values; choose 8&12 or 7&7 preset; explain/reveal; reset. Expose expression as 'eight less than twelve' and an isolated accessible math string '8 < 12'; fully focusable sign picker and count ledger. RTL reading direction localizes prose, not operand or operator order.
             - **Cause-and-effect explanation:** Two canonical integer values, selected sign, numeric evidence ledger, current preset, reveal state. Displayed left and right operand identities are fixed by the math expression, not by CSS page order. No counter removal on choosing a sign. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
             - **Boundary reasoning:** Do not imply the sign choice is a score; a child can inspect exact quantities before or after a prediction. Equal-value counts require the same sign even when one visual row is longer.
@@ -185,53 +185,53 @@ config:
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
       section2:
         config:
-          id: "eaf3386f-e24d-5aa0-b5a1-b86f2aa2c016"
-          slug: "section2"
-          type: "content"
+          id: 'eaf3386f-e24d-5aa0-b5a1-b86f2aa2c016'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Would the Sign Still Tell the Truth?"
+              en: 'Would the Sign Still Tell the Truth?'
             navigationLabel:
-              en: "Would the Sign Still Tell the Truth?"
+              en: 'Would the Sign Still Tell the Truth?'
           content:
             items:
               text1:
                 config:
-                  id: "565d22b2-b26f-5515-9797-a2b2595e20c7"
-                  slug: "text1"
-                  type: "text"
+                  id: '565d22b2-b26f-5515-9797-a2b2595e20c7'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "If 8 < 12 is true, may we swap the numbers and still write 12 < 8?"
+                      en: 'If 8 < 12 is true, may we swap the numbers and still write 12 < 8?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               markdown1:
                 config:
-                  id: "28dd74e0-3600-520f-a33f-f4e046551ce5"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '28dd74e0-3600-520f-a33f-f4e046551ce5'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "No. Twelve is greater than eight. After swapping their places, the true statement is 12 > 8. The sign must follow the quantities, not the position you remember."
+                      en: 'No. Twelve is greater than eight. After swapping their places, the true statement is 12 > 8. The sign must follow the quantities, not the position you remember.'
                 production:
-                  purpose: "Source explanatory copy"
+                  purpose: 'Source explanatory copy'
               markdown2:
                 config:
-                  id: "2bdd7999-3700-53a2-a63f-f9994355182c"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '2bdd7999-3700-53a2-a63f-f9994355182c'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "When the numbers are equal, such as 7 = 7, switching them leaves equality true. In an RTL sentence, preserve mathematical operand order instead of flipping the signs automatically."
+                      en: 'When the numbers are equal, such as 7 = 7, switching them leaves equality true. In an RTL sentence, preserve mathematical operand order instead of flipping the signs automatically.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","markdown1","markdown2"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'markdown1', 'markdown2']
         production:
-          purpose: "Would the Sign Still Tell the Truth?"
+          purpose: 'Would the Sign Still Tell the Truth?'
           productionNotes: |-
             - **Purpose and expected learner thinking:** Distinguish the mathematical invariant from a familiar but misleading shortcut; retrieve a rule without a score.
             - **Current implementation shape:** `LessonSection_Config`, a single vertical content column (no Quiz).
@@ -244,88 +244,88 @@ config:
             - **Transition:** Section 3 changes numbers or objects and asks for independent reasoning. The first Scene's state is not carried into the second.
       section3:
         config:
-          id: "e9f336dc-e34d-5c33-b4a1-b6dc2ba2c1a9"
-          slug: "section3"
-          type: "content"
+          id: 'e9f336dc-e34d-5c33-b4a1-b6dc2ba2c1a9'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Swap the Comparison"
+              en: 'Swap the Comparison'
             navigationLabel:
-              en: "Swap the Comparison"
+              en: 'Swap the Comparison'
           content:
             items:
               text1:
                 config:
-                  id: "fc6237c1-3747-57b6-bd9c-b7c1d1f612d8"
-                  slug: "text1"
-                  type: "text"
+                  id: 'fc6237c1-3747-57b6-bd9c-b7c1d1f612d8'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "8 < 12 is true. Swap the numbers. Does < still tell the truth?"
+                      en: '8 < 12 is true. Swap the numbers. Does < still tell the truth?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "71ad0e92-4dbe-5967-a0c4-8e92709a7609"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '71ad0e92-4dbe-5967-a0c4-8e92709a7609'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "8 < 12 is true. Swap the numbers. Does < still tell the truth?"
+                        instruction: '8 < 12 is true. Swap the numbers. Does < still tell the truth?'
                 production:
                   specification: |
                     # Swap the Comparison — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist and independent Scene approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Say It With a Sign: Less, Greater, Equal Content (embedded in this Lesson config.yaml), Section 3
                     Methodologist objectives: Methodologist Brief (embedded in this Lesson config.yaml) (**Draft, not approved**)
                     Implementation status: Proposed standalone **prop-free Scene**, not implemented
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Demonstrate operator reversal as the consequence of swapping two different numerical operands, not visual flipping of a symbol.
-                    
+
                     **Underlying number relationship:** The statement a < b means a is less than b, a > b means a is greater than b, and a = b means they have equal values. For 8 and 12, 8 < 12 is true, while 12 > 8 expresses the **same** quantitative relationship after swapping operand order. Leaving < in place after swapping makes 12 < 8 false. Equality stays equality after swapping the same values: 7 = 7 in either order. The glyphs are mathematical operators with fixed operand order; they are not words to mirror for Arabic/Hebrew layout. The mathematical pair is isolated directionally so the left operand and right operand remain the intended numbers.
-                    
+
                     The child must be able to change or examine the representation, form a prediction, see the exact model and explain why a plausible wrong shortcut fails.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     **Initial state:** Editable truth card 8 < 12 with an accessible Swap operands action; a preset 7 = 7; an independent new-card challenge 16 and 9. Text says exactly which operand appears first/second.
-                    
+
                     **Model and invariant:** Ordered pair [a,b], selected operator, truth explanation, scenario preset and undo. Swap exchanges a and b while preserving their numeric values; a proposal is considered true only if relation mathematically holds.
-                    
+
                     **Numerical and pedagogical limits:** Grade 2, pairs of nonnegative integers 0–20, comparisons justified by quantity models or an equal-scale line; no chain inequalities, negative values, decimals, algebraic equation solving or crocodile-mouth mnemonic as the sole explanation.
-                    
+
                     **Boundary case / nuance:** The sign must not be mirrored as a mere visual RTL effect; only the explicit user-operable Swap action changes operand order. Swapping identical values does not require changing =.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Beat 1 — 8 < 12 is true. Swap the numbers. Does < still tell the truth?
-                    
+
                     1. **Invitation:** “8 < 12 is true. Swap the numbers. Does < still tell the truth?”
                     2. **Controllable investigation:** Swap positions to [12,8] but intentionally leave < visible as an invalid proposal; learner selects > to repair it.
                     3. **Correct visible consequence:** 12 > 8 is true. 12 < 8 is false.
                     4. **Worked number evidence:** 8 < 12 and 12 > 8 express the same fact.
                     5. **Mistaken or incomplete route:** If < kept, show twelve objects cannot be fewer than eight; explain that the operator changes because the operands changed places.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ### Beat 2 — What happens when equal numbers swap? Then compare a new 16 and 9.
-                    
+
                     1. **Invitation:** “What happens when equal numbers swap? Then compare a new 16 and 9.”
                     2. **Controllable investigation:** Swap 7=7 without changing truth; then independently choose > for [16,9] and < when those values swap to [9,16].
                     3. **Correct visible consequence:** 7 = 7 stays true under swap; 16 > 9 and 9 < 16 are the true new relations.
                     4. **Worked number evidence:** 7=7; 16>9; 9<16.
                     5. **Mistaken or incomplete route:** If = changes for 7, both sides still have seven. If 16<9 chosen, point to 16 being the larger count and explain which sign means greater.
                     6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Semantic objects:** Named countable group members, ticks, operands or operator controls, each with stable identity, a visible state and an equivalent ordered textual ledger.
                     - **Control map:** Swap operands; choose one of three sign buttons; explain with a count/number-line model; choose new challenge; reset.
                     - **Deterministic state:** The numbers, chosen preset, group members, selected values, prediction, Reveal state and Reset all come from the self-contained Scene's own constants and actions, not caller props.
@@ -333,19 +333,19 @@ config:
                     - **Independence:** The proposed component has **no props** and no mutable state shared with a Lesson or another Scene; each Section contains its own independently resettable placement.
                     - **Boundaries:** The sign must not be mirrored as a mere visual RTL effect; only the explicit user-operable Swap action changes operand order. Swapping identical values does not require changing =.
                     - **Assessment boundary:** Prediction and feedback are formative only. No Question bank, Quiz, correct-answer security contract, mastery metric, score, persistent Note event, timed completion or invented platform API.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use lightweight HTML/SVG or ordinary semantic controls for individual items and groups, with a concise number ledger. Animation may highlight an interval, pair or new group but may never be the only carrier of information; reduced-motion mode updates state immediately. No required audio, live external service, asset generation or ornamental 3D. If optional sound is added later, localized captions/transcripts and downloaded media must preserve full learning.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Explicit ordered text naming first and second operand and localized reading of each relation. Use bidirectional isolates/semantic math direction so 8<12 cannot render as a different statement in RTL.
-                    
+
                     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Swapped 8 and 12 requires > to remain true.
                     2. 7=7 remains true under swap.
                     3. Independent 16>9 and 9<16 are both true.
@@ -354,28 +354,28 @@ config:
                     6. For Beat 2, verify exact expected result: 7=7; 16>9; 9<16. Test plausible wrong response: If = changes for 7, both sides still have seven. If 16<9 chosen, point to 16 being the larger count and explain which sign means greater.
                     7. All interactions work by keyboard, switch and touch with full nonvisual ledger, correct semantic RTL, reduced motion, mobile/high zoom and identical downloaded-offline mathematics.
                     8. Reset affects this Scene only, not another Section; no scoring or unimplemented Note event is emitted.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Each custom Scene is independently initialized, self-contained and **prop-free**; no caller supplies mode or numerical props. Scenarios and variables reside in that Scene's own authored module once implemented. The generic `scene` Resource type is supported, but this particular Scene has **not** been implemented. No invented API, registration, event, Note persistence, assessment, score or mastery side effect is assumed.
-                    
+
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
-                  purpose: "Swap the Comparison"
-                  productionNotes: "Source Scene swapTheComparison.scene-spec.md; independent placement for Swap the Comparison. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Swap the Comparison'
+                  productionNotes: 'Source Scene swapTheComparison.scene-spec.md; independent placement for Swap the Comparison. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "0d66c8bb-9649-5884-87c9-48bb00ca5422"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '0d66c8bb-9649-5884-87c9-48bb00ca5422'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "12 > 8 is true. 12 < 8 is false. 8 < 12 and 12 > 8 express the same fact."
+                      en: '12 > 8 is true. 12 < 8 is false. 8 < 12 and 12 > 8 express the same fact.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Swap the Comparison"
+          purpose: 'Swap the Comparison'
           productionNotes: |-
             - **Learning purpose:** Demonstrate operator reversal as the consequence of swapping two different numerical operands, not visual flipping of a symbol.
             - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
@@ -384,128 +384,128 @@ config:
               2. **`scene` — generic type exists, **specific Scene proposed**:** Swap the Comparison (Scene specification swapTheComparison embedded in the corresponding Scene node). Editable truth card 8 < 12 with an accessible Swap operands action; a preset 7 = 7; an independent new-card challenge 16 and 9. Text says exactly which operand appears first/second.
               3. **`markdown` — existing generic renderer:** “12 > 8 is true. 12 < 8 is false. 8 < 12 and 12 > 8 express the same fact.”
             - **Learner action and responsive feedback:**
-            
+
             **Beat 1 — “8 < 12 is true. Swap the numbers. Does < still tell the truth?”** Swap positions to [12,8] but intentionally leave < visible as an invalid proposal; learner selects > to repair it.
-            
+
             **Learner-visible result:** 12 > 8 is true. 12 < 8 is false.
-            
+
             **Worked numerical evidence:** 8 < 12 and 12 > 8 express the same fact.
-            
+
             **Feedback for a plausible misconception:** If < kept, show twelve objects cannot be fewer than eight; explain that the operator changes because the operands changed places.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             **Beat 2 — “What happens when equal numbers swap? Then compare a new 16 and 9.”** Swap 7=7 without changing truth; then independently choose > for [16,9] and < when those values swap to [9,16].
-            
+
             **Learner-visible result:** 7 = 7 stays true under swap; 16 > 9 and 9 < 16 are the true new relations.
-            
+
             **Worked numerical evidence:** 7=7; 16>9; 9<16.
-            
+
             **Feedback for a plausible misconception:** If = changes for 7, both sides still have seven. If 16<9 chosen, point to 16 being the larger count and explain which sign means greater.
-            
+
             Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-            
+
             - **Controls and accessibility:** Swap operands; choose one of three sign buttons; explain with a count/number-line model; choose new challenge; reset. Explicit ordered text naming first and second operand and localized reading of each relation. Use bidirectional isolates/semantic math direction so 8<12 cannot render as a different statement in RTL.
             - **Cause-and-effect explanation:** Ordered pair [a,b], selected operator, truth explanation, scenario preset and undo. Swap exchanges a and b while preserving their numeric values; a proposal is considered true only if relation mathematically holds. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
             - **Boundary reasoning:** The sign must not be mirrored as a mere visual RTL effect; only the explicit user-operable Swap action changes operand order. Swapping identical values does not require changing =.
             - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
-    order: ["section1","section2","section3"]
+    order: ['section1', 'section2', 'section3']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # Say It With a Sign: Less, Greater, Equal — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: compareNumbersWithSymbols
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Use <, > and = as precise relational signs between two numerical quantities, retaining their meaning when the operands change order and when the interface changes language or direction.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 2.** Grade 2 children who can compare collections and read numbers up to 20. They can explain which is more/less/equal before encountering operator glyphs; the notation extends an understood relationship, not a memorized mouth-shaped picture.
-    
+
     The Grade determines this particular Lesson's pedagogical depth; canonical Skills remain grade-neutral.
-    
+
     ## Prerequisites
-    
+
     - Compare finite collections and spoken numerals using `compareSets` and `moreLessEqual`.
     - Recognize and order 0–20 numerals using `readWrite20` and `order20`.
     - Understand equality of quantities, including different-looking sets that have the same count.
-    
+
     ## Target Skills
-    
+
     - [comparisonSymbols.data.ts](../../../../data/skills/numeration/comparison/skills/comparisonSymbols.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Read 8 < 12, 12 > 8 and 7 = 7 aloud and explain each using countable values.
     - Choose <, > or = for small new numerical pairs, including equal collections in different layouts.
     - Explain why swapping distinct operands requires reversing an inequality but not equality.
     - Reject a false comparison such as 12 < 8 and correct it with evidence.
     - Transfer the relation to 16 and 9 without relying on the previous numbers.
-    
+
     These are intended learning outcomes and observable formative explanations, not guaranteed mastered competencies or validation thresholds.
-    
+
     ## Essential subject matter
-    
+
     The statement a < b means a is less than b, a > b means a is greater than b, and a = b means they have equal values. For 8 and 12, 8 < 12 is true, while 12 > 8 expresses the **same** quantitative relationship after swapping operand order. Leaving < in place after swapping makes 12 < 8 false. Equality stays equality after swapping the same values: 7 = 7 in either order. The glyphs are mathematical operators with fixed operand order; they are not words to mirror for Arabic/Hebrew layout. The mathematical pair is isolated directionally so the left operand and right operand remain the intended numbers.
-    
+
     **Reference models that must remain correct:** 8 < 12; 12 is four more than 8, so they are not equal. 7 = 7, whether spread or close together. 8 < 12 and 12 > 8 express the same fact. 7=7; 16>9; 9<16. Every model needs an equivalent explicit spoken/written number description, not decorative illustration alone.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Concrete more/fewer/same from two sets → connect spoken language to relational signs → test three sign choices with worked evidence → swap operands and watch truth value → maintain equality under a swap → transfer to novel numbers and semantic RTL.
-    
+
     The interdependent target Skills are taught together only where they share an intelligible representation. They retain their own independently assessable taxonomy identities. Do not infer cross-domain Skill mastery from completing one interaction.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     **Likely confusions:** Choosing > for 8 and 12 because the pictogram 'opens to the right'; keeping the same sign when 8 and 12 are swapped; confusing the equality sign with 'answer comes next'; changing sign direction automatically under RTL; mistaking 7=7 for more just because the second group looks wider.
-    
+
     **Pedagogical depth and exclusions:** Grade 2, pairs of nonnegative integers 0–20, comparisons justified by quantity models or an equal-scale line; no chain inequalities, negative values, decimals, algebraic equation solving or crocodile-mouth mnemonic as the sole explanation.
-    
+
     **Boundary and incomplete-case decisions:** Do not imply the sign choice is a score; a child can inspect exact quantities before or after a prediction. Equal-value counts require the same sign even when one visual row is longer. The sign must not be mirrored as a mere visual RTL effect; only the explicit user-operable Swap action changes operand order. Swapping identical values does not require changing =.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-    
+
     English texts below are canonical editorial examples for later localization, not real locale data or implemented runtime. Audio is never required for understanding. An accessible alternative must preserve the **same** learning objective, rather than replace the essential interaction with a weaker 'lite' illustration.
-    
+
     ## Sources and factual verification
-    
+
     - Canonical Skill `*.data.ts` files linked directly above, originally copied byte-for-byte from Mathematics `main` without changing UUIDs, definitions or translations.
     - [Lesson Editorial Architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — Methodologist/Screenwriter ownership and approval.
     - [Learning Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md) — explanation, manipulation, contrast and transfer.
     - [Localization and Inclusive Access](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) and [Offline-First Product Requirements](../../../../../../studio/docs/architecture/offline-first-and-device-compatibility.md).
-    
+
     All arithmetic and numerical model cases above were checked by explicit step, group or relation reasoning; no national curriculum coverage is inferred.
-    
+
     ## Curriculum / Program compatibility
-    
+
     No specific curriculum specified or claimed. This Lesson is a standalone, Program-neutral educational unit.
-    
+
     ## Open editorial decisions
-    
+
     - Editor/Methodologist: explicitly approve Grade 2, target Skill selection, prerequisites, depth and the core contrasts before promoting this Brief.
     - Editor: review the two proposed Scene models and ensure their nonvisual, RTL and locale versions teach mathematically identical relationships.
     - Coding/QA roles: confirm all supported locale dictionaries, low-device/offline delivery and accessible input alternatives when authorized. No Scene is implemented at this stage.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, not editor-approved.** The corresponding `content.md` and Scene specifications are **Provisional Drafts under the explicit batch instruction**. This exception does not mark the normal Methodologist or Screenwriter approval gates as passed. No React Scene, runtime Lesson, Question, Quiz, score, mastery, persistent Note or fake platform event is authorized.
   productionNotes: |
     # Say It With a Sign: Less, Greater, Equal — Content
-    
+
     Status: **Provisional Draft — pending Methodologist approval**
     Target Lesson: `content/playground/Data/Lessons/1/compareNumbersWithSymbols/`
     Audience: Grade 2; Grade 2 children who can compare collections and read numbers up to 20. They can explain which is more/less/equal before encountering operator glyphs; the notation extends an understood relationship, not a memorized mouth-shaped picture.
@@ -513,27 +513,27 @@ production:
     Target Skills: exactly the canonical source-file links in the Brief (not redefined or copied here)
     Program dependence: None
     Runtime Lesson / Scene implementation: Not implemented
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Use <, > and = as precise relational signs between two numerical quantities, retaining their meaning when the operands change order and when the interface changes language or direction.
-    
+
     **What must become clear:** The statement a < b means a is less than b, a > b means a is greater than b, and a = b means they have equal values. For 8 and 12, 8 < 12 is true, while 12 > 8 expresses the **same** quantitative relationship after swapping operand order. Leaving < in place after swapping makes 12 < 8 false. Equality stays equality after swapping the same values: 7 = 7 in either order. The glyphs are mathematical operators with fixed operand order; they are not words to mirror for Arabic/Hebrew layout. The mathematical pair is isolated directionally so the left operand and right operand remain the intended numbers.
-    
+
     **Pedagogical premise:** A learner is not merely recognizing a displayed fact. The first interactive Scene gives control over a concrete model and exposes a critical contrast. A compact explanatory/reflection Section invites retrieval and makes errors understandable. The second Scene independently changes the numbers or representation, so successful reasoning requires applying the mathematical rule rather than reproducing the original picture. Every key feedback branch explains _why_ an answer differs from the model.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Notice and predict:** “Eight dots on the first side and twelve on the second. Which sign makes the sentence true?” The learner selects a possible result and then operates the first model without mandatory score, narration or timer.
     2. **Manipulate and inspect:** 8 < 12; 12 is four more than 8, so they are not equal. 7 = 7, whether spread or close together. Both a simple visual model and an accessible item/number ledger show the same mathematics.
     3. **Explain and retrieve:** If 8 < 12 is true, may we swap the numbers and still write 12 < 8? Invite a spoken, private or accessible text-based explanation before reading the worked answer.
     4. **Transfer independently:** 8 < 12 is true. Swap the numbers. Does < still tell the truth? A different representation offers a new reasoned problem, with misconception-targeted feedback and an optional full reveal.
     5. **Summarize for future recall:** a short proposed Note captures the enduring idea without attempting to assess mastery or create a persistent unlocked event.
-    
+
     ## SECTION PLAN
-    
+
     ### Section 1 — Relation Card Lab
-    
+
     - **Learning purpose:** Link each of the three glyphs to an actual pair of quantities with the choice of sign explained by visible cardinal evidence.
     - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
     - **Ordered content blocks, top to bottom:**
@@ -541,35 +541,35 @@ production:
       2. **`scene` — generic type exists, **specific Scene proposed**:** Relation Card Lab (Scene specification relationCardLab embedded in the corresponding Scene node). Two separate baskets of identical counters, left basket 8 and right basket 12; sign slot with <, > and =; a second independent preset with 7 and 7 displayed at different spacing. All operators appear in a dedicated mathematically left-to-right expression region even inside RTL text.
       3. **`markdown` — existing generic renderer:** “8 < 12, read eight is less than twelve. 8 < 12; 12 is four more than 8, so they are not equal.”
     - **Learner action and responsive feedback:**
-    
+
     **Beat 1 — “Eight dots on the first side and twelve on the second. Which sign makes the sentence true?”** Count or inspect both groups, select < between numeral 8 and numeral 12, and show a strict lower/higher quantity comparison.
-    
+
     **Learner-visible result:** 8 < 12, read eight is less than twelve.
-    
+
     **Worked numerical evidence:** 8 < 12; 12 is four more than 8, so they are not equal.
-    
+
     **Feedback for a plausible misconception:** For >, show 8 is not more than 12. For =, line up eight one-to-one pairs and reveal four unmatched dots on the twelve side.
-    
+
     Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-    
+
     **Beat 2 — “Seven dots are spread widely and seven are close together. What sign belongs between 7 and 7?”** Inspect paired count ledger for both seven-dot groups and choose = despite different spacing.
-    
+
     **Learner-visible result:** 7 = 7; layout does not change the total.
-    
+
     **Worked numerical evidence:** 7 = 7, whether spread or close together.
-    
+
     **Feedback for a plausible misconception:** For < or >, pair all seven dots one-to-one with none unmatched, then show the two written 7s.
-    
+
     Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-    
+
     - **Controls and accessibility:** Choose <, > or =; inspect left/right counted values; choose 8&12 or 7&7 preset; explain/reveal; reset. Expose expression as 'eight less than twelve' and an isolated accessible math string '8 < 12'; fully focusable sign picker and count ledger. RTL reading direction localizes prose, not operand or operator order.
     - **Cause-and-effect explanation:** Two canonical integer values, selected sign, numeric evidence ledger, current preset, reveal state. Displayed left and right operand identities are fixed by the math expression, not by CSS page order. No counter removal on choosing a sign. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
     - **Boundary reasoning:** Do not imply the sign choice is a score; a child can inspect exact quantities before or after a prediction. Equal-value counts require the same sign even when one visual row is longer.
     - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
     - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
-    
+
     ### Section 2 — Would the Sign Still Tell the Truth?
-    
+
     - **Purpose and expected learner thinking:** Distinguish the mathematical invariant from a familiar but misleading shortcut; retrieve a rule without a score.
     - **Current implementation shape:** `LessonSection_Config`, a single vertical content column (no Quiz).
     - **Ordered content blocks:**
@@ -579,9 +579,9 @@ production:
     - **Meaningful feedback:** The example explicitly contrasts the likely mistaken response with a countable or numeric explanation. Child may reason before reading; current `text`/`markdown` renderers are **not** claimed to provide a delayed-answer or true-response validation widget.
     - **Accessibility and pacing:** Brief accessible written language, no sensory dependency. The explanatory text remains available to every learner and is never hidden behind a timed action.
     - **Transition:** Section 3 changes numbers or objects and asks for independent reasoning. The first Scene's state is not carried into the second.
-    
+
     ### Section 3 — Swap the Comparison
-    
+
     - **Learning purpose:** Demonstrate operator reversal as the consequence of swapping two different numerical operands, not visual flipping of a symbol.
     - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
     - **Ordered content blocks, top to bottom:**
@@ -589,59 +589,59 @@ production:
       2. **`scene` — generic type exists, **specific Scene proposed**:** Swap the Comparison (Scene specification swapTheComparison embedded in the corresponding Scene node). Editable truth card 8 < 12 with an accessible Swap operands action; a preset 7 = 7; an independent new-card challenge 16 and 9. Text says exactly which operand appears first/second.
       3. **`markdown` — existing generic renderer:** “12 > 8 is true. 12 < 8 is false. 8 < 12 and 12 > 8 express the same fact.”
     - **Learner action and responsive feedback:**
-    
+
     **Beat 1 — “8 < 12 is true. Swap the numbers. Does < still tell the truth?”** Swap positions to [12,8] but intentionally leave < visible as an invalid proposal; learner selects > to repair it.
-    
+
     **Learner-visible result:** 12 > 8 is true. 12 < 8 is false.
-    
+
     **Worked numerical evidence:** 8 < 12 and 12 > 8 express the same fact.
-    
+
     **Feedback for a plausible misconception:** If < kept, show twelve objects cannot be fewer than eight; explain that the operator changes because the operands changed places.
-    
+
     Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-    
+
     **Beat 2 — “What happens when equal numbers swap? Then compare a new 16 and 9.”** Swap 7=7 without changing truth; then independently choose > for [16,9] and < when those values swap to [9,16].
-    
+
     **Learner-visible result:** 7 = 7 stays true under swap; 16 > 9 and 9 < 16 are the true new relations.
-    
+
     **Worked numerical evidence:** 7=7; 16>9; 9<16.
-    
+
     **Feedback for a plausible misconception:** If = changes for 7, both sides still have seven. If 16<9 chosen, point to 16 being the larger count and explain which sign means greater.
-    
+
     Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
-    
+
     - **Controls and accessibility:** Swap operands; choose one of three sign buttons; explain with a count/number-line model; choose new challenge; reset. Explicit ordered text naming first and second operand and localized reading of each relation. Use bidirectional isolates/semantic math direction so 8<12 cannot render as a different statement in RTL.
     - **Cause-and-effect explanation:** Ordered pair [a,b], selected operator, truth explanation, scenario preset and undo. Swap exchanges a and b while preserving their numeric values; a proposal is considered true only if relation mathematically holds. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
     - **Boundary reasoning:** The sign must not be mirrored as a mere visual RTL effect; only the explicit user-operable Swap action changes operand order. Swapping identical values does not require changing =.
     - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
     - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
-    
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Relation Card Lab (Scene specification relationCardLab embedded in the corresponding Scene node) — independently initialised concrete explanation and contrast.
     - Swap the Comparison (Scene specification swapTheComparison embedded in the corresponding Scene node) — independently initialised transfer with new numbers/representation.
-    
+
     Both Scenes are **proposed**, distinct and prop-free. Each is represented by one typed `scene` Resource in an otherwise single-column Section; no new Section type, imaginary mode prop, generated image, fake API, scoring or React component is authored.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. **after three operator examples:** “< means less than, > means greater than, = means equal in value.” — proposed after the model is examined and its explanation is available, without requiring a correct score. **Planned, not wired.**
     2. **after swapping distinct operands:** “When different numbers change sides, reverse < and > to keep the comparison true.” — proposed after the model is examined and its explanation is available, without requiring a correct score. **Planned, not wired.**
-    
+
     These are concise independently useful retrieval anchors, not Lesson summaries. A real Note entity, stable identity, unlock contract, learner state, revision sheet, synchronization and spaced scheduling remain separately unimplemented or unverified.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Sections 1 and 3 provide learner-operated practice, concrete counterexamples, and explicit formative reasoning. Section 2 offers reflection and retrieval. The final Section's changed representation can show whether the learner used the rule, but one correct selection is **not** evidence of independent Skill mastery. Graded Question/Quiz design, correctness validity, scoring, retry policy and Skill attribution belong to a separate Learning Assessment Architect stage.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
-    
+
     These documents include **English editorial source text only**. Full real translations for all supported locales, including Scene dictionaries, alt descriptions and optional Notes, must precede implementation. Do not silently invent fallback translations or new language codes.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     | Capability                                                    | Status                                            | Owner / next work                                                    |
     | ------------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------- |
     | General `LessonSection_Config` with ordered `Resource_Config` | Existing TypeScript contract                      | Coding Agent builds Lesson later                                     |
@@ -651,13 +651,13 @@ production:
     | Complete downloaded-offline experience                        | Product target; not verified implemented          | PWA/dependency integration and airplane-mode E2E                     |
     | Lesson Notes and unlock/storage                               | Planned, unverified runtime                       | Separate architecture and implementation                             |
     | Scored Questions, Quizzes, mastery and progress claims        | Not authored                                      | Separate Assessment Architect                                        |
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Draft Methodologist Brief (embedded in this Lesson config.yaml) and its actual canonical Skill file links.
     - [Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md), [Section entity](../../../../../../studio/docs/entities/section.md), [Learning Experience Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
     - Open: explicit Methodologist grade and target Skill approval, separate Content and Scene review, genuine complete translations, RTL/nonvisual interaction details, and full offline packaging before coding.
-    
+
     ## HANDOFF
-    
+
     **Provisional Screenwriter Draft — Methodologist approval has not occurred.** Implementers may inspect these source-grounded plans but must not treat them as approved React/runtime Lesson data, Question/Quiz items, scores, mastery data, Note events or working offline/locale support.
