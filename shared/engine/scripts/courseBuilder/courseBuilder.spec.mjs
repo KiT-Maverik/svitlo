@@ -608,3 +608,32 @@ test('single Course config.yaml emits TypeScript, methodology and direct Build o
   }
 });
 
+test('Course --config accepts a single YAML ID and writes into its derived UUID directory', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'course-id-addressed-'));
+  const input = path.join(root, 'content/math/staging/config.yaml');
+  const folder = path.join(root, 'content/math/data/courses', courseId.at(-1), courseId);
+  const authored = {
+    ...wrapCourseNodes(source),
+    production: { documentLanguage: 'uk', methodology: '# Canonical Course methodology' },
+  };
+  try {
+    fs.mkdirSync(path.dirname(input), { recursive: true });
+    fs.writeFileSync(input, yaml.stringify(authored));
+    const args = ['--package', 'content/math', '--config', 'content/math/staging/config.yaml'];
+    await main([...args, '--write'], root);
+    assert(fs.existsSync(path.join(folder, 'spaceCourse.data.ts')));
+    assert(fs.existsSync(path.join(folder, 'methodology.md')));
+    assert.equal(fs.existsSync(path.join(path.dirname(input), 'spaceCourse.data.ts')), false);
+    await main([...args, '--check'], root);
+    const code = fs.readFileSync(path.join(folder, 'spaceCourse.data.ts'), 'utf8');
+    await main([...args, '--write'], root);
+    assert.equal(fs.readFileSync(path.join(folder, 'spaceCourse.data.ts'), 'utf8'), code);
+    assert.throws(
+      () => parseArguments(['--package', 'content/math', '--course', courseId, '--config', 'content/math/staging/config.yaml', '--write']),
+      /Course Scaffolder.*ARGS/,
+    );
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
