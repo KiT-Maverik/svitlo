@@ -1,0 +1,831 @@
+config:
+  id: "9f72abac-c220-526c-82c5-d934e209aadc"
+  slug: "readingAndComparingTables"
+  type: "lesson"
+  skills:
+    - "68637838-f4bd-4a06-a40f-a86a53a27d19"
+    - "b245a322-1c1f-4977-9a0b-838ac058392a"
+  params:
+    requireQuiz: false
+    languages:
+      - "ar"
+      - "be"
+      - "bn"
+      - "de"
+      - "en"
+      - "es"
+      - "et"
+      - "fr"
+      - "he"
+      - "hi"
+      - "id"
+      - "ja"
+      - "ka"
+      - "kk"
+      - "ko"
+      - "lt"
+      - "lv"
+      - "mr"
+      - "ms"
+      - "pl"
+      - "pt"
+      - "qm"
+      - "ta"
+      - "te"
+      - "tr"
+      - "uk"
+      - "ur"
+      - "vi"
+      - "zh"
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Find the Story in a Data Table"
+  section:
+    items:
+      section1ANumberNeedsItsLabel:
+        config:
+          id: "8c711524-5fc4-8419-87e7-023e5452d303"
+          slug: "section1ANumberNeedsItsLabel"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A number needs its label"
+            navigationLabel:
+              en: "A number needs its label"
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: "275967d4-9f38-8979-8dc0-41c755a1af6a"
+                  slug: "section1Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "This table counts paper shapes in one tray. Which entry tells us the number of squares? Don't look for a number until you find the row and column."
+                production:
+                  purpose: "Legacy text block of A number needs its label; provisional draft."
+                  specification: "1. **`text` — existing Resource block type.** “This table counts paper shapes in one tray. Which entry tells us the number of squares? Don't look for a number until you find the row and column.”"
+              scene1Block2:
+                config:
+                  id: "c2a9c36c-f759-8ac8-8194-807f146459db"
+                  slug: "scene1Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "This table counts paper shapes in one tray. Which entry tells us the number of squares? Don't look for a number until you find the row and column."
+                production:
+                  purpose: "Independently initialized Scene occurrence in A number needs its label. Not approved or implemented."
+                  specification: |
+                      # TableEvidenceExplorer — Interactive Scene Specification
+                      
+                      **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
+                      **Lesson:** Find the Story in a Data Table — Content (preserved in this Lesson's production notes)
+                      **Methodologist source:** Draft Brief (preserved in production.methodology)
+                      **Canonical target Skills:**
+                      
+                      - [readSimpleTable.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/presentation/skills/readSimpleTable.data.ts)
+                      - [compareCategories.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/interpretation/skills/compareCategories.data.ts)
+                      
+                      ## Pedagogical role
+                      
+                      Read a correctly labelled two-column category-frequency table and use compatible category counts to answer 'how many together?' and 'how many more?' questions.
+                      
+                      **Why a custom interactive Scene is warranted:** After representing observations in a table, reading row/column headings and finding numerical differences is a coherent next step. Reading values and comparing totals are distinct target Skills. Explore a labelled table through row and column selectors, choose one or two rows, reveal quantity tokens/equations, match equal counts and count extras, switch to fresh dataset, reset. No ability or API to read a live spreadsheet is assumed. Keep all data preset and local, with no external props.
+                      
+                      This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
+                      
+                      ## Model, essential visual states and verifiable answers
+                      
+                      | State / preset            | Concrete representation                                               | Explanation / correct conclusion      |
+                      | ------------------------- | --------------------------------------------------------------------- | ------------------------------------- |
+                      | Main table                | Two headings Shape / Number of shapes; Triangle 6, Square 4, Circle 2 | All values count shapes from one tray |
+                      | Read square cell          | Square row × Number of shapes column                                  | 4 squares                             |
+                      | Combine two               | Triangle 6 and Circle 2 selected                                      | 6+2=8 shapes                          |
+                      | All rows                  | Triangle 6 + Square 4 + Circle 2                                      | 12 shapes total                       |
+                      | Difference                | Triangle 6 and Square 4 paired                                        | 6−4=2 extra triangles                 |
+                      | New table                 | Star 5, Moon 3, Sun 1, same unit shapes                               | 5+3+1=9 shapes; 5−3=2 gap             |
+                      | Incompatible unit warning | An example length 4 cm placed beside count 6 shapes                   | Cannot treat cm as a count of shapes  |
+                      
+                      **Model scope and limitation:** The table describes one invented finite tray of shapes, not a survey of a population. The explorer does not infer causes or statistics.
+                      
+                      ## Learner controls, transitions and no-penalty recovery
+                      
+                      1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
+                      2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
+                      3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
+                      4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
+                      5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
+                      6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
+                      
+                      ## Required explanatory feedback and errors
+                      
+                      - **A number needs its label / 6 chosen for squares:** “Six belongs to Triangle. Follow the Square row across to the count column.”
+                      - **A number needs its label / 4 with no unit:** “Four of what? The row and heading tell us: four square shapes.”
+                      - **Together means add / 6+2=10:** “Count on from six: seven, eight. Two more makes eight.”
+                      - **Together means add / Wrong total:** “Check all three rows exactly once: six triangles, four squares, two circles; 6+4+2=12.”
+                      - **More than means find the gap / 10 as the difference:** “Ten is the total of both rows. To find how many MORE, match four pairs and count the two triangles left over.”
+                      - **More than means find the gap / 2 as difference:** “Yes. Six minus four gives a gap of two shapes.”
+                      - **A different table, your evidence / Total 8:** “Count all three categories: five plus three is eight, and one more sun makes nine.”
+                      - **A different table, your evidence / Difference 8:** “Eight adds stars and moons; 'how many more' asks for the gap, five minus three = two.”
+                      
+                      **Exclude:** Scaled bar charts, pictographs, line plots, percentages, statistical conclusions about a population and causal interpretations are deferred.
+                      
+                      ## Equivalent participation without sight, color, drag or hearing
+                      
+                      Provide an accessible semantic table or ordered row-by-row transcript with headings and units. Every comparison exposes '6 triangles, 4 squares, match four pairs, two triangles remain' in logical order, with keyboard and screen-reader equivalents.
+                      
+                      All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
+                      
+                      ## Internationalization, access, mobile and offline acceptance
+                      
+                      Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
+                      
+                      ## Coding Agent and Assessment Architect handoff
+                      
+                      **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
+                      
+                      
+                      ## Original placement
+                      
+                      2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): TableEvidenceExplorer displays the labelled table: rows Triangle 6, Square 4, Circle 2; headings 'Shape' and 'Number of shapes'. Select Square row and Number of shapes column; highlight intersection 4.
+                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+              section1Markdown3:
+                config:
+                  id: "4820033f-04d8-837d-87c6-f3863b3e33c4"
+                  slug: "section1Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The table says there are four squares in this tray. The number 4 means four shapes because we used the Square row and the Number of shapes column."
+                production:
+                  purpose: "Legacy markdown block of A number needs its label; provisional draft."
+                  specification: "3. **`markdown` — existing Resource block type.** “The table says there are four squares in this tray. The number 4 means four shapes because we used the Square row and the Number of shapes column.”"
+            order:
+              - "section1Text1"
+              - "scene1Block2"
+              - "section1Markdown3"
+        production:
+          purpose: "A number needs its label"
+          pedagogicalIntent: "A number needs its label"
+          productionNotes: |
+              ### Section 1 — A number needs its label
+              
+              **Purpose / intended outcome:** Locate a value through both a row and a column heading.
+              
+              **Blocks, in the required top-to-bottom order:**
+              
+              1. **`text` — existing Resource block type.** “This table counts paper shapes in one tray. Which entry tells us the number of squares? Don't look for a number until you find the row and column.”
+              
+              2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): TableEvidenceExplorer displays the labelled table: rows Triangle 6, Square 4, Circle 2; headings 'Shape' and 'Number of shapes'. Select Square row and Number of shapes column; highlight intersection 4.
+              
+              3. **`markdown` — existing Resource block type.** “The table says there are four squares in this tray. The number 4 means four shapes because we used the Square row and the Number of shapes column.”
+              
+              **What the learner actually does:** Choose the labelled row, column heading and unit for square count.
+              
+              **Specific explanatory feedback:**
+              
+              - _6 chosen for squares_: “Six belongs to Triangle. Follow the Square row across to the count column.”
+              - _4 with no unit_: “Four of what? The row and heading tell us: four square shapes.”
+              
+              **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. A screen reader can inspect a linear list of pairs: 'Triangle, six shapes; Square, four shapes; Circle, two shapes'. The explanation remains available even if the learner chooses not to answer before moving on.
+              
+              **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
+              
+      section2TogetherMeansAdd:
+        config:
+          id: "0a8b3e9a-050d-83dd-854c-27329acaca75"
+          slug: "section2TogetherMeansAdd"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Together means add"
+            navigationLabel:
+              en: "Together means add"
+          content:
+            items:
+              section2Markdown1:
+                config:
+                  id: "24361da5-7dfc-8f0a-89a9-b23830633097"
+                  slug: "section2Markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "There are six triangles and two circles. How many of those two kinds are there together? And how many shapes are there in all?"
+                production:
+                  purpose: "Legacy markdown block of Together means add; provisional draft."
+                  specification: "1. **`markdown` — existing Resource block type.** “There are six triangles and two circles. How many of those two kinds are there together? And how many shapes are there in all?”"
+              scene2Block2:
+                config:
+                  id: "0e7dbea6-57f7-8e9e-81ac-cd3c0826dd04"
+                  slug: "scene2Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "There are six triangles and two circles. How many of those two kinds are there together? And how many shapes are there in all?"
+                production:
+                  purpose: "Independently initialized Scene occurrence in Together means add. Not approved or implemented."
+                  specification: |
+                      # TableEvidenceExplorer — Interactive Scene Specification
+                      
+                      **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
+                      **Lesson:** Find the Story in a Data Table — Content (preserved in this Lesson's production notes)
+                      **Methodologist source:** Draft Brief (preserved in production.methodology)
+                      **Canonical target Skills:**
+                      
+                      - [readSimpleTable.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/presentation/skills/readSimpleTable.data.ts)
+                      - [compareCategories.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/interpretation/skills/compareCategories.data.ts)
+                      
+                      ## Pedagogical role
+                      
+                      Read a correctly labelled two-column category-frequency table and use compatible category counts to answer 'how many together?' and 'how many more?' questions.
+                      
+                      **Why a custom interactive Scene is warranted:** After representing observations in a table, reading row/column headings and finding numerical differences is a coherent next step. Reading values and comparing totals are distinct target Skills. Explore a labelled table through row and column selectors, choose one or two rows, reveal quantity tokens/equations, match equal counts and count extras, switch to fresh dataset, reset. No ability or API to read a live spreadsheet is assumed. Keep all data preset and local, with no external props.
+                      
+                      This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
+                      
+                      ## Model, essential visual states and verifiable answers
+                      
+                      | State / preset            | Concrete representation                                               | Explanation / correct conclusion      |
+                      | ------------------------- | --------------------------------------------------------------------- | ------------------------------------- |
+                      | Main table                | Two headings Shape / Number of shapes; Triangle 6, Square 4, Circle 2 | All values count shapes from one tray |
+                      | Read square cell          | Square row × Number of shapes column                                  | 4 squares                             |
+                      | Combine two               | Triangle 6 and Circle 2 selected                                      | 6+2=8 shapes                          |
+                      | All rows                  | Triangle 6 + Square 4 + Circle 2                                      | 12 shapes total                       |
+                      | Difference                | Triangle 6 and Square 4 paired                                        | 6−4=2 extra triangles                 |
+                      | New table                 | Star 5, Moon 3, Sun 1, same unit shapes                               | 5+3+1=9 shapes; 5−3=2 gap             |
+                      | Incompatible unit warning | An example length 4 cm placed beside count 6 shapes                   | Cannot treat cm as a count of shapes  |
+                      
+                      **Model scope and limitation:** The table describes one invented finite tray of shapes, not a survey of a population. The explorer does not infer causes or statistics.
+                      
+                      ## Learner controls, transitions and no-penalty recovery
+                      
+                      1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
+                      2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
+                      3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
+                      4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
+                      5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
+                      6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
+                      
+                      ## Required explanatory feedback and errors
+                      
+                      - **A number needs its label / 6 chosen for squares:** “Six belongs to Triangle. Follow the Square row across to the count column.”
+                      - **A number needs its label / 4 with no unit:** “Four of what? The row and heading tell us: four square shapes.”
+                      - **Together means add / 6+2=10:** “Count on from six: seven, eight. Two more makes eight.”
+                      - **Together means add / Wrong total:** “Check all three rows exactly once: six triangles, four squares, two circles; 6+4+2=12.”
+                      - **More than means find the gap / 10 as the difference:** “Ten is the total of both rows. To find how many MORE, match four pairs and count the two triangles left over.”
+                      - **More than means find the gap / 2 as difference:** “Yes. Six minus four gives a gap of two shapes.”
+                      - **A different table, your evidence / Total 8:** “Count all three categories: five plus three is eight, and one more sun makes nine.”
+                      - **A different table, your evidence / Difference 8:** “Eight adds stars and moons; 'how many more' asks for the gap, five minus three = two.”
+                      
+                      **Exclude:** Scaled bar charts, pictographs, line plots, percentages, statistical conclusions about a population and causal interpretations are deferred.
+                      
+                      ## Equivalent participation without sight, color, drag or hearing
+                      
+                      Provide an accessible semantic table or ordered row-by-row transcript with headings and units. Every comparison exposes '6 triangles, 4 squares, match four pairs, two triangles remain' in logical order, with keyboard and screen-reader equivalents.
+                      
+                      All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
+                      
+                      ## Internationalization, access, mobile and offline acceptance
+                      
+                      Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
+                      
+                      ## Coding Agent and Assessment Architect handoff
+                      
+                      **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
+                      
+                      
+                      ## Original placement
+                      
+                      2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): Choose Triangle and Circle rows; the explorer shows six and two named shape tokens, then an optional 'Combine' view. Add Square to obtain all three category counts.
+                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+              section2Text3:
+                config:
+                  id: "4d6a65f7-b99e-8f1e-8727-45e9f3d3df00"
+                  slug: "section2Text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Six triangles plus two circles make eight shapes. All the kinds together make 6+4+2 = 12 shapes."
+                production:
+                  purpose: "Legacy text block of Together means add; provisional draft."
+                  specification: "3. **`text` — existing Resource block type.** “Six triangles plus two circles make eight shapes. All the kinds together make 6+4+2 = 12 shapes.”"
+            order:
+              - "section2Markdown1"
+              - "scene2Block2"
+              - "section2Text3"
+        production:
+          purpose: "Together means add"
+          pedagogicalIntent: "Together means add"
+          productionNotes: |
+              ### Section 2 — Together means add
+              
+              **Purpose / intended outcome:** Combine two compatible frequencies and reconcile the whole collection.
+              
+              **Blocks, in the required top-to-bottom order:**
+              
+              1. **`markdown` — existing Resource block type.** “There are six triangles and two circles. How many of those two kinds are there together? And how many shapes are there in all?”
+              
+              2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): Choose Triangle and Circle rows; the explorer shows six and two named shape tokens, then an optional 'Combine' view. Add Square to obtain all three category counts.
+              
+              3. **`text` — existing Resource block type.** “Six triangles plus two circles make eight shapes. All the kinds together make 6+4+2 = 12 shapes.”
+              
+              **What the learner actually does:** Combine Triangle+Circle = 8 and all rows =12, keeping the unit shapes.
+              
+              **Specific explanatory feedback:**
+              
+              - _6+2=10_: “Count on from six: seven, eight. Two more makes eight.”
+              - _Wrong total_: “Check all three rows exactly once: six triangles, four squares, two circles; 6+4+2=12.”
+              
+              **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Token quantities and equations both have text alternatives and no color-only identification. The explanation remains available even if the learner chooses not to answer before moving on.
+              
+              **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
+              
+      section3MoreThanMeansFindTheGap:
+        config:
+          id: "d408434f-928e-8385-8456-188f62d01845"
+          slug: "section3MoreThanMeansFindTheGap"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "More than means find the gap"
+            navigationLabel:
+              en: "More than means find the gap"
+          content:
+            items:
+              section3Text1:
+                config:
+                  id: "1a1efc91-097f-8202-829c-c9b8d1fd772b"
+                  slug: "section3Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "We have six triangles and four squares. How many MORE triangles than squares? Should we add the two counts or find the gap?"
+                production:
+                  purpose: "Legacy text block of More than means find the gap; provisional draft."
+                  specification: "1. **`text` — existing Resource block type.** “We have six triangles and four squares. How many MORE triangles than squares? Should we add the two counts or find the gap?”"
+              scene3Block2:
+                config:
+                  id: "5dd2e8c2-74a7-8b7b-8df3-47c6d486147f"
+                  slug: "scene3Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "We have six triangles and four squares. How many MORE triangles than squares? Should we add the two counts or find the gap?"
+                production:
+                  purpose: "Independently initialized Scene occurrence in More than means find the gap. Not approved or implemented."
+                  specification: |
+                      # TableEvidenceExplorer — Interactive Scene Specification
+                      
+                      **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
+                      **Lesson:** Find the Story in a Data Table — Content (preserved in this Lesson's production notes)
+                      **Methodologist source:** Draft Brief (preserved in production.methodology)
+                      **Canonical target Skills:**
+                      
+                      - [readSimpleTable.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/presentation/skills/readSimpleTable.data.ts)
+                      - [compareCategories.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/interpretation/skills/compareCategories.data.ts)
+                      
+                      ## Pedagogical role
+                      
+                      Read a correctly labelled two-column category-frequency table and use compatible category counts to answer 'how many together?' and 'how many more?' questions.
+                      
+                      **Why a custom interactive Scene is warranted:** After representing observations in a table, reading row/column headings and finding numerical differences is a coherent next step. Reading values and comparing totals are distinct target Skills. Explore a labelled table through row and column selectors, choose one or two rows, reveal quantity tokens/equations, match equal counts and count extras, switch to fresh dataset, reset. No ability or API to read a live spreadsheet is assumed. Keep all data preset and local, with no external props.
+                      
+                      This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
+                      
+                      ## Model, essential visual states and verifiable answers
+                      
+                      | State / preset            | Concrete representation                                               | Explanation / correct conclusion      |
+                      | ------------------------- | --------------------------------------------------------------------- | ------------------------------------- |
+                      | Main table                | Two headings Shape / Number of shapes; Triangle 6, Square 4, Circle 2 | All values count shapes from one tray |
+                      | Read square cell          | Square row × Number of shapes column                                  | 4 squares                             |
+                      | Combine two               | Triangle 6 and Circle 2 selected                                      | 6+2=8 shapes                          |
+                      | All rows                  | Triangle 6 + Square 4 + Circle 2                                      | 12 shapes total                       |
+                      | Difference                | Triangle 6 and Square 4 paired                                        | 6−4=2 extra triangles                 |
+                      | New table                 | Star 5, Moon 3, Sun 1, same unit shapes                               | 5+3+1=9 shapes; 5−3=2 gap             |
+                      | Incompatible unit warning | An example length 4 cm placed beside count 6 shapes                   | Cannot treat cm as a count of shapes  |
+                      
+                      **Model scope and limitation:** The table describes one invented finite tray of shapes, not a survey of a population. The explorer does not infer causes or statistics.
+                      
+                      ## Learner controls, transitions and no-penalty recovery
+                      
+                      1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
+                      2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
+                      3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
+                      4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
+                      5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
+                      6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
+                      
+                      ## Required explanatory feedback and errors
+                      
+                      - **A number needs its label / 6 chosen for squares:** “Six belongs to Triangle. Follow the Square row across to the count column.”
+                      - **A number needs its label / 4 with no unit:** “Four of what? The row and heading tell us: four square shapes.”
+                      - **Together means add / 6+2=10:** “Count on from six: seven, eight. Two more makes eight.”
+                      - **Together means add / Wrong total:** “Check all three rows exactly once: six triangles, four squares, two circles; 6+4+2=12.”
+                      - **More than means find the gap / 10 as the difference:** “Ten is the total of both rows. To find how many MORE, match four pairs and count the two triangles left over.”
+                      - **More than means find the gap / 2 as difference:** “Yes. Six minus four gives a gap of two shapes.”
+                      - **A different table, your evidence / Total 8:** “Count all three categories: five plus three is eight, and one more sun makes nine.”
+                      - **A different table, your evidence / Difference 8:** “Eight adds stars and moons; 'how many more' asks for the gap, five minus three = two.”
+                      
+                      **Exclude:** Scaled bar charts, pictographs, line plots, percentages, statistical conclusions about a population and causal interpretations are deferred.
+                      
+                      ## Equivalent participation without sight, color, drag or hearing
+                      
+                      Provide an accessible semantic table or ordered row-by-row transcript with headings and units. Every comparison exposes '6 triangles, 4 squares, match four pairs, two triangles remain' in logical order, with keyboard and screen-reader equivalents.
+                      
+                      All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
+                      
+                      ## Internationalization, access, mobile and offline acceptance
+                      
+                      Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
+                      
+                      ## Coding Agent and Assessment Architect handoff
+                      
+                      **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
+                      
+                      
+                      ## Original placement
+                      
+                      2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): Select Triangle and Square rows. Model side-by-side aligned token lines; learner matches the first four, leaving two unmatched triangles. On request reveal 6−4=2.
+                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+              section3Markdown3:
+                config:
+                  id: "a095c605-a46c-8530-8051-7e2774a8dd12"
+                  slug: "section3Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Four triangles can match the four squares. Two triangles remain. So there are two more triangles than squares, not ten more."
+                production:
+                  purpose: "Legacy markdown block of More than means find the gap; provisional draft."
+                  specification: "3. **`markdown` — existing Resource block type.** “Four triangles can match the four squares. Two triangles remain. So there are two more triangles than squares, not ten more.”"
+            order:
+              - "section3Text1"
+              - "scene3Block2"
+              - "section3Markdown3"
+        production:
+          purpose: "More than means find the gap"
+          pedagogicalIntent: "More than means find the gap"
+          productionNotes: |
+              ### Section 3 — More than means find the gap
+              
+              **Purpose / intended outcome:** Contrast a difference with a total.
+              
+              **Blocks, in the required top-to-bottom order:**
+              
+              1. **`text` — existing Resource block type.** “We have six triangles and four squares. How many MORE triangles than squares? Should we add the two counts or find the gap?”
+              
+              2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): Select Triangle and Square rows. Model side-by-side aligned token lines; learner matches the first four, leaving two unmatched triangles. On request reveal 6−4=2.
+              
+              3. **`markdown` — existing Resource block type.** “Four triangles can match the four squares. Two triangles remain. So there are two more triangles than squares, not ten more.”
+              
+              **What the learner actually does:** Compare the two labelled counts and say why the difference is two.
+              
+              **Specific explanatory feedback:**
+              
+              - _10 as the difference_: “Ten is the total of both rows. To find how many MORE, match four pairs and count the two triangles left over.”
+              - _2 as difference_: “Yes. Six minus four gives a gap of two shapes.”
+              
+              **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Provide a nonvisual pairing count: 'four matched pairs; two unmatched triangles'. The explanation remains available even if the learner chooses not to answer before moving on.
+              
+              **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
+              
+      section4ADifferentTableYourEvidence:
+        config:
+          id: "6dcf2b1a-affd-8c41-8623-c4213411737a"
+          slug: "section4ADifferentTableYourEvidence"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A different table, your evidence"
+            navigationLabel:
+              en: "A different table, your evidence"
+          content:
+            items:
+              section4Markdown1:
+                config:
+                  id: "bf40367b-7e25-83ae-8c93-04570df65182"
+                  slug: "section4Markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A new tray has stars 5, moons 3 and suns 1. Which row answers 'How many moons?' What is the total? How many more stars than moons?"
+                production:
+                  purpose: "Legacy markdown block of A different table, your evidence; provisional draft."
+                  specification: "1. **`markdown` — existing Resource block type.** “A new tray has stars 5, moons 3 and suns 1. Which row answers 'How many moons?' What is the total? How many more stars than moons?”"
+              scene4Block2:
+                config:
+                  id: "935f2b02-f449-8998-8a85-bd03ad934f99"
+                  slug: "scene4Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "A new tray has stars 5, moons 3 and suns 1. Which row answers 'How many moons?' What is the total? How many more stars than moons?"
+                production:
+                  purpose: "Independently initialized Scene occurrence in A different table, your evidence. Not approved or implemented."
+                  specification: |
+                      # TableEvidenceExplorer — Interactive Scene Specification
+                      
+                      **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
+                      **Lesson:** Find the Story in a Data Table — Content (preserved in this Lesson's production notes)
+                      **Methodologist source:** Draft Brief (preserved in production.methodology)
+                      **Canonical target Skills:**
+                      
+                      - [readSimpleTable.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/presentation/skills/readSimpleTable.data.ts)
+                      - [compareCategories.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/interpretation/skills/compareCategories.data.ts)
+                      
+                      ## Pedagogical role
+                      
+                      Read a correctly labelled two-column category-frequency table and use compatible category counts to answer 'how many together?' and 'how many more?' questions.
+                      
+                      **Why a custom interactive Scene is warranted:** After representing observations in a table, reading row/column headings and finding numerical differences is a coherent next step. Reading values and comparing totals are distinct target Skills. Explore a labelled table through row and column selectors, choose one or two rows, reveal quantity tokens/equations, match equal counts and count extras, switch to fresh dataset, reset. No ability or API to read a live spreadsheet is assumed. Keep all data preset and local, with no external props.
+                      
+                      This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
+                      
+                      ## Model, essential visual states and verifiable answers
+                      
+                      | State / preset            | Concrete representation                                               | Explanation / correct conclusion      |
+                      | ------------------------- | --------------------------------------------------------------------- | ------------------------------------- |
+                      | Main table                | Two headings Shape / Number of shapes; Triangle 6, Square 4, Circle 2 | All values count shapes from one tray |
+                      | Read square cell          | Square row × Number of shapes column                                  | 4 squares                             |
+                      | Combine two               | Triangle 6 and Circle 2 selected                                      | 6+2=8 shapes                          |
+                      | All rows                  | Triangle 6 + Square 4 + Circle 2                                      | 12 shapes total                       |
+                      | Difference                | Triangle 6 and Square 4 paired                                        | 6−4=2 extra triangles                 |
+                      | New table                 | Star 5, Moon 3, Sun 1, same unit shapes                               | 5+3+1=9 shapes; 5−3=2 gap             |
+                      | Incompatible unit warning | An example length 4 cm placed beside count 6 shapes                   | Cannot treat cm as a count of shapes  |
+                      
+                      **Model scope and limitation:** The table describes one invented finite tray of shapes, not a survey of a population. The explorer does not infer causes or statistics.
+                      
+                      ## Learner controls, transitions and no-penalty recovery
+                      
+                      1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
+                      2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
+                      3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
+                      4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
+                      5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
+                      6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
+                      
+                      ## Required explanatory feedback and errors
+                      
+                      - **A number needs its label / 6 chosen for squares:** “Six belongs to Triangle. Follow the Square row across to the count column.”
+                      - **A number needs its label / 4 with no unit:** “Four of what? The row and heading tell us: four square shapes.”
+                      - **Together means add / 6+2=10:** “Count on from six: seven, eight. Two more makes eight.”
+                      - **Together means add / Wrong total:** “Check all three rows exactly once: six triangles, four squares, two circles; 6+4+2=12.”
+                      - **More than means find the gap / 10 as the difference:** “Ten is the total of both rows. To find how many MORE, match four pairs and count the two triangles left over.”
+                      - **More than means find the gap / 2 as difference:** “Yes. Six minus four gives a gap of two shapes.”
+                      - **A different table, your evidence / Total 8:** “Count all three categories: five plus three is eight, and one more sun makes nine.”
+                      - **A different table, your evidence / Difference 8:** “Eight adds stars and moons; 'how many more' asks for the gap, five minus three = two.”
+                      
+                      **Exclude:** Scaled bar charts, pictographs, line plots, percentages, statistical conclusions about a population and causal interpretations are deferred.
+                      
+                      ## Equivalent participation without sight, color, drag or hearing
+                      
+                      Provide an accessible semantic table or ordered row-by-row transcript with headings and units. Every comparison exposes '6 triangles, 4 squares, match four pairs, two triangles remain' in logical order, with keyboard and screen-reader equivalents.
+                      
+                      All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
+                      
+                      ## Internationalization, access, mobile and offline acceptance
+                      
+                      Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
+                      
+                      ## Coding Agent and Assessment Architect handoff
+                      
+                      **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
+                      
+                      
+                      ## Original placement
+                      
+                      2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): New table: Star 5, Moon 3, Sun 1, all in 'Number of shapes' column. Learner locates Moon=3 and selects total 9 and difference 2, with separate reveal of each explanation.
+                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+              section4Text3:
+                config:
+                  id: "3b2cf8f9-5425-84ad-83c5-37244cccab70"
+                  slug: "section4Text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "There are three moons. Together, 5+3+1=9 shapes. There are 5−3=2 more stars than moons."
+                production:
+                  purpose: "Legacy text block of A different table, your evidence; provisional draft."
+                  specification: "3. **`text` — existing Resource block type.** “There are three moons. Together, 5+3+1=9 shapes. There are 5−3=2 more stars than moons.”"
+            order:
+              - "section4Markdown1"
+              - "scene4Block2"
+              - "section4Text3"
+        production:
+          purpose: "A different table, your evidence"
+          pedagogicalIntent: "A different table, your evidence"
+          productionNotes: |
+              ### Section 4 — A different table, your evidence
+              
+              **Purpose / intended outcome:** Independently answer row, total and gap questions from a fresh table.
+              
+              **Blocks, in the required top-to-bottom order:**
+              
+              1. **`markdown` — existing Resource block type.** “A new tray has stars 5, moons 3 and suns 1. Which row answers 'How many moons?' What is the total? How many more stars than moons?”
+              
+              2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): New table: Star 5, Moon 3, Sun 1, all in 'Number of shapes' column. Learner locates Moon=3 and selects total 9 and difference 2, with separate reveal of each explanation.
+              
+              3. **`text` — existing Resource block type.** “There are three moons. Together, 5+3+1=9 shapes. There are 5−3=2 more stars than moons.”
+              
+              **What the learner actually does:** Read Moon=3, find total nine, compare star and moon counts without initial example numbers.
+              
+              **Specific explanatory feedback:**
+              
+              - _Total 8_: “Count all three categories: five plus three is eight, and one more sun makes nine.”
+              - _Difference 8_: “Eight adds stars and moons; 'how many more' asks for the gap, five minus three = two.”
+              
+              **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. No drawing or precise row targeting required; named row choices and spoken explanations are equivalent. The explanation remains available even if the learner chooses not to answer before moving on.
+              
+              **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
+              
+    order:
+      - "section1ANumberNeedsItsLabel"
+      - "section2TogetherMeansAdd"
+      - "section3MoreThanMeansFindTheGap"
+      - "section4ADifferentTableYourEvidence"
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+      # Find the Story in a Data Table — Methodologist Brief
+      
+      Date: 2026-10-31
+      Slug: readingAndComparingTables
+      Methodologist status: Draft
+      Code: [Not implemented](#)
+      Program dependence: None
+      
+      ## Educational purpose
+      
+      Read a correctly labelled two-column category-frequency table and use compatible category counts to answer 'how many together?' and 'how many more?' questions.
+      
+      **Why this Lesson now:** After representing observations in a table, reading row/column headings and finding numerical differences is a coherent next step. Reading values and comparing totals are distinct target Skills.
+      
+      ## Target audience
+      
+      **Grade 2, approximately ages 7–8.** Choose this grade independently of the previous Lesson's age: target complexity and prerequisites justify the depth. Learners may have variable reading fluency, numeracy speed, vision, motor control and language proficiency; offer equivalent meaningful visual and nonvisual actions. The Skills themselves remain grade-independent.
+      
+      ## Prerequisites
+      
+      - Count categories and check the total (`collectCounts`).
+      - Record tally marks and fill simple tables with correct row labels (`tallyMarks`, `fillSimpleTable`).
+      - Add and subtract nonnegative whole numbers within 12 with concrete support.
+      
+      No Program completion is required; these are underlying knowledge needs only. Missing prerequisites should trigger scaffold or a separate prior Lesson rather than silently redefining the target Skill.
+      
+      ## Target Skills
+      
+      - [readSimpleTable.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/presentation/skills/readSimpleTable.data.ts)
+      - [compareCategories.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/interpretation/skills/compareCategories.data.ts)
+      
+      The 2 canonical Skills remain independently assessable even though one conceptual Lesson integrates them.
+      
+      ## Expected learning outcomes
+      
+      - Identify the correct row, column heading and unit when answering a table question.
+      - Read the statement '6 triangles' rather than reporting an isolated number 6.
+      - Find 6 triangles versus 4 squares has a difference of 2 shapes, and 6 triangles plus 2 circles totals 8 shapes.
+      - Identify that the table of 6 triangles, 4 squares and 2 circles represents 12 shapes total.
+      - Independently interpret a fresh table with stars 5, moons 3 and suns 1, finding 9 total and a difference of 2 between stars and moons.
+      - Reject cross-unit comparisons, such as comparing a count of shapes against a number measured in centimeters.
+      
+      These are instructional opportunities and observable behaviors; one correct selection or a revealed model is not a validated mastery claim.
+      
+      ## Essential subject matter
+      
+      - A table cell has meaning only when paired with its row, column, heading and unit. For the category 'Triangles' under 'Number of shapes', 6 means six triangles in that collection.
+      - For one common collection containing 6 triangles, 4 squares and 2 circles: total 6+4+2=12 shapes.
+      - For the same collection, 'How many more triangles than squares?' asks for 6−4=2 shapes; 'How many triangles and circles combined?' asks for 6+2=8 shapes.
+      - An expression comparing two categories is valid when their counts have the same counting unit and observational context. Six shapes cannot directly be subtracted from four centimeters.
+      - Data supports only the questions its headings and recorded values permit; table counts alone do not reveal why a category is more frequent.
+      
+      **Instructional depth:** Two-column (Category, Number of shapes) count table, mutually exclusive categories, totals ≤12; comparisons only for compatible counts in the same context and unit. Supports selecting correct rows/cells, sums and additive differences; no chart scaling, averages, percentages or causal claims.
+      
+      ## Conceptual progression and dependencies
+      
+      Activate the prerequisite representation, elicit a prediction before explanation, expose the mathematical condition using an inspectable model, contrast it with a tempting misconception, then let the learner transfer to a new case with optional hints. This progression specifies what must become clear, not a mandated Section-type pattern. The Screenwriter controls delivery and detailed interactions provisionally; no scoring or automatic progress API is assumed.
+      
+      ## Misconceptions, examples and boundaries
+      
+      - Choose the numerically largest cell without reading its category row.
+      - Treat a table value as a universal fact rather than one observation collection.
+      - Add instead of subtracting to answer 'how many more'.
+      - Compare numbers with incompatible units as if they were category counts.
+      - Infer an explanation (e.g., 'triangles are always more popular') from one table.
+      
+      **Hard exclusions and postponed Skills:** Scaled bar charts, pictographs, line plots, percentages, statistical conclusions about a population and causal interpretations are deferred.
+      
+      ## Localization, accessibility and offline intent
+      
+      All runtime text, accessible descriptions, controls, feedback and optional audio must eventually be genuinely translated into every supported locale. No fake translations, placeholder dictionaries, missing locales or unauthorized language fallback. Use proper localized mathematical vocabulary and numeric formatting; preserve math and factual diagram relations while adapting semantic LTR/RTL reading order. Ensure full keyboard/touch, nonvisual, reduced-motion and small-screen equivalent experiences and WCAG 2.2 AA targets. Once delivered, the entire lesson, Scene and feedback must work offline on weak devices; this is an engineering requirement, not a claim of current functionality.
+      
+      ## Sources and factual verification
+      
+      - [readSimpleTable.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/presentation/skills/readSimpleTable.data.ts) — canonical Mathematics Skill with UUID, names and methodological descriptions preserved.
+      - [compareCategories.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/interpretation/skills/compareCategories.data.ts) — canonical Mathematics Skill with UUID, names and methodological descriptions preserved.
+      - [Lesson architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md), [Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md), [Section](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md) and [Program](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/program.md) for editorial and ownership boundaries.
+      - The provisional Scene's worked examples provide explicitly stated values and assumptions for mathematical verification; editorial approval remains pending.
+      
+      ## Curriculum / Program compatibility
+      
+      Standalone and Program-neutral. No national curriculum compatibility is asserted. Grade is an instructional design choice, not taxonomy content.
+      
+      ## Open editorial decisions
+      
+      - **Editor:** approve Grade 2, prerequisite assumptions, target Skills, depth and misconception treatment.
+      - **Editor:** review the proposed transfer case and the separate Scene specification; their status is provisional until the Methodologist Brief is approved.
+      - **Coding Agent / later QA:** review accessibility, localization completeness, offline delivery and Lesson/Scene implementation under their separate workflows; do not infer implementation from this document.
+      
+      ## Methodologist handoff
+      
+      **Draft only.** No formal Methodologist approval gate has passed. The accompanying Content and Scene documents were prepared provisionally under the batch instruction and require independent Screenwriter/Scene approval before engineering. No runtime lesson data, Questions, Quizzes, assessment engine or score is authorized here.
+  productionNotes: |
+      Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
+      
+      ## Former Screenwriter introduction
+      
+      # Find the Story in a Data Table — Lesson Content
+      
+      **Editorial status: Provisional Draft — pending Methodologist approval (not formally approved).**
+      **Audience:** Grade 2, approximately ages 7–8.
+      **Source brief:** Draft Methodologist Brief (preserved in production.methodology).
+      **Target Skills:**
+      
+      - [readSimpleTable.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/presentation/skills/readSimpleTable.data.ts)
+      - [compareCategories.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/interpretation/skills/compareCategories.data.ts)
+        **Lesson:** standalone, Program-neutral; no runtime Lesson, Quiz, Question, score or completed Scene is implemented.
+      
+      ## The learner's experience
+      
+      Read a correctly labelled two-column category-frequency table and use compatible category counts to answer 'how many together?' and 'how many more?' questions.
+      
+      After representing observations in a table, reading row/column headings and finding numerical differences is a coherent next step. Reading values and comparing totals are distinct target Skills.
+      
+      Explore a labelled table through row and column selectors, choose one or two rows, reveal quantity tokens/equations, match equal counts and count extras, switch to fresh dataset, reset. No ability or API to read a live spreadsheet is assumed. Keep all data preset and local, with no external props.
+      
+      **Teaching boundary:** Two-column (Category, Number of shapes) count table, mutually exclusive categories, totals ≤12; comparisons only for compatible counts in the same context and unit. Supports selecting correct rows/cells, sums and additive differences; no chart scaling, averages, percentages or causal claims. The activity must explain why an answer fits rather than merely reward a selection. Every comparison uses a specified whole, time scale, unit or random experiment, as appropriate. Wrong answers receive evidence-based feedback and a no-penalty retry.
+      
+      ## Ordered learning journey
+      
+      1. **A number needs its label:** Locate a value through both a row and a column heading.
+      2. **Together means add:** Combine two compatible frequencies and reconcile the whole collection.
+      3. **More than means find the gap:** Contrast a difference with a total.
+      4. **A different table, your evidence:** Independently answer row, total and gap questions from a fresh table.
+      
+      The general Sections below use a **single vertical top-to-bottom column** of typed Resource blocks. `text`, `markdown` and `scene` are available block types; the named **TableEvidenceExplorer Scene is proposed and not implemented**. No separate 'Theory' or 'Practice' TypeScript discriminators are invented.
+      
+      ## Section plan and learner-facing copy
+      
+      
+      ## Former Screenwriter closing notes
+      
+      ## New custom Scene handoff
+      
+      - TableEvidenceExplorer (preserved in Scene production.specification) — Screenwriter's provisional design, not implemented. It is self-contained, local-state and prop-free; any preset switches are internal rather than fake public props.
+      - Every Section points to the same specification because its cases cover the whole conceptual progression; each rendered Scene occurrence must remain an independently initialized instance, not depend on another Section's state.
+      
+      ## Independent transfer
+      
+      A table of 5 stars, 3 moons, 1 sun contains 9 shapes and has 2 more stars than moons.
+      
+      Give the learner a fresh problem before revealing its answer, allow one useful optional hint, and then offer a worked explanation. A learner may answer verbally to an adult or via equivalent selectable controls; no assumed speech API. Transfer is instructional practice, not proof of validated mastery.
+      
+      ## Proposed unlocked recall Note (not wired)
+      
+      “Find the row, heading and unit before using a number; add for together, subtract for how many more.”
+      
+      Proposed moment: when Section 3's important contrasting example has been explored and accurately explained. **Note entity, unlock events, persistence, offline Notes sync and spaced review scheduling are planned concepts, not current implemented capabilities.** Do not block the Lesson on Note events.
+      
+      ## Delivery and review readiness
+      
+      - **Existing typed Resources:** `text`, `markdown`, `scene` with single-column Section ordering.
+      - **Proposed:** the named interactive Scene, all its data presets, localized learner-facing text, accessibility alternatives, Scene tests and future offline package.
+      - **Not designed here:** Questions, Quiz, graded response banks, mastery evaluation, score thresholds, new Resource types, API contracts or Program storyline.
+      
+      Complete authentic localization, meaningful RTL, keyboard/touch/screen-reader equivalents, reduced motion, narrow screens, WCAG 2.2 AA and offline/weak-device parity are future implementation gates, not current claims. Methodologist, Screenwriter and Scene review statuses remain Draft until explicit editor approval.
