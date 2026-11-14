@@ -210,15 +210,18 @@ export function renderLessonDraft(lesson, language, factories = loadFactoryRegis
 
 /** The UUID path is an output-safety boundary, not editorial validation. */
 function targetFor(source, repo) {
-  const root = path.resolve(source);
-  noSymlinks(root);
+  const location = path.resolve(source);
+  noSymlinks(location);
+  const root = fs.statSync(location).isDirectory() ? location : path.dirname(location);
+  if (fs.statSync(location).isFile() && path.basename(location) !== 'config.yaml')
+    throw new Error('Expected config.yaml source: ' + location);
   const relative = path.relative(path.resolve(repo), root).split(path.sep).join('/');
-  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})$/.exec(relative);
-  if (!match || !uuidPattern.test(match[3]) || match[3].slice(-1) !== match[2])
-    throw new Error('Expected content/<book>/data/lessons/<last-uuid-hex>/<uuid>: ' + relative);
-  if (!fs.existsSync(path.join(repo, 'content', match[1], 'package.json')))
+  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/(.+)$/.exec(relative);
+  if (!match) throw new Error('Expected source inside a textbook workspace: ' + relative);
+  const bookRoot = path.join(repo, 'content', match[1]);
+  if (!fs.existsSync(path.join(bookRoot, 'package.json')))
     throw new Error('Expected a textbook workspace for ' + relative);
-  return { root, lessonId: match[3] };
+  return { root, bookRoot, lessonId: uuidPattern.test(path.basename(root)) ? path.basename(root) : 'unresolved' };
 }
 
 /** The single YAML tree separates Engine Config from production guidance at every node. */
@@ -273,18 +276,89 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
     return { changed: 0, skipped: true, files: existing, lessonId: target.lessonId };
   }
   const { lesson, language, tasks } = combineSources(target.root);
-  const artifacts = productionFiles(target.root, tasks);
+  if (typeof lesson.id !== 'string' || !uuidPattern.test(lesson.id))
+    fail('config.yaml', 'config.id', 'a Lesson UUID is required for ID-addressed output');
+  const outputFolder = path.join(target.bookRoot, 'data/lessons', lesson.id.at(-1), lesson.id);
+  noSymlinks(outputFolder);
+  // When source is outside the canonical target, derive the destination from
+  // the single authored config.id. Existing data is still never overwritten.
+  const destinationData = fs.existsSync(outputFolder)
+    ? fs.readdirSync(outputFolder).filter(name => name.endsWith('.data.ts')).sort()
+    : [];
+  if (mode === 'generate' && destinationData.length) {
+    return { changed: 0, skipped: true, files: destinationData, lessonId: lesson.id };
+  }
+  const artifacts = productionFiles(outputFolder, tasks);
   // Verify all authored production destinations before creating TS or Markdown.
   checkProductionFiles(artifacts, mode);
   const draft = renderLessonDraft(lesson, language);
   const entryName = lesson.slug + '.data.ts';
-  for (const name of fs.readdirSync(target.root)) {
-    if (name.endsWith('.data.ts') && name !== entryName)
-      fail(name, '$', 'competing Lesson data entrypoint; refusing to create another');
+  for (const name of destinationData) {
+    if (name !== entryName)
+      fail(name, '
+}
+
+function discover(repo) {
+  const content = path.join(repo, 'content');
+  if (!fs.existsSync(content)) return [];
+  const roots = [];
+  for (const entry of fs.readdirSync(content, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const folder = path.join(content, entry.name);
+    const workspaces =
+      entry.name === 'languages'
+        ? fs
+            .readdirSync(folder, { withFileTypes: true })
+            .filter(item => item.isDirectory())
+            .map(item => path.join(folder, item.name))
+        : [folder];
+    for (const workspace of workspaces) {
+      const lessons = path.join(workspace, 'data/lessons');
+      if (!fs.existsSync(lessons)) continue;
+      for (const bucket of fs.readdirSync(lessons, { withFileTypes: true })) {
+        if (!bucket.isDirectory() || !/^[0-9a-f]$/.test(bucket.name)) continue;
+        for (const entry of fs.readdirSync(path.join(lessons, bucket.name), { withFileTypes: true })) {
+          if (!entry.isDirectory()) continue;
+          const location = path.join(lessons, bucket.name, entry.name);
+          if (fs.existsSync(path.join(location, 'config.yaml'))) roots.push(location);
+        }
+      }
+    }
   }
-  const changed = writeDraft(path.join(target.root, entryName), draft, mode);
+  return roots.sort();
+}
+
+export function main(args = process.argv.slice(2), repo = repoRoot) {
+  const [mode, ...rest] = args;
+  if (!['generate', 'check'].includes(mode) || (rest.length && !(rest.length === 2 && rest[0] === '--source')))
+    throw new Error(
+      'Usage: node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate|check [--source content/<book>/.../config.yaml|<canonical-lesson-folder>]',
+    );
+  const roots = rest.length ? [path.resolve(repo, rest[1])] : discover(repo);
+  for (const root of roots) {
+    const result = runOne(root, mode, repo);
+    console.log(
+      result.skipped
+        ? 'SKIP Lesson ' + result.lessonId + ': existing ' + result.files.join(', ') + '; no files modified'
+        : result.lessonId + ': ' + (mode === 'check' ? 'up to date' : result.changed + ' file(s) written'),
+    );
+  }
+  console.log('Processed ' + roots.length + ' Lesson draft source(s)');
+}
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try {
+    main();
+  } catch (error) {
+    console.error(error.message);
+    process.exitCode = 1;
+  }
+}
+, 'competing Lesson data entrypoint; refusing to create another');
+  }
+  if (mode === 'generate') fs.mkdirSync(outputFolder, { recursive: true });
+  const changed = writeDraft(path.join(outputFolder, entryName), draft, mode);
   const specs = mode === 'generate' ? writeProductionFiles(artifacts) : 0;
-  return { changed: changed + specs, files: [entryName, ...artifacts.map(item => item.file)], lessonId: target.lessonId };
+  return { changed: changed + specs, files: [entryName, ...artifacts.map(item => item.file)], lessonId: lesson.id };
 }
 
 function discover(repo) {
