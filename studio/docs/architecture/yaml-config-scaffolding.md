@@ -102,78 +102,77 @@ The following is a **Quest node fragment** to place at a Section's \`items.guide
 
 \`\`\`yaml
 config:
-  id: 00000000-0000-4000-8000-000000000101
-  slug: guidedPractice
-  type: quest
-  params: { skippable: false }
-  locale:
-    title: { uk: Керована практика }
-    navigationLabel: { uk: Практика }
-  stages:
-    start:
-      config:
-        id: 00000000-0000-4000-8000-000000000102
-        slug: start
-        type: questStage
-        content:
-          video:
-            medium:
-              config:
-                id: 00000000-0000-4000-8000-000000000103
-                slug: medium
-                type: video
-                params: {}
-                locale: { fileLocation: null, poster: null, label: { uk: Показ прикладу } }
-            small:
-              config:
-                id: 00000000-0000-4000-8000-000000000104
-                slug: small
-                type: video
-                params: {}
-                locale: { fileLocation: null, poster: null, label: { uk: Показ прикладу } }
-          audio:
-            dialogue: null
-            narration:
-              config:
-                id: 00000000-0000-4000-8000-000000000105
-                slug: narration
-                type: audio
-                params: {}
-                locale: { fileLocation: null, title: { uk: Аудіоопис } }
-            background: null
-          image:
-            config:
-              id: 00000000-0000-4000-8000-000000000106
-              slug: image
-              type: image
-              params: { fill: true, aspectRatio: 1.5 }
-              locale: { src: null, alt: { uk: Схема прикладу } }
-          subtitles:
-            config:
-              id: 00000000-0000-4000-8000-000000000107
-              slug: subtitles
-              type: subtitles
-              params: {}
-              locale: { fileLocation: null }
-    # Additional named Stages may be added without an order array.
-  tasks:
-    start:
-      config:
-        id: 00000000-0000-4000-8000-000000000108
-        slug: start
-        type: questTask
-        scene:
-          config:
-            id: 00000000-0000-4000-8000-000000000109
-            slug: taskScene
-            type: scene
-            params: {}
-            locale:
-              value: { instruction: { uk: Повтори самостійно } }
-          production:
-            specification: |
-              Implement an accessible guided-practice Scene with retries,
-              meaningful feedback and keyboard/screen-reader equivalents.
+id: 00000000-0000-4000-8000-000000000101
+slug: guidedPractice
+type: quest
+params: { skippable: false }
+locale:
+title: { uk: Керована практика }
+navigationLabel: { uk: Практика }
+stages:
+start:
+config:
+id: 00000000-0000-4000-8000-000000000102
+slug: start
+type: questStage
+content:
+video:
+medium:
+config:
+id: 00000000-0000-4000-8000-000000000103
+slug: medium
+type: video
+params: {}
+locale: { fileLocation: null, poster: null, label: { uk: Показ прикладу } }
+small:
+config:
+id: 00000000-0000-4000-8000-000000000104
+slug: small
+type: video
+params: {}
+locale: { fileLocation: null, poster: null, label: { uk: Показ прикладу } }
+audio:
+dialogue: null
+narration:
+config:
+id: 00000000-0000-4000-8000-000000000105
+slug: narration
+type: audio
+params: {}
+locale: { fileLocation: null, title: { uk: Аудіоопис } }
+background: null
+image:
+config:
+id: 00000000-0000-4000-8000-000000000106
+slug: image
+type: image
+params: { fill: true, aspectRatio: 1.5 }
+locale: { src: null, alt: { uk: Схема прикладу } }
+subtitles:
+config:
+id: 00000000-0000-4000-8000-000000000107
+slug: subtitles
+type: subtitles
+params: {}
+locale: { fileLocation: null } # Additional named Stages may be added without an order array.
+tasks:
+start:
+config:
+id: 00000000-0000-4000-8000-000000000108
+slug: start
+type: questTask
+scene:
+config:
+id: 00000000-0000-4000-8000-000000000109
+slug: taskScene
+type: scene
+params: {}
+locale:
+value: { instruction: { uk: Повтори самостійно } }
+production:
+specification: |
+Implement an accessible guided-practice Scene with retries,
+meaningful feedback and keyboard/screen-reader equivalents.
 \`\`\`
 
 The YAML editor schema composes these nested \`config\` and optional \`production\` envelopes from Engine Zod. The Lesson/Course scaffolders create \`defineQuestSection\`, \`defineStage\`, \`defineTask\` and media/Scene TypeScript **drafts**; pending \`null\` means real assets remain unproduced. \`defineLesson\`/\`defineEpisode\` do **not** yet accept Quest as a runtime-publishable Section, nor does a Quest player exist. Quest guided practice never automatically satisfies an approved Quiz assessment requirement.
