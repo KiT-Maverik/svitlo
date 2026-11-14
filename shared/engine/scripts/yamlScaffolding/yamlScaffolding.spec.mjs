@@ -37,7 +37,6 @@ function wrapNode(value) {
     : fields;
 }
 
-
 function questNode(slug, offset) {
   const block = (type, key, index, locale, params = {}) => ({
     id: id(offset + index),
@@ -60,22 +59,34 @@ function questNode(slug, offset) {
         content: {
           video: {
             medium: block('video', 'medium', 2, {
-              fileLocation: null, poster: null, label: { uk: 'Приклад' },
+              fileLocation: null,
+              poster: null,
+              label: { uk: 'Приклад' },
             }),
             small: block('video', 'small', 3, {
-              fileLocation: null, poster: null, label: { uk: 'Приклад' },
+              fileLocation: null,
+              poster: null,
+              label: { uk: 'Приклад' },
             }),
           },
           audio: {
             dialogue: null,
             narration: block('audio', 'narration', 4, {
-              fileLocation: null, title: { uk: 'Опис' },
+              fileLocation: null,
+              title: { uk: 'Опис' },
             }),
             background: null,
           },
-          image: block('image', 'image', 5, { src: null, alt: { uk: 'Схема' } }, {
-            fill: true, aspectRatio: 1.5,
-          }),
+          image: block(
+            'image',
+            'image',
+            5,
+            { src: null, alt: { uk: 'Схема' } },
+            {
+              fill: true,
+              aspectRatio: 1.5,
+            },
+          ),
           subtitles: block('subtitles', 'subtitles', 6, { fileLocation: null }),
         },
       },
@@ -274,7 +285,6 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
-
 
 test('Quest Stage caption production creates a UUID-addressed Subtitles handoff', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'quest-subtitles-handoff-'));

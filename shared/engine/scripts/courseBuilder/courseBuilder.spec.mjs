@@ -744,7 +744,6 @@ test('Course config.yaml emits Scene/media handoffs without inventing image sour
   }
 });
 
-
 test('Course Episode Quest renders named stages, tasks, nullable tracks and all nested factories', () => {
   const course = structuredClone(source);
   const episode = course.content.items.basics.content.items.first.content.items.episode;
@@ -800,7 +799,8 @@ test('Course Episode Quest renders named stages, tasks, nullable tracks and all 
     'defineImage',
     'defineSubtitles',
     'defineScene',
-  ]) assert(draft.includes(factory + '('), 'missing ' + factory);
+  ])
+    assert(draft.includes(factory + '('), 'missing ' + factory);
   assert.match(draft, /"narration": null/);
   assert.match(draft, /"background": null/);
   assert.equal((draft.match(/defineStage\(/g) ?? []).length, 1);
@@ -811,6 +811,7 @@ test('Course Episode Quest renders named stages, tasks, nullable tracks and all 
   );
 
   const broken = structuredClone(course);
-  broken.content.items.basics.content.items.first.content.items.episode.section.items.quest.tasks.start.scene.type = 'unlisted';
+  broken.content.items.basics.content.items.first.content.items.episode.section.items.quest.tasks.start.scene.type =
+    'unlisted';
   assert.throws(() => renderCourseSource(broken), /unknown type discriminator "unlisted"/);
 });

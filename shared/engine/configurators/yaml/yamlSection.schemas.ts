@@ -69,14 +69,8 @@ export const yamlQuestTask_Schema = task_Config_Schema.extend({
 
 export const yamlQuestSection_Schema = questSection_Config_Schema.extend({
   // Keep the mandatory entry point visible to both Zod and generated JSON Schema.
-  stages: z.intersection(
-    z.object({ start: yamlQuestStage_Schema }),
-    z.record(camelCase_Schema, yamlQuestStage_Schema),
-  ),
-  tasks: z.intersection(
-    z.object({ start: yamlQuestTask_Schema }),
-    z.record(camelCase_Schema, yamlQuestTask_Schema),
-  ),
+  stages: z.intersection(z.object({ start: yamlQuestStage_Schema }), z.record(camelCase_Schema, yamlQuestStage_Schema)),
+  tasks: z.intersection(z.object({ start: yamlQuestTask_Schema }), z.record(camelCase_Schema, yamlQuestTask_Schema)),
 });
 
 /** A Section's type is mandatory and selects its concrete define* factory. */

@@ -541,7 +541,6 @@ test('staged Lesson rejects malformed IDs and symlinked UUID destinations withou
     assert.equal(fs.existsSync(path.join(path.dirname(staging), 'lightLesson.data.ts')), false);
   }));
 
-
 test('Quest draft instantiates Stage, Task, named media, Subtitles and Scene without positional order', () => {
   const lesson = makeLesson();
   const media = (type, slug, number, locale = {}) => ({
@@ -618,10 +617,7 @@ test('Quest draft instantiates Stage, Task, named media, Subtitles and Scene wit
   assert.match(draft, /"background": null/);
   assert(!draft.includes('"en": "Guided practice"'), 'do not invent non-source locale output');
   assert(!Object.hasOwn(lesson.section.items.quest, 'order'), 'Quest uses named entry maps, not an internal order');
-  assert.deepEqual(
-    ts.createSourceFile('quest.data.ts', draft, ts.ScriptTarget.Latest, true).parseDiagnostics,
-    [],
-  );
+  assert.deepEqual(ts.createSourceFile('quest.data.ts', draft, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
 
   const broken = structuredClone(lesson);
   broken.section.items.quest.tasks.start.scene.type = 'unknownTaskScene';

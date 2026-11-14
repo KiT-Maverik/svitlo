@@ -326,7 +326,6 @@ test('unified scaffold composes manual production schema beside Engine Config at
   assert(!docs['lesson.scaffold.schema.json'].includes('"sceneSpecKey"'));
 });
 
-
 test('Quest editor schema projects every named Stage/Task child while retaining mandatory media fields', () => {
   const config = (type, slug, suffix, locale = {}, params = {}) => ({
     id: '00000000-0000-4000-8000-' + String(suffix).padStart(12, '0'),
@@ -366,10 +365,16 @@ test('Quest editor schema projects every named Stage/Task child while retaining 
             narration: null,
             background: null,
           },
-          image: config('image', 'image', 66, { src: null, alt: { uk: 'Діаграма' } }, {
-            fill: true,
-            aspectRatio: 1.5,
-          }),
+          image: config(
+            'image',
+            'image',
+            66,
+            { src: null, alt: { uk: 'Діаграма' } },
+            {
+              fill: true,
+              aspectRatio: 1.5,
+            },
+          ),
           subtitles: config('subtitles', 'subtitles', 67, { fileLocation: null }),
         },
       },

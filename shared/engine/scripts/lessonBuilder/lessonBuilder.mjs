@@ -155,7 +155,17 @@ function childContext(parent, key, owner) {
   return 'plain';
 }
 
-const factoryContexts = new Set(['lesson', 'section', 'stage', 'task', 'block', 'slide', 'checkpointItem', 'question', 'flashcard']);
+const factoryContexts = new Set([
+  'lesson',
+  'section',
+  'stage',
+  'task',
+  'block',
+  'slide',
+  'checkpointItem',
+  'question',
+  'flashcard',
+]);
 const indent = level => '  '.repeat(level);
 
 /**

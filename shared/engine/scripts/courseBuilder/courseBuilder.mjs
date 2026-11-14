@@ -243,14 +243,13 @@ function renderQuestMediaMap(value, state, indent, location, allowNull = false) 
   return (
     '{\n' +
     fields
-      .map(([key, child]) =>
-        inner +
-        literal(key) +
-        ': ' +
-        (allowNull && child === null
-          ? 'null'
-          : renderEntity(child, state, indent + 1, location + '.' + key)) +
-        ',',
+      .map(
+        ([key, child]) =>
+          inner +
+          literal(key) +
+          ': ' +
+          (allowNull && child === null ? 'null' : renderEntity(child, state, indent + 1, location + '.' + key)) +
+          ',',
       )
       .join('\n') +
     '\n' +
