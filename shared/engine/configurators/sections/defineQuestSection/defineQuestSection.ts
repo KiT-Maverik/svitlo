@@ -52,7 +52,10 @@ export const defineQuestSection = <
   validate(config);
   const { id, slug, type } = config;
   const metadataSchema = questSection_Config_Schema.omit({ stages: true, tasks: true });
-  const metadata = structuredClone(metadataSchema.parse(config));
+  const metadata = structuredClone(metadataSchema.parse({
+    id: config.id, slug: config.slug, type: config.type,
+    params: config.params, locale: config.locale,
+  }));
   const stages = { ...config.stages };
   const tasks = { ...config.tasks };
   const ownLocale = (locale: DeepPartial<QuestSection_Config['locale']>) => {
