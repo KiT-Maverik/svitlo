@@ -26,6 +26,16 @@ function calls(source) {
   return names;
 }
 
+/** Wrap every technical node with its Config, retaining the sole authored ID. */
+function wrapNode(value) {
+  if (Array.isArray(value)) return value.map(wrapNode);
+  if (!value || typeof value !== 'object') return value;
+  const fields = Object.fromEntries(Object.entries(value).map(([key, child]) => [key, wrapNode(child)]));
+  return typeof value.type === 'string' && (typeof value.id === 'string' || typeof value.lessonId === 'string')
+    ? { config: fields }
+    : fields;
+}
+
 test('Studio editorial YAML remains intact while both builders emit nested TS drafts', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-yaml-integrated-'));
   const workspace = path.join(root, 'content/playground');
@@ -52,7 +62,11 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
         }) },
       }),
     };
-    fs.writeFileSync(path.join(lessonDir, 'lesson.config.yaml'), yaml.stringify(lesson));
+    const { documentLanguage: lessonLanguage, ...lessonConfig } = lesson;
+    fs.writeFileSync(path.join(lessonDir, 'config.yaml'), yaml.stringify({
+      ...wrapNode(lessonConfig),
+      production: { documentLanguage: lessonLanguage },
+    }));
     const editorial = 'kind: lesson-content-plan\nstatus: draft\nsections: []\n';
     fs.writeFileSync(path.join(lessonDir, 'content.yaml'), editorial);
     assert.equal(runOne(lessonDir, 'generate', root).changed, 1);
@@ -88,8 +102,12 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
         }) },
       }),
     };
-    const courseYaml = yaml.stringify(course);
-    fs.writeFileSync(path.join(courseDir, 'course.yaml'), courseYaml);
+    const { documentLanguage: courseLanguage, ...courseConfig } = course;
+    const courseYaml = yaml.stringify({
+      ...wrapNode(courseConfig),
+      production: { documentLanguage: courseLanguage },
+    });
+    fs.writeFileSync(path.join(courseDir, 'config.yaml'), courseYaml);
     const courseCode = renderCourseSource(parseCourseYaml(courseYaml));
     const courseOutput = path.join(courseDir, 'lightCourse.data.ts');
     assert.equal(verifyOrWriteGenerated(courseOutput, courseCode, '--write'), true);
@@ -104,7 +122,7 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     assert(!courseCode.includes('UNRESOLVED_LESSON'));
     assert(!courseCode.includes('EN_COURSE'));
     assert(!courseCode.includes('"documentLanguage"'));
-    assert.equal(fs.readFileSync(path.join(courseDir, 'course.yaml'), 'utf8'), courseYaml);
+    assert.equal(fs.readFileSync(path.join(courseDir, 'config.yaml'), 'utf8'), courseYaml);
     assert(!fs.existsSync(path.join(courseDir, 'generated')));
     assert(!fs.existsSync(path.join(lessonDir, 'generated')));
   } finally {
