@@ -64,6 +64,7 @@ test('Zod -> JSON Schema exports every root without opaque Configurator nodes', 
   assert.deepEqual(Object.keys(docs).sort(), [
     'contentBlock.schema.json',
     'course.schema.json',
+    'courseOverrides.schema.json',
     'episode.schema.json',
     'flashcard.schema.json',
     'lesson.schema.json',
@@ -79,12 +80,29 @@ test('Zod -> JSON Schema exports every root without opaque Configurator nodes', 
   }
 });
 
+test('Lesson/Course draft envelopes document source language, import coordinates and direct overrides', () => {
+  const docs = yamlJsonSchemaDocuments();
+  const lesson = JSON.parse(docs['lesson.schema.json']);
+  const course = JSON.parse(docs['course.schema.json']);
+  const overrides = JSON.parse(docs['courseOverrides.schema.json']);
+  assert(lesson.required.includes('documentLanguage'));
+  assert(lesson.required.includes('type'));
+  assert(!lesson.required.includes('flashcards')); // Drafts may be incomplete.
+  assert.equal(course.properties.documentLanguage.type, 'string');
+  assert(!course.required.includes('content'));
+  assert.equal(overrides.additionalProperties, false);
+  assert.deepEqual(Object.keys(overrides.properties).sort(), ['content', 'locale', 'params']);
+  assert.equal(overrides.properties.content.properties.items.type, 'object');
+  assert.equal(overrides.$defs.buildPatch.properties.questions.type, 'object');
+  assert(!Object.hasOwn(overrides.properties, 'operations'));
+  assert(JSON.stringify(course).includes('"source"'));
+});
 test('generator write/check is deterministic and rejects stale files', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-yaml-schemas-'));
   try {
     assert.throws(() => generateYamlSchemas('--check', root), /Outdated YAML JSON Schema/);
     const written = generateYamlSchemas('--write', root);
-    assert.equal(written.length, 7);
+    assert.equal(written.length, 8);
     assert.deepEqual(generateYamlSchemas('--write', root), written);
     assert.deepEqual(generateYamlSchemas('--check', root), written);
     fs.writeFileSync(path.join(root, 'lesson.schema.json'), '{}');
@@ -104,5 +122,5 @@ test('reused nested Config schemas are shared by reference instead of expanded c
 });
 
 test('checked-in editor schemas match the current Engine Zod source', () => {
-  assert.equal(generateYamlSchemas('--check').length, 7);
+  assert.equal(generateYamlSchemas('--check').length, 8);
 });
