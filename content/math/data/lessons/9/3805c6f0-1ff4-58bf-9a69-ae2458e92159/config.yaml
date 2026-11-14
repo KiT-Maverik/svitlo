@@ -1,0 +1,773 @@
+config:
+  id: "3805c6f0-1ff4-58bf-9a69-ae2458e92159"
+  slug: "howManyInTheSet"
+  type: "lesson"
+  skills:
+    - "806fb33e-81a3-4e59-b57b-1ea7ed549d9b"
+  params:
+    requireQuiz: false
+    languages:
+      - "ar"
+      - "be"
+      - "bn"
+      - "de"
+      - "en"
+      - "es"
+      - "et"
+      - "fr"
+      - "he"
+      - "hi"
+      - "id"
+      - "ja"
+      - "ka"
+      - "kk"
+      - "ko"
+      - "lt"
+      - "lv"
+      - "mr"
+      - "ms"
+      - "pl"
+      - "pt"
+      - "qm"
+      - "ta"
+      - "te"
+      - "tr"
+      - "uk"
+      - "ur"
+      - "vi"
+      - "zh"
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "How Many Are There?"
+  section:
+    items:
+      section1FourShells:
+        config:
+          id: "ab56191b-ebd5-8a8b-8e92-4d06be116e96"
+          slug: "section1FourShells"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Four shells"
+            navigationLabel:
+              en: "Four shells"
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: "6c086dec-d0ac-8100-8c89-039bf02d5f77"
+                  slug: "section1Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Count the shells. How many shells are there in all?"
+                production:
+                  purpose: "Legacy text block of Four shells; provisional draft."
+                  specification: "**text / learner invitation:** “Count the shells. How many shells are there in all?”"
+              scene1Block2:
+                config:
+                  id: "10ac9d54-1445-82b5-8977-91282d9eeec9"
+                  slug: "scene1Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Count the shells. How many shells are there in all?"
+                production:
+                  purpose: "Independently initialized Scene occurrence in Four shells. Not approved or implemented."
+                  specification: |
+                      # How Many Are There? Lab — Scene Specification
+                      
+                      Status: **Provisional Draft — awaiting Methodologist approval**
+                      Owner: Educational Screenwriter
+                      Sources: Content (preserved in this Lesson's production notes); Brief (preserved in production.methodology) (Draft)
+                      
+                      ## Purpose and accurate model
+                      
+                      Use the final count word to describe the total quantity of a collection, independent of arrangement. Empty and nonempty sets 0–12, concrete models; no symbolic arithmetic drills. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+                      
+                      ## Experience beats and acceptance
+                      
+                      ### Placement 1: Four shells
+                      
+                      - Prompt: “Count the shells. How many shells are there in all?”
+                      - Independent initial state and interaction: Count four shells one by one, then answer without recounting.
+                      - Correct mathematical rule: The last count word, four, describes all four shells.
+                      - Expected example: One, two, three, four → four shells in all.
+                      - Error feedback: If learner says one, show the one last shell next to the other three.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 2: Spread them apart
+                      
+                      - Prompt: “There are four shells close together. Will they become more if spaced out?”
+                      - Independent initial state and interaction: Predict, spread four shells, and optionally recount the same identified objects.
+                      - Correct mathematical rule: The set remains four because no shell was added or removed.
+                      - Expected example: Four together = four spread apart.
+                      - Error feedback: For five, trace each shell before and after the move.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 3: Empty bowl
+                      
+                      - Prompt: “How many marbles are in an empty bowl?”
+                      - Independent initial state and interaction: Inspect an empty bowl, add a marble, then remove it.
+                      - Correct mathematical rule: Zero marbles in the empty bowl, one after adding, zero after removing.
+                      - Expected example: Zero marbles means none.
+                      - Error feedback: Distinguish one bowl from zero marbles inside it.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 4: A pencil box
+                      
+                      - Prompt: “A friend asks how many pencils are inside. Can you tell them?”
+                      - Independent initial state and interaction: Independently count eight pencils in a different layout, give total with number or word choices.
+                      - Correct mathematical rule: Eight is the quantity of the whole collection.
+                      - Expected example: Eight pencils altogether.
+                      - Error feedback: For seven, identify the eighth uncounted pencil in the count ledger.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ## Self-contained interactive state and constraints
+                      
+                      Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+                      
+                      ## Visual, audio and media direction
+                      
+                      Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+                      
+                      ## Localization, RTL, WCAG and offline
+                      
+                      Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+                      
+                      ## Cross-placement acceptance criteria
+                      
+                      - Each of four initial states is reproducible and mathematically accurate.
+                      - Every error path offers specific reasoning and a recoverable action.
+                      - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                      - Reset in one placement never changes another.
+                      - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                      - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+                      
+                      ## Review and dependencies
+                      
+                      Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                      
+                      
+                      ## Original placement
+                      
+                      **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 1. Count four shells one by one, then answer without recounting. Child may predict, inspect, revise or reveal a full worked model.
+                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+              section1Markdown3:
+                config:
+                  id: "a72778b0-a82a-8404-8400-9e95fb0db221"
+                  slug: "section1Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The last count word, four, describes all four shells. Example: One, two, three, four → four shells in all."
+                production:
+                  purpose: "Legacy markdown block of Four shells; provisional draft."
+                  specification: "**markdown / explanation:** The last count word, four, describes all four shells. Example: One, two, three, four → four shells in all."
+            order:
+              - "section1Text1"
+              - "scene1Block2"
+              - "section1Markdown3"
+        production:
+          purpose: "Four shells"
+          pedagogicalIntent: "Four shells"
+          productionNotes: |
+              ### Section 1 — Four shells
+              
+              **text / learner invitation:** “Count the shells. How many shells are there in all?”
+              
+              **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 1. Count four shells one by one, then answer without recounting. Child may predict, inspect, revise or reveal a full worked model.
+              
+              **markdown / explanation:** The last count word, four, describes all four shells. Example: One, two, three, four → four shells in all.
+              
+              **Formative feedback:** If learner says one, show the one last shell next to the other three. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+              
+              **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+              
+              **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+              
+      section2SpreadThemApart:
+        config:
+          id: "526fc91c-3a5d-8978-80d3-523cc8e17258"
+          slug: "section2SpreadThemApart"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Spread them apart"
+            navigationLabel:
+              en: "Spread them apart"
+          content:
+            items:
+              section2Text1:
+                config:
+                  id: "3b80c954-eac8-8c22-8b48-e9ea7a00cc9c"
+                  slug: "section2Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "There are four shells close together. Will they become more if spaced out?"
+                production:
+                  purpose: "Legacy text block of Spread them apart; provisional draft."
+                  specification: "**text / learner invitation:** “There are four shells close together. Will they become more if spaced out?”"
+              scene2Block2:
+                config:
+                  id: "3fc348cd-2eea-87df-8299-584ea3b0475c"
+                  slug: "scene2Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "There are four shells close together. Will they become more if spaced out?"
+                production:
+                  purpose: "Independently initialized Scene occurrence in Spread them apart. Not approved or implemented."
+                  specification: |
+                      # How Many Are There? Lab — Scene Specification
+                      
+                      Status: **Provisional Draft — awaiting Methodologist approval**
+                      Owner: Educational Screenwriter
+                      Sources: Content (preserved in this Lesson's production notes); Brief (preserved in production.methodology) (Draft)
+                      
+                      ## Purpose and accurate model
+                      
+                      Use the final count word to describe the total quantity of a collection, independent of arrangement. Empty and nonempty sets 0–12, concrete models; no symbolic arithmetic drills. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+                      
+                      ## Experience beats and acceptance
+                      
+                      ### Placement 1: Four shells
+                      
+                      - Prompt: “Count the shells. How many shells are there in all?”
+                      - Independent initial state and interaction: Count four shells one by one, then answer without recounting.
+                      - Correct mathematical rule: The last count word, four, describes all four shells.
+                      - Expected example: One, two, three, four → four shells in all.
+                      - Error feedback: If learner says one, show the one last shell next to the other three.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 2: Spread them apart
+                      
+                      - Prompt: “There are four shells close together. Will they become more if spaced out?”
+                      - Independent initial state and interaction: Predict, spread four shells, and optionally recount the same identified objects.
+                      - Correct mathematical rule: The set remains four because no shell was added or removed.
+                      - Expected example: Four together = four spread apart.
+                      - Error feedback: For five, trace each shell before and after the move.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 3: Empty bowl
+                      
+                      - Prompt: “How many marbles are in an empty bowl?”
+                      - Independent initial state and interaction: Inspect an empty bowl, add a marble, then remove it.
+                      - Correct mathematical rule: Zero marbles in the empty bowl, one after adding, zero after removing.
+                      - Expected example: Zero marbles means none.
+                      - Error feedback: Distinguish one bowl from zero marbles inside it.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 4: A pencil box
+                      
+                      - Prompt: “A friend asks how many pencils are inside. Can you tell them?”
+                      - Independent initial state and interaction: Independently count eight pencils in a different layout, give total with number or word choices.
+                      - Correct mathematical rule: Eight is the quantity of the whole collection.
+                      - Expected example: Eight pencils altogether.
+                      - Error feedback: For seven, identify the eighth uncounted pencil in the count ledger.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ## Self-contained interactive state and constraints
+                      
+                      Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+                      
+                      ## Visual, audio and media direction
+                      
+                      Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+                      
+                      ## Localization, RTL, WCAG and offline
+                      
+                      Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+                      
+                      ## Cross-placement acceptance criteria
+                      
+                      - Each of four initial states is reproducible and mathematically accurate.
+                      - Every error path offers specific reasoning and a recoverable action.
+                      - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                      - Reset in one placement never changes another.
+                      - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                      - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+                      
+                      ## Review and dependencies
+                      
+                      Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                      
+                      
+                      ## Original placement
+                      
+                      **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 2. Predict, spread four shells, and optionally recount the same identified objects. Child may predict, inspect, revise or reveal a full worked model.
+                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+              section2Markdown3:
+                config:
+                  id: "50942036-11e7-8a83-86e5-5b2ff796b19a"
+                  slug: "section2Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The set remains four because no shell was added or removed. Example: Four together = four spread apart."
+                production:
+                  purpose: "Legacy markdown block of Spread them apart; provisional draft."
+                  specification: "**markdown / explanation:** The set remains four because no shell was added or removed. Example: Four together = four spread apart."
+            order:
+              - "section2Text1"
+              - "scene2Block2"
+              - "section2Markdown3"
+        production:
+          purpose: "Spread them apart"
+          pedagogicalIntent: "Spread them apart"
+          productionNotes: |
+              ### Section 2 — Spread them apart
+              
+              **text / learner invitation:** “There are four shells close together. Will they become more if spaced out?”
+              
+              **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 2. Predict, spread four shells, and optionally recount the same identified objects. Child may predict, inspect, revise or reveal a full worked model.
+              
+              **markdown / explanation:** The set remains four because no shell was added or removed. Example: Four together = four spread apart.
+              
+              **Formative feedback:** For five, trace each shell before and after the move. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+              
+              **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+              
+              **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+              
+      section3EmptyBowl:
+        config:
+          id: "8ddaeade-2c7a-81a3-8d69-53ab1cc9d8d6"
+          slug: "section3EmptyBowl"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Empty bowl"
+            navigationLabel:
+              en: "Empty bowl"
+          content:
+            items:
+              section3Text1:
+                config:
+                  id: "983d7937-58a0-8a28-863f-1111e6a2120e"
+                  slug: "section3Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "How many marbles are in an empty bowl?"
+                production:
+                  purpose: "Legacy text block of Empty bowl; provisional draft."
+                  specification: "**text / learner invitation:** “How many marbles are in an empty bowl?”"
+              scene3Block2:
+                config:
+                  id: "42d9ba5c-ec97-871b-8fe9-113ae1a71c7d"
+                  slug: "scene3Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "How many marbles are in an empty bowl?"
+                production:
+                  purpose: "Independently initialized Scene occurrence in Empty bowl. Not approved or implemented."
+                  specification: |
+                      # How Many Are There? Lab — Scene Specification
+                      
+                      Status: **Provisional Draft — awaiting Methodologist approval**
+                      Owner: Educational Screenwriter
+                      Sources: Content (preserved in this Lesson's production notes); Brief (preserved in production.methodology) (Draft)
+                      
+                      ## Purpose and accurate model
+                      
+                      Use the final count word to describe the total quantity of a collection, independent of arrangement. Empty and nonempty sets 0–12, concrete models; no symbolic arithmetic drills. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+                      
+                      ## Experience beats and acceptance
+                      
+                      ### Placement 1: Four shells
+                      
+                      - Prompt: “Count the shells. How many shells are there in all?”
+                      - Independent initial state and interaction: Count four shells one by one, then answer without recounting.
+                      - Correct mathematical rule: The last count word, four, describes all four shells.
+                      - Expected example: One, two, three, four → four shells in all.
+                      - Error feedback: If learner says one, show the one last shell next to the other three.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 2: Spread them apart
+                      
+                      - Prompt: “There are four shells close together. Will they become more if spaced out?”
+                      - Independent initial state and interaction: Predict, spread four shells, and optionally recount the same identified objects.
+                      - Correct mathematical rule: The set remains four because no shell was added or removed.
+                      - Expected example: Four together = four spread apart.
+                      - Error feedback: For five, trace each shell before and after the move.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 3: Empty bowl
+                      
+                      - Prompt: “How many marbles are in an empty bowl?”
+                      - Independent initial state and interaction: Inspect an empty bowl, add a marble, then remove it.
+                      - Correct mathematical rule: Zero marbles in the empty bowl, one after adding, zero after removing.
+                      - Expected example: Zero marbles means none.
+                      - Error feedback: Distinguish one bowl from zero marbles inside it.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 4: A pencil box
+                      
+                      - Prompt: “A friend asks how many pencils are inside. Can you tell them?”
+                      - Independent initial state and interaction: Independently count eight pencils in a different layout, give total with number or word choices.
+                      - Correct mathematical rule: Eight is the quantity of the whole collection.
+                      - Expected example: Eight pencils altogether.
+                      - Error feedback: For seven, identify the eighth uncounted pencil in the count ledger.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ## Self-contained interactive state and constraints
+                      
+                      Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+                      
+                      ## Visual, audio and media direction
+                      
+                      Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+                      
+                      ## Localization, RTL, WCAG and offline
+                      
+                      Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+                      
+                      ## Cross-placement acceptance criteria
+                      
+                      - Each of four initial states is reproducible and mathematically accurate.
+                      - Every error path offers specific reasoning and a recoverable action.
+                      - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                      - Reset in one placement never changes another.
+                      - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                      - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+                      
+                      ## Review and dependencies
+                      
+                      Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                      
+                      
+                      ## Original placement
+                      
+                      **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 3. Inspect an empty bowl, add a marble, then remove it. Child may predict, inspect, revise or reveal a full worked model.
+                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+              section3Markdown3:
+                config:
+                  id: "b7d89d68-bee3-86bc-8824-c6ccf11fbd18"
+                  slug: "section3Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Zero marbles in the empty bowl, one after adding, zero after removing. Example: Zero marbles means none."
+                production:
+                  purpose: "Legacy markdown block of Empty bowl; provisional draft."
+                  specification: "**markdown / explanation:** Zero marbles in the empty bowl, one after adding, zero after removing. Example: Zero marbles means none."
+            order:
+              - "section3Text1"
+              - "scene3Block2"
+              - "section3Markdown3"
+        production:
+          purpose: "Empty bowl"
+          pedagogicalIntent: "Empty bowl"
+          productionNotes: |
+              ### Section 3 — Empty bowl
+              
+              **text / learner invitation:** “How many marbles are in an empty bowl?”
+              
+              **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 3. Inspect an empty bowl, add a marble, then remove it. Child may predict, inspect, revise or reveal a full worked model.
+              
+              **markdown / explanation:** Zero marbles in the empty bowl, one after adding, zero after removing. Example: Zero marbles means none.
+              
+              **Formative feedback:** Distinguish one bowl from zero marbles inside it. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+              
+              **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+              
+              **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+              
+      section4APencilBox:
+        config:
+          id: "dc70d75a-c1b3-82e7-8d4c-3108808fa4b5"
+          slug: "section4APencilBox"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A pencil box"
+            navigationLabel:
+              en: "A pencil box"
+          content:
+            items:
+              section4Text1:
+                config:
+                  id: "9940f6f9-0585-8c83-88b3-458bb476cff1"
+                  slug: "section4Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A friend asks how many pencils are inside. Can you tell them?"
+                production:
+                  purpose: "Legacy text block of A pencil box; provisional draft."
+                  specification: "**text / learner invitation:** “A friend asks how many pencils are inside. Can you tell them?”"
+              scene4Block2:
+                config:
+                  id: "d4b60fc9-2681-87d9-84cf-929216f82a82"
+                  slug: "scene4Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "A friend asks how many pencils are inside. Can you tell them?"
+                production:
+                  purpose: "Independently initialized Scene occurrence in A pencil box. Not approved or implemented."
+                  specification: |
+                      # How Many Are There? Lab — Scene Specification
+                      
+                      Status: **Provisional Draft — awaiting Methodologist approval**
+                      Owner: Educational Screenwriter
+                      Sources: Content (preserved in this Lesson's production notes); Brief (preserved in production.methodology) (Draft)
+                      
+                      ## Purpose and accurate model
+                      
+                      Use the final count word to describe the total quantity of a collection, independent of arrangement. Empty and nonempty sets 0–12, concrete models; no symbolic arithmetic drills. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+                      
+                      ## Experience beats and acceptance
+                      
+                      ### Placement 1: Four shells
+                      
+                      - Prompt: “Count the shells. How many shells are there in all?”
+                      - Independent initial state and interaction: Count four shells one by one, then answer without recounting.
+                      - Correct mathematical rule: The last count word, four, describes all four shells.
+                      - Expected example: One, two, three, four → four shells in all.
+                      - Error feedback: If learner says one, show the one last shell next to the other three.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 2: Spread them apart
+                      
+                      - Prompt: “There are four shells close together. Will they become more if spaced out?”
+                      - Independent initial state and interaction: Predict, spread four shells, and optionally recount the same identified objects.
+                      - Correct mathematical rule: The set remains four because no shell was added or removed.
+                      - Expected example: Four together = four spread apart.
+                      - Error feedback: For five, trace each shell before and after the move.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 3: Empty bowl
+                      
+                      - Prompt: “How many marbles are in an empty bowl?”
+                      - Independent initial state and interaction: Inspect an empty bowl, add a marble, then remove it.
+                      - Correct mathematical rule: Zero marbles in the empty bowl, one after adding, zero after removing.
+                      - Expected example: Zero marbles means none.
+                      - Error feedback: Distinguish one bowl from zero marbles inside it.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ### Placement 4: A pencil box
+                      
+                      - Prompt: “A friend asks how many pencils are inside. Can you tell them?”
+                      - Independent initial state and interaction: Independently count eight pencils in a different layout, give total with number or word choices.
+                      - Correct mathematical rule: Eight is the quantity of the whole collection.
+                      - Expected example: Eight pencils altogether.
+                      - Error feedback: For seven, identify the eighth uncounted pencil in the count ledger.
+                      - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                      
+                      ## Self-contained interactive state and constraints
+                      
+                      Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+                      
+                      ## Visual, audio and media direction
+                      
+                      Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+                      
+                      ## Localization, RTL, WCAG and offline
+                      
+                      Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+                      
+                      ## Cross-placement acceptance criteria
+                      
+                      - Each of four initial states is reproducible and mathematically accurate.
+                      - Every error path offers specific reasoning and a recoverable action.
+                      - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                      - Reset in one placement never changes another.
+                      - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                      - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+                      
+                      ## Review and dependencies
+                      
+                      Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                      
+                      
+                      ## Original placement
+                      
+                      **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 4. Independently count eight pencils in a different layout, give total with number or word choices. Child may predict, inspect, revise or reveal a full worked model.
+                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+              section4Markdown3:
+                config:
+                  id: "ad79ba4c-2d8b-8a72-8a68-e687ba9a76b9"
+                  slug: "section4Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Eight is the quantity of the whole collection. Example: Eight pencils altogether."
+                production:
+                  purpose: "Legacy markdown block of A pencil box; provisional draft."
+                  specification: "**markdown / explanation:** Eight is the quantity of the whole collection. Example: Eight pencils altogether."
+            order:
+              - "section4Text1"
+              - "scene4Block2"
+              - "section4Markdown3"
+        production:
+          purpose: "A pencil box"
+          pedagogicalIntent: "A pencil box"
+          productionNotes: |
+              ### Section 4 — A pencil box
+              
+              **text / learner invitation:** “A friend asks how many pencils are inside. Can you tell them?”
+              
+              **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 4. Independently count eight pencils in a different layout, give total with number or word choices. Child may predict, inspect, revise or reveal a full worked model.
+              
+              **markdown / explanation:** Eight is the quantity of the whole collection. Example: Eight pencils altogether.
+              
+              **Formative feedback:** For seven, identify the eighth uncounted pencil in the count ledger. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+              
+              **Transition:** Independent transfer: explain the total or symbol in this unfamiliar context.
+              
+              **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+              
+    order:
+      - "section1FourShells"
+      - "section2SpreadThemApart"
+      - "section3EmptyBowl"
+      - "section4APencilBox"
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+      # How Many Are There? — Methodologist Brief
+      
+      Date: 2026-10-31
+      Slug: howManyInTheSet
+      Methodologist status: Draft
+      Code: [Not implemented](#)
+      Program dependence: None
+      
+      ## Educational purpose
+      
+      Use the final count word to describe the total quantity of a collection, independent of arrangement. Program-neutral and independently teachable.
+      
+      ## Target audience
+      
+      **Grade 1 (primary audience)**, early readers using short prompts, countable illustrations, and optional narration. No requirement for mouse use, hearing, or fluent reading.
+      
+      ## Prerequisites
+      
+      Reliable one-to-one counting to ten and a stable number-word sequence. Provide an optional introductory reminder, not an assumption of demonstrated mastery.
+      
+      ## Target Skills
+      
+      - [basicCardinality.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/counting/cardinality/skills/basicCardinality.data.ts)
+      
+      ## Expected learning outcomes
+      
+      1. The last count word, four, describes all four shells.
+      2. The set remains four because no shell was added or removed.
+      3. Zero marbles in the empty bowl, one after adding, zero after removing.
+      4. Eight is the quantity of the whole collection.
+      
+      - Explain a new instance using the underlying number relationship, not merely identify a familiar arrangement.
+      
+      ## Essential subject matter and instructional depth
+      
+      Empty and nonempty sets 0–12, concrete models; no symbolic arithmetic drills. Verified model examples:
+      
+      - One, two, three, four → four shells in all.
+      - Four together = four spread apart.
+      - Zero marbles means none.
+      - Eight pencils altogether.
+      
+      ## Conceptual progression and dependencies
+      
+      1. Four shells: Count four shells one by one, then answer without recounting.
+      2. Spread them apart: Predict, spread four shells, and optionally recount the same identified objects.
+      3. Empty bowl: Inspect an empty bowl, add a marble, then remove it.
+      4. A pencil box: Independently count eight pencils in a different layout, give total with number or word choices.
+      
+      ## Misconceptions, examples and boundaries
+      
+      Final count word names only the last object, wider spacing means more objects, counting the container instead of its contents. Feedback must point to the relevant concrete counting evidence. No score, timed drill, or inference of mastered competence.
+      
+      ## Localization, accessibility and offline intent
+      
+      English editorial source only. All learner-facing prompts, count words, control text, accessible descriptions and feedback require complete genuine translations across supported locales. Preserve semantic numeric order under RTL. WCAG 2.2 AA: keyboard/switch/touch support, nonvisual ordered ledger, visible focus, sufficient targets, zoom and reduced motion; no drag-only or audio-only tasks. Design for deterministic fully downloaded offline use, without claiming offline capability is implemented.
+      
+      ## Sources and factual verification
+      
+      - The canonical Skill data files linked above, copied unchanged from Mathematics main; regenerated Playground taxonomy pending coordinator.
+      - Studio Methodologist Persona and Lesson Editorial Artifacts, consulted in this batch; not runtime contracts.
+      
+      ## Curriculum / Program compatibility
+      
+      Standalone. No Program dependency or specific Curriculum alignment claimed.
+      
+      ## Open editorial decisions
+      
+      Editor approval required for this Brief, target Skills and numerical boundaries. Confirm genuine locales and accessible Scene interaction before implementation.
+      
+      ## Methodologist handoff
+      
+      **Draft, not Approved.** Subsequent Content and Scene files are provisional under explicit batch authorization; formal editorial approval gate has not passed.
+  productionNotes: |
+      Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
+      
+      ## Former Screenwriter introduction
+      
+      # How Many Are There? — Lesson Content
+      
+      Status: **Provisional Draft — pending Methodologist approval**
+      Source: Methodologist Brief (preserved in production.methodology) (Draft)
+      Program dependence: None
+      Code: Not implemented
+      
+      ## Instructional concept
+      
+      Use the final count word to describe the total quantity of a collection, independent of arrangement. Every Section invites prediction or observation, meaningful learner control, explanatory feedback, and a chance to apply the reasoning to a changed representation, not an extended lecture followed by a token quiz.
+      
+      ## Learner journey / ordered Section plan
+      
+      Each Section is a proposed `LessonSection_Config` with vertically ordered existing Resource types: `text` → proposed new `scene` → `markdown`. The generic scene resource type exists; the custom Scene specified here is **not implemented**. Independent prop-free placements have their own starting states and no external mode prop.
+      
+      
+      ## Former Screenwriter closing notes
+      
+      ## Custom Scene specification
+      
+      - howManyInTheSet Lab (preserved in Scene production.specification) — four independently instantiated prop-free Scenes, proposed only.
+      
+      ## Lesson Notes — proposed
+      
+      Potential concise later recall cue: “One, two, three, four → four shells in all.” Notes, unlocking, persistence and review scheduling are **not** claimed implemented.
+      
+      ## Practice, retrieval, transfer and assessment boundaries
+      
+      Section 4 provides independent application in a changed context. Revisit countable evidence if answers differ. No Question, Quiz, scoring, mastery or persistence is designed here.
+      
+      ## Localization, accessibility and offline
+      
+      Provide complete genuine translation of every caption, feedback, numeral word and accessible label to all supported locales (no English fallback). RTL mirrors semantic layout without reversing mathematical sequence. Provide WCAG 2.2 AA alternatives, reduced motion, screen-reader count ledger, small-screen support and fully selected-locale offline behavior as planned requirements, not implemented claims.
+      
+      ## Editorial dependencies
+      
+      Provisional only: explicit Methodologist approval, Screenwriter review, Scene implementation, localization, and independent Scene tests remain necessary. Shared Skill index and generated taxonomy are coordinator-owned.
