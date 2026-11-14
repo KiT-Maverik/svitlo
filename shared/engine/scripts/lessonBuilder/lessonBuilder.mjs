@@ -216,6 +216,8 @@ function writeDraft(file, content, mode) {
   const rendered = header + checksumLabel + digest(body) + '\n' + body;
   noSymlinks(file);
   if (fs.existsSync(file)) {
+    // Creation never updates an existing draft, regardless of its provenance.
+    if (mode === 'generate') return 0;
     const original = fs.readFileSync(file, 'utf8');
     const expectedHeader = header + checksumLabel;
     if (!original.startsWith(expectedHeader))
@@ -226,8 +228,6 @@ function writeDraft(file, content, mode) {
       fail(path.basename(file), '$', 'generated file was modified manually');
     if (original === rendered) return 0;
     if (mode === 'check') fail(path.basename(file), '$', 'stale draft; run content:generate:lessons');
-    fs.writeFileSync(file, rendered);
-    return 1;
   }
   if (mode === 'check') fail(path.basename(file), '$', 'missing draft; run content:generate:lessons');
   fs.writeFileSync(file, rendered, { flag: 'wx' });
@@ -237,6 +237,12 @@ function writeDraft(file, content, mode) {
 export function runOne(source, mode = 'check', repo = repoRoot) {
   if (!['generate', 'check'].includes(mode)) throw new Error('Mode must be generate or check');
   const target = targetFor(source, repo);
+  // An existing *.data.ts marks this UUID as already authored. Do not parse
+  // or regenerate it: the source YAML may be outdated after AI editing.
+  const existing = fs.readdirSync(target.root).filter(name => name.endsWith('.data.ts')).sort();
+  if (mode === 'generate' && existing.length) {
+    return { changed: 0, skipped: true, files: existing, lessonId: target.lessonId };
+  }
   const { lesson, language } = combineSources(target.root);
   const draft = renderLessonDraft(lesson, language);
   const entryName = lesson.slug + '.data.ts';
@@ -281,7 +287,9 @@ export function main(args = process.argv.slice(2), repo = repoRoot) {
   const roots = rest.length ? [path.resolve(repo, rest[1])] : discover(repo);
   for (const root of roots) {
     const result = runOne(root, mode, repo);
-    console.log(result.lessonId + ': ' + (mode === 'check' ? 'up to date' : result.changed + ' file(s) written'));
+    console.log(result.skipped
+      ? 'SKIP Lesson ' + result.lessonId + ': existing ' + result.files.join(', ') + '; no files modified'
+      : result.lessonId + ': ' + (mode === 'check' ? 'up to date' : result.changed + ' file(s) written'));
   }
   console.log('Processed ' + roots.length + ' Lesson draft source(s)');
 }
