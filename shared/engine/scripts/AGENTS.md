@@ -21,6 +21,28 @@ These instructions apply to permanent scripts under `shared/engine/scripts/`. Re
 
 Other named workflows have their own contracts. Inspect their entrypoints and tests; do not generalize the table above to all Engine generators.
 
+## New single-file authoring boundary
+
+- **Technical source:** `config.yaml` contains paired `config` and optional
+  `production` at the root and every nested entity node. The **only ID**
+  lives in `config.id` (Course Lesson references use `config.lessonId`).
+  Factory dispatch is based on `config.type`. Do not leak production fields
+  to `define*`, the stateless Build API, or published Props.
+- Engine Config schemas are Zod-derived. Production schemas are manual and
+  type-specific. A combined `*.scaffold.schema.json` is generated for editing,
+  **not validated during scaffolding**.
+- Use `production.documentLanguage` as source locale; incomplete media fields
+  or translations must remain incomplete in generated TypeScript. Missing
+  `image.src`, Scene entrypoints and other dependencies are intentionally
+  actionable downstream TypeScript errors, **not grounds to reject scaffolding**.
+- Emit `specification.md` for Scenes in their ID-addressed textbook Scene folder
+  and for media under `data/assets/<bucket>/<uuid>/`; emit a Lesson/Course
+  `methodology.md` only when authored in production and safe to create.
+  Never invent source paths, create fake Scene code or overwrite edited specs.
+- A Course `config.yaml` also owns its optional root `overrides` sparse Build
+  patch. Only `build.overrides(patch, { languages })` is supported; do not bring
+  back obsolete editorial override operations.
+
 ## Lesson ownership and file safety
 
 - A standalone Lesson is an independently authored, reusable entity. A Course `type: lesson` child is a **reference via `lessonId`**, never an embedded `defineLesson` declaration.
