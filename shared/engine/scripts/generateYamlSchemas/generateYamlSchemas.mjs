@@ -85,6 +85,13 @@ export function draftYamlSchema(kind, configSchema) {
  * No Zod/AJV validation is performed inside either TypeScript scaffolder.
  */
 export function scaffoldYamlSchema(kind, authoredConfig) {
+  // Production definitions remain manually authored. Embed a snapshot into
+  // the composed editor schema so nested $refs work without network access.
+  const productionPath = path.join(yamlSchemaOutputRoot, 'production.schema.json');
+  const production = JSON.parse(fs.readFileSync(productionPath, 'utf8'));
+  if (!production.$defs || typeof production.$defs !== 'object') {
+    throw new Error('Missing manual production schema definitions: ' + productionPath);
+  }
   const original = structuredClone(authoredConfig);
   const { $schema, $defs = {}, ...raw } = original;
   delete raw.$id;
@@ -124,7 +131,7 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
       type: 'object',
       properties: {
         config,
-        production: { $ref: 'production.schema.json#/$defs/' + productionName(type, properties) },
+        production: { $ref: '#/$defs/__production/' + productionName(type, properties) },
       },
       required: ['config'],
       additionalProperties: false,
@@ -146,7 +153,10 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
       'Config is derived from Engine Zod; production references manually owned production.schema.json. ' +
       'Intentionally incomplete Config may generate TypeScript that fails typechecking by design.',
     ...envelope,
-    $defs: Object.fromEntries(Object.entries($defs).map(([name, schema]) => [name, wrap(schema)])),
+    $defs: {
+      ...Object.fromEntries(Object.entries($defs).map(([name, schema]) => [name, wrap(schema)])),
+      __production: structuredClone(production.$defs),
+    },
   };
 }
 
