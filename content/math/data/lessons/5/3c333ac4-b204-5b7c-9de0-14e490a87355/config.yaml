@@ -1,0 +1,574 @@
+# Unified Mathematics Lesson editorial source — provisional; pending independent approval.
+config:
+  id: "3c333ac4-b204-5b7c-9de0-14e490a87355"
+  slug: "buildNumbersWithTensAndOnes"
+  type: "lesson"
+  skills: ["2c9550e7-7e7a-4353-8e29-b12fad0b93af", "cbe7c10a-de6d-42cc-9526-f4019d797727"]
+  params:
+    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "One Ten, Many Ones: Building Two-Digit Numbers"
+  section:
+    items:
+      section1:
+        config:
+          id: "d72cbcf3-1eb9-4448-a576-69c508988612"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Bundle Exchange Workbench"
+            navigationLabel:
+              en: "Bundle Exchange Workbench"
+          content:
+            items:
+              text1:
+                config:
+                  id: "91c45715-7a13-437e-9148-7e471b645c10"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "There are ten loose sticks. Can you turn exactly ten into one bundle?"
+                production:
+                  purpose: "Bundle Exchange Workbench: text resource at position 1 (source provisional)"
+                  specification: "1. **`text` — currently renderable:** “There are ten loose sticks. Can you turn exactly ten into one bundle?”"
+              scene2:
+                config:
+                  id: "51a316db-e63a-4932-b5e9-dbf15e36e5f8"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Bundle Exchange Workbench"
+                production:
+                  purpose: "Bundle Exchange Workbench; source Scene bundleExchange.scene-spec.md; use 2"
+                  specification: |-
+                    # Bundle Exchange Workbench — Scene Specification
+                    
+                    Status: **Provisional Draft — Methodologist approval pending**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: [One Ten, Many Ones: Building Two-Digit Numbers Content](.this config.yaml), Section 1
+                    Methodologist objectives: [Draft Brief](.this config.yaml), relevant outcomes only; not approved
+                    Scene implementation: **Proposed, not built; prop-free**
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    The critical invariant is visible: ten separate sticks and one labelled bundle represent the same ten objects. Understand ten ones as one ten and use equal-value exchanges to build and interpret two-digit numbers by their tens and remaining ones. The same quantity can be shown with objects, bundles, and a numeral.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    In decimal notation a ten is equivalent to exactly ten ones. For a two-digit number n=10t+u with t from 1 to 9 and remaining ones u from 0 to 9, `t` is the tens count and `u` the ones count in its usual representation. Ten ones may be bundled into one ten, or one ten unbundled into ten ones, preserving total. 2 tens + 6 ones = 26, while 3 tens + 2 ones = 32. 27 can be modeled as 2 tens and 7 ones, or temporarily as 1 ten and 17 loose ones; the latter is a nonstandard unpacked representation rather than the ordinary two-digit tens/ones form. This lesson begins with totals 10–20 and extends via bundles to 21–49 with all intermediate language scaffolded. No multi-digit carrying algorithm or full hundreds system is assumed.
+                    
+                    **Model state at entry:** Ten individual sticks in an inventory and empty bundle slot, exact count 10. Learner controls a 'bundle ten' action only when at least ten loose ones are available.
+                    
+                    **Instructional boundary:** Build and read 10–49 with bundling visuals, optional extension to 99 only after editor approval. Zero loose units may occur (20), but treatment of zero as a general positional placeholder is reserved for `zeroPlaceholder`. No written regrouping algorithm or calculation fluency, no `readWrite100` mastery assumed. No scoring. All numeric results must derive from the displayed model and stay within that boundary.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Beat 1: There are ten loose sticks. Can you turn exactly ten into one bundle?
+                    
+                    - **Exact learner-facing invitation:** “There are ten loose sticks. Can you turn exactly ten into one bundle?”
+                    - **Action / teacher model:** Select all ten loose sticks (or use accessible 'Select ten' control) and activate Bundle; show a band around exactly ten, then show ten still counted inside when expanded.
+                    - **Expected state change / observation:** 10 loose ones → 1 ten-bundle + 0 loose ones; total unchanged at 10.
+                    - **Correct explanation / verification:** Ten objects before, ten objects after; regrouping changes organization only.
+                    - **Feedback when incomplete or incorrect:** If the learner thinks one bundle equals one stick, open the bundle to show ten original members and reconcile the item ledger.
+                    - **Progression:** Learner may inspect a worked reveal at any time; no irreversible grade, timeout or random success condition.
+                    
+                    ### Beat 2: Here are one ten-bundle and seven loose sticks. What if you unbundle the ten?
+                    
+                    - **Exact learner-facing invitation:** “Here are one ten-bundle and seven loose sticks. What if you unbundle the ten?”
+                    - **Action / teacher model:** Unbundle the group of ten while leaving the seven loose ones; reveal 17 loose pieces, then bundle ten again.
+                    - **Expected state change / observation:** 1 ten + 7 ones = 17; 0 tens + 17 loose ones = 17; return to 1 ten + 7 ones.
+                    - **Correct explanation / verification:** Both layouts show seventeen objects; only standard packing has 1 ten and 7 remaining ones.
+                    - **Feedback when incomplete or incorrect:** If total 7 is predicted after unbundling, count all ten released pieces plus seven others; nothing disappeared.
+                    - **Progression:** Learner may inspect a worked reveal at any time; no irreversible grade, timeout or random success condition.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    **Objects:** Modelled quantity cards/items, their stable semantic identities, count/representation ledger, native controls and visible explanation. Select ten, Bundle, Unbundle, Show contained members, Reveal full count, Reset; no automatic timed actions.
+                    
+                    **Local state and invariants:**
+                    
+                    - Initial values come from deterministic constants within the standalone Scene module, **not** a Lesson prop, global store, new Resource subtype, invented platform API or fake locale prop.
+                    - Only an explicit learner action may change represented quantity, grouping or order; all labels and accessible counts derive from the same authoritative local model.
+                    - Do not allow an object to be consumed/paired/placed twice when that would alter the mathematics. **Reset** restores exactly this Scene's initial state, not any other Section; scenario changes cannot leak answers or counters from the previous state.
+                    - Predictions are formative and are not persisted as assessment evidence or Skill mastery. **Reveal** gives the worked cause-and-effect account, not only 'correct'.
+                    - Bundling exactly 10 preserves total 10. 1 ten plus 7 loose, then unbundle, produces 17 loose and unchanged total 17. Fewer than 10 loose ones disables bundling with explanation; keyboard and screen reader provide equivalent operations.
+                    
+                    **Controls and agency:** Select ten, Bundle, Unbundle, Show contained members, Reveal full count, Reset; no automatic timed actions. Use no invisible timer, precision drag requirement or external network request.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Use low-overhead SVG/HTML where useful, countable distinct units, stable labels, and restrained visual state changes that the child can advance at their own pace. Provide a simple text ledger and objects that remain discernible at mobile/zoom sizes. Optional spoken narration requires accurate offline locale audio plus captions/transcripts; **audio is not essential** and is not generated by this spec. Reduced motion substitutes immediate equivalent updates. Never hide an instructional item behind an illustration or depend on color/size cues alone.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Bundle is an accessible group named 'ten sticks'; when unpacked, the ledger enumerates the same ten stable items. Cannot bundle nine or fewer and cannot double-count a bundled stick.
+                    
+                    Translate all prompts, state summaries, every number word, error explanations, aria names and Note-related cues fully in every Engine-supported locale; English here is only editorial source. RTL layouts must preserve mathematics (number order, pairing identities, ten/one roles and/or logical item indices); numeric text remains correct rather than mirrored. Every action works by keyboard, switch and touch, with visible focus and meaningful nonvisual readout; no mandatory drag or hover, no color-only distinction, readable contrast, reduced motion and 200% zoom. The same interaction and math must be available once selected-locale Lesson resources are downloaded for offline use on weak devices. This is an implementation requirement, **not** evidence that a current PWA or Scene exists.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Bundling exactly 10 preserves total 10.
+                    2. 1 ten plus 7 loose, then unbundle, produces 17 loose and unchanged total 17.
+                    3. Fewer than 10 loose ones disables bundling with explanation; keyboard and screen reader provide equivalent operations.
+                    4. For beat 1, expected: Ten objects before, ten objects after; regrouping changes organization only. Wrong/partial branch: If the learner thinks one bundle equals one stick, open the bundle to show ten original members and reconcile the item ledger.
+                    5. For beat 2, expected: Both layouts show seventeen objects; only standard packing has 1 ten and 7 remaining ones. Wrong/partial branch: If total 7 is predicted after unbundling, count all ten released pieces plus seven others; nothing disappeared.
+                    6. Reset/restoration, no cross-Scene state, logical RTL, fully nonvisual keyboard completion, reduced-motion and offline selected-locale replay all yield mathematically identical results.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    - Explicit editorial approval of Methodologist Brief (currently **Draft**) and this Scene specification is required before a Scene Designer or Coding Agent begins implementation.
+                    - Generic `scene` Resource currently exists; **Bundle Exchange Workbench does not**. Use prop-free components with localization from the approved app context once the concrete context contract is verified. Do not invent event names, Scene props, Note storage, Question APIs, scores, badges or mastery.
+                    - QA must test every state/result above, locale copy, keyboard/screen-reader operation, LTR/RTL, mobile, reduced motion and genuine offline download; runtime implementation and its own tests are **not in this batch**.
+                    
+                    
+                    ## Section-specific use (provisional source, not implemented)
+                    
+                    2. **`scene` — typed/generic renderer exists, new Scene implementation proposed:** Bundle Exchange Workbench (full Scene specification embedded in this config.yaml). Beat 1: Select all ten loose sticks (or use accessible 'Select ten' control) and activate Bundle; show a band around exactly ten, then show ten still counted inside when expanded. Beat 2: Unbundle the group of ten while leaving the seven loose ones; reveal 17 loose pieces, then bundle ten again.
+                  productionNotes: "Scene bundleExchange.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+              markdown3:
+                config:
+                  id: "405f0735-0010-4622-b9e7-cf3f58685f84"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Ten objects before, ten objects after; regrouping changes organization only. Both layouts show seventeen objects; only standard packing has 1 ten and 7 remaining ones."
+                production:
+                  purpose: "Bundle Exchange Workbench: markdown resource at position 3 (source provisional)"
+                  specification: "3. **`markdown` — currently renderable:** “Ten objects before, ten objects after; regrouping changes organization only. Both layouts show seventeen objects; only standard packing has 1 ten and 7 remaining ones.”"
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "The critical invariant is visible: ten separate sticks and one labelled bundle represent the same ten objects."
+          pedagogicalIntent: "Original Section 1: Bundle Exchange Workbench (provisional draft)"
+          productionNotes: |-
+            - **Purpose and learner outcome:** The critical invariant is visible: ten separate sticks and one labelled bundle represent the same ten objects.
+            - **Section contract:** `LessonSection_Config` with **one vertically ordered** nonempty Resource list. This is not a `Quiz_Config`.
+            - **Ordered content blocks:**
+              1. **`text` — currently renderable:** “There are ten loose sticks. Can you turn exactly ten into one bundle?”
+              2. **`scene` — typed/generic renderer exists, new Scene implementation proposed:** Bundle Exchange Workbench (full Scene specification embedded in this config.yaml). Beat 1: Select all ten loose sticks (or use accessible 'Select ten' control) and activate Bundle; show a band around exactly ten, then show ten still counted inside when expanded. Beat 2: Unbundle the group of ten while leaving the seven loose ones; reveal 17 loose pieces, then bundle ten again.
+              3. **`markdown` — currently renderable:** “Ten objects before, ten objects after; regrouping changes organization only. Both layouts show seventeen objects; only standard packing has 1 ten and 7 remaining ones.”
+            - **Learner actions and explanatory feedback:**
+              - Beat 1: “There are ten loose sticks. Can you turn exactly ten into one bundle?” The learner select all ten loose sticks (or use accessible 'Select ten' control) and activate Bundle; show a band around exactly ten, then show ten still counted inside when expanded. **Expected observation:** 10 loose ones → 1 ten-bundle + 0 loose ones; total unchanged at 10. **If reasoning is inaccurate:** If the learner thinks one bundle equals one stick, open the bundle to show ten original members and reconcile the item ledger. **Exact result:** Ten objects before, ten objects after; regrouping changes organization only.
+              - Beat 2: “Here are one ten-bundle and seven loose sticks. What if you unbundle the ten?” The learner unbundle the group of ten while leaving the seven loose ones; reveal 17 loose pieces, then bundle ten again. **Expected observation:** 1 ten + 7 ones = 17; 0 tens + 17 loose ones = 17; return to 1 ten + 7 ones. **If reasoning is inaccurate:** If total 7 is predicted after unbundling, count all ten released pieces plus seven others; nothing disappeared. **Exact result:** Both layouts show seventeen objects; only standard packing has 1 ten and 7 remaining ones.
+            - **Visible explanation and reason to continue:** The child can reveal the fully worked model rather than submit a forced guess. Ask the learner to say or select what changed and what remained invariant before continuing.
+            - **Accessibility / RTL / locale:** Bundle is an accessible group named 'ten sticks'; when unpacked, the ledger enumerates the same ten stable items. Cannot bundle nine or fewer and cannot double-count a bundled stick. Localized control names, keyboard/touch/switch focus order, reduced-motion instantaneous transitions and identical nonvisual numeric evidence are necessary.
+            - **Implementation dependency:** Entire new Bundle Exchange Workbench component is **proposed**, prop-free and unimplemented. Its scenario data belongs inside the Scene, not an invented Resource prop. No Question bank, score, mastery event or Note API.
+      section2:
+        config:
+          id: "d82cbe86-21b9-4901-a276-650c0798847f"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "What changed when we packed ten?"
+            navigationLabel:
+              en: "What changed when we packed ten?"
+          content:
+            items:
+              text1:
+                config:
+                  id: "39387774-ad38-40a3-a670-75a27640c311"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "If you put a band around ten sticks, do you have fewer sticks than before?"
+                production:
+                  purpose: "What changed when we packed ten?: text resource at position 1 (source provisional)"
+                  specification: "1. **`text` — currently renderable:** “If you put a band around ten sticks, do you have fewer sticks than before?”"
+              markdown2:
+                config:
+                  id: "78a6e77b-45c6-48e8-9f0c-f9e977ab44be"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "No. The bundle has the same ten sticks inside. Replacing ten loose ones with one ten-bundle changes their grouping, not their total. With two tens and three loose ones, there are twenty-three sticks; with three tens and two loose ones, there are thirty-two."
+                production:
+                  purpose: "What changed when we packed ten?: markdown resource at position 2 (source provisional)"
+                  specification: "2. **`markdown` — currently renderable:** “No. The bundle has the same ten sticks inside. Replacing ten loose ones with one ten-bundle changes their grouping, not their total. With two tens and three loose ones, there are twenty-three sticks; with three tens and two loose ones, there are thirty-two.”"
+              text3:
+                config:
+                  id: "3b387a9a-af38-43c9-a470-727c7440bfeb"
+                  slug: "text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Now explain the rule using a new example, not just the picture you saw."
+                production:
+                  purpose: "What changed when we packed ten?: text resource at position 3 (source provisional)"
+                  specification: "3. **`text` — currently renderable:** “Now explain the rule using a new example, not just the picture you saw.”"
+            order: ["text1", "markdown2", "text3"]
+        production:
+          purpose: "Recover the relationship from memory and distinguish it from a plausible mistaken shortcut."
+          pedagogicalIntent: "Original Section 2: What changed when we packed ten? (provisional draft)"
+          productionNotes: |-
+            - **Purpose and learner outcome:** Recover the relationship from memory and distinguish it from a plausible mistaken shortcut.
+            - **Section contract:** `LessonSection_Config`, one vertically ordered column.
+            - **Ordered content blocks:**
+              1. **`text` — currently renderable:** “If you put a band around ten sticks, do you have fewer sticks than before?”
+              2. **`markdown` — currently renderable:** “No. The bundle has the same ten sticks inside. Replacing ten loose ones with one ten-bundle changes their grouping, not their total. With two tens and three loose ones, there are twenty-three sticks; with three tens and two loose ones, there are thirty-two.”
+              3. **`text` — currently renderable:** “Now explain the rule using a new example, not just the picture you saw.”
+            - **Worked response / model:** There are still ten sticks inside a ten-bundle. 'One ten and seventeen loose ones' still makes twenty-seven, but standard tens/ones notation regroups ten loose ones into another ten: two tens and seven ones.
+            - **Action and feedback:** Learner is invited to predict or explain before reading the visible explanation (or hide the text with an accessible native disclosure in a later authorized implementation). This is **unscored reflection**, not an implemented interactive self-check; the explanatory text remains accessible and no Question or scored checkpoint is invented.
+            - **Navigation / rationale:** A misconception is challenged explicitly; the next Scene changes representation so the learner must use the rule rather than repeat previous clicks.
+            - **Accessibility:** Text-first explanation is equivalent nonvisual content. Any future hide/reveal affordance must work with keyboard and announce expanded state, but is not assumed implemented.
+      section3:
+        config:
+          id: "d92cc019-20b9-476e-a376-669f069882ec"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Two-Digit Number Builder"
+            navigationLabel:
+              en: "Two-Digit Number Builder"
+          content:
+            items:
+              text1:
+                config:
+                  id: "95d80abb-5359-415c-8c2b-d1b1d0863082"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Build the number 26 using bundles and loose sticks."
+                production:
+                  purpose: "Two-Digit Number Builder: text resource at position 1 (source provisional)"
+                  specification: "1. **`text` — currently renderable:** “Build the number 26 using bundles and loose sticks.”"
+              scene2:
+                config:
+                  id: "0115e95d-611c-4b2c-a601-a94f097f8fde"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Two-Digit Number Builder"
+                production:
+                  purpose: "Two-Digit Number Builder; source Scene placeValueBuilder.scene-spec.md; use 2"
+                  specification: |-
+                    # Two-Digit Number Builder — Scene Specification
+                    
+                    Status: **Provisional Draft — Methodologist approval pending**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: [One Ten, Many Ones: Building Two-Digit Numbers Content](.this config.yaml), Section 3
+                    Methodologist objectives: [Draft Brief](.this config.yaml), relevant outcomes only; not approved
+                    Scene implementation: **Proposed, not built; prop-free**
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Learner constructs numerals from groups and detects digit reversal as a real magnitude change. Understand ten ones as one ten and use equal-value exchanges to build and interpret two-digit numbers by their tens and remaining ones. The same quantity can be shown with objects, bundles, and a numeral.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    In decimal notation a ten is equivalent to exactly ten ones. For a two-digit number n=10t+u with t from 1 to 9 and remaining ones u from 0 to 9, `t` is the tens count and `u` the ones count in its usual representation. Ten ones may be bundled into one ten, or one ten unbundled into ten ones, preserving total. 2 tens + 6 ones = 26, while 3 tens + 2 ones = 32. 27 can be modeled as 2 tens and 7 ones, or temporarily as 1 ten and 17 loose ones; the latter is a nonstandard unpacked representation rather than the ordinary two-digit tens/ones form. This lesson begins with totals 10–20 and extends via bundles to 21–49 with all intermediate language scaffolded. No multi-digit carrying algorithm or full hundreds system is assumed.
+                    
+                    **Model state at entry:** Empty two-column place-value workspace with explicit Tens and Ones headers, bundled objects inventory and independent preset challenges [26,23/32,27,34,43]. Columns are semantic regardless of RTL.
+                    
+                    **Instructional boundary:** Build and read 10–49 with bundling visuals, optional extension to 99 only after editor approval. Zero loose units may occur (20), but treatment of zero as a general positional placeholder is reserved for `zeroPlaceholder`. No written regrouping algorithm or calculation fluency, no `readWrite100` mastery assumed. No scoring. All numeric results must derive from the displayed model and stay within that boundary.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Beat 1: Build the number 26 using bundles and loose sticks.
+                    
+                    - **Exact learner-facing invitation:** “Build the number 26 using bundles and loose sticks.”
+                    - **Action / teacher model:** Place two ten-bundles and six loose units in labelled Tens/Ones containers, then select numeral 26; read as twenty-six with a language-specific voice/text alternative.
+                    - **Expected state change / observation:** 2 tens and 6 ones -> 26; 20+6=26 used only as a supported explanation, not as an unscored addition drill.
+                    - **Correct explanation / verification:** Two tens plus six ones equals 26.
+                    - **Feedback when incomplete or incorrect:** For 62, show that 6 is loose ones while 2 is ten-bundles; swapping them changes the total from 26 to 62.
+                    - **Progression:** Learner may inspect a worked reveal at any time; no irreversible grade, timeout or random success condition.
+                    
+                    ### Beat 2: A model has two tens and three ones. Another has three tens and two ones. Are the amounts equal?
+                    
+                    - **Exact learner-facing invitation:** “A model has two tens and three ones. Another has three tens and two ones. Are the amounts equal?”
+                    - **Action / teacher model:** Side-by-side inside this single Scene compare 23 and 32 with complete item/group ledger; change bundle counts rather than merely rearrange digit glyphs.
+                    - **Expected state change / observation:** 23 = 2 tens + 3 ones; 32 = 3 tens + 2 ones; difference is nine items.
+                    - **Correct explanation / verification:** 23 and 32 are different quantities; 32 has more.
+                    - **Feedback when incomplete or incorrect:** If equal, expand bundles and demonstrate 23 is not the same quantity as 32. Do not require a subtraction computation.
+                    - **Progression:** Learner may inspect a worked reveal at any time; no irreversible grade, timeout or random success condition.
+                    
+                    ### Beat 3: You have one ten and seventeen loose sticks. Can you repack to show 27 normally?
+                    
+                    - **Exact learner-facing invitation:** “You have one ten and seventeen loose sticks. Can you repack to show 27 normally?”
+                    - **Action / teacher model:** Select ten of seventeen loose sticks, bundle them, observe two ten-bundles and seven loose units.
+                    - **Expected state change / observation:** 1 ten +17 loose ones = 2 tens +7 ones =27; preserve 27 original object identities.
+                    - **Correct explanation / verification:** 27 is 2 tens and 7 ones in canonical tens/ones form.
+                    - **Feedback when incomplete or incorrect:** If 117 is proposed as numeral, explain 'one ten and seventeen loose ones' is an unpacked model and counting all objects gives 27; standard placement shows two tens and seven ones.
+                    - **Progression:** Learner may inspect a worked reveal at any time; no irreversible grade, timeout or random success condition.
+                    
+                    ### Beat 4: Without a worked example beside it, model forty-three.
+                    
+                    - **Exact learner-facing invitation:** “Without a worked example beside it, model forty-three.”
+                    - **Action / teacher model:** Independent transfer: build four bundles and three loose units, identify 43, then explain why 34 is not equivalent.
+                    - **Expected state change / observation:** 4 tens +3 ones =43, distinct from 3 tens+4 ones =34.
+                    - **Correct explanation / verification:** Four tens and three ones is 43.
+                    - **Feedback when incomplete or incorrect:** If 34 selected, compare the tens column: it has three bundles, but the model shows four.
+                    - **Progression:** Learner may inspect a worked reveal at any time; no irreversible grade, timeout or random success condition.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    **Objects:** Modelled quantity cards/items, their stable semantic identities, count/representation ledger, native controls and visible explanation. Add/remove a ten-bundle, add/remove a loose one, Trade bundle for ten ones, Bundle ten loose units, Read numeral, Reveal explanation, Reset; constraints stay within 10–49 in main pathway.
+                    
+                    **Local state and invariants:**
+                    
+                    - Initial values come from deterministic constants within the standalone Scene module, **not** a Lesson prop, global store, new Resource subtype, invented platform API or fake locale prop.
+                    - Only an explicit learner action may change represented quantity, grouping or order; all labels and accessible counts derive from the same authoritative local model.
+                    - Do not allow an object to be consumed/paired/placed twice when that would alter the mathematics. **Reset** restores exactly this Scene's initial state, not any other Section; scenario changes cannot leak answers or counters from the previous state.
+                    - Predictions are formative and are not persisted as assessment evidence or Skill mastery. **Reveal** gives the worked cause-and-effect account, not only 'correct'.
+                    - 2 tens+6 ones ->26; reversed two-digit string is not accepted as equal. 23 versus 32 are correctly modelled as different quantities. 1 ten+17 ones repacks to 2 tens+7 ones preserving 27 items. 4 tens+3 ones ->43 and can be distinguished from 34. All placement operations deterministic, reversible, keyboard-operable and independent of visual color.
+                    
+                    **Controls and agency:** Add/remove a ten-bundle, add/remove a loose one, Trade bundle for ten ones, Bundle ten loose units, Read numeral, Reveal explanation, Reset; constraints stay within 10–49 in main pathway. Use no invisible timer, precision drag requirement or external network request.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Use low-overhead SVG/HTML where useful, countable distinct units, stable labels, and restrained visual state changes that the child can advance at their own pace. Provide a simple text ledger and objects that remain discernible at mobile/zoom sizes. Optional spoken narration requires accurate offline locale audio plus captions/transcripts; **audio is not essential** and is not generated by this spec. Reduced motion substitutes immediate equivalent updates. Never hide an instructional item behind an illustration or depend on color/size cues alone.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Explicit role labels 'Tens' and 'Ones', numeric counts and text ledger; semantic CSS layout for RTL with digit sequence and value retained. Accessible button alternatives rather than drag-only placement.
+                    
+                    Translate all prompts, state summaries, every number word, error explanations, aria names and Note-related cues fully in every Engine-supported locale; English here is only editorial source. RTL layouts must preserve mathematics (number order, pairing identities, ten/one roles and/or logical item indices); numeric text remains correct rather than mirrored. Every action works by keyboard, switch and touch, with visible focus and meaningful nonvisual readout; no mandatory drag or hover, no color-only distinction, readable contrast, reduced motion and 200% zoom. The same interaction and math must be available once selected-locale Lesson resources are downloaded for offline use on weak devices. This is an implementation requirement, **not** evidence that a current PWA or Scene exists.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. 2 tens+6 ones ->26; reversed two-digit string is not accepted as equal.
+                    2. 23 versus 32 are correctly modelled as different quantities.
+                    3. 1 ten+17 ones repacks to 2 tens+7 ones preserving 27 items.
+                    4. 4 tens+3 ones ->43 and can be distinguished from 34.
+                    5. All placement operations deterministic, reversible, keyboard-operable and independent of visual color.
+                    6. For beat 1, expected: Two tens plus six ones equals 26. Wrong/partial branch: For 62, show that 6 is loose ones while 2 is ten-bundles; swapping them changes the total from 26 to 62.
+                    7. For beat 2, expected: 23 and 32 are different quantities; 32 has more. Wrong/partial branch: If equal, expand bundles and demonstrate 23 is not the same quantity as 32. Do not require a subtraction computation.
+                    8. For beat 3, expected: 27 is 2 tens and 7 ones in canonical tens/ones form. Wrong/partial branch: If 117 is proposed as numeral, explain 'one ten and seventeen loose ones' is an unpacked model and counting all objects gives 27; standard placement shows two tens and seven ones.
+                    9. For beat 4, expected: Four tens and three ones is 43. Wrong/partial branch: If 34 selected, compare the tens column: it has three bundles, but the model shows four.
+                    10. Reset/restoration, no cross-Scene state, logical RTL, fully nonvisual keyboard completion, reduced-motion and offline selected-locale replay all yield mathematically identical results.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    - Explicit editorial approval of Methodologist Brief (currently **Draft**) and this Scene specification is required before a Scene Designer or Coding Agent begins implementation.
+                    - Generic `scene` Resource currently exists; **Two-Digit Number Builder does not**. Use prop-free components with localization from the approved app context once the concrete context contract is verified. Do not invent event names, Scene props, Note storage, Question APIs, scores, badges or mastery.
+                    - QA must test every state/result above, locale copy, keyboard/screen-reader operation, LTR/RTL, mobile, reduced motion and genuine offline download; runtime implementation and its own tests are **not in this batch**.
+                    
+                    
+                    ## Section-specific use (provisional source, not implemented)
+                    
+                    2. **`scene` — typed/generic renderer exists, new Scene implementation proposed:** Two-Digit Number Builder (full Scene specification embedded in this config.yaml). Beat 1: Place two ten-bundles and six loose units in labelled Tens/Ones containers, then select numeral 26; read as twenty-six with a language-specific voice/text alternative. Beat 2: Side-by-side inside this single Scene compare 23 and 32 with complete item/group ledger; change bundle counts rather than merely rearrange digit glyphs. Beat 3: Select ten of seventeen loose sticks, bundle them, observe two ten-bundles and seven loose units. Beat 4: Independent transfer: build four bundles and three loose units, identify 43, then explain why 34 is not equivalent.
+                  productionNotes: "Scene placeValueBuilder.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+              markdown3:
+                config:
+                  id: "d21487c3-a1d4-4040-ad06-aef105d8cf36"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Two tens plus six ones equals 26. 23 and 32 are different quantities; 32 has more. 27 is 2 tens and 7 ones in canonical tens/ones form. Four tens and three ones is 43."
+                production:
+                  purpose: "Two-Digit Number Builder: markdown resource at position 3 (source provisional)"
+                  specification: "3. **`markdown` — currently renderable:** “Two tens plus six ones equals 26. 23 and 32 are different quantities; 32 has more. 27 is 2 tens and 7 ones in canonical tens/ones form. Four tens and three ones is 43.”"
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Learner constructs numerals from groups and detects digit reversal as a real magnitude change."
+          pedagogicalIntent: "Original Section 3: Two-Digit Number Builder (provisional draft)"
+          productionNotes: |-
+            - **Purpose and learner outcome:** Learner constructs numerals from groups and detects digit reversal as a real magnitude change.
+            - **Section contract:** `LessonSection_Config` with **one vertically ordered** nonempty Resource list. This is not a `Quiz_Config`.
+            - **Ordered content blocks:**
+              1. **`text` — currently renderable:** “Build the number 26 using bundles and loose sticks.”
+              2. **`scene` — typed/generic renderer exists, new Scene implementation proposed:** Two-Digit Number Builder (full Scene specification embedded in this config.yaml). Beat 1: Place two ten-bundles and six loose units in labelled Tens/Ones containers, then select numeral 26; read as twenty-six with a language-specific voice/text alternative. Beat 2: Side-by-side inside this single Scene compare 23 and 32 with complete item/group ledger; change bundle counts rather than merely rearrange digit glyphs. Beat 3: Select ten of seventeen loose sticks, bundle them, observe two ten-bundles and seven loose units. Beat 4: Independent transfer: build four bundles and three loose units, identify 43, then explain why 34 is not equivalent.
+              3. **`markdown` — currently renderable:** “Two tens plus six ones equals 26. 23 and 32 are different quantities; 32 has more. 27 is 2 tens and 7 ones in canonical tens/ones form. Four tens and three ones is 43.”
+            - **Learner actions and explanatory feedback:**
+              - Beat 1: “Build the number 26 using bundles and loose sticks.” The learner place two ten-bundles and six loose units in labelled Tens/Ones containers, then select numeral 26; read as twenty-six with a language-specific voice/text alternative. **Expected observation:** 2 tens and 6 ones -> 26; 20+6=26 used only as a supported explanation, not as an unscored addition drill. **If reasoning is inaccurate:** For 62, show that 6 is loose ones while 2 is ten-bundles; swapping them changes the total from 26 to 62. **Exact result:** Two tens plus six ones equals 26.
+              - Beat 2: “A model has two tens and three ones. Another has three tens and two ones. Are the amounts equal?” The learner side-by-side inside this single Scene compare 23 and 32 with complete item/group ledger; change bundle counts rather than merely rearrange digit glyphs. **Expected observation:** 23 = 2 tens + 3 ones; 32 = 3 tens + 2 ones; difference is nine items. **If reasoning is inaccurate:** If equal, expand bundles and demonstrate 23 is not the same quantity as 32. Do not require a subtraction computation. **Exact result:** 23 and 32 are different quantities; 32 has more.
+              - Beat 3: “You have one ten and seventeen loose sticks. Can you repack to show 27 normally?” The learner select ten of seventeen loose sticks, bundle them, observe two ten-bundles and seven loose units. **Expected observation:** 1 ten +17 loose ones = 2 tens +7 ones =27; preserve 27 original object identities. **If reasoning is inaccurate:** If 117 is proposed as numeral, explain 'one ten and seventeen loose ones' is an unpacked model and counting all objects gives 27; standard placement shows two tens and seven ones. **Exact result:** 27 is 2 tens and 7 ones in canonical tens/ones form.
+              - Beat 4: “Without a worked example beside it, model forty-three.” The learner independent transfer: build four bundles and three loose units, identify 43, then explain why 34 is not equivalent. **Expected observation:** 4 tens +3 ones =43, distinct from 3 tens+4 ones =34. **If reasoning is inaccurate:** If 34 selected, compare the tens column: it has three bundles, but the model shows four. **Exact result:** Four tens and three ones is 43.
+            - **Visible explanation and reason to continue:** The child can reveal the fully worked model rather than submit a forced guess. Ask the learner to say or select what changed and what remained invariant before continuing.
+            - **Accessibility / RTL / locale:** Explicit role labels 'Tens' and 'Ones', numeric counts and text ledger; semantic CSS layout for RTL with digit sequence and value retained. Accessible button alternatives rather than drag-only placement. Localized control names, keyboard/touch/switch focus order, reduced-motion instantaneous transitions and identical nonvisual numeric evidence are necessary.
+            - **Implementation dependency:** Entire new Two-Digit Number Builder component is **proposed**, prop-free and unimplemented. Its scenario data belongs inside the Scene, not an invented Resource prop. No Question bank, score, mastery event or Note API.
+    order: ["section1", "section2", "section3"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |-
+    # One Ten, Many Ones: Building Two-Digit Numbers — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: buildNumbersWithTensAndOnes
+    Methodologist status: Draft
+    Code: Not implemented
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Understand ten ones as one ten and use equal-value exchanges to build and interpret two-digit numbers by their tens and remaining ones. The same quantity can be shown with objects, bundles, and a numeral.
+    
+    ## Target audience
+    
+    **Primary audience: Grade 2.** Grade 2 learners ready to group quantities and reason about two-digit representations. Children may recognize numbers to 20 but need explicit support for reading new two-digit numerals through 49, so names and written labels are introduced alongside physical bundles. The chosen grade and difficulty belong to this Lesson, never to its canonical Skill definition.
+    
+    ## Prerequisites
+    
+    - Accurate one-to-one counting and cardinality at least to 20 (`oneToOne`, `basicCardinality`).
+    - Recognize single digits and read quantities/numerals up to 20 (`digits09`, `readWrite20`).
+    - Find the next number when adding one and understand that regrouping may change a representation without changing quantity; the latter is **developed** here, not assumed.
+    
+    ## Target Skills
+    
+    - [makeTen.data.ts](../../../../data/skills/numeration/placeValue/skills/makeTen.data.ts)
+    - [tensOnes.data.ts](../../../../data/skills/numeration/placeValue/skills/tensOnes.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Explain and demonstrate that exchanging ten loose ones for one ten-bundle preserves the total number of objects, and reverse the exchange.
+    - Build a two-digit quantity from tens and ones (e.g., 2 tens and 6 ones is 26) with a clear connection to the written numeral.
+    - Distinguish numbers whose digits are reversed by pointing to the different group counts (23 versus 32).
+    - Repack a nonstandard representation such as one ten and seventeen loose ones into two tens and seven ones without adding or losing objects.
+    - Independently model a new value within the supported range and explain its tens and remaining ones.
+    
+    These outcomes describe teachable reasoning and meaningful unscored observation; the Lesson itself is not evidence of mastery.
+    
+    ## Essential subject matter
+    
+    In decimal notation a ten is equivalent to exactly ten ones. For a two-digit number n=10t+u with t from 1 to 9 and remaining ones u from 0 to 9, `t` is the tens count and `u` the ones count in its usual representation. Ten ones may be bundled into one ten, or one ten unbundled into ten ones, preserving total. 2 tens + 6 ones = 26, while 3 tens + 2 ones = 32. 27 can be modeled as 2 tens and 7 ones, or temporarily as 1 ten and 17 loose ones; the latter is a nonstandard unpacked representation rather than the ordinary two-digit tens/ones form. This lesson begins with totals 10–20 and extends via bundles to 21–49 with all intermediate language scaffolded. No multi-digit carrying algorithm or full hundreds system is assumed.
+    
+    ## Conceptual progression and dependencies
+    
+    Known ten objects → physically exchange a complete group for one labelled ten → compose a second bundle and compare what changed → translate bundles to two-digit notation → reverse the operation without changing total → explain a new two-digit example independently.
+    
+    ## Misconceptions, examples and boundaries
+    
+    **Anticipated misconceptions:** A ten-bundle has one object's value rather than ten; swapping a bundle 'loses' nine units; 2 tens and 3 ones is 32; reversing 23 to 32 leaves value unchanged; 'one ten and seventeen ones' should display a two-digit tens/ones label as 1,17.
+    
+    **Instructional depth and hard boundaries:** Build and read 10–49 with bundling visuals, optional extension to 99 only after editor approval. Zero loose units may occur (20), but treatment of zero as a general positional placeholder is reserved for `zeroPlaceholder`. No written regrouping algorithm or calculation fluency, no `readWrite100` mastery assumed. No scoring.
+    
+    **Concrete reference models:**
+    
+    - Ten objects before, ten objects after; regrouping changes organization only.
+    - Both layouts show seventeen objects; only standard packing has 1 ten and 7 remaining ones.
+    - Two tens plus six ones equals 26.
+    - 23 and 32 are different quantities; 32 has more.
+    - 27 is 2 tens and 7 ones in canonical tens/ones form.
+    - Four tens and three ones is 43.
+    
+    ## Localization, accessibility and offline intent
+    
+    Learner-facing text in these files is **English editorial prototype copy**, not an implemented or complete localized lesson. Every prompt, numeral word, feedback response, control label and nonvisual state requires accurate translations for the current full Engine locale roster, with no fallback and locale-correct number formatting. The screen reading order and comparison or place-value roles remain mathematically meaningful in both LTR and RTL; do not merely flip digits or reverse sequences. Provide nonvisual semantic object/number ledgers, touch and keyboard/switch operation, visible focus, a reduced-motion path, zoom/mobile support and non-color feedback in accordance with WCAG 2.2 AA. After the selected package is downloaded, equivalent reasoning and content should run offline on weak devices. These are **production requirements, not claims of implementation**.
+    
+    ## Sources and factual verification
+    
+    - Canonical Skill `*.data.ts` files linked in Target Skills (copied byte-for-byte from Mathematics `main` in Batch 1; UUIDs/definitions unchanged).
+    - [Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md): division between Methodologist, Content, Scene and implementation.
+    - [Learning Experience Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md): manipulative explanation, independent retrieval and transfer.
+    - [Accessibility and localization](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) and [offline-first intent](../../../../../../studio/docs/architecture/offline-first-and-device-compatibility.md) establish implementation constraints.
+    
+    **Skill-specific verification:** Canonical `makeTen.data.ts` and `tensOnes.data.ts` specify grouping/un-grouping invariant and equivalent two-digit representations respectively. They belong together in one conceptually coherent lesson. Their static UUIDs remain untouched.
+    
+    ## Curriculum / Program compatibility
+    
+    No named Curriculum; autonomous Program-neutral Lesson. No national standards alignment or existing implementation is claimed.
+    
+    ## Open editorial decisions
+    
+    - Editor/Methodologist must approve the selected grade, target Skills, prerequisites, examples and numerical depth before this Brief becomes authoritative.
+    - Editor to confirm lesson sequence relative to other draft Lessons; do not treat existing Lessons as approved mastery evidence.
+    - Production specialists must separately approve full supported-locale translations, Scene accessibility and offline feasibility. Nonvisual/equivalent access may not be silently dropped for performance.
+    
+    ## Methodologist handoff
+    
+    **Draft — awaiting explicit editor approval.** Content and Scene specifications prepared alongside this Brief are **provisional Drafts under batch authorization**. They cannot pass the normal Screenwriter approval gate or authorize React code, runtime Lesson data, Questions/Quizzes, scores, Note persistence or Scene implementation.
+  purpose: "One Ten, Many Ones: Building Two-Digit Numbers: preserve existing standalone Lesson plan without new assessments or Scene implementation"
+  productionNotes: |-
+    Provisional Screenwriter source (not approved), originally content.md; all introductory, global and review material:
+    
+    # One Ten, Many Ones: Building Two-Digit Numbers — Content
+    
+    Status: **Provisional Draft — pending Methodologist Brief approval**
+    Target Lesson: `content/playground/Data/Lessons/1/buildNumbersWithTensAndOnes/`
+    Primary audience: Grade 2 — Grade 2 learners ready to group quantities and reason about two-digit representations. Children may recognize numbers to 20 but need explicit support for reading new two-digit numerals through 49, so names and written labels are introduced alongside physical bundles.
+    Methodologist source: Methodologist Brief (incorporated in this config.yaml) (**Draft, not approved**)
+    Target Skills: exactly those canonical `*.data.ts` links in the Brief; do not duplicate or rewrite them here
+    Program dependence: None
+    Runtime Lesson status: Not implemented
+    
+    ## INSTRUCTIONAL CONCEPT
+    
+    Understand ten ones as one ten and use equal-value exchanges to build and interpret two-digit numbers by their tens and remaining ones. The same quantity can be shown with objects, bundles, and a numeral. The experience deliberately connects an observable cause to a numerical conclusion. Short prompts trigger learner prediction; interactive evidence corrects reasoning in a non-punitive way, followed by a simple verbal rule and an independent changed-context attempt.
+    
+    In decimal notation a ten is equivalent to exactly ten ones. For a two-digit number n=10t+u with t from 1 to 9 and remaining ones u from 0 to 9, `t` is the tens count and `u` the ones count in its usual representation. Ten ones may be bundled into one ten, or one ten unbundled into ten ones, preserving total. 2 tens + 6 ones = 26, while 3 tens + 2 ones = 32. 27 can be modeled as 2 tens and 7 ones, or temporarily as 1 ten and 17 loose ones; the latter is a nonstandard unpacked representation rather than the ordinary two-digit tens/ones form. This lesson begins with totals 10–20 and extends via bundles to 21–49 with all intermediate language scaffolded. No multi-digit carrying algorithm or full hundreds system is assumed.
+    
+    ## LEARNER JOURNEY
+    
+    1. **Investigate with concrete objects.** The learner meets a small, comprehensible situation and changes it with Bundle Exchange Workbench; the output makes the relevant mathematical invariant visible. This Scene includes two stages with a deliberate contrast or boundary case.
+    2. **Explain, predict and retrieve.** A short supported text/Markdown Section contrasts a tempting wrong rule with the correct one and asks for a reason before displaying a worked explanation. No automatic assessment is implied.
+    3. **Transfer without the original picture.** Two-Digit Number Builder presents different objects/representations and an unfamiliar challenge. The learner can explore, retry and inspect a full causal explanation without score or irreversible failure.
+    
+    ## SECTION
+    
+    ## CUSTOM SCENE SPECIFICATIONS
+    
+    - [Bundle Exchange Workbench](./scenes/bundleExchange.scene-spec.md) — concrete exploratory model and boundary contrast, independent prop-free Scene.
+    - [Two-Digit Number Builder](./scenes/placeValueBuilder.scene-spec.md) — independently initialized transfer model, distinct interaction with separate prop-free Scene.
+    
+    Both are **proposed** components. Current generic `scene` Resource support does not mean that either specific Scene exists in runtime. There is no `sceneMode` prop, fake Resource metadata or fabricated event contract.
+    
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+    
+    - **Section 1 when ten loose pieces become one bundle:** “One ten is worth ten ones.” — proposed after the learner has seen and explained the corresponding model, not after a correctness threshold. Exact event schema/unlock handling **not implemented**.
+    - **Section 3 when digits are compared:** “In 23, the 2 means two tens and the 3 means three ones.” — proposed after the learner has seen and explained the corresponding model, not after a correctness threshold. Exact event schema/unlock handling **not implemented**.
+    
+    Notes are proposed concise recall anchors, not full Lesson summaries. The architecture has **no verified implemented Note type, unlock event, storage, synchronization or spaced-review sheet**; future development must specify stable identity and ordering separately.
+    
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+    
+    Section 1 supplies coached formative reasoning; Section 2 supports retrieval with worked explanation; Section 3 tests applicability by changing the setting. Correct selections alone do not constitute independent mastery. If an Assessment Architect later adds graded Questions, that role owns validity, scoring and retries; none are authored here. Future spaced retrieval is an editorial opportunity, **not** an implemented scheduler.
+    
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+    
+    Every prompt, alternative text, digit/number word, Scene state, feedback, Focus label, Note and any spoken support must be genuinely translated into every currently supported locale using the project's Engine language definitions. Text in this file is English source editorial copy **not** 27/other locale production resources. No silent English fallback. Number strings retain logical order; comparisons, count sequence and place-value column semantics must survive semantic RTL. WCAG 2.2 AA plan includes keyboard/switch/touch parity, nonvisual ordered state ledger, visible focus, appropriate contrast/targets, no precision drag, no color-only or sound-only information, 200% zoom, reduced motion and small-screen equivalence. Mathematical explanations must be fully available on a low-end downloaded offline package; current PWA completion is **not claimed**.
+    
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+    
+    | Item                                                           | Actual status                                     | Owner / next step                                               |
+    | -------------------------------------------------------------- | ------------------------------------------------- | --------------------------------------------------------------- |
+    | General `LessonSection_Config` with ordered Resource list      | Existing Code contract                            | Coding Agent assembles Lesson only after approvals              |
+    | Generic `text`, `markdown`, `scene` Resource rendering         | Existing Playground renderer                      | Coding Agent verifies current implementation                    |
+    | Bespoke Bundle Exchange Workbench and Two-Digit Number Builder | **Proposed**; only Screenwriter scene specs exist | Editor approves specs, then Scene Designer implements and tests |
+    | Locales / screen readers / semantic RTL / media alternatives   | Design requirements; not delivered here           | Localization and QA must verify                                 |
+    | Fully downloaded offline experience                            | Required target; not established by these docs    | App/PWA integration and airplane-mode tests                     |
+    | Notes and persistence                                          | Planned only, no verified Note runtime            | Separate future architectural approval                          |
+    | Questions, Quizzes, scoring, mastery                           | **Not authored**                                  | Assessment Architect owns separate stage                        |
+    
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+    
+    - [Draft Methodologist Brief](./methodologist-brief.md) (including exact Skill source links and numerical boundaries).
+    - [Studio Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md) and [Section entity](../../../../../../studio/docs/entities/section.md).
+    - Specific unresolved approvals: selected grade and outcomes, Scene spec feasibility, complete locale coverage, and accessible/offline equivalence.
+    
+    ## HANDOFF
+    
+    **Provisional Screenwriter Draft, explicitly not approved.** Editor first reviews the Draft Brief, then Content and each Scene spec. Implementers must not infer code readiness, registered Skills, Question/Quiz data, Note events, locale completion or approval from these documents.
+    
+    Source-language-only English draft; intended locale list follows the current Engine supported language set (ar, be, bn, de, en, es, et, fr, he, hi, id, ja, ka, kk, ko, lt, lv, mr, ms, pl, pt, qm, ta, te, tr, uk, ur, vi, zh), with genuine translations required before implementation. No formal independent approval is implied.
