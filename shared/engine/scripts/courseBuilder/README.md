@@ -66,19 +66,44 @@ UNRESOLVED_LESSON_N and a TODO recording the original UUID and location.
 The editor must resolve the actual import; no Lesson is fabricated and no
 implementation lookup is performed. Such unfinished drafts may not typecheck.
 
-### Optional Course-owned overrides
+### Optional Course-owned Build API overrides
 
-If the Course directory contains overrides.yaml, its YAML data is preserved
-unaltered in the exported <slug>_OverrideEditorial constant, including
-slotKey, lessonId, ordered operations, and Course-owned source references.
-This is an **explicit handoff**, not an executable patch.
+The optional Course-local `overrides.yaml` is **the exact declarative patch
+argument** for the current stateless `course.build.overrides(patch, { languages })`
+API. There is **no** separate editorial operations format. The old
+`kind: course-lesson-overrides`, ordered `operations` lists, and
+`createLessonOverrides` API are unsupported and must not be consumed or
+silently converted.
 
-The old Studio operation language (section-set, block-order, etc.) cannot
-safely be translated one-to-one into the current stateless Engine
-course.build.overrides({ content: { items: ... } }, { languages }) API.
-An editor/coordinator must define and approve that mapping before creating
-typed sparse patches. The builder must not resurrect createLessonOverrides
-or edit any standalone Lesson.
+For example, given a Course whose `content.items.opening` is an imported
+standalone Lesson:
+
+```yaml
+content:
+  items:
+    opening:
+      params:
+        sections:
+          allowSkipping: false
+```
+
+The scaffolder emits `spaceCourse_Course.build.overrides(..., { languages: ... })`
+and exports the result as `spaceCourse_Overrides`. Nested Module and Chapter
+patches use `content.items.<slug>` at each level, exactly as in the current
+Build API. Additions use `additionalItems` with typed Config nodes; existing
+Lesson additions remain **references to imported standalone Lesson
+configurators**, never new Lesson definitions.
+
+The script emits an **authoring draft**; it does not evaluate or validate the
+Build API patch. An AI editor completes missing imports, translations and
+typed patches before normal TypeScript checks and publication. No Course
+operation may write to a standalone Lesson folder.
+
+`source.path` and `source.export` on a Course `type: lesson` node are optional
+TypeScript import coordinates, **not** an existence marker or an instruction
+to generate a Lesson. The Lesson is always owned by its independent UUID.
+If coordinates are missing, emit an unresolved reference and require explicit
+Lesson Production work or import resolution.
 
 ## Run
 
@@ -130,7 +155,6 @@ source is changed.
 The following requires deliberate editorial/coordination work, not generator
 heuristics: completing Course/Module/Chapter identity fields; resolving
 existing Lesson imports; translating Course/group/episode copy; authoring
-Episode and Section content; converting the old operations-only
-overrides.yaml into Engine's sparse patch model; validating Config types and
+Episode and Section content; completing direct Build API patches; validating Config types and
 publishing Course Props. Coordinate source-format changes with the Studio/schema
 workstream; do not silently alter the Engine schemas to accommodate a draft.
