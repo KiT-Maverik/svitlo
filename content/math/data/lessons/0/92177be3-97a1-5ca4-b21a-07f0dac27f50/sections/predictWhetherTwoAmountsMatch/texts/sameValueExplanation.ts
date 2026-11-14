@@ -1,8 +1,8 @@
 import { defineText } from '@svitlo/engine/build';
 
-export const text2 = defineText({
+export const sameValueExplanation = defineText({
   id: "8b436724-2a86-479e-856f-f96094aa39da",
-  slug: "text3",
+  slug: "sameValueExplanation",
   type: "text",
   params: {},
   locale: {

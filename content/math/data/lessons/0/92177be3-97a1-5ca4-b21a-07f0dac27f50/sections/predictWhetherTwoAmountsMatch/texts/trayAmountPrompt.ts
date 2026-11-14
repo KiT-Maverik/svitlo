@@ -1,8 +1,8 @@
 import { defineText } from '@svitlo/engine/build';
 
-export const text1 = defineText({
+export const trayAmountPrompt = defineText({
   id: "b32df671-84cb-4c85-8139-8bb716dfc143",
-  slug: "text1",
+  slug: "trayAmountPrompt",
   type: "text",
   params: {},
   locale: {
