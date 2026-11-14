@@ -1,0 +1,761 @@
+config:
+  id: "846ed388-3e5e-5c8f-8320-fcbd2c38903e"
+  slug: "equalPartsOfAWhole"
+  type: "lesson"
+  skills:
+    - "3b27b894-46e8-4a2a-b151-43b52224ba4c"
+  params:
+    requireQuiz: false
+    languages:
+      - "ar"
+      - "be"
+      - "bn"
+      - "de"
+      - "en"
+      - "es"
+      - "et"
+      - "fr"
+      - "he"
+      - "hi"
+      - "id"
+      - "ja"
+      - "ka"
+      - "kk"
+      - "ko"
+      - "lt"
+      - "lv"
+      - "mr"
+      - "ms"
+      - "pl"
+      - "pt"
+      - "qm"
+      - "ta"
+      - "te"
+      - "tr"
+      - "uk"
+      - "ur"
+      - "vi"
+      - "zh"
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Equal Parts of One Whole"
+  section:
+    items:
+      section1WhichShapeIsTheWhole:
+        config:
+          id: "2addf864-bc2b-4a32-8ed7-07b3182115e5"
+          slug: "section1WhichShapeIsTheWhole"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Which shape is the whole?"
+            navigationLabel:
+              en: "Which shape is the whole?"
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: "517bd18a-5c27-4451-8700-fef85a5cab23"
+                  slug: "section1Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "This is one whole sheet of paper. If we cut it, all the new pieces together still make this one sheet. Point to the whole."
+                production:
+                  purpose: "Original learner-facing text block, provisional editorial draft"
+                  specification: "1. **`text` (existing type):** “This is one whole sheet of paper. If we cut it, all the new pieces together still make this one sheet. Point to the whole.”"
+              section1Scene2:
+                config:
+                  id: "21074c8e-d1ab-4f6b-88d3-7ec8d87fed2d"
+                  slug: "section1Scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "This is one whole sheet of paper. If we cut it, all the new pieces together still make this one sheet. Point to the whole."
+                production:
+                  purpose: "Provisional Scene placement in Which shape is the whole?, self-contained and not implemented"
+                  specification: |
+                      # PartitionLab — Interactive Scene Specification
+                      
+                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                      **Lesson:** Equal Parts of One Whole Content (full original source: this Lesson's production notes)
+                      **Methodologist scope:** Draft Brief (full original source: production.methodology)
+                      **Canonical target Skill:** [wholeAndEqualParts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/wholeAndEqualParts.data.ts)
+                      **Implementation:** Proposed, not implemented
+                      
+                      ## Educational purpose and why a Scene is justified
+                      
+                      Recognize a chosen whole and decide whether it has been partitioned into parts of equal area, including when the equal pieces look different.
+                      
+                      Choose a cut by a labelled button; predict equal/unequal; reveal the unit-square or matching explanation; move between preset wholes; reset. All parts stay attached to their own displayed original outlines.
+                      
+                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                      
+                      ## Content and visual model
+                      
+                      Draw a midpoint vertical cut and an off-center vertical cut on exactly the same rectangle, then place a diagonal cut as a counterexample to the 'same outline' misconception. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                      
+                      ## Required observable states and correct explanations
+                      
+                      | State            | Required representation                                                                     | Mathematical truth                                           |
+                      | ---------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+                      | Initial          | One 8×4 rectangle, 32 congruent unit squares, no cut; 'Show whole' highlights outer border. | Identifies one reference whole rather than a detached piece. |
+                      | Middle split     | Vertical cut into 4×4 + 4×4: areas 16 and 16.                                               | Both parts are equal; two halves.                            |
+                      | Off-centre split | Vertical cut into 2×4 + 6×4: areas 8 and 24.                                                | Two parts exist but are unequal.                             |
+                      | Diagonal split   | Corner-to-corner diagonal of an 8×4 rectangle: two right triangles each area 16.            | Triangles differ in orientation, yet have equal area.        |
+                      | Changed whole    | 4×4 split into two 8-unit halves versus 8×4 split into two 16-unit halves.                  | Equal parts of different wholes need not match.              |
+                      
+                      ## Interaction protocol (pedagogical, not an API)
+                      
+                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                      
+                      ## Specific explanatory feedback and edge cases
+                      
+                      - **Which shape is the whole?:** If only a piece is selected as the whole: “That is one piece. Follow the original outer border to find the whole sheet.”
+                      - **A cut does not guarantee equal parts:** For incorrect 'equal' on 2+6: “Count or match the covered squares: this side covers 8 small squares and the other 24. They are not equal.”
+                      - **Equal parts can have different outlines:** If 'not equal' is selected: “The outlines are triangles, but turning one shows the pieces match in area; each is half of the same sheet.”
+                      - **What if the whole changes?:** If 'same size' is chosen: “Check which original sheet is larger; equal division does not make the two wholes the same.”
+                      
+                      **Do not teach outside this boundary:** Use one rectangular paper sheet, its equal-area halves and quarters, and a contrasting off-center cut. Equal means equal area of the same whole, not necessarily identical shape or outline. Defer fraction symbols, numerator/denominator language, arithmetic with fractions and area formulas.
+                      
+                      ## Nonvisual and keyboard-equivalent learning path
+                      
+                      Offer nonvisual labelled area statements, e.g. 'Left area 8 of 32; right area 24 of 32', then ask the same comparison without requiring shape recognition.
+                      
+                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                      
+                      ## Localization, RTL, mobile, offline and performance
+                      
+                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                      
+                      ## Build and review handoff
+                      
+                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                      
+                      
+                      ## Scene occurrence in Screenwriter Section
+                      
+                      2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Partition Lab starts with one uncut 8-by-4 grid rectangle. Select 'Whole' to highlight the entire area; then reveal two candidate cuts, but keep the original outline visible.
+                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+              section1Markdown3:
+                config:
+                  id: "cdfb6424-d99a-4ef3-8da0-a6ad49c1fc7a"
+                  slug: "section1Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The whole is the complete sheet we chose. To talk about equal parts, we compare the pieces of that same sheet."
+                production:
+                  purpose: "Original learner-facing markdown block, provisional editorial draft"
+                  specification: "3. **`markdown` (existing type):** “The whole is the complete sheet we chose. To talk about equal parts, we compare the pieces of that same sheet.”"
+            order:
+              - "section1Text1"
+              - "section1Scene2"
+              - "section1Markdown3"
+        production:
+          purpose: "Which shape is the whole?"
+          pedagogicalIntent: "Which shape is the whole?"
+          productionNotes: |
+              ### Section 1 — Which shape is the whole?
+              
+              **Learning purpose:** Anchor the reference whole before comparing pieces.
+              
+              **Vertical Resource sequence:**
+              
+              1. **`text` (existing type):** “This is one whole sheet of paper. If we cut it, all the new pieces together still make this one sheet. Point to the whole.”
+              
+              2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Partition Lab starts with one uncut 8-by-4 grid rectangle. Select 'Whole' to highlight the entire area; then reveal two candidate cuts, but keep the original outline visible.
+              
+              3. **`markdown` (existing type):** “The whole is the complete sheet we chose. To talk about equal parts, we compare the pieces of that same sheet.”
+              
+              **Learner action:** Identify the whole; predict whether every two-piece cut makes equal halves.
+              
+              **Immediate explanatory feedback:** If only a piece is selected as the whole: “That is one piece. Follow the original outer border to find the whole sheet.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+              
+              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+              
+      section2ACutDoesNotGuaranteeEqualParts:
+        config:
+          id: "945258b7-1c3d-4e53-866b-5dcc6e047b28"
+          slug: "section2ACutDoesNotGuaranteeEqualParts"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A cut does not guarantee equal parts"
+            navigationLabel:
+              en: "A cut does not guarantee equal parts"
+          content:
+            items:
+              section2Text1:
+                config:
+                  id: "72f1021b-923a-4078-82c4-4381d20f01e2"
+                  slug: "section2Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Both pictures show two pieces. Are both cuts fair shares?"
+                production:
+                  purpose: "Original learner-facing text block, provisional editorial draft"
+                  specification: "1. **`text` (existing type):** “Both pictures show two pieces. Are both cuts fair shares?”"
+              section2Scene2:
+                config:
+                  id: "007a9346-f2d4-4d70-8d94-8ead6f3a109b"
+                  slug: "section2Scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Both pictures show two pieces. Are both cuts fair shares?"
+                production:
+                  purpose: "Provisional Scene placement in A cut does not guarantee equal parts, self-contained and not implemented"
+                  specification: |
+                      # PartitionLab — Interactive Scene Specification
+                      
+                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                      **Lesson:** Equal Parts of One Whole Content (full original source: this Lesson's production notes)
+                      **Methodologist scope:** Draft Brief (full original source: production.methodology)
+                      **Canonical target Skill:** [wholeAndEqualParts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/wholeAndEqualParts.data.ts)
+                      **Implementation:** Proposed, not implemented
+                      
+                      ## Educational purpose and why a Scene is justified
+                      
+                      Recognize a chosen whole and decide whether it has been partitioned into parts of equal area, including when the equal pieces look different.
+                      
+                      Choose a cut by a labelled button; predict equal/unequal; reveal the unit-square or matching explanation; move between preset wholes; reset. All parts stay attached to their own displayed original outlines.
+                      
+                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                      
+                      ## Content and visual model
+                      
+                      Draw a midpoint vertical cut and an off-center vertical cut on exactly the same rectangle, then place a diagonal cut as a counterexample to the 'same outline' misconception. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                      
+                      ## Required observable states and correct explanations
+                      
+                      | State            | Required representation                                                                     | Mathematical truth                                           |
+                      | ---------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+                      | Initial          | One 8×4 rectangle, 32 congruent unit squares, no cut; 'Show whole' highlights outer border. | Identifies one reference whole rather than a detached piece. |
+                      | Middle split     | Vertical cut into 4×4 + 4×4: areas 16 and 16.                                               | Both parts are equal; two halves.                            |
+                      | Off-centre split | Vertical cut into 2×4 + 6×4: areas 8 and 24.                                                | Two parts exist but are unequal.                             |
+                      | Diagonal split   | Corner-to-corner diagonal of an 8×4 rectangle: two right triangles each area 16.            | Triangles differ in orientation, yet have equal area.        |
+                      | Changed whole    | 4×4 split into two 8-unit halves versus 8×4 split into two 16-unit halves.                  | Equal parts of different wholes need not match.              |
+                      
+                      ## Interaction protocol (pedagogical, not an API)
+                      
+                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                      
+                      ## Specific explanatory feedback and edge cases
+                      
+                      - **Which shape is the whole?:** If only a piece is selected as the whole: “That is one piece. Follow the original outer border to find the whole sheet.”
+                      - **A cut does not guarantee equal parts:** For incorrect 'equal' on 2+6: “Count or match the covered squares: this side covers 8 small squares and the other 24. They are not equal.”
+                      - **Equal parts can have different outlines:** If 'not equal' is selected: “The outlines are triangles, but turning one shows the pieces match in area; each is half of the same sheet.”
+                      - **What if the whole changes?:** If 'same size' is chosen: “Check which original sheet is larger; equal division does not make the two wholes the same.”
+                      
+                      **Do not teach outside this boundary:** Use one rectangular paper sheet, its equal-area halves and quarters, and a contrasting off-center cut. Equal means equal area of the same whole, not necessarily identical shape or outline. Defer fraction symbols, numerator/denominator language, arithmetic with fractions and area formulas.
+                      
+                      ## Nonvisual and keyboard-equivalent learning path
+                      
+                      Offer nonvisual labelled area statements, e.g. 'Left area 8 of 32; right area 24 of 32', then ask the same comparison without requiring shape recognition.
+                      
+                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                      
+                      ## Localization, RTL, mobile, offline and performance
+                      
+                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                      
+                      ## Build and review handoff
+                      
+                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                      
+                      
+                      ## Scene occurrence in Screenwriter Section
+                      
+                      2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Inspect the midpoint vertical cut (4+4 equal unit columns) and the off-center cut (2+6 columns) in Partition Lab. Select 'Equal' or 'Not equal' separately for each.
+                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+              section2Markdown3:
+                config:
+                  id: "a03aa46d-71fd-4313-8cbb-a588cd7ca2f6"
+                  slug: "section2Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Two equal halves cover the same amount of the whole. The 4+4 cut makes equal parts; the 2+6 cut does not, even though both cuts make two pieces."
+                production:
+                  purpose: "Original learner-facing markdown block, provisional editorial draft"
+                  specification: "3. **`markdown` (existing type):** “Two equal halves cover the same amount of the whole. The 4+4 cut makes equal parts; the 2+6 cut does not, even though both cuts make two pieces.”"
+            order:
+              - "section2Text1"
+              - "section2Scene2"
+              - "section2Markdown3"
+        production:
+          purpose: "A cut does not guarantee equal parts"
+          pedagogicalIntent: "A cut does not guarantee equal parts"
+          productionNotes: |
+              ### Section 2 — A cut does not guarantee equal parts
+              
+              **Learning purpose:** Distinguish number of parts from their sizes.
+              
+              **Vertical Resource sequence:**
+              
+              1. **`text` (existing type):** “Both pictures show two pieces. Are both cuts fair shares?”
+              
+              2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Inspect the midpoint vertical cut (4+4 equal unit columns) and the off-center cut (2+6 columns) in Partition Lab. Select 'Equal' or 'Not equal' separately for each.
+              
+              3. **`markdown` (existing type):** “Two equal halves cover the same amount of the whole. The 4+4 cut makes equal parts; the 2+6 cut does not, even though both cuts make two pieces.”
+              
+              **Learner action:** Compare areas, not labels, using selectable unit-square grid overlays.
+              
+              **Immediate explanatory feedback:** For incorrect 'equal' on 2+6: “Count or match the covered squares: this side covers 8 small squares and the other 24. They are not equal.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+              
+              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+              
+      section3EqualPartsCanHaveDifferentOutlines:
+        config:
+          id: "1dd87c1c-59c8-4bbb-8429-23dd6039b47a"
+          slug: "section3EqualPartsCanHaveDifferentOutlines"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Equal parts can have different outlines"
+            navigationLabel:
+              en: "Equal parts can have different outlines"
+          content:
+            items:
+              section3Text1:
+                config:
+                  id: "09fabad9-4842-42d6-851e-dc5684a6b459"
+                  slug: "section3Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A diagonal cut makes two triangles. They do not look like the two rectangles from the middle cut. Are they equal parts?"
+                production:
+                  purpose: "Original learner-facing text block, provisional editorial draft"
+                  specification: "1. **`text` (existing type):** “A diagonal cut makes two triangles. They do not look like the two rectangles from the middle cut. Are they equal parts?”"
+              section3Scene2:
+                config:
+                  id: "20c5dd3a-73b4-4dd9-8dc4-03eb1eb5b308"
+                  slug: "section3Scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "A diagonal cut makes two triangles. They do not look like the two rectangles from the middle cut. Are they equal parts?"
+                production:
+                  purpose: "Provisional Scene placement in Equal parts can have different outlines, self-contained and not implemented"
+                  specification: |
+                      # PartitionLab — Interactive Scene Specification
+                      
+                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                      **Lesson:** Equal Parts of One Whole Content (full original source: this Lesson's production notes)
+                      **Methodologist scope:** Draft Brief (full original source: production.methodology)
+                      **Canonical target Skill:** [wholeAndEqualParts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/wholeAndEqualParts.data.ts)
+                      **Implementation:** Proposed, not implemented
+                      
+                      ## Educational purpose and why a Scene is justified
+                      
+                      Recognize a chosen whole and decide whether it has been partitioned into parts of equal area, including when the equal pieces look different.
+                      
+                      Choose a cut by a labelled button; predict equal/unequal; reveal the unit-square or matching explanation; move between preset wholes; reset. All parts stay attached to their own displayed original outlines.
+                      
+                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                      
+                      ## Content and visual model
+                      
+                      Draw a midpoint vertical cut and an off-center vertical cut on exactly the same rectangle, then place a diagonal cut as a counterexample to the 'same outline' misconception. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                      
+                      ## Required observable states and correct explanations
+                      
+                      | State            | Required representation                                                                     | Mathematical truth                                           |
+                      | ---------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+                      | Initial          | One 8×4 rectangle, 32 congruent unit squares, no cut; 'Show whole' highlights outer border. | Identifies one reference whole rather than a detached piece. |
+                      | Middle split     | Vertical cut into 4×4 + 4×4: areas 16 and 16.                                               | Both parts are equal; two halves.                            |
+                      | Off-centre split | Vertical cut into 2×4 + 6×4: areas 8 and 24.                                                | Two parts exist but are unequal.                             |
+                      | Diagonal split   | Corner-to-corner diagonal of an 8×4 rectangle: two right triangles each area 16.            | Triangles differ in orientation, yet have equal area.        |
+                      | Changed whole    | 4×4 split into two 8-unit halves versus 8×4 split into two 16-unit halves.                  | Equal parts of different wholes need not match.              |
+                      
+                      ## Interaction protocol (pedagogical, not an API)
+                      
+                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                      
+                      ## Specific explanatory feedback and edge cases
+                      
+                      - **Which shape is the whole?:** If only a piece is selected as the whole: “That is one piece. Follow the original outer border to find the whole sheet.”
+                      - **A cut does not guarantee equal parts:** For incorrect 'equal' on 2+6: “Count or match the covered squares: this side covers 8 small squares and the other 24. They are not equal.”
+                      - **Equal parts can have different outlines:** If 'not equal' is selected: “The outlines are triangles, but turning one shows the pieces match in area; each is half of the same sheet.”
+                      - **What if the whole changes?:** If 'same size' is chosen: “Check which original sheet is larger; equal division does not make the two wholes the same.”
+                      
+                      **Do not teach outside this boundary:** Use one rectangular paper sheet, its equal-area halves and quarters, and a contrasting off-center cut. Equal means equal area of the same whole, not necessarily identical shape or outline. Defer fraction symbols, numerator/denominator language, arithmetic with fractions and area formulas.
+                      
+                      ## Nonvisual and keyboard-equivalent learning path
+                      
+                      Offer nonvisual labelled area statements, e.g. 'Left area 8 of 32; right area 24 of 32', then ask the same comparison without requiring shape recognition.
+                      
+                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                      
+                      ## Localization, RTL, mobile, offline and performance
+                      
+                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                      
+                      ## Build and review handoff
+                      
+                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                      
+                      
+                      ## Scene occurrence in Screenwriter Section
+                      
+                      2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Switch Partition Lab to a corner-to-corner diagonal. Select either triangle and show a turn-and-match overlay placing one on the other; also offer a labelled text explanation.
+                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+              section3Markdown3:
+                config:
+                  id: "01307db4-83be-4ad5-805f-2cc132d17ba0"
+                  slug: "section3Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Yes. These two triangles cover equal area of the original rectangle. A half does not need to be a rectangle."
+                production:
+                  purpose: "Original learner-facing markdown block, provisional editorial draft"
+                  specification: "3. **`markdown` (existing type):** “Yes. These two triangles cover equal area of the original rectangle. A half does not need to be a rectangle.”"
+            order:
+              - "section3Text1"
+              - "section3Scene2"
+              - "section3Markdown3"
+        production:
+          purpose: "Equal parts can have different outlines"
+          pedagogicalIntent: "Equal parts can have different outlines"
+          productionNotes: |
+              ### Section 3 — Equal parts can have different outlines
+              
+              **Learning purpose:** Correct the misconception that equal means same visual shape.
+              
+              **Vertical Resource sequence:**
+              
+              1. **`text` (existing type):** “A diagonal cut makes two triangles. They do not look like the two rectangles from the middle cut. Are they equal parts?”
+              
+              2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Switch Partition Lab to a corner-to-corner diagonal. Select either triangle and show a turn-and-match overlay placing one on the other; also offer a labelled text explanation.
+              
+              3. **`markdown` (existing type):** “Yes. These two triangles cover equal area of the original rectangle. A half does not need to be a rectangle.”
+              
+              **Learner action:** Inspect rotation/matching, then name the equality rule.
+              
+              **Immediate explanatory feedback:** If 'not equal' is selected: “The outlines are triangles, but turning one shows the pieces match in area; each is half of the same sheet.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+              
+              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+              
+      section4WhatIfTheWholeChanges:
+        config:
+          id: "c0f033fe-6bd4-44c3-8d3c-43edf61884d0"
+          slug: "section4WhatIfTheWholeChanges"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "What if the whole changes?"
+            navigationLabel:
+              en: "What if the whole changes?"
+          content:
+            items:
+              section4Markdown1:
+                config:
+                  id: "ca1fdce8-0e80-4d5a-803e-1b7674a15ac4"
+                  slug: "section4Markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "One small paper rectangle and one large paper rectangle are each cut exactly through the middle. Are their halves always the same size?"
+                production:
+                  purpose: "Original learner-facing markdown block, provisional editorial draft"
+                  specification: "1. **`markdown` (existing type):** “One small paper rectangle and one large paper rectangle are each cut exactly through the middle. Are their halves always the same size?”"
+              section4Scene2:
+                config:
+                  id: "feacad5e-1bf2-4c6f-8aab-6cdcdff54ded"
+                  slug: "section4Scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "One small paper rectangle and one large paper rectangle are each cut exactly through the middle. Are their halves always the same size?"
+                production:
+                  purpose: "Provisional Scene placement in What if the whole changes?, self-contained and not implemented"
+                  specification: |
+                      # PartitionLab — Interactive Scene Specification
+                      
+                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                      **Lesson:** Equal Parts of One Whole Content (full original source: this Lesson's production notes)
+                      **Methodologist scope:** Draft Brief (full original source: production.methodology)
+                      **Canonical target Skill:** [wholeAndEqualParts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/wholeAndEqualParts.data.ts)
+                      **Implementation:** Proposed, not implemented
+                      
+                      ## Educational purpose and why a Scene is justified
+                      
+                      Recognize a chosen whole and decide whether it has been partitioned into parts of equal area, including when the equal pieces look different.
+                      
+                      Choose a cut by a labelled button; predict equal/unequal; reveal the unit-square or matching explanation; move between preset wholes; reset. All parts stay attached to their own displayed original outlines.
+                      
+                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                      
+                      ## Content and visual model
+                      
+                      Draw a midpoint vertical cut and an off-center vertical cut on exactly the same rectangle, then place a diagonal cut as a counterexample to the 'same outline' misconception. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                      
+                      ## Required observable states and correct explanations
+                      
+                      | State            | Required representation                                                                     | Mathematical truth                                           |
+                      | ---------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+                      | Initial          | One 8×4 rectangle, 32 congruent unit squares, no cut; 'Show whole' highlights outer border. | Identifies one reference whole rather than a detached piece. |
+                      | Middle split     | Vertical cut into 4×4 + 4×4: areas 16 and 16.                                               | Both parts are equal; two halves.                            |
+                      | Off-centre split | Vertical cut into 2×4 + 6×4: areas 8 and 24.                                                | Two parts exist but are unequal.                             |
+                      | Diagonal split   | Corner-to-corner diagonal of an 8×4 rectangle: two right triangles each area 16.            | Triangles differ in orientation, yet have equal area.        |
+                      | Changed whole    | 4×4 split into two 8-unit halves versus 8×4 split into two 16-unit halves.                  | Equal parts of different wholes need not match.              |
+                      
+                      ## Interaction protocol (pedagogical, not an API)
+                      
+                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                      
+                      ## Specific explanatory feedback and edge cases
+                      
+                      - **Which shape is the whole?:** If only a piece is selected as the whole: “That is one piece. Follow the original outer border to find the whole sheet.”
+                      - **A cut does not guarantee equal parts:** For incorrect 'equal' on 2+6: “Count or match the covered squares: this side covers 8 small squares and the other 24. They are not equal.”
+                      - **Equal parts can have different outlines:** If 'not equal' is selected: “The outlines are triangles, but turning one shows the pieces match in area; each is half of the same sheet.”
+                      - **What if the whole changes?:** If 'same size' is chosen: “Check which original sheet is larger; equal division does not make the two wholes the same.”
+                      
+                      **Do not teach outside this boundary:** Use one rectangular paper sheet, its equal-area halves and quarters, and a contrasting off-center cut. Equal means equal area of the same whole, not necessarily identical shape or outline. Defer fraction symbols, numerator/denominator language, arithmetic with fractions and area formulas.
+                      
+                      ## Nonvisual and keyboard-equivalent learning path
+                      
+                      Offer nonvisual labelled area statements, e.g. 'Left area 8 of 32; right area 24 of 32', then ask the same comparison without requiring shape recognition.
+                      
+                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                      
+                      ## Localization, RTL, mobile, offline and performance
+                      
+                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                      
+                      ## Build and review handoff
+                      
+                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                      
+                      
+                      ## Scene occurrence in Screenwriter Section
+                      
+                      2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Select between a 4-by-4 and an 8-by-4 whole with midpoint cuts; compare covered grid-square totals with no automatic hint.
+                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+              section4Text3:
+                config:
+                  id: "09f17d89-d2a4-4b1b-8422-6b13bf77bd81"
+                  slug: "section4Text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "No. Equal parts belong to their own whole. Half of a larger sheet can cover more area than half of a smaller sheet."
+                production:
+                  purpose: "Original learner-facing text block, provisional editorial draft"
+                  specification: "3. **`text` (existing type):** “No. Equal parts belong to their own whole. Half of a larger sheet can cover more area than half of a smaller sheet.”"
+            order:
+              - "section4Markdown1"
+              - "section4Scene2"
+              - "section4Text3"
+        production:
+          purpose: "What if the whole changes?"
+          pedagogicalIntent: "What if the whole changes?"
+          productionNotes: |
+              ### Section 4 — What if the whole changes?
+              
+              **Learning purpose:** Transfer to a different reference whole.
+              
+              **Vertical Resource sequence:**
+              
+              1. **`markdown` (existing type):** “One small paper rectangle and one large paper rectangle are each cut exactly through the middle. Are their halves always the same size?”
+              
+              2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Select between a 4-by-4 and an 8-by-4 whole with midpoint cuts; compare covered grid-square totals with no automatic hint.
+              
+              3. **`text` (existing type):** “No. Equal parts belong to their own whole. Half of a larger sheet can cover more area than half of a smaller sheet.”
+              
+              **Learner action:** Make independent prediction, show reasoning, optionally reveal hint.
+              
+              **Immediate explanatory feedback:** If 'same size' is chosen: “Check which original sheet is larger; equal division does not make the two wholes the same.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+              
+              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+              
+    order:
+      - "section1WhichShapeIsTheWhole"
+      - "section2ACutDoesNotGuaranteeEqualParts"
+      - "section3EqualPartsCanHaveDifferentOutlines"
+      - "section4WhatIfTheWholeChanges"
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+      # Equal Parts of One Whole — Methodologist Brief
+      
+      Date: 2026-10-31
+      Slug: equalPartsOfAWhole
+      Methodologist status: **Draft — pending editorial approval**
+      Code: [Not implemented](#)
+      Program dependence: None
+      
+      ## Educational purpose
+      
+      Recognize a chosen whole and decide whether it has been partitioned into parts of equal area, including when the equal pieces look different. The intended conceptual change is from judging by appearance or one tempting example to checking the specific mathematical condition. This lesson serves one independently assessable canonical Skill without altering its identity.
+      
+      ## Target audience
+      
+      **Primary grade: Grade 2**, approximately ages 7–8. Children can reason about area conservation before formal fraction notation; Grade 2 gives room to distinguish equal areas from similar outlines. Assume mixed literacy and language fluency: child-facing phrasing must be short and supported by visible and nonvisual equivalents.
+      
+      ## Prerequisites
+      
+      - Count groups of two and four objects.
+      - Identify an entire shape and its pieces.
+      - Compare the amount of identical flat paper covered by two shapes without requiring area formulas.
+      
+      Prerequisite competence is a planning assumption, not evidence of mastery. A learner lacking it needs a separate scaffold, not a new definition of the target Skill.
+      
+      ## Target Skills
+      
+      - [wholeAndEqualParts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/wholeAndEqualParts.data.ts)
+      
+      ## Expected learning outcomes
+      
+      - Point to a specific reference whole and its parts.
+      - Distinguish a partition into equal-area parts from an unequal partition even when both contain two pieces.
+      - Recognize that two equal halves of one rectangular sheet may be triangular rather than rectangular.
+      - Explain why equal parts of different-sized wholes need not be equal in absolute size.
+      
+      Completing an exploratory interaction is not independent validation of mastery. Any later formal evidence or scoring belongs to an assessment design.
+      
+      ## Essential subject matter and instructional depth
+      
+      Use one rectangular paper sheet, its equal-area halves and quarters, and a contrasting off-center cut. Equal means equal area of the same whole, not necessarily identical shape or outline. Defer fraction symbols, numerator/denominator language, arithmetic with fractions and area formulas.
+      
+      The whole-and-equal-parts definition in canonical Skill specifies equal magnitude from the same reference whole; visual appearance alone does not establish equivalence.
+      
+      ## Conceptual progression and dependencies
+      
+      Start from the listed prerequisites, identify what information determines the answer, make a prediction, reveal a controlling comparison, and explain it before transfer. Draw a midpoint vertical cut and an off-center vertical cut on exactly the same rectangle, then place a diagonal cut as a counterexample to the 'same outline' misconception. Conceptual depth is set for this lesson's grade only; the Skill taxonomy remains grade-independent.
+      
+      ## Misconceptions, examples and boundaries
+      
+      - Two pieces must be halves merely because there are two.
+      - Pieces must have the same outline in order to have equal area.
+      - A half of a large sheet must equal a half of a small sheet.
+      - An off-center split is equal because both pieces are called one part.
+      
+      Concrete boundaries: Use one rectangular paper sheet, its equal-area halves and quarters, and a contrasting off-center cut. Equal means equal area of the same whole, not necessarily identical shape or outline. Defer fraction symbols, numerator/denominator language, arithmetic with fractions and area formulas. Repeated exposure alone must not be presented as mastery.
+      
+      ## Localization, accessibility and offline intent
+      
+      Plan genuine translation of all learner-facing text, controls, accessible descriptions, feedback and any narration into every configured locale. Do not create language fallbacks or substitute English as missing content. For meaningful RTL layout, preserve numbers, logical mathematical direction and shape relations; do not mirror whole diagrams indiscriminately. Include full keyboard/touch and nonvisual equivalent learning actions, visible focus, sufficient targets, contrast, reduced motion, and WCAG 2.2 AA review. After an eventual offline download the complete learning experience, including feedback and Scene assets, must be available without network access; this is a requirement, not an implementation claim.
+      
+      ## Sources and factual verification
+      
+      - Canonical Mathematics source [wholeAndEqualParts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/wholeAndEqualParts.data.ts) and its methodological description.
+      - Studio [Lesson architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md), [Section architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md), and [Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md) descriptions.
+      - The specific factual examples and edge cases must be reviewed against the canonical Skill, not used to revise it.
+      
+      ## Curriculum / Program compatibility
+      
+      This Lesson is standalone and Program-neutral. No national Curriculum, course order or Program storyline is presumed.
+      
+      ## Open editorial decisions
+      
+      - Editor must approve the Grade 2 learning depth, prerequisites, outcome coverage and target Skill relationship.
+      - Screenwriter Content and Scene specifications are authorized **provisional Drafts** for review only; neither changes this Methodologist status.
+      
+      ## Methodologist handoff
+      
+      Pending explicit approval. Screenwriter content is preparatory under this task's exception to the normal approval gate, not formally approved input. Assessment, runtime Lesson data and implementation are outside this batch.
+  productionNotes: |
+      All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
+      
+      ## Original Screenwriter introduction
+      
+      # Equal Parts of One Whole — Lesson Content
+      
+      **Status: Provisional Draft — pending Methodologist approval.**
+      **Audience:** Grade 2, approximately ages 7–8.
+      **Methodologist input:** Draft Methodologist Brief (full original source: production.methodology) — **not approved**.
+      **Canonical target Skill:** [wholeAndEqualParts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/wholeAndEqualParts.data.ts)
+      **Program dependence:** None
+      **Implementation:** No Lesson runtime objects, scored assessments or custom Scenes created by this editorial batch.
+      
+      ## Instructional concept
+      
+      Recognize a chosen whole and decide whether it has been partitioned into parts of equal area, including when the equal pieces look different. The learner should not merely name a correct option: the model must make the essential distinction observable. A new situation in the final Section checks whether the learner can use the distinction without remembering the original picture.
+      
+      The Section plans below specify **single-column top-to-bottom** Resource order. `text`, `markdown` and `scene` are verified Resource block types; the **PartitionLab Scene is proposed**, not currently a registered renderer. No Question, Quiz, scoring, success gate or Program plot is defined.
+      
+      ## Learner journey
+      
+      1. **Which shape is the whole?** — Anchor the reference whole before comparing pieces.
+      2. **A cut does not guarantee equal parts** — Distinguish number of parts from their sizes.
+      3. **Equal parts can have different outlines** — Correct the misconception that equal means same visual shape.
+      4. **What if the whole changes?** — Transfer to a different reference whole.
+      
+      ## Ordered Sections
+      
+      
+      ## Original Screenwriter concluding notes
+      
+      ## Custom Scene specification
+      
+      - PartitionLab (full original source: Scene production.specification): provides the learner-controlled model and its explanatory feedback. A Scene instance is self-contained and prop-free; repeated presentations must have independent local state. The new Scene needs future code, locale dictionaries and tests before use.
+      
+      ## Independent transfer
+      
+      A rectangular garden is split diagonally from one corner to the opposite. Explain why the two plots cover equal area without trusting their orientation. Give a first attempt without immediately showing the previous example; provide an optional hint and then a complete worked explanation. This is an instructional transfer opportunity, not a validated assessment.
+      
+      ## Proposed Lesson Note (planned only)
+      
+      **Cue:** “Equal parts have the same amount of one chosen whole.”
+      
+      Proposed editorial unlock moment: after the learner has inspected and explained the contrasting example in Section 3. Note entity/persistence/unlock events/revision schedules are not verified implemented and are **not** wired by this batch. Learners who do not engage the cue still receive the complete Lesson explanation.
+      
+      ## Localization, access and offline handoff
+      
+      This English editorial copy is **not a multilingual runtime bundle**. A later translation workflow must supply genuine complete translations for all supported locales, including Scene explanations, controls, accessible names and model descriptions. Do not silently fall back to English. The planned equivalent nonvisual action, 2D SVG/static-state rendering, semantic RTL, readable small screens, reduced motion and locally packaged offline content are implementation acceptance gates; they are not reported as implemented.
+      
+      ## Editorial gates and assessment boundaries
+      
+      **Provisional Draft, pending Methodologist approval.** Separate Content and Scene editorial reviews are also pending. Assessment Architect owns valid Questions/Quiz, evidence rules, scores, thresholds and analytics. Coding Agent owns Scene/renderer/locale implementation and automated tests. No Section here claims mastery based on a reveal, selection, or Note.
