@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
-import { assertQuestMap } from './quest.utils';
-import { fixture } from './quest.fixture';
+import { assertQuestMap } from './defineQuest.utils';
+import { fixture } from './defineQuest.fixture';
 
 describe('Configurators > Sections > quest.utils', () => {
   test('rejects missing mandatory start and invalid slug key', () => {

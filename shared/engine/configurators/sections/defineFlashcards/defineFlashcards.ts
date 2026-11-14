@@ -18,15 +18,15 @@ import {
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
-  practiceSection_Config_Schema,
-  practiceSection_Props_Schema,
-  practiceSection_Override_Config_Schema,
-  type PracticeSection_Config,
-  type PracticeSection_Locale,
-  type PracticeSection_Overrides,
-  type PracticeSection_PropsBase,
-  type PracticeSection_MetadataOverrides,
-} from './definePracticeSection.schemas';
+  flashcardsSection_Config_Schema,
+  flashcardsSection_Props_Schema,
+  flashcardsSection_Override_Config_Schema,
+  type FlashcardsSection_Config,
+  type FlashcardsSection_Locale,
+  type FlashcardsSection_Overrides,
+  type FlashcardsSection_PropsBase,
+  type FlashcardsSection_MetadataOverrides,
+} from './defineFlashcards.schemas';
 
 type Block = ContentBlock_Configurator;
 type ChildResource = {
@@ -38,15 +38,15 @@ type ChildPatch = {
   locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type LocaleBody = {
-  locale?: DeepPartial<PracticeSection_Locale<'props'>>;
-  content?: PracticeSection_PropsBase['content'];
+  locale?: DeepPartial<FlashcardsSection_Locale<'props'>>;
+  content?: FlashcardsSection_PropsBase['content'];
 };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
-  params?: PracticeSection_MetadataOverrides['params'];
-  locale?: DeepPartial<PracticeSection_Locale<'props'>>;
-  content?: PracticeSection_PropsBase['content'];
+  params?: FlashcardsSection_MetadataOverrides['params'];
+  locale?: DeepPartial<FlashcardsSection_Locale<'props'>>;
+  content?: FlashcardsSection_PropsBase['content'];
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -67,10 +67,10 @@ const validateResolvedProps = (
       ? mergeForValidation(patched, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
       : patched;
     try {
-      practiceSection_Props_Schema.parse(resolved);
+      flashcardsSection_Props_Schema.parse(resolved);
     } catch (error) {
       throw new Error(
-        'Invalid definePracticeSection Props for language ' +
+        'Invalid defineFlashcardsSection Props for language ' +
           language +
           ': ' +
           (error instanceof Error ? error.message : String(error)),
@@ -80,8 +80,8 @@ const validateResolvedProps = (
   }
 };
 
-const validate = (config: PracticeSection_Config): void => {
-  practiceSection_Config_Schema.parse(config);
+const validate = (config: FlashcardsSection_Config): void => {
+  flashcardsSection_Config_Schema.parse(config);
   const issues = [
     ...validateOrderedKeys(config.content, { path: 'content' }),
     ...validateSluggedConfiguratorMap(config.content?.items, contentBlockTypes, {
@@ -108,19 +108,19 @@ const validate = (config: PracticeSection_Config): void => {
 };
 
 /** Stateless Section authoring with ordered ContentBlock children. */
-export const definePracticeSection = <
+export const defineFlashcards = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
-  config: Omit<PracticeSection_Config, 'slug' | 'content'> & {
+  config: Omit<FlashcardsSection_Config, 'slug' | 'content'> & {
     slug: Slug;
     content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
-  } & ConfigWithLanguages<PracticeSection_Config, Languages>,
+  } & ConfigWithLanguages<FlashcardsSection_Config, Languages>,
 ) => {
   validate(config);
   // Metadata is copied; children hold independent, immutable authoring snapshots.
-  const metadataSchema = practiceSection_Config_Schema.omit({ content: true });
+  const metadataSchema = flashcardsSection_Config_Schema.omit({ content: true });
   const authored = structuredClone(metadataSchema.parse(config));
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type, slug } = authored;
@@ -134,15 +134,15 @@ export const definePracticeSection = <
     type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
-  } satisfies DeepPartial<PracticeSection_Config>;
+  } satisfies DeepPartial<FlashcardsSection_Config>;
 
-  const ownLocale = (input: DeepPartial<PracticeSection_Locale<'config'>>) => {
+  const ownLocale = (input: DeepPartial<FlashcardsSection_Locale<'config'>>) => {
     const split = splitLocalizedFields(input);
     const files: Files = {};
     for (const [language, fields] of Object.entries(split.locale ?? {})) {
-      files[language as LanguageCode] = { locale: fields as DeepPartial<PracticeSection_Locale<'props'>> };
+      files[language as LanguageCode] = { locale: fields as DeepPartial<FlashcardsSection_Locale<'props'>> };
     }
-    return { invariant: split.base as DeepPartial<PracticeSection_Locale<'props'>>, files };
+    return { invariant: split.base as DeepPartial<FlashcardsSection_Locale<'props'>>, files };
   };
 
   const buildContent = (
@@ -164,8 +164,8 @@ export const definePracticeSection = <
     });
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as PracticeSection_PropsBase['content'];
-    const locales: Partial<Record<LanguageCode, PracticeSection_PropsBase['content']>> = {};
+    ) as FlashcardsSection_PropsBase['content'];
+    const locales: Partial<Record<LanguageCode, FlashcardsSection_PropsBase['content']>> = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -180,12 +180,12 @@ export const definePracticeSection = <
         );
         const withPatchBase = patch ? mergeForValidation(withResourceLocale, patch.base) : withResourceLocale;
         return patch?.locale?.[language] ? mergeForValidation(withPatchBase, patch.locale[language]) : withPatchBase;
-      }) as PracticeSection_PropsBase['content'];
+      }) as FlashcardsSection_PropsBase['content'];
     }
     return { bases, locales };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): Publication<PracticeSection_PropsBase> => {
+  const props = (options: PublicationLanguageOptions<Languages>): Publication<FlashcardsSection_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
@@ -210,7 +210,7 @@ export const definePracticeSection = <
   };
 
   const overrides = <const Added extends Record<string, Block> = {}>(
-    patch: PracticeSection_Overrides<Items, Added> & {
+    patch: FlashcardsSection_Overrides<Items, Added> & {
       content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
     options: PublicationLanguageOptions<Languages>,
@@ -223,7 +223,7 @@ export const definePracticeSection = <
           throw new Error('Unknown Section override field: ' + key);
         }
       }
-      const metadataPatch = practiceSection_Override_Config_Schema.parse(
+      const metadataPatch = flashcardsSection_Override_Config_Schema.parse(
         Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
       );
       const candidate = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
@@ -308,7 +308,7 @@ export const definePracticeSection = <
       return result;
     } catch (error) {
       throw new Error(
-        'Invalid definePracticeSection overrides for ' +
+        'Invalid defineFlashcardsSection overrides for ' +
           id +
           ': ' +
           (error instanceof Error ? error.message : String(error)),
@@ -326,7 +326,7 @@ export const definePracticeSection = <
     build: { props, overrides },
     config: {
       base,
-      locales: (): { locale: DeepPartial<PracticeSection_Locale<'config'>> } => ({
+      locales: (): { locale: DeepPartial<FlashcardsSection_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),
       validate,
@@ -335,4 +335,4 @@ export const definePracticeSection = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type PracticeSection_Configurator = ReturnType<typeof definePracticeSection>;
+export type FlashcardsSection_Configurator = ReturnType<typeof defineFlashcards>;

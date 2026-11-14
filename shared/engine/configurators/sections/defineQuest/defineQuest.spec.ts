@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
-import { fixture } from './quest.fixture';
+import { fixture } from './defineQuest.fixture';
 const languages = { languages: ['uk'] as const };
 const id = (last: string) => 'e5235ac2-2c44-4c10-8c48-3c7bad6490' + last;
 

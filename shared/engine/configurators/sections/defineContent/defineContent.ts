@@ -18,15 +18,15 @@ import {
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
-  learningFlowSection_Config_Schema,
-  learningFlowSection_Props_Schema,
-  learningFlowSection_Override_Config_Schema,
-  type LearningFlowSection_Config,
-  type LearningFlowSection_Locale,
-  type LearningFlowSection_Overrides,
-  type LearningFlowSection_PropsBase,
-  type LearningFlowSection_MetadataOverrides,
-} from './defineLearningFlowSection.schemas';
+  contentSection_Config_Schema,
+  contentSection_Props_Schema,
+  contentSection_Override_Config_Schema,
+  type Content_Section_Config,
+  type ContentSection_Locale,
+  type ContentSection_Overrides,
+  type ContentSection_PropsBase,
+  type ContentSection_MetadataOverrides,
+} from './defineContent.schemas';
 
 type Block = ContentBlock_Configurator;
 type ChildResource = {
@@ -38,15 +38,15 @@ type ChildPatch = {
   locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type LocaleBody = {
-  locale?: DeepPartial<LearningFlowSection_Locale<'props'>>;
-  content?: LearningFlowSection_PropsBase['content'];
+  locale?: DeepPartial<ContentSection_Locale<'props'>>;
+  content?: ContentSection_PropsBase['content'];
 };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
-  params?: LearningFlowSection_MetadataOverrides['params'];
-  locale?: DeepPartial<LearningFlowSection_Locale<'props'>>;
-  content?: LearningFlowSection_PropsBase['content'];
+  params?: ContentSection_MetadataOverrides['params'];
+  locale?: DeepPartial<ContentSection_Locale<'props'>>;
+  content?: ContentSection_PropsBase['content'];
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -67,10 +67,10 @@ const validateResolvedProps = (
       ? mergeForValidation(patched, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
       : patched;
     try {
-      learningFlowSection_Props_Schema.parse(resolved);
+      contentSection_Props_Schema.parse(resolved);
     } catch (error) {
       throw new Error(
-        'Invalid defineLearningFlowSection Props for language ' +
+        'Invalid defineContentSection Props for language ' +
           language +
           ': ' +
           (error instanceof Error ? error.message : String(error)),
@@ -80,8 +80,8 @@ const validateResolvedProps = (
   }
 };
 
-const validate = (config: LearningFlowSection_Config): void => {
-  learningFlowSection_Config_Schema.parse(config);
+const validate = (config: Content_Section_Config): void => {
+  contentSection_Config_Schema.parse(config);
   const issues = [
     ...validateOrderedKeys(config.content, { path: 'content' }),
     ...validateSluggedConfiguratorMap(config.content?.items, contentBlockTypes, {
@@ -108,19 +108,19 @@ const validate = (config: LearningFlowSection_Config): void => {
 };
 
 /** Stateless Section authoring with ordered ContentBlock children. */
-export const defineLearningFlowSection = <
+export const defineContent = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
-  config: Omit<LearningFlowSection_Config, 'slug' | 'content'> & {
+  config: Omit<Content_Section_Config, 'slug' | 'content'> & {
     slug: Slug;
     content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
-  } & ConfigWithLanguages<LearningFlowSection_Config, Languages>,
+  } & ConfigWithLanguages<Content_Section_Config, Languages>,
 ) => {
   validate(config);
   // Metadata is copied; children hold independent, immutable authoring snapshots.
-  const metadataSchema = learningFlowSection_Config_Schema.omit({ content: true });
+  const metadataSchema = contentSection_Config_Schema.omit({ content: true });
   const authored = structuredClone(metadataSchema.parse(config));
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type, slug } = authored;
@@ -134,15 +134,15 @@ export const defineLearningFlowSection = <
     type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
-  } satisfies DeepPartial<LearningFlowSection_Config>;
+  } satisfies DeepPartial<Content_Section_Config>;
 
-  const ownLocale = (input: DeepPartial<LearningFlowSection_Locale<'config'>>) => {
+  const ownLocale = (input: DeepPartial<ContentSection_Locale<'config'>>) => {
     const split = splitLocalizedFields(input);
     const files: Files = {};
     for (const [language, fields] of Object.entries(split.locale ?? {})) {
-      files[language as LanguageCode] = { locale: fields as DeepPartial<LearningFlowSection_Locale<'props'>> };
+      files[language as LanguageCode] = { locale: fields as DeepPartial<ContentSection_Locale<'props'>> };
     }
-    return { invariant: split.base as DeepPartial<LearningFlowSection_Locale<'props'>>, files };
+    return { invariant: split.base as DeepPartial<ContentSection_Locale<'props'>>, files };
   };
 
   const buildContent = (
@@ -164,8 +164,8 @@ export const defineLearningFlowSection = <
     });
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as LearningFlowSection_PropsBase['content'];
-    const locales: Partial<Record<LanguageCode, LearningFlowSection_PropsBase['content']>> = {};
+    ) as ContentSection_PropsBase['content'];
+    const locales: Partial<Record<LanguageCode, ContentSection_PropsBase['content']>> = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -180,12 +180,12 @@ export const defineLearningFlowSection = <
         );
         const withPatchBase = patch ? mergeForValidation(withResourceLocale, patch.base) : withResourceLocale;
         return patch?.locale?.[language] ? mergeForValidation(withPatchBase, patch.locale[language]) : withPatchBase;
-      }) as LearningFlowSection_PropsBase['content'];
+      }) as ContentSection_PropsBase['content'];
     }
     return { bases, locales };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): Publication<LearningFlowSection_PropsBase> => {
+  const props = (options: PublicationLanguageOptions<Languages>): Publication<ContentSection_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
@@ -210,7 +210,7 @@ export const defineLearningFlowSection = <
   };
 
   const overrides = <const Added extends Record<string, Block> = {}>(
-    patch: LearningFlowSection_Overrides<Items, Added> & {
+    patch: ContentSection_Overrides<Items, Added> & {
       content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
     options: PublicationLanguageOptions<Languages>,
@@ -223,7 +223,7 @@ export const defineLearningFlowSection = <
           throw new Error('Unknown Section override field: ' + key);
         }
       }
-      const metadataPatch = learningFlowSection_Override_Config_Schema.parse(
+      const metadataPatch = contentSection_Override_Config_Schema.parse(
         Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
       );
       const candidate = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
@@ -308,7 +308,7 @@ export const defineLearningFlowSection = <
       return result;
     } catch (error) {
       throw new Error(
-        'Invalid defineLearningFlowSection overrides for ' +
+        'Invalid defineContentSection overrides for ' +
           id +
           ': ' +
           (error instanceof Error ? error.message : String(error)),
@@ -326,7 +326,7 @@ export const defineLearningFlowSection = <
     build: { props, overrides },
     config: {
       base,
-      locales: (): { locale: DeepPartial<LearningFlowSection_Locale<'config'>> } => ({
+      locales: (): { locale: DeepPartial<ContentSection_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),
       validate,
@@ -335,4 +335,4 @@ export const defineLearningFlowSection = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type LearningFlowSection_Configurator = ReturnType<typeof defineLearningFlowSection>;
+export type ContentSection_Configurator = ReturnType<typeof defineContent>;

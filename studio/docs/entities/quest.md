@@ -11,7 +11,7 @@ A Quest is a **Section type** (`type: 'quest'`), not a ContentBlock, Quiz, Episo
 ## Authored build tree
 
 ```text
-defineQuestSection        id, slug, type: quest, params, locale
+defineQuest        id, slug, type: quest, params, locale
 ├── stages               SlugMap, mandatory "start", no order
 │   ├── start            defineStage: id, slug, type: questStage
 │   └── camelCaseKey     content.video.medium/small: defineVideo
@@ -31,7 +31,7 @@ Audio uses independently synchronized tracks: `dialogue` is character/teaching s
 
 ## Technical usage of the Build contracts
 
-The exports are available via `@svitlo/engine/build`: `defineQuestSection`, `defineStage`, `defineTask` and `defineSubtitles`. Every configurator has `validate`, `config.base`, `config.locales()`, `build.props({ languages })` and `build.overrides(patch, { languages })`. Stage and Task have **no standalone `params` or `locale`**; their nested media/Scene configurators own the localized fields. Quest Section has localized `title`/`navigationLabel` and Section `params.skippable`. The requested languages are explicitly selected when building; children own validation of their inner assets and locale dictionaries. Overrides remain stateless patches of existing children, without legacy editor operations, positional arrays, sequence rewrites or authored transition graphs. `stages` and `tasks` preserve camelCase keys as identities; all keys must agree with each child's `slug`. Both maps must have a `start` child.
+The exports are available via `@svitlo/engine/build`: `defineQuest`, `defineStage`, `defineTask` and `defineSubtitles`. Every configurator has `validate`, `config.base`, `config.locales()`, `build.props({ languages })` and `build.overrides(patch, { languages })`. Stage and Task have **no standalone `params` or `locale`**; their nested media/Scene configurators own the localized fields. Quest Section has localized `title`/`navigationLabel` and Section `params.skippable`. The requested languages are explicitly selected when building; children own validation of their inner assets and locale dictionaries. Overrides remain stateless patches of existing children, without legacy editor operations, positional arrays, sequence rewrites or authored transition graphs. `stages` and `tasks` preserve camelCase keys as identities; all keys must agree with each child's `slug`. Both maps must have a `start` child.
 
 **Critical boundary:** the Engine's existing `Section_Configurator`, `Section_Props`, `sectionTypes` and YAML draft scaffolder are deliberately **not expanded** until a separate renderer/runtime integration PR. Thus `defineLesson` and `defineEpisode` must not be made to publish Quest through this first contract-only PR; do not work around that boundary by disguising a Quest as an existing Section type.
 

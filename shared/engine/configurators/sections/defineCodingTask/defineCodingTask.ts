@@ -26,7 +26,7 @@ import {
   type CodingTaskSection_Overrides,
   type CodingTaskSection_PropsBase,
   type CodingTaskSection_MetadataOverrides,
-} from './defineCodingTaskSection.schemas';
+} from './defineCodingTask.schemas';
 
 type Block = ContentBlock_Configurator;
 type ChildResource = {
@@ -115,7 +115,7 @@ const validate = (config: CodingTaskSection_Config): void => {
  * run tests or grade submissions. Use appropriate ContentBlocks or an
  * interactive Scene to implement those experiences when required.
  */
-export const defineCodingTaskSection = <
+export const defineCodingTask = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
@@ -342,4 +342,4 @@ export const defineCodingTaskSection = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type CodingTaskSection_Configurator = ReturnType<typeof defineCodingTaskSection>;
+export type CodingTaskSection_Configurator = ReturnType<typeof defineCodingTask>;
