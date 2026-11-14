@@ -1,0 +1,667 @@
+# Unified Mathematics Lesson editorial source — provisional; pending independent approval.
+config:
+  id: "b4f1ac99-15bc-5210-9011-88b7c60e55af"
+  slug: "divisionByOneAndSelf"
+  type: "lesson"
+  skills: ["a609bf69-69fb-44f8-8367-db6360b2de79"]
+  params:
+    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "One Group or One in Each?"
+  section:
+    items:
+      section1:
+        config:
+          id: "78927096-62c3-4d7d-8d4f-6ee815db21bf"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Six in One Group"
+            navigationLabel:
+              en: "Six in One Group"
+          content:
+            items:
+              text1:
+                config:
+                  id: "377304e4-c371-4d7f-baf7-3e9e1da62ed1"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Six counters shared into ONE group. How many in it?"
+                production:
+                  purpose: "Six in One Group: text resource at position 1 (source provisional)"
+                  specification: "- **Text resource (available):** “Six counters shared into ONE group. How many in it?”"
+              scene2:
+                config:
+                  id: "e58d8244-3e57-47f9-aacc-9cd209a2a76f"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Six in One Group"
+                production:
+                  purpose: "Six in One Group; source Scene oneSelfDivisionStudio.scene-spec.md; use 2"
+                  specification: |-
+                    # One and Self Division Studio — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: [One Group or One in Each? Content](.this config.yaml), Sections 1–4
+                    Methodologist objectives: Build and read 6 ÷ 1 = 6 as one group containing six. Build and read 6 ÷ 6 = 1 as six groups of one. Compare divisor and quotient roles in both models and verify with multiplication. Apply to nine and reject 0 ÷ 0 as undefined. [Methodologist Brief](.this config.yaml) is Draft.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Use two distinct sharing models to show that dividing by one keeps the starting quantity, while a nonzero number divided by itself equals one. Avoid the false extension to 0 ÷ 0. A learner acts on exact counted objects; explanations must be numerical, inspectable and available without a scored response.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    For a whole number a, a ÷ 1 = a. For a positive a, a ÷ a = 1. The first model has one group of a; the second has a groups of one. 6 ÷ 1 = 6 and 6 ÷ 6 = 1; 9 ÷ 1 = 9 and 9 ÷ 9 = 1. Checks: 1×6=6, 6×1=6, 1×9=9, 9×1=9. Zero divided by one equals zero, but 0 ÷ 0 is undefined. No fraction/negative arithmetic. Do not interpret 6 ÷ 1 as 'one counter in six groups' or 6 ÷ 6 as 'six in every group'. Do not duplicate counters during sharing, or claim the rule a÷a=1 covers a=0. **Invariant:** For valid division, group count is positive, all original counter IDs appear exactly once, and groupCount×perGroup=total. The zero divisor has no quotient.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Six in One Group:** “Six counters shared into ONE group. How many in it?” Move all six counters from an initial pool to exactly one named receiving group; allow individual or one-action transfer. Output **6 ÷ 1 = 6; 1 × 6 = 6**. Explain: The divisor one counts groups. All six counters go into that one group. Wrong trial: If one is chosen, explain one is group count, not share size.
+                    
+                    2. **One in Each of Six:** “Six counters shared among SIX groups. How many in each?” Give one original counter to each of six named groups, tracking the unchanged total six. Output **6 ÷ 6 = 1; 6 × 1 = 6**. Explain: Six groups each get one. The quotient is one counter per group. Wrong trial: If six is chosen, six groups of six would require thirty-six objects.
+                    
+                    3. **The Same Whole, Different Share:** “Why are the answers to 6 ÷ 1 and 6 ÷ 6 different?” Compare two separately labeled models with ledger entries Total6/Groups1/Each6 and Total6/Groups6/Each1; select which number names groups. Output **6 ÷ 1 = 6; 6 ÷ 6 = 1**. Explain: The total remains six, but changing the number of groups changes the size of each share. Wrong trial: If child says both answers six, reveal the one-in-each group counts.
+                    
+                    4. **Nine and a Boundary:** “Try 9 ÷ 1, 9 ÷ 9 and 0 ÷ 0. Which expression is undefined?” Offer two independent nine-counter stories and a zero-divisor non-example with no quotient result; disclose reasons without requiring a guess. Output **9 ÷ 1 = 9; 9 ÷ 9 = 1; 0 ÷ 0 undefined**. Explain: One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one. Wrong trial: If 0÷0=1 is proposed, explain a zero divisor does not identify a unique quotient.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, prop-free Scene placements, one per Section. No public `mode` prop or new Resource_Config field.
+                    - **State:** For each self-contained placement, fixed initial 6 or 9, group count, unique counter IDs, allocation, candidate, status/explanation, and independent Reset. In 0÷0, no computed quotient.
+                    - **Objects:** countable immutable-source IDs, labeled trays, explicit group-count/size text ledger, step controls, prediction, reset/reveal.
+                    - **Invariant:** For valid division, group count is positive, all original counter IDs appear exactly once, and groupCount×perGroup=total. The zero divisor has no quotient. Each transition conserves counters, and invalid division expressions never receive a fictitious quotient.
+                    - Full explanation and replay work without predictions. No score, Note API, Question or mastery status.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple responsive HTML/SVG counter trays with clear role labels and large numeric states; motion optional and user-triggered. Reduced motion shows the same totals immediately. No external media or drag-only interaction.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Genuinely translate all learner phrases and statuses to all supported languages, never silent English fallback. RTL preserves math operand roles rather than mirroring them. A screen-reader user has a fully actionable ordered text/count interface through native controls and announced change states. Large touch targets, visible focus, reduced motion, zoom/mobile and offline operations after locale download are mandatory.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Six in One Group: 6 ÷ 1 = 6; 1 × 6 = 6. The divisor one counts groups. All six counters go into that one group.
+                    2. One in Each of Six: 6 ÷ 6 = 1; 6 × 1 = 6. Six groups each get one. The quotient is one counter per group.
+                    3. The Same Whole, Different Share: 6 ÷ 1 = 6; 6 ÷ 6 = 1. The total remains six, but changing the number of groups changes the size of each share.
+                    4. Nine and a Boundary: 9 ÷ 1 = 9; 9 ÷ 9 = 1; 0 ÷ 0 undefined. One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one.
+                    5. Every incorrect prediction yields a specific numeric correction with no grade.
+                    6. Reset and independent Sections never leak state or duplicate objects.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and downloaded offline provide identical mathematics.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic scene resource exists; One and Self Division Studio itself is NOT implemented. Editor must approve the Draft Brief, Content and Scene independently; Coding Agent/Scene Designer implement prop-free components and tests later. Assessment Architect controls scored questions. Keep 0 ÷ 0 as a short age-appropriate boundary and avoid requiring algebraic proof.
+                    
+                    
+                    ## Section-specific use (provisional source, not implemented)
+                    
+                    - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Move all six counters from an initial pool to exactly one named receiving group; allow individual or one-action transfer.
+                  productionNotes: "Scene oneSelfDivisionStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+              markdown3:
+                config:
+                  id: "37f58a38-e286-4747-991c-c84215e97311"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The divisor one counts groups. All six counters go into that one group."
+                production:
+                  purpose: "Six in One Group: markdown resource at position 3 (source provisional)"
+                  specification: "- **Markdown resource (available):** “The divisor one counts groups. All six counters go into that one group.” Equation **6 ÷ 1 = 6; 1 × 6 = 6**."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Build and read 6 ÷ 1 = 6 as one group containing six."
+          pedagogicalIntent: "Original Section 1: Six in One Group (provisional draft)"
+          productionNotes: |-
+            - **Objective:** Build and read 6 ÷ 1 = 6 as one group containing six.
+            - **Structure:** one ordered vertical LessonSection_Config, text → scene → markdown.
+            - **Text resource (available):** “Six counters shared into ONE group. How many in it?”
+            - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Move all six counters from an initial pool to exactly one named receiving group; allow individual or one-action transfer.
+            - **Markdown resource (available):** “The divisor one counts groups. All six counters go into that one group.” Equation **6 ÷ 1 = 6; 1 × 6 = 6**.
+            - **Child's meaningful action and feedback:** Move all six counters from an initial pool to exactly one named receiving group; allow individual or one-action transfer. For common wrong responses: If one is chosen, explain one is group count, not share size. The original counters and calculation remain inspectable; do not mark a false trial as a true identity.
+            - **Model:** each source counter, group total, group count, number in each, remainder (if any) and check have equivalent ordered text and focusable controls.
+            - **Navigation:** Offer replay, full explanation, and then the next conceptual contrast without mandatory success.
+            - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
+            - **Planned Note:** Divide by one: the only group gets the whole amount., only after complete evidence and explanation, not a score or wired event.
+            - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
+      section2:
+        config:
+          id: "77926f03-5fc3-48c4-904f-73a116db2352"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "One in Each of Six"
+            navigationLabel:
+              en: "One in Each of Six"
+          content:
+            items:
+              text1:
+                config:
+                  id: "e5f6dd85-637b-47fa-8456-4a43823e93d0"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Six counters shared among SIX groups. How many in each?"
+                production:
+                  purpose: "One in Each of Six: text resource at position 1 (source provisional)"
+                  specification: "- **Text resource (available):** “Six counters shared among SIX groups. How many in each?”"
+              scene2:
+                config:
+                  id: "a410dbab-fd42-4b46-b2ec-cdd561b21ab8"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "One in Each of Six"
+                production:
+                  purpose: "One in Each of Six; source Scene oneSelfDivisionStudio.scene-spec.md; use 2"
+                  specification: |-
+                    # One and Self Division Studio — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: [One Group or One in Each? Content](.this config.yaml), Sections 1–4
+                    Methodologist objectives: Build and read 6 ÷ 1 = 6 as one group containing six. Build and read 6 ÷ 6 = 1 as six groups of one. Compare divisor and quotient roles in both models and verify with multiplication. Apply to nine and reject 0 ÷ 0 as undefined. [Methodologist Brief](.this config.yaml) is Draft.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Use two distinct sharing models to show that dividing by one keeps the starting quantity, while a nonzero number divided by itself equals one. Avoid the false extension to 0 ÷ 0. A learner acts on exact counted objects; explanations must be numerical, inspectable and available without a scored response.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    For a whole number a, a ÷ 1 = a. For a positive a, a ÷ a = 1. The first model has one group of a; the second has a groups of one. 6 ÷ 1 = 6 and 6 ÷ 6 = 1; 9 ÷ 1 = 9 and 9 ÷ 9 = 1. Checks: 1×6=6, 6×1=6, 1×9=9, 9×1=9. Zero divided by one equals zero, but 0 ÷ 0 is undefined. No fraction/negative arithmetic. Do not interpret 6 ÷ 1 as 'one counter in six groups' or 6 ÷ 6 as 'six in every group'. Do not duplicate counters during sharing, or claim the rule a÷a=1 covers a=0. **Invariant:** For valid division, group count is positive, all original counter IDs appear exactly once, and groupCount×perGroup=total. The zero divisor has no quotient.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Six in One Group:** “Six counters shared into ONE group. How many in it?” Move all six counters from an initial pool to exactly one named receiving group; allow individual or one-action transfer. Output **6 ÷ 1 = 6; 1 × 6 = 6**. Explain: The divisor one counts groups. All six counters go into that one group. Wrong trial: If one is chosen, explain one is group count, not share size.
+                    
+                    2. **One in Each of Six:** “Six counters shared among SIX groups. How many in each?” Give one original counter to each of six named groups, tracking the unchanged total six. Output **6 ÷ 6 = 1; 6 × 1 = 6**. Explain: Six groups each get one. The quotient is one counter per group. Wrong trial: If six is chosen, six groups of six would require thirty-six objects.
+                    
+                    3. **The Same Whole, Different Share:** “Why are the answers to 6 ÷ 1 and 6 ÷ 6 different?” Compare two separately labeled models with ledger entries Total6/Groups1/Each6 and Total6/Groups6/Each1; select which number names groups. Output **6 ÷ 1 = 6; 6 ÷ 6 = 1**. Explain: The total remains six, but changing the number of groups changes the size of each share. Wrong trial: If child says both answers six, reveal the one-in-each group counts.
+                    
+                    4. **Nine and a Boundary:** “Try 9 ÷ 1, 9 ÷ 9 and 0 ÷ 0. Which expression is undefined?” Offer two independent nine-counter stories and a zero-divisor non-example with no quotient result; disclose reasons without requiring a guess. Output **9 ÷ 1 = 9; 9 ÷ 9 = 1; 0 ÷ 0 undefined**. Explain: One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one. Wrong trial: If 0÷0=1 is proposed, explain a zero divisor does not identify a unique quotient.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, prop-free Scene placements, one per Section. No public `mode` prop or new Resource_Config field.
+                    - **State:** For each self-contained placement, fixed initial 6 or 9, group count, unique counter IDs, allocation, candidate, status/explanation, and independent Reset. In 0÷0, no computed quotient.
+                    - **Objects:** countable immutable-source IDs, labeled trays, explicit group-count/size text ledger, step controls, prediction, reset/reveal.
+                    - **Invariant:** For valid division, group count is positive, all original counter IDs appear exactly once, and groupCount×perGroup=total. The zero divisor has no quotient. Each transition conserves counters, and invalid division expressions never receive a fictitious quotient.
+                    - Full explanation and replay work without predictions. No score, Note API, Question or mastery status.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple responsive HTML/SVG counter trays with clear role labels and large numeric states; motion optional and user-triggered. Reduced motion shows the same totals immediately. No external media or drag-only interaction.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Genuinely translate all learner phrases and statuses to all supported languages, never silent English fallback. RTL preserves math operand roles rather than mirroring them. A screen-reader user has a fully actionable ordered text/count interface through native controls and announced change states. Large touch targets, visible focus, reduced motion, zoom/mobile and offline operations after locale download are mandatory.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Six in One Group: 6 ÷ 1 = 6; 1 × 6 = 6. The divisor one counts groups. All six counters go into that one group.
+                    2. One in Each of Six: 6 ÷ 6 = 1; 6 × 1 = 6. Six groups each get one. The quotient is one counter per group.
+                    3. The Same Whole, Different Share: 6 ÷ 1 = 6; 6 ÷ 6 = 1. The total remains six, but changing the number of groups changes the size of each share.
+                    4. Nine and a Boundary: 9 ÷ 1 = 9; 9 ÷ 9 = 1; 0 ÷ 0 undefined. One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one.
+                    5. Every incorrect prediction yields a specific numeric correction with no grade.
+                    6. Reset and independent Sections never leak state or duplicate objects.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and downloaded offline provide identical mathematics.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic scene resource exists; One and Self Division Studio itself is NOT implemented. Editor must approve the Draft Brief, Content and Scene independently; Coding Agent/Scene Designer implement prop-free components and tests later. Assessment Architect controls scored questions. Keep 0 ÷ 0 as a short age-appropriate boundary and avoid requiring algebraic proof.
+                    
+                    
+                    ## Section-specific use (provisional source, not implemented)
+                    
+                    - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Give one original counter to each of six named groups, tracking the unchanged total six.
+                  productionNotes: "Scene oneSelfDivisionStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+              markdown3:
+                config:
+                  id: "2e7f6305-310b-40fe-89da-3a1b17e85144"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Six groups each get one. The quotient is one counter per group."
+                production:
+                  purpose: "One in Each of Six: markdown resource at position 3 (source provisional)"
+                  specification: "- **Markdown resource (available):** “Six groups each get one. The quotient is one counter per group.” Equation **6 ÷ 6 = 1; 6 × 1 = 6**."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Build and read 6 ÷ 6 = 1 as six groups of one."
+          pedagogicalIntent: "Original Section 2: One in Each of Six (provisional draft)"
+          productionNotes: |-
+            - **Objective:** Build and read 6 ÷ 6 = 1 as six groups of one.
+            - **Structure:** one ordered vertical LessonSection_Config, text → scene → markdown.
+            - **Text resource (available):** “Six counters shared among SIX groups. How many in each?”
+            - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Give one original counter to each of six named groups, tracking the unchanged total six.
+            - **Markdown resource (available):** “Six groups each get one. The quotient is one counter per group.” Equation **6 ÷ 6 = 1; 6 × 1 = 6**.
+            - **Child's meaningful action and feedback:** Give one original counter to each of six named groups, tracking the unchanged total six. For common wrong responses: If six is chosen, six groups of six would require thirty-six objects. The original counters and calculation remain inspectable; do not mark a false trial as a true identity.
+            - **Model:** each source counter, group total, group count, number in each, remainder (if any) and check have equivalent ordered text and focusable controls.
+            - **Navigation:** Offer replay, full explanation, and then the next conceptual contrast without mandatory success.
+            - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
+            - **Planned Note:** A positive number divided by itself gives one in each group., only after complete evidence and explanation, not a score or wired event.
+            - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
+      section3:
+        config:
+          id: "76926d70-60c3-4a57-8f4f-720e17db24e5"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "The Same Whole, Different Share"
+            navigationLabel:
+              en: "The Same Whole, Different Share"
+          content:
+            items:
+              text1:
+                config:
+                  id: "3a3b7126-bb31-4dc9-806e-f3fc253d4467"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Why are the answers to 6 ÷ 1 and 6 ÷ 6 different?"
+                production:
+                  purpose: "The Same Whole, Different Share: text resource at position 1 (source provisional)"
+                  specification: "- **Text resource (available):** “Why are the answers to 6 ÷ 1 and 6 ÷ 6 different?”"
+              scene2:
+                config:
+                  id: "4ebc294a-6261-4097-93c3-1d4c85c92191"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "The Same Whole, Different Share"
+                production:
+                  purpose: "The Same Whole, Different Share; source Scene oneSelfDivisionStudio.scene-spec.md; use 2"
+                  specification: |-
+                    # One and Self Division Studio — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: [One Group or One in Each? Content](.this config.yaml), Sections 1–4
+                    Methodologist objectives: Build and read 6 ÷ 1 = 6 as one group containing six. Build and read 6 ÷ 6 = 1 as six groups of one. Compare divisor and quotient roles in both models and verify with multiplication. Apply to nine and reject 0 ÷ 0 as undefined. [Methodologist Brief](.this config.yaml) is Draft.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Use two distinct sharing models to show that dividing by one keeps the starting quantity, while a nonzero number divided by itself equals one. Avoid the false extension to 0 ÷ 0. A learner acts on exact counted objects; explanations must be numerical, inspectable and available without a scored response.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    For a whole number a, a ÷ 1 = a. For a positive a, a ÷ a = 1. The first model has one group of a; the second has a groups of one. 6 ÷ 1 = 6 and 6 ÷ 6 = 1; 9 ÷ 1 = 9 and 9 ÷ 9 = 1. Checks: 1×6=6, 6×1=6, 1×9=9, 9×1=9. Zero divided by one equals zero, but 0 ÷ 0 is undefined. No fraction/negative arithmetic. Do not interpret 6 ÷ 1 as 'one counter in six groups' or 6 ÷ 6 as 'six in every group'. Do not duplicate counters during sharing, or claim the rule a÷a=1 covers a=0. **Invariant:** For valid division, group count is positive, all original counter IDs appear exactly once, and groupCount×perGroup=total. The zero divisor has no quotient.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Six in One Group:** “Six counters shared into ONE group. How many in it?” Move all six counters from an initial pool to exactly one named receiving group; allow individual or one-action transfer. Output **6 ÷ 1 = 6; 1 × 6 = 6**. Explain: The divisor one counts groups. All six counters go into that one group. Wrong trial: If one is chosen, explain one is group count, not share size.
+                    
+                    2. **One in Each of Six:** “Six counters shared among SIX groups. How many in each?” Give one original counter to each of six named groups, tracking the unchanged total six. Output **6 ÷ 6 = 1; 6 × 1 = 6**. Explain: Six groups each get one. The quotient is one counter per group. Wrong trial: If six is chosen, six groups of six would require thirty-six objects.
+                    
+                    3. **The Same Whole, Different Share:** “Why are the answers to 6 ÷ 1 and 6 ÷ 6 different?” Compare two separately labeled models with ledger entries Total6/Groups1/Each6 and Total6/Groups6/Each1; select which number names groups. Output **6 ÷ 1 = 6; 6 ÷ 6 = 1**. Explain: The total remains six, but changing the number of groups changes the size of each share. Wrong trial: If child says both answers six, reveal the one-in-each group counts.
+                    
+                    4. **Nine and a Boundary:** “Try 9 ÷ 1, 9 ÷ 9 and 0 ÷ 0. Which expression is undefined?” Offer two independent nine-counter stories and a zero-divisor non-example with no quotient result; disclose reasons without requiring a guess. Output **9 ÷ 1 = 9; 9 ÷ 9 = 1; 0 ÷ 0 undefined**. Explain: One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one. Wrong trial: If 0÷0=1 is proposed, explain a zero divisor does not identify a unique quotient.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, prop-free Scene placements, one per Section. No public `mode` prop or new Resource_Config field.
+                    - **State:** For each self-contained placement, fixed initial 6 or 9, group count, unique counter IDs, allocation, candidate, status/explanation, and independent Reset. In 0÷0, no computed quotient.
+                    - **Objects:** countable immutable-source IDs, labeled trays, explicit group-count/size text ledger, step controls, prediction, reset/reveal.
+                    - **Invariant:** For valid division, group count is positive, all original counter IDs appear exactly once, and groupCount×perGroup=total. The zero divisor has no quotient. Each transition conserves counters, and invalid division expressions never receive a fictitious quotient.
+                    - Full explanation and replay work without predictions. No score, Note API, Question or mastery status.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple responsive HTML/SVG counter trays with clear role labels and large numeric states; motion optional and user-triggered. Reduced motion shows the same totals immediately. No external media or drag-only interaction.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Genuinely translate all learner phrases and statuses to all supported languages, never silent English fallback. RTL preserves math operand roles rather than mirroring them. A screen-reader user has a fully actionable ordered text/count interface through native controls and announced change states. Large touch targets, visible focus, reduced motion, zoom/mobile and offline operations after locale download are mandatory.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Six in One Group: 6 ÷ 1 = 6; 1 × 6 = 6. The divisor one counts groups. All six counters go into that one group.
+                    2. One in Each of Six: 6 ÷ 6 = 1; 6 × 1 = 6. Six groups each get one. The quotient is one counter per group.
+                    3. The Same Whole, Different Share: 6 ÷ 1 = 6; 6 ÷ 6 = 1. The total remains six, but changing the number of groups changes the size of each share.
+                    4. Nine and a Boundary: 9 ÷ 1 = 9; 9 ÷ 9 = 1; 0 ÷ 0 undefined. One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one.
+                    5. Every incorrect prediction yields a specific numeric correction with no grade.
+                    6. Reset and independent Sections never leak state or duplicate objects.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and downloaded offline provide identical mathematics.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic scene resource exists; One and Self Division Studio itself is NOT implemented. Editor must approve the Draft Brief, Content and Scene independently; Coding Agent/Scene Designer implement prop-free components and tests later. Assessment Architect controls scored questions. Keep 0 ÷ 0 as a short age-appropriate boundary and avoid requiring algebraic proof.
+                    
+                    
+                    ## Section-specific use (provisional source, not implemented)
+                    
+                    - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Compare two separately labeled models with ledger entries Total6/Groups1/Each6 and Total6/Groups6/Each1; select which number names groups.
+                  productionNotes: "Scene oneSelfDivisionStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+              markdown3:
+                config:
+                  id: "c94d07ba-48d2-4079-bae0-b2605d76695f"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The total remains six, but changing the number of groups changes the size of each share."
+                production:
+                  purpose: "The Same Whole, Different Share: markdown resource at position 3 (source provisional)"
+                  specification: "- **Markdown resource (available):** “The total remains six, but changing the number of groups changes the size of each share.” Equation **6 ÷ 1 = 6; 6 ÷ 6 = 1**."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Compare divisor and quotient roles in both models and verify with multiplication."
+          pedagogicalIntent: "Original Section 3: The Same Whole, Different Share (provisional draft)"
+          productionNotes: |-
+            - **Objective:** Compare divisor and quotient roles in both models and verify with multiplication.
+            - **Structure:** one ordered vertical LessonSection_Config, text → scene → markdown.
+            - **Text resource (available):** “Why are the answers to 6 ÷ 1 and 6 ÷ 6 different?”
+            - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Compare two separately labeled models with ledger entries Total6/Groups1/Each6 and Total6/Groups6/Each1; select which number names groups.
+            - **Markdown resource (available):** “The total remains six, but changing the number of groups changes the size of each share.” Equation **6 ÷ 1 = 6; 6 ÷ 6 = 1**.
+            - **Child's meaningful action and feedback:** Compare two separately labeled models with ledger entries Total6/Groups1/Each6 and Total6/Groups6/Each1; select which number names groups. For common wrong responses: If child says both answers six, reveal the one-in-each group counts. The original counters and calculation remain inspectable; do not mark a false trial as a true identity.
+            - **Model:** each source counter, group total, group count, number in each, remainder (if any) and check have equivalent ordered text and focusable controls.
+            - **Navigation:** Offer replay, full explanation, and then the next conceptual contrast without mandatory success.
+            - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
+            - **Planned Note:** A positive number divided by itself gives one in each group., only after complete evidence and explanation, not a score or wired event.
+            - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
+      section4:
+        config:
+          id: "7d927875-5dc3-459e-924f-76c710db19e0"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Nine and a Boundary"
+            navigationLabel:
+              en: "Nine and a Boundary"
+          content:
+            items:
+              text1:
+                config:
+                  id: "46116697-3484-436c-871c-de59d3fb9936"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Try 9 ÷ 1, 9 ÷ 9 and 0 ÷ 0. Which expression is undefined?"
+                production:
+                  purpose: "Nine and a Boundary: text resource at position 1 (source provisional)"
+                  specification: "- **Text resource (available):** “Try 9 ÷ 1, 9 ÷ 9 and 0 ÷ 0. Which expression is undefined?”"
+              scene2:
+                config:
+                  id: "f299b021-31a5-455c-a676-56077e81277a"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Nine and a Boundary"
+                production:
+                  purpose: "Nine and a Boundary; source Scene oneSelfDivisionStudio.scene-spec.md; use 2"
+                  specification: |-
+                    # One and Self Division Studio — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: [One Group or One in Each? Content](.this config.yaml), Sections 1–4
+                    Methodologist objectives: Build and read 6 ÷ 1 = 6 as one group containing six. Build and read 6 ÷ 6 = 1 as six groups of one. Compare divisor and quotient roles in both models and verify with multiplication. Apply to nine and reject 0 ÷ 0 as undefined. [Methodologist Brief](.this config.yaml) is Draft.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Use two distinct sharing models to show that dividing by one keeps the starting quantity, while a nonzero number divided by itself equals one. Avoid the false extension to 0 ÷ 0. A learner acts on exact counted objects; explanations must be numerical, inspectable and available without a scored response.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    For a whole number a, a ÷ 1 = a. For a positive a, a ÷ a = 1. The first model has one group of a; the second has a groups of one. 6 ÷ 1 = 6 and 6 ÷ 6 = 1; 9 ÷ 1 = 9 and 9 ÷ 9 = 1. Checks: 1×6=6, 6×1=6, 1×9=9, 9×1=9. Zero divided by one equals zero, but 0 ÷ 0 is undefined. No fraction/negative arithmetic. Do not interpret 6 ÷ 1 as 'one counter in six groups' or 6 ÷ 6 as 'six in every group'. Do not duplicate counters during sharing, or claim the rule a÷a=1 covers a=0. **Invariant:** For valid division, group count is positive, all original counter IDs appear exactly once, and groupCount×perGroup=total. The zero divisor has no quotient.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Six in One Group:** “Six counters shared into ONE group. How many in it?” Move all six counters from an initial pool to exactly one named receiving group; allow individual or one-action transfer. Output **6 ÷ 1 = 6; 1 × 6 = 6**. Explain: The divisor one counts groups. All six counters go into that one group. Wrong trial: If one is chosen, explain one is group count, not share size.
+                    
+                    2. **One in Each of Six:** “Six counters shared among SIX groups. How many in each?” Give one original counter to each of six named groups, tracking the unchanged total six. Output **6 ÷ 6 = 1; 6 × 1 = 6**. Explain: Six groups each get one. The quotient is one counter per group. Wrong trial: If six is chosen, six groups of six would require thirty-six objects.
+                    
+                    3. **The Same Whole, Different Share:** “Why are the answers to 6 ÷ 1 and 6 ÷ 6 different?” Compare two separately labeled models with ledger entries Total6/Groups1/Each6 and Total6/Groups6/Each1; select which number names groups. Output **6 ÷ 1 = 6; 6 ÷ 6 = 1**. Explain: The total remains six, but changing the number of groups changes the size of each share. Wrong trial: If child says both answers six, reveal the one-in-each group counts.
+                    
+                    4. **Nine and a Boundary:** “Try 9 ÷ 1, 9 ÷ 9 and 0 ÷ 0. Which expression is undefined?” Offer two independent nine-counter stories and a zero-divisor non-example with no quotient result; disclose reasons without requiring a guess. Output **9 ÷ 1 = 9; 9 ÷ 9 = 1; 0 ÷ 0 undefined**. Explain: One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one. Wrong trial: If 0÷0=1 is proposed, explain a zero divisor does not identify a unique quotient.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, prop-free Scene placements, one per Section. No public `mode` prop or new Resource_Config field.
+                    - **State:** For each self-contained placement, fixed initial 6 or 9, group count, unique counter IDs, allocation, candidate, status/explanation, and independent Reset. In 0÷0, no computed quotient.
+                    - **Objects:** countable immutable-source IDs, labeled trays, explicit group-count/size text ledger, step controls, prediction, reset/reveal.
+                    - **Invariant:** For valid division, group count is positive, all original counter IDs appear exactly once, and groupCount×perGroup=total. The zero divisor has no quotient. Each transition conserves counters, and invalid division expressions never receive a fictitious quotient.
+                    - Full explanation and replay work without predictions. No score, Note API, Question or mastery status.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple responsive HTML/SVG counter trays with clear role labels and large numeric states; motion optional and user-triggered. Reduced motion shows the same totals immediately. No external media or drag-only interaction.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Genuinely translate all learner phrases and statuses to all supported languages, never silent English fallback. RTL preserves math operand roles rather than mirroring them. A screen-reader user has a fully actionable ordered text/count interface through native controls and announced change states. Large touch targets, visible focus, reduced motion, zoom/mobile and offline operations after locale download are mandatory.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Six in One Group: 6 ÷ 1 = 6; 1 × 6 = 6. The divisor one counts groups. All six counters go into that one group.
+                    2. One in Each of Six: 6 ÷ 6 = 1; 6 × 1 = 6. Six groups each get one. The quotient is one counter per group.
+                    3. The Same Whole, Different Share: 6 ÷ 1 = 6; 6 ÷ 6 = 1. The total remains six, but changing the number of groups changes the size of each share.
+                    4. Nine and a Boundary: 9 ÷ 1 = 9; 9 ÷ 9 = 1; 0 ÷ 0 undefined. One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one.
+                    5. Every incorrect prediction yields a specific numeric correction with no grade.
+                    6. Reset and independent Sections never leak state or duplicate objects.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and downloaded offline provide identical mathematics.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic scene resource exists; One and Self Division Studio itself is NOT implemented. Editor must approve the Draft Brief, Content and Scene independently; Coding Agent/Scene Designer implement prop-free components and tests later. Assessment Architect controls scored questions. Keep 0 ÷ 0 as a short age-appropriate boundary and avoid requiring algebraic proof.
+                    
+                    
+                    ## Section-specific use (provisional source, not implemented)
+                    
+                    - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Offer two independent nine-counter stories and a zero-divisor non-example with no quotient result; disclose reasons without requiring a guess.
+                  productionNotes: "Scene oneSelfDivisionStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+              markdown3:
+                config:
+                  id: "ea01f72f-027d-44f0-a807-a9e99e60652a"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one."
+                production:
+                  purpose: "Nine and a Boundary: markdown resource at position 3 (source provisional)"
+                  specification: "- **Markdown resource (available):** “One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one.” Equation **9 ÷ 1 = 9; 9 ÷ 9 = 1; 0 ÷ 0 undefined**."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Apply to nine and reject 0 ÷ 0 as undefined."
+          pedagogicalIntent: "Original Section 4: Nine and a Boundary (provisional draft)"
+          productionNotes: |-
+            - **Objective:** Apply to nine and reject 0 ÷ 0 as undefined.
+            - **Structure:** one ordered vertical LessonSection_Config, text → scene → markdown.
+            - **Text resource (available):** “Try 9 ÷ 1, 9 ÷ 9 and 0 ÷ 0. Which expression is undefined?”
+            - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Offer two independent nine-counter stories and a zero-divisor non-example with no quotient result; disclose reasons without requiring a guess.
+            - **Markdown resource (available):** “One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one.” Equation **9 ÷ 1 = 9; 9 ÷ 9 = 1; 0 ÷ 0 undefined**.
+            - **Child's meaningful action and feedback:** Offer two independent nine-counter stories and a zero-divisor non-example with no quotient result; disclose reasons without requiring a guess. For common wrong responses: If 0÷0=1 is proposed, explain a zero divisor does not identify a unique quotient. The original counters and calculation remain inspectable; do not mark a false trial as a true identity.
+            - **Model:** each source counter, group total, group count, number in each, remainder (if any) and check have equivalent ordered text and focusable controls.
+            - **Navigation:** Close with voluntary reflection, no score or assumed mastery.
+            - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
+            - **Planned Note:** A positive number divided by itself gives one in each group., only after complete evidence and explanation, not a score or wired event.
+            - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
+    order: ["section1", "section2", "section3", "section4"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |-
+    # One Group or One in Each? — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: divisionByOneAndSelf
+    Methodologist status: Draft
+    Primary audience: Grade 2
+    Code: Not implemented
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Use two distinct sharing models to show that dividing by one keeps the starting quantity, while a nonzero number divided by itself equals one. Avoid the false extension to 0 ÷ 0.
+    
+    ## Target audience
+    
+    Primary Grade 2, with the prerequisite abilities listed below. This audience applies to this Lesson only; the source Skills remain grade-independent.
+    
+    ## Prerequisites
+    
+    - Interpret exact division as sharing among a known positive number of groups.
+    - Count up to twelve objects and distinguish the number of groups from the number in each.
+    - Use group count × amount in each group to check a total.
+    
+    ## Target Skills
+    
+    - [by1AndSelf.data.ts](../../../../data/skills/arithmetic/divide/skills/by1AndSelf.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Build and read 6 ÷ 1 = 6 as one group containing six.
+    - Build and read 6 ÷ 6 = 1 as six groups of one.
+    - Compare divisor and quotient roles in both models and verify with multiplication.
+    - Apply to nine and reject 0 ÷ 0 as undefined.
+    
+    ## Essential subject matter
+    
+    For a whole number a, a ÷ 1 = a. For a positive a, a ÷ a = 1. The first model has one group of a; the second has a groups of one. 6 ÷ 1 = 6 and 6 ÷ 6 = 1; 9 ÷ 1 = 9 and 9 ÷ 9 = 1. Checks: 1×6=6, 6×1=6, 1×9=9, 9×1=9. Zero divided by one equals zero, but 0 ÷ 0 is undefined. No fraction/negative arithmetic.
+    
+    ## Conceptual progression and dependencies
+    
+    1. Six in One Group: Move all six counters from an initial pool to exactly one named receiving group; allow individual or one-action transfer.
+    2. One in Each of Six: Give one original counter to each of six named groups, tracking the unchanged total six.
+    3. The Same Whole, Different Share: Compare two separately labeled models with ledger entries Total6/Groups1/Each6 and Total6/Groups6/Each1; select which number names groups.
+    4. Nine and a Boundary: Offer two independent nine-counter stories and a zero-divisor non-example with no quotient result; disclose reasons without requiring a guess.
+    
+    ## Misconceptions, examples and boundaries
+    
+    Do not interpret 6 ÷ 1 as 'one counter in six groups' or 6 ÷ 6 as 'six in every group'. Do not duplicate counters during sharing, or claim the rule a÷a=1 covers a=0.
+    
+    ## Localization, accessibility and offline intent
+    
+    Every child-facing string needs genuine complete supported-locale translations, not English fallbacks. Use exact group labels, semantic RTL operand order and fully operable accessible count ledgers with native keyboard/touch/switch equivalents, WCAG 2.2 AA, visible focus, mobile/zoom, reduced motion and local offline maths once downloaded. No drag-only or speech-only explanation.
+    
+    ## Sources and factual verification
+    
+    - Generated Playground taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative), coordinator-owned; regeneration pending integration of this branch.
+    - Canonical Mathematics Skill Code linked by full filename in Target Skills.
+    - [Common Core Math Standards](https://corestandards.org/mathematics-standards/), comparative mathematical development only.
+    
+    ## Curriculum / Program compatibility
+    
+    Standalone, Program-neutral. Lesson audience Grade 2, without limiting source Skill applicability.
+    
+    ## Open editorial decisions
+    
+    - Keep 0 ÷ 0 as a short age-appropriate boundary and avoid requiring algebraic proof.
+    - Confirm model meaning, numerical examples and inclusive wording before approval.
+    
+    ## Methodologist handoff
+    
+    Draft awaiting explicit approval. Screenwriter Content and Scene spec are only provisional Drafts for review. No runtime Lesson, Question, Quiz, scoring or mastery implemented.
+  purpose: "One Group or One in Each?: preserve existing standalone Lesson plan without new assessments or Scene implementation"
+  productionNotes: |-
+    Provisional Screenwriter source (not approved), originally content.md; all introductory, global and review material:
+    
+    # One Group or One in Each? — Content
+    
+    Status: Draft — provisional Screenwriter script pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/divisionByOneAndSelf/
+    Primary audience: Grade 2
+    Methodologist source: Methodologist Brief (incorporated in this config.yaml) (Draft, not editor-approved)
+    Target Skills: by1AndSelf — links in the Brief
+    Program dependence: None
+    
+    ## INSTRUCTIONAL CONCEPT
+    
+    Use two distinct sharing models to show that dividing by one keeps the starting quantity, while a nonzero number divided by itself equals one. Avoid the false extension to 0 ÷ 0.
+    
+    For a whole number a, a ÷ 1 = a. For a positive a, a ÷ a = 1. The first model has one group of a; the second has a groups of one. 6 ÷ 1 = 6 and 6 ÷ 6 = 1; 9 ÷ 1 = 9 and 9 ÷ 9 = 1. Checks: 1×6=6, 6×1=6, 1×9=9, 9×1=9. Zero divided by one equals zero, but 0 ÷ 0 is undefined. No fraction/negative arithmetic.
+    
+    The child first predicts, then performs an exact group action, then compares the observed amounts to the original mathematical statement. Explanation and retry are available without any graded gate.
+    
+    ## LEARNER JOURNEY
+    
+    1. **Six in One Group:** Move all six counters from an initial pool to exactly one named receiving group; allow individual or one-action transfer.
+    2. **One in Each of Six:** Give one original counter to each of six named groups, tracking the unchanged total six.
+    3. **The Same Whole, Different Share:** Compare two separately labeled models with ledger entries Total6/Groups1/Each6 and Total6/Groups6/Each1; select which number names groups.
+    4. **Nine and a Boundary:** Offer two independent nine-counter stories and a zero-divisor non-example with no quotient result; disclose reasons without requiring a guess.
+    
+    ## SECTION PLAN
+    
+    
+    
+    ## CUSTOM SCENE SPECIFICATIONS
+    
+    - One and Self Division Studio (full Scene specification embedded in this config.yaml), four independent Scene placements described in a separate Draft specification.
+    
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+    
+    - “Divide by one: the only group gets the whole amount.” — proposed after complete model explanation.
+    - “A positive number divided by itself gives one in each group.” — proposed after complete model explanation.
+    
+    These Notes are not implemented, persisted or scheduled; unlocking is not mastery.
+    
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+    
+    Section 4 introduces new numbers and a meaningful check. All interactions are formative; Assessment Architect owns separately validated scored Questions, Skill attribution and passing thresholds. Select-one Quiz support in the generic adapter does not implement these proposed Scenes.
+    
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+    
+    Translate all text, controls, aria descriptions, status and feedback into every supported locale without fallback. A nonvisual learner must be able to perform each action with a keyboard and ordered interactive count ledger, not merely listen to a summary of a picture. RTL order must preserve the actual dividend/divisor/quotient. Ensure WCAG 2.2 AA, 200% zoom, mobile, reduced motion, child-sized targets and downloaded offline equivalence.
+    
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+    
+    Generic LessonSection_Config text/markdown/scene rendering exists, but One and Self Division Studio is **proposed**. After approval, implement prop-free entries and own tests, full locale content, offline calculations and accessibility. Notes/review scheduling/PWA sync are separate product features. No React or Quiz implementation is authored here.
+    
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+    
+    - Methodologist Brief (incorporated in this config.yaml), Draft.
+    - Generated Skill taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative), coordinator-owned and not edited.
+    - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - Keep 0 ÷ 0 as a short age-appropriate boundary and avoid requiring algebraic proof.
+    
+    ## HANDOFF
+    
+    Provisional Draft script plus Draft Scene specification for editorial review. Methodologist approval precedes Content/Scene review, then separate Scene Designer/Coding Agent work. No existing Lesson changed.
+    
+    Source-language-only English draft; intended locale list follows the current Engine supported language set (ar, be, bn, de, en, es, et, fr, he, hi, id, ja, ka, kk, ko, lt, lv, mr, ms, pl, pt, qm, ta, te, tr, uk, ur, vi, zh), with genuine translations required before implementation. No formal independent approval is implied.
