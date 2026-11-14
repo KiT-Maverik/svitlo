@@ -61,8 +61,8 @@ config:
                     **Methodologist:** [Draft Brief](.this config.yaml)
                     **Canonical target Skills:**
                     
-                    - [buildPictograph.data.ts](../../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
-                    - [readPictograph.data.ts](../../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
+                    - [buildPictograph.data.ts](../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
+                    - [readPictograph.data.ts](../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
                     
                     ## Educational purpose and intended web interaction
                     
@@ -211,8 +211,8 @@ config:
                     **Methodologist:** [Draft Brief](.this config.yaml)
                     **Canonical target Skills:**
                     
-                    - [buildPictograph.data.ts](../../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
-                    - [readPictograph.data.ts](../../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
+                    - [buildPictograph.data.ts](../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
+                    - [readPictograph.data.ts](../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
                     
                     ## Educational purpose and intended web interaction
                     
@@ -362,8 +362,8 @@ config:
                     **Methodologist:** [Draft Brief](.this config.yaml)
                     **Canonical target Skills:**
                     
-                    - [buildPictograph.data.ts](../../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
-                    - [readPictograph.data.ts](../../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
+                    - [buildPictograph.data.ts](../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
+                    - [readPictograph.data.ts](../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
                     
                     ## Educational purpose and intended web interaction
                     
@@ -512,8 +512,8 @@ config:
                     **Methodologist:** [Draft Brief](.this config.yaml)
                     **Canonical target Skills:**
                     
-                    - [buildPictograph.data.ts](../../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
-                    - [readPictograph.data.ts](../../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
+                    - [buildPictograph.data.ts](../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
+                    - [readPictograph.data.ts](../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
                     
                     ## Educational purpose and intended web interaction
                     
@@ -750,11 +750,13 @@ production:
     
     Use a vertical single-column order of typed Resource blocks within each general Section: `text`, `markdown` and the existing `scene` Resource type. The named **PictographStudio** is a new proposed Scene, not yet implemented, and each appearance must be self-contained rather than depending on earlier Section state. A generic Scene renderer does not mean this particular educational interaction is available. No new Section discriminators or hidden readiness APIs are implied.
     
-    ## Section-by-Section learning exper
+    ## Section-by-Section learning experience
+    
+    
     
     ## Custom Scene specifications
     
-    - [PictographStudio](./scenes/PictographStudio.scene-spec.md) — proposed interactive, prop-free self-contained Scene. Review its pedagogical cases, state changes, feedback, accessibility alternatives and reset. It is a written specification, **not** a React component.
+    - PictographStudio (full Scene specification embedded in this config.yaml) — proposed interactive, prop-free self-contained Scene. Review its pedagogical cases, state changes, feedback, accessibility alternatives and reset. It is a written specification, **not** a React component.
     
     ## Independent transfer and reflection
     

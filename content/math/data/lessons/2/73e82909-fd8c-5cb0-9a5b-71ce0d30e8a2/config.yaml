@@ -625,11 +625,13 @@ production:
     3. **A Rule Worth Testing:** Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review.
     4. **Try Two and Five:** Create two rows of five, let child reorient into five rows of two, and inspect two complete equations with total ten.
     
-    ## SECTION
+    ## SECTION PLAN
+    
+    
     
     ## CUSTOM SCENE SPECIFICATIONS
     
-    - [Array Rotation Inspector](./scenes/arrayRotationInspector.scene-spec.md) — four standalone prop-free placement entries; specific Scene not yet implemented.
+    - Array Rotation Inspector (full Scene specification embedded in this config.yaml) — four standalone prop-free placement entries; specific Scene not yet implemented.
     
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
     
@@ -652,7 +654,7 @@ production:
     
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
     
-    - [Methodologist Brief](./methodologist-brief.md), currently Draft and explicitly not approved.
+    - Methodologist Brief (incorporated in this config.yaml), currently Draft and explicitly not approved.
     - [Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md).
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Editorial: Keep this Skill distinct from arrayModel: the array lesson teaches representation and row/column counting, whereas this Lesson targets the invariant when factor order changes. Whether to show one optional subtraction counterexample is an editorial choice; do not teach negative results.

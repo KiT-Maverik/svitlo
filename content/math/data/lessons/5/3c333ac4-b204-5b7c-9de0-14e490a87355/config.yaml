@@ -525,12 +525,14 @@ production:
     2. **Explain, predict and retrieve.** A short supported text/Markdown Section contrasts a tempting wrong rule with the correct one and asks for a reason before displaying a worked explanation. No automatic assessment is implied.
     3. **Transfer without the original picture.** Two-Digit Number Builder presents different objects/representations and an unfamiliar challenge. The learner can explore, retry and inspect a full causal explanation without score or irreversible failure.
     
-    ## SECTION
+    ## SECTION PLAN
+    
+    
     
     ## CUSTOM SCENE SPECIFICATIONS
     
-    - [Bundle Exchange Workbench](./scenes/bundleExchange.scene-spec.md) — concrete exploratory model and boundary contrast, independent prop-free Scene.
-    - [Two-Digit Number Builder](./scenes/placeValueBuilder.scene-spec.md) — independently initialized transfer model, distinct interaction with separate prop-free Scene.
+    - Bundle Exchange Workbench (full Scene specification embedded in this config.yaml) — concrete exploratory model and boundary contrast, independent prop-free Scene.
+    - Two-Digit Number Builder (full Scene specification embedded in this config.yaml) — independently initialized transfer model, distinct interaction with separate prop-free Scene.
     
     Both are **proposed** components. Current generic `scene` Resource support does not mean that either specific Scene exists in runtime. There is no `sceneMode` prop, fake Resource metadata or fabricated event contract.
     
@@ -563,7 +565,7 @@ production:
     
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
     
-    - [Draft Methodologist Brief](./methodologist-brief.md) (including exact Skill source links and numerical boundaries).
+    - Draft Methodologist Brief (incorporated in this config.yaml) (including exact Skill source links and numerical boundaries).
     - [Studio Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md) and [Section entity](../../../../../../studio/docs/entities/section.md).
     - Specific unresolved approvals: selected grade and outcomes, Scene spec feasibility, complete locale coverage, and accessible/offline equivalence.
     

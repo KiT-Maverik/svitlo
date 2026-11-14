@@ -771,11 +771,13 @@ production:
     
     No required speed, rewards, random variation, completion-as-mastery claims, scored Question or Quiz.
     
-    ## SECTION
+    ## SECTION PLAN
+    
+    
     
     ## CUSTOM SCENE SPECIFICATIONS
     
-    - [Route Explorer](./scenes/routeExplorer.scene-spec.md) — one proposed prop-free custom Scene with **separate self-contained placement presets**; no reusable React props or invented runtime mode API.
+    - Route Explorer (full Scene specification embedded in this config.yaml) — one proposed prop-free custom Scene with **separate self-contained placement presets**; no reusable React props or invented runtime mode API.
     
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
     
@@ -801,7 +803,7 @@ production:
     
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
     
-    - [Draft Methodologist Brief](./methodologist-brief.md), linked canonical Skill data and the Studio Lesson/Scene contracts.
+    - Draft Methodologist Brief (incorporated in this config.yaml), linked canonical Skill data and the Studio Lesson/Scene contracts.
     - Editor: confirm whether route orientation shown as arrows without compass vocabulary is sufficient and whether the optional final-heading challenge should stay optional.
     - The Brief is **Draft**; Section text and Scene are **provisional**, not approved.
     
