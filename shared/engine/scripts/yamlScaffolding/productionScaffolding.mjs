@@ -39,7 +39,7 @@ export function splitScaffoldDocument(document) {
   return {
     config: normalized,
     documentLanguage: production?.documentLanguage,
-    overrides: document.overrides,
+    overrides: document.overrides === undefined ? undefined : visit(document.overrides, '$.overrides'),
     tasks,
   };
 }
