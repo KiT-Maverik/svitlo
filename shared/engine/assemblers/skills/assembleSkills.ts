@@ -19,7 +19,8 @@ export type SkillDomain_PublishedPatch = Omit<
   skills?: Skill_Props[];
   groups?: SkillGroup_Props[];
 };
-export type Skills_Locale = Record<string, SkillDomain_PublishedPatch>;
+/** Configurator Build expresses locale output as a sparse DeepPartial; validate identity at runtime. */
+export type Skills_Locale = Record<string, DeepPartial<SkillDomain_Props>>;
 
 export type Skills_Publication = {
   base: Skills_Base;
@@ -27,8 +28,8 @@ export type Skills_Publication = {
 };
 
 export type Skills_Overrides = {
-  base?: Skills_Locale;
-  locale?: Partial<Record<LanguageCode, Skills_Locale>>;
+  base?: Record<string, SkillDomain_PublishedPatch>;
+  locale?: Partial<Record<LanguageCode, Record<string, SkillDomain_PublishedPatch>>>;
 };
 
 export type Skills_Props = Record<string, SkillDomain_Props>;
