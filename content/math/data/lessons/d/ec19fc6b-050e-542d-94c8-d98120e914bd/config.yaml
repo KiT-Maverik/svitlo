@@ -1,0 +1,699 @@
+config:
+  id: "ec19fc6b-050e-542d-94c8-d98120e914bd"
+  slug: "pointsLinesAndSegments"
+  type: "lesson"
+  skills: ["32258326-50ad-496c-a202-059bff6828b6","174ccc59-ccc9-4c20-83ec-1882af1c3ec8"]
+  params:
+    requireQuiz: false
+    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Points, Lines and Segments"
+  section:
+    items:
+      section1CanAPointBeBig:
+        config:
+          id: "a11ed192-d637-453f-9489-0b1c29c20f09"
+          slug: "section1CanAPointBeBig"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Can a Point Be Big?"
+            navigationLabel:
+              en: "Can a Point Be Big?"
+          content:
+            items:
+              pointAndLineExplorer:
+                config:
+                  id: "18ae2e8d-3059-4b22-9b83-fb4351889448"
+                  slug: "pointAndLineExplorer"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Point and Line Explorer"
+                production:
+                  specification: |
+                    # Point and Line Explorer — Scene Specification
+                    
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Points, Lines and Segments Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (editorial text integrated into this config.yaml), two separately meaningful Skills: recognize points/line types and construct/label a straight segment. This is a proposed instructional tool **not an extra Skill**.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Children are usually shown finite ink marks, which can misleadingly look like the mathematical objects themselves. Here they _change marker size without moving the point_, explore three fundamentally distinct path types, switch between a full straight-line **representation** and finite segment AB, then **construct** a new labeled segment. At each stage the learner predicts a difference, manipulates the model, sees the exact changed property and explains it.
+                    
+                    Learner-facing invariant: "**A drawn dot shows where a point is. A straight line keeps going. A segment is the straight part between two endpoints.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - A **point** has a position but no size. Marker discs may have arbitrary visible radius `r>0`; changing `r` does **not** change center position. Display pixels are _not_ geometric length or point size.
+                    - An ideal **straight line** extends without endpoints in two directions; it is represented by a finite straight stroke with two continuation arrows, explicitly labeled "continues beyond picture". Those arrows indicate extension, **not endpoint dots**.
+                    - A general **curve** need not be straight or a chain of straight segments. Use a genuinely curved SVG path in stage B, not many segments secretly presented as a proof of straightness.
+                    - A **polygonal chain** consists of consecutive straight segments joined end-to-end; in this Lesson use one open **two-piece** chain with a visible bend at C.
+                    - A **segment AB** includes its two **distinct** endpoints A and B, is straight between them and has a finite length equal to the straight-line distance. **AB = BA** as an _unoriented geometric segment_. Distinguish from arrows at ends of a drawn line. A bent route A→C→B with C not collinear with A,B is not AB.
+                    - All coordinates are **diagram-local model units**, not centimeter lengths or formal coordinate-plane learning targets. No exact motor drawing or screen calibration. Do not introduce rays, angle measure, parallel/perpendicular Skills or length computations as goals.
+                    - A single finite drawn piece cannot display an infinite line in full; explicitly teach it is a **model**, not literal completion.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Placement A: Same Point, Bigger Dot (Section 1)
+                    
+                    1. Initial: marked point **A** centered at (2,2), small dot radius `r=0.1`; label A available. Prediction prompt: "If its marker gets bigger, does the point move?"
+                    2. Two distinct actions: **Enlarge dot** changes radius to `r=0.3`, center stays exactly (2,2). **Move A** later changes center to (4,2), radius stays at chosen setting.
+                    3. Show before/after state text: "A remained at same position; only marker size changed" versus "A changed position to the right". Children can compare both without seeing screen coordinates.
+                    4. If child predicts "position changed" for enlargement: "The center of the mark did not move." If they predict "same" for actual movement: "The center moved; that indicates a different location."
+                    5. Reset restores center (2,2), small radius and unrevealed prediction. No drawing size becomes an actual geometric measurement.
+                    
+                    ### Placement B: Straight, Curved, Piecewise Straight (Section 2)
+                    
+                    1. Display three accessible, explicitly **different** models with text labels hidden until inspection: (a) one straight stroke across canvas with **continuation arrows at both ends**; (b) a single smoothly curved arc with a different tangent direction at different points; (c) polyline from A=(1,2) through C=(3,3) to B=(5,2).
+                    2. Prompt "Which can keep going straight? Which bends smoothly? Which joins two straight pieces at a corner?" Selection available as **buttons/list**, not mandatory clicking thin paths.
+                    3. **Inspect edge/path** reveals: (a) direction constant; full ideal line continues outside drawing, no displayed endpoints; (b) curved path changes direction **smoothly**; (c) first straight A→C and second straight C→B, with an abrupt directional change at C.
+                    4. Misconception feedback: "Both pieces are straight, but their joined route is **not one straight line**" if chain was chosen as full straight line. If curve chosen, say "The path bends." Do not call an entire polyline a segment.
+                    5. Trace controls "Next piece", "Read model", "Reset". The textual equivalent includes endpoints/joints and model limitations; no motion-only line tracing.
+                    
+                    ### Placement C: A Segment Ends (Section 3)
+                    
+                    1. Fixed labeled points A=(1,2), B=(5,2). "Show **ideal line**" draws one straight stroke through A and B with arrows beyond both, representing endless extension.
+                    2. "Show **segment AB**" displays **only** the straight path from (1,2) to (5,2), **both endpoint dots filled**. "Beyond A/B" regions are hidden.
+                    3. "Swap label order" names the exact same path **BA**, with no change to endpoints, geometry, state length or direction. Explain equality of _unoriented segments_; do not imply an instruction route A→B equals a directed move B→A.
+                    4. "Show bent alternative" draws A→C→B where C=(3,3), distinct from the straight AB. Both paths share endpoints but not interior geometry or length. The bent path must be clearly marked "**not segment AB**".
+                    5. Prompts: "Does AB include the two dots?", "Do the arrows belong to the segment?", "Does swapping the order of the letters move the line?" Feedback explains the relevant inclusion/limitation, not a binary colored grade.
+                    6. Text summary after reveal: "The straight segment includes endpoints A and B. It stops at both. The extended line continues in both directions."
+                    
+                    ### Placement D: Build AB (Section 4)
+                    
+                    1. Draw a **5×5 discrete position board** as an optional coordinate selection aid (internal positions 0…4 on both axes); initial construction preset **A=(1,1), B=(4,3)** with endpoints distinct. Do not teach Cartesian coordinates here; visible controls describe positions as board row/column or named dots, with a matching textual list.
+                    2. Learner may choose new A and B positions using two row/column selectors, then presses "Mark endpoints". Attempt to set B equal A gets: "Choose two _different_ positions so we can make a finite segment with two distinct endpoints." No silent fallback point moves.
+                    3. "Connect straight" draws exact straight stroke between A and B; "Connect via C" places C=(2,4) or another explicitly **off-line** position and creates two-piece route A→C→B. This is a deliberate wrong construction **not** a scored trap.
+                    4. "Name AB" / "Name BA" buttons show identical straight segment for either label order. Prompt learner to explain: "Same endpoints, same straight piece."
+                    5. Independent transfer preset: choose new points A=(0,3) and B=(3,0), with prior answers cleared, and invite a straight connection. Compare with path via (0,0): two straight pieces, not AB. The learner can review an ordered ledger and reset to blank.
+                    6. An incorrect choice generates descriptive feedback: endpoints, straightness and presence of a bend. A correct construction generates the reason, not a score or persistent completion claim.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** visible marker discs with fixed center, straight continuation arrows, smooth curve, polygonal chain, named endpoints, optional grid-based point-position selector, straight-connect and bent-route controls, annotated text ledger.
+                    - **Per-placement state:** independent preset type A/B/C/D fixed editorially; selected object/path, center/radius for marker (A only), display mode line vs segment vs bend, selected endpoint positions, chosen prediction and reveal step. User-visible data comes from real locale context.
+                    - **Geometry invariant:** marker radius never mutates center; an ideal line has no mathematical endpoints; segment stroke between A and B is straight and includes endpoints; AB and BA are same unoriented segment; changing drawing size does not create a new point.
+                    - **Bounds:** coordinates remain on local board; two endpoints must be distinct; C bent-path preset cannot lie on segment AB. The scene must not use SVG scale/pixel size as centimeters.
+                    - **Reset:** restore _that Section placement_ to its original model and unrevealed state, with no leakage from another Section. Each exported Scene root is **prop-free**; implementations may share private helpers while independent roots define their own initial presets. Do **not** introduce a guessed `mode`, `data`, `direction`, `locale` or `onChange` public prop.
+                    - **Controls:** native labeled buttons/list/radio selections, keyboard and switch accessibility equal to any optional pointer exploration. Every revealing action updates a readable state log without requiring visual arrow interpretation.
+                    - **Pedagogical feedback:** one actionable reason, hint/retry and optional reveal; no score/Quiz/mastery calculation, correct-answer secrets, timers, storage or external event schema.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Use clean SVG/HTML with high-contrast thin but scalable model strokes and **large independent click/touch targets**. Dot-marker enlargement must not look like a move; use a center guide marker plus explicit text. The ideal straight line is shown with arrows extending beyond cropped drawing, not cap-like endpoint dots. Curved path should remain smoothly curved; polygonal chain shows exactly one visible kink. Straight segment AB must never be rendered with continuation arrows. Optional reveal animation is controlled and disappears under reduced-motion preference; content does not depend on animations.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    All labels, model descriptions, prediction choices, explanations, feedback, optional audio/transcripts, shape aliases and Note cues require genuine supported-locale translation without English fallbacks. In RTL layout, preserve geometrically meaningful endpoint inclusion and arrows in **both** continuation directions; do not invert AB and BA claims or assign mathematical direction from reading order. Give a nonvisual list describing each path's defining features and point positioning; before reveal, avoid naming the answer as a secret but provide enough objective attributes to reason. Controls must support keyboard/switch/touch and 200% zoom, explicit focus, WCAG 2.2 AA, reduced motion and no color-only meaning. All assets and logic must be available offline after selected language/lesson download; offline delivery is a future requirement, not established functionality.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Enlarging marker radius for A centered (2,2) does not change its position. Moving it to (4,2) changes position, irrespective of marker size.
+                    2. The "ideal straight line" has **both** continuation arrows and no _mathematical_ endpoints; its finite picture is not claimed physically infinite.
+                    3. Smooth curve and two-piece A→C→B chain with C=(3,3) are distinct from one straight line.
+                    4. Switching extended line to segment AB keeps endpoints A=(1,2), B=(5,2) and removes all portions beyond them.
+                    5. BA and AB give **exactly the same** straight segment geometry, including endpoints; a bend via (3,3) is explicitly **not** AB.
+                    6. For A=(1,1), B=(4,3), "Connect straight" produces exactly one straight path. B=A is rejected as outside the intended **two-distinct-endpoints** construction.
+                    7. Two-piece transfer via C=(0,0) for A=(0,3),B=(3,0) is not the straight segment between endpoints.
+                    8. Independent Section placement resets do not leak point positions or predictions; UI remains prop-free.
+                    9. Keyboard, screen-reader, RTL, reduced-motion, mobile, large-text and post-download offline modes preserve the same geometric truth and feedback, with no mandatory fine-precision drawing or color interpretation.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Current `scene` Resource and generic renderer provide a place for such a component, **not the component itself**. Coding Agent later verifies localization provider/context, Section placement, Math SVG models, deterministic tests and offline packaging; Scene Designer requires an **approved** Scene specification first. Editorial decision pending on whether optional segment-length _description_ should be allowed; no centimeter output is part of this Lesson. No Question, Quiz, Score, Note unlock API, persistence or external action invented here.
+                  purpose: "Proposed interactive Scene for Can a Point Be Big?"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+            order: ["pointAndLineExplorer"]
+        production:
+          purpose: "Can a Point Be Big?"
+          pedagogicalIntent: |
+            ### Section 1 — Can a Point Be Big?
+            
+            - **Learning purpose:** separate geometric position from the size of its visible marker.
+            - **Current shape:** `LessonSection_Config`; one vertical ordered content column.
+            - **Ordered Resources:**
+              1. **text — existing renderer:** "This dot stands for a point named A. If I draw the dot much bigger, have I moved A or made the mathematical point wider? Choose what you think."
+              2. **scene — contract and generic renderer available, custom Scene proposed:** Point and Line Explorer (Scene specification embedded in this config.yaml), stage A. A dot centered at diagram position (2,2) changes from small to large mark while its exact center remains (2,2); a second dot at (4,2) shows a genuinely different position. Two prediction actions: "same point" and "new position".
+              3. **markdown — existing renderer:** "A **point** tells us _where_. We draw a dot so we can see it, but a geometric point itself has **no width or thickness**. A bigger dot can mark the **same** point A. Moving the center to a new place marks a _different_ position."
+            - **Explanatory feedback:** If "new position" for a bigger dot: "Look at the dot's center. The center stayed exactly where A was. Only the ink got bigger." If A moves from (2,2) to (4,2): "Now the center moved, so the marked position changed." No metric coordinates appear in the child's text.
+            - **Interaction and access:** "Enlarge marker", "Move marker", "Read point positions", "Reset"; no precision touch needed. Nonvisual state: "Point A stays in the same place; its marker grew." Reveal only after prediction. A simple localized Note about a point as a position is **planned**, not implemented.
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+      section2StraightCurvedOrMadeOfSegments:
+        config:
+          id: "cd44bd89-9f55-4420-9505-8fe350e58ada"
+          slug: "section2StraightCurvedOrMadeOfSegments"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Straight, Curved, or Made of Segments?"
+            navigationLabel:
+              en: "Straight, Curved, or Made of Segments?"
+          content:
+            items:
+              pointAndLineExplorer:
+                config:
+                  id: "5b2adfc8-1f1c-4587-b252-00a6d7b6ad55"
+                  slug: "pointAndLineExplorer"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Point and Line Explorer"
+                production:
+                  specification: |
+                    # Point and Line Explorer — Scene Specification
+                    
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Points, Lines and Segments Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (editorial text integrated into this config.yaml), two separately meaningful Skills: recognize points/line types and construct/label a straight segment. This is a proposed instructional tool **not an extra Skill**.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Children are usually shown finite ink marks, which can misleadingly look like the mathematical objects themselves. Here they _change marker size without moving the point_, explore three fundamentally distinct path types, switch between a full straight-line **representation** and finite segment AB, then **construct** a new labeled segment. At each stage the learner predicts a difference, manipulates the model, sees the exact changed property and explains it.
+                    
+                    Learner-facing invariant: "**A drawn dot shows where a point is. A straight line keeps going. A segment is the straight part between two endpoints.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - A **point** has a position but no size. Marker discs may have arbitrary visible radius `r>0`; changing `r` does **not** change center position. Display pixels are _not_ geometric length or point size.
+                    - An ideal **straight line** extends without endpoints in two directions; it is represented by a finite straight stroke with two continuation arrows, explicitly labeled "continues beyond picture". Those arrows indicate extension, **not endpoint dots**.
+                    - A general **curve** need not be straight or a chain of straight segments. Use a genuinely curved SVG path in stage B, not many segments secretly presented as a proof of straightness.
+                    - A **polygonal chain** consists of consecutive straight segments joined end-to-end; in this Lesson use one open **two-piece** chain with a visible bend at C.
+                    - A **segment AB** includes its two **distinct** endpoints A and B, is straight between them and has a finite length equal to the straight-line distance. **AB = BA** as an _unoriented geometric segment_. Distinguish from arrows at ends of a drawn line. A bent route A→C→B with C not collinear with A,B is not AB.
+                    - All coordinates are **diagram-local model units**, not centimeter lengths or formal coordinate-plane learning targets. No exact motor drawing or screen calibration. Do not introduce rays, angle measure, parallel/perpendicular Skills or length computations as goals.
+                    - A single finite drawn piece cannot display an infinite line in full; explicitly teach it is a **model**, not literal completion.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Placement A: Same Point, Bigger Dot (Section 1)
+                    
+                    1. Initial: marked point **A** centered at (2,2), small dot radius `r=0.1`; label A available. Prediction prompt: "If its marker gets bigger, does the point move?"
+                    2. Two distinct actions: **Enlarge dot** changes radius to `r=0.3`, center stays exactly (2,2). **Move A** later changes center to (4,2), radius stays at chosen setting.
+                    3. Show before/after state text: "A remained at same position; only marker size changed" versus "A changed position to the right". Children can compare both without seeing screen coordinates.
+                    4. If child predicts "position changed" for enlargement: "The center of the mark did not move." If they predict "same" for actual movement: "The center moved; that indicates a different location."
+                    5. Reset restores center (2,2), small radius and unrevealed prediction. No drawing size becomes an actual geometric measurement.
+                    
+                    ### Placement B: Straight, Curved, Piecewise Straight (Section 2)
+                    
+                    1. Display three accessible, explicitly **different** models with text labels hidden until inspection: (a) one straight stroke across canvas with **continuation arrows at both ends**; (b) a single smoothly curved arc with a different tangent direction at different points; (c) polyline from A=(1,2) through C=(3,3) to B=(5,2).
+                    2. Prompt "Which can keep going straight? Which bends smoothly? Which joins two straight pieces at a corner?" Selection available as **buttons/list**, not mandatory clicking thin paths.
+                    3. **Inspect edge/path** reveals: (a) direction constant; full ideal line continues outside drawing, no displayed endpoints; (b) curved path changes direction **smoothly**; (c) first straight A→C and second straight C→B, with an abrupt directional change at C.
+                    4. Misconception feedback: "Both pieces are straight, but their joined route is **not one straight line**" if chain was chosen as full straight line. If curve chosen, say "The path bends." Do not call an entire polyline a segment.
+                    5. Trace controls "Next piece", "Read model", "Reset". The textual equivalent includes endpoints/joints and model limitations; no motion-only line tracing.
+                    
+                    ### Placement C: A Segment Ends (Section 3)
+                    
+                    1. Fixed labeled points A=(1,2), B=(5,2). "Show **ideal line**" draws one straight stroke through A and B with arrows beyond both, representing endless extension.
+                    2. "Show **segment AB**" displays **only** the straight path from (1,2) to (5,2), **both endpoint dots filled**. "Beyond A/B" regions are hidden.
+                    3. "Swap label order" names the exact same path **BA**, with no change to endpoints, geometry, state length or direction. Explain equality of _unoriented segments_; do not imply an instruction route A→B equals a directed move B→A.
+                    4. "Show bent alternative" draws A→C→B where C=(3,3), distinct from the straight AB. Both paths share endpoints but not interior geometry or length. The bent path must be clearly marked "**not segment AB**".
+                    5. Prompts: "Does AB include the two dots?", "Do the arrows belong to the segment?", "Does swapping the order of the letters move the line?" Feedback explains the relevant inclusion/limitation, not a binary colored grade.
+                    6. Text summary after reveal: "The straight segment includes endpoints A and B. It stops at both. The extended line continues in both directions."
+                    
+                    ### Placement D: Build AB (Section 4)
+                    
+                    1. Draw a **5×5 discrete position board** as an optional coordinate selection aid (internal positions 0…4 on both axes); initial construction preset **A=(1,1), B=(4,3)** with endpoints distinct. Do not teach Cartesian coordinates here; visible controls describe positions as board row/column or named dots, with a matching textual list.
+                    2. Learner may choose new A and B positions using two row/column selectors, then presses "Mark endpoints". Attempt to set B equal A gets: "Choose two _different_ positions so we can make a finite segment with two distinct endpoints." No silent fallback point moves.
+                    3. "Connect straight" draws exact straight stroke between A and B; "Connect via C" places C=(2,4) or another explicitly **off-line** position and creates two-piece route A→C→B. This is a deliberate wrong construction **not** a scored trap.
+                    4. "Name AB" / "Name BA" buttons show identical straight segment for either label order. Prompt learner to explain: "Same endpoints, same straight piece."
+                    5. Independent transfer preset: choose new points A=(0,3) and B=(3,0), with prior answers cleared, and invite a straight connection. Compare with path via (0,0): two straight pieces, not AB. The learner can review an ordered ledger and reset to blank.
+                    6. An incorrect choice generates descriptive feedback: endpoints, straightness and presence of a bend. A correct construction generates the reason, not a score or persistent completion claim.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** visible marker discs with fixed center, straight continuation arrows, smooth curve, polygonal chain, named endpoints, optional grid-based point-position selector, straight-connect and bent-route controls, annotated text ledger.
+                    - **Per-placement state:** independent preset type A/B/C/D fixed editorially; selected object/path, center/radius for marker (A only), display mode line vs segment vs bend, selected endpoint positions, chosen prediction and reveal step. User-visible data comes from real locale context.
+                    - **Geometry invariant:** marker radius never mutates center; an ideal line has no mathematical endpoints; segment stroke between A and B is straight and includes endpoints; AB and BA are same unoriented segment; changing drawing size does not create a new point.
+                    - **Bounds:** coordinates remain on local board; two endpoints must be distinct; C bent-path preset cannot lie on segment AB. The scene must not use SVG scale/pixel size as centimeters.
+                    - **Reset:** restore _that Section placement_ to its original model and unrevealed state, with no leakage from another Section. Each exported Scene root is **prop-free**; implementations may share private helpers while independent roots define their own initial presets. Do **not** introduce a guessed `mode`, `data`, `direction`, `locale` or `onChange` public prop.
+                    - **Controls:** native labeled buttons/list/radio selections, keyboard and switch accessibility equal to any optional pointer exploration. Every revealing action updates a readable state log without requiring visual arrow interpretation.
+                    - **Pedagogical feedback:** one actionable reason, hint/retry and optional reveal; no score/Quiz/mastery calculation, correct-answer secrets, timers, storage or external event schema.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Use clean SVG/HTML with high-contrast thin but scalable model strokes and **large independent click/touch targets**. Dot-marker enlargement must not look like a move; use a center guide marker plus explicit text. The ideal straight line is shown with arrows extending beyond cropped drawing, not cap-like endpoint dots. Curved path should remain smoothly curved; polygonal chain shows exactly one visible kink. Straight segment AB must never be rendered with continuation arrows. Optional reveal animation is controlled and disappears under reduced-motion preference; content does not depend on animations.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    All labels, model descriptions, prediction choices, explanations, feedback, optional audio/transcripts, shape aliases and Note cues require genuine supported-locale translation without English fallbacks. In RTL layout, preserve geometrically meaningful endpoint inclusion and arrows in **both** continuation directions; do not invert AB and BA claims or assign mathematical direction from reading order. Give a nonvisual list describing each path's defining features and point positioning; before reveal, avoid naming the answer as a secret but provide enough objective attributes to reason. Controls must support keyboard/switch/touch and 200% zoom, explicit focus, WCAG 2.2 AA, reduced motion and no color-only meaning. All assets and logic must be available offline after selected language/lesson download; offline delivery is a future requirement, not established functionality.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Enlarging marker radius for A centered (2,2) does not change its position. Moving it to (4,2) changes position, irrespective of marker size.
+                    2. The "ideal straight line" has **both** continuation arrows and no _mathematical_ endpoints; its finite picture is not claimed physically infinite.
+                    3. Smooth curve and two-piece A→C→B chain with C=(3,3) are distinct from one straight line.
+                    4. Switching extended line to segment AB keeps endpoints A=(1,2), B=(5,2) and removes all portions beyond them.
+                    5. BA and AB give **exactly the same** straight segment geometry, including endpoints; a bend via (3,3) is explicitly **not** AB.
+                    6. For A=(1,1), B=(4,3), "Connect straight" produces exactly one straight path. B=A is rejected as outside the intended **two-distinct-endpoints** construction.
+                    7. Two-piece transfer via C=(0,0) for A=(0,3),B=(3,0) is not the straight segment between endpoints.
+                    8. Independent Section placement resets do not leak point positions or predictions; UI remains prop-free.
+                    9. Keyboard, screen-reader, RTL, reduced-motion, mobile, large-text and post-download offline modes preserve the same geometric truth and feedback, with no mandatory fine-precision drawing or color interpretation.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Current `scene` Resource and generic renderer provide a place for such a component, **not the component itself**. Coding Agent later verifies localization provider/context, Section placement, Math SVG models, deterministic tests and offline packaging; Scene Designer requires an **approved** Scene specification first. Editorial decision pending on whether optional segment-length _description_ should be allowed; no centimeter output is part of this Lesson. No Question, Quiz, Score, Note unlock API, persistence or external action invented here.
+                  purpose: "Proposed interactive Scene for Straight, Curved, or Made of Segments?"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+            order: ["pointAndLineExplorer"]
+        production:
+          purpose: "Straight, Curved, or Made of Segments?"
+          pedagogicalIntent: |
+            ### Section 2 — Straight, Curved, or Made of Segments?
+            
+            - **Learning purpose:** identify line types by their actual continuity/geometry.
+            - **Current shape:** one-column `LessonSection_Config`.
+            - **Ordered Resources:**
+              1. **text — existing:** "Three paths join places on the page: one stays straight, one bends smoothly, and one turns at a sharp join. Which is the straight path? Which is a curve? Which is built from straight pieces?"
+              2. **scene — proposed:** Point and Line Explorer (Scene specification embedded in this config.yaml), stage B, with selectable models: (a) straight line-like trace across canvas, continuation arrows on both ends; (b) smooth bending curve without straight-piece joints; (c) open polygonal chain A→C→B with two segments meeting at C. Show exact text descriptions, trace segments with "Next piece" and label the joint.
+              3. **markdown — existing:** "A **straight line** never bends and, in mathematics, extends past both ends of any drawing. The two arrows show **continuation**, not end points. A **curve** can bend smoothly. A **polygonal chain** is made of straight pieces joined end-to-end."
+            - **Prediction/feedback:** Selecting the broken path as straight: "Each piece is straight, but the **whole path turns at C**. It is a chain of straight pieces, not one straight line." Selecting the curve: "This path changes direction smoothly." Correct: "The arrow-ended trace models one straight line." Explain that every screen drawing is finite even when it represents an infinite line.
+            - **Boundary and access:** Do not introduce a ray as a formal target or claim every curve is wavy. A screen reader gets three ordered path descriptions and a list of their components. Keyboard toggle moves selection and reveals descriptions, never requiring pointer tracing.
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+      section3WhereDoesASegmentStop:
+        config:
+          id: "50680e98-5fed-46e7-9190-5292efd75bc9"
+          slug: "section3WhereDoesASegmentStop"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Where Does a Segment Stop?"
+            navigationLabel:
+              en: "Where Does a Segment Stop?"
+          content:
+            items:
+              pointAndLineExplorer:
+                config:
+                  id: "0403c1df-256c-446a-9b01-318d898d9b88"
+                  slug: "pointAndLineExplorer"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Point and Line Explorer"
+                production:
+                  specification: |
+                    # Point and Line Explorer — Scene Specification
+                    
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Points, Lines and Segments Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (editorial text integrated into this config.yaml), two separately meaningful Skills: recognize points/line types and construct/label a straight segment. This is a proposed instructional tool **not an extra Skill**.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Children are usually shown finite ink marks, which can misleadingly look like the mathematical objects themselves. Here they _change marker size without moving the point_, explore three fundamentally distinct path types, switch between a full straight-line **representation** and finite segment AB, then **construct** a new labeled segment. At each stage the learner predicts a difference, manipulates the model, sees the exact changed property and explains it.
+                    
+                    Learner-facing invariant: "**A drawn dot shows where a point is. A straight line keeps going. A segment is the straight part between two endpoints.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - A **point** has a position but no size. Marker discs may have arbitrary visible radius `r>0`; changing `r` does **not** change center position. Display pixels are _not_ geometric length or point size.
+                    - An ideal **straight line** extends without endpoints in two directions; it is represented by a finite straight stroke with two continuation arrows, explicitly labeled "continues beyond picture". Those arrows indicate extension, **not endpoint dots**.
+                    - A general **curve** need not be straight or a chain of straight segments. Use a genuinely curved SVG path in stage B, not many segments secretly presented as a proof of straightness.
+                    - A **polygonal chain** consists of consecutive straight segments joined end-to-end; in this Lesson use one open **two-piece** chain with a visible bend at C.
+                    - A **segment AB** includes its two **distinct** endpoints A and B, is straight between them and has a finite length equal to the straight-line distance. **AB = BA** as an _unoriented geometric segment_. Distinguish from arrows at ends of a drawn line. A bent route A→C→B with C not collinear with A,B is not AB.
+                    - All coordinates are **diagram-local model units**, not centimeter lengths or formal coordinate-plane learning targets. No exact motor drawing or screen calibration. Do not introduce rays, angle measure, parallel/perpendicular Skills or length computations as goals.
+                    - A single finite drawn piece cannot display an infinite line in full; explicitly teach it is a **model**, not literal completion.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Placement A: Same Point, Bigger Dot (Section 1)
+                    
+                    1. Initial: marked point **A** centered at (2,2), small dot radius `r=0.1`; label A available. Prediction prompt: "If its marker gets bigger, does the point move?"
+                    2. Two distinct actions: **Enlarge dot** changes radius to `r=0.3`, center stays exactly (2,2). **Move A** later changes center to (4,2), radius stays at chosen setting.
+                    3. Show before/after state text: "A remained at same position; only marker size changed" versus "A changed position to the right". Children can compare both without seeing screen coordinates.
+                    4. If child predicts "position changed" for enlargement: "The center of the mark did not move." If they predict "same" for actual movement: "The center moved; that indicates a different location."
+                    5. Reset restores center (2,2), small radius and unrevealed prediction. No drawing size becomes an actual geometric measurement.
+                    
+                    ### Placement B: Straight, Curved, Piecewise Straight (Section 2)
+                    
+                    1. Display three accessible, explicitly **different** models with text labels hidden until inspection: (a) one straight stroke across canvas with **continuation arrows at both ends**; (b) a single smoothly curved arc with a different tangent direction at different points; (c) polyline from A=(1,2) through C=(3,3) to B=(5,2).
+                    2. Prompt "Which can keep going straight? Which bends smoothly? Which joins two straight pieces at a corner?" Selection available as **buttons/list**, not mandatory clicking thin paths.
+                    3. **Inspect edge/path** reveals: (a) direction constant; full ideal line continues outside drawing, no displayed endpoints; (b) curved path changes direction **smoothly**; (c) first straight A→C and second straight C→B, with an abrupt directional change at C.
+                    4. Misconception feedback: "Both pieces are straight, but their joined route is **not one straight line**" if chain was chosen as full straight line. If curve chosen, say "The path bends." Do not call an entire polyline a segment.
+                    5. Trace controls "Next piece", "Read model", "Reset". The textual equivalent includes endpoints/joints and model limitations; no motion-only line tracing.
+                    
+                    ### Placement C: A Segment Ends (Section 3)
+                    
+                    1. Fixed labeled points A=(1,2), B=(5,2). "Show **ideal line**" draws one straight stroke through A and B with arrows beyond both, representing endless extension.
+                    2. "Show **segment AB**" displays **only** the straight path from (1,2) to (5,2), **both endpoint dots filled**. "Beyond A/B" regions are hidden.
+                    3. "Swap label order" names the exact same path **BA**, with no change to endpoints, geometry, state length or direction. Explain equality of _unoriented segments_; do not imply an instruction route A→B equals a directed move B→A.
+                    4. "Show bent alternative" draws A→C→B where C=(3,3), distinct from the straight AB. Both paths share endpoints but not interior geometry or length. The bent path must be clearly marked "**not segment AB**".
+                    5. Prompts: "Does AB include the two dots?", "Do the arrows belong to the segment?", "Does swapping the order of the letters move the line?" Feedback explains the relevant inclusion/limitation, not a binary colored grade.
+                    6. Text summary after reveal: "The straight segment includes endpoints A and B. It stops at both. The extended line continues in both directions."
+                    
+                    ### Placement D: Build AB (Section 4)
+                    
+                    1. Draw a **5×5 discrete position board** as an optional coordinate selection aid (internal positions 0…4 on both axes); initial construction preset **A=(1,1), B=(4,3)** with endpoints distinct. Do not teach Cartesian coordinates here; visible controls describe positions as board row/column or named dots, with a matching textual list.
+                    2. Learner may choose new A and B positions using two row/column selectors, then presses "Mark endpoints". Attempt to set B equal A gets: "Choose two _different_ positions so we can make a finite segment with two distinct endpoints." No silent fallback point moves.
+                    3. "Connect straight" draws exact straight stroke between A and B; "Connect via C" places C=(2,4) or another explicitly **off-line** position and creates two-piece route A→C→B. This is a deliberate wrong construction **not** a scored trap.
+                    4. "Name AB" / "Name BA" buttons show identical straight segment for either label order. Prompt learner to explain: "Same endpoints, same straight piece."
+                    5. Independent transfer preset: choose new points A=(0,3) and B=(3,0), with prior answers cleared, and invite a straight connection. Compare with path via (0,0): two straight pieces, not AB. The learner can review an ordered ledger and reset to blank.
+                    6. An incorrect choice generates descriptive feedback: endpoints, straightness and presence of a bend. A correct construction generates the reason, not a score or persistent completion claim.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** visible marker discs with fixed center, straight continuation arrows, smooth curve, polygonal chain, named endpoints, optional grid-based point-position selector, straight-connect and bent-route controls, annotated text ledger.
+                    - **Per-placement state:** independent preset type A/B/C/D fixed editorially; selected object/path, center/radius for marker (A only), display mode line vs segment vs bend, selected endpoint positions, chosen prediction and reveal step. User-visible data comes from real locale context.
+                    - **Geometry invariant:** marker radius never mutates center; an ideal line has no mathematical endpoints; segment stroke between A and B is straight and includes endpoints; AB and BA are same unoriented segment; changing drawing size does not create a new point.
+                    - **Bounds:** coordinates remain on local board; two endpoints must be distinct; C bent-path preset cannot lie on segment AB. The scene must not use SVG scale/pixel size as centimeters.
+                    - **Reset:** restore _that Section placement_ to its original model and unrevealed state, with no leakage from another Section. Each exported Scene root is **prop-free**; implementations may share private helpers while independent roots define their own initial presets. Do **not** introduce a guessed `mode`, `data`, `direction`, `locale` or `onChange` public prop.
+                    - **Controls:** native labeled buttons/list/radio selections, keyboard and switch accessibility equal to any optional pointer exploration. Every revealing action updates a readable state log without requiring visual arrow interpretation.
+                    - **Pedagogical feedback:** one actionable reason, hint/retry and optional reveal; no score/Quiz/mastery calculation, correct-answer secrets, timers, storage or external event schema.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Use clean SVG/HTML with high-contrast thin but scalable model strokes and **large independent click/touch targets**. Dot-marker enlargement must not look like a move; use a center guide marker plus explicit text. The ideal straight line is shown with arrows extending beyond cropped drawing, not cap-like endpoint dots. Curved path should remain smoothly curved; polygonal chain shows exactly one visible kink. Straight segment AB must never be rendered with continuation arrows. Optional reveal animation is controlled and disappears under reduced-motion preference; content does not depend on animations.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    All labels, model descriptions, prediction choices, explanations, feedback, optional audio/transcripts, shape aliases and Note cues require genuine supported-locale translation without English fallbacks. In RTL layout, preserve geometrically meaningful endpoint inclusion and arrows in **both** continuation directions; do not invert AB and BA claims or assign mathematical direction from reading order. Give a nonvisual list describing each path's defining features and point positioning; before reveal, avoid naming the answer as a secret but provide enough objective attributes to reason. Controls must support keyboard/switch/touch and 200% zoom, explicit focus, WCAG 2.2 AA, reduced motion and no color-only meaning. All assets and logic must be available offline after selected language/lesson download; offline delivery is a future requirement, not established functionality.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Enlarging marker radius for A centered (2,2) does not change its position. Moving it to (4,2) changes position, irrespective of marker size.
+                    2. The "ideal straight line" has **both** continuation arrows and no _mathematical_ endpoints; its finite picture is not claimed physically infinite.
+                    3. Smooth curve and two-piece A→C→B chain with C=(3,3) are distinct from one straight line.
+                    4. Switching extended line to segment AB keeps endpoints A=(1,2), B=(5,2) and removes all portions beyond them.
+                    5. BA and AB give **exactly the same** straight segment geometry, including endpoints; a bend via (3,3) is explicitly **not** AB.
+                    6. For A=(1,1), B=(4,3), "Connect straight" produces exactly one straight path. B=A is rejected as outside the intended **two-distinct-endpoints** construction.
+                    7. Two-piece transfer via C=(0,0) for A=(0,3),B=(3,0) is not the straight segment between endpoints.
+                    8. Independent Section placement resets do not leak point positions or predictions; UI remains prop-free.
+                    9. Keyboard, screen-reader, RTL, reduced-motion, mobile, large-text and post-download offline modes preserve the same geometric truth and feedback, with no mandatory fine-precision drawing or color interpretation.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Current `scene` Resource and generic renderer provide a place for such a component, **not the component itself**. Coding Agent later verifies localization provider/context, Section placement, Math SVG models, deterministic tests and offline packaging; Scene Designer requires an **approved** Scene specification first. Editorial decision pending on whether optional segment-length _description_ should be allowed; no centimeter output is part of this Lesson. No Question, Quiz, Score, Note unlock API, persistence or external action invented here.
+                  purpose: "Proposed interactive Scene for Where Does a Segment Stop?"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+            order: ["pointAndLineExplorer"]
+        production:
+          purpose: "Where Does a Segment Stop?"
+          pedagogicalIntent: |
+            ### Section 3 — Where Does a Segment Stop?
+            
+            - **Learning purpose:** contrast an unbounded mathematical line with a bounded straight segment.
+            - **Current shape:** one-column `LessonSection_Config`.
+            - **Ordered Resources:**
+              1. **text — existing:** "On the same straight path, two marked points are A and B. Does the **segment AB** include the places beyond the points? What happens if we switch the names to BA?"
+              2. **scene — proposed:** Point and Line Explorer (Scene specification embedded in this config.yaml), stage C. A and B are fixed at diagram (1,2) and (5,2). "Show full line" renders continuation arrows both ways, "Show segment AB" leaves **only** the straight piece between endpoints, with two filled endpoint marks. "Swap order of labels" displays BA for **same** segment. "Show bent alternative" renders a two-piece route A→(3,3)→B and explicitly labels it **not** the straight segment AB.
+              3. **markdown — existing:** "A **segment** starts at one endpoint and ends at the other, **including both**. Segment AB and segment BA name the same straight piece. Between the same points, a bent route is a different path. The segment's **length** is the straight distance from A to B."
+            - **Explanatory feedback:** If child says arrows are part of AB: "The arrows belong to the drawing of a whole line. AB ends at its two marked points." If says BA is different: "The endpoints are the same; we just named them in the opposite order." If child chooses bent route: "It visits the endpoints but changes direction at a middle point, so it is not the straight segment."
+            - **Access:** Text list identifies included endpoints and which path spans the two markers. The semantic difference is available without seeing arrows. Suggested future Note: "A segment is the straight piece between two endpoints."
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+      section4MakeYourOwnAB:
+        config:
+          id: "486850f5-3092-4e16-b96f-60dbac357864"
+          slug: "section4MakeYourOwnAB"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Make Your Own AB"
+            navigationLabel:
+              en: "Make Your Own AB"
+          content:
+            items:
+              pointAndLineExplorer:
+                config:
+                  id: "00eaff64-bd65-4f41-b5de-7afe980db34b"
+                  slug: "pointAndLineExplorer"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Point and Line Explorer"
+                production:
+                  specification: |
+                    # Point and Line Explorer — Scene Specification
+                    
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Points, Lines and Segments Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (editorial text integrated into this config.yaml), two separately meaningful Skills: recognize points/line types and construct/label a straight segment. This is a proposed instructional tool **not an extra Skill**.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Children are usually shown finite ink marks, which can misleadingly look like the mathematical objects themselves. Here they _change marker size without moving the point_, explore three fundamentally distinct path types, switch between a full straight-line **representation** and finite segment AB, then **construct** a new labeled segment. At each stage the learner predicts a difference, manipulates the model, sees the exact changed property and explains it.
+                    
+                    Learner-facing invariant: "**A drawn dot shows where a point is. A straight line keeps going. A segment is the straight part between two endpoints.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - A **point** has a position but no size. Marker discs may have arbitrary visible radius `r>0`; changing `r` does **not** change center position. Display pixels are _not_ geometric length or point size.
+                    - An ideal **straight line** extends without endpoints in two directions; it is represented by a finite straight stroke with two continuation arrows, explicitly labeled "continues beyond picture". Those arrows indicate extension, **not endpoint dots**.
+                    - A general **curve** need not be straight or a chain of straight segments. Use a genuinely curved SVG path in stage B, not many segments secretly presented as a proof of straightness.
+                    - A **polygonal chain** consists of consecutive straight segments joined end-to-end; in this Lesson use one open **two-piece** chain with a visible bend at C.
+                    - A **segment AB** includes its two **distinct** endpoints A and B, is straight between them and has a finite length equal to the straight-line distance. **AB = BA** as an _unoriented geometric segment_. Distinguish from arrows at ends of a drawn line. A bent route A→C→B with C not collinear with A,B is not AB.
+                    - All coordinates are **diagram-local model units**, not centimeter lengths or formal coordinate-plane learning targets. No exact motor drawing or screen calibration. Do not introduce rays, angle measure, parallel/perpendicular Skills or length computations as goals.
+                    - A single finite drawn piece cannot display an infinite line in full; explicitly teach it is a **model**, not literal completion.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Placement A: Same Point, Bigger Dot (Section 1)
+                    
+                    1. Initial: marked point **A** centered at (2,2), small dot radius `r=0.1`; label A available. Prediction prompt: "If its marker gets bigger, does the point move?"
+                    2. Two distinct actions: **Enlarge dot** changes radius to `r=0.3`, center stays exactly (2,2). **Move A** later changes center to (4,2), radius stays at chosen setting.
+                    3. Show before/after state text: "A remained at same position; only marker size changed" versus "A changed position to the right". Children can compare both without seeing screen coordinates.
+                    4. If child predicts "position changed" for enlargement: "The center of the mark did not move." If they predict "same" for actual movement: "The center moved; that indicates a different location."
+                    5. Reset restores center (2,2), small radius and unrevealed prediction. No drawing size becomes an actual geometric measurement.
+                    
+                    ### Placement B: Straight, Curved, Piecewise Straight (Section 2)
+                    
+                    1. Display three accessible, explicitly **different** models with text labels hidden until inspection: (a) one straight stroke across canvas with **continuation arrows at both ends**; (b) a single smoothly curved arc with a different tangent direction at different points; (c) polyline from A=(1,2) through C=(3,3) to B=(5,2).
+                    2. Prompt "Which can keep going straight? Which bends smoothly? Which joins two straight pieces at a corner?" Selection available as **buttons/list**, not mandatory clicking thin paths.
+                    3. **Inspect edge/path** reveals: (a) direction constant; full ideal line continues outside drawing, no displayed endpoints; (b) curved path changes direction **smoothly**; (c) first straight A→C and second straight C→B, with an abrupt directional change at C.
+                    4. Misconception feedback: "Both pieces are straight, but their joined route is **not one straight line**" if chain was chosen as full straight line. If curve chosen, say "The path bends." Do not call an entire polyline a segment.
+                    5. Trace controls "Next piece", "Read model", "Reset". The textual equivalent includes endpoints/joints and model limitations; no motion-only line tracing.
+                    
+                    ### Placement C: A Segment Ends (Section 3)
+                    
+                    1. Fixed labeled points A=(1,2), B=(5,2). "Show **ideal line**" draws one straight stroke through A and B with arrows beyond both, representing endless extension.
+                    2. "Show **segment AB**" displays **only** the straight path from (1,2) to (5,2), **both endpoint dots filled**. "Beyond A/B" regions are hidden.
+                    3. "Swap label order" names the exact same path **BA**, with no change to endpoints, geometry, state length or direction. Explain equality of _unoriented segments_; do not imply an instruction route A→B equals a directed move B→A.
+                    4. "Show bent alternative" draws A→C→B where C=(3,3), distinct from the straight AB. Both paths share endpoints but not interior geometry or length. The bent path must be clearly marked "**not segment AB**".
+                    5. Prompts: "Does AB include the two dots?", "Do the arrows belong to the segment?", "Does swapping the order of the letters move the line?" Feedback explains the relevant inclusion/limitation, not a binary colored grade.
+                    6. Text summary after reveal: "The straight segment includes endpoints A and B. It stops at both. The extended line continues in both directions."
+                    
+                    ### Placement D: Build AB (Section 4)
+                    
+                    1. Draw a **5×5 discrete position board** as an optional coordinate selection aid (internal positions 0…4 on both axes); initial construction preset **A=(1,1), B=(4,3)** with endpoints distinct. Do not teach Cartesian coordinates here; visible controls describe positions as board row/column or named dots, with a matching textual list.
+                    2. Learner may choose new A and B positions using two row/column selectors, then presses "Mark endpoints". Attempt to set B equal A gets: "Choose two _different_ positions so we can make a finite segment with two distinct endpoints." No silent fallback point moves.
+                    3. "Connect straight" draws exact straight stroke between A and B; "Connect via C" places C=(2,4) or another explicitly **off-line** position and creates two-piece route A→C→B. This is a deliberate wrong construction **not** a scored trap.
+                    4. "Name AB" / "Name BA" buttons show identical straight segment for either label order. Prompt learner to explain: "Same endpoints, same straight piece."
+                    5. Independent transfer preset: choose new points A=(0,3) and B=(3,0), with prior answers cleared, and invite a straight connection. Compare with path via (0,0): two straight pieces, not AB. The learner can review an ordered ledger and reset to blank.
+                    6. An incorrect choice generates descriptive feedback: endpoints, straightness and presence of a bend. A correct construction generates the reason, not a score or persistent completion claim.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** visible marker discs with fixed center, straight continuation arrows, smooth curve, polygonal chain, named endpoints, optional grid-based point-position selector, straight-connect and bent-route controls, annotated text ledger.
+                    - **Per-placement state:** independent preset type A/B/C/D fixed editorially; selected object/path, center/radius for marker (A only), display mode line vs segment vs bend, selected endpoint positions, chosen prediction and reveal step. User-visible data comes from real locale context.
+                    - **Geometry invariant:** marker radius never mutates center; an ideal line has no mathematical endpoints; segment stroke between A and B is straight and includes endpoints; AB and BA are same unoriented segment; changing drawing size does not create a new point.
+                    - **Bounds:** coordinates remain on local board; two endpoints must be distinct; C bent-path preset cannot lie on segment AB. The scene must not use SVG scale/pixel size as centimeters.
+                    - **Reset:** restore _that Section placement_ to its original model and unrevealed state, with no leakage from another Section. Each exported Scene root is **prop-free**; implementations may share private helpers while independent roots define their own initial presets. Do **not** introduce a guessed `mode`, `data`, `direction`, `locale` or `onChange` public prop.
+                    - **Controls:** native labeled buttons/list/radio selections, keyboard and switch accessibility equal to any optional pointer exploration. Every revealing action updates a readable state log without requiring visual arrow interpretation.
+                    - **Pedagogical feedback:** one actionable reason, hint/retry and optional reveal; no score/Quiz/mastery calculation, correct-answer secrets, timers, storage or external event schema.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Use clean SVG/HTML with high-contrast thin but scalable model strokes and **large independent click/touch targets**. Dot-marker enlargement must not look like a move; use a center guide marker plus explicit text. The ideal straight line is shown with arrows extending beyond cropped drawing, not cap-like endpoint dots. Curved path should remain smoothly curved; polygonal chain shows exactly one visible kink. Straight segment AB must never be rendered with continuation arrows. Optional reveal animation is controlled and disappears under reduced-motion preference; content does not depend on animations.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    All labels, model descriptions, prediction choices, explanations, feedback, optional audio/transcripts, shape aliases and Note cues require genuine supported-locale translation without English fallbacks. In RTL layout, preserve geometrically meaningful endpoint inclusion and arrows in **both** continuation directions; do not invert AB and BA claims or assign mathematical direction from reading order. Give a nonvisual list describing each path's defining features and point positioning; before reveal, avoid naming the answer as a secret but provide enough objective attributes to reason. Controls must support keyboard/switch/touch and 200% zoom, explicit focus, WCAG 2.2 AA, reduced motion and no color-only meaning. All assets and logic must be available offline after selected language/lesson download; offline delivery is a future requirement, not established functionality.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Enlarging marker radius for A centered (2,2) does not change its position. Moving it to (4,2) changes position, irrespective of marker size.
+                    2. The "ideal straight line" has **both** continuation arrows and no _mathematical_ endpoints; its finite picture is not claimed physically infinite.
+                    3. Smooth curve and two-piece A→C→B chain with C=(3,3) are distinct from one straight line.
+                    4. Switching extended line to segment AB keeps endpoints A=(1,2), B=(5,2) and removes all portions beyond them.
+                    5. BA and AB give **exactly the same** straight segment geometry, including endpoints; a bend via (3,3) is explicitly **not** AB.
+                    6. For A=(1,1), B=(4,3), "Connect straight" produces exactly one straight path. B=A is rejected as outside the intended **two-distinct-endpoints** construction.
+                    7. Two-piece transfer via C=(0,0) for A=(0,3),B=(3,0) is not the straight segment between endpoints.
+                    8. Independent Section placement resets do not leak point positions or predictions; UI remains prop-free.
+                    9. Keyboard, screen-reader, RTL, reduced-motion, mobile, large-text and post-download offline modes preserve the same geometric truth and feedback, with no mandatory fine-precision drawing or color interpretation.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Current `scene` Resource and generic renderer provide a place for such a component, **not the component itself**. Coding Agent later verifies localization provider/context, Section placement, Math SVG models, deterministic tests and offline packaging; Scene Designer requires an **approved** Scene specification first. Editorial decision pending on whether optional segment-length _description_ should be allowed; no centimeter output is part of this Lesson. No Question, Quiz, Score, Note unlock API, persistence or external action invented here.
+                  purpose: "Proposed interactive Scene for Make Your Own AB"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+            order: ["pointAndLineExplorer"]
+        production:
+          purpose: "Make Your Own AB"
+          pedagogicalIntent: |
+            ### Section 4 — Make Your Own AB
+            
+            - **Learning purpose:** independent construction and explanation of a finite straight segment.
+            - **Current shape:** one-column `LessonSection_Config`.
+            - **Ordered Resources:**
+              1. **text — existing:** "Place A and B in **different** places. Make **one straight segment** from A to B, then label the two endpoints. Would BA show a different segment?"
+              2. **scene — proposed:** Point and Line Explorer (Scene specification embedded in this config.yaml), stage D. Provide discrete position buttons on a 5×5 board to choose A at (1,1), B at (4,3) as starting preset; learner can select alternate distinct grid positions. "Connect straight" draws a single straight AB; "Connect via third point" produces visibly bent A→C→B if C lies off the straight span and asks the learner to identify it as **not** AB. "Switch name AB/BA" preserves the geometry. Show the two endpoint labels and text.
+              3. **markdown — existing:** "You chose two distinct endpoints. Exactly **one straight segment** connects them. It does not matter which end you name first: **AB = BA** as geometric segments. We can find its _length_ later by measuring between the ends."
+            - **Independent transfer:** New, unlabeled endpoints are offered without hints. Learner assigns labels, chooses straight connection and says why a two-part bend is not the same segment. For a coincident A/B selection, explain that **this Lesson needs two distinct endpoints** and ask learner to move one; do not silently generate a nonzero segment.
+            - **Feedback and progression:** The Scene reveals conceptual reasons, not numeric lengths or scoring. A child with no drag facility completes via labeled position controls. Optional physical paper-and-pencil extension is not required for equivalent online/offline learning.
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+    order: ["section1CanAPointBeBig","section2StraightCurvedOrMadeOfSegments","section3WhereDoesASegmentStop","section4MakeYourOwnAB"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+    # Points, Lines and Segments — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: pointsLinesAndSegments
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Connect children's experience of drawing marks with precise geometric objects: a point indicates a position; an (ideal) straight line extends endlessly both ways; a curve may bend; a polygonal chain contains joined straight segments; a segment has exactly two endpoints and a finite length. Learning to distinguish these is immediately used to construct and label a segment without claiming a drawn mark itself is mathematically infinite.
+    
+    ## Target audience
+    
+    **Primary grade: 2 (approximately ages 7–8).** Grade 2 learners who can identify a straight versus bent trace and follow short drawing steps, with optional audio/brief captions for emerging readers. Provide keyboard-operable placement and an equivalent numbered position list; motor precision, vision, or fluent handwriting cannot be prerequisites.
+    
+    **Instructional depth:** Straight line, visually simple curve and a 2–3-part open polygonal chain; segment construction between two distinct labeled endpoints. Exclude rays as an assessed Skill, parallel/perpendicular relations, angle measurements, coordinate geometry, distance formulas, freehand precision, intersections and centimeter measurement.
+    
+    ## Prerequisites
+    
+    Understand left/right and above/below as relative positions ([positionWords.data.ts](../../../../data/skills/geometry/orientation/skills/positionWords.data.ts), if taught). Know that a drawn dot marks a location and that two different dots may be named A and B. Basic distinction between a straight edge and a curved boundary from earlier figure recognition. **No centimeter measurement** prerequisite.
+    
+    ## Target Skills
+    
+    - [linesAndPoints.data.ts](../../../../data/skills/geometry/lines/skills/linesAndPoints.data.ts)
+    - [segment.data.ts](../../../../data/skills/geometry/lines/skills/segment.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Distinguish a point, infinite straight line, curved line, and polygonal chain of joined straight pieces using defining properties rather than size/color.
+    - Explain that finite arrows in a picture represent a straight line continuing beyond the frame, whereas a segment is limited by its two endpoints.
+    - Place and label two distinct points A and B, construct the straight segment AB between them, and identify its endpoints.
+    - Explain why the segment AB includes both endpoints and why the straight-line distance from A to B is its length (without computing units).
+    
+    ## Essential subject matter
+    
+    A geometric point has **position but no size**; any visible dot is a marker. An ideal straight line extends **infinitely in both directions**; the arrows in a drawing indicate continuation rather than literal ends. A curve bends and need not be made of straight pieces. A polygonal chain is consecutive straight segments joined at their endpoints and may be open; a single segment is a special single-piece chain, but avoid unnecessary taxonomy. A straight segment AB is the portion of a line from point A to point B **including endpoints**. Naming AB or BA refers to the same geometric segment. Two distinct endpoints define exactly one straight segment. Its length is their straight-line separation; tilting a segment does not alter length.
+    
+    ## Conceptual progression and dependencies
+    
+    1. Contrast a dot and line mark, establish that drawing symbols are models. 2) Use observable bend/straight and join properties to separate curve versus polyline. 3) Show an extendable straight line and trim to a segment with fixed endpoints. 4) Have the learner construct AB and name both endpoints; vary orientation and compare the same segment to a bent route between endpoints. Conceptual distinction comes before construction, and construction before centimeter measurements in another Lesson.
+    
+    ## Misconceptions, examples and boundaries
+    
+    A dot's ink size is its geometric size; arrowheads are endpoints; an incomplete drawing means a line stops at the page edge; a curved path between A and B is the straight segment AB; moving A without moving B preserves AB; a bent polyline is a straight segment; endpoints are excluded. Use separate straight/curved examples and written alternatives.
+    
+    **Explicitly out of scope:** Straight line, visually simple curve and a 2–3-part open polygonal chain; segment construction between two distinct labeled endpoints. Exclude rays as an assessed Skill, parallel/perpendicular relations, angle measurements, coordinate geometry, distance formulas, freehand precision, intersections and centimeter measurement. Canonical Skill definitions remain grade-independent and are never rewritten to fit these limits.
+    
+    ## Localization, accessibility and offline intent
+    
+    All proposed learner-facing messages (including SVG descriptions, answer explanations, controls, geometry terms, measurement units, feedback and proposed recall Notes) must eventually receive **genuine supported-locale translations**. Do not invent translation resources, silently fall back to English, or interpret draft English copy as multilingual implementation. Design semantic LTR/RTL layout without changing mathematical order or map/measurement direction. Every meaningful visual manipulation requires a semantically equivalent keyboard/switch and nonvisual path; no forced dragging, color-only answers, precise drawing gestures, audio dependence or timers. WCAG 2.2 AA, large mobile controls, 200% text, reduced motion, correct reading order and complete offline access **after an actual download mechanism exists** are release requirements, not proof of implemented support.
+    
+    ## Sources and factual verification
+    
+    - [Canonical lines-and-points Skill](../../../../data/skills/geometry/lines/skills/linesAndPoints.data.ts) — approved/promoted Mathematics data, copied without changing UUID, slug or translations.
+    - [Canonical segment Skill](../../../../data/skills/geometry/lines/skills/segment.data.ts) — approved/promoted Mathematics data, copied without changing UUID, slug or translations.
+    - [Studio Methodologist persona](../../../../../../studio/personas/methodist.persona.md), [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md), and [Lesson entity](../../../../../../studio/docs/entities/lesson.md) define role ownership and independent Program-neutral Lesson scope.
+    - [Playground generated English taxonomy](../../../../docs/generated/skills/taxonomy.en.md) is **not regenerated in this feature branch**. Coordinator must regenerate after integrating domain-local Skill registration; it cannot currently verify the newly transferred entries.
+    
+    Mathematical worked cases are included as editorial models; they do not imply compliance with a specific nation's standard or experimental validation of individual learner mastery.
+    
+    ## Curriculum / Program compatibility
+    
+    No national curriculum or Program assigned. The Lesson is standalone and may later be referenced from different Programs without changing the underlying Skill. Grade 2 is an **instructional depth choice**, not a Skill Taxonomy field.
+    
+    ## Open editorial decisions
+    
+    - Confirm that two distinct canonical Skills appropriately form a single introductory Lesson (concept identification followed by segment construction), while remaining independently assessable. Keep rays as deferred dedicated Skill.
+    - **Approval gate remains open.** This Brief is Draft. User-authorized same-batch Lesson Content and Scene specifications are **provisional Drafts pending explicit Methodologist approval**, not a claim that Studio's standard approval gate has passed.
+    
+    ## Methodologist handoff
+    
+    Editor should validate scope, prerequisites, examples, developmental fit, sources and misconceptions. A Screenwriter may refine the provisional narrative under this batch authorization; only formal approval permits an implemented Lesson design handoff. No React, runtime Lesson data, Question, Quiz, scoring, analytics, Note persistence or user-state event contract is authorized here.
+  productionNotes: |-
+    Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
+    
+    # Points, Lines and Segments — Lesson Content
+    
+    Status: **Provisional Draft pending Methodologist approval — NOT Approved**
+    Target Lesson: `content/playground/Data/Lessons/1/pointsLinesAndSegments/`
+    Audience: **Grade 2**, approximately ages 7–8; early/mixed readers; equivalent touch, keyboard/switch and nonvisual participation
+    Methodologist source: Draft Methodologist Brief (editorial text integrated into this config.yaml)
+    Learning outcomes: distinguish geometric point/straight line/curve/polygonal chain; distinguish infinite straight line from bounded segment; construct and label a straight AB segment between two points; explain the role of endpoints and straight-line length.
+    Target Skills: `linesAndPoints.data.ts` and `segment.data.ts`, linked directly in the Brief; do not merge or redefine either Skill.
+    Program dependence: None
+    Implementation state: **editorial only**. A `scene` Resource is renderable in the current generic Section renderer, but the proposed Scene has not been implemented.
+    
+    ## INSTRUCTIONAL CONCEPT
+    
+    **"A dot shows where. A line keeps going. A segment starts and stops at two points."** Start with a familiar pencil mark and challenge the assumption that the ink itself _is_ a perfect geometric object. Children predict what a drawn mark represents, trace alternative paths, then produce an exact straight segment AB. A point does not become larger when its display dot is enlarged; a mathematical straight line does not terminate because its picture is cropped. A segment has two named endpoints and a finite straight-line span; the learner can construct it without a touchscreen pencil.
+    
+    The Lesson proceeds from recognition to investigation to construction, never relying on remembering a name alone. Keep each Section short and active. No points, correctness records, timed performance or hidden mastery flags.
+    
+    ## LEARNER JOURNEY
+    
+    1. Notice that a visible **dot** indicates a **position**, and its size is just drawing ink.
+    2. Trace a straight, a bending and a broken straight-piece path; learn what an ideal infinite line means in a finite picture.
+    3. See that fixed **endpoints** bound a segment and distinguish it from an arrow-continued straight line.
+    4. Build segment AB from labeled points, then reconstruct with reversed labels and distinguish it from a curving route between the same endpoints.
+    
+    ## SECTION PLAN
+    
+    
+    ## CUSTOM SCENE SPECIFICATIONS
+    
+    - Point and Line Explorer (Scene specification embedded in this config.yaml) — one custom editorial Scene specification, with four **independent prop-free placement presets** corresponding to Sections 1–4.
+    
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+    
+    1. After Section 1 marker-size contrast: "A point gives a position; a dot is its drawing."
+    2. After Section 3 line/segment contrast: "A segment is straight and has two included endpoints."
+    3. After Section 4 AB/BA reveal: "AB and BA name the same segment."
+    
+    These are potential Git-authored Note texts, not an invented Note API, unlock event, user persistence or spaced-scheduling implementation.
+    
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+    
+    The unseen A/B construction is **unscored** independent transfer. A future Assessment Architect should separately assess conceptual line-type discrimination and segment construction (the two canonical Skills), with alternative input modes and clear outcome evidence; a single solved challenge is not mastery. Later measurements are deliberately outside this Lesson and may retrieve the segment idea.
+    
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+    
+    Translate all terms and feedback genuinely into every configured locale. Distinguish the everyday "line" from mathematical straight line; do not assume English suffix conventions translate literally. Treat AB/BA as geometric labels, with accessible names rather than relying on reading direction. The diagram's arrows signify continuation in **both** directions for any LTR/RTL context; never mirror mathematical claims while mirroring UI. All model states have a semantic list describing point locations, path continuity, and endpoint inclusion. Labeled keyboard/touch controls and focus navigation replace drag and pressure-sensitive drawing. Fit narrow screens, support reduced motion, adequate targets/contrast, 200% text, nonvisual operation and full content/feedback offline **after download**.
+    
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+    
+    The generic renderer currently supports `text`, `markdown`, `scene`; **Point and Line Explorer does not exist**. Future Coding Agent must verify lesson-local locale context and implement distinct prop-free Section roots, deterministic geometry, tests, semantic alternatives and offline assets. Do not invent a reusable Scene prop API, Lesson registry, timed state or Question data. Audio is optional if genuinely localized with transcripts.
+    
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+    
+    - Methodologist Brief (editorial text integrated into this config.yaml), canonical line-type and segment Skill source files linked there, and repository Studio Lesson/Scene contracts.
+    - Editor: approve whether using a polygonal chain with a single bend is enough evidence for the canonical chain concept; no ray as a separate outcome.
+    - The Brief is **Draft**; Content and Scene specifications are **provisional Drafts**.
+    
+    ## HANDOFF
+    
+    Methodologist confirms target Skills, grade, progression and bounds before formally approving. Screenwriter/editor reviews all exact phrases and representations. Scene Designer receives the scene spec only after editorial approval; a separate Assessment Architect owns any scoring or mastered-skill decisions.
+    
+    
+    Migration status: provisional draft; pending independent approvals, translation and implementation.

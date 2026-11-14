@@ -1,0 +1,519 @@
+config:
+  id: "f1dbfd20-be32-5f09-8083-deacd8287a19"
+  slug: "composeAndCompareEuroAmounts"
+  type: "lesson"
+  skills: ["bb0e7ba7-3325-4dac-80cc-0070988cc5ef","6ac377cf-4d67-4ef4-bdc7-4bb8a0895e81"]
+  params:
+    requireQuiz: false
+    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Different Cash, Same Total? Euro Amounts"
+  section:
+    items:
+      section1EqualValueCashDesk:
+        config:
+          id: "157bde0f-15d4-437a-83f0-44959d08bdb8"
+          slug: "section1EqualValueCashDesk"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Equal-Value Cash Desk"
+            navigationLabel:
+              en: "Equal-Value Cash Desk"
+          content:
+            items:
+              text1:
+                config:
+                  id: "73ff4552-1f60-45eb-a18a-d634b4944dad"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Can one banknote and one coin make €6?"
+              equalValueCashDesk:
+                config:
+                  id: "b45f087f-330a-49a0-86f1-68b995d70c42"
+                  slug: "equalValueCashDesk"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Can one banknote and one coin make €6?"
+                production:
+                  specification: |
+                    # Equal-Value Cash Desk — Scene Specification
+                    
+                    Status: **Provisional Draft — pending Methodologist and Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Different Cash, Same Total? Euro Amounts Content (editorial text integrated into this config.yaml), Section 1
+                    Methodologist objectives: Draft Methodologist Brief (editorial text integrated into this config.yaml)
+                    Implementation status: Proposed prop-free component; not implemented
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Use the same conserved monetary value to compose different valid combinations and to compare purses by summed denominations, not count or size of cash pieces. This Scene's distinct responsibility is its own concrete model, prediction and learner-operated evidence.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    €6=€5+€1 (two pieces)=€2+€2+€2 (three pieces)=€2+€2+€1+€1 (four pieces). €3 amount can be €2+€1 but no standard €3 coin exists. Purse A €10 note vs B €5 note+three €2 coins =€11; purse A €5+€2=€7 vs B three €2 coins =€6; two €2 coins =€4 versus a €5 banknote =€5.
+                    
+                    **Initial state:** Empty tray with target €6 and choices €1/€2 coins, €5/€10 notes. Several copies allowed as teaching pieces, not as claims of a real wallet's contents.
+                    
+                    **Authoritative interactive model:** List of selected cash-piece unique IDs, exact face values, computed running total, comparison snapshot and reveal. Any removal updates total immediately.
+                    
+                    **Boundaries:** Grade 2, 0–15 whole euros; legitimate €1 and €2 coins, €5 and €10 notes; no cents, rates, transactions, purchase totals, budgets, change, scoring, or automatically substituted locale-specific currency.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Beat 1
+                    
+                    - **Learner-facing prompt:** “Can one banknote and one coin make €6?”
+                    - **Learner action:** Add €5 note then €1 coin, observe €5 then €6.
+                    - **Visible mathematical conclusion:** €5+€1=€6 with two pieces.
+                    - **Specific explanatory feedback:** If €5 selected alone, show one euro missing. If €5+€2, sum is seven.
+                    - **Verified expected result:** €5+€1=€6.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+                    
+                    ### Beat 2
+                    
+                    - **Learner-facing prompt:** “Make the same six euros with coins only.”
+                    - **Learner action:** Remove first pair, add three individual €2 coins, compare prior total.
+                    - **Visible mathematical conclusion:** Three coins still sum €6, equal in value to two-piece combination.
+                    - **Specific explanatory feedback:** If three euros guessed from coin count, show 2+2+2.
+                    - **Verified expected result:** €2+€2+€2=€6.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+                    
+                    ### Beat 3
+                    
+                    - **Learner-facing prompt:** “Is a €3 euro coin needed to make amount €3?”
+                    - **Learner action:** Identify fictional €3 ordinary coin; instead combine real €2 and €1.
+                    - **Visible mathematical conclusion:** €3 is a valid total, not an ordinary euro coin denomination.
+                    - **Specific explanatory feedback:** If fictional coin accepted, show the actual euro coin set.
+                    - **Verified expected result:** €2+€1=€3; no standard €3 coin.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    Distinct labelled objects or cash-piece identities, authoritative state, count/rank/value ledger, prediction, reveal and local reset. **Control map:** Add a denomination; remove one specific piece; show sum ledger; compare combinations; Reveal; Reset.
+                    
+                    - No props, no external mode/configuration contract, no shared state between Scene instances. Scenario constants live inside this standalone Scene when a Coding Agent later implements it.
+                    - Counts, pairs, ordinal ranks and EUR totals are always derived from the exact objects shown; valid actions preserve declared invariants and never silently add or discard identities.
+                    - A rejected/incomplete action explains what is missing and allows correction. Reset restores only this Scene.
+                    - There is no Question/Quiz, scoring, mastery, analytics event or Note persistence hook.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple semantic HTML/SVG schematic objects and labelled values, child-paced transitions, immediate equivalents in reduced-motion mode. No mandatory audio, remote asset, drag or animation. Currency artwork, if later needed, requires rights and face-value verification; these specifications do not provide or claim licensed imagery.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    All prompts, counts, roles, numeric utterances, errors and actions need complete genuine translations for every locale (no English fallback). Nonvisual sequential state ledger and native keyboard/switch/touch controls convey exactly the same mathematics; labels never depend only on color or spatial position. RTL preserves explicit task origins, pair IDs and currency units. Plan WCAG 2.2 AA, 200% zoom, mobile and downloaded selected-locale offline functionality; not currently implemented.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. €5+€1=€6. Incorrect case: If €5 selected alone, show one euro missing. If €5+€2, sum is seven.
+                    2. €2+€2+€2=€6. Incorrect case: If three euros guessed from coin count, show 2+2+2.
+                    3. €2+€1=€3; no standard €3 coin. Incorrect case: If fictional coin accepted, show the actual euro coin set.
+                    4. Both €6 compositions true; €2+€2+€1+€1 also possible; no fictional coin used; all selected pieces removable.
+                    5. Keyboard, screen reader, RTL, reduced motion and offline use produce numerically identical results and explanations; resets do not alter other scenes.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
+                  purpose: "Proposed interactive Scene for Equal-Value Cash Desk"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: "75f778b9-5e0f-4740-88cb-9f3b574eb98a"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "€5+€1=€6 with two pieces."
+            order: ["text1","equalValueCashDesk","markdown2"]
+        production:
+          purpose: "Equal-Value Cash Desk"
+          pedagogicalIntent: |
+            ### Section 1 — Equal-Value Cash Desk
+            
+            - **Purpose:** Establish and test the model in a controlled contrast.
+            - **Current Section shape:** General LessonSection_Config with a single ordered vertical nonempty Resource array, not Quiz_Config.
+            - **Ordered blocks:** (1) text (renderable): “Can one banknote and one coin make €6?” (2) scene (generic type renderable; this bespoke component proposed): Equal-Value Cash Desk (Scene specification embedded in this config.yaml) (3) markdown (renderable): “€5+€1=€6 with two pieces.”
+            - **Experience beats and explanatory feedback:**
+              - **Beat 1:** “Can one banknote and one coin make €6?” Add €5 note then €1 coin, observe €5 then €6. **Explanation:** €5+€1=€6 with two pieces. **Exact worked case:** €5+€1=€6. **Error-specific response:** If €5 selected alone, show one euro missing. If €5+€2, sum is seven.
+              - **Beat 2:** “Make the same six euros with coins only.” Remove first pair, add three individual €2 coins, compare prior total. **Explanation:** Three coins still sum €6, equal in value to two-piece combination. **Exact worked case:** €2+€2+€2=€6. **Error-specific response:** If three euros guessed from coin count, show 2+2+2.
+              - **Beat 3:** “Is a €3 euro coin needed to make amount €3?” Identify fictional €3 ordinary coin; instead combine real €2 and €1. **Explanation:** €3 is a valid total, not an ordinary euro coin denomination. **Exact worked case:** €2+€1=€3; no standard €3 coin. **Error-specific response:** If fictional coin accepted, show the actual euro coin set.
+            - **Learner control and state:** Add a denomination; remove one specific piece; show sum ledger; compare combinations; Reveal; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
+            - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
+            - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+      section2ThinkBeforeRevealingTheReason:
+        config:
+          id: "3c27a7ea-5510-4d09-bbbd-61ec257973eb"
+          slug: "section2ThinkBeforeRevealingTheReason"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Think before revealing the reason"
+            navigationLabel:
+              en: "Think before revealing the reason"
+          content:
+            items:
+              text1:
+                config:
+                  id: "bc1af35b-da87-4838-8276-6ed13ac35b8e"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Could two cash pieces and three cash pieces both make six euros?"
+              markdown2:
+                config:
+                  id: "f7a40650-c8fd-4aef-867d-b17e96452225"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Yes: €5+€1 and three €2 coins both make six euros. The second purse has €5+€2+€2+€2=€11, greater than a €10 note."
+              text3:
+                config:
+                  id: "be1af681-dc87-4b5e-8076-6bab38c35868"
+                  slug: "text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Which is worth more: one ten-euro note or five euros plus three two-euro coins?"
+            order: ["text1","markdown2","text3"]
+        production:
+          purpose: "Think before revealing the reason"
+          pedagogicalIntent: |
+            ### Section 2 — Think before revealing the reason
+            
+            - **Purpose:** Short independent retrieval and misconception contrast.
+            - **Ordered Resource blocks (renderable):**
+              1. text: “Could two cash pieces and three cash pieces both make six euros?”
+              2. markdown: “Yes: €5+€1 and three €2 coins both make six euros. The second purse has €5+€2+€2+€2=€11, greater than a €10 note.”
+              3. text: “Which is worth more: one ten-euro note or five euros plus three two-euro coins?”
+            - **Pedagogical action:** The learner reflects before reading the explanation, then checks it against the first Scene. An actual hidden-answer widget is **not** inferred from plain text/Markdown support; this is a planned reflective pause, not a scored Question.
+            - **Feedback:** Address the common trap directly: Counting coins as euros regardless of value; five-euro note as five notes; assuming more pieces means higher value; using a fictional €3 euro coin; assuming different combinations must have different totals.
+            - **Transition:** Apply the same principle to the new Scene, without relying on the original display.
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+      section3CompareEuroPurses:
+        config:
+          id: "6c0e83f8-f9b1-4827-922c-789282eb6e59"
+          slug: "section3CompareEuroPurses"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Compare Euro Purses"
+            navigationLabel:
+              en: "Compare Euro Purses"
+          content:
+            items:
+              text1:
+                config:
+                  id: "c49eaeed-2cfa-494a-bd71-89e3de04c288"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Which is worth more: A €10 note or B €5 note plus three €2 coins?"
+              compareEuroPurses:
+                config:
+                  id: "535ee001-a520-4576-9a06-b1e73ad0f24c"
+                  slug: "compareEuroPurses"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Which is worth more: A €10 note or B €5 note plus three €2 coins?"
+                production:
+                  specification: |
+                    # Compare Euro Purses — Scene Specification
+                    
+                    Status: **Provisional Draft — pending Methodologist and Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Different Cash, Same Total? Euro Amounts Content (editorial text integrated into this config.yaml), Section 3
+                    Methodologist objectives: Draft Methodologist Brief (editorial text integrated into this config.yaml)
+                    Implementation status: Proposed prop-free component; not implemented
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Use the same conserved monetary value to compose different valid combinations and to compare purses by summed denominations, not count or size of cash pieces. This Scene's distinct responsibility is its own concrete model, prediction and learner-operated evidence.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    €6=€5+€1 (two pieces)=€2+€2+€2 (three pieces)=€2+€2+€1+€1 (four pieces). €3 amount can be €2+€1 but no standard €3 coin exists. Purse A €10 note vs B €5 note+three €2 coins =€11; purse A €5+€2=€7 vs B three €2 coins =€6; two €2 coins =€4 versus a €5 banknote =€5.
+                    
+                    **Initial state:** Three independent preset purse comparisons: A=[€10], B=[€5,€2,€2,€2]; then A=[€5,€2],B=[€2,€2,€2]; then A=[€2,€2],B=[€5].
+                    
+                    **Authoritative interactive model:** Selected case, two immutable lists of piece values, computed separate totals, learner prediction A/B/equal, explanation; no cross-case carryover.
+                    
+                    **Boundaries:** Grade 2, 0–15 whole euros; legitimate €1 and €2 coins, €5 and €10 notes; no cents, rates, transactions, purchase totals, budgets, change, scoring, or automatically substituted locale-specific currency.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Beat 1
+                    
+                    - **Learner-facing prompt:** “Which is worth more: A €10 note or B €5 note plus three €2 coins?”
+                    - **Learner action:** Compute A=10, B=5+2+2+2=11 from individual value labels.
+                    - **Visible mathematical conclusion:** B is higher: €11>€10.
+                    - **Specific explanatory feedback:** If A due to big note, show B's four values summed to eleven.
+                    - **Verified expected result:** A €10, B €11 → B greater.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+                    
+                    ### Beat 2
+                    
+                    - **Learner-facing prompt:** “A has €5+€2; B has three €2 coins. Which wins?”
+                    - **Learner action:** Count monetary values rather than the number of pieces.
+                    - **Visible mathematical conclusion:** A is €7 versus B €6.
+                    - **Specific explanatory feedback:** If B chosen due to three coins, demonstrate 2+2+2=6.
+                    - **Verified expected result:** A €7, B €6 → A greater.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+                    
+                    ### Beat 3
+                    
+                    - **Learner-facing prompt:** “New case: A has two €2 coins, B one €5 note.”
+                    - **Learner action:** Independent transfer: compute 2+2=4 and compare with 5.
+                    - **Visible mathematical conclusion:** B has more worth: €5 versus €4.
+                    - **Specific explanatory feedback:** If A due to two coins, compare four euros with five.
+                    - **Verified expected result:** A €4, B €5 → B greater.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    Distinct labelled objects or cash-piece identities, authoritative state, count/rank/value ledger, prediction, reveal and local reset. **Control map:** Choose case; predict A/B/equal; reveal A ledger; reveal B ledger; Explain; Reset.
+                    
+                    - No props, no external mode/configuration contract, no shared state between Scene instances. Scenario constants live inside this standalone Scene when a Coding Agent later implements it.
+                    - Counts, pairs, ordinal ranks and EUR totals are always derived from the exact objects shown; valid actions preserve declared invariants and never silently add or discard identities.
+                    - A rejected/incomplete action explains what is missing and allows correction. Reset restores only this Scene.
+                    - There is no Question/Quiz, scoring, mastery, analytics event or Note persistence hook.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple semantic HTML/SVG schematic objects and labelled values, child-paced transitions, immediate equivalents in reduced-motion mode. No mandatory audio, remote asset, drag or animation. Currency artwork, if later needed, requires rights and face-value verification; these specifications do not provide or claim licensed imagery.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    All prompts, counts, roles, numeric utterances, errors and actions need complete genuine translations for every locale (no English fallback). Nonvisual sequential state ledger and native keyboard/switch/touch controls convey exactly the same mathematics; labels never depend only on color or spatial position. RTL preserves explicit task origins, pair IDs and currency units. Plan WCAG 2.2 AA, 200% zoom, mobile and downloaded selected-locale offline functionality; not currently implemented.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. A €10, B €11 → B greater. Incorrect case: If A due to big note, show B's four values summed to eleven.
+                    2. A €7, B €6 → A greater. Incorrect case: If B chosen due to three coins, demonstrate 2+2+2=6.
+                    3. A €4, B €5 → B greater. Incorrect case: If A due to two coins, compare four euros with five.
+                    4. All three comparisons verified numerically, no piece-count shortcut or mixed currency, local Reset.
+                    5. Keyboard, screen reader, RTL, reduced motion and offline use produce numerically identical results and explanations; resets do not alter other scenes.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
+                  purpose: "Proposed interactive Scene for Compare Euro Purses"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: "7ccba3ca-37b8-41c1-a556-c42883e2019f"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "B is higher: €11>€10."
+            order: ["text1","compareEuroPurses","markdown2"]
+        production:
+          purpose: "Compare Euro Purses"
+          pedagogicalIntent: |
+            ### Section 3 — Compare Euro Purses
+            
+            - **Purpose:** Transfer the principle to a changed situation independently.
+            - **Current Section shape:** General LessonSection_Config with a single ordered vertical nonempty Resource array, not Quiz_Config.
+            - **Ordered blocks:** (1) text (renderable): “Which is worth more: A €10 note or B €5 note plus three €2 coins?” (2) scene (generic type renderable; this bespoke component proposed): Compare Euro Purses (Scene specification embedded in this config.yaml) (3) markdown (renderable): “B is higher: €11>€10.”
+            - **Experience beats and explanatory feedback:**
+              - **Beat 1:** “Which is worth more: A €10 note or B €5 note plus three €2 coins?” Compute A=10, B=5+2+2+2=11 from individual value labels. **Explanation:** B is higher: €11>€10. **Exact worked case:** A €10, B €11 → B greater. **Error-specific response:** If A due to big note, show B's four values summed to eleven.
+              - **Beat 2:** “A has €5+€2; B has three €2 coins. Which wins?” Count monetary values rather than the number of pieces. **Explanation:** A is €7 versus B €6. **Exact worked case:** A €7, B €6 → A greater. **Error-specific response:** If B chosen due to three coins, demonstrate 2+2+2=6.
+              - **Beat 3:** “New case: A has two €2 coins, B one €5 note.” Independent transfer: compute 2+2=4 and compare with 5. **Explanation:** B has more worth: €5 versus €4. **Exact worked case:** A €4, B €5 → B greater. **Error-specific response:** If A due to two coins, compare four euros with five.
+            - **Learner control and state:** Choose case; predict A/B/equal; reveal A ledger; reveal B ledger; Explain; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
+            - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
+            - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+    order: ["section1EqualValueCashDesk","section2ThinkBeforeRevealingTheReason","section3CompareEuroPurses"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+    # Different Cash, Same Total? Euro Amounts — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: composeAndCompareEuroAmounts
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Use the same conserved monetary value to compose different valid combinations and to compare purses by summed denominations, not count or size of cash pieces.
+    
+    ## Target audience
+    
+    **Primary grade: Grade 2.** This selection depends on mathematical complexity, prerequisites and developmental readiness, not a grade label embedded in Skill Taxonomy. Early readers can use short instructions, countable models and ordered text alternatives.
+    
+    ## Prerequisites
+    
+    Recognize real euro €1/€2 coins and €5/€10 banknotes; add visible whole-number values within twenty and understand that piece count differs from money worth.
+    
+    ## Target Skills
+    
+    - [composeAmount.data.ts](../../../../data/skills/money/denominations/skills/composeAmount.data.ts)
+    - [compareAmounts.data.ts](../../../../data/skills/money/denominations/skills/compareAmounts.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - €5+€1=€6 with two pieces.
+    - Three coins still sum €6, equal in value to two-piece combination.
+    - €3 is a valid total, not an ordinary euro coin denomination.
+    - B is higher: €11>€10.
+    - A is €7 versus B €6.
+    - B has more worth: €5 versus €4.
+    - Explain a changed-context instance using evidence rather than repeating a memorized answer; formative success is not proof of verified mastery.
+    
+    ## Essential subject matter
+    
+    €6=€5+€1 (two pieces)=€2+€2+€2 (three pieces)=€2+€2+€1+€1 (four pieces). €3 amount can be €2+€1 but no standard €3 coin exists. Purse A €10 note vs B €5 note+three €2 coins =€11; purse A €5+€2=€7 vs B three €2 coins =€6; two €2 coins =€4 versus a €5 banknote =€5.
+    
+    ## Conceptual progression and dependencies
+    
+    Introduce prerequisite number and object meanings → construct and inspect the first model → explain its contrast → retrieve the mathematical principle → independently apply it in the second Scene with a changed arrangement or representation.
+    
+    ## Misconceptions, examples and boundaries
+    
+    Counting coins as euros regardless of value; five-euro note as five notes; assuming more pieces means higher value; using a fictional €3 euro coin; assuming different combinations must have different totals.
+    
+    **Instructional depth and hard exclusions:** Grade 2, 0–15 whole euros; legitimate €1 and €2 coins, €5 and €10 notes; no cents, rates, transactions, purchase totals, budgets, change, scoring, or automatically substituted locale-specific currency.
+    
+    **Verified numerical examples:**
+    
+    - €5+€1=€6.
+    - €2+€2+€2=€6.
+    - €2+€1=€3; no standard €3 coin.
+    - A €10, B €11 → B greater.
+    - A €7, B €6 → A greater.
+    - A €4, B €5 → B greater.
+    
+    ## Localization, accessibility and offline intent
+    
+    Complete genuine translations for every Engine-supported language are required; English drafts are not released locale assets. Semantic RTL must preserve object identity, designated START, pairing membership, euro value and numeric order, not reverse the mathematics. WCAG 2.2 AA plan: keyboard, touch and switch operation, ordered nonvisual ledger, meaningful labels, visible focus, zoom/mobile and reduced-motion equivalents. The selected-language content and same learning interactions must function offline after download, which is a required future capability, not implemented by this task.
+    The euro is an explicitly named case-study currency regardless of the learner's UI language. A different currency would require approved source-verified denomination data and editorial adaptation; it must not be silently substituted in translation.
+    
+    ## Sources and factual verification
+    
+    - Approved canonical Mathematics Skill data files directly linked above, copied unchanged in Batch 1.
+    - [Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) and [Learning Experience Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
+    - [Official euro source 1](https://www.ecb.europa.eu/euro/coins/html/index.en.html)
+    - [Official euro source 2](https://www.ecb.europa.eu/euro/banknotes/html/index.en.html)
+    
+    ## Curriculum / Program compatibility
+    
+    Standalone and Program-neutral. No named Curriculum alignment asserted.
+    
+    ## Open editorial decisions
+    
+    - Editor: approve Grade 2, prerequisites, target Skills and scope before formal Content/Scene approval.
+    - Editor and localization team: verify full-locale copy, semantic RTL and nonvisual equivalence.
+    - Editor: approve EUR-specific pedagogy and rights/accuracy review for any later production currency artwork.
+    
+    ## Methodologist handoff
+    
+    **Draft — not Approved.** The accompanying Content and Scene specifications are **Provisional Drafts prepared under the explicit batch authorization**. Normal approval gate has not passed. Do not implement React, runtime Lesson data, Questions, Quizzes, scoring, Note persistence or undocumented APIs.
+  productionNotes: |-
+    Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
+    
+    # Different Cash, Same Total? Euro Amounts — Content
+    
+    Status: **Provisional Draft — pending Methodologist approval**
+    Target Lesson: content/playground/Data/Lessons/1/composeAndCompareEuroAmounts/
+    Audience: Primary Grade 2
+    Methodologist source: Draft Methodologist Brief (editorial text integrated into this config.yaml) (not approved)
+    Target Skills: As directly linked in the Draft Brief, unchanged canonical Skill objects
+    Program dependence: None
+    Runtime status: Not implemented
+    
+    ## INSTRUCTIONAL CONCEPT
+    
+    Use the same conserved monetary value to compose different valid combinations and to compare purses by summed denominations, not count or size of cash pieces. The learner can predict, operate the mathematical representation, see an actual explanation and transfer the idea to a changed setting. The experience is not a lecture followed by a token quiz.
+    
+    **Core mathematical truth and boundaries:** €6=€5+€1 (two pieces)=€2+€2+€2 (three pieces)=€2+€2+€1+€1 (four pieces). €3 amount can be €2+€1 but no standard €3 coin exists. Purse A €10 note vs B €5 note+three €2 coins =€11; purse A €5+€2=€7 vs B three €2 coins =€6; two €2 coins =€4 versus a €5 banknote =€5. Grade 2, 0–15 whole euros; legitimate €1 and €2 coins, €5 and €10 notes; no cents, rates, transactions, purchase totals, budgets, change, scoring, or automatically substituted locale-specific currency.
+    
+    ## LEARNER JOURNEY
+    
+    1. Encounter a small concrete instance with Equal-Value Cash Desk. The child changes the model rather than passively watches; mistakes receive named evidence.
+    2. Compare the first model with a deliberately contrasting condition. Ask what stayed the same and what changed.
+    3. Brief unscored retrieval with a worked counterexample: Could two cash pieces and three cash pieces both make six euros?
+    4. Independently try Compare Euro Purses, changing the item identities, configuration or currency amounts so the child must apply the general principle.
+    5. State a reason, or reveal and revisit the full model without score, timer, Program narrative or persistence.
+    
+    ## SECTION PLAN
+    
+    
+    ## CUSTOM SCENE SPECIFICATIONS
+    
+    - Equal-Value Cash Desk (Scene specification embedded in this config.yaml) — conceptual model and first contrast.
+    - Compare Euro Purses (Scene specification embedded in this config.yaml) — independent transfer and different actions.
+    
+    Both specific Scenes are **proposed**, self-contained, prop-free and not implemented. Generic text, markdown and scene Resource rendering exists; this does not establish the new components. No new runtime field or mode prop is proposed.
+    
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+    
+    1. “Different coins and notes can make the same total amount.” — after Section 1 model and explanation (planned, not wired).
+    2. “Compare the values of cash pieces, not only how many pieces there are.” — after Section 3 transfer and explanation (planned, not wired).
+    
+    These are concise factual recall candidates. Note entities, event contracts, revision sheets and persistence have not been verified implemented.
+    
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+    
+    The first Scene uses guided formative decisions and worked contrast; Section 2 retrieves the principle verbally; Section 3 changes the setting to elicit transfer. No response implies Skill mastery. Assessment Architect owns any future scored Question, Quiz, evidence validity and retry policy.
+    
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+    
+    English text here is editorial source, not production locale assets. Complete truthful translation of instructional language, count words, denomination labels, error messages, aria names and Notes is required for every Engine-supported locale with no silent fallback. RTL must preserve number order, identities, explicit START or EUR units and pair semantics. Equivalent keyboard/switch/touch/nonvisual controls, focus, contrast, reduced motion, zoom and mobile experience are WCAG 2.2 AA targets. All lesson assets, selected-language explanations and computation must be usable offline after download; actual PWA completeness is not claimed.
+    The euro is a named case-study currency; localization does not automatically convert its denominations into another currency. Any currency-specific replacement needs verified denominational sources and editorial approval.
+    
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+    
+    - Existing general Lesson Section contract: ordered vertical nonempty Resource list.
+    - Current generic text, markdown and scene renderer: observed. New bespoke Scenes: **proposed only**.
+    - Full-locale translations, RTL/keyboard accessibility, genuine offline download and Note persistence: required/planned, not demonstrated.
+    - No React code, runtime Lesson data, Questions, Quizzes, scoring or Note event wiring exists in this batch.
+    
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+    
+    - Draft Methodologist Brief (editorial text integrated into this config.yaml) and its exact Skill data links.
+    - [Section entity](../../../../../../studio/docs/entities/section.md) and [Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md).
+    - [Official euro source 1](https://www.ecb.europa.eu/euro/coins/html/index.en.html)
+    - [Official euro source 2](https://www.ecb.europa.eu/euro/banknotes/html/index.en.html)
+    - Open decisions: explicit Methodologist grade/targets/depth approval; separate Content/Scene review; full locale and offline/accessibility production checks.
+    
+    ## HANDOFF
+    
+    **Provisional Draft.** Content is prepared under batch authorization before Methodologist approval, without claiming formal editorial readiness or implementation permission.
+    
+    
+    Migration status: provisional draft; pending independent approvals, translation and implementation.
