@@ -7,7 +7,6 @@ export const demonstrationClip = defineVideo<'demonstrationClip', EqualsMeansSam
   type: 'video',
   params: {},
   locale: {
-    fileLocation: '/textbooks/math/demonstrationalSection/barabaka.mp4',
     poster: '/textbooks/math/demonstrationalSection/carousel-prism.svg',
     label: { en: 'Demonstration video' },
   },
