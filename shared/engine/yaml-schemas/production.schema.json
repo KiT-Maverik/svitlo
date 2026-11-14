@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://svitlo.dev/engine/yaml-schemas/production.schema.json",
+  "title": "Svitlo authoring-only production metadata",
+  "description": "Manually owned production requirements. These fields never enter define* Config, Overrides, Props or runtime publications. Scaffolders may materialize specification.md and methodology.md from authored content.",
+  "$defs": {
+    "lesson": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "documentLanguage": {
+          "type": "string",
+          "minLength": 2,
+          "description": "Source language of authored locale values; not an Engine Config field."
+        },
+        "methodology": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Complete source-language methodology passport. When supplied, may create an editor-owned methodology.md if absent."
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "documentLanguage"
+      ]
+    },
+    "course": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "documentLanguage": {
+          "type": "string",
+          "minLength": 2
+        },
+        "methodology": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "episode": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "specification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pedagogicalIntent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "block": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "specification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "scene": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "specification": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Full implementation specification. The scaffolder writes the Scene UUID directory's specification.md without a sceneSpecKey."
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "specification"
+      ]
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What to depict, pedagogically essential visible elements and relationships; never a fabricated src."
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "prompt",
+        "purpose"
+      ]
+    },
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "specification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "script": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "video": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "specification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "storyboard": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "evidenceIntent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "flashcard": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "lessonReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "placementReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "default": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "specification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
