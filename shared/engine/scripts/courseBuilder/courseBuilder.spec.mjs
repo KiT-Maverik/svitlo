@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import ts from 'typescript';
+import yaml from 'yaml';
 import {
   normalizeCourseSource,
   parseArguments,
@@ -560,3 +561,50 @@ test('Course uses the same canonical Engine registry and prunes explicit source-
   assert(!code.includes('"documentLanguage"'));
   assert(code.includes('"languages": ['));
 });
+
+const courseNodeTypes = new Set([
+  'course', 'module', 'chapter', 'episode', 'lesson', 'content', 'practice',
+  'codingTask', 'learningFlow', 'flashcards', 'quiz', 'text', 'markdown',
+  'image', 'scene', 'audio', 'video', 'youtube', 'carousel', 'carouselSlide',
+  'checkpoint', 'checkpointItem',
+]);
+function wrapCourseNodes(value) {
+  if (Array.isArray(value)) return value.map(wrapCourseNodes);
+  if (!value || typeof value !== 'object') return value;
+  const fields = Object.fromEntries(Object.entries(value).map(([key, child]) => [key, wrapCourseNodes(child)]));
+  return courseNodeTypes.has(value.type) ? { config: fields } : fields;
+}
+
+test('single Course config.yaml emits TypeScript, methodology and direct Build overrides', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'course-unified-yaml-'));
+  const folder = path.join(root, 'content/math/data/courses', courseId.at(-1), courseId);
+  fs.mkdirSync(folder, { recursive: true });
+  try {
+    const input = {
+      config: wrapCourseNodes(source).config,
+      production: {
+        documentLanguage: 'uk',
+        methodology: '# Course methodology\\n\\nTeach astronomy in ordered steps.',
+      },
+      overrides: { content: { items: { opening: { params: { sections: { allowSkipping: false } } } } } },
+    };
+    fs.writeFileSync(path.join(folder, 'config.yaml'), yaml.stringify(input));
+    await main(['--package', 'content/math', '--course', courseId, '--write'], root);
+    const file = path.join(folder, 'spaceCourse.data.ts');
+    const code = fs.readFileSync(file, 'utf8');
+    assert(code.includes('defineCourse('));
+    assert(code.includes('defineModule('));
+    assert(code.includes('spaceCourse_Course.build.overrides('));
+    assert(!code.includes('"production"') && !code.includes('"methodology"'));
+    assert(!code.includes('"documentLanguage"'));
+    assert.match(fs.readFileSync(path.join(folder, 'methodology.md'), 'utf8'), /Teach astronomy/);
+    assert.deepEqual(ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
+    await main(['--package', 'content/math', '--course', courseId, '--check'], root);
+    fs.writeFileSync(path.join(folder, 'config.yaml'), 'invalid: [\\n');
+    await main(['--package', 'content/math', '--course', courseId, '--write'], root);
+    assert.equal(fs.readFileSync(file, 'utf8'), code);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
