@@ -2,15 +2,16 @@
 // Draft content sha256: d552c695dfb4a8ef0b98d56390c434b5224c76bb762c464ccaa8655f8bcd0472
 import { defineLesson } from '@svitlo/engine/build';
 
+// todo: agent note, implement alias #skills
+import { equalityMeaning_Skill_Data } from '../../../skills/algebra/equalities/skills';
+
 import {section} from "./sections";
 
 export const equalsMeansSameValue_Lesson = defineLesson({
   id: "92177be3-97a1-5ca4-b21a-07f0dac27f50",
   slug: "equalsMeansSameValue",
   type: "lesson",
-  skills: [
-    "974af868-5b72-4a5a-a88e-8f7e03e48661"
-  ],
+  skills: [equalityMeaning_Skill_Data.id],
   params: {
     requireQuiz: false,
     languages: [
