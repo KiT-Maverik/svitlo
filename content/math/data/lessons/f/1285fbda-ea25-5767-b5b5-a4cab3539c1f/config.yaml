@@ -1,0 +1,604 @@
+config:
+  id: "1285fbda-ea25-5767-b5b5-a4cab3539c1f"
+  slug: "tooMuchOrTooLittleInformation"
+  type: "lesson"
+  skills: ["e77dd73e-0505-41d6-9a38-880f63009084","f42f6f4a-7183-4ace-862d-e25a58d9a702"]
+  params:
+    requireQuiz: false
+    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Do We Have Enough Information?"
+  section:
+    items:
+      section1ANumberThatDoesNotHelpThisQuestion:
+        config:
+          id: "952a0f15-02cd-45c8-bc66-aa8f846e0ca2"
+          slug: "section1ANumberThatDoesNotHelpThisQuestion"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A number that does not help this question"
+            navigationLabel:
+              en: "A number that does not help this question"
+          content:
+            items:
+              text1:
+                config:
+                  id: "21a24cb4-c078-46fd-802f-add22af9e1f3"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "On a board there are **7 stars**, **4 circles** and **3 triangles**. How many **stars and circles together**?"
+              questionEvidenceDesk:
+                config:
+                  id: "6781cb92-6e40-4e7d-a8ae-e9f4f62a20e7"
+                  slug: "questionEvidenceDesk"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Question-Dependent Evidence Desk"
+                production:
+                  specification: |
+                    # Question-Dependent Evidence Desk — Scene Specification
+                    
+                    Status: **Provisional Draft pending explicit Methodologist/editor approval**  
+                    Owner: Educational Screenwriter  
+                    Parent: Lesson Content (editorial text integrated into this config.yaml), Sections 1–4 and Draft Brief (editorial text integrated into this config.yaml)  
+                    Status: **Proposed prop-free Scene**, not an existing component. The four placements must work independently.
+                    
+                    ## What the learner will discover
+                    
+                    A numeric fact can be _unnecessary for one question but necessary for another_. A missing fact is different: it can permit multiple answers to one and the same question. Each entry keeps the **actual question visible** and ties learner judgments to the relationships in the story, not to whether text looks decorative. When the question changes, reset any previous relevance verdict; when a required quantity is unknown, do not invent or silently assume a value.
+                    
+                    ## Opening: an unnecessary number (Entry A, Section 1)
+                    
+                    Display “There are **7 stars**, **4 circles**, and **3 triangles** on a board. How many **stars and circles together**?” with labeled, accessible groups of exactly seven, four and three shapes. Choose fact, then classify it as “needed for this question” or “not needed for this question”. Learner may select with keyboard/touch, no drag required. Correct: 7 stars and 4 circles needed; 3 triangles irrelevant _to this question_. The answer is **11** stars and circles. If the learner includes triangles in the result: “You answered how many shapes in total, but this question asks only about stars and circles.” If they omit circles: “The question names circles as well.” Never call the triangle statement false or always useless.
+                    
+                    ## Change only the question (Entry B, Section 2)
+                    
+                    Show identical groups **7 stars, 4 circles, 3 triangles** and now ask “How many shapes **altogether**?” Clear earlier relevance choices but preserve facts. Now all three quantities matter, and **7 + 4 + 3 = 14 shapes**. The child should be able to explain that the formerly extra three triangles became essential because the requested total changed. If triangles are still excluded: “This time triangles are included in _all shapes_.” This is a new starting entry, not a hidden cross-Section state dependency.
+                    
+                    ## A missing quantity (Entry C, Section 3)
+                    
+                    Show “There are **7 bicycles** and **some scooters**. How many vehicles?” Explicitly state that the scene treats these as the only vehicle categories in the problem. Mark bicycles 7 known, scooters unknown, combined vehicle count unknown. Provide two separately labeled **hypotheses**, never silently presented as original facts:
+                    
+                    - _If there are 2 scooters_, the total is **7 + 2 = 9 vehicles**.
+                    - _If there are 5 scooters_, the total is **7 + 5 = 12 vehicles**.
+                      Both worlds satisfy the supplied information but lead to distinct answers. Feedback for “exactly nine”: “Nine follows only if two scooters exist; the story did not say that.” For “no single answer”: “Correct: we need the scooter count.” An “Add a fact” exploration may set scooters to 3, then compute 10, but it must visibly label this as a **new hypothetical condition**, not inferred data.
+                    
+                    ## Independent contrast (Entry D, Section 4)
+                    
+                    Two self-contained cards, with a separate question and reset for each:
+                    
+                    **Card 1:** “A jar contains 6 blue beads, 5 yellow beads, and 4 red beads. How many **blue and yellow** beads?” Count 6 + 5 = **11**; four red beads are extra to this question. If the learner includes red, clarify that 15 would answer _all beads_, not the specified subset.
+                    
+                    **Card 2:** “A jar contains 6 blue beads and **some yellow beads**. These are the only bead types in the jar. How many beads **in total**?” Insufficient information: the yellow count is needed. Example compatible completions: two yellow → 8 total; five yellow → 11 total. If a child answers 11 without a stated yellow count: “That requires five yellow beads, which the story never supplied.” A useful response is “How many yellow beads?” rather than a guessed total.
+                    
+                    ## Interactive objects, semantic state and feedback logic
+                    
+                    Objects: story and question text, quantity and category labels, per-fact classification, optional model counts, “Try another possibility”, “Change question”, “Show explanation”, “Reset” and explicit hypotheses. State: active independent entry, category selections, question variant, hypothetical missing quantity (never silently converted to a given fact), explanation visibility. **A datum is relevant iff it influences the requested answer under the stated relationships**; the same number can be relevant under one question and irrelevant under another. In a missing-data demonstration, show two complete consistent assignments with different results to establish non-uniqueness. Do not score categorization, store learner state or invent assessment methods.
+                    
+                    ## Visual and audio / inclusive direction
+                    
+                    Each fact can be inspected by numbered card with labeled quantity, category and role. Relevance colors must also have explicit text such as “needed” and “not needed for this question”; “missing” must have its own descriptive text. Keyboard/switch interaction follows select-card then choose classification, and touch controls have generous targets; optional dragging is never required. Screen readers must announce the full exact question before any judgments, all candidate worlds and conditional status. RTL preserves which question each classification refers to, the time/logical order of hypotheses and arithmetic operands. Provide reduced-motion nonanimated reveals, visible focus, high contrast, mobile reflow, zoom and complete offline functionality after implementation. All words, plural units, cardinality, mathematical relations, hints and alternatives need genuine locale translations with no default English substitution.
+                    
+                    ## Future acceptance cases
+                    
+                    1. Seven stars + four circles = 11; three triangles are extraneous to **that question**.
+                    2. With “all shapes” question, 7+4+3=14; all three facts relevant.
+                    3. Seven bicycles plus unknown scooters gives no unique total; 2 scooters gives 9 and 5 scooters gives 12 **conditionally**.
+                    4. Independent blue/yellow count is 11, ignoring 4 red; independent jar with unknown yellow count lacks unique answer.
+                    5. Every false guess receives an explanation of the difference between stated data, hypothesized conditions and target question.
+                    6. Entry resets, keyboard/screen-reader, touch, zoom, RTL, reduced-motion and offline presentations expose identical reasoning without scores.
+                    
+                    ## Editorial / implementation handoff
+                    
+                    Only a generic Scene resource is verified. This exact scene, locale dictionaries and accessible alternatives require implementation, thorough verification and editorial approvals. No scoring, Question/Quiz, Program logic, persistence or Note API is specified.
+                  purpose: "Proposed interactive Scene for A number that does not help this question"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              text2:
+                config:
+                  id: "24a2516d-bd78-4244-bf2f-ac3f2bf9e386"
+                  slug: "text2"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Seven stars and four circles make **11**. The triangles do not change the number of _stars and circles_."
+              markdown3:
+                config:
+                  id: "ad83fc28-f860-46cd-a3e5-e7a6fe15712b"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A number can be true but **not needed to answer this particular question**. That does not mean the number is false."
+            order: ["text1","questionEvidenceDesk","text2","markdown3"]
+        production:
+          purpose: "A number that does not help this question"
+          pedagogicalIntent: |
+            ### Section 1 — A number that does not help this question
+            
+            _Purpose: distinguish relevance from merely noticing numerals._
+            
+            1. **`text`:** “On a board there are **7 stars**, **4 circles** and **3 triangles**. How many **stars and circles together**?” Let the learner predict which two collections will matter.
+            2. **`scene` resource, proposed:** Evidence Desk entry A shows three labeled groups and the exact question at all times. The learner tags 7 stars and 4 circles as “needed” and 3 triangles as “not needed for this question”. This is not a drag-only interaction.
+            3. **`text`:** Correct feedback: “Seven stars and four circles make **11**. The triangles do not change the number of _stars and circles_.” If triangles selected as needed: “The question asks about two kinds of shapes, not all three.” If a child excludes 4: “Circles are named in the question; counting only stars gives seven, not eleven.”
+            4. **`markdown`:** “A number can be true but **not needed to answer this particular question**. That does not mean the number is false.”
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+      section2ChangeTheQuestionChangeWhichFactsMatter:
+        config:
+          id: "de0bc706-f662-4e29-9670-b3a0dd63cd2b"
+          slug: "section2ChangeTheQuestionChangeWhichFactsMatter"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Change the question, change which facts matter"
+            navigationLabel:
+              en: "Change the question, change which facts matter"
+          content:
+            items:
+              text1:
+                config:
+                  id: "6ff4e8f7-5ed6-4b58-b130-961510a902ce"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Now ask **How many shapes altogether?** We did not add any new shapes. Did we need a different fact?"
+              questionEvidenceDesk:
+                config:
+                  id: "102c5bb3-8bbe-40de-b05e-87f5ae2a67c8"
+                  slug: "questionEvidenceDesk"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Question-Dependent Evidence Desk"
+                production:
+                  specification: |
+                    # Question-Dependent Evidence Desk — Scene Specification
+                    
+                    Status: **Provisional Draft pending explicit Methodologist/editor approval**  
+                    Owner: Educational Screenwriter  
+                    Parent: Lesson Content (editorial text integrated into this config.yaml), Sections 1–4 and Draft Brief (editorial text integrated into this config.yaml)  
+                    Status: **Proposed prop-free Scene**, not an existing component. The four placements must work independently.
+                    
+                    ## What the learner will discover
+                    
+                    A numeric fact can be _unnecessary for one question but necessary for another_. A missing fact is different: it can permit multiple answers to one and the same question. Each entry keeps the **actual question visible** and ties learner judgments to the relationships in the story, not to whether text looks decorative. When the question changes, reset any previous relevance verdict; when a required quantity is unknown, do not invent or silently assume a value.
+                    
+                    ## Opening: an unnecessary number (Entry A, Section 1)
+                    
+                    Display “There are **7 stars**, **4 circles**, and **3 triangles** on a board. How many **stars and circles together**?” with labeled, accessible groups of exactly seven, four and three shapes. Choose fact, then classify it as “needed for this question” or “not needed for this question”. Learner may select with keyboard/touch, no drag required. Correct: 7 stars and 4 circles needed; 3 triangles irrelevant _to this question_. The answer is **11** stars and circles. If the learner includes triangles in the result: “You answered how many shapes in total, but this question asks only about stars and circles.” If they omit circles: “The question names circles as well.” Never call the triangle statement false or always useless.
+                    
+                    ## Change only the question (Entry B, Section 2)
+                    
+                    Show identical groups **7 stars, 4 circles, 3 triangles** and now ask “How many shapes **altogether**?” Clear earlier relevance choices but preserve facts. Now all three quantities matter, and **7 + 4 + 3 = 14 shapes**. The child should be able to explain that the formerly extra three triangles became essential because the requested total changed. If triangles are still excluded: “This time triangles are included in _all shapes_.” This is a new starting entry, not a hidden cross-Section state dependency.
+                    
+                    ## A missing quantity (Entry C, Section 3)
+                    
+                    Show “There are **7 bicycles** and **some scooters**. How many vehicles?” Explicitly state that the scene treats these as the only vehicle categories in the problem. Mark bicycles 7 known, scooters unknown, combined vehicle count unknown. Provide two separately labeled **hypotheses**, never silently presented as original facts:
+                    
+                    - _If there are 2 scooters_, the total is **7 + 2 = 9 vehicles**.
+                    - _If there are 5 scooters_, the total is **7 + 5 = 12 vehicles**.
+                      Both worlds satisfy the supplied information but lead to distinct answers. Feedback for “exactly nine”: “Nine follows only if two scooters exist; the story did not say that.” For “no single answer”: “Correct: we need the scooter count.” An “Add a fact” exploration may set scooters to 3, then compute 10, but it must visibly label this as a **new hypothetical condition**, not inferred data.
+                    
+                    ## Independent contrast (Entry D, Section 4)
+                    
+                    Two self-contained cards, with a separate question and reset for each:
+                    
+                    **Card 1:** “A jar contains 6 blue beads, 5 yellow beads, and 4 red beads. How many **blue and yellow** beads?” Count 6 + 5 = **11**; four red beads are extra to this question. If the learner includes red, clarify that 15 would answer _all beads_, not the specified subset.
+                    
+                    **Card 2:** “A jar contains 6 blue beads and **some yellow beads**. These are the only bead types in the jar. How many beads **in total**?” Insufficient information: the yellow count is needed. Example compatible completions: two yellow → 8 total; five yellow → 11 total. If a child answers 11 without a stated yellow count: “That requires five yellow beads, which the story never supplied.” A useful response is “How many yellow beads?” rather than a guessed total.
+                    
+                    ## Interactive objects, semantic state and feedback logic
+                    
+                    Objects: story and question text, quantity and category labels, per-fact classification, optional model counts, “Try another possibility”, “Change question”, “Show explanation”, “Reset” and explicit hypotheses. State: active independent entry, category selections, question variant, hypothetical missing quantity (never silently converted to a given fact), explanation visibility. **A datum is relevant iff it influences the requested answer under the stated relationships**; the same number can be relevant under one question and irrelevant under another. In a missing-data demonstration, show two complete consistent assignments with different results to establish non-uniqueness. Do not score categorization, store learner state or invent assessment methods.
+                    
+                    ## Visual and audio / inclusive direction
+                    
+                    Each fact can be inspected by numbered card with labeled quantity, category and role. Relevance colors must also have explicit text such as “needed” and “not needed for this question”; “missing” must have its own descriptive text. Keyboard/switch interaction follows select-card then choose classification, and touch controls have generous targets; optional dragging is never required. Screen readers must announce the full exact question before any judgments, all candidate worlds and conditional status. RTL preserves which question each classification refers to, the time/logical order of hypotheses and arithmetic operands. Provide reduced-motion nonanimated reveals, visible focus, high contrast, mobile reflow, zoom and complete offline functionality after implementation. All words, plural units, cardinality, mathematical relations, hints and alternatives need genuine locale translations with no default English substitution.
+                    
+                    ## Future acceptance cases
+                    
+                    1. Seven stars + four circles = 11; three triangles are extraneous to **that question**.
+                    2. With “all shapes” question, 7+4+3=14; all three facts relevant.
+                    3. Seven bicycles plus unknown scooters gives no unique total; 2 scooters gives 9 and 5 scooters gives 12 **conditionally**.
+                    4. Independent blue/yellow count is 11, ignoring 4 red; independent jar with unknown yellow count lacks unique answer.
+                    5. Every false guess receives an explanation of the difference between stated data, hypothesized conditions and target question.
+                    6. Entry resets, keyboard/screen-reader, touch, zoom, RTL, reduced-motion and offline presentations expose identical reasoning without scores.
+                    
+                    ## Editorial / implementation handoff
+                    
+                    Only a generic Scene resource is verified. This exact scene, locale dictionaries and accessible alternatives require implementation, thorough verification and editorial approvals. No scoring, Question/Quiz, Program logic, persistence or Note API is specified.
+                  purpose: "Proposed interactive Scene for Change the question, change which facts matter"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              text2:
+                config:
+                  id: "70f4ea8a-61d6-4011-ae30-915c0fa9013b"
+                  slug: "text2"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Triangles are shapes too, and now we are counting all shapes."
+              markdown3:
+                config:
+                  id: "fc0fd18f-4d59-417c-8e10-3635b442dfd2"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The _question_ decides what information helps. Check the relationship before calling a fact extra."
+            order: ["text1","questionEvidenceDesk","text2","markdown3"]
+        production:
+          purpose: "Change the question, change which facts matter"
+          pedagogicalIntent: |
+            ### Section 2 — Change the question, change which facts matter
+            
+            _Purpose: correct the misconception that a fact is permanently irrelevant._
+            
+            1. **`text`:** “Now ask **How many shapes altogether?** We did not add any new shapes. Did we need a different fact?”
+            2. **`scene` resource, proposed:** Entry B reuses the **same three known quantities** but resets judgments and swaps only the question. All 7, 4 and 3 are relevant. The total is **14**.
+            3. **`text`:** Feedback for excluding three: “Triangles are shapes too, and now we are counting all shapes.” For selecting all: “Yes: seven plus four plus three is fourteen.”
+            4. **`markdown`:** “The _question_ decides what information helps. Check the relationship before calling a fact extra.”
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+      section3ANumberThatTheStoryDoesNotGive:
+        config:
+          id: "87709a89-8b3b-4750-9779-6393440767fa"
+          slug: "section3ANumberThatTheStoryDoesNotGive"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A number that the story does not give"
+            navigationLabel:
+              en: "A number that the story does not give"
+          content:
+            items:
+              text1:
+                config:
+                  id: "8079a9b8-4215-4585-bb48-419603d5066b"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Outside a school there are **7 bicycles** and **some scooters**. How many vehicles are there?"
+              questionEvidenceDesk:
+                config:
+                  id: "67fd7a3e-2509-4305-bb96-c57063a9bedf"
+                  slug: "questionEvidenceDesk"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Question-Dependent Evidence Desk"
+                production:
+                  specification: |
+                    # Question-Dependent Evidence Desk — Scene Specification
+                    
+                    Status: **Provisional Draft pending explicit Methodologist/editor approval**  
+                    Owner: Educational Screenwriter  
+                    Parent: Lesson Content (editorial text integrated into this config.yaml), Sections 1–4 and Draft Brief (editorial text integrated into this config.yaml)  
+                    Status: **Proposed prop-free Scene**, not an existing component. The four placements must work independently.
+                    
+                    ## What the learner will discover
+                    
+                    A numeric fact can be _unnecessary for one question but necessary for another_. A missing fact is different: it can permit multiple answers to one and the same question. Each entry keeps the **actual question visible** and ties learner judgments to the relationships in the story, not to whether text looks decorative. When the question changes, reset any previous relevance verdict; when a required quantity is unknown, do not invent or silently assume a value.
+                    
+                    ## Opening: an unnecessary number (Entry A, Section 1)
+                    
+                    Display “There are **7 stars**, **4 circles**, and **3 triangles** on a board. How many **stars and circles together**?” with labeled, accessible groups of exactly seven, four and three shapes. Choose fact, then classify it as “needed for this question” or “not needed for this question”. Learner may select with keyboard/touch, no drag required. Correct: 7 stars and 4 circles needed; 3 triangles irrelevant _to this question_. The answer is **11** stars and circles. If the learner includes triangles in the result: “You answered how many shapes in total, but this question asks only about stars and circles.” If they omit circles: “The question names circles as well.” Never call the triangle statement false or always useless.
+                    
+                    ## Change only the question (Entry B, Section 2)
+                    
+                    Show identical groups **7 stars, 4 circles, 3 triangles** and now ask “How many shapes **altogether**?” Clear earlier relevance choices but preserve facts. Now all three quantities matter, and **7 + 4 + 3 = 14 shapes**. The child should be able to explain that the formerly extra three triangles became essential because the requested total changed. If triangles are still excluded: “This time triangles are included in _all shapes_.” This is a new starting entry, not a hidden cross-Section state dependency.
+                    
+                    ## A missing quantity (Entry C, Section 3)
+                    
+                    Show “There are **7 bicycles** and **some scooters**. How many vehicles?” Explicitly state that the scene treats these as the only vehicle categories in the problem. Mark bicycles 7 known, scooters unknown, combined vehicle count unknown. Provide two separately labeled **hypotheses**, never silently presented as original facts:
+                    
+                    - _If there are 2 scooters_, the total is **7 + 2 = 9 vehicles**.
+                    - _If there are 5 scooters_, the total is **7 + 5 = 12 vehicles**.
+                      Both worlds satisfy the supplied information but lead to distinct answers. Feedback for “exactly nine”: “Nine follows only if two scooters exist; the story did not say that.” For “no single answer”: “Correct: we need the scooter count.” An “Add a fact” exploration may set scooters to 3, then compute 10, but it must visibly label this as a **new hypothetical condition**, not inferred data.
+                    
+                    ## Independent contrast (Entry D, Section 4)
+                    
+                    Two self-contained cards, with a separate question and reset for each:
+                    
+                    **Card 1:** “A jar contains 6 blue beads, 5 yellow beads, and 4 red beads. How many **blue and yellow** beads?” Count 6 + 5 = **11**; four red beads are extra to this question. If the learner includes red, clarify that 15 would answer _all beads_, not the specified subset.
+                    
+                    **Card 2:** “A jar contains 6 blue beads and **some yellow beads**. These are the only bead types in the jar. How many beads **in total**?” Insufficient information: the yellow count is needed. Example compatible completions: two yellow → 8 total; five yellow → 11 total. If a child answers 11 without a stated yellow count: “That requires five yellow beads, which the story never supplied.” A useful response is “How many yellow beads?” rather than a guessed total.
+                    
+                    ## Interactive objects, semantic state and feedback logic
+                    
+                    Objects: story and question text, quantity and category labels, per-fact classification, optional model counts, “Try another possibility”, “Change question”, “Show explanation”, “Reset” and explicit hypotheses. State: active independent entry, category selections, question variant, hypothetical missing quantity (never silently converted to a given fact), explanation visibility. **A datum is relevant iff it influences the requested answer under the stated relationships**; the same number can be relevant under one question and irrelevant under another. In a missing-data demonstration, show two complete consistent assignments with different results to establish non-uniqueness. Do not score categorization, store learner state or invent assessment methods.
+                    
+                    ## Visual and audio / inclusive direction
+                    
+                    Each fact can be inspected by numbered card with labeled quantity, category and role. Relevance colors must also have explicit text such as “needed” and “not needed for this question”; “missing” must have its own descriptive text. Keyboard/switch interaction follows select-card then choose classification, and touch controls have generous targets; optional dragging is never required. Screen readers must announce the full exact question before any judgments, all candidate worlds and conditional status. RTL preserves which question each classification refers to, the time/logical order of hypotheses and arithmetic operands. Provide reduced-motion nonanimated reveals, visible focus, high contrast, mobile reflow, zoom and complete offline functionality after implementation. All words, plural units, cardinality, mathematical relations, hints and alternatives need genuine locale translations with no default English substitution.
+                    
+                    ## Future acceptance cases
+                    
+                    1. Seven stars + four circles = 11; three triangles are extraneous to **that question**.
+                    2. With “all shapes” question, 7+4+3=14; all three facts relevant.
+                    3. Seven bicycles plus unknown scooters gives no unique total; 2 scooters gives 9 and 5 scooters gives 12 **conditionally**.
+                    4. Independent blue/yellow count is 11, ignoring 4 red; independent jar with unknown yellow count lacks unique answer.
+                    5. Every false guess receives an explanation of the difference between stated data, hypothesized conditions and target question.
+                    6. Entry resets, keyboard/screen-reader, touch, zoom, RTL, reduced-motion and offline presentations expose identical reasoning without scores.
+                    
+                    ## Editorial / implementation handoff
+                    
+                    Only a generic Scene resource is verified. This exact scene, locale dictionaries and accessible alternatives require implementation, thorough verification and editorial approvals. No scoring, Question/Quiz, Program logic, persistence or Note API is specified.
+                  purpose: "Proposed interactive Scene for A number that the story does not give"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              text2:
+                config:
+                  id: "8379ae71-3f15-40cc-ba48-400304d507fe"
+                  slug: "text2"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Both possibilities fit the original story. So the original question has **no uniquely determined number**. We would need the number of scooters."
+              markdown3:
+                config:
+                  id: "158c12dc-4f86-4b05-ba17-988a3ca74153"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "When a needed number is missing, guessing it changes the problem. You may describe _what information is needed_ without supplying an answer."
+            order: ["text1","questionEvidenceDesk","text2","markdown3"]
+        production:
+          purpose: "A number that the story does not give"
+          pedagogicalIntent: |
+            ### Section 3 — A number that the story does not give
+            
+            _Purpose: recognize insufficient data and demonstrate why guesses do not establish answers._
+            
+            1. **`text`:** “Outside a school there are **7 bicycles** and **some scooters**. How many vehicles are there?” Ask learners what they know, and what is still missing.
+            2. **`scene` resource, proposed:** Evidence Desk entry C labels known bicycles=7, scooters=?, vehicles total=?. The learner can test two alternative **hypothetical** possibilities without pretending they are given: “Suppose there are **2 scooters**” → 7+2=**9 vehicles**; “Suppose there are **5 scooters**” → 7+5=**12 vehicles**.
+            3. **`text`:** “Both possibilities fit the original story. So the original question has **no uniquely determined number**. We would need the number of scooters.” If the learner guesses 9: “Nine is possible _if_ there are two scooters, but the story never told us there were two.”
+            4. **`markdown`:** “When a needed number is missing, guessing it changes the problem. You may describe _what information is needed_ without supplying an answer.”
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+      section4IndependentTransferTellExcessFromShortage:
+        config:
+          id: "3e684472-db85-4b55-b247-1bc4a7d60b37"
+          slug: "section4IndependentTransferTellExcessFromShortage"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Independent transfer: tell excess from shortage"
+            navigationLabel:
+              en: "Independent transfer: tell excess from shortage"
+          content:
+            items:
+              text1:
+                config:
+                  id: "c62496c3-efe8-4ff4-bba8-7689b0f78a1a"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Present two short cards one at a time."
+              questionEvidenceDesk:
+                config:
+                  id: "bac3ef17-4c5b-4652-863e-29c181e38b1c"
+                  slug: "questionEvidenceDesk"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Question-Dependent Evidence Desk"
+                production:
+                  specification: |
+                    # Question-Dependent Evidence Desk — Scene Specification
+                    
+                    Status: **Provisional Draft pending explicit Methodologist/editor approval**  
+                    Owner: Educational Screenwriter  
+                    Parent: Lesson Content (editorial text integrated into this config.yaml), Sections 1–4 and Draft Brief (editorial text integrated into this config.yaml)  
+                    Status: **Proposed prop-free Scene**, not an existing component. The four placements must work independently.
+                    
+                    ## What the learner will discover
+                    
+                    A numeric fact can be _unnecessary for one question but necessary for another_. A missing fact is different: it can permit multiple answers to one and the same question. Each entry keeps the **actual question visible** and ties learner judgments to the relationships in the story, not to whether text looks decorative. When the question changes, reset any previous relevance verdict; when a required quantity is unknown, do not invent or silently assume a value.
+                    
+                    ## Opening: an unnecessary number (Entry A, Section 1)
+                    
+                    Display “There are **7 stars**, **4 circles**, and **3 triangles** on a board. How many **stars and circles together**?” with labeled, accessible groups of exactly seven, four and three shapes. Choose fact, then classify it as “needed for this question” or “not needed for this question”. Learner may select with keyboard/touch, no drag required. Correct: 7 stars and 4 circles needed; 3 triangles irrelevant _to this question_. The answer is **11** stars and circles. If the learner includes triangles in the result: “You answered how many shapes in total, but this question asks only about stars and circles.” If they omit circles: “The question names circles as well.” Never call the triangle statement false or always useless.
+                    
+                    ## Change only the question (Entry B, Section 2)
+                    
+                    Show identical groups **7 stars, 4 circles, 3 triangles** and now ask “How many shapes **altogether**?” Clear earlier relevance choices but preserve facts. Now all three quantities matter, and **7 + 4 + 3 = 14 shapes**. The child should be able to explain that the formerly extra three triangles became essential because the requested total changed. If triangles are still excluded: “This time triangles are included in _all shapes_.” This is a new starting entry, not a hidden cross-Section state dependency.
+                    
+                    ## A missing quantity (Entry C, Section 3)
+                    
+                    Show “There are **7 bicycles** and **some scooters**. How many vehicles?” Explicitly state that the scene treats these as the only vehicle categories in the problem. Mark bicycles 7 known, scooters unknown, combined vehicle count unknown. Provide two separately labeled **hypotheses**, never silently presented as original facts:
+                    
+                    - _If there are 2 scooters_, the total is **7 + 2 = 9 vehicles**.
+                    - _If there are 5 scooters_, the total is **7 + 5 = 12 vehicles**.
+                      Both worlds satisfy the supplied information but lead to distinct answers. Feedback for “exactly nine”: “Nine follows only if two scooters exist; the story did not say that.” For “no single answer”: “Correct: we need the scooter count.” An “Add a fact” exploration may set scooters to 3, then compute 10, but it must visibly label this as a **new hypothetical condition**, not inferred data.
+                    
+                    ## Independent contrast (Entry D, Section 4)
+                    
+                    Two self-contained cards, with a separate question and reset for each:
+                    
+                    **Card 1:** “A jar contains 6 blue beads, 5 yellow beads, and 4 red beads. How many **blue and yellow** beads?” Count 6 + 5 = **11**; four red beads are extra to this question. If the learner includes red, clarify that 15 would answer _all beads_, not the specified subset.
+                    
+                    **Card 2:** “A jar contains 6 blue beads and **some yellow beads**. These are the only bead types in the jar. How many beads **in total**?” Insufficient information: the yellow count is needed. Example compatible completions: two yellow → 8 total; five yellow → 11 total. If a child answers 11 without a stated yellow count: “That requires five yellow beads, which the story never supplied.” A useful response is “How many yellow beads?” rather than a guessed total.
+                    
+                    ## Interactive objects, semantic state and feedback logic
+                    
+                    Objects: story and question text, quantity and category labels, per-fact classification, optional model counts, “Try another possibility”, “Change question”, “Show explanation”, “Reset” and explicit hypotheses. State: active independent entry, category selections, question variant, hypothetical missing quantity (never silently converted to a given fact), explanation visibility. **A datum is relevant iff it influences the requested answer under the stated relationships**; the same number can be relevant under one question and irrelevant under another. In a missing-data demonstration, show two complete consistent assignments with different results to establish non-uniqueness. Do not score categorization, store learner state or invent assessment methods.
+                    
+                    ## Visual and audio / inclusive direction
+                    
+                    Each fact can be inspected by numbered card with labeled quantity, category and role. Relevance colors must also have explicit text such as “needed” and “not needed for this question”; “missing” must have its own descriptive text. Keyboard/switch interaction follows select-card then choose classification, and touch controls have generous targets; optional dragging is never required. Screen readers must announce the full exact question before any judgments, all candidate worlds and conditional status. RTL preserves which question each classification refers to, the time/logical order of hypotheses and arithmetic operands. Provide reduced-motion nonanimated reveals, visible focus, high contrast, mobile reflow, zoom and complete offline functionality after implementation. All words, plural units, cardinality, mathematical relations, hints and alternatives need genuine locale translations with no default English substitution.
+                    
+                    ## Future acceptance cases
+                    
+                    1. Seven stars + four circles = 11; three triangles are extraneous to **that question**.
+                    2. With “all shapes” question, 7+4+3=14; all three facts relevant.
+                    3. Seven bicycles plus unknown scooters gives no unique total; 2 scooters gives 9 and 5 scooters gives 12 **conditionally**.
+                    4. Independent blue/yellow count is 11, ignoring 4 red; independent jar with unknown yellow count lacks unique answer.
+                    5. Every false guess receives an explanation of the difference between stated data, hypothesized conditions and target question.
+                    6. Entry resets, keyboard/screen-reader, touch, zoom, RTL, reduced-motion and offline presentations expose identical reasoning without scores.
+                    
+                    ## Editorial / implementation handoff
+                    
+                    Only a generic Scene resource is verified. This exact scene, locale dictionaries and accessible alternatives require implementation, thorough verification and editorial approvals. No scoring, Question/Quiz, Program logic, persistence or Note API is specified.
+                  purpose: "Proposed interactive Scene for Independent transfer: tell excess from shortage"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              text2:
+                config:
+                  id: "c7249856-f2e8-44ad-b8a8-71d0aff78887"
+                  slug: "text2"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "**Extra:** I can answer without that fact. **Missing:** Different valid choices give different answers."
+              markdown3:
+                config:
+                  id: "1360ce9b-8db9-4668-92b5-7039ccbe741e"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Ask the question first; then look for facts that matter and facts you still need."
+            order: ["text1","questionEvidenceDesk","text2","markdown3"]
+        production:
+          purpose: "Independent transfer: tell excess from shortage"
+          pedagogicalIntent: |
+            ### Section 4 — Independent transfer: tell excess from shortage
+            
+            _Purpose: independently classify and justify an unfamiliar problem._
+            
+            1. **`text`:** Present two short cards one at a time.
+               - **Card 1:** “A jar has **6 blue beads**, **5 yellow beads** and **4 red beads**. How many blue and yellow beads?” The red count is **extra for that question**; six plus five gives **11**.
+               - **Card 2:** “A jar has **6 blue beads** and **some yellow beads**. How many beads total?” Assuming only those two bead types are present, the yellow count is **missing**; there is **no single justified total**.
+            2. **`scene` resource, proposed:** Entry D asks first “Can we calculate one definite answer?” then “Show why.” The learner may classify with keyboard/tap, cite an exact sentence, or reveal a worked comparison. For Card 1, a failure to include yellow prompts: “The question names blue _and_ yellow.” For Card 2, a proposed total of 11 receives: “Eleven would require five yellow beads, which were not specified.”
+            3. **`text`:** Reveal a compact rule of thumb with two separate tests: “**Extra:** I can answer without that fact. **Missing:** Different valid choices give different answers.”
+            4. **`markdown`:** Invite a voluntary spoken, typed or nonverbal explanation. No Score/Quiz object is created. Optional recall cue: “Ask the question first; then look for facts that matter and facts you still need.”
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+    order: ["section1ANumberThatDoesNotHelpThisQuestion","section2ChangeTheQuestionChangeWhichFactsMatter","section3ANumberThatTheStoryDoesNotGive","section4IndependentTransferTellExcessFromShortage"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+    # Do We Have Enough Information? — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: tooMuchOrTooLittleInformation
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Develop an explicit contrast between an irrelevant stated quantity and a missing indispensable quantity. Both Skills support critical reading of word problems; teaching them together lets a learner distinguish excess evidence from insufficient evidence.
+    
+    ## Target audience
+    
+    **Primary audience: Grade 3.** Intended for children with variable reading fluency and prior mathematical experience. The selected classroom depth is a Lesson decision, **not** an age/grade restriction on any Skill. Provide plain-language, optional read-aloud, text alternatives and multiple ways to respond without relying on motor precision or speech.
+    
+    ## Prerequisites
+    
+    - Read short quantitative stories, identify givens and a target question, understand addition as combining counts, and provide a simple reason why a fact does or does not affect an answer.
+    
+    ## Target Skills
+    
+    - [findExtraneousData.data.ts](../../../../data/skills/problemSolving/conditions/skills/findExtraneousData.data.ts)
+    - [findMissingData.data.ts](../../../../data/skills/problemSolving/conditions/skills/findMissingData.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Distinguish a relevant number from a stated but irrelevant number relative to the _current_ question.
+    - Identify a quantity or relationship missing when the stated conditions allow more than one answer.
+    - Show that a missing-data problem has at least two compatible answers, and describe the additional information required to determine one answer.
+    - Explain how changing the question can turn an originally irrelevant fact into a relevant one.
+    
+    ## Essential subject matter
+    
+    Relevant information is relative to a specific question, not an intrinsic property of a numeral. Seven stars, four circles and three triangles give 11 stars-and-circles; three triangles are extraneous for that question, but essential for the total number of shapes, 14. In 'Seven bicycles and some scooters are parked here; how many vehicles?', the number of scooters is absent. Two scooters give 9 vehicles, while five give 12; both satisfy the stated conditions, so no single numeric answer follows. Supplying three scooters is a _hypothetical new fact_ that would yield 10, not an answer inferred from the original problem.
+    
+    ## Conceptual progression and dependencies
+    
+    First solve a fully specified story with a genuinely irrelevant numerical detail. Change its question so the detail becomes necessary. Then contrast a story where a quantity is not given, demonstrate two valid completions, and ask the child to formulate the missing piece of information, not guess it.
+    
+    ## Misconceptions, examples and boundaries
+    
+    Every number in the text must be used; extra means 'unimportant in any possible question'; a plausible assumption is an unstated fact; 'some' implies a particular number; insufficient information means the problem is unsolvable even after a fact is provided. Avoid ambiguous categories ('all vehicles' must include exactly specified types), implicit constraints and formal proof beyond exhibiting two valid possibilities. Whole counts 0–20.
+    
+    ## Localization, accessibility and offline intent
+    
+    The English examples are **canonical editorial source text**, not completed learner-facing translations. Translate all prompts, labels, units, feedback, accessible names and diagram annotations for each supported locale, without invented translations or English fallbacks. Preserve mathematical operation order and causal relationships in RTL, with semantic rather than automatic mirroring. Provide equally informative visible and nonvisual representations, keyboard/switch and touch alternatives, high contrast with no color-only answers, reduced-motion behavior, zoom/reflow and no timed-only tasks. The full experience and instructional feedback must be downloadable for offline learning as an implementation goal; no claim is made that Playground currently implements the required PWA caching or Note persistence.
+    
+    ## Sources and factual verification
+    
+    - [findExtraneousData.data.ts](../../../../data/skills/problemSolving/conditions/skills/findExtraneousData.data.ts) — canonical Mathematics Skill object transferred from `main`; UUID and methodological definition must not be altered.
+    - [findMissingData.data.ts](../../../../data/skills/problemSolving/conditions/skills/findMissingData.data.ts) — canonical Mathematics Skill object transferred from `main`; UUID and methodological definition must not be altered.
+    - [Svitlo Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — separation of Brief, Content and Scene ownership.
+    - [Common Core State Standards for Mathematics](https://corestandards.org/mathematics-standards/) — supplementary progression reference; **not** evidence of a named Curriculum's alignment or a substitute for editorial approval.
+    
+    ## Curriculum / Program compatibility
+    
+    Not specified. This Lesson is independent of any Program or Curriculum.
+    
+    ## Open editorial decisions
+    
+    - Methodologist/editor to confirm combining these two distinct Skills into a contrastive Lesson and explicitly preserve separate recognition outcomes for later assessment.
+    - Screenwriter material is authorized as **provisional Draft only**; Methodologist approval has not occurred. Further implementation requires distinct architectural, localization and accessibility review.
+    
+    ## Methodologist handoff
+    
+    **Draft pending explicit Methodologist/editor approval.** Proposed Content (editorial text integrated into this config.yaml) and Scene specification (Scene specification embedded in this config.yaml) are parallel review artifacts, not approved implementation instructions. Do not infer mastery, introduce new Skills, or add Questions, Quizzes, scoring, persistence or runtime data from this Brief.
+  productionNotes: |-
+    Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
+    
+    # Do We Have Enough Information? — Lesson Content
+    
+    **Screenwriter status:** Provisional Draft — pending explicit Methodologist approval (editorial text integrated into this config.yaml).
+    **Implementation:** None. **Program dependence:** None. **Working language:** English editorial source, translation not yet authored.
+    
+    ## Editorial experience
+    
+    Some facts are _extra for this question_; other problems are _missing a fact needed for any single answer_. These cases must never be collapsed into “ignore numbers you don't like.” The learner first discovers why one stated number is irrelevant and how its role changes with the question, then sees why insufficient information allows several different answers. The Scene Question-Dependent Evidence Desk (Scene specification embedded in this config.yaml) deliberately separates **claim, given facts, question, and possible completions**.
+    
+    
+    ## Accuracy and inclusivity handoff
+    
+    The Scene spec must preserve the **specific question** while judging facts. Incomplete information is established by two solutions consistent with the same original facts, not by guessing a preferred value. Numeric and unit labels must appear even without graphics. Each Section is a **single vertical** ordered sequence of `text`, `markdown` and proposed `scene` blocks. Do not invent storage, Question, mastery or online API behavior.
+    
+    Genuine translations are required for every supported locale; grammatical quantifiers (“some”, “altogether”), exact unit names, right-to-left reading order, labels and feedback must be reviewed so quantities and logical implications survive translation. Give clear screen-reader access to each story/question/fact, keyboard/touch/switch category selection rather than compulsory dragging, reduced motion, high contrast, small-screen reflow, no timed access and offline-equivalent resources after implementation. A proposed experience is not a shipped PWA promise.
+    
+    This document and Question-Dependent Evidence Desk (Scene specification embedded in this config.yaml) remain provisional until Methodologist Brief (editorial text integrated into this config.yaml) approval.
+    
+    
+    Migration status: provisional draft; pending independent approvals, translation and implementation.
