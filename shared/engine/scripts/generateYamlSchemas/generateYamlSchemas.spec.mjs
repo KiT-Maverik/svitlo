@@ -107,7 +107,7 @@ test('generator write/check is deterministic and rejects stale files', () => {
     assert.deepEqual(generateYamlSchemas('--check', root), written);
     // Formatting is not semantic schema drift: Prettier may compact arrays.
     const courseFile = path.join(root, 'course.schema.json');
-    const formattedDifferently = JSON.stringify(JSON.parse(fs.readFileSync(courseFile, 'utf8'))) + '\\n';
+    const formattedDifferently = JSON.stringify(JSON.parse(fs.readFileSync(courseFile, 'utf8'))) + '\n';
     fs.writeFileSync(courseFile, formattedDifferently);
     assert.deepEqual(generateYamlSchemas('--check', root), written);
     assert.deepEqual(generateYamlSchemas('--write', root), written);
