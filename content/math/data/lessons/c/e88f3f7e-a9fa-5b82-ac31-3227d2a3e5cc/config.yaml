@@ -1,0 +1,817 @@
+# Unified Mathematics Lesson editorial source — provisional; pending independent approval.
+config:
+  id: "e88f3f7e-a9fa-5b82-ac31-3227d2a3e5cc"
+  slug: "rearrangingShapePieces"
+  type: "lesson"
+  skills: ["1612d301-b286-45d0-ab5f-b52393bdce31"]
+  params:
+    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Split Shapes and Build Them Again"
+  section:
+    items:
+      section1:
+        config:
+          id: "26100adb-73b2-4a54-8a9e-67250de16956"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Does a Cut Create More Space?"
+            navigationLabel:
+              en: "Does a Cut Create More Space?"
+          content:
+            items:
+              text1:
+                config:
+                  id: "af1e3abd-62d2-442a-b030-4c27d8f5ba24"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "This rectangle covers six equal squares. We draw a line between its two rows. Do we now have more flat space than before, or the same six squares?"
+                production:
+                  purpose: "Does a Cut Create More Space?: text resource at position 1 (source provisional)"
+                  specification: "1. **text — available:** \"This rectangle covers **six equal squares**. We draw a line between its two rows. Do we now have more flat space than before, or the same six squares?\""
+              scene2:
+                config:
+                  id: "ce24e213-2a91-4016-bb95-5a513b14de84"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Show dividing seam"
+                production:
+                  purpose: "Does a Cut Create More Space?; source Scene shapePieceWorkshop.scene-spec.md; use 2"
+                  specification: |-
+                    # Shape Piece Workshop — Scene Specification
+                    
+                    Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: [Split Shapes and Build Them Again](.this config.yaml), Sections 1–4
+                    Methodologist objectives: [Draft Methodologist Brief](.this config.yaml) — decompose a planar region into nonoverlapping parts, reassemble without gaps/overlaps and explain why area remains the same while outer boundary may change. Distinct `composeDecomposeShapes` Skill, not a second area-covering quiz.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    The student can **cut** a six-square 2×3 region _along a cell boundary_, inspect two unaltered three-square strips and reposition them. The conceptual question is not which puzzle picture looks right but **why the parts still contain six equal unit-square cells**. The Scene distinguishes the _piece-material count_ from the **unique grid cells covered by their union**. This matters when pieces overlap: each strip still has three squares, yet the flat area covered by their layered union may be only five.
+                    
+                    Learner voice: "**The parts keep their squares. If they don't overlap or leave pieces out, their areas add to the new shape's area. The outside edge can change.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - Use a discrete integer grid with equal 1×1 square cells. Starting region R contains **(0,0),(1,0),(2,0),(0,1),(1,1),(2,1)**: a **2-row × 3-column** rectangle, area **6 square units**.
+                    - Horizontal decomposition into two **1×3 rigid strips**: Piece A = {(0,0),(1,0),(2,0)}, Piece B = {(0,1),(1,1),(2,1)}. Each has exactly **3** unit cells. The seam between rows is **internal** to starting region and never an outside edge of whole R.
+                    - A piece may **translate** by integer cell offsets and (optionally) **rotate** rigidly by 90° steps around a specified grid anchoring convention, preserving its three unit cells and connected edge relationships. No scaling/stretching or splitting individual strips in the later arrangement.
+                    - When strips are disjoint, **union area** = 3+3=**6**. When overlapping in exactly one cell, **union area**=3+3−1=**5** (the pieces still individually contain three). A "cover target correctly" task also requires the union's cell set to equal the **target cell set**, not simply to have the right count.
+                    - Original R has exterior **10** one-unit edges: for a 2×3 rectangle, 2*(2+3)=10. Two 1×3 strips placed **end-to-end** make a **1×6** rectangle: area **6**, exterior **14** one-unit edges (2*(1+6)=14). Illustrate as an optional outside-edge **observation**, never a perimeter mastery requirement.
+                    - End-to-end state: A cells {(0,0),(1,0),(2,0)} and B cells {(3,0),(4,0),(5,0)}. There is **no gap** between the strip ends: cell (2,0) shares an edge with (3,0).
+                    - Overlap state: A {(0,0),(1,0),(2,0)}, B {(2,0),(3,0),(4,0)}. Cell (2,0) belongs to **both** piece footprints and is counted **once** in union area. A learner must notice this before claiming a six-square reassembly.
+                    - Do not confuse rotating a rigid piece with morphing/repainting, and do not interpret onscreen pixel size as actual cm². All targets composed of whole unit cells only.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### A — Add a Seam, Not Area (Section 1)
+                    
+                    1. Begin with six-cell rectangle R, six numbered unit cells, no seam. Ask: "If we split it **between the two rows**, do we gain flat space?"
+                    2. "Show seam" reveals **only** the horizontal internal boundary between the top row and bottom row; region and six occupied cells remain unchanged.
+                    3. "Separate strips" translates B down to a display-only staging row while preserving its three local cells. A remains three cells. Ledger "Piece A: 3; Piece B: 3; original R: 6."
+                    4. Reveal: "The line was inside the rectangle. It divided **six** squares into groups of **three and three**." If the learner predicted larger area: "No new cell appeared; we only moved a boundary between parts."
+                    5. Optional "Put back together" restores starting R without scoring. Reset makes seam/part separation unrevealed, no state leakage.
+                    
+                    ### B — Reassemble a Long Strip (Section 2)
+                    
+                    1. Begin with two separated strips, each three cells, in a sufficiently wide board. Prompt: "Put B next to A to make **one row of six**. What will happen to area and the outside?"
+                    2. Non-drag controls: "Move B left/right/up/down by one cell", optional "Rotate B 90°", "Place B end-to-end" as a revealing hint, "Read occupied cells", "Check". Goal A {(0,0),(1,0),(2,0)}, B {(3,0),(4,0),(5,0)}.
+                    3. Correct arrangement union has six distinct cells in one row. Reveal "Area: **6 square units**." Optionally compare original and new outside edges as **10 vs 14 unit-edge pieces** with accurate tracing; never ask child to calculate formal perimeter.
+                    4. If B at (4,0),(5,0),(6,0) leaving a gap at (3,0), the union still has six cells **but not the 1×6 target region**. Feedback: "All pieces are here, yet the long strip has a gap. Bring B one cell left to join edges." No false "complete" based on raw total alone.
+                    5. If B starts at (2,0),(3,0),(4,0), overlap at (2,0) and union area 5; explain the exact duplicate cell. A displaced B may change bounding outline but not itself deform.
+                    6. Reset/replay returns to two original separate strips, with no assumed persistent Lesson completion.
+                    
+                    ### C — The Layered Cell Trap (Section 3)
+                    
+                    1. Start A horizontal at x=0,1,2 row0 and B at x=2,3,4 row0, with exact **one-cell overlap**. No animation required to see that B's first square lies over A's third.
+                    2. Learner predicts "Six physical piece squares means how many **different occupied places**?" Accessible choices 5,6 or "not sure". "Reveal shared square" identifies (2,0) as owned by both pieces.
+                    3. Report **three cells in A + three in B**, but **five distinct cells in union**. Explain it is a layering problem, not a lost material square.
+                    4. "Shift B one cell right" makes B at x=3,4,5, union 6 with no overlap/gaps; both strips unchanged.
+                    5. Alternate "Remove B" yields just A area3; different from overlap, reinforces that **using all pieces** matters to a specified six-square reassembly.
+                    6. Any claim "the six-square target has been reconstructed" must check target cell set and no overlap, not only count. Feedback is unscored and reversible.
+                    
+                    ### D — Rebuild the Exact 2×3 Target (Section 4)
+                    
+                    1. Start A occupying {(0,0),(1,0),(2,0)}, B occupying {(4,2),(5,2),(6,2)} on board large enough for both. Target outline is fixed R rows0/1 columns0,1,2.
+                    2. Learner moves B with discrete direction buttons or chooses target anchor "row 2, column 1" (human-visible 1-index labels) to set its cells at **(0,1),(1,1),(2,1)**; A remains fixed. "Check target" compares **union exactly to R**, ensures occupancy1 for every target and occupancy0 outside.
+                    3. Example wrong B at {(1,1),(2,1),(3,1)}: R cell **(0,1)** missing and out-of-target **(3,1)** occupied. Feedback: "Move B left one cell. One target cell is empty and one cell sticks outside."
+                    4. Example B overlapping A at row0: union has <6 distinct cells, explicitly invalid; user may undo/retry. A/B piece geometry never changes on movement.
+                    5. Correct: all six target cells covered once, no extras, no overlap; explain "**same six squares, rearranged**". A "Swap colors" reveal illustrates color changes appearance but not counted area.
+                    6. If optional rotation is available, it must use mathematically rigid mapping; a rotated vertical 3-cell strip will not fit the exact two-row rectangle here unless moved/rotated back. Explain mismatch rather than snapping silently.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** target cell set R, two labelled rigid 1×3 strips, seam, board, occupancy union ledger, transform buttons, prediction, check/reveal/undo/reset, optional outside-edge trace.
+                    - **State per placement:** A/B anchors and orientation, seam visibility, target preset, chosen prediction, reveal stage, last transform/history and feedback. Pieces always contain three cells each. Coordinates may be internal; learner sees meaningful rows/cells and before/after ownership.
+                    - **Geometry invariants:** per-piece area=3, shape invariant under rigid transformation; distinct union area=cardinality(set(A)∪set(B)); target success requires exact equality with R and no overlaps. Area6 alone **not sufficient** for exact target if shape has gap/extraneous cells.
+                    - **Rotations:** explicit 90° increments only, preserving tile adjacency. If unsupported by actual code, designer may omit optional rotation because the required A/B transformations are translations; must not claim a UI control exists before implementation.
+                    - **Independent prop-free roots:** each Section placement owns its own preset/state with **zero public React props**. Shared private geometry functions acceptable, but no guessed Section `mode`, `locale`, `initialPieces`, `onSuccess` API.
+                    - **Accessible moves:** choose a piece then use named cardinal button controls and an undo; do not depend on dragging. Numeric cell occupancy list is the authoritative nonvisual equivalent to the visual overlap diagram.
+                    - **Feedback:** identify the first relevant wrong assumption (overlap, gap, extra cell, deforming) with a clear next correction. Never turn a single correct arrangement into scored mastery.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Use a clean uniform grid with two pieces differentiated by **A/B text and hatching/pattern** as well as optional color. A shared square must show both **A+B** labels or a double-layer symbol; do not silently hide underneath. A seam is visibly interior; after reassembly trace outer edges separately to distinguish from interior joins. No dramatic cutting tools, paper-scissors violence, heavy animation, video or external image requirement. Optional stepwise motion is reduced-motion compatible; screen zoom cannot stretch any unit cells independently.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate every piece label, direction button, "overlap", "gap", "outer edge", unit-square count, feedback and Note into genuine supported locales. RTL changes reading/presentation order but not rigid-transform correctness, piece coordinates or union arithmetic; no automatic whole-diagram mirroring while retaining mismatched cell descriptions. For screen reader and switch user, a row-by-row ledger lists each cell, its owner(s), target membership, duplicated cells and missing cells; all transforms are discrete accessible controls. Avoid color-only information, forced drag/touch precision, auditory-only feedback, time limits. Provide WCAG 2.2 AA design, large focusable targets, screen-reader status clarity, reduced motion, 200% text and same complete lesson on low-end/offline devices after package/locale download; current implementation has **not** been verified.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Starting 2×3 R has **6** unit cells; splitting at internal row seam yields **two pieces of 3**, no new square created.
+                    2. A horizontal x=0,1,2 and B horizontal x=3,4,5 at row0 make one **1×6** region of six disjoint cells with outside boundary **14** unit edges.
+                    3. Initial 2×3 R outside boundary counts **10** unit edges; area is six in both it and 1×6 shape, so outside edge need not remain constant.
+                    4. Overlap at cell (2,0) gives A3+B3 but **union 5**; moving B one right gives disjoint union6.
+                    5. B shifted to x=4,5,6 leaves a **gap** in intended 1×6 target even though union area is six; reject target success with explanation.
+                    6. Stage D A at top row and B at {(0,1),(1,1),(2,1)} exactly reconstructs R with area6, no gaps/overlaps.
+                    7. B at {(1,1),(2,1),(3,1)} leaves target (0,1) uncovered and adds out-of-target (3,1); "move left one" corrects.
+                    8. Rigid piece translation/rotation preserves exactly three squares in each piece and does not change its material area; color swap doesn't change geometry.
+                    9. All root placements reset independently and are prop-free; keyboard, screen reader, RTL, reduced motion, mobile zoom and offline after download preserve exact occupancy and feedback with no forced drag.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Only generic `scene` Resource integration currently exists. **Shape Piece Workshop is not implemented**, has no locale dictionaries or automated tests yet and must await explicit Brief/Scene approval. Future engineering owns deterministic union/intersection logic, keyboard-accessible piece moves, Section-local prop-free components, real locale context and offline packaging. No scoring, Question, Quiz, Note persistence or platform events invented.
+                    
+                    
+                    ## Section-specific use (provisional source, not implemented)
+                    
+                    2. **scene — type supported, custom Scene proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement A. Start two rows of three cells: row-top (0,0),(1,0),(2,0); row-bottom (0,1),(1,1),(2,1). "Show dividing seam" draws an **internal** line along the shared row boundary, not an added outer border. "Separate pieces" offsets the two rigid **1×3** row strips without changing unit cells. Piece A has 3 cells, B has 3; together **6**.
+                  productionNotes: "Scene shapePieceWorkshop.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+              markdown3:
+                config:
+                  id: "7b2f5d8d-3c3b-490e-9135-8d1fac15a278"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "We have **two pieces**, but we did not make extra area. Each piece covers **three unit squares**. Three plus three is **six**. The dividing line is a **seam inside** the original shape."
+                production:
+                  purpose: "Does a Cut Create More Space?: markdown resource at position 3 (source provisional)"
+                  specification: "3. **markdown — available:** \"We have **two pieces**, but we did not make extra area. Each piece covers **three unit squares**. Three plus three is **six**. The dividing line is a **seam inside** the original shape.\""
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "understand decomposition into nonoverlapping parts, not new area."
+          pedagogicalIntent: "Original Section 1: Does a Cut Create More Space? (provisional draft)"
+          productionNotes: |-
+            - **Purpose:** understand decomposition into nonoverlapping parts, not new area.
+            - **Current shape:** one vertical `LessonSection_Config` Resource sequence.
+            - **Ordered blocks:**
+              1. **text — available:** "This rectangle covers **six equal squares**. We draw a line between its two rows. Do we now have more flat space than before, or the same six squares?"
+              2. **scene — type supported, custom Scene proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement A. Start two rows of three cells: row-top (0,0),(1,0),(2,0); row-bottom (0,1),(1,1),(2,1). "Show dividing seam" draws an **internal** line along the shared row boundary, not an added outer border. "Separate pieces" offsets the two rigid **1×3** row strips without changing unit cells. Piece A has 3 cells, B has 3; together **6**.
+              3. **markdown — available:** "We have **two pieces**, but we did not make extra area. Each piece covers **three unit squares**. Three plus three is **six**. The dividing line is a **seam inside** the original shape."
+            - **Explanatory feedback:** If learner says "more" after splitting: "A new line changed the picture, but the **same six square pieces** are still there." If they confuse seam with outside: "The seam sits **between** pieces; it is not on the original outside edge." Correct predictions get the reason, not a badge/score.
+            - **Access:** Both pieces listed by exact cell count and relative location before/after; no visual tracking needed.
+            - **Planned Note:** "Cutting without losing or adding pieces keeps the total area."
+      section2:
+        config:
+          id: "27100c6e-76b2-4f0d-879e-626c0ce167c3"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Turn Two Short Strips into One Long Strip"
+            navigationLabel:
+              en: "Turn Two Short Strips into One Long Strip"
+          content:
+            items:
+              text1:
+                config:
+                  id: "5dd0de5c-b1b3-45ef-af61-1402b6330cc5"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Two strips each cover three equal squares. Could they join into one long strip? Predict whether the area changes—and what happens to the outside edge."
+                production:
+                  purpose: "Turn Two Short Strips into One Long Strip: text resource at position 1 (source provisional)"
+                  specification: "1. **text — available:** \"Two strips each cover three equal squares. Could they join into **one long strip**? Predict whether the area changes—and what happens to the outside edge.\""
+              scene2:
+                config:
+                  id: "db9ac22c-6e3b-4e49-9c13-b25e0cc4aeeb"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Turn Two Short Strips into One Long Strip"
+                production:
+                  purpose: "Turn Two Short Strips into One Long Strip; source Scene shapePieceWorkshop.scene-spec.md; use 2"
+                  specification: |-
+                    # Shape Piece Workshop — Scene Specification
+                    
+                    Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: [Split Shapes and Build Them Again](.this config.yaml), Sections 1–4
+                    Methodologist objectives: [Draft Methodologist Brief](.this config.yaml) — decompose a planar region into nonoverlapping parts, reassemble without gaps/overlaps and explain why area remains the same while outer boundary may change. Distinct `composeDecomposeShapes` Skill, not a second area-covering quiz.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    The student can **cut** a six-square 2×3 region _along a cell boundary_, inspect two unaltered three-square strips and reposition them. The conceptual question is not which puzzle picture looks right but **why the parts still contain six equal unit-square cells**. The Scene distinguishes the _piece-material count_ from the **unique grid cells covered by their union**. This matters when pieces overlap: each strip still has three squares, yet the flat area covered by their layered union may be only five.
+                    
+                    Learner voice: "**The parts keep their squares. If they don't overlap or leave pieces out, their areas add to the new shape's area. The outside edge can change.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - Use a discrete integer grid with equal 1×1 square cells. Starting region R contains **(0,0),(1,0),(2,0),(0,1),(1,1),(2,1)**: a **2-row × 3-column** rectangle, area **6 square units**.
+                    - Horizontal decomposition into two **1×3 rigid strips**: Piece A = {(0,0),(1,0),(2,0)}, Piece B = {(0,1),(1,1),(2,1)}. Each has exactly **3** unit cells. The seam between rows is **internal** to starting region and never an outside edge of whole R.
+                    - A piece may **translate** by integer cell offsets and (optionally) **rotate** rigidly by 90° steps around a specified grid anchoring convention, preserving its three unit cells and connected edge relationships. No scaling/stretching or splitting individual strips in the later arrangement.
+                    - When strips are disjoint, **union area** = 3+3=**6**. When overlapping in exactly one cell, **union area**=3+3−1=**5** (the pieces still individually contain three). A "cover target correctly" task also requires the union's cell set to equal the **target cell set**, not simply to have the right count.
+                    - Original R has exterior **10** one-unit edges: for a 2×3 rectangle, 2*(2+3)=10. Two 1×3 strips placed **end-to-end** make a **1×6** rectangle: area **6**, exterior **14** one-unit edges (2*(1+6)=14). Illustrate as an optional outside-edge **observation**, never a perimeter mastery requirement.
+                    - End-to-end state: A cells {(0,0),(1,0),(2,0)} and B cells {(3,0),(4,0),(5,0)}. There is **no gap** between the strip ends: cell (2,0) shares an edge with (3,0).
+                    - Overlap state: A {(0,0),(1,0),(2,0)}, B {(2,0),(3,0),(4,0)}. Cell (2,0) belongs to **both** piece footprints and is counted **once** in union area. A learner must notice this before claiming a six-square reassembly.
+                    - Do not confuse rotating a rigid piece with morphing/repainting, and do not interpret onscreen pixel size as actual cm². All targets composed of whole unit cells only.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### A — Add a Seam, Not Area (Section 1)
+                    
+                    1. Begin with six-cell rectangle R, six numbered unit cells, no seam. Ask: "If we split it **between the two rows**, do we gain flat space?"
+                    2. "Show seam" reveals **only** the horizontal internal boundary between the top row and bottom row; region and six occupied cells remain unchanged.
+                    3. "Separate strips" translates B down to a display-only staging row while preserving its three local cells. A remains three cells. Ledger "Piece A: 3; Piece B: 3; original R: 6."
+                    4. Reveal: "The line was inside the rectangle. It divided **six** squares into groups of **three and three**." If the learner predicted larger area: "No new cell appeared; we only moved a boundary between parts."
+                    5. Optional "Put back together" restores starting R without scoring. Reset makes seam/part separation unrevealed, no state leakage.
+                    
+                    ### B — Reassemble a Long Strip (Section 2)
+                    
+                    1. Begin with two separated strips, each three cells, in a sufficiently wide board. Prompt: "Put B next to A to make **one row of six**. What will happen to area and the outside?"
+                    2. Non-drag controls: "Move B left/right/up/down by one cell", optional "Rotate B 90°", "Place B end-to-end" as a revealing hint, "Read occupied cells", "Check". Goal A {(0,0),(1,0),(2,0)}, B {(3,0),(4,0),(5,0)}.
+                    3. Correct arrangement union has six distinct cells in one row. Reveal "Area: **6 square units**." Optionally compare original and new outside edges as **10 vs 14 unit-edge pieces** with accurate tracing; never ask child to calculate formal perimeter.
+                    4. If B at (4,0),(5,0),(6,0) leaving a gap at (3,0), the union still has six cells **but not the 1×6 target region**. Feedback: "All pieces are here, yet the long strip has a gap. Bring B one cell left to join edges." No false "complete" based on raw total alone.
+                    5. If B starts at (2,0),(3,0),(4,0), overlap at (2,0) and union area 5; explain the exact duplicate cell. A displaced B may change bounding outline but not itself deform.
+                    6. Reset/replay returns to two original separate strips, with no assumed persistent Lesson completion.
+                    
+                    ### C — The Layered Cell Trap (Section 3)
+                    
+                    1. Start A horizontal at x=0,1,2 row0 and B at x=2,3,4 row0, with exact **one-cell overlap**. No animation required to see that B's first square lies over A's third.
+                    2. Learner predicts "Six physical piece squares means how many **different occupied places**?" Accessible choices 5,6 or "not sure". "Reveal shared square" identifies (2,0) as owned by both pieces.
+                    3. Report **three cells in A + three in B**, but **five distinct cells in union**. Explain it is a layering problem, not a lost material square.
+                    4. "Shift B one cell right" makes B at x=3,4,5, union 6 with no overlap/gaps; both strips unchanged.
+                    5. Alternate "Remove B" yields just A area3; different from overlap, reinforces that **using all pieces** matters to a specified six-square reassembly.
+                    6. Any claim "the six-square target has been reconstructed" must check target cell set and no overlap, not only count. Feedback is unscored and reversible.
+                    
+                    ### D — Rebuild the Exact 2×3 Target (Section 4)
+                    
+                    1. Start A occupying {(0,0),(1,0),(2,0)}, B occupying {(4,2),(5,2),(6,2)} on board large enough for both. Target outline is fixed R rows0/1 columns0,1,2.
+                    2. Learner moves B with discrete direction buttons or chooses target anchor "row 2, column 1" (human-visible 1-index labels) to set its cells at **(0,1),(1,1),(2,1)**; A remains fixed. "Check target" compares **union exactly to R**, ensures occupancy1 for every target and occupancy0 outside.
+                    3. Example wrong B at {(1,1),(2,1),(3,1)}: R cell **(0,1)** missing and out-of-target **(3,1)** occupied. Feedback: "Move B left one cell. One target cell is empty and one cell sticks outside."
+                    4. Example B overlapping A at row0: union has <6 distinct cells, explicitly invalid; user may undo/retry. A/B piece geometry never changes on movement.
+                    5. Correct: all six target cells covered once, no extras, no overlap; explain "**same six squares, rearranged**". A "Swap colors" reveal illustrates color changes appearance but not counted area.
+                    6. If optional rotation is available, it must use mathematically rigid mapping; a rotated vertical 3-cell strip will not fit the exact two-row rectangle here unless moved/rotated back. Explain mismatch rather than snapping silently.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** target cell set R, two labelled rigid 1×3 strips, seam, board, occupancy union ledger, transform buttons, prediction, check/reveal/undo/reset, optional outside-edge trace.
+                    - **State per placement:** A/B anchors and orientation, seam visibility, target preset, chosen prediction, reveal stage, last transform/history and feedback. Pieces always contain three cells each. Coordinates may be internal; learner sees meaningful rows/cells and before/after ownership.
+                    - **Geometry invariants:** per-piece area=3, shape invariant under rigid transformation; distinct union area=cardinality(set(A)∪set(B)); target success requires exact equality with R and no overlaps. Area6 alone **not sufficient** for exact target if shape has gap/extraneous cells.
+                    - **Rotations:** explicit 90° increments only, preserving tile adjacency. If unsupported by actual code, designer may omit optional rotation because the required A/B transformations are translations; must not claim a UI control exists before implementation.
+                    - **Independent prop-free roots:** each Section placement owns its own preset/state with **zero public React props**. Shared private geometry functions acceptable, but no guessed Section `mode`, `locale`, `initialPieces`, `onSuccess` API.
+                    - **Accessible moves:** choose a piece then use named cardinal button controls and an undo; do not depend on dragging. Numeric cell occupancy list is the authoritative nonvisual equivalent to the visual overlap diagram.
+                    - **Feedback:** identify the first relevant wrong assumption (overlap, gap, extra cell, deforming) with a clear next correction. Never turn a single correct arrangement into scored mastery.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Use a clean uniform grid with two pieces differentiated by **A/B text and hatching/pattern** as well as optional color. A shared square must show both **A+B** labels or a double-layer symbol; do not silently hide underneath. A seam is visibly interior; after reassembly trace outer edges separately to distinguish from interior joins. No dramatic cutting tools, paper-scissors violence, heavy animation, video or external image requirement. Optional stepwise motion is reduced-motion compatible; screen zoom cannot stretch any unit cells independently.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate every piece label, direction button, "overlap", "gap", "outer edge", unit-square count, feedback and Note into genuine supported locales. RTL changes reading/presentation order but not rigid-transform correctness, piece coordinates or union arithmetic; no automatic whole-diagram mirroring while retaining mismatched cell descriptions. For screen reader and switch user, a row-by-row ledger lists each cell, its owner(s), target membership, duplicated cells and missing cells; all transforms are discrete accessible controls. Avoid color-only information, forced drag/touch precision, auditory-only feedback, time limits. Provide WCAG 2.2 AA design, large focusable targets, screen-reader status clarity, reduced motion, 200% text and same complete lesson on low-end/offline devices after package/locale download; current implementation has **not** been verified.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Starting 2×3 R has **6** unit cells; splitting at internal row seam yields **two pieces of 3**, no new square created.
+                    2. A horizontal x=0,1,2 and B horizontal x=3,4,5 at row0 make one **1×6** region of six disjoint cells with outside boundary **14** unit edges.
+                    3. Initial 2×3 R outside boundary counts **10** unit edges; area is six in both it and 1×6 shape, so outside edge need not remain constant.
+                    4. Overlap at cell (2,0) gives A3+B3 but **union 5**; moving B one right gives disjoint union6.
+                    5. B shifted to x=4,5,6 leaves a **gap** in intended 1×6 target even though union area is six; reject target success with explanation.
+                    6. Stage D A at top row and B at {(0,1),(1,1),(2,1)} exactly reconstructs R with area6, no gaps/overlaps.
+                    7. B at {(1,1),(2,1),(3,1)} leaves target (0,1) uncovered and adds out-of-target (3,1); "move left one" corrects.
+                    8. Rigid piece translation/rotation preserves exactly three squares in each piece and does not change its material area; color swap doesn't change geometry.
+                    9. All root placements reset independently and are prop-free; keyboard, screen reader, RTL, reduced motion, mobile zoom and offline after download preserve exact occupancy and feedback with no forced drag.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Only generic `scene` Resource integration currently exists. **Shape Piece Workshop is not implemented**, has no locale dictionaries or automated tests yet and must await explicit Brief/Scene approval. Future engineering owns deterministic union/intersection logic, keyboard-accessible piece moves, Section-local prop-free components, real locale context and offline packaging. No scoring, Question, Quiz, Note persistence or platform events invented.
+                    
+                    
+                    ## Section-specific use (provisional source, not implemented)
+                    
+                    2. **scene — proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement B. Piece A occupies cells (0,0),(1,0),(2,0); the learner places piece B at (3,0),(4,0),(5,0). All pieces translate **rigidly**. Result: **1×6** region, area **6**, outside border **14 unit edges**; original 2×3 rectangle also area **6** but outside border **10 unit edges**. Optional boundary-edge reveal **counts** rather than an assessed perimeter question.
+                  productionNotes: "Scene shapePieceWorkshop.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+              markdown3:
+                config:
+                  id: "474b7d40-ffdd-4ed7-8a5e-6ab6b165e145"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The six squares are still here. The **area stayed six square units**. But the long shape has a **different outside outline** from the shorter, wider rectangle. Area and outline describe different things."
+                production:
+                  purpose: "Turn Two Short Strips into One Long Strip: markdown resource at position 3 (source provisional)"
+                  specification: "3. **markdown — available:** \"The six squares are still here. The **area stayed six square units**. But the long shape has a **different outside outline** from the shorter, wider rectangle. Area and outline describe different things.\""
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "verify area preservation when rigid pieces reassemble into a new outline."
+          pedagogicalIntent: "Original Section 2: Turn Two Short Strips into One Long Strip (provisional draft)"
+          productionNotes: |-
+            - **Purpose:** verify area preservation when rigid pieces reassemble into a new outline.
+            - **Current shape:** `LessonSection_Config`, vertical.
+            - **Ordered blocks:**
+              1. **text — available:** "Two strips each cover three equal squares. Could they join into **one long strip**? Predict whether the area changes—and what happens to the outside edge."
+              2. **scene — proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement B. Piece A occupies cells (0,0),(1,0),(2,0); the learner places piece B at (3,0),(4,0),(5,0). All pieces translate **rigidly**. Result: **1×6** region, area **6**, outside border **14 unit edges**; original 2×3 rectangle also area **6** but outside border **10 unit edges**. Optional boundary-edge reveal **counts** rather than an assessed perimeter question.
+              3. **markdown — available:** "The six squares are still here. The **area stayed six square units**. But the long shape has a **different outside outline** from the shorter, wider rectangle. Area and outline describe different things."
+            - **Feedback:** If learner predicts area 12 because the shape got longer: "Length changed, but it is only one square high. We still have **two strips of three cells**." If learner claims the outside edge must remain the same: "Trace the outer edges of the two versions; some inner joins became outside edges, so the outline can change."
+            - **Exactness:** A shared edge between the two adjacent bars is internal, not an exterior border. The 1×6 construction must have **no gap**, including between cells 2 and 3.
+            - **Planned Note:** "Moving rigid parts can change the outline but keep the area."
+      section3:
+        config:
+          id: "28100e01-75b2-4d7a-889e-63ff0be16630"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Hidden Overlap, Missing Area"
+            navigationLabel:
+              en: "Hidden Overlap, Missing Area"
+          content:
+            items:
+              text1:
+                config:
+                  id: "b7b02da3-2c2d-4258-951b-a69118696a66"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Someone says, 'Two three-square strips always cover six different squares, even if I lay one partly on top of the other.' Is that true? Look at the shared square."
+                production:
+                  purpose: "Hidden Overlap, Missing Area: text resource at position 1 (source provisional)"
+                  specification: "1. **text — available:** \"Someone says, 'Two three-square strips always cover six different squares, even if I lay one partly on top of the other.' Is that true? Look at the shared square.\""
+              scene2:
+                config:
+                  id: "9020a435-f27a-47d0-8ad0-512f5258bd8a"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Slide B one cell to the right"
+                production:
+                  purpose: "Hidden Overlap, Missing Area; source Scene shapePieceWorkshop.scene-spec.md; use 2"
+                  specification: |-
+                    # Shape Piece Workshop — Scene Specification
+                    
+                    Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: [Split Shapes and Build Them Again](.this config.yaml), Sections 1–4
+                    Methodologist objectives: [Draft Methodologist Brief](.this config.yaml) — decompose a planar region into nonoverlapping parts, reassemble without gaps/overlaps and explain why area remains the same while outer boundary may change. Distinct `composeDecomposeShapes` Skill, not a second area-covering quiz.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    The student can **cut** a six-square 2×3 region _along a cell boundary_, inspect two unaltered three-square strips and reposition them. The conceptual question is not which puzzle picture looks right but **why the parts still contain six equal unit-square cells**. The Scene distinguishes the _piece-material count_ from the **unique grid cells covered by their union**. This matters when pieces overlap: each strip still has three squares, yet the flat area covered by their layered union may be only five.
+                    
+                    Learner voice: "**The parts keep their squares. If they don't overlap or leave pieces out, their areas add to the new shape's area. The outside edge can change.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - Use a discrete integer grid with equal 1×1 square cells. Starting region R contains **(0,0),(1,0),(2,0),(0,1),(1,1),(2,1)**: a **2-row × 3-column** rectangle, area **6 square units**.
+                    - Horizontal decomposition into two **1×3 rigid strips**: Piece A = {(0,0),(1,0),(2,0)}, Piece B = {(0,1),(1,1),(2,1)}. Each has exactly **3** unit cells. The seam between rows is **internal** to starting region and never an outside edge of whole R.
+                    - A piece may **translate** by integer cell offsets and (optionally) **rotate** rigidly by 90° steps around a specified grid anchoring convention, preserving its three unit cells and connected edge relationships. No scaling/stretching or splitting individual strips in the later arrangement.
+                    - When strips are disjoint, **union area** = 3+3=**6**. When overlapping in exactly one cell, **union area**=3+3−1=**5** (the pieces still individually contain three). A "cover target correctly" task also requires the union's cell set to equal the **target cell set**, not simply to have the right count.
+                    - Original R has exterior **10** one-unit edges: for a 2×3 rectangle, 2*(2+3)=10. Two 1×3 strips placed **end-to-end** make a **1×6** rectangle: area **6**, exterior **14** one-unit edges (2*(1+6)=14). Illustrate as an optional outside-edge **observation**, never a perimeter mastery requirement.
+                    - End-to-end state: A cells {(0,0),(1,0),(2,0)} and B cells {(3,0),(4,0),(5,0)}. There is **no gap** between the strip ends: cell (2,0) shares an edge with (3,0).
+                    - Overlap state: A {(0,0),(1,0),(2,0)}, B {(2,0),(3,0),(4,0)}. Cell (2,0) belongs to **both** piece footprints and is counted **once** in union area. A learner must notice this before claiming a six-square reassembly.
+                    - Do not confuse rotating a rigid piece with morphing/repainting, and do not interpret onscreen pixel size as actual cm². All targets composed of whole unit cells only.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### A — Add a Seam, Not Area (Section 1)
+                    
+                    1. Begin with six-cell rectangle R, six numbered unit cells, no seam. Ask: "If we split it **between the two rows**, do we gain flat space?"
+                    2. "Show seam" reveals **only** the horizontal internal boundary between the top row and bottom row; region and six occupied cells remain unchanged.
+                    3. "Separate strips" translates B down to a display-only staging row while preserving its three local cells. A remains three cells. Ledger "Piece A: 3; Piece B: 3; original R: 6."
+                    4. Reveal: "The line was inside the rectangle. It divided **six** squares into groups of **three and three**." If the learner predicted larger area: "No new cell appeared; we only moved a boundary between parts."
+                    5. Optional "Put back together" restores starting R without scoring. Reset makes seam/part separation unrevealed, no state leakage.
+                    
+                    ### B — Reassemble a Long Strip (Section 2)
+                    
+                    1. Begin with two separated strips, each three cells, in a sufficiently wide board. Prompt: "Put B next to A to make **one row of six**. What will happen to area and the outside?"
+                    2. Non-drag controls: "Move B left/right/up/down by one cell", optional "Rotate B 90°", "Place B end-to-end" as a revealing hint, "Read occupied cells", "Check". Goal A {(0,0),(1,0),(2,0)}, B {(3,0),(4,0),(5,0)}.
+                    3. Correct arrangement union has six distinct cells in one row. Reveal "Area: **6 square units**." Optionally compare original and new outside edges as **10 vs 14 unit-edge pieces** with accurate tracing; never ask child to calculate formal perimeter.
+                    4. If B at (4,0),(5,0),(6,0) leaving a gap at (3,0), the union still has six cells **but not the 1×6 target region**. Feedback: "All pieces are here, yet the long strip has a gap. Bring B one cell left to join edges." No false "complete" based on raw total alone.
+                    5. If B starts at (2,0),(3,0),(4,0), overlap at (2,0) and union area 5; explain the exact duplicate cell. A displaced B may change bounding outline but not itself deform.
+                    6. Reset/replay returns to two original separate strips, with no assumed persistent Lesson completion.
+                    
+                    ### C — The Layered Cell Trap (Section 3)
+                    
+                    1. Start A horizontal at x=0,1,2 row0 and B at x=2,3,4 row0, with exact **one-cell overlap**. No animation required to see that B's first square lies over A's third.
+                    2. Learner predicts "Six physical piece squares means how many **different occupied places**?" Accessible choices 5,6 or "not sure". "Reveal shared square" identifies (2,0) as owned by both pieces.
+                    3. Report **three cells in A + three in B**, but **five distinct cells in union**. Explain it is a layering problem, not a lost material square.
+                    4. "Shift B one cell right" makes B at x=3,4,5, union 6 with no overlap/gaps; both strips unchanged.
+                    5. Alternate "Remove B" yields just A area3; different from overlap, reinforces that **using all pieces** matters to a specified six-square reassembly.
+                    6. Any claim "the six-square target has been reconstructed" must check target cell set and no overlap, not only count. Feedback is unscored and reversible.
+                    
+                    ### D — Rebuild the Exact 2×3 Target (Section 4)
+                    
+                    1. Start A occupying {(0,0),(1,0),(2,0)}, B occupying {(4,2),(5,2),(6,2)} on board large enough for both. Target outline is fixed R rows0/1 columns0,1,2.
+                    2. Learner moves B with discrete direction buttons or chooses target anchor "row 2, column 1" (human-visible 1-index labels) to set its cells at **(0,1),(1,1),(2,1)**; A remains fixed. "Check target" compares **union exactly to R**, ensures occupancy1 for every target and occupancy0 outside.
+                    3. Example wrong B at {(1,1),(2,1),(3,1)}: R cell **(0,1)** missing and out-of-target **(3,1)** occupied. Feedback: "Move B left one cell. One target cell is empty and one cell sticks outside."
+                    4. Example B overlapping A at row0: union has <6 distinct cells, explicitly invalid; user may undo/retry. A/B piece geometry never changes on movement.
+                    5. Correct: all six target cells covered once, no extras, no overlap; explain "**same six squares, rearranged**". A "Swap colors" reveal illustrates color changes appearance but not counted area.
+                    6. If optional rotation is available, it must use mathematically rigid mapping; a rotated vertical 3-cell strip will not fit the exact two-row rectangle here unless moved/rotated back. Explain mismatch rather than snapping silently.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** target cell set R, two labelled rigid 1×3 strips, seam, board, occupancy union ledger, transform buttons, prediction, check/reveal/undo/reset, optional outside-edge trace.
+                    - **State per placement:** A/B anchors and orientation, seam visibility, target preset, chosen prediction, reveal stage, last transform/history and feedback. Pieces always contain three cells each. Coordinates may be internal; learner sees meaningful rows/cells and before/after ownership.
+                    - **Geometry invariants:** per-piece area=3, shape invariant under rigid transformation; distinct union area=cardinality(set(A)∪set(B)); target success requires exact equality with R and no overlaps. Area6 alone **not sufficient** for exact target if shape has gap/extraneous cells.
+                    - **Rotations:** explicit 90° increments only, preserving tile adjacency. If unsupported by actual code, designer may omit optional rotation because the required A/B transformations are translations; must not claim a UI control exists before implementation.
+                    - **Independent prop-free roots:** each Section placement owns its own preset/state with **zero public React props**. Shared private geometry functions acceptable, but no guessed Section `mode`, `locale`, `initialPieces`, `onSuccess` API.
+                    - **Accessible moves:** choose a piece then use named cardinal button controls and an undo; do not depend on dragging. Numeric cell occupancy list is the authoritative nonvisual equivalent to the visual overlap diagram.
+                    - **Feedback:** identify the first relevant wrong assumption (overlap, gap, extra cell, deforming) with a clear next correction. Never turn a single correct arrangement into scored mastery.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Use a clean uniform grid with two pieces differentiated by **A/B text and hatching/pattern** as well as optional color. A shared square must show both **A+B** labels or a double-layer symbol; do not silently hide underneath. A seam is visibly interior; after reassembly trace outer edges separately to distinguish from interior joins. No dramatic cutting tools, paper-scissors violence, heavy animation, video or external image requirement. Optional stepwise motion is reduced-motion compatible; screen zoom cannot stretch any unit cells independently.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate every piece label, direction button, "overlap", "gap", "outer edge", unit-square count, feedback and Note into genuine supported locales. RTL changes reading/presentation order but not rigid-transform correctness, piece coordinates or union arithmetic; no automatic whole-diagram mirroring while retaining mismatched cell descriptions. For screen reader and switch user, a row-by-row ledger lists each cell, its owner(s), target membership, duplicated cells and missing cells; all transforms are discrete accessible controls. Avoid color-only information, forced drag/touch precision, auditory-only feedback, time limits. Provide WCAG 2.2 AA design, large focusable targets, screen-reader status clarity, reduced motion, 200% text and same complete lesson on low-end/offline devices after package/locale download; current implementation has **not** been verified.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Starting 2×3 R has **6** unit cells; splitting at internal row seam yields **two pieces of 3**, no new square created.
+                    2. A horizontal x=0,1,2 and B horizontal x=3,4,5 at row0 make one **1×6** region of six disjoint cells with outside boundary **14** unit edges.
+                    3. Initial 2×3 R outside boundary counts **10** unit edges; area is six in both it and 1×6 shape, so outside edge need not remain constant.
+                    4. Overlap at cell (2,0) gives A3+B3 but **union 5**; moving B one right gives disjoint union6.
+                    5. B shifted to x=4,5,6 leaves a **gap** in intended 1×6 target even though union area is six; reject target success with explanation.
+                    6. Stage D A at top row and B at {(0,1),(1,1),(2,1)} exactly reconstructs R with area6, no gaps/overlaps.
+                    7. B at {(1,1),(2,1),(3,1)} leaves target (0,1) uncovered and adds out-of-target (3,1); "move left one" corrects.
+                    8. Rigid piece translation/rotation preserves exactly three squares in each piece and does not change its material area; color swap doesn't change geometry.
+                    9. All root placements reset independently and are prop-free; keyboard, screen reader, RTL, reduced motion, mobile zoom and offline after download preserve exact occupancy and feedback with no forced drag.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Only generic `scene` Resource integration currently exists. **Shape Piece Workshop is not implemented**, has no locale dictionaries or automated tests yet and must await explicit Brief/Scene approval. Future engineering owns deterministic union/intersection logic, keyboard-accessible piece moves, Section-local prop-free components, real locale context and offline packaging. No scoring, Question, Quiz, Note persistence or platform events invented.
+                    
+                    
+                    ## Section-specific use (provisional source, not implemented)
+                    
+                    2. **scene — proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement C. A occupies (0,0),(1,0),(2,0), B occupies (2,0),(3,0),(4,0): **one overlap** (2,0). Although the pieces contain 3+3=6 unit cells **of material**, their union covers only **5 distinct grid cells**. "Slide B one cell to the right" changes B to (3,0),(4,0),(5,0) ⇒ union **6** nonoverlapping cells. Separate "Remove a piece" demo covers only three cells.
+                  productionNotes: "Scene shapePieceWorkshop.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+              markdown3:
+                config:
+                  id: "ec3d877b-bb24-487c-bd30-e1d13ebbcefa"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Both pieces _contain_ three squares, but when they overlap on one square, **only five different places are covered**. For a valid reassembly, pieces must fit with **no overlap and no gap**. Shift the strip and we cover six different cells again."
+                production:
+                  purpose: "Hidden Overlap, Missing Area: markdown resource at position 3 (source provisional)"
+                  specification: "3. **markdown — available:** \"Both pieces _contain_ three squares, but when they overlap on one square, **only five different places are covered**. For a valid reassembly, pieces must fit with **no overlap and no gap**. Shift the strip and we cover six different cells again.\""
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "reject counting material pieces when the area of their planar union differs."
+          pedagogicalIntent: "Original Section 3: Hidden Overlap, Missing Area (provisional draft)"
+          productionNotes: |-
+            - **Purpose:** reject counting material pieces when the area of their planar union differs.
+            - **Current shape:** `LessonSection_Config`, vertical.
+            - **Ordered blocks:**
+              1. **text — available:** "Someone says, 'Two three-square strips always cover six different squares, even if I lay one partly on top of the other.' Is that true? Look at the shared square."
+              2. **scene — proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement C. A occupies (0,0),(1,0),(2,0), B occupies (2,0),(3,0),(4,0): **one overlap** (2,0). Although the pieces contain 3+3=6 unit cells **of material**, their union covers only **5 distinct grid cells**. "Slide B one cell to the right" changes B to (3,0),(4,0),(5,0) ⇒ union **6** nonoverlapping cells. Separate "Remove a piece" demo covers only three cells.
+              3. **markdown — available:** "Both pieces _contain_ three squares, but when they overlap on one square, **only five different places are covered**. For a valid reassembly, pieces must fit with **no overlap and no gap**. Shift the strip and we cover six different cells again."
+            - **Feedback:** If learner counts shared cell twice: "That is **one place**, even though two layers cover it." If learner thinks overlapped area vanished from the pieces: "The pieces still have six squares of material; the flat _region they cover together_ has only five distinct squares when layered." If learner leaves a gap in the target outline: "The target region isn't fully reconstructed; join the strips edge to edge."
+            - **Access:** The ledger reads both **piece totals** and **distinct occupied cells**, with repeated cell named explicitly.
+            - **Reflection:** "What stayed the same about the pieces? What changed about the region they cover?" Unscored checkpoint, no scored Question.
+      section4:
+        config:
+          id: "29100f94-70b2-459b-859e-5f4612e17135"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Rebuild the Whole"
+            navigationLabel:
+              en: "Rebuild the Whole"
+          content:
+            items:
+              text1:
+                config:
+                  id: "e53ab4ea-5634-46fd-8bf4-1cb498bebad7"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Start with two separate strips, each three squares long. Make the original two-row, three-column rectangle again. How do you know you didn't lose or overlap anything?"
+                production:
+                  purpose: "Rebuild the Whole: text resource at position 1 (source provisional)"
+                  specification: "1. **text — available:** \"Start with two separate strips, each three squares long. Make the original **two-row, three-column rectangle** again. How do you know you didn't lose or overlap anything?\""
+              scene2:
+                config:
+                  id: "4fb6f7d6-6da0-4353-8f05-6df486f19661"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Rebuild the Whole"
+                production:
+                  purpose: "Rebuild the Whole; source Scene shapePieceWorkshop.scene-spec.md; use 2"
+                  specification: |-
+                    # Shape Piece Workshop — Scene Specification
+                    
+                    Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: [Split Shapes and Build Them Again](.this config.yaml), Sections 1–4
+                    Methodologist objectives: [Draft Methodologist Brief](.this config.yaml) — decompose a planar region into nonoverlapping parts, reassemble without gaps/overlaps and explain why area remains the same while outer boundary may change. Distinct `composeDecomposeShapes` Skill, not a second area-covering quiz.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    The student can **cut** a six-square 2×3 region _along a cell boundary_, inspect two unaltered three-square strips and reposition them. The conceptual question is not which puzzle picture looks right but **why the parts still contain six equal unit-square cells**. The Scene distinguishes the _piece-material count_ from the **unique grid cells covered by their union**. This matters when pieces overlap: each strip still has three squares, yet the flat area covered by their layered union may be only five.
+                    
+                    Learner voice: "**The parts keep their squares. If they don't overlap or leave pieces out, their areas add to the new shape's area. The outside edge can change.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - Use a discrete integer grid with equal 1×1 square cells. Starting region R contains **(0,0),(1,0),(2,0),(0,1),(1,1),(2,1)**: a **2-row × 3-column** rectangle, area **6 square units**.
+                    - Horizontal decomposition into two **1×3 rigid strips**: Piece A = {(0,0),(1,0),(2,0)}, Piece B = {(0,1),(1,1),(2,1)}. Each has exactly **3** unit cells. The seam between rows is **internal** to starting region and never an outside edge of whole R.
+                    - A piece may **translate** by integer cell offsets and (optionally) **rotate** rigidly by 90° steps around a specified grid anchoring convention, preserving its three unit cells and connected edge relationships. No scaling/stretching or splitting individual strips in the later arrangement.
+                    - When strips are disjoint, **union area** = 3+3=**6**. When overlapping in exactly one cell, **union area**=3+3−1=**5** (the pieces still individually contain three). A "cover target correctly" task also requires the union's cell set to equal the **target cell set**, not simply to have the right count.
+                    - Original R has exterior **10** one-unit edges: for a 2×3 rectangle, 2*(2+3)=10. Two 1×3 strips placed **end-to-end** make a **1×6** rectangle: area **6**, exterior **14** one-unit edges (2*(1+6)=14). Illustrate as an optional outside-edge **observation**, never a perimeter mastery requirement.
+                    - End-to-end state: A cells {(0,0),(1,0),(2,0)} and B cells {(3,0),(4,0),(5,0)}. There is **no gap** between the strip ends: cell (2,0) shares an edge with (3,0).
+                    - Overlap state: A {(0,0),(1,0),(2,0)}, B {(2,0),(3,0),(4,0)}. Cell (2,0) belongs to **both** piece footprints and is counted **once** in union area. A learner must notice this before claiming a six-square reassembly.
+                    - Do not confuse rotating a rigid piece with morphing/repainting, and do not interpret onscreen pixel size as actual cm². All targets composed of whole unit cells only.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### A — Add a Seam, Not Area (Section 1)
+                    
+                    1. Begin with six-cell rectangle R, six numbered unit cells, no seam. Ask: "If we split it **between the two rows**, do we gain flat space?"
+                    2. "Show seam" reveals **only** the horizontal internal boundary between the top row and bottom row; region and six occupied cells remain unchanged.
+                    3. "Separate strips" translates B down to a display-only staging row while preserving its three local cells. A remains three cells. Ledger "Piece A: 3; Piece B: 3; original R: 6."
+                    4. Reveal: "The line was inside the rectangle. It divided **six** squares into groups of **three and three**." If the learner predicted larger area: "No new cell appeared; we only moved a boundary between parts."
+                    5. Optional "Put back together" restores starting R without scoring. Reset makes seam/part separation unrevealed, no state leakage.
+                    
+                    ### B — Reassemble a Long Strip (Section 2)
+                    
+                    1. Begin with two separated strips, each three cells, in a sufficiently wide board. Prompt: "Put B next to A to make **one row of six**. What will happen to area and the outside?"
+                    2. Non-drag controls: "Move B left/right/up/down by one cell", optional "Rotate B 90°", "Place B end-to-end" as a revealing hint, "Read occupied cells", "Check". Goal A {(0,0),(1,0),(2,0)}, B {(3,0),(4,0),(5,0)}.
+                    3. Correct arrangement union has six distinct cells in one row. Reveal "Area: **6 square units**." Optionally compare original and new outside edges as **10 vs 14 unit-edge pieces** with accurate tracing; never ask child to calculate formal perimeter.
+                    4. If B at (4,0),(5,0),(6,0) leaving a gap at (3,0), the union still has six cells **but not the 1×6 target region**. Feedback: "All pieces are here, yet the long strip has a gap. Bring B one cell left to join edges." No false "complete" based on raw total alone.
+                    5. If B starts at (2,0),(3,0),(4,0), overlap at (2,0) and union area 5; explain the exact duplicate cell. A displaced B may change bounding outline but not itself deform.
+                    6. Reset/replay returns to two original separate strips, with no assumed persistent Lesson completion.
+                    
+                    ### C — The Layered Cell Trap (Section 3)
+                    
+                    1. Start A horizontal at x=0,1,2 row0 and B at x=2,3,4 row0, with exact **one-cell overlap**. No animation required to see that B's first square lies over A's third.
+                    2. Learner predicts "Six physical piece squares means how many **different occupied places**?" Accessible choices 5,6 or "not sure". "Reveal shared square" identifies (2,0) as owned by both pieces.
+                    3. Report **three cells in A + three in B**, but **five distinct cells in union**. Explain it is a layering problem, not a lost material square.
+                    4. "Shift B one cell right" makes B at x=3,4,5, union 6 with no overlap/gaps; both strips unchanged.
+                    5. Alternate "Remove B" yields just A area3; different from overlap, reinforces that **using all pieces** matters to a specified six-square reassembly.
+                    6. Any claim "the six-square target has been reconstructed" must check target cell set and no overlap, not only count. Feedback is unscored and reversible.
+                    
+                    ### D — Rebuild the Exact 2×3 Target (Section 4)
+                    
+                    1. Start A occupying {(0,0),(1,0),(2,0)}, B occupying {(4,2),(5,2),(6,2)} on board large enough for both. Target outline is fixed R rows0/1 columns0,1,2.
+                    2. Learner moves B with discrete direction buttons or chooses target anchor "row 2, column 1" (human-visible 1-index labels) to set its cells at **(0,1),(1,1),(2,1)**; A remains fixed. "Check target" compares **union exactly to R**, ensures occupancy1 for every target and occupancy0 outside.
+                    3. Example wrong B at {(1,1),(2,1),(3,1)}: R cell **(0,1)** missing and out-of-target **(3,1)** occupied. Feedback: "Move B left one cell. One target cell is empty and one cell sticks outside."
+                    4. Example B overlapping A at row0: union has <6 distinct cells, explicitly invalid; user may undo/retry. A/B piece geometry never changes on movement.
+                    5. Correct: all six target cells covered once, no extras, no overlap; explain "**same six squares, rearranged**". A "Swap colors" reveal illustrates color changes appearance but not counted area.
+                    6. If optional rotation is available, it must use mathematically rigid mapping; a rotated vertical 3-cell strip will not fit the exact two-row rectangle here unless moved/rotated back. Explain mismatch rather than snapping silently.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** target cell set R, two labelled rigid 1×3 strips, seam, board, occupancy union ledger, transform buttons, prediction, check/reveal/undo/reset, optional outside-edge trace.
+                    - **State per placement:** A/B anchors and orientation, seam visibility, target preset, chosen prediction, reveal stage, last transform/history and feedback. Pieces always contain three cells each. Coordinates may be internal; learner sees meaningful rows/cells and before/after ownership.
+                    - **Geometry invariants:** per-piece area=3, shape invariant under rigid transformation; distinct union area=cardinality(set(A)∪set(B)); target success requires exact equality with R and no overlaps. Area6 alone **not sufficient** for exact target if shape has gap/extraneous cells.
+                    - **Rotations:** explicit 90° increments only, preserving tile adjacency. If unsupported by actual code, designer may omit optional rotation because the required A/B transformations are translations; must not claim a UI control exists before implementation.
+                    - **Independent prop-free roots:** each Section placement owns its own preset/state with **zero public React props**. Shared private geometry functions acceptable, but no guessed Section `mode`, `locale`, `initialPieces`, `onSuccess` API.
+                    - **Accessible moves:** choose a piece then use named cardinal button controls and an undo; do not depend on dragging. Numeric cell occupancy list is the authoritative nonvisual equivalent to the visual overlap diagram.
+                    - **Feedback:** identify the first relevant wrong assumption (overlap, gap, extra cell, deforming) with a clear next correction. Never turn a single correct arrangement into scored mastery.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Use a clean uniform grid with two pieces differentiated by **A/B text and hatching/pattern** as well as optional color. A shared square must show both **A+B** labels or a double-layer symbol; do not silently hide underneath. A seam is visibly interior; after reassembly trace outer edges separately to distinguish from interior joins. No dramatic cutting tools, paper-scissors violence, heavy animation, video or external image requirement. Optional stepwise motion is reduced-motion compatible; screen zoom cannot stretch any unit cells independently.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate every piece label, direction button, "overlap", "gap", "outer edge", unit-square count, feedback and Note into genuine supported locales. RTL changes reading/presentation order but not rigid-transform correctness, piece coordinates or union arithmetic; no automatic whole-diagram mirroring while retaining mismatched cell descriptions. For screen reader and switch user, a row-by-row ledger lists each cell, its owner(s), target membership, duplicated cells and missing cells; all transforms are discrete accessible controls. Avoid color-only information, forced drag/touch precision, auditory-only feedback, time limits. Provide WCAG 2.2 AA design, large focusable targets, screen-reader status clarity, reduced motion, 200% text and same complete lesson on low-end/offline devices after package/locale download; current implementation has **not** been verified.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Starting 2×3 R has **6** unit cells; splitting at internal row seam yields **two pieces of 3**, no new square created.
+                    2. A horizontal x=0,1,2 and B horizontal x=3,4,5 at row0 make one **1×6** region of six disjoint cells with outside boundary **14** unit edges.
+                    3. Initial 2×3 R outside boundary counts **10** unit edges; area is six in both it and 1×6 shape, so outside edge need not remain constant.
+                    4. Overlap at cell (2,0) gives A3+B3 but **union 5**; moving B one right gives disjoint union6.
+                    5. B shifted to x=4,5,6 leaves a **gap** in intended 1×6 target even though union area is six; reject target success with explanation.
+                    6. Stage D A at top row and B at {(0,1),(1,1),(2,1)} exactly reconstructs R with area6, no gaps/overlaps.
+                    7. B at {(1,1),(2,1),(3,1)} leaves target (0,1) uncovered and adds out-of-target (3,1); "move left one" corrects.
+                    8. Rigid piece translation/rotation preserves exactly three squares in each piece and does not change its material area; color swap doesn't change geometry.
+                    9. All root placements reset independently and are prop-free; keyboard, screen reader, RTL, reduced motion, mobile zoom and offline after download preserve exact occupancy and feedback with no forced drag.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Only generic `scene` Resource integration currently exists. **Shape Piece Workshop is not implemented**, has no locale dictionaries or automated tests yet and must await explicit Brief/Scene approval. Future engineering owns deterministic union/intersection logic, keyboard-accessible piece moves, Section-local prop-free components, real locale context and offline packaging. No scoring, Question, Quiz, Note persistence or platform events invented.
+                    
+                    
+                    ## Section-specific use (provisional source, not implemented)
+                    
+                    2. **scene — proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement D. Piece A fixed at (0,0),(1,0),(2,0), B initially at (4,2),(5,2),(6,2) in a larger board; learner moves/rotates whole B using named discrete controls and aligns it beneath A: target B=(0,1),(1,1),(2,1). Success when union equals **exactly** the six target cells, with no overlap/extra cells and both rigid pieces unaltered. Alternate placement above A is allowed **only when target outline is defined accordingly**; this preset target is explicitly the 2×3 region at rows0/1.
+                  productionNotes: "Scene shapePieceWorkshop.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+              markdown3:
+                config:
+                  id: "95dcf3ce-b5be-46cd-9f22-cc28abe60b6f"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The two rigid pieces now make the **same six-cell rectangle** we began with. Every target square is covered **once**; we did not add, lose, stretch or layer the pieces. The total area is still **six square units**."
+                production:
+                  purpose: "Rebuild the Whole: markdown resource at position 3 (source provisional)"
+                  specification: "3. **markdown — available:** \"The two rigid pieces now make the **same six-cell rectangle** we began with. Every target square is covered **once**; we did not add, lose, stretch or layer the pieces. The total area is still **six square units**.\""
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "independent decomposition/recomposition and an explanation of the invariant."
+          pedagogicalIntent: "Original Section 4: Rebuild the Whole (provisional draft)"
+          productionNotes: |-
+            - **Purpose:** independent decomposition/recomposition and an explanation of the invariant.
+            - **Current shape:** `LessonSection_Config`, vertical.
+            - **Ordered blocks:**
+              1. **text — available:** "Start with two separate strips, each three squares long. Make the original **two-row, three-column rectangle** again. How do you know you didn't lose or overlap anything?"
+              2. **scene — proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement D. Piece A fixed at (0,0),(1,0),(2,0), B initially at (4,2),(5,2),(6,2) in a larger board; learner moves/rotates whole B using named discrete controls and aligns it beneath A: target B=(0,1),(1,1),(2,1). Success when union equals **exactly** the six target cells, with no overlap/extra cells and both rigid pieces unaltered. Alternate placement above A is allowed **only when target outline is defined accordingly**; this preset target is explicitly the 2×3 region at rows0/1.
+              3. **markdown — available:** "The two rigid pieces now make the **same six-cell rectangle** we began with. Every target square is covered **once**; we did not add, lose, stretch or layer the pieces. The total area is still **six square units**."
+            - **Feedback:** Off-by-one placement B=(1,1),(2,1),(3,1) has an extra outside cell (3,1) and leaves the target cell (0,1) empty: "One extra square sticks out, and one target square is uncovered. Move B left one." B overlaps an upper row: "The shared cell has two layers, so it cannot count twice." A valid rigid rotation is permitted but must still fit the exact target.
+            - **Transfer:** Ask if swapping piece colors changes area. Correct reasoning: "Color does not change any covered cells." Provide accessible cell-by-cell before/after explanation and reset.
+    order: ["section1", "section2", "section3", "section4"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |-
+    # Split Shapes and Build Them Again — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: rearrangingShapePieces
+    Methodologist status: Draft
+    Code: Not implemented
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Build from area-as-square-coverage to controlled geometric **decomposition and recomposition**. Children can show that cutting a six-unit-square shape into nonoverlapping pieces and moving the pieces without stretching or losing them preserves **total area**, while the outside edge may change. This is a geometric-invariance Lesson, not a token jigsaw.
+    
+    ## Target audience
+    
+    **Primary audience: Grade 3, approximately ages 8–9.** Grade 3 (approximately 8–9), comfortable counting unit squares and recognizing straight-edged planar figures. Learners may use arrows, rotate buttons, keyboard-controlled piece placement and an accessible cell ledger; drag and precision drawing are optional.
+    
+    ## Prerequisites
+    
+    - [areaAsCovering.data.ts](../../../../data/skills/geometry/area/skills/areaAsCovering.data.ts): cover a region exactly with equal square units and count them once.
+    - [shapeAttributes.data.ts](../../../../data/skills/geometry/figures/skills/shapeAttributes.data.ts): distinguish outside edges from internal dividing strokes; [identify2dShapes.data.ts](../../../../data/skills/geometry/figures/skills/identify2dShapes.data.ts): recognize a rectangular region.
+    
+    ## Target Skills
+    
+    - [composeDecomposeShapes.data.ts](../../../../data/skills/geometry/figures/skills/composeDecomposeShapes.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Partition a 2×3 rectangle into two **nonoverlapping 1×3 strips** along an internal dividing line and identify that the total area remains six square units.
+    - Recombine all six unit-square cells, with no gaps/overlaps, into the original rectangle or a straight 1×6 strip, using rigid translation/rotation rather than resizing pieces.
+    - Explain with a cell ledger why total **area stays six** even though the outside outline changes, and identify a case with a missing cell or an overlapping pair as invalid reconstruction.
+    - Distinguish the **outer boundary** from the seam between pieces, noting that perimeter **may change** when pieces are rearranged, without requiring a perimeter calculation.
+    
+    ## Essential subject matter
+    
+    A valid decomposition partitions the whole **2×3** rectangular region (six 1×1 square cells) along the horizontal seam between its two rows, producing two rigid **1×3 strips**, each covering three square cells. The strips remain unchanged in area; two pieces × three cells each = six distinct cells. Recombine stacked into the 2×3 rectangle with **area 6** and an outside boundary of **10 unit edges**; place strips end-to-end without overlap to make a **1×6 rectangle** also **area 6** with outside boundary of **14 unit edges**. The seam in the 2×3 arrangement is **internal**, never part of the outside border. Two strips overlapping by exactly one cell have union area 5, _not 6_, so the reassembly is invalid if claimed to preserve all six distinct covered cells as a tiling. A cell left uncovered likewise fails to reconstruct a required target. Rotating/translating a rigid strip preserves its three unit squares; stretching it would not be the same piece. In the model area is counted discretely; general conservation applies to any dissection and rigid reassembly with no loss/overlap, but this Lesson tests only these figures.
+    
+    ## Conceptual progression and dependencies
+    
+    First revisit 2×3 rectangle coverage and count six full cells. Reveal the internal dividing seam; distinguish it from the exterior. Split into two pieces and count three cells in each. Move one piece without rotation to make a 1×6 strip and compare total counted coverage versus new outline. Ask children to predict what happens if a strip overlaps one cell or if one tile is omitted. Finish with a clean reassembly and an explanation of which property stayed constant.
+    
+    ## Misconceptions, examples and boundaries
+    
+    Cutting creates more area; border length automatically stays the same; a seam is an outside edge; two three-cell pieces overlapping one cell still make a valid six-cell tiling; a gap inside a target can be ignored; rotating a rigid strip changes its area; two different outlines must have different areas; screen geometry equals physical centimeters.
+    
+    **Instructional depth / explicit exclusions:** Rigid straight-sided **whole-unit-square** pieces, two 1×3 strips (one 2×3 starting rectangle), 1×6 alternate rectangle and controlled nonexamples. No arbitrary curved cuts, fractional cells, impossible jigsaw decompositions, formal congruence transformations, complex area formulas, cutting hardware or perimeter calculation as an independent Skill. These are **Lesson boundaries**; the canonical Skill object remains grade-neutral and unchanged.
+    
+    ## Localization, accessibility and offline intent
+    
+    Every learner-visible prompt, feedback, dynamic state description, diagram label, ruler/scale symbol, unit expression, alt description, optional transcript and proposed recall Note requires authentic localization into **every supported textbook locale**, with **no silent English fallback or placeholder translation**. Reading direction can change layout but must never change the invariant square-cell area, rigid-piece count, one-liter measure or scale tick values. For nonvisual learners provide a complete meaningful ordered list of the model's unit cells, pieces, pours or graduation marks. Each manipulation must be operable via touch, keyboard/switch and appropriately labeled controls without precision dragging. Use WCAG 2.2 AA targets/contrast/focus, understandable low-reading-load copy, accessible text scaling, reduced motion, equivalent low-end performance and complete post-download offline activity. These are design requirements, **not existing infrastructure claims**.
+    
+    ## Sources and factual verification
+    
+    - [composeDecomposeShapes.data.ts](../../../../data/skills/geometry/figures/skills/composeDecomposeShapes.data.ts) — canonical Mathematics Skill source from `content/math/`; copied byte-for-byte (UUID, multilingual data, methodological description unchanged) into this textbook's local Skill tree.
+    - [Methodologist persona](../../../../../../studio/personas/methodist.persona.md), [separate editorial artifact policy](../../../../../../studio/docs/architecture/lesson-editorial-document.md), [Lesson entity definition](../../../../../../studio/docs/entities/lesson.md) — editorial roles, Program-neutral scope and approval boundaries.
+    - [Playground generated taxonomy view](../../../../docs/generated/skills/taxonomy.en.md) — **stale for newly transferred Skills** until coordinator integration/regeneration; the canonical source files above, not this view, are the identity authority.
+    
+    Mathematical/measurement illustrative cases must be reviewed against the exact Skill definition; no country-specific curriculum was assigned and no external instrument calibration has been verified.
+    
+    ## Curriculum / Program compatibility
+    
+    No national Program or Curriculum specified. The Lesson is independently usable and may be sequenced differently by future Programs. Grade 3 denotes bounded **pedagogical depth**, not a modification to the global Skill's definition.
+    
+    ## Open editorial decisions
+    
+    - Editor: confirm using explicitly different illustrative perimeter counts (10 versus 14) is age-appropriate **only as evidence** that outside boundary may change; do not require perimeter computation or promote it to another assessed Skill.
+    - **Methodologist approval required:** This Brief is Draft. Associated `content.md` and `scenes/*.scene-spec.md` in this batch are **provisional screenwriter drafts**, prepared under user batch authorization ahead of formal Brief approval. They must be revised if this Brief changes.
+    
+    ## Methodologist handoff
+    
+    Review prerequisites, mathematical examples, misconceptions and audience demands before any explicit Approved status. The Screenwriter owns the provisional Section experience; future approved Scene Designer work must remain within it. Assessment Architect separately owns any Question, Quiz, grading and evidence model. No React Scene, runtime Lesson config, published locale content, Note persistence or generated registries is included.
+  purpose: "Split Shapes and Build Them Again: preserve existing standalone Lesson plan without new assessments or Scene implementation"
+  productionNotes: |-
+    Provisional Screenwriter source (not approved), originally content.md; all introductory, global and review material:
+    
+    # Split Shapes and Build Them Again — Lesson Content
+    
+    Status: **Provisional Draft — Methodologist approval pending; NOT approved for implementation**
+    Target Lesson: `content/playground/Data/Lessons/1/rearrangingShapePieces/`
+    Audience: **Grade 3**, approximately ages 8–9; learners already count full grid-square area units
+    Methodologist source: Draft Methodologist Brief (incorporated in this config.yaml)
+    Learning outcomes: decompose an exact plane region into nonoverlapping rigid pieces, reassemble without gaps/overlaps, explain area conservation under rearrangement and contrast potentially changed outside borders.
+    Target Skills: `composeDecomposeShapes.data.ts` as directly linked in the Brief; prior `areaAsCovering` is a prerequisite, not another graded outcome.
+    Program dependence: None
+    Implementation: editorial documents only; Section rendering of `scene` type exists, bespoke Scene not yet built.
+    
+    ## INSTRUCTIONAL CONCEPT
+    
+    **"The pieces can move. The total flat space in them stays the same."** Start with a 2×3 rectangle covering **six equal square units**. Split along a row boundary into **two 1×3 strips**, each of area three. If neither is stretched, lost nor overlapped when rearranged, the result still covers six separate unit squares. Placing one strip **end-to-end** with the other produces a **1×6** region: area still six; outside border is different from the original 2×3 region. A deliberately overlapping arrangement lets the learner catch a false "six covered squares" report.
+    
+    This is not a memorized jigsaw exercise; children predict changes, choose locations, verify a region's actual _union_ and explain why a hidden overlap changes covered area. Unlike the prior area-covering Lesson, this one focuses on the **relationship between parts and whole across a rearrangement**.
+    
+    ## LEARNER JOURNEY
+    
+    1. Predict what happens to a six-cell region when an internal dividing line is added.
+    2. Split into two **three-cell straight strips**, trace each and sum the nonoverlapping parts.
+    3. Reassemble into a 1×6 strip and compare its coverage and **outside** boundary with the original 2×3.
+    4. Debug an overlap and a missing strip, then independently rebuild the original 2×3 without losing or stretching pieces.
+    
+    No physical cutting equipment, compulsory mouse drag, competition, scored Question or Lesson mastery assignment.
+    
+    ## SECTION
+    
+    ## CUSTOM SCENE SPECIFICATIONS
+    
+    - [Shape Piece Workshop](./scenes/shapePieceWorkshop.scene-spec.md) — proposed independently operable, prop-free rigid-piece Scene with explicit overlap/union arithmetic.
+    
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+    
+    1. After decomposition: "The area of nonoverlapping parts adds up to the whole."
+    2. After long-strip reassembly: "Moving rigid pieces preserves their area."
+    3. After overlap diagnosis: "No gaps or overlaps when rebuilding a region."
+    
+    These are planned short recall cues, not implemented Note IDs, unlock events, local state or spaced repetition.
+    
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+    
+    Section 4 provides **unscored** independent proof-of-coverage via a cell ledger. Future Assessment Architect work may test different decompositions (e.g., two strips making a rectangle) and require area conservation reasoning, not just "shape fits" dexterity. Do not assert a correct drag shows durable conceptual mastery. A later perimeter Skill remains separate.
+    
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+    
+    All prompts, shape names, state ledgers, error explanations, units, controls and proposed Notes need authentic translations in every configured locale. A nonvisual learner can inspect piece A's three cells, piece B's three cells, their union, duplicates, uncovered targets and the outer-boundary summary, and can move/rotate pieces with named commands. No puzzle must be drag-only or depend on color: pieces are labeled A/B, and each occupied cell reports its owner(s). In RTL the diagram's chosen coordinate frame and rigid transforms remain mathematically consistent; mirror only layout unless all cell-state text is updated. Ensure keyboard/switch focus, large touch targets, screen-reader state announcements, reduced motion, no time limits, 200% zoom and offline equivalence after actual locale/package download. Features are design requirements, not proof the present app implements them.
+    
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+    
+    `text`, `markdown`, `scene` Resource types are understood by the generic Playground Section renderer, but Shape Piece Workshop **does not exist**. Future Coding Agent must verify locale context, implement fixed independent prop-free Section roots, exact rigid grid transformations, validation of union and target coverage, co-located tests and offline assets. No runtime Lesson, Question/Quiz, scoring, Note API, analytics or user progress logic is included.
+    
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+    
+    - [Draft Methodologist Brief](./methodologist-brief.md), canonical `composeDecomposeShapes.data.ts` linked there, and prerequisite area Lesson.
+    - Editor: confirm perimeter-edge counts are an optional **observation**, not an assessed target. Check that selected tilings have physically/virtually plausible nonoverlapping placements.
+    - Methodologist Brief is Draft; Content and Scene remain provisional until explicit approval.
+    
+    ## HANDOFF
+    
+    Methodologist approves depth and preservation examples; Screenwriter/editor checks all coordinates and feedback. Scene Designer receives approved specification before coding, and Assessment Architect separately designs any scored tasks.
+    
+    Source-language-only English draft; intended locale list follows the current Engine supported language set (ar, be, bn, de, en, es, et, fr, he, hi, id, ja, ka, kk, ko, lt, lv, mr, ms, pl, pt, qm, ta, te, tr, uk, ur, vi, zh), with genuine translations required before implementation. No formal independent approval is implied.
