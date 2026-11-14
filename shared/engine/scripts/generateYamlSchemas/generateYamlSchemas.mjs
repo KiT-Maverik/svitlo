@@ -75,8 +75,58 @@ export function draftYamlSchema(kind, configSchema) {
   return schema;
 }
 
+/** Derive a guide to the direct Course Build API patch, not legacy operations. */
+export function courseOverridesSchema(course) {
+  const collection = {
+    type: 'object',
+    properties: {
+      items: { type: 'object', additionalProperties: { anyOf: [{ const: false }, { $ref: '#/$defs/buildPatch' }] } },
+      additionalItems: { type: 'object', additionalProperties: {
+        type: 'object', properties: { type: { type: 'string', minLength: 1 } }, required: ['type'],
+      } },
+      order: { type: 'array', items: { type: 'string' } },
+    },
+    additionalProperties: false,
+  };
+  const courseContent = structuredClone(collection);
+  courseContent.properties.additionalItems.additionalProperties =
+    structuredClone(course.properties.content.properties.items.additionalProperties);
+  const params = structuredClone(course.properties.params);
+  delete params.properties.languages;
+  delete params.required;
+  const locale = structuredClone(course.properties.locale);
+  delete locale.required;
+  const questions = structuredClone(collection);
+  delete questions.properties.order; // Question Bank groups have no ordering API.
+  return {
+    $schema: 'https://json-schema.org/draft/2020-12/schema',
+    $id: 'https://svitlo.dev/engine/yaml-schemas/courseOverrides.schema.json',
+    title: 'Svitlo Course Build Overrides YAML draft',
+    description: 'Direct stateless build.overrides patch. Legacy ordered operation lists are unsupported. Configurator-level checks still run when TypeScript is completed.',
+    type: 'object',
+    properties: { params, locale, content: courseContent },
+    additionalProperties: false,
+    $defs: {
+      ...structuredClone(course.$defs ?? {}),
+      buildPatch: {
+        type: 'object',
+        properties: {
+          params: { type: 'object' },
+          locale: { type: 'object' },
+          content: { $ref: '#/$defs/patchCollection' },
+          section: { $ref: '#/$defs/patchCollection' },
+          flashcards: { $ref: '#/$defs/patchCollection' },
+          questions: { type: 'object', additionalProperties: questions },
+        },
+        additionalProperties: false,
+      },
+      patchCollection: collection,
+    },
+  };
+}
+
 export function yamlJsonSchemaDocuments() {
-  return Object.fromEntries(
+  const documents = Object.fromEntries(
     Object.entries(schemas).map(([kind, schema]) => {
       if (!schema) throw new Error('Missing Engine YAML authoring schema: ' + kind);
       // Do not downgrade z.custom children to {}. All configurator boundaries
@@ -102,6 +152,9 @@ export function yamlJsonSchemaDocuments() {
       ];
     }),
   );
+  const course = JSON.parse(documents['course.schema.json']);
+  documents['courseOverrides.schema.json'] = JSON.stringify(courseOverridesSchema(course), null, 2) + '\n';
+  return documents;
 }
 
 export function generateYamlSchemas(mode, outputRoot = yamlSchemaOutputRoot) {
