@@ -5,7 +5,9 @@
  * This is a token-saving mechanical authoring aid, not a validator, approval
  * gate, translator, Lesson resolver, TypeScript checker or Props publisher.
  * The resulting Course Config may deliberately be incomplete. An AI editor
- * finishes missing fields, translations, Lesson imports and sparse overrides.
+ * finishes missing fields, translations and Lesson imports. Optional Course-owned
+ * sparse overrides are read directly in the single stateless Engine Build API
+ * shape; obsolete ordered editorial override operations are unsupported.
  *
  * Studio's older skill-based toc.yaml is accepted as a partial editorial
  * source. The Engine Config format (type: course, content.items/order) is also
@@ -201,7 +203,9 @@ function renderValue(value, state, indent, location, typedItems = false) {
     const nextLocation = location + '.' + key;
     const expression = typedItems
       ? renderEntity(child, state, indent + 1, nextLocation)
-      : renderValue(child, state, indent + 1, nextLocation);
+      : key === 'additionalItems' && record(child)
+        ? renderValue(child, state, indent + 1, nextLocation, true)
+        : renderValue(child, state, indent + 1, nextLocation);
     return inner + literal(key) + ': ' + expression + ',';
   }).join('\n') + '\n' + space + '}';
 }
@@ -248,6 +252,12 @@ export function renderCourseSource(source, { slug, outputSlug, overrides } = {})
   const symbol = exportIdentifier(fileSlug) + '_Course';
   const state = { imports: new Set(), lessonImports: new Map(), unresolved: [], courseId: course.id };
   const expression = renderEntity(course, state, 0, 'course');
+  if (overrides !== undefined && (!record(overrides) ||
+      Object.keys(overrides).some(key => !['params', 'locale', 'content'].includes(key)))) {
+    fail('OVERRIDES', 'overrides.yaml must be a direct Course build.overrides patch; legacy editorial operations are unsupported');
+  }
+  const authoredPatch = overrides === undefined ? undefined : sourceAuthoringCopy(overrides, source.documentLanguage);
+  const patchExpression = authoredPatch === undefined ? undefined : renderValue(authoredPatch, state, 0, 'overrides');
   const imports = [...state.imports].sort();
   const lines = [
     marker.trimEnd(),
@@ -265,16 +275,16 @@ export function renderCourseSource(source, { slug, outputSlug, overrides } = {})
     'export const ' + symbol + ' = ' + expression + ';',
   ];
   if (overrides !== undefined) {
-    // Old operation lists have no proven 1:1 mapping to the current sparse API.
-    // Preserve source references/slot identities intact, without inventing a patch.
+    // Only the current Engine Build API patch is supported. This is still a
+    // draft scaffolder: it emits source rather than evaluating build.overrides.
+    const languages = record(course.params) && Array.isArray(course.params.languages)
+      ? renderValue(course.params.languages, state, 0, 'params.languages')
+      : symbol + '.config.base.params.languages';
     lines.push(
       '',
-      '// Course-owned sparse override handoff. Preserve Lesson identities and source refs.',
-      '// TODO: Map editorial operations into ' + symbol +
-        '.build.overrides({ content: { items: { /* keyed patches */ } } }, { languages: ... }).',
-      '// The old createLessonOverrides operation DSL is NOT a supported Engine API.',
-      'export const ' + exportIdentifier(fileSlug) + '_OverrideEditorial = ' +
-        renderValue(overrides, state, 0, 'overrides') + ' as const;',
+      '// Course-owned sparse Build API patch; standalone Lessons remain unchanged.',
+      'export const ' + exportIdentifier(fileSlug) + '_Overrides = ' +
+        symbol + '.build.overrides(' + patchExpression + ', { languages: ' + languages + ' });',
     );
   }
   return lines.join('\n') + '\n';
