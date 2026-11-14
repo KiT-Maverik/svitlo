@@ -9,15 +9,16 @@
  * sparse overrides are read directly in the single stateless Engine Build API
  * shape; obsolete ordered editorial override operations are unsupported.
  *
- * Studio's older skill-based toc.yaml is accepted as a partial editorial
- * source. The Engine Config format (type: course, content.items/order) is also
- * accepted directly. Editorial data not mapped to Config remains in YAML.
+ * The single config.yaml supports paired { config, production } nodes plus
+ * an optional root Build API overrides patch. Legacy editorial TOC inputs
+ * remain a distinct upstream authoring utility, not a publication source.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
 import { loadFactoryRegistry, sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
+import { splitScaffoldDocument, productionFiles, checkProductionFiles, writeProductionFiles } from '../yamlScaffolding/productionScaffolding.mjs';
 
 const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -273,7 +274,14 @@ function exportIdentifier(slug) {
 }
 
 export function renderCourseSource(source, { slug, outputSlug, overrides } = {}) {
-  const course = normalizeCourseSource(source, slug);
+  // The new authoring envelope is deliberately unwrapped before factory dispatch.
+  // A separate editor schema, not this builder, describes production metadata.
+  const scaffold = record(source.config) ? splitScaffoldDocument(source) : undefined;
+  const input = scaffold
+    ? { ...scaffold.config, ...(scaffold.documentLanguage ? { documentLanguage: scaffold.documentLanguage } : {}) }
+    : source;
+  if (scaffold && overrides === undefined) overrides = scaffold.overrides;
+  const course = normalizeCourseSource(input, slug);
   const fileSlug =
     outputSlug ??
     slug ??
@@ -291,7 +299,7 @@ export function renderCourseSource(source, { slug, outputSlug, overrides } = {})
       'overrides.yaml must be a direct Course build.overrides patch; legacy editorial operations are unsupported',
     );
   }
-  const authoredPatch = overrides === undefined ? undefined : sourceAuthoringCopy(overrides, source.documentLanguage);
+  const authoredPatch = overrides === undefined ? undefined : sourceAuthoringCopy(overrides, input.documentLanguage);
   const patchExpression = authoredPatch === undefined ? undefined : renderValue(authoredPatch, state, 0, 'overrides');
   const imports = [...state.imports].sort();
   const lines = [
@@ -396,13 +404,13 @@ export function parseArguments(args) {
     !PACKAGE.test(packagePath ?? '') ||
     !UUID.test(courseId ?? '') ||
     (slug !== undefined && !/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(slug)) ||
-    (sourceFilename !== undefined && !['toc.yaml', 'course.yaml'].includes(sourceFilename)) ||
+    (sourceFilename !== undefined && !['config.yaml', 'toc.yaml', 'course.yaml'].includes(sourceFilename)) ||
     !action
   ) {
     fail(
       'ARGS',
       'usage: --package content/<book> --course <uuid> [--slug <slug>] ' +
-        '[--source toc.yaml|course.yaml] --write|--check',
+        '[--source config.yaml|toc.yaml|course.yaml] --write|--check',
     );
   }
   return { packagePath, courseId, slug, sourceFilename, action };
@@ -428,17 +436,34 @@ export async function main(args, repo = repoRoot) {
     }
   }
   const sourceFilename =
-    options.sourceFilename ?? (fs.existsSync(path.join(courseFolder, 'course.yaml')) ? 'course.yaml' : 'toc.yaml');
+    options.sourceFilename ??
+    (fs.existsSync(path.join(courseFolder, 'config.yaml'))
+      ? 'config.yaml'
+      : fs.existsSync(path.join(courseFolder, 'course.yaml'))
+        ? 'course.yaml'
+        : 'toc.yaml');
   const input = path.join(courseFolder, sourceFilename);
   noSymlinkComponents(input);
   if (!fs.existsSync(input)) fail('INPUT', 'missing Course YAML: ' + input);
   const source = parseCourseYaml(fs.readFileSync(input, 'utf8'), sourceFilename);
+  const scaffold = sourceFilename === 'config.yaml' ? splitScaffoldDocument(source) : undefined;
+  const artifacts = scaffold ? productionFiles(courseFolder, scaffold.tasks) : [];
+  checkProductionFiles(artifacts, options.action === '--write' ? 'generate' : 'check');
+  // Legacy editorial TOC remains a separate authoring input. New config.yaml
+  // contains the complete technical draft AND its optional sparse Build patch.
   const overridesFilename = path.join(courseFolder, 'overrides.yaml');
-  noSymlinkComponents(overridesFilename);
-  const overrides = fs.existsSync(overridesFilename)
-    ? parseCourseYaml(fs.readFileSync(overridesFilename, 'utf8'), 'overrides.yaml')
-    : undefined;
-  const normalized = normalizeCourseSource(source, options.slug);
+  if (!scaffold) noSymlinkComponents(overridesFilename);
+  const overrides = scaffold
+    ? scaffold.overrides
+    : fs.existsSync(overridesFilename)
+      ? parseCourseYaml(fs.readFileSync(overridesFilename, 'utf8'), 'overrides.yaml')
+      : undefined;
+  const normalized = normalizeCourseSource(
+    scaffold
+      ? { ...scaffold.config, ...(scaffold.documentLanguage ? { documentLanguage: scaffold.documentLanguage } : {}) }
+      : source,
+    options.slug,
+  );
   const fileSlug =
     options.slug ??
     normalized.slug ??
@@ -447,6 +472,7 @@ export async function main(args, repo = repoRoot) {
   const filename = path.join(courseFolder, fileSlug + '.data.ts');
   const content = renderCourseSource(source, { slug: options.slug, outputSlug: fileSlug, overrides });
   const changed = verifyOrWriteGenerated(filename, content, options.action);
+  const specs = options.action === '--write' && changed ? writeProductionFiles(artifacts) : 0;
   console.log(
     options.action === '--write' && !changed
       ? 'SKIP Course ' + options.courseId + ': existing ' + path.basename(filename) + '; no files modified'
