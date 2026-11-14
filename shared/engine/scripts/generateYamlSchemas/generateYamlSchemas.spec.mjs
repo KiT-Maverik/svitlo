@@ -72,13 +72,13 @@ test('Zod -> JSON Schema exports every root without opaque Configurator nodes', 
   const docs = yamlJsonSchemaDocuments();
   assert.deepEqual(Object.keys(docs).sort(), [
     'contentBlock.schema.json',
-    'course.schema.json',
     'course.scaffold.schema.json',
+    'course.schema.json',
     'courseOverrides.schema.json',
     'episode.schema.json',
     'flashcard.schema.json',
-    'lesson.schema.json',
     'lesson.scaffold.schema.json',
+    'lesson.schema.json',
     'question.schema.json',
     'section.schema.json',
   ]);
