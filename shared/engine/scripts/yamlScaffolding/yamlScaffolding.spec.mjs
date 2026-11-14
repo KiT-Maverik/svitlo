@@ -37,6 +37,60 @@ function wrapNode(value) {
     : fields;
 }
 
+
+function questNode(slug, offset) {
+  const block = (type, key, index, locale, params = {}) => ({
+    id: id(offset + index),
+    slug: key,
+    type,
+    params,
+    locale,
+  });
+  return {
+    id: id(offset),
+    slug,
+    type: 'quest',
+    params: {},
+    locale: { title: { uk: 'Практика' }, navigationLabel: { uk: 'Завдання' } },
+    stages: {
+      start: {
+        id: id(offset + 1),
+        slug: 'start',
+        type: 'questStage',
+        content: {
+          video: {
+            medium: block('video', 'medium', 2, {
+              fileLocation: null, poster: null, label: { uk: 'Приклад' },
+            }),
+            small: block('video', 'small', 3, {
+              fileLocation: null, poster: null, label: { uk: 'Приклад' },
+            }),
+          },
+          audio: {
+            dialogue: null,
+            narration: block('audio', 'narration', 4, {
+              fileLocation: null, title: { uk: 'Опис' },
+            }),
+            background: null,
+          },
+          image: block('image', 'image', 5, { src: null, alt: { uk: 'Схема' } }, {
+            fill: true, aspectRatio: 1.5,
+          }),
+          subtitles: block('subtitles', 'subtitles', 6, { fileLocation: null }),
+        },
+      },
+    },
+    tasks: {
+      start: {
+        id: id(offset + 7),
+        slug: 'start',
+        type: 'questTask',
+        scene: block('scene', 'interaction', 8, { value: { instruction: { uk: 'Спробуй' } } }),
+      },
+    },
+  };
+}
+
 test('Studio editorial YAML remains intact while both builders emit nested TS drafts', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-yaml-integrated-'));
   const workspace = path.join(root, 'content/playground');
@@ -89,6 +143,8 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
         },
       }),
     };
+    lesson.section.items.guided = questNode('guided', 70);
+    lesson.section.order.push('guided');
     const { documentLanguage: lessonLanguage, ...lessonConfig } = lesson;
     fs.writeFileSync(
       path.join(lessonDir, 'config.yaml'),
@@ -111,6 +167,14 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
       'defineCarouselSlide',
       'defineCheckpoint',
       'defineCheckpointItem',
+      'defineQuestSection',
+      'defineStage',
+      'defineTask',
+      'defineVideo',
+      'defineAudio',
+      'defineImage',
+      'defineSubtitles',
+      'defineScene',
     ]) {
       assert(lessonCalls.includes(name), name + ' missing in Lesson draft');
     }
@@ -165,6 +229,9 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
         },
       }),
     };
+    const episodeSections = course.content.items.module.content.items.chapter.content.items.episode.section;
+    episodeSections.items.guided = questNode('guided', 90);
+    episodeSections.order.push('guided');
     const { documentLanguage: courseLanguage, ...courseConfig } = course;
     const courseYaml = yaml.stringify({
       ...wrapNode(courseConfig),
@@ -185,6 +252,14 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
       'defineContentSection',
       'defineCarousel',
       'defineCarouselSlide',
+      'defineQuestSection',
+      'defineStage',
+      'defineTask',
+      'defineVideo',
+      'defineAudio',
+      'defineImage',
+      'defineSubtitles',
+      'defineScene',
     ]) {
       assert(courseCalls.includes(name), name + ' missing in Course draft');
     }
