@@ -12,6 +12,7 @@ describe('Engine language utilities', () => {
       assert.equal(getLanguageCode('en-US'), 'en');
       assert.equal(getLanguageCode('be-tarask'), 'be');
       assert.equal(getLanguageCode('crh-Latn-UA'), 'qm');
+      assert.equal(getLanguageCode('kk-Latn-KZ'), 'kk');
       assert.equal(getLanguageCode('uk-UA'), 'uk');
     });
   });
@@ -21,7 +22,7 @@ describe('Engine language utilities', () => {
       for (const locale of ['ar-SA', 'he-IL', 'ur-PK'] as const) {
         assert.equal(getLocaleDirection(locale), 'rtl');
       }
-      for (const locale of ['en-US', 'uk-UA', 'crh-Latn-UA'] as const) {
+      for (const locale of ['en-US', 'uk-UA', 'crh-Latn-UA', 'kk-Latn-KZ'] as const) {
         assert.equal(getLocaleDirection(locale), 'ltr');
       }
     });
@@ -46,6 +47,8 @@ describe('Engine language utilities', () => {
     it('accepts exact canonical locale tags but not unsupported aliases or language keys', () => {
       assert.equal(isLocale('uk-UA'), true);
       assert.equal(isLocale('crh-Latn-UA'), true);
+      assert.equal(isLocale('kk-Latn-KZ'), true);
+      assert.equal(isLocale('kk-Cyrl-KZ'), false);
       assert.equal(isLocale('uk'), false);
       assert.equal(isLocale('ru-RU'), false);
       assert.equal(isLocale('en-us'), false);
