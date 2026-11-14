@@ -4,7 +4,7 @@ config:
   type: "lesson"
   skills: ["91ac826f-9b38-4dee-8e19-bd7883514afe"]
   params:
-    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    languages: ["en", "pl", "uk", "qm"]
     requireQuiz: false
     sections:
       allowNavigation: true
