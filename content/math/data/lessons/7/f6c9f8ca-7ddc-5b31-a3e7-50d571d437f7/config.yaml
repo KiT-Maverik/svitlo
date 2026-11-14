@@ -1,0 +1,529 @@
+# Draft editorial migration, not approved; no runtime Scene implementation.
+config:
+  id: "f6c9f8ca-7ddc-5b31-a3e7-50d571d437f7"
+  slug: "buildOneStepProblemModel"
+  type: "lesson"
+  skills: ["64808d1f-bbb7-4252-965f-9f361078720c"]
+  params:
+    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Show the Story Before You Solve"
+  section:
+    items:
+      section1:
+        config:
+          id: "9d740134-55a4-4e53-b2c6-d89e08fec425"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A situation can be shown"
+            navigationLabel:
+              en: "A situation can be shown"
+          content:
+            items:
+              text1:
+                config:
+                  id: "c92451f9-9e67-4056-b3fa-4f2f4f17cbc4"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Seven apples sit on a plate. Five more are added. How could we show the story without doing the calculation first?"
+                production:
+                  purpose: "A situation can be shown; authored text block 1"
+                  specification: "1. **text**: “Seven apples sit on a plate. Five more are added. How could we show the story without doing the calculation first?”"
+              scene2:
+                config:
+                  id: "a6ea7027-6dc1-4e9a-990c-d1894bed3e24"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "A situation can be shown"
+                production:
+                  purpose: "A situation can be shown; authored scene block 2"
+                  specification: |-
+                    # One-Step Model Builder — Scene Specification
+                    
+                    Status: Provisional Draft — pending Methodologist approval
+                    Owner: Educational Screenwriter
+                    Parent: [Lesson Content](.this config.yaml), Sections 1–4
+                    Methodologist source: [Draft Brief](.this config.yaml)
+                    
+                    ## Mathematical purpose
+                    
+                    A model must show the roles of known whole, known parts or initial/change amounts, and an unknown. Preserve quantity and the direction of change. Use same-sized discrete units for visual counters; any bar segments represent integer unit counts with a consistent scale. The diagram is not itself a calculation result.
+                    
+                    ## Experiences and learner actions
+                    
+                    1. **Addition, guided**: “Seven apples sit on a plate. Five more are added.” Let learner form labeled groups of seven existing and five incoming apples. Place a ? on their combined total, not on either known part. Ask which expression matches: 7+5=? or 7−5=?. Correct feedback: “Both groups join; the whole is unknown.” Incorrect: “Nothing was taken away.”
+                    2. With “Reveal total”, count all twelve and display “12 apples”. Keep the seven/five origin labels so the total does not replace their meaning. Wrong unit prompt: “We counted apples, not plates.”
+                    3. **Removal, guided**: “Twelve apples are present, five are eaten.” Twelve unit counters begin in a known-whole tray; remove or mark five, and mark the remaining unknown ?. Correct equation 12−5=? yields seven. Mistaken addition choice: “Five leave the original twelve.”
+                    4. **Independent transfer**: “Nine books on a desk. Four moved into a bag. How many remain on the desk?” Start fresh. Learner labels known nine, change of four leaving, remaining ?. Construct 9−4=? and reveal five books optionally. Incorrect model with 9 as unknown receives “The story already tells us nine books were on the desk.”
+                    5. Offer “Show the story”, “Try another model” and “Reset”; avoid gatekeeping explanatory feedback behind selecting a presumed correct response.
+                    
+                    ## Objects and state
+                    
+                    Equal-unit counters; visible before/added/removed/remaining regions; semantic part/whole labels; expression choices; keyboard-friendly +/- counter controls; reveal booleans; one active scenario. The model source data contains exact counts and a relationship type; the display derives final counts consistently. A changed physical model requires an updated displayed expression. No user score, Question, persistent mastery or shared scene-local state across Sections.
+                    
+                    ## Accessibility, localization and mobile/offline behavior
+                    
+                    Give a full nonvisual description of the relationship (“Nine initially, four removed, five remain”) only after reveal, and a description of known roles before reveal. Every action works by keyboard, switches and touch without drag, and conveys state with text not solely colored bars. RTL does not reverse before/after causality; labels follow language direction while arithmetic remains unambiguous. Translate all narratives and feedback for every locale, provide optional equivalent audio, reduced motion, focus management, small-screen reflow and offline assets. The scene takes no React props.
+                    
+                    ## Acceptance cases
+                    
+                    - 7+5=12 apples; “five” is added amount, not total.
+                    - 12−5=7 apples; removal is modeled as a known whole decreasing.
+                    - 9−4=5 books; nine is initially known, remaining count is unknown until reveal.
+                    - Choosing the wrong operation produces relationship-based feedback.
+                    - Diagrams with different visual arrangement but identical counts express the same modeled relationship.
+                    - Reset, RTL, keyboard, screen reader and offline mode preserve exact story roles.
+                    
+                    ## Dependencies and open questions
+                    
+                    A new self-contained Scene is proposed; the Coding Agent must verify existing resource renderer and translation context after approval. No component, API contract, scoring or Note persistence is implemented here.
+                    
+                    ## Placement 1: A situation can be shown
+                    
+                    2. **scene (proposed)**: One-Step Model Builder (Scene specification embedded in this config.yaml), add-to mode. A learner groups seven and five unit counters, labels the unknown total, and may inspect a part-whole bar with equal-unit lengths.
+                  productionNotes: "Proposed unimplemented Scene, sourced from oneStepModelBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              text3:
+                config:
+                  id: "c7244ed3-9c67-4d30-b5fa-52555117ceea"
+                  slug: "text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "We know seven to start and five arrive. We need the total. Our model shows both parts."
+                production:
+                  purpose: "A situation can be shown; authored text block 3"
+                  specification: "3. **text**: “We know seven to start and five arrive. We need the total. Our model shows both parts.” If the child mistakenly labels five as total: “Five are the new apples, not all the apples.”"
+            order: ["text1", "scene2", "text3"]
+        production:
+          purpose: "A situation can be shown"
+          pedagogicalIntent: "Original Section 1 — A situation can be shown; authoring draft only"
+          productionNotes: |-
+            1. **text**: “Seven apples sit on a plate. Five more are added. How could we show the story without doing the calculation first?”
+            2. **scene (proposed)**: One-Step Model Builder (Scene specification embedded in this config.yaml), add-to mode. A learner groups seven and five unit counters, labels the unknown total, and may inspect a part-whole bar with equal-unit lengths.
+            3. **text**: “We know seven to start and five arrive. We need the total. Our model shows both parts.” If the child mistakenly labels five as total: “Five are the new apples, not all the apples.”
+      section2:
+        config:
+          id: "a07405ed-56a4-4fe6-b1c6-d70b05febf6c"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Which expression matches?"
+            navigationLabel:
+              en: "Which expression matches?"
+          content:
+            items:
+              markdown1:
+                config:
+                  id: "db4072b6-7418-4115-917d-bc0c145db96b"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The two parts make the whole. A model with seven and five joining matches 7 + 5 = ?. The question mark is the unknown total."
+                production:
+                  purpose: "Which expression matches?; authored markdown block 1"
+                  specification: "1. **markdown**: “The two parts make the whole. A model with seven and five joining matches 7 + 5 = ?. The question mark is the unknown total.”"
+              scene2:
+                config:
+                  id: "89c0e4fc-de08-4de1-b500-9bc294a813ef"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "No apples are removed in this story."
+                production:
+                  purpose: "Which expression matches?; authored scene block 2"
+                  specification: |-
+                    # One-Step Model Builder — Scene Specification
+                    
+                    Status: Provisional Draft — pending Methodologist approval
+                    Owner: Educational Screenwriter
+                    Parent: [Lesson Content](.this config.yaml), Sections 1–4
+                    Methodologist source: [Draft Brief](.this config.yaml)
+                    
+                    ## Mathematical purpose
+                    
+                    A model must show the roles of known whole, known parts or initial/change amounts, and an unknown. Preserve quantity and the direction of change. Use same-sized discrete units for visual counters; any bar segments represent integer unit counts with a consistent scale. The diagram is not itself a calculation result.
+                    
+                    ## Experiences and learner actions
+                    
+                    1. **Addition, guided**: “Seven apples sit on a plate. Five more are added.” Let learner form labeled groups of seven existing and five incoming apples. Place a ? on their combined total, not on either known part. Ask which expression matches: 7+5=? or 7−5=?. Correct feedback: “Both groups join; the whole is unknown.” Incorrect: “Nothing was taken away.”
+                    2. With “Reveal total”, count all twelve and display “12 apples”. Keep the seven/five origin labels so the total does not replace their meaning. Wrong unit prompt: “We counted apples, not plates.”
+                    3. **Removal, guided**: “Twelve apples are present, five are eaten.” Twelve unit counters begin in a known-whole tray; remove or mark five, and mark the remaining unknown ?. Correct equation 12−5=? yields seven. Mistaken addition choice: “Five leave the original twelve.”
+                    4. **Independent transfer**: “Nine books on a desk. Four moved into a bag. How many remain on the desk?” Start fresh. Learner labels known nine, change of four leaving, remaining ?. Construct 9−4=? and reveal five books optionally. Incorrect model with 9 as unknown receives “The story already tells us nine books were on the desk.”
+                    5. Offer “Show the story”, “Try another model” and “Reset”; avoid gatekeeping explanatory feedback behind selecting a presumed correct response.
+                    
+                    ## Objects and state
+                    
+                    Equal-unit counters; visible before/added/removed/remaining regions; semantic part/whole labels; expression choices; keyboard-friendly +/- counter controls; reveal booleans; one active scenario. The model source data contains exact counts and a relationship type; the display derives final counts consistently. A changed physical model requires an updated displayed expression. No user score, Question, persistent mastery or shared scene-local state across Sections.
+                    
+                    ## Accessibility, localization and mobile/offline behavior
+                    
+                    Give a full nonvisual description of the relationship (“Nine initially, four removed, five remain”) only after reveal, and a description of known roles before reveal. Every action works by keyboard, switches and touch without drag, and conveys state with text not solely colored bars. RTL does not reverse before/after causality; labels follow language direction while arithmetic remains unambiguous. Translate all narratives and feedback for every locale, provide optional equivalent audio, reduced motion, focus management, small-screen reflow and offline assets. The scene takes no React props.
+                    
+                    ## Acceptance cases
+                    
+                    - 7+5=12 apples; “five” is added amount, not total.
+                    - 12−5=7 apples; removal is modeled as a known whole decreasing.
+                    - 9−4=5 books; nine is initially known, remaining count is unknown until reveal.
+                    - Choosing the wrong operation produces relationship-based feedback.
+                    - Diagrams with different visual arrangement but identical counts express the same modeled relationship.
+                    - Reset, RTL, keyboard, screen reader and offline mode preserve exact story roles.
+                    
+                    ## Dependencies and open questions
+                    
+                    A new self-contained Scene is proposed; the Coding Agent must verify existing resource renderer and translation context after approval. No component, API contract, scoring or Note persistence is implemented here.
+                    
+                    ## Placement 2: Which expression matches?
+                    
+                    2. **scene (proposed)**: Offer a visual model for 7 + 5 = ? and an incorrect model of 7 − 5 = ?. Children match the addition relationship, with exact feedback “No apples are removed in this story.”
+                  productionNotes: "Proposed unimplemented Scene, sourced from oneStepModelBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              text3:
+                config:
+                  id: "62c160b2-49f7-487d-bd8f-760856c0dd2b"
+                  slug: "text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Counting gives twelve apples. The unit is apples, not just the number twelve."
+                production:
+                  purpose: "Which expression matches?; authored text block 3"
+                  specification: "3. **text**: “Counting gives twelve apples. The unit is apples, not just the number twelve.”"
+            order: ["markdown1", "scene2", "text3"]
+        production:
+          purpose: "Which expression matches?"
+          pedagogicalIntent: "Original Section 2 — Which expression matches?; authoring draft only"
+          productionNotes: |-
+            1. **markdown**: “The two parts make the whole. A model with seven and five joining matches 7 + 5 = ?. The question mark is the unknown total.”
+            2. **scene (proposed)**: Offer a visual model for 7 + 5 = ? and an incorrect model of 7 − 5 = ?. Children match the addition relationship, with exact feedback “No apples are removed in this story.”
+            3. **text**: “Counting gives twelve apples. The unit is apples, not just the number twelve.”
+      section3:
+        config:
+          id: "9f74045a-57a4-4179-b0c6-d57806fec0ff"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A different story, a different model"
+            navigationLabel:
+              en: "A different story, a different model"
+          content:
+            items:
+              text1:
+                config:
+                  id: "6be544cb-31ee-4a28-8208-746d901becc2"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "There are twelve apples. Five are eaten. How many remain?"
+                production:
+                  purpose: "A different story, a different model; authored text block 1"
+                  specification: "1. **text**: “There are twelve apples. Five are eaten. How many remain?” Ask the learner to predict whether the first model still fits."
+              scene2:
+                config:
+                  id: "a5d8e58d-268b-4d00-990d-1ee38841771e"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "A different story, a different model"
+                production:
+                  purpose: "A different story, a different model; authored scene block 2"
+                  specification: |-
+                    # One-Step Model Builder — Scene Specification
+                    
+                    Status: Provisional Draft — pending Methodologist approval
+                    Owner: Educational Screenwriter
+                    Parent: [Lesson Content](.this config.yaml), Sections 1–4
+                    Methodologist source: [Draft Brief](.this config.yaml)
+                    
+                    ## Mathematical purpose
+                    
+                    A model must show the roles of known whole, known parts or initial/change amounts, and an unknown. Preserve quantity and the direction of change. Use same-sized discrete units for visual counters; any bar segments represent integer unit counts with a consistent scale. The diagram is not itself a calculation result.
+                    
+                    ## Experiences and learner actions
+                    
+                    1. **Addition, guided**: “Seven apples sit on a plate. Five more are added.” Let learner form labeled groups of seven existing and five incoming apples. Place a ? on their combined total, not on either known part. Ask which expression matches: 7+5=? or 7−5=?. Correct feedback: “Both groups join; the whole is unknown.” Incorrect: “Nothing was taken away.”
+                    2. With “Reveal total”, count all twelve and display “12 apples”. Keep the seven/five origin labels so the total does not replace their meaning. Wrong unit prompt: “We counted apples, not plates.”
+                    3. **Removal, guided**: “Twelve apples are present, five are eaten.” Twelve unit counters begin in a known-whole tray; remove or mark five, and mark the remaining unknown ?. Correct equation 12−5=? yields seven. Mistaken addition choice: “Five leave the original twelve.”
+                    4. **Independent transfer**: “Nine books on a desk. Four moved into a bag. How many remain on the desk?” Start fresh. Learner labels known nine, change of four leaving, remaining ?. Construct 9−4=? and reveal five books optionally. Incorrect model with 9 as unknown receives “The story already tells us nine books were on the desk.”
+                    5. Offer “Show the story”, “Try another model” and “Reset”; avoid gatekeeping explanatory feedback behind selecting a presumed correct response.
+                    
+                    ## Objects and state
+                    
+                    Equal-unit counters; visible before/added/removed/remaining regions; semantic part/whole labels; expression choices; keyboard-friendly +/- counter controls; reveal booleans; one active scenario. The model source data contains exact counts and a relationship type; the display derives final counts consistently. A changed physical model requires an updated displayed expression. No user score, Question, persistent mastery or shared scene-local state across Sections.
+                    
+                    ## Accessibility, localization and mobile/offline behavior
+                    
+                    Give a full nonvisual description of the relationship (“Nine initially, four removed, five remain”) only after reveal, and a description of known roles before reveal. Every action works by keyboard, switches and touch without drag, and conveys state with text not solely colored bars. RTL does not reverse before/after causality; labels follow language direction while arithmetic remains unambiguous. Translate all narratives and feedback for every locale, provide optional equivalent audio, reduced motion, focus management, small-screen reflow and offline assets. The scene takes no React props.
+                    
+                    ## Acceptance cases
+                    
+                    - 7+5=12 apples; “five” is added amount, not total.
+                    - 12−5=7 apples; removal is modeled as a known whole decreasing.
+                    - 9−4=5 books; nine is initially known, remaining count is unknown until reveal.
+                    - Choosing the wrong operation produces relationship-based feedback.
+                    - Diagrams with different visual arrangement but identical counts express the same modeled relationship.
+                    - Reset, RTL, keyboard, screen reader and offline mode preserve exact story roles.
+                    
+                    ## Dependencies and open questions
+                    
+                    A new self-contained Scene is proposed; the Coding Agent must verify existing resource renderer and translation context after approval. No component, API contract, scoring or Note persistence is implemented here.
+                    
+                    ## Placement 3: A different story, a different model
+                    
+                    2. **scene (proposed)**: Builder remove-from mode. Twelve counters start as known whole; five are marked removed, and the remaining quantity is the unknown: 12 − 5 = ?.
+                  productionNotes: "Proposed unimplemented Scene, sourced from oneStepModelBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              text3:
+                config:
+                  id: "6de547f1-33ee-4d4e-8008-71478e1be99c"
+                  slug: "text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The model must keep track of what the twelve and the five mean. The seven left are the answer."
+                production:
+                  purpose: "A different story, a different model; authored text block 3"
+                  specification: "3. **text**: “The model must keep track of what the twelve and the five mean. The seven left are the answer.” If the learner chooses 12 + 5: “The story says five are taken away, not added.”"
+            order: ["text1", "scene2", "text3"]
+        production:
+          purpose: "A different story, a different model"
+          pedagogicalIntent: "Original Section 3 — A different story, a different model; authoring draft only"
+          productionNotes: |-
+            1. **text**: “There are twelve apples. Five are eaten. How many remain?” Ask the learner to predict whether the first model still fits.
+            2. **scene (proposed)**: Builder remove-from mode. Twelve counters start as known whole; five are marked removed, and the remaining quantity is the unknown: 12 − 5 = ?.
+            3. **text**: “The model must keep track of what the twelve and the five mean. The seven left are the answer.” If the learner chooses 12 + 5: “The story says five are taken away, not added.”
+      section4:
+        config:
+          id: "9a73fc7b-58a4-430c-b7c6-e07d03febc46"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Transfer without a hint"
+            navigationLabel:
+              en: "Transfer without a hint"
+          content:
+            items:
+              text1:
+                config:
+                  id: "88aa285e-1f30-44f1-b1ca-439c800b0137"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Nine books are on a desk. Four are moved into a bag. Draw or assemble a model. What is known and unknown?"
+                production:
+                  purpose: "Transfer without a hint; authored text block 1"
+                  specification: "1. **text**: “Nine books are on a desk. Four are moved into a bag. Draw or assemble a model. What is known and unknown?”"
+              scene2:
+                config:
+                  id: "fcafca92-f3a1-458f-a544-a66ca97a1141"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Transfer without a hint"
+                production:
+                  purpose: "Transfer without a hint; authored scene block 2"
+                  specification: |-
+                    # One-Step Model Builder — Scene Specification
+                    
+                    Status: Provisional Draft — pending Methodologist approval
+                    Owner: Educational Screenwriter
+                    Parent: [Lesson Content](.this config.yaml), Sections 1–4
+                    Methodologist source: [Draft Brief](.this config.yaml)
+                    
+                    ## Mathematical purpose
+                    
+                    A model must show the roles of known whole, known parts or initial/change amounts, and an unknown. Preserve quantity and the direction of change. Use same-sized discrete units for visual counters; any bar segments represent integer unit counts with a consistent scale. The diagram is not itself a calculation result.
+                    
+                    ## Experiences and learner actions
+                    
+                    1. **Addition, guided**: “Seven apples sit on a plate. Five more are added.” Let learner form labeled groups of seven existing and five incoming apples. Place a ? on their combined total, not on either known part. Ask which expression matches: 7+5=? or 7−5=?. Correct feedback: “Both groups join; the whole is unknown.” Incorrect: “Nothing was taken away.”
+                    2. With “Reveal total”, count all twelve and display “12 apples”. Keep the seven/five origin labels so the total does not replace their meaning. Wrong unit prompt: “We counted apples, not plates.”
+                    3. **Removal, guided**: “Twelve apples are present, five are eaten.” Twelve unit counters begin in a known-whole tray; remove or mark five, and mark the remaining unknown ?. Correct equation 12−5=? yields seven. Mistaken addition choice: “Five leave the original twelve.”
+                    4. **Independent transfer**: “Nine books on a desk. Four moved into a bag. How many remain on the desk?” Start fresh. Learner labels known nine, change of four leaving, remaining ?. Construct 9−4=? and reveal five books optionally. Incorrect model with 9 as unknown receives “The story already tells us nine books were on the desk.”
+                    5. Offer “Show the story”, “Try another model” and “Reset”; avoid gatekeeping explanatory feedback behind selecting a presumed correct response.
+                    
+                    ## Objects and state
+                    
+                    Equal-unit counters; visible before/added/removed/remaining regions; semantic part/whole labels; expression choices; keyboard-friendly +/- counter controls; reveal booleans; one active scenario. The model source data contains exact counts and a relationship type; the display derives final counts consistently. A changed physical model requires an updated displayed expression. No user score, Question, persistent mastery or shared scene-local state across Sections.
+                    
+                    ## Accessibility, localization and mobile/offline behavior
+                    
+                    Give a full nonvisual description of the relationship (“Nine initially, four removed, five remain”) only after reveal, and a description of known roles before reveal. Every action works by keyboard, switches and touch without drag, and conveys state with text not solely colored bars. RTL does not reverse before/after causality; labels follow language direction while arithmetic remains unambiguous. Translate all narratives and feedback for every locale, provide optional equivalent audio, reduced motion, focus management, small-screen reflow and offline assets. The scene takes no React props.
+                    
+                    ## Acceptance cases
+                    
+                    - 7+5=12 apples; “five” is added amount, not total.
+                    - 12−5=7 apples; removal is modeled as a known whole decreasing.
+                    - 9−4=5 books; nine is initially known, remaining count is unknown until reveal.
+                    - Choosing the wrong operation produces relationship-based feedback.
+                    - Diagrams with different visual arrangement but identical counts express the same modeled relationship.
+                    - Reset, RTL, keyboard, screen reader and offline mode preserve exact story roles.
+                    
+                    ## Dependencies and open questions
+                    
+                    A new self-contained Scene is proposed; the Coding Agent must verify existing resource renderer and translation context after approval. No component, API contract, scoring or Note persistence is implemented here.
+                    
+                    ## Placement 4: Transfer without a hint
+                    
+                    2. **scene (proposed)**: Fresh builder state with labeled counter alternative. Correct initial model: nine as whole, four removed, five remaining unknown; equation 9 − 4 = ?; answer five books.
+                  productionNotes: "Proposed unimplemented Scene, sourced from oneStepModelBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              text3:
+                config:
+                  id: "86aa2538-1d30-41cb-b3ca-46c2820b045d"
+                  slug: "text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A good model explains the change. We knew nine books and four moved away. Five stayed on the desk."
+                production:
+                  purpose: "Transfer without a hint; authored text block 3"
+                  specification: "3. **text**: Reveal after reflection: “A good model explains the change. We knew nine books and four moved away. Five stayed on the desk.” Incorrect arrangement feedback: “Check whether the whole existed before the change.”"
+              markdown4:
+                config:
+                  id: "c6742b23-e2b6-45c4-8527-5d853bc70116"
+                  slug: "markdown4"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Remember: **show the relationship before choosing the operation**."
+                production:
+                  purpose: "Transfer without a hint; authored markdown block 4"
+                  specification: "4. **markdown**: “Remember: **show the relationship before choosing the operation**.”"
+            order: ["text1", "scene2", "text3", "markdown4"]
+        production:
+          purpose: "Transfer without a hint"
+          pedagogicalIntent: "Original Section 4 — Transfer without a hint; authoring draft only"
+          productionNotes: |-
+            1. **text**: “Nine books are on a desk. Four are moved into a bag. Draw or assemble a model. What is known and unknown?”
+            2. **scene (proposed)**: Fresh builder state with labeled counter alternative. Correct initial model: nine as whole, four removed, five remaining unknown; equation 9 − 4 = ?; answer five books.
+            3. **text**: Reveal after reflection: “A good model explains the change. We knew nine books and four moved away. Five stayed on the desk.” Incorrect arrangement feedback: “Check whether the whole existed before the change.”
+            4. **markdown**: “Remember: **show the relationship before choosing the operation**.”
+    order: ["section1", "section2", "section3", "section4"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |-
+    # Show the Story Before You Solve — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: buildOneStepProblemModel
+    Methodologist status: Draft
+    Code: Not implemented
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Develop the capacity to represent a one-step quantitative situation with meaningful groups, bars or expressions, keeping the unknown distinct from known information.
+    
+    ## Target audience
+    
+    **Primary audience: Grade 2.** Use short clear instructions, optional audio read-aloud, large touch targets and a nonvisual text representation. This is an instructional depth decision for the Lesson, not a grade restriction on the canonical Skill.
+    
+    ## Prerequisites
+    
+    - Identify known/unknown quantities in a word problem, add/subtract within twenty and distinguish a part from a whole.
+    
+    ## Target Skills
+    
+    - [oneStepModel.data.ts](../../../../data/skills/problemSolving/models/skills/oneStepModel.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Construct a concrete or diagrammatic representation preserving quantities and relationships; write a matching single-operation expression; distinguish a model that represents the story from a visually similar but incorrect one; interpret the result with its unit.
+    
+    ## Essential subject matter
+    
+    For '7 apples are on a plate and 5 are added', model the initial 7 and the additional 5 as parts of an unknown total: 7 + 5 = ?. For '12 apples, 5 are eaten', total 12 is known, removal 5 is known and remaining number is unknown: 12 − 5 = ?. A correct model must preserve the roles of whole, parts and direction of change, rather than merely display both numerals.
+    
+    ## Conceptual progression and dependencies
+    
+    Connect narrative to movable counters, then label a part-whole or before/change/after diagram, then select the matching one-step mathematical expression without depending on superficial keywords.
+    
+    ## Misconceptions, examples and boundaries
+    
+    Two bars of different lengths are not inherently meaningful without an explicit scale. Do not encode 'more' as always add. Avoid two-step, multiplicative, fractional or proportional problems. Graphical lengths can mislead when proportions are inconsistent; provide labeled equal-unit counters.
+    
+    ## Localization, accessibility and offline intent
+    
+    The English examples are editorial source text; genuine translations must be authored for every supported locale before implementation. All quantities, relationships, labels, hints and feedback must remain available in text and not only color, movement or audio. Preserve mathematical relationship order in RTL; do not blindly mirror a number line. Every action needs keyboard and touch alternatives, visible focus, 200% zoom and screen-reader descriptions. Illustrations must have equivalent descriptions; motion is optional. Deliver complete instructional media for offline use; do not promise Note persistence or scoring.
+    
+    ## Sources and factual verification
+    
+    - [Canonical Mathematics Skill data](../../../../data/skills/problemSolving/models/skills/oneStepModel.data.ts) — preserve its competency definition and UUID.
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) — consulted only as general age-progression context, not a claim of approved Curriculum alignment.
+    
+    ## Curriculum / Program compatibility
+    
+    Not specified. This Lesson is autonomous and Program-neutral.
+    
+    ## Open editorial decisions
+    
+    - Editor must approve target grade, learning boundaries and the mapping to the linked canonical Skills before any formal Content approval.
+    
+    ## Methodologist handoff
+    
+    **Draft pending approval.** The companion Content (incorporated in this config.yaml) and any Scene specifications (Scene specifications embedded in this config.yaml) are provisional review materials authorized for concurrent preparation, not evidence that the Methodologist approval gate has passed.
+  purpose: "Show the Story Before You Solve"
+  productionNotes: |-
+    Provisional English-only Screenwriter source. Full original introduction, lesson-wide requirements, dependencies and review handoff:
+    
+    # Show the Story Before You Solve — Lesson Content
+    
+    Content status: Provisional Draft — pending Methodologist approval
+    Owner: Educational Screenwriter
+    Methodologist input: Draft Brief (incorporated in this config.yaml)
+    Program dependence: None
+    Implementation: Not implemented
+    
+    
+    
+    ## Access and production constraints
+    
+    All blocks in each Section are in vertical order; the Builder is proposed. Every counter group is textually described with group roles and units. Keyboard/tap actions replace dragging, and unknowns are labeled rather than encoded by color alone. RTL adjusts reading order while preserving before/change/after sequence and part-whole semantics. Localize all story and mathematical feedback for all supported locales; support zoom, contrast, reduced motion and full offline use. No scored Questions, Quiz or persistent Note behavior.
+    
+    ## Review handoff
+    
+    Provisional pending Methodologist Brief (incorporated in this config.yaml) approval. Model Builder Scene specification (Scene specification embedded in this config.yaml).
+    
+    Source locale is English. Planned supported languages follow the 29 currently defined Engine locales; verify exact lesson-specific locale scope editorially. No translations, scored Quiz, Question Bank, Flashcard Bank, assets, or Scene implementations were produced. Methodology/Screenwriter approval remains pending.

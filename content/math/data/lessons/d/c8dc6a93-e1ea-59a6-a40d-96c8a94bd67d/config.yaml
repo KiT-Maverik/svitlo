@@ -1,0 +1,633 @@
+# Draft editorial migration, not approved; no runtime Scene implementation.
+config:
+  id: "c8dc6a93-e1ea-59a6-a40d-96c8a94bd67d"
+  slug: "howManyMoreOrFewer"
+  type: "lesson"
+  skills: ["6ec0b82a-2cb0-4875-a327-dc292e6624c0"]
+  params:
+    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "How Many More or Fewer?"
+  section:
+    items:
+      section1:
+        config:
+          id: "2511bf30-3bda-43fb-affe-aba2d1901edd"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "When each object has a partner"
+            navigationLabel:
+              en: "When each object has a partner"
+          content:
+            items:
+              text1:
+                config:
+                  id: "b538ebe5-ac9d-43de-9f0d-88f35e463c7c"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Lena has 8 pencils. Danylo has 8 pencils. How many more pencils does one have than the other? Look at matching pairs."
+                production:
+                  purpose: "When each object has a partner; authored text block 1"
+                  specification: "1. **`text` Resource:** “Lena has **8 pencils**. Danylo has **8 pencils**. How many **more** pencils does one have than the other? Look at matching pairs.”"
+              scene2:
+                config:
+                  id: "890de18b-1546-4512-a63c-dae58daa3ecc"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "eight paired, zero left unmatched."
+                production:
+                  purpose: "When each object has a partner; authored scene block 2"
+                  specification: |-
+                    # Comparison Gap Lab — Scene Specification
+                    
+                    **Status:** Provisional Draft — awaiting Methodologist/editor approval.  
+                    **Owner:** Educational Screenwriter.  
+                    **Parent:** [Lesson Content](.this config.yaml), Sections 1–4; [Draft Brief](.this config.yaml).  
+                    **Technical status:** Proposed self-contained and prop-free Scene; not implemented.
+                    
+                    ## Learner purpose and invariant
+                    
+                    The difference between two nonnegative counts of the **same unit** is the number of unmatched objects when each member of the smaller group is paired one-to-one with one member of the larger group. Changing “how many more does A have?” to “how many fewer does B have?” changes the _perspective_ but not the nonnegative numerical gap for the same two fixed counts. Do not confuse this gap with a combined total or with a multiplicative ratio.
+                    
+                    ## Scenario A — same count, no excess (Section 1)
+                    
+                    Two labeled collections each contain **8 pencils**: Lena=8, Danylo=8. Show an optional pairing animation with manual “Pair next” and “Pair all” buttons. All eight pairs match and **0 pencils remain unmatched**. Ask “How many more does either have?” Expected “zero”. If a child answers sixteen, say “Sixteen would count _both collections together_, not how many one exceeds the other.” If learner says eight, say “Eight is the count of each collection, not an extra group.” The comparison result is explicitly shown as 8−8=0.
+                    
+                    ## Scenario B — unmatched difference (Section 2)
+                    
+                    Lena=13 pencils, Danylo=9 pencils. Let the child reveal nine one-to-one pairs, then visibly and textually count **four unmatched pencils in Lena's collection**. Correct expression **13 − 9 = 4** and phrasing “Lena has four more pencils.” A prediction of 22 prompts “That counts both complete groups instead of the excess.” A prediction of thirteen prompts “That is Lena's full collection, not the unmatched part.” The visual groups must have a consistent equal-unit size, not a chart with arbitrary scales.
+                    
+                    ## Scenario C — ask from the other side (Section 3)
+                    
+                    Reuse **exact same counts thirteen and nine** in a fresh self-contained instance. Display both phrases:
+                    
+                    - “How many **more** pencils does Lena have than Danylo?”
+                    - “How many **fewer** pencils does Danylo have than Lena?”
+                      Both ask for the _same nonnegative gap_ **4 pencils**. Learner can switch which sentence is read while no object count changes. If answer changes only because wording changes, say “Nine pairs match either way, leaving four in Lena's group. The number four is still the difference.” If group names are reversed, update the verbal relation, not mathematical counts.
+                    
+                    ## Scenario D — independent transfer (Section 4)
+                    
+                    Story: **18 small books** and **11 large books** on a shelf. Ask “How many more small books than large books?” Start with only the two named counts and a completely optional matching model. Learner can form 18−11 and submit **7 books**. A hint first identifies which count is larger; a second shows pairing eleven. Candidate 29 feedback: “That would answer how many books in both categories together, not the difference.” Candidate 7 feedback: “Seven is the gap; it does _not_ mean only seven small books exist.” “Show answer and reasoning” stays available at all times.
+                    
+                    ## Interaction objects, state and numeric rules
+                    
+                    Scenario-local integers nA, nB, unit and named group, number of revealed one-to-one pairs bounded by min(nA,nB), computed unpaired count |nA−nB|, learner's predicted gap, text wording selection, hint/reveal state and Reset. The canonical Grade 2 examples never need negative arithmetic or a “times as many” calculation. Render every object group with explicit count labels; if a drawing does not fit a small screen, a structured accessible table/ledger reports original counts, pairs and unmatched items. The answer “four pencils” refers to gap, not new group size. A single fixed scenario is owned by each **public no-props Scene instance**; scenario switching does not require hidden external props.
+                    
+                    ## Accessible and translated presentation
+                    
+                    Each pair can be inspected in keyboard order by two clearly named group roles, with “pair next,” “pair all,” “clear pairs,” “show numeric difference,” “reset” controls. Optional drag or animation must have identical keyboard/switch/tap alternative. Screen readers announce “nine matched pairs; four Lena pencils without a partner” and the numeric difference, without relying on color or an arrow's physical direction. RTL can rearrange labels and logical focus but must preserve which group has more and the subtraction larger minus smaller. Use real translations for all locales of quantifiers, “more/fewer,” group names, counts, unit plurals, aria-like labels and feedback, with no English fallback. Offer reduced motion, visible focus, zoom/reflow, high-contrast non-color-only coding and full selected-locale offline resources after download. This is future design intent, not proof of shipped PWA.
+                    
+                    ## Acceptance cases
+                    
+                    1. Eight versus eight pencils gives eight matched pairs and gap zero.
+                    2. Thirteen versus nine yields nine matched pairs, four unmatched in larger group and 13−9=4.
+                    3. “Four more” / “four fewer” use the same fixed gap, with direction correctly attributed to named child.
+                    4. Eighteen versus eleven books yields 7 books gap, not 29 combined; “seven books” is not the small-book total.
+                    5. All incorrect predictions get explanatory, quantity-specific feedback rather than scores.
+                    6. Independent reset, keyboard/screen-reader, touch, RTL, zoom, reduced motion and downloaded offline paths preserve equal math.
+                    
+                    ## Technical/editorial dependencies
+                    
+                    The generic Scene resource can eventually render this prop-free Scene, but no working implementation, scoring contract or translated dictionary is asserted. Coding Agent must implement and test mathematical invariants and access paths after editor approval. No Questions, Quizzes, grading, Note events, persistence or background service calls are designed here.
+                    
+                    ## Placement 1: When each object has a partner
+                    
+                    2. **`scene` Resource (proposed):** Comparison Gap Lab (Scene specification embedded in this config.yaml), entry A. Eight countable pencil icons in each labeled row, plus a matching ledger “eight paired, zero left unmatched.” Learner reveals one matched pair at a time or “Show all pairs”. Feedback: “All eight have partners; **zero pencils more**.”
+                  productionNotes: "Proposed unimplemented Scene, sourced from comparisonGapLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              text3:
+                config:
+                  id: "b338e8bf-aa9d-40b8-a10d-8c1960463fa2"
+                  slug: "text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "More does not mean we should add here. The question asks what the gap is, and the groups are equal."
+                production:
+                  purpose: "When each object has a partner; authored text block 3"
+                  specification: "3. **`text`:** “More does not mean we should add here. The question asks **what the gap is**, and the groups are equal.”"
+              markdown4:
+                config:
+                  id: "3517a860-9ad7-4ea3-827c-900aee040de5"
+                  slug: "markdown4"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A comparison gap is how many units are **not matched** in the larger group. Equal groups have a gap of zero."
+                production:
+                  purpose: "When each object has a partner; authored markdown block 4"
+                  specification: "4. **`markdown`:** “A comparison gap is how many units are **not matched** in the larger group. Equal groups have a gap of zero.”"
+            order: ["text1", "scene2", "text3", "markdown4"]
+        production:
+          purpose: "When each object has a partner"
+          pedagogicalIntent: "Original Section 1 — When each object has a partner; authoring draft only"
+          productionNotes: |-
+            _Purpose: discover a zero difference through pairing._
+            
+            1. **`text` Resource:** “Lena has **8 pencils**. Danylo has **8 pencils**. How many **more** pencils does one have than the other? Look at matching pairs.”
+            2. **`scene` Resource (proposed):** Comparison Gap Lab (Scene specification embedded in this config.yaml), entry A. Eight countable pencil icons in each labeled row, plus a matching ledger “eight paired, zero left unmatched.” Learner reveals one matched pair at a time or “Show all pairs”. Feedback: “All eight have partners; **zero pencils more**.”
+            3. **`text`:** “More does not mean we should add here. The question asks **what the gap is**, and the groups are equal.”
+            4. **`markdown`:** “A comparison gap is how many units are **not matched** in the larger group. Equal groups have a gap of zero.”
+      section2:
+        config:
+          id: "2811c3e9-3cda-458e-aefe-aa0fce901a24"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "What stays unmatched?"
+            navigationLabel:
+              en: "What stays unmatched?"
+          content:
+            items:
+              text1:
+                config:
+                  id: "29879318-9cab-4b5f-b30b-b152392ad7e9"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Lena has 13 pencils; Danylo has 9 pencils. How many more does Lena have?"
+                production:
+                  purpose: "What stays unmatched?; authored text block 1"
+                  specification: "1. **`text`:** “Lena has **13 pencils**; Danylo has **9 pencils**. **How many more** does Lena have?” Invite a prediction before doing any calculation."
+              scene2:
+                config:
+                  id: "f214ba90-6c98-44d9-9355-a30e3afba837"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "What stays unmatched?"
+                production:
+                  purpose: "What stays unmatched?; authored scene block 2"
+                  specification: |-
+                    # Comparison Gap Lab — Scene Specification
+                    
+                    **Status:** Provisional Draft — awaiting Methodologist/editor approval.  
+                    **Owner:** Educational Screenwriter.  
+                    **Parent:** [Lesson Content](.this config.yaml), Sections 1–4; [Draft Brief](.this config.yaml).  
+                    **Technical status:** Proposed self-contained and prop-free Scene; not implemented.
+                    
+                    ## Learner purpose and invariant
+                    
+                    The difference between two nonnegative counts of the **same unit** is the number of unmatched objects when each member of the smaller group is paired one-to-one with one member of the larger group. Changing “how many more does A have?” to “how many fewer does B have?” changes the _perspective_ but not the nonnegative numerical gap for the same two fixed counts. Do not confuse this gap with a combined total or with a multiplicative ratio.
+                    
+                    ## Scenario A — same count, no excess (Section 1)
+                    
+                    Two labeled collections each contain **8 pencils**: Lena=8, Danylo=8. Show an optional pairing animation with manual “Pair next” and “Pair all” buttons. All eight pairs match and **0 pencils remain unmatched**. Ask “How many more does either have?” Expected “zero”. If a child answers sixteen, say “Sixteen would count _both collections together_, not how many one exceeds the other.” If learner says eight, say “Eight is the count of each collection, not an extra group.” The comparison result is explicitly shown as 8−8=0.
+                    
+                    ## Scenario B — unmatched difference (Section 2)
+                    
+                    Lena=13 pencils, Danylo=9 pencils. Let the child reveal nine one-to-one pairs, then visibly and textually count **four unmatched pencils in Lena's collection**. Correct expression **13 − 9 = 4** and phrasing “Lena has four more pencils.” A prediction of 22 prompts “That counts both complete groups instead of the excess.” A prediction of thirteen prompts “That is Lena's full collection, not the unmatched part.” The visual groups must have a consistent equal-unit size, not a chart with arbitrary scales.
+                    
+                    ## Scenario C — ask from the other side (Section 3)
+                    
+                    Reuse **exact same counts thirteen and nine** in a fresh self-contained instance. Display both phrases:
+                    
+                    - “How many **more** pencils does Lena have than Danylo?”
+                    - “How many **fewer** pencils does Danylo have than Lena?”
+                      Both ask for the _same nonnegative gap_ **4 pencils**. Learner can switch which sentence is read while no object count changes. If answer changes only because wording changes, say “Nine pairs match either way, leaving four in Lena's group. The number four is still the difference.” If group names are reversed, update the verbal relation, not mathematical counts.
+                    
+                    ## Scenario D — independent transfer (Section 4)
+                    
+                    Story: **18 small books** and **11 large books** on a shelf. Ask “How many more small books than large books?” Start with only the two named counts and a completely optional matching model. Learner can form 18−11 and submit **7 books**. A hint first identifies which count is larger; a second shows pairing eleven. Candidate 29 feedback: “That would answer how many books in both categories together, not the difference.” Candidate 7 feedback: “Seven is the gap; it does _not_ mean only seven small books exist.” “Show answer and reasoning” stays available at all times.
+                    
+                    ## Interaction objects, state and numeric rules
+                    
+                    Scenario-local integers nA, nB, unit and named group, number of revealed one-to-one pairs bounded by min(nA,nB), computed unpaired count |nA−nB|, learner's predicted gap, text wording selection, hint/reveal state and Reset. The canonical Grade 2 examples never need negative arithmetic or a “times as many” calculation. Render every object group with explicit count labels; if a drawing does not fit a small screen, a structured accessible table/ledger reports original counts, pairs and unmatched items. The answer “four pencils” refers to gap, not new group size. A single fixed scenario is owned by each **public no-props Scene instance**; scenario switching does not require hidden external props.
+                    
+                    ## Accessible and translated presentation
+                    
+                    Each pair can be inspected in keyboard order by two clearly named group roles, with “pair next,” “pair all,” “clear pairs,” “show numeric difference,” “reset” controls. Optional drag or animation must have identical keyboard/switch/tap alternative. Screen readers announce “nine matched pairs; four Lena pencils without a partner” and the numeric difference, without relying on color or an arrow's physical direction. RTL can rearrange labels and logical focus but must preserve which group has more and the subtraction larger minus smaller. Use real translations for all locales of quantifiers, “more/fewer,” group names, counts, unit plurals, aria-like labels and feedback, with no English fallback. Offer reduced motion, visible focus, zoom/reflow, high-contrast non-color-only coding and full selected-locale offline resources after download. This is future design intent, not proof of shipped PWA.
+                    
+                    ## Acceptance cases
+                    
+                    1. Eight versus eight pencils gives eight matched pairs and gap zero.
+                    2. Thirteen versus nine yields nine matched pairs, four unmatched in larger group and 13−9=4.
+                    3. “Four more” / “four fewer” use the same fixed gap, with direction correctly attributed to named child.
+                    4. Eighteen versus eleven books yields 7 books gap, not 29 combined; “seven books” is not the small-book total.
+                    5. All incorrect predictions get explanatory, quantity-specific feedback rather than scores.
+                    6. Independent reset, keyboard/screen-reader, touch, RTL, zoom, reduced motion and downloaded offline paths preserve equal math.
+                    
+                    ## Technical/editorial dependencies
+                    
+                    The generic Scene resource can eventually render this prop-free Scene, but no working implementation, scoring contract or translated dictionary is asserted. Coding Agent must implement and test mathematical invariants and access paths after editor approval. No Questions, Quizzes, grading, Note events, persistence or background service calls are designed here.
+                    
+                    ## Placement 2: What stays unmatched?
+                    
+                    2. **`scene` Resource (proposed):** Gap Lab entry B presents thirteen and nine equal-unit counters with labels and optional pair-reveal controls. Pair nine from each group, leave **4 unpaired** in Lena's group. Model **13 − 9 = 4 pencils**. Offer accessible nonvisual count summary at every reveal.
+                  productionNotes: "Proposed unimplemented Scene, sourced from comparisonGapLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              text3:
+                config:
+                  id: "2b87963e-9eab-4e85-b10b-ae2c372ad4c3"
+                  slug: "text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Thirteen plus nine counts both collections together, not the difference."
+                production:
+                  purpose: "What stays unmatched?; authored text block 3"
+                  specification: "3. **`text`, feedback:** For 22: “Thirteen plus nine counts **both collections together**, not the difference.” For 4: “Nine match nine; four remain without partners.”"
+              markdown4:
+                config:
+                  id: "dbbad2a9-c968-4c6e-865e-a7df5d2dc7ac"
+                  slug: "markdown4"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The **larger amount minus the smaller amount** gives the nonnegative gap: **13 − 9 = 4**. The answer is ‘four more pencils’, not just an unlabeled four."
+                production:
+                  purpose: "What stays unmatched?; authored markdown block 4"
+                  specification: "4. **`markdown`:** “The **larger amount minus the smaller amount** gives the nonnegative gap: **13 − 9 = 4**. The answer is ‘four more pencils’, not just an unlabeled four.”"
+            order: ["text1", "scene2", "text3", "markdown4"]
+        production:
+          purpose: "What stays unmatched?"
+          pedagogicalIntent: "Original Section 2 — What stays unmatched?; authoring draft only"
+          productionNotes: |-
+            _Purpose: establish the quantitative meaning of subtraction._
+            
+            1. **`text`:** “Lena has **13 pencils**; Danylo has **9 pencils**. **How many more** does Lena have?” Invite a prediction before doing any calculation.
+            2. **`scene` Resource (proposed):** Gap Lab entry B presents thirteen and nine equal-unit counters with labels and optional pair-reveal controls. Pair nine from each group, leave **4 unpaired** in Lena's group. Model **13 − 9 = 4 pencils**. Offer accessible nonvisual count summary at every reveal.
+            3. **`text`, feedback:** For 22: “Thirteen plus nine counts **both collections together**, not the difference.” For 4: “Nine match nine; four remain without partners.”
+            4. **`markdown`:** “The **larger amount minus the smaller amount** gives the nonnegative gap: **13 − 9 = 4**. The answer is ‘four more pencils’, not just an unlabeled four.”
+      section3:
+        config:
+          id: "2711c256-3dda-4721-adfe-a87ccf901bb7"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "“Fewer” changes the wording, not the gap"
+            navigationLabel:
+              en: "“Fewer” changes the wording, not the gap"
+          content:
+            items:
+              text1:
+                config:
+                  id: "0c224707-387b-44f0-ab9a-60e1555d169a"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Lena has thirteen pencils and Danylo nine. How many fewer pencils does Danylo have than Lena? Is the answer different from ‘how many more does Lena have’?"
+                production:
+                  purpose: "“Fewer” changes the wording, not the gap; authored text block 1"
+                  specification: "1. **`text`:** “Lena has thirteen pencils and Danylo nine. How many **fewer** pencils does Danylo have than Lena? Is the answer different from ‘how many more does Lena have’?”"
+              scene2:
+                config:
+                  id: "c5c2beb1-2388-4b58-8b8b-7c1f223197e6"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "More than"
+                production:
+                  purpose: "“Fewer” changes the wording, not the gap; authored scene block 2"
+                  specification: |-
+                    # Comparison Gap Lab — Scene Specification
+                    
+                    **Status:** Provisional Draft — awaiting Methodologist/editor approval.  
+                    **Owner:** Educational Screenwriter.  
+                    **Parent:** [Lesson Content](.this config.yaml), Sections 1–4; [Draft Brief](.this config.yaml).  
+                    **Technical status:** Proposed self-contained and prop-free Scene; not implemented.
+                    
+                    ## Learner purpose and invariant
+                    
+                    The difference between two nonnegative counts of the **same unit** is the number of unmatched objects when each member of the smaller group is paired one-to-one with one member of the larger group. Changing “how many more does A have?” to “how many fewer does B have?” changes the _perspective_ but not the nonnegative numerical gap for the same two fixed counts. Do not confuse this gap with a combined total or with a multiplicative ratio.
+                    
+                    ## Scenario A — same count, no excess (Section 1)
+                    
+                    Two labeled collections each contain **8 pencils**: Lena=8, Danylo=8. Show an optional pairing animation with manual “Pair next” and “Pair all” buttons. All eight pairs match and **0 pencils remain unmatched**. Ask “How many more does either have?” Expected “zero”. If a child answers sixteen, say “Sixteen would count _both collections together_, not how many one exceeds the other.” If learner says eight, say “Eight is the count of each collection, not an extra group.” The comparison result is explicitly shown as 8−8=0.
+                    
+                    ## Scenario B — unmatched difference (Section 2)
+                    
+                    Lena=13 pencils, Danylo=9 pencils. Let the child reveal nine one-to-one pairs, then visibly and textually count **four unmatched pencils in Lena's collection**. Correct expression **13 − 9 = 4** and phrasing “Lena has four more pencils.” A prediction of 22 prompts “That counts both complete groups instead of the excess.” A prediction of thirteen prompts “That is Lena's full collection, not the unmatched part.” The visual groups must have a consistent equal-unit size, not a chart with arbitrary scales.
+                    
+                    ## Scenario C — ask from the other side (Section 3)
+                    
+                    Reuse **exact same counts thirteen and nine** in a fresh self-contained instance. Display both phrases:
+                    
+                    - “How many **more** pencils does Lena have than Danylo?”
+                    - “How many **fewer** pencils does Danylo have than Lena?”
+                      Both ask for the _same nonnegative gap_ **4 pencils**. Learner can switch which sentence is read while no object count changes. If answer changes only because wording changes, say “Nine pairs match either way, leaving four in Lena's group. The number four is still the difference.” If group names are reversed, update the verbal relation, not mathematical counts.
+                    
+                    ## Scenario D — independent transfer (Section 4)
+                    
+                    Story: **18 small books** and **11 large books** on a shelf. Ask “How many more small books than large books?” Start with only the two named counts and a completely optional matching model. Learner can form 18−11 and submit **7 books**. A hint first identifies which count is larger; a second shows pairing eleven. Candidate 29 feedback: “That would answer how many books in both categories together, not the difference.” Candidate 7 feedback: “Seven is the gap; it does _not_ mean only seven small books exist.” “Show answer and reasoning” stays available at all times.
+                    
+                    ## Interaction objects, state and numeric rules
+                    
+                    Scenario-local integers nA, nB, unit and named group, number of revealed one-to-one pairs bounded by min(nA,nB), computed unpaired count |nA−nB|, learner's predicted gap, text wording selection, hint/reveal state and Reset. The canonical Grade 2 examples never need negative arithmetic or a “times as many” calculation. Render every object group with explicit count labels; if a drawing does not fit a small screen, a structured accessible table/ledger reports original counts, pairs and unmatched items. The answer “four pencils” refers to gap, not new group size. A single fixed scenario is owned by each **public no-props Scene instance**; scenario switching does not require hidden external props.
+                    
+                    ## Accessible and translated presentation
+                    
+                    Each pair can be inspected in keyboard order by two clearly named group roles, with “pair next,” “pair all,” “clear pairs,” “show numeric difference,” “reset” controls. Optional drag or animation must have identical keyboard/switch/tap alternative. Screen readers announce “nine matched pairs; four Lena pencils without a partner” and the numeric difference, without relying on color or an arrow's physical direction. RTL can rearrange labels and logical focus but must preserve which group has more and the subtraction larger minus smaller. Use real translations for all locales of quantifiers, “more/fewer,” group names, counts, unit plurals, aria-like labels and feedback, with no English fallback. Offer reduced motion, visible focus, zoom/reflow, high-contrast non-color-only coding and full selected-locale offline resources after download. This is future design intent, not proof of shipped PWA.
+                    
+                    ## Acceptance cases
+                    
+                    1. Eight versus eight pencils gives eight matched pairs and gap zero.
+                    2. Thirteen versus nine yields nine matched pairs, four unmatched in larger group and 13−9=4.
+                    3. “Four more” / “four fewer” use the same fixed gap, with direction correctly attributed to named child.
+                    4. Eighteen versus eleven books yields 7 books gap, not 29 combined; “seven books” is not the small-book total.
+                    5. All incorrect predictions get explanatory, quantity-specific feedback rather than scores.
+                    6. Independent reset, keyboard/screen-reader, touch, RTL, zoom, reduced motion and downloaded offline paths preserve equal math.
+                    
+                    ## Technical/editorial dependencies
+                    
+                    The generic Scene resource can eventually render this prop-free Scene, but no working implementation, scoring contract or translated dictionary is asserted. Coding Agent must implement and test mathematical invariants and access paths after editor approval. No Questions, Quizzes, grading, Note events, persistence or background service calls are designed here.
+                    
+                    ## Placement 3: “Fewer” changes the wording, not the gap
+                    
+                    2. **`scene` Resource (proposed):** Entry C keeps **the same counts 13 and 9** and reverses the wording only. The unmatched difference remains **4 pencils**. “More than” identifies Lena as larger; “fewer than” identifies Danylo as smaller. Ask the learner to name which group is being described.
+                  productionNotes: "Proposed unimplemented Scene, sourced from comparisonGapLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              text3:
+                config:
+                  id: "0e224a2d-3a7b-4816-a99a-5dbb535d1374"
+                  slug: "text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Both questions compare the _same two groups_. The gap is four in either wording; we are naming it from different perspectives."
+                production:
+                  purpose: "“Fewer” changes the wording, not the gap; authored text block 3"
+                  specification: "3. **`text`:** “Both questions compare the _same two groups_. The gap is four in either wording; we are naming it from different perspectives.”"
+              markdown4:
+                config:
+                  id: "f0b23346-948e-42d1-b47d-0d14de104d57"
+                  slug: "markdown4"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "**How many times** as many?"
+                production:
+                  purpose: "“Fewer” changes the wording, not the gap; authored markdown block 4"
+                  specification: "4. **`markdown`:** Clarify a separate question: “**How many times** as many?” is a **multiplicative** comparison, not another way to ask for the gap. We do not calculate a ratio in this Lesson."
+            order: ["text1", "scene2", "text3", "markdown4"]
+        production:
+          purpose: "“Fewer” changes the wording, not the gap"
+          pedagogicalIntent: "Original Section 3 — “Fewer” changes the wording, not the gap; authoring draft only"
+          productionNotes: |-
+            _Purpose: compare two descriptions of the same difference._
+            
+            1. **`text`:** “Lena has thirteen pencils and Danylo nine. How many **fewer** pencils does Danylo have than Lena? Is the answer different from ‘how many more does Lena have’?”
+            2. **`scene` Resource (proposed):** Entry C keeps **the same counts 13 and 9** and reverses the wording only. The unmatched difference remains **4 pencils**. “More than” identifies Lena as larger; “fewer than” identifies Danylo as smaller. Ask the learner to name which group is being described.
+            3. **`text`:** “Both questions compare the _same two groups_. The gap is four in either wording; we are naming it from different perspectives.”
+            4. **`markdown`:** Clarify a separate question: “**How many times** as many?” is a **multiplicative** comparison, not another way to ask for the gap. We do not calculate a ratio in this Lesson.
+      section4:
+        config:
+          id: "2a11c70f-3eda-48b4-acfe-a6e9cc9016fe"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Independent transfer without a prebuilt pairing"
+            navigationLabel:
+              en: "Independent transfer without a prebuilt pairing"
+          content:
+            items:
+              text1:
+                config:
+                  id: "7a9de652-ed17-4d79-a1f5-5e184375598f"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A shelf holds 18 small books and 11 large books. How many more small books than large books are there?"
+                production:
+                  purpose: "Independent transfer without a prebuilt pairing; authored text block 1"
+                  specification: "1. **`text`:** “A shelf holds **18 small books** and **11 large books**. How many **more small books than large books** are there?” These are two categories of the same unit “books”."
+              scene2:
+                config:
+                  id: "fe7f120e-bf81-4aa7-86eb-4b9018faf669"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Which group is larger?"
+                production:
+                  purpose: "Independent transfer without a prebuilt pairing; authored scene block 2"
+                  specification: |-
+                    # Comparison Gap Lab — Scene Specification
+                    
+                    **Status:** Provisional Draft — awaiting Methodologist/editor approval.  
+                    **Owner:** Educational Screenwriter.  
+                    **Parent:** [Lesson Content](.this config.yaml), Sections 1–4; [Draft Brief](.this config.yaml).  
+                    **Technical status:** Proposed self-contained and prop-free Scene; not implemented.
+                    
+                    ## Learner purpose and invariant
+                    
+                    The difference between two nonnegative counts of the **same unit** is the number of unmatched objects when each member of the smaller group is paired one-to-one with one member of the larger group. Changing “how many more does A have?” to “how many fewer does B have?” changes the _perspective_ but not the nonnegative numerical gap for the same two fixed counts. Do not confuse this gap with a combined total or with a multiplicative ratio.
+                    
+                    ## Scenario A — same count, no excess (Section 1)
+                    
+                    Two labeled collections each contain **8 pencils**: Lena=8, Danylo=8. Show an optional pairing animation with manual “Pair next” and “Pair all” buttons. All eight pairs match and **0 pencils remain unmatched**. Ask “How many more does either have?” Expected “zero”. If a child answers sixteen, say “Sixteen would count _both collections together_, not how many one exceeds the other.” If learner says eight, say “Eight is the count of each collection, not an extra group.” The comparison result is explicitly shown as 8−8=0.
+                    
+                    ## Scenario B — unmatched difference (Section 2)
+                    
+                    Lena=13 pencils, Danylo=9 pencils. Let the child reveal nine one-to-one pairs, then visibly and textually count **four unmatched pencils in Lena's collection**. Correct expression **13 − 9 = 4** and phrasing “Lena has four more pencils.” A prediction of 22 prompts “That counts both complete groups instead of the excess.” A prediction of thirteen prompts “That is Lena's full collection, not the unmatched part.” The visual groups must have a consistent equal-unit size, not a chart with arbitrary scales.
+                    
+                    ## Scenario C — ask from the other side (Section 3)
+                    
+                    Reuse **exact same counts thirteen and nine** in a fresh self-contained instance. Display both phrases:
+                    
+                    - “How many **more** pencils does Lena have than Danylo?”
+                    - “How many **fewer** pencils does Danylo have than Lena?”
+                      Both ask for the _same nonnegative gap_ **4 pencils**. Learner can switch which sentence is read while no object count changes. If answer changes only because wording changes, say “Nine pairs match either way, leaving four in Lena's group. The number four is still the difference.” If group names are reversed, update the verbal relation, not mathematical counts.
+                    
+                    ## Scenario D — independent transfer (Section 4)
+                    
+                    Story: **18 small books** and **11 large books** on a shelf. Ask “How many more small books than large books?” Start with only the two named counts and a completely optional matching model. Learner can form 18−11 and submit **7 books**. A hint first identifies which count is larger; a second shows pairing eleven. Candidate 29 feedback: “That would answer how many books in both categories together, not the difference.” Candidate 7 feedback: “Seven is the gap; it does _not_ mean only seven small books exist.” “Show answer and reasoning” stays available at all times.
+                    
+                    ## Interaction objects, state and numeric rules
+                    
+                    Scenario-local integers nA, nB, unit and named group, number of revealed one-to-one pairs bounded by min(nA,nB), computed unpaired count |nA−nB|, learner's predicted gap, text wording selection, hint/reveal state and Reset. The canonical Grade 2 examples never need negative arithmetic or a “times as many” calculation. Render every object group with explicit count labels; if a drawing does not fit a small screen, a structured accessible table/ledger reports original counts, pairs and unmatched items. The answer “four pencils” refers to gap, not new group size. A single fixed scenario is owned by each **public no-props Scene instance**; scenario switching does not require hidden external props.
+                    
+                    ## Accessible and translated presentation
+                    
+                    Each pair can be inspected in keyboard order by two clearly named group roles, with “pair next,” “pair all,” “clear pairs,” “show numeric difference,” “reset” controls. Optional drag or animation must have identical keyboard/switch/tap alternative. Screen readers announce “nine matched pairs; four Lena pencils without a partner” and the numeric difference, without relying on color or an arrow's physical direction. RTL can rearrange labels and logical focus but must preserve which group has more and the subtraction larger minus smaller. Use real translations for all locales of quantifiers, “more/fewer,” group names, counts, unit plurals, aria-like labels and feedback, with no English fallback. Offer reduced motion, visible focus, zoom/reflow, high-contrast non-color-only coding and full selected-locale offline resources after download. This is future design intent, not proof of shipped PWA.
+                    
+                    ## Acceptance cases
+                    
+                    1. Eight versus eight pencils gives eight matched pairs and gap zero.
+                    2. Thirteen versus nine yields nine matched pairs, four unmatched in larger group and 13−9=4.
+                    3. “Four more” / “four fewer” use the same fixed gap, with direction correctly attributed to named child.
+                    4. Eighteen versus eleven books yields 7 books gap, not 29 combined; “seven books” is not the small-book total.
+                    5. All incorrect predictions get explanatory, quantity-specific feedback rather than scores.
+                    6. Independent reset, keyboard/screen-reader, touch, RTL, zoom, reduced motion and downloaded offline paths preserve equal math.
+                    
+                    ## Technical/editorial dependencies
+                    
+                    The generic Scene resource can eventually render this prop-free Scene, but no working implementation, scoring contract or translated dictionary is asserted. Coding Agent must implement and test mathematical invariants and access paths after editor approval. No Questions, Quizzes, grading, Note events, persistence or background service calls are designed here.
+                    
+                    ## Placement 4: Independent transfer without a prebuilt pairing
+                    
+                    2. **`scene` Resource (proposed):** Gap Lab entry D starts with a textual list, no automatic aligned bars. Learner chooses to build a pairing model or instead perform **18 − 11 = 7 books** with accessible number/operator controls. Optional hint “Which group is larger?”; a second “Count how many are left after matching eleven.”
+                  productionNotes: "Proposed unimplemented Scene, sourced from comparisonGapLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              text3:
+                config:
+                  id: "789de32c-eb17-4a53-a3f5-613e45755cb5"
+                  slug: "text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "That is all the books combined, but the question asks by how many one group exceeds the other."
+                production:
+                  purpose: "Independent transfer without a prebuilt pairing; authored text block 3"
+                  specification: "3. **`text`, feedback:** For 29: “That is all the books combined, but the question asks by how many one group exceeds the other.” For 7: “Eighteen is seven more than eleven. The gap is seven books.” If a learner proposes “7 small books in total”, clarify “Seven is the **difference**, not the whole small-book collection.”"
+              markdown4:
+                config:
+                  id: "9e1f2cdf-5829-441c-83fa-4da973f862be"
+                  slug: "markdown4"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "**Recall:** Compare compatible groups. Match equal units, count the unmatched excess, or subtract the smaller count from the larger."
+                production:
+                  purpose: "Independent transfer without a prebuilt pairing; authored markdown block 4"
+                  specification: "4. **`markdown`:** “**Recall:** Compare compatible groups. Match equal units, count the unmatched excess, or subtract the smaller count from the larger.”"
+            order: ["text1", "scene2", "text3", "markdown4"]
+        production:
+          purpose: "Independent transfer without a prebuilt pairing"
+          pedagogicalIntent: "Original Section 4 — Independent transfer without a prebuilt pairing; authoring draft only"
+          productionNotes: |-
+            _Purpose: identify a difference from numbers and explain the subtraction._
+            
+            1. **`text`:** “A shelf holds **18 small books** and **11 large books**. How many **more small books than large books** are there?” These are two categories of the same unit “books”.
+            2. **`scene` Resource (proposed):** Gap Lab entry D starts with a textual list, no automatic aligned bars. Learner chooses to build a pairing model or instead perform **18 − 11 = 7 books** with accessible number/operator controls. Optional hint “Which group is larger?”; a second “Count how many are left after matching eleven.”
+            3. **`text`, feedback:** For 29: “That is all the books combined, but the question asks by how many one group exceeds the other.” For 7: “Eighteen is seven more than eleven. The gap is seven books.” If a learner proposes “7 small books in total”, clarify “Seven is the **difference**, not the whole small-book collection.”
+            4. **`markdown`:** “**Recall:** Compare compatible groups. Match equal units, count the unmatched excess, or subtract the smaller count from the larger.”
+    order: ["section1", "section2", "section3", "section4"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |-
+    # How Many More or Fewer? — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: howManyMoreOrFewer
+    Methodologist status: Draft
+    Code: Not implemented
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Teach additive comparison as a measurement of the nonnegative numerical difference between two quantities expressed in compatible units. Unlike the earlier operation-selection Lesson, this one asks for the difference itself, and tests its interpretation through matched unit-to-unit pairs.
+    
+    ## Target audience
+    
+    Children in **Grades 2** with variable literacy, numeric fluency and communication needs. Grade selection determines the proposed Lesson depth, not a ceiling on the canonical Skill's scope. Use concise language, concrete representations before symbolic abstraction when helpful, learner-controlled pacing, alternative response modes and relevant prerequisite refreshers.
+    
+    ## Prerequisites
+    
+    - Count and compare groups within 30, subtract whole numbers, and recognize which of two quantities is larger.
+    - Interpret simple labeled collection models and distinguish a count from a difference between counts.
+    - Know the difference between an increase over time and a comparison between two existing groups.
+    
+    ## Target Skills
+    
+    - [additiveComparison.data.ts](../../../../data/skills/problemSolving/comparisons/skills/additiveComparison.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Compare two counted groups by pairing corresponding objects and identify the unmatched excess without guessing from total size.
+    - Represent the difference between 13 and 9 as 13 − 9 = 4, with a correct unit 'four more pencils'.
+    - Explain why 'four more' is a difference, not a third pile of pencils that must automatically be added to both groups.
+    - Distinguish 'how many more?' from 'how many times as many?' without requiring division or multiplicative comparison.
+    
+    ## Essential subject matter
+    
+    For groups with 13 pencils and 9 pencils, pair 9 pencils from each collection one-to-one; 4 pencils remain unmatched in the larger group. The additive difference is 13 − 9 = 4 pencils. For 12 apples versus 12 apples, the difference is zero. A question about 'how many fewer does the smaller group have?' gives the same nonnegative difference while changing which object group is described. Counts compared must have compatible units and refer to comparable categories: 13 pencils versus 9 books cannot directly yield a difference in pencils without specifying a different shared category such as objects. A multiplicative comparison asks 'how many times', which is a different relation and must not be presented as another name for subtraction.
+    
+    ## Conceptual progression and dependencies
+    
+    Begin with equal-sized pairs and a zero difference, add a visibly larger group and isolate unmatched units, convert the excess to a subtraction expression, then transfer to a case where a bar/pairing model is absent and the learner explains why subtraction determines the requested difference.
+    
+    ## Misconceptions, examples and boundaries
+    
+    Answering 22 because 13 and 9 were both named; confusing '13 is four more than 9' with 'add four to both groups'; comparing unrelated measurement units; assuming 'more' always asks for a new total rather than the gap. Exclude ratios, formal unit conversions, negative differences and generalized algebra; keep counts in a manageable range within 30.
+    
+    ## Localization, accessibility and offline intent
+    
+    The English copy is **editorial source text**, not ready multilingual Lesson content. Before implementation, translate every learner-visible explanation, prompt, accessible description, symbol reading and feedback accurately into all supported locales; no English placeholders, invented translation or silent fallback. RTL adaptations preserve numeric operand order, mathematical relations and temporal dependencies rather than indiscriminate mirroring. All diagram/picture meanings must exist in readable, screen-reader-accessible text. Provide keyboard, switch and touch alternatives to any manipulation; use distinct labels beyond colors, visible focus, zoom/reflow, reduced motion and no timed-only requirements. Offline completeness requires all selected locale strings, resources and interactive feedback after download; this is an implementation target, not a statement about currently working PWA support.
+    
+    ## Sources and factual verification
+    
+    - [additiveComparison.data.ts](../../../../data/skills/problemSolving/comparisons/skills/additiveComparison.data.ts) — canonical Mathematics Skill Code and methodological scope, copied without changing UUIDs or localization.
+    - [Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — separate Brief/Content/Scene ownership and explicit approval policy.
+    - [Internationalization and Accessibility](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) — locale and inclusive design requirements.
+    - [Common Core State Standards for Mathematics](https://corestandards.org/mathematics-standards/) — optional age-sequence reference, not an assertion of Curriculum alignment.
+    
+    ## Curriculum / Program compatibility
+    
+    Not specified. This standalone Lesson is Program-neutral and does not presume compatibility with an unreviewed Curriculum.
+    
+    ## Open editorial decisions
+    
+    - The focus on measuring a difference and interpreting unmatched units must remain distinct from Batch 2's chooseAdditionOrSubtraction comparison stories, where the missing quantity was one person's total.
+    - Formal Methodologist/editor approval and required localized content remain outstanding; the Content (incorporated in this config.yaml) and Scene specification (Scene specification embedded in this config.yaml) are **provisional Draft** parallel review artifacts, not approved Screenwriter deliverables.
+    - The coordinator owns the shared Playground skills index and generated taxonomy. Domain-local copied Code does not itself prove that the generated taxonomy or all external editorial gates have been refreshed.
+    
+    ## Methodologist handoff
+    
+    **Draft pending explicit approval.** Following review, the Screenwriter may revise the independently authored Content and Scene specs. Do not infer mastery from a prediction, an on-screen interaction, a completed calculation or a voluntary explanation. No runtime Lesson, Question, Quiz, scoring, progress or Note API is created.
+  purpose: "How Many More or Fewer?"
+  productionNotes: |-
+    Provisional English-only Screenwriter source. Full original introduction, lesson-wide requirements, dependencies and review handoff:
+    
+    # How Many More or Fewer? — Lesson Content
+    
+    **Screenwriter status:** Provisional Draft, pending explicit Methodologist approval.  
+    **Source:** Draft Methodologist Brief (incorporated in this config.yaml). **Program dependence:** None. **Runtime:** Not implemented.  
+    **Language:** English editorial source; production translations are not yet authored.
+    
+    ## Learning experience
+    
+    The learner discovers **difference as unmatched quantity** rather than treating “more” as an automatic addition instruction. The comparison always names two complete groups and asks specifically **how many more/fewer**, not “how many does the unknown character have?” (which is taught in the previous operation-selection Lesson). Use one-to-one matching with numerals and an accessible text ledger; make the _difference_ visible without changing either group's count.
+    
+    
+    
+    ## Production, accessibility and editorial boundaries
+    
+    Each Section is a vertically ordered `text`, `markdown`, or **proposed** `scene` Resource. Comparison Gap Lab (Scene specification embedded in this config.yaml) is not currently implemented. Every comparison uses two counts of _the same unit_, never mixes pencils and books in a single arithmetic comparison. An equal-unit bar must not have misleading scale or rely on color/picture size. All choices/explanations are formative; no Question, Quiz, scoring, mastery attribution or persistence is authored.
+    
+    Provide every named quantity and unmatched-pair result as visible/accessible text, keyboard/switch/tap controls instead of drag-only pairing, high contrast with descriptive labels, focus and zoom/reflow, reduced motion and no time limits. All wordings (“more”, “fewer”, “gap”), symbols, units, feedback and screen-reader descriptions need genuine locale translations. RTL may change UI navigation but must preserve which group is larger and the numerical subtraction order. Require an offline-complete implementation with selected locales/assets later, but do not claim current offline readiness. The Methodologist Brief (incorporated in this config.yaml) remains Draft and this Content is **provisional**.
+    
+    Source locale is English. Planned supported languages follow the 29 currently defined Engine locales; verify exact lesson-specific locale scope editorially. No translations, scored Quiz, Question Bank, Flashcard Bank, assets, or Scene implementations were produced. Methodology/Screenwriter approval remains pending.
