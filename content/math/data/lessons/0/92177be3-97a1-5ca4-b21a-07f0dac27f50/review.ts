@@ -1,1 +1,1 @@
-export const review = {} satisfies Record<string, number>;
+const review = {};
