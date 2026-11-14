@@ -1,11 +1,42 @@
 # Unified Mathematics Lesson editorial source — provisional; pending independent approval.
 config:
-  id: "5befd03a-2f0f-5c35-925f-8ff870c2d2db"
-  slug: "buildingAndReadingPictographs"
-  type: "lesson"
-  skills: ["fdbb130e-d9ff-490f-9979-4b3c3ef67271", "4d9532aa-f47a-416f-a0a6-c219943ceb24"]
+  id: '5befd03a-2f0f-5c35-925f-8ff870c2d2db'
+  slug: 'buildingAndReadingPictographs'
+  type: 'lesson'
+  skills: ['fdbb130e-d9ff-490f-9979-4b3c3ef67271', '4d9532aa-f47a-416f-a0a6-c219943ceb24']
   params:
-    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    languages:
+      [
+        'ar',
+        'be',
+        'bn',
+        'de',
+        'en',
+        'es',
+        'et',
+        'fr',
+        'he',
+        'hi',
+        'id',
+        'ja',
+        'ka',
+        'kk',
+        'ko',
+        'lt',
+        'lv',
+        'mr',
+        'ms',
+        'pl',
+        'pt',
+        'qm',
+        'ta',
+        'te',
+        'tr',
+        'uk',
+        'ur',
+        'vi',
+        'zh',
+      ]
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -13,67 +44,67 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "Pictures That Count"
+      en: 'Pictures That Count'
   section:
     items:
       section1:
         config:
-          id: "d3e8aa51-dd8c-45aa-8502-df3bc9c36004"
-          slug: "section1"
-          type: "content"
+          id: 'd3e8aa51-dd8c-45aa-8502-df3bc9c36004'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Pictures can keep a count"
+              en: 'Pictures can keep a count'
             navigationLabel:
-              en: "Pictures can keep a count"
+              en: 'Pictures can keep a count'
           content:
             items:
               text1:
                 config:
-                  id: "4c9f4fd3-cb72-4aa8-9a47-be9d869b27ba"
-                  slug: "text1"
-                  type: "text"
+                  id: '4c9f4fd3-cb72-4aa8-9a47-be9d869b27ba'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A table has four apples, three pears and two plums. Can we show those numbers with pictures without changing the count?"
+                      en: 'A table has four apples, three pears and two plums. Can we show those numbers with pictures without changing the count?'
                 production:
-                  purpose: "Pictures can keep a count: text resource at position 1 (source provisional)"
-                  specification: "1. **`text` Resource (available block type):** “A table has four apples, three pears and two plums. Can we show those numbers with pictures without changing the count?”"
+                  purpose: 'Pictures can keep a count: text resource at position 1 (source provisional)'
+                  specification: '1. **`text` Resource (available block type):** “A table has four apples, three pears and two plums. Can we show those numbers with pictures without changing the count?”'
               scene2:
                 config:
-                  id: "83f5bd45-5125-4680-9f42-abf306e6f206"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '83f5bd45-5125-4680-9f42-abf306e6f206'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Pictures can keep a count"
+                        instruction: 'Pictures can keep a count'
                 production:
-                  purpose: "Pictures can keep a count; source Scene PictographStudio.scene-spec.md; use 2"
+                  purpose: 'Pictures can keep a count; source Scene PictographStudio.scene-spec.md; use 2'
                   specification: |-
                     # PictographStudio — Interactive Scene Specification
-                    
+
                     **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
                     **Lesson Content:** [Pictures That Count](.this config.yaml)
                     **Methodologist:** [Draft Brief](.this config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [buildPictograph.data.ts](../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
                     - [readPictograph.data.ts](../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
-                    
+
                     ## Educational purpose and intended web interaction
-                    
+
                     Construct and interpret one-to-one pictographs with a clear category label and key where one identical symbol represents exactly one observation, validating the chart against its source table.
-                    
+
                     A learner-manipulable table-to-pictograph builder and a separate read-only example. Rows carry explicit text category names; each count icon is a same-size tally token independent of the fruit/animal's real shape. The key is always displayed and narrated.
-                    
+
                     **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
-                    
+
                     ## Exact factual models and required states
-                    
+
                     | Preset/state            | Model shown or described                                                                 | Correct observation and explanatory result     |
                     | ----------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------- |
                     | **Builder initial**     | Source table Apple=4, Pear=3, Plum=2; all pictograph rows empty; key one icon = one item | Chart needs 4/3/2 count icons                  |
@@ -82,22 +113,22 @@ config:
                     | **Reader A**            | Cat row five equal icons, Dog row two, Bird row four; one=one key                        | Five cats, two dogs, four birds; total eleven  |
                     | **Empty category test** | A category count of zero with a labelled empty row                                       | Zero icons for that category, not missing data |
                     | **Transfer**            | New table Star=2, Moon=4, Sun=1; key one icon = one item                                 | 2+4+1=7 icons in correctly labelled rows       |
-                    
+
                     **Validity boundary:** Strictly one identical accessible counting symbol per observed item and unscaled keys (1 icon = 1 item); two or three categories and counts of 0–6, with totals at most twelve. No half-icons, scaled pictographs, bar charts, averages, percentages or inferential claims. Distinguish reading the chart from making it.
-                    
+
                     ## Learner actions, transitions and recovery
-                    
+
                     Choose internal 'Build' or 'Read' mode, select labelled row and add/remove exactly one equal count symbol with native buttons, compare row icon count to the table, reveal row-wise explanation, reset to known source table. Reading mode asks for a row count without altering the chart. No precise drag, props, or scores.
-                    
+
                     1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
                     2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
                     3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
                     4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
                     5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
                     6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
-                    
+
                     ## Detailed explanatory feedback
-                    
+
                     - **Pictures can keep a count: One icon per row.** “The key says one icon is one fruit, not one whole category. Four apples need four separate icons.”
                     - **Pictures can keep a count: Icon size matters.** “All count symbols represent one object each. Their displayed size does not change their meaning.”
                     - **Build a pictograph from the table: Apple has five icons.** “The table records four apples. Remove the extra Apple icon so chart and table agree.”
@@ -107,123 +138,123 @@ config:
                     - **Read somebody else's picture: Eleven dogs.** “Eleven counts every animal in all rows. The Dog row alone has two.”
                     - **Your new chart: Moon has three icons.** “The Moon row's source count is four. Add the fourth symbol.”
                     - **Your new chart: Total six.** “Two plus four plus one is seven. Count the icons in all three labelled rows again.”
-                    
+
                     **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
-                    
+
                     ## Accessible equivalent path
-                    
+
                     Offer a fully equivalent textual row-by-row view listing category, key, icon IDs and count; keyboard buttons add/remove one icon in a named row. For instance 'Apple—4 icons, key one icon for one fruit—four apples', with no need to distinguish colors or shapes visually.
-                    
+
                     All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
-                    
+
                     ## Locale / RTL / offline / weak-device requirements
-                    
+
                     Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
-                    
+
                     ## Implementation boundary and test handoff
-                    
+
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). PictographStudio shows the source table, blank rows named Apple/Pear/Plum, and an explicit key: one square count icon = one fruit. Learner predicts the Apple row's number of icons.
-                  productionNotes: "Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               markdown3:
                 config:
-                  id: "563e598b-8534-402c-8603-25ed5743e1be"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '563e598b-8534-402c-8603-25ed5743e1be'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "We can use one same-sized symbol for one fruit. Four apples need four icons in the Apple row. The category name tells what the count is about."
+                      en: 'We can use one same-sized symbol for one fruit. Four apples need four icons in the Apple row. The category name tells what the count is about.'
                 production:
-                  purpose: "Pictures can keep a count: markdown resource at position 3 (source provisional)"
-                  specification: "3. **`markdown` Resource (available block type):** “We can use one same-sized symbol for one fruit. Four apples need four icons in the Apple row. The category name tells what the count is about.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Pictures can keep a count: markdown resource at position 3 (source provisional)'
+                  specification: '3. **`markdown` Resource (available block type):** “We can use one same-sized symbol for one fruit. Four apples need four icons in the Apple row. The category name tells what the count is about.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Tie one pictograph symbol to one observation and its category."
-          pedagogicalIntent: "Original Section 1: Pictures can keep a count (provisional draft)"
+          purpose: 'Tie one pictograph symbol to one observation and its category.'
+          pedagogicalIntent: 'Original Section 1: Pictures can keep a count (provisional draft)'
           productionNotes: |-
             **Learning purpose:** Tie one pictograph symbol to one observation and its category.
-            
+
             **Ordered blocks (single outer column):**
-            
+
             1. **`text` Resource (available block type):** “A table has four apples, three pears and two plums. Can we show those numbers with pictures without changing the count?”
-            
+
             2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). PictographStudio shows the source table, blank rows named Apple/Pear/Plum, and an explicit key: one square count icon = one fruit. Learner predicts the Apple row's number of icons.
-            
+
             3. **`markdown` Resource (available block type):** “We can use one same-sized symbol for one fruit. Four apples need four icons in the Apple row. The category name tells what the count is about.”
-            
+
             **Meaningful learner action:** Inspect and restate key, choose a row label and predict its icon count.
-            
+
             **Explanatory feedback for anticipated choices:**
-            
+
             - **One icon per row:** “The key says one icon is one fruit, not one whole category. Four apples need four separate icons.”
             - **Icon size matters:** “All count symbols represent one object each. Their displayed size does not change their meaning.”
-            
+
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-            
+
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
       section2:
         config:
-          id: "d0e8a598-dc8c-4417-8602-e0ceccc364bd"
-          slug: "section2"
-          type: "content"
+          id: 'd0e8a598-dc8c-4417-8602-e0ceccc364bd'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Build a pictograph from the table"
+              en: 'Build a pictograph from the table'
             navigationLabel:
-              en: "Build a pictograph from the table"
+              en: 'Build a pictograph from the table'
           content:
             items:
               markdown1:
                 config:
-                  id: "848495cc-e775-4993-a29b-d7c6e09e172d"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '848495cc-e775-4993-a29b-d7c6e09e172d'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Use the add-one-symbol control to build the chart. The table says Apple 4, Pear 3 and Plum 2. Check every row."
+                      en: 'Use the add-one-symbol control to build the chart. The table says Apple 4, Pear 3 and Plum 2. Check every row.'
                 production:
-                  purpose: "Build a pictograph from the table: markdown resource at position 1 (source provisional)"
-                  specification: "1. **`markdown` Resource (available block type):** “Use the add-one-symbol control to build the chart. The table says Apple 4, Pear 3 and Plum 2. Check every row.”"
+                  purpose: 'Build a pictograph from the table: markdown resource at position 1 (source provisional)'
+                  specification: '1. **`markdown` Resource (available block type):** “Use the add-one-symbol control to build the chart. The table says Apple 4, Pear 3 and Plum 2. Check every row.”'
               scene2:
                 config:
-                  id: "e70ac582-c4fb-44d7-95e5-768ce64011b9"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'e70ac582-c4fb-44d7-95e5-768ce64011b9'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Build a pictograph from the table"
+                        instruction: 'Build a pictograph from the table'
                 production:
-                  purpose: "Build a pictograph from the table; source Scene PictographStudio.scene-spec.md; use 2"
+                  purpose: 'Build a pictograph from the table; source Scene PictographStudio.scene-spec.md; use 2'
                   specification: |-
                     # PictographStudio — Interactive Scene Specification
-                    
+
                     **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
                     **Lesson Content:** [Pictures That Count](.this config.yaml)
                     **Methodologist:** [Draft Brief](.this config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [buildPictograph.data.ts](../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
                     - [readPictograph.data.ts](../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
-                    
+
                     ## Educational purpose and intended web interaction
-                    
+
                     Construct and interpret one-to-one pictographs with a clear category label and key where one identical symbol represents exactly one observation, validating the chart against its source table.
-                    
+
                     A learner-manipulable table-to-pictograph builder and a separate read-only example. Rows carry explicit text category names; each count icon is a same-size tally token independent of the fruit/animal's real shape. The key is always displayed and narrated.
-                    
+
                     **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
-                    
+
                     ## Exact factual models and required states
-                    
+
                     | Preset/state            | Model shown or described                                                                 | Correct observation and explanatory result     |
                     | ----------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------- |
                     | **Builder initial**     | Source table Apple=4, Pear=3, Plum=2; all pictograph rows empty; key one icon = one item | Chart needs 4/3/2 count icons                  |
@@ -232,22 +263,22 @@ config:
                     | **Reader A**            | Cat row five equal icons, Dog row two, Bird row four; one=one key                        | Five cats, two dogs, four birds; total eleven  |
                     | **Empty category test** | A category count of zero with a labelled empty row                                       | Zero icons for that category, not missing data |
                     | **Transfer**            | New table Star=2, Moon=4, Sun=1; key one icon = one item                                 | 2+4+1=7 icons in correctly labelled rows       |
-                    
+
                     **Validity boundary:** Strictly one identical accessible counting symbol per observed item and unscaled keys (1 icon = 1 item); two or three categories and counts of 0–6, with totals at most twelve. No half-icons, scaled pictographs, bar charts, averages, percentages or inferential claims. Distinguish reading the chart from making it.
-                    
+
                     ## Learner actions, transitions and recovery
-                    
+
                     Choose internal 'Build' or 'Read' mode, select labelled row and add/remove exactly one equal count symbol with native buttons, compare row icon count to the table, reveal row-wise explanation, reset to known source table. Reading mode asks for a row count without altering the chart. No precise drag, props, or scores.
-                    
+
                     1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
                     2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
                     3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
                     4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
                     5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
                     6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
-                    
+
                     ## Detailed explanatory feedback
-                    
+
                     - **Pictures can keep a count: One icon per row.** “The key says one icon is one fruit, not one whole category. Four apples need four separate icons.”
                     - **Pictures can keep a count: Icon size matters.** “All count symbols represent one object each. Their displayed size does not change their meaning.”
                     - **Build a pictograph from the table: Apple has five icons.** “The table records four apples. Remove the extra Apple icon so chart and table agree.”
@@ -257,71 +288,71 @@ config:
                     - **Read somebody else's picture: Eleven dogs.** “Eleven counts every animal in all rows. The Dog row alone has two.”
                     - **Your new chart: Moon has three icons.** “The Moon row's source count is four. Add the fourth symbol.”
                     - **Your new chart: Total six.** “Two plus four plus one is seven. Count the icons in all three labelled rows again.”
-                    
+
                     **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
-                    
+
                     ## Accessible equivalent path
-                    
+
                     Offer a fully equivalent textual row-by-row view listing category, key, icon IDs and count; keyboard buttons add/remove one icon in a named row. For instance 'Apple—4 icons, key one icon for one fruit—four apples', with no need to distinguish colors or shapes visually.
-                    
+
                     All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
-                    
+
                     ## Locale / RTL / offline / weak-device requirements
-                    
+
                     Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
-                    
+
                     ## Implementation boundary and test handoff
-                    
+
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). Builder mode starts at zero. Add four identical symbols to Apple, three to Pear, two to Plum; an explicit 'Check against table' reveals row matches and total 9.
-                  productionNotes: "Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               text3:
                 config:
-                  id: "6b528ac8-4481-47e3-a135-bd62a08ad165"
-                  slug: "text3"
-                  type: "text"
+                  id: '6b528ac8-4481-47e3-a135-bd62a08ad165'
+                  slug: 'text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The rows show four, three and two icons. Their key is one icon to one fruit. So the chart shows nine fruits, just like the table."
+                      en: 'The rows show four, three and two icons. Their key is one icon to one fruit. So the chart shows nine fruits, just like the table.'
                 production:
-                  purpose: "Build a pictograph from the table: text resource at position 3 (source provisional)"
-                  specification: "3. **`text` Resource (available block type):** “The rows show four, three and two icons. Their key is one icon to one fruit. So the chart shows nine fruits, just like the table.”"
-            order: ["markdown1", "scene2", "text3"]
+                  purpose: 'Build a pictograph from the table: text resource at position 3 (source provisional)'
+                  specification: '3. **`text` Resource (available block type):** “The rows show four, three and two icons. Their key is one icon to one fruit. So the chart shows nine fruits, just like the table.”'
+            order: ['markdown1', 'scene2', 'text3']
         production:
-          purpose: "Construct one-to-one symbols and reconcile them against original frequencies."
-          pedagogicalIntent: "Original Section 2: Build a pictograph from the table (provisional draft)"
+          purpose: 'Construct one-to-one symbols and reconcile them against original frequencies.'
+          pedagogicalIntent: 'Original Section 2: Build a pictograph from the table (provisional draft)'
           productionNotes: |-
             **Learning purpose:** Construct one-to-one symbols and reconcile them against original frequencies.
-            
+
             **Ordered blocks (single outer column):**
-            
+
             1. **`markdown` Resource (available block type):** “Use the add-one-symbol control to build the chart. The table says Apple 4, Pear 3 and Plum 2. Check every row.”
-            
+
             2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). Builder mode starts at zero. Add four identical symbols to Apple, three to Pear, two to Plum; an explicit 'Check against table' reveals row matches and total 9.
-            
+
             3. **`text` Resource (available block type):** “The rows show four, three and two icons. Their key is one icon to one fruit. So the chart shows nine fruits, just like the table.”
-            
+
             **Meaningful learner action:** Construct all rows; check category-to-count matching and 4+3+2=9.
-            
+
             **Explanatory feedback for anticipated choices:**
-            
+
             - **Apple has five icons:** “The table records four apples. Remove the extra Apple icon so chart and table agree.”
             - **Pear has two icons:** “Three pears are in the table. Add one more Pear icon to the Pear row.”
             - **Total not nine:** “Add the three row counts. The table has 4+3+2 = 9 fruit observations.”
-            
+
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-            
+
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
       section3:
         config:
-          id: "d1e8a72b-db8c-4284-8702-e261cbc3632a"
-          slug: "section3"
-          type: "content"
+          id: 'd1e8a72b-db8c-4284-8702-e261cbc3632a'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
@@ -332,21 +363,21 @@ config:
             items:
               text1:
                 config:
-                  id: "178bb66d-1b09-463a-8f5c-21833703bc28"
-                  slug: "text1"
-                  type: "text"
+                  id: '178bb66d-1b09-463a-8f5c-21833703bc28'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "This is a new chart about animals. It shows five cat icons, two dog icons and four bird icons. The key still means one icon = one animal. How many dogs? How many animals altogether?"
+                      en: 'This is a new chart about animals. It shows five cat icons, two dog icons and four bird icons. The key still means one icon = one animal. How many dogs? How many animals altogether?'
                 production:
                   purpose: "Read somebody else's picture: text resource at position 1 (source provisional)"
-                  specification: "1. **`text` Resource (available block type):** “This is a new chart about animals. It shows five cat icons, two dog icons and four bird icons. The key still means one icon = one animal. How many dogs? How many animals altogether?”"
+                  specification: '1. **`text` Resource (available block type):** “This is a new chart about animals. It shows five cat icons, two dog icons and four bird icons. The key still means one icon = one animal. How many dogs? How many animals altogether?”'
               scene2:
                 config:
-                  id: "76ae04e3-3123-4586-b294-be1526e8d300"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '76ae04e3-3123-4586-b294-be1526e8d300'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
@@ -356,25 +387,25 @@ config:
                   purpose: "Read somebody else's picture; source Scene PictographStudio.scene-spec.md; use 2"
                   specification: |-
                     # PictographStudio — Interactive Scene Specification
-                    
+
                     **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
                     **Lesson Content:** [Pictures That Count](.this config.yaml)
                     **Methodologist:** [Draft Brief](.this config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [buildPictograph.data.ts](../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
                     - [readPictograph.data.ts](../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
-                    
+
                     ## Educational purpose and intended web interaction
-                    
+
                     Construct and interpret one-to-one pictographs with a clear category label and key where one identical symbol represents exactly one observation, validating the chart against its source table.
-                    
+
                     A learner-manipulable table-to-pictograph builder and a separate read-only example. Rows carry explicit text category names; each count icon is a same-size tally token independent of the fruit/animal's real shape. The key is always displayed and narrated.
-                    
+
                     **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
-                    
+
                     ## Exact factual models and required states
-                    
+
                     | Preset/state            | Model shown or described                                                                 | Correct observation and explanatory result     |
                     | ----------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------- |
                     | **Builder initial**     | Source table Apple=4, Pear=3, Plum=2; all pictograph rows empty; key one icon = one item | Chart needs 4/3/2 count icons                  |
@@ -383,22 +414,22 @@ config:
                     | **Reader A**            | Cat row five equal icons, Dog row two, Bird row four; one=one key                        | Five cats, two dogs, four birds; total eleven  |
                     | **Empty category test** | A category count of zero with a labelled empty row                                       | Zero icons for that category, not missing data |
                     | **Transfer**            | New table Star=2, Moon=4, Sun=1; key one icon = one item                                 | 2+4+1=7 icons in correctly labelled rows       |
-                    
+
                     **Validity boundary:** Strictly one identical accessible counting symbol per observed item and unscaled keys (1 icon = 1 item); two or three categories and counts of 0–6, with totals at most twelve. No half-icons, scaled pictographs, bar charts, averages, percentages or inferential claims. Distinguish reading the chart from making it.
-                    
+
                     ## Learner actions, transitions and recovery
-                    
+
                     Choose internal 'Build' or 'Read' mode, select labelled row and add/remove exactly one equal count symbol with native buttons, compare row icon count to the table, reveal row-wise explanation, reset to known source table. Reading mode asks for a row count without altering the chart. No precise drag, props, or scores.
-                    
+
                     1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
                     2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
                     3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
                     4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
                     5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
                     6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
-                    
+
                     ## Detailed explanatory feedback
-                    
+
                     - **Pictures can keep a count: One icon per row.** “The key says one icon is one fruit, not one whole category. Four apples need four separate icons.”
                     - **Pictures can keep a count: Icon size matters.** “All count symbols represent one object each. Their displayed size does not change their meaning.”
                     - **Build a pictograph from the table: Apple has five icons.** “The table records four apples. Remove the extra Apple icon so chart and table agree.”
@@ -408,123 +439,123 @@ config:
                     - **Read somebody else's picture: Eleven dogs.** “Eleven counts every animal in all rows. The Dog row alone has two.”
                     - **Your new chart: Moon has three icons.** “The Moon row's source count is four. Add the fourth symbol.”
                     - **Your new chart: Total six.** “Two plus four plus one is seven. Count the icons in all three labelled rows again.”
-                    
+
                     **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
-                    
+
                     ## Accessible equivalent path
-                    
+
                     Offer a fully equivalent textual row-by-row view listing category, key, icon IDs and count; keyboard buttons add/remove one icon in a named row. For instance 'Apple—4 icons, key one icon for one fruit—four apples', with no need to distinguish colors or shapes visually.
-                    
+
                     All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
-                    
+
                     ## Locale / RTL / offline / weak-device requirements
-                    
+
                     Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
-                    
+
                     ## Implementation boundary and test handoff
-                    
+
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). Read mode displays row-labelled Cat 5, Dog 2, Bird 4 pictograph and key, no source table. Learner selects Dog row and counts two, then adds 5+2+4 = 11.
-                  productionNotes: "Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               markdown3:
                 config:
-                  id: "9e61a4dd-6d8e-483e-9eda-0a5b6ee999ac"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '9e61a4dd-6d8e-483e-9eda-0a5b6ee999ac'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "There are two dogs because the Dog row has two icons and the key says each means one dog. There are eleven animals in the three rows together."
+                      en: 'There are two dogs because the Dog row has two icons and the key says each means one dog. There are eleven animals in the three rows together.'
                 production:
                   purpose: "Read somebody else's picture: markdown resource at position 3 (source provisional)"
-                  specification: "3. **`markdown` Resource (available block type):** “There are two dogs because the Dog row has two icons and the key says each means one dog. There are eleven animals in the three rows together.”"
-            order: ["text1", "scene2", "markdown3"]
+                  specification: '3. **`markdown` Resource (available block type):** “There are two dogs because the Dog row has two icons and the key says each means one dog. There are eleven animals in the three rows together.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Use category names and the key rather than memorizing source table values."
+          purpose: 'Use category names and the key rather than memorizing source table values.'
           pedagogicalIntent: "Original Section 3: Read somebody else's picture (provisional draft)"
           productionNotes: |-
             **Learning purpose:** Use category names and the key rather than memorizing source table values.
-            
+
             **Ordered blocks (single outer column):**
-            
+
             1. **`text` Resource (available block type):** “This is a new chart about animals. It shows five cat icons, two dog icons and four bird icons. The key still means one icon = one animal. How many dogs? How many animals altogether?”
-            
+
             2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). Read mode displays row-labelled Cat 5, Dog 2, Bird 4 pictograph and key, no source table. Learner selects Dog row and counts two, then adds 5+2+4 = 11.
-            
+
             3. **`markdown` Resource (available block type):** “There are two dogs because the Dog row has two icons and the key says each means one dog. There are eleven animals in the three rows together.”
-            
+
             **Meaningful learner action:** Read an unseen category count and total from labelled rows.
-            
+
             **Explanatory feedback for anticipated choices:**
-            
+
             - **Five dogs:** “Five icons belong to Cat, not Dog. Find the Dog row, then count its two symbols.”
             - **Eleven dogs:** “Eleven counts every animal in all rows. The Dog row alone has two.”
-            
+
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-            
+
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
       section4:
         config:
-          id: "d6e8af0a-da8c-40f1-8802-e3f4c6c35b4b"
-          slug: "section4"
-          type: "content"
+          id: 'd6e8af0a-da8c-40f1-8802-e3f4c6c35b4b'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Your new chart"
+              en: 'Your new chart'
             navigationLabel:
-              en: "Your new chart"
+              en: 'Your new chart'
           content:
             items:
               markdown1:
                 config:
-                  id: "b4a7cc32-f506-4851-9108-c488eeb57a57"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'b4a7cc32-f506-4851-9108-c488eeb57a57'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A new table records two stars, four moons and one sun. Draw the chart with your count icons and put each number in its proper row."
+                      en: 'A new table records two stars, four moons and one sun. Draw the chart with your count icons and put each number in its proper row.'
                 production:
-                  purpose: "Your new chart: markdown resource at position 1 (source provisional)"
-                  specification: "1. **`markdown` Resource (available block type):** “A new table records two stars, four moons and one sun. Draw the chart with your count icons and put each number in its proper row.”"
+                  purpose: 'Your new chart: markdown resource at position 1 (source provisional)'
+                  specification: '1. **`markdown` Resource (available block type):** “A new table records two stars, four moons and one sun. Draw the chart with your count icons and put each number in its proper row.”'
               scene2:
                 config:
-                  id: "87217b60-cdfa-41e5-8ae3-4eb6162f8183"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '87217b60-cdfa-41e5-8ae3-4eb6162f8183'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Your new chart"
+                        instruction: 'Your new chart'
                 production:
-                  purpose: "Your new chart; source Scene PictographStudio.scene-spec.md; use 2"
+                  purpose: 'Your new chart; source Scene PictographStudio.scene-spec.md; use 2'
                   specification: |-
                     # PictographStudio — Interactive Scene Specification
-                    
+
                     **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
                     **Lesson Content:** [Pictures That Count](.this config.yaml)
                     **Methodologist:** [Draft Brief](.this config.yaml)
                     **Canonical target Skills:**
-                    
+
                     - [buildPictograph.data.ts](../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
                     - [readPictograph.data.ts](../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
-                    
+
                     ## Educational purpose and intended web interaction
-                    
+
                     Construct and interpret one-to-one pictographs with a clear category label and key where one identical symbol represents exactly one observation, validating the chart against its source table.
-                    
+
                     A learner-manipulable table-to-pictograph builder and a separate read-only example. Rows carry explicit text category names; each count icon is a same-size tally token independent of the fruit/animal's real shape. The key is always displayed and narrated.
-                    
+
                     **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
-                    
+
                     ## Exact factual models and required states
-                    
+
                     | Preset/state            | Model shown or described                                                                 | Correct observation and explanatory result     |
                     | ----------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------- |
                     | **Builder initial**     | Source table Apple=4, Pear=3, Plum=2; all pictograph rows empty; key one icon = one item | Chart needs 4/3/2 count icons                  |
@@ -533,22 +564,22 @@ config:
                     | **Reader A**            | Cat row five equal icons, Dog row two, Bird row four; one=one key                        | Five cats, two dogs, four birds; total eleven  |
                     | **Empty category test** | A category count of zero with a labelled empty row                                       | Zero icons for that category, not missing data |
                     | **Transfer**            | New table Star=2, Moon=4, Sun=1; key one icon = one item                                 | 2+4+1=7 icons in correctly labelled rows       |
-                    
+
                     **Validity boundary:** Strictly one identical accessible counting symbol per observed item and unscaled keys (1 icon = 1 item); two or three categories and counts of 0–6, with totals at most twelve. No half-icons, scaled pictographs, bar charts, averages, percentages or inferential claims. Distinguish reading the chart from making it.
-                    
+
                     ## Learner actions, transitions and recovery
-                    
+
                     Choose internal 'Build' or 'Read' mode, select labelled row and add/remove exactly one equal count symbol with native buttons, compare row icon count to the table, reveal row-wise explanation, reset to known source table. Reading mode asks for a row count without altering the chart. No precise drag, props, or scores.
-                    
+
                     1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
                     2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
                     3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
                     4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
                     5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
                     6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
-                    
+
                     ## Detailed explanatory feedback
-                    
+
                     - **Pictures can keep a count: One icon per row.** “The key says one icon is one fruit, not one whole category. Four apples need four separate icons.”
                     - **Pictures can keep a count: Icon size matters.** “All count symbols represent one object each. Their displayed size does not change their meaning.”
                     - **Build a pictograph from the table: Apple has five icons.** “The table records four apples. Remove the extra Apple icon so chart and table agree.”
@@ -558,228 +589,228 @@ config:
                     - **Read somebody else's picture: Eleven dogs.** “Eleven counts every animal in all rows. The Dog row alone has two.”
                     - **Your new chart: Moon has three icons.** “The Moon row's source count is four. Add the fourth symbol.”
                     - **Your new chart: Total six.** “Two plus four plus one is seven. Count the icons in all three labelled rows again.”
-                    
+
                     **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
-                    
+
                     ## Accessible equivalent path
-                    
+
                     Offer a fully equivalent textual row-by-row view listing category, key, icon IDs and count; keyboard buttons add/remove one icon in a named row. For instance 'Apple—4 icons, key one icon for one fruit—four apples', with no need to distinguish colors or shapes visually.
-                    
+
                     All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
-                    
+
                     ## Locale / RTL / offline / weak-device requirements
-                    
+
                     Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
-                    
+
                     ## Implementation boundary and test handoff
-                    
+
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). Transfer mode has Star=2, Moon=4, Sun=1, key one symbol=one item. Learner builds rows without prefilled symbols, then receives optional hints and checks total 7.
-                  productionNotes: "Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               text3:
                 config:
-                  id: "800ffeae-9987-4919-bae6-a5a4f34c0467"
-                  slug: "text3"
-                  type: "text"
+                  id: '800ffeae-9987-4919-bae6-a5a4f34c0467'
+                  slug: 'text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Two stars need two icons, four moons need four and one sun needs one. The key is unchanged. The total is seven objects."
+                      en: 'Two stars need two icons, four moons need four and one sun needs one. The key is unchanged. The total is seven objects.'
                 production:
-                  purpose: "Your new chart: text resource at position 3 (source provisional)"
-                  specification: "3. **`text` Resource (available block type):** “Two stars need two icons, four moons need four and one sun needs one. The key is unchanged. The total is seven objects.”"
-            order: ["markdown1", "scene2", "text3"]
+                  purpose: 'Your new chart: text resource at position 3 (source provisional)'
+                  specification: '3. **`text` Resource (available block type):** “Two stars need two icons, four moons need four and one sun needs one. The key is unchanged. The total is seven objects.”'
+            order: ['markdown1', 'scene2', 'text3']
         production:
-          purpose: "Transfer a one-to-one key to a new category set and catch a mismatch."
-          pedagogicalIntent: "Original Section 4: Your new chart (provisional draft)"
+          purpose: 'Transfer a one-to-one key to a new category set and catch a mismatch.'
+          pedagogicalIntent: 'Original Section 4: Your new chart (provisional draft)'
           productionNotes: |-
             **Learning purpose:** Transfer a one-to-one key to a new category set and catch a mismatch.
-            
+
             **Ordered blocks (single outer column):**
-            
+
             1. **`markdown` Resource (available block type):** “A new table records two stars, four moons and one sun. Draw the chart with your count icons and put each number in its proper row.”
-            
+
             2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). Transfer mode has Star=2, Moon=4, Sun=1, key one symbol=one item. Learner builds rows without prefilled symbols, then receives optional hints and checks total 7.
-            
+
             3. **`text` Resource (available block type):** “Two stars need two icons, four moons need four and one sun needs one. The key is unchanged. The total is seven objects.”
-            
+
             **Meaningful learner action:** Build 2/4/1 pictograph and explain why it matches the source table.
-            
+
             **Explanatory feedback for anticipated choices:**
-            
+
             - **Moon has three icons:** “The Moon row's source count is four. Add the fourth symbol.”
             - **Total six:** “Two plus four plus one is seven. Count the icons in all three labelled rows again.”
-            
+
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
-            
+
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-    order: ["section1", "section2", "section3", "section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Pictures That Count — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: buildingAndReadingPictographs
     Methodologist status: Draft
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Construct and interpret one-to-one pictographs with a clear category label and key where one identical symbol represents exactly one observation, validating the chart against its source table.
-    
+
     **Pedagogical rationale and placement:** Learners already collected and recorded counts and read a simple table; mapping those counts to one-symbol-per-object pictographs is an accessible next representation. Building an accurate diagram and reading its categories/key are separate canonical Skills in the same lesson.
-    
+
     Multiple independently assessable Skills are deliberately taught through one coherent reference model; they remain separate competencies with unchanged canonical IDs.
-    
+
     ## Target audience
-    
+
     **Primary grade: Grade 2; ages approximately 7–8.** This depth follows the stated prerequisites, not an arbitrary one-Skill-per-Grade or one-Lesson-per-Skill mapping. Design for emerging literacy, mixed language proficiency, variable math fluency and accessibility needs. Use short concrete learner-facing copy, clear audible/textual alternatives and non-motor-precision inputs. The canonical Skills have no Grade ceiling.
-    
+
     ## Prerequisites
-    
+
     - Count and reconcile totals up to twelve; classify each observation into exactly one category.
     - Read a labelled category-frequency table and identify which count belongs to which row.
     - Recognize that an icon used in this lesson is a counting symbol, not an illustration with arbitrary size or value.
-    
+
     Previously transferred, pedagogically adjacent Skills: `collectCounts`, `tallyMarks`, `fillSimpleTable`, `readSimpleTable`, `compareCategories`. The Lesson itself must remain standalone and Program-neutral; a learner with the equivalent knowledge need not complete any named preceding Lesson.
-    
+
     ## Target Skills
-    
+
     - [buildPictograph.data.ts](../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
     - [readPictograph.data.ts](../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Explain the pictograph key: one identical token icon represents one object, without relying on picture color.
     - From a table with apples 4, pears 3, plums 2, build exactly four, three, two identical count icons in correctly labelled rows.
     - Read a pictograph with cats 5, dogs 2, birds 4 by matching a category name, the one-icon key and the count.
     - Check that the built chart total 4+3+2=9 equals its source table's nine observations.
     - Spot an incorrect chart with five icons for apples but a source table count of four, and repair the extra icon.
-    
+
     These observable outcomes state what the Lesson intends to teach and invite learners to demonstrate. Neither a single correct choice nor completion of a Section guarantees validated mastery of an individual Skill.
-    
+
     ## Essential subject matter
-    
+
     - A pictograph represents observed frequencies using repeated symbols. A _key_ states how many observations each symbol represents. In this lesson the key always says 1 icon = 1 object.
     - In a one-to-one pictograph, the correct row icon count equals that category's observed count. Changing the physical icon size or color cannot change the number it represents.
     - A source table with Apples 4, Pears 3, Plums 2 (all pieces of fruit) must produce four/three/two uniform count tokens, with category labels kept beside the matching rows.
     - To read a pictograph, identify the category label, read the key, and count the symbols in that row. For five cat icons, two dog icons and four bird icons, there are 5, 2 and 4 animals respectively.
     - Any representation can be checked against the original category counts and combined total: 4 + 3 + 2 = 9, and 5 + 2 + 4 = 11.
-    
+
     **Depth selected for this audience:** Strictly one identical accessible counting symbol per observed item and unscaled keys (1 icon = 1 item); two or three categories and counts of 0–6, with totals at most twelve. No half-icons, scaled pictographs, bar charts, averages, percentages or inferential claims. Distinguish reading the chart from making it.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Build on the listed prerequisites, expose the _reference_ (whole size, hour and minute scale, pictograph key, or random-experiment conditions) before asking the learner to reason. Move from a familiar case to an interactive contrast that makes a common misconception visible, then apply the correct rule in an independent fresh example. The Screenwriter chooses presentation, interactions and number of Sections; the Methodologist owns content limits and accuracy. Supporting representations teach a Skill; they do not create additional Skill IDs.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     - A larger decorative icon stands for more objects even though the stated key is one-to-one.
     - The pictograph has one icon per _category_, not per observation.
     - An unlabeled row of five icons tells us which category it describes without a heading.
     - A displayed key can be ignored because the icons look like the physical objects.
     - A pictograph with five icons for four observed apples is acceptable because it looks more balanced.
-    
+
     **Explicit exclusions:** Strictly one identical accessible counting symbol per observed item and unscaled keys (1 icon = 1 item); two or three categories and counts of 0–6, with totals at most twelve. No half-icons, scaled pictographs, bar charts, averages, percentages or inferential claims. Distinguish reading the chart from making it. Do not implicitly extend the canonical Skill description, invent new taxonomy entities or treat any exercise format as a separately approved Skill.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Complete authentic translation of all learner-facing text, mathematical terminology, captions, nonvisual model descriptions, controls, hints and feedback is mandatory for every standard locale at implementation. No English replacement text, fake dictionaries, silent fallbacks or `allLocales` assertions of incomplete coverage. Adapt layout and narrative order semantically for RTL without reversing mathematical truth. Require meaningful keyboard/touch/screen-reader participation, visible focus, adequate targets, high contrast, static reduced-motion representation, small-screen readability and WCAG 2.2 AA testing. Once downloaded, the complete Lesson, Scene and explanatory feedback must run offline on low-resource devices. These are requirements, not claims that runtime assets or PWA flows exist.
-    
+
     ## Sources and factual verification
-    
+
     - [buildPictograph.data.ts](../../../../data/skills/data/presentation/skills/buildPictograph.data.ts) — canonical Mathematics Skill object and methodological description.
     - [readPictograph.data.ts](../../../../data/skills/data/presentation/skills/readPictograph.data.ts) — canonical Mathematics Skill object and methodological description.
     - Studio [Lesson](../../../../../../studio/docs/entities/lesson.md), [Lesson Content](../../../../../../studio/docs/entities/lesson-content.md), [Section](../../../../../../studio/docs/entities/section.md) and [Program](../../../../../../studio/docs/entities/program.md) contracts.
     - Scene specification below records fully specified examples and truth conditions for subsequent mathematical and editorial review.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. Standalone and Program-neutral. Do not claim formal Ukrainian or international Curriculum alignment without reviewing a concrete Curriculum.
-    
+
     ## Open editorial decisions
-    
+
     - **Editor/Methodologist:** verify Grade 2 audience, prerequisite suitability, target Skills, depth and treatment of the listed misconceptions.
     - **Editor/Screenwriter:** approve the provisional Section plan and separately review the custom Scene specification only after the Methodologist Brief is accepted.
     - **Engineering/QA:** accessible equivalence, locale coverage, offline behavior, tests and runtime Section integration remain future implementation work, not established behavior.
-    
+
     ## Methodologist handoff
-    
+
     **Draft pending editorial approval.** Companion Content and Scene specifications are _provisional_ under the explicit batch instruction; their creation does not satisfy or bypass the Methodologist approval gate. No runtime Lesson_Config, Question, Quiz, React Scene, scoring, storage API or Note implementation is authorized by this handoff.
-  purpose: "Pictures That Count: preserve existing standalone Lesson plan without new assessments or Scene implementation"
+  purpose: 'Pictures That Count: preserve existing standalone Lesson plan without new assessments or Scene implementation'
   productionNotes: |-
     Provisional Screenwriter source (not approved), originally content.md; all introductory, global and review material:
-    
+
     # Pictures That Count — Lesson Content
-    
+
     **Status: Provisional Draft — pending Methodologist approval.**
     **Methodologist input:** Draft Brief (incorporated in this config.yaml) (**not approved**).
     **Primary audience:** Grade 2, ages 7–8.
     **Target canonical Skills:**
-    
+
     - [buildPictograph.data.ts](../../../../data/skills/data/presentation/skills/buildPictograph.data.ts)
     - [readPictograph.data.ts](../../../../data/skills/data/presentation/skills/readPictograph.data.ts)
       **Independence:** standalone Playground Lesson; no Program storyline, mascot, reward, mission or past learner state required.
       **Implementation:** editorial Content only. No runtime Lesson, Questions, Quizzes, scoring, registered custom Scenes or locale bundles created.
-    
+
     ## Instructional concept
-    
+
     Construct and interpret one-to-one pictographs with a clear category label and key where one identical symbol represents exactly one observation, validating the chart against its source table.
-    
+
     Learners already collected and recorded counts and read a simple table; mapping those counts to one-symbol-per-object pictographs is an accessible next representation. Building an accurate diagram and reading its categories/key are separate canonical Skills in the same lesson.
-    
+
     The core web opportunity is **learner-controlled inspection of a mathematical model**, not merely an illustration: A learner-manipulable table-to-pictograph builder and a separate read-only example. Rows carry explicit text category names; each count icon is a same-size tally token independent of the fruit/animal's real shape. The key is always displayed and narrated.
-    
+
     Every example is bounded: Strictly one identical accessible counting symbol per observed item and unscaled keys (1 icon = 1 item); two or three categories and counts of 0–6, with totals at most twelve. No half-icons, scaled pictographs, bar charts, averages, percentages or inferential claims. Distinguish reading the chart from making it.
-    
+
     ## Learner journey and ordered Sections
-    
+
     1. **Pictures can keep a count** — Tie one pictograph symbol to one observation and its category.
     2. **Build a pictograph from the table** — Construct one-to-one symbols and reconcile them against original frequencies.
     3. **Read somebody else's picture** — Use category names and the key rather than memorizing source table values.
     4. **Your new chart** — Transfer a one-to-one key to a new category set and catch a mismatch.
-    
+
     Use a vertical single-column order of typed Resource blocks within each general Section: `text`, `markdown` and the existing `scene` Resource type. The named **PictographStudio** is a new proposed Scene, not yet implemented, and each appearance must be self-contained rather than depending on earlier Section state. A generic Scene renderer does not mean this particular educational interaction is available. No new Section discriminators or hidden readiness APIs are implied.
-    
+
     ## Section-by-Section learning experience
-    
-    
-    
+
+
+
     ## Custom Scene specifications
-    
+
     - PictographStudio (full Scene specification embedded in this config.yaml) — proposed interactive, prop-free self-contained Scene. Review its pedagogical cases, state changes, feedback, accessibility alternatives and reset. It is a written specification, **not** a React component.
-    
+
     ## Independent transfer and reflection
-    
+
     With a fresh table of two stars, four moons and one sun, make a row-labelled chart with 2,4,1 symbols and a key; the total must equal seven.
-    
+
     Present the unfamiliar case before revealing the worked result. The learner may request a hint and review a full explanation; speech input is optional to a nearby adult rather than an assumed speech-recognition system. An unscored transfer response informs learning but is not validated mastery.
-    
+
     ## Lesson Notes — planned, not implemented
-    
+
     **Concise cue:** “Read the key and category label; in this chart, one identical icon means one item.”
-    
+
     **Proposed unlock moment:** after the learner has examined the critical comparison in Section 3 and can explain what made the examples different. There is no verified Note entity, unlock event, persistent study sheet, spaced-repetition scheduler or offline Notes sync; the Lesson must remain understandable without those features.
-    
+
     ## Assessment and technical handoff
-    
+
     These interactions are formative, explanatory and unscored. An Assessment Architect owns later Question banks, diagnostic validity, Quiz behavior, scoring thresholds and mastery evidence. A Coding Agent owns runtime Lesson/Section data, Scene implementation, translations, assets, tests, registration and packaging. The Scene's feasibility, full supported locale coverage, WCAG 2.2 AA access, true RTL, reduced motion, mobile and offline parity are **release requirements, not existing implementation claims**.
-    
+
     ## Open editorial questions
-    
+
     - Confirm the Methodologist's selected scope before approving this Content.
     - Review explanatory language and any potentially ambiguous model assumptions in the Scene with domain specialist.
     - Review all locale-specific labels, numerals and conventions, and provide accurate genuine translations before implementation.
-    
+
     **Editorial status remains Provisional Draft.**
-    
+
     Source-language-only English draft; intended locale list follows the current Engine supported language set (ar, be, bn, de, en, es, et, fr, he, hi, id, ja, ka, kk, ko, lt, lv, mr, ms, pl, pt, qm, ta, te, tr, uk, ur, vi, zh), with genuine translations required before implementation. No formal independent approval is implied.

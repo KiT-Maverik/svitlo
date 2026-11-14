@@ -1,11 +1,42 @@
 # Unified Mathematics Lesson editorial source — provisional; pending independent approval.
 config:
-  id: "73e82909-fd8c-5cb0-9a5b-71ce0d30e8a2"
-  slug: "multiplicationCommutative"
-  type: "lesson"
-  skills: ["1750b60b-9e8d-4426-b307-1b6c7a4d641b"]
+  id: '73e82909-fd8c-5cb0-9a5b-71ce0d30e8a2'
+  slug: 'multiplicationCommutative'
+  type: 'lesson'
+  skills: ['1750b60b-9e8d-4426-b307-1b6c7a4d641b']
   params:
-    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    languages:
+      [
+        'ar',
+        'be',
+        'bn',
+        'de',
+        'en',
+        'es',
+        'et',
+        'fr',
+        'he',
+        'hi',
+        'id',
+        'ja',
+        'ka',
+        'kk',
+        'ko',
+        'lt',
+        'lv',
+        'mr',
+        'ms',
+        'pl',
+        'pt',
+        'qm',
+        'ta',
+        'te',
+        'tr',
+        'uk',
+        'ur',
+        'vi',
+        'zh',
+      ]
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -13,90 +44,90 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "Swapping Factors Without Changing the Total"
+      en: 'Swapping Factors Without Changing the Total'
   section:
     items:
       section1:
         config:
-          id: "cb55fc61-f9ed-430e-8c80-80af324e579c"
-          slug: "section1"
-          type: "content"
+          id: 'cb55fc61-f9ed-430e-8c80-80af324e579c'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Keep All Twelve Dots"
+              en: 'Keep All Twelve Dots'
             navigationLabel:
-              en: "Keep All Twelve Dots"
+              en: 'Keep All Twelve Dots'
           content:
             items:
               text1:
                 config:
-                  id: "14466b83-bc14-4cfc-8249-7561d8cfcc12"
-                  slug: "text1"
-                  type: "text"
+                  id: '14466b83-bc14-4cfc-8249-7561d8cfcc12'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Three rows with four dots each make how many?"
+                      en: 'Three rows with four dots each make how many?'
                 production:
-                  purpose: "Keep All Twelve Dots: text resource at position 1 (source provisional)"
-                  specification: "1. **text (renderer available):** “Three rows with four dots each make how many?”"
+                  purpose: 'Keep All Twelve Dots: text resource at position 1 (source provisional)'
+                  specification: '1. **text (renderer available):** “Three rows with four dots each make how many?”'
               scene2:
                 config:
-                  id: "6f673c15-ba0a-484c-8128-c19fc2bd2dce"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '6f673c15-ba0a-484c-8128-c19fc2bd2dce'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Keep All Twelve Dots"
+                        instruction: 'Keep All Twelve Dots'
                 production:
-                  purpose: "Keep All Twelve Dots; source Scene arrayRotationInspector.scene-spec.md; use 2"
+                  purpose: 'Keep All Twelve Dots; source Scene arrayRotationInspector.scene-spec.md; use 2'
                   specification: |-
                     # Array Rotation Inspector — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: [Swapping Factors Without Changing the Total Content](.this config.yaml), Sections 1–4
                     Methodologist objectives: Observe that one physical 3-by-4 array can be reoriented to 4-by-3 without adding or removing dots. Explain in words and numerals why 3×4 and 4×3 both equal 12. Predict that changing factor order in 2×5 yields the same product as 5×2 and verify by counting. Distinguish swapping factors from changing either factor's value; avoid claiming subtraction is commutative. [Methodologist Brief](.this config.yaml), not approved.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Demonstrate that exchanging multiplication factors preserves the product, first by reorienting the SAME rectangular array of dots, then by independently checking a different pair of factors. The number of groups and the size of each group may change roles; the total does not. The browser interaction invites evidence-based predictions and explicitly compares results, not a decorative animation or a hidden scoring event.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Commutativity: a×b=b×a in the relevant whole-number domain. The same twelve-dot rectangle can be viewed as 3 rows of 4 or 4 rows of 3; a quarter turn changes orientation, not cardinality. 2×5=10 and 5×2=10 likewise count the same ten dots arranged as 2 rows of 5 or 5 rows of 2. Rotating or reorganizing must preserve each dot exactly once, not silently copy objects. The factor roles in a 'groups × size' narrative must be relabeled when the orientation changes. Mistaking rotation for doubling; interpreting 3×4 and 4×3 as two different totals; assuming any operation is commutative (e.g., 5−2=2−5); treating a rearranged 'four groups of three' story as the original unchanged 'three groups of four' story. Numbers 0–5 and products ≤25 in models; no algebraic proof requirement. **Invariant:** The cardinality of the uniquely identified dot set is 12 for 3×4↔4×3 and 10 for 2×5↔5×2. Orientation transforms indices, never duplicates/removes dots. Product of row count × per-row count must match the actual count in both states.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Placement 1 — Keep All Twelve Dots:** Prompt “Three rows with four dots each make how many?”. Display exactly twelve dots in three ordered rows of four, with an accessible row ledger; count 4+4+4=12. Explain “Three rows of four have twelve dots. This is 3 × 4 = 12.”. **If mistaken:** For a predicted seven, show three complete +4 rows; do not hide the full count. Learner may show every step without guessing.
-                    
+
                     2. **Placement 2 — Turn the Array:** Prompt “Turn the same rectangle. How many rows and dots per row can you see now?”. A learner-triggered quarter-turn reorients the SAME twelve-dot 3×4 rectangle into four rows of three; numeric row/column ledger updates to 4×3. Explain “Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.”. **If mistaken:** If a learner predicts sixteen, report that all twelve dots were retained; none appeared or disappeared. In reduced motion, instantly swap displayed orientation and ledger. Learner may show every step without guessing.
-                    
+
                     3. **Placement 3 — A Rule Worth Testing:** Prompt “Do 3 × 4 and 4 × 3 have the same product? What changed?”. Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review. Explain “The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.”. **If mistaken:** For 'the rows stayed three', point out that new orientation has four rows; only the count of dots stayed the same. Learner may show every step without guessing.
-                    
+
                     4. **Placement 4 — Try Two and Five:** Prompt “Is 2 × 5 equal to 5 × 2? Check using ten dots.”. Create two rows of five, let child reorient into five rows of two, and inspect two complete equations with total ten. Explain “2 × 5 = 10 and 5 × 2 = 10. Both ways use all ten dots exactly once.”. **If mistaken:** For twenty, count the ten original dots and distinguish relabeling from making an extra set. Answer accessible without prediction. Learner may show every step without guessing.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized self-contained prop-free Scene entries; Section-specific "mode" is an editorial label, not a public React prop or invented Resource field.
                     - Objects: labeled row/group counters, exact numerals and expressions, progressive reveal, multiple optional selection controls, accessible ordered state ledger, Reset/Undo/Explain controls.
                     - **State:** Array dimensions 3×4 or 2×5, orientation (original / quarter-turn), dot IDs, semantic rows and columns, comparison and reveal flags; initial state independent in each Section.
                     - **Invariant:** The cardinality of the uniquely identified dot set is 12 for 3×4↔4×3 and 10 for 2×5↔5×2. Orientation transforms indices, never duplicates/removes dots. Product of row count × per-row count must match the actual count in both states. Validate each user action against the model; wrong trial expressions must be marked as not matching, not shown as true identities.
                     - No state stores mastery, score, threshold, question grading or personal analytics. Hints and explanatory reveal are never locked by correctness.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Compact countable dots/group containers with legible text and numeric labels. User-paced rotate/switch/reveal transitions may guide attention; under reduced motion all states and quantities appear immediately with equivalent reasoning. No required photos, generated artwork, audio, WebGL, streamed video, narrator or rewards.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, operation names, counts, status, errors and aria labels require actual translations for all supported locales; English is source only. In RTL, factor/order and group/row meanings retain correct semantics and increasing/rotating directions are explicitly described. A screen-reader user has fully operable numbered state lists and native controls giving identical choices/transformations, not just image descriptions. Visible focus, switch/keyboard/touch operation, large targets, responsive/zoomed mobile display and reduced-motion parity are required. After download all calculations, alternatives and localized feedback must run offline, without audio, color-only signals or drag/speech requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Keep All Twelve Dots: Display exactly twelve dots in three ordered rows of four, with an accessible row ledger; count 4+4+4=12. Correct evidence: Three rows of four have twelve dots. This is 3 × 4 = 12.
                     2. Turn the Array: A learner-triggered quarter-turn reorients the SAME twelve-dot 3×4 rectangle into four rows of three; numeric row/column ledger updates to 4×3. Correct evidence: Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.
                     3. A Rule Worth Testing: Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review. Correct evidence: The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.
@@ -104,32 +135,32 @@ config:
                     5. Wrong predictions trigger the specific numerical explanatory feedback for that model, with retry/reveal and no score.
                     6. Reset and independent Section instances do not leak state.
                     7. Nonvisual, keyboard, RTL, zoom, reduced-motion, low-end-device and downloaded offline states preserve the same mathematical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic scene resource renderer exists; **Array Rotation Inspector itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: Keep this Skill distinct from arrayModel: the array lesson teaches representation and row/column counting, whereas this Lesson targets the invariant when factor order changes. Whether to show one optional subtraction counterexample is an editorial choice; do not teach negative results.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **scene (generic type/renderer available; bespoke component proposed):** Array Rotation Inspector (full Scene specification embedded in this config.yaml), Section 1 entry. Display exactly twelve dots in three ordered rows of four, with an accessible row ledger; count 4+4+4=12.
-                  productionNotes: "Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               markdown3:
                 config:
-                  id: "929ef45b-552d-4b60-9128-e801f1f3dde6"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '929ef45b-552d-4b60-9128-e801f1f3dde6'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Three rows of four have twelve dots. This is 3 × 4 = 12."
+                      en: 'Three rows of four have twelve dots. This is 3 × 4 = 12.'
                 production:
-                  purpose: "Keep All Twelve Dots: markdown resource at position 3 (source provisional)"
-                  specification: "3. **markdown (renderer available):** “Three rows of four have twelve dots. This is 3 × 4 = 12.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Keep All Twelve Dots: markdown resource at position 3 (source provisional)'
+                  specification: '3. **markdown (renderer available):** “Three rows of four have twelve dots. This is 3 × 4 = 12.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Keep All Twelve Dots"
-          pedagogicalIntent: "Original Section 1: Keep All Twelve Dots (provisional draft)"
+          purpose: 'Keep All Twelve Dots'
+          pedagogicalIntent: 'Original Section 1: Keep All Twelve Dots (provisional draft)'
           productionNotes: |-
             - **Outcome:** Observe that one physical 3-by-4 array can be reoriented to 4-by-3 without adding or removing dots.
             - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
@@ -145,85 +176,85 @@ config:
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
       section2:
         config:
-          id: "c855f7a8-f8ed-417b-8d80-8242354e5c55"
-          slug: "section2"
-          type: "content"
+          id: 'c855f7a8-f8ed-417b-8d80-8242354e5c55'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Turn the Array"
+              en: 'Turn the Array'
             navigationLabel:
-              en: "Turn the Array"
+              en: 'Turn the Array'
           content:
             items:
               text1:
                 config:
-                  id: "b4a047de-5c37-4a5d-802d-c5e0067ad5f7"
-                  slug: "text1"
-                  type: "text"
+                  id: 'b4a047de-5c37-4a5d-802d-c5e0067ad5f7'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Turn the same rectangle. How many rows and dots per row can you see now?"
+                      en: 'Turn the same rectangle. How many rows and dots per row can you see now?'
                 production:
-                  purpose: "Turn the Array: text resource at position 1 (source provisional)"
-                  specification: "1. **text (renderer available):** “Turn the same rectangle. How many rows and dots per row can you see now?”"
+                  purpose: 'Turn the Array: text resource at position 1 (source provisional)'
+                  specification: '1. **text (renderer available):** “Turn the same rectangle. How many rows and dots per row can you see now?”'
               scene2:
                 config:
-                  id: "b1236112-2d2f-4fb3-b20f-e628f9d0d401"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'b1236112-2d2f-4fb3-b20f-e628f9d0d401'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Turn the Array"
+                        instruction: 'Turn the Array'
                 production:
-                  purpose: "Turn the Array; source Scene arrayRotationInspector.scene-spec.md; use 2"
+                  purpose: 'Turn the Array; source Scene arrayRotationInspector.scene-spec.md; use 2'
                   specification: |-
                     # Array Rotation Inspector — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: [Swapping Factors Without Changing the Total Content](.this config.yaml), Sections 1–4
                     Methodologist objectives: Observe that one physical 3-by-4 array can be reoriented to 4-by-3 without adding or removing dots. Explain in words and numerals why 3×4 and 4×3 both equal 12. Predict that changing factor order in 2×5 yields the same product as 5×2 and verify by counting. Distinguish swapping factors from changing either factor's value; avoid claiming subtraction is commutative. [Methodologist Brief](.this config.yaml), not approved.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Demonstrate that exchanging multiplication factors preserves the product, first by reorienting the SAME rectangular array of dots, then by independently checking a different pair of factors. The number of groups and the size of each group may change roles; the total does not. The browser interaction invites evidence-based predictions and explicitly compares results, not a decorative animation or a hidden scoring event.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Commutativity: a×b=b×a in the relevant whole-number domain. The same twelve-dot rectangle can be viewed as 3 rows of 4 or 4 rows of 3; a quarter turn changes orientation, not cardinality. 2×5=10 and 5×2=10 likewise count the same ten dots arranged as 2 rows of 5 or 5 rows of 2. Rotating or reorganizing must preserve each dot exactly once, not silently copy objects. The factor roles in a 'groups × size' narrative must be relabeled when the orientation changes. Mistaking rotation for doubling; interpreting 3×4 and 4×3 as two different totals; assuming any operation is commutative (e.g., 5−2=2−5); treating a rearranged 'four groups of three' story as the original unchanged 'three groups of four' story. Numbers 0–5 and products ≤25 in models; no algebraic proof requirement. **Invariant:** The cardinality of the uniquely identified dot set is 12 for 3×4↔4×3 and 10 for 2×5↔5×2. Orientation transforms indices, never duplicates/removes dots. Product of row count × per-row count must match the actual count in both states.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Placement 1 — Keep All Twelve Dots:** Prompt “Three rows with four dots each make how many?”. Display exactly twelve dots in three ordered rows of four, with an accessible row ledger; count 4+4+4=12. Explain “Three rows of four have twelve dots. This is 3 × 4 = 12.”. **If mistaken:** For a predicted seven, show three complete +4 rows; do not hide the full count. Learner may show every step without guessing.
-                    
+
                     2. **Placement 2 — Turn the Array:** Prompt “Turn the same rectangle. How many rows and dots per row can you see now?”. A learner-triggered quarter-turn reorients the SAME twelve-dot 3×4 rectangle into four rows of three; numeric row/column ledger updates to 4×3. Explain “Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.”. **If mistaken:** If a learner predicts sixteen, report that all twelve dots were retained; none appeared or disappeared. In reduced motion, instantly swap displayed orientation and ledger. Learner may show every step without guessing.
-                    
+
                     3. **Placement 3 — A Rule Worth Testing:** Prompt “Do 3 × 4 and 4 × 3 have the same product? What changed?”. Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review. Explain “The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.”. **If mistaken:** For 'the rows stayed three', point out that new orientation has four rows; only the count of dots stayed the same. Learner may show every step without guessing.
-                    
+
                     4. **Placement 4 — Try Two and Five:** Prompt “Is 2 × 5 equal to 5 × 2? Check using ten dots.”. Create two rows of five, let child reorient into five rows of two, and inspect two complete equations with total ten. Explain “2 × 5 = 10 and 5 × 2 = 10. Both ways use all ten dots exactly once.”. **If mistaken:** For twenty, count the ten original dots and distinguish relabeling from making an extra set. Answer accessible without prediction. Learner may show every step without guessing.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized self-contained prop-free Scene entries; Section-specific "mode" is an editorial label, not a public React prop or invented Resource field.
                     - Objects: labeled row/group counters, exact numerals and expressions, progressive reveal, multiple optional selection controls, accessible ordered state ledger, Reset/Undo/Explain controls.
                     - **State:** Array dimensions 3×4 or 2×5, orientation (original / quarter-turn), dot IDs, semantic rows and columns, comparison and reveal flags; initial state independent in each Section.
                     - **Invariant:** The cardinality of the uniquely identified dot set is 12 for 3×4↔4×3 and 10 for 2×5↔5×2. Orientation transforms indices, never duplicates/removes dots. Product of row count × per-row count must match the actual count in both states. Validate each user action against the model; wrong trial expressions must be marked as not matching, not shown as true identities.
                     - No state stores mastery, score, threshold, question grading or personal analytics. Hints and explanatory reveal are never locked by correctness.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Compact countable dots/group containers with legible text and numeric labels. User-paced rotate/switch/reveal transitions may guide attention; under reduced motion all states and quantities appear immediately with equivalent reasoning. No required photos, generated artwork, audio, WebGL, streamed video, narrator or rewards.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, operation names, counts, status, errors and aria labels require actual translations for all supported locales; English is source only. In RTL, factor/order and group/row meanings retain correct semantics and increasing/rotating directions are explicitly described. A screen-reader user has fully operable numbered state lists and native controls giving identical choices/transformations, not just image descriptions. Visible focus, switch/keyboard/touch operation, large targets, responsive/zoomed mobile display and reduced-motion parity are required. After download all calculations, alternatives and localized feedback must run offline, without audio, color-only signals or drag/speech requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Keep All Twelve Dots: Display exactly twelve dots in three ordered rows of four, with an accessible row ledger; count 4+4+4=12. Correct evidence: Three rows of four have twelve dots. This is 3 × 4 = 12.
                     2. Turn the Array: A learner-triggered quarter-turn reorients the SAME twelve-dot 3×4 rectangle into four rows of three; numeric row/column ledger updates to 4×3. Correct evidence: Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.
                     3. A Rule Worth Testing: Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review. Correct evidence: The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.
@@ -231,32 +262,32 @@ config:
                     5. Wrong predictions trigger the specific numerical explanatory feedback for that model, with retry/reveal and no score.
                     6. Reset and independent Section instances do not leak state.
                     7. Nonvisual, keyboard, RTL, zoom, reduced-motion, low-end-device and downloaded offline states preserve the same mathematical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic scene resource renderer exists; **Array Rotation Inspector itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: Keep this Skill distinct from arrayModel: the array lesson teaches representation and row/column counting, whereas this Lesson targets the invariant when factor order changes. Whether to show one optional subtraction counterexample is an editorial choice; do not teach negative results.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **scene (generic type/renderer available; bespoke component proposed):** Array Rotation Inspector (full Scene specification embedded in this config.yaml), Section 2 entry. A learner-triggered quarter-turn reorients the SAME twelve-dot 3×4 rectangle into four rows of three; numeric row/column ledger updates to 4×3.
-                  productionNotes: "Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               markdown3:
                 config:
-                  id: "b28cca82-a28d-40ad-856a-83b4ac478e8f"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: 'b28cca82-a28d-40ad-856a-83b4ac478e8f'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12."
+                      en: 'Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.'
                 production:
-                  purpose: "Turn the Array: markdown resource at position 3 (source provisional)"
-                  specification: "3. **markdown (renderer available):** “Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Turn the Array: markdown resource at position 3 (source provisional)'
+                  specification: '3. **markdown (renderer available):** “Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Turn the Array"
-          pedagogicalIntent: "Original Section 2: Turn the Array (provisional draft)"
+          purpose: 'Turn the Array'
+          pedagogicalIntent: 'Original Section 2: Turn the Array (provisional draft)'
           productionNotes: |-
             - **Outcome:** Explain in words and numerals why 3×4 and 4×3 both equal 12.
             - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
@@ -272,85 +303,85 @@ config:
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
       section3:
         config:
-          id: "c955f93b-f7ed-4fe8-8e80-83d5344e5ac2"
-          slug: "section3"
-          type: "content"
+          id: 'c955f93b-f7ed-4fe8-8e80-83d5344e5ac2'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A Rule Worth Testing"
+              en: 'A Rule Worth Testing'
             navigationLabel:
-              en: "A Rule Worth Testing"
+              en: 'A Rule Worth Testing'
           content:
             items:
               text1:
                 config:
-                  id: "5f32089d-369d-479e-89df-c1777cc8da60"
-                  slug: "text1"
-                  type: "text"
+                  id: '5f32089d-369d-479e-89df-c1777cc8da60'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Do 3 × 4 and 4 × 3 have the same product? What changed?"
+                      en: 'Do 3 × 4 and 4 × 3 have the same product? What changed?'
                 production:
-                  purpose: "A Rule Worth Testing: text resource at position 1 (source provisional)"
-                  specification: "1. **text (renderer available):** “Do 3 × 4 and 4 × 3 have the same product? What changed?”"
+                  purpose: 'A Rule Worth Testing: text resource at position 1 (source provisional)'
+                  specification: '1. **text (renderer available):** “Do 3 × 4 and 4 × 3 have the same product? What changed?”'
               scene2:
                 config:
-                  id: "1c1529f3-1113-47d2-91af-8e819a312ba8"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '1c1529f3-1113-47d2-91af-8e819a312ba8'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "A Rule Worth Testing"
+                        instruction: 'A Rule Worth Testing'
                 production:
-                  purpose: "A Rule Worth Testing; source Scene arrayRotationInspector.scene-spec.md; use 2"
+                  purpose: 'A Rule Worth Testing; source Scene arrayRotationInspector.scene-spec.md; use 2'
                   specification: |-
                     # Array Rotation Inspector — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: [Swapping Factors Without Changing the Total Content](.this config.yaml), Sections 1–4
                     Methodologist objectives: Observe that one physical 3-by-4 array can be reoriented to 4-by-3 without adding or removing dots. Explain in words and numerals why 3×4 and 4×3 both equal 12. Predict that changing factor order in 2×5 yields the same product as 5×2 and verify by counting. Distinguish swapping factors from changing either factor's value; avoid claiming subtraction is commutative. [Methodologist Brief](.this config.yaml), not approved.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Demonstrate that exchanging multiplication factors preserves the product, first by reorienting the SAME rectangular array of dots, then by independently checking a different pair of factors. The number of groups and the size of each group may change roles; the total does not. The browser interaction invites evidence-based predictions and explicitly compares results, not a decorative animation or a hidden scoring event.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Commutativity: a×b=b×a in the relevant whole-number domain. The same twelve-dot rectangle can be viewed as 3 rows of 4 or 4 rows of 3; a quarter turn changes orientation, not cardinality. 2×5=10 and 5×2=10 likewise count the same ten dots arranged as 2 rows of 5 or 5 rows of 2. Rotating or reorganizing must preserve each dot exactly once, not silently copy objects. The factor roles in a 'groups × size' narrative must be relabeled when the orientation changes. Mistaking rotation for doubling; interpreting 3×4 and 4×3 as two different totals; assuming any operation is commutative (e.g., 5−2=2−5); treating a rearranged 'four groups of three' story as the original unchanged 'three groups of four' story. Numbers 0–5 and products ≤25 in models; no algebraic proof requirement. **Invariant:** The cardinality of the uniquely identified dot set is 12 for 3×4↔4×3 and 10 for 2×5↔5×2. Orientation transforms indices, never duplicates/removes dots. Product of row count × per-row count must match the actual count in both states.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Placement 1 — Keep All Twelve Dots:** Prompt “Three rows with four dots each make how many?”. Display exactly twelve dots in three ordered rows of four, with an accessible row ledger; count 4+4+4=12. Explain “Three rows of four have twelve dots. This is 3 × 4 = 12.”. **If mistaken:** For a predicted seven, show three complete +4 rows; do not hide the full count. Learner may show every step without guessing.
-                    
+
                     2. **Placement 2 — Turn the Array:** Prompt “Turn the same rectangle. How many rows and dots per row can you see now?”. A learner-triggered quarter-turn reorients the SAME twelve-dot 3×4 rectangle into four rows of three; numeric row/column ledger updates to 4×3. Explain “Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.”. **If mistaken:** If a learner predicts sixteen, report that all twelve dots were retained; none appeared or disappeared. In reduced motion, instantly swap displayed orientation and ledger. Learner may show every step without guessing.
-                    
+
                     3. **Placement 3 — A Rule Worth Testing:** Prompt “Do 3 × 4 and 4 × 3 have the same product? What changed?”. Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review. Explain “The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.”. **If mistaken:** For 'the rows stayed three', point out that new orientation has four rows; only the count of dots stayed the same. Learner may show every step without guessing.
-                    
+
                     4. **Placement 4 — Try Two and Five:** Prompt “Is 2 × 5 equal to 5 × 2? Check using ten dots.”. Create two rows of five, let child reorient into five rows of two, and inspect two complete equations with total ten. Explain “2 × 5 = 10 and 5 × 2 = 10. Both ways use all ten dots exactly once.”. **If mistaken:** For twenty, count the ten original dots and distinguish relabeling from making an extra set. Answer accessible without prediction. Learner may show every step without guessing.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized self-contained prop-free Scene entries; Section-specific "mode" is an editorial label, not a public React prop or invented Resource field.
                     - Objects: labeled row/group counters, exact numerals and expressions, progressive reveal, multiple optional selection controls, accessible ordered state ledger, Reset/Undo/Explain controls.
                     - **State:** Array dimensions 3×4 or 2×5, orientation (original / quarter-turn), dot IDs, semantic rows and columns, comparison and reveal flags; initial state independent in each Section.
                     - **Invariant:** The cardinality of the uniquely identified dot set is 12 for 3×4↔4×3 and 10 for 2×5↔5×2. Orientation transforms indices, never duplicates/removes dots. Product of row count × per-row count must match the actual count in both states. Validate each user action against the model; wrong trial expressions must be marked as not matching, not shown as true identities.
                     - No state stores mastery, score, threshold, question grading or personal analytics. Hints and explanatory reveal are never locked by correctness.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Compact countable dots/group containers with legible text and numeric labels. User-paced rotate/switch/reveal transitions may guide attention; under reduced motion all states and quantities appear immediately with equivalent reasoning. No required photos, generated artwork, audio, WebGL, streamed video, narrator or rewards.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, operation names, counts, status, errors and aria labels require actual translations for all supported locales; English is source only. In RTL, factor/order and group/row meanings retain correct semantics and increasing/rotating directions are explicitly described. A screen-reader user has fully operable numbered state lists and native controls giving identical choices/transformations, not just image descriptions. Visible focus, switch/keyboard/touch operation, large targets, responsive/zoomed mobile display and reduced-motion parity are required. After download all calculations, alternatives and localized feedback must run offline, without audio, color-only signals or drag/speech requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Keep All Twelve Dots: Display exactly twelve dots in three ordered rows of four, with an accessible row ledger; count 4+4+4=12. Correct evidence: Three rows of four have twelve dots. This is 3 × 4 = 12.
                     2. Turn the Array: A learner-triggered quarter-turn reorients the SAME twelve-dot 3×4 rectangle into four rows of three; numeric row/column ledger updates to 4×3. Correct evidence: Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.
                     3. A Rule Worth Testing: Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review. Correct evidence: The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.
@@ -358,32 +389,32 @@ config:
                     5. Wrong predictions trigger the specific numerical explanatory feedback for that model, with retry/reveal and no score.
                     6. Reset and independent Section instances do not leak state.
                     7. Nonvisual, keyboard, RTL, zoom, reduced-motion, low-end-device and downloaded offline states preserve the same mathematical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic scene resource renderer exists; **Array Rotation Inspector itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: Keep this Skill distinct from arrayModel: the array lesson teaches representation and row/column counting, whereas this Lesson targets the invariant when factor order changes. Whether to show one optional subtraction counterexample is an editorial choice; do not teach negative results.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **scene (generic type/renderer available; bespoke component proposed):** Array Rotation Inspector (full Scene specification embedded in this config.yaml), Section 3 entry. Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review.
-                  productionNotes: "Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               markdown3:
                 config:
-                  id: "39c80fed-f369-4142-b5ef-b20f7bc26034"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '39c80fed-f369-4142-b5ef-b20f7bc26034'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors."
+                      en: 'The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.'
                 production:
-                  purpose: "A Rule Worth Testing: markdown resource at position 3 (source provisional)"
-                  specification: "3. **markdown (renderer available):** “The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'A Rule Worth Testing: markdown resource at position 3 (source provisional)'
+                  specification: '3. **markdown (renderer available):** “The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "A Rule Worth Testing"
-          pedagogicalIntent: "Original Section 3: A Rule Worth Testing (provisional draft)"
+          purpose: 'A Rule Worth Testing'
+          pedagogicalIntent: 'Original Section 3: A Rule Worth Testing (provisional draft)'
           productionNotes: |-
             - **Outcome:** Predict that changing factor order in 2×5 yields the same product as 5×2 and verify by counting.
             - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
@@ -399,85 +430,85 @@ config:
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
       section4:
         config:
-          id: "ce56011a-feed-4aed-8780-78d02f4e52e3"
-          slug: "section4"
-          type: "content"
+          id: 'ce56011a-feed-4aed-8780-78d02f4e52e3'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Try Two and Five"
+              en: 'Try Two and Five'
             navigationLabel:
-              en: "Try Two and Five"
+              en: 'Try Two and Five'
           content:
             items:
               text1:
                 config:
-                  id: "deaa6a78-c82e-4c4f-a7cf-3d8615f4e365"
-                  slug: "text1"
-                  type: "text"
+                  id: 'deaa6a78-c82e-4c4f-a7cf-3d8615f4e365'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Is 2 × 5 equal to 5 × 2? Check using ten dots."
+                      en: 'Is 2 × 5 equal to 5 × 2? Check using ten dots.'
                 production:
-                  purpose: "Try Two and Five: text resource at position 1 (source provisional)"
-                  specification: "1. **text (renderer available):** “Is 2 × 5 equal to 5 × 2? Check using ten dots.”"
+                  purpose: 'Try Two and Five: text resource at position 1 (source provisional)'
+                  specification: '1. **text (renderer available):** “Is 2 × 5 equal to 5 × 2? Check using ten dots.”'
               scene2:
                 config:
-                  id: "0bae50f0-da08-4229-ae67-492a50f4800b"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '0bae50f0-da08-4229-ae67-492a50f4800b'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Try Two and Five"
+                        instruction: 'Try Two and Five'
                 production:
-                  purpose: "Try Two and Five; source Scene arrayRotationInspector.scene-spec.md; use 2"
+                  purpose: 'Try Two and Five; source Scene arrayRotationInspector.scene-spec.md; use 2'
                   specification: |-
                     # Array Rotation Inspector — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: [Swapping Factors Without Changing the Total Content](.this config.yaml), Sections 1–4
                     Methodologist objectives: Observe that one physical 3-by-4 array can be reoriented to 4-by-3 without adding or removing dots. Explain in words and numerals why 3×4 and 4×3 both equal 12. Predict that changing factor order in 2×5 yields the same product as 5×2 and verify by counting. Distinguish swapping factors from changing either factor's value; avoid claiming subtraction is commutative. [Methodologist Brief](.this config.yaml), not approved.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Demonstrate that exchanging multiplication factors preserves the product, first by reorienting the SAME rectangular array of dots, then by independently checking a different pair of factors. The number of groups and the size of each group may change roles; the total does not. The browser interaction invites evidence-based predictions and explicitly compares results, not a decorative animation or a hidden scoring event.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Commutativity: a×b=b×a in the relevant whole-number domain. The same twelve-dot rectangle can be viewed as 3 rows of 4 or 4 rows of 3; a quarter turn changes orientation, not cardinality. 2×5=10 and 5×2=10 likewise count the same ten dots arranged as 2 rows of 5 or 5 rows of 2. Rotating or reorganizing must preserve each dot exactly once, not silently copy objects. The factor roles in a 'groups × size' narrative must be relabeled when the orientation changes. Mistaking rotation for doubling; interpreting 3×4 and 4×3 as two different totals; assuming any operation is commutative (e.g., 5−2=2−5); treating a rearranged 'four groups of three' story as the original unchanged 'three groups of four' story. Numbers 0–5 and products ≤25 in models; no algebraic proof requirement. **Invariant:** The cardinality of the uniquely identified dot set is 12 for 3×4↔4×3 and 10 for 2×5↔5×2. Orientation transforms indices, never duplicates/removes dots. Product of row count × per-row count must match the actual count in both states.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Placement 1 — Keep All Twelve Dots:** Prompt “Three rows with four dots each make how many?”. Display exactly twelve dots in three ordered rows of four, with an accessible row ledger; count 4+4+4=12. Explain “Three rows of four have twelve dots. This is 3 × 4 = 12.”. **If mistaken:** For a predicted seven, show three complete +4 rows; do not hide the full count. Learner may show every step without guessing.
-                    
+
                     2. **Placement 2 — Turn the Array:** Prompt “Turn the same rectangle. How many rows and dots per row can you see now?”. A learner-triggered quarter-turn reorients the SAME twelve-dot 3×4 rectangle into four rows of three; numeric row/column ledger updates to 4×3. Explain “Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.”. **If mistaken:** If a learner predicts sixteen, report that all twelve dots were retained; none appeared or disappeared. In reduced motion, instantly swap displayed orientation and ledger. Learner may show every step without guessing.
-                    
+
                     3. **Placement 3 — A Rule Worth Testing:** Prompt “Do 3 × 4 and 4 × 3 have the same product? What changed?”. Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review. Explain “The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.”. **If mistaken:** For 'the rows stayed three', point out that new orientation has four rows; only the count of dots stayed the same. Learner may show every step without guessing.
-                    
+
                     4. **Placement 4 — Try Two and Five:** Prompt “Is 2 × 5 equal to 5 × 2? Check using ten dots.”. Create two rows of five, let child reorient into five rows of two, and inspect two complete equations with total ten. Explain “2 × 5 = 10 and 5 × 2 = 10. Both ways use all ten dots exactly once.”. **If mistaken:** For twenty, count the ten original dots and distinguish relabeling from making an extra set. Answer accessible without prediction. Learner may show every step without guessing.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized self-contained prop-free Scene entries; Section-specific "mode" is an editorial label, not a public React prop or invented Resource field.
                     - Objects: labeled row/group counters, exact numerals and expressions, progressive reveal, multiple optional selection controls, accessible ordered state ledger, Reset/Undo/Explain controls.
                     - **State:** Array dimensions 3×4 or 2×5, orientation (original / quarter-turn), dot IDs, semantic rows and columns, comparison and reveal flags; initial state independent in each Section.
                     - **Invariant:** The cardinality of the uniquely identified dot set is 12 for 3×4↔4×3 and 10 for 2×5↔5×2. Orientation transforms indices, never duplicates/removes dots. Product of row count × per-row count must match the actual count in both states. Validate each user action against the model; wrong trial expressions must be marked as not matching, not shown as true identities.
                     - No state stores mastery, score, threshold, question grading or personal analytics. Hints and explanatory reveal are never locked by correctness.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Compact countable dots/group containers with legible text and numeric labels. User-paced rotate/switch/reveal transitions may guide attention; under reduced motion all states and quantities appear immediately with equivalent reasoning. No required photos, generated artwork, audio, WebGL, streamed video, narrator or rewards.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, operation names, counts, status, errors and aria labels require actual translations for all supported locales; English is source only. In RTL, factor/order and group/row meanings retain correct semantics and increasing/rotating directions are explicitly described. A screen-reader user has fully operable numbered state lists and native controls giving identical choices/transformations, not just image descriptions. Visible focus, switch/keyboard/touch operation, large targets, responsive/zoomed mobile display and reduced-motion parity are required. After download all calculations, alternatives and localized feedback must run offline, without audio, color-only signals or drag/speech requirements.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Keep All Twelve Dots: Display exactly twelve dots in three ordered rows of four, with an accessible row ledger; count 4+4+4=12. Correct evidence: Three rows of four have twelve dots. This is 3 × 4 = 12.
                     2. Turn the Array: A learner-triggered quarter-turn reorients the SAME twelve-dot 3×4 rectangle into four rows of three; numeric row/column ledger updates to 4×3. Correct evidence: Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.
                     3. A Rule Worth Testing: Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review. Correct evidence: The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.
@@ -485,32 +516,32 @@ config:
                     5. Wrong predictions trigger the specific numerical explanatory feedback for that model, with retry/reveal and no score.
                     6. Reset and independent Section instances do not leak state.
                     7. Nonvisual, keyboard, RTL, zoom, reduced-motion, low-end-device and downloaded offline states preserve the same mathematical conclusions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic scene resource renderer exists; **Array Rotation Inspector itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: Keep this Skill distinct from arrayModel: the array lesson teaches representation and row/column counting, whereas this Lesson targets the invariant when factor order changes. Whether to show one optional subtraction counterexample is an editorial choice; do not teach negative results.
-                    
-                    
+
+
                     ## Section-specific use (provisional source, not implemented)
-                    
+
                     2. **scene (generic type/renderer available; bespoke component proposed):** Array Rotation Inspector (full Scene specification embedded in this config.yaml), Section 4 entry. Create two rows of five, let child reorient into five rows of two, and inspect two complete equations with total ten.
-                  productionNotes: "Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification."
+                  productionNotes: 'Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
               markdown3:
                 config:
-                  id: "bc302d9c-0b4c-4e37-83f5-061a747ba2e5"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: 'bc302d9c-0b4c-4e37-83f5-061a747ba2e5'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "2 × 5 = 10 and 5 × 2 = 10. Both ways use all ten dots exactly once."
+                      en: '2 × 5 = 10 and 5 × 2 = 10. Both ways use all ten dots exactly once.'
                 production:
-                  purpose: "Try Two and Five: markdown resource at position 3 (source provisional)"
-                  specification: "3. **markdown (renderer available):** “2 × 5 = 10 and 5 × 2 = 10. Both ways use all ten dots exactly once.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Try Two and Five: markdown resource at position 3 (source provisional)'
+                  specification: '3. **markdown (renderer available):** “2 × 5 = 10 and 5 × 2 = 10. Both ways use all ten dots exactly once.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Try Two and Five"
-          pedagogicalIntent: "Original Section 4: Try Two and Five (provisional draft)"
+          purpose: 'Try Two and Five'
+          pedagogicalIntent: 'Original Section 4: Try Two and Five (provisional draft)'
           productionNotes: |-
             - **Outcome:** Distinguish swapping factors from changing either factor's value; avoid claiming subtraction is commutative.
             - **Structure:** `LessonSection_Config`; a single ordered vertical Resource list.
@@ -524,86 +555,86 @@ config:
             - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
             - **Proposed Note:** “When we swap the factors, the product stays the same.” after this meaning has been explained (planned only).
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-    order: ["section1", "section2", "section3", "section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Swapping Factors Without Changing the Total — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: multiplicationCommutative
     Methodologist status: Draft
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Demonstrate that exchanging multiplication factors preserves the product, first by reorienting the SAME rectangular array of dots, then by independently checking a different pair of factors. The number of groups and the size of each group may change roles; the total does not.
-    
+
     ## Target audience
-    
+
     Children aged 6–8 who can count rectangular arrays and read small multiplication statements; readiness support with exact dot counts. This is an autonomous Lesson and does not presume particular Program or class placement.
-    
+
     ## Prerequisites
-    
+
     - Identify row and column count in a regular rectangular array.
     - Know that R rows with C dots each contain R×C dots.
     - Read the multiplication expression with factors and product, without requiring multiplication-table fluency.
-    
+
     ## Target Skills
-    
+
     - [commutative.data.ts](../../../../data/skills/arithmetic/multiply/skills/commutative.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Observe that one physical 3-by-4 array can be reoriented to 4-by-3 without adding or removing dots.
     - Explain in words and numerals why 3×4 and 4×3 both equal 12.
     - Predict that changing factor order in 2×5 yields the same product as 5×2 and verify by counting.
     - Distinguish swapping factors from changing either factor's value; avoid claiming subtraction is commutative.
-    
+
     ## Essential subject matter
-    
+
     Commutativity: a×b=b×a in the relevant whole-number domain. The same twelve-dot rectangle can be viewed as 3 rows of 4 or 4 rows of 3; a quarter turn changes orientation, not cardinality. 2×5=10 and 5×2=10 likewise count the same ten dots arranged as 2 rows of 5 or 5 rows of 2. Rotating or reorganizing must preserve each dot exactly once, not silently copy objects. The factor roles in a 'groups × size' narrative must be relabeled when the orientation changes.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Recall a countable 3-by-4 array → rotate the same twelve objects and name new rows/columns → predict the relation a×b=b×a → transfer to 2×5 and its reversal.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Mistaking rotation for doubling; interpreting 3×4 and 4×3 as two different totals; assuming any operation is commutative (e.g., 5−2=2−5); treating a rearranged 'four groups of three' story as the original unchanged 'three groups of four' story. Numbers 0–5 and products ≤25 in models; no algebraic proof requirement.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Translate exact operation terminology and group/array quantities into every supported locale; no English fallbacks or ambiguous left/right/row labels. Provide semantically correct RTL math, keyboard/touch/assistive equivalents for all models, accessible text count ledger, reduced-motion equivalence, mobile zoom and deterministic offline use after selected locale assets are downloaded. No required audio/video, drag gesture or time limit.
-    
+
     ## Sources and factual verification
-    
+
     - Generated Code taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative) plus the linked Skill Code source, preserving its mathematical domain boundaries.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), early multiplication as comparative context only.
     - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), concrete-to-symbolic explanatory support.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified; Program-neutral. No national grade certification claimed.
-    
+
     ## Open editorial decisions
-    
+
     - Keep this Skill distinct from arrayModel: the array lesson teaches representation and row/column counting, whereas this Lesson targets the invariant when factor order changes. Whether to show one optional subtraction counterexample is an editorial choice; do not teach negative results.
     - Confirm age-appropriate numerical bounds and mathematically accurate representation in RTL/nonvisual modes.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, not approved.** Screenwriter output is a provisional adjacent draft for review, not an authorization to code Scenes, Quiz items or Mastery signals.
-  purpose: "Swapping Factors Without Changing the Total: preserve existing standalone Lesson plan without new assessments or Scene implementation"
+  purpose: 'Swapping Factors Without Changing the Total: preserve existing standalone Lesson plan without new assessments or Scene implementation'
   productionNotes: |-
     Provisional Screenwriter source (not approved), originally content.md; all introductory, global and review material:
-    
+
     # Swapping Factors Without Changing the Total — Content
-    
+
     Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
     Target Lesson: content/playground/Data/Lessons/1/multiplicationCommutative/
     Audience: Children aged 6–8 who can count rectangular arrays and read small multiplication statements; readiness support with exact dot counts
@@ -611,57 +642,57 @@ production:
     Learning outcomes: Observe that one physical 3-by-4 array can be reoriented to 4-by-3 without adding or removing dots. Explain in words and numerals why 3×4 and 4×3 both equal 12. Predict that changing factor order in 2×5 yields the same product as 5×2 and verify by counting. Distinguish swapping factors from changing either factor's value; avoid claiming subtraction is commutative.
     Target Skill: `commutative.data.ts` linked directly in the Brief; canonical Code unchanged
     Program dependence: None
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Demonstrate that exchanging multiplication factors preserves the product, first by reorienting the SAME rectangular array of dots, then by independently checking a different pair of factors. The number of groups and the size of each group may change roles; the total does not. Commutativity: a×b=b×a in the relevant whole-number domain. The same twelve-dot rectangle can be viewed as 3 rows of 4 or 4 rows of 3; a quarter turn changes orientation, not cardinality. 2×5=10 and 5×2=10 likewise count the same ten dots arranged as 2 rows of 5 or 5 rows of 2. Rotating or reorganizing must preserve each dot exactly once, not silently copy objects. The factor roles in a 'groups × size' narrative must be relabeled when the orientation changes.
-    
+
     The child must manipulate or inspect the numerical evidence before receiving a rule, and then apply it with less support. Keep model, labels, equations and feedback adjacent. No mandatory scored Quiz, reward sequence or fictional Program narrative.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Keep All Twelve Dots:** Display exactly twelve dots in three ordered rows of four, with an accessible row ledger; count 4+4+4=12.
     2. **Turn the Array:** A learner-triggered quarter-turn reorients the SAME twelve-dot 3×4 rectangle into four rows of three; numeric row/column ledger updates to 4×3.
     3. **A Rule Worth Testing:** Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review.
     4. **Try Two and Five:** Create two rows of five, let child reorient into five rows of two, and inspect two complete equations with total ten.
-    
+
     ## SECTION PLAN
-    
-    
-    
+
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Array Rotation Inspector (full Scene specification embedded in this config.yaml) — four standalone prop-free placement entries; specific Scene not yet implemented.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. “When we swap the factors, the product stays the same.” — proposed after first complete relevant worked observation and explanation.
     2. “Turning an array changes rows and columns, not how many dots there are.” — proposed after first complete relevant worked observation and explanation.
-    
+
     Notes are editorial intentions only: no Note API, unlock event, persistence, review sheet, scheduler or mastery record is implemented. Future revision pages should contain only actually unlocked cues.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Recall a countable 3-by-4 array → rotate the same twelve objects and name new rows/columns → predict the relation a×b=b×a → transfer to 2×5 and its reversal. The final example permits independent prediction, optional hints and transparent corrective feedback. These trial states are formative; Assessment Architect independently validates any scored Question, criterion for Skill evidence, answer alternatives and retries. A correct example is not proof of general property mastery. The existing select-one Question adapter is not the proposed Scene.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Every learner prompt, error, status, numerical quantity description, accessible name and Note requires a genuine translation for every supported locale, no silent English fallback. Provide equivalent operable text/table views for all group/array models. Math operator/factor/row meaning remains intact under RTL and when zoomed, with native keyboard/switch/touch controls, ample targets, visible focus and screen-reader announcements. Reduced motion shows identical numerical transitions. All deterministic interactions and chosen locale data must work offline on weak devices once downloaded, without audio/image/video/remote checking/dragging requirements.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     Generic `LessonSection_Config`, text, markdown and `scene` Resource rendering exist. Array Rotation Inspector is proposed, requires its own approved Scene specification, prop-free localized implementations and tests. Other image/audio/video/code Resource kinds are typed-only in the generic renderer and YouTube is not a supported resource config; not required. Notes, automatic review and complete download machinery are not assumed implemented. No graded Question, Quiz or TypeScript runtime Lesson created.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Methodologist Brief (incorporated in this config.yaml), currently Draft and explicitly not approved.
     - Playground taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative).
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Editorial: Keep this Skill distinct from arrayModel: the array lesson teaches representation and row/column counting, whereas this Lesson targets the invariant when factor order changes. Whether to show one optional subtraction counterexample is an editorial choice; do not teach negative results.
     - Technical: implement consistent semantic model for supported locales, RTL and offline.
-    
+
     ## HANDOFF
-    
+
     Provisional Draft Content and separate Draft Scene specification. **Review order:** editor approves Methodologist Brief, then Content and Scene before Design Scene or Coding Agent implementation. Assessment Architect alone creates graded evidence. Do not modify Skill IDs, other Lessons or Program narratives.
-    
+
     Source-language-only English draft; intended locale list follows the current Engine supported language set (ar, be, bn, de, en, es, et, fr, he, hi, id, ja, ka, kk, ko, lt, lv, mr, ms, pl, pt, qm, ta, te, tr, uk, ur, vi, zh), with genuine translations required before implementation. No formal independent approval is implied.
