@@ -450,7 +450,14 @@ export function defineLesson<
       const metadataPatch = lesson_Override_Metadata_Schema.parse(
         Object.fromEntries(Object.entries(patch).filter(([key]) => ['params', 'locale', 'events'].includes(key))),
       );
-      const own = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
+      // The merged value is parsed by the authoritative metadata schema below.
+      // Fix the generic at this boundary to avoid recursive JsonValue inference for events.
+      const own = metadataSchema.parse(
+        mergeForValidation<Record<string, unknown>>(
+          copyAuthored(),
+          metadataPatch as Record<string, unknown>,
+        ),
+      );
       const split = splitLocalizedFields(metadataPatch.locale ?? {});
       const files: Files = {};
       for (const [code, fields] of Object.entries(selectPublicationLocales(split.locale, languages) ?? {})) {
