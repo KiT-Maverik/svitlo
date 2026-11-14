@@ -387,6 +387,12 @@ test('Quest editor schema projects every named Stage/Task child while retaining 
   assert.equal(yamlSection_Schema.safeParse(quest).success, true);
   assert.equal(sectionTypes.includes('quest'), false, 'authoring-only must not imply runtime support');
 
+  for (const collection of ['stages', 'tasks']) {
+    const missingStart = structuredClone(quest);
+    delete missingStart[collection].start;
+    assert.equal(yamlQuestSection_Schema.safeParse(missingStart).success, false, collection + '.start required');
+  }
+
   const missingMedium = structuredClone(quest);
   delete missingMedium.stages.start.content.video.medium;
   assert.equal(yamlQuestSection_Schema.safeParse(missingMedium).success, false);
