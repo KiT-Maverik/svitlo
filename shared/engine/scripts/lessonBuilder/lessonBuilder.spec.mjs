@@ -469,7 +469,7 @@ test('one YAML source creates ID-addressed Scene/media specs and a methodology w
     assert.match(fs.readFileSync(path.join(f.lesson, 'methodology.md'), 'utf8'), /Lesson method/);
     const code = fs.readFileSync(f.generated(), 'utf8');
     assert.deepEqual(calls(code).filter(x => x === 'defineScene'), ['defineScene']);
-    assert.match(code, /defineImage\\(/);
+    assert.match(code, /defineImage\(/);
     assert.doesNotMatch(code, /"__production"|"production"|"prompt"|"specification"/);
     assert.doesNotMatch(code, /"src"/); // A missing asset remains a real TypeScript diagnostic.
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
