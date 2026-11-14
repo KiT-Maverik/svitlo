@@ -626,11 +626,13 @@ production:
     3. **The Same Whole, Different Share:** Compare two separately labeled models with ledger entries Total6/Groups1/Each6 and Total6/Groups6/Each1; select which number names groups.
     4. **Nine and a Boundary:** Offer two independent nine-counter stories and a zero-divisor non-example with no quotient result; disclose reasons without requiring a guess.
     
-    ## SECTION
+    ## SECTION PLAN
+    
+    
     
     ## CUSTOM SCENE SPECIFICATIONS
     
-    - [One and Self Division Studio](./scenes/oneSelfDivisionStudio.scene-spec.md), four independent Scene placements described in a separate Draft specification.
+    - One and Self Division Studio (full Scene specification embedded in this config.yaml), four independent Scene placements described in a separate Draft specification.
     
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
     
@@ -653,7 +655,7 @@ production:
     
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
     
-    - [Methodologist Brief](./methodologist-brief.md), Draft.
+    - Methodologist Brief (incorporated in this config.yaml), Draft.
     - [Generated Skill taxonomy](../../../../docs/generated/skills/taxonomy.en.md), coordinator-owned and not edited.
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Keep 0 ÷ 0 as a short age-appropriate boundary and avoid requiring algebraic proof.

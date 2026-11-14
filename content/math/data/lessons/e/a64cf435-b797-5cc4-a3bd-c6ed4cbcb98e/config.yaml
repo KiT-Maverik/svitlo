@@ -459,7 +459,9 @@ production:
     Owner: Educational Screenwriter
     Methodologist input: Draft Brief (incorporated in this config.yaml)
     Program dependence: None
-    Implementation: Not implem
+    Implementation: Not implemented
+    
+    
     
     ## Access and production constraints
     
@@ -467,6 +469,6 @@ production:
     
     ## Review handoff
     
-    Provisional pending [Methodologist Brief](./methodologist-brief.md) approval; [Story Fact Finder specification](./scenes/storyFactFinder.scene-spec.md).
+    Provisional pending Methodologist Brief (incorporated in this config.yaml) approval; Story Fact Finder specification (full Scene specification embedded in this config.yaml).
     
     Source-language-only English draft; intended locale list follows the current Engine supported language set (ar, be, bn, de, en, es, et, fr, he, hi, id, ja, ka, kk, ko, lt, lv, mr, ms, pl, pt, qm, ta, te, tr, uk, ur, vi, zh), with genuine translations required before implementation. No formal independent approval is implied.

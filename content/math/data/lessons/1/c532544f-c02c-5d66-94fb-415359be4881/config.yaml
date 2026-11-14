@@ -615,11 +615,13 @@ production:
     3. Test candidates in the exact original 11−□=7 and contrast with □−4=7.
     4. Apply to 14−□=9 and explain why five is the missing removal.
     
-    ## SECTION
+    ## SECTION PLAN
+    
+    
     
     ## CUSTOM SCENE SPECIFICATIONS
     
-    - [Missing Removal Investigator](./scenes/missingRemovalInvestigator.scene-spec.md) — four independent prop-free entries covering comparison of before/after, subtraction finding, substitution and transfer.
+    - Missing Removal Investigator (full Scene specification embedded in this config.yaml) — four independent prop-free entries covering comparison of before/after, subtraction finding, substitution and transfer.
     
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
     
@@ -642,7 +644,7 @@ production:
     
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
     
-    - [Methodologist Brief](./methodologist-brief.md) (Draft, needs explicit approval).
+    - Methodologist Brief (incorporated in this config.yaml) (Draft, needs explicit approval).
     - [Generated Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md).
     - [Create Lesson Content](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Editor to confirm whether unknown-minuend comparison is short enough not to dilute the atomic Skill; no Program/curriculum alignment claims.

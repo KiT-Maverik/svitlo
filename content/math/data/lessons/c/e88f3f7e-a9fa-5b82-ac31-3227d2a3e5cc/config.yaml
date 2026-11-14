@@ -778,11 +778,13 @@ production:
     
     No physical cutting equipment, compulsory mouse drag, competition, scored Question or Lesson mastery assignment.
     
-    ## SECTION
+    ## SECTION PLAN
+    
+    
     
     ## CUSTOM SCENE SPECIFICATIONS
     
-    - [Shape Piece Workshop](./scenes/shapePieceWorkshop.scene-spec.md) — proposed independently operable, prop-free rigid-piece Scene with explicit overlap/union arithmetic.
+    - Shape Piece Workshop (full Scene specification embedded in this config.yaml) — proposed independently operable, prop-free rigid-piece Scene with explicit overlap/union arithmetic.
     
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
     
@@ -806,7 +808,7 @@ production:
     
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
     
-    - [Draft Methodologist Brief](./methodologist-brief.md), canonical `composeDecomposeShapes.data.ts` linked there, and prerequisite area Lesson.
+    - Draft Methodologist Brief (incorporated in this config.yaml), canonical `composeDecomposeShapes.data.ts` linked there, and prerequisite area Lesson.
     - Editor: confirm perimeter-edge counts are an optional **observation**, not an assessed target. Check that selected tilings have physically/virtually plausible nonoverlapping placements.
     - Methodologist Brief is Draft; Content and Scene remain provisional until explicit approval.
     

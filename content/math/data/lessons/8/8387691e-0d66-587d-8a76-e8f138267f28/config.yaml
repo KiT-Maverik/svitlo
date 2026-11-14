@@ -809,11 +809,13 @@ production:
     
     Each Section remains a single-column ordered list of typed Resource blocks; any multi-view diagram occurs **inside** one proposed Scene block. No scored tasks or claim of mastery from one classification.
     
-    ## SECTION
+    ## SECTION PLAN
+    
+    
     
     ## CUSTOM SCENE SPECIFICATIONS
     
-    - [Faces and Virtual Sections](./scenes/facesAndVirtualSections.scene-spec.md) — **proposed** self-contained, prop-free Scene concept with fixed safe virtual-section presets, surface/section text ledgers and no physical tools.
+    - Faces and Virtual Sections (full Scene specification embedded in this config.yaml) — **proposed** self-contained, prop-free Scene concept with fixed safe virtual-section presets, surface/section text ledgers and no physical tools.
     
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
     
@@ -839,7 +841,7 @@ production:
     
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
     
-    - [Draft Methodologist Brief](./methodologist-brief.md), direct canonical `shapeOnSolidSurface.data.ts` and previously transferred solid/plane-figure prerequisites.
+    - Draft Methodologist Brief (incorporated in this config.yaml), direct canonical `shapeOnSolidSurface.data.ts` and previously transferred solid/plane-figure prerequisites.
     - Editor: verify the central sphere slice and disk-versus-circle language are accessible to Grade 3; confirm nonvisual equivalence.
     - Formal Methodologist approval is pending. Content and Scene specification are **Provisional Drafts** only.
     
