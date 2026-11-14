@@ -1,0 +1,841 @@
+config:
+  id: "d2dea276-52f2-5dff-b03f-2c25f420b530"
+  slug: "readingIndividualMinutes"
+  type: "lesson"
+  skills: ["ab684748-6981-419e-aa30-525ae9dfc017"]
+  params:
+    requireQuiz: false
+    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Reading Every Minute"
+  section:
+    items:
+      section1:
+        config:
+          id: "e75a6772-2af1-5aa5-b208-e7721987f98f"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Small ticks count, too"
+            navigationLabel:
+              en: "Small ticks count, too"
+          content:
+            items:
+              text1:
+                config:
+                  id: "586da1c3-b73d-5e44-99a8-21c333ce84d2"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "You already know the long hand at 3 means 15 minutes. What if it goes two tiny marks farther?"
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+              scene1:
+                config:
+                  id: "10ab879c-c2aa-525d-bfc3-079c050893fb"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "You already know the long hand at 3 means 15 minutes. What if it goes two tiny marks farther?"
+                production:
+                  specification: |
+                    # MinuteMarkerExplorer — Interactive Scene Specification
+                    
+                    **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
+                    **Lesson Content:** Reading Every Minute (embedded in this Lesson config.yaml)
+                    **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
+                    **Canonical target Skills:**
+                    
+                    - [readMinute.data.ts](../../../../data/skills/time/clock/skills/readMinute.data.ts)
+                    
+                    ## Educational purpose and intended web interaction
+                    
+                    Read and record analog time to the nearest minute across all 60 equally spaced minute positions, matching it to correct two-digit digital minute notation while distinguishing a clock instant from elapsed duration.
+                    
+                    A learner-controlled 60-minute dial with five-minute anchor labels and intervening small one-minute ticks. The long hand advances in exactly one-minute steps; the short hand follows proportionally rather than jumping. A textual log and keyboard selectors let the learner inspect each hand independently without relying on visual pointer accuracy.
+                    
+                    **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
+                    
+                    ## Exact factual models and required states
+                    
+                    | Preset/state           | Model shown or described                                                  | Correct observation and explanatory result |
+                    | ---------------------- | ------------------------------------------------------------------------- | ------------------------------------------ |
+                    | **Whole hour**         | 5:00, long hand at top (minute 00), short hand on 5                       | Exact hour; field 00                       |
+                    | **First fine ticks**   | 5:03, long hand third small tick after 12, hour hand just past 5          | 5:03 uses two-digit field 03               |
+                    | **Quarter anchor**     | 2:15, long hand on numeral 3                                              | 15 minutes after 2                         |
+                    | **Two beyond quarter** | 2:17, long hand at tick 17, short hand between 2 and 3                    | 2:17 = 15+2 after two                      |
+                    | **Beyond forty**       | 7:42, long hand at tick 42 (two after 8), hour hand 7+42/60 toward 8      | 7:42 = 40+2 after seven                    |
+                    | **Almost new hour**    | 11:59, minute hand at tick 59 and hour hand nearly 12                     | Still 11:59, not 12:59                     |
+                    | **Boundary**           | 12:00, long hand back at top, hour hand on 12                             | Time after one minute from 11:59           |
+                    | **New transfer**       | 9:28, minute hand at tick 28 (three after 5), short hand between 9 and 10 | 9:28 = 25+3 after nine                     |
+                    
+                    **Validity boundary:** Grade-3 conceptual and practical precision for 1-minute increments 00–59 only, using a 12-hour clock. Include small-tick counting, two-digit digital minutes, and instant-versus-duration distinction. Exclude 24-hour formatting, AM/PM determination from the clock alone, time arithmetic, seconds, variable clock precision and time-zone concerns.
+                    
+                    ## Learner actions, transitions and recovery
+                    
+                    Choose a fixed preset or move the long hand by one labelled minute step; the short hand always moves consistently with it and the local twelve-hour clock advances at boundaries. Reveal/hide digital display, compare five-minute landmark to small extra ticks, reset to 5:00. No props, global clock service, drag-only interface or time-based guessing.
+                    
+                    1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
+                    2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
+                    3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
+                    4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
+                    5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
+                    6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
+                    
+                    ## Detailed explanatory feedback
+                    
+                    - **Small ticks count, too: Answer 2:15.** “The minute hand moved two one-minute ticks past the quarter mark. Add two to fifteen.”
+                    - **Small ticks count, too: Answer 2:20.** “Twenty is the next big numeral at 4. We moved only two small ticks, not all five.”
+                    - **Write the little zero: 5:30.** “Thirty minutes would put the long hand at 6. Here it moved only three tiny marks.”
+                    - **Write the little zero: 5:3.** “We say three minutes past five, but the clock writes minutes with two digits: 03.”
+                    - **Which hour is it really?: 8:42.** “The shorter hand is still between 7 and 8. It has not reached the next hour.”
+                    - **Which hour is it really?: 42 minutes as exact clock time.** “Forty-two minutes describes how long. To know when, we also need the hour, such as 7:42.”
+                    - **Which hour is it really?: 12:59.** “The hour hand is nearing 12, not yet past it. The long hand needs one more minute to reach 12:00.”
+                    - **A clock you have not seen yet: 9:25.** “There are three small ticks after 5, so add three minutes to twenty-five.”
+                    - **A clock you have not seen yet: 10:28.** “The short hand is past nine but has not reached ten. The current hour is nine.”
+                    
+                    **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
+                    
+                    ## Accessible equivalent path
+                    
+                    A screen-reader-accessible model states 'hour hand between 7 and 8, nearer 8; minute hand tick 42, two ticks after numeral 8; time candidates 7:42, 7:40, 8:42'. A native button lets the learner step by a minute and inspect updated labels rather than needing to see 60 tiny targets.
+                    
+                    All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
+                    
+                    ## Locale / RTL / offline / weak-device requirements
+                    
+                    Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
+                    
+                    ## Implementation boundary and test handoff
+                    
+                    Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
+                  purpose: "Small ticks count, too: independent placement"
+                  productionNotes: "Original MinuteMarkerExplorer.scene-spec.md variant belongs to Small ticks count, too; see Section productionNotes. Unique stable Scene ID."
+              markdown1:
+                config:
+                  id: "a9ef8cc1-333c-533e-a452-0cc11a5b2b80"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Fifteen minutes, plus one, plus one, makes seventeen. The clock shows 2:17. Every small mark counts one minute."
+                production:
+                  purpose: "Provisional instructional explanation"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Small ticks count, too"
+          productionNotes: |-
+            **Learning purpose:** Develop the one-minute scale from the familiar five-minute anchors.
+            
+            **Ordered blocks (single outer column):**
+            
+            1. **`text` Resource (available block type):** “You already know the long hand at 3 means 15 minutes. What if it goes two tiny marks farther?”
+            
+            2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** MinuteMarkerExplorer (Scene specification MinuteMarkerExplorer embedded below). Start at 2:15 on a 60-tick dial. Let the learner make two individual 1-minute steps to 2:16 then 2:17 while keeping the five-minute anchor at 15 labelled.
+            
+            3. **`markdown` Resource (available block type):** “Fifteen minutes, plus one, plus one, makes seventeen. The clock shows 2:17. Every small mark counts one minute.”
+            
+            **Meaningful learner action:** Identify tick 15, advance twice, explain 15+2 =17.
+            
+            **Explanatory feedback for anticipated choices:**
+            
+            - **Answer 2:15:** “The minute hand moved two one-minute ticks past the quarter mark. Add two to fifteen.”
+            - **Answer 2:20:** “Twenty is the next big numeral at 4. We moved only two small ticks, not all five.”
+            
+            **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+            
+            **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+      section2:
+        config:
+          id: "e65a65df-27f1-55ec-b108-e5df1a87fb22"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Write the little zero"
+            navigationLabel:
+              en: "Write the little zero"
+          content:
+            items:
+              text1:
+                config:
+                  id: "56307222-c0e6-52d1-976a-f2225fd05c73"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Three tiny minute steps after five o’clock are shown. Should the digital clock show 5:3 or 5:03?"
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+              scene1:
+                config:
+                  id: "a70b4c6b-0964-5502-9622-cc6b95efc8ac"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Three tiny minute steps after five o’clock are shown. Should the digital clock show 5:3 or 5:03?"
+                production:
+                  specification: |
+                    # MinuteMarkerExplorer — Interactive Scene Specification
+                    
+                    **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
+                    **Lesson Content:** Reading Every Minute (embedded in this Lesson config.yaml)
+                    **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
+                    **Canonical target Skills:**
+                    
+                    - [readMinute.data.ts](../../../../data/skills/time/clock/skills/readMinute.data.ts)
+                    
+                    ## Educational purpose and intended web interaction
+                    
+                    Read and record analog time to the nearest minute across all 60 equally spaced minute positions, matching it to correct two-digit digital minute notation while distinguishing a clock instant from elapsed duration.
+                    
+                    A learner-controlled 60-minute dial with five-minute anchor labels and intervening small one-minute ticks. The long hand advances in exactly one-minute steps; the short hand follows proportionally rather than jumping. A textual log and keyboard selectors let the learner inspect each hand independently without relying on visual pointer accuracy.
+                    
+                    **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
+                    
+                    ## Exact factual models and required states
+                    
+                    | Preset/state           | Model shown or described                                                  | Correct observation and explanatory result |
+                    | ---------------------- | ------------------------------------------------------------------------- | ------------------------------------------ |
+                    | **Whole hour**         | 5:00, long hand at top (minute 00), short hand on 5                       | Exact hour; field 00                       |
+                    | **First fine ticks**   | 5:03, long hand third small tick after 12, hour hand just past 5          | 5:03 uses two-digit field 03               |
+                    | **Quarter anchor**     | 2:15, long hand on numeral 3                                              | 15 minutes after 2                         |
+                    | **Two beyond quarter** | 2:17, long hand at tick 17, short hand between 2 and 3                    | 2:17 = 15+2 after two                      |
+                    | **Beyond forty**       | 7:42, long hand at tick 42 (two after 8), hour hand 7+42/60 toward 8      | 7:42 = 40+2 after seven                    |
+                    | **Almost new hour**    | 11:59, minute hand at tick 59 and hour hand nearly 12                     | Still 11:59, not 12:59                     |
+                    | **Boundary**           | 12:00, long hand back at top, hour hand on 12                             | Time after one minute from 11:59           |
+                    | **New transfer**       | 9:28, minute hand at tick 28 (three after 5), short hand between 9 and 10 | 9:28 = 25+3 after nine                     |
+                    
+                    **Validity boundary:** Grade-3 conceptual and practical precision for 1-minute increments 00–59 only, using a 12-hour clock. Include small-tick counting, two-digit digital minutes, and instant-versus-duration distinction. Exclude 24-hour formatting, AM/PM determination from the clock alone, time arithmetic, seconds, variable clock precision and time-zone concerns.
+                    
+                    ## Learner actions, transitions and recovery
+                    
+                    Choose a fixed preset or move the long hand by one labelled minute step; the short hand always moves consistently with it and the local twelve-hour clock advances at boundaries. Reveal/hide digital display, compare five-minute landmark to small extra ticks, reset to 5:00. No props, global clock service, drag-only interface or time-based guessing.
+                    
+                    1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
+                    2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
+                    3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
+                    4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
+                    5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
+                    6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
+                    
+                    ## Detailed explanatory feedback
+                    
+                    - **Small ticks count, too: Answer 2:15.** “The minute hand moved two one-minute ticks past the quarter mark. Add two to fifteen.”
+                    - **Small ticks count, too: Answer 2:20.** “Twenty is the next big numeral at 4. We moved only two small ticks, not all five.”
+                    - **Write the little zero: 5:30.** “Thirty minutes would put the long hand at 6. Here it moved only three tiny marks.”
+                    - **Write the little zero: 5:3.** “We say three minutes past five, but the clock writes minutes with two digits: 03.”
+                    - **Which hour is it really?: 8:42.** “The shorter hand is still between 7 and 8. It has not reached the next hour.”
+                    - **Which hour is it really?: 42 minutes as exact clock time.** “Forty-two minutes describes how long. To know when, we also need the hour, such as 7:42.”
+                    - **Which hour is it really?: 12:59.** “The hour hand is nearing 12, not yet past it. The long hand needs one more minute to reach 12:00.”
+                    - **A clock you have not seen yet: 9:25.** “There are three small ticks after 5, so add three minutes to twenty-five.”
+                    - **A clock you have not seen yet: 10:28.** “The short hand is past nine but has not reached ten. The current hour is nine.”
+                    
+                    **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
+                    
+                    ## Accessible equivalent path
+                    
+                    A screen-reader-accessible model states 'hour hand between 7 and 8, nearer 8; minute hand tick 42, two ticks after numeral 8; time candidates 7:42, 7:40, 8:42'. A native button lets the learner step by a minute and inspect updated labels rather than needing to see 60 tiny targets.
+                    
+                    All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
+                    
+                    ## Locale / RTL / offline / weak-device requirements
+                    
+                    Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
+                    
+                    ## Implementation boundary and test handoff
+                    
+                    Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
+                  purpose: "Write the little zero: independent placement"
+                  productionNotes: "Original MinuteMarkerExplorer.scene-spec.md variant belongs to Write the little zero; see Section productionNotes. Unique stable Scene ID."
+              markdown1:
+                config:
+                  id: "ecf039b0-0390-53eb-a752-b9b0587916d1"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Digital clocks use two digits for minutes. Three minutes after five is 5:03. The first zero is a place holder."
+                production:
+                  purpose: "Provisional instructional explanation"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Write the little zero"
+          productionNotes: |-
+            **Learning purpose:** Read minute values below ten as a two-digit digital minute field.
+            
+            **Ordered blocks (single outer column):**
+            
+            1. **`text` Resource (available block type):** “Three tiny minute steps after five o’clock are shown. Should the digital clock show 5:3 or 5:03?”
+            
+            2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** MinuteMarkerExplorer (Scene specification MinuteMarkerExplorer embedded below). Preset 5:03 with the minute hand on the third small mark after 12 and hour hand just past 5. Learner builds a digital display with hour 5 and minute field 03.
+            
+            3. **`markdown` Resource (available block type):** “Digital clocks use two digits for minutes. Three minutes after five is 5:03. The first zero is a place holder.”
+            
+            **Meaningful learner action:** Select `03` instead of `3` or `30` and identify the time as an instant.
+            
+            **Explanatory feedback for anticipated choices:**
+            
+            - **5:30:** “Thirty minutes would put the long hand at 6. Here it moved only three tiny marks.”
+            - **5:3:** “We say three minutes past five, but the clock writes minutes with two digits: 03.”
+            
+            **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+            
+            **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+      section3:
+        config:
+          id: "e55a644c-28f1-577f-b008-e44c1b87fcb5"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Which hour is it really?"
+            navigationLabel:
+              en: "Which hour is it really?"
+          content:
+            items:
+              markdown1:
+                config:
+                  id: "d2ae554b-b71f-56d0-8d10-d54b4e9e83ee"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The minute hand is two small marks beyond 8, and the short hand has passed 7 but not reached 8. Read the time. Does the phrase '42 minutes' alone tell us when this happens?"
+                production:
+                  purpose: "Provisional instructional explanation"
+              scene1:
+                config:
+                  id: "9c253762-fafe-550b-8b3c-b762eb14cbcd"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "The minute hand is two small marks beyond 8, and the short hand has passed 7 but not reached 8. Read the time. Does the phrase '42 minutes' alone tell us when this happens?"
+                production:
+                  specification: |
+                    # MinuteMarkerExplorer — Interactive Scene Specification
+                    
+                    **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
+                    **Lesson Content:** Reading Every Minute (embedded in this Lesson config.yaml)
+                    **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
+                    **Canonical target Skills:**
+                    
+                    - [readMinute.data.ts](../../../../data/skills/time/clock/skills/readMinute.data.ts)
+                    
+                    ## Educational purpose and intended web interaction
+                    
+                    Read and record analog time to the nearest minute across all 60 equally spaced minute positions, matching it to correct two-digit digital minute notation while distinguishing a clock instant from elapsed duration.
+                    
+                    A learner-controlled 60-minute dial with five-minute anchor labels and intervening small one-minute ticks. The long hand advances in exactly one-minute steps; the short hand follows proportionally rather than jumping. A textual log and keyboard selectors let the learner inspect each hand independently without relying on visual pointer accuracy.
+                    
+                    **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
+                    
+                    ## Exact factual models and required states
+                    
+                    | Preset/state           | Model shown or described                                                  | Correct observation and explanatory result |
+                    | ---------------------- | ------------------------------------------------------------------------- | ------------------------------------------ |
+                    | **Whole hour**         | 5:00, long hand at top (minute 00), short hand on 5                       | Exact hour; field 00                       |
+                    | **First fine ticks**   | 5:03, long hand third small tick after 12, hour hand just past 5          | 5:03 uses two-digit field 03               |
+                    | **Quarter anchor**     | 2:15, long hand on numeral 3                                              | 15 minutes after 2                         |
+                    | **Two beyond quarter** | 2:17, long hand at tick 17, short hand between 2 and 3                    | 2:17 = 15+2 after two                      |
+                    | **Beyond forty**       | 7:42, long hand at tick 42 (two after 8), hour hand 7+42/60 toward 8      | 7:42 = 40+2 after seven                    |
+                    | **Almost new hour**    | 11:59, minute hand at tick 59 and hour hand nearly 12                     | Still 11:59, not 12:59                     |
+                    | **Boundary**           | 12:00, long hand back at top, hour hand on 12                             | Time after one minute from 11:59           |
+                    | **New transfer**       | 9:28, minute hand at tick 28 (three after 5), short hand between 9 and 10 | 9:28 = 25+3 after nine                     |
+                    
+                    **Validity boundary:** Grade-3 conceptual and practical precision for 1-minute increments 00–59 only, using a 12-hour clock. Include small-tick counting, two-digit digital minutes, and instant-versus-duration distinction. Exclude 24-hour formatting, AM/PM determination from the clock alone, time arithmetic, seconds, variable clock precision and time-zone concerns.
+                    
+                    ## Learner actions, transitions and recovery
+                    
+                    Choose a fixed preset or move the long hand by one labelled minute step; the short hand always moves consistently with it and the local twelve-hour clock advances at boundaries. Reveal/hide digital display, compare five-minute landmark to small extra ticks, reset to 5:00. No props, global clock service, drag-only interface or time-based guessing.
+                    
+                    1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
+                    2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
+                    3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
+                    4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
+                    5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
+                    6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
+                    
+                    ## Detailed explanatory feedback
+                    
+                    - **Small ticks count, too: Answer 2:15.** “The minute hand moved two one-minute ticks past the quarter mark. Add two to fifteen.”
+                    - **Small ticks count, too: Answer 2:20.** “Twenty is the next big numeral at 4. We moved only two small ticks, not all five.”
+                    - **Write the little zero: 5:30.** “Thirty minutes would put the long hand at 6. Here it moved only three tiny marks.”
+                    - **Write the little zero: 5:3.** “We say three minutes past five, but the clock writes minutes with two digits: 03.”
+                    - **Which hour is it really?: 8:42.** “The shorter hand is still between 7 and 8. It has not reached the next hour.”
+                    - **Which hour is it really?: 42 minutes as exact clock time.** “Forty-two minutes describes how long. To know when, we also need the hour, such as 7:42.”
+                    - **Which hour is it really?: 12:59.** “The hour hand is nearing 12, not yet past it. The long hand needs one more minute to reach 12:00.”
+                    - **A clock you have not seen yet: 9:25.** “There are three small ticks after 5, so add three minutes to twenty-five.”
+                    - **A clock you have not seen yet: 10:28.** “The short hand is past nine but has not reached ten. The current hour is nine.”
+                    
+                    **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
+                    
+                    ## Accessible equivalent path
+                    
+                    A screen-reader-accessible model states 'hour hand between 7 and 8, nearer 8; minute hand tick 42, two ticks after numeral 8; time candidates 7:42, 7:40, 8:42'. A native button lets the learner step by a minute and inspect updated labels rather than needing to see 60 tiny targets.
+                    
+                    All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
+                    
+                    ## Locale / RTL / offline / weak-device requirements
+                    
+                    Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
+                    
+                    ## Implementation boundary and test handoff
+                    
+                    Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
+                  purpose: "Which hour is it really?: independent placement"
+                  productionNotes: "Original MinuteMarkerExplorer.scene-spec.md variant belongs to Which hour is it really?; see Section productionNotes. Unique stable Scene ID."
+              text1:
+                config:
+                  id: "8803e331-f841-5f42-893e-63319732b154"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "It is 7:42, not 8:42, because seven is the hour already started. '42 minutes' is a length of time; 7:42 is a particular clock reading. At 11:59 it is still eleven o’clock hour."
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+            order: ["markdown1","scene1","text1"]
+        production:
+          purpose: "Which hour is it really?"
+          productionNotes: |-
+            **Learning purpose:** Avoid late-hour off-by-one errors and distinguish a clock instant from an interval.
+            
+            **Ordered blocks (single outer column):**
+            
+            1. **`markdown` Resource (available block type):** “The minute hand is two small marks beyond 8, and the short hand has passed 7 but not reached 8. Read the time. Does the phrase '42 minutes' alone tell us when this happens?”
+            
+            2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** MinuteMarkerExplorer (Scene specification MinuteMarkerExplorer embedded below). Compare 7:42 and 8:42 while minute hand stays at tick 42, then inspect 11:59 followed by 12:00. An optional side prompt distinguishes '7:42' from '42 minutes'.
+            
+            3. **`text` Resource (available block type):** “It is 7:42, not 8:42, because seven is the hour already started. '42 minutes' is a length of time; 7:42 is a particular clock reading. At 11:59 it is still eleven o’clock hour.”
+            
+            **Meaningful learner action:** Read both hands, distinguish clock reading from duration, predict the 11:59→12:00 boundary.
+            
+            **Explanatory feedback for anticipated choices:**
+            
+            - **8:42:** “The shorter hand is still between 7 and 8. It has not reached the next hour.”
+            - **42 minutes as exact clock time:** “Forty-two minutes describes how long. To know when, we also need the hour, such as 7:42.”
+            - **12:59:** “The hour hand is nearing 12, not yet past it. The long hand needs one more minute to reach 12:00.”
+            
+            **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+            
+            **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+      section4:
+        config:
+          id: "e45a62b9-25f1-52c6-af08-e2b91487f1b0"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A clock you have not seen yet"
+            navigationLabel:
+              en: "A clock you have not seen yet"
+          content:
+            items:
+              text1:
+                config:
+                  id: "42098b68-e830-53b7-8344-0b686e698a65"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A new clock shows the long hand three small ticks past 5 and the short hand after 9. Write the time before uncovering the answer."
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+              scene1:
+                config:
+                  id: "50cbf2f9-1a36-5c08-bfe3-72f99197669e"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "A new clock shows the long hand three small ticks past 5 and the short hand after 9. Write the time before uncovering the answer."
+                production:
+                  specification: |
+                    # MinuteMarkerExplorer — Interactive Scene Specification
+                    
+                    **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
+                    **Lesson Content:** Reading Every Minute (embedded in this Lesson config.yaml)
+                    **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
+                    **Canonical target Skills:**
+                    
+                    - [readMinute.data.ts](../../../../data/skills/time/clock/skills/readMinute.data.ts)
+                    
+                    ## Educational purpose and intended web interaction
+                    
+                    Read and record analog time to the nearest minute across all 60 equally spaced minute positions, matching it to correct two-digit digital minute notation while distinguishing a clock instant from elapsed duration.
+                    
+                    A learner-controlled 60-minute dial with five-minute anchor labels and intervening small one-minute ticks. The long hand advances in exactly one-minute steps; the short hand follows proportionally rather than jumping. A textual log and keyboard selectors let the learner inspect each hand independently without relying on visual pointer accuracy.
+                    
+                    **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
+                    
+                    ## Exact factual models and required states
+                    
+                    | Preset/state           | Model shown or described                                                  | Correct observation and explanatory result |
+                    | ---------------------- | ------------------------------------------------------------------------- | ------------------------------------------ |
+                    | **Whole hour**         | 5:00, long hand at top (minute 00), short hand on 5                       | Exact hour; field 00                       |
+                    | **First fine ticks**   | 5:03, long hand third small tick after 12, hour hand just past 5          | 5:03 uses two-digit field 03               |
+                    | **Quarter anchor**     | 2:15, long hand on numeral 3                                              | 15 minutes after 2                         |
+                    | **Two beyond quarter** | 2:17, long hand at tick 17, short hand between 2 and 3                    | 2:17 = 15+2 after two                      |
+                    | **Beyond forty**       | 7:42, long hand at tick 42 (two after 8), hour hand 7+42/60 toward 8      | 7:42 = 40+2 after seven                    |
+                    | **Almost new hour**    | 11:59, minute hand at tick 59 and hour hand nearly 12                     | Still 11:59, not 12:59                     |
+                    | **Boundary**           | 12:00, long hand back at top, hour hand on 12                             | Time after one minute from 11:59           |
+                    | **New transfer**       | 9:28, minute hand at tick 28 (three after 5), short hand between 9 and 10 | 9:28 = 25+3 after nine                     |
+                    
+                    **Validity boundary:** Grade-3 conceptual and practical precision for 1-minute increments 00–59 only, using a 12-hour clock. Include small-tick counting, two-digit digital minutes, and instant-versus-duration distinction. Exclude 24-hour formatting, AM/PM determination from the clock alone, time arithmetic, seconds, variable clock precision and time-zone concerns.
+                    
+                    ## Learner actions, transitions and recovery
+                    
+                    Choose a fixed preset or move the long hand by one labelled minute step; the short hand always moves consistently with it and the local twelve-hour clock advances at boundaries. Reveal/hide digital display, compare five-minute landmark to small extra ticks, reset to 5:00. No props, global clock service, drag-only interface or time-based guessing.
+                    
+                    1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
+                    2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
+                    3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
+                    4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
+                    5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
+                    6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
+                    
+                    ## Detailed explanatory feedback
+                    
+                    - **Small ticks count, too: Answer 2:15.** “The minute hand moved two one-minute ticks past the quarter mark. Add two to fifteen.”
+                    - **Small ticks count, too: Answer 2:20.** “Twenty is the next big numeral at 4. We moved only two small ticks, not all five.”
+                    - **Write the little zero: 5:30.** “Thirty minutes would put the long hand at 6. Here it moved only three tiny marks.”
+                    - **Write the little zero: 5:3.** “We say three minutes past five, but the clock writes minutes with two digits: 03.”
+                    - **Which hour is it really?: 8:42.** “The shorter hand is still between 7 and 8. It has not reached the next hour.”
+                    - **Which hour is it really?: 42 minutes as exact clock time.** “Forty-two minutes describes how long. To know when, we also need the hour, such as 7:42.”
+                    - **Which hour is it really?: 12:59.** “The hour hand is nearing 12, not yet past it. The long hand needs one more minute to reach 12:00.”
+                    - **A clock you have not seen yet: 9:25.** “There are three small ticks after 5, so add three minutes to twenty-five.”
+                    - **A clock you have not seen yet: 10:28.** “The short hand is past nine but has not reached ten. The current hour is nine.”
+                    
+                    **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
+                    
+                    ## Accessible equivalent path
+                    
+                    A screen-reader-accessible model states 'hour hand between 7 and 8, nearer 8; minute hand tick 42, two ticks after numeral 8; time candidates 7:42, 7:40, 8:42'. A native button lets the learner step by a minute and inspect updated labels rather than needing to see 60 tiny targets.
+                    
+                    All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
+                    
+                    ## Locale / RTL / offline / weak-device requirements
+                    
+                    Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
+                    
+                    ## Implementation boundary and test handoff
+                    
+                    Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
+                  purpose: "A clock you have not seen yet: independent placement"
+                  productionNotes: "Original MinuteMarkerExplorer.scene-spec.md variant belongs to A clock you have not seen yet; see Section productionNotes. Unique stable Scene ID."
+              markdown1:
+                config:
+                  id: "31d4f212-2ff9-5375-ac37-7212bb53b6bf"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "It is 9:28. From 12 to 5 is twenty-five minutes. Three extra minute ticks make twenty-eight. The hour hand is still between nine and ten."
+                production:
+                  purpose: "Provisional instructional explanation"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "A clock you have not seen yet"
+          productionNotes: |-
+            **Learning purpose:** Independently identify a new minute tick and hour.
+            
+            **Ordered blocks (single outer column):**
+            
+            1. **`text` Resource (available block type):** “A new clock shows the long hand three small ticks past 5 and the short hand after 9. Write the time before uncovering the answer.”
+            
+            2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** MinuteMarkerExplorer (Scene specification MinuteMarkerExplorer embedded below). New preset 9:28. Offer choices 9:28, 9:25, 10:28 with optional hint 'the big numeral 5 marks 25 minutes' and learner-requested final explanation.
+            
+            3. **`markdown` Resource (available block type):** “It is 9:28. From 12 to 5 is twenty-five minutes. Three extra minute ticks make twenty-eight. The hour hand is still between nine and ten.”
+            
+            **Meaningful learner action:** Produce 9:28 and explain 25+3 and why the hour is nine.
+            
+            **Explanatory feedback for anticipated choices:**
+            
+            - **9:25:** “There are three small ticks after 5, so add three minutes to twenty-five.”
+            - **10:28:** “The short hand is past nine but has not reached ten. The current hour is nine.”
+            
+            **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+            
+            **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+    order: ["section1","section2","section3","section4"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+    # Reading Every Minute — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: readingIndividualMinutes
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Read and record analog time to the nearest minute across all 60 equally spaced minute positions, matching it to correct two-digit digital minute notation while distinguishing a clock instant from elapsed duration.
+    
+    **Pedagogical rationale and placement:** After exact hours, half/quarter hours and five-minute marks, learners can count the smaller one-minute ticks accurately and combine the elapsed minute number with the hour hand's interval.
+    
+    The single canonical target Skill is a competency, not an interaction format or an assessed mastery state.
+    
+    ## Target audience
+    
+    **Primary grade: Grade 3; ages approximately 8–9.** This depth follows the stated prerequisites, not an arbitrary one-Skill-per-Grade or one-Lesson-per-Skill mapping. Design for emerging literacy, mixed language proficiency, variable math fluency and accessibility needs. Use short concrete learner-facing copy, clear audible/textual alternatives and non-motor-precision inputs. The canonical Skills have no Grade ceiling.
+    
+    ## Prerequisites
+    
+    - Identify both clock hands and read exact hours, quarter/half hours and five-minute marks.
+    - Count by fives through 55 and count 1–4 more; read two-digit numerals.
+    - Recognize that minute 00 begins an hour and minute 59 immediately precedes the next exact hour.
+    
+    Previously transferred, pedagogically adjacent Skills: `readHour`, `readHalfQuarter`, `readFiveMinute`. The Lesson itself must remain standalone and Program-neutral; a learner with the equivalent knowledge need not complete any named preceding Lesson.
+    
+    ## Target Skills
+    
+    - [readMinute.data.ts](../../../../data/skills/time/clock/skills/readMinute.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Identify a minute hand at two small ticks past 3 as 17 minutes, so an hour hand between 2 and 3 shows 2:17.
+    - Identify a minute hand at two small ticks past 8 as 42 minutes; pair with the hour hand between 7 and 8 to read 7:42.
+    - Write minutes 03 with a leading zero in a digital clock reading, e.g., 5:03.
+    - Read a late-hour analog display as 11:59 rather than 12:59 by checking which hour has already started.
+    - Explain that a clock displaying 2:17 names an instant of day, while “17 minutes” alone describes a duration, not a unique time.
+    
+    These observable outcomes state what the Lesson intends to teach and invite learners to demonstrate. Neither a single correct choice nor completion of a Section guarantees validated mastery of an individual Skill.
+    
+    ## Essential subject matter
+    
+    - A standard analog clock has sixty equal minute positions, including the top reference position corresponding to minute 00. Moving the long hand from one minute tick to the next marks one minute.
+    - Large numbered positions are five-minute landmarks: at 3 means 15; two additional small ticks beyond 3 make 17.
+    - At 7:42, the long hand is two one-minute ticks beyond the numeral 8 (40+2), and the short hand has advanced from 7 toward 8 by 42/60 of the interval.
+    - A digital clock normally writes minute fields using exactly two digits: 5:03 not 5:3; minute values 00 through 59 are elapsed minutes since the start of that hour.
+    - At 11:59 the short hand is almost at 12 but still has not completed the hour; after one more minute the dial reads 12:00 on a twelve-hour clock.
+    - Time-of-day 2:17 and elapsed duration 17 minutes answer different questions; one is a clock instant, the other an interval.
+    
+    **Depth selected for this audience:** Grade-3 conceptual and practical precision for 1-minute increments 00–59 only, using a 12-hour clock. Include small-tick counting, two-digit digital minutes, and instant-versus-duration distinction. Exclude 24-hour formatting, AM/PM determination from the clock alone, time arithmetic, seconds, variable clock precision and time-zone concerns.
+    
+    ## Conceptual progression and dependencies
+    
+    Build on the listed prerequisites, expose the _reference_ (whole size, hour and minute scale, pictograph key, or random-experiment conditions) before asking the learner to reason. Move from a familiar case to an interactive contrast that makes a common misconception visible, then apply the correct rule in an independent fresh example. The Screenwriter chooses presentation, interactions and number of Sections; the Methodologist owns content limits and accuracy. Supporting representations teach a Skill; they do not create additional Skill IDs.
+    
+    ## Misconceptions, examples and boundaries
+    
+    - The numeral 3 always means minute 3 rather than 15.
+    - A tick two spaces past a number is an extra five minutes rather than two minutes.
+    - The short hour hand exactly points to the current hour mark throughout the hour.
+    - 5:3 is the standard two-digit digital display instead of 5:03.
+    - A hand near the next hour has already reached that hour.
+    - An interval of 17 minutes is itself the same thing as clock time 2:17.
+    
+    **Explicit exclusions:** Grade-3 conceptual and practical precision for 1-minute increments 00–59 only, using a 12-hour clock. Include small-tick counting, two-digit digital minutes, and instant-versus-duration distinction. Exclude 24-hour formatting, AM/PM determination from the clock alone, time arithmetic, seconds, variable clock precision and time-zone concerns. Do not implicitly extend the canonical Skill description, invent new taxonomy entities or treat any exercise format as a separately approved Skill.
+    
+    ## Localization, accessibility and offline intent
+    
+    Complete authentic translation of all learner-facing text, mathematical terminology, captions, nonvisual model descriptions, controls, hints and feedback is mandatory for every standard locale at implementation. No English replacement text, fake dictionaries, silent fallbacks or `allLocales` assertions of incomplete coverage. Adapt layout and narrative order semantically for RTL without reversing mathematical truth. Require meaningful keyboard/touch/screen-reader participation, visible focus, adequate targets, high contrast, static reduced-motion representation, small-screen readability and WCAG 2.2 AA testing. Once downloaded, the complete Lesson, Scene and explanatory feedback must run offline on low-resource devices. These are requirements, not claims that runtime assets or PWA flows exist.
+    
+    ## Sources and factual verification
+    
+    - [readMinute.data.ts](../../../../data/skills/time/clock/skills/readMinute.data.ts) — canonical Mathematics Skill object and methodological description.
+    - Studio [Lesson](../../../../../../studio/docs/entities/lesson.md), [Lesson Content](../../../../../../studio/docs/entities/lesson-content.md), [Section](../../../../../../studio/docs/entities/section.md) and [Program](../../../../../../studio/docs/entities/program.md) contracts.
+    - Scene specification below records fully specified examples and truth conditions for subsequent mathematical and editorial review.
+    
+    ## Curriculum / Program compatibility
+    
+    Not specified. Standalone and Program-neutral. Do not claim formal Ukrainian or international Curriculum alignment without reviewing a concrete Curriculum.
+    
+    ## Open editorial decisions
+    
+    - **Editor/Methodologist:** verify Grade 3 audience, prerequisite suitability, target Skills, depth and treatment of the listed misconceptions.
+    - **Editor/Screenwriter:** approve the provisional Section plan and separately review the custom Scene specification only after the Methodologist Brief is accepted.
+    - **Engineering/QA:** accessible equivalence, locale coverage, offline behavior, tests and runtime Section integration remain future implementation work, not established behavior.
+    
+    ## Methodologist handoff
+    
+    **Draft pending editorial approval.** Companion Content and Scene specifications are _provisional_ under the explicit batch instruction; their creation does not satisfy or bypass the Methodologist approval gate. No runtime Lesson_Config, Question, Quiz, React Scene, scoring, storage API or Note implementation is authorized by this handoff.
+  productionNotes: |
+    # Reading Every Minute — Lesson Content
+    
+    **Status: Provisional Draft — pending Methodologist approval.**
+    **Methodologist input:** Draft Brief (embedded in this Lesson config.yaml) (**not approved**).
+    **Primary audience:** Grade 3, ages 8–9.
+    **Target canonical Skills:**
+    
+    - [readMinute.data.ts](../../../../data/skills/time/clock/skills/readMinute.data.ts)
+      **Independence:** standalone Playground Lesson; no Program storyline, mascot, reward, mission or past learner state required.
+      **Implementation:** editorial Content only. No runtime Lesson, Questions, Quizzes, scoring, registered custom Scenes or locale bundles created.
+    
+    ## Instructional concept
+    
+    Read and record analog time to the nearest minute across all 60 equally spaced minute positions, matching it to correct two-digit digital minute notation while distinguishing a clock instant from elapsed duration.
+    
+    After exact hours, half/quarter hours and five-minute marks, learners can count the smaller one-minute ticks accurately and combine the elapsed minute number with the hour hand's interval.
+    
+    The core web opportunity is **learner-controlled inspection of a mathematical model**, not merely an illustration: A learner-controlled 60-minute dial with five-minute anchor labels and intervening small one-minute ticks. The long hand advances in exactly one-minute steps; the short hand follows proportionally rather than jumping. A textual log and keyboard selectors let the learner inspect each hand independently without relying on visual pointer accuracy.
+    
+    Every example is bounded: Grade-3 conceptual and practical precision for 1-minute increments 00–59 only, using a 12-hour clock. Include small-tick counting, two-digit digital minutes, and instant-versus-duration distinction. Exclude 24-hour formatting, AM/PM determination from the clock alone, time arithmetic, seconds, variable clock precision and time-zone concerns.
+    
+    ## Learner journey and ordered Sections
+    
+    1. **Small ticks count, too** — Develop the one-minute scale from the familiar five-minute anchors.
+    2. **Write the little zero** — Read minute values below ten as a two-digit digital minute field.
+    3. **Which hour is it really?** — Avoid late-hour off-by-one errors and distinguish a clock instant from an interval.
+    4. **A clock you have not seen yet** — Independently identify a new minute tick and hour.
+    
+    Use a vertical single-column order of typed Resource blocks within each general Section: `text`, `markdown` and the existing `scene` Resource type. The named **MinuteMarkerExplorer** is a new proposed Scene, not yet implemented, and each appearance must be self-contained rather than depending on earlier Section state. A generic Scene renderer does not mean this particular educational interaction is available. No new Section discriminators or hidden readiness APIs are implied.
+    
+    ## Section-by-Section learning experience
+    
+    ### Section 1 — Small ticks count, too
+    
+    **Learning purpose:** Develop the one-minute scale from the familiar five-minute anchors.
+    
+    **Ordered blocks (single outer column):**
+    
+    1. **`text` Resource (available block type):** “You already know the long hand at 3 means 15 minutes. What if it goes two tiny marks farther?”
+    
+    2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** MinuteMarkerExplorer (Scene specification MinuteMarkerExplorer embedded below). Start at 2:15 on a 60-tick dial. Let the learner make two individual 1-minute steps to 2:16 then 2:17 while keeping the five-minute anchor at 15 labelled.
+    
+    3. **`markdown` Resource (available block type):** “Fifteen minutes, plus one, plus one, makes seventeen. The clock shows 2:17. Every small mark counts one minute.”
+    
+    **Meaningful learner action:** Identify tick 15, advance twice, explain 15+2 =17.
+    
+    **Explanatory feedback for anticipated choices:**
+    
+    - **Answer 2:15:** “The minute hand moved two one-minute ticks past the quarter mark. Add two to fifteen.”
+    - **Answer 2:20:** “Twenty is the next big numeral at 4. We moved only two small ticks, not all five.”
+    
+    **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+    
+    **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+    
+    ### Section 2 — Write the little zero
+    
+    **Learning purpose:** Read minute values below ten as a two-digit digital minute field.
+    
+    **Ordered blocks (single outer column):**
+    
+    1. **`text` Resource (available block type):** “Three tiny minute steps after five o’clock are shown. Should the digital clock show 5:3 or 5:03?”
+    
+    2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** MinuteMarkerExplorer (Scene specification MinuteMarkerExplorer embedded below). Preset 5:03 with the minute hand on the third small mark after 12 and hour hand just past 5. Learner builds a digital display with hour 5 and minute field 03.
+    
+    3. **`markdown` Resource (available block type):** “Digital clocks use two digits for minutes. Three minutes after five is 5:03. The first zero is a place holder.”
+    
+    **Meaningful learner action:** Select `03` instead of `3` or `30` and identify the time as an instant.
+    
+    **Explanatory feedback for anticipated choices:**
+    
+    - **5:30:** “Thirty minutes would put the long hand at 6. Here it moved only three tiny marks.”
+    - **5:3:** “We say three minutes past five, but the clock writes minutes with two digits: 03.”
+    
+    **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+    
+    **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+    
+    ### Section 3 — Which hour is it really?
+    
+    **Learning purpose:** Avoid late-hour off-by-one errors and distinguish a clock instant from an interval.
+    
+    **Ordered blocks (single outer column):**
+    
+    1. **`markdown` Resource (available block type):** “The minute hand is two small marks beyond 8, and the short hand has passed 7 but not reached 8. Read the time. Does the phrase '42 minutes' alone tell us when this happens?”
+    
+    2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** MinuteMarkerExplorer (Scene specification MinuteMarkerExplorer embedded below). Compare 7:42 and 8:42 while minute hand stays at tick 42, then inspect 11:59 followed by 12:00. An optional side prompt distinguishes '7:42' from '42 minutes'.
+    
+    3. **`text` Resource (available block type):** “It is 7:42, not 8:42, because seven is the hour already started. '42 minutes' is a length of time; 7:42 is a particular clock reading. At 11:59 it is still eleven o’clock hour.”
+    
+    **Meaningful learner action:** Read both hands, distinguish clock reading from duration, predict the 11:59→12:00 boundary.
+    
+    **Explanatory feedback for anticipated choices:**
+    
+    - **8:42:** “The shorter hand is still between 7 and 8. It has not reached the next hour.”
+    - **42 minutes as exact clock time:** “Forty-two minutes describes how long. To know when, we also need the hour, such as 7:42.”
+    - **12:59:** “The hour hand is nearing 12, not yet past it. The long hand needs one more minute to reach 12:00.”
+    
+    **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+    
+    **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+    
+    ### Section 4 — A clock you have not seen yet
+    
+    **Learning purpose:** Independently identify a new minute tick and hour.
+    
+    **Ordered blocks (single outer column):**
+    
+    1. **`text` Resource (available block type):** “A new clock shows the long hand three small ticks past 5 and the short hand after 9. Write the time before uncovering the answer.”
+    
+    2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** MinuteMarkerExplorer (Scene specification MinuteMarkerExplorer embedded below). New preset 9:28. Offer choices 9:28, 9:25, 10:28 with optional hint 'the big numeral 5 marks 25 minutes' and learner-requested final explanation.
+    
+    3. **`markdown` Resource (available block type):** “It is 9:28. From 12 to 5 is twenty-five minutes. Three extra minute ticks make twenty-eight. The hour hand is still between nine and ten.”
+    
+    **Meaningful learner action:** Produce 9:28 and explain 25+3 and why the hour is nine.
+    
+    **Explanatory feedback for anticipated choices:**
+    
+    - **9:25:** “There are three small ticks after 5, so add three minutes to twenty-five.”
+    - **10:28:** “The short hand is past nine but has not reached ten. The current hour is nine.”
+    
+    **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+    
+    **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+    
+    ## Custom Scene specifications
+    
+    - MinuteMarkerExplorer (Scene specification MinuteMarkerExplorer embedded below) — proposed interactive, prop-free self-contained Scene. Review its pedagogical cases, state changes, feedback, accessibility alternatives and reset. It is a written specification, **not** a React component.
+    
+    ## Independent transfer and reflection
+    
+    At 9:28, the minute hand is three small ticks beyond 5 (25+3) and the hour hand is between 9 and 10, so the digital time is 9:28.
+    
+    Present the unfamiliar case before revealing the worked result. The learner may request a hint and review a full explanation; speech input is optional to a nearby adult rather than an assumed speech-recognition system. An unscored transfer response informs learning but is not validated mastery.
+    
+    ## Lesson Notes — planned, not implemented
+    
+    **Concise cue:** “Count fives to a numbered mark, then count extra one-minute ticks; the current hour is the one the short hand has passed.”
+    
+    **Proposed unlock moment:** after the learner has examined the critical comparison in Section 3 and can explain what made the examples different. There is no verified Note entity, unlock event, persistent study sheet, spaced-repetition scheduler or offline Notes sync; the Lesson must remain understandable without those features.
+    
+    ## Assessment and technical handoff
+    
+    These interactions are formative, explanatory and unscored. An Assessment Architect owns later Question banks, diagnostic validity, Quiz behavior, scoring thresholds and mastery evidence. A Coding Agent owns runtime Lesson/Section data, Scene implementation, translations, assets, tests, registration and packaging. The Scene's feasibility, full supported locale coverage, WCAG 2.2 AA access, true RTL, reduced motion, mobile and offline parity are **release requirements, not existing implementation claims**.
+    
+    ## Open editorial questions
+    
+    - Confirm the Methodologist's selected scope before approving this Content.
+    - Review explanatory language and any potentially ambiguous model assumptions in the Scene with domain specialist.
+    - Review all locale-specific labels, numerals and conventions, and provide accurate genuine translations before implementation.
+    
+    **Editorial status remains Provisional Draft.**
