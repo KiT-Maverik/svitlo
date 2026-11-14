@@ -144,11 +144,16 @@ The output is <courseSlug>.data.ts in the same directory, exporting
 <courseSlug>_Course = defineCourse(...) (non-identifier characters in export
 names become underscores).
 
-**Safe writes:** --check never writes. --write creates a new file or does
-nothing if byte-identical. It refuses to overwrite *any* divergent existing
-file, even one originally scaffolded: a human/AI editor may have changed it.
-No input YAML, Lesson authoring, Episode Scene, Props generator, or runtime
-source is changed.
+**Safe writes:** `--write` is creation-only. If **any `*.data.ts`** is
+already present in the Course UUID directory, the CLI prints
+`SKIP Course <uuid>: existing <file>; no files modified` and exits
+successfully, without parsing the YAML or changing source files. An individual
+output file is also protected by exclusive (`wx`) creation. `--check` is
+read-only and still reports missing or stale drafts; it never treats skipped
+files as fresh. To regenerate intentionally, review and manually remove/move
+the old data file first. Other files (`course.yaml`, `toc.yaml`, methodology,
+`overrides.yaml`) do not trigger skipping. Existing standalone Lesson files
+are never written or changed by the Course Builder.
 
 ## Work that remains outside this script
 
