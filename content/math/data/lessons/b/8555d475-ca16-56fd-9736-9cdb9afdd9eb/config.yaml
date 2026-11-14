@@ -1,0 +1,823 @@
+config:
+  id: "8555d475-ca16-56fd-9736-9cdb9afdd9eb"
+  slug: "partsOfTheDayInOrder"
+  type: "lesson"
+  skills:
+    - "8dba0c68-4d5b-4e3f-a6fa-119f448baaa4"
+  params:
+    requireQuiz: false
+    languages:
+      - "en"
+      - "qm"
+      - "lt"
+      - "lv"
+      - "et"
+      - "be"
+      - "ka"
+      - "kk"
+      - "zh"
+      - "hi"
+      - "es"
+      - "ar"
+      - "fr"
+      - "bn"
+      - "pt"
+      - "ur"
+      - "id"
+      - "de"
+      - "ja"
+      - "ko"
+      - "tr"
+      - "vi"
+      - "ta"
+      - "te"
+      - "mr"
+      - "ms"
+      - "he"
+      - "pl"
+      - "uk"
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Morning, Afternoon, Evening, Night"
+  section:
+    items:
+      section1:
+        config:
+          id: "8555d475-ca16-56fd-9736-000000000004"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A day has a repeating pattern"
+            navigationLabel:
+              en: "A day has a repeating pattern"
+          content:
+            items:
+              text1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-000000000001"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Here are four parts of the day: morning, afternoon, evening and night. After night, what comes next?"
+                production:
+                  purpose: "Source-authored learner-facing text resource"
+                  specification: "Original authored resource line: 1. **`text` (existing Resource type).** “Here are four parts of the day: morning, afternoon, evening and night. After night, what comes next?”"
+              scene1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-000000000002"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Here are four parts of the day: morning, afternoon, evening and night. After night, what comes next?"
+                production:
+                  purpose: "Provisional interactive learning experience; implementation pending"
+                  specification: |-
+                    # DayCycleExplorer — Screenwriter Scene Specification
+                    
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** `Morning, Afternoon, Evening, Night Content` (source consolidated in this YAML)
+                    **Brief:** `Methodologist Draft` (source consolidated in this YAML)
+                    **Target Skill:** [daySequence.data.ts](../../../../../data/skills/time/calendar/skills/daySequence.data.ts)
+                    **Implementation:** Not built or registered
+                    
+                    ## Why this Scene needs to be interactive
+                    
+                    Sequence morning, afternoon, evening and night as a repeating daily cycle, and match plausible everyday situations to approximate periods without declaring fixed boundaries.
+                    
+                    A locally driven, labelled four-state cycle where moving forward or backward highlights the adjacent period; one alternate display shows contextual activities as examples but no numerical start/end clock thresholds.
+                    
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+                    
+                    ## Mathematical content and source-of-truth conditions
+                    
+                    Use morning → afternoon → evening → night → next morning. Activities are examples only: breakfast can happen in morning for some families, but a nurse can work at night and someone can eat dinner earlier or later. Explicitly prevent an activity stereotype from becoming a formal definition.
+                    
+                    **Hard limits:** Do not teach weekdays, dates, months, leap years, elapsed time, clock-hour start/end thresholds or time-zone conversions. The neighboring canonical `weekMonthYear` Skill is not included.
+                    
+                    ## Required observable states
+                    
+                    | State                | Data or model facts                                                | Correct interpretation                     |
+                    | -------------------- | ------------------------------------------------------------------ | ------------------------------------------ |
+                    | Initial              | Four named periods, focus on morning; night leads back to morning. | Cycle has four recurring states.           |
+                    | Evening forward      | Evening selected; next step highlights night.                      | Evening precedes night.                    |
+                    | Night forward        | Night selected; next step highlights morning.                      | Night precedes next morning.               |
+                    | Independent transfer | Evening chosen as a start; three hidden successors.                | Next states are night, morning, afternoon. |
+                    
+                    ## Required learning interaction
+                    
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+                    
+                    ## Exact misconception and explanation cases
+                    
+                    - **A day has a repeating pattern:** If the learner says ‘nothing follows night’, show the night-to-next-morning link and explain that the sequence repeats.
+                    - **Before and after:** For ‘night comes before evening’, trace the sequence afternoon → evening → night rather than using a clock reading.
+                    - **Daily activities are clues, not rules:** If the child claims an activity can happen only in one period, show a different person's routine and explain that these are examples, not definitions.
+                    - **Find your way around the cycle:** If morning is omitted, show the closed cycle and highlight the link night → morning.
+                    
+                    ## Nonvisual, motor and cognitive equivalence
+                    
+                    Display an ordered list of four named periods with an explicit ‘repeats at morning’ marker. Expose current and next names as live text; allow named buttons Next, Previous, Pick period, Reset, Show explanation. Accessible text is semantically equivalent to the ring.
+                    
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+                    
+                    ## Localization / RTL / offline / performance handoff
+                    
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+                    
+                    ## Engineer-facing constraints and test coverage (not implementation)
+                    
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+                    
+                    ## Approval boundary
+                    
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+                  productionNotes: "Placement scene1 of DayCycleExplorer.scene-spec.md in A day has a repeating pattern. 2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Show the four labelled periods in a linear cycle and let the learner step forward with a Next-period control. Keep the next morning visible after night.. Provisional draft; distinct identity per placement."
+              markdown1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-000000000003"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Morning comes after night. The four names repeat in a cycle, so we can start at any part and keep going."
+                production:
+                  purpose: "Source-authored learner-facing markdown resource"
+                  specification: "Original authored resource line: 3. **`markdown` (existing Resource type).** “Morning comes after night. The four names repeat in a cycle, so we can start at any part and keep going.”"
+            order:
+              - "text1"
+              - "scene1"
+              - "markdown1"
+        production:
+          purpose: "A day has a repeating pattern"
+          pedagogicalIntent: |-
+            **Purpose:** Introduce a cyclical order rather than a fixed four-slot clock.
+            
+            **Block sequence — a single column:**
+            
+            1. **`text` (existing Resource type).** “Here are four parts of the day: morning, afternoon, evening and night. After night, what comes next?”
+            
+            2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Show the four labelled periods in a linear cycle and let the learner step forward with a Next-period control. Keep the next morning visible after night.
+            
+            3. **`markdown` (existing Resource type).** “Morning comes after night. The four names repeat in a cycle, so we can start at any part and keep going.”
+            
+            **Learner's actual move:** Predict the period after night, step through the cycle and name the full sequence.
+            
+            **Misconception-specific explanation:** If the learner says ‘nothing follows night’, show the night-to-next-morning link and explain that the sequence repeats. Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+            
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+          productionNotes: "Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above."
+      section2:
+        config:
+          id: "8555d475-ca16-56fd-9736-000000000008"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Before and after"
+            navigationLabel:
+              en: "Before and after"
+          content:
+            items:
+              text1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-000000000005"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "What comes right before evening? What comes right after afternoon?"
+                production:
+                  purpose: "Source-authored learner-facing text resource"
+                  specification: "Original authored resource line: 1. **`text` (existing Resource type).** “What comes right before evening? What comes right after afternoon?”"
+              scene1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-000000000006"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "What comes right before evening? What comes right after afternoon?"
+                production:
+                  purpose: "Provisional interactive learning experience; implementation pending"
+                  specification: |-
+                    # DayCycleExplorer — Screenwriter Scene Specification
+                    
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** `Morning, Afternoon, Evening, Night Content` (source consolidated in this YAML)
+                    **Brief:** `Methodologist Draft` (source consolidated in this YAML)
+                    **Target Skill:** [daySequence.data.ts](../../../../../data/skills/time/calendar/skills/daySequence.data.ts)
+                    **Implementation:** Not built or registered
+                    
+                    ## Why this Scene needs to be interactive
+                    
+                    Sequence morning, afternoon, evening and night as a repeating daily cycle, and match plausible everyday situations to approximate periods without declaring fixed boundaries.
+                    
+                    A locally driven, labelled four-state cycle where moving forward or backward highlights the adjacent period; one alternate display shows contextual activities as examples but no numerical start/end clock thresholds.
+                    
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+                    
+                    ## Mathematical content and source-of-truth conditions
+                    
+                    Use morning → afternoon → evening → night → next morning. Activities are examples only: breakfast can happen in morning for some families, but a nurse can work at night and someone can eat dinner earlier or later. Explicitly prevent an activity stereotype from becoming a formal definition.
+                    
+                    **Hard limits:** Do not teach weekdays, dates, months, leap years, elapsed time, clock-hour start/end thresholds or time-zone conversions. The neighboring canonical `weekMonthYear` Skill is not included.
+                    
+                    ## Required observable states
+                    
+                    | State                | Data or model facts                                                | Correct interpretation                     |
+                    | -------------------- | ------------------------------------------------------------------ | ------------------------------------------ |
+                    | Initial              | Four named periods, focus on morning; night leads back to morning. | Cycle has four recurring states.           |
+                    | Evening forward      | Evening selected; next step highlights night.                      | Evening precedes night.                    |
+                    | Night forward        | Night selected; next step highlights morning.                      | Night precedes next morning.               |
+                    | Independent transfer | Evening chosen as a start; three hidden successors.                | Next states are night, morning, afternoon. |
+                    
+                    ## Required learning interaction
+                    
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+                    
+                    ## Exact misconception and explanation cases
+                    
+                    - **A day has a repeating pattern:** If the learner says ‘nothing follows night’, show the night-to-next-morning link and explain that the sequence repeats.
+                    - **Before and after:** For ‘night comes before evening’, trace the sequence afternoon → evening → night rather than using a clock reading.
+                    - **Daily activities are clues, not rules:** If the child claims an activity can happen only in one period, show a different person's routine and explain that these are examples, not definitions.
+                    - **Find your way around the cycle:** If morning is omitted, show the closed cycle and highlight the link night → morning.
+                    
+                    ## Nonvisual, motor and cognitive equivalence
+                    
+                    Display an ordered list of four named periods with an explicit ‘repeats at morning’ marker. Expose current and next names as live text; allow named buttons Next, Previous, Pick period, Reset, Show explanation. Accessible text is semantically equivalent to the ring.
+                    
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+                    
+                    ## Localization / RTL / offline / performance handoff
+                    
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+                    
+                    ## Engineer-facing constraints and test coverage (not implementation)
+                    
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+                    
+                    ## Approval boundary
+                    
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+                  productionNotes: "Placement scene1 of DayCycleExplorer.scene-spec.md in Before and after. 2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Choose one named period to highlight and use Before or After. For evening, Before shows afternoon. For afternoon, After shows evening.. Provisional draft; distinct identity per placement."
+              markdown1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-000000000007"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "In our four-part model, afternoon comes before evening, and evening comes after afternoon. Night comes after evening."
+                production:
+                  purpose: "Source-authored learner-facing markdown resource"
+                  specification: "Original authored resource line: 3. **`markdown` (existing Resource type).** “In our four-part model, afternoon comes before evening, and evening comes after afternoon. Night comes after evening.”"
+            order:
+              - "text1"
+              - "scene1"
+              - "markdown1"
+        production:
+          purpose: "Before and after"
+          pedagogicalIntent: |-
+            **Purpose:** Use adjacent positions in the period cycle without relying on a personal schedule.
+            
+            **Block sequence — a single column:**
+            
+            1. **`text` (existing Resource type).** “What comes right before evening? What comes right after afternoon?”
+            
+            2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Choose one named period to highlight and use Before or After. For evening, Before shows afternoon. For afternoon, After shows evening.
+            
+            3. **`markdown` (existing Resource type).** “In our four-part model, afternoon comes before evening, and evening comes after afternoon. Night comes after evening.”
+            
+            **Learner's actual move:** Identify adjacency in both directions. Reveal the neighboring named period only after prediction or when requested.
+            
+            **Misconception-specific explanation:** For ‘night comes before evening’, trace the sequence afternoon → evening → night rather than using a clock reading. Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+            
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+          productionNotes: "Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above."
+      section3:
+        config:
+          id: "8555d475-ca16-56fd-9736-00000000000c"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Daily activities are clues, not rules"
+            navigationLabel:
+              en: "Daily activities are clues, not rules"
+          content:
+            items:
+              markdown1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-000000000009"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Many children get ready for school in the morning. Some people study or work in the evening or at night. Activities can happen at different times."
+                production:
+                  purpose: "Source-authored learner-facing markdown resource"
+                  specification: "Original authored resource line: 1. **`markdown` (existing Resource type).** “Many children get ready for school in the morning. Some people study or work in the evening or at night. Activities can happen at different times.”"
+              scene1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-00000000000a"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Daily activities are clues, not rules"
+                production:
+                  purpose: "Provisional interactive learning experience; implementation pending"
+                  specification: |-
+                    # DayCycleExplorer — Screenwriter Scene Specification
+                    
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** `Morning, Afternoon, Evening, Night Content` (source consolidated in this YAML)
+                    **Brief:** `Methodologist Draft` (source consolidated in this YAML)
+                    **Target Skill:** [daySequence.data.ts](../../../../../data/skills/time/calendar/skills/daySequence.data.ts)
+                    **Implementation:** Not built or registered
+                    
+                    ## Why this Scene needs to be interactive
+                    
+                    Sequence morning, afternoon, evening and night as a repeating daily cycle, and match plausible everyday situations to approximate periods without declaring fixed boundaries.
+                    
+                    A locally driven, labelled four-state cycle where moving forward or backward highlights the adjacent period; one alternate display shows contextual activities as examples but no numerical start/end clock thresholds.
+                    
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+                    
+                    ## Mathematical content and source-of-truth conditions
+                    
+                    Use morning → afternoon → evening → night → next morning. Activities are examples only: breakfast can happen in morning for some families, but a nurse can work at night and someone can eat dinner earlier or later. Explicitly prevent an activity stereotype from becoming a formal definition.
+                    
+                    **Hard limits:** Do not teach weekdays, dates, months, leap years, elapsed time, clock-hour start/end thresholds or time-zone conversions. The neighboring canonical `weekMonthYear` Skill is not included.
+                    
+                    ## Required observable states
+                    
+                    | State                | Data or model facts                                                | Correct interpretation                     |
+                    | -------------------- | ------------------------------------------------------------------ | ------------------------------------------ |
+                    | Initial              | Four named periods, focus on morning; night leads back to morning. | Cycle has four recurring states.           |
+                    | Evening forward      | Evening selected; next step highlights night.                      | Evening precedes night.                    |
+                    | Night forward        | Night selected; next step highlights morning.                      | Night precedes next morning.               |
+                    | Independent transfer | Evening chosen as a start; three hidden successors.                | Next states are night, morning, afternoon. |
+                    
+                    ## Required learning interaction
+                    
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+                    
+                    ## Exact misconception and explanation cases
+                    
+                    - **A day has a repeating pattern:** If the learner says ‘nothing follows night’, show the night-to-next-morning link and explain that the sequence repeats.
+                    - **Before and after:** For ‘night comes before evening’, trace the sequence afternoon → evening → night rather than using a clock reading.
+                    - **Daily activities are clues, not rules:** If the child claims an activity can happen only in one period, show a different person's routine and explain that these are examples, not definitions.
+                    - **Find your way around the cycle:** If morning is omitted, show the closed cycle and highlight the link night → morning.
+                    
+                    ## Nonvisual, motor and cognitive equivalence
+                    
+                    Display an ordered list of four named periods with an explicit ‘repeats at morning’ marker. Expose current and next names as live text; allow named buttons Next, Previous, Pick period, Reset, Show explanation. Accessible text is semantically equivalent to the ring.
+                    
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+                    
+                    ## Localization / RTL / offline / performance handoff
+                    
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+                    
+                    ## Engineer-facing constraints and test coverage (not implementation)
+                    
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+                    
+                    ## Approval boundary
+                    
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+                  productionNotes: "Placement scene1 of DayCycleExplorer.scene-spec.md in Daily activities are clues, not rules. 2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Show three illustrative context cards (a morning outdoor walk, an afternoon game, a nighttime shift) with period labels. Let the learner choose a plausible time and inspect alternative schedules.. Provisional draft; distinct identity per placement."
+              text1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-00000000000b"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A routine can help us describe the day, but it does not decide the exact time when morning or evening begins for everyone."
+                production:
+                  purpose: "Source-authored learner-facing text resource"
+                  specification: "Original authored resource line: 3. **`text` (existing Resource type).** “A routine can help us describe the day, but it does not decide the exact time when morning or evening begins for everyone.”"
+            order:
+              - "markdown1"
+              - "scene1"
+              - "text1"
+        production:
+          purpose: "Daily activities are clues, not rules"
+          pedagogicalIntent: |-
+            **Purpose:** Connect period labels to lived contexts without stereotype or false universal schedules.
+            
+            **Block sequence — a single column:**
+            
+            1. **`markdown` (existing Resource type).** “Many children get ready for school in the morning. Some people study or work in the evening or at night. Activities can happen at different times.”
+            
+            2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Show three illustrative context cards (a morning outdoor walk, an afternoon game, a nighttime shift) with period labels. Let the learner choose a plausible time and inspect alternative schedules.
+            
+            3. **`text` (existing Resource type).** “A routine can help us describe the day, but it does not decide the exact time when morning or evening begins for everyone.”
+            
+            **Learner's actual move:** Match examples to plausible periods; inspect why a different routine can also be valid.
+            
+            **Misconception-specific explanation:** If the child claims an activity can happen only in one period, show a different person's routine and explain that these are examples, not definitions. Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+            
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+          productionNotes: "Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above."
+      section4:
+        config:
+          id: "8555d475-ca16-56fd-9736-000000000010"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Find your way around the cycle"
+            navigationLabel:
+              en: "Find your way around the cycle"
+          content:
+            items:
+              text1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-00000000000d"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Start at evening. Name the next three periods without starting again from morning."
+                production:
+                  purpose: "Source-authored learner-facing text resource"
+                  specification: "Original authored resource line: 1. **`text` (existing Resource type).** “Start at evening. Name the next three periods without starting again from morning.”"
+              scene1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-00000000000e"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Start at evening. Name the next three periods without starting again from morning."
+                production:
+                  purpose: "Provisional interactive learning experience; implementation pending"
+                  specification: |-
+                    # DayCycleExplorer — Screenwriter Scene Specification
+                    
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** `Morning, Afternoon, Evening, Night Content` (source consolidated in this YAML)
+                    **Brief:** `Methodologist Draft` (source consolidated in this YAML)
+                    **Target Skill:** [daySequence.data.ts](../../../../../data/skills/time/calendar/skills/daySequence.data.ts)
+                    **Implementation:** Not built or registered
+                    
+                    ## Why this Scene needs to be interactive
+                    
+                    Sequence morning, afternoon, evening and night as a repeating daily cycle, and match plausible everyday situations to approximate periods without declaring fixed boundaries.
+                    
+                    A locally driven, labelled four-state cycle where moving forward or backward highlights the adjacent period; one alternate display shows contextual activities as examples but no numerical start/end clock thresholds.
+                    
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+                    
+                    ## Mathematical content and source-of-truth conditions
+                    
+                    Use morning → afternoon → evening → night → next morning. Activities are examples only: breakfast can happen in morning for some families, but a nurse can work at night and someone can eat dinner earlier or later. Explicitly prevent an activity stereotype from becoming a formal definition.
+                    
+                    **Hard limits:** Do not teach weekdays, dates, months, leap years, elapsed time, clock-hour start/end thresholds or time-zone conversions. The neighboring canonical `weekMonthYear` Skill is not included.
+                    
+                    ## Required observable states
+                    
+                    | State                | Data or model facts                                                | Correct interpretation                     |
+                    | -------------------- | ------------------------------------------------------------------ | ------------------------------------------ |
+                    | Initial              | Four named periods, focus on morning; night leads back to morning. | Cycle has four recurring states.           |
+                    | Evening forward      | Evening selected; next step highlights night.                      | Evening precedes night.                    |
+                    | Night forward        | Night selected; next step highlights morning.                      | Night precedes next morning.               |
+                    | Independent transfer | Evening chosen as a start; three hidden successors.                | Next states are night, morning, afternoon. |
+                    
+                    ## Required learning interaction
+                    
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+                    
+                    ## Exact misconception and explanation cases
+                    
+                    - **A day has a repeating pattern:** If the learner says ‘nothing follows night’, show the night-to-next-morning link and explain that the sequence repeats.
+                    - **Before and after:** For ‘night comes before evening’, trace the sequence afternoon → evening → night rather than using a clock reading.
+                    - **Daily activities are clues, not rules:** If the child claims an activity can happen only in one period, show a different person's routine and explain that these are examples, not definitions.
+                    - **Find your way around the cycle:** If morning is omitted, show the closed cycle and highlight the link night → morning.
+                    
+                    ## Nonvisual, motor and cognitive equivalence
+                    
+                    Display an ordered list of four named periods with an explicit ‘repeats at morning’ marker. Expose current and next names as live text; allow named buttons Next, Previous, Pick period, Reset, Show explanation. Accessible text is semantically equivalent to the ring.
+                    
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+                    
+                    ## Localization / RTL / offline / performance handoff
+                    
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+                    
+                    ## Engineer-facing constraints and test coverage (not implementation)
+                    
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+                    
+                    ## Approval boundary
+                    
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+                  productionNotes: "Placement scene1 of DayCycleExplorer.scene-spec.md in Find your way around the cycle. 2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Hide the future labels initially; provide an evening start and three revealable following spaces: night, morning, afternoon. Offer the full cycle as an optional hint.. Provisional draft; distinct identity per placement."
+              markdown1:
+                config:
+                  id: "8555d475-ca16-56fd-9736-00000000000f"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Evening → night → morning → afternoon. The order stays the same even if we start in the middle."
+                production:
+                  purpose: "Source-authored learner-facing markdown resource"
+                  specification: "Original authored resource line: 3. **`markdown` (existing Resource type).** “Evening → night → morning → afternoon. The order stays the same even if we start in the middle.”"
+            order:
+              - "text1"
+              - "scene1"
+              - "markdown1"
+        production:
+          purpose: "Find your way around the cycle"
+          pedagogicalIntent: |-
+            **Purpose:** Independent sequence transfer from an unfamiliar starting position.
+            
+            **Block sequence — a single column:**
+            
+            1. **`text` (existing Resource type).** “Start at evening. Name the next three periods without starting again from morning.”
+            
+            2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Hide the future labels initially; provide an evening start and three revealable following spaces: night, morning, afternoon. Offer the full cycle as an optional hint.
+            
+            3. **`markdown` (existing Resource type).** “Evening → night → morning → afternoon. The order stays the same even if we start in the middle.”
+            
+            **Learner's actual move:** Complete a three-step forward traversal from evening and explain why morning follows night.
+            
+            **Misconception-specific explanation:** If morning is omitted, show the closed cycle and highlight the link night → morning. Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+            
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+          productionNotes: "Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above."
+    order:
+      - "section1"
+      - "section2"
+      - "section3"
+      - "section4"
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |-
+    # Morning, Afternoon, Evening, Night — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: partsOfTheDayInOrder
+    Methodologist status: **Draft — pending explicit approval**
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Sequence morning, afternoon, evening and night as a repeating daily cycle, and match plausible everyday situations to approximate periods without declaring fixed boundaries.
+    
+    **Why this lesson now:** The clock lessons already establish readings at an instant; this introduces recurring qualitative periods before calendar dates or duration calculations. The canonical Skill remains an independently assessable unit even though this Lesson structures examples and models around it.
+    
+    ## Target audience
+    
+    **Primary grade: Grade 1**, approximately ages 6–7. Early primary: everyday temporal vocabulary and ordered cycles before exact calendar arithmetic. The grade and learning depth are editorial decisions and do not redefine the Skill's cross-grade identity. Use short child-native language and meaningful equivalent interactions for visual, nonvisual, mobile and multilingual learners.
+    
+    ## Prerequisites
+    
+    - Use the everyday words before and after to describe two events.
+    - Recognize a repeating sequence of familiar steps.
+    - Differentiate an approximate part of a day from a clock reading such as 8:00.
+    
+    These are assumed competencies, not claims that a preceding Playground Lesson proves mastery. Missing prerequisites require separate support.
+    
+    ## Target Skills
+    
+    - [daySequence.data.ts](../../../../data/skills/time/calendar/skills/daySequence.data.ts) — original canonical Mathematics Skill retained with exact UUID, names, multilingual metadata and methodological description.
+    
+    ## Expected learning outcomes
+    
+    - Order morning → afternoon → evening → night for one daily cycle.
+    - Explain why the cycle goes from night to the next morning rather than stopping.
+    - Locate which named period immediately precedes or follows another within that stated cycle.
+    - Choose plausible periods for several example activities, while acknowledging schedules differ.
+    - Reject a single universal clock-hour boundary for words such as evening.
+    
+    Observe explanations and transfer behaviors, not mere clicks or answer reveals. Formal assessment and scores are outside this editorial batch.
+    
+    ## Essential subject matter and depth
+    
+    Use the deliberately simplified cycle morning, afternoon, evening, night, then back to morning. These labels are approximate social conventions and do not have universally fixed clock boundaries. Time-of-day activities depend on people, season, location and routines. For orientation, use a labelled four-state cycle, not a rigid timetable, daylight sensor or geography-specific sunrise rule.
+    
+    **Verified model cases:** Use morning → afternoon → evening → night → next morning. Activities are examples only: breakfast can happen in morning for some families, but a nurse can work at night and someone can eat dinner earlier or later. Explicitly prevent an activity stereotype from becoming a formal definition.
+    
+    ## Conceptual progression and dependencies
+    
+    Recall the relevant earlier model, ask a precise prediction, allow an active inspection, reveal a mathematically justified counterexample, then offer a new transfer condition. A locally driven, labelled four-state cycle where moving forward or backward highlights the adjacent period; one alternate display shows contextual activities as examples but no numerical start/end clock thresholds. The Screenwriter can adjust pacing within this conceptual boundary after Methodologist approval.
+    
+    ## Misconceptions, examples and boundaries
+    
+    - Night is the end of the sequence and has no next period.
+    - Every family eats dinner or goes to school at the same time.
+    - Morning and evening always begin at an exact universal hour.
+    - The word afternoon means a fixed number of hours in every place and season.
+    
+    **Explicit exclusions:** Do not teach weekdays, dates, months, leap years, elapsed time, clock-hour start/end thresholds or time-zone conversions. The neighboring canonical `weekMonthYear` Skill is not included.
+    
+    ## Localization, accessibility and offline intent
+    
+    All future client-facing text, controls, feedback, Scene state descriptions, labels and any narration need **real** meaning-preserving translations for every supported locale. No silent English fallback, placeholder locale or missing dictionary key is acceptable. RTL adapts semantic reading and control order without changing mathematical quantities, fraction values, bar scale, data category labels or chronological meaning. Provide complete keyboard, touch and assistive-technology routes; equivalent alternatives for essential visual information; visible focus, contrast, reduced motion, readable small screens and WCAG 2.2 AA review. Once packaged for PWA download, all educational states must work offline and on weak devices; these are future implementation gates, not shipped functionality.
+    
+    ## Sources and factual verification
+    
+    - Canonical Skill [daySequence.data.ts](../../../../data/skills/time/calendar/skills/daySequence.data.ts), including preserved methodological definition and names.
+    - [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md), [Lesson entity](../../../../../../studio/docs/entities/lesson.md), [Section entity](../../../../../../studio/docs/entities/section.md) and [Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md).
+    - Worked factual example model: Use morning → afternoon → evening → night → next morning. Activities are examples only: breakfast can happen in morning for some families, but a nurse can work at night and someone can eat dinner earlier or later. Explicitly prevent an activity stereotype from becoming a formal definition.
+    
+    ## Curriculum / Program compatibility
+    
+    Standalone and Program-neutral: no presumed national curriculum endorsement, story, mascot, external participant, grade-lock or previous account state. Links to prerequisite math ideas are conceptual only.
+    
+    ## Open editorial decisions
+    
+    - **Methodologist:** Confirm the precise internationalizable labels for morning/afternoon/evening/night and that this conceptual cycle is culturally appropriate without claiming universal fixed clock intervals.
+    - **Methodologist:** accept the Grade 1 audience, prerequisites and observable learning outcomes.
+    - **Screenwriter / Scene reviewer:** review the separate provisional documents after explicit Methodologist sign-off.
+    - **Coding Agent / QA:** eventually verify true locale completeness, LTR/RTL, nonvisual parity, offline delivery, tests and weak-device behavior. No implementation is claimed.
+    
+    ## Methodologist handoff
+    
+    **Draft, not approved.** The accompanying Content and Scene spec are explicitly **provisional**, prepared as a batch deliverable without treating Methodologist approval as granted. There is no Lesson runtime config, Questions, Quiz, assessment, scoring, Notes entity or Scene React code in this batch.
+  purpose: |-
+    Sequence morning, afternoon, evening and night as a repeating daily cycle, and match plausible everyday situations to approximate periods without declaring fixed boundaries.
+    
+    **Why this lesson now:** The clock lessons already establish readings at an instant; this introduces recurring qualitative periods before calendar dates or duration calculations. The canonical Skill remains an independently assessable unit even though this Lesson structures examples and models around it.
+  audience: "Grade and prerequisite boundaries are preserved verbatim in production.methodology."
+  productionNotes: |-
+    # Morning, Afternoon, Evening, Night — Lesson Content
+    
+    **Editorial status: Provisional Draft — pending Methodologist approval; not formally approved.**
+    **Audience:** Grade 1 (approximately 6–7).
+    **Methodologist input:** `Draft Methodologist Brief` (source consolidated in this YAML).
+    **Target Skill:** [daySequence.data.ts](../../../../data/skills/time/calendar/skills/daySequence.data.ts).
+    **Standalone:** No Program story, imported Quiz, scored Question, progress gate, runtime Lesson code or assembled locale bundle is created.
+    
+    ## Learner experience and teaching logic
+    
+    Sequence morning, afternoon, evening and night as a repeating daily cycle, and match plausible everyday situations to approximate periods without declaring fixed boundaries.
+    
+    The clock lessons already establish readings at an instant; this introduces recurring qualitative periods before calendar dates or duration calculations. The activity builds toward an explanation by the learner, not automatic mastery from making a choice. A locally driven, labelled four-state cycle where moving forward or backward highlights the adjacent period; one alternate display shows contextual activities as examples but no numerical start/end clock thresholds.
+    
+    **Scope boundary:** Do not teach weekdays, dates, months, leap years, elapsed time, clock-hour start/end thresholds or time-zone conversions. The neighboring canonical `weekMonthYear` Skill is not included.
+    
+    The Sections below use the existing block types `text`, `markdown` and `scene`, arranged in one **vertical top-to-bottom column**. `DayCycleExplorer` is **proposed** and is not a registered/implemented Scene. There are no invented custom Resource discriminators or server APIs.
+    
+    ## Learning journey
+    
+    1. **A day has a repeating pattern.** Introduce a cyclical order rather than a fixed four-slot clock.
+    2. **Before and after.** Use adjacent positions in the period cycle without relying on a personal schedule.
+    3. **Daily activities are clues, not rules.** Connect period labels to lived contexts without stereotype or false universal schedules.
+    4. **Find your way around the cycle.** Independent sequence transfer from an unfamiliar starting position.
+    
+    ## Section scripts (ordered Resources)
+    
+    ### Section 1: A day has a repeating pattern
+    
+    **Purpose:** Introduce a cyclical order rather than a fixed four-slot clock.
+    
+    **Block sequence — a single column:**
+    
+    1. **`text` (existing Resource type).** “Here are four parts of the day: morning, afternoon, evening and night. After night, what comes next?”
+    
+    2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Show the four labelled periods in a linear cycle and let the learner step forward with a Next-period control. Keep the next morning visible after night.
+    
+    3. **`markdown` (existing Resource type).** “Morning comes after night. The four names repeat in a cycle, so we can start at any part and keep going.”
+    
+    **Learner's actual move:** Predict the period after night, step through the cycle and name the full sequence.
+    
+    **Misconception-specific explanation:** If the learner says ‘nothing follows night’, show the night-to-next-morning link and explain that the sequence repeats. Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+    
+    **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+    
+    ### Section 2: Before and after
+    
+    **Purpose:** Use adjacent positions in the period cycle without relying on a personal schedule.
+    
+    **Block sequence — a single column:**
+    
+    1. **`text` (existing Resource type).** “What comes right before evening? What comes right after afternoon?”
+    
+    2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Choose one named period to highlight and use Before or After. For evening, Before shows afternoon. For afternoon, After shows evening.
+    
+    3. **`markdown` (existing Resource type).** “In our four-part model, afternoon comes before evening, and evening comes after afternoon. Night comes after evening.”
+    
+    **Learner's actual move:** Identify adjacency in both directions. Reveal the neighboring named period only after prediction or when requested.
+    
+    **Misconception-specific explanation:** For ‘night comes before evening’, trace the sequence afternoon → evening → night rather than using a clock reading. Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+    
+    **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+    
+    ### Section 3: Daily activities are clues, not rules
+    
+    **Purpose:** Connect period labels to lived contexts without stereotype or false universal schedules.
+    
+    **Block sequence — a single column:**
+    
+    1. **`markdown` (existing Resource type).** “Many children get ready for school in the morning. Some people study or work in the evening or at night. Activities can happen at different times.”
+    
+    2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Show three illustrative context cards (a morning outdoor walk, an afternoon game, a nighttime shift) with period labels. Let the learner choose a plausible time and inspect alternative schedules.
+    
+    3. **`text` (existing Resource type).** “A routine can help us describe the day, but it does not decide the exact time when morning or evening begins for everyone.”
+    
+    **Learner's actual move:** Match examples to plausible periods; inspect why a different routine can also be valid.
+    
+    **Misconception-specific explanation:** If the child claims an activity can happen only in one period, show a different person's routine and explain that these are examples, not definitions. Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+    
+    **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+    
+    ### Section 4: Find your way around the cycle
+    
+    **Purpose:** Independent sequence transfer from an unfamiliar starting position.
+    
+    **Block sequence — a single column:**
+    
+    1. **`text` (existing Resource type).** “Start at evening. Name the next three periods without starting again from morning.”
+    
+    2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Hide the future labels initially; provide an evening start and three revealable following spaces: night, morning, afternoon. Offer the full cycle as an optional hint.
+    
+    3. **`markdown` (existing Resource type).** “Evening → night → morning → afternoon. The order stays the same even if we start in the middle.”
+    
+    **Learner's actual move:** Complete a three-step forward traversal from evening and explain why morning follows night.
+    
+    **Misconception-specific explanation:** If morning is omitted, show the closed cycle and highlight the link night → morning. Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+    
+    **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+    
+    ## Bespoke interactive Scene — provisional
+    
+    - `DayCycleExplorer` (Scene specification embedded in this YAML) is a proposed **self-contained, prop-free** Scene. It owns only its local learning model and explanation state. It has no runtime implementation yet; if reused by multiple sections, each instance should maintain independent state.
+    
+    ## Independent transfer prompt
+    
+    A learner says, ‘Night is always the last part of a day, so nothing happens next.’ Explain the mistake using the next morning and the idea of a cycle.
+    
+    Learners should first predict or justify their thinking without copying the original example. Reveal a correct worked explanation only on request or after an attempt. This remains instruction, **not scored mastery assessment**.
+    
+    ## Proposed Lesson Note — product concept only
+    
+    “Morning, afternoon, evening and night repeat in order; their clock-time boundaries can vary.”
+    
+    **Editorial unlock proposal:** Make this cue available after the learner inspects the explicit misconception contrast in Section 3 and explains it. The Note entity, unlock API, offline notes persistence and automatic spaced review are not implemented by this content plan; the explanation stays available regardless.
+    
+    ## Source verification and content constraints
+    
+    The canonical [daySequence.data.ts](../../../../data/skills/time/calendar/skills/daySequence.data.ts) governs Skill meaning; its UUID, definition and multilingual translations are unchanged. Use morning → afternoon → evening → night → next morning. Activities are examples only: breakfast can happen in morning for some families, but a nurse can work at night and someone can eat dinner earlier or later. Explicitly prevent an activity stereotype from becoming a formal definition.
+    
+    All runtime copy requires complete, authentic translation into every configured locale; this English editorial script is _not_ runtime locale coverage. The proposed Scene's essential functions need nonvisual equivalence, mobile usability, semantic RTL, and offline availability. These are requirements for implementation review, not a declaration that they pass.
+    
+    ## Approvals and implementation boundary
+    
+    **Methodologist approval pending. Screenwriter and Scene editorial approval pending.** Assessment Architect owns any Questions/Quiz, scoring and competency evidence. Coding Agent owns runtime Lesson/Scene, provider-free public Scene interface, localizations, tests and offline support. No scoring, Program content or runtime configuration is added.
