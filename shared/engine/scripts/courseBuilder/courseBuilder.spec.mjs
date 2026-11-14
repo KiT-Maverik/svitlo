@@ -743,3 +743,74 @@ test('Course config.yaml emits Scene/media handoffs without inventing image sour
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+
+test('Course Episode Quest renders named stages, tasks, nullable tracks and all nested factories', () => {
+  const course = structuredClone(source);
+  const episode = course.content.items.basics.content.items.first.content.items.episode;
+  const nested = (type, slug, suffix, locale = {}) => ({
+    id: '00000000-0000-4000-8000-' + String(suffix).padStart(12, '0'),
+    slug,
+    type,
+    params: {},
+    locale,
+  });
+  episode.section.items.quest = {
+    ...nested('quest', 'quest', 50, {
+      title: { uk: 'Експедиція' },
+      navigationLabel: { uk: 'Завдання' },
+    }),
+    stages: {
+      start: {
+        id: nested('questStage', 'start', 51).id,
+        slug: 'start',
+        type: 'questStage',
+        content: {
+          video: {
+            medium: nested('video', 'medium', 52, { fileLocation: null, poster: null }),
+            small: nested('video', 'small', 53, { fileLocation: null, poster: null }),
+          },
+          audio: {
+            dialogue: nested('audio', 'dialogue', 54, { fileLocation: null }),
+            narration: null,
+            background: null,
+          },
+          image: nested('image', 'image', 55, { src: null }),
+          subtitles: nested('subtitles', 'subtitles', 56, { fileLocation: null }),
+        },
+      },
+    },
+    tasks: {
+      start: {
+        id: nested('questTask', 'start', 57).id,
+        slug: 'start',
+        type: 'questTask',
+        scene: nested('scene', 'scene', 58),
+      },
+    },
+  };
+  episode.section.order.push('quest');
+  const draft = renderCourseSource(course);
+  for (const factory of [
+    'defineQuestSection',
+    'defineStage',
+    'defineTask',
+    'defineVideo',
+    'defineAudio',
+    'defineImage',
+    'defineSubtitles',
+    'defineScene',
+  ]) assert(draft.includes(factory + '('), 'missing ' + factory);
+  assert.match(draft, /"narration": null/);
+  assert.match(draft, /"background": null/);
+  assert.equal((draft.match(/defineStage\(/g) ?? []).length, 1);
+  assert.equal((draft.match(/defineTask\(/g) ?? []).length, 1);
+  assert.deepEqual(
+    ts.createSourceFile('course-quest.data.ts', draft, ts.ScriptTarget.Latest, true).parseDiagnostics,
+    [],
+  );
+
+  const broken = structuredClone(course);
+  broken.content.items.basics.content.items.first.content.items.episode.section.items.quest.tasks.start.scene.type = 'unlisted';
+  assert.throws(() => renderCourseSource(broken), /unknown type discriminator "unlisted"/);
+});
