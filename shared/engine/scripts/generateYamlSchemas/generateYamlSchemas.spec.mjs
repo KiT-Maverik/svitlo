@@ -155,9 +155,9 @@ test('unified scaffold composes manual production schema beside Engine Config at
     assert.equal(scaffold.properties.production.$ref, 'production.schema.json#/$defs/' + kind);
     assert(!Object.hasOwn(scaffold.properties.config.properties, 'documentLanguage'));
     const text = JSON.stringify(scaffold);
-    assert.match(text, /production\\.schema\\.json#\\/\\$defs\\/scene/);
-    assert.match(text, /production\\.schema\\.json#\\/\\$defs\\/image/);
-    assert.match(text, /production\\.schema\\.json#\\/\\$defs\\/section/);
+    assert(text.includes('production.schema.json#/$defs/scene'));
+    assert(text.includes('production.schema.json#/$defs/image'));
+    assert(text.includes('production.schema.json#/$defs/section'));
   }
   const manuallyOwned = JSON.parse(
     fs.readFileSync(new URL('../../yaml-schemas/production.schema.json', import.meta.url), 'utf8'),
