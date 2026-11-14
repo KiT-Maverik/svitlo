@@ -2,10 +2,12 @@
 /**
  * Generate a localized-name, read-only Markdown view from typed taxonomy source.
  * Usage: node shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs --package content/math
- *   [--locale en] [--check | --stdout]
+ *   [--locale en] [--check | --stdout] [--source-only (with en --stdout)]
  *
  * Deliberately parses TypeScript source without executing textbook code.
  * Methodological descriptions are always English; Skill frontend text is mandatory in every locale.
+ * The read-only --source-only preview checks English source fields, without claiming
+ * the remaining translations are complete. Strict generation remains unchanged.
  * Domain and Group frontend text remains optional during their migration.
  * Fail closed on absent methodological descriptions: handwritten taxonomy remains the
  * authoritative staging source until every promoted entity is complete.
@@ -20,16 +22,17 @@ function fail(message) {
   throw new Error(message);
 }
 function options(args) {
-  const result = { locale: 'en', check: false, stdout: false };
+  const result = { locale: 'en', check: false, stdout: false, sourceOnly: false };
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
-    if (arg === '--check' || arg === '--stdout') {
-      if (result[arg.slice(2)]) fail('Duplicate argument ' + arg);
-      result[arg.slice(2)] = true;
+    if (arg === '--check' || arg === '--stdout' || arg === '--source-only') {
+      const flag = arg === '--source-only' ? 'sourceOnly' : arg.slice(2);
+      if (result[flag]) fail('Duplicate argument ' + arg);
+      result[flag] = true;
       continue;
     }
     if (!['--package', '--locale'].includes(arg) || !args[i + 1] || args[i + 1].startsWith('--')) {
-      fail('Usage: --package <textbook-directory> [--locale <language-code>] [--check | --stdout]');
+      fail('Usage: --package <textbook-directory> [--locale <language-code>] [--check | --stdout] [--source-only]');
     }
     const key = arg.slice(2);
     if (result[key] !== undefined && (key !== 'locale' || result.locale !== 'en')) fail('Duplicate argument ' + arg);
@@ -37,6 +40,8 @@ function options(args) {
   }
   if (!result.package || (result.check && result.stdout))
     fail('Provide --package and choose at most one of --check, --stdout');
+  if (result.sourceOnly && (!result.stdout || result.locale !== 'en'))
+    fail('--source-only is an English translation reference preview; use --locale en --stdout');
   return result;
 }
 const repositoryRoot = path.resolve(import.meta.dirname, '../../../..');
@@ -148,7 +153,7 @@ function readEntity(file, kind) {
   // This source parser does not run tsc: enforce the Skill contract independently
   // instead of silently generating incomplete documentation from untyped files.
   if (kind === 'Skill' && !frontend) fail('Missing required Skill description.frontend: ' + file);
-  for (const locale of locales) {
+  for (const locale of opts.sourceOnly ? ['en'] : locales) {
     if (!name[locale]) fail('Missing required name locale ' + locale + ': ' + file);
     if (frontend && !frontend[locale]) fail('Missing required frontend locale ' + locale + ': ' + file);
   }
@@ -225,6 +230,9 @@ let markdown =
   opts.locale +
   ')\n\n' +
   '> Names and available user-friendly descriptions use the requested locale. Methodological descriptions remain canonical English, not translated. This is a generated Code view, not the editorial staging template.\n\n' +
+  (opts.sourceOnly
+    ? '> TRANSLATION SOURCE PREVIEW ONLY: Other registered languages were not checked for completeness. Not a publication or linguistic-review artifact.\n\n'
+    : '') +
   '## SUMMARY\n\n' +
   'Domains: ' +
   domains.length +

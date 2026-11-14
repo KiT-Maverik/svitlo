@@ -139,6 +139,33 @@ test('canonical lowercase data/skills renders grouped and direct Skill hierarchi
   }
 });
 
+test('English source preview remains available while the new Italian translation is incomplete', () => {
+  const original = entity('Skill', 's', 'Grouped Skill');
+  assert.ok(original.includes('"it": "Frontend Grouped Skill it"'), 'Italian test fixture must exist');
+  write(groupedSkill, original.replace('"it": "Frontend Grouped Skill it", ', ''));
+  try {
+    const strict = run('en', '--stdout');
+    assert.notEqual(strict.status, 0);
+    assert.match(strict.stderr, /Missing required frontend locale it/);
+
+    const preview = run('en', '--stdout', '--source-only');
+    assert.equal(preview.status, 0, preview.stderr);
+    assert.match(preview.stdout, /TRANSLATION SOURCE PREVIEW ONLY/);
+    assert.match(preview.stdout, /Grouped Skill en/);
+    assert.equal(fs.existsSync(output('en')), false, 'Preview never writes generated Markdown');
+
+    const invalidLocale = run('it', '--stdout', '--source-only');
+    assert.notEqual(invalidLocale.status, 0);
+    assert.match(invalidLocale.stderr, /use --locale en --stdout/);
+
+    const invalidWrite = run('en', '--source-only');
+    assert.notEqual(invalidWrite.status, 0);
+    assert.match(invalidWrite.stderr, /use --locale en --stdout/);
+  } finally {
+    write(groupedSkill, original);
+  }
+});
+
 test('generation is deterministic; --check detects stale output without rewriting it', () => {
   const first = run('en');
   assert.equal(first.status, 0, first.stderr);
