@@ -1,0 +1,43 @@
+# Temporary branch-only verification and checked-in schema regeneration.
+# Removed once generated files have been committed and checks inspected.
+name: Quest YAML schema refresh
+on:
+  push:
+    branches:
+      - feature/quest-yaml-authoring
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.repository == 'KiT-Maverik/svitlo'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build current Engine authoring schemas
+        run: npm run package:build --workspace @svitlo/engine
+      - name: Regenerate checked-in YAML JSON Schemas
+        run: npm run content:generate:yaml-schemas --workspace @svitlo/engine
+      - name: Commit only Zod-derived JSON Schema updates
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add shared/engine/yaml-schemas/*.schema.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Regenerate Quest YAML editor schemas'
+            git push origin HEAD:feature/quest-yaml-authoring
+          fi
+      - name: Test Quest-aware scaffolding and editor schemas
+        run: |
+          npm run code:check:types --workspace @svitlo/engine
+          node --test shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.spec.mjs shared/engine/scripts/yamlScaffolding/yamlScaffolding.spec.mjs
+          npm run content:check:yaml-schemas --workspace @svitlo/engine
