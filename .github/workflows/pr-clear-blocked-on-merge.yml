@@ -1,0 +1,38 @@
+name: Clear blocked label on merge
+
+on:
+  pull_request_target:
+    types: [closed]
+
+permissions:
+  issues: write
+
+jobs:
+  cleanup:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # This workflow runs from the default branch. Do not check out or execute PR code.
+      - name: Remove obsolete blocker label
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const name = 'attention: blocked';
+
+            const labels = await github.paginate(
+              github.rest.issues.listLabelsOnIssue,
+              { owner, repo, issue_number, per_page: 100 }
+            );
+
+            if (!labels.some(label => label.name === name)) {
+              core.info('No blocked label on merged PR #' + issue_number);
+              return;
+            }
+
+            await github.rest.issues.removeLabel({
+              owner, repo, issue_number, name
+            });
+            core.info('Removed blocked label from merged PR #' + issue_number);
