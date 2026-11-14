@@ -28,7 +28,7 @@ export const allLocales = [
   'et-EE',
   'be-tarask',
   'ka-GE',
-  'kk-Cyrl-KZ',
+  'kk-Latn-KZ',
   'crh-Latn-UA',
 ] as const;
 export type Locale = (typeof allLocales)[number];
@@ -98,7 +98,7 @@ export const allLanguageEnglishNames = [
   'Estonian',
   'Belarusian (Taraškievica)',
   'Georgian',
-  'Kazakh (Cyrillic)',
+  'Kazakh',
   'Crimean Tatar',
 ] as const;
 export type LanguageEnglishName = (typeof allLanguageEnglishNames)[number];
@@ -132,7 +132,7 @@ export const allLanguagesNativeNames = [
   'Eesti',
   'Беларуская',
   'ქართული',
-  'Қазақша',
+  'Qazaqşa',
   'Qırımtatar tili',
 ] as const;
 export type LanguageNativeName = (typeof allLanguagesNativeNames)[number];
@@ -229,10 +229,10 @@ export const DEFAULT_SUPPORTED_LANGUAGES = [
   },
   { locale: 'ka-GE', language: 'ka', name: 'Georgian', nativeName: 'ქართული', direction: 'ltr' },
   {
-    locale: 'kk-Cyrl-KZ',
+    locale: 'kk-Latn-KZ',
     language: 'kk',
-    name: 'Kazakh (Cyrillic)',
-    nativeName: 'Қазақша',
+    name: 'Kazakh',
+    nativeName: 'Qazaqşa',
     direction: 'ltr',
   },
   // Svitlo-specific internal language key: 'qm' = Crimean Tatar (not an ISO 639 code).
