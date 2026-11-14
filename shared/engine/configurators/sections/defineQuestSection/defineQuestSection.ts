@@ -3,11 +3,11 @@ import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import { mergeForValidation, onlyLocales, onlyStrings, resolvePublicationLanguages,
   selectPublicationLocales, splitLocalizedFields } from '../../_shared__configurators';
 import { questSection_Config_Schema, questSection_Props_Schema, questSection_Override_Metadata_Schema,
-  type QuestSection_Config, type QuestSection_Metadata_Overrides } from './defineQuest.schemas';
+  type QuestSection_Config, type QuestSection_Metadata_Overrides } from './defineQuestSection.schemas';
 import type { Stage_Configurator, Stage_Overrides } from '../defineStage';
 import type { Task_Configurator, Task_Overrides } from '../defineTask';
 import { assertQuestMap, projectQuestTree, nestQuestPublication,
-  mergeQuestPatches, validateQuestPublication } from './defineQuest.utils';
+  mergeQuestPatches, validateQuestPublication } from './quest.utils';
 
 export type QuestSection_Overrides<
   Stages extends Record<string, Stage_Configurator>,
@@ -32,7 +32,7 @@ export type QuestSection_Overrides<
  * transient reaction Stage, block Task input during async playback, and restore
  * the previous frame after the reaction; no playback is implemented here.
  */
-export const defineQuest = <
+export const defineQuestSection = <
   const Slug extends string,
   const Stages extends Record<string, Stage_Configurator> & { start: Stage_Configurator },
   const Tasks extends Record<string, Task_Configurator> & { start: Task_Configurator },
@@ -115,4 +115,4 @@ export const defineQuest = <
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
-export type QuestSection_Configurator = ReturnType<typeof defineQuest>;
+export type QuestSection_Configurator = ReturnType<typeof defineQuestSection>;

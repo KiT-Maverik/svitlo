@@ -5,7 +5,7 @@ import { defineScene } from '../../contentBlocks/defineScene';
 import { defineSubtitles } from '../../contentBlocks/defineSubtitles';
 import { defineStage } from '../defineStage';
 import { defineTask } from '../defineTask';
-import { defineQuest } from './defineQuest';
+import { defineQuestSection } from './defineQuestSection';
 const id = (last: string) => 'e5235ac2-2c44-4c10-8c48-3c7bad6490' + last;
 
 export function fixture() {
@@ -44,7 +44,7 @@ export function fixture() {
   const task = defineTask<'start', ['uk']>({
     id: id('18'), slug: 'start', type: 'questTask', scene,
   });
-  const quest = defineQuest<'pizzaQuest', { start: typeof stage }, { start: typeof task }, ['uk']>({
+  const quest = defineQuestSection<'pizzaQuest', { start: typeof stage }, { start: typeof task }, ['uk']>({
     id: id('19'), slug: 'pizzaQuest', type: 'quest', params: { skippable: false },
     locale: { title: { uk: 'Пригода з піцою' }, navigationLabel: 'Квест' },
     stages: { start: stage }, tasks: { start: task },
