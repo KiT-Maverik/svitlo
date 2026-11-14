@@ -73,10 +73,12 @@ test('Zod -> JSON Schema exports every root without opaque Configurator nodes', 
   assert.deepEqual(Object.keys(docs).sort(), [
     'contentBlock.schema.json',
     'course.schema.json',
+    'course.scaffold.schema.json',
     'courseOverrides.schema.json',
     'episode.schema.json',
     'flashcard.schema.json',
     'lesson.schema.json',
+    'lesson.scaffold.schema.json',
     'question.schema.json',
     'section.schema.json',
   ]);
@@ -111,7 +113,7 @@ test('generator write/check is deterministic and rejects stale files', () => {
   try {
     assert.throws(() => generateYamlSchemas('--check', root), /Outdated YAML JSON Schema/);
     const written = generateYamlSchemas('--write', root);
-    assert.equal(written.length, 8);
+    assert.equal(written.length, 10);
     assert.deepEqual(generateYamlSchemas('--write', root), written);
     assert.deepEqual(generateYamlSchemas('--check', root), written);
     // Formatting is not semantic schema drift: Prettier may compact arrays.
@@ -138,5 +140,30 @@ test('reused nested Config schemas are shared by reference instead of expanded c
 });
 
 test('checked-in editor schemas match the current Engine Zod source', () => {
-  assert.equal(generateYamlSchemas('--check').length, 8);
+  assert.equal(generateYamlSchemas('--check').length, 10);
 });
+
+test('unified scaffold composes manual production schema beside Engine Config at every node', () => {
+  const docs = yamlJsonSchemaDocuments();
+  for (const kind of ['lesson', 'course']) {
+    const scaffold = JSON.parse(docs[kind + '.scaffold.schema.json']);
+    assert.equal(scaffold.type, 'object');
+    assert.deepEqual(scaffold.required, ['config']);
+    assert.equal(scaffold.additionalProperties, false);
+    assert.equal(scaffold.properties.config.properties.type.const, kind);
+    assert(scaffold.properties.config.required.includes('id'));
+    assert.equal(scaffold.properties.production.$ref, 'production.schema.json#/$defs/' + kind);
+    assert(!Object.hasOwn(scaffold.properties.config.properties, 'documentLanguage'));
+    const text = JSON.stringify(scaffold);
+    assert.match(text, /production\\.schema\\.json#\\/\\$defs\\/scene/);
+    assert.match(text, /production\\.schema\\.json#\\/\\$defs\\/image/);
+    assert.match(text, /production\\.schema\\.json#\\/\\$defs\\/section/);
+  }
+  const manuallyOwned = JSON.parse(
+    fs.readFileSync(new URL('../../yaml-schemas/production.schema.json', import.meta.url), 'utf8'),
+  );
+  assert.deepEqual(manuallyOwned.$defs.scene.required, ['specification']);
+  assert.deepEqual(manuallyOwned.$defs.image.required, ['prompt', 'purpose']);
+  assert(!docs['lesson.scaffold.schema.json'].includes('"sceneSpecKey"'));
+});
+
