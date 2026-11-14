@@ -1,816 +1,816 @@
 config:
-  id: "5795b10a-f136-5626-92f8-01c316d9eb7d"
-  slug: "multiplicationEqualGroups"
-  type: "lesson"
+  id: '5795b10a-f136-5626-92f8-01c316d9eb7d'
+  slug: 'multiplicationEqualGroups'
+  type: 'lesson'
   skills:
-    - "cb983432-175a-41ae-8655-468c2325f7cd"
-    - "5c08d331-b6ba-44ee-ab1d-0f1781f23f73"
+    - 'cb983432-175a-41ae-8655-468c2325f7cd'
+    - '5c08d331-b6ba-44ee-ab1d-0f1781f23f73'
   params:
     requireQuiz: false
     languages:
-      - "ar"
-      - "be"
-      - "bn"
-      - "de"
-      - "en"
-      - "es"
-      - "et"
-      - "fr"
-      - "he"
-      - "hi"
-      - "id"
-      - "ja"
-      - "ka"
-      - "kk"
-      - "ko"
-      - "lt"
-      - "lv"
-      - "mr"
-      - "ms"
-      - "pl"
-      - "pt"
-      - "qm"
-      - "ta"
-      - "te"
-      - "tr"
-      - "uk"
-      - "ur"
-      - "vi"
-      - "zh"
+      - 'ar'
+      - 'be'
+      - 'bn'
+      - 'de'
+      - 'en'
+      - 'es'
+      - 'et'
+      - 'fr'
+      - 'he'
+      - 'hi'
+      - 'id'
+      - 'ja'
+      - 'ka'
+      - 'kk'
+      - 'ko'
+      - 'lt'
+      - 'lv'
+      - 'mr'
+      - 'ms'
+      - 'pl'
+      - 'pt'
+      - 'qm'
+      - 'ta'
+      - 'te'
+      - 'tr'
+      - 'uk'
+      - 'ur'
+      - 'vi'
+      - 'zh'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Multiplication as Equal Groups and Repeated Addition"
+      en: 'Multiplication as Equal Groups and Repeated Addition'
   section:
     items:
       section1CountTheEqualGroups:
         config:
-          id: "d8741109-fef5-4df3-854c-459dc3cd1967"
-          slug: "section1CountTheEqualGroups"
-          type: "content"
+          id: 'd8741109-fef5-4df3-854c-459dc3cd1967'
+          slug: 'section1CountTheEqualGroups'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Count the Equal Groups"
+              en: 'Count the Equal Groups'
             navigationLabel:
-              en: "Count the Equal Groups"
+              en: 'Count the Equal Groups'
           content:
             items:
               section1Text1:
                 config:
-                  id: "dda0de0e-51e2-40b6-80a3-3507cce18bbf"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: 'dda0de0e-51e2-40b6-80a3-3507cce18bbf'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Here are three groups. Each group has four counters. How many counters are there altogether? Can you count them without losing your place?"
+                      en: 'Here are three groups. Each group has four counters. How many counters are there altogether? Can you count them without losing your place?'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "  1. **text — available:** “Here are three groups. Each group has four counters. How many counters are there altogether? Can you count them without losing your place?”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '  1. **text — available:** “Here are three groups. Each group has four counters. How many counters are there altogether? Can you count them without losing your place?”'
               section1Scene2:
                 config:
-                  id: "dee3127b-32f0-42bd-8fe3-c2ebc3f0922d"
-                  slug: "section1Scene2"
-                  type: "scene"
+                  id: 'dee3127b-32f0-42bd-8fe3-c2ebc3f0922d'
+                  slug: 'section1Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Here are three groups. Each group has four counters. How many counters are there altogether? Can you count them without losing your place?"
+                        instruction: 'Here are three groups. Each group has four counters. How many counters are there altogether? Can you count them without losing your place?'
                 production:
-                  purpose: "Provisional Scene placement in Count the Equal Groups, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in Count the Equal Groups, self-contained and not implemented'
                   specification: |
-                      # Equal Group Composer — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Multiplication as Equal Groups (full original source: this Lesson's production notes), Sections 1 and 3
-                      Methodologist objective(s): Identify a quantity as a number of equal groups, connect it to repeated equal addends, and recognize that uneven addends do not directly form a fixed equal-group representation. Methodologist Brief (full original source: production.methodology).
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      Children should **count what is in each group**, not simply add “number of groups” and “group size”. The Scene makes an equal group’s quantity physically inspectable and contrasts it with a nearly equal row. Explicit group-by-group evidence, rather than a decorative visual similarity, motivates why repeated addition works only with identical addends.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Sections use groups with natural-number sizes 1–5 and total ≤25.
-                      - Section 1: exactly 3 equal groups, 4 counters per group, 12 total; text list [4,4,4]; corresponding repeated sum 4 + 4 + 4 = 12. Group count 3 is **not** another group of three objects.
-                      - Section 3: [4,4,4] is equal-sized; [4,3,4] is **unequal**, totals 12 and 11 respectively. The latter still has a valid ordinary addition sum 4+3+4=11; it is not the same as a direct “three identical addends” representation.
-                      - An unequal group model may be rearranged to illustrate a different decomposition, but this Scene does not silently change group sizes or reclassify unequal groups as equal. “No equal addends in THIS pictured three-group arrangement” is the precise limit, not “no multiplication is possible anywhere.”
-                      - The Scene’s lesson examples are finite observations, not proof of general multiplication laws.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      **Section 1 / observe and count**
-                      
-                      1. Display three named containers with four visible identical countable counters each. Prompt: “How many groups? How many counters in each? How many altogether?” Labels for “groups” and “in each group” are distinctly spelled out.
-                      2. Child can tap/select a group or use “Inspect group 1/2/3” buttons. Announce that group’s count and keep it visible. “Count them all” reveals incremental totals 4, 8, 12, followed by 4+4+4=12.
-                      3. Prediction choices 7, 12, 14 optional. For 7: “Three plus four names the group count and group size. But there are four counters in EACH of three groups.” For 14: “Four, eight, twelve; not fourteen.” For 12: “All three groups contain four, making twelve.” Every response gives a retry/reveal path without score.
-                      4. “Show groups as a list” gives “group 1: four; group 2: four; group 3: four; all groups: twelve”. This representation must remain usable without seeing counters.
-                      
-                      **Section 3 / compare equal vs uneven**
-                      
-                      1. A fresh Scene instance presents two labeled examples, one after another: group counts [4,4,4] and [4,3,4]. Ask: “Are all the groups the same size?”
-                      2. Learner checks groups individually. For [4,4,4], “Each group has four: same size.” For [4,3,4], “The middle has three. The others have four. They are not all equal.”
-                      3. Choice “same size / not all the same size” is allowed before reveal; early guesses prompt checking all three. Exact text compares observed counts, not only colors or icon states.
-                      4. Display matching addition: 4+4+4=12 or 4+3+4=11. Ask “Could we use ONE addend repeated three times to describe these displayed groups?” Only the first is a direct repeated-equal-addend sum. In the second, do not say “mathematically impossible” or silently move counters.
-                      5. Optional “Try equal groups again” resets with either example. No time pressure, forced answer, grade or achievement message.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - Objects: indexed group containers, exact countable counters, “group count” and “per group” labels, ordered accessible group-count list, total counter label, per-group inspection controls, choice/reveal/reset controls, explanatory feedback.
-                      - One **prop-free** Scene entry per Section placement (observation/contrast) with different initial examples and independent state; “mode” is editorial, not a new runtime prop.
-                      - State: current example, inspected groups, guess (optional), which counts and explanatory sums are visible, whether contrast has been revealed.
-                      - Invariant: group count array describes exactly the rendered counters; whole W=sum(group sizes). Report equal-sized iff all array elements are equal. No hidden deletion or duplication of objects.
-                      - Boundaries: no negative/fractional counters; counts ≤5, total ≤25 in authored examples. Reset restores the appropriate placement, never changes the other Scene.
-                      - No assessment semantics or persisted responses. Answer choices teach the model and can be bypassed to access the explanation.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Use lightweight, high-contrast HTML/SVG counter groups with sufficient spacing to count. Border/label/number marks indicate grouping; color is optional and redundant. A subtle highlight during counting can follow each group, with a text equivalent and reduced-motion instant update. Do not add celebratory animation, background story, external imagery, embedded music or video.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - All learner prompts, group labels, amount words, equality messages, controls and accessible names must be genuinely translated across the full language roster; “three groups of four” must remain semantically precise.
-                      - Screen reader receives “three groups: group one four, group two four, group three four, altogether twelve”; for unequal row, name the group with a different count. Native controls allow inspection and decision without pointer precision or dragging.
-                      - RTL changes prose/control placement but does not change numeric group order or swap roles of group count vs per-group quantity. Explicit labels prevent relying on left/right visual placement.
-                      - Keyboard/touch/switch operation, 200% zoom, visible focus, large targets, countable nonvisual list, reduced motion and offline equivalence are required. No timed question or audio-only feedback. Smaller screens may stack groups if group membership is unambiguous.
-                      - Local deterministic counts and explanations must work after full locale/package download without remote calls, on weak devices.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. Three groups of four yield exactly twelve objects and 4+4+4=12; “3+4=7” is not falsely treated as the total.
-                      2. Inspector names each group’s exact count, with identical keyboard and screen reader access.
-                      3. For [4,4,4], every group equal, total 12, three equal addends; the equality verdict is “same”.
-                      4. For [4,3,4], total 11, the second group differs, and fixed identical-addend claim is rejected without saying “no other pattern”.
-                      5. Learner can inspect or reveal without guessing and reset without cross-Section state leakage.
-                      6. RTL, reduced motion, screen reader, keyboard, 200% zoom, mobile and offline states show identical counts and explanatory comparisons.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      The generic Section scene block and prop-free/localized Scene pattern exist; this specific Scene and two placements are **proposed** and await editor approval, implementation and own tests. Coding Agent chooses internal sharing and localization mechanism, not a new public mode prop. Assessment Architect separately owns any scored distinction between the two canonical Skills.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                        2. **scene — supported block type, new Scene proposed:** Equal Group Composer (full original source: Scene production.specification), observation entry: three separately labeled, visible countable groups of 4; optional stepwise count 4, 8, 12; learner highlights a group then the whole.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Equal Group Composer — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Multiplication as Equal Groups (full original source: this Lesson's production notes), Sections 1 and 3
+                    Methodologist objective(s): Identify a quantity as a number of equal groups, connect it to repeated equal addends, and recognize that uneven addends do not directly form a fixed equal-group representation. Methodologist Brief (full original source: production.methodology).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Children should **count what is in each group**, not simply add “number of groups” and “group size”. The Scene makes an equal group’s quantity physically inspectable and contrasts it with a nearly equal row. Explicit group-by-group evidence, rather than a decorative visual similarity, motivates why repeated addition works only with identical addends.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Sections use groups with natural-number sizes 1–5 and total ≤25.
+                    - Section 1: exactly 3 equal groups, 4 counters per group, 12 total; text list [4,4,4]; corresponding repeated sum 4 + 4 + 4 = 12. Group count 3 is **not** another group of three objects.
+                    - Section 3: [4,4,4] is equal-sized; [4,3,4] is **unequal**, totals 12 and 11 respectively. The latter still has a valid ordinary addition sum 4+3+4=11; it is not the same as a direct “three identical addends” representation.
+                    - An unequal group model may be rearranged to illustrate a different decomposition, but this Scene does not silently change group sizes or reclassify unequal groups as equal. “No equal addends in THIS pictured three-group arrangement” is the precise limit, not “no multiplication is possible anywhere.”
+                    - The Scene’s lesson examples are finite observations, not proof of general multiplication laws.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 1 / observe and count**
+
+                    1. Display three named containers with four visible identical countable counters each. Prompt: “How many groups? How many counters in each? How many altogether?” Labels for “groups” and “in each group” are distinctly spelled out.
+                    2. Child can tap/select a group or use “Inspect group 1/2/3” buttons. Announce that group’s count and keep it visible. “Count them all” reveals incremental totals 4, 8, 12, followed by 4+4+4=12.
+                    3. Prediction choices 7, 12, 14 optional. For 7: “Three plus four names the group count and group size. But there are four counters in EACH of three groups.” For 14: “Four, eight, twelve; not fourteen.” For 12: “All three groups contain four, making twelve.” Every response gives a retry/reveal path without score.
+                    4. “Show groups as a list” gives “group 1: four; group 2: four; group 3: four; all groups: twelve”. This representation must remain usable without seeing counters.
+
+                    **Section 3 / compare equal vs uneven**
+
+                    1. A fresh Scene instance presents two labeled examples, one after another: group counts [4,4,4] and [4,3,4]. Ask: “Are all the groups the same size?”
+                    2. Learner checks groups individually. For [4,4,4], “Each group has four: same size.” For [4,3,4], “The middle has three. The others have four. They are not all equal.”
+                    3. Choice “same size / not all the same size” is allowed before reveal; early guesses prompt checking all three. Exact text compares observed counts, not only colors or icon states.
+                    4. Display matching addition: 4+4+4=12 or 4+3+4=11. Ask “Could we use ONE addend repeated three times to describe these displayed groups?” Only the first is a direct repeated-equal-addend sum. In the second, do not say “mathematically impossible” or silently move counters.
+                    5. Optional “Try equal groups again” resets with either example. No time pressure, forced answer, grade or achievement message.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: indexed group containers, exact countable counters, “group count” and “per group” labels, ordered accessible group-count list, total counter label, per-group inspection controls, choice/reveal/reset controls, explanatory feedback.
+                    - One **prop-free** Scene entry per Section placement (observation/contrast) with different initial examples and independent state; “mode” is editorial, not a new runtime prop.
+                    - State: current example, inspected groups, guess (optional), which counts and explanatory sums are visible, whether contrast has been revealed.
+                    - Invariant: group count array describes exactly the rendered counters; whole W=sum(group sizes). Report equal-sized iff all array elements are equal. No hidden deletion or duplication of objects.
+                    - Boundaries: no negative/fractional counters; counts ≤5, total ≤25 in authored examples. Reset restores the appropriate placement, never changes the other Scene.
+                    - No assessment semantics or persisted responses. Answer choices teach the model and can be bypassed to access the explanation.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use lightweight, high-contrast HTML/SVG counter groups with sufficient spacing to count. Border/label/number marks indicate grouping; color is optional and redundant. A subtle highlight during counting can follow each group, with a text equivalent and reduced-motion instant update. Do not add celebratory animation, background story, external imagery, embedded music or video.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - All learner prompts, group labels, amount words, equality messages, controls and accessible names must be genuinely translated across the full language roster; “three groups of four” must remain semantically precise.
+                    - Screen reader receives “three groups: group one four, group two four, group three four, altogether twelve”; for unequal row, name the group with a different count. Native controls allow inspection and decision without pointer precision or dragging.
+                    - RTL changes prose/control placement but does not change numeric group order or swap roles of group count vs per-group quantity. Explicit labels prevent relying on left/right visual placement.
+                    - Keyboard/touch/switch operation, 200% zoom, visible focus, large targets, countable nonvisual list, reduced motion and offline equivalence are required. No timed question or audio-only feedback. Smaller screens may stack groups if group membership is unambiguous.
+                    - Local deterministic counts and explanations must work after full locale/package download without remote calls, on weak devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Three groups of four yield exactly twelve objects and 4+4+4=12; “3+4=7” is not falsely treated as the total.
+                    2. Inspector names each group’s exact count, with identical keyboard and screen reader access.
+                    3. For [4,4,4], every group equal, total 12, three equal addends; the equality verdict is “same”.
+                    4. For [4,3,4], total 11, the second group differs, and fixed identical-addend claim is rejected without saying “no other pattern”.
+                    5. Learner can inspect or reveal without guessing and reset without cross-Section state leakage.
+                    6. RTL, reduced motion, screen reader, keyboard, 200% zoom, mobile and offline states show identical counts and explanatory comparisons.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The generic Section scene block and prop-free/localized Scene pattern exist; this specific Scene and two placements are **proposed** and await editor approval, implementation and own tests. Coding Agent chooses internal sharing and localization mechanism, not a new public mode prop. Assessment Architect separately owns any scored distinction between the two canonical Skills.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                      2. **scene — supported block type, new Scene proposed:** Equal Group Composer (full original source: Scene production.specification), observation entry: three separately labeled, visible countable groups of 4; optional stepwise count 4, 8, 12; learner highlights a group then the whole.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section1Markdown3:
                 config:
-                  id: "52f83e6c-d71b-471b-83dd-a762b63e6e15"
-                  slug: "section1Markdown3"
-                  type: "markdown"
+                  id: '52f83e6c-d71b-471b-83dd-a762b63e6e15'
+                  slug: 'section1Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "There are **3 groups**, with **4 in each group**. Count all the counters: **4 + 4 + 4 = 12**. The numbers four repeat because every group is the same size."
+                      en: 'There are **3 groups**, with **4 in each group**. Count all the counters: **4 + 4 + 4 = 12**. The numbers four repeat because every group is the same size.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "  3. **markdown — available:** “There are **3 groups**, with **4 in each group**. Count all the counters: **4 + 4 + 4 = 12**. The numbers four repeat because every group is the same size.”"
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '  3. **markdown — available:** “There are **3 groups**, with **4 in each group**. Count all the counters: **4 + 4 + 4 = 12**. The numbers four repeat because every group is the same size.”'
             order:
-              - "section1Text1"
-              - "section1Scene2"
-              - "section1Markdown3"
+              - 'section1Text1'
+              - 'section1Scene2'
+              - 'section1Markdown3'
         production:
-          purpose: "Distinguish number of groups from size of each group and identify an equal-group situation."
-          pedagogicalIntent: "Distinguish number of groups from size of each group and identify an equal-group situation."
+          purpose: 'Distinguish number of groups from size of each group and identify an equal-group situation.'
+          pedagogicalIntent: 'Distinguish number of groups from size of each group and identify an equal-group situation.'
           productionNotes: |
-              ### Section 1 — Count the Equal Groups
-              
-              - Purpose / learning outcome: Distinguish number of groups from size of each group and identify an equal-group situation.
-              - Current implementation shape: LessonSection_Config; ordered general Section resources, not an independent Quiz.
-              - Ordered content blocks (single top-to-bottom column):
-                1. **text — available:** “Here are three groups. Each group has four counters. How many counters are there altogether? Can you count them without losing your place?”
-                2. **scene — supported block type, new Scene proposed:** Equal Group Composer (full original source: Scene production.specification), observation entry: three separately labeled, visible countable groups of 4; optional stepwise count 4, 8, 12; learner highlights a group then the whole.
-                3. **markdown — available:** “There are **3 groups**, with **4 in each group**. Count all the counters: **4 + 4 + 4 = 12**. The numbers four repeat because every group is the same size.”
-              - Core explanation and learner-facing text: Each group contains the same number, not “three counters” everywhere. The group count and group size answer different questions.
-              - Illustration / model / experiment: Three consistent containers of four objects (not three rows where one has a different size). Each group has an explicit ordinal label and count, with an equivalent text list.
-              - Learner action, observations and explanatory feedback: The child chooses “Count one group”, “Count all” or predicts 7 / 12 / 14. For 7: “Three plus four is seven, but that counts only the _labels_. We need all counters in each group.” For 14: “Four, eight, twelve—there are twelve counters.” For 12: “Yes. Four from each of three groups is twelve.”
-              - Navigation and transition: Keep the three groups unchanged when introducing symbols; the picture is the anchor.
-              - Accessibility, locale and RTL: All group membership/quantities have native text descriptions; controls keyboard/touch operable and non-color-dependent. Translate “in each” unambiguously, preserve numerical order under RTL.
-              - Proposed unlocked Note(s): Note 1 “Equal groups have the same number in each group” after the first full group comparison; planned, not wired.
-              - Implementation dependencies and review notes: Scene needs implementation; generic text, markdown and scene rendering exists.
-              
+            ### Section 1 — Count the Equal Groups
+
+            - Purpose / learning outcome: Distinguish number of groups from size of each group and identify an equal-group situation.
+            - Current implementation shape: LessonSection_Config; ordered general Section resources, not an independent Quiz.
+            - Ordered content blocks (single top-to-bottom column):
+              1. **text — available:** “Here are three groups. Each group has four counters. How many counters are there altogether? Can you count them without losing your place?”
+              2. **scene — supported block type, new Scene proposed:** Equal Group Composer (full original source: Scene production.specification), observation entry: three separately labeled, visible countable groups of 4; optional stepwise count 4, 8, 12; learner highlights a group then the whole.
+              3. **markdown — available:** “There are **3 groups**, with **4 in each group**. Count all the counters: **4 + 4 + 4 = 12**. The numbers four repeat because every group is the same size.”
+            - Core explanation and learner-facing text: Each group contains the same number, not “three counters” everywhere. The group count and group size answer different questions.
+            - Illustration / model / experiment: Three consistent containers of four objects (not three rows where one has a different size). Each group has an explicit ordinal label and count, with an equivalent text list.
+            - Learner action, observations and explanatory feedback: The child chooses “Count one group”, “Count all” or predicts 7 / 12 / 14. For 7: “Three plus four is seven, but that counts only the _labels_. We need all counters in each group.” For 14: “Four, eight, twelve—there are twelve counters.” For 12: “Yes. Four from each of three groups is twelve.”
+            - Navigation and transition: Keep the three groups unchanged when introducing symbols; the picture is the anchor.
+            - Accessibility, locale and RTL: All group membership/quantities have native text descriptions; controls keyboard/touch operable and non-color-dependent. Translate “in each” unambiguously, preserve numerical order under RTL.
+            - Proposed unlocked Note(s): Note 1 “Equal groups have the same number in each group” after the first full group comparison; planned, not wired.
+            - Implementation dependencies and review notes: Scene needs implementation; generic text, markdown and scene rendering exists.
+
       section2AShortWayToSayTheSameThing:
         config:
-          id: "9d0cdfef-0665-45d6-8f58-41eb04311bd2"
-          slug: "section2AShortWayToSayTheSameThing"
-          type: "content"
+          id: '9d0cdfef-0665-45d6-8f58-41eb04311bd2'
+          slug: 'section2AShortWayToSayTheSameThing'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A Short Way to Say the Same Thing"
+              en: 'A Short Way to Say the Same Thing'
             navigationLabel:
-              en: "A Short Way to Say the Same Thing"
+              en: 'A Short Way to Say the Same Thing'
           content:
             items:
               section2Markdown1:
                 config:
-                  id: "8747716b-8659-4692-86f3-15dc67ed6225"
-                  slug: "section2Markdown1"
-                  type: "markdown"
+                  id: '8747716b-8659-4692-86f3-15dc67ed6225'
+                  slug: 'section2Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "We added **4 + 4 + 4** because we have three groups of four. A shorter way to name the same total is **3 × 4 = 12**. For this lesson, we read that as **3 groups of 4 make 12**."
+                      en: 'We added **4 + 4 + 4** because we have three groups of four. A shorter way to name the same total is **3 × 4 = 12**. For this lesson, we read that as **3 groups of 4 make 12**.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "  1. **markdown — available:** “We added **4 + 4 + 4** because we have three groups of four. A shorter way to name the same total is **3 × 4 = 12**. For this lesson, we read that as **3 groups of 4 make 12**.”"
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '  1. **markdown — available:** “We added **4 + 4 + 4** because we have three groups of four. A shorter way to name the same total is **3 × 4 = 12**. For this lesson, we read that as **3 groups of 4 make 12**.”'
               section2Scene2:
                 config:
-                  id: "e0939b76-a367-4353-8dbc-9d2a3e48250f"
-                  slug: "section2Scene2"
-                  type: "scene"
+                  id: 'e0939b76-a367-4353-8dbc-9d2a3e48250f'
+                  slug: 'section2Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "We added **4 + 4 + 4** because we have three groups of four. A shorter way to name the same total is **3 × 4 = 12**. For this lesson, we read that as **3 groups of 4 make 12**."
+                        instruction: 'We added **4 + 4 + 4** because we have three groups of four. A shorter way to name the same total is **3 × 4 = 12**. For this lesson, we read that as **3 groups of 4 make 12**.'
                 production:
-                  purpose: "Provisional Scene placement in A Short Way to Say the Same Thing, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in A Short Way to Say the Same Thing, self-contained and not implemented'
                   specification: |
-                      # Expression Reader — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Multiplication as Equal Groups (full original source: this Lesson's production notes), Sections 2 and 4
-                      Methodologist objective(s): Express equal groups as repeated addition and multiplication; read factors and product correctly while connecting the symbolic statement with its concrete group model. Methodologist Brief (full original source: production.methodology).
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      Children see that the **same total** can be counted as repeated equal addends or as a multiplication expression. They inspect how “three groups of four” maps to 4+4+4=12 and, using the lesson’s stated convention, 3×4=12. They must distinguish group count, group size, factors and product in a model without mistaking 3+4=7 for the total.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - **Chosen convention:** “number of groups × number in each group”. Other legitimate readings exist in other contexts; never state it is the only worldwide mathematical convention.
-                      - Section 2: 3 groups with 4 in each; 4+4+4=12; 3×4=12. Factors 3 and 4, product 12.
-                      - Section 4: 2 groups with 5 in each; 5+5=10; 2×5=10. Factors 2 and 5, product 10.
-                      - Optional new model: 3 groups of 2; 2+2+2=6 and 3×2=6.
-                      - Input group sizes and counts positive ≤5 with whole ≤25. No unequal groups may be presented as repeated _identical_ addends without changing the modeled grouping; no unproved commutativity teaching, division tasks, negative factors or timed tables.
-                      - Distinguish the _numeric factor_ from the _meaning attached to it in one concrete model_. The result of a multiplication expression is its product, not one of its factors.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      **Section 2 / guided expression mapping**
-                      
-                      1. Display 3 labeled groups containing 4 visible counters each and say “Three groups, four in each.”
-                      2. A learner-selected “Show the addition” highlights groups one at a time and reveals **4 + 4 + 4 = 12**, with a written/accessible connection from each group to one addend 4.
-                      3. “Show the short way” reveals **3 × 4 = 12**. Explain “The first factor, 3, counts our groups. The second factor, 4, counts each group. Twelve is the product, the total.”
-                      4. Let the child select a displayed numeral and a question “Which number tells how many groups?” For 3: “Three groups.” For 4: “Four in each group.” For 12: “That is the total, the product.” The interface should describe roles rather than simply grade a click.
-                      5. “Read it back” presents the whole explanation in ordered text; optional audio equivalent is not required for understanding. A child can request hints or the complete model without first selecting.
-                      6. Explicit contrast if child selects 3+4 as equivalent: “Three plus four is seven. But our groups have twelve counters. To count all groups, we need 4+4+4.”
-                      
-                      **Section 4 / independent transfer**
-                      
-                      1. Display a fresh scene with two groups of five counters. “Can you name a matching addition and multiplication sentence?” Initial answers are not displayed.
-                      2. Offer candidate additions **5+5=10**, **2+5=7** and **5+5+5=15** with text/radio-like selection; correct/model explanation for each is visible on request. The group count remains exactly two throughout.
-                      3. Show matching multiplication choices **2×5=10**, **2×5=7** and **3×5=15**; distinguish an incorrect numeric result from an expression representing the wrong count of groups.
-                      4. Highlight “2” as number of groups, “5” as size of a group and “10” as product. The learner can select or name each concept; show full explanation before completion if desired.
-                      5. Optional “Try 3 groups of 2” changes the scene to an explicitly announced different example, with 2+2+2=6 and 3×2=6.
-                      6. Finish with “What is the same about both sentences?” Suggested answer: “They count all the counters in the same equal groups.” No score or mastery announcement.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - Objects: exactly countable group containers, incremental repeated-addend strip, multiplication expression, semantic named factor/product controls, choices, explanation/step/replay/reset controls, accessible ordered groups list.
-                      - Two independent prop-free Scene entries for the two Sections. The guided or transfer placement is an editorial specification, **not** a public React mode prop. Scene data must be isolated per entry.
-                      - State: current example (G,S), which groups/addends have been highlighted, whether corresponding expressions are revealed, provisional selected expression, whether helpful feedback is expanded.
-                      - Invariant: W=G×S=sum(S repeated G times); the number of +S addends equals G and is visibly linked to G groups. Correct model grouping never mutates due to a candidate response; wrong expressions are labeled as incorrect trial representations.
-                      - No hidden assessment scoring; a learner can freely reveal the worked example, reset, change optional example and retry.
-                      - For groups or total out of range (above 25) do not produce results; only authorized deterministic examples are used.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Use three aligned but individually distinct representations **inside the one Scene block**: countable groups, ordered addition strip and multiplication statement. Spotlight one-to-one correspondence, but the mathematics must remain usable without highlights. Modest motion can reveal the addends one by one; reduced motion shows the same mapping instantly. Numerals may not be baked into image assets. No sound, WebGL, streamed assets, Program imagery or automatic reward animation.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - Translate “factors”, “product”, “groups of”, “in each”, action verbs, status messages and alt text genuinely into all supported locales. The lesson’s group-first convention must be explained rather than inferred from English word order.
-                      - Keep LTR/RTL mathematical operand order and factor identities semantically stable. Screen reader should announce “three groups of four equals twelve; four plus four plus four equals twelve; three times four equals twelve”, with separate descriptions for group-count and per-group factors.
-                      - Each correspondence can be inspected using native keyboard/touch/switch controls, no drag-only mapping or speech-recognition requirement. Text/table representation is equivalent: “group 1 four; group 2 four; group 3 four; total twelve; first factor three groups; second factor four per group; product twelve”.
-                      - Visible focus, large touch areas, zoomed/narrow layout, reduced motion and screen reader feedback preserve every step and incorrect-choice explanation. No pressure timers or color-only semantics.
-                      - Everything works offline after download using local deterministic data; math, localized labels and accessibility views must not depend on remote services.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 3 groups × 4: exactly 4+4+4=12 and 3×4=12; factor roles and product 12 labeled correctly.
-                      2. 3+4=7 is distinguished from counting all 12 counters; never presented as equivalent to 3×4.
-                      3. Guided selection of each symbol gives “group count”, “group size” or “product” with accurate language.
-                      4. 2 groups of 5 yields exactly 5+5=10 and 2×5=10; false 2+5=7 or 5+5+5=15 are explained by group count.
-                      5. Optional 3 groups of 2 yields 2+2+2=6 and 3×2=6.
-                      6. A child may see all calculations without answering or earning a success state; reset does not affect the other Section.
-                      7. Keyboard, screen reader, RTL, reduced motion, mobile/zoom and offline executions have identical counts, equation values and factor/product explanations.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Scene Resource and generic renderer are current capabilities; this interactive Scene, its two independently configured prop-free placements, full localization and tests are **proposed**. Coding Agent resolves concrete UI/runtime wiring after editor and Scene-spec approval; Assessment Architect owns any scored or Skill-attributed Question. Keep the selected factor convention explicit and revise only after editor approval.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                        2. **scene — generic resource support; new Scene proposed:** Expression Reader (full original source: Scene production.specification), guided mapping entry: highlight each group as one +4 term, then one group-count factor 3 and one group-size factor 4; read the product 12 without hiding the objects.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Expression Reader — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Multiplication as Equal Groups (full original source: this Lesson's production notes), Sections 2 and 4
+                    Methodologist objective(s): Express equal groups as repeated addition and multiplication; read factors and product correctly while connecting the symbolic statement with its concrete group model. Methodologist Brief (full original source: production.methodology).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Children see that the **same total** can be counted as repeated equal addends or as a multiplication expression. They inspect how “three groups of four” maps to 4+4+4=12 and, using the lesson’s stated convention, 3×4=12. They must distinguish group count, group size, factors and product in a model without mistaking 3+4=7 for the total.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - **Chosen convention:** “number of groups × number in each group”. Other legitimate readings exist in other contexts; never state it is the only worldwide mathematical convention.
+                    - Section 2: 3 groups with 4 in each; 4+4+4=12; 3×4=12. Factors 3 and 4, product 12.
+                    - Section 4: 2 groups with 5 in each; 5+5=10; 2×5=10. Factors 2 and 5, product 10.
+                    - Optional new model: 3 groups of 2; 2+2+2=6 and 3×2=6.
+                    - Input group sizes and counts positive ≤5 with whole ≤25. No unequal groups may be presented as repeated _identical_ addends without changing the modeled grouping; no unproved commutativity teaching, division tasks, negative factors or timed tables.
+                    - Distinguish the _numeric factor_ from the _meaning attached to it in one concrete model_. The result of a multiplication expression is its product, not one of its factors.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 2 / guided expression mapping**
+
+                    1. Display 3 labeled groups containing 4 visible counters each and say “Three groups, four in each.”
+                    2. A learner-selected “Show the addition” highlights groups one at a time and reveals **4 + 4 + 4 = 12**, with a written/accessible connection from each group to one addend 4.
+                    3. “Show the short way” reveals **3 × 4 = 12**. Explain “The first factor, 3, counts our groups. The second factor, 4, counts each group. Twelve is the product, the total.”
+                    4. Let the child select a displayed numeral and a question “Which number tells how many groups?” For 3: “Three groups.” For 4: “Four in each group.” For 12: “That is the total, the product.” The interface should describe roles rather than simply grade a click.
+                    5. “Read it back” presents the whole explanation in ordered text; optional audio equivalent is not required for understanding. A child can request hints or the complete model without first selecting.
+                    6. Explicit contrast if child selects 3+4 as equivalent: “Three plus four is seven. But our groups have twelve counters. To count all groups, we need 4+4+4.”
+
+                    **Section 4 / independent transfer**
+
+                    1. Display a fresh scene with two groups of five counters. “Can you name a matching addition and multiplication sentence?” Initial answers are not displayed.
+                    2. Offer candidate additions **5+5=10**, **2+5=7** and **5+5+5=15** with text/radio-like selection; correct/model explanation for each is visible on request. The group count remains exactly two throughout.
+                    3. Show matching multiplication choices **2×5=10**, **2×5=7** and **3×5=15**; distinguish an incorrect numeric result from an expression representing the wrong count of groups.
+                    4. Highlight “2” as number of groups, “5” as size of a group and “10” as product. The learner can select or name each concept; show full explanation before completion if desired.
+                    5. Optional “Try 3 groups of 2” changes the scene to an explicitly announced different example, with 2+2+2=6 and 3×2=6.
+                    6. Finish with “What is the same about both sentences?” Suggested answer: “They count all the counters in the same equal groups.” No score or mastery announcement.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: exactly countable group containers, incremental repeated-addend strip, multiplication expression, semantic named factor/product controls, choices, explanation/step/replay/reset controls, accessible ordered groups list.
+                    - Two independent prop-free Scene entries for the two Sections. The guided or transfer placement is an editorial specification, **not** a public React mode prop. Scene data must be isolated per entry.
+                    - State: current example (G,S), which groups/addends have been highlighted, whether corresponding expressions are revealed, provisional selected expression, whether helpful feedback is expanded.
+                    - Invariant: W=G×S=sum(S repeated G times); the number of +S addends equals G and is visibly linked to G groups. Correct model grouping never mutates due to a candidate response; wrong expressions are labeled as incorrect trial representations.
+                    - No hidden assessment scoring; a learner can freely reveal the worked example, reset, change optional example and retry.
+                    - For groups or total out of range (above 25) do not produce results; only authorized deterministic examples are used.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use three aligned but individually distinct representations **inside the one Scene block**: countable groups, ordered addition strip and multiplication statement. Spotlight one-to-one correspondence, but the mathematics must remain usable without highlights. Modest motion can reveal the addends one by one; reduced motion shows the same mapping instantly. Numerals may not be baked into image assets. No sound, WebGL, streamed assets, Program imagery or automatic reward animation.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate “factors”, “product”, “groups of”, “in each”, action verbs, status messages and alt text genuinely into all supported locales. The lesson’s group-first convention must be explained rather than inferred from English word order.
+                    - Keep LTR/RTL mathematical operand order and factor identities semantically stable. Screen reader should announce “three groups of four equals twelve; four plus four plus four equals twelve; three times four equals twelve”, with separate descriptions for group-count and per-group factors.
+                    - Each correspondence can be inspected using native keyboard/touch/switch controls, no drag-only mapping or speech-recognition requirement. Text/table representation is equivalent: “group 1 four; group 2 four; group 3 four; total twelve; first factor three groups; second factor four per group; product twelve”.
+                    - Visible focus, large touch areas, zoomed/narrow layout, reduced motion and screen reader feedback preserve every step and incorrect-choice explanation. No pressure timers or color-only semantics.
+                    - Everything works offline after download using local deterministic data; math, localized labels and accessibility views must not depend on remote services.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 3 groups × 4: exactly 4+4+4=12 and 3×4=12; factor roles and product 12 labeled correctly.
+                    2. 3+4=7 is distinguished from counting all 12 counters; never presented as equivalent to 3×4.
+                    3. Guided selection of each symbol gives “group count”, “group size” or “product” with accurate language.
+                    4. 2 groups of 5 yields exactly 5+5=10 and 2×5=10; false 2+5=7 or 5+5+5=15 are explained by group count.
+                    5. Optional 3 groups of 2 yields 2+2+2=6 and 3×2=6.
+                    6. A child may see all calculations without answering or earning a success state; reset does not affect the other Section.
+                    7. Keyboard, screen reader, RTL, reduced motion, mobile/zoom and offline executions have identical counts, equation values and factor/product explanations.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Scene Resource and generic renderer are current capabilities; this interactive Scene, its two independently configured prop-free placements, full localization and tests are **proposed**. Coding Agent resolves concrete UI/runtime wiring after editor and Scene-spec approval; Assessment Architect owns any scored or Skill-attributed Question. Keep the selected factor convention explicit and revise only after editor approval.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                      2. **scene — generic resource support; new Scene proposed:** Expression Reader (full original source: Scene production.specification), guided mapping entry: highlight each group as one +4 term, then one group-count factor 3 and one group-size factor 4; read the product 12 without hiding the objects.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section2Text3:
                 config:
-                  id: "3c1a8a8d-ed89-4715-84ba-cea80529a330"
-                  slug: "section2Text3"
-                  type: "text"
+                  id: '3c1a8a8d-ed89-4715-84ba-cea80529a330'
+                  slug: 'section2Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The two numbers we multiply are **factors**. The result is the **product**. In **3 × 4 = 12**, the factors are **3** and **4**; the product is **12**."
+                      en: 'The two numbers we multiply are **factors**. The result is the **product**. In **3 × 4 = 12**, the factors are **3** and **4**; the product is **12**.'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "  3. **text — available:** “The two numbers we multiply are **factors**. The result is the **product**. In **3 × 4 = 12**, the factors are **3** and **4**; the product is **12**.”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '  3. **text — available:** “The two numbers we multiply are **factors**. The result is the **product**. In **3 × 4 = 12**, the factors are **3** and **4**; the product is **12**.”'
             order:
-              - "section2Markdown1"
-              - "section2Scene2"
-              - "section2Text3"
+              - 'section2Markdown1'
+              - 'section2Scene2'
+              - 'section2Text3'
         production:
-          purpose: "Connect repeated addition of equal addends to a multiplication expression and identify factors and product."
-          pedagogicalIntent: "Connect repeated addition of equal addends to a multiplication expression and identify factors and product."
+          purpose: 'Connect repeated addition of equal addends to a multiplication expression and identify factors and product.'
+          pedagogicalIntent: 'Connect repeated addition of equal addends to a multiplication expression and identify factors and product.'
           productionNotes: |
-              ### Section 2 — A Short Way to Say the Same Thing
-              
-              - Purpose / learning outcome: Connect repeated addition of equal addends to a multiplication expression and identify factors and product.
-              - Current implementation shape: LessonSection_Config.
-              - Ordered content blocks:
-                1. **markdown — available:** “We added **4 + 4 + 4** because we have three groups of four. A shorter way to name the same total is **3 × 4 = 12**. For this lesson, we read that as **3 groups of 4 make 12**.”
-                2. **scene — generic resource support; new Scene proposed:** Expression Reader (full original source: Scene production.specification), guided mapping entry: highlight each group as one +4 term, then one group-count factor 3 and one group-size factor 4; read the product 12 without hiding the objects.
-                3. **text — available:** “The two numbers we multiply are **factors**. The result is the **product**. In **3 × 4 = 12**, the factors are **3** and **4**; the product is **12**.”
-              - Core explanation and learner-facing text: Multiplication in this model counts equal groups. A factor's place is tied to the declared reading convention for this lesson; the product tells the total number of objects.
-              - Illustration / model / experiment: Three groups each containing four counters are kept adjacent to symbolic 4+4+4=12, then 3×4=12. An explicitly named text explanation identifies “3 — groups; 4 — in each group; 12 — altogether”.
-              - Learner action, observations and explanatory feedback: Tap/choose the part of the expression labeled “number of groups”, “number in each” or “total”. If the child says 12 is a factor, respond: “Twelve is the number we get altogether. It is the product.” If the child reads 3 × 4 as 3+4, contrast seven with the pictured twelve counters; do not insult the guess.
-              - Navigation and transition: Invite “Do all addition sentences describe equal groups?” before the next Section.
-              - Accessibility, locale and RTL: Full accessible mapping as text and controls, no pointer-only factor highlighting; preserve signed/operator reading order. Optional narration always paired with on-screen content.
-              - Proposed unlocked Note(s): Note 2 “Factors are multiplied. The product is the result” after the model and both notations are compared; planned, not wired.
-              - Implementation dependencies and review notes: Proposed Scene; avoid new Resource types for factor highlighting or invented Question grading.
-              
+            ### Section 2 — A Short Way to Say the Same Thing
+
+            - Purpose / learning outcome: Connect repeated addition of equal addends to a multiplication expression and identify factors and product.
+            - Current implementation shape: LessonSection_Config.
+            - Ordered content blocks:
+              1. **markdown — available:** “We added **4 + 4 + 4** because we have three groups of four. A shorter way to name the same total is **3 × 4 = 12**. For this lesson, we read that as **3 groups of 4 make 12**.”
+              2. **scene — generic resource support; new Scene proposed:** Expression Reader (full original source: Scene production.specification), guided mapping entry: highlight each group as one +4 term, then one group-count factor 3 and one group-size factor 4; read the product 12 without hiding the objects.
+              3. **text — available:** “The two numbers we multiply are **factors**. The result is the **product**. In **3 × 4 = 12**, the factors are **3** and **4**; the product is **12**.”
+            - Core explanation and learner-facing text: Multiplication in this model counts equal groups. A factor's place is tied to the declared reading convention for this lesson; the product tells the total number of objects.
+            - Illustration / model / experiment: Three groups each containing four counters are kept adjacent to symbolic 4+4+4=12, then 3×4=12. An explicitly named text explanation identifies “3 — groups; 4 — in each group; 12 — altogether”.
+            - Learner action, observations and explanatory feedback: Tap/choose the part of the expression labeled “number of groups”, “number in each” or “total”. If the child says 12 is a factor, respond: “Twelve is the number we get altogether. It is the product.” If the child reads 3 × 4 as 3+4, contrast seven with the pictured twelve counters; do not insult the guess.
+            - Navigation and transition: Invite “Do all addition sentences describe equal groups?” before the next Section.
+            - Accessibility, locale and RTL: Full accessible mapping as text and controls, no pointer-only factor highlighting; preserve signed/operator reading order. Optional narration always paired with on-screen content.
+            - Proposed unlocked Note(s): Note 2 “Factors are multiplied. The product is the result” after the model and both notations are compared; planned, not wired.
+            - Implementation dependencies and review notes: Proposed Scene; avoid new Resource types for factor highlighting or invented Question grading.
+
       section3DoAllGroupsMatch:
         config:
-          id: "c8c948f5-a6dd-41c6-8cc8-c88bf2dc61b8"
-          slug: "section3DoAllGroupsMatch"
-          type: "content"
+          id: 'c8c948f5-a6dd-41c6-8cc8-c88bf2dc61b8'
+          slug: 'section3DoAllGroupsMatch'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Do All Groups Match?"
+              en: 'Do All Groups Match?'
             navigationLabel:
-              en: "Do All Groups Match?"
+              en: 'Do All Groups Match?'
           content:
             items:
               section3Text1:
                 config:
-                  id: "46572708-d5db-41ed-8695-e737f51961d2"
-                  slug: "section3Text1"
-                  type: "text"
+                  id: '46572708-d5db-41ed-8695-e737f51961d2'
+                  slug: 'section3Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Compare **4 + 4 + 4** and **4 + 3 + 4**. Can each row be counted as three groups of the same size?"
+                      en: 'Compare **4 + 4 + 4** and **4 + 3 + 4**. Can each row be counted as three groups of the same size?'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "  1. **text — available:** “Compare **4 + 4 + 4** and **4 + 3 + 4**. Can each row be counted as three groups of the same size?”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '  1. **text — available:** “Compare **4 + 4 + 4** and **4 + 3 + 4**. Can each row be counted as three groups of the same size?”'
               section3Scene2:
                 config:
-                  id: "e7142a4b-de69-4ea8-8af6-db67838b3f84"
-                  slug: "section3Scene2"
-                  type: "scene"
+                  id: 'e7142a4b-de69-4ea8-8af6-db67838b3f84'
+                  slug: 'section3Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Compare **4 + 4 + 4** and **4 + 3 + 4**. Can each row be counted as three groups of the same size?"
+                        instruction: 'Compare **4 + 4 + 4** and **4 + 3 + 4**. Can each row be counted as three groups of the same size?'
                 production:
-                  purpose: "Provisional Scene placement in Do All Groups Match?, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in Do All Groups Match?, self-contained and not implemented'
                   specification: |
-                      # Equal Group Composer — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Multiplication as Equal Groups (full original source: this Lesson's production notes), Sections 1 and 3
-                      Methodologist objective(s): Identify a quantity as a number of equal groups, connect it to repeated equal addends, and recognize that uneven addends do not directly form a fixed equal-group representation. Methodologist Brief (full original source: production.methodology).
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      Children should **count what is in each group**, not simply add “number of groups” and “group size”. The Scene makes an equal group’s quantity physically inspectable and contrasts it with a nearly equal row. Explicit group-by-group evidence, rather than a decorative visual similarity, motivates why repeated addition works only with identical addends.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Sections use groups with natural-number sizes 1–5 and total ≤25.
-                      - Section 1: exactly 3 equal groups, 4 counters per group, 12 total; text list [4,4,4]; corresponding repeated sum 4 + 4 + 4 = 12. Group count 3 is **not** another group of three objects.
-                      - Section 3: [4,4,4] is equal-sized; [4,3,4] is **unequal**, totals 12 and 11 respectively. The latter still has a valid ordinary addition sum 4+3+4=11; it is not the same as a direct “three identical addends” representation.
-                      - An unequal group model may be rearranged to illustrate a different decomposition, but this Scene does not silently change group sizes or reclassify unequal groups as equal. “No equal addends in THIS pictured three-group arrangement” is the precise limit, not “no multiplication is possible anywhere.”
-                      - The Scene’s lesson examples are finite observations, not proof of general multiplication laws.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      **Section 1 / observe and count**
-                      
-                      1. Display three named containers with four visible identical countable counters each. Prompt: “How many groups? How many counters in each? How many altogether?” Labels for “groups” and “in each group” are distinctly spelled out.
-                      2. Child can tap/select a group or use “Inspect group 1/2/3” buttons. Announce that group’s count and keep it visible. “Count them all” reveals incremental totals 4, 8, 12, followed by 4+4+4=12.
-                      3. Prediction choices 7, 12, 14 optional. For 7: “Three plus four names the group count and group size. But there are four counters in EACH of three groups.” For 14: “Four, eight, twelve; not fourteen.” For 12: “All three groups contain four, making twelve.” Every response gives a retry/reveal path without score.
-                      4. “Show groups as a list” gives “group 1: four; group 2: four; group 3: four; all groups: twelve”. This representation must remain usable without seeing counters.
-                      
-                      **Section 3 / compare equal vs uneven**
-                      
-                      1. A fresh Scene instance presents two labeled examples, one after another: group counts [4,4,4] and [4,3,4]. Ask: “Are all the groups the same size?”
-                      2. Learner checks groups individually. For [4,4,4], “Each group has four: same size.” For [4,3,4], “The middle has three. The others have four. They are not all equal.”
-                      3. Choice “same size / not all the same size” is allowed before reveal; early guesses prompt checking all three. Exact text compares observed counts, not only colors or icon states.
-                      4. Display matching addition: 4+4+4=12 or 4+3+4=11. Ask “Could we use ONE addend repeated three times to describe these displayed groups?” Only the first is a direct repeated-equal-addend sum. In the second, do not say “mathematically impossible” or silently move counters.
-                      5. Optional “Try equal groups again” resets with either example. No time pressure, forced answer, grade or achievement message.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - Objects: indexed group containers, exact countable counters, “group count” and “per group” labels, ordered accessible group-count list, total counter label, per-group inspection controls, choice/reveal/reset controls, explanatory feedback.
-                      - One **prop-free** Scene entry per Section placement (observation/contrast) with different initial examples and independent state; “mode” is editorial, not a new runtime prop.
-                      - State: current example, inspected groups, guess (optional), which counts and explanatory sums are visible, whether contrast has been revealed.
-                      - Invariant: group count array describes exactly the rendered counters; whole W=sum(group sizes). Report equal-sized iff all array elements are equal. No hidden deletion or duplication of objects.
-                      - Boundaries: no negative/fractional counters; counts ≤5, total ≤25 in authored examples. Reset restores the appropriate placement, never changes the other Scene.
-                      - No assessment semantics or persisted responses. Answer choices teach the model and can be bypassed to access the explanation.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Use lightweight, high-contrast HTML/SVG counter groups with sufficient spacing to count. Border/label/number marks indicate grouping; color is optional and redundant. A subtle highlight during counting can follow each group, with a text equivalent and reduced-motion instant update. Do not add celebratory animation, background story, external imagery, embedded music or video.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - All learner prompts, group labels, amount words, equality messages, controls and accessible names must be genuinely translated across the full language roster; “three groups of four” must remain semantically precise.
-                      - Screen reader receives “three groups: group one four, group two four, group three four, altogether twelve”; for unequal row, name the group with a different count. Native controls allow inspection and decision without pointer precision or dragging.
-                      - RTL changes prose/control placement but does not change numeric group order or swap roles of group count vs per-group quantity. Explicit labels prevent relying on left/right visual placement.
-                      - Keyboard/touch/switch operation, 200% zoom, visible focus, large targets, countable nonvisual list, reduced motion and offline equivalence are required. No timed question or audio-only feedback. Smaller screens may stack groups if group membership is unambiguous.
-                      - Local deterministic counts and explanations must work after full locale/package download without remote calls, on weak devices.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. Three groups of four yield exactly twelve objects and 4+4+4=12; “3+4=7” is not falsely treated as the total.
-                      2. Inspector names each group’s exact count, with identical keyboard and screen reader access.
-                      3. For [4,4,4], every group equal, total 12, three equal addends; the equality verdict is “same”.
-                      4. For [4,3,4], total 11, the second group differs, and fixed identical-addend claim is rejected without saying “no other pattern”.
-                      5. Learner can inspect or reveal without guessing and reset without cross-Section state leakage.
-                      6. RTL, reduced motion, screen reader, keyboard, 200% zoom, mobile and offline states show identical counts and explanatory comparisons.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      The generic Section scene block and prop-free/localized Scene pattern exist; this specific Scene and two placements are **proposed** and await editor approval, implementation and own tests. Coding Agent chooses internal sharing and localization mechanism, not a new public mode prop. Assessment Architect separately owns any scored distinction between the two canonical Skills.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                        2. **scene — supported generic scene block, proposed:** Equal Group Composer (full original source: Scene production.specification), compare entry: side-by-side **within the Scene only** clear group models of 4,4,4 and 4,3,4, with an inspect-each-group action and no changing addends behind the child's back.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Equal Group Composer — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Multiplication as Equal Groups (full original source: this Lesson's production notes), Sections 1 and 3
+                    Methodologist objective(s): Identify a quantity as a number of equal groups, connect it to repeated equal addends, and recognize that uneven addends do not directly form a fixed equal-group representation. Methodologist Brief (full original source: production.methodology).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Children should **count what is in each group**, not simply add “number of groups” and “group size”. The Scene makes an equal group’s quantity physically inspectable and contrasts it with a nearly equal row. Explicit group-by-group evidence, rather than a decorative visual similarity, motivates why repeated addition works only with identical addends.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Sections use groups with natural-number sizes 1–5 and total ≤25.
+                    - Section 1: exactly 3 equal groups, 4 counters per group, 12 total; text list [4,4,4]; corresponding repeated sum 4 + 4 + 4 = 12. Group count 3 is **not** another group of three objects.
+                    - Section 3: [4,4,4] is equal-sized; [4,3,4] is **unequal**, totals 12 and 11 respectively. The latter still has a valid ordinary addition sum 4+3+4=11; it is not the same as a direct “three identical addends” representation.
+                    - An unequal group model may be rearranged to illustrate a different decomposition, but this Scene does not silently change group sizes or reclassify unequal groups as equal. “No equal addends in THIS pictured three-group arrangement” is the precise limit, not “no multiplication is possible anywhere.”
+                    - The Scene’s lesson examples are finite observations, not proof of general multiplication laws.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 1 / observe and count**
+
+                    1. Display three named containers with four visible identical countable counters each. Prompt: “How many groups? How many counters in each? How many altogether?” Labels for “groups” and “in each group” are distinctly spelled out.
+                    2. Child can tap/select a group or use “Inspect group 1/2/3” buttons. Announce that group’s count and keep it visible. “Count them all” reveals incremental totals 4, 8, 12, followed by 4+4+4=12.
+                    3. Prediction choices 7, 12, 14 optional. For 7: “Three plus four names the group count and group size. But there are four counters in EACH of three groups.” For 14: “Four, eight, twelve; not fourteen.” For 12: “All three groups contain four, making twelve.” Every response gives a retry/reveal path without score.
+                    4. “Show groups as a list” gives “group 1: four; group 2: four; group 3: four; all groups: twelve”. This representation must remain usable without seeing counters.
+
+                    **Section 3 / compare equal vs uneven**
+
+                    1. A fresh Scene instance presents two labeled examples, one after another: group counts [4,4,4] and [4,3,4]. Ask: “Are all the groups the same size?”
+                    2. Learner checks groups individually. For [4,4,4], “Each group has four: same size.” For [4,3,4], “The middle has three. The others have four. They are not all equal.”
+                    3. Choice “same size / not all the same size” is allowed before reveal; early guesses prompt checking all three. Exact text compares observed counts, not only colors or icon states.
+                    4. Display matching addition: 4+4+4=12 or 4+3+4=11. Ask “Could we use ONE addend repeated three times to describe these displayed groups?” Only the first is a direct repeated-equal-addend sum. In the second, do not say “mathematically impossible” or silently move counters.
+                    5. Optional “Try equal groups again” resets with either example. No time pressure, forced answer, grade or achievement message.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: indexed group containers, exact countable counters, “group count” and “per group” labels, ordered accessible group-count list, total counter label, per-group inspection controls, choice/reveal/reset controls, explanatory feedback.
+                    - One **prop-free** Scene entry per Section placement (observation/contrast) with different initial examples and independent state; “mode” is editorial, not a new runtime prop.
+                    - State: current example, inspected groups, guess (optional), which counts and explanatory sums are visible, whether contrast has been revealed.
+                    - Invariant: group count array describes exactly the rendered counters; whole W=sum(group sizes). Report equal-sized iff all array elements are equal. No hidden deletion or duplication of objects.
+                    - Boundaries: no negative/fractional counters; counts ≤5, total ≤25 in authored examples. Reset restores the appropriate placement, never changes the other Scene.
+                    - No assessment semantics or persisted responses. Answer choices teach the model and can be bypassed to access the explanation.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use lightweight, high-contrast HTML/SVG counter groups with sufficient spacing to count. Border/label/number marks indicate grouping; color is optional and redundant. A subtle highlight during counting can follow each group, with a text equivalent and reduced-motion instant update. Do not add celebratory animation, background story, external imagery, embedded music or video.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - All learner prompts, group labels, amount words, equality messages, controls and accessible names must be genuinely translated across the full language roster; “three groups of four” must remain semantically precise.
+                    - Screen reader receives “three groups: group one four, group two four, group three four, altogether twelve”; for unequal row, name the group with a different count. Native controls allow inspection and decision without pointer precision or dragging.
+                    - RTL changes prose/control placement but does not change numeric group order or swap roles of group count vs per-group quantity. Explicit labels prevent relying on left/right visual placement.
+                    - Keyboard/touch/switch operation, 200% zoom, visible focus, large targets, countable nonvisual list, reduced motion and offline equivalence are required. No timed question or audio-only feedback. Smaller screens may stack groups if group membership is unambiguous.
+                    - Local deterministic counts and explanations must work after full locale/package download without remote calls, on weak devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Three groups of four yield exactly twelve objects and 4+4+4=12; “3+4=7” is not falsely treated as the total.
+                    2. Inspector names each group’s exact count, with identical keyboard and screen reader access.
+                    3. For [4,4,4], every group equal, total 12, three equal addends; the equality verdict is “same”.
+                    4. For [4,3,4], total 11, the second group differs, and fixed identical-addend claim is rejected without saying “no other pattern”.
+                    5. Learner can inspect or reveal without guessing and reset without cross-Section state leakage.
+                    6. RTL, reduced motion, screen reader, keyboard, 200% zoom, mobile and offline states show identical counts and explanatory comparisons.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The generic Section scene block and prop-free/localized Scene pattern exist; this specific Scene and two placements are **proposed** and await editor approval, implementation and own tests. Coding Agent chooses internal sharing and localization mechanism, not a new public mode prop. Assessment Architect separately owns any scored distinction between the two canonical Skills.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                      2. **scene — supported generic scene block, proposed:** Equal Group Composer (full original source: Scene production.specification), compare entry: side-by-side **within the Scene only** clear group models of 4,4,4 and 4,3,4, with an inspect-each-group action and no changing addends behind the child's back.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section3Markdown3:
                 config:
-                  id: "3d39b8c1-97ff-41f4-87db-4d5d2d1de468"
-                  slug: "section3Markdown3"
-                  type: "markdown"
+                  id: '3d39b8c1-97ff-41f4-87db-4d5d2d1de468'
+                  slug: 'section3Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "In **4 + 4 + 4**, every group has four. In **4 + 3 + 4**, one group has three. We can still add those numbers to get 11, but that picture does **not** directly show three equal groups of four."
+                      en: 'In **4 + 4 + 4**, every group has four. In **4 + 3 + 4**, one group has three. We can still add those numbers to get 11, but that picture does **not** directly show three equal groups of four.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "  3. **markdown — available:** “In **4 + 4 + 4**, every group has four. In **4 + 3 + 4**, one group has three. We can still add those numbers to get 11, but that picture does **not** directly show three equal groups of four.”"
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '  3. **markdown — available:** “In **4 + 4 + 4**, every group has four. In **4 + 3 + 4**, one group has three. We can still add those numbers to get 11, but that picture does **not** directly show three equal groups of four.”'
             order:
-              - "section3Text1"
-              - "section3Scene2"
-              - "section3Markdown3"
+              - 'section3Text1'
+              - 'section3Scene2'
+              - 'section3Markdown3'
         production:
-          purpose: "Recognize that the equal-addends representation requires **every** group to have the same size."
-          pedagogicalIntent: "Recognize that the equal-addends representation requires **every** group to have the same size."
+          purpose: 'Recognize that the equal-addends representation requires **every** group to have the same size.'
+          pedagogicalIntent: 'Recognize that the equal-addends representation requires **every** group to have the same size.'
           productionNotes: |
-              ### Section 3 — Do All Groups Match?
-              
-              - Purpose / learning outcome: Recognize that the equal-addends representation requires **every** group to have the same size.
-              - Current implementation shape: LessonSection_Config.
-              - Ordered content blocks:
-                1. **text — available:** “Compare **4 + 4 + 4** and **4 + 3 + 4**. Can each row be counted as three groups of the same size?”
-                2. **scene — supported generic scene block, proposed:** Equal Group Composer (full original source: Scene production.specification), compare entry: side-by-side **within the Scene only** clear group models of 4,4,4 and 4,3,4, with an inspect-each-group action and no changing addends behind the child's back.
-                3. **markdown — available:** “In **4 + 4 + 4**, every group has four. In **4 + 3 + 4**, one group has three. We can still add those numbers to get 11, but that picture does **not** directly show three equal groups of four.”
-              - Core explanation and learner-facing text: One mismatch breaks the claim “the groups are all equal-sized”. This is a structural condition for the chosen repeated-addition model, not “some sums are forbidden”.
-              - Illustration / model / experiment: Independent group outlines and exact member counts, with one uneven group highlighted only after the child has a chance to inspect. A linked textual comparison lists 4,4,4 vs 4,3,4.
-              - Learner action, observations and explanatory feedback: Learner checks group 1, group 2 and group 3 in each model, then chooses “all the same size” or “not all the same size”. If they decide 4,3,4 is equal: “The middle group has three. The others have four. They do not all match.” If they claim 4,4,4 is unequal: “All three groups have four.” “Show every group” always available.
-              - Navigation and transition: Make the counterexample clear, then return to a new valid equal-group arrangement.
-              - Accessibility, locale and RTL: Explicit group-by-group accessible list and difference status; contrast cannot depend on color, visual arrangement, animation or a timer.
-              - Proposed unlocked Note(s): Note 3 “Repeated addition for equal groups repeats the same addend” after the contrast is explained; planned, not wired.
-              - Implementation dependencies and review notes: New model variant, no assessed Question or new Skill.
-              
+            ### Section 3 — Do All Groups Match?
+
+            - Purpose / learning outcome: Recognize that the equal-addends representation requires **every** group to have the same size.
+            - Current implementation shape: LessonSection_Config.
+            - Ordered content blocks:
+              1. **text — available:** “Compare **4 + 4 + 4** and **4 + 3 + 4**. Can each row be counted as three groups of the same size?”
+              2. **scene — supported generic scene block, proposed:** Equal Group Composer (full original source: Scene production.specification), compare entry: side-by-side **within the Scene only** clear group models of 4,4,4 and 4,3,4, with an inspect-each-group action and no changing addends behind the child's back.
+              3. **markdown — available:** “In **4 + 4 + 4**, every group has four. In **4 + 3 + 4**, one group has three. We can still add those numbers to get 11, but that picture does **not** directly show three equal groups of four.”
+            - Core explanation and learner-facing text: One mismatch breaks the claim “the groups are all equal-sized”. This is a structural condition for the chosen repeated-addition model, not “some sums are forbidden”.
+            - Illustration / model / experiment: Independent group outlines and exact member counts, with one uneven group highlighted only after the child has a chance to inspect. A linked textual comparison lists 4,4,4 vs 4,3,4.
+            - Learner action, observations and explanatory feedback: Learner checks group 1, group 2 and group 3 in each model, then chooses “all the same size” or “not all the same size”. If they decide 4,3,4 is equal: “The middle group has three. The others have four. They do not all match.” If they claim 4,4,4 is unequal: “All three groups have four.” “Show every group” always available.
+            - Navigation and transition: Make the counterexample clear, then return to a new valid equal-group arrangement.
+            - Accessibility, locale and RTL: Explicit group-by-group accessible list and difference status; contrast cannot depend on color, visual arrangement, animation or a timer.
+            - Proposed unlocked Note(s): Note 3 “Repeated addition for equal groups repeats the same addend” after the contrast is explained; planned, not wired.
+            - Implementation dependencies and review notes: New model variant, no assessed Question or new Skill.
+
       section4BuildReadAndExplain:
         config:
-          id: "7b05b4e4-98b3-4bc5-84c3-7ac7c77585e6"
-          slug: "section4BuildReadAndExplain"
-          type: "content"
+          id: '7b05b4e4-98b3-4bc5-84c3-7ac7c77585e6'
+          slug: 'section4BuildReadAndExplain'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Build, Read and Explain"
+              en: 'Build, Read and Explain'
             navigationLabel:
-              en: "Build, Read and Explain"
+              en: 'Build, Read and Explain'
           content:
             items:
               section4Text1:
                 config:
-                  id: "06d31e86-58e5-4bf3-881c-d0c9562a05bc"
-                  slug: "section4Text1"
-                  type: "text"
+                  id: '06d31e86-58e5-4bf3-881c-d0c9562a05bc'
+                  slug: 'section4Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Build **two groups of five**. What addition sentence names all the counters? How would you say that using multiplication?"
+                      en: 'Build **two groups of five**. What addition sentence names all the counters? How would you say that using multiplication?'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "  1. **text — available:** “Build **two groups of five**. What addition sentence names all the counters? How would you say that using multiplication?”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '  1. **text — available:** “Build **two groups of five**. What addition sentence names all the counters? How would you say that using multiplication?”'
               section4Scene2:
                 config:
-                  id: "5e401383-9c0a-405c-82dd-a69d60972542"
-                  slug: "section4Scene2"
-                  type: "scene"
+                  id: '5e401383-9c0a-405c-82dd-a69d60972542'
+                  slug: 'section4Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Build **two groups of five**. What addition sentence names all the counters? How would you say that using multiplication?"
+                        instruction: 'Build **two groups of five**. What addition sentence names all the counters? How would you say that using multiplication?'
                 production:
-                  purpose: "Provisional Scene placement in Build, Read and Explain, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in Build, Read and Explain, self-contained and not implemented'
                   specification: |
-                      # Expression Reader — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Multiplication as Equal Groups (full original source: this Lesson's production notes), Sections 2 and 4
-                      Methodologist objective(s): Express equal groups as repeated addition and multiplication; read factors and product correctly while connecting the symbolic statement with its concrete group model. Methodologist Brief (full original source: production.methodology).
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      Children see that the **same total** can be counted as repeated equal addends or as a multiplication expression. They inspect how “three groups of four” maps to 4+4+4=12 and, using the lesson’s stated convention, 3×4=12. They must distinguish group count, group size, factors and product in a model without mistaking 3+4=7 for the total.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - **Chosen convention:** “number of groups × number in each group”. Other legitimate readings exist in other contexts; never state it is the only worldwide mathematical convention.
-                      - Section 2: 3 groups with 4 in each; 4+4+4=12; 3×4=12. Factors 3 and 4, product 12.
-                      - Section 4: 2 groups with 5 in each; 5+5=10; 2×5=10. Factors 2 and 5, product 10.
-                      - Optional new model: 3 groups of 2; 2+2+2=6 and 3×2=6.
-                      - Input group sizes and counts positive ≤5 with whole ≤25. No unequal groups may be presented as repeated _identical_ addends without changing the modeled grouping; no unproved commutativity teaching, division tasks, negative factors or timed tables.
-                      - Distinguish the _numeric factor_ from the _meaning attached to it in one concrete model_. The result of a multiplication expression is its product, not one of its factors.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      **Section 2 / guided expression mapping**
-                      
-                      1. Display 3 labeled groups containing 4 visible counters each and say “Three groups, four in each.”
-                      2. A learner-selected “Show the addition” highlights groups one at a time and reveals **4 + 4 + 4 = 12**, with a written/accessible connection from each group to one addend 4.
-                      3. “Show the short way” reveals **3 × 4 = 12**. Explain “The first factor, 3, counts our groups. The second factor, 4, counts each group. Twelve is the product, the total.”
-                      4. Let the child select a displayed numeral and a question “Which number tells how many groups?” For 3: “Three groups.” For 4: “Four in each group.” For 12: “That is the total, the product.” The interface should describe roles rather than simply grade a click.
-                      5. “Read it back” presents the whole explanation in ordered text; optional audio equivalent is not required for understanding. A child can request hints or the complete model without first selecting.
-                      6. Explicit contrast if child selects 3+4 as equivalent: “Three plus four is seven. But our groups have twelve counters. To count all groups, we need 4+4+4.”
-                      
-                      **Section 4 / independent transfer**
-                      
-                      1. Display a fresh scene with two groups of five counters. “Can you name a matching addition and multiplication sentence?” Initial answers are not displayed.
-                      2. Offer candidate additions **5+5=10**, **2+5=7** and **5+5+5=15** with text/radio-like selection; correct/model explanation for each is visible on request. The group count remains exactly two throughout.
-                      3. Show matching multiplication choices **2×5=10**, **2×5=7** and **3×5=15**; distinguish an incorrect numeric result from an expression representing the wrong count of groups.
-                      4. Highlight “2” as number of groups, “5” as size of a group and “10” as product. The learner can select or name each concept; show full explanation before completion if desired.
-                      5. Optional “Try 3 groups of 2” changes the scene to an explicitly announced different example, with 2+2+2=6 and 3×2=6.
-                      6. Finish with “What is the same about both sentences?” Suggested answer: “They count all the counters in the same equal groups.” No score or mastery announcement.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - Objects: exactly countable group containers, incremental repeated-addend strip, multiplication expression, semantic named factor/product controls, choices, explanation/step/replay/reset controls, accessible ordered groups list.
-                      - Two independent prop-free Scene entries for the two Sections. The guided or transfer placement is an editorial specification, **not** a public React mode prop. Scene data must be isolated per entry.
-                      - State: current example (G,S), which groups/addends have been highlighted, whether corresponding expressions are revealed, provisional selected expression, whether helpful feedback is expanded.
-                      - Invariant: W=G×S=sum(S repeated G times); the number of +S addends equals G and is visibly linked to G groups. Correct model grouping never mutates due to a candidate response; wrong expressions are labeled as incorrect trial representations.
-                      - No hidden assessment scoring; a learner can freely reveal the worked example, reset, change optional example and retry.
-                      - For groups or total out of range (above 25) do not produce results; only authorized deterministic examples are used.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Use three aligned but individually distinct representations **inside the one Scene block**: countable groups, ordered addition strip and multiplication statement. Spotlight one-to-one correspondence, but the mathematics must remain usable without highlights. Modest motion can reveal the addends one by one; reduced motion shows the same mapping instantly. Numerals may not be baked into image assets. No sound, WebGL, streamed assets, Program imagery or automatic reward animation.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - Translate “factors”, “product”, “groups of”, “in each”, action verbs, status messages and alt text genuinely into all supported locales. The lesson’s group-first convention must be explained rather than inferred from English word order.
-                      - Keep LTR/RTL mathematical operand order and factor identities semantically stable. Screen reader should announce “three groups of four equals twelve; four plus four plus four equals twelve; three times four equals twelve”, with separate descriptions for group-count and per-group factors.
-                      - Each correspondence can be inspected using native keyboard/touch/switch controls, no drag-only mapping or speech-recognition requirement. Text/table representation is equivalent: “group 1 four; group 2 four; group 3 four; total twelve; first factor three groups; second factor four per group; product twelve”.
-                      - Visible focus, large touch areas, zoomed/narrow layout, reduced motion and screen reader feedback preserve every step and incorrect-choice explanation. No pressure timers or color-only semantics.
-                      - Everything works offline after download using local deterministic data; math, localized labels and accessibility views must not depend on remote services.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 3 groups × 4: exactly 4+4+4=12 and 3×4=12; factor roles and product 12 labeled correctly.
-                      2. 3+4=7 is distinguished from counting all 12 counters; never presented as equivalent to 3×4.
-                      3. Guided selection of each symbol gives “group count”, “group size” or “product” with accurate language.
-                      4. 2 groups of 5 yields exactly 5+5=10 and 2×5=10; false 2+5=7 or 5+5+5=15 are explained by group count.
-                      5. Optional 3 groups of 2 yields 2+2+2=6 and 3×2=6.
-                      6. A child may see all calculations without answering or earning a success state; reset does not affect the other Section.
-                      7. Keyboard, screen reader, RTL, reduced motion, mobile/zoom and offline executions have identical counts, equation values and factor/product explanations.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Scene Resource and generic renderer are current capabilities; this interactive Scene, its two independently configured prop-free placements, full localization and tests are **proposed**. Coding Agent resolves concrete UI/runtime wiring after editor and Scene-spec approval; Assessment Architect owns any scored or Skill-attributed Question. Keep the selected factor convention explicit and revise only after editor approval.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                        2. **scene — supported block, proposed:** Expression Reader (full original source: Scene production.specification), independent entry: two groups of five; child can inspect objects, choose **5 + 5 = 10** and **2 × 5 = 10** or request step-by-step help; highlight factors and product on demand.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Expression Reader — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Multiplication as Equal Groups (full original source: this Lesson's production notes), Sections 2 and 4
+                    Methodologist objective(s): Express equal groups as repeated addition and multiplication; read factors and product correctly while connecting the symbolic statement with its concrete group model. Methodologist Brief (full original source: production.methodology).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Children see that the **same total** can be counted as repeated equal addends or as a multiplication expression. They inspect how “three groups of four” maps to 4+4+4=12 and, using the lesson’s stated convention, 3×4=12. They must distinguish group count, group size, factors and product in a model without mistaking 3+4=7 for the total.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - **Chosen convention:** “number of groups × number in each group”. Other legitimate readings exist in other contexts; never state it is the only worldwide mathematical convention.
+                    - Section 2: 3 groups with 4 in each; 4+4+4=12; 3×4=12. Factors 3 and 4, product 12.
+                    - Section 4: 2 groups with 5 in each; 5+5=10; 2×5=10. Factors 2 and 5, product 10.
+                    - Optional new model: 3 groups of 2; 2+2+2=6 and 3×2=6.
+                    - Input group sizes and counts positive ≤5 with whole ≤25. No unequal groups may be presented as repeated _identical_ addends without changing the modeled grouping; no unproved commutativity teaching, division tasks, negative factors or timed tables.
+                    - Distinguish the _numeric factor_ from the _meaning attached to it in one concrete model_. The result of a multiplication expression is its product, not one of its factors.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 2 / guided expression mapping**
+
+                    1. Display 3 labeled groups containing 4 visible counters each and say “Three groups, four in each.”
+                    2. A learner-selected “Show the addition” highlights groups one at a time and reveals **4 + 4 + 4 = 12**, with a written/accessible connection from each group to one addend 4.
+                    3. “Show the short way” reveals **3 × 4 = 12**. Explain “The first factor, 3, counts our groups. The second factor, 4, counts each group. Twelve is the product, the total.”
+                    4. Let the child select a displayed numeral and a question “Which number tells how many groups?” For 3: “Three groups.” For 4: “Four in each group.” For 12: “That is the total, the product.” The interface should describe roles rather than simply grade a click.
+                    5. “Read it back” presents the whole explanation in ordered text; optional audio equivalent is not required for understanding. A child can request hints or the complete model without first selecting.
+                    6. Explicit contrast if child selects 3+4 as equivalent: “Three plus four is seven. But our groups have twelve counters. To count all groups, we need 4+4+4.”
+
+                    **Section 4 / independent transfer**
+
+                    1. Display a fresh scene with two groups of five counters. “Can you name a matching addition and multiplication sentence?” Initial answers are not displayed.
+                    2. Offer candidate additions **5+5=10**, **2+5=7** and **5+5+5=15** with text/radio-like selection; correct/model explanation for each is visible on request. The group count remains exactly two throughout.
+                    3. Show matching multiplication choices **2×5=10**, **2×5=7** and **3×5=15**; distinguish an incorrect numeric result from an expression representing the wrong count of groups.
+                    4. Highlight “2” as number of groups, “5” as size of a group and “10” as product. The learner can select or name each concept; show full explanation before completion if desired.
+                    5. Optional “Try 3 groups of 2” changes the scene to an explicitly announced different example, with 2+2+2=6 and 3×2=6.
+                    6. Finish with “What is the same about both sentences?” Suggested answer: “They count all the counters in the same equal groups.” No score or mastery announcement.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: exactly countable group containers, incremental repeated-addend strip, multiplication expression, semantic named factor/product controls, choices, explanation/step/replay/reset controls, accessible ordered groups list.
+                    - Two independent prop-free Scene entries for the two Sections. The guided or transfer placement is an editorial specification, **not** a public React mode prop. Scene data must be isolated per entry.
+                    - State: current example (G,S), which groups/addends have been highlighted, whether corresponding expressions are revealed, provisional selected expression, whether helpful feedback is expanded.
+                    - Invariant: W=G×S=sum(S repeated G times); the number of +S addends equals G and is visibly linked to G groups. Correct model grouping never mutates due to a candidate response; wrong expressions are labeled as incorrect trial representations.
+                    - No hidden assessment scoring; a learner can freely reveal the worked example, reset, change optional example and retry.
+                    - For groups or total out of range (above 25) do not produce results; only authorized deterministic examples are used.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use three aligned but individually distinct representations **inside the one Scene block**: countable groups, ordered addition strip and multiplication statement. Spotlight one-to-one correspondence, but the mathematics must remain usable without highlights. Modest motion can reveal the addends one by one; reduced motion shows the same mapping instantly. Numerals may not be baked into image assets. No sound, WebGL, streamed assets, Program imagery or automatic reward animation.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate “factors”, “product”, “groups of”, “in each”, action verbs, status messages and alt text genuinely into all supported locales. The lesson’s group-first convention must be explained rather than inferred from English word order.
+                    - Keep LTR/RTL mathematical operand order and factor identities semantically stable. Screen reader should announce “three groups of four equals twelve; four plus four plus four equals twelve; three times four equals twelve”, with separate descriptions for group-count and per-group factors.
+                    - Each correspondence can be inspected using native keyboard/touch/switch controls, no drag-only mapping or speech-recognition requirement. Text/table representation is equivalent: “group 1 four; group 2 four; group 3 four; total twelve; first factor three groups; second factor four per group; product twelve”.
+                    - Visible focus, large touch areas, zoomed/narrow layout, reduced motion and screen reader feedback preserve every step and incorrect-choice explanation. No pressure timers or color-only semantics.
+                    - Everything works offline after download using local deterministic data; math, localized labels and accessibility views must not depend on remote services.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 3 groups × 4: exactly 4+4+4=12 and 3×4=12; factor roles and product 12 labeled correctly.
+                    2. 3+4=7 is distinguished from counting all 12 counters; never presented as equivalent to 3×4.
+                    3. Guided selection of each symbol gives “group count”, “group size” or “product” with accurate language.
+                    4. 2 groups of 5 yields exactly 5+5=10 and 2×5=10; false 2+5=7 or 5+5+5=15 are explained by group count.
+                    5. Optional 3 groups of 2 yields 2+2+2=6 and 3×2=6.
+                    6. A child may see all calculations without answering or earning a success state; reset does not affect the other Section.
+                    7. Keyboard, screen reader, RTL, reduced motion, mobile/zoom and offline executions have identical counts, equation values and factor/product explanations.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Scene Resource and generic renderer are current capabilities; this interactive Scene, its two independently configured prop-free placements, full localization and tests are **proposed**. Coding Agent resolves concrete UI/runtime wiring after editor and Scene-spec approval; Assessment Architect owns any scored or Skill-attributed Question. Keep the selected factor convention explicit and revise only after editor approval.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                      2. **scene — supported block, proposed:** Expression Reader (full original source: Scene production.specification), independent entry: two groups of five; child can inspect objects, choose **5 + 5 = 10** and **2 × 5 = 10** or request step-by-step help; highlight factors and product on demand.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section4Markdown3:
                 config:
-                  id: "ea67e4ca-aed1-4b9f-87e7-5f8e535150db"
-                  slug: "section4Markdown3"
-                  type: "markdown"
+                  id: 'ea67e4ca-aed1-4b9f-87e7-5f8e535150db'
+                  slug: 'section4Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Two groups of five contain **5 + 5 = 10** counters. Using our group-count-first convention, **2 × 5 = 10**. Here **2** and **5** are factors; **10** is the product. These are two ways to describe the same total."
+                      en: 'Two groups of five contain **5 + 5 = 10** counters. Using our group-count-first convention, **2 × 5 = 10**. Here **2** and **5** are factors; **10** is the product. These are two ways to describe the same total.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "  3. **markdown — available:** “Two groups of five contain **5 + 5 = 10** counters. Using our group-count-first convention, **2 × 5 = 10**. Here **2** and **5** are factors; **10** is the product. These are two ways to describe the same total.”"
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '  3. **markdown — available:** “Two groups of five contain **5 + 5 = 10** counters. Using our group-count-first convention, **2 × 5 = 10**. Here **2** and **5** are factors; **10** is the product. These are two ways to describe the same total.”'
             order:
-              - "section4Text1"
-              - "section4Scene2"
-              - "section4Markdown3"
+              - 'section4Text1'
+              - 'section4Scene2'
+              - 'section4Markdown3'
         production:
-          purpose: "Transfer to an unseen equal-group model and name the factors, product and repeated-addition expression with less guidance."
-          pedagogicalIntent: "Transfer to an unseen equal-group model and name the factors, product and repeated-addition expression with less guidance."
+          purpose: 'Transfer to an unseen equal-group model and name the factors, product and repeated-addition expression with less guidance.'
+          pedagogicalIntent: 'Transfer to an unseen equal-group model and name the factors, product and repeated-addition expression with less guidance.'
           productionNotes: |
-              ### Section 4 — Build, Read and Explain
-              
-              - Purpose / learning outcome: Transfer to an unseen equal-group model and name the factors, product and repeated-addition expression with less guidance.
-              - Current implementation shape: LessonSection_Config.
-              - Ordered content blocks:
-                1. **text — available:** “Build **two groups of five**. What addition sentence names all the counters? How would you say that using multiplication?”
-                2. **scene — supported block, proposed:** Expression Reader (full original source: Scene production.specification), independent entry: two groups of five; child can inspect objects, choose **5 + 5 = 10** and **2 × 5 = 10** or request step-by-step help; highlight factors and product on demand.
-                3. **markdown — available:** “Two groups of five contain **5 + 5 = 10** counters. Using our group-count-first convention, **2 × 5 = 10**. Here **2** and **5** are factors; **10** is the product. These are two ways to describe the same total.”
-              - Core explanation and learner-facing text: The relationship between concrete groups, repeated addition and multiplication is the enduring idea; focus is not recalling arbitrary multiplication tables.
-              - Illustration / model / experiment: Two groups each with five counters, and corresponding expressions. Optional second example with three groups of two: 2 + 2 + 2 = 6 and 3 × 2 = 6, if the learner requests another.
-              - Learner action, observations and explanatory feedback: Distinguish “2 + 5 = 7” from counting two groups of five: “That adds the group count and size, not five from each group.” Distinguish “5 + 5 = 10” from “5 + 5 + 5 = 15”: “There are two groups, not three.” For 2 × 5 = 10: “Two groups of five make ten.” Provide complete explanations even without selecting an answer.
-              - Navigation and transition: Ask “Which part says how many groups, and which part says how many are in each?” End with voluntary verbal, selected or typed explanation. No score.
-              - Accessibility, locale and RTL: Object group count available as text and arithmetic. All choices and explanations native accessible controls; no compulsory speech recognition, typing or dragging.
-              - Proposed unlocked Note(s): Revisit Notes 2–3; no new Note necessary.
-              - Implementation dependencies and review notes: Practice is formative, not a graded Quiz; any assessment handoff remains separate.
-              
+            ### Section 4 — Build, Read and Explain
+
+            - Purpose / learning outcome: Transfer to an unseen equal-group model and name the factors, product and repeated-addition expression with less guidance.
+            - Current implementation shape: LessonSection_Config.
+            - Ordered content blocks:
+              1. **text — available:** “Build **two groups of five**. What addition sentence names all the counters? How would you say that using multiplication?”
+              2. **scene — supported block, proposed:** Expression Reader (full original source: Scene production.specification), independent entry: two groups of five; child can inspect objects, choose **5 + 5 = 10** and **2 × 5 = 10** or request step-by-step help; highlight factors and product on demand.
+              3. **markdown — available:** “Two groups of five contain **5 + 5 = 10** counters. Using our group-count-first convention, **2 × 5 = 10**. Here **2** and **5** are factors; **10** is the product. These are two ways to describe the same total.”
+            - Core explanation and learner-facing text: The relationship between concrete groups, repeated addition and multiplication is the enduring idea; focus is not recalling arbitrary multiplication tables.
+            - Illustration / model / experiment: Two groups each with five counters, and corresponding expressions. Optional second example with three groups of two: 2 + 2 + 2 = 6 and 3 × 2 = 6, if the learner requests another.
+            - Learner action, observations and explanatory feedback: Distinguish “2 + 5 = 7” from counting two groups of five: “That adds the group count and size, not five from each group.” Distinguish “5 + 5 = 10” from “5 + 5 + 5 = 15”: “There are two groups, not three.” For 2 × 5 = 10: “Two groups of five make ten.” Provide complete explanations even without selecting an answer.
+            - Navigation and transition: Ask “Which part says how many groups, and which part says how many are in each?” End with voluntary verbal, selected or typed explanation. No score.
+            - Accessibility, locale and RTL: Object group count available as text and arithmetic. All choices and explanations native accessible controls; no compulsory speech recognition, typing or dragging.
+            - Proposed unlocked Note(s): Revisit Notes 2–3; no new Note necessary.
+            - Implementation dependencies and review notes: Practice is formative, not a graded Quiz; any assessment handoff remains separate.
+
     order:
-      - "section1CountTheEqualGroups"
-      - "section2AShortWayToSayTheSameThing"
-      - "section3DoAllGroupsMatch"
-      - "section4BuildReadAndExplain"
+      - 'section1CountTheEqualGroups'
+      - 'section2AShortWayToSayTheSameThing'
+      - 'section3DoAllGroupsMatch'
+      - 'section4BuildReadAndExplain'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
-      # Multiplication as Equal Groups and Repeated Addition — Methodologist Brief
-      
-      Date: 2026-10-30
-      Slug: multiplicationEqualGroups
-      Methodologist status: Draft
-      Code: [Not implemented](#)
-      Program dependence: None
-      
-      ## Educational purpose
-      
-      Bridge a child's experience of counting equal groups to the meaning of a multiplication expression, its factors and product. The two Skills naturally support one Lesson: repeated addition illustrates the structure, and reading expressions names and describes that structure. The instruction is conceptual preparation, not a demand for multiplication-table fluency.
-      
-      ## Target audience
-      
-      Children aged 6–8 in grades 1–2; primarily learners who can add small equal quantities and recognize groups. For children who have not encountered multiplication, spoken explanations and groups of physical objects should precede symbol labels. Plan reading support and sensory alternatives.
-      
-      ## Prerequisites
-      
-      - Count objects in equal groups, and find a small total through addition or skip-counting.
-      - Distinguish a number of groups from the number of items **in** each group.
-      - Understand plus and equals signs; multiplication signs and formal factor terminology may be new.
-      
-      ## Target Skills
-      
-      - [readExpression.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/arithmetic/multiply/skills/readExpression.data.ts)
-      - [repeatedAddition.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/arithmetic/multiply/skills/repeatedAddition.data.ts)
-      
-      ## Expected learning outcomes
-      
-      - Recognize that repeated addition represents equal-sized addends, and identify when different-sized addends do **not** fit that representation without rearrangement.
-      - Describe a situation as a number of equal groups and a number of objects per group.
-      - Represent three groups of four as 4 + 4 + 4 = 12 and link that to a multiplication expression, using a declared convention for factor order.
-      - Read a simple multiplication expression, identify its two factors and product, and explain what those quantities mean in the accompanying model.
-      
-      ## Essential subject matter
-      
-      **Multiplication** of natural numbers can express equal-sized groups: 3 groups with 4 objects each have a total of 12, represented by 4 + 4 + 4 = 12 and, under the explicitly stated “number of groups × size of group” convention, 3 × 4 = 12. Both 3 and 4 are **factors**; 12 is the **product**. Distinguish “factor” as a numerical role from the particular context (group count or group size). The same product can be pictured with different groupings (4 groups of 3 also totals 12), but **do not use commutativity as a substitute for describing a specific given model**. For a sum such as 2 + 3 + 2, unequal addends do not directly represent repeated addition of one fixed addend. Important recall ideas are equal groups and the factor/product relation, not a table of arbitrary facts.
-      
-      ## Conceptual progression and dependencies
-      
-      Begin with equal sets of tangible objects and repeated counting; show identical-sized groups written as an addition sum. Contrast with unequal groups to establish the necessary condition. Link a single equal-groups situation to a multiplication expression with its stated factor order. Make factor roles explicit and reconnect the symbolic product to the same total. The Screenwriter selects whether learners first manipulate groups or listen to a contextual example.
-      
-      ## Misconceptions, examples and boundaries
-      
-      Children may confuse “three groups of four” with “three plus four,” multiply when groups are unequal, label the product as an input, or assume the position of a factor always fixes its real-world role regardless of interpretation. Compare 4 + 4 + 4 (equal addends) with 4 + 3 + 4 (not equal addends). Start with factors up to 5 and totals up to 25; larger factors and formal multiplication properties are out of scope, as are division algorithms and timed fact drills.
-      
-      ## Localization, accessibility and offline intent
-      
-      Localize “times,” “groups of,” “factor,” and “product” without imposing an English word order on other languages. When rendering mathematics in RTL locales, preserve factors, grouping meaning, and equation order as authored rather than indiscriminately mirroring operators. Represent equal sets with countable objects and give text/speech descriptions; do not rely on visual arrays alone, fine motor dragging, colors, sound-only signals or timed interactions. Keep representation models and feedback fully available offline, and use simple low-device renderings where equivalent.
-      
-      ## Sources and factual verification
-      
-      - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), 2.OA.C.4 (equal arrays and repeated addition) and 3.OA.A.1 (multiplication as equal groups); used as indicative developmental references, not required Curriculum compliance.
-      - [IES/WWC, Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), explicit terminology and concrete-to-abstract models.
-      - [Playground generated English taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), methodological definitions for both multiplication Skills.
-      
-      ## Curriculum / Program compatibility
-      
-      Not specified. As standalone early multiplication foundations, this Lesson may precede formal multiplication fluency; national coverage and insertion into a Program remain unverified.
-      
-      ## Open editorial decisions
-      
-      - Editor: confirm the “number of groups × group size” reading convention in initial examples; translations and future illustrations must document it consistently without asserting it is the only valid convention worldwide.
-      
-      ## Methodologist handoff
-      
-      Draft for explicit editor approval. After approval, the Screenwriter can illustrate why the two notations describe a common quantity and invite reasoning about equal versus unequal groups. Do not invent a third combination Skill or treat one correct multiplication fact as sufficient mastery of both Skills.
+    # Multiplication as Equal Groups and Repeated Addition — Methodologist Brief
+
+    Date: 2026-10-30
+    Slug: multiplicationEqualGroups
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Bridge a child's experience of counting equal groups to the meaning of a multiplication expression, its factors and product. The two Skills naturally support one Lesson: repeated addition illustrates the structure, and reading expressions names and describes that structure. The instruction is conceptual preparation, not a demand for multiplication-table fluency.
+
+    ## Target audience
+
+    Children aged 6–8 in grades 1–2; primarily learners who can add small equal quantities and recognize groups. For children who have not encountered multiplication, spoken explanations and groups of physical objects should precede symbol labels. Plan reading support and sensory alternatives.
+
+    ## Prerequisites
+
+    - Count objects in equal groups, and find a small total through addition or skip-counting.
+    - Distinguish a number of groups from the number of items **in** each group.
+    - Understand plus and equals signs; multiplication signs and formal factor terminology may be new.
+
+    ## Target Skills
+
+    - [readExpression.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/arithmetic/multiply/skills/readExpression.data.ts)
+    - [repeatedAddition.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/arithmetic/multiply/skills/repeatedAddition.data.ts)
+
+    ## Expected learning outcomes
+
+    - Recognize that repeated addition represents equal-sized addends, and identify when different-sized addends do **not** fit that representation without rearrangement.
+    - Describe a situation as a number of equal groups and a number of objects per group.
+    - Represent three groups of four as 4 + 4 + 4 = 12 and link that to a multiplication expression, using a declared convention for factor order.
+    - Read a simple multiplication expression, identify its two factors and product, and explain what those quantities mean in the accompanying model.
+
+    ## Essential subject matter
+
+    **Multiplication** of natural numbers can express equal-sized groups: 3 groups with 4 objects each have a total of 12, represented by 4 + 4 + 4 = 12 and, under the explicitly stated “number of groups × size of group” convention, 3 × 4 = 12. Both 3 and 4 are **factors**; 12 is the **product**. Distinguish “factor” as a numerical role from the particular context (group count or group size). The same product can be pictured with different groupings (4 groups of 3 also totals 12), but **do not use commutativity as a substitute for describing a specific given model**. For a sum such as 2 + 3 + 2, unequal addends do not directly represent repeated addition of one fixed addend. Important recall ideas are equal groups and the factor/product relation, not a table of arbitrary facts.
+
+    ## Conceptual progression and dependencies
+
+    Begin with equal sets of tangible objects and repeated counting; show identical-sized groups written as an addition sum. Contrast with unequal groups to establish the necessary condition. Link a single equal-groups situation to a multiplication expression with its stated factor order. Make factor roles explicit and reconnect the symbolic product to the same total. The Screenwriter selects whether learners first manipulate groups or listen to a contextual example.
+
+    ## Misconceptions, examples and boundaries
+
+    Children may confuse “three groups of four” with “three plus four,” multiply when groups are unequal, label the product as an input, or assume the position of a factor always fixes its real-world role regardless of interpretation. Compare 4 + 4 + 4 (equal addends) with 4 + 3 + 4 (not equal addends). Start with factors up to 5 and totals up to 25; larger factors and formal multiplication properties are out of scope, as are division algorithms and timed fact drills.
+
+    ## Localization, accessibility and offline intent
+
+    Localize “times,” “groups of,” “factor,” and “product” without imposing an English word order on other languages. When rendering mathematics in RTL locales, preserve factors, grouping meaning, and equation order as authored rather than indiscriminately mirroring operators. Represent equal sets with countable objects and give text/speech descriptions; do not rely on visual arrays alone, fine motor dragging, colors, sound-only signals or timed interactions. Keep representation models and feedback fully available offline, and use simple low-device renderings where equivalent.
+
+    ## Sources and factual verification
+
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), 2.OA.C.4 (equal arrays and repeated addition) and 3.OA.A.1 (multiplication as equal groups); used as indicative developmental references, not required Curriculum compliance.
+    - [IES/WWC, Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), explicit terminology and concrete-to-abstract models.
+    - [Playground generated English taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), methodological definitions for both multiplication Skills.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. As standalone early multiplication foundations, this Lesson may precede formal multiplication fluency; national coverage and insertion into a Program remain unverified.
+
+    ## Open editorial decisions
+
+    - Editor: confirm the “number of groups × group size” reading convention in initial examples; translations and future illustrations must document it consistently without asserting it is the only valid convention worldwide.
+
+    ## Methodologist handoff
+
+    Draft for explicit editor approval. After approval, the Screenwriter can illustrate why the two notations describe a common quantity and invite reasoning about equal versus unequal groups. Do not invent a third combination Skill or treat one correct multiplication fact as sufficient mastery of both Skills.
   productionNotes: |
-      All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
-      
-      ## Original Screenwriter introduction
-      
-      # Multiplication as Equal Groups and Repeated Addition — Content
-      
-      Status: Draft
-      Target Lesson: content/playground/Data/Lessons/1/multiplicationEqualGroups/ (Playground)
-      Audience: Children aged 6–8, grades 1–2, able to count small equal groups and add small sums; introductory multiplication, not times-table fluency
-      Approved Methodologist source: Methodologist Brief (full original source: production.methodology) — explicitly treated as approved for workflow testing by the editor, while original file status remains Draft
-      Learning outcomes: identify equal addends versus unequal addends; describe count of groups and size of each; convert 4 + 4 + 4 = 12 to 3 × 4 = 12 under a stated factor convention; read factors and product and relate each to the model
-      Target Skills: The two already approved Skill source files linked in the Methodologist Brief, with unchanged UUIDs and descriptions
-      Program dependence: None
-      
-      ## INSTRUCTIONAL CONCEPT
-      
-      Children can count three _groups of four_ before they know the symbol ×. The group count and the number inside each group explain **4 + 4 + 4 = 12**. We then introduce multiplication **3 × 4 = 12** as a shorter way to name that repeated addition, with the convention **number of groups × items in each group** for this lesson. “Three plus four” is not the same operation. Both 3 and 4 are **factors** (the numbers multiplied); the result 12 is the **product**. The roles “groups” and “in each group” belong to the _model_ and may correspond differently in another convention; do not claim mathematical factor position universally fixes real-world meaning.
-      
-      The decisive contrast is between **equal addends** (4 + 4 + 4) and **unequal addends** (4 + 3 + 4). The second cannot be read as repeated addition of one identical addend **without rearranging the quantities**. This is not a claim that its sum cannot be computed or that it cannot be modeled by some other mathematics. Use factors 1–5 and totals up to 25, with countable objects and no division, advanced properties, arrays-as-formal proof, negative numbers or timed recall drills.
-      
-      ## LEARNER JOURNEY
-      
-      1. **Look and count:** Three equal groups of four objects. The learner counts the total and describes the two different roles of 3 and 4.
-      2. **See the shorter notation:** Watch the same model become 4 + 4 + 4 = 12, then 3 × 4 = 12. Read both factors and product with a concrete model.
-      3. **Find when it does not fit:** Inspect 4 + 3 + 4; compare sizes and explain why a repeated-equal-addend product cannot directly describe those three pictured groups.
-      4. **Build and explain independently:** Model 2 groups of 5, write/read 2 × 5 = 10 and check that 5 + 5 = 10. Retain countable support and corrective feedback.
-      
-      Short text → manipulable model → explanatory feedback is the primary rhythm. No Program narrative, reward, required Quiz, mastery event or fictitious learning analytics.
-      
-      ## SECTION PLAN
-      
-      
-      ## Original Screenwriter concluding notes
-      
-      ## CUSTOM SCENE SPECIFICATIONS
-      
-      - Equal Group Composer (full original source: Scene production.specification) — Sections 1 and 3; countable equal/unequal groups.
-      - Expression Reader (full original source: Scene production.specification) — Sections 2 and 4; connect groups to repeated addition, factors and product.
-      
-      Both are Screenwriter-owned Draft specs for new prop-free Scene implementations, not existing widgets.
-      
-      ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-      
-      1. **“Equal groups have the same number in each group.”** Proposed after Section 1 reveals/compares all group counts.
-      2. **“Factors are multiplied. The product is the result.”** Proposed after Section 2 shows the corresponding model and expression.
-      3. **“Repeated addition for equal groups repeats the same addend.”** Proposed after Section 3 contrasts 4+4+4 and 4+3+4.
-      
-      These Notes are future authoring intent, NOT implemented unlock events, persistence, a compiled revision sheet or spaced repetition. When later implemented, only a learner's unlocked cues belong in that learner's revision view. Revealing a Note is not Skill mastery.
-      
-      ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-      
-      The child counts equal groups, compares notation, rejects an unequal-group model, and reconstructs a new multiplication sentence. The practice prompts and feedback are pedagogical examples, not ready-to-ship validated Question_Config instances. Assessment Architect independently decides Question types, correct/distractor validity, skill-specific evidence for **reading expressions** versus **repeated addition**, retries, scoring and mastery. A single correct 2×5 fact does not establish both atomic Skills. The current Lesson Question adapter supports only select-one-answer despite broader declared Question types; a later spaced review scheduler is not assumed.
-      
-      ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-      
-      All learner-facing English strings are translation source only; real localized equivalents are required across the supported language roster with no English fallback. Translators must preserve “groups of”, “in each”, “factor”, “product” and the specific **group-count × group-size** convention while allowing natural word order. Multiplication equations retain mathematical operand identities under RTL, not naive mirrored numerals. Every model must offer the ordered accessible group-count list and the corresponding symbolic sums; a child can complete each same reasoning action via native keyboard/touch/select controls, screen reader and reduced-motion view, without colors, dragging, narration or speech recognition. Keep numerals large, text short, responsive layout stable, no forced speed or repetitive clicks. All content, scene code, math feedback and localized resources must be available offline after download on weak devices; no external video/images are required.
-      
-      ## PRODUCTION / PLATFORM DEPENDENCIES
-      
-      | Feature                                                             | Readiness / responsible role                                                                          |
-      | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-      | LessonSection_Config and ordered text, markdown and scene rendering | Available in inspected current code; Coding Agent composes after approval                             |
-      | Equal Group Composer and Expression Reader                          | Proposed custom Scenes; Scene Designer implements after separate spec approvals and with tests        |
-      | Scene placements with independent initial state/locales             | Integration check required by Coding Agent; no fictional public mode props                            |
-      | KnowledgeCheckpoint                                                 | Existing unscored widget via Scene wrapper, not needed here                                           |
-      | Quiz_Config and Questions                                           | Type contracts exist; Lesson adapter supports select-one; Assessment Architect owns graded assessment |
-      | Image, video, audio, code                                           | Typed but not generic-rendered; unused                                                                |
-      | YouTube                                                             | Type label only, not supported by Resource_Config; unused                                             |
-      | Notes, spaced review, full offline download                         | Planned capabilities, not invented as implemented                                                     |
-      
-      ## EDITORIAL SOURCES AND OPEN QUESTIONS
-      
-      - Methodologist Brief (full original source: production.methodology), both target Skills and their precise semantics and proposed factor-order convention.
-      - [Generated Playground Skill taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), direct Code-derived references (the Brief links to actual files).
-      - [Create Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/skills/lesson-workflow/create-lesson-content.skill.md).
-      - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) and [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26) are comparison references from the Brief, not a certification of grade alignment or effectiveness.
-      - **Editor:** approve the explicitly stated “number of groups × group size” reading convention and confirm that both existing Skills belong in one independent Lesson. This convention is one clear teaching choice, not a universal linguistic rule.
-      - **Status:** on-disk Brief still says Draft although editor authorized proceeding for testing. Synchronize through a separate Methodologist/editor action before publication, not a Screenwriter rewrite.
-      - **Technical:** approve isolated scene entrypoints and genuine locale/offline accessibility before implementation.
-      
-      ## HANDOFF
-      
-      One Draft Lesson Content and two separately reviewable Draft Scene specifications. No code, Question data, new Skill, Program narrative or edits outside this Lesson. After editorial approval, hand bespoke Scene specs to Design Scene, runtime to Coding Agent, graded assessment to Assessment Architect.
+    All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
+
+    ## Original Screenwriter introduction
+
+    # Multiplication as Equal Groups and Repeated Addition — Content
+
+    Status: Draft
+    Target Lesson: content/playground/Data/Lessons/1/multiplicationEqualGroups/ (Playground)
+    Audience: Children aged 6–8, grades 1–2, able to count small equal groups and add small sums; introductory multiplication, not times-table fluency
+    Approved Methodologist source: Methodologist Brief (full original source: production.methodology) — explicitly treated as approved for workflow testing by the editor, while original file status remains Draft
+    Learning outcomes: identify equal addends versus unequal addends; describe count of groups and size of each; convert 4 + 4 + 4 = 12 to 3 × 4 = 12 under a stated factor convention; read factors and product and relate each to the model
+    Target Skills: The two already approved Skill source files linked in the Methodologist Brief, with unchanged UUIDs and descriptions
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    Children can count three _groups of four_ before they know the symbol ×. The group count and the number inside each group explain **4 + 4 + 4 = 12**. We then introduce multiplication **3 × 4 = 12** as a shorter way to name that repeated addition, with the convention **number of groups × items in each group** for this lesson. “Three plus four” is not the same operation. Both 3 and 4 are **factors** (the numbers multiplied); the result 12 is the **product**. The roles “groups” and “in each group” belong to the _model_ and may correspond differently in another convention; do not claim mathematical factor position universally fixes real-world meaning.
+
+    The decisive contrast is between **equal addends** (4 + 4 + 4) and **unequal addends** (4 + 3 + 4). The second cannot be read as repeated addition of one identical addend **without rearranging the quantities**. This is not a claim that its sum cannot be computed or that it cannot be modeled by some other mathematics. Use factors 1–5 and totals up to 25, with countable objects and no division, advanced properties, arrays-as-formal proof, negative numbers or timed recall drills.
+
+    ## LEARNER JOURNEY
+
+    1. **Look and count:** Three equal groups of four objects. The learner counts the total and describes the two different roles of 3 and 4.
+    2. **See the shorter notation:** Watch the same model become 4 + 4 + 4 = 12, then 3 × 4 = 12. Read both factors and product with a concrete model.
+    3. **Find when it does not fit:** Inspect 4 + 3 + 4; compare sizes and explain why a repeated-equal-addend product cannot directly describe those three pictured groups.
+    4. **Build and explain independently:** Model 2 groups of 5, write/read 2 × 5 = 10 and check that 5 + 5 = 10. Retain countable support and corrective feedback.
+
+    Short text → manipulable model → explanatory feedback is the primary rhythm. No Program narrative, reward, required Quiz, mastery event or fictitious learning analytics.
+
+    ## SECTION PLAN
+
+
+    ## Original Screenwriter concluding notes
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Equal Group Composer (full original source: Scene production.specification) — Sections 1 and 3; countable equal/unequal groups.
+    - Expression Reader (full original source: Scene production.specification) — Sections 2 and 4; connect groups to repeated addition, factors and product.
+
+    Both are Screenwriter-owned Draft specs for new prop-free Scene implementations, not existing widgets.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. **“Equal groups have the same number in each group.”** Proposed after Section 1 reveals/compares all group counts.
+    2. **“Factors are multiplied. The product is the result.”** Proposed after Section 2 shows the corresponding model and expression.
+    3. **“Repeated addition for equal groups repeats the same addend.”** Proposed after Section 3 contrasts 4+4+4 and 4+3+4.
+
+    These Notes are future authoring intent, NOT implemented unlock events, persistence, a compiled revision sheet or spaced repetition. When later implemented, only a learner's unlocked cues belong in that learner's revision view. Revealing a Note is not Skill mastery.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    The child counts equal groups, compares notation, rejects an unequal-group model, and reconstructs a new multiplication sentence. The practice prompts and feedback are pedagogical examples, not ready-to-ship validated Question_Config instances. Assessment Architect independently decides Question types, correct/distractor validity, skill-specific evidence for **reading expressions** versus **repeated addition**, retries, scoring and mastery. A single correct 2×5 fact does not establish both atomic Skills. The current Lesson Question adapter supports only select-one-answer despite broader declared Question types; a later spaced review scheduler is not assumed.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    All learner-facing English strings are translation source only; real localized equivalents are required across the supported language roster with no English fallback. Translators must preserve “groups of”, “in each”, “factor”, “product” and the specific **group-count × group-size** convention while allowing natural word order. Multiplication equations retain mathematical operand identities under RTL, not naive mirrored numerals. Every model must offer the ordered accessible group-count list and the corresponding symbolic sums; a child can complete each same reasoning action via native keyboard/touch/select controls, screen reader and reduced-motion view, without colors, dragging, narration or speech recognition. Keep numerals large, text short, responsive layout stable, no forced speed or repetitive clicks. All content, scene code, math feedback and localized resources must be available offline after download on weak devices; no external video/images are required.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    | Feature                                                             | Readiness / responsible role                                                                          |
+    | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+    | LessonSection_Config and ordered text, markdown and scene rendering | Available in inspected current code; Coding Agent composes after approval                             |
+    | Equal Group Composer and Expression Reader                          | Proposed custom Scenes; Scene Designer implements after separate spec approvals and with tests        |
+    | Scene placements with independent initial state/locales             | Integration check required by Coding Agent; no fictional public mode props                            |
+    | KnowledgeCheckpoint                                                 | Existing unscored widget via Scene wrapper, not needed here                                           |
+    | Quiz_Config and Questions                                           | Type contracts exist; Lesson adapter supports select-one; Assessment Architect owns graded assessment |
+    | Image, video, audio, code                                           | Typed but not generic-rendered; unused                                                                |
+    | YouTube                                                             | Type label only, not supported by Resource_Config; unused                                             |
+    | Notes, spaced review, full offline download                         | Planned capabilities, not invented as implemented                                                     |
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Methodologist Brief (full original source: production.methodology), both target Skills and their precise semantics and proposed factor-order convention.
+    - [Generated Playground Skill taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), direct Code-derived references (the Brief links to actual files).
+    - [Create Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) and [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26) are comparison references from the Brief, not a certification of grade alignment or effectiveness.
+    - **Editor:** approve the explicitly stated “number of groups × group size” reading convention and confirm that both existing Skills belong in one independent Lesson. This convention is one clear teaching choice, not a universal linguistic rule.
+    - **Status:** on-disk Brief still says Draft although editor authorized proceeding for testing. Synchronize through a separate Methodologist/editor action before publication, not a Screenwriter rewrite.
+    - **Technical:** approve isolated scene entrypoints and genuine locale/offline accessibility before implementation.
+
+    ## HANDOFF
+
+    One Draft Lesson Content and two separately reviewable Draft Scene specifications. No code, Question data, new Skill, Program narrative or edits outside this Lesson. After editorial approval, hand bespoke Scene specs to Design Scene, runtime to Coding Agent, graded assessment to Assessment Architect.

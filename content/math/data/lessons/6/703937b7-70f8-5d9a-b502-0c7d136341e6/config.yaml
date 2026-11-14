@@ -1,758 +1,758 @@
 config:
-  id: "703937b7-70f8-5d9a-b502-0c7d136341e6"
-  slug: "countingByCategory"
-  type: "lesson"
+  id: '703937b7-70f8-5d9a-b502-0c7d136341e6'
+  slug: 'countingByCategory'
+  type: 'lesson'
   skills:
-    - "cfe3e619-a2bf-42db-8b4e-6cc3ff707f01"
+    - 'cfe3e619-a2bf-42db-8b4e-6cc3ff707f01'
   params:
     requireQuiz: false
     languages:
-      - "ar"
-      - "be"
-      - "bn"
-      - "de"
-      - "en"
-      - "es"
-      - "et"
-      - "fr"
-      - "he"
-      - "hi"
-      - "id"
-      - "ja"
-      - "ka"
-      - "kk"
-      - "ko"
-      - "lt"
-      - "lv"
-      - "mr"
-      - "ms"
-      - "pl"
-      - "pt"
-      - "qm"
-      - "ta"
-      - "te"
-      - "tr"
-      - "uk"
-      - "ur"
-      - "vi"
-      - "zh"
+      - 'ar'
+      - 'be'
+      - 'bn'
+      - 'de'
+      - 'en'
+      - 'es'
+      - 'et'
+      - 'fr'
+      - 'he'
+      - 'hi'
+      - 'id'
+      - 'ja'
+      - 'ka'
+      - 'kk'
+      - 'ko'
+      - 'lt'
+      - 'lv'
+      - 'mr'
+      - 'ms'
+      - 'pl'
+      - 'pt'
+      - 'qm'
+      - 'ta'
+      - 'te'
+      - 'tr'
+      - 'uk'
+      - 'ur'
+      - 'vi'
+      - 'zh'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Count What Belongs Together"
+      en: 'Count What Belongs Together'
   section:
     items:
       section1WhatAreWeCounting:
         config:
-          id: "59694754-b80f-42fe-8dfc-fb2d5c9a5e87"
-          slug: "section1WhatAreWeCounting"
-          type: "content"
+          id: '59694754-b80f-42fe-8dfc-fb2d5c9a5e87'
+          slug: 'section1WhatAreWeCounting'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What are we counting?"
+              en: 'What are we counting?'
             navigationLabel:
-              en: "What are we counting?"
+              en: 'What are we counting?'
           content:
             items:
               section1Text1:
                 config:
-                  id: "6ff8a54b-844c-45e1-83ff-8dc0384b8d6a"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: '6ff8a54b-844c-45e1-83ff-8dc0384b8d6a'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "We have eight shapes. How many are circles, triangles and squares? First decide which group each shape belongs to."
+                      en: 'We have eight shapes. How many are circles, triangles and squares? First decide which group each shape belongs to.'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "1. **`text` (existing type):** “We have eight shapes. How many are circles, triangles and squares? First decide which group each shape belongs to.”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **`text` (existing type):** “We have eight shapes. How many are circles, triangles and squares? First decide which group each shape belongs to.”'
               section1Markdown2:
                 config:
-                  id: "51c35f38-397a-4979-8181-de16e9384857"
-                  slug: "section1Markdown2"
-                  type: "markdown"
+                  id: '51c35f38-397a-4979-8181-de16e9384857'
+                  slug: 'section1Markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Every object goes into exactly one group, according to its shape. We will count how many times each shape appears."
+                      en: 'Every object goes into exactly one group, according to its shape. We will count how many times each shape appears.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "2. **`markdown` (existing type):** “Every object goes into exactly one group, according to its shape. We will count how many times each shape appears.”"
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '2. **`markdown` (existing type):** “Every object goes into exactly one group, according to its shape. We will count how many times each shape appears.”'
               section1Scene3:
                 config:
-                  id: "bce4c06e-7562-4b24-8f50-53ce96d60884"
-                  slug: "section1Scene3"
-                  type: "scene"
+                  id: 'bce4c06e-7562-4b24-8f50-53ce96d60884'
+                  slug: 'section1Scene3'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Every object goes into exactly one group, according to its shape. We will count how many times each shape appears."
+                        instruction: 'Every object goes into exactly one group, according to its shape. We will count how many times each shape appears.'
                 production:
-                  purpose: "Provisional Scene placement in What are we counting?, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in What are we counting?, self-contained and not implemented'
                   specification: |
-                      # CategoryCounter — Interactive Scene Specification
-                      
-                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
-                      **Lesson:** Count What Belongs Together Content (full original source: this Lesson's production notes)
-                      **Methodologist scope:** Draft Brief (full original source: production.methodology)
-                      **Canonical target Skill:** [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
-                      **Implementation:** Proposed, not implemented
-                      
-                      ## Educational purpose and why a Scene is justified
-                      
-                      Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total.
-                      
-                      Choose an identified token by button, then choose one labelled category; undo the last assignment or move that token to the correct category without duplication; show category sums; optionally reveal worked reconciliation; reset per dataset.
-                      
-                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
-                      
-                      ## Content and visual model
-                      
-                      Treat a fixed collection of eight shapes as observations. Sorting by shape is deliberate, with no ambiguous hybrid shapes. A running tally makes missing or double-counted objects immediately visible. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
-                      
-                      ## Required observable states and correct explanations
-                      
-                      | State             | Required representation                                                        | Mathematical truth                                |
-                      | ----------------- | ------------------------------------------------------------------------------ | ------------------------------------------------- |
-                      | Original unsorted | Eight named tokens: C1–C4 circles, T1–T3 triangles, S1 square; all unassigned. | Total = 8; category totals start 0.               |
-                      | Partly sorted     | Any subset assigned; counters equal actual distinct assigned tokens.           | No token can belong to two groups simultaneously. |
-                      | Fully sorted      | C = 4, T = 3, S = 1; assigned count 8, unassigned 0.                           | 4+3+1=8 reconciles with original total.           |
-                      | New collection    | Stars 5, circles 2, squares 2; initial counts zero.                            | Independent transfer total is 9.                  |
-                      
-                      ## Interaction protocol (pedagogical, not an API)
-                      
-                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
-                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
-                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
-                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
-                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
-                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
-                      
-                      ## Specific explanatory feedback and edge cases
-                      
-                      - **What are we counting?:** If an object is assigned to the wrong category, state its shape and prompt a reclassification; do not remove or duplicate it.
-                      - **Count each shape once:** If one remains: “Seven have been counted and one is still waiting. Count the remaining one before checking the total.”
-                      - **Does everything add up?:** For 'no' when 4+3+1=8: “Add the groups in order: 4 + 3 = 7, and 7 + 1 = 8.”
-                      - **New objects, same method:** If total differs, display assigned and unassigned counts; offer undo and retry instead of announcing a score.
-                      
-                      **Do not teach outside this boundary:** Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships.
-                      
-                      ## Nonvisual and keyboard-equivalent learning path
-                      
-                      An accessible item list labels every token by shape and assigned category. Keyboard controls assign each uniquely identified item to exactly one group; announce updated numeric counts, not only graphical movement.
-                      
-                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
-                      
-                      ## Localization, RTL, mobile, offline and performance
-                      
-                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
-                      
-                      ## Build and review handoff
-                      
-                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                      3. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Category Counter presents 4 circles, 3 triangles and 1 square, all visually distinct and also individually named for screen-reader inspection. Select any one object and choose its group.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # CategoryCounter — Interactive Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                    **Lesson:** Count What Belongs Together Content (full original source: this Lesson's production notes)
+                    **Methodologist scope:** Draft Brief (full original source: production.methodology)
+                    **Canonical target Skill:** [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
+                    **Implementation:** Proposed, not implemented
+
+                    ## Educational purpose and why a Scene is justified
+
+                    Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total.
+
+                    Choose an identified token by button, then choose one labelled category; undo the last assignment or move that token to the correct category without duplication; show category sums; optionally reveal worked reconciliation; reset per dataset.
+
+                    This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+
+                    ## Content and visual model
+
+                    Treat a fixed collection of eight shapes as observations. Sorting by shape is deliberate, with no ambiguous hybrid shapes. A running tally makes missing or double-counted objects immediately visible. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+
+                    ## Required observable states and correct explanations
+
+                    | State             | Required representation                                                        | Mathematical truth                                |
+                    | ----------------- | ------------------------------------------------------------------------------ | ------------------------------------------------- |
+                    | Original unsorted | Eight named tokens: C1–C4 circles, T1–T3 triangles, S1 square; all unassigned. | Total = 8; category totals start 0.               |
+                    | Partly sorted     | Any subset assigned; counters equal actual distinct assigned tokens.           | No token can belong to two groups simultaneously. |
+                    | Fully sorted      | C = 4, T = 3, S = 1; assigned count 8, unassigned 0.                           | 4+3+1=8 reconciles with original total.           |
+                    | New collection    | Stars 5, circles 2, squares 2; initial counts zero.                            | Independent transfer total is 9.                  |
+
+                    ## Interaction protocol (pedagogical, not an API)
+
+                    1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                    2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                    3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                    4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                    5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                    6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+
+                    ## Specific explanatory feedback and edge cases
+
+                    - **What are we counting?:** If an object is assigned to the wrong category, state its shape and prompt a reclassification; do not remove or duplicate it.
+                    - **Count each shape once:** If one remains: “Seven have been counted and one is still waiting. Count the remaining one before checking the total.”
+                    - **Does everything add up?:** For 'no' when 4+3+1=8: “Add the groups in order: 4 + 3 = 7, and 7 + 1 = 8.”
+                    - **New objects, same method:** If total differs, display assigned and unassigned counts; offer undo and retry instead of announcing a score.
+
+                    **Do not teach outside this boundary:** Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships.
+
+                    ## Nonvisual and keyboard-equivalent learning path
+
+                    An accessible item list labels every token by shape and assigned category. Keyboard controls assign each uniquely identified item to exactly one group; announce updated numeric counts, not only graphical movement.
+
+                    Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+
+                    ## Localization, RTL, mobile, offline and performance
+
+                    All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+
+                    ## Build and review handoff
+
+                    This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    3. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Category Counter presents 4 circles, 3 triangles and 1 square, all visually distinct and also individually named for screen-reader inspection. Select any one object and choose its group.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
             order:
-              - "section1Text1"
-              - "section1Markdown2"
-              - "section1Scene3"
+              - 'section1Text1'
+              - 'section1Markdown2'
+              - 'section1Scene3'
         production:
-          purpose: "What are we counting?"
-          pedagogicalIntent: "What are we counting?"
+          purpose: 'What are we counting?'
+          pedagogicalIntent: 'What are we counting?'
           productionNotes: |
-              ### Section 1 — What are we counting?
-              
-              **Learning purpose:** Define the investigation and categorical rule.
-              
-              **Vertical Resource sequence:**
-              
-              1. **`text` (existing type):** “We have eight shapes. How many are circles, triangles and squares? First decide which group each shape belongs to.”
-              
-              2. **`markdown` (existing type):** “Every object goes into exactly one group, according to its shape. We will count how many times each shape appears.”
-              
-              3. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Category Counter presents 4 circles, 3 triangles and 1 square, all visually distinct and also individually named for screen-reader inspection. Select any one object and choose its group.
-              
-              **Learner action:** Identify categories by shape, not color, and place the first object.
-              
-              **Immediate explanatory feedback:** If an object is assigned to the wrong category, state its shape and prompt a reclassification; do not remove or duplicate it. A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
-              
-              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
-              
+            ### Section 1 — What are we counting?
+
+            **Learning purpose:** Define the investigation and categorical rule.
+
+            **Vertical Resource sequence:**
+
+            1. **`text` (existing type):** “We have eight shapes. How many are circles, triangles and squares? First decide which group each shape belongs to.”
+
+            2. **`markdown` (existing type):** “Every object goes into exactly one group, according to its shape. We will count how many times each shape appears.”
+
+            3. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Category Counter presents 4 circles, 3 triangles and 1 square, all visually distinct and also individually named for screen-reader inspection. Select any one object and choose its group.
+
+            **Learner action:** Identify categories by shape, not color, and place the first object.
+
+            **Immediate explanatory feedback:** If an object is assigned to the wrong category, state its shape and prompt a reclassification; do not remove or duplicate it. A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+
+            **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+
       section2CountEachShapeOnce:
         config:
-          id: "dae7a959-c4cf-469d-8d7e-bfaac356106e"
-          slug: "section2CountEachShapeOnce"
-          type: "content"
+          id: 'dae7a959-c4cf-469d-8d7e-bfaac356106e'
+          slug: 'section2CountEachShapeOnce'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Count each shape once"
+              en: 'Count each shape once'
             navigationLabel:
-              en: "Count each shape once"
+              en: 'Count each shape once'
           content:
             items:
               section2Text1:
                 config:
-                  id: "a62925f0-731d-4ae0-83ad-d80186990711"
-                  slug: "section2Text1"
-                  type: "text"
+                  id: 'a62925f0-731d-4ae0-83ad-d80186990711'
+                  slug: 'section2Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Sort the remaining shapes. Watch a count grow each time you put one shape in its matching group."
+                      en: 'Sort the remaining shapes. Watch a count grow each time you put one shape in its matching group.'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "1. **`text` (existing type):** “Sort the remaining shapes. Watch a count grow each time you put one shape in its matching group.”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **`text` (existing type):** “Sort the remaining shapes. Watch a count grow each time you put one shape in its matching group.”'
               section2Scene2:
                 config:
-                  id: "5c49053a-9366-4196-82e5-09659dca2dc9"
-                  slug: "section2Scene2"
-                  type: "scene"
+                  id: '5c49053a-9366-4196-82e5-09659dca2dc9'
+                  slug: 'section2Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Sort the remaining shapes. Watch a count grow each time you put one shape in its matching group."
+                        instruction: 'Sort the remaining shapes. Watch a count grow each time you put one shape in its matching group.'
                 production:
-                  purpose: "Provisional Scene placement in Count each shape once, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in Count each shape once, self-contained and not implemented'
                   specification: |
-                      # CategoryCounter — Interactive Scene Specification
-                      
-                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
-                      **Lesson:** Count What Belongs Together Content (full original source: this Lesson's production notes)
-                      **Methodologist scope:** Draft Brief (full original source: production.methodology)
-                      **Canonical target Skill:** [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
-                      **Implementation:** Proposed, not implemented
-                      
-                      ## Educational purpose and why a Scene is justified
-                      
-                      Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total.
-                      
-                      Choose an identified token by button, then choose one labelled category; undo the last assignment or move that token to the correct category without duplication; show category sums; optionally reveal worked reconciliation; reset per dataset.
-                      
-                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
-                      
-                      ## Content and visual model
-                      
-                      Treat a fixed collection of eight shapes as observations. Sorting by shape is deliberate, with no ambiguous hybrid shapes. A running tally makes missing or double-counted objects immediately visible. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
-                      
-                      ## Required observable states and correct explanations
-                      
-                      | State             | Required representation                                                        | Mathematical truth                                |
-                      | ----------------- | ------------------------------------------------------------------------------ | ------------------------------------------------- |
-                      | Original unsorted | Eight named tokens: C1–C4 circles, T1–T3 triangles, S1 square; all unassigned. | Total = 8; category totals start 0.               |
-                      | Partly sorted     | Any subset assigned; counters equal actual distinct assigned tokens.           | No token can belong to two groups simultaneously. |
-                      | Fully sorted      | C = 4, T = 3, S = 1; assigned count 8, unassigned 0.                           | 4+3+1=8 reconciles with original total.           |
-                      | New collection    | Stars 5, circles 2, squares 2; initial counts zero.                            | Independent transfer total is 9.                  |
-                      
-                      ## Interaction protocol (pedagogical, not an API)
-                      
-                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
-                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
-                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
-                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
-                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
-                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
-                      
-                      ## Specific explanatory feedback and edge cases
-                      
-                      - **What are we counting?:** If an object is assigned to the wrong category, state its shape and prompt a reclassification; do not remove or duplicate it.
-                      - **Count each shape once:** If one remains: “Seven have been counted and one is still waiting. Count the remaining one before checking the total.”
-                      - **Does everything add up?:** For 'no' when 4+3+1=8: “Add the groups in order: 4 + 3 = 7, and 7 + 1 = 8.”
-                      - **New objects, same method:** If total differs, display assigned and unassigned counts; offer undo and retry instead of announcing a score.
-                      
-                      **Do not teach outside this boundary:** Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships.
-                      
-                      ## Nonvisual and keyboard-equivalent learning path
-                      
-                      An accessible item list labels every token by shape and assigned category. Keyboard controls assign each uniquely identified item to exactly one group; announce updated numeric counts, not only graphical movement.
-                      
-                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
-                      
-                      ## Localization, RTL, mobile, offline and performance
-                      
-                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
-                      
-                      ## Build and review handoff
-                      
-                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                      2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Make the eight assignments. Each move has an undo button; each source object has an assigned/unassigned state; the category counter rises only on a valid assignment.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # CategoryCounter — Interactive Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                    **Lesson:** Count What Belongs Together Content (full original source: this Lesson's production notes)
+                    **Methodologist scope:** Draft Brief (full original source: production.methodology)
+                    **Canonical target Skill:** [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
+                    **Implementation:** Proposed, not implemented
+
+                    ## Educational purpose and why a Scene is justified
+
+                    Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total.
+
+                    Choose an identified token by button, then choose one labelled category; undo the last assignment or move that token to the correct category without duplication; show category sums; optionally reveal worked reconciliation; reset per dataset.
+
+                    This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+
+                    ## Content and visual model
+
+                    Treat a fixed collection of eight shapes as observations. Sorting by shape is deliberate, with no ambiguous hybrid shapes. A running tally makes missing or double-counted objects immediately visible. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+
+                    ## Required observable states and correct explanations
+
+                    | State             | Required representation                                                        | Mathematical truth                                |
+                    | ----------------- | ------------------------------------------------------------------------------ | ------------------------------------------------- |
+                    | Original unsorted | Eight named tokens: C1–C4 circles, T1–T3 triangles, S1 square; all unassigned. | Total = 8; category totals start 0.               |
+                    | Partly sorted     | Any subset assigned; counters equal actual distinct assigned tokens.           | No token can belong to two groups simultaneously. |
+                    | Fully sorted      | C = 4, T = 3, S = 1; assigned count 8, unassigned 0.                           | 4+3+1=8 reconciles with original total.           |
+                    | New collection    | Stars 5, circles 2, squares 2; initial counts zero.                            | Independent transfer total is 9.                  |
+
+                    ## Interaction protocol (pedagogical, not an API)
+
+                    1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                    2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                    3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                    4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                    5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                    6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+
+                    ## Specific explanatory feedback and edge cases
+
+                    - **What are we counting?:** If an object is assigned to the wrong category, state its shape and prompt a reclassification; do not remove or duplicate it.
+                    - **Count each shape once:** If one remains: “Seven have been counted and one is still waiting. Count the remaining one before checking the total.”
+                    - **Does everything add up?:** For 'no' when 4+3+1=8: “Add the groups in order: 4 + 3 = 7, and 7 + 1 = 8.”
+                    - **New objects, same method:** If total differs, display assigned and unassigned counts; offer undo and retry instead of announcing a score.
+
+                    **Do not teach outside this boundary:** Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships.
+
+                    ## Nonvisual and keyboard-equivalent learning path
+
+                    An accessible item list labels every token by shape and assigned category. Keyboard controls assign each uniquely identified item to exactly one group; announce updated numeric counts, not only graphical movement.
+
+                    Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+
+                    ## Localization, RTL, mobile, offline and performance
+
+                    All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+
+                    ## Build and review handoff
+
+                    This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Make the eight assignments. Each move has an undo button; each source object has an assigned/unassigned state; the category counter rises only on a valid assignment.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section2Markdown3:
                 config:
-                  id: "759532a4-7abc-4c3d-8a91-921db5b83c84"
-                  slug: "section2Markdown3"
-                  type: "markdown"
+                  id: '759532a4-7abc-4c3d-8a91-921db5b83c84'
+                  slug: 'section2Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "There are 4 circles, 3 triangles and 1 square. These numbers tell how often each kind appears."
+                      en: 'There are 4 circles, 3 triangles and 1 square. These numbers tell how often each kind appears.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "3. **`markdown` (existing type):** “There are 4 circles, 3 triangles and 1 square. These numbers tell how often each kind appears.”"
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '3. **`markdown` (existing type):** “There are 4 circles, 3 triangles and 1 square. These numbers tell how often each kind appears.”'
             order:
-              - "section2Text1"
-              - "section2Scene2"
-              - "section2Markdown3"
+              - 'section2Text1'
+              - 'section2Scene2'
+              - 'section2Markdown3'
         production:
-          purpose: "Count each shape once"
-          pedagogicalIntent: "Count each shape once"
+          purpose: 'Count each shape once'
+          pedagogicalIntent: 'Count each shape once'
           productionNotes: |
-              ### Section 2 — Count each shape once
-              
-              **Learning purpose:** Develop an accurate frequency count.
-              
-              **Vertical Resource sequence:**
-              
-              1. **`text` (existing type):** “Sort the remaining shapes. Watch a count grow each time you put one shape in its matching group.”
-              
-              2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Make the eight assignments. Each move has an undo button; each source object has an assigned/unassigned state; the category counter rises only on a valid assignment.
-              
-              3. **`markdown` (existing type):** “There are 4 circles, 3 triangles and 1 square. These numbers tell how often each kind appears.”
-              
-              **Learner action:** Finish all eight assignments and inspect each counter.
-              
-              **Immediate explanatory feedback:** If one remains: “Seven have been counted and one is still waiting. Count the remaining one before checking the total.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
-              
-              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
-              
+            ### Section 2 — Count each shape once
+
+            **Learning purpose:** Develop an accurate frequency count.
+
+            **Vertical Resource sequence:**
+
+            1. **`text` (existing type):** “Sort the remaining shapes. Watch a count grow each time you put one shape in its matching group.”
+
+            2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Make the eight assignments. Each move has an undo button; each source object has an assigned/unassigned state; the category counter rises only on a valid assignment.
+
+            3. **`markdown` (existing type):** “There are 4 circles, 3 triangles and 1 square. These numbers tell how often each kind appears.”
+
+            **Learner action:** Finish all eight assignments and inspect each counter.
+
+            **Immediate explanatory feedback:** If one remains: “Seven have been counted and one is still waiting. Count the remaining one before checking the total.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+
+            **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+
       section3DoesEverythingAddUp:
         config:
-          id: "35ae2714-1b3a-47fd-8336-1b0e3da22be7"
-          slug: "section3DoesEverythingAddUp"
-          type: "content"
+          id: '35ae2714-1b3a-47fd-8336-1b0e3da22be7'
+          slug: 'section3DoesEverythingAddUp'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Does everything add up?"
+              en: 'Does everything add up?'
             navigationLabel:
-              en: "Does everything add up?"
+              en: 'Does everything add up?'
           content:
             items:
               section3Text1:
                 config:
-                  id: "0b3ca12e-43b7-459e-8200-c415ba8be0a5"
-                  slug: "section3Text1"
-                  type: "text"
+                  id: '0b3ca12e-43b7-459e-8200-c415ba8be0a5'
+                  slug: 'section3Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The first collection had 8 shapes. Do the group counts make 8 in all?"
+                      en: 'The first collection had 8 shapes. Do the group counts make 8 in all?'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "1. **`text` (existing type):** “The first collection had 8 shapes. Do the group counts make 8 in all?”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **`text` (existing type):** “The first collection had 8 shapes. Do the group counts make 8 in all?”'
               section3Scene2:
                 config:
-                  id: "80bfae5e-60d1-4d56-8e57-6e7eae391d76"
-                  slug: "section3Scene2"
-                  type: "scene"
+                  id: '80bfae5e-60d1-4d56-8e57-6e7eae391d76'
+                  slug: 'section3Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "The first collection had 8 shapes. Do the group counts make 8 in all?"
+                        instruction: 'The first collection had 8 shapes. Do the group counts make 8 in all?'
                 production:
-                  purpose: "Provisional Scene placement in Does everything add up?, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in Does everything add up?, self-contained and not implemented'
                   specification: |
-                      # CategoryCounter — Interactive Scene Specification
-                      
-                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
-                      **Lesson:** Count What Belongs Together Content (full original source: this Lesson's production notes)
-                      **Methodologist scope:** Draft Brief (full original source: production.methodology)
-                      **Canonical target Skill:** [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
-                      **Implementation:** Proposed, not implemented
-                      
-                      ## Educational purpose and why a Scene is justified
-                      
-                      Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total.
-                      
-                      Choose an identified token by button, then choose one labelled category; undo the last assignment or move that token to the correct category without duplication; show category sums; optionally reveal worked reconciliation; reset per dataset.
-                      
-                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
-                      
-                      ## Content and visual model
-                      
-                      Treat a fixed collection of eight shapes as observations. Sorting by shape is deliberate, with no ambiguous hybrid shapes. A running tally makes missing or double-counted objects immediately visible. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
-                      
-                      ## Required observable states and correct explanations
-                      
-                      | State             | Required representation                                                        | Mathematical truth                                |
-                      | ----------------- | ------------------------------------------------------------------------------ | ------------------------------------------------- |
-                      | Original unsorted | Eight named tokens: C1–C4 circles, T1–T3 triangles, S1 square; all unassigned. | Total = 8; category totals start 0.               |
-                      | Partly sorted     | Any subset assigned; counters equal actual distinct assigned tokens.           | No token can belong to two groups simultaneously. |
-                      | Fully sorted      | C = 4, T = 3, S = 1; assigned count 8, unassigned 0.                           | 4+3+1=8 reconciles with original total.           |
-                      | New collection    | Stars 5, circles 2, squares 2; initial counts zero.                            | Independent transfer total is 9.                  |
-                      
-                      ## Interaction protocol (pedagogical, not an API)
-                      
-                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
-                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
-                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
-                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
-                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
-                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
-                      
-                      ## Specific explanatory feedback and edge cases
-                      
-                      - **What are we counting?:** If an object is assigned to the wrong category, state its shape and prompt a reclassification; do not remove or duplicate it.
-                      - **Count each shape once:** If one remains: “Seven have been counted and one is still waiting. Count the remaining one before checking the total.”
-                      - **Does everything add up?:** For 'no' when 4+3+1=8: “Add the groups in order: 4 + 3 = 7, and 7 + 1 = 8.”
-                      - **New objects, same method:** If total differs, display assigned and unassigned counts; offer undo and retry instead of announcing a score.
-                      
-                      **Do not teach outside this boundary:** Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships.
-                      
-                      ## Nonvisual and keyboard-equivalent learning path
-                      
-                      An accessible item list labels every token by shape and assigned category. Keyboard controls assign each uniquely identified item to exactly one group; announce updated numeric counts, not only graphical movement.
-                      
-                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
-                      
-                      ## Localization, RTL, mobile, offline and performance
-                      
-                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
-                      
-                      ## Build and review handoff
-                      
-                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                      2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Reveal a reconciliation view: 4 circles + 3 triangles + 1 square = 8; compare assigned count with original count and flag any unassigned observation without punitive error state.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # CategoryCounter — Interactive Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                    **Lesson:** Count What Belongs Together Content (full original source: this Lesson's production notes)
+                    **Methodologist scope:** Draft Brief (full original source: production.methodology)
+                    **Canonical target Skill:** [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
+                    **Implementation:** Proposed, not implemented
+
+                    ## Educational purpose and why a Scene is justified
+
+                    Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total.
+
+                    Choose an identified token by button, then choose one labelled category; undo the last assignment or move that token to the correct category without duplication; show category sums; optionally reveal worked reconciliation; reset per dataset.
+
+                    This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+
+                    ## Content and visual model
+
+                    Treat a fixed collection of eight shapes as observations. Sorting by shape is deliberate, with no ambiguous hybrid shapes. A running tally makes missing or double-counted objects immediately visible. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+
+                    ## Required observable states and correct explanations
+
+                    | State             | Required representation                                                        | Mathematical truth                                |
+                    | ----------------- | ------------------------------------------------------------------------------ | ------------------------------------------------- |
+                    | Original unsorted | Eight named tokens: C1–C4 circles, T1–T3 triangles, S1 square; all unassigned. | Total = 8; category totals start 0.               |
+                    | Partly sorted     | Any subset assigned; counters equal actual distinct assigned tokens.           | No token can belong to two groups simultaneously. |
+                    | Fully sorted      | C = 4, T = 3, S = 1; assigned count 8, unassigned 0.                           | 4+3+1=8 reconciles with original total.           |
+                    | New collection    | Stars 5, circles 2, squares 2; initial counts zero.                            | Independent transfer total is 9.                  |
+
+                    ## Interaction protocol (pedagogical, not an API)
+
+                    1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                    2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                    3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                    4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                    5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                    6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+
+                    ## Specific explanatory feedback and edge cases
+
+                    - **What are we counting?:** If an object is assigned to the wrong category, state its shape and prompt a reclassification; do not remove or duplicate it.
+                    - **Count each shape once:** If one remains: “Seven have been counted and one is still waiting. Count the remaining one before checking the total.”
+                    - **Does everything add up?:** For 'no' when 4+3+1=8: “Add the groups in order: 4 + 3 = 7, and 7 + 1 = 8.”
+                    - **New objects, same method:** If total differs, display assigned and unassigned counts; offer undo and retry instead of announcing a score.
+
+                    **Do not teach outside this boundary:** Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships.
+
+                    ## Nonvisual and keyboard-equivalent learning path
+
+                    An accessible item list labels every token by shape and assigned category. Keyboard controls assign each uniquely identified item to exactly one group; announce updated numeric counts, not only graphical movement.
+
+                    Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+
+                    ## Localization, RTL, mobile, offline and performance
+
+                    All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+
+                    ## Build and review handoff
+
+                    This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Reveal a reconciliation view: 4 circles + 3 triangles + 1 square = 8; compare assigned count with original count and flag any unassigned observation without punitive error state.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section3Markdown3:
                 config:
-                  id: "33cfbc44-7eb3-4fb6-8372-677b7e0e6489"
-                  slug: "section3Markdown3"
-                  type: "markdown"
+                  id: '33cfbc44-7eb3-4fb6-8372-677b7e0e6489'
+                  slug: 'section3Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "4 + 3 + 1 = 8. We counted every shape once. If the totals did not match, a shape might have been missed or counted twice."
+                      en: '4 + 3 + 1 = 8. We counted every shape once. If the totals did not match, a shape might have been missed or counted twice.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "3. **`markdown` (existing type):** “4 + 3 + 1 = 8. We counted every shape once. If the totals did not match, a shape might have been missed or counted twice.”"
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '3. **`markdown` (existing type):** “4 + 3 + 1 = 8. We counted every shape once. If the totals did not match, a shape might have been missed or counted twice.”'
             order:
-              - "section3Text1"
-              - "section3Scene2"
-              - "section3Markdown3"
+              - 'section3Text1'
+              - 'section3Scene2'
+              - 'section3Markdown3'
         production:
-          purpose: "Does everything add up?"
-          pedagogicalIntent: "Does everything add up?"
+          purpose: 'Does everything add up?'
+          pedagogicalIntent: 'Does everything add up?'
           productionNotes: |
-              ### Section 3 — Does everything add up?
-              
-              **Learning purpose:** Reconcile category subtotals with the whole collection.
-              
-              **Vertical Resource sequence:**
-              
-              1. **`text` (existing type):** “The first collection had 8 shapes. Do the group counts make 8 in all?”
-              
-              2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Reveal a reconciliation view: 4 circles + 3 triangles + 1 square = 8; compare assigned count with original count and flag any unassigned observation without punitive error state.
-              
-              3. **`markdown` (existing type):** “4 + 3 + 1 = 8. We counted every shape once. If the totals did not match, a shape might have been missed or counted twice.”
-              
-              **Learner action:** Compare displayed counts and choose whether the total agrees.
-              
-              **Immediate explanatory feedback:** For 'no' when 4+3+1=8: “Add the groups in order: 4 + 3 = 7, and 7 + 1 = 8.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
-              
-              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
-              
+            ### Section 3 — Does everything add up?
+
+            **Learning purpose:** Reconcile category subtotals with the whole collection.
+
+            **Vertical Resource sequence:**
+
+            1. **`text` (existing type):** “The first collection had 8 shapes. Do the group counts make 8 in all?”
+
+            2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Reveal a reconciliation view: 4 circles + 3 triangles + 1 square = 8; compare assigned count with original count and flag any unassigned observation without punitive error state.
+
+            3. **`markdown` (existing type):** “4 + 3 + 1 = 8. We counted every shape once. If the totals did not match, a shape might have been missed or counted twice.”
+
+            **Learner action:** Compare displayed counts and choose whether the total agrees.
+
+            **Immediate explanatory feedback:** For 'no' when 4+3+1=8: “Add the groups in order: 4 + 3 = 7, and 7 + 1 = 8.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+
+            **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+
       section4NewObjectsSameMethod:
         config:
-          id: "ca56e1aa-0898-4cbd-80cd-232e22039e39"
-          slug: "section4NewObjectsSameMethod"
-          type: "content"
+          id: 'ca56e1aa-0898-4cbd-80cd-232e22039e39'
+          slug: 'section4NewObjectsSameMethod'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "New objects, same method"
+              en: 'New objects, same method'
             navigationLabel:
-              en: "New objects, same method"
+              en: 'New objects, same method'
           content:
             items:
               section4Markdown1:
                 config:
-                  id: "7d16fb0d-9f41-4858-844a-9c32561ddf67"
-                  slug: "section4Markdown1"
-                  type: "markdown"
+                  id: '7d16fb0d-9f41-4858-844a-9c32561ddf67'
+                  slug: 'section4Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A new collection has stars, circles and squares. Sort it and count each kind without looking at the old answers."
+                      en: 'A new collection has stars, circles and squares. Sort it and count each kind without looking at the old answers.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "1. **`markdown` (existing type):** “A new collection has stars, circles and squares. Sort it and count each kind without looking at the old answers.”"
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '1. **`markdown` (existing type):** “A new collection has stars, circles and squares. Sort it and count each kind without looking at the old answers.”'
               section4Scene2:
                 config:
-                  id: "4d83678b-879e-4311-83c7-da9339da2e09"
-                  slug: "section4Scene2"
-                  type: "scene"
+                  id: '4d83678b-879e-4311-83c7-da9339da2e09'
+                  slug: 'section4Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "A new collection has stars, circles and squares. Sort it and count each kind without looking at the old answers."
+                        instruction: 'A new collection has stars, circles and squares. Sort it and count each kind without looking at the old answers.'
                 production:
-                  purpose: "Provisional Scene placement in New objects, same method, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in New objects, same method, self-contained and not implemented'
                   specification: |
-                      # CategoryCounter — Interactive Scene Specification
-                      
-                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
-                      **Lesson:** Count What Belongs Together Content (full original source: this Lesson's production notes)
-                      **Methodologist scope:** Draft Brief (full original source: production.methodology)
-                      **Canonical target Skill:** [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
-                      **Implementation:** Proposed, not implemented
-                      
-                      ## Educational purpose and why a Scene is justified
-                      
-                      Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total.
-                      
-                      Choose an identified token by button, then choose one labelled category; undo the last assignment or move that token to the correct category without duplication; show category sums; optionally reveal worked reconciliation; reset per dataset.
-                      
-                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
-                      
-                      ## Content and visual model
-                      
-                      Treat a fixed collection of eight shapes as observations. Sorting by shape is deliberate, with no ambiguous hybrid shapes. A running tally makes missing or double-counted objects immediately visible. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
-                      
-                      ## Required observable states and correct explanations
-                      
-                      | State             | Required representation                                                        | Mathematical truth                                |
-                      | ----------------- | ------------------------------------------------------------------------------ | ------------------------------------------------- |
-                      | Original unsorted | Eight named tokens: C1–C4 circles, T1–T3 triangles, S1 square; all unassigned. | Total = 8; category totals start 0.               |
-                      | Partly sorted     | Any subset assigned; counters equal actual distinct assigned tokens.           | No token can belong to two groups simultaneously. |
-                      | Fully sorted      | C = 4, T = 3, S = 1; assigned count 8, unassigned 0.                           | 4+3+1=8 reconciles with original total.           |
-                      | New collection    | Stars 5, circles 2, squares 2; initial counts zero.                            | Independent transfer total is 9.                  |
-                      
-                      ## Interaction protocol (pedagogical, not an API)
-                      
-                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
-                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
-                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
-                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
-                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
-                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
-                      
-                      ## Specific explanatory feedback and edge cases
-                      
-                      - **What are we counting?:** If an object is assigned to the wrong category, state its shape and prompt a reclassification; do not remove or duplicate it.
-                      - **Count each shape once:** If one remains: “Seven have been counted and one is still waiting. Count the remaining one before checking the total.”
-                      - **Does everything add up?:** For 'no' when 4+3+1=8: “Add the groups in order: 4 + 3 = 7, and 7 + 1 = 8.”
-                      - **New objects, same method:** If total differs, display assigned and unassigned counts; offer undo and retry instead of announcing a score.
-                      
-                      **Do not teach outside this boundary:** Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships.
-                      
-                      ## Nonvisual and keyboard-equivalent learning path
-                      
-                      An accessible item list labels every token by shape and assigned category. Keyboard controls assign each uniquely identified item to exactly one group; announce updated numeric counts, not only graphical movement.
-                      
-                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
-                      
-                      ## Localization, RTL, mobile, offline and performance
-                      
-                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
-                      
-                      ## Build and review handoff
-                      
-                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                      2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Use a new fixed dataset of 5 stars, 2 circles, 2 squares. Counters start at zero; optional hint says 'each shape belongs to one group'.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # CategoryCounter — Interactive Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                    **Lesson:** Count What Belongs Together Content (full original source: this Lesson's production notes)
+                    **Methodologist scope:** Draft Brief (full original source: production.methodology)
+                    **Canonical target Skill:** [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
+                    **Implementation:** Proposed, not implemented
+
+                    ## Educational purpose and why a Scene is justified
+
+                    Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total.
+
+                    Choose an identified token by button, then choose one labelled category; undo the last assignment or move that token to the correct category without duplication; show category sums; optionally reveal worked reconciliation; reset per dataset.
+
+                    This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+
+                    ## Content and visual model
+
+                    Treat a fixed collection of eight shapes as observations. Sorting by shape is deliberate, with no ambiguous hybrid shapes. A running tally makes missing or double-counted objects immediately visible. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+
+                    ## Required observable states and correct explanations
+
+                    | State             | Required representation                                                        | Mathematical truth                                |
+                    | ----------------- | ------------------------------------------------------------------------------ | ------------------------------------------------- |
+                    | Original unsorted | Eight named tokens: C1–C4 circles, T1–T3 triangles, S1 square; all unassigned. | Total = 8; category totals start 0.               |
+                    | Partly sorted     | Any subset assigned; counters equal actual distinct assigned tokens.           | No token can belong to two groups simultaneously. |
+                    | Fully sorted      | C = 4, T = 3, S = 1; assigned count 8, unassigned 0.                           | 4+3+1=8 reconciles with original total.           |
+                    | New collection    | Stars 5, circles 2, squares 2; initial counts zero.                            | Independent transfer total is 9.                  |
+
+                    ## Interaction protocol (pedagogical, not an API)
+
+                    1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                    2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                    3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                    4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                    5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                    6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+
+                    ## Specific explanatory feedback and edge cases
+
+                    - **What are we counting?:** If an object is assigned to the wrong category, state its shape and prompt a reclassification; do not remove or duplicate it.
+                    - **Count each shape once:** If one remains: “Seven have been counted and one is still waiting. Count the remaining one before checking the total.”
+                    - **Does everything add up?:** For 'no' when 4+3+1=8: “Add the groups in order: 4 + 3 = 7, and 7 + 1 = 8.”
+                    - **New objects, same method:** If total differs, display assigned and unassigned counts; offer undo and retry instead of announcing a score.
+
+                    **Do not teach outside this boundary:** Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships.
+
+                    ## Nonvisual and keyboard-equivalent learning path
+
+                    An accessible item list labels every token by shape and assigned category. Keyboard controls assign each uniquely identified item to exactly one group; announce updated numeric counts, not only graphical movement.
+
+                    Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+
+                    ## Localization, RTL, mobile, offline and performance
+
+                    All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+
+                    ## Build and review handoff
+
+                    This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Use a new fixed dataset of 5 stars, 2 circles, 2 squares. Counters start at zero; optional hint says 'each shape belongs to one group'.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section4Text3:
                 config:
-                  id: "47edf62a-1c35-4e7a-8f8b-d82e5453607e"
-                  slug: "section4Text3"
-                  type: "text"
+                  id: '47edf62a-1c35-4e7a-8f8b-d82e5453607e'
+                  slug: 'section4Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The new counts are 5 stars, 2 circles and 2 squares. Check: 5 + 2 + 2 = 9, exactly the number of shapes you began with."
+                      en: 'The new counts are 5 stars, 2 circles and 2 squares. Check: 5 + 2 + 2 = 9, exactly the number of shapes you began with.'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "3. **`text` (existing type):** “The new counts are 5 stars, 2 circles and 2 squares. Check: 5 + 2 + 2 = 9, exactly the number of shapes you began with.”"
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '3. **`text` (existing type):** “The new counts are 5 stars, 2 circles and 2 squares. Check: 5 + 2 + 2 = 9, exactly the number of shapes you began with.”'
             order:
-              - "section4Markdown1"
-              - "section4Scene2"
-              - "section4Text3"
+              - 'section4Markdown1'
+              - 'section4Scene2'
+              - 'section4Text3'
         production:
-          purpose: "New objects, same method"
-          pedagogicalIntent: "New objects, same method"
+          purpose: 'New objects, same method'
+          pedagogicalIntent: 'New objects, same method'
           productionNotes: |
-              ### Section 4 — New objects, same method
-              
-              **Learning purpose:** Independent transfer with different labels and totals.
-              
-              **Vertical Resource sequence:**
-              
-              1. **`markdown` (existing type):** “A new collection has stars, circles and squares. Sort it and count each kind without looking at the old answers.”
-              
-              2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Use a new fixed dataset of 5 stars, 2 circles, 2 squares. Counters start at zero; optional hint says 'each shape belongs to one group'.
-              
-              3. **`text` (existing type):** “The new counts are 5 stars, 2 circles and 2 squares. Check: 5 + 2 + 2 = 9, exactly the number of shapes you began with.”
-              
-              **Learner action:** Complete independent category counting and reconcile total.
-              
-              **Immediate explanatory feedback:** If total differs, display assigned and unassigned counts; offer undo and retry instead of announcing a score. A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
-              
-              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
-              
+            ### Section 4 — New objects, same method
+
+            **Learning purpose:** Independent transfer with different labels and totals.
+
+            **Vertical Resource sequence:**
+
+            1. **`markdown` (existing type):** “A new collection has stars, circles and squares. Sort it and count each kind without looking at the old answers.”
+
+            2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Use a new fixed dataset of 5 stars, 2 circles, 2 squares. Counters start at zero; optional hint says 'each shape belongs to one group'.
+
+            3. **`text` (existing type):** “The new counts are 5 stars, 2 circles and 2 squares. Check: 5 + 2 + 2 = 9, exactly the number of shapes you began with.”
+
+            **Learner action:** Complete independent category counting and reconcile total.
+
+            **Immediate explanatory feedback:** If total differs, display assigned and unassigned counts; offer undo and retry instead of announcing a score. A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+
+            **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+
     order:
-      - "section1WhatAreWeCounting"
-      - "section2CountEachShapeOnce"
-      - "section3DoesEverythingAddUp"
-      - "section4NewObjectsSameMethod"
+      - 'section1WhatAreWeCounting'
+      - 'section2CountEachShapeOnce'
+      - 'section3DoesEverythingAddUp'
+      - 'section4NewObjectsSameMethod'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
-      # Count What Belongs Together — Methodologist Brief
-      
-      Date: 2026-10-31
-      Slug: countingByCategory
-      Methodologist status: **Draft — pending editorial approval**
-      Code: [Not implemented](#)
-      Program dependence: None
-      
-      ## Educational purpose
-      
-      Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total. The intended conceptual change is from judging by appearance or one tempting example to checking the specific mathematical condition. This lesson serves one independently assessable canonical Skill without altering its identity.
-      
-      ## Target audience
-      
-      **Primary grade: Grade 1**, approximately ages 6–7. Counting disjoint categories with small totals extends one-to-one counting without needing graph literacy or formal statistics vocabulary. Assume mixed literacy and language fluency: child-facing phrasing must be short and supported by visible and nonvisual equivalents.
-      
-      ## Prerequisites
-      
-      - Count reliably from 1 to 12.
-      - Recognize simple circle, triangle and square outlines.
-      - Match one observed item to one stated category.
-      
-      Prerequisite competence is a planning assumption, not evidence of mastery. A learner lacking it needs a separate scaffold, not a new definition of the target Skill.
-      
-      ## Target Skills
-      
-      - [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
-      
-      ## Expected learning outcomes
-      
-      - Use a single explicit classification rule for each observation.
-      - Count each of eight shapes exactly once into one of three categories.
-      - Give separate counts for four circles, three triangles, and one square.
-      - Check that 4 + 3 + 1 equals the eight original observations.
-      - Repeat the method independently with a different nine-object collection.
-      
-      Completing an exploratory interaction is not independent validation of mastery. Any later formal evidence or scoring belongs to an assessment design.
-      
-      ## Essential subject matter and instructional depth
-      
-      Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships.
-      
-      Canonical collectCounts Skill defines frequency as number assigned to a category; exhaustive nonoverlapping category frequencies must sum to the total.
-      
-      ## Conceptual progression and dependencies
-      
-      Start from the listed prerequisites, identify what information determines the answer, make a prediction, reveal a controlling comparison, and explain it before transfer. Treat a fixed collection of eight shapes as observations. Sorting by shape is deliberate, with no ambiguous hybrid shapes. A running tally makes missing or double-counted objects immediately visible. Conceptual depth is set for this lesson's grade only; the Skill taxonomy remains grade-independent.
-      
-      ## Misconceptions, examples and boundaries
-      
-      - Count the same observation twice.
-      - A category count represents the position of a shape in a row, not how many were seen.
-      - Counts do not need to add back to the original total.
-      - Different-looking orientations of the same shape become different categories.
-      
-      Concrete boundaries: Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships. Repeated exposure alone must not be presented as mastery.
-      
-      ## Localization, accessibility and offline intent
-      
-      Plan genuine translation of all learner-facing text, controls, accessible descriptions, feedback and any narration into every configured locale. Do not create language fallbacks or substitute English as missing content. For meaningful RTL layout, preserve numbers, logical mathematical direction and shape relations; do not mirror whole diagrams indiscriminately. Include full keyboard/touch and nonvisual equivalent learning actions, visible focus, sufficient targets, contrast, reduced motion, and WCAG 2.2 AA review. After an eventual offline download the complete learning experience, including feedback and Scene assets, must be available without network access; this is a requirement, not an implementation claim.
-      
-      ## Sources and factual verification
-      
-      - Canonical Mathematics source [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts) and its methodological description.
-      - Studio [Lesson architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md), [Section architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md), and [Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md) descriptions.
-      - The specific factual examples and edge cases must be reviewed against the canonical Skill, not used to revise it.
-      
-      ## Curriculum / Program compatibility
-      
-      This Lesson is standalone and Program-neutral. No national Curriculum, course order or Program storyline is presumed.
-      
-      ## Open editorial decisions
-      
-      - Editor must approve the Grade 1 learning depth, prerequisites, outcome coverage and target Skill relationship.
-      - Screenwriter Content and Scene specifications are authorized **provisional Drafts** for review only; neither changes this Methodologist status.
-      
-      ## Methodologist handoff
-      
-      Pending explicit approval. Screenwriter content is preparatory under this task's exception to the normal approval gate, not formally approved input. Assessment, runtime Lesson data and implementation are outside this batch.
+    # Count What Belongs Together — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: countingByCategory
+    Methodologist status: **Draft — pending editorial approval**
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total. The intended conceptual change is from judging by appearance or one tempting example to checking the specific mathematical condition. This lesson serves one independently assessable canonical Skill without altering its identity.
+
+    ## Target audience
+
+    **Primary grade: Grade 1**, approximately ages 6–7. Counting disjoint categories with small totals extends one-to-one counting without needing graph literacy or formal statistics vocabulary. Assume mixed literacy and language fluency: child-facing phrasing must be short and supported by visible and nonvisual equivalents.
+
+    ## Prerequisites
+
+    - Count reliably from 1 to 12.
+    - Recognize simple circle, triangle and square outlines.
+    - Match one observed item to one stated category.
+
+    Prerequisite competence is a planning assumption, not evidence of mastery. A learner lacking it needs a separate scaffold, not a new definition of the target Skill.
+
+    ## Target Skills
+
+    - [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
+
+    ## Expected learning outcomes
+
+    - Use a single explicit classification rule for each observation.
+    - Count each of eight shapes exactly once into one of three categories.
+    - Give separate counts for four circles, three triangles, and one square.
+    - Check that 4 + 3 + 1 equals the eight original observations.
+    - Repeat the method independently with a different nine-object collection.
+
+    Completing an exploratory interaction is not independent validation of mastery. Any later formal evidence or scoring belongs to an assessment design.
+
+    ## Essential subject matter and instructional depth
+
+    Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships.
+
+    Canonical collectCounts Skill defines frequency as number assigned to a category; exhaustive nonoverlapping category frequencies must sum to the total.
+
+    ## Conceptual progression and dependencies
+
+    Start from the listed prerequisites, identify what information determines the answer, make a prediction, reveal a controlling comparison, and explain it before transfer. Treat a fixed collection of eight shapes as observations. Sorting by shape is deliberate, with no ambiguous hybrid shapes. A running tally makes missing or double-counted objects immediately visible. Conceptual depth is set for this lesson's grade only; the Skill taxonomy remains grade-independent.
+
+    ## Misconceptions, examples and boundaries
+
+    - Count the same observation twice.
+    - A category count represents the position of a shape in a row, not how many were seen.
+    - Counts do not need to add back to the original total.
+    - Different-looking orientations of the same shape become different categories.
+
+    Concrete boundaries: Categorical frequencies for 6–12 visible discrete observations and 2–3 nonoverlapping exhaustive categories. No charting, percentages, averages or inferred relationships. Repeated exposure alone must not be presented as mastery.
+
+    ## Localization, accessibility and offline intent
+
+    Plan genuine translation of all learner-facing text, controls, accessible descriptions, feedback and any narration into every configured locale. Do not create language fallbacks or substitute English as missing content. For meaningful RTL layout, preserve numbers, logical mathematical direction and shape relations; do not mirror whole diagrams indiscriminately. Include full keyboard/touch and nonvisual equivalent learning actions, visible focus, sufficient targets, contrast, reduced motion, and WCAG 2.2 AA review. After an eventual offline download the complete learning experience, including feedback and Scene assets, must be available without network access; this is a requirement, not an implementation claim.
+
+    ## Sources and factual verification
+
+    - Canonical Mathematics source [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts) and its methodological description.
+    - Studio [Lesson architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md), [Section architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md), and [Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md) descriptions.
+    - The specific factual examples and edge cases must be reviewed against the canonical Skill, not used to revise it.
+
+    ## Curriculum / Program compatibility
+
+    This Lesson is standalone and Program-neutral. No national Curriculum, course order or Program storyline is presumed.
+
+    ## Open editorial decisions
+
+    - Editor must approve the Grade 1 learning depth, prerequisites, outcome coverage and target Skill relationship.
+    - Screenwriter Content and Scene specifications are authorized **provisional Drafts** for review only; neither changes this Methodologist status.
+
+    ## Methodologist handoff
+
+    Pending explicit approval. Screenwriter content is preparatory under this task's exception to the normal approval gate, not formally approved input. Assessment, runtime Lesson data and implementation are outside this batch.
   productionNotes: |
-      All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
-      
-      ## Original Screenwriter introduction
-      
-      # Count What Belongs Together — Lesson Content
-      
-      **Status: Provisional Draft — pending Methodologist approval.**
-      **Audience:** Grade 1, approximately ages 6–7.
-      **Methodologist input:** Draft Methodologist Brief (full original source: production.methodology) — **not approved**.
-      **Canonical target Skill:** [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
-      **Program dependence:** None
-      **Implementation:** No Lesson runtime objects, scored assessments or custom Scenes created by this editorial batch.
-      
-      ## Instructional concept
-      
-      Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total. The learner should not merely name a correct option: the model must make the essential distinction observable. A new situation in the final Section checks whether the learner can use the distinction without remembering the original picture.
-      
-      The Section plans below specify **single-column top-to-bottom** Resource order. `text`, `markdown` and `scene` are verified Resource block types; the **CategoryCounter Scene is proposed**, not currently a registered renderer. No Question, Quiz, scoring, success gate or Program plot is defined.
-      
-      ## Learner journey
-      
-      1. **What are we counting?** — Define the investigation and categorical rule.
-      2. **Count each shape once** — Develop an accurate frequency count.
-      3. **Does everything add up?** — Reconcile category subtotals with the whole collection.
-      4. **New objects, same method** — Independent transfer with different labels and totals.
-      
-      ## Ordered Sections
-      
-      
-      ## Original Screenwriter concluding notes
-      
-      ## Custom Scene specification
-      
-      - CategoryCounter (full original source: Scene production.specification): provides the learner-controlled model and its explanatory feedback. A Scene instance is self-contained and prop-free; repeated presentations must have independent local state. The new Scene needs future code, locale dictionaries and tests before use.
-      
-      ## Independent transfer
-      
-      Count five stars, two circles and two squares in a new nine-object collection, then explain why 5 + 2 + 2 must equal 9. Give a first attempt without immediately showing the previous example; provide an optional hint and then a complete worked explanation. This is an instructional transfer opportunity, not a validated assessment.
-      
-      ## Proposed Lesson Note (planned only)
-      
-      **Cue:** “Count each object once; category counts together must equal the number of objects.”
-      
-      Proposed editorial unlock moment: after the learner has inspected and explained the contrasting example in Section 3. Note entity/persistence/unlock events/revision schedules are not verified implemented and are **not** wired by this batch. Learners who do not engage the cue still receive the complete Lesson explanation.
-      
-      ## Localization, access and offline handoff
-      
-      This English editorial copy is **not a multilingual runtime bundle**. A later translation workflow must supply genuine complete translations for all supported locales, including Scene explanations, controls, accessible names and model descriptions. Do not silently fall back to English. The planned equivalent nonvisual action, 2D SVG/static-state rendering, semantic RTL, readable small screens, reduced motion and locally packaged offline content are implementation acceptance gates; they are not reported as implemented.
-      
-      ## Editorial gates and assessment boundaries
-      
-      **Provisional Draft, pending Methodologist approval.** Separate Content and Scene editorial reviews are also pending. Assessment Architect owns valid Questions/Quiz, evidence rules, scores, thresholds and analytics. Coding Agent owns Scene/renderer/locale implementation and automated tests. No Section here claims mastery based on a reveal, selection, or Note.
+    All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
+
+    ## Original Screenwriter introduction
+
+    # Count What Belongs Together — Lesson Content
+
+    **Status: Provisional Draft — pending Methodologist approval.**
+    **Audience:** Grade 1, approximately ages 6–7.
+    **Methodologist input:** Draft Methodologist Brief (full original source: production.methodology) — **not approved**.
+    **Canonical target Skill:** [collectCounts.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/data/collection/skills/collectCounts.data.ts)
+    **Program dependence:** None
+    **Implementation:** No Lesson runtime objects, scored assessments or custom Scenes created by this editorial batch.
+
+    ## Instructional concept
+
+    Assign observations to unambiguous categories, count the frequency of each category, and check that the category counts add to the total. The learner should not merely name a correct option: the model must make the essential distinction observable. A new situation in the final Section checks whether the learner can use the distinction without remembering the original picture.
+
+    The Section plans below specify **single-column top-to-bottom** Resource order. `text`, `markdown` and `scene` are verified Resource block types; the **CategoryCounter Scene is proposed**, not currently a registered renderer. No Question, Quiz, scoring, success gate or Program plot is defined.
+
+    ## Learner journey
+
+    1. **What are we counting?** — Define the investigation and categorical rule.
+    2. **Count each shape once** — Develop an accurate frequency count.
+    3. **Does everything add up?** — Reconcile category subtotals with the whole collection.
+    4. **New objects, same method** — Independent transfer with different labels and totals.
+
+    ## Ordered Sections
+
+
+    ## Original Screenwriter concluding notes
+
+    ## Custom Scene specification
+
+    - CategoryCounter (full original source: Scene production.specification): provides the learner-controlled model and its explanatory feedback. A Scene instance is self-contained and prop-free; repeated presentations must have independent local state. The new Scene needs future code, locale dictionaries and tests before use.
+
+    ## Independent transfer
+
+    Count five stars, two circles and two squares in a new nine-object collection, then explain why 5 + 2 + 2 must equal 9. Give a first attempt without immediately showing the previous example; provide an optional hint and then a complete worked explanation. This is an instructional transfer opportunity, not a validated assessment.
+
+    ## Proposed Lesson Note (planned only)
+
+    **Cue:** “Count each object once; category counts together must equal the number of objects.”
+
+    Proposed editorial unlock moment: after the learner has inspected and explained the contrasting example in Section 3. Note entity/persistence/unlock events/revision schedules are not verified implemented and are **not** wired by this batch. Learners who do not engage the cue still receive the complete Lesson explanation.
+
+    ## Localization, access and offline handoff
+
+    This English editorial copy is **not a multilingual runtime bundle**. A later translation workflow must supply genuine complete translations for all supported locales, including Scene explanations, controls, accessible names and model descriptions. Do not silently fall back to English. The planned equivalent nonvisual action, 2D SVG/static-state rendering, semantic RTL, readable small screens, reduced motion and locally packaged offline content are implementation acceptance gates; they are not reported as implemented.
+
+    ## Editorial gates and assessment boundaries
+
+    **Provisional Draft, pending Methodologist approval.** Separate Content and Scene editorial reviews are also pending. Assessment Architect owns valid Questions/Quiz, evidence rules, scores, thresholds and analytics. Coding Agent owns Scene/renderer/locale implementation and automated tests. No Section here claims mastery based on a reveal, selection, or Note.

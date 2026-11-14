@@ -1,403 +1,403 @@
 config:
-  id: "a00b113a-1e9a-587d-b691-67971ab95255"
-  slug: "readingMassScale"
-  type: "lesson"
+  id: 'a00b113a-1e9a-587d-b691-67971ab95255'
+  slug: 'readingMassScale'
+  type: 'lesson'
   skills:
-    - "401849ab-d37f-49a3-9179-da85f6704707"
+    - '401849ab-d37f-49a3-9179-da85f6704707'
   params:
     requireQuiz: false
     languages:
-      - "ar"
-      - "be"
-      - "bn"
-      - "de"
-      - "en"
-      - "es"
-      - "et"
-      - "fr"
-      - "he"
-      - "hi"
-      - "id"
-      - "ja"
-      - "ka"
-      - "kk"
-      - "ko"
-      - "lt"
-      - "lv"
-      - "mr"
-      - "ms"
-      - "pl"
-      - "pt"
-      - "qm"
-      - "ta"
-      - "te"
-      - "tr"
-      - "uk"
-      - "ur"
-      - "vi"
-      - "zh"
+      - 'ar'
+      - 'be'
+      - 'bn'
+      - 'de'
+      - 'en'
+      - 'es'
+      - 'et'
+      - 'fr'
+      - 'he'
+      - 'hi'
+      - 'id'
+      - 'ja'
+      - 'ka'
+      - 'kk'
+      - 'ko'
+      - 'lt'
+      - 'lv'
+      - 'mr'
+      - 'ms'
+      - 'pl'
+      - 'pt'
+      - 'qm'
+      - 'ta'
+      - 'te'
+      - 'tr'
+      - 'uk'
+      - 'ur'
+      - 'vi'
+      - 'zh'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Read the Mass on a Graduated Scale"
+      en: 'Read the Mass on a Graduated Scale'
   section:
     items:
       section1WhichToolGivesANumber:
         config:
-          id: "01afc61e-ea6a-4764-837e-6569d8bbb413"
-          slug: "section1WhichToolGivesANumber"
-          type: "content"
+          id: '01afc61e-ea6a-4764-837e-6569d8bbb413'
+          slug: 'section1WhichToolGivesANumber'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Which Tool Gives a Number?"
+              en: 'Which Tool Gives a Number?'
             navigationLabel:
-              en: "Which Tool Gives a Number?"
+              en: 'Which Tool Gives a Number?'
           content:
             items:
               section1Text1:
                 config:
-                  id: "619e822d-4ee7-4938-8678-eefc1901a5e9"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: '619e822d-4ee7-4938-8678-eefc1901a5e9'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Our equal-arm balance could show which object was heavier. Can it tell us **exactly how many grams**? This different scale has numbered marks and a letter **g**. What might the number mean?"
+                      en: 'Our equal-arm balance could show which object was heavier. Can it tell us **exactly how many grams**? This different scale has numbered marks and a letter **g**. What might the number mean?'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "  1. **text — currently supported:** \"Our equal-arm balance could show which object was heavier. Can it tell us **exactly how many grams**? This different scale has numbered marks and a letter **g**. What might the number mean?\""
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '  1. **text — currently supported:** "Our equal-arm balance could show which object was heavier. Can it tell us **exactly how many grams**? This different scale has numbered marks and a letter **g**. What might the number mean?"'
               section1Scene2:
                 config:
-                  id: "57540092-b080-4839-87df-8c2ae00b5481"
-                  slug: "section1Scene2"
-                  type: "scene"
+                  id: '57540092-b080-4839-87df-8c2ae00b5481'
+                  slug: 'section1Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Our equal-arm balance could show which object was heavier. Can it tell us **exactly how many grams**? This different scale has numbered marks and a letter **g**. What might the number mean?"
+                        instruction: 'Our equal-arm balance could show which object was heavier. Can it tell us **exactly how many grams**? This different scale has numbered marks and a letter **g**. What might the number mean?'
                 production:
-                  purpose: "Provisional Scene placement in Which Tool Gives a Number?, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in Which Tool Gives a Number?, self-contained and not implemented'
                   specification: |
-                      # Graduated Mass Scale — Scene Specification
-                      
-                      Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Sections: Read the Mass on a Graduated Scale (full original source: this Lesson's production notes), Sections 1–4
-                      Methodologist objectives: Draft Methodologist Brief (full original source: production.methodology): read gram-calibrated graduations and midpoint intervals, report a correct number **with g**, recognize a nonzero empty scale and repair using tare/reset. No other Skill or scored assessment.
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      A heavy/light balance comparison gives **relative** mass but not a number. Children now learn to read a **gram-calibrated scale**, infer the size of one major and one minor interval, and avoid reporting an object mass from a scale that wasn't zeroed. An explicit counterexample (empty pointer at 100 g, load appears 450 g; correct mass after zeroing 350 g) distinguishes instrument **reading** from blindly copying a number.
-                      
-                      Learner phrase: "**Check zero. Count what each little mark means. Read where the pointer is and write grams.**"
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Schematic device reports mass in **grams**, symbol **g**, as a calibrated idealized scale. Its graduation axis has major marks **0,100,200,300,400,500,600 g**, spaced at **100 g** each (six major intervals), and one midpoint minor tick per interval at **50,150,250,350,450,550 g**. Each half-interval spans exactly **50 g**.
-                      - The mapping of pointer position to mass is defined by the calibration marks, **not SVG angles, CSS pixel distances, size of drawing or device hardware**. A linear horizontal/vertical schematic may be preferable to a curved dial. Any responsive scaling preserves spacing ratios. The chosen numeric increasing direction is explicit and must be preserved in RTL; no silent mirroring of value labels.
-                      - A mass reading must include its unit. "350" alone is not a fully specified measurement; "**350 g**" is. Small midway marks have meaningful values even when the printed numerals only appear at hundreds.
-                      - Standard correct zero: empty scale pointer at **0 g**. After an object of modeled mass `m` is placed, a correctly zeroed scale points to `m` grams, for the limited 0–600 g range.
-                      - Error diagnostic: a **mis-zeroed empty instrument** has indicated offset `+100 g`. A modeled object of true mass `350 g` yields indicated **450 g** until the empty scale is reset/tared. This **uncorrected** indication is not an accurate object-only mass. "Remove object" then "Set empty pointer to zero" clears offset; re-place the same object yields **350 g**.
-                      - Tare here is an explicit **empty-platform zeroing** procedure. Real scales can tare a container, but that is _outside this Lesson_. The scale is modeled as calibrated to report mass; in real physics some spring/digital systems respond to weight under local gravity. Do not claim this toy representation measures mass physically without calibration or that gravity never matters.
-                      - Exact whole model masses used: Stage A **200 g**; Stage B **350 g**; Stage C true mass **350 g** with wrong offset indication450 g; Stage D **550 g**, optionally **450 g** follow-up. No grams↔kilograms conversions, decimals, hidden rounding, overloaded range or negative readings.
-                      - The earlier equal-arm balance Skill remains prerequisite knowledge of **relative mass**; its tilt direction is not directly translated into grams here.
-                      - Feedback is formative; reading a scale is not a Quiz or durable mastery event.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      ### A — From "Heavier" to "200 g" (Section 1)
-                      
-                      1. Show comparison balance schematic that only says **A heavier than B**, no mass numbers. Transition to an initially empty, **zeroed** graduated mass scale. Display the unit **g** and ordered major marks 0…600 every100.
-                      2. Prompt: "What number and unit does the pointer show when we place this object?" "Place object" uses fixed **m=200 g** so pointer moves from0→**200** (exact major mark).
-                      3. Offer learner-readable options "2", "200", "**200 g**" and "Not sure—show labels". Feedback 2: "You counted two big steps, but each step is **100 grams**." Feedback bare200: "Add the unit **g**." Correct: "The pointer is on the tick labeled 200 grams."
-                      4. "Read major ticks" shows 0,100,200,300,400,500,600 in one line or row-by-row accessible list. In early reveal, avoid outputting the final mass in aria text before the learner asks for the answer; describing the pointer "on the major tick marked 200" **is the evidence** the child uses.
-                      5. Reset removes object, pointer returns0 and prediction is cleared. Any optional animation can be skipped without losing the mark interpretation.
-                      
-                      ### B — Midpoint Is Fifty More (Section 2)
-                      
-                      1. The empty zeroed scale has major marks labelled. Object `m=350 g` is placed; pointer is on the **small midpoint tick between labelled 300 and 400**.
-                      2. Prompt: "That gap is **100 grams** wide. How many grams are half the gap? What is this tick?" Choices "300 g", "**350 g**", "400 g". Do not add a fake "1 g" answer requirement.
-                      3. "Show two equal spaces" brackets 300→350 and 350→400, explicitly declaring each **50 g** because both halves total100. Reveal final "**350 g**".
-                      4. For 300: "The pointer is **after** 300, half of the way to 400"; for 400: "It has not reached 400"; for 350: "It is the midway value, with grams named." Both explanations rely on the same numbered scale.
-                      5. Provide ordered accessible tick list: "300 big tick, midway small tick, 400 big tick; pointer on midway." No exact result leaked beyond the mathematical evidence children are meant to reason from.
-                      6. Reset returns to empty, zeroed state; minor tick labeling only appears as explained, not mysteriously re-scaled.
-                      
-                      ### C — Empty Scale Starts at 100: Fix It (Section 3)
-                      
-                      1. Fixed true object mass **350 g**, initially **not on scale**. Scale has simulated erroneous empty-offset `+100 g`, so **empty pointer indicates 100 g**. Prompt: "Would the reading be trustworthy if we put an object there now? Which step is missing?"
-                      2. Choice "Place object anyway" (demonstrate error) yields indicated **450 g** (100 offset + 350 mass); use label "**uncorrected indication 450 g**", not measured object mass. Child may predict the problem and inspect it.
-                      3. "Remove object" returns indicated pointer to **100 g**. "Zero/tare empty scale" then sets offset0, empty reading0. "Place same object" yields corrected indicated **350 g**.
-                      4. A "Tare while object on platform" action is blocked **for this beginner model** with explanation "Remove the object; we're zeroing an **empty platform** before measuring the object's mass." This narrow rule avoids teaching advanced taring of container mass but does not claim other scale use is impossible.
-                      5. Feedback if learner trusts450: "The empty scale already had a 100 g offset. We must zero it before trusting the object's number." After repair: "The **same object** reads 350 g. The error belonged to the instrument setup, not a change in mass."
-                      6. Reset returns to **empty mis-zeroed** state, not the corrected state; that is essential to replay the diagnosis independently.
-                      
-                      ### D — Unfamiliar 550 g Midpoint (Section 4)
-                      
-                      1. Begin with a clean empty scale at **0 g**. Place new object `m=550 g`; pointer rests **halfway between 500 and 600**, at the small tick.
-                      2. Prompt: "What mass is this? Include the unit." Choices "**550 g**", "500 g", "600 g", "550 (no unit)". "Read interval" describes major tick values and exactly one midway minor tick.
-                      3. Reveal two equal subintervals 500→550 and 550→600, each50 g, and final **550 g**.
-                      4. Feedback 500: "The pointer passed 500"; 600: "It hasn't reached 600"; bare550: "Value correct; add grams **g**." For a reading right on the midway small tick, never round to the nearest hundred.
-                      5. Independent follow-up: select a fixed **450 g** mass pointer halfway between 400 and 500; learner applies the same rule, not a memorized final550. The current scale remains zeroed and has the same major/minor spacing.
-                      6. Reset restores the stage initial empty zeroed instrument, not the prior case's +100 error; stages are independent and use no persisted state.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - **Objects:** calibrated axis major 0…600 by100, optional labelled minor tick 50 between each pair, pointer, empty/object placement button, tare/reset controls, interval-bracket reveal, prediction choice, local feedback/step history.
-                      - **State per Section placement:** fixed object mass `m`, current offset (0 or +100 stage C), whether object is on platform, current pointer value `indicated=offset+(objectPresent?m:0)`, chosen learner answer, hint/reveal stage and focused interval.
-                      - **Invariants:** correctly tared empty indication0; correct object indication`m`, with unit g. Stage C offset100 + mass350 = indicated450, corrected offset0 gives 350; object mass `m` never changes on tare or visual zoom. Halfway mark between n*100 and (n+1)*100 equals n*100+50.
-                      - **Out-of-range:** forbid objects or offset combos outside 0–600g scale in authored presets. If implementation later adds new cases, must explicitly handle over-range instead of wrapping pointer around.
-                      - **Reset:** each Scene placement has its own immutable preset: A/B/D offset0 empty; C offset100 empty. Independent local state cannot leak from stage C into stage D.
-                      - **Prop-free public roots:** each Section-specific exported Scene component receives **no props** and reads locale from verified Lesson context. Private helpers may take mass presets; don't invent public `mass`, `locale`, `mode`, `onAnswer`, `onTare` props or platform event data.
-                      - **Feedback:** dynamic messages identify the incorrect calibration assumption, bad mark interpretation or missing unit; no grades, repeat threshold, user progression or Note APIs.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      A large simple graduated **linear schematic scale** can be clearer than a realistic round dial. Major tick lengths and printed 0–600 labels differ visually from minor ticks; 50g midway marks are evenly centered. Use focusable **controls outside thin SVG ticks**; a decorative pointer itself need not be a tiny touch target. Avoid making a scale appear physically heavier/lighter through dial dimensions. Motion may be immediate on reduced-motion settings, with status changes announced once. No real sensors, images, Remotion/video or hardware integrations required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - Translate all learner-facing numerals/units, terms "mass", "grams", "graduation", "midpoint", "zero/tare", "uncorrected", object descriptions, choices, explanations and planned Notes for **each supported locale**, with correct number grammar and no missing-language fallback.
-                      - In RTL, textual controls may reorder, but the numeric instrument's **fixed ascending axis** must remain mathematically coherent (0→600 and actual pointer value); a mirrored visual must remap every tick and explanation consistently. Do not render mixed numeral direction misleadingly.
-                      - For screen readers supply an **ordered scale description** of 0,100,…600, the midpoint tick between each pair, and exact pointer _position relation_ (e.g., midway between labelled 300 and 400) available before answer reveal. User can reason without seeing a pointer; no hidden right-answer status announced prematurely. After reveal announce value plus unit.
-                      - Provide keyboard/switch/touch choices, contrast/shape labels independent of color, logical focus, large touch targets, 200% text, reduced-motion alternatives, no audio-only evidence, no precision drag, WCAG 2.2 AA testing and equivalent offline/weak-device experience **after the real package/locale download works**. Accessibility claims remain requirements, not implementation status.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. Scale has **seven** major ticks 0…600 separated by **six** 100g intervals, and minor ticks at 50,150,250,350,450,550 centered exactly halfway.
-                      2. Stage A zeroed object 200g indicates major tick **200 g**; bare "200" is incomplete unit-bearing measurement.
-                      3. Stage B midpoint between 300 and 400 is **350 g**, with two equal 50g intervals.
-                      4. Stage C **empty erroneous** scale indicates **100 g**, object true mass350 produces **uncorrected 450 g**; after empty tare indicated0, the same object yields **350 g**.
-                      5. Taring with object present is blocked in this **specified beginner procedure**, explained without claiming real scales can never tare containers.
-                      6. Stage D midway between 500 and600 is **550 g**; separate 400–500 midpoint is **450 g**, without altering graduation spacing.
-                      7. A scale displayed larger/smaller or in RTL never changes numeric calibration, indicated masses or unit.
-                      8. Stage reset independently restores A/B/D empty offset0 and C empty offset+100, no cross-stage leak, no data persistence.
-                      9. Keyboard, screen reader, reduced motion, RTL, mobile zoom, offline-after-download and no-color-only modes provide the identical scale reasoning, tare operation and feedback.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Only the generic `scene` Resource handler is present. **Graduated Mass Scale is not implemented**. After Methodologist/Scene approval, Coding Agent must verify actual locale context and create four prop-free Scene roots with exact tick/value calculations, accessibility tests and full offline content packaging. This document adds no runtime Lesson, real scale sensor, scored Questions/Quiz, learner progress, persistent Notes or imaginary state/event API.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                        2. **scene — Resource type supported, custom Scene proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement A. Show an empty, zeroed ideal mass scale with seven major ticks (0–600 g in steps of 100 g) and **six** 100-gram intervals, each containing one midpoint tick worth 50 g. "Place object" sets pointer to **200 g**, exactly at major tick 200. Learner chooses reading "2", "200 g", or "200" and requests "Show how marks work."
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Graduated Mass Scale — Scene Specification
+
+                    Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Read the Mass on a Graduated Scale (full original source: this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Draft Methodologist Brief (full original source: production.methodology): read gram-calibrated graduations and midpoint intervals, report a correct number **with g**, recognize a nonzero empty scale and repair using tare/reset. No other Skill or scored assessment.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A heavy/light balance comparison gives **relative** mass but not a number. Children now learn to read a **gram-calibrated scale**, infer the size of one major and one minor interval, and avoid reporting an object mass from a scale that wasn't zeroed. An explicit counterexample (empty pointer at 100 g, load appears 450 g; correct mass after zeroing 350 g) distinguishes instrument **reading** from blindly copying a number.
+
+                    Learner phrase: "**Check zero. Count what each little mark means. Read where the pointer is and write grams.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Schematic device reports mass in **grams**, symbol **g**, as a calibrated idealized scale. Its graduation axis has major marks **0,100,200,300,400,500,600 g**, spaced at **100 g** each (six major intervals), and one midpoint minor tick per interval at **50,150,250,350,450,550 g**. Each half-interval spans exactly **50 g**.
+                    - The mapping of pointer position to mass is defined by the calibration marks, **not SVG angles, CSS pixel distances, size of drawing or device hardware**. A linear horizontal/vertical schematic may be preferable to a curved dial. Any responsive scaling preserves spacing ratios. The chosen numeric increasing direction is explicit and must be preserved in RTL; no silent mirroring of value labels.
+                    - A mass reading must include its unit. "350" alone is not a fully specified measurement; "**350 g**" is. Small midway marks have meaningful values even when the printed numerals only appear at hundreds.
+                    - Standard correct zero: empty scale pointer at **0 g**. After an object of modeled mass `m` is placed, a correctly zeroed scale points to `m` grams, for the limited 0–600 g range.
+                    - Error diagnostic: a **mis-zeroed empty instrument** has indicated offset `+100 g`. A modeled object of true mass `350 g` yields indicated **450 g** until the empty scale is reset/tared. This **uncorrected** indication is not an accurate object-only mass. "Remove object" then "Set empty pointer to zero" clears offset; re-place the same object yields **350 g**.
+                    - Tare here is an explicit **empty-platform zeroing** procedure. Real scales can tare a container, but that is _outside this Lesson_. The scale is modeled as calibrated to report mass; in real physics some spring/digital systems respond to weight under local gravity. Do not claim this toy representation measures mass physically without calibration or that gravity never matters.
+                    - Exact whole model masses used: Stage A **200 g**; Stage B **350 g**; Stage C true mass **350 g** with wrong offset indication450 g; Stage D **550 g**, optionally **450 g** follow-up. No grams↔kilograms conversions, decimals, hidden rounding, overloaded range or negative readings.
+                    - The earlier equal-arm balance Skill remains prerequisite knowledge of **relative mass**; its tilt direction is not directly translated into grams here.
+                    - Feedback is formative; reading a scale is not a Quiz or durable mastery event.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A — From "Heavier" to "200 g" (Section 1)
+
+                    1. Show comparison balance schematic that only says **A heavier than B**, no mass numbers. Transition to an initially empty, **zeroed** graduated mass scale. Display the unit **g** and ordered major marks 0…600 every100.
+                    2. Prompt: "What number and unit does the pointer show when we place this object?" "Place object" uses fixed **m=200 g** so pointer moves from0→**200** (exact major mark).
+                    3. Offer learner-readable options "2", "200", "**200 g**" and "Not sure—show labels". Feedback 2: "You counted two big steps, but each step is **100 grams**." Feedback bare200: "Add the unit **g**." Correct: "The pointer is on the tick labeled 200 grams."
+                    4. "Read major ticks" shows 0,100,200,300,400,500,600 in one line or row-by-row accessible list. In early reveal, avoid outputting the final mass in aria text before the learner asks for the answer; describing the pointer "on the major tick marked 200" **is the evidence** the child uses.
+                    5. Reset removes object, pointer returns0 and prediction is cleared. Any optional animation can be skipped without losing the mark interpretation.
+
+                    ### B — Midpoint Is Fifty More (Section 2)
+
+                    1. The empty zeroed scale has major marks labelled. Object `m=350 g` is placed; pointer is on the **small midpoint tick between labelled 300 and 400**.
+                    2. Prompt: "That gap is **100 grams** wide. How many grams are half the gap? What is this tick?" Choices "300 g", "**350 g**", "400 g". Do not add a fake "1 g" answer requirement.
+                    3. "Show two equal spaces" brackets 300→350 and 350→400, explicitly declaring each **50 g** because both halves total100. Reveal final "**350 g**".
+                    4. For 300: "The pointer is **after** 300, half of the way to 400"; for 400: "It has not reached 400"; for 350: "It is the midway value, with grams named." Both explanations rely on the same numbered scale.
+                    5. Provide ordered accessible tick list: "300 big tick, midway small tick, 400 big tick; pointer on midway." No exact result leaked beyond the mathematical evidence children are meant to reason from.
+                    6. Reset returns to empty, zeroed state; minor tick labeling only appears as explained, not mysteriously re-scaled.
+
+                    ### C — Empty Scale Starts at 100: Fix It (Section 3)
+
+                    1. Fixed true object mass **350 g**, initially **not on scale**. Scale has simulated erroneous empty-offset `+100 g`, so **empty pointer indicates 100 g**. Prompt: "Would the reading be trustworthy if we put an object there now? Which step is missing?"
+                    2. Choice "Place object anyway" (demonstrate error) yields indicated **450 g** (100 offset + 350 mass); use label "**uncorrected indication 450 g**", not measured object mass. Child may predict the problem and inspect it.
+                    3. "Remove object" returns indicated pointer to **100 g**. "Zero/tare empty scale" then sets offset0, empty reading0. "Place same object" yields corrected indicated **350 g**.
+                    4. A "Tare while object on platform" action is blocked **for this beginner model** with explanation "Remove the object; we're zeroing an **empty platform** before measuring the object's mass." This narrow rule avoids teaching advanced taring of container mass but does not claim other scale use is impossible.
+                    5. Feedback if learner trusts450: "The empty scale already had a 100 g offset. We must zero it before trusting the object's number." After repair: "The **same object** reads 350 g. The error belonged to the instrument setup, not a change in mass."
+                    6. Reset returns to **empty mis-zeroed** state, not the corrected state; that is essential to replay the diagnosis independently.
+
+                    ### D — Unfamiliar 550 g Midpoint (Section 4)
+
+                    1. Begin with a clean empty scale at **0 g**. Place new object `m=550 g`; pointer rests **halfway between 500 and 600**, at the small tick.
+                    2. Prompt: "What mass is this? Include the unit." Choices "**550 g**", "500 g", "600 g", "550 (no unit)". "Read interval" describes major tick values and exactly one midway minor tick.
+                    3. Reveal two equal subintervals 500→550 and 550→600, each50 g, and final **550 g**.
+                    4. Feedback 500: "The pointer passed 500"; 600: "It hasn't reached 600"; bare550: "Value correct; add grams **g**." For a reading right on the midway small tick, never round to the nearest hundred.
+                    5. Independent follow-up: select a fixed **450 g** mass pointer halfway between 400 and 500; learner applies the same rule, not a memorized final550. The current scale remains zeroed and has the same major/minor spacing.
+                    6. Reset restores the stage initial empty zeroed instrument, not the prior case's +100 error; stages are independent and use no persisted state.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** calibrated axis major 0…600 by100, optional labelled minor tick 50 between each pair, pointer, empty/object placement button, tare/reset controls, interval-bracket reveal, prediction choice, local feedback/step history.
+                    - **State per Section placement:** fixed object mass `m`, current offset (0 or +100 stage C), whether object is on platform, current pointer value `indicated=offset+(objectPresent?m:0)`, chosen learner answer, hint/reveal stage and focused interval.
+                    - **Invariants:** correctly tared empty indication0; correct object indication`m`, with unit g. Stage C offset100 + mass350 = indicated450, corrected offset0 gives 350; object mass `m` never changes on tare or visual zoom. Halfway mark between n*100 and (n+1)*100 equals n*100+50.
+                    - **Out-of-range:** forbid objects or offset combos outside 0–600g scale in authored presets. If implementation later adds new cases, must explicitly handle over-range instead of wrapping pointer around.
+                    - **Reset:** each Scene placement has its own immutable preset: A/B/D offset0 empty; C offset100 empty. Independent local state cannot leak from stage C into stage D.
+                    - **Prop-free public roots:** each Section-specific exported Scene component receives **no props** and reads locale from verified Lesson context. Private helpers may take mass presets; don't invent public `mass`, `locale`, `mode`, `onAnswer`, `onTare` props or platform event data.
+                    - **Feedback:** dynamic messages identify the incorrect calibration assumption, bad mark interpretation or missing unit; no grades, repeat threshold, user progression or Note APIs.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    A large simple graduated **linear schematic scale** can be clearer than a realistic round dial. Major tick lengths and printed 0–600 labels differ visually from minor ticks; 50g midway marks are evenly centered. Use focusable **controls outside thin SVG ticks**; a decorative pointer itself need not be a tiny touch target. Avoid making a scale appear physically heavier/lighter through dial dimensions. Motion may be immediate on reduced-motion settings, with status changes announced once. No real sensors, images, Remotion/video or hardware integrations required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate all learner-facing numerals/units, terms "mass", "grams", "graduation", "midpoint", "zero/tare", "uncorrected", object descriptions, choices, explanations and planned Notes for **each supported locale**, with correct number grammar and no missing-language fallback.
+                    - In RTL, textual controls may reorder, but the numeric instrument's **fixed ascending axis** must remain mathematically coherent (0→600 and actual pointer value); a mirrored visual must remap every tick and explanation consistently. Do not render mixed numeral direction misleadingly.
+                    - For screen readers supply an **ordered scale description** of 0,100,…600, the midpoint tick between each pair, and exact pointer _position relation_ (e.g., midway between labelled 300 and 400) available before answer reveal. User can reason without seeing a pointer; no hidden right-answer status announced prematurely. After reveal announce value plus unit.
+                    - Provide keyboard/switch/touch choices, contrast/shape labels independent of color, logical focus, large touch targets, 200% text, reduced-motion alternatives, no audio-only evidence, no precision drag, WCAG 2.2 AA testing and equivalent offline/weak-device experience **after the real package/locale download works**. Accessibility claims remain requirements, not implementation status.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Scale has **seven** major ticks 0…600 separated by **six** 100g intervals, and minor ticks at 50,150,250,350,450,550 centered exactly halfway.
+                    2. Stage A zeroed object 200g indicates major tick **200 g**; bare "200" is incomplete unit-bearing measurement.
+                    3. Stage B midpoint between 300 and 400 is **350 g**, with two equal 50g intervals.
+                    4. Stage C **empty erroneous** scale indicates **100 g**, object true mass350 produces **uncorrected 450 g**; after empty tare indicated0, the same object yields **350 g**.
+                    5. Taring with object present is blocked in this **specified beginner procedure**, explained without claiming real scales can never tare containers.
+                    6. Stage D midway between 500 and600 is **550 g**; separate 400–500 midpoint is **450 g**, without altering graduation spacing.
+                    7. A scale displayed larger/smaller or in RTL never changes numeric calibration, indicated masses or unit.
+                    8. Stage reset independently restores A/B/D empty offset0 and C empty offset+100, no cross-stage leak, no data persistence.
+                    9. Keyboard, screen reader, reduced motion, RTL, mobile zoom, offline-after-download and no-color-only modes provide the identical scale reasoning, tare operation and feedback.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Only the generic `scene` Resource handler is present. **Graduated Mass Scale is not implemented**. After Methodologist/Scene approval, Coding Agent must verify actual locale context and create four prop-free Scene roots with exact tick/value calculations, accessibility tests and full offline content packaging. This document adds no runtime Lesson, real scale sensor, scored Questions/Quiz, learner progress, persistent Notes or imaginary state/event API.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                      2. **scene — Resource type supported, custom Scene proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement A. Show an empty, zeroed ideal mass scale with seven major ticks (0–600 g in steps of 100 g) and **six** 100-gram intervals, each containing one midpoint tick worth 50 g. "Place object" sets pointer to **200 g**, exactly at major tick 200. Learner chooses reading "2", "200 g", or "200" and requests "Show how marks work."
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section1Markdown3:
                 config:
-                  id: "85eda9b0-0a6a-491c-8317-b9b31c90d91f"
-                  slug: "section1Markdown3"
-                  type: "markdown"
+                  id: '85eda9b0-0a6a-491c-8317-b9b31c90d91f'
+                  slug: 'section1Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "The scale is labeled **grams**, written **g**. Its big marks go **0, 100, 200, 300, 400, 500, 600**. Our pointer reaches **200**, so the mass reading is **200 g**—not just '2' and not just '200' without a unit."
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "  3. **markdown — currently supported:** \"The scale is labeled **grams**, written **g**. Its big marks go **0, 100, 200, 300, 400, 500, 600**. Our pointer reaches **200**, so the mass reading is **200 g**—not just '2' and not just '200' without a unit.\""
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '  3. **markdown — currently supported:** "The scale is labeled **grams**, written **g**. Its big marks go **0, 100, 200, 300, 400, 500, 600**. Our pointer reaches **200**, so the mass reading is **200 g**—not just ''2'' and not just ''200'' without a unit."'
             order:
-              - "section1Text1"
-              - "section1Scene2"
-              - "section1Markdown3"
+              - 'section1Text1'
+              - 'section1Scene2'
+              - 'section1Markdown3'
         production:
-          purpose: "Which Tool Gives a Number?"
-          pedagogicalIntent: "Which Tool Gives a Number?"
+          purpose: 'Which Tool Gives a Number?'
+          pedagogicalIntent: 'Which Tool Gives a Number?'
           productionNotes: |
-              ### Section 1 — Which Tool Gives a Number?
-              
-              - **Purpose:** connect qualitative mass comparison to a calibrated numerical mass reading.
-              - **Current shape:** one vertically ordered `LessonSection_Config`.
-              - **Ordered Resource blocks:**
-                1. **text — currently supported:** "Our equal-arm balance could show which object was heavier. Can it tell us **exactly how many grams**? This different scale has numbered marks and a letter **g**. What might the number mean?"
-                2. **scene — Resource type supported, custom Scene proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement A. Show an empty, zeroed ideal mass scale with seven major ticks (0–600 g in steps of 100 g) and **six** 100-gram intervals, each containing one midpoint tick worth 50 g. "Place object" sets pointer to **200 g**, exactly at major tick 200. Learner chooses reading "2", "200 g", or "200" and requests "Show how marks work."
-                3. **markdown — currently supported:** "The scale is labeled **grams**, written **g**. Its big marks go **0, 100, 200, 300, 400, 500, 600**. Our pointer reaches **200**, so the mass reading is **200 g**—not just '2' and not just '200' without a unit."
-              - **Explanatory feedback:** For 2: "The second major tick **after 0** is labeled **200**; each big interval is one hundred grams." For bare 200: "The number is right, but we also need its unit: **200 g**." For 200 g: "Yes. A reading tells us both the number and the unit."
-              - **Access:** Every tick has a named text position. "Read full scale" recites the ordered marks and spacing, not graphic color. The pointer state is announced as a position along the graduated scale.
-              - **Planned Note:** "A mass reading is a number **with a unit**, such as 200 g."
-              
+            ### Section 1 — Which Tool Gives a Number?
+
+            - **Purpose:** connect qualitative mass comparison to a calibrated numerical mass reading.
+            - **Current shape:** one vertically ordered `LessonSection_Config`.
+            - **Ordered Resource blocks:**
+              1. **text — currently supported:** "Our equal-arm balance could show which object was heavier. Can it tell us **exactly how many grams**? This different scale has numbered marks and a letter **g**. What might the number mean?"
+              2. **scene — Resource type supported, custom Scene proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement A. Show an empty, zeroed ideal mass scale with seven major ticks (0–600 g in steps of 100 g) and **six** 100-gram intervals, each containing one midpoint tick worth 50 g. "Place object" sets pointer to **200 g**, exactly at major tick 200. Learner chooses reading "2", "200 g", or "200" and requests "Show how marks work."
+              3. **markdown — currently supported:** "The scale is labeled **grams**, written **g**. Its big marks go **0, 100, 200, 300, 400, 500, 600**. Our pointer reaches **200**, so the mass reading is **200 g**—not just '2' and not just '200' without a unit."
+            - **Explanatory feedback:** For 2: "The second major tick **after 0** is labeled **200**; each big interval is one hundred grams." For bare 200: "The number is right, but we also need its unit: **200 g**." For 200 g: "Yes. A reading tells us both the number and the unit."
+            - **Access:** Every tick has a named text position. "Read full scale" recites the ordered marks and spacing, not graphic color. The pointer state is announced as a position along the graduated scale.
+            - **Planned Note:** "A mass reading is a number **with a unit**, such as 200 g."
+
       section2HalfwayBetweenThreeHundredAndFourHundred:
         config:
-          id: "684f5376-ab48-4c17-8496-7f5437911035"
-          slug: "section2HalfwayBetweenThreeHundredAndFourHundred"
-          type: "content"
+          id: '684f5376-ab48-4c17-8496-7f5437911035'
+          slug: 'section2HalfwayBetweenThreeHundredAndFourHundred'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Halfway Between Three Hundred and Four Hundred"
+              en: 'Halfway Between Three Hundred and Four Hundred'
             navigationLabel:
-              en: "Halfway Between Three Hundred and Four Hundred"
+              en: 'Halfway Between Three Hundred and Four Hundred'
           content:
             items:
               section2Text1:
                 config:
-                  id: "e1557776-68ad-475e-83f4-fe9d4a0c1eb5"
-                  slug: "section2Text1"
-                  type: "text"
+                  id: 'e1557776-68ad-475e-83f4-fe9d4a0c1eb5'
+                  slug: 'section2Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Between **300 g** and **400 g** there is a small tick in the middle. If the big gap is **100 g**, how much is half the gap? What does the pointer mean when it stops there?"
+                      en: 'Between **300 g** and **400 g** there is a small tick in the middle. If the big gap is **100 g**, how much is half the gap? What does the pointer mean when it stops there?'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "  1. **text — currently supported:** \"Between **300 g** and **400 g** there is a small tick in the middle. If the big gap is **100 g**, how much is half the gap? What does the pointer mean when it stops there?\""
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '  1. **text — currently supported:** "Between **300 g** and **400 g** there is a small tick in the middle. If the big gap is **100 g**, how much is half the gap? What does the pointer mean when it stops there?"'
               section2Scene2:
                 config:
-                  id: "7cf38afc-bee1-4143-8d49-fe478f5bd5f8"
-                  slug: "section2Scene2"
-                  type: "scene"
+                  id: '7cf38afc-bee1-4143-8d49-fe478f5bd5f8'
+                  slug: 'section2Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Between **300 g** and **400 g** there is a small tick in the middle. If the big gap is **100 g**, how much is half the gap? What does the pointer mean when it stops there?"
+                        instruction: 'Between **300 g** and **400 g** there is a small tick in the middle. If the big gap is **100 g**, how much is half the gap? What does the pointer mean when it stops there?'
                 production:
-                  purpose: "Provisional Scene placement in Halfway Between Three Hundred and Four Hundred, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in Halfway Between Three Hundred and Four Hundred, self-contained and not implemented'
                   specification: |
-                      # Graduated Mass Scale — Scene Specification
-                      
-                      Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Sections: Read the Mass on a Graduated Scale (full original source: this Lesson's production notes), Sections 1–4
-                      Methodologist objectives: Draft Methodologist Brief (full original source: production.methodology): read gram-calibrated graduations and midpoint intervals, report a correct number **with g**, recognize a nonzero empty scale and repair using tare/reset. No other Skill or scored assessment.
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      A heavy/light balance comparison gives **relative** mass but not a number. Children now learn to read a **gram-calibrated scale**, infer the size of one major and one minor interval, and avoid reporting an object mass from a scale that wasn't zeroed. An explicit counterexample (empty pointer at 100 g, load appears 450 g; correct mass after zeroing 350 g) distinguishes instrument **reading** from blindly copying a number.
-                      
-                      Learner phrase: "**Check zero. Count what each little mark means. Read where the pointer is and write grams.**"
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Schematic device reports mass in **grams**, symbol **g**, as a calibrated idealized scale. Its graduation axis has major marks **0,100,200,300,400,500,600 g**, spaced at **100 g** each (six major intervals), and one midpoint minor tick per interval at **50,150,250,350,450,550 g**. Each half-interval spans exactly **50 g**.
-                      - The mapping of pointer position to mass is defined by the calibration marks, **not SVG angles, CSS pixel distances, size of drawing or device hardware**. A linear horizontal/vertical schematic may be preferable to a curved dial. Any responsive scaling preserves spacing ratios. The chosen numeric increasing direction is explicit and must be preserved in RTL; no silent mirroring of value labels.
-                      - A mass reading must include its unit. "350" alone is not a fully specified measurement; "**350 g**" is. Small midway marks have meaningful values even when the printed numerals only appear at hundreds.
-                      - Standard correct zero: empty scale pointer at **0 g**. After an object of modeled mass `m` is placed, a correctly zeroed scale points to `m` grams, for the limited 0–600 g range.
-                      - Error diagnostic: a **mis-zeroed empty instrument** has indicated offset `+100 g`. A modeled object of true mass `350 g` yields indicated **450 g** until the empty scale is reset/tared. This **uncorrected** indication is not an accurate object-only mass. "Remove object" then "Set empty pointer to zero" clears offset; re-place the same object yields **350 g**.
-                      - Tare here is an explicit **empty-platform zeroing** procedure. Real scales can tare a container, but that is _outside this Lesson_. The scale is modeled as calibrated to report mass; in real physics some spring/digital systems respond to weight under local gravity. Do not claim this toy representation measures mass physically without calibration or that gravity never matters.
-                      - Exact whole model masses used: Stage A **200 g**; Stage B **350 g**; Stage C true mass **350 g** with wrong offset indication450 g; Stage D **550 g**, optionally **450 g** follow-up. No grams↔kilograms conversions, decimals, hidden rounding, overloaded range or negative readings.
-                      - The earlier equal-arm balance Skill remains prerequisite knowledge of **relative mass**; its tilt direction is not directly translated into grams here.
-                      - Feedback is formative; reading a scale is not a Quiz or durable mastery event.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      ### A — From "Heavier" to "200 g" (Section 1)
-                      
-                      1. Show comparison balance schematic that only says **A heavier than B**, no mass numbers. Transition to an initially empty, **zeroed** graduated mass scale. Display the unit **g** and ordered major marks 0…600 every100.
-                      2. Prompt: "What number and unit does the pointer show when we place this object?" "Place object" uses fixed **m=200 g** so pointer moves from0→**200** (exact major mark).
-                      3. Offer learner-readable options "2", "200", "**200 g**" and "Not sure—show labels". Feedback 2: "You counted two big steps, but each step is **100 grams**." Feedback bare200: "Add the unit **g**." Correct: "The pointer is on the tick labeled 200 grams."
-                      4. "Read major ticks" shows 0,100,200,300,400,500,600 in one line or row-by-row accessible list. In early reveal, avoid outputting the final mass in aria text before the learner asks for the answer; describing the pointer "on the major tick marked 200" **is the evidence** the child uses.
-                      5. Reset removes object, pointer returns0 and prediction is cleared. Any optional animation can be skipped without losing the mark interpretation.
-                      
-                      ### B — Midpoint Is Fifty More (Section 2)
-                      
-                      1. The empty zeroed scale has major marks labelled. Object `m=350 g` is placed; pointer is on the **small midpoint tick between labelled 300 and 400**.
-                      2. Prompt: "That gap is **100 grams** wide. How many grams are half the gap? What is this tick?" Choices "300 g", "**350 g**", "400 g". Do not add a fake "1 g" answer requirement.
-                      3. "Show two equal spaces" brackets 300→350 and 350→400, explicitly declaring each **50 g** because both halves total100. Reveal final "**350 g**".
-                      4. For 300: "The pointer is **after** 300, half of the way to 400"; for 400: "It has not reached 400"; for 350: "It is the midway value, with grams named." Both explanations rely on the same numbered scale.
-                      5. Provide ordered accessible tick list: "300 big tick, midway small tick, 400 big tick; pointer on midway." No exact result leaked beyond the mathematical evidence children are meant to reason from.
-                      6. Reset returns to empty, zeroed state; minor tick labeling only appears as explained, not mysteriously re-scaled.
-                      
-                      ### C — Empty Scale Starts at 100: Fix It (Section 3)
-                      
-                      1. Fixed true object mass **350 g**, initially **not on scale**. Scale has simulated erroneous empty-offset `+100 g`, so **empty pointer indicates 100 g**. Prompt: "Would the reading be trustworthy if we put an object there now? Which step is missing?"
-                      2. Choice "Place object anyway" (demonstrate error) yields indicated **450 g** (100 offset + 350 mass); use label "**uncorrected indication 450 g**", not measured object mass. Child may predict the problem and inspect it.
-                      3. "Remove object" returns indicated pointer to **100 g**. "Zero/tare empty scale" then sets offset0, empty reading0. "Place same object" yields corrected indicated **350 g**.
-                      4. A "Tare while object on platform" action is blocked **for this beginner model** with explanation "Remove the object; we're zeroing an **empty platform** before measuring the object's mass." This narrow rule avoids teaching advanced taring of container mass but does not claim other scale use is impossible.
-                      5. Feedback if learner trusts450: "The empty scale already had a 100 g offset. We must zero it before trusting the object's number." After repair: "The **same object** reads 350 g. The error belonged to the instrument setup, not a change in mass."
-                      6. Reset returns to **empty mis-zeroed** state, not the corrected state; that is essential to replay the diagnosis independently.
-                      
-                      ### D — Unfamiliar 550 g Midpoint (Section 4)
-                      
-                      1. Begin with a clean empty scale at **0 g**. Place new object `m=550 g`; pointer rests **halfway between 500 and 600**, at the small tick.
-                      2. Prompt: "What mass is this? Include the unit." Choices "**550 g**", "500 g", "600 g", "550 (no unit)". "Read interval" describes major tick values and exactly one midway minor tick.
-                      3. Reveal two equal subintervals 500→550 and 550→600, each50 g, and final **550 g**.
-                      4. Feedback 500: "The pointer passed 500"; 600: "It hasn't reached 600"; bare550: "Value correct; add grams **g**." For a reading right on the midway small tick, never round to the nearest hundred.
-                      5. Independent follow-up: select a fixed **450 g** mass pointer halfway between 400 and 500; learner applies the same rule, not a memorized final550. The current scale remains zeroed and has the same major/minor spacing.
-                      6. Reset restores the stage initial empty zeroed instrument, not the prior case's +100 error; stages are independent and use no persisted state.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - **Objects:** calibrated axis major 0…600 by100, optional labelled minor tick 50 between each pair, pointer, empty/object placement button, tare/reset controls, interval-bracket reveal, prediction choice, local feedback/step history.
-                      - **State per Section placement:** fixed object mass `m`, current offset (0 or +100 stage C), whether object is on platform, current pointer value `indicated=offset+(objectPresent?m:0)`, chosen learner answer, hint/reveal stage and focused interval.
-                      - **Invariants:** correctly tared empty indication0; correct object indication`m`, with unit g. Stage C offset100 + mass350 = indicated450, corrected offset0 gives 350; object mass `m` never changes on tare or visual zoom. Halfway mark between n*100 and (n+1)*100 equals n*100+50.
-                      - **Out-of-range:** forbid objects or offset combos outside 0–600g scale in authored presets. If implementation later adds new cases, must explicitly handle over-range instead of wrapping pointer around.
-                      - **Reset:** each Scene placement has its own immutable preset: A/B/D offset0 empty; C offset100 empty. Independent local state cannot leak from stage C into stage D.
-                      - **Prop-free public roots:** each Section-specific exported Scene component receives **no props** and reads locale from verified Lesson context. Private helpers may take mass presets; don't invent public `mass`, `locale`, `mode`, `onAnswer`, `onTare` props or platform event data.
-                      - **Feedback:** dynamic messages identify the incorrect calibration assumption, bad mark interpretation or missing unit; no grades, repeat threshold, user progression or Note APIs.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      A large simple graduated **linear schematic scale** can be clearer than a realistic round dial. Major tick lengths and printed 0–600 labels differ visually from minor ticks; 50g midway marks are evenly centered. Use focusable **controls outside thin SVG ticks**; a decorative pointer itself need not be a tiny touch target. Avoid making a scale appear physically heavier/lighter through dial dimensions. Motion may be immediate on reduced-motion settings, with status changes announced once. No real sensors, images, Remotion/video or hardware integrations required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - Translate all learner-facing numerals/units, terms "mass", "grams", "graduation", "midpoint", "zero/tare", "uncorrected", object descriptions, choices, explanations and planned Notes for **each supported locale**, with correct number grammar and no missing-language fallback.
-                      - In RTL, textual controls may reorder, but the numeric instrument's **fixed ascending axis** must remain mathematically coherent (0→600 and actual pointer value); a mirrored visual must remap every tick and explanation consistently. Do not render mixed numeral direction misleadingly.
-                      - For screen readers supply an **ordered scale description** of 0,100,…600, the midpoint tick between each pair, and exact pointer _position relation_ (e.g., midway between labelled 300 and 400) available before answer reveal. User can reason without seeing a pointer; no hidden right-answer status announced prematurely. After reveal announce value plus unit.
-                      - Provide keyboard/switch/touch choices, contrast/shape labels independent of color, logical focus, large touch targets, 200% text, reduced-motion alternatives, no audio-only evidence, no precision drag, WCAG 2.2 AA testing and equivalent offline/weak-device experience **after the real package/locale download works**. Accessibility claims remain requirements, not implementation status.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. Scale has **seven** major ticks 0…600 separated by **six** 100g intervals, and minor ticks at 50,150,250,350,450,550 centered exactly halfway.
-                      2. Stage A zeroed object 200g indicates major tick **200 g**; bare "200" is incomplete unit-bearing measurement.
-                      3. Stage B midpoint between 300 and 400 is **350 g**, with two equal 50g intervals.
-                      4. Stage C **empty erroneous** scale indicates **100 g**, object true mass350 produces **uncorrected 450 g**; after empty tare indicated0, the same object yields **350 g**.
-                      5. Taring with object present is blocked in this **specified beginner procedure**, explained without claiming real scales can never tare containers.
-                      6. Stage D midway between 500 and600 is **550 g**; separate 400–500 midpoint is **450 g**, without altering graduation spacing.
-                      7. A scale displayed larger/smaller or in RTL never changes numeric calibration, indicated masses or unit.
-                      8. Stage reset independently restores A/B/D empty offset0 and C empty offset+100, no cross-stage leak, no data persistence.
-                      9. Keyboard, screen reader, reduced motion, RTL, mobile zoom, offline-after-download and no-color-only modes provide the identical scale reasoning, tare operation and feedback.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Only the generic `scene` Resource handler is present. **Graduated Mass Scale is not implemented**. After Methodologist/Scene approval, Coding Agent must verify actual locale context and create four prop-free Scene roots with exact tick/value calculations, accessibility tests and full offline content packaging. This document adds no runtime Lesson, real scale sensor, scored Questions/Quiz, learner progress, persistent Notes or imaginary state/event API.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                        2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement B. Fixed scale 0–600 g, 100 g major interval and one intermediate 50 g tick per adjacent pair. Pointer **350 g** at exactly halfway in the 300–400 span. Learner can bracket 300→350→400, select "300 g", "350 g" or "400 g", then reveal an **equal-length pair of 50 g subintervals**.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Graduated Mass Scale — Scene Specification
+
+                    Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Read the Mass on a Graduated Scale (full original source: this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Draft Methodologist Brief (full original source: production.methodology): read gram-calibrated graduations and midpoint intervals, report a correct number **with g**, recognize a nonzero empty scale and repair using tare/reset. No other Skill or scored assessment.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A heavy/light balance comparison gives **relative** mass but not a number. Children now learn to read a **gram-calibrated scale**, infer the size of one major and one minor interval, and avoid reporting an object mass from a scale that wasn't zeroed. An explicit counterexample (empty pointer at 100 g, load appears 450 g; correct mass after zeroing 350 g) distinguishes instrument **reading** from blindly copying a number.
+
+                    Learner phrase: "**Check zero. Count what each little mark means. Read where the pointer is and write grams.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Schematic device reports mass in **grams**, symbol **g**, as a calibrated idealized scale. Its graduation axis has major marks **0,100,200,300,400,500,600 g**, spaced at **100 g** each (six major intervals), and one midpoint minor tick per interval at **50,150,250,350,450,550 g**. Each half-interval spans exactly **50 g**.
+                    - The mapping of pointer position to mass is defined by the calibration marks, **not SVG angles, CSS pixel distances, size of drawing or device hardware**. A linear horizontal/vertical schematic may be preferable to a curved dial. Any responsive scaling preserves spacing ratios. The chosen numeric increasing direction is explicit and must be preserved in RTL; no silent mirroring of value labels.
+                    - A mass reading must include its unit. "350" alone is not a fully specified measurement; "**350 g**" is. Small midway marks have meaningful values even when the printed numerals only appear at hundreds.
+                    - Standard correct zero: empty scale pointer at **0 g**. After an object of modeled mass `m` is placed, a correctly zeroed scale points to `m` grams, for the limited 0–600 g range.
+                    - Error diagnostic: a **mis-zeroed empty instrument** has indicated offset `+100 g`. A modeled object of true mass `350 g` yields indicated **450 g** until the empty scale is reset/tared. This **uncorrected** indication is not an accurate object-only mass. "Remove object" then "Set empty pointer to zero" clears offset; re-place the same object yields **350 g**.
+                    - Tare here is an explicit **empty-platform zeroing** procedure. Real scales can tare a container, but that is _outside this Lesson_. The scale is modeled as calibrated to report mass; in real physics some spring/digital systems respond to weight under local gravity. Do not claim this toy representation measures mass physically without calibration or that gravity never matters.
+                    - Exact whole model masses used: Stage A **200 g**; Stage B **350 g**; Stage C true mass **350 g** with wrong offset indication450 g; Stage D **550 g**, optionally **450 g** follow-up. No grams↔kilograms conversions, decimals, hidden rounding, overloaded range or negative readings.
+                    - The earlier equal-arm balance Skill remains prerequisite knowledge of **relative mass**; its tilt direction is not directly translated into grams here.
+                    - Feedback is formative; reading a scale is not a Quiz or durable mastery event.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A — From "Heavier" to "200 g" (Section 1)
+
+                    1. Show comparison balance schematic that only says **A heavier than B**, no mass numbers. Transition to an initially empty, **zeroed** graduated mass scale. Display the unit **g** and ordered major marks 0…600 every100.
+                    2. Prompt: "What number and unit does the pointer show when we place this object?" "Place object" uses fixed **m=200 g** so pointer moves from0→**200** (exact major mark).
+                    3. Offer learner-readable options "2", "200", "**200 g**" and "Not sure—show labels". Feedback 2: "You counted two big steps, but each step is **100 grams**." Feedback bare200: "Add the unit **g**." Correct: "The pointer is on the tick labeled 200 grams."
+                    4. "Read major ticks" shows 0,100,200,300,400,500,600 in one line or row-by-row accessible list. In early reveal, avoid outputting the final mass in aria text before the learner asks for the answer; describing the pointer "on the major tick marked 200" **is the evidence** the child uses.
+                    5. Reset removes object, pointer returns0 and prediction is cleared. Any optional animation can be skipped without losing the mark interpretation.
+
+                    ### B — Midpoint Is Fifty More (Section 2)
+
+                    1. The empty zeroed scale has major marks labelled. Object `m=350 g` is placed; pointer is on the **small midpoint tick between labelled 300 and 400**.
+                    2. Prompt: "That gap is **100 grams** wide. How many grams are half the gap? What is this tick?" Choices "300 g", "**350 g**", "400 g". Do not add a fake "1 g" answer requirement.
+                    3. "Show two equal spaces" brackets 300→350 and 350→400, explicitly declaring each **50 g** because both halves total100. Reveal final "**350 g**".
+                    4. For 300: "The pointer is **after** 300, half of the way to 400"; for 400: "It has not reached 400"; for 350: "It is the midway value, with grams named." Both explanations rely on the same numbered scale.
+                    5. Provide ordered accessible tick list: "300 big tick, midway small tick, 400 big tick; pointer on midway." No exact result leaked beyond the mathematical evidence children are meant to reason from.
+                    6. Reset returns to empty, zeroed state; minor tick labeling only appears as explained, not mysteriously re-scaled.
+
+                    ### C — Empty Scale Starts at 100: Fix It (Section 3)
+
+                    1. Fixed true object mass **350 g**, initially **not on scale**. Scale has simulated erroneous empty-offset `+100 g`, so **empty pointer indicates 100 g**. Prompt: "Would the reading be trustworthy if we put an object there now? Which step is missing?"
+                    2. Choice "Place object anyway" (demonstrate error) yields indicated **450 g** (100 offset + 350 mass); use label "**uncorrected indication 450 g**", not measured object mass. Child may predict the problem and inspect it.
+                    3. "Remove object" returns indicated pointer to **100 g**. "Zero/tare empty scale" then sets offset0, empty reading0. "Place same object" yields corrected indicated **350 g**.
+                    4. A "Tare while object on platform" action is blocked **for this beginner model** with explanation "Remove the object; we're zeroing an **empty platform** before measuring the object's mass." This narrow rule avoids teaching advanced taring of container mass but does not claim other scale use is impossible.
+                    5. Feedback if learner trusts450: "The empty scale already had a 100 g offset. We must zero it before trusting the object's number." After repair: "The **same object** reads 350 g. The error belonged to the instrument setup, not a change in mass."
+                    6. Reset returns to **empty mis-zeroed** state, not the corrected state; that is essential to replay the diagnosis independently.
+
+                    ### D — Unfamiliar 550 g Midpoint (Section 4)
+
+                    1. Begin with a clean empty scale at **0 g**. Place new object `m=550 g`; pointer rests **halfway between 500 and 600**, at the small tick.
+                    2. Prompt: "What mass is this? Include the unit." Choices "**550 g**", "500 g", "600 g", "550 (no unit)". "Read interval" describes major tick values and exactly one midway minor tick.
+                    3. Reveal two equal subintervals 500→550 and 550→600, each50 g, and final **550 g**.
+                    4. Feedback 500: "The pointer passed 500"; 600: "It hasn't reached 600"; bare550: "Value correct; add grams **g**." For a reading right on the midway small tick, never round to the nearest hundred.
+                    5. Independent follow-up: select a fixed **450 g** mass pointer halfway between 400 and 500; learner applies the same rule, not a memorized final550. The current scale remains zeroed and has the same major/minor spacing.
+                    6. Reset restores the stage initial empty zeroed instrument, not the prior case's +100 error; stages are independent and use no persisted state.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** calibrated axis major 0…600 by100, optional labelled minor tick 50 between each pair, pointer, empty/object placement button, tare/reset controls, interval-bracket reveal, prediction choice, local feedback/step history.
+                    - **State per Section placement:** fixed object mass `m`, current offset (0 or +100 stage C), whether object is on platform, current pointer value `indicated=offset+(objectPresent?m:0)`, chosen learner answer, hint/reveal stage and focused interval.
+                    - **Invariants:** correctly tared empty indication0; correct object indication`m`, with unit g. Stage C offset100 + mass350 = indicated450, corrected offset0 gives 350; object mass `m` never changes on tare or visual zoom. Halfway mark between n*100 and (n+1)*100 equals n*100+50.
+                    - **Out-of-range:** forbid objects or offset combos outside 0–600g scale in authored presets. If implementation later adds new cases, must explicitly handle over-range instead of wrapping pointer around.
+                    - **Reset:** each Scene placement has its own immutable preset: A/B/D offset0 empty; C offset100 empty. Independent local state cannot leak from stage C into stage D.
+                    - **Prop-free public roots:** each Section-specific exported Scene component receives **no props** and reads locale from verified Lesson context. Private helpers may take mass presets; don't invent public `mass`, `locale`, `mode`, `onAnswer`, `onTare` props or platform event data.
+                    - **Feedback:** dynamic messages identify the incorrect calibration assumption, bad mark interpretation or missing unit; no grades, repeat threshold, user progression or Note APIs.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    A large simple graduated **linear schematic scale** can be clearer than a realistic round dial. Major tick lengths and printed 0–600 labels differ visually from minor ticks; 50g midway marks are evenly centered. Use focusable **controls outside thin SVG ticks**; a decorative pointer itself need not be a tiny touch target. Avoid making a scale appear physically heavier/lighter through dial dimensions. Motion may be immediate on reduced-motion settings, with status changes announced once. No real sensors, images, Remotion/video or hardware integrations required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate all learner-facing numerals/units, terms "mass", "grams", "graduation", "midpoint", "zero/tare", "uncorrected", object descriptions, choices, explanations and planned Notes for **each supported locale**, with correct number grammar and no missing-language fallback.
+                    - In RTL, textual controls may reorder, but the numeric instrument's **fixed ascending axis** must remain mathematically coherent (0→600 and actual pointer value); a mirrored visual must remap every tick and explanation consistently. Do not render mixed numeral direction misleadingly.
+                    - For screen readers supply an **ordered scale description** of 0,100,…600, the midpoint tick between each pair, and exact pointer _position relation_ (e.g., midway between labelled 300 and 400) available before answer reveal. User can reason without seeing a pointer; no hidden right-answer status announced prematurely. After reveal announce value plus unit.
+                    - Provide keyboard/switch/touch choices, contrast/shape labels independent of color, logical focus, large touch targets, 200% text, reduced-motion alternatives, no audio-only evidence, no precision drag, WCAG 2.2 AA testing and equivalent offline/weak-device experience **after the real package/locale download works**. Accessibility claims remain requirements, not implementation status.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Scale has **seven** major ticks 0…600 separated by **six** 100g intervals, and minor ticks at 50,150,250,350,450,550 centered exactly halfway.
+                    2. Stage A zeroed object 200g indicates major tick **200 g**; bare "200" is incomplete unit-bearing measurement.
+                    3. Stage B midpoint between 300 and 400 is **350 g**, with two equal 50g intervals.
+                    4. Stage C **empty erroneous** scale indicates **100 g**, object true mass350 produces **uncorrected 450 g**; after empty tare indicated0, the same object yields **350 g**.
+                    5. Taring with object present is blocked in this **specified beginner procedure**, explained without claiming real scales can never tare containers.
+                    6. Stage D midway between 500 and600 is **550 g**; separate 400–500 midpoint is **450 g**, without altering graduation spacing.
+                    7. A scale displayed larger/smaller or in RTL never changes numeric calibration, indicated masses or unit.
+                    8. Stage reset independently restores A/B/D empty offset0 and C empty offset+100, no cross-stage leak, no data persistence.
+                    9. Keyboard, screen reader, reduced motion, RTL, mobile zoom, offline-after-download and no-color-only modes provide the identical scale reasoning, tare operation and feedback.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Only the generic `scene` Resource handler is present. **Graduated Mass Scale is not implemented**. After Methodologist/Scene approval, Coding Agent must verify actual locale context and create four prop-free Scene roots with exact tick/value calculations, accessibility tests and full offline content packaging. This document adds no runtime Lesson, real scale sensor, scored Questions/Quiz, learner progress, persistent Notes or imaginary state/event API.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                      2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement B. Fixed scale 0–600 g, 100 g major interval and one intermediate 50 g tick per adjacent pair. Pointer **350 g** at exactly halfway in the 300–400 span. Learner can bracket 300→350→400, select "300 g", "350 g" or "400 g", then reveal an **equal-length pair of 50 g subintervals**.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section2Markdown3:
                 config:
-                  id: "6cf22014-7b78-4832-8d65-6ede9aef16f8"
-                  slug: "section2Markdown3"
-                  type: "markdown"
+                  id: '6cf22014-7b78-4832-8d65-6ede9aef16f8'
+                  slug: 'section2Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "We split the gap from **300 to 400** into two equal parts: **300→350** and **350→400**, each **50 grams**. The pointer is halfway, so we read **350 g**. The little tick has a value even without a printed number."
+                      en: 'We split the gap from **300 to 400** into two equal parts: **300→350** and **350→400**, each **50 grams**. The pointer is halfway, so we read **350 g**. The little tick has a value even without a printed number.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "  3. **markdown — currently supported:** \"We split the gap from **300 to 400** into two equal parts: **300→350** and **350→400**, each **50 grams**. The pointer is halfway, so we read **350 g**. The little tick has a value even without a printed number.\""
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '  3. **markdown — currently supported:** "We split the gap from **300 to 400** into two equal parts: **300→350** and **350→400**, each **50 grams**. The pointer is halfway, so we read **350 g**. The little tick has a value even without a printed number."'
             order:
-              - "section2Text1"
-              - "section2Scene2"
-              - "section2Markdown3"
+              - 'section2Text1'
+              - 'section2Scene2'
+              - 'section2Markdown3'
         production:
-          purpose: "Halfway Between Three Hundred and Four Hundred"
-          pedagogicalIntent: "Halfway Between Three Hundred and Four Hundred"
+          purpose: 'Halfway Between Three Hundred and Four Hundred'
+          pedagogicalIntent: 'Halfway Between Three Hundred and Four Hundred'
           productionNotes: |
-              ### Section 2 — Halfway Between Three Hundred and Four Hundred
-              
-              - **Purpose:** infer the midpoint value from equal graduation intervals rather than copying the nearest printed label.
-              - **Current shape:** one vertical `LessonSection_Config`.
-              - **Ordered Resource blocks:**
-                1. **text — currently supported:** "Between **300 g** and **400 g** there is a small tick in the middle. If the big gap is **100 g**, how much is half the gap? What does the pointer mean when it stops there?"
-                2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement B. Fixed scale 0–600 g, 100 g major interval and one intermediate 50 g tick per adjacent pair. Pointer **350 g** at exactly halfway in the 300–400 span. Learner can bracket 300→350→400, select "300 g", "350 g" or "400 g", then reveal an **equal-length pair of 50 g subintervals**.
-                3. **markdown — currently supported:** "We split the gap from **300 to 400** into two equal parts: **300→350** and **350→400**, each **50 grams**. The pointer is halfway, so we read **350 g**. The little tick has a value even without a printed number."
-              - **Feedback:** For 300: "The pointer is **after** the 300 mark, halfway to 400." For 400: "It has not reached the next big mark." For 350 g: "We counted two equal halves of one 100 g interval." If the child says the short tick is 1 g: "The _size_ of an interval comes from the numbered scale, not from how small the tick looks."
-              - **Access:** Textual interval summary before reveal says "pointer at midway tick between printed 300 and 400" (contains enough information to solve). A "Show major interval" control reveals all 100 g labels without requiring pointing at tiny marks.
-              - **Planned Note:** "Halfway across a 100 g interval is 50 g more."
-              
+            ### Section 2 — Halfway Between Three Hundred and Four Hundred
+
+            - **Purpose:** infer the midpoint value from equal graduation intervals rather than copying the nearest printed label.
+            - **Current shape:** one vertical `LessonSection_Config`.
+            - **Ordered Resource blocks:**
+              1. **text — currently supported:** "Between **300 g** and **400 g** there is a small tick in the middle. If the big gap is **100 g**, how much is half the gap? What does the pointer mean when it stops there?"
+              2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement B. Fixed scale 0–600 g, 100 g major interval and one intermediate 50 g tick per adjacent pair. Pointer **350 g** at exactly halfway in the 300–400 span. Learner can bracket 300→350→400, select "300 g", "350 g" or "400 g", then reveal an **equal-length pair of 50 g subintervals**.
+              3. **markdown — currently supported:** "We split the gap from **300 to 400** into two equal parts: **300→350** and **350→400**, each **50 grams**. The pointer is halfway, so we read **350 g**. The little tick has a value even without a printed number."
+            - **Feedback:** For 300: "The pointer is **after** the 300 mark, halfway to 400." For 400: "It has not reached the next big mark." For 350 g: "We counted two equal halves of one 100 g interval." If the child says the short tick is 1 g: "The _size_ of an interval comes from the numbered scale, not from how small the tick looks."
+            - **Access:** Textual interval summary before reveal says "pointer at midway tick between printed 300 and 400" (contains enough information to solve). A "Show major interval" control reveals all 100 g labels without requiring pointing at tiny marks.
+            - **Planned Note:** "Halfway across a 100 g interval is 50 g more."
+
       section3TheScaleWasnTAtZero:
         config:
-          id: "2df18c43-5d40-4132-80c8-6f05d079b274"
-          slug: "section3TheScaleWasnTAtZero"
-          type: "content"
+          id: '2df18c43-5d40-4132-80c8-6f05d079b274'
+          slug: 'section3TheScaleWasnTAtZero'
+          type: 'content'
           params: {}
           locale:
             title:
@@ -408,487 +408,487 @@ config:
             items:
               section3Text1:
                 config:
-                  id: "69b24add-4fc7-42c9-8dc9-1d835bbc4597"
-                  slug: "section3Text1"
-                  type: "text"
+                  id: '69b24add-4fc7-42c9-8dc9-1d835bbc4597'
+                  slug: 'section3Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "This scale is **empty**, but the pointer already shows **100 g**. Would it be fair to weigh an object and trust its number? What should we check first?"
+                      en: 'This scale is **empty**, but the pointer already shows **100 g**. Would it be fair to weigh an object and trust its number? What should we check first?'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "  1. **text — currently supported:** \"This scale is **empty**, but the pointer already shows **100 g**. Would it be fair to weigh an object and trust its number? What should we check first?\""
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '  1. **text — currently supported:** "This scale is **empty**, but the pointer already shows **100 g**. Would it be fair to weigh an object and trust its number? What should we check first?"'
               section3Scene2:
                 config:
-                  id: "0d7631ad-e2c6-465a-8f5d-1d3420ed8ac3"
-                  slug: "section3Scene2"
-                  type: "scene"
+                  id: '0d7631ad-e2c6-465a-8f5d-1d3420ed8ac3'
+                  slug: 'section3Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "This scale is **empty**, but the pointer already shows **100 g**. Would it be fair to weigh an object and trust its number? What should we check first?"
+                        instruction: 'This scale is **empty**, but the pointer already shows **100 g**. Would it be fair to weigh an object and trust its number? What should we check first?'
                 production:
                   purpose: "Provisional Scene placement in The Scale Wasn't at Zero, self-contained and not implemented"
                   specification: |
-                      # Graduated Mass Scale — Scene Specification
-                      
-                      Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Sections: Read the Mass on a Graduated Scale (full original source: this Lesson's production notes), Sections 1–4
-                      Methodologist objectives: Draft Methodologist Brief (full original source: production.methodology): read gram-calibrated graduations and midpoint intervals, report a correct number **with g**, recognize a nonzero empty scale and repair using tare/reset. No other Skill or scored assessment.
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      A heavy/light balance comparison gives **relative** mass but not a number. Children now learn to read a **gram-calibrated scale**, infer the size of one major and one minor interval, and avoid reporting an object mass from a scale that wasn't zeroed. An explicit counterexample (empty pointer at 100 g, load appears 450 g; correct mass after zeroing 350 g) distinguishes instrument **reading** from blindly copying a number.
-                      
-                      Learner phrase: "**Check zero. Count what each little mark means. Read where the pointer is and write grams.**"
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Schematic device reports mass in **grams**, symbol **g**, as a calibrated idealized scale. Its graduation axis has major marks **0,100,200,300,400,500,600 g**, spaced at **100 g** each (six major intervals), and one midpoint minor tick per interval at **50,150,250,350,450,550 g**. Each half-interval spans exactly **50 g**.
-                      - The mapping of pointer position to mass is defined by the calibration marks, **not SVG angles, CSS pixel distances, size of drawing or device hardware**. A linear horizontal/vertical schematic may be preferable to a curved dial. Any responsive scaling preserves spacing ratios. The chosen numeric increasing direction is explicit and must be preserved in RTL; no silent mirroring of value labels.
-                      - A mass reading must include its unit. "350" alone is not a fully specified measurement; "**350 g**" is. Small midway marks have meaningful values even when the printed numerals only appear at hundreds.
-                      - Standard correct zero: empty scale pointer at **0 g**. After an object of modeled mass `m` is placed, a correctly zeroed scale points to `m` grams, for the limited 0–600 g range.
-                      - Error diagnostic: a **mis-zeroed empty instrument** has indicated offset `+100 g`. A modeled object of true mass `350 g` yields indicated **450 g** until the empty scale is reset/tared. This **uncorrected** indication is not an accurate object-only mass. "Remove object" then "Set empty pointer to zero" clears offset; re-place the same object yields **350 g**.
-                      - Tare here is an explicit **empty-platform zeroing** procedure. Real scales can tare a container, but that is _outside this Lesson_. The scale is modeled as calibrated to report mass; in real physics some spring/digital systems respond to weight under local gravity. Do not claim this toy representation measures mass physically without calibration or that gravity never matters.
-                      - Exact whole model masses used: Stage A **200 g**; Stage B **350 g**; Stage C true mass **350 g** with wrong offset indication450 g; Stage D **550 g**, optionally **450 g** follow-up. No grams↔kilograms conversions, decimals, hidden rounding, overloaded range or negative readings.
-                      - The earlier equal-arm balance Skill remains prerequisite knowledge of **relative mass**; its tilt direction is not directly translated into grams here.
-                      - Feedback is formative; reading a scale is not a Quiz or durable mastery event.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      ### A — From "Heavier" to "200 g" (Section 1)
-                      
-                      1. Show comparison balance schematic that only says **A heavier than B**, no mass numbers. Transition to an initially empty, **zeroed** graduated mass scale. Display the unit **g** and ordered major marks 0…600 every100.
-                      2. Prompt: "What number and unit does the pointer show when we place this object?" "Place object" uses fixed **m=200 g** so pointer moves from0→**200** (exact major mark).
-                      3. Offer learner-readable options "2", "200", "**200 g**" and "Not sure—show labels". Feedback 2: "You counted two big steps, but each step is **100 grams**." Feedback bare200: "Add the unit **g**." Correct: "The pointer is on the tick labeled 200 grams."
-                      4. "Read major ticks" shows 0,100,200,300,400,500,600 in one line or row-by-row accessible list. In early reveal, avoid outputting the final mass in aria text before the learner asks for the answer; describing the pointer "on the major tick marked 200" **is the evidence** the child uses.
-                      5. Reset removes object, pointer returns0 and prediction is cleared. Any optional animation can be skipped without losing the mark interpretation.
-                      
-                      ### B — Midpoint Is Fifty More (Section 2)
-                      
-                      1. The empty zeroed scale has major marks labelled. Object `m=350 g` is placed; pointer is on the **small midpoint tick between labelled 300 and 400**.
-                      2. Prompt: "That gap is **100 grams** wide. How many grams are half the gap? What is this tick?" Choices "300 g", "**350 g**", "400 g". Do not add a fake "1 g" answer requirement.
-                      3. "Show two equal spaces" brackets 300→350 and 350→400, explicitly declaring each **50 g** because both halves total100. Reveal final "**350 g**".
-                      4. For 300: "The pointer is **after** 300, half of the way to 400"; for 400: "It has not reached 400"; for 350: "It is the midway value, with grams named." Both explanations rely on the same numbered scale.
-                      5. Provide ordered accessible tick list: "300 big tick, midway small tick, 400 big tick; pointer on midway." No exact result leaked beyond the mathematical evidence children are meant to reason from.
-                      6. Reset returns to empty, zeroed state; minor tick labeling only appears as explained, not mysteriously re-scaled.
-                      
-                      ### C — Empty Scale Starts at 100: Fix It (Section 3)
-                      
-                      1. Fixed true object mass **350 g**, initially **not on scale**. Scale has simulated erroneous empty-offset `+100 g`, so **empty pointer indicates 100 g**. Prompt: "Would the reading be trustworthy if we put an object there now? Which step is missing?"
-                      2. Choice "Place object anyway" (demonstrate error) yields indicated **450 g** (100 offset + 350 mass); use label "**uncorrected indication 450 g**", not measured object mass. Child may predict the problem and inspect it.
-                      3. "Remove object" returns indicated pointer to **100 g**. "Zero/tare empty scale" then sets offset0, empty reading0. "Place same object" yields corrected indicated **350 g**.
-                      4. A "Tare while object on platform" action is blocked **for this beginner model** with explanation "Remove the object; we're zeroing an **empty platform** before measuring the object's mass." This narrow rule avoids teaching advanced taring of container mass but does not claim other scale use is impossible.
-                      5. Feedback if learner trusts450: "The empty scale already had a 100 g offset. We must zero it before trusting the object's number." After repair: "The **same object** reads 350 g. The error belonged to the instrument setup, not a change in mass."
-                      6. Reset returns to **empty mis-zeroed** state, not the corrected state; that is essential to replay the diagnosis independently.
-                      
-                      ### D — Unfamiliar 550 g Midpoint (Section 4)
-                      
-                      1. Begin with a clean empty scale at **0 g**. Place new object `m=550 g`; pointer rests **halfway between 500 and 600**, at the small tick.
-                      2. Prompt: "What mass is this? Include the unit." Choices "**550 g**", "500 g", "600 g", "550 (no unit)". "Read interval" describes major tick values and exactly one midway minor tick.
-                      3. Reveal two equal subintervals 500→550 and 550→600, each50 g, and final **550 g**.
-                      4. Feedback 500: "The pointer passed 500"; 600: "It hasn't reached 600"; bare550: "Value correct; add grams **g**." For a reading right on the midway small tick, never round to the nearest hundred.
-                      5. Independent follow-up: select a fixed **450 g** mass pointer halfway between 400 and 500; learner applies the same rule, not a memorized final550. The current scale remains zeroed and has the same major/minor spacing.
-                      6. Reset restores the stage initial empty zeroed instrument, not the prior case's +100 error; stages are independent and use no persisted state.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - **Objects:** calibrated axis major 0…600 by100, optional labelled minor tick 50 between each pair, pointer, empty/object placement button, tare/reset controls, interval-bracket reveal, prediction choice, local feedback/step history.
-                      - **State per Section placement:** fixed object mass `m`, current offset (0 or +100 stage C), whether object is on platform, current pointer value `indicated=offset+(objectPresent?m:0)`, chosen learner answer, hint/reveal stage and focused interval.
-                      - **Invariants:** correctly tared empty indication0; correct object indication`m`, with unit g. Stage C offset100 + mass350 = indicated450, corrected offset0 gives 350; object mass `m` never changes on tare or visual zoom. Halfway mark between n*100 and (n+1)*100 equals n*100+50.
-                      - **Out-of-range:** forbid objects or offset combos outside 0–600g scale in authored presets. If implementation later adds new cases, must explicitly handle over-range instead of wrapping pointer around.
-                      - **Reset:** each Scene placement has its own immutable preset: A/B/D offset0 empty; C offset100 empty. Independent local state cannot leak from stage C into stage D.
-                      - **Prop-free public roots:** each Section-specific exported Scene component receives **no props** and reads locale from verified Lesson context. Private helpers may take mass presets; don't invent public `mass`, `locale`, `mode`, `onAnswer`, `onTare` props or platform event data.
-                      - **Feedback:** dynamic messages identify the incorrect calibration assumption, bad mark interpretation or missing unit; no grades, repeat threshold, user progression or Note APIs.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      A large simple graduated **linear schematic scale** can be clearer than a realistic round dial. Major tick lengths and printed 0–600 labels differ visually from minor ticks; 50g midway marks are evenly centered. Use focusable **controls outside thin SVG ticks**; a decorative pointer itself need not be a tiny touch target. Avoid making a scale appear physically heavier/lighter through dial dimensions. Motion may be immediate on reduced-motion settings, with status changes announced once. No real sensors, images, Remotion/video or hardware integrations required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - Translate all learner-facing numerals/units, terms "mass", "grams", "graduation", "midpoint", "zero/tare", "uncorrected", object descriptions, choices, explanations and planned Notes for **each supported locale**, with correct number grammar and no missing-language fallback.
-                      - In RTL, textual controls may reorder, but the numeric instrument's **fixed ascending axis** must remain mathematically coherent (0→600 and actual pointer value); a mirrored visual must remap every tick and explanation consistently. Do not render mixed numeral direction misleadingly.
-                      - For screen readers supply an **ordered scale description** of 0,100,…600, the midpoint tick between each pair, and exact pointer _position relation_ (e.g., midway between labelled 300 and 400) available before answer reveal. User can reason without seeing a pointer; no hidden right-answer status announced prematurely. After reveal announce value plus unit.
-                      - Provide keyboard/switch/touch choices, contrast/shape labels independent of color, logical focus, large touch targets, 200% text, reduced-motion alternatives, no audio-only evidence, no precision drag, WCAG 2.2 AA testing and equivalent offline/weak-device experience **after the real package/locale download works**. Accessibility claims remain requirements, not implementation status.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. Scale has **seven** major ticks 0…600 separated by **six** 100g intervals, and minor ticks at 50,150,250,350,450,550 centered exactly halfway.
-                      2. Stage A zeroed object 200g indicates major tick **200 g**; bare "200" is incomplete unit-bearing measurement.
-                      3. Stage B midpoint between 300 and 400 is **350 g**, with two equal 50g intervals.
-                      4. Stage C **empty erroneous** scale indicates **100 g**, object true mass350 produces **uncorrected 450 g**; after empty tare indicated0, the same object yields **350 g**.
-                      5. Taring with object present is blocked in this **specified beginner procedure**, explained without claiming real scales can never tare containers.
-                      6. Stage D midway between 500 and600 is **550 g**; separate 400–500 midpoint is **450 g**, without altering graduation spacing.
-                      7. A scale displayed larger/smaller or in RTL never changes numeric calibration, indicated masses or unit.
-                      8. Stage reset independently restores A/B/D empty offset0 and C empty offset+100, no cross-stage leak, no data persistence.
-                      9. Keyboard, screen reader, reduced motion, RTL, mobile zoom, offline-after-download and no-color-only modes provide the identical scale reasoning, tare operation and feedback.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Only the generic `scene` Resource handler is present. **Graduated Mass Scale is not implemented**. After Methodologist/Scene approval, Coding Agent must verify actual locale context and create four prop-free Scene roots with exact tick/value calculations, accessibility tests and full offline content packaging. This document adds no runtime Lesson, real scale sensor, scored Questions/Quiz, learner progress, persistent Notes or imaginary state/event API.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                        2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement C. Model base-offset **+100 g** before tare. Empty instrument indicates **100 g**; place example object with fixed true modeled mass **350 g** without tare ⇒ apparent indicated reading **450 g**, which is **not** a valid object-only mass. Choose "Remove object", "Zero/tare empty scale" ⇒ offset becomes 0, empty pointer 0. Then "Place same object" ⇒ **350 g**. Learner can replay but not treat the earlier 450 g as correct.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Graduated Mass Scale — Scene Specification
+
+                    Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Read the Mass on a Graduated Scale (full original source: this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Draft Methodologist Brief (full original source: production.methodology): read gram-calibrated graduations and midpoint intervals, report a correct number **with g**, recognize a nonzero empty scale and repair using tare/reset. No other Skill or scored assessment.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A heavy/light balance comparison gives **relative** mass but not a number. Children now learn to read a **gram-calibrated scale**, infer the size of one major and one minor interval, and avoid reporting an object mass from a scale that wasn't zeroed. An explicit counterexample (empty pointer at 100 g, load appears 450 g; correct mass after zeroing 350 g) distinguishes instrument **reading** from blindly copying a number.
+
+                    Learner phrase: "**Check zero. Count what each little mark means. Read where the pointer is and write grams.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Schematic device reports mass in **grams**, symbol **g**, as a calibrated idealized scale. Its graduation axis has major marks **0,100,200,300,400,500,600 g**, spaced at **100 g** each (six major intervals), and one midpoint minor tick per interval at **50,150,250,350,450,550 g**. Each half-interval spans exactly **50 g**.
+                    - The mapping of pointer position to mass is defined by the calibration marks, **not SVG angles, CSS pixel distances, size of drawing or device hardware**. A linear horizontal/vertical schematic may be preferable to a curved dial. Any responsive scaling preserves spacing ratios. The chosen numeric increasing direction is explicit and must be preserved in RTL; no silent mirroring of value labels.
+                    - A mass reading must include its unit. "350" alone is not a fully specified measurement; "**350 g**" is. Small midway marks have meaningful values even when the printed numerals only appear at hundreds.
+                    - Standard correct zero: empty scale pointer at **0 g**. After an object of modeled mass `m` is placed, a correctly zeroed scale points to `m` grams, for the limited 0–600 g range.
+                    - Error diagnostic: a **mis-zeroed empty instrument** has indicated offset `+100 g`. A modeled object of true mass `350 g` yields indicated **450 g** until the empty scale is reset/tared. This **uncorrected** indication is not an accurate object-only mass. "Remove object" then "Set empty pointer to zero" clears offset; re-place the same object yields **350 g**.
+                    - Tare here is an explicit **empty-platform zeroing** procedure. Real scales can tare a container, but that is _outside this Lesson_. The scale is modeled as calibrated to report mass; in real physics some spring/digital systems respond to weight under local gravity. Do not claim this toy representation measures mass physically without calibration or that gravity never matters.
+                    - Exact whole model masses used: Stage A **200 g**; Stage B **350 g**; Stage C true mass **350 g** with wrong offset indication450 g; Stage D **550 g**, optionally **450 g** follow-up. No grams↔kilograms conversions, decimals, hidden rounding, overloaded range or negative readings.
+                    - The earlier equal-arm balance Skill remains prerequisite knowledge of **relative mass**; its tilt direction is not directly translated into grams here.
+                    - Feedback is formative; reading a scale is not a Quiz or durable mastery event.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A — From "Heavier" to "200 g" (Section 1)
+
+                    1. Show comparison balance schematic that only says **A heavier than B**, no mass numbers. Transition to an initially empty, **zeroed** graduated mass scale. Display the unit **g** and ordered major marks 0…600 every100.
+                    2. Prompt: "What number and unit does the pointer show when we place this object?" "Place object" uses fixed **m=200 g** so pointer moves from0→**200** (exact major mark).
+                    3. Offer learner-readable options "2", "200", "**200 g**" and "Not sure—show labels". Feedback 2: "You counted two big steps, but each step is **100 grams**." Feedback bare200: "Add the unit **g**." Correct: "The pointer is on the tick labeled 200 grams."
+                    4. "Read major ticks" shows 0,100,200,300,400,500,600 in one line or row-by-row accessible list. In early reveal, avoid outputting the final mass in aria text before the learner asks for the answer; describing the pointer "on the major tick marked 200" **is the evidence** the child uses.
+                    5. Reset removes object, pointer returns0 and prediction is cleared. Any optional animation can be skipped without losing the mark interpretation.
+
+                    ### B — Midpoint Is Fifty More (Section 2)
+
+                    1. The empty zeroed scale has major marks labelled. Object `m=350 g` is placed; pointer is on the **small midpoint tick between labelled 300 and 400**.
+                    2. Prompt: "That gap is **100 grams** wide. How many grams are half the gap? What is this tick?" Choices "300 g", "**350 g**", "400 g". Do not add a fake "1 g" answer requirement.
+                    3. "Show two equal spaces" brackets 300→350 and 350→400, explicitly declaring each **50 g** because both halves total100. Reveal final "**350 g**".
+                    4. For 300: "The pointer is **after** 300, half of the way to 400"; for 400: "It has not reached 400"; for 350: "It is the midway value, with grams named." Both explanations rely on the same numbered scale.
+                    5. Provide ordered accessible tick list: "300 big tick, midway small tick, 400 big tick; pointer on midway." No exact result leaked beyond the mathematical evidence children are meant to reason from.
+                    6. Reset returns to empty, zeroed state; minor tick labeling only appears as explained, not mysteriously re-scaled.
+
+                    ### C — Empty Scale Starts at 100: Fix It (Section 3)
+
+                    1. Fixed true object mass **350 g**, initially **not on scale**. Scale has simulated erroneous empty-offset `+100 g`, so **empty pointer indicates 100 g**. Prompt: "Would the reading be trustworthy if we put an object there now? Which step is missing?"
+                    2. Choice "Place object anyway" (demonstrate error) yields indicated **450 g** (100 offset + 350 mass); use label "**uncorrected indication 450 g**", not measured object mass. Child may predict the problem and inspect it.
+                    3. "Remove object" returns indicated pointer to **100 g**. "Zero/tare empty scale" then sets offset0, empty reading0. "Place same object" yields corrected indicated **350 g**.
+                    4. A "Tare while object on platform" action is blocked **for this beginner model** with explanation "Remove the object; we're zeroing an **empty platform** before measuring the object's mass." This narrow rule avoids teaching advanced taring of container mass but does not claim other scale use is impossible.
+                    5. Feedback if learner trusts450: "The empty scale already had a 100 g offset. We must zero it before trusting the object's number." After repair: "The **same object** reads 350 g. The error belonged to the instrument setup, not a change in mass."
+                    6. Reset returns to **empty mis-zeroed** state, not the corrected state; that is essential to replay the diagnosis independently.
+
+                    ### D — Unfamiliar 550 g Midpoint (Section 4)
+
+                    1. Begin with a clean empty scale at **0 g**. Place new object `m=550 g`; pointer rests **halfway between 500 and 600**, at the small tick.
+                    2. Prompt: "What mass is this? Include the unit." Choices "**550 g**", "500 g", "600 g", "550 (no unit)". "Read interval" describes major tick values and exactly one midway minor tick.
+                    3. Reveal two equal subintervals 500→550 and 550→600, each50 g, and final **550 g**.
+                    4. Feedback 500: "The pointer passed 500"; 600: "It hasn't reached 600"; bare550: "Value correct; add grams **g**." For a reading right on the midway small tick, never round to the nearest hundred.
+                    5. Independent follow-up: select a fixed **450 g** mass pointer halfway between 400 and 500; learner applies the same rule, not a memorized final550. The current scale remains zeroed and has the same major/minor spacing.
+                    6. Reset restores the stage initial empty zeroed instrument, not the prior case's +100 error; stages are independent and use no persisted state.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** calibrated axis major 0…600 by100, optional labelled minor tick 50 between each pair, pointer, empty/object placement button, tare/reset controls, interval-bracket reveal, prediction choice, local feedback/step history.
+                    - **State per Section placement:** fixed object mass `m`, current offset (0 or +100 stage C), whether object is on platform, current pointer value `indicated=offset+(objectPresent?m:0)`, chosen learner answer, hint/reveal stage and focused interval.
+                    - **Invariants:** correctly tared empty indication0; correct object indication`m`, with unit g. Stage C offset100 + mass350 = indicated450, corrected offset0 gives 350; object mass `m` never changes on tare or visual zoom. Halfway mark between n*100 and (n+1)*100 equals n*100+50.
+                    - **Out-of-range:** forbid objects or offset combos outside 0–600g scale in authored presets. If implementation later adds new cases, must explicitly handle over-range instead of wrapping pointer around.
+                    - **Reset:** each Scene placement has its own immutable preset: A/B/D offset0 empty; C offset100 empty. Independent local state cannot leak from stage C into stage D.
+                    - **Prop-free public roots:** each Section-specific exported Scene component receives **no props** and reads locale from verified Lesson context. Private helpers may take mass presets; don't invent public `mass`, `locale`, `mode`, `onAnswer`, `onTare` props or platform event data.
+                    - **Feedback:** dynamic messages identify the incorrect calibration assumption, bad mark interpretation or missing unit; no grades, repeat threshold, user progression or Note APIs.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    A large simple graduated **linear schematic scale** can be clearer than a realistic round dial. Major tick lengths and printed 0–600 labels differ visually from minor ticks; 50g midway marks are evenly centered. Use focusable **controls outside thin SVG ticks**; a decorative pointer itself need not be a tiny touch target. Avoid making a scale appear physically heavier/lighter through dial dimensions. Motion may be immediate on reduced-motion settings, with status changes announced once. No real sensors, images, Remotion/video or hardware integrations required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate all learner-facing numerals/units, terms "mass", "grams", "graduation", "midpoint", "zero/tare", "uncorrected", object descriptions, choices, explanations and planned Notes for **each supported locale**, with correct number grammar and no missing-language fallback.
+                    - In RTL, textual controls may reorder, but the numeric instrument's **fixed ascending axis** must remain mathematically coherent (0→600 and actual pointer value); a mirrored visual must remap every tick and explanation consistently. Do not render mixed numeral direction misleadingly.
+                    - For screen readers supply an **ordered scale description** of 0,100,…600, the midpoint tick between each pair, and exact pointer _position relation_ (e.g., midway between labelled 300 and 400) available before answer reveal. User can reason without seeing a pointer; no hidden right-answer status announced prematurely. After reveal announce value plus unit.
+                    - Provide keyboard/switch/touch choices, contrast/shape labels independent of color, logical focus, large touch targets, 200% text, reduced-motion alternatives, no audio-only evidence, no precision drag, WCAG 2.2 AA testing and equivalent offline/weak-device experience **after the real package/locale download works**. Accessibility claims remain requirements, not implementation status.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Scale has **seven** major ticks 0…600 separated by **six** 100g intervals, and minor ticks at 50,150,250,350,450,550 centered exactly halfway.
+                    2. Stage A zeroed object 200g indicates major tick **200 g**; bare "200" is incomplete unit-bearing measurement.
+                    3. Stage B midpoint between 300 and 400 is **350 g**, with two equal 50g intervals.
+                    4. Stage C **empty erroneous** scale indicates **100 g**, object true mass350 produces **uncorrected 450 g**; after empty tare indicated0, the same object yields **350 g**.
+                    5. Taring with object present is blocked in this **specified beginner procedure**, explained without claiming real scales can never tare containers.
+                    6. Stage D midway between 500 and600 is **550 g**; separate 400–500 midpoint is **450 g**, without altering graduation spacing.
+                    7. A scale displayed larger/smaller or in RTL never changes numeric calibration, indicated masses or unit.
+                    8. Stage reset independently restores A/B/D empty offset0 and C empty offset+100, no cross-stage leak, no data persistence.
+                    9. Keyboard, screen reader, reduced motion, RTL, mobile zoom, offline-after-download and no-color-only modes provide the identical scale reasoning, tare operation and feedback.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Only the generic `scene` Resource handler is present. **Graduated Mass Scale is not implemented**. After Methodologist/Scene approval, Coding Agent must verify actual locale context and create four prop-free Scene roots with exact tick/value calculations, accessibility tests and full offline content packaging. This document adds no runtime Lesson, real scale sensor, scored Questions/Quiz, learner progress, persistent Notes or imaginary state/event API.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                      2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement C. Model base-offset **+100 g** before tare. Empty instrument indicates **100 g**; place example object with fixed true modeled mass **350 g** without tare ⇒ apparent indicated reading **450 g**, which is **not** a valid object-only mass. Choose "Remove object", "Zero/tare empty scale" ⇒ offset becomes 0, empty pointer 0. Then "Place same object" ⇒ **350 g**. Learner can replay but not treat the earlier 450 g as correct.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section3Markdown3:
                 config:
-                  id: "b24908a6-395c-45d1-8884-52b433914fc3"
-                  slug: "section3Markdown3"
-                  type: "markdown"
+                  id: 'b24908a6-395c-45d1-8884-52b433914fc3'
+                  slug: 'section3Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "An empty scale should start at **0 g**. When it did not, the reading included an unwanted offset. We reset the **empty** scale to zero and weighed the **same object** again. Now the pointer shows **350 g**. The object's mass did not change."
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "  3. **markdown — currently supported:** \"An empty scale should start at **0 g**. When it did not, the reading included an unwanted offset. We reset the **empty** scale to zero and weighed the **same object** again. Now the pointer shows **350 g**. The object's mass did not change.\""
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '  3. **markdown — currently supported:** "An empty scale should start at **0 g**. When it did not, the reading included an unwanted offset. We reset the **empty** scale to zero and weighed the **same object** again. Now the pointer shows **350 g**. The object''s mass did not change."'
             order:
-              - "section3Text1"
-              - "section3Scene2"
-              - "section3Markdown3"
+              - 'section3Text1'
+              - 'section3Scene2'
+              - 'section3Markdown3'
         production:
           purpose: "The Scale Wasn't at Zero"
           pedagogicalIntent: "The Scale Wasn't at Zero"
           productionNotes: |
-              ### Section 3 — The Scale Wasn't at Zero
-              
-              - **Purpose:** identify and correct a tare/zero problem before accepting a mass reading.
-              - **Current shape:** one vertical `LessonSection_Config`.
-              - **Ordered Resource blocks:**
-                1. **text — currently supported:** "This scale is **empty**, but the pointer already shows **100 g**. Would it be fair to weigh an object and trust its number? What should we check first?"
-                2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement C. Model base-offset **+100 g** before tare. Empty instrument indicates **100 g**; place example object with fixed true modeled mass **350 g** without tare ⇒ apparent indicated reading **450 g**, which is **not** a valid object-only mass. Choose "Remove object", "Zero/tare empty scale" ⇒ offset becomes 0, empty pointer 0. Then "Place same object" ⇒ **350 g**. Learner can replay but not treat the earlier 450 g as correct.
-                3. **markdown — currently supported:** "An empty scale should start at **0 g**. When it did not, the reading included an unwanted offset. We reset the **empty** scale to zero and weighed the **same object** again. Now the pointer shows **350 g**. The object's mass did not change."
-              - **Feedback:** If learner keeps 450 g: "That scale already showed 100 g while empty. First set it to zero, or you may include the unwanted starting offset." If the learner tries "Tare" while object remains: "In this model, remove the object first; we are measuring **that object's mass** relative to an empty scale." If correct: "Empty reading 0 g, then object reading 350 g. The setup is now consistent."
-              - **Boundary:** Real scales may have advanced taring for container mass, but this Lesson's empty-zero procedure is intentionally narrow and reliable. No subtraction-based mass correction or force mechanics is taught.
-              - **Planned Note:** "Check the empty scale reads **0** before measuring."
-              
+            ### Section 3 — The Scale Wasn't at Zero
+
+            - **Purpose:** identify and correct a tare/zero problem before accepting a mass reading.
+            - **Current shape:** one vertical `LessonSection_Config`.
+            - **Ordered Resource blocks:**
+              1. **text — currently supported:** "This scale is **empty**, but the pointer already shows **100 g**. Would it be fair to weigh an object and trust its number? What should we check first?"
+              2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement C. Model base-offset **+100 g** before tare. Empty instrument indicates **100 g**; place example object with fixed true modeled mass **350 g** without tare ⇒ apparent indicated reading **450 g**, which is **not** a valid object-only mass. Choose "Remove object", "Zero/tare empty scale" ⇒ offset becomes 0, empty pointer 0. Then "Place same object" ⇒ **350 g**. Learner can replay but not treat the earlier 450 g as correct.
+              3. **markdown — currently supported:** "An empty scale should start at **0 g**. When it did not, the reading included an unwanted offset. We reset the **empty** scale to zero and weighed the **same object** again. Now the pointer shows **350 g**. The object's mass did not change."
+            - **Feedback:** If learner keeps 450 g: "That scale already showed 100 g while empty. First set it to zero, or you may include the unwanted starting offset." If the learner tries "Tare" while object remains: "In this model, remove the object first; we are measuring **that object's mass** relative to an empty scale." If correct: "Empty reading 0 g, then object reading 350 g. The setup is now consistent."
+            - **Boundary:** Real scales may have advanced taring for container mass, but this Lesson's empty-zero procedure is intentionally narrow and reliable. No subtraction-based mass correction or force mechanics is taught.
+            - **Planned Note:** "Check the empty scale reads **0** before measuring."
+
       section4YourOwnMassReading:
         config:
-          id: "327c30ab-c7db-4c49-879c-0f45523bc3a7"
-          slug: "section4YourOwnMassReading"
-          type: "content"
+          id: '327c30ab-c7db-4c49-879c-0f45523bc3a7'
+          slug: 'section4YourOwnMassReading'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Your Own Mass Reading"
+              en: 'Your Own Mass Reading'
             navigationLabel:
-              en: "Your Own Mass Reading"
+              en: 'Your Own Mass Reading'
           content:
             items:
               section4Text1:
                 config:
-                  id: "6568d35d-0dc7-4147-8aad-0cdd52026ec7"
-                  slug: "section4Text1"
-                  type: "text"
+                  id: '6568d35d-0dc7-4147-8aad-0cdd52026ec7'
+                  slug: 'section4Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The scale is properly zeroed. The new pointer is on a small tick halfway **between 500 and 600 g**. What mass should we write? Include the unit."
+                      en: 'The scale is properly zeroed. The new pointer is on a small tick halfway **between 500 and 600 g**. What mass should we write? Include the unit.'
                 production:
-                  purpose: "Original learner-facing text block, provisional editorial draft"
-                  specification: "  1. **text — currently supported:** \"The scale is properly zeroed. The new pointer is on a small tick halfway **between 500 and 600 g**. What mass should we write? Include the unit.\""
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '  1. **text — currently supported:** "The scale is properly zeroed. The new pointer is on a small tick halfway **between 500 and 600 g**. What mass should we write? Include the unit."'
               section4Scene2:
                 config:
-                  id: "457f4bd0-d344-457d-8091-e89176aac63c"
-                  slug: "section4Scene2"
-                  type: "scene"
+                  id: '457f4bd0-d344-457d-8091-e89176aac63c'
+                  slug: 'section4Scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "The scale is properly zeroed. The new pointer is on a small tick halfway **between 500 and 600 g**. What mass should we write? Include the unit."
+                        instruction: 'The scale is properly zeroed. The new pointer is on a small tick halfway **between 500 and 600 g**. What mass should we write? Include the unit.'
                 production:
-                  purpose: "Provisional Scene placement in Your Own Mass Reading, self-contained and not implemented"
+                  purpose: 'Provisional Scene placement in Your Own Mass Reading, self-contained and not implemented'
                   specification: |
-                      # Graduated Mass Scale — Scene Specification
-                      
-                      Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Sections: Read the Mass on a Graduated Scale (full original source: this Lesson's production notes), Sections 1–4
-                      Methodologist objectives: Draft Methodologist Brief (full original source: production.methodology): read gram-calibrated graduations and midpoint intervals, report a correct number **with g**, recognize a nonzero empty scale and repair using tare/reset. No other Skill or scored assessment.
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      A heavy/light balance comparison gives **relative** mass but not a number. Children now learn to read a **gram-calibrated scale**, infer the size of one major and one minor interval, and avoid reporting an object mass from a scale that wasn't zeroed. An explicit counterexample (empty pointer at 100 g, load appears 450 g; correct mass after zeroing 350 g) distinguishes instrument **reading** from blindly copying a number.
-                      
-                      Learner phrase: "**Check zero. Count what each little mark means. Read where the pointer is and write grams.**"
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Schematic device reports mass in **grams**, symbol **g**, as a calibrated idealized scale. Its graduation axis has major marks **0,100,200,300,400,500,600 g**, spaced at **100 g** each (six major intervals), and one midpoint minor tick per interval at **50,150,250,350,450,550 g**. Each half-interval spans exactly **50 g**.
-                      - The mapping of pointer position to mass is defined by the calibration marks, **not SVG angles, CSS pixel distances, size of drawing or device hardware**. A linear horizontal/vertical schematic may be preferable to a curved dial. Any responsive scaling preserves spacing ratios. The chosen numeric increasing direction is explicit and must be preserved in RTL; no silent mirroring of value labels.
-                      - A mass reading must include its unit. "350" alone is not a fully specified measurement; "**350 g**" is. Small midway marks have meaningful values even when the printed numerals only appear at hundreds.
-                      - Standard correct zero: empty scale pointer at **0 g**. After an object of modeled mass `m` is placed, a correctly zeroed scale points to `m` grams, for the limited 0–600 g range.
-                      - Error diagnostic: a **mis-zeroed empty instrument** has indicated offset `+100 g`. A modeled object of true mass `350 g` yields indicated **450 g** until the empty scale is reset/tared. This **uncorrected** indication is not an accurate object-only mass. "Remove object" then "Set empty pointer to zero" clears offset; re-place the same object yields **350 g**.
-                      - Tare here is an explicit **empty-platform zeroing** procedure. Real scales can tare a container, but that is _outside this Lesson_. The scale is modeled as calibrated to report mass; in real physics some spring/digital systems respond to weight under local gravity. Do not claim this toy representation measures mass physically without calibration or that gravity never matters.
-                      - Exact whole model masses used: Stage A **200 g**; Stage B **350 g**; Stage C true mass **350 g** with wrong offset indication450 g; Stage D **550 g**, optionally **450 g** follow-up. No grams↔kilograms conversions, decimals, hidden rounding, overloaded range or negative readings.
-                      - The earlier equal-arm balance Skill remains prerequisite knowledge of **relative mass**; its tilt direction is not directly translated into grams here.
-                      - Feedback is formative; reading a scale is not a Quiz or durable mastery event.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      ### A — From "Heavier" to "200 g" (Section 1)
-                      
-                      1. Show comparison balance schematic that only says **A heavier than B**, no mass numbers. Transition to an initially empty, **zeroed** graduated mass scale. Display the unit **g** and ordered major marks 0…600 every100.
-                      2. Prompt: "What number and unit does the pointer show when we place this object?" "Place object" uses fixed **m=200 g** so pointer moves from0→**200** (exact major mark).
-                      3. Offer learner-readable options "2", "200", "**200 g**" and "Not sure—show labels". Feedback 2: "You counted two big steps, but each step is **100 grams**." Feedback bare200: "Add the unit **g**." Correct: "The pointer is on the tick labeled 200 grams."
-                      4. "Read major ticks" shows 0,100,200,300,400,500,600 in one line or row-by-row accessible list. In early reveal, avoid outputting the final mass in aria text before the learner asks for the answer; describing the pointer "on the major tick marked 200" **is the evidence** the child uses.
-                      5. Reset removes object, pointer returns0 and prediction is cleared. Any optional animation can be skipped without losing the mark interpretation.
-                      
-                      ### B — Midpoint Is Fifty More (Section 2)
-                      
-                      1. The empty zeroed scale has major marks labelled. Object `m=350 g` is placed; pointer is on the **small midpoint tick between labelled 300 and 400**.
-                      2. Prompt: "That gap is **100 grams** wide. How many grams are half the gap? What is this tick?" Choices "300 g", "**350 g**", "400 g". Do not add a fake "1 g" answer requirement.
-                      3. "Show two equal spaces" brackets 300→350 and 350→400, explicitly declaring each **50 g** because both halves total100. Reveal final "**350 g**".
-                      4. For 300: "The pointer is **after** 300, half of the way to 400"; for 400: "It has not reached 400"; for 350: "It is the midway value, with grams named." Both explanations rely on the same numbered scale.
-                      5. Provide ordered accessible tick list: "300 big tick, midway small tick, 400 big tick; pointer on midway." No exact result leaked beyond the mathematical evidence children are meant to reason from.
-                      6. Reset returns to empty, zeroed state; minor tick labeling only appears as explained, not mysteriously re-scaled.
-                      
-                      ### C — Empty Scale Starts at 100: Fix It (Section 3)
-                      
-                      1. Fixed true object mass **350 g**, initially **not on scale**. Scale has simulated erroneous empty-offset `+100 g`, so **empty pointer indicates 100 g**. Prompt: "Would the reading be trustworthy if we put an object there now? Which step is missing?"
-                      2. Choice "Place object anyway" (demonstrate error) yields indicated **450 g** (100 offset + 350 mass); use label "**uncorrected indication 450 g**", not measured object mass. Child may predict the problem and inspect it.
-                      3. "Remove object" returns indicated pointer to **100 g**. "Zero/tare empty scale" then sets offset0, empty reading0. "Place same object" yields corrected indicated **350 g**.
-                      4. A "Tare while object on platform" action is blocked **for this beginner model** with explanation "Remove the object; we're zeroing an **empty platform** before measuring the object's mass." This narrow rule avoids teaching advanced taring of container mass but does not claim other scale use is impossible.
-                      5. Feedback if learner trusts450: "The empty scale already had a 100 g offset. We must zero it before trusting the object's number." After repair: "The **same object** reads 350 g. The error belonged to the instrument setup, not a change in mass."
-                      6. Reset returns to **empty mis-zeroed** state, not the corrected state; that is essential to replay the diagnosis independently.
-                      
-                      ### D — Unfamiliar 550 g Midpoint (Section 4)
-                      
-                      1. Begin with a clean empty scale at **0 g**. Place new object `m=550 g`; pointer rests **halfway between 500 and 600**, at the small tick.
-                      2. Prompt: "What mass is this? Include the unit." Choices "**550 g**", "500 g", "600 g", "550 (no unit)". "Read interval" describes major tick values and exactly one midway minor tick.
-                      3. Reveal two equal subintervals 500→550 and 550→600, each50 g, and final **550 g**.
-                      4. Feedback 500: "The pointer passed 500"; 600: "It hasn't reached 600"; bare550: "Value correct; add grams **g**." For a reading right on the midway small tick, never round to the nearest hundred.
-                      5. Independent follow-up: select a fixed **450 g** mass pointer halfway between 400 and 500; learner applies the same rule, not a memorized final550. The current scale remains zeroed and has the same major/minor spacing.
-                      6. Reset restores the stage initial empty zeroed instrument, not the prior case's +100 error; stages are independent and use no persisted state.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - **Objects:** calibrated axis major 0…600 by100, optional labelled minor tick 50 between each pair, pointer, empty/object placement button, tare/reset controls, interval-bracket reveal, prediction choice, local feedback/step history.
-                      - **State per Section placement:** fixed object mass `m`, current offset (0 or +100 stage C), whether object is on platform, current pointer value `indicated=offset+(objectPresent?m:0)`, chosen learner answer, hint/reveal stage and focused interval.
-                      - **Invariants:** correctly tared empty indication0; correct object indication`m`, with unit g. Stage C offset100 + mass350 = indicated450, corrected offset0 gives 350; object mass `m` never changes on tare or visual zoom. Halfway mark between n*100 and (n+1)*100 equals n*100+50.
-                      - **Out-of-range:** forbid objects or offset combos outside 0–600g scale in authored presets. If implementation later adds new cases, must explicitly handle over-range instead of wrapping pointer around.
-                      - **Reset:** each Scene placement has its own immutable preset: A/B/D offset0 empty; C offset100 empty. Independent local state cannot leak from stage C into stage D.
-                      - **Prop-free public roots:** each Section-specific exported Scene component receives **no props** and reads locale from verified Lesson context. Private helpers may take mass presets; don't invent public `mass`, `locale`, `mode`, `onAnswer`, `onTare` props or platform event data.
-                      - **Feedback:** dynamic messages identify the incorrect calibration assumption, bad mark interpretation or missing unit; no grades, repeat threshold, user progression or Note APIs.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      A large simple graduated **linear schematic scale** can be clearer than a realistic round dial. Major tick lengths and printed 0–600 labels differ visually from minor ticks; 50g midway marks are evenly centered. Use focusable **controls outside thin SVG ticks**; a decorative pointer itself need not be a tiny touch target. Avoid making a scale appear physically heavier/lighter through dial dimensions. Motion may be immediate on reduced-motion settings, with status changes announced once. No real sensors, images, Remotion/video or hardware integrations required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      - Translate all learner-facing numerals/units, terms "mass", "grams", "graduation", "midpoint", "zero/tare", "uncorrected", object descriptions, choices, explanations and planned Notes for **each supported locale**, with correct number grammar and no missing-language fallback.
-                      - In RTL, textual controls may reorder, but the numeric instrument's **fixed ascending axis** must remain mathematically coherent (0→600 and actual pointer value); a mirrored visual must remap every tick and explanation consistently. Do not render mixed numeral direction misleadingly.
-                      - For screen readers supply an **ordered scale description** of 0,100,…600, the midpoint tick between each pair, and exact pointer _position relation_ (e.g., midway between labelled 300 and 400) available before answer reveal. User can reason without seeing a pointer; no hidden right-answer status announced prematurely. After reveal announce value plus unit.
-                      - Provide keyboard/switch/touch choices, contrast/shape labels independent of color, logical focus, large touch targets, 200% text, reduced-motion alternatives, no audio-only evidence, no precision drag, WCAG 2.2 AA testing and equivalent offline/weak-device experience **after the real package/locale download works**. Accessibility claims remain requirements, not implementation status.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. Scale has **seven** major ticks 0…600 separated by **six** 100g intervals, and minor ticks at 50,150,250,350,450,550 centered exactly halfway.
-                      2. Stage A zeroed object 200g indicates major tick **200 g**; bare "200" is incomplete unit-bearing measurement.
-                      3. Stage B midpoint between 300 and 400 is **350 g**, with two equal 50g intervals.
-                      4. Stage C **empty erroneous** scale indicates **100 g**, object true mass350 produces **uncorrected 450 g**; after empty tare indicated0, the same object yields **350 g**.
-                      5. Taring with object present is blocked in this **specified beginner procedure**, explained without claiming real scales can never tare containers.
-                      6. Stage D midway between 500 and600 is **550 g**; separate 400–500 midpoint is **450 g**, without altering graduation spacing.
-                      7. A scale displayed larger/smaller or in RTL never changes numeric calibration, indicated masses or unit.
-                      8. Stage reset independently restores A/B/D empty offset0 and C empty offset+100, no cross-stage leak, no data persistence.
-                      9. Keyboard, screen reader, reduced motion, RTL, mobile zoom, offline-after-download and no-color-only modes provide the identical scale reasoning, tare operation and feedback.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Only the generic `scene` Resource handler is present. **Graduated Mass Scale is not implemented**. After Methodologist/Scene approval, Coding Agent must verify actual locale context and create four prop-free Scene roots with exact tick/value calculations, accessibility tests and full offline content packaging. This document adds no runtime Lesson, real scale sensor, scored Questions/Quiz, learner progress, persistent Notes or imaginary state/event API.
-                      
-                      
-                      ## Scene occurrence in Screenwriter Section
-                      
-                        2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement D. Empty ready instrument at 0 g; example object mass **550 g** moves pointer to one minor tick midway 500–600. Learner selects/enters 500 g, 550 g, 600 g or bare 550; a separate accessible "Read scale intervals" control explains that 500→550 and 550→600 are equal **50 g** subintervals.
-                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+                    # Graduated Mass Scale — Scene Specification
+
+                    Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Read the Mass on a Graduated Scale (full original source: this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Draft Methodologist Brief (full original source: production.methodology): read gram-calibrated graduations and midpoint intervals, report a correct number **with g**, recognize a nonzero empty scale and repair using tare/reset. No other Skill or scored assessment.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A heavy/light balance comparison gives **relative** mass but not a number. Children now learn to read a **gram-calibrated scale**, infer the size of one major and one minor interval, and avoid reporting an object mass from a scale that wasn't zeroed. An explicit counterexample (empty pointer at 100 g, load appears 450 g; correct mass after zeroing 350 g) distinguishes instrument **reading** from blindly copying a number.
+
+                    Learner phrase: "**Check zero. Count what each little mark means. Read where the pointer is and write grams.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Schematic device reports mass in **grams**, symbol **g**, as a calibrated idealized scale. Its graduation axis has major marks **0,100,200,300,400,500,600 g**, spaced at **100 g** each (six major intervals), and one midpoint minor tick per interval at **50,150,250,350,450,550 g**. Each half-interval spans exactly **50 g**.
+                    - The mapping of pointer position to mass is defined by the calibration marks, **not SVG angles, CSS pixel distances, size of drawing or device hardware**. A linear horizontal/vertical schematic may be preferable to a curved dial. Any responsive scaling preserves spacing ratios. The chosen numeric increasing direction is explicit and must be preserved in RTL; no silent mirroring of value labels.
+                    - A mass reading must include its unit. "350" alone is not a fully specified measurement; "**350 g**" is. Small midway marks have meaningful values even when the printed numerals only appear at hundreds.
+                    - Standard correct zero: empty scale pointer at **0 g**. After an object of modeled mass `m` is placed, a correctly zeroed scale points to `m` grams, for the limited 0–600 g range.
+                    - Error diagnostic: a **mis-zeroed empty instrument** has indicated offset `+100 g`. A modeled object of true mass `350 g` yields indicated **450 g** until the empty scale is reset/tared. This **uncorrected** indication is not an accurate object-only mass. "Remove object" then "Set empty pointer to zero" clears offset; re-place the same object yields **350 g**.
+                    - Tare here is an explicit **empty-platform zeroing** procedure. Real scales can tare a container, but that is _outside this Lesson_. The scale is modeled as calibrated to report mass; in real physics some spring/digital systems respond to weight under local gravity. Do not claim this toy representation measures mass physically without calibration or that gravity never matters.
+                    - Exact whole model masses used: Stage A **200 g**; Stage B **350 g**; Stage C true mass **350 g** with wrong offset indication450 g; Stage D **550 g**, optionally **450 g** follow-up. No grams↔kilograms conversions, decimals, hidden rounding, overloaded range or negative readings.
+                    - The earlier equal-arm balance Skill remains prerequisite knowledge of **relative mass**; its tilt direction is not directly translated into grams here.
+                    - Feedback is formative; reading a scale is not a Quiz or durable mastery event.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A — From "Heavier" to "200 g" (Section 1)
+
+                    1. Show comparison balance schematic that only says **A heavier than B**, no mass numbers. Transition to an initially empty, **zeroed** graduated mass scale. Display the unit **g** and ordered major marks 0…600 every100.
+                    2. Prompt: "What number and unit does the pointer show when we place this object?" "Place object" uses fixed **m=200 g** so pointer moves from0→**200** (exact major mark).
+                    3. Offer learner-readable options "2", "200", "**200 g**" and "Not sure—show labels". Feedback 2: "You counted two big steps, but each step is **100 grams**." Feedback bare200: "Add the unit **g**." Correct: "The pointer is on the tick labeled 200 grams."
+                    4. "Read major ticks" shows 0,100,200,300,400,500,600 in one line or row-by-row accessible list. In early reveal, avoid outputting the final mass in aria text before the learner asks for the answer; describing the pointer "on the major tick marked 200" **is the evidence** the child uses.
+                    5. Reset removes object, pointer returns0 and prediction is cleared. Any optional animation can be skipped without losing the mark interpretation.
+
+                    ### B — Midpoint Is Fifty More (Section 2)
+
+                    1. The empty zeroed scale has major marks labelled. Object `m=350 g` is placed; pointer is on the **small midpoint tick between labelled 300 and 400**.
+                    2. Prompt: "That gap is **100 grams** wide. How many grams are half the gap? What is this tick?" Choices "300 g", "**350 g**", "400 g". Do not add a fake "1 g" answer requirement.
+                    3. "Show two equal spaces" brackets 300→350 and 350→400, explicitly declaring each **50 g** because both halves total100. Reveal final "**350 g**".
+                    4. For 300: "The pointer is **after** 300, half of the way to 400"; for 400: "It has not reached 400"; for 350: "It is the midway value, with grams named." Both explanations rely on the same numbered scale.
+                    5. Provide ordered accessible tick list: "300 big tick, midway small tick, 400 big tick; pointer on midway." No exact result leaked beyond the mathematical evidence children are meant to reason from.
+                    6. Reset returns to empty, zeroed state; minor tick labeling only appears as explained, not mysteriously re-scaled.
+
+                    ### C — Empty Scale Starts at 100: Fix It (Section 3)
+
+                    1. Fixed true object mass **350 g**, initially **not on scale**. Scale has simulated erroneous empty-offset `+100 g`, so **empty pointer indicates 100 g**. Prompt: "Would the reading be trustworthy if we put an object there now? Which step is missing?"
+                    2. Choice "Place object anyway" (demonstrate error) yields indicated **450 g** (100 offset + 350 mass); use label "**uncorrected indication 450 g**", not measured object mass. Child may predict the problem and inspect it.
+                    3. "Remove object" returns indicated pointer to **100 g**. "Zero/tare empty scale" then sets offset0, empty reading0. "Place same object" yields corrected indicated **350 g**.
+                    4. A "Tare while object on platform" action is blocked **for this beginner model** with explanation "Remove the object; we're zeroing an **empty platform** before measuring the object's mass." This narrow rule avoids teaching advanced taring of container mass but does not claim other scale use is impossible.
+                    5. Feedback if learner trusts450: "The empty scale already had a 100 g offset. We must zero it before trusting the object's number." After repair: "The **same object** reads 350 g. The error belonged to the instrument setup, not a change in mass."
+                    6. Reset returns to **empty mis-zeroed** state, not the corrected state; that is essential to replay the diagnosis independently.
+
+                    ### D — Unfamiliar 550 g Midpoint (Section 4)
+
+                    1. Begin with a clean empty scale at **0 g**. Place new object `m=550 g`; pointer rests **halfway between 500 and 600**, at the small tick.
+                    2. Prompt: "What mass is this? Include the unit." Choices "**550 g**", "500 g", "600 g", "550 (no unit)". "Read interval" describes major tick values and exactly one midway minor tick.
+                    3. Reveal two equal subintervals 500→550 and 550→600, each50 g, and final **550 g**.
+                    4. Feedback 500: "The pointer passed 500"; 600: "It hasn't reached 600"; bare550: "Value correct; add grams **g**." For a reading right on the midway small tick, never round to the nearest hundred.
+                    5. Independent follow-up: select a fixed **450 g** mass pointer halfway between 400 and 500; learner applies the same rule, not a memorized final550. The current scale remains zeroed and has the same major/minor spacing.
+                    6. Reset restores the stage initial empty zeroed instrument, not the prior case's +100 error; stages are independent and use no persisted state.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** calibrated axis major 0…600 by100, optional labelled minor tick 50 between each pair, pointer, empty/object placement button, tare/reset controls, interval-bracket reveal, prediction choice, local feedback/step history.
+                    - **State per Section placement:** fixed object mass `m`, current offset (0 or +100 stage C), whether object is on platform, current pointer value `indicated=offset+(objectPresent?m:0)`, chosen learner answer, hint/reveal stage and focused interval.
+                    - **Invariants:** correctly tared empty indication0; correct object indication`m`, with unit g. Stage C offset100 + mass350 = indicated450, corrected offset0 gives 350; object mass `m` never changes on tare or visual zoom. Halfway mark between n*100 and (n+1)*100 equals n*100+50.
+                    - **Out-of-range:** forbid objects or offset combos outside 0–600g scale in authored presets. If implementation later adds new cases, must explicitly handle over-range instead of wrapping pointer around.
+                    - **Reset:** each Scene placement has its own immutable preset: A/B/D offset0 empty; C offset100 empty. Independent local state cannot leak from stage C into stage D.
+                    - **Prop-free public roots:** each Section-specific exported Scene component receives **no props** and reads locale from verified Lesson context. Private helpers may take mass presets; don't invent public `mass`, `locale`, `mode`, `onAnswer`, `onTare` props or platform event data.
+                    - **Feedback:** dynamic messages identify the incorrect calibration assumption, bad mark interpretation or missing unit; no grades, repeat threshold, user progression or Note APIs.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    A large simple graduated **linear schematic scale** can be clearer than a realistic round dial. Major tick lengths and printed 0–600 labels differ visually from minor ticks; 50g midway marks are evenly centered. Use focusable **controls outside thin SVG ticks**; a decorative pointer itself need not be a tiny touch target. Avoid making a scale appear physically heavier/lighter through dial dimensions. Motion may be immediate on reduced-motion settings, with status changes announced once. No real sensors, images, Remotion/video or hardware integrations required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate all learner-facing numerals/units, terms "mass", "grams", "graduation", "midpoint", "zero/tare", "uncorrected", object descriptions, choices, explanations and planned Notes for **each supported locale**, with correct number grammar and no missing-language fallback.
+                    - In RTL, textual controls may reorder, but the numeric instrument's **fixed ascending axis** must remain mathematically coherent (0→600 and actual pointer value); a mirrored visual must remap every tick and explanation consistently. Do not render mixed numeral direction misleadingly.
+                    - For screen readers supply an **ordered scale description** of 0,100,…600, the midpoint tick between each pair, and exact pointer _position relation_ (e.g., midway between labelled 300 and 400) available before answer reveal. User can reason without seeing a pointer; no hidden right-answer status announced prematurely. After reveal announce value plus unit.
+                    - Provide keyboard/switch/touch choices, contrast/shape labels independent of color, logical focus, large touch targets, 200% text, reduced-motion alternatives, no audio-only evidence, no precision drag, WCAG 2.2 AA testing and equivalent offline/weak-device experience **after the real package/locale download works**. Accessibility claims remain requirements, not implementation status.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Scale has **seven** major ticks 0…600 separated by **six** 100g intervals, and minor ticks at 50,150,250,350,450,550 centered exactly halfway.
+                    2. Stage A zeroed object 200g indicates major tick **200 g**; bare "200" is incomplete unit-bearing measurement.
+                    3. Stage B midpoint between 300 and 400 is **350 g**, with two equal 50g intervals.
+                    4. Stage C **empty erroneous** scale indicates **100 g**, object true mass350 produces **uncorrected 450 g**; after empty tare indicated0, the same object yields **350 g**.
+                    5. Taring with object present is blocked in this **specified beginner procedure**, explained without claiming real scales can never tare containers.
+                    6. Stage D midway between 500 and600 is **550 g**; separate 400–500 midpoint is **450 g**, without altering graduation spacing.
+                    7. A scale displayed larger/smaller or in RTL never changes numeric calibration, indicated masses or unit.
+                    8. Stage reset independently restores A/B/D empty offset0 and C empty offset+100, no cross-stage leak, no data persistence.
+                    9. Keyboard, screen reader, reduced motion, RTL, mobile zoom, offline-after-download and no-color-only modes provide the identical scale reasoning, tare operation and feedback.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Only the generic `scene` Resource handler is present. **Graduated Mass Scale is not implemented**. After Methodologist/Scene approval, Coding Agent must verify actual locale context and create four prop-free Scene roots with exact tick/value calculations, accessibility tests and full offline content packaging. This document adds no runtime Lesson, real scale sensor, scored Questions/Quiz, learner progress, persistent Notes or imaginary state/event API.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                      2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement D. Empty ready instrument at 0 g; example object mass **550 g** moves pointer to one minor tick midway 500–600. Learner selects/enters 500 g, 550 g, 600 g or bare 550; a separate accessible "Read scale intervals" control explains that 500→550 and 550→600 are equal **50 g** subintervals.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
               section4Markdown3:
                 config:
-                  id: "e8c705c3-27aa-4ccd-8325-6309bc485a07"
-                  slug: "section4Markdown3"
-                  type: "markdown"
+                  id: 'e8c705c3-27aa-4ccd-8325-6309bc485a07'
+                  slug: 'section4Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The last big gap goes from **500 to 600 grams**. Halfway is **550**. The mass is **550 g**. We used the actual little tick and wrote its unit, rather than guessing the nearest printed number."
+                      en: 'The last big gap goes from **500 to 600 grams**. Halfway is **550**. The mass is **550 g**. We used the actual little tick and wrote its unit, rather than guessing the nearest printed number.'
                 production:
-                  purpose: "Original learner-facing markdown block, provisional editorial draft"
-                  specification: "  3. **markdown — currently supported:** \"The last big gap goes from **500 to 600 grams**. Halfway is **550**. The mass is **550 g**. We used the actual little tick and wrote its unit, rather than guessing the nearest printed number.\""
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '  3. **markdown — currently supported:** "The last big gap goes from **500 to 600 grams**. Halfway is **550**. The mass is **550 g**. We used the actual little tick and wrote its unit, rather than guessing the nearest printed number."'
             order:
-              - "section4Text1"
-              - "section4Scene2"
-              - "section4Markdown3"
+              - 'section4Text1'
+              - 'section4Scene2'
+              - 'section4Markdown3'
         production:
-          purpose: "Your Own Mass Reading"
-          pedagogicalIntent: "Your Own Mass Reading"
+          purpose: 'Your Own Mass Reading'
+          pedagogicalIntent: 'Your Own Mass Reading'
           productionNotes: |
-              ### Section 4 — Your Own Mass Reading
-              
-              - **Purpose:** independent interpretation of a high midpoint and a complete unit-bearing report.
-              - **Current shape:** `LessonSection_Config`, vertical.
-              - **Ordered Resource blocks:**
-                1. **text — currently supported:** "The scale is properly zeroed. The new pointer is on a small tick halfway **between 500 and 600 g**. What mass should we write? Include the unit."
-                2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement D. Empty ready instrument at 0 g; example object mass **550 g** moves pointer to one minor tick midway 500–600. Learner selects/enters 500 g, 550 g, 600 g or bare 550; a separate accessible "Read scale intervals" control explains that 500→550 and 550→600 are equal **50 g** subintervals.
-                3. **markdown — currently supported:** "The last big gap goes from **500 to 600 grams**. Halfway is **550**. The mass is **550 g**. We used the actual little tick and wrote its unit, rather than guessing the nearest printed number."
-              - **Explanatory feedback:** 500 g: "The pointer has moved **past** 500 to the halfway tick." 600 g: "The pointer has not reached 600." Bare 550: "You found the value; add **g** for grams." 550 g: "Correct reading and unit, with the zero already checked." No score and no permanent mark of mastery.
-              - **Fresh alternative:** Add an unscored 450 g reading with the pointer between 400–500 to check that the learner generalized the equal midpoint value, not remembered only 550. All presets are deterministic.
-              - **Low-tech transfer:** A virtual list of ticks and pointer positions is sufficient; no physical kitchen scale is required.
-              
+            ### Section 4 — Your Own Mass Reading
+
+            - **Purpose:** independent interpretation of a high midpoint and a complete unit-bearing report.
+            - **Current shape:** `LessonSection_Config`, vertical.
+            - **Ordered Resource blocks:**
+              1. **text — currently supported:** "The scale is properly zeroed. The new pointer is on a small tick halfway **between 500 and 600 g**. What mass should we write? Include the unit."
+              2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement D. Empty ready instrument at 0 g; example object mass **550 g** moves pointer to one minor tick midway 500–600. Learner selects/enters 500 g, 550 g, 600 g or bare 550; a separate accessible "Read scale intervals" control explains that 500→550 and 550→600 are equal **50 g** subintervals.
+              3. **markdown — currently supported:** "The last big gap goes from **500 to 600 grams**. Halfway is **550**. The mass is **550 g**. We used the actual little tick and wrote its unit, rather than guessing the nearest printed number."
+            - **Explanatory feedback:** 500 g: "The pointer has moved **past** 500 to the halfway tick." 600 g: "The pointer has not reached 600." Bare 550: "You found the value; add **g** for grams." 550 g: "Correct reading and unit, with the zero already checked." No score and no permanent mark of mastery.
+            - **Fresh alternative:** Add an unscored 450 g reading with the pointer between 400–500 to check that the learner generalized the equal midpoint value, not remembered only 550. All presets are deterministic.
+            - **Low-tech transfer:** A virtual list of ticks and pointer positions is sufficient; no physical kitchen scale is required.
+
     order:
-      - "section1WhichToolGivesANumber"
-      - "section2HalfwayBetweenThreeHundredAndFourHundred"
-      - "section3TheScaleWasnTAtZero"
-      - "section4YourOwnMassReading"
+      - 'section1WhichToolGivesANumber'
+      - 'section2HalfwayBetweenThreeHundredAndFourHundred'
+      - 'section3TheScaleWasnTAtZero'
+      - 'section4YourOwnMassReading'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
-      # Read the Mass on a Graduated Scale — Methodologist Brief
-      
-      Date: 2026-10-31
-      Slug: readingMassScale
-      Methodologist status: Draft
-      Code: [Not implemented](#)
-      Program dependence: None
-      
-      ## Educational purpose
-      
-      Advance from a qualitative **equal-arm balance comparison** to reporting a **numerical mass with a unit** by reading an explicitly calibrated graduated scale. The learner must infer the value of equal divisions, understand between-mark values and include **g** in the result. Scale reading is distinct from comparing which pan went down.
-      
-      ## Target audience
-      
-      **Primary audience: Grade 3, approximately ages 8–9.** Grade 3 (approximately 8–9), learners who know 0–600 in hundreds and have counted equal intervals on a ruler. Any analog pointer is supplemented by exact ordered tick descriptions and selectable numeric labels; no real heavy object, precision dragging, compulsory equipment or sighted response required.
-      
-      ## Prerequisites
-      
-      - [compareMass.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/measurement/mass/skills/compareMass.data.ts): compare masses qualitatively by a fair equal-arm balance, without expecting numerical units.
-      - [useRuler.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/measurement/length/skills/useRuler.data.ts): read evenly spaced calibration marks and count intervals rather than tick labels. Recognize 0, 100, 200, …, 600 and the halfway interval to 50.
-      
-      ## Target Skills
-      
-      - [weighObject.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/measurement/mass/skills/weighObject.data.ts)
-      
-      ## Expected learning outcomes
-      
-      - Read a simple **gram-calibrated** mass scale with equal 100 g major divisions and recognize an unlabeled midpoint as **50 g** above the previous major mark.
-      - Report mass readings of **200 g**, **350 g**, or **450 g** with the **gram (g)** unit, not merely a bare number or a label from the wrong mark.
-      - Identify a misplaced zero/tare as a source of invalid reading and describe resetting an empty scale to zero **before** placing the object.
-      - Explain that the same numerical object mass is preserved when a display changes its decorative appearance or a scale is read in another orientation, assuming correct calibration, and distinguish numerical mass measurement from the earlier heavier/lighter balance comparison.
-      
-      ## Essential subject matter
-      
-      A schematic **mass scale calibrated in grams** (g) has equal major tick marks 0,100,200,300,400,500,600 g, separated by **100 g** each, with a single **50 g** minor tick midway between each pair. If the pointer is at 350 g (midway between 300 and 400), report **350 g**, not 300, 400, 3.5 or 350 with no unit. If at 450 g, report **450 g**. The scale should read 0 g with the empty weighing surface (**tare/zeroed**) before an object is placed; if an empty scale already reads 100 g, its uncorrected reading under load cannot be trusted as the object's mass. A digital 350 g readout can confirm the same result but must not bypass understanding graduated tick intervals. In physical devices the force/weight response may be calibrated to _display mass_ under specified conditions; the children's model does not claim universal gravity-free direct mass sensing. The lower pan of a separate equal-arm balance showed **relative** mass, not a measured number; no instrument is presumed physically accurate from rendered pixels.
-      
-      ## Conceptual progression and dependencies
-      
-      Begin with a fair balance that says only which object has more mass. Introduce a numeric graduated display with clearly labeled **g** and a visible empty zero state. Read 200 g at a major tick, then inspect the 300–400 gap and discover a 50 g halfway tick, yielding 350 g. Show a 450 g example with a new pointer placement; use an optional digital readout only **after** a scale-based prediction. Expose an empty display incorrectly sitting at 100 g and ask for a tare/reset before trusting any object's mass. End with an independent labeled 550 g reading and a full number-and-unit explanation.
-      
-      ## Misconceptions, examples and boundaries
-      
-      One pointer step always means 1 g; only printed major labels can be read; midpoint 300–400 is 305 or 400; a larger drawn dial means a heavier item; empty scale nonzero reading may be ignored; reporting 350 without units is a valid measurement; the scale reads the object's container-plus-object mass after tare without considering setup; digital output makes the underlying unit irrelevant.
-      
-      **Instructional depth / explicit exclusions:** Schematic gram-calibrated mass scale with 0–600 g major 100 g ticks and one midpoint per interval, **whole tens/hundreds only** (multiples of 50), zero/tare check; no kilograms-to-grams conversion, complex analog dial angles, density, force equations, center of gravity, real instruments or mass at other gravitational fields. These are **Lesson boundaries**; the canonical Skill object remains grade-neutral and unchanged.
-      
-      ## Localization, accessibility and offline intent
-      
-      Every learner-visible prompt, feedback, dynamic state description, diagram label, ruler/scale symbol, unit expression, alt description, optional transcript and proposed recall Note requires authentic localization into **every supported textbook locale**, with **no silent English fallback or placeholder translation**. Reading direction can change layout but must never change the invariant square-cell area, rigid-piece count, one-liter measure or scale tick values. For nonvisual learners provide a complete meaningful ordered list of the model's unit cells, pieces, pours or graduation marks. Each manipulation must be operable via touch, keyboard/switch and appropriately labeled controls without precision dragging. Use WCAG 2.2 AA targets/contrast/focus, understandable low-reading-load copy, accessible text scaling, reduced motion, equivalent low-end performance and complete post-download offline activity. These are design requirements, **not existing infrastructure claims**.
-      
-      ## Sources and factual verification
-      
-      - [weighObject.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/measurement/mass/skills/weighObject.data.ts) — canonical Mathematics Skill source from `content/math/`; copied byte-for-byte (UUID, multilingual data, methodological description unchanged) into this textbook's local Skill tree.
-      - [Methodologist persona](https://github.com/KiT-Maverik/svitlo/blob/main/studio/personas/methodist.persona.md), [separate editorial artifact policy](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/lesson-editorial-document.md), [Lesson entity definition](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md) — editorial roles, Program-neutral scope and approval boundaries.
-      - [Playground generated taxonomy view](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md) — **stale for newly transferred Skills** until coordinator integration/regeneration; the canonical source files above, not this view, are the identity authority.
-      
-      Mathematical/measurement illustrative cases must be reviewed against the exact Skill definition; no country-specific curriculum was assigned and no external instrument calibration has been verified.
-      
-      ## Curriculum / Program compatibility
-      
-      No national Program or Curriculum specified. The Lesson is independently usable and may be sequenced differently by future Programs. Grade 3 denotes bounded **pedagogical depth**, not a modification to the global Skill's definition.
-      
-      ## Open editorial decisions
-      
-      - Editor: approve Grade 3 handling of 50 g midpoint subdivisions and the explicit caveat that a schematic scale is **calibrated to display mass in grams** rather than literally measuring mass from onscreen pixel positions.
-      - **Methodologist approval required:** This Brief is Draft. Associated `content.md` and `scenes/*.scene-spec.md` in this batch are **provisional screenwriter drafts**, prepared under user batch authorization ahead of formal Brief approval. They must be revised if this Brief changes.
-      
-      ## Methodologist handoff
-      
-      Review prerequisites, mathematical examples, misconceptions and audience demands before any explicit Approved status. The Screenwriter owns the provisional Section experience; future approved Scene Designer work must remain within it. Assessment Architect separately owns any Question, Quiz, grading and evidence model. No React Scene, runtime Lesson config, published locale content, Note persistence or generated registries is included.
+    # Read the Mass on a Graduated Scale — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: readingMassScale
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Advance from a qualitative **equal-arm balance comparison** to reporting a **numerical mass with a unit** by reading an explicitly calibrated graduated scale. The learner must infer the value of equal divisions, understand between-mark values and include **g** in the result. Scale reading is distinct from comparing which pan went down.
+
+    ## Target audience
+
+    **Primary audience: Grade 3, approximately ages 8–9.** Grade 3 (approximately 8–9), learners who know 0–600 in hundreds and have counted equal intervals on a ruler. Any analog pointer is supplemented by exact ordered tick descriptions and selectable numeric labels; no real heavy object, precision dragging, compulsory equipment or sighted response required.
+
+    ## Prerequisites
+
+    - [compareMass.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/measurement/mass/skills/compareMass.data.ts): compare masses qualitatively by a fair equal-arm balance, without expecting numerical units.
+    - [useRuler.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/measurement/length/skills/useRuler.data.ts): read evenly spaced calibration marks and count intervals rather than tick labels. Recognize 0, 100, 200, …, 600 and the halfway interval to 50.
+
+    ## Target Skills
+
+    - [weighObject.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/measurement/mass/skills/weighObject.data.ts)
+
+    ## Expected learning outcomes
+
+    - Read a simple **gram-calibrated** mass scale with equal 100 g major divisions and recognize an unlabeled midpoint as **50 g** above the previous major mark.
+    - Report mass readings of **200 g**, **350 g**, or **450 g** with the **gram (g)** unit, not merely a bare number or a label from the wrong mark.
+    - Identify a misplaced zero/tare as a source of invalid reading and describe resetting an empty scale to zero **before** placing the object.
+    - Explain that the same numerical object mass is preserved when a display changes its decorative appearance or a scale is read in another orientation, assuming correct calibration, and distinguish numerical mass measurement from the earlier heavier/lighter balance comparison.
+
+    ## Essential subject matter
+
+    A schematic **mass scale calibrated in grams** (g) has equal major tick marks 0,100,200,300,400,500,600 g, separated by **100 g** each, with a single **50 g** minor tick midway between each pair. If the pointer is at 350 g (midway between 300 and 400), report **350 g**, not 300, 400, 3.5 or 350 with no unit. If at 450 g, report **450 g**. The scale should read 0 g with the empty weighing surface (**tare/zeroed**) before an object is placed; if an empty scale already reads 100 g, its uncorrected reading under load cannot be trusted as the object's mass. A digital 350 g readout can confirm the same result but must not bypass understanding graduated tick intervals. In physical devices the force/weight response may be calibrated to _display mass_ under specified conditions; the children's model does not claim universal gravity-free direct mass sensing. The lower pan of a separate equal-arm balance showed **relative** mass, not a measured number; no instrument is presumed physically accurate from rendered pixels.
+
+    ## Conceptual progression and dependencies
+
+    Begin with a fair balance that says only which object has more mass. Introduce a numeric graduated display with clearly labeled **g** and a visible empty zero state. Read 200 g at a major tick, then inspect the 300–400 gap and discover a 50 g halfway tick, yielding 350 g. Show a 450 g example with a new pointer placement; use an optional digital readout only **after** a scale-based prediction. Expose an empty display incorrectly sitting at 100 g and ask for a tare/reset before trusting any object's mass. End with an independent labeled 550 g reading and a full number-and-unit explanation.
+
+    ## Misconceptions, examples and boundaries
+
+    One pointer step always means 1 g; only printed major labels can be read; midpoint 300–400 is 305 or 400; a larger drawn dial means a heavier item; empty scale nonzero reading may be ignored; reporting 350 without units is a valid measurement; the scale reads the object's container-plus-object mass after tare without considering setup; digital output makes the underlying unit irrelevant.
+
+    **Instructional depth / explicit exclusions:** Schematic gram-calibrated mass scale with 0–600 g major 100 g ticks and one midpoint per interval, **whole tens/hundreds only** (multiples of 50), zero/tare check; no kilograms-to-grams conversion, complex analog dial angles, density, force equations, center of gravity, real instruments or mass at other gravitational fields. These are **Lesson boundaries**; the canonical Skill object remains grade-neutral and unchanged.
+
+    ## Localization, accessibility and offline intent
+
+    Every learner-visible prompt, feedback, dynamic state description, diagram label, ruler/scale symbol, unit expression, alt description, optional transcript and proposed recall Note requires authentic localization into **every supported textbook locale**, with **no silent English fallback or placeholder translation**. Reading direction can change layout but must never change the invariant square-cell area, rigid-piece count, one-liter measure or scale tick values. For nonvisual learners provide a complete meaningful ordered list of the model's unit cells, pieces, pours or graduation marks. Each manipulation must be operable via touch, keyboard/switch and appropriately labeled controls without precision dragging. Use WCAG 2.2 AA targets/contrast/focus, understandable low-reading-load copy, accessible text scaling, reduced motion, equivalent low-end performance and complete post-download offline activity. These are design requirements, **not existing infrastructure claims**.
+
+    ## Sources and factual verification
+
+    - [weighObject.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/measurement/mass/skills/weighObject.data.ts) — canonical Mathematics Skill source from `content/math/`; copied byte-for-byte (UUID, multilingual data, methodological description unchanged) into this textbook's local Skill tree.
+    - [Methodologist persona](https://github.com/KiT-Maverik/svitlo/blob/main/studio/personas/methodist.persona.md), [separate editorial artifact policy](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/lesson-editorial-document.md), [Lesson entity definition](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md) — editorial roles, Program-neutral scope and approval boundaries.
+    - [Playground generated taxonomy view](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md) — **stale for newly transferred Skills** until coordinator integration/regeneration; the canonical source files above, not this view, are the identity authority.
+
+    Mathematical/measurement illustrative cases must be reviewed against the exact Skill definition; no country-specific curriculum was assigned and no external instrument calibration has been verified.
+
+    ## Curriculum / Program compatibility
+
+    No national Program or Curriculum specified. The Lesson is independently usable and may be sequenced differently by future Programs. Grade 3 denotes bounded **pedagogical depth**, not a modification to the global Skill's definition.
+
+    ## Open editorial decisions
+
+    - Editor: approve Grade 3 handling of 50 g midpoint subdivisions and the explicit caveat that a schematic scale is **calibrated to display mass in grams** rather than literally measuring mass from onscreen pixel positions.
+    - **Methodologist approval required:** This Brief is Draft. Associated `content.md` and `scenes/*.scene-spec.md` in this batch are **provisional screenwriter drafts**, prepared under user batch authorization ahead of formal Brief approval. They must be revised if this Brief changes.
+
+    ## Methodologist handoff
+
+    Review prerequisites, mathematical examples, misconceptions and audience demands before any explicit Approved status. The Screenwriter owns the provisional Section experience; future approved Scene Designer work must remain within it. Assessment Architect separately owns any Question, Quiz, grading and evidence model. No React Scene, runtime Lesson config, published locale content, Note persistence or generated registries is included.
   productionNotes: |
-      All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
-      
-      ## Original Screenwriter introduction
-      
-      # Read the Mass on a Graduated Scale — Lesson Content
-      
-      Status: **Provisional Draft — Methodologist approval pending; NOT approved for implementation**
-      Target Lesson: `content/playground/Data/Lessons/1/readingMassScale/`
-      Audience: **Grade 3** (approximately ages 8–9), can count in hundreds and halfway 50-gram intervals
-      Methodologist source: Draft Methodologist Brief (full original source: production.methodology)
-      Learning outcomes: interpret equal gram graduations, identify intermediate 50-gram marks, report numeric mass with g, zero/tare an empty scale before reading.
-      Target Skills: `weighObject.data.ts` as linked in the Brief. Comparing masses on a qualitative equal-arm balance remains the distinct prerequisite `compareMass` Skill.
-      Program dependence: None
-      Implementation: editorial only, with proposed custom Scene; no runtime Lesson data, Question/Quiz, grading or physical hardware.
-      
-      ## INSTRUCTIONAL CONCEPT
-      
-      **"A scale reading needs the mark _and_ the unit."** A balance that tips tells us which object has greater mass, but not **how many grams**. A calibrated **mass scale** with numbered marks and equal spaces can produce a numeric reading. This simple schematic instrument reads grams (g): large ticks at **0, 100, 200, 300, 400, 500, 600 g**, with an unlabeled **midpoint tick** at **50 g** between each pair. The child first discovers the 100 g spacing, then interprets the in-between marks to find values like **350 g**, rather than merely reciting visible printed numerals.
-      
-      The scale is **zeroed when empty**. An illustrative +100 g offset is a measurement error, not added object mass. The Scene helps identify the error and reset/tare the instrument before reporting a trustworthy result. A real spring scale relates a physical force to a _mass-calibrated display under specified conditions_; this Stage 3 Lesson focuses on reading an ideal gram-calibrated scale, not the physics of force and mass or device calibration.
-      
-      ## LEARNER JOURNEY
-      
-      1. Switch from an equal-arm balance comparison to a graduated **gram-reading** instrument and identify the printed unit g.
-      2. Read a pointer exactly at a numbered major mark, then explain an unlabeled midway tick between 300 and 400: **350 g**.
-      3. Diagnose an empty instrument that reads 100 g; check zero, tare/reset, then obtain the correct **350 g** for the same example object.
-      4. Independently read **550 g** on the upper end of the graduation range and reject two common mistakes: giving "500 g" by nearest label, or "550" without its unit.
-      
-      Each reveal is learner-controlled; numerical values never become a pass/fail badge or an unapproved mastery decision.
-      
-      ## SECTION PLAN
-      
-      
-      ## Original Screenwriter concluding notes
-      
-      ## CUSTOM SCENE SPECIFICATIONS
-      
-      - Graduated Mass Scale (full original source: Scene production.specification) — prop-free, deterministic custom Scene specification covering major/minor ticks, zero checks and explanatory alternatives.
-      
-      ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-      
-      1. After Section 1: "A mass reading needs a number and unit, like **200 g**."
-      2. After Section 2 midpoint: "Each little halfway tick adds **50 g** on this scale."
-      3. After Section 3 tare: "Zero an empty scale before weighing an object."
-      
-      No current Note API, unlock state, scheduled recall or learner-specific storage is asserted. These are future Git-authored recall cues only.
-      
-      ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-      
-      The 550 g and optional 450 g readings are **unscored formative transfer**. Assessment Architect can separately design items varying intervals, units and zero-state errors with suitable audio/nonvisual equivalents; must not infer mastery from one correct pointer reading or silently assign grading thresholds.
-      
-      ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-      
-      Translate all instrument labels, unit grammar, midpoint explanations, zero/tare instructions, pointer states, feedback and Notes genuinely for every supported locale. A visually graduated scale must have an equivalent **ordered list of major and minor ticks** and a clear pointer position relative to the neighboring labels, so screen-reader users can infer exactly the same value **before** requesting the reveal. Numeric scale direction and 0/100…600 mapping remain consistent in RTL; translating UI reading order must not mirror the instrument's values. Controls are ordinary accessible buttons/choices, no tiny pointer dragging, external sensor, color-only mark identification, forced speech or sound. Provide 200% zoom, visible focus, large touch areas, reduced motion, screen-reader state announcements, complete post-download offline use and WCAG 2.2 AA verification. This is a design contract, not evidence of implemented accessibility.
-      
-      ## PRODUCTION / PLATFORM DEPENDENCIES
-      
-      The Playground renderer currently handles `text`, `markdown`, `scene`, but the custom mass-scale Scene, real locales, runtime Lesson, tests and caching do **not** exist. Coding Agent must verify locale context before implementing prop-free Scene roots, interval logic and accessibility behavior; no invented instrument sensor API. Do not add scoring, Questions, Quizzes, Note persistence, analytics or platform state contracts here.
-      
-      ## EDITORIAL SOURCES AND OPEN QUESTIONS
-      
-      - Draft Methodologist Brief (full original source: production.methodology), canonical `weighObject.data.ts` source and earlier qualitative `compareMass.data.ts` prerequisite.
-      - Editor: verify that the deliberate +100 g offset example is labeled as **uncorrected instrument reading**, not the actual object mass.
-      - Editor: confirm 50 g midpoint interpretation fits the chosen Grade 3 prerequisite numeracy without adding kilogram conversion.
-      - Methodologist and Scene approval are both pending.
-      
-      ## HANDOFF
-      
-      Methodologist approves the numeric scale and accuracy claims. Screenwriter/editor validates all values, feedback and accessible equivalents. Approved Scene spec then passes to Scene Designer/Coding Agent with tests; assessment is separately authorized.
+    All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
+
+    ## Original Screenwriter introduction
+
+    # Read the Mass on a Graduated Scale — Lesson Content
+
+    Status: **Provisional Draft — Methodologist approval pending; NOT approved for implementation**
+    Target Lesson: `content/playground/Data/Lessons/1/readingMassScale/`
+    Audience: **Grade 3** (approximately ages 8–9), can count in hundreds and halfway 50-gram intervals
+    Methodologist source: Draft Methodologist Brief (full original source: production.methodology)
+    Learning outcomes: interpret equal gram graduations, identify intermediate 50-gram marks, report numeric mass with g, zero/tare an empty scale before reading.
+    Target Skills: `weighObject.data.ts` as linked in the Brief. Comparing masses on a qualitative equal-arm balance remains the distinct prerequisite `compareMass` Skill.
+    Program dependence: None
+    Implementation: editorial only, with proposed custom Scene; no runtime Lesson data, Question/Quiz, grading or physical hardware.
+
+    ## INSTRUCTIONAL CONCEPT
+
+    **"A scale reading needs the mark _and_ the unit."** A balance that tips tells us which object has greater mass, but not **how many grams**. A calibrated **mass scale** with numbered marks and equal spaces can produce a numeric reading. This simple schematic instrument reads grams (g): large ticks at **0, 100, 200, 300, 400, 500, 600 g**, with an unlabeled **midpoint tick** at **50 g** between each pair. The child first discovers the 100 g spacing, then interprets the in-between marks to find values like **350 g**, rather than merely reciting visible printed numerals.
+
+    The scale is **zeroed when empty**. An illustrative +100 g offset is a measurement error, not added object mass. The Scene helps identify the error and reset/tare the instrument before reporting a trustworthy result. A real spring scale relates a physical force to a _mass-calibrated display under specified conditions_; this Stage 3 Lesson focuses on reading an ideal gram-calibrated scale, not the physics of force and mass or device calibration.
+
+    ## LEARNER JOURNEY
+
+    1. Switch from an equal-arm balance comparison to a graduated **gram-reading** instrument and identify the printed unit g.
+    2. Read a pointer exactly at a numbered major mark, then explain an unlabeled midway tick between 300 and 400: **350 g**.
+    3. Diagnose an empty instrument that reads 100 g; check zero, tare/reset, then obtain the correct **350 g** for the same example object.
+    4. Independently read **550 g** on the upper end of the graduation range and reject two common mistakes: giving "500 g" by nearest label, or "550" without its unit.
+
+    Each reveal is learner-controlled; numerical values never become a pass/fail badge or an unapproved mastery decision.
+
+    ## SECTION PLAN
+
+
+    ## Original Screenwriter concluding notes
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Graduated Mass Scale (full original source: Scene production.specification) — prop-free, deterministic custom Scene specification covering major/minor ticks, zero checks and explanatory alternatives.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. After Section 1: "A mass reading needs a number and unit, like **200 g**."
+    2. After Section 2 midpoint: "Each little halfway tick adds **50 g** on this scale."
+    3. After Section 3 tare: "Zero an empty scale before weighing an object."
+
+    No current Note API, unlock state, scheduled recall or learner-specific storage is asserted. These are future Git-authored recall cues only.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    The 550 g and optional 450 g readings are **unscored formative transfer**. Assessment Architect can separately design items varying intervals, units and zero-state errors with suitable audio/nonvisual equivalents; must not infer mastery from one correct pointer reading or silently assign grading thresholds.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    Translate all instrument labels, unit grammar, midpoint explanations, zero/tare instructions, pointer states, feedback and Notes genuinely for every supported locale. A visually graduated scale must have an equivalent **ordered list of major and minor ticks** and a clear pointer position relative to the neighboring labels, so screen-reader users can infer exactly the same value **before** requesting the reveal. Numeric scale direction and 0/100…600 mapping remain consistent in RTL; translating UI reading order must not mirror the instrument's values. Controls are ordinary accessible buttons/choices, no tiny pointer dragging, external sensor, color-only mark identification, forced speech or sound. Provide 200% zoom, visible focus, large touch areas, reduced motion, screen-reader state announcements, complete post-download offline use and WCAG 2.2 AA verification. This is a design contract, not evidence of implemented accessibility.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    The Playground renderer currently handles `text`, `markdown`, `scene`, but the custom mass-scale Scene, real locales, runtime Lesson, tests and caching do **not** exist. Coding Agent must verify locale context before implementing prop-free Scene roots, interval logic and accessibility behavior; no invented instrument sensor API. Do not add scoring, Questions, Quizzes, Note persistence, analytics or platform state contracts here.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Draft Methodologist Brief (full original source: production.methodology), canonical `weighObject.data.ts` source and earlier qualitative `compareMass.data.ts` prerequisite.
+    - Editor: verify that the deliberate +100 g offset example is labeled as **uncorrected instrument reading**, not the actual object mass.
+    - Editor: confirm 50 g midpoint interpretation fits the chosen Grade 3 prerequisite numeracy without adding kilogram conversion.
+    - Methodologist and Scene approval are both pending.
+
+    ## HANDOFF
+
+    Methodologist approves the numeric scale and accuracy claims. Screenwriter/editor validates all values, feedback and accessible equivalents. Approved Scene spec then passes to Scene Designer/Coding Agent with tests; assessment is separately authorized.
