@@ -7,6 +7,7 @@ import ts from 'typescript';
 import yaml from 'yaml';
 
 import { runOne } from '../lessonBuilder/lessonBuilder.mjs';
+import { productionFiles, splitScaffoldDocument } from './productionScaffolding.mjs';
 import { parseCourseYaml, renderCourseSource, verifyOrWriteGenerated } from '../courseBuilder/courseBuilder.mjs';
 
 const lessonId = '00000000-0000-4000-8000-00000000000c';
@@ -194,6 +195,66 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     assert.equal(fs.readFileSync(path.join(courseDir, 'config.yaml'), 'utf8'), courseYaml);
     assert(!fs.existsSync(path.join(courseDir, 'generated')));
     assert(!fs.existsSync(path.join(lessonDir, 'generated')));
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+
+test('Quest Stage caption production creates a UUID-addressed Subtitles handoff', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'quest-subtitles-handoff-'));
+  try {
+    const captionId = id(151);
+    const lessonPath = path.join(root, 'content/math/data/lessons/c', lessonId);
+    const node = {
+      config: {
+        id: lessonId,
+        slug: 'questLesson',
+        type: 'lesson',
+        section: {
+          items: {
+            guided: {
+              config: {
+                id: id(150),
+                slug: 'guided',
+                type: 'quest',
+                stages: {
+                  start: {
+                    config: {
+                      id: id(152),
+                      slug: 'start',
+                      type: 'questStage',
+                      content: {
+                        subtitles: {
+                          config: {
+                            id: captionId,
+                            slug: 'subtitles',
+                            type: 'subtitles',
+                            params: {},
+                            locale: { fileLocation: null },
+                          },
+                          production: { script: 'WEBVTT\n\n00:00:00.000 --> 00:00:02.000\nNarrator: Begin.' },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      production: { documentLanguage: 'en' },
+    };
+    const split = splitScaffoldDocument(node);
+    assert.equal(split.config.section.items.guided.stages.start.content.subtitles.type, 'subtitles');
+    const handoffs = productionFiles(lessonPath, split.tasks);
+    assert.equal(handoffs.length, 1);
+    assert.equal(
+      handoffs[0].file,
+      path.join(root, 'content/math/data/assets', captionId.at(-1), captionId, 'specification.md'),
+    );
+    assert.match(handoffs[0].content, /WEBVTT/);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
