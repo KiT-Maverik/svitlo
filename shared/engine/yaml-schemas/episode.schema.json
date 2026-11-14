@@ -26,9 +26,7 @@
           }
         }
       },
-      "required": [
-        "languages"
-      ],
+      "required": ["languages"],
       "additionalProperties": false
     },
     "locale": {
@@ -38,9 +36,7 @@
           "$ref": "#/$defs/__schema4"
         }
       },
-      "required": [
-        "title"
-      ],
+      "required": ["title"],
       "additionalProperties": false
     },
     "section": {
@@ -88,10 +84,7 @@
                         "$ref": "#/$defs/__schema4"
                       }
                     },
-                    "required": [
-                      "title",
-                      "navigationLabel"
-                    ],
+                    "required": ["title", "navigationLabel"],
                     "additionalProperties": false
                   },
                   "content": {
@@ -107,21 +100,11 @@
                         }
                       }
                     },
-                    "required": [
-                      "items",
-                      "order"
-                    ],
+                    "required": ["items", "order"],
                     "additionalProperties": false
                   }
                 },
-                "required": [
-                  "id",
-                  "slug",
-                  "type",
-                  "params",
-                  "locale",
-                  "content"
-                ],
+                "required": ["id", "slug", "type", "params", "locale", "content"],
                 "additionalProperties": false
               },
               {
@@ -159,10 +142,7 @@
                         "$ref": "#/$defs/__schema4"
                       }
                     },
-                    "required": [
-                      "title",
-                      "navigationLabel"
-                    ],
+                    "required": ["title", "navigationLabel"],
                     "additionalProperties": false
                   },
                   "content": {
@@ -178,21 +158,11 @@
                         }
                       }
                     },
-                    "required": [
-                      "items",
-                      "order"
-                    ],
+                    "required": ["items", "order"],
                     "additionalProperties": false
                   }
                 },
-                "required": [
-                  "id",
-                  "slug",
-                  "type",
-                  "params",
-                  "locale",
-                  "content"
-                ],
+                "required": ["id", "slug", "type", "params", "locale", "content"],
                 "additionalProperties": false
               },
               {
@@ -230,10 +200,7 @@
                         "$ref": "#/$defs/__schema4"
                       }
                     },
-                    "required": [
-                      "title",
-                      "navigationLabel"
-                    ],
+                    "required": ["title", "navigationLabel"],
                     "additionalProperties": false
                   },
                   "content": {
@@ -249,21 +216,11 @@
                         }
                       }
                     },
-                    "required": [
-                      "items",
-                      "order"
-                    ],
+                    "required": ["items", "order"],
                     "additionalProperties": false
                   }
                 },
-                "required": [
-                  "id",
-                  "slug",
-                  "type",
-                  "params",
-                  "locale",
-                  "content"
-                ],
+                "required": ["id", "slug", "type", "params", "locale", "content"],
                 "additionalProperties": false
               },
               {
@@ -301,10 +258,7 @@
                         "$ref": "#/$defs/__schema4"
                       }
                     },
-                    "required": [
-                      "title",
-                      "navigationLabel"
-                    ],
+                    "required": ["title", "navigationLabel"],
                     "additionalProperties": false
                   },
                   "content": {
@@ -320,21 +274,11 @@
                         }
                       }
                     },
-                    "required": [
-                      "items",
-                      "order"
-                    ],
+                    "required": ["items", "order"],
                     "additionalProperties": false
                   }
                 },
-                "required": [
-                  "id",
-                  "slug",
-                  "type",
-                  "params",
-                  "locale",
-                  "content"
-                ],
+                "required": ["id", "slug", "type", "params", "locale", "content"],
                 "additionalProperties": false
               },
               {
@@ -372,10 +316,7 @@
                         "$ref": "#/$defs/__schema4"
                       }
                     },
-                    "required": [
-                      "title",
-                      "navigationLabel"
-                    ],
+                    "required": ["title", "navigationLabel"],
                     "additionalProperties": false
                   },
                   "content": {
@@ -391,21 +332,11 @@
                         }
                       }
                     },
-                    "required": [
-                      "items",
-                      "order"
-                    ],
+                    "required": ["items", "order"],
                     "additionalProperties": false
                   }
                 },
-                "required": [
-                  "id",
-                  "slug",
-                  "type",
-                  "params",
-                  "locale",
-                  "content"
-                ],
+                "required": ["id", "slug", "type", "params", "locale", "content"],
                 "additionalProperties": false
               },
               {
@@ -442,10 +373,7 @@
                         "properties": {
                           "mode": {
                             "type": "string",
-                            "enum": [
-                              "all",
-                              "sample"
-                            ]
+                            "enum": ["all", "sample"]
                           },
                           "questionSlugs": {
                             "type": "array",
@@ -465,9 +393,7 @@
                             "type": "number"
                           }
                         },
-                        "required": [
-                          "mode"
-                        ],
+                        "required": ["mode"],
                         "additionalProperties": false
                       },
                       "layout": {
@@ -475,46 +401,32 @@
                         "properties": {
                           "mode": {
                             "type": "string",
-                            "enum": [
-                              "stack",
-                              "stepper"
-                            ]
+                            "enum": ["stack", "stepper"]
                           },
                           "showProgress": {
                             "type": "boolean"
                           }
                         },
-                        "required": [
-                          "mode"
-                        ],
+                        "required": ["mode"],
                         "additionalProperties": false
                       },
                       "feedbackMode": {
                         "type": "string",
-                        "enum": [
-                          "immediate",
-                          "after-completion"
-                        ]
+                        "enum": ["immediate", "after-completion"]
                       },
                       "grading": {
                         "type": "object",
                         "properties": {
                           "mode": {
                             "type": "string",
-                            "enum": [
-                              "percentage",
-                              "points"
-                            ]
+                            "enum": ["percentage", "points"]
                           },
                           "successThreshold": {
                             "type": "number",
                             "minimum": 0
                           }
                         },
-                        "required": [
-                          "mode",
-                          "successThreshold"
-                        ],
+                        "required": ["mode", "successThreshold"],
                         "additionalProperties": false
                       },
                       "interaction": {
@@ -574,10 +486,7 @@
                               },
                               "correctVariant": {
                                 "type": "string",
-                                "enum": [
-                                  "first",
-                                  "random"
-                                ]
+                                "enum": ["first", "random"]
                               }
                             },
                             "additionalProperties": false
@@ -590,20 +499,13 @@
                         "properties": {
                           "visibility": {
                             "type": "string",
-                            "enum": [
-                              "immediate",
-                              "after-review",
-                              "hidden"
-                            ]
+                            "enum": ["immediate", "after-review", "hidden"]
                           },
                           "showScore": {
                             "type": "boolean"
                           }
                         },
-                        "required": [
-                          "visibility",
-                          "showScore"
-                        ],
+                        "required": ["visibility", "showScore"],
                         "additionalProperties": false
                       },
                       "screen": {
@@ -625,23 +527,14 @@
                                 "$ref": "#/$defs/__schema20"
                               }
                             },
-                            "required": [
-                              "success",
-                              "fail"
-                            ],
+                            "required": ["success", "fail"],
                             "additionalProperties": false
                           }
                         },
                         "additionalProperties": false
                       }
                     },
-                    "required": [
-                      "selection",
-                      "layout",
-                      "feedbackMode",
-                      "interaction",
-                      "results"
-                    ],
+                    "required": ["selection", "layout", "feedbackMode", "interaction", "results"],
                     "additionalProperties": false
                   },
                   "locale": {
@@ -654,10 +547,7 @@
                         "$ref": "#/$defs/__schema4"
                       }
                     },
-                    "required": [
-                      "title",
-                      "navigationLabel"
-                    ],
+                    "required": ["title", "navigationLabel"],
                     "additionalProperties": false
                   },
                   "content": {
@@ -673,21 +563,11 @@
                         }
                       }
                     },
-                    "required": [
-                      "items",
-                      "order"
-                    ],
+                    "required": ["items", "order"],
                     "additionalProperties": false
                   }
                 },
-                "required": [
-                  "id",
-                  "slug",
-                  "type",
-                  "params",
-                  "locale",
-                  "content"
-                ],
+                "required": ["id", "slug", "type", "params", "locale", "content"],
                 "additionalProperties": false
               }
             ]
@@ -700,10 +580,7 @@
           }
         }
       },
-      "required": [
-        "items",
-        "order"
-      ],
+      "required": ["items", "order"],
       "additionalProperties": false
     },
     "events": {
@@ -716,14 +593,7 @@
       }
     }
   },
-  "required": [
-    "id",
-    "slug",
-    "type",
-    "params",
-    "locale",
-    "section"
-  ],
+  "required": ["id", "slug", "type", "params", "locale", "section"],
   "additionalProperties": false,
   "$defs": {
     "__schema0": {
@@ -842,24 +712,15 @@
                   },
                   "indexPosition": {
                     "type": "string",
-                    "enum": [
-                      "left",
-                      "right"
-                    ]
+                    "enum": ["left", "right"]
                   },
                   "iconPosition": {
                     "type": "string",
-                    "enum": [
-                      "left",
-                      "right"
-                    ]
+                    "enum": ["left", "right"]
                   },
                   "chevronPosition": {
                     "type": "string",
-                    "enum": [
-                      "left",
-                      "right"
-                    ]
+                    "enum": ["left", "right"]
                   },
                   "enableChecks": {
                     "type": "boolean"
@@ -880,9 +741,7 @@
                     "$ref": "#/$defs/__schema4"
                   }
                 },
-                "required": [
-                  "title"
-                ],
+                "required": ["title"],
                 "additionalProperties": false
               },
               "content": {
@@ -960,20 +819,11 @@
                               }
                             }
                           },
-                          "required": [
-                            "items",
-                            "order"
-                          ],
+                          "required": ["items", "order"],
                           "additionalProperties": false
                         }
                       },
-                      "required": [
-                        "id",
-                        "slug",
-                        "type",
-                        "question",
-                        "answer"
-                      ],
+                      "required": ["id", "slug", "type", "question", "answer"],
                       "additionalProperties": false
                     }
                   },
@@ -984,21 +834,11 @@
                     }
                   }
                 },
-                "required": [
-                  "items",
-                  "order"
-                ],
+                "required": ["items", "order"],
                 "additionalProperties": false
               }
             },
-            "required": [
-              "id",
-              "slug",
-              "type",
-              "params",
-              "locale",
-              "content"
-            ],
+            "required": ["id", "slug", "type", "params", "locale", "content"],
             "additionalProperties": false
           },
           {
@@ -1079,20 +919,11 @@
               "additionalProperties": false
             }
           },
-          "required": [
-            "fileLocation",
-            "title"
-          ],
+          "required": ["fileLocation", "title"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema8": {
@@ -1120,10 +951,7 @@
             },
             "objectFit": {
               "type": "string",
-              "enum": [
-                "cover",
-                "contain"
-              ]
+              "enum": ["cover", "contain"]
             },
             "loop": {
               "type": "boolean"
@@ -1137,10 +965,7 @@
             },
             "transition": {
               "type": "string",
-              "enum": [
-                "slide",
-                "fade"
-              ]
+              "enum": ["slide", "fade"]
             },
             "transitionDurationMs": {
               "type": "number",
@@ -1213,19 +1038,11 @@
                         "$ref": "#/$defs/__schema4"
                       }
                     },
-                    "required": [
-                      "src",
-                      "alt"
-                    ],
+                    "required": ["src", "alt"],
                     "additionalProperties": false
                   }
                 },
-                "required": [
-                  "id",
-                  "slug",
-                  "type",
-                  "locale"
-                ],
+                "required": ["id", "slug", "type", "locale"],
                 "additionalProperties": false
               }
             },
@@ -1236,21 +1053,11 @@
               }
             }
           },
-          "required": [
-            "items",
-            "order"
-          ],
+          "required": ["items", "order"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale",
-        "slides"
-      ],
+      "required": ["id", "slug", "type", "params", "locale", "slides"],
       "additionalProperties": false
     },
     "__schema9": {
@@ -1298,17 +1105,10 @@
                   },
                   "tone": {
                     "type": "string",
-                    "enum": [
-                      "neutral",
-                      "info",
-                      "warning",
-                      "success"
-                    ]
+                    "enum": ["neutral", "info", "warning", "success"]
                   }
                 },
-                "required": [
-                  "applyStyle"
-                ],
+                "required": ["applyStyle"],
                 "additionalProperties": false
               }
             },
@@ -1329,9 +1129,7 @@
                   }
                 }
               },
-              "required": [
-                "enabled"
-              ],
+              "required": ["enabled"],
               "additionalProperties": false
             }
           },
@@ -1344,31 +1142,16 @@
               "$ref": "#/$defs/__schema4"
             }
           },
-          "required": [
-            "value"
-          ],
+          "required": ["value"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema10": {
       "type": "string",
-      "enum": [
-        "highlight",
-        "bold",
-        "cursive",
-        "underscore",
-        "crossed",
-        "variable"
-      ]
+      "enum": ["highlight", "bold", "cursive", "underscore", "crossed", "variable"]
     },
     "__schema11": {
       "type": "string"
@@ -1402,10 +1185,7 @@
               "minLength": 1
             }
           },
-          "required": [
-            "language",
-            "codeAsText"
-          ],
+          "required": ["language", "codeAsText"],
           "additionalProperties": false
         },
         "locale": {
@@ -1428,13 +1208,7 @@
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema14": {
@@ -1473,10 +1247,7 @@
             },
             "objectFit": {
               "type": "string",
-              "enum": [
-                "contain",
-                "cover"
-              ]
+              "enum": ["contain", "cover"]
             },
             "sizes": {
               "type": "string"
@@ -1516,20 +1287,11 @@
               "additionalProperties": false
             }
           },
-          "required": [
-            "src",
-            "alt"
-          ],
+          "required": ["src", "alt"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema15": {
@@ -1571,19 +1333,11 @@
               }
             }
           },
-          "required": [
-            "value"
-          ],
+          "required": ["value"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema16": {
@@ -1615,19 +1369,11 @@
               "$ref": "#/$defs/__schema17"
             }
           },
-          "required": [
-            "value"
-          ],
+          "required": ["value"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema17": {
@@ -1704,21 +1450,11 @@
               "additionalProperties": false
             }
           },
-          "required": [
-            "fileLocation",
-            "poster",
-            "label"
-          ],
+          "required": ["fileLocation", "poster", "label"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema19": {
@@ -1742,15 +1478,10 @@
             },
             "mode": {
               "type": "string",
-              "enum": [
-                "link",
-                "embed"
-              ]
+              "enum": ["link", "embed"]
             }
           },
-          "required": [
-            "mode"
-          ],
+          "required": ["mode"],
           "additionalProperties": false
         },
         "locale": {
@@ -1781,20 +1512,11 @@
               "additionalProperties": false
             }
           },
-          "required": [
-            "href",
-            "label"
-          ],
+          "required": ["href", "label"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema20": {

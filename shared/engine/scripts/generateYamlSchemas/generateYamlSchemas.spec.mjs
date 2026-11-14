@@ -76,21 +76,50 @@ test('nested discriminator is required even in source-language-only YAML', () =>
   );
 });
 
-
 test('YAML media projections require null while Engine Config schemas require real paths', () => {
   const variants = [
-    { yaml: yamlImage_Schema, engine: image_Config_Schema, fields: ['src'],
-      config: { id, slug: 'picture', type: 'image', params: { fill: true, aspectRatio: 1.5 },
-        locale: { src: null, alt: { uk: 'Зображення' } } } },
-    { yaml: yamlAudio_Schema, engine: audio_Config_Schema, fields: ['fileLocation'],
-      config: { id, slug: 'voice', type: 'audio', params: {},
-        locale: { fileLocation: null, title: { uk: 'Озвучення' } } } },
-    { yaml: yamlVideo_Schema, engine: video_Config_Schema, fields: ['fileLocation', 'poster'],
-      config: { id, slug: 'film', type: 'video', params: {},
-        locale: { fileLocation: null, poster: null, label: { uk: 'Відео' } } } },
-    { yaml: yamlCarouselSlide_Schema, engine: carouselSlide_Config_Schema, fields: ['src'],
-      config: { id, slug: 'slide', type: 'carouselSlide',
-        locale: { src: null, alt: { uk: 'Слайд' } } } },
+    {
+      yaml: yamlImage_Schema,
+      engine: image_Config_Schema,
+      fields: ['src'],
+      config: {
+        id,
+        slug: 'picture',
+        type: 'image',
+        params: { fill: true, aspectRatio: 1.5 },
+        locale: { src: null, alt: { uk: 'Зображення' } },
+      },
+    },
+    {
+      yaml: yamlAudio_Schema,
+      engine: audio_Config_Schema,
+      fields: ['fileLocation'],
+      config: {
+        id,
+        slug: 'voice',
+        type: 'audio',
+        params: {},
+        locale: { fileLocation: null, title: { uk: 'Озвучення' } },
+      },
+    },
+    {
+      yaml: yamlVideo_Schema,
+      engine: video_Config_Schema,
+      fields: ['fileLocation', 'poster'],
+      config: {
+        id,
+        slug: 'film',
+        type: 'video',
+        params: {},
+        locale: { fileLocation: null, poster: null, label: { uk: 'Відео' } },
+      },
+    },
+    {
+      yaml: yamlCarouselSlide_Schema,
+      engine: carouselSlide_Config_Schema,
+      fields: ['src'],
+      config: { id, slug: 'slide', type: 'carouselSlide', locale: { src: null, alt: { uk: 'Слайд' } } },
+    },
   ];
   for (const { yaml, engine, fields, config } of variants) {
     assert.equal(yaml.safeParse(config).success, true, config.type);
@@ -108,13 +137,22 @@ test('YAML media projections require null while Engine Config schemas require re
     }
   }
   const slide = variants[3].config;
-  const carousel = { id, slug: 'gallery', type: 'carousel', params: {}, locale: {},
-    slides: { items: { slide }, order: ['slide'] } };
+  const carousel = {
+    id,
+    slug: 'gallery',
+    type: 'carousel',
+    params: {},
+    locale: {},
+    slides: { items: { slide }, order: ['slide'] },
+  };
   assert.equal(yamlContentBlock_Schema.safeParse(carousel).success, true);
-  assert.equal(yamlContentBlock_Schema.safeParse({
-    ...carousel, slides: { items: { slide: { ...slide, locale: { ...slide.locale, src: 'ready.png' } } },
-      order: ['slide'] },
-  }).success, false);
+  assert.equal(
+    yamlContentBlock_Schema.safeParse({
+      ...carousel,
+      slides: { items: { slide: { ...slide, locale: { ...slide.locale, src: 'ready.png' } } }, order: ['slide'] },
+    }).success,
+    false,
+  );
 });
 
 test('JSON Schema retains required fields and literal null media even in nested Lessons/Courses', () => {
@@ -130,7 +168,9 @@ test('JSON Schema retains required fields and literal null media even in nested 
     };
     visit(schema);
     for (const [kindOfMedia, fields] of Object.entries({
-      image: ['src'], audio: ['fileLocation'], video: ['fileLocation', 'poster'],
+      image: ['src'],
+      audio: ['fileLocation'],
+      video: ['fileLocation', 'poster'],
       carouselSlide: ['src'],
     })) {
       if (kind === 'contentBlock' && kindOfMedia === 'carouselSlide') continue;
