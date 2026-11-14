@@ -5,7 +5,7 @@ config:
   skills: ["1945f222-d833-4897-b9c1-71f16d81fd74"]
   params:
     requireQuiz: false
-    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    languages: ["en", "pl", "uk", "qm"]
     sections:
       allowNavigation: true
       allowSkipping: true
