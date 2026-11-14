@@ -130,6 +130,14 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
       additionalProperties: false,
     };
   }
+  const envelope = wrap(raw);
+  // The Lesson source language is required for deterministic locale pruning.
+  if (kind === 'lesson') envelope.required = ['config', 'production'];
+  // Course Build patches are authored once in the same source file, but remain
+  // separate from the defineCourse Config and from authoring-only production.
+  if (kind === 'course') {
+    envelope.properties.overrides = { $ref: 'courseOverrides.schema.json' };
+  }
   return {
     $schema,
     $id: 'https://svitlo.dev/engine/yaml-schemas/' + kind + '.scaffold.schema.json',
@@ -137,7 +145,7 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
     description:
       'Config is derived from Engine Zod; production references manually owned production.schema.json. ' +
       'Intentionally incomplete Config may generate TypeScript that fails typechecking by design.',
-    ...wrap(raw),
+    ...envelope,
     $defs: Object.fromEntries(Object.entries($defs).map(([name, schema]) => [name, wrap(schema)])),
   };
 }
