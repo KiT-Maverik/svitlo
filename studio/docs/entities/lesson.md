@@ -39,3 +39,8 @@ At runtime, [`assembleLessonProps`](../../../shared/engine/assemblers/assembleLe
 ## YAML TypeScript draft authoring handoff
 
 The Screenwriter-owned `content.yaml` is an editorial plan; the independent `lesson.config.yaml` technical projection carries the authored Engine `defineLesson` Config tree, plus a removable source-language `documentLanguage` provenance field. The Engine YAML draft scaffolder converts it to incomplete named `*.data.ts` source using `@svitlo/engine/build` factories without validating, translating, typechecking or publishing. See [Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md). The published Props pipeline remains separate.
+
+
+## Quest in standalone Lessons (planned runtime)
+
+The [Quest Section](./quest.md) is designed for independently useful, accessible interactive demonstration and guided practice (e.g. manipulating a quadratic equation) without requiring characters or Course plot. It is not a Lesson subtype or a Quiz replacement. Quest Build contracts exist, but Lesson Section union, YAML and player integration are deferred. Do not publish a Quest as if supported; retain the approved Methodologist assessment and Skill boundaries.

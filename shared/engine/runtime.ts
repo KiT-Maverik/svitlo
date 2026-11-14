@@ -41,6 +41,7 @@ export * from './configurators/sections/defineFlashcardsSection/defineFlashcards
 export * from './configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
 export * from './configurators/sections/definePracticeSection/definePracticeSection.schemas';
 export * from './configurators/sections/defineQuizSection/defineQuizSection.schemas';
+export * from './configurators/sections/defineQuestSection/defineQuestSection.schemas';
 export * from './configurators/skills/defineSkill/defineSkill.schemas';
 export * from './configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
 export * from './configurators/skills/defineSkillGroup/defineSkillGroup.schemas';

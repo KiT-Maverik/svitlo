@@ -120,3 +120,8 @@ For a Lesson with `assessmentPlan.quizRequired: false`, **omit the Quiz Section 
 6. Hand off for independent editor and specialist approval. **Stop after editorial files**. Do not auto-start Question authoring, media generation, scene implementation, code generation, TS type-assertion suppression, translation or publication.
 
 **Definition of done:** one reviewed, structured Lesson plan with single-language authored learner text, no invented supported locale translations, exact approved Quiz requirements, a meaningful ordered Section/ContentBlock sequence, explicit dependencies and traceable Scene specifications. The separately authorized technical handoff may project this plan into a Config-shaped YAML draft for the Engine TypeScript scaffolder; this Skill does not invoke it, validate TS or publish resources.
+
+
+## Quest Section plans (Build contract exists; runtime pending)
+
+A Quest is neither an ordinary ordered `blocks` Section nor a Quiz; see [Quest](../../docs/entities/quest.md). When the approved learning experience requires an isolated, stateful interactive workspace, the editorial `content.yaml` may describe `type: quest` with named Stage and Task proposals, including mandatory `start`, at least one Scene specification for each Task, all planned media/caption/accessibility production requirements and explicit branches determined by Scene actions. Never invent a `blocks` list or positional `order` inside Quest; record story-free learning flows in neutral Lessons and story missions in Episodes. This plan is *not* a publishable Engine Quest: YAML draft-scaffolder, Lesson/Episode union and UI remain pending. Maintain a specific `productionDependencies` platform entry until implemented and independently validated.
