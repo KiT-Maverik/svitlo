@@ -6,6 +6,7 @@ import { chooseChecks } from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
+  { path: 'shared/indexdb', name: '@svitlo/indexdb' },
   { path: 'content/math', name: '@svitlo/math' },
   { path: 'content/biology', name: '@svitlo/biology' },
 ];
@@ -19,7 +20,25 @@ test('Math authored data gets ordinary workspace checks, not taxonomy checks in 
 
 test('shared Engine changes do not automatically select Math', () => {
   const p = chooseChecks(['shared/engine/schemas/languages.schemas.ts'], packages);
+  assert.deepEqual([...p.affected].sort(), ['@svitlo/engine', '@svitlo/indexdb']);
+});
+
+test('IndexDB changes select only IndexDB for fast typecheck and unit/integration tests', () => {
+  const p = chooseChecks(
+    ['shared/indexdb/controllers/lessonState/createLessonState/createLessonState.utils.ts'],
+    packages,
+  );
+  assert.deepEqual([...p.affected], ['@svitlo/indexdb']);
+});
+
+test('unrelated Engine tooling does not select IndexDB browser or unit checks', () => {
+  const p = chooseChecks(['shared/engine/scripts/generateSkills/generateSkills.mjs'], packages);
   assert.deepEqual([...p.affected], ['@svitlo/engine']);
+});
+
+test('Engine question contract changes select IndexDB dependent checks', () => {
+  const p = chooseChecks(['shared/engine/configurators/questions/question.schemas.ts'], packages);
+  assert.deepEqual([...p.affected].sort(), ['@svitlo/engine', '@svitlo/indexdb']);
 });
 
 test('selects only changed subject workspaces', () => {
@@ -29,7 +48,7 @@ test('selects only changed subject workspaces', () => {
 
 test('root package-lock changes select core workspaces without forcing Math', () => {
   const p = chooseChecks(['package-lock.json'], packages);
-  assert.deepEqual([...p.affected].sort(), ['@svitlo/engine']);
+  assert.deepEqual([...p.affected].sort(), ['@svitlo/engine', '@svitlo/indexdb']);
 });
 
 test('shared textbook tooling changes do not automatically select Math', () => {

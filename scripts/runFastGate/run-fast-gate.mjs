@@ -55,6 +55,22 @@ export function chooseChecks(changed, workspaces) {
     for (const name of ['@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit']) {
       if (packages.has(name)) affected.add(name);
     }
+
+  // IndexDB depends on Engine runtime schemas, not just on its own source files.
+  // A changed upstream contract must validate the dependent package as well.
+  const indexdbRuntimeContractChanged = changed.some(
+    file =>
+      file === 'shared/engine/runtime.ts' ||
+      file === 'shared/engine/package.json' ||
+      file.startsWith('shared/engine/schemas/') ||
+      file.startsWith('shared/engine/types/') ||
+      file.startsWith('shared/engine/configurators/questions/') ||
+      file.startsWith('shared/engine/configurators/lessons/') ||
+      file.startsWith('shared/engine/configurators/sections/'),
+  );
+  if (indexdbRuntimeContractChanged && packages.has('@svitlo/indexdb')) {
+    affected.add('@svitlo/indexdb');
+  }
   const jsFiles = changed.filter(f => /\.(?:mjs|cjs|js)$/.test(f) && fs.existsSync(path.join(repoRoot, f)));
   const jsonFiles = changed.filter(f => f.endsWith('.json') && fs.existsSync(path.join(repoRoot, f)));
   return { affected, jsFiles, jsonFiles };
@@ -79,9 +95,7 @@ function runGate(changed) {
   }
   // Engine build-only filesystem use must be distinguished from runtime leakage.
   // Exercise the canonical package boundary guard when it or Engine changes.
-  if (
-    changed.some(file => file.startsWith('scripts/checkPackageBoundaries/') || file.startsWith('shared/engine/'))
-  ) {
+  if (changed.some(file => file.startsWith('scripts/checkPackageBoundaries/') || file.startsWith('shared/engine/'))) {
     exec('node', ['scripts/checkPackageBoundaries/check-package-boundaries.mjs']);
   }
   // Validate editorial Course composition independently of unrelated workspace
