@@ -45,10 +45,6 @@ const params = sectionBase.shape.params.extend({
       mode: z.enum(['percentage', 'points']),
       successThreshold: z.number().nonnegative(),
     })
-    .refine(
-      value => value.mode !== 'percentage' || value.successThreshold === undefined || value.successThreshold <= 100,
-      { message: 'Percentage successThreshold must be between 0 and 100' },
-    )
     .optional(),
   interaction: z.strictObject({
     retries: z.number().int().nonnegative(),
