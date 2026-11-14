@@ -1,7 +1,7 @@
 // Scaffolded by shared/engine/scripts/lessonBuilder/lessonBuilder.mjs; DRAFT FOR AI EDITING.
 // Draft content sha256: d552c695dfb4a8ef0b98d56390c434b5224c76bb762c464ccaa8655f8bcd0472
 import { defineLesson } from '@svitlo/engine/build';
-import { equalsMeansSameValue_languages } from './constants';
+import { languages } from './constants';
 
 // todo: agent note, implement alias #skills
 import { equalityMeaning_Skill_Data } from '../../../skills/algebra/equalities/skills';
@@ -15,7 +15,7 @@ export const equalsMeansSameValue_Lesson = defineLesson({
   skills: [equalityMeaning_Skill_Data.id],
   params: {
     requireQuiz: false,
-    languages: equalsMeansSameValue_languages,
+    languages,
     sections: {
       allowNavigation: true,
       allowSkipping: true,
