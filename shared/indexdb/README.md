@@ -13,5 +13,5 @@ either learning app. Node controller tests remain in `src/controllers/` and use
 fake-indexeddb.
 
 From the monorepo root run `npm run test:e2e:db --workspace @svitlo/indexdb` after installing dependencies and
-Chromium (`npx playwright install chromium`). CI repeats the native suite.
-Browser test React/Next.js tooling is dev-only; production exports remain framework-free.
+Chromium (`npx playwright install chromium`). CI runs the native suite once when IndexDB changes. esbuild and Playwright are
+test-only dependencies; production exports remain framework-free.

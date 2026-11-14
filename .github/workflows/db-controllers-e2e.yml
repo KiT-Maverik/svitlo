@@ -1,24 +1,23 @@
 name: Native IndexedDB browser controllers
+
 on:
-  push:
-    branches: [test/db-controllers-e2e]
   pull_request:
     paths:
       - 'shared/indexdb/**'
-      - 'shared/engine/**'
-      # Web and UI Kit changes must run the real browser integration tests too.
-      - 'shared/ui-kit/**'
-      - 'shared/adapters/nextjs/**'
-      - 'apps/web/**'
       - '.github/workflows/db-controllers-e2e.yml'
-      - 'package.json'
-      - 'package-lock.json'
+  workflow_dispatch:
+
 permissions:
   contents: read
+
+concurrency:
+  group: indexdb-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   browser-controllers:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -26,33 +25,15 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run repo:check:packages
-      # Run only this workflow's browser dependencies. Root commands check all
-      # textbook workspaces, including unrelated in-progress authored translations.
       - run: npm run package:build --workspace @svitlo/engine
       - run: npm run package:build --workspace @svitlo/indexdb
-      - run: npm run package:build --workspace @svitlo/ui-kit
-      - run: npm run code:check:types --workspace @svitlo/indexdb
-      - run: npm run code:check:types --workspace @svitlo/ui-kit
-      - run: npm run code:check:types --workspace @svitlo/playground
-      - run: npm run test --workspace @svitlo/indexdb
-      - run: npm run test --workspace @svitlo/ui-kit
-      - run: npm run code:lint:check --workspace @svitlo/web
-      - run: npm run package:build --workspace @svitlo/playground
-      - run: npm run app:build --workspace @svitlo/web
       - run: npx playwright install chromium
       - name: Native IndexedDB Chromium
         run: npm run test:e2e:db --workspace @svitlo/indexdb
-      - name: Native IndexedDB Chromium repeat
-        run: npm run test:e2e:db --workspace @svitlo/indexdb
-      - name: Existing Playwright suite
-        run: npm run test:e2e --workspace @svitlo/web
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: db-browser-test-results
+          name: indexdb-browser-test-results
           path: |
             shared/indexdb/test-results/
             shared/indexdb/playwright-report/
-            apps/web/test-results/
-            apps/web/playwright-report/

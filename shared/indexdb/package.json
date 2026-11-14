@@ -25,11 +25,7 @@
     "typescript": "^5",
     "fake-indexeddb": "^6.2.6",
     "@playwright/test": "^1.64.1",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "next": "16.4.2",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "esbuild": "^0.28.2"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
