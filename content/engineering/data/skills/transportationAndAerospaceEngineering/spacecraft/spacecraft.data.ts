@@ -12,6 +12,7 @@ export const spacecraft_SkillGroup_Data = defineSkillGroup({
   id: 'bd4a3a5e-9709-4bf7-bacc-2a8f6dc4a0b0',
   name: {
     en: 'Spacecraft',
+    it: 'Veicoli spaziali',
     zh: '航天器',
     hi: 'अंतरिक्ष यान',
     es: 'Naves espaciales',
@@ -52,6 +53,7 @@ export const spacecraft_SkillGroup_Data = defineSkillGroup({
       'Space systems must coordinate propulsion and precision orientation with energy supply, thermal protection and mission hardware.',
     frontend: {
       en: 'Learn how spacecraft operate beyond ordinary atmospheric conditions.',
+      it: 'Scopri come i veicoli spaziali operano al di fuori delle normali condizioni atmosferiche.',
       zh: '了解航天器如何在普通大气条件之外工作。',
       hi: 'जानें कि अंतरिक्ष यान पृथ्वी के सामान्य वायुमंडल से बाहर कैसे काम करते हैं।',
       es: 'Aprende cómo funcionan las naves espaciales fuera de las condiciones atmosféricas habituales.',
