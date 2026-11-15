@@ -18,10 +18,10 @@ config:
     order: []
   section:
     items:
-      section1ShareNothingIntoFourGroups:
+      divideZeroAmongFour:
         config:
           id: 'e672c575-e4de-4800-8c3c-c42ba759a87e'
-          slug: 'section1ShareNothingIntoFourGroups'
+          slug: 'divideZeroAmongFour'
           type: 'content'
           params: {}
           locale:
@@ -31,10 +31,10 @@ config:
               en: 'Share Nothing into Four Groups'
           content:
             items:
-              text1:
+              shareZeroCounters:
                 config:
                   id: '00e10f14-74b1-4ff5-bb02-41cedc665f0f'
-                  slug: 'text1'
+                  slug: 'shareZeroCounters'
                   type: 'text'
                   params: {}
                   locale:
@@ -111,16 +111,16 @@ config:
                     Generic Scene Resource rendering exists; Zero Division Boundary Lab is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Grade 3 explanation of 0÷0 should be intuitive, explicit and optional to explore; ensure it does not accidentally suggest a quotient of zero.
                   purpose: 'Proposed interactive Scene for Share Nothing into Four Groups'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainZeroDividend:
                 config:
                   id: '6cf0c81b-dc1d-4b02-8fb1-1065e0544364'
-                  slug: 'markdown2'
+                  slug: 'explainZeroDividend'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Each of four groups gets zero; together they account for zero counters.'
-            order: ['text1', 'zeroDivisionBoundaryLab', 'markdown2']
+            order: ['shareZeroCounters', 'zeroDivisionBoundaryLab', 'explainZeroDividend']
         production:
           purpose: 'Share Nothing into Four Groups'
           pedagogicalIntent: |
@@ -140,10 +140,10 @@ config:
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section2TryDividingSixByZero:
+      testSixDividedByZero:
         config:
           id: 'f1e8a884-808d-45c9-aaaa-0aceea86999b'
-          slug: 'section2TryDividingSixByZero'
+          slug: 'testSixDividedByZero'
           type: 'content'
           params: {}
           locale:
@@ -153,10 +153,10 @@ config:
               en: 'Try Dividing Six by Zero'
           content:
             items:
-              text1:
+              tryZeroGroups:
                 config:
                   id: '16377849-4400-4af8-af44-b59ff4c9bcfe'
-                  slug: 'text1'
+                  slug: 'tryZeroGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -233,16 +233,16 @@ config:
                     Generic Scene Resource rendering exists; Zero Division Boundary Lab is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Grade 3 explanation of 0÷0 should be intuitive, explicit and optional to explore; ensure it does not accidentally suggest a quotient of zero.
                   purpose: 'Proposed interactive Scene for Try Dividing Six by Zero'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainUndefinedSixOverZero:
                 config:
                   id: '7e469166-205f-47af-88e9-2ed485b9a935'
-                  slug: 'markdown2'
+                  slug: 'explainUndefinedSixOverZero'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Any alleged quotient would need zero multiplied by that quotient to equal six. Zero times any candidate is zero, so none works.'
-            order: ['text1', 'zeroDivisionBoundaryLab', 'markdown2']
+            order: ['tryZeroGroups', 'zeroDivisionBoundaryLab', 'explainUndefinedSixOverZero']
         production:
           purpose: 'Try Dividing Six by Zero'
           pedagogicalIntent: |
@@ -262,10 +262,10 @@ config:
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section3WhatAboutZeroDividedByZero:
+      examineZeroOverZero:
         config:
           id: '1651936e-64d8-41ff-9e00-f3989a5ca651'
-          slug: 'section3WhatAboutZeroDividedByZero'
+          slug: 'examineZeroOverZero'
           type: 'content'
           params: {}
           locale:
@@ -275,10 +275,10 @@ config:
               en: 'What About Zero Divided by Zero?'
           content:
             items:
-              text1:
+              testZeroOverZero:
                 config:
                   id: 'c93388bf-441d-45c2-a0d8-dc0dbadfcf20'
-                  slug: 'text1'
+                  slug: 'testZeroOverZero'
                   type: 'text'
                   params: {}
                   locale:
@@ -355,16 +355,16 @@ config:
                     Generic Scene Resource rendering exists; Zero Division Boundary Lab is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Grade 3 explanation of 0÷0 should be intuitive, explicit and optional to explore; ensure it does not accidentally suggest a quotient of zero.
                   purpose: 'Proposed interactive Scene for What About Zero Divided by Zero?'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainIndeterminateQuotient:
                 config:
                   id: '46b7f4f4-5026-4a09-825b-186a3f731487'
-                  slug: 'markdown2'
+                  slug: 'explainIndeterminateQuotient'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'All three candidates work as a product, so none is selected as the one division answer. Zero as divisor is not allowed even when dividend is zero.'
-            order: ['text1', 'zeroDivisionBoundaryLab', 'markdown2']
+            order: ['testZeroOverZero', 'zeroDivisionBoundaryLab', 'explainIndeterminateQuotient']
         production:
           purpose: 'What About Zero Divided by Zero?'
           pedagogicalIntent: |
@@ -384,10 +384,10 @@ config:
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section4ReadTheDivisorCarefully:
+      distinguishZeroPositions:
         config:
           id: '1ba1495e-c58a-4e9d-89ec-b37c2184a3eb'
-          slug: 'section4ReadTheDivisorCarefully'
+          slug: 'distinguishZeroPositions'
           type: 'content'
           params: {}
           locale:
@@ -397,10 +397,10 @@ config:
               en: 'Read the Divisor Carefully'
           content:
             items:
-              text1:
+              classifyDefinedDivisions:
                 config:
                   id: 'b35a6fef-970e-483c-a9c0-13e11cf50b8e'
-                  slug: 'text1'
+                  slug: 'classifyDefinedDivisions'
                   type: 'text'
                   params: {}
                   locale:
@@ -477,16 +477,16 @@ config:
                     Generic Scene Resource rendering exists; Zero Division Boundary Lab is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Grade 3 explanation of 0÷0 should be intuitive, explicit and optional to explore; ensure it does not accidentally suggest a quotient of zero.
                   purpose: 'Proposed interactive Scene for Read the Divisor Carefully'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainDivisorRule:
                 config:
                   id: '764d0744-85fe-4433-9e0a-ecee15e1d225'
-                  slug: 'markdown2'
+                  slug: 'explainDivisorRule'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Look at the divisor, the number AFTER ÷. If it is zero, division is undefined. A zero FIRST number is fine if divisor is nonzero.'
-            order: ['text1', 'zeroDivisionBoundaryLab', 'markdown2']
+            order: ['classifyDefinedDivisions', 'zeroDivisionBoundaryLab', 'explainDivisorRule']
         production:
           purpose: 'Read the Divisor Carefully'
           pedagogicalIntent: |
@@ -508,10 +508,10 @@ config:
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
     order:
       [
-        'section1ShareNothingIntoFourGroups',
-        'section2TryDividingSixByZero',
-        'section3WhatAboutZeroDividedByZero',
-        'section4ReadTheDivisorCarefully',
+        'divideZeroAmongFour',
+        'testSixDividedByZero',
+        'examineZeroOverZero',
+        'distinguishZeroPositions',
       ]
 production:
   documentLanguage: 'en'
