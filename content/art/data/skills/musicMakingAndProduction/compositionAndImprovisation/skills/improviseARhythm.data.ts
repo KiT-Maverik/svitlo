@@ -5,6 +5,7 @@ export const improviseARhythm_Skill_Data = defineSkill({
   id: '227369e5-3533-478c-8eb6-52b87ead0588',
   name: {
     en: 'Improvise a Rhythm',
+    it: 'Improvvisare un ritmo',
     zh: '即兴创作节奏',
     hi: 'लय का तात्कालिक सृजन करें',
     es: 'Improvisar un ritmo',
@@ -38,6 +39,7 @@ export const improviseARhythm_Skill_Data = defineSkill({
     methodological: 'Invent a coherent rhythmic phrase in real time against a chosen pulse.',
     frontend: {
       en: 'Make up a rhythmic idea as you play along with a steady beat.',
+      it: 'Crea sul momento un\'idea ritmica mentre suoni seguendo una pulsazione costante.',
       zh: '跟随稳定节拍，即兴创造一个节奏想法。',
       hi: 'स्थिर ताल के साथ बजाते हुए उसी समय एक लय बनाएँ।',
       es: 'Inventa una idea rítmica mientras sigues un pulso constante.',
