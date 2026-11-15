@@ -5,6 +5,7 @@ export const stellarMass_Skill_Data = defineSkill({
   id: 'bb53a6db-367e-4b9a-9b77-e406a5733911',
   name: {
     en: 'Stellar Mass',
+    it: 'Massa stellare',
     zh: '恒星质量',
     hi: 'तारों का द्रव्यमान',
     es: 'Masa estelar',
@@ -38,6 +39,7 @@ export const stellarMass_Skill_Data = defineSkill({
     methodological: 'Determine or constrain stellar mass from orbital dynamics or other model-dependent observations.',
     frontend: {
       en: "Use orbital measurements and models to estimate a star's mass.",
+      it: 'Usa misurazioni orbitali e modelli per stimare la massa di una stella.',
       zh: '利用轨道观测和模型估计恒星的质量。',
       hi: 'कक्षीय माप और मॉडलों का उपयोग करके तारे के द्रव्यमान का अनुमान लगाएँ।',
       es: 'Utiliza mediciones orbitales y modelos para estimar la masa de una estrella.',

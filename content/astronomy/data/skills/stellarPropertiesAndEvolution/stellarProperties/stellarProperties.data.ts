@@ -13,6 +13,7 @@ export const stellarProperties_SkillGroup_Data = defineSkillGroup({
   id: 'd9b71bcb-af7a-4694-9d95-3f5e95d27ba2',
   name: {
     en: 'Stellar Properties',
+    it: 'Proprietà stellari',
     zh: '恒星的物理性质',
     hi: 'तारों के भौतिक गुण',
     es: 'Propiedades físicas de las estrellas',
@@ -54,6 +55,7 @@ export const stellarProperties_SkillGroup_Data = defineSkillGroup({
       'Observed spectra and brightness are combined with models to infer physical characteristics that cannot be measured by direct sampling.',
     frontend: {
       en: 'Learn how astronomers measure and infer the physical properties of stars.',
+      it: 'Scopri come gli astronomi misurano e ricavano le proprietà fisiche delle stelle.',
       zh: '了解天文学家如何测量和推断恒星的物理性质。',
       hi: 'जानें कि खगोलविद तारों के भौतिक गुण कैसे मापते और अनुमानित करते हैं।',
       es: 'Aprende cómo los astrónomos miden e infieren las propiedades físicas de las estrellas.',

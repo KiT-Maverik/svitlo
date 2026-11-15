@@ -11,6 +11,7 @@ export const stellarPropertiesAndEvolution_SkillDomain_Data = defineSkillDomain(
   id: 'b5b29d0f-019c-4a66-a881-86c988eac956',
   title: {
     en: 'Stellar Properties and Evolution',
+    it: 'Proprietà ed evoluzione stellare',
     zh: '恒星的性质与演化',
     hi: 'तारों के गुण और विकास',
     es: 'Propiedades y evolución de las estrellas',
@@ -52,6 +53,7 @@ export const stellarPropertiesAndEvolution_SkillDomain_Data = defineSkillDomain(
       'Stars are understood through measurements of their physical properties and models of formation, fusion, change and eventual remnants. The same competencies apply to the Sun where its properties form a useful comparison.',
     frontend: {
       en: 'Explore what stars are like, how they form and how their lives eventually change.',
+      it: 'Esplora come sono fatte le stelle, come si formano e come cambiano nel corso della loro vita.',
       zh: '探索恒星有哪些特征、如何形成，以及在一生中会怎样变化。',
       hi: 'जानें कि तारे कैसे होते हैं, कैसे बनते हैं और जीवनकाल में किस तरह बदलते हैं।',
       es: 'Explora cómo son las estrellas, cómo se forman y cómo cambian a lo largo de su vida.',
