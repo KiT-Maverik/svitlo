@@ -5,6 +5,7 @@ export const polygon_Skill_Data = defineSkill({
   id: 'a8c08632-974a-477c-8707-e3f8b39f217d',
   name: {
     en: 'Recognizing polygons and their parts',
+    it: 'Riconoscere i poligoni e le loro parti',
     qm: 'Çoqköşelilerni ve olarnıñ parçalarını tanımaq',
     lt: 'Daugiakampių ir jų dalių atpažinimas',
     lv: 'Daudzstūru un to daļu atpazīšana',
@@ -39,6 +40,7 @@ export const polygon_Skill_Data = defineSkill({
       'A polygon is a plane figure bounded by a closed polygonal chain of straight segments meeting at vertices. Not every closed curve forms a polygon; the boundary differs from its interior region.',
     frontend: {
       en: 'Recognize a polygon as a closed shape bounded by straight sides that meet at corners.',
+      it: 'Riconosci un poligono come una figura chiusa delimitata da segmenti rettilinei che si incontrano nei vertici.',
       qm: 'Çoqköşelini köşelerde birleşken doğru taraflar ile sıñırlanğan qapalı şekil olaraq tanıy bilesiñ.',
       zh: '认识多边形：由相接于顶点的直线段围成的封闭图形。',
       hi: 'बहुभुज को पहचानें: सीधी भुजाओं से घिरी बंद आकृति जिनकी जोड़ पर कोने होते हैं।',
