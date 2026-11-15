@@ -5,6 +5,7 @@ export const drinkingWaterTreatment_Skill_Data = defineSkill({
   id: 'f01ade0c-243e-4a09-a537-531a2aec13ce',
   name: {
     en: 'Drinking-water treatment',
+    it: 'Trattamento dell\'acqua potabile',
     zh: '饮用水处理',
     hi: 'पेयजल शोधन',
     es: 'Tratamiento del agua potable',
@@ -38,6 +39,7 @@ export const drinkingWaterTreatment_Skill_Data = defineSkill({
     methodological: 'Distinguish filtration, particle separation and disinfection as different barriers.',
     frontend: {
       en: 'Recognize the main stages of making drinking water suitable for use.',
+      it: 'Riconosci le fasi principali che rendono l\'acqua potabile adatta all\'utilizzo.',
       zh: '识别使饮用水适合使用的主要处理步骤。',
       hi: 'पानी को उपयोग योग्य बनाने के मुख्य शोधन चरण पहचानें।',
       es: 'Reconoce las etapas principales para hacer que el agua sea apta para su uso.',
