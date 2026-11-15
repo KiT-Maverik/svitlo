@@ -9,6 +9,7 @@ export const mentalWellBeingAndSupport_SkillDomain_Data = defineSkillDomain({
   id: 'e64b92de-dd2d-4f80-ab3e-9d6f1e7577e7',
   title: {
     en: 'Mental Well-being and Support',
+    it: 'Benessere mentale e sostegno',
     zh: '心理健康与支持',
     hi: 'मानसिक कल्याण और सहायता',
     es: 'Bienestar mental y apoyo',
@@ -38,19 +39,17 @@ export const mentalWellBeingAndSupport_SkillDomain_Data = defineSkillDomain({
     kk: 'Психикалық саулық пен қолдау',
     qm: 'Ruhiy sağlamlıq ve destek',
   },
-  groups: {
-    items: {
-      everydayCopingAndAssistance: everydayCopingAndAssistance_SkillGroup_Data,
-      mentalHealthCrises: mentalHealthCrises_SkillGroup_Data,
-      recognizingStrain: recognizingStrain_SkillGroup_Data,
-    },
-    order: ['everydayCopingAndAssistance', 'mentalHealthCrises', 'recognizingStrain'],
-  },
+  groups: [
+    everydayCopingAndAssistance_SkillGroup_Data,
+    mentalHealthCrises_SkillGroup_Data,
+    recognizingStrain_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Health protection includes noticing psychological strain, choosing supportive coping strategies, and connecting people with qualified help. The psychological mechanisms of emotion and cognition belong principally to Psychology.',
     frontend: {
       en: 'Learn to notice emotional strain, seek support and respond safely to crises.',
+      it: 'Impara a riconoscere il disagio emotivo, chiedere sostegno e reagire alle crisi in sicurezza.',
       zh: '学习识别情绪压力、寻求支持，并在危机中安全应对。',
       hi: 'भावनात्मक तनाव पहचानना, मदद माँगना और संकट में सुरक्षित प्रतिक्रिया देना सीखें।',
       es: 'Aprende a detectar el malestar emocional, buscar apoyo y responder de forma segura ante una crisis.',

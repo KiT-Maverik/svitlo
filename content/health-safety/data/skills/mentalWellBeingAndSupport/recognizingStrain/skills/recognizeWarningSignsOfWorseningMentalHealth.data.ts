@@ -5,6 +5,7 @@ export const recognizeWarningSignsOfWorseningMentalHealth_Skill_Data = defineSki
   id: 'ec1fb107-151c-4aca-a8b7-0e84acbf0f4e',
   name: {
     en: 'Recognize warning signs of worsening mental health',
+    it: 'Riconoscere i segnali di peggioramento della salute mentale',
     zh: '识别心理健康恶化的警示信号',
     hi: 'बिगड़ते मानसिक स्वास्थ्य के चेतावनी संकेत पहचानें',
     es: 'Reconocer señales de alerta de deterioro de la salud mental',
@@ -39,6 +40,7 @@ export const recognizeWarningSignsOfWorseningMentalHealth_Skill_Data = defineSki
       'Identify persistent impairment, escalating distress, or loss of usual functioning as reasons to seek suitable support.',
     frontend: {
       en: 'Notice prolonged or worsening difficulties that need additional support.',
+      it: 'Nota le difficoltà prolungate o in peggioramento che richiedono un sostegno aggiuntivo.',
       zh: '留意持续或加重、需要更多支持的困难。',
       hi: 'लंबे समय तक बनी रहने वाली या बढ़ती कठिनाइयाँ पहचानें जिनमें अतिरिक्त सहायता चाहिए।',
       es: 'Detecta dificultades persistentes o crecientes que requieren apoyo adicional.',
