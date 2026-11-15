@@ -13,6 +13,7 @@ export const astronomicalSpectra_SkillGroup_Data = defineSkillGroup({
   id: 'bc69d108-85c7-4661-98a3-123a87e011eb',
   name: {
     en: 'Astronomical Spectra',
+    it: 'Spettri astronomici',
     qm: 'Astronomik spektrler',
     bn: 'জ্যোতির্বৈজ্ঞানিক বর্ণক্রম',
     ur: 'فلکیاتی طیف',
@@ -54,6 +55,7 @@ export const astronomicalSpectra_SkillGroup_Data = defineSkillGroup({
       'Light encodes information about temperature, composition and motion through its distribution across wavelength and the signatures imprinted by matter.',
     frontend: {
       en: 'Learn how splitting light into wavelengths reveals properties of distant objects.',
+      it: 'Scopri come la scomposizione della luce in lunghezze d\'onda rivela le proprietà di oggetti lontani.',
       qm: 'Yarıqnı dalğa uzunlıqlarına ayırmaq uzaqtaki cisimlerniñ hususiyetlerini nasıl bildirgenini ögreniñiz.',
       bn: 'আলোকে তরঙ্গদৈর্ঘ্য অনুযায়ী ভাগ করলে দূরের বস্তুর বৈশিষ্ট্য কীভাবে জানা যায়, তা শেখো।',
       ur: 'جانیں کہ روشنی کو طولِ موج کے لحاظ سے الگ کرنے سے دور دراز اجرام کی خصوصیات کیسے ظاہر ہوتی ہیں۔',

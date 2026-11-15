@@ -12,6 +12,7 @@ export const astronomicalInstrumentsAndEvidence_SkillDomain_Data = defineSkillDo
   id: 'bf04eb18-9dd9-462c-8c83-7269bdc4d17d',
   title: {
     en: 'Astronomical Instruments and Evidence',
+    it: 'Strumenti e prove astronomiche',
     qm: 'Astronomik aletler ve ilmiy deliller',
     bn: 'জ্যোতির্বৈজ্ঞানিক যন্ত্র ও প্রমাণ',
     ur: 'فلکیاتی آلات اور شواہد',
@@ -54,6 +55,7 @@ export const astronomicalInstrumentsAndEvidence_SkillDomain_Data = defineSkillDo
       'Astronomy infers properties of remote objects from electromagnetic radiation, gravitational effects, particles and spacecraft observations. This domain covers what an observation can reveal, how instruments and methods constrain the evidence, and how competing interpretations are evaluated, not the engineering construction of observatories and spacecraft.',
     frontend: {
       en: 'Discover how astronomers gather evidence from light, gravity, particles and space missions to study distant worlds.',
+      it: 'Scopri come gli astronomi raccolgono prove attraverso luce, gravità, particelle e missioni spaziali per studiare mondi lontani.',
       qm: 'Astronomlar uzaq dünyalarnı ögrenmek içün yarıq, cazibe, zerreler ve kosmik seferlerden nasıl delil toplağanlarını ögreniñiz.',
       bn: 'দূরবর্তী জগৎ জানতে জ্যোতির্বিজ্ঞানীরা আলো, মহাকর্ষ, কণা ও মহাকাশ অভিযান থেকে কীভাবে প্রমাণ সংগ্রহ করেন, তা জানো।',
       ur: 'جانیں کہ ماہرینِ فلکیات دور دراز دنیاؤں کے مطالعے کے لیے روشنی، کششِ ثقل، ذرات اور خلائی مشنوں سے شواہد کیسے جمع کرتے ہیں۔',
