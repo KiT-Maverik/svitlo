@@ -5,6 +5,7 @@ export const generalizeARepeatedMethod_Skill_Data = defineSkill({
   id: 'd2716a77-b2a1-4dc4-895f-2f9fd06703e1',
   name: {
     en: 'Generalize a Repeated Method',
+    it: 'Generalizzare un metodo ripetuto',
     zh: '概括可重复使用的方法',
     hi: 'दोहराई जाने वाली विधि का सामान्यीकरण करना',
     es: 'Generalizar un método repetido',
@@ -39,6 +40,7 @@ export const generalizeARepeatedMethod_Skill_Data = defineSkill({
       'Extract an invariant sequence of actions from several specific solutions and formulate a rule applicable to new cases. This requires separating the method from incidental numbers or objects in the examples.',
     frontend: {
       en: 'Find a reusable method shared by several specific problems.',
+      it: 'Individua un metodo riutilizzabile comune a diversi problemi specifici.',
       zh: '找出多个具体问题共有、可以反复使用的方法。',
       hi: 'कई अलग समस्याओं में काम आने वाली साझा विधि खोजें।',
       es: 'Encuentra un método reutilizable que comparten varios problemas concretos.',

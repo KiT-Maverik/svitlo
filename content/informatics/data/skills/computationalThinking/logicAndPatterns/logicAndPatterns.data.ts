@@ -16,6 +16,7 @@ export const logicAndPatterns_SkillGroup_Data = defineSkillGroup({
   id: '34b0bd60-2c4f-483a-abab-e2cccd6892ec',
   name: {
     en: 'Logic and Patterns',
+    it: 'Logica e schemi',
     zh: '逻辑与模式',
     hi: 'तर्क और पैटर्न',
     es: 'Lógica y patrones',
@@ -60,6 +61,7 @@ export const logicAndPatterns_SkillGroup_Data = defineSkillGroup({
       'Reasoning from explicit rules includes finding patterns, evaluating simple statements, applying independent logical operations, combining conditions, and detecting contradictions. The focus is on truth and consequences, not necessarily executable code.',
     frontend: {
       en: 'Discover how rules, patterns and logical conditions support problem solving.',
+      it: 'Scopri come regole, schemi e condizioni logiche aiutano a risolvere i problemi.',
       zh: '探索规则、模式和逻辑条件如何帮助解决问题。',
       hi: 'जानें कि नियम, पैटर्न और तार्किक शर्तें समस्याएँ हल करने में कैसे मदद करती हैं।',
       es: 'Descubre cómo las reglas, los patrones y las condiciones lógicas ayudan a resolver problemas.',

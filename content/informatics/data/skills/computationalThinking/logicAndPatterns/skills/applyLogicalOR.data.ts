@@ -5,6 +5,7 @@ export const applyLogicalOR_Skill_Data = defineSkill({
   id: 'fb5630e7-fde7-4a97-8f21-97179a6c965e',
   name: {
     en: 'Apply Logical OR',
+    it: "Applicare l'operatore logico OR",
     zh: '应用逻辑或',
     hi: 'तार्किक OR लागू करना',
     es: 'Aplicar el operador lógico O',
@@ -39,6 +40,7 @@ export const applyLogicalOR_Skill_Data = defineSkill({
       'Evaluate the disjunction of two conditions: it is true when at least one condition holds, including when both hold. For example, a discount may be available with a student ID or a promotional code; this is inclusive OR unless otherwise specified.',
     frontend: {
       en: 'Use OR to check whether at least one of two conditions is satisfied.',
+      it: 'Usa OR per verificare se almeno una di due condizioni è soddisfatta.',
       zh: '用“或”判断两个条件中是否至少满足一个。',
       hi: 'OR का उपयोग करके जाँचें कि क्या दोनों में से कम-से-कम एक शर्त पूरी है।',
       es: 'Usa O para comprobar si se cumple al menos uno de dos requisitos.',

@@ -5,6 +5,7 @@ export const applyLogicalAND_Skill_Data = defineSkill({
   id: '09f1c8e9-9e7b-4d80-8d91-c18f86e96b06',
   name: {
     en: 'Apply Logical AND',
+    it: "Applicare l'operatore logico AND",
     zh: '应用逻辑与',
     hi: 'तार्किक AND लागू करना',
     es: 'Aplicar el operador lógico Y',
@@ -39,6 +40,7 @@ export const applyLogicalAND_Skill_Data = defineSkill({
       'Evaluate the conjunction of two conditions: it is true only when both conditions are true. For example, access requires both a correct code and authorization; do not confuse this with an alternative condition.',
     frontend: {
       en: 'Use AND to check whether two requirements are both satisfied.',
+      it: 'Usa AND per verificare se due requisiti sono entrambi soddisfatti.',
       zh: '用“与”判断两个要求是否同时满足。',
       hi: 'AND का उपयोग करके जाँचें कि क्या दोनों शर्तें पूरी होती हैं।',
       es: 'Usa Y para comprobar si se cumplen ambos requisitos.',
