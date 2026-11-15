@@ -6,7 +6,7 @@ import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configura
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { localizationSwitch as contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
-import { flashcardSide_Config_Schema, type FlashcardSide_Overrides } from '../defineFlashcardSide';
+import { flashcardSide_Config_Schema, type FlashcardSide_Overrides } from '../defineFlashcardSide/defineFlashcardSide.schemas';
 
 export const flashcardRelationshipTypes = [
   'reverse',
