@@ -11,6 +11,7 @@ export const solids_SkillGroup_Data = defineSkillGroup({
   id: 'bdf41fea-033a-41dd-8f37-8ab78f9a45cf',
   name: {
     en: 'Solid figures',
+    it: 'Solidi geometrici',
     qm: 'Hacımlı şekiller',
     lt: 'Erdvinės figūros',
     lv: 'Telpiskas figūras',
@@ -53,6 +54,7 @@ export const solids_SkillGroup_Data = defineSkillGroup({
       'Distinguishing three-dimensional solids from flat depictions and identifying their surfaces, faces, edges, and vertices.',
     frontend: {
       en: 'Recognize three-dimensional objects and their faces, edges, corners, and curved surfaces.',
+      it: 'Riconosci gli oggetti tridimensionali e le loro facce, spigoli, vertici e superfici curve.',
       qm: 'Üç ölçüli eşyalarnı, olarnıñ yaqlarını, qırlarını, köşelerini ve egri yüzlerini tanı.',
       zh: '认识立体图形及它们的面、棱、顶点和曲面。',
       hi: 'त्रिआयामी ठोस आकृतियाँ और उनके फलक, किनारे, कोने तथा घुमावदार सतहें पहचानें।',
