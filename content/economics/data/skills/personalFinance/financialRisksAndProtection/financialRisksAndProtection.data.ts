@@ -11,6 +11,7 @@ export const financialRisksAndProtection_SkillGroup_Data = defineSkillGroup({
   id: 'e4edf951-cc50-458e-a233-82eef79c324f',
   name: {
     en: 'Ризики та захист',
+    it: 'Rischi finanziari e protezione',
     zh: '财务风险与保障',
     hi: 'वित्तीय जोखिम और सुरक्षा',
     es: 'Riesgos financieros y protección',
@@ -50,6 +51,7 @@ export const financialRisksAndProtection_SkillGroup_Data = defineSkillGroup({
       'Financial security involves understanding acceptable risk, insurance options, and warning signs of deceptive offers.',
     frontend: {
       en: 'Explore ways to recognize financial risks and protect yourself.',
+      it: 'Esplora come riconoscere i rischi finanziari e proteggerti.',
       zh: '探索如何识别财务风险并保护自己。',
       hi: 'जानें कि वित्तीय जोखिम कैसे पहचानें और खुद को कैसे सुरक्षित रखें।',
       es: 'Explora cómo reconocer riesgos financieros y protegerte.',

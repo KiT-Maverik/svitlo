@@ -5,6 +5,7 @@ export const creditHistory_Skill_Data = defineSkill({
   id: '039e3372-392d-4a4d-b335-8976211b2e70',
   name: {
     en: 'Кредитна історія',
+    it: 'Storia creditizia',
     zh: '信用记录',
     hi: 'ऋण इतिहास',
     es: 'Historial crediticio',
@@ -38,6 +39,7 @@ export const creditHistory_Skill_Data = defineSkill({
     methodological: 'Explain how records of past borrowing obligations can affect future financing terms.',
     frontend: {
       en: 'Discover how past repayments can influence future borrowing.',
+      it: "Scopri come i rimborsi passati possono influenzare l'accesso futuro al credito.",
       zh: '了解过去的还款行为如何影响未来借款。',
       hi: 'जानें कि पिछले भुगतान भविष्य में ऋण मिलने पर कैसे असर डालते हैं।',
       es: 'Descubre cómo los pagos anteriores influyen en futuros préstamos.',

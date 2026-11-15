@@ -5,6 +5,7 @@ export const insurancePrinciples_Skill_Data = defineSkill({
   id: 'dd1a2fc8-c27a-4e11-a7e4-faa508bf801a',
   name: {
     en: 'Принципи страхування',
+    it: 'Principi assicurativi',
     zh: '保险原理',
     hi: 'बीमा के सिद्धांत',
     es: 'Principios del seguro',
@@ -39,6 +40,7 @@ export const insurancePrinciples_Skill_Data = defineSkill({
       'Explain premiums, insured events, coverage, exclusions, and compensation as mechanisms for pooling specified risks.',
     frontend: {
       en: 'Understand what insurance covers and why exclusions matter.',
+      it: "Comprendi che cosa copre un'assicurazione e perché le esclusioni sono importanti.",
       zh: '理解保险承保什么，以及除外责任为何重要。',
       hi: 'समझें कि बीमा क्या कवर करता है और अपवाद क्यों महत्वपूर्ण हैं।',
       es: 'Comprende qué cubre un seguro y por qué importan las exclusiones.',
