@@ -37,9 +37,12 @@ export function parseArguments(argv) {
       options[flag.slice(2)] = value;
     } else throw new Error(`${usage}\nUnknown argument: ${flag}`);
   }
-  if (!options.package || (options.listLocales
-      ? (!options.lesson || options.locale || options.stdout || options.output)
-      : (!options.locale || Boolean(options.stdout) === Boolean(options.output))))
+  if (
+    !options.package ||
+    (options.listLocales
+      ? !options.lesson || options.locale || options.stdout || options.output
+      : !options.locale || Boolean(options.stdout) === Boolean(options.output))
+  )
     throw new Error(usage);
   if (options.stdout && !options.lesson) throw new Error('--stdout requires --lesson to select exactly one document');
   if (!/^content\/[a-z][a-z0-9-]*$/.test(options.package))
@@ -154,8 +157,12 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
     const lesson = await loader(item.entry, packageDirectory);
     if (lesson.id !== item.id) throw new Error('Lesson identity mismatch: ' + item.id);
     const languages = lesson.config?.base?.params?.languages;
-    if (!Array.isArray(languages) || !languages.length || new Set(languages).size !== languages.length ||
-        languages.some(code => !locales.includes(code))) {
+    if (
+      !Array.isArray(languages) ||
+      !languages.length ||
+      new Set(languages).size !== languages.length ||
+      languages.some(code => !locales.includes(code))
+    ) {
       throw new Error('Invalid Lesson supported languages: ' + item.id);
     }
     return JSON.stringify(languages) + '\n';

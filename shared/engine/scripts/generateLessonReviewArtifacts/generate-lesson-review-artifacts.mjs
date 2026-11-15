@@ -65,8 +65,15 @@ export function discoverLessons(root, packageName = null) {
  *   --lesson <uuid> --locale <code> --stdout
  */
 export function generateLessonReviewArtifacts({
-  root, output, languages, manifest, saveManifest, run = spawnSync,
-  packageName = null, lessonId = null, supportedLanguages = null,
+  root,
+  output,
+  languages,
+  manifest,
+  saveManifest,
+  run = spawnSync,
+  packageName = null,
+  lessonId = null,
+  supportedLanguages = null,
 }) {
   const lessons = discoverLessons(root, packageName).filter(item => !lessonId || item.id === lessonId);
   const generator = path.join(root, 'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs');
@@ -87,24 +94,29 @@ export function generateLessonReviewArtifacts({
   for (const lesson of lessons) {
     let selectedLanguages = languages;
     if (!selectedLanguages) {
-      const listed = run(process.execPath, [
-        generator, '--package', lesson.package, '--lesson', lesson.id, '--list-locales',
-      ], { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 });
+      const listed = run(
+        process.execPath,
+        [generator, '--package', lesson.package, '--lesson', lesson.id, '--list-locales'],
+        { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 },
+      );
       try {
         if (listed.error || listed.status !== 0) {
           throw new Error(listed.error?.message || listed.stderr || 'Cannot enumerate Lesson languages');
         }
         selectedLanguages = JSON.parse(listed.stdout);
-        if (!Array.isArray(selectedLanguages) || selectedLanguages.length === 0 ||
-            new Set(selectedLanguages).size !== selectedLanguages.length ||
-            !selectedLanguages.every(code => typeof code === 'string' &&
-              (!supportedLanguages || supportedLanguages.includes(code)))) {
+        if (
+          !Array.isArray(selectedLanguages) ||
+          selectedLanguages.length === 0 ||
+          new Set(selectedLanguages).size !== selectedLanguages.length ||
+          !selectedLanguages.every(
+            code => typeof code === 'string' && (!supportedLanguages || supportedLanguages.includes(code)),
+          )
+        ) {
           throw new Error('Invalid Lesson language declaration');
         }
       } catch (error) {
         const message = String(error.message || error).slice(0, 1500);
-        manifest.failures.push({ kind: 'lesson', textbook: lesson.package,
-          lesson: lesson.relative, error: message });
+        manifest.failures.push({ kind: 'lesson', textbook: lesson.package, lesson: lesson.relative, error: message });
         result.failures++;
         saveManifest();
         process.stderr.write('::warning::Lesson languages ' + lesson.id + ': ' + message.replace(/\n/g, ' ') + '\n');
@@ -148,7 +160,8 @@ export function generateLessonReviewArtifacts({
         lesson: `${lesson.relative}`,
         locale,
         path: `.agent-ci-artifacts/${relative.split(path.sep).join('/')}`,
-        missing: 0, reviewReady: true,
+        missing: 0,
+        reviewReady: true,
       });
       saveManifest();
       result.generated++;

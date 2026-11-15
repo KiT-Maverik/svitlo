@@ -183,12 +183,16 @@ function runGate(changed) {
   }
 
   // Markdown reference tests run when their code changes, not on each agent-artifacts request.
-  if (changed.some(file =>
-    file.startsWith('scripts/generateTranslationReviewArtifacts/') ||
-    file.startsWith('shared/engine/scripts/generateLessonReviewArtifacts/') ||
-    file === 'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs'
-  )) {
-    exec('node', ['--test',
+  if (
+    changed.some(
+      file =>
+        file.startsWith('scripts/generateTranslationReviewArtifacts/') ||
+        file.startsWith('shared/engine/scripts/generateLessonReviewArtifacts/') ||
+        file === 'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs',
+    )
+  ) {
+    exec('node', [
+      '--test',
       'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs',
       'shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs',
     ]);

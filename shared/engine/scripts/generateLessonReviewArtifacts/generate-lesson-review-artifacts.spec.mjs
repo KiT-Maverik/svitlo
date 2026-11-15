@@ -155,12 +155,18 @@ test('scoped Lesson generation visits only the selected textbook and locale', ()
     fs.mkdirSync(output, { recursive: true });
     const manifest = { generated: [], failures: [] };
     const result = generateLessonReviewArtifacts({
-      root, output, languages: ['it'], packageName: 'content/math',
-      manifest, saveManifest: () => {},
+      root,
+      output,
+      languages: ['it'],
+      packageName: 'content/math',
+      manifest,
+      saveManifest: () => {},
     });
     assert.deepEqual(result, { discoveredLessons: 1, generated: 1, failures: 0 });
-    assert.deepEqual(manifest.generated.map(x => x.path),
-      ['.agent-ci-artifacts/lessons/math/3/00000000-0000-5000-8000-000000000003/it.md']);
+    assert.deepEqual(
+      manifest.generated.map(x => x.path),
+      ['.agent-ci-artifacts/lessons/math/3/00000000-0000-5000-8000-000000000003/it.md'],
+    );
     assert.equal(fs.existsSync(path.join(output, 'lessons/playground')), false);
   }));
 
@@ -172,9 +178,17 @@ test('omitting locale enumerates only the languages declared by a scoped Lesson'
     fs.mkdirSync(output, { recursive: true });
     const manifest = { generated: [], failures: [] };
     const result = generateLessonReviewArtifacts({
-      root, output, languages: null, packageName: 'content/playground',
-      supportedLanguages: ['en', 'uk', 'it'], manifest, saveManifest: () => {},
+      root,
+      output,
+      languages: null,
+      packageName: 'content/playground',
+      supportedLanguages: ['en', 'uk', 'it'],
+      manifest,
+      saveManifest: () => {},
     });
     assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 0 });
-    assert.deepEqual(manifest.generated.map(x => x.locale), ['en', 'uk']);
+    assert.deepEqual(
+      manifest.generated.map(x => x.locale),
+      ['en', 'uk'],
+    );
   }));

@@ -21,16 +21,23 @@ export function parseArguments(args) {
   const options = {};
   for (let i = 0; i < args.length; ++i) {
     const key = args[i];
-    if (!['--kind', '--package', '--locale', '--component', '--lesson'].includes(key) ||
-        Object.hasOwn(options, key.slice(2)) || !args[i + 1] || args[i + 1].startsWith('--')) {
-      throw new Error('Usage: --kind <skills|lessons|assessment-methods|ui-kit|geography-home-copy> ' +
-        '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>]');
+    if (
+      !['--kind', '--package', '--locale', '--component', '--lesson'].includes(key) ||
+      Object.hasOwn(options, key.slice(2)) ||
+      !args[i + 1] ||
+      args[i + 1].startsWith('--')
+    ) {
+      throw new Error(
+        'Usage: --kind <skills|lessons|assessment-methods|ui-kit|geography-home-copy> ' +
+          '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>]',
+      );
     }
     options[key.slice(2)] = args[++i];
   }
   if (!families.has(options.kind)) throw new Error('An explicit supported --kind is required');
   const hasPackage = ['skills', 'lessons'].includes(options.kind);
-  if (hasPackage !== Boolean(options.package)) throw new Error('Only Skills and Lessons require --package content/<textbook>');
+  if (hasPackage !== Boolean(options.package))
+    throw new Error('Only Skills and Lessons require --package content/<textbook>');
   if (options.package && !/^content\/[a-z][a-z0-9-]*$/.test(options.package)) {
     throw new Error('Unsafe textbook path: ' + options.package);
   }
@@ -57,7 +64,8 @@ function checkTextbook(options) {
 
 function sourceCommit() {
   const info = spawnSync('git', ['log', '-1', '--format=%H', '--', '.', ':(exclude).agent-ci-artifacts/**'], {
-    cwd: root, encoding: 'utf8',
+    cwd: root,
+    encoding: 'utf8',
   });
   if (info.status !== 0 || !/^[0-9a-f]{40}$/.test(info.stdout.trim())) throw new Error('Cannot determine source SHA');
   return info.stdout.trim();
@@ -67,9 +75,14 @@ function fixTaxonomyLinks(markdown, book, destination) {
   const original = path.join(root, 'content', book, 'docs/generated/skills');
   return markdown.replace(/\[([^\]]+\.data\.ts)\]\(([^)]+)\)/g, (_, label, value) => {
     const resolved = path.resolve(original, decodeURI(value));
-    if (!resolved.startsWith(path.join(root, 'content', book, 'data/skills') + path.sep) ||
-        !resolved.endsWith('.data.ts')) throw new Error('Unsafe canonical taxonomy link: ' + value);
-    return '[' + label + '](' + encodeURI(path.relative(path.dirname(destination), resolved).split(path.sep).join('/')) + ')';
+    if (
+      !resolved.startsWith(path.join(root, 'content', book, 'data/skills') + path.sep) ||
+      !resolved.endsWith('.data.ts')
+    )
+      throw new Error('Unsafe canonical taxonomy link: ' + value);
+    return (
+      '[' + label + '](' + encodeURI(path.relative(path.dirname(destination), resolved).split(path.sep).join('/')) + ')'
+    );
   });
 }
 
@@ -81,29 +94,43 @@ export async function generate(options) {
   }
   const languages = options.locale ? [options.locale] : registered;
   const manifest = {
-    schemaVersion: 3, kind: 'pr-scoped-agent-ci-artifacts', sourceCommit: sourceCommit(),
-    scope: { kind: options.kind, package: options.package ?? null, locale: options.locale ?? null,
-      component: options.component ?? null, lesson: options.lesson ?? null },
+    schemaVersion: 3,
+    kind: 'pr-scoped-agent-ci-artifacts',
+    sourceCommit: sourceCommit(),
+    scope: {
+      kind: options.kind,
+      package: options.package ?? null,
+      locale: options.locale ?? null,
+      component: options.component ?? null,
+      lesson: options.lesson ?? null,
+    },
     packages: options.package ? [options.package] : [],
     locales: options.locale ? [options.locale] : [],
-    generated: [], failures: [],
+    generated: [],
+    failures: [],
   };
   // A new request replaces the previous disposable reference library. Never change authored files.
   fs.rmSync(output, { recursive: true, force: true });
   fs.mkdirSync(output, { recursive: true });
-  const saveManifest = () => fs.writeFileSync(path.join(output, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
+  const saveManifest = () =>
+    fs.writeFileSync(path.join(output, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
   saveManifest();
 
   if (options.kind === 'skills') {
     const book = options.package.slice('content/'.length);
     const generator = path.join(root, 'shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs');
     for (const locale of languages) {
-      const result = spawnSync(process.execPath,
+      const result = spawnSync(
+        process.execPath,
         [generator, '--package', options.package, '--locale', locale, '--stdout', '--allow-missing'],
-        { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 });
+        { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 },
+      );
       try {
-        if (result.error || result.status !== 0 ||
-            !result.stdout?.startsWith('<!-- GENERATED FROM CODE; DO NOT EDIT. -->')) {
+        if (
+          result.error ||
+          result.status !== 0 ||
+          !result.stdout?.startsWith('<!-- GENERATED FROM CODE; DO NOT EDIT. -->')
+        ) {
           throw new Error(result.error?.message || result.stderr || 'Empty/invalid taxonomy reference');
         }
         const relative = 'taxonomies/' + book + '/' + locale + '.md';
@@ -115,10 +142,15 @@ export async function generate(options) {
         if (!Number.isSafeInteger(missing) || missing < 0) throw new Error('Missing translation coverage metadata');
         fs.writeFileSync(destination, markdown);
         manifest.generated.push({
-          kind: 'taxonomy', textbook: options.package, locale,
+          kind: 'taxonomy',
+          textbook: options.package,
+          locale,
           path: '.agent-ci-artifacts/' + relative,
-          domains: count('Domains'), groups: count('Groups'), skills: count('Skills'),
-          missing, reviewReady: missing === 0,
+          domains: count('Domains'),
+          groups: count('Groups'),
+          skills: count('Skills'),
+          missing,
+          reviewReady: missing === 0,
         });
         process.stdout.write('Generated ' + relative + '\n');
       } catch (error) {
@@ -129,44 +161,54 @@ export async function generate(options) {
       saveManifest();
     }
   } else if (options.kind === 'lessons') {
-    const { generateLessonReviewArtifacts } = await import(
-      '../../shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.mjs'
-    );
+    const { generateLessonReviewArtifacts } =
+      await import('../../shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.mjs');
     generateLessonReviewArtifacts({
-      root, output, manifest, saveManifest, packageName: options.package,
-      lessonId: options.lesson, languages: options.locale ? languages : null,
+      root,
+      output,
+      manifest,
+      saveManifest,
+      packageName: options.package,
+      lessonId: options.lesson,
+      languages: options.locale ? languages : null,
       supportedLanguages: registered,
     });
   } else if (options.kind === 'assessment-methods') {
-    const { generateAssessmentMethodsReviewArtifacts } = await import(
-      '../../shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs'
-    );
+    const { generateAssessmentMethodsReviewArtifacts } =
+      await import('../../shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs');
     generateAssessmentMethodsReviewArtifacts({ root, output, languages, manifest, saveManifest, allowMissing: true });
   } else if (options.kind === 'ui-kit') {
-    const { uiKitComponents, generateUiKitLocaleReviewArtifacts } = await import(
-      '../../shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-reference.mjs'
-    );
+    const { uiKitComponents, generateUiKitLocaleReviewArtifacts } =
+      await import('../../shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-reference.mjs');
     const components = options.component ? [options.component] : uiKitComponents(root);
     const available = uiKitComponents(root);
     if (components.some(component => !available.includes(component))) {
       throw new Error('Unknown UI Kit dictionary: ' + options.component);
     }
     generateUiKitLocaleReviewArtifacts({
-      root, output, languages, manifest, saveManifest, allowMissing: true, components,
+      root,
+      output,
+      languages,
+      manifest,
+      saveManifest,
+      allowMissing: true,
+      components,
     });
   } else if (options.kind === 'geography-home-copy') {
-    const { generateHomeCopyReviewArtifacts } = await import(
-      '../../content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.mjs'
-    );
+    const { generateHomeCopyReviewArtifacts } =
+      await import('../../content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.mjs');
     generateHomeCopyReviewArtifacts({ root, output, languages, manifest, saveManifest, allowMissing: true });
   }
 
-  manifest.locales = [...new Set([
-    ...manifest.generated.map(item => item.locale).filter(Boolean),
-    ...manifest.failures.map(item => item.locale).filter(Boolean),
-  ])].sort();
+  manifest.locales = [
+    ...new Set([
+      ...manifest.generated.map(item => item.locale).filter(Boolean),
+      ...manifest.failures.map(item => item.locale).filter(Boolean),
+    ]),
+  ].sort();
   manifest.summary = {
-    documents: manifest.generated.length, failures: manifest.failures.length,
+    documents: manifest.generated.length,
+    failures: manifest.failures.length,
     missingTranslations: manifest.generated.reduce((sum, item) => sum + (item.missing ?? 0), 0),
     incompleteDocuments: manifest.generated.filter(item => item.reviewReady === false).length,
     taxonomyDocuments: manifest.generated.filter(item => item.kind === 'taxonomy').length,
@@ -179,8 +221,15 @@ export async function generate(options) {
   if (manifest.generated.length === 0) {
     throw new Error('No requested Markdown was generated. Inspect .agent-ci-artifacts/manifest.json failures.');
   }
-  process.stdout.write('Generated ' + manifest.generated.length + ' requested documents, ' +
-    manifest.failures.length + ' failures; source ' + manifest.sourceCommit + '\n');
+  process.stdout.write(
+    'Generated ' +
+      manifest.generated.length +
+      ' requested documents, ' +
+      manifest.failures.length +
+      ' failures; source ' +
+      manifest.sourceCommit +
+      '\n',
+  );
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

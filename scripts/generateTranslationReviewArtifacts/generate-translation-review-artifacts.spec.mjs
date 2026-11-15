@@ -14,14 +14,24 @@ test('requires an explicit reference family and never defaults to whole-reposito
 });
 
 test('scopes Skills and Lessons to the named textbook and optional locale', () => {
-  assert.deepEqual(parseArguments(['--kind', 'skills', '--package', 'content/astronomy', '--locale', 'it']),
-    { kind: 'skills', package: 'content/astronomy', locale: 'it' });
-  assert.deepEqual(parseArguments(['--kind', 'skills', '--package', 'content/astronomy']),
-    { kind: 'skills', package: 'content/astronomy' });
-  assert.deepEqual(parseArguments(['--kind', 'lessons', '--package', 'content/math', '--locale', 'uk']),
-    { kind: 'lessons', package: 'content/math', locale: 'uk' });
-  assert.deepEqual(parseArguments(['--kind', 'lessons', '--package', 'content/math']),
-    { kind: 'lessons', package: 'content/math' });
+  assert.deepEqual(parseArguments(['--kind', 'skills', '--package', 'content/astronomy', '--locale', 'it']), {
+    kind: 'skills',
+    package: 'content/astronomy',
+    locale: 'it',
+  });
+  assert.deepEqual(parseArguments(['--kind', 'skills', '--package', 'content/astronomy']), {
+    kind: 'skills',
+    package: 'content/astronomy',
+  });
+  assert.deepEqual(parseArguments(['--kind', 'lessons', '--package', 'content/math', '--locale', 'uk']), {
+    kind: 'lessons',
+    package: 'content/math',
+    locale: 'uk',
+  });
+  assert.deepEqual(parseArguments(['--kind', 'lessons', '--package', 'content/math']), {
+    kind: 'lessons',
+    package: 'content/math',
+  });
 });
 
 test('rejects unsafe paths, invalid combinations and duplicate options before writing anything', () => {
@@ -41,12 +51,16 @@ test('rejects unsafe paths, invalid combinations and duplicate options before wr
 });
 
 test('allows only explicitly selected standalone reference families and optional UI Kit component', () => {
-  assert.deepEqual(parseArguments(['--kind', 'assessment-methods', '--locale', 'it']),
-    { kind: 'assessment-methods', locale: 'it' });
-  assert.deepEqual(parseArguments(['--kind', 'ui-kit', '--component', 'audio', '--locale', 'uk']),
-    { kind: 'ui-kit', component: 'audio', locale: 'uk' });
-  assert.deepEqual(parseArguments(['--kind', 'geography-home-copy']),
-    { kind: 'geography-home-copy' });
+  assert.deepEqual(parseArguments(['--kind', 'assessment-methods', '--locale', 'it']), {
+    kind: 'assessment-methods',
+    locale: 'it',
+  });
+  assert.deepEqual(parseArguments(['--kind', 'ui-kit', '--component', 'audio', '--locale', 'uk']), {
+    kind: 'ui-kit',
+    component: 'audio',
+    locale: 'uk',
+  });
+  assert.deepEqual(parseArguments(['--kind', 'geography-home-copy']), { kind: 'geography-home-copy' });
 });
 
 test('real Skills and UI Kit requests generate only their requested Markdown files', () => {
@@ -54,9 +68,11 @@ test('real Skills and UI Kit requests generate only their requested Markdown fil
   const workspace = path.join(root, '.agent-ci-artifacts');
   assert.equal(fs.existsSync(workspace), false, 'Tests must not overwrite existing PR artifact files');
   function request(args) {
-    const response = spawnSync(process.execPath,
+    const response = spawnSync(
+      process.execPath,
       ['scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs', ...args],
-      { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 });
+      { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 },
+    );
     assert.equal(response.status, 0, response.error?.message || response.stderr);
     const manifest = JSON.parse(fs.readFileSync(path.join(workspace, 'manifest.json'), 'utf8'));
     return manifest;
@@ -66,14 +82,20 @@ test('real Skills and UI Kit requests generate only their requested Markdown fil
     assert.equal(skills.scope.kind, 'skills');
     assert.equal(skills.scope.package, 'content/art');
     assert.deepEqual(skills.locales, ['en']);
-    assert.deepEqual(skills.generated.map(item => item.path), ['.agent-ci-artifacts/taxonomies/art/en.md']);
+    assert.deepEqual(
+      skills.generated.map(item => item.path),
+      ['.agent-ci-artifacts/taxonomies/art/en.md'],
+    );
     assert.equal(skills.failures.length, 0);
     assert.equal(fs.existsSync(path.join(workspace, 'lessons')), false);
 
     const ui = request(['--kind', 'ui-kit', '--component', 'audio', '--locale', 'uk']);
     assert.equal(ui.scope.kind, 'ui-kit');
     assert.equal(ui.scope.component, 'audio');
-    assert.deepEqual(ui.generated.map(item => item.path), ['.agent-ci-artifacts/ui-kit/audio/uk.md']);
+    assert.deepEqual(
+      ui.generated.map(item => item.path),
+      ['.agent-ci-artifacts/ui-kit/audio/uk.md'],
+    );
     assert.equal(ui.failures.length, 0);
     assert.equal(fs.existsSync(path.join(workspace, 'taxonomies')), false);
   } finally {
