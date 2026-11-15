@@ -5,6 +5,7 @@ export const earlySocialAttachment_Skill_Data = defineSkill({
   id: 'f9302107-9773-4abe-b228-9c416c48ae42',
   name: {
     en: 'Early Social Attachment',
+    it: 'Attaccamento sociale precoce',
     zh: '早期社会依恋',
     hi: 'प्रारंभिक सामाजिक लगाव',
     es: 'Apego social temprano',
@@ -39,6 +40,7 @@ export const earlySocialAttachment_Skill_Data = defineSkill({
       'Explain how caregiving relationships support expectations of safety and connection without assigning permanent attachment labels.',
     frontend: {
       en: 'Understand how early bonds support the development of social relationships.',
+      it: 'Comprendi come i primi legami affettivi sostengano lo sviluppo delle relazioni sociali.',
       zh: '理解早期情感联结如何支持社会关系的发展。',
       hi: 'समझें कि शुरुआती भावनात्मक रिश्ते सामाजिक संबंधों के विकास में कैसे सहायक होते हैं।',
       es: 'Comprende cómo los vínculos tempranos favorecen el desarrollo de relaciones sociales.',

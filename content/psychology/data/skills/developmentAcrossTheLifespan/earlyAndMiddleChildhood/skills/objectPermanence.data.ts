@@ -5,6 +5,7 @@ export const objectPermanence_Skill_Data = defineSkill({
   id: '3e0455f7-5d5c-43dc-90a4-6b36e5725f33',
   name: {
     en: 'Object Permanence',
+    it: 'Permanenza dell\'oggetto',
     zh: '客体永久性',
     hi: 'वस्तु स्थायित्व',
     es: 'Permanencia del objeto',
@@ -38,6 +39,7 @@ export const objectPermanence_Skill_Data = defineSkill({
     methodological: 'Explain understanding that objects continue to exist when temporarily outside direct perception.',
     frontend: {
       en: 'Explore when children grasp that objects continue existing when out of view.',
+      it: 'Esplora quando i bambini comprendono che gli oggetti continuano a esistere anche quando non sono visibili.',
       zh: '探索儿童何时理解物体即使看不见也仍然存在。',
       hi: 'जानें कि बच्चे कब समझते हैं कि आँखों से ओझल होने पर भी वस्तुएँ मौजूद रहती हैं।',
       es: 'Explora cuándo comprenden los niños que los objetos siguen existiendo aunque no se vean.',

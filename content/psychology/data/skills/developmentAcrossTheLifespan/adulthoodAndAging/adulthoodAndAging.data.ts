@@ -12,6 +12,7 @@ export const adulthoodAndAging_SkillGroup_Data = defineSkillGroup({
   id: '66fbcd4b-3b56-4bc4-8b45-1b764f5f145c',
   name: {
     en: 'Adulthood and Aging',
+    it: 'Età adulta e invecchiamento',
     zh: '成年期与衰老',
     hi: 'वयस्कता और वृद्धावस्था',
     es: 'Adultez y envejecimiento',
@@ -55,6 +56,7 @@ export const adulthoodAndAging_SkillGroup_Data = defineSkillGroup({
       'Psychological development continues through adulthood, including shifting roles, accumulated experience, and heterogeneous cognitive trajectories.',
     frontend: {
       en: 'Discover psychological changes and adaptations across adult life.',
+      it: 'Scopri i cambiamenti e gli adattamenti psicologici nel corso della vita adulta.',
       zh: '探索整个成年生活中的心理变化与适应。',
       hi: 'वयस्क जीवन में होने वाले मनोवैज्ञानिक बदलावों और अनुकूलन को जानें।',
       es: 'Explora los cambios y las adaptaciones psicológicas a lo largo de la vida adulta.',

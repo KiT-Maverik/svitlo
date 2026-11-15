@@ -5,6 +5,7 @@ export const identityExploration_Skill_Data = defineSkill({
   id: 'e973f557-353c-4cb3-bf01-0b41d5eae89d',
   name: {
     en: 'Identity Exploration',
+    it: 'Esplorazione dell\'identità',
     zh: '身份认同的探索',
     hi: 'पहचान की खोज',
     es: 'Exploración de la identidad',
@@ -39,6 +40,7 @@ export const identityExploration_Skill_Data = defineSkill({
       'Explain exploration of personal commitments and roles without prescribing a single identity pathway.',
     frontend: {
       en: 'Understand how young people explore and develop a sense of identity.',
+      it: 'Comprendi come i giovani esplorino e sviluppino il proprio senso di identità.',
       zh: '理解年轻人如何探索并形成对自身身份的认识。',
       hi: 'समझें कि युवा अपनी पहचान का एहसास कैसे खोजते और विकसित करते हैं।',
       es: 'Comprende cómo los jóvenes exploran y desarrollan su sentido de identidad.',

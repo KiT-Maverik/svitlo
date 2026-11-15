@@ -5,6 +5,7 @@ export const adultRoleTransitions_Skill_Data = defineSkill({
   id: '79cb3036-953c-41a1-bcd3-1f7e899e7efc',
   name: {
     en: 'Adult Role Transitions',
+    it: 'Transizioni di ruolo nell\'età adulta',
     zh: '成年人角色的转变',
     hi: 'वयस्क भूमिकाओं में बदलाव',
     es: 'Transiciones de roles en la adultez',
@@ -38,6 +39,7 @@ export const adultRoleTransitions_Skill_Data = defineSkill({
     methodological: 'Analyze how work, family, and social changes can reshape self-concept and coping.',
     frontend: {
       en: 'Explore how major changes in responsibilities affect adult development.',
+      it: 'Esplora come i grandi cambiamenti nelle responsabilità influenzino lo sviluppo degli adulti.',
       zh: '探索责任的重大变化如何影响成年期发展。',
       hi: 'जानें कि जिम्मेदारियों में बड़े बदलाव वयस्क विकास को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo los grandes cambios de responsabilidades afectan al desarrollo adulto.',
