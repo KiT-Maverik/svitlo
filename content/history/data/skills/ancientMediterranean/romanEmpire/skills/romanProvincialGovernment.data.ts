@@ -5,6 +5,7 @@ export const romanProvincialGovernment_Skill_Data = defineSkill({
   id: '24b8b6cd-ce44-4b15-ab3b-42abb39226ea',
   name: {
     en: 'Roman Provincial Government',
+    it: "Amministrazione delle province romane",
     zh: '罗马行省治理',
     hi: 'रोमन प्रांतों का प्रशासन',
     es: 'Gobierno provincial romano',
@@ -38,6 +39,7 @@ export const romanProvincialGovernment_Skill_Data = defineSkill({
     methodological: 'Compare regional administration, taxes, citizenship, and cooperation with local elites.',
     frontend: {
       en: 'Understand how Roman provinces were governed.',
+      it: "Comprendi come erano governate le province romane.",
       zh: '理解罗马各行省是如何管理的。',
       hi: 'समझें कि रोमन प्रांतों पर शासन कैसे किया जाता था।',
       es: 'Comprende cómo se administraban las provincias romanas.',

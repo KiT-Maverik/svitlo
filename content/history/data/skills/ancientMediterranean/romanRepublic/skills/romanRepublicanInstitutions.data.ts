@@ -5,6 +5,7 @@ export const romanRepublicanInstitutions_Skill_Data = defineSkill({
   id: 'cd77ac85-fc1f-4a17-91ea-347ee8c61f2e',
   name: {
     en: 'Roman Republican Institutions',
+    it: "Istituzioni della Repubblica romana",
     zh: '罗马共和制度',
     hi: 'रोमन गणराज्य की संस्थाएँ',
     es: 'Instituciones de la República romana',
@@ -38,6 +39,7 @@ export const romanRepublicanInstitutions_Skill_Data = defineSkill({
     methodological: 'Describe the Senate, magistrates, assemblies, and actual social restrictions on participation.',
     frontend: {
       en: 'Understand who held power in the Roman Republic.',
+      it: "Comprendi chi deteneva il potere nella Repubblica romana.",
       zh: '理解罗马共和国的权力掌握在谁手中。',
       hi: 'समझें कि रोमन गणराज्य में सत्ता किनके पास थी।',
       es: 'Comprende quién ejercía el poder en la República romana.',

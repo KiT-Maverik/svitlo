@@ -5,6 +5,7 @@ export const dailyLifeInRomanEmpire_Skill_Data = defineSkill({
   id: 'fc39859e-b5a2-4fe0-adaa-182ed27f0b5f',
   name: {
     en: 'Daily Life in the Roman Empire',
+    it: "Vita quotidiana nell'Impero romano",
     zh: '罗马帝国的日常生活',
     hi: 'रोमन साम्राज्य में दैनिक जीवन',
     es: 'Vida cotidiana en el Imperio romano',
@@ -38,6 +39,7 @@ export const dailyLifeInRomanEmpire_Skill_Data = defineSkill({
     methodological: 'Compare homes, work, diets, and unequal experiences of urban, rural, free, and enslaved people.',
     frontend: {
       en: 'Discover how everyday life varied across the Roman Empire.',
+      it: "Scopri come la vita quotidiana variava nelle diverse regioni dell'Impero romano.",
       zh: '了解罗马帝国各地的日常生活有何不同。',
       hi: 'जानें कि रोमन साम्राज्य के विभिन्न भागों में रोज़मर्रा की ज़िंदगी कैसे अलग थी।',
       es: 'Descubre cómo variaba la vida diaria por todo el Imperio romano.',

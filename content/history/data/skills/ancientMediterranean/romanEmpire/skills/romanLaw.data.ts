@@ -5,6 +5,7 @@ export const romanLaw_Skill_Data = defineSkill({
   id: '2a1215ab-2132-4e89-968d-f5e84d5bd987',
   name: {
     en: 'Roman Law',
+    it: "Diritto romano",
     zh: '罗马法',
     hi: 'रोमन क़ानून',
     es: 'Derecho romano',
@@ -38,6 +39,7 @@ export const romanLaw_Skill_Data = defineSkill({
     methodological: 'Trace legal concepts and citizenship without equating ancient norms with modern human rights.',
     frontend: {
       en: 'Explore the role and changing ideas of law in Roman society.',
+      it: "Esplora il ruolo del diritto e l'evoluzione delle idee giuridiche nella società romana.",
       zh: '探索法律在罗马社会的作用以及人们对法律观念的变化。',
       hi: 'रोमन समाज में क़ानून की भूमिका और उसके बदलते विचारों को जानें।',
       es: 'Explora el papel del derecho y cómo cambiaron sus ideas en la sociedad romana.',

@@ -5,6 +5,7 @@ export const transformationOfRomanEmpire_Skill_Data = defineSkill({
   id: 'a00a2df0-33e3-4cf3-815a-ebd34f3c284e',
   name: {
     en: 'Transformation of the Roman Empire',
+    it: "Trasformazione dell'Impero romano",
     zh: '罗马帝国的转型',
     hi: 'रोमन साम्राज्य का रूपांतरण',
     es: 'Transformación del Imperio romano',
@@ -39,6 +40,7 @@ export const transformationOfRomanEmpire_Skill_Data = defineSkill({
       'Examine late-antique political, military, economic, and religious change and divergent western and eastern trajectories.',
     frontend: {
       en: 'Understand why the Roman Empire changed in different ways.',
+      it: "Comprendi perché l'Impero romano cambiò in modi diversi.",
       zh: '理解罗马帝国为何经历不同形式的变化。',
       hi: 'समझें कि रोमन साम्राज्य में अलग-अलग तरह के परिवर्तन क्यों हुए।',
       es: 'Comprende por qué el Imperio romano cambió de distintas maneras.',

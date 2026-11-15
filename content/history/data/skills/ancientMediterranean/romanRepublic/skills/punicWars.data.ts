@@ -5,6 +5,7 @@ export const punicWars_Skill_Data = defineSkill({
   id: '82590301-bc8b-4455-b4a5-68cdb250555b',
   name: {
     en: 'Punic Wars',
+    it: "Guerre puniche",
     zh: '布匿战争',
     hi: 'प्यूनिक युद्ध',
     es: 'Guerras púnicas',
@@ -38,6 +39,7 @@ export const punicWars_Skill_Data = defineSkill({
     methodological: "Explain Rome and Carthage's competition for influence in the western Mediterranean.",
     frontend: {
       en: 'Explore the wars between Rome and Carthage.',
+      it: "Esplora le guerre tra Roma e Cartagine.",
       zh: '探索罗马与迦太基之间的战争。',
       hi: 'रोम और कार्थेज के बीच हुए युद्धों के बारे में जानें।',
       es: 'Explora las guerras entre Roma y Cartago.',

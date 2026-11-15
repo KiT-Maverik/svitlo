@@ -13,6 +13,7 @@ export const romanRepublic_SkillGroup_Data = defineSkillGroup({
   id: '54625705-7687-4170-8ff2-45c99bdf217b',
   name: {
     en: 'Roman Republic',
+    it: "Repubblica romana",
     zh: '罗马共和国',
     hi: 'रोमन गणराज्य',
     es: 'República romana',
@@ -42,27 +43,19 @@ export const romanRepublic_SkillGroup_Data = defineSkillGroup({
     kk: 'Рим республикасы',
     qm: 'Roma cumhuriyeti',
   },
-  skills: {
-    items: {
-      crisisOfRomanRepublic: crisisOfRomanRepublic_Skill_Data,
-      earlyRomanCommunities: earlyRomanCommunities_Skill_Data,
-      patricianPlebeianConflict: patricianPlebeianConflict_Skill_Data,
-      punicWars: punicWars_Skill_Data,
-      romanRepublicanInstitutions: romanRepublicanInstitutions_Skill_Data,
-    },
-    order: [
-      'crisisOfRomanRepublic',
-      'earlyRomanCommunities',
-      'patricianPlebeianConflict',
-      'punicWars',
-      'romanRepublicanInstitutions',
-    ],
-  },
+  skills: [
+    crisisOfRomanRepublic_Skill_Data,
+    earlyRomanCommunities_Skill_Data,
+    patricianPlebeianConflict_Skill_Data,
+    punicWars_Skill_Data,
+    romanRepublicanInstitutions_Skill_Data,
+  ],
   description: {
     methodological:
       'Conquests and social conflicts reshaped republican institutions and helped produce concentrated individual rule.',
     frontend: {
       en: "Discover how Rome's republic grew and changed.",
+      it: "Scopri come la Repubblica romana si espanse e cambiò.",
       zh: '了解罗马共和国如何发展和变化。',
       hi: 'जानें कि रोमन गणराज्य कैसे बढ़ा और बदला।',
       es: 'Descubre cómo creció y cambió la República de Roma.',
