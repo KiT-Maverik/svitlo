@@ -5,6 +5,7 @@ export const analyzeGeledeMasqueradeTraditions_Skill_Data = defineSkill({
   id: '17621f8a-9bea-4905-8c57-858e40c33549',
   name: {
     en: 'Analyze Gelede Masquerade Traditions',
+    it: "Analizzare le tradizioni delle mascherate Gelede",
     zh: '分析盖莱德假面传统',
     hi: 'गेलेडे मुखौटा परंपराओं का विश्लेषण करें',
     es: 'Analizar las tradiciones de mascarada Gelede',
@@ -39,6 +40,7 @@ export const analyzeGeledeMasqueradeTraditions_Skill_Data = defineSkill({
       'Interpret mask form, costume, performance and community functions in Yoruba Gelede contexts rather than treating the mask as an isolated sculpture.',
     frontend: {
       en: 'Explore how Yoruba Gelede masks, costumes and performances work together in community life.',
+      it: "Esplora come maschere, costumi e spettacoli Gelede yoruba si combinano nella vita delle comunità.",
       zh: '了解约鲁巴盖莱德面具、服饰与表演如何共同融入社区生活。',
       hi: 'जानें कि योरूबा गेलेडे मुखौटे, वेशभूषा और प्रस्तुतियाँ सामुदायिक जीवन में कैसे एक साथ काम करती हैं।',
       es: 'Explora cómo las máscaras, los trajes y las representaciones Gelede yoruba se integran en la vida comunitaria.',
