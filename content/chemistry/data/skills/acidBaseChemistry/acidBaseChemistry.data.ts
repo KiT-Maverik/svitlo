@@ -8,6 +8,7 @@ export const acidBaseChemistry_SkillDomain_Data = defineSkillDomain({
   id: 'a526a484-6c73-4807-a92e-7a2c0446081e',
   title: {
     en: 'Acid–Base Chemistry',
+    it: "Chimica acido-base",
     zh: '酸碱化学',
     hi: 'अम्ल–क्षार रसायन',
     es: 'Química ácido-base',
@@ -43,6 +44,7 @@ export const acidBaseChemistry_SkillDomain_Data = defineSkillDomain({
       'Acid–base chemistry concerns proton transfer, electron-pair interactions, acidity, and the behavior of chemical systems under relevant conditions. Its models, solution properties, transformations and analytical methods are broader than reaction-pattern classification alone.',
     frontend: {
       en: 'Explore how acids and bases interact and how chemists describe and measure acidity.',
+      it: "Esplora come interagiscono acidi e basi e come i chimici descrivono e misurano l'acidità.",
       zh: '探索酸和碱的相互作用以及酸度的描述与测量方法。',
       hi: 'जानें कि अम्ल और क्षार कैसे प्रतिक्रिया करते हैं तथा अम्लता कैसे मापी जाती है।',
       es: 'Explora cómo interactúan ácidos y bases y cómo se describe y mide la acidez.',

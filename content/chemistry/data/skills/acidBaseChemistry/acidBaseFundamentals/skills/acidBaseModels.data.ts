@@ -5,6 +5,7 @@ export const acidBaseModels_Skill_Data = defineSkill({
   id: 'f9234dcc-c79f-476a-838a-4cd7c7763e6c',
   name: {
     en: 'Acid–Base Models',
+    it: "Modelli acido-base",
     zh: '酸碱理论模型',
     hi: 'अम्ल–क्षार मॉडल',
     es: 'Modelos ácido-base',
@@ -39,6 +40,7 @@ export const acidBaseModels_Skill_Data = defineSkill({
       'Distinguish common Arrhenius, Brønsted–Lowry and Lewis descriptions by the chemical interactions each includes.',
     frontend: {
       en: 'Compare how common chemical models define an acid or a base.',
+      it: "Confronta come i principali modelli chimici definiscono un acido o una base.",
       zh: '比较常用化学模型如何定义酸和碱。',
       hi: 'तुलना करें कि प्रमुख रासायनिक मॉडल अम्ल और क्षार को कैसे परिभाषित करते हैं।',
       es: 'Compara cómo los principales modelos químicos definen ácidos y bases.',

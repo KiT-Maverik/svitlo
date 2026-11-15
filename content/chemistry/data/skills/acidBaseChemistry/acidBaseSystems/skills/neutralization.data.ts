@@ -5,6 +5,7 @@ export const neutralization_Skill_Data = defineSkill({
   id: '3d83eda6-1f45-4b5c-9938-5a6bc0906625',
   name: {
     en: 'Neutralization',
+    it: "Neutralizzazione",
     zh: '中和反应',
     hi: 'उदासीनीकरण',
     es: 'Neutralización',
@@ -39,6 +40,7 @@ export const neutralization_Skill_Data = defineSkill({
       'Explain net acid–base reactions and avoid assuming every neutralization gives a final pH of seven.',
     frontend: {
       en: 'Explore why reacting an acid with a base does not always produce a neutral pH.',
+      it: "Esplora perché la reazione di un acido con una base non produce sempre un pH neutro.",
       zh: '探索酸与碱反应后为什么不一定得到中性 pH。',
       hi: 'जानें कि अम्ल–क्षार अभिक्रिया का अंतिम पीएच हमेशा उदासीन क्यों नहीं होता।',
       es: 'Explora por qué una reacción ácido-base no siempre produce un pH neutro.',
