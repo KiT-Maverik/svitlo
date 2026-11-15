@@ -12,6 +12,7 @@ export const dramaturgyAndDirection_SkillGroup_Data = defineSkillGroup({
   id: '0212aed3-fcc5-41e4-a42f-d5c3c4e8ec8d',
   name: {
     en: 'Dramaturgy and Direction',
+    it: 'Drammaturgia e regia',
     zh: '戏剧构作与导演',
     hi: 'नाट्यरचना और निर्देशन',
     es: 'Dramaturgia y dirección',
@@ -52,6 +53,7 @@ export const dramaturgyAndDirection_SkillGroup_Data = defineSkillGroup({
       'Interpreting dramatic structure and organizing performers in space makes a chosen reading performable.',
     frontend: {
       en: 'Explore how a dramatic story is structured and brought to the stage.',
+      it: 'Esplora come si struttura una storia teatrale e come viene messa in scena.',
       zh: '探索戏剧情节如何组织并搬上舞台。',
       hi: 'जानें कि नाटकीय कहानी की संरचना कैसे बनती है और उसे मंच पर कैसे प्रस्तुत किया जाता है।',
       es: 'Explora cómo se estructura una historia dramática y cómo se lleva a escena.',
