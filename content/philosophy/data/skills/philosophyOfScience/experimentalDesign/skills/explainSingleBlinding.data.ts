@@ -5,6 +5,7 @@ export const explainSingleBlinding_Skill_Data = defineSkill({
   id: '9b95e723-9a41-4c9c-86dd-796f68ba92e3',
   name: {
     en: 'Explain single blinding',
+    it: 'Spiegare il mascheramento singolo',
     zh: '解释单盲法',
     hi: 'एकल अंध अध्ययन समझाएँ',
     es: 'Explicar el enmascaramiento simple',
@@ -39,6 +40,7 @@ export const explainSingleBlinding_Skill_Data = defineSkill({
       'Identify which party is kept unaware of assigned conditions and how that may reduce particular expectation-related effects.',
     frontend: {
       en: 'Understand why hiding assigned conditions from one group can limit expectations.',
+      it: 'Comprendi perché nascondere a un gruppo la condizione assegnata possa limitare gli effetti delle aspettative.',
       zh: '理解让一方不知道其分配条件为何能减少预期影响。',
       hi: 'समझें कि अध्ययन की शर्त की जानकारी किसी एक पक्ष से छिपाने पर अपेक्षाओं का प्रभाव कैसे कम होता है।',
       es: 'Comprende cómo ocultar la condición asignada a una parte puede limitar el efecto de las expectativas.',

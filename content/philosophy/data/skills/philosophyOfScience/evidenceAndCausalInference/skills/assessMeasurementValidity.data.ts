@@ -5,6 +5,7 @@ export const assessMeasurementValidity_Skill_Data = defineSkill({
   id: '8de97533-fd66-489c-b609-b4dee996e766',
   name: {
     en: 'Assess measurement validity',
+    it: 'Valutare la validità di una misurazione',
     zh: '评估测量效度',
     hi: 'मापन की वैधता का आकलन',
     es: 'Evaluar la validez de una medición',
@@ -39,6 +40,7 @@ export const assessMeasurementValidity_Skill_Data = defineSkill({
       'Determine whether an operational measure genuinely captures the construct a researcher claims to study.',
     frontend: {
       en: 'Check whether a measurement actually measures what it claims to measure.',
+      it: 'Verifica se una misurazione rilevi davvero ciò che dichiara di misurare.',
       zh: '检查测量方法是否真正测到了声称要测的东西。',
       hi: 'जाँचें कि मापन वास्तव में वही मापता है जिसका वह दावा करता है।',
       es: 'Comprueba si una medida realmente mide lo que afirma medir.',

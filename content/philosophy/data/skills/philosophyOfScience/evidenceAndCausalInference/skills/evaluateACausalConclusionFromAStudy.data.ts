@@ -5,6 +5,7 @@ export const evaluateACausalConclusionFromAStudy_Skill_Data = defineSkill({
   id: '009bf97c-e39f-4b47-9200-2e5aa33eb084',
   name: {
     en: 'Evaluate a causal conclusion from a study',
+    it: 'Valutare una conclusione causale tratta da uno studio',
     zh: '评估研究中的因果结论',
     hi: 'अध्ययन के कारणात्मक निष्कर्ष का मूल्यांकन',
     es: 'Evaluar una conclusión causal de un estudio',
@@ -39,6 +40,7 @@ export const evaluateACausalConclusionFromAStudy_Skill_Data = defineSkill({
       'Judge how design, alternative explanations, limitations, and observed evidence jointly support or weaken a causal claim.',
     frontend: {
       en: 'Evaluate causal claims by examining design, evidence and possible alternatives.',
+      it: 'Valuta le affermazioni causali esaminando il disegno dello studio, le prove e le possibili spiegazioni alternative.',
       zh: '结合研究设计、证据和其他可能解释来评估因果主张。',
       hi: 'शोध योजना, साक्ष्य और वैकल्पिक व्याख्याओं को देखकर कारण संबंधी दावे परखें।',
       es: 'Evalúa afirmaciones causales examinando el diseño, las pruebas y explicaciones alternativas.',
