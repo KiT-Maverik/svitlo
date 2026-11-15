@@ -1,6 +1,6 @@
 # Lesson source layout: Stage 1 contract and reference fixture
 
-**Status:** Stage 1 target contract; Stage 2 module scaffolding and Stage 3 Markdown/Code extraction are implemented on dependent Draft PR branches. Co-located Scene/media, Review and full publication integration remain planned.  
+**Status:** Stage 1 target contract; Stages 2–3 modular source and Markdown/Code plus Stage 4 colocated Scene/media handoffs and URL staging are implemented on dependent Draft PR branches. Review and full end-to-end acceptance remain planned.  
 **Scope:** YAML-to-TypeScript **Lesson draft scaffolder** and downstream source/asset handoffs, using [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557) as experimental evidence.  
 **Out of scope:** changing the generator, implementing media/Scenes, publishing Lesson Props, changing existing Lesson Configs, migrating all mathematics lessons, translating content, or granting review approvals.
 
