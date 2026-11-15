@@ -9,6 +9,10 @@ These instructions apply to permanent scripts under `shared/engine/scripts/`. Re
 3. Distinguish **observed implementation**, **explicit intended contract**, **historical editorial workflows**, and **proposed changes**. When they differ, report the difference. Do not reinterpret a documented non-goal as missing functionality.
 4. Keep each permanent script in a named directory with nearby tests. Never move build-only imports into `@svitlo/engine/runtime`. For temporary one-off transformations use the owning package's ignored `temp/` instead.
 
+## Independent assessment resource publication
+
+The new `generateAssessmentResources/` command compiles already-authored typed Question/Flashcard banks into separate generated resources and metadata manifests. It does not consume or generate `questions/questions.yaml` or `flashcards/flashcards.yaml`; those are approved editorial sources requiring separate, not-yet-implemented conversion. Its output is staged by textbook tooling, **not** inserted into Lesson Build Props. The existing `lessonBuilder/` continues to consume `config.yaml` until its separate, explicitly planned migration to `lesson.yaml`. Do not silently rewrite or migrate the user-edited #557 prototype.
+
 ## Three distinct kinds of generator
 
 | Workflow                                       | Required first reads                                                         | Purpose                                                                                                                                   | Must NOT do                                                                                                                                                                           |

@@ -13,7 +13,9 @@
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
     "test:contentblocks": "tsc -p tsconfig.build.json --declaration false && tsc -p tsconfig.contentblocks.json && node --test .test-build/configurators/contentBlocks.asset-validation.spec.js .test-build/configurators/contentBlocks/assembly.spec.js .test-build/configurators/contentBlocks/defineText/*.spec.js .test-build/configurators/contentBlocks/defineMarkdown/*.spec.js .test-build/configurators/contentBlocks/defineCarousel/*.spec.js .test-build/configurators/contentBlocks/defineCheckpoint/*.spec.js .test-build/configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/*.spec.js .test-build/configurators/contentBlocks/defineAudio/*.spec.js .test-build/configurators/contentBlocks/defineCode/*.spec.js .test-build/configurators/contentBlocks/defineImage/*.spec.js .test-build/configurators/contentBlocks/defineScene/*.spec.js .test-build/configurators/contentBlocks/defineVideo/*.spec.js .test-build/configurators/contentBlocks/defineYoutube/*.spec.js",
     "content:generate:yaml-schemas": "node scripts/generateYamlSchemas/generateYamlSchemas.mjs --write",
-    "content:check:yaml-schemas": "node scripts/generateYamlSchemas/generateYamlSchemas.mjs --check"
+    "content:check:yaml-schemas": "node scripts/generateYamlSchemas/generateYamlSchemas.mjs --check",
+    "content:generate:assessment-resources": "node scripts/generateAssessmentResources/generateAssessmentResources.mjs --write",
+    "content:check:assessment-resources": "node scripts/generateAssessmentResources/generateAssessmentResources.mjs --check"
   },
   "dependencies": {
     "zod": "^4.6.7"
