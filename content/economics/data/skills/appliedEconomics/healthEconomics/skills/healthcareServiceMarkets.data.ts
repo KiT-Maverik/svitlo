@@ -5,6 +5,7 @@ export const healthcareServiceMarkets_Skill_Data = defineSkill({
   id: 'bb08f857-5d3e-48bc-9358-d13a7d82ca20',
   name: {
     en: 'Ринки медичних послуг',
+    it: 'Mercati dei servizi sanitari',
     zh: '医疗服务市场',
     hi: 'स्वास्थ्य सेवा बाज़ार',
     es: 'Mercados de servicios sanitarios',
@@ -39,6 +40,7 @@ export const healthcareServiceMarkets_Skill_Data = defineSkill({
       'Analyze interactions among patients, clinicians, insurers, and facilities under unequal access to information, prices, and service quality.',
     frontend: {
       en: 'Explore why buying healthcare involves complex information and incentives.',
+      it: 'Esplora perché acquistare prestazioni sanitarie comporta informazioni e incentivi complessi.',
       zh: '探索为什么购买医疗服务涉及复杂的信息与激励机制。',
       hi: 'जानें कि स्वास्थ्य सेवाओं की खरीद में जानकारी और प्रोत्साहन क्यों जटिल होते हैं।',
       es: 'Explora por qué comprar atención sanitaria implica información e incentivos complejos.',

@@ -7,6 +7,7 @@ export const housingAndRealEstate_SkillGroup_Data = defineSkillGroup({
   id: 'e7db97cc-0c63-461a-b970-9bb3520ecd81',
   name: {
     en: 'Житло та нерухомість',
+    it: 'Abitazioni e immobili',
     zh: '住房与房地产',
     hi: 'आवास और अचल संपत्ति',
     es: 'Vivienda y bienes inmuebles',
@@ -42,6 +43,7 @@ export const housingAndRealEstate_SkillGroup_Data = defineSkillGroup({
       'Housing prices and affordability depend on land, construction, income, mortgage finance, local demand, and regulation.',
     frontend: {
       en: 'Explore why home prices and rents vary across places.',
+      it: "Esplora perché i prezzi delle case e gli affitti variano da un luogo all'altro.",
       zh: '探索不同地区房价和租金差异的原因。',
       hi: 'जानें कि अलग-अलग जगहों पर घरों की कीमतें और किराए क्यों भिन्न होते हैं।',
       es: 'Explora por qué los precios de las viviendas y los alquileres varían según el lugar.',
