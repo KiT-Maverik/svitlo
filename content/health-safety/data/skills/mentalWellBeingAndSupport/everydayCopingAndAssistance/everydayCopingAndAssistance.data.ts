@@ -12,6 +12,7 @@ export const everydayCopingAndAssistance_SkillGroup_Data = defineSkillGroup({
   id: '24b94762-6f2e-4cc2-a3f6-c4378968a39c',
   name: {
     en: 'Everyday Coping and Assistance',
+    it: 'Strategie quotidiane di gestione e assistenza',
     zh: '日常应对与求助',
     hi: 'रोज़मर्रा की कठिनाइयों से निपटना और सहायता',
     es: 'Afrontamiento cotidiano y ayuda',
@@ -41,25 +42,18 @@ export const everydayCopingAndAssistance_SkillGroup_Data = defineSkillGroup({
     kk: 'Күнделікті қиындықтарды еңсеру және көмек',
     qm: 'Kündelik qıyınlıqlarnen baş etüv ve yardım',
   },
-  skills: {
-    items: {
-      preventChronicOverload: preventChronicOverload_Skill_Data,
-      seekMentalHealthSupport: seekMentalHealthSupport_Skill_Data,
-      supportSomeoneExperiencingDistress: supportSomeoneExperiencingDistress_Skill_Data,
-      useSafeCopingStrategies: useSafeCopingStrategies_Skill_Data,
-    },
-    order: [
-      'preventChronicOverload',
-      'seekMentalHealthSupport',
-      'supportSomeoneExperiencingDistress',
-      'useSafeCopingStrategies',
-    ],
-  },
+  skills: [
+    preventChronicOverload_Skill_Data,
+    seekMentalHealthSupport_Skill_Data,
+    supportSomeoneExperiencingDistress_Skill_Data,
+    useSafeCopingStrategies_Skill_Data,
+  ],
   description: {
     methodological:
       'Helpful responses can involve self-care, support networks, appropriate boundaries, and referral rather than demanding that a person solve a crisis alone.',
     frontend: {
       en: 'Discover everyday coping methods and appropriate sources of assistance.',
+      it: 'Scopri strategie quotidiane per affrontare le difficoltà e fonti di aiuto adeguate.',
       zh: '了解日常应对方法及合适的求助渠道。',
       hi: 'दैनिक तनाव सँभालने के तरीके और उचित मदद के स्रोत जानें।',
       es: 'Descubre formas de afrontar las dificultades diarias y fuentes adecuadas de ayuda.',
