@@ -10,12 +10,14 @@ import PauseRounded from '@mui/icons-material/PauseRounded';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import type { ContentBlock_Carousel_Props, ContentBlock_Carousel_SlideProps } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '#types/uiKitMessages';
+import type { SceneRegistry } from '../../types';
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import { Image } from '../Image/Image';
+import { Scene } from '../Scene/Scene';
 import styles from './Carousel.module.css';
 
-type Props = ContentBlock_Carousel_Props & { messages: Pick<UiKitMessages, 'image' | 'learningLayout'> };
+type Props = ContentBlock_Carousel_Props & { messages: Pick<UiKitMessages, 'image' | 'learningLayout'>; sceneRegistry?: SceneRegistry };
 type Playback = 'auto' | 'paused' | 'playing';
 type TransitionState = { from: number; direction: -1 | 1; revision: number };
 
@@ -27,6 +29,7 @@ export function Carousel({
   id,
   locale: { title, slides },
   messages,
+  sceneRegistry,
   params: {
     aspectRatio = 16 / 9,
     objectFit = 'cover',
@@ -60,13 +63,17 @@ export function Carousel({
 
   const current = Math.min(index, count - 1);
   const multiple = count > 1;
+  const currentSlide = slides[current];
   const ratio = Number.isFinite(aspectRatio) && aspectRatio > 0 ? aspectRatio : 16 / 9;
   const duration = Number.isFinite(transitionDurationMs) ? Math.min(1500, Math.max(0, transitionDurationMs)) : 450;
   const interval = Number.isFinite(autoplayIntervalMs) ? Math.max(1500, autoplayIntervalMs) : 5000;
   const animated = !reduceMotion && duration > 0;
   const temporarilyPaused = (pauseOnHover && hovered) || focused;
   const paused = playback === 'paused' || (playback === 'auto' && temporarilyPaused);
-  const canAutoplay = autoplay && multiple && !paused && visible && (!reduceMotion || playback === 'playing');
+  // A Scene may be interactive: never replace it with a timed advance.
+  const canAutoplay =
+    autoplay && multiple && currentSlide.type !== 'scene' && !paused && visible &&
+    (!reduceMotion || playback === 'playing');
 
   function goTo(target: number, direction?: -1 | 1) {
     if (!multiple) return;
@@ -140,13 +147,13 @@ export function Carousel({
   }
 
   function onTouchStart(event: TouchEvent<HTMLElement>) {
-    if (!allowSwipe || !multiple) return;
+    if (!allowSwipe || !multiple || currentSlide.type === 'scene') return;
     const touch = event.changedTouches[0];
     if (touch) touchOrigin.current = { x: touch.clientX, y: touch.clientY };
   }
 
   function onTouchEnd(event: TouchEvent<HTMLElement>) {
-    if (!allowSwipe || !multiple || !touchOrigin.current) return;
+    if (!allowSwipe || !multiple || currentSlide.type === 'scene' || !touchOrigin.current) return;
     const origin = touchOrigin.current;
     touchOrigin.current = null;
     const touch = event.changedTouches[0];
@@ -163,18 +170,28 @@ export function Carousel({
     transition === 'fade' ? styles.fadeIn : visualDirection > 0 ? styles.enterFromRight : styles.enterFromLeft;
   const outClass =
     transition === 'fade' ? styles.fadeOut : visualDirection > 0 ? styles.exitToLeft : styles.exitToRight;
-  const showTransition = transitionState !== null && animated;
-  const currentSlide = slides[current];
+  // Never mount a second, inert copy of an interactive Scene during an animation.
+  const showTransition =
+    transitionState !== null && animated &&
+    currentSlide.type === 'image' && slides[transitionState.from]?.type === 'image';
   const style = { '--carousel-duration': String(duration) + 'ms' } as CSSProperties;
 
-  function renderSlide(slide: ContentBlock_Carousel_SlideProps, number: number) {
+  function slideLabel(slide: ContentBlock_Carousel_SlideProps, position: number) {
+    return slide.type === 'image' ? slide.locale.alt : `${title ?? slide.slug} ${position + 1}`;
+  }
+
+  function renderSlide(slide: ContentBlock_Carousel_SlideProps) {
+    if (slide.type === 'scene') {
+      return (
+        <div className={styles.scene}>
+          <Scene response={slide} sceneRegistry={sceneRegistry} />
+        </div>
+      );
+    }
     return (
       <Image
-        id={id}
-        slug={'carouselImage' + number}
-        type="image"
-        params={{ fill: true, aspectRatio: ratio, objectFit }}
-        locale={{ src: slide.src, alt: slide.alt, caption: slide.caption }}
+        {...slide}
+        params={{ ...slide.params, fill: true, aspectRatio: ratio, objectFit: slide.params.objectFit ?? objectFit }}
         messages={messages.image}
       />
     );
@@ -185,7 +202,7 @@ export function Carousel({
       ref={rootRef}
       {...attributes}
       className={styles.root}
-      aria-label={title ?? slides[0].alt}
+      aria-label={title ?? slideLabel(slides[0], 0)}
       role="region"
       tabIndex={0}
       onKeyDown={onKeyDown}
@@ -207,7 +224,7 @@ export function Carousel({
             aria-hidden="true"
             inert
           >
-            {renderSlide(slides[transitionState.from], transitionState.from)}
+            {renderSlide(slides[transitionState.from])}
           </div>
         )}
         <div
@@ -217,7 +234,7 @@ export function Carousel({
             if (event.target === event.currentTarget) setTransitionState(null);
           }}
         >
-          {renderSlide(currentSlide, current)}
+          {renderSlide(currentSlide)}
         </div>
         {multiple && showArrows && (
           <>
@@ -271,15 +288,15 @@ export function Carousel({
         )}
       </div>
       {multiple && showIndicators && (
-        <div className={styles.indicators} role="group" aria-label={title ?? currentSlide.alt}>
+        <div className={styles.indicators} role="group" aria-label={title ?? slideLabel(currentSlide, current)}>
           {slides.map((slide, position) => (
             <button
-              key={id + '-indicator-' + position}
+              key={slide.id}
               className={[styles.indicator, position === current ? styles.selected : ''].join(' ')}
               type="button"
-              aria-label={slide.alt}
+              aria-label={slideLabel(slide, position)}
               aria-current={position === current ? 'true' : undefined}
-              title={slide.alt}
+              title={slideLabel(slide, position)}
               onClick={() => goTo(position)}
             />
           ))}
