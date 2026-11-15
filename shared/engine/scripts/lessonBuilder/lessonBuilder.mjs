@@ -191,12 +191,14 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   if (destinationData.some(name => name.endsWith('.data.ts'))) {
     fail(destinationData[0], '$', 'competing legacy Lesson entrypoint; modular layout requires a clean UUID folder');
   }
-  const modules = renderLessonModules(lesson, language, { bookRoot: target.bookRoot, outputFolder });
+  const nodeLocations = new Map();
+  const modules = renderLessonModules(lesson, language, { bookRoot: target.bookRoot, outputFolder, nodeLocations });
   // Ordinary Text, Markdown and Code must contain authored learner-facing
   // content, never a generated specification instead of their real text.
   const artifacts = productionFiles(
     outputFolder,
     tasks.filter(task => !['text', 'markdown', 'code'].includes(task.type)),
+    { nodeLocations },
   );
 
   // A partial previous run may have left modules without the root entrypoint.

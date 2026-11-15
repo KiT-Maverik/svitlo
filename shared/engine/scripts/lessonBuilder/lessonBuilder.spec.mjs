@@ -356,7 +356,7 @@ test('preflight protects manually authored entrypoints, orphan trees and staged 
     assert.ok(fs.existsSync(path.join(f.workspace, 'data/lessons', second.at(-1), second, 'index.ts')));
   }));
 
-test('keeps Scene/media production handoffs at their existing UUID locations until Stage 4', () =>
+test('co-locates Scene/media production handoffs with their slug modules', () =>
   fixture(f => {
     const sceneId = id(51);
     const imageId = id(52);
@@ -379,15 +379,70 @@ test('keeps Scene/media production handoffs at their existing UUID locations unt
     f.save();
     runOne(f.lesson, 'generate', f.root);
     assert.match(
-      fs.readFileSync(path.join(f.workspace, 'scenes', sceneId.at(-1), sceneId, 'specification.md'), 'utf8'),
+      fs.readFileSync(f.generated('sections/intro/visualScene/specification.md'), 'utf8'),
       /Compare the groups/,
     );
-    assert.match(
-      fs.readFileSync(path.join(f.workspace, 'data/assets', imageId.at(-1), imageId, 'specification.md'), 'utf8'),
-      /Two groups/,
-    );
+    assert.match(fs.readFileSync(f.generated('sections/intro/visualImage/specification.md'), 'utf8'), /Two groups/);
+    assert(!fs.existsSync(path.join(f.workspace, 'scenes', sceneId.at(-1), sceneId, 'specification.md')));
+    assert(!fs.existsSync(path.join(f.workspace, 'data/assets', imageId.at(-1), imageId, 'specification.md')));
+    const imageModule = fs.readFileSync(f.generated('sections/intro/visualImage/index.ts'), 'utf8');
+    assert.match(imageModule, /import \{ defineImage, resolveLessonMedia \} from '@svitlo\/engine\/build'/);
+    assert.match(imageModule, /src: resolveLessonMedia\(import\.meta\.url, "image", "source"\)/);
     assert.match(fs.readFileSync(f.generated('methodology.md'), 'utf8'), /Lesson method/);
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+  }));
+
+test('local video, poster, subtitles and localized images use role-aware source readers', () =>
+  fixture(f => {
+    const items = f.config.section.items.intro.content.items;
+    items.videoExplanation = {
+      id: id(81),
+      slug: 'videoExplanation',
+      type: 'video',
+      params: {},
+      locale: {
+        fileLocation: { uk: null, en: '/external/video.mp4' },
+        poster: null,
+        label: { uk: 'Відеопояснення' },
+      },
+      __production: { purpose: 'Visual guidance', script: 'Two groups' },
+    };
+    items.localAudio = {
+      id: id(82),
+      slug: 'localAudio',
+      type: 'audio',
+      params: {},
+      locale: { fileLocation: null, title: { uk: 'Звук' } },
+    };
+    items.localCaptions = {
+      id: id(83),
+      slug: 'localCaptions',
+      type: 'subtitles',
+      params: {},
+      locale: { fileLocation: { uk: null } },
+    };
+    items.localPicture = {
+      id: id(84),
+      slug: 'localPicture',
+      type: 'image',
+      params: { fill: true, aspectRatio: 1.5 },
+      locale: { src: { uk: null, en: '/external/picture.svg' }, alt: { uk: 'Картинка' } },
+    };
+    f.config.section.items.intro.content.order.push('videoExplanation', 'localAudio', 'localCaptions', 'localPicture');
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const video = fs.readFileSync(f.generated('sections/intro/videoExplanation/index.ts'), 'utf8');
+    assert.match(video, /fileLocation: \{\s*uk: resolveLessonMedia\(import\.meta\.url, "video", "source", "uk"\)/);
+    assert.match(video, /poster: resolveLessonMedia\(import\.meta\.url, "video", "poster"\)/);
+    assert.doesNotMatch(video, /\/external\/video\.mp4/);
+    const audio = fs.readFileSync(f.generated('sections/intro/localAudio/index.ts'), 'utf8');
+    assert.match(audio, /fileLocation: resolveLessonMedia\(import\.meta\.url, "audio", "source"\)/);
+    const captions = fs.readFileSync(f.generated('sections/intro/localCaptions/index.ts'), 'utf8');
+    assert.match(captions, /"subtitles", "source", "uk"/);
+    const image = fs.readFileSync(f.generated('sections/intro/localPicture/index.ts'), 'utf8');
+    assert.match(image, /"image", "source", "uk"/);
+    assertTypeScriptSyntax(readAll(f.lesson));
+    assert(fs.existsSync(f.generated('sections/intro/videoExplanation/specification.md')));
   }));
 
 test('never writes files for unsafe slugs, unknown nested factories or symlinked output destinations', () =>
@@ -654,10 +709,12 @@ test('production handoff conflict is diagnosed before writing any source module'
       __production: { specification: '# Expected Scene specification' },
     };
     f.save();
-    const destination = path.join(f.workspace, 'scenes', sceneId.at(-1), sceneId, 'specification.md');
+    const destination = f.generated('sections/intro/visualScene/specification.md');
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     fs.writeFileSync(destination, '# Hand-edited specification\n');
-    assert.throws(() => runOne(f.lesson, 'generate', f.root), /refusing to overwrite/);
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /incomplete Lesson source tree/);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /refusing to overwrite/);
+    assert.equal(fs.readFileSync(destination, 'utf8'), '# Hand-edited specification\n');
     assert.equal(fs.existsSync(f.generated('constants.ts')), false);
     assert.equal(fs.existsSync(f.generated('index.ts')), false);
   }));

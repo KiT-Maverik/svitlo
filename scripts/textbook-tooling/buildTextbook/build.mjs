@@ -18,6 +18,7 @@ import { dirname, join, relative, resolve, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
+import { stageLessonMedia } from './stageLessonMedia.mjs';
 
 const root = resolve(process.cwd());
 const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
@@ -187,6 +188,15 @@ for (const name of filesUnder(join(root, 'static'))) {
   mkdirSync(dirname(destination), { recursive: true });
   copyFileSync(join(root, 'static', name), destination);
 }
+// Stage source-local Lesson media after public/static copying so an
+// identical URL cannot silently replace a pre-existing textbook resource.
+const stagedLessonMedia = stageLessonMedia({
+  textbookRoot: root,
+  textbookId: id,
+  staticRoot: resources,
+  files: filesUnder(join(root, 'data/lessons')),
+});
+if (stagedLessonMedia) console.log('Staged ' + stagedLessonMedia + ' colocated Lesson media file(s)');
 const published = filesUnder(resources);
 for (const [source, prefix] of [
   ['data/lessons', 'data/lessons/'],

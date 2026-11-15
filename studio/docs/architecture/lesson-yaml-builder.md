@@ -18,10 +18,12 @@ Quest/Question/Flashcard roles would otherwise collide. See the
 [Stage 1 layout contract](./lesson-generated-source-layout.md).
 
 `production` is a **separate typed authoring concern inside the same YAML
-file**. Its source language and production specifications may create
-UUID-addressed `specification.md` files for Scenes/media, plus a
-`methodology.md` handoff when explicitly supplied. The Scene itself,
-image/audio/video files, and translations are **not generated**.
+file**. Lesson Scene/media production specifications create colocated
+`specification.md` files beside their module `index.ts` and may create a
+Lesson-level `methodology.md` when supplied. The Scene implementation,
+image/audio/video binaries and translations are **not generated**. Course
+scaffolding retains UUID-addressed specification handoffs. The separate registered Scene
+implementation remains UUID-addressed under the textbook's `scenes/`.
 One identity comes from each node's `config.id`; no `sceneSpecKey`.
 
 The technical `config.yaml` is created from independently reviewed
@@ -57,8 +59,9 @@ authoritative source references.
 The Props publisher supports the root `index.ts` entrypoint, and the
 textbook build must recognize that entrypoint independently of the existing
 `*.data.ts` convention. Do not mix both entrypoint styles inside one
-UUID directory. This stage does **not** change the still-UUID-addressed
-Scene/media production handoffs or create real assets.
+UUID directory. Stage 4 changes Lesson Scene/media specification handoffs to the colocated
+slug modules. It does **not** change Scene implementation IDs or create
+real binary assets.
 
 ## Stage 3 file-backed Markdown/Code
 
