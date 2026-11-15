@@ -13,6 +13,7 @@ export const aestheticPerception_SkillGroup_Data = defineSkillGroup({
   id: '7b4b3464-c383-4a38-b5a3-80942fa21937',
   name: {
     en: 'Aesthetic Perception',
+    it: "Percezione estetica",
     zh: '审美感知',
     hi: 'सौंदर्यबोध',
     es: 'Percepción estética',
@@ -54,6 +55,7 @@ export const aestheticPerception_SkillGroup_Data = defineSkillGroup({
       'Responses to art involve attentive perception, prior expectations and variable values without establishing universal audience reactions.',
     frontend: {
       en: 'Notice how different experiences and expectations shape our responses to art.',
+      it: "Osserva come esperienze e aspettative diverse influenzano le nostre reazioni all'arte.",
       zh: '留意不同的经验和期待如何塑造我们对艺术的反应。',
       hi: 'ध्यान दें कि अलग-अलग अनुभव और अपेक्षाएँ कला के प्रति हमारी प्रतिक्रिया को कैसे आकार देती हैं।',
       es: 'Observa cómo distintas experiencias y expectativas influyen en nuestras respuestas al arte.',
