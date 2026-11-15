@@ -5,6 +5,7 @@ export const createReliefSculpture_Skill_Data = defineSkill({
   id: '568f9897-f270-47df-b89a-9af8989d6867',
   name: {
     en: 'Create Relief Sculpture',
+    it: 'Creare una scultura in rilievo',
     zh: '创作浮雕',
     hi: 'उभारदार मूर्तिकला बनाएँ',
     es: 'Crear una escultura en relieve',
@@ -38,6 +39,7 @@ export const createReliefSculpture_Skill_Data = defineSkill({
     methodological: 'Organize raised and recessed forms on a supporting plane for legible depth.',
     frontend: {
       en: 'Create raised and recessed shapes on a flat backing.',
+      it: 'Crea forme sporgenti e incavate su una base piana.',
       zh: '在平面底板上塑造凸起和凹陷的形状。',
       hi: 'समतल आधार पर उभरे और धँसे हुए आकार बनाएँ।',
       es: 'Crea formas elevadas y hundidas sobre una base plana.',
