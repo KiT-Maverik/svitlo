@@ -42,12 +42,20 @@ export const initialAssessmentAndHelp_SkillGroup_Data = defineSkillGroup({
     kk: 'Бастапқы бағалау және көмек',
     qm: 'İlk baquv ve yardım',
   },
-  skills: [
-    assessBreathing_Skill_Data,
-    assessResponsiveness_Skill_Data,
-    assessSceneSafetyBeforeHelping_Skill_Data,
-    careForAnUnresponsivePersonWhoIsBreathingNormally_Skill_Data,
-  ],
+  skills: {
+    items: {
+      assessBreathing: assessBreathing_Skill_Data,
+      assessResponsiveness: assessResponsiveness_Skill_Data,
+      assessSceneSafetyBeforeHelping: assessSceneSafetyBeforeHelping_Skill_Data,
+      careForAnUnresponsivePersonWhoIsBreathingNormally: careForAnUnresponsivePersonWhoIsBreathingNormally_Skill_Data,
+    },
+    order: [
+      'assessBreathing',
+      'assessResponsiveness',
+      'assessSceneSafetyBeforeHelping',
+      'careForAnUnresponsivePersonWhoIsBreathingNormally',
+    ],
+  },
   description: {
     methodological:
       'Initial response begins with rescuer safety, recognition of urgent changes in responsiveness or breathing, and continued observation. Calling for help uses the shared competency in Emergencies and Civil Protection rather than a duplicate Skill.',

@@ -41,11 +41,14 @@ export const basicLifeSupport_SkillGroup_Data = defineSkillGroup({
     kk: 'Негізгі тіршілік қолдауы',
     qm: 'Ayatnıñ esas qoltutuvı',
   },
-  skills: [
-    automatedExternalDefibrillatorUse_Skill_Data,
-    cardiopulmonaryResuscitation_Skill_Data,
-    firstAidForChoking_Skill_Data,
-  ],
+  skills: {
+    items: {
+      automatedExternalDefibrillatorUse: automatedExternalDefibrillatorUse_Skill_Data,
+      cardiopulmonaryResuscitation: cardiopulmonaryResuscitation_Skill_Data,
+      firstAidForChoking: firstAidForChoking_Skill_Data,
+    },
+    order: ['automatedExternalDefibrillatorUse', 'cardiopulmonaryResuscitation', 'firstAidForChoking'],
+  },
   description: {
     methodological:
       "Resuscitation competencies require validated techniques and updated guidance appropriate to the person's age, circumstances, and responder training.",
