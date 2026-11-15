@@ -5,6 +5,7 @@ export const distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data =
   id: 'ea99f42a-31b9-4204-abe2-b8d6dd0738ad',
   name: {
     en: 'Distinguish energy emission from reflection of received light',
+    it: 'Distinguere l\'emissione di energia dalla riflessione della luce ricevuta',
     zh: '区分能量发射与入射光反射',
     hi: 'ऊर्जा उत्सर्जन और प्राप्त प्रकाश के परावर्तन में अंतर करना',
     es: 'Distinguir la emisión de energía de la reflexión de luz recibida',
@@ -39,6 +40,7 @@ export const distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data =
       'Using the Sun and Moon, explain that a source emits energy while an illuminated body can reflect it.',
     frontend: {
       en: 'Distinguish light emitted by a source from light reflected by an object.',
+      it: 'Distingui la luce emessa da una sorgente da quella riflessa da un oggetto.',
       zh: '区分光源自身发出的光与物体反射的光。',
       hi: 'स्रोत से निकलने वाले प्रकाश और वस्तु से परावर्तित प्रकाश में अंतर करो।',
       es: 'Distingue la luz emitida por una fuente de la que refleja un objeto.',
