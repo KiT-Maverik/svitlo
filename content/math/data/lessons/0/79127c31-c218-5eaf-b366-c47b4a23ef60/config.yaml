@@ -471,13 +471,7 @@ config:
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order:
-      [
-        'shareTwelveEqually',
-        'interpretDivisionRoles',
-        'exploreRemainder',
-        'shareTenBetweenTwo',
-      ]
+    order: ['shareTwelveEqually', 'interpretDivisionRoles', 'exploreRemainder', 'shareTenBetweenTwo']
   flashcards:
     items: {}
     order: []

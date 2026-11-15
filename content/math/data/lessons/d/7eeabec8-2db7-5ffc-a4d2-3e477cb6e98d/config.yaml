@@ -393,7 +393,13 @@ config:
                   locale:
                     value:
                       en: 'Remember: **estimate first, check whether the result fits the story, and calculate exactly when exactness matters.**'
-            order: ['challengeNotebookReceipt', 'reasonablenessInspector', 'compareToHundred', 'summarizeReasonablenessCheck']
+            order:
+              [
+                'challengeNotebookReceipt',
+                'reasonablenessInspector',
+                'compareToHundred',
+                'summarizeReasonablenessCheck',
+              ]
         production:
           purpose: 'Your own quick check'
           pedagogicalIntent: |

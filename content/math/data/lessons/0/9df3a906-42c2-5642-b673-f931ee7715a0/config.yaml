@@ -580,7 +580,8 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-    order: ['countSpinsOfFairSpinner', 'compareRepeatedTrialResults', 'distinguishChanceFromSample', 'compareSixSpinRuns']
+    order:
+      ['countSpinsOfFairSpinner', 'compareRepeatedTrialResults', 'distinguishChanceFromSample', 'compareSixSpinRuns']
   flashcards:
     items: {}
     order: []

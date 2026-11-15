@@ -701,7 +701,13 @@ config:
               3. **markdown — available:** "The top of the cylinder is an **exterior face**, the imaginary middle slice of the sphere is an **interior plane section**, and the whole sphere is a **solid**. Matching outlines do not make those three things identical."
             - **Feedback:** "The shape of an outline is not enough. Ask whether this is **on the outside**, **a flat virtual cut**, or **the whole object**." Wrong choices receive the specific distinction, with no penalty or grade. Show nonvisual ledger distinguishing **flat** versus **3D** and **exterior** versus **section**.
             - **Transfer without equipment:** Children describe the face and virtual section of a box from a labelled model, not by physically slicing any object.
-    order: ['distinguishFaceFromSolid', 'contrastFlatAndCurvedSurfaces', 'exploreFlatCrossSections', 'identifyFacesSectionsDrawings']
+    order:
+      [
+        'distinguishFaceFromSolid',
+        'contrastFlatAndCurvedSurfaces',
+        'exploreFlatCrossSections',
+        'identifyFacesSectionsDrawings',
+      ]
   flashcards:
     items: {}
     order: []

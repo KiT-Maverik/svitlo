@@ -611,13 +611,7 @@ config:
             - **Independent transfer:** Find a closed shape in a room or drawing, trace its outline with a finger (optional), or use an accessible described outline. Ask for property evidence rather than an object-name guess.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-    order:
-      [
-        'identifyPolygonSides',
-        'testPolygonDefinition',
-        'classifyBySideCount',
-        'justifyPolygonClassification',
-      ]
+    order: ['identifyPolygonSides', 'testPolygonDefinition', 'classifyBySideCount', 'justifyPolygonClassification']
 production:
   documentLanguage: 'en'
   methodology: |
