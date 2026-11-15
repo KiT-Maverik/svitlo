@@ -201,10 +201,13 @@ provided, scaffolders create:
 
 - `<Lesson|Course UUID folder>/methodology.md` from
   `production.methodology`, without overwriting an existing approved file;
-- `content/<book>/scenes/<last-hex>/<scene-id>/specification.md`
-  from `scene.production.specification`, without a `sceneSpecKey`;
-- `content/<book>/data/assets/<last-hex>/<resource-id>/specification.md`
-  for pending image/audio/video requirements.
+- For **modular Lesson source**, `specification.md` beside each nested Scene,
+  Image, Video, Audio, Subtitles or CarouselSlide Config `index.ts`, with
+  the Config UUID preserved and no `sceneSpecKey`. For **Course/legacy**
+  production, Scene specs still use `content/<book>/scenes/<bucket>/<uuid>/`
+  and media specs use `data/assets/<bucket>/<uuid>/` until independently
+  migrated. Executable Scene code continues to live under the UUID-addressed
+  registered `scenes/` subtree.
 
 A Scene implementer and media specialist receive those generated files and
 the original `config.yaml`; they supply real components/assets later.
