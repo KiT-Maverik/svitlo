@@ -5,6 +5,7 @@ export const proceduralMemory_Skill_Data = defineSkill({
   id: '6eeff574-c7d0-4bf9-8ad3-a176fdd11085',
   name: {
     en: 'Procedural Memory',
+    it: 'Memoria procedurale',
     zh: '程序性记忆',
     hi: 'प्रक्रियात्मक स्मृति',
     es: 'Memoria procedimental',
@@ -39,6 +40,7 @@ export const proceduralMemory_Skill_Data = defineSkill({
       'Explain how acquired routines guide performance without constant conscious recollection of their steps.',
     frontend: {
       en: 'Understand memory for practiced procedures and skills.',
+      it: 'Comprendi la memoria delle procedure e delle abilità esercitate.',
       zh: '理解练习过的操作步骤和技能如何储存在记忆中。',
       hi: 'समझें कि अभ्यास किए गए तरीकों और कौशलों की स्मृति कैसे काम करती है।',
       es: 'Comprende la memoria de procedimientos y habilidades practicadas.',
