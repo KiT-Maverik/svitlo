@@ -10,6 +10,7 @@ export const spatialOrientation_SkillDomain_Data = defineSkillDomain({
   id: '33495e13-e6fd-4c3a-a62e-b12684df6dea',
   title: {
     en: 'Spatial Orientation',
+    it: 'Orientamento spaziale',
     zh: '空间方位定位',
     hi: 'स्थानिक अभिविन्यास',
     es: 'Orientación espacial',
@@ -50,6 +51,7 @@ export const spatialOrientation_SkillDomain_Data = defineSkillDomain({
       'Locating and orienting oneself requires a stable or relative reference, directions, remembered spatial relationships and awareness of changing spatial and temporal frames. These competencies concern where places are, how we navigate between them, and how their civil and solar times relate—not how maps are drawn.',
     frontend: {
       en: 'Discover how locations, directions, routes and time differences help us orient ourselves.',
+      it: 'Scopri come posizioni, direzioni, percorsi e differenze di orario ci aiutano a orientarci.',
       zh: '了解地点、方向、路线和时间差如何帮助我们辨明方位。',
       hi: 'जानें कि स्थान, दिशाएँ, रास्ते और समय का अंतर हमें दिशा पहचानने में कैसे मदद करते हैं।',
       es: 'Descubre cómo los lugares, las direcciones, las rutas y las diferencias horarias nos ayudan a orientarnos.',

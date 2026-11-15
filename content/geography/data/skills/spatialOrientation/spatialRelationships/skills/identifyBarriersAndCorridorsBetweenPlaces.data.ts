@@ -5,6 +5,7 @@ export const identifyBarriersAndCorridorsBetweenPlaces_Skill_Data = defineSkill(
   id: 'e11669f1-784e-44de-83c8-88e07b1a44e6',
   name: {
     en: 'Identify barriers and corridors between places',
+    it: 'Individuare barriere e corridoi tra luoghi',
     zh: '识别地点之间的障碍与通道',
     hi: 'स्थानों के बीच अवरोध और गलियारे पहचानना',
     es: 'Identificar barreras y corredores entre lugares',
@@ -39,6 +40,7 @@ export const identifyBarriersAndCorridorsBetweenPlaces_Skill_Data = defineSkill(
       'Explain how a mountain range, river crossing, valley, or road can restrict or enable movement between otherwise nearby locations.',
     frontend: {
       en: 'Explain how mountains, valleys, roads and crossings affect travel between places.',
+      it: 'Spiega come montagne, valli, strade e attraversamenti influenzano gli spostamenti tra luoghi.',
       zh: '解释山脉、山谷、道路和过境点如何影响地点之间的出行。',
       hi: 'समझाएँ कि पहाड़, घाटियाँ, सड़कें और पारगमन स्थल स्थानों के बीच यात्रा को कैसे प्रभावित करते हैं।',
       es: 'Explica cómo montañas, valles, carreteras y pasos afectan los desplazamientos entre lugares.',

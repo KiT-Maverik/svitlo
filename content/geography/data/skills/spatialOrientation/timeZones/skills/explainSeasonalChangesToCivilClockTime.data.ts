@@ -5,6 +5,7 @@ export const explainSeasonalChangesToCivilClockTime_Skill_Data = defineSkill({
   id: 'deac7226-c16d-4b55-96b1-d7a91c9d03e5',
   name: {
     en: 'Explain seasonal changes to civil clock time',
+    it: "Spiegare le variazioni stagionali dell'ora civile",
     zh: '解释法定时间的季节性调整',
     hi: 'नागरिक घड़ी के समय में मौसमी बदलाव समझाना',
     es: 'Explicar los cambios estacionales de la hora oficial',
@@ -39,6 +40,7 @@ export const explainSeasonalChangesToCivilClockTime_Skill_Data = defineSkill({
       'Identify that some jurisdictions change their legal UTC offsets seasonally while others do not, and that the applicable rule depends on place and date rather than a universal daylight-saving schedule.',
     frontend: {
       en: 'Recognize why some locations change their clocks seasonally while others do not.',
+      it: "Riconosci perché in alcuni luoghi si cambia l'ora stagionalmente mentre in altri no.",
       zh: '认识为什么某些地区会随季节调整时钟，而另一些地区不会。',
       hi: 'जानें कि कुछ जगहों पर मौसम के अनुसार घड़ी क्यों बदली जाती है और अन्य पर क्यों नहीं।',
       es: 'Reconoce por qué algunos lugares cambian el reloj según la estación y otros no.',
