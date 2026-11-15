@@ -5,6 +5,7 @@ export const distinguishValueTypes_Skill_Data = defineSkill({
   id: '3d273538-7d5f-4cc4-b011-ea5bd9352003',
   name: {
     en: 'Distinguish Value Types',
+    it: 'Distinguere i tipi di valore',
     zh: '区分值的类型',
     hi: 'मानों के प्रकार पहचानना',
     es: 'Distinguir tipos de valores',
@@ -39,6 +40,7 @@ export const distinguishValueTypes_Skill_Data = defineSkill({
       'Identify whether a value is numeric, textual, or Boolean and which operations are meaningful for it. Numeric addition and string concatenation may look similar but follow different rules.',
     frontend: {
       en: 'Tell whether a value is numeric, textual or Boolean and what it can do.',
+      it: 'Stabilisci se un valore è numerico, testuale o booleano e quali operazioni consente.',
       zh: '判断一个值是数字、文本还是布尔值，以及它能用于哪些操作。',
       hi: 'पहचानें कि मान संख्यात्मक, पाठ्य या बूलियन है और उस पर क्या किया जा सकता है।',
       es: 'Identifica si un valor es numérico, textual o booleano y qué permite hacer.',

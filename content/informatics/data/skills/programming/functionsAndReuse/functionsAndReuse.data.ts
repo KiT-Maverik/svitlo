@@ -13,6 +13,7 @@ export const functionsAndReuse_SkillGroup_Data = defineSkillGroup({
   id: 'b5b2b3f4-e49c-4296-a7d5-9347dddba11c',
   name: {
     en: 'Functions and Reuse',
+    it: 'Funzioni e riuso del codice',
     zh: '函数与复用',
     hi: 'फलन और पुनः उपयोग',
     es: 'Funciones y reutilización',
@@ -54,6 +55,7 @@ export const functionsAndReuse_SkillGroup_Data = defineSkillGroup({
       'Named sections of programs with inputs, outputs, and defined responsibilities that help divide tasks and avoid repeating the same logic.',
     frontend: {
       en: 'Learn to organize reusable operations as functions.',
+      it: 'Impara a organizzare operazioni riutilizzabili sotto forma di funzioni.',
       zh: '学习如何将可重复使用的操作组织成函数。',
       hi: 'ऐसे कार्यों को फलनों में व्यवस्थित करना सीखें जिन्हें फिर से उपयोग किया जा सके।',
       es: 'Aprende a organizar operaciones reutilizables como funciones.',

@@ -5,6 +5,7 @@ export const useAFunctionsReturnValue_Skill_Data = defineSkill({
   id: '0ffc3fc0-7e50-47ab-b71d-e26f71e07365',
   name: {
     en: "Use a Function's Return Value",
+    it: 'Utilizzare il valore restituito da una funzione',
     zh: '使用函数返回值',
     hi: 'फलन से लौटे मान का उपयोग करना',
     es: 'Usar el valor devuelto por una función',
@@ -39,6 +40,7 @@ export const useAFunctionsReturnValue_Skill_Data = defineSkill({
       'Obtain a returned value and use it in another computation, distinguishing returned data from text printed to the screen.',
     frontend: {
       en: 'Use a returned result in further calculations rather than merely displaying it.',
+      it: 'Usa un risultato restituito in ulteriori calcoli anziché limitarti a visualizzarlo.',
       zh: '将函数返回的结果用于进一步计算，而不只是显示它。',
       hi: 'लौटाए गए परिणाम को सिर्फ दिखाने के बजाय आगे की गणना में उपयोग करें।',
       es: 'Usa el resultado devuelto en cálculos posteriores en lugar de limitarte a mostrarlo.',
