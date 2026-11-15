@@ -1,6 +1,6 @@
 # Lesson source layout: Stage 1 contract and reference fixture
 
-**Status:** Stage 1 target contract; **Stage 2 source-module scaffolding is implemented on the dependent Draft branch only**. File-backed Markdown/Code, co-located Scene/media, Review and full publication integration remain planned.  
+**Status:** Stage 1 target contract; Stage 2 module scaffolding and Stage 3 Markdown/Code extraction are implemented on dependent Draft PR branches. Co-located Scene/media, Review and full publication integration remain planned.  
 **Scope:** YAML-to-TypeScript **Lesson draft scaffolder** and downstream source/asset handoffs, using [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557) as experimental evidence.  
 **Out of scope:** changing the generator, implementing media/Scenes, publishing Lesson Props, changing existing Lesson Configs, migrating all mathematics lessons, translating content, or granting review approvals.
 
@@ -83,6 +83,14 @@ The examples in one directory describe **alternative entity-specific cases**, no
 - Multiple media roles (main video, poster, captions, carousel images) require unambiguous naming and collision checks. Exact supported extensions, multi-role rules, and locale completeness checks remain open until the relevant Engine/UI Kit contracts are audited.
 - User-facing Markdown must be *finished content before technical scaffolding*. A technical builder cannot turn a Scene-like specification for Markdown into good instructional copy. Fix the upstream Lesson Production handoff instead.
 - Media and Scene specifications are *authoring instructions*, not runtime copy. Their new co-located addresses conflict with current UUID-addressed Scene/asset handoff rules: the responsible workflows, lazy Scene registry expectations and eventual packaged media paths must be updated together. Do not silently discard UUID identity or unrelated real assets.
+
+## Stage 3 implemented source handoff (dependent Draft branch)
+
+The Lesson scaffolder extracts actual authored `config.locale.value` Markdown strings into `text.md` (invariant) or source-language `locale/<language>.md` (localized) and generates build-time `defineMarkdown` file-mode configuration. It does **not** generate other planned languages, infer learner copy from `production`, or change Review/media publication.
+
+Authored Code `params.codeAsText` is materialized exactly to `code.<extension>`, with a supported extension derived from `params.language`; generated TypeScript uses `readCodeSource(import.meta.url, extension)` from the Engine Build API. Unknown language/extension mappings are explicit errors, not guesses. These file readers resolve their defining module via `import.meta.url`; published Config/Props contain only the bytes read.
+
+The **Stage 3 contract changes the historical Markdown file-mode folder from `locales/` to `locale/`**. Existing authored definitions with that older path must be migrated explicitly rather than silently inferred. The creation-only `SKIP` safety boundary remains. Markdown/Code source files are ordinary UTF-8 files without a generated TypeScript checksum header; `check` compares exact source bytes against YAML and reports manual divergence.
 
 ## Composite structures
 
