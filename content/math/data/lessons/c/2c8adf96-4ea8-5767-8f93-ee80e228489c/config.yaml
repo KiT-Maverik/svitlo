@@ -16,10 +16,10 @@ config:
       en: 'Adding Nothing Changes Nothing'
   section:
     items:
-      section1:
+      addEmptyCollection:
         config:
           id: '6d72e9f3-4712-4c94-b988-07c5045df01e'
-          slug: 'section1'
+          slug: 'addEmptyCollection'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'A Tray of Six and an Empty Tray'
           content:
             items:
-              text1:
+              countSixAndZero:
                 config:
                   id: 'a478a376-c197-4459-be03-e3e4251caaaf'
-                  slug: 'text1'
+                  slug: 'countSixAndZero'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'A Tray of Six and an Empty Tray; authored text block 1'
                   specification: '1. **text (supported):** “One tray has six counters. The other is empty. How many in both trays together?”'
-              scene2:
+              modelEmptySecondTray:
                 config:
                   id: 'd8ce60ba-35d5-4807-bb9c-8f44b222dc09'
-                  slug: 'scene2'
+                  slug: 'modelEmptySecondTray'
                   type: 'scene'
                   params: {}
                   locale:
@@ -118,10 +118,10 @@ config:
 
                     2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 1 entry. Show six countable counters in one labeled tray and an empty tray labeled 0. Learner counts both, may reveal '6 from first, 0 from second' and sees six total.
                   productionNotes: 'Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainZeroContribution:
                 config:
                   id: '7edd6e6a-4cd9-4fe9-a275-593821bab097'
-                  slug: 'markdown3'
+                  slug: 'explainZeroContribution'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -130,7 +130,7 @@ config:
                 production:
                   purpose: 'A Tray of Six and an Empty Tray; authored markdown block 3'
                   specification: '3. **markdown (supported):** “We combined six counters with no counters. None were added to the six, so there are still six.” Display the mathematical statement **6 + 0 = 6** as readable symbolic text.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['countSixAndZero', 'modelEmptySecondTray', 'explainZeroContribution']
         production:
           purpose: 'A Tray of Six and an Empty Tray'
           pedagogicalIntent: 'Original Section 1 — A Tray of Six and an Empty Tray; authoring draft only'
@@ -156,10 +156,10 @@ config:
             **Proposed unlocked Note:** “Adding zero keeps the total unchanged.” after the whole demonstration and explanation are available (planned, not wired).
 
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
-      section2:
+      reverseZeroAndSix:
         config:
           id: '6e72eb86-4a12-414d-b688-030c035dee8b'
-          slug: 'section2'
+          slug: 'reverseZeroAndSix'
           type: 'content'
           params: {}
           locale:
@@ -169,10 +169,10 @@ config:
               en: 'The Empty Tray Comes First'
           content:
             items:
-              text1:
+              predictZeroFirst:
                 config:
                   id: '86fee977-007c-42ec-aef5-84f1b0b1d4ae'
-                  slug: 'text1'
+                  slug: 'predictZeroFirst'
                   type: 'text'
                   params: {}
                   locale:
@@ -181,10 +181,10 @@ config:
                 production:
                   purpose: 'The Empty Tray Comes First; authored text block 1'
                   specification: '1. **text (supported):** “If the empty tray is written first, does the answer change?”'
-              scene2:
+              swapEmptyTray:
                 config:
                   id: 'c9bb8681-c9d6-4bdc-868d-a58fce16a642'
-                  slug: 'scene2'
+                  slug: 'swapEmptyTray'
                   type: 'scene'
                   params: {}
                   locale:
@@ -258,10 +258,10 @@ config:
 
                     2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 2 entry. Learner changes from 6+0 to 0+6, with exactly six objects still present. Accessible 'first tray zero; second six; total six' counters.
                   productionNotes: 'Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainZeroFirstSameTotal:
                 config:
                   id: '0fd95a0f-9f5e-4c70-a0e9-6431054a52b2'
-                  slug: 'markdown3'
+                  slug: 'explainZeroFirstSameTotal'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -270,7 +270,7 @@ config:
                 production:
                   purpose: 'The Empty Tray Comes First; authored markdown block 3'
                   specification: "3. **markdown (supported):** “The first addend is zero, but the second has six. Together they still make six. The place of zero doesn't make the counters disappear.” Display the mathematical statement **0 + 6 = 6** as readable symbolic text."
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['predictZeroFirst', 'swapEmptyTray', 'explainZeroFirstSameTotal']
         production:
           purpose: 'The Empty Tray Comes First'
           pedagogicalIntent: 'Original Section 2 — The Empty Tray Comes First; authoring draft only'
@@ -296,10 +296,10 @@ config:
             **Proposed unlocked Note:** “Zero can be either addend: a+0 and 0+a both equal a.” after the whole demonstration and explanation are available (planned, not wired).
 
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
-      section3:
+      compareZeroAndTwo:
         config:
           id: '6f72ed19-4912-4fba-b788-049f025decf8'
-          slug: 'section3'
+          slug: 'compareZeroAndTwo'
           type: 'content'
           params: {}
           locale:
@@ -309,10 +309,10 @@ config:
               en: 'No Contribution or Two More?'
           content:
             items:
-              text1:
+              predictZeroOrTwoAdded:
                 config:
                   id: '8a423348-60a3-442b-b796-4de2732acfed'
-                  slug: 'text1'
+                  slug: 'predictZeroOrTwoAdded'
                   type: 'text'
                   params: {}
                   locale:
@@ -321,10 +321,10 @@ config:
                 production:
                   purpose: 'No Contribution or Two More?; authored text block 1'
                   specification: '1. **text (supported):** “What happens when we add zero to six? What if we add two instead?”'
-              scene2:
+              compareAddedAmounts:
                 config:
                   id: 'be7dd020-600d-48ed-9062-60be32232963'
-                  slug: 'scene2'
+                  slug: 'compareAddedAmounts'
                   type: 'scene'
                   params: {}
                   locale:
@@ -398,10 +398,10 @@ config:
 
                     2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 3 entry. Two independent trials begin with six: 6+0=6 and 6+2=8. Learner picks the added amount and sees exact resulting count without modifying the other trial.
                   productionNotes: 'Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainWhyZeroKeepsNumber:
                 config:
                   id: '75c3ddcc-f5d5-4513-99cc-27963d38d65d'
-                  slug: 'markdown3'
+                  slug: 'explainWhyZeroKeepsNumber'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -410,7 +410,7 @@ config:
                 production:
                   purpose: 'No Contribution or Two More?; authored markdown block 3'
                   specification: '3. **markdown (supported):** “Zero adds no objects. Two adds two objects. The difference is the amount contributed, not a magical rule changing all totals to zero.” Display the mathematical statement **6 + 0 = 6; 6 + 2 = 8** as readable symbolic text.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['predictZeroOrTwoAdded', 'compareAddedAmounts', 'explainWhyZeroKeepsNumber']
         production:
           purpose: 'No Contribution or Two More?'
           pedagogicalIntent: 'Original Section 3 — No Contribution or Two More?; authoring draft only'
@@ -436,10 +436,10 @@ config:
             **Proposed unlocked Note:** “Adding zero keeps the total unchanged.” after the whole demonstration and explanation are available (planned, not wired).
 
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
-      section4:
+      verifyZeroAdditionRules:
         config:
           id: '7072eeac-4412-47db-b487-ffe6095df7fd'
-          slug: 'section4'
+          slug: 'verifyZeroAdditionRules'
           type: 'content'
           params: {}
           locale:
@@ -449,10 +449,10 @@ config:
               en: 'Try Nine and the Boundary'
           content:
             items:
-              text1:
+              testNinePlusZero:
                 config:
                   id: '8bf3d991-c1b1-493e-97bc-d557a2ec9f1c'
-                  slug: 'text1'
+                  slug: 'testNinePlusZero'
                   type: 'text'
                   params: {}
                   locale:
@@ -461,10 +461,10 @@ config:
                 production:
                   purpose: 'Try Nine and the Boundary; authored text block 1'
                   specification: '1. **text (supported):** “What is nine plus zero? What about zero plus nine? What about zero plus zero?”'
-              scene2:
+              exploreZeroBoundaryCases:
                 config:
                   id: 'e1289a2f-640c-4af2-b0f5-4de17e5ab0ec'
-                  slug: 'scene2'
+                  slug: 'exploreZeroBoundaryCases'
                   type: 'scene'
                   params: {}
                   locale:
@@ -538,10 +538,10 @@ config:
 
                     2. **scene (generic renderer supported; custom implementation proposed):** Zero Addition Explorer (Scene specification embedded in this config.yaml), Section 4 entry. Offer three independent cases, predict/reveal totals nine, nine and zero, with explicit text ledger and optional counter pictures.
                   productionNotes: 'Proposed unimplemented Scene, sourced from zeroAdditionExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainAdditiveIdentity:
                 config:
                   id: 'da1944d1-de48-46e2-b14b-4def2ff3e600'
-                  slug: 'markdown3'
+                  slug: 'explainAdditiveIdentity'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -550,7 +550,7 @@ config:
                 production:
                   purpose: 'Try Nine and the Boundary; authored markdown block 3'
                   specification: '3. **markdown (supported):** “A number plus zero stays the number, whichever side zero is on. Zero plus zero is zero because neither addend contributes any objects.” Display the mathematical statement **9 + 0 = 9; 0 + 9 = 9; 0 + 0 = 0** as readable symbolic text.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['testNinePlusZero', 'exploreZeroBoundaryCases', 'explainAdditiveIdentity']
         production:
           purpose: 'Try Nine and the Boundary'
           pedagogicalIntent: 'Original Section 4 — Try Nine and the Boundary; authoring draft only'
@@ -576,7 +576,7 @@ config:
             **Proposed unlocked Note:** “Zero can be either addend: a+0 and 0+a both equal a.” after the whole demonstration and explanation are available (planned, not wired).
 
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['addEmptyCollection', 'reverseZeroAndSix', 'compareZeroAndTwo', 'verifyZeroAdditionRules']
   flashcards:
     items: {}
     order: []
