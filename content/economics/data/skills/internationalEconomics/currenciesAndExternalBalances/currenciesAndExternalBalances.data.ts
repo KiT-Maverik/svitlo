@@ -41,12 +41,15 @@ export const currenciesAndExternalBalances_SkillGroup_Data = defineSkillGroup({
     kk: 'Валюталар және сыртқы баланстар',
     qm: 'Pullar ve tışqı esaplar',
   },
-  skills: [
-    balanceOfPayments_Skill_Data,
-    exchangeRateRegimes_Skill_Data,
-    nominalExchangeRate_Skill_Data,
-    realExchangeRate_Skill_Data,
-  ],
+  skills: {
+    items: {
+      balanceOfPayments: balanceOfPayments_Skill_Data,
+      exchangeRateRegimes: exchangeRateRegimes_Skill_Data,
+      nominalExchangeRate: nominalExchangeRate_Skill_Data,
+      realExchangeRate: realExchangeRate_Skill_Data,
+    },
+    order: ['balanceOfPayments', 'exchangeRateRegimes', 'nominalExchangeRate', 'realExchangeRate'],
+  },
   description: {
     methodological:
       'International transactions involve exchange rates, payments, and financial claims on other countries.',

@@ -41,12 +41,21 @@ export const humanEnvironmentInteractions_SkillGroup_Data = defineSkillGroup({
     kk: 'Адам мен қоршаған ортаның өзара әрекеті',
     qm: 'İnsan ve çevre arasında tesirleşüv',
   },
-  skills: [
-    explainHowEnvironmentalConditionsInfluenceHumanActivities_Skill_Data,
-    explainHowPeopleAdaptToGeographicEnvironments_Skill_Data,
-    identifyGeographicConsequencesOfLandUseChange_Skill_Data,
-    traceAnEnvironmentalImpactBeyondItsSource_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainHowEnvironmentalConditionsInfluenceHumanActivities:
+        explainHowEnvironmentalConditionsInfluenceHumanActivities_Skill_Data,
+      explainHowPeopleAdaptToGeographicEnvironments: explainHowPeopleAdaptToGeographicEnvironments_Skill_Data,
+      identifyGeographicConsequencesOfLandUseChange: identifyGeographicConsequencesOfLandUseChange_Skill_Data,
+      traceAnEnvironmentalImpactBeyondItsSource: traceAnEnvironmentalImpactBeyondItsSource_Skill_Data,
+    },
+    order: [
+      'explainHowEnvironmentalConditionsInfluenceHumanActivities',
+      'explainHowPeopleAdaptToGeographicEnvironments',
+      'identifyGeographicConsequencesOfLandUseChange',
+      'traceAnEnvironmentalImpactBeyondItsSource',
+    ],
+  },
   description: {
     methodological:
       'People use and alter environmental conditions, while climate, terrain, water and hazards shape the possibilities and constraints for human activities. These influences are reciprocal but not necessarily symmetric; different choices can reduce or intensify impacts.',

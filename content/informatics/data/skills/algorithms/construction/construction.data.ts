@@ -43,14 +43,24 @@ export const construction_SkillGroup_Data = defineSkillGroup({
     kk: 'Құрастыру',
     qm: 'Quruv',
   },
-  skills: [
-    compareAlgorithmsAgainstRequirements_Skill_Data,
-    constructASequentialAlgorithm_Skill_Data,
-    defineAnAlgorithmsGoal_Skill_Data,
-    designConditionalBranching_Skill_Data,
-    designRepetition_Skill_Data,
-    implementARecursiveAlgorithm_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareAlgorithmsAgainstRequirements: compareAlgorithmsAgainstRequirements_Skill_Data,
+      constructASequentialAlgorithm: constructASequentialAlgorithm_Skill_Data,
+      defineAnAlgorithmsGoal: defineAnAlgorithmsGoal_Skill_Data,
+      designConditionalBranching: designConditionalBranching_Skill_Data,
+      designRepetition: designRepetition_Skill_Data,
+      implementARecursiveAlgorithm: implementARecursiveAlgorithm_Skill_Data,
+    },
+    order: [
+      'compareAlgorithmsAgainstRequirements',
+      'constructASequentialAlgorithm',
+      'defineAnAlgorithmsGoal',
+      'designConditionalBranching',
+      'designRepetition',
+      'implementARecursiveAlgorithm',
+    ],
+  },
   description: {
     methodological:
       "General ways of specifying an algorithm's goal, sequence, conditions, and repetition, regardless of purpose. Distinguish describing a correct procedure from implementing it in a programming language.",

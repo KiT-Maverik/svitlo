@@ -42,13 +42,22 @@ export const conflictRelatedDangers_SkillGroup_Data = defineSkillGroup({
     kk: 'Қақтығысқа байланысты қауіптер',
     qm: 'Çatışmalarğa bağlı telükeler',
   },
-  skills: [
-    recognizeExplosiveOrdnanceRisk_Skill_Data,
-    recognizeHazardsInDamagedBuildings_Skill_Data,
-    respondToAnImmediateAttack_Skill_Data,
-    respondToASuspectedExplosiveObject_Skill_Data,
-    respondToAttackWarnings_Skill_Data,
-  ],
+  skills: {
+    items: {
+      recognizeExplosiveOrdnanceRisk: recognizeExplosiveOrdnanceRisk_Skill_Data,
+      recognizeHazardsInDamagedBuildings: recognizeHazardsInDamagedBuildings_Skill_Data,
+      respondToAnImmediateAttack: respondToAnImmediateAttack_Skill_Data,
+      respondToASuspectedExplosiveObject: respondToASuspectedExplosiveObject_Skill_Data,
+      respondToAttackWarnings: respondToAttackWarnings_Skill_Data,
+    },
+    order: [
+      'recognizeExplosiveOrdnanceRisk',
+      'recognizeHazardsInDamagedBuildings',
+      'respondToAnImmediateAttack',
+      'respondToASuspectedExplosiveObject',
+      'respondToAttackWarnings',
+    ],
+  },
   description: {
     methodological:
       'Armed conflict can produce immediate threats and leave dangerous remnants; civil protection centres on avoidance, shelter, and reporting rather than handling weapons.',

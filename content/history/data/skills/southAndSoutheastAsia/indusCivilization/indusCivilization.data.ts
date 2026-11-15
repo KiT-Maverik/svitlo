@@ -41,12 +41,15 @@ export const indusCivilization_SkillGroup_Data = defineSkillGroup({
     kk: 'Инд өркениеті',
     qm: 'İnd medeniyeti',
   },
-  skills: [
-    citiesOfTheIndusCivilization_Skill_Data,
-    indusEconomy_Skill_Data,
-    indusSigns_Skill_Data,
-    transformationOfIndusCities_Skill_Data,
-  ],
+  skills: {
+    items: {
+      citiesOfTheIndusCivilization: citiesOfTheIndusCivilization_Skill_Data,
+      indusEconomy: indusEconomy_Skill_Data,
+      indusSigns: indusSigns_Skill_Data,
+      transformationOfIndusCities: transformationOfIndusCities_Skill_Data,
+    },
+    order: ['citiesOfTheIndusCivilization', 'indusEconomy', 'indusSigns', 'transformationOfIndusCities'],
+  },
   description: {
     methodological:
       'Indus cities showed planning, crafts, and trade, while political and linguistic questions remain unresolved.',

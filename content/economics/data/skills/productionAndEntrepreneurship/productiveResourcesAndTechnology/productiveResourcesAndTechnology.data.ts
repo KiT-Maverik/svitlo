@@ -41,12 +41,15 @@ export const productiveResourcesAndTechnology_SkillGroup_Data = defineSkillGroup
     kk: 'Өндірістік ресурстар мен технология',
     qm: 'İstisal kaynakları ve tehnologiya',
   },
-  skills: [
-    diminishingMarginalReturns_Skill_Data,
-    factorsOfProduction_Skill_Data,
-    productionFunction_Skill_Data,
-    productivity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      diminishingMarginalReturns: diminishingMarginalReturns_Skill_Data,
+      factorsOfProduction: factorsOfProduction_Skill_Data,
+      productionFunction: productionFunction_Skill_Data,
+      productivity: productivity_Skill_Data,
+    },
+    order: ['diminishingMarginalReturns', 'factorsOfProduction', 'productionFunction', 'productivity'],
+  },
   description: {
     methodological:
       'Labor, capital, land, knowledge, and methods of production determine output possibilities and the substitution of productive inputs.',

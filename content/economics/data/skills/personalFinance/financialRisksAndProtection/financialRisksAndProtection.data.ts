@@ -40,11 +40,14 @@ export const financialRisksAndProtection_SkillGroup_Data = defineSkillGroup({
     kk: 'Қаржылық тәуекелдер және қорғаныс',
     qm: 'Maliy havflar ve qorunuv',
   },
-  skills: [
-    financialFraudWarningSigns_Skill_Data,
-    financialRiskAndExpectedReward_Skill_Data,
-    insurancePrinciples_Skill_Data,
-  ],
+  skills: {
+    items: {
+      financialFraudWarningSigns: financialFraudWarningSigns_Skill_Data,
+      financialRiskAndExpectedReward: financialRiskAndExpectedReward_Skill_Data,
+      insurancePrinciples: insurancePrinciples_Skill_Data,
+    },
+    order: ['financialFraudWarningSigns', 'financialRiskAndExpectedReward', 'insurancePrinciples'],
+  },
   description: {
     methodological:
       'Financial security involves understanding acceptable risk, insurance options, and warning signs of deceptive offers.',

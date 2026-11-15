@@ -42,13 +42,22 @@ export const patternsOfPsychologicalDifficulty_SkillGroup_Data = defineSkillGrou
     kk: 'Психологиялық қиындықтар үлгілері',
     qm: 'Ruhiy qıyınlıqlarnıñ çeşitleri',
   },
-  skills: [
-    anxietyRelatedDifficulties_Skill_Data,
-    clinicallySignificantNeurodevelopmentalConditions_Skill_Data,
-    compulsiveAndRepetitivePatterns_Skill_Data,
-    depressiveDifficulties_Skill_Data,
-    traumaRelatedResponses_Skill_Data,
-  ],
+  skills: {
+    items: {
+      anxietyRelatedDifficulties: anxietyRelatedDifficulties_Skill_Data,
+      clinicallySignificantNeurodevelopmentalConditions: clinicallySignificantNeurodevelopmentalConditions_Skill_Data,
+      compulsiveAndRepetitivePatterns: compulsiveAndRepetitivePatterns_Skill_Data,
+      depressiveDifficulties: depressiveDifficulties_Skill_Data,
+      traumaRelatedResponses: traumaRelatedResponses_Skill_Data,
+    },
+    order: [
+      'anxietyRelatedDifficulties',
+      'clinicallySignificantNeurodevelopmentalConditions',
+      'compulsiveAndRepetitivePatterns',
+      'depressiveDifficulties',
+      'traumaRelatedResponses',
+    ],
+  },
   description: {
     methodological:
       'Clinical categories summarize heterogeneous symptom patterns; they should not be inferred from a few ordinary behaviors or applied as labels to peers.',

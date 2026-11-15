@@ -16,10 +16,10 @@ config:
       en: 'Find Flat Shapes on and Through Solids'
   section:
     items:
-      section1:
+      distinguishFaceFromSolid:
         config:
           id: 'd5665dc4-229b-4547-8714-942e4379f679'
-          slug: 'section1'
+          slug: 'distinguishFaceFromSolid'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'The Square Face Is Not the Whole Cube'
           content:
             items:
-              text1:
+              askCubeFaceShape:
                 config:
                   id: 'e05d04fa-9495-48d9-910a-579c76fb509b'
-                  slug: 'text1'
+                  slug: 'askCubeFaceShape'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'The Square Face Is Not the Whole Cube: text resource at position 1 (source provisional)'
                   specification: '1. **text — available:** "Touch or imagine the flat **front face** of a cube. What shape is that **one face**? Is it the same as the whole cube? Now try a long rectangular box."'
-              scene2:
+              inspectSolidFaces:
                 config:
                   id: '94537246-db1f-4d87-9724-226c609b713d'
-                  slug: 'scene2'
+                  slug: 'inspectSolidFaces'
                   type: 'scene'
                   params: {}
                   locale:
@@ -162,10 +162,10 @@ config:
 
                     2. **scene — existing Resource kind, proposed custom Scene:** Faces and Virtual Sections (full Scene specification embedded in this config.yaml), stage A. Cube with face highlight and separate face-only flat region **square**; rectangular cuboid of model dimensions **4×2×2** with a **4×2 rectangular face**, contrasted with the 3D whole. Show "Whole solid", "One exterior face", "Flat shape of face", "Read model". No visual 3D rotation necessary; fixed viewpoint buttons.
                   productionNotes: 'Scene facesAndVirtualSections.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainSquareAndRectangleFaces:
                 config:
                   id: '39b89dfe-012d-4c69-8654-a680f9c0c823'
-                  slug: 'markdown3'
+                  slug: 'explainSquareAndRectangleFaces'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -174,7 +174,7 @@ config:
                 production:
                   purpose: 'The Square Face Is Not the Whole Cube: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — available:** "The cube is a **solid**, but one of its **flat faces** has the shape of a square. The long box has **rectangular flat faces**. A face has a flat region and a boundary; it is **part of** the solid''s outside, not the entire solid."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askCubeFaceShape', 'inspectSolidFaces', 'explainSquareAndRectangleFaces']
         production:
           purpose: 'identify a flat 2D face and distinguish the region from an entire 3D solid.'
           pedagogicalIntent: 'Original Section 1: The Square Face Is Not the Whole Cube (provisional draft)'
@@ -188,10 +188,10 @@ config:
             - **Explanatory feedback:** If child calls a square a cube: "The square has only a flat area; the cube has depth and more faces." If they say the box front always looks like a rectangle from every perspective: "A perspective drawing can make the face look slanted. Its **true geometric face** is still rectangular."
             - **Nonvisual equivalent:** Reveal text "Cube: exterior flat face is a filled square. Cuboid: selected exterior flat face is a filled 4-by-2 rectangle"; units are arbitrary diagram units, not measured centimeters.
             - **Future Note:** "A flat face is a two-dimensional part of a solid."
-      section2:
+      contrastFlatAndCurvedSurfaces:
         config:
           id: 'd866627d-239b-46da-8614-929b4079f1c0'
-          slug: 'section2'
+          slug: 'contrastFlatAndCurvedSurfaces'
           type: 'content'
           params: {}
           locale:
@@ -201,10 +201,10 @@ config:
               en: 'Flat Circular Bases, Curved Outside'
           content:
             items:
-              text1:
+              askCylinderAndSphereSurfaces:
                 config:
                   id: '4052da7f-6cee-45b8-8c1c-5bfdcbd45f96'
-                  slug: 'text1'
+                  slug: 'askCylinderAndSphereSurfaces'
                   type: 'text'
                   params: {}
                   locale:
@@ -213,10 +213,10 @@ config:
                 production:
                   purpose: 'Flat Circular Bases, Curved Outside: text resource at position 1 (source provisional)'
                   specification: '1. **text — available:** "A can has a flat round **top** and **bottom**. Is its wrapped-around side flat too? A ball looks round; does it have a flat outside face?"'
-              scene2:
+              inspectCircularBase:
                 config:
                   id: 'd5688ef9-5844-4730-89ae-425373c3b1da'
-                  slug: 'scene2'
+                  slug: 'inspectCircularBase'
                   type: 'scene'
                   params: {}
                   locale:
@@ -334,10 +334,10 @@ config:
 
                     2. **scene — proposed:** Faces and Virtual Sections (full Scene specification embedded in this config.yaml), stage B. Ideal right circular cylinder: **top and bottom circular disk flat bases**, lateral side curved. Ideal sphere: **no flat exterior face**. Controls "Show disk face", "Show curved part", "Inspect sphere's outside" with explicit rule status. Use a rim-outline when naming the **circle** versus a filled flat disk for base area.
                   productionNotes: 'Scene facesAndVirtualSections.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainCurvedCylinderSurface:
                 config:
                   id: 'eb345447-ffdb-4edc-b77f-fbcdf6c7968a'
-                  slug: 'markdown3'
+                  slug: 'explainCurvedCylinderSurface'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -346,7 +346,7 @@ config:
                 production:
                   purpose: 'Flat Circular Bases, Curved Outside: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — available:** "The cylinder''s base is a **flat disk**: its outer rim is a **circle**. The long side wraps around and is **curved**, not a flat rectangle. A sphere has no flat exterior face at all. But that doesn''t tell us what an imaginary flat slice through it might show."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askCylinderAndSphereSurfaces', 'inspectCircularBase', 'explainCurvedCylinderSurface']
         production:
           purpose: 'distinguish exterior flat regions from a curved surface, and circle boundary from disk region.'
           pedagogicalIntent: 'Original Section 2: Flat Circular Bases, Curved Outside (provisional draft)'
@@ -359,10 +359,10 @@ config:
               3. **markdown — available:** "The cylinder's base is a **flat disk**: its outer rim is a **circle**. The long side wraps around and is **curved**, not a flat rectangle. A sphere has no flat exterior face at all. But that doesn't tell us what an imaginary flat slice through it might show."
             - **Feedback:** "The cylinder side _looks_ rectangular in a drawing, but the actual side curves" if mistaken for flat. If sphere labeled as having a circular flat face: "A sphere has a round **outline** in a picture, not an outside flat disk."
             - **Accessibility and direction:** A structured textual description lists outside areas and flat/curved property. Same semantic names in LTR and RTL. Rotate model among fixed views only on demand.
-      section3:
+      exploreFlatCrossSections:
         config:
           id: 'd76660ea-249b-486d-8514-91084179f353'
-          slug: 'section3'
+          slug: 'exploreFlatCrossSections'
           type: 'content'
           params: {}
           locale:
@@ -372,10 +372,10 @@ config:
               en: 'A Virtual Flat Slice'
           content:
             items:
-              text1:
+              introduceImaginarySlice:
                 config:
                   id: '90c59968-1a00-4dcf-bad6-86be2197d2f5'
-                  slug: 'text1'
+                  slug: 'introduceImaginarySlice'
                   type: 'text'
                   params: {}
                   locale:
@@ -384,10 +384,10 @@ config:
                 production:
                   purpose: 'A Virtual Flat Slice: text resource at position 1 (source provisional)'
                   specification: '1. **text — available:** "Imagine a perfectly flat, invisible sheet passing **through** a solid. The part where it meets the solid is a **flat section**. What shape would you see if the sheet stayed **parallel** to the front of a long rectangular box?"'
-              scene2:
+              sliceSolidWithPlane:
                 config:
                   id: '3fd5f840-286a-4ea9-99c5-2b72f61966bb'
-                  slug: 'scene2'
+                  slug: 'sliceSolidWithPlane'
                   type: 'scene'
                   params: {}
                   locale:
@@ -505,10 +505,10 @@ config:
 
                     2. **scene — proposed:** Faces and Virtual Sections (full Scene specification embedded in this config.yaml), stage C. A cuboid of dimensions **4×2×2** with plane parallel to its **4×2 front face**, passing through interior yields a filled **4×2 rectangle**. A right circular cylinder with plane **perpendicular to its axis** (horizontal when cylinder stands upright) yields a filled **circular disk**. A sphere with plane **through its center** yields a filled **disk** with circular boundary. Three labeled predetermined cases, no arbitrary plane rotation or unsupported generalization.
                   productionNotes: 'Scene facesAndVirtualSections.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainInteriorSection:
                 config:
                   id: '19c3dcec-8a25-47b7-a9d4-dc62a66ddf95'
-                  slug: 'markdown3'
+                  slug: 'explainInteriorSection'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -517,7 +517,7 @@ config:
                 production:
                   purpose: 'A Virtual Flat Slice: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — available:** "A **section** is a flat shape made by an imaginary plane **inside** the solid. The box''s face-parallel section is a **rectangle**. The cylinder''s straight-across section is a **circular disk**. A sphere has **no flat face on the outside**—yet its central flat section is a disk. The **whole objects remain 3D**."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['introduceImaginarySlice', 'sliceSolidWithPlane', 'explainInteriorSection']
         production:
           purpose: 'introduce the plane-section concept without implying every cut through a solid is the same shape.'
           pedagogicalIntent: 'Original Section 3: A Virtual Flat Slice (provisional draft)'
@@ -530,10 +530,10 @@ config:
               3. **markdown — available:** "A **section** is a flat shape made by an imaginary plane **inside** the solid. The box's face-parallel section is a **rectangle**. The cylinder's straight-across section is a **circular disk**. A sphere has **no flat face on the outside**—yet its central flat section is a disk. The **whole objects remain 3D**."
             - **Predict/reveal:** Learner selects "rectangle", "disk" or "whole solid" before reveal; explanation names the **orientation of the plane** in every case. For "sphere cannot make a flat section": "The outside is curved, but an imagined flat sheet through the inside meets a flat disk-shaped region." For "all cylinder cuts are round": "Only the cut we defined—**perpendicular to its axis**—is guaranteed to make this disk."
             - **Note:** "A plane section is a flat figure inside a 3D solid."
-      section4:
+      identifyFacesSectionsDrawings:
         config:
           id: 'd266590b-1d9b-4d68-8c14-9c0d4679fb32'
-          slug: 'section4'
+          slug: 'identifyFacesSectionsDrawings'
           type: 'content'
           params: {}
           locale:
@@ -543,10 +543,10 @@ config:
               en: 'Face, Section, or Just a Drawing?'
           content:
             items:
-              text1:
+              compareRoundRepresentations:
                 config:
                   id: '003883cd-886f-491e-a79b-2aef215f1d30'
-                  slug: 'text1'
+                  slug: 'compareRoundRepresentations'
                   type: 'text'
                   params: {}
                   locale:
@@ -555,10 +555,10 @@ config:
                 production:
                   purpose: 'Face, Section, or Just a Drawing?: text resource at position 1 (source provisional)'
                   specification: '1. **text — available:** "Three pictures all look round. One is a **filled top base of a cylinder**. Another is a **flat section through a sphere''s middle**. The third is a **picture of the whole sphere**. Which are flat two-dimensional regions?"'
-              scene2:
+              sortSurfaceAndSectionViews:
                 config:
                   id: '8739e5c3-5f75-4452-8a48-9d492cebd498'
-                  slug: 'scene2'
+                  slug: 'sortSurfaceAndSectionViews'
                   type: 'scene'
                   params: {}
                   locale:
@@ -676,10 +676,10 @@ config:
 
                     2. **scene — proposed:** Faces and Virtual Sections (full Scene specification embedded in this config.yaml), stage D. Three described models with independent reveal: exterior cylinder base = **flat disk face**; central sphere cut = **flat disk section**; whole sphere = **3D solid**, even if silhouette looks circular. Add a second classification: cuboid exterior 4×2 face versus its parallel interior 4×2 plane section; both rectangles but **different location/role**.
                   productionNotes: 'Scene facesAndVirtualSections.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainFaceVersusSection:
                 config:
                   id: 'c9e785bd-7242-4ac2-819e-73d7ed14d5a4'
-                  slug: 'markdown3'
+                  slug: 'explainFaceVersusSection'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -688,7 +688,7 @@ config:
                 production:
                   purpose: 'Face, Section, or Just a Drawing?: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — available:** "The top of the cylinder is an **exterior face**, the imaginary middle slice of the sphere is an **interior plane section**, and the whole sphere is a **solid**. Matching outlines do not make those three things identical."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['compareRoundRepresentations', 'sortSurfaceAndSectionViews', 'explainFaceVersusSection']
         production:
           purpose: 'independent transfer with a carefully worded classification challenge.'
           pedagogicalIntent: 'Original Section 4: Face, Section, or Just a Drawing? (provisional draft)'
@@ -701,7 +701,13 @@ config:
               3. **markdown — available:** "The top of the cylinder is an **exterior face**, the imaginary middle slice of the sphere is an **interior plane section**, and the whole sphere is a **solid**. Matching outlines do not make those three things identical."
             - **Feedback:** "The shape of an outline is not enough. Ask whether this is **on the outside**, **a flat virtual cut**, or **the whole object**." Wrong choices receive the specific distinction, with no penalty or grade. Show nonvisual ledger distinguishing **flat** versus **3D** and **exterior** versus **section**.
             - **Transfer without equipment:** Children describe the face and virtual section of a box from a labelled model, not by physically slicing any object.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order:
+      [
+        'distinguishFaceFromSolid',
+        'contrastFlatAndCurvedSurfaces',
+        'exploreFlatCrossSections',
+        'identifyFacesSectionsDrawings',
+      ]
   flashcards:
     items: {}
     order: []

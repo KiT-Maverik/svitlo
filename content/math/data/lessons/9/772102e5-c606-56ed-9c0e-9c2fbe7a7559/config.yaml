@@ -16,10 +16,10 @@ config:
       en: 'What Could the Result Be?'
   section:
     items:
-      section1:
+      identifySpinnerOutcomes:
         config:
           id: 'b27b3ea6-8845-4909-a10f-3224a92795ff'
-          slug: 'section1'
+          slug: 'identifySpinnerOutcomes'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'What counts as a result?'
           content:
             items:
-              text1:
+              defineRecordedSpin:
                 config:
                   id: '3c7ff917-51b2-4438-8ef1-2fe9685619c2'
-                  slug: 'text1'
+                  slug: 'defineRecordedSpin'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'What counts as a result?; authored text block 1'
                   specification: '1. **`text`** (supported Resource type) — “We spin this numbered spinner once and write down the number where the pointer stops. It has sectors 1, 2, 3 and 4. What might we write?”'
-              scene2:
+              inspectSpinnerSectors:
                 config:
                   id: '62aa4fa1-f9c9-4ab0-8238-3037ebd64e1e'
-                  slug: 'scene2'
+                  slug: 'inspectSpinnerSectors'
                   type: 'scene'
                   params: {}
                   locale:
@@ -128,10 +128,10 @@ config:
 
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Numbered-spinner preset shows four equal sectors labeled 1–4 and a fixed result slot. Learner selects which numbers belong in a 'possible results' tray; no actual random spin is necessary.
                   productionNotes: 'Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              listPossibleNumbers:
                 config:
                   id: 'ab6731af-d1eb-455c-be01-9e1932dd1c76'
-                  slug: 'markdown3'
+                  slug: 'listPossibleNumbers'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -140,7 +140,7 @@ config:
                 production:
                   purpose: 'What counts as a result?; authored markdown block 3'
                   specification: '3. **`markdown`** (supported Resource type) — “A result is one number recorded after one spin. Any of 1, 2, 3 or 4 could be recorded. There is no 5 on this spinner.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['defineRecordedSpin', 'inspectSpinnerSectors', 'listPossibleNumbers']
         production:
           purpose: 'Define both the experiment and what gets recorded before listing.'
           pedagogicalIntent: 'Original Section 1 — What counts as a result?; authoring draft only'
@@ -165,10 +165,10 @@ config:
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. All four sectors equally sized in this model, but do not teach equal likelihood as part of the outcome-listing Skill.
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-      section2:
+      correctIncompleteOutcomeList:
         config:
           id: 'b17b3d13-8545-4450-a40f-36ddaa279792'
-          slug: 'section2'
+          slug: 'correctIncompleteOutcomeList'
           type: 'content'
           params: {}
           locale:
@@ -178,10 +178,10 @@ config:
               en: 'Find the missing and extra item'
           content:
             items:
-              text1:
+              inspectMissingAndExtraResults:
                 config:
                   id: '076f4f16-5ae8-4a85-b40c-947c669bb0e3'
-                  slug: 'text1'
+                  slug: 'inspectMissingAndExtraResults'
                   type: 'text'
                   params: {}
                   locale:
@@ -190,10 +190,10 @@ config:
                 production:
                   purpose: 'Find the missing and extra item; authored text block 1'
                   specification: '1. **`text`** (supported Resource type) — “Someone wrote 1, 3, 4, 5. They forgot one possible number and added one impossible number. Which?”'
-              scene2:
+              reviewCandidateOutcomes:
                 config:
                   id: 'c8aab85a-bd02-42ab-94e6-c6ccff63fc75'
-                  slug: 'scene2'
+                  slug: 'reviewCandidateOutcomes'
                   type: 'scene'
                   params: {}
                   locale:
@@ -277,10 +277,10 @@ config:
 
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Inspector preset overlays the spinner's true set {1,2,3,4} with the proposed list {1,3,4,5}. Select the missing label and the extra label separately; reveal explanations one at a time.
                   productionNotes: 'Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainCompleteList:
                 config:
                   id: '3701fe0a-fbd4-4005-88d7-dae075bc5cbb'
-                  slug: 'markdown3'
+                  slug: 'explainCompleteList'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -289,7 +289,7 @@ config:
                 production:
                   purpose: 'Find the missing and extra item; authored markdown block 3'
                   specification: '3. **`markdown`** (supported Resource type) — “2 is missing, because there is a 2 sector. 5 is extra, because there is no 5 sector. The complete list is 1, 2, 3, 4.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['inspectMissingAndExtraResults', 'reviewCandidateOutcomes', 'explainCompleteList']
         production:
           purpose: 'Check whether a proposed list is exhaustive and has no impossibilities.'
           pedagogicalIntent: 'Original Section 2 — Find the missing and extra item; authoring draft only'
@@ -314,10 +314,10 @@ config:
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. The learner must explain a mismatch against the experiment, not memorize an answer key.
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-      section3:
+      listDistinctColorOutcomes:
         config:
           id: 'b07b3b80-8645-45e3-a30f-354aab279925'
-          slug: 'section3'
+          slug: 'listDistinctColorOutcomes'
           type: 'content'
           params: {}
           locale:
@@ -327,10 +327,10 @@ config:
               en: 'Three tokens, but how many possible colors?'
           content:
             items:
-              markdown1:
+              presentColoredTokens:
                 config:
                   id: '3b6ca8ef-241a-4754-a41b-27e9acf9c5be'
-                  slug: 'markdown1'
+                  slug: 'presentColoredTokens'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -339,10 +339,10 @@ config:
                 production:
                   purpose: 'Three tokens, but how many possible colors?; authored markdown block 1'
                   specification: '1. **`markdown`** (supported Resource type) — “Here is a bag with three labelled tokens: red A, red B and blue C. We draw one token and write only its color. How many different color words could we write?”'
-              scene2:
+              drawAndRecordColors:
                 config:
                   id: '54e97c3b-1925-400a-ad2a-a05daf821524'
-                  slug: 'scene2'
+                  slug: 'drawAndRecordColors'
                   type: 'scene'
                   params: {}
                   locale:
@@ -426,10 +426,10 @@ config:
 
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Bag-color preset shows all three token labels and a separate report field 'record color'. The learner builds a list of different possible colors, with a count of distinct labels rather than physical objects.
                   productionNotes: 'Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              explainDistinctColors:
                 config:
                   id: '674ad44f-9130-4ac0-8cfe-dae12951fbea'
-                  slug: 'text3'
+                  slug: 'explainDistinctColors'
                   type: 'text'
                   params: {}
                   locale:
@@ -438,7 +438,7 @@ config:
                 production:
                   purpose: 'Three tokens, but how many possible colors?; authored text block 3'
                   specification: '3. **`text`** (supported Resource type) — “We could write red or blue. The list of possible colors is red, blue. Red does not need two entries: the report says the color, not which red token it was.”'
-            order: ['markdown1', 'scene2', 'text3']
+            order: ['presentColoredTokens', 'drawAndRecordColors', 'explainDistinctColors']
         production:
           purpose: 'Distinguish physical items from distinct reported outcomes.'
           pedagogicalIntent: 'Original Section 3 — Three tokens, but how many possible colors?; authoring draft only'
@@ -464,10 +464,10 @@ config:
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. A color list must not be used as a claim of 50–50 chances.
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-      section4:
+      enumerateNewSpinnerOutcomes:
         config:
           id: 'b77b4685-8b45-4dc2-9e0f-2d6ba4278e20'
-          slug: 'section4'
+          slug: 'enumerateNewSpinnerOutcomes'
           type: 'content'
           params: {}
           locale:
@@ -477,10 +477,10 @@ config:
               en: 'Your experiment, your complete list'
           content:
             items:
-              text1:
+              askCompleteEvenNumberList:
                 config:
                   id: 'cfd4aba4-0ce4-4493-91df-490e815c9c95'
-                  slug: 'text1'
+                  slug: 'askCompleteEvenNumberList'
                   type: 'text'
                   params: {}
                   locale:
@@ -489,10 +489,10 @@ config:
                 production:
                   purpose: 'Your experiment, your complete list; authored text block 1'
                   specification: '1. **`text`** (supported Resource type) — “A new spinner has exactly three sectors, numbered 2, 4 and 6. We spin once and record the number. Make a complete list of possible numbers.”'
-              scene2:
+              inspectEvenNumberSpinner:
                 config:
                   id: '5c0b0b04-1b52-4405-94e3-85a2fe587f5b'
-                  slug: 'scene2'
+                  slug: 'inspectEvenNumberSpinner'
                   type: 'scene'
                   params: {}
                   locale:
@@ -576,10 +576,10 @@ config:
 
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Transfer preset displays three distinct sectors 2, 4, 6 and candidate cards 2, 3, 4, 6. Build the set and explain why 3 should stay out; optional hint points to the sector labels.
                   productionNotes: 'Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              verifyPossibleOutcomes:
                 config:
                   id: '70522bf8-4a8e-4f4b-8f92-6612949624b5'
-                  slug: 'markdown3'
+                  slug: 'verifyPossibleOutcomes'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -588,7 +588,7 @@ config:
                 production:
                   purpose: 'Your experiment, your complete list; authored markdown block 3'
                   specification: '3. **`markdown`** (supported Resource type) — “The complete list is 2, 4, 6. Every number on the spinner is included, and 3 is not included because there is no 3 sector.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askCompleteEvenNumberList', 'inspectEvenNumberSpinner', 'verifyPossibleOutcomes']
         production:
           purpose: 'Independent transfer to a new spinner without shown answer.'
           pedagogicalIntent: 'Original Section 4 — Your experiment, your complete list; authoring draft only'
@@ -613,7 +613,13 @@ config:
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Reveal the full reason on demand, with no scored outcome.
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order:
+      [
+        'identifySpinnerOutcomes',
+        'correctIncompleteOutcomeList',
+        'listDistinctColorOutcomes',
+        'enumerateNewSpinnerOutcomes',
+      ]
   flashcards:
     items: {}
     order: []

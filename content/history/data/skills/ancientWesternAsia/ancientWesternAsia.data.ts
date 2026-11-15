@@ -40,13 +40,16 @@ export const ancientWesternAsia_SkillDomain_Data = defineSkillDomain({
     kk: 'Ежелгі Батыс Азия',
     qm: 'Qadimiy Ğarbiy Asiya',
   },
-  groups: [
-    anatolia_SkillGroup_Data,
-    ancientIranianStates_SkillGroup_Data,
-    ancientLevant_SkillGroup_Data,
-    ancientSouthArabia_SkillGroup_Data,
-    mesopotamia_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      anatolia: anatolia_SkillGroup_Data,
+      ancientIranianStates: ancientIranianStates_SkillGroup_Data,
+      ancientLevant: ancientLevant_SkillGroup_Data,
+      ancientSouthArabia: ancientSouthArabia_SkillGroup_Data,
+      mesopotamia: mesopotamia_SkillGroup_Data,
+    },
+    order: ['anatolia', 'ancientIranianStates', 'ancientLevant', 'ancientSouthArabia', 'mesopotamia'],
+  },
   description: {
     methodological:
       'Early cities and states in Mesopotamia, the Levant, Anatolia, Iran, and Arabia developed through local environments and enduring trade, political, and cultural contact.',

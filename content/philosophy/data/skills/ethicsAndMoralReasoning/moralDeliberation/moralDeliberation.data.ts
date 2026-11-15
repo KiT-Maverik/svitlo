@@ -42,13 +42,22 @@ export const moralDeliberation_SkillGroup_Data = defineSkillGroup({
     kk: 'Моральдық ой елегінен өткізу',
     qm: 'Ahlâqiy fikirleşüv',
   },
-  skills: [
-    assessProportionalityInMoralDecisions_Skill_Data,
-    evaluateAMoralCounterargument_Skill_Data,
-    identifyConflictingMoralObligations_Skill_Data,
-    identifyStakeholdersInAnEthicalDilemma_Skill_Data,
-    justifyAMoralJudgment_Skill_Data,
-  ],
+  skills: {
+    items: {
+      assessProportionalityInMoralDecisions: assessProportionalityInMoralDecisions_Skill_Data,
+      evaluateAMoralCounterargument: evaluateAMoralCounterargument_Skill_Data,
+      identifyConflictingMoralObligations: identifyConflictingMoralObligations_Skill_Data,
+      identifyStakeholdersInAnEthicalDilemma: identifyStakeholdersInAnEthicalDilemma_Skill_Data,
+      justifyAMoralJudgment: justifyAMoralJudgment_Skill_Data,
+    },
+    order: [
+      'assessProportionalityInMoralDecisions',
+      'evaluateAMoralCounterargument',
+      'identifyConflictingMoralObligations',
+      'identifyStakeholdersInAnEthicalDilemma',
+      'justifyAMoralJudgment',
+    ],
+  },
   description: {
     methodological:
       'Difficult cases require identifying who is affected, which reasons conflict, and whether an apparent compromise respects relevant obligations.',

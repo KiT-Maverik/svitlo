@@ -41,12 +41,20 @@ export const artAndInterpretation_SkillGroup_Data = defineSkillGroup({
     kk: 'Өнер және түсіндіру',
     qm: 'Sanat ve izaat',
   },
-  skills: [
-    analyzeTheEthicalEvaluationOfArt_Skill_Data,
-    compareInterpretationsOfAnArtwork_Skill_Data,
-    distinguishArtisticIntentionFromInterpretation_Skill_Data,
-    evaluateADefinitionOfArt_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeTheEthicalEvaluationOfArt: analyzeTheEthicalEvaluationOfArt_Skill_Data,
+      compareInterpretationsOfAnArtwork: compareInterpretationsOfAnArtwork_Skill_Data,
+      distinguishArtisticIntentionFromInterpretation: distinguishArtisticIntentionFromInterpretation_Skill_Data,
+      evaluateADefinitionOfArt: evaluateADefinitionOfArt_Skill_Data,
+    },
+    order: [
+      'analyzeTheEthicalEvaluationOfArt',
+      'compareInterpretationsOfAnArtwork',
+      'distinguishArtisticIntentionFromInterpretation',
+      'evaluateADefinitionOfArt',
+    ],
+  },
   description: {
     methodological:
       "A work can bear meanings and values that are not reducible to the creator's stated intent or a viewer's immediate reaction.",

@@ -40,11 +40,14 @@ export const navigationEquipment_SkillGroup_Data = defineSkillGroup({
     kk: 'Навигациялық жабдық',
     qm: 'Navigatsiya cihazları',
   },
-  skills: [
-    comparePositioningMethods_Skill_Data,
-    inertialNavigationHardware_Skill_Data,
-    satelliteNavigationReceivers_Skill_Data,
-  ],
+  skills: {
+    items: {
+      comparePositioningMethods: comparePositioningMethods_Skill_Data,
+      inertialNavigationHardware: inertialNavigationHardware_Skill_Data,
+      satelliteNavigationReceivers: satelliteNavigationReceivers_Skill_Data,
+    },
+    order: ['comparePositioningMethods', 'inertialNavigationHardware', 'satelliteNavigationReceivers'],
+  },
   description: {
     methodological:
       'Positioning methods use different physical measurements, and each has characteristic failures and accuracy limitations.',

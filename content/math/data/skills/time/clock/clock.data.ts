@@ -42,13 +42,16 @@ export const clock_SkillGroup_Data = defineSkillGroup({
     pl: 'Odczytywanie godziny',
     uk: 'Зчитування часу з годинника',
   },
-  skills: [
-    read24HourClock_Skill_Data,
-    readHour_Skill_Data,
-    readHalfQuarter_Skill_Data,
-    readFiveMinute_Skill_Data,
-    readMinute_Skill_Data,
-  ],
+  skills: {
+    items: {
+      read24HourClock: read24HourClock_Skill_Data,
+      readHour: readHour_Skill_Data,
+      readHalfQuarter: readHalfQuarter_Skill_Data,
+      readFiveMinute: readFiveMinute_Skill_Data,
+      readMinute: readMinute_Skill_Data,
+    },
+    order: ['read24HourClock', 'readHour', 'readHalfQuarter', 'readFiveMinute', 'readMinute'],
+  },
   description: {
     methodological:
       'Matching clock-hand positions and digital notation to a particular instant of the day at different levels of reading precision.',

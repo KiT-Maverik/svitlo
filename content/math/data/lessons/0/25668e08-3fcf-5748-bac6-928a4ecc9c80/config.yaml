@@ -15,10 +15,10 @@ config:
       en: 'Swap the Addends, Keep the Sum'
   section:
     items:
-      section1:
+      combineThreeAndFiveCounters:
         config:
           id: '46655e55-19ce-52ae-9113-de5531108238'
-          slug: 'section1'
+          slug: 'combineThreeAndFiveCounters'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Count Both Groups'
           content:
             items:
-              text1:
+              countTwoTrays:
                 config:
                   id: '05b01af4-bcf2-56ff-86ea-9af46d39ee2d'
-                  slug: 'text1'
+                  slug: 'countTwoTrays'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'One tray holds three counters. Another holds five. How many are there in both?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              combineTrays:
                 config:
                   id: '11fd7fed-825c-57c0-8114-ffedc174c136'
-                  slug: 'scene1'
+                  slug: 'combineTrays'
                   type: 'scene'
                   params: {}
                   locale:
@@ -113,10 +113,10 @@ config:
                     Existing Lesson Scene resources can render generic Scene components. **Addend Swap Workbench is proposed, not implemented**; requires editor-approved Methodologist Brief, then separate Content/Scene approvals, self-contained prop-free React entrypoints and own tests. Coding Agent handles genuine locale integration and offline delivery. Assessment Architect separately owns scored questions. Editorial decision: Avoid repeating an array-rotation example, which belongs to multiplication commutativity. This lesson concerns addition with two actual disjoint quantities and preserves their interpretation.
                   purpose: 'Count Both Groups'
                   productionNotes: 'Source Scene addendSwapWorkbench.scene-spec.md; independent placement for Count Both Groups. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainEightCounters:
                 config:
                   id: '98d5448e-bce8-5bed-9337-c48ef1cde077'
-                  slug: 'markdown1'
+                  slug: 'explainEightCounters'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -124,7 +124,7 @@ config:
                       en: 'Three from one tray and five from the other make eight. These are the same eight objects whichever tray we count first.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['countTwoTrays', 'combineTrays', 'explainEightCounters']
         production:
           purpose: 'Count Both Groups'
           productionNotes: |-
@@ -149,10 +149,10 @@ config:
             **Proposed unlocked Note:** No new Note; focus on observation.
 
             **Implementation dependencies:** Proposed self-contained prop-free entry, no new resource type, Quiz config, invented Note event or scoring state.
-      section2:
+      reverseAddendOrder:
         config:
           id: '4365599c-18ce-511b-8e13-d99c341086f1'
-          slug: 'section2'
+          slug: 'reverseAddendOrder'
           type: 'content'
           params: {}
           locale:
@@ -162,10 +162,10 @@ config:
               en: 'Put Five First'
           content:
             items:
-              text1:
+              predictFivePlusThree:
                 config:
                   id: 'f60c7a81-d313-587e-b746-fa81c7bd9fc0'
-                  slug: 'text1'
+                  slug: 'predictFivePlusThree'
                   type: 'text'
                   params: {}
                   locale:
@@ -173,10 +173,10 @@ config:
                       en: 'What if we count the five first and the three second? Did any counters arrive?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              switchCountingOrder:
                 config:
                   id: '92a99452-ff46-569f-81c1-1452bdc0b641'
-                  slug: 'scene1'
+                  slug: 'switchCountingOrder'
                   type: 'scene'
                   params: {}
                   locale:
@@ -247,10 +247,10 @@ config:
                     Existing Lesson Scene resources can render generic Scene components. **Addend Swap Workbench is proposed, not implemented**; requires editor-approved Methodologist Brief, then separate Content/Scene approvals, self-contained prop-free React entrypoints and own tests. Coding Agent handles genuine locale integration and offline delivery. Assessment Architect separately owns scored questions. Editorial decision: Avoid repeating an array-rotation example, which belongs to multiplication commutativity. This lesson concerns addition with two actual disjoint quantities and preserves their interpretation.
                   purpose: 'Put Five First'
                   productionNotes: 'Source Scene addendSwapWorkbench.scene-spec.md; independent placement for Put Five First. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainSameSumAfterSwap:
                 config:
                   id: '06203c7b-1ce1-57fc-8082-bc7b52cd09ba'
-                  slug: 'markdown1'
+                  slug: 'explainSameSumAfterSwap'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -258,7 +258,7 @@ config:
                       en: 'Five plus three also equals eight. We swapped which addend came first, not how many objects we had.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['predictFivePlusThree', 'switchCountingOrder', 'explainSameSumAfterSwap']
         production:
           purpose: 'Put Five First'
           productionNotes: |-
@@ -283,10 +283,10 @@ config:
             **Proposed unlocked Note:** “Swapping two addends keeps their sum the same.”, proposed once the corresponding mathematical model and reasoning are presented; planned only.
 
             **Implementation dependencies:** Proposed self-contained prop-free entry, no new resource type, Quiz config, invented Note event or scoring state.
-      section3:
+      distinguishSwapFromAdding:
         config:
           id: '44655b2f-17ce-5f88-8f13-db2f3310855e'
-          slug: 'section3'
+          slug: 'distinguishSwapFromAdding'
           type: 'content'
           params: {}
           locale:
@@ -296,10 +296,10 @@ config:
               en: 'Swap or Change a Quantity?'
           content:
             items:
-              text1:
+              compareSwapAndIncrease:
                 config:
                   id: 'f74f2872-09bd-57bd-b889-a872bd6fcbef'
-                  slug: 'text1'
+                  slug: 'compareSwapAndIncrease'
                   type: 'text'
                   params: {}
                   locale:
@@ -307,10 +307,10 @@ config:
                       en: 'Compare swapping 3 and 5 with changing the five into six. Which action keeps the sum?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              testChangedQuantity:
                 config:
                   id: '2b042d1b-789b-5aa6-9a1b-ad1be5020b90'
-                  slug: 'scene1'
+                  slug: 'testChangedQuantity'
                   type: 'scene'
                   params: {}
                   locale:
@@ -381,10 +381,10 @@ config:
                     Existing Lesson Scene resources can render generic Scene components. **Addend Swap Workbench is proposed, not implemented**; requires editor-approved Methodologist Brief, then separate Content/Scene approvals, self-contained prop-free React entrypoints and own tests. Coding Agent handles genuine locale integration and offline delivery. Assessment Architect separately owns scored questions. Editorial decision: Avoid repeating an array-rotation example, which belongs to multiplication commutativity. This lesson concerns addition with two actual disjoint quantities and preserves their interpretation.
                   purpose: 'Swap or Change a Quantity?'
                   productionNotes: 'Source Scene addendSwapWorkbench.scene-spec.md; independent placement for Swap or Change a Quantity?. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainWhyNineDiffers:
                 config:
                   id: '5a86a6a0-494d-5767-94e9-26a0365c27fd'
-                  slug: 'markdown1'
+                  slug: 'explainWhyNineDiffers'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -392,7 +392,7 @@ config:
                       en: 'Swapping the addends keeps the total eight. Adding one more object makes nine; that is not only a swap.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['compareSwapAndIncrease', 'testChangedQuantity', 'explainWhyNineDiffers']
         production:
           purpose: 'Swap or Change a Quantity?'
           productionNotes: |-
@@ -417,10 +417,10 @@ config:
             **Proposed unlocked Note:** “Changing a number changes the problem; swapping only changes the order.”, proposed once the corresponding mathematical model and reasoning are presented; planned only.
 
             **Implementation dependencies:** Proposed self-contained prop-free entry, no new resource type, Quiz config, invented Note event or scoring state.
-      section4:
+      applyCommutativityToNewPair:
         config:
           id: '41655676-1ece-5a8d-8c13-d67636108a17'
-          slug: 'section4'
+          slug: 'applyCommutativityToNewPair'
           type: 'content'
           params: {}
           locale:
@@ -430,10 +430,10 @@ config:
               en: 'A New Pair: Four and Seven'
           content:
             items:
-              text1:
+              predictFourPlusSeven:
                 config:
                   id: '4347c327-cff8-512c-8482-4327dd51cd7a'
-                  slug: 'text1'
+                  slug: 'predictFourPlusSeven'
                   type: 'text'
                   params: {}
                   locale:
@@ -441,10 +441,10 @@ config:
                       en: 'Four counters plus seven makes how many? Will seven plus four have the same total?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              reverseFourAndSeven:
                 config:
                   id: '4685aa98-8217-57d5-b59d-2a9848ab1233'
-                  slug: 'scene1'
+                  slug: 'reverseFourAndSeven'
                   type: 'scene'
                   params: {}
                   locale:
@@ -515,10 +515,10 @@ config:
                     Existing Lesson Scene resources can render generic Scene components. **Addend Swap Workbench is proposed, not implemented**; requires editor-approved Methodologist Brief, then separate Content/Scene approvals, self-contained prop-free React entrypoints and own tests. Coding Agent handles genuine locale integration and offline delivery. Assessment Architect separately owns scored questions. Editorial decision: Avoid repeating an array-rotation example, which belongs to multiplication commutativity. This lesson concerns addition with two actual disjoint quantities and preserves their interpretation.
                   purpose: 'A New Pair: Four and Seven'
                   productionNotes: 'Source Scene addendSwapWorkbench.scene-spec.md; independent placement for A New Pair: Four and Seven. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainElevenInEitherOrder:
                 config:
                   id: '920d7745-6201-58d6-8c6f-f745b7516b58'
-                  slug: 'markdown1'
+                  slug: 'explainElevenInEitherOrder'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -526,7 +526,7 @@ config:
                       en: 'There are eleven counters in both orders. We can choose whichever addend to count first; the sum is eleven.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['predictFourPlusSeven', 'reverseFourAndSeven', 'explainElevenInEitherOrder']
         production:
           purpose: 'A New Pair: Four and Seven'
           productionNotes: |-
@@ -551,7 +551,8 @@ config:
             **Proposed unlocked Note:** “Swapping two addends keeps their sum the same.”, proposed once the corresponding mathematical model and reasoning are presented; planned only.
 
             **Implementation dependencies:** Proposed self-contained prop-free entry, no new resource type, Quiz config, invented Note event or scoring state.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order:
+      ['combineThreeAndFiveCounters', 'reverseAddendOrder', 'distinguishSwapFromAdding', 'applyCommutativityToNewPair']
   flashcards:
     items: {}
     order: []

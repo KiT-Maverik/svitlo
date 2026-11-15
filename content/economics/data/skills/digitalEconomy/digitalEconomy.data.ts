@@ -38,11 +38,14 @@ export const digitalEconomy_SkillDomain_Data = defineSkillDomain({
     kk: 'Цифрлық экономика',
     qm: 'Raqamlı iqtisat',
   },
-  groups: [
-    digitalProducts_SkillGroup_Data,
-    financialTechnology_SkillGroup_Data,
-    platformsAndNetworkEffects_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      digitalProducts: digitalProducts_SkillGroup_Data,
+      financialTechnology: financialTechnology_SkillGroup_Data,
+      platformsAndNetworkEffects: platformsAndNetworkEffects_SkillGroup_Data,
+    },
+    order: ['digitalProducts', 'financialTechnology', 'platformsAndNetworkEffects'],
+  },
   description: {
     methodological:
       'Digital products and platforms change reproduction costs, market access, competition, and demand for labor. The focus is their economic mechanisms, not software implementation.',

@@ -41,12 +41,20 @@ export const personalIdentity_SkillGroup_Data = defineSkillGroup({
     kk: 'Жеке тұлғалық бірегейлік',
     qm: 'Şahsiy kimlik',
   },
-  skills: [
-    analyzeAPersonhoodCriterion_Skill_Data,
-    compareBodilyAndPsychologicalContinuityAccounts_Skill_Data,
-    distinguishPersonalIdentityFromSimilarity_Skill_Data,
-    evaluateTheRoleOfMemoryInPersonalIdentity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAPersonhoodCriterion: analyzeAPersonhoodCriterion_Skill_Data,
+      compareBodilyAndPsychologicalContinuityAccounts: compareBodilyAndPsychologicalContinuityAccounts_Skill_Data,
+      distinguishPersonalIdentityFromSimilarity: distinguishPersonalIdentityFromSimilarity_Skill_Data,
+      evaluateTheRoleOfMemoryInPersonalIdentity: evaluateTheRoleOfMemoryInPersonalIdentity_Skill_Data,
+    },
+    order: [
+      'analyzeAPersonhoodCriterion',
+      'compareBodilyAndPsychologicalContinuityAccounts',
+      'distinguishPersonalIdentityFromSimilarity',
+      'evaluateTheRoleOfMemoryInPersonalIdentity',
+    ],
+  },
   description: {
     methodological:
       'The self may be characterized by bodily, psychological, narrative, or relational continuity. The question is what makes someone the same person, not how memory works empirically.',

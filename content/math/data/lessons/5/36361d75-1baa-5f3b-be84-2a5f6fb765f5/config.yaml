@@ -21,10 +21,10 @@ config:
       en: 'One Part Has a Name'
   section:
     items:
-      section1AFairPieceNotJustAPiece:
+      requireEqualFractionParts:
         config:
           id: '0e170ac6-ac59-8630-8311-97cac15fdb3c'
-          slug: 'section1AFairPieceNotJustAPiece'
+          slug: 'requireEqualFractionParts'
           type: 'content'
           params: {}
           locale:
@@ -34,10 +34,10 @@ config:
               en: 'A fair piece, not just a piece'
           content:
             items:
-              section1Text1:
+              compareEqualUnequalThirds:
                 config:
                   id: '0aed469c-738e-8921-8b13-4f753270c0c8'
-                  slug: 'section1Text1'
+                  slug: 'compareEqualUnequalThirds'
                   type: 'text'
                   params: {}
                   locale:
@@ -46,10 +46,10 @@ config:
                 production:
                   purpose: 'Legacy text block of A fair piece, not just a piece; provisional draft.'
                   specification: '1. **`text`** (supported Resource type) — “We can split this strip into three parts. Do the parts all have to be the same size before we name one third?” Ask for a prediction; do not reveal the label yet.'
-              scene1Block2:
+              exploreFractionPartitions:
                 config:
                   id: 'c5757655-7664-857c-8cff-12834fee21aa'
-                  slug: 'scene1Block2'
+                  slug: 'exploreFractionPartitions'
                   type: 'scene'
                   params: {}
                   locale:
@@ -135,10 +135,10 @@ config:
 
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset A: one 12-unit strip. Toggle a 4+4+4 split versus a 2+3+7 split; select one part and compare its unit-square count with the others.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section1Markdown3:
+              explainFairThirds:
                 config:
                   id: 'e7ed1c4c-be93-84ac-8b73-bc04c20db4e4'
-                  slug: 'section1Markdown3'
+                  slug: 'explainFairThirds'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -148,9 +148,9 @@ config:
                   purpose: 'Legacy markdown block of A fair piece, not just a piece; provisional draft.'
                   specification: '3. **`markdown`** (supported Resource type) — “The three equal 4-unit pieces make thirds of the same whole. Three unequal pieces do not. A fraction needs equal parts of one chosen whole.”'
             order:
-              - 'section1Text1'
-              - 'scene1Block2'
-              - 'section1Markdown3'
+              - 'compareEqualUnequalThirds'
+              - 'exploreFractionPartitions'
+              - 'explainFairThirds'
         production:
           purpose: 'A fair piece, not just a piece'
           pedagogicalIntent: 'A fair piece, not just a piece'
@@ -178,10 +178,10 @@ config:
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
 
-      section2TheNumberForOneOfTheParts:
+      readUnitFractionNotation:
         config:
           id: '151d3467-ee5b-8667-8472-d0689f346268'
-          slug: 'section2TheNumberForOneOfTheParts'
+          slug: 'readUnitFractionNotation'
           type: 'content'
           params: {}
           locale:
@@ -191,10 +191,10 @@ config:
               en: 'The number for one of the parts'
           content:
             items:
-              section2Text1:
+              identifyHalvesThirdsQuarters:
                 config:
                   id: '6acf02e9-7a16-8a5d-83b5-ab35b36c2381'
-                  slug: 'section2Text1'
+                  slug: 'identifyHalvesThirdsQuarters'
                   type: 'text'
                   params: {}
                   locale:
@@ -203,10 +203,10 @@ config:
                 production:
                   purpose: 'Legacy text block of The number for one of the parts; provisional draft.'
                   specification: '1. **`text`** (supported Resource type) — “One of two equal pieces is one half: 1/2. One of three is one third: 1/3. One of four is one quarter: 1/4. Why does the lower number change?”'
-              scene2Block2:
+              modelUnitFractions:
                 config:
                   id: 'fa6958bf-32c4-84d9-87c8-9ae55f652683'
-                  slug: 'scene2Block2'
+                  slug: 'modelUnitFractions'
                   type: 'scene'
                   params: {}
                   locale:
@@ -292,10 +292,10 @@ config:
 
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset B: choose 2, 3 or 4 equal sections of the same 12-unit strip; reveal a selected single section and a fraction card only after the learner predicts its reading.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section2Markdown3:
+              explainNumeratorOne:
                 config:
                   id: 'aa9ca6ed-6375-8b39-8e0d-66ada7e41b79'
-                  slug: 'section2Markdown3'
+                  slug: 'explainNumeratorOne'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -305,9 +305,9 @@ config:
                   purpose: 'Legacy markdown block of The number for one of the parts; provisional draft.'
                   specification: '3. **`markdown`** (supported Resource type) — “In 1/4, the 4 counts equal parts in the whole. The 1 means we chose one of them. Four equal parts still make one whole.”'
             order:
-              - 'section2Text1'
-              - 'scene2Block2'
-              - 'section2Markdown3'
+              - 'identifyHalvesThirdsQuarters'
+              - 'modelUnitFractions'
+              - 'explainNumeratorOne'
         production:
           purpose: 'The number for one of the parts'
           pedagogicalIntent: 'The number for one of the parts'
@@ -335,10 +335,10 @@ config:
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
 
-      section3CanOneQuarterContainThreeCounters:
+      interpretFractionOfCollection:
         config:
           id: '1feb05c1-ae83-8148-8c03-010f2d6b0586'
-          slug: 'section3CanOneQuarterContainThreeCounters'
+          slug: 'interpretFractionOfCollection'
           type: 'content'
           params: {}
           locale:
@@ -348,10 +348,10 @@ config:
               en: 'Can one quarter contain three counters?'
           content:
             items:
-              section3Markdown1:
+              partitionTwelveCounters:
                 config:
                   id: 'ddad0c6b-c136-8805-8fae-a51803358176'
-                  slug: 'section3Markdown1'
+                  slug: 'partitionTwelveCounters'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -360,10 +360,10 @@ config:
                 production:
                   purpose: 'Legacy markdown block of Can one quarter contain three counters?; provisional draft.'
                   specification: '1. **`markdown`** (supported Resource type) — “Twelve counters are one whole collection. Put them into four equal groups. You will not get a single counter in each group.”'
-              scene3Block2:
+              modelOneQuarterOfTwelve:
                 config:
                   id: '3d667e24-da18-8916-84a2-7f6513dca857'
-                  slug: 'scene3Block2'
+                  slug: 'modelOneQuarterOfTwelve'
                   type: 'scene'
                   params: {}
                   locale:
@@ -449,10 +449,10 @@ config:
 
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset C: 12 numbered counters. Choose four grouping trays and put three counters in each; select exactly one group and show the label 1/4 of the 12-counter collection.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section3Text3:
+              explainThreeCounterQuarter:
                 config:
                   id: '3fbc3fee-a120-8aca-8d1a-8c96b38659b2'
-                  slug: 'section3Text3'
+                  slug: 'explainThreeCounterQuarter'
                   type: 'text'
                   params: {}
                   locale:
@@ -462,9 +462,9 @@ config:
                   purpose: 'Legacy text block of Can one quarter contain three counters?; provisional draft.'
                   specification: '3. **`text`** (supported Resource type) — “One quarter of this collection is one of four equal groups. Each group contains three counters. The whole is twelve counters—not just one counter.”'
             order:
-              - 'section3Markdown1'
-              - 'scene3Block2'
-              - 'section3Text3'
+              - 'partitionTwelveCounters'
+              - 'modelOneQuarterOfTwelve'
+              - 'explainThreeCounterQuarter'
         production:
           purpose: 'Can one quarter contain three counters?'
           pedagogicalIntent: 'Can one quarter contain three counters?'
@@ -492,10 +492,10 @@ config:
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
 
-      section4NewWholeIndependentExplanation:
+      readFractionInNewWhole:
         config:
           id: '06618cae-1a6c-8fe1-8c3c-bc8ff0311fc0'
-          slug: 'section4NewWholeIndependentExplanation'
+          slug: 'readFractionInNewWhole'
           type: 'content'
           params: {}
           locale:
@@ -505,10 +505,10 @@ config:
               en: 'New whole, independent explanation'
           content:
             items:
-              section4Text1:
+              describeShadedRibbon:
                 config:
                   id: 'f78ba7dd-7df4-8f25-8587-9e985ff88660'
-                  slug: 'section4Text1'
+                  slug: 'describeShadedRibbon'
                   type: 'text'
                   params: {}
                   locale:
@@ -517,10 +517,10 @@ config:
                 production:
                   purpose: 'Legacy text block of New whole, independent explanation; provisional draft.'
                   specification: '1. **`text`** (supported Resource type) — “A new ribbon is divided into four equal lengths. One length is shaded. Write its fraction, then explain how you checked it.”'
-              scene4Block2:
+              inspectQuarterModel:
                 config:
                   id: 'f1d9b1b9-083c-8bf6-8a79-aca6139c66e9'
-                  slug: 'scene4Block2'
+                  slug: 'inspectQuarterModel'
                   type: 'scene'
                   params: {}
                   locale:
@@ -606,10 +606,10 @@ config:
 
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset D: a ribbon of eight congruent squares split into four equal two-square lengths. Choose 1/2, 1/3 or 1/4 and optionally request a hint; do not display the fraction before prediction.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section4Markdown3:
+              explainOneOfFourEqualParts:
                 config:
                   id: '8fa7c1e9-4cc5-855b-87b7-25a244d5a110'
-                  slug: 'section4Markdown3'
+                  slug: 'explainOneOfFourEqualParts'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -619,9 +619,9 @@ config:
                   purpose: 'Legacy markdown block of New whole, independent explanation; provisional draft.'
                   specification: '3. **`markdown`** (supported Resource type) — “There are four equal lengths in this ribbon. One is selected. So the shaded part is 1/4, one quarter of this ribbon.”'
             order:
-              - 'section4Text1'
-              - 'scene4Block2'
-              - 'section4Markdown3'
+              - 'describeShadedRibbon'
+              - 'inspectQuarterModel'
+              - 'explainOneOfFourEqualParts'
         production:
           purpose: 'New whole, independent explanation'
           pedagogicalIntent: 'New whole, independent explanation'
@@ -650,10 +650,10 @@ config:
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
 
     order:
-      - 'section1AFairPieceNotJustAPiece'
-      - 'section2TheNumberForOneOfTheParts'
-      - 'section3CanOneQuarterContainThreeCounters'
-      - 'section4NewWholeIndependentExplanation'
+      - 'requireEqualFractionParts'
+      - 'readUnitFractionNotation'
+      - 'interpretFractionOfCollection'
+      - 'readFractionInNewWhole'
   flashcards:
     items: {}
     order: []

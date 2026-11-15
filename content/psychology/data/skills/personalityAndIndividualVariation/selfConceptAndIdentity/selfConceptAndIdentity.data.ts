@@ -41,12 +41,15 @@ export const selfConceptAndIdentity_SkillGroup_Data = defineSkillGroup({
     kk: 'Мен-тұжырымдамасы және бірегейлік',
     qm: 'Öz añlayışı ve kimlik',
   },
-  skills: [
-    identityAndSocialContext_Skill_Data,
-    selfConcept_Skill_Data,
-    selfEsteem_Skill_Data,
-    selfServingAttributions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      identityAndSocialContext: identityAndSocialContext_Skill_Data,
+      selfConcept: selfConcept_Skill_Data,
+      selfEsteem: selfEsteem_Skill_Data,
+      selfServingAttributions: selfServingAttributions_Skill_Data,
+    },
+    order: ['identityAndSocialContext', 'selfConcept', 'selfEsteem', 'selfServingAttributions'],
+  },
   description: {
     methodological:
       'Accounts people hold about themselves are shaped through experience and relationships and may not match external observations.',

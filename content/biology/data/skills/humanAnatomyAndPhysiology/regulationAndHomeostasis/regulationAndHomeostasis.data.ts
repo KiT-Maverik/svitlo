@@ -36,7 +36,13 @@ export const regulationAndHomeostasis_SkillGroup_Data = defineSkillGroup({
     kk: 'Реттелу және гомеостаз',
     qm: 'İdare etüv ve gomeostaz',
   },
-  skills: [explainEndocrineRegulation_Skill_Data, explainMaintenanceOfHomeostasis_Skill_Data],
+  skills: {
+    items: {
+      explainEndocrineRegulation: explainEndocrineRegulation_Skill_Data,
+      explainMaintenanceOfHomeostasis: explainMaintenanceOfHomeostasis_Skill_Data,
+    },
+    order: ['explainEndocrineRegulation', 'explainMaintenanceOfHomeostasis'],
+  },
   description: {
     methodological:
       'Nervous and hormonal signals coordinate organ functions, while feedback mechanisms maintain key internal conditions within viable ranges.',

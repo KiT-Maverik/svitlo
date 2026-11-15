@@ -40,11 +40,14 @@ export const digitalProducts_SkillGroup_Data = defineSkillGroup({
     kk: 'Цифрлық өнімдер',
     qm: 'Raqamlı mahsullar',
   },
-  skills: [
-    economicsOfPersonalData_Skill_Data,
-    marginalCostOfDigitalCopying_Skill_Data,
-    subscriptionsVersusOneTimePurchases_Skill_Data,
-  ],
+  skills: {
+    items: {
+      economicsOfPersonalData: economicsOfPersonalData_Skill_Data,
+      marginalCostOfDigitalCopying: marginalCostOfDigitalCopying_Skill_Data,
+      subscriptionsVersusOneTimePurchases: subscriptionsVersusOneTimePurchases_Skill_Data,
+    },
+    order: ['economicsOfPersonalData', 'marginalCostOfDigitalCopying', 'subscriptionsVersusOneTimePurchases'],
+  },
   description: {
     methodological:
       'Information goods often involve large initial costs and low costs of reproduction, enabling different business models.',

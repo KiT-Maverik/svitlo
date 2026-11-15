@@ -43,14 +43,24 @@ export const dissolutionAndSolubility_SkillGroup_Data = defineSkillGroup({
     kk: 'Еру және ерігіштік',
     qm: 'Erime ve eriyicilik',
   },
-  skills: [
-    dissolving_Skill_Data,
-    gasSolubilityAndPressure_Skill_Data,
-    saturation_Skill_Data,
-    solubility_Skill_Data,
-    solventSoluteCompatibility_Skill_Data,
-    temperatureAndSolubility_Skill_Data,
-  ],
+  skills: {
+    items: {
+      dissolving: dissolving_Skill_Data,
+      gasSolubilityAndPressure: gasSolubilityAndPressure_Skill_Data,
+      saturation: saturation_Skill_Data,
+      solubility: solubility_Skill_Data,
+      solventSoluteCompatibility: solventSoluteCompatibility_Skill_Data,
+      temperatureAndSolubility: temperatureAndSolubility_Skill_Data,
+    },
+    order: [
+      'dissolving',
+      'gasSolubilityAndPressure',
+      'saturation',
+      'solubility',
+      'solventSoluteCompatibility',
+      'temperatureAndSolubility',
+    ],
+  },
   description: {
     methodological: 'Dissolution reflects competing interactions and may depend strongly on substance and conditions.',
     frontend: {

@@ -16,10 +16,10 @@ config:
       en: 'Follow and Explain a Route'
   section:
     items:
-      section1:
+      distinguishTurnsFromSteps:
         config:
           id: '9114e125-99c7-45a2-ba8f-008342724fd0'
-          slug: 'section1'
+          slug: 'distinguishTurnsFromSteps'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'A Turn Is Not a Step'
           content:
             items:
-              text1:
+              askTurnWithoutMoving:
                 config:
                   id: '4b22f627-32c5-46c0-8d82-e305767a5c86'
-                  slug: 'text1'
+                  slug: 'askTurnWithoutMoving'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'A Turn Is Not a Step: text resource at position 1 (source provisional)'
                   specification: '1. **text — currently rendered:** "Here is an explorer. The arrow on its head points up. If it turns right, does it move into another square, or only face another way? Choose, then check."'
-              scene2:
+              rotateExplorerInPlace:
                 config:
                   id: 'a796f851-3831-4688-a57d-842bc5c9162a'
-                  slug: 'scene2'
+                  slug: 'rotateExplorerInPlace'
                   type: 'scene'
                   params: {}
                   locale:
@@ -151,10 +151,10 @@ config:
 
                     2. **scene — Resource type and renderer exist; proposed new Scene:** Route Explorer (full Scene specification embedded in this config.yaml), stage A, preset start (2, 2) facing toward map top. Two prediction alternatives: "Same square, new direction" / "Moves one square". Clear "Show turn" reveals arrow pointing toward map right while explorer stays (2, 2).
                   productionNotes: 'Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainTurnVersusStep:
                 config:
                   id: 'cb28d71f-122c-4d94-b626-4085edf3151a'
-                  slug: 'markdown3'
+                  slug: 'explainTurnVersusStep'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -163,7 +163,7 @@ config:
                 production:
                   purpose: 'A Turn Is Not a Step: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — currently rendered:** "A **turn** changes the direction we face. A **forward step** changes our square. Turning right from ''facing top'' makes us face ''toward the map''s right edge''. We have not moved yet."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askTurnWithoutMoving', 'rotateExplorerInPlace', 'explainTurnVersusStep']
         production:
           purpose: 'Distinguish a change of heading from a change of position.'
           pedagogicalIntent: 'Original Section 1: A Turn Is Not a Step (provisional draft)'
@@ -178,10 +178,10 @@ config:
             - **Explanatory feedback:** If the learner predicts movement: "Look at the outline of the square. The explorer is still on it; only its arrow turned." If they expect no movement: "Yes. A turn changes the arrow, not the square." Invite inspection rather than marking a wrong answer as failure.
             - **Access and pacing:** Large labeled turn and step controls; textual ledger "Square unchanged / facing right"; a no-animation result for reduced motion.
             - **Proposed Note:** After the turn reveal, "Turning changes direction, not position" (planned, no Note API).
-      section2:
+      followOrderedRoute:
         config:
           id: '8e14dc6c-98c7-440f-bb8f-021645725489'
-          slug: 'section2'
+          slug: 'followOrderedRoute'
           type: 'content'
           params: {}
           locale:
@@ -191,10 +191,10 @@ config:
               en: 'Follow One Instruction at a Time'
           content:
             items:
-              text1:
+              promptThreeCommands:
                 config:
                   id: '4a53be02-dc28-4941-9eff-0a64fa6d114b'
-                  slug: 'text1'
+                  slug: 'promptThreeCommands'
                   type: 'text'
                   params: {}
                   locale:
@@ -203,10 +203,10 @@ config:
                 production:
                   purpose: 'Follow One Instruction at a Time: text resource at position 1 (source provisional)'
                   specification: '1. **text — currently rendered:** "Start in the middle, facing the top of the map. We have three instructions. Where will you be after each one? You can look back at an earlier step."'
-              scene2:
+              traceThreeCommands:
                 config:
                   id: '4815505e-368f-497f-a6fa-2ac4859fd30d'
-                  slug: 'scene2'
+                  slug: 'traceThreeCommands'
                   type: 'scene'
                   params: {}
                   locale:
@@ -313,10 +313,10 @@ config:
 
                     2. **scene — proposed:** Route Explorer (full Scene specification embedded in this config.yaml), stage B, starting at (2, 2), heading north. Command tape: **Forward one → Turn right → Forward one**. Reveal one at a time; action log must show:
                   productionNotes: 'Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainForwardAfterTurn:
                 config:
                   id: '0451b4b6-1738-4561-bf9c-67b823364433'
-                  slug: 'markdown3'
+                  slug: 'explainForwardAfterTurn'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -325,7 +325,7 @@ config:
                 production:
                   purpose: 'Follow One Instruction at a Time: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — currently rendered:** "We walked one square up, turned on the spot, then walked one square to the map''s right. The **second forward** used our new direction. The order helped decide where we arrived."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['promptThreeCommands', 'traceThreeCommands', 'explainForwardAfterTurn']
         production:
           purpose: 'Track ordered commands and update orientation before moving.'
           pedagogicalIntent: 'Original Section 2: Follow One Instruction at a Time (provisional draft)'
@@ -343,10 +343,10 @@ config:
             - **Learner action and observation:** Predict the end square before pressing "Run next command", inspect the arrow at each step, and choose "Replay" to verify. A stepped **Undo** returns exactly one command's previous state (including its heading); replay from reset should be deterministic.
             - **Explanatory feedback:** If learner predicts (2, 0): "That would be moving forward twice without changing direction. Our second instruction turned us right." If learner guesses (3, 2): "That would forget the first upward step. Follow the log from the start." A correct explanation names both location **and** heading; a numeric coordinate answer is not required from children.
             - **Access:** Text log is primary, not a decorative transcript; every command and resulting state has a readable label. Fixed map directions never change with browser text direction.
-      section3:
+      testStartingOrientation:
         config:
           id: '8f14ddff-97c7-427c-bc8f-03a9447252f6'
-          slug: 'section3'
+          slug: 'testStartingOrientation'
           type: 'content'
           params: {}
           locale:
@@ -356,10 +356,10 @@ config:
               en: 'Same Commands, Different Ending?'
           content:
             items:
-              text1:
+              askDifferentStartingDirection:
                 config:
                   id: 'f00e5091-f968-4772-a33f-c26bf17ae644'
-                  slug: 'text1'
+                  slug: 'askDifferentStartingDirection'
                   type: 'text'
                   params: {}
                   locale:
@@ -368,10 +368,10 @@ config:
                 production:
                   purpose: 'Same Commands, Different Ending?: text resource at position 1 (source provisional)'
                   specification: '1. **text — currently rendered:** "What if we use the same three instructions, but start by facing the **right edge** of the map? Do we get to the same square? Decide before you run the route."'
-              scene2:
+              compareRouteOutcomes:
                 config:
                   id: '76d1ef2f-7aa5-4bae-a94d-0d2d6deff5a4'
-                  slug: 'scene2'
+                  slug: 'compareRouteOutcomes'
                   type: 'scene'
                   params: {}
                   locale:
@@ -478,10 +478,10 @@ config:
 
                     2. **scene — proposed:** Route Explorer (full Scene specification embedded in this config.yaml), stage C. Same start (2, 2), heading **east**. Commands still Forward → Right → Forward. Exact progression: (3, 2), east → (3, 2), south → **(3, 3), south**. Show previous path faintly but keep the second path and spoken/text descriptions independently distinguishable. Next show **Right → Forward → Forward** from the original north-facing (2, 2), ending **(4, 2), east**.
                   productionNotes: 'Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainOrientationMatters:
                 config:
                   id: '77242bd1-6e2e-48c6-a701-bd53fc240818'
-                  slug: 'markdown3'
+                  slug: 'explainOrientationMatters'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -490,7 +490,7 @@ config:
                 production:
                   purpose: 'Same Commands, Different Ending?: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — currently rendered:** "Starting direction matters: one route finished toward the top-right, the other toward the bottom-right. Order matters too: turning _before_ both forward steps sent us across the row. We used the same kinds of moves, but not in the same order."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askDifferentStartingDirection', 'compareRouteOutcomes', 'explainOrientationMatters']
         production:
           purpose: 'Expose dependency on the initial heading and instruction order.'
           pedagogicalIntent: 'Original Section 3: Same Commands, Different Ending? (provisional draft)'
@@ -504,10 +504,10 @@ config:
             - **Misconception challenge:** Ask if the route instruction tape is a bag of three tiles that can be shuffled. Feedback: "Try them in a different order and look at the destination. A route is a sequence."
             - **Boundary:** Swapping command order **may** change the endpoint, not must change it for every possible command set. Do not state a universal theorem based on these examples.
             - **Proposed Note:** After counterexample, "A route needs a starting direction and instructions in order" (planned).
-      section4:
+      givePreciseRouteDirections:
         config:
           id: '8c14d946-96c7-40e9-bd8f-053c477257af'
-          slug: 'section4'
+          slug: 'givePreciseRouteDirections'
           type: 'content'
           params: {}
           locale:
@@ -517,10 +517,10 @@ config:
               en: 'Tell Someone How to Get There'
           content:
             items:
-              text1:
+              promptTargetSquare:
                 config:
                   id: 'e6e6c6b4-2fa9-4d2b-93b2-87b250f49461'
-                  slug: 'text1'
+                  slug: 'promptTargetSquare'
                   type: 'text'
                   params: {}
                   locale:
@@ -529,10 +529,10 @@ config:
                 production:
                   purpose: 'Tell Someone How to Get There: text resource at position 1 (source provisional)'
                   specification: '1. **text — currently rendered:** "A new explorer starts in the left part of the map, facing up. The target is one square up and one square to its right. Can you give a short set of commands? Say what each command does."'
-              scene2:
+              planRouteCommands:
                 config:
                   id: 'bb070bf4-4641-43ed-81e9-36eed88a8e9f'
-                  slug: 'scene2'
+                  slug: 'planRouteCommands'
                   type: 'scene'
                   params: {}
                   locale:
@@ -639,10 +639,10 @@ config:
 
                     2. **scene — proposed:** Route Explorer (full Scene specification embedded in this config.yaml), stage D. Start (1, 3), facing north; target (2, 2). Author short instruction tape, maximum six steps, with accessible insert/replace/remove/reorder button controls. Suggested efficient solution **Forward → Turn right → Forward**. Reveal result (2, 2), facing east. A different valid route may be accepted if it reaches the same **square** when the prompt only specifies destination, not final heading; preserve exact command simulation rather than matching one memorized string.
                   productionNotes: 'Scene routeExplorer.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              verifyRouteAndReset:
                 config:
                   id: '99161628-719f-4e13-9d64-2d067b26f701'
-                  slug: 'markdown3'
+                  slug: 'verifyRouteAndReset'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -651,7 +651,7 @@ config:
                 production:
                   purpose: 'Tell Someone How to Get There: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — currently rendered:** "Check the **start**, the **arrow** and **each command**. If the explorer arrives elsewhere, look at the first instruction where the route changed. You can fix that step and try again."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['promptTargetSquare', 'planRouteCommands', 'verifyRouteAndReset']
         production:
           purpose: 'Independent transfer: supply and verify a short route, diagnose a wrong turn.'
           pedagogicalIntent: 'Original Section 4: Tell Someone How to Get There (provisional draft)'
@@ -664,7 +664,7 @@ config:
               3. **markdown — currently rendered:** "Check the **start**, the **arrow** and **each command**. If the explorer arrives elsewhere, look at the first instruction where the route changed. You can fix that step and try again."
             - **Feedback:** If a route includes a blocked edge move, explain which square is out of bounds, do not silently wrap. If an alternative arrives at the goal with a different final heading, "You reached the target. You are facing another way; that is fine because we only asked for the square." Offer a distinct optional challenge to finish facing east, clearly labeled as optional.
             - **Independent practice handoff:** The child can verbally teach a short route to a person using two visible reference landmarks. No scoring or mastery decision.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['distinguishTurnsFromSteps', 'followOrderedRoute', 'testStartingOrientation', 'givePreciseRouteDirections']
   flashcards:
     items: {}
     order: []

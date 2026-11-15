@@ -41,12 +41,20 @@ export const architecturalSpace_SkillGroup_Data = defineSkillGroup({
     kk: 'Сәулеттік кеңістік',
     qm: 'Mimariy meydan',
   },
-  skills: [
-    analyzeBuildingCirculation_Skill_Data,
-    analyzeSpatialProportions_Skill_Data,
-    composeASpatialSequence_Skill_Data,
-    readArchitecturalPlans_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeBuildingCirculation: analyzeBuildingCirculation_Skill_Data,
+      analyzeSpatialProportions: analyzeSpatialProportions_Skill_Data,
+      composeASpatialSequence: composeASpatialSequence_Skill_Data,
+      readArchitecturalPlans: readArchitecturalPlans_Skill_Data,
+    },
+    order: [
+      'analyzeBuildingCirculation',
+      'analyzeSpatialProportions',
+      'composeASpatialSequence',
+      'readArchitecturalPlans',
+    ],
+  },
   description: {
     methodological: 'Proportion, enclosure and movement shape the sensory experience of a building.',
     frontend: {

@@ -42,13 +42,22 @@ export const questionsAndHypotheses_SkillGroup_Data = defineSkillGroup({
     kk: 'Сұрақтар мен гипотезалар',
     qm: 'Sualler ve faraziyeler',
   },
-  skills: [
-    compareObservationalAndExperimentalResearch_Skill_Data,
-    deriveAPredictionFromAHypothesis_Skill_Data,
-    distinguishObservationFromInterpretation_Skill_Data,
-    formulateAnEmpiricallyInvestigableQuestion_Skill_Data,
-    formulateATestableHypothesis_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareObservationalAndExperimentalResearch: compareObservationalAndExperimentalResearch_Skill_Data,
+      deriveAPredictionFromAHypothesis: deriveAPredictionFromAHypothesis_Skill_Data,
+      distinguishObservationFromInterpretation: distinguishObservationFromInterpretation_Skill_Data,
+      formulateAnEmpiricallyInvestigableQuestion: formulateAnEmpiricallyInvestigableQuestion_Skill_Data,
+      formulateATestableHypothesis: formulateATestableHypothesis_Skill_Data,
+    },
+    order: [
+      'compareObservationalAndExperimentalResearch',
+      'deriveAPredictionFromAHypothesis',
+      'distinguishObservationFromInterpretation',
+      'formulateAnEmpiricallyInvestigableQuestion',
+      'formulateATestableHypothesis',
+    ],
+  },
   description: {
     methodological:
       'Research design starts with propositions that can be addressed using evidence. Questions, hypotheses, predictions, and observation serve different epistemic roles.',

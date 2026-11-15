@@ -38,7 +38,14 @@ export const paintingAndColor_SkillDomain_Data = defineSkillDomain({
     kk: 'Кескіндеме және түс',
     qm: 'Resim ve tüs',
   },
-  groups: [colorPractice_SkillGroup_Data, paintingTechniques_SkillGroup_Data, pictorialComposition_SkillGroup_Data],
+  groups: {
+    items: {
+      colorPractice: colorPractice_SkillGroup_Data,
+      paintingTechniques: paintingTechniques_SkillGroup_Data,
+      pictorialComposition: pictorialComposition_SkillGroup_Data,
+    },
+    order: ['colorPractice', 'paintingTechniques', 'pictorialComposition'],
+  },
   description: {
     methodological:
       'Painting uses pigment and surfaces to organize color, form and expression. The material behavior of paint and pictorial composition create distinct competencies.',

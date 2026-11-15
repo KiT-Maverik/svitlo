@@ -20,10 +20,10 @@ config:
       en: 'How Many Are There?'
   section:
     items:
-      section1FourShells:
+      countWholeCollection:
         config:
           id: 'ab56191b-ebd5-8a8b-8e92-4d06be116e96'
-          slug: 'section1FourShells'
+          slug: 'countWholeCollection'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Four shells'
           content:
             items:
-              section1Text1:
+              countFourShells:
                 config:
                   id: '6c086dec-d0ac-8100-8c89-039bf02d5f77'
-                  slug: 'section1Text1'
+                  slug: 'countFourShells'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Four shells; provisional draft.'
                   specification: '**text / learner invitation:** “Count the shells. How many shells are there in all?”'
-              scene1Block2:
+              modelCardinalityOfSet:
                 config:
                   id: '10ac9d54-1445-82b5-8977-91282d9eeec9'
-                  slug: 'scene1Block2'
+                  slug: 'modelCardinalityOfSet'
                   type: 'scene'
                   params: {}
                   locale:
@@ -136,10 +136,10 @@ config:
 
                     **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 1. Count four shells one by one, then answer without recounting. Child may predict, inspect, revise or reveal a full worked model.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section1Markdown3:
+              explainLastCountWord:
                 config:
                   id: 'a72778b0-a82a-8404-8400-9e95fb0db221'
-                  slug: 'section1Markdown3'
+                  slug: 'explainLastCountWord'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -149,9 +149,9 @@ config:
                   purpose: 'Legacy markdown block of Four shells; provisional draft.'
                   specification: '**markdown / explanation:** The last count word, four, describes all four shells. Example: One, two, three, four → four shells in all.'
             order:
-              - 'section1Text1'
-              - 'scene1Block2'
-              - 'section1Markdown3'
+              - 'countFourShells'
+              - 'modelCardinalityOfSet'
+              - 'explainLastCountWord'
         production:
           purpose: 'Four shells'
           pedagogicalIntent: 'Four shells'
@@ -170,10 +170,10 @@ config:
 
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
 
-      section2SpreadThemApart:
+      recognizeCountConservation:
         config:
           id: '526fc91c-3a5d-8978-80d3-523cc8e17258'
-          slug: 'section2SpreadThemApart'
+          slug: 'recognizeCountConservation'
           type: 'content'
           params: {}
           locale:
@@ -183,10 +183,10 @@ config:
               en: 'Spread them apart'
           content:
             items:
-              section2Text1:
+              predictSpreadShellsCount:
                 config:
                   id: '3b80c954-eac8-8c22-8b48-e9ea7a00cc9c'
-                  slug: 'section2Text1'
+                  slug: 'predictSpreadShellsCount'
                   type: 'text'
                   params: {}
                   locale:
@@ -195,10 +195,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Spread them apart; provisional draft.'
                   specification: '**text / learner invitation:** “There are four shells close together. Will they become more if spaced out?”'
-              scene2Block2:
+              rearrangeFourShells:
                 config:
                   id: '3fc348cd-2eea-87df-8299-584ea3b0475c'
-                  slug: 'scene2Block2'
+                  slug: 'rearrangeFourShells'
                   type: 'scene'
                   params: {}
                   locale:
@@ -286,10 +286,10 @@ config:
 
                     **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 2. Predict, spread four shells, and optionally recount the same identified objects. Child may predict, inspect, revise or reveal a full worked model.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section2Markdown3:
+              explainNoChangeInQuantity:
                 config:
                   id: '50942036-11e7-8a83-86e5-5b2ff796b19a'
-                  slug: 'section2Markdown3'
+                  slug: 'explainNoChangeInQuantity'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -299,9 +299,9 @@ config:
                   purpose: 'Legacy markdown block of Spread them apart; provisional draft.'
                   specification: '**markdown / explanation:** The set remains four because no shell was added or removed. Example: Four together = four spread apart.'
             order:
-              - 'section2Text1'
-              - 'scene2Block2'
-              - 'section2Markdown3'
+              - 'predictSpreadShellsCount'
+              - 'rearrangeFourShells'
+              - 'explainNoChangeInQuantity'
         production:
           purpose: 'Spread them apart'
           pedagogicalIntent: 'Spread them apart'
@@ -320,10 +320,10 @@ config:
 
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
 
-      section3EmptyBowl:
+      interpretZeroInEmptySet:
         config:
           id: '8ddaeade-2c7a-81a3-8d69-53ab1cc9d8d6'
-          slug: 'section3EmptyBowl'
+          slug: 'interpretZeroInEmptySet'
           type: 'content'
           params: {}
           locale:
@@ -333,10 +333,10 @@ config:
               en: 'Empty bowl'
           content:
             items:
-              section3Text1:
+              countEmptyBowl:
                 config:
                   id: '983d7937-58a0-8a28-863f-1111e6a2120e'
-                  slug: 'section3Text1'
+                  slug: 'countEmptyBowl'
                   type: 'text'
                   params: {}
                   locale:
@@ -345,10 +345,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Empty bowl; provisional draft.'
                   specification: '**text / learner invitation:** “How many marbles are in an empty bowl?”'
-              scene3Block2:
+              exploreAddRemoveMarble:
                 config:
                   id: '42d9ba5c-ec97-871b-8fe9-113ae1a71c7d'
-                  slug: 'scene3Block2'
+                  slug: 'exploreAddRemoveMarble'
                   type: 'scene'
                   params: {}
                   locale:
@@ -436,10 +436,10 @@ config:
 
                     **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 3. Inspect an empty bowl, add a marble, then remove it. Child may predict, inspect, revise or reveal a full worked model.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section3Markdown3:
+              explainZeroMeansNone:
                 config:
                   id: 'b7d89d68-bee3-86bc-8824-c6ccf11fbd18'
-                  slug: 'section3Markdown3'
+                  slug: 'explainZeroMeansNone'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -449,9 +449,9 @@ config:
                   purpose: 'Legacy markdown block of Empty bowl; provisional draft.'
                   specification: '**markdown / explanation:** Zero marbles in the empty bowl, one after adding, zero after removing. Example: Zero marbles means none.'
             order:
-              - 'section3Text1'
-              - 'scene3Block2'
-              - 'section3Markdown3'
+              - 'countEmptyBowl'
+              - 'exploreAddRemoveMarble'
+              - 'explainZeroMeansNone'
         production:
           purpose: 'Empty bowl'
           pedagogicalIntent: 'Empty bowl'
@@ -470,10 +470,10 @@ config:
 
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
 
-      section4APencilBox:
+      countUnseenCollection:
         config:
           id: 'dc70d75a-c1b3-82e7-8d4c-3108808fa4b5'
-          slug: 'section4APencilBox'
+          slug: 'countUnseenCollection'
           type: 'content'
           params: {}
           locale:
@@ -483,10 +483,10 @@ config:
               en: 'A pencil box'
           content:
             items:
-              section4Text1:
+              askAboutPencilsInBox:
                 config:
                   id: '9940f6f9-0585-8c83-88b3-458bb476cff1'
-                  slug: 'section4Text1'
+                  slug: 'askAboutPencilsInBox'
                   type: 'text'
                   params: {}
                   locale:
@@ -495,10 +495,10 @@ config:
                 production:
                   purpose: 'Legacy text block of A pencil box; provisional draft.'
                   specification: '**text / learner invitation:** “A friend asks how many pencils are inside. Can you tell them?”'
-              scene4Block2:
+              modelCountPencils:
                 config:
                   id: 'd4b60fc9-2681-87d9-84cf-929216f82a82'
-                  slug: 'scene4Block2'
+                  slug: 'modelCountPencils'
                   type: 'scene'
                   params: {}
                   locale:
@@ -586,10 +586,10 @@ config:
 
                     **scene / learner action:** howManyInTheSet Lab (preserved in Scene production.specification), placement 4. Independently count eight pencils in a different layout, give total with number or word choices. Child may predict, inspect, revise or reveal a full worked model.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section4Markdown3:
+              explainWholeCollectionCount:
                 config:
                   id: 'ad79ba4c-2d8b-8a72-8a68-e687ba9a76b9'
-                  slug: 'section4Markdown3'
+                  slug: 'explainWholeCollectionCount'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -599,9 +599,9 @@ config:
                   purpose: 'Legacy markdown block of A pencil box; provisional draft.'
                   specification: '**markdown / explanation:** Eight is the quantity of the whole collection. Example: Eight pencils altogether.'
             order:
-              - 'section4Text1'
-              - 'scene4Block2'
-              - 'section4Markdown3'
+              - 'askAboutPencilsInBox'
+              - 'modelCountPencils'
+              - 'explainWholeCollectionCount'
         production:
           purpose: 'A pencil box'
           pedagogicalIntent: 'A pencil box'
@@ -621,10 +621,10 @@ config:
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
 
     order:
-      - 'section1FourShells'
-      - 'section2SpreadThemApart'
-      - 'section3EmptyBowl'
-      - 'section4APencilBox'
+      - 'countWholeCollection'
+      - 'recognizeCountConservation'
+      - 'interpretZeroInEmptySet'
+      - 'countUnseenCollection'
   flashcards:
     items: {}
     order: []

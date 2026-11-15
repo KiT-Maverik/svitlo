@@ -40,13 +40,16 @@ export const optics_SkillDomain_Data = defineSkillDomain({
     kk: 'Оптика',
     qm: 'Optika',
   },
-  groups: [
-    lightAndShadows_SkillGroup_Data,
-    lightReflection_SkillGroup_Data,
-    lightSourcesAndVisibility_SkillGroup_Data,
-    refractionAndLenses_SkillGroup_Data,
-    transparency_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      lightAndShadows: lightAndShadows_SkillGroup_Data,
+      lightReflection: lightReflection_SkillGroup_Data,
+      lightSourcesAndVisibility: lightSourcesAndVisibility_SkillGroup_Data,
+      refractionAndLenses: refractionAndLenses_SkillGroup_Data,
+      transparency: transparency_SkillGroup_Data,
+    },
+    order: ['lightAndShadows', 'lightReflection', 'lightSourcesAndVisibility', 'refractionAndLenses', 'transparency'],
+  },
   description: {
     methodological:
       'Optics studies the propagation of light, image formation, and the interaction of light rays with surfaces, water, and lenses. The broader electromagnetic radiation spectrum is classified separately.',

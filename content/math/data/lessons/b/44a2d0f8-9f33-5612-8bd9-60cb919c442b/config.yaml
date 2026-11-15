@@ -20,10 +20,10 @@ config:
       en: 'Read and Draw Simple Grid Maps'
   section:
     items:
-      section1WhichSquareIsB2:
+      locateRowColumnCell:
         config:
           id: '30a742d4-1308-8b1e-84b2-eec8f71da702'
-          slug: 'section1WhichSquareIsB2'
+          slug: 'locateRowColumnCell'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Which Square Is B2?'
           content:
             items:
-              section1Text1:
+              identifyGridCoordinateB2:
                 config:
                   id: 'b5204641-c24b-8fa5-8a1c-b4c6ad779d22'
-                  slug: 'section1Text1'
+                  slug: 'identifyGridCoordinateB2'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Which Square Is B2?; provisional draft.'
                   specification: '  1. **text — existing renderer:** "Look at our little map. The letters A, B, C, D name the rows. The numbers 1, 2, 3, 4 name the columns. Where is **B2**—the second square of row B, or a line where the labels cross?"'
-              scene1Block2:
+              exploreRowColumnMap:
                 config:
                   id: '2a4f3636-287e-8739-8a71-b401e840a50e'
-                  slug: 'scene1Block2'
+                  slug: 'exploreRowColumnMap'
                   type: 'scene'
                   params: {}
                   locale:
@@ -157,10 +157,10 @@ config:
 
                       2. **scene — existing Resource type, custom Scene proposed:** Grid Map Workshop (preserved in Scene production.specification), stage A. Show 4×4 cells with labeled rows/columns. Learner selects a **cell** by row choice and column choice (not precision clicking). Tree at **B2**, park at **A4**, pond at **C3**. "Read chosen cell" reveals "B2: tree"; "Show row B" highlights four cells and names them B1–B4.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section1Markdown3:
+              explainReadingB2:
                 config:
                   id: '586b4a91-6bd9-8389-86d9-c1ca256bf8d2'
-                  slug: 'section1Markdown3'
+                  slug: 'explainReadingB2'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -170,9 +170,9 @@ config:
                   purpose: 'Legacy markdown block of Which Square Is B2?; provisional draft.'
                   specification: '  3. **markdown — existing renderer:** "First find the **row letter**, then the **column number**. B2 is **one square** in row B and column 2. A square is an area on the map; the grid lines are its borders. Names help two people talk about the same place."'
             order:
-              - 'section1Text1'
-              - 'scene1Block2'
-              - 'section1Markdown3'
+              - 'identifyGridCoordinateB2'
+              - 'exploreRowColumnMap'
+              - 'explainReadingB2'
         production:
           purpose: 'Which Square Is B2?'
           pedagogicalIntent: 'Which Square Is B2?'
@@ -188,10 +188,10 @@ config:
             - **Feedback:** Selecting C2 for B2: "You kept column 2 but moved one row down. Find the row labeled B." Selecting B3: "You kept row B, but moved to column 3. Check the number 2." If child chooses a line crossing: "We name the _inside of a square_ on this map."
             - **Access:** Row/column selectors plus a 16-row logical cell list "A1 empty; …; B2 tree …". Use no unstated visual coordinates. Planned Note: "Read the row letter, then the column number."
 
-      section2FromTheTreeToThePark:
+      followGridDirections:
         config:
           id: '957667a1-8331-81f1-82cf-6b78a4882d28'
-          slug: 'section2FromTheTreeToThePark'
+          slug: 'followGridDirections'
           type: 'content'
           params: {}
           locale:
@@ -201,10 +201,10 @@ config:
               en: 'From the Tree to the Park'
           content:
             items:
-              section2Text1:
+              traceTreeToParkPath:
                 config:
                   id: '41394951-4673-8ab4-8dd6-4072da9c1397'
-                  slug: 'section2Text1'
+                  slug: 'traceTreeToParkPath'
                   type: 'text'
                   params: {}
                   locale:
@@ -213,10 +213,10 @@ config:
                 production:
                   purpose: 'Legacy text block of From the Tree to the Park; provisional draft.'
                   specification: '  1. **text — existing:** "Start at the tree in B2. Move **right one**, **right one**, then **up one**. Where do you arrive? Tell us which squares you pass."'
-              scene2Block2:
+              navigateGridRoute:
                 config:
                   id: '5b54147b-f2e7-8576-84bf-3547cd0cc44a'
-                  slug: 'scene2Block2'
+                  slug: 'navigateGridRoute'
                   type: 'scene'
                   params: {}
                   locale:
@@ -325,10 +325,10 @@ config:
 
                       2. **scene — proposed:** Grid Map Workshop (preserved in Scene production.specification), stage B. Trace B2 → **B3** → **B4** → **A4**. Each reveal includes row/column text and marks exactly one new neighboring cell. Final A4 displays park. No diagonal movement, no map rotation.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section2Markdown3:
+              explainArrivalAtA4:
                 config:
                   id: '90712c81-3c14-852d-852d-3961a94880cd'
-                  slug: 'section2Markdown3'
+                  slug: 'explainArrivalAtA4'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -338,9 +338,9 @@ config:
                   purpose: 'Legacy markdown block of From the Tree to the Park; provisional draft.'
                   specification: '  3. **markdown — existing:** "First we moved to B3. One more right step reached B4. Up one row took us to **A4**, the park. ''Right'' on this map means toward the **larger column number**. ''Up'' means toward the **earlier row letter**."'
             order:
-              - 'section2Text1'
-              - 'scene2Block2'
-              - 'section2Markdown3'
+              - 'traceTreeToParkPath'
+              - 'navigateGridRoute'
+              - 'explainArrivalAtA4'
         production:
           purpose: 'From the Tree to the Park'
           pedagogicalIntent: 'From the Tree to the Park'
@@ -356,10 +356,10 @@ config:
             - **Feedback:** If learner says C4 after the final step: "C4 is **down** from B4. The instruction said **up**, so we go to A4." For a jump from B2 to B4 in one step: "That crosses **two** neighboring cells; our map uses one square per step." For diagonal B3→A4: "That cuts across a corner, but we are following up/down/left/right moves only."
             - **Consistency:** This Lesson uses absolute map directions rather than the explorer-facing right-turn controls of the earlier Route Directions Lesson. State this difference in child-friendly copy: "A map arrow stays the same way even if the walker turns."
 
-      section3MakeAMapSomebodyElseCanRead:
+      createLabeledGridMap:
         config:
           id: '37b2e2cb-2b3e-8213-8f9c-ff07f310efdf'
-          slug: 'section3MakeAMapSomebodyElseCanRead'
+          slug: 'createLabeledGridMap'
           type: 'content'
           params: {}
           locale:
@@ -369,10 +369,10 @@ config:
               en: 'Make a Map Somebody Else Can Read'
           content:
             items:
-              section3Text1:
+              placeTreePondPark:
                 config:
                   id: '4da84be8-1d43-8fdd-8d8a-826b3d61765e'
-                  slug: 'section3Text1'
+                  slug: 'placeTreePondPark'
                   type: 'text'
                   params: {}
                   locale:
@@ -381,10 +381,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Make a Map Somebody Else Can Read; provisional draft.'
                   specification: '  1. **text — existing:** "Your friend will see only your map. Place a **tree at B2**, a **pond at C3** and a **park at A4**. How will they know which symbol is which?"'
-              scene3Block2:
+              buildMapAndKey:
                 config:
                   id: 'e197abdb-75cf-8640-8e2b-5ec9ea73f352'
-                  slug: 'scene3Block2'
+                  slug: 'buildMapAndKey'
                   type: 'scene'
                   params: {}
                   locale:
@@ -493,10 +493,10 @@ config:
 
                       2. **scene — proposed:** Grid Map Workshop (preserved in Scene production.specification), stage C. Start with empty 4×4 labeled grid. A labeled landmark selector and row/column selectors place unique tree, pond and park symbols, each with visible word label and a legend. "Read back map" lists the three placements; "Check against directions" provides specific guidance, not a score. Child can move/remove a landmark and restore map with Reset.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section3Markdown3:
+              explainMapLegend:
                 config:
                   id: 'decb5c08-e9f2-8675-8129-58aa361022d7'
-                  slug: 'section3Markdown3'
+                  slug: 'explainMapLegend'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -506,9 +506,9 @@ config:
                   purpose: 'Legacy markdown block of Make a Map Somebody Else Can Read; provisional draft.'
                   specification: '  3. **markdown — existing:** "A map needs a **key** to say what its pictures mean. With a named row, column and key, another person can find the exact same square. If you move the pond from C3 to C4, the map tells a **different** story."'
             order:
-              - 'section3Text1'
-              - 'scene3Block2'
-              - 'section3Markdown3'
+              - 'placeTreePondPark'
+              - 'buildMapAndKey'
+              - 'explainMapLegend'
         production:
           purpose: 'Make a Map Somebody Else Can Read'
           pedagogicalIntent: 'Make a Map Somebody Else Can Read'
@@ -525,10 +525,10 @@ config:
             - **Reading and mobility:** Show a deterministic text map (each row A–D lists four cell labels and contents). No drag-only placing; keyboard arrow selection may be optional, but explicit row/column buttons remain.
             - **Planned Note:** "A map key explains the symbols; the cell labels show where they are."
 
-      section4NewPlacesSameGridRules:
+      transferGridNavigation:
         config:
           id: 'e2f768e9-ef01-8376-84aa-2d85795c461a'
-          slug: 'section4NewPlacesSameGridRules'
+          slug: 'transferGridNavigation'
           type: 'content'
           params: {}
           locale:
@@ -538,10 +538,10 @@ config:
               en: 'New Places, Same Grid Rules'
           content:
             items:
-              section4Text1:
+              followNewGardenRoute:
                 config:
                   id: '677ff7bb-bf1c-8d3d-85b9-42750dda58f3'
-                  slug: 'section4Text1'
+                  slug: 'followNewGardenRoute'
                   type: 'text'
                   params: {}
                   locale:
@@ -550,10 +550,10 @@ config:
                 production:
                   purpose: 'Legacy text block of New Places, Same Grid Rules; provisional draft.'
                   specification: '  1. **text — existing:** "A new map has a **garden in A3** and a **market in D2**. You start in **C2**. Go up two squares, then right one. Which place will you reach? Check the row and column after every step."'
-              scene4Block2:
+              exploreFreshGridMap:
                 config:
                   id: 'c1b90844-7957-8e2f-8ca9-e25354479438'
-                  slug: 'scene4Block2'
+                  slug: 'exploreFreshGridMap'
                   type: 'scene'
                   params: {}
                   locale:
@@ -662,10 +662,10 @@ config:
 
                       2. **scene — proposed:** Grid Map Workshop (preserved in Scene production.specification), stage D. Start C2 and move **C2 → B2 → A2 → A3**. End at garden. Provide optional "Show previous square" and "Read route as cells". Then show a separate wrong legend "A3 = row 3, column A" and ask whether it follows the agreed map format.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section4Markdown3:
+              explainDestinationA3:
                 config:
                   id: '4bd5d2bf-1be9-87d3-87c0-26db17fc93b7'
-                  slug: 'section4Markdown3'
+                  slug: 'explainDestinationA3'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -675,9 +675,9 @@ config:
                   purpose: 'Legacy markdown block of New Places, Same Grid Rules; provisional draft.'
                   specification: '  3. **markdown — existing:** "The path ended at **A3**, the garden. We kept the same map orientation, and **one step meant one neighboring square** the whole way. Swapping what letters and numbers mean makes the map unreadable to a friend."'
             order:
-              - 'section4Text1'
-              - 'scene4Block2'
-              - 'section4Markdown3'
+              - 'followNewGardenRoute'
+              - 'exploreFreshGridMap'
+              - 'explainDestinationA3'
         production:
           purpose: 'New Places, Same Grid Rules'
           pedagogicalIntent: 'New Places, Same Grid Rules'
@@ -694,10 +694,10 @@ config:
             - **Independent drawing transfer:** Offer a small unscored task: construct a fresh 3-landmark map with row/column and legend from written instructions. A screen reader can inspect the same landmarks as a list.
 
     order:
-      - 'section1WhichSquareIsB2'
-      - 'section2FromTheTreeToThePark'
-      - 'section3MakeAMapSomebodyElseCanRead'
-      - 'section4NewPlacesSameGridRules'
+      - 'locateRowColumnCell'
+      - 'followGridDirections'
+      - 'createLabeledGridMap'
+      - 'transferGridNavigation'
   flashcards:
     items: {}
     order: []

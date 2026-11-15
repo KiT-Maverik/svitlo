@@ -21,10 +21,10 @@ config:
       en: 'Finding and Continuing Number Patterns'
   section:
     items:
-      section1:
+      predictNextPatternTerm:
         config:
           id: '9a923984-2853-5b83-b2d3-000000000004'
-          slug: 'section1'
+          slug: 'predictNextPatternTerm'
           type: 'content'
           params: {}
           locale:
@@ -34,10 +34,10 @@ config:
               en: 'What Comes Next?'
           content:
             items:
-              section1Text1:
+              promptFourSevenTen:
                 config:
                   id: '9a923984-2853-5b83-b2d3-000000000001'
-                  slug: 'section1Text1'
+                  slug: 'promptFourSevenTen'
                   type: 'text'
                   params: {}
                   locale:
@@ -46,10 +46,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **text — available.** Child-facing text: “Look at the numbers: 4, 7, 10, 13, … . What might come next? How do you know?” Optional audio reading must have identical on-screen text.'
-              section1Scene1:
+              extendPlusThreeSequence:
                 config:
                   id: '9a923984-2853-5b83-b2d3-000000000002'
-                  slug: 'section1Scene1'
+                  slug: 'extendPlusThreeSequence'
                   type: 'scene'
                   params: {}
                   locale:
@@ -140,10 +140,10 @@ config:
                     - Optional counters are editorially adjustable provided the numeric step/accessible equivalence is not lost.
                     - Predictions and feedback are _instructional_ and do not create a Quiz, score, a mastered Skill or persistent user analytics.
                   productionNotes: "This placement in What Comes Next? refers to stepExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section1Markdown1:
+              explainRepeatedJump:
                 config:
                   id: '9a923984-2853-5b83-b2d3-000000000003'
-                  slug: 'section1Markdown1'
+                  slug: 'explainRepeatedJump'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -153,9 +153,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — available.** After reveal: “The jump from 4 to 7 is 3. From 7 to 10 is 3. From 10 to 13 is 3, too. If we keep that jump, 13 + 3 makes 16.”'
             order:
-              - 'section1Text1'
-              - 'section1Scene1'
-              - 'section1Markdown1'
+              - 'promptFourSevenTen'
+              - 'extendPlusThreeSequence'
+              - 'explainRepeatedJump'
         production:
           purpose: 'What Comes Next?'
           pedagogicalIntent: |-
@@ -173,10 +173,10 @@ config:
             - Proposed unlocked Note(s): After the equal gaps are shown, Note 1 “A step is the change to the next number” (planned, not wired).
             - Implementation dependencies and review notes: The new Scene must be built; the text/Markdown renderers already exist.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section2:
+      compareConstantJumps:
         config:
           id: '9a923984-2853-5b83-b2d3-000000000008'
-          slug: 'section2'
+          slug: 'compareConstantJumps'
           type: 'content'
           params: {}
           locale:
@@ -186,10 +186,10 @@ config:
               en: 'Keep the Jump the Same'
           content:
             items:
-              section2Markdown1:
+              showPlusFourMinusTwo:
                 config:
                   id: '9a923984-2853-5b83-b2d3-000000000005'
-                  slug: 'section2Markdown1'
+                  slug: 'showPlusFourMinusTwo'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -198,10 +198,10 @@ config:
                 production:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  1. **markdown — available.** “Try a bigger jump. Starting at 2, adding 4 each time gives 2, 6, 10, 14. Starting at 12 and taking away 2 each time gives 12, 10, 8, 6. A pattern does not have to go up.”'
-              section2Scene1:
+              exploreEqualSteps:
                 config:
                   id: '9a923984-2853-5b83-b2d3-000000000006'
-                  slug: 'section2Scene1'
+                  slug: 'exploreEqualSteps'
                   type: 'scene'
                   params: {}
                   locale:
@@ -292,10 +292,10 @@ config:
                     - Optional counters are editorially adjustable provided the numeric step/accessible equivalence is not lost.
                     - Predictions and feedback are _instructional_ and do not create a Quiz, score, a mastered Skill or persistent user analytics.
                   productionNotes: "This placement in Keep the Jump the Same refers to stepExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section2Text1:
+              askWhatRemainsConstant:
                 config:
                   id: '9a923984-2853-5b83-b2d3-000000000007'
-                  slug: 'section2Text1'
+                  slug: 'askWhatRemainsConstant'
                   type: 'text'
                   params: {}
                   locale:
@@ -305,9 +305,9 @@ config:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  3. **text — available.** Reflective prompt: “What stayed the same: the numbers, or the size of the jump?” Explanation: “The numbers changed. The size of each jump stayed the same.”'
             order:
-              - 'section2Markdown1'
-              - 'section2Scene1'
-              - 'section2Text1'
+              - 'showPlusFourMinusTwo'
+              - 'exploreEqualSteps'
+              - 'askWhatRemainsConstant'
         production:
           purpose: 'Keep the Jump the Same'
           pedagogicalIntent: |-
@@ -325,10 +325,10 @@ config:
             - Proposed unlocked Note(s): After increasing and decreasing examples, Note 2 “The same step can add or take away” (planned, not wired).
             - Implementation dependencies and review notes: Reuse of Scene design in different sections requires independent prop-free instances; scene registration and state isolation are Coding Agent concerns.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section3:
+      validateEveryStep:
         config:
           id: '9a923984-2853-5b83-b2d3-00000000000c'
-          slug: 'section3'
+          slug: 'validateEveryStep'
           type: 'content'
           params: {}
           locale:
@@ -338,10 +338,10 @@ config:
               en: 'Check EVERY Jump'
           content:
             items:
-              section3Text1:
+              challengeWrongPlusThreeClaim:
                 config:
                   id: '9a923984-2853-5b83-b2d3-000000000009'
-                  slug: 'section3Text1'
+                  slug: 'challengeWrongPlusThreeClaim'
                   type: 'text'
                   params: {}
                   locale:
@@ -350,10 +350,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: "  1. **text — available.** “Someone says the numbers 2, 5, 9 add 3 every time. Is that true? Let's check both jumps.”"
-              section3Scene1:
+              inspectSuccessiveDifferences:
                 config:
                   id: '9a923984-2853-5b83-b2d3-00000000000a'
-                  slug: 'section3Scene1'
+                  slug: 'inspectSuccessiveDifferences'
                   type: 'scene'
                   params: {}
                   locale:
@@ -450,10 +450,10 @@ config:
                     - **Curricular constraint:** The proposed arithmetic rule can fail without proving the row has no other mathematical description; this distinction is mandatory.
                     - **Assessment handoff:** None of the choices are validated or scored Questions. Only a separate Assessment Architect review could authorize that.
                   productionNotes: "This placement in Check EVERY Jump refers to ruleInspector.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section3Markdown1:
+              explainInconsistentGap:
                 config:
                   id: '9a923984-2853-5b83-b2d3-00000000000b'
-                  slug: 'section3Markdown1'
+                  slug: 'explainInconsistentGap'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -463,9 +463,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — available.** “The first jump added 3. The next jump added 4. So ‘add 3 every time’ does not fit this whole row. Check all the gaps, not only the first one.”'
             order:
-              - 'section3Text1'
-              - 'section3Scene1'
-              - 'section3Markdown1'
+              - 'challengeWrongPlusThreeClaim'
+              - 'inspectSuccessiveDifferences'
+              - 'explainInconsistentGap'
         production:
           purpose: 'Check EVERY Jump'
           pedagogicalIntent: |-
@@ -483,10 +483,10 @@ config:
             - Proposed unlocked Note(s): After the counterexample is explained, Note 3 “Check every jump before trusting a rule” (planned, not wired).
             - Implementation dependencies and review notes: New custom Scene; no scored Question_Config, Quiz_Config or mastery inference.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section4:
+      justifyPatternContinuation:
         config:
           id: '9a923984-2853-5b83-b2d3-000000000010'
-          slug: 'section4'
+          slug: 'justifyPatternContinuation'
           type: 'content'
           params: {}
           locale:
@@ -496,10 +496,10 @@ config:
               en: 'Your Turn to Explain'
           content:
             items:
-              section4Markdown1:
+              promptSevenTenThirteen:
                 config:
                   id: '9a923984-2853-5b83-b2d3-00000000000d'
-                  slug: 'section4Markdown1'
+                  slug: 'promptSevenTenThirteen'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -508,10 +508,10 @@ config:
                 production:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  1. **markdown — available.** “Try a new row: 7, 10, 13, 16, … . What changes each time? If the same rule continues, what number comes next? Explain why.” Optional hint: “Look at every neighboring pair.”'
-              section4Scene1:
+              testNextTerm:
                 config:
                   id: '9a923984-2853-5b83-b2d3-00000000000e'
-                  slug: 'section4Scene1'
+                  slug: 'testNextTerm'
                   type: 'scene'
                   params: {}
                   locale:
@@ -608,10 +608,10 @@ config:
                     - **Curricular constraint:** The proposed arithmetic rule can fail without proving the row has no other mathematical description; this distinction is mandatory.
                     - **Assessment handoff:** None of the choices are validated or scored Questions. Only a separate Assessment Architect review could authorize that.
                   productionNotes: "This placement in Your Turn to Explain refers to ruleInspector.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section4Markdown2:
+              explainNineteenNext:
                 config:
                   id: '9a923984-2853-5b83-b2d3-00000000000f'
-                  slug: 'section4Markdown2'
+                  slug: 'explainNineteenNext'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -621,9 +621,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — available.** After the independent attempt: “7 to 10 adds 3; 10 to 13 adds 3; 13 to 16 adds 3. So keeping that same step gives 19 next. We checked the whole row.”'
             order:
-              - 'section4Markdown1'
-              - 'section4Scene1'
-              - 'section4Markdown2'
+              - 'promptSevenTenThirteen'
+              - 'testNextTerm'
+              - 'explainNineteenNext'
         production:
           purpose: 'Your Turn to Explain'
           pedagogicalIntent: |-
@@ -642,10 +642,10 @@ config:
             - Implementation dependencies and review notes: The mathematical choices are instructional illustrations for a Scene, not validated assessment questions.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'predictNextPatternTerm'
+      - 'compareConstantJumps'
+      - 'validateEveryStep'
+      - 'justifyPatternContinuation'
   flashcards:
     items: {}
     order: []

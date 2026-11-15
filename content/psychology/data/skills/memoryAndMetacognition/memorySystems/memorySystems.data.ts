@@ -43,14 +43,24 @@ export const memorySystems_SkillGroup_Data = defineSkillGroup({
     kk: 'Жады жүйелері',
     qm: 'Hafıza sistemaları',
   },
-  skills: [
-    episodicMemory_Skill_Data,
-    longTermRetention_Skill_Data,
-    proceduralMemory_Skill_Data,
-    semanticMemory_Skill_Data,
-    sensoryMemory_Skill_Data,
-    workingMemory_Skill_Data,
-  ],
+  skills: {
+    items: {
+      episodicMemory: episodicMemory_Skill_Data,
+      longTermRetention: longTermRetention_Skill_Data,
+      proceduralMemory: proceduralMemory_Skill_Data,
+      semanticMemory: semanticMemory_Skill_Data,
+      sensoryMemory: sensoryMemory_Skill_Data,
+      workingMemory: workingMemory_Skill_Data,
+    },
+    order: [
+      'episodicMemory',
+      'longTermRetention',
+      'proceduralMemory',
+      'semanticMemory',
+      'sensoryMemory',
+      'workingMemory',
+    ],
+  },
   description: {
     methodological:
       'Distinct forms of memory support immediate processing, recall of experiences and facts, and skilled performance.',

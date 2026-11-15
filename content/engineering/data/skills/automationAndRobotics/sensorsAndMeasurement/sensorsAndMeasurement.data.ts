@@ -41,12 +41,15 @@ export const sensorsAndMeasurement_SkillGroup_Data = defineSkillGroup({
     kk: 'Датчиктер және өлшеу',
     qm: 'Sensorlar ve ölçüv',
   },
-  skills: [
-    calibrateASensor_Skill_Data,
-    interpretSensorError_Skill_Data,
-    sensorPlacement_Skill_Data,
-    sensorSuitability_Skill_Data,
-  ],
+  skills: {
+    items: {
+      calibrateASensor: calibrateASensor_Skill_Data,
+      interpretSensorError: interpretSensorError_Skill_Data,
+      sensorPlacement: sensorPlacement_Skill_Data,
+      sensorSuitability: sensorSuitability_Skill_Data,
+    },
+    order: ['calibrateASensor', 'interpretSensorError', 'sensorPlacement', 'sensorSuitability'],
+  },
   description: {
     methodological:
       'Reliable decisions depend on selecting an appropriate measured quantity and understanding how placement, calibration and uncertainty shape the signal.',

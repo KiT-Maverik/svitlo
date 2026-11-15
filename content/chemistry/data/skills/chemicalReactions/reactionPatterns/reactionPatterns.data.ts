@@ -43,14 +43,24 @@ export const reactionPatterns_SkillGroup_Data = defineSkillGroup({
     kk: 'Реакция түрлері',
     qm: 'Reaktsiya çeşitleri',
   },
-  skills: [
-    combustion_Skill_Data,
-    decompositionReactions_Skill_Data,
-    displacementReactions_Skill_Data,
-    hydrolysis_Skill_Data,
-    precipitationReactions_Skill_Data,
-    synthesisReactions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      combustion: combustion_Skill_Data,
+      decompositionReactions: decompositionReactions_Skill_Data,
+      displacementReactions: displacementReactions_Skill_Data,
+      hydrolysis: hydrolysis_Skill_Data,
+      precipitationReactions: precipitationReactions_Skill_Data,
+      synthesisReactions: synthesisReactions_Skill_Data,
+    },
+    order: [
+      'combustion',
+      'decompositionReactions',
+      'displacementReactions',
+      'hydrolysis',
+      'precipitationReactions',
+      'synthesisReactions',
+    ],
+  },
   description: {
     methodological:
       'Reaction patterns classify transformations such as combination, decomposition, precipitation, displacement, combustion and hydrolysis. Some categories may overlap and do not by themselves determine a detailed reaction mechanism.',

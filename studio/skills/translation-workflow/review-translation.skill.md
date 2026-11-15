@@ -14,6 +14,25 @@ Review one or more Svitlo localizations **by reading generated Markdown referenc
 
 **Source of truth for Skills:** `content/<textbook>/data/skills/`. For Lessons, Courses and other locale-bearing types, verify the actual canonical paths and equivalent entity-specific generator; do not assume that a Skills taxonomy Markdown renders their content. Generated Markdown is temporary, disposable, **not** an editorial source and must never be manually corrected in place.
 
+## Canonical review record and local language decisions
+
+Completed review evidence is recorded in the **entity-owned `review.ts`** (for Lessons: the root `review.ts` beside `index.ts`, typed `LessonReview` when Stage 6 is implemented), **not** in per-entity/per-language Markdown review reports. Generated `.agent-ci-artifacts/**/*.md` is a temporary read-only _input_ to reviews, never the permanent review result.
+
+For Lesson AI localization review, `ai.locales` is **one numeric PR**: the final translation/review **integration PR**, recorded only after **all** intended Lesson languages have actually been independently reviewed and the scope/assembled Props revision verified. Do not place translator or individual reviewer subtask PR numbers into that field or treat generating all languages as reviewing all languages. Human linguistic review is recorded separately in `human.locales[language]` as that language's verified PR; other entity kinds follow their **actual** available Engine Review contract, never a fabricated Lesson-specific shape.
+
+When a linguistic review reaches a decision **specific to this reviewed entity/locale**, put a concise `//` comment **immediately above the PR-valued field** in that entity's `review.ts` explaining the chosen wording/terminology and reason, for example:
+
+```ts
+human: {
+  locales: {
+    // This Lesson uses the localized classroom term rather than the general glossary synonym.
+    uk: 1234,
+  },
+},
+```
+
+For a Lesson AI-wide `ai.locales` PR, put any applicable short locale-specific note immediately above its numeric entry, identifying the affected locale in the comment. Do **not** copy a full linguistic report, invent sign-off, or write the same decision into every entity; shared glossary/orthography decisions belong in global canonical guidance. Reviewer agents remain **read-only** by default: the authorized integration coordinator records verified PR references and comments after review gates, source revision, and real sign-off checks. If `review.ts` or stable assembled Props do not yet exist, preserve precise results and PR links in the review PR and Production Issue until the record can be populated; **do not create substitute review Markdown**. A PR reference denotes evidence, not proof of approval by itself.
+
 ## ONE CANONICAL GENERATED LIBRARY
 
 All agents share the repository-level temporary folder. The existing generator may emit several entity kinds, but **review is allowed only for the kinds actually supported by the current code and manifest**:
@@ -81,7 +100,7 @@ This runs the same currently supported all-entity/all-locale generation and popu
 4. **Apply language-specific guidance.** For Crimean Tatar (`qm`), follow the Persona's **Crimean Tatar → international → Turkish** hierarchy, approved Latin spelling and provisional-review policy. A carefully adapted Turkish **technical term** may be appropriate, but Turkish entire sentences are not Crimean Tatar localization.
 5. **Produce actionable findings.** Cite specific textbook, locale, canonical code link/path, field (`name.<locale>` or `description.frontend.<locale>`), current wording, recommended wording, rationale, confidence, severity and sources actually checked. Differentiate definite errors from plausible linguistic variants or unverified proposals. No false native-speaker or standards certifications. **Report separate counts for semantic/scientific errors, linguistic/terminology errors, and style/register-only harmonizations.** For address-form inconsistencies, record the locale-specific editorial rule and representative examples; do not interpret bulk style harmonization as many independent translation failures.
 6. **Apply corrections only when explicitly authorized.** This skill alone is read-only. In a Production Issue, corrections belong to the reviewer PR and must not overlap another active reviewer's editable files. For edits, switch to [Technical Translation](./technical-translation.skill.md) and its actual TypeScript verification gate; modify **only** authorized locale fields in canonical code. Refresh the temporary library if another review of the updated text is required.
-7. **Report coherent results.** Provide overall coverage, key terminology decisions, number of reviewed entities and outstanding questions. Complete the entire assigned scope without unnecessary user interruptions.
+7. **Report coherent results.** Provide overall coverage, key terminology decisions, number of reviewed entities and outstanding questions in the PR/Issue; the authorized coordinator later records verified review PRs and local comments in the entity's `review.ts` as described above. Complete the entire assigned scope without unnecessary user interruptions.
 
 ## REQUIRED CLEANUP BEFORE MERGE
 

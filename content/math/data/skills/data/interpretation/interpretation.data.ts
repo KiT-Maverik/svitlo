@@ -36,7 +36,14 @@ export const interpretation_SkillGroup_Data = defineSkillGroup({
     pl: 'Interpretacja danych',
     uk: 'Інтерпретація даних',
   },
-  skills: [compareCategories_Skill_Data, interpretConclusion_Skill_Data, missingInformation_Skill_Data],
+  skills: {
+    items: {
+      compareCategories: compareCategories_Skill_Data,
+      interpretConclusion: interpretConclusion_Skill_Data,
+      missingInformation: missingInformation_Skill_Data,
+    },
+    order: ['compareCategories', 'interpretConclusion', 'missingInformation'],
+  },
   description: {
     methodological:
       'Drawing conclusions from quantitative data, computing comparisons, and identifying missing information.',

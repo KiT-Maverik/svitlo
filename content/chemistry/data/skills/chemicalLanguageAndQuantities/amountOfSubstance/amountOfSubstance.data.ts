@@ -43,14 +43,17 @@ export const amountOfSubstance_SkillGroup_Data = defineSkillGroup({
     kk: 'Зат мөлшері',
     qm: 'Madde miqdarı',
   },
-  skills: [
-    limitingReactants_Skill_Data,
-    massMoleConversion_Skill_Data,
-    molarMass_Skill_Data,
-    reactionYield_Skill_Data,
-    stoichiometricRatios_Skill_Data,
-    theMole_Skill_Data,
-  ],
+  skills: {
+    items: {
+      limitingReactants: limitingReactants_Skill_Data,
+      massMoleConversion: massMoleConversion_Skill_Data,
+      molarMass: molarMass_Skill_Data,
+      reactionYield: reactionYield_Skill_Data,
+      stoichiometricRatios: stoichiometricRatios_Skill_Data,
+      theMole: theMole_Skill_Data,
+    },
+    order: ['limitingReactants', 'massMoleConversion', 'molarMass', 'reactionYield', 'stoichiometricRatios', 'theMole'],
+  },
   description: {
     methodological:
       'The mole and associated quantities link atom-scale counting to bulk mass, volume and reaction proportions.',

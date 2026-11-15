@@ -42,13 +42,22 @@ export const evidenceAndTestimony_SkillGroup_Data = defineSkillGroup({
     kk: 'Дәлелдер мен куәліктер',
     qm: 'Deliller ve şaatlıq',
   },
-  skills: [
-    analyzeEpistemicInjustice_Skill_Data,
-    checkCorroborationAcrossSources_Skill_Data,
-    distinguishAClaimFromItsEvidence_Skill_Data,
-    distinguishDirectEvidenceFromHearsay_Skill_Data,
-    evaluateTestimonialCredibility_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeEpistemicInjustice: analyzeEpistemicInjustice_Skill_Data,
+      checkCorroborationAcrossSources: checkCorroborationAcrossSources_Skill_Data,
+      distinguishAClaimFromItsEvidence: distinguishAClaimFromItsEvidence_Skill_Data,
+      distinguishDirectEvidenceFromHearsay: distinguishDirectEvidenceFromHearsay_Skill_Data,
+      evaluateTestimonialCredibility: evaluateTestimonialCredibility_Skill_Data,
+    },
+    order: [
+      'analyzeEpistemicInjustice',
+      'checkCorroborationAcrossSources',
+      'distinguishAClaimFromItsEvidence',
+      'distinguishDirectEvidenceFromHearsay',
+      'evaluateTestimonialCredibility',
+    ],
+  },
   description: {
     methodological:
       'Knowledge often depends on information supplied by other people or institutions. Source reliability, independence, and evidential fit require appraisal without treating every source as equally trustworthy.',

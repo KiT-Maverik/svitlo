@@ -41,14 +41,24 @@ export const socialAndPoliticalPhilosophy_SkillDomain_Data = defineSkillDomain({
     kk: 'Әлеуметтік және саяси философия',
     qm: 'İçtimaiy ve siyasiy felsefe',
   },
-  groups: [
-    justiceAndEquality_SkillGroup_Data,
-    philosophyOfLaw_SkillGroup_Data,
-    politicalAuthority_SkillGroup_Data,
-    publicReasonAndCivicLife_SkillGroup_Data,
-    rightsAndLiberty_SkillGroup_Data,
-    technologyAndSociety_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      justiceAndEquality: justiceAndEquality_SkillGroup_Data,
+      philosophyOfLaw: philosophyOfLaw_SkillGroup_Data,
+      politicalAuthority: politicalAuthority_SkillGroup_Data,
+      publicReasonAndCivicLife: publicReasonAndCivicLife_SkillGroup_Data,
+      rightsAndLiberty: rightsAndLiberty_SkillGroup_Data,
+      technologyAndSociety: technologyAndSociety_SkillGroup_Data,
+    },
+    order: [
+      'justiceAndEquality',
+      'philosophyOfLaw',
+      'politicalAuthority',
+      'publicReasonAndCivicLife',
+      'rightsAndLiberty',
+      'technologyAndSociety',
+    ],
+  },
   description: {
     methodological:
       'Political and social philosophy examines the justification of collective rules, institutions, authority, rights, and distributions of benefits and burdens. It asks normative questions rather than describing the chronology of regimes or the mechanics of markets.',

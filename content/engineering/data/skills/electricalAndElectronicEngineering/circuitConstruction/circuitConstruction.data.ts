@@ -42,13 +42,22 @@ export const circuitConstruction_SkillGroup_Data = defineSkillGroup({
     kk: 'Электр тізбектерін құрастыру',
     qm: 'Elektrik devrelerini qurmaq',
   },
-  skills: [
-    assembleALowVoltageCircuit_Skill_Data,
-    designASwitchingCircuit_Skill_Data,
-    interpretCircuitDiagrams_Skill_Data,
-    parallelCircuitArrangements_Skill_Data,
-    seriesCircuitArrangements_Skill_Data,
-  ],
+  skills: {
+    items: {
+      assembleALowVoltageCircuit: assembleALowVoltageCircuit_Skill_Data,
+      designASwitchingCircuit: designASwitchingCircuit_Skill_Data,
+      interpretCircuitDiagrams: interpretCircuitDiagrams_Skill_Data,
+      parallelCircuitArrangements: parallelCircuitArrangements_Skill_Data,
+      seriesCircuitArrangements: seriesCircuitArrangements_Skill_Data,
+    },
+    order: [
+      'assembleALowVoltageCircuit',
+      'designASwitchingCircuit',
+      'interpretCircuitDiagrams',
+      'parallelCircuitArrangements',
+      'seriesCircuitArrangements',
+    ],
+  },
   description: {
     methodological:
       'A functioning assembly requires compatible sources, loads and connections, including means of switching and independent distribution.',

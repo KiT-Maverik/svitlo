@@ -36,7 +36,13 @@ export const recognizingReactions_SkillGroup_Data = defineSkillGroup({
     kk: 'Реакцияларды тану',
     qm: 'Reaktsiyalarnı tanımaq',
   },
-  skills: [reactantsAndProducts_Skill_Data, reactionEvidence_Skill_Data],
+  skills: {
+    items: {
+      reactantsAndProducts: reactantsAndProducts_Skill_Data,
+      reactionEvidence: reactionEvidence_Skill_Data,
+    },
+    order: ['reactantsAndProducts', 'reactionEvidence'],
+  },
   description: {
     methodological:
       'Recognizing chemical change requires identifying initial and resulting chemical species and examining observations critically rather than treating any visible sign as proof.',

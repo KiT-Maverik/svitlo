@@ -18,10 +18,10 @@ config:
     order: []
   section:
     items:
-      section1CountdownObjects:
+      countBackOneAtATime:
         config:
           id: '28b1c4bc-63dd-4d9d-bf3c-08aa8f153ef3'
-          slug: 'section1CountdownObjects'
+          slug: 'countBackOneAtATime'
           type: 'content'
           params: {}
           locale:
@@ -31,10 +31,10 @@ config:
               en: 'Countdown Objects'
           content:
             items:
-              text1:
+              removeOneLight:
                 config:
                   id: '05b1d121-734f-4f3c-bb18-cf1b34605076'
-                  slug: 'text1'
+                  slug: 'removeOneLight'
                   type: 'text'
                   params: {}
                   locale:
@@ -131,16 +131,16 @@ config:
                     - QA must test every state/result above, locale copy, keyboard/screen-reader operation, LTR/RTL, mobile, reduced motion and genuine offline download; runtime implementation and its own tests are **not in this batch**.
                   purpose: 'Proposed interactive Scene for Countdown Objects'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainBackwardCount:
                 config:
                   id: 'faa6612e-c664-4b33-bed7-ad10cdd2ecfd'
-                  slug: 'markdown2'
+                  slug: 'explainBackwardCount'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '6 lit − 1 lit = 5 lit, with five visible remaining. 12 objects: 10+2; after three distinct removals 9 remain.'
-            order: ['text1', 'countdownObjects', 'markdown2']
+            order: ['removeOneLight', 'countdownObjects', 'explainBackwardCount']
         production:
           purpose: 'Countdown Objects'
           pedagogicalIntent: |
@@ -160,10 +160,10 @@ config:
             - **Implementation dependency:** Entire new Countdown Objects component is **proposed**, prop-free and unimplemented. Its scenario data belongs inside the Scene, not an invented Resource prop. No Question bank, score, mastery event or Note API.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section2WhatMakesAStepBack:
+      explainOneLess:
         config:
           id: 'e4d7ca5d-9357-4884-831f-cbaf42aa6966'
-          slug: 'section2WhatMakesAStepBack'
+          slug: 'explainOneLess'
           type: 'content'
           params: {}
           locale:
@@ -173,34 +173,34 @@ config:
               en: "What makes a step 'back'?"
           content:
             items:
-              text1:
+              chooseNumberBeforeEleven:
                 config:
                   id: '36f48bfc-b22c-4849-b7b2-14f2527ff2d7'
-                  slug: 'text1'
+                  slug: 'chooseNumberBeforeEleven'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'If you are at 11 and move backward, is 12 or 10 next? Explain how you know.'
-              markdown2:
+              explainOneLessRule:
                 config:
                   id: 'db27cbf3-344f-4166-a24b-dfd92d82c1dc'
-                  slug: 'markdown2'
+                  slug: 'explainOneLessRule'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '11 is followed backward by 10: 10 is one less, whereas 12 is one more. When a row of ten objects stays full, 11 can lose its one extra object and become 10; lose one more, and nine remain. There is no need to restart reciting from 20.'
-              text3:
+              applyBackwardRule:
                 config:
                   id: '38f48f22-b02c-4523-b5b2-11cc547ff5fd'
-                  slug: 'text3'
+                  slug: 'applyBackwardRule'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Now explain the rule using a new example, not just the picture you saw.'
-            order: ['text1', 'markdown2', 'text3']
+            order: ['chooseNumberBeforeEleven', 'explainOneLessRule', 'applyBackwardRule']
         production:
           purpose: "What makes a step 'back'?"
           pedagogicalIntent: |
@@ -218,10 +218,10 @@ config:
             - **Accessibility:** Text-first explanation is equivalent nonvisual content. Any future hide/reveal affordance must work with keyboard and announce expanded state, but is not assumed implemented.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section3BackwardPath:
+      followBackwardPath:
         config:
           id: '6524fb71-32db-4ee8-b5e7-3fe3d907741a'
-          slug: 'section3BackwardPath'
+          slug: 'followBackwardPath'
           type: 'content'
           params: {}
           locale:
@@ -231,10 +231,10 @@ config:
               en: 'Backward Path'
           content:
             items:
-              text1:
+              moveBackFourSteps:
                 config:
                   id: 'ef8a7040-06dd-421d-9474-77e615c4038b'
-                  slug: 'text1'
+                  slug: 'moveBackFourSteps'
                   type: 'text'
                   params: {}
                   locale:
@@ -331,16 +331,16 @@ config:
                     - QA must test every state/result above, locale copy, keyboard/screen-reader operation, LTR/RTL, mobile, reduced motion and genuine offline download; runtime implementation and its own tests are **not in this batch**.
                   purpose: 'Proposed interactive Scene for Backward Path'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainBackwardMoves:
                 config:
                   id: '33b660a7-9c5c-4fda-86ca-360d88a492e0'
-                  slug: 'markdown2'
+                  slug: 'explainBackwardMoves'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Four backward moves from 8 end at 4. Immediately before 17 is 16; immediately before 11 is 10.'
-            order: ['text1', 'backwardPath', 'markdown2']
+            order: ['moveBackFourSteps', 'backwardPath', 'explainBackwardMoves']
         production:
           purpose: 'Backward Path'
           pedagogicalIntent: |
@@ -360,7 +360,7 @@ config:
             - **Implementation dependency:** Entire new Backward Path component is **proposed**, prop-free and unimplemented. Its scenario data belongs inside the Scene, not an invented Resource prop. No Question bank, score, mastery event or Note API.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-    order: ['section1CountdownObjects', 'section2WhatMakesAStepBack', 'section3BackwardPath']
+    order: ['countBackOneAtATime', 'explainOneLess', 'followBackwardPath']
 production:
   documentLanguage: 'en'
   methodology: |

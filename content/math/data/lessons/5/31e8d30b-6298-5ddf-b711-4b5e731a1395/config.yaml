@@ -20,10 +20,10 @@ config:
       en: 'Equal Fractions, Different Pieces'
   section:
     items:
-      section1OneWholeDifferentCuts:
+      compareHalfAndTwoQuarters:
         config:
           id: '44cf406e-9a35-4bca-8021-6f575edb94f3'
-          slug: 'section1OneWholeDifferentCuts'
+          slug: 'compareHalfAndTwoQuarters'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'One whole, different cuts'
           content:
             items:
-              section1Text1:
+              shadeEquivalentStrips:
                 config:
                   id: '2ad62883-b2c2-46f3-88b5-6d0c90a1137c'
-                  slug: 'section1Text1'
+                  slug: 'shadeEquivalentStrips'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '1. **`text` (existing Resource type).** “Here are two strips the same length. Shade one of two equal parts on the first. Shade two of four equal parts on the second. Will the shaded lengths match?”'
-              section1Scene2:
+              modelHalfVersusQuarters:
                 config:
                   id: '61d3c18a-5051-40e9-8695-6a743717fb17'
-                  slug: 'section1Scene2'
+                  slug: 'modelHalfVersusQuarters'
                   type: 'scene'
                   params: {}
                   locale:
@@ -128,10 +128,10 @@ config:
 
                     2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Two 12-unit aligned strips; top split 2×6 with 1 shaded, bottom split 4×3 with 2 shaded. Predict same/different, then place a movable but controlled alignment marker and reveal matched shaded length 6 units.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section1Markdown3:
+              explainEqualCoveredAmount:
                 config:
                   id: 'c4054e58-3c93-4662-8e89-daa0661fe29a'
-                  slug: 'section1Markdown3'
+                  slug: 'explainEqualCoveredAmount'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -141,9 +141,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '3. **`markdown` (existing Resource type).** “Yes. One of two equal parts covers the same amount as two of four equal parts. We write 1/2 = 2/4.”'
             order:
-              - 'section1Text1'
-              - 'section1Scene2'
-              - 'section1Markdown3'
+              - 'shadeEquivalentStrips'
+              - 'modelHalfVersusQuarters'
+              - 'explainEqualCoveredAmount'
         production:
           purpose: 'One whole, different cuts'
           pedagogicalIntent: 'One whole, different cuts'
@@ -166,10 +166,10 @@ config:
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
 
-      section2WhatStaysEqualWhenPartsChange:
+      trackConstantFractionAmount:
         config:
           id: 'f98b4fae-dd24-4b9e-813e-e3b2f591b782'
-          slug: 'section2WhatStaysEqualWhenPartsChange'
+          slug: 'trackConstantFractionAmount'
           type: 'content'
           params: {}
           locale:
@@ -179,10 +179,10 @@ config:
               en: 'What stays equal when parts change?'
           content:
             items:
-              section2Text1:
+              countShadedUnits:
                 config:
                   id: '5d057ff9-81e2-4719-883a-63cc54dd0b2c'
-                  slug: 'section2Text1'
+                  slug: 'countShadedUnits'
                   type: 'text'
                   params: {}
                   locale:
@@ -191,10 +191,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '1. **`text` (existing Resource type).** “The same 12-unit strip can be cut into more, smaller equal pieces. Count the shaded units, not just the shaded pieces.”'
-              section2Scene2:
+              repartitionSameWhole:
                 config:
                   id: 'cb3db87a-19d8-49f4-8bde-dc6f793b7de1'
-                  slug: 'section2Scene2'
+                  slug: 'repartitionSameWhole'
                   type: 'scene'
                   params: {}
                   locale:
@@ -274,10 +274,10 @@ config:
 
                     2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Toggle between 1/2 and 2/4 partition presets while keeping the same whole and the same 6-unit shaded segment. Display selected parts and total equal parts.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section2Markdown3:
+              explainFractionEquivalence:
                 config:
                   id: '2c64a299-6c39-41c1-8ab3-0eb45aeefdec'
-                  slug: 'section2Markdown3'
+                  slug: 'explainFractionEquivalence'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -287,9 +287,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '3. **`markdown` (existing Resource type).** “The piece count changes, but the portion of the whole does not. The denominator tells the number of equal pieces; the numerator tells how many are selected.”'
             order:
-              - 'section2Text1'
-              - 'section2Scene2'
-              - 'section2Markdown3'
+              - 'countShadedUnits'
+              - 'repartitionSameWhole'
+              - 'explainFractionEquivalence'
         production:
           purpose: 'What stays equal when parts change?'
           pedagogicalIntent: 'What stays equal when parts change?'
@@ -312,10 +312,10 @@ config:
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
 
-      section3ASecondPairAndANearMiss:
+      compareThirdsAndSixths:
         config:
           id: '14dcae3f-5504-4e46-8ce4-4b011d3c3b78'
-          slug: 'section3ASecondPairAndANearMiss'
+          slug: 'compareThirdsAndSixths'
           type: 'content'
           params: {}
           locale:
@@ -325,10 +325,10 @@ config:
               en: 'A second pair—and a near miss'
           content:
             items:
-              section3Text1:
+              testOneThirdVsTwoSixths:
                 config:
                   id: 'e84ead4a-85b5-4144-854d-ad9458b6819a'
-                  slug: 'section3Text1'
+                  slug: 'testOneThirdVsTwoSixths'
                   type: 'text'
                   params: {}
                   locale:
@@ -337,10 +337,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '1. **`text` (existing Resource type).** “Try thirds and sixths. Is 1/3 equal to 2/6? Is 1/2 also equal to 2/6?”'
-              section3Scene2:
+              compareFractionModels:
                 config:
                   id: '17e5ea8b-7b52-4baa-8e21-e9d4b296b8f5'
-                  slug: 'section3Scene2'
+                  slug: 'compareFractionModels'
                   type: 'scene'
                   params: {}
                   locale:
@@ -420,10 +420,10 @@ config:
 
                     2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Same 12-unit reference: 1/3 shades 4 units; 2/6 shades 4; 1/2 shades 6. Choose pairs, compare aligned endpoints, reveal matched and unmatched numerical lengths.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section3Markdown3:
+              explainNearMissHalf:
                 config:
                   id: 'c7764b9e-51af-4e6b-80a8-f25d9671b7a8'
-                  slug: 'section3Markdown3'
+                  slug: 'explainNearMissHalf'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -433,9 +433,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '3. **`markdown` (existing Resource type).** “1/3 = 2/6, because both cover 4 of 12 units. But 1/2 does not equal 2/6: it covers 6 units rather than 4.”'
             order:
-              - 'section3Text1'
-              - 'section3Scene2'
-              - 'section3Markdown3'
+              - 'testOneThirdVsTwoSixths'
+              - 'compareFractionModels'
+              - 'explainNearMissHalf'
         production:
           purpose: 'A second pair—and a near miss'
           pedagogicalIntent: 'A second pair—and a near miss'
@@ -458,10 +458,10 @@ config:
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
 
-      section4WhyTheWholeMustBeClear:
+      distinguishWholesForComparison:
         config:
           id: 'ec5da05c-4dca-4406-8a24-ec57fbb3180d'
-          slug: 'section4WhyTheWholeMustBeClear'
+          slug: 'distinguishWholesForComparison'
           type: 'content'
           params: {}
           locale:
@@ -471,10 +471,10 @@ config:
               en: 'Why the whole must be clear'
           content:
             items:
-              section4Markdown1:
+              compareDifferentWholeLengths:
                 config:
                   id: '8b4d2bf5-16f9-4244-8728-26b4aa9caf05'
-                  slug: 'section4Markdown1'
+                  slug: 'compareDifferentWholeLengths'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -483,10 +483,10 @@ config:
                 production:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '1. **`markdown` (existing Resource type).** “What if one strip is 12 units and another is 24? Half of each is still one half—but the shaded lengths are 6 and 12. Are the fractions different?”'
-              section4Scene2:
+              modelDifferentSizeWholes:
                 config:
                   id: 'bee8a520-124d-4cf9-879b-4c4c0b3e0595'
-                  slug: 'section4Scene2'
+                  slug: 'modelDifferentSizeWholes'
                   type: 'scene'
                   params: {}
                   locale:
@@ -566,10 +566,10 @@ config:
 
                     2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Switch one display between same-sized and larger strips. The labels 1/2 and 2/4 remain equivalent as numbers; the shaded physical lengths no longer match if wholes differ. Require the model to name both reference wholes.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section4Text3:
+              explainSameFractionDifferentLength:
                 config:
                   id: '93f8fdc7-299f-4de9-873e-1b836d593bad'
-                  slug: 'section4Text3'
+                  slug: 'explainSameFractionDifferentLength'
                   type: 'text'
                   params: {}
                   locale:
@@ -579,9 +579,9 @@ config:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '3. **`text` (existing Resource type).** “Equal fractions describe equal portions of their own wholes. To compare shaded lengths directly, choose the same-sized whole. A bigger whole can have a bigger half.”'
             order:
-              - 'section4Markdown1'
-              - 'section4Scene2'
-              - 'section4Text3'
+              - 'compareDifferentWholeLengths'
+              - 'modelDifferentSizeWholes'
+              - 'explainSameFractionDifferentLength'
         production:
           purpose: 'Why the whole must be clear'
           pedagogicalIntent: 'Why the whole must be clear'
@@ -605,10 +605,10 @@ config:
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
 
     order:
-      - 'section1OneWholeDifferentCuts'
-      - 'section2WhatStaysEqualWhenPartsChange'
-      - 'section3ASecondPairAndANearMiss'
-      - 'section4WhyTheWholeMustBeClear'
+      - 'compareHalfAndTwoQuarters'
+      - 'trackConstantFractionAmount'
+      - 'compareThirdsAndSixths'
+      - 'distinguishWholesForComparison'
   flashcards:
     items: {}
     order: []

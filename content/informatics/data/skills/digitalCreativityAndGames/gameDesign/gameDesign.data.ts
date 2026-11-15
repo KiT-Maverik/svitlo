@@ -40,7 +40,14 @@ export const gameDesign_SkillGroup_Data = defineSkillGroup({
     kk: 'Ойын дизайны',
     qm: 'Oyun tasarımı',
   },
-  skills: [designAGameMechanic_Skill_Data, formulateAGameRule_Skill_Data, testTheBalanceOfASimpleGame_Skill_Data],
+  skills: {
+    items: {
+      designAGameMechanic: designAGameMechanic_Skill_Data,
+      formulateAGameRule: formulateAGameRule_Skill_Data,
+      testTheBalanceOfASimpleGame: testTheBalanceOfASimpleGame_Skill_Data,
+    },
+    order: ['designAGameMechanic', 'formulateAGameRule', 'testTheBalanceOfASimpleGame'],
+  },
   description: {
     methodological:
       'Define game rules, create mechanics, and evaluate their effects on gameplay. Describing a rule, implementing it as interaction, and testing balance are related but independently assessable.',

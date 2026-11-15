@@ -15,10 +15,10 @@ config:
       en: 'Reading a Bar Chart'
   section:
     items:
-      section1:
+      linkBarHeightToValue:
         config:
           id: '86066f26-4b6e-5e45-90b4-ef26f126be13'
-          slug: 'section1'
+          slug: 'linkBarHeightToValue'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: "A bar's length stands for a number"
           content:
             items:
-              text1:
+              matchFruitBarsToLabels:
                 config:
                   id: '652da597-9a00-5664-a668-259743b6c816'
-                  slug: 'text1'
+                  slug: 'matchFruitBarsToLabels'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'This chart shows how many fruit tokens we counted: apples, pears and plums. Which name belongs to each bar?'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              inspectBarHeightAndScale:
                 config:
                   id: 'e910d868-8de7-537d-9828-5868ac2e31c7'
-                  slug: 'scene1'
+                  slug: 'inspectBarHeightAndScale'
                   type: 'scene'
                   params: {}
                   locale:
@@ -117,10 +117,10 @@ config:
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   purpose: "A bar's length stands for a number: independent scene placement"
                   productionNotes: 'Legacy Scene BarChartReader.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              markdown1:
+              explainZeroBasedReading:
                 config:
                   id: 'c4632955-71e0-56de-bec5-a955988803e4'
-                  slug: 'markdown1'
+                  slug: 'explainZeroBasedReading'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -128,7 +128,7 @@ config:
                       en: 'Find the bar’s name, then read its top against the numbered scale. Start from zero.'
                 production:
                   purpose: 'Source explanatory learner copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['matchFruitBarsToLabels', 'inspectBarHeightAndScale', 'explainZeroBasedReading']
         production:
           purpose: "A bar's length stands for a number"
           productionNotes: |-
@@ -147,10 +147,10 @@ config:
             **Misconception-specific explanation:** If the child counts a bar's decorative width: “The number goes up the scale, not across the width of the bar.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
-      section2:
+      readAllFruitCounts:
         config:
           id: '85066d93-486e-598c-8fb4-ed93f226bfa6'
-          slug: 'section2'
+          slug: 'readAllFruitCounts'
           type: 'content'
           params: {}
           locale:
@@ -160,10 +160,10 @@ config:
               en: 'Read three values'
           content:
             items:
-              text1:
+              readFruitBarValues:
                 config:
                   id: '301cfb96-caf2-5771-b157-7b9678c77217'
-                  slug: 'text1'
+                  slug: 'readFruitBarValues'
                   type: 'text'
                   params: {}
                   locale:
@@ -171,10 +171,10 @@ config:
                       en: 'How many apples? Trace upward from zero until the apple bar stops. Do the same for pears and plums.'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              revealThreeFruitCounts:
                 config:
                   id: '51114447-d6d8-56a2-8028-c447442dc5e8'
-                  slug: 'scene1'
+                  slug: 'revealThreeFruitCounts'
                   type: 'scene'
                   params: {}
                   locale:
@@ -249,10 +249,10 @@ config:
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   purpose: 'Read three values: independent scene placement'
                   productionNotes: 'Legacy Scene BarChartReader.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              markdown1:
+              explainBarTopValues:
                 config:
                   id: '4bfdef64-ec54-5b8b-8660-6f6410ed3dd5'
-                  slug: 'markdown1'
+                  slug: 'explainBarTopValues'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -260,7 +260,7 @@ config:
                       en: 'The chart tells us 4 apples, 2 pears and 5 plums. The line at the top of each bar matches its count.'
                 production:
                   purpose: 'Source explanatory learner copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['readFruitBarValues', 'revealThreeFruitCounts', 'explainBarTopValues']
         production:
           purpose: 'Read three values'
           productionNotes: |-
@@ -279,10 +279,10 @@ config:
             **Misconception-specific explanation:** If apples are read as 5: “The apple bar stops at the tick marked 4. The plum bar is the one that reaches 5.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
-      section3:
+      compareChartCategories:
         config:
           id: '84066c00-496e-5b1f-8eb4-ec00f326c139'
-          slug: 'section3'
+          slug: 'compareChartCategories'
           type: 'content'
           params: {}
           locale:
@@ -292,10 +292,10 @@ config:
               en: 'Which group has more?'
           content:
             items:
-              text1:
+              findLargestBar:
                 config:
                   id: '91f883f5-5393-5062-9333-03f5367ef5e8'
-                  slug: 'text1'
+                  slug: 'findLargestBar'
                   type: 'text'
                   params: {}
                   locale:
@@ -303,10 +303,10 @@ config:
                       en: 'Which group has the most tokens? If a bar is drawn wider, does that change its number?'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              compareHeightsNotWidths:
                 config:
                   id: 'df500b4e-9ead-5eab-8e67-8b4ea5a29a79'
-                  slug: 'scene1'
+                  slug: 'compareHeightsNotWidths'
                   type: 'scene'
                   params: {}
                   locale:
@@ -381,10 +381,10 @@ config:
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   purpose: 'Which group has more?: independent scene placement'
                   productionNotes: 'Legacy Scene BarChartReader.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              markdown1:
+              explainMostAndLeast:
                 config:
                   id: '52689d6f-a536-5ef0-8ccb-1d6fa0d68492'
-                  slug: 'markdown1'
+                  slug: 'explainMostAndLeast'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -392,7 +392,7 @@ config:
                       en: 'Plums have the most, 5. Pears have only 2 even if somebody draws their bar very wide. Trust the number scale.'
                 production:
                   purpose: 'Source explanatory learner copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['findLargestBar', 'compareHeightsNotWidths', 'explainMostAndLeast']
         production:
           purpose: 'Which group has more?'
           productionNotes: |-
@@ -411,10 +411,10 @@ config:
             **Misconception-specific explanation:** If pears are called most because the pear bar is wide: “Read height against the scale: pears are 2, plums are 5. Width is not the count.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
-      section4:
+      interpretFreshBarChart:
         config:
           id: '8b067705-466e-5666-95b4-f705f426c2cc'
-          slug: 'section4'
+          slug: 'interpretFreshBarChart'
           type: 'content'
           params: {}
           locale:
@@ -424,10 +424,10 @@ config:
               en: 'Read a new chart without a model answer'
           content:
             items:
-              text1:
+              identifySmallestColorGroup:
                 config:
                   id: 'f8825824-f3b9-57d7-b9bc-d8247c794db1'
-                  slug: 'text1'
+                  slug: 'identifySmallestColorGroup'
                   type: 'text'
                   params: {}
                   locale:
@@ -435,10 +435,10 @@ config:
                       en: 'A new chart counts three kinds of cards: red 3, blue 5, yellow 1. Which is the smallest group? How many are blue?'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              inspectNewBarChart:
                 config:
                   id: 'e8719d3d-bd40-58a8-9789-1d3df0fbdee2'
-                  slug: 'scene1'
+                  slug: 'inspectNewBarChart'
                   type: 'scene'
                   params: {}
                   locale:
@@ -513,10 +513,10 @@ config:
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   purpose: 'Read a new chart without a model answer: independent scene placement'
                   productionNotes: 'Legacy Scene BarChartReader.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              markdown1:
+              explainChartReadingTransfer:
                 config:
                   id: '894e239e-80b5-5b95-83b0-a39e41afe7cb'
-                  slug: 'markdown1'
+                  slug: 'explainChartReadingTransfer'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -524,7 +524,7 @@ config:
                       en: 'Yellow is smallest with 1 card, blue has 5, and red has 3. A bar chart still follows the same label-and-scale rule.'
                 production:
                   purpose: 'Source explanatory learner copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['identifySmallestColorGroup', 'inspectNewBarChart', 'explainChartReadingTransfer']
         production:
           purpose: 'Read a new chart without a model answer'
           productionNotes: |-
@@ -543,7 +543,7 @@ config:
             **Misconception-specific explanation:** For smallest red: “Follow the yellow bar to the 1 mark and red to the 3 mark; 1 is smaller than 3.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['linkBarHeightToValue', 'readAllFruitCounts', 'compareChartCategories', 'interpretFreshBarChart']
   flashcards:
     items: {}
     order: []

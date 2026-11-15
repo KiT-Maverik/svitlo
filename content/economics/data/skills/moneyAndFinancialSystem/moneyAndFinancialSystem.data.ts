@@ -39,12 +39,15 @@ export const moneyAndFinancialSystem_SkillDomain_Data = defineSkillDomain({
     kk: 'Ақша және қаржы жүйесі',
     qm: 'Aqça ve maliy sistema',
   },
-  groups: [
-    banksAndCreditIntermediation_SkillGroup_Data,
-    financialMarkets_SkillGroup_Data,
-    financialStabilityAndRegulation_SkillGroup_Data,
-    natureOfMoney_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      banksAndCreditIntermediation: banksAndCreditIntermediation_SkillGroup_Data,
+      financialMarkets: financialMarkets_SkillGroup_Data,
+      financialStabilityAndRegulation: financialStabilityAndRegulation_SkillGroup_Data,
+      natureOfMoney: natureOfMoney_SkillGroup_Data,
+    },
+    order: ['banksAndCreditIntermediation', 'financialMarkets', 'financialStabilityAndRegulation', 'natureOfMoney'],
+  },
   description: {
     methodological:
       'Financial institutions redistribute funds across time and among economic participants. The focus is system instruments and mechanisms; personal financial decisions belong to a neighboring domain.',

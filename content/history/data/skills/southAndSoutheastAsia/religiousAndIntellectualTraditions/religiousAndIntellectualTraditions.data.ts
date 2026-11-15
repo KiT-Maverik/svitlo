@@ -41,12 +41,15 @@ export const religiousAndIntellectualTraditions_SkillGroup_Data = defineSkillGro
     kk: 'Діни және зияткерлік дәстүрлер',
     qm: 'Diniy ve fikriy ananeler',
   },
-  skills: [
-    ancientIndianScience_Skill_Data,
-    buddhismInAncientIndia_Skill_Data,
-    earlyHinduTraditions_Skill_Data,
-    jainism_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ancientIndianScience: ancientIndianScience_Skill_Data,
+      buddhismInAncientIndia: buddhismInAncientIndia_Skill_Data,
+      earlyHinduTraditions: earlyHinduTraditions_Skill_Data,
+      jainism: jainism_Skill_Data,
+    },
+    order: ['ancientIndianScience', 'buddhismInAncientIndia', 'earlyHinduTraditions', 'jainism'],
+  },
   description: {
     methodological: 'Teachings, texts, and schools evolved over centuries and spread far beyond the subcontinent.',
     frontend: {

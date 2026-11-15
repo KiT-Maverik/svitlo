@@ -40,11 +40,14 @@ export const westAndCentralAfricanTraditions_SkillGroup_Data = defineSkillGroup(
     kk: 'Батыс және Орталық Африка дәстүрлері',
     qm: 'Batı ve Orta Afrika adetleri',
   },
-  skills: [
-    analyzeBeninCourtPlaques_Skill_Data,
-    analyzeGeledeMasqueradeTraditions_Skill_Data,
-    analyzeKongoNkisiFigures_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeBeninCourtPlaques: analyzeBeninCourtPlaques_Skill_Data,
+      analyzeGeledeMasqueradeTraditions: analyzeGeledeMasqueradeTraditions_Skill_Data,
+      analyzeKongoNkisiFigures: analyzeKongoNkisiFigures_Skill_Data,
+    },
+    order: ['analyzeBeninCourtPlaques', 'analyzeGeledeMasqueradeTraditions', 'analyzeKongoNkisiFigures'],
+  },
   description: {
     methodological:
       "These examples refer to particular peoples and court or community practices. They are not interchangeable illustrations of a supposedly uniform 'African art'.",

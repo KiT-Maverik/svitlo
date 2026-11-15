@@ -15,10 +15,10 @@ config:
       en: 'Subtraction Across Ten and with Place-Value Columns'
   section:
     items:
-      section1:
+      unbundleTenWithoutChangingValue:
         config:
           id: '74be4aea-4fc5-5121-bf6c-caeab3a03c5b'
-          slug: 'section1'
+          slug: 'unbundleTenWithoutChangingValue'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Open a Ten, Keep the Same Number'
           content:
             items:
-              text1:
+              predictUnbundledThirteen:
                 config:
                   id: '3ce47e5b-bebe-5ef0-be1e-fe5b49acd9be'
-                  slug: 'text1'
+                  slug: 'predictUnbundledThirteen'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'Look at thirteen: one bundle of ten and three single ones. If we open the bundle, how many counters will we have altogether?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              modelTenExchange:
                 config:
                   id: '7df81144-8192-5e11-ad0f-9144f429d2df'
-                  slug: 'scene1'
+                  slug: 'modelTenExchange'
                   type: 'scene'
                   params: {}
                   locale:
@@ -123,10 +123,10 @@ config:
                     The typed scene Resource and current generic renderer are available; **Ten Exchange Lab is proposed**, not yet implemented. Editorial approval precedes Design Scene implementation and own tests. Coding Agent validates independent prop-free entrypoints, locale context and accessibility state handling; avoid fictional scene props/assessment APIs. If physical counter rearrangement proves insufficiently accessible, an equivalent interactive ordered state ledger is mandatory, not optional.
                   purpose: 'Open a Ten, Keep the Same Number: independent placement'
                   productionNotes: 'Original tenExchangeLab.scene-spec.md variant belongs to Open a Ten, Keep the Same Number; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainSameQuantity:
                 config:
                   id: '053b4609-e5c3-518a-bf9d-c609667d5c3c'
-                  slug: 'markdown1'
+                  slug: 'explainSameQuantity'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -134,7 +134,7 @@ config:
                       en: 'Before, **1 ten + 3 ones = 13**. After, **0 tens + 13 ones = 13**. We have the same thirteen counters. We only changed how they were grouped.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['predictUnbundledThirteen', 'modelTenExchange', 'explainSameQuantity']
         production:
           purpose: 'Understand that one ten is exchangeable for ten ones without changing the total.'
           productionNotes: |-
@@ -151,10 +151,10 @@ config:
             - Accessibility, locale and RTL requirements: Structured text says “before: one ten, three ones, total thirteen; after: zero tens, thirteen ones, total thirteen.” Keyboard and touch controls, high-contrast outlines plus names, reduced-motion immediate state; no visual-only conservation insight or drag requirement. Number and place-value reading order must remain meaningful in RTL.
             - Proposed unlocked Note(s): Note 1 “One ten = ten ones,” after the exchange and its unchanged total have been explained (planned, not wired).
             - Implementation dependencies and review notes: New Scene required; text, markdown and generic scene rendering are verified capabilities.
-      section2:
+      subtractSevenFromThirteen:
         config:
           id: '73be4957-4cc5-5c68-be6c-c957b4a03dee'
-          slug: 'section2'
+          slug: 'subtractSevenFromThirteen'
           type: 'content'
           params: {}
           locale:
@@ -164,10 +164,10 @@ config:
               en: 'Thirteen Minus Seven'
           content:
             items:
-              text1:
+              planThirteenMinusSeven:
                 config:
                   id: '4f76c8ba-e98a-539d-90b1-48ba46b8df3f'
-                  slug: 'text1'
+                  slug: 'planThirteenMinusSeven'
                   type: 'text'
                   params: {}
                   locale:
@@ -175,10 +175,10 @@ config:
                       en: 'We have **13** and need to take away **7**. There are only three loose ones. What can we do?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              removeSevenOnes:
                 config:
                   id: '37a56373-e62c-5c86-a6bc-e373a3c4d000'
-                  slug: 'scene1'
+                  slug: 'removeSevenOnes'
                   type: 'scene'
                   params: {}
                   locale:
@@ -259,10 +259,10 @@ config:
                     The typed scene Resource and current generic renderer are available; **Ten Exchange Lab is proposed**, not yet implemented. Editorial approval precedes Design Scene implementation and own tests. Coding Agent validates independent prop-free entrypoints, locale context and accessibility state handling; avoid fictional scene props/assessment APIs. If physical counter rearrangement proves insufficiently accessible, an equivalent interactive ordered state ledger is mandatory, not optional.
                   purpose: 'Thirteen Minus Seven: independent placement'
                   productionNotes: 'Original tenExchangeLab.scene-spec.md variant belongs to Thirteen Minus Seven; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainSixRemain:
                 config:
                   id: '64788f98-ca0b-57c7-9edb-0f984ddc382d'
-                  slug: 'markdown1'
+                  slug: 'explainSixRemain'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -270,7 +270,7 @@ config:
                       en: 'One way: open the bundle so you have thirteen ones, then remove seven: **13 − 7 = 6**. Another way: take away three to reach ten, then four more: **13 − 3 − 4 = 6**. Three and four together are seven, so both methods take away the same number.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['planThirteenMinusSeven', 'removeSevenOnes', 'explainSixRemain']
         production:
           purpose: 'Subtract across a ten by exchange or by partitioning the seven being removed.'
           productionNotes: |-
@@ -287,10 +287,10 @@ config:
             - Accessibility, locale and RTL requirements: Both routes have distinct ordered numerical logs, with subtraction operators in correct order and complete textual counters. Equivalent nonvisual execution, no dragging, timer or compulsory narration; reduced motion presents the same intermediate states immediately.
             - Proposed unlocked Note(s): Note 2 “Exchange changes the form, not the amount,” after comparing the two methods and the unchanged starting thirteen (planned, not wired).
             - Implementation dependencies and review notes: This is a formative teaching Scene, not a scored question. A child may inspect either route without being forced to perform both.
-      section3:
+      exchangeTenInColumnSubtraction:
         config:
           id: '72be47c4-4dc5-5dfb-bd6c-c7c4b5a03f81'
-          slug: 'section3'
+          slug: 'exchangeTenInColumnSubtraction'
           type: 'content'
           params: {}
           locale:
@@ -300,10 +300,10 @@ config:
               en: 'Why the Ones Column Needs an Exchange'
           content:
             items:
-              markdown1:
+              identifyInsufficientOnes:
                 config:
                   id: '3723f913-ec0b-5d5c-b186-7913640b94ea'
-                  slug: 'markdown1'
+                  slug: 'identifyInsufficientOnes'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -311,10 +311,10 @@ config:
                       en: 'Try **32 − 17**. Thirty-two is **3 tens and 2 ones**. Seventeen is **1 ten and 7 ones**. The ones column asks us to take seven ones from two ones. We cannot do that with the loose ones as they are. Can we exchange one ten?'
                 production:
                   purpose: 'Provisional instructional explanation'
-              scene1:
+              modelColumnExchange:
                 config:
                   id: 'd766c4ea-6f51-517f-867e-44ea5cb310f1'
-                  slug: 'scene1'
+                  slug: 'modelColumnExchange'
                   type: 'scene'
                   params: {}
                   locale:
@@ -406,10 +406,10 @@ config:
                     The generic Scene Resource and renderer are verified; **Place-Value Column Board is new and proposed**, not implemented. Editor approval of this spec precedes Design Scene skill and tests. Coding Agent must choose accurate column rendering, independent prop-free entries and per-locale contextual strings. Preserve the arithmetic/conservation invariants for all access modes. If nonvisual users cannot fully operate the representation, implementation remains blocked until an equivalent step-ledger is provided. Assessment Architect separately authorizes any graded tasks; this spec does not.
                   purpose: 'Why the Ones Column Needs an Exchange: independent placement'
                   productionNotes: 'Original placeValueColumnBoard.scene-spec.md variant belongs to Why the Ones Column Needs an Exchange; see Section productionNotes. Unique stable Scene ID.'
-              text1:
+              explainRegroupedThirtyTwo:
                 config:
                   id: '87064289-32e0-5dde-8840-c28994f6cc50'
-                  slug: 'text1'
+                  slug: 'explainRegroupedThirtyTwo'
                   type: 'text'
                   params: {}
                   locale:
@@ -417,7 +417,7 @@ config:
                       en: 'We did **not** turn 32 into 42. We changed **3 tens and 2 ones** into **2 tens and 12 ones**. Both are worth thirty-two.'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-            order: ['markdown1', 'scene1', 'text1']
+            order: ['identifyInsufficientOnes', 'modelColumnExchange', 'explainRegroupedThirtyTwo']
         production:
           purpose: 'Link the concrete ten/ones exchange to two-digit place-value columns, preserving both digits’ correct meaning.'
           productionNotes: |-
@@ -434,10 +434,10 @@ config:
             - Accessibility, locale and RTL requirements: Place-value labels are semantic, not left/right instructions; accessible grid text names the minuend and subtrahend (“thirty-two: three tens, two ones; seventeen: one ten, seven ones”). Math columns and operator order are not naively mirrored in RTL.
             - Proposed unlocked Note(s): Note 3 “Exchanging one ten adds ten ones and removes one ten,” after conservation is shown (planned, not wired).
             - Implementation dependencies and review notes: Scene is proposed. The Coding Agent must ensure visually stacked column marks are faithfully described in linear screen-reader text.
-      section4:
+      verifyThirtyTwoMinusSeventeen:
         config:
           id: '71be4631-52c5-55da-bc6c-c631b6a04114'
-          slug: 'section4'
+          slug: 'verifyThirtyTwoMinusSeventeen'
           type: 'content'
           params: {}
           locale:
@@ -447,10 +447,10 @@ config:
               en: 'Subtract and Check'
           content:
             items:
-              text1:
+              subtractAfterBorrowing:
                 config:
                   id: 'b270e400-161b-5a4b-b3ab-6400499354d9'
-                  slug: 'text1'
+                  slug: 'subtractAfterBorrowing'
                   type: 'text'
                   params: {}
                   locale:
@@ -458,10 +458,10 @@ config:
                       en: 'We have **2 tens and 12 ones** for thirty-two. Now take away **1 ten and 7 ones**. What is left? Check with addition.'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              modelResultFifteen:
                 config:
                   id: 'a3716c81-167a-5954-9288-ec81c7f2e31a'
-                  slug: 'scene1'
+                  slug: 'modelResultFifteen'
                   type: 'scene'
                   params: {}
                   locale:
@@ -553,10 +553,10 @@ config:
                     The generic Scene Resource and renderer are verified; **Place-Value Column Board is new and proposed**, not implemented. Editor approval of this spec precedes Design Scene skill and tests. Coding Agent must choose accurate column rendering, independent prop-free entries and per-locale contextual strings. Preserve the arithmetic/conservation invariants for all access modes. If nonvisual users cannot fully operate the representation, implementation remains blocked until an equivalent step-ledger is provided. Assessment Architect separately authorizes any graded tasks; this spec does not.
                   purpose: 'Subtract and Check: independent placement'
                   productionNotes: 'Original placeValueColumnBoard.scene-spec.md variant belongs to Subtract and Check; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              checkWithAddition:
                 config:
                   id: 'e065c9fa-3f75-5059-9ac8-49fad50f0543'
-                  slug: 'markdown1'
+                  slug: 'checkWithAddition'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -564,7 +564,7 @@ config:
                       en: 'After exchanging, **32 = 2 tens + 12 ones**. Take away seven ones: **12 − 7 = 5**. Take away one ten: **2 − 1 = 1 ten**. The difference is **1 ten + 5 ones = 15**. Check: **15 + 17 = 32**. The sum takes us back to the starting number.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['subtractAfterBorrowing', 'modelResultFifteen', 'checkWithAddition']
         production:
           purpose: 'Perform a single-exchange two-digit written subtraction correctly and verify by inverse addition.'
           productionNotes: |-
@@ -581,7 +581,13 @@ config:
             - Accessibility, locale and RTL requirements: Each phase announces tens and ones in words and numerals with explicit operand identity. Clear keyboard/touch stepping, readable focus, large type and equivalent nonvisual calculations; no answer visible only through animation or color.
             - Proposed unlocked Note(s): Note 4 “Line up ones with ones and tens with tens,” after the checked column example is explained (planned, not wired).
             - Implementation dependencies and review notes: Formative subtraction feedback is illustrative teaching, not a validated scored Question; a later Assessment Architect determines any assessment.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order:
+      [
+        'unbundleTenWithoutChangingValue',
+        'subtractSevenFromThirteen',
+        'exchangeTenInColumnSubtraction',
+        'verifyThirtyTwoMinusSeventeen',
+      ]
   flashcards:
     items: {}
     order: []

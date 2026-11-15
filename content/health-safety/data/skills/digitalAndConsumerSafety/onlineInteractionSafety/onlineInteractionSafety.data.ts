@@ -41,12 +41,20 @@ export const onlineInteractionSafety_SkillGroup_Data = defineSkillGroup({
     kk: 'Интернеттегі қарым-қатынас қауіпсіздігі',
     qm: 'İnternette bağ emniyeti',
   },
-  skills: [
-    manageADigitalFootprint_Skill_Data,
-    protectAgainstOnlineSexualExploitation_Skill_Data,
-    recognizeTechnologyFacilitatedHarassment_Skill_Data,
-    respondToHarmfulOnlineContact_Skill_Data,
-  ],
+  skills: {
+    items: {
+      manageADigitalFootprint: manageADigitalFootprint_Skill_Data,
+      protectAgainstOnlineSexualExploitation: protectAgainstOnlineSexualExploitation_Skill_Data,
+      recognizeTechnologyFacilitatedHarassment: recognizeTechnologyFacilitatedHarassment_Skill_Data,
+      respondToHarmfulOnlineContact: respondToHarmfulOnlineContact_Skill_Data,
+    },
+    order: [
+      'manageADigitalFootprint',
+      'protectAgainstOnlineSexualExploitation',
+      'recognizeTechnologyFacilitatedHarassment',
+      'respondToHarmfulOnlineContact',
+    ],
+  },
   description: {
     methodological:
       'Digital abuse can extend beyond the screen; protective responses should prioritize personal safety, consent, and trustworthy reporting channels.',

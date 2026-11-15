@@ -41,12 +41,15 @@ export const australiaAndNewGuinea_SkillGroup_Data = defineSkillGroup({
     kk: 'Аустралия және Жаңа Гвинея',
     qm: 'Avstraliya ve Yañı Gvineya',
   },
-  skills: [
-    ancientAboriginalAustralianSocieties_Skill_Data,
-    australianRockArt_Skill_Data,
-    earlyNewGuineaFarming_Skill_Data,
-    peoplingOfSahul_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ancientAboriginalAustralianSocieties: ancientAboriginalAustralianSocieties_Skill_Data,
+      australianRockArt: australianRockArt_Skill_Data,
+      earlyNewGuineaFarming: earlyNewGuineaFarming_Skill_Data,
+      peoplingOfSahul: peoplingOfSahul_Skill_Data,
+    },
+    order: ['ancientAboriginalAustralianSocieties', 'australianRockArt', 'earlyNewGuineaFarming', 'peoplingOfSahul'],
+  },
   description: {
     methodological:
       'Archaeology and living cultural traditions attest to long human presence in the former Sahul landmass.',

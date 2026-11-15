@@ -39,12 +39,15 @@ export const transportationAndAerospaceEngineering_SkillDomain_Data = defineSkil
     kk: 'Көлік және аэроғарыш инженериясы',
     qm: 'Ulaşım ve ava-kosmos müendisligi',
   },
-  groups: [
-    aircraft_SkillGroup_Data,
-    roadAndRail_SkillGroup_Data,
-    spacecraft_SkillGroup_Data,
-    watercraft_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      aircraft: aircraft_SkillGroup_Data,
+      roadAndRail: roadAndRail_SkillGroup_Data,
+      spacecraft: spacecraft_SkillGroup_Data,
+      watercraft: watercraft_SkillGroup_Data,
+    },
+    order: ['aircraft', 'roadAndRail', 'spacecraft', 'watercraft'],
+  },
   description: {
     methodological:
       'Transport machines coordinate power, support, steering, stopping and protection while moving through land, air, water or space. Each vehicle is a system with characteristic environmental and operating constraints.',

@@ -43,14 +43,24 @@ export const bodyAndChemicalSenses_SkillGroup_Data = defineSkillGroup({
     kk: 'Дене және химиялық сезімдер',
     qm: 'Beden ve himiye duyğuları',
   },
-  skills: [
-    painPerception_Skill_Data,
-    proprioception_Skill_Data,
-    smellPerception_Skill_Data,
-    tastePerception_Skill_Data,
-    touchPerception_Skill_Data,
-    vestibularPerception_Skill_Data,
-  ],
+  skills: {
+    items: {
+      painPerception: painPerception_Skill_Data,
+      proprioception: proprioception_Skill_Data,
+      smellPerception: smellPerception_Skill_Data,
+      tastePerception: tastePerception_Skill_Data,
+      touchPerception: touchPerception_Skill_Data,
+      vestibularPerception: vestibularPerception_Skill_Data,
+    },
+    order: [
+      'painPerception',
+      'proprioception',
+      'smellPerception',
+      'tastePerception',
+      'touchPerception',
+      'vestibularPerception',
+    ],
+  },
   description: {
     methodological:
       'Touch, pain, balance, body position, smell, and taste rely on partly distinct receptor and processing pathways. Their psychological importance lies in how signals become conscious experiences and guide action, not in cataloguing anatomy alone.',

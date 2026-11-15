@@ -42,13 +42,22 @@ export const airAndWater_SkillGroup_Data = defineSkillGroup({
     kk: 'Ауа және су',
     qm: 'Ava ve suv',
   },
-  skills: [
-    atmosphericChemicalChanges_Skill_Data,
-    carbonChemistryInTheEnvironment_Skill_Data,
-    compositionOfAir_Skill_Data,
-    waterAsASolvent_Skill_Data,
-    waterContaminants_Skill_Data,
-  ],
+  skills: {
+    items: {
+      atmosphericChemicalChanges: atmosphericChemicalChanges_Skill_Data,
+      carbonChemistryInTheEnvironment: carbonChemistryInTheEnvironment_Skill_Data,
+      compositionOfAir: compositionOfAir_Skill_Data,
+      waterAsASolvent: waterAsASolvent_Skill_Data,
+      waterContaminants: waterContaminants_Skill_Data,
+    },
+    order: [
+      'atmosphericChemicalChanges',
+      'carbonChemistryInTheEnvironment',
+      'compositionOfAir',
+      'waterAsASolvent',
+      'waterContaminants',
+    ],
+  },
   description: {
     methodological:
       'Environmental samples contain reacting or partitioning chemical species whose measurements require attention to concentration and chemical form.',

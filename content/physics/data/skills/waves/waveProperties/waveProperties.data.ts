@@ -43,14 +43,24 @@ export const waveProperties_SkillGroup_Data = defineSkillGroup({
     kk: 'Толқын қасиеттері',
     qm: 'Dalğa hususiyetleri',
   },
-  skills: [
-    compareWaveFrequenciesByObservableRhythm_Skill_Data,
-    distinguishSourceOscillationFromWavePropagation_Skill_Data,
-    distinguishWaveEnergyTransferFromMatterTransport_Skill_Data,
-    explainWaveAmplitude_Skill_Data,
-    explainWavelength_Skill_Data,
-    explainWaveSpeed_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareWaveFrequenciesByObservableRhythm: compareWaveFrequenciesByObservableRhythm_Skill_Data,
+      distinguishSourceOscillationFromWavePropagation: distinguishSourceOscillationFromWavePropagation_Skill_Data,
+      distinguishWaveEnergyTransferFromMatterTransport: distinguishWaveEnergyTransferFromMatterTransport_Skill_Data,
+      explainWaveAmplitude: explainWaveAmplitude_Skill_Data,
+      explainWavelength: explainWavelength_Skill_Data,
+      explainWaveSpeed: explainWaveSpeed_Skill_Data,
+    },
+    order: [
+      'compareWaveFrequenciesByObservableRhythm',
+      'distinguishSourceOscillationFromWavePropagation',
+      'distinguishWaveEnergyTransferFromMatterTransport',
+      'explainWaveAmplitude',
+      'explainWavelength',
+      'explainWaveSpeed',
+    ],
+  },
   description: {
     methodological:
       'Waves have a direction of propagation, a characteristic rhythm, and a disturbance magnitude; observing water waves distinguishes wave propagation from transport of all the water.',

@@ -41,12 +41,15 @@ export const perimeter_SkillGroup_Data = defineSkillGroup({
     pl: 'Obwód',
     uk: 'Периметр',
   },
-  skills: [
-    measurePerimeter_Skill_Data,
-    rectanglePerimeter_Skill_Data,
-    squarePerimeter_Skill_Data,
-    unknownSideFromPerimeter_Skill_Data,
-  ],
+  skills: {
+    items: {
+      measurePerimeter: measurePerimeter_Skill_Data,
+      rectanglePerimeter: rectanglePerimeter_Skill_Data,
+      squarePerimeter: squarePerimeter_Skill_Data,
+      unknownSideFromPerimeter: unknownSideFromPerimeter_Skill_Data,
+    },
+    order: ['measurePerimeter', 'rectanglePerimeter', 'squarePerimeter', 'unknownSideFromPerimeter'],
+  },
   description: {
     methodological:
       "The length of a polygon's closed boundary as the sum of its sides, including rectangles and squares.",

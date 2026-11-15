@@ -43,14 +43,24 @@ export const respondentConditioning_SkillGroup_Data = defineSkillGroup({
     kk: 'Респонденттік шарттану',
     qm: 'Cevabiy şartlanma',
   },
-  skills: [
-    classicalConditioning_Skill_Data,
-    conditionedResponseAcquisition_Skill_Data,
-    conditionedResponseExtinction_Skill_Data,
-    spontaneousRecovery_Skill_Data,
-    stimulusDiscrimination_Skill_Data,
-    stimulusGeneralization_Skill_Data,
-  ],
+  skills: {
+    items: {
+      classicalConditioning: classicalConditioning_Skill_Data,
+      conditionedResponseAcquisition: conditionedResponseAcquisition_Skill_Data,
+      conditionedResponseExtinction: conditionedResponseExtinction_Skill_Data,
+      spontaneousRecovery: spontaneousRecovery_Skill_Data,
+      stimulusDiscrimination: stimulusDiscrimination_Skill_Data,
+      stimulusGeneralization: stimulusGeneralization_Skill_Data,
+    },
+    order: [
+      'classicalConditioning',
+      'conditionedResponseAcquisition',
+      'conditionedResponseExtinction',
+      'spontaneousRecovery',
+      'stimulusDiscrimination',
+      'stimulusGeneralization',
+    ],
+  },
   description: {
     methodological:
       'Previously neutral cues can acquire the capacity to elicit responses through repeated relationships with consequential events.',

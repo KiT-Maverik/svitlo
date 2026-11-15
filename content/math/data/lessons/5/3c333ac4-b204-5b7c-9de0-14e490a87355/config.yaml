@@ -16,10 +16,10 @@ config:
       en: 'One Ten, Many Ones: Building Two-Digit Numbers'
   section:
     items:
-      section1:
+      exchangeOnesForTen:
         config:
           id: 'd72cbcf3-1eb9-4448-a576-69c508988612'
-          slug: 'section1'
+          slug: 'exchangeOnesForTen'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'Bundle Exchange Workbench'
           content:
             items:
-              text1:
+              bundleTenLooseSticks:
                 config:
                   id: '91c45715-7a13-437e-9148-7e471b645c10'
-                  slug: 'text1'
+                  slug: 'bundleTenLooseSticks'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'Bundle Exchange Workbench: text resource at position 1 (source provisional)'
                   specification: '1. **`text` — currently renderable:** “There are ten loose sticks. Can you turn exactly ten into one bundle?”'
-              scene2:
+              modelTenExchange:
                 config:
                   id: '51a316db-e63a-4932-b5e9-dbf15e36e5f8'
-                  slug: 'scene2'
+                  slug: 'modelTenExchange'
                   type: 'scene'
                   params: {}
                   locale:
@@ -138,10 +138,10 @@ config:
 
                     2. **`scene` — typed/generic renderer exists, new Scene implementation proposed:** Bundle Exchange Workbench (full Scene specification embedded in this config.yaml). Beat 1: Select all ten loose sticks (or use accessible 'Select ten' control) and activate Bundle; show a band around exactly ten, then show ten still counted inside when expanded. Beat 2: Unbundle the group of ten while leaving the seven loose ones; reveal 17 loose pieces, then bundle ten again.
                   productionNotes: 'Scene bundleExchange.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainSameSeventeenSticks:
                 config:
                   id: '405f0735-0010-4622-b9e7-cf3f58685f84'
-                  slug: 'markdown3'
+                  slug: 'explainSameSeventeenSticks'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -150,7 +150,7 @@ config:
                 production:
                   purpose: 'Bundle Exchange Workbench: markdown resource at position 3 (source provisional)'
                   specification: '3. **`markdown` — currently renderable:** “Ten objects before, ten objects after; regrouping changes organization only. Both layouts show seventeen objects; only standard packing has 1 ten and 7 remaining ones.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['bundleTenLooseSticks', 'modelTenExchange', 'explainSameSeventeenSticks']
         production:
           purpose: 'The critical invariant is visible: ten separate sticks and one labelled bundle represent the same ten objects.'
           pedagogicalIntent: 'Original Section 1: Bundle Exchange Workbench (provisional draft)'
@@ -167,10 +167,10 @@ config:
             - **Visible explanation and reason to continue:** The child can reveal the fully worked model rather than submit a forced guess. Ask the learner to say or select what changed and what remained invariant before continuing.
             - **Accessibility / RTL / locale:** Bundle is an accessible group named 'ten sticks'; when unpacked, the ledger enumerates the same ten stable items. Cannot bundle nine or fewer and cannot double-count a bundled stick. Localized control names, keyboard/touch/switch focus order, reduced-motion instantaneous transitions and identical nonvisual numeric evidence are necessary.
             - **Implementation dependency:** Entire new Bundle Exchange Workbench component is **proposed**, prop-free and unimplemented. Its scenario data belongs inside the Scene, not an invented Resource prop. No Question bank, score, mastery event or Note API.
-      section2:
+      explainQuantityPreservedInBundling:
         config:
           id: 'd82cbe86-21b9-4901-a276-650c0798847f'
-          slug: 'section2'
+          slug: 'explainQuantityPreservedInBundling'
           type: 'content'
           params: {}
           locale:
@@ -180,10 +180,10 @@ config:
               en: 'What changed when we packed ten?'
           content:
             items:
-              text1:
+              challengeFewerStickClaim:
                 config:
                   id: '39387774-ad38-40a3-a670-75a27640c311'
-                  slug: 'text1'
+                  slug: 'challengeFewerStickClaim'
                   type: 'text'
                   params: {}
                   locale:
@@ -192,10 +192,10 @@ config:
                 production:
                   purpose: 'What changed when we packed ten?: text resource at position 1 (source provisional)'
                   specification: '1. **`text` — currently renderable:** “If you put a band around ten sticks, do you have fewer sticks than before?”'
-              markdown2:
+              explainBundleStillTen:
                 config:
                   id: '78a6e77b-45c6-48e8-9f0c-f9e977ab44be'
-                  slug: 'markdown2'
+                  slug: 'explainBundleStillTen'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -204,10 +204,10 @@ config:
                 production:
                   purpose: 'What changed when we packed ten?: markdown resource at position 2 (source provisional)'
                   specification: '2. **`markdown` — currently renderable:** “No. The bundle has the same ten sticks inside. Replacing ten loose ones with one ten-bundle changes their grouping, not their total. With two tens and three loose ones, there are twenty-three sticks; with three tens and two loose ones, there are thirty-two.”'
-              text3:
+              giveAnotherRegroupingExample:
                 config:
                   id: '3b387a9a-af38-43c9-a470-727c7440bfeb'
-                  slug: 'text3'
+                  slug: 'giveAnotherRegroupingExample'
                   type: 'text'
                   params: {}
                   locale:
@@ -216,7 +216,7 @@ config:
                 production:
                   purpose: 'What changed when we packed ten?: text resource at position 3 (source provisional)'
                   specification: '3. **`text` — currently renderable:** “Now explain the rule using a new example, not just the picture you saw.”'
-            order: ['text1', 'markdown2', 'text3']
+            order: ['challengeFewerStickClaim', 'explainBundleStillTen', 'giveAnotherRegroupingExample']
         production:
           purpose: 'Recover the relationship from memory and distinguish it from a plausible mistaken shortcut.'
           pedagogicalIntent: 'Original Section 2: What changed when we packed ten? (provisional draft)'
@@ -231,10 +231,10 @@ config:
             - **Action and feedback:** Learner is invited to predict or explain before reading the visible explanation (or hide the text with an accessible native disclosure in a later authorized implementation). This is **unscored reflection**, not an implemented interactive self-check; the explanatory text remains accessible and no Question or scored checkpoint is invented.
             - **Navigation / rationale:** A misconception is challenged explicitly; the next Scene changes representation so the learner must use the rule rather than repeat previous clicks.
             - **Accessibility:** Text-first explanation is equivalent nonvisual content. Any future hide/reveal affordance must work with keyboard and announce expanded state, but is not assumed implemented.
-      section3:
+      buildTwoDigitValues:
         config:
           id: 'd92cc019-20b9-476e-a376-669f069882ec'
-          slug: 'section3'
+          slug: 'buildTwoDigitValues'
           type: 'content'
           params: {}
           locale:
@@ -244,10 +244,10 @@ config:
               en: 'Two-Digit Number Builder'
           content:
             items:
-              text1:
+              constructTwentySix:
                 config:
                   id: '95d80abb-5359-415c-8c2b-d1b1d0863082'
-                  slug: 'text1'
+                  slug: 'constructTwentySix'
                   type: 'text'
                   params: {}
                   locale:
@@ -256,10 +256,10 @@ config:
                 production:
                   purpose: 'Two-Digit Number Builder: text resource at position 1 (source provisional)'
                   specification: '1. **`text` — currently renderable:** “Build the number 26 using bundles and loose sticks.”'
-              scene2:
+              modelTensAndOnes:
                 config:
                   id: '0115e95d-611c-4b2c-a601-a94f097f8fde'
-                  slug: 'scene2'
+                  slug: 'modelTensAndOnes'
                   type: 'scene'
                   params: {}
                   locale:
@@ -375,10 +375,10 @@ config:
 
                     2. **`scene` — typed/generic renderer exists, new Scene implementation proposed:** Two-Digit Number Builder (full Scene specification embedded in this config.yaml). Beat 1: Place two ten-bundles and six loose units in labelled Tens/Ones containers, then select numeral 26; read as twenty-six with a language-specific voice/text alternative. Beat 2: Side-by-side inside this single Scene compare 23 and 32 with complete item/group ledger; change bundle counts rather than merely rearrange digit glyphs. Beat 3: Select ten of seventeen loose sticks, bundle them, observe two ten-bundles and seven loose units. Beat 4: Independent transfer: build four bundles and three loose units, identify 43, then explain why 34 is not equivalent.
                   productionNotes: 'Scene placeValueBuilder.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainPlaceValueComparison:
                 config:
                   id: 'd21487c3-a1d4-4040-ad06-aef105d8cf36'
-                  slug: 'markdown3'
+                  slug: 'explainPlaceValueComparison'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -387,7 +387,7 @@ config:
                 production:
                   purpose: 'Two-Digit Number Builder: markdown resource at position 3 (source provisional)'
                   specification: '3. **`markdown` — currently renderable:** “Two tens plus six ones equals 26. 23 and 32 are different quantities; 32 has more. 27 is 2 tens and 7 ones in canonical tens/ones form. Four tens and three ones is 43.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['constructTwentySix', 'modelTensAndOnes', 'explainPlaceValueComparison']
         production:
           purpose: 'Learner constructs numerals from groups and detects digit reversal as a real magnitude change.'
           pedagogicalIntent: 'Original Section 3: Two-Digit Number Builder (provisional draft)'
@@ -406,7 +406,7 @@ config:
             - **Visible explanation and reason to continue:** The child can reveal the fully worked model rather than submit a forced guess. Ask the learner to say or select what changed and what remained invariant before continuing.
             - **Accessibility / RTL / locale:** Explicit role labels 'Tens' and 'Ones', numeric counts and text ledger; semantic CSS layout for RTL with digit sequence and value retained. Accessible button alternatives rather than drag-only placement. Localized control names, keyboard/touch/switch focus order, reduced-motion instantaneous transitions and identical nonvisual numeric evidence are necessary.
             - **Implementation dependency:** Entire new Two-Digit Number Builder component is **proposed**, prop-free and unimplemented. Its scenario data belongs inside the Scene, not an invented Resource prop. No Question bank, score, mastery event or Note API.
-    order: ['section1', 'section2', 'section3']
+    order: ['exchangeOnesForTen', 'explainQuantityPreservedInBundling', 'buildTwoDigitValues']
   flashcards:
     items: {}
     order: []

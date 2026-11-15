@@ -42,13 +42,16 @@ export const oxidationAndReduction_SkillGroup_Data = defineSkillGroup({
     kk: 'Тотығу және тотықсыздану',
     qm: 'Oksidlenuv ve qayta tiklenuv',
   },
-  skills: [
-    electrolysis_Skill_Data,
-    galvanicCells_Skill_Data,
-    oxidation_Skill_Data,
-    redoxCouples_Skill_Data,
-    reduction_Skill_Data,
-  ],
+  skills: {
+    items: {
+      electrolysis: electrolysis_Skill_Data,
+      galvanicCells: galvanicCells_Skill_Data,
+      oxidation: oxidation_Skill_Data,
+      redoxCouples: redoxCouples_Skill_Data,
+      reduction: reduction_Skill_Data,
+    },
+    order: ['electrolysis', 'galvanicCells', 'oxidation', 'redoxCouples', 'reduction'],
+  },
   description: {
     methodological:
       'Electron bookkeeping describes an important class of reactions even when electrons are not explicitly transferred between discrete ions.',

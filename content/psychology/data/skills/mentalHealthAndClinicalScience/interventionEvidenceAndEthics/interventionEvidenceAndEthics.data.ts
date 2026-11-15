@@ -41,12 +41,20 @@ export const interventionEvidenceAndEthics_SkillGroup_Data = defineSkillGroup({
     kk: 'Араласудың дәлелдері мен этикасы',
     qm: 'Tedbirlerniñ delilleri ve ahlâqı',
   },
-  skills: [
-    behavioralExposurePrinciples_Skill_Data,
-    cognitiveBehavioralInterventions_Skill_Data,
-    evaluatingTreatmentClaims_Skill_Data,
-    therapeuticAlliance_Skill_Data,
-  ],
+  skills: {
+    items: {
+      behavioralExposurePrinciples: behavioralExposurePrinciples_Skill_Data,
+      cognitiveBehavioralInterventions: cognitiveBehavioralInterventions_Skill_Data,
+      evaluatingTreatmentClaims: evaluatingTreatmentClaims_Skill_Data,
+      therapeuticAlliance: therapeuticAlliance_Skill_Data,
+    },
+    order: [
+      'behavioralExposurePrinciples',
+      'cognitiveBehavioralInterventions',
+      'evaluatingTreatmentClaims',
+      'therapeuticAlliance',
+    ],
+  },
   description: {
     methodological:
       'Treatment approaches propose different mechanisms and require evaluation for effectiveness, suitability, potential harm, and professional standards.',

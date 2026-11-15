@@ -18,10 +18,10 @@ config:
     order: []
   section:
     items:
-      section1AFlatPictureOfASolid:
+      distinguishFlatAndSolid:
         config:
           id: 'd68403d5-6641-43e0-82b6-bca7d0ecd38a'
-          slug: 'section1AFlatPictureOfASolid'
+          slug: 'distinguishFlatAndSolid'
           type: 'content'
           params: {}
           locale:
@@ -31,10 +31,10 @@ config:
               en: 'A Flat Picture of a Solid'
           content:
             items:
-              text1:
+              compareSquareAndCube:
                 config:
                   id: 'b8ad9474-eb8e-4555-a933-b9ca225d5efb'
-                  slug: 'text1'
+                  slug: 'compareSquareAndCube'
                   type: 'text'
                   params: {}
                   locale:
@@ -151,16 +151,16 @@ config:
                     The generic `scene` Resource is supported in Playground, but **Solid Surface Observatory is proposed and not implemented**. Scene Designer/Coding Agent must verify actual Section/locale provider contract, implement component/tested mathematical inventories, render complete nonvisual states and assure offline packaging _after editorial approval_. No runtime Lesson, Question, Quiz, Note unlock API, scoring or invented props. Editor to review technical face/curvature terminology at Grade 2.
                   purpose: 'Proposed interactive Scene for A Flat Picture of a Solid'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainDepthAndFaces:
                 config:
                   id: 'bd90d47b-53e8-4be2-a855-ea41f9a82770'
-                  slug: 'markdown2'
+                  slug: 'explainDepthAndFaces'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'A **square** is a flat shape. A **cube** is a solid: it has depth, and you can describe its flat square-shaped faces. A drawing on paper is still flat even when it helps us picture a solid.'
-            order: ['text1', 'solidSurfaceObservatory', 'markdown2']
+            order: ['compareSquareAndCube', 'solidSurfaceObservatory', 'explainDepthAndFaces']
         production:
           purpose: 'A Flat Picture of a Solid'
           pedagogicalIntent: |
@@ -177,10 +177,10 @@ config:
             - **Planned future Note:** "A picture may show one face of a 3D solid."
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section2CubeOrLongBox:
+      differentiateCubeAndCuboid:
         config:
           id: '0e8f9128-9d51-41e7-9ce8-466200c762c9'
-          slug: 'section2CubeOrLongBox'
+          slug: 'differentiateCubeAndCuboid'
           type: 'content'
           params: {}
           locale:
@@ -190,10 +190,10 @@ config:
               en: 'Cube or Long Box?'
           content:
             items:
-              text1:
+              inspectBoxEdges:
                 config:
                   id: '73c8ca5d-da71-410a-866f-80b3b384bff8'
-                  slug: 'text1'
+                  slug: 'inspectBoxEdges'
                   type: 'text'
                   params: {}
                   locale:
@@ -310,16 +310,16 @@ config:
                     The generic `scene` Resource is supported in Playground, but **Solid Surface Observatory is proposed and not implemented**. Scene Designer/Coding Agent must verify actual Section/locale provider contract, implement component/tested mathematical inventories, render complete nonvisual states and assure offline packaging _after editorial approval_. No runtime Lesson, Question, Quiz, Note unlock API, scoring or invented props. Editor to review technical face/curvature terminology at Grade 2.
                   purpose: 'Proposed interactive Scene for Cube or Long Box?'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainCubeAndCuboid:
                 config:
                   id: '6910bf1a-0868-4381-b8a7-60584cba5caf'
-                  slug: 'markdown2'
+                  slug: 'explainCubeAndCuboid'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'A **cube** has six square faces and equally long edges. A **rectangular cuboid** has six rectangular faces and may be longer in one direction. A square counts as a rectangle too, so a cube is a special kind of rectangular cuboid. Turning the model does not change its surfaces.'
-            order: ['text1', 'solidSurfaceObservatory', 'markdown2']
+            order: ['inspectBoxEdges', 'solidSurfaceObservatory', 'explainCubeAndCuboid']
         production:
           purpose: 'Cube or Long Box?'
           pedagogicalIntent: |
@@ -336,10 +336,10 @@ config:
             - **Planned Note:** "The same solid can look different when we turn it."
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section3CurvedSidesAndFlatBases:
+      identifyCurvedSolidFeatures:
         config:
           id: '71cb9a35-0c02-4782-81e6-d7eb80cadcf0'
-          slug: 'section3CurvedSidesAndFlatBases'
+          slug: 'identifyCurvedSolidFeatures'
           type: 'content'
           params: {}
           locale:
@@ -349,10 +349,10 @@ config:
               en: 'Curved Sides and Flat Bases'
           content:
             items:
-              text1:
+              compareBallCanCone:
                 config:
                   id: '076d62d4-7c7c-4153-a0a5-9f8e185be5a5'
-                  slug: 'text1'
+                  slug: 'compareBallCanCone'
                   type: 'text'
                   params: {}
                   locale:
@@ -469,16 +469,16 @@ config:
                     The generic `scene` Resource is supported in Playground, but **Solid Surface Observatory is proposed and not implemented**. Scene Designer/Coding Agent must verify actual Section/locale provider contract, implement component/tested mathematical inventories, render complete nonvisual states and assure offline packaging _after editorial approval_. No runtime Lesson, Question, Quiz, Note unlock API, scoring or invented props. Editor to review technical face/curvature terminology at Grade 2.
                   purpose: 'Proposed interactive Scene for Curved Sides and Flat Bases'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              describeSphereCylinderCone:
                 config:
                   id: 'b532cbdb-cfb4-4178-b907-a6256fb61d92'
-                  slug: 'markdown2'
+                  slug: 'describeSphereCylinderCone'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'A **sphere** has no flat face. A **cylinder** has two flat circular bases and a curved side. A **cone** has one flat circular base and a curved side meeting at a tip. A round-looking picture does not mean all three solids are the same.'
-            order: ['text1', 'solidSurfaceObservatory', 'markdown2']
+            order: ['compareBallCanCone', 'solidSurfaceObservatory', 'describeSphereCylinderCone']
         production:
           purpose: 'Curved Sides and Flat Bases'
           pedagogicalIntent: |
@@ -495,10 +495,10 @@ config:
             - **Planned Note:** "Sphere: no flat bases; cylinder: two; cone: one."
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section4RecognizeASolidInAnotherView:
+      identifyRotatedCylinder:
         config:
           id: '92d3296a-d28f-4f13-b6b0-bb78e13beb39'
-          slug: 'section4RecognizeASolidInAnotherView'
+          slug: 'identifyRotatedCylinder'
           type: 'content'
           params: {}
           locale:
@@ -508,10 +508,10 @@ config:
               en: 'Recognize a Solid in Another View'
           content:
             items:
-              text1:
+              recognizeCylinderFromBases:
                 config:
                   id: '825e68db-68d0-4116-8d73-2a6d269acfe8'
-                  slug: 'text1'
+                  slug: 'recognizeCylinderFromBases'
                   type: 'text'
                   params: {}
                   locale:
@@ -628,16 +628,16 @@ config:
                     The generic `scene` Resource is supported in Playground, but **Solid Surface Observatory is proposed and not implemented**. Scene Designer/Coding Agent must verify actual Section/locale provider contract, implement component/tested mathematical inventories, render complete nonvisual states and assure offline packaging _after editorial approval_. No runtime Lesson, Question, Quiz, Note unlock API, scoring or invented props. Editor to review technical face/curvature terminology at Grade 2.
                   purpose: 'Proposed interactive Scene for Recognize a Solid in Another View'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainViewInvariantSolid:
                 config:
                   id: 'ee0953d0-baa6-419d-974c-574ae455fcff'
-                  slug: 'markdown2'
+                  slug: 'explainViewInvariantSolid'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "A **cylinder** still has two flat circular bases when turned. A cone has only one base and a tip. A view can hide part of a surface, but the solid's defining surfaces stay the same."
-            order: ['text1', 'solidSurfaceObservatory', 'markdown2']
+            order: ['recognizeCylinderFromBases', 'solidSurfaceObservatory', 'explainViewInvariantSolid']
         production:
           purpose: 'Recognize a Solid in Another View'
           pedagogicalIntent: |
@@ -655,10 +655,10 @@ config:
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
     order:
       [
-        'section1AFlatPictureOfASolid',
-        'section2CubeOrLongBox',
-        'section3CurvedSidesAndFlatBases',
-        'section4RecognizeASolidInAnotherView',
+        'distinguishFlatAndSolid',
+        'differentiateCubeAndCuboid',
+        'identifyCurvedSolidFeatures',
+        'identifyRotatedCylinder',
       ]
 production:
   documentLanguage: 'en'

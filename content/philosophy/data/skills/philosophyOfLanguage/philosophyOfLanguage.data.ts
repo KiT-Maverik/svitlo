@@ -38,11 +38,14 @@ export const philosophyOfLanguage_SkillDomain_Data = defineSkillDomain({
     kk: 'Тіл философиясы',
     qm: 'Til felsefesi',
   },
-  groups: [
-    communicationAndInterpretation_SkillGroup_Data,
-    languageTruthAndPower_SkillGroup_Data,
-    meaningAndReference_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      communicationAndInterpretation: communicationAndInterpretation_SkillGroup_Data,
+      languageTruthAndPower: languageTruthAndPower_SkillGroup_Data,
+      meaningAndReference: meaningAndReference_SkillGroup_Data,
+    },
+    order: ['communicationAndInterpretation', 'languageTruthAndPower', 'meaningAndReference'],
+  },
   description: {
     methodological:
       'Language is examined as a system for conveying meaning, referring to the world, performing actions, and shaping interpretation. Grammar instruction and literary composition remain primarily in Language and Literature.',

@@ -20,10 +20,10 @@ config:
       en: 'Read the Clock in Five-Minute Steps'
   section:
     items:
-      section1ANumeralBecomesFiveMinutes:
+      countFiveMinuteSteps:
         config:
           id: '7c49d4be-d939-88ac-88b0-de6aadc00278'
-          slug: 'section1ANumeralBecomesFiveMinutes'
+          slug: 'countFiveMinuteSteps'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'A numeral becomes five minutes'
           content:
             items:
-              section1Text1:
+              promptFiveMinuteJumps:
                 config:
                   id: '14ea93bc-66a8-8200-8479-734d563b82f1'
-                  slug: 'section1Text1'
+                  slug: 'promptFiveMinuteJumps'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Source text at A numeral becomes five minutes; provisional draft, not implemented.'
                   specification: "1. **`text` — existing Resource block type.** “We know the long hand at 3 means quarter past. How many minutes has it passed? Let's count the jumps from 12 to 3, five minutes each.”"
-              scene1Block2:
+              exploreFiveMinuteDial:
                 config:
                   id: '20e79fa4-423c-8c85-867f-06e374a485c2'
-                  slug: 'scene1Block2'
+                  slug: 'exploreFiveMinuteDial'
                   type: 'scene'
                   params: {}
                   locale:
@@ -131,10 +131,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): FiveMinuteDial preset 'Count the minute steps': mark 12→1 (05), 1→2 (10), 2→3 (15), then continue through 5 (25). Learner advances one jump and predicts the next label.
                   productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
-              section1Markdown3:
+              explainFiveMinuteIntervals:
                 config:
                   id: '9a5a27e7-5b12-8162-863e-071f8776819a'
-                  slug: 'section1Markdown3'
+                  slug: 'explainFiveMinuteIntervals'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -144,9 +144,9 @@ config:
                   purpose: 'Source markdown at A numeral becomes five minutes; provisional draft, not implemented.'
                   specification: '3. **`markdown` — existing Resource block type.** “One number jump is five minutes. By the time the long hand reaches 5, five jumps have passed: 5, 10, 15, 20, 25 minutes.”'
             order:
-              - 'section1Text1'
-              - 'scene1Block2'
-              - 'section1Markdown3'
+              - 'promptFiveMinuteJumps'
+              - 'exploreFiveMinuteDial'
+              - 'explainFiveMinuteIntervals'
         production:
           purpose: 'A numeral becomes five minutes'
           pedagogicalIntent: 'A numeral becomes five minutes'
@@ -174,10 +174,10 @@ config:
 
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
-      section2ReadBothHandsTogether:
+      combineHourAndMinuteHands:
         config:
           id: 'abe5e4f8-3514-8551-8ef3-893f40025896'
-          slug: 'section2ReadBothHandsTogether'
+          slug: 'combineHourAndMinuteHands'
           type: 'content'
           params: {}
           locale:
@@ -187,10 +187,10 @@ config:
               en: 'Read both hands together'
           content:
             items:
-              section2Markdown1:
+              identifyTwoTwentyFive:
                 config:
                   id: 'f87dc429-cc88-868b-8bfb-3cd20f0ebe70'
-                  slug: 'section2Markdown1'
+                  slug: 'identifyTwoTwentyFive'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -199,10 +199,10 @@ config:
                 production:
                   purpose: 'Source markdown at Read both hands together; provisional draft, not implemented.'
                   specification: '1. **`markdown` — existing Resource block type.** “The long hand is at 5. The short hand is a little after 2, not at 5. What time is it?”'
-              scene2Block2:
+              readBothHandsOnDial:
                 config:
                   id: '70bd89a5-dce4-899d-82f6-81698eafb151'
-                  slug: 'scene2Block2'
+                  slug: 'readBothHandsOnDial'
                   type: 'scene'
                   params: {}
                   locale:
@@ -285,10 +285,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Show 2:25 clock state with long hand at 5 and short hand at 2 + 25/60 of the interval toward 3; learner chooses 2:25, 2:05 or 5:25 before reveal.
                   productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
-              section2Text3:
+              explainTwoTwentyFive:
                 config:
                   id: 'e6365cc8-8c9e-8cc1-894c-759363e4259a'
-                  slug: 'section2Text3'
+                  slug: 'explainTwoTwentyFive'
                   type: 'text'
                   params: {}
                   locale:
@@ -298,9 +298,9 @@ config:
                   purpose: 'Source text at Read both hands together; provisional draft, not implemented.'
                   specification: '3. **`text` — existing Resource block type.** “It is 2:25. The long hand tells 25 minutes, and the short hand tells us which hour has already begun: two.”'
             order:
-              - 'section2Markdown1'
-              - 'scene2Block2'
-              - 'section2Text3'
+              - 'identifyTwoTwentyFive'
+              - 'readBothHandsOnDial'
+              - 'explainTwoTwentyFive'
         production:
           purpose: 'Read both hands together'
           pedagogicalIntent: 'Read both hands together'
@@ -328,10 +328,10 @@ config:
 
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
-      section3NearTheNextHourIsNotThereYet:
+      distinguishApproachingHour:
         config:
           id: 'c3b2ccd2-1560-8c31-8473-1fa022a1bf43'
-          slug: 'section3NearTheNextHourIsNotThereYet'
+          slug: 'distinguishApproachingHour'
           type: 'content'
           params: {}
           locale:
@@ -341,10 +341,10 @@ config:
               en: 'Near the next hour is not there yet'
           content:
             items:
-              section3Text1:
+              compareSixFortyAndSevenForty:
                 config:
                   id: '14ae0119-c3d8-85b5-83f8-7a25448e1e89'
-                  slug: 'section3Text1'
+                  slug: 'compareSixFortyAndSevenForty'
                   type: 'text'
                   params: {}
                   locale:
@@ -353,10 +353,10 @@ config:
                 production:
                   purpose: 'Source text at Near the next hour is not there yet; provisional draft, not implemented.'
                   specification: '1. **`text` — existing Resource block type.** “The long hand points to 8. The short hand has moved most of the way from 6 to 7. Is it 6:40 or 7:40?”'
-              scene3Block2:
+              inspectHourHandProgress:
                 config:
                   id: '97c9fd06-d549-8689-847a-fbe716fa4068'
-                  slug: 'scene3Block2'
+                  slug: 'inspectHourHandProgress'
                   type: 'scene'
                   params: {}
                   locale:
@@ -439,10 +439,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Compare states 6:40 and 7:40 while keeping the minute hand at 8. Highlight how only the short hand's interval changes. Show 11:55 next to a revealed 12:00 boundary snapshot.
                   productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
-              section3Markdown3:
+              explainCurrentHourAtForty:
                 config:
                   id: '4e470d71-420a-8d28-884f-2009e402d050'
-                  slug: 'section3Markdown3'
+                  slug: 'explainCurrentHourAtForty'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -452,9 +452,9 @@ config:
                   purpose: 'Source markdown at Near the next hour is not there yet; provisional draft, not implemented.'
                   specification: '3. **`markdown` — existing Resource block type.** “The long hand at 8 means 40 minutes. The short hand has passed 6 but not reached 7, so it is 6:40. At 11:55 it has almost reached 12, but is still in the eleven o’clock hour.”'
             order:
-              - 'section3Text1'
-              - 'scene3Block2'
-              - 'section3Markdown3'
+              - 'compareSixFortyAndSevenForty'
+              - 'inspectHourHandProgress'
+              - 'explainCurrentHourAtForty'
         production:
           purpose: 'Near the next hour is not there yet'
           pedagogicalIntent: 'Near the next hour is not there yet'
@@ -482,10 +482,10 @@ config:
 
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
-      section4YourNewClock:
+      readUnfamiliarClock:
         config:
           id: 'ab163a05-9041-85f8-8e3d-5693856a896e'
-          slug: 'section4YourNewClock'
+          slug: 'readUnfamiliarClock'
           type: 'content'
           params: {}
           locale:
@@ -495,10 +495,10 @@ config:
               en: 'Your new clock'
           content:
             items:
-              section4Markdown1:
+              predictNineThirtyFive:
                 config:
                   id: '367f4c32-32ef-8907-8461-92e8a0f137dd'
-                  slug: 'section4Markdown1'
+                  slug: 'predictNineThirtyFive'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -507,10 +507,10 @@ config:
                 production:
                   purpose: 'Source markdown at Your new clock; provisional draft, not implemented.'
                   specification: '1. **`markdown` — existing Resource block type.** “A new dial shows the long hand at 7 and the short hand between 9 and 10, a little past halfway. Predict the digital time before showing the answer.”'
-              scene4Block2:
+              exploreTransferClock:
                 config:
                   id: '20838de8-cfca-80dc-8e6f-df0521268231'
-                  slug: 'scene4Block2'
+                  slug: 'exploreTransferClock'
                   type: 'scene'
                   params: {}
                   locale:
@@ -593,10 +593,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Transfer preset: exact 9:35 analog state; learner chooses 9:35, 7:09 or 10:35. Hide numerical minute tick values until optional hint; after answer show seven five-minute jumps.
                   productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
-              section4Text3:
+              explainNineThirtyFive:
                 config:
                   id: '27c93564-e2e4-893e-8b6b-3d1f1e462145'
-                  slug: 'section4Text3'
+                  slug: 'explainNineThirtyFive'
                   type: 'text'
                   params: {}
                   locale:
@@ -606,9 +606,9 @@ config:
                   purpose: 'Source text at Your new clock; provisional draft, not implemented.'
                   specification: '3. **`text` — existing Resource block type.** “It is 9:35. The long hand has crossed seven five-minute intervals. The short hand has moved from nine toward ten, but ten has not started.”'
             order:
-              - 'section4Markdown1'
-              - 'scene4Block2'
-              - 'section4Text3'
+              - 'predictNineThirtyFive'
+              - 'exploreTransferClock'
+              - 'explainNineThirtyFive'
         production:
           purpose: 'Your new clock'
           pedagogicalIntent: 'Your new clock'
@@ -637,10 +637,10 @@ config:
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
     order:
-      - 'section1ANumeralBecomesFiveMinutes'
-      - 'section2ReadBothHandsTogether'
-      - 'section3NearTheNextHourIsNotThereYet'
-      - 'section4YourNewClock'
+      - 'countFiveMinuteSteps'
+      - 'combineHourAndMinuteHands'
+      - 'distinguishApproachingHour'
+      - 'readUnfamiliarClock'
   flashcards:
     items: {}
     order: []

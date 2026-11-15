@@ -40,13 +40,16 @@ export const ancientAfrica_SkillDomain_Data = defineSkillDomain({
     kk: 'Африка',
     qm: 'Afrika',
   },
-  groups: [
-    ancientEgypt_SkillGroup_Data,
-    hornOfAfrica_SkillGroup_Data,
-    northAfricaBeyondTheNile_SkillGroup_Data,
-    nubiaAndKush_SkillGroup_Data,
-    saharaAndSubSaharanAfrica_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      ancientEgypt: ancientEgypt_SkillGroup_Data,
+      hornOfAfrica: hornOfAfrica_SkillGroup_Data,
+      northAfricaBeyondTheNile: northAfricaBeyondTheNile_SkillGroup_Data,
+      nubiaAndKush: nubiaAndKush_SkillGroup_Data,
+      saharaAndSubSaharanAfrica: saharaAndSubSaharanAfrica_SkillGroup_Data,
+    },
+    order: ['ancientEgypt', 'hornOfAfrica', 'northAfricaBeyondTheNile', 'nubiaAndKush', 'saharaAndSubSaharanAfrica'],
+  },
   description: {
     methodological:
       "Africa's ancient history extends beyond the Nile through independent political traditions, migrations, crafts, trade, and adaptation to varied environments.",

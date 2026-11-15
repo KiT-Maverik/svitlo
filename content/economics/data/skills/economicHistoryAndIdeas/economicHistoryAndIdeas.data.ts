@@ -38,11 +38,14 @@ export const economicHistoryAndIdeas_SkillDomain_Data = defineSkillDomain({
     kk: 'Экономикалық тарих және идеялар',
     qm: 'İqtisadiy tarih ve fikirler',
   },
-  groups: [
-    economicSystems_SkillGroup_Data,
-    historicalEconomicTransformations_SkillGroup_Data,
-    schoolsOfEconomicThought_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      economicSystems: economicSystems_SkillGroup_Data,
+      historicalEconomicTransformations: historicalEconomicTransformations_SkillGroup_Data,
+      schoolsOfEconomicThought: schoolsOfEconomicThought_SkillGroup_Data,
+    },
+    order: ['economicSystems', 'historicalEconomicTransformations', 'schoolsOfEconomicThought'],
+  },
   description: {
     methodological:
       'Economic systems, institutions, and theories evolved alongside production, trade, and social conflicts. Historical interpretations require context and comparisons of sources.',

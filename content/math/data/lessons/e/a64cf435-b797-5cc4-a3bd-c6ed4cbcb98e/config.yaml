@@ -16,10 +16,10 @@ config:
       en: 'What Do We Know? What Must We Find?'
   section:
     items:
-      section1:
+      identifyStoryQuestion:
         config:
           id: 'f7a2e9bd-16a9-4256-9943-3c9f7ac06980'
-          slug: 'section1'
+          slug: 'identifyStoryQuestion'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'Listen for the question'
           content:
             items:
-              text1:
+              askPencilTotal:
                 config:
                   id: '24462b3f-5d31-4b24-90e1-f7b11545dfd6'
-                  slug: 'text1'
+                  slug: 'askPencilTotal'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'Listen for the question: text resource at position 1 (source provisional)'
                   specification: '1. **text**: “A box holds six pencils. Three more pencils are put inside. How many pencils are there now?”'
-              scene2:
+              markKnownPencils:
                 config:
                   id: '6c3378b9-65ef-4184-90bf-7b4f0d22051a'
-                  slug: 'scene2'
+                  slug: 'markKnownPencils'
                   type: 'scene'
                   params: {}
                   locale:
@@ -99,10 +99,10 @@ config:
 
                     2. **scene (proposed)**: Story Fact Finder (full Scene specification embedded in this config.yaml). Learner categorizes “six first”, “three added”, and “how many now?” as given information or unknown. Confirmation: “Six and three are known; the new total is what we need.”
                   productionNotes: 'Scene storyFactFinder.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              separateKnownFromUnknown:
                 config:
                   id: 'd7f24107-7414-4378-9879-34f137d8beca'
-                  slug: 'markdown3'
+                  slug: 'separateKnownFromUnknown'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -111,7 +111,7 @@ config:
                 production:
                   purpose: 'Listen for the question: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown**: “First ask: what do we know, and what do we need to find? We do not have to calculate yet.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askPencilTotal', 'markKnownPencils', 'separateKnownFromUnknown']
         production:
           purpose: 'Listen for the question'
           pedagogicalIntent: 'Original Section 1: Listen for the question (provisional draft)'
@@ -119,10 +119,10 @@ config:
             1. **text**: “A box holds six pencils. Three more pencils are put inside. How many pencils are there now?”
             2. **scene (proposed)**: Story Fact Finder (full Scene specification embedded in this config.yaml). Learner categorizes “six first”, “three added”, and “how many now?” as given information or unknown. Confirmation: “Six and three are known; the new total is what we need.”
             3. **markdown**: “First ask: what do we know, and what do we need to find? We do not have to calculate yet.”
-      section2:
+      identifyChangeRelationship:
         config:
           id: 'f4a2e504-15a9-40c3-9a43-3e327dc06e39'
-          slug: 'section2'
+          slug: 'identifyChangeRelationship'
           type: 'content'
           params: {}
           locale:
@@ -132,10 +132,10 @@ config:
               en: 'The relationship matters'
           content:
             items:
-              text1:
+              askStickersRemaining:
                 config:
                   id: '0c5684ba-3a6f-4dc5-8ec6-4830d9b985db'
-                  slug: 'text1'
+                  slug: 'askStickersRemaining'
                   type: 'text'
                   params: {}
                   locale:
@@ -144,10 +144,10 @@ config:
                 production:
                   purpose: 'The relationship matters: text resource at position 1 (source provisional)'
                   specification: '1. **text**: “Mira has eight stickers. She gives two away. How many remain?” Offer “two came in” versus “two went away”.'
-              scene2:
+              modelGivingAway:
                 config:
                   id: '8cda5906-379f-41eb-a654-8598e452e47d'
-                  slug: 'scene2'
+                  slug: 'modelGivingAway'
                   type: 'scene'
                   params: {}
                   locale:
@@ -202,10 +202,10 @@ config:
 
                     2. **scene (proposed)**: New-story Fact Finder highlights the action and asks which quantity is unknown.
                   productionNotes: 'Scene storyFactFinder.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              text3:
+              contrastAddedAndRemoved:
                 config:
                   id: '0a568194-386f-4a9f-90c6-4b56dbb98901'
-                  slug: 'text3'
+                  slug: 'contrastAddedAndRemoved'
                   type: 'text'
                   params: {}
                   locale:
@@ -214,7 +214,7 @@ config:
                 production:
                   purpose: 'The relationship matters: text resource at position 3 (source provisional)'
                   specification: '3. **text**: Feedback for “came in”: “Giving away removes stickers from the collection. Read the action, not just the number.”'
-            order: ['text1', 'scene2', 'text3']
+            order: ['askStickersRemaining', 'modelGivingAway', 'contrastAddedAndRemoved']
         production:
           purpose: 'The relationship matters'
           pedagogicalIntent: 'Original Section 2: The relationship matters (provisional draft)'
@@ -222,10 +222,10 @@ config:
             1. **text**: “Mira has eight stickers. She gives two away. How many remain?” Offer “two came in” versus “two went away”.
             2. **scene (proposed)**: New-story Fact Finder highlights the action and asks which quantity is unknown.
             3. **text**: Feedback for “came in”: “Giving away removes stickers from the collection. Read the action, not just the number.”
-      section3:
+      ignoreIrrelevantDetails:
         config:
           id: 'f5a2e697-14a9-4f30-9b43-3fc57cc06ca6'
-          slug: 'section3'
+          slug: 'ignoreIrrelevantDetails'
           type: 'content'
           params: {}
           locale:
@@ -235,10 +235,10 @@ config:
               en: 'Not every detail is a quantity'
           content:
             items:
-              markdown1:
+              presentGreenBasketStory:
                 config:
                   id: 'ca7f1013-04bb-4cd4-a75a-5865d4506d2e'
-                  slug: 'markdown1'
+                  slug: 'presentGreenBasketStory'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -247,10 +247,10 @@ config:
                 production:
                   purpose: 'Not every detail is a quantity: markdown resource at position 1 (source provisional)'
                   specification: '1. **markdown**: “A green basket contains four pears. Two more pears are added. How many pears are there now?” Green describes the basket but does not change the counts.'
-              scene2:
+              selectRelevantInformation:
                 config:
                   id: '20b2a857-7d33-408a-a0a7-adf1fb56d954'
-                  slug: 'scene2'
+                  slug: 'selectRelevantInformation'
                   type: 'scene'
                   params: {}
                   locale:
@@ -305,10 +305,10 @@ config:
 
                     2. **scene (proposed)**: Sort “green basket”, “four pears”, “two more pears” and “how many now” into descriptive detail, useful known quantities and unknown. Wrong feedback: “Color helps us picture the story, but cannot tell us the number of pears.”
                   productionNotes: 'Scene storyFactFinder.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              text3:
+              explainNumbersWithUnits:
                 config:
                   id: '35cde663-9aa5-4840-97fe-a76dbe857dba'
-                  slug: 'text3'
+                  slug: 'explainNumbersWithUnits'
                   type: 'text'
                   params: {}
                   locale:
@@ -317,7 +317,7 @@ config:
                 production:
                   purpose: 'Not every detail is a quantity: text resource at position 3 (source provisional)'
                   specification: '3. **text**: “Numbers matter together with what they describe.”'
-            order: ['markdown1', 'scene2', 'text3']
+            order: ['presentGreenBasketStory', 'selectRelevantInformation', 'explainNumbersWithUnits']
         production:
           purpose: 'Not every detail is a quantity'
           pedagogicalIntent: 'Original Section 3: Not every detail is a quantity (provisional draft)'
@@ -325,10 +325,10 @@ config:
             1. **markdown**: “A green basket contains four pears. Two more pears are added. How many pears are there now?” Green describes the basket but does not change the counts.
             2. **scene (proposed)**: Sort “green basket”, “four pears”, “two more pears” and “how many now” into descriptive detail, useful known quantities and unknown. Wrong feedback: “Color helps us picture the story, but cannot tell us the number of pears.”
             3. **text**: “Numbers matter together with what they describe.”
-      section4:
+      transferKnownUnknownMethod:
         config:
           id: 'f2a2e1de-1ba9-4a35-9443-34c07fc0715f'
-          slug: 'section4'
+          slug: 'transferKnownUnknownMethod'
           type: 'content'
           params: {}
           locale:
@@ -338,10 +338,10 @@ config:
               en: 'Transfer to a new story'
           content:
             items:
-              text1:
+              askCupsAfterAddingFive:
                 config:
                   id: 'fff5602c-1cfa-4bd7-b93b-8a965efa82f1'
-                  slug: 'text1'
+                  slug: 'askCupsAfterAddingFive'
                   type: 'text'
                   params: {}
                   locale:
@@ -350,10 +350,10 @@ config:
                 production:
                   purpose: 'Transfer to a new story: text resource at position 1 (source provisional)'
                   specification: '1. **text**: “Seven cups stand on a shelf. A helper puts five more cups there. Say which numbers are known, describe the change, and name what is still unknown.”'
-              text2:
+              listKnownFacts:
                 config:
                   id: '02f564e5-1dfa-4d6a-b83b-89035bfa7e38'
-                  slug: 'text2'
+                  slug: 'listKnownFacts'
                   type: 'text'
                   params: {}
                   locale:
@@ -362,10 +362,10 @@ config:
                 production:
                   purpose: 'Transfer to a new story: text resource at position 2 (source provisional)'
                   specification: '2. **text**: Reveal: “Known: seven, five, and the adding action. Unknown: number of cups afterward.” Do not demand a calculation or claim independent problem-solving mastery.'
-              markdown3:
+              summarizeFactsAndQuestion:
                 config:
                   id: 'd2da84b0-73e5-4c6f-8236-718af3c04231'
-                  slug: 'markdown3'
+                  slug: 'summarizeFactsAndQuestion'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -374,7 +374,7 @@ config:
                 production:
                   purpose: 'Transfer to a new story: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown**: “Remember: **given facts → relationship → question**.”'
-            order: ['text1', 'text2', 'markdown3']
+            order: ['askCupsAfterAddingFive', 'listKnownFacts', 'summarizeFactsAndQuestion']
         production:
           purpose: 'Transfer to a new story'
           pedagogicalIntent: 'Original Section 4: Transfer to a new story (provisional draft)'
@@ -382,7 +382,8 @@ config:
             1. **text**: “Seven cups stand on a shelf. A helper puts five more cups there. Say which numbers are known, describe the change, and name what is still unknown.”
             2. **text**: Reveal: “Known: seven, five, and the adding action. Unknown: number of cups afterward.” Do not demand a calculation or claim independent problem-solving mastery.
             3. **markdown**: “Remember: **given facts → relationship → question**.”
-    order: ['section1', 'section2', 'section3', 'section4']
+    order:
+      ['identifyStoryQuestion', 'identifyChangeRelationship', 'ignoreIrrelevantDetails', 'transferKnownUnknownMethod']
   flashcards:
     items: {}
     order: []

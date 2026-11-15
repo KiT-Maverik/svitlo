@@ -20,10 +20,10 @@ config:
       en: 'Morning, Afternoon, Evening, Night'
   section:
     items:
-      section1:
+      sequenceDayPeriods:
         config:
           id: '8555d475-ca16-56fd-9736-000000000004'
-          slug: 'section1'
+          slug: 'sequenceDayPeriods'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'A day has a repeating pattern'
           content:
             items:
-              text1:
+              askAfterNight:
                 config:
                   id: '8555d475-ca16-56fd-9736-000000000001'
-                  slug: 'text1'
+                  slug: 'askAfterNight'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original authored resource line: 1. **`text` (existing Resource type).** “Here are four parts of the day: morning, afternoon, evening and night. After night, what comes next?”'
-              scene1:
+              cycleThroughDayPeriods:
                 config:
                   id: '8555d475-ca16-56fd-9736-000000000002'
-                  slug: 'scene1'
+                  slug: 'cycleThroughDayPeriods'
                   type: 'scene'
                   params: {}
                   locale:
@@ -123,10 +123,10 @@ config:
 
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   productionNotes: 'Placement scene1 of DayCycleExplorer.scene-spec.md in A day has a repeating pattern. 2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Show the four labelled periods in a linear cycle and let the learner step forward with a Next-period control. Keep the next morning visible after night.. Provisional draft; distinct identity per placement.'
-              markdown1:
+              explainRepeatingCycle:
                 config:
                   id: '8555d475-ca16-56fd-9736-000000000003'
-                  slug: 'markdown1'
+                  slug: 'explainRepeatingCycle'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -136,9 +136,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original authored resource line: 3. **`markdown` (existing Resource type).** “Morning comes after night. The four names repeat in a cycle, so we can start at any part and keep going.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'askAfterNight'
+              - 'cycleThroughDayPeriods'
+              - 'explainRepeatingCycle'
         production:
           purpose: 'A day has a repeating pattern'
           pedagogicalIntent: |-
@@ -158,10 +158,10 @@ config:
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
           productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
-      section2:
+      identifyBeforeAndAfter:
         config:
           id: '8555d475-ca16-56fd-9736-000000000008'
-          slug: 'section2'
+          slug: 'identifyBeforeAndAfter'
           type: 'content'
           params: {}
           locale:
@@ -171,10 +171,10 @@ config:
               en: 'Before and after'
           content:
             items:
-              text1:
+              askAdjacentPeriods:
                 config:
                   id: '8555d475-ca16-56fd-9736-000000000005'
-                  slug: 'text1'
+                  slug: 'askAdjacentPeriods'
                   type: 'text'
                   params: {}
                   locale:
@@ -183,10 +183,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original authored resource line: 1. **`text` (existing Resource type).** “What comes right before evening? What comes right after afternoon?”'
-              scene1:
+              practiceDayNeighbors:
                 config:
                   id: '8555d475-ca16-56fd-9736-000000000006'
-                  slug: 'scene1'
+                  slug: 'practiceDayNeighbors'
                   type: 'scene'
                   params: {}
                   locale:
@@ -261,10 +261,10 @@ config:
 
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   productionNotes: 'Placement scene1 of DayCycleExplorer.scene-spec.md in Before and after. 2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Choose one named period to highlight and use Before or After. For evening, Before shows afternoon. For afternoon, After shows evening.. Provisional draft; distinct identity per placement.'
-              markdown1:
+              explainBeforeAfterDayParts:
                 config:
                   id: '8555d475-ca16-56fd-9736-000000000007'
-                  slug: 'markdown1'
+                  slug: 'explainBeforeAfterDayParts'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -274,9 +274,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original authored resource line: 3. **`markdown` (existing Resource type).** “In our four-part model, afternoon comes before evening, and evening comes after afternoon. Night comes after evening.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'askAdjacentPeriods'
+              - 'practiceDayNeighbors'
+              - 'explainBeforeAfterDayParts'
         production:
           purpose: 'Before and after'
           pedagogicalIntent: |-
@@ -296,10 +296,10 @@ config:
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
           productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
-      section3:
+      separateRoutinesFromTime:
         config:
           id: '8555d475-ca16-56fd-9736-00000000000c'
-          slug: 'section3'
+          slug: 'separateRoutinesFromTime'
           type: 'content'
           params: {}
           locale:
@@ -309,10 +309,10 @@ config:
               en: 'Daily activities are clues, not rules'
           content:
             items:
-              markdown1:
+              describeActivityClues:
                 config:
                   id: '8555d475-ca16-56fd-9736-000000000009'
-                  slug: 'markdown1'
+                  slug: 'describeActivityClues'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -321,10 +321,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original authored resource line: 1. **`markdown` (existing Resource type).** “Many children get ready for school in the morning. Some people study or work in the evening or at night. Activities can happen at different times.”'
-              scene1:
+              compareDailySchedules:
                 config:
                   id: '8555d475-ca16-56fd-9736-00000000000a'
-                  slug: 'scene1'
+                  slug: 'compareDailySchedules'
                   type: 'scene'
                   params: {}
                   locale:
@@ -399,10 +399,10 @@ config:
 
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   productionNotes: 'Placement scene1 of DayCycleExplorer.scene-spec.md in Daily activities are clues, not rules. 2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Show three illustrative context cards (a morning outdoor walk, an afternoon game, a nighttime shift) with period labels. Let the learner choose a plausible time and inspect alternative schedules.. Provisional draft; distinct identity per placement.'
-              text1:
+              clarifyTimePeriodBoundaries:
                 config:
                   id: '8555d475-ca16-56fd-9736-00000000000b'
-                  slug: 'text1'
+                  slug: 'clarifyTimePeriodBoundaries'
                   type: 'text'
                   params: {}
                   locale:
@@ -412,9 +412,9 @@ config:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original authored resource line: 3. **`text` (existing Resource type).** “A routine can help us describe the day, but it does not decide the exact time when morning or evening begins for everyone.”'
             order:
-              - 'markdown1'
-              - 'scene1'
-              - 'text1'
+              - 'describeActivityClues'
+              - 'compareDailySchedules'
+              - 'clarifyTimePeriodBoundaries'
         production:
           purpose: 'Daily activities are clues, not rules'
           pedagogicalIntent: |-
@@ -434,10 +434,10 @@ config:
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
           productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
-      section4:
+      navigateDayCycle:
         config:
           id: '8555d475-ca16-56fd-9736-000000000010'
-          slug: 'section4'
+          slug: 'navigateDayCycle'
           type: 'content'
           params: {}
           locale:
@@ -447,10 +447,10 @@ config:
               en: 'Find your way around the cycle'
           content:
             items:
-              text1:
+              startFromEvening:
                 config:
                   id: '8555d475-ca16-56fd-9736-00000000000d'
-                  slug: 'text1'
+                  slug: 'startFromEvening'
                   type: 'text'
                   params: {}
                   locale:
@@ -459,10 +459,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original authored resource line: 1. **`text` (existing Resource type).** “Start at evening. Name the next three periods without starting again from morning.”'
-              scene1:
+              traceDayPeriodCycle:
                 config:
                   id: '8555d475-ca16-56fd-9736-00000000000e'
-                  slug: 'scene1'
+                  slug: 'traceDayPeriodCycle'
                   type: 'scene'
                   params: {}
                   locale:
@@ -537,10 +537,10 @@ config:
 
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   productionNotes: 'Placement scene1 of DayCycleExplorer.scene-spec.md in Find your way around the cycle. 2. **`scene` (existing Resource type; Scene proposed).** `DayCycleExplorer` (Scene specification embedded in this YAML). Hide the future labels initially; provide an evening start and three revealable following spaces: night, morning, afternoon. Offer the full cycle as an optional hint.. Provisional draft; distinct identity per placement.'
-              markdown1:
+              explainCyclicOrder:
                 config:
                   id: '8555d475-ca16-56fd-9736-00000000000f'
-                  slug: 'markdown1'
+                  slug: 'explainCyclicOrder'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -550,9 +550,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original authored resource line: 3. **`markdown` (existing Resource type).** “Evening → night → morning → afternoon. The order stays the same even if we start in the middle.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'startFromEvening'
+              - 'traceDayPeriodCycle'
+              - 'explainCyclicOrder'
         production:
           purpose: 'Find your way around the cycle'
           pedagogicalIntent: |-
@@ -573,10 +573,10 @@ config:
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
           productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'sequenceDayPeriods'
+      - 'identifyBeforeAndAfter'
+      - 'separateRoutinesFromTime'
+      - 'navigateDayCycle'
   flashcards:
     items: {}
     order: []

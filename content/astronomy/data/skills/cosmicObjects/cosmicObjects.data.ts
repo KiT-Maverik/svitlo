@@ -37,7 +37,13 @@ export const cosmicObjects_SkillDomain_Data = defineSkillDomain({
     kk: 'Ғарыш нысандары',
     qm: 'Kâinat cisimleri',
   },
-  groups: [objectFamilies_SkillGroup_Data, organizationAndMembership_SkillGroup_Data],
+  groups: {
+    items: {
+      objectFamilies: objectFamilies_SkillGroup_Data,
+      organizationAndMembership: organizationAndMembership_SkillGroup_Data,
+    },
+    order: ['objectFamilies', 'organizationAndMembership'],
+  },
   description: {
     methodological:
       "An overview of what kinds of physical objects and extended structures exist beyond Earth and how they are identified and organized. It teaches classification across cosmic scales and distinguishes an object's physical nature from its environment or apparent visual form; detailed physics belongs to the specialized planetary, stellar, galactic and cosmological domains.",

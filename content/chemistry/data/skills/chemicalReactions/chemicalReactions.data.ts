@@ -38,11 +38,14 @@ export const chemicalReactions_SkillDomain_Data = defineSkillDomain({
     kk: 'Химиялық реакциялар',
     qm: 'Kimyeviy reaktsiyalar',
   },
-  groups: [
-    oxidationAndReduction_SkillGroup_Data,
-    reactionPatterns_SkillGroup_Data,
-    recognizingReactions_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      oxidationAndReduction: oxidationAndReduction_SkillGroup_Data,
+      reactionPatterns: reactionPatterns_SkillGroup_Data,
+      recognizingReactions: recognizingReactions_SkillGroup_Data,
+    },
+    order: ['oxidationAndReduction', 'reactionPatterns', 'recognizingReactions'],
+  },
   description: {
     methodological:
       'This domain identifies and explains transformations in which constituent atoms are rearranged or electron/proton transfer occurs. Chemical equation notation and amount calculations remain in their dedicated domain.',

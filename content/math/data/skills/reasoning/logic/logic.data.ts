@@ -36,7 +36,12 @@ export const logic_SkillGroup_Data = defineSkillGroup({
     pl: 'Rozumowanie logiczne',
     uk: 'Логічне мислення',
   },
-  skills: [logicalElimination_Skill_Data],
+  skills: {
+    items: {
+      logicalElimination: logicalElimination_Skill_Data,
+    },
+    order: ['logicalElimination'],
+  },
   description: {
     methodological:
       'Using given constraints to exclude impossible alternatives and identify the sole valid conclusion. Completing numerical patterns belongs to algebraic competencies, not to a separate skill in this group.',

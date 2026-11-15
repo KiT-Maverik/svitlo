@@ -44,15 +44,26 @@ export const motivationalMechanisms_SkillGroup_Data = defineSkillGroup({
     kk: 'Мотивация тетіктері',
     qm: 'Motivatsiya mekanizmleri',
   },
-  skills: [
-    approachMotivation_Skill_Data,
-    avoidanceMotivation_Skill_Data,
-    expectancyAndValue_Skill_Data,
-    extrinsicMotivation_Skill_Data,
-    intrinsicMotivation_Skill_Data,
-    motivationalCrowding_Skill_Data,
-    needsAndDrives_Skill_Data,
-  ],
+  skills: {
+    items: {
+      approachMotivation: approachMotivation_Skill_Data,
+      avoidanceMotivation: avoidanceMotivation_Skill_Data,
+      expectancyAndValue: expectancyAndValue_Skill_Data,
+      extrinsicMotivation: extrinsicMotivation_Skill_Data,
+      intrinsicMotivation: intrinsicMotivation_Skill_Data,
+      motivationalCrowding: motivationalCrowding_Skill_Data,
+      needsAndDrives: needsAndDrives_Skill_Data,
+    },
+    order: [
+      'approachMotivation',
+      'avoidanceMotivation',
+      'expectancyAndValue',
+      'extrinsicMotivation',
+      'intrinsicMotivation',
+      'motivationalCrowding',
+      'needsAndDrives',
+    ],
+  },
   description: {
     methodological:
       'Behavior is influenced by internal states and external incentives, with competing explanations and substantial individual variation.',

@@ -41,12 +41,15 @@ export const memoryAndStorage_SkillGroup_Data = defineSkillGroup({
     kk: 'Жад және деректерді сақтау',
     qm: 'Hatır ve saqlav',
   },
-  skills: [
-    distinguishRAMROMAndStorage_Skill_Data,
-    explainPersistentStorage_Skill_Data,
-    explainRAM_Skill_Data,
-    explainThePurposeOfROM_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishRAMROMAndStorage: distinguishRAMROMAndStorage_Skill_Data,
+      explainPersistentStorage: explainPersistentStorage_Skill_Data,
+      explainRAM: explainRAM_Skill_Data,
+      explainThePurposeOfROM: explainThePurposeOfROM_Skill_Data,
+    },
+    order: ['distinguishRAMROMAndStorage', 'explainPersistentStorage', 'explainRAM', 'explainThePurposeOfROM'],
+  },
   description: {
     methodological:
       'Distinguishes temporary working memory from nonvolatile file storage, along with the different functions of RAM, ROM, and storage devices.',

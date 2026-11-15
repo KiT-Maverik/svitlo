@@ -41,12 +41,20 @@ export const rightsAndLiberty_SkillGroup_Data = defineSkillGroup({
     kk: 'Құқықтар мен бостандық',
     qm: 'Aqlar ve serbestlik',
   },
-  skills: [
-    analyzeAConflictBetweenRights_Skill_Data,
-    distinguishNegativeAndPositiveLiberty_Skill_Data,
-    distinguishRightsFromPrivileges_Skill_Data,
-    explainFreedomOfConscience_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAConflictBetweenRights: analyzeAConflictBetweenRights_Skill_Data,
+      distinguishNegativeAndPositiveLiberty: distinguishNegativeAndPositiveLiberty_Skill_Data,
+      distinguishRightsFromPrivileges: distinguishRightsFromPrivileges_Skill_Data,
+      explainFreedomOfConscience: explainFreedomOfConscience_Skill_Data,
+    },
+    order: [
+      'analyzeAConflictBetweenRights',
+      'distinguishNegativeAndPositiveLiberty',
+      'distinguishRightsFromPrivileges',
+      'explainFreedomOfConscience',
+    ],
+  },
   description: {
     methodological:
       "A right may protect a person's action, claim, or status and create obligations for others. Competing rights can require principled reconciliation.",

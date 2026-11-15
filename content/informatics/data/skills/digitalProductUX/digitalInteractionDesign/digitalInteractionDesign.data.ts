@@ -41,12 +41,20 @@ export const digitalInteractionDesign_SkillGroup_Data = defineSkillGroup({
     kk: 'Цифрлық өзара әрекеттесу дизайны',
     qm: 'Raqamlı tesirleşüv dizaynı',
   },
-  skills: [
-    designDigitalInterfaceFeedback_Skill_Data,
-    designDigitalInterfaceNavigation_Skill_Data,
-    identifyADigitalProductUsersGoal_Skill_Data,
-    preventCommonDigitalInteractionErrors_Skill_Data,
-  ],
+  skills: {
+    items: {
+      designDigitalInterfaceFeedback: designDigitalInterfaceFeedback_Skill_Data,
+      designDigitalInterfaceNavigation: designDigitalInterfaceNavigation_Skill_Data,
+      identifyADigitalProductUsersGoal: identifyADigitalProductUsersGoal_Skill_Data,
+      preventCommonDigitalInteractionErrors: preventCommonDigitalInteractionErrors_Skill_Data,
+    },
+    order: [
+      'designDigitalInterfaceFeedback',
+      'designDigitalInterfaceNavigation',
+      'identifyADigitalProductUsersGoal',
+      'preventCommonDigitalInteractionErrors',
+    ],
+  },
   description: {
     methodological:
       'Designing user action flows in applications and digital devices, understandable transitions, status feedback, and safeguards against common errors.',

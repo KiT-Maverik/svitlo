@@ -42,13 +42,22 @@ export const advertisingAndCommunications_SkillGroup_Data = defineSkillGroup({
     kk: 'Жарнама және коммуникация',
     qm: 'Reklama ve haberleşüv',
   },
-  skills: [
-    advertisingCampaign_Skill_Data,
-    advertisingClaims_Skill_Data,
-    advertisingEffectiveness_Skill_Data,
-    advertisingObjectivesAndChannels_Skill_Data,
-    sponsoredEndorsementsAndInfluencerAdvertising_Skill_Data,
-  ],
+  skills: {
+    items: {
+      advertisingCampaign: advertisingCampaign_Skill_Data,
+      advertisingClaims: advertisingClaims_Skill_Data,
+      advertisingEffectiveness: advertisingEffectiveness_Skill_Data,
+      advertisingObjectivesAndChannels: advertisingObjectivesAndChannels_Skill_Data,
+      sponsoredEndorsementsAndInfluencerAdvertising: sponsoredEndorsementsAndInfluencerAdvertising_Skill_Data,
+    },
+    order: [
+      'advertisingCampaign',
+      'advertisingClaims',
+      'advertisingEffectiveness',
+      'advertisingObjectivesAndChannels',
+      'sponsoredEndorsementsAndInfluencerAdvertising',
+    ],
+  },
   description: {
     methodological:
       'Commercial messages can inform, remind, or persuade; effectiveness and truthfulness must be evaluated independently.',

@@ -41,12 +41,21 @@ export const culturalGeography_SkillGroup_Data = defineSkillGroup({
     kk: 'Мәдени география',
     qm: 'Medeniy coğrafiya',
   },
-  skills: [
-    compareCulturalLandscapesAcrossPlaces_Skill_Data,
-    explainGeographicDiffusionOfCulturalPractices_Skill_Data,
-    interpretTheGeographicDistributionOfCulturalCharacteristics_Skill_Data,
-    recognizeHumanInfluencesOnACulturalLandscape_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareCulturalLandscapesAcrossPlaces: compareCulturalLandscapesAcrossPlaces_Skill_Data,
+      explainGeographicDiffusionOfCulturalPractices: explainGeographicDiffusionOfCulturalPractices_Skill_Data,
+      interpretTheGeographicDistributionOfCulturalCharacteristics:
+        interpretTheGeographicDistributionOfCulturalCharacteristics_Skill_Data,
+      recognizeHumanInfluencesOnACulturalLandscape: recognizeHumanInfluencesOnACulturalLandscape_Skill_Data,
+    },
+    order: [
+      'compareCulturalLandscapesAcrossPlaces',
+      'explainGeographicDiffusionOfCulturalPractices',
+      'interpretTheGeographicDistributionOfCulturalCharacteristics',
+      'recognizeHumanInfluencesOnACulturalLandscape',
+    ],
+  },
   description: {
     methodological:
       'Languages, practices, built environments and cultural identities form geographic distributions that evolve through human movement and interaction. Geographic interpretation describes spatial patterns and diffusion without assigning one culture to all inhabitants of a territory.',

@@ -39,12 +39,15 @@ export const socialPsychology_SkillDomain_Data = defineSkillDomain({
     kk: 'Әлеуметтік психология',
     qm: 'İçtimaiy psihologiya',
   },
-  groups: [
-    groupDynamics_SkillGroup_Data,
-    influenceAndPersuasion_SkillGroup_Data,
-    relationshipsAndCommunication_SkillGroup_Data,
-    socialPerception_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      groupDynamics: groupDynamics_SkillGroup_Data,
+      influenceAndPersuasion: influenceAndPersuasion_SkillGroup_Data,
+      relationshipsAndCommunication: relationshipsAndCommunication_SkillGroup_Data,
+      socialPerception: socialPerception_SkillGroup_Data,
+    },
+    order: ['groupDynamics', 'influenceAndPersuasion', 'relationshipsAndCommunication', 'socialPerception'],
+  },
   description: {
     methodological:
       'Thought and behavior change in the actual or imagined presence of others. Social processes involve interpretation, group membership, influence, and relationships without assuming all people respond alike.',

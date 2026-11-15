@@ -39,12 +39,15 @@ export const generalAndCellBiology_SkillDomain_Data = defineSkillDomain({
     kk: 'Жалпы және жасуша биологиясы',
     qm: 'Umumiy ve üceyre biologiyası',
   },
-  groups: [
-    cellDivision_SkillGroup_Data,
-    cellularStructure_SkillGroup_Data,
-    levelsOfOrganization_SkillGroup_Data,
-    lifeProcesses_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      cellDivision: cellDivision_SkillGroup_Data,
+      cellularStructure: cellularStructure_SkillGroup_Data,
+      levelsOfOrganization: levelsOfOrganization_SkillGroup_Data,
+      lifeProcesses: lifeProcesses_SkillGroup_Data,
+    },
+    order: ['cellDivision', 'cellularStructure', 'levelsOfOrganization', 'lifeProcesses'],
+  },
   description: {
     methodological:
       'Shared principles of cellular organism organization, from the cell to interactions among organs, as well as metabolism, growth, and responses. Specific human systems and particular taxa are addressed in their respective Domains.',

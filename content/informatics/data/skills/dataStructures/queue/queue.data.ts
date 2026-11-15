@@ -36,7 +36,14 @@ export const queue_SkillGroup_Data = defineSkillGroup({
     kk: 'Кезек',
     qm: 'Nevbet',
   },
-  skills: [dequeueAnElement_Skill_Data, enqueueAnElement_Skill_Data, explainFIFO_Skill_Data],
+  skills: {
+    items: {
+      dequeueAnElement: dequeueAnElement_Skill_Data,
+      enqueueAnElement: enqueueAnElement_Skill_Data,
+      explainFIFO: explainFIFO_Skill_Data,
+    },
+    order: ['dequeueAnElement', 'enqueueAnElement', 'explainFIFO'],
+  },
   description: {
     methodological:
       'A structure following first-in, first-out (FIFO) order: elements join at the back and leave from the front.',

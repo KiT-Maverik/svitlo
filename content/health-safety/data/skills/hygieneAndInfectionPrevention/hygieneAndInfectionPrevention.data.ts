@@ -38,11 +38,14 @@ export const hygieneAndInfectionPrevention_SkillDomain_Data = defineSkillDomain(
     kk: 'Гигиена және инфекциялардың алдын алу',
     qm: 'Temizlik ve infektsiyanıñ ögüni aluv',
   },
-  groups: [
-    personalHygiene_SkillGroup_Data,
-    sanitaryEnvironments_SkillGroup_Data,
-    transmissionAndProtection_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      personalHygiene: personalHygiene_SkillGroup_Data,
+      sanitaryEnvironments: sanitaryEnvironments_SkillGroup_Data,
+      transmissionAndProtection: transmissionAndProtection_SkillGroup_Data,
+    },
+    order: ['personalHygiene', 'sanitaryEnvironments', 'transmissionAndProtection'],
+  },
   description: {
     methodological:
       'Disease prevention includes reducing contact with infectious agents and maintaining sanitary conditions. This domain concerns personal and environmental prevention, not microbiological taxonomy or clinical infection treatment.',

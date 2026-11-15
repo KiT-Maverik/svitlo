@@ -41,12 +41,15 @@ export const urbanComposition_SkillGroup_Data = defineSkillGroup({
     kk: 'Қалалық композиция',
     qm: 'Şeer kompozitsiyası',
   },
-  skills: [
-    analyzeAStreetscape_Skill_Data,
-    compareUrbanSpatialPatterns_Skill_Data,
-    designAPublicSquare_Skill_Data,
-    interpretUrbanLandmarks_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAStreetscape: analyzeAStreetscape_Skill_Data,
+      compareUrbanSpatialPatterns: compareUrbanSpatialPatterns_Skill_Data,
+      designAPublicSquare: designAPublicSquare_Skill_Data,
+      interpretUrbanLandmarks: interpretUrbanLandmarks_Skill_Data,
+    },
+    order: ['analyzeAStreetscape', 'compareUrbanSpatialPatterns', 'designAPublicSquare', 'interpretUrbanLandmarks'],
+  },
   description: {
     methodological:
       'The arrangement of streets, building fronts and public gathering places contributes to city identity and experience.',

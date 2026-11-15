@@ -45,16 +45,28 @@ export const globalGeographicDivisions_SkillGroup_Data = defineSkillGroup({
     kk: 'Жаһандық географиялық бөліністер',
     qm: 'Dünyanıñ coğrafiy bölünişleri',
   },
-  skills: [
-    distinguishContinentsFromPartsOfTheWorld_Skill_Data,
-    explainTheConceptOfAContinent_Skill_Data,
-    explainTheConceptOfAnOcean_Skill_Data,
-    explainTheConceptOfAPartOfTheWorld_Skill_Data,
-    identifyEarthsGeographicHemispheres_Skill_Data,
-    locateContinentsOnAGlobe_Skill_Data,
-    locateOceansOnAGlobe_Skill_Data,
-    locatePartsOfTheWorldOnAGlobe_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishContinentsFromPartsOfTheWorld: distinguishContinentsFromPartsOfTheWorld_Skill_Data,
+      explainTheConceptOfAContinent: explainTheConceptOfAContinent_Skill_Data,
+      explainTheConceptOfAnOcean: explainTheConceptOfAnOcean_Skill_Data,
+      explainTheConceptOfAPartOfTheWorld: explainTheConceptOfAPartOfTheWorld_Skill_Data,
+      identifyEarthsGeographicHemispheres: identifyEarthsGeographicHemispheres_Skill_Data,
+      locateContinentsOnAGlobe: locateContinentsOnAGlobe_Skill_Data,
+      locateOceansOnAGlobe: locateOceansOnAGlobe_Skill_Data,
+      locatePartsOfTheWorldOnAGlobe: locatePartsOfTheWorldOnAGlobe_Skill_Data,
+    },
+    order: [
+      'distinguishContinentsFromPartsOfTheWorld',
+      'explainTheConceptOfAContinent',
+      'explainTheConceptOfAnOcean',
+      'explainTheConceptOfAPartOfTheWorld',
+      'identifyEarthsGeographicHemispheres',
+      'locateContinentsOnAGlobe',
+      'locateOceansOnAGlobe',
+      'locatePartsOfTheWorldOnAGlobe',
+    ],
+  },
   description: {
     methodological:
       'Different conventions divide Earth into continental landmasses, historically and culturally recognized parts of the world, ocean basins and hemispheres. These systems answer different geographic questions and should not be collapsed into one supposedly universal continent count.',

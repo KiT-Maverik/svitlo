@@ -43,16 +43,28 @@ export const electromagnetism_SkillDomain_Data = defineSkillDomain({
     ka: 'ელექტრომაგნეტიზმი',
     kk: 'Электромагнетизм',
   },
-  groups: [
-    conductorsAndInsulators_SkillGroup_Data,
-    currentVoltageAndResistance_SkillGroup_Data,
-    electricAndMagneticFields_SkillGroup_Data,
-    electricChargesAndInteractions_SkillGroup_Data,
-    electricCircuits_SkillGroup_Data,
-    electromagnetsAndInduction_SkillGroup_Data,
-    magneticEffectsInPhysicalSystems_SkillGroup_Data,
-    magneticPropertiesAndInteractions_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      conductorsAndInsulators: conductorsAndInsulators_SkillGroup_Data,
+      currentVoltageAndResistance: currentVoltageAndResistance_SkillGroup_Data,
+      electricAndMagneticFields: electricAndMagneticFields_SkillGroup_Data,
+      electricChargesAndInteractions: electricChargesAndInteractions_SkillGroup_Data,
+      electricCircuits: electricCircuits_SkillGroup_Data,
+      electromagnetsAndInduction: electromagnetsAndInduction_SkillGroup_Data,
+      magneticEffectsInPhysicalSystems: magneticEffectsInPhysicalSystems_SkillGroup_Data,
+      magneticPropertiesAndInteractions: magneticPropertiesAndInteractions_SkillGroup_Data,
+    },
+    order: [
+      'conductorsAndInsulators',
+      'currentVoltageAndResistance',
+      'electricAndMagneticFields',
+      'electricChargesAndInteractions',
+      'electricCircuits',
+      'electromagnetsAndInduction',
+      'magneticEffectsInPhysicalSystems',
+      'magneticPropertiesAndInteractions',
+    ],
+  },
   description: {
     methodological:
       'Electric charges, currents, and magnetic fields describe related interactions; electricity and magnetism share underlying principles but begin with different observations.',

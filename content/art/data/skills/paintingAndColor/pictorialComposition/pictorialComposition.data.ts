@@ -42,13 +42,22 @@ export const pictorialComposition_SkillGroup_Data = defineSkillGroup({
     kk: 'Кескіндеме композициясы',
     qm: 'Resim kompozitsiyası',
   },
-  skills: [
-    composeWithColorMasses_Skill_Data,
-    controlPaintedEdges_Skill_Data,
-    developPainterlyExpression_Skill_Data,
-    establishAFocalPoint_Skill_Data,
-    organizeFigureAndGround_Skill_Data,
-  ],
+  skills: {
+    items: {
+      composeWithColorMasses: composeWithColorMasses_Skill_Data,
+      controlPaintedEdges: controlPaintedEdges_Skill_Data,
+      developPainterlyExpression: developPainterlyExpression_Skill_Data,
+      establishAFocalPoint: establishAFocalPoint_Skill_Data,
+      organizeFigureAndGround: organizeFigureAndGround_Skill_Data,
+    },
+    order: [
+      'composeWithColorMasses',
+      'controlPaintedEdges',
+      'developPainterlyExpression',
+      'establishAFocalPoint',
+      'organizeFigureAndGround',
+    ],
+  },
   description: {
     methodological:
       "Color areas, focal structure and handling of edges determine a painting's organization separately from subject matter.",

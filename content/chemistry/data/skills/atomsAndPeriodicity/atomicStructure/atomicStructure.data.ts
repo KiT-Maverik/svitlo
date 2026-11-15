@@ -41,12 +41,15 @@ export const atomicStructure_SkillGroup_Data = defineSkillGroup({
     kk: 'Атом құрылысы',
     qm: 'Atomnıñ qurulışı',
   },
-  skills: [
-    atomicMass_Skill_Data,
-    electronsAndCharge_Skill_Data,
-    neutronsAndIsotopes_Skill_Data,
-    protonsAndAtomicNumber_Skill_Data,
-  ],
+  skills: {
+    items: {
+      atomicMass: atomicMass_Skill_Data,
+      electronsAndCharge: electronsAndCharge_Skill_Data,
+      neutronsAndIsotopes: neutronsAndIsotopes_Skill_Data,
+      protonsAndAtomicNumber: protonsAndAtomicNumber_Skill_Data,
+    },
+    order: ['atomicMass', 'electronsAndCharge', 'neutronsAndIsotopes', 'protonsAndAtomicNumber'],
+  },
   description: {
     methodological:
       'Chemical element identity is determined by proton number; other atomic characteristics vary independently.',

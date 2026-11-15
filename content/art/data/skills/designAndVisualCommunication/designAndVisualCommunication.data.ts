@@ -41,13 +41,22 @@ export const designAndVisualCommunication_SkillDomain_Data = defineSkillDomain({
     kk: 'Дизайн және визуалды коммуникация',
     qm: 'Tasarım ve vizual iletişim',
   },
-  groups: [
-    appliedGraphics_SkillGroup_Data,
-    fashionAndApparelDesign_SkillGroup_Data,
-    graphicIdentity_SkillGroup_Data,
-    informationDesign_SkillGroup_Data,
-    typographyAndLayout_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      appliedGraphics: appliedGraphics_SkillGroup_Data,
+      fashionAndApparelDesign: fashionAndApparelDesign_SkillGroup_Data,
+      graphicIdentity: graphicIdentity_SkillGroup_Data,
+      informationDesign: informationDesign_SkillGroup_Data,
+      typographyAndLayout: typographyAndLayout_SkillGroup_Data,
+    },
+    order: [
+      'appliedGraphics',
+      'fashionAndApparelDesign',
+      'graphicIdentity',
+      'informationDesign',
+      'typographyAndLayout',
+    ],
+  },
   description: {
     methodological:
       'Design communicates through typography, symbols, layout, applied graphics and wearable forms. In clothing, artistic choices also concern silhouette, fabric behavior and the body; industrial manufacturing and commercial strategy remain outside this domain.',

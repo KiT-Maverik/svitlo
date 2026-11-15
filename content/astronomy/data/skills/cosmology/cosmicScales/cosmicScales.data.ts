@@ -41,12 +41,15 @@ export const cosmicScales_SkillGroup_Data = defineSkillGroup({
     ka: 'კოსმოსური მასშტაბები',
     kk: 'Ғарыштық ауқымдар',
   },
-  skills: [
-    cosmicDistanceMeasures_Skill_Data,
-    cosmicHorizons_Skill_Data,
-    lookbackTime_Skill_Data,
-    observableUniverse_Skill_Data,
-  ],
+  skills: {
+    items: {
+      cosmicDistanceMeasures: cosmicDistanceMeasures_Skill_Data,
+      cosmicHorizons: cosmicHorizons_Skill_Data,
+      lookbackTime: lookbackTime_Skill_Data,
+      observableUniverse: observableUniverse_Skill_Data,
+    },
+    order: ['cosmicDistanceMeasures', 'cosmicHorizons', 'lookbackTime', 'observableUniverse'],
+  },
   description: {
     methodological:
       'Distances and times become linked by the finite speed of light, which limits how much of the Universe can be observed.',

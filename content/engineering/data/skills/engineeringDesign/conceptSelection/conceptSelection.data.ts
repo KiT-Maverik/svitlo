@@ -42,13 +42,22 @@ export const conceptSelection_SkillGroup_Data = defineSkillGroup({
     kk: 'Тұжырымдаманы таңдау',
     qm: 'Layiha fikrini saylav',
   },
-  skills: [
-    anticipateFailureModes_Skill_Data,
-    compareDesignAlternatives_Skill_Data,
-    decomposeADesignProblem_Skill_Data,
-    generateAlternativeDesignConcepts_Skill_Data,
-    justifyADesignTradeOff_Skill_Data,
-  ],
+  skills: {
+    items: {
+      anticipateFailureModes: anticipateFailureModes_Skill_Data,
+      compareDesignAlternatives: compareDesignAlternatives_Skill_Data,
+      decomposeADesignProblem: decomposeADesignProblem_Skill_Data,
+      generateAlternativeDesignConcepts: generateAlternativeDesignConcepts_Skill_Data,
+      justifyADesignTradeOff: justifyADesignTradeOff_Skill_Data,
+    },
+    order: [
+      'anticipateFailureModes',
+      'compareDesignAlternatives',
+      'decomposeADesignProblem',
+      'generateAlternativeDesignConcepts',
+      'justifyADesignTradeOff',
+    ],
+  },
   description: {
     methodological:
       'Competing technical arrangements can meet the same need in different ways; choosing responsibly requires functional comparison and defensible compromises.',

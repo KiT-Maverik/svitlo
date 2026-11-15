@@ -39,12 +39,15 @@ export const fractions_SkillDomain_Data = defineSkillDomain({
     pl: 'Ułamki',
     uk: 'Дроби',
   },
-  groups: [
-    representation_SkillGroup_Data,
-    comparison_SkillGroup_Data,
-    arithmetic_SkillGroup_Data,
-    portions_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      representation: representation_SkillGroup_Data,
+      comparison: comparison_SkillGroup_Data,
+      arithmetic: arithmetic_SkillGroup_Data,
+      portions: portions_SkillGroup_Data,
+    },
+    order: ['representation', 'comparison', 'arithmetic', 'portions'],
+  },
   description: {
     methodological:
       'Fractions express part-to-whole relationships and positions on a number line. Their properties involve equal parts, numerator and denominator, equivalence, comparisons, and arithmetic operations; specific models and computational ranges depend on the learning context.',

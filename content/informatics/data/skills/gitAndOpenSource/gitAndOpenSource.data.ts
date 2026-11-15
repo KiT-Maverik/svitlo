@@ -38,11 +38,14 @@ export const gitAndOpenSource_SkillDomain_Data = defineSkillDomain({
     kk: 'Git және ашық бастапқы код',
     qm: 'Git ve açıq menba',
   },
-  groups: [
-    collaborativeDigitalProductDevelopment_SkillGroup_Data,
-    gitVersionControl_SkillGroup_Data,
-    openSource_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      collaborativeDigitalProductDevelopment: collaborativeDigitalProductDevelopment_SkillGroup_Data,
+      gitVersionControl: gitVersionControl_SkillGroup_Data,
+      openSource: openSource_SkillGroup_Data,
+    },
+    order: ['collaborativeDigitalProductDevelopment', 'gitVersionControl', 'openSource'],
+  },
   description: {
     methodological:
       'A distinct subject area covering software change history, collaboration in repositories, and licensed cooperative software creation rather than an automatic component of every digital lesson.',

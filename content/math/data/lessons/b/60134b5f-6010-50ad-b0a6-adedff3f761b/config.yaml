@@ -20,10 +20,10 @@ config:
       en: 'Compare Tens First: Ordering Numbers to 100'
   section:
     items:
-      section1TensFirstComparator:
+      compareTensFirst:
         config:
           id: '5527a25c-6db7-8185-8091-6a674801a9be'
-          slug: 'section1TensFirstComparator'
+          slug: 'compareTensFirst'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Tens-First Comparator'
           content:
             items:
-              section1Text1:
+              challengeOnesComparison:
                 config:
                   id: 'd0184bab-f453-8628-856c-df7ec12732fd'
-                  slug: 'section1Text1'
+                  slug: 'challengeOnesComparison'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Tens-First Comparator; provisional draft.'
                   specification: '  1. **`text` — existing generic renderer:** “Compare 47 and 52. Do seven ones make 47 larger?”'
-              scene1Block2:
+              compareTensWithModel:
                 config:
                   id: 'ed367365-f52d-8a65-8aee-7932e2f50032'
-                  slug: 'scene1Block2'
+                  slug: 'compareTensWithModel'
                   type: 'scene'
                   params: {}
                   locale:
@@ -140,10 +140,10 @@ config:
 
                       2. **`scene` — generic type supported, bespoke implementation proposed:** Tens-First Comparator (preserved in Scene production.specification). Presets A=47,B=52; A=29,B=31; A=63,B=68; equal pair 72/72. Each item has explicit tens bundles and loose one identities.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section1Markdown3:
+              explainTensDetermineOrder:
                 config:
                   id: '8d30712f-c607-8a3b-84d5-b41c7fe23f08'
-                  slug: 'section1Markdown3'
+                  slug: 'explainTensDetermineOrder'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -153,9 +153,9 @@ config:
                   purpose: 'Legacy markdown block of Tens-First Comparator; provisional draft.'
                   specification: '  3. **`markdown` — existing generic renderer:** “47<52 and 29<31 because the larger tens count wins. 47=40+7<50+2=52; 29<31.”'
             order:
-              - 'section1Text1'
-              - 'scene1Block2'
-              - 'section1Markdown3'
+              - 'challengeOnesComparison'
+              - 'compareTensWithModel'
+              - 'explainTensDetermineOrder'
         production:
           purpose: 'Tens-First Comparator'
           pedagogicalIntent: 'Tens-First Comparator'
@@ -177,10 +177,10 @@ config:
             - **Accessibility and RTL:** A/B role and tens/ones ledger are labelled in words; math signs and operands are directionally isolated so RTL cannot invert the comparison accidentally. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
             - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Compare tens first; one extra group of ten can outweigh any loose ones.” is planned only, with no event or persistence.
 
-      section2WhichDigitReallyDecides:
+      chooseDecidingDigit:
         config:
           id: '2ca54ea2-2df0-81c6-877b-5c8ba62e83ef'
-          slug: 'section2WhichDigitReallyDecides'
+          slug: 'chooseDecidingDigit'
           type: 'content'
           params: {}
           locale:
@@ -190,10 +190,10 @@ config:
               en: 'Which Digit Really Decides?'
           content:
             items:
-              section2Text1:
+              questionOnesMisconception:
                 config:
                   id: '1772ed0e-c497-8ecc-8bda-0df0a83f2e32'
-                  slug: 'section2Text1'
+                  slug: 'questionOnesMisconception'
                   type: 'text'
                   params: {}
                   locale:
@@ -202,10 +202,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Which Digit Really Decides?; provisional draft.'
                   specification: '  1. **`text` (existing renderer):** “Forty-seven ends in 7 and fifty-two ends in 2. Is 47 bigger just because 7 is bigger than 2?”'
-              section2Markdown2:
+              explainTensPriority:
                 config:
                   id: '78eb9d91-12e1-8fac-8a3e-23bc80340181'
-                  slug: 'section2Markdown2'
+                  slug: 'explainTensPriority'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -214,10 +214,10 @@ config:
                 production:
                   purpose: 'Legacy markdown block of Which Digit Really Decides?; provisional draft.'
                   specification: '  2. **`markdown` (existing renderer):** “No. Fifty-two has five tens, and forty-seven has four. The tens are the larger place and decide which number is bigger.”'
-              section2Markdown3:
+              compareOnesWhenTensMatch:
                 config:
                   id: 'c2c46213-57f1-8bbc-8b40-1616ae75efb9'
-                  slug: 'section2Markdown3'
+                  slug: 'compareOnesWhenTensMatch'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -227,9 +227,9 @@ config:
                   purpose: 'Legacy markdown block of Which Digit Really Decides?; provisional draft.'
                   specification: '  3. **`markdown` (existing renderer):** “For 63 and 68, both have six tens, so their ones decide: 3<8.”'
             order:
-              - 'section2Text1'
-              - 'section2Markdown2'
-              - 'section2Markdown3'
+              - 'questionOnesMisconception'
+              - 'explainTensPriority'
+              - 'compareOnesWhenTensMatch'
         production:
           purpose: 'Which Digit Really Decides?'
           pedagogicalIntent: 'Which Digit Really Decides?'
@@ -246,10 +246,10 @@ config:
             - **Misconception feedback:** 47>52 because 7>2, 29>31 because 9>1, 63 and 68 assumed equal because both show six tens, confusing 80 and 86 due to zeros, dropping one item during ordering, mirroring <,> under RTL. Use the detailed preceding Scene model if the child remains unsure.
             - **Navigation and access:** The explanation remains legible to a screen reader and does not require a visual page transition, sound or animation.
 
-      section3OrderTheTensCards:
+      orderTwoDigitNumbers:
         config:
           id: '1ff04e36-8d0e-89dd-8db0-7a51ef4eddba'
-          slug: 'section3OrderTheTensCards'
+          slug: 'orderTwoDigitNumbers'
           type: 'content'
           params: {}
           locale:
@@ -259,10 +259,10 @@ config:
               en: 'Order the Tens Cards'
           content:
             items:
-              section3Text1:
+              promptAscendingOrder:
                 config:
                   id: '0a720df6-4726-81f6-83b8-ef0b8eec130b'
-                  slug: 'section3Text1'
+                  slug: 'promptAscendingOrder'
                   type: 'text'
                   params: {}
                   locale:
@@ -271,10 +271,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Order the Tens Cards; provisional draft.'
                   specification: '  1. **`text` — existing generic renderer:** “Arrange 42,29,71,24 from smallest to largest.”'
-              scene3Block2:
+              sortTensCards:
                 config:
                   id: '5fbf48f4-0753-8d91-8e36-171806daa27d'
-                  slug: 'scene3Block2'
+                  slug: 'sortTensCards'
                   type: 'scene'
                   params: {}
                   locale:
@@ -366,10 +366,10 @@ config:
 
                       2. **`scene` — generic type supported, bespoke implementation proposed:** Order the Tens Cards (preserved in Scene production.specification). First task four unique cards with values [42,29,71,24], in unsorted slots; second independent task values [90,86,80,69], with requested largest-to-smallest ordering.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section3Markdown3:
+              explainAscendingSequence:
                 config:
                   id: 'c38ae14e-8861-8a4e-8d5e-a54766b52e47'
-                  slug: 'section3Markdown3'
+                  slug: 'explainAscendingSequence'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -379,9 +379,9 @@ config:
                   purpose: 'Legacy markdown block of Order the Tens Cards; provisional draft.'
                   specification: '  3. **`markdown` — existing generic renderer:** “24,29,42,71 is the correct ascending row. 24<29<42<71.”'
             order:
-              - 'section3Text1'
-              - 'scene3Block2'
-              - 'section3Markdown3'
+              - 'promptAscendingOrder'
+              - 'sortTensCards'
+              - 'explainAscendingSequence'
         production:
           purpose: 'Order the Tens Cards'
           pedagogicalIntent: 'Order the Tens Cards'
@@ -404,9 +404,9 @@ config:
             - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “If tens are equal, compare ones, then keep the whole row in the required order.” is planned only, with no event or persistence.
 
     order:
-      - 'section1TensFirstComparator'
-      - 'section2WhichDigitReallyDecides'
-      - 'section3OrderTheTensCards'
+      - 'compareTensFirst'
+      - 'chooseDecidingDigit'
+      - 'orderTwoDigitNumbers'
   flashcards:
     items: {}
     order: []

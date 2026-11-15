@@ -42,15 +42,18 @@ export const problemSolving_SkillDomain_Data = defineSkillDomain({
     pl: 'Rozwiązywanie zadań',
     uk: 'Розв’язування задач',
   },
-  groups: [
-    conditions_SkillGroup_Data,
-    models_SkillGroup_Data,
-    planning_SkillGroup_Data,
-    comparisons_SkillGroup_Data,
-    parts_SkillGroup_Data,
-    groups_SkillGroup_Data,
-    quantities_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      conditions: conditions_SkillGroup_Data,
+      models: models_SkillGroup_Data,
+      planning: planning_SkillGroup_Data,
+      comparisons: comparisons_SkillGroup_Data,
+      parts: parts_SkillGroup_Data,
+      groups: groups_SkillGroup_Data,
+      quantities: quantities_SkillGroup_Data,
+    },
+    order: ['conditions', 'models', 'planning', 'comparisons', 'parts', 'groups', 'quantities'],
+  },
   description: {
     methodological:
       'Translating real-life situations into mathematical models, selecting operations, planning multi-step solutions, and checking whether answers make sense.',
