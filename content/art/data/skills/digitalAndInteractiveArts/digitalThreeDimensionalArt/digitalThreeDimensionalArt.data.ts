@@ -12,6 +12,7 @@ export const digitalThreeDimensionalArt_SkillGroup_Data = defineSkillGroup({
   id: '7a47dab9-19a9-4d22-9308-e97353302f3f',
   name: {
     en: 'Digital Three-Dimensional Art',
+    it: 'Arte digitale tridimensionale',
     zh: '数字三维艺术',
     hi: 'मॉडलिंग, सामग्री, प्रकाश और संरचना के माध्यम से अभिव्यंजक आभासी स्थान बनाएँ।',
     es: 'Construir espacios virtuales expresivos mediante modelado, materiales, luz y composición.',
@@ -52,6 +53,7 @@ export const digitalThreeDimensionalArt_SkillGroup_Data = defineSkillGroup({
       'A digital scene requires modeling of volume, material appearance, lighting and viewpoint; the focus is expressive representation, not implementing a rendering engine.',
     frontend: {
       en: 'Build expressive virtual spaces through modeling, materials, light and composition.',
+      it: 'Crea spazi virtuali espressivi attraverso modellazione, materiali, illuminazione e composizione.',
       zh: '通过建模、材质、光线和构图打造富有表现力的虚拟空间。',
       hi: 'मॉडलिंग, सामग्री, प्रकाश और संरचना से अभिव्यंजक आभासी स्थान बनाएँ।',
       es: 'Construye espacios virtuales expresivos mediante modelado, materiales, luz y composición.',
