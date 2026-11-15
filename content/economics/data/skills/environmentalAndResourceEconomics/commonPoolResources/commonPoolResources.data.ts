@@ -11,6 +11,7 @@ export const commonPoolResources_SkillGroup_Data = defineSkillGroup({
   id: 'fde81938-6b51-4c84-ab2a-564dcb36a018',
   name: {
     en: 'Спільні ресурси',
+    it: 'Risorse comuni',
     zh: '公共池资源',
     hi: 'साझा संसाधन',
     es: 'Recursos de uso común',
@@ -50,6 +51,7 @@ export const commonPoolResources_SkillGroup_Data = defineSkillGroup({
       'Competition for use and difficulty excluding access create the risk of extracting too much from shared resources.',
     frontend: {
       en: 'Discover why commonly used resources can be overused.',
+      it: 'Scopri perché le risorse utilizzate collettivamente possono essere sfruttate eccessivamente.',
       zh: '了解为什么共同使用的资源可能被过度消耗。',
       hi: 'जानें कि साझा संसाधनों का अत्यधिक उपयोग क्यों हो सकता है।',
       es: 'Descubre por qué los recursos compartidos pueden utilizarse en exceso.',

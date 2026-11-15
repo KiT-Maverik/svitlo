@@ -12,6 +12,7 @@ export const environmentalIncentivesAndPolicy_SkillGroup_Data = defineSkillGroup
   id: 'cce0af3f-fb6a-4402-96db-9571ff15337c',
   name: {
     en: 'Екологічні стимули та політика',
+    it: 'Incentivi e politiche ambientali',
     zh: '环境激励与政策',
     hi: 'पर्यावरणीय प्रोत्साहन और नीति',
     es: 'Incentivos y políticas ambientales',
@@ -52,6 +53,7 @@ export const environmentalIncentivesAndPolicy_SkillGroup_Data = defineSkillGroup
       'Pollution and other externalities can be addressed with instruments that have differing costs and consequences.',
     frontend: {
       en: 'Explore economic policies that encourage less pollution.',
+      it: 'Esplora le politiche economiche che incoraggiano a inquinare meno.',
       zh: '探索能激励减少污染的经济政策。',
       hi: 'प्रदूषण कम करने को प्रोत्साहित करने वाली आर्थिक नीतियों के बारे में जानें।',
       es: 'Explora políticas económicas que incentivan una menor contaminación.',

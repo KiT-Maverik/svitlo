@@ -5,6 +5,7 @@ export const commonPoolResourceCharacteristics_Skill_Data = defineSkill({
   id: '5109775f-ea3f-4c86-a8a9-eed76e5d559a',
   name: {
     en: 'Ресурси спільного користування',
+    it: 'Caratteristiche delle risorse comuni',
     zh: '公共池资源的特征',
     hi: 'साझा संसाधनों की विशेषताएँ',
     es: 'Características de los recursos de uso común',
@@ -38,6 +39,7 @@ export const commonPoolResourceCharacteristics_Skill_Data = defineSkill({
     methodological: 'Identify shared-access resources where use by one participant reduces availability to others.',
     frontend: {
       en: 'Recognize resources that become scarcer when many people use them.',
+      it: 'Riconosci le risorse che diventano più scarse quando molte persone le utilizzano.',
       zh: '识别当许多人使用时会变得更加稀缺的资源。',
       hi: 'ऐसे संसाधन पहचानें जो बहुत से लोगों के उपयोग से अधिक दुर्लभ हो जाते हैं।',
       es: 'Reconoce recursos que escasean cuando muchas personas los utilizan.',

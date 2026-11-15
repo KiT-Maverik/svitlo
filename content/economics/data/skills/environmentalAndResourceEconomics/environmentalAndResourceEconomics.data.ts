@@ -9,6 +9,7 @@ export const environmentalAndResourceEconomics_SkillDomain_Data = defineSkillDom
   id: 'b024a531-e8f6-4eca-abcd-352668390df1',
   title: {
     en: 'Економіка довкілля та ресурсів',
+    it: 'Economia ambientale e delle risorse',
     zh: '环境与资源经济学',
     hi: 'पर्यावरण एवं संसाधन अर्थशास्त्र',
     es: 'Economía ambiental y de los recursos',
@@ -48,6 +49,7 @@ export const environmentalAndResourceEconomics_SkillDomain_Data = defineSkillDom
       "Production and consumption depend on ecosystems, resources, and the environment's capacity to absorb impacts. This domain examines economic incentives, valuation, and rules governing nature rather than the physics or biology of underlying processes.",
     frontend: {
       en: 'Explore how economic decisions affect natural resources and the environment.',
+      it: "Esplora come le decisioni economiche influiscono sulle risorse naturali e sull'ambiente.",
       zh: '探索经济决策如何影响自然资源和环境。',
       hi: 'जानें कि आर्थिक फैसले प्राकृतिक संसाधनों और पर्यावरण को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las decisiones económicas afectan los recursos naturales y el medioambiente.',
