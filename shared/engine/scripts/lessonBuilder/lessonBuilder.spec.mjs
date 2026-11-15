@@ -416,6 +416,22 @@ test('read-only checks reject modified Markdown/Code while generate skips existi
     assert.throws(() => runOne(f.lesson, 'check', f.root), /authored source differs from config.yaml/);
   }));
 
+test('existing Markdown source blocks all new TS writes instead of being overwritten', () =>
+  fixture(f => {
+    const items = f.config.section.items.intro.content.items;
+    items.explanation = { id: id(77), slug: 'explanation', type: 'markdown',
+      params: {}, locale: { value: '# Authored in YAML\n' } };
+    f.config.section.items.intro.content.order.push('explanation');
+    f.save();
+    const sourceFile = f.generated('sections/intro/explanation/text.md');
+    fs.mkdirSync(path.dirname(sourceFile), { recursive: true });
+    fs.writeFileSync(sourceFile, '# Previously edited by a human\n');
+    assert.throws(() => runOne(f.lesson, 'generate', f.root),
+      /refusing to overwrite or mix drafts/);
+    assert.equal(fs.readFileSync(sourceFile, 'utf8'), '# Previously edited by a human\n');
+    assert.equal(fs.existsSync(f.generated('index.ts')), false);
+  }));
+
 test('invalid Code extension and empty Markdown never create an index.ts draft', () =>
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
