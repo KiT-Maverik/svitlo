@@ -9,6 +9,7 @@ export const time_SkillDomain_Data = defineSkillDomain({
   id: 'be33de46-a3d9-4535-8eee-cf1c3c304827',
   title: {
     en: 'Time',
+    it: 'Tempo',
     qm: 'Vaqıt',
     lt: 'Laikas',
     lv: 'Laiks',
