@@ -6,7 +6,7 @@ import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configura
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { localizationSwitch as contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
-import { flashcardSideConfigurator_Schema, type FlashcardSide_Overrides } from '../defineFlashcardSide';
+import { flashcardSide_Config_Schema, type FlashcardSide_Overrides } from '../defineFlashcardSide';
 
 export const flashcardRelationshipTypes = [
   'reverse',
@@ -78,10 +78,12 @@ export const flashcard_Config_Schema = identityBase_Schema.extend({
       })
       .optional(),
   }),
+  // Preserve the structural Config shape for YAML/editor schema generation.
+  // defineFlashcard validates that these values are built side configurators.
   content: z.strictObject({
-    front: flashcardSideConfigurator_Schema,
-    back: flashcardSideConfigurator_Schema,
-    hint: flashcardSideConfigurator_Schema.optional(),
+    front: z.object(flashcardSide_Config_Schema.shape),
+    back: z.object(flashcardSide_Config_Schema.shape),
+    hint: z.object(flashcardSide_Config_Schema.shape).optional(),
   }),
 });
 export type Flashcard_Config = z.infer<typeof flashcard_Config_Schema>;
