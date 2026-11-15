@@ -5,6 +5,7 @@ export const competitionPolicy_Skill_Data = defineSkill({
   id: '804a7ba4-0abf-4c56-902a-4b361c4da736',
   name: {
     en: 'Конкурентна політика',
+    it: 'Politica della concorrenza',
     zh: '竞争政策',
     hi: 'प्रतिस्पर्धा नीति',
     es: 'Política de competencia',
@@ -39,6 +40,7 @@ export const competitionPolicy_Skill_Data = defineSkill({
       'Analyze the economic rationale and effects of action against cartels, abuses of market power, and anticompetitive mergers; distinguish protecting the competitive process from protecting a particular competitor.',
     frontend: {
       en: 'Explore how competition policy addresses cartels and abuses of market power.',
+      it: 'Esplora come la politica della concorrenza contrasta i cartelli e gli abusi di potere di mercato.',
       zh: '探索竞争政策如何应对卡特尔与滥用市场力量。',
       hi: 'जानें कि प्रतिस्पर्धा नीति कार्टेल और बाज़ार शक्ति के दुरुपयोग से कैसे निपटती है।',
       es: 'Explora cómo la política de competencia aborda los cárteles y abusos del poder de mercado.',

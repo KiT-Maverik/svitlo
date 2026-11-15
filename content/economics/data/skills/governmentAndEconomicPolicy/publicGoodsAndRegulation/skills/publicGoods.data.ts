@@ -5,6 +5,7 @@ export const publicGoods_Skill_Data = defineSkill({
   id: '511065e4-dce2-4921-b627-8145ed0ce820',
   name: {
     en: 'Суспільні блага',
+    it: 'Beni pubblici',
     zh: '公共物品',
     hi: 'सार्वजनिक वस्तुएँ',
     es: 'Bienes públicos',
@@ -38,6 +39,7 @@ export const publicGoods_Skill_Data = defineSkill({
     methodological: 'Recognize non-excludability and non-rival consumption and the associated free-rider problem.',
     frontend: {
       en: 'Understand why some shared goods are difficult to fund through individual purchases.',
+      it: 'Comprendi perché alcuni beni condivisi sono difficili da finanziare tramite acquisti individuali.',
       zh: '理解为何某些共享物品难以依靠个人购买来筹资。',
       hi: 'समझें कि कुछ साझा वस्तुओं के लिए व्यक्तिगत खरीद से धन जुटाना कठिन क्यों है।',
       es: 'Comprende por qué algunos bienes compartidos son difíciles de financiar mediante compras individuales.',

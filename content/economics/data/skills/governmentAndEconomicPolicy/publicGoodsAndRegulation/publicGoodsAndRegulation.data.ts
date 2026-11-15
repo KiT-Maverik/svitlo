@@ -12,6 +12,7 @@ export const publicGoodsAndRegulation_SkillGroup_Data = defineSkillGroup({
   id: 'c9ef1548-14c3-4f82-a89d-96b77b45690a',
   name: {
     en: 'Суспільні блага та регулювання',
+    it: 'Beni pubblici e regolamentazione',
     zh: '公共物品与监管',
     hi: 'सार्वजनिक वस्तुएँ और विनियमन',
     es: 'Bienes públicos y regulación',
@@ -52,6 +53,7 @@ export const publicGoodsAndRegulation_SkillGroup_Data = defineSkillGroup({
       'Not every beneficial service can be efficiently supplied through individual market transactions; regulation also has limitations.',
     frontend: {
       en: 'Discover why some needs call for collective provision or regulation.',
+      it: 'Scopri perché alcuni bisogni richiedono una fornitura collettiva o una regolamentazione.',
       zh: '了解为何某些需求需要集体供给或监管。',
       hi: 'जानें कि कुछ आवश्यकताओं के लिए सामूहिक व्यवस्था या विनियमन क्यों ज़रूरी है।',
       es: 'Descubre por qué ciertas necesidades requieren provisión colectiva o regulación.',
