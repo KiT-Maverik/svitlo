@@ -5,6 +5,7 @@ export const analyzeDramaticStructure_Skill_Data = defineSkill({
   id: '84390dd5-ebf6-4b2e-a2af-2963a1170612',
   name: {
     en: 'Analyze Dramatic Structure',
+    it: 'Analizzare la struttura drammatica',
     zh: '分析戏剧结构',
     hi: 'नाटकीय संरचना का विश्लेषण करें',
     es: 'Analizar la estructura dramática',
@@ -39,6 +40,7 @@ export const analyzeDramaticStructure_Skill_Data = defineSkill({
       "Identify changes in circumstance, turning points and their contributions to a scene's development.",
     frontend: {
       en: "Find the moments that change a scene's direction or meaning.",
+      it: 'Individua i momenti che cambiano lo sviluppo o il significato di una scena.',
       zh: '找出改变场景走向或含义的关键时刻。',
       hi: 'उन क्षणों को पहचानें जो दृश्य की दिशा या अर्थ बदलते हैं।',
       es: 'Identifica los momentos que cambian el rumbo o el significado de una escena.',
