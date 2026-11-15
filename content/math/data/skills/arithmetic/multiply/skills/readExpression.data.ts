@@ -11,6 +11,7 @@ export const readExpression_Skill_Data = defineSkill({
     ka: 'გამრავლება — გამოსახულებების წაკითხვა',
     kk: 'Көбейту — өрнектерді оқу',
     en: 'Multiplication — Reading expressions',
+    it: 'Moltiplicazione — Leggere le espressioni',
     qm: 'Arttıruv — ifadelerni oqumaq',
     zh: '乘法 — 读算式',
     hi: 'गुणा — व्यंजक पढ़ना',
@@ -39,6 +40,7 @@ export const readExpression_Skill_Data = defineSkill({
       'Factors are the inputs to multiplication and the product is its result. In an equal-groups model, factors represent the group count and group size; distinguish this concrete interpretation from the symbolic expression alone.',
     frontend: {
       en: 'You can read a multiplication expression, identify its factors and product, and connect it to equal groups.',
+      it: 'Puoi leggere un\'espressione di moltiplicazione, riconoscerne i fattori e il prodotto e collegarla a gruppi uguali.',
       qm: 'Arttıruv ifadesini oquy, arttırıcılar ve neticeni tanıy, ifadeni teñ toparlarnen bağlay bilesiñ.',
       zh: '你能读懂乘法算式，指出因数和积，并将算式与相等的组联系起来。',
       hi: 'तुम गुणा का व्यंजक पढ़कर उसके गुणनखंड और गुणनफल पहचान सकते हो तथा उसे बराबर समूहों से जोड़ सकते हो।',
