@@ -32,7 +32,7 @@ For each Lesson, report the actual UUID/path and reviewed `content.yaml` blob SH
 
 For a Lesson, the durable per-entity review register is `review.ts` beside the Lesson root `index.ts`, typed as Engine `LessonReview` when Stage 6 is implemented. **Do not create or maintain `experience-review.md`, `methodology-review.md` or other standalone Lesson review narratives.** A review result points to its actual GitHub PR; detailed findings, corrections, the reviewed source commit/blob and responsible approver remain in that PR conversation and the coordination Issue, not a duplicate Markdown file.
 
-When the assembled Lesson Props revision is available and the relevant review/approval has actually been verified for **that revision**, record the PR in the matching `ai.stages` entry (for example `experience-review` or `methodology-review`) with `{ pr: number, language: LanguageCode }`. The review file does not export any value. Do not infer approval from a PR number alone, do not fill unrelated fields, and never carry results forward to changed Props without re-review.
+When the assembled Lesson Props revision is available and the relevant review/approval has actually been verified for **that revision**, record the PR in the matching direct `ai` field (for example `experienceReview` or `methodologyReview`) with `{ pr: number, language: LanguageCode }`. The review file does not export any value. Do not infer approval from a PR number alone, do not fill unrelated fields, and never carry results forward to changed Props without re-review.
 
 **Early editorial review is allowed before a Lesson can produce Props.** In that case `review.ts` may not exist or may still be a deliberately incomplete draft. Keep source-revision-specific review evidence and outstanding approval in the already required PR and Lesson Production Issue; do not invent a hash, PR number, approval, or substitute Markdown review document. After the reviewed compiled Lesson revision becomes available, the coordinator explicitly reconciles the earlier evidence with that revision before populating the corresponding `review.ts` field.
 
@@ -40,7 +40,7 @@ Where a **review-specific decision** affects this Lesson or locale only, add a s
 
 **Do not silently edit `content.yaml`** as reviewer. Send proposed edits to the Screenwriter; its owner revises the plan in a separate authorized change. After revision, re-read and re-review the changed source. A review of an older `content.yaml` blob does **not** approve a newer one.
 
-A `pass` verdict by an independent expert means **ready for editorial sign-off**, not automatic editorial approval. The coordinator may mark `experience-review` as `approved` only with independently verifiable, authorized approval linked in the Issue.
+A `pass` verdict by an independent expert means **ready for editorial sign-off**, not automatic editorial approval. The coordinator may mark `experienceReview` as `approved` only with independently verifiable, authorized approval linked in the Issue.
 
 ## Batching and GitHub coordination
 
