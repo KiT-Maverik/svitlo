@@ -16,10 +16,10 @@ config:
       en: 'One Example Is Not a Rule'
   section:
     items:
-      section1:
+      distinguishExampleFromProof:
         config:
           id: '7ddf70cb-7a6d-41f8-900e-9521aea59cde'
-          slug: 'section1'
+          slug: 'distinguishExampleFromProof'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: '“This worked” is not “This always works”'
           content:
             items:
-              text1:
+              testOddNumberExample:
                 config:
                   id: '2e3b00ee-5c96-4ced-8fa1-b2f098a0276f'
-                  slug: 'text1'
+                  slug: 'testOddNumberExample'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: '“This worked” is not “This always works”; authored text block 1'
                   specification: '1. **`text` Resource:** “Try **1 + 3 = 4**. Both numbers we added are odd, and the answer is four. Can we now say **every pair of odd numbers adds up to four**?”'
-              scene2:
+              inspectSingleCase:
                 config:
                   id: '94f7ce82-a626-4063-94bb-b55875221ac9'
-                  slug: 'scene2'
+                  slug: 'inspectSingleCase'
                   type: 'scene'
                   params: {}
                   locale:
@@ -112,10 +112,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Counterexample Detective (Scene specification embedded in this config.yaml), entry A. Let the learner verify 1 and 3 are odd and total four. Then offer a different pair 3+5=**8**, so the claim about **every pair** giving four fails. “The first example was true, but it tested only one pair.”
                   productionNotes: 'Proposed unimplemented Scene, sourced from counterexampleDetective.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              challengeUniversalClaim:
                 config:
                   id: '2c3afdc8-5a96-49c7-91a1-b6169aa02a95'
-                  slug: 'text3'
+                  slug: 'challengeUniversalClaim'
                   type: 'text'
                   params: {}
                   locale:
@@ -124,10 +124,10 @@ config:
                 production:
                   purpose: '“This worked” is not “This always works”; authored text block 3'
                   specification: '3. **`text`, feedback:** For “the rule is proved”: “One true case does not describe every pair. Three and five are also odd but total eight.” For “not enough evidence”: “Yes. A universal claim is about all cases in its specified class.”'
-              markdown4:
+              defineGeneralRule:
                 config:
                   id: '49413413-1e3c-4858-af5a-f0d16016b39e'
-                  slug: 'markdown4'
+                  slug: 'defineGeneralRule'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -136,7 +136,7 @@ config:
                 production:
                   purpose: '“This worked” is not “This always works”; authored markdown block 4'
                   specification: '4. **`markdown`:** “An **example** is one case. A **general rule** claims what happens for all cases of a stated kind. The word **every** makes the claim stronger.”'
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order: ['testOddNumberExample', 'inspectSingleCase', 'challengeUniversalClaim', 'defineGeneralRule']
         production:
           purpose: '“This worked” is not “This always works”'
           pedagogicalIntent: 'Original Section 1 — “This worked” is not “This always works”; authoring draft only'
@@ -147,10 +147,10 @@ config:
             2. **`scene` Resource (proposed):** Counterexample Detective (Scene specification embedded in this config.yaml), entry A. Let the learner verify 1 and 3 are odd and total four. Then offer a different pair 3+5=**8**, so the claim about **every pair** giving four fails. “The first example was true, but it tested only one pair.”
             3. **`text`, feedback:** For “the rule is proved”: “One true case does not describe every pair. Three and five are also odd but total eight.” For “not enough evidence”: “Yes. A universal claim is about all cases in its specified class.”
             4. **`markdown`:** “An **example** is one case. A **general rule** claims what happens for all cases of a stated kind. The word **every** makes the claim stronger.”
-      section2:
+      findValidCounterexample:
         config:
           id: '7edf725e-7d6d-46b1-8d0e-9068ada59b4b'
-          slug: 'section2'
+          slug: 'findValidCounterexample'
           type: 'content'
           params: {}
           locale:
@@ -160,10 +160,10 @@ config:
               en: 'Find a real counterexample'
           content:
             items:
-              text1:
+              testOddSumsClaim:
                 config:
                   id: 'd15f50ef-3222-4080-ba6d-e79df57bd76e'
-                  slug: 'text1'
+                  slug: 'testOddSumsClaim'
                   type: 'text'
                   params: {}
                   locale:
@@ -172,10 +172,10 @@ config:
                 production:
                   purpose: 'Find a real counterexample; authored text block 1'
                   specification: '1. **`text`:** “A card says: **Every sum of two odd whole numbers is odd**. What numbers would you test to check whether that is true?”'
-              scene2:
+              exploreCounterexamplePairs:
                 config:
                   id: '4a106f49-2523-4548-bb55-36f3c0097a02'
-                  slug: 'scene2'
+                  slug: 'exploreCounterexamplePairs'
                   type: 'scene'
                   params: {}
                   locale:
@@ -243,10 +243,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Detective entry B presents pairs **3+5**, **4+5**, **1+3**, and learner-selected small odd numbers. The child must check **both operands are odd** before using the sum. For **3+5=8**, show eight is even: the case satisfies the premises and contradicts the conclusion, so it is a real counterexample.
                   productionNotes: 'Proposed unimplemented Scene, sourced from counterexampleDetective.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              explainInvalidTestCase:
                 config:
                   id: 'd35f5415-3422-43a6-b86d-e477f37bd448'
-                  slug: 'text3'
+                  slug: 'explainInvalidTestCase'
                   type: 'text'
                   params: {}
                   locale:
@@ -255,10 +255,10 @@ config:
                 production:
                   purpose: 'Find a real counterexample; authored text block 3'
                   specification: '3. **`text`, feedback:** For **4+5=9**: “Nine is odd, but four is **even**, so that pair does not test a claim about two _odd_ numbers. It is not a valid counterexample.” For 3+5: “Both inputs are odd and eight is even, so one valid case disproves ‘every sum is odd’.”'
-              markdown4:
+              defineCounterexample:
                 config:
                   id: '51fef51e-b7a5-49c1-91a2-d3e85758f293'
-                  slug: 'markdown4'
+                  slug: 'defineCounterexample'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -267,7 +267,7 @@ config:
                 production:
                   purpose: 'Find a real counterexample; authored markdown block 4'
                   specification: "4. **`markdown`:** “A **counterexample** must satisfy the rule's conditions but fail its claimed result. One valid counterexample is enough to show a universal claim is false.”"
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order: ['testOddSumsClaim', 'exploreCounterexamplePairs', 'explainInvalidTestCase', 'defineCounterexample']
         production:
           purpose: 'Find a real counterexample'
           pedagogicalIntent: 'Original Section 2 — Find a real counterexample; authoring draft only'
@@ -278,10 +278,10 @@ config:
             2. **`scene` Resource (proposed):** Detective entry B presents pairs **3+5**, **4+5**, **1+3**, and learner-selected small odd numbers. The child must check **both operands are odd** before using the sum. For **3+5=8**, show eight is even: the case satisfies the premises and contradicts the conclusion, so it is a real counterexample.
             3. **`text`, feedback:** For **4+5=9**: “Nine is odd, but four is **even**, so that pair does not test a claim about two _odd_ numbers. It is not a valid counterexample.” For 3+5: “Both inputs are odd and eight is even, so one valid case disproves ‘every sum is odd’.”
             4. **`markdown`:** “A **counterexample** must satisfy the rule's conditions but fail its claimed result. One valid counterexample is enough to show a universal claim is false.”
-      section3:
+      separateExamplesFromProof:
         config:
           id: '7fdf73f1-7c6d-451e-8e0e-91fbaca599b8'
-          slug: 'section3'
+          slug: 'separateExamplesFromProof'
           type: 'content'
           params: {}
           locale:
@@ -291,10 +291,10 @@ config:
               en: 'One example may support a true rule without proving it'
           content:
             items:
-              text1:
+              testAddingZeroClaim:
                 config:
                   id: 'dbad24c0-0e88-47af-83c4-11de486a49ad'
-                  slug: 'text1'
+                  slug: 'testAddingZeroClaim'
                   type: 'text'
                   params: {}
                   locale:
@@ -303,10 +303,10 @@ config:
                 production:
                   purpose: 'One example may support a true rule without proving it; authored text block 1'
                   specification: '1. **`text`:** “A student checks **4 + 0 = 4** and proposes **adding zero never changes a whole number**. Is the example true? Does this single example by itself prove the rule for every whole number?”'
-              scene2:
+              inspectSupportingCases:
                 config:
                   id: '1ccf1088-2626-4309-867a-5f124d94ca23'
-                  slug: 'scene2'
+                  slug: 'inspectSupportingCases'
                   type: 'scene'
                   params: {}
                   locale:
@@ -374,10 +374,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Detective entry C lets learners try 7+0=7 and 12+0=12. Explain: “These are true supporting cases. Trying more cases is helpful, but examples alone are not a proof for every whole number.” Include a simple conceptual visual: a collection with zero added stays unchanged, as an _informal explanation_ rather than a formal quantified proof.
                   productionNotes: 'Proposed unimplemented Scene, sourced from counterexampleDetective.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              explainNoUniversalProof:
                 config:
                   id: 'ddad27e6-1088-4ad5-81c4-0eb8466a4687'
-                  slug: 'text3'
+                  slug: 'explainNoUniversalProof'
                   type: 'text'
                   params: {}
                   locale:
@@ -386,10 +386,10 @@ config:
                 production:
                   purpose: 'One example may support a true rule without proving it; authored text block 3'
                   specification: "3. **`text`, feedback:** “You may have good reasons for the rule, but simply listing three examples still doesn't establish **all** cases.” If a learner claims examples were false, reveal the exact sums and set separation of verified instance vs universal justification."
-              markdown4:
+              distinguishEvidenceFromProof:
                 config:
                   id: '706fda01-06be-48de-b5a3-2ca31b886c18'
-                  slug: 'markdown4'
+                  slug: 'distinguishEvidenceFromProof'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -398,7 +398,7 @@ config:
                 production:
                   purpose: 'One example may support a true rule without proving it; authored markdown block 4'
                   specification: '4. **`markdown`:** “No counterexample found **yet** is not the same thing as proving a rule. First decide what the rule claims about all cases.”'
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order: ['testAddingZeroClaim', 'inspectSupportingCases', 'explainNoUniversalProof', 'distinguishEvidenceFromProof']
         production:
           purpose: 'One example may support a true rule without proving it'
           pedagogicalIntent: 'Original Section 3 — One example may support a true rule without proving it; authoring draft only'
@@ -409,10 +409,10 @@ config:
             2. **`scene` Resource (proposed):** Detective entry C lets learners try 7+0=7 and 12+0=12. Explain: “These are true supporting cases. Trying more cases is helpful, but examples alone are not a proof for every whole number.” Include a simple conceptual visual: a collection with zero added stays unchanged, as an _informal explanation_ rather than a formal quantified proof.
             3. **`text`, feedback:** “You may have good reasons for the rule, but simply listing three examples still doesn't establish **all** cases.” If a learner claims examples were false, reveal the exact sums and set separation of verified instance vs universal justification.
             4. **`markdown`:** “No counterexample found **yet** is not the same thing as proving a rule. First decide what the rule claims about all cases.”
-      section4:
+      refuteUniversalClaim:
         config:
           id: '80df7584-7f6d-49d7-930e-99dab3a5a4bd'
-          slug: 'section4'
+          slug: 'refuteUniversalClaim'
           type: 'content'
           params: {}
           locale:
@@ -422,10 +422,10 @@ config:
               en: 'Independent transfer: refute a new “every” statement'
           content:
             items:
-              text1:
+              findEvenNumberAboveFive:
                 config:
                   id: '550fdd49-cf28-453a-a6ff-2e4b13f5b2dc'
-                  slug: 'text1'
+                  slug: 'findEvenNumberAboveFive'
                   type: 'text'
                   params: {}
                   locale:
@@ -434,10 +434,10 @@ config:
                 production:
                   purpose: 'Independent transfer: refute a new “every” statement; authored text block 1'
                   specification: '1. **`text`:** “Someone claims: **Every whole number greater than five is odd**. Find one number that proves this claim wrong. Explain why it fits the first part and fails the second.”'
-              scene2:
+              testCounterexampleCandidate:
                 config:
                   id: '1ac15717-bd57-4286-afa3-7a0d179547ac'
-                  slug: 'scene2'
+                  slug: 'testCounterexampleCandidate'
                   type: 'scene'
                   params: {}
                   locale:
@@ -505,10 +505,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Detective entry D lets the learner choose a whole number from 0–20 via accessible stepper/typing. **6** is the simplest counterexample: 6 > 5 and 6 is even. Other eligible examples include 8, 10, 12 and so on. For choice 4: “Four is not greater than five, so it cannot test the claim.” For 7: “Seven is greater than five **and odd**; it supports the claim in one case but does not refute it.” For 6: “Six is greater than five, yet it is even; the rule says **every** such number is odd, so it is false.”
                   productionNotes: 'Proposed unimplemented Scene, sourced from counterexampleDetective.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              explainFailedConditions:
                 config:
                   id: '530fda23-cd28-4214-a8ff-317115f5b602'
-                  slug: 'text3'
+                  slug: 'explainFailedConditions'
                   type: 'text'
                   params: {}
                   locale:
@@ -517,10 +517,10 @@ config:
                 production:
                   purpose: 'Independent transfer: refute a new “every” statement; authored text block 3'
                   specification: '3. **`text`:** The learner may speak to a trusted adult, choose a two-part explanatory sentence or type a short reason: “My number meets ___ but not ___.” A “Show complete explanation” control is available without response.'
-              markdown4:
+              summarizeRefutation:
                 config:
                   id: '4980498c-43b8-4bf7-8f0d-3912fd0924c5'
-                  slug: 'markdown4'
+                  slug: 'summarizeRefutation'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -529,7 +529,7 @@ config:
                 production:
                   purpose: 'Independent transfer: refute a new “every” statement; authored markdown block 4'
                   specification: '4. **`markdown`:** “**Recall:** An example checks **one** case. A universal rule says **every** case. To disprove it, find **one case that fits the conditions but contradicts the conclusion**.”'
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order: ['findEvenNumberAboveFive', 'testCounterexampleCandidate', 'explainFailedConditions', 'summarizeRefutation']
         production:
           purpose: 'Independent transfer: refute a new “every” statement'
           pedagogicalIntent: 'Original Section 4 — Independent transfer: refute a new “every” statement; authoring draft only'
@@ -540,7 +540,7 @@ config:
             2. **`scene` Resource (proposed):** Detective entry D lets the learner choose a whole number from 0–20 via accessible stepper/typing. **6** is the simplest counterexample: 6 > 5 and 6 is even. Other eligible examples include 8, 10, 12 and so on. For choice 4: “Four is not greater than five, so it cannot test the claim.” For 7: “Seven is greater than five **and odd**; it supports the claim in one case but does not refute it.” For 6: “Six is greater than five, yet it is even; the rule says **every** such number is odd, so it is false.”
             3. **`text`:** The learner may speak to a trusted adult, choose a two-part explanatory sentence or type a short reason: “My number meets ___ but not ___.” A “Show complete explanation” control is available without response.
             4. **`markdown`:** “**Recall:** An example checks **one** case. A universal rule says **every** case. To disprove it, find **one case that fits the conditions but contradicts the conclusion**.”
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['distinguishExampleFromProof', 'findValidCounterexample', 'separateExamplesFromProof', 'refuteUniversalClaim']
   flashcards:
     items: {}
     order: []

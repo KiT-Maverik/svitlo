@@ -15,10 +15,10 @@ config:
       en: 'How Much Flat Space? Count Equal Squares'
   section:
     items:
-      section1:
+      distinguishAreaFromOutline:
         config:
           id: '893d47a4-95c2-5f13-93eb-c7a477a1e3ad'
-          slug: 'section1'
+          slug: 'distinguishAreaFromOutline'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: "The Border Isn't the Space Inside"
           content:
             items:
-              text1:
+              compareDifferentOutlines:
                 config:
                   id: 'fe029969-fc6d-5116-bf3d-196969f2284c'
-                  slug: 'text1'
+                  slug: 'compareDifferentOutlines'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: "One shape is long and thin. Another looks like steps. Which one covers more flat space? Don't decide from the border yet—what could we count inside?"
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              inspectCoveredSquareCells:
                 config:
                   id: '9ba1464a-73a1-5cc7-8ab8-c64af2467675'
-                  slug: 'scene1'
+                  slug: 'inspectCoveredSquareCells'
                   type: 'scene'
                   params: {}
                   locale:
@@ -149,10 +149,10 @@ config:
                     Generic `scene` Resource rendering exists; **Unit-Square Coverage Lab does not**. Coding Agent must implement approved Section presets via self-contained prop-free roots, locale provider hooks, exact cell-set/occupancy invariants, automated tests, accessible manipulation and offline assets when ready. Methodologist and Scene approvals are missing; no production Lesson, Quiz/Question, scoring, analytics, persisted Notes or release artifact is added in this batch.
                   purpose: "The Border Isn't the Space Inside"
                   productionNotes: "Source Scene unitSquareCoverageLab.scene-spec.md; independent placement for The Border Isn't the Space Inside. Variant/feedback retained under parent Section productionNotes."
-              markdown1:
+              defineAreaByUnitSquares:
                 config:
                   id: 'c7201c73-184f-5ce4-8182-9c732ede0276'
-                  slug: 'markdown1'
+                  slug: 'defineAreaByUnitSquares'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -160,7 +160,7 @@ config:
                       en: 'The **area** is the amount of **flat inside space** a region covers. Both shapes cover **six equal square cells**, even though their outside borders look different. Counting border segments is a different question.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['compareDifferentOutlines', 'inspectCoveredSquareCells', 'defineAreaByUnitSquares']
         production:
           purpose: "The Border Isn't the Space Inside"
           productionNotes: |-
@@ -173,10 +173,10 @@ config:
             - **Explanatory feedback:** If learner predicts stepped region is larger from its jagged edge: "The extra corners did not make extra inside squares. Count the spaces: six and six." If they predict the rectangle is larger because it looks longer: "Width alone is not the whole inside. Look at every equal square." For equal: "Yes: the six unit squares make the areas match."
             - **Access and pacing:** Both outlines have ordered row-by-row cell lists; no shape color or border thickness conveys the area. The learner can reveal one row at a time in text or diagram, with direct reveal for reduced motion.
             - **Planned Note after reveal:** "Area tells how much flat space a shape covers."
-      section2:
+      coverRegionWithUnitTiles:
         config:
           id: '8c3d4c5d-96c2-50a6-96eb-cc5d74a1def4'
-          slug: 'section2'
+          slug: 'coverRegionWithUnitTiles'
           type: 'content'
           params: {}
           locale:
@@ -186,10 +186,10 @@ config:
               en: 'One Tile for Every Cell'
           content:
             items:
-              text1:
+              placeOneTilePerCell:
                 config:
                   id: '231dfdfc-317e-5b17-a458-7dfc0148b1b9'
-                  slug: 'text1'
+                  slug: 'placeOneTilePerCell'
                   type: 'text'
                   params: {}
                   locale:
@@ -197,10 +197,10 @@ config:
                       en: 'This rectangle has two rows of three empty squares. We have matching square tiles. Where will you put the next tile so **every square is covered exactly once**?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              fillTwoByThreeGrid:
                 config:
                   id: 'f04fe005-0ba0-50e8-9f67-600542f8aa7a'
-                  slug: 'scene1'
+                  slug: 'fillTwoByThreeGrid'
                   type: 'scene'
                   params: {}
                   locale:
@@ -307,10 +307,10 @@ config:
                     Generic `scene` Resource rendering exists; **Unit-Square Coverage Lab does not**. Coding Agent must implement approved Section presets via self-contained prop-free roots, locale provider hooks, exact cell-set/occupancy invariants, automated tests, accessible manipulation and offline assets when ready. Methodologist and Scene approvals are missing; no production Lesson, Quiz/Question, scoring, analytics, persisted Notes or release artifact is added in this batch.
                   purpose: 'One Tile for Every Cell'
                   productionNotes: 'Source Scene unitSquareCoverageLab.scene-spec.md; independent placement for One Tile for Every Cell. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainExactCovering:
                 config:
                   id: '55f65f86-90b4-56d5-9058-df86f1a634a3'
-                  slug: 'markdown1'
+                  slug: 'explainExactCovering'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -318,7 +318,7 @@ config:
                       en: 'We used **six identical tiles** and covered six **different squares**. That makes **six square units of area**. If two tiles share a cell and another cell stays empty, the shape is not fully covered correctly.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['placeOneTilePerCell', 'fillTwoByThreeGrid', 'explainExactCovering']
         production:
           purpose: 'One Tile for Every Cell'
           productionNotes: |-
@@ -331,10 +331,10 @@ config:
             - **Learner feedback:** On duplicated cell: "That cell already has a tile. A second tile does not cover a _new_ square. Try a different empty cell." On a missing cell: "We still see one empty square inside the region, so our covering isn't finished." On complete: "All six different cells are covered, one tile per cell, with no gaps."
             - **Reflection checkpoint (not assessment):** Ask "Did we count six pieces of plastic or six _different covered unit squares_?" Reveal why the latter is necessary. No Quiz or mastery progress.
             - **Navigation:** "Next empty cell", "Undo last placement", "Reset", optional guided row coverage; all controls have nonvisual equivalents.
-      section3:
+      compareAreaAcrossOutlines:
         config:
           id: '8b3d4aca-97c2-5239-95eb-caca75a1e087'
-          slug: 'section3'
+          slug: 'compareAreaAcrossOutlines'
           type: 'content'
           params: {}
           locale:
@@ -344,10 +344,10 @@ config:
               en: 'Different Outlines, Different Amounts?'
           content:
             items:
-              text1:
+              compareSixAndFiveSquares:
                 config:
                   id: 'ba10413b-ef35-5ee8-bb4a-c13b679106aa'
-                  slug: 'text1'
+                  slug: 'compareSixAndFiveSquares'
                   type: 'text'
                   params: {}
                   locale:
@@ -355,10 +355,10 @@ config:
                       en: 'A rectangular region covers six unit squares. A stepped region also covers six. A shorter step-shaped region covers five. Which pair has equal area?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              revealEqualAreaRegions:
                 config:
                   id: '8293b024-6d15-5579-b1ab-3024220fbe03'
-                  slug: 'scene1'
+                  slug: 'revealEqualAreaRegions'
                   type: 'scene'
                   params: {}
                   locale:
@@ -465,10 +465,10 @@ config:
                     Generic `scene` Resource rendering exists; **Unit-Square Coverage Lab does not**. Coding Agent must implement approved Section presets via self-contained prop-free roots, locale provider hooks, exact cell-set/occupancy invariants, automated tests, accessible manipulation and offline assets when ready. Methodologist and Scene approvals are missing; no production Lesson, Quiz/Question, scoring, analytics, persisted Notes or release artifact is added in this batch.
                   purpose: 'Different Outlines, Different Amounts?'
                   productionNotes: 'Source Scene unitSquareCoverageLab.scene-spec.md; independent placement for Different Outlines, Different Amounts?. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainSameUnitArea:
                 config:
                   id: '6f39a969-209d-5d92-a99c-296972a5d068'
-                  slug: 'markdown1'
+                  slug: 'explainSameUnitArea'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -476,7 +476,7 @@ config:
                       en: 'R and S each cover six **same-size squares**; they have **equal area**. T covers only five of those squares, so its area is **one square unit smaller**. We counted _inside cells_, not sides or corners.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['compareSixAndFiveSquares', 'revealEqualAreaRegions', 'explainSameUnitArea']
         production:
           purpose: 'Different Outlines, Different Amounts?'
           productionNotes: |-
@@ -492,10 +492,10 @@ config:
               3. **markdown — currently rendered:** "R and S each cover six **same-size squares**; they have **equal area**. T covers only five of those squares, so its area is **one square unit smaller**. We counted _inside cells_, not sides or corners."
             - **Learner action and feedback:** If R and S are declared different by outline: "Different outline doesn't guarantee different area; both contain six identical cells." If T assumed larger because it has more corners: "Count its filled squares, not its turns." Show row-wise count and labelled region names in both visual and accessible modes.
             - **Planned Note:** "Equal areas can have different outlines."
-      section4:
+      identifyOverlapsAndUnitSize:
         config:
           id: '863d42eb-98c2-53cc-90eb-c2eb72a1dbce'
-          slug: 'section4'
+          slug: 'identifyOverlapsAndUnitSize'
           type: 'content'
           params: {}
           locale:
@@ -505,10 +505,10 @@ config:
               en: 'Does Six Tiles Always Mean Six Square Units?'
           content:
             items:
-              text1:
+              spotOverlappingTiles:
                 config:
                   id: '00f0b28e-352f-56b1-822b-328e6ef5fe9f'
-                  slug: 'text1'
+                  slug: 'spotOverlappingTiles'
                   type: 'text'
                   params: {}
                   locale:
@@ -516,10 +516,10 @@ config:
                       en: 'Look carefully: someone laid **six tiles**, but **two cover the same square**, and one square in the target is still empty. Have they covered a six-square area correctly?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              repairTilingOverlap:
                 config:
                   id: 'ec4c988f-b86e-59e2-9b64-188fc979de60'
-                  slug: 'scene1'
+                  slug: 'repairTilingOverlap'
                   type: 'scene'
                   params: {}
                   locale:
@@ -626,10 +626,10 @@ config:
                     Generic `scene` Resource rendering exists; **Unit-Square Coverage Lab does not**. Coding Agent must implement approved Section presets via self-contained prop-free roots, locale provider hooks, exact cell-set/occupancy invariants, automated tests, accessible manipulation and offline assets when ready. Methodologist and Scene approvals are missing; no production Lesson, Quiz/Question, scoring, analytics, persisted Notes or release artifact is added in this batch.
                   purpose: 'Does Six Tiles Always Mean Six Square Units?'
                   productionNotes: 'Source Scene unitSquareCoverageLab.scene-spec.md; independent placement for Does Six Tiles Always Mean Six Square Units?. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainConsistentUnitSize:
                 config:
                   id: 'd8b0e46c-c177-50cb-9313-646cb3a60c8d'
-                  slug: 'markdown1'
+                  slug: 'explainConsistentUnitSize'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -637,7 +637,7 @@ config:
                       en: 'Six tiles can be placed unfairly: an overlap counts a square twice and leaves a gap. To measure area, use the **same-size square unit** and count each **different covered square** once. Tiles of different sizes are different units.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['spotOverlappingTiles', 'repairTilingOverlap', 'explainConsistentUnitSize']
         production:
           purpose: 'Does Six Tiles Always Mean Six Square Units?'
           productionNotes: |-
@@ -649,7 +649,7 @@ config:
               3. **markdown — currently rendered:** "Six tiles can be placed unfairly: an overlap counts a square twice and leaves a gap. To measure area, use the **same-size square unit** and count each **different covered square** once. Tiles of different sizes are different units."
             - **Feedback:** Before repair: "Only five different unit squares are covered; one is still empty." After repair: "Each of the six is covered exactly once: six square units." For comparing large versus small tile counts: "Both have two pieces, but one piece is not the same area unit in both pictures." If the learner treats decorative grid lines as measured area: "Only the filled _regions_ between lines count."
             - **Transfer:** Unseen four-cell L-shaped region (rows 3+1) with a selection of equal unit tiles; learner covers and explains "four square units", including the equal-unit rule. No scored correctness recording.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['distinguishAreaFromOutline', 'coverRegionWithUnitTiles', 'compareAreaAcrossOutlines', 'identifyOverlapsAndUnitSize']
   flashcards:
     items: {}
     order: []

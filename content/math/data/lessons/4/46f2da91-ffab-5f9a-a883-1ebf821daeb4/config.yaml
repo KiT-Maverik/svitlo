@@ -15,10 +15,10 @@ config:
       en: 'Read the Value: Euro Coins and Banknotes'
   section:
     items:
-      section1:
+      identifyEuroDenominations:
         config:
           id: '7d0e3b06-97e9-57b5-87bc-bb06f4311b6b'
-          slug: 'section1'
+          slug: 'identifyEuroDenominations'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Euro Cash Viewer'
           content:
             items:
-              text1:
+              findEuroCoinAndNote:
                 config:
                   id: 'fb43bcf7-b3ad-5454-bc7e-3cf71b81c70e'
-                  slug: 'text1'
+                  slug: 'findEuroCoinAndNote'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'Find the €2 coin and the €5 banknote.'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              exploreEuroCash:
                 config:
                   id: '4f147448-c0ba-54cd-be2b-f4483eafde0f'
-                  slug: 'scene1'
+                  slug: 'exploreEuroCash'
                   type: 'scene'
                   params: {}
                   locale:
@@ -122,10 +122,10 @@ config:
                     The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
                   purpose: 'Euro Cash Viewer: independent placement'
                   productionNotes: 'Original euroCashViewer.scene-spec.md variant belongs to Euro Cash Viewer; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              distinguishCoinFromBanknote:
                 config:
                   id: '1477e8b5-fc86-56ee-8eda-68b5d65ec0ec'
-                  slug: 'markdown1'
+                  slug: 'distinguishCoinFromBanknote'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -133,7 +133,7 @@ config:
                       en: '€2 is a coin and €5 a note.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['findEuroCoinAndNote', 'exploreEuroCash', 'distinguishCoinFromBanknote']
         production:
           purpose: 'Euro Cash Viewer'
           productionNotes: |-
@@ -146,10 +146,10 @@ config:
             - **Learner control and state:** Choose item; inspect denomination/kind; switch schematic country-side description; Reveal; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
             - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
             - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
-      section2:
+      compareValueNotCoinSize:
         config:
           id: '7c0e3973-94e9-52fc-86bc-b973f5311cfe'
-          slug: 'section2'
+          slug: 'compareValueNotCoinSize'
           type: 'content'
           params: {}
           locale:
@@ -159,10 +159,10 @@ config:
               en: 'Think before revealing the reason'
           content:
             items:
-              text1:
+              predictOneEuroVsFiftyCents:
                 config:
                   id: '18bd76f6-c8d8-5761-99f7-f6f622de2f8f'
-                  slug: 'text1'
+                  slug: 'predictOneEuroVsFiftyCents'
                   type: 'text'
                   params: {}
                   locale:
@@ -170,10 +170,10 @@ config:
                       en: 'Which is worth more: a wider 50-cent coin or a smaller one-euro coin?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              markdown1:
+              explainHundredCentsVsFifty:
                 config:
                   id: '7f7bf6c4-7861-56db-b9de-76c4e398a09d'
-                  slug: 'markdown1'
+                  slug: 'explainHundredCentsVsFifty'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -181,10 +181,10 @@ config:
                       en: 'One euro is 100 cents, greater than 50 cents despite diameter. Five euros is a valid banknote denomination, but not a standard circulating euro coin denomination.'
                 production:
                   purpose: 'Provisional instructional explanation'
-              text2:
+              checkFiveEuroBanknote:
                 config:
                   id: '17bd7563-c5d8-52a8-98f7-f56323de3122'
-                  slug: 'text2'
+                  slug: 'checkFiveEuroBanknote'
                   type: 'text'
                   params: {}
                   locale:
@@ -192,7 +192,7 @@ config:
                       en: 'Can a five-euro banknote be real while an ordinary five-euro coin is not?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-            order: ['text1', 'markdown1', 'text2']
+            order: ['predictOneEuroVsFiftyCents', 'explainHundredCentsVsFifty', 'checkFiveEuroBanknote']
         production:
           purpose: 'Think before revealing the reason'
           productionNotes: |-
@@ -204,10 +204,10 @@ config:
             - **Pedagogical action:** The learner reflects before reading the explanation, then checks it against the first Scene. An actual hidden-answer widget is **not** inferred from plain text/Markdown support; this is a planned reflective pause, not a scored Question.
             - **Feedback:** Address the common trap directly: Reading 50 as greater than 1 without converting units; guessing worth from coin size; treating a five-euro banknote as proof a five-euro coin must exist; assuming national-side artwork changes worth.
             - **Transition:** Apply the same principle to the new Scene, without relying on the original display.
-      section3:
+      verifyDenominationByValue:
         config:
           id: '7b0e37e0-95e9-548f-85bc-b7e0f6311e91'
-          slug: 'section3'
+          slug: 'verifyDenominationByValue'
           type: 'content'
           params: {}
           locale:
@@ -217,10 +217,10 @@ config:
               en: 'Cash Value Detective'
           content:
             items:
-              text1:
+              compareFiftyCentAndOneEuro:
                 config:
                   id: 'a9527955-5049-57d2-aa8c-f955f1757e60'
-                  slug: 'text1'
+                  slug: 'compareFiftyCentAndOneEuro'
                   type: 'text'
                   params: {}
                   locale:
@@ -228,10 +228,10 @@ config:
                       en: 'The 50-cent coin is wider. Which coin is worth more?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              inspectCashValues:
                 config:
                   id: '1aa529ae-daae-5cfb-89bc-a9ae48f75c61'
-                  slug: 'scene1'
+                  slug: 'inspectCashValues'
                   type: 'scene'
                   params: {}
                   locale:
@@ -311,10 +311,10 @@ config:
                     The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
                   purpose: 'Cash Value Detective: independent placement'
                   productionNotes: 'Original cashValueDetective.scene-spec.md variant belongs to Cash Value Detective; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainSmallerCoinHigherValue:
                 config:
                   id: '35802e4f-c843-5e80-afe2-ae4fe995475a'
-                  slug: 'markdown1'
+                  slug: 'explainSmallerCoinHigherValue'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -322,7 +322,7 @@ config:
                       en: '€1 is worth more though 50c coin is physically wider.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['compareFiftyCentAndOneEuro', 'inspectCashValues', 'explainSmallerCoinHigherValue']
         production:
           purpose: 'Cash Value Detective'
           productionNotes: |-
@@ -335,7 +335,7 @@ config:
             - **Learner control and state:** Predict higher value; show cents conversion; inspect coin diameter and value; mark fictional; Reveal; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
             - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
             - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
-    order: ['section1', 'section2', 'section3']
+    order: ['identifyEuroDenominations', 'compareValueNotCoinSize', 'verifyDenominationByValue']
   flashcards:
     items: {}
     order: []

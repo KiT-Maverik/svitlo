@@ -15,10 +15,10 @@ config:
       en: 'Does Every Object Have a Partner?'
   section:
     items:
-      section1PartnerPairLab:
+      testEvennessWithPairs:
         config:
           id: '5a42944f-ccd4-4bfa-9289-374dda985838'
-          slug: 'section1PartnerPairLab'
+          slug: 'testEvennessWithPairs'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Partner Pair Lab'
           content:
             items:
-              text1:
+              askIfEightCanPair:
                 config:
                   id: '723e2492-9599-4a6b-b38d-88ec6fd3142d'
-                  slug: 'text1'
+                  slug: 'askIfEightCanPair'
                   type: 'text'
                   params: {}
                   locale:
@@ -119,16 +119,16 @@ config:
                     The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
                   purpose: 'Proposed interactive Scene for Partner Pair Lab'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainNoLeftovers:
                 config:
                   id: '810f3ff9-323e-43c0-bcf9-c4035753680a'
-                  slug: 'markdown2'
+                  slug: 'explainNoLeftovers'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Eight is even, zero leftover.'
-            order: ['text1', 'partnerPairLab', 'markdown2']
+            order: ['askIfEightCanPair', 'partnerPairLab', 'explainNoLeftovers']
         production:
           purpose: 'Partner Pair Lab'
           pedagogicalIntent: |
@@ -145,10 +145,10 @@ config:
             - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2ThinkBeforeRevealingTheReason:
+      reasonFromLeftoverPairs:
         config:
           id: '2f94be94-a1eb-4d6b-9d50-6d862bfd3f85'
-          slug: 'section2ThinkBeforeRevealingTheReason'
+          slug: 'reasonFromLeftoverPairs'
           type: 'content'
           params: {}
           locale:
@@ -158,34 +158,34 @@ config:
               en: 'Think before revealing the reason'
           content:
             items:
-              text1:
+              predictParityWithLeftover:
                 config:
                   id: '7ff7e659-92d7-490e-bee0-5b77367edca4'
-                  slug: 'text1'
+                  slug: 'predictParityWithLeftover'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Four complete pairs plus one leftover: even or odd?'
-              markdown2:
+              explainFourPairsAndOne:
                 config:
                   id: '348b3056-4892-47a5-97df-ea7c90ae6e8b'
-                  slug: 'markdown2'
+                  slug: 'explainFourPairsAndOne'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Four pairs and one leftover make nine, an odd count. Scattering twelve does not add/remove objects: six complete pairs remain possible.'
-              text3:
+              challengeRearrangement:
                 config:
                   id: '7df7e333-90d7-45e8-80e0-5e9d387edfca'
-                  slug: 'text3'
+                  slug: 'challengeRearrangement'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Can scattering twelve objects make an even count odd?'
-            order: ['text1', 'markdown2', 'text3']
+            order: ['predictParityWithLeftover', 'explainFourPairsAndOne', 'challengeRearrangement']
         production:
           purpose: 'Think before revealing the reason'
           pedagogicalIntent: |
@@ -201,10 +201,10 @@ config:
             - **Transition:** Apply the same principle to the new Scene, without relying on the original display.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3PairSurprise:
+      verifyParityAfterRearranging:
         config:
           id: '145230eb-e268-4b5e-8466-c5edc11bd7e0'
-          slug: 'section3PairSurprise'
+          slug: 'verifyParityAfterRearranging'
           type: 'content'
           params: {}
           locale:
@@ -214,10 +214,10 @@ config:
               en: 'Pair Surprise'
           content:
             items:
-              text1:
+              predictParityOfScatteredDots:
                 config:
                   id: '6aee308e-39db-41ef-8f1e-1d8c11f31955'
-                  slug: 'text1'
+                  slug: 'predictParityOfScatteredDots'
                   type: 'text'
                   params: {}
                   locale:
@@ -305,16 +305,16 @@ config:
                     The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
                   purpose: 'Proposed interactive Scene for Pair Surprise'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainTwelveRemainsEven:
                 config:
                   id: 'ef884725-a8a6-4944-81a9-3123308acfe2'
-                  slug: 'markdown2'
+                  slug: 'explainTwelveRemainsEven'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Twelve remains even.'
-            order: ['text1', 'pairSurprise', 'markdown2']
+            order: ['predictParityOfScatteredDots', 'pairSurprise', 'explainTwelveRemainsEven']
         production:
           purpose: 'Pair Surprise'
           pedagogicalIntent: |
@@ -331,7 +331,7 @@ config:
             - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order: ['section1PartnerPairLab', 'section2ThinkBeforeRevealingTheReason', 'section3PairSurprise']
+    order: ['testEvennessWithPairs', 'reasonFromLeftoverPairs', 'verifyParityAfterRearranging']
   flashcards:
     items: {}
     order: []

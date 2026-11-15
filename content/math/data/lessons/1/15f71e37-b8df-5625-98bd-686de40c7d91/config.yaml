@@ -16,10 +16,10 @@ config:
       en: 'Half and Double: Divide by Two'
   section:
     items:
-      section1:
+      shareTwelveIntoHalves:
         config:
           id: '062f4a4d-b224-441a-94c0-db53ea07d6e0'
-          slug: 'section1'
+          slug: 'shareTwelveIntoHalves'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'Two Equal Halves'
           content:
             items:
-              text1:
+              promptEqualSharing:
                 config:
                   id: '7b6b03ec-de79-438b-bcb6-c5563d872055'
-                  slug: 'text1'
+                  slug: 'promptEqualSharing'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'Two Equal Halves; authored text block 1'
                   specification: '- **Text resource (available):** “Share twelve counters into TWO equal groups. How many in each?”'
-              scene2:
+              modelHalvingTwelve:
                 config:
                   id: '4f4b5edc-aa94-444d-a3db-4d9a68880d1b'
-                  slug: 'scene2'
+                  slug: 'modelHalvingTwelve'
                   type: 'scene'
                   params: {}
                   locale:
@@ -113,10 +113,10 @@ config:
 
                     - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Use 'Give one to each' for six rounds, distributing unique counters into two labeled trays; offer grouped actions and text totals.
                   productionNotes: 'Proposed unimplemented Scene, sourced from halfDoubleBalance.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainSixIsHalf:
                 config:
                   id: 'a6f3ed70-c441-4473-90d2-7c4ab8184875'
-                  slug: 'markdown3'
+                  slug: 'explainSixIsHalf'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -125,7 +125,7 @@ config:
                 production:
                   purpose: 'Two Equal Halves; authored markdown block 3'
                   specification: '- **Markdown resource (available):** “Two groups each have six. Six is half of twelve.” Equation **12 ÷ 2 = 6**.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['promptEqualSharing', 'modelHalvingTwelve', 'explainSixIsHalf']
         production:
           purpose: 'Make two equal shares of twelve and name six as half.'
           pedagogicalIntent: 'Original Section 1 — Two Equal Halves; authoring draft only'
@@ -141,10 +141,10 @@ config:
             - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
             - **Planned Note:** Half of an even amount is one of two equal shares., only after complete evidence and explanation, not a score or wired event.
             - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
-      section2:
+      rebuildWholeByDoubling:
         config:
           id: '032f4594-b124-4287-95c0-dce6ed07db99'
-          slug: 'section2'
+          slug: 'rebuildWholeByDoubling'
           type: 'content'
           params: {}
           locale:
@@ -154,10 +154,10 @@ config:
               en: 'Double the Half'
           content:
             items:
-              text1:
+              predictDoubleSix:
                 config:
                   id: '3c863559-5eef-48aa-a646-ca5792bbadc8'
-                  slug: 'text1'
+                  slug: 'predictDoubleSix'
                   type: 'text'
                   params: {}
                   locale:
@@ -166,10 +166,10 @@ config:
                 production:
                   purpose: 'Double the Half; authored text block 1'
                   specification: '- **Text resource (available):** “If one half is six, what is double six?”'
-              scene2:
+              modelDoubleTheHalf:
                 config:
                   id: 'bb4a4b07-8cbd-4596-9421-fce195b9a7a0'
-                  slug: 'scene2'
+                  slug: 'modelDoubleTheHalf'
                   type: 'scene'
                   params: {}
                   locale:
@@ -238,10 +238,10 @@ config:
 
                     - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Show both complete shares and allow the learner to recombine them and read both the addition and multiplication checks.
                   productionNotes: 'Proposed unimplemented Scene, sourced from halfDoubleBalance.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainReconstructTwelve:
                 config:
                   id: '546f70e9-b7f9-458e-b7bf-92eff8fa804c'
-                  slug: 'markdown3'
+                  slug: 'explainReconstructTwelve'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -250,7 +250,7 @@ config:
                 production:
                   purpose: 'Double the Half; authored markdown block 3'
                   specification: '- **Markdown resource (available):** “Doubling means two equal groups of six; together they reconstruct twelve.” Equation **6 + 6 = 12; 2 × 6 = 12**.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['predictDoubleSix', 'modelDoubleTheHalf', 'explainReconstructTwelve']
         production:
           purpose: 'Verify the half by doubling six to obtain twelve.'
           pedagogicalIntent: 'Original Section 2 — Double the Half; authoring draft only'
@@ -266,10 +266,10 @@ config:
             - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
             - **Planned Note:** Doubling one half rebuilds the original amount., only after complete evidence and explanation, not a score or wired event.
             - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
-      section3:
+      distinguishTwoGroupsFromPairs:
         config:
           id: '042f4727-b024-40f4-96c0-de79ec07da06'
-          slug: 'section3'
+          slug: 'distinguishTwoGroupsFromPairs'
           type: 'content'
           params: {}
           locale:
@@ -279,10 +279,10 @@ config:
               en: 'Two Groups or Groups of Two?'
           content:
             items:
-              text1:
+              compareTwoGroupingQuestions:
                 config:
                   id: 'a193f04a-f8a7-43b9-903d-5f288f7863f7'
-                  slug: 'text1'
+                  slug: 'compareTwoGroupingQuestions'
                   type: 'text'
                   params: {}
                   locale:
@@ -291,10 +291,10 @@ config:
                 production:
                   purpose: 'Two Groups or Groups of Two?; authored text block 1'
                   specification: '- **Text resource (available):** “What changes if we make GROUPS OF two instead of TWO groups?”'
-              scene2:
+              modelDifferentDivisionMeanings:
                 config:
                   id: 'c7aadd36-aba6-4ee7-9ca4-6c00a0f75e01'
-                  slug: 'scene2'
+                  slug: 'modelDifferentDivisionMeanings'
                   type: 'scene'
                   params: {}
                   locale:
@@ -363,10 +363,10 @@ config:
 
                     - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Show two explicitly labeled story panels: two groups of six vs six groups of two, preserving exact twelve and expression 12÷2=6.
                   productionNotes: 'Proposed unimplemented Scene, sourced from halfDoubleBalance.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainGroupCountDifference:
                 config:
                   id: 'f123072e-36f9-49c9-8eda-6cac930ffc8f'
-                  slug: 'markdown3'
+                  slug: 'explainGroupCountDifference'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -375,7 +375,7 @@ config:
                 production:
                   purpose: 'Two Groups or Groups of Two?; authored markdown block 3'
                   specification: '- **Markdown resource (available):** “In sharing the six counts objects per group; in grouping it counts complete pairs.” Equation **12 ÷ 2 = 6**.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['compareTwoGroupingQuestions', 'modelDifferentDivisionMeanings', 'explainGroupCountDifference']
         production:
           purpose: 'Contrast two groups of six with six groups of two, labeling the quotient units.'
           pedagogicalIntent: 'Original Section 3 — Two Groups or Groups of Two?; authoring draft only'
@@ -391,10 +391,10 @@ config:
             - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
             - **Planned Note:** Half of an even amount is one of two equal shares., only after complete evidence and explanation, not a score or wired event.
             - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
-      section4:
+      halveAndDoubleNewTotals:
         config:
           id: '012f426e-af24-4f61-97c0-e00cef07debf'
-          slug: 'section4'
+          slug: 'halveAndDoubleNewTotals'
           type: 'content'
           params: {}
           locale:
@@ -404,10 +404,10 @@ config:
               en: 'Halve Sixteen and Ten'
           content:
             items:
-              text1:
+              halveSixteenAndTen:
                 config:
                   id: '39abbfbf-8996-4130-bd7f-79f1e29aac82'
-                  slug: 'text1'
+                  slug: 'halveSixteenAndTen'
                   type: 'text'
                   params: {}
                   locale:
@@ -416,10 +416,10 @@ config:
                 production:
                   purpose: 'Halve Sixteen and Ten; authored text block 1'
                   specification: '- **Text resource (available):** “Find half of sixteen and half of ten, then double each answer.”'
-              scene2:
+              practiceReverseOperations:
                 config:
                   id: '9b1c3e39-3beb-4098-a9ba-548f7fbec3de'
-                  slug: 'scene2'
+                  slug: 'practiceReverseOperations'
                   type: 'scene'
                   params: {}
                   locale:
@@ -488,10 +488,10 @@ config:
 
                     - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Offer independently reset 16- and 10-counter models, with optional odd thirteen contrast. Check eight and five by multiplying by two.
                   productionNotes: 'Proposed unimplemented Scene, sourced from halfDoubleBalance.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainEvenDivisionResults:
                 config:
                   id: 'c93c9d87-227c-49a4-a75d-a93193b90b36'
-                  slug: 'markdown3'
+                  slug: 'explainEvenDivisionResults'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -500,7 +500,7 @@ config:
                 production:
                   purpose: 'Halve Sixteen and Ten; authored markdown block 3'
                   specification: '- **Markdown resource (available):** “Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result.” Equation **16 ÷ 2 = 8; 2 × 8 = 16; 10 ÷ 2 = 5; 2 × 5 = 10**.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['halveSixteenAndTen', 'practiceReverseOperations', 'explainEvenDivisionResults']
         production:
           purpose: 'Transfer exact halving to sixteen and ten and check via doubling.'
           pedagogicalIntent: 'Original Section 4 — Halve Sixteen and Ten; authoring draft only'
@@ -516,7 +516,7 @@ config:
             - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
             - **Planned Note:** Doubling one half rebuilds the original amount., only after complete evidence and explanation, not a score or wired event.
             - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['shareTwelveIntoHalves', 'rebuildWholeByDoubling', 'distinguishTwoGroupsFromPairs', 'halveAndDoubleNewTotals']
   flashcards:
     items: {}
     order: []

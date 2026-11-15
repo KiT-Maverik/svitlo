@@ -20,10 +20,10 @@ config:
       en: 'Which Container Holds More?'
   section:
     items:
-      section1EmptyDoesnTMeanNoCapacity:
+      understandEmptyContainerCapacity:
         config:
           id: '6e0463f1-11ea-41b2-823c-1bc90dd2398a'
-          slug: 'section1EmptyDoesnTMeanNoCapacity'
+          slug: 'understandEmptyContainerCapacity'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: "Empty Doesn't Mean No Capacity"
           content:
             items:
-              section1Text1:
+              compareEmptyCups:
                 config:
                   id: 'b3d0e5b5-1440-4ec9-8422-e33bb3b29847'
-                  slug: 'section1Text1'
+                  slug: 'compareEmptyCups'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  1. **text — existing renderer:** "A tall cup and a short wide cup are both empty. Does that mean they can hold nothing? Which one _could hold more if full_? Can we tell from height alone?"'
-              section1Scene2:
+              explorePotentialCapacity:
                 config:
                   id: 'ea9f9ebb-78fc-4a4e-8e04-330cfc6737f9'
-                  slug: 'section1Scene2'
+                  slug: 'explorePotentialCapacity'
                   type: 'scene'
                   params: {}
                   locale:
@@ -170,10 +170,10 @@ config:
 
                       2. **scene — existing Resource type, proposed custom:** Capacity Pouring Bench (full original source: Scene production.specification), placement A. Present empty tall/narrow A, shorter/wider B, each with a marked full boundary but **no numerical unit ticks**. Before revealing model capacities, offer predictions "A holds more", "B holds more", "Cannot know from height only". After the child responds, reveal only the **capacity definition** and why appearance cannot establish which is greater; do **not** reveal capacity ordering or scoop counts before the fair test in Section 2.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section1Markdown3:
+              defineCapacity:
                 config:
                   id: '3f383a55-9297-450d-88e6-abce65499496'
-                  slug: 'section1Markdown3'
+                  slug: 'defineCapacity'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -183,9 +183,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  3. **markdown — existing renderer:** "Even an **empty** cup can hold something. Its **capacity** is the amount it could hold when filled to its full mark. A taller cup is not necessarily the cup with greater capacity: width and shape also matter. We need a fair comparison."'
             order:
-              - 'section1Text1'
-              - 'section1Scene2'
-              - 'section1Markdown3'
+              - 'compareEmptyCups'
+              - 'explorePotentialCapacity'
+              - 'defineCapacity'
         production:
           purpose: "Empty Doesn't Mean No Capacity"
           pedagogicalIntent: "Empty Doesn't Mean No Capacity"
@@ -202,10 +202,10 @@ config:
             - **Nonvisual parity:** "A is tall and narrow; B is shorter but wider; both are empty and marked with full lines" is provided before prediction. Children don't need photos or physical objects.
             - **Future Note:** "Capacity is how much a container can hold when full."
 
-      section2OneScoopSizeTwoDifferentCounts:
+      measureCapacityWithEqualScoops:
         config:
           id: 'af5cfa35-2683-4931-8977-d20da0a8c109'
-          slug: 'section2OneScoopSizeTwoDifferentCounts'
+          slug: 'measureCapacityWithEqualScoops'
           type: 'content'
           params: {}
           locale:
@@ -215,10 +215,10 @@ config:
               en: 'One Scoop Size, Two Different Counts'
           content:
             items:
-              section2Text1:
+              predictScoopCounts:
                 config:
                   id: '02fc05a1-a1f5-441c-8f28-f6bf8c219702'
-                  slug: 'section2Text1'
+                  slug: 'predictScoopCounts'
                   type: 'text'
                   params: {}
                   locale:
@@ -227,10 +227,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  1. **text — available:** "We will use the **same little scoop** for both cups. How many of these scoops fill the tall cup? How many fill the short, wide cup?"'
-              section2Scene2:
+              fillCupsWithEqualScoops:
                 config:
                   id: '7be1c918-28f8-4cf4-8871-8833eb68fddf'
-                  slug: 'section2Scene2'
+                  slug: 'fillCupsWithEqualScoops'
                   type: 'scene'
                   params: {}
                   locale:
@@ -352,10 +352,10 @@ config:
 
                       2. **scene — proposed:** Capacity Pouring Bench (full original source: Scene production.specification), placement B. Fixed capacity A=**4 identical model scoops**, B=**6 identical model scoops**, initial fill 0/0. Learner selects A or B and presses "Add one scoop" repeatedly; each press adds **one unit** to the selected container without overflow. At 4, A displays "full"; at 6, B displays "full". Before each container is full, the learner-facing ledger shows **scoops added so far** without announcing its unrevealed maximum. Once that container is full, the ledger records A as **4 of 4** or B as **6 of 6**, respectively. "Compare" reveals **B can hold two more scoops than A** under this common scoop size.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section2Markdown3:
+              compareFourAndSixScoops:
                 config:
                   id: 'a49d8cc2-643e-45ce-8633-c47e26908d72'
-                  slug: 'section2Markdown3'
+                  slug: 'compareFourAndSixScoops'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -365,9 +365,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  3. **markdown — available:** "The tall cup held **4 of the same scoops**. The short wide cup held **6**. Since both were filled using **one identical scoop**, B has **greater capacity**. Height alone fooled us."'
             order:
-              - 'section2Text1'
-              - 'section2Scene2'
-              - 'section2Markdown3'
+              - 'predictScoopCounts'
+              - 'fillCupsWithEqualScoops'
+              - 'compareFourAndSixScoops'
         production:
           purpose: 'One Scoop Size, Two Different Counts'
           pedagogicalIntent: 'One Scoop Size, Two Different Counts'
@@ -384,10 +384,10 @@ config:
             - **Access and pacing:** Fully local step controls, text ledger and ready-to-inspect full markers; nonvisual mode has unit count/status equally informative. Each action may be undone without score.
             - **Future Note:** "A fair scoop comparison uses equal scoops and full containers."
 
-      section3PourIntoADifferentContainer:
+      compareCapacityByPouring:
         config:
           id: '9fb2203e-a734-478d-84dc-28357c5a8f86'
-          slug: 'section3PourIntoADifferentContainer'
+          slug: 'compareCapacityByPouring'
           type: 'content'
           params: {}
           locale:
@@ -397,10 +397,10 @@ config:
               en: 'Pour Into a Different Container'
           content:
             items:
-              section3Text1:
+              predictPourResults:
                 config:
                   id: '7bf7701b-361d-4a37-8c02-b70781e8cd2b'
-                  slug: 'section3Text1'
+                  slug: 'predictPourResults'
                   type: 'text'
                   params: {}
                   locale:
@@ -409,10 +409,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  1. **text — available:** "First **fill the tall cup A completely** and leave B empty. Pour A into B. Will B be full? Then reset: fill B completely, leave A empty, and try pouring back."'
-              section3Scene2:
+              transferLiquidBetweenCups:
                 config:
                   id: 'e3b422c1-c8c1-4dbd-8f2c-ba251459f559'
-                  slug: 'section3Scene2'
+                  slug: 'transferLiquidBetweenCups'
                   type: 'scene'
                   params: {}
                   locale:
@@ -534,10 +534,10 @@ config:
 
                       2. **scene — proposed:** Capacity Pouring Bench (full original source: Scene production.specification), placement C. **Forward transfer:** A starts 4/4 full; B starts 0/6; after transfer, A0/4 and B4/6, with **two-scoop empty room in B**. **Reverse transfer:** from separate reset B6/6 full; A0/4; transfer only as much as A holds, resulting B2/6 remaining and A4/4 full. Do **not** spill or invent extra liquid. Show exact before/after ledgers and a reasoned choice "B has greater capacity".
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section3Markdown3:
+              explainRoomAndOverflow:
                 config:
                   id: 'a02a47e7-a54f-40ee-8640-de1883256911'
-                  slug: 'section3Markdown3'
+                  slug: 'explainRoomAndOverflow'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -547,9 +547,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  3. **markdown — available:** "A full cup A did **not** fill B: B still had room. When B was full, it **filled A and still had some left**. Both fair tests tell us **B can hold more** than A."'
             order:
-              - 'section3Text1'
-              - 'section3Scene2'
-              - 'section3Markdown3'
+              - 'predictPourResults'
+              - 'transferLiquidBetweenCups'
+              - 'explainRoomAndOverflow'
         production:
           purpose: 'Pour Into a Different Container'
           pedagogicalIntent: 'Pour Into a Different Container'
@@ -565,10 +565,10 @@ config:
             - **Feedback:** If child says A larger because it starts taller: "We tested their **capacity** by transferring a full amount, not by height." If reverse transfer drops leftover: "We can't make the extra amount disappear. After filling A, **two scoops stay in B**." If source only half full: "That would test current contents, not which container can hold more."
             - **Safety and accessibility:** Virtual pouring is triggered by named buttons and state text; no real liquid, continuous animation or precision dragging. Reduced motion shows discrete fill/leftover changes instantly. A nonvisual user gets the same capacity comparison from before/after tables.
 
-      section4SameCapacityNewShapes:
+      recognizeEqualCapacityDifferentShapes:
         config:
           id: '07f2ab14-d1fe-4d6f-8b41-f372ad4df509'
-          slug: 'section4SameCapacityNewShapes'
+          slug: 'recognizeEqualCapacityDifferentShapes'
           type: 'content'
           params: {}
           locale:
@@ -578,10 +578,10 @@ config:
               en: 'Same Capacity, New Shapes'
           content:
             items:
-              section4Text1:
+              predictMatchingCapacities:
                 config:
                   id: 'cde255cd-ba35-4f4e-8217-ea5215c0f0d1'
-                  slug: 'section4Text1'
+                  slug: 'predictMatchingCapacities'
                   type: 'text'
                   params: {}
                   locale:
@@ -590,10 +590,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  1. **text — available:** "Here are two more differently shaped containers. Could they hold the **same amount**? Someone measured one container with a **big scoop** and the other with a **small scoop**. Is that a fair test?"'
-              section4Scene2:
+              measureNewContainers:
                 config:
                   id: '16ddf8ba-5b1b-46dc-8839-396955ffd70f'
-                  slug: 'section4Scene2'
+                  slug: 'measureNewContainers'
                   type: 'scene'
                   params: {}
                   locale:
@@ -715,10 +715,10 @@ config:
 
                       2. **scene — proposed:** Capacity Pouring Bench (full original source: Scene production.specification), placement D. Containers C tallish/narrow and D low/wide each have capacity **5 of one identical model scoop**. A fair comparison fills both with 5 and reports **equal capacity**. An _invalid_ example shows "C: 3 large scoops; D: 5 small scoops" where scoop volumes are **not equivalent** and no numeric comparative conclusion is permitted. Offer "Use identical scoop", "Fill both to the full mark", then reveal 5 versus 5. Another false example uses C only partly filled (2/5) while D is full (5/5); repair it before comparing capacities.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section4Markdown3:
+              explainSameScoopCounts:
                 config:
                   id: '18d9751e-6a9e-4c77-8c02-24d89e45edb1'
-                  slug: 'section4Markdown3'
+                  slug: 'explainSameScoopCounts'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -728,9 +728,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  3. **markdown — available:** "C and D have **equal capacity** because each holds **five of the same scoops** when full. Different shapes can hold the same amount. We cannot compare capacities from different scoop sizes or from one cup only partly filled."'
             order:
-              - 'section4Text1'
-              - 'section4Scene2'
-              - 'section4Markdown3'
+              - 'predictMatchingCapacities'
+              - 'measureNewContainers'
+              - 'explainSameScoopCounts'
         production:
           purpose: 'Same Capacity, New Shapes'
           pedagogicalIntent: 'Same Capacity, New Shapes'
@@ -747,10 +747,10 @@ config:
             - **Independent transfer:** Show unfamiliar empty vessels with very different silhouettes and ask what measurement setup would fairly compare their capacities. Child selects "same scoop, fill to full" instead of guessing taller or wider. No graded Quiz.
 
     order:
-      - 'section1EmptyDoesnTMeanNoCapacity'
-      - 'section2OneScoopSizeTwoDifferentCounts'
-      - 'section3PourIntoADifferentContainer'
-      - 'section4SameCapacityNewShapes'
+      - 'understandEmptyContainerCapacity'
+      - 'measureCapacityWithEqualScoops'
+      - 'compareCapacityByPouring'
+      - 'recognizeEqualCapacityDifferentShapes'
   flashcards:
     items: {}
     order: []
