@@ -13,6 +13,7 @@ export const pitchAndMelody_SkillGroup_Data = defineSkillGroup({
   id: 'a4e0bd90-0a3d-40c6-9f77-52bc073fa2b6',
   name: {
     en: 'Pitch and Melody',
+    it: 'Altezza e melodia',
     zh: '音高与旋律',
     hi: 'स्वर और धुन',
     es: 'Altura y melodía',
@@ -53,6 +54,7 @@ export const pitchAndMelody_SkillGroup_Data = defineSkillGroup({
     methodological: 'Melodic patterns rely on relative pitch motion, intervals and a selected pitch collection.',
     frontend: {
       en: 'Explore how notes move and combine to make melodies.',
+      it: 'Esplora come le note si muovono e si combinano per formare melodie.',
       zh: '探索音符如何移动和组合成旋律。',
       hi: 'जानें कि स्वर कैसे आगे बढ़ते और मिलकर धुन बनाते हैं।',
       es: 'Explora cómo se mueven y combinan las notas para crear melodías.',
