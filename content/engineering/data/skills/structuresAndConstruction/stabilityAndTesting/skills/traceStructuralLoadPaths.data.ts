@@ -5,6 +5,7 @@ export const traceStructuralLoadPaths_Skill_Data = defineSkill({
   id: 'acec7330-d1b5-4974-8745-2ef65d8f8d06',
   name: {
     en: 'Trace structural load paths',
+    it: 'Seguire il percorso dei carichi strutturali',
     zh: '追踪结构荷载传递路径',
     hi: 'संरचना में भार का मार्ग पहचानें',
     es: 'Seguir las trayectorias de carga estructural',
@@ -38,6 +39,7 @@ export const traceStructuralLoadPaths_Skill_Data = defineSkill({
     methodological: 'Follow weight, wind or other loads through elements and supports.',
     frontend: {
       en: 'Follow forces through connected structural parts and supports.',
+      it: 'Segui le forze attraverso i componenti strutturali collegati e i sostegni.',
       zh: '沿相连的结构部件和支撑追踪力的传递。',
       hi: 'जुड़े हुए संरचनात्मक भागों और सहारों में बलों का रास्ता खोजें।',
       es: 'Sigue las fuerzas a través de elementos conectados y apoyos.',
