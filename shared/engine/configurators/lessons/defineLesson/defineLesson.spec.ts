@@ -119,6 +119,48 @@ describe('Configurators', () => {
         );
       });
 
+      test('source-only drafts may pass Config shape but cannot publish missing intended locales', () => {
+        // A source-only scaffold is intentionally not a fully typed Lesson. Test the
+        // runtime Config boundary without weakening RequireLanguages in authored code.
+        const draft = {
+          id: id('91'),
+          slug: 'sourceOnlyDraft',
+          type: 'lesson' as const,
+          skills: [],
+          params: {
+            requireQuiz: false,
+            languages: ['en', 'uk'] as const,
+            sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+          },
+          locale: { title: { en: 'Source language only' } },
+          section: { items: {}, order: [] },
+          flashcards: { items: {}, order: [] },
+        };
+        assert.equal(lesson_Config_Schema.safeParse(draft).success, true, 'Config permits sparse locale dictionaries');
+        const lesson = defineLesson(draft as never);
+        assert.doesNotThrow(() => lesson.config.validate(draft as never));
+        const source = lesson.build.props({ languages: ['en'] });
+        assert.equal(source.locale?.en?.locale?.title, 'Source language only');
+        assert.deepEqual(source.base.params.languages, ['en'], 'A scoped Build describes only its requested languages');
+        assert.throws(
+          () => lesson.build.props({ languages: ['en', 'uk'] }),
+          /Invalid Lesson Props for language uk/,
+          'A source-only Build must never be interpreted as complete for the declared locale set',
+        );
+      });
+
+      test('all-language Props validation does not supply independent editorial review evidence', () => {
+        const lesson = makeLesson();
+        const publication = lesson.build.props({ languages: ['en', 'uk'] });
+        assert.equal(publication.locale?.en?.locale?.title, 'Example');
+        assert.equal(publication.locale?.uk?.locale?.title, 'Приклад');
+        assert.equal(Object.hasOwn(publication.base, 'review'), false);
+        assert.equal(Object.hasOwn(lesson.config.base, 'production'), false);
+        assert.equal(Object.hasOwn(publication.base, 'completed'), false);
+        // Passing this check is technical Props completeness, not a readiness
+        // judgment: neither editorial approval nor Scene/media availability is input.
+      });
+
       test('Lesson independently overrides Sections, nested ContentBlocks, languages and metadata', () => {
         const lesson = makeLesson();
         const updated = lesson.build.overrides(
