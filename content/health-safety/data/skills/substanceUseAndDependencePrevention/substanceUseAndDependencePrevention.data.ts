@@ -8,6 +8,7 @@ export const substanceUseAndDependencePrevention_SkillDomain_Data = defineSkillD
   id: '97980369-7459-4e14-b975-7a56bdc6e208',
   title: {
     en: 'Substance Use and Dependence Prevention',
+    it: 'Prevenzione dell\'uso di sostanze e delle dipendenze',
     zh: '物质使用与依赖预防',
     hi: 'नशीले पदार्थों के उपयोग और निर्भरता की रोकथाम',
     es: 'Consumo de sustancias y prevención de la dependencia',
@@ -37,18 +38,13 @@ export const substanceUseAndDependencePrevention_SkillDomain_Data = defineSkillD
     kk: 'Заттарды қолдану және тәуелділіктің алдын алу',
     qm: 'Maddelerni qullanmaq ve bağlılıqnıñ ögüni almaq',
   },
-  groups: {
-    items: {
-      preventionAndAccessToHelp: preventionAndAccessToHelp_SkillGroup_Data,
-      substanceRelatedRisks: substanceRelatedRisks_SkillGroup_Data,
-    },
-    order: ['preventionAndAccessToHelp', 'substanceRelatedRisks'],
-  },
+  groups: [preventionAndAccessToHelp_SkillGroup_Data, substanceRelatedRisks_SkillGroup_Data],
   description: {
     methodological:
       'Tobacco, alcohol, drugs, and other dependence-forming patterns can affect health and safety. The focus is recognizing hazards, resisting coercion, and seeking care rather than pharmacological synthesis or moral judgment.',
     frontend: {
       en: 'Recognize harms linked to substances or dependence and know where to seek help.',
+      it: 'Riconosci i danni legati alle sostanze o alle dipendenze e scopri dove cercare aiuto.',
       zh: '认识物质使用或依赖造成的危害，并了解何处可以求助。',
       hi: 'पदार्थों और लत से होने वाले नुकसान पहचानें और मदद पाने के स्थान जानें।',
       es: 'Reconoce los daños relacionados con sustancias o dependencia y sabe dónde buscar ayuda.',
