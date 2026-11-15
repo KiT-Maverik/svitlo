@@ -5,6 +5,7 @@ export const changeInQuantityDemanded_Skill_Data = defineSkill({
   id: '7c92f7d3-5192-4a16-a942-645b811c7626',
   name: {
     en: 'Change in Quantity Demanded',
+    it: 'Variazione della quantità domandata',
     zh: '需求量变化',
     hi: 'माँगी गई मात्रा में परिवर्तन',
     es: 'Cambio en la cantidad demandada',
@@ -38,6 +39,7 @@ export const changeInQuantityDemanded_Skill_Data = defineSkill({
     methodological: "Identify movement along a demand curve caused by a change in the good's own price.",
     frontend: {
       en: 'Recognize how a price change moves us along a demand curve.',
+      it: 'Riconosci come una variazione del prezzo provoca uno spostamento lungo la curva di domanda.',
       zh: '认识价格变动如何使我们沿需求曲线移动。',
       hi: 'पहचानें कि कीमत बदलने से माँग वक्र पर किस तरह आगे बढ़ते हैं।',
       es: 'Reconoce cómo un cambio de precio mueve un punto sobre la curva de demanda.',

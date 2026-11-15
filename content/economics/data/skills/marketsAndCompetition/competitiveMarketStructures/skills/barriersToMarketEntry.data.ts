@@ -5,6 +5,7 @@ export const barriersToMarketEntry_Skill_Data = defineSkill({
   id: '9df5bd93-f164-446a-8cf7-c7dab4198cdd',
   name: {
     en: 'Barriers to Market Entry',
+    it: "Barriere all'ingresso nel mercato",
     zh: '市场进入壁垒',
     hi: 'बाजार में प्रवेश की बाधाएँ',
     es: 'Barreras de entrada al mercado',
@@ -39,6 +40,7 @@ export const barriersToMarketEntry_Skill_Data = defineSkill({
       'Recognize technological, legal, network, and strategic obstacles that keep new competitors from entering a market.',
     frontend: {
       en: 'Identify why entering some markets is difficult for a new firm.',
+      it: 'Individua perché per una nuova impresa è difficile entrare in alcuni mercati.',
       zh: '找出新企业为何难以进入某些市场。',
       hi: 'पहचानें कि नई कंपनी के लिए कुछ बाजारों में प्रवेश कठिन क्यों है।',
       es: 'Identifica por qué es difícil entrar en ciertos mercados para una empresa nueva.',

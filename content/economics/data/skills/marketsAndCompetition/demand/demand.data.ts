@@ -7,6 +7,7 @@ export const demand_SkillGroup_Data = defineSkillGroup({
   id: '24d97ba4-0b71-46e0-822f-3de908c5517a',
   name: {
     en: 'Demand',
+    it: 'Domanda',
     zh: '需求',
     hi: 'माँग',
     es: 'Demanda',
@@ -42,6 +43,7 @@ export const demand_SkillGroup_Data = defineSkillGroup({
       'Desired purchase quantities depend on price, income, preferences, expectations, and prices of related products.',
     frontend: {
       en: 'Discover what affects how much consumers want to buy.',
+      it: 'Scopri quali fattori influenzano le quantità che i consumatori desiderano acquistare.',
       zh: '探索哪些因素影响消费者想购买的数量。',
       hi: 'जानें कि उपभोक्ता कितनी मात्रा खरीदना चाहते हैं, इसे क्या प्रभावित करता है।',
       es: 'Descubre qué determina cuánto desean comprar los consumidores.',

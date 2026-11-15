@@ -11,6 +11,7 @@ export const competitiveMarketStructures_SkillGroup_Data = defineSkillGroup({
   id: '9b682e39-5dc9-44c9-abab-65a58e1a9ad1',
   name: {
     en: 'Competitive Market Structures',
+    it: 'Strutture dei mercati concorrenziali',
     zh: '竞争性市场结构',
     hi: 'प्रतिस्पर्धी बाजार संरचनाएँ',
     es: 'Estructuras de mercado competitivas',
@@ -46,6 +47,7 @@ export const competitiveMarketStructures_SkillGroup_Data = defineSkillGroup({
       'Participant numbers and market power, product differentiation, information, and barriers to entry influence competitive behavior and outcomes.',
     frontend: {
       en: 'Compare markets with many competitors and markets dominated by a few.',
+      it: 'Confronta mercati con molti concorrenti e mercati dominati da poche imprese.',
       zh: '比较竞争者众多的市场与少数企业占主导的市场。',
       hi: 'अनेक प्रतिस्पर्धियों और कुछ बड़े खिलाड़ियों वाले बाजारों की तुलना करें।',
       es: 'Compara mercados con muchos competidores y otros dominados por unos pocos.',

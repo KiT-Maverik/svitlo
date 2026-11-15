@@ -5,6 +5,7 @@ export const distributionCosts_Skill_Data = defineSkill({
   id: '85dfea93-1c24-40c1-a37c-7f72918e1bb8',
   name: {
     en: 'Витрати дистрибуції',
+    it: 'Costi di distribuzione',
     zh: '分销成本',
     hi: 'वितरण लागत',
     es: 'Costos de distribución',
@@ -39,6 +40,7 @@ export const distributionCosts_Skill_Data = defineSkill({
       'Assess how warehousing, transport, packaging, and logistical delays influence final price and product availability.',
     frontend: {
       en: 'See why transport and storage affect what a product costs.',
+      it: 'Scopri perché trasporto e magazzinaggio influiscono sul costo di un prodotto.',
       zh: '了解运输和储存为何影响商品成本。',
       hi: 'जानें कि परिवहन और भंडारण उत्पाद की लागत क्यों बदलते हैं।',
       es: 'Descubre por qué transporte y almacenamiento afectan el costo del producto.',
