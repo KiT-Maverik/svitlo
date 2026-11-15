@@ -10,6 +10,7 @@ export const philosophyOfScience_SkillDomain_Data = defineSkillDomain({
   id: '29ba9791-95e1-4505-b0f1-b096af7107ef',
   title: {
     en: 'Philosophy of Science',
+    it: 'Filosofia della scienza',
     zh: '科学哲学',
     hi: 'विज्ञान का दर्शन',
     es: 'Filosofía de la ciencia',
@@ -58,6 +59,7 @@ export const philosophyOfScience_SkillDomain_Data = defineSkillDomain({
       'Scientific inquiry is examined as a way of building, testing, and revising explanations. The focus is on general methodology and evidential justification; physics, biology, psychology, and other sciences own their domain-specific investigations.',
     frontend: {
       en: 'Explore how scientific claims are tested, supported, revised and challenged.',
+      it: 'Esplora come le affermazioni scientifiche vengono messe alla prova, sostenute da prove, riviste e contestate.',
       zh: '探索科学主张如何得到检验、支持、修正和质疑。',
       hi: 'जानें कि वैज्ञानिक दावों की जाँच, पुष्टि, संशोधन और आलोचना कैसे होती है।',
       es: 'Explora cómo se ponen a prueba, respaldan, revisan y cuestionan las afirmaciones científicas.',
