@@ -6,9 +6,7 @@ import { module_Config_Schema } from '../courses/defineModule/defineModule.schem
 import { episode_Config_Schema } from '../episodes/defineEpisode/defineEpisode.schemas';
 import { flashcard_Config_Schema } from '../flashcards/defineFlashcard/defineFlashcard.schemas';
 import { lesson_Config_Schema } from '../lessons/defineLesson/defineLesson.schemas';
-import { questionTypes } from '../questions/question.constants';
 import { yamlContentBlock_Schema } from './yamlContentBlock.schemas';
-import { yamlQuestion_Schema } from './yamlQuestion.schemas';
 import { yamlSection_Schema } from './yamlSection.schemas';
 
 /** Flashcard Config uses live ContentBlock configurators in three named collections. */
@@ -26,18 +24,10 @@ export const yamlFlashcard_Schema = flashcard_Config_Schema.extend({
 const sectionCollection = lesson_Config_Schema.shape.section.extend({
   items: z.record(z.string(), yamlSection_Schema),
 });
-const flashcardCollection = lesson_Config_Schema.shape.flashcards.unwrap().extend({
-  items: z.record(z.string(), yamlFlashcard_Schema),
-});
-
 /** Standalone Lesson YAML is a serializable Config tree, never published Props. */
 export const yamlLesson_Schema: z.ZodType = lesson_Config_Schema.extend({
   section: sectionCollection,
-  flashcards: flashcardCollection.optional(),
-  questions: z
-    .partialRecord(z.enum(questionTypes), z.record(z.string(), yamlQuestion_Schema))
-    .optional(),
-});
+}).strict();
 
 /** Episodes are Course-owned and do not inherit Lesson's assessment contract. */
 export const yamlEpisode_Schema = episode_Config_Schema.extend({
