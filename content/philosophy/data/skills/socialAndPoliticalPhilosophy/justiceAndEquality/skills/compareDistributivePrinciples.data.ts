@@ -5,6 +5,7 @@ export const compareDistributivePrinciples_Skill_Data = defineSkill({
   id: '7208887e-2140-48e5-9912-057c8f22b6e8',
   name: {
     en: 'Compare distributive principles',
+    it: 'Confrontare principi distributivi',
     zh: '比较分配原则',
     hi: 'वितरण के सिद्धांतों की तुलना',
     es: 'Comparar principios distributivos',
@@ -39,6 +40,7 @@ export const compareDistributivePrinciples_Skill_Data = defineSkill({
       'Evaluate allocation by need, merit, equality, entitlement, or sufficiency and identify conflicts between principles.',
     frontend: {
       en: 'Evaluate whether resources should be distributed by need, merit, rights or equality.',
+      it: 'Valuta se le risorse debbano essere distribuite secondo necessità, merito, diritti o uguaglianza.',
       zh: '评价资源应按需要、功绩、权利还是平等原则分配。',
       hi: 'जाँचो कि संसाधन ज़रूरत, योग्यता, अधिकार या समानता के अनुसार बाँटे जाने चाहिए या नहीं।',
       es: 'Evalúa si los recursos deben repartirse según necesidad, mérito, derechos o igualdad.',

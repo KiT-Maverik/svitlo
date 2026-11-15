@@ -5,6 +5,7 @@ export const evaluateEnvironmentalObligations_Skill_Data = defineSkill({
   id: '050edd84-1850-4337-8ac4-2cf3f2772f99',
   name: {
     en: 'Evaluate environmental obligations',
+    it: 'Valutare gli obblighi ambientali',
     zh: '评估环境责任',
     hi: 'पर्यावरणीय दायित्वों का मूल्यांकन',
     es: 'Evaluar obligaciones ambientales',
@@ -39,6 +40,7 @@ export const evaluateEnvironmentalObligations_Skill_Data = defineSkill({
       'Examine duties to ecosystems and future generations, including trade-offs between present and long-term interests.',
     frontend: {
       en: 'Explore obligations to ecosystems and future generations.',
+      it: 'Esplora gli obblighi verso gli ecosistemi e le generazioni future.',
       zh: '探索人类对生态系统和未来世代的义务。',
       hi: 'पारिस्थितिकी तंत्रों और आने वाली पीढ़ियों के प्रति दायित्वों को समझें।',
       es: 'Explora obligaciones hacia los ecosistemas y las generaciones futuras.',

@@ -5,6 +5,7 @@ export const identifyConflictingMoralObligations_Skill_Data = defineSkill({
   id: '973e45e6-ba30-415b-9a49-cbcce4d66215',
   name: {
     en: 'Identify conflicting moral obligations',
+    it: 'Individuare obblighi morali in conflitto',
     zh: '识别相互冲突的道德义务',
     hi: 'परस्पर विरोधी नैतिक दायित्वों की पहचान',
     es: 'Identificar obligaciones morales en conflicto',
@@ -39,6 +40,7 @@ export const identifyConflictingMoralObligations_Skill_Data = defineSkill({
       'Specify duties or values that cannot all be fully honored in a concrete case without assuming that all conflicts are irresolvable.',
     frontend: {
       en: 'Recognize when two ethical obligations cannot both be fully honored.',
+      it: 'Riconosci quando due obblighi morali non possono essere entrambi pienamente rispettati.',
       zh: '识别两项伦理义务无法同时被充分履行的情况。',
       hi: 'पहचानें कि कब दो नैतिक दायित्वों को पूरी तरह एक साथ निभाना संभव नहीं है।',
       es: 'Reconoce cuándo dos obligaciones éticas no pueden cumplirse plenamente a la vez.',

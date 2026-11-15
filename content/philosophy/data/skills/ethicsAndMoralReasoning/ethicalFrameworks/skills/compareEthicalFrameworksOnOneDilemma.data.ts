@@ -5,6 +5,7 @@ export const compareEthicalFrameworksOnOneDilemma_Skill_Data = defineSkill({
   id: 'cee5d5db-7381-48f0-824e-4ac3f4e40e01',
   name: {
     en: 'Compare ethical frameworks on one dilemma',
+    it: 'Confrontare teorie etiche su un dilemma',
     zh: '用同一道德困境比较伦理理论',
     hi: 'एक दुविधा पर नैतिक सिद्धांतों की तुलना',
     es: 'Comparar marcos éticos ante un mismo dilema',
@@ -39,6 +40,7 @@ export const compareEthicalFrameworksOnOneDilemma_Skill_Data = defineSkill({
       'Explain why distinct normative standards may support different recommendations even when the underlying facts are shared.',
     frontend: {
       en: 'Compare how different moral theories reach conclusions about one dilemma.',
+      it: 'Confronta come diverse teorie morali giungano a conclusioni sullo stesso dilemma.',
       zh: '比较不同道德理论如何对同一个困境得出结论。',
       hi: 'तुलना करें कि अलग नैतिक सिद्धांत एक ही दुविधा पर कैसे निष्कर्ष निकालते हैं।',
       es: 'Compara cómo distintas teorías morales llegan a conclusiones sobre el mismo dilema.',
