@@ -60,7 +60,10 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
 };
 
 type AnswerResource = ReturnType<ContentBlock_CheckpointAnswer_Configurator['build']['props']>;
-type AnswerOverride = ReturnType<ContentBlock_CheckpointAnswer_Configurator['build']['overrides']>;
+type AnswerOverride = {
+  base: { content?: ItemBase['answer'] };
+  locale: Partial<Record<LanguageCode, { content: Record<string, unknown>[] }>> | undefined;
+};
 type ItemLocale = { question?: Record<string, unknown>; answer?: Record<string, unknown>[] };
 type ItemFiles = Partial<Record<LanguageCode, ItemLocale>>;
 type ItemPublication<Base> = { base: Base; locale: ItemFiles | undefined };
