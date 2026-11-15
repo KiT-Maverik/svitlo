@@ -5,6 +5,7 @@ export const earlyWeaving_Skill_Data = defineSkill({
   id: '6fadfd73-0fca-4191-bfdf-869edfd2b48d',
   name: {
     en: 'Early Weaving',
+    it: "Prime tecniche di tessitura",
     zh: '早期纺织',
     hi: 'प्रारंभिक बुनाई',
     es: 'Primeras técnicas de tejido',
@@ -38,6 +39,7 @@ export const earlyWeaving_Skill_Data = defineSkill({
     methodological: 'Describe processing fibers and producing textiles while respecting different regional timelines.',
     frontend: {
       en: 'Explore how ancient people made and used woven fabrics.',
+      it: "Esplora come le popolazioni antiche producevano e utilizzavano tessuti.",
       zh: '探索古代人如何制作和使用织物。',
       hi: 'जानें कि प्राचीन लोग बुने हुए वस्त्र कैसे बनाते और उपयोग करते थे।',
       es: 'Explora cómo las personas antiguas elaboraban y utilizaban telas tejidas.',

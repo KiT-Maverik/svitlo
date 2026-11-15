@@ -5,6 +5,7 @@ export const emergenceOfHomoSapiens_Skill_Data = defineSkill({
   id: '8561684f-c7f8-404a-9aa3-8da9da9269bc',
   name: {
     en: 'Emergence of Homo sapiens',
+    it: "Comparsa di Homo sapiens",
     zh: '智人的出现',
     hi: 'होमो सेपियन्स का उद्भव',
     es: 'Aparición de Homo sapiens',
@@ -38,6 +39,7 @@ export const emergenceOfHomoSapiens_Skill_Data = defineSkill({
     methodological: 'Understand the African origin of modern humans as distinct from later waves of migration.',
     frontend: {
       en: 'Explore where our species emerged and how that differs from later migration.',
+      it: "Esplora dove comparve la nostra specie e in che cosa questo evento differisce dalle migrazioni successive.",
       zh: '探索我们这个物种在哪里出现，以及它与后来的迁徙有何区别。',
       hi: 'जानें कि हमारी प्रजाति कहाँ उत्पन्न हुई और यह बाद के प्रवास से कैसे अलग है।',
       es: 'Explora dónde surgió nuestra especie y cómo se distingue de migraciones posteriores.',

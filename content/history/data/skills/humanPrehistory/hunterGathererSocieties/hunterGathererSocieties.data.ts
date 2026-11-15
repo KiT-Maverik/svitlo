@@ -13,6 +13,7 @@ export const hunterGathererSocieties_SkillGroup_Data = defineSkillGroup({
   id: '76a6db8b-eb77-431d-91a3-6d30fc104bf7',
   name: {
     en: 'Hunter-Gatherer Societies',
+    it: "Società di cacciatori-raccoglitori",
     zh: '狩猎采集社会',
     hi: 'शिकारी-संग्रहकर्ता समाज',
     es: 'Sociedades cazadoras-recolectoras',
@@ -42,27 +43,19 @@ export const hunterGathererSocieties_SkillGroup_Data = defineSkillGroup({
     kk: 'Аңшылар мен терімшілер қоғамдары',
     qm: 'Avcı ve toplayıcı cemiyetler',
   },
-  skills: {
-    items: {
-      controlledUseOfFire: controlledUseOfFire_Skill_Data,
-      earlyHumanCooperation: earlyHumanCooperation_Skill_Data,
-      foragingEconomies: foragingEconomies_Skill_Data,
-      prehistoricSymbolicCulture: prehistoricSymbolicCulture_Skill_Data,
-      stoneToolTechnologies: stoneToolTechnologies_Skill_Data,
-    },
-    order: [
-      'controlledUseOfFire',
-      'earlyHumanCooperation',
-      'foragingEconomies',
-      'prehistoricSymbolicCulture',
-      'stoneToolTechnologies',
-    ],
-  },
+  skills: [
+    controlledUseOfFire_Skill_Data,
+    earlyHumanCooperation_Skill_Data,
+    foragingEconomies_Skill_Data,
+    prehistoricSymbolicCulture_Skill_Data,
+    stoneToolTechnologies_Skill_Data,
+  ],
   description: {
     methodological:
       'Mobile and semi-sedentary societies used varied ecological niches, tools, and social arrangements.',
     frontend: {
       en: 'Explore life in communities that hunted, fished and gathered food.',
+      it: "Esplora la vita delle comunità che cacciavano, pescavano e raccoglievano cibo.",
       zh: '探索通过狩猎、捕鱼和采集获取食物的社群生活。',
       hi: 'शिकार, मछली पकड़ने और खाद्य संग्रह करने वाले समुदायों के जीवन को जानें।',
       es: 'Explora la vida de comunidades que cazaban, pescaban y recolectaban alimentos.',

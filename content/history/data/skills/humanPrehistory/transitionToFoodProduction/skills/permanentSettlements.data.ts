@@ -5,6 +5,7 @@ export const permanentSettlements_Skill_Data = defineSkill({
   id: '10f31be3-3f7b-4cc9-8ee6-701a110e178b',
   name: {
     en: 'Permanent Settlements',
+    it: "Insediamenti permanenti",
     zh: '永久性聚落',
     hi: 'स्थायी बस्तियाँ',
     es: 'Asentamientos permanentes',
@@ -39,6 +40,7 @@ export const permanentSettlements_Skill_Data = defineSkill({
       'Explain the emergence and endurance of settlements through storage, environment, and social choices.',
     frontend: {
       en: 'Understand why some communities began living in permanent villages.',
+      it: "Comprendi perché alcune comunità iniziarono a vivere in villaggi permanenti.",
       zh: '理解为什么有些社群开始长期居住在固定村落。',
       hi: 'समझें कि कुछ समुदाय स्थायी गाँवों में क्यों बसने लगे।',
       es: 'Comprende por qué algunas comunidades comenzaron a vivir en aldeas permanentes.',
