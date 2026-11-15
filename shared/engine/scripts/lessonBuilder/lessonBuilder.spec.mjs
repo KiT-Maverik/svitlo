@@ -332,3 +332,110 @@ test('CLI discovers Lesson configs, generates safely, and reports SKIP', () =>
     assert(messages.some(x => /file\(s\) written/.test(x)));
     assert(messages.some(x => /SKIP Lesson/.test(x)));
   }));
+
+test('partial YAML remains a partial typed draft, without fabricated language or data fields', () =>
+  fixture(f => {
+    delete f.config.params;
+    delete f.config.section;
+    delete f.config.flashcards;
+    delete f.config.questions;
+    f.save();
+    const result = runOne(f.lesson, 'generate', f.root);
+    assert.deepEqual(result.files, ['index.ts']);
+    const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
+    assert.match(code, /defineLesson\(\{/);
+    assert.doesNotMatch(code, /params:|section:|flashcards:|questions:/);
+    assert.equal(fs.existsSync(f.generated('constants.ts')), false);
+    assertTypeScriptSyntax(readAll(f.lesson));
+  }));
+
+test('Flashcard flag localization prunes non-source languages and retains literal type/color discriminants', () =>
+  fixture(f => {
+    f.config.flashcards.items.remember.parameters.flags = group({
+      custom: { type: 'custom', color: 'red', value: { uk: 'Лише українська', en: 'SECRET' } },
+    });
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const code = fs.readFileSync(f.generated('flashcards/remember/index.ts'), 'utf8');
+    assert.match(code, /type: "custom" as const/);
+    assert.match(code, /color: "red" as const/);
+    assert.match(code, /Лише українська/);
+    assert.doesNotMatch(code, /SECRET/);
+    assertTypeScriptSyntax(readAll(f.lesson));
+  }));
+
+test('matching Question pairs with repeated child slugs are isolated by pair and role', () =>
+  fixture(f => {
+    f.config.questions.matchBlocks = {
+      match: {
+        id: id(60), slug: 'match', type: 'matchBlocks', params: {},
+        content: {
+          question: group({ question: block('questionText', 61) }),
+          pairs: group({
+            first: {
+              left: block('label', 62, 'Ліва A'),
+              right: block('label', 63, 'Права A'),
+            },
+            second: {
+              left: block('label', 64, 'Ліва B'),
+              right: block('label', 65, 'Права B'),
+            },
+          }),
+        },
+      },
+    };
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const names = [...readAll(f.lesson).keys()];
+    for (const location of [
+      'questions/matchBlocks/match/first/left/label/index.ts',
+      'questions/matchBlocks/match/first/right/label/index.ts',
+      'questions/matchBlocks/match/second/left/label/index.ts',
+      'questions/matchBlocks/match/second/right/label/index.ts',
+    ]) assert.ok(names.includes(location), location);
+    assertTypeScriptSyntax(readAll(f.lesson));
+  }));
+
+test('production handoff conflict is diagnosed before writing any source module', () =>
+  fixture(f => {
+    const sceneId = id(70);
+    f.config.section.items.intro.content.items.visualScene = {
+      id: sceneId, slug: 'visualScene', type: 'scene',
+      __production: { specification: '# Expected Scene specification' },
+    };
+    f.save();
+    const destination = path.join(f.workspace, 'scenes', sceneId.at(-1), sceneId, 'specification.md');
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    fs.writeFileSync(destination, '# Hand-edited specification\n');
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /refusing to overwrite/);
+    assert.equal(fs.existsSync(f.generated('constants.ts')), false);
+    assert.equal(fs.existsSync(f.generated('index.ts')), false);
+  }));
+
+test('staged sources require valid UUIDs and reject symlinked canonical destinations', () =>
+  fixture(f => {
+    const staged = path.join(f.workspace, 'staging/config.yaml');
+    fs.mkdirSync(path.dirname(staged), { recursive: true });
+    const doc = yaml.parse(fs.readFileSync(f.generated('config.yaml'), 'utf8'));
+    doc.config.id = '../malicious';
+    fs.writeFileSync(staged, yaml.stringify(doc));
+    assert.throws(() => runOne(staged, 'generate', f.root), /Lesson UUID is required/);
+    const uuid = id(71);
+    doc.config.id = uuid;
+    fs.writeFileSync(staged, yaml.stringify(doc));
+    const canonical = path.join(f.workspace, 'data/lessons', uuid.at(-1), uuid);
+    fs.mkdirSync(path.dirname(canonical), { recursive: true });
+    const elsewhere = path.join(f.root, 'untrusted');
+    fs.symlinkSync(elsewhere, canonical, 'dir');
+    assert.throws(() => runOne(staged, 'generate', f.root), /Refusing symlink/);
+    assert.equal(fs.existsSync(elsewhere), false);
+  }));
+
+test('module path collision is diagnosed without overwriting any existing file', () =>
+  fixture(f => {
+    f.config.section.items.intro.content.items.extra = block('prompt', 75);
+    f.config.section.items.intro.content.order.push('extra');
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /Duplicate generated Lesson destination/);
+    assert.equal(fs.existsSync(f.generated('index.ts')), false);
+  }));
