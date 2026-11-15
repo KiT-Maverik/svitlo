@@ -13,6 +13,7 @@ export const cognitiveAndLearningDifferences_SkillGroup_Data = defineSkillGroup(
   id: '2db326dc-1b89-4be2-a1b9-17212d9d80db',
   name: {
     en: 'Cognitive and Learning Differences',
+    it: 'Differenze cognitive e di apprendimento',
     zh: '认知与学习差异',
     hi: 'संज्ञानात्मक और सीखने की भिन्नताएँ',
     es: 'Diferencias cognitivas y de aprendizaje',
@@ -63,6 +64,7 @@ export const cognitiveAndLearningDifferences_SkillGroup_Data = defineSkillGroup(
       'Performance varies across abilities, experiences, and testing contexts, with no one score capturing every capability.',
     frontend: {
       en: 'Explore different patterns of cognitive strengths and learning needs.',
+      it: 'Esplora diversi profili di punti di forza cognitivi e bisogni di apprendimento.',
       zh: '探索不同人的认知优势和学习需求。',
       hi: 'सोचने की अलग-अलग ताकतों और सीखने की जरूरतों को जानें।',
       es: 'Explora diferentes perfiles de fortalezas cognitivas y necesidades de aprendizaje.',
