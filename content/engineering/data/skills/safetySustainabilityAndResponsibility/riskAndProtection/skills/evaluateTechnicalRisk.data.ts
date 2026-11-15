@@ -5,6 +5,7 @@ export const evaluateTechnicalRisk_Skill_Data = defineSkill({
   id: 'd6a514fb-e617-4228-88a1-7c8b74963a5c',
   name: {
     en: 'Evaluate technical risk',
+    it: 'Valutare il rischio tecnico',
     zh: '评估技术风险',
     hi: 'तकनीकी जोखिम का मूल्यांकन',
     es: 'Evaluar el riesgo técnico',
@@ -38,6 +39,7 @@ export const evaluateTechnicalRisk_Skill_Data = defineSkill({
     methodological: 'Consider plausible consequence and occurrence in an explicitly described operating situation.',
     frontend: {
       en: 'Assess how likely a hazard is and how serious its consequences may be.',
+      it: 'Valuta la probabilità di un pericolo e la gravità delle sue possibili conseguenze.',
       zh: '评估危害发生的可能性及其后果的严重程度。',
       hi: 'आकलन करें कि खतरा कितना संभावित है और परिणाम कितने गंभीर हो सकते हैं।',
       es: 'Evalúa la probabilidad de un peligro y la gravedad de sus consecuencias.',
