@@ -12,6 +12,7 @@ export const characteristicProperties_SkillGroup_Data = defineSkillGroup({
   id: 'a7cda477-ab13-43d0-88b0-0c16cb494146',
   name: {
     en: 'Characteristic Properties',
+    it: "Proprietà caratteristiche",
     zh: '特征性质',
     hi: 'विशिष्ट गुण',
     es: 'Propiedades características',
@@ -52,6 +53,7 @@ export const characteristicProperties_SkillGroup_Data = defineSkillGroup({
       'Physical and chemical properties supply different evidence about substances, and measurements are meaningful only under stated conditions.',
     frontend: {
       en: 'Explore measurable properties that help describe and identify substances.',
+      it: "Esplora le proprietà misurabili che aiutano a descrivere e identificare le sostanze.",
       zh: '探索有助于描述和识别物质的可测量性质。',
       hi: 'पदार्थों का वर्णन करने और उन्हें पहचानने में सहायक मापनीय गुणों को जानें।',
       es: 'Explora propiedades medibles que ayudan a describir e identificar sustancias.',

@@ -12,6 +12,7 @@ export const composition_SkillGroup_Data = defineSkillGroup({
   id: 'adf759a2-583e-4c1a-961e-a5095f8e54ee',
   name: {
     en: 'Composition',
+    it: "Composizione",
     zh: '物质组成',
     hi: 'संघटन',
     es: 'Composición',
@@ -52,6 +53,7 @@ export const composition_SkillGroup_Data = defineSkillGroup({
       'A specimen may be a single chemical substance or a combination of substances; its everyday name does not establish its composition.',
     frontend: {
       en: 'Learn to distinguish a single substance from combinations of different substances.',
+      it: "Impara a distinguere una sostanza pura da una combinazione di sostanze diverse.",
       zh: '学习区分单一物质与多种物质的组合。',
       hi: 'एक पदार्थ और अलग-अलग पदार्थों के संयोजन में अंतर करना सीखें।',
       es: 'Aprende a distinguir una sola sustancia de una combinación de sustancias distintas.',
