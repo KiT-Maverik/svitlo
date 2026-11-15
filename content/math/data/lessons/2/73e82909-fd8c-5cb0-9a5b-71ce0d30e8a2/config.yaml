@@ -16,10 +16,10 @@ config:
       en: 'Swapping Factors Without Changing the Total'
   section:
     items:
-      section1:
+      countTwelveDots:
         config:
           id: 'cb55fc61-f9ed-430e-8c80-80af324e579c'
-          slug: 'section1'
+          slug: 'countTwelveDots'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'Keep All Twelve Dots'
           content:
             items:
-              text1:
+              askThreeRowsOfFour:
                 config:
                   id: '14466b83-bc14-4cfc-8249-7561d8cfcc12'
-                  slug: 'text1'
+                  slug: 'askThreeRowsOfFour'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'Keep All Twelve Dots: text resource at position 1 (source provisional)'
                   specification: '1. **text (renderer available):** “Three rows with four dots each make how many?”'
-              scene2:
+              inspectThreeByFourArray:
                 config:
                   id: '6f673c15-ba0a-484c-8128-c19fc2bd2dce'
-                  slug: 'scene2'
+                  slug: 'inspectThreeByFourArray'
                   type: 'scene'
                   params: {}
                   locale:
@@ -114,10 +114,10 @@ config:
 
                     2. **scene (generic type/renderer available; bespoke component proposed):** Array Rotation Inspector (full Scene specification embedded in this config.yaml), Section 1 entry. Display exactly twelve dots in three ordered rows of four, with an accessible row ledger; count 4+4+4=12.
                   productionNotes: 'Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainProductTwelve:
                 config:
                   id: '929ef45b-552d-4b60-9128-e801f1f3dde6'
-                  slug: 'markdown3'
+                  slug: 'explainProductTwelve'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -126,7 +126,7 @@ config:
                 production:
                   purpose: 'Keep All Twelve Dots: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown (renderer available):** “Three rows of four have twelve dots. This is 3 × 4 = 12.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askThreeRowsOfFour', 'inspectThreeByFourArray', 'explainProductTwelve']
         production:
           purpose: 'Keep All Twelve Dots'
           pedagogicalIntent: 'Original Section 1: Keep All Twelve Dots (provisional draft)'
@@ -143,10 +143,10 @@ config:
             - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
             - **Proposed Note:** Revisit an earlier Note; no additional cue.
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-      section2:
+      rotateArray:
         config:
           id: 'c855f7a8-f8ed-417b-8d80-8242354e5c55'
-          slug: 'section2'
+          slug: 'rotateArray'
           type: 'content'
           params: {}
           locale:
@@ -156,10 +156,10 @@ config:
               en: 'Turn the Array'
           content:
             items:
-              text1:
+              predictAfterRotation:
                 config:
                   id: 'b4a047de-5c37-4a5d-802d-c5e0067ad5f7'
-                  slug: 'text1'
+                  slug: 'predictAfterRotation'
                   type: 'text'
                   params: {}
                   locale:
@@ -168,10 +168,10 @@ config:
                 production:
                   purpose: 'Turn the Array: text resource at position 1 (source provisional)'
                   specification: '1. **text (renderer available):** “Turn the same rectangle. How many rows and dots per row can you see now?”'
-              scene2:
+              turnFourByThreeArray:
                 config:
                   id: 'b1236112-2d2f-4fb3-b20f-e628f9d0d401'
-                  slug: 'scene2'
+                  slug: 'turnFourByThreeArray'
                   type: 'scene'
                   params: {}
                   locale:
@@ -241,10 +241,10 @@ config:
 
                     2. **scene (generic type/renderer available; bespoke component proposed):** Array Rotation Inspector (full Scene specification embedded in this config.yaml), Section 2 entry. A learner-triggered quarter-turn reorients the SAME twelve-dot 3×4 rectangle into four rows of three; numeric row/column ledger updates to 4×3.
                   productionNotes: 'Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainUnchangedProduct:
                 config:
                   id: 'b28cca82-a28d-40ad-856a-83b4ac478e8f'
-                  slug: 'markdown3'
+                  slug: 'explainUnchangedProduct'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -253,7 +253,7 @@ config:
                 production:
                   purpose: 'Turn the Array: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown (renderer available):** “Four rows of three still contain twelve dots. We changed orientation, not the collection. So 4 × 3 = 12.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['predictAfterRotation', 'turnFourByThreeArray', 'explainUnchangedProduct']
         production:
           purpose: 'Turn the Array'
           pedagogicalIntent: 'Original Section 2: Turn the Array (provisional draft)'
@@ -270,10 +270,10 @@ config:
             - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
             - **Proposed Note:** “When we swap the factors, the product stays the same.” after this meaning has been explained (planned only).
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-      section3:
+      testSwappedFactors:
         config:
           id: 'c955f93b-f7ed-4fe8-8e80-83d5344e5ac2'
-          slug: 'section3'
+          slug: 'testSwappedFactors'
           type: 'content'
           params: {}
           locale:
@@ -283,10 +283,10 @@ config:
               en: 'A Rule Worth Testing'
           content:
             items:
-              text1:
+              compareThreeByFourProducts:
                 config:
                   id: '5f32089d-369d-479e-89df-c1777cc8da60'
-                  slug: 'text1'
+                  slug: 'compareThreeByFourProducts'
                   type: 'text'
                   params: {}
                   locale:
@@ -295,10 +295,10 @@ config:
                 production:
                   purpose: 'A Rule Worth Testing: text resource at position 1 (source provisional)'
                   specification: '1. **text (renderer available):** “Do 3 × 4 and 4 × 3 have the same product? What changed?”'
-              scene2:
+              testFactorOrder:
                 config:
                   id: '1c1529f3-1113-47d2-91af-8e819a312ba8'
-                  slug: 'scene2'
+                  slug: 'testFactorOrder'
                   type: 'scene'
                   params: {}
                   locale:
@@ -368,10 +368,10 @@ config:
 
                     2. **scene (generic type/renderer available; bespoke component proposed):** Array Rotation Inspector (full Scene specification embedded in this config.yaml), Section 3 entry. Show both readings of the one array, comparing factor labels and unchanged total. Permit stepwise dot pairing or review.
                   productionNotes: 'Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              stateCommutativeRule:
                 config:
                   id: '39c80fed-f369-4142-b5ef-b20f7bc26034'
-                  slug: 'markdown3'
+                  slug: 'stateCommutativeRule'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -380,7 +380,7 @@ config:
                 production:
                   purpose: 'A Rule Worth Testing: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown (renderer available):** “The order of the two factors changed. The product stayed twelve. Multiplication lets us swap factors.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['compareThreeByFourProducts', 'testFactorOrder', 'stateCommutativeRule']
         production:
           purpose: 'A Rule Worth Testing'
           pedagogicalIntent: 'Original Section 3: A Rule Worth Testing (provisional draft)'
@@ -397,10 +397,10 @@ config:
             - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
             - **Proposed Note:** “Turning an array changes rows and columns, not how many dots there are.” after this meaning has been explained (planned only).
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-      section4:
+      applyTwoByFive:
         config:
           id: 'ce56011a-feed-4aed-8780-78d02f4e52e3'
-          slug: 'section4'
+          slug: 'applyTwoByFive'
           type: 'content'
           params: {}
           locale:
@@ -410,10 +410,10 @@ config:
               en: 'Try Two and Five'
           content:
             items:
-              text1:
+              testTwoTimesFive:
                 config:
                   id: 'deaa6a78-c82e-4c4f-a7cf-3d8615f4e365'
-                  slug: 'text1'
+                  slug: 'testTwoTimesFive'
                   type: 'text'
                   params: {}
                   locale:
@@ -422,10 +422,10 @@ config:
                 production:
                   purpose: 'Try Two and Five: text resource at position 1 (source provisional)'
                   specification: '1. **text (renderer available):** “Is 2 × 5 equal to 5 × 2? Check using ten dots.”'
-              scene2:
+              rotateTwoByFiveArray:
                 config:
                   id: '0bae50f0-da08-4229-ae67-492a50f4800b'
-                  slug: 'scene2'
+                  slug: 'rotateTwoByFiveArray'
                   type: 'scene'
                   params: {}
                   locale:
@@ -495,10 +495,10 @@ config:
 
                     2. **scene (generic type/renderer available; bespoke component proposed):** Array Rotation Inspector (full Scene specification embedded in this config.yaml), Section 4 entry. Create two rows of five, let child reorient into five rows of two, and inspect two complete equations with total ten.
                   productionNotes: 'Scene arrayRotationInspector.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              verifyTenDots:
                 config:
                   id: 'bc302d9c-0b4c-4e37-83f5-061a747ba2e5'
-                  slug: 'markdown3'
+                  slug: 'verifyTenDots'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -507,7 +507,7 @@ config:
                 production:
                   purpose: 'Try Two and Five: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown (renderer available):** “2 × 5 = 10 and 5 × 2 = 10. Both ways use all ten dots exactly once.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['testTwoTimesFive', 'rotateTwoByFiveArray', 'verifyTenDots']
         production:
           purpose: 'Try Two and Five'
           pedagogicalIntent: 'Original Section 4: Try Two and Five (provisional draft)'
@@ -524,7 +524,7 @@ config:
             - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
             - **Proposed Note:** “When we swap the factors, the product stays the same.” after this meaning has been explained (planned only).
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['countTwelveDots', 'rotateArray', 'testSwappedFactors', 'applyTwoByFive']
   flashcards:
     items: {}
     order: []
