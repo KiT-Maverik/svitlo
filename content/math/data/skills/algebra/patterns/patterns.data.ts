@@ -7,6 +7,7 @@ export const patterns_SkillGroup_Data = defineSkillGroup({
   id: '391a608f-ebba-4587-9c15-39437e736e36',
   name: {
     en: 'Patterns',
+    it: 'Regolarità',
     qm: 'Sayı nümüneleri',
     lt: 'Dėsningumai',
     lv: 'Likumsakarības',
@@ -48,6 +49,7 @@ export const patterns_SkillGroup_Data = defineSkillGroup({
       "Regular numerical changes following a rule and recognizing a sequence's structure from several terms.",
     frontend: {
       en: 'Explore number patterns by finding consistent changes, checking the rule, and using it to continue a sequence.',
+      it: 'Esplora le regolarità nelle sequenze numeriche individuando cambiamenti costanti, verificando la regola e usandola per proseguire la sequenza.',
       qm: 'Sayılar arasındaki muntazam deñişmelerini tapıp, qaidesini teşkere et ve bu qaidege köre silsileni devam ettir.',
       zh: '探索数字规律：发现一致的变化、检验规律，并用它续写数列。',
       hi: 'संख्या-पैटर्न में नियमित बदलाव खोजो, नियम की जाँच करो और उसी से क्रम आगे बढ़ाओ।',
