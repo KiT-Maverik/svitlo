@@ -5,6 +5,7 @@ export const heatExchangers_Skill_Data = defineSkill({
   id: '016bccbe-0744-45cb-bd06-610a8551d7a1',
   name: {
     en: 'Heat exchangers',
+    it: 'Scambiatori di calore',
     zh: '换热器',
     hi: 'ऊष्मा विनिमायक',
     es: 'Intercambiadores de calor',
@@ -38,6 +39,7 @@ export const heatExchangers_Skill_Data = defineSkill({
     methodological: 'Show how two streams transfer heat across a barrier without normally mixing.',
     frontend: {
       en: 'Explain how heat flows between separate streams in a heat exchanger.',
+      it: 'Spiega come il calore passa tra flussi separati in uno scambiatore di calore.',
       zh: '解释换热器中分开的流体流之间如何传热。',
       hi: 'समझाएँ कि ऊष्मा विनिमायक में अलग-अलग प्रवाहों के बीच ऊष्मा कैसे बहती है।',
       es: 'Explica cómo se transfiere calor entre corrientes separadas en un intercambiador.',
