@@ -51,15 +51,41 @@ function childRefs(config, name, file, optional = false) {
   const p = field(config, name);
   if (!p && optional) return new Map();
   check(p, 'Missing child collection ' + name + ': ' + file);
+  const collection = p.initializer;
+  check(ts.isObjectLiteralExpression(collection), 'Expected ordered child collection ' + name + ': ' + file);
+  const items = field(collection, 'items')?.initializer;
+  const order = field(collection, 'order')?.initializer;
+  check(
+    collection.properties.length === 2 && items && ts.isObjectLiteralExpression(items) && order && ts.isArrayLiteralExpression(order),
+    'Invalid child collection items/order ' + name + ': ' + file,
+  );
   const result = new Map();
-  check(ts.isArrayLiteralExpression(p.initializer), 'Invalid child configurator array ' + name + ': ' + file);
-  for (const entry of p.initializer.elements) {
-    check(ts.isIdentifier(entry), 'Invalid configurator array reference: ' + file);
-    const match = /^(\w+)_(?:SkillGroup|Skill)_Data$/.exec(entry.text);
-    check(match && identifier.test(match[1]), 'Invalid child configurator symbol: ' + file);
-    check(!result.has(match[1]), 'Duplicate child slug ' + match[1] + ': ' + file);
-    result.set(match[1], entry.text);
+  const kind = name === 'groups' ? 'SkillGroup' : 'Skill';
+  for (const entry of items.properties) {
+    check(
+      ts.isPropertyAssignment(entry) &&
+        (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) &&
+        ts.isIdentifier(entry.initializer),
+      'Invalid child configurator entry: ' + file,
+    );
+    const slug = entry.name.text;
+    check(identifier.test(slug), 'Invalid child slug ' + slug + ': ' + file);
+    check(
+      entry.initializer.text === slug + '_' + kind + '_Data',
+      'Child slug/symbol mismatch ' + slug + ': ' + file,
+    );
+    check(!result.has(slug), 'Duplicate child slug ' + slug + ': ' + file);
+    result.set(slug, entry.initializer.text);
   }
+  const ordered = order.elements.map(entry => {
+    check(ts.isStringLiteral(entry), 'Expected string child order entry: ' + file);
+    return entry.text;
+  });
+  check(new Set(ordered).size === ordered.length, 'Duplicate child order: ' + file);
+  check(
+    ordered.length === result.size && ordered.every(slug => result.has(slug)),
+    'Child order must include every item exactly once: ' + file,
+  );
   return result;
 }
 function same(actual, expected, label) {

@@ -85,34 +85,50 @@ function sourceIdentity(root, file) {
 }
 function readReferences(obj, source, label, isNew, edits) {
   const refs = [];
+  const collection = unwrap(obj);
+  assert(ts.isObjectLiteralExpression(collection), 'Expected child collection: ' + label);
   if (isNew) {
-    assert(ts.isArrayLiteralExpression(unwrap(obj)), 'Expected configurator array: ' + label);
-    for (const element of unwrap(obj).elements) {
-      assert(ts.isIdentifier(element), 'Non-static child reference: ' + label);
-      refs.push(element.text);
+    const shape = properties(collection, label);
+    assert(shape.size === 2 && shape.has('items') && shape.has('order'), 'Expected items/order: ' + label);
+    const items = properties(shape.get('items').initializer, label + '.items');
+    const order = unwrap(shape.get('order').initializer);
+    assert(ts.isArrayLiteralExpression(order), 'Expected child order: ' + label);
+    const slugs = [];
+    for (const [slug, entry] of items) {
+      assert(slugPattern.test(slug) && ts.isIdentifier(entry.initializer), 'Non-static child reference: ' + label);
+      assert(entry.initializer.text.startsWith(slug + '_'), 'Child slug and reference do not match: ' + label);
+      slugs.push(slug);
+      refs.push(entry.initializer.text);
     }
+    const ordered = [];
+    for (const entry of order.elements) {
+      assert(ts.isStringLiteral(entry), 'Non-static child order: ' + label);
+      ordered.push(entry.text);
+    }
+    assert(
+      ordered.length === slugs.length &&
+        new Set(ordered).size === ordered.length &&
+        ordered.every(slug => slugs.includes(slug)),
+      'Child order must contain every item: ' + label,
+    );
   } else {
-    assert(ts.isObjectLiteralExpression(unwrap(obj)), 'Expected child map: ' + label);
-    const sourceObj = unwrap(obj);
-    edits.push({ start: sourceObj.getStart(source), end: sourceObj.getStart(source) + 1, value: '[' });
-    edits.push({ start: sourceObj.getEnd() - 1, end: sourceObj.getEnd(), value: ']' });
-    for (const member of sourceObj.properties) {
+    const items = properties(collection, label);
+    const slugs = [];
+    for (const [slug, entry] of items) {
+      assert(slugPattern.test(slug) && ts.isIdentifier(entry.initializer), 'Non-static child entry: ' + label);
+      const leading = source.text.slice(entry.getStart(source), entry.initializer.getStart(source));
       assert(
-        ts.isPropertyAssignment(member) && ts.isIdentifier(member.name) && ts.isIdentifier(member.initializer),
-        'Non-static child entry: ' + label,
-      );
-      const leading = source.text.slice(member.getStart(source), member.initializer.getStart(source));
-      assert(
-        new RegExp('^' + member.name.text + '\\s*:\\s*$').test(leading),
+        new RegExp('^' + slug + '\\s*:\\s*$').test(leading),
         'Comments or dynamic syntax between child key and value: ' + label,
       );
-      assert(
-        member.initializer.text.startsWith(member.name.text + '_'),
-        'Child slug and reference do not match: ' + label,
-      );
-      edits.push({ start: member.getStart(source), end: member.initializer.getStart(source), value: '' });
-      refs.push(member.initializer.text);
+      assert(entry.initializer.text.startsWith(slug + '_'), 'Child slug and reference do not match: ' + label);
+      slugs.push(slug);
+      refs.push(entry.initializer.text);
     }
+    const rendered = '{ items: { ' +
+      [...items].map(([slug, entry]) => slug + ': ' + entry.initializer.text).join(', ') +
+      ' }, order: [' + slugs.map(JSON.stringify).join(', ') + '] }';
+    edits.push({ start: collection.getStart(source), end: collection.getEnd(), value: rendered });
   }
   assert(new Set(refs).size === refs.length, 'Duplicate child reference: ' + label);
   return refs;
