@@ -65,7 +65,12 @@ function lessonConfig() {
                 slug: 'comparison',
                 type: 'checkpointItem',
                 question: block('checkPrompt', 7),
-                answer: group({ correct: block('correct', 8) }),
+                answer: {
+                  id: id(17),
+                  slug: 'answer',
+                  type: 'checkpointAnswer',
+                  content: group({ correct: block('correct', 8) }),
+                },
               },
             }),
           },
@@ -158,6 +163,7 @@ test('factory dispatch uses the canonical Engine registry', () => {
     'carousel',
     'checkpoint',
     'checkpointItem',
+    'checkpointAnswer',
     'carouselSlide',
     'flashcard',
     'selectOneAnswer',
@@ -184,7 +190,8 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
       'sections/intro/gallery/first/index.ts',
       'sections/intro/check/index.ts',
       'sections/intro/check/comparison/index.ts',
-      'sections/intro/check/comparison/question/checkPrompt/index.ts',
+      'sections/intro/check/comparison/question/index.ts',
+      'sections/intro/check/comparison/answer/index.ts',
       'sections/intro/check/comparison/answer/correct/index.ts',
       'flashcards/index.ts',
       'flashcards/remember/index.ts',
@@ -751,12 +758,16 @@ test('Checkpoint question and answer may reuse a block slug without file collisi
   fixture(f => {
     const checkpointItem = f.config.section.items.intro.content.items.check.content.items.comparison;
     checkpointItem.question.slug = 'text';
-    checkpointItem.answer.items.correct.slug = 'text';
+    checkpointItem.answer.content.items.correct.slug = 'text';
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const names = [...readAll(f.lesson).keys()];
-    assert(names.includes('sections/intro/check/comparison/question/text/index.ts'));
+    assert(names.includes('sections/intro/check/comparison/question/index.ts'));
+    assert(!names.some(name => name.includes('/question/text/')));
     assert(names.includes('sections/intro/check/comparison/answer/text/index.ts'));
+    assert(names.includes('sections/intro/check/comparison/answer/index.ts'));
+    const answerSource = fs.readFileSync(f.generated('sections/intro/check/comparison/answer/index.ts'), 'utf8');
+    assert.match(answerSource, /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/);
     const item = fs.readFileSync(f.generated('sections/intro/check/comparison/index.ts'), 'utf8');
     assert.match(item, /from ".\/question\/text"/);
     assert.match(item, /from ".\/answer\/text"/);
