@@ -12,6 +12,7 @@ export const perceptualOrganization_SkillGroup_Data = defineSkillGroup({
   id: 'c821fe61-e8e0-4e2d-81b3-001e392c44ab',
   name: {
     en: 'Perceptual Organization',
+    it: 'Organizzazione percettiva',
     zh: '知觉组织',
     hi: 'प्रत्यक्षण का संगठन',
     es: 'Organización perceptiva',
@@ -55,6 +56,7 @@ export const perceptualOrganization_SkillGroup_Data = defineSkillGroup({
       'The mind uses grouping cues and expectations to construct coherent objects from ambiguous sensory input.',
     frontend: {
       en: 'Learn how the mind groups sensory information into recognizable objects.',
+      it: 'Scopri come la mente raggruppi le informazioni sensoriali in oggetti riconoscibili.',
       zh: '了解大脑如何把感官信息组织成可识别的物体。',
       hi: 'जानें कि मन इंद्रियों की जानकारी को पहचानने योग्य वस्तुओं में कैसे व्यवस्थित करता है।',
       es: 'Aprende cómo la mente agrupa la información sensorial en objetos reconocibles.',

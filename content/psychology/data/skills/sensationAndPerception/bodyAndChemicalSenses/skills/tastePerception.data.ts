@@ -5,6 +5,7 @@ export const tastePerception_Skill_Data = defineSkill({
   id: '247c6a33-39e5-4a1e-aabc-d8e38de526be',
   name: {
     en: 'Taste Perception',
+    it: 'Percezione del gusto',
     zh: '味觉知觉',
     hi: 'स्वाद का प्रत्यक्षण',
     es: 'Percepción del gusto',
@@ -39,6 +40,7 @@ export const tastePerception_Skill_Data = defineSkill({
       'Explain how gustatory information supports basic taste qualities and interacts with smell and other sensory cues in experienced flavor.',
     frontend: {
       en: 'Explore how taste and smell combine to create flavor.',
+      it: 'Esplora come gusto e olfatto si combinino per creare il sapore.',
       zh: '探索味觉和嗅觉如何共同形成风味。',
       hi: 'जानें कि स्वाद और गंध मिलकर भोजन का स्वाद कैसे बनाते हैं।',
       es: 'Descubre cómo el gusto y el olfato se combinan para crear sabores.',
