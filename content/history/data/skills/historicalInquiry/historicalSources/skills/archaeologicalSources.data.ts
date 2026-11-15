@@ -5,6 +5,7 @@ export const archaeologicalSources_Skill_Data = defineSkill({
   id: 'c64342ba-ac05-4335-abb6-1765d39b261a',
   name: {
     en: 'Archaeological Sources',
+    it: "Fonti archeologiche",
     zh: '考古资料',
     hi: 'पुरातात्त्विक स्रोत',
     es: 'Fuentes arqueológicas',
@@ -39,6 +40,7 @@ export const archaeologicalSources_Skill_Data = defineSkill({
       'Draw contextual and dated inferences from tools, dwellings, burials, and other archaeological remains.',
     frontend: {
       en: 'Use objects and archaeological sites to understand past lives.',
+      it: "Usa oggetti e siti archeologici per comprendere la vita nel passato.",
       zh: '利用器物和考古遗址了解过去的生活。',
       hi: 'अतीत के जीवन को समझने के लिए वस्तुओं और पुरातात्त्विक स्थलों का उपयोग करें।',
       es: 'Utiliza objetos y yacimientos arqueológicos para comprender la vida del pasado.',

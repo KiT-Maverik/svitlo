@@ -5,6 +5,7 @@ export const environmentOfAncientSocieties_Skill_Data = defineSkill({
   id: '0fd7bb70-c12e-43d5-936a-07a10a33f865',
   name: {
     en: 'Natural Environment of Ancient Societies',
+    it: "Ambiente naturale delle società antiche",
     zh: '古代社会的自然环境',
     hi: 'प्राचीन समाजों का प्राकृतिक पर्यावरण',
     es: 'Entorno natural de las sociedades antiguas',
@@ -39,6 +40,7 @@ export const environmentOfAncientSocieties_Skill_Data = defineSkill({
       'Assess how rivers, seas, climate, and resources shaped opportunities without claiming nature alone decided historical outcomes.',
     frontend: {
       en: 'Explore the opportunities and challenges ancient environments presented.',
+      it: "Esplora le opportunità e le difficoltà offerte dagli ambienti naturali nell'antichità.",
       zh: '探究古代环境带来的机遇与挑战。',
       hi: 'जानें कि प्राचीन पर्यावरण ने कौन-से अवसर और चुनौतियाँ प्रस्तुत कीं।',
       es: 'Explora las oportunidades y los desafíos que presentaban los antiguos entornos naturales.',

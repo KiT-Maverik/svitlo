@@ -10,6 +10,7 @@ export const historicalInquiry_SkillDomain_Data = defineSkillDomain({
   id: '15c40ab9-112c-47f4-b106-4ff75ad99b1e',
   title: {
     en: 'Historical Inquiry',
+    it: "Ricerca storica",
     zh: '历史探究',
     hi: 'ऐतिहासिक अन्वेषण',
     es: 'Indagación histórica',
@@ -39,20 +40,18 @@ export const historicalInquiry_SkillDomain_Data = defineSkillDomain({
     kk: 'Тарихи таным',
     qm: 'Tarihiy araştırma',
   },
-  groups: {
-    items: {
-      historicalExplanations: historicalExplanations_SkillGroup_Data,
-      historicalGeography: historicalGeography_SkillGroup_Data,
-      historicalSources: historicalSources_SkillGroup_Data,
-      timeAndPeriodization: timeAndPeriodization_SkillGroup_Data,
-    },
-    order: ['historicalExplanations', 'historicalGeography', 'historicalSources', 'timeAndPeriodization'],
-  },
+  groups: [
+    historicalExplanations_SkillGroup_Data,
+    historicalGeography_SkillGroup_Data,
+    historicalSources_SkillGroup_Data,
+    timeAndPeriodization_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Methods for establishing and checking knowledge of past societies through chronology, geography, source evidence, and historical inference. These competencies apply across ancient regions rather than defining a lesson sequence.',
     frontend: {
       en: 'Learn how historians investigate the past and evaluate what we know.',
+      it: "Scopri come gli storici indagano il passato e valutano ciò che sappiamo.",
       zh: '学习历史学家如何研究过去并评估我们已知的知识。',
       hi: 'जानें कि इतिहासकार अतीत का अध्ययन कैसे करते हैं और हमारे ज्ञान का मूल्यांकन कैसे करते हैं।',
       es: 'Aprende cómo investigan los historiadores el pasado y evalúan lo que sabemos.',
