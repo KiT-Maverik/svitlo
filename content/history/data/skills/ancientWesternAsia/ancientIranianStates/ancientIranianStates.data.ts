@@ -12,6 +12,7 @@ export const ancientIranianStates_SkillGroup_Data = defineSkillGroup({
   id: '4694dad0-424a-4770-b50f-81694bb1a79d',
   name: {
     en: 'Iranian States',
+    it: "Stati iranici",
     zh: '古代伊朗诸国',
     hi: 'प्राचीन ईरानी राज्य',
     es: 'Estados iranios antiguos',
@@ -41,20 +42,18 @@ export const ancientIranianStates_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі Иран мемлекеттері',
     qm: 'Qadimiy İran devletleri',
   },
-  skills: {
-    items: {
-      achaemenidEmpire: achaemenidEmpire_Skill_Data,
-      achaemenidExpansion: achaemenidExpansion_Skill_Data,
-      ancientIranianReligions: ancientIranianReligions_Skill_Data,
-      medianConfederations: medianConfederations_Skill_Data,
-    },
-    order: ['achaemenidEmpire', 'achaemenidExpansion', 'ancientIranianReligions', 'medianConfederations'],
-  },
+  skills: [
+    achaemenidEmpire_Skill_Data,
+    achaemenidExpansion_Skill_Data,
+    ancientIranianReligions_Skill_Data,
+    medianConfederations_Skill_Data,
+  ],
   description: {
     methodological:
       'States on the Iranian plateau and nearby territories governed diverse populations through administrative systems.',
     frontend: {
       en: 'Explore ancient states formed around the Iranian plateau.',
+      it: "Esplora gli Stati antichi sorti intorno all'altopiano iranico.",
       zh: '探索伊朗高原周边形成的古代国家。',
       hi: 'ईरानी पठार के आसपास विकसित प्राचीन राज्यों के बारे में जानें।',
       es: 'Explora los antiguos Estados formados en torno a la meseta iraní.',

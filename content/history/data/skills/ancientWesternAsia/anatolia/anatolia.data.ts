@@ -7,6 +7,7 @@ export const anatolia_SkillGroup_Data = defineSkillGroup({
   id: '9d8bb3ae-50c3-4140-bfab-1c3c35d3ddcd',
   name: {
     en: 'Anatolia',
+    it: "Anatolia",
     zh: '安纳托利亚',
     hi: 'अनातोलिया',
     es: 'Anatolia',
@@ -36,19 +37,13 @@ export const anatolia_SkillGroup_Data = defineSkillGroup({
     kk: 'Анадолы',
     qm: 'Anadolu',
   },
-  skills: {
-    items: {
-      anatolianTradeNetworks: anatolianTradeNetworks_Skill_Data,
-      hittiteKingdom: hittiteKingdom_Skill_Data,
-      urartu: urartu_Skill_Data,
-    },
-    order: ['anatolianTradeNetworks', 'hittiteKingdom', 'urartu'],
-  },
+  skills: [anatolianTradeNetworks_Skill_Data, hittiteKingdom_Skill_Data, urartu_Skill_Data],
   description: {
     methodological:
       'Mountain and plateau regions between the Aegean and Mesopotamia supported distinct kingdoms and cultural exchanges.',
     frontend: {
       en: 'Explore the ancient kingdoms of Anatolia.',
+      it: "Esplora gli antichi regni dell'Anatolia.",
       zh: '探索安纳托利亚的古代王国。',
       hi: 'अनातोलिया के प्राचीन राज्यों का अध्ययन करें।',
       es: 'Explora los antiguos reinos de Anatolia.',

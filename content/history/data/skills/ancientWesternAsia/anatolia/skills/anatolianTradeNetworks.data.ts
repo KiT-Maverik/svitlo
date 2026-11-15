@@ -5,6 +5,7 @@ export const anatolianTradeNetworks_Skill_Data = defineSkill({
   id: 'e062e14b-4414-498c-a104-2189de617167',
   name: {
     en: 'Anatolian Trade Networks',
+    it: "Reti commerciali anatoliche",
     zh: '安纳托利亚贸易网络',
     hi: 'अनातोलिया के व्यापारिक नेटवर्क',
     es: 'Redes comerciales de Anatolia',
@@ -38,6 +39,7 @@ export const anatolianTradeNetworks_Skill_Data = defineSkill({
     methodological: 'Trace circulation of metals, textiles, and other goods between Anatolian centers and neighbors.',
     frontend: {
       en: 'Explore what ancient Anatolian merchants exchanged.',
+      it: "Esplora quali merci scambiavano gli antichi mercanti anatolici.",
       zh: '探索古代安纳托利亚商人交换什么商品。',
       hi: 'जानें कि प्राचीन अनातोलिया के व्यापारी क्या वस्तुएँ विनिमय करते थे।',
       es: 'Explora qué intercambiaban los mercaderes de la antigua Anatolia.',
