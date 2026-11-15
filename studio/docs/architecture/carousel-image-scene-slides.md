@@ -1,8 +1,8 @@
 # Carousel Image/Scene slides and recursive Lesson generation
 
-**Status:** approved implementation scope for a separate Draft PR; this commit only captures the work contract. Design fixture: [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557).
+**Status:** implementation in progress in Draft PR #575; validation and independent review remain outstanding. Design fixture: [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557).
 
-## Verified current behavior
+## Pre-implementation baseline (verified before the PR's code changes)
 
 - `defineCarousel` currently requires `defineCarouselSlide` children; its `slides.items` collection is slug-keyed and `slides.order` is explicit. A `CarouselSlide` is specialized authored media with `src`, `alt` and optional `caption`; published carousel slides are **not full Image/Scene ContentBlock Props**.
 - `shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Carousel/Carousel.tsx` renders every slide through the Image widget with synthetic `slug: 'carouselImage' + number`. It has no Scene slide dispatch.
@@ -28,7 +28,7 @@ sections/<sectionSlug>/<carouselSlug>/
 
 The logical Config field can remain `slides: { items: {...}, order: [...] }`; a structural collection does **not** require an intermediate `slides/` directory. Children are independent Configurators, not flattened inline slide dictionaries. The same recursive owner/slugs rule applies to future supported nested children.
 
-## Implementation scope in a later chat
+## Approved implementation scope
 
 1. Redesign the Engine `defineCarousel` signature, Config/Props Zod schemas, localization and `build.props`/`build.overrides` to accept an explicit Image/Scene discriminated union. Preserve slug-specific generics and ordered collection semantics; use full child Props or a justified lossless projection retaining `type`, `id`, `slug` and data required to render a Scene.
 2. Audit the legacy `defineCarouselSlide` references, callers, editorial YAML, fixtures, sample content and serializable Props. Migrate to `defineImage` as appropriate; avoid silent fallbacks, unsupported compatibility aliases or discarded IDs.
@@ -46,4 +46,14 @@ The logical Config field can remain `slides: { items: {...}, order: [...] }`; a 
 
 ## Non-goals and dependencies
 
-This is a **planning-only Draft** until a later chat adds implementation. It is not a request to finish/fix intentionally unresolved Scene or media assets in #557. Stage 7 integration acceptance must run after this and the Checkpoint Answer change land. PR #570 review-record changes are separate.
+This PR now contains the Engine, UI Kit, YAML and Lesson Builder implementation together with regression tests. It remains a **Draft** pending CI, migration review, browser accessibility checks, and independent review. Unresolved Scene implementations and media assets in #557 are still **not supplied** by these changes. Stage 7 integration acceptance must run after this and the Checkpoint Answer change land. PR #570 review-record changes are separate.
+
+## Draft implementation record
+
+- Carousel authoring accepts `defineImage` or `defineScene` only, retaining the `slides.items/order` structure. Published arrays contain full typed child Props and stable identity. The previous `defineCarouselSlide` export has been retired.
+- The renderer forwards the lesson Scene registry to the same Scene widget used elsewhere by the ContentBlockRenderer. Interactive Scenes are not auto-advanced or swipe-switched; image-only slides keep the existing navigation, transitions and slideshow controls.
+- The Lesson draft scaffolder checks the Carousel child discriminant and emits child modules and media/Scene handoffs directly under each authored child slug. The strict create-only SKIP policy is unchanged.
+- Engine, UI Kit and Lesson Builder fixtures cover typed localization, overrides, interactive dispatch and nested child paths. These tests must be executed in CI; their presence alone is not proof of success.
+- Storybook includes an interactive Scene demo using a supplied registry. It is not a production textbook Scene asset.
+
+**Remaining review gates:** successful typecheck and relevant tests, generated YAML Schema synchronization, validation of downstream textbook content, independent development/QA review, and manual screen-reader/keyboard/touch/RTL/reduced-motion/offline checks.

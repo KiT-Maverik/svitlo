@@ -229,7 +229,7 @@ test('Carousel Image and Scene children are independently scaffolded below their
       type: 'scene',
       params: {},
       locale: { value: { instruction: { uk: 'Обери групу', en: 'Not a translation' } } },
-      __production: { specification: '# Interactive activity\\n\\nChoose equal groups.' },
+      __production: { specification: '# Interactive activity\n\nChoose equal groups.' },
     };
     slides.order.push('activity');
     f.save();
@@ -238,13 +238,13 @@ test('Carousel Image and Scene children are independently scaffolded below their
     const scene = fs.readFileSync(f.generated('sections/intro/gallery/activity/index.ts'), 'utf8');
     const carousel = fs.readFileSync(f.generated('sections/intro/gallery/index.ts'), 'utf8');
     assert.match(image, /defineImage<"first", LessonLanguages>/);
-    assert.match(image, /resolveLessonMedia\\(import\\.meta\\.url, "image", "source", "uk"\\)/);
+    assert.match(image, /resolveLessonMedia\(import\.meta\.url, "image", "source", "uk"\)/);
     assert.doesNotMatch(image, /Not a translation/);
     assert.match(scene, /defineScene<"activity", LessonLanguages>/);
     assert.match(scene, /Обери групу/);
-    assert.match(carousel, /defineCarousel<"gallery", typeof slides\\.items, LessonLanguages>/);
-    assert.match(carousel, /\.\\/first/);
-    assert.match(carousel, /\.\\/activity/);
+    assert.match(carousel, /defineCarousel<"gallery", typeof slides\.items, LessonLanguages>/);
+    assert.match(carousel, /\.\/first/);
+    assert.match(carousel, /\.\/activity/);
     assert(fs.existsSync(f.generated('sections/intro/gallery/first/specification.md')));
     assert(fs.existsSync(f.generated('sections/intro/gallery/activity/specification.md')));
     assert(!fs.existsSync(f.generated('sections/intro/gallery/slides')));
