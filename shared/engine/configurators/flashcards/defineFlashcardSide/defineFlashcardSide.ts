@@ -193,19 +193,14 @@ export function defineFlashcardSide<
     return result;
   };
 
-  return {
+  const result = {
     kind: 'flashcardSide' as const,
     items,
     order,
     validate: (required = false) => validateSide({ items: initialItems, order: initialOrder }, required),
     build: { props, overrides },
-  } as const satisfies {
-    kind: 'flashcardSide';
-    items: Items;
-    order: string[];
-    validate: (required?: boolean) => void;
-    build: { props: typeof props; overrides: typeof overrides };
-  } & LanguageScope<Languages>;
+  } as const;
+  return result as typeof result & LanguageScope<Languages>;
 }
 
 export type FlashcardSide_Configurator<
