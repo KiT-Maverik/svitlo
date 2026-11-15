@@ -71,3 +71,24 @@ test('rejects invalid kind, duplicate UUID, non-JSON content and outside languag
     /Unexpected Assessment publication language en/,
   );
 });
+
+
+test('rejects a repeated Question UUID under a different owning Lesson', () => {
+  const duplicate = { ...question('other-textbook/question.ts'), lessonId: '00000000-0000-4000-8000-000000000010' };
+  assert.throws(() => renderAssessmentResourceFiles([question(), duplicate]), /Duplicate Assessment UUID/);
+});
+
+test('serialized bytes are independent of authored object insertion order', () => {
+  const first = question();
+  const reordered = question();
+  reordered.publication = {
+    ...reordered.publication,
+    base: {
+      locale: {},
+      params: {},
+      type: 'selectOneAnswer',
+      id: questionId,
+    } as never,
+  };
+  assert.deepEqual([...renderAssessmentResourceFiles([first])], [...renderAssessmentResourceFiles([reordered])]);
+});

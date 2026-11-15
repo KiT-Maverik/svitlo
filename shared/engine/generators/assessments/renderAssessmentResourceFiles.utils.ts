@@ -88,7 +88,7 @@ export function renderAssessmentResourceFiles(entries: readonly AssessmentPublic
       throw new Error('Missing built Assessment Props at ' + source);
     const itemId = resolveEntityPath(publication.base.id).split('/')[1];
     if (publication.base.id !== itemId) throw new Error('Assessment UUID is not canonical at ' + source);
-    const key = lessonPath + '/' + itemId;
+    const key = itemId; // UUID identity must not collide across Lessons or resource kinds.
     const previous = owners.get(key);
     if (previous) throw new Error('Duplicate Assessment UUID ' + itemId + ': ' + previous + ' and ' + source);
     owners.set(key, source);
@@ -105,7 +105,7 @@ export function renderAssessmentResourceFiles(entries: readonly AssessmentPublic
 
     const prefix = lessonPath + '/' + (kind === 'question' ? 'questions' : 'flashcards') + '/' + itemId;
     const baseString = canonical(publication.base, source + '/base');
-    files.set(prefix + '/base.json', JSON.stringify(publication.base, null, 2) + '\n');
+    files.set(prefix + '/base.json', JSON.stringify(JSON.parse(baseString), null, 2) + '\n');
     const locale: Record<string, unknown> = {};
     for (const [language, body] of Object.entries(publication.locale ?? {}).sort(([a], [b]) => compare(a, b))) {
       languageCode_Schema.parse(language);
@@ -117,7 +117,7 @@ export function renderAssessmentResourceFiles(entries: readonly AssessmentPublic
       const serialized = canonical(body, source + '/' + language);
       if (serialized === '{}') continue;
       locale[language] = JSON.parse(serialized);
-      files.set(prefix + '/' + language + '.json', JSON.stringify(body, null, 2) + '\n');
+      files.set(prefix + '/' + language + '.json', JSON.stringify(locale[language], null, 2) + '\n');
     }
 
     const hash = createHash('sha256').update(canonical({ base: JSON.parse(baseString), locale }, source)).digest('hex');

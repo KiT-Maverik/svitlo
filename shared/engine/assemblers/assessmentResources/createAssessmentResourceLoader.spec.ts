@@ -61,3 +61,69 @@ test('loader rejects missing files, wrong IDs and cancelled navigation without c
     /aborted/,
   );
 });
+
+
+test('loader resolves a complete published Flashcard in one scoped batch and caches selected results', async () => {
+  const cardId = '715383c3-ea22-5043-9213-555180837358';
+  const frontId = 'cf1a5371-1111-4555-8999-000000000001';
+  const backId = 'cf1a5371-1111-4555-8999-000000000002';
+  const publication = {
+    source: 'content/playground/card.ts',
+    lessonId,
+    kind: 'flashcard' as const,
+    languages: ['en', 'uk'] as const,
+    publication: {
+      base: {
+        id: cardId,
+        slug: 'sampleCard',
+        type: 'flashcard',
+        parameters: { tags: [], flags: [] },
+        content: {
+          front: [{ id: frontId, slug: 'front', type: 'text', params: {}, locale: { value: 'Front' } }],
+          back: [{ id: backId, slug: 'back', type: 'text', params: {} }],
+        },
+      },
+      locale: {
+        uk: {
+          content: {
+            front: [{ id: frontId, slug: 'front', type: 'text', params: {}, locale: { value: 'Перед' } }],
+            back: [{ id: backId, slug: 'back', type: 'text', params: {}, locale: { value: 'Назад' } }],
+          },
+        },
+        en: {
+          content: {
+            front: [{ id: frontId, slug: 'front', type: 'text', params: {}, locale: { value: 'Front' } }],
+            back: [{ id: backId, slug: 'back', type: 'text', params: {}, locale: { value: 'Back' } }],
+          },
+        },
+      },
+    },
+  };
+  const { renderAssessmentResourceFiles } = await import('../../generators/assessments/renderAssessmentResourceFiles.utils');
+  const generated = renderAssessmentResourceFiles([publication]);
+  const data = new Map([...generated].map(([path, value]) => ['data/lessons/' + path, JSON.parse(value)]));
+  const requests: string[][] = [];
+  const loader = createAssessmentResourceLoader(async paths => {
+    requests.push([...paths]);
+    return new Map(paths.filter(path => data.has(path)).map(path => [path, data.get(path)]));
+  });
+  const uk = await loader.loadFlashcards({ lessonId, language: 'uk', ids: [cardId] });
+  assert.equal(uk.length, 1);
+  assert.equal(uk[0].id, cardId);
+  assert.equal(uk[0].content.front[0].locale.value, 'Перед');
+  assert.equal(uk[0].content.back[0].locale.value, 'Назад');
+  assert.deepEqual(requests[0], [prefix + '/assessment-manifest.json']);
+  assert.deepEqual(requests[1], [
+    prefix + '/flashcards/' + cardId + '/base.json',
+    prefix + '/flashcards/' + cardId + '/uk.json',
+  ]);
+  const count = requests.length;
+  const second = await loader.loadFlashcards({ lessonId, language: 'uk', ids: [cardId] });
+  assert.equal(requests.length, count, 'No additional files for cached locale');
+  second[0].content.front[0].slug = 'modified';
+  const third = await loader.loadFlashcards({ lessonId, language: 'uk', ids: [cardId] });
+  assert.equal(third[0].content.front[0].slug, 'front', 'Cached Props must be returned as independent snapshots');
+  const en = await loader.loadFlashcards({ lessonId, language: 'en', ids: [cardId] });
+  assert.equal(en[0].content.back[0].locale.value, 'Back');
+  assert.equal(requests.length, count + 1, 'Different locale needs separate selected files');
+});
