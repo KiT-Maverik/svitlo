@@ -15,10 +15,10 @@ config:
       en: 'Read What a Division Expression Says'
   section:
     items:
-      section1:
+      nameDivisionExpressionParts:
         config:
           id: '9b10d997-1655-5d70-a5bf-59977bb078ea'
-          slug: 'section1'
+          slug: 'nameDivisionExpressionParts'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Give the Numbers Their Names'
           content:
             items:
-              text1:
+              identifyTwelveThreeFour:
                 config:
                   id: 'ccd3a0fa-198f-5225-8e0e-20faeed53c5b'
-                  slug: 'text1'
+                  slug: 'identifyTwelveThreeFour'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'Read 12 ÷ 3 = 4. Which number is the total? Which comes after the division sign? Which is the result?'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              labelDivisionTerms:
                 config:
                   id: 'd20b04b3-bcba-555e-8122-84b39bf32b44'
-                  slug: 'scene1'
+                  slug: 'labelDivisionTerms'
                   type: 'scene'
                   params: {}
                   locale:
@@ -113,10 +113,10 @@ config:
                     Generic `scene` Resource rendering exists, but **Division Expression Decoder is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: This Grade 3 Lesson teaches reading and assigning units to expression roles, not yet another fully procedural group-building lesson. Grade 2 learners with sufficient prerequisites may inspect it but the designated primary audience is Grade 3.
                   purpose: 'Give the Numbers Their Names: independent scene placement'
                   productionNotes: 'Legacy Scene divisionExpressionDecoder.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              markdown1:
+              explainDividendDivisorQuotient:
                 config:
                   id: 'ebfcf6d8-0ce2-507f-a65f-76d8bcf9e409'
-                  slug: 'markdown1'
+                  slug: 'explainDividendDivisorQuotient'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -124,7 +124,7 @@ config:
                       en: 'We read twelve divided by three equals four. Twelve is the dividend or total; three is the divisor; four is the quotient. The mathematical order does not change when we name them.'
                 production:
                   purpose: 'Source explanatory learner copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['identifyTwelveThreeFour', 'labelDivisionTerms', 'explainDividendDivisorQuotient']
         production:
           purpose: 'Give the Numbers Their Names'
           productionNotes: |-
@@ -140,10 +140,10 @@ config:
             - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
             - **Planned Note:** “In total ÷ nonzero divisor = quotient, the dividend is the starting total.” once the model and its numerical reasoning are explained (not yet wired).
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-      section2:
+      interpretSharingQuotient:
         config:
           id: '9c10db2a-1955-5229-a6bf-5b2a7ab07757'
-          slug: 'section2'
+          slug: 'interpretSharingQuotient'
           type: 'content'
           params: {}
           locale:
@@ -153,10 +153,10 @@ config:
               en: 'Three Groups, Four in Each'
           content:
             items:
-              text1:
+              shareTwelveAmongThree:
                 config:
                   id: '41b30d9b-e910-5f58-82ed-8d9b016786ba'
-                  slug: 'text1'
+                  slug: 'shareTwelveAmongThree'
                   type: 'text'
                   params: {}
                   locale:
@@ -164,10 +164,10 @@ config:
                       en: 'Twelve objects are shared into 3 equal groups. What does the 4 mean in 12 ÷ 3 = 4?'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              modelThreeEqualGroups:
                 config:
                   id: '7cd9f384-4f4c-5389-abf1-738455a07d73'
-                  slug: 'scene1'
+                  slug: 'modelThreeEqualGroups'
                   type: 'scene'
                   params: {}
                   locale:
@@ -238,10 +238,10 @@ config:
                     Generic `scene` Resource rendering exists, but **Division Expression Decoder is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: This Grade 3 Lesson teaches reading and assigning units to expression roles, not yet another fully procedural group-building lesson. Grade 2 learners with sufficient prerequisites may inspect it but the designated primary audience is Grade 3.
                   purpose: 'Three Groups, Four in Each: independent scene placement'
                   productionNotes: 'Legacy Scene divisionExpressionDecoder.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              markdown1:
+              explainFourInEach:
                 config:
                   id: '25775849-7430-58a2-9fd9-d8491c372d98'
-                  slug: 'markdown1'
+                  slug: 'explainFourInEach'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -249,7 +249,7 @@ config:
                       en: 'When we share among three groups, the three names how many groups receive counters. Four is how many are in each group. Twelve is the total before sharing.'
                 production:
                   purpose: 'Source explanatory learner copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['shareTwelveAmongThree', 'modelThreeEqualGroups', 'explainFourInEach']
         production:
           purpose: 'Three Groups, Four in Each'
           productionNotes: |-
@@ -265,10 +265,10 @@ config:
             - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
             - **Planned Note:** “The story tells us whether the divisor counts groups or objects per group.” once the model and its numerical reasoning are explained (not yet wired).
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-      section3:
+      interpretGroupingQuotient:
         config:
           id: '9d10dcbd-1855-5096-a7bf-5cbd79b075c4'
-          slug: 'section3'
+          slug: 'interpretGroupingQuotient'
           type: 'content'
           params: {}
           locale:
@@ -278,10 +278,10 @@ config:
               en: 'Three in Each, Four Groups'
           content:
             items:
-              text1:
+              groupTwelveInThrees:
                 config:
                   id: '28472adc-7078-5d47-a981-aadc38f70089'
-                  slug: 'text1'
+                  slug: 'groupTwelveInThrees'
                   type: 'text'
                   params: {}
                   locale:
@@ -289,10 +289,10 @@ config:
                       en: 'Now make groups OF 3 from the same 12. What does the quotient 4 count in this story?'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              modelFourCompleteGroups:
                 config:
                   id: '16d53465-cbaa-5438-85ec-b465f561deea'
-                  slug: 'scene1'
+                  slug: 'modelFourCompleteGroups'
                   type: 'scene'
                   params: {}
                   locale:
@@ -363,10 +363,10 @@ config:
                     Generic `scene` Resource rendering exists, but **Division Expression Decoder is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: This Grade 3 Lesson teaches reading and assigning units to expression roles, not yet another fully procedural group-building lesson. Grade 2 learners with sufficient prerequisites may inspect it but the designated primary audience is Grade 3.
                   purpose: 'Three in Each, Four Groups: independent scene placement'
                   productionNotes: 'Legacy Scene divisionExpressionDecoder.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              markdown1:
+              explainFourGroups:
                 config:
                   id: 'fdfa14e6-b9ba-5165-b85c-94e6eee29713'
-                  slug: 'markdown1'
+                  slug: 'explainFourGroups'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -374,7 +374,7 @@ config:
                       en: 'Now three names the size of each group, while four counts the groups we can form. The same equation fits, but the units carried by the answer are different.'
                 production:
                   purpose: 'Source explanatory learner copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['groupTwelveInThrees', 'modelFourCompleteGroups', 'explainFourGroups']
         production:
           purpose: 'Three in Each, Four Groups'
           productionNotes: |-
@@ -390,10 +390,10 @@ config:
             - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
             - **Planned Note:** “The story tells us whether the divisor counts groups or objects per group.” once the model and its numerical reasoning are explained (not yet wired).
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-      section4:
+      createTwoDivisionStories:
         config:
           id: '9610d1b8-1b55-554f-a0bf-51b878b07431'
-          slug: 'section4'
+          slug: 'createTwoDivisionStories'
           type: 'content'
           params: {}
           locale:
@@ -403,10 +403,10 @@ config:
               en: 'One Equality, Two New Stories'
           content:
             items:
-              text1:
+              matchTwentyDividedByFive:
                 config:
                   id: '5cbbc1ad-0b33-5d92-9df6-41ad6461a200'
-                  slug: 'text1'
+                  slug: 'matchTwentyDividedByFive'
                   type: 'text'
                   params: {}
                   locale:
@@ -414,10 +414,10 @@ config:
                       en: '20 ÷ 5 = 4. Choose a sharing story and a grouping story that both match this exact equality.'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              exploreTwoDivisionInterpretations:
                 config:
                   id: '4ad4b3b6-9462-58bb-b9ec-33b6c16c8681'
-                  slug: 'scene1'
+                  slug: 'exploreTwoDivisionInterpretations'
                   type: 'scene'
                   params: {}
                   locale:
@@ -488,10 +488,10 @@ config:
                     Generic `scene` Resource rendering exists, but **Division Expression Decoder is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: This Grade 3 Lesson teaches reading and assigning units to expression roles, not yet another fully procedural group-building lesson. Grade 2 learners with sufficient prerequisites may inspect it but the designated primary audience is Grade 3.
                   purpose: 'One Equality, Two New Stories: independent scene placement'
                   productionNotes: 'Legacy Scene divisionExpressionDecoder.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              markdown1:
+              explainSameEquationDifferentStories:
                 config:
                   id: '26796bf7-076d-5440-a0db-ebf7982467fa'
-                  slug: 'markdown1'
+                  slug: 'explainSameEquationDifferentStories'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -499,7 +499,7 @@ config:
                       en: 'Sharing: five groups receive four each. Grouping: four groups of five can be made. Both use twenty, but 20 ÷ 4 = 5 is a different expression even if its model also has twenty counters.'
                 production:
                   purpose: 'Source explanatory learner copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['matchTwentyDividedByFive', 'exploreTwoDivisionInterpretations', 'explainSameEquationDifferentStories']
         production:
           purpose: 'One Equality, Two New Stories'
           productionNotes: |-
@@ -515,7 +515,7 @@ config:
             - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
             - **Planned Note:** “In total ÷ nonzero divisor = quotient, the dividend is the starting total.” once the model and its numerical reasoning are explained (not yet wired).
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['nameDivisionExpressionParts', 'interpretSharingQuotient', 'interpretGroupingQuotient', 'createTwoDivisionStories']
   flashcards:
     items: {}
     order: []

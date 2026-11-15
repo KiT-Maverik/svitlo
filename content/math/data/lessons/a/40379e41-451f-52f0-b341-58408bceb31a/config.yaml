@@ -15,10 +15,10 @@ config:
       en: 'Which Outcome Is More Likely?'
   section:
     items:
-      section1BothColorsArePossibleButAreTheyEqual:
+      compareUnequalSpinnerShares:
         config:
           id: '5f1fde62-a7b6-40d3-b11f-80285c048369'
-          slug: 'section1BothColorsArePossibleButAreTheyEqual'
+          slug: 'compareUnequalSpinnerShares'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Both colors are possible—but are they equal?'
           content:
             items:
-              text1:
+              predictLikelySpinnerColor:
                 config:
                   id: 'ca2a58b3-4352-4ed6-8c61-415d7ce85698'
-                  slug: 'text1'
+                  slug: 'predictLikelySpinnerColor'
                   type: 'text'
                   params: {}
                   locale:
@@ -116,16 +116,16 @@ config:
                     **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
                   purpose: 'Proposed interactive Scene for Both colors are possible—but are they equal?'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainFourBlueSlices:
                 config:
                   id: '9337b858-8a85-4f5d-8479-a61ad144514f'
-                  slug: 'markdown2'
+                  slug: 'explainFourBlueSlices'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Yellow can happen, so it is possible. But blue covers four of five equal slices and yellow only one. Blue is more likely; yellow is less likely—not impossible.'
-            order: ['text1', 'chanceSpinnerLab', 'markdown2']
+            order: ['predictLikelySpinnerColor', 'chanceSpinnerLab', 'explainFourBlueSlices']
         production:
           purpose: 'Both colors are possible—but are they equal?'
           pedagogicalIntent: |
@@ -153,10 +153,10 @@ config:
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2EqualChancesRequireEqualCoverage:
+      recognizeEqualColorChances:
         config:
           id: '8828c86e-f7c7-4bef-8858-ba24db950495'
-          slug: 'section2EqualChancesRequireEqualCoverage'
+          slug: 'recognizeEqualColorChances'
           type: 'content'
           params: {}
           locale:
@@ -166,10 +166,10 @@ config:
               en: 'Equal chances require equal coverage'
           content:
             items:
-              markdown1:
+              compareTwoBlueTwoYellow:
                 config:
                   id: 'e23956ad-20df-4460-8d4b-62f3377660ce'
-                  slug: 'markdown1'
+                  slug: 'compareTwoBlueTwoYellow'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -254,16 +254,16 @@ config:
                     **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
                   purpose: 'Proposed interactive Scene for Equal chances require equal coverage'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              explainBalancedSpinner:
                 config:
                   id: 'c1a91752-c572-489f-9cae-733059099aed'
-                  slug: 'text2'
+                  slug: 'explainBalancedSpinner'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Blue and yellow each cover two of the four equally likely slices. Neither is favored. It is not certain which color appears on one spin.'
-            order: ['markdown1', 'chanceSpinnerLab', 'text2']
+            order: ['compareTwoBlueTwoYellow', 'chanceSpinnerLab', 'explainBalancedSpinner']
         production:
           purpose: 'Equal chances require equal coverage'
           pedagogicalIntent: |
@@ -291,10 +291,10 @@ config:
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3ALargeSliceCanMatterMoreThanSeveralSmallOnes:
+      compareSliceAreasNotCounts:
         config:
           id: 'b7e13000-6741-4fe1-94d0-e306fce7f34f'
-          slug: 'section3ALargeSliceCanMatterMoreThanSeveralSmallOnes'
+          slug: 'compareSliceAreasNotCounts'
           type: 'content'
           params: {}
           locale:
@@ -304,10 +304,10 @@ config:
               en: 'A large slice can matter more than several small ones'
           content:
             items:
-              text1:
+              compareHalfWithQuarters:
                 config:
                   id: '28dd27f5-2346-4db0-afb1-24f7bec08b92'
-                  slug: 'text1'
+                  slug: 'compareHalfWithQuarters'
                   type: 'text'
                   params: {}
                   locale:
@@ -392,16 +392,16 @@ config:
                     **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
                   purpose: 'Proposed interactive Scene for A large slice can matter more than several small ones'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainEqualTotalAreas:
                 config:
                   id: 'ccf38302-f0c9-4fb7-9953-cbfc611116f9'
-                  slug: 'markdown2'
+                  slug: 'explainEqualTotalAreas'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'There are two yellow slices but together they take the same half of the circle as the one blue slice. Under our uniform-spin rule, the colors are equally likely. Count possible coverage, not just pieces.'
-            order: ['text1', 'chanceSpinnerLab', 'markdown2']
+            order: ['compareHalfWithQuarters', 'chanceSpinnerLab', 'explainEqualTotalAreas']
         production:
           purpose: 'A large slice can matter more than several small ones'
           pedagogicalIntent: |
@@ -429,10 +429,10 @@ config:
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4NewSpinnerMakeAJustifiedPrediction:
+      justifyFreshSpinnerPrediction:
         config:
           id: '6654829e-f5a7-4467-b4b8-469cd089733d'
-          slug: 'section4NewSpinnerMakeAJustifiedPrediction'
+          slug: 'justifyFreshSpinnerPrediction'
           type: 'content'
           params: {}
           locale:
@@ -442,10 +442,10 @@ config:
               en: 'New spinner, make a justified prediction'
           content:
             items:
-              markdown1:
+              predictSixSliceSpinner:
                 config:
                   id: 'd2ea1a3d-f6e2-4548-b267-117b66b59f66'
-                  slug: 'markdown1'
+                  slug: 'predictSixSliceSpinner'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -530,16 +530,16 @@ config:
                     **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
                   purpose: 'Proposed interactive Scene for New spinner, make a justified prediction'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              explainYellowMoreLikely:
                 config:
                   id: 'facaaac2-3683-4df7-a05f-fac88d471215'
-                  slug: 'text2'
+                  slug: 'explainYellowMoreLikely'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Yellow is more likely because it covers four of six equal slices. Blue is still possible because two blue slices remain. Neither result is guaranteed on one spin.'
-            order: ['markdown1', 'chanceSpinnerLab', 'text2']
+            order: ['predictSixSliceSpinner', 'chanceSpinnerLab', 'explainYellowMoreLikely']
         production:
           purpose: 'New spinner, make a justified prediction'
           pedagogicalIntent: |
@@ -570,10 +570,10 @@ config:
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
     order:
       [
-        'section1BothColorsArePossibleButAreTheyEqual',
-        'section2EqualChancesRequireEqualCoverage',
-        'section3ALargeSliceCanMatterMoreThanSeveralSmallOnes',
-        'section4NewSpinnerMakeAJustifiedPrediction',
+        'compareUnequalSpinnerShares',
+        'recognizeEqualColorChances',
+        'compareSliceAreasNotCounts',
+        'justifyFreshSpinnerPrediction',
       ]
   flashcards:
     items: {}
