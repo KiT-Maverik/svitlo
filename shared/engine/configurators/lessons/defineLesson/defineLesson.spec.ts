@@ -45,7 +45,7 @@ describe('Configurators', () => {
           },
           locale: { title: { en: 'Example', uk: 'Приклад' } },
           section: { items: { intro: section }, order: ['intro'] },
-          flashcards: { items: {}, order: [] },
+          flashcards: { items: {} },
         });
 
       test('Lesson emits plain Section Props arrays with correct own and nested locale paths', () => {
@@ -107,7 +107,7 @@ describe('Configurators', () => {
             },
             order: ['unscoped'],
           },
-          flashcards: { items: {}, order: [] },
+          flashcards: { items: {} },
         });
 
         assert.doesNotThrow(() => lesson.build.props({ languages: ['uk'] }));
@@ -221,7 +221,7 @@ describe('Configurators', () => {
               programId: id('04'),
               locale: { title: 'Legacy' },
               section: { items: { intro: section }, order: ['intro'] },
-              flashcards: { items: {}, order: [] },
+              flashcards: { items: {} },
             } as never),
           /programId/,
         );
@@ -242,7 +242,7 @@ describe('Configurators', () => {
               },
               locale: { title: 'Wrong' },
               section: { items: { wrongKey: section }, order: ['wrongKey'] },
-              flashcards: { items: {}, order: [] },
+              flashcards: { items: {} },
             }),
           /matching .* configurator/,
         );
@@ -260,7 +260,7 @@ describe('Configurators', () => {
             sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
           },
           locale: { title: { en: 'Quiz required', uk: 'Квіз обов’язковий' } },
-          flashcards: { items: {}, order: [] },
+          flashcards: { items: {} },
         };
 
         assert.throws(
