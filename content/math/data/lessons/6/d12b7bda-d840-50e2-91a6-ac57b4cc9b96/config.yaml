@@ -476,13 +476,7 @@ config:
             - Dependencies: Scenes proposed, no formal assessment.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-    order:
-      [
-        'reconstructStartingAmount',
-        'fillMissingMinuend',
-        'distinguishMissingPositions',
-        'solveNewStartingAmount',
-      ]
+    order: ['reconstructStartingAmount', 'fillMissingMinuend', 'distinguishMissingPositions', 'solveNewStartingAmount']
 production:
   documentLanguage: 'en'
   methodology: |

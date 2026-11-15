@@ -506,13 +506,7 @@ config:
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-    order:
-      [
-        'divideZeroAmongFour',
-        'testSixDividedByZero',
-        'examineZeroOverZero',
-        'distinguishZeroPositions',
-      ]
+    order: ['divideZeroAmongFour', 'testSixDividedByZero', 'examineZeroOverZero', 'distinguishZeroPositions']
 production:
   documentLanguage: 'en'
   methodology: |

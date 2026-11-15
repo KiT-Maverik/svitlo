@@ -442,13 +442,7 @@ config:
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-    order:
-      [
-        'preventGapsAndOverlaps',
-        'coverBarWithEqualUnits',
-        'compareUnitSizes',
-        'repairMeasurement',
-      ]
+    order: ['preventGapsAndOverlaps', 'coverBarWithEqualUnits', 'compareUnitSizes', 'repairMeasurement']
 production:
   documentLanguage: 'en'
   methodology: |

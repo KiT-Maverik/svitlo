@@ -471,13 +471,7 @@ config:
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order:
-      [
-        'countThirteenOnes',
-        'exchangeTenForBundle',
-        'regroupNinePlusFour',
-        'exchangeSevenPlusSix',
-      ]
+    order: ['countThirteenOnes', 'exchangeTenForBundle', 'regroupNinePlusFour', 'exchangeSevenPlusSix']
   flashcards:
     items: {}
     order: []
