@@ -5,6 +5,7 @@ export const analyzeAnArgumentFromEvil_Skill_Data = defineSkill({
   id: 'acbe68a8-efbd-402b-bc01-cec68cc13e3a',
   name: {
     en: 'Analyze an argument from evil',
+    it: 'Analizzare un argomento a partire dal male',
     zh: '分析恶的问题论证',
     hi: 'बुराई से जुड़ी दलील का विश्लेषण',
     es: 'Analizar un argumento del mal',
@@ -39,6 +40,7 @@ export const analyzeAnArgumentFromEvil_Skill_Data = defineSkill({
       'Explain how suffering and wrongdoing challenge particular accounts of divinity and assess the strengths of proposed philosophical responses.',
     frontend: {
       en: 'Assess how suffering challenges particular accounts of divinity.',
+      it: 'Valuta come la sofferenza metta in discussione particolari concezioni della divinità.',
       zh: '评估苦难如何对特定的神性观念提出挑战。',
       hi: 'आकलन करें कि पीड़ा दिव्यता की कुछ अवधारणाओं को कैसे चुनौती देती है।',
       es: 'Evalúa cómo el sufrimiento cuestiona determinadas concepciones de la divinidad.',

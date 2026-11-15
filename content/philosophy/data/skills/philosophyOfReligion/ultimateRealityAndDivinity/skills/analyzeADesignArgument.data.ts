@@ -5,6 +5,7 @@ export const analyzeADesignArgument_Skill_Data = defineSkill({
   id: 'a43d5ad8-021a-4648-8082-ec2792ea5941',
   name: {
     en: 'Analyze a design argument',
+    it: 'Analizzare un argomento del disegno',
     zh: '分析设计论证',
     hi: 'उद्देश्यपूर्ण रचना के तर्क का विश्लेषण',
     es: 'Analizar un argumento del diseño',
@@ -39,6 +40,7 @@ export const analyzeADesignArgument_Skill_Data = defineSkill({
       'Examine whether order or complexity supports an inference to a designer, considering the evidential relevance of natural alternatives.',
     frontend: {
       en: 'Consider whether complexity or order is evidence of intelligent design.',
+      it: 'Rifletti se la complessità o l\'ordine costituiscano prove di un progetto intelligente.',
       zh: '思考复杂性或秩序是否能够作为智慧设计的证据。',
       hi: 'विचार करें कि क्या जटिलता या व्यवस्था बुद्धिमान रचना का प्रमाण है।',
       es: 'Considera si la complejidad o el orden son pruebas de un diseño inteligente.',

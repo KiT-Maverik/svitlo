@@ -5,6 +5,7 @@ export const analyzeReligiousToleranceAsAnEthicalPrinciple_Skill_Data = defineSk
   id: '0094233c-51be-4df6-9adc-2b3379c4f5ec',
   name: {
     en: 'Analyze religious tolerance as an ethical principle',
+    it: 'Analizzare la tolleranza religiosa come principio etico',
     zh: '将宗教宽容作为伦理原则来分析',
     hi: 'धार्मिक सहिष्णुता का नैतिक सिद्धांत के रूप में विश्लेषण',
     es: 'Analizar la tolerancia religiosa como principio ético',
@@ -39,6 +40,7 @@ export const analyzeReligiousToleranceAsAnEthicalPrinciple_Skill_Data = defineSk
       'Examine justifications and limits for respecting divergent religious or nonreligious commitments, distinguishing toleration from endorsement.',
     frontend: {
       en: 'Consider reasons and limits for respecting people with different convictions.',
+      it: 'Considera le ragioni e i limiti del rispetto verso persone con convinzioni diverse.',
       zh: '思考尊重不同信念者的理由以及这种尊重的界限。',
       hi: 'अलग मान्यताओं वाले लोगों का सम्मान करने के कारणों और उसकी सीमाओं पर विचार करें।',
       es: 'Considera las razones y los límites para respetar a personas con distintas convicciones.',

@@ -5,6 +5,7 @@ export const compareFaithAndReasonAsSourcesOfJustification_Skill_Data = defineSk
   id: '1b3fc443-23f9-4f1b-9e3b-ef8f92ce56f9',
   name: {
     en: 'Compare faith and reason as sources of justification',
+    it: 'Confrontare fede e ragione come fonti di giustificazione',
     zh: '比较信仰与理性作为论证依据的作用',
     hi: 'औचित्य के स्रोतों के रूप में आस्था और तर्क की तुलना करें',
     es: 'Comparar fe y razón como fuentes de justificación',
@@ -39,6 +40,7 @@ export const compareFaithAndReasonAsSourcesOfJustification_Skill_Data = defineSk
       'Analyze philosophical accounts in which faith and reasoning conflict, complement one another, or play different roles, without assuming one universal religious position.',
     frontend: {
       en: 'Compare views of how faith and reasoning support or challenge one another.',
+      it: 'Confronta le posizioni su come fede e ragionamento possano sostenersi o mettersi in discussione a vicenda.',
       zh: '比较关于信仰和推理如何相互支持或质疑的不同观点。',
       hi: 'तुलना करें कि आस्था और तर्क एक-दूसरे का समर्थन या चुनौती कैसे देते हैं।',
       es: 'Compara perspectivas sobre cómo la fe y el razonamiento se apoyan o se cuestionan mutuamente.',
