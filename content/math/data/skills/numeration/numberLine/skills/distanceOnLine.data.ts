@@ -11,6 +11,7 @@ export const distanceOnLine_Skill_Data = defineSkill({
     ka: 'მთელ რიცხვებს შორის მანძილი რიცხვით წრფეზე',
     kk: 'Сан түзуіндегі бүтін сандар арасындағы қашықтық',
     en: 'Distance between integers on a number line',
+    it: 'Distanza tra interi sulla retta numerica',
     qm: 'Sayı sızığında tam sayılar arasındaki mesafe',
     zh: '求数轴上整数间的距离',
     hi: 'संख्या रेखा पर पूर्णांकों के बीच दूरी',
@@ -39,6 +40,7 @@ export const distanceOnLine_Skill_Data = defineSkill({
       'Distance between integer coordinates is the nonnegative absolute difference, independent of direction. On the number line it equals the number of unit intervals between them.',
     frontend: {
       en: 'Count unit intervals between integer points on a number line. The distance is the same in either direction.',
+      it: 'Conta gli intervalli unitari tra due punti interi sulla retta numerica. La distanza è la stessa in entrambe le direzioni.',
       qm: 'Sayı sızığında tam sayı noqtaları arasındaki birlik aralıqlarını say. Mesafe eki yönde de bir türlü ola.',
       zh: '数出数轴上两个整数点之间的单位间隔。无论从哪边量，距离都相同。',
       hi: 'संख्या रेखा पर दो पूर्णांक बिंदुओं के बीच इकाई-अंतराल गिनें। दोनों दिशाओं में दूरी समान है।',
