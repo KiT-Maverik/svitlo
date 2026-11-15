@@ -17,6 +17,12 @@ const identifier = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
 const factoryContexts = new Set(['lesson', 'section', 'stage', 'task', 'block', 'slide', 'checkpointItem', 'question', 'flashcard']);
 const sectionTypes = new Set(['content', 'quiz', 'practice', 'learningFlow', 'codingTask', 'flashcards']);
 const compositeTypes = new Set(['carousel', 'checkpoint']);
+const localMediaTypes = new Set(['image', 'video', 'audio', 'subtitles', 'carouselSlide']);
+const mediaFields = {
+  image: ['src'], video: ['fileLocation', 'poster'],
+  audio: ['fileLocation'], subtitles: ['fileLocation'], carouselSlide: ['src'],
+};
+
 const reserved = new Set(['content', 'slides', 'stages', 'tasks', 'question', 'answer', 'parameters', 'section', 'flashcards', 'questions', 'languages']);
 
 export function childContext(parent, key, owner = {}) {
@@ -169,13 +175,42 @@ export function renderLessonModules(lesson, language, options = {}) {
   if (!record(filtered) || filtered.type !== 'lesson')
     throw new Error('config.yaml:config.type: expected lesson type for the Lesson entrypoint');
   const files = new Map();
+  const nodeLocations = options.nodeLocations;
+
   /**
    * Extract only actually authored learner text. There is no mechanical
    * synthesis from production.specification (which is not lesson copy).
    * Markdown's invariant and localized shapes are mutually exclusive.
    */
   function fileBackedNode(node, context, directory) {
-    if (context !== 'block') return node;
+    if (context !== 'block' && context !== 'slide') return node;
+    if (localMediaTypes.has(node.type) && record(node.locale)) {
+      const locale = { ...node.locale };
+      let changed = false;
+      for (const field of mediaFields[node.type]) {
+        const value = locale[field];
+        const role = field === 'poster' ? 'poster' : 'source';
+        const buildCall = language =>
+          expression('resolveLessonMedia(import.meta.url, ' +
+            JSON.stringify(node.type) + ', ' + JSON.stringify(role) +
+            (language === undefined ? '' : ', ' + JSON.stringify(language)) + ')');
+        if (value === null) {
+          locale[field] = buildCall(undefined);
+          changed = true;
+        } else if (record(value)) {
+          const next = { ...value };
+          for (const [language, source] of Object.entries(next)) {
+            if (source === null) {
+              next[language] = buildCall(language);
+              changed = true;
+            }
+          }
+          locale[field] = next;
+        }
+      }
+      if (changed) return { ...node, locale };
+      return node;
+    }
     if (node.type === 'markdown' && record(node.locale) && node.locale.value !== undefined) {
       const source = node.locale.value;
       const authored = { ...node, locale: { ...node.locale } };
@@ -230,8 +265,9 @@ export function renderLessonModules(lesson, language, options = {}) {
   const skills = Array.isArray(skillIds) && skillIds.length && options.bookRoot && options.outputFolder
     ? skillIndex(options.bookRoot) : new Map();
 
-  function moduleImports(directory, names, factory, needsLanguages, languageValue = false) {
-    const factoryImports = factory === 'defineCode' ? factory + ', readCodeSource' : factory;
+  function moduleImports(directory, names, factory, needsLanguages, languageValue = false, needsMedia = false) {
+    const factoryImports = [factory, ...(factory === 'defineCode' ? ['readCodeSource'] : []),
+      ...(needsMedia ? ['resolveLessonMedia'] : [])].join(', ');
     const output = ["import { " + factoryImports + " } from '@svitlo/engine/build';"];
     for (const [alias, { symbol, location }] of [...names.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
       const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
@@ -374,6 +410,11 @@ export function renderLessonModules(lesson, language, options = {}) {
   }
 
   function emitNode(node, context, directory) {
+    if (nodeLocations && (node.type === 'scene' || localMediaTypes.has(node.type))) {
+      if (nodeLocations.has(node.id) && nodeLocations.get(node.id) !== directory)
+        throw new Error('Duplicate Lesson media/Scene UUID: ' + node.id);
+      nodeLocations.set(node.id, directory);
+    }
     const authored = fileBackedNode(node, context, directory);
     const factory = factories[node.type];
     if (!factory) throw new Error('config.yaml: unknown factory for ' + node.type);
@@ -398,7 +439,8 @@ export function renderLessonModules(lesson, language, options = {}) {
     }
     const content = fields.length ? '{\n' + fields.join(',\n') + '\n}' : '{}';
     const name = symbolFor(node, context);
-    const importHead = moduleImports(directory, imports, factory, true);
+    const importHead = moduleImports(directory, imports, factory, true, false,
+      authored !== node && localMediaTypes.has(node.type));
     const result = importHead + (extra.length ? extra.join('') + '\n' : '') +
       'export const ' + name + ' = ' + factory + genericFor(node, context, bindings) + '(' + content + ');\n';
     put(join(directory, 'index.ts'), result);
