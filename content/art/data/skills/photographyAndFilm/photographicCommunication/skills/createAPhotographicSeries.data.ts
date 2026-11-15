@@ -5,6 +5,7 @@ export const createAPhotographicSeries_Skill_Data = defineSkill({
   id: '782ee37d-97af-465f-ba35-895a46ea93c9',
   name: {
     en: 'Create a Photographic Series',
+    it: 'Creare una serie fotografica',
 
     zh: '创作摄影系列',
     hi: 'फ़ोटोग्राफ़िक श्रृंखला बनाएं',
@@ -39,6 +40,7 @@ export const createAPhotographicSeries_Skill_Data = defineSkill({
     methodological: 'Select and sequence related images so the collection conveys more than isolated frames.',
     frontend: {
       en: 'Arrange related photographs to communicate a larger story or idea.',
+      it: 'Disponi fotografie collegate per comunicare una storia o un\'idea più ampia.',
 
       zh: '安排相关照片，以传达更大的故事或想法。',
       hi: 'एक बड़े विचार या कहानी को व्यक्त करने के लिए संबंधित तस्वीरें व्यवस्थित करें।',
