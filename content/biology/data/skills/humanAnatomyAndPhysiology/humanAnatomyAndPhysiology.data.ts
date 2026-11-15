@@ -12,6 +12,7 @@ export const humanAnatomyAndPhysiology_SkillDomain_Data = defineSkillDomain({
   id: '6f1de3d1-a9bf-4f2f-a441-99ac5633bccf',
   title: {
     en: 'Human Anatomy and Physiology',
+    it: 'Anatomia e fisiologia umana',
     zh: '人体解剖学与生理学',
     hi: 'मानव शरीररचना और शरीरक्रिया विज्ञान',
     es: 'Anatomía y fisiología humanas',
@@ -54,6 +55,7 @@ export const humanAnatomyAndPhysiology_SkillDomain_Data = defineSkillDomain({
       'The structure of the body, organ functions, and interactions among systems that allow humans to move, perceive, breathe, and sustain life. Rules of hygiene, first aid, and safe behavior belong to a separate textbook.',
     frontend: {
       en: 'Explore how the structures and systems of the human body work together to sustain life.',
+      it: 'Scopri come le strutture e i sistemi del corpo umano collaborano per sostenere la vita.',
       zh: '探索人体的结构和各个系统如何协同维持生命。',
       hi: 'जानें कि मानव शरीर की संरचनाएँ और अंग-तंत्र मिलकर जीवन को कैसे बनाए रखते हैं।',
       es: 'Explora cómo las estructuras y los sistemas del cuerpo humano trabajan juntos para mantener la vida.',
