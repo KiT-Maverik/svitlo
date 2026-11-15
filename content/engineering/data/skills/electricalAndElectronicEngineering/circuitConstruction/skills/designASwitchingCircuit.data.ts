@@ -5,6 +5,7 @@ export const designASwitchingCircuit_Skill_Data = defineSkill({
   id: '637f2d25-73b6-4bea-a0a2-ee75244e9d46',
   name: {
     en: 'Design a switching circuit',
+    it: 'Progettare un circuito di commutazione',
     zh: '设计开关电路',
     hi: 'स्विचिंग परिपथ का डिज़ाइन',
     es: 'Diseñar un circuito conmutador',
@@ -38,6 +39,7 @@ export const designASwitchingCircuit_Skill_Data = defineSkill({
     methodological: 'Place controls so a load can be energized or interrupted deliberately.',
     frontend: {
       en: 'Plan a circuit that switches a load on and off.',
+      it: 'Progetta un circuito che accenda e spenga un carico.',
       zh: '规划一个可以接通和断开负载的电路。',
       hi: 'ऐसा परिपथ बनाएँ जो भार को चालू और बंद कर सके।',
       es: 'Planifica un circuito que encienda y apague una carga.',
