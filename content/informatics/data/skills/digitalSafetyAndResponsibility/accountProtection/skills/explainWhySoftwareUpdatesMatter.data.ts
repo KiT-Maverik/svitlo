@@ -5,6 +5,7 @@ export const explainWhySoftwareUpdatesMatter_Skill_Data = defineSkill({
   id: '38b77d92-9304-484c-8c2e-d3a2aa695419',
   name: {
     en: 'Explain Why Software Updates Matter',
+    it: "Spiegare l'importanza degli aggiornamenti software",
     zh: '解释软件更新的重要性',
     hi: 'सॉफ़्टवेयर अपडेट का महत्व समझाना',
     es: 'Explicar por qué importan las actualizaciones',
@@ -39,6 +40,7 @@ export const explainWhySoftwareUpdatesMatter_Skill_Data = defineSkill({
       'Explain how trusted updates can patch vulnerabilities and defects exploited by attackers; distinguish official updates from fake prompts to install unfamiliar files.',
     frontend: {
       en: 'Learn why official software updates can help fix security weaknesses.',
+      it: 'Scopri perché gli aggiornamenti software ufficiali possono correggere vulnerabilità di sicurezza.',
       zh: '了解正规软件更新为什么能帮助修复安全漏洞。',
       hi: 'समझें कि आधिकारिक सॉफ़्टवेयर अपडेट सुरक्षा की कमियाँ कैसे ठीक कर सकते हैं।',
       es: 'Aprende por qué las actualizaciones oficiales pueden corregir fallas de seguridad.',

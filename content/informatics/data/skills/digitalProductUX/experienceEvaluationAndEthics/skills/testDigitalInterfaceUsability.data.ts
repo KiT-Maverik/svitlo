@@ -5,6 +5,7 @@ export const testDigitalInterfaceUsability_Skill_Data = defineSkill({
   id: '3b4cafc8-793b-4d2f-87c1-57ac4cd4e141',
   name: {
     en: 'Test Digital Interface Usability',
+    it: "Verificare l'usabilità di un'interfaccia digitale",
     zh: '测试数字界面的易用性',
     hi: 'डिजिटल इंटरफ़ेस की उपयोगिता जाँचना',
     es: 'Probar la usabilidad de una interfaz digital',
@@ -39,6 +40,7 @@ export const testDigitalInterfaceUsability_Skill_Data = defineSkill({
       'Give a person a concrete task on a device or in an app and observe whether they find the necessary actions without hints; identify confusing transitions and messages.',
     frontend: {
       en: 'Observe whether a person can complete a real task without extra hints.',
+      it: 'Osserva se una persona riesce a completare un compito reale senza suggerimenti aggiuntivi.',
       zh: '观察一个人在没有额外提示时能否完成真实任务。',
       hi: 'देखें कि कोई व्यक्ति अतिरिक्त संकेतों के बिना वास्तविक काम पूरा कर पाता है या नहीं।',
       es: 'Observa si una persona puede completar una tarea real sin pistas adicionales.',
