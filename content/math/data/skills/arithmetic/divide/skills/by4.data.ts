@@ -11,6 +11,7 @@ export const by4_Skill_Data = defineSkill({
     ka: 'გაყოფა — ÷ 4',
     kk: 'Бөлу — ÷ 4',
     en: 'Division — ÷ 4',
+    it: 'Divisione — ÷ 4',
     qm: 'Bölüv — ÷ 4',
     zh: '除法 — ÷ 4',
     hi: 'भाग — ÷ 4',
@@ -39,6 +40,7 @@ export const by4_Skill_Data = defineSkill({
       'Division by four uses inverse multiplication-by-four facts and equal groups of four. Halving twice may yield a quotient but is a possible strategy rather than the definition of the competency.',
     frontend: {
       en: 'You can divide by four using equal groups or multiplication facts, and sometimes by halving twice.',
+      it: 'Puoi dividere per quattro usando gruppi uguali o le tabelline e, a volte, dimezzando due volte.',
       qm: 'Teñ toparlar ya da arttıruv neticeleri yardımınen dörtke böle bilesiñ. Bazı allarda eki kere yarımğa bölmek de mümkün.',
       zh: '你能利用相等的组或四的乘法口诀计算除以四，有时还可以连续平分两次。',
       hi: 'तुम बराबर समूहों या चार के गुणा के तथ्यों से चार से भाग कर सकते हो; कभी दो बार आधा भी कर सकते हो।',
