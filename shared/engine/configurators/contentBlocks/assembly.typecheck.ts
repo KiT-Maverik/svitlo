@@ -38,7 +38,7 @@ const carousel = defineCarousel({
         id,
         slug: 'first',
         type: 'image',
-  params: { fill: true, aspectRatio: 1.5 },
+        params: { fill: true, aspectRatio: 1.5 },
         locale: { src: 'https://example.com/image.png', alt: 'Alt' },
       }),
     },
@@ -318,9 +318,16 @@ mixedCarousel.build.overrides(
   { languages: ['en'] },
 );
 defineCarousel({
-  id, slug: 'invalidChild', type: 'carousel', params: {}, locale: {},
-  slides: { items: {
-    // @ts-expect-error Text is not a Carousel Image/Scene child.
-    text,
-  }, order: ['text'] },
+  id,
+  slug: 'invalidChild',
+  type: 'carousel',
+  params: {},
+  locale: {},
+  slides: {
+    items: {
+      // @ts-expect-error Text is not a Carousel Image/Scene child.
+      text,
+    },
+    order: ['text'],
+  },
 });

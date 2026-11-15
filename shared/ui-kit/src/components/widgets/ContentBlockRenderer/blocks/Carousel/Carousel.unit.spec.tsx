@@ -114,7 +114,7 @@ describe('carousel content block', () => {
     expect(interaction).toHaveBeenCalledOnce();
     act(() => vi.advanceTimersByTime(5000));
     expect(screen.getByRole('button', { name: 'Try this activity' })).toBeVisible();
-    expect(screen.getByRole('button', { name: 'activity 2' })).toHaveAttribute('aria-current', 'true');
+    expect(screen.getByRole('button', { name: 'Interactive carousel 2' })).toHaveAttribute('aria-current', 'true');
   });
 
   it('does not silently render a Scene without a registered implementation', () => {
