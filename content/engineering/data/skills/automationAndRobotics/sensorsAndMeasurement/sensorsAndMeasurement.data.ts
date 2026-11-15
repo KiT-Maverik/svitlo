@@ -12,6 +12,7 @@ export const sensorsAndMeasurement_SkillGroup_Data = defineSkillGroup({
   id: '09504f07-f584-422a-9da0-ff042c983fc9',
   name: {
     en: 'Sensors and Measurement',
+    it: 'Sensori e misurazione',
     zh: '传感器与测量',
     hi: 'संवेदक और मापन',
     es: 'Sensores y medición',
@@ -52,6 +53,7 @@ export const sensorsAndMeasurement_SkillGroup_Data = defineSkillGroup({
       'Reliable decisions depend on selecting an appropriate measured quantity and understanding how placement, calibration and uncertainty shape the signal.',
     frontend: {
       en: 'Learn how sensors are chosen, calibrated and positioned.',
+      it: 'Scopri come vengono scelti, calibrati e posizionati i sensori.',
       zh: '学习如何选择、校准和布置传感器。',
       hi: 'संवेदकों का चयन, अंशांकन और उचित स्थान निर्धारण करना सीखें।',
       es: 'Aprende a seleccionar, calibrar y colocar sensores.',
