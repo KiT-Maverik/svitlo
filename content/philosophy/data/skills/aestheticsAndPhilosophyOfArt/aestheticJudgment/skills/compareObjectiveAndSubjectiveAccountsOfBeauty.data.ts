@@ -5,6 +5,7 @@ export const compareObjectiveAndSubjectiveAccountsOfBeauty_Skill_Data = defineSk
   id: 'a46a4aae-9054-4227-a21f-dbf54c7b8c60',
   name: {
     en: 'Compare objective and subjective accounts of beauty',
+    it: 'Confrontare concezioni oggettive e soggettive della bellezza',
     zh: '比较美的客观论与主观论',
     hi: 'सुंदरता के वस्तुनिष्ठ और व्यक्तिनिष्ठ मतों की तुलना',
     es: 'Comparar teorías objetivas y subjetivas de la belleza',
@@ -39,6 +40,7 @@ export const compareObjectiveAndSubjectiveAccountsOfBeauty_Skill_Data = defineSk
       'Examine whether aesthetic assessments can be reasoned about beyond individual preference without assuming universal consensus.',
     frontend: {
       en: 'Compare views about whether beauty can be judged beyond individual preference.',
+      it: 'Confronta le posizioni sulla possibilità di giudicare la bellezza al di là delle preferenze individuali.',
       zh: '比较美是否能够超越个人喜好而得到判断的观点。',
       hi: 'जानो कि सुंदरता को केवल निजी पसंद से परे आँका जा सकता है या नहीं।',
       es: 'Compara opiniones sobre si la belleza puede juzgarse más allá del gusto individual.',

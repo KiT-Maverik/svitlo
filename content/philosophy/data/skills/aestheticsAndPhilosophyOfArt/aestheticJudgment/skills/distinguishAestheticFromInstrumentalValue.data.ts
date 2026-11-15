@@ -5,6 +5,7 @@ export const distinguishAestheticFromInstrumentalValue_Skill_Data = defineSkill(
   id: '60d6ba94-fddf-4c57-8417-ca69fb6fc227',
   name: {
     en: 'Distinguish aesthetic from instrumental value',
+    it: 'Distinguere valore estetico e valore strumentale',
     zh: '区分审美价值与工具价值',
     hi: 'सौंदर्य और उपयोगिता के मूल्य में अंतर',
     es: 'Distinguir valor estético y valor instrumental',
@@ -39,6 +40,7 @@ export const distinguishAestheticFromInstrumentalValue_Skill_Data = defineSkill(
       'Explain why something may be appreciated for its appearance or experience rather than its practical usefulness.',
     frontend: {
       en: "Distinguish an object's beauty or expressive value from its practical use.",
+      it: 'Distingui la bellezza o il valore espressivo di un oggetto dalla sua utilità pratica.',
       zh: '区分物体的美或表现力与它的实际用途。',
       hi: 'किसी वस्तु की सुंदरता या अभिव्यक्ति का उसके व्यावहारिक उपयोग से भेद करो।',
       es: 'Distingue la belleza o expresividad de un objeto de su utilidad práctica.',

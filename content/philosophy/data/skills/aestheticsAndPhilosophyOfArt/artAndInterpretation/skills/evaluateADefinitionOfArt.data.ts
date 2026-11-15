@@ -5,6 +5,7 @@ export const evaluateADefinitionOfArt_Skill_Data = defineSkill({
   id: '3d8c85ff-b7c3-4ce3-bfef-fbb308200904',
   name: {
     en: 'Evaluate a definition of art',
+    it: 'Valutare una definizione di arte',
     zh: '评估艺术的定义',
     hi: 'कला की परिभाषा का मूल्यांकन',
     es: 'Evaluar una definición de arte',
@@ -39,6 +40,7 @@ export const evaluateADefinitionOfArt_Skill_Data = defineSkill({
       'Test a proposed criterion against borderline cases, changing practices, and works that challenge established categories.',
     frontend: {
       en: 'Test definitions of art against unusual or borderline examples.',
+      it: 'Metti alla prova le definizioni di arte attraverso esempi insoliti o di confine.',
       zh: '用不寻常或处于边界的例子检验艺术定义。',
       hi: 'असामान्य या सीमांत उदाहरणों से कला की परिभाषाओं को परखो।',
       es: 'Pon a prueba definiciones de arte con ejemplos inusuales o difíciles de clasificar.',

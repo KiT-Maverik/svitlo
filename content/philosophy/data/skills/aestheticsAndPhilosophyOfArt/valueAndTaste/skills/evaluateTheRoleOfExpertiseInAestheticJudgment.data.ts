@@ -5,6 +5,7 @@ export const evaluateTheRoleOfExpertiseInAestheticJudgment_Skill_Data = defineSk
   id: '2f29927c-0726-4e60-be3c-bf8bab4a2a02',
   name: {
     en: 'Evaluate the role of expertise in aesthetic judgment',
+    it: 'Valutare il ruolo della competenza nel giudizio estetico',
     zh: '评估专业知识在审美判断中的作用',
     hi: 'सौंदर्य निर्णय में विशेषज्ञता की भूमिका का मूल्यांकन',
     es: 'Evaluar el papel de la experiencia en el juicio estético',
@@ -39,6 +40,7 @@ export const evaluateTheRoleOfExpertiseInAestheticJudgment_Skill_Data = defineSk
       'Consider how practiced perception and historical knowledge may inform an assessment without making expert preferences infallible.',
     frontend: {
       en: 'Consider how expertise informs judgments without making experts infallible.',
+      it: 'Considera come la competenza contribuisca ai giudizi senza rendere infallibili gli esperti.',
       zh: '思考专业知识如何帮助判断，而不意味着专家永远正确。',
       hi: 'सोचो कि विशेषज्ञता निर्णय को कैसे बेहतर बनाती है, पर विशेषज्ञ हमेशा सही नहीं होते।',
       es: 'Considera cómo el conocimiento experto ayuda a juzgar sin volver infalibles a los expertos.',

@@ -5,6 +5,7 @@ export const interpretAPhilosopherInHistoricalContext_Skill_Data = defineSkill({
   id: '5197a832-899d-4e10-8e89-56dfe8fa84df',
   name: {
     en: 'Interpret a philosopher in historical context',
+    it: 'Interpretare un filosofo nel suo contesto storico',
     zh: '结合历史背景理解哲学家',
     hi: 'दार्शनिक को ऐतिहासिक संदर्भ में समझना',
     es: 'Interpretar a un filósofo en su contexto histórico',
@@ -39,6 +40,7 @@ export const interpretAPhilosopherInHistoricalContext_Skill_Data = defineSkill({
       'Use contemporaneous debates and available concepts to avoid attributing later assumptions to an earlier author.',
     frontend: {
       en: 'Interpret philosophical views in light of the debates of their own time.',
+      it: 'Interpreta le posizioni filosofiche alla luce dei dibattiti del loro tempo.',
       zh: '根据哲学家所处时代的争论解释其观点。',
       hi: 'दार्शनिक के विचारों को उसके समय की बहसों के संदर्भ में समझो।',
       es: 'Interpreta sus ideas según los debates de su propia época.',
