@@ -29,10 +29,10 @@ import {
   type ContentBlock_Carousel_Overrides,
   type ContentBlock_Carousel_PropsBase,
   type ContentBlock_Carousel_SlideProps,
+  type ContentBlock_Carousel_SlideConfigurator,
+  carousel_Slide_Props_Schema,
 } from './defineCarousel.schemas';
-import { carouselSlide_Published_Schema, type ContentBlock_CarouselSlide_Configurator } from './defineCarouselSlide';
-
-type Slide = ContentBlock_CarouselSlide_Configurator;
+type Slide = ContentBlock_Carousel_SlideConfigurator;
 type SlideResource = ReturnType<Slide['build']['props']>;
 type SlidePatch = ReturnType<Slide['build']['overrides']>;
 type CarouselLocaleBody = { locale: DeepPartial<ContentBlock_Carousel_Locale<'props'>> };
@@ -57,7 +57,7 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
   });
   if (isRecord(config.slides) && isRecord(config.slides.items)) {
     issues.push(
-      ...validateSluggedConfiguratorMap(config.slides.items, ['carouselSlide'], {
+      ...validateSluggedConfiguratorMap(config.slides.items, ['image', 'scene'], {
         path: 'slides.items',
         itemLabel: 'Carousel slide',
       }),
@@ -81,11 +81,10 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
 };
 
 /**
- * Display several instructional images in a single ordered Carousel.
+ * Display images and registered interactive Scenes in one ordered Carousel.
  *
  * @remarks
- * Author each slide with `defineCarouselSlide`, including its accessible
- * alternative text and optional caption. `slides.order` controls the
+ * Author each slide with `defineImage` or `defineScene`. `slides.order` controls the
  * pedagogical sequence; at least one slide must remain enabled.
  *
  * @example
@@ -151,10 +150,10 @@ export const defineCarousel = <
       return { resource, patch };
     });
 
+    const arraySchema = z.array(carousel_Slide_Props_Schema).min(1);
     const invariant = entries.map(({ resource, patch }) =>
-      mergeForValidation(resource.base.locale ?? {}, patch?.base.locale ?? {}),
+      mergeForValidation(resource.base, patch?.base ?? {}),
     );
-    const arraySchema = z.array(carouselSlide_Published_Schema).min(1);
     const parsedInvariant = arraySchema.safeParse(invariant);
 
     const translatedLanguages = languages.filter(language =>
@@ -162,13 +161,12 @@ export const defineCarousel = <
         ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
       ),
     );
-
     const localized: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideProps[]>> = {};
     for (const language of translatedLanguages) {
       const values = entries.map(({ resource, patch }) => {
-        const fromResource = mergeForValidation(resource.base.locale ?? {}, resource.locale?.[language]?.locale ?? {});
-        const withPatchBase = mergeForValidation(fromResource, patch?.base.locale ?? {});
-        return mergeForValidation(withPatchBase, patch?.locale?.[language]?.locale ?? {});
+        const withLocale = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
+        const withPatchBase = mergeForValidation(withLocale, patch?.base ?? {});
+        return mergeForValidation(withPatchBase, patch?.locale?.[language] ?? {});
       });
       const parsed = arraySchema.safeParse(values);
       if (!parsed.success) {
@@ -182,10 +180,7 @@ export const defineCarousel = <
     if (!parsedInvariant.success && !translatedLanguages.length) {
       throw new Error('Carousel slides must be invariant or complete in their localized files');
     }
-    return {
-      base: parsedInvariant.success ? parsedInvariant.data : undefined,
-      locale: localized,
-    };
+    return { base: parsedInvariant.success ? parsedInvariant.data : undefined, locale: localized };
   };
 
   const base = {
@@ -276,7 +271,7 @@ export const defineCarousel = <
       const additions = patch.slides?.additionalItems ?? {};
       if (!isRecord(additions)) throw new Error('slides.additionalItems must be a slug-keyed configurator map');
 
-      const addedIssues = validateSluggedConfiguratorMap(additions, ['carouselSlide'], {
+      const addedIssues = validateSluggedConfiguratorMap(additions, ['image', 'scene'], {
         path: 'slides.additionalItems',
         itemLabel: 'Carousel slide',
       });
