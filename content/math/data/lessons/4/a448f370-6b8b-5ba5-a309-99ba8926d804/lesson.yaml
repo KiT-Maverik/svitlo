@@ -719,9 +719,6 @@ config:
             - **Feedback:** For "C is heavier" based on unfair setup: "The left pan had **two objects**. That comparison cannot tell us that C alone is heavier." For new pair assuming bigger picture wins: "Read the tilt: the pan holding G is lower, regardless of the drawings' sizes." No penalty, scoring or inferred mastery.
             - **Transfer and extension:** Learner may optionally examine an actual balance with safe lightweight items under adult supervision, but the virtual equivalent supplies every observation and conclusion; no physical setup is required.
     order: ['predictMassBeyondAppearance', 'testMassAfterSideSwap', 'identifyEqualMass', 'controlFairComparison']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

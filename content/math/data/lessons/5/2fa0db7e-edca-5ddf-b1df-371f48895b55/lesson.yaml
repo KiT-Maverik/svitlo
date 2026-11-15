@@ -597,9 +597,6 @@ config:
       - 'identifyImpossibleColor'
       - 'identifyCertainColorSet'
       - 'reclassifyChangedOutcomes'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

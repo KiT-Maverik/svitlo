@@ -336,9 +336,6 @@ config:
             - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
             - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
     order: ['identifyEuroDenominations', 'compareValueNotCoinSize', 'verifyDenominationByValue']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

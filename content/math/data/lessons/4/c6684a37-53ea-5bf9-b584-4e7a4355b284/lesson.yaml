@@ -561,9 +561,6 @@ config:
             - Proposed unlocked Note(s): Revisit Notes 1 and 2; no additional Note required.
             - Implementation dependencies and review notes: Formative example only. Any scored assessment, attribution or readiness diagnostic belongs to Assessment Architect.
     order: ['shareTwelveIntoThreeGroups', 'rebuildMissingTotal', 'checkDividingTwelve', 'solveNewDividend']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

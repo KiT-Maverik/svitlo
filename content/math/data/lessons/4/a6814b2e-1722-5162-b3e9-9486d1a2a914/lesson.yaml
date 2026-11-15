@@ -695,9 +695,6 @@ config:
       - 'subtractKnownPart'
       - 'locateUnknownInAddition'
       - 'verifyUnknownAddend'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

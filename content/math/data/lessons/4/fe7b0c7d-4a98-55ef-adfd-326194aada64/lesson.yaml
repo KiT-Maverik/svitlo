@@ -588,9 +588,6 @@ config:
         'exchangeTenInColumnSubtraction',
         'verifyThirtyTwoMinusSeventeen',
       ]
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |
