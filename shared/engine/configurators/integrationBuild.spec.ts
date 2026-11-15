@@ -8,6 +8,7 @@ import { defineContentSection } from './sections/defineContentSection';
 import { defineLesson } from './lessons/defineLesson';
 import { lesson_Props_Schema } from './lessons/defineLesson/defineLesson.schemas';
 import { defineFlashcard } from './flashcards/defineFlashcard';
+import { defineFlashcardSide } from './flashcards/defineFlashcardSide';
 import { defineAnswerWithNumber } from './questions/defineAnswerWithNumber';
 import { defineChapter } from './courses/defineChapter';
 import { defineModule } from './courses/defineModule';
@@ -90,8 +91,8 @@ describe('Configurators', () => {
         type: 'flashcard',
         parameters: { tags: [], flags: { items: { warningFlag: { type: 'warning' } }, order: ['warningFlag'] } },
         content: {
-          front: { items: { front }, order: ['front'] },
-          back: { items: { back }, order: ['back'] },
+          front: defineFlashcardSide<{ front: typeof front }, ['uk', 'en']>({ items: { front }, order: ['front'] }),
+          back: defineFlashcardSide<{ back: typeof back }, ['uk', 'en']>({ items: { back }, order: ['back'] }),
         },
       });
       const lesson = defineLesson({
@@ -106,7 +107,7 @@ describe('Configurators', () => {
         },
         locale: { title: { uk: 'Урок', en: 'Lesson' } },
         section: { items: { intro: introduction }, order: ['intro'] },
-        flashcards: { items: { card }, order: ['card'] },
+        flashcards: { items: { card } },
         questions: { answerWithNumber: { numeric } },
       });
       const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['uk', 'en']>({

@@ -127,7 +127,7 @@ const validate = (config: Lesson_Config): void => {
     ['flashcards', config.flashcards, ['flashcard']],
   ] as const) {
     const issues = [
-      ...validateOrderedKeys(collection, { path: name }),
+      ...(name === 'section' ? validateOrderedKeys(collection as Lesson_Config['section'], { path: name }) : []),
       ...validateSluggedConfiguratorMap(collection.items, kinds, {
         path: name + '.items',
         itemLabel: name + ' child',
@@ -202,7 +202,7 @@ export function defineLesson<
     params: Omit<Lesson_Config['params'], 'languages'> & { languages: Languages };
     locale: RequireLanguages<Lesson_Config['locale'], Languages>;
     section: { items: Sections & ChildrenSupporting<Languages, Sections>; order: string[] };
-    flashcards: { items: Cards & ChildrenSupporting<Languages, Cards>; order: string[] };
+    flashcards: { items: Cards & ChildrenSupporting<Languages, Cards> };
     questions?: Questions & {
       [Kind in keyof Questions]: Questions[Kind] extends Record<string, Question_Configurator>
         ? Questions[Kind] & ChildrenSupporting<Languages, Questions[Kind]>
@@ -222,12 +222,13 @@ export function defineLesson<
   const initialSections: Sections = { ...config.section.items };
   const sectionOrder = [...config.section.order];
   const initialCards: Cards = { ...config.flashcards.items };
-  const flashcardOrder = [...config.flashcards.order];
+  // Flashcards form a recall bank, not an instructional sequence. Slugs give deterministic publication order.
+  const flashcardOrder = Object.keys(initialCards).sort();
   const initialQuestions: Lesson_QuestionBank = Object.fromEntries(
     Object.entries(config.questions ?? {}).map(([kind, entries]) => [kind, { ...entries }]),
   );
   const section = { items: { ...initialSections }, order: [...sectionOrder] };
-  const flashcards = { items: { ...initialCards }, order: [...flashcardOrder] };
+  const flashcards = { items: { ...initialCards } };
   // Configurators contain methods and cannot be structured-cloned. Copy only the bank maps.
   const questions = Object.fromEntries(Object.entries(initialQuestions).map(([kind, items]) => [kind, { ...items }]));
   const base = {
@@ -363,7 +364,7 @@ export function defineLesson<
   ) => {
     if (patch !== undefined && !isRecord(patch)) throw new Error(label + ' must be an object');
     for (const key of Object.keys(patch ?? {})) {
-      if (!['items', 'additionalItems', 'order'].includes(key))
+      if (!['items', 'additionalItems', ...(label === 'section' ? ['order'] : [])].includes(key))
         throw new Error('Unknown ' + label + ' override field: ' + key);
     }
     const changes = patch?.items ?? {};
@@ -400,10 +401,13 @@ export function defineLesson<
         childChanges[key] = change;
       }
     }
-    if (structureChanged && patch?.order === undefined) {
+    if (label === 'section' && structureChanged && patch?.order === undefined) {
       throw new Error(label + '.order is required when adding or disabling children');
     }
-    const order = patch?.order ?? sourceOrder;
+    // Flashcards are a named bank; never require or accept an authored order.
+    const order = label === 'flashcards'
+      ? Object.keys(enabled).filter(key => enabled[key] !== false).sort()
+      : patch?.order ?? sourceOrder;
     const orderIssues = validateOrderedKeys({ items: enabled, order }, { path: label, allowDisabled: true });
     if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
     const active = Object.fromEntries(Object.entries(enabled).filter(entry => entry[1] !== false));
@@ -546,7 +550,7 @@ export function defineLesson<
       validate({
         ...own,
         section: { items: sections.active as Record<string, Section_Configurator>, order: [...sections.order] },
-        flashcards: { items: cards.active as Record<string, Flashcard_Configurator>, order: [...cards.order] },
+        flashcards: { items: cards.active as Record<string, Flashcard_Configurator> },
         questions: nextQuestions,
       });
       // Child overrides can disable a Quiz without removing its configurator from the map.
