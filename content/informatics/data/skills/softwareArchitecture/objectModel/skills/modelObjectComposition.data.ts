@@ -5,6 +5,7 @@ export const modelObjectComposition_Skill_Data = defineSkill({
   id: 'b61d2c5d-b157-4614-9e65-cd7f86506ef2',
   name: {
     en: 'Model Object Composition',
+    it: 'Modellare la composizione di oggetti',
     zh: '建模对象组合',
     hi: 'ऑब्जेक्ट संयोजन का मॉडल बनाना',
     es: 'Modelar la composición de objetos',
@@ -39,6 +40,7 @@ export const modelObjectComposition_Skill_Data = defineSkill({
       "Construct a system from components with distinct roles, such as a robot comprising a controller, sensors, and actuators. Composition is a 'has a part' relationship, unlike inheritance's 'is a kind of' relationship.",
     frontend: {
       en: 'Build larger software objects from smaller parts with distinct responsibilities.',
+      it: 'Costruisci oggetti software più grandi a partire da componenti più piccoli con responsabilità distinte.',
       zh: '将具有不同职责的小部件组合成更大的软件对象。',
       hi: 'अलग जिम्मेदारियों वाले छोटे हिस्सों से बड़े सॉफ़्टवेयर ऑब्जेक्ट बनाएं।',
       es: 'Construye objetos de software mayores con piezas pequeñas de distintas responsabilidades.',

@@ -8,6 +8,7 @@ export const softwareArchitecture_SkillDomain_Data = defineSkillDomain({
   id: '8a0f1f02-6865-4cfd-b524-13d48e4f3177',
   title: {
     en: 'Software Architecture',
+    it: 'Architettura del software',
     zh: '软件架构',
     hi: 'सॉफ़्टवेयर आर्किटेक्चर',
     es: 'Arquitectura de software',
@@ -43,6 +44,7 @@ export const softwareArchitecture_SkillDomain_Data = defineSkillDomain({
       'Explains program structure through objects, contracts, responsibilities, and dependencies. Design patterns form a separate domain of reusable solutions to object creation, composition, and behavior.',
     frontend: {
       en: 'Explore how objects, responsibilities and dependencies organize reliable software.',
+      it: 'Esplora come oggetti, responsabilità e dipendenze organizzano un software affidabile.',
       zh: '探索对象、职责与依赖关系如何组织可靠的软件。',
       hi: 'जानें कि वस्तुएँ, जिम्मेदारियाँ और निर्भरताएँ विश्वसनीय सॉफ़्टवेयर को कैसे व्यवस्थित करती हैं।',
       es: 'Explora cómo los objetos, responsabilidades y dependencias organizan un software fiable.',
