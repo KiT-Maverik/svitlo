@@ -575,9 +575,6 @@ config:
         'compareSliceAreasNotCounts',
         'justifyFreshSpinnerPrediction',
       ]
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

@@ -492,9 +492,6 @@ config:
             - **Proposed Note:** “Any number times one stays that number.” after this meaning has been explained (planned only).
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
     order: ['multiplyFourGroupsOfZero', 'multiplyZeroGroupsOfFour', 'compareMultiplyingByOne', 'testZeroAndOneRules']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

@@ -627,9 +627,6 @@ config:
       - 'bundleTalliesInFives'
       - 'translateTalliesIntoTable'
       - 'makeIndependentTallyTable'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

@@ -646,9 +646,6 @@ config:
       - 'compareConstantJumps'
       - 'validateEveryStep'
       - 'justifyPatternContinuation'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

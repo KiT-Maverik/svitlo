@@ -658,9 +658,6 @@ config:
       - 'alignRulerAtZero'
       - 'correctMisalignedMeasurement'
       - 'measureUnfamiliarSegment'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

@@ -625,9 +625,6 @@ config:
       - 'recognizeCountConservation'
       - 'interpretZeroInEmptySet'
       - 'countUnseenCollection'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |
