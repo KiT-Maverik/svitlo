@@ -20,10 +20,10 @@ config:
       en: 'Certain or Impossible?'
   section:
     items:
-      section1WhatCouldComeOut:
+      identifyPossibleTokenColors:
         config:
           id: '723c5b9a-b804-8392-849a-c26b4ea29a63'
-          slug: 'section1WhatCouldComeOut'
+          slug: 'identifyPossibleTokenColors'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'What could come out?'
           content:
             items:
-              section1Text1:
+              predictBagColors:
                 config:
                   id: '29416980-5d88-895c-8805-a6e25ccc863e'
-                  slug: 'section1Text1'
+                  slug: 'predictBagColors'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Source text at What could come out?; provisional draft, not implemented.'
                   specification: '1. **`text` (existing type):** “A bag holds three tokens: blue, blue and red. We take one token without looking. Which colors could come out?”'
-              scene1Block2:
+              exploreBlueRedDraws:
                 config:
                   id: '996651fd-7fd0-8c02-8830-0a70be86e78f'
-                  slug: 'scene1Block2'
+                  slug: 'exploreBlueRedDraws'
                   type: 'scene'
                   params: {}
                   locale:
@@ -125,10 +125,10 @@ config:
 
                     2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Outcome Bag opens an inventory view (two labelled blue tokens, one labelled red token). Choose which color labels are present before the next explanation.
                   productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
-              section1Markdown3:
+              explainPossibleOutcomes:
                 config:
                   id: 'e530df25-85b1-8a9d-8a11-5c89ea90a931'
-                  slug: 'section1Markdown3'
+                  slug: 'explainPossibleOutcomes'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -138,9 +138,9 @@ config:
                   purpose: 'Source markdown at What could come out?; provisional draft, not implemented.'
                   specification: '3. **`markdown` (existing type):** “A blue token could come out, and a red token could come out. Those are the possible colors. Nothing else is in this bag.”'
             order:
-              - 'section1Text1'
-              - 'scene1Block2'
-              - 'section1Markdown3'
+              - 'predictBagColors'
+              - 'exploreBlueRedDraws'
+              - 'explainPossibleOutcomes'
         production:
           purpose: 'What could come out?'
           pedagogicalIntent: 'What could come out?'
@@ -163,10 +163,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
-      section2WhenIsSomethingImpossible:
+      identifyImpossibleColor:
         config:
           id: '951d038f-34b2-8308-817c-73fff0d3a378'
-          slug: 'section2WhenIsSomethingImpossible'
+          slug: 'identifyImpossibleColor'
           type: 'content'
           params: {}
           locale:
@@ -176,10 +176,10 @@ config:
               en: 'When is something impossible?'
           content:
             items:
-              section2Text1:
+              askAboutGreenToken:
                 config:
                   id: '5f76225b-3407-8631-8a01-0f772170eb1d'
-                  slug: 'section2Text1'
+                  slug: 'askAboutGreenToken'
                   type: 'text'
                   params: {}
                   locale:
@@ -188,10 +188,10 @@ config:
                 production:
                   purpose: 'Source text at When is something impossible?; provisional draft, not implemented.'
                   specification: '1. **`text` (existing type):** “Can the one token we draw be green?”'
-              scene2Block2:
+              testImpossibleGreen:
                 config:
                   id: '564aab9b-53a6-8006-8b3d-b62d1ed19db0'
-                  slug: 'scene2Block2'
+                  slug: 'testImpossibleGreen'
                   type: 'scene'
                   params: {}
                   locale:
@@ -268,10 +268,10 @@ config:
 
                     2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Choose 'possible', 'certain', or 'impossible' for green. Reveal a complete color inventory and an explanation.
                   productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
-              section2Markdown3:
+              explainMissingOutcome:
                 config:
                   id: '57a07536-a641-86c3-8c4f-406f9daed39a'
-                  slug: 'section2Markdown3'
+                  slug: 'explainMissingOutcome'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -281,9 +281,9 @@ config:
                   purpose: 'Source markdown at When is something impossible?; provisional draft, not implemented.'
                   specification: '3. **`markdown` (existing type):** “Green is impossible here: there are no green tokens. Impossible means it cannot happen under the stated conditions.”'
             order:
-              - 'section2Text1'
-              - 'scene2Block2'
-              - 'section2Markdown3'
+              - 'askAboutGreenToken'
+              - 'testImpossibleGreen'
+              - 'explainMissingOutcome'
         production:
           purpose: 'When is something impossible?'
           pedagogicalIntent: 'When is something impossible?'
@@ -306,10 +306,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
-      section3WhatMustHappen:
+      identifyCertainColorSet:
         config:
           id: '5772db93-070b-87cd-81c6-f5b261bf49ec'
-          slug: 'section3WhatMustHappen'
+          slug: 'identifyCertainColorSet'
           type: 'content'
           params: {}
           locale:
@@ -319,10 +319,10 @@ config:
               en: 'What must happen?'
           content:
             items:
-              section3Text1:
+              compareCertainAndPossible:
                 config:
                   id: 'ae02c5b8-d7c1-839f-8642-aa738f81bc54'
-                  slug: 'section3Text1'
+                  slug: 'compareCertainAndPossible'
                   type: 'text'
                   params: {}
                   locale:
@@ -331,10 +331,10 @@ config:
                 production:
                   purpose: 'Source text at What must happen?; provisional draft, not implemented.'
                   specification: '1. **`text` (existing type):** “Will we draw blue OR red? Now a different question: will it definitely be red?”'
-              scene3Block2:
+              testBlueOrRedCertainty:
                 config:
                   id: '08d31774-6e09-8108-8696-5e06504c487a'
-                  slug: 'scene3Block2'
+                  slug: 'testBlueOrRedCertainty'
                   type: 'scene'
                   params: {}
                   locale:
@@ -411,10 +411,10 @@ config:
 
                     2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Compare two event cards against the same bag: 'blue or red' and 'red'. Highlight which inventory tokens satisfy each claim and which do not.
                   productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
-              section3Markdown3:
+              explainGuaranteedOutcome:
                 config:
                   id: '0c67317e-f04f-82db-88e9-b07024c1a3d5'
-                  slug: 'section3Markdown3'
+                  slug: 'explainGuaranteedOutcome'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -424,9 +424,9 @@ config:
                   purpose: 'Source markdown at What must happen?; provisional draft, not implemented.'
                   specification: '3. **`markdown` (existing type):** “Blue OR red is certain, because every token is one of those colors. Red alone is possible, not certain: the next token might be blue.”'
             order:
-              - 'section3Text1'
-              - 'scene3Block2'
-              - 'section3Markdown3'
+              - 'compareCertainAndPossible'
+              - 'testBlueOrRedCertainty'
+              - 'explainGuaranteedOutcome'
         production:
           purpose: 'What must happen?'
           pedagogicalIntent: 'What must happen?'
@@ -449,10 +449,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
-      section4ChangeTheConditions:
+      reclassifyChangedOutcomes:
         config:
           id: 'b81d4db1-c667-872e-8769-544459133edb'
-          slug: 'section4ChangeTheConditions'
+          slug: 'reclassifyChangedOutcomes'
           type: 'content'
           params: {}
           locale:
@@ -462,10 +462,10 @@ config:
               en: 'Change the conditions'
           content:
             items:
-              section4Markdown1:
+              predictBlueOnlyBag:
                 config:
                   id: '0a2b94cb-a8de-8b8a-8d45-5a3f8fb0f57e'
-                  slug: 'section4Markdown1'
+                  slug: 'predictBlueOnlyBag'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -474,10 +474,10 @@ config:
                 production:
                   purpose: 'Source markdown at Change the conditions; provisional draft, not implemented.'
                   specification: "1. **`markdown` (existing type):** “Now the bag contains only blue tokens. Is blue certain? Is red impossible? What about 'blue or red'?”"
-              scene4Block2:
+              exploreChangedBag:
                 config:
                   id: '7160c2f0-bb2c-8804-85ca-2ba27f867156'
-                  slug: 'scene4Block2'
+                  slug: 'exploreChangedBag'
                   type: 'scene'
                   params: {}
                   locale:
@@ -554,10 +554,10 @@ config:
 
                     2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Switch to a fixed all-blue bag. Submit each event classification, then reveal the relevant outcome coverage; allow learner to switch back and compare.
                   productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
-              section4Text3:
+              explainChangedCertainty:
                 config:
                   id: '05e99f00-bddb-8aaa-803f-2e05380d0baf'
-                  slug: 'section4Text3'
+                  slug: 'explainChangedCertainty'
                   type: 'text'
                   params: {}
                   locale:
@@ -567,9 +567,9 @@ config:
                   purpose: 'Source text at Change the conditions; provisional draft, not implemented.'
                   specification: "3. **`text` (existing type):** “Blue is certain and red is impossible in this new bag. 'Blue or red' is still certain because blue is included. The bag's contents decide the answer.”"
             order:
-              - 'section4Markdown1'
-              - 'scene4Block2'
-              - 'section4Text3'
+              - 'predictBlueOnlyBag'
+              - 'exploreChangedBag'
+              - 'explainChangedCertainty'
         production:
           purpose: 'Change the conditions'
           pedagogicalIntent: 'Change the conditions'
@@ -593,10 +593,10 @@ config:
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
     order:
-      - 'section1WhatCouldComeOut'
-      - 'section2WhenIsSomethingImpossible'
-      - 'section3WhatMustHappen'
-      - 'section4ChangeTheConditions'
+      - 'identifyPossibleTokenColors'
+      - 'identifyImpossibleColor'
+      - 'identifyCertainColorSet'
+      - 'reclassifyChangedOutcomes'
   flashcards:
     items: {}
     order: []

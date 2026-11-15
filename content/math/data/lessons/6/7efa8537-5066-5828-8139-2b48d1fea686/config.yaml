@@ -20,10 +20,10 @@ config:
       en: 'Three at a Time: Division Facts by Three'
   section:
     items:
-      section1:
+      makeGroupsOfThreeFromTwelve:
         config:
           id: '7efa8537-5066-5828-8139-000000000004'
-          slug: 'section1'
+          slug: 'makeGroupsOfThreeFromTwelve'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Build Twelve in Threes'
           content:
             items:
-              text1:
+              promptTwelveCounters:
                 config:
                   id: '7efa8537-5066-5828-8139-000000000001'
-                  slug: 'text1'
+                  slug: 'promptTwelveCounters'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original authored resource line: - **Text Resource (supported):** “Twelve counters, with THREE in each group: how many complete groups can you build?”'
-              scene1:
+              buildGroupsOfThree:
                 config:
                   id: '7efa8537-5066-5828-8139-000000000002'
-                  slug: 'scene1'
+                  slug: 'buildGroupsOfThree'
                   type: 'scene'
                   params: {}
                   locale:
@@ -117,10 +117,10 @@ config:
 
                     Generic Scene Resource rendering exists; Three Step Division Explorer is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Use meaningful regrouping and inverse checks rather than four similar flashcards. Each context must say whether three represents group size or number of groups; preserve Grade 3 audience.
                   productionNotes: "Placement scene1 of threeStepDivisionExplorer.scene-spec.md in Build Twelve in Threes. - **Scene Resource (generic integration supported; bespoke component proposed):** `Three Step Division Explorer` (Scene specification embedded in this YAML), independent entry 1. Starting with twelve distinct counter IDs, 'Make one group of three' consumes three at a time, revealing groups 1,2,3,4 and pool 12→9→6→3→0.. Provisional draft; distinct identity per placement."
-              markdown1:
+              explainFourGroups:
                 config:
                   id: '7efa8537-5066-5828-8139-000000000003'
-                  slug: 'markdown1'
+                  slug: 'explainFourGroups'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -130,9 +130,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original authored resource line: - **Markdown Resource (supported):** “There are four groups of three. Four is the number of complete groups.” Mathematical record: **12 ÷ 3 = 4; 3 × 4 = 12**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'promptTwelveCounters'
+              - 'buildGroupsOfThree'
+              - 'explainFourGroups'
         production:
           purpose: 'Build Twelve in Threes'
           pedagogicalIntent: |-
@@ -149,10 +149,10 @@ config:
             - **Planned unlocked Note:** “To divide by three, build or count complete groups of three.” after the complete evidence and explanation, not a scored answer or wired event.
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
           productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
-      section2:
+      shareFifteenBetweenThree:
         config:
           id: '7efa8537-5066-5828-8139-000000000008'
-          slug: 'section2'
+          slug: 'shareFifteenBetweenThree'
           type: 'content'
           params: {}
           locale:
@@ -162,10 +162,10 @@ config:
               en: 'Share Fifteen Among Three'
           content:
             items:
-              text1:
+              askShareFifteen:
                 config:
                   id: '7efa8537-5066-5828-8139-000000000005'
-                  slug: 'text1'
+                  slug: 'askShareFifteen'
                   type: 'text'
                   params: {}
                   locale:
@@ -174,10 +174,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original authored resource line: - **Text Resource (supported):** “Fifteen counters shared among THREE groups: how many in EACH group?”'
-              scene1:
+              shareIntoThreeGroups:
                 config:
                   id: '7efa8537-5066-5828-8139-000000000006'
-                  slug: 'scene1'
+                  slug: 'shareIntoThreeGroups'
                   type: 'scene'
                   params: {}
                   locale:
@@ -246,10 +246,10 @@ config:
 
                     Generic Scene Resource rendering exists; Three Step Division Explorer is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Use meaningful regrouping and inverse checks rather than four similar flashcards. Each context must say whether three represents group size or number of groups; preserve Grade 3 audience.
                   productionNotes: 'Placement scene1 of threeStepDivisionExplorer.scene-spec.md in Share Fifteen Among Three. - **Scene Resource (generic integration supported; bespoke component proposed):** `Three Step Division Explorer` (Scene specification embedded in this YAML), independent entry 2. In a separate fair-sharing entry, give each of three labeled trays one counter per round, until all fifteen are assigned. Five appear in each; compare with grouping meaning from previous Section.. Provisional draft; distinct identity per placement.'
-              markdown1:
+              explainQuotientRole:
                 config:
                   id: '7efa8537-5066-5828-8139-000000000007'
-                  slug: 'markdown1'
+                  slug: 'explainQuotientRole'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -259,9 +259,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original authored resource line: - **Markdown Resource (supported):** “Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts.” Mathematical record: **15 ÷ 3 = 5; 3 × 5 = 15**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'askShareFifteen'
+              - 'shareIntoThreeGroups'
+              - 'explainQuotientRole'
         production:
           purpose: 'Share Fifteen Among Three'
           pedagogicalIntent: |-
@@ -278,10 +278,10 @@ config:
             - **Planned unlocked Note:** “Check your answer by multiplying it by three to get the original total.” after the complete evidence and explanation, not a scored answer or wired event.
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
           productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
-      section3:
+      countThreesToEighteen:
         config:
           id: '7efa8537-5066-5828-8139-00000000000c'
-          slug: 'section3'
+          slug: 'countThreesToEighteen'
           type: 'content'
           params: {}
           locale:
@@ -291,10 +291,10 @@ config:
               en: 'Step by Three to Eighteen'
           content:
             items:
-              text1:
+              askHowManyThrees:
                 config:
                   id: '7efa8537-5066-5828-8139-000000000009'
-                  slug: 'text1'
+                  slug: 'askHowManyThrees'
                   type: 'text'
                   params: {}
                   locale:
@@ -303,10 +303,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original authored resource line: - **Text Resource (supported):** “How many threes make eighteen? Which multiplication can check it?”'
-              scene1:
+              stepByThreeToEighteen:
                 config:
                   id: '7efa8537-5066-5828-8139-00000000000a'
-                  slug: 'scene1'
+                  slug: 'stepByThreeToEighteen'
                   type: 'scene'
                   params: {}
                   locale:
@@ -375,10 +375,10 @@ config:
 
                     Generic Scene Resource rendering exists; Three Step Division Explorer is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Use meaningful regrouping and inverse checks rather than four similar flashcards. Each context must say whether three represents group size or number of groups; preserve Grade 3 audience.
                   productionNotes: 'Placement scene1 of threeStepDivisionExplorer.scene-spec.md in Step by Three to Eighteen. - **Scene Resource (generic integration supported; bespoke component proposed):** `Three Step Division Explorer` (Scene specification embedded in this YAML), independent entry 3. Show number sequence 0,3,6,9,12,15,18 with a focusable step counter. The child counts six three-steps and evaluates the original division using 3×6=18.. Provisional draft; distinct identity per placement.'
-              markdown1:
+              verifySixThrees:
                 config:
                   id: '7efa8537-5066-5828-8139-00000000000b'
-                  slug: 'markdown1'
+                  slug: 'verifySixThrees'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -388,9 +388,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original authored resource line: - **Markdown Resource (supported):** “Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen.” Mathematical record: **18 ÷ 3 = 6; 3 × 6 = 18**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'askHowManyThrees'
+              - 'stepByThreeToEighteen'
+              - 'verifySixThrees'
         production:
           purpose: 'Step by Three to Eighteen'
           pedagogicalIntent: |-
@@ -407,10 +407,10 @@ config:
             - **Planned unlocked Note:** “Check your answer by multiplying it by three to get the original total.” after the complete evidence and explanation, not a scored answer or wired event.
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
           productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
-      section4:
+      divideTwentyOneByThree:
         config:
           id: '7efa8537-5066-5828-8139-000000000010'
-          slug: 'section4'
+          slug: 'divideTwentyOneByThree'
           type: 'content'
           params: {}
           locale:
@@ -420,10 +420,10 @@ config:
               en: 'A New Total: Twenty-One'
           content:
             items:
-              text1:
+              challengeTwentyOne:
                 config:
                   id: '7efa8537-5066-5828-8139-00000000000d'
-                  slug: 'text1'
+                  slug: 'challengeTwentyOne'
                   type: 'text'
                   params: {}
                   locale:
@@ -432,10 +432,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original authored resource line: - **Text Resource (supported):** “Twenty-one divided by three: how many equal groups of three? How do you check?”'
-              scene1:
+              groupTwentyOneCounters:
                 config:
                   id: '7efa8537-5066-5828-8139-00000000000e'
-                  slug: 'scene1'
+                  slug: 'groupTwentyOneCounters'
                   type: 'scene'
                   params: {}
                   locale:
@@ -504,10 +504,10 @@ config:
 
                     Generic Scene Resource rendering exists; Three Step Division Explorer is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Use meaningful regrouping and inverse checks rather than four similar flashcards. Each context must say whether three represents group size or number of groups; preserve Grade 3 audience.
                   productionNotes: 'Placement scene1 of threeStepDivisionExplorer.scene-spec.md in A New Total: Twenty-One. - **Scene Resource (generic integration supported; bespoke component proposed):** `Three Step Division Explorer` (Scene specification embedded in this YAML), independent entry 4. Learner predicts six/seven/eight, optionally builds seven 3-counter groups or checks each multiplication: 3×6=18, 3×7=21, 3×8=24; reveal exact full model.. Provisional draft; distinct identity per placement.'
-              markdown1:
+              verifySevenThrees:
                 config:
                   id: '7efa8537-5066-5828-8139-00000000000f'
-                  slug: 'markdown1'
+                  slug: 'verifySevenThrees'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -517,9 +517,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original authored resource line: - **Markdown Resource (supported):** “Seven threes make twenty-one. Multiplication confirms the quotient and leaves no remainder.” Mathematical record: **21 ÷ 3 = 7; 3 × 7 = 21**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'challengeTwentyOne'
+              - 'groupTwentyOneCounters'
+              - 'verifySevenThrees'
         production:
           purpose: 'A New Total: Twenty-One'
           pedagogicalIntent: |-
@@ -537,10 +537,10 @@ config:
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
           productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'makeGroupsOfThreeFromTwelve'
+      - 'shareFifteenBetweenThree'
+      - 'countThreesToEighteen'
+      - 'divideTwentyOneByThree'
   flashcards:
     items: {}
     order: []

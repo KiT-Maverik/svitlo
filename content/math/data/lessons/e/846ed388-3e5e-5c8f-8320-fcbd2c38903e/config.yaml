@@ -20,10 +20,10 @@ config:
       en: 'Equal Parts of One Whole'
   section:
     items:
-      section1WhichShapeIsTheWhole:
+      identifyReferenceWhole:
         config:
           id: '2addf864-bc2b-4a32-8ed7-07b3182115e5'
-          slug: 'section1WhichShapeIsTheWhole'
+          slug: 'identifyReferenceWhole'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Which shape is the whole?'
           content:
             items:
-              section1Text1:
+              promptWholeSheet:
                 config:
                   id: '517bd18a-5c27-4451-8700-fef85a5cab23'
-                  slug: 'section1Text1'
+                  slug: 'promptWholeSheet'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '1. **`text` (existing type):** “This is one whole sheet of paper. If we cut it, all the new pieces together still make this one sheet. Point to the whole.”'
-              section1Scene2:
+              inspectWholeBeforeCutting:
                 config:
                   id: '21074c8e-d1ab-4f6b-88d3-7ec8d87fed2d'
-                  slug: 'section1Scene2'
+                  slug: 'inspectWholeBeforeCutting'
                   type: 'scene'
                   params: {}
                   locale:
@@ -125,10 +125,10 @@ config:
 
                     2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Partition Lab starts with one uncut 8-by-4 grid rectangle. Select 'Whole' to highlight the entire area; then reveal two candidate cuts, but keep the original outline visible.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section1Markdown3:
+              defineWholeAndParts:
                 config:
                   id: 'cdfb6424-d99a-4ef3-8da0-a6ad49c1fc7a'
-                  slug: 'section1Markdown3'
+                  slug: 'defineWholeAndParts'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -138,9 +138,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '3. **`markdown` (existing type):** “The whole is the complete sheet we chose. To talk about equal parts, we compare the pieces of that same sheet.”'
             order:
-              - 'section1Text1'
-              - 'section1Scene2'
-              - 'section1Markdown3'
+              - 'promptWholeSheet'
+              - 'inspectWholeBeforeCutting'
+              - 'defineWholeAndParts'
         production:
           purpose: 'Which shape is the whole?'
           pedagogicalIntent: 'Which shape is the whole?'
@@ -163,10 +163,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
-      section2ACutDoesNotGuaranteeEqualParts:
+      testEqualShares:
         config:
           id: '945258b7-1c3d-4e53-866b-5dcc6e047b28'
-          slug: 'section2ACutDoesNotGuaranteeEqualParts'
+          slug: 'testEqualShares'
           type: 'content'
           params: {}
           locale:
@@ -176,10 +176,10 @@ config:
               en: 'A cut does not guarantee equal parts'
           content:
             items:
-              section2Text1:
+              askFairCut:
                 config:
                   id: '72f1021b-923a-4078-82c4-4381d20f01e2'
-                  slug: 'section2Text1'
+                  slug: 'askFairCut'
                   type: 'text'
                   params: {}
                   locale:
@@ -188,10 +188,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '1. **`text` (existing type):** “Both pictures show two pieces. Are both cuts fair shares?”'
-              section2Scene2:
+              compareEqualAndUnequalCuts:
                 config:
                   id: '007a9346-f2d4-4d70-8d94-8ead6f3a109b'
-                  slug: 'section2Scene2'
+                  slug: 'compareEqualAndUnequalCuts'
                   type: 'scene'
                   params: {}
                   locale:
@@ -268,10 +268,10 @@ config:
 
                     2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Inspect the midpoint vertical cut (4+4 equal unit columns) and the off-center cut (2+6 columns) in Partition Lab. Select 'Equal' or 'Not equal' separately for each.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section2Markdown3:
+              explainEqualArea:
                 config:
                   id: 'a03aa46d-71fd-4313-8cbb-a588cd7ca2f6'
-                  slug: 'section2Markdown3'
+                  slug: 'explainEqualArea'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -281,9 +281,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '3. **`markdown` (existing type):** “Two equal halves cover the same amount of the whole. The 4+4 cut makes equal parts; the 2+6 cut does not, even though both cuts make two pieces.”'
             order:
-              - 'section2Text1'
-              - 'section2Scene2'
-              - 'section2Markdown3'
+              - 'askFairCut'
+              - 'compareEqualAndUnequalCuts'
+              - 'explainEqualArea'
         production:
           purpose: 'A cut does not guarantee equal parts'
           pedagogicalIntent: 'A cut does not guarantee equal parts'
@@ -306,10 +306,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
-      section3EqualPartsCanHaveDifferentOutlines:
+      recognizeEqualAreaShapes:
         config:
           id: '1dd87c1c-59c8-4bbb-8429-23dd6039b47a'
-          slug: 'section3EqualPartsCanHaveDifferentOutlines'
+          slug: 'recognizeEqualAreaShapes'
           type: 'content'
           params: {}
           locale:
@@ -319,10 +319,10 @@ config:
               en: 'Equal parts can have different outlines'
           content:
             items:
-              section3Text1:
+              compareTriangleAndRectangleHalves:
                 config:
                   id: '09fabad9-4842-42d6-851e-dc5684a6b459'
-                  slug: 'section3Text1'
+                  slug: 'compareTriangleAndRectangleHalves'
                   type: 'text'
                   params: {}
                   locale:
@@ -331,10 +331,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '1. **`text` (existing type):** “A diagonal cut makes two triangles. They do not look like the two rectangles from the middle cut. Are they equal parts?”'
-              section3Scene2:
+              inspectDiagonalPartition:
                 config:
                   id: '20c5dd3a-73b4-4dd9-8dc4-03eb1eb5b308'
-                  slug: 'section3Scene2'
+                  slug: 'inspectDiagonalPartition'
                   type: 'scene'
                   params: {}
                   locale:
@@ -411,10 +411,10 @@ config:
 
                     2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Switch Partition Lab to a corner-to-corner diagonal. Select either triangle and show a turn-and-match overlay placing one on the other; also offer a labelled text explanation.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section3Markdown3:
+              explainEqualDifferentOutlines:
                 config:
                   id: '01307db4-83be-4ad5-805f-2cc132d17ba0'
-                  slug: 'section3Markdown3'
+                  slug: 'explainEqualDifferentOutlines'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -424,9 +424,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '3. **`markdown` (existing type):** “Yes. These two triangles cover equal area of the original rectangle. A half does not need to be a rectangle.”'
             order:
-              - 'section3Text1'
-              - 'section3Scene2'
-              - 'section3Markdown3'
+              - 'compareTriangleAndRectangleHalves'
+              - 'inspectDiagonalPartition'
+              - 'explainEqualDifferentOutlines'
         production:
           purpose: 'Equal parts can have different outlines'
           pedagogicalIntent: 'Equal parts can have different outlines'
@@ -449,10 +449,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
-      section4WhatIfTheWholeChanges:
+      compareHalvesAcrossWholes:
         config:
           id: 'c0f033fe-6bd4-44c3-8d3c-43edf61884d0'
-          slug: 'section4WhatIfTheWholeChanges'
+          slug: 'compareHalvesAcrossWholes'
           type: 'content'
           params: {}
           locale:
@@ -462,10 +462,10 @@ config:
               en: 'What if the whole changes?'
           content:
             items:
-              section4Markdown1:
+              questionTwoPaperSizes:
                 config:
                   id: 'ca1fdce8-0e80-4d5a-803e-1b7674a15ac4'
-                  slug: 'section4Markdown1'
+                  slug: 'questionTwoPaperSizes'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -474,10 +474,10 @@ config:
                 production:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '1. **`markdown` (existing type):** “One small paper rectangle and one large paper rectangle are each cut exactly through the middle. Are their halves always the same size?”'
-              section4Scene2:
+              compareHalfAreas:
                 config:
                   id: 'feacad5e-1bf2-4c6f-8aab-6cdcdff54ded'
-                  slug: 'section4Scene2'
+                  slug: 'compareHalfAreas'
                   type: 'scene'
                   params: {}
                   locale:
@@ -554,10 +554,10 @@ config:
 
                     2. **`scene` (existing type; new Scene proposed):** PartitionLab (full original source: Scene production.specification). Select between a 4-by-4 and an 8-by-4 whole with midpoint cuts; compare covered grid-square totals with no automatic hint.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section4Text3:
+              explainWholeSizeMatters:
                 config:
                   id: '09f17d89-d2a4-4b1b-8422-6b13bf77bd81'
-                  slug: 'section4Text3'
+                  slug: 'explainWholeSizeMatters'
                   type: 'text'
                   params: {}
                   locale:
@@ -567,9 +567,9 @@ config:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '3. **`text` (existing type):** “No. Equal parts belong to their own whole. Half of a larger sheet can cover more area than half of a smaller sheet.”'
             order:
-              - 'section4Markdown1'
-              - 'section4Scene2'
-              - 'section4Text3'
+              - 'questionTwoPaperSizes'
+              - 'compareHalfAreas'
+              - 'explainWholeSizeMatters'
         production:
           purpose: 'What if the whole changes?'
           pedagogicalIntent: 'What if the whole changes?'
@@ -593,10 +593,10 @@ config:
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
     order:
-      - 'section1WhichShapeIsTheWhole'
-      - 'section2ACutDoesNotGuaranteeEqualParts'
-      - 'section3EqualPartsCanHaveDifferentOutlines'
-      - 'section4WhatIfTheWholeChanges'
+      - 'identifyReferenceWhole'
+      - 'testEqualShares'
+      - 'recognizeEqualAreaShapes'
+      - 'compareHalvesAcrossWholes'
   flashcards:
     items: {}
     order: []

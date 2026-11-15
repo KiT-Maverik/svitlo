@@ -21,10 +21,10 @@ config:
       en: 'Multiplication as Equal Groups and Repeated Addition'
   section:
     items:
-      section1CountTheEqualGroups:
+      countEqualGroups:
         config:
           id: 'd8741109-fef5-4df3-854c-459dc3cd1967'
-          slug: 'section1CountTheEqualGroups'
+          slug: 'countEqualGroups'
           type: 'content'
           params: {}
           locale:
@@ -34,10 +34,10 @@ config:
               en: 'Count the Equal Groups'
           content:
             items:
-              section1Text1:
+              askTotalInGroups:
                 config:
                   id: 'dda0de0e-51e2-40b6-80a3-3507cce18bbf'
-                  slug: 'section1Text1'
+                  slug: 'askTotalInGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -46,10 +46,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  1. **text — available:** “Here are three groups. Each group has four counters. How many counters are there altogether? Can you count them without losing your place?”'
-              section1Scene2:
+              composeThreeEqualGroups:
                 config:
                   id: 'dee3127b-32f0-42bd-8fe3-c2ebc3f0922d'
-                  slug: 'section1Scene2'
+                  slug: 'composeThreeEqualGroups'
                   type: 'scene'
                   params: {}
                   locale:
@@ -134,10 +134,10 @@ config:
 
                       2. **scene — supported block type, new Scene proposed:** Equal Group Composer (full original source: Scene production.specification), observation entry: three separately labeled, visible countable groups of 4; optional stepwise count 4, 8, 12; learner highlights a group then the whole.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section1Markdown3:
+              explainRepeatedAddition:
                 config:
                   id: '52f83e6c-d71b-471b-83dd-a762b63e6e15'
-                  slug: 'section1Markdown3'
+                  slug: 'explainRepeatedAddition'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -147,9 +147,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  3. **markdown — available:** “There are **3 groups**, with **4 in each group**. Count all the counters: **4 + 4 + 4 = 12**. The numbers four repeat because every group is the same size.”'
             order:
-              - 'section1Text1'
-              - 'section1Scene2'
-              - 'section1Markdown3'
+              - 'askTotalInGroups'
+              - 'composeThreeEqualGroups'
+              - 'explainRepeatedAddition'
         production:
           purpose: 'Distinguish number of groups from size of each group and identify an equal-group situation.'
           pedagogicalIntent: 'Distinguish number of groups from size of each group and identify an equal-group situation.'
@@ -170,10 +170,10 @@ config:
             - Proposed unlocked Note(s): Note 1 “Equal groups have the same number in each group” after the first full group comparison; planned, not wired.
             - Implementation dependencies and review notes: Scene needs implementation; generic text, markdown and scene rendering exists.
 
-      section2AShortWayToSayTheSameThing:
+      connectAdditionAndMultiplication:
         config:
           id: '9d0cdfef-0665-45d6-8f58-41eb04311bd2'
-          slug: 'section2AShortWayToSayTheSameThing'
+          slug: 'connectAdditionAndMultiplication'
           type: 'content'
           params: {}
           locale:
@@ -183,10 +183,10 @@ config:
               en: 'A Short Way to Say the Same Thing'
           content:
             items:
-              section2Markdown1:
+              introduceMultiplicationSentence:
                 config:
                   id: '8747716b-8659-4692-86f3-15dc67ed6225'
-                  slug: 'section2Markdown1'
+                  slug: 'introduceMultiplicationSentence'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -195,10 +195,10 @@ config:
                 production:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  1. **markdown — available:** “We added **4 + 4 + 4** because we have three groups of four. A shorter way to name the same total is **3 × 4 = 12**. For this lesson, we read that as **3 groups of 4 make 12**.”'
-              section2Scene2:
+              mapGroupsToFactors:
                 config:
                   id: 'e0939b76-a367-4353-8dbc-9d2a3e48250f'
-                  slug: 'section2Scene2'
+                  slug: 'mapGroupsToFactors'
                   type: 'scene'
                   params: {}
                   locale:
@@ -288,10 +288,10 @@ config:
 
                       2. **scene — generic resource support; new Scene proposed:** Expression Reader (full original source: Scene production.specification), guided mapping entry: highlight each group as one +4 term, then one group-count factor 3 and one group-size factor 4; read the product 12 without hiding the objects.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section2Text3:
+              identifyFactorsAndProduct:
                 config:
                   id: '3c1a8a8d-ed89-4715-84ba-cea80529a330'
-                  slug: 'section2Text3'
+                  slug: 'identifyFactorsAndProduct'
                   type: 'text'
                   params: {}
                   locale:
@@ -301,9 +301,9 @@ config:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  3. **text — available:** “The two numbers we multiply are **factors**. The result is the **product**. In **3 × 4 = 12**, the factors are **3** and **4**; the product is **12**.”'
             order:
-              - 'section2Markdown1'
-              - 'section2Scene2'
-              - 'section2Text3'
+              - 'introduceMultiplicationSentence'
+              - 'mapGroupsToFactors'
+              - 'identifyFactorsAndProduct'
         production:
           purpose: 'Connect repeated addition of equal addends to a multiplication expression and identify factors and product.'
           pedagogicalIntent: 'Connect repeated addition of equal addends to a multiplication expression and identify factors and product.'
@@ -324,10 +324,10 @@ config:
             - Proposed unlocked Note(s): Note 2 “Factors are multiplied. The product is the result” after the model and both notations are compared; planned, not wired.
             - Implementation dependencies and review notes: Proposed Scene; avoid new Resource types for factor highlighting or invented Question grading.
 
-      section3DoAllGroupsMatch:
+      distinguishEqualGroups:
         config:
           id: 'c8c948f5-a6dd-41c6-8cc8-c88bf2dc61b8'
-          slug: 'section3DoAllGroupsMatch'
+          slug: 'distinguishEqualGroups'
           type: 'content'
           params: {}
           locale:
@@ -337,10 +337,10 @@ config:
               en: 'Do All Groups Match?'
           content:
             items:
-              section3Text1:
+              compareEqualAndUnequalSums:
                 config:
                   id: '46572708-d5db-41ed-8695-e737f51961d2'
-                  slug: 'section3Text1'
+                  slug: 'compareEqualAndUnequalSums'
                   type: 'text'
                   params: {}
                   locale:
@@ -349,10 +349,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  1. **text — available:** “Compare **4 + 4 + 4** and **4 + 3 + 4**. Can each row be counted as three groups of the same size?”'
-              section3Scene2:
+              inspectGroupSizes:
                 config:
                   id: 'e7142a4b-de69-4ea8-8af6-db67838b3f84'
-                  slug: 'section3Scene2'
+                  slug: 'inspectGroupSizes'
                   type: 'scene'
                   params: {}
                   locale:
@@ -437,10 +437,10 @@ config:
 
                       2. **scene — supported generic scene block, proposed:** Equal Group Composer (full original source: Scene production.specification), compare entry: side-by-side **within the Scene only** clear group models of 4,4,4 and 4,3,4, with an inspect-each-group action and no changing addends behind the child's back.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section3Markdown3:
+              explainEqualAddends:
                 config:
                   id: '3d39b8c1-97ff-41f4-87db-4d5d2d1de468'
-                  slug: 'section3Markdown3'
+                  slug: 'explainEqualAddends'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -450,9 +450,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  3. **markdown — available:** “In **4 + 4 + 4**, every group has four. In **4 + 3 + 4**, one group has three. We can still add those numbers to get 11, but that picture does **not** directly show three equal groups of four.”'
             order:
-              - 'section3Text1'
-              - 'section3Scene2'
-              - 'section3Markdown3'
+              - 'compareEqualAndUnequalSums'
+              - 'inspectGroupSizes'
+              - 'explainEqualAddends'
         production:
           purpose: 'Recognize that the equal-addends representation requires **every** group to have the same size.'
           pedagogicalIntent: 'Recognize that the equal-addends representation requires **every** group to have the same size.'
@@ -473,10 +473,10 @@ config:
             - Proposed unlocked Note(s): Note 3 “Repeated addition for equal groups repeats the same addend” after the contrast is explained; planned, not wired.
             - Implementation dependencies and review notes: New model variant, no assessed Question or new Skill.
 
-      section4BuildReadAndExplain:
+      representTwoGroupsOfFive:
         config:
           id: '7b05b4e4-98b3-4bc5-84c3-7ac7c77585e6'
-          slug: 'section4BuildReadAndExplain'
+          slug: 'representTwoGroupsOfFive'
           type: 'content'
           params: {}
           locale:
@@ -486,10 +486,10 @@ config:
               en: 'Build, Read and Explain'
           content:
             items:
-              section4Text1:
+              promptTwoGroupsOfFive:
                 config:
                   id: '06d31e86-58e5-4bf3-881c-d0c9562a05bc'
-                  slug: 'section4Text1'
+                  slug: 'promptTwoGroupsOfFive'
                   type: 'text'
                   params: {}
                   locale:
@@ -498,10 +498,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  1. **text — available:** “Build **two groups of five**. What addition sentence names all the counters? How would you say that using multiplication?”'
-              section4Scene2:
+              buildEquivalentExpressions:
                 config:
                   id: '5e401383-9c0a-405c-82dd-a69d60972542'
-                  slug: 'section4Scene2'
+                  slug: 'buildEquivalentExpressions'
                   type: 'scene'
                   params: {}
                   locale:
@@ -591,10 +591,10 @@ config:
 
                       2. **scene — supported block, proposed:** Expression Reader (full original source: Scene production.specification), independent entry: two groups of five; child can inspect objects, choose **5 + 5 = 10** and **2 × 5 = 10** or request step-by-step help; highlight factors and product on demand.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section4Markdown3:
+              verifyGroupModel:
                 config:
                   id: 'ea67e4ca-aed1-4b9f-87e7-5f8e535150db'
-                  slug: 'section4Markdown3'
+                  slug: 'verifyGroupModel'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -604,9 +604,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  3. **markdown — available:** “Two groups of five contain **5 + 5 = 10** counters. Using our group-count-first convention, **2 × 5 = 10**. Here **2** and **5** are factors; **10** is the product. These are two ways to describe the same total.”'
             order:
-              - 'section4Text1'
-              - 'section4Scene2'
-              - 'section4Markdown3'
+              - 'promptTwoGroupsOfFive'
+              - 'buildEquivalentExpressions'
+              - 'verifyGroupModel'
         production:
           purpose: 'Transfer to an unseen equal-group model and name the factors, product and repeated-addition expression with less guidance.'
           pedagogicalIntent: 'Transfer to an unseen equal-group model and name the factors, product and repeated-addition expression with less guidance.'
@@ -628,10 +628,10 @@ config:
             - Implementation dependencies and review notes: Practice is formative, not a graded Quiz; any assessment handoff remains separate.
 
     order:
-      - 'section1CountTheEqualGroups'
-      - 'section2AShortWayToSayTheSameThing'
-      - 'section3DoAllGroupsMatch'
-      - 'section4BuildReadAndExplain'
+      - 'countEqualGroups'
+      - 'connectAdditionAndMultiplication'
+      - 'distinguishEqualGroups'
+      - 'representTwoGroupsOfFive'
   flashcards:
     items: {}
     order: []

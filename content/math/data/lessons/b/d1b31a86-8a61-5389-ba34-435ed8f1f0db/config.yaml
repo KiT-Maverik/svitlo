@@ -21,10 +21,10 @@ config:
       en: 'Ten Tens Become a Hundred'
   section:
     items:
-      section1:
+      combineTenTensIntoHundred:
         config:
           id: 'd1b31a86-8a61-5389-ba34-000000000004'
-          slug: 'section1'
+          slug: 'combineTenTensIntoHundred'
           type: 'content'
           params: {}
           locale:
@@ -34,10 +34,10 @@ config:
               en: 'Hundred-Bundle Exchange'
           content:
             items:
-              section1Text1:
+              countTenBundles:
                 config:
                   id: 'd1b31a86-8a61-5389-ba34-000000000001'
-                  slug: 'section1Text1'
+                  slug: 'countTenBundles'
                   type: 'text'
                   params: {}
                   locale:
@@ -46,10 +46,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **`text` — existing generic renderer:** “If ten bundles each have ten beads, how many beads are there?”'
-              section1Scene1:
+              visualizeHundredExchange:
                 config:
                   id: 'd1b31a86-8a61-5389-ba34-000000000002'
-                  slug: 'section1Scene1'
+                  slug: 'visualizeHundredExchange'
                   type: 'scene'
                   params: {}
                   locale:
@@ -136,10 +136,10 @@ config:
 
                     This is a **proposed** Scene. Generic `scene` Resource rendering exists; Hundred-Bundle Exchange does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
                   productionNotes: "This placement in Hundred-Bundle Exchange refers to hundredBundleExchange.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section1Markdown1:
+              explainTenTimesTen:
                 config:
                   id: 'd1b31a86-8a61-5389-ba34-000000000003'
-                  slug: 'section1Markdown1'
+                  slug: 'explainTenTimesTen'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -149,9 +149,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **`markdown` — existing generic renderer:** “There are ten bundles and one hundred beads. 10+10+10+10+10+10+10+10+10+10=100.”'
             order:
-              - 'section1Text1'
-              - 'section1Scene1'
-              - 'section1Markdown1'
+              - 'countTenBundles'
+              - 'visualizeHundredExchange'
+              - 'explainTenTimesTen'
         production:
           purpose: 'Hundred-Bundle Exchange'
           pedagogicalIntent: |-
@@ -170,10 +170,10 @@ config:
             - **Accessibility and RTL:** The object hierarchy is a fully accessible list of ten bundles each naming ten members, also available after conversion under the hundred group. Exchange is a native button rather than precision dragging. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
             - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Ten tens make one hundred, and changing the bundles does not change the number of objects.” is planned only, with no event or persistence.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section2:
+      explainRegroupingConservation:
         config:
           id: 'd1b31a86-8a61-5389-ba34-000000000008'
-          slug: 'section2'
+          slug: 'explainRegroupingConservation'
           type: 'content'
           params: {}
           locale:
@@ -183,10 +183,10 @@ config:
               en: 'Where Did the Beads Go?'
           content:
             items:
-              section2Text1:
+              questionMissingBeads:
                 config:
                   id: 'd1b31a86-8a61-5389-ba34-000000000005'
-                  slug: 'section2Text1'
+                  slug: 'questionMissingBeads'
                   type: 'text'
                   params: {}
                   locale:
@@ -195,10 +195,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **`text` (existing renderer):** “Ten groups each hold ten beads. If they become one hundred-block, did beads disappear?”'
-              section2Markdown1:
+              explainHundredPreservesValue:
                 config:
                   id: 'd1b31a86-8a61-5389-ba34-000000000006'
-                  slug: 'section2Markdown1'
+                  slug: 'explainHundredPreservesValue'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -207,10 +207,10 @@ config:
                 production:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  2. **`markdown` (existing renderer):** “No. The hundred-block contains all the same hundred beads. Only their grouping changed.”'
-              section2Markdown2:
+              trackOnesAcrossHundred:
                 config:
                   id: 'd1b31a86-8a61-5389-ba34-000000000007'
-                  slug: 'section2Markdown2'
+                  slug: 'trackOnesAcrossHundred'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -220,9 +220,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **`markdown` (existing renderer):** “At 95, adding a group of ten creates 105: the five loose ones stay five, while ten full tens become one hundred.”'
             order:
-              - 'section2Text1'
-              - 'section2Markdown1'
-              - 'section2Markdown2'
+              - 'questionMissingBeads'
+              - 'explainHundredPreservesValue'
+              - 'trackOnesAcrossHundred'
         production:
           purpose: 'Where Did the Beads Go?'
           pedagogicalIntent: |-
@@ -236,10 +236,10 @@ config:
             - **Misconception feedback:** Ten ten-bundles are only ten beads; a hundred-block is only one bead; 95+10=96; 95+10=915; ones digit changes during +10; exchanging a hundred-block loses members. Use the detailed preceding Scene model if the child remains unsure.
             - **Navigation and access:** The explanation remains legible to a screen reader and does not require a visual page transition, sound or animation.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section3:
+      crossHundredWithTens:
         config:
           id: 'd1b31a86-8a61-5389-ba34-00000000000c'
-          slug: 'section3'
+          slug: 'crossHundredWithTens'
           type: 'content'
           params: {}
           locale:
@@ -249,10 +249,10 @@ config:
               en: 'Ten-Step Crossing'
           content:
             items:
-              section3Text1:
+              countForwardByTens:
                 config:
                   id: 'd1b31a86-8a61-5389-ba34-000000000009'
-                  slug: 'section3Text1'
+                  slug: 'countForwardByTens'
                   type: 'text'
                   params: {}
                   locale:
@@ -261,10 +261,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **`text` — existing generic renderer:** “Start at 75; add a group of ten three times. What happens to the five loose ones?”'
-              section3Scene1:
+              exploreTenStepCrossing:
                 config:
                   id: 'd1b31a86-8a61-5389-ba34-00000000000a'
-                  slug: 'section3Scene1'
+                  slug: 'exploreTenStepCrossing'
                   type: 'scene'
                   params: {}
                   locale:
@@ -351,10 +351,10 @@ config:
 
                     This is a **proposed** Scene. Generic `scene` Resource rendering exists; Ten-Step Crossing does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
                   productionNotes: "This placement in Ten-Step Crossing refers to tenStepCrossing.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section3Markdown1:
+              explainOnesStayFixed:
                 config:
                   id: 'd1b31a86-8a61-5389-ba34-00000000000b'
-                  slug: 'section3Markdown1'
+                  slug: 'explainOnesStayFixed'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -364,9 +364,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **`markdown` — existing generic renderer:** “75,85,95,105, with five ones unchanged all along. 75+10=85, 85+10=95, 95+10=105; ones remainder stays 5.”'
             order:
-              - 'section3Text1'
-              - 'section3Scene1'
-              - 'section3Markdown1'
+              - 'countForwardByTens'
+              - 'exploreTenStepCrossing'
+              - 'explainOnesStayFixed'
         production:
           purpose: 'Ten-Step Crossing'
           pedagogicalIntent: |-
@@ -386,9 +386,9 @@ config:
             - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Every +10 step adds one full ten; any loose ones stay the same.” is planned only, with no event or persistence.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
+      - 'combineTenTensIntoHundred'
+      - 'explainRegroupingConservation'
+      - 'crossHundredWithTens'
   flashcards:
     items: {}
     order: []

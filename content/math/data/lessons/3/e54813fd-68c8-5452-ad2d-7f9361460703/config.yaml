@@ -15,10 +15,10 @@ config:
       en: 'Digits Are Number Symbols'
   section:
     items:
-      section1:
+      matchThreeObjectsToDigit:
         config:
           id: 'b849185e-cdfb-5af1-82f7-985ecaaa821b'
-          slug: 'section1'
+          slug: 'matchThreeObjectsToDigit'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'One mark for three'
           content:
             items:
-              text1:
+              chooseDigitForThree:
                 config:
                   id: 'b64bc6ef-f5b3-53c0-b786-46efcf8a617e'
-                  slug: 'text1'
+                  slug: 'chooseDigitForThree'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'Three apples are here. Which one symbol can say how many?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              exploreNumeralSymbol:
                 config:
                   id: 'a74e2c90-17ef-5241-9665-ac906ea9519f'
-                  slug: 'scene1'
+                  slug: 'exploreNumeralSymbol'
                   type: 'scene'
                   params: {}
                   locale:
@@ -125,10 +125,10 @@ config:
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   purpose: 'One mark for three: independent placement'
                   productionNotes: 'Original digitsTellNumbersLab.scene-spec.md variant belongs to One mark for three; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainDigitMeaning:
                 config:
                   id: '03bcd2fd-d72e-5dba-be1f-52fdb80010fc'
-                  slug: 'markdown1'
+                  slug: 'explainDigitMeaning'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -136,7 +136,7 @@ config:
                       en: '** The digit 3 represents three apples, though it is one written symbol. Example: Three apples → 3.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['chooseDigitForThree', 'exploreNumeralSymbol', 'explainDigitMeaning']
         production:
           purpose: 'One mark for three'
           productionNotes: |-
@@ -151,10 +151,10 @@ config:
             **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
 
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
-      section2:
+      representEmptySetWithZero:
         config:
           id: 'b74916cb-cafb-5638-81f7-96cbcbaa83ae'
-          slug: 'section2'
+          slug: 'representEmptySetWithZero'
           type: 'content'
           params: {}
           locale:
@@ -164,10 +164,10 @@ config:
               en: 'The empty basket'
           content:
             items:
-              text1:
+              representEmptyBasket:
                 config:
                   id: '132776ee-9b2f-522d-9461-f6eeb969efff'
-                  slug: 'text1'
+                  slug: 'representEmptyBasket'
                   type: 'text'
                   params: {}
                   locale:
@@ -175,10 +175,10 @@ config:
                       en: "Which digit represents the empty basket's contents?"
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              exploreZeroNumeral:
                 config:
                   id: 'f4358eef-1ba3-5d36-a34d-0eeff1bf62c0'
-                  slug: 'scene1'
+                  slug: 'exploreZeroNumeral'
                   type: 'scene'
                   params: {}
                   locale:
@@ -261,10 +261,10 @@ config:
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   purpose: 'The empty basket: independent placement'
                   productionNotes: 'Original digitsTellNumbersLab.scene-spec.md variant belongs to The empty basket; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainZeroQuantity:
                 config:
                   id: 'f8ff0ecc-762f-5477-b361-8ecc580744ed'
-                  slug: 'markdown1'
+                  slug: 'explainZeroQuantity'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -272,7 +272,7 @@ config:
                       en: '** 0 means no balls; 1 one ball; 6 six balls. Example: Empty basket → 0 balls.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['representEmptyBasket', 'exploreZeroNumeral', 'explainZeroQuantity']
         production:
           purpose: 'The empty basket'
           productionNotes: |-
@@ -287,10 +287,10 @@ config:
             **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
 
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
-      section3:
+      matchDigitsAndDots:
         config:
           id: 'b6491538-cbfb-57cb-80f7-9538ccaa8541'
-          slug: 'section3'
+          slug: 'matchDigitsAndDots'
           type: 'content'
           params: {}
           locale:
@@ -300,10 +300,10 @@ config:
               en: 'Digit gallery'
           content:
             items:
-              text1:
+              matchSymbolsToSets:
                 config:
                   id: '6615e92d-4841-5fee-a750-692dd8ee6310'
-                  slug: 'text1'
+                  slug: 'matchSymbolsToSets'
                   type: 'text'
                   params: {}
                   locale:
@@ -311,10 +311,10 @@ config:
                       en: 'Can you match each symbol to its number of dots?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              exploreDigitGallery:
                 config:
                   id: '83c0e236-8c18-59ef-b2d8-6236c17fefb1'
-                  slug: 'scene1'
+                  slug: 'exploreDigitGallery'
                   type: 'scene'
                   params: {}
                   locale:
@@ -397,10 +397,10 @@ config:
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   purpose: 'Digit gallery: independent placement'
                   productionNotes: 'Original digitsTellNumbersLab.scene-spec.md variant belongs to Digit gallery; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainDigitsZeroToNine:
                 config:
                   id: 'bf2e8b77-afff-57cc-b991-0b771c4bd9aa'
-                  slug: 'markdown1'
+                  slug: 'explainDigitsZeroToNine'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -408,7 +408,7 @@ config:
                       en: '** Each digit 0–9 can label its matching set of dots. Example: 6 dots → 6; 9 dots → 9.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['matchSymbolsToSets', 'exploreDigitGallery', 'explainDigitsZeroToNine']
         production:
           purpose: 'Digit gallery'
           productionNotes: |-
@@ -423,10 +423,10 @@ config:
             **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
 
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
-      section4:
+      useDigitAsQuantityLabel:
         config:
           id: 'bd49203d-d0fb-5faa-87f7-a03dcdaa86d4'
-          slug: 'section4'
+          slug: 'useDigitAsQuantityLabel'
           type: 'content'
           params: {}
           locale:
@@ -436,10 +436,10 @@ config:
               en: 'The shelf label'
           content:
             items:
-              text1:
+              interpretShelfLabelSeven:
                 config:
                   id: '31a1525c-8027-5e1b-b2db-d25c76b89f99'
-                  slug: 'text1'
+                  slug: 'interpretShelfLabelSeven'
                   type: 'text'
                   params: {}
                   locale:
@@ -447,10 +447,10 @@ config:
                       en: 'A shelf is labeled 7. How many blocks should you place?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              buildSevenBlockSet:
                 config:
                   id: '4fc162e5-4da9-5d04-bed8-e2e55b793bda'
-                  slug: 'scene1'
+                  slug: 'buildSevenBlockSet'
                   type: 'scene'
                   params: {}
                   locale:
@@ -533,10 +533,10 @@ config:
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   purpose: 'The shelf label: independent placement'
                   productionNotes: 'Original digitsTellNumbersLab.scene-spec.md variant belongs to The shelf label; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainQuantityLabel:
                 config:
                   id: '96af3466-752d-50c9-9111-b466053adc03'
-                  slug: 'markdown1'
+                  slug: 'explainQuantityLabel'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -544,7 +544,7 @@ config:
                       en: '** A single 7 labels a complete seven-block collection. Example: Seven blocks match digit 7.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['interpretShelfLabelSeven', 'buildSevenBlockSet', 'explainQuantityLabel']
         production:
           purpose: 'The shelf label'
           productionNotes: |-
@@ -559,7 +559,7 @@ config:
             **Transition:** Independent transfer: explain the total or symbol in this unfamiliar context.
 
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['matchThreeObjectsToDigit', 'representEmptySetWithZero', 'matchDigitsAndDots', 'useDigitAsQuantityLabel']
   flashcards:
     items: {}
     order: []

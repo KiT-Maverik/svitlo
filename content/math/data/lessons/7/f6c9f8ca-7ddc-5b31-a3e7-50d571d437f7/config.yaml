@@ -16,10 +16,10 @@ config:
       en: 'Show the Story Before You Solve'
   section:
     items:
-      section1:
+      representJoiningStory:
         config:
           id: '9d740134-55a4-4e53-b2c6-d89e08fec425'
-          slug: 'section1'
+          slug: 'representJoiningStory'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'A situation can be shown'
           content:
             items:
-              text1:
+              planAppleAdditionModel:
                 config:
                   id: 'c92451f9-9e67-4056-b3fa-4f2f4f17cbc4'
-                  slug: 'text1'
+                  slug: 'planAppleAdditionModel'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'A situation can be shown; authored text block 1'
                   specification: '1. **text**: “Seven apples sit on a plate. Five more are added. How could we show the story without doing the calculation first?”'
-              scene2:
+              assembleJoiningStory:
                 config:
                   id: 'a6ea7027-6dc1-4e9a-990c-d1894bed3e24'
-                  slug: 'scene2'
+                  slug: 'assembleJoiningStory'
                   type: 'scene'
                   params: {}
                   locale:
@@ -98,10 +98,10 @@ config:
 
                     2. **scene (proposed)**: One-Step Model Builder (Scene specification embedded in this config.yaml), add-to mode. A learner groups seven and five unit counters, labels the unknown total, and may inspect a part-whole bar with equal-unit lengths.
                   productionNotes: 'Proposed unimplemented Scene, sourced from oneStepModelBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              identifyKnownParts:
                 config:
                   id: 'c7244ed3-9c67-4d30-b5fa-52555117ceea'
-                  slug: 'text3'
+                  slug: 'identifyKnownParts'
                   type: 'text'
                   params: {}
                   locale:
@@ -110,7 +110,7 @@ config:
                 production:
                   purpose: 'A situation can be shown; authored text block 3'
                   specification: '3. **text**: “We know seven to start and five arrive. We need the total. Our model shows both parts.” If the child mistakenly labels five as total: “Five are the new apples, not all the apples.”'
-            order: ['text1', 'scene2', 'text3']
+            order: ['planAppleAdditionModel', 'assembleJoiningStory', 'identifyKnownParts']
         production:
           purpose: 'A situation can be shown'
           pedagogicalIntent: 'Original Section 1 — A situation can be shown; authoring draft only'
@@ -118,10 +118,10 @@ config:
             1. **text**: “Seven apples sit on a plate. Five more are added. How could we show the story without doing the calculation first?”
             2. **scene (proposed)**: One-Step Model Builder (Scene specification embedded in this config.yaml), add-to mode. A learner groups seven and five unit counters, labels the unknown total, and may inspect a part-whole bar with equal-unit lengths.
             3. **text**: “We know seven to start and five arrive. We need the total. Our model shows both parts.” If the child mistakenly labels five as total: “Five are the new apples, not all the apples.”
-      section2:
+      matchAdditionModelToEquation:
         config:
           id: 'a07405ed-56a4-4fe6-b1c6-d70b05febf6c'
-          slug: 'section2'
+          slug: 'matchAdditionModelToEquation'
           type: 'content'
           params: {}
           locale:
@@ -131,10 +131,10 @@ config:
               en: 'Which expression matches?'
           content:
             items:
-              markdown1:
+              matchSevenPlusFive:
                 config:
                   id: 'db4072b6-7418-4115-917d-bc0c145db96b'
-                  slug: 'markdown1'
+                  slug: 'matchSevenPlusFive'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -143,10 +143,10 @@ config:
                 production:
                   purpose: 'Which expression matches?; authored markdown block 1'
                   specification: '1. **markdown**: “The two parts make the whole. A model with seven and five joining matches 7 + 5 = ?. The question mark is the unknown total.”'
-              scene2:
+              connectModelToExpression:
                 config:
                   id: '89c0e4fc-de08-4de1-b500-9bc294a813ef'
-                  slug: 'scene2'
+                  slug: 'connectModelToExpression'
                   type: 'scene'
                   params: {}
                   locale:
@@ -200,10 +200,10 @@ config:
 
                     2. **scene (proposed)**: Offer a visual model for 7 + 5 = ? and an incorrect model of 7 − 5 = ?. Children match the addition relationship, with exact feedback “No apples are removed in this story.”
                   productionNotes: 'Proposed unimplemented Scene, sourced from oneStepModelBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              explainTwelveApples:
                 config:
                   id: '62c160b2-49f7-487d-bd8f-760856c0dd2b'
-                  slug: 'text3'
+                  slug: 'explainTwelveApples'
                   type: 'text'
                   params: {}
                   locale:
@@ -212,7 +212,7 @@ config:
                 production:
                   purpose: 'Which expression matches?; authored text block 3'
                   specification: '3. **text**: “Counting gives twelve apples. The unit is apples, not just the number twelve.”'
-            order: ['markdown1', 'scene2', 'text3']
+            order: ['matchSevenPlusFive', 'connectModelToExpression', 'explainTwelveApples']
         production:
           purpose: 'Which expression matches?'
           pedagogicalIntent: 'Original Section 2 — Which expression matches?; authoring draft only'
@@ -220,10 +220,10 @@ config:
             1. **markdown**: “The two parts make the whole. A model with seven and five joining matches 7 + 5 = ?. The question mark is the unknown total.”
             2. **scene (proposed)**: Offer a visual model for 7 + 5 = ? and an incorrect model of 7 − 5 = ?. Children match the addition relationship, with exact feedback “No apples are removed in this story.”
             3. **text**: “Counting gives twelve apples. The unit is apples, not just the number twelve.”
-      section3:
+      representTakingAway:
         config:
           id: '9f74045a-57a4-4179-b0c6-d57806fec0ff'
-          slug: 'section3'
+          slug: 'representTakingAway'
           type: 'content'
           params: {}
           locale:
@@ -233,10 +233,10 @@ config:
               en: 'A different story, a different model'
           content:
             items:
-              text1:
+              modelFiveEatenApples:
                 config:
                   id: '6be544cb-31ee-4a28-8208-746d901becc2'
-                  slug: 'text1'
+                  slug: 'modelFiveEatenApples'
                   type: 'text'
                   params: {}
                   locale:
@@ -245,10 +245,10 @@ config:
                 production:
                   purpose: 'A different story, a different model; authored text block 1'
                   specification: '1. **text**: “There are twelve apples. Five are eaten. How many remain?” Ask the learner to predict whether the first model still fits.'
-              scene2:
+              assembleTakeAwayStory:
                 config:
                   id: 'a5d8e58d-268b-4d00-990d-1ee38841771e'
-                  slug: 'scene2'
+                  slug: 'assembleTakeAwayStory'
                   type: 'scene'
                   params: {}
                   locale:
@@ -302,10 +302,10 @@ config:
 
                     2. **scene (proposed)**: Builder remove-from mode. Twelve counters start as known whole; five are marked removed, and the remaining quantity is the unknown: 12 − 5 = ?.
                   productionNotes: 'Proposed unimplemented Scene, sourced from oneStepModelBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              explainRemainingSeven:
                 config:
                   id: '6de547f1-33ee-4d4e-8008-71478e1be99c'
-                  slug: 'text3'
+                  slug: 'explainRemainingSeven'
                   type: 'text'
                   params: {}
                   locale:
@@ -314,7 +314,7 @@ config:
                 production:
                   purpose: 'A different story, a different model; authored text block 3'
                   specification: '3. **text**: “The model must keep track of what the twelve and the five mean. The seven left are the answer.” If the learner chooses 12 + 5: “The story says five are taken away, not added.”'
-            order: ['text1', 'scene2', 'text3']
+            order: ['modelFiveEatenApples', 'assembleTakeAwayStory', 'explainRemainingSeven']
         production:
           purpose: 'A different story, a different model'
           pedagogicalIntent: 'Original Section 3 — A different story, a different model; authoring draft only'
@@ -322,10 +322,10 @@ config:
             1. **text**: “There are twelve apples. Five are eaten. How many remain?” Ask the learner to predict whether the first model still fits.
             2. **scene (proposed)**: Builder remove-from mode. Twelve counters start as known whole; five are marked removed, and the remaining quantity is the unknown: 12 − 5 = ?.
             3. **text**: “The model must keep track of what the twelve and the five mean. The seven left are the answer.” If the learner chooses 12 + 5: “The story says five are taken away, not added.”
-      section4:
+      buildIndependentStoryModel:
         config:
           id: '9a73fc7b-58a4-430c-b7c6-e07d03febc46'
-          slug: 'section4'
+          slug: 'buildIndependentStoryModel'
           type: 'content'
           params: {}
           locale:
@@ -335,10 +335,10 @@ config:
               en: 'Transfer without a hint'
           content:
             items:
-              text1:
+              representBookMovement:
                 config:
                   id: '88aa285e-1f30-44f1-b1ca-439c800b0137'
-                  slug: 'text1'
+                  slug: 'representBookMovement'
                   type: 'text'
                   params: {}
                   locale:
@@ -347,10 +347,10 @@ config:
                 production:
                   purpose: 'Transfer without a hint; authored text block 1'
                   specification: '1. **text**: “Nine books are on a desk. Four are moved into a bag. Draw or assemble a model. What is known and unknown?”'
-              scene2:
+              buildNewStoryModel:
                 config:
                   id: 'fcafca92-f3a1-458f-a544-a66ca97a1141'
-                  slug: 'scene2'
+                  slug: 'buildNewStoryModel'
                   type: 'scene'
                   params: {}
                   locale:
@@ -404,10 +404,10 @@ config:
 
                     2. **scene (proposed)**: Fresh builder state with labeled counter alternative. Correct initial model: nine as whole, four removed, five remaining unknown; equation 9 − 4 = ?; answer five books.
                   productionNotes: 'Proposed unimplemented Scene, sourced from oneStepModelBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              explainFiveBooksRemain:
                 config:
                   id: '86aa2538-1d30-41cb-b3ca-46c2820b045d'
-                  slug: 'text3'
+                  slug: 'explainFiveBooksRemain'
                   type: 'text'
                   params: {}
                   locale:
@@ -416,10 +416,10 @@ config:
                 production:
                   purpose: 'Transfer without a hint; authored text block 3'
                   specification: '3. **text**: Reveal after reflection: “A good model explains the change. We knew nine books and four moved away. Five stayed on the desk.” Incorrect arrangement feedback: “Check whether the whole existed before the change.”'
-              markdown4:
+              recallModelBeforeCalculation:
                 config:
                   id: 'c6742b23-e2b6-45c4-8527-5d853bc70116'
-                  slug: 'markdown4'
+                  slug: 'recallModelBeforeCalculation'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -428,7 +428,8 @@ config:
                 production:
                   purpose: 'Transfer without a hint; authored markdown block 4'
                   specification: '4. **markdown**: “Remember: **show the relationship before choosing the operation**.”'
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order:
+              ['representBookMovement', 'buildNewStoryModel', 'explainFiveBooksRemain', 'recallModelBeforeCalculation']
         production:
           purpose: 'Transfer without a hint'
           pedagogicalIntent: 'Original Section 4 — Transfer without a hint; authoring draft only'
@@ -437,7 +438,8 @@ config:
             2. **scene (proposed)**: Fresh builder state with labeled counter alternative. Correct initial model: nine as whole, four removed, five remaining unknown; equation 9 − 4 = ?; answer five books.
             3. **text**: Reveal after reflection: “A good model explains the change. We knew nine books and four moved away. Five stayed on the desk.” Incorrect arrangement feedback: “Check whether the whole existed before the change.”
             4. **markdown**: “Remember: **show the relationship before choosing the operation**.”
-    order: ['section1', 'section2', 'section3', 'section4']
+    order:
+      ['representJoiningStory', 'matchAdditionModelToEquation', 'representTakingAway', 'buildIndependentStoryModel']
   flashcards:
     items: {}
     order: []

@@ -18,10 +18,10 @@ config:
     order: []
   section:
     items:
-      section1StartMarkerLine:
+      countFromStartMarker:
         config:
           id: '52f173ec-4848-42c3-89fc-686a3c290f01'
-          slug: 'section1StartMarkerLine'
+          slug: 'countFromStartMarker'
           type: 'content'
           params: {}
           locale:
@@ -31,10 +31,10 @@ config:
               en: 'Start Marker Line'
           content:
             items:
-              text1:
+              askThirdFromStart:
                 config:
                   id: '4b79f0d1-61ef-4dc6-a045-afdb55bd1fd0'
-                  slug: 'text1'
+                  slug: 'askThirdFromStart'
                   type: 'text'
                   params: {}
                   locale:
@@ -122,16 +122,16 @@ config:
                     The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
                   purpose: 'Proposed interactive Scene for Start Marker Line'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainThirdPosition:
                 config:
                   id: '94b7537e-4d25-41ed-88de-0ad058c39ed7'
-                  slug: 'markdown2'
+                  slug: 'explainThirdPosition'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'C is third; six bags total.'
-            order: ['text1', 'startMarkerLine', 'markdown2']
+            order: ['askThirdFromStart', 'startMarkerLine', 'explainThirdPosition']
         production:
           purpose: 'Start Marker Line'
           pedagogicalIntent: |
@@ -148,10 +148,10 @@ config:
             - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section2ThinkBeforeRevealingTheReason:
+      reverseCountingDirection:
         config:
           id: '813bacda-11d6-4175-a332-117c1aa059bf'
-          slug: 'section2ThinkBeforeRevealingTheReason'
+          slug: 'reverseCountingDirection'
           type: 'content'
           params: {}
           locale:
@@ -161,34 +161,34 @@ config:
               en: 'Think before revealing the reason'
           content:
             items:
-              markdown1:
+              explainTwoOrdinalPositions:
                 config:
                   id: 'fb465f59-f093-45ae-b0ee-395bee9cdb10'
-                  slug: 'markdown1'
+                  slug: 'explainTwoOrdinalPositions'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Yes to the first: C is third from A but fourth from F. No to the second: exchanging objects preserves the count.'
-              text1:
+              askIfPositionChanges:
                 config:
                   id: '9d2ba94b-df4a-4b14-a1ea-81e13f974f82'
-                  slug: 'text1'
+                  slug: 'askIfPositionChanges'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Can C be third and fourth without moving the bags?'
-              text2:
+              challengeCountAfterSwap:
                 config:
                   id: '9e2baade-e24a-4fcd-9eea-7d283e974def'
-                  slug: 'text2'
+                  slug: 'challengeCountAfterSwap'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Does swapping two objects create another object?'
-            order: ['text1', 'markdown1', 'text2']
+            order: ['askIfPositionChanges', 'explainTwoOrdinalPositions', 'challengeCountAfterSwap']
         production:
           purpose: 'Think before revealing the reason'
           pedagogicalIntent: |
@@ -204,10 +204,10 @@ config:
             - **Transition:** Apply the same principle to the new Scene, without relying on the original display.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section3LineUpSwap:
+      trackPositionAfterSwap:
         config:
           id: '780a0f22-700e-4467-a956-0844f58e5579'
-          slug: 'section3LineUpSwap'
+          slug: 'trackPositionAfterSwap'
           type: 'content'
           params: {}
           locale:
@@ -217,10 +217,10 @@ config:
               en: 'Line-Up Swap'
           content:
             items:
-              text1:
+              askPositionAfterSwap:
                 config:
                   id: '78a1d073-a6b2-4f8a-b5db-ff0906e71e28'
-                  slug: 'text1'
+                  slug: 'askPositionAfterSwap'
                   type: 'text'
                   params: {}
                   locale:
@@ -308,16 +308,16 @@ config:
                     The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
                   purpose: 'Proposed interactive Scene for Line-Up Swap'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainPositionNotCount:
                 config:
                   id: '76edc618-ed01-4a01-93b8-ff260b211d3f'
-                  slug: 'markdown2'
+                  slug: 'explainPositionNotCount'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Star is fifth; five items remain.'
-            order: ['text1', 'lineUpSwap', 'markdown2']
+            order: ['askPositionAfterSwap', 'lineUpSwap', 'explainPositionNotCount']
         production:
           purpose: 'Line-Up Swap'
           pedagogicalIntent: |
@@ -334,7 +334,7 @@ config:
             - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-    order: ['section1StartMarkerLine', 'section2ThinkBeforeRevealingTheReason', 'section3LineUpSwap']
+    order: ['countFromStartMarker', 'reverseCountingDirection', 'trackPositionAfterSwap']
 production:
   documentLanguage: 'en'
   methodology: |

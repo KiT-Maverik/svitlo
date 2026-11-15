@@ -20,10 +20,10 @@ config:
       en: 'Where Is It? Relative Position'
   section:
     items:
-      section1:
+      identifyObserverPerspective:
         config:
           id: '5623d91b-ad3a-5d38-8423-000000000004'
-          slug: 'section1'
+          slug: 'identifyObserverPerspective'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Whose Left?'
           content:
             items:
-              section1Text1:
+              askWhoseLeft:
                 config:
                   id: '5623d91b-ad3a-5d38-8423-000000000001'
-                  slug: 'section1Text1'
+                  slug: 'askWhoseLeft'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: "1. **text (existing):** A book is in the middle; a cup stands on one side. First ask 'Where is the cup?' before naming the observer. Invite the child to predict whether two opposite observers will say the same thing."
-              section1Scene1:
+              exploreOppositeViewpoints:
                 config:
                   id: '5623d91b-ad3a-5d38-8423-000000000002'
-                  slug: 'section1Scene1'
+                  slug: 'exploreOppositeViewpoints'
                   type: 'scene'
                   params: {}
                   locale:
@@ -104,10 +104,10 @@ config:
 
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   productionNotes: "This placement in Whose Left? refers to viewpointPositionLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section1Markdown1:
+              explainLeftRightReversal:
                 config:
                   id: '5623d91b-ad3a-5d38-8423-000000000003'
-                  slug: 'section1Markdown1'
+                  slug: 'explainLeftRightReversal'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -117,9 +117,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '3. **markdown (existing):** Reveal: from the observer facing the table, the cup is on the left. From the opposite observer, the same cup is on the right. Nothing moved; the viewer changed.'
             order:
-              - 'section1Text1'
-              - 'section1Scene1'
-              - 'section1Markdown1'
+              - 'askWhoseLeft'
+              - 'exploreOppositeViewpoints'
+              - 'explainLeftRightReversal'
         production:
           purpose: 'Whose Left?'
           pedagogicalIntent: |-
@@ -133,10 +133,10 @@ config:
 
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section2:
+      switchObserverPosition:
         config:
           id: '5623d91b-ad3a-5d38-8423-000000000008'
-          slug: 'section2'
+          slug: 'switchObserverPosition'
           type: 'content'
           params: {}
           locale:
@@ -146,10 +146,10 @@ config:
               en: 'Move the Viewer, Not the Objects'
           content:
             items:
-              section2Text1:
+              predictViewpointChange:
                 config:
                   id: '5623d91b-ad3a-5d38-8423-000000000005'
-                  slug: 'section2Text1'
+                  slug: 'predictViewpointChange'
                   type: 'text'
                   params: {}
                   locale:
@@ -158,10 +158,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: "1. **text (existing):** Use the Viewpoint Position Lab to switch between two marked viewing positions without moving the cup or book. Ask before switching: 'Will the answer stay the same?'"
-              section2Scene1:
+              switchBetweenObservers:
                 config:
                   id: '5623d91b-ad3a-5d38-8423-000000000006'
-                  slug: 'section2Scene1'
+                  slug: 'switchBetweenObservers'
                   type: 'scene'
                   params: {}
                   locale:
@@ -217,10 +217,10 @@ config:
 
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   productionNotes: "This placement in Move the Viewer, Not the Objects refers to viewpointPositionLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section2Markdown1:
+              compareRelativeDescriptions:
                 config:
                   id: '5623d91b-ad3a-5d38-8423-000000000007'
-                  slug: 'section2Markdown1'
+                  slug: 'compareRelativeDescriptions'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -230,9 +230,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '3. **markdown (existing):** At each switch, expose an object-centric verbal description and a separate viewer-oriented description. Ask the learner to compare them.'
             order:
-              - 'section2Text1'
-              - 'section2Scene1'
-              - 'section2Markdown1'
+              - 'predictViewpointChange'
+              - 'switchBetweenObservers'
+              - 'compareRelativeDescriptions'
         production:
           purpose: 'Move the Viewer, Not the Objects'
           pedagogicalIntent: |-
@@ -246,10 +246,10 @@ config:
 
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section3:
+      describePositionsPrecisely:
         config:
           id: '5623d91b-ad3a-5d38-8423-00000000000c'
-          slug: 'section3'
+          slug: 'describePositionsPrecisely'
           type: 'content'
           params: {}
           locale:
@@ -259,10 +259,10 @@ config:
               en: 'Give a Precise Direction'
           content:
             items:
-              section3Text1:
+              contrastDirectionInstructions:
                 config:
                   id: '5623d91b-ad3a-5d38-8423-000000000009'
-                  slug: 'section3Text1'
+                  slug: 'contrastDirectionInstructions'
                   type: 'text'
                   params: {}
                   locale:
@@ -271,10 +271,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: "1. **text (existing):** Present a new scene: ball below a shelf, plant beside a chair. Ask learners to make a precise description for another person. Offer two versions: 'Move it left' vs 'Place it to the left of the chair, as seen from the doorway.'"
-              section3Scene1:
+              practicePreciseDirections:
                 config:
                   id: '5623d91b-ad3a-5d38-8423-00000000000a'
-                  slug: 'section3Scene1'
+                  slug: 'practicePreciseDirections'
                   type: 'scene'
                   params: {}
                   locale:
@@ -330,10 +330,10 @@ config:
 
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   productionNotes: "This placement in Give a Precise Direction refers to viewpointPositionLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section3Markdown1:
+              explainReferenceAndViewer:
                 config:
                   id: '5623d91b-ad3a-5d38-8423-00000000000b'
-                  slug: 'section3Markdown1'
+                  slug: 'explainReferenceAndViewer'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -343,9 +343,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '3. **markdown (existing):** The second instruction carries a reference object and viewer. Transfer to locating a pencil beside a notebook in a real room.'
             order:
-              - 'section3Text1'
-              - 'section3Scene1'
-              - 'section3Markdown1'
+              - 'contrastDirectionInstructions'
+              - 'practicePreciseDirections'
+              - 'explainReferenceAndViewer'
         production:
           purpose: 'Give a Precise Direction'
           pedagogicalIntent: |-
@@ -360,9 +360,9 @@ config:
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
+      - 'identifyObserverPerspective'
+      - 'switchObserverPosition'
+      - 'describePositionsPrecisely'
   flashcards:
     items: {}
     order: []

@@ -20,10 +20,10 @@ config:
       en: 'Count What Belongs Together'
   section:
     items:
-      section1WhatAreWeCounting:
+      identifyShapeCategories:
         config:
           id: '59694754-b80f-42fe-8dfc-fb2d5c9a5e87'
-          slug: 'section1WhatAreWeCounting'
+          slug: 'identifyShapeCategories'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'What are we counting?'
           content:
             items:
-              section1Text1:
+              introduceEightShapes:
                 config:
                   id: '6ff8a54b-844c-45e1-83ff-8dc0384b8d6a'
-                  slug: 'section1Text1'
+                  slug: 'introduceEightShapes'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '1. **`text` (existing type):** “We have eight shapes. How many are circles, triangles and squares? First decide which group each shape belongs to.”'
-              section1Markdown2:
+              explainUniqueClassification:
                 config:
                   id: '51c35f38-397a-4979-8181-de16e9384857'
-                  slug: 'section1Markdown2'
+                  slug: 'explainUniqueClassification'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -57,10 +57,10 @@ config:
                 production:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '2. **`markdown` (existing type):** “Every object goes into exactly one group, according to its shape. We will count how many times each shape appears.”'
-              section1Scene3:
+              sortShapesByKind:
                 config:
                   id: 'bce4c06e-7562-4b24-8f50-53ce96d60884'
-                  slug: 'section1Scene3'
+                  slug: 'sortShapesByKind'
                   type: 'scene'
                   params: {}
                   locale:
@@ -137,9 +137,9 @@ config:
                     3. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Category Counter presents 4 circles, 3 triangles and 1 square, all visually distinct and also individually named for screen-reader inspection. Select any one object and choose its group.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
             order:
-              - 'section1Text1'
-              - 'section1Markdown2'
-              - 'section1Scene3'
+              - 'introduceEightShapes'
+              - 'explainUniqueClassification'
+              - 'sortShapesByKind'
         production:
           purpose: 'What are we counting?'
           pedagogicalIntent: 'What are we counting?'
@@ -162,10 +162,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
-      section2CountEachShapeOnce:
+      countShapesByCategory:
         config:
           id: 'dae7a959-c4cf-469d-8d7e-bfaac356106e'
-          slug: 'section2CountEachShapeOnce'
+          slug: 'countShapesByCategory'
           type: 'content'
           params: {}
           locale:
@@ -175,10 +175,10 @@ config:
               en: 'Count each shape once'
           content:
             items:
-              section2Text1:
+              promptSortAndCount:
                 config:
                   id: 'a62925f0-731d-4ae0-83ad-d80186990711'
-                  slug: 'section2Text1'
+                  slug: 'promptSortAndCount'
                   type: 'text'
                   params: {}
                   locale:
@@ -187,10 +187,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '1. **`text` (existing type):** “Sort the remaining shapes. Watch a count grow each time you put one shape in its matching group.”'
-              section2Scene2:
+              countSortedShapes:
                 config:
                   id: '5c49053a-9366-4196-82e5-09659dca2dc9'
-                  slug: 'section2Scene2'
+                  slug: 'countSortedShapes'
                   type: 'scene'
                   params: {}
                   locale:
@@ -266,10 +266,10 @@ config:
 
                     2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Make the eight assignments. Each move has an undo button; each source object has an assigned/unassigned state; the category counter rises only on a valid assignment.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section2Markdown3:
+              reportShapeCounts:
                 config:
                   id: '759532a4-7abc-4c3d-8a91-921db5b83c84'
-                  slug: 'section2Markdown3'
+                  slug: 'reportShapeCounts'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -279,9 +279,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '3. **`markdown` (existing type):** “There are 4 circles, 3 triangles and 1 square. These numbers tell how often each kind appears.”'
             order:
-              - 'section2Text1'
-              - 'section2Scene2'
-              - 'section2Markdown3'
+              - 'promptSortAndCount'
+              - 'countSortedShapes'
+              - 'reportShapeCounts'
         production:
           purpose: 'Count each shape once'
           pedagogicalIntent: 'Count each shape once'
@@ -304,10 +304,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
-      section3DoesEverythingAddUp:
+      reconcileCategoryTotals:
         config:
           id: '35ae2714-1b3a-47fd-8336-1b0e3da22be7'
-          slug: 'section3DoesEverythingAddUp'
+          slug: 'reconcileCategoryTotals'
           type: 'content'
           params: {}
           locale:
@@ -317,10 +317,10 @@ config:
               en: 'Does everything add up?'
           content:
             items:
-              section3Text1:
+              askSumOfCategories:
                 config:
                   id: '0b3ca12e-43b7-459e-8200-c415ba8be0a5'
-                  slug: 'section3Text1'
+                  slug: 'askSumOfCategories'
                   type: 'text'
                   params: {}
                   locale:
@@ -329,10 +329,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '1. **`text` (existing type):** “The first collection had 8 shapes. Do the group counts make 8 in all?”'
-              section3Scene2:
+              checkAllShapesCounted:
                 config:
                   id: '80bfae5e-60d1-4d56-8e57-6e7eae391d76'
-                  slug: 'section3Scene2'
+                  slug: 'checkAllShapesCounted'
                   type: 'scene'
                   params: {}
                   locale:
@@ -408,10 +408,10 @@ config:
 
                     2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Reveal a reconciliation view: 4 circles + 3 triangles + 1 square = 8; compare assigned count with original count and flag any unassigned observation without punitive error state.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section3Markdown3:
+              explainTotalMatchesEight:
                 config:
                   id: '33cfbc44-7eb3-4fb6-8372-677b7e0e6489'
-                  slug: 'section3Markdown3'
+                  slug: 'explainTotalMatchesEight'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -421,9 +421,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '3. **`markdown` (existing type):** “4 + 3 + 1 = 8. We counted every shape once. If the totals did not match, a shape might have been missed or counted twice.”'
             order:
-              - 'section3Text1'
-              - 'section3Scene2'
-              - 'section3Markdown3'
+              - 'askSumOfCategories'
+              - 'checkAllShapesCounted'
+              - 'explainTotalMatchesEight'
         production:
           purpose: 'Does everything add up?'
           pedagogicalIntent: 'Does everything add up?'
@@ -446,10 +446,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
-      section4NewObjectsSameMethod:
+      classifyNewShapeSet:
         config:
           id: 'ca56e1aa-0898-4cbd-80cd-232e22039e39'
-          slug: 'section4NewObjectsSameMethod'
+          slug: 'classifyNewShapeSet'
           type: 'content'
           params: {}
           locale:
@@ -459,10 +459,10 @@ config:
               en: 'New objects, same method'
           content:
             items:
-              section4Markdown1:
+              promptNewCollection:
                 config:
                   id: '7d16fb0d-9f41-4858-844a-9c32561ddf67'
-                  slug: 'section4Markdown1'
+                  slug: 'promptNewCollection'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -471,10 +471,10 @@ config:
                 production:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '1. **`markdown` (existing type):** “A new collection has stars, circles and squares. Sort it and count each kind without looking at the old answers.”'
-              section4Scene2:
+              sortNewShapes:
                 config:
                   id: '4d83678b-879e-4311-83c7-da9339da2e09'
-                  slug: 'section4Scene2'
+                  slug: 'sortNewShapes'
                   type: 'scene'
                   params: {}
                   locale:
@@ -550,10 +550,10 @@ config:
 
                     2. **`scene` (existing type; new Scene proposed):** CategoryCounter (full original source: Scene production.specification). Use a new fixed dataset of 5 stars, 2 circles, 2 squares. Counters start at zero; optional hint says 'each shape belongs to one group'.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section4Text3:
+              checkNineShapeTotal:
                 config:
                   id: '47edf62a-1c35-4e7a-8f8b-d82e5453607e'
-                  slug: 'section4Text3'
+                  slug: 'checkNineShapeTotal'
                   type: 'text'
                   params: {}
                   locale:
@@ -563,9 +563,9 @@ config:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '3. **`text` (existing type):** “The new counts are 5 stars, 2 circles and 2 squares. Check: 5 + 2 + 2 = 9, exactly the number of shapes you began with.”'
             order:
-              - 'section4Markdown1'
-              - 'section4Scene2'
-              - 'section4Text3'
+              - 'promptNewCollection'
+              - 'sortNewShapes'
+              - 'checkNineShapeTotal'
         production:
           purpose: 'New objects, same method'
           pedagogicalIntent: 'New objects, same method'
@@ -589,10 +589,10 @@ config:
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
 
     order:
-      - 'section1WhatAreWeCounting'
-      - 'section2CountEachShapeOnce'
-      - 'section3DoesEverythingAddUp'
-      - 'section4NewObjectsSameMethod'
+      - 'identifyShapeCategories'
+      - 'countShapesByCategory'
+      - 'reconcileCategoryTotals'
+      - 'classifyNewShapeSet'
   flashcards:
     items: {}
     order: []

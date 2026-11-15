@@ -21,10 +21,10 @@ config:
       en: 'Beyond Ten: Count and Read to Twenty'
   section:
     items:
-      section1:
+      countFromNineToTen:
         config:
           id: 'af4a07f9-2347-50cb-8514-000000000004'
-          slug: 'section1'
+          slug: 'countFromNineToTen'
           type: 'content'
           params: {}
           locale:
@@ -34,10 +34,10 @@ config:
               en: 'After nine'
           content:
             items:
-              text1:
+              addTenthButton:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-000000000001'
-                  slug: 'text1'
+                  slug: 'addTenthButton'
                   type: 'text'
                   params: {}
                   locale:
@@ -46,10 +46,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: **text / learner invitation:** “Nine buttons are on the frame. What if we add one more?”'
-              scene1:
+              showTenOnFrame:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-000000000002'
-                  slug: 'scene1'
+                  slug: 'showTenOnFrame'
                   type: 'scene'
                   params: {}
                   locale:
@@ -132,10 +132,10 @@ config:
 
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   productionNotes: 'Unique Scene placement scene1 in After nine. Original: **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 1. Fill tenth cell of a ten-frame and reveal the numeral 10. Child may predict, inspect, revise or reveal a full worked model.. Status: provisional only.'
-              markdown1:
+              explainNinePlusOne:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-000000000003'
-                  slug: 'markdown1'
+                  slug: 'explainNinePlusOne'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -145,9 +145,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: **markdown / explanation:** Nine then one more makes ten, written 10. Example: 9, 10.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'addTenthButton'
+              - 'showTenOnFrame'
+              - 'explainNinePlusOne'
         production:
           purpose: 'After nine'
           pedagogicalIntent: |-
@@ -163,10 +163,10 @@ config:
 
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section2:
+      composeTeensFromTen:
         config:
           id: 'af4a07f9-2347-50cb-8514-000000000008'
-          slug: 'section2'
+          slug: 'composeTeensFromTen'
           type: 'content'
           params: {}
           locale:
@@ -176,10 +176,10 @@ config:
               en: 'Ten and some more'
           content:
             items:
-              text1:
+              countTenAndExtraBeads:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-000000000005'
-                  slug: 'text1'
+                  slug: 'countTenAndExtraBeads'
                   type: 'text'
                   params: {}
                   locale:
@@ -188,10 +188,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: **text / learner invitation:** “Ten beads and three extra beads make how many?”'
-              scene1:
+              buildTeenNumber:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-000000000006'
-                  slug: 'scene1'
+                  slug: 'buildTeenNumber'
                   type: 'scene'
                   params: {}
                   locale:
@@ -274,10 +274,10 @@ config:
 
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   productionNotes: 'Unique Scene placement scene1 in Ten and some more. Original: **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 2. Explore a full ten-frame plus 3, 7 or zero loose beads; select numeral and count aloud or via ordered ledger. Child may predict, inspect, revise or reveal a full worked model.. Status: provisional only.'
-              markdown1:
+              explainTenPlusOnes:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-000000000007'
-                  slug: 'markdown1'
+                  slug: 'explainTenPlusOnes'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -287,9 +287,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: **markdown / explanation:** 10+3 = 13; 10+7 = 17; 10+0 = 10. Example: Ten and three → 13.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'countTenAndExtraBeads'
+              - 'buildTeenNumber'
+              - 'explainTenPlusOnes'
         production:
           purpose: 'Ten and some more'
           pedagogicalIntent: |-
@@ -305,10 +305,10 @@ config:
 
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section3:
+      countPastNineteen:
         config:
           id: 'af4a07f9-2347-50cb-8514-00000000000c'
-          slug: 'section3'
+          slug: 'countPastNineteen'
           type: 'content'
           params: {}
           locale:
@@ -318,10 +318,10 @@ config:
               en: 'Beyond nineteen'
           content:
             items:
-              text1:
+              continueCountingToTwenty:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-000000000009'
-                  slug: 'text1'
+                  slug: 'continueCountingToTwenty'
                   type: 'text'
                   params: {}
                   locale:
@@ -330,10 +330,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: **text / learner invitation:** “Start at seventeen. What comes after nineteen?”'
-              scene1:
+              followNumberSequence:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-00000000000a'
-                  slug: 'scene1'
+                  slug: 'followNumberSequence'
                   type: 'scene'
                   params: {}
                   locale:
@@ -416,10 +416,10 @@ config:
 
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   productionNotes: 'Unique Scene placement scene1 in Beyond nineteen. Original: **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 3. Continue 17,18,19,20 on a 0–20 number strip, one step per activation. Child may predict, inspect, revise or reveal a full worked model.. Status: provisional only.'
-              markdown1:
+              explainNextNumber:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-00000000000b'
-                  slug: 'markdown1'
+                  slug: 'explainNextNumber'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -429,9 +429,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: **markdown / explanation:** Each forward count adds one; 19 is followed by 20. Example: 17, 18, 19, 20.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'continueCountingToTwenty'
+              - 'followNumberSequence'
+              - 'explainNextNumber'
         production:
           purpose: 'Beyond nineteen'
           pedagogicalIntent: |-
@@ -447,10 +447,10 @@ config:
 
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section4:
+      matchFourteenToObjects:
         config:
           id: 'af4a07f9-2347-50cb-8514-000000000010'
-          slug: 'section4'
+          slug: 'matchFourteenToObjects'
           type: 'content'
           params: {}
           locale:
@@ -460,10 +460,10 @@ config:
               en: 'Crayon label'
           content:
             items:
-              text1:
+              chooseFourteenLabel:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-00000000000d'
-                  slug: 'text1'
+                  slug: 'chooseFourteenLabel'
                   type: 'text'
                   params: {}
                   locale:
@@ -472,10 +472,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: **text / learner invitation:** “A box contains fourteen crayons. Which label belongs on it?”'
-              scene1:
+              matchCrayonsToNumber:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-00000000000e'
-                  slug: 'scene1'
+                  slug: 'matchCrayonsToNumber'
                   type: 'scene'
                   params: {}
                   locale:
@@ -558,10 +558,10 @@ config:
 
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   productionNotes: 'Unique Scene placement scene1 in Crayon label. Original: **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 4. Match an unfamiliar full-ten-plus-four crayon set to 14, contrasting 12 and 21. Child may predict, inspect, revise or reveal a full worked model.. Status: provisional only.'
-              markdown1:
+              explainFourteenAsTenPlusFour:
                 config:
                   id: 'af4a07f9-2347-50cb-8514-00000000000f'
-                  slug: 'markdown1'
+                  slug: 'explainFourteenAsTenPlusFour'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -571,9 +571,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: **markdown / explanation:** 14 labels fourteen crayons; 10+4 is fourteen. Example: Ten plus four → 14.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'chooseFourteenLabel'
+              - 'matchCrayonsToNumber'
+              - 'explainFourteenAsTenPlusFour'
         production:
           purpose: 'Crayon label'
           pedagogicalIntent: |-
@@ -590,10 +590,10 @@ config:
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'countFromNineToTen'
+      - 'composeTeensFromTen'
+      - 'countPastNineteen'
+      - 'matchFourteenToObjects'
   flashcards:
     items: {}
     order: []

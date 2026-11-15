@@ -15,10 +15,10 @@ config:
       en: 'One Relationship, Four Ways to Show It'
   section:
     items:
-      section1FourDoorsToTheSameChange:
+      representOneChangeFourWays:
         config:
           id: 'ceebb814-435e-4de5-8593-227a171f0b53'
-          slug: 'section1FourDoorsToTheSameChange'
+          slug: 'representOneChangeFourWays'
           type: 'content'
           params: {}
           locale:
@@ -28,19 +28,19 @@ config:
               en: 'Four doors to the same change'
           content:
             items:
-              text1:
+              promptEightPlusThreeStory:
                 config:
                   id: '3dcb13d9-b08b-4d84-822e-eceb1aa37556'
-                  slug: 'text1'
+                  slug: 'promptEightPlusThreeStory'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'There are **8 beads** in a jar. **3** more are dropped in. How can we show what happened in more than one way? Predict whether every picture showing the numbers 8 and 3 tells the same story.'
-              representationBridge:
+              connectFourRepresentations:
                 config:
                   id: 'd4334429-5d46-401a-8416-8fb3661cbfec'
-                  slug: 'representationBridge'
+                  slug: 'connectFourRepresentations'
                   type: 'scene'
                   params: {}
                   locale:
@@ -108,25 +108,31 @@ config:
                     Only generic Scene rendering is currently known. A Coding Agent must implement prop-free entry Scenes, locale content, mathematical invariants and tests, verify accessible controls and actual download behavior, and secure required approvals. No React/runtime Lesson code, Question, Quiz, mastery, scoring or Note persistence belongs in this specification.
                   purpose: 'Proposed interactive Scene for Four doors to the same change'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              explainEquivalentModels:
                 config:
                   id: '3acb0f20-b38b-423d-832e-ee7e19a373c3'
-                  slug: 'text2'
+                  slug: 'explainEquivalentModels'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'The colors and arrangement change, but we still start with eight and add three. That means the final quantity can be calculated as eleven.'
-              markdown3:
+              summarizeModelRelationships:
                 config:
                   id: '9ac3b769-3d05-4458-9e59-0fd34cda2c4a'
-                  slug: 'markdown3'
+                  slug: 'summarizeModelRelationships'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Models are different ways to explain the **same relationship**. A diagram is good when it names what the numbers mean; a symbol is short, but we still need to know the story behind it.'
-            order: ['text1', 'representationBridge', 'text2', 'markdown3']
+            order:
+              [
+                'promptEightPlusThreeStory',
+                'connectFourRepresentations',
+                'explainEquivalentModels',
+                'summarizeModelRelationships',
+              ]
         production:
           purpose: 'Four doors to the same change'
           pedagogicalIntent: |
@@ -140,10 +146,10 @@ config:
             4. **`markdown` Resource:** “Models are different ways to explain the **same relationship**. A diagram is good when it names what the numbers mean; a symbol is short, but we still need to know the story behind it.”
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2ABeautifulPictureCanBeTheWrongModel:
+      rejectMismatchedModels:
         config:
           id: '57396a10-202e-4a4f-a445-ba1a5244a7c1'
-          slug: 'section2ABeautifulPictureCanBeTheWrongModel'
+          slug: 'rejectMismatchedModels'
           type: 'content'
           params: {}
           locale:
@@ -153,19 +159,19 @@ config:
               en: 'A beautiful picture can be the wrong model'
           content:
             items:
-              text1:
+              contrastAddingAndRemoving:
                 config:
                   id: 'c4b6fb45-ed9a-4a92-98e0-198bf7a37190'
-                  slug: 'text1'
+                  slug: 'contrastAddingAndRemoving'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Two diagrams both show **8** and **3**. One joins three new beads to eight; the other marks three beads as removed from eight. Do they tell the same story?'
-              representationBridge:
+              spotWrongRepresentation:
                 config:
                   id: 'aea0a18d-d2c1-4350-be1d-f6134cb176ee'
-                  slug: 'representationBridge'
+                  slug: 'spotWrongRepresentation'
                   type: 'scene'
                   params: {}
                   locale:
@@ -233,16 +239,16 @@ config:
                     Only generic Scene rendering is currently known. A Coding Agent must implement prop-free entry Scenes, locale content, mathematical invariants and tests, verify accessible controls and actual download behavior, and secure required approvals. No React/runtime Lesson code, Question, Quiz, mastery, scoring or Note persistence belongs in this specification.
                   purpose: 'Proposed interactive Scene for A beautiful picture can be the wrong model'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              explainDifferentRelationship:
                 config:
                   id: 'c1b6f68c-ec9a-48ff-99e0-1b1efaa37649'
-                  slug: 'text2'
+                  slug: 'explainDifferentRelationship'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'We did not change the digits; we changed the **relationship**. Matching numbers is not enough to make representations equivalent.'
-            order: ['text1', 'representationBridge', 'text2']
+            order: ['contrastAddingAndRemoving', 'spotWrongRepresentation', 'explainDifferentRelationship']
         production:
           purpose: 'A beautiful picture can be the wrong model'
           pedagogicalIntent: |
@@ -255,10 +261,10 @@ config:
             3. **`text`:** “We did not change the digits; we changed the **relationship**. Matching numbers is not enough to make representations equivalent.”
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3WorkBackwardFromADiagramOrSymbol:
+      translateDiagramToEquation:
         config:
           id: 'ccd6f2d2-e860-4883-8484-b2e0ad3a8191'
-          slug: 'section3WorkBackwardFromADiagramOrSymbol'
+          slug: 'translateDiagramToEquation'
           type: 'content'
           params: {}
           locale:
@@ -268,19 +274,19 @@ config:
               en: 'Work backward from a diagram or symbol'
           content:
             items:
-              text1:
+              interpretTwelveMinusFiveDiagram:
                 config:
                   id: 'c21bee23-e22f-4d86-853d-1c55e71bc960'
-                  slug: 'text1'
+                  slug: 'interpretTwelveMinusFiveDiagram'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Here is a diagram: a collection of **12 tokens** with **5** marked as taken away, and a remaining group not yet counted. Tell a story that matches what the diagram says.'
-              representationBridge:
+              readUnknownFromModel:
                 config:
                   id: 'eb67763b-27dd-455c-87a5-9add7370e9be'
-                  slug: 'representationBridge'
+                  slug: 'readUnknownFromModel'
                   type: 'scene'
                   params: {}
                   locale:
@@ -348,16 +354,16 @@ config:
                     Only generic Scene rendering is currently known. A Coding Agent must implement prop-free entry Scenes, locale content, mathematical invariants and tests, verify accessible controls and actual download behavior, and secure required approvals. No React/runtime Lesson code, Question, Quiz, mastery, scoring or Note persistence belongs in this specification.
                   purpose: 'Proposed interactive Scene for Work backward from a diagram or symbol'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              preserveRolesAndUnits:
                 config:
                   id: '36c4ce68-a0ec-47ad-9332-02e2091540c7'
-                  slug: 'markdown2'
+                  slug: 'preserveRolesAndUnits'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'A useful translation keeps **starting amount, change, unknown** and units. It is not enough to draw approximately the same number of shapes.'
-            order: ['text1', 'representationBridge', 'markdown2']
+            order: ['interpretTwelveMinusFiveDiagram', 'readUnknownFromModel', 'preserveRolesAndUnits']
         production:
           purpose: 'Work backward from a diagram or symbol'
           pedagogicalIntent: |
@@ -374,10 +380,10 @@ config:
             3. **`markdown`:** “A useful translation keeps **starting amount, change, unknown** and units. It is not enough to draw approximately the same number of shapes.”
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4YourNewStoryYourRepresentations:
+      buildConsistentRepresentations:
         config:
           id: 'dd659875-d193-4eea-86e6-e497f681ef1c'
-          slug: 'section4YourNewStoryYourRepresentations'
+          slug: 'buildConsistentRepresentations'
           type: 'content'
           params: {}
           locale:
@@ -387,19 +393,19 @@ config:
               en: 'Your new story, your representations'
           content:
             items:
-              text1:
+              promptShellTransferStory:
                 config:
                   id: '8ba54a14-9fee-425b-9ba1-53fa64986401'
-                  slug: 'text1'
+                  slug: 'promptShellTransferStory'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'A table has **10 shells**. A child moves **4 shells** into a bag. Build or choose **a new diagram, one sentence and one expression** that all describe the shells remaining on the table.'
-              representationBridge:
+              composeShellRepresentations:
                 config:
                   id: 'a9a84a2a-e665-4663-ad06-29a843070c21'
-                  slug: 'representationBridge'
+                  slug: 'composeShellRepresentations'
                   type: 'scene'
                   params: {}
                   locale:
@@ -467,25 +473,31 @@ config:
                     Only generic Scene rendering is currently known. A Coding Agent must implement prop-free entry Scenes, locale content, mathematical invariants and tests, verify accessible controls and actual download behavior, and secure required approvals. No React/runtime Lesson code, Question, Quiz, mastery, scoring or Note persistence belongs in this specification.
                   purpose: 'Proposed interactive Scene for Your new story, your representations'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              detectReversedChange:
                 config:
                   id: '8ea54ecd-a0ee-43ee-9aa1-526761985f48'
-                  slug: 'text2'
+                  slug: 'detectReversedChange'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'If one of your forms has **four shells arriving** while the others show **four leaving**, they are not the same story. Fix the one that changed the relationship.'
-              markdown3:
+              reviewRelationshipConsistency:
                 config:
                   id: '117db188-cda5-46e3-8cb2-dcfeefe14121'
-                  slug: 'markdown3'
+                  slug: 'reviewRelationshipConsistency'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '**Recall:** When moving between objects, diagrams, words and expressions, keep the **roles and relationships** the same. A number alone never tells the entire story.'
-            order: ['text1', 'representationBridge', 'text2', 'markdown3']
+            order:
+              [
+                'promptShellTransferStory',
+                'composeShellRepresentations',
+                'detectReversedChange',
+                'reviewRelationshipConsistency',
+              ]
         production:
           purpose: 'Your new story, your representations'
           pedagogicalIntent: |
@@ -501,10 +513,10 @@ config:
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
     order:
       [
-        'section1FourDoorsToTheSameChange',
-        'section2ABeautifulPictureCanBeTheWrongModel',
-        'section3WorkBackwardFromADiagramOrSymbol',
-        'section4YourNewStoryYourRepresentations',
+        'representOneChangeFourWays',
+        'rejectMismatchedModels',
+        'translateDiagramToEquation',
+        'buildConsistentRepresentations',
       ]
   flashcards:
     items: {}

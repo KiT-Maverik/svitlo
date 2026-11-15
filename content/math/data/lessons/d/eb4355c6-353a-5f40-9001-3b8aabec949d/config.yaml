@@ -20,10 +20,10 @@ config:
       en: 'Make Ten First'
   section:
     items:
-      section1:
+      findComplementsToTen:
         config:
           id: 'eb4355c6-353a-5f40-9001-000000000004'
-          slug: 'section1'
+          slug: 'findComplementsToTen'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'How Much to Complete Ten?'
           content:
             items:
-              text1:
+              identifyEmptyTenFrameSlots:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-000000000001'
-                  slug: 'text1'
+                  slug: 'identifyEmptyTenFrameSlots'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: 1. **text — renderer supported:** “Eight counters fill eight places in a ten-frame. How many places are empty?”'
-              scene1:
+              modelMissingToTen:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-000000000002'
-                  slug: 'scene1'
+                  slug: 'modelMissingToTen'
                   type: 'scene'
                   params: {}
                   locale:
@@ -119,10 +119,10 @@ config:
 
                     Existing Lesson Scene resources can render generic Scene components. **Ten Bridge Builder is proposed, not implemented**; requires editor-approved Methodologist Brief, then separate Content/Scene approvals, self-contained prop-free React entrypoints and own tests. Coding Agent handles genuine locale integration and offline delivery. Assessment Architect separately owns scored questions. Editorial decision: Prerequisite place-value ten-frame competence must be verified before use in Grade 2; the source Skill stays grade-independent and the Lesson does not claim to teach all addition strategies.
                   productionNotes: "Unique Scene placement scene1 in How Much to Complete Ten?. Original: 2. **scene — renderer supported, NEW custom Scene proposed:** `Ten Bridge Builder` (specification preserved in config.yaml), entry 1. Show one ten-frame with eight occupied cells and two empty. Child selects 'Count empty places', fills precisely two when offered and labels full ten.. Status: provisional only."
-              markdown1:
+              explainComplementTwo:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-000000000003'
-                  slug: 'markdown1'
+                  slug: 'explainComplementTwo'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -132,9 +132,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: 3. **markdown — renderer supported:** “Eight needs two more to make ten. The empty places tell us the exact number to take from the next addend.” Mathematical statement: **8 + 2 = 10**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'identifyEmptyTenFrameSlots'
+              - 'modelMissingToTen'
+              - 'explainComplementTwo'
         production:
           purpose: 'How Much to Complete Ten?'
           pedagogicalIntent: |-
@@ -160,10 +160,10 @@ config:
 
             **Implementation dependencies:** Proposed self-contained prop-free entry, no new resource type, Quiz config, invented Note event or scoring state.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section2:
+      splitFiveToFillFrame:
         config:
           id: 'eb4355c6-353a-5f40-9001-000000000008'
-          slug: 'section2'
+          slug: 'splitFiveToFillFrame'
           type: 'content'
           params: {}
           locale:
@@ -173,10 +173,10 @@ config:
               en: 'Split Five Into Two and Three'
           content:
             items:
-              text1:
+              splitFiveCounters:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-000000000005'
-                  slug: 'text1'
+                  slug: 'splitFiveCounters'
                   type: 'text'
                   params: {}
                   locale:
@@ -185,10 +185,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: 1. **text — renderer supported:** “We want to add five to eight. Can we give two to finish the ten and keep the other three?”'
-              scene1:
+              fillTenFrame:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-000000000006'
-                  slug: 'scene1'
+                  slug: 'fillTenFrame'
                   type: 'scene'
                   params: {}
                   locale:
@@ -259,10 +259,10 @@ config:
 
                     Existing Lesson Scene resources can render generic Scene components. **Ten Bridge Builder is proposed, not implemented**; requires editor-approved Methodologist Brief, then separate Content/Scene approvals, self-contained prop-free React entrypoints and own tests. Coding Agent handles genuine locale integration and offline delivery. Assessment Architect separately owns scored questions. Editorial decision: Prerequisite place-value ten-frame competence must be verified before use in Grade 2; the source Skill stays grade-independent and the Lesson does not claim to teach all addition strategies.
                   productionNotes: "Unique Scene placement scene1 in Split Five Into Two and Three. Original: 2. **scene — renderer supported, NEW custom Scene proposed:** `Ten Bridge Builder` (specification preserved in config.yaml), entry 2. Show separate source tray of exactly five counters. 'Move two to frame' transfers two actual IDs into the last empty cells; remaining tray now visibly has THREE, not five.. Status: provisional only."
-              markdown1:
+              explainConservedAddend:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-000000000007'
-                  slug: 'markdown1'
+                  slug: 'explainConservedAddend'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -272,9 +272,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: 3. **markdown — renderer supported:** “We used two of the five counters to complete the ten. Three of the same five remain to add later. We did not create any new counters.” Mathematical statement: **5 = 2 + 3; 8 + 2 = 10**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'splitFiveCounters'
+              - 'fillTenFrame'
+              - 'explainConservedAddend'
         production:
           purpose: 'Split Five Into Two and Three'
           pedagogicalIntent: |-
@@ -300,10 +300,10 @@ config:
 
             **Implementation dependencies:** Proposed self-contained prop-free entry, no new resource type, Quiz config, invented Note event or scoring state.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section3:
+      addRemainingThree:
         config:
           id: 'eb4355c6-353a-5f40-9001-00000000000c'
-          slug: 'section3'
+          slug: 'addRemainingThree'
           type: 'content'
           params: {}
           locale:
@@ -313,10 +313,10 @@ config:
               en: 'Now Add the Three Left'
           content:
             items:
-              text1:
+              countRemainingThree:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-000000000009'
-                  slug: 'text1'
+                  slug: 'countRemainingThree'
                   type: 'text'
                   params: {}
                   locale:
@@ -325,10 +325,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: 1. **text — renderer supported:** “Ten is full. Three counters are still waiting. How many counters altogether?”'
-              scene1:
+              modelTenPlusThree:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-00000000000a'
-                  slug: 'scene1'
+                  slug: 'modelTenPlusThree'
                   type: 'scene'
                   params: {}
                   locale:
@@ -399,10 +399,10 @@ config:
 
                     Existing Lesson Scene resources can render generic Scene components. **Ten Bridge Builder is proposed, not implemented**; requires editor-approved Methodologist Brief, then separate Content/Scene approvals, self-contained prop-free React entrypoints and own tests. Coding Agent handles genuine locale integration and offline delivery. Assessment Architect separately owns scored questions. Editorial decision: Prerequisite place-value ten-frame competence must be verified before use in Grade 2; the source Skill stays grade-independent and the Lesson does not claim to teach all addition strategies.
                   productionNotes: "Unique Scene placement scene1 in Now Add the Three Left. Original: 2. **scene — renderer supported, NEW custom Scene proposed:** `Ten Bridge Builder` (specification preserved in config.yaml), entry 3. Use separate visible full ten-frame (10) and remaining three counters; learner controls 'Add the three' while text shows original eight plus five unchanged across transformation.. Status: provisional only."
-              markdown1:
+              summarizeEightPlusFive:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-00000000000b'
-                  slug: 'markdown1'
+                  slug: 'summarizeEightPlusFive'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -412,9 +412,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: 3. **markdown — renderer supported:** “We started with eight and five: thirteen counters. The split let us make ten first, then add three. Nothing was lost or duplicated.” Mathematical statement: **8 + 5 = (8 + 2) + 3 = 10 + 3 = 13**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'countRemainingThree'
+              - 'modelTenPlusThree'
+              - 'summarizeEightPlusFive'
         production:
           purpose: 'Now Add the Three Left'
           pedagogicalIntent: |-
@@ -440,10 +440,10 @@ config:
 
             **Implementation dependencies:** Proposed self-contained prop-free entry, no new resource type, Quiz config, invented Note event or scoring state.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section4:
+      transferMakeTenStrategy:
         config:
           id: 'eb4355c6-353a-5f40-9001-000000000010'
-          slug: 'section4'
+          slug: 'transferMakeTenStrategy'
           type: 'content'
           params: {}
           locale:
@@ -453,10 +453,10 @@ config:
               en: 'Use Ten on a Different Sum'
           content:
             items:
-              text1:
+              tryNinePlusSix:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-00000000000d'
-                  slug: 'text1'
+                  slug: 'tryNinePlusSix'
                   type: 'text'
                   params: {}
                   locale:
@@ -465,10 +465,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: 1. **text — renderer supported:** “Try nine plus six. How much makes ten? How many of the six remain? Then try seven plus six.”'
-              scene1:
+              practiceNewMakeTen:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-00000000000e'
-                  slug: 'scene1'
+                  slug: 'practiceNewMakeTen'
                   type: 'scene'
                   params: {}
                   locale:
@@ -539,10 +539,10 @@ config:
 
                     Existing Lesson Scene resources can render generic Scene components. **Ten Bridge Builder is proposed, not implemented**; requires editor-approved Methodologist Brief, then separate Content/Scene approvals, self-contained prop-free React entrypoints and own tests. Coding Agent handles genuine locale integration and offline delivery. Assessment Architect separately owns scored questions. Editorial decision: Prerequisite place-value ten-frame competence must be verified before use in Grade 2; the source Skill stays grade-independent and the Lesson does not claim to teach all addition strategies.
                   productionNotes: 'Unique Scene placement scene1 in Use Ten on a Different Sum. Original: 2. **scene — renderer supported, NEW custom Scene proposed:** `Ten Bridge Builder` (specification preserved in config.yaml), entry 4. Two staged transfer problems: 9+6 uses 1 and 5, yielding 15; on explicit request, 7+6 uses 3 and 3, yielding 13. Child predicts then steps through frame/split/add or requests entire worked model.. Status: provisional only.'
-              markdown1:
+              explainSplittingSix:
                 config:
                   id: 'eb4355c6-353a-5f40-9001-00000000000f'
-                  slug: 'markdown1'
+                  slug: 'explainSplittingSix'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -552,9 +552,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: 3. **markdown — renderer supported:** “Nine needs one to reach ten; six splits one and five, giving fifteen. Seven needs three; six splits three and three, giving thirteen. Use the same method, but each number needs a different complement.” Mathematical statement: **9 + 6 = (9 + 1) + 5 = 15; 7 + 6 = (7 + 3) + 3 = 13**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'tryNinePlusSix'
+              - 'practiceNewMakeTen'
+              - 'explainSplittingSix'
         production:
           purpose: 'Use Ten on a Different Sum'
           pedagogicalIntent: |-
@@ -581,10 +581,10 @@ config:
             **Implementation dependencies:** Proposed self-contained prop-free entry, no new resource type, Quiz config, invented Note event or scoring state.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'findComplementsToTen'
+      - 'splitFiveToFillFrame'
+      - 'addRemainingThree'
+      - 'transferMakeTenStrategy'
   flashcards:
     items: {}
     order: []

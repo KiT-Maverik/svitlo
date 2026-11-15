@@ -15,10 +15,10 @@ config:
       en: 'Recognize Shapes by Properties'
   section:
     items:
-      section1:
+      recognizeRotatedSquare:
         config:
           id: 'd80ac11e-ffdd-5d95-a2b9-411e566619c3'
-          slug: 'section1'
+          slug: 'recognizeRotatedSquare'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'The Turned Square'
           content:
             items:
-              text1:
+              compareRotatedSquares:
                 config:
                   id: '2adaf3af-fb47-5734-ac15-73af0965bcc6'
-                  slug: 'text1'
+                  slug: 'compareRotatedSquares'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: "Present one upright square and one square rotated 45 degrees. Ask: 'Are these the same kind of shape?' Keep the rotation model visible."
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              exploreShapeRotation:
                 config:
                   id: 'b9afc250-51be-5a2d-a8c7-42507acdded7'
-                  slug: 'scene1'
+                  slug: 'exploreShapeRotation'
                   type: 'scene'
                   params: {}
                   locale:
@@ -98,10 +98,10 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: 'The Turned Square'
                   productionNotes: 'Source Scene shapePropertyStudio.scene-spec.md; independent placement for The Turned Square. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainPreservedProperties:
                 config:
                   id: 'e5548cbd-433c-51ce-9fb7-0cbd56810c34'
-                  slug: 'markdown1'
+                  slug: 'explainPreservedProperties'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -109,7 +109,7 @@ config:
                       en: "Reveal equal side lengths and four right-angle corners on both. Explain: 'Turning a square does not change its corners or sides.'"
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['compareRotatedSquares', 'exploreShapeRotation', 'explainPreservedProperties']
         production:
           purpose: 'The Turned Square'
           productionNotes: |-
@@ -122,10 +122,10 @@ config:
             **Explanatory feedback and recovery:** For 'diamond': 'It looks tilted. Trace its four equal sides and square corners; it is still a square.'
 
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-      section2:
+      testShapeInvariants:
         config:
           id: 'd70abf8b-fcdd-58dc-a1b9-3f8b57661b56'
-          slug: 'section2'
+          slug: 'testShapeInvariants'
           type: 'content'
           params: {}
           locale:
@@ -135,10 +135,10 @@ config:
               en: 'Change What Does Not Matter'
           content:
             items:
-              text1:
+              changeAppearanceKeepProperties:
                 config:
                   id: 'b6701dae-92eb-59c1-b7aa-9daefd0bd807'
-                  slug: 'text1'
+                  slug: 'changeAppearanceKeepProperties'
                   type: 'text'
                   params: {}
                   locale:
@@ -146,10 +146,10 @@ config:
                       en: 'In Shape Property Studio, learner rotates, rescales and recolors one figure; the property ledger stays constant. Include triangles and rectangles with multiple legitimate appearances.'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              adjustShapeProperties:
                 config:
                   id: 'd7a38faf-6b74-5492-86bb-0faf0271fcf8'
-                  slug: 'scene1'
+                  slug: 'adjustShapeProperties'
                   type: 'scene'
                   params: {}
                   locale:
@@ -205,10 +205,10 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: 'Change What Does Not Matter'
                   productionNotes: 'Source Scene shapePropertyStudio.scene-spec.md; independent placement for Change What Does Not Matter. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainSquareVsRectangle:
                 config:
                   id: 'c4e4288c-dfee-5abb-bf46-a88c5be3dc25'
-                  slug: 'markdown1'
+                  slug: 'explainSquareVsRectangle'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -216,7 +216,7 @@ config:
                       en: 'Ask the learner to predict whether a shape name changes after a turn, then test. A stretched square becomes a non-square rectangle only if actual side lengths change; scaling both dimensions equally preserves the square.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['changeAppearanceKeepProperties', 'adjustShapeProperties', 'explainSquareVsRectangle']
         production:
           purpose: 'Change What Does Not Matter'
           productionNotes: |-
@@ -229,10 +229,10 @@ config:
             **Explanatory feedback and recovery:** Do not claim every stretch preserves shape type. If width changes alone, say: 'Its sides changed, so it may no longer be a square.'
 
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-      section3:
+      relateSquaresAndRectangles:
         config:
           id: 'd60abdf8-fddd-5a6f-a0b9-3df858661ce9'
-          slug: 'section3'
+          slug: 'relateSquaresAndRectangles'
           type: 'content'
           params: {}
           locale:
@@ -242,10 +242,10 @@ config:
               en: 'Shapes Within Shapes'
           content:
             items:
-              text1:
+              classifyRelatedQuadrilaterals:
                 config:
                   id: '78e918ed-ece6-54b2-ba23-98ed1a712418'
-                  slug: 'text1'
+                  slug: 'classifyRelatedQuadrilaterals'
                   type: 'text'
                   params: {}
                   locale:
@@ -253,10 +253,10 @@ config:
                       en: "Show square and a longer rectangle. Reveal that each has four right angles; ask if both may be called rectangles. Sort by 'rectangles' and 'squares' as overlapping groups."
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              sortSquaresAndRectangles:
                 config:
                   id: '3db015f6-ed42-5c5b-acc7-95f634c40249'
-                  slug: 'scene1'
+                  slug: 'sortSquaresAndRectangles'
                   type: 'scene'
                   params: {}
                   locale:
@@ -312,10 +312,10 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: 'Shapes Within Shapes'
                   productionNotes: 'Source Scene shapePropertyStudio.scene-spec.md; independent placement for Shapes Within Shapes. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainRectangleInclusion:
                 config:
                   id: 'fcd2ac37-fb65-56e0-b735-2c3744ec7862'
-                  slug: 'markdown1'
+                  slug: 'explainRectangleInclusion'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -323,7 +323,7 @@ config:
                       en: "Explain the relationship in plain language: 'All squares are rectangles. Some rectangles have unequal neighboring sides and are not squares.'"
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['classifyRelatedQuadrilaterals', 'sortSquaresAndRectangles', 'explainRectangleInclusion']
         production:
           purpose: 'Shapes Within Shapes'
           productionNotes: |-
@@ -336,10 +336,10 @@ config:
             **Explanatory feedback and recovery:** If the learner excludes the square: 'Check its corners. A square also has four right angles.'
 
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-      section4:
+      identifyShapesByProperties:
         config:
           id: 'dd0ac8fd-fadd-55b6-a7b9-48fd59661e7c'
-          slug: 'section4'
+          slug: 'identifyShapesByProperties'
           type: 'content'
           params: {}
           locale:
@@ -349,10 +349,10 @@ config:
               en: 'Find One Away From the Screen'
           content:
             items:
-              text1:
+              findShapesInNewOrientations:
                 config:
                   id: 'a8aae81c-54a5-5d67-a9e5-681ce41626e1'
-                  slug: 'text1'
+                  slug: 'findShapesInNewOrientations'
                   type: 'text'
                   params: {}
                   locale:
@@ -360,10 +360,10 @@ config:
                       en: 'Invite a learner to identify a triangle and a rectangle from unfamiliar, color-neutral outlines, including a turned example; alternatively describe a real sign/window shape.'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              identifyUnfamiliarShapes:
                 config:
                   id: '8be7a0a5-248b-57d8-baff-20a5f7642fb2'
-                  slug: 'scene1'
+                  slug: 'identifyUnfamiliarShapes'
                   type: 'scene'
                   params: {}
                   locale:
@@ -419,10 +419,10 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: 'Find One Away From the Screen'
                   productionNotes: 'Source Scene shapePropertyStudio.scene-spec.md; independent placement for Find One Away From the Screen. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              describeDefiningProperties:
                 config:
                   id: 'f38dc226-5300-5585-adf0-4226af6f2e5b'
-                  slug: 'markdown1'
+                  slug: 'describeDefiningProperties'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -430,7 +430,7 @@ config:
                       en: 'Ask them to name a property, not a color. No answer tracking or formal assessment.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['findShapesInNewOrientations', 'identifyUnfamiliarShapes', 'describeDefiningProperties']
         production:
           purpose: 'Find One Away From the Screen'
           productionNotes: |-
@@ -443,7 +443,7 @@ config:
             **Explanatory feedback and recovery:** If unsure: 'Try counting straight sides and checking the corners.'
 
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['recognizeRotatedSquare', 'testShapeInvariants', 'relateSquaresAndRectangles', 'identifyShapesByProperties']
   flashcards:
     items: {}
     order: []

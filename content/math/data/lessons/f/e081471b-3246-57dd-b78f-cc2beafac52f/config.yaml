@@ -20,10 +20,10 @@ config:
       en: 'Parentheses Change the Grouping'
   section:
     items:
-      section1:
+      compareSubtractionGroupings:
         config:
           id: 'e081471b-3246-57dd-b78f-000000000005'
-          slug: 'section1'
+          slug: 'compareSubtractionGroupings'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Same numerals, two different calculations'
           content:
             items:
-              text1:
+              compareSubtractionCards:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000001'
-                  slug: 'text1'
+                  slug: 'compareSubtractionCards'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: 1. **`text` Resource:** “We have two cards: **(10 − 4) − 2** and **10 − (4 − 2)**. They contain the same numbers and minus signs. Must they give the same answer?” Invite an unscored prediction before showing a result.'
-              scene1:
+              modelGroupingDifference:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000002'
-                  slug: 'scene1'
+                  slug: 'modelGroupingDifference'
                   type: 'scene'
                   params: {}
                   locale:
@@ -106,10 +106,10 @@ config:
 
                     Only generic Scene resources are known to render; this particular Workbench and its multilingual dictionaries are **proposed**. Coding Agent must verify the current Scene localization context and implement tested, accessible, self-contained no-props components after approvals. No runtime Lesson, Question, Quiz, scoring, backend, progress or Note event is implemented.
                   productionNotes: 'Unique Scene placement scene1 in Same numerals, two different calculations. Original: 2. **`scene` Resource (proposed):** `Grouping Workbench` (specification preserved in config.yaml), entry A. Highlight **(10 − 4)** as the first subexpression in the first card, evaluate 10−4=6, then show 6−2=**4**. On the second card highlight **(4 − 2)**, evaluate 4−2=2, then show 10−2=**8**. The child controls each reveal; no automatic jump over the grouped stage.. Status: provisional only.'
-              text2:
+              compareResults:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000003'
-                  slug: 'text2'
+                  slug: 'compareResults'
                   type: 'text'
                   params: {}
                   locale:
@@ -118,10 +118,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: 3. **`text`, feedback:** If “same result”: “The digits match, but the part we work out first is different. Four and eight are not the same.” If “different”: “Yes: parentheses show different groups to calculate first.”'
-              markdown1:
+              explainParenthesesFirst:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000004'
-                  slug: 'markdown1'
+                  slug: 'explainParenthesesFirst'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -131,10 +131,10 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: 4. **`markdown`:** “**Parentheses ( ) say: use the value of this whole group before the outer operation.** They can change what a calculation means.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'text2'
-              - 'markdown1'
+              - 'compareSubtractionCards'
+              - 'modelGroupingDifference'
+              - 'compareResults'
+              - 'explainParenthesesFirst'
         production:
           purpose: 'Same numerals, two different calculations'
           pedagogicalIntent: |-
@@ -145,10 +145,10 @@ config:
             3. **`text`, feedback:** If “same result”: “The digits match, but the part we work out first is different. Four and eight are not the same.” If “different”: “Yes: parentheses show different groups to calculate first.”
             4. **`markdown`:** “**Parentheses ( ) say: use the value of this whole group before the outer operation.** They can change what a calculation means.”
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section2:
+      applyOperationPrecedence:
         config:
           id: 'e081471b-3246-57dd-b78f-00000000000b'
-          slug: 'section2'
+          slug: 'applyOperationPrecedence'
           type: 'content'
           params: {}
           locale:
@@ -158,10 +158,10 @@ config:
               en: 'What happens when multiplication and addition meet?'
           content:
             items:
-              text1:
+              evaluateGroupedMultiplication:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000006'
-                  slug: 'text1'
+                  slug: 'evaluateGroupedMultiplication'
                   type: 'text'
                   params: {}
                   locale:
@@ -170,10 +170,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: 1. **`text`:** “The expression **2 × (3 + 4)** describes **two groups of seven**. First find three plus four, then multiply the result by two. What is the total?”'
-              scene1:
+              modelTwoGroupsOfSeven:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000007'
-                  slug: 'scene1'
+                  slug: 'modelTwoGroupsOfSeven'
                   type: 'scene'
                   params: {}
                   locale:
@@ -231,10 +231,10 @@ config:
 
                     Only generic Scene resources are known to render; this particular Workbench and its multilingual dictionaries are **proposed**. Coding Agent must verify the current Scene localization context and implement tested, accessible, self-contained no-props components after approvals. No runtime Lesson, Question, Quiz, scoring, backend, progress or Note event is implemented.
                   productionNotes: 'Unique Scene placement scene1 in What happens when multiplication and addition meet?. Original: 2. **`scene` Resource (proposed):** Grouping Workbench entry B shows two trays of seven unit counters (or two labeled groups with seven each) and a nested stage readout **3 + 4 = 7**, then **2 × 7 = 14**. Learner can choose stage order and request explanation.. Status: provisional only.'
-              text2:
+              contrastWithoutParentheses:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000008'
-                  slug: 'text2'
+                  slug: 'contrastWithoutParentheses'
                   type: 'text'
                   params: {}
                   locale:
@@ -243,10 +243,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: 3. **`text`:** “Now compare **2 × 3 + 4** with **no parentheses**. Under the usual convention multiplication is done before addition: **2 × 3 = 6**, then **6 + 4 = 10**. It is not equal to fourteen.”'
-              scene2:
+              showAlternateGrouping:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000009'
-                  slug: 'scene2'
+                  slug: 'showAlternateGrouping'
                   type: 'scene'
                   params: {}
                   locale:
@@ -304,10 +304,10 @@ config:
 
                     Only generic Scene resources are known to render; this particular Workbench and its multilingual dictionaries are **proposed**. Coding Agent must verify the current Scene localization context and implement tested, accessible, self-contained no-props components after approvals. No runtime Lesson, Question, Quiz, scoring, backend, progress or Note event is implemented.
                   productionNotes: 'Unique Scene placement scene2 in What happens when multiplication and addition meet?. Original: 4. **`scene` Resource (proposed):** Same entry in separate comparison mode, visibly labels the conventional grouping of **2 × 3 + 4** as **(2 × 3) + 4**; avoid claiming that a child can always choose any order. Feedback for 14 as unparenthesized result: “That would group 3+4 first, but no parentheses instruct us to do that here.”. Status: provisional only.'
-              markdown1:
+              explainPrecedence:
                 config:
                   id: 'e081471b-3246-57dd-b78f-00000000000a'
-                  slug: 'markdown1'
+                  slug: 'explainPrecedence'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -317,11 +317,11 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: 5. **`markdown`:** “Parentheses come first. Without them, multiplication ordinarily comes before addition. The calculation rules are agreed mathematical notation, not a guessing game.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'text2'
-              - 'scene2'
-              - 'markdown1'
+              - 'evaluateGroupedMultiplication'
+              - 'modelTwoGroupsOfSeven'
+              - 'contrastWithoutParentheses'
+              - 'showAlternateGrouping'
+              - 'explainPrecedence'
         production:
           purpose: 'What happens when multiplication and addition meet?'
           pedagogicalIntent: |-
@@ -333,10 +333,10 @@ config:
             4. **`scene` Resource (proposed):** Same entry in separate comparison mode, visibly labels the conventional grouping of **2 × 3 + 4** as **(2 × 3) + 4**; avoid claiming that a child can always choose any order. Feedback for 14 as unparenthesized result: “That would group 3+4 first, but no parentheses instruct us to do that here.”
             5. **`markdown`:** “Parentheses come first. Without them, multiplication ordinarily comes before addition. The calculation rules are agreed mathematical notation, not a guessing game.”
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section3:
+      distinguishGroupingFromValue:
         config:
           id: 'e081471b-3246-57dd-b78f-000000000010'
-          slug: 'section3'
+          slug: 'distinguishGroupingFromValue'
           type: 'content'
           params: {}
           locale:
@@ -346,10 +346,10 @@ config:
               en: 'Parentheses do not always change a value'
           content:
             items:
-              text1:
+              predictAdditionRegrouping:
                 config:
                   id: 'e081471b-3246-57dd-b78f-00000000000c'
-                  slug: 'text1'
+                  slug: 'predictAdditionRegrouping'
                   type: 'text'
                   params: {}
                   locale:
@@ -358,10 +358,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: "Authored resource line: 1. **`text`:** “Are **(2 + 3) + 4** and **2 + (3 + 4)** different in value? Let's examine the groups.”"
-              scene1:
+              modelAssociativeSums:
                 config:
                   id: 'e081471b-3246-57dd-b78f-00000000000d'
-                  slug: 'scene1'
+                  slug: 'modelAssociativeSums'
                   type: 'scene'
                   params: {}
                   locale:
@@ -419,10 +419,10 @@ config:
 
                     Only generic Scene resources are known to render; this particular Workbench and its multilingual dictionaries are **proposed**. Coding Agent must verify the current Scene localization context and implement tested, accessible, self-contained no-props components after approvals. No runtime Lesson, Question, Quiz, scoring, backend, progress or Note event is implemented.
                   productionNotes: 'Unique Scene placement scene1 in Parentheses do not always change a value. Original: 2. **`scene` Resource (proposed):** Grouping Workbench entry C evaluates left grouping **2+3=5**, then 5+4=**9**. Right grouping **3+4=7**, then 2+7=**9**. Both equal nine. The child still follows the different grouping order and can explain that addition of these nonnegative counts produces the same total.. Status: provisional only.'
-              text2:
+              explainSameValue:
                 config:
                   id: 'e081471b-3246-57dd-b78f-00000000000e'
-                  slug: 'text2'
+                  slug: 'explainSameValue'
                   type: 'text'
                   params: {}
                   locale:
@@ -431,10 +431,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: 3. **`text`, feedback:** “The first groups are different, but both expressions total nine. Parentheses specify a grouping; they **may**, not **must**, change the value.”'
-              markdown1:
+              summarizeInsideFirst:
                 config:
                   id: 'e081471b-3246-57dd-b78f-00000000000f'
-                  slug: 'markdown1'
+                  slug: 'summarizeInsideFirst'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -444,10 +444,10 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: 4. **`markdown`:** Optional compact recognition Note concept: “Work out the part inside parentheses first, then continue with the surrounding operation.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'text2'
-              - 'markdown1'
+              - 'predictAdditionRegrouping'
+              - 'modelAssociativeSums'
+              - 'explainSameValue'
+              - 'summarizeInsideFirst'
         production:
           purpose: 'Parentheses do not always change a value'
           pedagogicalIntent: |-
@@ -458,10 +458,10 @@ config:
             3. **`text`, feedback:** “The first groups are different, but both expressions total nine. Parentheses specify a grouping; they **may**, not **must**, change the value.”
             4. **`markdown`:** Optional compact recognition Note concept: “Work out the part inside parentheses first, then continue with the surrounding operation.”
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section4:
+      solveGroupedExpression:
         config:
           id: 'e081471b-3246-57dd-b78f-000000000015'
-          slug: 'section4'
+          slug: 'solveGroupedExpression'
           type: 'content'
           params: {}
           locale:
@@ -471,10 +471,10 @@ config:
               en: 'Independent transfer: explain both stages'
           content:
             items:
-              text1:
+              solveThreeTimesSeven:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000011'
-                  slug: 'text1'
+                  slug: 'solveThreeTimesSeven'
                   type: 'text'
                   params: {}
                   locale:
@@ -483,10 +483,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: 1. **`text`:** “Which answer matches **3 × (2 + 5)**? Explain what happens first.”'
-              scene1:
+              showGroupedModel:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000012'
-                  slug: 'scene1'
+                  slug: 'showGroupedModel'
                   type: 'scene'
                   params: {}
                   locale:
@@ -544,10 +544,10 @@ config:
 
                     Only generic Scene resources are known to render; this particular Workbench and its multilingual dictionaries are **proposed**. Coding Agent must verify the current Scene localization context and implement tested, accessible, self-contained no-props components after approvals. No runtime Lesson, Question, Quiz, scoring, backend, progress or Note event is implemented.
                   productionNotes: 'Unique Scene placement scene1 in Independent transfer: explain both stages. Original: 2. **`scene` Resource (proposed):** Workbench entry D starts with the symbolic expression and no grouped counter tray. The child chooses subexpression **2+5=7** and then **3×7=21**. Distractor **11** comes from performing **3×2+5=6+5=11** instead. Optional hints: “Look inside the parentheses” and “How many groups of seven?”. Status: provisional only.'
-              text2:
+              diagnoseOrderError:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000013'
-                  slug: 'text2'
+                  slug: 'diagnoseOrderError'
                   type: 'text'
                   params: {}
                   locale:
@@ -556,10 +556,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: 3. **`text`, feedback:** For 11: “You multiplied three by two before adding five. But this expression first groups two plus five.” For 21: “Three equal groups of seven make twenty-one.” For an invalid interim number, show the exact inner result before the total.'
-              markdown1:
+              recapParenthesesRule:
                 config:
                   id: 'e081471b-3246-57dd-b78f-000000000014'
-                  slug: 'markdown1'
+                  slug: 'recapParenthesesRule'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -569,10 +569,10 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: 4. **`markdown`:** “**Recall:** Parentheses tell you what group to calculate first. Preserve all signs and operands. Compare results only after evaluating the complete expressions.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'text2'
-              - 'markdown1'
+              - 'solveThreeTimesSeven'
+              - 'showGroupedModel'
+              - 'diagnoseOrderError'
+              - 'recapParenthesesRule'
         production:
           purpose: 'Independent transfer: explain both stages'
           pedagogicalIntent: |-
@@ -584,10 +584,10 @@ config:
             4. **`markdown`:** “**Recall:** Parentheses tell you what group to calculate first. Preserve all signs and operands. Compare results only after evaluating the complete expressions.”
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'compareSubtractionGroupings'
+      - 'applyOperationPrecedence'
+      - 'distinguishGroupingFromValue'
+      - 'solveGroupedExpression'
   flashcards:
     items: {}
     order: []

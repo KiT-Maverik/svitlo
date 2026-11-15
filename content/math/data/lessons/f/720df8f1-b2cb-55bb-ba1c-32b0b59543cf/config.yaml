@@ -15,10 +15,10 @@ config:
       en: 'Find Zero and Read a Ruler'
   section:
     items:
-      section1WhereDoesTheCountingStart:
+      locateRulerZero:
         config:
           id: '413841e7-fd04-4754-9af0-1ef519d09b1a'
-          slug: 'section1WhereDoesTheCountingStart'
+          slug: 'locateRulerZero'
           type: 'content'
           params: {}
           locale:
@@ -152,10 +152,10 @@ config:
             - **Access:** Nonvisual choices are explicit; the ruler is also described as "outer edge, small blank margin, zero line, one line, two line…" so vision is not a prerequisite.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2MarksAndEqualSpaces:
+      countEqualRulerIntervals:
         config:
           id: '8fe6397e-b8d7-45d1-9b1a-9558f98d1a53'
-          slug: 'section2MarksAndEqualSpaces'
+          slug: 'countEqualRulerIntervals'
           type: 'content'
           params: {}
           locale:
@@ -288,10 +288,10 @@ config:
             - **Access:** Use explicit numbered mark list and interval list, with spatial scale measured consistently; no reliance on animation or color.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3PlaceTheRulerAlongTheLine:
+      alignRulerWithObject:
         config:
           id: 'cc1bf741-2f51-4c16-ab04-1b9364738308'
-          slug: 'section3PlaceTheRulerAlongTheLine'
+          slug: 'alignRulerWithObject'
           type: 'content'
           params: {}
           locale:
@@ -424,10 +424,10 @@ config:
             - **Navigation:** Attempt two setups; an explicit "Show careful placement" control always available. Child can explain setup without needing to drag.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4ANewRulerSameRule:
+      transferRulerMeasurement:
         config:
           id: '55a2b6bf-7db0-481c-8da6-b9e1f7a20df6'
-          slug: 'section4ANewRulerSameRule'
+          slug: 'transferRulerMeasurement'
           type: 'content'
           params: {}
           locale:
@@ -560,13 +560,7 @@ config:
             - **Independent practical extension:** If a physical ruler is available, locate its zero mark and the first centimeter space. Do not require this material for full Lesson completion.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order:
-      [
-        'section1WhereDoesTheCountingStart',
-        'section2MarksAndEqualSpaces',
-        'section3PlaceTheRulerAlongTheLine',
-        'section4ANewRulerSameRule',
-      ]
+    order: ['locateRulerZero', 'countEqualRulerIntervals', 'alignRulerWithObject', 'transferRulerMeasurement']
   flashcards:
     items: {}
     order: []

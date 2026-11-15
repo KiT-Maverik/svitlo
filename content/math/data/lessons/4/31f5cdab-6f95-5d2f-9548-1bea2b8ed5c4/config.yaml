@@ -15,10 +15,10 @@ config:
       en: 'Multiplication with Rows and Columns'
   section:
     items:
-      section1AGridWithThreeRows:
+      modelThreeRowsOfFour:
         config:
           id: '46b5888f-9f96-4f22-84cb-d3e9ece15094'
-          slug: 'section1AGridWithThreeRows'
+          slug: 'modelThreeRowsOfFour'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'A Grid with Three Rows'
           content:
             items:
-              text1:
+              countThreeByFourDots:
                 config:
                   id: '95179bd2-c2cc-4073-aff1-2318fa4fe859'
-                  slug: 'text1'
+                  slug: 'countThreeByFourDots'
                   type: 'text'
                   params: {}
                   locale:
@@ -104,16 +104,16 @@ config:
                     Generic Lesson Scene Resource/rendering exists, but **Array Grid Studio is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: Array rotation may be previewed as observation but a full rule a×b=b×a belongs to the separate commutative Lesson. Confirm coherent sequencing alongside equalGroups.
                   purpose: 'Proposed interactive Scene for A Grid with Three Rows'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainTwelveDotArray:
                 config:
                   id: '83deb739-80aa-4618-852d-65cf54e15256'
-                  slug: 'markdown2'
+                  slug: 'explainTwelveDotArray'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Three rows of four contain twelve dots. We can write 3 × 4 = 12.'
-            order: ['text1', 'arrayGridStudio', 'markdown2']
+            order: ['countThreeByFourDots', 'arrayGridStudio', 'explainTwelveDotArray']
         production:
           purpose: 'A Grid with Three Rows'
           pedagogicalIntent: |
@@ -133,10 +133,10 @@ config:
             - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2MakeARectangle:
+      constructTwoByFiveArray:
         config:
           id: 'a08cada4-26d0-4eb1-b1b2-412657a8be6b'
-          slug: 'section2MakeARectangle'
+          slug: 'constructTwoByFiveArray'
           type: 'content'
           params: {}
           locale:
@@ -146,10 +146,10 @@ config:
               en: 'Make a Rectangle'
           content:
             items:
-              text1:
+              buildTwoByFiveGrid:
                 config:
                   id: '23a6cf69-c4aa-4880-a0ea-e7976824520e'
-                  slug: 'text1'
+                  slug: 'buildTwoByFiveGrid'
                   type: 'text'
                   params: {}
                   locale:
@@ -222,16 +222,16 @@ config:
                     Generic Lesson Scene Resource/rendering exists, but **Array Grid Studio is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: Array rotation may be previewed as observation but a full rule a×b=b×a belongs to the separate commutative Lesson. Confirm coherent sequencing alongside equalGroups.
                   purpose: 'Proposed interactive Scene for Make a Rectangle'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainTenDots:
                 config:
                   id: 'f951b406-7af0-44e7-a432-869cd45f00a5'
-                  slug: 'markdown2'
+                  slug: 'explainTenDots'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Two complete rows of five contain 10 dots: 2 × 5 = 10. Each row needs five dots.'
-            order: ['text1', 'arrayGridStudio', 'markdown2']
+            order: ['buildTwoByFiveGrid', 'arrayGridStudio', 'explainTenDots']
         production:
           purpose: 'Make a Rectangle'
           pedagogicalIntent: |
@@ -251,10 +251,10 @@ config:
             - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3FindTheMissingDot:
+      repairIncompleteArray:
         config:
           id: 'e0d09caa-b181-4715-996c-1398f2e81e53'
-          slug: 'section3FindTheMissingDot'
+          slug: 'repairIncompleteArray'
           type: 'content'
           params: {}
           locale:
@@ -264,10 +264,10 @@ config:
               en: 'Find the Missing Dot'
           content:
             items:
-              text1:
+              findMissingArrayCell:
                 config:
                   id: '6368c31b-ae7d-44b4-a7ea-fc0d318bf056'
-                  slug: 'text1'
+                  slug: 'findMissingArrayCell'
                   type: 'text'
                   params: {}
                   locale:
@@ -340,16 +340,16 @@ config:
                     Generic Lesson Scene Resource/rendering exists, but **Array Grid Studio is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: Array rotation may be previewed as observation but a full rule a×b=b×a belongs to the separate commutative Lesson. Confirm coherent sequencing alongside equalGroups.
                   purpose: 'Proposed interactive Scene for Find the Missing Dot'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainCompleteThreeByFour:
                 config:
                   id: '4932e110-0434-45bb-b06f-386a2d8f58dd'
-                  slug: 'markdown2'
+                  slug: 'explainCompleteThreeByFour'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'The incomplete grid holds eleven dots. Fill the one missing place to make three full rows of four and twelve dots.'
-            order: ['text1', 'arrayGridStudio', 'markdown2']
+            order: ['findMissingArrayCell', 'arrayGridStudio', 'explainCompleteThreeByFour']
         production:
           purpose: 'Find the Missing Dot'
           pedagogicalIntent: |
@@ -369,10 +369,10 @@ config:
             - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4ReadAFreshArray:
+      readNewFourByTwoArray:
         config:
           id: 'ccf9c676-8028-4ef1-997f-e09c8bc83cdf'
-          slug: 'section4ReadAFreshArray'
+          slug: 'readNewFourByTwoArray'
           type: 'content'
           params: {}
           locale:
@@ -382,10 +382,10 @@ config:
               en: 'Read a Fresh Array'
           content:
             items:
-              text1:
+              identifyArrayProduct:
                 config:
                   id: '6eb8b327-0658-47c0-a11a-c9819b779122'
-                  slug: 'text1'
+                  slug: 'identifyArrayProduct'
                   type: 'text'
                   params: {}
                   locale:
@@ -458,16 +458,16 @@ config:
                     Generic Lesson Scene Resource/rendering exists, but **Array Grid Studio is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: Array rotation may be previewed as observation but a full rule a×b=b×a belongs to the separate commutative Lesson. Confirm coherent sequencing alongside equalGroups.
                   purpose: 'Proposed interactive Scene for Read a Fresh Array'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              relateRepeatedAddition:
                 config:
                   id: '7c9d628c-b53d-4027-bc84-7d0e5e4a4d69'
-                  slug: 'markdown2'
+                  slug: 'relateRepeatedAddition'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Four rows of two contain eight dots: 2+2+2+2=8 and 4×2=8.'
-            order: ['text1', 'arrayGridStudio', 'markdown2']
+            order: ['identifyArrayProduct', 'arrayGridStudio', 'relateRepeatedAddition']
         production:
           purpose: 'Read a Fresh Array'
           pedagogicalIntent: |
@@ -487,8 +487,7 @@ config:
             - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order:
-      ['section1AGridWithThreeRows', 'section2MakeARectangle', 'section3FindTheMissingDot', 'section4ReadAFreshArray']
+    order: ['modelThreeRowsOfFour', 'constructTwoByFiveArray', 'repairIncompleteArray', 'readNewFourByTwoArray']
   flashcards:
     items: {}
     order: []

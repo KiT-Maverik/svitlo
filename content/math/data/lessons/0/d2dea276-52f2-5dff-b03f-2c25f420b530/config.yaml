@@ -15,10 +15,10 @@ config:
       en: 'Reading Every Minute'
   section:
     items:
-      section1:
+      countIndividualMinuteTicks:
         config:
           id: 'e75a6772-2af1-5aa5-b208-e7721987f98f'
-          slug: 'section1'
+          slug: 'countIndividualMinuteTicks'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Small ticks count, too'
           content:
             items:
-              text1:
+              countPastQuarterHour:
                 config:
                   id: '586da1c3-b73d-5e44-99a8-21c333ce84d2'
-                  slug: 'text1'
+                  slug: 'countPastQuarterHour'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'You already know the long hand at 3 means 15 minutes. What if it goes two tiny marks farther?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              advanceMinuteHand:
                 config:
                   id: '10ab879c-c2aa-525d-bfc3-079c050893fb'
-                  slug: 'scene1'
+                  slug: 'advanceMinuteHand'
                   type: 'scene'
                   params: {}
                   locale:
@@ -123,10 +123,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: 'Small ticks count, too: independent placement'
                   productionNotes: 'Original MinuteMarkerExplorer.scene-spec.md variant belongs to Small ticks count, too; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainSeventeenMinutes:
                 config:
                   id: 'a9ef8cc1-333c-533e-a452-0cc11a5b2b80'
-                  slug: 'markdown1'
+                  slug: 'explainSeventeenMinutes'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -134,7 +134,7 @@ config:
                       en: 'Fifteen minutes, plus one, plus one, makes seventeen. The clock shows 2:17. Every small mark counts one minute.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['countPastQuarterHour', 'advanceMinuteHand', 'explainSeventeenMinutes']
         production:
           purpose: 'Small ticks count, too'
           productionNotes: |-
@@ -158,10 +158,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section2:
+      writeTwoDigitMinutes:
         config:
           id: 'e65a65df-27f1-55ec-b108-e5df1a87fb22'
-          slug: 'section2'
+          slug: 'writeTwoDigitMinutes'
           type: 'content'
           params: {}
           locale:
@@ -171,10 +171,10 @@ config:
               en: 'Write the little zero'
           content:
             items:
-              text1:
+              chooseDigitalMinuteFormat:
                 config:
                   id: '56307222-c0e6-52d1-976a-f2225fd05c73'
-                  slug: 'text1'
+                  slug: 'chooseDigitalMinuteFormat'
                   type: 'text'
                   params: {}
                   locale:
@@ -182,10 +182,10 @@ config:
                       en: 'Three tiny minute steps after five o’clock are shown. Should the digital clock show 5:3 or 5:03?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              composeThreeMinutes:
                 config:
                   id: 'a70b4c6b-0964-5502-9622-cc6b95efc8ac'
-                  slug: 'scene1'
+                  slug: 'composeThreeMinutes'
                   type: 'scene'
                   params: {}
                   locale:
@@ -266,10 +266,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: 'Write the little zero: independent placement'
                   productionNotes: 'Original MinuteMarkerExplorer.scene-spec.md variant belongs to Write the little zero; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainLeadingZero:
                 config:
                   id: 'ecf039b0-0390-53eb-a752-b9b0587916d1'
-                  slug: 'markdown1'
+                  slug: 'explainLeadingZero'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -277,7 +277,7 @@ config:
                       en: 'Digital clocks use two digits for minutes. Three minutes after five is 5:03. The first zero is a place holder.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['chooseDigitalMinuteFormat', 'composeThreeMinutes', 'explainLeadingZero']
         production:
           purpose: 'Write the little zero'
           productionNotes: |-
@@ -301,10 +301,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section3:
+      trackHourBetweenNumbers:
         config:
           id: 'e55a644c-28f1-577f-b008-e44c1b87fcb5'
-          slug: 'section3'
+          slug: 'trackHourBetweenNumbers'
           type: 'content'
           params: {}
           locale:
@@ -314,10 +314,10 @@ config:
               en: 'Which hour is it really?'
           content:
             items:
-              markdown1:
+              resolveCurrentHour:
                 config:
                   id: 'd2ae554b-b71f-56d0-8d10-d54b4e9e83ee'
-                  slug: 'markdown1'
+                  slug: 'resolveCurrentHour'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -325,10 +325,10 @@ config:
                       en: "The minute hand is two small marks beyond 8, and the short hand has passed 7 but not reached 8. Read the time. Does the phrase '42 minutes' alone tell us when this happens?"
                 production:
                   purpose: 'Provisional instructional explanation'
-              scene1:
+              inspectClockHands:
                 config:
                   id: '9c253762-fafe-550b-8b3c-b762eb14cbcd'
-                  slug: 'scene1'
+                  slug: 'inspectClockHands'
                   type: 'scene'
                   params: {}
                   locale:
@@ -409,10 +409,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: 'Which hour is it really?: independent placement'
                   productionNotes: 'Original MinuteMarkerExplorer.scene-spec.md variant belongs to Which hour is it really?; see Section productionNotes. Unique stable Scene ID.'
-              text1:
+              explainSevenFortyTwo:
                 config:
                   id: '8803e331-f841-5f42-893e-63319732b154'
-                  slug: 'text1'
+                  slug: 'explainSevenFortyTwo'
                   type: 'text'
                   params: {}
                   locale:
@@ -420,7 +420,7 @@ config:
                       en: "It is 7:42, not 8:42, because seven is the hour already started. '42 minutes' is a length of time; 7:42 is a particular clock reading. At 11:59 it is still eleven o’clock hour."
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-            order: ['markdown1', 'scene1', 'text1']
+            order: ['resolveCurrentHour', 'inspectClockHands', 'explainSevenFortyTwo']
         production:
           purpose: 'Which hour is it really?'
           productionNotes: |-
@@ -445,10 +445,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section4:
+      readUnfamiliarMinuteTime:
         config:
           id: 'e45a62b9-25f1-52c6-af08-e2b91487f1b0'
-          slug: 'section4'
+          slug: 'readUnfamiliarMinuteTime'
           type: 'content'
           params: {}
           locale:
@@ -458,10 +458,10 @@ config:
               en: 'A clock you have not seen yet'
           content:
             items:
-              text1:
+              readNineTwentyEight:
                 config:
                   id: '42098b68-e830-53b7-8344-0b686e698a65'
-                  slug: 'text1'
+                  slug: 'readNineTwentyEight'
                   type: 'text'
                   params: {}
                   locale:
@@ -469,10 +469,10 @@ config:
                       en: 'A new clock shows the long hand three small ticks past 5 and the short hand after 9. Write the time before uncovering the answer.'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              practiceMinuteTicks:
                 config:
                   id: '50cbf2f9-1a36-5c08-bfe3-72f99197669e'
-                  slug: 'scene1'
+                  slug: 'practiceMinuteTicks'
                   type: 'scene'
                   params: {}
                   locale:
@@ -553,10 +553,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: 'A clock you have not seen yet: independent placement'
                   productionNotes: 'Original MinuteMarkerExplorer.scene-spec.md variant belongs to A clock you have not seen yet; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainTwentyEightMinutes:
                 config:
                   id: '31d4f212-2ff9-5375-ac37-7212bb53b6bf'
-                  slug: 'markdown1'
+                  slug: 'explainTwentyEightMinutes'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -564,7 +564,7 @@ config:
                       en: 'It is 9:28. From 12 to 5 is twenty-five minutes. Three extra minute ticks make twenty-eight. The hour hand is still between nine and ten.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['readNineTwentyEight', 'practiceMinuteTicks', 'explainTwentyEightMinutes']
         production:
           purpose: 'A clock you have not seen yet'
           productionNotes: |-
@@ -588,7 +588,7 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['countIndividualMinuteTicks', 'writeTwoDigitMinutes', 'trackHourBetweenNumbers', 'readUnfamiliarMinuteTime']
   flashcards:
     items: {}
     order: []

@@ -20,10 +20,10 @@ config:
       en: 'Finding an Unknown Addend'
   section:
     items:
-      section1OnePartIsMissing:
+      identifyMissingPart:
         config:
           id: '08be0572-eb88-897d-8ae7-ceba09d1c2b5'
-          slug: 'section1OnePartIsMissing'
+          slug: 'identifyMissingPart'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'One Part Is Missing'
           content:
             items:
-              section1Text1:
+              askForMissingCounters:
                 config:
                   id: '95f53179-8247-8e34-8c88-9ca81b3aa3e5'
-                  slug: 'section1Text1'
+                  slug: 'askForMissingCounters'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Legacy text block of One Part Is Missing; provisional draft.'
                   specification: '  1. **text — available now:** “There are 12 counters altogether. We can see a group of 5. The other part has no number yet. How many counters are in that part?”'
-              scene1Block2:
+              explorePartWholeModel:
                 config:
                   id: 'ed3c23ba-9f6c-89c6-8d30-1fd6cf60f5aa'
-                  slug: 'scene1Block2'
+                  slug: 'explorePartWholeModel'
                   type: 'scene'
                   params: {}
                   locale:
@@ -149,10 +149,10 @@ config:
 
                       2. **scene — type and renderer available; custom Scene proposed:** Part–Whole Workbench (preserved in Scene production.specification), observation placement: present a whole frame with 12 clearly countable positions, a known group of 5, and a still-unlabeled complementary group. A reversible cover hides the complementary label, _not the counters needed for reasoning_. Child can count or request grouping assistance.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section1Markdown3:
+              representMissingAddend:
                 config:
                   id: '45d837c1-ad11-834a-800d-809668c4e41d'
-                  slug: 'section1Markdown3'
+                  slug: 'representMissingAddend'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -162,9 +162,9 @@ config:
                   purpose: 'Legacy markdown block of One Part Is Missing; provisional draft.'
                   specification: '  3. **markdown — available now:** “The 12 counters are the whole. The 5 counters are one part. We are finding the other part. We can write this as **5 + □ = 12**. The box stands for one number.”'
             order:
-              - 'section1Text1'
-              - 'scene1Block2'
-              - 'section1Markdown3'
+              - 'askForMissingCounters'
+              - 'explorePartWholeModel'
+              - 'representMissingAddend'
         production:
           purpose: 'Identify the whole, known part, and missing part; understand □ as one unknown quantity, not a direction to compute the visible numbers together.'
           pedagogicalIntent: 'Identify the whole, known part, and missing part; understand □ as one unknown quantity, not a direction to compute the visible numbers together.'
@@ -185,10 +185,10 @@ config:
             - Proposed unlocked Note(s) at this moment: Note 1 “A sum is a whole made from parts.” Proposed after the complete 12 = 5 + 7 model is observed; planned, not wired.
             - Implementation dependencies and review notes: New Workbench Scene is proposed; type text/markdown and generic scene resource rendering are available. Choice/prediction is formative only.
 
-      section2TakeAwayTheKnownPart:
+      subtractKnownPart:
         config:
           id: '74911b29-7690-80f2-86fc-a25584fd698e'
-          slug: 'section2TakeAwayTheKnownPart'
+          slug: 'subtractKnownPart'
           type: 'content'
           params: {}
           locale:
@@ -198,10 +198,10 @@ config:
               en: 'Take Away the Known Part'
           content:
             items:
-              section2Markdown1:
+              subtractKnownCounters:
                 config:
                   id: 'ee4e5844-9eb8-8044-8653-5c73b6a50473'
-                  slug: 'section2Markdown1'
+                  slug: 'subtractKnownCounters'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -210,10 +210,10 @@ config:
                 production:
                   purpose: 'Legacy markdown block of Take Away the Known Part; provisional draft.'
                   specification: '  1. **markdown — available now:** “We know the whole is 12. We already know 5 of those counters. Count what is left: **12 − 5 = 7**. So the missing part is 7.”'
-              scene2Block2:
+              separateKnownPart:
                 config:
                   id: 'c0fca762-ba93-87dd-890b-a14d536481f2'
-                  slug: 'scene2Block2'
+                  slug: 'separateKnownPart'
                   type: 'scene'
                   params: {}
                   locale:
@@ -314,10 +314,10 @@ config:
 
                       2. **scene — resource supported; custom Scene proposed:** Part–Whole Workbench (preserved in Scene production.specification), guided subtraction placement: child selects or watches “Separate the known 5,” sees 7 remaining from the same unchanged twelve, then restores the two parts to make twelve.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section2Text3:
+              explainMissingPart:
                 config:
                   id: 'b0c10d9b-dd24-8324-88e3-ea55a50694ea'
-                  slug: 'section2Text3'
+                  slug: 'explainMissingPart'
                   type: 'text'
                   params: {}
                   locale:
@@ -327,9 +327,9 @@ config:
                   purpose: 'Legacy text block of Take Away the Known Part; provisional draft.'
                   specification: '  3. **text — available now:** “We did not change the whole. We found the part we did not know. When one part is missing, we can subtract the known part from the whole.”'
             order:
-              - 'section2Markdown1'
-              - 'scene2Block2'
-              - 'section2Text3'
+              - 'subtractKnownCounters'
+              - 'separateKnownPart'
+              - 'explainMissingPart'
         production:
           purpose: 'Explain how subtracting the known addend from the sum identifies the other addend.'
           pedagogicalIntent: 'Explain how subtracting the known addend from the sum identifies the other addend.'
@@ -350,10 +350,10 @@ config:
             - Proposed unlocked Note(s) at this moment: Note 2 “Whole − known part = missing part.” Proposed after seeing both 12 − 5 = 7 and 5 + 7 = 12; planned, not wired.
             - Implementation dependencies and review notes: No new mathematical Skill is created by this concrete representation; building the Scene requires its separately approved specification.
 
-      section3TheBoxCanBeOnEitherSideOfThePlus:
+      locateUnknownInAddition:
         config:
           id: '4f75a745-a5d2-882b-8e79-1820b4ded74e'
-          slug: 'section3TheBoxCanBeOnEitherSideOfThePlus'
+          slug: 'locateUnknownInAddition'
           type: 'content'
           params: {}
           locale:
@@ -363,10 +363,10 @@ config:
               en: 'The Box Can Be on Either Side of the Plus'
           content:
             items:
-              section3Text1:
+              compareBoxPositions:
                 config:
                   id: 'f82eb4e6-319e-80c6-855a-d30a9cea972a'
-                  slug: 'section3Text1'
+                  slug: 'compareBoxPositions'
                   type: 'text'
                   params: {}
                   locale:
@@ -375,10 +375,10 @@ config:
                 production:
                   purpose: 'Legacy text block of The Box Can Be on Either Side of the Plus; provisional draft.'
                   specification: '  1. **text — available now:** “Look at these two equalities: **5 + □ = 12** and **□ + 5 = 12**. Where is the box now? Did the whole or the known part change?”'
-              scene3Block2:
+              shiftUnknownPosition:
                 config:
                   id: 'd8e851ec-cce9-8b78-816c-43e6356d0972'
-                  slug: 'scene3Block2'
+                  slug: 'shiftUnknownPosition'
                   type: 'scene'
                   params: {}
                   locale:
@@ -484,10 +484,10 @@ config:
 
                       2. **scene — resource supported; custom Scene proposed:** Addition Equality Verifier (preserved in Scene production.specification), position-comparison placement: place the same five-and-seven part model under both arrangements, invite selection of which addend is missing, and substitute 7 into either place. Compare each displayed sum with 12.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section3Markdown3:
+              explainEquivalentAdditions:
                 config:
                   id: 'fbb3e291-7df3-800c-8cc8-d9cf8a885b52'
-                  slug: 'section3Markdown3'
+                  slug: 'explainEquivalentAdditions'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -497,9 +497,9 @@ config:
                   purpose: 'Legacy markdown block of The Box Can Be on Either Side of the Plus; provisional draft.'
                   specification: '  3. **markdown — available now:** “In both equalities, **12** is the whole and **5** is the known part. The missing part is **7**. We can check: **5 + 7 = 12** and **7 + 5 = 12**. The place of the box changed, but the part did not.”'
             order:
-              - 'section3Text1'
-              - 'scene3Block2'
-              - 'section3Markdown3'
+              - 'compareBoxPositions'
+              - 'shiftUnknownPosition'
+              - 'explainEquivalentAdditions'
         production:
           purpose: 'Identify the missing addend when it is first or second and keep the equals sign as a comparison of equal amounts.'
           pedagogicalIntent: 'Identify the missing addend when it is first or second and keep the equals sign as a comparison of equal amounts.'
@@ -520,10 +520,10 @@ config:
             - Proposed unlocked Note(s) at this moment: No new Note; invite recall of Note 2 with the other addend position.
             - Implementation dependencies and review notes: Scene is proposed. No scored select-one Question is implied by identification of the blank.
 
-      section4PutYourNumberBackAndCheck:
+      verifyUnknownAddend:
         config:
           id: '825c668a-e4a7-8b36-83ab-d896d550552a'
-          slug: 'section4PutYourNumberBackAndCheck'
+          slug: 'verifyUnknownAddend'
           type: 'content'
           params: {}
           locale:
@@ -533,10 +533,10 @@ config:
               en: 'Put Your Number Back and Check'
           content:
             items:
-              section4Markdown1:
+              solveNewMissingAddend:
                 config:
                   id: '53ad291b-3af0-80a9-860f-3cd46f520566'
-                  slug: 'section4Markdown1'
+                  slug: 'solveNewMissingAddend'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -545,10 +545,10 @@ config:
                 production:
                   purpose: 'Legacy markdown block of Put Your Number Back and Check; provisional draft.'
                   specification: '  1. **markdown — available now:** “A new equality: **□ + 6 = 14**. The whole is 14. One part is 6. What is the other part? You can count counters or subtract. Then put your number in the box and check the addition.”'
-              scene4Block2:
+              testUnknownCandidate:
                 config:
                   id: 'fc5f56cb-602b-8be3-8df0-b5d60184a8fe'
-                  slug: 'scene4Block2'
+                  slug: 'testUnknownCandidate'
                   type: 'scene'
                   params: {}
                   locale:
@@ -654,10 +654,10 @@ config:
 
                       2. **scene — generic scene renderer available; custom Scene proposed:** Addition Equality Verifier (preserved in Scene production.specification), independent-check placement: offer candidate values **7 / 8 / 9** with optional “Show the parts,” compute the resulting sum transparently, and compare it to 14. The child can reset or request the full explanation.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section4Markdown3:
+              checkByAddition:
                 config:
                   id: '6dc1412e-2dc4-8969-8a9f-623baa9a4a7c'
-                  slug: 'section4Markdown3'
+                  slug: 'checkByAddition'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -667,9 +667,9 @@ config:
                   purpose: 'Legacy markdown block of Put Your Number Back and Check; provisional draft.'
                   specification: '  3. **markdown — available now:** After the attempt: “The missing part is **14 − 6 = 8**. Check in the original equality: **8 + 6 = 14**. Both sides are 14, so the missing number fits. If they are different, we need to try again.” Optional transfer “4 + □ = 9” uses 9 − 4 = 5 and check 4 + 5 = 9.'
             order:
-              - 'section4Markdown1'
-              - 'scene4Block2'
-              - 'section4Markdown3'
+              - 'solveNewMissingAddend'
+              - 'testUnknownCandidate'
+              - 'checkByAddition'
         production:
           purpose: 'Independently find an unknown addend in a new case and verify by substitution into the _original addition_, noticing a mismatch when an incorrect candidate is tested.'
           pedagogicalIntent: 'Independently find an unknown addend in a new case and verify by substitution into the _original addition_, noticing a mismatch when an incorrect candidate is tested.'
@@ -691,10 +691,10 @@ config:
             - Implementation dependencies and review notes: The Scene is an instructional interaction, not an Assessment Architect-reviewed Quiz. Math examples are editorial prompts; assessment thresholds and question validity remain separate.
 
     order:
-      - 'section1OnePartIsMissing'
-      - 'section2TakeAwayTheKnownPart'
-      - 'section3TheBoxCanBeOnEitherSideOfThePlus'
-      - 'section4PutYourNumberBackAndCheck'
+      - 'identifyMissingPart'
+      - 'subtractKnownPart'
+      - 'locateUnknownInAddition'
+      - 'verifyUnknownAddend'
   flashcards:
     items: {}
     order: []

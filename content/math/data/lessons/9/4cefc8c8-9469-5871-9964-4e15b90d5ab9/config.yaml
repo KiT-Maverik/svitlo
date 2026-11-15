@@ -20,10 +20,10 @@ config:
       en: 'Measure Straight Segments in Centimeters'
   section:
     items:
-      section1:
+      countCentimeterIntervals:
         config:
           id: '4cefc8c8-9469-5871-9964-000000000004'
-          slug: 'section1'
+          slug: 'countCentimeterIntervals'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Four Spaces, Not Five Marks'
           content:
             items:
-              section1Text1:
+              countSpacesFromZeroToFour:
                 config:
                   id: '4cefc8c8-9469-5871-9964-000000000001'
-                  slug: 'section1Text1'
+                  slug: 'countSpacesFromZeroToFour'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **text — existing:** "The first dot is beside **0**. The other dot is beside **4**. How many _spaces_ of one centimeter fit between them? Let''s count, then say a length with its unit."'
-              section1Scene1:
+              modelFourCentimeterSegment:
                 config:
                   id: '4cefc8c8-9469-5871-9964-000000000002'
-                  slug: 'section1Scene1'
+                  slug: 'modelFourCentimeterSegment'
                   type: 'scene'
                   params: {}
                   locale:
@@ -150,10 +150,10 @@ config:
 
                     Only the general `scene` Resource type/rendering is available today. The Centimeter Segment Bench, translations, tests, Section-specific prop-free Scene entry points and all lesson registration are **future work** requiring approval. The separate drawing-a-segment Skill remains untouched. No Question, Quiz, scoring system, Note persistence, analytics hook or invented platform event field is permitted.
                   productionNotes: "This placement in Four Spaces, Not Five Marks refers to centimeterSegmentBench.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section1Markdown1:
+              explainMarksVsIntervals:
                 config:
                   id: '4cefc8c8-9469-5871-9964-000000000003'
-                  slug: 'section1Markdown1'
+                  slug: 'explainMarksVsIntervals'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -163,9 +163,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — existing:** "The segment has **4 equal centimeter spaces**. The marks are 0, 1, 2, 3, 4—**five printed labels, but four intervals**. We say **4 centimeters**, written **4 cm**."'
             order:
-              - 'section1Text1'
-              - 'section1Scene1'
-              - 'section1Markdown1'
+              - 'countSpacesFromZeroToFour'
+              - 'modelFourCentimeterSegment'
+              - 'explainMarksVsIntervals'
         production:
           purpose: 'Four Spaces, Not Five Marks'
           pedagogicalIntent: |-
@@ -179,10 +179,10 @@ config:
             - **Access:** All intervals described as "interval 1: 0 to 1" etc. Give an auditory-readable and textual equivalent; never require selecting an SVG region.
             - **Proposed Note:** "A length counts the equal spaces between marks."
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section2:
+      alignRulerAtZero:
         config:
           id: '4cefc8c8-9469-5871-9964-000000000008'
-          slug: 'section2'
+          slug: 'alignRulerAtZero'
           type: 'content'
           params: {}
           locale:
@@ -192,10 +192,10 @@ config:
               en: 'Line Up First, Read Second'
           content:
             items:
-              section2Markdown1:
+              placeRulerAgainstEndpoint:
                 config:
                   id: '4cefc8c8-9469-5871-9964-000000000005'
-                  slug: 'section2Markdown1'
+                  slug: 'placeRulerAgainstEndpoint'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -204,10 +204,10 @@ config:
                 production:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  1. **markdown — existing:** "Before reading: find the segment''s starting dot, put the ruler''s **0** beside it, and follow the straight line with the scale. Then read where the other dot lands."'
-              section2Scene1:
+              modelRulerAlignment:
                 config:
                   id: '4cefc8c8-9469-5871-9964-000000000006'
-                  slug: 'section2Scene1'
+                  slug: 'modelRulerAlignment'
                   type: 'scene'
                   params: {}
                   locale:
@@ -309,10 +309,10 @@ config:
 
                     Only the general `scene` Resource type/rendering is available today. The Centimeter Segment Bench, translations, tests, Section-specific prop-free Scene entry points and all lesson registration are **future work** requiring approval. The separate drawing-a-segment Skill remains untouched. No Question, Quiz, scoring system, Note persistence, analytics hook or invented platform event field is permitted.
                   productionNotes: "This placement in Line Up First, Read Second refers to centimeterSegmentBench.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section2Text1:
+              explainSevenCentimeters:
                 config:
                   id: '4cefc8c8-9469-5871-9964-000000000007'
-                  slug: 'section2Text1'
+                  slug: 'explainSevenCentimeters'
                   type: 'text'
                   params: {}
                   locale:
@@ -322,9 +322,9 @@ config:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  3. **text — existing:** "When the **0** met the first dot, the other dot met **7**. That means **7 centimeters** from one endpoint to the other."'
             order:
-              - 'section2Markdown1'
-              - 'section2Scene1'
-              - 'section2Text1'
+              - 'placeRulerAgainstEndpoint'
+              - 'modelRulerAlignment'
+              - 'explainSevenCentimeters'
         production:
           purpose: 'Line Up First, Read Second'
           pedagogicalIntent: |-
@@ -337,10 +337,10 @@ config:
             - **Misconception feedback:** If learner selects the number at the far end _before_ alignment: "We haven't started at 0. Move the scale first, then read." Never silently show an answer from a misaligned ruler as if valid.
             - **Transfer within Section:** A second preset segment **3 cm** long, correct alignment, endpoint mark 3. Length stays constant if the diagram moves vertically or line thickness changes.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section3:
+      correctMisalignedMeasurement:
         config:
           id: '4cefc8c8-9469-5871-9964-00000000000c'
-          slug: 'section3'
+          slug: 'correctMisalignedMeasurement'
           type: 'content'
           params: {}
           locale:
@@ -350,10 +350,10 @@ config:
               en: 'Spot the False Measure'
           content:
             items:
-              section3Text1:
+              challengeSixCentimeterClaim:
                 config:
                   id: '4cefc8c8-9469-5871-9964-000000000009'
-                  slug: 'section3Text1'
+                  slug: 'challengeSixCentimeterClaim'
                   type: 'text'
                   params: {}
                   locale:
@@ -362,10 +362,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **text — existing:** "Someone says this segment is **6 cm** because its far dot is by the ruler''s 6. But the first dot is by **1**! What should we fix?"'
-              section3Scene1:
+              testOffsetRuler:
                 config:
                   id: '4cefc8c8-9469-5871-9964-00000000000a'
-                  slug: 'section3Scene1'
+                  slug: 'testOffsetRuler'
                   type: 'scene'
                   params: {}
                   locale:
@@ -467,10 +467,10 @@ config:
 
                     Only the general `scene` Resource type/rendering is available today. The Centimeter Segment Bench, translations, tests, Section-specific prop-free Scene entry points and all lesson registration are **future work** requiring approval. The separate drawing-a-segment Skill remains untouched. No Question, Quiz, scoring system, Note persistence, analytics hook or invented platform event field is permitted.
                   productionNotes: "This placement in Spot the False Measure refers to centimeterSegmentBench.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section3Markdown1:
+              explainRepositioningZero:
                 config:
                   id: '4cefc8c8-9469-5871-9964-00000000000b'
-                  slug: 'section3Markdown1'
+                  slug: 'explainRepositioningZero'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -480,9 +480,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — existing:** "The number **6** was a label at the far end, not the segment''s length with this ruler placement. We moved the **0** mark to the starting dot. Now the other end is at **5**: the segment is **5 cm**."'
             order:
-              - 'section3Text1'
-              - 'section3Scene1'
-              - 'section3Markdown1'
+              - 'challengeSixCentimeterClaim'
+              - 'testOffsetRuler'
+              - 'explainRepositioningZero'
         production:
           purpose: 'Spot the False Measure'
           pedagogicalIntent: |-
@@ -495,10 +495,10 @@ config:
             - **Feedback:** For choosing 6: "The ruler began at 1, not 0; the number at the end is misleading." For 5: "Good reasoning, but show your setup: align 0 and count the spaces." Never require arithmetic 6 − 1; this is a **diagnostic example**, not instruction in off-zero subtraction.
             - **Proposed Note:** "Check that the ruler starts at 0 before reading the number."
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section4:
+      measureUnfamiliarSegment:
         config:
           id: '4cefc8c8-9469-5871-9964-000000000010'
-          slug: 'section4'
+          slug: 'measureUnfamiliarSegment'
           type: 'content'
           params: {}
           locale:
@@ -508,10 +508,10 @@ config:
               en: 'Your Own Measurement'
           content:
             items:
-              section4Text1:
+              positionRulerWithoutHint:
                 config:
                   id: '4cefc8c8-9469-5871-9964-00000000000d'
-                  slug: 'section4Text1'
+                  slug: 'positionRulerWithoutHint'
                   type: 'text'
                   params: {}
                   locale:
@@ -520,10 +520,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **text — existing:** "Here''s a new segment. Its first dot is not at the ruler''s zero yet. Without asking for a hint, decide what to move, then tell its length **with units**."'
-              section4Scene1:
+              measureNewSixCentimeterSegment:
                 config:
                   id: '4cefc8c8-9469-5871-9964-00000000000e'
-                  slug: 'section4Scene1'
+                  slug: 'measureNewSixCentimeterSegment'
                   type: 'scene'
                   params: {}
                   locale:
@@ -625,10 +625,10 @@ config:
 
                     Only the general `scene` Resource type/rendering is available today. The Centimeter Segment Bench, translations, tests, Section-specific prop-free Scene entry points and all lesson registration are **future work** requiring approval. The separate drawing-a-segment Skill remains untouched. No Question, Quiz, scoring system, Note persistence, analytics hook or invented platform event field is permitted.
                   productionNotes: "This placement in Your Own Measurement refers to centimeterSegmentBench.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section4Markdown1:
+              explainRulerProcedure:
                 config:
                   id: '4cefc8c8-9469-5871-9964-00000000000f'
-                  slug: 'section4Markdown1'
+                  slug: 'explainRulerProcedure'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -638,9 +638,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — existing:** "We straightened the ruler, lined **0** with the first dot, and found **6 equal centimeter spaces** to the second dot. Our answer is **6 cm**. If we count marks instead, we would get seven, which is not a length."'
             order:
-              - 'section4Text1'
-              - 'section4Scene1'
-              - 'section4Markdown1'
+              - 'positionRulerWithoutHint'
+              - 'measureNewSixCentimeterSegment'
+              - 'explainRulerProcedure'
         production:
           purpose: 'Your Own Measurement'
           pedagogicalIntent: |-
@@ -654,10 +654,10 @@ config:
             - **Real-world extension:** If a real ruler is available, measure a straight-edged object with a whole-centimeter length if possible; say a real object may stop between marks. This extension is **not required for equivalent online/offline learning** and does not introduce fractional measurement.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'countCentimeterIntervals'
+      - 'alignRulerAtZero'
+      - 'correctMisalignedMeasurement'
+      - 'measureUnfamiliarSegment'
   flashcards:
     items: {}
     order: []

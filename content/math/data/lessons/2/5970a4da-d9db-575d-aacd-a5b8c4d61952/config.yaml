@@ -15,10 +15,10 @@ config:
       en: 'What Does Subtraction Tell Us?'
   section:
     items:
-      section1:
+      modelTakingAway:
         config:
           id: '8974f3c2-0997-5d21-9423-73c28309e59f'
-          slug: 'section1'
+          slug: 'modelTakingAway'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'What Is Left?'
           content:
             items:
-              text1:
+              askWhatRemains:
                 config:
                   id: '82e8ca93-8522-5af0-8423-4a932e0126e2'
-                  slug: 'text1'
+                  slug: 'askWhatRemains'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'There are 9 counters. Take away 4. How many are left?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              removeCounters:
                 config:
                   id: 'e1a3d14c-d226-5211-90bb-514cf995fa2b'
-                  slug: 'scene1'
+                  slug: 'removeCounters'
                   type: 'scene'
                   params: {}
                   locale:
@@ -103,10 +103,10 @@ config:
                     Typed scene/renderer are available; this Scene family is proposed, not implemented, and requires approved upstream Brief and Scene spec, prop-free components with own tests and locale data. Assessment Architect alone approves graded questions. Do not invent Score/Note/public mode APIs.
                   purpose: 'What Is Left?: independent placement'
                   productionNotes: 'Original subtractionStoriesLab.scene-spec.md variant belongs to What Is Left?; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainRemainder:
                 config:
                   id: 'cfb7d871-2cb7-5d8a-8a1a-58710c4b8d70'
-                  slug: 'markdown1'
+                  slug: 'explainRemainder'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -114,7 +114,7 @@ config:
                       en: 'Nine was our starting number. We took away four. Five are left: **9 − 4 = 5**.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['askWhatRemains', 'removeCounters', 'explainRemainder']
         production:
           purpose: 'Make removal and a remainder visible.'
           productionNotes: |-
@@ -130,10 +130,10 @@ config:
             - Accessibility/RTL: Ordered accessible text of original, removed and remaining; focusable controls and no drag; operand order stable.
             - Note: “Subtraction can find what remains” after the full nine-minus-four demonstration (planned, not wired).
             - Dependencies: bespoke Scene is not implemented.
-      section2:
+      compareToFindDifference:
         config:
           id: '8874f22f-0697-5868-9323-722f8409e732'
-          slug: 'section2'
+          slug: 'compareToFindDifference'
           type: 'content'
           params: {}
           locale:
@@ -143,10 +143,10 @@ config:
               en: 'How Many More?'
           content:
             items:
-              text1:
+              askHowManyMore:
                 config:
                   id: '582a0772-afef-5f9d-9964-87725a02fe83'
-                  slug: 'text1'
+                  slug: 'askHowManyMore'
                   type: 'text'
                   params: {}
                   locale:
@@ -154,10 +154,10 @@ config:
                       en: 'One collection has 9 counters. Another has 4. How many MORE are in the larger collection?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              pairCollections:
                 config:
                   id: 'a3913a1b-36c0-5086-92a8-ba1b3442a05c'
-                  slug: 'scene1'
+                  slug: 'pairCollections'
                   type: 'scene'
                   params: {}
                   locale:
@@ -218,10 +218,10 @@ config:
                     Typed scene/renderer are available; this Scene family is proposed, not implemented, and requires approved upstream Brief and Scene spec, prop-free components with own tests and locale data. Assessment Architect alone approves graded questions. Do not invent Score/Note/public mode APIs.
                   purpose: 'How Many More?: independent placement'
                   productionNotes: 'Original subtractionStoriesLab.scene-spec.md variant belongs to How Many More?; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainExtraCounters:
                 config:
                   id: 'f9f075a0-10ff-53c7-b452-f5a0e251ba81'
-                  slug: 'markdown1'
+                  slug: 'explainExtraCounters'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -229,7 +229,7 @@ config:
                       en: "Four counters can be matched with four of the nine. **Five extra counters** are in the larger group. We write **9 − 4 = 5**, even though we didn't take away any counters."
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['askHowManyMore', 'pairCollections', 'explainExtraCounters']
         production:
           purpose: 'How Many More?'
           productionNotes: |-
@@ -244,10 +244,10 @@ config:
             - Accessibility: Pairing has a text equivalent “4 pairs matched, 5 extras”; native buttons, no color-only differences.
             - Note: “Subtraction can show the difference between amounts” after comparing, planned.
             - Dependencies: same Scene family, second independently initialized prop-free entry.
-      section3:
+      findMissingPart:
         config:
           id: '8774f09c-0797-59fb-9223-709c8509e8c5'
-          slug: 'section3'
+          slug: 'findMissingPart'
           type: 'content'
           params: {}
           locale:
@@ -257,10 +257,10 @@ config:
               en: 'What Part Is Missing?'
           content:
             items:
-              text1:
+              askUnknownPart:
                 config:
                   id: '56e75981-f945-59de-9821-d981746ebce4'
-                  slug: 'text1'
+                  slug: 'askUnknownPart'
                   type: 'text'
                   params: {}
                   locale:
@@ -268,10 +268,10 @@ config:
                       en: 'There are 9 counters altogether. We know about a part of 4. How many belong to the other part?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              partitionWhole:
                 config:
                   id: '0b36a152-bfe5-557f-ba4e-2152e8d02efd'
-                  slug: 'scene1'
+                  slug: 'partitionWhole'
                   type: 'scene'
                   params: {}
                   locale:
@@ -332,10 +332,10 @@ config:
                     Typed scene/renderer are available; this Scene family is proposed, not implemented, and requires approved upstream Brief and Scene spec, prop-free components with own tests and locale data. Assessment Architect alone approves graded questions. Do not invent Score/Note/public mode APIs.
                   purpose: 'What Part Is Missing?: independent placement'
                   productionNotes: 'Original subtractionStoriesLab.scene-spec.md variant belongs to What Part Is Missing?; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainMissingPart:
                 config:
                   id: 'a58a0b7b-32ff-595c-9fec-8b7bd8f4c55e'
-                  slug: 'markdown1'
+                  slug: 'explainMissingPart'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -343,7 +343,7 @@ config:
                       en: 'The whole is nine. We know four. **9 − 4 = 5** finds the part we did not know. Four and five make nine.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['askUnknownPart', 'partitionWhole', 'explainMissingPart']
         production:
           purpose: 'What Part Is Missing?'
           productionNotes: |-
@@ -358,10 +358,10 @@ config:
             - Accessibility: Unknown label read as “missing part”; structured whole/known/other counts, no hidden objects needed for reasoning.
             - Note: “Whole minus known part can reveal the missing part” after checking 4+5=9, planned.
             - Dependencies: new Scene placement.
-      section4:
+      compareSubtractionStories:
         config:
           id: '8674ef09-0c97-51da-9123-6f097e09ddc0'
-          slug: 'section4'
+          slug: 'compareSubtractionStories'
           type: 'content'
           params: {}
           locale:
@@ -371,10 +371,10 @@ config:
               en: 'Same Equation, Different Questions'
           content:
             items:
-              markdown1:
+              presentThreeContexts:
                 config:
                   id: '57144e82-8669-5c59-9176-ce82a5446c2f'
-                  slug: 'markdown1'
+                  slug: 'presentThreeContexts'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -382,10 +382,10 @@ config:
                       en: 'Try three questions. (A) 8 blocks, remove 3: what remains? (B) 8 blocks versus 3: how many more? (C) 8 in all and 3 known: what other part?'
                 production:
                   purpose: 'Provisional instructional explanation'
-              scene1:
+              matchEquationToStories:
                 config:
                   id: 'c61b4169-670e-5d54-b532-c1696460100e'
-                  slug: 'scene1'
+                  slug: 'matchEquationToStories'
                   type: 'scene'
                   params: {}
                   locale:
@@ -446,10 +446,10 @@ config:
                     Typed scene/renderer are available; this Scene family is proposed, not implemented, and requires approved upstream Brief and Scene spec, prop-free components with own tests and locale data. Assessment Architect alone approves graded questions. Do not invent Score/Note/public mode APIs.
                   purpose: 'Same Equation, Different Questions: independent placement'
                   productionNotes: 'Original subtractionStoriesLab.scene-spec.md variant belongs to Same Equation, Different Questions; see Section productionNotes. Unique stable Scene ID.'
-              markdown2:
+              explainDifferentMeanings:
                 config:
                   id: '56144cef-8369-57a0-9076-ccefa6446dc2'
-                  slug: 'markdown2'
+                  slug: 'explainDifferentMeanings'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -457,7 +457,7 @@ config:
                       en: 'Each question uses **8 − 3 = 5**. Five can be the remainder, the difference or the missing part. The numbers are the same; what the answer tells us depends on the question.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['markdown1', 'scene1', 'markdown2']
+            order: ['presentThreeContexts', 'matchEquationToStories', 'explainDifferentMeanings']
         production:
           purpose: 'Same Equation, Different Questions'
           productionNotes: |-
@@ -472,7 +472,7 @@ config:
             - Accessibility: Identical reasoning with ordered labels and keyboard controls; texts stand independently of audio/graphics.
             - Notes: revisit three short Notes; no new one.
             - Dependencies: new transfer entry with separate state.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['modelTakingAway', 'compareToFindDifference', 'findMissingPart', 'compareSubtractionStories']
   flashcards:
     items: {}
     order: []

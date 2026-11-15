@@ -20,10 +20,10 @@ config:
       en: 'Make Both Sides Equal'
   section:
     items:
-      section1:
+      useKnownSideAsTarget:
         config:
           id: 'd77ea286-32cb-56d5-b8cc-000000000005'
-          slug: 'section1'
+          slug: 'useKnownSideAsTarget'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'One side is already known (guided exploration)'
           content:
             items:
-              section1Text1:
+              evaluateKnownSide:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-000000000001'
-                  slug: 'section1Text1'
+                  slug: 'evaluateKnownSide'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '1. **`text` resource:** “Which side can we work out right now? **6 + □ = 4 + 5**.” Give a moment to predict whether the box should contain 3, 5 or 9, without marking a guess wrong.'
-              section1Scene1:
+              modelBalancedEquality:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-000000000002'
-                  slug: 'section1Scene1'
+                  slug: 'modelBalancedEquality'
                   type: 'scene'
                   params: {}
                   locale:
@@ -100,10 +100,10 @@ config:
 
                     No React, Score, Quiz, Question, Note event or Lesson runtime config is implemented here. Coding Agent must confirm current Scene localization context and renderer, create localized strings, implement prop-free Scene components and tests, and obtain explicit editor approval of both Brief and Scene.
                   productionNotes: "This placement in One side is already known (guided exploration) refers to expressionMatchLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section1Text2:
+              explainBothSidesNine:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-000000000003'
-                  slug: 'section1Text2'
+                  slug: 'explainBothSidesNine'
                   type: 'text'
                   params: {}
                   locale:
@@ -112,10 +112,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '3. **`text`:** For 3: “Six and three make nine. Four and five make nine. **Both sides match**.” For 9: “The right side is nine altogether, but six plus nine is fifteen. The box is one part, not the whole.” For 5: “Six plus five is eleven, not nine.”'
-              section1Markdown1:
+              deriveMissingAddend:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-000000000004'
-                  slug: 'section1Markdown1'
+                  slug: 'deriveMissingAddend'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -125,10 +125,10 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '4. **`markdown`:** “The side with no box gives us a target. Find a number that makes the other side have that same value. Then check _both_ sides.”'
             order:
-              - 'section1Text1'
-              - 'section1Scene1'
-              - 'section1Text2'
-              - 'section1Markdown1'
+              - 'evaluateKnownSide'
+              - 'modelBalancedEquality'
+              - 'explainBothSidesNine'
+              - 'deriveMissingAddend'
         production:
           purpose: 'One side is already known (guided exploration)'
           pedagogicalIntent: |-
@@ -139,10 +139,10 @@ config:
             3. **`text`:** For 3: “Six and three make nine. Four and five make nine. **Both sides match**.” For 9: “The right side is nine altogether, but six plus nine is fifteen. The box is one part, not the whole.” For 5: “Six plus five is eleven, not nine.”
             4. **`markdown`:** “The side with no box gives us a target. Find a number that makes the other side have that same value. Then check _both_ sides.”
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section2:
+      findMissingStartingValue:
         config:
           id: 'd77ea286-32cb-56d5-b8cc-00000000000a'
-          slug: 'section2'
+          slug: 'findMissingStartingValue'
           type: 'content'
           params: {}
           locale:
@@ -152,10 +152,10 @@ config:
               en: 'Move the box, not the rule (guided contrast)'
           content:
             items:
-              section2Text1:
+              solveBoxMinusOne:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-000000000006'
-                  slug: 'section2Text1'
+                  slug: 'solveBoxMinusOne'
                   type: 'text'
                   params: {}
                   locale:
@@ -164,10 +164,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '1. **`text`:** “A different equality: **7 + 2 = □ − 1**. Seven plus two is nine. What number must we start with if we remove one and still have nine?”'
-              section2Scene1:
+              modelNineAsTarget:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-000000000007'
-                  slug: 'section2Scene1'
+                  slug: 'modelNineAsTarget'
                   type: 'scene'
                   params: {}
                   locale:
@@ -219,10 +219,10 @@ config:
 
                     No React, Score, Quiz, Question, Note event or Lesson runtime config is implemented here. Coding Agent must confirm current Scene localization context and renderer, create localized strings, implement prop-free Scene components and tests, and obtain explicit editor approval of both Brief and Scene.
                   productionNotes: "This placement in Move the box, not the rule (guided contrast) refers to expressionMatchLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section2Text2:
+              explainIncorrectCandidate:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-000000000008'
-                  slug: 'section2Text2'
+                  slug: 'explainIncorrectCandidate'
                   type: 'text'
                   params: {}
                   locale:
@@ -231,10 +231,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: "3. **`text`:** If 9: “Nine minus one is eight, so the sides differ.” If 11: “Eleven minus one is ten, too many.” If 10: “Ten minus one is nine. Both sides are nine. The box is **10**, even though the other side's value is **9**.”"
-              section2Markdown1:
+              clarifyMissingRole:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-000000000009'
-                  slug: 'section2Markdown1'
+                  slug: 'clarifyMissingRole'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -244,10 +244,10 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '4. **`markdown`:** “The missing number is not always the result. It may be a starting number or part of an expression.”'
             order:
-              - 'section2Text1'
-              - 'section2Scene1'
-              - 'section2Text2'
-              - 'section2Markdown1'
+              - 'solveBoxMinusOne'
+              - 'modelNineAsTarget'
+              - 'explainIncorrectCandidate'
+              - 'clarifyMissingRole'
         production:
           purpose: 'Move the box, not the rule (guided contrast)'
           pedagogicalIntent: |-
@@ -258,10 +258,10 @@ config:
             3. **`text`:** If 9: “Nine minus one is eight, so the sides differ.” If 11: “Eleven minus one is ten, too many.” If 10: “Ten minus one is nine. Both sides are nine. The box is **10**, even though the other side's value is **9**.”
             4. **`markdown`:** “The missing number is not always the result. It may be a starting number or part of an expression.”
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section3:
+      correctTotalAsBlankError:
         config:
           id: 'd77ea286-32cb-56d5-b8cc-00000000000e'
-          slug: 'section3'
+          slug: 'correctTotalAsBlankError'
           type: 'content'
           params: {}
           locale:
@@ -271,10 +271,10 @@ config:
               en: 'Fix a mistaken idea (prediction and explanation)'
           content:
             items:
-              section3Text1:
+              critiqueElevenInBox:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-00000000000b'
-                  slug: 'section3Text1'
+                  slug: 'critiqueElevenInBox'
                   type: 'text'
                   params: {}
                   locale:
@@ -283,10 +283,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '1. **`text`:** “A friend writes **8 + □ = 6 + 5**, puts **11** in the box and says, ‘The right side is eleven, so the box is eleven.’ Is that enough?”'
-              section3Scene1:
+              testCandidateValues:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-00000000000c'
-                  slug: 'section3Scene1'
+                  slug: 'testCandidateValues'
                   type: 'scene'
                   params: {}
                   locale:
@@ -338,10 +338,10 @@ config:
 
                     No React, Score, Quiz, Question, Note event or Lesson runtime config is implemented here. Coding Agent must confirm current Scene localization context and renderer, create localized strings, implement prop-free Scene components and tests, and obtain explicit editor approval of both Brief and Scene.
                   productionNotes: "This placement in Fix a mistaken idea (prediction and explanation) refers to expressionMatchLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section3Text2:
+              explainNeedThree:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-00000000000d'
-                  slug: 'section3Text2'
+                  slug: 'explainNeedThree'
                   type: 'text'
                   params: {}
                   locale:
@@ -351,9 +351,9 @@ config:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '3. **`text`:** “A true check: **8 + 3 = 11** and **6 + 5 = 11**. You found what _was needed_, not just the total.”'
             order:
-              - 'section3Text1'
-              - 'section3Scene1'
-              - 'section3Text2'
+              - 'critiqueElevenInBox'
+              - 'testCandidateValues'
+              - 'explainNeedThree'
         production:
           purpose: 'Fix a mistaken idea (prediction and explanation)'
           pedagogicalIntent: |-
@@ -363,10 +363,10 @@ config:
             2. **`scene` resource, proposed:** Lab entry C begins with candidate 11. Compare 8 + 11 = 19 with 6 + 5 = 11. Ask what is actually missing on the left; replacing with **3** restores 8 + 3 = 11. Learner chooses whether to change the box or the equals sign. If they choose the sign: “The symbol doesn't change eight plus eleven.”
             3. **`text`:** “A true check: **8 + 3 = 11** and **6 + 5 = 11**. You found what _was needed_, not just the total.”
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section4:
+      balanceIndependentEquation:
         config:
           id: 'd77ea286-32cb-56d5-b8cc-000000000013'
-          slug: 'section4'
+          slug: 'balanceIndependentEquation'
           type: 'content'
           params: {}
           locale:
@@ -376,10 +376,10 @@ config:
               en: 'New context, independent transfer'
           content:
             items:
-              section4Text1:
+              solveBlankPlusFour:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-00000000000f'
-                  slug: 'section4Text1'
+                  slug: 'solveBlankPlusFour'
                   type: 'text'
                   params: {}
                   locale:
@@ -388,10 +388,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '1. **`text`:** “Make **□ + 4 = 5 + 6** true. First work out the side without the box, then find the missing part and explain.”'
-              section4Scene1:
+              modelBothSides:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-000000000010'
-                  slug: 'section4Scene1'
+                  slug: 'modelBothSides'
                   type: 'scene'
                   params: {}
                   locale:
@@ -443,10 +443,10 @@ config:
 
                     No React, Score, Quiz, Question, Note event or Lesson runtime config is implemented here. Coding Agent must confirm current Scene localization context and renderer, create localized strings, implement prop-free Scene components and tests, and obtain explicit editor approval of both Brief and Scene.
                   productionNotes: "This placement in New context, independent transfer refers to expressionMatchLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section4Text2:
+              warnAgainstUsingEleven:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-000000000011'
-                  slug: 'section4Text2'
+                  slug: 'warnAgainstUsingEleven'
                   type: 'text'
                   params: {}
                   locale:
@@ -455,10 +455,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '3. **`text`:** Feedback for 11: “Eleven is the value of the whole side, but eleven plus four is fifteen.” Feedback for 7: “Seven plus four and five plus six both equal eleven.” Ask: “How did you check?” Accept a nonverbal choice of “I worked out both sides.”'
-              section4Markdown1:
+              summarizeBalanceCheck:
                 config:
                   id: 'd77ea286-32cb-56d5-b8cc-000000000012'
-                  slug: 'section4Markdown1'
+                  slug: 'summarizeBalanceCheck'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -468,10 +468,10 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '4. **`markdown`:** “**Recall:** Work out a known side; choose a candidate for the blank; **check both sides**. An equality is true only when the values match.”'
             order:
-              - 'section4Text1'
-              - 'section4Scene1'
-              - 'section4Text2'
-              - 'section4Markdown1'
+              - 'solveBlankPlusFour'
+              - 'modelBothSides'
+              - 'warnAgainstUsingEleven'
+              - 'summarizeBalanceCheck'
         production:
           purpose: 'New context, independent transfer'
           pedagogicalIntent: |-
@@ -483,10 +483,10 @@ config:
             4. **`markdown`:** “**Recall:** Work out a known side; choose a candidate for the blank; **check both sides**. An equality is true only when the values match.”
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'useKnownSideAsTarget'
+      - 'findMissingStartingValue'
+      - 'correctTotalAsBlankError'
+      - 'balanceIndependentEquation'
   flashcards:
     items: {}
     order: []
