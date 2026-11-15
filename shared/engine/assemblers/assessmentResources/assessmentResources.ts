@@ -84,21 +84,21 @@ export function validateAssessmentReferences(
     throw new Error('Assessment manifest belongs to a different Lesson: ' + lessonId);
   }
   if (selection.kind !== 'question' && selection.kind !== 'flashcard') {
-    throw new Error('Unknown assessment resource kind in Section ' + sectionId);
+    throw new Error('Unknown assessment resource kind ' + context);
   }
-  if (!selection.ids.length) throw new Error('Empty assessment selection in Section ' + sectionId);
+  if (!selection.ids.length) throw new Error('Empty assessment selection ' + context);
   const seen = new Set<string>();
   return selection.ids.map(rawId => {
     const id = z.uuid().parse(rawId);
-    if (seen.has(id)) throw new Error('Duplicate assessment UUID ' + id +  ' ' + context);
+    if (seen.has(id)) throw new Error('Duplicate assessment UUID ' + id + ' ' + context);
     seen.add(id);
     const entry = manifest.entries[id];
-    if (!entry) throw new Error('Missing assessment UUID ' + id +  ' ' + context);
+    if (!entry) throw new Error('Missing assessment UUID ' + id + ' ' + context);
     if (entry.lessonId !== lessonId) {
       throw new Error('Assessment UUID ' + id + ' belongs to a different Lesson');
     }
     if (entry.kind !== selection.kind) {
-      throw new Error('Assessment UUID ' + id + ' has the wrong resource type in Section ' + sectionId);
+      throw new Error('Assessment UUID ' + id + ' has the wrong resource type ' + context);
     }
     if (entry.kind === 'question' && !entry.questionType) {
       throw new Error('Question UUID ' + id + ' is missing its Question type');
