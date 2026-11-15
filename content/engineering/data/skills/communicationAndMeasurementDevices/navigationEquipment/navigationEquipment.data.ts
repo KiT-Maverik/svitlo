@@ -11,6 +11,7 @@ export const navigationEquipment_SkillGroup_Data = defineSkillGroup({
   id: '91acdacb-dbd6-4bf8-8346-87fd8f818292',
   name: {
     en: 'Navigation Equipment',
+    it: 'Apparecchiature di navigazione',
     zh: '导航设备',
     hi: 'दिशा-निर्धारण उपकरण',
     es: 'Equipos de navegación',
@@ -50,6 +51,7 @@ export const navigationEquipment_SkillGroup_Data = defineSkillGroup({
       'Positioning methods use different physical measurements, and each has characteristic failures and accuracy limitations.',
     frontend: {
       en: 'Explore the hardware used for navigation and positioning.',
+      it: 'Esplora i dispositivi utilizzati per la navigazione e il posizionamento.',
       zh: '探索用于导航和定位的实际硬件。',
       hi: 'स्थान और मार्ग निर्धारित करने वाले उपकरणों का अध्ययन करें।',
       es: 'Explora los dispositivos físicos usados para navegar y determinar posiciones.',
