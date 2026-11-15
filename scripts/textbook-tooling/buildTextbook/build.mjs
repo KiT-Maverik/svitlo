@@ -55,11 +55,12 @@ function filesUnder(folder, prefix = '') {
 // An index.ts is a Lesson entrypoint only in its canonical UUID directory;
 // nested Section/ContentBlock barrel indexes are NOT standalone Lessons.
 const authored = folder =>
-  filesUnder(join(root, folder)).some(name =>
-    name.endsWith('.data.ts') ||
-    (folder === 'data/lessons' &&
-      /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/index\.ts$/.test(name) &&
-      name.split('/')[1].at(-1) === name[0]),
+  filesUnder(join(root, folder)).some(
+    name =>
+      name.endsWith('.data.ts') ||
+      (folder === 'data/lessons' &&
+        /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/index\.ts$/.test(name) &&
+        name.split('/')[1].at(-1) === name[0]),
   );
 
 // Dependencies required for build-time content generation; none are included in

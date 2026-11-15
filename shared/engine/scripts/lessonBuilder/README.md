@@ -108,7 +108,6 @@ The script selects factories only from
 `configurators/yaml/yamlFactoryByType.ts`. It does not evaluate any complete
 Config/Props, check approval or call `build.props()`.
 
-
 ### Stage boundaries
 
 This is **Stage 2** of the [Lesson source-layout rollout](../../../../studio/docs/architecture/lesson-generated-source-layout.md).
