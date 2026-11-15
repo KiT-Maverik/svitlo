@@ -12,6 +12,7 @@ export const photographicCommunication_SkillGroup_Data = defineSkillGroup({
   id: '749b7dc0-b725-40aa-93e2-c5b189d7957d',
   name: {
     en: 'Photographic Communication',
+    it: 'Comunicazione fotografica',
 
     zh: '摄影表达',
     hi: 'फ़ोटोग्राफ़िक संप्रेषण',
@@ -53,6 +54,7 @@ export const photographicCommunication_SkillGroup_Data = defineSkillGroup({
       'A photograph may document, stage or sequence an event, making truthfulness and narrative intention distinct considerations.',
     frontend: {
       en: 'Discover how photographs can document, portray or tell stories in different ways.',
+      it: 'Scopri come le fotografie possono documentare, ritrarre o raccontare storie in modi diversi.',
 
       zh: '探索照片如何以不同方式记录、描绘或讲述故事。',
       hi: 'जानें कि तस्वीरें अलग-अलग तरीकों से दस्तावेज़, चित्रण या कहानी कैसे प्रस्तुत कर सकती हैं।',
