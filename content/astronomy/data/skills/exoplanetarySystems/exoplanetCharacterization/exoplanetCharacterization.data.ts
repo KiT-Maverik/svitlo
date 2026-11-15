@@ -42,13 +42,16 @@ export const exoplanetCharacterization_SkillGroup_Data = defineSkillGroup({
     kk: 'Экзопланеталардың сипаттарын анықтау',
     qm: 'Ekzoseyyarelerniñ hususiyetlerini belgilev',
   },
-  skills: [
-    exoplanetAtmosphericSpectra_Skill_Data,
-    exoplanetBulkComposition_Skill_Data,
-    exoplanetMass_Skill_Data,
-    exoplanetOrbitalProperties_Skill_Data,
-    exoplanetRadius_Skill_Data,
-  ],
+  skills: {
+    items: {
+      exoplanetAtmosphericSpectra: exoplanetAtmosphericSpectra_Skill_Data,
+      exoplanetBulkComposition: exoplanetBulkComposition_Skill_Data,
+      exoplanetMass: exoplanetMass_Skill_Data,
+      exoplanetOrbitalProperties: exoplanetOrbitalProperties_Skill_Data,
+      exoplanetRadius: exoplanetRadius_Skill_Data,
+    },
+    order: ['exoplanetAtmosphericSpectra', 'exoplanetBulkComposition', 'exoplanetMass', 'exoplanetOrbitalProperties', 'exoplanetRadius'],
+  },
   description: {
     methodological:
       'Planet properties are inferred by combining signals and interpreting assumptions, with important differences between measured quantities and theoretical models.',

@@ -41,12 +41,15 @@ export const terrestrialSkyCycles_SkillGroup_Data = defineSkillGroup({
     kk: 'Жерден байқалатын аспан циклдері',
     qm: 'Yerden körülgen kök devirleri',
   },
-  skills: [
-    dayAndNight_Skill_Data,
-    seasons_Skill_Data,
-    solarAltitudeAndDaylight_Skill_Data,
-    solsticesAndEquinoxes_Skill_Data,
-  ],
+  skills: {
+    items: {
+      dayAndNight: dayAndNight_Skill_Data,
+      seasons: seasons_Skill_Data,
+      solarAltitudeAndDaylight: solarAltitudeAndDaylight_Skill_Data,
+      solsticesAndEquinoxes: solsticesAndEquinoxes_Skill_Data,
+    },
+    order: ['dayAndNight', 'seasons', 'solarAltitudeAndDaylight', 'solsticesAndEquinoxes'],
+  },
   description: {
     methodological:
       "Earth's orientation with respect to sunlight generates daily and annual changes in the visible sky and the duration of daylight.",

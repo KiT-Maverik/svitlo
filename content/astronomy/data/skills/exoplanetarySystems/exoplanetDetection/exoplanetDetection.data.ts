@@ -41,12 +41,15 @@ export const exoplanetDetection_SkillGroup_Data = defineSkillGroup({
     kk: 'Экзопланеталарды анықтау',
     qm: 'Ekzoseyyarelerni tapuv',
   },
-  skills: [
-    directImaging_Skill_Data,
-    gravitationalMicrolensing_Skill_Data,
-    radialVelocityDetection_Skill_Data,
-    transitDetection_Skill_Data,
-  ],
+  skills: {
+    items: {
+      directImaging: directImaging_Skill_Data,
+      gravitationalMicrolensing: gravitationalMicrolensing_Skill_Data,
+      radialVelocityDetection: radialVelocityDetection_Skill_Data,
+      transitDetection: transitDetection_Skill_Data,
+    },
+    order: ['directImaging', 'gravitationalMicrolensing', 'radialVelocityDetection', 'transitDetection'],
+  },
   description: {
     methodological:
       'Finding planets around distant stars relies on measured effects and each method has a characteristic sensitivity and ambiguity.',
