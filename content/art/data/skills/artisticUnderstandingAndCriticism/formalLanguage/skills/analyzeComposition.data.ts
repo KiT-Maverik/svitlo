@@ -5,6 +5,7 @@ export const analyzeComposition_Skill_Data = defineSkill({
   id: 'a9eda1ba-bf39-4bad-b54c-333fea445a1b',
   name: {
     en: 'Analyze Composition',
+    it: "Analizzare la composizione",
     zh: '分析构图',
     hi: 'संरचना का विश्लेषण करें',
     es: 'Analizar la composición',
@@ -38,6 +39,7 @@ export const analyzeComposition_Skill_Data = defineSkill({
     methodological: 'Explain how placement, hierarchy, scale and balance guide a viewer through a work.',
     frontend: {
       en: 'See how artists use placement, scale and balance to direct your attention.',
+      it: "Osserva come gli artisti usano la disposizione, le dimensioni e l'equilibrio per dirigere la tua attenzione.",
       zh: '观察艺术家如何运用位置、尺度和平衡来引导你的注意力。',
       hi: 'देखें कि कलाकार स्थान, आकार और संतुलन का उपयोग करके आपका ध्यान कैसे आकर्षित करते हैं।',
       es: 'Observa cómo los artistas utilizan la ubicación, la escala y el equilibrio para dirigir tu atención.',
