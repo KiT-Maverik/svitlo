@@ -5,6 +5,7 @@ export const explainConservationOfElectricCharge_Skill_Data = defineSkill({
   id: '5ace80c2-6396-4abf-8299-616e14d981f2',
   name: {
     en: 'Explain conservation of electric charge',
+    it: 'Spiegare la conservazione della carica elettrica',
     qm: 'Elektrik yüküniñ saqlanuv qanunını añlatmaq',
     zh: '解释电荷守恒',
     hi: 'विद्युत आवेश संरक्षण समझाना',
@@ -39,6 +40,7 @@ export const explainConservationOfElectricCharge_Skill_Data = defineSkill({
       'The total charge of an isolated system is conserved during charge transfer and physical interactions.',
     frontend: {
       en: 'Explain why total electric charge stays constant during transfers.',
+      it: 'Spiega perché la carica elettrica totale rimane costante durante i trasferimenti.',
       qm: 'Yük bir cisimden digerine keçkeninde umumiy elektrik yükü neden deñişmegenini añlat.',
       zh: '解释为什么电荷在转移过程中总量保持不变。',
       hi: 'समझाएँ कि स्थानांतरण के दौरान कुल विद्युत आवेश स्थिर क्यों रहता है।',

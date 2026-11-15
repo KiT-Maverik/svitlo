@@ -5,6 +5,7 @@ export const explainTheMagneticField_Skill_Data = defineSkill({
   id: '13911675-579e-4d4c-b4da-2db832d1f8be',
   name: {
     en: 'Explain the magnetic field',
+    it: 'Spiegare il campo magnetico',
     qm: 'Magnit maydanını añlatmaq',
     zh: '解释磁场',
     hi: 'चुंबकीय क्षेत्र समझाना',
@@ -39,6 +40,7 @@ export const explainTheMagneticField_Skill_Data = defineSkill({
       'A magnetic field can act on moving charges and magnetic systems; the direction and magnitude of its effects depend on conditions.',
     frontend: {
       en: 'Explain how magnetic fields affect moving charges and magnetic objects.',
+      it: 'Spiega come i campi magnetici agiscono sulle cariche in movimento e sugli oggetti magnetici.',
       qm: 'Magnit maydanı areket etken elektrik yüklerine ve magnit cisimlerge nasıl tesir etkenini añlat.',
       zh: '解释磁场如何影响运动中的电荷和磁性物体。',
       hi: 'समझाएँ कि चुंबकीय क्षेत्र गतिमान आवेशों और चुंबकीय वस्तुओं पर कैसे प्रभाव डालता है।',
