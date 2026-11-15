@@ -2,7 +2,7 @@ import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, dirname } from 'node:path';
+import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 import { resolveLessonMedia } from './resolveLessonMedia.utils';
@@ -13,10 +13,10 @@ function fixture(run: (args: { root: string; directory: string; moduleUrl: strin
   const root = mkdtempSync(join(tmpdir(), 'svitlo-media-'));
   const directory = join(root, 'content/math/data/lessons/c', id, 'sections/intro/diagram');
   mkdirSync(directory, { recursive: true });
-  const module = join(directory, 'index.ts');
-  writeFileSync(module, 'export const diagram = true;\n');
+  const moduleFile = join(directory, 'index.ts');
+  writeFileSync(moduleFile, 'export const diagram = true;\n');
   try {
-    run({ root, directory, moduleUrl: pathToFileURL(module).href });
+    run({ root, directory, moduleUrl: pathToFileURL(moduleFile).href });
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
