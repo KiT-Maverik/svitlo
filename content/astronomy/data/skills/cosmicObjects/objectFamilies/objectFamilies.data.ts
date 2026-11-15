@@ -41,12 +41,15 @@ export const objectFamilies_SkillGroup_Data = defineSkillGroup({
     kk: 'Нысандар топтары',
     qm: 'Cisimlerniñ çeşitleri',
   },
-  skills: [
-    celestialObjectClassification_Skill_Data,
-    diffuseAndCompositeObjects_Skill_Data,
-    objectsAndPhenomena_Skill_Data,
-    stellarSubstellarAndPlanetaryBoundaries_Skill_Data,
-  ],
+  skills: {
+    items: {
+      celestialObjectClassification: celestialObjectClassification_Skill_Data,
+      diffuseAndCompositeObjects: diffuseAndCompositeObjects_Skill_Data,
+      objectsAndPhenomena: objectsAndPhenomena_Skill_Data,
+      stellarSubstellarAndPlanetaryBoundaries: stellarSubstellarAndPlanetaryBoundaries_Skill_Data,
+    },
+    order: ['celestialObjectClassification', 'diffuseAndCompositeObjects', 'objectsAndPhenomena', 'stellarSubstellarAndPlanetaryBoundaries'],
+  },
   description: {
     methodological:
       'Classification of astronomical entities requires more than their appearance in a photograph: a point source, a diffuse cloud, a cluster and an extended galaxy may be distinguished by physical evidence and scale.',

@@ -40,13 +40,16 @@ export const cosmology_SkillDomain_Data = defineSkillDomain({
     ka: 'კოსმოლოგია',
     kk: 'Космология',
   },
-  groups: [
-    cosmicComponentsAndConstraints_SkillGroup_Data,
-    cosmicExpansion_SkillGroup_Data,
-    cosmicScales_SkillGroup_Data,
-    cosmicStructureAndEvolution_SkillGroup_Data,
-    earlyUniverseModelsAndEvidence_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      cosmicComponentsAndConstraints: cosmicComponentsAndConstraints_SkillGroup_Data,
+      cosmicExpansion: cosmicExpansion_SkillGroup_Data,
+      cosmicScales: cosmicScales_SkillGroup_Data,
+      cosmicStructureAndEvolution: cosmicStructureAndEvolution_SkillGroup_Data,
+      earlyUniverseModelsAndEvidence: earlyUniverseModelsAndEvidence_SkillGroup_Data,
+    },
+    order: ['cosmicComponentsAndConstraints', 'cosmicExpansion', 'cosmicScales', 'cosmicStructureAndEvolution', 'earlyUniverseModelsAndEvidence'],
+  },
   description: {
     methodological:
       "Cosmology tests models for the Universe's large-scale composition, history and expansion using observations with known horizons and uncertainties. Unresolved questions must remain distinguishable from established evidence.",
