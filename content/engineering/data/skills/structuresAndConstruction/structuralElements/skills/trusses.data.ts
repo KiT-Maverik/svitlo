@@ -5,6 +5,7 @@ export const trusses_Skill_Data = defineSkill({
   id: 'a5041666-1d9b-4933-bc8c-de399ff60c87',
   name: {
     en: 'Trusses',
+    it: 'Strutture reticolari',
     zh: '桁架',
     hi: 'ट्रस संरचनाएँ',
     es: 'Cerchas',
@@ -38,6 +39,7 @@ export const trusses_Skill_Data = defineSkill({
     methodological: 'Relate connected triangular members to a framed load path.',
     frontend: {
       en: 'Recognize how triangular frames carry loads in a truss.',
+      it: 'Riconosci come i telai triangolari distribuiscono i carichi in una struttura reticolare.',
       zh: '认识三角形杆系如何承受桁架中的荷载。',
       hi: 'जानें कि त्रिकोणीय ढाँचे ट्रस में भार कैसे उठाते हैं।',
       es: 'Reconoce cómo los marcos triangulares transportan cargas en una cercha.',
