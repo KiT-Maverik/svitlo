@@ -3,7 +3,6 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { defineText } from '../../contentBlocks/defineText/defineText';
-import { defineFlashcard, defineFlashcardSide } from '../../flashcards';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
 import { defineFlashcardsSection } from '../../sections/defineFlashcardsSection/defineFlashcardsSection';
@@ -47,7 +46,6 @@ describe('Configurators', () => {
           },
           locale: { title: { en: 'Example', uk: 'Приклад' } },
           section: { items: { intro: section }, order: ['intro'] },
-          flashcards: { items: {} },
         });
 
       test('Lesson emits plain Section Props arrays with correct own and nested locale paths', () => {
@@ -62,7 +60,8 @@ describe('Configurators', () => {
         assert.equal(built.locale?.uk?.locale?.title, 'Приклад');
         assert.equal(textValue(built.locale?.uk?.section?.[0]?.content), 'Привіт');
         assert.equal(built.locale?.en?.section?.[0]?.locale?.title, 'Introduction');
-        assert.deepEqual(built.base.flashcards, []);
+        assert.equal('flashcards' in built.base, false);
+        assert.equal('questions' in built.base, false);
         assert.equal(lessonConfigurator_Schema.safeParse(lesson).success, true);
         assert.equal(
           lesson_Props_Schema.safeParse(built.base).success,
@@ -75,7 +74,7 @@ describe('Configurators', () => {
         assert.equal(lesson_Config_Schema.safeParse(lesson.config.base).success, false);
       });
 
-      test('Lesson banks are optional, but Quiz and Flashcards Sections require their respective bank', () => {
+      test('Lesson accepts Quiz and Flashcards Section references without embedding assessment banks', () => {
         const input = {
           id: id('61'),
           slug: 'banklessLesson',
@@ -91,16 +90,15 @@ describe('Configurators', () => {
         };
         const lesson = defineLesson(input);
         const built = lesson.build.props({ languages: ['en'] });
-        assert.deepEqual(built.base.flashcards, []);
-        assert.equal(built.base.questions, undefined);
+        assert.equal('questions' in built.base, false);
+        assert.equal('flashcards' in built.base, false);
         assert.equal(lesson_Config_Schema.safeParse(input).success, true);
-
         const quiz = defineQuizSection<'banklessQuiz', {}, ['en', 'uk']>({
           id: id('62'),
           slug: 'banklessQuiz',
           type: 'quiz',
           params: {
-            selection: { mode: 'all' },
+            selection: { mode: 'all', questionIds: [id('64')] },
             layout: { mode: 'stack' },
             feedbackMode: 'after-completion',
             interaction: {
@@ -121,60 +119,39 @@ describe('Configurators', () => {
           id: id('63'),
           slug: 'banklessRecall',
           type: 'flashcards',
-          params: {},
+          params: { selection: { flashcardIds: [id('65')] } },
           locale: { title: 'Recall', navigationLabel: 'Cards' },
           content: { items: {}, order: [] },
         });
-        const withQuiz = { items: { intro: section, banklessQuiz: quiz }, order: ['intro', 'banklessQuiz'] };
-        const withRecall = { items: { intro: section, banklessRecall: recall }, order: ['intro', 'banklessRecall'] };
-
-        // @ts-expect-error A Quiz Section cannot be authored without the Lesson Question Bank.
-        assert.throws(() => defineLesson({ ...input, section: withQuiz }), /Quiz Section.*requires Lesson.questions/);
-        // @ts-expect-error A Flashcards Section cannot be authored without the Lesson Flashcard Bank.
-        assert.throws(() => defineLesson({ ...input, section: withRecall }), /Flashcards Section.*requires Lesson.flashcards/);
-        assert.doesNotThrow(() => defineLesson({ ...input, section: withQuiz, questions: {} }));
-        assert.doesNotThrow(() =>
-          defineLesson({ ...input, section: withRecall, flashcards: { items: {} } }),
-        );
-        assert.doesNotThrow(() =>
-          lesson.build.overrides(
-            { section: { items: { intro: { locale: { title: { en: 'Retitled' } } } } } },
-            { languages: ['en'] },
-          ),
+        const withQuiz = defineLesson({
+          ...input,
+          section: { items: { intro: section, banklessQuiz: quiz }, order: ['intro', 'banklessQuiz'] },
+        });
+        const withRecall = defineLesson({
+          ...input,
+          section: { items: { intro: section, banklessRecall: recall }, order: ['intro', 'banklessRecall'] },
+        });
+        assert.deepEqual(
+          withQuiz.build.props({ languages: ['en'] }).base.section[1]?.params.selection,
+          { mode: 'all', questionIds: [id('64')] },
         );
         assert.deepEqual(
-          defineLesson({ ...input, questions: {} })
-            .build.overrides(
-              { section: { additionalItems: { banklessQuiz: quiz }, order: ['intro', 'banklessQuiz'] } },
-              { languages: ['en'] },
-            )
-            .base.section?.map(item => item.slug),
+          withRecall.build.props({ languages: ['en'] }).base.section[1]?.params.selection,
+          { flashcardIds: [id('65')] },
+        );
+        assert.deepEqual(
+          lesson.build.overrides(
+            { section: { additionalItems: { banklessQuiz: quiz }, order: ['intro', 'banklessQuiz'] } },
+            { languages: ['en'] },
+          ).base.section?.map(item => item.slug),
           ['intro', 'banklessQuiz'],
         );
-        assert.deepEqual(
-          defineLesson({ ...input, flashcards: { items: {} } })
-            .build.overrides(
-              { section: { additionalItems: { banklessRecall: recall }, order: ['intro', 'banklessRecall'] } },
-              { languages: ['en'] },
-            )
-            .base.section?.map(item => item.slug),
-          ['intro', 'banklessRecall'],
-        );
-        assert.throws(
-          () =>
-            lesson.build.overrides(
-              { section: { additionalItems: { banklessQuiz: quiz }, order: ['intro', 'banklessQuiz'] } },
-              { languages: ['en'] },
-            ),
-          /Quiz Section.*requires Lesson.questions/,
-        );
-        assert.throws(
-          () =>
-            lesson.build.overrides(
-              { section: { additionalItems: { banklessRecall: recall }, order: ['intro', 'banklessRecall'] } },
-              { languages: ['en'] },
-            ),
-          /Flashcards Section.*requires Lesson.flashcards/,
+        assert.throws(() => lesson.build.overrides({ questions: {} } as never, { languages: ['en'] }), /Unknown Lesson override field/);
+        assert.throws(() => lesson.build.overrides({ flashcards: {} } as never, { languages: ['en'] }), /Unknown Lesson override field/);
+        assert.equal(
+          lesson_Config_Schema.safeParse({ ...input, questions: {} }).success,
+          false,
+          'Lesson Config must reject legacy banks',
         );
         assert.deepEqual(lesson.build.props({ languages: ['en'] }), built);
       });
@@ -213,7 +190,6 @@ describe('Configurators', () => {
             },
             order: ['unscoped'],
           },
-          flashcards: { items: {} },
         });
 
         assert.doesNotThrow(() => lesson.build.props({ languages: ['uk'] }));
@@ -239,7 +215,6 @@ describe('Configurators', () => {
           },
           locale: { title: { en: 'Source language only' } },
           section: { items: {}, order: [] },
-          flashcards: { items: {} },
         };
         assert.equal(lesson_Config_Schema.safeParse(draft).success, true, 'Config permits sparse locale dictionaries');
         const lesson = defineLesson(draft as never);
@@ -336,80 +311,7 @@ describe('Configurators', () => {
         );
       });
 
-      test('Lesson Flashcard bank has deterministic slug order and permits additions without order', () => {
-        const side = defineFlashcardSide<{ paragraph: typeof text }, ['en', 'uk']>({
-          items: { paragraph: text },
-          order: ['paragraph'],
-        });
-        const makeCard = <Slug extends string>(slug: Slug, cardId: string) =>
-          defineFlashcard<
-            Slug,
-            typeof side.items,
-            typeof side.items,
-            {},
-            {},
-            {},
-            ['en', 'uk']
-          >({
-            id: cardId,
-            slug,
-            type: 'flashcard',
-            parameters: { tags: [], flags: { items: {}, order: [] } },
-            content: { front: side, back: side },
-          });
-        const zetaCard = makeCard('zetaCard', id('11'));
-        const alphaCard = makeCard('alphaCard', id('12'));
-        const betaCard = makeCard('betaCard', id('13'));
-        const lesson = defineLesson({
-          id: id('14'),
-          slug: 'recallBankLesson',
-          type: 'lesson',
-          skills: [],
-          params: {
-            requireQuiz: false,
-            languages: ['en', 'uk'] as const,
-            sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
-          },
-          locale: { title: 'Recall bank' },
-          section: { items: { intro: section }, order: ['intro'] },
-          flashcards: { items: { zetaCard, alphaCard } },
-        });
-
-        assert.deepEqual(
-          lesson.build.props({ languages: ['en'] }).base.flashcards.map(card => card.slug),
-          ['alphaCard', 'zetaCard'],
-        );
-        const replacement = lesson.build.overrides(
-          { flashcards: { items: { zetaCard: false }, additionalItems: { betaCard } } },
-          { languages: ['en', 'uk'] },
-        );
-        assert.deepEqual(replacement.base.flashcards?.map(card => card.slug), ['alphaCard', 'betaCard']);
-        assert.deepEqual(Object.keys(lesson.flashcards.items), ['zetaCard', 'alphaCard']);
-        assert.equal('order' in lesson.flashcards, false);
-        assert.throws(
-          () => lesson.build.overrides({ flashcards: { order: ['zetaCard', 'alphaCard'] } } as never, { languages: ['en'] }),
-          /Unknown flashcards override field/,
-        );
-        assert.throws(
-          () =>
-            defineLesson({
-              id: id('15'),
-              slug: 'invalidRecallOrder',
-              type: 'lesson',
-              skills: [],
-              params: {
-                requireQuiz: false,
-                languages: ['en', 'uk'] as const,
-                sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
-              },
-              locale: { title: 'Invalid recall order' },
-              section: { items: { intro: section }, order: ['intro'] },
-              flashcards: { items: { zetaCard }, order: ['zetaCard'] },
-            } as never),
-        );
-      });
-
-      test('Lesson publishes typed Question Bank boundaries and sparse events overrides', () => {
+      test('Lesson event overrides remain sparse and bank fields are forbidden', () => {
         const lesson = makeLesson();
         const events = {
           lessonStarted: false,
@@ -426,10 +328,9 @@ describe('Configurators', () => {
         assert.equal(
           lesson_Props_Schema.safeParse({
             ...lesson.build.props({ languages: ['uk'] }).base,
-            questions: { answerWithText: [{ id: id('04'), slug: 'question', type: 'selectOneAnswer' }] },
           }).success,
           false,
-          'Question Bank keys must match the child Question type',
+          'Lesson Props must not accept embedded Question banks',
         );
       });
 
@@ -442,7 +343,6 @@ describe('Configurators', () => {
               programId: id('04'),
               locale: { title: 'Legacy' },
               section: { items: { intro: section }, order: ['intro'] },
-              flashcards: { items: {} },
             } as never),
           /programId/,
         );
@@ -463,7 +363,6 @@ describe('Configurators', () => {
               },
               locale: { title: 'Wrong' },
               section: { items: { wrongKey: section }, order: ['wrongKey'] },
-              flashcards: { items: {} },
             }),
           /matching .* configurator/,
         );
@@ -481,8 +380,6 @@ describe('Configurators', () => {
             sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
           },
           locale: { title: { en: 'Quiz required', uk: 'Квіз обов’язковий' } },
-          flashcards: { items: {} },
-          questions: {},
         };
 
         assert.throws(
@@ -499,7 +396,7 @@ describe('Configurators', () => {
           slug: 'knowledgeQuiz',
           type: 'quiz',
           params: {
-            selection: { mode: 'all' },
+            selection: { mode: 'all', questionIds: [id('64')] },
             layout: { mode: 'stack' },
             feedbackMode: 'after-completion',
             interaction: {
