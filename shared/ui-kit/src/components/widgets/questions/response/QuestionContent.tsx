@@ -43,10 +43,11 @@ export function questionBlockLabel(block: QuestionBlock, language?: LanguageCode
       return block.locale.value.replace(/[*_`#]/gu, '');
     case 'image':
       return block.locale.alt;
-    case 'carousel':
-      return (
-        optionalLabelText(block.locale.title, language, 'carousel.title') ?? block.locale.slides[0]?.alt ?? ''
-      );
+    case 'carousel': {
+      const firstSlide = block.locale.slides[0];
+      return optionalLabelText(block.locale.title, language, 'carousel.title') ??
+        (firstSlide ? questionBlockLabel(firstSlide, language) : '');
+    }
     case 'audio':
       return labelText(block.locale.title, language, 'audio.title');
     case 'video':
