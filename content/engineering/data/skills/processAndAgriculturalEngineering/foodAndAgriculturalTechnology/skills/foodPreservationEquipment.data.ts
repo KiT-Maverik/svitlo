@@ -5,6 +5,7 @@ export const foodPreservationEquipment_Skill_Data = defineSkill({
   id: 'e3cda56e-c623-4d7e-99f1-ebadfdc4ab0a',
   name: {
     en: 'Food-preservation equipment',
+    it: 'Attrezzature per la conservazione degli alimenti',
     zh: '食品保藏设备',
     hi: 'खाद्य संरक्षण उपकरण',
     es: 'Equipos de conservación de alimentos',
@@ -39,6 +40,7 @@ export const foodPreservationEquipment_Skill_Data = defineSkill({
       'Identify how refrigeration, dehydration, heating or sealed packaging apparatus supports a specified preservation process.',
     frontend: {
       en: 'Recognize equipment that helps keep food safe and slow spoilage.',
+      it: 'Riconosci le attrezzature che aiutano a mantenere gli alimenti sicuri e a rallentarne il deterioramento.',
       zh: '认识有助于保持食品安全并减缓变质的设备。',
       hi: 'ऐसे उपकरण पहचानें जो भोजन को सुरक्षित रखते और खराब होने की गति कम करते हैं।',
       es: 'Reconoce equipos que mantienen los alimentos seguros y retrasan su deterioro.',
