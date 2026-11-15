@@ -5,6 +5,7 @@ export const economicTradeoffs_Skill_Data = defineSkill({
   id: 'e7249992-e56c-4568-85f0-457bbba1eaa2',
   name: {
     en: 'Economic Trade-offs',
+    it: 'Compromessi economici',
     zh: '经济选择中的权衡',
     hi: 'आर्थिक विकल्पों में समझौते',
     es: 'Disyuntivas económicas',
@@ -39,6 +40,7 @@ export const economicTradeoffs_Skill_Data = defineSkill({
       'Identify the objectives or benefits that must be partly sacrificed to pursue another objective under given constraints.',
     frontend: {
       en: 'See how pursuing one goal can mean giving up part of another.',
+      it: 'Scopri come perseguire un obiettivo può significare rinunciare in parte a un altro.',
       zh: '理解追求一个目标可能需要放弃另一个目标的一部分。',
       hi: 'देखें कि एक लक्ष्य पाने के लिए दूसरे का कुछ हिस्सा क्यों छोड़ना पड़ता है।',
       es: 'Observa cómo perseguir una meta puede implicar renunciar a parte de otra.',

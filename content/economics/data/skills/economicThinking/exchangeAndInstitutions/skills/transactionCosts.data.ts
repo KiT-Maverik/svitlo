@@ -5,6 +5,7 @@ export const transactionCosts_Skill_Data = defineSkill({
   id: '5ef7f8fd-7cce-457f-8c5f-bcff7836ec5e',
   name: {
     en: 'Transaction Costs',
+    it: 'Costi di transazione',
     zh: '交易成本',
     hi: 'लेन-देन की लागत',
     es: 'Costos de transacción',
@@ -39,6 +40,7 @@ export const transactionCosts_Skill_Data = defineSkill({
       'Identify the costs of searching, negotiating, verifying, and enforcing an agreement beyond the price of the good itself.',
     frontend: {
       en: 'Recognize the time and effort involved in making an exchange.',
+      it: 'Riconosci il tempo e gli sforzi necessari per realizzare uno scambio.',
       zh: '认识交换所需的时间和精力。',
       hi: 'विनिमय करने में लगने वाले समय और प्रयास को पहचानें।',
       es: 'Reconoce el tiempo y el esfuerzo necesarios para realizar un intercambio.',

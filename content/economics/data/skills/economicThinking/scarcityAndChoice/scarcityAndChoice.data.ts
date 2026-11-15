@@ -13,6 +13,7 @@ export const scarcityAndChoice_SkillGroup_Data = defineSkillGroup({
   id: '5b95c332-046a-4b3c-9138-3a22825cb4e0',
   name: {
     en: 'Scarcity and Choice',
+    it: 'Scarsità e scelta',
     zh: '稀缺性与选择',
     hi: 'कमी और चुनाव',
     es: 'Escasez y elección',
@@ -54,6 +55,7 @@ export const scarcityAndChoice_SkillGroup_Data = defineSkillGroup({
       'Because not all wants can be satisfied at once, economic decisions involve comparing alternatives and considering the value of the options forgone.',
     frontend: {
       en: 'Explore why limited resources require us to make choices.',
+      it: 'Esplora perché le risorse limitate ci costringono a fare delle scelte.',
       zh: '探索为什么有限的资源迫使我们做出取舍。',
       hi: 'जानें कि सीमित संसाधनों के कारण चुनाव क्यों करने पड़ते हैं।',
       es: 'Explora por qué los recursos limitados nos obligan a elegir.',

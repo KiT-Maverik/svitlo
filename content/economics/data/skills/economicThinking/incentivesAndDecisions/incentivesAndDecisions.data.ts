@@ -11,6 +11,7 @@ export const incentivesAndDecisions_SkillGroup_Data = defineSkillGroup({
   id: 'ebaaf62f-dd43-40c4-a150-fdb67e69e23d',
   name: {
     en: 'Incentives and Decisions',
+    it: 'Incentivi e decisioni',
     zh: '激励与决策',
     hi: 'प्रोत्साहन और निर्णय',
     es: 'Incentivos y decisiones',
@@ -46,6 +47,7 @@ export const incentivesAndDecisions_SkillGroup_Data = defineSkillGroup({
       'Choices are influenced by benefits, costs, rules, and available information; the predictability of responses depends on context.',
     frontend: {
       en: 'Discover how rewards, costs, and information affect decisions.',
+      it: 'Scopri come ricompense, costi e informazioni influiscono sulle decisioni.',
       zh: '了解奖励、成本和信息如何影响选择。',
       hi: 'जानें कि पुरस्कार, लागत और जानकारी निर्णयों को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo recompensas, costos e información influyen en las decisiones.',
