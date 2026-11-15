@@ -5,6 +5,7 @@ export const therapeuticAlliance_Skill_Data = defineSkill({
   id: '0e85347e-a80e-408d-9a7c-33f1db375bef',
   name: {
     en: 'Therapeutic Alliance',
+    it: 'Alleanza terapeutica',
     zh: '治疗联盟',
     hi: 'चिकित्सकीय सहयोगात्मक संबंध',
     es: 'Alianza terapéutica',
@@ -39,6 +40,7 @@ export const therapeuticAlliance_Skill_Data = defineSkill({
       'Explain why collaboration, trust, and agreement on goals matter for outcomes across psychological therapies.',
     frontend: {
       en: 'Recognize how trust and cooperation contribute to therapeutic care.',
+      it: 'Riconosci come fiducia e collaborazione contribuiscano alla cura terapeutica.',
       zh: '认识信任与合作如何促进治疗过程。',
       hi: 'समझें कि भरोसा और सहयोग उपचार में कैसे मदद करते हैं।',
       es: 'Reconoce cómo la confianza y la cooperación contribuyen a la atención terapéutica.',

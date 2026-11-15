@@ -5,6 +5,7 @@ export const clinicalFormulation_Skill_Data = defineSkill({
   id: '833df35c-53f2-4527-819c-eeb4465a40f4',
   name: {
     en: 'Clinical Formulation',
+    it: 'Formulazione clinica',
     zh: '临床个案概念化',
     hi: 'नैदानिक केस की व्याख्या',
     es: 'Formulación clínica',
@@ -39,6 +40,7 @@ export const clinicalFormulation_Skill_Data = defineSkill({
       "Explain combining developmental, social, behavioral, and situational evidence into a provisional account of a person's difficulties.",
     frontend: {
       en: 'Understand how clinicians combine evidence to develop a provisional explanation.',
+      it: 'Comprendi come i clinici combinino le evidenze per elaborare una spiegazione provvisoria.',
       zh: '理解临床工作者如何整合证据形成暂时性的解释。',
       hi: 'समझें कि चिकित्सक अलग-अलग साक्ष्य जोड़कर प्रारंभिक व्याख्या कैसे बनाते हैं।',
       es: 'Comprende cómo profesionales clínicos combinan pruebas para elaborar una explicación provisional.',

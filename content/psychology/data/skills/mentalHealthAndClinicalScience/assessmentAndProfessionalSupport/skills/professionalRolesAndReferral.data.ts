@@ -5,6 +5,7 @@ export const professionalRolesAndReferral_Skill_Data = defineSkill({
   id: 'b90faf66-554a-4fc8-9ba8-ac372cd48ab5',
   name: {
     en: 'Professional Roles and Referral',
+    it: 'Ruoli professionali e invio a specialisti',
     zh: '专业人员的职责与转介',
     hi: 'विशेषज्ञों की भूमिकाएँ और रेफ़रल',
     es: 'Funciones profesionales y derivación',
@@ -39,6 +40,7 @@ export const professionalRolesAndReferral_Skill_Data = defineSkill({
       'Distinguish roles of psychological practitioners and medical professionals and identify why appropriate referral may be needed.',
     frontend: {
       en: 'Recognize when different kinds of qualified professionals or referrals are needed.',
+      it: 'Riconosci quando sono necessari professionisti qualificati di diverso tipo o un invio a specialisti.',
       zh: '认识什么时候需要不同领域的合格专业人员或转介服务。',
       hi: 'समझें कि कब अलग योग्य विशेषज्ञों या आगे भेजे जाने की जरूरत होती है।',
       es: 'Reconoce cuándo se necesitan distintos profesionales cualificados o una derivación.',

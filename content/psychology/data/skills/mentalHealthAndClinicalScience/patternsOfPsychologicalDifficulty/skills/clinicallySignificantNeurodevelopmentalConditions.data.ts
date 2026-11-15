@@ -5,6 +5,7 @@ export const clinicallySignificantNeurodevelopmentalConditions_Skill_Data = defi
   id: '4411e247-6748-4014-b13d-30078ff9fcd2',
   name: {
     en: 'Clinically Significant Neurodevelopmental Conditions',
+    it: 'Condizioni del neurosviluppo clinicamente significative',
     zh: '具有临床意义的神经发育状况',
     hi: 'नैदानिक रूप से महत्वपूर्ण तंत्रिका-विकास स्थितियाँ',
     es: 'Condiciones del neurodesarrollo clínicamente significativas',
@@ -39,6 +40,7 @@ export const clinicallySignificantNeurodevelopmentalConditions_Skill_Data = defi
       'Explain how developmental-onset patterns of cognition, communication, or behavior may warrant clinical assessment when accompanied by meaningful impairment or support needs. Distinguish clinical evaluation from ordinary developmental variation without diagnosing people from isolated traits.',
     frontend: {
       en: 'Understand why developmental differences require context and professional assessment.',
+      it: 'Comprendi perché le differenze nello sviluppo richiedano di considerare il contesto e una valutazione professionale.',
       zh: '理解为什么发展差异需要结合背景并由专业人士评估。',
       hi: 'समझें कि विकासात्मक भिन्नताओं के लिए संदर्भ और विशेषज्ञ मूल्यांकन क्यों आवश्यक है।',
       es: 'Comprende por qué las diferencias del desarrollo requieren contexto y evaluación profesional.',

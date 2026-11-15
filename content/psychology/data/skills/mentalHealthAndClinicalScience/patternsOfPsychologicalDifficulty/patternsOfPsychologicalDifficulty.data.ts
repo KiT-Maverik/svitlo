@@ -13,6 +13,7 @@ export const patternsOfPsychologicalDifficulty_SkillGroup_Data = defineSkillGrou
   id: 'e22d532a-720c-4ca0-920a-caaeffd7fdbd',
   name: {
     en: 'Patterns of Psychological Difficulty',
+    it: 'Quadri delle difficoltà psicologiche',
     zh: '心理困难的表现模式',
     hi: 'मनोवैज्ञानिक कठिनाइयों के रूप',
     es: 'Patrones de dificultades psicológicas',
@@ -63,6 +64,7 @@ export const patternsOfPsychologicalDifficulty_SkillGroup_Data = defineSkillGrou
       'Clinical categories summarize heterogeneous symptom patterns; they should not be inferred from a few ordinary behaviors or applied as labels to peers.',
     frontend: {
       en: 'Learn about broad patterns of difficulty without diagnosing people from everyday traits.',
+      it: 'Scopri i principali quadri delle difficoltà psicologiche senza diagnosticare le persone in base a caratteristiche quotidiane.',
       zh: '了解广泛的困难表现，但不要根据日常特征给他人诊断。',
       hi: 'रोजमर्रा के व्यवहारों से किसी को निदान दिए बिना व्यापक कठिनाई के रूपों को समझें।',
       es: 'Conoce patrones generales de dificultad sin diagnosticar a personas por rasgos cotidianos.',
