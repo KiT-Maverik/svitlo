@@ -17,7 +17,10 @@ import { Image } from '../Image/Image';
 import { Scene } from '../Scene/Scene';
 import styles from './Carousel.module.css';
 
-type Props = ContentBlock_Carousel_Props & { messages: Pick<UiKitMessages, 'image' | 'learningLayout'>; sceneRegistry?: SceneRegistry };
+type Props = ContentBlock_Carousel_Props & {
+  messages: Pick<UiKitMessages, 'image' | 'learningLayout'>;
+  sceneRegistry?: SceneRegistry;
+};
 type Playback = 'auto' | 'paused' | 'playing';
 type TransitionState = { from: number; direction: -1 | 1; revision: number };
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { ContentBlock_Carousel_SlideProps, ContentBlock_Scene_Props } from '@svitlo/engine/runtime';
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { ContentBlock_Carousel_SlideProps, ContentBlock_Scene_Props } from '@svitlo/engine/runtime';
 import { Carousel } from './Carousel';
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 
@@ -22,23 +22,37 @@ function illustration(sky: string, center: string, accent: string) {
 
 const slides: ContentBlock_Carousel_SlideProps[] = [
   {
-    id: 'story-morning', slug: 'morning', type: 'image', params: { fill: true, aspectRatio: 16 / 9 },
+    id: 'story-morning',
+    slug: 'morning',
+    type: 'image',
+    params: { fill: true, aspectRatio: 16 / 9 },
     locale: {
-    src: illustration('#e8f4ff', '#ffcf74', '#85c2ae'),
-    alt: 'Sunlit hills beneath a blue sky',
-    caption: 'Slide 1 · The morning sky' },
+      src: illustration('#e8f4ff', '#ffcf74', '#85c2ae'),
+      alt: 'Sunlit hills beneath a blue sky',
+      caption: 'Slide 1 · The morning sky',
+    },
   },
   {
-    id: 'story-sunset', slug: 'sunset', type: 'image', params: { fill: true, aspectRatio: 16 / 9 },
-    locale: { src: illustration('#fee7dd', '#fb9195', '#9980b8'),
-    alt: 'A pink sunset over purple hills',
-    caption: 'Slide 2 · Sunset' },
+    id: 'story-sunset',
+    slug: 'sunset',
+    type: 'image',
+    params: { fill: true, aspectRatio: 16 / 9 },
+    locale: {
+      src: illustration('#fee7dd', '#fb9195', '#9980b8'),
+      alt: 'A pink sunset over purple hills',
+      caption: 'Slide 2 · Sunset',
+    },
   },
   {
-    id: 'story-night', slug: 'night', type: 'image', params: { fill: true, aspectRatio: 16 / 9 },
-    locale: { src: illustration('#24345e', '#d5d9f9', '#416788'),
-    alt: 'The moon over dark blue hills',
-    caption: 'Slide 3 · Night' },
+    id: 'story-night',
+    slug: 'night',
+    type: 'image',
+    params: { fill: true, aspectRatio: 16 / 9 },
+    locale: {
+      src: illustration('#24345e', '#d5d9f9', '#416788'),
+      alt: 'The moon over dark blue hills',
+      caption: 'Slide 3 · Night',
+    },
   },
 ];
 
@@ -107,7 +121,7 @@ export const Contain: Story = {
   args: { params: { ...meta.args.params, objectFit: 'contain', aspectRatio: 4 / 3, allowFullscreen: false } },
 };
 
-/** Demonstrates the real registry dispatch with a working interactive component. */
+/** Demonstrates real registry dispatch with a working interactive component. */
 export const InteractiveScene: Story = {
   args: {
     locale: {
@@ -115,7 +129,10 @@ export const InteractiveScene: Story = {
       slides: [
         slides[0],
         {
-          id: 'story-interactive', slug: 'interactive', type: 'scene', params: {},
+          id: 'story-interactive',
+          slug: 'interactive',
+          type: 'scene',
+          params: {},
           locale: { value: 'Try the Scene interaction' },
         },
       ],
