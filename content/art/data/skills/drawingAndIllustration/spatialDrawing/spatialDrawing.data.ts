@@ -13,6 +13,7 @@ export const spatialDrawing_SkillGroup_Data = defineSkillGroup({
   id: '11a7337c-cf39-4519-8bcc-1b2a0b69ace3',
   name: {
     en: 'Spatial Drawing',
+    it: 'Disegno dello spazio',
     zh: '空间绘画',
     hi: 'स्थानिक चित्रांकन',
     es: 'Dibujo espacial',
@@ -54,6 +55,7 @@ export const spatialDrawing_SkillGroup_Data = defineSkillGroup({
       'These methods depict depth and coherent form on flat surfaces, while leaving room for deliberate stylistic distortion.',
     frontend: {
       en: 'Create believable space and form on a flat page, or bend perspective deliberately.',
+      it: 'Crea uno spazio e un volume credibili su una superficie piana oppure altera intenzionalmente la prospettiva.',
       zh: '在平面上营造可信的空间与形体，也可以有意改变透视。',
       hi: 'समतल पृष्ठ पर विश्वसनीय स्थान और रूप बनाएँ या जानबूझकर परिप्रेक्ष्य बदलें।',
       es: 'Crea espacio y forma convincentes en una página plana, o modifica la perspectiva deliberadamente.',
