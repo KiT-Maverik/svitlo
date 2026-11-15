@@ -217,7 +217,7 @@ test('Italian draft reference marks missing titles while strict generation rejec
   withFixture(root => {
     const registry = sources[0];
     replaceFile(root, registry, source => source.replace('export const DEFAULT_SUPPORTED_LANGUAGES = [',
-      "export const DEFAULT_SUPPORTED_LANGUAGES = [\\n  { locale: 'it-IT', language: 'it' },"));
+      "export const DEFAULT_SUPPORTED_LANGUAGES = [\n  { locale: 'it-IT', language: 'it' },"));
     assert.throws(() => readAssessmentMethodsReference({ root, locale: 'it' }), /missing \[it\]/);
     const draft = readAssessmentMethodsReference({ root, locale: 'it', allowMissing: true });
     assert.equal(draft.missing, 16);
