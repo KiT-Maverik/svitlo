@@ -11,6 +11,7 @@ export const energyPerformance_SkillGroup_Data = defineSkillGroup({
   id: '00389c0e-1067-4c9e-9d0a-ec3cc596d08d',
   name: {
     en: 'Energy Performance',
+    it: 'Prestazioni energetiche',
     zh: '能源性能',
     hi: 'ऊर्जा प्रदर्शन',
     es: 'Rendimiento energético',
@@ -46,6 +47,7 @@ export const energyPerformance_SkillGroup_Data = defineSkillGroup({
       'Consumption varies over time, and practical output is less than input when converters or networks lose energy.',
     frontend: {
       en: 'Explore how engineers estimate demand and improve energy performance.',
+      it: 'Esplora come gli ingegneri stimano la domanda e migliorano le prestazioni energetiche.',
       zh: '探索工程师如何估算需求并提高能源利用性能。',
       hi: 'जानें कि अभियंता ऊर्जा की माँग का अनुमान और प्रदर्शन में सुधार कैसे करते हैं।',
       es: 'Descubre cómo los ingenieros estiman la demanda y mejoran el rendimiento energético.',
