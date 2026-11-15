@@ -11,6 +11,7 @@ export const financialStabilityAndRegulation_SkillGroup_Data = defineSkillGroup(
   id: 'f1c7d81b-c126-418f-ab87-cb4dd190e2a6',
   name: {
     en: 'Стабільність і регулювання',
+    it: 'Stabilità e regolamentazione finanziaria',
     zh: '金融稳定与监管',
     hi: 'वित्तीय स्थिरता और विनियमन',
     es: 'Estabilidad y regulación financiera',
@@ -46,6 +47,7 @@ export const financialStabilityAndRegulation_SkillGroup_Data = defineSkillGroup(
       'Problems at individual intermediaries can spread through debt and confidence to the broader economy.',
     frontend: {
       en: 'Explore how the financial system can face problems that spread across institutions.',
+      it: 'Esplora come i problemi del sistema finanziario possono propagarsi tra istituzioni.',
       zh: '探索金融体系中的问题如何在机构之间蔓延。',
       hi: 'जानें कि वित्तीय प्रणाली की समस्याएँ संस्थानों में कैसे फैल सकती हैं।',
       es: 'Explora cómo los problemas del sistema financiero pueden propagarse entre instituciones.',

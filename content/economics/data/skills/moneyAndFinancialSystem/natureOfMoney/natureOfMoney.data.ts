@@ -7,6 +7,7 @@ export const natureOfMoney_SkillGroup_Data = defineSkillGroup({
   id: '8c68d53f-7f7c-448d-8be5-b7b62e7bde99',
   name: {
     en: 'Природа грошей',
+    it: 'Natura della moneta',
     zh: '货币的本质',
     hi: 'मुद्रा का स्वरूप',
     es: 'Naturaleza del dinero',
@@ -42,6 +43,7 @@ export const natureOfMoney_SkillGroup_Data = defineSkillGroup({
       'Money functions as a generally accepted means of payment and a unit for measuring value across different institutional forms.',
     frontend: {
       en: 'Explore what makes something useful as money.',
+      it: 'Esplora quali caratteristiche rendono qualcosa utile come moneta.',
       zh: '探索什么使一种东西能够充当货币。',
       hi: 'जानें कि कोई वस्तु मुद्रा के रूप में उपयोगी कैसे बनती है।',
       es: 'Explora qué hace que algo sea útil como dinero.',

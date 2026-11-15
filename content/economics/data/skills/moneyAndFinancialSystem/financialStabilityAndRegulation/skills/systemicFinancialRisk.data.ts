@@ -5,6 +5,7 @@ export const systemicFinancialRisk_Skill_Data = defineSkill({
   id: '6a881493-aaf5-4c6a-89d6-14935f07b768',
   name: {
     en: 'Системний фінансовий ризик',
+    it: 'Rischio finanziario sistemico',
     zh: '系统性金融风险',
     hi: 'प्रणालीगत वित्तीय जोखिम',
     es: 'Riesgo financiero sistémico',
@@ -39,6 +40,7 @@ export const systemicFinancialRisk_Skill_Data = defineSkill({
       'Explain how networks of obligations, panic, and liquidity shortages transmit shocks between participants.',
     frontend: {
       en: 'Recognize why trouble at one financial institution can affect others.',
+      it: "Riconosci perché i problemi di un'istituzione finanziaria possono ripercuotersi su altre.",
       zh: '认识一家金融机构出问题为何会影响其他机构。',
       hi: 'जानें कि एक वित्तीय संस्था की समस्या दूसरी संस्थाओं को क्यों प्रभावित कर सकती है।',
       es: 'Reconoce por qué los problemas de una institución financiera pueden afectar a otras.',
