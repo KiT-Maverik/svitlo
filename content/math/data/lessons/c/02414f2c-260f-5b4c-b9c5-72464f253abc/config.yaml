@@ -649,7 +649,13 @@ config:
               3. **markdown — currently rendered:** "Six tiles can be placed unfairly: an overlap counts a square twice and leaves a gap. To measure area, use the **same-size square unit** and count each **different covered square** once. Tiles of different sizes are different units."
             - **Feedback:** Before repair: "Only five different unit squares are covered; one is still empty." After repair: "Each of the six is covered exactly once: six square units." For comparing large versus small tile counts: "Both have two pieces, but one piece is not the same area unit in both pictures." If the learner treats decorative grid lines as measured area: "Only the filled _regions_ between lines count."
             - **Transfer:** Unseen four-cell L-shaped region (rows 3+1) with a selection of equal unit tiles; learner covers and explains "four square units", including the equal-unit rule. No scored correctness recording.
-    order: ['distinguishAreaFromOutline', 'coverRegionWithUnitTiles', 'compareAreaAcrossOutlines', 'identifyOverlapsAndUnitSize']
+    order:
+      [
+        'distinguishAreaFromOutline',
+        'coverRegionWithUnitTiles',
+        'compareAreaAcrossOutlines',
+        'identifyOverlapsAndUnitSize',
+      ]
   flashcards:
     items: {}
     order: []

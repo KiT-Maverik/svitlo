@@ -362,7 +362,13 @@ config:
                       en: '**Expression:** 10 − 4. **Value:** 6. **Equality:** 10 − 4 = 6.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['chooseSumExpression', 'compareExpressionCards', 'explainOnlyExpressionNeeded', 'contrastExpressionValueEquation']
+            order:
+              [
+                'chooseSumExpression',
+                'compareExpressionCards',
+                'explainOnlyExpressionNeeded',
+                'contrastExpressionValueEquation',
+              ]
         production:
           purpose: 'An expression is not the same thing as a full equation'
           productionNotes: |-
@@ -491,7 +497,13 @@ config:
             2. **`scene` Resource (proposed):** Expression Reader, entry D, begins with a story and empty symbol slots. Learner may choose digits, + or −, or use a simple accessible text field. First optional hint: “Which number is in the jar at the beginning?” Second hint: “Does ‘taken out’ join or remove?” Valid expression: **14 − 4**.
             3. **`text`, feedback:** For **4 − 14**: “Four is the amount removed, not the starting amount.” For **14 + 4**: “The tokens were taken out, not put in.” For **14 − 4 = 10**: “The calculation is right, but you wrote a complete equality. Show only the expression **14 − 4** for this request.” Confirm by revealing ten _only if the learner asks_.
             4. **`markdown`:** “Before you write symbols, ask: **What amount starts? What changes? What action connects them?** A good expression describes that relationship. You can work out its value afterward.”
-    order: ['writeAdditionExpression', 'translateSubtractionWords', 'distinguishExpressionAndEquality', 'composeExpressionFromStory']
+    order:
+      [
+        'writeAdditionExpression',
+        'translateSubtractionWords',
+        'distinguishExpressionAndEquality',
+        'composeExpressionFromStory',
+      ]
   flashcards:
     items: {}
     order: []

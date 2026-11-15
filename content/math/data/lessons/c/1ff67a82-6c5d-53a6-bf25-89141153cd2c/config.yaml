@@ -139,7 +139,13 @@ config:
                 production:
                   purpose: 'A question that hides another question: markdown resource at position 4 (source provisional)'
                   specification: '4. **`markdown`:** “The first answer, **15**, helps us answer the second question. It is **not the final answer**. We can name it: ‘original total of books’.”'
-            order: ['solveBooksRemainingPrompt', 'modelBookCountPlan', 'calculateInitialBooks', 'distinguishIntermediateAnswer']
+            order:
+              [
+                'solveBooksRemainingPrompt',
+                'modelBookCountPlan',
+                'calculateInitialBooks',
+                'distinguishIntermediateAnswer',
+              ]
         production:
           purpose: 'identify what the final question depends on._'
           pedagogicalIntent: 'Original Section 1: A question that hides another question (provisional draft)'
@@ -273,7 +279,8 @@ config:
                 production:
                   purpose: 'The plan has to answer the final question: markdown resource at position 4 (source provisional)'
                   specification: '4. **`markdown`:** “A good plan names both questions: **First, how many does Sam have? Second, how many do they have together?**”'
-            order: ['chooseFirstUnknown', 'modelSamStickerAmount', 'explainNineIsIntermediate', 'outlineTwoStepStickerPlan']
+            order:
+              ['chooseFirstUnknown', 'modelSamStickerAmount', 'explainNineIsIntermediate', 'outlineTwoStepStickerPlan']
         production:
           purpose: 'distinguish a meaningful first calculation from a complete solution._'
           pedagogicalIntent: 'Original Section 2: The plan has to answer the final question (provisional draft)'
@@ -528,7 +535,13 @@ config:
                 production:
                   purpose: 'Independent transfer: draw a short plan: markdown resource at position 4 (source provisional)'
                   specification: '4. **`markdown`:** “**Recall:** Identify the final unknown. Ask **what missing quantity must be found first?** Give that intermediate a name and unit, then use it in the second step.”'
-            order: ['planShellsTransfer', 'modelShellCountDependency', 'explainIntermediateShellCount', 'summarizeTwoStepPlanning']
+            order:
+              [
+                'planShellsTransfer',
+                'modelShellCountDependency',
+                'explainIntermediateShellCount',
+                'summarizeTwoStepPlanning',
+              ]
         production:
           purpose: 'learners select the intermediate before seeing the operations._'
           pedagogicalIntent: 'Original Section 4: Independent transfer: draw a short plan (provisional draft)'

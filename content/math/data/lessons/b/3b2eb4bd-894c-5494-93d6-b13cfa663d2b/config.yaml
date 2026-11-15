@@ -499,7 +499,8 @@ config:
                       en: 'Sharing: five groups receive four each. Grouping: four groups of five can be made. Both use twenty, but 20 ÷ 4 = 5 is a different expression even if its model also has twenty counters.'
                 production:
                   purpose: 'Source explanatory learner copy'
-            order: ['matchTwentyDividedByFive', 'exploreTwoDivisionInterpretations', 'explainSameEquationDifferentStories']
+            order:
+              ['matchTwentyDividedByFive', 'exploreTwoDivisionInterpretations', 'explainSameEquationDifferentStories']
         production:
           purpose: 'One Equality, Two New Stories'
           productionNotes: |-
@@ -515,7 +516,13 @@ config:
             - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
             - **Planned Note:** “In total ÷ nonzero divisor = quotient, the dividend is the starting total.” once the model and its numerical reasoning are explained (not yet wired).
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-    order: ['nameDivisionExpressionParts', 'interpretSharingQuotient', 'interpretGroupingQuotient', 'createTwoDivisionStories']
+    order:
+      [
+        'nameDivisionExpressionParts',
+        'interpretSharingQuotient',
+        'interpretGroupingQuotient',
+        'createTwoDivisionStories',
+      ]
   flashcards:
     items: {}
     order: []
