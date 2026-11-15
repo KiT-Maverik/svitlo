@@ -13,6 +13,7 @@ export const formationAndChronology_SkillGroup_Data = defineSkillGroup({
   id: '7fa39186-b431-40e2-8429-f0d84de5a7d5',
   name: {
     en: 'Formation and Chronology',
+    it: 'Formazione e cronologia',
     zh: '形成与年代',
     hi: 'निर्माण और कालक्रम',
     es: 'Formación y cronología',
@@ -54,6 +55,7 @@ export const formationAndChronology_SkillGroup_Data = defineSkillGroup({
       'The formation model must explain both shared planetary characteristics and striking differences among observed worlds.',
     frontend: {
       en: 'Trace the evidence for how the Solar System grew and changed over time.',
+      it: 'Ricostruisci attraverso le prove come il Sistema solare è cresciuto e cambiato nel tempo.',
       zh: '追踪太阳系如何随时间逐渐形成、发展和变化的证据。',
       hi: 'जानें कि समय के साथ सौरमंडल कैसे बना और बदला, इसके प्रमाण क्या हैं।',
       es: 'Examina las pruebas de cómo el Sistema Solar se formó y cambió con el tiempo.',

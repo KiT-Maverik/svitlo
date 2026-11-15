@@ -5,6 +5,7 @@ export const meteoroidsMeteorsAndMeteorites_Skill_Data = defineSkill({
   id: 'fbd804b9-3ac3-477a-a937-070e1280f188',
   name: {
     en: 'Meteoroids, Meteors and Meteorites',
+    it: 'Meteoroidi, meteore e meteoriti',
     zh: '流星体、流星与陨石',
     hi: 'उल्किकाएँ, उल्काएँ और उल्कापिंड',
     es: 'Meteoroides, meteoros y meteoritos',
@@ -39,6 +40,7 @@ export const meteoroidsMeteorsAndMeteorites_Skill_Data = defineSkill({
       'Distinguish a small body in space, its atmospheric luminous phenomenon and surviving material reaching the ground.',
     frontend: {
       en: 'Distinguish a meteoroid in space, a meteor in the sky and a meteorite on the ground.',
+      it: 'Distingui un meteoroide nello spazio, una meteora nel cielo e un meteorite al suolo.',
       zh: '了解太空中的流星体、天空中的流星和落到地面的陨石之间的区别。',
       hi: 'अंतर समझें: अंतरिक्ष में उल्किका, आकाश में दिखाई देने वाली उल्का और जमीन पर पहुँचा उल्कापिंड।',
       es: 'Distingue entre un meteoroide en el espacio, un meteoro en el cielo y un meteorito en el suelo.',
