@@ -48,12 +48,7 @@ export const collection_SkillGroup_Data = defineSkillGroup({
       tallyMarks: tallyMarks_Skill_Data,
       fillSimpleTable: fillSimpleTable_Skill_Data,
     },
-    order: [
-      'formulateInvestigationQuestion',
-      'collectCounts',
-      'tallyMarks',
-      'fillSimpleTable',
-    ],
+    order: ['formulateInvestigationQuestion', 'collectCounts', 'tallyMarks', 'fillSimpleTable'],
   },
   description: {
     methodological:

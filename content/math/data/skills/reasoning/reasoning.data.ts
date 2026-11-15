@@ -46,12 +46,7 @@ export const reasoning_SkillDomain_Data = defineSkillDomain({
       logic: logic_SkillGroup_Data,
       representations: representations_SkillGroup_Data,
     },
-    order: [
-      'argumentation',
-      'verification',
-      'logic',
-      'representations',
-    ],
+    order: ['argumentation', 'verification', 'logic', 'representations'],
   },
   description: {
     methodological:

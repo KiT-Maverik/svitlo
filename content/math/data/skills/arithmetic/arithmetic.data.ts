@@ -48,13 +48,7 @@ export const arithmetic_SkillDomain_Data = defineSkillDomain({
       multiply: multiply_SkillGroup_Data,
       divide: divide_SkillGroup_Data,
     },
-    order: [
-      'addition',
-      'subtraction',
-      'additionSubtraction',
-      'multiply',
-      'divide',
-    ],
+    order: ['addition', 'subtraction', 'additionSubtraction', 'multiply', 'divide'],
   },
   description: {
     methodological:

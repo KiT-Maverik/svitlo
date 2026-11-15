@@ -48,12 +48,7 @@ export const adulthoodAndAging_SkillGroup_Data = defineSkillGroup({
       lifelongAdaptation: lifelongAdaptation_Skill_Data,
       socioemotionalSelectivity: socioemotionalSelectivity_Skill_Data,
     },
-    order: [
-      'adultRoleTransitions',
-      'cognitiveAging',
-      'lifelongAdaptation',
-      'socioemotionalSelectivity',
-    ],
+    order: ['adultRoleTransitions', 'cognitiveAging', 'lifelongAdaptation', 'socioemotionalSelectivity'],
   },
   description: {
     methodological:

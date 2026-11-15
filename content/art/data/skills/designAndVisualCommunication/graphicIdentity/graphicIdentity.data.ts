@@ -49,12 +49,7 @@ export const graphicIdentity_SkillGroup_Data = defineSkillGroup({
       designAGraphicSymbol: designAGraphicSymbol_Skill_Data,
       designAPoster: designAPoster_Skill_Data,
     },
-    order: [
-      'adaptGraphicsAcrossFormats',
-      'buildAVisualIdentity',
-      'designAGraphicSymbol',
-      'designAPoster',
-    ],
+    order: ['adaptGraphicsAcrossFormats', 'buildAVisualIdentity', 'designAGraphicSymbol', 'designAPoster'],
   },
   description: {
     methodological:

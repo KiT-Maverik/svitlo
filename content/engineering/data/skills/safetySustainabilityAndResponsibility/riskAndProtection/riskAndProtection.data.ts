@@ -48,12 +48,7 @@ export const riskAndProtection_SkillGroup_Data = defineSkillGroup({
       identifyEngineeringHazards: identifyEngineeringHazards_Skill_Data,
       safetyMargins: safetyMargins_Skill_Data,
     },
-    order: [
-      'evaluateTechnicalRisk',
-      'hazardControlMeasures',
-      'identifyEngineeringHazards',
-      'safetyMargins',
-    ],
+    order: ['evaluateTechnicalRisk', 'hazardControlMeasures', 'identifyEngineeringHazards', 'safetyMargins'],
   },
   description: {
     methodological:

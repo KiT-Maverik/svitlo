@@ -48,12 +48,7 @@ export const mass_SkillGroup_Data = defineSkillGroup({
       kilogramGram: kilogramGram_Skill_Data,
       weighObject: weighObject_Skill_Data,
     },
-    order: [
-      'centnerKilogram',
-      'compareMass',
-      'kilogramGram',
-      'weighObject',
-    ],
+    order: ['centnerKilogram', 'compareMass', 'kilogramGram', 'weighObject'],
   },
   description: {
     methodological:

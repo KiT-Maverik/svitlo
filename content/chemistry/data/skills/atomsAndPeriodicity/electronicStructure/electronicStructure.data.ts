@@ -50,13 +50,7 @@ export const electronicStructure_SkillGroup_Data = defineSkillGroup({
       ionFormation: ionFormation_Skill_Data,
       valenceElectrons: valenceElectrons_Skill_Data,
     },
-    order: [
-      'atomicOrbitals',
-      'electronConfigurations',
-      'electronShells',
-      'ionFormation',
-      'valenceElectrons',
-    ],
+    order: ['atomicOrbitals', 'electronConfigurations', 'electronShells', 'ionFormation', 'valenceElectrons'],
   },
   description: {
     methodological:

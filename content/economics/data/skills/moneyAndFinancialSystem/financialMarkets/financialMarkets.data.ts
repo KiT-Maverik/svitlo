@@ -43,12 +43,7 @@ export const financialMarkets_SkillGroup_Data = defineSkillGroup({
       interestRates: interestRates_Skill_Data,
       stocks: stocks_Skill_Data,
     },
-    order: [
-      'assetRiskAndReturn',
-      'bonds',
-      'interestRates',
-      'stocks',
-    ],
+    order: ['assetRiskAndReturn', 'bonds', 'interestRates', 'stocks'],
   },
   description: {
     methodological:

@@ -46,7 +46,11 @@ export const machinesAndCryptanalysis_SkillGroup_Data = defineSkillGroup({
       explainTheDevelopmentOfProgrammableComputers: explainTheDevelopmentOfProgrammableComputers_Skill_Data,
       explainThePurposeOfTheBombe: explainThePurposeOfTheBombe_Skill_Data,
     },
-    order: ['explainHistoricalCryptanalysisMethods', 'explainTheDevelopmentOfProgrammableComputers', 'explainThePurposeOfTheBombe'],
+    order: [
+      'explainHistoricalCryptanalysisMethods',
+      'explainTheDevelopmentOfProgrammableComputers',
+      'explainThePurposeOfTheBombe',
+    ],
   },
   description: {
     methodological:

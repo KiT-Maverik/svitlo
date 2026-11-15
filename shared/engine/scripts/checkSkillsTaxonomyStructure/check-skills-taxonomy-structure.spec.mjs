@@ -91,13 +91,19 @@ test('mixed Domain with Groups and direct Skills is structurally valid', t => {
         'import { angles_SkillGroup_Data }',
         "import { rectangle_Skill_Data } from './skills';\nimport { angles_SkillGroup_Data }",
       )
-      .replace("groups: { items: { angles: angles_SkillGroup_Data }, order: ['angles'] }", "groups: { items: { angles: angles_SkillGroup_Data }, order: ['angles'] }, skills: { items: { rectangle: rectangle_Skill_Data }, order: ['rectangle'] }"),
+      .replace(
+        "groups: { items: { angles: angles_SkillGroup_Data }, order: ['angles'] }",
+        "groups: { items: { angles: angles_SkillGroup_Data }, order: ['angles'] }, skills: { items: { rectangle: rectangle_Skill_Data }, order: ['rectangle'] }",
+      ),
   );
   assert.deepEqual(checkTaxonomy(root), { domains: 1, groups: 1, skills: 2 });
   const source = fs.readFileSync(file, 'utf8');
   write(
     'geometry/geometry.data.ts',
-    source.replace("skills: { items: { rectangle: rectangle_Skill_Data }, order: ['rectangle'] }", "skills: { items: { rectangle: rectangle_Skill_Data.config.base.id }, order: ['rectangle'] }"),
+    source.replace(
+      "skills: { items: { rectangle: rectangle_Skill_Data }, order: ['rectangle'] }",
+      "skills: { items: { rectangle: rectangle_Skill_Data.config.base.id }, order: ['rectangle'] }",
+    ),
   );
   assert.throws(() => checkTaxonomy(root), /Invalid child configurator entry/);
 });
@@ -109,13 +115,19 @@ test('rejects inconsistent ordered collection keys and order', t => {
   const original = fs.readFileSync(file, 'utf8');
   write('geometry/geometry.data.ts', original.replace("order: ['angles']", "order: ['missing']"));
   assert.throws(() => checkTaxonomy(root), /Child order must include every item/);
-  write('geometry/geometry.data.ts', original.replace('angles: angles_SkillGroup_Data', 'wrong: angles_SkillGroup_Data'));
+  write(
+    'geometry/geometry.data.ts',
+    original.replace('angles: angles_SkillGroup_Data', 'wrong: angles_SkillGroup_Data'),
+  );
   assert.throws(() => checkTaxonomy(root), /Child slug\/symbol mismatch/);
   write('geometry/geometry.data.ts', original.replace("order: ['angles']", "order: ['angles', 'angles']"));
   assert.throws(() => checkTaxonomy(root), /Duplicate child order/);
-  write('geometry/geometry.data.ts', original.replace(
-    "groups: { items: { angles: angles_SkillGroup_Data }, order: ['angles'] }",
-    'groups: [angles_SkillGroup_Data]',
-  ));
+  write(
+    'geometry/geometry.data.ts',
+    original.replace(
+      "groups: { items: { angles: angles_SkillGroup_Data }, order: ['angles'] }",
+      'groups: [angles_SkillGroup_Data]',
+    ),
+  );
   assert.throws(() => checkTaxonomy(root), /Expected ordered child collection/);
 });

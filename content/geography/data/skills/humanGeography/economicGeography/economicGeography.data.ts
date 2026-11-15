@@ -44,9 +44,11 @@ export const economicGeography_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      explainBasicGeographicFactorsAffectingActivityLocation: explainBasicGeographicFactorsAffectingActivityLocation_Skill_Data,
+      explainBasicGeographicFactorsAffectingActivityLocation:
+        explainBasicGeographicFactorsAffectingActivityLocation_Skill_Data,
       explainGeographicInterdependenceBetweenRegions: explainGeographicInterdependenceBetweenRegions_Skill_Data,
-      explainGeographicSpecializationOfEconomicActivities: explainGeographicSpecializationOfEconomicActivities_Skill_Data,
+      explainGeographicSpecializationOfEconomicActivities:
+        explainGeographicSpecializationOfEconomicActivities_Skill_Data,
       identifyLandUsePatternsInASettlementOrRegion: identifyLandUsePatternsInASettlementOrRegion_Skill_Data,
       traceMovementOfGoodsOrPeopleThroughANetwork: traceMovementOfGoodsOrPeopleThroughANetwork_Skill_Data,
     },

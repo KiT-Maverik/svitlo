@@ -48,12 +48,7 @@ export const solarStructureAndEnergy_SkillGroup_Data = defineSkillGroup({
       solarLuminosity: solarLuminosity_Skill_Data,
       solarNuclearFusion: solarNuclearFusion_Skill_Data,
     },
-    order: [
-      'solarAtmosphere',
-      'solarInterior',
-      'solarLuminosity',
-      'solarNuclearFusion',
-    ],
+    order: ['solarAtmosphere', 'solarInterior', 'solarLuminosity', 'solarNuclearFusion'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const australiaAndNewGuinea_SkillGroup_Data = defineSkillGroup({
       earlyNewGuineaFarming: earlyNewGuineaFarming_Skill_Data,
       peoplingOfSahul: peoplingOfSahul_Skill_Data,
     },
-    order: [
-      'ancientAboriginalAustralianSocieties',
-      'australianRockArt',
-      'earlyNewGuineaFarming',
-      'peoplingOfSahul',
-    ],
+    order: ['ancientAboriginalAustralianSocieties', 'australianRockArt', 'earlyNewGuineaFarming', 'peoplingOfSahul'],
   },
   description: {
     methodological:

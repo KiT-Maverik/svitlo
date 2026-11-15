@@ -49,12 +49,7 @@ export const animation_SkillGroup_Data = defineSkillGroup({
       createStopMotionAnimation: createStopMotionAnimation_Skill_Data,
       designAnimatedTransitions: designAnimatedTransitions_Skill_Data,
     },
-    order: [
-      'animateFrameByFrame',
-      'controlAnimationTiming',
-      'createStopMotionAnimation',
-      'designAnimatedTransitions',
-    ],
+    order: ['animateFrameByFrame', 'controlAnimationTiming', 'createStopMotionAnimation', 'designAnimatedTransitions'],
   },
   description: {
     methodological:

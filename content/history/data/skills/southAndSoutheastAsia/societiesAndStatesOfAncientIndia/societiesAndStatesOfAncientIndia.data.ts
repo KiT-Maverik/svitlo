@@ -48,12 +48,7 @@ export const societiesAndStatesOfAncientIndia_SkillGroup_Data = defineSkillGroup
       mauryanEmpire: mauryanEmpire_Skill_Data,
       vedicSocieties: vedicSocieties_Skill_Data,
     },
-    order: [
-      'guptaKingdom',
-      'mahajanapadas',
-      'mauryanEmpire',
-      'vedicSocieties',
-    ],
+    order: ['guptaKingdom', 'mahajanapadas', 'mauryanEmpire', 'vedicSocieties'],
   },
   description: {
     methodological:

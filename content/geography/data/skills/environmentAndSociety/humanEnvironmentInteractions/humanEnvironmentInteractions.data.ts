@@ -43,7 +43,8 @@ export const humanEnvironmentInteractions_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      explainHowEnvironmentalConditionsInfluenceHumanActivities: explainHowEnvironmentalConditionsInfluenceHumanActivities_Skill_Data,
+      explainHowEnvironmentalConditionsInfluenceHumanActivities:
+        explainHowEnvironmentalConditionsInfluenceHumanActivities_Skill_Data,
       explainHowPeopleAdaptToGeographicEnvironments: explainHowPeopleAdaptToGeographicEnvironments_Skill_Data,
       identifyGeographicConsequencesOfLandUseChange: identifyGeographicConsequencesOfLandUseChange_Skill_Data,
       traceAnEnvironmentalImpactBeyondItsSource: traceAnEnvironmentalImpactBeyondItsSource_Skill_Data,

@@ -46,7 +46,11 @@ export const marineAndCoastalProcesses_SkillGroup_Data = defineSkillGroup({
       interpretGeographicPatternsOfOceanCurrents: interpretGeographicPatternsOfOceanCurrents_Skill_Data,
       interpretGeographicPatternsOfOceanTides: interpretGeographicPatternsOfOceanTides_Skill_Data,
     },
-    order: ['identifyCoastalErosionAndDepositionFeatures', 'interpretGeographicPatternsOfOceanCurrents', 'interpretGeographicPatternsOfOceanTides'],
+    order: [
+      'identifyCoastalErosionAndDepositionFeatures',
+      'interpretGeographicPatternsOfOceanCurrents',
+      'interpretGeographicPatternsOfOceanTides',
+    ],
   },
   description: {
     methodological:

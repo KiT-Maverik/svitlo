@@ -48,12 +48,7 @@ export const gravitationalAndParticleProbes_SkillGroup_Data = defineSkillGroup({
       multimessengerEvidence: multimessengerEvidence_Skill_Data,
       neutrinoAstronomy: neutrinoAstronomy_Skill_Data,
     },
-    order: [
-      'gravitationalLensing',
-      'gravitationalWaveAstronomy',
-      'multimessengerEvidence',
-      'neutrinoAstronomy',
-    ],
+    order: ['gravitationalLensing', 'gravitationalWaveAstronomy', 'multimessengerEvidence', 'neutrinoAstronomy'],
   },
   description: {
     methodological:

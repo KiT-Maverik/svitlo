@@ -46,12 +46,7 @@ export const historicalInquiry_SkillDomain_Data = defineSkillDomain({
       historicalSources: historicalSources_SkillGroup_Data,
       timeAndPeriodization: timeAndPeriodization_SkillGroup_Data,
     },
-    order: [
-      'historicalExplanations',
-      'historicalGeography',
-      'historicalSources',
-      'timeAndPeriodization',
-    ],
+    order: ['historicalExplanations', 'historicalGeography', 'historicalSources', 'timeAndPeriodization'],
   },
   description: {
     methodological:

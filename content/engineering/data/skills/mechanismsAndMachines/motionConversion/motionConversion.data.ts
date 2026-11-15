@@ -48,12 +48,7 @@ export const motionConversion_SkillGroup_Data = defineSkillGroup({
       crankSliderMechanisms: crankSliderMechanisms_Skill_Data,
       screwMechanisms: screwMechanisms_Skill_Data,
     },
-    order: [
-      'articulatedLinkages',
-      'camMechanisms',
-      'crankSliderMechanisms',
-      'screwMechanisms',
-    ],
+    order: ['articulatedLinkages', 'camMechanisms', 'crankSliderMechanisms', 'screwMechanisms'],
   },
   description: {
     methodological:

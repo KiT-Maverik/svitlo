@@ -48,12 +48,7 @@ export const cosmicScales_SkillGroup_Data = defineSkillGroup({
       lookbackTime: lookbackTime_Skill_Data,
       observableUniverse: observableUniverse_Skill_Data,
     },
-    order: [
-      'cosmicDistanceMeasures',
-      'cosmicHorizons',
-      'lookbackTime',
-      'observableUniverse',
-    ],
+    order: ['cosmicDistanceMeasures', 'cosmicHorizons', 'lookbackTime', 'observableUniverse'],
   },
   description: {
     methodological:

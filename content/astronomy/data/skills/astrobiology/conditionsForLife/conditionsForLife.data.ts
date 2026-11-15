@@ -48,12 +48,7 @@ export const conditionsForLife_SkillGroup_Data = defineSkillGroup({
       habitabilityThroughTime: habitabilityThroughTime_Skill_Data,
       prebioticChemistry: prebioticChemistry_Skill_Data,
     },
-    order: [
-      'extremophileAnalogues',
-      'habitability',
-      'habitabilityThroughTime',
-      'prebioticChemistry',
-    ],
+    order: ['extremophileAnalogues', 'habitability', 'habitabilityThroughTime', 'prebioticChemistry'],
   },
   description: {
     methodological:

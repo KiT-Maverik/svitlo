@@ -52,14 +52,7 @@ export const reactionRates_SkillGroup_Data = defineSkillGroup({
       reactionRate: reactionRate_Skill_Data,
       temperatureEffects: temperatureEffects_Skill_Data,
     },
-    order: [
-      'catalysis',
-      'concentrationEffects',
-      'rateLaws',
-      'reactionOrder',
-      'reactionRate',
-      'temperatureEffects',
-    ],
+    order: ['catalysis', 'concentrationEffects', 'rateLaws', 'reactionOrder', 'reactionRate', 'temperatureEffects'],
   },
   description: {
     methodological:

@@ -49,12 +49,7 @@ export const appliedGraphics_SkillGroup_Data = defineSkillGroup({
       designAPictogramFamily: designAPictogramFamily_Skill_Data,
       designPackagingGraphics: designPackagingGraphics_Skill_Data,
     },
-    order: [
-      'checkVisualAccessibility',
-      'designAnEditorialSpread',
-      'designAPictogramFamily',
-      'designPackagingGraphics',
-    ],
+    order: ['checkVisualAccessibility', 'designAnEditorialSpread', 'designAPictogramFamily', 'designPackagingGraphics'],
   },
   description: {
     methodological:

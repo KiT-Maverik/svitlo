@@ -46,12 +46,7 @@ export const spatialOrientation_SkillDomain_Data = defineSkillDomain({
       spatialRelationships: spatialRelationships_SkillGroup_Data,
       timeZones: timeZones_SkillGroup_Data,
     },
-    order: [
-      'locationAndReference',
-      'navigationAndMentalMaps',
-      'spatialRelationships',
-      'timeZones',
-    ],
+    order: ['locationAndReference', 'navigationAndMentalMaps', 'spatialRelationships', 'timeZones'],
   },
   description: {
     methodological:

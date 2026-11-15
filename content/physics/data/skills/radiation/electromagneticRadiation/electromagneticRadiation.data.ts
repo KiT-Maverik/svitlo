@@ -42,11 +42,18 @@ export const electromagneticRadiation_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      distinguishVisibleFromInvisibleElectromagneticRadiation: distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data,
-      explainThePropagationOfElectromagneticWavesWithoutAir: explainThePropagationOfElectromagneticWavesWithoutAir_Skill_Data,
-      relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum: relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum_Skill_Data,
+      distinguishVisibleFromInvisibleElectromagneticRadiation:
+        distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data,
+      explainThePropagationOfElectromagneticWavesWithoutAir:
+        explainThePropagationOfElectromagneticWavesWithoutAir_Skill_Data,
+      relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum:
+        relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum_Skill_Data,
     },
-    order: ['distinguishVisibleFromInvisibleElectromagneticRadiation', 'explainThePropagationOfElectromagneticWavesWithoutAir', 'relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum'],
+    order: [
+      'distinguishVisibleFromInvisibleElectromagneticRadiation',
+      'explainThePropagationOfElectromagneticWavesWithoutAir',
+      'relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum',
+    ],
   },
   description: {
     methodological:

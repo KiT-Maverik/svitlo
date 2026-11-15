@@ -46,12 +46,7 @@ export const musicTheoryAndListening_SkillDomain_Data = defineSkillDomain({
       pitchAndMelody: pitchAndMelody_SkillGroup_Data,
       pulseAndRhythm: pulseAndRhythm_SkillGroup_Data,
     },
-    order: [
-      'harmonyAndMusicalForm',
-      'musicalSoundAndTexture',
-      'pitchAndMelody',
-      'pulseAndRhythm',
-    ],
+    order: ['harmonyAndMusicalForm', 'musicalSoundAndTexture', 'pitchAndMelody', 'pulseAndRhythm'],
   },
   description: {
     methodological:

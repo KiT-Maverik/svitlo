@@ -46,12 +46,7 @@ export const economicDataAndResearch_SkillDomain_Data = defineSkillDomain({
       economicModels: economicModels_SkillGroup_Data,
       empiricalConclusionsAndForecasts: empiricalConclusionsAndForecasts_SkillGroup_Data,
     },
-    order: [
-      'causalityAndExperiments',
-      'economicIndicators',
-      'economicModels',
-      'empiricalConclusionsAndForecasts',
-    ],
+    order: ['causalityAndExperiments', 'economicIndicators', 'economicModels', 'empiricalConclusionsAndForecasts'],
   },
   description: {
     methodological:

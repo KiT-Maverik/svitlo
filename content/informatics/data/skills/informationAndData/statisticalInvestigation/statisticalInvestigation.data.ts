@@ -48,12 +48,7 @@ export const statisticalInvestigation_SkillGroup_Data = defineSkillGroup({
       findTheMostFrequentValue: findTheMostFrequentValue_Skill_Data,
       readAChart: readAChart_Skill_Data,
     },
-    order: [
-      'compareSetsOfObservations',
-      'constructASimpleChart',
-      'findTheMostFrequentValue',
-      'readAChart',
-    ],
+    order: ['compareSetsOfObservations', 'constructASimpleChart', 'findTheMostFrequentValue', 'readAChart'],
   },
   description: {
     methodological:

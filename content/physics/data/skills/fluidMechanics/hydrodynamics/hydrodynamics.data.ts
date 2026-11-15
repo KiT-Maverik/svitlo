@@ -46,7 +46,11 @@ export const hydrodynamics_SkillGroup_Data = defineSkillGroup({
       explainContinuityOfIncompressibleFluidFlow: explainContinuityOfIncompressibleFluidFlow_Skill_Data,
       explainWaterFlowBetweenContainersAtDifferentLevels: explainWaterFlowBetweenContainersAtDifferentLevels_Skill_Data,
     },
-    order: ['compareResistanceToMotionInWaterAndAir', 'explainContinuityOfIncompressibleFluidFlow', 'explainWaterFlowBetweenContainersAtDifferentLevels'],
+    order: [
+      'compareResistanceToMotionInWaterAndAir',
+      'explainContinuityOfIncompressibleFluidFlow',
+      'explainWaterFlowBetweenContainersAtDifferentLevels',
+    ],
   },
   description: {
     methodological:

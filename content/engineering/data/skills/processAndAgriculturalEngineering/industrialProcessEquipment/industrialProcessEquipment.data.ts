@@ -48,12 +48,7 @@ export const industrialProcessEquipment_SkillGroup_Data = defineSkillGroup({
       processContainment: processContainment_Skill_Data,
       processHeatingSystems: processHeatingSystems_Skill_Data,
     },
-    order: [
-      'chemicalReactorSystems',
-      'industrialSeparationEquipment',
-      'processContainment',
-      'processHeatingSystems',
-    ],
+    order: ['chemicalReactorSystems', 'industrialSeparationEquipment', 'processContainment', 'processHeatingSystems'],
   },
   description: {
     methodological:

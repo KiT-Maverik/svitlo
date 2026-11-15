@@ -48,12 +48,7 @@ export const skyGeometry_SkillGroup_Data = defineSkillGroup({
       equatorialCoordinates: equatorialCoordinates_Skill_Data,
       horizonCoordinates: horizonCoordinates_Skill_Data,
     },
-    order: [
-      'angularSeparation',
-      'celestialSphere',
-      'equatorialCoordinates',
-      'horizonCoordinates',
-    ],
+    order: ['angularSeparation', 'celestialSphere', 'equatorialCoordinates', 'horizonCoordinates'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const visualAndAuditoryExperience_SkillGroup_Data = defineSkillGroup({
       soundLocalization: soundLocalization_Skill_Data,
       speechPerception: speechPerception_Skill_Data,
     },
-    order: [
-      'colorPerception',
-      'depthPerception',
-      'soundLocalization',
-      'speechPerception',
-    ],
+    order: ['colorPerception', 'depthPerception', 'soundLocalization', 'speechPerception'],
   },
   description: {
     methodological:

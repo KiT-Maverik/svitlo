@@ -46,7 +46,11 @@ export const biomesAndHabitats_SkillGroup_Data = defineSkillGroup({
       identifyMajorTerrestrialBiomePatterns: identifyMajorTerrestrialBiomePatterns_Skill_Data,
       recognizeTransitionZonesBetweenBiomes: recognizeTransitionZonesBetweenBiomes_Skill_Data,
     },
-    order: ['compareHabitatConditionsBetweenGeographicLocations', 'identifyMajorTerrestrialBiomePatterns', 'recognizeTransitionZonesBetweenBiomes'],
+    order: [
+      'compareHabitatConditionsBetweenGeographicLocations',
+      'identifyMajorTerrestrialBiomePatterns',
+      'recognizeTransitionZonesBetweenBiomes',
+    ],
   },
   description: {
     methodological:

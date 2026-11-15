@@ -50,13 +50,7 @@ export const stressAndCoping_SkillGroup_Data = defineSkillGroup({
       problemFocusedCoping: problemFocusedCoping_Skill_Data,
       stressAppraisal: stressAppraisal_Skill_Data,
     },
-    order: [
-      'acuteStress',
-      'chronicStress',
-      'emotionFocusedCoping',
-      'problemFocusedCoping',
-      'stressAppraisal',
-    ],
+    order: ['acuteStress', 'chronicStress', 'emotionFocusedCoping', 'problemFocusedCoping', 'stressAppraisal'],
   },
   description: {
     methodological:

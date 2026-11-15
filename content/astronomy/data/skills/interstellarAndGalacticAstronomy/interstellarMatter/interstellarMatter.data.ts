@@ -48,12 +48,7 @@ export const interstellarMatter_SkillGroup_Data = defineSkillGroup({
       interstellarGas: interstellarGas_Skill_Data,
       nebulae: nebulae_Skill_Data,
     },
-    order: [
-      'interstellarChemicalCycling',
-      'interstellarDust',
-      'interstellarGas',
-      'nebulae',
-    ],
+    order: ['interstellarChemicalCycling', 'interstellarDust', 'interstellarGas', 'nebulae'],
   },
   description: {
     methodological:

@@ -46,12 +46,7 @@ export const learningAndBehaviorChange_SkillDomain_Data = defineSkillDomain({
       socialLearning: socialLearning_SkillGroup_Data,
       transferAndBehavioralFlexibility: transferAndBehavioralFlexibility_SkillGroup_Data,
     },
-    order: [
-      'operantLearning',
-      'respondentConditioning',
-      'socialLearning',
-      'transferAndBehavioralFlexibility',
-    ],
+    order: ['operantLearning', 'respondentConditioning', 'socialLearning', 'transferAndBehavioralFlexibility'],
   },
   description: {
     methodological:

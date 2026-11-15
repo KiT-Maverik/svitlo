@@ -48,12 +48,7 @@ export const religiousAndIntellectualTraditions_SkillGroup_Data = defineSkillGro
       earlyHinduTraditions: earlyHinduTraditions_Skill_Data,
       jainism: jainism_Skill_Data,
     },
-    order: [
-      'ancientIndianScience',
-      'buddhismInAncientIndia',
-      'earlyHinduTraditions',
-      'jainism',
-    ],
+    order: ['ancientIndianScience', 'buddhismInAncientIndia', 'earlyHinduTraditions', 'jainism'],
   },
   description: {
     methodological: 'Teachings, texts, and schools evolved over centuries and spread far beyond the subcontinent.',

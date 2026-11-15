@@ -44,7 +44,8 @@ export const faithReasonAndExperience_SkillGroup_Data = defineSkillGroup({
   skills: {
     items: {
       compareFaithAndReasonAsSourcesOfJustification: compareFaithAndReasonAsSourcesOfJustification_Skill_Data,
-      distinguishPhilosophicalInquiryFromReligiousPractice: distinguishPhilosophicalInquiryFromReligiousPractice_Skill_Data,
+      distinguishPhilosophicalInquiryFromReligiousPractice:
+        distinguishPhilosophicalInquiryFromReligiousPractice_Skill_Data,
       evaluateAReportedMiracleClaim: evaluateAReportedMiracleClaim_Skill_Data,
       evaluateReligiousExperienceAsEvidence: evaluateReligiousExperienceAsEvidence_Skill_Data,
     },

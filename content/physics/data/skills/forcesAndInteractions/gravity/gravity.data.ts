@@ -46,7 +46,11 @@ export const gravity_SkillGroup_Data = defineSkillGroup({
       explainEarthsGravitationalForceOnABody: explainEarthsGravitationalForceOnABody_Skill_Data,
       predictTheDirectionOfFalling: predictTheDirectionOfFalling_Skill_Data,
     },
-    order: ['distinguishABodysMassFromEarthsGravitationalForce', 'explainEarthsGravitationalForceOnABody', 'predictTheDirectionOfFalling'],
+    order: [
+      'distinguishABodysMassFromEarthsGravitationalForce',
+      'explainEarthsGravitationalForceOnABody',
+      'predictTheDirectionOfFalling',
+    ],
   },
   description: {
     methodological:

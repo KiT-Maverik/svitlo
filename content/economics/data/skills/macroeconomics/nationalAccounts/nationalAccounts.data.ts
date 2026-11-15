@@ -48,12 +48,7 @@ export const nationalAccounts_SkillGroup_Data = defineSkillGroup({
       grossDomesticProduct: grossDomesticProduct_Skill_Data,
       nominalAndRealOutput: nominalAndRealOutput_Skill_Data,
     },
-    order: [
-      'aggregateExpenditureComponents',
-      'gdpPerCapitaAndWelfare',
-      'grossDomesticProduct',
-      'nominalAndRealOutput',
-    ],
+    order: ['aggregateExpenditureComponents', 'gdpPerCapitaAndWelfare', 'grossDomesticProduct', 'nominalAndRealOutput'],
   },
   description: {
     methodological:

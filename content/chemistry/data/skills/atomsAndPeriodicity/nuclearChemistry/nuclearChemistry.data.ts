@@ -48,12 +48,7 @@ export const nuclearChemistry_SkillGroup_Data = defineSkillGroup({
       nuclearTransmutation: nuclearTransmutation_Skill_Data,
       radioactiveDecay: radioactiveDecay_Skill_Data,
     },
-    order: [
-      'halfLife',
-      'isotopeTracers',
-      'nuclearTransmutation',
-      'radioactiveDecay',
-    ],
+    order: ['halfLife', 'isotopeTracers', 'nuclearTransmutation', 'radioactiveDecay'],
   },
   description: {
     methodological:

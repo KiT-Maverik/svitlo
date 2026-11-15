@@ -48,12 +48,7 @@ export const pacificIslands_SkillGroup_Data = defineSkillGroup({
       lapitaCulture: lapitaCulture_Skill_Data,
       oceanicNavigation: oceanicNavigation_Skill_Data,
     },
-    order: [
-      'austronesianExpansion',
-      'earlyWesternPolynesianSettlement',
-      'lapitaCulture',
-      'oceanicNavigation',
-    ],
+    order: ['austronesianExpansion', 'earlyWesternPolynesianSettlement', 'lapitaCulture', 'oceanicNavigation'],
   },
   description: {
     methodological:

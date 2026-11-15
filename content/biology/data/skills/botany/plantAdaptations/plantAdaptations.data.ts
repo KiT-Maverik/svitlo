@@ -44,9 +44,14 @@ export const plantAdaptations_SkillGroup_Data = defineSkillGroup({
     items: {
       describeSeasonalChangesInPlants: describeSeasonalChangesInPlants_Skill_Data,
       recognizeAdaptationsToTheEnvironment: recognizeAdaptationsToTheEnvironment_Skill_Data,
-      relatePlantStructuralFeaturesToEnvironmentalConditions: relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data,
+      relatePlantStructuralFeaturesToEnvironmentalConditions:
+        relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data,
     },
-    order: ['describeSeasonalChangesInPlants', 'recognizeAdaptationsToTheEnvironment', 'relatePlantStructuralFeaturesToEnvironmentalConditions'],
+    order: [
+      'describeSeasonalChangesInPlants',
+      'recognizeAdaptationsToTheEnvironment',
+      'relatePlantStructuralFeaturesToEnvironmentalConditions',
+    ],
   },
   description: {
     methodological:

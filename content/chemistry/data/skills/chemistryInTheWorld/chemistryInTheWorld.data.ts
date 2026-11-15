@@ -46,12 +46,7 @@ export const chemistryInTheWorld_SkillDomain_Data = defineSkillDomain({
       moleculesOfLife: moleculesOfLife_SkillGroup_Data,
       sustainableChemicalChoices: sustainableChemicalChoices_SkillGroup_Data,
     },
-    order: [
-      'airAndWater',
-      'materialsChemistry',
-      'moleculesOfLife',
-      'sustainableChemicalChoices',
-    ],
+    order: ['airAndWater', 'materialsChemistry', 'moleculesOfLife', 'sustainableChemicalChoices'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const acidBaseSystems_SkillGroup_Data = defineSkillGroup({
       bufferSolutions: bufferSolutions_Skill_Data,
       neutralization: neutralization_Skill_Data,
     },
-    order: [
-      'acidBaseIndicators',
-      'acidBaseTitration',
-      'bufferSolutions',
-      'neutralization',
-    ],
+    order: ['acidBaseIndicators', 'acidBaseTitration', 'bufferSolutions', 'neutralization'],
   },
   description: {
     methodological:

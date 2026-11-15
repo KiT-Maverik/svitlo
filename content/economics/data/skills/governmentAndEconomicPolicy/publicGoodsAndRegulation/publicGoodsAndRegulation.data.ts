@@ -48,12 +48,7 @@ export const publicGoodsAndRegulation_SkillGroup_Data = defineSkillGroup({
       governmentFailure: governmentFailure_Skill_Data,
       publicGoods: publicGoods_Skill_Data,
     },
-    order: [
-      'competitionPolicy',
-      'externalities',
-      'governmentFailure',
-      'publicGoods',
-    ],
+    order: ['competitionPolicy', 'externalities', 'governmentFailure', 'publicGoods'],
   },
   description: {
     methodological:

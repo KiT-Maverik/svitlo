@@ -48,12 +48,7 @@ export const landscapeAndPublicArt_SkillGroup_Data = defineSkillGroup({
       designSiteSpecificArt: designSiteSpecificArt_Skill_Data,
       integrateArtWithArchitecture: integrateArtWithArchitecture_Skill_Data,
     },
-    order: [
-      'analyzePublicArt',
-      'composeALandscapeView',
-      'designSiteSpecificArt',
-      'integrateArtWithArchitecture',
-    ],
+    order: ['analyzePublicArt', 'composeALandscapeView', 'designSiteSpecificArt', 'integrateArtWithArchitecture'],
   },
   description: {
     methodological:

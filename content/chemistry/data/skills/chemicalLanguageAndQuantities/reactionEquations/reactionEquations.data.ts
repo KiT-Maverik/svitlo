@@ -48,12 +48,7 @@ export const reactionEquations_SkillGroup_Data = defineSkillGroup({
       symbolicEquations: symbolicEquations_Skill_Data,
       wordEquations: wordEquations_Skill_Data,
     },
-    order: [
-      'balancingEquations',
-      'equationStateSymbols',
-      'symbolicEquations',
-      'wordEquations',
-    ],
+    order: ['balancingEquations', 'equationStateSymbols', 'symbolicEquations', 'wordEquations'],
   },
   description: {
     methodological:

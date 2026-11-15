@@ -48,12 +48,7 @@ export const chemicalBonds_SkillGroup_Data = defineSkillGroup({
       ionicBonding: ionicBonding_Skill_Data,
       metallicBonding: metallicBonding_Skill_Data,
     },
-    order: [
-      'bondPolarity',
-      'covalentBonding',
-      'ionicBonding',
-      'metallicBonding',
-    ],
+    order: ['bondPolarity', 'covalentBonding', 'ionicBonding', 'metallicBonding'],
   },
   description: {
     methodological:

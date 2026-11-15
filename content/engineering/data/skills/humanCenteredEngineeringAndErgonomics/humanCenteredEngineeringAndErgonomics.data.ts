@@ -46,12 +46,7 @@ export const humanCenteredEngineeringAndErgonomics_SkillDomain_Data = defineSkil
       productErgonomics: productErgonomics_SkillGroup_Data,
       userNeeds: userNeeds_SkillGroup_Data,
     },
-    order: [
-      'accessibleEnvironments',
-      'physicalInteraction',
-      'productErgonomics',
-      'userNeeds',
-    ],
+    order: ['accessibleEnvironments', 'physicalInteraction', 'productErgonomics', 'userNeeds'],
   },
   description: {
     methodological:

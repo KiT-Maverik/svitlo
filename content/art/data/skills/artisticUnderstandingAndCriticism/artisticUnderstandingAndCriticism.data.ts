@@ -46,12 +46,7 @@ export const artisticUnderstandingAndCriticism_SkillDomain_Data = defineSkillDom
       formsAndPurposes: formsAndPurposes_SkillGroup_Data,
       interpretationAndEvaluation: interpretationAndEvaluation_SkillGroup_Data,
     },
-    order: [
-      'curationAndPresentation',
-      'formalLanguage',
-      'formsAndPurposes',
-      'interpretationAndEvaluation',
-    ],
+    order: ['curationAndPresentation', 'formalLanguage', 'formsAndPurposes', 'interpretationAndEvaluation'],
   },
   description: {
     methodological:

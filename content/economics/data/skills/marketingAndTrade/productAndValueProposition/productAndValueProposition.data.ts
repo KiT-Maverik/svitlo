@@ -48,12 +48,7 @@ export const productAndValueProposition_SkillGroup_Data = defineSkillGroup({
       productPositioning: productPositioning_Skill_Data,
       valueProposition: valueProposition_Skill_Data,
     },
-    order: [
-      'commercialRoleOfPackaging',
-      'productLifeCycle',
-      'productPositioning',
-      'valueProposition',
-    ],
+    order: ['commercialRoleOfPackaging', 'productLifeCycle', 'productPositioning', 'valueProposition'],
   },
   description: {
     methodological:

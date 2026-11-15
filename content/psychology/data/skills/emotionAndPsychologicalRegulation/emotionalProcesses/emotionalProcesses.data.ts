@@ -50,13 +50,7 @@ export const emotionalProcesses_SkillGroup_Data = defineSkillGroup({
       moodAndEmotion: moodAndEmotion_Skill_Data,
       physiologyOfEmotion: physiologyOfEmotion_Skill_Data,
     },
-    order: [
-      'emotionalAppraisal',
-      'emotionFunctions',
-      'emotionTheories',
-      'moodAndEmotion',
-      'physiologyOfEmotion',
-    ],
+    order: ['emotionalAppraisal', 'emotionFunctions', 'emotionTheories', 'moodAndEmotion', 'physiologyOfEmotion'],
   },
   description: {
     methodological:

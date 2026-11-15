@@ -48,12 +48,7 @@ export const wastewaterAndDrainage_SkillGroup_Data = defineSkillGroup({
       traceWastewaterCollection: traceWastewaterCollection_Skill_Data,
       wastewaterTreatment: wastewaterTreatment_Skill_Data,
     },
-    order: [
-      'floodControlStructures',
-      'stormwaterDrainage',
-      'traceWastewaterCollection',
-      'wastewaterTreatment',
-    ],
+    order: ['floodControlStructures', 'stormwaterDrainage', 'traceWastewaterCollection', 'wastewaterTreatment'],
   },
   description: {
     methodological:

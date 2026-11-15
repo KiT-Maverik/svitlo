@@ -46,12 +46,7 @@ export const metaphysics_SkillDomain_Data = defineSkillDomain({
       identityAndPersistence: identityAndPersistence_SkillGroup_Data,
       mathematicalReality: mathematicalReality_SkillGroup_Data,
     },
-    order: [
-      'causationTimeAndPossibility',
-      'existenceAndCategories',
-      'identityAndPersistence',
-      'mathematicalReality',
-    ],
+    order: ['causationTimeAndPossibility', 'existenceAndCategories', 'identityAndPersistence', 'mathematicalReality'],
   },
   description: {
     methodological:

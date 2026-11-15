@@ -48,12 +48,7 @@ export const northernBlackSeaRegion_SkillGroup_Data = defineSkillGroup({
       sarmatians: sarmatians_Skill_Data,
       scythianSocieties: scythianSocieties_Skill_Data,
     },
-    order: [
-      'earlySteppeCultures',
-      'greekCitiesOfBlackSea',
-      'sarmatians',
-      'scythianSocieties',
-    ],
+    order: ['earlySteppeCultures', 'greekCitiesOfBlackSea', 'sarmatians', 'scythianSocieties'],
   },
   description: {
     methodological:

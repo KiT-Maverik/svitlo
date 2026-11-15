@@ -46,7 +46,11 @@ export const globesMapsAndProjection_SkillGroup_Data = defineSkillGroup({
       recognizeProjectionDistortionInAreaOrShape: recognizeProjectionDistortionInAreaOrShape_Skill_Data,
       selectAGeographicRepresentationForAPurpose: selectAGeographicRepresentationForAPurpose_Skill_Data,
     },
-    order: ['distinguishAGlobeFromAFlatMapAsEarthModels', 'recognizeProjectionDistortionInAreaOrShape', 'selectAGeographicRepresentationForAPurpose'],
+    order: [
+      'distinguishAGlobeFromAFlatMapAsEarthModels',
+      'recognizeProjectionDistortionInAreaOrShape',
+      'selectAGeographicRepresentationForAPurpose',
+    ],
   },
   description: {
     methodological:

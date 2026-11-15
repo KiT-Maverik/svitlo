@@ -50,13 +50,7 @@ export const clock_SkillGroup_Data = defineSkillGroup({
       readFiveMinute: readFiveMinute_Skill_Data,
       readMinute: readMinute_Skill_Data,
     },
-    order: [
-      'read24HourClock',
-      'readHour',
-      'readHalfQuarter',
-      'readFiveMinute',
-      'readMinute',
-    ],
+    order: ['read24HourClock', 'readHour', 'readHalfQuarter', 'readFiveMinute', 'readMinute'],
   },
   description: {
     methodological:

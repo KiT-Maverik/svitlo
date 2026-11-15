@@ -49,7 +49,8 @@ export const timeZones_SkillGroup_Data = defineSkillGroup({
       explainSeasonalChangesToCivilClockTime: explainSeasonalChangesToCivilClockTime_Skill_Data,
       explainTheConceptOfLocalCivilTime: explainTheConceptOfLocalCivilTime_Skill_Data,
       explainWhyLocalSolarTimeVariesWithLongitude: explainWhyLocalSolarTimeVariesWithLongitude_Skill_Data,
-      interpretCalendarDateChangesAcrossTheInternationalDateLine: interpretCalendarDateChangesAcrossTheInternationalDateLine_Skill_Data,
+      interpretCalendarDateChangesAcrossTheInternationalDateLine:
+        interpretCalendarDateChangesAcrossTheInternationalDateLine_Skill_Data,
       interpretTimeZonesOnAGeographicMap: interpretTimeZonesOnAGeographicMap_Skill_Data,
     },
     order: [

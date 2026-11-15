@@ -48,12 +48,7 @@ export const characteristicProperties_SkillGroup_Data = defineSkillGroup({
       physicalProperties: physicalProperties_Skill_Data,
       propertyBasedIdentification: propertyBasedIdentification_Skill_Data,
     },
-    order: [
-      'chemicalProperties',
-      'density',
-      'physicalProperties',
-      'propertyBasedIdentification',
-    ],
+    order: ['chemicalProperties', 'density', 'physicalProperties', 'propertyBasedIdentification'],
   },
   description: {
     methodological:

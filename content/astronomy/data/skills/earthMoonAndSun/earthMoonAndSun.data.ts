@@ -46,12 +46,7 @@ export const earthMoonAndSun_SkillDomain_Data = defineSkillDomain({
       lunarAppearance: lunarAppearance_SkillGroup_Data,
       terrestrialSkyCycles: terrestrialSkyCycles_SkillGroup_Data,
     },
-    order: [
-      'earthMoonInteractions',
-      'eclipsesAndAlignments',
-      'lunarAppearance',
-      'terrestrialSkyCycles',
-    ],
+    order: ['earthMoonInteractions', 'eclipsesAndAlignments', 'lunarAppearance', 'terrestrialSkyCycles'],
   },
   description: {
     methodological:

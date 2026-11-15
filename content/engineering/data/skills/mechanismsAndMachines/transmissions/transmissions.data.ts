@@ -52,14 +52,7 @@ export const transmissions_SkillGroup_Data = defineSkillGroup({
       leverMechanisms: leverMechanisms_Skill_Data,
       pulleySystems: pulleySystems_Skill_Data,
     },
-    order: [
-      'beltDrives',
-      'chainDrives',
-      'determineAGearRatio',
-      'gearTransmission',
-      'leverMechanisms',
-      'pulleySystems',
-    ],
+    order: ['beltDrives', 'chainDrives', 'determineAGearRatio', 'gearTransmission', 'leverMechanisms', 'pulleySystems'],
   },
   description: {
     methodological:

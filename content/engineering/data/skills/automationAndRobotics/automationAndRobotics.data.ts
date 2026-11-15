@@ -46,12 +46,7 @@ export const automationAndRobotics_SkillDomain_Data = defineSkillDomain({
       robotSystems: robotSystems_SkillGroup_Data,
       sensorsAndMeasurement: sensorsAndMeasurement_SkillGroup_Data,
     },
-    order: [
-      'drivesAndActuators',
-      'feedbackAndControl',
-      'robotSystems',
-      'sensorsAndMeasurement',
-    ],
+    order: ['drivesAndActuators', 'feedbackAndControl', 'robotSystems', 'sensorsAndMeasurement'],
   },
   description: {
     methodological:

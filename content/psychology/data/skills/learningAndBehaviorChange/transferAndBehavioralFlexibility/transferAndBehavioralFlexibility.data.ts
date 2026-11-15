@@ -48,12 +48,7 @@ export const transferAndBehavioralFlexibility_SkillGroup_Data = defineSkillGroup
       learnedHelplessness: learnedHelplessness_Skill_Data,
       transferOfLearning: transferOfLearning_Skill_Data,
     },
-    order: [
-      'contextDependentLearning',
-      'feedbackAndSkillAcquisition',
-      'learnedHelplessness',
-      'transferOfLearning',
-    ],
+    order: ['contextDependentLearning', 'feedbackAndSkillAcquisition', 'learnedHelplessness', 'transferOfLearning'],
   },
   description: {
     methodological:

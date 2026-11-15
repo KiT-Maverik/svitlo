@@ -48,12 +48,7 @@ export const ancientLevant_SkillGroup_Data = defineSkillGroup({
       phoenicianWriting: phoenicianWriting_Skill_Data,
       religionsOfTheAncientLevant: religionsOfTheAncientLevant_Skill_Data,
     },
-    order: [
-      'israelAndJudah',
-      'phoenicianCities',
-      'phoenicianWriting',
-      'religionsOfTheAncientLevant',
-    ],
+    order: ['israelAndJudah', 'phoenicianCities', 'phoenicianWriting', 'religionsOfTheAncientLevant'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const retailMerchandising_SkillGroup_Data = defineSkillGroup({
       storeAssortment: storeAssortment_Skill_Data,
       storeNavigation: storeNavigation_Skill_Data,
     },
-    order: [
-      'inventoryManagement',
-      'productDisplay',
-      'storeAssortment',
-      'storeNavigation',
-    ],
+    order: ['inventoryManagement', 'productDisplay', 'storeAssortment', 'storeNavigation'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const loansAndDebt_SkillGroup_Data = defineSkillGroup({
       latePaymentConsequences: latePaymentConsequences_Skill_Data,
       totalCostOfCredit: totalCostOfCredit_Skill_Data,
     },
-    order: [
-      'borrowerAffordability',
-      'creditHistory',
-      'latePaymentConsequences',
-      'totalCostOfCredit',
-    ],
+    order: ['borrowerAffordability', 'creditHistory', 'latePaymentConsequences', 'totalCostOfCredit'],
   },
   description: {
     methodological: 'Borrowing permits earlier spending but creates future payments and obligations.',

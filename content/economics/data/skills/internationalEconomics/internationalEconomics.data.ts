@@ -46,12 +46,7 @@ export const internationalEconomics_SkillDomain_Data = defineSkillDomain({
       specializationAndTradeGains: specializationAndTradeGains_SkillGroup_Data,
       tradePolicy: tradePolicy_SkillGroup_Data,
     },
-    order: [
-      'currenciesAndExternalBalances',
-      'internationalFinance',
-      'specializationAndTradeGains',
-      'tradePolicy',
-    ],
+    order: ['currenciesAndExternalBalances', 'internationalFinance', 'specializationAndTradeGains', 'tradePolicy'],
   },
   description: {
     methodological:

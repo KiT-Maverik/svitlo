@@ -48,12 +48,7 @@ export const ancientAndes_SkillGroup_Data = defineSkillGroup({
       mocheCulture: mocheCulture_Skill_Data,
       nazcaCulture: nazcaCulture_Skill_Data,
     },
-    order: [
-      'caralAndEarlyAndeanCenters',
-      'chavinCulture',
-      'mocheCulture',
-      'nazcaCulture',
-    ],
+    order: ['caralAndEarlyAndeanCenters', 'chavinCulture', 'mocheCulture', 'nazcaCulture'],
   },
   description: {
     methodological: 'Coastal valleys and highlands supported diverse farming, cities, and social coordination.',

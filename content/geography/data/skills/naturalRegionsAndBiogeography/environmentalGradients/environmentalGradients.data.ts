@@ -43,10 +43,15 @@ export const environmentalGradients_SkillGroup_Data = defineSkillGroup({
   skills: {
     items: {
       explainBroadEnvironmentalVariationWithLatitude: explainBroadEnvironmentalVariationWithLatitude_Skill_Data,
-      identifyEnvironmentalShiftsFromComparativeGeographicEvidence: identifyEnvironmentalShiftsFromComparativeGeographicEvidence_Skill_Data,
+      identifyEnvironmentalShiftsFromComparativeGeographicEvidence:
+        identifyEnvironmentalShiftsFromComparativeGeographicEvidence_Skill_Data,
       recognizeAltitudinalChangesInNaturalConditions: recognizeAltitudinalChangesInNaturalConditions_Skill_Data,
     },
-    order: ['explainBroadEnvironmentalVariationWithLatitude', 'identifyEnvironmentalShiftsFromComparativeGeographicEvidence', 'recognizeAltitudinalChangesInNaturalConditions'],
+    order: [
+      'explainBroadEnvironmentalVariationWithLatitude',
+      'identifyEnvironmentalShiftsFromComparativeGeographicEvidence',
+      'recognizeAltitudinalChangesInNaturalConditions',
+    ],
   },
   description: {
     methodological:

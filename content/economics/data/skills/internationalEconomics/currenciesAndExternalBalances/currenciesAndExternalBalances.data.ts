@@ -48,12 +48,7 @@ export const currenciesAndExternalBalances_SkillGroup_Data = defineSkillGroup({
       nominalExchangeRate: nominalExchangeRate_Skill_Data,
       realExchangeRate: realExchangeRate_Skill_Data,
     },
-    order: [
-      'balanceOfPayments',
-      'exchangeRateRegimes',
-      'nominalExchangeRate',
-      'realExchangeRate',
-    ],
+    order: ['balanceOfPayments', 'exchangeRateRegimes', 'nominalExchangeRate', 'realExchangeRate'],
   },
   description: {
     methodological:

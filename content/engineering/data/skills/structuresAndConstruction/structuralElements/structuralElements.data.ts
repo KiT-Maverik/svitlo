@@ -52,14 +52,7 @@ export const structuralElements_SkillGroup_Data = defineSkillGroup({
       structuralBracing: structuralBracing_Skill_Data,
       trusses: trusses_Skill_Data,
     },
-    order: [
-      'arches',
-      'beams',
-      'columns',
-      'foundations',
-      'structuralBracing',
-      'trusses',
-    ],
+    order: ['arches', 'beams', 'columns', 'foundations', 'structuralBracing', 'trusses'],
   },
   description: {
     methodological:

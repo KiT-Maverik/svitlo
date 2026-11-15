@@ -48,13 +48,7 @@ export const counting_SkillDomain_Data = defineSkillDomain({
       ordinal: ordinal_SkillGroup_Data,
       parity: parity_SkillGroup_Data,
     },
-    order: [
-      'sequence',
-      'cardinality',
-      'steps',
-      'ordinal',
-      'parity',
-    ],
+    order: ['sequence', 'cardinality', 'steps', 'ordinal', 'parity'],
   },
   description: {
     methodological:

@@ -46,12 +46,7 @@ export const moneyAndFinancialSystem_SkillDomain_Data = defineSkillDomain({
       financialStabilityAndRegulation: financialStabilityAndRegulation_SkillGroup_Data,
       natureOfMoney: natureOfMoney_SkillGroup_Data,
     },
-    order: [
-      'banksAndCreditIntermediation',
-      'financialMarkets',
-      'financialStabilityAndRegulation',
-      'natureOfMoney',
-    ],
+    order: ['banksAndCreditIntermediation', 'financialMarkets', 'financialStabilityAndRegulation', 'natureOfMoney'],
   },
   description: {
     methodological:

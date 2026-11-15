@@ -46,12 +46,7 @@ export const humanGeography_SkillDomain_Data = defineSkillDomain({
       politicalTerritories: politicalTerritories_SkillGroup_Data,
       populationAndSettlement: populationAndSettlement_SkillGroup_Data,
     },
-    order: [
-      'culturalGeography',
-      'economicGeography',
-      'politicalTerritories',
-      'populationAndSettlement',
-    ],
+    order: ['culturalGeography', 'economicGeography', 'politicalTerritories', 'populationAndSettlement'],
   },
   description: {
     methodological:

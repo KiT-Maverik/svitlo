@@ -46,12 +46,7 @@ export const transportationAndAerospaceEngineering_SkillDomain_Data = defineSkil
       spacecraft: spacecraft_SkillGroup_Data,
       watercraft: watercraft_SkillGroup_Data,
     },
-    order: [
-      'aircraft',
-      'roadAndRail',
-      'spacecraft',
-      'watercraft',
-    ],
+    order: ['aircraft', 'roadAndRail', 'spacecraft', 'watercraft'],
   },
   description: {
     methodological:

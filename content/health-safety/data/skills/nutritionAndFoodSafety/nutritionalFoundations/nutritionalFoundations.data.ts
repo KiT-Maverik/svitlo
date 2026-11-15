@@ -48,12 +48,7 @@ export const nutritionalFoundations_SkillGroup_Data = defineSkillGroup({
       interpretDietaryEnergyBalance: interpretDietaryEnergyBalance_Skill_Data,
       understandTheRolesOfNutrients: understandTheRolesOfNutrients_Skill_Data,
     },
-    order: [
-      'balancedDietaryPatterns',
-      'hydration',
-      'interpretDietaryEnergyBalance',
-      'understandTheRolesOfNutrients',
-    ],
+    order: ['balancedDietaryPatterns', 'hydration', 'interpretDietaryEnergyBalance', 'understandTheRolesOfNutrients'],
   },
   description: {
     methodological:

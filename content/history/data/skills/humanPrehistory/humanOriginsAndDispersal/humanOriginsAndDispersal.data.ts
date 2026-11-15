@@ -48,12 +48,7 @@ export const humanOriginsAndDispersal_SkillGroup_Data = defineSkillGroup({
       originsOfHomo: originsOfHomo_Skill_Data,
       peoplingOfContinents: peoplingOfContinents_Skill_Data,
     },
-    order: [
-      'adaptationToEnvironments',
-      'emergenceOfHomoSapiens',
-      'originsOfHomo',
-      'peoplingOfContinents',
-    ],
+    order: ['adaptationToEnvironments', 'emergenceOfHomoSapiens', 'originsOfHomo', 'peoplingOfContinents'],
   },
   description: {
     methodological:

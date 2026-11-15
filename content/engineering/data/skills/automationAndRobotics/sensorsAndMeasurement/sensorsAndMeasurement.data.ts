@@ -48,12 +48,7 @@ export const sensorsAndMeasurement_SkillGroup_Data = defineSkillGroup({
       sensorPlacement: sensorPlacement_Skill_Data,
       sensorSuitability: sensorSuitability_Skill_Data,
     },
-    order: [
-      'calibrateASensor',
-      'interpretSensorError',
-      'sensorPlacement',
-      'sensorSuitability',
-    ],
+    order: ['calibrateASensor', 'interpretSensorError', 'sensorPlacement', 'sensorSuitability'],
   },
   description: {
     methodological:

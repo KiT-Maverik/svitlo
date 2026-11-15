@@ -48,12 +48,7 @@ export const perimeter_SkillGroup_Data = defineSkillGroup({
       squarePerimeter: squarePerimeter_Skill_Data,
       unknownSideFromPerimeter: unknownSideFromPerimeter_Skill_Data,
     },
-    order: [
-      'measurePerimeter',
-      'rectanglePerimeter',
-      'squarePerimeter',
-      'unknownSideFromPerimeter',
-    ],
+    order: ['measurePerimeter', 'rectanglePerimeter', 'squarePerimeter', 'unknownSideFromPerimeter'],
   },
   description: {
     methodological:

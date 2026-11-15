@@ -46,12 +46,7 @@ export const energy_SkillDomain_Data = defineSkillDomain({
       formsOfEnergy: formsOfEnergy_SkillGroup_Data,
       workAndPower: workAndPower_SkillGroup_Data,
     },
-    order: [
-      'conservationOfEnergy',
-      'energyTransferAndTransformation',
-      'formsOfEnergy',
-      'workAndPower',
-    ],
+    order: ['conservationOfEnergy', 'energyTransferAndTransformation', 'formsOfEnergy', 'workAndPower'],
   },
   description: {
     methodological:

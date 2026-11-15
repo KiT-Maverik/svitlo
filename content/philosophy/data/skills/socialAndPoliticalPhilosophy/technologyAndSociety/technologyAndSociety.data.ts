@@ -46,7 +46,11 @@ export const technologyAndSociety_SkillGroup_Data = defineSkillGroup({
       analyzeTechnologicalMediation: analyzeTechnologicalMediation_Skill_Data,
       evaluateTechnologicalDeterminism: evaluateTechnologicalDeterminism_Skill_Data,
     },
-    order: ['analyzeHumanAutonomyInTechnologicalSystems', 'analyzeTechnologicalMediation', 'evaluateTechnologicalDeterminism'],
+    order: [
+      'analyzeHumanAutonomyInTechnologicalSystems',
+      'analyzeTechnologicalMediation',
+      'evaluateTechnologicalDeterminism',
+    ],
   },
   description: {
     methodological:

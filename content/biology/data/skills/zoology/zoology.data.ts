@@ -46,12 +46,7 @@ export const zoology_SkillDomain_Data = defineSkillDomain({
       nutritionAndDevelopment: nutritionAndDevelopment_SkillGroup_Data,
       structureAndFunctions: structureAndFunctions_SkillGroup_Data,
     },
-    order: [
-      'animalDiversity',
-      'behavior',
-      'nutritionAndDevelopment',
-      'structureAndFunctions',
-    ],
+    order: ['animalDiversity', 'behavior', 'nutritionAndDevelopment', 'structureAndFunctions'],
   },
   description: {
     methodological:

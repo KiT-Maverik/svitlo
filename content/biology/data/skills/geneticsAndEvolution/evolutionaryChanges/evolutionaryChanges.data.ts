@@ -47,7 +47,8 @@ export const evolutionaryChanges_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      distinguishIndividualChangesDuringLifeFromPopulationChanges: distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_Data,
+      distinguishIndividualChangesDuringLifeFromPopulationChanges:
+        distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_Data,
       explainCommonAncestryOfSpecies: explainCommonAncestryOfSpecies_Skill_Data,
       explainHereditaryVariationAmongIndividuals: explainHereditaryVariationAmongIndividuals_Skill_Data,
       explainMechanismsOfEvolutionaryChange: explainMechanismsOfEvolutionaryChange_Skill_Data,

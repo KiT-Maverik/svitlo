@@ -46,7 +46,11 @@ export const supportAndMovement_SkillGroup_Data = defineSkillGroup({
       explainTheRoleOfMusclesInMovement: explainTheRoleOfMusclesInMovement_Skill_Data,
       explainTheRoleOfTheSkeleton: explainTheRoleOfTheSkeleton_Skill_Data,
     },
-    order: ['describeInteractionsBetweenBonesAndMuscles', 'explainTheRoleOfMusclesInMovement', 'explainTheRoleOfTheSkeleton'],
+    order: [
+      'describeInteractionsBetweenBonesAndMuscles',
+      'explainTheRoleOfMusclesInMovement',
+      'explainTheRoleOfTheSkeleton',
+    ],
   },
   description: {
     methodological:

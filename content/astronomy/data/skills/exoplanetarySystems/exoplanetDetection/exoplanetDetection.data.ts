@@ -48,12 +48,7 @@ export const exoplanetDetection_SkillGroup_Data = defineSkillGroup({
       radialVelocityDetection: radialVelocityDetection_Skill_Data,
       transitDetection: transitDetection_Skill_Data,
     },
-    order: [
-      'directImaging',
-      'gravitationalMicrolensing',
-      'radialVelocityDetection',
-      'transitDetection',
-    ],
+    order: ['directImaging', 'gravitationalMicrolensing', 'radialVelocityDetection', 'transitDetection'],
   },
   description: {
     methodological:

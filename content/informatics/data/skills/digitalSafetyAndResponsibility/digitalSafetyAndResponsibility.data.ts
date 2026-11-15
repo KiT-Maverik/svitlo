@@ -46,12 +46,7 @@ export const digitalSafetyAndResponsibility_SkillDomain_Data = defineSkillDomain
       privacy: privacy_SkillGroup_Data,
       socialAndEnvironmentalImpactOfComputing: socialAndEnvironmentalImpactOfComputing_SkillGroup_Data,
     },
-    order: [
-      'accountProtection',
-      'ethicsOfDigitalInteraction',
-      'privacy',
-      'socialAndEnvironmentalImpactOfComputing',
-    ],
+    order: ['accountProtection', 'ethicsOfDigitalInteraction', 'privacy', 'socialAndEnvironmentalImpactOfComputing'],
   },
   description: {
     methodological:

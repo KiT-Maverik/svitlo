@@ -48,12 +48,7 @@ export const periodicTrends_SkillGroup_Data = defineSkillGroup({
       electronegativity: electronegativity_Skill_Data,
       ionizationEnergy: ionizationEnergy_Skill_Data,
     },
-    order: [
-      'atomicRadiusTrends',
-      'electronAffinity',
-      'electronegativity',
-      'ionizationEnergy',
-    ],
+    order: ['atomicRadiusTrends', 'electronAffinity', 'electronegativity', 'ionizationEnergy'],
   },
   description: {
     methodological:

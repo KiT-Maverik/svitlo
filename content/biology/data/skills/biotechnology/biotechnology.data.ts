@@ -48,7 +48,8 @@ export const biotechnology_SkillDomain_Data = defineSkillDomain({
       evaluateEcologicalRisksOfBiotechnologyUse: evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data,
       explainThePrincipleOfGeneticModification: explainThePrincipleOfGeneticModification_Skill_Data,
       explainThePrincipleOfSelectiveBreeding: explainThePrincipleOfSelectiveBreeding_Skill_Data,
-      explainThePurposeOfASimpleBiotechnologicalProcedure: explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data,
+      explainThePurposeOfASimpleBiotechnologicalProcedure:
+        explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data,
       recognizeHumanUsesOfMicroorganisms: recognizeHumanUsesOfMicroorganisms_Skill_Data,
     },
     order: [

@@ -50,13 +50,7 @@ export const stellarEvolution_SkillGroup_Data = defineSkillGroup({
       stellarLifetimes: stellarLifetimes_Skill_Data,
       supergiants: supergiants_Skill_Data,
     },
-    order: [
-      'advancedStellarFusion',
-      'mainSequence',
-      'redGiants',
-      'stellarLifetimes',
-      'supergiants',
-    ],
+    order: ['advancedStellarFusion', 'mainSequence', 'redGiants', 'stellarLifetimes', 'supergiants'],
   },
   description: {
     methodological:

@@ -48,13 +48,7 @@ export const optics_SkillDomain_Data = defineSkillDomain({
       refractionAndLenses: refractionAndLenses_SkillGroup_Data,
       transparency: transparency_SkillGroup_Data,
     },
-    order: [
-      'lightAndShadows',
-      'lightReflection',
-      'lightSourcesAndVisibility',
-      'refractionAndLenses',
-      'transparency',
-    ],
+    order: ['lightAndShadows', 'lightReflection', 'lightSourcesAndVisibility', 'refractionAndLenses', 'transparency'],
   },
   description: {
     methodological:

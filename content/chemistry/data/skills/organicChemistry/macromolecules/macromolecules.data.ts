@@ -48,12 +48,7 @@ export const macromolecules_SkillGroup_Data = defineSkillGroup({
       polymerization: polymerization_Skill_Data,
       polymerStructureAndProperties: polymerStructureAndProperties_Skill_Data,
     },
-    order: [
-      'additionPolymers',
-      'condensationPolymers',
-      'polymerization',
-      'polymerStructureAndProperties',
-    ],
+    order: ['additionPolymers', 'condensationPolymers', 'polymerization', 'polymerStructureAndProperties'],
   },
   description: {
     methodological:

@@ -50,13 +50,7 @@ export const lines_SkillGroup_Data = defineSkillGroup({
       closedOpenLines: closedOpenLines_Skill_Data,
       parallelPerpendicular: parallelPerpendicular_Skill_Data,
     },
-    order: [
-      'linesAndPoints',
-      'segment',
-      'ray',
-      'closedOpenLines',
-      'parallelPerpendicular',
-    ],
+    order: ['linesAndPoints', 'segment', 'ray', 'closedOpenLines', 'parallelPerpendicular'],
   },
   description: {
     methodological:

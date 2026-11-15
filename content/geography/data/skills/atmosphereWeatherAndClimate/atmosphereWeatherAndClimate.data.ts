@@ -46,12 +46,7 @@ export const atmosphereWeatherAndClimate_SkillDomain_Data = defineSkillDomain({
       climatePatterns: climatePatterns_SkillGroup_Data,
       weatherObservations: weatherObservations_SkillGroup_Data,
     },
-    order: [
-      'atmosphericHazards',
-      'atmosphericProcesses',
-      'climatePatterns',
-      'weatherObservations',
-    ],
+    order: ['atmosphericHazards', 'atmosphericProcesses', 'climatePatterns', 'weatherObservations'],
   },
   description: {
     methodological:

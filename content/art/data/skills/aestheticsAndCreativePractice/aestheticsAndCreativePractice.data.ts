@@ -46,12 +46,7 @@ export const aestheticsAndCreativePractice_SkillDomain_Data = defineSkillDomain(
       creativeDevelopment: creativeDevelopment_SkillGroup_Data,
       expressionAndMeaning: expressionAndMeaning_SkillGroup_Data,
     },
-    order: [
-      'aestheticPerception',
-      'artisticCollaborationAndEthics',
-      'creativeDevelopment',
-      'expressionAndMeaning',
-    ],
+    order: ['aestheticPerception', 'artisticCollaborationAndEthics', 'creativeDevelopment', 'expressionAndMeaning'],
   },
   description: {
     methodological:

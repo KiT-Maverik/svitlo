@@ -50,13 +50,7 @@ export const astronomicalTime_SkillGroup_Data = defineSkillGroup({
       solarCalendarCycles: solarCalendarCycles_Skill_Data,
       solarTime: solarTime_Skill_Data,
     },
-    order: [
-      'astronomicalDatesAndEpochs',
-      'lunarCalendarCycles',
-      'siderealTime',
-      'solarCalendarCycles',
-      'solarTime',
-    ],
+    order: ['astronomicalDatesAndEpochs', 'lunarCalendarCycles', 'siderealTime', 'solarCalendarCycles', 'solarTime'],
   },
   description: {
     methodological:

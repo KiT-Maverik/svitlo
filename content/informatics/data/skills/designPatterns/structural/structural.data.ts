@@ -54,15 +54,7 @@ export const structural_SkillGroup_Data = defineSkillGroup({
       flyweight: flyweight_Skill_Data,
       proxy: proxy_Skill_Data,
     },
-    order: [
-      'adapter',
-      'bridge',
-      'composite',
-      'decorator',
-      'facade',
-      'flyweight',
-      'proxy',
-    ],
+    order: ['adapter', 'bridge', 'composite', 'decorator', 'facade', 'flyweight', 'proxy'],
   },
   description: {
     methodological:

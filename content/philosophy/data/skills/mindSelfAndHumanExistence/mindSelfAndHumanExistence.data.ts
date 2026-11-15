@@ -46,12 +46,7 @@ export const mindSelfAndHumanExistence_SkillDomain_Data = defineSkillDomain({
       mindAndConsciousness: mindAndConsciousness_SkillGroup_Data,
       personalIdentity: personalIdentity_SkillGroup_Data,
     },
-    order: [
-      'agencyAndFreeWill',
-      'humanExistenceAndMeaning',
-      'mindAndConsciousness',
-      'personalIdentity',
-    ],
+    order: ['agencyAndFreeWill', 'humanExistenceAndMeaning', 'mindAndConsciousness', 'personalIdentity'],
   },
   description: {
     methodological:

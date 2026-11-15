@@ -50,13 +50,7 @@ export const argumentation_SkillGroup_Data = defineSkillGroup({
       distinguishExampleRule: distinguishExampleRule_Skill_Data,
       drawConclusion: drawConclusion_Skill_Data,
     },
-    order: [
-      'classifyAndJustify',
-      'findCounterexample',
-      'explainStrategy',
-      'distinguishExampleRule',
-      'drawConclusion',
-    ],
+    order: ['classifyAndJustify', 'findCounterexample', 'explainStrategy', 'distinguishExampleRule', 'drawConclusion'],
   },
   description: {
     methodological:

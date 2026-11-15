@@ -52,14 +52,7 @@ export const amountOfSubstance_SkillGroup_Data = defineSkillGroup({
       stoichiometricRatios: stoichiometricRatios_Skill_Data,
       theMole: theMole_Skill_Data,
     },
-    order: [
-      'limitingReactants',
-      'massMoleConversion',
-      'molarMass',
-      'reactionYield',
-      'stoichiometricRatios',
-      'theMole',
-    ],
+    order: ['limitingReactants', 'massMoleConversion', 'molarMass', 'reactionYield', 'stoichiometricRatios', 'theMole'],
   },
   description: {
     methodological:

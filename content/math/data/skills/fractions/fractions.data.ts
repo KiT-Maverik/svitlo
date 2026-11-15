@@ -46,12 +46,7 @@ export const fractions_SkillDomain_Data = defineSkillDomain({
       arithmetic: arithmetic_SkillGroup_Data,
       portions: portions_SkillGroup_Data,
     },
-    order: [
-      'representation',
-      'comparison',
-      'arithmetic',
-      'portions',
-    ],
+    order: ['representation', 'comparison', 'arithmetic', 'portions'],
   },
   description: {
     methodological:

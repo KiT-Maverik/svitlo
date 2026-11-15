@@ -46,7 +46,11 @@ export const lightSourcesAndVisibility_SkillGroup_Data = defineSkillGroup({
       distinguishALightSourceFromAnIlluminatedBody: distinguishALightSourceFromAnIlluminatedBody_Skill_Data,
       explainTheConditionForAnObjectToBeVisible: explainTheConditionForAnObjectToBeVisible_Skill_Data,
     },
-    order: ['classifyNaturalAndArtificialLightSources', 'distinguishALightSourceFromAnIlluminatedBody', 'explainTheConditionForAnObjectToBeVisible'],
+    order: [
+      'classifyNaturalAndArtificialLightSources',
+      'distinguishALightSourceFromAnIlluminatedBody',
+      'explainTheConditionForAnObjectToBeVisible',
+    ],
   },
   description: {
     methodological:

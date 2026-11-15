@@ -46,7 +46,11 @@ export const valueAndTaste_SkillGroup_Data = defineSkillGroup({
       distinguishTasteFromAnArguedEvaluation: distinguishTasteFromAnArguedEvaluation_Skill_Data,
       evaluateTheRoleOfExpertiseInAestheticJudgment: evaluateTheRoleOfExpertiseInAestheticJudgment_Skill_Data,
     },
-    order: ['analyzeAestheticPluralism', 'distinguishTasteFromAnArguedEvaluation', 'evaluateTheRoleOfExpertiseInAestheticJudgment'],
+    order: [
+      'analyzeAestheticPluralism',
+      'distinguishTasteFromAnArguedEvaluation',
+      'evaluateTheRoleOfExpertiseInAestheticJudgment',
+    ],
   },
   description: {
     methodological:

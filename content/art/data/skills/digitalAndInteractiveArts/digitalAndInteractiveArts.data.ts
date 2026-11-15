@@ -48,13 +48,7 @@ export const digitalAndInteractiveArts_SkillDomain_Data = defineSkillDomain({
       motionGraphics: motionGraphics_SkillGroup_Data,
       participatoryArt: participatoryArt_SkillGroup_Data,
     },
-    order: [
-      'digitalImages',
-      'digitalThreeDimensionalArt',
-      'generativeArt',
-      'motionGraphics',
-      'participatoryArt',
-    ],
+    order: ['digitalImages', 'digitalThreeDimensionalArt', 'generativeArt', 'motionGraphics', 'participatoryArt'],
   },
   description: {
     methodological:

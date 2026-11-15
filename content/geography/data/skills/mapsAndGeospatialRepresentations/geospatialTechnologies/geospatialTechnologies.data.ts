@@ -42,11 +42,17 @@ export const geospatialTechnologies_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      analyzeGeographicRelationshipsUsingSpatialDataLayers: analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data,
+      analyzeGeographicRelationshipsUsingSpatialDataLayers:
+        analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data,
       interpretRemoteSensingImagery: interpretRemoteSensingImagery_Skill_Data,
-      useSatellitePositioningInformationForGeographicOrientation: useSatellitePositioningInformationForGeographicOrientation_Skill_Data,
+      useSatellitePositioningInformationForGeographicOrientation:
+        useSatellitePositioningInformationForGeographicOrientation_Skill_Data,
     },
-    order: ['analyzeGeographicRelationshipsUsingSpatialDataLayers', 'interpretRemoteSensingImagery', 'useSatellitePositioningInformationForGeographicOrientation'],
+    order: [
+      'analyzeGeographicRelationshipsUsingSpatialDataLayers',
+      'interpretRemoteSensingImagery',
+      'useSatellitePositioningInformationForGeographicOrientation',
+    ],
   },
   description: {
     methodological:

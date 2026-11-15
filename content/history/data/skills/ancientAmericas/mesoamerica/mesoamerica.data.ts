@@ -50,13 +50,7 @@ export const mesoamerica_SkillGroup_Data = defineSkillGroup({
       olmecCenters: olmecCenters_Skill_Data,
       teotihuacan: teotihuacan_Skill_Data,
     },
-    order: [
-      'earlyMayaCities',
-      'mayaWriting',
-      'mesoamericanCalendars',
-      'olmecCenters',
-      'teotihuacan',
-    ],
+    order: ['earlyMayaCities', 'mayaWriting', 'mesoamericanCalendars', 'olmecCenters', 'teotihuacan'],
   },
   description: {
     methodological:

@@ -42,11 +42,16 @@ export const electricChargesAndInteractions_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      distinguishAttractionFromRepulsionBetweenElectricCharges: distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data,
+      distinguishAttractionFromRepulsionBetweenElectricCharges:
+        distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data,
       explainConservationOfElectricCharge: explainConservationOfElectricCharge_Skill_Data,
       recognizeTheChargingOfObjectsByFriction: recognizeTheChargingOfObjectsByFriction_Skill_Data,
     },
-    order: ['distinguishAttractionFromRepulsionBetweenElectricCharges', 'explainConservationOfElectricCharge', 'recognizeTheChargingOfObjectsByFriction'],
+    order: [
+      'distinguishAttractionFromRepulsionBetweenElectricCharges',
+      'explainConservationOfElectricCharge',
+      'recognizeTheChargingOfObjectsByFriction',
+    ],
   },
   description: {
     methodological:

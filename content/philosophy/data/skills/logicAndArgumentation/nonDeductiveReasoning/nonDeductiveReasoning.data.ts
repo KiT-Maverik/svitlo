@@ -43,7 +43,8 @@ export const nonDeductiveReasoning_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      distinguishDeductiveCertaintyFromProbabilisticSupport: distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data,
+      distinguishDeductiveCertaintyFromProbabilisticSupport:
+        distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data,
       evaluateAnalogicalReasoning: evaluateAnalogicalReasoning_Skill_Data,
       evaluateAnInductiveGeneralization: evaluateAnInductiveGeneralization_Skill_Data,
       evaluateAnInferenceToTheBestExplanation: evaluateAnInferenceToTheBestExplanation_Skill_Data,

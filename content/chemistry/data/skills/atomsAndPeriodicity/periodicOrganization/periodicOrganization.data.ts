@@ -48,12 +48,7 @@ export const periodicOrganization_SkillGroup_Data = defineSkillGroup({
       periodicity: periodicity_Skill_Data,
       periodicTableStructure: periodicTableStructure_Skill_Data,
     },
-    order: [
-      'elementFamilies',
-      'metalsNonmetalsAndMetalloids',
-      'periodicity',
-      'periodicTableStructure',
-    ],
+    order: ['elementFamilies', 'metalsNonmetalsAndMetalloids', 'periodicity', 'periodicTableStructure'],
   },
   description: {
     methodological:

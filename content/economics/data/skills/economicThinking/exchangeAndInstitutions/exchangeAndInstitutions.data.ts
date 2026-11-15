@@ -48,12 +48,7 @@ export const exchangeAndInstitutions_SkillGroup_Data = defineSkillGroup({
       propertyRights: propertyRights_Skill_Data,
       transactionCosts: transactionCosts_Skill_Data,
     },
-    order: [
-      'divisionOfLabor',
-      'gainsFromVoluntaryExchange',
-      'propertyRights',
-      'transactionCosts',
-    ],
+    order: ['divisionOfLabor', 'gainsFromVoluntaryExchange', 'propertyRights', 'transactionCosts'],
   },
   description: {
     methodological:

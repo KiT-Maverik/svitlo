@@ -48,12 +48,7 @@ export const duration_SkillGroup_Data = defineSkillGroup({
       eventDuration: eventDuration_Skill_Data,
       findStartOrEnd: findStartOrEnd_Skill_Data,
     },
-    order: [
-      'convertHoursMinutes',
-      'convertMinutesSeconds',
-      'eventDuration',
-      'findStartOrEnd',
-    ],
+    order: ['convertHoursMinutes', 'convertMinutesSeconds', 'eventDuration', 'findStartOrEnd'],
   },
   description: {
     methodological:

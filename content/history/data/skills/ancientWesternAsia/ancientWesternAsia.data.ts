@@ -48,13 +48,7 @@ export const ancientWesternAsia_SkillDomain_Data = defineSkillDomain({
       ancientSouthArabia: ancientSouthArabia_SkillGroup_Data,
       mesopotamia: mesopotamia_SkillGroup_Data,
     },
-    order: [
-      'anatolia',
-      'ancientIranianStates',
-      'ancientLevant',
-      'ancientSouthArabia',
-      'mesopotamia',
-    ],
+    order: ['anatolia', 'ancientIranianStates', 'ancientLevant', 'ancientSouthArabia', 'mesopotamia'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const ionsInWater_SkillGroup_Data = defineSkillGroup({
       solubilityRules: solubilityRules_Skill_Data,
       waterHardness: waterHardness_Skill_Data,
     },
-    order: [
-      'electrolytes',
-      'ionicEquations',
-      'solubilityRules',
-      'waterHardness',
-    ],
+    order: ['electrolytes', 'ionicEquations', 'solubilityRules', 'waterHardness'],
   },
   description: {
     methodological:

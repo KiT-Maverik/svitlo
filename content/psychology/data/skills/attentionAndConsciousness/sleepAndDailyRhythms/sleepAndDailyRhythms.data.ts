@@ -48,12 +48,7 @@ export const sleepAndDailyRhythms_SkillGroup_Data = defineSkillGroup({
       sleepDeprivationEffects: sleepDeprivationEffects_Skill_Data,
       sleepStages: sleepStages_Skill_Data,
     },
-    order: [
-      'circadianTiming',
-      'sleepAndMemory',
-      'sleepDeprivationEffects',
-      'sleepStages',
-    ],
+    order: ['circadianTiming', 'sleepAndMemory', 'sleepDeprivationEffects', 'sleepStages'],
   },
   description: {
     methodological:

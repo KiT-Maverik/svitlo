@@ -42,11 +42,16 @@ export const humanMadeObjects_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      classifySettlementsByTheirGeographicCharacteristics: classifySettlementsByTheirGeographicCharacteristics_Skill_Data,
+      classifySettlementsByTheirGeographicCharacteristics:
+        classifySettlementsByTheirGeographicCharacteristics_Skill_Data,
       identifyCommonHumanMadeGeographicObjects: identifyCommonHumanMadeGeographicObjects_Skill_Data,
       locateHumanMadeGeographicObjectsOnAMap: locateHumanMadeGeographicObjectsOnAMap_Skill_Data,
     },
-    order: ['classifySettlementsByTheirGeographicCharacteristics', 'identifyCommonHumanMadeGeographicObjects', 'locateHumanMadeGeographicObjectsOnAMap'],
+    order: [
+      'classifySettlementsByTheirGeographicCharacteristics',
+      'identifyCommonHumanMadeGeographicObjects',
+      'locateHumanMadeGeographicObjectsOnAMap',
+    ],
   },
   description: {
     methodological:

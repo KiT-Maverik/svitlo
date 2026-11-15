@@ -48,12 +48,7 @@ export const dynamicalInteractions_SkillGroup_Data = defineSkillGroup({
       orbitalStability: orbitalStability_Skill_Data,
       tidalForces: tidalForces_Skill_Data,
     },
-    order: [
-      'gravitationalPerturbations',
-      'orbitalResonances',
-      'orbitalStability',
-      'tidalForces',
-    ],
+    order: ['gravitationalPerturbations', 'orbitalResonances', 'orbitalStability', 'tidalForces'],
   },
   description: {
     methodological:

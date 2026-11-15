@@ -46,7 +46,11 @@ export const locationAndReference_SkillGroup_Data = defineSkillGroup({
       identifyALocationUsingAnAbsoluteReference: identifyALocationUsingAnAbsoluteReference_Skill_Data,
       identifyLocationAtLocalRegionalAndGlobalScales: identifyLocationAtLocalRegionalAndGlobalScales_Skill_Data,
     },
-    order: ['describeALocationRelativeToAReferencePoint', 'identifyALocationUsingAnAbsoluteReference', 'identifyLocationAtLocalRegionalAndGlobalScales'],
+    order: [
+      'describeALocationRelativeToAReferencePoint',
+      'identifyALocationUsingAnAbsoluteReference',
+      'identifyLocationAtLocalRegionalAndGlobalScales',
+    ],
   },
   description: {
     methodological:

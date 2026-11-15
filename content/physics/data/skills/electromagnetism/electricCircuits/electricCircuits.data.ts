@@ -50,8 +50,10 @@ export const electricCircuits_SkillGroup_Data = defineSkillGroup({
     items: {
       explainAnOpenCircuit: explainAnOpenCircuit_Skill_Data,
       explainCurrentBalanceAtACircuitNode: explainCurrentBalanceAtACircuitNode_Skill_Data,
-      explainParallelConnectionsOfElectricCircuitComponents: explainParallelConnectionsOfElectricCircuitComponents_Skill_Data,
-      explainSeriesConnectionsOfElectricCircuitComponents: explainSeriesConnectionsOfElectricCircuitComponents_Skill_Data,
+      explainParallelConnectionsOfElectricCircuitComponents:
+        explainParallelConnectionsOfElectricCircuitComponents_Skill_Data,
+      explainSeriesConnectionsOfElectricCircuitComponents:
+        explainSeriesConnectionsOfElectricCircuitComponents_Skill_Data,
       identifyAConsumerOfElectricalEnergy: identifyAConsumerOfElectricalEnergy_Skill_Data,
       identifyAnElectricalPowerSource: identifyAnElectricalPowerSource_Skill_Data,
       identifyTheFunctionOfASwitch: identifyTheFunctionOfASwitch_Skill_Data,

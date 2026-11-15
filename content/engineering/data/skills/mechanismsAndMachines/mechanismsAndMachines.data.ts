@@ -46,12 +46,7 @@ export const mechanismsAndMachines_SkillDomain_Data = defineSkillDomain({
       motionConversion: motionConversion_SkillGroup_Data,
       transmissions: transmissions_SkillGroup_Data,
     },
-    order: [
-      'guidanceAndRetention',
-      'integratedMachines',
-      'motionConversion',
-      'transmissions',
-    ],
+    order: ['guidanceAndRetention', 'integratedMachines', 'motionConversion', 'transmissions'],
   },
   description: {
     methodological:

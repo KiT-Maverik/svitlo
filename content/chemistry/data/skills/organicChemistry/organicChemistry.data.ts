@@ -46,12 +46,7 @@ export const organicChemistry_SkillDomain_Data = defineSkillDomain({
       macromolecules: macromolecules_SkillGroup_Data,
       organicTransformations: organicTransformations_SkillGroup_Data,
     },
-    order: [
-      'carbonFrameworks',
-      'functionalGroups',
-      'macromolecules',
-      'organicTransformations',
-    ],
+    order: ['carbonFrameworks', 'functionalGroups', 'macromolecules', 'organicTransformations'],
   },
   description: {
     methodological:

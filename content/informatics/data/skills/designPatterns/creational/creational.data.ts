@@ -50,13 +50,7 @@ export const creational_SkillGroup_Data = defineSkillGroup({
       prototype: prototype_Skill_Data,
       singleton: singleton_Skill_Data,
     },
-    order: [
-      'abstractFactory',
-      'builder',
-      'factoryMethod',
-      'prototype',
-      'singleton',
-    ],
+    order: ['abstractFactory', 'builder', 'factoryMethod', 'prototype', 'singleton'],
   },
   description: {
     methodological:

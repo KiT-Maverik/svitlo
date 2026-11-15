@@ -42,7 +42,8 @@ export const gasProperties_SkillGroup_Data = defineSkillGroup({
   skills: {
     items: {
       explainGasCompressibility: explainGasCompressibility_Skill_Data,
-      explainHowGasPressureDependsOnTemperatureAtConstantVolume: explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data,
+      explainHowGasPressureDependsOnTemperatureAtConstantVolume:
+        explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data,
     },
     order: ['explainGasCompressibility', 'explainHowGasPressureDependsOnTemperatureAtConstantVolume'],
   },

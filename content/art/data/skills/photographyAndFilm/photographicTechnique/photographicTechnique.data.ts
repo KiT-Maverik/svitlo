@@ -49,12 +49,7 @@ export const photographicTechnique_SkillGroup_Data = defineSkillGroup({
       useDepthOfField: useDepthOfField_Skill_Data,
       usePhotographicLighting: usePhotographicLighting_Skill_Data,
     },
-    order: [
-      'composeAPhotograph',
-      'controlPhotographicExposure',
-      'useDepthOfField',
-      'usePhotographicLighting',
-    ],
+    order: ['composeAPhotograph', 'controlPhotographicExposure', 'useDepthOfField', 'usePhotographicLighting'],
   },
   description: {
     methodological:

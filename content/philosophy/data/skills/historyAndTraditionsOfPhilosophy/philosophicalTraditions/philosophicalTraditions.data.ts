@@ -48,11 +48,15 @@ export const philosophicalTraditions_SkillGroup_Data = defineSkillGroup({
   skills: {
     items: {
       analyzeAPhilosophicalArgumentFromAChineseTradition: analyzeAPhilosophicalArgumentFromAChineseTradition_Skill_Data,
-      analyzeAPhilosophicalArgumentFromALatinAmericanTradition: analyzeAPhilosophicalArgumentFromALatinAmericanTradition_Skill_Data,
-      analyzeAPhilosophicalArgumentFromAnAfricanTradition: analyzeAPhilosophicalArgumentFromAnAfricanTradition_Skill_Data,
+      analyzeAPhilosophicalArgumentFromALatinAmericanTradition:
+        analyzeAPhilosophicalArgumentFromALatinAmericanTradition_Skill_Data,
+      analyzeAPhilosophicalArgumentFromAnAfricanTradition:
+        analyzeAPhilosophicalArgumentFromAnAfricanTradition_Skill_Data,
       analyzeAPhilosophicalArgumentFromAnIndianTradition: analyzeAPhilosophicalArgumentFromAnIndianTradition_Skill_Data,
-      analyzeAPhilosophicalArgumentFromAnIndigenousTradition: analyzeAPhilosophicalArgumentFromAnIndigenousTradition_Skill_Data,
-      analyzeAPhilosophicalArgumentFromAnIslamicTradition: analyzeAPhilosophicalArgumentFromAnIslamicTradition_Skill_Data,
+      analyzeAPhilosophicalArgumentFromAnIndigenousTradition:
+        analyzeAPhilosophicalArgumentFromAnIndigenousTradition_Skill_Data,
+      analyzeAPhilosophicalArgumentFromAnIslamicTradition:
+        analyzeAPhilosophicalArgumentFromAnIslamicTradition_Skill_Data,
       compareClassicalGreekPhilosophicalApproaches: compareClassicalGreekPhilosophicalApproaches_Skill_Data,
       comparePositionsAcrossPhilosophicalTraditions: comparePositionsAcrossPhilosophicalTraditions_Skill_Data,
     },

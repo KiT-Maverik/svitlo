@@ -48,12 +48,7 @@ export const roadAndTransportSafety_SkillGroup_Data = defineSkillGroup({
       pedestrianRoadSafety: pedestrianRoadSafety_Skill_Data,
       safeDrivingDecisions: safeDrivingDecisions_Skill_Data,
     },
-    order: [
-      'cyclingAndMicromobilitySafety',
-      'passengerSafety',
-      'pedestrianRoadSafety',
-      'safeDrivingDecisions',
-    ],
+    order: ['cyclingAndMicromobilitySafety', 'passengerSafety', 'pedestrianRoadSafety', 'safeDrivingDecisions'],
   },
   description: {
     methodological:

@@ -46,12 +46,7 @@ export const theatreAndDramaticArts_SkillDomain_Data = defineSkillDomain({
       improvisationAndDevising: improvisationAndDevising_SkillGroup_Data,
       stageExpressionAndPuppetry: stageExpressionAndPuppetry_SkillGroup_Data,
     },
-    order: [
-      'acting',
-      'dramaturgyAndDirection',
-      'improvisationAndDevising',
-      'stageExpressionAndPuppetry',
-    ],
+    order: ['acting', 'dramaturgyAndDirection', 'improvisationAndDevising', 'stageExpressionAndPuppetry'],
   },
   description: {
     methodological:

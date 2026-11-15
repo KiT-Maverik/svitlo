@@ -48,12 +48,7 @@ export const greekCultureAndIdeas_SkillGroup_Data = defineSkillGroup({
       greekPhilosophy: greekPhilosophy_Skill_Data,
       greekReligionAndMythology: greekReligionAndMythology_Skill_Data,
     },
-    order: [
-      'ancientGreekArt',
-      'ancientGreekTheater',
-      'greekPhilosophy',
-      'greekReligionAndMythology',
-    ],
+    order: ['ancientGreekArt', 'ancientGreekTheater', 'greekPhilosophy', 'greekReligionAndMythology'],
   },
   description: {
     methodological:

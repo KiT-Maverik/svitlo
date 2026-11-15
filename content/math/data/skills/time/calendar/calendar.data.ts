@@ -48,12 +48,7 @@ export const calendar_SkillGroup_Data = defineSkillGroup({
       weekMonthYear: weekMonthYear_Skill_Data,
       calendarInterval: calendarInterval_Skill_Data,
     },
-    order: [
-      'daySequence',
-      'leapYearDays',
-      'weekMonthYear',
-      'calendarInterval',
-    ],
+    order: ['daySequence', 'leapYearDays', 'weekMonthYear', 'calendarInterval'],
   },
   description: {
     methodological:

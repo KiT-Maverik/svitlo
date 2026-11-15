@@ -46,12 +46,7 @@ export const waves_SkillDomain_Data = defineSkillDomain({
       wavePhenomena: wavePhenomena_SkillGroup_Data,
       waveProperties: waveProperties_SkillGroup_Data,
     },
-    order: [
-      'acoustics',
-      'oscillations',
-      'wavePhenomena',
-      'waveProperties',
-    ],
+    order: ['acoustics', 'oscillations', 'wavePhenomena', 'waveProperties'],
   },
   description: {
     methodological:

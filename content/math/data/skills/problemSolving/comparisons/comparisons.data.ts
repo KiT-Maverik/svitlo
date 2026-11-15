@@ -48,12 +48,7 @@ export const comparisons_SkillGroup_Data = defineSkillGroup({
       multiplicativeComparison: multiplicativeComparison_Skill_Data,
       increaseDecreaseFactor: increaseDecreaseFactor_Skill_Data,
     },
-    order: [
-      'additiveComparison',
-      'increaseDecreaseNumber',
-      'multiplicativeComparison',
-      'increaseDecreaseFactor',
-    ],
+    order: ['additiveComparison', 'increaseDecreaseNumber', 'multiplicativeComparison', 'increaseDecreaseFactor'],
   },
   description: {
     methodological:

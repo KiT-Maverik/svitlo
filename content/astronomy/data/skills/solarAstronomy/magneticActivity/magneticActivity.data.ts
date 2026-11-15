@@ -48,12 +48,7 @@ export const magneticActivity_SkillGroup_Data = defineSkillGroup({
       solarFlares: solarFlares_Skill_Data,
       sunspots: sunspots_Skill_Data,
     },
-    order: [
-      'coronalMassEjections',
-      'solarActivityCycle',
-      'solarFlares',
-      'sunspots',
-    ],
+    order: ['coronalMassEjections', 'solarActivityCycle', 'solarFlares', 'sunspots'],
   },
   description: {
     methodological:

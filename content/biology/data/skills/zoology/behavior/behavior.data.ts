@@ -46,7 +46,11 @@ export const behavior_SkillGroup_Data = defineSkillGroup({
       explainTheRoleOfSignalsInAnimalCommunication: explainTheRoleOfSignalsInAnimalCommunication_Skill_Data,
       recognizeDefensiveBehavior: recognizeDefensiveBehavior_Skill_Data,
     },
-    order: ['explainBenefitsOfGroupBehavior', 'explainTheRoleOfSignalsInAnimalCommunication', 'recognizeDefensiveBehavior'],
+    order: [
+      'explainBenefitsOfGroupBehavior',
+      'explainTheRoleOfSignalsInAnimalCommunication',
+      'recognizeDefensiveBehavior',
+    ],
   },
   description: {
     methodological:

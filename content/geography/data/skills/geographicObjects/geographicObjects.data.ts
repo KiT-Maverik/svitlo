@@ -46,12 +46,7 @@ export const geographicObjects_SkillDomain_Data = defineSkillDomain({
       humanMadeObjects: humanMadeObjects_SkillGroup_Data,
       landAndWater: landAndWater_SkillGroup_Data,
     },
-    order: [
-      'classification',
-      'globalGeographicDivisions',
-      'humanMadeObjects',
-      'landAndWater',
-    ],
+    order: ['classification', 'globalGeographicDivisions', 'humanMadeObjects', 'landAndWater'],
   },
   description: {
     methodological:

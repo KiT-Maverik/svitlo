@@ -48,12 +48,7 @@ export const adolescenceAndIdentity_SkillGroup_Data = defineSkillGroup({
       identityExploration: identityExploration_Skill_Data,
       peerInfluenceInAdolescence: peerInfluenceInAdolescence_Skill_Data,
     },
-    order: [
-      'adolescentRiskTaking',
-      'autonomyDevelopment',
-      'identityExploration',
-      'peerInfluenceInAdolescence',
-    ],
+    order: ['adolescentRiskTaking', 'autonomyDevelopment', 'identityExploration', 'peerInfluenceInAdolescence'],
   },
   description: {
     methodological:

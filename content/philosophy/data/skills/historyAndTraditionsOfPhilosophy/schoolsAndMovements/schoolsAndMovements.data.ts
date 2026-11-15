@@ -43,10 +43,15 @@ export const schoolsAndMovements_SkillGroup_Data = defineSkillGroup({
   skills: {
     items: {
       analyzeAnEnlightenmentPhilosophicalArgument: analyzeAnEnlightenmentPhilosophicalArgument_Skill_Data,
-      compareExistentialistAndAnalyticApproachesToAProblem: compareExistentialistAndAnalyticApproachesToAProblem_Skill_Data,
+      compareExistentialistAndAnalyticApproachesToAProblem:
+        compareExistentialistAndAnalyticApproachesToAProblem_Skill_Data,
       compareMajorModernEpistemologicalApproaches: compareMajorModernEpistemologicalApproaches_Skill_Data,
     },
-    order: ['analyzeAnEnlightenmentPhilosophicalArgument', 'compareExistentialistAndAnalyticApproachesToAProblem', 'compareMajorModernEpistemologicalApproaches'],
+    order: [
+      'analyzeAnEnlightenmentPhilosophicalArgument',
+      'compareExistentialistAndAnalyticApproachesToAProblem',
+      'compareMajorModernEpistemologicalApproaches',
+    ],
   },
   description: {
     methodological:

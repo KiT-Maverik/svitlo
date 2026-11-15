@@ -48,12 +48,7 @@ export const inequality_SkillGroup_Data = defineSkillGroup({
       intergenerationalEconomicMobility: intergenerationalEconomicMobility_Skill_Data,
       wealthDistribution: wealthDistribution_Skill_Data,
     },
-    order: [
-      'giniCoefficient',
-      'incomeDistribution',
-      'intergenerationalEconomicMobility',
-      'wealthDistribution',
-    ],
+    order: ['giniCoefficient', 'incomeDistribution', 'intergenerationalEconomicMobility', 'wealthDistribution'],
   },
   description: {
     methodological:

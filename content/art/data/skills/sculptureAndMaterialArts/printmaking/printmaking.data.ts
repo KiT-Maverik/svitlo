@@ -48,12 +48,7 @@ export const printmaking_SkillGroup_Data = defineSkillGroup({
       produceAStencilPrint: produceAStencilPrint_Skill_Data,
       registerMultiplePrintLayers: registerMultiplePrintLayers_Skill_Data,
     },
-    order: [
-      'designAPrintMatrix',
-      'produceAReliefPrint',
-      'produceAStencilPrint',
-      'registerMultiplePrintLayers',
-    ],
+    order: ['designAPrintMatrix', 'produceAReliefPrint', 'produceAStencilPrint', 'registerMultiplePrintLayers'],
   },
   description: {
     methodological:

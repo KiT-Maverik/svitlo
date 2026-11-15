@@ -50,13 +50,7 @@ export const guidanceAndRetention_SkillGroup_Data = defineSkillGroup({
       locks: locks_Skill_Data,
       lubrication: lubrication_Skill_Data,
     },
-    order: [
-      'bearings',
-      'brakingMechanisms',
-      'latches',
-      'locks',
-      'lubrication',
-    ],
+    order: ['bearings', 'brakingMechanisms', 'latches', 'locks', 'lubrication'],
   },
   description: {
     methodological:

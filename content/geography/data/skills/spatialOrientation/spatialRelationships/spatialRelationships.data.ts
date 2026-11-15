@@ -46,7 +46,11 @@ export const spatialRelationships_SkillGroup_Data = defineSkillGroup({
       distinguishAdjacencyFromProximity: distinguishAdjacencyFromProximity_Skill_Data,
       identifyBarriersAndCorridorsBetweenPlaces: identifyBarriersAndCorridorsBetweenPlaces_Skill_Data,
     },
-    order: ['describeClusteredAndDispersedArrangements', 'distinguishAdjacencyFromProximity', 'identifyBarriersAndCorridorsBetweenPlaces'],
+    order: [
+      'describeClusteredAndDispersedArrangements',
+      'distinguishAdjacencyFromProximity',
+      'identifyBarriersAndCorridorsBetweenPlaces',
+    ],
   },
   description: {
     methodological:

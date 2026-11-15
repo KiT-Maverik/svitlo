@@ -48,12 +48,7 @@ export const northAfricaBeyondTheNile_SkillGroup_Data = defineSkillGroup({
       northAfricanCulturalInteractions: northAfricanCulturalInteractions_Skill_Data,
       numidianKingdoms: numidianKingdoms_Skill_Data,
     },
-    order: [
-      'carthage',
-      'garamantes',
-      'northAfricanCulturalInteractions',
-      'numidianKingdoms',
-    ],
+    order: ['carthage', 'garamantes', 'northAfricanCulturalInteractions', 'numidianKingdoms'],
   },
   description: {
     methodological:

@@ -49,12 +49,7 @@ export const textilesAndDecorativeArts_SkillGroup_Data = defineSkillGroup({
       createTextileEmbellishment: createTextileEmbellishment_Skill_Data,
       designATextilePattern: designATextilePattern_Skill_Data,
     },
-    order: [
-      'createAWovenStructure',
-      'createRepeatingOrnament',
-      'createTextileEmbellishment',
-      'designATextilePattern',
-    ],
+    order: ['createAWovenStructure', 'createRepeatingOrnament', 'createTextileEmbellishment', 'designATextilePattern'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const illusionsAndMultisensoryPerception_SkillGroup_Data = defineSkillGro
       perceptualExpectations: perceptualExpectations_Skill_Data,
       visualIllusions: visualIllusions_Skill_Data,
     },
-    order: [
-      'crossModalIntegration',
-      'eyewitnessPerception',
-      'perceptualExpectations',
-      'visualIllusions',
-    ],
+    order: ['crossModalIntegration', 'eyewitnessPerception', 'perceptualExpectations', 'visualIllusions'],
   },
   description: {
     methodological:

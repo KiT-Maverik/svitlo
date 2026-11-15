@@ -46,12 +46,7 @@ export const chemicalInquiry_SkillDomain_Data = defineSkillDomain({
       measurementsAndEvidence: measurementsAndEvidence_SkillGroup_Data,
       questionsAndModels: questionsAndModels_SkillGroup_Data,
     },
-    order: [
-      'analyticalChemistry',
-      'laboratoryReasoning',
-      'measurementsAndEvidence',
-      'questionsAndModels',
-    ],
+    order: ['analyticalChemistry', 'laboratoryReasoning', 'measurementsAndEvidence', 'questionsAndModels'],
   },
   description: {
     methodological:

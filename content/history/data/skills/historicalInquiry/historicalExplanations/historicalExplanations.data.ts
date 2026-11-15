@@ -48,12 +48,7 @@ export const historicalExplanations_SkillGroup_Data = defineSkillGroup({
       historicalComparison: historicalComparison_Skill_Data,
       historicalUncertainty: historicalUncertainty_Skill_Data,
     },
-    order: [
-      'continuityAndChange',
-      'historicalCausality',
-      'historicalComparison',
-      'historicalUncertainty',
-    ],
+    order: ['continuityAndChange', 'historicalCausality', 'historicalComparison', 'historicalUncertainty'],
   },
   description: {
     methodological:

@@ -47,7 +47,8 @@ export const heatTransferMechanisms_SkillGroup_Data = defineSkillGroup({
       explainConductionAsEnergyTransferThroughMatter: explainConductionAsEnergyTransferThroughMatter_Skill_Data,
       explainConvectionAsEnergyTransferByFluidFlow: explainConvectionAsEnergyTransferByFluidFlow_Skill_Data,
       explainRadiativeHeatTransfer: explainRadiativeHeatTransfer_Skill_Data,
-      identifyTheHeatTransferMechanismFromAPhysicalSituation: identifyTheHeatTransferMechanismFromAPhysicalSituation_Skill_Data,
+      identifyTheHeatTransferMechanismFromAPhysicalSituation:
+        identifyTheHeatTransferMechanismFromAPhysicalSituation_Skill_Data,
       predictTheDirectionOfHeatTransfer: predictTheDirectionOfHeatTransfer_Skill_Data,
     },
     order: [

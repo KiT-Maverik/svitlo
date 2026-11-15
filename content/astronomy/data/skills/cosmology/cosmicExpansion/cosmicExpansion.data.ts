@@ -48,12 +48,7 @@ export const cosmicExpansion_SkillGroup_Data = defineSkillGroup({
       expansionVersusBoundSystems: expansionVersusBoundSystems_Skill_Data,
       hubbleLemaitreRelation: hubbleLemaitreRelation_Skill_Data,
     },
-    order: [
-      'cosmologicalModels',
-      'cosmologicalRedshift',
-      'expansionVersusBoundSystems',
-      'hubbleLemaitreRelation',
-    ],
+    order: ['cosmologicalModels', 'cosmologicalRedshift', 'expansionVersusBoundSystems', 'hubbleLemaitreRelation'],
   },
   description: {
     methodological:

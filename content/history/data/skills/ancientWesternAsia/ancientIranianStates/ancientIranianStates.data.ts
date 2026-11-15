@@ -48,12 +48,7 @@ export const ancientIranianStates_SkillGroup_Data = defineSkillGroup({
       ancientIranianReligions: ancientIranianReligions_Skill_Data,
       medianConfederations: medianConfederations_Skill_Data,
     },
-    order: [
-      'achaemenidEmpire',
-      'achaemenidExpansion',
-      'ancientIranianReligions',
-      'medianConfederations',
-    ],
+    order: ['achaemenidEmpire', 'achaemenidExpansion', 'ancientIranianReligions', 'medianConfederations'],
   },
   description: {
     methodological:

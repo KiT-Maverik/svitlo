@@ -50,8 +50,10 @@ export const particleModelOfMatter_SkillGroup_Data = defineSkillGroup({
       explainGasPressureThroughParticleMotion: explainGasPressureThroughParticleMotion_Skill_Data,
       explainRandomThermalMotionOfParticles: explainRandomThermalMotionOfParticles_Skill_Data,
       explainTheParticulateStructureOfMatter: explainTheParticulateStructureOfMatter_Skill_Data,
-      explainThePropertiesOfStatesOfMatterThroughParticleMotion: explainThePropertiesOfStatesOfMatterThroughParticleMotion_Skill_Data,
-      explainThermalExpansionThroughParticleMotionAndInteractions: explainThermalExpansionThroughParticleMotionAndInteractions_Skill_Data,
+      explainThePropertiesOfStatesOfMatterThroughParticleMotion:
+        explainThePropertiesOfStatesOfMatterThroughParticleMotion_Skill_Data,
+      explainThermalExpansionThroughParticleMotionAndInteractions:
+        explainThermalExpansionThroughParticleMotionAndInteractions_Skill_Data,
       relateParticleMotionToTemperatureChanges: relateParticleMotionToTemperatureChanges_Skill_Data,
     },
     order: [

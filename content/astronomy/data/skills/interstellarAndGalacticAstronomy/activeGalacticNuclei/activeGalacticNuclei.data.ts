@@ -48,12 +48,7 @@ export const activeGalacticNuclei_SkillGroup_Data = defineSkillGroup({
       relativisticJets: relativisticJets_Skill_Data,
       supermassiveBlackHoles: supermassiveBlackHoles_Skill_Data,
     },
-    order: [
-      'accretionPoweredEmission',
-      'quasars',
-      'relativisticJets',
-      'supermassiveBlackHoles',
-    ],
+    order: ['accretionPoweredEmission', 'quasars', 'relativisticJets', 'supermassiveBlackHoles'],
   },
   description: {
     methodological:

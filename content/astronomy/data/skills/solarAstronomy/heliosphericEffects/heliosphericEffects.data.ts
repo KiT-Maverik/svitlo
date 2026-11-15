@@ -48,12 +48,7 @@ export const heliosphericEffects_SkillGroup_Data = defineSkillGroup({
       solarWind: solarWind_Skill_Data,
       spaceWeather: spaceWeather_Skill_Data,
     },
-    order: [
-      'auroralProcesses',
-      'heliosphere',
-      'solarWind',
-      'spaceWeather',
-    ],
+    order: ['auroralProcesses', 'heliosphere', 'solarWind', 'spaceWeather'],
   },
   description: {
     methodological:

@@ -43,12 +43,7 @@ export const ancientKorea_SkillGroup_Data = defineSkillGroup({
       gojoseon: gojoseon_Skill_Data,
       silla: silla_Skill_Data,
     },
-    order: [
-      'baekje',
-      'goguryeo',
-      'gojoseon',
-      'silla',
-    ],
+    order: ['baekje', 'goguryeo', 'gojoseon', 'silla'],
   },
   description: {
     methodological:

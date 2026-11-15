@@ -50,10 +50,12 @@ export const acoustics_SkillGroup_Data = defineSkillGroup({
       compareTheLoudnessOfSounds: compareTheLoudnessOfSounds_Skill_Data,
       distinguishHighPitchedFromLowPitchedSounds: distinguishHighPitchedFromLowPitchedSounds_Skill_Data,
       explainAnEchoAsSoundReflection: explainAnEchoAsSoundReflection_Skill_Data,
-      explainHowSoundLoudnessDependsOnOscillationAmplitude: explainHowSoundLoudnessDependsOnOscillationAmplitude_Skill_Data,
+      explainHowSoundLoudnessDependsOnOscillationAmplitude:
+        explainHowSoundLoudnessDependsOnOscillationAmplitude_Skill_Data,
       explainHowSoundPitchDependsOnOscillationFrequency: explainHowSoundPitchDependsOnOscillationFrequency_Skill_Data,
       explainSoundAttenuationWithDistance: explainSoundAttenuationWithDistance_Skill_Data,
-      explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener: explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener_Skill_Data,
+      explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener:
+        explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener_Skill_Data,
       recognizeSoundTransmissionThroughAMedium: recognizeSoundTransmissionThroughAMedium_Skill_Data,
     },
     order: [

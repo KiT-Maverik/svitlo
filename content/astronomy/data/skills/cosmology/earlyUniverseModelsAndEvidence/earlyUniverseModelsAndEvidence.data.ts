@@ -48,12 +48,7 @@ export const earlyUniverseModelsAndEvidence_SkillGroup_Data = defineSkillGroup({
       hotBigBangModel: hotBigBangModel_Skill_Data,
       primordialNucleosynthesis: primordialNucleosynthesis_Skill_Data,
     },
-    order: [
-      'cosmicInflation',
-      'cosmicMicrowaveBackground',
-      'hotBigBangModel',
-      'primordialNucleosynthesis',
-    ],
+    order: ['cosmicInflation', 'cosmicMicrowaveBackground', 'hotBigBangModel', 'primordialNucleosynthesis'],
   },
   description: {
     methodological:

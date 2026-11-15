@@ -50,7 +50,8 @@ export const microbiology_SkillDomain_Data = defineSkillDomain({
   skills: {
     items: {
       distinguishBacteriaAndArchaea: distinguishBacteriaAndArchaea_Skill_Data,
-      distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans: distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skill_Data,
+      distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans:
+        distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skill_Data,
       explainBacterialCellDivision: explainBacterialCellDivision_Skill_Data,
       explainProkaryoticCellStructure: explainProkaryoticCellStructure_Skill_Data,
       explainTheirRoleInDecomposition: explainTheirRoleInDecomposition_Skill_Data,

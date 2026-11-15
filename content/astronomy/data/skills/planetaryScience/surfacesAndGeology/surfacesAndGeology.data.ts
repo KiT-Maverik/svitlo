@@ -48,12 +48,7 @@ export const surfacesAndGeology_SkillGroup_Data = defineSkillGroup({
       planetaryTectonics: planetaryTectonics_Skill_Data,
       surfaceAgeEstimation: surfaceAgeEstimation_Skill_Data,
     },
-    order: [
-      'extraterrestrialVolcanism',
-      'impactCratering',
-      'planetaryTectonics',
-      'surfaceAgeEstimation',
-    ],
+    order: ['extraterrestrialVolcanism', 'impactCratering', 'planetaryTectonics', 'surfaceAgeEstimation'],
   },
   description: {
     methodological:

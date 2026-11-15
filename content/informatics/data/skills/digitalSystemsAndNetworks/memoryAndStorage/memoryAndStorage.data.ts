@@ -48,12 +48,7 @@ export const memoryAndStorage_SkillGroup_Data = defineSkillGroup({
       explainRAM: explainRAM_Skill_Data,
       explainThePurposeOfROM: explainThePurposeOfROM_Skill_Data,
     },
-    order: [
-      'distinguishRAMROMAndStorage',
-      'explainPersistentStorage',
-      'explainRAM',
-      'explainThePurposeOfROM',
-    ],
+    order: ['distinguishRAMROMAndStorage', 'explainPersistentStorage', 'explainRAM', 'explainThePurposeOfROM'],
   },
   description: {
     methodological:

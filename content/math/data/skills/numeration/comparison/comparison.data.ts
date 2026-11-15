@@ -50,13 +50,7 @@ export const comparison_SkillGroup_Data = defineSkillGroup({
       order100: order100_Skill_Data,
       order1000: order1000_Skill_Data,
     },
-    order: [
-      'moreLessEqual',
-      'comparisonSymbols',
-      'order20',
-      'order100',
-      'order1000',
-    ],
+    order: ['moreLessEqual', 'comparisonSymbols', 'order20', 'order100', 'order1000'],
   },
   description: {
     methodological:

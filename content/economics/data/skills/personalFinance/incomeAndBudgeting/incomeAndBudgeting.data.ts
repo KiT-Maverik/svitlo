@@ -48,12 +48,7 @@ export const incomeAndBudgeting_SkillGroup_Data = defineSkillGroup({
       personalBudget: personalBudget_Skill_Data,
       personalIncomeSources: personalIncomeSources_Skill_Data,
     },
-    order: [
-      'expenseTracking',
-      'financialGoals',
-      'personalBudget',
-      'personalIncomeSources',
-    ],
+    order: ['expenseTracking', 'financialGoals', 'personalBudget', 'personalIncomeSources'],
   },
   description: {
     methodological:

@@ -54,16 +54,7 @@ export const dataStructures_SkillDomain_Data = defineSkillDomain({
       structureSelection: structureSelection_SkillGroup_Data,
       trees: trees_SkillGroup_Data,
     },
-    order: [
-      'dictionaries',
-      'graphs',
-      'queue',
-      'sequences',
-      'sets',
-      'stack',
-      'structureSelection',
-      'trees',
-    ],
+    order: ['dictionaries', 'graphs', 'queue', 'sequences', 'sets', 'stack', 'structureSelection', 'trees'],
   },
   description: {
     methodological:

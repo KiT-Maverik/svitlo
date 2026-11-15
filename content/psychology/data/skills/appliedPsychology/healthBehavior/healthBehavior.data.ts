@@ -48,12 +48,7 @@ export const healthBehavior_SkillGroup_Data = defineSkillGroup({
       healthBeliefsAndAction: healthBeliefsAndAction_Skill_Data,
       socialSupportAndHealth: socialSupportAndHealth_Skill_Data,
     },
-    order: [
-      'adherenceToCarePlans',
-      'behaviorChangeInterventions',
-      'healthBeliefsAndAction',
-      'socialSupportAndHealth',
-    ],
+    order: ['adherenceToCarePlans', 'behaviorChangeInterventions', 'healthBeliefsAndAction', 'socialSupportAndHealth'],
   },
   description: {
     methodological:

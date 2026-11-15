@@ -47,12 +47,7 @@ export const photographyAndFilm_SkillDomain_Data = defineSkillDomain({
       photographicCommunication: photographicCommunication_SkillGroup_Data,
       photographicTechnique: photographicTechnique_SkillGroup_Data,
     },
-    order: [
-      'animation',
-      'filmLanguage',
-      'photographicCommunication',
-      'photographicTechnique',
-    ],
+    order: ['animation', 'filmLanguage', 'photographicCommunication', 'photographicTechnique'],
   },
   description: {
     methodological:

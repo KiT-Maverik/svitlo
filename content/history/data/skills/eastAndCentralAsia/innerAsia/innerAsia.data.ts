@@ -48,12 +48,7 @@ export const innerAsia_SkillGroup_Data = defineSkillGroup({
       steppePastoralism: steppePastoralism_Skill_Data,
       xiongnu: xiongnu_Skill_Data,
     },
-    order: [
-      'centralAsianOasisCenters',
-      'sakaAndRelatedSteppeCultures',
-      'steppePastoralism',
-      'xiongnu',
-    ],
+    order: ['centralAsianOasisCenters', 'sakaAndRelatedSteppeCultures', 'steppePastoralism', 'xiongnu'],
   },
   description: {
     methodological: 'Steppe and oasis societies created polities and connections among large agricultural states.',

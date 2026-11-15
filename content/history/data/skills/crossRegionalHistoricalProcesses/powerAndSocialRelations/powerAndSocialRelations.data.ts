@@ -48,12 +48,7 @@ export const powerAndSocialRelations_SkillGroup_Data = defineSkillGroup({
       socialHierarchies: socialHierarchies_Skill_Data,
       womenInAncientSocieties: womenInAncientSocieties_Skill_Data,
     },
-    order: [
-      'earlyStateFormation',
-      'slaveryAndOtherDependencies',
-      'socialHierarchies',
-      'womenInAncientSocieties',
-    ],
+    order: ['earlyStateFormation', 'slaveryAndOtherDependencies', 'socialHierarchies', 'womenInAncientSocieties'],
   },
   description: {
     methodological:

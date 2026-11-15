@@ -48,12 +48,7 @@ export const heatTransferEquipment_SkillGroup_Data = defineSkillGroup({
       refrigerationEquipment: refrigerationEquipment_Skill_Data,
       thermalInsulationSuitability: thermalInsulationSuitability_Skill_Data,
     },
-    order: [
-      'heatExchangers',
-      'heatPumps',
-      'refrigerationEquipment',
-      'thermalInsulationSuitability',
-    ],
+    order: ['heatExchangers', 'heatPumps', 'refrigerationEquipment', 'thermalInsulationSuitability'],
   },
   description: {
     methodological:

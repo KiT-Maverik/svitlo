@@ -48,12 +48,7 @@ export const expressions_SkillGroup_Data = defineSkillGroup({
       readNumericExpressions: readNumericExpressions_Skill_Data,
       variableValue: variableValue_Skill_Data,
     },
-    order: [
-      'orderOfOperations',
-      'parentheses',
-      'readNumericExpressions',
-      'variableValue',
-    ],
+    order: ['orderOfOperations', 'parentheses', 'readNumericExpressions', 'variableValue'],
   },
   description: {
     methodological:

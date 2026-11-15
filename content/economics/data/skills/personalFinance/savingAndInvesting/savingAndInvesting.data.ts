@@ -50,13 +50,7 @@ export const savingAndInvesting_SkillGroup_Data = defineSkillGroup({
       realReturn: realReturn_Skill_Data,
       simpleInterest: simpleInterest_Skill_Data,
     },
-    order: [
-      'compoundInterest',
-      'emergencySavings',
-      'investmentDiversification',
-      'realReturn',
-      'simpleInterest',
-    ],
+    order: ['compoundInterest', 'emergencySavings', 'investmentDiversification', 'realReturn', 'simpleInterest'],
   },
   description: {
     methodological: 'Moving purchasing power into the future involves liquidity, returns, risk, and inflation.',

@@ -50,13 +50,7 @@ export const figures_SkillGroup_Data = defineSkillGroup({
       triangleRectangleSquare: triangleRectangleSquare_Skill_Data,
       composeDecomposeShapes: composeDecomposeShapes_Skill_Data,
     },
-    order: [
-      'identify2dShapes',
-      'shapeAttributes',
-      'polygon',
-      'triangleRectangleSquare',
-      'composeDecomposeShapes',
-    ],
+    order: ['identify2dShapes', 'shapeAttributes', 'polygon', 'triangleRectangleSquare', 'composeDecomposeShapes'],
   },
   description: {
     methodological:

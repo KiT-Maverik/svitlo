@@ -48,12 +48,7 @@ export const economicIndicators_SkillGroup_Data = defineSkillGroup({
       nominalAndRealMeasures: nominalAndRealMeasures_Skill_Data,
       perCapitaMeasuresAndShares: perCapitaMeasuresAndShares_Skill_Data,
     },
-    order: [
-      'economicDataQuality',
-      'economicTimeSeries',
-      'nominalAndRealMeasures',
-      'perCapitaMeasuresAndShares',
-    ],
+    order: ['economicDataQuality', 'economicTimeSeries', 'nominalAndRealMeasures', 'perCapitaMeasuresAndShares'],
   },
   description: {
     methodological:

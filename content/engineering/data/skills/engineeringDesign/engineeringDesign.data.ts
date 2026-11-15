@@ -46,12 +46,7 @@ export const engineeringDesign_SkillDomain_Data = defineSkillDomain({
       representationsAndPrototypes: representationsAndPrototypes_SkillGroup_Data,
       testingAndIteration: testingAndIteration_SkillGroup_Data,
     },
-    order: [
-      'conceptSelection',
-      'problemDefinition',
-      'representationsAndPrototypes',
-      'testingAndIteration',
-    ],
+    order: ['conceptSelection', 'problemDefinition', 'representationsAndPrototypes', 'testingAndIteration'],
   },
   description: {
     methodological:

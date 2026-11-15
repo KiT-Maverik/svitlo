@@ -45,7 +45,8 @@ export const culturalGeography_SkillGroup_Data = defineSkillGroup({
     items: {
       compareCulturalLandscapesAcrossPlaces: compareCulturalLandscapesAcrossPlaces_Skill_Data,
       explainGeographicDiffusionOfCulturalPractices: explainGeographicDiffusionOfCulturalPractices_Skill_Data,
-      interpretTheGeographicDistributionOfCulturalCharacteristics: interpretTheGeographicDistributionOfCulturalCharacteristics_Skill_Data,
+      interpretTheGeographicDistributionOfCulturalCharacteristics:
+        interpretTheGeographicDistributionOfCulturalCharacteristics_Skill_Data,
       recognizeHumanInfluencesOnACulturalLandscape: recognizeHumanInfluencesOnACulturalLandscape_Skill_Data,
     },
     order: [

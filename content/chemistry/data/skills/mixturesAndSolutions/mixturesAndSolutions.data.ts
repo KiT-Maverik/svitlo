@@ -46,12 +46,7 @@ export const mixturesAndSolutions_SkillDomain_Data = defineSkillDomain({
       mixtureSystems: mixtureSystems_SkillGroup_Data,
       separation: separation_SkillGroup_Data,
     },
-    order: [
-      'concentration',
-      'dissolutionAndSolubility',
-      'mixtureSystems',
-      'separation',
-    ],
+    order: ['concentration', 'dissolutionAndSolubility', 'mixtureSystems', 'separation'],
   },
   description: {
     methodological:

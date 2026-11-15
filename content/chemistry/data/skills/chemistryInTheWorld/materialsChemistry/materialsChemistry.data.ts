@@ -54,15 +54,7 @@ export const materialsChemistry_SkillGroup_Data = defineSkillGroup({
       metalsInUse: metalsInUse_Skill_Data,
       plastics: plastics_Skill_Data,
     },
-    order: [
-      'alloysInUse',
-      'ceramics',
-      'corrosion',
-      'elastomers',
-      'glass',
-      'metalsInUse',
-      'plastics',
-    ],
+    order: ['alloysInUse', 'ceramics', 'corrosion', 'elastomers', 'glass', 'metalsInUse', 'plastics'],
   },
   description: {
     methodological:

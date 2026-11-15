@@ -46,7 +46,11 @@ export const instrumentsAndMeasurementMethods_SkillGroup_Data = defineSkillGroup
       readASimpleMeasuringInstrument: readASimpleMeasuringInstrument_Skill_Data,
       readTemperatureFromAThermometer: readTemperatureFromAThermometer_Skill_Data,
     },
-    order: ['explainWhyRepeatedMeasurementsMayDiffer', 'readASimpleMeasuringInstrument', 'readTemperatureFromAThermometer'],
+    order: [
+      'explainWhyRepeatedMeasurementsMayDiffer',
+      'readASimpleMeasuringInstrument',
+      'readTemperatureFromAThermometer',
+    ],
   },
   description: {
     methodological:

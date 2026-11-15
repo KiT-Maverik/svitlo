@@ -48,12 +48,7 @@ export const consumerInformationAndRights_SkillGroup_Data = defineSkillGroup({
       totalCostOfPurchase: totalCostOfPurchase_Skill_Data,
       unitPricing: unitPricing_Skill_Data,
     },
-    order: [
-      'consumerRightsAndResponsibilities',
-      'qualityOfConsumerInformation',
-      'totalCostOfPurchase',
-      'unitPricing',
-    ],
+    order: ['consumerRightsAndResponsibilities', 'qualityOfConsumerInformation', 'totalCostOfPurchase', 'unitPricing'],
   },
   description: {
     methodological:

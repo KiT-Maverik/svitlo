@@ -48,12 +48,7 @@ export const wellbeingAndImpairment_SkillGroup_Data = defineSkillGroup({
       psychologicalResilience: psychologicalResilience_Skill_Data,
       psychologicalWellbeing: psychologicalWellbeing_Skill_Data,
     },
-    order: [
-      'distressVersusDisorder',
-      'mentalHealthStigma',
-      'psychologicalResilience',
-      'psychologicalWellbeing',
-    ],
+    order: ['distressVersusDisorder', 'mentalHealthStigma', 'psychologicalResilience', 'psychologicalWellbeing'],
   },
   description: {
     methodological:

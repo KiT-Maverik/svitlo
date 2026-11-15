@@ -46,12 +46,7 @@ export const socialPsychology_SkillDomain_Data = defineSkillDomain({
       relationshipsAndCommunication: relationshipsAndCommunication_SkillGroup_Data,
       socialPerception: socialPerception_SkillGroup_Data,
     },
-    order: [
-      'groupDynamics',
-      'influenceAndPersuasion',
-      'relationshipsAndCommunication',
-      'socialPerception',
-    ],
+    order: ['groupDynamics', 'influenceAndPersuasion', 'relationshipsAndCommunication', 'socialPerception'],
   },
   description: {
     methodological:

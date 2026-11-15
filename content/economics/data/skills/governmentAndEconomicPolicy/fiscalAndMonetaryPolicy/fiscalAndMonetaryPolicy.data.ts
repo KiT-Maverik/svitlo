@@ -48,12 +48,7 @@ export const fiscalAndMonetaryPolicy_SkillGroup_Data = defineSkillGroup({
       monetaryPolicy: monetaryPolicy_Skill_Data,
       monetaryTransmissionMechanism: monetaryTransmissionMechanism_Skill_Data,
     },
-    order: [
-      'automaticStabilizers',
-      'fiscalStabilization',
-      'monetaryPolicy',
-      'monetaryTransmissionMechanism',
-    ],
+    order: ['automaticStabilizers', 'fiscalStabilization', 'monetaryPolicy', 'monetaryTransmissionMechanism'],
   },
   description: {
     methodological:

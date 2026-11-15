@@ -48,12 +48,7 @@ export const fluidMachines_SkillGroup_Data = defineSkillGroup({
       liquidPumps: liquidPumps_Skill_Data,
       pneumaticActuators: pneumaticActuators_Skill_Data,
     },
-    order: [
-      'gasCompressors',
-      'hydraulicActuators',
-      'liquidPumps',
-      'pneumaticActuators',
-    ],
+    order: ['gasCompressors', 'hydraulicActuators', 'liquidPumps', 'pneumaticActuators'],
   },
   description: {
     methodological:

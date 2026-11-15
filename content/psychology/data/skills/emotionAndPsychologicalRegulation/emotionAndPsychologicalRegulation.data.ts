@@ -46,12 +46,7 @@ export const emotionAndPsychologicalRegulation_SkillDomain_Data = defineSkillDom
       regulationStrategies: regulationStrategies_SkillGroup_Data,
       stressAndCoping: stressAndCoping_SkillGroup_Data,
     },
-    order: [
-      'emotionalProcesses',
-      'recognitionAndExpression',
-      'regulationStrategies',
-      'stressAndCoping',
-    ],
+    order: ['emotionalProcesses', 'recognitionAndExpression', 'regulationStrategies', 'stressAndCoping'],
   },
   description: {
     methodological:

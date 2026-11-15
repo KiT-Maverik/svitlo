@@ -48,12 +48,7 @@ export const workAndOrganizations_SkillGroup_Data = defineSkillGroup({
       teamCoordination: teamCoordination_Skill_Data,
       workMotivation: workMotivation_Skill_Data,
     },
-    order: [
-      'organizationalStressors',
-      'personnelAssessmentFairness',
-      'teamCoordination',
-      'workMotivation',
-    ],
+    order: ['organizationalStressors', 'personnelAssessmentFairness', 'teamCoordination', 'workMotivation'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const area_SkillGroup_Data = defineSkillGroup({
       countUnitSquares: countUnitSquares_Skill_Data,
       rectangleAreaModel: rectangleAreaModel_Skill_Data,
     },
-    order: [
-      'compositeArea',
-      'areaAsCovering',
-      'countUnitSquares',
-      'rectangleAreaModel',
-    ],
+    order: ['compositeArea', 'areaAsCovering', 'countUnitSquares', 'rectangleAreaModel'],
   },
   description: {
     methodological:

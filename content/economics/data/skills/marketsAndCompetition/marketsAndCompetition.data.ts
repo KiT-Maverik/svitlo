@@ -50,14 +50,7 @@ export const marketsAndCompetition_SkillDomain_Data = defineSkillDomain({
       marketOutcomes: marketOutcomes_SkillGroup_Data,
       supply: supply_SkillGroup_Data,
     },
-    order: [
-      'competitiveMarketStructures',
-      'demand',
-      'elasticity',
-      'marketEquilibrium',
-      'marketOutcomes',
-      'supply',
-    ],
+    order: ['competitiveMarketStructures', 'demand', 'elasticity', 'marketEquilibrium', 'marketOutcomes', 'supply'],
   },
   description: {
     methodological:

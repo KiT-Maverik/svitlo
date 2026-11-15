@@ -44,7 +44,8 @@ export const classification_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      classifyGeographicObjectsByNaturalOrHumanMadeOrigin: classifyGeographicObjectsByNaturalOrHumanMadeOrigin_Skill_Data,
+      classifyGeographicObjectsByNaturalOrHumanMadeOrigin:
+        classifyGeographicObjectsByNaturalOrHumanMadeOrigin_Skill_Data,
       classifyPlacesIntoRegionsUsingStatedCriteria: classifyPlacesIntoRegionsUsingStatedCriteria_Skill_Data,
       distinguishFormalAndFunctionalRegions: distinguishFormalAndFunctionalRegions_Skill_Data,
       explainTheConceptOfAGeographicObject: explainTheConceptOfAGeographicObject_Skill_Data,

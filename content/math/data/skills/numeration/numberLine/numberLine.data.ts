@@ -48,12 +48,7 @@ export const numberLine_SkillGroup_Data = defineSkillGroup({
       numberLine1000: numberLine1000_Skill_Data,
       distanceOnLine: distanceOnLine_Skill_Data,
     },
-    order: [
-      'beforeAfterBetween',
-      'numberLine20',
-      'numberLine1000',
-      'distanceOnLine',
-    ],
+    order: ['beforeAfterBetween', 'numberLine20', 'numberLine1000', 'distanceOnLine'],
   },
   description: {
     methodological:

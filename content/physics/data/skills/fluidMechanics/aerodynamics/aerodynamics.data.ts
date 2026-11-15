@@ -46,7 +46,11 @@ export const aerodynamics_SkillGroup_Data = defineSkillGroup({
       explainTheOriginOfAirResistanceDuringMotion: explainTheOriginOfAirResistanceDuringMotion_Skill_Data,
       predictTheEffectOfShapeOnMotionThroughAir: predictTheEffectOfShapeOnMotionThroughAir_Skill_Data,
     },
-    order: ['explainAerodynamicLift', 'explainTheOriginOfAirResistanceDuringMotion', 'predictTheEffectOfShapeOnMotionThroughAir'],
+    order: [
+      'explainAerodynamicLift',
+      'explainTheOriginOfAirResistanceDuringMotion',
+      'predictTheEffectOfShapeOnMotionThroughAir',
+    ],
   },
   description: {
     methodological:

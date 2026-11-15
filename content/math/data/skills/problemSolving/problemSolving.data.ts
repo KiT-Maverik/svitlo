@@ -52,15 +52,7 @@ export const problemSolving_SkillDomain_Data = defineSkillDomain({
       groups: groups_SkillGroup_Data,
       quantities: quantities_SkillGroup_Data,
     },
-    order: [
-      'conditions',
-      'models',
-      'planning',
-      'comparisons',
-      'parts',
-      'groups',
-      'quantities',
-    ],
+    order: ['conditions', 'models', 'planning', 'comparisons', 'parts', 'groups', 'quantities'],
   },
   description: {
     methodological:

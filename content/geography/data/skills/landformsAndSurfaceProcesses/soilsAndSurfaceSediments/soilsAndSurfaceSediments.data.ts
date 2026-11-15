@@ -45,7 +45,8 @@ export const soilsAndSurfaceSediments_SkillGroup_Data = defineSkillGroup({
     items: {
       classifyUnconsolidatedSedimentByGrainSize: classifyUnconsolidatedSedimentByGrainSize_Skill_Data,
       explainHowASoilProfileDevelopsAtTheSurface: explainHowASoilProfileDevelopsAtTheSurface_Skill_Data,
-      explainInfiltrationDifferencesAmongSurfaceMaterials: explainInfiltrationDifferencesAmongSurfaceMaterials_Skill_Data,
+      explainInfiltrationDifferencesAmongSurfaceMaterials:
+        explainInfiltrationDifferencesAmongSurfaceMaterials_Skill_Data,
       inferBasicLandUseConstraintsFromSoilConditions: inferBasicLandUseConstraintsFromSoilConditions_Skill_Data,
     },
     order: [

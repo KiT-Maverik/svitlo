@@ -48,12 +48,7 @@ export const perceptualOrganization_SkillGroup_Data = defineSkillGroup({
       gestaltGrouping: gestaltGrouping_Skill_Data,
       perceptualConstancy: perceptualConstancy_Skill_Data,
     },
-    order: [
-      'bottomUpAndTopDownProcessing',
-      'figureGroundOrganization',
-      'gestaltGrouping',
-      'perceptualConstancy',
-    ],
+    order: ['bottomUpAndTopDownProcessing', 'figureGroundOrganization', 'gestaltGrouping', 'perceptualConstancy'],
   },
   description: {
     methodological:

@@ -43,12 +43,7 @@ export const mixtureSystems_SkillGroup_Data = defineSkillGroup({
       solutions: solutions_Skill_Data,
       suspensions: suspensions_Skill_Data,
     },
-    order: [
-      'alloys',
-      'colloids',
-      'solutions',
-      'suspensions',
-    ],
+    order: ['alloys', 'colloids', 'solutions', 'suspensions'],
   },
   description: {
     methodological:

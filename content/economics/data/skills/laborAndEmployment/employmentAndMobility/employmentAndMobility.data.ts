@@ -48,12 +48,7 @@ export const employmentAndMobility_SkillGroup_Data = defineSkillGroup({
       laborMarketDiscrimination: laborMarketDiscrimination_Skill_Data,
       occupationalMobility: occupationalMobility_Skill_Data,
     },
-    order: [
-      'geographicLaborMobility',
-      'jobSearchAndMatching',
-      'laborMarketDiscrimination',
-      'occupationalMobility',
-    ],
+    order: ['geographicLaborMobility', 'jobSearchAndMatching', 'laborMarketDiscrimination', 'occupationalMobility'],
   },
   description: {
     methodological:

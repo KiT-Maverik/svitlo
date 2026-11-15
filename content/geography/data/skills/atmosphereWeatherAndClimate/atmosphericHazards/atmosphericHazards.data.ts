@@ -46,7 +46,11 @@ export const atmosphericHazards_SkillGroup_Data = defineSkillGroup({
       interpretAWeatherWarningAreaOnAMap: interpretAWeatherWarningAreaOnAMap_Skill_Data,
       recognizeAreasExposedToWeatherRelatedHazards: recognizeAreasExposedToWeatherRelatedHazards_Skill_Data,
     },
-    order: ['compareWaysToReduceWeatherHazardRisk', 'interpretAWeatherWarningAreaOnAMap', 'recognizeAreasExposedToWeatherRelatedHazards'],
+    order: [
+      'compareWaysToReduceWeatherHazardRisk',
+      'interpretAWeatherWarningAreaOnAMap',
+      'recognizeAreasExposedToWeatherRelatedHazards',
+    ],
   },
   description: {
     methodological:

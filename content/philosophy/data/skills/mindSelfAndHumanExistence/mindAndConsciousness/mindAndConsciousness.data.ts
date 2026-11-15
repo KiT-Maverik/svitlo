@@ -43,7 +43,8 @@ export const mindAndConsciousness_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      analyzeAPhilosophicalProblemOfArtificialConsciousness: analyzeAPhilosophicalProblemOfArtificialConsciousness_Skill_Data,
+      analyzeAPhilosophicalProblemOfArtificialConsciousness:
+        analyzeAPhilosophicalProblemOfArtificialConsciousness_Skill_Data,
       compareTheoriesOfTheMindBodyRelation: compareTheoriesOfTheMindBodyRelation_Skill_Data,
       distinguishMentalFromPhysicalDescriptions: distinguishMentalFromPhysicalDescriptions_Skill_Data,
       explainTheProblemOfOtherMinds: explainTheProblemOfOtherMinds_Skill_Data,

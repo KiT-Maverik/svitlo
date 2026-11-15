@@ -46,12 +46,7 @@ export const waterAndEnvironmentalInfrastructure_SkillDomain_Data = defineSkillD
       wastewaterAndDrainage: wastewaterAndDrainage_SkillGroup_Data,
       waterSupply: waterSupply_SkillGroup_Data,
     },
-    order: [
-      'environmentalControl',
-      'hydraulicInfrastructure',
-      'wastewaterAndDrainage',
-      'waterSupply',
-    ],
+    order: ['environmentalControl', 'hydraulicInfrastructure', 'wastewaterAndDrainage', 'waterSupply'],
   },
   description: {
     methodological:

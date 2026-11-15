@@ -50,13 +50,7 @@ export const concentration_SkillGroup_Data = defineSkillGroup({
       massFraction: massFraction_Skill_Data,
       molarConcentration: molarConcentration_Skill_Data,
     },
-    order: [
-      'colligativeProperties',
-      'concentrationComparisons',
-      'dilution',
-      'massFraction',
-      'molarConcentration',
-    ],
+    order: ['colligativeProperties', 'concentrationComparisons', 'dilution', 'massFraction', 'molarConcentration'],
   },
   description: {
     methodological:

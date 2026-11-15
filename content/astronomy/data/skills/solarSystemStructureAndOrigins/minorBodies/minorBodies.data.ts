@@ -48,12 +48,7 @@ export const minorBodies_SkillGroup_Data = defineSkillGroup({
       meteoroidsMeteorsAndMeteorites: meteoroidsMeteorsAndMeteorites_Skill_Data,
       transNeptunianObjects: transNeptunianObjects_Skill_Data,
     },
-    order: [
-      'asteroids',
-      'comets',
-      'meteoroidsMeteorsAndMeteorites',
-      'transNeptunianObjects',
-    ],
+    order: ['asteroids', 'comets', 'meteoroidsMeteorsAndMeteorites', 'transNeptunianObjects'],
   },
   description: {
     methodological:

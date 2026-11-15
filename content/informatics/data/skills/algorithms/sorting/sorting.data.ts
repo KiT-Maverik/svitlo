@@ -48,12 +48,7 @@ export const sorting_SkillGroup_Data = defineSkillGroup({
       applySelectionSort: applySelectionSort_Skill_Data,
       explainASortingCriterion: explainASortingCriterion_Skill_Data,
     },
-    order: [
-      'applyBubbleSort',
-      'applyInsertionSort',
-      'applySelectionSort',
-      'explainASortingCriterion',
-    ],
+    order: ['applyBubbleSort', 'applyInsertionSort', 'applySelectionSort', 'explainASortingCriterion'],
   },
   description: {
     methodological:

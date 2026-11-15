@@ -46,12 +46,7 @@ export const thermodynamics_SkillDomain_Data = defineSkillDomain({
       temperatureAndHeating: temperatureAndHeating_SkillGroup_Data,
       thermalInsulation: thermalInsulation_SkillGroup_Data,
     },
-    order: [
-      'heatTransferMechanisms',
-      'phaseTransitions',
-      'temperatureAndHeating',
-      'thermalInsulation',
-    ],
+    order: ['heatTransferMechanisms', 'phaseTransitions', 'temperatureAndHeating', 'thermalInsulation'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const nubiaAndKush_SkillGroup_Data = defineSkillGroup({
       meroe: meroe_Skill_Data,
       nileCulturalExchange: nileCulturalExchange_Skill_Data,
     },
-    order: [
-      'kermaCulture',
-      'kingdomOfKush',
-      'meroe',
-      'nileCulturalExchange',
-    ],
+    order: ['kermaCulture', 'kingdomOfKush', 'meroe', 'nileCulturalExchange'],
   },
   description: {
     methodological:

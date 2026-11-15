@@ -48,12 +48,7 @@ export const theMilkyWay_SkillGroup_Data = defineSkillGroup({
       solarSystemsGalacticLocation: solarSystemsGalacticLocation_Skill_Data,
       starClusters: starClusters_Skill_Data,
     },
-    order: [
-      'galacticRotation',
-      'milkyWayStructure',
-      'solarSystemsGalacticLocation',
-      'starClusters',
-    ],
+    order: ['galacticRotation', 'milkyWayStructure', 'solarSystemsGalacticLocation', 'starClusters'],
   },
   description: {
     methodological:

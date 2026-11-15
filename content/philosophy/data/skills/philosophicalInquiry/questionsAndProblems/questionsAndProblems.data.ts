@@ -44,7 +44,8 @@ export const questionsAndProblems_SkillGroup_Data = defineSkillGroup({
   skills: {
     items: {
       distinguishAPhilosophicalProblemFromAnExample: distinguishAPhilosophicalProblemFromAnExample_Skill_Data,
-      distinguishPhilosophicalQuestionsFromEmpiricalQuestions: distinguishPhilosophicalQuestionsFromEmpiricalQuestions_Skill_Data,
+      distinguishPhilosophicalQuestionsFromEmpiricalQuestions:
+        distinguishPhilosophicalQuestionsFromEmpiricalQuestions_Skill_Data,
       formulateAPhilosophicalQuestion: formulateAPhilosophicalQuestion_Skill_Data,
       identifyAssumptionsInAPhilosophicalProblem: identifyAssumptionsInAPhilosophicalProblem_Skill_Data,
     },

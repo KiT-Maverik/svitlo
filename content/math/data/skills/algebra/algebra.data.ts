@@ -48,13 +48,7 @@ export const algebra_SkillDomain_Data = defineSkillDomain({
       patterns: patterns_SkillGroup_Data,
       unknowns: unknowns_SkillGroup_Data,
     },
-    order: [
-      'equalities',
-      'expressions',
-      'formalization',
-      'patterns',
-      'unknowns',
-    ],
+    order: ['equalities', 'expressions', 'formalization', 'patterns', 'unknowns'],
   },
   description: {
     methodological:

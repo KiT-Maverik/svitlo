@@ -43,7 +43,8 @@ export const rotationalMotion_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      distinguishRotationAboutAnAxisFromMotionAlongACircle: distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data,
+      distinguishRotationAboutAnAxisFromMotionAlongACircle:
+        distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data,
       explainConservationOfAngularMomentum: explainConservationOfAngularMomentum_Skill_Data,
       explainRotationalInertia: explainRotationalInertia_Skill_Data,
       explainTorque: explainTorque_Skill_Data,

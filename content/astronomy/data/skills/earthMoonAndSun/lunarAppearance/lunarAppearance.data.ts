@@ -48,12 +48,7 @@ export const lunarAppearance_SkillGroup_Data = defineSkillGroup({
       lunarPhases: lunarPhases_Skill_Data,
       nearAndFarLunarHemispheres: nearAndFarLunarHemispheres_Skill_Data,
     },
-    order: [
-      'lunarLibration',
-      'lunarMotion',
-      'lunarPhases',
-      'nearAndFarLunarHemispheres',
-    ],
+    order: ['lunarLibration', 'lunarMotion', 'lunarPhases', 'nearAndFarLunarHemispheres'],
   },
   description: {
     methodological:

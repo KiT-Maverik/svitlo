@@ -49,12 +49,7 @@ export const typographyAndLayout_SkillGroup_Data = defineSkillGroup({
       establishTypographicHierarchy: establishTypographicHierarchy_Skill_Data,
       selectATypeface: selectATypeface_Skill_Data,
     },
-    order: [
-      'applyALayoutGrid',
-      'designReadableText',
-      'establishTypographicHierarchy',
-      'selectATypeface',
-    ],
+    order: ['applyALayoutGrid', 'designReadableText', 'establishTypographicHierarchy', 'selectATypeface'],
   },
   description: {
     methodological:

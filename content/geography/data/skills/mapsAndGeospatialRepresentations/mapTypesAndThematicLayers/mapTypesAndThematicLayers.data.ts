@@ -46,7 +46,11 @@ export const mapTypesAndThematicLayers_SkillGroup_Data = defineSkillGroup({
       interpretAThematicLegendAndItsValueClasses: interpretAThematicLegendAndItsValueClasses_Skill_Data,
       selectAMapTypeForAGeographicQuestion: selectAMapTypeForAGeographicQuestion_Skill_Data,
     },
-    order: ['identifyCommonMapTypesByTheirInformationContent', 'interpretAThematicLegendAndItsValueClasses', 'selectAMapTypeForAGeographicQuestion'],
+    order: [
+      'identifyCommonMapTypesByTheirInformationContent',
+      'interpretAThematicLegendAndItsValueClasses',
+      'selectAMapTypeForAGeographicQuestion',
+    ],
   },
   description: {
     methodological:

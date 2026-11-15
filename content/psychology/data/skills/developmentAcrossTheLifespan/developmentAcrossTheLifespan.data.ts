@@ -46,12 +46,7 @@ export const developmentAcrossTheLifespan_SkillDomain_Data = defineSkillDomain({
       earlyAndMiddleChildhood: earlyAndMiddleChildhood_SkillGroup_Data,
       mechanismsOfDevelopment: mechanismsOfDevelopment_SkillGroup_Data,
     },
-    order: [
-      'adolescenceAndIdentity',
-      'adulthoodAndAging',
-      'earlyAndMiddleChildhood',
-      'mechanismsOfDevelopment',
-    ],
+    order: ['adolescenceAndIdentity', 'adulthoodAndAging', 'earlyAndMiddleChildhood', 'mechanismsOfDevelopment'],
   },
   description: {
     methodological:

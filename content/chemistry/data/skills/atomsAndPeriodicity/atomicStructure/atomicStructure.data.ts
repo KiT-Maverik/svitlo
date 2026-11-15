@@ -48,12 +48,7 @@ export const atomicStructure_SkillGroup_Data = defineSkillGroup({
       neutronsAndIsotopes: neutronsAndIsotopes_Skill_Data,
       protonsAndAtomicNumber: protonsAndAtomicNumber_Skill_Data,
     },
-    order: [
-      'atomicMass',
-      'electronsAndCharge',
-      'neutronsAndIsotopes',
-      'protonsAndAtomicNumber',
-    ],
+    order: ['atomicMass', 'electronsAndCharge', 'neutronsAndIsotopes', 'protonsAndAtomicNumber'],
   },
   description: {
     methodological:

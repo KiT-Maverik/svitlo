@@ -48,12 +48,7 @@ export const terrestrialSkyCycles_SkillGroup_Data = defineSkillGroup({
       solarAltitudeAndDaylight: solarAltitudeAndDaylight_Skill_Data,
       solsticesAndEquinoxes: solsticesAndEquinoxes_Skill_Data,
     },
-    order: [
-      'dayAndNight',
-      'seasons',
-      'solarAltitudeAndDaylight',
-      'solsticesAndEquinoxes',
-    ],
+    order: ['dayAndNight', 'seasons', 'solarAltitudeAndDaylight', 'solsticesAndEquinoxes'],
   },
   description: {
     methodological:

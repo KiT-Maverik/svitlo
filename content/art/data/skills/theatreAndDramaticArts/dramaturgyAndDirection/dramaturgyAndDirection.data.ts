@@ -48,12 +48,7 @@ export const dramaturgyAndDirection_SkillGroup_Data = defineSkillGroup({
       directAScene: directAScene_Skill_Data,
       interpretStageDirections: interpretStageDirections_Skill_Data,
     },
-    order: [
-      'analyzeDramaticStructure',
-      'blockAStageScene',
-      'directAScene',
-      'interpretStageDirections',
-    ],
+    order: ['analyzeDramaticStructure', 'blockAStageScene', 'directAScene', 'interpretStageDirections'],
   },
   description: {
     methodological:

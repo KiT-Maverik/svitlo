@@ -48,12 +48,7 @@ export const cardinality_SkillGroup_Data = defineSkillGroup({
       groupAndCount: groupAndCount_Skill_Data,
       zero: zero_Skill_Data,
     },
-    order: [
-      'basicCardinality',
-      'compareSets',
-      'groupAndCount',
-      'zero',
-    ],
+    order: ['basicCardinality', 'compareSets', 'groupAndCount', 'zero'],
   },
   description: {
     methodological:

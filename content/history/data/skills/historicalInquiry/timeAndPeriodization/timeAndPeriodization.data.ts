@@ -48,12 +48,7 @@ export const timeAndPeriodization_SkillGroup_Data = defineSkillGroup({
       historicalPeriodization: historicalPeriodization_Skill_Data,
       synchronizingCivilizations: synchronizingCivilizations_Skill_Data,
     },
-    order: [
-      'bceAndCeDating',
-      'historicalChronology',
-      'historicalPeriodization',
-      'synchronizingCivilizations',
-    ],
+    order: ['bceAndCeDating', 'historicalChronology', 'historicalPeriodization', 'synchronizingCivilizations'],
   },
   description: {
     methodological:

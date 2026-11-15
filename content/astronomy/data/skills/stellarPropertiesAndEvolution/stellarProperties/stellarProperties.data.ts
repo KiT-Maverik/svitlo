@@ -50,13 +50,7 @@ export const stellarProperties_SkillGroup_Data = defineSkillGroup({
       stellarRadius: stellarRadius_Skill_Data,
       stellarTemperature: stellarTemperature_Skill_Data,
     },
-    order: [
-      'stellarHydrostaticEquilibrium',
-      'stellarLuminosity',
-      'stellarMass',
-      'stellarRadius',
-      'stellarTemperature',
-    ],
+    order: ['stellarHydrostaticEquilibrium', 'stellarLuminosity', 'stellarMass', 'stellarRadius', 'stellarTemperature'],
   },
   description: {
     methodological:

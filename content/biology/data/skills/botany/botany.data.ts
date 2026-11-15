@@ -48,13 +48,7 @@ export const botany_SkillDomain_Data = defineSkillDomain({
       plantStructure: plantStructure_SkillGroup_Data,
       reproductionAndDevelopment: reproductionAndDevelopment_SkillGroup_Data,
     },
-    order: [
-      'nutritionAndGrowth',
-      'plantAdaptations',
-      'plantDiversity',
-      'plantStructure',
-      'reproductionAndDevelopment',
-    ],
+    order: ['nutritionAndGrowth', 'plantAdaptations', 'plantDiversity', 'plantStructure', 'reproductionAndDevelopment'],
   },
   description: {
     methodological:

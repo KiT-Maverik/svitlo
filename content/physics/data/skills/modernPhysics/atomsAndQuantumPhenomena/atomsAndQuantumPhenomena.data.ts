@@ -48,7 +48,8 @@ export const atomsAndQuantumPhenomena_SkillGroup_Data = defineSkillGroup({
       explainAPhotonAsAQuantumOfElectromagneticRadiation: explainAPhotonAsAQuantumOfElectromagneticRadiation_Skill_Data,
       explainDiscreteAtomicEnergyStates: explainDiscreteAtomicEnergyStates_Skill_Data,
       explainLightEmissionByAnExcitedAtom: explainLightEmissionByAnExcitedAtom_Skill_Data,
-      explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects: explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects_Skill_Data,
+      explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects:
+        explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects_Skill_Data,
     },
     order: [
       'distinguishAnAtomFromItsPrincipalComponents',

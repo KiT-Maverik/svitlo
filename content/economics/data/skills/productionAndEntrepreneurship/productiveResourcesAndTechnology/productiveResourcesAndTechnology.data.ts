@@ -48,12 +48,7 @@ export const productiveResourcesAndTechnology_SkillGroup_Data = defineSkillGroup
       productionFunction: productionFunction_Skill_Data,
       productivity: productivity_Skill_Data,
     },
-    order: [
-      'diminishingMarginalReturns',
-      'factorsOfProduction',
-      'productionFunction',
-      'productivity',
-    ],
+    order: ['diminishingMarginalReturns', 'factorsOfProduction', 'productionFunction', 'productivity'],
   },
   description: {
     methodological:

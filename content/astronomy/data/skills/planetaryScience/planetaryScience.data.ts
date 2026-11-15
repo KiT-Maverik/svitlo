@@ -46,12 +46,7 @@ export const planetaryScience_SkillDomain_Data = defineSkillDomain({
       planetaryClasses: planetaryClasses_SkillGroup_Data,
       surfacesAndGeology: surfacesAndGeology_SkillGroup_Data,
     },
-    order: [
-      'atmospheresAndWeather',
-      'interiorsAndVolatiles',
-      'planetaryClasses',
-      'surfacesAndGeology',
-    ],
+    order: ['atmospheresAndWeather', 'interiorsAndVolatiles', 'planetaryClasses', 'surfacesAndGeology'],
   },
   description: {
     methodological:

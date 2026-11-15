@@ -48,12 +48,7 @@ export const moleculesOfLife_SkillGroup_Data = defineSkillGroup({
       nucleicAcidChemistry: nucleicAcidChemistry_Skill_Data,
       proteinChemistry: proteinChemistry_Skill_Data,
     },
-    order: [
-      'carbohydrateChemistry',
-      'lipidChemistry',
-      'nucleicAcidChemistry',
-      'proteinChemistry',
-    ],
+    order: ['carbohydrateChemistry', 'lipidChemistry', 'nucleicAcidChemistry', 'proteinChemistry'],
   },
   description: {
     methodological:

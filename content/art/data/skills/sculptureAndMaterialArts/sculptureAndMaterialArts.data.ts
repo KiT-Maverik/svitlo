@@ -47,12 +47,7 @@ export const sculptureAndMaterialArts_SkillDomain_Data = defineSkillDomain({
       sculpturalForm: sculpturalForm_SkillGroup_Data,
       textilesAndDecorativeArts: textilesAndDecorativeArts_SkillGroup_Data,
     },
-    order: [
-      'ceramicsAndAssemblage',
-      'printmaking',
-      'sculpturalForm',
-      'textilesAndDecorativeArts',
-    ],
+    order: ['ceramicsAndAssemblage', 'printmaking', 'sculpturalForm', 'textilesAndDecorativeArts'],
   },
   description: {
     methodological:

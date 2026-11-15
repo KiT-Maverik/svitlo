@@ -48,12 +48,7 @@ export const roadAndRail_SkillGroup_Data = defineSkillGroup({
       vehicleBrakingSystems: vehicleBrakingSystems_Skill_Data,
       vehicleDrivetrains: vehicleDrivetrains_Skill_Data,
     },
-    order: [
-      'steeringSystems',
-      'suspensionSystems',
-      'vehicleBrakingSystems',
-      'vehicleDrivetrains',
-    ],
+    order: ['steeringSystems', 'suspensionSystems', 'vehicleBrakingSystems', 'vehicleDrivetrains'],
   },
   description: {
     methodological:

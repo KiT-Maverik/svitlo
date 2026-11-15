@@ -48,12 +48,7 @@ export const indusCivilization_SkillGroup_Data = defineSkillGroup({
       indusSigns: indusSigns_Skill_Data,
       transformationOfIndusCities: transformationOfIndusCities_Skill_Data,
     },
-    order: [
-      'citiesOfTheIndusCivilization',
-      'indusEconomy',
-      'indusSigns',
-      'transformationOfIndusCities',
-    ],
+    order: ['citiesOfTheIndusCivilization', 'indusEconomy', 'indusSigns', 'transformationOfIndusCities'],
   },
   description: {
     methodological:

@@ -454,7 +454,8 @@ function stableMembership(e, kids) {
         !ts.isIdentifier(entry.initializer) ||
         !expected.has(entry.name.text) ||
         entry.initializer.text !== entry.name.text + '_' + kind + '_Data'
-      ) return false;
+      )
+        return false;
       keys.push(entry.name.text);
     }
     const ordered = [];

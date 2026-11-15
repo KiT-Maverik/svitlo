@@ -125,9 +125,12 @@ function readReferences(obj, source, label, isNew, edits) {
       slugs.push(slug);
       refs.push(entry.initializer.text);
     }
-    const rendered = '{ items: { ' +
+    const rendered =
+      '{ items: { ' +
       [...items].map(([slug, entry]) => slug + ': ' + entry.initializer.text).join(', ') +
-      ' }, order: [' + slugs.map(JSON.stringify).join(', ') + '] }';
+      ' }, order: [' +
+      slugs.map(JSON.stringify).join(', ') +
+      '] }';
     edits.push({ start: collection.getStart(source), end: collection.getEnd(), value: rendered });
   }
   assert(new Set(refs).size === refs.length, 'Duplicate child reference: ' + label);

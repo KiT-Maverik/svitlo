@@ -48,12 +48,7 @@ export const selfConceptAndIdentity_SkillGroup_Data = defineSkillGroup({
       selfEsteem: selfEsteem_Skill_Data,
       selfServingAttributions: selfServingAttributions_Skill_Data,
     },
-    order: [
-      'identityAndSocialContext',
-      'selfConcept',
-      'selfEsteem',
-      'selfServingAttributions',
-    ],
+    order: ['identityAndSocialContext', 'selfConcept', 'selfEsteem', 'selfServingAttributions'],
   },
   description: {
     methodological:

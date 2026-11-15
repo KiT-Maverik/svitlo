@@ -48,12 +48,7 @@ export const internationalFinance_SkillGroup_Data = defineSkillGroup({
       foreignDirectInvestment: foreignDirectInvestment_Skill_Data,
       internationalCapitalFlows: internationalCapitalFlows_Skill_Data,
     },
-    order: [
-      'currencyCrises',
-      'debtCrises',
-      'foreignDirectInvestment',
-      'internationalCapitalFlows',
-    ],
+    order: ['currencyCrises', 'debtCrises', 'foreignDirectInvestment', 'internationalCapitalFlows'],
   },
   description: {
     methodological:

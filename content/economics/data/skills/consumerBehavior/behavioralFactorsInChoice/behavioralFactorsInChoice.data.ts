@@ -48,12 +48,7 @@ export const behavioralFactorsInChoice_SkillGroup_Data = defineSkillGroup({
       framingEffect: framingEffect_Skill_Data,
       presentBias: presentBias_Skill_Data,
     },
-    order: [
-      'boundedRationality',
-      'choiceArchitecture',
-      'framingEffect',
-      'presentBias',
-    ],
+    order: ['boundedRationality', 'choiceArchitecture', 'framingEffect', 'presentBias'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const molecularAndExtendedStructure_SkillGroup_Data = defineSkillGroup({
       molecularPolarity: molecularPolarity_Skill_Data,
       networkSolids: networkSolids_Skill_Data,
     },
-    order: [
-      'ionicLattices',
-      'molecularGeometry',
-      'molecularPolarity',
-      'networkSolids',
-    ],
+    order: ['ionicLattices', 'molecularGeometry', 'molecularPolarity', 'networkSolids'],
   },
   description: {
     methodological:

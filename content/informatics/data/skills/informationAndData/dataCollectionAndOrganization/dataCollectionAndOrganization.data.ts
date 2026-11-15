@@ -48,12 +48,7 @@ export const dataCollectionAndOrganization_SkillGroup_Data = defineSkillGroup({
       identifyDataNeededForATask: identifyDataNeededForATask_Skill_Data,
       presentDataInATable: presentDataInATable_Skill_Data,
     },
-    order: [
-      'collectDataConsistently',
-      'groupDataByAttribute',
-      'identifyDataNeededForATask',
-      'presentDataInATable',
-    ],
+    order: ['collectDataConsistently', 'groupDataByAttribute', 'identifyDataNeededForATask', 'presentDataInATable'],
   },
   description: {
     methodological:

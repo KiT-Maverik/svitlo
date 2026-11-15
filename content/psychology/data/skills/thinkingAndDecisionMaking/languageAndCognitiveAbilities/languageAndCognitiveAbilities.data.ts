@@ -48,12 +48,7 @@ export const languageAndCognitiveAbilities_SkillGroup_Data = defineSkillGroup({
       languageProduction: languageProduction_Skill_Data,
       theoriesOfIntelligence: theoriesOfIntelligence_Skill_Data,
     },
-    order: [
-      'cognitiveTestInterpretation',
-      'languageComprehension',
-      'languageProduction',
-      'theoriesOfIntelligence',
-    ],
+    order: ['cognitiveTestInterpretation', 'languageComprehension', 'languageProduction', 'theoriesOfIntelligence'],
   },
   description: {
     methodological:

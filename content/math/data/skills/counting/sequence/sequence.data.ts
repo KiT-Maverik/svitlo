@@ -50,13 +50,7 @@ export const sequence_SkillGroup_Data = defineSkillGroup({
       forward100: forward100_Skill_Data,
       forward1000: forward1000_Skill_Data,
     },
-    order: [
-      'oneToOne',
-      'forward20',
-      'backward20',
-      'forward100',
-      'forward1000',
-    ],
+    order: ['oneToOne', 'forward20', 'backward20', 'forward100', 'forward1000'],
   },
   description: {
     methodological:

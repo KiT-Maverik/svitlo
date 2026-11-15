@@ -56,7 +56,11 @@ function childRefs(config, name, file, optional = false) {
   const items = field(collection, 'items')?.initializer;
   const order = field(collection, 'order')?.initializer;
   check(
-    collection.properties.length === 2 && items && ts.isObjectLiteralExpression(items) && order && ts.isArrayLiteralExpression(order),
+    collection.properties.length === 2 &&
+      items &&
+      ts.isObjectLiteralExpression(items) &&
+      order &&
+      ts.isArrayLiteralExpression(order),
     'Invalid child collection items/order ' + name + ': ' + file,
   );
   const result = new Map();
@@ -70,10 +74,7 @@ function childRefs(config, name, file, optional = false) {
     );
     const slug = entry.name.text;
     check(identifier.test(slug), 'Invalid child slug ' + slug + ': ' + file);
-    check(
-      entry.initializer.text === slug + '_' + kind + '_Data',
-      'Child slug/symbol mismatch ' + slug + ': ' + file,
-    );
+    check(entry.initializer.text === slug + '_' + kind + '_Data', 'Child slug/symbol mismatch ' + slug + ': ' + file);
     check(!result.has(slug), 'Duplicate child slug ' + slug + ': ' + file);
     result.set(slug, entry.initializer.text);
   }

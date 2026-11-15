@@ -48,13 +48,7 @@ export const eastAndCentralAsia_SkillDomain_Data = defineSkillDomain({
       imperialChina: imperialChina_SkillGroup_Data,
       innerAsia: innerAsia_SkillGroup_Data,
     },
-    order: [
-      'ancientJapan',
-      'ancientKorea',
-      'earlyChina',
-      'imperialChina',
-      'innerAsia',
-    ],
+    order: ['ancientJapan', 'ancientKorea', 'earlyChina', 'imperialChina', 'innerAsia'],
   },
   description: {
     methodological:

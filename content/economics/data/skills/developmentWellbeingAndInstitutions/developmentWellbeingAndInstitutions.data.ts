@@ -46,12 +46,7 @@ export const developmentWellbeingAndInstitutions_SkillDomain_Data = defineSkillD
       povertyAndWellbeing: povertyAndWellbeing_SkillGroup_Data,
       structuralChange: structuralChange_SkillGroup_Data,
     },
-    order: [
-      'inequality',
-      'institutionsAndDevelopment',
-      'povertyAndWellbeing',
-      'structuralChange',
-    ],
+    order: ['inequality', 'institutionsAndDevelopment', 'povertyAndWellbeing', 'structuralChange'],
   },
   description: {
     methodological:

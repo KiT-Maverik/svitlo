@@ -44,7 +44,8 @@ export const climatePatterns_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      explainBroadClimateDifferencesUsingGeographicFactors: explainBroadClimateDifferencesUsingGeographicFactors_Skill_Data,
+      explainBroadClimateDifferencesUsingGeographicFactors:
+        explainBroadClimateDifferencesUsingGeographicFactors_Skill_Data,
       explainGeographicImpactsOfClimateChange: explainGeographicImpactsOfClimateChange_Skill_Data,
       explainTheConceptOfClimate: explainTheConceptOfClimate_Skill_Data,
       interpretABasicClimateDiagram: interpretABasicClimateDiagram_Skill_Data,

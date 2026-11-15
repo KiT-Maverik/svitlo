@@ -50,13 +50,7 @@ export const businessFluctuationsAndAggregateDemand_SkillGroup_Data = defineSkil
       macroeconomicShocks: macroeconomicShocks_Skill_Data,
       multiplierEffect: multiplierEffect_Skill_Data,
     },
-    order: [
-      'aggregateDemand',
-      'aggregateSupply',
-      'businessCycle',
-      'macroeconomicShocks',
-      'multiplierEffect',
-    ],
+    order: ['aggregateDemand', 'aggregateSupply', 'businessCycle', 'macroeconomicShocks', 'multiplierEffect'],
   },
   description: {
     methodological:

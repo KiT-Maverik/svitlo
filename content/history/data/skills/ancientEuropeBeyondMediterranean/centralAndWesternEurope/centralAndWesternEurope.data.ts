@@ -48,12 +48,7 @@ export const centralAndWesternEurope_SkillGroup_Data = defineSkillGroup({
       celticIronAgeCultures: celticIronAgeCultures_Skill_Data,
       europeanBronzeAge: europeanBronzeAge_Skill_Data,
     },
-    order: [
-      'ancientGermanicCommunities',
-      'britainBeforeAndUnderRome',
-      'celticIronAgeCultures',
-      'europeanBronzeAge',
-    ],
+    order: ['ancientGermanicCommunities', 'britainBeforeAndUnderRome', 'celticIronAgeCultures', 'europeanBronzeAge'],
   },
   description: {
     methodological:

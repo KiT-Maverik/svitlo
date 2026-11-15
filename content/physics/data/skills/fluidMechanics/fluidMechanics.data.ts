@@ -46,12 +46,7 @@ export const fluidMechanics_SkillDomain_Data = defineSkillDomain({
       hydrodynamics: hydrodynamics_SkillGroup_Data,
       pressureInLiquidsAndGases: pressureInLiquidsAndGases_SkillGroup_Data,
     },
-    order: [
-      'aerodynamics',
-      'floatingAndBuoyancy',
-      'hydrodynamics',
-      'pressureInLiquidsAndGases',
-    ],
+    order: ['aerodynamics', 'floatingAndBuoyancy', 'hydrodynamics', 'pressureInLiquidsAndGases'],
   },
   description: {
     methodological:

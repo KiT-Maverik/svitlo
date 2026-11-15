@@ -48,12 +48,7 @@ export const spacecraftObservations_SkillGroup_Data = defineSkillGroup({
       orbitalMeasurements: orbitalMeasurements_Skill_Data,
       sampleReturnEvidence: sampleReturnEvidence_Skill_Data,
     },
-    order: [
-      'flybyMeasurements',
-      'landersAndRoversAsScientificProbes',
-      'orbitalMeasurements',
-      'sampleReturnEvidence',
-    ],
+    order: ['flybyMeasurements', 'landersAndRoversAsScientificProbes', 'orbitalMeasurements', 'sampleReturnEvidence'],
   },
   description: {
     methodological:

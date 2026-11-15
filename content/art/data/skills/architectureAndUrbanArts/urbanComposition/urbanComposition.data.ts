@@ -48,12 +48,7 @@ export const urbanComposition_SkillGroup_Data = defineSkillGroup({
       designAPublicSquare: designAPublicSquare_Skill_Data,
       interpretUrbanLandmarks: interpretUrbanLandmarks_Skill_Data,
     },
-    order: [
-      'analyzeAStreetscape',
-      'compareUrbanSpatialPatterns',
-      'designAPublicSquare',
-      'interpretUrbanLandmarks',
-    ],
+    order: ['analyzeAStreetscape', 'compareUrbanSpatialPatterns', 'designAPublicSquare', 'interpretUrbanLandmarks'],
   },
   description: {
     methodological:

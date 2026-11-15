@@ -50,13 +50,7 @@ export const jointsAndFasteners_SkillGroup_Data = defineSkillGroup({
       threadedFastening: threadedFastening_Skill_Data,
       weldedJoints: weldedJoints_Skill_Data,
     },
-    order: [
-      'adhesiveJoints',
-      'joiningMethodSuitability',
-      'magneticFastening',
-      'threadedFastening',
-      'weldedJoints',
-    ],
+    order: ['adhesiveJoints', 'joiningMethodSuitability', 'magneticFastening', 'threadedFastening', 'weldedJoints'],
   },
   description: {
     methodological:

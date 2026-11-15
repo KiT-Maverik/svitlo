@@ -48,13 +48,7 @@ export const ancientAfrica_SkillDomain_Data = defineSkillDomain({
       nubiaAndKush: nubiaAndKush_SkillGroup_Data,
       saharaAndSubSaharanAfrica: saharaAndSubSaharanAfrica_SkillGroup_Data,
     },
-    order: [
-      'ancientEgypt',
-      'hornOfAfrica',
-      'northAfricaBeyondTheNile',
-      'nubiaAndKush',
-      'saharaAndSubSaharanAfrica',
-    ],
+    order: ['ancientEgypt', 'hornOfAfrica', 'northAfricaBeyondTheNile', 'nubiaAndKush', 'saharaAndSubSaharanAfrica'],
   },
   description: {
     methodological:

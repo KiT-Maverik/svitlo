@@ -48,12 +48,7 @@ export const stageExpressionAndPuppetry_SkillGroup_Data = defineSkillGroup({
       designScenicAtmosphere: designScenicAtmosphere_Skill_Data,
       designStageLighting: designStageLighting_Skill_Data,
     },
-    order: [
-      'animateAPuppet',
-      'designCharacterCostume',
-      'designScenicAtmosphere',
-      'designStageLighting',
-    ],
+    order: ['animateAPuppet', 'designCharacterCostume', 'designScenicAtmosphere', 'designStageLighting'],
   },
   description: {
     methodological:

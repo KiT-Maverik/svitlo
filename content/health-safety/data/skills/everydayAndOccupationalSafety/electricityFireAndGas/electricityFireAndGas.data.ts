@@ -50,13 +50,7 @@ export const electricityFireAndGas_SkillGroup_Data = defineSkillGroup({
       gasLeakSafety: gasLeakSafety_Skill_Data,
       safeUseOfHeatingEquipment: safeUseOfHeatingEquipment_Skill_Data,
     },
-    order: [
-      'carbonMonoxideSafety',
-      'electricalSafety',
-      'firePrevention',
-      'gasLeakSafety',
-      'safeUseOfHeatingEquipment',
-    ],
+    order: ['carbonMonoxideSafety', 'electricalSafety', 'firePrevention', 'gasLeakSafety', 'safeUseOfHeatingEquipment'],
   },
   description: {
     methodological:

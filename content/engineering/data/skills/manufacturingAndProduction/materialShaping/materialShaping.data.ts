@@ -50,13 +50,7 @@ export const materialShaping_SkillGroup_Data = defineSkillGroup({
       machiningProcesses: machiningProcesses_Skill_Data,
       moldingProcesses: moldingProcesses_Skill_Data,
     },
-    order: [
-      'additiveManufacturing',
-      'castingProcesses',
-      'formingProcesses',
-      'machiningProcesses',
-      'moldingProcesses',
-    ],
+    order: ['additiveManufacturing', 'castingProcesses', 'formingProcesses', 'machiningProcesses', 'moldingProcesses'],
   },
   description: {
     methodological:

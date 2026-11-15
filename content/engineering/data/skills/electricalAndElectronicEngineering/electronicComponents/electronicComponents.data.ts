@@ -48,12 +48,7 @@ export const electronicComponents_SkillGroup_Data = defineSkillGroup({
       resistorApplications: resistorApplications_Skill_Data,
       transistorSwitching: transistorSwitching_Skill_Data,
     },
-    order: [
-      'capacitorApplications',
-      'diodeApplications',
-      'resistorApplications',
-      'transistorSwitching',
-    ],
+    order: ['capacitorApplications', 'diodeApplications', 'resistorApplications', 'transistorSwitching'],
   },
   description: {
     methodological:

@@ -43,12 +43,7 @@ export const steps_SkillGroup_Data = defineSkillGroup({
       countBy10: countBy10_Skill_Data,
       countBy100: countBy100_Skill_Data,
     },
-    order: [
-      'countBy2',
-      'countBy5',
-      'countBy10',
-      'countBy100',
-    ],
+    order: ['countBy2', 'countBy5', 'countBy10', 'countBy100'],
   },
   description: {
     methodological:

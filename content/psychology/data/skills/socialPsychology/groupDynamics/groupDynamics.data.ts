@@ -50,13 +50,7 @@ export const groupDynamics_SkillGroup_Data = defineSkillGroup({
       inGroupAndOutGroupBias: inGroupAndOutGroupBias_Skill_Data,
       socialIdentity: socialIdentity_Skill_Data,
     },
-    order: [
-      'bystanderEffect',
-      'groupPolarization',
-      'groupthink',
-      'inGroupAndOutGroupBias',
-      'socialIdentity',
-    ],
+    order: ['bystanderEffect', 'groupPolarization', 'groupthink', 'inGroupAndOutGroupBias', 'socialIdentity'],
   },
   description: {
     methodological:

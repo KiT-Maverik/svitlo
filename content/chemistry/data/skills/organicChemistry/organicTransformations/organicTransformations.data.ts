@@ -48,12 +48,7 @@ export const organicTransformations_SkillGroup_Data = defineSkillGroup({
       eliminationReactions: eliminationReactions_Skill_Data,
       substitutionReactions: substitutionReactions_Skill_Data,
     },
-    order: [
-      'additionReactions',
-      'condensationReactions',
-      'eliminationReactions',
-      'substitutionReactions',
-    ],
+    order: ['additionReactions', 'condensationReactions', 'eliminationReactions', 'substitutionReactions'],
   },
   description: {
     methodological:

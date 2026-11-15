@@ -45,10 +45,12 @@ export const relativity_SkillGroup_Data = defineSkillGroup({
   skills: {
     items: {
       explainGravityAsSpacetimeCurvature: explainGravityAsSpacetimeCurvature_Skill_Data,
-      explainHowThePassageOfTimeDependsOnObserversRelativeMotion: explainHowThePassageOfTimeDependsOnObserversRelativeMotion_Skill_Data,
+      explainHowThePassageOfTimeDependsOnObserversRelativeMotion:
+        explainHowThePassageOfTimeDependsOnObserversRelativeMotion_Skill_Data,
       explainTheEffectOfGravityOnThePassageOfTime: explainTheEffectOfGravityOnThePassageOfTime_Skill_Data,
       explainTheGravitationalDeflectionOfLight: explainTheGravitationalDeflectionOfLight_Skill_Data,
-      recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity: recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity_Skill_Data,
+      recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity:
+        recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity_Skill_Data,
     },
     order: [
       'explainGravityAsSpacetimeCurvature',

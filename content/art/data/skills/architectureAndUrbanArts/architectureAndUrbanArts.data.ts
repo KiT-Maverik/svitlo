@@ -46,12 +46,7 @@ export const architectureAndUrbanArts_SkillDomain_Data = defineSkillDomain({
       landscapeAndPublicArt: landscapeAndPublicArt_SkillGroup_Data,
       urbanComposition: urbanComposition_SkillGroup_Data,
     },
-    order: [
-      'architecturalFormAndStyle',
-      'architecturalSpace',
-      'landscapeAndPublicArt',
-      'urbanComposition',
-    ],
+    order: ['architecturalFormAndStyle', 'architecturalSpace', 'landscapeAndPublicArt', 'urbanComposition'],
   },
   description: {
     methodological:

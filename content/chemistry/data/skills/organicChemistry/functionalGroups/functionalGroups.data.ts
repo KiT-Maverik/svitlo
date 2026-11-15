@@ -54,15 +54,7 @@ export const functionalGroups_SkillGroup_Data = defineSkillGroup({
       esters: esters_Skill_Data,
       ketones: ketones_Skill_Data,
     },
-    order: [
-      'alcohols',
-      'aldehydes',
-      'amides',
-      'amines',
-      'carboxylicAcids',
-      'esters',
-      'ketones',
-    ],
+    order: ['alcohols', 'aldehydes', 'amides', 'amines', 'carboxylicAcids', 'esters', 'ketones'],
   },
   description: {
     methodological:

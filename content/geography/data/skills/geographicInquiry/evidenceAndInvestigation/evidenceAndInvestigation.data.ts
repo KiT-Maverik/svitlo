@@ -43,10 +43,15 @@ export const evidenceAndInvestigation_SkillGroup_Data = defineSkillGroup({
   skills: {
     items: {
       assessLimitationsOfGeographicDataSources: assessLimitationsOfGeographicDataSources_Skill_Data,
-      collectAndRecordGeographicallyReferencedObservations: collectAndRecordGeographicallyReferencedObservations_Skill_Data,
+      collectAndRecordGeographicallyReferencedObservations:
+        collectAndRecordGeographicallyReferencedObservations_Skill_Data,
       formulateAQuestionAboutASpatialPattern: formulateAQuestionAboutASpatialPattern_Skill_Data,
     },
-    order: ['assessLimitationsOfGeographicDataSources', 'collectAndRecordGeographicallyReferencedObservations', 'formulateAQuestionAboutASpatialPattern'],
+    order: [
+      'assessLimitationsOfGeographicDataSources',
+      'collectAndRecordGeographicallyReferencedObservations',
+      'formulateAQuestionAboutASpatialPattern',
+    ],
   },
   description: {
     methodological:

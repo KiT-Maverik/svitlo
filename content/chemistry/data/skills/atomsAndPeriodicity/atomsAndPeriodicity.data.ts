@@ -48,13 +48,7 @@ export const atomsAndPeriodicity_SkillDomain_Data = defineSkillDomain({
       periodicOrganization: periodicOrganization_SkillGroup_Data,
       periodicTrends: periodicTrends_SkillGroup_Data,
     },
-    order: [
-      'atomicStructure',
-      'electronicStructure',
-      'nuclearChemistry',
-      'periodicOrganization',
-      'periodicTrends',
-    ],
+    order: ['atomicStructure', 'electronicStructure', 'nuclearChemistry', 'periodicOrganization', 'periodicTrends'],
   },
   description: {
     methodological:

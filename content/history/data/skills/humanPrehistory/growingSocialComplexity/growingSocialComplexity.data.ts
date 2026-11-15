@@ -48,12 +48,7 @@ export const growingSocialComplexity_SkillGroup_Data = defineSkillGroup({
       exchangeBeforeStates: exchangeBeforeStates_Skill_Data,
       prehistoricInequality: prehistoricInequality_Skill_Data,
     },
-    order: [
-      'copperBronzeAndIron',
-      'emergenceOfUrbanCenters',
-      'exchangeBeforeStates',
-      'prehistoricInequality',
-    ],
+    order: ['copperBronzeAndIron', 'emergenceOfUrbanCenters', 'exchangeBeforeStates', 'prehistoricInequality'],
   },
   description: {
     methodological:

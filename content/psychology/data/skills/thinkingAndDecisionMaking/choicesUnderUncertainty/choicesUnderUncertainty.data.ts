@@ -50,13 +50,7 @@ export const choicesUnderUncertainty_SkillGroup_Data = defineSkillGroup({
       lossAversion: lossAversion_Skill_Data,
       riskPerception: riskPerception_Skill_Data,
     },
-    order: [
-      'baseRateNeglect',
-      'choiceArchitecture',
-      'delayDiscounting',
-      'lossAversion',
-      'riskPerception',
-    ],
+    order: ['baseRateNeglect', 'choiceArchitecture', 'delayDiscounting', 'lossAversion', 'riskPerception'],
   },
   description: {
     methodological:

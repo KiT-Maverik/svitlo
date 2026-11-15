@@ -48,12 +48,7 @@ export const collectionProcessing_SkillGroup_Data = defineSkillGroup({
       applyMinimumFinding: applyMinimumFinding_Skill_Data,
       applySumAccumulation: applySumAccumulation_Skill_Data,
     },
-    order: [
-      'applyElementCounting',
-      'applyMaximumFinding',
-      'applyMinimumFinding',
-      'applySumAccumulation',
-    ],
+    order: ['applyElementCounting', 'applyMaximumFinding', 'applyMinimumFinding', 'applySumAccumulation'],
   },
   description: {
     methodological:

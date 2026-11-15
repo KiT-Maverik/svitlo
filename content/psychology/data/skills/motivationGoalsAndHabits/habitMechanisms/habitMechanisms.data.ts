@@ -48,12 +48,7 @@ export const habitMechanisms_SkillGroup_Data = defineSkillGroup({
       habitFormation: habitFormation_Skill_Data,
       habitSubstitution: habitSubstitution_Skill_Data,
     },
-    order: [
-      'habitCues',
-      'habitDisruption',
-      'habitFormation',
-      'habitSubstitution',
-    ],
+    order: ['habitCues', 'habitDisruption', 'habitFormation', 'habitSubstitution'],
   },
   description: {
     methodological:

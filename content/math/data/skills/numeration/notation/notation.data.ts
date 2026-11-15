@@ -48,12 +48,7 @@ export const notation_SkillGroup_Data = defineSkillGroup({
       readWrite100: readWrite100_Skill_Data,
       readWrite1000: readWrite1000_Skill_Data,
     },
-    order: [
-      'digits09',
-      'readWrite20',
-      'readWrite100',
-      'readWrite1000',
-    ],
+    order: ['digits09', 'readWrite20', 'readWrite100', 'readWrite1000'],
   },
   description: {
     methodological:

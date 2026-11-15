@@ -48,12 +48,7 @@ export const interparticleInteractions_SkillGroup_Data = defineSkillGroup({
       hydrogenBonding: hydrogenBonding_Skill_Data,
       structurePropertyRelationships: structurePropertyRelationships_Skill_Data,
     },
-    order: [
-      'dipoleInteractions',
-      'dispersionForces',
-      'hydrogenBonding',
-      'structurePropertyRelationships',
-    ],
+    order: ['dipoleInteractions', 'dispersionForces', 'hydrogenBonding', 'structurePropertyRelationships'],
   },
   description: {
     methodological:

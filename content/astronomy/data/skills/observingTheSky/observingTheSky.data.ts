@@ -46,12 +46,7 @@ export const observingTheSky_SkillDomain_Data = defineSkillDomain({
       skyGeometry: skyGeometry_SkillGroup_Data,
       skyPatterns: skyPatterns_SkillGroup_Data,
     },
-    order: [
-      'astronomicalTime',
-      'observationPractice',
-      'skyGeometry',
-      'skyPatterns',
-    ],
+    order: ['astronomicalTime', 'observationPractice', 'skyGeometry', 'skyPatterns'],
   },
   description: {
     methodological:

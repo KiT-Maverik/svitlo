@@ -46,7 +46,11 @@ export const decisionsAndCommunication_SkillGroup_Data = defineSkillGroup({
       compareLocationsAgainstStatedGeographicCriteria: compareLocationsAgainstStatedGeographicCriteria_Skill_Data,
       explainTradeOffsOfAProposedSpatialDecision: explainTradeOffsOfAProposedSpatialDecision_Skill_Data,
     },
-    order: ['communicateAGeographicConclusionWithEvidence', 'compareLocationsAgainstStatedGeographicCriteria', 'explainTradeOffsOfAProposedSpatialDecision'],
+    order: [
+      'communicateAGeographicConclusionWithEvidence',
+      'compareLocationsAgainstStatedGeographicCriteria',
+      'explainTradeOffsOfAProposedSpatialDecision',
+    ],
   },
   description: {
     methodological:

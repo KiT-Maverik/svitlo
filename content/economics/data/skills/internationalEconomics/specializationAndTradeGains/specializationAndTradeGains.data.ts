@@ -48,12 +48,7 @@ export const specializationAndTradeGains_SkillGroup_Data = defineSkillGroup({
       gainsFromInternationalTrade: gainsFromInternationalTrade_Skill_Data,
       globalValueChains: globalValueChains_Skill_Data,
     },
-    order: [
-      'absoluteAdvantage',
-      'comparativeAdvantage',
-      'gainsFromInternationalTrade',
-      'globalValueChains',
-    ],
+    order: ['absoluteAdvantage', 'comparativeAdvantage', 'gainsFromInternationalTrade', 'globalValueChains'],
   },
   description: {
     methodological:

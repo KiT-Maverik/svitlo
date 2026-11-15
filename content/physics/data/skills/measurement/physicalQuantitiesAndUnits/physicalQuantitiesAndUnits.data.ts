@@ -44,7 +44,8 @@ export const physicalQuantitiesAndUnits_SkillGroup_Data = defineSkillGroup({
   skills: {
     items: {
       compareMeasurementsOfTheSameQuantity: compareMeasurementsOfTheSameQuantity_Skill_Data,
-      distinguishAPhysicalQuantityFromItsUnitOfMeasurement: distinguishAPhysicalQuantityFromItsUnitOfMeasurement_Skill_Data,
+      distinguishAPhysicalQuantityFromItsUnitOfMeasurement:
+        distinguishAPhysicalQuantityFromItsUnitOfMeasurement_Skill_Data,
       explainThePhysicalMeaningOfABodysMass: explainThePhysicalMeaningOfABodysMass_Skill_Data,
       selectAUnitForAFamiliarPhysicalQuantity: selectAUnitForAFamiliarPhysicalQuantity_Skill_Data,
     },

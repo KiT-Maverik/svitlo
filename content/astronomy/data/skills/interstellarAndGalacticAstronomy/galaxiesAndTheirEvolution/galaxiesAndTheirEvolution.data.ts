@@ -48,12 +48,7 @@ export const galaxiesAndTheirEvolution_SkillGroup_Data = defineSkillGroup({
       galaxyMorphology: galaxyMorphology_Skill_Data,
       galaxyStellarPopulations: galaxyStellarPopulations_Skill_Data,
     },
-    order: [
-      'galaxyGroupsAndClusters',
-      'galaxyInteractionsAndMergers',
-      'galaxyMorphology',
-      'galaxyStellarPopulations',
-    ],
+    order: ['galaxyGroupsAndClusters', 'galaxyInteractionsAndMergers', 'galaxyMorphology', 'galaxyStellarPopulations'],
   },
   description: {
     methodological:

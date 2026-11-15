@@ -48,12 +48,7 @@ export const digitalImages_SkillGroup_Data = defineSkillGroup({
       createVectorArt: createVectorArt_Skill_Data,
       useDigitalMasks: useDigitalMasks_Skill_Data,
     },
-    order: [
-      'createDigitalCollage',
-      'createRasterArt',
-      'createVectorArt',
-      'useDigitalMasks',
-    ],
+    order: ['createDigitalCollage', 'createRasterArt', 'createVectorArt', 'useDigitalMasks'],
   },
   description: {
     methodological: 'Pixel and path-based media allow complementary approaches to composition and selective revision.',

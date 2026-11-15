@@ -41,7 +41,8 @@ export const radiationAndMatter_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      distinguishEnergyEmissionFromReflectionOfReceivedLight: distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data,
+      distinguishEnergyEmissionFromReflectionOfReceivedLight:
+        distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data,
       explainHeatingThroughRadiationAbsorption: explainHeatingThroughRadiationAbsorption_Skill_Data,
     },
     order: ['distinguishEnergyEmissionFromReflectionOfReceivedLight', 'explainHeatingThroughRadiationAbsorption'],

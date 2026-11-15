@@ -48,12 +48,7 @@ export const sets_SkillGroup_Data = defineSkillGroup({
       explainSetStructure: explainSetStructure_Skill_Data,
       testSetMembership: testSetMembership_Skill_Data,
     },
-    order: [
-      'computeSetIntersection',
-      'computeSetUnion',
-      'explainSetStructure',
-      'testSetMembership',
-    ],
+    order: ['computeSetIntersection', 'computeSetUnion', 'explainSetStructure', 'testSetMembership'],
   },
   description: {
     methodological:

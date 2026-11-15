@@ -48,12 +48,7 @@ export const platformsAndNetworkEffects_SkillGroup_Data = defineSkillGroup({
       directAndIndirectNetworkEffects: directAndIndirectNetworkEffects_Skill_Data,
       twoSidedMarkets: twoSidedMarkets_Skill_Data,
     },
-    order: [
-      'creatorEconomy',
-      'digitalPlatformCompetition',
-      'directAndIndirectNetworkEffects',
-      'twoSidedMarkets',
-    ],
+    order: ['creatorEconomy', 'digitalPlatformCompetition', 'directAndIndirectNetworkEffects', 'twoSidedMarkets'],
   },
   description: {
     methodological:

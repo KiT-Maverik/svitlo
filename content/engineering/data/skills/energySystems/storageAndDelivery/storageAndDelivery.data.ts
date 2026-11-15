@@ -48,12 +48,7 @@ export const storageAndDelivery_SkillGroup_Data = defineSkillGroup({
       thermalEnergyStorage: thermalEnergyStorage_Skill_Data,
       transformerUse: transformerUse_Skill_Data,
     },
-    order: [
-      'electricalGridDistribution',
-      'rechargeableBatterySystems',
-      'thermalEnergyStorage',
-      'transformerUse',
-    ],
+    order: ['electricalGridDistribution', 'rechargeableBatterySystems', 'thermalEnergyStorage', 'transformerUse'],
   },
   description: {
     methodological: 'Reliable supply requires matching time, location and suitable electrical or thermal interfaces.',

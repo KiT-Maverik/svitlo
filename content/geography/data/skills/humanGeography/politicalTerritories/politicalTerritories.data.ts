@@ -43,10 +43,15 @@ export const politicalTerritories_SkillGroup_Data = defineSkillGroup({
   skills: {
     items: {
       distinguishPhysicalFeaturesFromPoliticalBoundaries: distinguishPhysicalFeaturesFromPoliticalBoundaries_Skill_Data,
-      interpretAdministrativeTerritoriesAtDifferentLevels: interpretAdministrativeTerritoriesAtDifferentLevels_Skill_Data,
+      interpretAdministrativeTerritoriesAtDifferentLevels:
+        interpretAdministrativeTerritoriesAtDifferentLevels_Skill_Data,
       locateCountriesOnAMap: locateCountriesOnAMap_Skill_Data,
     },
-    order: ['distinguishPhysicalFeaturesFromPoliticalBoundaries', 'interpretAdministrativeTerritoriesAtDifferentLevels', 'locateCountriesOnAMap'],
+    order: [
+      'distinguishPhysicalFeaturesFromPoliticalBoundaries',
+      'interpretAdministrativeTerritoriesAtDifferentLevels',
+      'locateCountriesOnAMap',
+    ],
   },
   description: {
     methodological:

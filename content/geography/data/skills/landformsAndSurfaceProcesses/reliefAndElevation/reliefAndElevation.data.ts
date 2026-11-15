@@ -46,7 +46,11 @@ export const reliefAndElevation_SkillGroup_Data = defineSkillGroup({
       interpretElevationRelativeToAVerticalReference: interpretElevationRelativeToAVerticalReference_Skill_Data,
       interpretRelativeReliefBetweenLocations: interpretRelativeReliefBetweenLocations_Skill_Data,
     },
-    order: ['interpretContourSpacingAsTerrainSteepness', 'interpretElevationRelativeToAVerticalReference', 'interpretRelativeReliefBetweenLocations'],
+    order: [
+      'interpretContourSpacingAsTerrainSteepness',
+      'interpretElevationRelativeToAVerticalReference',
+      'interpretRelativeReliefBetweenLocations',
+    ],
   },
   description: {
     methodological:

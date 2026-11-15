@@ -48,12 +48,7 @@ export const ceramicsAndAssemblage_SkillGroup_Data = defineSkillGroup({
       handBuildACeramicForm: handBuildACeramicForm_Skill_Data,
       joinClayComponents: joinClayComponents_Skill_Data,
     },
-    order: [
-      'createFoundObjectAssemblage',
-      'decorateACeramicSurface',
-      'handBuildACeramicForm',
-      'joinClayComponents',
-    ],
+    order: ['createFoundObjectAssemblage', 'decorateACeramicSurface', 'handBuildACeramicForm', 'joinClayComponents'],
   },
   description: {
     methodological:

@@ -48,13 +48,7 @@ export const numeration_SkillDomain_Data = defineSkillDomain({
       numberLine: numberLine_SkillGroup_Data,
       estimation: estimation_SkillGroup_Data,
     },
-    order: [
-      'notation',
-      'placeValue',
-      'comparison',
-      'numberLine',
-      'estimation',
-    ],
+    order: ['notation', 'placeValue', 'comparison', 'numberLine', 'estimation'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const observationPractice_SkillGroup_Data = defineSkillGroup({
       safeSolarObservation: safeSolarObservation_Skill_Data,
       skyMapsAndStarCharts: skyMapsAndStarCharts_Skill_Data,
     },
-    order: [
-      'astronomicalObservationRecords',
-      'observingConditions',
-      'safeSolarObservation',
-      'skyMapsAndStarCharts',
-    ],
+    order: ['astronomicalObservationRecords', 'observingConditions', 'safeSolarObservation', 'skyMapsAndStarCharts'],
   },
   description: {
     methodological:

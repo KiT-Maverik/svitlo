@@ -48,12 +48,7 @@ export const recognitionAndExpression_SkillGroup_Data = defineSkillGroup({
       emotionVocabulary: emotionVocabulary_Skill_Data,
       readingEmotionalCues: readingEmotionalCues_Skill_Data,
     },
-    order: [
-      'culturalVariationInExpression',
-      'emotionalSelfAwareness',
-      'emotionVocabulary',
-      'readingEmotionalCues',
-    ],
+    order: ['culturalVariationInExpression', 'emotionalSelfAwareness', 'emotionVocabulary', 'readingEmotionalCues'],
   },
   description: {
     methodological:

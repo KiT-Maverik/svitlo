@@ -49,12 +49,7 @@ export const informationDesign_SkillGroup_Data = defineSkillGroup({
       designAVisualDiagram: designAVisualDiagram_Skill_Data,
       detectMisleadingGraphics: detectMisleadingGraphics_Skill_Data,
     },
-    order: [
-      'chooseAVisualEncoding',
-      'designADataGraphic',
-      'designAVisualDiagram',
-      'detectMisleadingGraphics',
-    ],
+    order: ['chooseAVisualEncoding', 'designADataGraphic', 'designAVisualDiagram', 'detectMisleadingGraphics'],
   },
   description: {
     methodological:

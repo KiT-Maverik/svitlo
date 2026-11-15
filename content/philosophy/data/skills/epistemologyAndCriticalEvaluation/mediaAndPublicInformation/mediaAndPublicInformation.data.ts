@@ -44,7 +44,8 @@ export const mediaAndPublicInformation_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      distinguishMisinformationFromDeliberateDeceptionClaims: distinguishMisinformationFromDeliberateDeceptionClaims_Skill_Data,
+      distinguishMisinformationFromDeliberateDeceptionClaims:
+        distinguishMisinformationFromDeliberateDeceptionClaims_Skill_Data,
       distinguishReportingFromOpinion: distinguishReportingFromOpinion_Skill_Data,
       evaluateEvidenceBehindAHeadline: evaluateEvidenceBehindAHeadline_Skill_Data,
       recognizeMisleadingContextInPresentedEvidence: recognizeMisleadingContextInPresentedEvidence_Skill_Data,

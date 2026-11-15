@@ -46,12 +46,7 @@ export const interstellarAndGalacticAstronomy_SkillDomain_Data = defineSkillDoma
       interstellarMatter: interstellarMatter_SkillGroup_Data,
       theMilkyWay: theMilkyWay_SkillGroup_Data,
     },
-    order: [
-      'activeGalacticNuclei',
-      'galaxiesAndTheirEvolution',
-      'interstellarMatter',
-      'theMilkyWay',
-    ],
+    order: ['activeGalacticNuclei', 'galaxiesAndTheirEvolution', 'interstellarMatter', 'theMilkyWay'],
   },
   description: {
     methodological:

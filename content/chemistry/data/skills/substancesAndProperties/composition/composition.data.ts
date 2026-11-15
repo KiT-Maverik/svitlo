@@ -48,12 +48,7 @@ export const composition_SkillGroup_Data = defineSkillGroup({
       mixtures: mixtures_Skill_Data,
       pureSubstances: pureSubstances_Skill_Data,
     },
-    order: [
-      'elementsAndCompounds',
-      'homogeneousAndHeterogeneousSamples',
-      'mixtures',
-      'pureSubstances',
-    ],
+    order: ['elementsAndCompounds', 'homogeneousAndHeterogeneousSamples', 'mixtures', 'pureSubstances'],
   },
   description: {
     methodological:

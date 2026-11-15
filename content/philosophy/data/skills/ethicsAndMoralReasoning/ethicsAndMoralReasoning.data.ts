@@ -48,13 +48,7 @@ export const ethicsAndMoralReasoning_SkillDomain_Data = defineSkillDomain({
       moralConcepts: moralConcepts_SkillGroup_Data,
       moralDeliberation: moralDeliberation_SkillGroup_Data,
     },
-    order: [
-      'appliedEthics',
-      'ethicalFrameworks',
-      'metaethics',
-      'moralConcepts',
-      'moralDeliberation',
-    ],
+    order: ['appliedEthics', 'ethicalFrameworks', 'metaethics', 'moralConcepts', 'moralDeliberation'],
   },
   description: {
     methodological:

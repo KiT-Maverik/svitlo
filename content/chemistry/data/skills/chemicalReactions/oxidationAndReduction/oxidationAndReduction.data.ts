@@ -50,13 +50,7 @@ export const oxidationAndReduction_SkillGroup_Data = defineSkillGroup({
       redoxCouples: redoxCouples_Skill_Data,
       reduction: reduction_Skill_Data,
     },
-    order: [
-      'electrolysis',
-      'galvanicCells',
-      'oxidation',
-      'redoxCouples',
-      'reduction',
-    ],
+    order: ['electrolysis', 'galvanicCells', 'oxidation', 'redoxCouples', 'reduction'],
   },
   description: {
     methodological:

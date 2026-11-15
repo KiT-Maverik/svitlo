@@ -48,12 +48,7 @@ export const starFormation_SkillGroup_Data = defineSkillGroup({
       protostellarDisks: protostellarDisks_Skill_Data,
       protostellarJets: protostellarJets_Skill_Data,
     },
-    order: [
-      'molecularCloudCollapse',
-      'protostars',
-      'protostellarDisks',
-      'protostellarJets',
-    ],
+    order: ['molecularCloudCollapse', 'protostars', 'protostellarDisks', 'protostellarJets'],
   },
   description: {
     methodological:

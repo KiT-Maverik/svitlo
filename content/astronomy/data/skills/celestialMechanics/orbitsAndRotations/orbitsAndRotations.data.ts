@@ -50,13 +50,7 @@ export const orbitsAndRotations_SkillGroup_Data = defineSkillGroup({
       orbitalPeriods: orbitalPeriods_Skill_Data,
       synchronousRotation: synchronousRotation_Skill_Data,
     },
-    order: [
-      'axialRotation',
-      'axialTilt',
-      'orbitalElements',
-      'orbitalPeriods',
-      'synchronousRotation',
-    ],
+    order: ['axialRotation', 'axialTilt', 'orbitalElements', 'orbitalPeriods', 'synchronousRotation'],
   },
   description: {
     methodological:

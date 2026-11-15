@@ -46,7 +46,8 @@ export const moralConcepts_SkillGroup_Data = defineSkillGroup({
       analyzeMoralDuty: analyzeMoralDuty_Skill_Data,
       distinguishIntentionsFromConsequences: distinguishIntentionsFromConsequences_Skill_Data,
       distinguishMoralFromNonMoralJudgments: distinguishMoralFromNonMoralJudgments_Skill_Data,
-      distinguishMoralResponsibilityFromCausalResponsibility: distinguishMoralResponsibilityFromCausalResponsibility_Skill_Data,
+      distinguishMoralResponsibilityFromCausalResponsibility:
+        distinguishMoralResponsibilityFromCausalResponsibility_Skill_Data,
     },
     order: [
       'analyzeMoralDuty',

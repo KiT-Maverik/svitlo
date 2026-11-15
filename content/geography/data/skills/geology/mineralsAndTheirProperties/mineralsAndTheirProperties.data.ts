@@ -42,11 +42,16 @@ export const mineralsAndTheirProperties_SkillGroup_Data = defineSkillGroup({
   },
   skills: {
     items: {
-      characterizeMineralsUsingDiagnosticPhysicalProperties: characterizeMineralsUsingDiagnosticPhysicalProperties_Skill_Data,
+      characterizeMineralsUsingDiagnosticPhysicalProperties:
+        characterizeMineralsUsingDiagnosticPhysicalProperties_Skill_Data,
       explainWhatMakesANaturalSolidAMineral: explainWhatMakesANaturalSolidAMineral_Skill_Data,
       identifyMineralsUsingMultipleDiagnosticProperties: identifyMineralsUsingMultipleDiagnosticProperties_Skill_Data,
     },
-    order: ['characterizeMineralsUsingDiagnosticPhysicalProperties', 'explainWhatMakesANaturalSolidAMineral', 'identifyMineralsUsingMultipleDiagnosticProperties'],
+    order: [
+      'characterizeMineralsUsingDiagnosticPhysicalProperties',
+      'explainWhatMakesANaturalSolidAMineral',
+      'identifyMineralsUsingMultipleDiagnosticProperties',
+    ],
   },
   description: {
     methodological:

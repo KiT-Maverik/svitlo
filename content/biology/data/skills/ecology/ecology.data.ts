@@ -46,12 +46,7 @@ export const ecology_SkillDomain_Data = defineSkillDomain({
       habitats: habitats_SkillGroup_Data,
       interactionsAmongOrganisms: interactionsAmongOrganisms_SkillGroup_Data,
     },
-    order: [
-      'ecosystemsAndBiodiversity',
-      'feedingRelationships',
-      'habitats',
-      'interactionsAmongOrganisms',
-    ],
+    order: ['ecosystemsAndBiodiversity', 'feedingRelationships', 'habitats', 'interactionsAmongOrganisms'],
   },
   description: {
     methodological:

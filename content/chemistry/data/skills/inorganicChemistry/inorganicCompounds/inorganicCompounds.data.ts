@@ -50,13 +50,7 @@ export const inorganicCompounds_SkillGroup_Data = defineSkillGroup({
       oxides: oxides_Skill_Data,
       salts: salts_Skill_Data,
     },
-    order: [
-      'coordinationCompounds',
-      'hydroxides',
-      'minerals',
-      'oxides',
-      'salts',
-    ],
+    order: ['coordinationCompounds', 'hydroxides', 'minerals', 'oxides', 'salts'],
   },
   description: {
     methodological:

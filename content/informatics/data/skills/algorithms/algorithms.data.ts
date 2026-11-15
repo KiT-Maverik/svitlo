@@ -48,13 +48,7 @@ export const algorithms_SkillDomain_Data = defineSkillDomain({
       search: search_SkillGroup_Data,
       sorting: sorting_SkillGroup_Data,
     },
-    order: [
-      'analysis',
-      'collectionProcessing',
-      'construction',
-      'search',
-      'sorting',
-    ],
+    order: ['analysis', 'collectionProcessing', 'construction', 'search', 'sorting'],
   },
   description: {
     methodological:

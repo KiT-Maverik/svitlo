@@ -46,12 +46,7 @@ export const structuresAndConstruction_SkillDomain_Data = defineSkillDomain({
       stabilityAndTesting: stabilityAndTesting_SkillGroup_Data,
       structuralElements: structuralElements_SkillGroup_Data,
     },
-    order: [
-      'buildings',
-      'civilWorks',
-      'stabilityAndTesting',
-      'structuralElements',
-    ],
+    order: ['buildings', 'civilWorks', 'stabilityAndTesting', 'structuralElements'],
   },
   description: {
     methodological:

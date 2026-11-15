@@ -46,12 +46,7 @@ export const generalAndCellBiology_SkillDomain_Data = defineSkillDomain({
       levelsOfOrganization: levelsOfOrganization_SkillGroup_Data,
       lifeProcesses: lifeProcesses_SkillGroup_Data,
     },
-    order: [
-      'cellDivision',
-      'cellularStructure',
-      'levelsOfOrganization',
-      'lifeProcesses',
-    ],
+    order: ['cellDivision', 'cellularStructure', 'levelsOfOrganization', 'lifeProcesses'],
   },
   description: {
     methodological:

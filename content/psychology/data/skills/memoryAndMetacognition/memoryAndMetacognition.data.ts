@@ -46,12 +46,7 @@ export const memoryAndMetacognition_SkillDomain_Data = defineSkillDomain({
       monitoringAndLearningStrategies: monitoringAndLearningStrategies_SkillGroup_Data,
       retrievalAndDistortion: retrievalAndDistortion_SkillGroup_Data,
     },
-    order: [
-      'encodingAndConsolidation',
-      'memorySystems',
-      'monitoringAndLearningStrategies',
-      'retrievalAndDistortion',
-    ],
+    order: ['encodingAndConsolidation', 'memorySystems', 'monitoringAndLearningStrategies', 'retrievalAndDistortion'],
   },
   description: {
     methodological:

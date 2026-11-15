@@ -50,13 +50,7 @@ export const transitionToFoodProduction_SkillGroup_Data = defineSkillGroup({
       plantDomestication: plantDomestication_Skill_Data,
       prehistoricPottery: prehistoricPottery_Skill_Data,
     },
-    order: [
-      'animalDomestication',
-      'earlyWeaving',
-      'permanentSettlements',
-      'plantDomestication',
-      'prehistoricPottery',
-    ],
+    order: ['animalDomestication', 'earlyWeaving', 'permanentSettlements', 'plantDomestication', 'prehistoricPottery'],
   },
   description: {
     methodological:

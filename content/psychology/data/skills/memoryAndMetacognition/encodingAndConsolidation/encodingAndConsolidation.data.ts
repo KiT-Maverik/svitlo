@@ -48,12 +48,7 @@ export const encodingAndConsolidation_SkillGroup_Data = defineSkillGroup({
       organizationAndChunking: organizationAndChunking_Skill_Data,
       spacingEffects: spacingEffects_Skill_Data,
     },
-    order: [
-      'elaborativeEncoding',
-      'memoryConsolidation',
-      'organizationAndChunking',
-      'spacingEffects',
-    ],
+    order: ['elaborativeEncoding', 'memoryConsolidation', 'organizationAndChunking', 'spacingEffects'],
   },
   description: {
     methodological:

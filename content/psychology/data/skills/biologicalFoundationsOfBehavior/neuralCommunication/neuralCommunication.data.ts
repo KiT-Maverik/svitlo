@@ -50,13 +50,7 @@ export const neuralCommunication_SkillGroup_Data = defineSkillGroup({
       neuralSignaling: neuralSignaling_Skill_Data,
       neurotransmitterAction: neurotransmitterAction_Skill_Data,
     },
-    order: [
-      'neuralExcitation',
-      'neuralInhibition',
-      'neuralPlasticity',
-      'neuralSignaling',
-      'neurotransmitterAction',
-    ],
+    order: ['neuralExcitation', 'neuralInhibition', 'neuralPlasticity', 'neuralSignaling', 'neurotransmitterAction'],
   },
   description: {
     methodological:

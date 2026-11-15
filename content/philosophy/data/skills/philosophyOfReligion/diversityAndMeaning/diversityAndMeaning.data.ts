@@ -46,7 +46,11 @@ export const diversityAndMeaning_SkillGroup_Data = defineSkillGroup({
       analyzeReligiousToleranceAsAnEthicalPrinciple: analyzeReligiousToleranceAsAnEthicalPrinciple_Skill_Data,
       distinguishReligiousSkepticismFromAgnosticism: distinguishReligiousSkepticismFromAgnosticism_Skill_Data,
     },
-    order: ['analyzeReligiousPluralismAsAPhilosophicalProblem', 'analyzeReligiousToleranceAsAnEthicalPrinciple', 'distinguishReligiousSkepticismFromAgnosticism'],
+    order: [
+      'analyzeReligiousPluralismAsAPhilosophicalProblem',
+      'analyzeReligiousToleranceAsAnEthicalPrinciple',
+      'distinguishReligiousSkepticismFromAgnosticism',
+    ],
   },
   description: {
     methodological:

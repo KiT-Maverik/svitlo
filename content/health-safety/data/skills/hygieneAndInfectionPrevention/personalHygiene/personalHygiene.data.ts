@@ -48,12 +48,7 @@ export const personalHygiene_SkillGroup_Data = defineSkillGroup({
       hygieneOfPersonalItems: hygieneOfPersonalItems_Skill_Data,
       oralHygiene: oralHygiene_Skill_Data,
     },
-    order: [
-      'bodyHygiene',
-      'handHygiene',
-      'hygieneOfPersonalItems',
-      'oralHygiene',
-    ],
+    order: ['bodyHygiene', 'handHygiene', 'hygieneOfPersonalItems', 'oralHygiene'],
   },
   description: {
     methodological:

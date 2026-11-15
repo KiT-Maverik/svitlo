@@ -48,12 +48,7 @@ export const entrepreneurshipAndAccounting_SkillGroup_Data = defineSkillGroup({
       businessRevenueCostsAndProfit: businessRevenueCostsAndProfit_Skill_Data,
       entrepreneurialOpportunity: entrepreneurialOpportunity_Skill_Data,
     },
-    order: [
-      'businessCashFlow',
-      'businessModel',
-      'businessRevenueCostsAndProfit',
-      'entrepreneurialOpportunity',
-    ],
+    order: ['businessCashFlow', 'businessModel', 'businessRevenueCostsAndProfit', 'entrepreneurialOpportunity'],
   },
   description: {
     methodological:

@@ -48,13 +48,7 @@ export const measurement_SkillDomain_Data = defineSkillDomain({
       temperature: temperature_SkillGroup_Data,
       general: general_SkillGroup_Data,
     },
-    order: [
-      'length',
-      'mass',
-      'capacity',
-      'temperature',
-      'general',
-    ],
+    order: ['length', 'mass', 'capacity', 'temperature', 'general'],
   },
   description: {
     methodological:

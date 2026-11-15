@@ -52,14 +52,7 @@ export const stellarRemnants_SkillGroup_Data = defineSkillGroup({
       supernovae: supernovae_Skill_Data,
       whiteDwarfs: whiteDwarfs_Skill_Data,
     },
-    order: [
-      'cosmicElementEnrichment',
-      'neutronStars',
-      'pulsars',
-      'stellarMassBlackHoles',
-      'supernovae',
-      'whiteDwarfs',
-    ],
+    order: ['cosmicElementEnrichment', 'neutronStars', 'pulsars', 'stellarMassBlackHoles', 'supernovae', 'whiteDwarfs'],
   },
   description: {
     methodological:

@@ -46,12 +46,7 @@ export const economicThinking_SkillDomain_Data = defineSkillDomain({
       scarcityAndChoice: scarcityAndChoice_SkillGroup_Data,
       strategicInteraction: strategicInteraction_SkillGroup_Data,
     },
-    order: [
-      'exchangeAndInstitutions',
-      'incentivesAndDecisions',
-      'scarcityAndChoice',
-      'strategicInteraction',
-    ],
+    order: ['exchangeAndInstitutions', 'incentivesAndDecisions', 'scarcityAndChoice', 'strategicInteraction'],
   },
   description: {
     methodological:

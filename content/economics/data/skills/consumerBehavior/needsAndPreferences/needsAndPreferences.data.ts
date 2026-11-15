@@ -50,13 +50,7 @@ export const needsAndPreferences_SkillGroup_Data = defineSkillGroup({
       needsAndWants: needsAndWants_Skill_Data,
       utility: utility_Skill_Data,
     },
-    order: [
-      'consumerChoiceWithLimitedBudget',
-      'consumerPreferences',
-      'marginalUtility',
-      'needsAndWants',
-      'utility',
-    ],
+    order: ['consumerChoiceWithLimitedBudget', 'consumerPreferences', 'marginalUtility', 'needsAndWants', 'utility'],
   },
   description: {
     methodological:

@@ -48,12 +48,7 @@ export const waterSupply_SkillGroup_Data = defineSkillGroup({
       pressureManagement: pressureManagement_Skill_Data,
       traceDrinkingWaterSupply: traceDrinkingWaterSupply_Skill_Data,
     },
-    order: [
-      'drinkingWaterTreatment',
-      'identifyDistributionLeakage',
-      'pressureManagement',
-      'traceDrinkingWaterSupply',
-    ],
+    order: ['drinkingWaterTreatment', 'identifyDistributionLeakage', 'pressureManagement', 'traceDrinkingWaterSupply'],
   },
   description: {
     methodological:

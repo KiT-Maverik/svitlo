@@ -48,12 +48,7 @@ export const sustainableChemicalChoices_SkillGroup_Data = defineSkillGroup({
       greenChemistryPrinciples: greenChemistryPrinciples_Skill_Data,
       recyclingChemistry: recyclingChemistry_Skill_Data,
     },
-    order: [
-      'biodegradationAndPersistence',
-      'chemicalLifeCycles',
-      'greenChemistryPrinciples',
-      'recyclingChemistry',
-    ],
+    order: ['biodegradationAndPersistence', 'chemicalLifeCycles', 'greenChemistryPrinciples', 'recyclingChemistry'],
   },
   description: {
     methodological:

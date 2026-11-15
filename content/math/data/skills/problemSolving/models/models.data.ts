@@ -48,12 +48,7 @@ export const models_SkillGroup_Data = defineSkillGroup({
       oneStepModel: oneStepModel_Skill_Data,
       createProblem: createProblem_Skill_Data,
     },
-    order: [
-      'chooseOperationAddSub',
-      'chooseOperationMulDiv',
-      'oneStepModel',
-      'createProblem',
-    ],
+    order: ['chooseOperationAddSub', 'chooseOperationMulDiv', 'oneStepModel', 'createProblem'],
   },
   description: {
     methodological:
