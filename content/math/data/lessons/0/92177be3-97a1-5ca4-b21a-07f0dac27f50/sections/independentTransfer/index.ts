@@ -1,8 +1,8 @@
 import { defineContentSection } from '@svitlo/engine/build';
 import type { EqualsMeansSameValue_Lesson_Languages } from '../../constants';
-import { answerOnLeftPrompt } from './texts/answerOnLeftPrompt';
-import { sixOnBothSides } from './texts/sixOnBothSides';
-import { sameValueReminder } from './markdown/sameValueReminder';
+import { answerOnLeftPrompt } from './answerOnLeftPrompt';
+import { sixOnBothSides } from './sixOnBothSides';
+import { sameValueReminder } from './sameValueReminder/sameValueReminder';
 
 type SectionItems = {
   answerOnLeftPrompt: typeof answerOnLeftPrompt;

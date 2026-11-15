@@ -1,5 +1,5 @@
 import { defineMarkdown } from '@svitlo/engine/build';
-import type { EqualsMeansSameValue_Lesson_Languages } from '../../../../constants';
+import type { EqualsMeansSameValue_Lesson_Languages } from '../../../constants';
 
 export const equalExpressionsExamples = defineMarkdown<'equalExpressionsExamples', EqualsMeansSameValue_Lesson_Languages>({
   id: "31d32f0c-d332-4ed8-8be7-d4a59906e571",

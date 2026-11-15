@@ -1,13 +1,13 @@
 import { defineContentSection } from '@svitlo/engine/build';
 import type { EqualsMeansSameValue_Lesson_Languages } from '../../constants';
-import { compareAmountsSnippet } from './code';
-import { lightShapesImage } from './image';
-import { demonstrationClip } from './video';
-import { equalityVideos } from './youtube';
-import { shapeGallery } from './carousel';
-import { equalityCheckpoint } from './checkpoint';
-import { demonstrationTone } from './audio';
-import { toneCaptions } from './subtitles';
+import { compareAmountsSnippet } from './compareAmountsSnippet';
+import { lightShapesImage } from './lightShapesImage';
+import { demonstrationClip } from './demonstrationClip';
+import { equalityVideos } from './equalityVideos';
+import { shapeGallery } from './shapeGallery';
+import { equalityCheckpoint } from './equalityCheckpoint';
+import { demonstrationTone } from './demonstrationTone';
+import { toneCaptions } from './toneCaptions';
 
 type SectionItems = {
   compareAmountsSnippet: typeof compareAmountsSnippet;

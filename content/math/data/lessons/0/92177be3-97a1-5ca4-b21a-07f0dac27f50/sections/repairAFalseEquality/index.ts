@@ -1,8 +1,8 @@
 import { defineContentSection } from '@svitlo/engine/build';
 import type { EqualsMeansSameValue_Lesson_Languages } from '../../constants';
-import { unequalExpressionsExample } from './markdown/unequalExpressionsExample';
-import { repairUnequalExpressions } from './scenes/repairUnequalExpressions';
-import { equalityAfterRepair } from './texts/equalityAfterRepair';
+import { unequalExpressionsExample } from './unequalExpressionsExample';
+import { repairUnequalExpressions } from './repairUnequalExpressions';
+import { equalityAfterRepair } from './equalityAfterRepair';
 
 type SectionItems = {
   unequalExpressionsExample: typeof unequalExpressionsExample;
