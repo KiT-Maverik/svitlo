@@ -5,6 +5,7 @@ export const maintainASteadyBeat_Skill_Data = defineSkill({
   id: '27177be4-eff5-4016-aa42-f0903e5bfabc',
   name: {
     en: 'Maintain a Steady Beat',
+    it: 'Mantenere una pulsazione regolare',
     zh: '保持稳定的节拍',
     hi: 'स्थिर ताल बनाए रखें',
     es: 'Mantener un pulso constante',
@@ -38,6 +39,7 @@ export const maintainASteadyBeat_Skill_Data = defineSkill({
     methodological: 'Preserve an underlying pulse independently of changing performed rhythmic patterns.',
     frontend: {
       en: "Keep a steady beat even when the music's rhythm changes.",
+      it: 'Mantieni una pulsazione costante anche quando cambia il ritmo della musica.',
       zh: '即使音乐的节奏发生变化，也要保持稳定的节拍。',
       hi: 'संगीत की लय बदलने पर भी स्थिर ताल बनाए रखें।',
       es: 'Mantén un pulso constante aunque cambie el ritmo de la música.',
