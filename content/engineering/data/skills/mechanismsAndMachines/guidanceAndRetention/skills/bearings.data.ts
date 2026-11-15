@@ -5,6 +5,7 @@ export const bearings_Skill_Data = defineSkill({
   id: 'd6a9870a-9de5-40d7-84b4-18c9c6a5c55b',
   name: {
     en: 'Bearings',
+    it: 'Cuscinetti',
     zh: '轴承',
     hi: 'बेयरिंग',
     es: 'Cojinetes y rodamientos',
@@ -38,6 +39,7 @@ export const bearings_Skill_Data = defineSkill({
     methodological: 'Identify how supported shafts can rotate relative to a machine housing.',
     frontend: {
       en: 'Recognize how a bearing supports a moving shaft.',
+      it: 'Riconosci come un cuscinetto sostiene un albero in movimento.',
       zh: '识别轴承如何支撑旋转轴。',
       hi: 'पहचानें कि बेयरिंग घूमते शाफ्ट को कैसे सहारा देता है।',
       es: 'Reconoce cómo un cojinete sostiene un eje en movimiento.',
