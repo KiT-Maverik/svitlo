@@ -13,6 +13,7 @@ export const lifeCycleAndResources_SkillGroup_Data = defineSkillGroup({
   id: 'c6c6a121-9c6b-4760-8c4c-f1aaece36d86',
   name: {
     en: 'Life Cycle and Resources',
+    it: 'Ciclo di vita e risorse',
     zh: '生命周期与资源',
     hi: 'जीवन चक्र और संसाधन',
     es: 'Ciclo de vida y recursos',
@@ -54,6 +55,7 @@ export const lifeCycleAndResources_SkillGroup_Data = defineSkillGroup({
       'Manufacture, operation, repair and disposal can create different impacts; improving one stage does not prove that the whole design is better.',
     frontend: {
       en: 'Discover how products consume resources from manufacture to disposal.',
+      it: 'Scopri come i prodotti consumano risorse dalla fabbricazione allo smaltimento.',
       zh: '了解产品从制造到废弃如何消耗资源。',
       hi: 'जानें कि उत्पाद निर्माण से निपटान तक संसाधनों का कैसे उपयोग करते हैं।',
       es: 'Descubre cómo los productos consumen recursos desde su fabricación hasta su eliminación.',
