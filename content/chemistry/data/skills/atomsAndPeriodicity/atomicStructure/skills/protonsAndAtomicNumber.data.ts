@@ -5,6 +5,7 @@ export const protonsAndAtomicNumber_Skill_Data = defineSkill({
   id: '4a20ddb5-16bd-49d7-8f7b-809e279a9a70',
   name: {
     en: 'Protons and Atomic Number',
+    it: "Protoni e numero atomico",
     zh: '质子与原子序数',
     hi: 'प्रोटॉन और परमाणु क्रमांक',
     es: 'Protones y número atómico',
@@ -38,6 +39,7 @@ export const protonsAndAtomicNumber_Skill_Data = defineSkill({
     methodological: 'Use proton count to establish elemental identity and locate an element in the periodic table.',
     frontend: {
       en: 'Use the number of protons to identify an element.',
+      it: "Usa il numero di protoni per identificare un elemento chimico.",
       zh: '利用质子的数量来确定一种元素。',
       hi: 'प्रोटॉनों की संख्या से किसी तत्व की पहचान करें।',
       es: 'Identifica un elemento a partir de su número de protones.',
