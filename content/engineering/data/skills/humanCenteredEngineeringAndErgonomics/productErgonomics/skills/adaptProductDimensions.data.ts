@@ -5,6 +5,7 @@ export const adaptProductDimensions_Skill_Data = defineSkill({
   id: '4abd554b-3de3-40b0-bae0-d20b448d2fcb',
   name: {
     en: 'Adapt product dimensions',
+    it: 'Adattare le dimensioni di un prodotto',
     zh: '调整产品尺寸',
     hi: 'उत्पाद के आयामों को अनुकूल बनाना',
     es: 'Adaptar las dimensiones del producto',
@@ -38,6 +39,7 @@ export const adaptProductDimensions_Skill_Data = defineSkill({
     methodological: 'Choose adjustable or alternative dimensions to accommodate different users.',
     frontend: {
       en: 'Adjust product sizes to suit different bodies and activities.',
+      it: 'Regola le dimensioni di un prodotto per adattarlo a corpi e attività differenti.',
       zh: '调整产品大小以适应不同体型和活动。',
       hi: 'विभिन्न शरीर और गतिविधियों के लिए उत्पाद का आकार समायोजित करें।',
       es: 'Ajusta el tamaño de un producto a distintos cuerpos y actividades.',
