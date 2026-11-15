@@ -5,6 +5,17 @@ import { compareFive } from "./compareFive";
 import { reverseEquality } from "./reverseEquality";
 import type { LessonLanguages } from "../../../constants";
 
+const content = {
+  items: {
+    compareFive,
+    reverseEquality
+  },
+  order: [
+    "compareFive",
+    "reverseEquality"
+  ]
+};
+
 export const verifyEquality = defineCheckpoint<"verifyEquality", typeof content.items, LessonLanguages>({
   id: "a11ce555-0000-4000-8000-00000000000d",
   slug: "verifyEquality",
@@ -26,14 +37,5 @@ export const verifyEquality = defineCheckpoint<"verifyEquality", typeof content.
       en: "Check your understanding"
     }
   },
-  content: {
-    items: {
-      compareFive,
-      reverseEquality
-    },
-    order: [
-      "compareFive",
-      "reverseEquality"
-    ]
-  }
+  content
 });

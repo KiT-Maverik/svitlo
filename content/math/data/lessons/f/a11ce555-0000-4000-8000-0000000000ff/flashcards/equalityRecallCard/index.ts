@@ -6,62 +6,65 @@ import { cardFront } from "./front/cardFront";
 import { cardHint } from "./hint/cardHint";
 import type { LessonLanguages } from "../../constants";
 
+const content = {
+  front: {
+    items: {
+      cardFront
+    },
+    order: [
+      "cardFront"
+    ]
+  },
+  back: {
+    items: {
+      cardBack
+    },
+    order: [
+      "cardBack"
+    ]
+  },
+  hint: {
+    items: {
+      cardHint
+    },
+    order: [
+      "cardHint"
+    ]
+  }
+};
+const parameters = {
+  tags: [
+    "equality"
+  ],
+  flags: {
+    items: {
+      warning: {
+        type: "warning" as const
+      },
+      keyIdea: {
+        type: "custom" as const,
+        value: {
+          en: "Key idea"
+        },
+        color: "info" as const,
+        icon: "lightbulb"
+      }
+    },
+    order: [
+      "warning",
+      "keyIdea"
+    ]
+  },
+  relationships: {
+    items: {},
+    order: []
+  }
+};
+
 export const equalityRecallCard = defineFlashcard<"equalityRecallCard", typeof content.front.items, typeof content.back.items, typeof content.hint.items, typeof parameters.flags.items, typeof parameters.relationships.items, LessonLanguages>({
   id: "a11ce555-0000-4000-8000-000000000019",
   slug: "equalityRecallCard",
   type: "flashcard",
-  parameters: {
-    tags: [
-      "equality"
-    ],
-    flags: {
-      items: {
-        warning: {
-          type: "warning" as const
-        },
-        keyIdea: {
-          type: "custom" as const,
-          value: {
-            en: "Key idea"
-          },
-          color: "info" as const,
-          icon: "lightbulb"
-        }
-      },
-      order: [
-        "warning",
-        "keyIdea"
-      ]
-    },
-    relationships: {
-      items: {},
-      order: []
-    }
-  },
-  content: {
-    front: {
-      items: {
-        cardFront
-      },
-      order: [
-        "cardFront"
-      ]
-    },
-    back: {
-      items: {
-        cardBack
-      },
-      order: [
-        "cardBack"
-      ]
-    },
-    hint: {
-      items: {
-        cardHint
-      },
-      order: [
-        "cardHint"
-      ]
-    }
-  }
+  parameters,
+  content
 });

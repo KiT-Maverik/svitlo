@@ -9,6 +9,25 @@ import { explainWithMarkdown } from "./explainWithMarkdown";
 import { meaningOfEquality } from "./meaningOfEquality";
 import type { LessonLanguages } from "../../constants";
 
+const content = {
+  items: {
+    meaningOfEquality,
+    explainWithMarkdown,
+    compareValuesCode,
+    counterGroupsImage,
+    compareGroupsScene,
+    counterArrangementsCarousel
+  },
+  order: [
+    "meaningOfEquality",
+    "explainWithMarkdown",
+    "compareValuesCode",
+    "counterGroupsImage",
+    "compareGroupsScene",
+    "counterArrangementsCarousel"
+  ]
+};
+
 export const exploreEquality = defineContentSection<"exploreEquality", typeof content.items, LessonLanguages>({
   id: "a11ce555-0000-4000-8000-000000000020",
   slug: "exploreEquality",
@@ -24,22 +43,5 @@ export const exploreEquality = defineContentSection<"exploreEquality", typeof co
       en: "Explore equality"
     }
   },
-  content: {
-    items: {
-      meaningOfEquality,
-      explainWithMarkdown,
-      compareValuesCode,
-      counterGroupsImage,
-      compareGroupsScene,
-      counterArrangementsCarousel
-    },
-    order: [
-      "meaningOfEquality",
-      "explainWithMarkdown",
-      "compareValuesCode",
-      "counterGroupsImage",
-      "compareGroupsScene",
-      "counterArrangementsCarousel"
-    ]
-  }
+  content
 });

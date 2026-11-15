@@ -9,6 +9,25 @@ import { spokenExplanation } from "./spokenExplanation";
 import { verifyEquality } from "./verifyEquality";
 import type { LessonLanguages } from "../../constants";
 
+const content = {
+  items: {
+    separateCountersImage,
+    spokenExplanation,
+    equalGroupsVideo,
+    equalGroupsCaptions,
+    relatedEqualityVideos,
+    verifyEquality
+  },
+  order: [
+    "separateCountersImage",
+    "spokenExplanation",
+    "equalGroupsVideo",
+    "equalGroupsCaptions",
+    "relatedEqualityVideos",
+    "verifyEquality"
+  ]
+};
+
 export const reviewEquality = defineContentSection<"reviewEquality", typeof content.items, LessonLanguages>({
   id: "a11ce555-0000-4000-8000-000000000021",
   slug: "reviewEquality",
@@ -24,22 +43,5 @@ export const reviewEquality = defineContentSection<"reviewEquality", typeof cont
       en: "Review equality"
     }
   },
-  content: {
-    items: {
-      separateCountersImage,
-      spokenExplanation,
-      equalGroupsVideo,
-      equalGroupsCaptions,
-      relatedEqualityVideos,
-      verifyEquality
-    },
-    order: [
-      "separateCountersImage",
-      "spokenExplanation",
-      "equalGroupsVideo",
-      "equalGroupsCaptions",
-      "relatedEqualityVideos",
-      "verifyEquality"
-    ]
-  }
+  content
 });

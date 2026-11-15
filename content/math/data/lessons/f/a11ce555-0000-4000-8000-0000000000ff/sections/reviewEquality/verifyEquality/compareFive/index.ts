@@ -5,11 +5,14 @@ import { compareFiveQuestion } from "./question";
 import { item_answer } from "./answer";
 import type { LessonLanguages } from "../../../../constants";
 
+const question = compareFiveQuestion;
+const answer = item_answer;
+
 export const compareFive = defineCheckpointItem<"compareFive", typeof answer, typeof question, LessonLanguages>({
   id: "a11ce555-0000-4000-8000-000000000009",
   slug: "compareFive",
   type: "checkpointItem",
   check: true,
-  question: compareFiveQuestion,
-  answer: item_answer,
+  question,
+  answer
 });
