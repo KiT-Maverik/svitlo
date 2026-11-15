@@ -15,6 +15,7 @@ export const testingAndIteration_SkillGroup_Data = defineSkillGroup({
   id: 'ea206b05-6976-49cf-882b-c98ea0c2ca4f',
   name: {
     en: 'Testing and Iteration',
+    it: 'Prove e iterazione',
     zh: '测试与迭代',
     hi: 'परीक्षण और पुनरावृत्ति',
     es: 'Pruebas e iteración',
@@ -58,6 +59,7 @@ export const testingAndIteration_SkillGroup_Data = defineSkillGroup({
       'A plausible prototype is not proof of performance. Measurement, failure analysis and controlled revisions provide a basis for improving the proposed product.',
     frontend: {
       en: 'Use evidence from testing to improve a prototype and check its purpose.',
+      it: 'Utilizza i risultati delle prove per migliorare un prototipo e verificarne lo scopo.',
       zh: '利用测试数据改进原型，并验证它是否符合目的。',
       hi: 'परीक्षण के प्रमाण से प्रोटोटाइप सुधारें और जाँचें कि वह उद्देश्य पूरा करता है।',
       es: 'Usa resultados de pruebas para mejorar un prototipo y comprobar su finalidad.',
