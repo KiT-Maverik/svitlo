@@ -1,4 +1,8 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { parseArguments } from './generate-translation-review-artifacts.mjs';
 
@@ -43,4 +47,36 @@ test('allows only explicitly selected standalone reference families and optional
     { kind: 'ui-kit', component: 'audio', locale: 'uk' });
   assert.deepEqual(parseArguments(['--kind', 'geography-home-copy']),
     { kind: 'geography-home-copy' });
+});
+
+test('real Skills and UI Kit requests generate only their requested Markdown files', () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+  const workspace = path.join(root, '.agent-ci-artifacts');
+  assert.equal(fs.existsSync(workspace), false, 'Tests must not overwrite existing PR artifact files');
+  function request(args) {
+    const response = spawnSync(process.execPath,
+      ['scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs', ...args],
+      { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 });
+    assert.equal(response.status, 0, response.error?.message || response.stderr);
+    const manifest = JSON.parse(fs.readFileSync(path.join(workspace, 'manifest.json'), 'utf8'));
+    return manifest;
+  }
+  try {
+    const skills = request(['--kind', 'skills', '--package', 'content/art', '--locale', 'en']);
+    assert.equal(skills.scope.kind, 'skills');
+    assert.equal(skills.scope.package, 'content/art');
+    assert.deepEqual(skills.locales, ['en']);
+    assert.deepEqual(skills.generated.map(item => item.path), ['.agent-ci-artifacts/taxonomies/art/en.md']);
+    assert.equal(skills.failures.length, 0);
+    assert.equal(fs.existsSync(path.join(workspace, 'lessons')), false);
+
+    const ui = request(['--kind', 'ui-kit', '--component', 'audio', '--locale', 'it']);
+    assert.equal(ui.scope.kind, 'ui-kit');
+    assert.equal(ui.scope.component, 'audio');
+    assert.deepEqual(ui.generated.map(item => item.path), ['.agent-ci-artifacts/ui-kit/audio/it.md']);
+    assert.equal(ui.failures.length, 0);
+    assert.equal(fs.existsSync(path.join(workspace, 'taxonomies')), false);
+  } finally {
+    fs.rmSync(workspace, { recursive: true, force: true });
+  }
 });
