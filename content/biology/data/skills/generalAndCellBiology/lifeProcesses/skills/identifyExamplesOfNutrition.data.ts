@@ -5,6 +5,7 @@ export const identifyExamplesOfNutrition_Skill_Data = defineSkill({
   id: '7889d8b0-93b2-49f9-9a90-de5f00fc0f87',
   name: {
     en: 'Identify Examples of Nutrition',
+    it: 'Individuare esempi di nutrizione',
     zh: '识别营养方式的实例',
     hi: 'पोषण के उदाहरण पहचानना',
     es: 'Identificar ejemplos de nutrición',
@@ -39,6 +40,7 @@ export const identifyExamplesOfNutrition_Skill_Data = defineSkill({
       'Recognize the acquisition and use of nutrients by organisms as nutrition, distinguishing forms of nutrition across different organisms.',
     frontend: {
       en: 'Recognize the different ways organisms obtain and use nutrients.',
+      it: 'Riconosci i diversi modi in cui gli organismi ottengono e utilizzano le sostanze nutritive.',
       zh: '识别生物获取和利用营养物质的不同方式。',
       hi: 'जीव पोषक पदार्थ कैसे प्राप्त और उपयोग करते हैं, इसके विभिन्न तरीके पहचानें।',
       es: 'Reconoce las distintas maneras en que los organismos obtienen y utilizan nutrientes.',
