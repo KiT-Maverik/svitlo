@@ -236,7 +236,7 @@ export function defineLesson<
   const { id, type, slug } = authored;
   const initialSections: Sections = { ...config.section.items };
   const sectionOrder = [...config.section.order];
-  const initialCards = { ...(config.flashcards?.items ?? {}) } as Cards;
+  const initialCards: Cards = config.flashcards ? { ...config.flashcards.items } : ({} as Cards);
   const flashcardOrder = [...(config.flashcards?.order ?? [])];
   const initialQuestions: Lesson_QuestionBank = Object.fromEntries(
     Object.entries(config.questions ?? {}).map(([kind, entries]) => [kind, { ...entries }]),
