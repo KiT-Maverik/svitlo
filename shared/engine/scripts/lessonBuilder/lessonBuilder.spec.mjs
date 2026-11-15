@@ -675,7 +675,7 @@ test('partial YAML remains a partial typed draft, without fabricated language or
     delete f.config.questions;
     f.save();
     const result = runOne(f.lesson, 'generate', f.root);
-    assert.deepEqual(result.files, ['index.ts']);
+    assert.deepEqual(result.files, ['review.ts', 'index.ts']);
     const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
     assert.match(code, /defineLesson\(\{/);
     assert.doesNotMatch(code, /params:|section:|flashcards:|questions:/);
