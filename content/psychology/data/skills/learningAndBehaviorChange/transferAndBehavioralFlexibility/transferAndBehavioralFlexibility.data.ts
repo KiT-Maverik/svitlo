@@ -12,6 +12,7 @@ export const transferAndBehavioralFlexibility_SkillGroup_Data = defineSkillGroup
   id: '11e3889c-8d6e-48ce-bd2c-51ce1227c839',
   name: {
     en: 'Transfer and Behavioral Flexibility',
+    it: 'Trasferimento e flessibilità comportamentale',
     zh: '迁移与行为灵活性',
     hi: 'अधिगम स्थानांतरण और व्यवहार लचीलापन',
     es: 'Transferencia y flexibilidad conductual',
@@ -55,6 +56,7 @@ export const transferAndBehavioralFlexibility_SkillGroup_Data = defineSkillGroup
       'Acquired responses must generalize appropriately across contexts while remaining sensitive to meaningful differences.',
     frontend: {
       en: 'Learn why practiced skills do not always transfer automatically to new situations.',
+      it: 'Scopri perché le abilità esercitate non si trasferiscano sempre automaticamente a situazioni nuove.',
       zh: '了解为什么练熟的技能不一定能自动应用到新情境中。',
       hi: 'जानें कि अभ्यास से सीखे कौशल नई स्थितियों में अपने-आप क्यों लागू नहीं होते।',
       es: 'Descubre por qué las habilidades practicadas no siempre se aplican automáticamente a situaciones nuevas.',
