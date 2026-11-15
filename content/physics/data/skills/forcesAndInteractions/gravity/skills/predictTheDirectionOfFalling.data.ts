@@ -5,6 +5,7 @@ export const predictTheDirectionOfFalling_Skill_Data = defineSkill({
   id: 'c48dcef6-f1fc-494a-a286-dee359af15cb',
   name: {
     en: 'Predict the direction of falling',
+    it: 'Prevedere la direzione della caduta',
     zh: '预测下落方向',
     hi: 'गिरने की दिशा का अनुमान लगाना',
     es: 'Predecir la dirección de la caída',
@@ -39,6 +40,7 @@ export const predictTheDirectionOfFalling_Skill_Data = defineSkill({
       "Near Earth's surface, gravity acts approximately toward Earth's center, so a body in free fall accelerates downward relative to the local vertical.",
     frontend: {
       en: 'Predict the direction in which gravity accelerates a freely falling object.',
+      it: 'Prevedi la direzione in cui la gravità accelera un oggetto in caduta libera.',
       zh: '预测重力使自由下落物体朝哪个方向加速。',
       hi: 'अनुमान लगाएँ कि गुरुत्वाकर्षण मुक्त रूप से गिरती वस्तु को किस दिशा में त्वरित करता है।',
       es: 'Predice en qué dirección la gravedad acelera un objeto que cae libremente.',

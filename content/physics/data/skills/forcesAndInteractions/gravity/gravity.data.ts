@@ -11,6 +11,7 @@ export const gravity_SkillGroup_Data = defineSkillGroup({
   id: 'e150b34d-82de-4a8c-bf5e-3b3ef92cdc16',
   name: {
     en: 'Gravity',
+    it: 'Gravità',
     zh: '引力',
     hi: 'गुरुत्वाकर्षण',
     es: 'Gravedad',
@@ -57,6 +58,7 @@ export const gravity_SkillGroup_Data = defineSkillGroup({
       "Bodies with mass interact gravitationally even without touching. Earth's gravity governs falling near its surface, and other celestial bodies also exert gravitational influence.",
     frontend: {
       en: 'Explore gravity as an interaction between bodies with mass.',
+      it: 'Esplora la gravità come interazione tra corpi dotati di massa.',
       zh: '探索引力作为有质量物体之间的相互作用。',
       hi: 'द्रव्यमान वाली वस्तुओं के बीच गुरुत्वाकर्षण को एक अंतःक्रिया के रूप में समझें।',
       es: 'Explora la gravedad como interacción entre cuerpos con masa.',
