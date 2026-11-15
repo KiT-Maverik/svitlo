@@ -751,9 +751,6 @@ config:
       - 'measureCapacityWithEqualScoops'
       - 'compareCapacityByPouring'
       - 'recognizeEqualCapacityDifferentShapes'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

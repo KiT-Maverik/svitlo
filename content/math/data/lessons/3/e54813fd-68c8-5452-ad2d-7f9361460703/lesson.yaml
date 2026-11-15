@@ -560,9 +560,6 @@ config:
 
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
     order: ['matchThreeObjectsToDigit', 'representEmptySetWithZero', 'matchDigitsAndDots', 'useDigitAsQuantityLabel']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

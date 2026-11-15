@@ -439,9 +439,6 @@ config:
       - 'moveAcrossEqualIntervals'
       - 'countGapsBetweenTicks'
       - 'identifyImmediateNeighbors'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

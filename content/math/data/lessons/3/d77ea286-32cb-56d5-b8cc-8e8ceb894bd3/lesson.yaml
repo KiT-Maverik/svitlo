@@ -487,9 +487,6 @@ config:
       - 'findMissingStartingValue'
       - 'correctTotalAsBlankError'
       - 'balanceIndependentEquation'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

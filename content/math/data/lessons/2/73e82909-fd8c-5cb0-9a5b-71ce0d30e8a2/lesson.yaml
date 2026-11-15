@@ -525,9 +525,6 @@ config:
             - **Proposed Note:** “When we swap the factors, the product stays the same.” after this meaning has been explained (planned only).
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
     order: ['countTwelveDots', 'rotateArray', 'testSwappedFactors', 'applyTwoByFive']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

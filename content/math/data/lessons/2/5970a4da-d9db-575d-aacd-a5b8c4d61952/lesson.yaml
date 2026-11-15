@@ -473,9 +473,6 @@ config:
             - Notes: revisit three short Notes; no new one.
             - Dependencies: new transfer entry with separate state.
     order: ['modelTakingAway', 'compareToFindDifference', 'findMissingPart', 'compareSubtractionStories']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

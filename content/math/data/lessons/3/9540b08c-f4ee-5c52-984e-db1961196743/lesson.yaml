@@ -13,9 +13,6 @@ config:
   locale:
     title:
       en: 'Which Collection Has More?'
-  flashcards:
-    items: {}
-    order: []
   section:
     items:
       pairObjectsToCompare:

@@ -552,9 +552,6 @@ config:
       - 'exchangeHundredThenTen'
       - 'subtractAfterRegrouping'
       - 'applyRegroupingTo403'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-
