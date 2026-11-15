@@ -9,6 +9,7 @@ export const laborAndEmployment_SkillDomain_Data = defineSkillDomain({
   id: '4b9fa7b8-6993-4e94-8654-59396cae6193',
   title: {
     en: 'Праця та зайнятість',
+    it: 'Lavoro e occupazione',
     zh: '劳动与就业',
     hi: 'श्रम और रोज़गार',
     es: 'Trabajo y empleo',
@@ -48,6 +49,7 @@ export const laborAndEmployment_SkillDomain_Data = defineSkillDomain({
       'Labor markets connect working time, qualifications, pay, vacancies, and hiring rules. This domain distinguishes individual work decisions from aggregate unemployment.',
     frontend: {
       en: 'Explore how workers and employers make decisions about jobs, skills, and pay.',
+      it: 'Esplora come lavoratori e datori di lavoro prendono decisioni su impieghi, competenze e retribuzioni.',
       zh: '探索劳动者与雇主如何决定工作、技能和报酬。',
       hi: 'जानें कि श्रमिक और नियोक्ता नौकरी, कौशल और वेतन के बारे में कैसे निर्णय लेते हैं।',
       es: 'Explora cómo trabajadores y empleadores deciden sobre empleos, habilidades y salarios.',

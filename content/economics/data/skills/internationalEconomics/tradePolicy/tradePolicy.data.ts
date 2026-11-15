@@ -7,6 +7,7 @@ export const tradePolicy_SkillGroup_Data = defineSkillGroup({
   id: '7e77cd80-887c-42de-8d6b-e503613ded7b',
   name: {
     en: 'Торговельна політика',
+    it: 'Politica commerciale',
     zh: '贸易政策',
     hi: 'व्यापार नीति',
     es: 'Política comercial',
@@ -42,6 +43,7 @@ export const tradePolicy_SkillGroup_Data = defineSkillGroup({
       'Government barriers and agreements affect prices, competition, revenue, and the interests of different participants.',
     frontend: {
       en: 'Explore how trade rules change markets and prices.',
+      it: 'Esplora come le regole del commercio modificano mercati e prezzi.',
       zh: '探索贸易规则如何改变市场和价格。',
       hi: 'जानें कि व्यापार के नियम बाज़ार और कीमतों को कैसे बदलते हैं।',
       es: 'Explora cómo las normas comerciales modifican mercados y precios.',

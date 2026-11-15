@@ -5,6 +5,7 @@ export const occupationalMobility_Skill_Data = defineSkill({
   id: '05fa6064-a2fc-4434-94b7-17b87808ddf6',
   name: {
     en: 'Професійна мобільність',
+    it: 'Mobilità professionale',
     zh: '职业流动',
     hi: 'व्यावसायिक गतिशीलता',
     es: 'Movilidad ocupacional',
@@ -39,6 +40,7 @@ export const occupationalMobility_Skill_Data = defineSkill({
       'Evaluate benefits, costs, and qualification barriers when changing occupations, skill levels, or industries.',
     frontend: {
       en: 'Explore the costs and opportunities of changing careers.',
+      it: 'Esplora i costi e le opportunità di cambiare professione.',
       zh: '探索转行的成本与机会。',
       hi: 'पेशा बदलने की लागत और अवसर समझें।',
       es: 'Explora los costos y oportunidades de cambiar de profesión.',
