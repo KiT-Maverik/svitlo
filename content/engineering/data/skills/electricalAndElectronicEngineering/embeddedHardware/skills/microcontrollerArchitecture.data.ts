@@ -5,6 +5,7 @@ export const microcontrollerArchitecture_Skill_Data = defineSkill({
   id: '3b5e04c8-4b0d-47be-9001-26406e55b7c1',
   name: {
     en: 'Microcontroller architecture',
+    it: 'Architettura dei microcontrollori',
     zh: '微控制器架构',
     hi: 'माइक्रोकंट्रोलर संरचना',
     es: 'Arquitectura de microcontroladores',
@@ -38,6 +39,7 @@ export const microcontrollerArchitecture_Skill_Data = defineSkill({
     methodological: 'Identify processor, memory, supply and hardware interfaces in a dedicated controller.',
     frontend: {
       en: "Identify a microcontroller's processing, memory and peripheral hardware.",
+      it: 'Identifica i componenti hardware di elaborazione, memoria e periferiche di un microcontrollore.',
       zh: '识别微控制器中的处理器、存储器和外围硬件。',
       hi: 'माइक्रोकंट्रोलर में प्रोसेसर, मेमोरी और सहायक उपकरण पहचानें।',
       es: 'Identifica el procesador, la memoria y los periféricos de un microcontrolador.',
