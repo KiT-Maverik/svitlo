@@ -678,9 +678,6 @@ config:
         'detectOverlapReducesCoverage',
         'reconstructOriginalRectangle',
       ]
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

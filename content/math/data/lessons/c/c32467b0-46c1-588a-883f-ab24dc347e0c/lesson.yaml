@@ -561,9 +561,6 @@ config:
       - 'buildThreeOClock'
       - 'changeWholeHour'
       - 'readEightOClock'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

@@ -581,9 +581,6 @@ config:
       - 'findMissingPartFromWhole'
       - 'changeUnknownWithinPartition'
       - 'solveMissingPartTransfer'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

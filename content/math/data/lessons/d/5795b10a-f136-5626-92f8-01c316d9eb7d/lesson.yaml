@@ -632,9 +632,6 @@ config:
       - 'connectAdditionAndMultiplication'
       - 'distinguishEqualGroups'
       - 'representTwoGroupsOfFive'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

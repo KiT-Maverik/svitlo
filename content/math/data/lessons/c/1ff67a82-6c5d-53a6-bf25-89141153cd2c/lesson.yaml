@@ -553,9 +553,6 @@ config:
             3. **`text`, feedback:** If answer 9 only: “That is Theo's amount, but the question says _altogether_.” If 14+5=19: “Five is the **difference**, not Theo's count.” If 23: “Theo has nine, Mila has fourteen, and together they have twenty-three.” Allow a mathematical alternative plan only if both quantities and dependency can be explained consistently.
             4. **`markdown`:** “**Recall:** Identify the final unknown. Ask **what missing quantity must be found first?** Give that intermediate a name and unit, then use it in the second step.”
     order: ['findHiddenIntermediateTotal', 'planForCombinedStickers', 'orderDependentSteps', 'applyTwoStepPlanToShells']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

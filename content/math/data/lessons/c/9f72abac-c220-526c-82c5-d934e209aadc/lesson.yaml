@@ -642,9 +642,6 @@ config:
       - 'sumTableCategories'
       - 'compareCategoryCounts'
       - 'interpretNewTable'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

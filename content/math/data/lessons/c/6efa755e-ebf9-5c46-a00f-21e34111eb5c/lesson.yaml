@@ -380,9 +380,6 @@ config:
             - **Accessibility and RTL:** Read each payment piece, paid total, price, claimed return, and checked equality separately. Under RTL the mathematical addition/subtraction and money-unit interpretation remain unchanged. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
             - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Insufficient payment has a shortfall, not returned change; exact payment gives zero change.” is planned only, with no event or persistence.
     order: ['calculateChangeFromTenEuros', 'detectIncorrectChange', 'inspectReceiptAndPayment']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

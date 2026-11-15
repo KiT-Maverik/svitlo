@@ -581,9 +581,6 @@ config:
       - 'regroupThirteenOnes'
       - 'regroupFourteenTens'
       - 'addWithTwoRegroupings'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |
