@@ -12,6 +12,7 @@ export const robotSystems_SkillGroup_Data = defineSkillGroup({
   id: '40388970-e98e-43c1-8dcc-cc192a8546bd',
   name: {
     en: 'Robot Systems',
+    it: 'Sistemi robotici',
     zh: '机器人系统',
     hi: 'रोबोट प्रणालियाँ',
     es: 'Sistemas robóticos',
@@ -52,6 +53,7 @@ export const robotSystems_SkillGroup_Data = defineSkillGroup({
       'Robots combine mobile or articulated structure with localization, motion control, power and protection; not all robots operate autonomously.',
     frontend: {
       en: 'Learn to analyze a robot as connected physical subsystems.',
+      it: 'Impara ad analizzare un robot come un insieme di sottosistemi fisici collegati.',
       zh: '学习将机器人视为相互连接的物理子系统进行分析。',
       hi: 'रोबोट को जुड़े हुए भौतिक उपतंत्रों के रूप में विश्लेषित करना सीखें।',
       es: 'Aprende a analizar un robot como conjunto de subsistemas físicos conectados.',
