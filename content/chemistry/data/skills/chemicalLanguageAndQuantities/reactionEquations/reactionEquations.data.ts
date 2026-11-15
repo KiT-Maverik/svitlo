@@ -12,6 +12,7 @@ export const reactionEquations_SkillGroup_Data = defineSkillGroup({
   id: 'e833a8d3-d31e-4af3-9181-36ff9e6e4dd7',
   name: {
     en: 'Reaction Equations',
+    it: "Equazioni di reazione",
     zh: '化学反应方程式',
     hi: 'रासायनिक अभिक्रिया समीकरण',
     es: 'Ecuaciones de reacción',
@@ -55,6 +56,7 @@ export const reactionEquations_SkillGroup_Data = defineSkillGroup({
       'An equation records reactants, products and stoichiometric relationships but is not, by itself, a mechanism.',
     frontend: {
       en: 'Explore how equations represent chemical transformations and their proportions.',
+      it: "Esplora come le equazioni rappresentano le trasformazioni chimiche e i rapporti quantitativi.",
       zh: '探索方程式如何表示化学变化及物质之间的比例。',
       hi: 'जानें कि समीकरण रासायनिक परिवर्तन और पदार्थों का अनुपात कैसे दिखाते हैं।',
       es: 'Explora cómo las ecuaciones representan transformaciones químicas y sus proporciones.',

@@ -5,6 +5,7 @@ export const substitutionReactions_Skill_Data = defineSkill({
   id: '2a5c6f0f-5197-45de-b318-e45c8740b78c',
   name: {
     en: 'Substitution Reactions',
+    it: "Reazioni di sostituzione",
     zh: '取代反应',
     hi: 'प्रतिस्थापन अभिक्रियाएँ',
     es: 'Reacciones de sustitución',
@@ -38,6 +39,7 @@ export const substitutionReactions_Skill_Data = defineSkill({
     methodological: 'Recognize replacement of one atom or group while retaining much of a carbon skeleton.',
     frontend: {
       en: 'Recognize when an atom or group is replaced within an organic molecule.',
+      it: "Riconosci quando un atomo o un gruppo viene sostituito all'interno di una molecola organica.",
       zh: '识别有机分子中某个原子或基团被另一个取代的反应。',
       hi: 'ऐसी अभिक्रियाएँ पहचानें जिनमें कार्बनिक अणु का कोई परमाणु या समूह बदल दिया जाता है।',
       es: 'Reconoce cuándo se reemplaza un átomo o grupo dentro de una molécula orgánica.',

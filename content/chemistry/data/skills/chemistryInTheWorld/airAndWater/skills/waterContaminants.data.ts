@@ -5,6 +5,7 @@ export const waterContaminants_Skill_Data = defineSkill({
   id: '5d76deb2-0dd6-4756-a041-bc05e0b42e62',
   name: {
     en: 'Water Contaminants',
+    it: "Contaminanti dell'acqua",
     zh: '水中的污染物',
     hi: 'जल प्रदूषक',
     es: 'Contaminantes del agua',
@@ -39,6 +40,7 @@ export const waterContaminants_Skill_Data = defineSkill({
       'Classify dissolved and particulate contaminants by chemical identity and behavior without assuming visible clarity proves safety.',
     frontend: {
       en: 'Recognize different water contaminants without assuming clear water is safe.',
+      it: "Riconosci diversi contaminanti dell'acqua senza presumere che un'acqua limpida sia sicura.",
       zh: '识别不同的水污染物，不要把清澈的水误认为一定安全。',
       hi: 'पानी में अलग-अलग प्रदूषक पहचानें; साफ दिखने वाले पानी को ज़रूरी नहीं कि सुरक्षित मानें।',
       es: 'Reconoce distintos contaminantes del agua sin asumir que el agua transparente es segura.',

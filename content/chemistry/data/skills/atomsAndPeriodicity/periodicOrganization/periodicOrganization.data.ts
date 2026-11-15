@@ -12,6 +12,7 @@ export const periodicOrganization_SkillGroup_Data = defineSkillGroup({
   id: '361850a5-27c3-4f80-b35b-0491f0986100',
   name: {
     en: 'Periodic Organization',
+    it: "Organizzazione periodica",
     zh: '周期表的组织',
     hi: 'आवर्त व्यवस्था',
     es: 'Organización periódica',
@@ -55,6 +56,7 @@ export const periodicOrganization_SkillGroup_Data = defineSkillGroup({
       'The periodic table encodes repeating patterns in electron configurations and useful chemical categories.',
     frontend: {
       en: 'Discover how the periodic table organizes elements into useful patterns.',
+      it: "Scopri come la tavola periodica organizza gli elementi secondo regolarità utili.",
       zh: '了解元素周期表如何把元素排列成有用的规律。',
       hi: 'जानें कि आवर्त सारणी तत्वों को उपयोगी पैटर्न में कैसे व्यवस्थित करती है।',
       es: 'Descubre cómo la tabla periódica organiza los elementos en patrones útiles.',

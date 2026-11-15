@@ -5,6 +5,7 @@ export const spectroscopicEvidence_Skill_Data = defineSkill({
   id: 'a333c03f-a973-4f75-bb3e-34bf38289e86',
   name: {
     en: 'Spectroscopic Evidence',
+    it: "Prove spettroscopiche",
     zh: '光谱证据',
     hi: 'स्पेक्ट्रोस्कोपिक प्रमाण',
     es: 'Pruebas espectroscópicas',
@@ -39,6 +40,7 @@ export const spectroscopicEvidence_Skill_Data = defineSkill({
       'Interpret absorption, emission or related spectral patterns as information about chemical species, structure or concentration.',
     frontend: {
       en: 'Explore how spectra reveal clues about chemical identity, structure or amount.',
+      it: "Scopri come gli spettri forniscono indizi sull'identità, sulla struttura o sulla quantità di una sostanza.",
       zh: '探索光谱如何为物质的身份、结构或含量提供线索。',
       hi: 'जानें कि स्पेक्ट्रा पदार्थ की पहचान, संरचना या मात्रा के बारे में क्या बताते हैं।',
       es: 'Explora cómo los espectros ofrecen pistas sobre identidad, estructura o cantidad química.',

@@ -5,6 +5,7 @@ export const compositionOfAir_Skill_Data = defineSkill({
   id: '40e02913-6390-4c8a-9ccc-d78d825c3838',
   name: {
     en: 'Composition of Air',
+    it: "Composizione dell'aria",
     zh: '空气的组成',
     hi: 'वायु का संघटन',
     es: 'Composición del aire',
@@ -38,6 +39,7 @@ export const compositionOfAir_Skill_Data = defineSkill({
     methodological: 'Distinguish major atmospheric components from variable traces and pollutants.',
     frontend: {
       en: 'Recognize the major gases in air and distinguish them from trace pollutants.',
+      it: "Riconosci i gas principali dell'aria e distinguili dagli inquinanti presenti in tracce.",
       zh: '识别空气中的主要气体，并将其与微量污染物区分开。',
       hi: 'हवा की प्रमुख गैसों को पहचानें और उन्हें अल्प मात्रा के प्रदूषकों से अलग करें।',
       es: 'Reconoce los gases principales del aire y distínguelos de los contaminantes presentes en trazas.',

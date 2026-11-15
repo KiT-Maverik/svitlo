@@ -5,6 +5,7 @@ export const measuringMass_Skill_Data = defineSkill({
   id: '56a1465f-e0e1-4d6f-a256-aff755541fcf',
   name: {
     en: 'Measuring Mass',
+    it: "Misurare la massa",
     zh: '测量质量',
     hi: 'द्रव्यमान का मापन',
     es: 'Medición de la masa',
@@ -39,6 +40,7 @@ export const measuringMass_Skill_Data = defineSkill({
       'Determine and interpret the mass of a sample, including appropriate units and the effects of container mass.',
     frontend: {
       en: 'Measure the mass of a sample while accounting for its container and units.',
+      it: "Misura la massa di un campione tenendo conto del contenitore e delle unità di misura.",
       zh: '测量样品的质量，同时考虑容器的质量和计量单位。',
       hi: 'नमूने का द्रव्यमान मापते समय पात्र का द्रव्यमान और इकाइयाँ ध्यान में रखें।',
       es: 'Mide la masa de una muestra considerando el recipiente y las unidades.',

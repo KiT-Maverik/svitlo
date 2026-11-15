@@ -5,6 +5,7 @@ export const glass_Skill_Data = defineSkill({
   id: '33560118-d388-48a0-bb6a-48b5d795d95b',
   name: {
     en: 'Glass',
+    it: "Vetro",
     zh: '玻璃',
     hi: 'काँच',
     es: 'Vidrio',
@@ -39,6 +40,7 @@ export const glass_Skill_Data = defineSkill({
       'Explain the amorphous structure and glass-transition behavior of glass-forming materials, distinguishing them from ordinary crystalline solids.',
     frontend: {
       en: 'Discover why glass behaves differently from crystalline solids.',
+      it: "Scopri perché il vetro si comporta diversamente dai solidi cristallini.",
       zh: '了解为什么玻璃与晶体固体具有不同的性质。',
       hi: 'जानें कि काँच का व्यवहार क्रिस्टलीय ठोस पदार्थों से अलग क्यों होता है।',
       es: 'Descubre por qué el vidrio se comporta de forma distinta de los sólidos cristalinos.',

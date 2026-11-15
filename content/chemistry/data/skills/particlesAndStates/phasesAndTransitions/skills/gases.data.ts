@@ -5,6 +5,7 @@ export const gases_Skill_Data = defineSkill({
   id: 'c6eef246-9b3c-4564-888d-50c401fa0eec',
   name: {
     en: 'Gases',
+    it: "Gas",
     zh: '气体',
     hi: 'गैसें',
     es: 'Gases',
@@ -38,6 +39,7 @@ export const gases_Skill_Data = defineSkill({
     methodological: 'Relate compressibility and expansion to widely spaced particles and their motion.',
     frontend: {
       en: 'Explain why gases spread out and can be compressed.',
+      it: "Spiega perché i gas si espandono e possono essere compressi.",
       zh: '解释为什么气体会扩散并且可以被压缩。',
       hi: 'समझाएँ कि गैसें क्यों फैलती हैं और उन्हें दबाकर छोटा क्यों किया जा सकता है।',
       es: 'Explica por qué los gases se expanden y pueden comprimirse.',

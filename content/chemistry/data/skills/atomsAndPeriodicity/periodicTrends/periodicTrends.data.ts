@@ -12,6 +12,7 @@ export const periodicTrends_SkillGroup_Data = defineSkillGroup({
   id: '83b84a45-c52f-45b3-bec0-76dec24f3599',
   name: {
     en: 'Periodic Trends',
+    it: "Andamenti periodici",
     zh: '周期性趋势',
     hi: 'आवर्त प्रवृत्तियाँ',
     es: 'Tendencias periódicas',
@@ -55,6 +56,7 @@ export const periodicTrends_SkillGroup_Data = defineSkillGroup({
       'Atomic size and electrostatic attraction influence recurring patterns and their important exceptions.',
     frontend: {
       en: 'Explore trends in atomic size and attraction for electrons.',
+      it: "Esplora come variano le dimensioni atomiche e l'attrazione per gli elettroni.",
       zh: '探索原子大小和吸引电子能力随元素变化的趋势。',
       hi: 'परमाणु आकार और इलेक्ट्रॉनों के प्रति आकर्षण की आवर्त प्रवृत्तियाँ जानें।',
       es: 'Explora las tendencias del tamaño atómico y de la atracción por los electrones.',

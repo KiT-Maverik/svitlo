@@ -12,6 +12,7 @@ export const ionsInWater_SkillGroup_Data = defineSkillGroup({
   id: '4f090b84-9ff5-41b8-b812-495c5f0438be',
   name: {
     en: 'Ions in Water',
+    it: "Ioni in soluzione acquosa",
     zh: '水中的离子',
     hi: 'पानी में आयन',
     es: 'Iones en el agua',
@@ -55,6 +56,7 @@ export const ionsInWater_SkillGroup_Data = defineSkillGroup({
       'Water permits dissociation and characteristic aqueous reactions, but not every dissolved substance produces free ions.',
     frontend: {
       en: 'Learn how substances behave when dissolved in water.',
+      it: "Impara come si comportano le sostanze quando sono disciolte in acqua.",
       zh: '了解物质溶解于水后会如何表现。',
       hi: 'जानें कि पदार्थ पानी में घुलने पर किस तरह व्यवहार करते हैं।',
       es: 'Descubre cómo se comportan las sustancias cuando se disuelven en agua.',

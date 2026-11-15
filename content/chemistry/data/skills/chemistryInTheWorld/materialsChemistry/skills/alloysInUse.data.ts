@@ -5,6 +5,7 @@ export const alloysInUse_Skill_Data = defineSkill({
   id: '81b372e2-a6f7-4474-997b-f6c956d3b576',
   name: {
     en: 'Alloys in Use',
+    it: "Leghe nelle applicazioni",
     zh: '合金的应用',
     hi: 'उपयोगी मिश्रधातुएँ',
     es: 'Aleaciones en uso',
@@ -39,6 +40,7 @@ export const alloysInUse_Skill_Data = defineSkill({
       'Explain how composition and phase structure can change mechanical or corrosion properties relative to constituent metals.',
     frontend: {
       en: 'Learn why alloys can have different properties from the metals they contain.',
+      it: "Scopri perché le leghe possono avere proprietà diverse dai metalli che le compongono.",
       zh: '了解合金为什么可能具有不同于组成金属的性质。',
       hi: 'जानें कि मिश्रधातुओं के गुण उनमें मौजूद शुद्ध धातुओं से अलग क्यों हो सकते हैं।',
       es: 'Aprende por qué las aleaciones pueden tener propiedades diferentes de los metales que las forman.',

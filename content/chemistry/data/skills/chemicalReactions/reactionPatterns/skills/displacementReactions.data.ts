@@ -5,6 +5,7 @@ export const displacementReactions_Skill_Data = defineSkill({
   id: '6799e039-0352-446e-84b0-187f6b347e69',
   name: {
     en: 'Displacement Reactions',
+    it: "Reazioni di spostamento",
     zh: '置换反应',
     hi: 'विस्थापन अभिक्रियाएँ',
     es: 'Reacciones de desplazamiento',
@@ -38,6 +39,7 @@ export const displacementReactions_Skill_Data = defineSkill({
     methodological: 'Reason about when one element can replace another in a compound.',
     frontend: {
       en: 'Explore when one chemical element can replace another in a compound.',
+      it: "Esplora quando un elemento chimico può sostituirne un altro in un composto.",
       zh: '探索一种元素在何种条件下能取代化合物中的另一种元素。',
       hi: 'जानें कि एक तत्त्व किसी यौगिक में दूसरे तत्त्व को कब विस्थापित कर सकता है।',
       es: 'Explora cuándo un elemento químico puede sustituir a otro en un compuesto.',

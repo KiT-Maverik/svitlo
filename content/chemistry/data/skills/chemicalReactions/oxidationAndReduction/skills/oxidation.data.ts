@@ -5,6 +5,7 @@ export const oxidation_Skill_Data = defineSkill({
   id: 'd48e61de-49bb-45ca-8880-b2c9c58f3543',
   name: {
     en: 'Oxidation',
+    it: "Ossidazione",
     zh: '氧化',
     hi: 'ऑक्सीकरण',
     es: 'Oxidación',
@@ -39,6 +40,7 @@ export const oxidation_Skill_Data = defineSkill({
       'Identify increases in formal oxidation state or electron loss in appropriate reaction descriptions.',
     frontend: {
       en: 'Identify oxidation through electron loss or an increase in oxidation state.',
+      it: "Identifica l'ossidazione attraverso la perdita di elettroni o l'aumento del numero di ossidazione.",
       zh: '通过失去电子或氧化态升高识别氧化过程。',
       hi: 'इलेक्ट्रॉन खोने या ऑक्सीकरण अवस्था बढ़ने से ऑक्सीकरण पहचानें।',
       es: 'Identifica la oxidación por pérdida de electrones o aumento del número de oxidación.',

@@ -7,6 +7,7 @@ export const acidBaseFundamentals_SkillGroup_Data = defineSkillGroup({
   id: '375c4757-1f94-4267-a037-d93385e3c3cd',
   name: {
     en: 'Acid–Base Fundamentals',
+    it: "Fondamenti di chimica acido-base",
     zh: '酸碱基础',
     hi: 'अम्ल–क्षार की मूल बातें',
     es: 'Fundamentos ácido-base',
@@ -49,6 +50,7 @@ export const acidBaseFundamentals_SkillGroup_Data = defineSkillGroup({
       'Conceptual acid–base models establish what counts as an acid or base, while strength and pH describe different aspects of chemical behavior and solution conditions.',
     frontend: {
       en: 'Understand different acid–base models, acidity, and acid strength.',
+      it: "Comprendi i diversi modelli acido-base, l'acidità e la forza degli acidi.",
       zh: '理解不同的酸碱理论、酸度与酸的强弱。',
       hi: 'अलग-अलग अम्ल–क्षार मॉडल, अम्लता और अम्ल की प्रबलता समझें।',
       es: 'Comprende los modelos ácido-base, la acidez y la fuerza de los ácidos.',

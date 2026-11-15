@@ -5,6 +5,7 @@ export const organicNomenclature_Skill_Data = defineSkill({
   id: 'ab7d1e18-faa5-45e4-ab25-f1e0b8830726',
   name: {
     en: 'Organic Nomenclature',
+    it: "Nomenclatura organica",
     zh: '有机物命名法',
     hi: 'कार्बनिक नामकरण',
     es: 'Nomenclatura orgánica',
@@ -39,6 +40,7 @@ export const organicNomenclature_Skill_Data = defineSkill({
       'Use parent structures, locants and functional groups to relate organic compound names to their molecular connectivity.',
     frontend: {
       en: 'Connect systematic names of organic compounds with their molecular structures.',
+      it: "Collega i nomi sistematici dei composti organici alle loro strutture molecolari.",
       zh: '联系有机物的系统名称与其分子结构。',
       hi: 'कार्बनिक यौगिकों के व्यवस्थित नामों को उनकी आणविक संरचना से जोड़ें।',
       es: 'Relaciona los nombres sistemáticos de compuestos orgánicos con sus estructuras.',

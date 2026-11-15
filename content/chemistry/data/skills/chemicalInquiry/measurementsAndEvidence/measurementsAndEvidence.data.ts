@@ -13,6 +13,7 @@ export const measurementsAndEvidence_SkillGroup_Data = defineSkillGroup({
   id: '3a4b2020-e385-431c-9120-e577693bc73b',
   name: {
     en: 'Measurements and Evidence',
+    it: "Misurazioni e prove",
     zh: '测量与证据',
     hi: 'मापन और प्रमाण',
     es: 'Mediciones y evidencias',
@@ -63,6 +64,7 @@ export const measurementsAndEvidence_SkillGroup_Data = defineSkillGroup({
       'Chemical conclusions depend on measured quantities, recorded conditions and the distinction between observed patterns and explanatory claims.',
     frontend: {
       en: 'Explore how measurements and careful observation support chemical explanations.',
+      it: "Scopri come misurazioni e osservazioni accurate sostengono le spiegazioni chimiche.",
       zh: '探索测量和细致观察如何支持化学解释。',
       hi: 'जानें कि मापन और सावधानीपूर्वक अवलोकन रासायनिक व्याख्याओं का आधार कैसे बनते हैं।',
       es: 'Explora cómo las mediciones y la observación cuidadosa respaldan las explicaciones químicas.',

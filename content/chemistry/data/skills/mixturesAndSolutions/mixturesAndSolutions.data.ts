@@ -10,6 +10,7 @@ export const mixturesAndSolutions_SkillDomain_Data = defineSkillDomain({
   id: '56676d37-6762-4935-8ad3-a5557de3cd5d',
   title: {
     en: 'Mixtures and Solutions',
+    it: "Miscele e soluzioni",
     zh: '混合物与溶液',
     hi: 'मिश्रण और विलयन',
     es: 'Mezclas y disoluciones',
@@ -53,6 +54,7 @@ export const mixturesAndSolutions_SkillDomain_Data = defineSkillDomain({
       'Components of mixtures retain their chemical identities while distribution, solubility and relative amounts determine useful properties. Separation methods exploit differences in physical behavior rather than requiring reaction.',
     frontend: {
       en: 'Explore how substances combine in mixtures, dissolve and can be separated again.',
+      it: "Esplora come le sostanze si combinano nelle miscele, si dissolvono e possono essere separate.",
       zh: '探索物质如何混合、溶解，以及怎样再次分离。',
       hi: 'जानें कि पदार्थ मिश्रण कैसे बनाते हैं, कैसे घुलते हैं और फिर अलग कैसे किए जा सकते हैं।',
       es: 'Explora cómo se combinan las sustancias en mezclas, se disuelven y pueden volver a separarse.',

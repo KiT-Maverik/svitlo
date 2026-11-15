@@ -5,6 +5,7 @@ export const inorganicNomenclature_Skill_Data = defineSkill({
   id: '3090120f-03c4-49ad-9a8d-2c81312c69d7',
   name: {
     en: 'Inorganic Nomenclature',
+    it: "Nomenclatura inorganica",
     zh: '无机物命名法',
     hi: 'अकार्बनिक नामकरण',
     es: 'Nomenclatura inorgánica',
@@ -39,6 +40,7 @@ export const inorganicNomenclature_Skill_Data = defineSkill({
       'Apply systematic naming conventions to inorganic compounds, considering ionic or covalent composition and oxidation states where relevant.',
     frontend: {
       en: 'Use naming rules to identify inorganic compounds.',
+      it: "Usa le regole di nomenclatura per identificare i composti inorganici.",
       zh: '运用命名规则识别无机化合物。',
       hi: 'अकार्बनिक यौगिकों को पहचानने के लिए नामकरण के नियम अपनाएँ।',
       es: 'Aplica las reglas de nomenclatura para identificar compuestos inorgánicos.',

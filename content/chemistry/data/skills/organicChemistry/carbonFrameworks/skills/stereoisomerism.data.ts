@@ -5,6 +5,7 @@ export const stereoisomerism_Skill_Data = defineSkill({
   id: '4cc113ad-6174-4587-be76-8b18b75fc015',
   name: {
     en: 'Stereoisomerism',
+    it: "Stereoisomeria",
     zh: '立体异构',
     hi: 'त्रिविम समावयवता',
     es: 'Estereoisomería',
@@ -38,6 +39,7 @@ export const stereoisomerism_Skill_Data = defineSkill({
     methodological: 'Interpret three-dimensional arrangements that differ without changing atom connectivity.',
     frontend: {
       en: 'Explore how molecules can differ in their three-dimensional arrangement.',
+      it: "Esplora come le molecole possono differire nella disposizione tridimensionale degli atomi.",
       zh: '探索分子如何因三维空间排列不同而产生差异。',
       hi: 'जानें कि अणु अपनी त्रि-आयामी व्यवस्था में कैसे अलग हो सकते हैं।',
       es: 'Explora cómo las moléculas pueden diferir en su disposición tridimensional.',

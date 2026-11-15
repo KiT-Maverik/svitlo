@@ -14,6 +14,7 @@ export const analyticalChemistry_SkillGroup_Data = defineSkillGroup({
   id: '4dc9f8b6-b57e-4b0a-a105-5daa64c11978',
   name: {
     en: 'Analytical Chemistry',
+    it: "Chimica analitica",
     zh: '分析化学',
     hi: 'विश्लेषणात्मक रसायन विज्ञान',
     es: 'Química analítica',
@@ -66,6 +67,7 @@ export const analyticalChemistry_SkillGroup_Data = defineSkillGroup({
       'Analytical chemistry identifies particular components in samples and determines their amounts. Sample treatment, chemical selectivity and calibration govern whether signals justify a conclusion; general observation and bulk property comparison are distinct competencies.',
     frontend: {
       en: 'Discover how chemists identify substances and measure their amounts in samples.',
+      it: "Scopri come i chimici identificano le sostanze e ne misurano le quantità nei campioni.",
       zh: '了解化学家如何鉴别样品中的物质并测定其含量。',
       hi: 'जानें कि रसायनज्ञ नमूनों में पदार्थों की पहचान और उनकी मात्रा का मापन कैसे करते हैं।',
       es: 'Descubre cómo los químicos identifican sustancias y miden sus cantidades en las muestras.',

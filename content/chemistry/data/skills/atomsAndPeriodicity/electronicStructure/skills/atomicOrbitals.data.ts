@@ -5,6 +5,7 @@ export const atomicOrbitals_Skill_Data = defineSkill({
   id: 'a7fba6f5-cb28-48e2-8c4d-70535c1b45e5',
   name: {
     en: 'Atomic Orbitals',
+    it: "Orbitali atomici",
     zh: '原子轨道',
     hi: 'परमाणु कक्षक',
     es: 'Orbitales atómicos',
@@ -39,6 +40,7 @@ export const atomicOrbitals_Skill_Data = defineSkill({
       'Interpret orbitals as probability-based descriptions of electron states and their occupancy rather than fixed electron trajectories.',
     frontend: {
       en: 'Understand atomic orbitals as regions described by electron probabilities.',
+      it: "Comprendi gli orbitali come regioni descritte dalla probabilità di trovare un elettrone.",
       zh: '理解原子轨道是由电子出现概率描述的空间区域。',
       hi: 'परमाणु कक्षकों को इलेक्ट्रॉन के मिलने की प्रायिकता से बताए गए क्षेत्र के रूप में समझें।',
       es: 'Comprende los orbitales como regiones descritas por la probabilidad de encontrar electrones.',

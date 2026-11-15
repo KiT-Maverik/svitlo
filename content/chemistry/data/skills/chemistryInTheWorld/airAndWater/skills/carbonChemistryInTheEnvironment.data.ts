@@ -5,6 +5,7 @@ export const carbonChemistryInTheEnvironment_Skill_Data = defineSkill({
   id: 'd5092e09-2f6e-4dc1-8db1-902358b82f9a',
   name: {
     en: 'Carbon Chemistry in the Environment',
+    it: "Chimica del carbonio nell'ambiente",
     zh: '环境中的碳化学',
     hi: 'पर्यावरण में कार्बन का रसायन',
     es: 'Química del carbono en el ambiente',
@@ -39,6 +40,7 @@ export const carbonChemistryInTheEnvironment_Skill_Data = defineSkill({
       'Track carbon among carbon dioxide, dissolved carbonate species and organic matter without conflating chemistry with whole-ecosystem modeling.',
     frontend: {
       en: 'Track carbon through carbon dioxide, dissolved carbon compounds and organic material.',
+      it: "Segui il carbonio attraverso anidride carbonica, composti disciolti e materia organica.",
       zh: '追踪二氧化碳、溶解的碳化合物和有机物之间的碳。',
       hi: 'कार्बन डाइऑक्साइड, घुले कार्बन यौगिकों और जैविक पदार्थ में कार्बन का मार्ग खोजें।',
       es: 'Sigue el carbono por el dióxido de carbono, los compuestos de carbono disueltos y la materia orgánica.',

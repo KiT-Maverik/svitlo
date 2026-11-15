@@ -5,6 +5,7 @@ export const waterAsASolvent_Skill_Data = defineSkill({
   id: '47de99fd-4ce3-4a39-8111-bc8a76e61ad9',
   name: {
     en: 'Water as a Solvent',
+    it: "L'acqua come solvente",
     zh: '作为溶剂的水',
     hi: 'विलायक के रूप में जल',
     es: 'El agua como disolvente',
@@ -38,6 +39,7 @@ export const waterAsASolvent_Skill_Data = defineSkill({
     methodological: "Explain polarity and hydrogen bonding behind water's distinctive solvent behavior.",
     frontend: {
       en: 'Explore why water dissolves many substances through its molecular interactions.',
+      it: "Esplora perché l'acqua scioglie molte sostanze grazie alle sue interazioni molecolari.",
       zh: '探索分子间相互作用为何使水能溶解许多物质。',
       hi: 'जानें कि अणुओं के परस्पर आकर्षण से पानी अनेक पदार्थों को क्यों घोल सकता है।',
       es: 'Explora por qué el agua disuelve muchas sustancias gracias a sus interacciones moleculares.',

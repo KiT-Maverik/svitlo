@@ -5,6 +5,7 @@ export const gasPressure_Skill_Data = defineSkill({
   id: '99f77a15-ddab-44cf-96a6-37993c347df4',
   name: {
     en: 'Gas Pressure',
+    it: "Pressione dei gas",
     zh: '气体压强',
     hi: 'गैस का दाब',
     es: 'Presión de los gases',
@@ -38,6 +39,7 @@ export const gasPressure_Skill_Data = defineSkill({
     methodological: 'Relate collisions of gas particles with surfaces to measured pressure and changes in conditions.',
     frontend: {
       en: 'See how collisions with surfaces create pressure in a gas.',
+      it: "Scopri come gli urti delle particelle sulle superfici producono la pressione di un gas.",
       zh: '了解气体粒子与表面碰撞如何产生压强。',
       hi: 'जानें कि सतहों से टकराने वाले गैस के कण दाब कैसे पैदा करते हैं।',
       es: 'Descubre cómo los choques de partículas contra superficies producen presión en un gas.',

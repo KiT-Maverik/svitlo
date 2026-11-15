@@ -5,6 +5,7 @@ export const galvanicCells_Skill_Data = defineSkill({
   id: '46fdf50f-aa72-4cfc-a6a9-4e6ab8f17819',
   name: {
     en: 'Galvanic Cells',
+    it: "Pile galvaniche",
     zh: '原电池',
     hi: 'गैल्वैनिक सेल',
     es: 'Pilas galvánicas',
@@ -39,6 +40,7 @@ export const galvanicCells_Skill_Data = defineSkill({
       'Explain how spontaneous, spatially separated oxidation and reduction reactions deliver electrical work through an external circuit while charge also flows through the electrolyte.',
     frontend: {
       en: 'See how separated redox reactions can generate electrical energy in a cell.',
+      it: "Scopri come reazioni redox separate possono produrre energia elettrica in una pila.",
       zh: '了解分开的氧化还原反应如何在电池中产生电能。',
       hi: 'जानें कि अलग-अलग रेडॉक्स अभिक्रियाएँ सेल में बिजली कैसे पैदा करती हैं।',
       es: 'Descubre cómo reacciones redox separadas generan energía eléctrica en una celda.',

@@ -12,6 +12,7 @@ export const chemicalBonds_SkillGroup_Data = defineSkillGroup({
   id: '72253b70-fba9-4ed0-9b07-f715e467d662',
   name: {
     en: 'Chemical Bonds',
+    it: "Legami chimici",
     zh: '化学键',
     hi: 'रासायनिक बंध',
     es: 'Enlaces químicos',
@@ -55,6 +56,7 @@ export const chemicalBonds_SkillGroup_Data = defineSkillGroup({
       'Different electron distributions support different limiting models of chemical bonding; real substances can have mixed characteristics.',
     frontend: {
       en: 'Explore how atoms and ions form chemical bonds with different electron arrangements.',
+      it: "Esplora come atomi e ioni formano legami chimici con differenti disposizioni elettroniche.",
       zh: '探索原子和离子如何通过不同的电子排布形成化学键。',
       hi: 'जानें कि परमाणु और आयन इलेक्ट्रॉनों की अलग व्यवस्थाओं से बंध कैसे बनाते हैं।',
       es: 'Explora cómo átomos e iones forman enlaces químicos con distintas distribuciones de electrones.',
