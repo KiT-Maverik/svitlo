@@ -33,7 +33,6 @@ import {
   carousel_Slide_Props_Schema,
 } from './defineCarousel.schemas';
 type Slide = ContentBlock_Carousel_SlideConfigurator;
-type SlideResource = ReturnType<Slide['build']['props']>;
 type SlidePatch = ReturnType<Slide['build']['overrides']>;
 type CarouselLocaleBody = { locale: DeepPartial<ContentBlock_Carousel_Locale<'props'>> };
 type CarouselLocaleFiles = Partial<Record<LanguageCode, CarouselLocaleBody>>;
