@@ -5,6 +5,7 @@ export const presentBias_Skill_Data = defineSkill({
   id: '5cca8b25-71a7-482a-9085-389907ad7779',
   name: {
     en: 'Present Bias',
+    it: 'Preferenza per il presente',
     zh: '当下偏误',
     hi: 'वर्तमान पक्षपात',
     es: 'Sesgo del presente',
@@ -38,6 +39,7 @@ export const presentBias_Skill_Data = defineSkill({
     methodological: 'Recognize systematic overvaluation of immediate benefits relative to delayed consequences.',
     frontend: {
       en: 'Understand why immediate rewards may outweigh better future outcomes in our decisions.',
+      it: 'Comprendi perché nelle nostre decisioni le ricompense immediate possono prevalere su risultati futuri migliori.',
       zh: '理解为什么眼前的奖励可能压过更好的未来结果。',
       hi: 'समझें कि तुरंत मिलने वाला पुरस्कार बेहतर भविष्य के लाभ पर क्यों भारी पड़ सकता है।',
       es: 'Comprende por qué una recompensa inmediata puede pesar más que un mejor resultado futuro.',

@@ -12,6 +12,7 @@ export const behavioralFactorsInChoice_SkillGroup_Data = defineSkillGroup({
   id: '9e4fdbbd-1167-4ab8-9c11-7bec96652f08',
   name: {
     en: 'Behavioral Factors in Choice',
+    it: 'Fattori comportamentali nelle scelte',
     zh: '选择中的行为因素',
     hi: 'चुनाव में व्यवहार संबंधी कारक',
     es: 'Factores conductuales de elección',
@@ -52,6 +53,7 @@ export const behavioralFactorsInChoice_SkillGroup_Data = defineSkillGroup({
       'Limited attention and rationality, time preferences, presentation formats, and defaults can alter economic choices even when the formal options are unchanged.',
     frontend: {
       en: 'Discover how the way choices are presented influences decisions.',
+      it: 'Scopri come il modo in cui vengono presentate le opzioni influenza le decisioni.',
       zh: '了解选项的呈现方式如何影响决策。',
       hi: 'जानें कि विकल्प प्रस्तुत करने का तरीका निर्णयों को कैसे प्रभावित करता है।',
       es: 'Descubre cómo la presentación de alternativas influye en las decisiones.',

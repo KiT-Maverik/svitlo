@@ -11,6 +11,7 @@ export const urbanAndRegionalEconomics_SkillGroup_Data = defineSkillGroup({
   id: '0b441c9b-b15b-4876-97f8-1b2ae64c9c5d',
   name: {
     en: 'Міста та регіони',
+    it: 'Economia urbana e regionale',
     zh: '城市与区域经济学',
     hi: 'शहरी और क्षेत्रीय अर्थशास्त्र',
     es: 'Economía urbana y regional',
@@ -46,6 +47,7 @@ export const urbanAndRegionalEconomics_SkillGroup_Data = defineSkillGroup({
       'Concentrations of people and firms yield benefits from proximity, infrastructure constraints, and regional specialization.',
     frontend: {
       en: 'Discover why cities and regions develop different economic strengths.',
+      it: 'Scopri perché città e regioni sviluppano punti di forza economici differenti.',
       zh: '探索城市与区域为什么会形成不同的经济优势。',
       hi: 'जानें कि शहरों और क्षेत्रों की आर्थिक ताकतें अलग-अलग क्यों विकसित होती हैं।',
       es: 'Descubre por qué las ciudades y regiones desarrollan distintas fortalezas económicas.',

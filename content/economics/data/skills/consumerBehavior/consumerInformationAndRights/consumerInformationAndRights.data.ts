@@ -12,6 +12,7 @@ export const consumerInformationAndRights_SkillGroup_Data = defineSkillGroup({
   id: '1a00f55f-eadd-4f85-aaf7-9922b973cf2a',
   name: {
     en: 'Consumer Information and Rights',
+    it: 'Informazioni e diritti dei consumatori',
     zh: '消费者信息与权利',
     hi: 'उपभोक्ता जानकारी और अधिकार',
     es: 'Información y derechos del consumidor',
@@ -52,6 +53,7 @@ export const consumerInformationAndRights_SkillGroup_Data = defineSkillGroup({
       'Sound consumer decisions depend not only on price but also on product information, contract terms, and possible protections.',
     frontend: {
       en: 'Learn how information and consumer rights affect purchase decisions.',
+      it: 'Scopri come le informazioni e i diritti dei consumatori influiscono sulle decisioni di acquisto.',
       zh: '了解信息和消费者权利如何影响购买决策。',
       hi: 'जानें कि सूचना और उपभोक्ता अधिकार खरीद के निर्णयों को कैसे प्रभावित करते हैं।',
       es: 'Aprende cómo la información y los derechos afectan las decisiones de compra.',
