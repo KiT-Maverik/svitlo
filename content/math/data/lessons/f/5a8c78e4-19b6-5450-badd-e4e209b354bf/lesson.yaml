@@ -13,9 +13,6 @@ config:
   locale:
     title:
       en: 'Which One Is Third? Position Depends on the Start'
-  flashcards:
-    items: {}
-    order: []
   section:
     items:
       countFromStartMarker:

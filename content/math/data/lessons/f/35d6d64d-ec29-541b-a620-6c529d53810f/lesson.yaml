@@ -495,9 +495,6 @@ config:
         'rejectStrictSignForEqualValues',
         'verifyIndependentComparisons',
       ]
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

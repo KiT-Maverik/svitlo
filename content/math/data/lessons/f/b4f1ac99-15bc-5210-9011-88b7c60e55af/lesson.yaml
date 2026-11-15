@@ -521,9 +521,6 @@ config:
             - **Planned Note:** A positive number divided by itself gives one in each group., only after complete evidence and explanation, not a score or wired event.
             - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
     order: ['divideIntoOneGroup', 'shareOnePerGroup', 'compareDivisorsOneAndSix', 'testNineAndZero']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

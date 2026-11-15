@@ -13,9 +13,6 @@ config:
   locale:
     title:
       en: 'How Many Units Long?'
-  flashcards:
-    items: {}
-    order: []
   section:
     items:
       preventGapsAndOverlaps:

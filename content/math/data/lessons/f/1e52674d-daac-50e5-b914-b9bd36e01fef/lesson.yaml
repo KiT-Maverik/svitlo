@@ -13,9 +13,6 @@ config:
   locale:
     title:
       en: 'Recognize Solids by Their Surfaces'
-  flashcards:
-    items: {}
-    order: []
   section:
     items:
       distinguishFlatAndSolid:
