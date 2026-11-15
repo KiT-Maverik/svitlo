@@ -5,6 +5,7 @@ export const composeAMelody_Skill_Data = defineSkill({
   id: '273df4f9-fd48-47e3-a234-a55a5c64386a',
   name: {
     en: 'Compose a Melody',
+    it: 'Comporre una melodia',
     zh: '创作旋律',
     hi: 'धुन की रचना करें',
     es: 'Componer una melodía',
@@ -38,6 +39,7 @@ export const composeAMelody_Skill_Data = defineSkill({
     methodological: 'Arrange pitch and duration into an intentional and recognizable musical idea.',
     frontend: {
       en: 'Make a tune by choosing how notes and rhythms fit together.',
+      it: 'Crea una melodia scegliendo come combinare note e ritmi.',
       zh: '通过组合音符和节奏创作一段曲调。',
       hi: 'स्वरों और लयों को मिलाकर एक धुन बनाएँ।',
       es: 'Crea una melodía combinando notas y ritmos.',
