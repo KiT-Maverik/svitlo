@@ -5,6 +5,7 @@ export const analyzeAStreetscape_Skill_Data = defineSkill({
   id: '1451cc79-a9d9-4abe-9764-20217fb13a9d',
   name: {
     en: 'Analyze a Streetscape',
+    it: "Analizzare il paesaggio stradale",
     zh: '分析街道景观',
     hi: 'सड़क के दृश्य का विश्लेषण करें',
     es: 'Analizar un paisaje urbano de calle',
@@ -38,6 +39,7 @@ export const analyzeAStreetscape_Skill_Data = defineSkill({
     methodological: 'Explain how paths, buildings and edges shape the appearance of a street.',
     frontend: {
       en: 'Examine how buildings, paths and edges make a street feel distinctive.',
+      it: "Esamina come edifici, percorsi e margini conferiscono a una strada un carattere distintivo.",
       zh: '观察建筑、道路和边界如何赋予街道独特的氛围。',
       hi: 'देखें कि इमारतें, रास्ते और किनारे किसी सड़क को विशिष्ट एहसास कैसे देते हैं।',
       es: 'Examina cómo los edificios, los recorridos y los bordes dan una identidad propia a una calle.',
