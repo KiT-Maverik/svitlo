@@ -10,6 +10,7 @@ export const chemistryInTheWorld_SkillDomain_Data = defineSkillDomain({
   id: 'fceb8307-d2a3-4c45-b3d5-dd51f4d31bad',
   title: {
     en: 'Chemistry in the World',
+    it: "La chimica nel mondo",
     zh: '生活中的化学',
     hi: 'हमारी दुनिया में रसायन',
     es: 'La química en el mundo',
@@ -50,6 +51,7 @@ export const chemistryInTheWorld_SkillDomain_Data = defineSkillDomain({
       'Chemical concepts support understanding of manufactured materials, environmental systems and molecules associated with life. The emphasis is composition, transformation and evidence—not industrial process engineering, clinical advice or organism-level biology.',
     frontend: {
       en: 'Discover how chemistry explains everyday materials, the environment and molecules of life.',
+      it: "Scopri come la chimica spiega i materiali quotidiani, l'ambiente e le molecole della vita.",
       zh: '了解化学如何解释日常材料、环境和生命分子。',
       hi: 'जानें कि रसायन विज्ञान रोज़मर्रा के पदार्थों, पर्यावरण और जीवन के अणुओं की व्याख्या कैसे करता है।',
       es: 'Descubre cómo la química explica materiales cotidianos, el entorno y las moléculas de la vida.',

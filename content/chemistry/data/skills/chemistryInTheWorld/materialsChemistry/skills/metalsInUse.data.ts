@@ -5,6 +5,7 @@ export const metalsInUse_Skill_Data = defineSkill({
   id: '78e26042-8487-4c5f-a46e-085f6bbe62f3',
   name: {
     en: 'Metals in Use',
+    it: "Metalli nelle applicazioni",
     zh: '金属的应用',
     hi: 'उपयोग में धातुएँ',
     es: 'Metales en uso',
@@ -39,6 +40,7 @@ export const metalsInUse_Skill_Data = defineSkill({
       'Relate elemental metallic structure and processing to characteristic conductivity, deformation and corrosion.',
     frontend: {
       en: 'Connect the structure and processing of metals with their everyday behavior.',
+      it: "Collega la struttura e la lavorazione dei metalli al loro comportamento nell'uso quotidiano.",
       zh: '联系金属的结构和加工方式与日常使用中的性质。',
       hi: 'धातुओं की संरचना और प्रसंस्करण को उनके रोज़मर्रा के गुणों से जोड़ें।',
       es: 'Relaciona la estructura y el procesamiento de los metales con su comportamiento cotidiano.',
