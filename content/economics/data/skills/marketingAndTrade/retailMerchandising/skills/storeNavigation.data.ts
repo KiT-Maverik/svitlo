@@ -5,6 +5,7 @@ export const storeNavigation_Skill_Data = defineSkill({
   id: '0082aeea-ed13-40ba-877c-5a74362d942e',
   name: {
     en: 'Торговельна навігація',
+    it: "Orientamento all'interno del negozio",
     zh: '店内导览',
     hi: 'दुकान में रास्ता ढूँढ़ना',
     es: 'Orientación en la tienda',
@@ -38,6 +39,7 @@ export const storeNavigation_Skill_Data = defineSkill({
     methodological: "Assess how zones, signs, and shopper routes affect people's ability to find products.",
     frontend: {
       en: 'See how signs and layouts help or hinder shopping.',
+      it: 'Scopri come cartelli e disposizione degli spazi agevolano o ostacolano gli acquisti.',
       zh: '了解标识与布局如何便利或妨碍购物。',
       hi: 'देखें कि संकेत और दुकान की बनावट खरीदारी में मदद या बाधा कैसे बनते हैं।',
       es: 'Observa cómo los carteles y la distribución facilitan o dificultan las compras.',

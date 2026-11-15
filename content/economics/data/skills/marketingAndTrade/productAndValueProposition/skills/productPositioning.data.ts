@@ -5,6 +5,7 @@ export const productPositioning_Skill_Data = defineSkill({
   id: '00d5464c-daf6-4787-9595-684fbc358bff',
   name: {
     en: 'Позиціонування продукту',
+    it: 'Posizionamento del prodotto',
     zh: '产品定位',
     hi: 'उत्पाद की बाज़ार में स्थिति',
     es: 'Posicionamiento del producto',
@@ -38,6 +39,7 @@ export const productPositioning_Skill_Data = defineSkill({
     methodological: 'Show how an offering differs from competing alternatives for a specific customer group.',
     frontend: {
       en: 'Explain how a product stands out for a particular audience.',
+      it: 'Spiega come un prodotto si distingue per un determinato pubblico.',
       zh: '解释产品如何在特定受众面前脱颖而出。',
       hi: 'समझाएँ कि कोई उत्पाद विशेष ग्राहकों के लिए अलग कैसे दिखता है।',
       es: 'Explica cómo destaca un producto ante un público específico.',

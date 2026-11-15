@@ -5,6 +5,7 @@ export const productDisplay_Skill_Data = defineSkill({
   id: 'b95fd4e0-509b-4006-9699-81c686c265a6',
   name: {
     en: 'Викладка товарів',
+    it: 'Esposizione dei prodotti',
     zh: '商品陈列',
     hi: 'उत्पाद प्रदर्शन',
     es: 'Exhibición de productos',
@@ -39,6 +40,7 @@ export const productDisplay_Skill_Data = defineSkill({
       'Analyze how shelf position affects product visibility and accessibility without assuming a universally best shelf.',
     frontend: {
       en: "Explore how a product's position in a store affects what shoppers notice.",
+      it: 'Esplora come la posizione di un prodotto nel negozio influenza ciò che i clienti notano.',
       zh: '探索商品在店内的位置如何影响顾客注意力。',
       hi: 'जानें कि दुकान में उत्पाद का स्थान खरीदारों का ध्यान कैसे प्रभावित करता है।',
       es: 'Explora cómo la ubicación de un producto influye en lo que ven los compradores.',

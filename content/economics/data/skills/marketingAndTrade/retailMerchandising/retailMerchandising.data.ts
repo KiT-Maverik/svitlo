@@ -12,6 +12,7 @@ export const retailMerchandising_SkillGroup_Data = defineSkillGroup({
   id: 'b1f308b8-3a29-4230-acd4-881d99b208df',
   name: {
     en: 'Мерчандайзинг і роздріб',
+    it: 'Merchandising e vendita al dettaglio',
     zh: '零售陈列与商品管理',
     hi: 'खुदरा दुकान की उत्पाद प्रस्तुति',
     es: 'Presentación de productos en tiendas',
@@ -52,6 +53,7 @@ export const retailMerchandising_SkillGroup_Data = defineSkillGroup({
       'Product placement, availability, presentation, and logistics affect how easily customers find and buy goods.',
     frontend: {
       en: 'Explore how store layout and product displays shape shopping.',
+      it: "Esplora come la disposizione di un negozio e l'esposizione dei prodotti influenzano gli acquisti.",
       zh: '探索商店布局和产品陈列如何影响购物。',
       hi: 'जानें कि दुकान की बनावट और उत्पादों की सजावट खरीदारी को कैसे प्रभावित करती है।',
       es: 'Explora cómo el diseño de las tiendas y la exposición de productos afectan las compras.',
