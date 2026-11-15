@@ -5,6 +5,7 @@ export const thermalPowerStations_Skill_Data = defineSkill({
   id: 'e3723d07-d449-4dcf-9a6d-7b52c85021fe',
   name: {
     en: 'Thermal power stations',
+    it: 'Centrali termoelettriche',
     zh: '火力发电站',
     hi: 'तापीय विद्युत केंद्र',
     es: 'Centrales térmicas',
@@ -38,6 +39,7 @@ export const thermalPowerStations_Skill_Data = defineSkill({
     methodological: 'Trace a heat source and working process to a generator rather than assuming a single fuel.',
     frontend: {
       en: 'Explore how thermal power plants convert heat into electrical output.',
+      it: 'Esplora come le centrali termoelettriche convertono il calore in energia elettrica.',
       zh: '探索热电厂如何将热转化为电力。',
       hi: 'जानें कि तापीय संयंत्र ऊष्मा को बिजली में कैसे बदलते हैं।',
       es: 'Explora cómo las centrales térmicas convierten calor en electricidad.',
