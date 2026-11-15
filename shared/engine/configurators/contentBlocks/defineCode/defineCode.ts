@@ -23,50 +23,12 @@ import {
 } from './defineCode.schemas';
 
 /**
- * Read a neighboring code.<extension> source by Config language, not by a
- * repeated author-maintained path. Executed only by Engine Build, never
- * imported by the runtime entrypoint. Unknown languages fail explicitly.
+ * Load source code next to the defining module, using an extension selected
+ * by the deterministic Lesson builder from the authored Code language.
+ * The file contents alone enter the Config/Props; no relative path is kept.
  */
-export const codeSourceExtensions = {
-  typescript: 'ts',
-  ts: 'ts',
-  tsx: 'tsx',
-  javascript: 'js',
-  js: 'js',
-  jsx: 'jsx',
-  python: 'py',
-  py: 'py',
-  html: 'html',
-  css: 'css',
-  scss: 'scss',
-  json: 'json',
-  yaml: 'yaml',
-  yml: 'yml',
-  bash: 'sh',
-  shell: 'sh',
-  sh: 'sh',
-  sql: 'sql',
-  java: 'java',
-  kotlin: 'kt',
-  swift: 'swift',
-  rust: 'rs',
-  go: 'go',
-  c: 'c',
-  cpp: 'cpp',
-  csharp: 'cs',
-  cs: 'cs',
-  php: 'php',
-  ruby: 'rb',
-  rb: 'rb',
-  dart: 'dart',
-  xml: 'xml',
-  markdown: 'md',
-  md: 'md',
-} as const satisfies Record<string, string>;
-
-export function readCodeSource(moduleUrl: string, language: string): string {
-  const extension = (codeSourceExtensions as Record<string, string>)[language.toLowerCase()];
-  if (!extension) throw new Error('Unsupported authored Code source language: ' + language);
+export function readCodeSource(moduleUrl: string, extension: string): string {
+  if (!/^[a-z0-9]+$/.test(extension)) throw new Error('Invalid authored Code file extension: ' + extension);
   const url = new URL('./code.' + extension, moduleUrl);
   try {
     if (!lstatSync(url).isFile()) throw new Error('not a regular source file');
@@ -140,9 +102,9 @@ const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublicatio
  * display-only: no compilation or execution occurs. Indentation, whitespace
  * and line breaks are preserved.
  *
- * File-backed authoring uses `readCodeSource(import.meta.url, language)` with
- * a conventional `code.<extension>` beside the definition; the resolver maps
- * supported syntax languages to extensions and reads UTF-8 immediately.
+ * File-backed authoring uses `readCodeSource(import.meta.url, extension)` with
+ * a conventional `code.<extension>` beside the definition. The builder
+ * selects the extension from the authored Code language.
  * File paths are never persisted in Config/Props. Missing source is an error.
  *
  * Use `%_%VARIABLE_NAME%_%` in the source, with matching UPPER_SNAKE_CASE
