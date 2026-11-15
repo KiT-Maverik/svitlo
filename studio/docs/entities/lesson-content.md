@@ -14,7 +14,7 @@ A Lesson has two distinct editorial sources: `methodology.md` specifies **what, 
 
 ## Section and Quiz contracts
 
-Regular Sections contain ordered ContentBlocks (current discriminant `type`; no old `blockType`). Every block has stable editorial key, type, role, required content or specification, accessibility and readiness. A Screenwriter can propose a new Scene or media dependency but cannot claim that runtime support already exists.
+Regular Sections contain ordered ContentBlocks (current discriminant `type`; no old `blockType`). Markdown ContentBlocks support inline and display LaTeX; see [Markdown formulas](./markdown-content-block.md) for accessibility, syntax and translation guidance. Every block has stable editorial key, type, role, required content or specification, accessibility and readiness. A Screenwriter can propose a new Scene or media dependency but cannot claim that runtime support already exists.
 
 **A Quiz is a Section, never a ContentBlock.** A Lesson may have **no Quiz, one Quiz or several** according to the approved Methodologist `assessmentPlan`. Each Quiz Section references a unique approved `assessmentPlanKey` and repeats the exact target Skill IDs and `requiredAssessmentMethods` from that requirement. `AssessmentMethodKey` expresses a cognitive operation, not the UI Question type. The Assessment Architect owns Question correctness, distractors, grading and mastery; the Screenwriter places the Quiz and explains its teaching context.
 

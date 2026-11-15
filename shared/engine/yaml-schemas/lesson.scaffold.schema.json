@@ -1197,17 +1197,10 @@
                 ],
                 "additionalProperties": false
               }
-            },
-            "order": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           "required": [
-            "items",
-            "order"
+            "items"
           ],
           "additionalProperties": false
         },
@@ -2210,8 +2203,7 @@
         "skills",
         "params",
         "locale",
-        "section",
-        "flashcards"
+        "section"
       ],
       "additionalProperties": false
     },

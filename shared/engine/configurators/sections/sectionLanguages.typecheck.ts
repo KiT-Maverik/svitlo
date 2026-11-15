@@ -92,7 +92,7 @@ function authoringLanguageContracts() {
     },
     locale: { title: { uk: 'Урок' } },
     section: { items: { intro: bilingual }, order: ['intro'] },
-    flashcards: { items: {}, order: [] },
+    flashcards: { items: {} },
   });
   lesson.build.overrides(
     { section: { items: { intro: { locale: { title: { uk: 'Оновлено' } } } } } },
