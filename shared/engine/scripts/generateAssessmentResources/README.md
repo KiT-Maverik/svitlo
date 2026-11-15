@@ -1,0 +1,13 @@
+# Independently published Questions and Flashcards
+
+Stage B and Stage C may independently publish existing typed authoring modules, without mutating Lesson Config/Props. Run from the repository root after building Engine:
+
+```sh
+node shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.mjs --package content/playground --kind question --write
+node shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.mjs --package content/playground --kind flashcard --write
+node shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.mjs --package content/playground --kind all --write
+```
+
+`--check` verifies byte-for-byte generated output without writing. Each kind's independent stage is under `generated/assessmentStages/<kind>`; the final `all` publication merges both metadata manifests and is staged under `generated/assessments/`. The portable textbook build copies those resources under `static/data/lessons`, beside Lesson Props. Full Question/Flashcard bodies remain outside `base.json` and `<locale>.json` Lesson files.
+
+The current implementation consumes completed existing TypeScript banks from each Lesson's `questions/index.ts` and `flashcards/index.ts`, and their owner's configured publication languages. It does **not** yet convert approved editorial `questions/questions.yaml` or `flashcards/flashcards.yaml` into those typed modules; that is a separate unfinished Stage B/C authoring workflow. Bank source is never modified. UUID, kind, locale and duplicate identity validation is performed before publication, and generated trees are replaced atomically.
