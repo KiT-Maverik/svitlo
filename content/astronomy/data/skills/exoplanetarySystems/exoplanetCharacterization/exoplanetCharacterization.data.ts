@@ -13,6 +13,7 @@ export const exoplanetCharacterization_SkillGroup_Data = defineSkillGroup({
   id: '042ade1c-e4e1-4b95-865a-e5b961b24811',
   name: {
     en: 'Exoplanet Characterization',
+    it: 'Caratterizzazione degli esopianeti',
     zh: '系外行星特征分析',
     hi: 'बहिर्ग्रहों के गुणों का अध्ययन',
     es: 'Caracterización de exoplanetas',
@@ -54,6 +55,7 @@ export const exoplanetCharacterization_SkillGroup_Data = defineSkillGroup({
       'Planet properties are inferred by combining signals and interpreting assumptions, with important differences between measured quantities and theoretical models.',
     frontend: {
       en: 'Learn how researchers infer the properties of exoplanets from indirect observations.',
+      it: 'Scopri come i ricercatori deducono le proprietà degli esopianeti da osservazioni indirette.',
       zh: '了解研究人员如何从间接观测中推断系外行星的性质。',
       hi: 'जानें कि शोधकर्ता अप्रत्यक्ष अवलोकनों से बहिर्ग्रहों के गुणों का अनुमान कैसे लगाते हैं।',
       es: 'Aprende cómo los investigadores deducen las propiedades de los exoplanetas a partir de observaciones indirectas.',

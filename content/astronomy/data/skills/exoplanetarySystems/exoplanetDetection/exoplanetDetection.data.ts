@@ -12,6 +12,7 @@ export const exoplanetDetection_SkillGroup_Data = defineSkillGroup({
   id: '069ae23d-d15d-47c8-a664-20705a50d448',
   name: {
     en: 'Exoplanet Detection',
+    it: 'Rilevamento degli esopianeti',
     zh: '系外行星探测',
     hi: 'बहिर्ग्रहों की खोज',
     es: 'Detección de exoplanetas',
@@ -52,6 +53,7 @@ export const exoplanetDetection_SkillGroup_Data = defineSkillGroup({
       'Finding planets around distant stars relies on measured effects and each method has a characteristic sensitivity and ambiguity.',
     frontend: {
       en: 'Discover the methods astronomers use to find planets around distant stars.',
+      it: 'Scopri i metodi con cui gli astronomi individuano pianeti attorno a stelle lontane.',
       zh: '了解天文学家用来发现遥远恒星周围行星的方法。',
       hi: 'जानें कि खगोलविद दूर के तारों के आसपास ग्रहों को खोजने के लिए किन विधियों का उपयोग करते हैं।',
       es: 'Descubre los métodos que usan los astrónomos para encontrar planetas alrededor de estrellas distantes.',

@@ -9,6 +9,7 @@ export const exoplanetarySystems_SkillDomain_Data = defineSkillDomain({
   id: '9336c2a0-2350-4649-88cf-127a02eb71cf',
   title: {
     en: 'Exoplanetary Systems',
+    it: 'Sistemi esoplanetari',
     zh: '系外行星系统',
     hi: 'बहिर्ग्रहीय प्रणालियाँ',
     es: 'Sistemas exoplanetarios',
@@ -48,6 +49,7 @@ export const exoplanetarySystems_SkillDomain_Data = defineSkillDomain({
       'Planetary systems beyond the Sun provide evidence about the diversity of worlds and formation outcomes. Detection, physical inference and habitability are separated to avoid treating an apparent signal as proof of a specific environment.',
     frontend: {
       en: 'Explore planets beyond our Solar System and what their discoveries reveal about other planetary systems.',
+      it: 'Esplora i pianeti oltre il Sistema solare e cosa rivelano le loro scoperte sugli altri sistemi planetari.',
       zh: '探索太阳系以外的行星，以及它们的发现如何揭示其他行星系统的特征。',
       hi: 'सौर मंडल से बाहर के ग्रहों और उनकी खोजों से अन्य ग्रह प्रणालियों के बारे में मिली जानकारी का अध्ययन करें।',
       es: 'Explora los planetas fuera del Sistema Solar y lo que sus descubrimientos revelan sobre otros sistemas planetarios.',

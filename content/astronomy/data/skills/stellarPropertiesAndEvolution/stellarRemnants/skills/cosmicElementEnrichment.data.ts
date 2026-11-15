@@ -5,6 +5,7 @@ export const cosmicElementEnrichment_Skill_Data = defineSkill({
   id: '362a1d94-ea39-4a8a-ae2c-726dbe29d10c',
   name: {
     en: 'Cosmic Element Enrichment',
+    it: 'Arricchimento chimico del cosmo',
     zh: '宇宙元素富集',
     hi: 'ब्रह्मांड में तत्वों का संवर्धन',
     es: 'Enriquecimiento cósmico de elementos',
@@ -39,6 +40,7 @@ export const cosmicElementEnrichment_Skill_Data = defineSkill({
       'Explain how stellar nucleosynthesis and explosive or ejective events change the chemical composition of surrounding space.',
     frontend: {
       en: 'See how stars and stellar explosions spread elements into surrounding space.',
+      it: 'Scopri come le stelle e le esplosioni stellari diffondono elementi nello spazio circostante.',
       zh: '了解恒星和恒星爆炸如何将化学元素散播到周围空间。',
       hi: 'जानें कि तारे और तारकीय विस्फोट आसपास के अंतरिक्ष में तत्व कैसे फैलाते हैं।',
       es: 'Observa cómo las estrellas y sus explosiones dispersan elementos por el espacio circundante.',
