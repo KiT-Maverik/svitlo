@@ -5,6 +5,7 @@ export const interpretAPopulationDensityMap_Skill_Data = defineSkill({
   id: 'edaa41a5-0ebd-4896-8054-2ee46631d732',
   name: {
     en: 'Interpret a population-density map',
+    it: 'Interpretare una carta della densità di popolazione',
     zh: '解读人口密度图',
     hi: 'जनसंख्या घनत्व के मानचित्र को पढ़ना',
     es: 'Interpretar un mapa de densidad de población',
@@ -39,6 +40,7 @@ export const interpretAPopulationDensityMap_Skill_Data = defineSkill({
       'Distinguish people per unit area from the total number of residents and identify areas with different densities.',
     frontend: {
       en: 'Read how many people live within a given area on a population-density map.',
+      it: 'Leggi su una carta della densità di popolazione quante persone vivono in una determinata superficie.',
       zh: '从人口密度图中读出单位面积内居住的人数。',
       hi: 'जनसंख्या घनत्व मानचित्र से जानें कि निश्चित क्षेत्रफल में कितने लोग रहते हैं।',
       es: 'Lee en un mapa de densidad cuántas personas viven por unidad de superficie.',

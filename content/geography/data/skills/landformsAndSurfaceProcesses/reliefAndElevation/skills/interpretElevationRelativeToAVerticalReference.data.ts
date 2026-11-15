@@ -5,6 +5,7 @@ export const interpretElevationRelativeToAVerticalReference_Skill_Data = defineS
   id: '74520e81-0ca1-4359-a78b-312e41029905',
   name: {
     en: 'Interpret elevation relative to a vertical reference',
+    it: "Interpretare l'altitudine rispetto a un riferimento verticale",
     zh: '相对于垂直基准理解海拔高度',
     hi: 'ऊर्ध्वाधर संदर्भ स्तर के सापेक्ष ऊँचाई समझना',
     es: 'Interpretar la elevación respecto de una referencia vertical',
@@ -39,6 +40,7 @@ export const interpretElevationRelativeToAVerticalReference_Skill_Data = defineS
       "Determine or interpret a position's height relative to an agreed vertical reference such as mean sea level, taking account of map or observation units rather than confusing it with nearby height differences.",
     frontend: {
       en: "Read a place's height relative to a stated reference such as sea level.",
+      it: "Leggi l'altezza di un luogo rispetto a un riferimento dichiarato, come il livello del mare.",
       zh: '读取某地点相对于海平面等指定基准的高度。',
       hi: 'समुद्र तल जैसे दिए गए संदर्भ स्तर से किसी स्थान की ऊँचाई पढ़ें।',
       es: 'Lee la altura de un lugar con respecto a una referencia indicada, como el nivel del mar.',

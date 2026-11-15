@@ -5,6 +5,7 @@ export const interpretContourSpacingAsTerrainSteepness_Skill_Data = defineSkill(
   id: 'e2bf9045-9b91-4446-bf20-935a2ea9eed2',
   name: {
     en: 'Interpret contour spacing as terrain steepness',
+    it: 'Interpretare la distanza tra le curve di livello come pendenza del terreno',
     zh: '根据等高线间距判断地形坡度',
     hi: 'समोच्च रेखाओं के बीच की दूरी से ढलान की तीव्रता समझना',
     es: 'Interpretar la pendiente del terreno según la separación de las curvas de nivel',
@@ -39,6 +40,7 @@ export const interpretContourSpacingAsTerrainSteepness_Skill_Data = defineSkill(
       'Read closely spaced elevation contours as a steeper surface than widely spaced contours under the same interval.',
     frontend: {
       en: 'Use contour spacing to recognize steep and gentle terrain.',
+      it: 'Usa la distanza tra le curve di livello per riconoscere terreni ripidi e poco inclinati.',
       zh: '利用等高线间距识别陡坡与缓坡。',
       hi: 'समोच्च रेखाओं के बीच की दूरी से तीखी और हल्की ढलानों को पहचानें।',
       es: 'Usa la separación entre curvas de nivel para reconocer pendientes pronunciadas y suaves.',

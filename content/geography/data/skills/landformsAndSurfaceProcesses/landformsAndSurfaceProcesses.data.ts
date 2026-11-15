@@ -9,6 +9,7 @@ export const landformsAndSurfaceProcesses_SkillDomain_Data = defineSkillDomain({
   id: '867dae3c-d00e-485c-8c37-304978460de1',
   title: {
     en: 'Landforms and Surface Processes',
+    it: 'Forme del rilievo e processi superficiali',
     zh: '地貌与地表过程',
     hi: 'स्थलरूप और सतही प्रक्रियाएँ',
     es: 'Formas del relieve y procesos superficiales',
@@ -48,6 +49,7 @@ export const landformsAndSurfaceProcesses_SkillDomain_Data = defineSkillDomain({
       'Relief and unconsolidated surface materials form landscapes that change through weathering, transportation and deposition. This domain examines the recognizable forms and near-surface changes of terrain rather than the internal structure, mineralogy or deep-time evolution of solid Earth.',
     frontend: {
       en: 'Explore the shapes of landscapes and how surface materials move and change.',
+      it: 'Esplora le forme dei paesaggi e il modo in cui i materiali superficiali si muovono e si trasformano.',
       zh: '探索地表景观的形态，以及地表物质如何移动和变化。',
       hi: 'भूदृश्यों के आकार और सतही पदार्थों के स्थानांतरण तथा परिवर्तन को समझें।',
       es: 'Explora las formas del paisaje y cómo se desplazan y transforman los materiales de la superficie.',

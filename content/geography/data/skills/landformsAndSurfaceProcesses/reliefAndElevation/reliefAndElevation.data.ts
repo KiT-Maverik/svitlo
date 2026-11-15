@@ -11,6 +11,7 @@ export const reliefAndElevation_SkillGroup_Data = defineSkillGroup({
   id: 'bdb0a0da-9e24-4623-96eb-df220b8f12c6',
   name: {
     en: 'Relief and Elevation',
+    it: 'Rilievo e altitudine',
     zh: '地势起伏与海拔',
     hi: 'स्थलीय उच्चावच और ऊँचाई',
     es: 'Relieve y elevación',
@@ -50,6 +51,7 @@ export const reliefAndElevation_SkillGroup_Data = defineSkillGroup({
       'The shape and vertical variation of terrain distinguish plains, hills, mountains, valleys and plateaus. Understanding elevation and relief also supports interpretation of slopes and contour information; foundational identification of landform categories belongs to Geographic Objects.',
     frontend: {
       en: 'Learn how elevation, terrain and slopes are described and interpreted.',
+      it: 'Impara come si descrivono e si interpretano altitudine, terreno e pendenze.',
       zh: '了解如何描述和判读地势高度、地形与坡度。',
       hi: 'जानें कि ऊँचाई, भूभाग और ढलानों का वर्णन तथा विश्लेषण कैसे किया जाता है।',
       es: 'Aprende a describir e interpretar la elevación, el terreno y las pendientes.',
