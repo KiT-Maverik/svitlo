@@ -1,3 +1,4 @@
+import { readFileSync, lstatSync } from 'node:fs';
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
@@ -20,6 +21,62 @@ import {
   type ContentBlock_Code_Overrides,
   type ContentBlock_Code_PropsBase,
 } from './defineCode.schemas';
+
+/**
+ * Read a neighboring code.<extension> source by Config language, not by a
+ * repeated author-maintained path. Executed only by Engine Build, never
+ * imported by the runtime entrypoint. Unknown languages fail explicitly.
+ */
+export const codeSourceExtensions = {
+  typescript: 'ts',
+  ts: 'ts',
+  tsx: 'tsx',
+  javascript: 'js',
+  js: 'js',
+  jsx: 'jsx',
+  python: 'py',
+  py: 'py',
+  html: 'html',
+  css: 'css',
+  scss: 'scss',
+  json: 'json',
+  yaml: 'yaml',
+  yml: 'yml',
+  bash: 'sh',
+  shell: 'sh',
+  sh: 'sh',
+  sql: 'sql',
+  java: 'java',
+  kotlin: 'kt',
+  swift: 'swift',
+  rust: 'rs',
+  go: 'go',
+  c: 'c',
+  cpp: 'cpp',
+  csharp: 'cs',
+  cs: 'cs',
+  php: 'php',
+  ruby: 'rb',
+  rb: 'rb',
+  dart: 'dart',
+  xml: 'xml',
+  markdown: 'md',
+  md: 'md',
+} as const satisfies Record<string, string>;
+
+export function readCodeSource(moduleUrl: string, language: string): string {
+  const extension = (codeSourceExtensions as Record<string, string>)[language.toLowerCase()];
+  if (!extension) throw new Error('Unsupported authored Code source language: ' + language);
+  const url = new URL('./code.' + extension, moduleUrl);
+  try {
+    if (!lstatSync(url).isFile()) throw new Error('not a regular source file');
+    const content = readFileSync(url, 'utf8');
+    if (!content.trim()) throw new Error('empty source file');
+    return content;
+  } catch (cause) {
+    throw new Error('Missing, empty or unreadable Code source: ' + url.pathname, { cause });
+  }
+}
 
 type CodeLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Code_Locale<'props'>> }>>;
 type CodePropsPublication<Base, LocaleFiles = CodeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
@@ -83,11 +140,10 @@ const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublicatio
  * display-only: no compilation or execution occurs. Indentation, whitespace
  * and line breaks are preserved.
  *
- * When the source lives in a file, place it beside the authoring definition
- * and read it as UTF-8 there, before calling `defineCode`. Resolve the path
- * relative to the current module using `import.meta.url`, not process.cwd().
- * Node's `readFileSync` throws if the file cannot be read; the configurator
- * itself requires no file path, loader or filesystem dependency.
+ * File-backed authoring uses `readCodeSource(import.meta.url, language)` with
+ * a conventional `code.<extension>` beside the definition; the resolver maps
+ * supported syntax languages to extensions and reads UTF-8 immediately.
+ * File paths are never persisted in Config/Props. Missing source is an error.
  *
  * Use `%_%VARIABLE_NAME%_%` in the source, with matching UPPER_SNAKE_CASE
  * keys in the `locale.variables` object. Each key maps to an invariant
