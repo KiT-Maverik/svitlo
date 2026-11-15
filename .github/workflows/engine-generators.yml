@@ -55,5 +55,5 @@ jobs:
             shared/engine/scripts/generateCourseProps/generateCourseProps.spec.mjs \
             shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs \
             shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs \
-            shared/engine/.test-build/utils/resolveLessonMedia/*.spec.js \
+            shared/engine/.test-build/utils/generators/resolveLessonMedia/*.spec.js \
             scripts/textbook-tooling/buildTextbook/stageLessonMedia.spec.mjs
