@@ -42,12 +42,20 @@ export const fraudAndDeceptivePressure_SkillGroup_Data = defineSkillGroup({
     kk: 'Алаяқтық және алдамшы қысым',
     qm: 'Dolandırıcılıq ve aldatıcı basım',
   },
-  skills: [
-    recognizeFinancialFraudPatterns_Skill_Data,
-    recognizePhishingAndImpersonation_Skill_Data,
-    resistManipulativeOffers_Skill_Data,
-    respondAfterSuspectedFraud_Skill_Data,
-  ],
+  skills: {
+    items: {
+      recognizeFinancialFraudPatterns: recognizeFinancialFraudPatterns_Skill_Data,
+      recognizePhishingAndImpersonation: recognizePhishingAndImpersonation_Skill_Data,
+      resistManipulativeOffers: resistManipulativeOffers_Skill_Data,
+      respondAfterSuspectedFraud: respondAfterSuspectedFraud_Skill_Data,
+    },
+    order: [
+      'recognizeFinancialFraudPatterns',
+      'recognizePhishingAndImpersonation',
+      'resistManipulativeOffers',
+      'respondAfterSuspectedFraud',
+    ],
+  },
   description: {
     methodological:
       'Scams often combine impersonation, urgency, emotional leverage, and requests for information or money; persuasive framing is not proof of legitimacy.',

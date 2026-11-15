@@ -41,11 +41,14 @@ export const privacyAndAccountProtection_SkillGroup_Data = defineSkillGroup({
     kk: 'Құпиялық және аккаунттарды қорғау',
     qm: 'Şahsiylik ve hesaplarnı qorçav',
   },
-  skills: [
-    protectPersonalInformationOnline_Skill_Data,
-    recognizeUnsafeAccessRequests_Skill_Data,
-    secureEverydayAccounts_Skill_Data,
-  ],
+  skills: {
+    items: {
+      protectPersonalInformationOnline: protectPersonalInformationOnline_Skill_Data,
+      recognizeUnsafeAccessRequests: recognizeUnsafeAccessRequests_Skill_Data,
+      secureEverydayAccounts: secureEverydayAccounts_Skill_Data,
+    },
+    order: ['protectPersonalInformationOnline', 'recognizeUnsafeAccessRequests', 'secureEverydayAccounts'],
+  },
   description: {
     methodological:
       'Limiting disclosure and protecting access reduces vulnerabilities even when platforms or other people behave unpredictably.',
