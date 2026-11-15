@@ -5,6 +5,7 @@ export const findTheMostFrequentValue_Skill_Data = defineSkill({
   id: '61f9ebb6-4b27-4e14-974a-92927cf57769',
   name: {
     en: 'Find the Most Frequent Value',
+    it: 'Trovare il valore più frequente',
     zh: '找出出现最频繁的值',
     hi: 'सबसे अधिक बार आने वाला मान खोजना',
     es: 'Encontrar el valor más frecuente',
@@ -39,6 +40,7 @@ export const findTheMostFrequentValue_Skill_Data = defineSkill({
       'Find or calculate the value with the highest frequency, allowing for multiple equally frequent values. The most frequent value need not equal the arithmetic mean or the largest number.',
     frontend: {
       en: 'Identify the value that appears most frequently in a set.',
+      it: 'Individua il valore che compare più spesso in un insieme.',
       zh: '识别一组数据中出现次数最多的值。',
       hi: 'समूह में सबसे अधिक बार आने वाला मान पहचानें।',
       es: 'Identifica el valor que más veces aparece en un conjunto.',

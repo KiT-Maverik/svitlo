@@ -5,6 +5,7 @@ export const distinguishValueCopyingFromSharedReferences_Skill_Data = defineSkil
   id: 'f6499ac2-6ad9-4160-81a6-64404f83aa81',
   name: {
     en: 'Distinguish Value Copying from Shared References',
+    it: 'Distinguere la copia di valori dai riferimenti condivisi',
     zh: '区分值复制与共享引用',
     hi: 'मान की नकल और साझा संदर्भ में अंतर करना',
     es: 'Distinguir la copia de valores de las referencias compartidas',
@@ -39,6 +40,7 @@ export const distinguishValueCopyingFromSharedReferences_Skill_Data = defineSkil
       'In a particular language, demonstrate when modifying a reference affects a shared mutable object and when a new value remains independent; do not equate this universally with a primitive/reference type distinction.',
     frontend: {
       en: 'Explain when two variables share an object and when values are independent.',
+      it: 'Spiega quando due variabili condividono un oggetto e quando i loro valori sono indipendenti.',
       zh: '解释两个变量何时指向同一对象，以及何时各自拥有独立的值。',
       hi: 'समझाएँ कि कब दो चर एक ही ऑब्जेक्ट साझा करते हैं और कब उनके मान स्वतंत्र होते हैं।',
       es: 'Explica cuándo dos variables comparten un objeto y cuándo sus valores son independientes.',

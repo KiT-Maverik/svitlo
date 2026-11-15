@@ -14,6 +14,7 @@ export const dataTypesAndReferences_SkillGroup_Data = defineSkillGroup({
   id: 'c98fa643-b234-4026-8bce-c2fede1d60e3',
   name: {
     en: 'Data Types and References',
+    it: 'Tipi di dati e riferimenti',
     zh: '数据类型与引用',
     hi: 'डेटा प्रकार और संदर्भ',
     es: 'Tipos de datos y referencias',
@@ -56,6 +57,7 @@ export const dataTypesAndReferences_SkillGroup_Data = defineSkillGroup({
       'Types determine valid forms of values and operations; storage and state-passing behavior depend on the programming language. Do not assume every language draws the same boundary between primitives and objects.',
     frontend: {
       en: 'Explore how types and references affect the values programs can use.',
+      it: 'Esplora come i tipi e i riferimenti influiscono sui valori utilizzabili dai programmi.',
       zh: '探索类型和引用如何影响程序所能使用的值。',
       hi: 'जानें कि प्रकार और संदर्भ प्रोग्राम के उपयोग किए जाने वाले मानों को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo los tipos y las referencias afectan a los valores que puede utilizar un programa.',

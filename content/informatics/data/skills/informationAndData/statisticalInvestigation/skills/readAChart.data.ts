@@ -5,6 +5,7 @@ export const readAChart_Skill_Data = defineSkill({
   id: '2bd4c20c-514a-4596-a651-1ff8d999811b',
   name: {
     en: 'Read a Chart',
+    it: 'Leggere un grafico',
     zh: '读取图表',
     hi: 'चार्ट पढ़ना',
     es: 'Leer un gráfico',
@@ -39,6 +40,7 @@ export const readAChart_Skill_Data = defineSkill({
       'Identify the values represented by axes, scales, colors, and element lengths; read the data accurately without making assumptions based on presentation. A truncated axis can visually exaggerate a difference.',
     frontend: {
       en: 'Read chart scales, labels and values without being misled by their presentation.',
+      it: 'Leggi scale, etichette e valori di un grafico senza lasciarti ingannare dalla presentazione.',
       zh: '正确解读图表的刻度、标签和数值，不被呈现方式误导。',
       hi: 'चार्ट के पैमाने, लेबल और मान सही पढ़ें, प्रस्तुति से भ्रमित न हों।',
       es: 'Lee las escalas, etiquetas y valores sin dejarte engañar por la presentación.',
