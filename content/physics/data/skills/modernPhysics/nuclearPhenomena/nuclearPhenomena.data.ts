@@ -14,6 +14,7 @@ export const nuclearPhenomena_SkillGroup_Data = defineSkillGroup({
   id: '03e032d8-030d-438a-9577-852ccdf688bf',
   name: {
     en: 'Nuclear Phenomena',
+    it: 'Fenomeni nucleari',
     zh: '原子核现象',
     hi: 'नाभिकीय घटनाएँ',
     es: 'Fenómenos nucleares',
@@ -65,6 +66,7 @@ export const nuclearPhenomena_SkillGroup_Data = defineSkillGroup({
     methodological: 'Changes in atomic nuclei differ from chemical reactions and may release energy.',
     frontend: {
       en: 'Discover how nuclei change and why some transformations release energy.',
+      it: 'Scopri come cambiano i nuclei e perché alcune trasformazioni liberano energia.',
       zh: '了解原子核如何变化，以及为什么有些变化会释放能量。',
       hi: 'जानो कि परमाणु नाभिक कैसे बदलते हैं और कुछ परिवर्तनों में ऊर्जा क्यों निकलती है।',
       es: 'Descubre cómo cambian los núcleos atómicos y por qué algunas transformaciones liberan energía.',

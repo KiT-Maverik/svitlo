@@ -5,6 +5,7 @@ export const distinguishNuclearTransformationFromChemicalChange_Skill_Data = def
   id: '8ace200a-0e8f-47f8-a047-4318659cbf3b',
   name: {
     en: 'Distinguish nuclear transformation from chemical change',
+    it: 'Distinguere una trasformazione nucleare da una reazione chimica',
     zh: '区分核变化与化学变化',
     hi: 'नाभिकीय परिवर्तन और रासायनिक बदलाव में अंतर करना',
     es: 'Distinguir una transformación nuclear de un cambio químico',
@@ -39,6 +40,7 @@ export const distinguishNuclearTransformationFromChemicalChange_Skill_Data = def
       "A nuclear transformation changes an atom's nucleus, whereas chemical reactions primarily change bonds and electronic structure.",
     frontend: {
       en: 'Distinguish changes inside an atomic nucleus from chemical reactions.',
+      it: 'Distingui i cambiamenti all\'interno del nucleo atomico dalle reazioni chimiche.',
       zh: '区分原子核内部发生的变化与化学反应。',
       hi: 'समझो कि नाभिक में होने वाला परिवर्तन रासायनिक अभिक्रिया से अलग है।',
       es: 'Distingue los cambios dentro de un núcleo atómico de las reacciones químicas.',

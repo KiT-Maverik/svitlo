@@ -5,6 +5,7 @@ export const explainDiscreteAtomicEnergyStates_Skill_Data = defineSkill({
   id: '32d70ce4-b83f-403c-8771-41bb66f1f556',
   name: {
     en: 'Explain discrete atomic energy states',
+    it: 'Spiegare gli stati energetici discreti degli atomi',
     zh: '解释离散的原子能态',
     hi: 'परमाणु की विविक्त ऊर्जा अवस्थाएँ समझाना',
     es: 'Explicar los estados discretos de energía atómica',
@@ -39,6 +40,7 @@ export const explainDiscreteAtomicEnergyStates_Skill_Data = defineSkill({
       'Bound states of an atom have definite energies, and transitions between states involve energy absorption or emission.',
     frontend: {
       en: 'Recognize that atoms have discrete bound energy levels.',
+      it: 'Riconosci che gli atomi possiedono livelli energetici legati e discreti.',
       zh: '认识到原子的束缚态具有离散的能级。',
       hi: 'पहचानो कि परमाणुओं की बंधित अवस्थाओं में निश्चित, अलग-अलग ऊर्जा स्तर होते हैं।',
       es: 'Reconoce que los átomos tienen niveles de energía discretos en sus estados ligados.',
