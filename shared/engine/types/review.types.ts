@@ -23,25 +23,23 @@ export type Review = {
 };
 
 /**
- * Lesson-production operations that require recorded AI review evidence.
- * These are Studio Lesson Production stage slugs, never Quest/Section stages.
- * 'completed' is a terminal status, not an independent review operation.
+ * Canonical Lesson Production review-stage identifiers, also used by Studio
+ * Issue trackers. These are not Quest/Section stages. 'completed' is a terminal
+ * production status and does not require a separate AI review entry.
  */
 export type LessonReviewStage =
   | 'methodology'
   | 'content'
-  | 'experience-review'
-  | 'methodology-review'
+  | 'experienceReview'
+  | 'methodologyReview'
   | 'questions'
   | 'flashcards'
-  | 'generate-sources'
-  | 'resource-production'
+  | 'generateSources'
+  | 'resourceProduction'
   | 'localization'
   | 'validation';
 
-/** Strict Lesson-specific extension of the general Review record. */
+/** Strict Lesson-specific extension: per-stage evidence is directly under ai. */
 export type LessonReview = Omit<Review, 'ai'> & {
-  ai: Review['ai'] & {
-    stages: Record<LessonReviewStage, ReviewEvidence>;
-  };
+  ai: Review['ai'] & Record<LessonReviewStage, ReviewEvidence>;
 };
