@@ -127,11 +127,10 @@ describe('Configurators', () => {
         const withQuiz = { items: { intro: section, banklessQuiz: quiz }, order: ['intro', 'banklessQuiz'] };
         const withRecall = { items: { intro: section, banklessRecall: recall }, order: ['intro', 'banklessRecall'] };
 
+        // @ts-expect-error A Quiz Section cannot be authored without the Lesson Question Bank.
         assert.throws(() => defineLesson({ ...input, section: withQuiz }), /Quiz Section.*requires Lesson.questions/);
-        assert.throws(
-          () => defineLesson({ ...input, section: withRecall }),
-          /Flashcards Section.*requires Lesson.flashcards/,
-        );
+        // @ts-expect-error A Flashcards Section cannot be authored without the Lesson Flashcard Bank.
+        assert.throws(() => defineLesson({ ...input, section: withRecall }), /Flashcards Section.*requires Lesson.flashcards/);
         assert.doesNotThrow(() => defineLesson({ ...input, section: withQuiz, questions: {} }));
         assert.doesNotThrow(() =>
           defineLesson({ ...input, section: withRecall, flashcards: { items: {}, order: [] } }),
