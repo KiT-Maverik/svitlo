@@ -5,6 +5,7 @@ export const limitsOfEconomicModels_Skill_Data = defineSkill({
   id: 'dc718fa1-24a4-465f-b301-acb3cfc3982e',
   name: {
     en: 'Межі застосування економічної моделі',
+    it: 'Limiti dei modelli economici',
     zh: '经济模型的局限性',
     hi: 'आर्थिक मॉडलों की सीमाएँ',
     es: 'Límites de los modelos económicos',
@@ -39,6 +40,7 @@ export const limitsOfEconomicModels_Skill_Data = defineSkill({
       "Identify assumptions and contexts limiting the reliability of a model's prediction or explanation.",
     frontend: {
       en: 'Recognize when an economic model may not fit real circumstances.',
+      it: 'Riconosci quando un modello economico potrebbe non adattarsi alle circostanze reali.',
       zh: '识别经济模型何时可能不符合现实情况。',
       hi: 'पहचानें कि आर्थिक मॉडल वास्तविक परिस्थितियों में कब सही नहीं बैठ सकता।',
       es: 'Reconoce cuándo un modelo económico puede no ajustarse a la realidad.',

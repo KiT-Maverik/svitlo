@@ -5,6 +5,7 @@ export const basicRegressionModel_Skill_Data = defineSkill({
   id: 'af2aa3be-a5bb-4c32-a323-c92c292dd76f',
   name: {
     en: 'Базова регресійна модель',
+    it: 'Modello di regressione di base',
     zh: '基础回归模型',
     hi: 'बुनियादी प्रतिगमन मॉडल',
     es: 'Modelo de regresión básico',
@@ -39,6 +40,7 @@ export const basicRegressionModel_Skill_Data = defineSkill({
       'Interpret an estimated relationship between an outcome and explanatory variables without automatically attributing a causal meaning to coefficients.',
     frontend: {
       en: 'Read the relationships described by a simple regression model.',
+      it: 'Interpreta le relazioni descritte da un semplice modello di regressione.',
       zh: '读懂简单回归模型描述的变量关系。',
       hi: 'साधारण प्रतिगमन मॉडल से बताए गए संबंधों को समझें।',
       es: 'Interpreta las relaciones descritas por un modelo de regresión sencillo.',

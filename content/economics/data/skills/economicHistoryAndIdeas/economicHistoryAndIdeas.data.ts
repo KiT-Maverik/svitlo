@@ -9,6 +9,7 @@ export const economicHistoryAndIdeas_SkillDomain_Data = defineSkillDomain({
   id: '54e286e8-7e77-4af3-b029-72d463ded63e',
   title: {
     en: 'Економічна історія та ідеї',
+    it: 'Storia del pensiero e dei sistemi economici',
     zh: '经济史与经济思想',
     hi: 'आर्थिक इतिहास और विचार',
     es: 'Historia e ideas económicas',
@@ -48,6 +49,7 @@ export const economicHistoryAndIdeas_SkillDomain_Data = defineSkillDomain({
       'Economic systems, institutions, and theories evolved alongside production, trade, and social conflicts. Historical interpretations require context and comparisons of sources.',
     frontend: {
       en: 'Explore how economies and economic ideas have changed through history.',
+      it: 'Esplora come le economie e le idee economiche siano cambiate nel corso della storia.',
       zh: '探索历史上经济体与经济思想如何变化。',
       hi: 'जानें कि इतिहास में अर्थव्यवस्थाएँ और आर्थिक विचार कैसे बदले।',
       es: 'Explora cómo cambiaron las economías y las ideas económicas a lo largo de la historia.',

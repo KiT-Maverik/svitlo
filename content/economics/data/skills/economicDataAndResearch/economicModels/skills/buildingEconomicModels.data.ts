@@ -5,6 +5,7 @@ export const buildingEconomicModels_Skill_Data = defineSkill({
   id: '6c15a54b-3655-451b-aad6-5ff404ec11e9',
   name: {
     en: 'Побудова економічної моделі',
+    it: 'Costruire modelli economici',
     zh: '构建经济模型',
     hi: 'आर्थिक मॉडल बनाना',
     es: 'Construcción de modelos económicos',
@@ -39,6 +40,7 @@ export const buildingEconomicModels_Skill_Data = defineSkill({
       'Identify important participants, variables, relationships, and constraints for a particular economic question.',
     frontend: {
       en: 'Choose the essential parts of an economic situation for a model.',
+      it: 'Scegli gli elementi essenziali di una situazione economica da includere in un modello.',
       zh: '为经济情境选择模型中最重要的组成部分。',
       hi: 'आर्थिक परिस्थिति के लिए मॉडल में सबसे ज़रूरी घटक चुनें।',
       es: 'Elige los elementos esenciales de una situación económica para un modelo.',
