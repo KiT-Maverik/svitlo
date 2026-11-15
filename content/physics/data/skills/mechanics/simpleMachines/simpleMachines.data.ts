@@ -12,6 +12,7 @@ export const simpleMachines_SkillGroup_Data = defineSkillGroup({
   id: '2265cb35-ba2e-4a3f-86b8-3c476fb31ab4',
   name: {
     en: 'Simple Machines',
+    it: 'Macchine semplici',
     zh: '简单机械',
     hi: 'सरल मशीनें',
     es: 'Máquinas simples',
@@ -60,6 +61,7 @@ export const simpleMachines_SkillGroup_Data = defineSkillGroup({
       'Levers, pulleys, wheels, and gears demonstrate the transmission of force and rotation. The focus here is on physical principles, not selecting a design or engineering a machine.',
     frontend: {
       en: 'Understand how levers, wheels, pulleys and gears transmit motion and force.',
+      it: 'Comprendi come leve, ruote, carrucole e ingranaggi trasmettono il moto e le forze.',
       zh: '理解杠杆、轮轴、滑轮和齿轮如何传递运动与力。',
       hi: 'समझें कि उत्तोलक, पहिये, घिरनियाँ और गियर गति तथा बल कैसे पहुँचाते हैं।',
       es: 'Comprende cómo las palancas, las ruedas, las poleas y los engranajes transmiten movimiento y fuerza.',

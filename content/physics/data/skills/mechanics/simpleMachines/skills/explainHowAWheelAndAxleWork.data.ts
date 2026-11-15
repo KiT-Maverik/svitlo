@@ -5,6 +5,7 @@ export const explainHowAWheelAndAxleWork_Skill_Data = defineSkill({
   id: 'a2cee71d-f012-4570-ac73-3351f1d164bd',
   name: {
     en: 'Explain how a wheel and axle work',
+    it: 'Spiegare come funzionano ruota e asse',
     zh: '解释轮轴的工作原理',
     hi: 'पहिया और धुरी कैसे काम करते हैं, समझाना',
     es: 'Explicar cómo funcionan la rueda y el eje',
@@ -39,6 +40,7 @@ export const explainHowAWheelAndAxleWork_Skill_Data = defineSkill({
       'The shared rotation of a wheel and axle transmits motion and changes the relationship between applied forces and displacements; a wheel can also change the nature of friction.',
     frontend: {
       en: 'Understand how a wheel and axle transmit rotation and change applied forces.',
+      it: 'Comprendi come ruota e asse trasmettono la rotazione e modificano le forze applicate.',
       zh: '理解轮轴如何传递转动并改变施加的力。',
       hi: 'समझें कि पहिया और धुरी घूर्णन कैसे पहुँचाते हैं और लगाए गए बल को कैसे बदलते हैं।',
       es: 'Comprende cómo la rueda y el eje transmiten la rotación y modifican las fuerzas aplicadas.',

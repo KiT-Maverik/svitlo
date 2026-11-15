@@ -5,6 +5,7 @@ export const explainNewtonsSecondLaw_Skill_Data = defineSkill({
   id: '5f1f165d-f730-471a-813a-f0fb5fe38fd7',
   name: {
     en: "Explain Newton's second law",
+    it: 'Spiegare la seconda legge di Newton',
     zh: '解释牛顿第二定律',
     hi: 'न्यूटन का दूसरा नियम समझाना',
     es: 'Explicar la segunda ley de Newton',
@@ -39,6 +40,7 @@ export const explainNewtonsSecondLaw_Skill_Data = defineSkill({
       "A body's acceleration is determined by the net force and its mass; under the same force, bodies of different masses change velocity differently.",
     frontend: {
       en: 'Explore how force and mass together determine acceleration.',
+      it: 'Esplora come la forza e la massa determinano insieme l\'accelerazione.',
       zh: '探索力和质量如何共同决定加速度。',
       hi: 'जानें कि बल और द्रव्यमान मिलकर त्वरण को कैसे निर्धारित करते हैं।',
       es: 'Explora cómo la fuerza y la masa determinan conjuntamente la aceleración.',
