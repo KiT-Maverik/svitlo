@@ -16,10 +16,10 @@ config:
       en: 'Finding an Unknown Subtrahend'
   section:
     items:
-      section1:
+      identifyRemovedCounters:
         config:
           id: 'c8f9dab0-5f40-46b7-8927-5a6ad366ab81'
-          slug: 'section1'
+          slug: 'identifyRemovedCounters'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'What Went Away?'
           content:
             items:
-              text1:
+              askWhatWasRemoved:
                 config:
                   id: '4c1a3ae6-51d7-46a9-bdb2-c6e83c65df23'
-                  slug: 'text1'
+                  slug: 'askWhatWasRemoved'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'What Went Away?: text resource at position 1 (source provisional)'
                   specification: '1. **text — available:** “There were **11** counters at first. Now **7** are left. How many were taken away?”'
-              scene2:
+              modelMissingRemoval:
                 config:
                   id: '31b0f70a-fd3d-4cf7-b934-98c0fa2710b5'
-                  slug: 'scene2'
+                  slug: 'modelMissingRemoval'
                   type: 'scene'
                   params: {}
                   locale:
@@ -113,10 +113,10 @@ config:
 
                     2. **scene — available integration, proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), two observational states with 11 initially and seven remaining; only the removed count hidden, never the evidence of the original eleven.
                   productionNotes: 'Scene missingRemovalInvestigator.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainFourRemoved:
                 config:
                   id: '06c9277a-4906-4ad9-85b6-626cf4fcd0fb'
-                  slug: 'markdown3'
+                  slug: 'explainFourRemoved'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -125,7 +125,7 @@ config:
                 production:
                   purpose: 'What Went Away?: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — available:** “Eleven at first and seven still here. The other **4** counters must have been removed.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askWhatWasRemoved', 'modelMissingRemoval', 'explainFourRemoved']
         production:
           purpose: 'Identify the removed part as unknown.'
           pedagogicalIntent: 'Original Section 1: What Went Away? (provisional draft)'
@@ -141,10 +141,10 @@ config:
             - Accessible model: Linear “original 11 / still there 7 / taken away 4”; keyboard/select equivalent, no color-only comparison, semantic RTL.
             - Planned Note: “Removed part = whole − what remains” after the contrast, not wired.
             - Dependencies: New Scene proposed.
-      section2:
+      findRemovedAmountByDifference:
         config:
           id: 'cbf9df69-6040-484a-8827-58d7d066a6c8'
-          slug: 'section2'
+          slug: 'findRemovedAmountByDifference'
           type: 'content'
           params: {}
           locale:
@@ -154,10 +154,10 @@ config:
               en: 'Subtract What Is Left'
           content:
             items:
-              markdown1:
+              subtractRemainingFromStart:
                 config:
                   id: '1b0833b9-9349-43f2-bb72-bfd3ac46997c'
-                  slug: 'markdown1'
+                  slug: 'subtractRemainingFromStart'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -166,10 +166,10 @@ config:
                 production:
                   purpose: 'Subtract What Is Left: markdown resource at position 1 (source provisional)'
                   specification: '1. **markdown — available:** “If we begin with **11** and still have **7**, compare them: **11 − 7 = 4**. Four were taken away.”'
-              scene2:
+              modelDifference:
                 config:
                   id: '94b9cb6d-35a6-4920-b2d0-e817cabf1cb2'
-                  slug: 'scene2'
+                  slug: 'modelDifference'
                   type: 'scene'
                   params: {}
                   locale:
@@ -238,10 +238,10 @@ config:
 
                     2. **scene — proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), difference entry: match seven of the eleven as retained, highlight four unpaired objects and reveal 11−7=4.
                   productionNotes: 'Scene missingRemovalInvestigator.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              text3:
+              explainSubtrahendMethod:
                 config:
                   id: 'a8540ad1-d8c8-496e-a300-a52307415ed8'
-                  slug: 'text3'
+                  slug: 'explainSubtrahendMethod'
                   type: 'text'
                   params: {}
                   locale:
@@ -250,7 +250,7 @@ config:
                 production:
                   purpose: 'Subtract What Is Left: text resource at position 3 (source provisional)'
                   specification: '3. **text — available:** “We subtracted the amount that **remains** from the amount we **started with**. That gave the amount removed.”'
-            order: ['markdown1', 'scene2', 'text3']
+            order: ['subtractRemainingFromStart', 'modelDifference', 'explainSubtrahendMethod']
         production:
           purpose: 'Connect part–whole difference to calculating the missing removed amount.'
           pedagogicalIntent: 'Original Section 2: Subtract What Is Left (provisional draft)'
@@ -266,10 +266,10 @@ config:
             - Accessibility: All seven matched counters and four unmatched can be explored through an ordered text ledger and native controls.
             - Planned Note: No new Note; reuse one.
             - Dependencies: Additional isolated Scene entry.
-      section3:
+      verifyMissingSubtrahend:
         config:
           id: 'caf9ddd6-6140-49dd-8727-5744d166a85b'
-          slug: 'section3'
+          slug: 'verifyMissingSubtrahend'
           type: 'content'
           params: {}
           locale:
@@ -279,10 +279,10 @@ config:
               en: 'Put the Missing Amount in the Middle'
           content:
             items:
-              text1:
+              fillMissingSubtrahend:
                 config:
                   id: '0ca68aa4-c5c1-4f5f-8d4a-327a33d3ec3d'
-                  slug: 'text1'
+                  slug: 'fillMissingSubtrahend'
                   type: 'text'
                   params: {}
                   locale:
@@ -291,10 +291,10 @@ config:
                 production:
                   purpose: 'Put the Missing Amount in the Middle: text resource at position 1 (source provisional)'
                   specification: '1. **text — available:** “Here is the original equality: **11 − □ = 7**. Which number goes inside the box? Check it by subtracting.”'
-              scene2:
+              checkCandidateRemoval:
                 config:
                   id: '1a6d1804-1a0e-40d9-8db2-12c6382b4e93'
-                  slug: 'scene2'
+                  slug: 'checkCandidateRemoval'
                   type: 'scene'
                   params: {}
                   locale:
@@ -363,10 +363,10 @@ config:
 
                     2. **scene — proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), candidate entry with 3/4/7 and complete evaluated original expression for each.
                   productionNotes: 'Scene missingRemovalInvestigator.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              verifyElevenMinusFour:
                 config:
                   id: '7422faf8-19f8-4527-a5ab-237e83eea70d'
-                  slug: 'markdown3'
+                  slug: 'verifyElevenMinusFour'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -375,7 +375,7 @@ config:
                 production:
                   purpose: 'Put the Missing Amount in the Middle: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — available:** “**11 − 4 = 7**. Four is the missing removed part. The calculation **11 − 7 = 4** helped us find it; the calculation **11 − 4 = 7** checked it.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['fillMissingSubtrahend', 'checkCandidateRemoval', 'verifyElevenMinusFour']
         production:
           purpose: 'Distinguish the box in the subtrahend position and verify candidate.'
           pedagogicalIntent: 'Original Section 3: Put the Missing Amount in the Middle (provisional draft)'
@@ -391,10 +391,10 @@ config:
             - Accessibility: Missing box explicitly named “amount taken away”; exact substituted expressions and verdict in text/screen-reader output. No graded scoring.
             - Planned Note: “Check the answer in the original subtraction” after the candidate comparison.
             - Dependencies: Scene implementation/translation later.
-      section4:
+      solveNewSubtrahend:
         config:
           id: 'cdf9e28f-5a40-4ed8-8627-55b1d666b03a'
-          slug: 'section4'
+          slug: 'solveNewSubtrahend'
           type: 'content'
           params: {}
           locale:
@@ -404,10 +404,10 @@ config:
               en: 'Find the Lost Part Yourself'
           content:
             items:
-              text1:
+              solveFourteenMinusUnknown:
                 config:
                   id: '52d383c1-d8fd-44ae-a23a-143330d11b98'
-                  slug: 'text1'
+                  slug: 'solveFourteenMinusUnknown'
                   type: 'text'
                   params: {}
                   locale:
@@ -416,10 +416,10 @@ config:
                 production:
                   purpose: 'Find the Lost Part Yourself: text resource at position 1 (source provisional)'
                   specification: '1. **text — available:** “**14 − □ = 9.** Fourteen at first, nine remain. How many did we take away?”'
-              scene2:
+              modelNewRemoval:
                 config:
                   id: '8507b0ff-3cd7-4642-8de1-0825ead69c10'
-                  slug: 'scene2'
+                  slug: 'modelNewRemoval'
                   type: 'scene'
                   params: {}
                   locale:
@@ -488,10 +488,10 @@ config:
 
                     2. **scene — proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), transfer entry; optional text/counter model, candidate 4/5/6 and “Show how.”
                   productionNotes: 'Scene missingRemovalInvestigator.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              verifyFourteenMinusFive:
                 config:
                   id: 'bea0d7e1-82dc-42b2-8667-ad6be73464bc'
-                  slug: 'markdown3'
+                  slug: 'verifyFourteenMinusFive'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -500,7 +500,7 @@ config:
                 production:
                   purpose: 'Find the Lost Part Yourself: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — available:** “**14 − 9 = 5** finds what was taken away. Check the **original** statement: **14 − 5 = 9**.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['solveFourteenMinusUnknown', 'modelNewRemoval', 'verifyFourteenMinusFive']
         production:
           purpose: 'Transfer to a different whole and remainder.'
           pedagogicalIntent: 'Original Section 4: Find the Lost Part Yourself (provisional draft)'
@@ -516,7 +516,7 @@ config:
             - Accessibility: Full text log, RTL-safe math, adequate focus/touch targets, no drag or speech requirement.
             - Notes: Recall removed-part rule; no additional cue.
             - Dependencies: New Scene; no validated Quiz.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['identifyRemovedCounters', 'findRemovedAmountByDifference', 'verifyMissingSubtrahend', 'solveNewSubtrahend']
   flashcards:
     items: {}
     order: []
