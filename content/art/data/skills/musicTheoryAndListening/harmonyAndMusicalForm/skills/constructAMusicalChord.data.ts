@@ -5,6 +5,7 @@ export const constructAMusicalChord_Skill_Data = defineSkill({
   id: '9fe347f3-5d53-4124-8e88-f66c0359fe39',
   name: {
     en: 'Construct a Musical Chord',
+    it: 'Costruire un accordo musicale',
     zh: '构建音乐和弦',
     hi: 'संगीत का कॉर्ड बनाएँ',
     es: 'Construir un acorde musical',
@@ -38,6 +39,7 @@ export const constructAMusicalChord_Skill_Data = defineSkill({
     methodological: 'Combine pitches into an intended harmonic sonority under a given tuning or harmonic system.',
     frontend: {
       en: 'Combine notes to make a chord with a chosen musical sound.',
+      it: 'Combina note per creare un accordo con il suono musicale desiderato.',
       zh: '组合音符，构成具有指定音乐音响的和弦。',
       hi: 'चुनी हुई संगीत ध्वनि वाला कॉर्ड बनाने के लिए स्वरों को मिलाएँ।',
       es: 'Combina notas para crear un acorde con un sonido musical elegido.',
