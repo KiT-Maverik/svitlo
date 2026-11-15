@@ -5,6 +5,7 @@ export const evenOdd_Skill_Data = defineSkill({
   id: '1945f222-d833-4897-b9c1-71f16d81fd74',
   name: {
     en: 'Identifying even and odd numbers using pairs',
+    it: 'Riconoscere numeri pari e dispari formando coppie',
     qm: 'Çiftler yardımınen çift ve tek sayılarnı tanımaq',
     lt: 'Lyginių ir nelyginių skaičių atpažinimas sudarant poras',
     lv: 'Pāra un nepāra skaitļu atpazīšana, veidojot pārus',
@@ -39,6 +40,7 @@ export const evenOdd_Skill_Data = defineSkill({
       'An even number of objects can be divided into disjoint pairs with none left over; an odd number leaves one. This criterion for integer parity is independent of object arrangement or appearance.',
     frontend: {
       en: 'Make pairs to check whether a number is even or odd. An even number leaves none unpaired; an odd number leaves one.',
+      it: 'Forma coppie per verificare se un numero è pari o dispari. Un numero pari non lascia elementi isolati; uno dispari ne lascia uno.',
       qm: 'Sayı çiftmi ya da tekmi olğanını çiftler tüzerek teşkere. Çift sayıda çiftsiz eşya qalmay, tek sayıda ise bir eşya çiftsiz qala.',
       zh: '通过两两配对判断一个数是偶数还是奇数。偶数没有剩余，奇数会剩下一个。',
       hi: 'वस्तुओं की जोड़ियाँ बनाकर जाँचें कि संख्या सम है या विषम। सम में कुछ नहीं बचता और विषम में एक वस्तु बचती है।',
