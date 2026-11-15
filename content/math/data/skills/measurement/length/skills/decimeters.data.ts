@@ -5,6 +5,7 @@ export const decimeters_Skill_Data = defineSkill({
   id: 'f12c51d8-766f-45ed-beda-28871f4d4d99',
   name: {
     en: 'Converting between decimeters and centimeters',
+    it: 'Convertire decimetri e centimetri',
     qm: 'Detsimetrlernen santimetrlerni çevirmek',
     lt: 'Decimetrų ir centimetrų keitimas',
     lv: 'Decimetru un centimetru pārveidošana',
@@ -39,6 +40,7 @@ export const decimeters_Skill_Data = defineSkill({
       'One decimeter equals ten centimeters. Converting between them multiplies or divides the numerical measure by ten while preserving the actual length; always state the unit.',
     frontend: {
       en: 'You can change decimeters into centimeters and back, knowing that 1 dm = 10 cm and the actual length stays the same.',
+      it: 'Puoi convertire decimetri in centimetri e viceversa sapendo che 1 dm = 10 cm e che la lunghezza effettiva resta invariata.',
       qm: '1 dm = 10 cm olğanını bilerek detsimetrlerni santimetrlerge ve tersine çevire bilesiñ. Asıl uzunlıq deñişmey.',
       zh: '你能把分米换算成厘米，也能反向换算，知道1分米等于10厘米，实际长度不变。',
       hi: 'आप डेसीमीटर को सेंटीमीटर में और वापस बदल सकते हैं, जानते हुए कि 1 डेसीमीटर = 10 सेंटीमीटर और लंबाई वही रहती है।',
