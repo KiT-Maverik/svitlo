@@ -15,6 +15,7 @@ export const prompting_SkillGroup_Data = defineSkillGroup({
   id: 'b1ca0627-ec01-4c90-9e78-d3e54acaf01f',
   name: {
     en: 'Prompting',
+    it: 'Formulazione dei prompt',
     zh: '提示词编写',
     hi: 'प्रॉम्प्ट लिखना',
     es: 'Redacción de instrucciones para IA',
@@ -58,6 +59,7 @@ export const prompting_SkillGroup_Data = defineSkillGroup({
       'Specifying requirements for an AI request: objective, context, constraints, desired output format, and iterative refinement. Prompt components can vary independently; checking whether answers are true belongs to AI reliability.',
     frontend: {
       en: 'Learn to give AI systems clearer instructions, context and constraints.',
+      it: 'Impara a fornire ai sistemi di IA istruzioni, contesto e vincoli più chiari.',
       zh: '学习如何向人工智能系统提供更清晰的指令、背景信息和限制条件。',
       hi: 'एआई प्रणालियों को स्पष्ट निर्देश, संदर्भ और सीमाएँ देना सीखें।',
       es: 'Aprende a dar a los sistemas de IA instrucciones, contexto y restricciones más claros.',
