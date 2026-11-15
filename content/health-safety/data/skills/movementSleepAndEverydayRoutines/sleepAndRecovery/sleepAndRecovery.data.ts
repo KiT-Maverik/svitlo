@@ -11,6 +11,7 @@ export const sleepAndRecovery_SkillGroup_Data = defineSkillGroup({
   id: '5707083d-71c1-40f2-ab26-0f9440208252',
   name: {
     en: 'Sleep and Recovery',
+    it: 'Sonno e recupero',
     zh: '睡眠与恢复',
     hi: 'नींद और आराम',
     es: 'Sueño y recuperación',
@@ -40,19 +41,17 @@ export const sleepAndRecovery_SkillGroup_Data = defineSkillGroup({
     kk: 'Ұйқы және қалпына келу',
     qm: 'Yuqu ve quvetni qaytaruv',
   },
-  skills: {
-    items: {
-      recognizeProblematicSleepPatterns: recognizeProblematicSleepPatterns_Skill_Data,
-      supportHealthySleepRoutines: supportHealthySleepRoutines_Skill_Data,
-      understandSleepNeeds: understandSleepNeeds_Skill_Data,
-    },
-    order: ['recognizeProblematicSleepPatterns', 'supportHealthySleepRoutines', 'understandSleepNeeds'],
-  },
+  skills: [
+    recognizeProblematicSleepPatterns_Skill_Data,
+    supportHealthySleepRoutines_Skill_Data,
+    understandSleepNeeds_Skill_Data,
+  ],
   description: {
     methodological:
       'Sleep quality is affected by timing, environment, individual needs, and habits; persistent difficulty may warrant professional attention.',
     frontend: {
       en: 'Explore how sleep and regular rest affect everyday functioning.',
+      it: 'Esplora come il sonno e il riposo regolare influiscono sulle attività quotidiane.',
       zh: '探索睡眠和规律休息如何影响日常生活。',
       hi: 'जानें कि नींद और नियमित विश्राम रोज़मर्रा के कामकाज को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo el sueño y el descanso regular influyen en la vida cotidiana.',
