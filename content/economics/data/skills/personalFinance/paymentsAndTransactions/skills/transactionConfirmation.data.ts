@@ -5,6 +5,7 @@ export const transactionConfirmation_Skill_Data = defineSkill({
   id: '67449267-c954-43d2-8d5a-382f468e9d4e',
   name: {
     en: 'Підтвердження фінансової операції',
+    it: 'Conferma delle transazioni',
     zh: '交易确认',
     hi: 'लेनदेन की पुष्टि',
     es: 'Confirmación de transacción',
@@ -39,6 +40,7 @@ export const transactionConfirmation_Skill_Data = defineSkill({
       'Interpret the details, status, and purpose of a receipt, account statement, or electronic payment confirmation.',
     frontend: {
       en: 'Read a receipt or statement to confirm what happened to a payment.',
+      it: 'Leggi una ricevuta o un estratto conto per verificare che cosa è successo a un pagamento.',
       zh: '阅读收据或对账单，确认款项的处理情况。',
       hi: 'रसीद या विवरण पढ़कर भुगतान का परिणाम जाँचें।',
       es: 'Lee un recibo o extracto para confirmar qué sucedió con un pago.',

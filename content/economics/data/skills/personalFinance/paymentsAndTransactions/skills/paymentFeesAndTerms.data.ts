@@ -5,6 +5,7 @@ export const paymentFeesAndTerms_Skill_Data = defineSkill({
   id: 'a5d30d81-d28a-40c9-8980-a351bc1fb501',
   name: {
     en: 'Комісії та умови платежів',
+    it: 'Commissioni e condizioni di pagamento',
     zh: '支付费用和条款',
     hi: 'भुगतान शुल्क और शर्तें',
     es: 'Comisiones y condiciones de pago',
@@ -38,6 +39,7 @@ export const paymentFeesAndTerms_Skill_Data = defineSkill({
     methodological: 'Account for fees, currency conversion, settlement time, and options to dispute a transaction.',
     frontend: {
       en: 'Look for extra payment fees, conversion charges, and transaction terms.',
+      it: 'Controlla commissioni aggiuntive, costi di conversione e condizioni delle transazioni.',
       zh: '查看额外支付手续费、货币兑换费和交易条款。',
       hi: 'अतिरिक्त भुगतान शुल्क, मुद्रा रूपांतरण लागत और लेनदेन शर्तें देखें।',
       es: 'Busca cargos adicionales, costes de conversión y condiciones de la transacción.',

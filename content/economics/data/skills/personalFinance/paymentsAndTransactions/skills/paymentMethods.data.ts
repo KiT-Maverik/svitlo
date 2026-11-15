@@ -5,6 +5,7 @@ export const paymentMethods_Skill_Data = defineSkill({
   id: '29b5efc8-c76e-49cb-a775-4f189f6c440b',
   name: {
     en: 'Платіжні інструменти',
+    it: 'Metodi di pagamento',
     zh: '支付方式',
     hi: 'भुगतान के तरीके',
     es: 'Métodos de pago',
@@ -39,6 +40,7 @@ export const paymentMethods_Skill_Data = defineSkill({
       'Distinguish cash, bank transfers, cards, and digital payments by how they operate and the protections available.',
     frontend: {
       en: 'Compare paying with cash, a card, or a digital transfer.',
+      it: 'Confronta i pagamenti in contanti, con carta o tramite trasferimento digitale.',
       zh: '比较现金、银行卡和电子转账的付款方式。',
       hi: 'नकद, कार्ड या डिजिटल हस्तांतरण से भुगतान की तुलना करें।',
       es: 'Compara pagar en efectivo, con tarjeta o por transferencia digital.',

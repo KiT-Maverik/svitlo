@@ -5,6 +5,7 @@ export const latePaymentConsequences_Skill_Data = defineSkill({
   id: 'b556a906-f5c8-4a5b-a118-b93bfa3d7a89',
   name: {
     en: 'Наслідки прострочення',
+    it: 'Conseguenze dei ritardi nei pagamenti',
     zh: '逾期还款后果',
     hi: 'देर से भुगतान के परिणाम',
     es: 'Consecuencias de atrasarse en el pago',
@@ -39,6 +40,7 @@ export const latePaymentConsequences_Skill_Data = defineSkill({
       'Identify financial and legal risks of failing to meet obligations under applicable contracts and local rules.',
     frontend: {
       en: 'Understand what can happen when repayments are overdue.',
+      it: 'Comprendi che cosa può accadere quando i rimborsi sono in ritardo.',
       zh: '理解还款过期后可能发生什么。',
       hi: 'समझें कि किस्त देरी से चुकाने पर क्या हो सकता है।',
       es: 'Comprende qué puede pasar si se vencen los pagos.',
