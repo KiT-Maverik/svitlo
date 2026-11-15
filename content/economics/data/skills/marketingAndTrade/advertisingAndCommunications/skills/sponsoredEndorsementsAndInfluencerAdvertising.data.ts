@@ -5,6 +5,7 @@ export const sponsoredEndorsementsAndInfluencerAdvertising_Skill_Data = defineSk
   id: 'e556996f-5c8d-4baf-9021-41e08298be31',
   name: {
     en: 'Спонсорські рекомендації та реклама інфлюенсерів',
+    it: 'Raccomandazioni sponsorizzate e pubblicità degli influencer',
     zh: '赞助推荐与网红广告',
     hi: 'प्रायोजित समर्थन और इन्फ्लुएंसर विज्ञापन',
     es: 'Recomendaciones patrocinadas y publicidad de influencers',
@@ -39,6 +40,7 @@ export const sponsoredEndorsementsAndInfluencerAdvertising_Skill_Data = defineSk
       "Distinguish independent opinions from paid promotion, disclose creators' commercial interests, and assess evidence behind endorsements and popularity claims.",
     frontend: {
       en: 'Recognize sponsored recommendations and check whether their claims are credible.',
+      it: 'Riconosci le raccomandazioni sponsorizzate e verifica se le loro affermazioni sono credibili.',
       zh: '识别付费推荐并检查宣传说法是否可信。',
       hi: 'प्रायोजित सिफारिशें पहचानें और उनके दावों की विश्वसनीयता जाँचें।',
       es: 'Reconoce recomendaciones pagadas y comprueba si sus afirmaciones son creíbles.',

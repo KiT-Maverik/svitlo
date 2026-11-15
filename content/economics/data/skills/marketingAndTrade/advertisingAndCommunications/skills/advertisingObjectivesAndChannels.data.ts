@@ -5,6 +5,7 @@ export const advertisingObjectivesAndChannels_Skill_Data = defineSkill({
   id: 'df1d772e-03de-4bc5-9a64-318c316d465f',
   name: {
     en: 'Рекламні цілі та канали',
+    it: 'Obiettivi e canali pubblicitari',
     zh: '广告目标与渠道',
     hi: 'विज्ञापन उद्देश्य और माध्यम',
     es: 'Objetivos y canales publicitarios',
@@ -38,6 +39,7 @@ export const advertisingObjectivesAndChannels_Skill_Data = defineSkill({
     methodological: "Match a message's purpose with audience characteristics, communication channel, and constraints.",
     frontend: {
       en: 'Choose advertising channels that suit a message and its audience.',
+      it: 'Scegli i canali pubblicitari più adatti al messaggio e al pubblico.',
       zh: '选择适合信息及其受众的广告渠道。',
       hi: 'संदेश और उसके दर्शकों के अनुकूल विज्ञापन माध्यम चुनें।',
       es: 'Elige canales que se adapten al mensaje y a su público.',

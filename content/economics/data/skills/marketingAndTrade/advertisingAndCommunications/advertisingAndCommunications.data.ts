@@ -13,6 +13,7 @@ export const advertisingAndCommunications_SkillGroup_Data = defineSkillGroup({
   id: '177fda88-84e8-4f05-8ac7-94b98ea5a139',
   name: {
     en: 'Реклама та комунікації',
+    it: 'Pubblicità e comunicazione',
     zh: '广告与传播',
     hi: 'विज्ञापन और संचार',
     es: 'Publicidad y comunicación',
@@ -54,6 +55,7 @@ export const advertisingAndCommunications_SkillGroup_Data = defineSkillGroup({
       'Commercial messages can inform, remind, or persuade; effectiveness and truthfulness must be evaluated independently.',
     frontend: {
       en: 'Learn how advertising communicates and how to judge its claims.',
+      it: 'Scopri come comunica la pubblicità e come valutare le sue affermazioni.',
       zh: '了解广告如何传递信息，以及如何判断其中的说法。',
       hi: 'जानें कि विज्ञापन संदेश कैसे पहुँचाता है और उसके दावों को कैसे जाँचना चाहिए।',
       es: 'Aprende cómo comunica la publicidad y cómo evaluar sus afirmaciones.',

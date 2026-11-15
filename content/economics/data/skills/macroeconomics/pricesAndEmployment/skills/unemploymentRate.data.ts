@@ -5,6 +5,7 @@ export const unemploymentRate_Skill_Data = defineSkill({
   id: 'ea0b04ec-c227-4faf-86eb-72a6a30503f1',
   name: {
     en: 'Рівень безробіття',
+    it: 'Tasso di disoccupazione',
     zh: '失业率',
     hi: 'बेरोज़गारी दर',
     es: 'Tasa de desempleo',
@@ -39,6 +40,7 @@ export const unemploymentRate_Skill_Data = defineSkill({
       'Interpret the share of unemployed people in the labor force according to statistical criteria for employment and active job search.',
     frontend: {
       en: 'Understand who is counted when unemployment is measured.',
+      it: 'Comprendi chi viene conteggiato nella misurazione della disoccupazione.',
       zh: '理解统计失业时哪些人被计入。',
       hi: 'समझें कि बेरोज़गारी मापते समय किन लोगों को गिना जाता है।',
       es: 'Comprende quiénes se cuentan al medir el desempleo.',
