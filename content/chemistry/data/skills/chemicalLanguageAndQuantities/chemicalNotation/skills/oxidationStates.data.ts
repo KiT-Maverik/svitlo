@@ -5,6 +5,7 @@ export const oxidationStates_Skill_Data = defineSkill({
   id: '5179ce18-a170-407d-b453-b5641a095f23',
   name: {
     en: 'Oxidation States',
+    it: "Numeri di ossidazione",
     zh: '氧化态',
     hi: 'ऑक्सीकरण अवस्थाएँ',
     es: 'Estados de oxidación',
@@ -39,6 +40,7 @@ export const oxidationStates_Skill_Data = defineSkill({
       'Assign formal oxidation numbers under established conventions without mistaking them for measured atomic charges.',
     frontend: {
       en: 'Work with formal oxidation numbers without treating them as literal charges.',
+      it: "Usa i numeri di ossidazione formali senza considerarli cariche elettriche reali.",
       zh: '使用形式氧化数，而不要把它当作真实电荷。',
       hi: 'औपचारिक ऑक्सीकरण संख्या का उपयोग करें, उसे वास्तविक आवेश न मानें।',
       es: 'Trabaja con números de oxidación formales sin confundirlos con cargas reales.',

@@ -16,6 +16,7 @@ export const chemicalNotation_SkillGroup_Data = defineSkillGroup({
   id: '44b3b95c-0c6e-47ac-946e-eb2ba200a3b6',
   name: {
     en: 'Chemical Notation',
+    it: "Notazione chimica",
     zh: '化学符号与表示法',
     hi: 'रासायनिक संकेत लेखन',
     es: 'Notación química',
@@ -60,6 +61,7 @@ export const chemicalNotation_SkillGroup_Data = defineSkillGroup({
       'Symbols and formulas must preserve elemental identity, proportions and charge while being read according to their convention.',
     frontend: {
       en: 'Discover how chemical symbols and formulas communicate composition and charge.',
+      it: "Scopri come simboli e formule chimiche comunicano composizione e carica elettrica.",
       zh: '了解化学符号和化学式如何表达组成与电荷。',
       hi: 'जानें कि रासायनिक प्रतीक और सूत्र संघटन व आवेश कैसे दर्शाते हैं।',
       es: 'Descubre cómo los símbolos y las fórmulas expresan composición y carga.',
