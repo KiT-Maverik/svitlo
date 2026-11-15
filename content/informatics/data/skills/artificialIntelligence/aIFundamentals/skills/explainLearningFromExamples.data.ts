@@ -5,6 +5,7 @@ export const explainLearningFromExamples_Skill_Data = defineSkill({
   id: '799b85b6-30c0-489b-8e8a-b821a3332a75',
   name: {
     en: 'Explain Learning from Examples',
+    it: "Spiegare l'apprendimento dagli esempi",
     zh: '解释从示例中学习',
     hi: 'उदाहरणों से सीखना समझाना',
     es: 'Explicar el aprendizaje a partir de ejemplos',
@@ -39,6 +40,7 @@ export const explainLearningFromExamples_Skill_Data = defineSkill({
       'Show how training adjusts model parameters using examples and a quality criterion to generalize to new data. Memorizing training examples alone does not establish reliable performance on unseen data.',
     frontend: {
       en: 'Explain how examples help a model improve its performance on new inputs.',
+      it: 'Spiega come gli esempi aiutano un modello a migliorare le prestazioni su nuovi dati in ingresso.',
       zh: '解释示例如何帮助模型提高处理新输入的能力。',
       hi: 'समझाएँ कि उदाहरण नए इनपुट पर मॉडल के प्रदर्शन को कैसे बेहतर बनाते हैं।',
       es: 'Explica cómo los ejemplos ayudan a mejorar el rendimiento de un modelo ante datos nuevos.',

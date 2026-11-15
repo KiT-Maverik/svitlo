@@ -14,6 +14,7 @@ export const aIFundamentals_SkillGroup_Data = defineSkillGroup({
   id: '1b282e43-c07f-4307-aa1a-0e2c01bcadef',
   name: {
     en: 'AI Fundamentals',
+    it: 'Fondamenti di intelligenza artificiale',
     zh: '人工智能基础',
     hi: 'एआई की बुनियाद',
     es: 'Fundamentos de la inteligencia artificial',
@@ -56,6 +57,7 @@ export const aIFundamentals_SkillGroup_Data = defineSkillGroup({
       "Explores the roles of programmed rules and training data in AI, common task objectives, and limits of result reliability. Classify tasks by their desired outputs, not only by a model's name or underlying mathematical technique.",
     frontend: {
       en: 'Explore the differences between programmed rules, trained models and AI tasks.',
+      it: "Esplora le differenze tra regole programmate, modelli addestrati e compiti dell'intelligenza artificiale.",
       zh: '探索编程规则、训练后的模型以及人工智能任务之间的区别。',
       hi: 'प्रोग्राम किए गए नियमों, प्रशिक्षित मॉडलों और एआई कार्यों के बीच अंतर जानें।',
       es: 'Explora las diferencias entre reglas programadas, modelos entrenados y tareas de IA.',
