@@ -5,6 +5,7 @@ export const stellarPopulations_Skill_Data = defineSkill({
   id: '85bbbb8a-22fe-44ef-bc4a-3ec959a9d8e7',
   name: {
     en: 'Stellar Populations',
+    it: 'Popolazioni stellari',
     zh: '恒星族群',
     hi: 'तारकीय आबादियाँ',
     es: 'Poblaciones estelares',
@@ -39,6 +40,7 @@ export const stellarPopulations_Skill_Data = defineSkill({
       'Distinguish stellar populations by typical ages, chemical abundances and locations without treating the categories as absolute.',
     frontend: {
       en: 'Compare populations of stars with different ages, compositions and locations.',
+      it: 'Confronta popolazioni di stelle con età, composizioni e posizioni differenti.',
       zh: '比较年龄、化学成分和位置各不相同的恒星族群。',
       hi: 'अलग-अलग आयु, रासायनिक संरचना और स्थान वाली तारकीय आबादियों की तुलना करें।',
       es: 'Compara poblaciones de estrellas de distintas edades, composiciones y ubicaciones.',

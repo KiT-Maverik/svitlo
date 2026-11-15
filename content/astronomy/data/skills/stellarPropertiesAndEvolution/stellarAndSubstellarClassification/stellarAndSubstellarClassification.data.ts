@@ -14,6 +14,7 @@ export const stellarAndSubstellarClassification_SkillGroup_Data = defineSkillGro
   id: 'ffcae6bb-e8d9-4402-b3f8-7c4b3033a521',
   name: {
     en: 'Stellar and Substellar Classification',
+    it: 'Classificazione stellare e substellare',
     zh: '恒星与亚恒星天体分类',
     hi: 'तारकीय और उपतारकीय पिंडों का वर्गीकरण',
     es: 'Clasificación estelar y subestelar',
@@ -56,6 +57,7 @@ export const stellarAndSubstellarClassification_SkillGroup_Data = defineSkillGro
       'Spectra, temperature, luminosity, mass, multiplicity and composition provide complementary ways to group luminous stars and related substellar bodies, while observational class need not imply a unique evolutionary history.',
     frontend: {
       en: 'Explore different kinds of stars and related objects through spectra, mass and brightness.',
+      it: 'Esplora diversi tipi di stelle e oggetti affini attraverso spettri, massa e luminosità.',
       zh: '研究如何根据光谱、质量和亮度区分不同的恒星及相关天体。',
       hi: 'वर्णक्रम, द्रव्यमान और चमक के आधार पर अलग-अलग तारों तथा संबंधित पिंडों को समझें।',
       es: 'Explora los distintos tipos de estrellas y objetos relacionados según sus espectros, masas y brillo.',

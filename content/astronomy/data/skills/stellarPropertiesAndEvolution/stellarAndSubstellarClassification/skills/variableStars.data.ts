@@ -5,6 +5,7 @@ export const variableStars_Skill_Data = defineSkill({
   id: '4d1c9a55-f359-41cd-8e59-a32038c57489',
   name: {
     en: 'Variable Stars',
+    it: 'Stelle variabili',
     zh: '变星',
     hi: 'परिवर्ती तारे',
     es: 'Estrellas variables',
@@ -39,6 +40,7 @@ export const variableStars_Skill_Data = defineSkill({
       'Classify intrinsic stellar brightness variation by physical mechanism, timescale or periodicity, distinguishing it from apparent variation caused by eclipsing companions.',
     frontend: {
       en: "Recognize different causes of changes in a star's brightness.",
+      it: 'Riconosci le diverse cause dei cambiamenti di luminosità delle stelle.',
       zh: '认识恒星亮度发生变化的不同原因。',
       hi: 'जानें कि तारों की चमक किन अलग-अलग कारणों से बदल सकती है।',
       es: 'Reconoce las distintas causas de los cambios de brillo de una estrella.',

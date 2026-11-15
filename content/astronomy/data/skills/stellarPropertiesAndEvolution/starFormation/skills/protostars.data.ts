@@ -5,6 +5,7 @@ export const protostars_Skill_Data = defineSkill({
   id: '11b1b2dc-387a-48ed-a656-8e87b7abab82',
   name: {
     en: 'Protostars',
+    it: 'Protostelle',
     zh: '原恒星',
     hi: 'आद्यतारे',
     es: 'Protoestrellas',
@@ -39,6 +40,7 @@ export const protostars_Skill_Data = defineSkill({
       'Interpret the stage during which a contracting young stellar object has not yet reached stable hydrogen fusion.',
     frontend: {
       en: 'Recognize the early stage of a young star before steady hydrogen fusion begins.',
+      it: 'Riconosci la fase iniziale di una giovane stella prima che inizi una fusione stabile dell\'idrogeno.',
       zh: '认识恒星诞生初期、尚未开始稳定氢核聚变的阶段。',
       hi: 'तारे के विकास की उस शुरुआती अवस्था को पहचानें जब स्थिर हाइड्रोजन संलयन शुरू नहीं हुआ है।',
       es: 'Reconoce la fase inicial de una estrella, antes de que comience la fusión estable de hidrógeno.',
