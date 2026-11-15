@@ -22,7 +22,8 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
-import { loadFactoryRegistry, sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
+import { loadFactoryRegistry } from '../yamlScaffolding/yamlScaffolding.mjs';
+import { renderLessonModules } from './lessonModules.mjs';
 import {
   splitScaffoldDocument,
   productionFiles,
@@ -83,165 +84,6 @@ function parseYaml(file, relative) {
   }
 }
 
-/**
- * A context is the authoring-contract location, not a schema. Ordinary object
- * fields (including flag.type and params.type) remain plain data.
- */
-function childContext(parent, key, owner) {
-  const collections = {
-    sectionCollection: 'sectionItems',
-    flashcardCollection: 'flashcardItems',
-    blockCollection: 'blockItems',
-    slideCollection: 'slideItems',
-    checkpointCollection: 'checkpointItems',
-    pairsCollection: 'pairItems',
-    slotsCollection: 'slotItems',
-  };
-  if (collections[parent] && key === 'items') return collections[parent];
-  const members = {
-    sectionItems: 'section',
-    flashcardItems: 'flashcard',
-    blockItems: 'block',
-    slideItems: 'slide',
-    checkpointItems: 'checkpointItem',
-    questionGroup: 'question',
-    pairItems: 'pair',
-    slotItems: 'slot',
-  };
-  if (members[parent]) return members[parent];
-  if (parent === 'questionBank') return 'questionGroup';
-  if (parent === 'lesson') {
-    if (key === 'section') return 'sectionCollection';
-    if (key === 'flashcards') return 'flashcardCollection';
-    if (key === 'questions') return 'questionBank';
-  }
-  if (parent === 'section' && owner.type === 'quest') {
-    if (key === 'stages') return 'questStages';
-    if (key === 'tasks') return 'questTasks';
-  }
-  if (parent === 'questStages') return 'stage';
-  if (parent === 'questTasks') return 'task';
-  if (parent === 'stage' && key === 'content') return 'questStageContent';
-  if (parent === 'questStageContent') {
-    if (key === 'video') return 'questVideoTracks';
-    if (key === 'audio') return 'questAudioTracks';
-    if (key === 'image' || key === 'subtitles') return 'block';
-  }
-  if (parent === 'questVideoTracks') return 'block';
-  if (parent === 'questAudioTracks') return 'nullableBlock';
-  if (parent === 'task' && key === 'scene') return 'block';
-  if (parent === 'section' && key === 'content') return 'blockCollection';
-  if (parent === 'block') {
-    if (owner.type === 'carousel' && key === 'slides') return 'slideCollection';
-    if (owner.type === 'checkpoint' && key === 'content') return 'checkpointCollection';
-  }
-  if (parent === 'checkpointItem') {
-    if (key === 'question') return 'block';
-    if (key === 'answer') return 'blockCollection';
-  }
-  if (parent === 'question' && key === 'content') return 'questionContent';
-  if (parent === 'flashcard' && key === 'content') return 'flashcardContent';
-  if (parent === 'flashcardContent' && ['front', 'back', 'hint'].includes(key)) return 'blockCollection';
-  if (parent === 'questionContent') {
-    if (key === 'answers') return 'questionAnswers';
-    if (key === 'pairs') return 'pairsCollection';
-    if (key === 'slots') return 'slotsCollection';
-    if (['question', 'hint', 'explanation', 'correctSequence', 'distractors', 'sequence'].includes(key))
-      return 'blockCollection';
-  }
-  if (parent === 'questionAnswers' && ['correct', 'incorrect', 'distractors'].includes(key)) return 'blockCollection';
-  if (parent === 'pair' && ['left', 'right'].includes(key)) return 'block';
-  if (parent === 'slot' && key === 'correctAnswer') return 'block';
-  return 'plain';
-}
-
-const factoryContexts = new Set([
-  'lesson',
-  'section',
-  'stage',
-  'task',
-  'block',
-  'slide',
-  'checkpointItem',
-  'question',
-  'flashcard',
-]);
-const indent = level => '  '.repeat(level);
-
-/**
- * Serialize source fields in original order, wrapping only actual Configurator
- * positions in the Engine factory selected by their type discriminator.
- */
-export function renderLessonDraft(lesson, language, factories = loadFactoryRegistry()) {
-  const used = new Set();
-
-  function render(value, context, field, level) {
-    if (context === 'nullableBlock') {
-      if (value === null) return 'null'; // A genuinely silent Quest audio track.
-      return render(value, 'block', field, level);
-    }
-    if (factoryContexts.has(context)) {
-      if (!isRecord(value)) fail('content.yaml', field, 'expected an object with type for factory dispatch');
-      const type = value.type;
-      if (typeof type !== 'string' || !type)
-        fail('content.yaml', field + '.type', 'missing type discriminator for ' + context + ' factory dispatch');
-      if (context === 'lesson' && type !== 'lesson')
-        fail('content.yaml', field + '.type', 'expected lesson type for the Lesson entrypoint');
-      const factory = factories[type];
-      if (!factory) fail('content.yaml', field + '.type', 'unknown type "' + type + '"; no Engine define* factory');
-      used.add(factory);
-      return factory + '(' + renderObject(value, context, field, level) + ')';
-    }
-    if (Array.isArray(value)) {
-      if (!value.length) return '[]';
-      return (
-        '[\n' +
-        value
-          .map((item, index) => indent(level + 1) + render(item, 'plain', field + '[' + index + ']', level + 1))
-          .join(',\n') +
-        '\n' +
-        indent(level) +
-        ']'
-      );
-    }
-    if (isRecord(value)) return renderObject(value, context, field, level);
-    if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) return JSON.stringify(value);
-    fail('content.yaml', field, 'unsupported YAML value');
-  }
-
-  function renderObject(value, context, field, level) {
-    const entries = Object.entries(value);
-    if (!entries.length) return '{}';
-    return (
-      '{\n' +
-      entries
-        .map(([key, raw]) => {
-          const next = childContext(context, key, value);
-          const child = raw;
-          return indent(level + 1) + JSON.stringify(key) + ': ' + render(child, next, field + '.' + key, level + 1);
-        })
-        .join(',\n') +
-      '\n' +
-      indent(level) +
-      '}'
-    );
-  }
-
-  const call = render(sourceAuthoringCopy(lesson, language), 'lesson', '$', 0);
-  const imports = [...used].sort((a, b) => a.localeCompare(b));
-  const name = lesson.slug + '_Lesson';
-  return (
-    'import { ' +
-    imports.join(', ') +
-    " } from '@svitlo/engine/build';\n\n" +
-    'export const ' +
-    name +
-    ' = ' +
-    call +
-    ';\n'
-  );
-}
-
 /** The UUID path is an output-safety boundary, not editorial validation. */
 function targetFor(source, repo) {
   const location = path.resolve(source);
@@ -300,51 +142,69 @@ function writeDraft(file, content, mode) {
 export function runOne(source, mode = 'check', repo = repoRoot) {
   if (!['generate', 'check'].includes(mode)) throw new Error('Mode must be generate or check');
   const target = targetFor(source, repo);
-  // An existing *.data.ts marks this UUID as already authored. Do not parse
-  // or regenerate it: the source YAML may be outdated after AI editing.
+  // An existing root index.ts or *.data.ts marks an authored Lesson. Do not
+  // parse stale YAML in generate mode and never overwrite manual edits.
   const sourceRelative = path.relative(target.bookRoot, target.root).split(path.sep).join('/');
   const canonicalSource = /^data\/lessons\/[0-9a-f]\/[0-9a-f-]{36}$/.test(sourceRelative);
   const existing = canonicalSource
     ? fs
         .readdirSync(target.root)
-        .filter(name => name.endsWith('.data.ts'))
+        .filter(name => name.endsWith('.data.ts') || name === 'index.ts')
         .sort()
     : [];
   if (mode === 'generate' && existing.length) {
     return { changed: 0, skipped: true, files: existing, lessonId: target.lessonId };
   }
+
   const { lesson, language, tasks } = combineSources(target.root);
   if (typeof lesson.id !== 'string' || !uuidPattern.test(lesson.id))
     fail('config.yaml', 'config.id', 'a Lesson UUID is required for ID-addressed output');
   const outputFolder = path.join(target.bookRoot, 'data/lessons', lesson.id.at(-1), lesson.id);
   noSymlinks(outputFolder);
-  // When source is outside the canonical target, derive the destination from
-  // the single authored config.id. Existing data is still never overwritten.
   const destinationData = fs.existsSync(outputFolder)
     ? fs
         .readdirSync(outputFolder)
-        .filter(name => name.endsWith('.data.ts'))
+        .filter(name => name.endsWith('.data.ts') || name === 'index.ts')
         .sort()
     : [];
   if (mode === 'generate' && destinationData.length) {
     return { changed: 0, skipped: true, files: destinationData, lessonId: lesson.id };
   }
+  if (destinationData.some(name => name.endsWith('.data.ts'))) {
+    fail(destinationData[0], '$', 'competing legacy Lesson entrypoint; modular layout requires a clean UUID folder');
+  }
+  const modules = renderLessonModules(lesson, language, { bookRoot: target.bookRoot, outputFolder });
   const artifacts = productionFiles(outputFolder, tasks);
-  // Verify all authored production destinations before creating TS or Markdown.
-  checkProductionFiles(artifacts, mode);
-  const draft = renderLessonDraft(lesson, language);
-  const entryName = lesson.slug + '.data.ts';
-  for (const name of destinationData) {
-    if (name !== entryName) {
-      fail(name, '$', 'competing Lesson data entrypoint; refusing to create another');
+
+  // A partial previous run may have left modules without the root entrypoint.
+  // Never mix their contents with newly generated modules.
+  if (mode === 'generate') {
+    const draftDirectories = ['sections', 'flashcards', 'questions'];
+    const hasOrphans =
+      fs.existsSync(path.join(outputFolder, 'constants.ts')) ||
+      draftDirectories.some(name => fs.existsSync(path.join(outputFolder, name)));
+    if (hasOrphans) fail('index.ts', '$', 'incomplete Lesson source tree; refusing to mix drafts with existing files');
+  }
+  for (const relative of modules.keys()) {
+    const destination = path.join(outputFolder, relative);
+    noSymlinks(destination);
+    if (mode === 'generate' && fs.existsSync(destination)) {
+      fail(relative, '$', 'existing Lesson source; refusing to overwrite or mix drafts');
     }
   }
+  checkProductionFiles(artifacts, mode);
+
   if (mode === 'generate') fs.mkdirSync(outputFolder, { recursive: true });
-  const changed = writeDraft(path.join(outputFolder, entryName), draft, mode);
+  let changed = 0;
+  for (const [relative, body] of modules) {
+    const destination = path.join(outputFolder, relative);
+    if (mode === 'generate') fs.mkdirSync(path.dirname(destination), { recursive: true });
+    changed += writeDraft(destination, body, mode);
+  }
   const specs = mode === 'generate' ? writeProductionFiles(artifacts) : 0;
   return {
     changed: changed + specs,
-    files: [entryName, ...artifacts.map(item => item.file)],
+    files: [...modules.keys(), ...artifacts.map(item => item.file)],
     lessonId: lesson.id,
   };
 }

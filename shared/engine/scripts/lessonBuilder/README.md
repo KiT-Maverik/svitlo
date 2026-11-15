@@ -71,10 +71,23 @@ change `params.languages` or invent translations.
 
 ## Generated handoffs
 
-- `<slug>.data.ts` inside the canonical Lesson UUID directory: recursively nested `define*`
-  factory calls containing **only** each node's `config`. Required Config
-  structure is complete. Pending `src: null` deliberately **fails TypeScript
-  checking** until a media specialist provides the real asset.
+- `index.ts` inside the canonical Lesson UUID directory: one `defineLesson` call, referencing
+  named `section`, `flashcards`, and `questions` collections assembled by adjacent
+  `sections/index.ts`, `flashcards/index.ts`, and `questions/index.ts`. Each nested
+  Section, ContentBlock, Question, Flashcard, Checkpoint Item, Carousel Slide,
+  Quest Stage and Quest Task lives in its own `<slug>/index.ts` module. Generic
+  arguments are based on the actual Engine Configurator signature.
+- `constants.ts`: source YAML `params.languages` as an Engine-checked readonly tuple
+  and the shared `LessonLanguages` type. This is NOT an extra source of languages;
+  the generated `defineLesson` references the same tuple, and nested definitions
+  carry its derived type without synthesizing missing translations.
+- Real Skill imports instead of hardcoded UUID string expressions, resolved
+  strictly against the textbook's `data/skills/**/*.data.ts` exported `defineSkill`
+  definitions; missing/ambiguous references are explicit diagnostics.
+- Nested `define*` source keeps the authored Config values and source-locale
+  localization. Pending `src: null` deliberately **fails TypeScript checking**
+  until a media specialist provides the real asset. Generated draft modules
+  are syntactically valid but not guaranteed to be typecheck-clean.
 - `methodology.md` in the Lesson UUID directory, only when
   `production.methodology` is authored and the destination is safe to create.
 - `content/<book>/scenes/<bucket>/<scene-id>/specification.md` from each
@@ -95,6 +108,23 @@ The script selects factories only from
 `configurators/yaml/yamlFactoryByType.ts`. It does not evaluate any complete
 Config/Props, check approval or call `build.props()`.
 
+### Stage boundaries
+
+This is **Stage 2** of the [Lesson source-layout rollout](../../../../studio/docs/architecture/lesson-generated-source-layout.md).
+It changes the **TypeScript module tree only**. Markdown/Code file loading,
+co-located Scene/media specifications, optional Carousel child polymorphism,
+Review creation and asset publication are intentionally unchanged and belong
+to later stages. Quest `stages/` and `tasks/`, Checkpoint Item `question/` and `answer/`, and Question/Flashcard
+`front/`, `back/`, `correct/` and `incorrect/` role directories remain
+where sibling slug collisions would otherwise occur. Ordinary Section
+ContentBlocks do **not** have type-grouped directories.
+
+The previous single-file `renderLessonDraft` is retired; the source builder
+now uses `renderLessonModules` to produce one non-destructive draft file per
+authored node. Existing `*.data.ts` source Lessons remain recognized by the
+Props publisher; a UUID directory must not contain both legacy and modular
+entrypoints.
+
 ## Usage
 
 ```sh
@@ -105,10 +135,14 @@ npm run test:unit:lesson-builder
 ```
 
 Without `--source`, discovers canonical Lesson directories containing `config.yaml`. A direct file source derives its output path from `config.id` without requiring the staging folder name to repeat the UUID.
-`generate` **skips the entire Lesson before parsing YAML if any `*.data.ts` exists in a canonical source UUID directory**, as established in PR #531. When given a staged file, the generator first reads its sole ID to locate the destination, then applies the same no-overwrite `SKIP` safeguard there. For a new Lesson,
-writes are exclusive (`wx`); no existing code or independently edited
-specification is overwritten. `check` is strict/read-only, and never silently
-skips stale or missing draft outputs. Unsafe symlink paths are rejected.
+`generate` **skips the entire Lesson before parsing YAML if any `*.data.ts`
+or root `index.ts` exists in a canonical source UUID directory**, retaining the
+creation-only safeguard from PR #531. Staged input derives the target from
+`config.id` and performs the same check. New Lesson trees are written with
+exclusive `wx` writes; an orphan module tree (e.g. `sections/` without a root
+entrypoint) causes a diagnostic instead of partial replacement. `check` verifies
+every expected module by checksum and compares existing production handoffs
+without writes. Unsafe symlinks remain forbidden.
 
 Studio's legacy `content.md`, `methodologist-brief.md` and role-owned
 editorial artifacts remain valuable input references for migration. The new
