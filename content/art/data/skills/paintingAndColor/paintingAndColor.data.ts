@@ -9,6 +9,7 @@ export const paintingAndColor_SkillDomain_Data = defineSkillDomain({
   id: '37202bbb-4bc0-485d-b742-4cf7d50e8463',
   title: {
     en: 'Painting and Color',
+    it: 'Pittura e colore',
     zh: '绘画与色彩',
     hi: 'चित्रकारी और रंग',
     es: 'Pintura y color',
@@ -44,6 +45,7 @@ export const paintingAndColor_SkillDomain_Data = defineSkillDomain({
       'Painting uses pigment and surfaces to organize color, form and expression. The material behavior of paint and pictorial composition create distinct competencies.',
     frontend: {
       en: 'Explore how paints, pigments and color choices shape expressive pictures.',
+      it: 'Esplora come colori pittorici, pigmenti e scelte cromatiche danno forma a immagini espressive.',
       zh: '探索颜料、色粉和色彩选择如何塑造富有表现力的画面。',
       hi: 'जानें कि पेंट, रंगद्रव्य और रंगों का चुनाव अभिव्यंजक चित्रों को कैसे आकार देता है।',
       es: 'Explora cómo las pinturas, los pigmentos y las elecciones cromáticas dan forma a imágenes expresivas.',
