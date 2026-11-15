@@ -12,6 +12,7 @@ export const formsAndPurposes_SkillGroup_Data = defineSkillGroup({
   id: '191a73e7-f79d-4b5f-96d5-9b2ce38f28e7',
   name: {
     en: 'Forms and Purposes',
+    it: "Forme e finalità dell'arte",
     zh: '形式与目的',
     hi: 'रूप और उद्देश्य',
     es: 'Formas y propósitos',
@@ -52,6 +53,7 @@ export const formsAndPurposes_SkillGroup_Data = defineSkillGroup({
       'Art can represent, express, question, commemorate or invite participation; genre labels and purposes are useful but not universal classifications.',
     frontend: {
       en: 'Explore the many ways art can communicate ideas, feelings and experiences.',
+      it: "Esplora i molti modi in cui l'arte può comunicare idee, emozioni ed esperienze.",
       zh: '探索艺术传达思想、情感和体验的多种方式。',
       hi: 'जानें कि कला विचारों, भावनाओं और अनुभवों को कितने तरीकों से व्यक्त कर सकती है।',
       es: 'Explora las muchas formas en que el arte puede comunicar ideas, sentimientos y experiencias.',
