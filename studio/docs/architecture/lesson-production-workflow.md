@@ -16,6 +16,24 @@ The GitHub Issue is the **persistent, cross-chat state and coordination record**
 
 Both reviews are independent of the Screenwriter and of each other. The reviewers return specific, traceable findings; the Screenwriter revises `content.yaml`. An independent `pass` verdict is **not an editorial approval**: authorized sign-off must be linked. Each review identifies the exact `content.yaml` Git blob/revision. Content revisions require rechecking stale reviews; Methodology amendments may also invalidate approvals.
 
+## Canonical Lesson Production stage identifiers
+
+The Engine `LessonReviewStage`, the `review.ts` AI properties and the
+Lesson Production Issue tracker use the **same camelCase stage identifiers**:
+`methodology`, `content`, `experienceReview`, `methodologyReview`,
+`questions`, `flashcards`, `generateSources`, `resourceProduction`,
+`localization`, and `validation`. There is no `ai.stages` wrapper, no
+kebab-case legacy alias and no translation map between Issue records and
+Engine review fields. `completed` is a terminal tracker status, not an AI
+review field.
+
+Each direct stage property under `ai` requires verified `{ pr, language }`
+evidence; `ai.locales` is the full-scope AI localization integration PR.
+`human.acceptance`, `human.locales`, and optional `human.scientific`
+are unchanged. Leave the review draft's Props digest identifier and mandatory
+values unresolved until verification. Renaming stages does **not** create
+approval evidence or invalidate the requirement to reconcile revisions.
+
 ## Typical stage lifecycle
 
 1. Methodologist authors `methodology.md`; editor approves including the Quiz and Assessment Method plan.

@@ -14,6 +14,7 @@ import { renderReviewDraft } from './reviewTemplate.mjs';
 
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const safeSlug = /^[a-z][A-Za-z0-9]*$/;
+const sceneSlug = /^[A-Za-z][A-Za-z0-9]*$/;
 const identifier = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
 const factoryContexts = new Set([
   'lesson',
@@ -378,6 +379,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     languageValues.length > 0 &&
     languageValues.every(value => typeof value === 'string');
   const languagesType = hasLanguages ? 'LessonLanguages' : null;
+  const constantsSpecifier = '#lessonsData/' + filtered.id?.at(-1) + '/' + filtered.id + '/constants';
   if (hasLanguages) {
     files.set(
       'constants.ts',
@@ -407,18 +409,8 @@ export function renderLessonModules(lesson, language, options = {}) {
       output.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
     }
     if (needsLanguages && languagesType) {
-      const constantImport = relativeImport(directory, '');
-      output.push(
-        'import type { LessonLanguages } from ' +
-          JSON.stringify(constantImport + (constantImport.endsWith('/') ? '' : '/') + 'constants') +
-          ';',
-      );
-      if (languageValue)
-        output.push(
-          'import { languages } from ' +
-            JSON.stringify(constantImport + (constantImport.endsWith('/') ? '' : '/') + 'constants') +
-            ';',
-        );
+      output.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
+      if (languageValue) output.push('import { languages } from ' + JSON.stringify(constantsSpecifier) + ';');
     }
     return output.join('\n') + '\n\n';
   }
@@ -444,7 +436,7 @@ export function renderLessonModules(lesson, language, options = {}) {
         throw new Error('config.yaml:' + field + '.type: Carousel slides must be image or scene');
       if (!factories[value.type])
         throw new Error('config.yaml:' + field + '.type: unknown type "' + value.type + '"; no Engine define* factory');
-      if (typeof value.slug !== 'string' || !safeSlug.test(value.slug))
+      if (typeof value.slug !== 'string' || !(value.type === 'scene' ? sceneSlug : safeSlug).test(value.slug))
         throw new Error('config.yaml:' + field + '.slug: unsafe or missing camelCase slug');
       const symbol = symbolFor(value, context);
       // The mandatory Text question and the Answer Configurator have fixed
@@ -519,6 +511,12 @@ export function renderLessonModules(lesson, language, options = {}) {
             (context === 'slot' && key === 'correctAnswer')
           )
             nextDirectory = join(ownerDirectory, key);
+          if (context === 'flashcardContent' && ['front', 'back', 'hint'].includes(key)) {
+            if (!record(child)) throw new Error('config.yaml:' + field + '.' + key + ': expected Flashcard side');
+            emitFlashcardSide(key, child, nextDirectory);
+            imported.set(key, { symbol: key, location: nextDirectory });
+            return indent(depth + 1) + key;
+          }
           const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, field + '.' + key);
           return (
             indent(depth + 1) + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered)
@@ -535,7 +533,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     const stem = value.slug;
     if (context === 'stage') return 'stage_' + stem;
     if (context === 'task') return 'task_' + stem;
-    if (context === 'question') return value.type + '_' + stem;
+    if (value.type === 'scene') return stem[0].toUpperCase() + stem.slice(1) + 'Config';
     return reserved.has(stem) || javascriptKeywords.has(stem) ? 'item_' + stem : stem;
   }
 
@@ -613,6 +611,36 @@ export function renderLessonModules(lesson, language, options = {}) {
       );
     }
     return '<' + [slug, languagesType].join(', ') + '>';
+  }
+
+  // Flashcard sides have no UUID. The role-local barrel owns the ordered block map.
+  function emitFlashcardSide(role, side, directory) {
+    const reservedImports = new Set([role, 'sideItems', 'defineFlashcardSide', 'LessonLanguages']);
+    const imports = new Map(
+      [...reservedImports].map(name => [name, { symbol: name, location: '__reserved__' }]),
+    );
+    const sideItems = render(side.items, 'blockItems', directory, imports, 0, '$.content.' + role + '.items');
+    const fields = Object.entries(side).map(([key, value]) =>
+      key === 'items'
+        ? '  items: sideItems'
+        : '  ' + asProperty(key) + ': ' + render(value, 'plain', directory, imports, 1, '$.content.' + role + '.' + key),
+    );
+    const importsHead = ["import { defineFlashcardSide } from '@svitlo/engine/build';"];
+    for (const [alias, { symbol, location }] of [...imports.entries()]
+      .filter(([, entry]) => entry.location !== '__reserved__')
+      .sort((a, b) => a[0].localeCompare(b[0]))) {
+      const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
+      importsHead.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
+    }
+    if (languagesType) importsHead.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
+    put(
+      join(directory, 'index.ts'),
+      importsHead.join('\n') + '\n\n' +
+        'const sideItems = ' + sideItems + ';\n\n' +
+        'export const ' + role + ' = defineFlashcardSide<' +
+        (languagesType ? 'typeof sideItems, LessonLanguages' : 'typeof sideItems') +
+        '>({\n' + fields.join(',\n') + '\n});\n',
+    );
   }
 
   function emitNode(node, context, directory) {
