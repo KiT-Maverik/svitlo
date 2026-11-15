@@ -5,6 +5,7 @@ export const ventilationSystems_Skill_Data = defineSkill({
   id: '974f3258-9b52-4f2a-8661-8faddfc2739c',
   name: {
     en: 'Ventilation systems',
+    it: 'Sistemi di ventilazione',
     zh: '通风系统',
     hi: 'वातन प्रणालियाँ',
     es: 'Sistemas de ventilación',
@@ -38,6 +39,7 @@ export const ventilationSystems_Skill_Data = defineSkill({
     methodological: 'Distinguish outdoor-air exchange from recirculating existing indoor air.',
     frontend: {
       en: 'Distinguish bringing in fresh air from circulating the same indoor air.',
+      it: 'Distingui l\'immissione di aria fresca dal semplice ricircolo della stessa aria interna.',
       zh: '区分引入新鲜空气与仅循环原有室内空气。',
       hi: 'ताजी हवा अंदर लाने और वही पुरानी हवा घुमाने में अंतर करें।',
       es: 'Distingue introducir aire fresco de recircular el mismo aire interior.',
