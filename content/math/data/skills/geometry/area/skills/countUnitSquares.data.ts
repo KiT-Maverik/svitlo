@@ -5,6 +5,7 @@ export const countUnitSquares_Skill_Data = defineSkill({
   id: '4c389e9b-24de-476f-8882-e973d812809a',
   name: {
     en: 'Determining area by counting unit squares',
+    it: 'Determinare l\'area contando i quadrati unitari',
     qm: 'Birlik kvadratlarnı sayıp meydannı belgilemek',
     lt: 'Ploto nustatymas skaičiuojant vienetinius kvadratus',
     lv: 'Laukuma noteikšana, skaitot vienības kvadrātus',
@@ -39,6 +40,7 @@ export const countUnitSquares_Skill_Data = defineSkill({
       'When a plane region consists of nonoverlapping unit squares, its area is their count. Distinguish the number of complete squares from side lengths, and account for fractional square units when needed.',
     frontend: {
       en: 'Find area by counting square units inside a shape, including parts of squares when needed.',
+      it: 'Trova l\'area contando le unità quadrate all\'interno di una figura, comprese le parti di quadrato quando necessario.',
       qm: 'Şekil içindeki kvadrat birliklerni sayıp meydannı tap. Kerek olğanda kvadrat parçalarını da esapqa al.',
       zh: '数出图形内部的单位正方形求面积，必要时也计算部分正方形。',
       hi: 'आकृति के अंदर वर्ग इकाइयाँ गिनकर क्षेत्रफल निकालें; ज़रूरत पड़ने पर वर्ग के अंश भी गिनें।',
