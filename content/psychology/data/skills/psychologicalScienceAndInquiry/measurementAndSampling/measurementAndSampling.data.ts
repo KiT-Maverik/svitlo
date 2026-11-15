@@ -13,6 +13,7 @@ export const measurementAndSampling_SkillGroup_Data = defineSkillGroup({
   id: 'c1b0a767-00bf-4109-afa4-519074f43600',
   name: {
     en: 'Measurement and Sampling',
+    it: 'Misurazione e campionamento',
     zh: '测量与抽样',
     hi: 'मापन और नमूना चयन',
     es: 'Medición y muestreo',
@@ -63,6 +64,7 @@ export const measurementAndSampling_SkillGroup_Data = defineSkillGroup({
       'Operational measures offer imperfect indicators of psychological constructs, and recruitment choices limit generalization.',
     frontend: {
       en: 'Explore how psychologists measure constructs and choose research participants.',
+      it: 'Esplora come gli psicologi misurino i costrutti e selezionino i partecipanti alla ricerca.',
       zh: '探索心理学家如何测量心理概念并选择研究参与者。',
       hi: 'जानें कि मनोवैज्ञानिक अवधारणाओं को कैसे मापते हैं और अध्ययन में प्रतिभागियों को कैसे चुनते हैं।',
       es: 'Explora cómo la psicología mide conceptos y selecciona participantes para investigar.',

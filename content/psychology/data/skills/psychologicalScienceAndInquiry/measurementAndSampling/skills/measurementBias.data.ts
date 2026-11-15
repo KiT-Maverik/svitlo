@@ -5,6 +5,7 @@ export const measurementBias_Skill_Data = defineSkill({
   id: '80a13c1e-8f2b-4417-93bf-4cbf59dd79b9',
   name: {
     en: 'Measurement Bias',
+    it: 'Distorsioni della misurazione',
     zh: '测量偏差',
     hi: 'मापन पक्षपात',
     es: 'Sesgo de medición',
@@ -39,6 +40,7 @@ export const measurementBias_Skill_Data = defineSkill({
       'Identify systematic distortions from test wording, cultural assumptions, inaccessible formats, or observer expectations.',
     frontend: {
       en: 'Find ways a measurement could systematically disadvantage or misrepresent people.',
+      it: 'Individua i modi in cui una misurazione potrebbe svantaggiare o rappresentare in modo inesatto alcune persone sistematicamente.',
       zh: '找出测量可能系统性地误判或不利于某些人的方式。',
       hi: 'उन तरीकों को खोजें जिनसे माप कुछ लोगों को व्यवस्थित रूप से गलत दर्शा सकता है या नुकसान पहुँचा सकता है।',
       es: 'Detecta formas en que una medición puede representar mal o perjudicar sistemáticamente a las personas.',
