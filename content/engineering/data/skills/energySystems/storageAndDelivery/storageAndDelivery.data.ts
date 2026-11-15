@@ -12,6 +12,7 @@ export const storageAndDelivery_SkillGroup_Data = defineSkillGroup({
   id: '0ffe7c1b-b28d-4733-b45f-4f4d2ec9bd6b',
   name: {
     en: 'Storage and Delivery',
+    it: 'Accumulo e distribuzione dell\'energia',
     zh: '能源储存与输送',
     hi: 'ऊर्जा भंडारण और वितरण',
     es: 'Almacenamiento y distribución',
@@ -51,6 +52,7 @@ export const storageAndDelivery_SkillGroup_Data = defineSkillGroup({
     methodological: 'Reliable supply requires matching time, location and suitable electrical or thermal interfaces.',
     frontend: {
       en: 'Learn how energy is stored and delivered to users.',
+      it: 'Scopri come l\'energia viene immagazzinata e distribuita agli utenti.',
       zh: '了解能源如何储存并输送给用户。',
       hi: 'जानें कि ऊर्जा कैसे सहेजी और उपयोगकर्ताओं तक पहुँचाई जाती है।',
       es: 'Aprende cómo se almacena la energía y se entrega a los usuarios.',
