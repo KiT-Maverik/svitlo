@@ -5,6 +5,7 @@ export const explainWhyWaterPressureIncreasesWithDepth_Skill_Data = defineSkill(
   id: 'd77de91c-05fa-4590-8b27-49704dfdc385',
   name: {
     en: 'Explain why water pressure increases with depth',
+    it: 'Spiegare perché la pressione dell\'acqua aumenta con la profondità',
     zh: '解释为什么水压随深度增加',
     hi: 'पानी का दाब गहराई के साथ क्यों बढ़ता है, यह समझाना',
     es: 'Explicar por qué aumenta la presión del agua con la profundidad',
@@ -39,6 +40,7 @@ export const explainWhyWaterPressureIncreasesWithDepth_Skill_Data = defineSkill(
       "In a stationary liquid of constant density, pressure increases with depth because of the weight of the layers above; the container's shape alone does not determine it.",
     frontend: {
       en: 'Explain why still water exerts greater pressure at greater depth.',
+      it: 'Spiega perché l\'acqua in quiete esercita una pressione maggiore a profondità maggiori.',
       zh: '说明为什么静止的水在更深处产生更大的压强。',
       hi: 'समझाएँ कि स्थिर पानी अधिक गहराई पर अधिक दाब क्यों डालता है।',
       es: 'Explica por qué el agua en reposo ejerce mayor presión a mayor profundidad.',
