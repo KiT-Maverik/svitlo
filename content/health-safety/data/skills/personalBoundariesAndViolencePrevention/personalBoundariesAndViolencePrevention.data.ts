@@ -9,6 +9,7 @@ export const personalBoundariesAndViolencePrevention_SkillDomain_Data = defineSk
   id: '364e9534-ac9f-4540-85d0-86233b09cd2d',
   title: {
     en: 'Personal Boundaries and Violence Prevention',
+    it: 'Confini personali e prevenzione della violenza',
     zh: '个人边界与防止暴力',
     hi: 'व्यक्तिगत सीमाएँ और हिंसा की रोकथाम',
     es: 'Límites personales y prevención de la violencia',
@@ -38,19 +39,17 @@ export const personalBoundariesAndViolencePrevention_SkillDomain_Data = defineSk
     kk: 'Жеке шекаралар және зорлықтың алдын алу',
     qm: 'Şahsiy sıñırlar ve zulumğa qarşı tedbirler',
   },
-  groups: {
-    items: {
-      bodilyAutonomyAndConsent: bodilyAutonomyAndConsent_SkillGroup_Data,
-      pressureAndManipulation: pressureAndManipulation_SkillGroup_Data,
-      violenceAndProtection: violenceAndProtection_SkillGroup_Data,
-    },
-    order: ['bodilyAutonomyAndConsent', 'pressureAndManipulation', 'violenceAndProtection'],
-  },
+  groups: [
+    bodilyAutonomyAndConsent_SkillGroup_Data,
+    pressureAndManipulation_SkillGroup_Data,
+    violenceAndProtection_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Safety in relationships requires bodily autonomy, recognition of coercion, and effective routes to protection. Mechanisms of social influence are studied in Psychology; here the emphasis is on avoiding harm and obtaining help.',
     frontend: {
       en: 'Recognize coercion and violence and find ways to protect personal safety and boundaries.',
+      it: 'Riconosci coercizione e violenza e scopri come proteggere la tua sicurezza e i tuoi confini personali.',
       zh: '识别胁迫和暴力，学习维护人身安全及个人边界。',
       hi: 'दबाव और हिंसा पहचानें तथा अपनी सुरक्षा और सीमाओं की रक्षा के तरीके जानें।',
       es: 'Reconoce la coacción y la violencia y aprende a proteger tu seguridad y tus límites.',

@@ -11,6 +11,7 @@ export const bodilyAutonomyAndConsent_SkillGroup_Data = defineSkillGroup({
   id: '4fc1be80-606f-4c0b-8e7f-17f01a6c8d52',
   name: {
     en: 'Bodily Autonomy and Consent',
+    it: 'Autonomia corporea e consenso',
     zh: '身体自主权与同意',
     hi: 'शारीरिक स्वायत्तता और सहमति',
     es: 'Autonomía corporal y consentimiento',
@@ -40,19 +41,17 @@ export const bodilyAutonomyAndConsent_SkillGroup_Data = defineSkillGroup({
     kk: 'Дене дербестігі және келісім',
     qm: 'Beden müstakilligi ve rıza',
   },
-  skills: {
-    items: {
-      communicateRefusalAndLimits: communicateRefusalAndLimits_Skill_Data,
-      recognizePersonalBoundaries: recognizePersonalBoundaries_Skill_Data,
-      recognizeValidConsent: recognizeValidConsent_Skill_Data,
-    },
-    order: ['communicateRefusalAndLimits', 'recognizePersonalBoundaries', 'recognizeValidConsent'],
-  },
+  skills: [
+    communicateRefusalAndLimits_Skill_Data,
+    recognizePersonalBoundaries_Skill_Data,
+    recognizeValidConsent_Skill_Data,
+  ],
   description: {
     methodological:
       'Personal space, privacy, and permission govern respectful contact; consent must not be inferred from silence, fear, or power imbalance.',
     frontend: {
       en: 'Understand permission, privacy and the right to choose what happens to your body.',
+      it: 'Comprendi il consenso, la riservatezza e il diritto di decidere che cosa accade al tuo corpo.',
       zh: '理解许可、隐私以及决定自己身体事务的权利。',
       hi: 'अनुमति, निजता और अपने शरीर से जुड़े फैसले लेने के अधिकार को समझें।',
       es: 'Comprende el permiso, la privacidad y el derecho a decidir sobre tu propio cuerpo.',

@@ -5,6 +5,7 @@ export const recognizeValidConsent_Skill_Data = defineSkill({
   id: '2686c087-e56d-4e64-a522-1e8bb2a1664c',
   name: {
     en: 'Recognize valid consent',
+    it: 'Riconoscere un consenso valido',
     zh: '识别有效同意',
     hi: 'वैध सहमति पहचानें',
     es: 'Reconocer el consentimiento válido',
@@ -39,6 +40,7 @@ export const recognizeValidConsent_Skill_Data = defineSkill({
       'Distinguish voluntary, informed, specific, and reversible permission from pressure or absence of resistance.',
     frontend: {
       en: 'Understand that real consent must be free, informed and reversible.',
+      it: 'Comprendi che un consenso autentico deve essere libero, informato e revocabile.',
       zh: '理解真正的同意必须自愿、知情，而且可以随时撤回。',
       hi: 'समझें कि वास्तविक सहमति स्वतंत्र, जानकारी पर आधारित और वापस ली जा सकने वाली होनी चाहिए।',
       es: 'Comprende que el consentimiento auténtico debe ser libre, informado y revocable.',
