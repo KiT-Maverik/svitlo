@@ -11,6 +11,7 @@ export const repeatedAddition_Skill_Data = defineSkill({
     ka: 'გამრავლება — განმეორებითი შეკრება',
     kk: 'Көбейту — қайталанатын қосу',
     en: 'Multiplication — Repeated addition',
+    it: 'Moltiplicazione — Addizione ripetuta',
     qm: 'Arttıruv — tekrarlanğan qoşuv',
     zh: '乘法 — 连加',
     hi: 'गुणा — बार-बार जोड़',
@@ -39,6 +40,7 @@ export const repeatedAddition_Skill_Data = defineSkill({
       'A product of natural factors can be written as repeated addition of equal addends. Reversing this representation requires equality of the addends; an arbitrary sum is not necessarily one repeated-addition product.',
     frontend: {
       en: 'You can express repeated addition of the same whole-number amount as multiplication.',
+      it: 'Puoi esprimere come moltiplicazione un\'addizione ripetuta della stessa quantità intera.',
       qm: 'Aynı tam sayı miqdarını bir qaç kere qoşuvnı arttıruv amelinen ifade ete bilesiñ.',
       zh: '当同一个整数数量反复相加时，你能用乘法表示。',
       hi: 'एक ही पूर्णांक मात्रा को बार-बार जोड़ने को गुणा के रूप में लिख सकते हो।',
