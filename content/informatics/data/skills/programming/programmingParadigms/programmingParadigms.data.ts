@@ -12,6 +12,7 @@ export const programmingParadigms_SkillGroup_Data = defineSkillGroup({
   id: '70ac02c5-1133-4653-839f-8d8e1ebc906e',
   name: {
     en: 'Programming Paradigms',
+    it: 'Paradigmi di programmazione',
     zh: '编程范式',
     hi: 'प्रोग्रामिंग प्रतिमान',
     es: 'Paradigmas de programación',
@@ -52,6 +53,7 @@ export const programmingParadigms_SkillGroup_Data = defineSkillGroup({
       'Compare code organization through stepwise state changes, functional transformation of values, object modeling, and description of desired results. A language may support several paradigms.',
     frontend: {
       en: 'Discover different ways of organizing program logic and behavior.',
+      it: 'Scopri diversi modi di organizzare la logica e il comportamento dei programmi.',
       zh: '探索组织程序逻辑与行为的不同方式。',
       hi: 'प्रोग्राम के तर्क और व्यवहार को व्यवस्थित करने के अलग-अलग तरीके जानें।',
       es: 'Descubre distintas formas de organizar la lógica y el comportamiento de un programa.',

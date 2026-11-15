@@ -5,6 +5,7 @@ export const moveLoopInvariantComputationsOutsideALoop_Skill_Data = defineSkill(
   id: '0bc8deff-de57-478d-beab-37db128170c6',
   name: {
     en: 'Move Loop-Invariant Computations Outside a Loop',
+    it: 'Spostare i calcoli invarianti fuori da un ciclo',
     zh: '将循环不变量的计算移出循环',
     hi: 'लूप में अपरिवर्तित गणनाओं को बाहर ले जाना',
     es: 'Sacar del bucle los cálculos invariantes',
@@ -39,6 +40,7 @@ export const moveLoopInvariantComputationsOutsideALoop_Skill_Data = defineSkill(
       'Recognize an expression whose value remains unchanged between iterations and safely calculate it once outside the loop, provided that doing so does not change required side effects or execution order.',
     frontend: {
       en: 'Move calculations out of loops when they do not change during repetition.',
+      it: 'Sposta fuori dai cicli i calcoli che non cambiano durante le ripetizioni.',
       zh: '把重复执行时不会改变的计算移到循环外。',
       hi: 'दोहराव के दौरान न बदलने वाली गणनाओं को लूप के बाहर रखें।',
       es: 'Saca de los bucles los cálculos cuyos resultados no cambian en cada repetición.',

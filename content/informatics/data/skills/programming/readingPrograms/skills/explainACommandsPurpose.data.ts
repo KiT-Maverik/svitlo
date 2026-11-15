@@ -5,6 +5,7 @@ export const explainACommandsPurpose_Skill_Data = defineSkill({
   id: 'c705344f-e98c-4304-ab91-c019c9a5f55f',
   name: {
     en: "Explain a Command's Purpose",
+    it: 'Spiegare lo scopo di un comando',
     zh: '解释命令的用途',
     hi: 'किसी कमांड का उद्देश्य समझाना',
     es: 'Explicar el propósito de una instrucción',
@@ -39,6 +40,7 @@ export const explainACommandsPurpose_Skill_Data = defineSkill({
       'Identify the operation performed by an instruction and which values or effects it changes given the initial state. For example, assignment stores a new value but does not necessarily display it.',
     frontend: {
       en: "Explain what an individual programming command does to a program's state.",
+      it: 'Spiega come un singolo comando di programmazione modifica lo stato di un programma.',
       zh: '说明单条编程命令如何改变程序的状态。',
       hi: 'समझाएँ कि एक प्रोग्रामिंग कमांड प्रोग्राम की स्थिति में क्या बदलाव करता है।',
       es: 'Explica qué efecto tiene una instrucción de programación sobre el estado del programa.',
