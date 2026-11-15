@@ -16,10 +16,10 @@ config:
       en: 'Make Groups of a Given Size'
   section:
     items:
-      section1:
+      makeGroupsOfThree:
         config:
           id: '9a090dde-b7b1-47a1-8ec4-892437c3754f'
-          slug: 'section1'
+          slug: 'makeGroupsOfThree'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'Build Groups of Three'
           content:
             items:
-              text1:
+              makeTwelveIntoThrees:
                 config:
                   id: '0360106f-dc9b-4170-9e43-cee9f2affd92'
-                  slug: 'text1'
+                  slug: 'makeTwelveIntoThrees'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'Build Groups of Three; authored text block 1'
                   specification: '- **Text Resource (supported):** “We have twelve counters. Make groups with exactly three counters each. How many groups can we make?”'
-              scene2:
+              groupCountersInThrees:
                 config:
                   id: '813de5c9-0247-48d8-a148-7d37feab1a4e'
-                  slug: 'scene2'
+                  slug: 'groupCountersInThrees'
                   type: 'scene'
                   params: {}
                   locale:
@@ -119,10 +119,10 @@ config:
 
                     - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 1. Start 12 independent counter IDs and a 'Make next group of 3' native control. Child creates four labeled groups of exactly three while pool counts 12→9→6→3→0, each group using exactly one set of three.
                   productionNotes: 'Proposed unimplemented Scene, sourced from groupSizePackingLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainFourGroups:
                 config:
                   id: 'c02c3157-d096-48e4-ab9f-2d195805a766'
-                  slug: 'markdown3'
+                  slug: 'explainFourGroups'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -131,7 +131,7 @@ config:
                 production:
                   purpose: 'Build Groups of Three; authored markdown block 3'
                   specification: '- **Markdown Resource (supported):** “Twelve contains four complete groups of three. Here three means how many counters belong in EACH group; four means how many groups we made.” The accurate mathematical record is **12 ÷ 3 = 4**. If division is not exact, explicitly avoid presenting an integer equality as exact.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['makeTwelveIntoThrees', 'groupCountersInThrees', 'explainFourGroups']
         production:
           purpose: 'Build four groups of size three from twelve objects and identify four as the number of complete groups.'
           pedagogicalIntent: 'Original Section 1 — Build Groups of Three; authoring draft only'
@@ -147,10 +147,10 @@ config:
             - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
             - **Proposed unlocked Note(s):** “When the size of each group is known, division finds how many groups fit.” after the full explanation is visible (planned only).
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
-      section2:
+      contrastSharingAndGrouping:
         config:
           id: '99090c4b-b4b1-42e8-91c4-8ddd38c376e2'
-          slug: 'section2'
+          slug: 'contrastSharingAndGrouping'
           type: 'content'
           params: {}
           locale:
@@ -160,10 +160,10 @@ config:
               en: 'Same Symbols, Different Question'
           content:
             items:
-              text1:
+              askDivisionMeaning:
                 config:
                   id: '603bc06e-0767-461d-835f-337cf4ed2d33'
-                  slug: 'text1'
+                  slug: 'askDivisionMeaning'
                   type: 'text'
                   params: {}
                   locale:
@@ -172,10 +172,10 @@ config:
                 production:
                   purpose: 'Same Symbols, Different Question; authored text block 1'
                   specification: "- **Text Resource (supported):** “Compare 'share 12 among 3 groups' and 'make groups of 3 from 12'. Does the answer four mean the same thing?”"
-              scene2:
+              compareDivisionModels:
                 config:
                   id: 'cc254502-68e0-4a73-b3f7-13ccbdd16325'
-                  slug: 'scene2'
+                  slug: 'compareDivisionModels'
                   type: 'scene'
                   params: {}
                   locale:
@@ -250,10 +250,10 @@ config:
 
                     - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 2. Present two explicitly labeled models with the exact same 12÷3=4 equality: partitive sharing makes 3 groups of 4; grouping makes 4 groups of 3. Learner chooses which number describes groups versus counters in each, without silently changing either story.
                   productionNotes: 'Proposed unimplemented Scene, sourced from groupSizePackingLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainQuotientInterpretation:
                 config:
                   id: 'b96e7372-b8de-456d-b675-69e0e373566b'
-                  slug: 'markdown3'
+                  slug: 'explainQuotientInterpretation'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -262,7 +262,7 @@ config:
                 production:
                   purpose: 'Same Symbols, Different Question; authored markdown block 3'
                   specification: '- **Markdown Resource (supported):** “In fair sharing, we know THREE groups and find FOUR in each. In grouping, we know THREE in each and find FOUR groups. The number sentence is identical; the story says what the answer counts.” The accurate mathematical record is **12 ÷ 3 = 4**. If division is not exact, explicitly avoid presenting an integer equality as exact.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askDivisionMeaning', 'compareDivisionModels', 'explainQuotientInterpretation']
         production:
           purpose: "Read 12 ÷ 3 = 4 with 'three in each group' as the known divisor and 'four groups' as the quotient in this story."
           pedagogicalIntent: 'Original Section 2 — Same Symbols, Different Question; authoring draft only'
@@ -278,10 +278,10 @@ config:
             - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
             - **Proposed unlocked Note(s):** “When the size of each group is known, division finds how many groups fit.” after the full explanation is visible (planned only).
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
-      section3:
+      identifyIncompleteGroups:
         config:
           id: '98090ab8-b5b1-447b-90c4-8c4a39c37875'
-          slug: 'section3'
+          slug: 'identifyIncompleteGroups'
           type: 'content'
           params: {}
           locale:
@@ -291,10 +291,10 @@ config:
               en: 'When Some Do Not Fit'
           content:
             items:
-              text1:
+              groupFourteenIntoFours:
                 config:
                   id: 'b32a32ad-50be-405e-9a51-76bb56142a14'
-                  slug: 'text1'
+                  slug: 'groupFourteenIntoFours'
                   type: 'text'
                   params: {}
                   locale:
@@ -303,10 +303,10 @@ config:
                 production:
                   purpose: 'When Some Do Not Fit; authored text block 1'
                   specification: '- **Text Resource (supported):** “Fourteen counters in groups of four. How many COMPLETE groups can you make, and what remains?”'
-              scene2:
+              exploreLeftoverCounters:
                 config:
                   id: '59b09523-f406-4292-8c3a-ed5d36f51fd4'
-                  slug: 'scene2'
+                  slug: 'exploreLeftoverCounters'
                   type: 'scene'
                   params: {}
                   locale:
@@ -381,10 +381,10 @@ config:
 
                     - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 3. New 14-counter pool with target group size four; 'Pack a complete group' produces three groups of 4, leaves 2 in source. A fourth group cannot be formed. Show explicitly '3 complete groups and 2 left'.
                   productionNotes: 'Proposed unimplemented Scene, sourced from groupSizePackingLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainThreeFullGroups:
                 config:
                   id: '7f9df01d-dade-4b02-8fb8-b3c34bfa9188'
-                  slug: 'markdown3'
+                  slug: 'explainThreeFullGroups'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -393,7 +393,7 @@ config:
                 production:
                   purpose: 'When Some Do Not Fit; authored markdown block 3'
                   specification: '- **Markdown Resource (supported):** “Three complete groups take twelve counters; two are left over. Two counters are not a complete group of four. Division here is not exact in whole numbers.” The accurate mathematical record is **14 = 3 × 4 + 2**. If division is not exact, explicitly avoid presenting an integer equality as exact.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['groupFourteenIntoFours', 'exploreLeftoverCounters', 'explainThreeFullGroups']
         production:
           purpose: 'Explain that grouping 14 by fours yields three complete groups with two left, not a fourth incomplete group counted as complete.'
           pedagogicalIntent: 'Original Section 3 — When Some Do Not Fit; authoring draft only'
@@ -409,10 +409,10 @@ config:
             - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
             - **Proposed unlocked Note(s):** “Count only complete groups; any extra objects remain ungrouped.” after the full explanation is visible (planned only).
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
-      section4:
+      buildGroupsOfFive:
         config:
           id: '9f0915bd-bab1-4c5a-8bc4-846b32c36d70'
-          slug: 'section4'
+          slug: 'buildGroupsOfFive'
           type: 'content'
           params: {}
           locale:
@@ -422,10 +422,10 @@ config:
               en: 'Build Groups of Five'
           content:
             items:
-              text1:
+              countGroupsFromTwenty:
                 config:
                   id: '7eb59bdc-33f9-4ccb-a131-e80e010bf225'
-                  slug: 'text1'
+                  slug: 'countGroupsFromTwenty'
                   type: 'text'
                   params: {}
                   locale:
@@ -434,10 +434,10 @@ config:
                 production:
                   purpose: 'Build Groups of Five; authored text block 1'
                   specification: '- **Text Resource (supported):** “Twenty counters: how many groups of five can we build?”'
-              scene2:
+              constructFiveCounterGroups:
                 config:
                   id: '23b112ac-9d2f-4d8d-b3f3-d2a2250383cb'
-                  slug: 'scene2'
+                  slug: 'constructFiveCounterGroups'
                   type: 'scene'
                   params: {}
                   locale:
@@ -512,10 +512,10 @@ config:
 
                     - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 4. Transfer with pool 20, group size 5, learner predicts 3/4/5, groups via accessible action and checks four groups use all twenty.
                   productionNotes: 'Proposed unimplemented Scene, sourced from groupSizePackingLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainFourGroupsOfFive:
                 config:
                   id: '531e92c0-2a48-47b3-bd2f-f5125d7a73a5'
-                  slug: 'markdown3'
+                  slug: 'explainFourGroupsOfFive'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -524,7 +524,7 @@ config:
                 production:
                   purpose: 'Build Groups of Five; authored markdown block 3'
                   specification: '- **Markdown Resource (supported):** “Four groups of five use twenty counters. Four tells how many complete groups, and five is their required size.” The accurate mathematical record is **20 ÷ 5 = 4; 4 × 5 = 20**. If division is not exact, explicitly avoid presenting an integer equality as exact.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['countGroupsFromTwenty', 'constructFiveCounterGroups', 'explainFourGroupsOfFive']
         production:
           purpose: 'Build groups of size five from twenty counters, count four complete groups, and check 4×5=20.'
           pedagogicalIntent: 'Original Section 4 — Build Groups of Five; authoring draft only'
@@ -540,7 +540,7 @@ config:
             - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
             - **Proposed unlocked Note(s):** “When the size of each group is known, division finds how many groups fit.” after the full explanation is visible (planned only).
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['makeGroupsOfThree', 'contrastSharingAndGrouping', 'identifyIncompleteGroups', 'buildGroupsOfFive']
   flashcards:
     items: {}
     order: []
