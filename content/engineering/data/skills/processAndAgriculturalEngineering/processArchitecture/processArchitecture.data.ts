@@ -13,6 +13,7 @@ export const processArchitecture_SkillGroup_Data = defineSkillGroup({
   id: 'aee6a5b2-0a46-468a-b0c1-389ecefef283',
   name: {
     en: 'Process Architecture',
+    it: 'Architettura dei processi',
     zh: '工艺流程架构',
     hi: 'प्रक्रिया की संरचना',
     es: 'Arquitectura de procesos',
@@ -54,6 +55,7 @@ export const processArchitecture_SkillGroup_Data = defineSkillGroup({
       'Large production processes connect material inputs, transformations, recirculation and waste streams in a sequence where one operation constrains others.',
     frontend: {
       en: 'Learn how industrial processes organize equipment and material flows.',
+      it: 'Impara come i processi industriali organizzano le apparecchiature e i flussi di materiali.',
       zh: '了解工业过程如何组织设备与物料流动。',
       hi: 'समझें कि औद्योगिक प्रक्रियाएँ उपकरण और सामग्री के प्रवाह को कैसे व्यवस्थित करती हैं।',
       es: 'Aprende cómo los procesos industriales organizan los equipos y los flujos de materiales.',
