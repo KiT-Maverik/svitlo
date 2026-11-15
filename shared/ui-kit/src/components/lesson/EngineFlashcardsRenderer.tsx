@@ -103,7 +103,7 @@ function ResolvedFlashcards({
   const content = useMemo(() => section.content, [section.content]);
   if (!card) return <Typography role="alert">{messages.learningLayout.preparingLessonError}</Typography>;
   const render = (blocks: Flashcard_Props['content']['front']) => (
-    <EngineContentBlockRenderer blocks={blocks} messages={messages} sceneRegistry={sceneRegistry} language={undefined} />
+    <EngineContentBlockRenderer blocks={blocks} messages={messages} sceneRegistry={sceneRegistry} />
   );
   return (
     <Stack spacing={3}>
@@ -119,7 +119,7 @@ function ResolvedFlashcards({
         onReveal={() => setRevealed(true)}
         onRate={() => { if (index < cards.length - 1) select(index + 1); }}
       />
-      <Stack direction="row" justifyContent="space-between">
+      <Stack direction="row" sx={{ justifyContent: "space-between" }}>
         <Button disabled={index === 0} onClick={() => select(index - 1)}>{messages.learningLayout.actions.previous}</Button>
         <Button disabled={index >= cards.length - 1} onClick={() => select(index + 1)}>{messages.learningLayout.actions.next}</Button>
       </Stack>
