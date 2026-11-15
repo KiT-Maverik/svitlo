@@ -5,6 +5,7 @@ export const caribbeanIslandSettlement_Skill_Data = defineSkill({
   id: 'ec1fad76-05aa-4bcd-b78f-0abc130f7531',
   name: {
     en: 'Settlement of the Caribbean Islands',
+    it: "Popolamento delle isole caraibiche",
     zh: '加勒比海岛屿的定居',
     hi: 'कैरेबियाई द्वीपों में बसावट',
     es: 'Poblamiento de las islas del Caribe',
@@ -38,6 +39,7 @@ export const caribbeanIslandSettlement_Skill_Data = defineSkill({
     methodological: 'Reconstruct successive sea migrations and varied island livelihoods and cultures.',
     frontend: {
       en: 'Explore how people reached and settled the Caribbean islands.',
+      it: "Esplora come le persone raggiunsero e popolarono le isole caraibiche.",
       zh: '探索人们如何到达加勒比海岛屿并在那里定居。',
       hi: 'जानें कि लोग कैरेबियाई द्वीपों तक कैसे पहुँचे और वहाँ कैसे बसे।',
       es: 'Explora cómo las personas llegaron a las islas del Caribe y se establecieron allí.',

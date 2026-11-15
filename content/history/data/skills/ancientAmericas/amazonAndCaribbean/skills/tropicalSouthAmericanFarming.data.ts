@@ -5,6 +5,7 @@ export const tropicalSouthAmericanFarming_Skill_Data = defineSkill({
   id: 'd97334d5-ff08-4182-9702-12bd8b3b138a',
   name: {
     en: 'Ancient Farming in Tropical South America',
+    it: "Antica agricoltura nell'America meridionale tropicale",
     zh: '热带南美洲的古代农业',
     hi: 'उष्णकटिबंधीय दक्षिण अमेरिका की प्राचीन खेती',
     es: 'Agricultura antigua de Sudamérica tropical',
@@ -38,6 +39,7 @@ export const tropicalSouthAmericanFarming_Skill_Data = defineSkill({
     methodological: 'Trace indigenous cultivation and gradual reshaping of tropical landscapes.',
     frontend: {
       en: 'Discover how communities farmed in tropical South America.',
+      it: "Scopri come le comunità praticavano l'agricoltura nelle zone tropicali dell'America meridionale.",
       zh: '了解人们如何在热带南美洲开展农业。',
       hi: 'जानें कि उष्णकटिबंधीय दक्षिण अमेरिका में समुदाय खेती कैसे करते थे।',
       es: 'Descubre cómo cultivaban la tierra las comunidades de Sudamérica tropical.',

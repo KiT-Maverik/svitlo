@@ -5,6 +5,7 @@ export const earlyBantuSpeakingDispersals_Skill_Data = defineSkill({
   id: 'd3a37314-64c0-4cf3-acb4-c5bbd5f81c9f',
   name: {
     en: 'Early Dispersals of Bantu-Speaking Communities',
+    it: "Prime migrazioni delle comunità di lingua bantu",
     zh: '班图语社群的早期扩散',
     hi: 'बांटू-भाषी समुदायों का प्रारंभिक प्रसार',
     es: 'Primeras dispersiones de pueblos de lenguas bantúes',
@@ -39,6 +40,7 @@ export const earlyBantuSpeakingDispersals_Skill_Data = defineSkill({
       'Reconstruct spreading languages, farming practices, and populations without treating the process as one simultaneous migration.',
     frontend: {
       en: 'Explore how Bantu-speaking communities spread across parts of Africa.',
+      it: "Esplora come le comunità di lingua bantu si diffusero in varie regioni dell'Africa.",
       zh: '探索使用班图语的社群如何扩散至非洲部分地区。',
       hi: 'जानें कि बांटू भाषाएँ बोलने वाले समुदाय अफ्रीका के हिस्सों में कैसे फैले।',
       es: 'Explora cómo se expandieron comunidades de lenguas bantúes por partes de África.',
