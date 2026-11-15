@@ -5,6 +5,7 @@ export const explainTheRoleOfMicroorganismsInFermentation_Skill_Data = defineSki
   id: '6f3ae271-f262-4af5-9239-3a00c348f271',
   name: {
     en: 'Explain the Role of Microorganisms in Fermentation',
+    it: 'Spiegare il ruolo dei microrganismi nella fermentazione',
     zh: '解释微生物在发酵中的作用',
     hi: 'किण्वन में सूक्ष्मजीवों की भूमिका समझाना',
     es: 'Explicar el papel de los microorganismos en la fermentación',
@@ -39,6 +40,7 @@ export const explainTheRoleOfMicroorganismsInFermentation_Skill_Data = defineSki
       'Relate microbial transformations of sugars to the production of new products in food technologies.',
     frontend: {
       en: 'Explain how microorganisms transform ingredients during fermentation.',
+      it: 'Spiega come i microrganismi trasformano gli ingredienti durante la fermentazione.',
       zh: '解释微生物如何在发酵过程中改变食材。',
       hi: 'समझाएँ कि सूक्ष्मजीव किण्वन के दौरान खाद्य सामग्री को कैसे बदलते हैं।',
       es: 'Explica cómo los microorganismos transforman los ingredientes durante la fermentación.',
