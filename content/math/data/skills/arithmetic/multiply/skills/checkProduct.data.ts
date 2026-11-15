@@ -11,6 +11,7 @@ export const checkProduct_Skill_Data = defineSkill({
     ka: 'გამრავლება — შედეგის შემოწმება',
     kk: 'Көбейту — нәтижені тексеру',
     en: 'Multiplication — Result checking',
+    it: 'Moltiplicazione — Verificare il risultato',
     qm: 'Arttıruv — neticeni teşkere etüv',
     zh: '乘法 — 结果检验',
     hi: 'गुणा — उत्तर की जाँच',
@@ -39,6 +40,7 @@ export const checkProduct_Skill_Data = defineSkill({
       'An estimate indicates the expected order of magnitude of a product; exactness can be checked by a valid inverse operation or independent calculation. Merely reversing factor order may repeat an earlier error rather than check independently.',
     frontend: {
       en: 'You can check a multiplication result by estimating its size and using division or another independent calculation.',
+      it: 'Puoi verificare il risultato di una moltiplicazione stimandone la grandezza e usando una divisione o un altro calcolo indipendente.',
       qm: 'Neticeniñ miqdarını tahmin etip, soñra bölüv ya da başqa mustaqil esaplav yardımınen arttıruv neticesini teşkere ete bilesiñ.',
       zh: '你能先估算乘积的大小，再用除法或另一种独立算法检查乘法结果。',
       hi: 'तुम गुणनफल का अनुमान लगाकर और भाग या किसी दूसरी स्वतंत्र गणना से गुणा का उत्तर जाँच सकते हो।',
