@@ -11,6 +11,7 @@ export const partWholeAddsub_Skill_Data = defineSkill({
     ka: 'ნაწილისა და მთელის ამოცანების ამოხსნა',
     kk: 'Бөлік пен бүтінге арналған есептерді шығару',
     en: 'Solving part-whole problems',
+    it: 'Risolvere problemi sulle parti e sul tutto',
     qm: 'Parça ve bütün meselelerini çezmek',
     zh: '解决部分与整体问题',
     hi: 'भाग और पूर्ण से जुड़ी समस्याएँ हल करना',
@@ -39,6 +40,7 @@ export const partWholeAddsub_Skill_Data = defineSkill({
       'When a whole consists of parts of 7 and 5, adding the parts reconstructs the whole; when the whole and one part are known, the other part is determined by subtraction.',
     frontend: {
       en: 'You can solve problems about a whole and its parts: add known parts to find the whole, or subtract a known part from the whole to find what is missing.',
+      it: 'Puoi risolvere problemi su un intero e le sue parti: somma le parti note per trovare l\'intero oppure sottrai una parte nota dall\'intero per trovare ciò che manca.',
       qm: 'Bütün ve onıñ parçaları aqqındaki meselelerni çez: bütüni tapmaq içün belli parçalarnı qoş, eksik parçanı tapmaq içün bütünden belli parçanı çıqar.',
       zh: '你能解决整体与部分的问题：将已知部分相加求整体，或从整体减去已知部分求剩余部分。',
       hi: 'आप पूर्ण और उसके भागों की समस्याएँ हल कर सकते हैं: ज्ञात भाग जोड़कर पूरा निकालना या पूरे में से ज्ञात भाग घटाकर बचा भाग खोजना।',
