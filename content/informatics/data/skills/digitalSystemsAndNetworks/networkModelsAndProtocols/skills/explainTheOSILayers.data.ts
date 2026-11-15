@@ -5,6 +5,7 @@ export const explainTheOSILayers_Skill_Data = defineSkill({
   id: 'd5d6f227-7cfc-421b-90ca-8f7861035048',
   name: {
     en: 'Explain the OSI Layers',
+    it: 'Spiegare i livelli del modello OSI',
     zh: '解释 OSI 模型各层',
     hi: 'OSI की परतें समझाना',
     es: 'Explicar las capas OSI',
@@ -39,6 +40,7 @@ export const explainTheOSILayers_Skill_Data = defineSkill({
       'The seven OSI layers describe functions from physical signal transmission to application interaction, without requiring one distinct protocol per layer.',
     frontend: {
       en: 'Use the seven-layer OSI model to organize networking functions.',
+      it: 'Usa il modello OSI a sette livelli per organizzare le funzioni di rete.',
       zh: '使用 OSI 七层模型组织网络功能。',
       hi: 'नेटवर्क के कार्यों को व्यवस्थित करने के लिए सात-परती OSI मॉडल का उपयोग करें।',
       es: 'Utiliza el modelo OSI de siete capas para organizar las funciones de red.',
