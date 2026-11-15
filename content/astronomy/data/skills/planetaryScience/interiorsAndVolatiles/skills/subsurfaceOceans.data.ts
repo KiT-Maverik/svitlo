@@ -5,6 +5,7 @@ export const subsurfaceOceans_Skill_Data = defineSkill({
   id: '86e83d0f-322d-4c4f-ad84-69091e90352a',
   name: {
     en: 'Subsurface Oceans',
+    it: 'Oceani sotterranei',
     zh: '地下海洋',
     hi: 'सतह के नीचे महासागर',
     es: 'Océanos subterráneos',
@@ -39,6 +40,7 @@ export const subsurfaceOceans_Skill_Data = defineSkill({
       'Interpret geophysical and compositional evidence for liquids beneath icy surfaces without assuming biology.',
     frontend: {
       en: 'Investigate the clues that some icy moons may hide liquid oceans.',
+      it: 'Indaga gli indizi secondo cui alcune lune ghiacciate potrebbero nascondere oceani liquidi.',
       zh: '调查哪些线索表明一些冰卫星的表面下可能存在液态海洋。',
       hi: 'उन संकेतों की जाँच करें जो बताते हैं कि कुछ बर्फीले उपग्रहों के भीतर तरल महासागर छिपे हो सकते हैं।',
       es: 'Investiga las pistas que indican que algunas lunas heladas podrían ocultar océanos líquidos.',

@@ -9,6 +9,7 @@ export const solarAstronomy_SkillDomain_Data = defineSkillDomain({
   id: 'a124b21b-c0a8-4063-bb45-48a8c6264e25',
   title: {
     en: 'Solar Astronomy',
+    it: 'Astronomia solare',
     qm: 'Küneş astronomiyası',
     bn: 'সৌর জ্যোতির্বিজ্ঞান',
     ur: 'شمسی فلکیات',
@@ -48,6 +49,7 @@ export const solarAstronomy_SkillDomain_Data = defineSkillDomain({
       "The Sun is examined as a physical star whose radiation, plasma and magnetism affect the Solar System. Stellar populations and the Sun's long-term evolutionary fate are treated in stellar astronomy.",
     frontend: {
       en: 'Study the Sun as a star and explore how its energy and activity influence the Solar System.',
+      it: 'Studia il Sole come stella ed esplora come la sua energia e attività influenzano il Sistema solare.',
       qm: 'Küneşni bir yıldız olaraq ögreniñiz. Onıñ energiyası ve faaliyeti Küneş sistemasına nasıl tesir etkenini añlañız.',
       bn: 'সূর্যকে একটি নক্ষত্র হিসেবে অধ্যয়ন করো এবং তার শক্তি ও কার্যকলাপ সৌরজগতকে কীভাবে প্রভাবিত করে তা জানো।',
       ur: 'سورج کا ایک ستارے کے طور پر مطالعہ کریں اور جانیں کہ اس کی توانائی اور سرگرمیاں نظامِ شمسی پر کیسے اثر انداز ہوتی ہیں۔',

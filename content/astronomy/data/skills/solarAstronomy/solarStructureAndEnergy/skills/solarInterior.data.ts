@@ -5,6 +5,7 @@ export const solarInterior_Skill_Data = defineSkill({
   id: 'ce465718-ec40-4a98-8e84-25d9d5e84865',
   name: {
     en: 'Solar Interior',
+    it: 'Interno del Sole',
     qm: 'Küneşniñ iç quruluşu',
     bn: 'সূর্যের অভ্যন্তরীণ গঠন',
     ur: 'سورج کا اندرونی حصہ',
@@ -38,6 +39,7 @@ export const solarInterior_Skill_Data = defineSkill({
     methodological: 'Relate the core, radiative zone and convective zone to the transport of energy through the Sun.',
     frontend: {
       en: "Explore the Sun's internal layers and how they transport energy.",
+      it: 'Esplora gli strati interni del Sole e come trasportano energia.',
       qm: 'Küneşniñ iç qatlarını ve olar energiyanı nasıl taşığanını araştırıñız.',
       bn: 'সূর্যের ভেতরের স্তরগুলো এবং সেগুলো কীভাবে শক্তি পরিবহন করে, তা অন্বেষণ করো।',
       ur: 'سورج کی اندرونی تہوں اور ان میں توانائی کی منتقلی کے طریقوں کو دریافت کریں۔',
