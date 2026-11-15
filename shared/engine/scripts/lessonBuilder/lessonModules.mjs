@@ -22,6 +22,7 @@ const factoryContexts = new Set([
   'block',
   'slide',
   'checkpointItem',
+  'checkpointAnswer',
   'question',
   'flashcard',
 ]);
@@ -100,8 +101,9 @@ export function childContext(parent, key, owner = {}) {
   }
   if (parent === 'checkpointItem') {
     if (key === 'question') return 'block';
-    if (key === 'answer') return 'blockCollection';
+    if (key === 'answer') return 'checkpointAnswer';
   }
+  if (parent === 'checkpointAnswer' && key === 'content') return 'blockCollection';
   if (parent === 'question' && key === 'content') return 'questionContent';
   if (parent === 'flashcard' && key === 'content') return 'flashcardContent';
   if (parent === 'flashcardContent' && ['front', 'back', 'hint'].includes(key)) return 'blockCollection';
@@ -443,7 +445,11 @@ export function renderLessonModules(lesson, language, options = {}) {
       if (typeof value.slug !== 'string' || !safeSlug.test(value.slug))
         throw new Error('config.yaml:' + field + '.slug: unsafe or missing camelCase slug');
       const symbol = symbolFor(value, context);
-      const childDirectory = join(ownerDirectory, value.slug);
+      // The mandatory Text question and the Answer Configurator have fixed
+      // semantic role paths. Their own authored slugs still live in Config.
+      const roleRoot = (context === 'checkpointAnswer' && field === '$.answer') ||
+        (context === 'block' && field === '$.question' && ownerDirectory.endsWith('/question'));
+      const childDirectory = roleRoot ? ownerDirectory : join(ownerDirectory, value.slug);
       emitNode(value, context, childDirectory);
       let alias = symbol;
       if (imported.has(alias) && imported.get(alias).location !== childDirectory) {
@@ -542,6 +548,8 @@ export function renderLessonModules(lesson, language, options = {}) {
             ? [node.type === 'carousel' ? 'slides' : 'content']
             : context === 'checkpointItem'
               ? ['question', 'answer']
+              : context === 'checkpointAnswer'
+                ? ['content']
               : context === 'question'
                 ? ['content']
                 : context === 'flashcard'
@@ -579,11 +587,9 @@ export function renderLessonModules(lesson, language, options = {}) {
         '>'
       );
     if (context === 'checkpointItem')
-      return (
-        '<' +
-        [slug, bindings.has('answer') ? 'typeof answer.items' : '{}', typeOf('question'), languagesType].join(', ') +
-        '>'
-      );
+      return '<' + [slug, typeOf('answer'), typeOf('question'), languagesType].join(', ') + '>';
+    if (context === 'checkpointAnswer')
+      return '<' + [slug, 'typeof content.items', languagesType].join(', ') + '>';
     if (context === 'question') return '<' + [slug, typeOf('content'), languagesType].join(', ') + '>';
     if (context === 'flashcard') {
       const content = name =>
