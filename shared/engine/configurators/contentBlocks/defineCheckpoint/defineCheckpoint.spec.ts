@@ -6,6 +6,7 @@ import { configuratorArrayToSlugMap, mergeForValidation } from '../../_shared__c
 import { defineText } from '../defineText';
 import { defineCheckpoint, checkpoint_Config_Schema, checkpoint_Props_Schema } from './index';
 import { defineCheckpointItem } from './defineCheckpointItem';
+import { defineCheckpointAnswer } from './defineCheckpointAnswer';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -23,12 +24,18 @@ describe('Configurators', () => {
       ) => {
         const answer = text(answerId, 'answer', 'Invariant answer');
         const question = text(questionId, 'question', value);
-        return defineCheckpointItem<Slug, { answer: typeof answer }, typeof question, ['en', 'uk']>({
+        const answerId = { first: 'a', second: 'b', later: 'c' }[slug as 'first' | 'second' | 'later'];
+        const answerConfigurator = defineCheckpointAnswer<'answer', { answer: typeof answer }, ['en', 'uk']>({
+          id: 'b775647f-203d-481a-a1c7-4d331c779d6' + answerId,
+          slug: 'answer', type: 'checkpointAnswer',
+          content: { items: configuratorArrayToSlugMap([answer]), order: ['answer'] },
+        });
+        return defineCheckpointItem<Slug, typeof answerConfigurator, typeof question, ['en', 'uk']>({
           id,
           slug,
           type: 'checkpointItem',
           question,
-          answer: { items: configuratorArrayToSlugMap([answer]), order: ['answer'] },
+          answer: answerConfigurator,
         });
       };
 
