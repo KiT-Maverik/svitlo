@@ -1,0 +1,64 @@
+# One-time PR #575 migration job. Removes this workflow from the PR branch after success.
+name: Regenerate PR 575 YAML Schemas
+on:
+  push:
+    branches:
+      - agent/carousel-image-scene-slides
+    paths:
+      - .github/workflows/regenerate-pr575-schemas.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: regenerate-pr575-yaml-schemas
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    if: github.repository == 'KiT-Maverik/svitlo'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Compile current Engine Zod authoring schemas
+        run: npm run package:build --workspace @svitlo/engine
+      - name: Generate checked-in editor JSON Schemas
+        run: npm run content:generate:yaml-schemas --workspace @svitlo/engine
+      - name: Verify deterministic JSON Schema regeneration
+        run: |
+          npm run content:check:yaml-schemas --workspace @svitlo/engine
+          node --test shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.spec.mjs
+      - name: Prepare generated schemas and remove one-time workflow
+        run: |
+          git add -u shared/engine/yaml-schemas/
+          git rm .github/workflows/regenerate-pr575-schemas.yml
+          git diff --cached --stat
+      - name: Create scoped GitHub App token for the PR branch
+        id: app
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.PR_FORMATTER_APP_CLIENT_ID }}
+          private-key: ${{ secrets.PR_FORMATTER_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-workflows: write
+      - name: Commit only generated schemas and temporary workflow cleanup
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: |
+          set -euo pipefail
+          git config user.name "${{ steps.app.outputs.app-slug }}[bot]"
+          git config user.email "${{ steps.app.outputs.app-slug }}[bot]@users.noreply.github.com"
+          git commit -m "Regenerate YAML editor schemas for native Carousel Image and Scene children"
+          authorization=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $authorization" \
+            push origin "HEAD:refs/heads/agent/carousel-image-scene-slides"
