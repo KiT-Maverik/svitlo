@@ -222,6 +222,13 @@ export function renderLessonModules(lesson, language, options = {}) {
         nextDirectory = join(ownerDirectory, key);
       if (context === 'questStageContent' && ['video', 'audio'].includes(key))
         nextDirectory = join(ownerDirectory, key);
+      // Pair/Slot entries are plain named records rather than Configurators.
+      // Their map key still owns a directory, so repeated child slugs in
+      // different pairs never compete for the same generated file.
+      if (context === 'pairItems' || context === 'slotItems' ||
+          context === 'pair' && ['left', 'right'].includes(key) ||
+          context === 'slot' && key === 'correctAnswer')
+        nextDirectory = join(ownerDirectory, key);
       const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, field + '.' + key);
       return indent(depth + 1) + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered);
     }).join(',\n') + '\n' + indent(depth) + '}';
