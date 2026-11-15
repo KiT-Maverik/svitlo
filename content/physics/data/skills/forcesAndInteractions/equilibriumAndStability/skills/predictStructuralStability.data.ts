@@ -5,6 +5,7 @@ export const predictStructuralStability_Skill_Data = defineSkill({
   id: '82e6e13f-6f24-4720-8411-27199f5aee37',
   name: {
     en: 'Predict structural stability',
+    it: 'Prevedere la stabilità strutturale',
     zh: '预测结构的稳定性',
     hi: 'संरचना की स्थिरता का अनुमान लगाना',
     es: 'Predecir la estabilidad de una estructura',
@@ -38,6 +39,7 @@ export const predictStructuralStability_Skill_Data = defineSkill({
     methodological: 'Compare the stability of two models using basic support-related characteristics.',
     frontend: {
       en: 'Compare which supported structures are more likely to remain stable.',
+      it: 'Confronta quali strutture sostenute hanno maggiori probabilità di rimanere stabili.',
       zh: '比较哪些有支撑的结构更可能保持稳定。',
       hi: 'तुलना करें कि किन सहारा प्राप्त संरचनाओं के स्थिर रहने की संभावना अधिक है।',
       es: 'Compara qué estructuras apoyadas tienen más probabilidades de mantenerse estables.',
