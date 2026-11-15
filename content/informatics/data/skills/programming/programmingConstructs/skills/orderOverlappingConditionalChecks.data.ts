@@ -5,6 +5,7 @@ export const orderOverlappingConditionalChecks_Skill_Data = defineSkill({
   id: '6a835c1c-939a-4aea-bb0c-b25e22ba1131',
   name: {
     en: 'Order Overlapping Conditional Checks',
+    it: 'Ordinare controlli condizionali sovrapposti',
     zh: '排列相互重叠的条件判断',
     hi: 'एक-दूसरे पर लागू होने वाली शर्तों का क्रम तय करना',
     es: 'Ordenar comprobaciones condicionales superpuestas',
@@ -39,6 +40,7 @@ export const orderOverlappingConditionalChecks_Skill_Data = defineSkill({
       'In an `if/else if` chain, explain why a broad condition may make a more specific branch unreachable and place the specific check first when appropriate; do not automatically apply this rule to independent `if` statements.',
     frontend: {
       en: 'Arrange conditional checks so specific cases can still be reached.',
+      it: 'Organizza i controlli condizionali in modo che i casi specifici restino raggiungibili.',
       zh: '合理安排条件判断顺序，让特定情况仍能被匹配到。',
       hi: 'शर्तों की जाँच ऐसे क्रम में रखें कि विशिष्ट मामलों तक पहुँचा जा सके।',
       es: 'Organiza las comprobaciones para que también se puedan detectar los casos específicos.',

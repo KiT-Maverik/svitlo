@@ -5,6 +5,7 @@ export const findAPathInAGraph_Skill_Data = defineSkill({
   id: 'a3b8240a-e0d6-4391-92c4-6c1cfa2d6788',
   name: {
     en: 'Find a Path in a Graph',
+    it: 'Trovare un percorso in un grafo',
     zh: '在图中寻找路径',
     hi: 'ग्राफ़ में पथ खोजना',
     es: 'Encontrar un camino en un grafo',
@@ -38,6 +39,7 @@ export const findAPathInAGraph_Skill_Data = defineSkill({
     methodological: 'Construct a sequence of connected vertices from start to goal while respecting edge directions.',
     frontend: {
       en: 'Follow a valid path between vertices while respecting connection directions.',
+      it: 'Segui un percorso valido tra vertici rispettando le direzioni dei collegamenti.',
       zh: '沿着符合连接方向的有效路径，在顶点之间移动。',
       hi: 'किनारों की दिशा का पालन करते हुए शीर्षों के बीच मान्य पथ खोजें।',
       es: 'Sigue un camino válido entre vértices respetando la dirección de las conexiones.',

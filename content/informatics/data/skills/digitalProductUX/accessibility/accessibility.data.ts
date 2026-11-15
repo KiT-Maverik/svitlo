@@ -10,6 +10,7 @@ export const accessibility_SkillGroup_Data = defineSkillGroup({
   id: '98e9e953-df14-4baf-b160-12e39c535737',
   name: {
     en: 'Accessibility',
+    it: 'Accessibilità',
     zh: '无障碍访问',
     hi: 'सुगम्यता',
     es: 'Accesibilidad',
@@ -51,6 +52,7 @@ export const accessibility_SkillGroup_Data = defineSkillGroup({
       'Address different ways people perceive and operate interfaces and verify actual usability rather than judging only visual appeal.',
     frontend: {
       en: 'Discover how different abilities and input methods affect digital access.',
+      it: "Scopri come abilità diverse e metodi di input differenti influiscono sull'accesso digitale.",
       zh: '了解不同能力和输入方式如何影响数字产品的可访问性。',
       hi: 'जानें कि अलग-अलग क्षमताएँ और इनपुट विधियाँ डिजिटल सेवाओं की पहुँच को कैसे प्रभावित करती हैं।',
       es: 'Descubre cómo las distintas capacidades y formas de entrada afectan el acceso digital.',

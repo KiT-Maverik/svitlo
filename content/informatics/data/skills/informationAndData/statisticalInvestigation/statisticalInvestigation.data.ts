@@ -12,6 +12,7 @@ export const statisticalInvestigation_SkillGroup_Data = defineSkillGroup({
   id: '89da9de7-eea1-4dc8-a2e0-998747bacc47',
   name: {
     en: 'Statistical Investigation',
+    it: 'Indagine statistica',
     zh: '统计调查',
     hi: 'सांख्यिकीय जाँच',
     es: 'Investigación estadística',
@@ -55,6 +56,7 @@ export const statisticalInvestigation_SkillGroup_Data = defineSkillGroup({
       'Read and create visual representations of datasets, find frequencies, and compare observations. Statistical conclusions describe data and are not equivalent to predicting a random outcome.',
     frontend: {
       en: 'Learn to explore data through charts, frequencies and comparisons.',
+      it: 'Impara a esplorare i dati attraverso grafici, frequenze e confronti.',
       zh: '学习通过图表、频数和比较来探索数据。',
       hi: 'चार्ट, आवृत्तियों और तुलनाओं से डेटा का अध्ययन करना सीखें।',
       es: 'Aprende a explorar datos mediante gráficos, frecuencias y comparaciones.',

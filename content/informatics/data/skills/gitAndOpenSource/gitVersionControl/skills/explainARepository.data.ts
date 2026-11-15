@@ -5,6 +5,7 @@ export const explainARepository_Skill_Data = defineSkill({
   id: '66968b3c-3bb2-4e2f-b4c8-d75d1e2c1f22',
   name: {
     en: 'Explain a Repository',
+    it: 'Spiegare un repository',
     zh: '解释代码仓库',
     hi: 'रिपॉजिटरी समझाना',
     es: 'Explicar un repositorio',
@@ -39,6 +40,7 @@ export const explainARepository_Skill_Data = defineSkill({
       'A repository holds a project and its history, allowing earlier versions and author contributions to be examined.',
     frontend: {
       en: 'Understand a repository as a project with a record of its changes.',
+      it: 'Comprendi un repository come un progetto che conserva la cronologia delle sue modifiche.',
       zh: '理解仓库是包含修改记录的项目。',
       hi: 'समझें कि रिपॉजिटरी परियोजना और उसमें हुए बदलावों का रिकॉर्ड रखती है।',
       es: 'Comprende que un repositorio contiene un proyecto y el historial de sus cambios.',

@@ -5,6 +5,7 @@ export const explainThePurposeOfAFunction_Skill_Data = defineSkill({
   id: '464b1599-14b9-4080-864f-2811c189a66c',
   name: {
     en: 'Explain the Purpose of a Function',
+    it: 'Spiegare lo scopo di una funzione',
     zh: '解释函数的用途',
     hi: 'फलन का उद्देश्य समझाना',
     es: 'Explicar el propósito de una función',
@@ -39,6 +40,7 @@ export const explainThePurposeOfAFunction_Skill_Data = defineSkill({
       'Describe a function as a named operation that performs a particular action or returns a value and can be called repeatedly without rewriting its body.',
     frontend: {
       en: 'Explain how a named function performs an operation when called.',
+      it: "Spiega come una funzione con nome esegue un'operazione quando viene chiamata.",
       zh: '说明具名函数被调用时如何执行操作。',
       hi: 'समझाएँ कि नाम वाला फलन बुलाए जाने पर कोई काम कैसे करता है।',
       es: 'Explica cómo una función con nombre realiza una operación cuando se la llama.',

@@ -13,6 +13,7 @@ export const artificialIntelligence_SkillDomain_Data = defineSkillDomain({
   id: '7ca59646-251b-4009-b150-7533da7eb92c',
   title: {
     en: 'Artificial Intelligence',
+    it: 'Intelligenza artificiale',
     zh: '人工智能',
     hi: 'कृत्रिम बुद्धिमत्ता',
     es: 'Inteligencia artificial',
@@ -67,6 +68,7 @@ export const artificialIntelligence_SkillDomain_Data = defineSkillDomain({
       'Examines systems performing recognition, prediction, generation, and other forms of intelligent information processing. Includes explicitly programmed rules and trained models, how they work, prompting, technical trade-offs, and reliability verification.',
     frontend: {
       en: 'Discover how artificial intelligence systems learn, predict, generate and sometimes fail.',
+      it: 'Scopri come i sistemi di intelligenza artificiale apprendono, prevedono, generano contenuti e a volte sbagliano.',
       zh: '探索人工智能系统如何学习、预测、生成内容，以及为什么有时会出错。',
       hi: 'जानें कि एआई प्रणालियाँ कैसे सीखती हैं, अनुमान लगाती हैं, सामग्री बनाती हैं और कभी-कभी गलती करती हैं।',
       es: 'Descubre cómo los sistemas de inteligencia artificial aprenden, predicen, generan contenido y a veces fallan.',

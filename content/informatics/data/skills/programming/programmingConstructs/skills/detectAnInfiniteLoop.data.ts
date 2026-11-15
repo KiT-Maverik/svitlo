@@ -5,6 +5,7 @@ export const detectAnInfiniteLoop_Skill_Data = defineSkill({
   id: '8324d7cb-d042-4280-9258-cd39f659597d',
   name: {
     en: 'Detect an Infinite Loop',
+    it: 'Rilevare un ciclo infinito',
     zh: '发现无限循环',
     hi: 'अनंत लूप का पता लगाना',
     es: 'Detectar un bucle infinito',
@@ -39,6 +40,7 @@ export const detectAnInfiniteLoop_Skill_Data = defineSkill({
       "Identify when a loop's termination condition can never be reached because a counter stays unchanged or state is updated incorrectly; explain the consequences for program execution.",
     frontend: {
       en: 'Find a loop that cannot stop because its condition never becomes false.',
+      it: 'Individua un ciclo che non può terminare perché la sua condizione non diventa mai falsa.',
       zh: '找出因停止条件永远不为假而无法结束的循环。',
       hi: 'ऐसा लूप खोजें जो नहीं रुकता क्योंकि उसकी शर्त कभी गलत नहीं होती।',
       es: 'Encuentra un bucle que no puede terminar porque su condición nunca se vuelve falsa.',

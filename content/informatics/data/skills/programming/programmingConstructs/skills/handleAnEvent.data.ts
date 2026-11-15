@@ -5,6 +5,7 @@ export const handleAnEvent_Skill_Data = defineSkill({
   id: '743d70ec-ac08-4f97-aac9-5845e1c2f346',
   name: {
     en: 'Handle an Event',
+    it: 'Gestire un evento',
     zh: '处理事件',
     hi: 'घटना को संभालना',
     es: 'Gestionar un evento',
@@ -39,6 +40,7 @@ export const handleAnEvent_Skill_Data = defineSkill({
       "Associate a programmed response with a signal such as a button press, message, or state change, distinguishing the event's arrival from execution of its handler. This is not simply a condition checked sequentially at every step.",
     frontend: {
       en: 'Make a program respond when a button, message or another event occurs.',
+      it: "Fai reagire un programma quando si verifica un clic su un pulsante, l'arrivo di un messaggio o un altro evento.",
       zh: '让程序在按钮、消息或其他事件发生时作出响应。',
       hi: 'बटन दबने, संदेश आने या दूसरी घटना होने पर प्रोग्राम से प्रतिक्रिया करवाएँ।',
       es: 'Haz que un programa responda cuando se pulsa un botón, llega un mensaje u ocurre otro evento.',

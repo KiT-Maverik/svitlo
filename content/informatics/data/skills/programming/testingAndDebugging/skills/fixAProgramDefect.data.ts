@@ -5,6 +5,7 @@ export const fixAProgramDefect_Skill_Data = defineSkill({
   id: '019afb04-e61e-42de-a593-f3cbbd99a849',
   name: {
     en: 'Fix a Program Defect',
+    it: 'Correggere un difetto di un programma',
     zh: '修复程序缺陷',
     hi: 'प्रोग्राम की खामी ठीक करना',
     es: 'Corregir un defecto del programa',
@@ -39,6 +40,7 @@ export const fixAProgramDefect_Skill_Data = defineSkill({
       'Change the specific code or rule responsible for a confirmed defect without breaking the required behavior of other cases. Retest the original failure after making the correction.',
     frontend: {
       en: 'Correct a specific defect and check that the required behavior still works.',
+      it: 'Correggi un difetto specifico e verifica che il comportamento richiesto continui a funzionare.',
       zh: '修正具体的错误，并检查要求的行为是否仍然正确。',
       hi: 'किसी खास दोष को सुधारें और जाँचें कि ज़रूरी व्यवहार अब भी सही काम करता है।',
       es: 'Corrige un defecto concreto y comprueba que el comportamiento requerido siga funcionando.',

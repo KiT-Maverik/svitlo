@@ -11,6 +11,7 @@ export const stack_SkillGroup_Data = defineSkillGroup({
   id: 'db6f2969-d2a6-4eb8-8139-335342dd4deb',
   name: {
     en: 'Stack',
+    it: 'Pile',
     zh: '栈',
     hi: 'स्टैक',
     es: 'Pila',
@@ -53,6 +54,7 @@ export const stack_SkillGroup_Data = defineSkillGroup({
       'A structure using last-in, first-out (LIFO) access to its top element. Pushing, popping, and handling an empty stack are distinct operations.',
     frontend: {
       en: 'Discover how a stack gives access to the most recently added item.',
+      it: "Scopri come una pila consente di accedere all'elemento aggiunto più di recente.",
       zh: '了解栈如何优先访问最近加入的元素。',
       hi: 'जानें कि स्टैक सबसे हाल में जोड़े गए तत्व को पहले कैसे देता है।',
       es: 'Descubre cómo una pila permite acceder primero al elemento añadido más recientemente.',

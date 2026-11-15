@@ -5,6 +5,7 @@ export const identifyDataNeededForATask_Skill_Data = defineSkill({
   id: '3275d16b-cdaf-4b7e-9e8d-3d1fc1d62a65',
   name: {
     en: 'Identify Data Needed for a Task',
+    it: 'Individuare i dati necessari per un compito',
     zh: '确定任务所需的数据',
     hi: 'किसी कार्य के लिए आवश्यक डेटा पहचानना',
     es: 'Identificar los datos necesarios para una tarea',
@@ -39,6 +40,7 @@ export const identifyDataNeededForATask_Skill_Data = defineSkill({
       'Determine which fields, observations, or measurements are necessary to answer a question and which do not affect the conclusion. Do not collect personal information merely because it can be stored.',
     frontend: {
       en: 'Decide which fields and observations a question actually requires.',
+      it: 'Decidi quali campi e osservazioni servono davvero per rispondere a una domanda.',
       zh: '判断问题实际需要哪些字段和观察结果。',
       hi: 'निर्णय करें कि प्रश्न में वास्तव में कौन-से फ़ील्ड और अवलोकन चाहिए।',
       es: 'Decide qué campos y observaciones exige realmente una pregunta.',

@@ -14,6 +14,7 @@ export const digitalSystemsAndNetworks_SkillDomain_Data = defineSkillDomain({
   id: 'c57456de-291c-4b19-bd67-bccbcf9bbaa7',
   title: {
     en: 'Digital Systems and Networks',
+    it: 'Sistemi e reti digitali',
     zh: '数字系统与网络',
     hi: 'डिजिटल प्रणालियाँ और नेटवर्क',
     es: 'Sistemas digitales y redes',
@@ -70,6 +71,7 @@ export const digitalSystemsAndNetworks_SkillDomain_Data = defineSkillDomain({
       'Explains interactions among hardware, software, encoding methods, and communication channels. These competencies concern the operation of digital infrastructure, not merely the use of devices.',
     frontend: {
       en: 'Discover how computing devices, digital information and networks work together.',
+      it: 'Scopri come dispositivi informatici, informazioni digitali e reti funzionano insieme.',
       zh: '了解计算设备、数字信息和网络如何协同工作。',
       hi: 'जानें कि कंप्यूटिंग उपकरण, डिजिटल जानकारी और नेटवर्क मिलकर कैसे काम करते हैं।',
       es: 'Descubre cómo funcionan juntos los dispositivos informáticos, la información digital y las redes.',

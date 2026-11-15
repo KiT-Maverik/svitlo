@@ -5,6 +5,7 @@ export const computeSetUnion_Skill_Data = defineSkill({
   id: '21ce9513-77c6-4c04-ae9e-bc38606ccb79',
   name: {
     en: 'Compute Set Union',
+    it: "Calcolare l'unione di insiemi",
     zh: '求集合的并集',
     hi: 'समुच्चयों का संघ निकालना',
     es: 'Calcular la unión de conjuntos',
@@ -38,6 +39,7 @@ export const computeSetUnion_Skill_Data = defineSkill({
     methodological: 'Create the set of all values that occur in either of two sets, eliminating duplicates.',
     frontend: {
       en: 'Combine all distinct elements found in either of two sets.',
+      it: 'Combina tutti gli elementi distinti presenti in almeno uno dei due insiemi.',
       zh: '合并两个集合中的所有不同元素，不保留重复项。',
       hi: 'दोनों समुच्चयों के सभी अलग-अलग तत्वों को बिना दोहराव के मिलाएँ।',
       es: 'Combina todos los elementos distintos de dos conjuntos, sin repetirlos.',

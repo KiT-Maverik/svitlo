@@ -5,6 +5,7 @@ export const distinguishTCPFromUDP_Skill_Data = defineSkill({
   id: 'c12e79a7-2bf8-4564-8351-a433d905574d',
   name: {
     en: 'Distinguish TCP from UDP',
+    it: 'Distinguere TCP e UDP',
     zh: '区分 TCP 与 UDP',
     hi: 'TCP और UDP में अंतर करना',
     es: 'Distinguir TCP de UDP',
@@ -39,6 +40,7 @@ export const distinguishTCPFromUDP_Skill_Data = defineSkill({
       'TCP provides a managed data stream with acknowledgments; UDP sends datagrams without equivalent delivery guarantees at that layer.',
     frontend: {
       en: 'Compare reliable TCP streams with UDP messages that lack those guarantees.',
+      it: 'Confronta i flussi affidabili di TCP con i messaggi UDP privi delle stesse garanzie.',
       zh: '比较可靠的 TCP 数据流与没有同等保证的 UDP 数据报。',
       hi: 'विश्वसनीय TCP डेटा प्रवाह की तुलना ऐसे UDP संदेशों से करें जिनके लिए समान गारंटी नहीं होती।',
       es: 'Compara los flujos fiables de TCP con mensajes UDP que carecen de esas garantías.',

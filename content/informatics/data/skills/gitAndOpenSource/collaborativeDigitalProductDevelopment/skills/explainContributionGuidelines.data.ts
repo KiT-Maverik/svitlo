@@ -5,6 +5,7 @@ export const explainContributionGuidelines_Skill_Data = defineSkill({
   id: 'e68261fb-470f-4152-810c-a730941d9d85',
   name: {
     en: 'Explain Contribution Guidelines',
+    it: 'Spiegare le linee guida per i contributi',
     zh: '解释贡献指南',
     hi: 'योगदान नियम समझाना',
     es: 'Explicar las pautas de contribución',
@@ -39,6 +40,7 @@ export const explainContributionGuidelines_Skill_Data = defineSkill({
       'Rules for contributions, code review, and discussing changes help teams maintain a shared project.',
     frontend: {
       en: 'Understand why contribution rules help people work on the same codebase.',
+      it: 'Comprendi perché le regole di contribuzione aiutano le persone a lavorare sulla stessa base di codice.',
       zh: '理解为什么贡献规则有助于多人维护同一代码库。',
       hi: 'समझें कि योगदान नियम लोगों को एक ही कोड आधार पर काम करने में कैसे मदद करते हैं।',
       es: 'Comprende por qué las reglas de contribución ayudan a trabajar en una misma base de código.',

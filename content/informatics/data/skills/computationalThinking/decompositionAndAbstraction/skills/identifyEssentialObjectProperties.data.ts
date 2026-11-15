@@ -5,6 +5,7 @@ export const identifyEssentialObjectProperties_Skill_Data = defineSkill({
   id: '35e71073-e3e6-4156-ba56-75e952aa78fc',
   name: {
     en: 'Identify Essential Object Properties',
+    it: 'Individuare le proprietà essenziali degli oggetti',
     zh: '识别对象的关键属性',
     hi: 'वस्तु के आवश्यक गुण पहचानना',
     es: 'Identificar propiedades esenciales de un objeto',
@@ -39,6 +40,7 @@ export const identifyEssentialObjectProperties_Skill_Data = defineSkill({
       "Choose only characteristics relevant to the given task: sorting books by author depends on the author's name, not the cover color. Properties omitted from one model may matter in another.",
     frontend: {
       en: 'Choose the details that matter for a task and set irrelevant details aside.',
+      it: 'Scegli i dettagli importanti per un compito e metti da parte quelli irrilevanti.',
       zh: '选出与任务相关的细节，忽略无关信息。',
       hi: 'कार्य के लिए ज़रूरी विवरण चुनें और असंबंधित विवरण छोड़ दें।',
       es: 'Elige los detalles relevantes para la tarea y deja de lado los irrelevantes.',

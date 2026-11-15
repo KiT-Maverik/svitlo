@@ -5,6 +5,7 @@ export const explainADataTypeContract_Skill_Data = defineSkill({
   id: '2f5ef4e7-1714-4486-9b5b-3abde40b8272',
   name: {
     en: 'Explain a Data Type Contract',
+    it: 'Spiegare un contratto sui tipi di dati',
     zh: '解释数据类型约定',
     hi: 'डेटा प्रकार अनुबंध समझाना',
     es: 'Explicar un contrato de tipo de datos',
@@ -39,6 +40,7 @@ export const explainADataTypeContract_Skill_Data = defineSkill({
       'Determine what type or form of value a declared input contract requires for a function, component, or call; text cannot always safely substitute for a number.',
     frontend: {
       en: 'Understand the kind of value a program function expects to receive.',
+      it: 'Comprendi quale tipo di valore una funzione del programma si aspetta di ricevere.',
       zh: '理解程序函数希望接收什么类型的值。',
       hi: 'समझें कि कोई प्रोग्राम फलन किस तरह के मान की अपेक्षा करता है।',
       es: 'Comprende qué tipo de valor espera recibir una función de programa.',

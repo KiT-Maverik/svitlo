@@ -5,6 +5,7 @@ export const identifyAdjacentVertices_Skill_Data = defineSkill({
   id: '9e17a09a-41b4-46b5-b48f-132edc5d8f32',
   name: {
     en: 'Identify Adjacent Vertices',
+    it: 'Individuare i vertici adiacenti',
     zh: '识别相邻顶点',
     hi: 'सन्निकट शीर्षों की पहचान करना',
     es: 'Identificar vértices adyacentes',
@@ -39,6 +40,7 @@ export const identifyAdjacentVertices_Skill_Data = defineSkill({
       'Find vertices directly connected to a given vertex and distinguish them from vertices reached through intermediate nodes.',
     frontend: {
       en: 'Identify the nodes directly connected to another node.',
+      it: 'Individua i nodi direttamente collegati a un altro nodo.',
       zh: '找出与某个顶点直接相连的其他顶点。',
       hi: 'किसी दिए गए शीर्ष से सीधे जुड़े शीर्षों की पहचान करें।',
       es: 'Identifica los vértices conectados directamente con otro vértice.',

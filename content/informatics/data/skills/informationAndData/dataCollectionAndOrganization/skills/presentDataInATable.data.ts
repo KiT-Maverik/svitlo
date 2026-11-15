@@ -5,6 +5,7 @@ export const presentDataInATable_Skill_Data = defineSkill({
   id: '7570c982-4419-4398-a10c-bff221e3380b',
   name: {
     en: 'Present Data in a Table',
+    it: 'Presentare dati in una tabella',
     zh: '用表格呈现数据',
     hi: 'तालिका में डेटा प्रस्तुत करना',
     es: 'Presentar datos en una tabla',
@@ -39,6 +40,7 @@ export const presentDataInATable_Skill_Data = defineSkill({
       'Arrange comparable records in rows and their attributes in columns with stable headings and units. A table preserves the values and relationships rather than substituting a graphical summary.',
     frontend: {
       en: 'Create a table with labeled rows, columns and consistent values.',
+      it: 'Crea una tabella con righe e colonne etichettate e valori coerenti.',
       zh: '创建行列有标签、数据格式一致的表格。',
       hi: 'नामित पंक्तियों, स्तंभों और सुसंगत मानों वाली तालिका बनाएं।',
       es: 'Crea una tabla con filas y columnas identificadas y valores coherentes.',

@@ -5,6 +5,7 @@ export const chooseADigitalCreativeTool_Skill_Data = defineSkill({
   id: '94b8ed9a-2d71-464d-ae36-5b60f8203c83',
   name: {
     en: 'Choose a Digital Creative Tool',
+    it: 'Scegliere uno strumento creativo digitale',
     zh: '选择数字创作工具',
     hi: 'डिजिटल रचनात्मक उपकरण चुनना',
     es: 'Elegir una herramienta creativa digital',
@@ -39,6 +40,7 @@ export const chooseADigitalCreativeTool_Skill_Data = defineSkill({
       "Match a tool's technical capabilities to desired outcomes, such as distinguishing an image editor from a spreadsheet tool. This competency does not require Informatics to teach the internal structure of tools students happen to use in other subjects.",
     frontend: {
       en: 'Choose creative software that matches what you need to produce.',
+      it: 'Scegli un software creativo adatto a ciò che devi realizzare.',
       zh: '选择符合创作目标的软件。',
       hi: 'जो बनाना है उसके लिए उपयुक्त रचनात्मक सॉफ़्टवेयर चुनें।',
       es: 'Elige un programa creativo adecuado para lo que necesitas producir.',

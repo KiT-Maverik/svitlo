@@ -14,6 +14,7 @@ export const graphs_SkillGroup_Data = defineSkillGroup({
   id: 'ac76c24f-09ee-456e-844f-9ebfbd892b0d',
   name: {
     en: 'Graphs',
+    it: 'Grafi',
     zh: '图',
     hi: 'ग्राफ़',
     es: 'Grafos',
@@ -66,6 +67,7 @@ export const graphs_SkillGroup_Data = defineSkillGroup({
       'Graphs describe vertices and connections, including cycles, directed relationships, and numeric edge weights.',
     frontend: {
       en: 'Discover how graphs represent places, objects and their connections.',
+      it: 'Scopri come i grafi rappresentano luoghi, oggetti e le loro connessioni.',
       zh: '了解图如何表示地点、对象及其连接关系。',
       hi: 'जानें कि ग्राफ़ स्थानों, वस्तुओं और उनके संबंधों को कैसे दर्शाते हैं।',
       es: 'Descubre cómo los grafos representan lugares, objetos y sus conexiones.',

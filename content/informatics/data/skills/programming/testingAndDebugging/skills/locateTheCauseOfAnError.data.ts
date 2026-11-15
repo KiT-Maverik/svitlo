@@ -5,6 +5,7 @@ export const locateTheCauseOfAnError_Skill_Data = defineSkill({
   id: 'f5e6e900-34a8-4061-a708-b43ff8ab9791',
   name: {
     en: 'Locate the Cause of an Error',
+    it: 'Individuare la causa di un errore',
     zh: '定位错误原因',
     hi: 'त्रुटि का कारण पता लगाना',
     es: 'Localizar la causa de un error',
@@ -39,6 +40,7 @@ export const locateTheCauseOfAnError_Skill_Data = defineSkill({
       'Narrow a defect to a particular instruction, condition, or state transition by tracing execution and testing hypotheses. Recognizing a wrong result does not by itself identify its cause.',
     frontend: {
       en: 'Trace a programming error to the instruction or condition causing it.',
+      it: "Risalire dall'errore di programmazione all'istruzione o alla condizione che lo provoca.",
       zh: '追踪程序错误，找到造成错误的指令或条件。',
       hi: 'प्रोग्राम की गलती को उसके कारण बने निर्देश या शर्त तक खोजें।',
       es: 'Rastrea un error de programación hasta la instrucción o condición que lo provoca.',

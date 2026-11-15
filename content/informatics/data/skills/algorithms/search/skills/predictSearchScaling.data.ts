@@ -5,6 +5,7 @@ export const predictSearchScaling_Skill_Data = defineSkill({
   id: 'e1e1e2ea-7772-46ba-95f8-8edd0544b5ca',
   name: {
     en: 'Predict Search Scaling',
+    it: 'Prevedere come cresce il costo della ricerca',
     zh: '预测搜索规模增长的影响',
     hi: 'खोज की वृद्धि का अनुमान लगाना',
     es: 'Predecir la escala de la búsqueda',
@@ -39,6 +40,7 @@ export const predictSearchScaling_Skill_Data = defineSkill({
       'Compare 100 and 1,000 possible positions: the binary search bound grows from 7 to 10 checks although the dataset is ten times larger; explain this through repeated approximate halving.',
     frontend: {
       en: 'Understand why doubling a dataset adds only about one binary-search check.',
+      it: "Comprendi perché raddoppiare i dati aggiunge all'incirca un solo controllo alla ricerca binaria.",
       zh: '理解为什么数据量翻倍通常只让二分查找多检查约一次。',
       hi: 'समझें कि डेटा दोगुना होने पर द्विआधारी खोज में केवल लगभग एक अतिरिक्त जाँच क्यों लगती है।',
       es: 'Comprende por qué duplicar los datos añade aproximadamente una comprobación a la búsqueda binaria.',

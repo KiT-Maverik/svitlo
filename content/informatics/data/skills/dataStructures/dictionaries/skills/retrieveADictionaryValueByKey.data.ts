@@ -5,6 +5,7 @@ export const retrieveADictionaryValueByKey_Skill_Data = defineSkill({
   id: 'bf2634f6-d58d-4e0b-8c25-61d0bb362eb3',
   name: {
     en: 'Retrieve a Dictionary Value by Key',
+    it: 'Recuperare un valore del dizionario tramite chiave',
     zh: '通过键获取字典中的值',
     hi: 'कुंजी से डिक्शनरी का मान प्राप्त करना',
     es: 'Recuperar un valor del diccionario por su clave',
@@ -38,6 +39,7 @@ export const retrieveADictionaryValueByKey_Skill_Data = defineSkill({
     methodological: 'Find an entry using its key and handle the case in which the key does not exist.',
     frontend: {
       en: 'Find a dictionary value by key and handle a missing key.',
+      it: 'Trova un valore in un dizionario tramite la chiave e gestisci il caso in cui manchi.',
       zh: '通过键查找字典中的值，并处理键不存在的情况。',
       hi: 'कुंजी से डिक्शनरी में मान खोजें और कुंजी न मिलने की स्थिति सँभालें।',
       es: 'Busca un valor del diccionario por su clave y gestiona el caso de una clave ausente.',

@@ -19,6 +19,7 @@ export const networkModelsAndProtocols_SkillGroup_Data = defineSkillGroup({
   id: 'e5545405-2136-4a34-a261-6b9308799ae1',
   name: {
     en: 'Network Models and Protocols',
+    it: 'Modelli e protocolli di rete',
     zh: '网络模型与协议',
     hi: 'नेटवर्क मॉडल और प्रोटोकॉल',
     es: 'Modelos y protocolos de red',
@@ -81,6 +82,7 @@ export const networkModelsAndProtocols_SkillGroup_Data = defineSkillGroup({
       'Network communication rules include addressing and packet delivery, protocol layers, connection security, and shared-medium access. OSI is a conceptual model, while real technologies implement their functions through different stacks and access methods.',
     frontend: {
       en: 'Discover how networking protocols specify the rules for sending information.',
+      it: 'Scopri come i protocolli di rete definiscono le regole per trasmettere informazioni.',
       zh: '了解网络协议如何规定信息发送的规则。',
       hi: 'जानें कि नेटवर्क प्रोटोकॉल सूचना भेजने के नियम कैसे तय करते हैं।',
       es: 'Descubre cómo los protocolos de red establecen las reglas para enviar información.',

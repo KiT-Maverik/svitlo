@@ -5,6 +5,7 @@ export const explainOpenSource_Skill_Data = defineSkill({
   id: 'fb133b51-d056-43b1-8ece-d5d93483bd61',
   name: {
     en: 'Explain Open Source',
+    it: "Spiegare l'open source",
     zh: '解释开源',
     hi: 'मुक्त स्रोत समझाना',
     es: 'Explicar el código abierto',
@@ -39,6 +40,7 @@ export const explainOpenSource_Skill_Data = defineSkill({
       'An open-source license permits studying, using, modifying, and redistributing code under its defined conditions.',
     frontend: {
       en: 'Understand how open-source licenses allow use, modification and redistribution.',
+      it: 'Comprendi come le licenze open source consentono utilizzo, modifica e ridistribuzione.',
       zh: '理解开源许可证如何允许使用、修改和再分发软件。',
       hi: 'समझें कि मुक्त स्रोत लाइसेंस सॉफ़्टवेयर के उपयोग, बदलाव और पुनर्वितरण की अनुमति कैसे देता है।',
       es: 'Comprende cómo las licencias de código abierto permiten usar, modificar y redistribuir software.',

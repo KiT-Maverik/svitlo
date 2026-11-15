@@ -5,6 +5,7 @@ export const abstractFactory_Skill_Data = defineSkill({
   id: '724c070d-5608-4b68-b197-99ac97d3a36a',
   name: {
     en: 'Abstract Factory',
+    it: 'Fabbrica astratta',
     zh: '抽象工厂',
     hi: 'एब्स्ट्रैक्ट फ़ैक्टरी',
     es: 'Fábrica abstracta',
@@ -39,6 +40,7 @@ export const abstractFactory_Skill_Data = defineSkill({
       'Use one factory to supply a compatible family of related products, such as interface elements for a particular platform, while hiding concrete types.',
     frontend: {
       en: 'Use a factory that builds matching families of related objects.',
+      it: 'Usa una fabbrica che crea famiglie coerenti di oggetti correlati.',
       zh: '使用一个工厂创建相互匹配的相关对象族。',
       hi: 'संबंधित ऑब्जेक्ट के मेल खाते परिवार बनाने वाली फ़ैक्टरी उपयोग करें।',
       es: 'Usa una fábrica que construye familias compatibles de objetos relacionados.',

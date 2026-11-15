@@ -5,6 +5,7 @@ export const applyElementCounting_Skill_Data = defineSkill({
   id: '11a9fb37-9afc-43f6-af92-d48fc7eaa39f',
   name: {
     en: 'Apply Element Counting',
+    it: 'Applicare il conteggio degli elementi',
     zh: '应用元素计数算法',
     hi: 'तत्व गिनती लागू करना',
     es: 'Aplicar el conteo de elementos',
@@ -38,6 +39,7 @@ export const applyElementCounting_Skill_Data = defineSkill({
     methodological: 'Traverse a collection, incrementing a counter for every item that meets the given condition.',
     frontend: {
       en: 'Count all collection elements that meet a stated condition.',
+      it: 'Conta tutti gli elementi di una collezione che soddisfano una condizione specificata.',
       zh: '统计集合中满足指定条件的所有元素。',
       hi: 'दी गई शर्त पूरी करने वाले संग्रह के सभी तत्व गिनें।',
       es: 'Cuenta todos los elementos de la colección que cumplen una condición.',

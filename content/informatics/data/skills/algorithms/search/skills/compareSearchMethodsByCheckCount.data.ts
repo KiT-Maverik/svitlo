@@ -5,6 +5,7 @@ export const compareSearchMethodsByCheckCount_Skill_Data = defineSkill({
   id: 'e06b06db-1e17-480b-92ac-d112d1faad1c',
   name: {
     en: 'Compare Search Methods by Check Count',
+    it: 'Confrontare i metodi di ricerca per numero di controlli',
     zh: '按检查次数比较搜索方法',
     hi: 'जाँचों की संख्या से खोज विधियों की तुलना',
     es: 'Comparar búsquedas por número de comprobaciones',
@@ -39,6 +40,7 @@ export const compareSearchMethodsByCheckCount_Skill_Data = defineSkill({
       "Compare the number of opened positions in linear and binary search over the same dataset, distinguishing one lucky result from the algorithm's general guarantees.",
     frontend: {
       en: 'Compare how many checks linear and binary searches need.',
+      it: 'Confronta quanti controlli richiedono la ricerca lineare e quella binaria.',
       zh: '比较线性查找和二分查找各需要检查多少次。',
       hi: 'तुलना करें कि रैखिक और द्विआधारी खोज में कितनी जाँच लगती हैं।',
       es: 'Compara cuántas comprobaciones requieren la búsqueda lineal y la binaria.',

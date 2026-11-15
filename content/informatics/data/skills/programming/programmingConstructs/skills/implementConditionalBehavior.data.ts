@@ -5,6 +5,7 @@ export const implementConditionalBehavior_Skill_Data = defineSkill({
   id: '4d553e9f-3606-4baf-8b5b-9cbe34952a94',
   name: {
     en: 'Implement Conditional Behavior',
+    it: 'Implementare un comportamento condizionale',
     zh: '实现条件分支行为',
     hi: 'शर्त-आधारित व्यवहार लागू करना',
     es: 'Implementar comportamiento condicional',
@@ -39,6 +40,7 @@ export const implementConditionalBehavior_Skill_Data = defineSkill({
       'Write a Boolean test and the corresponding executable branches, ensuring that the intended branch runs for each anticipated condition value.',
     frontend: {
       en: 'Make a program choose different actions when conditions change.',
+      it: 'Fai scegliere al programma azioni diverse quando cambiano le condizioni.',
       zh: '使程序在条件变化时选择不同的操作。',
       hi: 'शर्तें बदलने पर प्रोग्राम से अलग-अलग क्रियाएँ चुनवाएँ।',
       es: 'Haz que el programa elija acciones diferentes cuando cambian las condiciones.',

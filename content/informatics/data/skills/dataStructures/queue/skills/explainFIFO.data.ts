@@ -5,6 +5,7 @@ export const explainFIFO_Skill_Data = defineSkill({
   id: '708e0714-f7be-4732-bcc3-6a1efc331bbe',
   name: {
     en: 'Explain FIFO',
+    it: 'Spiegare il principio FIFO',
     zh: '解释先进先出原则（FIFO）',
     hi: 'FIFO सिद्धांत समझाना',
     es: 'Explicar el principio FIFO',
@@ -38,6 +39,7 @@ export const explainFIFO_Skill_Data = defineSkill({
     methodological: 'In a queue, the earliest added element is served first unless separate priority rules apply.',
     frontend: {
       en: 'Explain why the earliest element in a queue leaves first.',
+      it: "Spiega perché l'elemento entrato per primo in una coda esce per primo.",
       zh: '解释为什么最早进入队列的元素会最先离开。',
       hi: 'समझाएँ कि कतार में सबसे पहले आया तत्व सबसे पहले क्यों निकलता है।',
       es: 'Explica por qué el elemento que llegó primero a una cola sale primero.',

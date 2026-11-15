@@ -5,6 +5,7 @@ export const facade_Skill_Data = defineSkill({
   id: '0f38c5f5-615f-40eb-a614-3da953dfc0c4',
   name: {
     en: 'Facade',
+    it: 'Facade',
     zh: '外观模式',
     hi: 'फसाड',
     es: 'Fachada',
@@ -39,6 +40,7 @@ export const facade_Skill_Data = defineSkill({
       'Provide a simplified entry point hiding complex sequences of subsystem calls without replacing the entire subsystem interface.',
     frontend: {
       en: 'Offer a simple entry point to a complex collection of components.',
+      it: "Offri un punto d'accesso semplice a un insieme complesso di componenti.",
       zh: '为复杂组件集合提供简单的入口。',
       hi: 'जटिल घटक समूह के लिए सरल प्रवेश द्वार दें।',
       es: 'Ofrece un punto de acceso sencillo a un conjunto complejo de componentes.',

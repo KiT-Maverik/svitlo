@@ -5,6 +5,7 @@ export const verifyAClaimAgainstASource_Skill_Data = defineSkill({
   id: '08802b0f-6fb7-4daf-8a08-c05a883ac11a',
   name: {
     en: 'Verify a Claim Against a Source',
+    it: "Verificare un'affermazione con una fonte",
     zh: '对照来源核实说法',
     hi: 'स्रोत से किसी दावे की पुष्टि करना',
     es: 'Verificar una afirmación con una fuente',
@@ -39,6 +40,7 @@ export const verifyAClaimAgainstASource_Skill_Data = defineSkill({
       'Seek evidence for a particular assertion in the primary source or independent reliable material, considering date, context, and provenance. Repetition of an error across websites does not make it true.',
     frontend: {
       en: 'Check a claim against appropriate evidence rather than repeated assertions.',
+      it: "Confronta un'affermazione con prove adeguate anziché affidarti ad affermazioni ripetute.",
       zh: '用适当证据核查说法，而不是相信反复出现的断言。',
       hi: 'बार-बार दोहराए गए कथनों के बजाय उचित प्रमाण से दावे को जाँचें।',
       es: 'Contrasta una afirmación con pruebas adecuadas, no con repeticiones de la misma idea.',

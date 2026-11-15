@@ -5,6 +5,7 @@ export const designRepetition_Skill_Data = defineSkill({
   id: 'f3e6d410-108b-46b7-bdf3-29aac565ed46',
   name: {
     en: 'Design Repetition',
+    it: 'Progettare la ripetizione',
     zh: '设计重复执行',
     hi: 'पुनरावृत्ति की योजना बनाना',
     es: 'Diseñar repeticiones',
@@ -39,6 +40,7 @@ export const designRepetition_Skill_Data = defineSkill({
       'Define the body of a repeated procedure, its continuation or termination condition, and state changes between steps. This prevents infinite loops and distinguishes repetition from copying identical instructions.',
     frontend: {
       en: 'Design a repeated procedure with correct updates and a stopping condition.',
+      it: 'Progetta una procedura ripetuta con aggiornamenti corretti e una condizione di arresto.',
       zh: '设计具有正确更新步骤和终止条件的重复过程。',
       hi: 'सही बदलाव और रुकने की शर्त के साथ दोहराई जाने वाली प्रक्रिया बनाएँ।',
       es: 'Diseña un proceso repetido con actualizaciones correctas y una condición de parada.',

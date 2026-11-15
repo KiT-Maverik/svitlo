@@ -5,6 +5,7 @@ export const estimateAnAlgorithmsWorstCase_Skill_Data = defineSkill({
   id: '0dfe5db6-c92a-46ed-bbfb-c110a90c9886',
   name: {
     en: "Estimate an Algorithm's Worst Case",
+    it: 'Stimare il caso peggiore di un algoritmo',
     zh: '估计算法的最坏情况',
     hi: 'एल्गोरिदम की सबसे खराब स्थिति का अनुमान लगाना',
     es: 'Estimar el peor caso de un algoritmo',
@@ -39,6 +40,7 @@ export const estimateAnAlgorithmsWorstCase_Skill_Data = defineSkill({
       'Determine an upper bound on checks for a given strategy and rules, without confusing it with the steps taken in one lucky execution.',
     frontend: {
       en: 'Estimate the most checks an algorithm could require in its worst case.',
+      it: 'Stima il numero massimo di controlli che un algoritmo potrebbe richiedere nel caso peggiore.',
       zh: '估计算法在最坏情况下最多需要进行多少次检查。',
       hi: 'अनुमान लगाएँ कि सबसे खराब स्थिति में एल्गोरिदम को कितनी जाँच करनी पड़ सकती हैं।',
       es: 'Estima cuántas comprobaciones podría requerir un algoritmo en el peor caso.',

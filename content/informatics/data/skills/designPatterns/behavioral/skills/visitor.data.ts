@@ -5,6 +5,7 @@ export const visitor_Skill_Data = defineSkill({
   id: 'c7e97ed0-d899-4d2b-8093-8e669323f15d',
   name: {
     en: 'Visitor',
+    it: 'Visitatore',
     zh: '访问者模式',
     hi: 'विज़िटर',
     es: 'Visitante',
@@ -39,6 +40,7 @@ export const visitor_Skill_Data = defineSkill({
       'Move operations on a family of types into a separate visitor while keeping the element structure relatively stable.',
     frontend: {
       en: 'Separate operations from the object structures on which they act.',
+      it: 'Separa le operazioni dalle strutture di oggetti su cui agiscono.',
       zh: '将操作与其作用的对象结构分离。',
       hi: 'क्रियाओं को उन ऑब्जेक्ट संरचनाओं से अलग रखें जिन पर वे काम करती हैं।',
       es: 'Separa las operaciones de las estructuras de objetos sobre las que actúan.',

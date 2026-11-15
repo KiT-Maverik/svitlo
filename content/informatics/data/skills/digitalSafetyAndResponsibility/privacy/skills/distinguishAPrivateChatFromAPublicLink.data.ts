@@ -5,6 +5,7 @@ export const distinguishAPrivateChatFromAPublicLink_Skill_Data = defineSkill({
   id: 'cda01f72-5e9e-40a0-a12d-521db4611ec4',
   name: {
     en: 'Distinguish a Private Chat from a Public Link',
+    it: 'Distinguere una chat privata da un collegamento pubblico',
     zh: '区分私人聊天与公开链接',
     hi: 'निजी चैट और सार्वजनिक लिंक में अंतर करना',
     es: 'Distinguir un chat privado de un enlace público',
@@ -39,6 +40,7 @@ export const distinguishAPrivateChatFromAPublicLink_Skill_Data = defineSkill({
       'Check who can access a shared conversation or document; do not automatically assume a link is private.',
     frontend: {
       en: 'Check who can open a shared chat or document rather than assuming its link is private.',
+      it: 'Verifica chi può aprire una chat o un documento condiviso senza presumere che il collegamento sia privato.',
       zh: '确认谁能够打开分享的聊天或文档，不要假定链接是私密的。',
       hi: 'जाँचें कि साझा चैट या दस्तावेज़ कौन खोल सकता है; लिंक को अपने आप निजी न मानें।',
       es: 'Comprueba quién puede abrir un chat o documento compartido sin suponer que el enlace sea privado.',

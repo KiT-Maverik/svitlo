@@ -5,6 +5,7 @@ export const implementRobotObstacleResponse_Skill_Data = defineSkill({
   id: '44e6d553-194f-4331-9981-d5f583ab6a99',
   name: {
     en: 'Implement Robot Obstacle Response',
+    it: 'Implementare la risposta di un robot agli ostacoli',
     zh: '实现机器人的避障反应',
     hi: 'रोबोट में बाधा पर प्रतिक्रिया लागू करना',
     es: 'Implementar la respuesta del robot ante obstáculos',
@@ -39,6 +40,7 @@ export const implementRobotObstacleResponse_Skill_Data = defineSkill({
       'Link a sensor reading or simulated state to a maneuver such as stopping, turning, or bypassing an obstacle, and verify the action occurs only under the intended condition.',
     frontend: {
       en: 'Make a robot stop, turn or avoid an obstacle when a sensor detects it.',
+      it: 'Fai fermare, girare o aggirare un ostacolo a un robot quando un sensore lo rileva.',
       zh: '让机器人在传感器检测到障碍物时停止、转向或绕开障碍。',
       hi: 'सेंसर से बाधा का पता चलते ही रोबोट को रुकने, मुड़ने या उससे बचने दें।',
       es: 'Haz que el robot se detenga, gire o esquive un obstáculo cuando lo detecte un sensor.',

@@ -9,6 +9,7 @@ export const gitAndOpenSource_SkillDomain_Data = defineSkillDomain({
   id: 'ecbff879-3706-40da-a4c1-0cdeb2611bb8',
   title: {
     en: 'Git and Open Source',
+    it: 'Git e software open source',
     zh: 'Git 与开源',
     hi: 'Git और ओपन सोर्स',
     es: 'Git y código abierto',
@@ -51,6 +52,7 @@ export const gitAndOpenSource_SkillDomain_Data = defineSkillDomain({
       'A distinct subject area covering software change history, collaboration in repositories, and licensed cooperative software creation rather than an automatic component of every digital lesson.',
     frontend: {
       en: 'Explore how developers track changes, collaborate and share software with clear permissions.',
+      it: 'Esplora come gli sviluppatori tracciano le modifiche, collaborano e condividono software con autorizzazioni chiare.',
       zh: '探索开发者如何追踪修改、协作，并按照明确的许可共享软件。',
       hi: 'जानें कि डेवलपर बदलावों का इतिहास कैसे रखते, मिलकर काम करते और स्पष्ट अनुमतियों के साथ सॉफ़्टवेयर साझा करते हैं।',
       es: 'Explora cómo los desarrolladores registran cambios, colaboran y comparten software con permisos claros.',

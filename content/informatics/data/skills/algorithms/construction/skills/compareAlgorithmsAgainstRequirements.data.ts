@@ -5,6 +5,7 @@ export const compareAlgorithmsAgainstRequirements_Skill_Data = defineSkill({
   id: 'b4444b39-3f9b-4405-be8c-85f9990aac8b',
   name: {
     en: 'Compare Algorithms Against Requirements',
+    it: 'Confrontare gli algoritmi rispetto ai requisiti',
     zh: '根据需求比较算法',
     hi: 'आवश्यकताओं के अनुसार एल्गोरिदम की तुलना करना',
     es: 'Comparar algoritmos según los requisitos',
@@ -39,6 +40,7 @@ export const compareAlgorithmsAgainstRequirements_Skill_Data = defineSkill({
       'Compare correct approaches to the same problem based on constraints such as sortedness, number of checks, resources, and clarity. An algorithm with fewer steps may be unsuitable without its prerequisite.',
     frontend: {
       en: 'Compare possible algorithms according to their requirements and limitations.',
+      it: 'Confronta possibili algoritmi in base ai requisiti e ai loro limiti.',
       zh: '根据算法的前提条件和限制比较不同的解决方案。',
       hi: 'एल्गोरिदम की शर्तों और सीमाओं के अनुसार संभावित तरीकों की तुलना करें।',
       es: 'Compara posibles algoritmos según sus requisitos y limitaciones.',

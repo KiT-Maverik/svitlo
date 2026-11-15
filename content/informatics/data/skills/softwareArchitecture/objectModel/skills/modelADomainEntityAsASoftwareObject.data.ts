@@ -5,6 +5,7 @@ export const modelADomainEntityAsASoftwareObject_Skill_Data = defineSkill({
   id: '4d0b43d9-6d0f-4806-a792-a0c54f29e6fd',
   name: {
     en: 'Model a Domain Entity as a Software Object',
+    it: "Modellare un'entità di dominio come oggetto software",
     zh: '将领域实体建模为软件对象',
     hi: 'डोमेन एंटिटी को सॉफ़्टवेयर ऑब्जेक्ट बनाना',
     es: 'Modelar una entidad del dominio como objeto de software',
@@ -39,6 +40,7 @@ export const modelADomainEntityAsASoftwareObject_Skill_Data = defineSkill({
       'Independently design a software representation of a real or imaginary entity for a specific task by selecting relevant properties and methods, excluding unnecessary detail, and justifying those choices. For a car-rental service, model availability and renting/returning rather than current speed. The result can be a diagram, pseudocode, or code; designing the structure differs from analyzing an existing object.',
     frontend: {
       en: 'Design a useful software object by selecting relevant properties and operations.',
+      it: 'Progetta un oggetto software utile selezionando proprietà e operazioni pertinenti.',
       zh: '选择相关属性和操作，设计有用的软件对象。',
       hi: 'प्रासंगिक गुण और क्रियाएँ चुनकर उपयोगी ऑब्जेक्ट डिज़ाइन करें।',
       es: 'Diseña un objeto útil seleccionando propiedades y operaciones relevantes.',

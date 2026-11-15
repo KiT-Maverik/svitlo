@@ -5,6 +5,7 @@ export const explainPolymorphism_Skill_Data = defineSkill({
   id: '3b41f995-9c0d-4baa-99c2-0c18d97f9f29',
   name: {
     en: 'Explain Polymorphism',
+    it: 'Spiegare il polimorfismo',
     zh: '解释多态',
     hi: 'बहुरूपता समझाना',
     es: 'Explicar el polimorfismo',
@@ -39,6 +40,7 @@ export const explainPolymorphism_Skill_Data = defineSkill({
       'Explain how different implementations fulfill a shared operation under the same contract, such as `draw()` for a circle and rectangle. The call remains consistent although concrete behavior depends on the implementation.',
     frontend: {
       en: 'See how different objects can fulfill the same operation in different ways.',
+      it: 'Scopri come oggetti diversi possono realizzare la stessa operazione in modi differenti.',
       zh: '了解不同对象如何以不同方式实现相同的操作。',
       hi: 'जानें कि अलग ऑब्जेक्ट एक ही कार्य को अलग तरीकों से कैसे पूरा कर सकते हैं।',
       es: 'Descubre cómo distintos objetos pueden realizar la misma operación de formas diferentes.',

@@ -5,6 +5,7 @@ export const proxy_Skill_Data = defineSkill({
   id: '1709b904-6835-4563-a8db-b536d0187a6e',
   name: {
     en: 'Proxy',
+    it: 'Proxy',
     zh: '代理模式',
     hi: 'प्रॉक्सी',
     es: 'Representante',
@@ -39,6 +40,7 @@ export const proxy_Skill_Data = defineSkill({
       'Control access to another object through a proxy sharing its interface—for example, to check authorization, cache results, or defer loading.',
     frontend: {
       en: 'Control access to an object using another object with the same interface.',
+      it: "Controlla l'accesso a un oggetto tramite un altro oggetto con la stessa interfaccia.",
       zh: '通过具有相同接口的另一个对象控制对目标对象的访问。',
       hi: 'समान इंटरफ़ेस वाले दूसरे ऑब्जेक्ट से लक्ष्य ऑब्जेक्ट तक पहुँच नियंत्रित करें।',
       es: 'Controla el acceso a un objeto mediante otro que tiene la misma interfaz.',

@@ -5,6 +5,7 @@ export const explainBinaryRepresentation_Skill_Data = defineSkill({
   id: 'f1139d01-f110-4f87-aa8c-d2588bd1df00',
   name: {
     en: 'Explain Binary Representation',
+    it: 'Spiegare la rappresentazione binaria',
     zh: '解释二进制表示',
     hi: 'द्विआधारी निरूपण समझाना',
     es: 'Explicar la representación binaria',
@@ -39,6 +40,7 @@ export const explainBinaryRepresentation_Skill_Data = defineSkill({
       'Show how the symbols 0 and 1 form bits and bit sequences that encode numbers and other data. A bit represents a state, while the meaning of a longer sequence depends on its interpretation.',
     frontend: {
       en: 'Understand how sequences of zeros and ones encode different kinds of data.',
+      it: 'Comprendi come le sequenze di zeri e uni codificano tipi diversi di dati.',
       zh: '理解零和一组成的序列如何编码不同类型的数据。',
       hi: 'समझें कि शून्य और एक के क्रम अलग-अलग तरह के डेटा को कैसे कूटबद्ध करते हैं।',
       es: 'Comprende cómo las secuencias de ceros y unos codifican distintos tipos de datos.',

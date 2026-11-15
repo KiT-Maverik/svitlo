@@ -5,6 +5,7 @@ export const specifyAPromptObjective_Skill_Data = defineSkill({
   id: '7cbebe13-c48d-4818-8240-acbd8bb16d75',
   name: {
     en: 'Specify a Prompt Objective',
+    it: "Specificare l'obiettivo di un prompt",
     zh: '明确提示词的目标',
     hi: 'प्रॉम्प्ट का उद्देश्य तय करना',
     es: 'Definir el objetivo de un prompt',
@@ -39,6 +40,7 @@ export const specifyAPromptObjective_Skill_Data = defineSkill({
       "Give a model a defined task and desired outcome, such as 'compare three explanations and highlight their differences,' instead of 'tell me something.' The objective specifies the work, not the output format.",
     frontend: {
       en: 'State the precise task you want an AI assistant to accomplish.',
+      it: 'Indica con precisione il compito che vuoi far svolgere a un assistente di IA.',
       zh: '清楚说明你希望人工智能助手完成的具体任务。',
       hi: 'स्पष्ट बताएँ कि आप एआई सहायक से कौन-सा काम करवाना चाहते हैं।',
       es: 'Indica con precisión qué tarea quieres que realice un asistente de IA.',

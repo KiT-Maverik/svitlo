@@ -5,6 +5,7 @@ export const createAStrongPassphrase_Skill_Data = defineSkill({
   id: 'a6c3728d-8d3d-4cf1-a5d9-d5494d64706a',
   name: {
     en: 'Create a Strong Passphrase',
+    it: 'Creare una passphrase robusta',
     zh: '创建强密码短语',
     hi: 'मज़बूत पासफ़्रेज़ बनाना',
     es: 'Crear una frase de contraseña segura',
@@ -39,6 +40,7 @@ export const createAStrongPassphrase_Skill_Data = defineSkill({
       'Select a sufficiently long, unpredictable, account-specific sequence of words or symbols without readily accessible personal details. Do not require daily password changes without a reason or mistake character variety for overall security.',
     frontend: {
       en: 'Create long, unpredictable passphrases that are different for each account.',
+      it: 'Crea passphrase lunghe, imprevedibili e diverse per ogni account.',
       zh: '为每个账户创建不同的、足够长且难以猜测的密码短语。',
       hi: 'हर खाते के लिए अलग, लंबे और अनुमान लगाना कठिन पासफ़्रेज़ बनाएँ।',
       es: 'Crea frases de contraseña largas, impredecibles y distintas para cada cuenta.',

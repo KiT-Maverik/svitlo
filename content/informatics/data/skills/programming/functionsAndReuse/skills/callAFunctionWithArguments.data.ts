@@ -5,6 +5,7 @@ export const callAFunctionWithArguments_Skill_Data = defineSkill({
   id: 'd5342f1e-42c1-4798-86d9-24052620530a',
   name: {
     en: 'Call a Function with Arguments',
+    it: 'Chiamare una funzione con argomenti',
     zh: '使用实参调用函数',
     hi: 'आर्ग्युमेंट के साथ फलन बुलाना',
     es: 'Llamar una función con argumentos',
@@ -39,6 +40,7 @@ export const callAFunctionWithArguments_Skill_Data = defineSkill({
       'Supply concrete values at a call site and trace how they bind to formal parameters; distinguish defining a function from calling it.',
     frontend: {
       en: 'Call a function with arguments and follow how they are used.',
+      it: 'Chiama una funzione con argomenti e segui come vengono utilizzati.',
       zh: '用实参调用函数，并跟踪这些实参如何被使用。',
       hi: 'आर्ग्युमेंट देकर फलन बुलाएँ और देखें कि उनका उपयोग कैसे होता है।',
       es: 'Llama a una función con argumentos y observa cómo se utilizan.',

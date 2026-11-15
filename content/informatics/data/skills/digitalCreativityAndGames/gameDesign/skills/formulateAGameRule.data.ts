@@ -5,6 +5,7 @@ export const formulateAGameRule_Skill_Data = defineSkill({
   id: 'a0f1bf7b-0343-40cd-aad5-72e3dca3e26a',
   name: {
     en: 'Formulate a Game Rule',
+    it: 'Formulare una regola di gioco',
     zh: '制定游戏规则',
     hi: 'खेल का नियम तैयार करना',
     es: 'Formular una regla de juego',
@@ -39,6 +40,7 @@ export const formulateAGameRule_Skill_Data = defineSkill({
       'State a condition, permitted action, or consequence clearly enough that players interpret it consistently—for example, when points are awarded and when a round ends.',
     frontend: {
       en: 'Write a game rule clearly enough that players know what is allowed.',
+      it: 'Scrivi una regola in modo sufficientemente chiaro perché i giocatori sappiano che cosa è consentito.',
       zh: '清楚地写出游戏规则，让玩家知道哪些行为是允许的。',
       hi: 'खेल का नियम इतना स्पष्ट लिखें कि खिलाड़ियों को पता हो क्या करने की अनुमति है।',
       es: 'Escribe una regla de juego con suficiente claridad para que los jugadores sepan qué está permitido.',

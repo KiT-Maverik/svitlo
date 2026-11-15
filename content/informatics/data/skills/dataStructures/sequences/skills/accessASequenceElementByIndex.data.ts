@@ -5,6 +5,7 @@ export const accessASequenceElementByIndex_Skill_Data = defineSkill({
   id: '4e72e841-71fa-4a8f-9800-96aacd392d0a',
   name: {
     en: 'Access a Sequence Element by Index',
+    it: 'Accedere a un elemento di una sequenza tramite indice',
     zh: '按索引访问序列元素',
     hi: 'अनुक्रम के तत्व को सूचकांक से प्राप्त करना',
     es: 'Acceder a un elemento de una secuencia por índice',
@@ -39,6 +40,7 @@ export const accessASequenceElementByIndex_Skill_Data = defineSkill({
       'Retrieve an element of an ordered collection by its position, accounting for indexing origin and valid bounds in the selected language.',
     frontend: {
       en: 'Retrieve a sequence item using its index without going outside valid positions.',
+      it: 'Recupera un elemento di una sequenza tramite il suo indice senza superare le posizioni valide.',
       zh: '使用索引获取序列元素，不要超出有效位置范围。',
       hi: 'वैध सीमा से बाहर गए बिना सूचकांक से अनुक्रम का तत्व प्राप्त करें।',
       es: 'Obtén un elemento mediante su índice sin salir de las posiciones válidas.',

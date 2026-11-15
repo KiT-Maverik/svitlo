@@ -5,6 +5,7 @@ export const explainParallelExecution_Skill_Data = defineSkill({
   id: '376c030a-d13f-43cf-b57a-74b1c8b3e756',
   name: {
     en: 'Explain Parallel Execution',
+    it: "Spiegare l'esecuzione parallela",
     zh: '解释并行执行',
     hi: 'समानांतर निष्पादन समझाना',
     es: 'Explicar la ejecución paralela',
@@ -39,6 +40,7 @@ export const explainParallelExecution_Skill_Data = defineSkill({
       'Identify when independent operations truly run simultaneously on multiple computing resources. Distinguish parallelism from rapid task switching on one executor; additional resources do not guarantee proportional speedup.',
     frontend: {
       en: 'Recognize when multiple processors actually perform work simultaneously.',
+      it: 'Riconosci quando più processori svolgono effettivamente lavoro nello stesso momento.',
       zh: '识别多个处理器真正同时执行工作的情况。',
       hi: 'पहचानें कि अनेक प्रोसेसर वास्तव में एक ही समय पर कब काम कर रहे हैं।',
       es: 'Reconoce cuándo varios procesadores realizan trabajo realmente al mismo tiempo.',

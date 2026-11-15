@@ -5,6 +5,7 @@ export const useAVariable_Skill_Data = defineSkill({
   id: '896d2bb4-2aa9-4c5c-baca-ea2ae000dc08',
   name: {
     en: 'Use a Variable',
+    it: 'Usare una variabile',
     zh: '使用变量',
     hi: 'चर का उपयोग करना',
     es: 'Usar una variable',
@@ -39,6 +40,7 @@ export const useAVariable_Skill_Data = defineSkill({
       "Define a named location for a value and access its current contents at runtime; distinguish the variable's name from the value it stores.",
     frontend: {
       en: 'Store a value under a variable name and read it when needed.',
+      it: 'Memorizza un valore sotto il nome di una variabile e leggilo quando serve.',
       zh: '用变量名存储一个值，并在需要时读取它。',
       hi: 'किसी मान को चर के नाम से सहेजें और ज़रूरत पड़ने पर पढ़ें।',
       es: 'Guarda un valor con el nombre de una variable y léelo cuando haga falta.',

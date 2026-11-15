@@ -5,6 +5,7 @@ export const decorator_Skill_Data = defineSkill({
   id: 'a6e9ebc0-ccc7-4a38-a328-442c168392b6',
   name: {
     en: 'Decorator',
+    it: 'Decorator',
     zh: '装饰器模式',
     hi: 'डेकोरेटर',
     es: 'Decorador',
@@ -39,6 +40,7 @@ export const decorator_Skill_Data = defineSkill({
       'Add behavior through successive wrappers sharing an interface instead of creating a separate subclass for every combination.',
     frontend: {
       en: 'Add behavior by wrapping an object instead of multiplying subclasses.',
+      it: 'Aggiungi comportamenti avvolgendo un oggetto anziché moltiplicare le sottoclassi.',
       zh: '通过包装对象添加行为，而不是不断增加子类。',
       hi: 'उपवर्ग बढ़ाने के बजाय ऑब्जेक्ट को लपेटकर नया व्यवहार जोड़ें।',
       es: 'Agrega comportamiento envolviendo un objeto en vez de multiplicar subclases.',

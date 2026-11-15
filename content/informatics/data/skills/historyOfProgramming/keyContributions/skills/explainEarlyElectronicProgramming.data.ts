@@ -5,6 +5,7 @@ export const explainEarlyElectronicProgramming_Skill_Data = defineSkill({
   id: '21e6fc87-405d-425e-9393-062038e18c43',
   name: {
     en: 'Explain Early Electronic Programming',
+    it: 'Spiegare la prima programmazione elettronica',
     zh: '解释早期电子计算机编程',
     hi: 'आरंभिक इलेक्ट्रॉनिक प्रोग्रामिंग समझाना',
     es: 'Explicar la programación electrónica temprana',
@@ -39,6 +40,7 @@ export const explainEarlyElectronicProgramming_Skill_Data = defineSkill({
       'Explain how teams developed and tested programs for the first large electronic computers despite complex methods of entering instructions. The six ENIAC programmers exemplify substantial contributions that went underrecognized for decades.',
     frontend: {
       en: 'Discover how early electronic-computer teams created and tested programs.',
+      it: 'Scopri come i primi gruppi di lavoro sui computer elettronici creavano e verificavano i programmi.',
       zh: '了解早期电子计算机团队如何创建并测试程序。',
       hi: 'जानें कि शुरुआती इलेक्ट्रॉनिक कंप्यूटरों की टीमों ने प्रोग्राम कैसे बनाए और जाँचे।',
       es: 'Descubre cómo los equipos de las primeras computadoras electrónicas creaban y probaban programas.',

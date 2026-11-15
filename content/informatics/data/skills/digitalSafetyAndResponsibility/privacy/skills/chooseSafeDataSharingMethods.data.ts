@@ -5,6 +5,7 @@ export const chooseSafeDataSharingMethods_Skill_Data = defineSkill({
   id: '198086a4-bb96-4ef8-a346-e291794c3a45',
   name: {
     en: 'Choose Safe Data-Sharing Methods',
+    it: 'Scegliere metodi sicuri di condivisione dei dati',
     zh: '选择安全的数据分享方式',
     hi: 'डेटा साझा करने का सुरक्षित तरीका चुनना',
     es: 'Elegir formas seguras de compartir datos',
@@ -39,6 +40,7 @@ export const chooseSafeDataSharingMethods_Skill_Data = defineSkill({
       'Select an appropriate audience and channel, considering privacy, permissions, and the risk of forwarding. Public information may remain accessible even after deletion from its original service.',
     frontend: {
       en: 'Choose who may receive sensitive information and how to share it safely.',
+      it: 'Decidi chi può ricevere informazioni sensibili e come condividerle in modo sicuro.',
       zh: '决定谁可以接收敏感信息，以及怎样安全地分享。',
       hi: 'तय करें कि संवेदनशील जानकारी किसे और किस सुरक्षित तरीके से देनी है।',
       es: 'Decide quién puede recibir información sensible y cómo compartirla con seguridad.',

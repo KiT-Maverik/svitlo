@@ -5,6 +5,7 @@ export const buildAnAbstractSystemModel_Skill_Data = defineSkill({
   id: '900a77db-3740-4ba1-bd0d-085e82f9bde6',
   name: {
     en: 'Build an Abstract System Model',
+    it: 'Costruire un modello astratto di sistema',
     zh: '建立抽象系统模型',
     hi: 'अमूर्त प्रणाली मॉडल बनाना',
     es: 'Construir un modelo abstracto de un sistema',
@@ -39,6 +40,7 @@ export const buildAnAbstractSystemModel_Skill_Data = defineSkill({
       "Represent a complex situation with a simplified account of the elements, states, and relationships needed to investigate a question. For example, connections between rooms can be modeled as a graph without recreating each room's interior.",
     frontend: {
       en: 'Create a simplified representation of a complex situation or system.',
+      it: 'Crea una rappresentazione semplificata di una situazione o di un sistema complesso.',
       zh: '为复杂的情境或系统创建简化的表示。',
       hi: 'किसी जटिल स्थिति या प्रणाली का सरल रूप तैयार करें।',
       es: 'Crea una representación simplificada de una situación o sistema complejo.',

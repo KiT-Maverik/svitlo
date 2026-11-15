@@ -5,6 +5,7 @@ export const specifyAnOutputFormat_Skill_Data = defineSkill({
   id: '27de7e92-d880-4429-8c99-bc65f7babec4',
   name: {
     en: 'Specify an Output Format',
+    it: 'Specificare un formato di output',
     zh: '指定输出格式',
     hi: 'आउटपुट का प्रारूप तय करना',
     es: 'Especificar un formato de salida',
@@ -39,6 +40,7 @@ export const specifyAnOutputFormat_Skill_Data = defineSkill({
       'Describe the required structure, such as a table with named columns or JSON with defined fields, without confusing formatting with factual correctness.',
     frontend: {
       en: 'Ask for an explicit output structure such as a table or defined fields.',
+      it: 'Richiedi una struttura esplicita per la risposta, come una tabella o campi definiti.',
       zh: '要求明确的输出结构，例如表格或规定的字段。',
       hi: 'तालिका या निर्धारित फ़ील्ड जैसी स्पष्ट आउटपुट संरचना माँगें।',
       es: 'Solicita una estructura de respuesta explícita, como una tabla o campos definidos.',

@@ -5,6 +5,7 @@ export const explainThePurposeOfROM_Skill_Data = defineSkill({
   id: '4358947a-4da8-4463-8219-ba51cbc0abc9',
   name: {
     en: 'Explain the Purpose of ROM',
+    it: 'Spiegare lo scopo della ROM',
     zh: '解释只读存储器（ROM）的用途',
     hi: 'ROM का उद्देश्य समझाना',
     es: 'Explicar para qué sirve la ROM',
@@ -39,6 +40,7 @@ export const explainThePurposeOfROM_Skill_Data = defineSkill({
       "Explain that ROM and related nonvolatile technologies can hold device firmware or initial startup instructions without power. The historical name 'read-only memory' does not mean all modern firmware is physically immutable; many devices use reprogrammable flash memory.",
     frontend: {
       en: 'Recognize how nonvolatile firmware memory helps devices start up.',
+      it: 'Riconosci come la memoria non volatile del firmware aiuta i dispositivi ad avviarsi.',
       zh: '了解非易失性固件存储器如何帮助设备启动。',
       hi: 'जानें कि बिजली के बिना डेटा रखने वाली फ़र्मवेयर मेमोरी उपकरणों को शुरू होने में कैसे मदद करती है।',
       es: 'Reconoce cómo la memoria no volátil del firmware ayuda a iniciar dispositivos.',

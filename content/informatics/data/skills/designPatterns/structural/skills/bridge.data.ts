@@ -5,6 +5,7 @@ export const bridge_Skill_Data = defineSkill({
   id: 'bd54e532-c277-4768-99af-996bbb4d0fe1',
   name: {
     en: 'Bridge',
+    it: 'Bridge',
     zh: '桥接模式',
     hi: 'ब्रिज',
     es: 'Puente',
@@ -39,6 +40,7 @@ export const bridge_Skill_Data = defineSkill({
       'Separate abstraction and implementation into two independent hierarchies so each dimension can vary without an explosion of class combinations.',
     frontend: {
       en: "Separate a component's abstraction from the implementation it uses.",
+      it: "Separa l'astrazione di un componente dall'implementazione che utilizza.",
       zh: '将组件的抽象层与其使用的实现分离。',
       hi: 'घटक के अमूर्तन को उसके उपयोग किए गए कार्यान्वयन से अलग करें।',
       es: 'Separa la abstracción de un componente de la implementación que utiliza.',

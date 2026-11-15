@@ -5,6 +5,7 @@ export const explainWirelessCommunication_Skill_Data = defineSkill({
   id: '6b45096a-1f6c-44bd-9331-af8f0e97413e',
   name: {
     en: 'Explain Wireless Communication',
+    it: 'Spiegare la comunicazione senza fili',
     zh: '解释无线通信',
     hi: 'बेतार संचार समझाना',
     es: 'Explicar la comunicación inalámbrica',
@@ -39,6 +40,7 @@ export const explainWirelessCommunication_Skill_Data = defineSkill({
       'Describe how Wi-Fi and other wireless technologies transmit signals without a dedicated cable to each device while still relying on compatible equipment, protocols, and communications infrastructure.',
     frontend: {
       en: 'Explore how wireless devices communicate using signals rather than direct cables.',
+      it: 'Esplora come i dispositivi wireless comunicano tramite segnali anziché cavi diretti.',
       zh: '探索无线设备如何通过信号而非直接电缆进行通信。',
       hi: 'जानें कि वायरलेस उपकरण सीधे केबल के बजाय संकेतों से कैसे संवाद करते हैं।',
       es: 'Explora cómo los dispositivos inalámbricos se comunican mediante señales y no cables directos.',

@@ -5,6 +5,7 @@ export const assessAnAlgorithmsImpactOnUserGroups_Skill_Data = defineSkill({
   id: '0dc61117-ff0c-4434-92db-942f95611079',
   name: {
     en: "Assess an Algorithm's Impact on User Groups",
+    it: "Valutare l'impatto di un algoritmo su gruppi di utenti",
     zh: '评估算法对用户群体的影响',
     hi: 'उपयोगकर्ता समूहों पर एल्गोरिदम का प्रभाव आँकना',
     es: 'Evaluar el impacto de un algoritmo en grupos de usuarios',
@@ -39,6 +40,7 @@ export const assessAnAlgorithmsImpactOnUserGroups_Skill_Data = defineSkill({
       'Compare whether an automated rule produces different consequences for people with different characteristics or needs, and explain potential reasons. An identical formal rule does not necessarily yield an equally fair outcome.',
     frontend: {
       en: "Consider whether an algorithm's outcomes differ unfairly between user groups.",
+      it: 'Considera se i risultati di un algoritmo differiscono ingiustamente tra gruppi di utenti.',
       zh: '考虑算法给不同用户群体带来的结果是否存在不公平差异。',
       hi: 'जाँचें कि एल्गोरिदम के नतीजे अलग-अलग समूहों के साथ अन्याय तो नहीं करते।',
       es: 'Considera si los resultados de un algoritmo difieren injustamente entre grupos de usuarios.',

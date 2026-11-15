@@ -5,6 +5,7 @@ export const explainLimitsOfPrediction_Skill_Data = defineSkill({
   id: '83daf43c-1d12-4445-b8b8-aff00415b6ee',
   name: {
     en: 'Explain Limits of Prediction',
+    it: 'Spiegare i limiti della previsione',
     zh: '解释预测的局限',
     hi: 'पूर्वानुमान की सीमाएँ समझाना',
     es: 'Explicar los límites de la predicción',
@@ -39,6 +40,7 @@ export const explainLimitsOfPrediction_Skill_Data = defineSkill({
       'Explain why a known probability does not determine the outcome of one trial and why a faulty model can give misleading forecasts. A rare win does not refute a correct low-probability estimate.',
     frontend: {
       en: 'Explain why knowing the odds does not predict the result of a single attempt.',
+      it: 'Spiega perché conoscere le probabilità non permette di prevedere il risultato di un singolo tentativo.',
       zh: '解释为什么知道概率也无法预测单次尝试的结果。',
       hi: 'समझाएँ कि संभावना जानने से एक प्रयास का परिणाम तय क्यों नहीं होता।',
       es: 'Explica por qué conocer las probabilidades no predice el resultado de un único intento.',

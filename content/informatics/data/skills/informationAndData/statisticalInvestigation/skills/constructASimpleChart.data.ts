@@ -5,6 +5,7 @@ export const constructASimpleChart_Skill_Data = defineSkill({
   id: 'a0fc01d5-ef1c-4af6-941c-930f6f853ce0',
   name: {
     en: 'Construct a Simple Chart',
+    it: 'Costruire un grafico semplice',
     zh: '绘制简单图表',
     hi: 'सरल चार्ट बनाना',
     es: 'Construir un gráfico sencillo',
@@ -39,6 +40,7 @@ export const constructASimpleChart_Skill_Data = defineSkill({
       'Choose a representation suitable for the data type and place numerical or categorical values in labeled elements on an understandable scale. Visual presentation must preserve proportions among source values.',
     frontend: {
       en: 'Create a clear chart that represents data proportions accurately.',
+      it: 'Crea un grafico chiaro che rappresenti accuratamente le proporzioni dei dati.',
       zh: '制作清晰的图表，准确体现数据比例。',
       hi: 'डेटा के अनुपात सही दिखाने वाला स्पष्ट चार्ट बनाएं।',
       es: 'Crea un gráfico claro que represente correctamente las proporciones de los datos.',
