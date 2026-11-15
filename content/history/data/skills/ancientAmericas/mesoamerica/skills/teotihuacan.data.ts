@@ -5,6 +5,7 @@ export const teotihuacan_Skill_Data = defineSkill({
   id: 'a3f6267e-418d-4059-8620-5e239e93514c',
   name: {
     en: 'Teotihuacan',
+    it: "Teotihuacan",
     zh: '特奥蒂瓦坎',
     hi: 'तेओतिहुआकान',
     es: 'Teotihuacán',
@@ -38,6 +39,7 @@ export const teotihuacan_Skill_Data = defineSkill({
     methodological: "Study the monumental city's urban planning, multicultural population, and regional influence.",
     frontend: {
       en: 'Discover how Teotihuacan became a major ancient city.',
+      it: "Scopri come Teotihuacan divenne una delle grandi città dell'antichità.",
       zh: '了解特奥蒂瓦坎如何发展成为古代大都市。',
       hi: 'जानें कि तेओतिहुआकान एक बड़ा प्राचीन नगर कैसे बना।',
       es: 'Descubre cómo Teotihuacán llegó a ser una gran ciudad antigua.',

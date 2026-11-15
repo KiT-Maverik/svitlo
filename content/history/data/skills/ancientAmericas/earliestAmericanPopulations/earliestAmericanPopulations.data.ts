@@ -11,6 +11,7 @@ export const earliestAmericanPopulations_SkillGroup_Data = defineSkillGroup({
   id: 'c6fa86ed-782c-49a5-934b-dac368645a53',
   name: {
     en: 'Earliest American Populations',
+    it: "Prime popolazioni delle Americhe",
     zh: '美洲最早期居民',
     hi: 'अमेरिका के प्रारंभिक निवासी',
     es: 'Primeras poblaciones de América',
@@ -40,19 +41,17 @@ export const earliestAmericanPopulations_SkillGroup_Data = defineSkillGroup({
     kk: 'Америка құрлықтарының алғашқы тұрғындары',
     qm: 'Amerikalarnıñ ilk sakinleri',
   },
-  skills: {
-    items: {
-      adaptationToAmericanEcosystems: adaptationToAmericanEcosystems_Skill_Data,
-      independentAmericanCropDomestication: independentAmericanCropDomestication_Skill_Data,
-      peoplingOfTheAmericas: peoplingOfTheAmericas_Skill_Data,
-    },
-    order: ['adaptationToAmericanEcosystems', 'independentAmericanCropDomestication', 'peoplingOfTheAmericas'],
-  },
+  skills: [
+    adaptationToAmericanEcosystems_Skill_Data,
+    independentAmericanCropDomestication_Skill_Data,
+    peoplingOfTheAmericas_Skill_Data,
+  ],
   description: {
     methodological:
       'Examine early settlement dates and lifeways through archaeology, environmental research, and genetics.',
     frontend: {
       en: "Discover how researchers investigate the Americas' earliest inhabitants.",
+      it: "Scopri come i ricercatori studiano i primi abitanti delle Americhe.",
       zh: '了解研究者如何调查美洲最早期居民的历史。',
       hi: 'जानें कि शोधकर्ता अमेरिका के सबसे शुरुआती निवासियों का अध्ययन कैसे करते हैं।',
       es: 'Descubre cómo los investigadores estudian a los primeros habitantes de las Américas.',
