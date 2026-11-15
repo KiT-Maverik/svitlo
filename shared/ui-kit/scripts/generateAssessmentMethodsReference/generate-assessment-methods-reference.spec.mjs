@@ -213,6 +213,21 @@ test('PR-artifact manifest records success, failures and only allowed temporary 
     );
   }));
 
+test('Italian draft reference marks missing titles while strict generation rejects them', () =>
+  withFixture(root => {
+    const registry = sources[0];
+    replaceFile(root, registry, source => source.replace('export const DEFAULT_SUPPORTED_LANGUAGES = [',
+      "export const DEFAULT_SUPPORTED_LANGUAGES = [\n  { locale: 'it-IT', language: 'it' },"));
+    assert.throws(() => readAssessmentMethodsReference({ root, locale: 'it' }), /missing \[it\]/);
+    const draft = readAssessmentMethodsReference({ root, locale: 'it', allowMissing: true });
+    assert.equal(draft.missing, 16);
+    assert.ok(draft.methods.every(method => method.title === '%%MISSING%%'));
+    const markdown = renderAssessmentMethodsReference({ root, locale: 'it', allowMissing: true });
+    assert.match(markdown, /Missing translations: 16/);
+    assert.match(markdown, /%%MISSING%%/);
+    assert.match(markdown, /Methodological description \(English\)/);
+  }));
+
 test('temporary paths are governed by existing Agent CI Artifacts cleanup, not a new workflow', () => {
   const generator = fs.readFileSync(
     path.join(repoRoot, 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs'),
@@ -221,6 +236,7 @@ test('temporary paths are governed by existing Agent CI Artifacts cleanup, not a
   const guard = fs.readFileSync(path.join(repoRoot, '.github/workflows/agent-ci-artifacts-guard.yml'), 'utf8');
   assert.match(generator, /generateAssessmentMethodsReviewArtifacts/);
   assert.match(generator, /assessmentMethodDocuments:/);
-  assert.match(generator, /assessmentMethodsStats\.failures/);
+  assert.match(generator, /allowMissing: true/);
+  assert.match(generator, /missingTranslations:/);
   assert.match(guard, /if \[ -d \.agent-ci-artifacts \]/);
 });

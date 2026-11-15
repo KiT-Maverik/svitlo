@@ -2,7 +2,7 @@
 /**
  * Generate a localized-name, read-only Markdown view from typed taxonomy source.
  * Usage: node shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs --package content/math
- *   [--locale en] [--check | --stdout] [--source-only (with en --stdout)]
+ *   [--locale en] [--check | --stdout] [--source-only (with en --stdout) | --allow-missing (stdout only)]
  *
  * Deliberately parses TypeScript source without executing textbook code.
  * Methodological descriptions are always English; Skill frontend text is mandatory in every locale.
@@ -22,17 +22,17 @@ function fail(message) {
   throw new Error(message);
 }
 function options(args) {
-  const result = { locale: 'en', check: false, stdout: false, sourceOnly: false };
+  const result = { locale: 'en', check: false, stdout: false, sourceOnly: false, allowMissing: false };
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
-    if (arg === '--check' || arg === '--stdout' || arg === '--source-only') {
-      const flag = arg === '--source-only' ? 'sourceOnly' : arg.slice(2);
+    if (arg === '--check' || arg === '--stdout' || arg === '--source-only' || arg === '--allow-missing') {
+      const flag = arg === '--source-only' ? 'sourceOnly' : arg === '--allow-missing' ? 'allowMissing' : arg.slice(2);
       if (result[flag]) fail('Duplicate argument ' + arg);
       result[flag] = true;
       continue;
     }
     if (!['--package', '--locale'].includes(arg) || !args[i + 1] || args[i + 1].startsWith('--')) {
-      fail('Usage: --package <textbook-directory> [--locale <language-code>] [--check | --stdout] [--source-only]');
+      fail('Usage: --package <textbook-directory> [--locale <language-code>] [--check | --stdout] [--source-only | --allow-missing]');
     }
     const key = arg.slice(2);
     if (result[key] !== undefined && (key !== 'locale' || result.locale !== 'en')) fail('Duplicate argument ' + arg);
@@ -40,8 +40,10 @@ function options(args) {
   }
   if (!result.package || (result.check && result.stdout))
     fail('Provide --package and choose at most one of --check, --stdout');
-  if (result.sourceOnly && (!result.stdout || result.locale !== 'en'))
+  if (result.sourceOnly && (!result.stdout || result.locale !== 'en' || result.allowMissing))
     fail('--source-only is an English translation reference preview; use --locale en --stdout');
+  if (result.allowMissing && (!result.stdout || result.check || result.sourceOnly))
+    fail('--allow-missing is only for read-only --stdout review previews');
   return result;
 }
 const repositoryRoot = path.resolve(import.meta.dirname, '../../../..');
@@ -76,6 +78,7 @@ function stringValue(node, context) {
     fail('Expected literal localized text: ' + context);
   const value = node.text.trim();
   if (!value) fail('Blank localized text: ' + context);
+  if (value === '%%MISSING%%') fail('Reserved technical marker in canonical source: ' + context);
   return value;
 }
 function dictionary(object, field, file) {
@@ -88,6 +91,8 @@ function dictionary(object, field, file) {
     if (!ts.isPropertyAssignment(p)) fail('Unsupported dynamic locale in ' + file);
     const code = key(p.name);
     if (Object.hasOwn(pairs, code)) fail('Duplicate locale ' + code + ': ' + file);
+    const literal = unwrap(p.initializer);
+    if (opts.allowMissing && code !== 'en' && (ts.isStringLiteral(literal) || ts.isNoSubstitutionTemplateLiteral(literal)) && !literal.text.trim()) continue;
     pairs[code] = stringValue(p.initializer, file + ':' + field + ':' + code);
   }
   return pairs;
@@ -114,6 +119,14 @@ function supportedLocales() {
 const locales = supportedLocales();
 if (!locales.includes(opts.locale)) fail('Unsupported locale "' + opts.locale + '". Supported: ' + locales.join(', '));
 
+let missingCount = 0;
+const missingMarker = '%%MISSING%%';
+function localizedText(dictionary, locale, file, field) {
+  if (dictionary?.[locale]) return dictionary[locale];
+  if (!opts.allowMissing) fail('Missing required ' + field + ' locale ' + locale + ': ' + file);
+  missingCount++;
+  return missingMarker;
+}
 function readEntity(file, kind) {
   const sf = parse(file);
   let config;
@@ -153,7 +166,7 @@ function readEntity(file, kind) {
   // This source parser does not run tsc: enforce the Skill contract independently
   // instead of silently generating incomplete documentation from untyped files.
   if (kind === 'Skill' && !frontend) fail('Missing required Skill description.frontend: ' + file);
-  for (const locale of opts.sourceOnly ? ['en'] : locales) {
+  for (const locale of opts.sourceOnly || opts.allowMissing ? ['en'] : locales) {
     if (!name[locale]) fail('Missing required name locale ' + locale + ': ' + file);
     if (frontend && !frontend[locale]) fail('Missing required frontend locale ' + locale + ': ' + file);
   }
@@ -162,7 +175,12 @@ function readEntity(file, kind) {
       if (!locales.includes(locale)) fail('Unexpected locale ' + locale + ': ' + file);
     }
   }
-  return { file, name: name[opts.locale], methodological, frontend: frontend?.[opts.locale] };
+  return {
+    file,
+    name: localizedText(name, opts.locale, file, 'name'),
+    methodological,
+    frontend: frontend ? localizedText(frontend, opts.locale, file, 'frontend') : undefined,
+  };
 }
 function subdirs(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -233,6 +251,7 @@ let markdown =
   (opts.sourceOnly
     ? '> TRANSLATION SOURCE PREVIEW ONLY: Other registered languages were not checked for completeness. Not a publication or linguistic-review artifact.\n\n'
     : '') +
+  (opts.allowMissing && missingCount > 0 ? '> DRAFT REFERENCE: missing localized fields; not approved for independent review.\n\n' : '') +
   '## SUMMARY\n\n' +
   'Domains: ' +
   domains.length +
@@ -240,7 +259,9 @@ let markdown =
   groupCount +
   '\n\nSkills: ' +
   skillCount +
-  '\n\n## DOMAINS\n\n';
+  '\n\n' +
+  (opts.allowMissing ? 'Missing translations: ' + missingCount + '\n\n' : '') +
+  '## DOMAINS\n\n';
 for (const domain of domains) {
   const count = domain.skills.length + domain.groups.reduce((n, group) => n + group.skills.length, 0);
   markdown += markdownLine(domain, 3, out, 'Groups: ' + domain.groups.length + ' · Skills: ' + count);
