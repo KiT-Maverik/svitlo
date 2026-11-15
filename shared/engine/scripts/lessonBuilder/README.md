@@ -84,6 +84,30 @@ change `params.languages` or invent translations.
 - Real Skill imports instead of hardcoded UUID string expressions, resolved
   strictly against the textbook's `data/skills/**/*.data.ts` exported `defineSkill`
   definitions; missing/ambiguous references are explicit diagnostics.
+- **Stage 3 file-backed source (creation-only):**
+  - Authored Markdown with an invariant `locale.value` string is materialized
+    exactly as written into `<slug>/text.md`. A localized
+    `locale.value.<documentLanguage>` becomes
+    `<slug>/locale/<documentLanguage>.md`. No `default` or translated
+    fallback file is fabricated. Its generated `defineMarkdown` uses
+    `files: { moduleUrl: import.meta.url }` or
+    `files: { moduleUrl: import.meta.url, languages: ['en'] }` for the
+    authored locale and retains other locale metadata such as variables.
+  - Authored `params.codeAsText` moves into `<slug>/code.<extension>` using a
+    deterministic supported extension map (for example `python` → `.py`,
+    `typescript` → `.ts`). Generated `params.codeAsText` reads
+    `readCodeSource(import.meta.url, 'py')` from Engine Build; unknown
+    Code languages fail rather than guess an extension.
+  - Markdown, Code and Text are **not** given extra `specification.md`
+    placeholders. The technical YAML must contain the real source-language
+    learner text/code before scaffolding, authored through the approved
+    editorial workflow. A production specification is not a replacement.
+  - `check` compares exact bytes of the extracted sources; `generate`
+    never changes existing author-edited source files or a Lesson that already
+    has a root entrypoint. Pending/missing Config is not filled with fake
+    content. These file readers run only at build time, and published Props
+    contain the actual strings, not file paths.
+
 - Nested `define*` source keeps the authored Config values and source-locale
   localization. Pending `src: null` deliberately **fails TypeScript checking**
   until a media specialist provides the real asset. Generated draft modules
