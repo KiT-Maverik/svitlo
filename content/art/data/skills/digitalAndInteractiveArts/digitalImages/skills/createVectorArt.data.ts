@@ -5,6 +5,7 @@ export const createVectorArt_Skill_Data = defineSkill({
   id: 'd12691a0-b50e-41b8-a8a7-fa1c67343b8d',
   name: {
     en: 'Create Vector Art',
+    it: 'Creare arte vettoriale',
     zh: '创作矢量艺术',
     hi: 'वेक्टर कला बनाएँ',
     es: 'Crear arte vectorial',
@@ -38,6 +39,7 @@ export const createVectorArt_Skill_Data = defineSkill({
     methodological: 'Organize curves and shapes that remain coherent across changes in display scale.',
     frontend: {
       en: 'Create scalable images using editable digital curves and shapes.',
+      it: 'Crea immagini ridimensionabili usando curve e forme digitali modificabili.',
       zh: '使用可编辑的数字曲线和形状创作可缩放图像。',
       hi: 'संपादन योग्य डिजिटल वक्रों और आकृतियों से बड़े-छोटे आकार में स्पष्ट रहने वाले चित्र बनाएँ।',
       es: 'Crea imágenes escalables con curvas y formas digitales editables.',
