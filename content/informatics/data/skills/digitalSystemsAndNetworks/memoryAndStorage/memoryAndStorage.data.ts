@@ -12,6 +12,7 @@ export const memoryAndStorage_SkillGroup_Data = defineSkillGroup({
   id: 'd90fd556-c7a2-44d3-94c6-95433000e0af',
   name: {
     en: 'Memory and Storage',
+    it: 'Memoria e archiviazione',
     zh: '内存与存储',
     hi: 'स्मृति और भंडारण',
     es: 'Memoria y almacenamiento',
@@ -52,6 +53,7 @@ export const memoryAndStorage_SkillGroup_Data = defineSkillGroup({
       'Distinguishes temporary working memory from nonvolatile file storage, along with the different functions of RAM, ROM, and storage devices.',
     frontend: {
       en: 'Discover what temporary memory, firmware memory and file storage each do.',
+      it: "Scopri le funzioni della memoria temporanea, della memoria del firmware e dell'archiviazione dei file.",
       zh: '了解临时内存、固件存储器和文件存储分别起什么作用。',
       hi: 'जानें कि अस्थायी मेमोरी, फ़र्मवेयर मेमोरी और फ़ाइल भंडारण की अलग-अलग भूमिकाएँ क्या हैं।',
       es: 'Descubre para qué sirven la memoria temporal, la memoria del firmware y el almacenamiento de archivos.',

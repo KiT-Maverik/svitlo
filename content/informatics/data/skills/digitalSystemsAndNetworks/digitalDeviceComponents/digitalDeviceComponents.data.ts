@@ -11,6 +11,7 @@ export const digitalDeviceComponents_SkillGroup_Data = defineSkillGroup({
   id: '3ab25786-4f87-4cac-9bbd-87b780e69986',
   name: {
     en: 'Digital Device Components',
+    it: 'Componenti dei dispositivi digitali',
     zh: '数字设备的组成部分',
     hi: 'डिजिटल उपकरणों के घटक',
     es: 'Componentes de los dispositivos digitales',
@@ -50,6 +51,7 @@ export const digitalDeviceComponents_SkillGroup_Data = defineSkillGroup({
       'Roles of computing components: processors execute instructions, memory holds working data, and hardware and software interact. Network transmission belongs to a different group.',
     frontend: {
       en: 'Explore how hardware components and software perform different computing tasks.',
+      it: 'Esplora come componenti hardware e software svolgono compiti informatici differenti.',
       zh: '探索硬件部件和软件如何承担不同的计算任务。',
       hi: 'जानें कि हार्डवेयर के भाग और सॉफ़्टवेयर अलग-अलग कंप्यूटिंग काम कैसे करते हैं।',
       es: 'Explora cómo los componentes físicos y el software realizan tareas informáticas diferentes.',
