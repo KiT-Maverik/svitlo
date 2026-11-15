@@ -12,6 +12,7 @@ export const riskAndProtection_SkillGroup_Data = defineSkillGroup({
   id: '085df317-a86e-44ed-80a2-acee13e1397c',
   name: {
     en: 'Risk and Protection',
+    it: 'Rischi e protezione',
     zh: '风险与防护',
     hi: 'जोखिम और सुरक्षा',
     es: 'Riesgo y protección',
@@ -52,6 +53,7 @@ export const riskAndProtection_SkillGroup_Data = defineSkillGroup({
       'Hazard control should be integrated into the physical design and take precedence over simple warnings.',
     frontend: {
       en: 'Learn to identify engineering hazards and reduce risks.',
+      it: 'Impara a individuare i pericoli ingegneristici e a ridurre i rischi.',
       zh: '学习识别工程危害并降低风险。',
       hi: 'अभियांत्रिकी खतरों की पहचान और जोखिम घटाना सीखें।',
       es: 'Aprende a identificar peligros de ingeniería y reducir riesgos.',
