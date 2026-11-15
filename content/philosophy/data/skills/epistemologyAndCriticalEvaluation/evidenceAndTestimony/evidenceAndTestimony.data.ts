@@ -13,6 +13,7 @@ export const evidenceAndTestimony_SkillGroup_Data = defineSkillGroup({
   id: '8f645f84-42a6-4385-85cd-a526a8105aa5',
   name: {
     en: 'Evidence and Testimony',
+    it: 'Prove e testimonianze',
     zh: '证据与证言',
     hi: 'साक्ष्य और गवाही',
     es: 'Pruebas y testimonios',
@@ -63,6 +64,7 @@ export const evidenceAndTestimony_SkillGroup_Data = defineSkillGroup({
       'Knowledge often depends on information supplied by other people or institutions. Source reliability, independence, and evidential fit require appraisal without treating every source as equally trustworthy.',
     frontend: {
       en: 'Learn to assess claims and evidence passed on by other people.',
+      it: 'Impara a valutare affermazioni e prove trasmesse da altre persone.',
       zh: '学习评估他人转述的主张和证据。',
       hi: 'दूसरों से प्राप्त दावों और साक्ष्यों का आकलन करना सीखें।',
       es: 'Aprende a evaluar afirmaciones y pruebas transmitidas por otras personas.',

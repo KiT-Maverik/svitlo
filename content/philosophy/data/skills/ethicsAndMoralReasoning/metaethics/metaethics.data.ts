@@ -14,6 +14,7 @@ export const metaethics_SkillGroup_Data = defineSkillGroup({
   id: 'ebf74a2c-0e22-4f8a-aab8-7177789729d3',
   name: {
     en: 'Metaethics',
+    it: 'Metaetica',
     zh: '元伦理学',
     hi: 'अधिनीतिशास्त्र',
     es: 'Metaética',
@@ -66,6 +67,7 @@ export const metaethics_SkillGroup_Data = defineSkillGroup({
       'Inquiry into the meaning, objectivity, and epistemic standing of moral discourse underlies but does not itself prescribe codes of conduct. Normative theories decide how to act; metaethical theories examine the status of such judgments.',
     frontend: {
       en: 'Explore what moral claims mean and whether moral truths depend on personal beliefs.',
+      it: 'Esplora il significato delle affermazioni morali e se le verità morali dipendano dalle convinzioni personali.',
       zh: '探讨道德主张的含义，以及道德真理是否取决于个人信念。',
       hi: 'समझें कि नैतिक दावों का क्या अर्थ है और क्या नैतिक सत्य व्यक्तिगत विश्वासों पर निर्भर हैं।',
       es: 'Explora qué significan los juicios morales y si las verdades morales dependen de creencias personales.',

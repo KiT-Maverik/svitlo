@@ -12,6 +12,7 @@ export const aestheticJudgment_SkillGroup_Data = defineSkillGroup({
   id: 'db8ba707-c798-4d81-94f0-e3458ebc6667',
   name: {
     en: 'Aesthetic Judgment',
+    it: 'Giudizio estetico',
     zh: '审美判断',
     hi: 'सौंदर्यात्मक निर्णय',
     es: 'Juicio estético',
@@ -60,6 +61,7 @@ export const aestheticJudgment_SkillGroup_Data = defineSkillGroup({
       'An aesthetic evaluation can invoke perceptual qualities, interpretation, tradition, or standards that other observers may dispute.',
     frontend: {
       en: 'Discover how aesthetic opinions can be supported by reasons.',
+      it: 'Scopri come si possono sostenere le opinioni estetiche con argomentazioni.',
       zh: '了解审美意见如何通过理由得到支持。',
       hi: 'जानो कि सौंदर्य के बारे में राय को तर्कों से कैसे समर्थित किया जा सकता है।',
       es: 'Descubre cómo las opiniones estéticas pueden respaldarse con razones.',

@@ -13,6 +13,7 @@ export const ethicalFrameworks_SkillGroup_Data = defineSkillGroup({
   id: 'c448fa9c-69b6-4266-a224-5a116dfd9a6f',
   name: {
     en: 'Ethical Frameworks',
+    it: 'Teorie etiche',
     zh: '伦理理论框架',
     hi: 'नैतिक सिद्धांतों के ढाँचे',
     es: 'Marcos éticos',
@@ -63,6 +64,7 @@ export const ethicalFrameworks_SkillGroup_Data = defineSkillGroup({
       'Normative theories emphasize different criteria of moral assessment. A theory is not a universal formula that automatically resolves every difficult case.',
     frontend: {
       en: 'Compare major theories for evaluating right and wrong actions.',
+      it: 'Confronta le principali teorie per valutare se le azioni siano giuste o sbagliate.',
       zh: '比较评估行为对错的主要伦理理论。',
       hi: 'सही और गलत कार्यों का मूल्यांकन करने वाले प्रमुख सिद्धांतों की तुलना करें।',
       es: 'Compara las principales teorías para evaluar acciones correctas e incorrectas.',

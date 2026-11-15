@@ -11,6 +11,7 @@ export const valueAndTaste_SkillGroup_Data = defineSkillGroup({
   id: 'f37fec73-0047-40e7-af2e-ec18c33a3a93',
   name: {
     en: 'Value and Taste',
+    it: 'Valore e gusto',
     zh: '价值与品味',
     hi: 'मूल्य और रुचि',
     es: 'Valor y gusto',
@@ -57,6 +58,7 @@ export const valueAndTaste_SkillGroup_Data = defineSkillGroup({
       'Debates about taste raise questions about expertise, social convention, and the relation of appreciation to human flourishing.',
     frontend: {
       en: 'Explore how personal taste, expertise and cultural traditions influence appreciation.',
+      it: 'Esplora come il gusto personale, la competenza e le tradizioni culturali influenzino l\'apprezzamento.',
       zh: '探索个人品味、专业知识和文化传统如何影响欣赏。',
       hi: 'जानो कि निजी पसंद, विशेषज्ञता और सांस्कृतिक परंपराएँ सराहना को कैसे प्रभावित करती हैं।',
       es: 'Explora cómo el gusto personal, la experiencia y las tradiciones culturales influyen en la apreciación.',
