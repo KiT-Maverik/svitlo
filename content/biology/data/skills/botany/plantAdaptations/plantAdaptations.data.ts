@@ -11,6 +11,7 @@ export const plantAdaptations_SkillGroup_Data = defineSkillGroup({
   id: '2faa4f86-3f0d-44b9-bb1e-672d2d96d04f',
   name: {
     en: 'Plant Adaptations',
+    it: 'Adattamenti delle piante',
     zh: '植物的适应特征',
     hi: 'पौधों के अनुकूलन',
     es: 'Adaptaciones de las plantas',
@@ -50,6 +51,7 @@ export const plantAdaptations_SkillGroup_Data = defineSkillGroup({
       'Leaf, root, and shoot forms and seasonal changes can improve survival when water or light is limited or temperatures are low.',
     frontend: {
       en: 'See how plant features help them survive in different environments.',
+      it: 'Scopri come le caratteristiche delle piante le aiutano a sopravvivere in ambienti diversi.',
       zh: '了解植物的特征如何帮助它们在不同环境中生存。',
       hi: 'जानें कि पौधों के विशेष गुण अलग-अलग पर्यावरण में उन्हें जीवित रहने में कैसे मदद करते हैं।',
       es: 'Descubre cómo las características de las plantas les permiten sobrevivir en diferentes ambientes.',
