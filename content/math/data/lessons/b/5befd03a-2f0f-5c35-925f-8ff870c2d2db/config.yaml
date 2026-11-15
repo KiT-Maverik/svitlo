@@ -16,10 +16,10 @@ config:
       en: 'Pictures That Count'
   section:
     items:
-      section1:
+      representCountsWithPictures:
         config:
           id: 'd3e8aa51-dd8c-45aa-8502-df3bc9c36004'
-          slug: 'section1'
+          slug: 'representCountsWithPictures'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'Pictures can keep a count'
           content:
             items:
-              text1:
+              introduceFruitCounts:
                 config:
                   id: '4c9f4fd3-cb72-4aa8-9a47-be9d869b27ba'
-                  slug: 'text1'
+                  slug: 'introduceFruitCounts'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'Pictures can keep a count: text resource at position 1 (source provisional)'
                   specification: '1. **`text` Resource (available block type):** “A table has four apples, three pears and two plums. Can we show those numbers with pictures without changing the count?”'
-              scene2:
+              exploreOneToOneIcons:
                 config:
                   id: '83f5bd45-5125-4680-9f42-abf306e6f206'
-                  slug: 'scene2'
+                  slug: 'exploreOneToOneIcons'
                   type: 'scene'
                   params: {}
                   locale:
@@ -129,10 +129,10 @@ config:
 
                     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). PictographStudio shows the source table, blank rows named Apple/Pear/Plum, and an explicit key: one square count icon = one fruit. Learner predicts the Apple row's number of icons.
                   productionNotes: 'Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainPictographKey:
                 config:
                   id: '563e598b-8534-402c-8603-25ed5743e1be'
-                  slug: 'markdown3'
+                  slug: 'explainPictographKey'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -141,7 +141,7 @@ config:
                 production:
                   purpose: 'Pictures can keep a count: markdown resource at position 3 (source provisional)'
                   specification: '3. **`markdown` Resource (available block type):** “We can use one same-sized symbol for one fruit. Four apples need four icons in the Apple row. The category name tells what the count is about.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['introduceFruitCounts', 'exploreOneToOneIcons', 'explainPictographKey']
         production:
           purpose: 'Tie one pictograph symbol to one observation and its category.'
           pedagogicalIntent: 'Original Section 1: Pictures can keep a count (provisional draft)'
@@ -166,10 +166,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section2:
+      buildPictographFromTable:
         config:
           id: 'd0e8a598-dc8c-4417-8602-e0ceccc364bd'
-          slug: 'section2'
+          slug: 'buildPictographFromTable'
           type: 'content'
           params: {}
           locale:
@@ -179,10 +179,10 @@ config:
               en: 'Build a pictograph from the table'
           content:
             items:
-              markdown1:
+              instructIconPlacement:
                 config:
                   id: '848495cc-e775-4993-a29b-d7c6e09e172d'
-                  slug: 'markdown1'
+                  slug: 'instructIconPlacement'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -191,10 +191,10 @@ config:
                 production:
                   purpose: 'Build a pictograph from the table: markdown resource at position 1 (source provisional)'
                   specification: '1. **`markdown` Resource (available block type):** “Use the add-one-symbol control to build the chart. The table says Apple 4, Pear 3 and Plum 2. Check every row.”'
-              scene2:
+              buildFruitPictograph:
                 config:
                   id: 'e70ac582-c4fb-44d7-95e5-768ce64011b9'
-                  slug: 'scene2'
+                  slug: 'buildFruitPictograph'
                   type: 'scene'
                   params: {}
                   locale:
@@ -279,10 +279,10 @@ config:
 
                     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). Builder mode starts at zero. Add four identical symbols to Apple, three to Pear, two to Plum; an explicit 'Check against table' reveals row matches and total 9.
                   productionNotes: 'Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              text3:
+              verifyFruitTotals:
                 config:
                   id: '6b528ac8-4481-47e3-a135-bd62a08ad165'
-                  slug: 'text3'
+                  slug: 'verifyFruitTotals'
                   type: 'text'
                   params: {}
                   locale:
@@ -291,7 +291,7 @@ config:
                 production:
                   purpose: 'Build a pictograph from the table: text resource at position 3 (source provisional)'
                   specification: '3. **`text` Resource (available block type):** “The rows show four, three and two icons. Their key is one icon to one fruit. So the chart shows nine fruits, just like the table.”'
-            order: ['markdown1', 'scene2', 'text3']
+            order: ['instructIconPlacement', 'buildFruitPictograph', 'verifyFruitTotals']
         production:
           purpose: 'Construct one-to-one symbols and reconcile them against original frequencies.'
           pedagogicalIntent: 'Original Section 2: Build a pictograph from the table (provisional draft)'
@@ -317,10 +317,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section3:
+      readAnimalPictograph:
         config:
           id: 'd1e8a72b-db8c-4284-8702-e261cbc3632a'
-          slug: 'section3'
+          slug: 'readAnimalPictograph'
           type: 'content'
           params: {}
           locale:
@@ -330,10 +330,10 @@ config:
               en: "Read somebody else's picture"
           content:
             items:
-              text1:
+              inspectAnimalCounts:
                 config:
                   id: '178bb66d-1b09-463a-8f5c-21833703bc28'
-                  slug: 'text1'
+                  slug: 'inspectAnimalCounts'
                   type: 'text'
                   params: {}
                   locale:
@@ -342,10 +342,10 @@ config:
                 production:
                   purpose: "Read somebody else's picture: text resource at position 1 (source provisional)"
                   specification: '1. **`text` Resource (available block type):** “This is a new chart about animals. It shows five cat icons, two dog icons and four bird icons. The key still means one icon = one animal. How many dogs? How many animals altogether?”'
-              scene2:
+              readAnimalChart:
                 config:
                   id: '76ae04e3-3123-4586-b294-be1526e8d300'
-                  slug: 'scene2'
+                  slug: 'readAnimalChart'
                   type: 'scene'
                   params: {}
                   locale:
@@ -430,10 +430,10 @@ config:
 
                     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). Read mode displays row-labelled Cat 5, Dog 2, Bird 4 pictograph and key, no source table. Learner selects Dog row and counts two, then adds 5+2+4 = 11.
                   productionNotes: 'Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainAnimalRowCounts:
                 config:
                   id: '9e61a4dd-6d8e-483e-9eda-0a5b6ee999ac'
-                  slug: 'markdown3'
+                  slug: 'explainAnimalRowCounts'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -442,7 +442,7 @@ config:
                 production:
                   purpose: "Read somebody else's picture: markdown resource at position 3 (source provisional)"
                   specification: '3. **`markdown` Resource (available block type):** “There are two dogs because the Dog row has two icons and the key says each means one dog. There are eleven animals in the three rows together.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['inspectAnimalCounts', 'readAnimalChart', 'explainAnimalRowCounts']
         production:
           purpose: 'Use category names and the key rather than memorizing source table values.'
           pedagogicalIntent: "Original Section 3: Read somebody else's picture (provisional draft)"
@@ -467,10 +467,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section4:
+      createNewPictograph:
         config:
           id: 'd6e8af0a-da8c-40f1-8802-e3f4c6c35b4b'
-          slug: 'section4'
+          slug: 'createNewPictograph'
           type: 'content'
           params: {}
           locale:
@@ -480,10 +480,10 @@ config:
               en: 'Your new chart'
           content:
             items:
-              markdown1:
+              promptShapeChart:
                 config:
                   id: 'b4a7cc32-f506-4851-9108-c488eeb57a57'
-                  slug: 'markdown1'
+                  slug: 'promptShapeChart'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -492,10 +492,10 @@ config:
                 production:
                   purpose: 'Your new chart: markdown resource at position 1 (source provisional)'
                   specification: '1. **`markdown` Resource (available block type):** “A new table records two stars, four moons and one sun. Draw the chart with your count icons and put each number in its proper row.”'
-              scene2:
+              buildShapeChart:
                 config:
                   id: '87217b60-cdfa-41e5-8ae3-4eb6162f8183'
-                  slug: 'scene2'
+                  slug: 'buildShapeChart'
                   type: 'scene'
                   params: {}
                   locale:
@@ -580,10 +580,10 @@ config:
 
                     2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** PictographStudio (full Scene specification embedded in this config.yaml). Transfer mode has Star=2, Moon=4, Sun=1, key one symbol=one item. Learner builds rows without prefilled symbols, then receives optional hints and checks total 7.
                   productionNotes: 'Scene PictographStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              text3:
+              verifySevenObjects:
                 config:
                   id: '800ffeae-9987-4919-bae6-a5a4f34c0467'
-                  slug: 'text3'
+                  slug: 'verifySevenObjects'
                   type: 'text'
                   params: {}
                   locale:
@@ -592,7 +592,7 @@ config:
                 production:
                   purpose: 'Your new chart: text resource at position 3 (source provisional)'
                   specification: '3. **`text` Resource (available block type):** “Two stars need two icons, four moons need four and one sun needs one. The key is unchanged. The total is seven objects.”'
-            order: ['markdown1', 'scene2', 'text3']
+            order: ['promptShapeChart', 'buildShapeChart', 'verifySevenObjects']
         production:
           purpose: 'Transfer a one-to-one key to a new category set and catch a mismatch.'
           pedagogicalIntent: 'Original Section 4: Your new chart (provisional draft)'
@@ -617,7 +617,7 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['representCountsWithPictures', 'buildPictographFromTable', 'readAnimalPictograph', 'createNewPictograph']
   flashcards:
     items: {}
     order: []

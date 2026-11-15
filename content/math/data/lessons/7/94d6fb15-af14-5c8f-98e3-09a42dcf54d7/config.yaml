@@ -20,10 +20,10 @@ config:
       en: 'Finding an Unknown Factor'
   section:
     items:
-      section1ThreeGroupsTwelveAltogether:
+      reviewThreeGroupsOfFour:
         config:
           id: '2defde9c-c213-8fdc-88a1-3554c75da414'
-          slug: 'section1ThreeGroupsTwelveAltogether'
+          slug: 'reviewThreeGroupsOfFour'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Three Groups, Twelve Altogether'
           content:
             items:
-              section1Text1:
+              askTotalTwelve:
                 config:
                   id: 'd1d59fe6-289d-85c3-8f6f-4412b6273e37'
-                  slug: 'section1Text1'
+                  slug: 'askTotalTwelve'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Three Groups, Twelve Altogether; provisional draft.'
                   specification: '  1. **text — available:** “These three groups contain four counters each. How many are there altogether?”'
-              scene1Block2:
+              modelThreeGroupsOfFour:
                 config:
                   id: 'f199e5d9-5894-8f06-8bc1-e04482ccfa9b'
-                  slug: 'scene1Block2'
+                  slug: 'modelThreeGroupsOfFour'
                   type: 'scene'
                   params: {}
                   locale:
@@ -116,10 +116,10 @@ config:
 
                       2. **scene — generic resource exists, proposed new content:** Missing Factor Groups (preserved in Scene production.specification), complete-model entry showing 3 groups × 4 = 12, with exact labeled group counts and optional counting.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section1Markdown3:
+              identifyFactorsAndProduct:
                 config:
                   id: 'd02ae79a-b5c4-881f-88bd-67f9ad53f87c'
-                  slug: 'section1Markdown3'
+                  slug: 'identifyFactorsAndProduct'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -129,9 +129,9 @@ config:
                   purpose: 'Legacy markdown block of Three Groups, Twelve Altogether; provisional draft.'
                   specification: '  3. **markdown — available:** “**3 groups of 4 make 12**. In our example we write **3 × 4 = 12**. Three and four are factors; twelve is the product.”'
             order:
-              - 'section1Text1'
-              - 'scene1Block2'
-              - 'section1Markdown3'
+              - 'askTotalTwelve'
+              - 'modelThreeGroupsOfFour'
+              - 'identifyFactorsAndProduct'
         production:
           purpose: 'Revisit the exact group product before hiding a factor.'
           pedagogicalIntent: 'Revisit the exact group product before hiding a factor.'
@@ -150,10 +150,10 @@ config:
             - Planned Note: None; this is prerequisite recall, not a new outcome.
             - Dependencies: Scene proposed, generic renderer available.
 
-      section2HowManyInEachGroup:
+      findUnknownGroupSize:
         config:
           id: '305d51e8-e8ff-80ac-83fd-93ea2b5fc2ae'
-          slug: 'section2HowManyInEachGroup'
+          slug: 'findUnknownGroupSize'
           type: 'content'
           params: {}
           locale:
@@ -163,10 +163,10 @@ config:
               en: 'How Many in Each Group?'
           content:
             items:
-              section2Text1:
+              askMissingPerGroup:
                 config:
                   id: '962cd225-00a6-82b6-8747-c99bb1cd9908'
-                  slug: 'section2Text1'
+                  slug: 'askMissingPerGroup'
                   type: 'text'
                   params: {}
                   locale:
@@ -175,10 +175,10 @@ config:
                 production:
                   purpose: 'Legacy text block of How Many in Each Group?; provisional draft.'
                   specification: '  1. **text — available:** “**3 × □ = 12.** We know there are three equal groups and twelve counters in all. How many are in **each** group?”'
-              scene2Block2:
+              shareTwelveInThreeGroups:
                 config:
                   id: '35665268-0047-86ff-85fd-af4d60dcabda'
-                  slug: 'scene2Block2'
+                  slug: 'shareTwelveInThreeGroups'
                   type: 'scene'
                   params: {}
                   locale:
@@ -246,10 +246,10 @@ config:
 
                       2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), group-size entry; three equal group containers, twelve counters distributed equally by user-controlled “Share all” or individual steps; reveal 4 in each.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section2Markdown3:
+              solveMissingFour:
                 config:
                   id: 'b4814cc0-ebce-8dac-8446-ae771b097f1b'
-                  slug: 'section2Markdown3'
+                  slug: 'solveMissingFour'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -259,9 +259,9 @@ config:
                   purpose: 'Legacy markdown block of How Many in Each Group?; provisional draft.'
                   specification: '  3. **markdown — available:** “If twelve are shared equally among three groups, there are **12 ÷ 3 = 4** in each. The missing factor is **4**.”'
             order:
-              - 'section2Text1'
-              - 'scene2Block2'
-              - 'section2Markdown3'
+              - 'askMissingPerGroup'
+              - 'shareTwelveInThreeGroups'
+              - 'solveMissingFour'
         production:
           purpose: 'Reconstruct unknown group-size factor.'
           pedagogicalIntent: 'Reconstruct unknown group-size factor.'
@@ -281,10 +281,10 @@ config:
             - Planned Note: “Unknown factor = product ÷ known nonzero factor,” after exact group evidence (planned, not wired).
             - Dependencies: Prop-free entry with separate state, no scored quiz.
 
-      section3WhatIfTheBoxIsFirst:
+      findUnknownGroupCount:
         config:
           id: '36a7fb2b-7c1a-895b-87f8-dce6ed45be96'
-          slug: 'section3WhatIfTheBoxIsFirst'
+          slug: 'findUnknownGroupCount'
           type: 'content'
           params: {}
           locale:
@@ -294,10 +294,10 @@ config:
               en: 'What If the Box Is First?'
           content:
             items:
-              section3Markdown1:
+              askBoxFirstFactor:
                 config:
                   id: 'f2b29d89-9d44-864e-842e-6e5b8bd8c59c'
-                  slug: 'section3Markdown1'
+                  slug: 'askBoxFirstFactor'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -306,10 +306,10 @@ config:
                 production:
                   purpose: 'Legacy markdown block of What If the Box Is First?; provisional draft.'
                   specification: '  1. **markdown — available:** “Now the equation is **□ × 4 = 12**. We know each group contains four. How many groups must there be?”'
-              scene3Block2:
+              groupTwelveByFour:
                 config:
                   id: '2587a5f8-753d-87c5-8bf2-2d88db487fb5'
-                  slug: 'scene3Block2'
+                  slug: 'groupTwelveByFour'
                   type: 'scene'
                   params: {}
                   locale:
@@ -377,10 +377,10 @@ config:
 
                       2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), group-count entry, learner assembles groups of four until twelve counters have been used: three groups.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section3Text3:
+              solveMissingThree:
                 config:
                   id: '384ae800-2aac-8b59-8cce-2eb61e28ddef'
-                  slug: 'section3Text3'
+                  slug: 'solveMissingThree'
                   type: 'text'
                   params: {}
                   locale:
@@ -390,9 +390,9 @@ config:
                   purpose: 'Legacy text block of What If the Box Is First?; provisional draft.'
                   specification: '  3. **text — available:** “**12 ÷ 4 = 3** groups. Replace the box: **3 × 4 = 12**. Both sides show twelve.”'
             order:
-              - 'section3Markdown1'
-              - 'scene3Block2'
-              - 'section3Text3'
+              - 'askBoxFirstFactor'
+              - 'groupTwelveByFour'
+              - 'solveMissingThree'
         production:
           purpose: 'Interpret the missing first factor and check the result in original expression.'
           pedagogicalIntent: 'Interpret the missing first factor and check the result in original expression.'
@@ -412,10 +412,10 @@ config:
             - Planned Note: “Check the factor by multiplying in the original equality,” after verified substitution.
             - Dependencies: Scene-based formative choice only.
 
-      section4FindTheMissingGroupSizeYourself:
+      solveFourTimesUnknown:
         config:
           id: '100170fd-7f91-8081-8739-e8bc98a958c0'
-          slug: 'section4FindTheMissingGroupSizeYourself'
+          slug: 'solveFourTimesUnknown'
           type: 'content'
           params: {}
           locale:
@@ -425,10 +425,10 @@ config:
               en: 'Find the Missing Group Size Yourself'
           content:
             items:
-              section4Text1:
+              challengeFourTimesBox:
                 config:
                   id: '9749fc71-6267-8000-8586-546f70a8081e'
-                  slug: 'section4Text1'
+                  slug: 'challengeFourTimesBox'
                   type: 'text'
                   params: {}
                   locale:
@@ -437,10 +437,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Find the Missing Group Size Yourself; provisional draft.'
                   specification: '  1. **text — available:** “**4 × □ = 20.** Four equal groups make twenty counters. How many must be in each group?”'
-              scene4Block2:
+              buildFourGroupsOfFive:
                 config:
                   id: '766e4c38-898d-80e3-8bd5-436604368fbd'
-                  slug: 'scene4Block2'
+                  slug: 'buildFourGroupsOfFive'
                   type: 'scene'
                   params: {}
                   locale:
@@ -508,10 +508,10 @@ config:
 
                       2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), transfer entry with candidate 4/5/6, optional twenty counters, divide 20÷4 then substitute in 4×□=20.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section4Markdown3:
+              verifyMissingFive:
                 config:
                   id: '5ee733b5-43db-8429-8cc6-ff24b1fa08b8'
-                  slug: 'section4Markdown3'
+                  slug: 'verifyMissingFive'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -521,9 +521,9 @@ config:
                   purpose: 'Legacy markdown block of Find the Missing Group Size Yourself; provisional draft.'
                   specification: '  3. **markdown — available:** “**20 ÷ 4 = 5**, and **4 × 5 = 20**. The box is **5**. The product is unchanged.”'
             order:
-              - 'section4Text1'
-              - 'scene4Block2'
-              - 'section4Markdown3'
+              - 'challengeFourTimesBox'
+              - 'buildFourGroupsOfFive'
+              - 'verifyMissingFive'
         production:
           purpose: 'Transfer to 4 × □ = 20 with less scaffolding.'
           pedagogicalIntent: 'Transfer to 4 × □ = 20 with less scaffolding.'
@@ -543,10 +543,10 @@ config:
             - Dependencies: Separate Scene entry; no Assessment Architect work implied.
 
     order:
-      - 'section1ThreeGroupsTwelveAltogether'
-      - 'section2HowManyInEachGroup'
-      - 'section3WhatIfTheBoxIsFirst'
-      - 'section4FindTheMissingGroupSizeYourself'
+      - 'reviewThreeGroupsOfFour'
+      - 'findUnknownGroupSize'
+      - 'findUnknownGroupCount'
+      - 'solveFourTimesUnknown'
   flashcards:
     items: {}
     order: []

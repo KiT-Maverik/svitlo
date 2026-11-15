@@ -15,10 +15,10 @@ config:
       en: 'Which Is Longer? Compare Fairly'
   section:
     items:
-      section1:
+      challengeVisualLengthJudgment:
         config:
           id: '02fedcdd-e72a-54c2-8dad-5cddc4230f7c'
-          slug: 'section1'
+          slug: 'challengeVisualLengthJudgment'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'A Tricky Picture'
           content:
             items:
-              text1:
+              presentOffsetRibbons:
                 config:
                   id: '624f0a7c-ddeb-5393-a389-8a7c07638fe1'
-                  slug: 'text1'
+                  slug: 'presentOffsetRibbons'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: "Show two straight ribbons: A length 6 equal grid intervals starting at x=2, B length 5 starting at x=5. B's right tip is farther right, but A is longer. Ask for a prediction."
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              compareRibbonLengths:
                 config:
                   id: 'ea868d85-2655-5c4c-999e-0d858a407ab2'
-                  slug: 'scene1'
+                  slug: 'compareRibbonLengths'
                   type: 'scene'
                   params: {}
                   locale:
@@ -98,10 +98,10 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: 'A Tricky Picture'
                   productionNotes: 'Source Scene fairLengthComparator.scene-spec.md; independent placement for A Tricky Picture. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainStartAlignment:
                 config:
                   id: 'c04bb406-bac6-5171-baae-3406206a275b'
-                  slug: 'markdown1'
+                  slug: 'explainStartAlignment'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -109,7 +109,7 @@ config:
                       en: 'Explain that far-right placement alone cannot tell length: A spans six intervals, B five. Align their starting ends.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['presentOffsetRibbons', 'compareRibbonLengths', 'explainStartAlignment']
         production:
           purpose: 'A Tricky Picture'
           productionNotes: |-
@@ -122,10 +122,10 @@ config:
             **Explanatory feedback and recovery:** If child chooses B: 'Its tip is farther right because it starts later. Line up the starts first.'
 
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-      section2:
+      alignLengthsFairly:
         config:
           id: 'fffed824-e62a-532f-8aad-5824c7231435'
-          slug: 'section2'
+          slug: 'alignLengthsFairly'
           type: 'content'
           params: {}
           locale:
@@ -135,10 +135,10 @@ config:
               en: 'Make the Comparison Fair'
           content:
             items:
-              text1:
+              instructStartAlignment:
                 config:
                   id: '3d33a5e9-b32c-5072-be6e-25e9f2390cd4'
-                  slug: 'text1'
+                  slug: 'instructStartAlignment'
                   type: 'text'
                   params: {}
                   locale:
@@ -146,10 +146,10 @@ config:
                       en: "In the comparator, press 'Align starts' to move both ribbons to one origin; change ribbon thickness and vertical position without changing endpoint separation."
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              alignRibbonStarts:
                 config:
                   id: '95d7f3ca-e843-551b-84ef-73cab616d64d'
-                  slug: 'scene1'
+                  slug: 'alignRibbonStarts'
                   type: 'scene'
                   params: {}
                   locale:
@@ -205,10 +205,10 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: 'Make the Comparison Fair'
                   productionNotes: 'Source Scene fairLengthComparator.scene-spec.md; independent placement for Make the Comparison Fair. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              compareEqualAndUnequalRibbons:
                 config:
                   id: '317570f3-e4ff-5ea0-abd7-f0f3a48f176e'
-                  slug: 'markdown1'
+                  slug: 'compareEqualAndUnequalRibbons'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -216,7 +216,7 @@ config:
                       en: 'Reveal A six intervals and B five; A longer by one interval. Add 4 vs 4 equal case, and thick 3 vs thin 5 case.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['instructStartAlignment', 'alignRibbonStarts', 'compareEqualAndUnequalRibbons']
         production:
           purpose: 'Make the Comparison Fair'
           productionNotes: |-
@@ -229,10 +229,10 @@ config:
             **Explanatory feedback and recovery:** For thick 3 vs thin 5: 'Width is not length. Look from one end to the other.'
 
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-      section3:
+      compareWithTransferStrip:
         config:
           id: '00fed9b7-e52a-519c-8bad-59b7c62312a2'
-          slug: 'section3'
+          slug: 'compareWithTransferStrip'
           type: 'content'
           params: {}
           locale:
@@ -242,10 +242,10 @@ config:
               en: 'Compare Without Moving Objects'
           content:
             items:
-              text1:
+              presentFixedObjectEdges:
                 config:
                   id: '5965e49a-b1e9-5281-9aa0-649abad6b7f3'
-                  slug: 'text1'
+                  slug: 'presentFixedObjectEdges'
                   type: 'text'
                   params: {}
                   locale:
@@ -253,10 +253,10 @@ config:
                       en: 'Show fixed book edge and shelf edge in different locations. Learner transfers a single comparison strip from book edge to shelf edge, keeping its length unchanged.'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              transferComparisonStrip:
                 config:
                   id: '7b0de053-4fe8-5c52-aa25-605360f1d32c'
-                  slug: 'scene1'
+                  slug: 'transferComparisonStrip'
                   type: 'scene'
                   params: {}
                   locale:
@@ -312,10 +312,10 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: 'Compare Without Moving Objects'
                   productionNotes: 'Source Scene fairLengthComparator.scene-spec.md; independent placement for Compare Without Moving Objects. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainIndirectComparison:
                 config:
                   id: 'b057f378-9098-547b-aaba-7378ae69aa51'
-                  slug: 'markdown1'
+                  slug: 'explainIndirectComparison'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -323,7 +323,7 @@ config:
                       en: "Explain: 'The same strip reaches beyond the shorter object but not the longer one.' Include equal length case."
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['presentFixedObjectEdges', 'transferComparisonStrip', 'explainIndirectComparison']
         production:
           purpose: 'Compare Without Moving Objects'
           productionNotes: |-
@@ -336,10 +336,10 @@ config:
             **Explanatory feedback and recovery:** If learner changes strip length: 'Then it is not the same reference. Reset the strip and use it for both.'
 
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-      section4:
+      justifyLengthComparison:
         config:
           id: 'fdfed4fe-e42a-5009-88ad-54fec1230ac3'
-          slug: 'section4'
+          slug: 'justifyLengthComparison'
           type: 'content'
           params: {}
           locale:
@@ -349,10 +349,10 @@ config:
               en: 'Transfer'
           content:
             items:
-              text1:
+              presentOffsetPaths:
                 config:
                   id: '477e278f-22b9-5338-88b8-a78f2cb325c6'
-                  slug: 'text1'
+                  slug: 'presentOffsetPaths'
                   type: 'text'
                   params: {}
                   locale:
@@ -360,10 +360,10 @@ config:
                       en: 'Show two offset drawn paths with endpoints labeled and ask for a reasoned comparison. Child can select align or use reference strip and verbalize why.'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              testComparisonMethods:
                 config:
                   id: '6fd73bb0-0acd-5c69-9eee-bbb00daa29d7'
-                  slug: 'scene1'
+                  slug: 'testComparisonMethods'
                   type: 'scene'
                   params: {}
                   locale:
@@ -419,10 +419,10 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: 'Transfer'
                   productionNotes: 'Source Scene fairLengthComparator.scene-spec.md; independent placement for Transfer. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainWhyLonger:
                 config:
                   id: '5040189d-4223-5782-8aa2-989dc77c0534'
-                  slug: 'markdown1'
+                  slug: 'explainWhyLonger'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -430,7 +430,7 @@ config:
                       en: "Feedback names the method, not only the longer object. Offer an independent 'which is longer and why' reflection."
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['presentOffsetPaths', 'testComparisonMethods', 'explainWhyLonger']
         production:
           purpose: 'Transfer'
           productionNotes: |-
@@ -443,7 +443,7 @@ config:
             **Explanatory feedback and recovery:** When the prediction differs, show the comparison and why, allow another attempt, and offer a descriptive hint without score or penalty.
 
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['challengeVisualLengthJudgment', 'alignLengthsFairly', 'compareWithTransferStrip', 'justifyLengthComparison']
   flashcards:
     items: {}
     order: []

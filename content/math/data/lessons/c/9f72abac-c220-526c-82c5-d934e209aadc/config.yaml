@@ -21,10 +21,10 @@ config:
       en: 'Find the Story in a Data Table'
   section:
     items:
-      section1ANumberNeedsItsLabel:
+      readLabeledTableEntry:
         config:
           id: '8c711524-5fc4-8419-87e7-023e5452d303'
-          slug: 'section1ANumberNeedsItsLabel'
+          slug: 'readLabeledTableEntry'
           type: 'content'
           params: {}
           locale:
@@ -34,10 +34,10 @@ config:
               en: 'A number needs its label'
           content:
             items:
-              section1Text1:
+              askSquareCount:
                 config:
                   id: '275967d4-9f38-8979-8dc0-41c755a1af6a'
-                  slug: 'section1Text1'
+                  slug: 'askSquareCount'
                   type: 'text'
                   params: {}
                   locale:
@@ -46,10 +46,10 @@ config:
                 production:
                   purpose: 'Legacy text block of A number needs its label; provisional draft.'
                   specification: "1. **`text` — existing Resource block type.** “This table counts paper shapes in one tray. Which entry tells us the number of squares? Don't look for a number until you find the row and column.”"
-              scene1Block2:
+              locateLabeledValue:
                 config:
                   id: 'c2a9c36c-f759-8ac8-8194-807f146459db'
-                  slug: 'scene1Block2'
+                  slug: 'locateLabeledValue'
                   type: 'scene'
                   params: {}
                   locale:
@@ -132,10 +132,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): TableEvidenceExplorer displays the labelled table: rows Triangle 6, Square 4, Circle 2; headings 'Shape' and 'Number of shapes'. Select Square row and Number of shapes column; highlight intersection 4.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section1Markdown3:
+              explainFourSquares:
                 config:
                   id: '4820033f-04d8-837d-87c6-f3863b3e33c4'
-                  slug: 'section1Markdown3'
+                  slug: 'explainFourSquares'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -145,9 +145,9 @@ config:
                   purpose: 'Legacy markdown block of A number needs its label; provisional draft.'
                   specification: '3. **`markdown` — existing Resource block type.** “The table says there are four squares in this tray. The number 4 means four shapes because we used the Square row and the Number of shapes column.”'
             order:
-              - 'section1Text1'
-              - 'scene1Block2'
-              - 'section1Markdown3'
+              - 'askSquareCount'
+              - 'locateLabeledValue'
+              - 'explainFourSquares'
         production:
           purpose: 'A number needs its label'
           pedagogicalIntent: 'A number needs its label'
@@ -175,10 +175,10 @@ config:
 
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
-      section2TogetherMeansAdd:
+      sumTableCategories:
         config:
           id: '0a8b3e9a-050d-83dd-854c-27329acaca75'
-          slug: 'section2TogetherMeansAdd'
+          slug: 'sumTableCategories'
           type: 'content'
           params: {}
           locale:
@@ -188,10 +188,10 @@ config:
               en: 'Together means add'
           content:
             items:
-              section2Markdown1:
+              askTrianglesAndCirclesTotal:
                 config:
                   id: '24361da5-7dfc-8f0a-89a9-b23830633097'
-                  slug: 'section2Markdown1'
+                  slug: 'askTrianglesAndCirclesTotal'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -200,10 +200,10 @@ config:
                 production:
                   purpose: 'Legacy markdown block of Together means add; provisional draft.'
                   specification: '1. **`markdown` — existing Resource block type.** “There are six triangles and two circles. How many of those two kinds are there together? And how many shapes are there in all?”'
-              scene2Block2:
+              combineCategoryCounts:
                 config:
                   id: '0e7dbea6-57f7-8e9e-81ac-cd3c0826dd04'
-                  slug: 'scene2Block2'
+                  slug: 'combineCategoryCounts'
                   type: 'scene'
                   params: {}
                   locale:
@@ -286,10 +286,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): Choose Triangle and Circle rows; the explorer shows six and two named shape tokens, then an optional 'Combine' view. Add Square to obtain all three category counts.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section2Text3:
+              explainEightAndTwelve:
                 config:
                   id: '4d6a65f7-b99e-8f1e-8727-45e9f3d3df00'
-                  slug: 'section2Text3'
+                  slug: 'explainEightAndTwelve'
                   type: 'text'
                   params: {}
                   locale:
@@ -299,9 +299,9 @@ config:
                   purpose: 'Legacy text block of Together means add; provisional draft.'
                   specification: '3. **`text` — existing Resource block type.** “Six triangles plus two circles make eight shapes. All the kinds together make 6+4+2 = 12 shapes.”'
             order:
-              - 'section2Markdown1'
-              - 'scene2Block2'
-              - 'section2Text3'
+              - 'askTrianglesAndCirclesTotal'
+              - 'combineCategoryCounts'
+              - 'explainEightAndTwelve'
         production:
           purpose: 'Together means add'
           pedagogicalIntent: 'Together means add'
@@ -329,10 +329,10 @@ config:
 
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
-      section3MoreThanMeansFindTheGap:
+      compareCategoryCounts:
         config:
           id: 'd408434f-928e-8385-8456-188f62d01845'
-          slug: 'section3MoreThanMeansFindTheGap'
+          slug: 'compareCategoryCounts'
           type: 'content'
           params: {}
           locale:
@@ -342,10 +342,10 @@ config:
               en: 'More than means find the gap'
           content:
             items:
-              section3Text1:
+              askHowManyMoreTriangles:
                 config:
                   id: '1a1efc91-097f-8202-829c-c9b8d1fd772b'
-                  slug: 'section3Text1'
+                  slug: 'askHowManyMoreTriangles'
                   type: 'text'
                   params: {}
                   locale:
@@ -354,10 +354,10 @@ config:
                 production:
                   purpose: 'Legacy text block of More than means find the gap; provisional draft.'
                   specification: '1. **`text` — existing Resource block type.** “We have six triangles and four squares. How many MORE triangles than squares? Should we add the two counts or find the gap?”'
-              scene3Block2:
+              matchTriangleSquareCounts:
                 config:
                   id: '5dd2e8c2-74a7-8b7b-8df3-47c6d486147f'
-                  slug: 'scene3Block2'
+                  slug: 'matchTriangleSquareCounts'
                   type: 'scene'
                   params: {}
                   locale:
@@ -440,10 +440,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): Select Triangle and Square rows. Model side-by-side aligned token lines; learner matches the first four, leaving two unmatched triangles. On request reveal 6−4=2.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section3Markdown3:
+              explainDifferenceOfTwo:
                 config:
                   id: 'a095c605-a46c-8530-8051-7e2774a8dd12'
-                  slug: 'section3Markdown3'
+                  slug: 'explainDifferenceOfTwo'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -453,9 +453,9 @@ config:
                   purpose: 'Legacy markdown block of More than means find the gap; provisional draft.'
                   specification: '3. **`markdown` — existing Resource block type.** “Four triangles can match the four squares. Two triangles remain. So there are two more triangles than squares, not ten more.”'
             order:
-              - 'section3Text1'
-              - 'scene3Block2'
-              - 'section3Markdown3'
+              - 'askHowManyMoreTriangles'
+              - 'matchTriangleSquareCounts'
+              - 'explainDifferenceOfTwo'
         production:
           purpose: 'More than means find the gap'
           pedagogicalIntent: 'More than means find the gap'
@@ -483,10 +483,10 @@ config:
 
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
-      section4ADifferentTableYourEvidence:
+      interpretNewTable:
         config:
           id: '6dcf2b1a-affd-8c41-8623-c4213411737a'
-          slug: 'section4ADifferentTableYourEvidence'
+          slug: 'interpretNewTable'
           type: 'content'
           params: {}
           locale:
@@ -496,10 +496,10 @@ config:
               en: 'A different table, your evidence'
           content:
             items:
-              section4Markdown1:
+              askAboutMoonRowAndTotal:
                 config:
                   id: 'bf40367b-7e25-83ae-8c93-04570df65182'
-                  slug: 'section4Markdown1'
+                  slug: 'askAboutMoonRowAndTotal'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -508,10 +508,10 @@ config:
                 production:
                   purpose: 'Legacy markdown block of A different table, your evidence; provisional draft.'
                   specification: "1. **`markdown` — existing Resource block type.** “A new tray has stars 5, moons 3 and suns 1. Which row answers 'How many moons?' What is the total? How many more stars than moons?”"
-              scene4Block2:
+              inspectNewShapeTable:
                 config:
                   id: '935f2b02-f449-8998-8a85-bd03ad934f99'
-                  slug: 'scene4Block2'
+                  slug: 'inspectNewShapeTable'
                   type: 'scene'
                   params: {}
                   locale:
@@ -594,10 +594,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** TableEvidenceExplorer (preserved in Scene production.specification): New table: Star 5, Moon 3, Sun 1, all in 'Number of shapes' column. Learner locates Moon=3 and selects total 9 and difference 2, with separate reveal of each explanation.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section4Text3:
+              verifyThreeNineAndTwo:
                 config:
                   id: '3b2cf8f9-5425-84ad-83c5-37244cccab70'
-                  slug: 'section4Text3'
+                  slug: 'verifyThreeNineAndTwo'
                   type: 'text'
                   params: {}
                   locale:
@@ -607,9 +607,9 @@ config:
                   purpose: 'Legacy text block of A different table, your evidence; provisional draft.'
                   specification: '3. **`text` — existing Resource block type.** “There are three moons. Together, 5+3+1=9 shapes. There are 5−3=2 more stars than moons.”'
             order:
-              - 'section4Markdown1'
-              - 'scene4Block2'
-              - 'section4Text3'
+              - 'askAboutMoonRowAndTotal'
+              - 'inspectNewShapeTable'
+              - 'verifyThreeNineAndTwo'
         production:
           purpose: 'A different table, your evidence'
           pedagogicalIntent: 'A different table, your evidence'
@@ -638,10 +638,10 @@ config:
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
     order:
-      - 'section1ANumberNeedsItsLabel'
-      - 'section2TogetherMeansAdd'
-      - 'section3MoreThanMeansFindTheGap'
-      - 'section4ADifferentTableYourEvidence'
+      - 'readLabeledTableEntry'
+      - 'sumTableCategories'
+      - 'compareCategoryCounts'
+      - 'interpretNewTable'
   flashcards:
     items: {}
     order: []

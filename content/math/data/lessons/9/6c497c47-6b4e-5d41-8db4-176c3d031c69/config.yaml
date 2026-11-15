@@ -15,10 +15,10 @@ config:
       en: 'Same Fraction, Different Whole'
   section:
     items:
-      section1:
+      compareHalvesOfDifferentWholes:
         config:
           id: '4e3f0f92-26a1-53a9-98ed-8f927fd19463'
-          slug: 'section1'
+          slug: 'compareHalvesOfDifferentWholes'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Which whole did we start with?'
           content:
             items:
-              text1:
+              presentDifferentSizeWholes:
                 config:
                   id: '7e3768e3-8e71-54d8-bf71-e8e3df682866'
-                  slug: 'text1'
+                  slug: 'presentDifferentSizeWholes'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'Here are two rectangles made from equal-sized square tiles. One contains eight tiles, the other sixteen. If we take half of each, do we take the same number of tiles?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              selectHalfOfEach:
                 config:
                   id: '26869fbc-276c-5c09-959e-1fbc945dd5f7'
-                  slug: 'scene1'
+                  slug: 'selectHalfOfEach'
                   type: 'scene'
                   params: {}
                   locale:
@@ -122,10 +122,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: 'Which whole did we start with?'
                   productionNotes: 'Source Scene WholeSizeExplorer.scene-spec.md; independent placement for Which whole did we start with?. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainFractionDependsOnWhole:
                 config:
                   id: 'fb5b97e1-51c0-5622-b5be-17e1cc6869d4'
-                  slug: 'markdown1'
+                  slug: 'explainFractionDependsOnWhole'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -133,7 +133,7 @@ config:
                       en: 'Half of the small whole covers four square tiles. Half of the large whole covers eight. Both are called one half because each is half of its own whole.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['presentDifferentSizeWholes', 'selectHalfOfEach', 'explainFractionDependsOnWhole']
         production:
           purpose: 'Which whole did we start with?'
           productionNotes: |-
@@ -157,10 +157,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section2:
+      recombineAllThirds:
         config:
           id: '4d3f0dff-23a1-5ef0-97ed-8dff80d195f6'
-          slug: 'section2'
+          slug: 'recombineAllThirds'
           type: 'content'
           params: {}
           locale:
@@ -170,10 +170,10 @@ config:
               en: 'One whole from all its parts'
           content:
             items:
-              text1:
+              promptWholeFromThirds:
                 config:
                   id: '7ff1d1c2-bef0-57a5-812c-51c27a5606a7'
-                  slug: 'text1'
+                  slug: 'promptWholeFromThirds'
                   type: 'text'
                   params: {}
                   locale:
@@ -181,10 +181,10 @@ config:
                       en: 'One long strip has been cut into three equal pieces. If we choose all three, how much of the whole is selected?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              selectAllThirds:
                 config:
                   id: '14f8f48b-94da-5dde-8410-748b71f9ed18'
-                  slug: 'scene1'
+                  slug: 'selectAllThirds'
                   type: 'scene'
                   params: {}
                   locale:
@@ -264,10 +264,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: 'One whole from all its parts'
                   productionNotes: 'Source Scene WholeSizeExplorer.scene-spec.md; independent placement for One whole from all its parts. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainThreeThirdsMakeOne:
                 config:
                   id: 'b47c5150-ea72-5dff-aede-d150569c72c5'
-                  slug: 'markdown1'
+                  slug: 'explainThreeThirdsMakeOne'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -275,7 +275,7 @@ config:
                       en: 'Three thirds means all three equal pieces of the same whole. Together they cover the entire strip: 3/3 = 1 whole.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['promptWholeFromThirds', 'selectAllThirds', 'explainThreeThirdsMakeOne']
         production:
           purpose: 'One whole from all its parts'
           productionNotes: |-
@@ -299,10 +299,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section3:
+      recognizeCompletePartition:
         config:
           id: '4c3f0c6c-24a1-5083-96ed-8c6c81d19789'
-          slug: 'section3'
+          slug: 'recognizeCompletePartition'
           type: 'content'
           params: {}
           locale:
@@ -312,10 +312,10 @@ config:
               en: "The number of cuts does not change 'all'"
           content:
             items:
-              markdown1:
+              compareCompletePartitions:
                 config:
                   id: '00ecee6b-7136-5af4-bb4f-6e6b7c397b02'
-                  slug: 'markdown1'
+                  slug: 'compareCompletePartitions'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -323,10 +323,10 @@ config:
                       en: 'We can divide one strip into two equal parts, three equal parts, or four equal parts. What fraction do we get if we choose all the parts each time?'
                 production:
                   purpose: 'Source explanatory copy'
-              scene1:
+              exploreDifferentPartCounts:
                 config:
                   id: '235f9482-6afc-5f97-9277-1482790276e9'
-                  slug: 'scene1'
+                  slug: 'exploreDifferentPartCounts'
                   type: 'scene'
                   params: {}
                   locale:
@@ -406,10 +406,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: "The number of cuts does not change 'all'"
                   productionNotes: "Source Scene WholeSizeExplorer.scene-spec.md; independent placement for The number of cuts does not change 'all'. Variant/feedback retained under parent Section productionNotes."
-              text1:
+              explainAllPartsMakeWhole:
                 config:
                   id: '4896c551-a72b-5586-89d1-45519deabeb8'
-                  slug: 'text1'
+                  slug: 'explainAllPartsMakeWhole'
                   type: 'text'
                   params: {}
                   locale:
@@ -417,7 +417,7 @@ config:
                       en: 'All two halves make 2/2 = 1. All three thirds make 3/3 = 1. All four quarters make 4/4 = 1. It is still one complete strip.'
                 production:
                   purpose: 'Source prompt or feedback'
-            order: ['markdown1', 'scene1', 'text1']
+            order: ['compareCompletePartitions', 'exploreDifferentPartCounts', 'explainAllPartsMakeWhole']
         production:
           purpose: "The number of cuts does not change 'all'"
           productionNotes: |-
@@ -441,10 +441,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section4:
+      compareCompleteWholes:
         config:
           id: '4b3f0ad9-29a1-5862-95ed-8ad982d1991c'
-          slug: 'section4'
+          slug: 'compareCompleteWholes'
           type: 'content'
           params: {}
           locale:
@@ -454,10 +454,10 @@ config:
               en: 'Two different complete wholes'
           content:
             items:
-              text1:
+              presentDifferentGardens:
                 config:
                   id: '59d77b08-b2d1-52b3-9b11-fb082d1abe01'
-                  slug: 'text1'
+                  slug: 'presentDifferentGardens'
                   type: 'text'
                   params: {}
                   locale:
@@ -465,10 +465,10 @@ config:
                       en: 'Two gardens are divided into three equal strips each. The first covers six unit squares; the second covers twelve. If all three strips are selected, what fraction of each garden is chosen?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              selectAllGardenStrips:
                 config:
                   id: '052f3699-29a8-56ec-b446-b699be1dd6d2'
-                  slug: 'scene1'
+                  slug: 'selectAllGardenStrips'
                   type: 'scene'
                   params: {}
                   locale:
@@ -548,10 +548,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: 'Two different complete wholes'
                   productionNotes: 'Source Scene WholeSizeExplorer.scene-spec.md; independent placement for Two different complete wholes. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainEqualFractionsDifferentAreas:
                 config:
                   id: '4f47c3b2-746b-5711-89aa-43b2caaf37fb'
-                  slug: 'markdown1'
+                  slug: 'explainEqualFractionsDifferentAreas'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -559,7 +559,7 @@ config:
                       en: 'Both gardens are fully selected: 3/3 = 1 of each garden. Their areas differ: six and twelve square units. The same fraction does not mean the same absolute area when the whole changes.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['presentDifferentGardens', 'selectAllGardenStrips', 'explainEqualFractionsDifferentAreas']
         production:
           purpose: 'Two different complete wholes'
           productionNotes: |-
@@ -583,7 +583,7 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['compareHalvesOfDifferentWholes', 'recombineAllThirds', 'recognizeCompletePartition', 'compareCompleteWholes']
   flashcards:
     items: {}
     order: []

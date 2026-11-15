@@ -15,10 +15,10 @@ config:
       en: 'Numbers Across the Tens: Read and Count to 100'
   section:
     items:
-      section1BuildAndReadTwoDigits:
+      buildTwoDigitNumbers:
         config:
           id: 'a3fd619d-e6dd-49ce-a69f-f6af6b881300'
-          slug: 'section1BuildAndReadTwoDigits'
+          slug: 'buildTwoDigitNumbers'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Build and Read Two Digits'
           content:
             items:
-              text1:
+              askFourTensTwoOnes:
                 config:
                   id: '4f54333c-55e2-4c9f-afd8-e7f24a34f2f5'
-                  slug: 'text1'
+                  slug: 'askFourTensTwoOnes'
                   type: 'text'
                   params: {}
                   locale:
@@ -125,16 +125,16 @@ config:
                     This is a **proposed** Scene. Generic `scene` Resource rendering exists; Build and Read Two Digits does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
                   purpose: 'Proposed interactive Scene for Build and Read Two Digits'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainDigitPlaces:
                 config:
                   id: '1f68df33-e15c-45d4-aecc-e2d982bcfe02'
-                  slug: 'markdown2'
+                  slug: 'explainDigitPlaces'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '42 names four tens and two ones; 24 names two tens and four ones. 4×10+2=42; 2×10+4=24.'
-            order: ['text1', 'buildAndReadTwoDigits', 'markdown2']
+            order: ['askFourTensTwoOnes', 'buildAndReadTwoDigits', 'explainDigitPlaces']
         production:
           purpose: 'Build and Read Two Digits'
           pedagogicalIntent: |
@@ -156,10 +156,10 @@ config:
             - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “In two-digit numbers, the tens digit counts tens and the ones digit counts individual ones.” is planned only, with no event or persistence.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2WhyNot210:
+      explainRegroupingAtThirty:
         config:
           id: '01f38a0f-4604-4f9c-984e-d451bbd752d6'
-          slug: 'section2WhyNot210'
+          slug: 'explainRegroupingAtThirty'
           type: 'content'
           params: {}
           locale:
@@ -169,34 +169,34 @@ config:
               en: 'Why Not 210?'
           content:
             items:
-              text1:
+              askWhatFollowsTwentyNine:
                 config:
                   id: '07599152-ae82-4081-abd0-8d2059375387'
-                  slug: 'text1'
+                  slug: 'askWhatFollowsTwentyNine'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'After twenty-nine comes thirty, not two-ten. Why?'
-              markdown2:
+              explainTensExchange:
                 config:
                   id: '87aa84b9-967f-440e-a631-b287652b8aec'
-                  slug: 'markdown2'
+                  slug: 'explainTensExchange'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Twenty-nine has two tens and nine ones. One more object completes a third ten: three tens and zero loose ones, written 30.'
-              markdown3:
+              traceBackwardFromThirty:
                 config:
                   id: '86aa8326-977f-45a1-a531-b0f4662b8c7f'
-                  slug: 'markdown3'
+                  slug: 'traceBackwardFromThirty'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'One step back from thirty yields twenty-nine, not twenty. One object changes, even if regrouping changes how the numeral looks.'
-            order: ['text1', 'markdown2', 'markdown3']
+            order: ['askWhatFollowsTwentyNine', 'explainTensExchange', 'traceBackwardFromThirty']
         production:
           purpose: 'Why Not 210?'
           pedagogicalIntent: |
@@ -213,10 +213,10 @@ config:
             - **Navigation and access:** The explanation remains legible to a screen reader and does not require a visual page transition, sound or animation.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3OneStepHundredCounter:
+      countAcrossTensBoundary:
         config:
           id: '5eccb0ce-c5ae-4b25-990d-c99c40458aab'
-          slug: 'section3OneStepHundredCounter'
+          slug: 'countAcrossTensBoundary'
           type: 'content'
           params: {}
           locale:
@@ -226,10 +226,10 @@ config:
               en: 'One-Step Hundred Counter'
           content:
             items:
-              text1:
+              promptTwentyEightToThirtyOne:
                 config:
                   id: '31222b9f-e190-4ac4-baf1-6a81f790d44e'
-                  slug: 'text1'
+                  slug: 'promptTwentyEightToThirtyOne'
                   type: 'text'
                   params: {}
                   locale:
@@ -324,16 +324,16 @@ config:
                     This is a **proposed** Scene. Generic `scene` Resource rendering exists; One-Step Hundred Counter does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
                   purpose: 'Proposed interactive Scene for One-Step Hundred Counter'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainAdjacentCounts:
                 config:
                   id: '30a804d4-1fb5-462b-b164-2e0e19364ae5'
-                  slug: 'markdown2'
+                  slug: 'explainAdjacentCounts'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '29 is followed by 30; stepping backwards from 30 gives 29. 28,29,30,31 and 31,30,29,28, each adjacent difference is one.'
-            order: ['text1', 'oneStepHundredCounter', 'markdown2']
+            order: ['promptTwentyEightToThirtyOne', 'oneStepHundredCounter', 'explainAdjacentCounts']
         production:
           purpose: 'One-Step Hundred Counter'
           pedagogicalIntent: |
@@ -355,7 +355,7 @@ config:
             - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “One step changes a count by one, even when the tens digit changes.” is planned only, with no event or persistence.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order: ['section1BuildAndReadTwoDigits', 'section2WhyNot210', 'section3OneStepHundredCounter']
+    order: ['buildTwoDigitNumbers', 'explainRegroupingAtThirty', 'countAcrossTensBoundary']
   flashcards:
     items: {}
     order: []

@@ -16,10 +16,10 @@ config:
       en: 'Which Object Has More Mass?'
   section:
     items:
-      section1:
+      predictMassBeyondAppearance:
         config:
           id: '086d6825-deb3-43ba-91ac-bef3a93f34e0'
-          slug: 'section1'
+          slug: 'predictMassBeyondAppearance'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'Big Object, Small Object'
           content:
             items:
-              text1:
+              askBigVersusSmallObject:
                 config:
                   id: 'f5f14fc4-fc9f-482b-a63b-d076dc138e55'
-                  slug: 'text1'
+                  slug: 'askBigVersusSmallObject'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'Big Object, Small Object; authored text block 1'
                   specification: '1. **text — available renderer:** "This foam block looks big, and this small metal-like token looks tiny. Which one has **more mass**? Make your prediction. Then place one object on each pan of our balance."'
-              scene2:
+              releaseBalance:
                 config:
                   id: 'f4580a24-edae-44ed-9f0e-37baff99371b'
-                  slug: 'scene2'
+                  slug: 'releaseBalance'
                   type: 'scene'
                   params: {}
                   locale:
@@ -166,10 +166,10 @@ config:
 
                     2. **scene — Resource type/rendering exists, specific Scene proposed:** Equal-Arm Balance Lab (Scene specification embedded in this config.yaml), placement A. Model: **large foam block B**, mass **2 internal units**, on **right pan**; **small dense token A**, mass **5 internal units**, on **left pan**. Both pans start empty. The child chooses a prediction, places one on each side using labeled controls, and presses "Release balance" to reveal **left pan lower, right pan higher**. Internal mass numbers are only test labels, not visible pre-reveal.
                   productionNotes: 'Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainHeavierSmallToken:
                 config:
                   id: '8df78998-429c-4913-a0e6-6b6ab67d9675'
-                  slug: 'markdown3'
+                  slug: 'explainHeavierSmallToken'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -178,7 +178,7 @@ config:
                 production:
                   purpose: 'Big Object, Small Object; authored markdown block 3'
                   specification: '3. **markdown — available renderer:** "The **small token''s pan goes down**. On this fair balance, that means the small token has **more mass**. The large block takes more space, but being larger does not necessarily make something heavier."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askBigVersusSmallObject', 'releaseBalance', 'explainHeavierSmallToken']
         production:
           purpose: 'elicit and test the misconception that bigger volume always means more mass.'
           pedagogicalIntent: 'Original Section 1 — Big Object, Small Object; authoring draft only'
@@ -192,10 +192,10 @@ config:
             - **Specific feedback:** If child chooses large block: "It looks bigger, but watch the **balance**: the small token's side went down." Correct choice: "Yes: the lower pan holds the more massive object." If object was not placed: "First place **one object on each pan** so we can compare them."
             - **Nonvisual equivalent:** Before reveal, the child receives the same descriptions but **not** hidden masses; after reveal the textual state is "Token A on left, foam B on right; left pan down; token A has more mass". The balance tilt is not a color or motion-only clue.
             - **Future Note:** "On an equal-arm balance, the pan with greater mass goes down."
-      section2:
+      testMassAfterSideSwap:
         config:
           id: '056d636c-ddb3-4227-92ac-c086ac3f3999'
-          slug: 'section2'
+          slug: 'testMassAfterSideSwap'
           type: 'content'
           params: {}
           locale:
@@ -205,10 +205,10 @@ config:
               en: 'Swap Sides, Same Objects'
           content:
             items:
-              text1:
+              askIfMassChangesSides:
                 config:
                   id: 'ff9a6451-c2a1-434a-88c2-167731481bc8'
-                  slug: 'text1'
+                  slug: 'askIfMassChangesSides'
                   type: 'text'
                   params: {}
                   locale:
@@ -217,10 +217,10 @@ config:
                 production:
                   purpose: 'Swap Sides, Same Objects; authored text block 1'
                   specification: '1. **text — available:** "The little token made the **left** pan go down. If we move the token to the **right** pan and the foam to the **left**, does the token become lighter? Which pan should go down?"'
-              scene2:
+              swapPanContents:
                 config:
                   id: '3d12dfef-cfd6-4636-8ffb-5d812ccad1a0'
-                  slug: 'scene2'
+                  slug: 'swapPanContents'
                   type: 'scene'
                   params: {}
                   locale:
@@ -342,10 +342,10 @@ config:
 
                     2. **scene — proposed:** Equal-Arm Balance Lab (Scene specification embedded in this config.yaml), placement B. Reset to the same pair A mass 5 and B mass 2. Start **A left/B right** with left lower, then use "Swap pan contents" (or two-step accessible replacement that never shows a valid result while only one pan occupied). After swap **A right/B left**, right lower. "Read comparison" states in both arrangements **A > B** in mass. Control "Return to original" restores state.
                   productionNotes: 'Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainHeavierObjectFollows:
                 config:
                   id: '624b8091-3654-4a2e-b1e2-570ff75fce4c'
-                  slug: 'markdown3'
+                  slug: 'explainHeavierObjectFollows'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -354,7 +354,7 @@ config:
                 production:
                   purpose: 'Swap Sides, Same Objects; authored markdown block 3'
                   specification: '3. **markdown — available:** "The lower **pan** changed because the heavier object moved. The **small token still has more mass**. Moving an object to the other pan does not change its mass."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askIfMassChangesSides', 'swapPanContents', 'explainHeavierObjectFollows']
         production:
           purpose: 'show that side position changes but relative mass does not.'
           pedagogicalIntent: 'Original Section 2 — Swap Sides, Same Objects; authoring draft only'
@@ -367,10 +367,10 @@ config:
               3. **markdown — available:** "The lower **pan** changed because the heavier object moved. The **small token still has more mass**. Moving an object to the other pan does not change its mass."
             - **Feedback:** If child predicts left pan remains lower after swap: "The pans carry the objects. The token moved to the **right**, so now the **right** pan goes down." If child says the object lost mass: "Only its position changed, not the amount of matter in it."
             - **Access:** Use literal status sentences for each pan and object, and a pressable "Swap contents"; never require dragging over a moving beam.
-      section3:
+      identifyEqualMass:
         config:
           id: '066d64ff-dcb3-4094-93ac-c219ab3f3806'
-          slug: 'section3'
+          slug: 'identifyEqualMass'
           type: 'content'
           params: {}
           locale:
@@ -380,10 +380,10 @@ config:
               en: 'Different Shapes, Equal Mass'
           content:
             items:
-              text1:
+              questionDifferentShapesEqualMass:
                 config:
                   id: '36f570c2-5d93-4859-8c05-60482e04d1f7'
-                  slug: 'text1'
+                  slug: 'questionDifferentShapesEqualMass'
                   type: 'text'
                   params: {}
                   locale:
@@ -392,10 +392,10 @@ config:
                 production:
                   purpose: 'Different Shapes, Equal Mass; authored text block 1'
                   specification: '1. **text — available:** "A round stone-like object and a wide smooth block look different. Could they have the **same mass**? What would the balance look like?"'
-              scene2:
+              compareLevelPans:
                 config:
                   id: '30ac431e-c376-4407-84bd-a72038088801'
-                  slug: 'scene2'
+                  slug: 'compareLevelPans'
                   type: 'scene'
                   params: {}
                   locale:
@@ -517,10 +517,10 @@ config:
 
                     2. **scene — proposed:** Equal-Arm Balance Lab (Scene specification embedded in this config.yaml), placement C. Objects **C** and **D** have equal **3 internal mass units**, visually distinct shapes. Place C left/D right; after reveal, **both pans at equal height**. Toggle "Change their picture size, not their mass" to compare a larger-looking D with unchanged masses: pans remain level.
                   productionNotes: 'Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainBalancedMass:
                 config:
                   id: '15dae376-99a1-43e9-97cc-dacc91754a8f'
-                  slug: 'markdown3'
+                  slug: 'explainBalancedMass'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -529,7 +529,7 @@ config:
                 production:
                   purpose: 'Different Shapes, Equal Mass; authored markdown block 3'
                   specification: '3. **markdown — available:** "The pans are **level**. With one object on each side and a fair equal-arm balance, their **masses are equal**. Objects can have different shapes and still have the same mass."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['questionDifferentShapesEqualMass', 'compareLevelPans', 'explainBalancedMass']
         production:
           purpose: 'demonstrate that a level calibrated equal-arm balance represents equality, not lack of information.'
           pedagogicalIntent: 'Original Section 3 — Different Shapes, Equal Mass; authoring draft only'
@@ -543,10 +543,10 @@ config:
             - **Prediction and feedback:** If learner expects larger shape must be heavier: "The **balance** says equal. The shape/size did not tell us which mass was larger." If they say the beam never moved, therefore the comparison didn't work: "Here it is a meaningful result: both sides have the **same mass**."
             - **Scaffolding:** An optional text ledger says "C mass equals D mass"; internal numeric token values remain irrelevant for the child, even though they support deterministic test cases.
             - **Future Note:** "Level pans on a fair equal-arm balance mean equal mass."
-      section4:
+      controlFairComparison:
         config:
           id: '036d6046-dbb3-4f01-94ac-c3acae3f3cbf'
-          slug: 'section4'
+          slug: 'controlFairComparison'
           type: 'content'
           params: {}
           locale:
@@ -556,10 +556,10 @@ config:
               en: 'Make the Comparison Fair'
           content:
             items:
-              text1:
+              challengeHiddenExtraObject:
                 config:
                   id: '26e48537-a8f7-4fd0-8db7-069181271a82'
-                  slug: 'text1'
+                  slug: 'challengeHiddenExtraObject'
                   type: 'text'
                   params: {}
                   locale:
@@ -568,10 +568,10 @@ config:
                 production:
                   purpose: 'Make the Comparison Fair; authored text block 1'
                   specification: '1. **text — available:** "Two objects C and D have balanced before. Now the left pan has a **second small object** hiding beside C, and the beam tilts down on that side. Does this prove C is heavier? What should we fix?"'
-              scene2:
+              inspectUnequalPanContents:
                 config:
                   id: '51e4dd41-5636-4eb8-a768-712f16cfedde'
-                  slug: 'scene2'
+                  slug: 'inspectUnequalPanContents'
                   type: 'scene'
                   params: {}
                   locale:
@@ -693,10 +693,10 @@ config:
 
                     2. **scene — proposed:** Equal-Arm Balance Lab (Scene specification embedded in this config.yaml), placement D. Start C mass **3** left, D mass **3** right, **extra E mass 2** left; left total mass 5 versus right 3. Show visibly and textually "**two objects left, one object right — not the requested one-to-one comparison**." Choose "Remove extra E" to leave C vs D, producing level pans. Then show unseen pair **F mass 4** left / **G mass 6** right, one per pan, and ask for conclusion after release: **right pan lower, G has greater mass**.
                   productionNotes: 'Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainCalibratedComparison:
                 config:
                   id: '8ab4c9cf-249d-4d44-bc22-41d1921e5936'
-                  slug: 'markdown3'
+                  slug: 'explainCalibratedComparison'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -705,7 +705,7 @@ config:
                 production:
                   purpose: 'Make the Comparison Fair; authored markdown block 3'
                   specification: '3. **markdown — available:** "First make a **fair comparison**: one chosen object on each side, the same calibrated balance, no extra things in a pan. After removing the extra, C and D balance. In the new fair pair, the **right** pan goes down: G has greater mass."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['challengeHiddenExtraObject', 'inspectUnequalPanContents', 'explainCalibratedComparison']
         production:
           purpose: 'independent transfer including a deliberately invalid setup and correction.'
           pedagogicalIntent: 'Original Section 4 — Make the Comparison Fair; authoring draft only'
@@ -718,7 +718,7 @@ config:
               3. **markdown — available:** "First make a **fair comparison**: one chosen object on each side, the same calibrated balance, no extra things in a pan. After removing the extra, C and D balance. In the new fair pair, the **right** pan goes down: G has greater mass."
             - **Feedback:** For "C is heavier" based on unfair setup: "The left pan had **two objects**. That comparison cannot tell us that C alone is heavier." For new pair assuming bigger picture wins: "Read the tilt: the pan holding G is lower, regardless of the drawings' sizes." No penalty, scoring or inferred mastery.
             - **Transfer and extension:** Learner may optionally examine an actual balance with safe lightweight items under adult supervision, but the virtual equivalent supplies every observation and conclusion; no physical setup is required.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['predictMassBeyondAppearance', 'testMassAfterSideSwap', 'identifyEqualMass', 'controlFairComparison']
   flashcards:
     items: {}
     order: []
