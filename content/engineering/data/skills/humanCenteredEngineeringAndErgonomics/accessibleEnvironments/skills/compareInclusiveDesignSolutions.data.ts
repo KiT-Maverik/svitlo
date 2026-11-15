@@ -5,6 +5,7 @@ export const compareInclusiveDesignSolutions_Skill_Data = defineSkill({
   id: '3e2a8083-ce68-4a53-b75b-e6e1e39d5e0c',
   name: {
     en: 'Compare inclusive design solutions',
+    it: 'Confrontare soluzioni di progettazione inclusiva',
     zh: '比较包容性设计方案',
     hi: 'समावेशी डिज़ाइन समाधान की तुलना',
     es: 'Comparar soluciones de diseño inclusivo',
@@ -38,6 +39,7 @@ export const compareInclusiveDesignSolutions_Skill_Data = defineSkill({
     methodological: 'Consider who benefits or remains excluded when choosing a physical design alternative.',
     frontend: {
       en: 'Compare accessibility solutions by the needs they accommodate.',
+      it: 'Confronta le soluzioni di accessibilità in base alle esigenze che soddisfano.',
       zh: '根据不同方案满足的使用需求比较无障碍解决办法。',
       hi: 'सुगम्यता के समाधान की तुलना उन ज़रूरतों के आधार पर करें जिन्हें वे पूरा करते हैं।',
       es: 'Compara soluciones de accesibilidad según las necesidades que atienden.',
