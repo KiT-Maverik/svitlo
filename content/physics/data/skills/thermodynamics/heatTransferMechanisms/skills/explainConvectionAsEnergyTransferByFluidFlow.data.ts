@@ -5,6 +5,7 @@ export const explainConvectionAsEnergyTransferByFluidFlow_Skill_Data = defineSki
   id: '79b6ca80-96e2-4770-b8d6-ca337df5bb4e',
   name: {
     en: 'Explain convection as energy transfer by fluid flow',
+    it: 'Spiegare la convezione come trasferimento di energia mediante il flusso di un fluido',
     qm: 'Konvektsiyanı energiyanıñ aqımnen taşınuvı olaraq añlatmaq',
     zh: '解释对流是流体流动传递能量',
     hi: 'संवहन को द्रव या गैस के प्रवाह से ऊर्जा स्थानांतरण समझाना',
@@ -39,6 +40,7 @@ export const explainConvectionAsEnergyTransferByFluidFlow_Skill_Data = defineSki
       'Convection carries thermal energy with macroscopic motion of a liquid or gas; distinguish it from conduction without bulk material flow.',
     frontend: {
       en: 'Recognize how moving liquids and gases carry thermal energy.',
+      it: 'Riconosci come liquidi e gas in movimento trasportano energia termica.',
       qm: 'Aqqan suyuqlıq ve gazlar sıcaqlıq energiyasını nasıl taşığanını añlat.',
       zh: '识别运动中的液体和气体如何携带热能。',
       hi: 'पहचानें कि बहते तरल और गैस ऊष्मीय ऊर्जा कैसे साथ ले जाते हैं।',
