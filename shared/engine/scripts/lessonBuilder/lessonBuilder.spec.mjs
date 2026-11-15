@@ -138,8 +138,8 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
       'sections/intro/prompt/index.ts', 'sections/intro/gallery/index.ts',
       'sections/intro/gallery/first/index.ts',
       'sections/intro/check/index.ts', 'sections/intro/check/comparison/index.ts',
-      'sections/intro/check/comparison/checkPrompt/index.ts',
-      'sections/intro/check/comparison/correct/index.ts',
+      'sections/intro/check/comparison/question/checkPrompt/index.ts',
+      'sections/intro/check/comparison/answer/correct/index.ts',
       'flashcards/index.ts', 'flashcards/remember/index.ts',
       'flashcards/remember/front/front/index.ts', 'flashcards/remember/back/back/index.ts',
       'questions/index.ts', 'questions/selectOneAnswer/choice/index.ts']) {
@@ -438,4 +438,20 @@ test('module path collision is diagnosed without overwriting any existing file',
     f.save();
     assert.throws(() => runOne(f.lesson, 'generate', f.root), /Duplicate generated Lesson destination/);
     assert.equal(fs.existsSync(f.generated('index.ts')), false);
+  }));
+
+test('Checkpoint question and answer may reuse a block slug without file collisions', () =>
+  fixture(f => {
+    const checkpointItem = f.config.section.items.intro.content.items.check.content.items.comparison;
+    checkpointItem.question.slug = 'text';
+    checkpointItem.answer.items.correct.slug = 'text';
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const names = [...readAll(f.lesson).keys()];
+    assert(names.includes('sections/intro/check/comparison/question/text/index.ts'));
+    assert(names.includes('sections/intro/check/comparison/answer/text/index.ts'));
+    const item = fs.readFileSync(f.generated('sections/intro/check/comparison/index.ts'), 'utf8');
+    assert.match(item, /from ".\/question\/text"/);
+    assert.match(item, /from ".\/answer\/text"/);
+    assertTypeScriptSyntax(readAll(f.lesson));
   }));
