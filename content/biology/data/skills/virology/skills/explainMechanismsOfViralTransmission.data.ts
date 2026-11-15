@@ -5,6 +5,7 @@ export const explainMechanismsOfViralTransmission_Skill_Data = defineSkill({
   id: '60720f83-fa5f-48af-b434-a42142e04d3f',
   name: {
     en: 'Explain Mechanisms of Viral Transmission',
+    it: 'Spiegare i meccanismi di trasmissione virale',
     zh: '解释病毒传播的机制',
     hi: 'विषाणु संचरण के तरीकों की व्याख्या करना',
     es: 'Explicar los mecanismos de transmisión viral',
@@ -39,6 +40,7 @@ export const explainMechanismsOfViralTransmission_Skill_Data = defineSkill({
       'Explain how viruses spread between hosts by different routes, including respiratory particles, contact, biological fluids, vectors, and other mechanisms, and why a particular route depends on the characteristics of the virus and its hosts.',
     frontend: {
       en: 'Compare the different routes by which viruses can pass between hosts.',
+      it: "Confronta le diverse vie attraverso cui i virus possono passare da un ospite all'altro.",
       zh: '比较病毒在宿主之间传播的不同途径。',
       hi: 'उन विभिन्न रास्तों की तुलना करें जिनसे विषाणु एक मेज़बान से दूसरे तक फैल सकते हैं।',
       es: 'Compara las distintas vías por las que los virus pasan de un huésped a otro.',
