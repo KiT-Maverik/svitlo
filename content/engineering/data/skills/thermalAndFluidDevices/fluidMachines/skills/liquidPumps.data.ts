@@ -5,6 +5,7 @@ export const liquidPumps_Skill_Data = defineSkill({
   id: 'b25c886a-dbb4-4ede-9264-514c118fd49d',
   name: {
     en: 'Liquid pumps',
+    it: 'Pompe per liquidi',
     zh: '液体泵',
     hi: 'द्रव पंप',
     es: 'Bombas para líquidos',
@@ -38,6 +39,7 @@ export const liquidPumps_Skill_Data = defineSkill({
     methodological: 'Trace the components responsible for delivering flow or pressure to a liquid circuit.',
     frontend: {
       en: 'Trace how a liquid pump provides flow and pressure.',
+      it: 'Segui come una pompa per liquidi genera portata e pressione.',
       zh: '追踪液体泵如何产生流量和压力。',
       hi: 'समझें कि तरल पंप प्रवाह और दबाव कैसे उत्पन्न करता है।',
       es: 'Sigue cómo una bomba de líquidos produce caudal y presión.',
