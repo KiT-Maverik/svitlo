@@ -5,6 +5,7 @@ export const mixPigmentColors_Skill_Data = defineSkill({
   id: '54109c4a-510b-44bb-a16e-7fb3e31c20ee',
   name: {
     en: 'Mix Pigment Colors',
+    it: 'Mescolare i colori a pigmento',
     zh: '混合颜料颜色',
     hi: 'रंगद्रव्यों के रंग मिलाएँ',
     es: 'Mezclar colores de pigmentos',
@@ -38,6 +39,7 @@ export const mixPigmentColors_Skill_Data = defineSkill({
     methodological: 'Combine available pigments deliberately to approach a chosen target or relation between colors.',
     frontend: {
       en: 'Combine paints to create a color or relationship you want.',
+      it: 'Combina colori pittorici per ottenere la tinta o il rapporto cromatico che desideri.',
       zh: '混合颜料，调出想要的颜色或色彩关系。',
       hi: 'मनचाहा रंग या रंगों का मेल बनाने के लिए रंगद्रव्यों को मिलाएँ।',
       es: 'Combina pinturas para crear el color o la relación cromática que buscas.',

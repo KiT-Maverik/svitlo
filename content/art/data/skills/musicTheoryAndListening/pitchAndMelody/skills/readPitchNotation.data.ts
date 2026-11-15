@@ -5,6 +5,7 @@ export const readPitchNotation_Skill_Data = defineSkill({
   id: '95438eca-f890-4c28-8c76-a97ba583c1fc',
   name: {
     en: 'Read Pitch Notation',
+    it: 'Leggere la notazione delle altezze musicali',
     zh: '读取音高记谱',
     hi: 'स्वर-लिपि पढ़ें',
     es: 'Leer la notación de altura',
@@ -38,6 +39,7 @@ export const readPitchNotation_Skill_Data = defineSkill({
     methodological: 'Decode pitch relationships in an identified notation system without making it globally universal.',
     frontend: {
       en: 'Read note pitches using a particular musical notation system.',
+      it: 'Leggi le altezze delle note usando un particolare sistema di notazione musicale.',
       zh: '使用特定的音乐记谱系统读取音符音高。',
       hi: 'किसी विशेष संगीत लिपि का उपयोग करके स्वरों की ऊँचाई पढ़ें।',
       es: 'Lee las alturas de las notas mediante un sistema de notación musical específico.',

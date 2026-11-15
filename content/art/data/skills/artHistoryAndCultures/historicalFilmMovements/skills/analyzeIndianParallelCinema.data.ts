@@ -5,6 +5,7 @@ export const analyzeIndianParallelCinema_Skill_Data = defineSkill({
   id: 'c229f4de-b669-4554-9cf2-42b09f118bbd',
   name: {
     en: 'Analyze Indian Parallel Cinema',
+    it: "Analizzare il cinema parallelo indiano",
     zh: '分析印度平行电影',
     hi: 'भारतीय समानांतर सिनेमा का विश्लेषण करें',
     es: 'Analizar el cine paralelo indio',
@@ -39,6 +40,7 @@ export const analyzeIndianParallelCinema_Skill_Data = defineSkill({
       'Explain how selected Indian filmmakers developed alternative social themes and production aesthetics in relation to commercial filmmaking traditions.',
     frontend: {
       en: 'Explore how Indian Parallel Cinema developed alternatives to mainstream film styles.',
+      it: "Esplora come il cinema parallelo indiano ha sviluppato alternative agli stili cinematografici commerciali.",
       zh: '探索印度平行电影如何发展出主流电影风格之外的表达方式。',
       hi: 'जानें कि भारतीय समानांतर सिनेमा ने मुख्यधारा की फ़िल्म शैलियों के विकल्प कैसे विकसित किए।',
       es: 'Explora cómo el cine paralelo indio desarrolló alternativas a los estilos cinematográficos dominantes.',

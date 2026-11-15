@@ -12,6 +12,7 @@ export const generativeArt_SkillGroup_Data = defineSkillGroup({
   id: 'fcae2b7e-5d71-469b-9b05-9756f0edbb9f',
   name: {
     en: 'Generative Art',
+    it: 'Arte generativa',
     zh: '生成艺术',
     hi: 'जनरेटिव कला',
     es: 'Arte generativo',
@@ -60,6 +61,7 @@ export const generativeArt_SkillGroup_Data = defineSkillGroup({
       'Constraints, transformations and automated variation offer materials that still require deliberate artistic decisions.',
     frontend: {
       en: 'Explore how simple rules and controlled variation can make visual art.',
+      it: 'Esplora come regole semplici e variazioni controllate possano creare arte visiva.',
       zh: '探索简单规则和受控变化如何生成视觉艺术。',
       hi: 'जानें कि सरल नियम और नियंत्रित विविधता दृश्य कला कैसे बना सकते हैं।',
       es: 'Explora cómo unas reglas sencillas y la variación controlada pueden crear arte visual.',

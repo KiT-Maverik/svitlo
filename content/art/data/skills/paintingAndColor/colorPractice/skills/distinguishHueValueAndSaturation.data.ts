@@ -5,6 +5,7 @@ export const distinguishHueValueAndSaturation_Skill_Data = defineSkill({
   id: 'eeca876f-003c-4ed1-84b0-6193a53abe57',
   name: {
     en: 'Distinguish Hue Value and Saturation',
+    it: 'Distinguere tonalità, valore e saturazione',
     zh: '区分色相、明度和饱和度',
     hi: 'वर्ण, मान और संतृप्ति में अंतर पहचानें',
     es: 'Distinguir matiz, valor y saturación',
@@ -39,6 +40,7 @@ export const distinguishHueValueAndSaturation_Skill_Data = defineSkill({
       'Identify color family, lightness and intensity as separable properties with different visual consequences.',
     frontend: {
       en: "Notice the difference between a color's hue, lightness and vividness.",
+      it: 'Riconosci le differenze tra tonalità, luminosità e vividezza di un colore.',
       zh: '留意颜色的色相、明度和鲜艳程度之间的区别。',
       hi: 'किसी रंग के वर्ण, हल्केपन और चटकीलेपन के बीच का अंतर पहचानें।',
       es: 'Observa la diferencia entre el matiz, la claridad y la viveza de un color.',

@@ -5,6 +5,7 @@ export const performDramaticInteraction_Skill_Data = defineSkill({
   id: '9b6b65af-0ce6-4061-a70e-7c731204fd61',
   name: {
     en: 'Perform Dramatic Interaction',
+    it: 'Interpretare un\'interazione drammatica',
     zh: '表演戏剧情境互动',
     hi: 'नाटकीय संवाद प्रस्तुत करें',
     es: 'Interpretar una interacción dramática',
@@ -38,6 +39,7 @@ export const performDramaticInteraction_Skill_Data = defineSkill({
     methodological: 'Respond consistently to another actor within the agreed fictional circumstances.',
     frontend: {
       en: "Respond to other performers while staying within the scene's imagined world.",
+      it: 'Rispondi agli altri interpreti rimanendo nel mondo immaginario della scena.',
       zh: '在保持场景虚构世界的同时回应其他表演者。',
       hi: 'दृश्य की कल्पित दुनिया में बने रहते हुए अन्य कलाकारों को जवाब दें।',
       es: 'Responde a otros intérpretes sin salir del mundo imaginario de la escena.',

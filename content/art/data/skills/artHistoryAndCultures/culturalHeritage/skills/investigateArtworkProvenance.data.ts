@@ -5,6 +5,7 @@ export const investigateArtworkProvenance_Skill_Data = defineSkill({
   id: 'd0519d10-3091-415b-b00e-b1e5d91ae99a',
   name: {
     en: 'Investigate Artwork Provenance',
+    it: "Indagare la provenienza di un'opera d'arte",
     zh: '调查艺术品来源',
     hi: 'कलाकृति की उत्पत्ति की जाँच करें',
     es: 'Investigar la procedencia de una obra de arte',
@@ -38,6 +39,7 @@ export const investigateArtworkProvenance_Skill_Data = defineSkill({
     methodological: 'Examine documented ownership or custodial history and identify meaningful gaps.',
     frontend: {
       en: "Follow an artwork's recorded ownership history and notice what is missing.",
+      it: "Ricostruisci la storia documentata dei proprietari di un'opera e individua le informazioni mancanti.",
       zh: '追溯艺术品有记录的所有权历史，并留意其中的缺失。',
       hi: 'कलाकृति के दर्ज स्वामित्व इतिहास का पता लगाएँ और अनुपस्थित जानकारी पर ध्यान दें।',
       es: 'Sigue la historia documentada de propiedad de una obra y detecta la información que falta.',

@@ -5,6 +5,7 @@ export const identifyMusicalMotifs_Skill_Data = defineSkill({
   id: '740b81ba-36d0-4dd0-8d2b-569dd5cd4912',
   name: {
     en: 'Identify Musical Motifs',
+    it: 'Riconoscere i motivi musicali',
     zh: '识别音乐动机',
     hi: 'संगीत के मोटिफ़ पहचानें',
     es: 'Identificar motivos musicales',
@@ -38,6 +39,7 @@ export const identifyMusicalMotifs_Skill_Data = defineSkill({
     methodological: 'Recognize a short characteristic idea that recurs or changes across a work.',
     frontend: {
       en: 'Recognize a short musical idea when it returns in different forms.',
+      it: 'Riconosci una breve idea musicale quando ritorna in forme diverse.',
       zh: '当一个简短的音乐想法以不同形式再次出现时，识别它。',
       hi: 'जब कोई छोटा संगीत विचार अलग-अलग रूपों में लौटे, तो उसे पहचानें।',
       es: 'Reconoce una idea musical breve cuando reaparece en distintas formas.',

@@ -5,6 +5,7 @@ export const selectWorksForAnExhibition_Skill_Data = defineSkill({
   id: '2683a750-f868-4024-ba81-0b1a2d286933',
   name: {
     en: 'Select Works for an Exhibition',
+    it: "Selezionare opere per una mostra",
     zh: '为展览选择作品',
     hi: 'प्रदर्शनी के लिए कलाकृतियाँ चुनें',
     es: 'Seleccionar obras para una exposición',
@@ -38,6 +39,7 @@ export const selectWorksForAnExhibition_Skill_Data = defineSkill({
     methodological: 'Choose a coherent set of works in response to a theme, audience and available space.',
     frontend: {
       en: 'Choose artworks that work together for a particular theme and audience.',
+      it: "Scegli opere d'arte che dialoghino tra loro in relazione a un tema e a un pubblico specifici.",
       zh: '选择适合特定主题和观众、彼此相互呼应的艺术作品。',
       hi: 'ऐसी कलाकृतियाँ चुनें जो किसी खास विषय और दर्शकों के लिए एक-दूसरे के साथ अच्छी तरह मेल खाती हों।',
       es: 'Elige obras que funcionen juntas para un tema y un público determinados.',

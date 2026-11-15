@@ -5,6 +5,7 @@ export const performAnInstrumentalPhrase_Skill_Data = defineSkill({
   id: '19392bd8-9d9e-4b20-a06c-3ebaa5970d1f',
   name: {
     en: 'Perform an Instrumental Phrase',
+    it: 'Eseguire una frase strumentale',
     zh: '演奏一个器乐乐句',
     hi: 'वाद्य-संगीत का एक वाक्यांश बजाएँ',
     es: 'Interpretar una frase instrumental',
@@ -38,6 +39,7 @@ export const performAnInstrumentalPhrase_Skill_Data = defineSkill({
     methodological: 'Realize a sequence with intentional articulation, timing and musical expression.',
     frontend: {
       en: 'Play a connected musical idea with expressive timing and articulation.',
+      it: 'Suona un\'idea musicale continua con tempi e articolazioni espressivi.',
       zh: '用富有表现力的节奏处理和发音演奏连贯的音乐想法。',
       hi: 'भावपूर्ण समय-निर्धारण और उच्चारण के साथ जुड़ा हुआ संगीत विचार बजाएँ।',
       es: 'Toca una idea musical continua con ritmo y articulación expresivos.',

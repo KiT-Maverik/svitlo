@@ -5,6 +5,7 @@ export const controlSungPitch_Skill_Data = defineSkill({
   id: 'ce723ce1-bb71-4645-ab5a-2749eecb9f52',
   name: {
     en: 'Control Sung Pitch',
+    it: 'Controllare l\'intonazione del canto',
     zh: '控制歌唱音高',
     hi: 'गाए गए सुर की पिच नियंत्रित करें',
     es: 'Controlar la afinación al cantar',
@@ -38,6 +39,7 @@ export const controlSungPitch_Skill_Data = defineSkill({
     methodological: 'Match and intentionally change notes while preserving the chosen melodic relationships.',
     frontend: {
       en: 'Sing notes at the intended pitch and move between them deliberately.',
+      it: 'Canta note all\'altezza prevista e passa dall\'una all\'altra con intenzione.',
       zh: '按预定音高唱出音符，并有意识地在音符之间转换。',
       hi: 'निर्धारित पिच पर सुर गाएँ और उनके बीच सोच-समझकर जाएँ।',
       es: 'Canta las notas con la afinación prevista y cambia entre ellas de forma deliberada.',

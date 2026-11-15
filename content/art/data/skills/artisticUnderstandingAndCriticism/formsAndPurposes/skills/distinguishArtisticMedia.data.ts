@@ -5,6 +5,7 @@ export const distinguishArtisticMedia_Skill_Data = defineSkill({
   id: 'e9476587-f315-4eaa-9c35-acf0f07d64ca',
   name: {
     en: 'Distinguish Artistic Media',
+    it: "Distinguere i mezzi espressivi artistici",
     zh: '区分艺术媒介',
     hi: 'कला माध्यमों में अंतर करें',
     es: 'Distinguir medios artísticos',
@@ -39,6 +40,7 @@ export const distinguishArtisticMedia_Skill_Data = defineSkill({
       "Identify how sound, image, movement, language or physical space contributes to an artwork's mode of expression.",
     frontend: {
       en: 'See how images, sounds, movement, words and spaces communicate in different art forms.',
+      it: "Osserva come immagini, suoni, movimento, parole e spazi comunicano nelle diverse forme d'arte.",
       zh: '了解图像、声音、动作、文字和空间如何在不同艺术形式中传达内容。',
       hi: 'देखें कि अलग-अलग कला रूपों में चित्र, ध्वनि, गति, शब्द और स्थान कैसे संवाद करते हैं।',
       es: 'Observa cómo las imágenes, los sonidos, el movimiento, las palabras y los espacios comunican en distintas formas artísticas.',

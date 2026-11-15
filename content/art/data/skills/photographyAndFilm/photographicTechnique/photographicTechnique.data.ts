@@ -12,6 +12,7 @@ export const photographicTechnique_SkillGroup_Data = defineSkillGroup({
   id: '16b787b9-bcec-41a9-83ff-ff83c22b97c4',
   name: {
     en: 'Photographic Technique',
+    it: 'Tecnica fotografica',
 
     zh: '摄影技术',
     hi: 'फ़ोटोग्राफ़िक तकनीक',
@@ -56,6 +57,7 @@ export const photographicTechnique_SkillGroup_Data = defineSkillGroup({
       'Camera controls and light are treated as artistic choices, not as an engineering account of optical devices.',
     frontend: {
       en: 'Use camera and lighting choices to create a photograph with a clear visual effect.',
+      it: 'Usa le impostazioni della fotocamera e le scelte di illuminazione per creare una fotografia con un effetto visivo preciso.',
 
       zh: '运用相机和灯光选择，创作具有明确视觉效果的照片。',
       hi: 'स्पष्ट दृश्य प्रभाव वाली तस्वीर बनाने के लिए कैमरा और प्रकाश व्यवस्था चुनें।',

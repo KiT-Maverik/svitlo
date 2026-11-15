@@ -5,6 +5,7 @@ export const sequenceAnExhibition_Skill_Data = defineSkill({
   id: '1b8345c3-d4cd-4f52-bc6b-955938c1dc7a',
   name: {
     en: 'Sequence an Exhibition',
+    it: "Organizzare il percorso di una mostra",
     zh: '安排展览顺序',
     hi: 'प्रदर्शनी का क्रम निर्धारित करें',
     es: 'Ordenar una exposición',
@@ -38,6 +39,7 @@ export const sequenceAnExhibition_Skill_Data = defineSkill({
     methodological: 'Arrange works to create purposeful contrasts, transitions or thematic developments.',
     frontend: {
       en: 'Arrange artworks so their order creates meaningful connections and contrasts.',
+      it: "Disponi le opere in un ordine che crei collegamenti e contrasti significativi.",
       zh: '安排作品顺序，让它们之间形成有意义的联系与对比。',
       hi: 'कलाकृतियों को इस तरह क्रम में रखें कि उनके बीच सार्थक संबंध और विरोधाभास बनें।',
       es: 'Ordena las obras para crear conexiones y contrastes significativos.',

@@ -5,6 +5,7 @@ export const depictDepthWithOverlap_Skill_Data = defineSkill({
   id: '01852e61-4242-41b4-9aeb-cd952a71735e',
   name: {
     en: 'Depict Depth with Overlap',
+    it: 'Rappresentare la profondità con la sovrapposizione',
     zh: '利用遮挡表现空间深度',
     hi: 'एक-दूसरे को ढकने से गहराई दिखाएँ',
     es: 'Representar profundidad por superposición',
@@ -38,6 +39,7 @@ export const depictDepthWithOverlap_Skill_Data = defineSkill({
     methodological: 'Establish relative spatial position through occlusion and apparent size.',
     frontend: {
       en: 'Make objects appear nearer or farther by showing them overlap.',
+      it: 'Fai apparire gli oggetti più vicini o più lontani mostrando come si sovrappongono.',
       zh: '通过物体相互遮挡的关系表现远近。',
       hi: 'वस्तुओं को एक-दूसरे के सामने दिखाकर उनके पास या दूर होने का आभास दें।',
       es: 'Haz que los objetos parezcan más cercanos o lejanos mostrando cómo se superponen.',

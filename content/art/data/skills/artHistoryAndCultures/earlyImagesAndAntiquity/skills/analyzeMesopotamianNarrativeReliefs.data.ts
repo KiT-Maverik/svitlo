@@ -5,6 +5,7 @@ export const analyzeMesopotamianNarrativeReliefs_Skill_Data = defineSkill({
   id: '185ce9df-229a-4639-a5d3-13133af7dadd',
   name: {
     en: 'Analyze Mesopotamian Narrative Reliefs',
+    it: "Analizzare i rilievi narrativi mesopotamici",
     zh: '分析美索不达米亚叙事浮雕',
     hi: 'मेसोपोटामिया की कथात्मक उभरी हुई नक्काशियों का विश्लेषण करें',
     es: 'Analizar los relieves narrativos mesopotámicos',
@@ -39,6 +40,7 @@ export const analyzeMesopotamianNarrativeReliefs_Skill_Data = defineSkill({
       'Trace registers, figure hierarchy and sequences of actions in particular palace or commemorative reliefs, distinguishing visual depiction from political claims.',
     frontend: {
       en: 'Follow the stories and royal messages carved in ancient Mesopotamian reliefs.',
+      it: "Segui i racconti e i messaggi regali scolpiti negli antichi rilievi mesopotamici.",
       zh: '追踪古代美索不达米亚浮雕中刻画的故事和王权信息。',
       hi: 'प्राचीन मेसोपोटामिया के उभरे हुए शिल्पों में उकेरी गई कहानियों और राजकीय संदेशों को समझें।',
       es: 'Sigue las historias y los mensajes reales tallados en los relieves de la antigua Mesopotamia.',

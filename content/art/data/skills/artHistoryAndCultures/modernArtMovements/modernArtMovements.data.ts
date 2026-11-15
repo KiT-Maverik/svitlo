@@ -16,6 +16,7 @@ export const modernArtMovements_SkillGroup_Data = defineSkillGroup({
   id: 'f39c14cf-8aa4-448c-b0ed-b5e60f78d161',
   name: {
     en: 'Modern Art Movements',
+    it: "Movimenti dell'arte moderna",
     zh: '现代艺术运动',
     hi: 'आधुनिक कला आंदोलन',
     es: 'Movimientos del arte moderno',
@@ -72,6 +73,7 @@ export const modernArtMovements_SkillGroup_Data = defineSkillGroup({
       'These named movements generated differing responses to social modernity and established visual conventions. Mastery of one movement does not imply mastery of its neighbors.',
     frontend: {
       en: 'Explore how different modern art movements challenged familiar artistic conventions.',
+      it: "Esplora come diversi movimenti artistici moderni hanno messo in discussione le convenzioni artistiche tradizionali.",
       zh: '探索不同现代艺术运动如何挑战熟悉的艺术惯例。',
       hi: 'जानें कि आधुनिक कला आंदोलनों ने प्रचलित कलात्मक परंपराओं को कैसे चुनौती दी।',
       es: 'Descubre cómo distintos movimientos modernos desafiaron las convenciones artísticas conocidas.',

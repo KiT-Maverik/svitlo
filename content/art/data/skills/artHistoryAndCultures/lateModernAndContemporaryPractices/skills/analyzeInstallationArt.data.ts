@@ -5,6 +5,7 @@ export const analyzeInstallationArt_Skill_Data = defineSkill({
   id: 'e367de1f-9b68-40cc-abb6-3c2c85c9b71f',
   name: {
     en: 'Analyze Installation Art',
+    it: "Analizzare l'arte installativa",
     zh: '分析装置艺术',
     hi: 'स्थापना कला का विश्लेषण करें',
     es: 'Analizar el arte de instalación',
@@ -39,6 +40,7 @@ export const analyzeInstallationArt_Skill_Data = defineSkill({
       "Relate an artwork's arrangement in a particular environment to viewers' movement, perception and site-specific meaning.",
     frontend: {
       en: 'Discover how installation art transforms a space that viewers move through.',
+      it: "Scopri come le installazioni artistiche trasformano lo spazio attraversato dai visitatori.",
       zh: '了解装置艺术如何改变观众穿行其中的空间。',
       hi: 'जानें कि स्थापना कला दर्शकों के चलने वाले स्थान को कैसे बदलती है।',
       es: 'Descubre cómo la instalación transforma el espacio por el que se mueve el público.',

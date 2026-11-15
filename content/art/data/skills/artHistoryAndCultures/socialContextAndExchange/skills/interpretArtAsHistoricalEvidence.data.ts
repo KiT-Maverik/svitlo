@@ -5,6 +5,7 @@ export const interpretArtAsHistoricalEvidence_Skill_Data = defineSkill({
   id: '97bf7a94-140a-4c90-bb29-289c80f1bb57',
   name: {
     en: 'Interpret Art as Historical Evidence',
+    it: "Interpretare l'arte come testimonianza storica",
     zh: '将艺术解读为历史证据',
     hi: 'कला को ऐतिहासिक साक्ष्य के रूप में समझें',
     es: 'Interpretar el arte como evidencia histórica',
@@ -38,6 +39,7 @@ export const interpretArtAsHistoricalEvidence_Skill_Data = defineSkill({
     methodological: 'Distinguish what an artwork shows from claims requiring corroborating sources.',
     frontend: {
       en: 'Use artworks as historical clues while checking what other evidence is needed.',
+      it: "Usa le opere d'arte come indizi storici, verificando quali altre prove sono necessarie.",
       zh: '利用艺术作品寻找历史线索，同时判断还需要哪些其他证据。',
       hi: 'कलाकृतियों से ऐतिहासिक संकेत प्राप्त करें और जाँचें कि किन अन्य प्रमाणों की आवश्यकता है।',
       es: 'Usa las obras de arte como pistas históricas y comprueba qué otras pruebas hacen falta.',

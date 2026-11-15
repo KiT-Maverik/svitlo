@@ -5,6 +5,7 @@ export const distinguishDocumentaryAndStagedPhotography_Skill_Data = defineSkill
   id: '170827b1-5455-4496-8161-205de02a10b6',
   name: {
     en: 'Distinguish Documentary and Staged Photography',
+    it: 'Distinguere la fotografia documentaria da quella costruita',
 
     zh: '区分纪实摄影与摆拍摄影',
     hi: 'डॉक्यूमेंट्री और मंचित फ़ोटोग्राफ़ी में अंतर करें',
@@ -39,6 +40,7 @@ export const distinguishDocumentaryAndStagedPhotography_Skill_Data = defineSkill
     methodological: 'Explain how image-making conditions affect claims about events and depicted reality.',
     frontend: {
       en: 'Recognize when a photograph records an event and when a scene was arranged.',
+      it: 'Riconosci quando una fotografia documenta un evento e quando la scena è stata allestita.',
 
       zh: '识别照片是在记录事件，还是场景经过安排。',
       hi: 'पहचानें कि तस्वीर किसी घटना को दर्ज करती है या दृश्य पहले से रचा गया है।',

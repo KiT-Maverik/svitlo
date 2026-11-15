@@ -5,6 +5,7 @@ export const produceAStencilPrint_Skill_Data = defineSkill({
   id: 'f3c09fb4-8f17-482d-a5c0-3daa974809d2',
   name: {
     en: 'Produce a Stencil Print',
+    it: 'Realizzare una stampa con stencil',
     zh: '制作镂空版画',
     hi: 'स्टेंसिल से छाप बनाएँ',
     es: 'Crear una impresión con plantilla',
@@ -38,6 +39,7 @@ export const produceAStencilPrint_Skill_Data = defineSkill({
     methodological: 'Control masked and open regions so ink transfers the intended image.',
     frontend: {
       en: 'Use openings in a stencil to print your chosen shapes.',
+      it: 'Utilizza le aperture di uno stencil per stampare le forme che hai scelto.',
       zh: '利用模板上的镂空部分印出选定的形状。',
       hi: 'चुनी हुई आकृतियों को छापने के लिए स्टेंसिल के खुले हिस्सों का उपयोग करें।',
       es: 'Utiliza las aberturas de una plantilla para imprimir las formas elegidas.',

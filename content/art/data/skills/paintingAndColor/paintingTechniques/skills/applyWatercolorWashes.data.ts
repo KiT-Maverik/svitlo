@@ -5,6 +5,7 @@ export const applyWatercolorWashes_Skill_Data = defineSkill({
   id: 'e4818418-0daf-47a0-8a14-486459130240',
   name: {
     en: 'Apply Watercolor Washes',
+    it: 'Applicare lavature ad acquerello',
     zh: '绘制水彩平涂',
     hi: 'वॉटरकलर की समतल परतें लगाएँ',
     es: 'Aplicar aguadas de acuarela',
@@ -38,6 +39,7 @@ export const applyWatercolorWashes_Skill_Data = defineSkill({
     methodological: 'Control dilution and flow to create intentionally transparent painted regions.',
     frontend: {
       en: 'Make light, transparent areas by controlling water and paint.',
+      it: 'Crea aree chiare e trasparenti controllando acqua e pigmento.',
       zh: '通过控制水和颜料的用量，绘制轻盈、透明的色彩区域。',
       hi: 'पानी और रंग की मात्रा नियंत्रित करके हल्के और पारदर्शी रंग-क्षेत्र बनाएँ।',
       es: 'Crea zonas ligeras y transparentes controlando la cantidad de agua y pigmento.',

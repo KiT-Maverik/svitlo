@@ -5,6 +5,7 @@ export const analyzeBharatanatyam_Skill_Data = defineSkill({
   id: '6ba2fb84-e907-469b-ae0f-79b7ae626533',
   name: {
     en: 'Analyze Bharatanatyam',
+    it: "Analizzare il Bharatanatyam",
     zh: '分析婆罗多舞',
     hi: 'भरतनाट्यम का विश्लेषण करें',
     es: 'Analizar el bharatanatyam',
@@ -39,6 +40,7 @@ export const analyzeBharatanatyam_Skill_Data = defineSkill({
       'Relate codified movement, expressive gesture, repertoire and historical change to particular South Indian Bharatanatyam performance traditions.',
     frontend: {
       en: 'Explore Bharatanatyam movement, gesture and repertoire in their changing South Indian contexts.',
+      it: "Esplora i movimenti, i gesti e il repertorio del Bharatanatyam nei mutevoli contesti dell'India meridionale.",
       zh: '结合南印度不断变化的文化背景，探索婆罗多舞的动作、手势与剧目。',
       hi: 'दक्षिण भारत के बदलते संदर्भों में भरतनाट्यम की गतियों, मुद्राओं और प्रस्तुतियों को समझें।',
       es: 'Explora los movimientos, gestos y repertorios del bharatanatyam en sus cambiantes contextos del sur de la India.',

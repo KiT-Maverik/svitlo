@@ -5,6 +5,7 @@ export const animateGraphicElements_Skill_Data = defineSkill({
   id: 'd3914770-5d7c-4bb6-b169-f7b435084ddb',
   name: {
     en: 'Animate Graphic Elements',
+    it: 'Animare elementi grafici',
     zh: '制作图形元素动画',
     hi: 'ग्राफ़िक तत्वों को एनिमेट करें',
     es: 'Animar elementos gráficos',
@@ -39,6 +40,7 @@ export const animateGraphicElements_Skill_Data = defineSkill({
       'Create intentional movement or transformation of shapes, icons and graphical marks to convey emphasis, continuity or visual structure.',
     frontend: {
       en: 'Animate shapes and icons to guide attention or create expressive motion.',
+      it: 'Anima forme e icone per guidare l\'attenzione o creare movimenti espressivi.',
       zh: '为形状和图标添加动画，以引导注意力或创造富有表现力的动态效果。',
       hi: 'ध्यान आकर्षित करने या अभिव्यंजक गति बनाने के लिए आकृतियों और आइकनों को गतिशील बनाएँ।',
       es: 'Anima formas e iconos para dirigir la atención o crear movimiento expresivo.',

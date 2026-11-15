@@ -5,6 +5,7 @@ export const analyzeCuscoSchoolPainting_Skill_Data = defineSkill({
   id: 'f139b231-dfea-4698-9a45-9aee30aacc87',
   name: {
     en: 'Analyze Cusco School Painting',
+    it: "Analizzare la pittura della scuola di Cuzco",
     zh: '分析库斯科画派绘画',
     hi: 'कुस्को स्कूल चित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura de la Escuela Cusqueña',
@@ -39,6 +40,7 @@ export const analyzeCuscoSchoolPainting_Skill_Data = defineSkill({
       'Relate Andean and European elements in colonial Cuzco-region religious paintings to local workshops, patrons and cultural exchange.',
     frontend: {
       en: 'Discover how Cusco School paintings combine Andean and European artistic influences.',
+      it: "Scopri come i dipinti della scuola di Cuzco uniscono influenze artistiche andine ed europee.",
       zh: '了解库斯科画派绘画如何融合安第斯与欧洲艺术影响。',
       hi: 'जानें कि कुस्को स्कूल की चित्रकला में एंडीज़ और यूरोपीय कलात्मक प्रभाव कैसे मिलते हैं।',
       es: 'Descubre cómo la pintura de la Escuela Cusqueña combina influencias artísticas andinas y europeas.',

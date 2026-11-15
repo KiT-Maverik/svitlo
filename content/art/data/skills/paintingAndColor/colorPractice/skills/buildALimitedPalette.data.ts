@@ -5,6 +5,7 @@ export const buildALimitedPalette_Skill_Data = defineSkill({
   id: '7eda21d1-da96-49bc-9b18-8fe338cf8216',
   name: {
     en: 'Build a Limited Palette',
+    it: 'Creare una tavolozza limitata',
     zh: '构建有限调色板',
     hi: 'सीमित रंग-पैलेट तैयार करें',
     es: 'Crear una paleta limitada',
@@ -38,6 +39,7 @@ export const buildALimitedPalette_Skill_Data = defineSkill({
     methodological: 'Choose a constrained pigment set that still supports coherent variation within a work.',
     frontend: {
       en: 'Create a harmonious painting with a carefully chosen small set of colors.',
+      it: 'Crea un dipinto armonioso usando pochi colori scelti con cura.',
       zh: '精心挑选少量颜色，创作出和谐的画作。',
       hi: 'सोच-समझकर चुने गए कुछ रंगों से एक सामंजस्यपूर्ण चित्र बनाएँ।',
       es: 'Crea una pintura armoniosa con un pequeño conjunto de colores bien elegido.',

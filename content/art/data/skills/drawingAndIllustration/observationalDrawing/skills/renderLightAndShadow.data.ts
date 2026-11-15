@@ -5,6 +5,7 @@ export const renderLightAndShadow_Skill_Data = defineSkill({
   id: '06314c15-c442-4662-9d6c-5cf5dbdf6537',
   name: {
     en: 'Render Light and Shadow',
+    it: 'Rappresentare luce e ombra',
     zh: '表现光与影',
     hi: 'प्रकाश और छाया दर्शाएँ',
     es: 'Representar luces y sombras',
@@ -38,6 +39,7 @@ export const renderLightAndShadow_Skill_Data = defineSkill({
     methodological: 'Use relative tonal values to communicate illuminated and shadowed form.',
     frontend: {
       en: 'Show light and shadow through different shades of dark and light.',
+      it: 'Rappresenta luci e ombre attraverso diverse gradazioni di chiaro e scuro.',
       zh: '运用不同深浅的明暗色调表现光线和阴影。',
       hi: 'हल्के और गहरे रंगों से प्रकाश तथा छाया दिखाएँ।',
       es: 'Muestra la luz y la sombra mediante distintos tonos claros y oscuros.',

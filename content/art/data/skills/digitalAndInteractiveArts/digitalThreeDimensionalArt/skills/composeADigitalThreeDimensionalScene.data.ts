@@ -5,6 +5,7 @@ export const composeADigitalThreeDimensionalScene_Skill_Data = defineSkill({
   id: 'a00f427a-6b68-4b89-8a2d-66229e13787f',
   name: {
     en: 'Compose a Digital Three-Dimensional Scene',
+    it: 'Comporre una scena digitale tridimensionale',
     zh: '构成数字三维场景',
     hi: 'डिजिटल त्रि-आयामी दृश्य की रचना करें',
     es: 'Componer una escena digital tridimensional',
@@ -39,6 +40,7 @@ export const composeADigitalThreeDimensionalScene_Skill_Data = defineSkill({
       'Position objects and select a viewing frame to create meaningful depth, balance and relationships between subjects.',
     frontend: {
       en: 'Position virtual objects and select a viewpoint to compose a scene.',
+      it: 'Posiziona oggetti virtuali e scegli un punto di vista per comporre una scena.',
       zh: '摆放虚拟物体并选择视点，以构成完整场景。',
       hi: 'दृश्य बनाने के लिए आभासी वस्तुओं को रखें और देखने का कोण चुनें।',
       es: 'Coloca objetos virtuales y elige un punto de vista para componer una escena.',

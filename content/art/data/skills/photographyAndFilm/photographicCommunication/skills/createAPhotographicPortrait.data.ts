@@ -5,6 +5,7 @@ export const createAPhotographicPortrait_Skill_Data = defineSkill({
   id: 'e1ee4139-d395-45db-a1b5-3ebe996a371e',
   name: {
     en: 'Create a Photographic Portrait',
+    it: 'Realizzare un ritratto fotografico',
 
     zh: '创作摄影肖像',
     hi: 'फ़ोटोग्राफ़िक पोर्ट्रेट बनाएं',
@@ -39,6 +40,7 @@ export const createAPhotographicPortrait_Skill_Data = defineSkill({
     methodological: 'Use viewpoint, pose, setting and light to present a considered depiction of a person.',
     frontend: {
       en: 'Make a thoughtful portrait using pose, perspective, setting and light.',
+      it: 'Crea un ritratto ragionato usando posa, prospettiva, ambientazione e luce.',
 
       zh: '运用姿势、视角、环境和光线拍摄有构思的人像。',
       hi: 'मुद्रा, दृष्टिकोण, परिवेश और प्रकाश का उपयोग करके विचारपूर्ण पोर्ट्रेट बनाएं।',

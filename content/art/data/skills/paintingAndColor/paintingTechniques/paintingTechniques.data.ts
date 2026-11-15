@@ -15,6 +15,7 @@ export const paintingTechniques_SkillGroup_Data = defineSkillGroup({
   id: '5901f087-7742-4eaf-965f-42ae92137057',
   name: {
     en: 'Painting Techniques',
+    it: 'Tecniche pittoriche',
     zh: '绘画技法',
     hi: 'चित्रकारी की तकनीकें',
     es: 'Técnicas de pintura',
@@ -69,6 +70,7 @@ export const paintingTechniques_SkillGroup_Data = defineSkillGroup({
       'Different physical application methods affect transparency, edges, layering and surface appearance.',
     frontend: {
       en: 'Discover how paint application changes transparency, layers and edges.',
+      it: 'Scopri come l\'applicazione del colore modifica trasparenze, strati e contorni.',
       zh: '了解不同的上色方式如何影响透明度、颜料层次和边缘。',
       hi: 'जानें कि रंग लगाने के अलग-अलग तरीकों से पारदर्शिता, परतें और किनारे कैसे बदलते हैं।',
       es: 'Descubre cómo la aplicación de la pintura cambia la transparencia, las capas y los bordes.',

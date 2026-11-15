@@ -5,6 +5,7 @@ export const buildOpaqueLayers_Skill_Data = defineSkill({
   id: 'e728ce66-f153-4af0-84a1-3ff2e2148be8',
   name: {
     en: 'Build Opaque Layers',
+    it: 'Sovrapporre strati opachi',
     zh: '叠加不透明颜料层',
     hi: 'अपारदर्शी रंग की परतें बनाएँ',
     es: 'Construir capas opacas',
@@ -38,6 +39,7 @@ export const buildOpaqueLayers_Skill_Data = defineSkill({
     methodological: 'Use covering paint to revise shapes, intensify accents or replace earlier marks.',
     frontend: {
       en: 'Build and change your picture by placing solid paint over earlier layers.',
+      it: 'Costruisci e modifica il dipinto stendendo colore coprente sopra strati precedenti.',
       zh: '在已有颜料层上覆盖不透明颜料，逐步构建并修改画面。',
       hi: 'पहले की परतों के ऊपर गाढ़ा, अपारदर्शी रंग लगाकर चित्र बनाएँ और उसमें बदलाव करें।',
       es: 'Construye y modifica tu imagen aplicando pintura cubriente sobre las capas anteriores.',

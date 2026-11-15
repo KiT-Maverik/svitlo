@@ -5,6 +5,7 @@ export const arrangeMusicForAnEnsemble_Skill_Data = defineSkill({
   id: '00e68544-4621-4e58-b04d-c03bb3175569',
   name: {
     en: 'Arrange Music for an Ensemble',
+    it: 'Arrangiare musica per un ensemble',
     zh: '为合奏编配音乐',
     hi: 'वाद्यवृंद के लिए संगीत संयोजित करें',
     es: 'Arreglar música para un conjunto',
@@ -38,6 +39,7 @@ export const arrangeMusicForAnEnsemble_Skill_Data = defineSkill({
     methodological: 'Redistribute musical roles among instruments or voices for a selected expressive result.',
     frontend: {
       en: 'Adapt existing music for a chosen group of instruments or singers.',
+      it: 'Adatta musica già esistente per un gruppo scelto di strumenti o cantanti.',
       zh: '为选定的乐器组合或歌手群体改编现有音乐。',
       hi: 'चुने हुए वाद्ययंत्रों या गायकों के समूह के लिए मौजूदा संगीत को अनुकूलित करें।',
       es: 'Adapta música existente para un grupo elegido de instrumentos o cantantes.',

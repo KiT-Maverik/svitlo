@@ -5,6 +5,7 @@ export const analyzeMaoriWhakairoCarving_Skill_Data = defineSkill({
   id: '097c806c-fd4d-47d7-bcd9-183f3871cce9',
   name: {
     en: 'Analyze Māori Whakairo Carving',
+    it: "Analizzare l'intaglio whakairo māori",
     zh: '分析毛利 whakairo 雕刻',
     hi: 'माओरी व्हाकाइरो नक्काशी का विश्लेषण करें',
     es: 'Analizar la talla whakairo maorí',
@@ -39,6 +40,7 @@ export const analyzeMaoriWhakairoCarving_Skill_Data = defineSkill({
       "Interpret carved patterns and forms within a specified Māori community's architectural, genealogical or ceremonial context, respecting relevant cultural authority.",
     frontend: {
       en: 'Explore the meaning and setting of Māori whakairo carving in its community context.',
+      it: "Esplora il significato e l'ambiente dell'intaglio whakairo māori nel contesto della sua comunità.",
       zh: '了解毛利 whakairo 雕刻的形式、含义及其社群背景。',
       hi: 'माओरी व्हाकाइरो नक्काशी के रूपों, अर्थों और सामुदायिक संदर्भ को जानें।',
       es: 'Explora las formas, los significados y el contexto comunitario de la talla whakairo maorí.',

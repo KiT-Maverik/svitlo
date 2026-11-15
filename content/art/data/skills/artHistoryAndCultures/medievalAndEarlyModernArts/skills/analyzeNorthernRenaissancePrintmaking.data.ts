@@ -5,6 +5,7 @@ export const analyzeNorthernRenaissancePrintmaking_Skill_Data = defineSkill({
   id: '85510737-8409-4e50-8519-0c4e253cd4f3',
   name: {
     en: 'Analyze Northern Renaissance Printmaking',
+    it: "Analizzare l'incisione del Rinascimento nordico",
     zh: '分析北方文艺复兴版画',
     hi: 'उत्तरी पुनर्जागरण की प्रिंटमेकिंग का विश्लेषण करें',
     es: 'Analizar el grabado del Renacimiento nórdico',
@@ -39,6 +40,7 @@ export const analyzeNorthernRenaissancePrintmaking_Skill_Data = defineSkill({
       'Explain how woodcut or engraving technologies shaped image detail, circulation and artistic practice in northern European contexts.',
     frontend: {
       en: 'Discover how northern European printmakers created and circulated detailed images.',
+      it: "Scopri come gli incisori dell'Europa settentrionale creavano e diffondevano immagini ricche di dettagli.",
       zh: '了解北方文艺复兴时期的版画家如何制作并传播细节丰富的图像。',
       hi: 'जानें कि उत्तरी यूरोप के प्रिंट निर्माताओं ने विस्तृत चित्र कैसे बनाए और प्रसारित किए।',
       es: 'Descubre cómo los grabadores del norte de Europa crearon y difundieron imágenes detalladas.',

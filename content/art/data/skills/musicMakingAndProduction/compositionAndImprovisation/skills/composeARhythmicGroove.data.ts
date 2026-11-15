@@ -5,6 +5,7 @@ export const composeARhythmicGroove_Skill_Data = defineSkill({
   id: '6020e823-ad36-4656-b991-a15f650e43d8',
   name: {
     en: 'Compose a Rhythmic Groove',
+    it: 'Comporre un groove ritmico',
     zh: '创作节奏律动',
     hi: 'एक लयबद्ध ग्रूव बनाएँ',
     es: 'Crear un patrón rítmico',
@@ -38,6 +39,7 @@ export const composeARhythmicGroove_Skill_Data = defineSkill({
     methodological: 'Combine complementary patterns of accents, rests and onsets into a recurring foundation.',
     frontend: {
       en: 'Combine repeating rhythms into a groove with complementary parts.',
+      it: 'Combina ritmi ripetitivi in un groove con parti complementari.',
       zh: '将重复节奏组合成各部分相互补充的律动。',
       hi: 'दोहराई जाने वाली लयों को मिलाकर ऐसा ग्रूव बनाएँ जिसमें हिस्से एक-दूसरे के पूरक हों।',
       es: 'Combina ritmos repetidos en un patrón con partes complementarias.',

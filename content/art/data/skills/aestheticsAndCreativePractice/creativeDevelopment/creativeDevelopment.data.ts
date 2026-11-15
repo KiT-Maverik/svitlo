@@ -13,6 +13,7 @@ export const creativeDevelopment_SkillGroup_Data = defineSkillGroup({
   id: 'ede2b917-513d-42a9-adb8-a22bc76dcb81',
   name: {
     en: 'Creative Development',
+    it: "Sviluppo creativo",
     zh: '创意发展',
     hi: 'रचनात्मक विकास',
     es: 'Desarrollo creativo',
@@ -63,6 +64,7 @@ export const creativeDevelopment_SkillGroup_Data = defineSkillGroup({
       'Original work grows through choices, experiments and refinement, but this catalog does not impose a fixed teaching sequence.',
     frontend: {
       en: 'Turn creative possibilities into artworks through experimentation and thoughtful revision.',
+      it: "Trasforma le possibilità creative in opere d'arte attraverso la sperimentazione e una revisione consapevole.",
       zh: '通过实验和审慎修改，将创意可能性转化为艺术作品。',
       hi: 'प्रयोग और सोच-समझकर संशोधन के माध्यम से रचनात्मक संभावनाओं को कलाकृतियों में बदलें।',
       es: 'Convierte posibilidades creativas en obras mediante la experimentación y una revisión reflexiva.',

@@ -5,6 +5,7 @@ export const analyzeGothicCathedralSculpture_Skill_Data = defineSkill({
   id: 'ff5fd9b8-9ff7-4bc7-86af-2d65e48084a8',
   name: {
     en: 'Analyze Gothic Cathedral Sculpture',
+    it: "Analizzare la scultura delle cattedrali gotiche",
     zh: '分析哥特式大教堂雕塑',
     hi: 'गोथिक गिरजाघर की मूर्तिकला का विश्लेषण करें',
     es: 'Analizar la escultura de las catedrales góticas',
@@ -39,6 +40,7 @@ export const analyzeGothicCathedralSculpture_Skill_Data = defineSkill({
       'Relate sculptural programs on a particular cathedral to architecture, religious narratives and the experience of a medieval audience.',
     frontend: {
       en: 'Explore how carved cathedral figures communicate stories within Gothic architecture.',
+      it: "Esplora come le figure scolpite delle cattedrali comunicano storie all'interno dell'architettura gotica.",
       zh: '了解大教堂雕刻人物如何在哥特式建筑中传达故事。',
       hi: 'जानें कि तराशी गई गिरजाघर की आकृतियाँ गोथिक वास्तुकला में कहानियाँ कैसे सुनाती हैं।',
       es: 'Explora cómo las figuras talladas de las catedrales cuentan historias dentro de la arquitectura gótica.',

@@ -13,6 +13,7 @@ export const instrumentAndEnsemblePerformance_SkillGroup_Data = defineSkillGroup
   id: '90e96078-a5ad-4bc1-8fce-407be51f9032',
   name: {
     en: 'Instrument and Ensemble Performance',
+    it: 'Esecuzione strumentale e d\'insieme',
     zh: '乐器与合奏演奏',
     hi: 'वाद्ययंत्र और समूह वादन',
     es: 'Interpretación instrumental y de conjunto',
@@ -63,6 +64,7 @@ export const instrumentAndEnsemblePerformance_SkillGroup_Data = defineSkillGroup
       'Sound production and responsiveness to fellow performers support coherent realization of musical ideas.',
     frontend: {
       en: 'Develop musical expression through instrument technique and playing together.',
+      it: 'Sviluppa l\'espressività musicale attraverso la tecnica strumentale e il suonare insieme.',
       zh: '通过乐器技巧和合奏培养音乐表现力。',
       hi: 'वाद्य तकनीक और साथ मिलकर वादन के माध्यम से संगीत अभिव्यक्ति विकसित करें।',
       es: 'Desarrolla la expresión musical mediante la técnica instrumental y la interpretación conjunta.',

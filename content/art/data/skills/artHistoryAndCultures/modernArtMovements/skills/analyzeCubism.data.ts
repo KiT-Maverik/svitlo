@@ -5,6 +5,7 @@ export const analyzeCubism_Skill_Data = defineSkill({
   id: '2deccfdd-3106-4611-897f-7abfebcfc453',
   name: {
     en: 'Analyze Cubism',
+    it: "Analizzare il Cubismo",
     zh: '分析立体主义',
     hi: 'घनवाद का विश्लेषण करें',
     es: 'Analizar el cubismo',
@@ -39,6 +40,7 @@ export const analyzeCubism_Skill_Data = defineSkill({
       'Explain how selected Cubist works fragment and reconstruct viewpoints and pictorial space, distinguishing analytical and synthetic approaches when relevant.',
     frontend: {
       en: 'See how Cubist artists reshaped objects and showed multiple viewpoints.',
+      it: "Osserva come gli artisti cubisti trasformavano gli oggetti e li mostravano da più punti di vista.",
       zh: '了解立体主义艺术家如何重塑物体，并在一幅画中呈现多个视角。',
       hi: 'जानें कि घनवादी कलाकारों ने वस्तुओं को नए रूप में दिखाकर एक ही चित्र में कई दृष्टिकोण कैसे प्रस्तुत किए।',
       es: 'Descubre cómo los artistas cubistas transformaron los objetos y representaron varios puntos de vista en una sola imagen.',

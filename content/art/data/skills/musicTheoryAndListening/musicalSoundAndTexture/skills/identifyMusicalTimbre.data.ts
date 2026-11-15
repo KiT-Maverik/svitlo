@@ -5,6 +5,7 @@ export const identifyMusicalTimbre_Skill_Data = defineSkill({
   id: '49eebf73-e722-4df2-a425-f0f2ffbf21cf',
   name: {
     en: 'Identify Musical Timbre',
+    it: 'Riconoscere il timbro musicale',
     zh: '识别音乐音色',
     hi: 'संगीत का स्वर-गुण पहचानें',
     es: 'Identificar el timbre musical',
@@ -38,6 +39,7 @@ export const identifyMusicalTimbre_Skill_Data = defineSkill({
     methodological: 'Recognize the character of a sound independently of its pitch or volume.',
     frontend: {
       en: 'Recognize the unique sound qualities of different voices and instruments.',
+      it: 'Riconosci le qualità sonore caratteristiche di voci e strumenti diversi.',
       zh: '识别不同人声和乐器独特的声音特征。',
       hi: 'विभिन्न आवाज़ों और वाद्ययंत्रों की विशिष्ट ध्वनि-विशेषताओं को पहचानें।',
       es: 'Reconoce las cualidades sonoras propias de distintas voces e instrumentos.',

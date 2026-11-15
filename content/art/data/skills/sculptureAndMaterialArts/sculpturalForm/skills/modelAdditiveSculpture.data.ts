@@ -5,6 +5,7 @@ export const modelAdditiveSculpture_Skill_Data = defineSkill({
   id: '4d206210-3ef8-4cd4-9b98-da39535c401e',
   name: {
     en: 'Model Additive Sculpture',
+    it: 'Modellare una scultura per aggiunta',
     zh: '通过添加材料塑造雕塑',
     hi: 'जोड़कर मूर्तिकला गढ़ें',
     es: 'Modelar una escultura por adición',
@@ -38,6 +39,7 @@ export const modelAdditiveSculpture_Skill_Data = defineSkill({
     methodological: 'Build volume through controlled accumulation and shaping of pliable material.',
     frontend: {
       en: 'Add and shape soft material to build a sculptural object.',
+      it: 'Aggiungi e modella materiale morbido per costruire un oggetto scultoreo.',
       zh: '通过不断添加和塑造柔软材料来构建立体作品。',
       hi: 'मुलायम सामग्री जोड़कर और आकार देकर मूर्तिकला बनाएँ।',
       es: 'Añade y moldea material blando para construir una pieza escultórica.',
