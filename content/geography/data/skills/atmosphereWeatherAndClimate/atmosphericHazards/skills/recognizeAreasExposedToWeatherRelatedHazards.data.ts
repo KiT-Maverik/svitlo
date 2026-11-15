@@ -5,6 +5,7 @@ export const recognizeAreasExposedToWeatherRelatedHazards_Skill_Data = defineSki
   id: 'cdfba8b1-d220-44b5-a14a-738ee3a6694f',
   name: {
     en: 'Recognize areas exposed to weather-related hazards',
+    it: 'Riconoscere le aree esposte ai pericoli meteorologici',
     zh: '识别易受天气灾害影响的地区',
     hi: 'मौसमी खतरों के संपर्क वाले क्षेत्र पहचानना',
     es: 'Reconocer zonas expuestas a riesgos meteorológicos',
@@ -39,6 +40,7 @@ export const recognizeAreasExposedToWeatherRelatedHazards_Skill_Data = defineSki
       'Match a described event such as a flood-producing storm or drought with plausible geographic exposure conditions.',
     frontend: {
       en: 'Recognize locations more exposed to floods, droughts, storms or extreme heat.',
+      it: 'Riconosci i luoghi maggiormente esposti a inondazioni, siccità, tempeste o caldo estremo.',
       zh: '识别更容易遭受洪水、干旱、风暴或极端高温的地方。',
       hi: 'बाढ़, सूखा, तूफ़ान या अत्यधिक गर्मी के अधिक जोखिम वाले स्थान पहचानें।',
       es: 'Reconoce lugares más expuestos a inundaciones, sequías, tormentas o calor extremo.',

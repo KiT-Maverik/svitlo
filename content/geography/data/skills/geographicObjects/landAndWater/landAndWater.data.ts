@@ -12,6 +12,7 @@ export const landAndWater_SkillGroup_Data = defineSkillGroup({
   id: 'b296f364-8d09-4c52-b906-7e4d21ca36d7',
   name: {
     en: 'Land and Water',
+    it: 'Terre emerse e acque',
     zh: '陆地与水体',
     hi: 'स्थल और जल',
     es: 'Tierra y agua',
@@ -60,6 +61,7 @@ export const landAndWater_SkillGroup_Data = defineSkillGroup({
       'Natural geographic features are differentiated by relief, water movement, enclosure and spatial relationships to neighboring land or water. Object identification is separate from the physical processes that formed a coastline, mountain or river valley.',
     frontend: {
       en: 'Learn to distinguish common natural land and water features.',
+      it: 'Impara a distinguere gli elementi naturali più comuni delle terre emerse e delle acque.',
       zh: '学习区分常见的天然陆地地物和水体。',
       hi: 'सामान्य प्राकृतिक स्थलरूपों और जलरूपों में अंतर करना सीखें।',
       es: 'Aprende a distinguir las formas naturales comunes de tierra y agua.',

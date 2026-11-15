@@ -5,6 +5,7 @@ export const collectAndRecordGeographicallyReferencedObservations_Skill_Data = d
   id: '338c4be2-52af-4808-9b6a-243ff6b22ff1',
   name: {
     en: 'Collect and record geographically referenced observations',
+    it: 'Raccogliere e registrare osservazioni georeferenziate',
     zh: '收集并记录带有地理位置的观测结果',
     hi: 'स्थान-संदर्भ वाले अवलोकन एकत्र कर दर्ज करना',
     es: 'Recopilar y registrar observaciones georreferenciadas',
@@ -39,6 +40,7 @@ export const collectAndRecordGeographicallyReferencedObservations_Skill_Data = d
       'Associate measurements or descriptions with sufficient place and time context to make comparisons meaningful.',
     frontend: {
       en: 'Record geographic observations with enough location and time information.',
+      it: 'Registra le osservazioni geografiche indicando con sufficiente precisione luogo e momento.',
       zh: '记录地理观察时提供足够的地点和时间信息。',
       hi: 'भौगोलिक अवलोकनों में स्थान और समय की पर्याप्त जानकारी दर्ज करें।',
       es: 'Registra observaciones geográficas con suficiente información de lugar y tiempo.',

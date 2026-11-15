@@ -5,6 +5,7 @@ export const identifyTheMainPartsOfARiverNetwork_Skill_Data = defineSkill({
   id: 'e17dec2a-30e1-4ff4-bcec-3e672d16bd18',
   name: {
     en: 'Identify the main parts of a river network',
+    it: 'Individuare le parti principali di una rete fluviale',
     zh: '识别河网的主要组成部分',
     hi: 'नदी तंत्र के मुख्य भाग पहचानना',
     es: 'Identificar las partes de una red fluvial',
@@ -38,6 +39,7 @@ export const identifyTheMainPartsOfARiverNetwork_Skill_Data = defineSkill({
     methodological: 'Distinguish source, tributary, confluence, channel, and mouth by their roles in connected flow.',
     frontend: {
       en: "Recognize a river's source, tributaries, confluences, channel and mouth.",
+      it: 'Riconosci sorgente, affluenti, confluenze, alveo e foce di un fiume.',
       zh: '辨认河源、支流、汇流处、河道和河口。',
       hi: 'नदी का उद्गम, सहायक नदियाँ, संगम, जलधारा और मुहाना पहचानें।',
       es: 'Reconoce el nacimiento, los afluentes, las confluencias, el cauce y la desembocadura.',

@@ -5,6 +5,7 @@ export const interpretTheGeographicDistributionOfCulturalCharacteristics_Skill_D
   id: '64ebba52-b34e-4b3b-a05c-9bef5422b87f',
   name: {
     en: 'Interpret the geographic distribution of cultural characteristics',
+    it: 'Interpretare la distribuzione geografica delle caratteristiche culturali',
     zh: '解读文化特征的地理分布',
     hi: 'सांस्कृतिक विशेषताओं के भौगोलिक वितरण की व्याख्या करना',
     es: 'Interpretar la distribución geográfica de rasgos culturales',
@@ -39,6 +40,7 @@ export const interpretTheGeographicDistributionOfCulturalCharacteristics_Skill_D
       'Use spatial evidence to compare where linguistic, architectural or other cultural practices occur while recognizing overlap, diversity and the limitations of classifications.',
     frontend: {
       en: 'Compare mapped cultural features without assuming everyone in one place is the same.',
+      it: 'Confronta le caratteristiche culturali rappresentate su una carta senza supporre che tutte le persone di un luogo siano uguali.',
       zh: '比较地图上的文化特征，不要假定同一地点的所有人都相同。',
       hi: 'मानचित्र पर सांस्कृतिक विशेषताओं की तुलना करें, बिना यह मान लिए कि एक स्थान के सभी लोग एक जैसे हैं।',
       es: 'Compara rasgos culturales en mapas sin suponer que todas las personas de un lugar son iguales.',

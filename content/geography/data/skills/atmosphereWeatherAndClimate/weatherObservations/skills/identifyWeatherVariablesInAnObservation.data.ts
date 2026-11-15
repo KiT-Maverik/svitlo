@@ -5,6 +5,7 @@ export const identifyWeatherVariablesInAnObservation_Skill_Data = defineSkill({
   id: '69c05315-3fe9-426b-bc31-8b104dc59cb9',
   name: {
     en: 'Identify weather variables in an observation',
+    it: "Individuare le variabili meteorologiche in un'osservazione",
     zh: '识别天气观测中的变量',
     hi: 'मौसम अवलोकन के तत्व पहचानना',
     es: 'Identificar variables en una observación meteorológica',
@@ -39,6 +40,7 @@ export const identifyWeatherVariablesInAnObservation_Skill_Data = defineSkill({
       'Separate air temperature, precipitation, wind, cloud cover, and pressure as different properties rather than a single “good or bad weather” rating.',
     frontend: {
       en: 'Distinguish temperature, rain, wind, clouds and pressure as weather variables.',
+      it: 'Distingui temperatura, precipitazioni, vento, nuvolosità e pressione come variabili meteorologiche.',
       zh: '区分气温、降雨、风、云量与气压等天气要素。',
       hi: 'तापमान, वर्षा, हवा, बादल और दबाव को अलग-अलग मौसमी तत्व समझें।',
       es: 'Distingue temperatura, lluvia, viento, nubes y presión como variables del tiempo.',

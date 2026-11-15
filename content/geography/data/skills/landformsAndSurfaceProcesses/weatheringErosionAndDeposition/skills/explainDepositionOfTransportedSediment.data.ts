@@ -5,6 +5,7 @@ export const explainDepositionOfTransportedSediment_Skill_Data = defineSkill({
   id: '2530f66b-2506-4261-bb27-b830a79eb5f2',
   name: {
     en: 'Explain deposition of transported sediment',
+    it: 'Spiegare la deposizione dei sedimenti trasportati',
     zh: '解释搬运沉积物的沉积过程',
     hi: 'बहाकर लाए गए अवसाद के निक्षेपण को समझाना',
     es: 'Explicar la deposición de sedimentos transportados',
@@ -39,6 +40,7 @@ export const explainDepositionOfTransportedSediment_Skill_Data = defineSkill({
       'Identify how moving sediment accumulates when transporting conditions change, such as at a river mouth, on a floodplain or in a dune field.',
     frontend: {
       en: 'Explain where sediment accumulates after being transported.',
+      it: 'Spiega dove si accumulano i sedimenti dopo essere stati trasportati.',
       zh: '解释沉积物被搬运后会在哪里堆积。',
       hi: 'समझाएँ कि परिवहन के बाद अवसाद कहाँ जमा होता है।',
       es: 'Explica dónde se acumulan los sedimentos después de ser transportados.',

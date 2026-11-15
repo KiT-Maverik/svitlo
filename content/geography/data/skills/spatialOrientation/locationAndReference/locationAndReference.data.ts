@@ -11,6 +11,7 @@ export const locationAndReference_SkillGroup_Data = defineSkillGroup({
   id: '60ab1695-5d01-4e47-b593-3f607907a4b2',
   name: {
     en: 'Location and Reference',
+    it: 'Posizione e riferimenti',
     zh: '位置与参照',
     hi: 'स्थान और संदर्भ',
     es: 'Ubicación y referencias',
@@ -57,6 +58,7 @@ export const locationAndReference_SkillGroup_Data = defineSkillGroup({
       'Locations can be described relative to a chosen reference, identified using stable geographic or civic references, and situated within areas of different spatial extent. The identity of the reference must be explicit rather than assumed from the observer.',
     frontend: {
       en: 'Learn to describe places using clear points of reference.',
+      it: 'Impara a descrivere i luoghi usando punti di riferimento chiari.',
       zh: '学习借助明确的参照点描述地点。',
       hi: 'स्पष्ट संदर्भ बिंदुओं की मदद से स्थानों का वर्णन करना सीखें।',
       es: 'Aprende a describir lugares usando puntos de referencia claros.',

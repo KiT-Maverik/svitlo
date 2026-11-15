@@ -10,6 +10,7 @@ export const humanGeography_SkillDomain_Data = defineSkillDomain({
   id: '4cbaebaf-99ce-425a-886f-46b577b152d3',
   title: {
     en: 'Human Geography',
+    it: 'Geografia umana',
     zh: '人文地理学',
     hi: 'मानव भूगोल',
     es: 'Geografía humana',
@@ -53,6 +54,7 @@ export const humanGeography_SkillDomain_Data = defineSkillDomain({
       'Settlement, mobility, culture, political territories, livelihoods and economic connections create spatial patterns across inhabited places. The focus is geographic distribution, diffusion, regional relationships and the effects of place, not national political history or business accounting.',
     frontend: {
       en: 'Explore how people, settlements, cultures and economic activities are distributed across places.',
+      it: 'Esplora come persone, insediamenti, culture e attività economiche si distribuiscono nei diversi luoghi.',
       zh: '探索人口、聚落、文化和经济活动如何分布在不同地方。',
       hi: 'जानें कि लोग, बस्तियाँ, संस्कृतियाँ और आर्थिक गतिविधियाँ विभिन्न स्थानों में कैसे वितरित हैं।',
       es: 'Explora cómo se distribuyen las personas, los asentamientos, las culturas y las actividades económicas.',

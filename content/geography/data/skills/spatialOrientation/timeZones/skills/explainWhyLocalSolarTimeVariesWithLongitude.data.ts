@@ -5,6 +5,7 @@ export const explainWhyLocalSolarTimeVariesWithLongitude_Skill_Data = defineSkil
   id: '3e7a573c-d8f0-4983-b285-b8faa85674a4',
   name: {
     en: 'Explain why local solar time varies with longitude',
+    it: "Spiegare perché l'ora solare locale varia con la longitudine",
     zh: '解释地方太阳时为何随经度变化',
     hi: 'स्थानीय सौर समय देशांतर के साथ क्यों बदलता है, समझाना',
     es: 'Explicar por qué la hora solar local varía según la longitud',
@@ -39,6 +40,7 @@ export const explainWhyLocalSolarTimeVariesWithLongitude_Skill_Data = defineSkil
       "Connect Earth's rotation with the apparent passage of the Sun across the sky: places at different longitudes reach solar noon at different moments. This geographic tendency is not a rule that political zone boundaries follow exact meridians.",
     frontend: {
       en: 'Explain why solar noon occurs at different times at different longitudes.',
+      it: 'Spiega perché il mezzogiorno solare avviene in momenti diversi a longitudini differenti.',
       zh: '解释为什么不同经度的地点在不同时刻迎来太阳正午。',
       hi: 'समझाएँ कि अलग-अलग देशांतरों पर सौर दोपहर अलग समय पर क्यों होती है।',
       es: 'Explica por qué el mediodía solar sucede a distintas horas según la longitud.',

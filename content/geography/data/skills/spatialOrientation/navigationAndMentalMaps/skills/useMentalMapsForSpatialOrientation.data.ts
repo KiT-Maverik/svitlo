@@ -5,6 +5,7 @@ export const useMentalMapsForSpatialOrientation_Skill_Data = defineSkill({
   id: '05df61aa-f788-4603-8400-2f6140b426c6',
   name: {
     en: 'Use mental maps for spatial orientation',
+    it: 'Usare le mappe mentali per orientarsi nello spazio',
     zh: '使用心理地图进行空间定位',
     hi: 'दिशा पहचानने के लिए मानसिक मानचित्रों का उपयोग',
     es: 'Usar mapas mentales para orientarse en el espacio',
@@ -39,6 +40,7 @@ export const useMentalMapsForSpatialOrientation_Skill_Data = defineSkill({
       'Represent remembered places and spatial relationships internally, and use that representation to reason about position or a route without consulting a physical map. Drawing a familiar route, revising it after a new observation and imagining landmarks are different exercises for the same transferable spatial ability.',
     frontend: {
       en: 'Use your memory of places to reason about where you are and how to get somewhere.',
+      it: 'Usa il ricordo dei luoghi per capire dove ti trovi e come raggiungere una destinazione.',
       zh: '利用记忆中的地点判断自己在哪里，以及如何到达目的地。',
       hi: 'याद किए हुए स्थानों की मदद से सोचें कि आप कहाँ हैं और कहीं कैसे पहुँचेंगे।',
       es: 'Usa tus recuerdos de los lugares para deducir dónde estás y cómo llegar a otro sitio.',

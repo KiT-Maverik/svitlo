@@ -5,6 +5,7 @@ export const useIntermediateDirectionsToDistinguishBearings_Skill_Data = defineS
   id: '69fc5160-f60d-46bf-9c0c-ab7fa697ccd4',
   name: {
     en: 'Use intermediate directions to distinguish bearings',
+    it: 'Usare le direzioni intercardinali per distinguere gli orientamenti',
     zh: '用中间方位区分方向',
     hi: 'मध्यवर्ती दिशाओं से दिशा पहचानना',
     es: 'Usar puntos intercardinales para distinguir rumbos',
@@ -39,6 +40,7 @@ export const useIntermediateDirectionsToDistinguishBearings_Skill_Data = defineS
       'Locate positions such as northeast between adjacent cardinal directions rather than treating the compass as only four separate choices.',
     frontend: {
       en: 'Recognize directions such as northeast and southwest on a compass.',
+      it: 'Riconosci sulla bussola direzioni come nord-est e sud-ovest.',
       zh: '在指南针上识别东北、西南等方向。',
       hi: 'कंपास पर उत्तर-पूर्व और दक्षिण-पश्चिम जैसी दिशाएँ पहचानें।',
       es: 'Reconoce en una brújula direcciones como el noreste y el suroeste.',

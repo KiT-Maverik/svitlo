@@ -5,6 +5,7 @@ export const locateContinentsOnAGlobe_Skill_Data = defineSkill({
   id: 'c4240a07-0bae-47cc-949a-73a960e16771',
   name: {
     en: 'Locate continents on a globe',
+    it: 'Localizzare i continenti su un globo',
     zh: '在地球仪上定位大陆',
     hi: 'ग्लोब पर महाद्वीप ढूँढ़ना',
     es: 'Localizar continentes en un globo terráqueo',
@@ -39,6 +40,7 @@ export const locateContinentsOnAGlobe_Skill_Data = defineSkill({
       'Identify the global positions and relative arrangement of major continental landmasses according to a specified classification system, using their forms and geographic relationships rather than a rote list of example coordinates.',
     frontend: {
       en: 'Locate major continental landmasses using a specified geographic convention.',
+      it: 'Localizza le principali masse continentali secondo una convenzione geografica specificata.',
       zh: '根据指定的地理划分规则，在地球仪上找到主要大陆。',
       hi: 'बताई गई भौगोलिक परंपरा के अनुसार ग्लोब पर प्रमुख महाद्वीपीय भूभाग ढूँढ़ें।',
       es: 'Localiza las principales masas continentales según la convención geográfica indicada.',

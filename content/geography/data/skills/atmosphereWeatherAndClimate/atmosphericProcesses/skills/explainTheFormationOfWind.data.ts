@@ -5,6 +5,7 @@ export const explainTheFormationOfWind_Skill_Data = defineSkill({
   id: 'f9598bb1-d56c-4321-90ba-ceb5502af446',
   name: {
     en: 'Explain the formation of wind',
+    it: 'Spiegare la formazione del vento',
     zh: '解释风的形成',
     hi: 'हवा बनने की प्रक्रिया समझाना',
     es: 'Explicar la formación del viento',
@@ -39,6 +40,7 @@ export const explainTheFormationOfWind_Skill_Data = defineSkill({
       "Relate air motion to geographic differences in atmospheric pressure and temperature, recognizing that terrain and Earth's rotation can modify its direction and strength.",
     frontend: {
       en: 'Explain how pressure differences and other factors produce wind.',
+      it: 'Spiega come le differenze di pressione e altri fattori generano il vento.',
       zh: '解释气压差及其他因素如何产生风。',
       hi: 'समझाएँ कि वायुदाब में अंतर और अन्य कारणों से हवा कैसे चलती है।',
       es: 'Explica cómo las diferencias de presión y otros factores producen viento.',

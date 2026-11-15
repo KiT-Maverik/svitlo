@@ -5,6 +5,7 @@ export const explainHowErosionTransportsSurfaceMaterial_Skill_Data = defineSkill
   id: '918d9c47-d413-4b64-a1ac-b6e2c4f51b9f',
   name: {
     en: 'Explain how erosion transports surface material',
+    it: "Spiegare come l'erosione trasporta i materiali superficiali",
     zh: '解释侵蚀如何搬运地表物质',
     hi: 'अपरदन द्वारा सतही पदार्थ के परिवहन को समझाना',
     es: 'Explicar cómo la erosión transporta materiales superficiales',
@@ -39,6 +40,7 @@ export const explainHowErosionTransportsSurfaceMaterial_Skill_Data = defineSkill
       'Trace removal and movement of loose material by flowing water, wind, ice or gravity, distinguishing the transport process from weathering at its source.',
     frontend: {
       en: 'Describe how water, wind, ice and gravity remove and carry loose material.',
+      it: 'Descrivi come acqua, vento, ghiaccio e gravità asportano e trasportano materiale sciolto.',
       zh: '描述水、风、冰和重力如何剥离并搬运松散物质。',
       hi: 'बताएँ कि पानी, हवा, बर्फ और गुरुत्वाकर्षण ढीले पदार्थ को कैसे हटाकर ले जाते हैं।',
       es: 'Describe cómo el agua, el viento, el hielo y la gravedad desprenden y transportan materiales sueltos.',

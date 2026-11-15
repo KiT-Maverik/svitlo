@@ -11,6 +11,7 @@ export const mineralsAndTheirProperties_SkillGroup_Data = defineSkillGroup({
   id: 'eb59662a-1d88-4418-92e3-73f5dbb93ddb',
   name: {
     en: 'Minerals and Their Properties',
+    it: 'Minerali e loro proprietà',
     zh: '矿物及其性质',
     hi: 'खनिज और उनके गुण',
     es: 'Minerales y sus propiedades',
@@ -58,6 +59,7 @@ export const mineralsAndTheirProperties_SkillGroup_Data = defineSkillGroup({
       'A mineral is a naturally occurring crystalline substance with characteristic structure and material properties. Its identity is inferred using complementary evidence such as scratch resistance, streak, luster and cleavage rather than relying on color or one test in isolation.',
     frontend: {
       en: 'Explore how physical properties help describe and identify minerals.',
+      it: 'Esplora come le proprietà fisiche permettono di descrivere e riconoscere i minerali.',
       zh: '探索物理性质如何帮助描述和识别矿物。',
       hi: 'जानें कि भौतिक गुण खनिजों का वर्णन और पहचान करने में कैसे मदद करते हैं।',
       es: 'Explora cómo las propiedades físicas ayudan a describir e identificar minerales.',

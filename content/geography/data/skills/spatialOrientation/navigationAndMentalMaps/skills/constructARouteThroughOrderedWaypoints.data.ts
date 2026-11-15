@@ -5,6 +5,7 @@ export const constructARouteThroughOrderedWaypoints_Skill_Data = defineSkill({
   id: '3143ffd4-848b-4c17-8cfa-6d2d368af2ba',
   name: {
     en: 'Construct a route through ordered waypoints',
+    it: 'Costruire un percorso attraverso punti di passaggio ordinati',
     zh: '按顺序经过途经点规划路线',
     hi: 'क्रमबद्ध पड़ावों से मार्ग बनाना',
     es: 'Trazar una ruta mediante puntos de paso ordenados',
@@ -39,6 +40,7 @@ export const constructARouteThroughOrderedWaypoints_Skill_Data = defineSkill({
       'Choose an intelligible sequence of landmarks and turns between two positions, checking that the instructions preserve connectivity.',
     frontend: {
       en: 'Plan connected routes using landmarks and turns in the correct order.',
+      it: "Pianifica percorsi collegati usando punti di riferimento e svolte nell'ordine corretto.",
       zh: '按照正确顺序使用地标和转弯点，规划连贯的路线。',
       hi: 'पहचान वाले स्थलों और मोड़ों को सही क्रम में रखकर जुड़ा हुआ मार्ग बनाएँ।',
       es: 'Planifica rutas continuas siguiendo puntos de referencia y giros en el orden correcto.',

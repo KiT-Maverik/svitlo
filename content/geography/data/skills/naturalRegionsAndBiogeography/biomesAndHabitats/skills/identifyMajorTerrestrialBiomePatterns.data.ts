@@ -5,6 +5,7 @@ export const identifyMajorTerrestrialBiomePatterns_Skill_Data = defineSkill({
   id: '5815531c-060d-482c-81fa-c50ef8379a44',
   name: {
     en: 'Identify major terrestrial biome patterns',
+    it: 'Individuare le principali distribuzioni dei biomi terrestri',
     zh: '识别主要陆地生物群系的分布规律',
     hi: 'मुख्य स्थलीय जैवप्रदेशों के प्रतिरूप पहचानना',
     es: 'Identificar patrones de los principales biomas terrestres',
@@ -39,6 +40,7 @@ export const identifyMajorTerrestrialBiomePatterns_Skill_Data = defineSkill({
       'Associate broad forest, grassland, desert, and tundra patterns with environmental conditions rather than treating them as isolated species lists.',
     frontend: {
       en: 'Recognize global patterns of forests, grasslands, deserts and tundra.',
+      it: 'Riconosci la distribuzione globale di foreste, praterie, deserti e tundra.',
       zh: '识别全球森林、草原、沙漠和苔原的分布规律。',
       hi: 'विश्व भर में वनों, घास के मैदानों, मरुस्थलों और टुंड्रा के फैलाव के प्रतिरूप पहचानें।',
       es: 'Reconoce la distribución mundial de bosques, praderas, desiertos y tundra.',

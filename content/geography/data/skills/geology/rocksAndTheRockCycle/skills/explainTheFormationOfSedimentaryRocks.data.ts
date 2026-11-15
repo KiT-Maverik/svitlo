@@ -5,6 +5,7 @@ export const explainTheFormationOfSedimentaryRocks_Skill_Data = defineSkill({
   id: '33cff36c-734c-4e47-80aa-986fbf59fe47',
   name: {
     en: 'Explain the formation of sedimentary rocks',
+    it: 'Spiegare la formazione delle rocce sedimentarie',
     zh: '解释沉积岩的形成',
     hi: 'अवसादी चट्टानों का निर्माण समझाना',
     es: 'Explicar la formación de rocas sedimentarias',
@@ -39,6 +40,7 @@ export const explainTheFormationOfSedimentaryRocks_Skill_Data = defineSkill({
       'Trace deposited particles through burial, compaction and cementation into sedimentary material, distinguishing lithification from simple accumulation of loose sand.',
     frontend: {
       en: 'Explore how sediments become solid rock through compaction and cementation.',
+      it: 'Esplora come i sedimenti diventano roccia solida attraverso compattazione e cementazione.',
       zh: '探索沉积物如何经过压实和胶结成为坚硬的岩石。',
       hi: 'समझें कि अवसाद दबाव से सघन होकर और सीमेंटित होकर ठोस चट्टान कैसे बनता है।',
       es: 'Explora cómo los sedimentos se convierten en roca sólida mediante compactación y cementación.',

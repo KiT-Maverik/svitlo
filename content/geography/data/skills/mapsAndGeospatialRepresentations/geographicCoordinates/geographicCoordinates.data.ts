@@ -11,6 +11,7 @@ export const geographicCoordinates_SkillGroup_Data = defineSkillGroup({
   id: 'c7a49433-a463-4c5e-a372-2ffefaf4fb51',
   name: {
     en: 'Geographic Coordinates',
+    it: 'Coordinate geografiche',
     zh: '地理坐标',
     hi: 'भौगोलिक निर्देशांक',
     es: 'Coordenadas geográficas',
@@ -53,6 +54,7 @@ export const geographicCoordinates_SkillGroup_Data = defineSkillGroup({
       'The graticule provides a worldwide angular reference for positions. Latitude and longitude are distinct measurements whose ordered combination identifies a location.',
     frontend: {
       en: 'Use latitude and longitude to describe locations on Earth.',
+      it: 'Usa latitudine e longitudine per descrivere le posizioni sulla Terra.',
       zh: '使用纬度和经度描述地球上某个地点的位置。',
       hi: 'अक्षांश और देशांतर से पृथ्वी पर स्थानों का वर्णन करें।',
       es: 'Usa la latitud y la longitud para describir ubicaciones en la Tierra.',

@@ -5,6 +5,7 @@ export const distinguishARockFromAMineral_Skill_Data = defineSkill({
   id: '9bd2c592-eecd-4bd4-be04-3c1d62006f1c',
   name: {
     en: 'Distinguish a rock from a mineral',
+    it: 'Distinguere una roccia da un minerale',
     zh: '区分岩石与矿物',
     hi: 'चट्टान और खनिज में अंतर करना',
     es: 'Distinguir una roca de un mineral',
@@ -39,6 +40,7 @@ export const distinguishARockFromAMineral_Skill_Data = defineSkill({
       'Recognize that a rock may consist of one or more minerals, mineral fragments or other geological material, whereas a mineral is an individual crystalline substance with characteristic properties.',
     frontend: {
       en: 'Understand the difference between a rock and the minerals it contains.',
+      it: 'Comprendi la differenza tra una roccia e i minerali che la compongono.',
       zh: '理解岩石与构成它的矿物之间的区别。',
       hi: 'चट्टान और उसमें मौजूद खनिजों के बीच का अंतर समझें।',
       es: 'Comprende la diferencia entre una roca y los minerales que contiene.',

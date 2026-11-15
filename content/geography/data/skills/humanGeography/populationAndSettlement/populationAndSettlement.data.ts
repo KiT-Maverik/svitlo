@@ -13,6 +13,7 @@ export const populationAndSettlement_SkillGroup_Data = defineSkillGroup({
   id: 'b68dee87-461a-40d1-a265-2d4dc12aa2ac',
   name: {
     en: 'Population and Settlement',
+    it: 'Popolazione e insediamenti',
     zh: '人口与聚落',
     hi: 'जनसंख्या और बसावट',
     es: 'Población y asentamientos',
@@ -63,6 +64,7 @@ export const populationAndSettlement_SkillGroup_Data = defineSkillGroup({
       'Population counts, density, migration, and settlement forms show how human presence is unevenly distributed. The same total population can occupy very different spatial patterns.',
     frontend: {
       en: 'Discover why populations and settlements are spread unevenly across regions.',
+      it: 'Scopri perché popolazioni e insediamenti sono distribuiti in modo disomogeneo tra le regioni.',
       zh: '了解为什么人口和聚落在不同地区的分布不均匀。',
       hi: 'जानें कि जनसंख्या और बस्तियाँ अलग-अलग क्षेत्रों में असमान रूप से क्यों फैली हैं।',
       es: 'Descubre por qué la población y los asentamientos se distribuyen de forma desigual entre regiones.',

@@ -5,6 +5,7 @@ export const interpretGeographicPatternsOfBiodiversity_Skill_Data = defineSkill(
   id: '677536f6-2e93-474c-b828-8e566bfdcf4d',
   name: {
     en: 'Interpret geographic patterns of biodiversity',
+    it: 'Interpretare la distribuzione geografica della biodiversità',
     zh: '解读生物多样性的地理分布格局',
     hi: 'जैवविविधता के भौगोलिक प्रतिरूप समझना',
     es: 'Interpretar patrones geográficos de biodiversidad',
@@ -39,6 +40,7 @@ export const interpretGeographicPatternsOfBiodiversity_Skill_Data = defineSkill(
       'Identify broad differences in variety of living organisms across mapped regions and relate them cautiously to climate, habitat complexity, disturbance and observation coverage.',
     frontend: {
       en: 'Use maps to compare biodiversity across regions, accounting for observation differences.',
+      it: 'Usa le carte per confrontare la biodiversità tra regioni tenendo conto delle differenze nelle osservazioni.',
       zh: '借助地图比较各地区的生物多样性，并考虑观测差异。',
       hi: 'अवलोकनों में अंतर को ध्यान में रखते हुए मानचित्रों से क्षेत्रों की जैवविविधता की तुलना करें।',
       es: 'Usa mapas para comparar la biodiversidad de distintas regiones, teniendo en cuenta diferencias en las observaciones.',

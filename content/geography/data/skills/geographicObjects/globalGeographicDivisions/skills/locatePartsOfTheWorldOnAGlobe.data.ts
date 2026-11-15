@@ -5,6 +5,7 @@ export const locatePartsOfTheWorldOnAGlobe_Skill_Data = defineSkill({
   id: 'b4ed9b5d-5879-4a18-8d86-5b16e975411a',
   name: {
     en: 'Locate parts of the world on a globe',
+    it: 'Localizzare le parti del mondo su un globo',
     zh: '在地球仪上定位世界各地区',
     hi: 'ग्लोब पर विश्व के भाग ढूँढ़ना',
     es: 'Localizar partes del mundo en un globo',
@@ -39,6 +40,7 @@ export const locatePartsOfTheWorldOnAGlobe_Skill_Data = defineSkill({
       'Recognize the world regions designated as parts of the world within a stated convention and locate them in relation to surrounding continents and oceans, without assuming their borders are universally fixed.',
     frontend: {
       en: 'Locate named parts of the world and recognize that their boundaries can vary.',
+      it: 'Localizza le parti del mondo denominate e riconosci che i loro confini possono variare.',
       zh: '在地球仪上找到指定的世界地区，并认识到其边界可能有所不同。',
       hi: 'ग्लोब पर नामित विश्व क्षेत्रों को ढूँढ़ें और जानें कि उनकी सीमाएँ बदल सकती हैं।',
       es: 'Localiza las partes del mundo nombradas y reconoce que sus límites pueden variar.',

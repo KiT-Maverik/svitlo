@@ -5,6 +5,7 @@ export const explainGeographicDiffusionOfCulturalPractices_Skill_Data = defineSk
   id: '37ce6b8d-2243-482d-8658-52718e606cfc',
   name: {
     en: 'Explain geographic diffusion of cultural practices',
+    it: 'Spiegare la diffusione geografica delle pratiche culturali',
     zh: '解释文化习俗的地理传播',
     hi: 'सांस्कृतिक प्रथाओं का भौगोलिक प्रसार समझाना',
     es: 'Explicar la difusión geográfica de prácticas culturales',
@@ -39,6 +40,7 @@ export const explainGeographicDiffusionOfCulturalPractices_Skill_Data = defineSk
       'Trace how cultural ideas or practices may spread between places through migration, exchange and communication, without treating their spatial spread as automatic or uniform.',
     frontend: {
       en: 'Explain how cultural practices spread through movement, exchange and communication.',
+      it: 'Spiega come le pratiche culturali si diffondono attraverso spostamenti, scambi e comunicazione.',
       zh: '解释文化习俗如何通过人口流动、交流和沟通传播。',
       hi: 'समझाएँ कि लोगों के आवागमन, आदान-प्रदान और संचार से सांस्कृतिक प्रथाएँ कैसे फैलती हैं।',
       es: 'Explica cómo las prácticas culturales se difunden mediante desplazamientos, intercambios y comunicación.',

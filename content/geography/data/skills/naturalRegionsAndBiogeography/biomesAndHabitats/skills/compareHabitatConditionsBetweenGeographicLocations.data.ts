@@ -5,6 +5,7 @@ export const compareHabitatConditionsBetweenGeographicLocations_Skill_Data = def
   id: '9b77ecf2-7ca3-404d-872d-d6802e80bf0c',
   name: {
     en: 'Compare habitat conditions between geographic locations',
+    it: 'Confrontare le condizioni degli habitat tra luoghi geografici',
     zh: '比较不同地理位置的栖息地条件',
     hi: 'विभिन्न भौगोलिक स्थानों की आवास स्थितियों की तुलना करना',
     es: 'Comparar las condiciones de hábitat entre lugares geográficos',
@@ -39,6 +40,7 @@ export const compareHabitatConditionsBetweenGeographicLocations_Skill_Data = def
       'Use temperature, moisture, altitude, and land cover to explain contrasts in living conditions for organisms.',
     frontend: {
       en: 'Compare conditions that create different habitats in different locations.',
+      it: 'Confronta le condizioni che danno origine ad habitat diversi in luoghi differenti.',
       zh: '比较不同地点形成不同栖息地的环境条件。',
       hi: 'उन परिस्थितियों की तुलना करें जिनसे अलग-अलग स्थानों पर अलग आवास बनते हैं।',
       es: 'Compara las condiciones que dan lugar a distintos hábitats en diferentes lugares.',

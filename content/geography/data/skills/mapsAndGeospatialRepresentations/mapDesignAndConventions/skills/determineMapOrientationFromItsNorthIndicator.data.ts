@@ -5,6 +5,7 @@ export const determineMapOrientationFromItsNorthIndicator_Skill_Data = defineSki
   id: '8e13e949-45d2-43a1-bb40-05a613681569',
   name: {
     en: 'Determine map orientation from its north indicator',
+    it: "Determinare l'orientamento di una carta dall'indicazione del nord",
     zh: '根据指北标确定地图方向',
     hi: 'उत्तर सूचक से मानचित्र की दिशा तय करना',
     es: 'Determinar la orientación de un mapa por la flecha norte',
@@ -39,6 +40,7 @@ export const determineMapOrientationFromItsNorthIndicator_Skill_Data = defineSki
       "Use the map's stated orientation rather than assuming the top of every depiction is geographic north.",
     frontend: {
       en: 'Orient a map using its north indicator instead of assuming north is always at the top.',
+      it: "Orienta una carta usando l'indicatore del nord, senza dare per scontato che il nord sia sempre in alto.",
       zh: '按照地图的指北标定向，不要默认地图上方总是北方。',
       hi: 'मानचित्र के उत्तर सूचक से दिशा तय करें; यह न मानें कि ऊपर हमेशा उत्तर है।',
       es: 'Orienta un mapa usando su indicador del norte, sin suponer que el norte siempre está arriba.',

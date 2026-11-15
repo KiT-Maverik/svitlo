@@ -5,6 +5,7 @@ export const explainBroadClimateDifferencesUsingGeographicFactors_Skill_Data = d
   id: '5029e61f-2077-4c23-9d62-06aad33c35c0',
   name: {
     en: 'Explain broad climate differences using geographic factors',
+    it: 'Spiegare le differenze climatiche generali attraverso i fattori geografici',
     zh: '运用地理因素解释主要气候差异',
     hi: 'भौगोलिक कारणों से जलवायु में मुख्य अंतर समझाना',
     es: 'Explicar grandes diferencias climáticas con factores geográficos',
@@ -39,6 +40,7 @@ export const explainBroadClimateDifferencesUsingGeographicFactors_Skill_Data = d
       'Use latitude, elevation, coastal influence, and prevailing wind patterns to account for contrasts between places, while allowing multiple causes.',
     frontend: {
       en: 'Use latitude, altitude and coastal influence to explain climate differences.',
+      it: 'Usa latitudine, altitudine e vicinanza al mare per spiegare le differenze climatiche.',
       zh: '利用纬度、海拔和海洋影响解释气候差异。',
       hi: 'अक्षांश, ऊँचाई और समुद्र की निकटता से जलवायु अंतर समझाएँ।',
       es: 'Usa latitud, altitud y cercanía al mar para explicar diferencias de clima.',

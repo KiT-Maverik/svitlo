@@ -5,6 +5,7 @@ export const explainGeographicDriversOfMigration_Skill_Data = defineSkill({
   id: 'cb1425f0-7c16-4310-9178-2e965a7ae27e',
   name: {
     en: 'Explain geographic drivers of migration',
+    it: 'Spiegare i fattori geografici delle migrazioni',
     zh: '解释迁移的地理驱动因素',
     hi: 'प्रवास के भौगोलिक कारण समझाना',
     es: 'Explicar los factores geográficos de la migración',
@@ -39,6 +40,7 @@ export const explainGeographicDriversOfMigration_Skill_Data = defineSkill({
       "Connect migration patterns with geographic differences in livelihoods, safety, climate, conflict or access to services, distinguishing plausible push and pull conditions from assumptions about any individual's motives.",
     frontend: {
       en: 'Explore geographic reasons why people may move between regions.',
+      it: 'Esplora le ragioni geografiche per cui le persone possono spostarsi tra regioni.',
       zh: '探索人们可能在不同地区之间迁移的地理原因。',
       hi: 'जानें कि लोग क्षेत्रों के बीच स्थान क्यों बदल सकते हैं, इसके भौगोलिक कारण क्या हैं।',
       es: 'Explora las razones geográficas por las que las personas pueden trasladarse entre regiones.',

@@ -5,6 +5,7 @@ export const interpretGeographicExposureToGeologicalHazards_Skill_Data = defineS
   id: '8dfcf52e-b5e4-4203-995f-27b73abd7599',
   name: {
     en: 'Interpret geographic exposure to geological hazards',
+    it: "Interpretare l'esposizione geografica ai rischi geologici",
     zh: '解读地质灾害的地理暴露情况',
     hi: 'भूवैज्ञानिक खतरों के भौगोलिक जोखिम-क्षेत्र समझना',
     es: 'Interpretar la exposición geográfica a peligros geológicos',
@@ -39,6 +40,7 @@ export const interpretGeographicExposureToGeologicalHazards_Skill_Data = defineS
       'Use an earthquake, volcano or fault map together with settlement locations to identify potentially exposed places, distinguishing hazard location from a precise prediction of future damage.',
     frontend: {
       en: 'Use hazard maps to find settlements exposed to geological events.',
+      it: 'Usa le carte dei rischi geologici per individuare gli insediamenti esposti a tali eventi.',
       zh: '借助灾害地图找出可能受到地质事件影响的居民点。',
       hi: 'खतरे के नक्शों की मदद से भूवैज्ञानिक घटनाओं के संपर्क में आने वाली बस्तियाँ पहचानें।',
       es: 'Utiliza mapas de peligros para localizar asentamientos expuestos a fenómenos geológicos.',

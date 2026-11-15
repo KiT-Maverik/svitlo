@@ -5,6 +5,7 @@ export const selectAMapTypeForAGeographicQuestion_Skill_Data = defineSkill({
   id: 'a4e4be2d-29d2-45e9-afa5-f83a8661248c',
   name: {
     en: 'Select a map type for a geographic question',
+    it: 'Scegliere un tipo di carta per una domanda geografica',
     zh: '为地理问题选择合适的地图类型',
     hi: 'भौगोलिक प्रश्न के लिए मानचित्र प्रकार चुनना',
     es: 'Elegir un tipo de mapa para una pregunta geográfica',
@@ -39,6 +40,7 @@ export const selectAMapTypeForAGeographicQuestion_Skill_Data = defineSkill({
       'Match a question to the type of information a map must show: for example, use a geological map to investigate rock distribution or a population-density map to compare settlement concentration. Do not substitute a visually attractive map lacking the required variable.',
     frontend: {
       en: 'Select the right kind of map for a particular geographic question.',
+      it: 'Scegli il tipo di carta più adatto a una determinata domanda geografica.',
       zh: '针对具体的地理问题选择正确的地图类型。',
       hi: 'किसी विशेष भौगोलिक प्रश्न के लिए सही प्रकार का मानचित्र चुनें।',
       es: 'Elige el tipo de mapa adecuado para una pregunta geográfica concreta.',

@@ -5,6 +5,7 @@ export const explainHowASoilProfileDevelopsAtTheSurface_Skill_Data = defineSkill
   id: 'a61ea24c-159a-4539-b8ae-67776d3f0f21',
   name: {
     en: 'Explain how a soil profile develops at the surface',
+    it: 'Spiegare come si forma un profilo del suolo in superficie',
     zh: '解释地表土壤剖面的形成',
     hi: 'मृदा परिच्छेदिका का निर्माण समझाना',
     es: 'Explicar cómo se forma un perfil de suelo',
@@ -39,6 +40,7 @@ export const explainHowASoilProfileDevelopsAtTheSurface_Skill_Data = defineSkill
       'Relate weathered mineral particles, organic input, water and organisms to the gradual development of soil horizons above parent material. An exposed rock surface or loose gravel layer is not automatically a mature soil.',
     frontend: {
       en: 'Explain how mineral particles, organic matter, water and life help form soil layers.',
+      it: 'Spiega come particelle minerali, sostanza organica, acqua e organismi viventi contribuiscono alla formazione degli strati del suolo.',
       zh: '了解矿物颗粒、有机质、水和生物如何共同形成土壤层。',
       hi: 'समझें कि खनिज कण, जैव पदार्थ, पानी और जीव मृदा की परतें कैसे बनाते हैं।',
       es: 'Explica cómo las partículas minerales, la materia orgánica, el agua y los seres vivos forman capas de suelo.',

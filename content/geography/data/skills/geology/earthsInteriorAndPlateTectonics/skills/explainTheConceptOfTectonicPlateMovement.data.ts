@@ -5,6 +5,7 @@ export const explainTheConceptOfTectonicPlateMovement_Skill_Data = defineSkill({
   id: 'a912b6e9-a63e-45bb-8538-5d11760082d5',
   name: {
     en: 'Explain the concept of tectonic plate movement',
+    it: 'Spiegare il concetto di movimento delle placche tettoniche',
     zh: '解释构造板块运动的概念',
     hi: 'विवर्तनिक प्लेटों की गति की अवधारणा समझाना',
     es: 'Explicar el concepto de movimiento de las placas tectónicas',
@@ -39,6 +40,7 @@ export const explainTheConceptOfTectonicPlateMovement_Skill_Data = defineSkill({
       'Recognize that the lithosphere is divided into slowly moving plates that can shift relative to one another over geological time, without implying that continents glide freely across a liquid mantle.',
     frontend: {
       en: "Explain how large plates of Earth's outer shell move over geological time.",
+      it: "Spiega come le grandi placche dell'involucro esterno della Terra si muovono nel corso del tempo geologico.",
       zh: '解释地球外层的大型板块如何在地质时间尺度上移动。',
       hi: 'समझाएँ कि पृथ्वी की बाहरी परत की विशाल प्लेटें भूवैज्ञानिक समय में कैसे खिसकती हैं।',
       es: 'Explica cómo las grandes placas de la capa exterior terrestre se desplazan a lo largo del tiempo geológico.',

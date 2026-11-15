@@ -5,6 +5,7 @@ export const explainTheConceptOfAGroundwaterAquifer_Skill_Data = defineSkill({
   id: '5c97bb72-56b3-4c05-acc8-7f6c3604ff5d',
   name: {
     en: 'Explain the concept of a groundwater aquifer',
+    it: 'Spiegare il concetto di acquifero sotterraneo',
     zh: '解释地下含水层的概念',
     hi: 'भूजल जलभृत की अवधारणा समझाना',
     es: 'Explicar qué es un acuífero',
@@ -39,6 +40,7 @@ export const explainTheConceptOfAGroundwaterAquifer_Skill_Data = defineSkill({
       'Identify a permeable geological layer or formation that can store and transmit useful groundwater, distinguishing an aquifer from an open underground lake.',
     frontend: {
       en: 'Understand how permeable rock can store and transmit groundwater.',
+      it: 'Comprendi come le rocce permeabili possono immagazzinare e trasmettere acque sotterranee.',
       zh: '理解透水岩层如何储存和输送地下水。',
       hi: 'समझें कि पारगम्य चट्टानें भूजल को कैसे संचित और प्रवाहित करती हैं।',
       es: 'Comprende cómo la roca permeable almacena y transmite agua subterránea.',

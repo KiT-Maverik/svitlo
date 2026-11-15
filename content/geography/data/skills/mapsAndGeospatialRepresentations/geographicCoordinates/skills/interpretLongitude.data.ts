@@ -5,6 +5,7 @@ export const interpretLongitude_Skill_Data = defineSkill({
   id: 'a61c153c-aba9-47c0-87c7-4e48ba54c14d',
   name: {
     en: 'Interpret longitude',
+    it: 'Interpretare la longitudine',
     zh: '解读经度',
     hi: 'देशांतर की व्याख्या करना',
     es: 'Interpretar la longitud',
@@ -39,6 +40,7 @@ export const interpretLongitude_Skill_Data = defineSkill({
       'Use the reference meridian and longitude values to locate east–west positions without confusing them with latitude.',
     frontend: {
       en: 'Read longitude as a position east or west of a reference meridian.',
+      it: 'Leggi la longitudine come posizione a est o a ovest di un meridiano di riferimento.',
       zh: '把经度理解为相对参考子午线向东或向西的位置。',
       hi: 'देशांतर को संदर्भ मध्याह्न रेखा से पूर्व या पश्चिम की स्थिति के रूप में पढ़ें।',
       es: 'Lee la longitud como una posición al este o al oeste de un meridiano de referencia.',

@@ -5,6 +5,7 @@ export const interpretEarthquakeDistributionsOnAMap_Skill_Data = defineSkill({
   id: '92182743-4ce7-44df-8eff-3cf242d160f8',
   name: {
     en: 'Interpret earthquake distributions on a map',
+    it: 'Interpretare la distribuzione dei terremoti su una carta',
     zh: '解读地图上的地震分布',
     hi: 'नक्शे पर भूकंपों के वितरण को समझना',
     es: 'Interpretar la distribución de terremotos en un mapa',
@@ -39,6 +40,7 @@ export const interpretEarthquakeDistributionsOnAMap_Skill_Data = defineSkill({
       'Identify clustered earthquake belts and their common relationships to tectonic plate boundaries without treating all earthquakes as occurring on plate edges.',
     frontend: {
       en: 'Identify earthquake belts and their relation to plate boundaries on maps.',
+      it: 'Individua sulle carte le fasce sismiche e la loro relazione con i margini delle placche.',
       zh: '在地图上识别地震带及其与板块边界的关系。',
       hi: 'मानचित्र पर भूकंप क्षेत्रों और प्लेट सीमाओं से उनके संबंध की पहचान करें।',
       es: 'Identifica cinturones sísmicos y su relación con los límites de placas en mapas.',

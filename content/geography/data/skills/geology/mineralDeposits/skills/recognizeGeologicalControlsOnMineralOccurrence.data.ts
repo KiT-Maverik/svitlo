@@ -5,6 +5,7 @@ export const recognizeGeologicalControlsOnMineralOccurrence_Skill_Data = defineS
   id: '1af518e7-c24b-4df3-99e5-05b5e7cac329',
   name: {
     en: 'Recognize geological controls on mineral occurrence',
+    it: 'Riconoscere i fattori geologici che determinano la presenza di minerali',
     zh: '识别影响矿物分布的地质条件',
     hi: 'खनिजों की उपस्थिति नियंत्रित करने वाली भूवैज्ञानिक स्थितियाँ पहचानना',
     es: 'Reconocer los controles geológicos de la presencia de minerales',
@@ -39,6 +40,7 @@ export const recognizeGeologicalControlsOnMineralOccurrence_Skill_Data = defineS
       'Connect deposit patterns with contexts such as igneous activity, sedimentary basins or transported sediments without assuming minerals occur uniformly worldwide.',
     frontend: {
       en: 'Connect mineral deposits with the geological conditions that created them.',
+      it: 'Collega i giacimenti minerari alle condizioni geologiche che li hanno formati.',
       zh: '将矿床分布与形成矿床的地质条件联系起来。',
       hi: 'खनिज निक्षेपों को उनकी उत्पत्ति की भूवैज्ञानिक स्थितियों से जोड़ें।',
       es: 'Relaciona los yacimientos con las condiciones geológicas que los formaron.',

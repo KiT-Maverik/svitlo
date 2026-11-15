@@ -5,6 +5,7 @@ export const describeALocationRelativeToAReferencePoint_Skill_Data = defineSkill
   id: '358058fc-13d9-403e-a25a-f08cfd8d9a2d',
   name: {
     en: 'Describe a location relative to a reference point',
+    it: 'Descrivere la posizione rispetto a un punto di riferimento',
     zh: '相对于参照点描述位置',
     hi: 'संदर्भ बिंदु के सापेक्ष स्थान का वर्णन करना',
     es: 'Describir la ubicación respecto a un punto de referencia',
@@ -39,6 +40,7 @@ export const describeALocationRelativeToAReferencePoint_Skill_Data = defineSkill
       "Express where a place lies by referring to another identifiable object or location, such as 'east of the station' or 'next to the bridge'. The statement changes meaning when its reference point changes.",
     frontend: {
       en: 'Describe where something is in relation to another identifiable place.',
+      it: 'Descrivi dove si trova qualcosa in relazione a un altro luogo identificabile.',
       zh: '说明某物相对于另一个可辨认地点的位置。',
       hi: 'बताएँ कि कोई वस्तु किसी अन्य पहचानने योग्य स्थान के सापेक्ष कहाँ है।',
       es: 'Describe dónde se encuentra algo en relación con otro lugar reconocible.',

@@ -5,6 +5,7 @@ export const explainHowFaultSlipProducesEarthquakes_Skill_Data = defineSkill({
   id: 'dfa2cf13-52b3-4e3c-8d29-401430b1b936',
   name: {
     en: 'Explain how fault slip produces earthquakes',
+    it: 'Spiegare come lo scorrimento lungo una faglia provoca terremoti',
     zh: '解释断层滑动如何引发地震',
     hi: 'भ्रंश पर खिसकाव से भूकंप कैसे आते हैं, समझाना',
     es: 'Explicar cómo el deslizamiento de una falla provoca terremotos',
@@ -39,6 +40,7 @@ export const explainHowFaultSlipProducesEarthquakes_Skill_Data = defineSkill({
       'Relate accumulated deformation and sudden movement along a fault to ground shaking, while distinguishing the underground source from the mapped epicenter.',
     frontend: {
       en: 'Explain how sudden movement along faults causes earthquakes.',
+      it: 'Spiega come un movimento improvviso lungo le faglie provoca i terremoti.',
       zh: '解释断层沿线的突然移动如何引发地震。',
       hi: 'समझाएँ कि भ्रंश के साथ अचानक गति से भूकंप कैसे होता है।',
       es: 'Explica cómo un movimiento repentino a lo largo de una falla causa terremotos.',

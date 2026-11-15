@@ -5,6 +5,7 @@ export const recognizeLandformsCreatedByVolcanicActivity_Skill_Data = defineSkil
   id: '9b509d23-f275-43e6-b010-7c5ef341396e',
   name: {
     en: 'Recognize landforms created by volcanic activity',
+    it: "Riconoscere le forme del rilievo create dall'attività vulcanica",
     zh: '识别火山活动形成的地貌',
     hi: 'ज्वालामुखी गतिविधि से बनी भूआकृतियों को पहचानना',
     es: 'Reconocer formas del relieve creadas por la actividad volcánica',
@@ -39,6 +40,7 @@ export const recognizeLandformsCreatedByVolcanicActivity_Skill_Data = defineSkil
       'Connect lava flows, volcanic cones, craters and calderas with erupted or collapsed volcanic structures while avoiding a single universal volcano shape.',
     frontend: {
       en: 'Recognize volcano-related forms such as cones, craters and lava fields.',
+      it: 'Riconosci forme vulcaniche come coni, crateri e campi di lava.',
       zh: '识别火山锥、火山口和熔岩原等火山地貌。',
       hi: 'ज्वालामुखी शंकु, क्रेटर और लावा मैदान जैसी आकृतियाँ पहचानें।',
       es: 'Reconoce formas volcánicas como conos, cráteres y campos de lava.',

@@ -11,6 +11,7 @@ export const spatialRelationships_SkillGroup_Data = defineSkillGroup({
   id: '1db7b4a5-aab8-4156-87ff-5af75b133eed',
   name: {
     en: 'Spatial Relationships',
+    it: 'Relazioni spaziali',
     zh: '空间关系',
     hi: 'स्थानिक संबंध',
     es: 'Relaciones espaciales',
@@ -57,6 +58,7 @@ export const spatialRelationships_SkillGroup_Data = defineSkillGroup({
       'Places and features form patterns of nearness, containment, connection, concentration, and separation. These relationships matter even when the exact names of the locations change.',
     frontend: {
       en: 'Recognize how places can be connected, separated or arranged in patterns.',
+      it: 'Riconosci come i luoghi possono essere collegati, separati o disposti secondo schemi.',
       zh: '认识地点之间如何相连、分隔或形成不同的分布格局。',
       hi: 'पहचानें कि स्थान कैसे जुड़े, अलग हुए या अलग-अलग प्रतिरूपों में व्यवस्थित होते हैं।',
       es: 'Reconoce cómo los lugares pueden conectarse, separarse o distribuirse según distintos patrones.',

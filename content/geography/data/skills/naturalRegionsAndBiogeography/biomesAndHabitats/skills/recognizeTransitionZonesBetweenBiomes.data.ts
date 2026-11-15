@@ -5,6 +5,7 @@ export const recognizeTransitionZonesBetweenBiomes_Skill_Data = defineSkill({
   id: '8a932dc6-ba67-4e40-87ae-a70fe167a6aa',
   name: {
     en: 'Recognize transition zones between biomes',
+    it: 'Riconoscere le zone di transizione tra biomi',
     zh: '识别生物群系之间的过渡带',
     hi: 'जैवप्रदेशों के बीच संक्रमण क्षेत्र पहचानना',
     es: 'Reconocer zonas de transición entre biomas',
@@ -39,6 +40,7 @@ export const recognizeTransitionZonesBetweenBiomes_Skill_Data = defineSkill({
       'Identify that vegetation and environmental conditions may change gradually across boundaries rather than at a perfectly sharp line.',
     frontend: {
       en: 'Understand why biome boundaries can change gradually rather than abruptly.',
+      it: 'Comprendi perché i confini tra biomi possono cambiare gradualmente anziché in modo netto.',
       zh: '理解为什么生物群系的边界可以逐渐变化，而不是突然改变。',
       hi: 'समझें कि जैवप्रदेशों की सीमाएँ अचानक बदलने के बजाय धीरे-धीरे क्यों बदल सकती हैं।',
       es: 'Comprende por qué los límites entre biomas pueden cambiar gradualmente y no de golpe.',

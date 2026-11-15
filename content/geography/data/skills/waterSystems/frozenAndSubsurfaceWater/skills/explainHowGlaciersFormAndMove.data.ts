@@ -5,6 +5,7 @@ export const explainHowGlaciersFormAndMove_Skill_Data = defineSkill({
   id: '6f6d5f30-cb20-4d82-96e6-c877503bb990',
   name: {
     en: 'Explain how glaciers form and move',
+    it: 'Spiegare come si formano e si muovono i ghiacciai',
     zh: '解释冰川如何形成和移动',
     hi: 'हिमनदों का बनना और चलना समझाना',
     es: 'Explicar cómo se forman y desplazan los glaciares',
@@ -39,6 +40,7 @@ export const explainHowGlaciersFormAndMove_Skill_Data = defineSkill({
       'Relate sustained snow accumulation and compaction to slowly flowing land ice, distinguishing glaciers from seasonal snow cover and floating sea ice.',
     frontend: {
       en: 'Explain how accumulated snow becomes a glacier that slowly flows.',
+      it: 'Spiega come la neve accumulata si trasforma in un ghiacciaio che scorre lentamente.',
       zh: '解释积雪怎样变成缓慢流动的冰川。',
       hi: 'समझाएँ कि जमा हुई बर्फ़ कैसे धीरे-धीरे बहने वाला हिमनद बनती है।',
       es: 'Explica cómo la nieve acumulada se convierte en un glaciar que fluye lentamente.',
