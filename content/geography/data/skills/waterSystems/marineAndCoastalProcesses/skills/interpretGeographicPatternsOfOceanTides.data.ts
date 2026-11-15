@@ -5,6 +5,7 @@ export const interpretGeographicPatternsOfOceanTides_Skill_Data = defineSkill({
   id: 'd2bfc5e8-7602-4f31-8351-edd15c9184c4',
   name: {
     en: 'Interpret geographic patterns of ocean tides',
+    it: 'Interpretare la distribuzione geografica delle maree',
     zh: '解读海洋潮汐的地理规律',
     hi: 'समुद्री ज्वार-भाटे के भौगोलिक प्रतिरूप समझना',
     es: 'Interpretar patrones geográficos de las mareas',
@@ -39,6 +40,7 @@ export const interpretGeographicPatternsOfOceanTides_Skill_Data = defineSkill({
       'Identify regional and temporal variations in tidal water levels and their implications for coastlines and navigation, distinguishing tidal cycles from persistent ocean currents.',
     frontend: {
       en: 'Compare how tides vary by location and time along coastlines.',
+      it: 'Confronta come le maree variano secondo il luogo e il momento lungo le coste.',
       zh: '比较沿海不同地点和时间的潮汐变化。',
       hi: 'तट पर स्थान और समय के अनुसार ज्वार-भाटे की तुलना करें।',
       es: 'Compara cómo cambian las mareas según el lugar y la hora en la costa.',

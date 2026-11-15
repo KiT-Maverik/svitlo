@@ -10,6 +10,7 @@ export const waterSystems_SkillDomain_Data = defineSkillDomain({
   id: '00317d1d-492a-4491-a387-ef75cd29fb7d',
   title: {
     en: 'Water Systems',
+    it: 'Sistemi idrici',
     zh: '水系统',
     hi: 'जल तंत्र',
     es: 'Sistemas hídricos',
@@ -50,6 +51,7 @@ export const waterSystems_SkillDomain_Data = defineSkillDomain({
       'Water connects landscapes through drainage networks, oceans, atmosphere, and underground storage. Geographic questions center on where water moves and accumulates, how its distribution varies, and how water features shape places.',
     frontend: {
       en: "Explore where Earth's water is stored, how it moves and how it shapes places.",
+      it: "Esplora dove si trova l'acqua della Terra, come si muove e come modella i luoghi.",
       zh: '探索地球上的水储存在哪里、怎样流动，以及如何塑造地貌。',
       hi: 'जानें कि पृथ्वी का पानी कहाँ जमा होता है, कैसे बहता है और स्थानों को कैसे बदलता है।',
       es: 'Explora dónde se almacena el agua terrestre, cómo circula y cómo modela los lugares.',
