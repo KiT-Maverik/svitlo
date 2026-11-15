@@ -12,6 +12,7 @@ export const objectFamilies_SkillGroup_Data = defineSkillGroup({
   id: '7b359c09-264a-4a59-ab49-ddf45862d833',
   name: {
     en: 'Object Families',
+    it: 'Famiglie di oggetti',
     zh: '天体类别',
     hi: 'खगोलीय पिंडों के वर्ग',
     es: 'Familias de objetos',
@@ -52,6 +53,7 @@ export const objectFamilies_SkillGroup_Data = defineSkillGroup({
       'Classification of astronomical entities requires more than their appearance in a photograph: a point source, a diffuse cloud, a cluster and an extended galaxy may be distinguished by physical evidence and scale.',
     frontend: {
       en: 'Learn how astronomers identify different types of objects using physical evidence rather than appearance alone.',
+      it: 'Scopri come gli astronomi identificano i diversi tipi di oggetti attraverso prove fisiche, non soltanto dall\'aspetto.',
       zh: '了解天文学家如何依据物理证据，而非仅凭外观，识别不同类型的天体。',
       hi: 'जानें कि खगोलविद केवल दिखावट नहीं, बल्कि भौतिक प्रमाणों के आधार पर विभिन्न प्रकार के पिंडों को कैसे पहचानते हैं।',
       es: 'Aprende cómo los astrónomos reconocen distintos tipos de objetos por sus propiedades físicas, no solo por su apariencia.',
