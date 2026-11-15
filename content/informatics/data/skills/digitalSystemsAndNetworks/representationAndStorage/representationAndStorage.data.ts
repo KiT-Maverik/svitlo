@@ -12,6 +12,7 @@ export const representationAndStorage_SkillGroup_Data = defineSkillGroup({
   id: 'aae1c37d-fa00-4732-a514-19962fe184d3',
   name: {
     en: 'Representation and Storage',
+    it: 'Rappresentazione e archiviazione',
     zh: '信息表示与存储',
     hi: 'निरूपण और भंडारण',
     es: 'Representación y almacenamiento',
@@ -52,6 +53,7 @@ export const representationAndStorage_SkillGroup_Data = defineSkillGroup({
       "How digital devices encode, format, measure, and organize files and data. Distinguish the representation of information from the file system's organization.",
     frontend: {
       en: 'Learn how devices represent information and organize stored files.',
+      it: 'Impara come i dispositivi rappresentano le informazioni e organizzano i file memorizzati.',
       zh: '学习设备如何表示信息并整理已保存的文件。',
       hi: 'जानें कि उपकरण जानकारी कैसे दर्शाते हैं और सहेजी फ़ाइलें कैसे व्यवस्थित करते हैं।',
       es: 'Aprende cómo los dispositivos representan información y organizan los archivos almacenados.',

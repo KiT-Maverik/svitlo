@@ -5,6 +5,7 @@ export const distinguishOperatingSystemFamilies_Skill_Data = defineSkill({
   id: '0899f964-c496-42b0-8b6c-a3586aceaf8d',
   name: {
     en: 'Distinguish Operating System Families',
+    it: 'Distinguere le famiglie di sistemi operativi',
     zh: '区分操作系统家族',
     hi: 'ऑपरेटिंग सिस्टम के परिवारों में अंतर करना',
     es: 'Distinguir familias de sistemas operativos',
@@ -39,6 +40,7 @@ export const distinguishOperatingSystemFamilies_Skill_Data = defineSkill({
       'Identify Windows, macOS, Linux, Android, and iOS as different operating systems or related platforms rather than names for computers.',
     frontend: {
       en: 'Recognize common operating-system families and how they differ.',
+      it: 'Riconosci le principali famiglie di sistemi operativi e le loro differenze.',
       zh: '识别常见操作系统家族及其差异。',
       hi: 'प्रचलित ऑपरेटिंग सिस्टम परिवारों और उनके अंतर को पहचानें।',
       es: 'Reconoce las principales familias de sistemas operativos y sus diferencias.',
