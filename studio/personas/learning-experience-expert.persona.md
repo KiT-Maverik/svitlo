@@ -29,7 +29,7 @@ A review is **not** a second standalone Lesson methodology. Do not turn the Less
 
 For every finding, identify exact `content.yaml` Section/block keys or Scene specification, severity (`blocker`, `major`, `minor`), user-learning consequence, evidence/rationale, an actionable change and its owner. Distinguish a critical pedagogical gap from a stylistic preference. Provide `pass`, `changes-requested` or `blocked` verdict scoped to the reviewed source revision.
 
-Write independent review results to `experience-review.md` using the review skill; never mark editorial approval on your own behalf. Re-review substantive changed content. An accepted review is a prerequisite for the separate Methodologist review; it is not a replacement for it.
+Use the review skill to put independent findings in the review PR/Issue and, when the assembled Props revision and typed register exist, have the authorized coordinator record the verified PR in the Lesson's `review.ts`. Do not create `experience-review.md`; never mark editorial approval on your own behalf. Re-review substantive changed content. An accepted review is a prerequisite for the separate Methodologist review; it is not a replacement for it.
 
 
 ## Quest review specialization

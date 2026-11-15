@@ -26,24 +26,29 @@ Evaluate **every** Section and its ContentBlocks, not only the introduction:
 
 ## Output and ownership
 
-For each Lesson, create/update `experience-review.md` beside its `content.yaml`. Include:
+For each Lesson, report the actual UUID/path and reviewed `content.yaml` blob SHA (or commit + path), role, verdict (`pass` | `changes-requested` | `blocked`), concrete Section/ContentBlock findings, severity, accessibility/RTL/offline and assessment limitations, files not reviewed, and proposed corrections **in the review PR and coordination Issue**. Do not write a new per-Lesson Markdown report.
 
-- Lesson UUID and actual path, reviewed `content.yaml` Git blob SHA (or immutable source commit + path), reviewer role, date, verdict: `pass` | `changes-requested` | `blocked`.
-- An outcome-by-outcome evaluation, concise strengths, and specific findings with severity, Section/block key, evidence, suggested correction and assigned role.
-- Explicit assessment boundaries, accessibility/RTL/offline findings, missing implementation dependencies and unresolved questions.
-- Verification performed and any files/Scene specs not reviewed.
+## Review evidence and revision binding
 
-**Do not silently edit `content.yaml`** as reviewer. Send proposed edits to the Screenwriter; its owner revises the plan in a separate authorized change. After revision, re-read and re-review the new blob. A report for an older `content.yaml` revision does **not** approve the newer revision.
+For a Lesson, the durable per-entity review register is `review.ts` beside the Lesson root `index.ts`, typed as Engine `LessonReview` when Stage 6 is implemented. **Do not create or maintain `experience-review.md`, `methodology-review.md` or other standalone Lesson review narratives.** A review result points to its actual GitHub PR; detailed findings, corrections, the reviewed source commit/blob and responsible approver remain in that PR conversation and the coordination Issue, not a duplicate Markdown file.
 
-A `pass` verdict by an independent expert means **ready for editorial sign-off**, not an automatic editorial approval. The coordinator may mark `experience-review` as `approved` only with a verifiable authorized approval, linked in the Issue.
+When the assembled Lesson Props revision is available and the relevant review/approval has actually been verified for **that revision**, record the PR in the matching `ai.stages` entry (for example `experience-review` or `methodology-review`) with `{ pr: number, language: LanguageCode }`. The review file does not export any value. Do not infer approval from a PR number alone, do not fill unrelated fields, and never carry results forward to changed Props without re-review.
+
+**Early editorial review is allowed before a Lesson can produce Props.** In that case `review.ts` may not exist or may still be a deliberately incomplete draft. Keep source-revision-specific review evidence and outstanding approval in the already required PR and Lesson Production Issue; do not invent a hash, PR number, approval, or substitute Markdown review document. After the reviewed compiled Lesson revision becomes available, the coordinator explicitly reconciles the earlier evidence with that revision before populating the corresponding `review.ts` field.
+
+Where a **review-specific decision** affects this Lesson or locale only, add a short TypeScript comment **immediately above the relevant PR-valued entry** in `review.ts` when recording it, explaining the actual decision and reason. General policy belongs in canonical Studio rules, not in repeated per-Lesson comments. Keep review failures, blockers, and recommendations in the PR/Issue until they are resolved; never turn an unapproved review into a completed entry.
+
+**Do not silently edit `content.yaml`** as reviewer. Send proposed edits to the Screenwriter; its owner revises the plan in a separate authorized change. After revision, re-read and re-review the changed source. A review of an older `content.yaml` blob does **not** approve a newer one.
+
+A `pass` verdict by an independent expert means **ready for editorial sign-off**, not automatic editorial approval. The coordinator may mark `experience-review` as `approved` only with independently verifiable, authorized approval linked in the Issue.
 
 ## Batching and GitHub coordination
 
-When assigned multiple Lessons, process **all independent, ready Lessons in the same run**. Do not stop after each checkmark to ask to continue. Record a separate verdict per Lesson; blocked Lessons must not prevent reviewing other ready Lessons. When working under a Production Issue, read the latest Issue and relevant PRs before starting, reuse or register the work PR, and update the per-Lesson matrix, artifacts, blockers and next handoff through [Manage Lesson Production](./manage-lesson-production.skill.md).
+When assigned multiple Lessons, process **all independent, ready Lessons in the same run**. Do not stop after each checkmark to ask to continue. Record a separate verdict per Lesson in its PR/Issue evidence; blocked Lessons must not prevent reviewing other ready Lessons. When working under a Production Issue, read the latest Issue and relevant PRs before starting, reuse or register the work PR, and update the per-Lesson matrix, review evidence/PR links, blockers and next handoff through [Manage Lesson Production](./manage-lesson-production.skill.md).
 
 PR rules: one or more appropriately sized Draft PRs may cover the bounded review batch; follow [GitHub naming and labeling](../../rules/github-labels-and-naming.md), link each PR with `Refs #<issue-number>`, avoid `Closes` until all scoped Lessons are actually complete, and never merge automatically.
 
-**Completion:** all ready Lessons in scope have source-revision-specific, independent review files and a correct Issue handoff. Missing or stale reviews remain pending; no self-approval or undocumented overrides.
+**Completion:** all ready Lessons in scope have source-revision-specific PR/Issue evidence and the correct `review.ts` entry only when the assembled Props revision can be verified. Missing or stale review evidence remains pending; no self-approval or undocumented overrides.
 
 
 ## Quest plan review
