@@ -2,7 +2,6 @@ import {
   defineText,
   defineAudio,
   defineCarousel,
-  defineCarouselSlide,
   defineCode,
   defineImage,
   defineMarkdown,
@@ -35,10 +34,11 @@ const carousel = defineCarousel({
   locale: {},
   slides: {
     items: {
-      first: defineCarouselSlide({
+      first: defineImage({
         id,
         slug: 'first',
-        type: 'carouselSlide',
+        type: 'image',
+  params: { fill: true, aspectRatio: 1.5 },
         locale: { src: 'https://example.com/image.png', alt: 'Alt' },
       }),
     },
@@ -251,24 +251,27 @@ defineMarkdown<'missingVariableLanguage', ['uk', 'en']>({
   },
 });
 
-const bilingualSlide = defineCarouselSlide<'bilingualSlide', ['uk', 'en']>({
+const bilingualSlide = defineImage<'bilingualSlide', ['uk', 'en']>({
   id,
   slug: 'bilingualSlide',
-  type: 'carouselSlide',
+  type: 'image',
+  params: { fill: true, aspectRatio: 1.5 },
   locale: { src: 'https://example.com/image.png', alt: { uk: 'Фото', en: 'Photo' } },
 });
 void bilingualSlide;
 
-const ukOnlySlide = defineCarouselSlide<'ukOnly', ['uk']>({
+const ukOnlySlide = defineImage<'ukOnly', ['uk']>({
   id,
   slug: 'ukOnly',
-  type: 'carouselSlide',
+  type: 'image',
+  params: { fill: true, aspectRatio: 1.5 },
   locale: { src: 'https://example.com/uk-only.png', alt: { uk: 'Лише українською' } },
 });
-const bilingualSlideForGallery = defineCarouselSlide<'bilingual', ['uk', 'en']>({
+const bilingualSlideForGallery = defineImage<'bilingual', ['uk', 'en']>({
   id,
   slug: 'bilingual',
-  type: 'carouselSlide',
+  type: 'image',
+  params: { fill: true, aspectRatio: 1.5 },
   locale: { src: 'https://example.com/bilingual.png', alt: { uk: 'Фото', en: 'Photo' } },
 });
 const typedCarouselSupports = defineCarousel<

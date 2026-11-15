@@ -5,7 +5,6 @@ import test from 'node:test';
 import {
   defineAudio,
   defineCarousel,
-  defineCarouselSlide,
   defineCode,
   defineImage,
   defineMarkdown,
@@ -25,7 +24,7 @@ describe('Configurators', () => {
           alt: string | Record<'en' | 'uk', string>;
           caption?: string | Record<'en' | 'uk', string>;
         },
-      ) => defineCarouselSlide<Slug, ['en', 'uk']>({ id, slug, type: 'carouselSlide', locale });
+      ) => defineImage<Slug, ['en', 'uk']>({ id, slug, type: 'image', params: { fill: true, aspectRatio: 1.5 }, locale });
 
       test('Published locale bodies already match Props and require no embedding', () => {
         const block = defineAudio<'localeShape', ['en']>({
@@ -122,22 +121,22 @@ describe('Configurators', () => {
         });
         const resource = carousel.build.props({ languages: ['en', 'uk'] });
         assert.equal(resource.base.locale?.title, 'Gallery');
-        assert.deepEqual(resource.locale?.en?.locale.slides, [
+        assert.deepEqual(resource.locale?.en?.locale.slides?.map(slide => slide.locale), [
           { src: 'https://example.com/a-en.png', alt: 'First' },
           { src: 'https://example.com/b.png', alt: 'Second', caption: 'A caption' },
         ]);
-        assert.equal(resource.locale?.uk?.locale.slides?.[0]?.src, 'https://example.com/a-uk.png');
+        assert.equal(resource.locale?.uk?.locale.slides?.[0]?.locale.src, 'https://example.com/a-uk.png');
         const localized = carousel.build.overrides(
           {
             slides: { items: { first: { locale: { alt: { uk: 'Перший' } } } } },
           },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(localized.locale?.uk?.locale.slides, [
+        assert.deepEqual(localized.locale?.uk?.locale.slides?.map(slide => slide.locale), [
           { src: 'https://example.com/a-uk.png', alt: 'Перший' },
           { src: 'https://example.com/b.png', alt: 'Second', caption: 'Підпис' },
         ]);
-        assert.equal(localized.locale?.en?.locale.slides?.[0]?.alt, 'First');
+        assert.equal(localized.locale?.en?.locale.slides?.[0]?.locale.alt, 'First');
         assert.equal(JSON.stringify(localized).includes('additionalItems'), false);
         assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).locale?.en?.locale.slides?.length, 2);
       });
