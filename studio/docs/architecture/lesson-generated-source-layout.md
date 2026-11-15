@@ -1,6 +1,6 @@
 # Lesson source layout: Stage 1 contract and reference fixture
 
-**Status:** Stage 1 design contract; **not implemented** in Engine or textbook tooling.  
+**Status:** Stage 1 target contract; **Stage 2 source-module scaffolding is implemented on the dependent Draft branch only**. File-backed Markdown/Code, co-located Scene/media, Review and full publication integration remain planned.  
 **Scope:** YAML-to-TypeScript **Lesson draft scaffolder** and downstream source/asset handoffs, using [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557) as experimental evidence.  
 **Out of scope:** changing the generator, implementing media/Scenes, publishing Lesson Props, changing existing Lesson Configs, migrating all mathematics lessons, translating content, or granting review approvals.
 
@@ -129,6 +129,29 @@ The revision hash represents the **entire authored `config` tree**, recursively 
 6. Stage 2 can add **local executable test fixtures** for generated source and assert directory tree, AST-level imports/exports, unresolved dependency handoffs, stable output bytes, no clobber, and build-tool discovery. The historical 51-file prototype must **not** be used as a byte-for-byte expected output.
 
 Next implementation stages: (2) source modules, imports and TypeScript types; (3) Markdown/Code; (4) media/Scenes/publication; (5) composite blocks; (6) Review; (7) end-to-end verification and removal of the temporary demo section.
+
+## Stage 2 implementation notes (Draft PR)
+
+The Stage 2 follow-up builds **one TypeScript `index.ts` per Configurator**, plus
+`sections/index.ts`, `flashcards/index.ts` and `questions/index.ts`
+collection modules, a root `index.ts`, and `constants.ts` when the YAML
+provides a nonempty language tuple. It uses correctly ordered generics
+from the existing Engine factories and resolves Skill IDs to real authored
+Skill imports where possible; unresolved Skill dependencies are reported
+instead of fabricated. The draft-only, source-language-only and no-overwrite
+constraints remain in force.
+
+Where a schema includes **role-discriminated** children rather than a single
+slug-keyed collection, folders may retain role names to avoid collisions:
+`stages/` and `tasks/` for Quest; `front/`, `back/`, `hint/`
+for Flashcards; `correct/`, `incorrect/`, `distractors/` for
+Question answer groups. This is **not** the legacy content-type grouping
+under Sections: direct Section ContentBlocks remain `<blockSlug>/`.
+
+The Lesson Props publisher already discovers a canonical `index.ts`;
+the textbook build must also recognize an index-only Lesson so no content
+is silently omitted. Mixing the legacy `*.data.ts` entrypoint with
+`index.ts` in the same UUID directory is unsupported.
 
 ## Open decisions (not silently implemented)
 
