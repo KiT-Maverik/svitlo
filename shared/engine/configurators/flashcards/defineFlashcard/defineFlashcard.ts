@@ -15,9 +15,9 @@ import {
   onlyLocales,
   splitLocalizedFields,
   validateOrderedKeys,
-  validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
+import { defineFlashcardSide, type FlashcardSide_Configurator } from '../defineFlashcardSide';
 import {
   flashcard_Config_Schema,
   flashcard_Props_Schema,
@@ -34,13 +34,9 @@ import { z } from 'zod';
 
 type Block = ContentBlock_Configurator;
 type Side = 'front' | 'back' | 'hint';
-type BlockResource = {
-  base: Record<string, unknown>;
-  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
-};
-type BlockPatch = {
-  base: DeepPartial<Record<string, unknown>>;
-  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
+type SidePublication = {
+  base: Flashcard_PropsBase['content']['front'];
+  locale: Partial<Record<LanguageCode, Flashcard_PropsBase['content']['front']>> | undefined;
 };
 type FlagFragment = Flashcard_PropsBase['parameters']['flags'][number];
 type LocaleBody = {
@@ -99,30 +95,8 @@ const validate = (config: Flashcard_Config): void => {
     const collection = config.content?.[side];
     if (!collection && side === 'hint') continue;
     if (!collection) throw new Error('Flashcard content.' + side + ' is required');
-    const path = 'content.' + side;
-    const issues = [
-      ...validateOrderedKeys(collection, { path, requireNonEmpty: side !== 'hint' }),
-      ...validateSluggedConfiguratorMap(collection?.items, contentBlockTypes, {
-        path: path + '.items',
-        itemLabel: 'Flashcard ContentBlock',
-      }),
-    ];
-    if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
-    for (const [key, child] of Object.entries(collection.items)) {
-      if (
-        !isRecord(child) ||
-        !isRecord(child.build) ||
-        typeof child.build.props !== 'function' ||
-        typeof child.build.overrides !== 'function' ||
-        !isRecord(child.config) ||
-        !isRecord(child.config.base) ||
-        child.config.base.id !== child.id ||
-        child.config.base.slug !== key ||
-        child.config.base.type !== child.type
-      ) {
-        throw new Error('Invalid Flashcard ContentBlock Build API or identity: ' + key);
-      }
-    }
+    if (collection.kind !== 'flashcardSide') throw new Error('Flashcard side must be a Configurator: ' + side);
+    collection.validate(side !== 'hint');
   }
   for (const name of ['flags', 'relationships'] as const) {
     const collection = config.parameters[name];
@@ -249,9 +223,9 @@ export function defineFlashcard<
       relationships?: { items: Relationships; order: string[] };
     };
     content: {
-      front: { items: Front & ChildrenSupporting<Languages, Front>; order: string[] };
-      back: { items: Back & ChildrenSupporting<Languages, Back>; order: string[] };
-      hint?: { items: Hint & ChildrenSupporting<Languages, Hint>; order: string[] };
+      front: FlashcardSide_Configurator<Front, Languages> & { items: Front & ChildrenSupporting<Languages, Front> };
+      back: FlashcardSide_Configurator<Back, Languages> & { items: Back & ChildrenSupporting<Languages, Back> };
+      hint?: FlashcardSide_Configurator<Hint, Languages> & { items: Hint & ChildrenSupporting<Languages, Hint> };
     };
   },
 ) {
@@ -261,23 +235,11 @@ export function defineFlashcard<
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type, slug } = authored;
   const initialContent = {
-    front: { items: { ...config.content.front.items }, order: [...config.content.front.order] },
-    back: { items: { ...config.content.back.items }, order: [...config.content.back.order] },
-    ...(config.content.hint
-      ? {
-          hint: { items: { ...config.content.hint.items }, order: [...config.content.hint.order] },
-        }
-      : {}),
+    front: config.content.front,
+    back: config.content.back,
+    ...(config.content.hint ? { hint: config.content.hint } : {}),
   };
-  const content = {
-    front: { items: { ...initialContent.front.items }, order: [...initialContent.front.order] },
-    back: { items: { ...initialContent.back.items }, order: [...initialContent.back.order] },
-    ...(initialContent.hint
-      ? {
-          hint: { items: { ...initialContent.hint.items }, order: [...initialContent.hint.order] },
-        }
-      : {}),
-  };
+  const content = { ...initialContent };
   // Transitional projection keeps invariant flag metadata separate from locale files.
   const base = {
     id,
@@ -295,44 +257,10 @@ export function defineFlashcard<
   } satisfies DeepPartial<Flashcard_Config>;
 
   const buildSide = (
-    items: Record<string, Block>,
-    order: readonly string[],
+    side: FlashcardSide_Configurator,
     languages: readonly LanguageCode[],
-    changes: Record<string, unknown> = {},
-  ) => {
-    const entries = order.map(key => {
-      const child = items[key];
-      const resource = child.build.props({ languages }) as unknown as BlockResource;
-      const patch = Object.hasOwn(changes, key)
-        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => BlockPatch)(
-            changes[key] as never,
-            { languages },
-          )
-        : undefined;
-      return { resource, patch };
-    });
-    const bases = entries.map(({ resource, patch }) =>
-      patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as Flashcard_PropsBase['content']['front'];
-    const locales: Partial<Record<LanguageCode, Flashcard_PropsBase['content']['front']>> = {};
-    for (const code of languages) {
-      if (
-        !entries.some(
-          ({ resource, patch }) => resource.locale?.[code] !== undefined || patch?.locale?.[code] !== undefined,
-        )
-      )
-        continue;
-      locales[code] = entries.map(({ resource, patch }) => {
-        const first = mergeForValidation(
-          resource.base,
-          (resource.locale?.[code] ?? {}) as DeepPartial<typeof resource.base>,
-        );
-        const second = patch ? mergeForValidation(first, patch.base) : first;
-        return patch?.locale?.[code] ? mergeForValidation(second, patch.locale[code]) : second;
-      }) as Flashcard_PropsBase['content']['front'];
-    }
-    return { bases, locales };
-  };
+  ): SidePublication =>
+    side.build.props({ languages }) as unknown as SidePublication;
 
   const buildFlags = (flags: Flashcard_Config['parameters']['flags'], languages: readonly LanguageCode[]) => {
     const entries = flags.order.map(key => splitLocalizedFields(flags.items[key]));
@@ -350,8 +278,8 @@ export function defineFlashcard<
   const buildRelationships = (relations: Flashcard_Config['parameters']['relationships']) =>
     relations?.order.map(key => structuredClone(relations.items[key]));
 
-  const addSideFiles = (files: Files, side: Side, built: ReturnType<typeof buildSide>) => {
-    for (const [code, values] of Object.entries(built.locales)) {
+  const addSideFiles = (files: Files, side: Side, built: SidePublication) => {
+    for (const [code, values] of Object.entries(built.locale ?? {})) {
       ((files[code as LanguageCode] ??= {}).content ??= {})[side] = values;
     }
   };
@@ -365,9 +293,9 @@ export function defineFlashcard<
     const languages = resolvePublicationLanguages(options);
     const source = copyAuthored();
     const files: Files = {};
-    const front = buildSide(initialContent.front.items, initialContent.front.order, languages);
-    const back = buildSide(initialContent.back.items, initialContent.back.order, languages);
-    const hint = initialContent.hint && buildSide(initialContent.hint.items, initialContent.hint.order, languages);
+    const front = buildSide(initialContent.front, languages);
+    const back = buildSide(initialContent.back, languages);
+    const hint = initialContent.hint && buildSide(initialContent.hint, languages);
     const flags = buildFlags(source.parameters.flags, languages);
     const { flags: authoredFlags, relationships: authoredRelationships, ...publishedParameters } = source.parameters;
     void authoredFlags;
@@ -391,9 +319,9 @@ export function defineFlashcard<
             : {}),
         },
         content: {
-          front: front.bases,
-          back: back.bases,
-          ...(hint ? { hint: hint.bases } : {}),
+          front: front.base,
+          back: back.base,
+          ...(hint ? { hint: hint.base } : {}),
         },
       },
       locale: selectPublicationLocales(Object.keys(files).length ? files : undefined, languages),
@@ -522,79 +450,20 @@ export function defineFlashcard<
       for (const key of Object.keys(patch.content ?? {})) {
         if (!['front', 'back', 'hint'].includes(key)) throw new Error('Unknown Flashcard content side: ' + key);
       }
-      const effective: Flashcard_Config['content'] = {
-        front: initialContent.front,
-        back: initialContent.back,
-        ...(initialContent.hint ? { hint: initialContent.hint } : {}),
-      };
+      const effective: Flashcard_Config['content'] = { ...initialContent };
       for (const side of ['front', 'back', 'hint'] as const) {
         const change = patch.content?.[side];
         if (change === undefined) continue;
         if (!isRecord(change)) throw new Error('content.' + side + ' must be an object');
-        for (const key of Object.keys(change)) {
-          if (!['items', 'additionalItems', 'order'].includes(key)) {
-            throw new Error('Unknown Flashcard content.' + side + ' override field: ' + key);
-          }
-        }
-        const current = initialContent[side] ?? { items: {}, order: [] };
-        const changes = change.items ?? {};
-        const additions = change.additionalItems ?? {};
-        if (!isRecord(changes) || !isRecord(additions)) {
-          throw new Error('Flashcard content.' + side + ' needs keyed maps');
-        }
-        const issues = validateSluggedConfiguratorMap(additions, contentBlockTypes, {
-          path: 'content.' + side + '.additionalItems',
-          itemLabel: 'Flashcard ContentBlock',
-        });
-        if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
-        const enabled: Record<string, Block | false> = { ...current.items };
-        const patches: Record<string, unknown> = {};
-        let structureChanged = Object.keys(additions).length > 0;
-        for (const [key, child] of Object.entries(additions)) {
-          if (Object.hasOwn(current.items, key)) throw new Error('Duplicate Flashcard ContentBlock slug: ' + key);
-          if (
-            !isRecord(child) ||
-            !isRecord(child.build) ||
-            typeof child.build.props !== 'function' ||
-            typeof child.build.overrides !== 'function' ||
-            !isRecord(child.config) ||
-            !isRecord(child.config.base) ||
-            child.config.base.id !== child.id ||
-            child.config.base.type !== child.type ||
-            child.config.base.slug !== key
-          ) {
-            throw new Error('New Flashcard ContentBlock must expose a valid Build API: ' + key);
-          }
-          enabled[key] = child as Block;
-        }
-        for (const [key, value] of Object.entries(changes)) {
-          if (!Object.hasOwn(current.items, key)) throw new Error('Unknown existing Flashcard ContentBlock: ' + key);
-          if (value === false) {
-            enabled[key] = false;
-            structureChanged = true;
-          } else {
-            if (!isRecord(value)) throw new Error('Flashcard child patch must be an object or false: ' + key);
-            patches[key] = value;
-          }
-        }
-        if (structureChanged && change.order === undefined) {
-          throw new Error('content.' + side + '.order is required when adding or disabling items');
-        }
-        const order = change.order ?? current.order;
-        const orderIssues = validateOrderedKeys(
-          { items: enabled, order },
-          { path: 'content.' + side, allowDisabled: true, requireNonEmpty: side !== 'hint' },
-        );
-        if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
-        const active = Object.fromEntries(
-          Object.entries(enabled).filter((entry): entry is [string, Block] => entry[1] !== false),
-        );
-        effective[side] = { items: active, order: [...order] };
-        if (Object.keys(changes).length || Object.keys(additions).length || change.order !== undefined) {
-          const built = buildSide(active, order, languages, patches);
-          (output.base.content ??= {})[side] = built.bases;
-          addSideFiles(files, side, built);
-        }
+        // Optional hint can be introduced through additionalItems without
+        // inventing a separate side UUID or changing the authored card.
+        const current = initialContent[side] ?? defineFlashcardSide({ items: {}, order: [] });
+        const built = (current.build.overrides as (
+          patch: never,
+          options: PublicationLanguageOptions,
+        ) => SidePublication)(change as never, { languages });
+        (output.base.content ??= {})[side] = built.base;
+        addSideFiles(files, side, built);
       }
       validate({ ...candidate, content: effective });
       output.locale = selectPublicationLocales(Object.keys(files).length ? files : undefined, languages);
