@@ -5,6 +5,7 @@ export const trueFalseEquality_Skill_Data = defineSkill({
   id: '7dca0048-581a-4cff-9fa4-670cb7655505',
   name: {
     en: 'Checking numerical equalities and inequalities',
+    it: 'Verificare uguaglianze e disuguaglianze numeriche',
     qm: 'Sayılı musaviylikler ve teñsizliklerni teşkere etmek',
     lt: 'Skaitinių lygybių ir nelygybių tikrinimas',
     lv: 'Skaitlisku vienādību un nevienādību pārbaude',
@@ -39,6 +40,7 @@ export const trueFalseEquality_Skill_Data = defineSkill({
       'An equality is true when both sides have the same value; an inequality is true when the specified order relation holds. Merely performing an operation on one side does not make a statement true.',
     frontend: {
       en: 'You can check whether an equality or inequality is true by comparing the values on its two sides.',
+      it: 'Puoi verificare se un\'uguaglianza o una disuguaglianza è vera confrontando i valori dei suoi due membri.',
       qm: 'Musaviylikniñ ya da teñsizlikniñ doğru olğanını onıñ eki tarafındaki qıymetlerni qıyaslap teşkere ete bilesiñ.',
       zh: '你能比较两边的值，判断等式或不等式是否成立。',
       hi: 'तुम दोनों पक्षों के मानों की तुलना करके जाँच सकते हो कि समानता या असमानता सही है या नहीं।',
