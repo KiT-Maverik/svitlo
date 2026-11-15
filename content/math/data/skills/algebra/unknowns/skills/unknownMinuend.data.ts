@@ -5,6 +5,7 @@ export const unknownMinuend_Skill_Data = defineSkill({
   id: '9b035dee-91cf-4e5a-ad29-c64100da3964',
   name: {
     en: 'Finding an unknown minuend',
+    it: 'Trovare un minuendo incognito',
     qm: 'Çıqaruvnıñ belli olmağan başlanğıç sayısını tapmaq',
     lt: 'Nežinomo turinio radimas',
     lv: 'Nezināmā mazināmā atrašana',
@@ -39,6 +40,7 @@ export const unknownMinuend_Skill_Data = defineSkill({
       'When the minuend is unknown, reconstruct it by adding the subtrahend to the given difference. Verification must satisfy the original equation; this differs from finding an unknown subtrahend.',
     frontend: {
       en: 'You can find the missing starting number in a subtraction by adding the amount subtracted to the difference.',
+      it: 'Puoi trovare il numero iniziale mancante di una sottrazione sommando la quantità sottratta alla differenza.',
       qm: 'Çıqarılğan miqdarnı farqqa qoşaraq çıqaruvdaki eksik başlanğıç sayısını tapa bilesiñ.',
       zh: '你能把减数与差相加，求出减法中未知的被减数。',
       hi: 'घटाव में अज्ञात शुरुआती संख्या पाने के लिए घटाई गई संख्या को अंतर में जोड़ सकते हो।',
