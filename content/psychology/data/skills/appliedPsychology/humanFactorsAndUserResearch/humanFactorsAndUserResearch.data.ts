@@ -12,6 +12,7 @@ export const humanFactorsAndUserResearch_SkillGroup_Data = defineSkillGroup({
   id: 'd3198e57-ffdb-4e21-a96f-78e4bcf03293',
   name: {
     en: 'Human Factors and User Research',
+    it: 'Fattori umani e ricerca sugli utenti',
     zh: '人因工程与用户研究',
     hi: 'मानवीय कारक और उपयोगकर्ता अनुसंधान',
     es: 'Factores humanos e investigación de usuarios',
@@ -60,6 +61,7 @@ export const humanFactorsAndUserResearch_SkillGroup_Data = defineSkillGroup({
       'Design decisions benefit from evidence about human attention, memory, perception, workload, and error; implementation remains owned by engineering or informatics.',
     frontend: {
       en: 'Learn how attention, memory and perception inform the study of usable systems.',
+      it: 'Scopri come attenzione, memoria e percezione contribuiscono allo studio dei sistemi facili da usare.',
       zh: '了解注意力、记忆和知觉如何帮助研究易用的系统。',
       hi: 'जानें कि ध्यान, स्मृति और प्रत्यक्षण से उपयोग में आसान प्रणालियों का अध्ययन कैसे होता है।',
       es: 'Descubre cómo la atención, la memoria y la percepción orientan el estudio de sistemas fáciles de usar.',

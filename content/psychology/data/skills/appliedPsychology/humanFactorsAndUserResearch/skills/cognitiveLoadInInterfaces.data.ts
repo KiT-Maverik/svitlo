@@ -5,6 +5,7 @@ export const cognitiveLoadInInterfaces_Skill_Data = defineSkill({
   id: 'a3f92e70-1ef8-430f-a6fd-5b97b4c94829',
   name: {
     en: 'Cognitive Load in Interfaces',
+    it: 'Carico cognitivo nelle interfacce',
     zh: '界面中的认知负荷',
     hi: 'इंटरफ़ेस में संज्ञानात्मक भार',
     es: 'Carga cognitiva en interfaces',
@@ -39,6 +40,7 @@ export const cognitiveLoadInInterfaces_Skill_Data = defineSkill({
       'Explain how limited working memory and divided attention influence task performance with complex controls.',
     frontend: {
       en: 'Explore how limited attention and memory affect the use of complex interfaces.',
+      it: 'Esplora come i limiti dell\'attenzione e della memoria incidano sull\'uso delle interfacce complesse.',
       zh: '探索有限的注意力和记忆如何影响复杂界面的使用。',
       hi: 'जानें कि सीमित ध्यान और स्मृति जटिल इंटरफ़ेस के उपयोग को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo la atención y la memoria limitadas afectan el uso de interfaces complejas.',

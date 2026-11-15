@@ -5,6 +5,7 @@ export const environmentalBehaviorChange_Skill_Data = defineSkill({
   id: '75d6a573-c3be-4ffd-96f2-38de925a81ca',
   name: {
     en: 'Environmental Behavior Change',
+    it: 'Cambiamento dei comportamenti ambientali',
     zh: '环保行为改变',
     hi: 'पर्यावरण हितैषी व्यवहार में बदलाव',
     es: 'Cambio de conducta ambiental',
@@ -38,6 +39,7 @@ export const environmentalBehaviorChange_Skill_Data = defineSkill({
     methodological: 'Evaluate psychological barriers and enabling conditions for pro-environmental choices.',
     frontend: {
       en: 'Explore psychological obstacles and supports for environmentally responsible behavior.',
+      it: 'Esplora gli ostacoli psicologici e i fattori che favoriscono comportamenti responsabili verso l\'ambiente.',
       zh: '探索阻碍或支持环境友好行为的心理因素。',
       hi: 'पर्यावरण के प्रति जिम्मेदार व्यवहार की मनोवैज्ञानिक बाधाओं और सहायता का अध्ययन करें।',
       es: 'Explora obstáculos y apoyos psicológicos para comportarse de forma responsable con el medio ambiente.',

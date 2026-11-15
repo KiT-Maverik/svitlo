@@ -5,6 +5,7 @@ export const humanErrorAndSystemDesign_Skill_Data = defineSkill({
   id: '194789ec-e811-4da1-b18e-47683141baf5',
   name: {
     en: 'Human Error and System Design',
+    it: 'Errore umano e progettazione dei sistemi',
     zh: '人为错误与系统设计',
     hi: 'मानवीय भूल और प्रणाली का डिज़ाइन',
     es: 'Error humano y diseño de sistemas',
@@ -39,6 +40,7 @@ export const humanErrorAndSystemDesign_Skill_Data = defineSkill({
       'Analyze how confusing feedback and task demands create foreseeable mistakes rather than attributing all failure to careless users.',
     frontend: {
       en: 'Recognize how confusing systems make mistakes more likely even for careful users.',
+      it: 'Riconosci come sistemi poco chiari rendano gli errori più probabili anche per gli utenti attenti.',
       zh: '认识令人困惑的系统为什么会使谨慎的用户也更容易犯错。',
       hi: 'समझें कि उलझी हुई प्रणालियाँ सावधान उपयोगकर्ताओं से भी गलतियाँ क्यों करवा सकती हैं।',
       es: 'Reconoce cómo los sistemas confusos aumentan los errores incluso de usuarios atentos.',
