@@ -9,6 +9,11 @@ import {
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import { contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import {
+  flashcardSide_Config_Schema,
+  type FlashcardSide_Config,
+  type FlashcardSide_Overrides,
+} from './defineFlashcardSide.schemas';
 
 type Block = ContentBlock_Configurator;
 type BlockResource = {
@@ -24,22 +29,6 @@ type SideFiles = Partial<Record<LanguageCode, SideProps>>;
 type SidePublication = { base: SideProps; locale: SideFiles | undefined };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
-
-/** A Flashcard side is a structural collection, not a UUID-bearing entity. */
-export const flashcardSide_Config_Schema = z.strictObject({
-  items: z.record(z.string(), z.custom<Block>()),
-  order: z.array(z.string()),
-});
-export type FlashcardSide_Config = z.infer<typeof flashcardSide_Config_Schema>;
-
-export type FlashcardSide_Overrides<
-  Items extends Record<string, Block>,
-  Added extends Record<string, Block> = {},
-> = {
-  items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
-  additionalItems?: Added & { [Key in keyof Items]?: never };
-  order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-};
 
 const validateSide = (config: FlashcardSide_Config, requireNonEmpty = false): void => {
   flashcardSide_Config_Schema.parse(config);
@@ -208,15 +197,3 @@ export type FlashcardSide_Configurator<
   Languages extends readonly LanguageCode[] = AllLanguageCodes,
 > = ReturnType<typeof defineFlashcardSide<Items, Languages>>;
 
-export const flashcardSideConfigurator_Schema = z.custom<FlashcardSide_Configurator>(
-  value =>
-    isRecord(value) &&
-    value.kind === 'flashcardSide' &&
-    isRecord(value.items) &&
-    Array.isArray(value.order) &&
-    typeof value.validate === 'function' &&
-    isRecord(value.build) &&
-    typeof value.build.props === 'function' &&
-    typeof value.build.overrides === 'function',
-  { message: 'Expected defineFlashcardSide configurator' },
-);
