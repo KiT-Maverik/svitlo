@@ -1,5 +1,3 @@
-import { z } from 'zod';
-
 import { flashcard_Props_Schema, type Flashcard_Props } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import { selectOneAnswer_Props_Schema } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
 import { selectMultipleAnswers_Props_Schema } from '../../configurators/questions/defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
@@ -106,8 +104,7 @@ export function createAssessmentResourceLoader(read: ReadAssessmentFiles): Asses
     signal?: AbortSignal,
   ): Promise<readonly (Question_Props | Flashcard_Props)[]> {
     const manifest = await getManifest(lessonId, signal);
-    const sectionId = '00000000-0000-4000-8000-000000000001'; // Loader has no Section dependency.
-    const entries = validateAssessmentReferences(manifest, { lessonId, sectionId, kind, ids, language });
+    const entries = validateAssessmentReferences(manifest, { lessonId, kind, ids, language });
     const paths = new Set<string>();
     for (const [index, id] of ids.entries()) {
       const cacheKey = kind + ':' + lessonId + ':' + id + ':' + language;

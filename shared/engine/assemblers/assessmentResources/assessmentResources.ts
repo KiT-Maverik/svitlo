@@ -30,7 +30,7 @@ export type AssessmentResourceKind = AssessmentResourceEntry['kind'];
 
 export type AssessmentSelection = {
   lessonId: string;
-  sectionId: string;
+  sectionId?: string;
   kind: AssessmentResourceKind;
   ids: readonly string[];
   language: LanguageCode;
@@ -78,7 +78,7 @@ export function validateAssessmentReferences(
 ): AssessmentResourceEntry[] {
   const manifest = assessmentResourceManifest_Schema.parse(rawManifest);
   const lessonId = z.uuid().parse(selection.lessonId);
-  const sectionId = z.uuid().parse(selection.sectionId);
+  const context = selection.sectionId ? 'in Section ' + z.uuid().parse(selection.sectionId) : 'for Lesson ' + lessonId;
   const language = languageCode_Schema.parse(selection.language);
   if (manifest.lessonId !== lessonId) {
     throw new Error('Assessment manifest belongs to a different Lesson: ' + lessonId);
@@ -90,10 +90,10 @@ export function validateAssessmentReferences(
   const seen = new Set<string>();
   return selection.ids.map(rawId => {
     const id = z.uuid().parse(rawId);
-    if (seen.has(id)) throw new Error('Duplicate assessment UUID ' + id + ' in Section ' + sectionId);
+    if (seen.has(id)) throw new Error('Duplicate assessment UUID ' + id +  ' ' + context);
     seen.add(id);
     const entry = manifest.entries[id];
-    if (!entry) throw new Error('Missing assessment UUID ' + id + ' in Section ' + sectionId);
+    if (!entry) throw new Error('Missing assessment UUID ' + id +  ' ' + context);
     if (entry.lessonId !== lessonId) {
       throw new Error('Assessment UUID ' + id + ' belongs to a different Lesson');
     }
