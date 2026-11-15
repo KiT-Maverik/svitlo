@@ -391,5 +391,9 @@ export function renderLessonModules(lesson, language, options = {}) {
     'export const ' + filtered.slug + '_Lesson = defineLesson' + langArgs + '({\n' +
     rootFields.join(',\n') + '\n});\n';
   put('index.ts', root);
-  return new Map([...files.entries()].sort((a,b) => a[0].localeCompare(b[0])));
+  // Write the entrypoint last. A process interruption before this point
+  // leaves an orphan tree, which runOne rejects rather than treating it as a
+  // complete Lesson on the next creation-only run.
+  return new Map([...files.entries()].sort((a, b) =>
+    a[0] === 'index.ts' ? 1 : b[0] === 'index.ts' ? -1 : a[0].localeCompare(b[0])));
 }
