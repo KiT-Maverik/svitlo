@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { defineText } from '../../contentBlocks/defineText/defineText';
+import { defineFlashcard, defineFlashcardSide } from '../../flashcards';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
 import { defineLesson } from './defineLesson';
@@ -185,6 +186,79 @@ describe('Configurators', () => {
         assert.throws(
           () => lesson.build.overrides({ params: { languages: ['pl'] } } as never, { languages: ['en', 'uk'] }),
           /Invalid Lesson overrides/,
+        );
+      });
+
+      test('Lesson Flashcard bank has deterministic slug order and permits additions without order', () => {
+        const side = defineFlashcardSide<{ paragraph: typeof text }, ['en', 'uk']>({
+          items: { paragraph: text },
+          order: ['paragraph'],
+        });
+        const makeCard = <Slug extends string>(slug: Slug, cardId: string) =>
+          defineFlashcard<
+            Slug,
+            typeof side.items,
+            typeof side.items,
+            {},
+            {},
+            {},
+            ['en', 'uk']
+          >({
+            id: cardId,
+            slug,
+            type: 'flashcard',
+            parameters: { tags: [], flags: { items: {}, order: [] } },
+            content: { front: side, back: side },
+          });
+        const zetaCard = makeCard('zetaCard', id('11'));
+        const alphaCard = makeCard('alphaCard', id('12'));
+        const betaCard = makeCard('betaCard', id('13'));
+        const lesson = defineLesson({
+          id: id('14'),
+          slug: 'recallBankLesson',
+          type: 'lesson',
+          skills: [],
+          params: {
+            requireQuiz: false,
+            languages: ['en', 'uk'] as const,
+            sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
+          },
+          locale: { title: 'Recall bank' },
+          section: { items: { intro: section }, order: ['intro'] },
+          flashcards: { items: { zetaCard, alphaCard } },
+        });
+
+        assert.deepEqual(
+          lesson.build.props({ languages: ['en'] }).base.flashcards.map(card => card.slug),
+          ['alphaCard', 'zetaCard'],
+        );
+        const replacement = lesson.build.overrides(
+          { flashcards: { items: { zetaCard: false }, additionalItems: { betaCard } } },
+          { languages: ['en', 'uk'] },
+        );
+        assert.deepEqual(replacement.base.flashcards?.map(card => card.slug), ['alphaCard', 'betaCard']);
+        assert.deepEqual(Object.keys(lesson.flashcards.items), ['zetaCard', 'alphaCard']);
+        assert.equal('order' in lesson.flashcards, false);
+        assert.throws(
+          () => lesson.build.overrides({ flashcards: { order: ['zetaCard', 'alphaCard'] } } as never, { languages: ['en'] }),
+          /Unknown flashcards override field/,
+        );
+        assert.throws(
+          () =>
+            defineLesson({
+              id: id('15'),
+              slug: 'invalidRecallOrder',
+              type: 'lesson',
+              skills: [],
+              params: {
+                requireQuiz: false,
+                languages: ['en', 'uk'] as const,
+                sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
+              },
+              locale: { title: 'Invalid recall order' },
+              section: { items: { intro: section }, order: ['intro'] },
+              flashcards: { items: { zetaCard }, order: ['zetaCard'] },
+            } as never),
         );
       });
 
