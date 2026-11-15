@@ -5,6 +5,7 @@ export const chooseEvacuationOrShelter_Skill_Data = defineSkill({
   id: '364a6b9a-83e4-4f8e-b308-65cfc55f61d2',
   name: {
     en: 'Choose evacuation or shelter',
+    it: 'Scegliere tra evacuazione e riparo',
     zh: '选择疏散或就地避难',
     hi: 'निकासी या आश्रय चुनना',
     es: 'Elegir evacuación o refugio',
@@ -39,6 +40,7 @@ export const chooseEvacuationOrShelter_Skill_Data = defineSkill({
       'Interpret hazard-specific directions and avoid assuming evacuation is always safer than remaining in place.',
     frontend: {
       en: 'Follow hazard-specific directions about evacuation or staying inside.',
+      it: 'Segui le indicazioni specifiche per il pericolo su quando evacuare o restare al chiuso.',
       zh: '按照具体危险的官方指示决定撤离还是留在室内。',
       hi: 'विशिष्ट खतरे के लिए दिए गए निर्देशों के अनुसार निकासी या अंदर रहने का निर्णय लें।',
       es: 'Sigue las indicaciones específicas del peligro sobre evacuar o permanecer dentro.',

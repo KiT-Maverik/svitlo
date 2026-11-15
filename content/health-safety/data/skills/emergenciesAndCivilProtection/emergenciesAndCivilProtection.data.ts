@@ -10,6 +10,7 @@ export const emergenciesAndCivilProtection_SkillDomain_Data = defineSkillDomain(
   id: '58c4ecae-a7da-4fe2-ba16-fe63cf9df259',
   title: {
     en: 'Emergencies and Civil Protection',
+    it: 'Emergenze e protezione civile',
     zh: '紧急情况与民防',
     hi: 'आपातकाल और नागरिक सुरक्षा',
     es: 'Emergencias y protección civil',
@@ -39,25 +40,18 @@ export const emergenciesAndCivilProtection_SkillDomain_Data = defineSkillDomain(
     kk: 'Төтенше жағдайлар және азаматтық қорғау',
     qm: 'Acil vaziyetler ve sivil qorçalav',
   },
-  groups: {
-    items: {
-      conflictRelatedDangers: conflictRelatedDangers_SkillGroup_Data,
-      evacuationAndShelter: evacuationAndShelter_SkillGroup_Data,
-      naturalAndTechnologicalDisasters: naturalAndTechnologicalDisasters_SkillGroup_Data,
-      preparednessAndAlerts: preparednessAndAlerts_SkillGroup_Data,
-    },
-    order: [
-      'conflictRelatedDangers',
-      'evacuationAndShelter',
-      'naturalAndTechnologicalDisasters',
-      'preparednessAndAlerts',
-    ],
-  },
+  groups: [
+    conflictRelatedDangers_SkillGroup_Data,
+    evacuationAndShelter_SkillGroup_Data,
+    naturalAndTechnologicalDisasters_SkillGroup_Data,
+    preparednessAndAlerts_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Collective hazards can overwhelm normal routines and require verified alerts, protective shelter, evacuation, and coordination with responders. Local regulations and emergency numbers belong to contextual lessons, not permanent country-specific Skill identities.',
     frontend: {
       en: 'Learn to prepare for emergencies, follow reliable warnings and protect others safely.',
+      it: 'Impara a prepararti alle emergenze, seguire avvisi affidabili e proteggere gli altri in sicurezza.',
       zh: '学习为紧急情况作准备、遵循可靠警报并安全地保护他人。',
       hi: 'आपात स्थितियों की तैयारी, भरोसेमंद चेतावनियों का पालन और दूसरों की सुरक्षित रक्षा करना सीखें।',
       es: 'Aprende a prepararte para emergencias, seguir alertas fiables y proteger a los demás con seguridad.',
