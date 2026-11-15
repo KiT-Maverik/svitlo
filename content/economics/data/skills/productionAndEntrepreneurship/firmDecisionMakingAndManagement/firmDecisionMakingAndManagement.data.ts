@@ -7,6 +7,7 @@ export const firmDecisionMakingAndManagement_SkillGroup_Data = defineSkillGroup(
   id: '026c8b2d-13ae-437e-bb2e-f33580b920bc',
   name: {
     en: 'Firm Decision-Making and Management',
+    it: "Decisioni e gestione d'impresa",
     zh: '企业决策与管理',
     hi: 'फर्म के निर्णय और प्रबंधन',
     es: 'Decisiones y gestión de la empresa',
@@ -42,6 +43,7 @@ export const firmDecisionMakingAndManagement_SkillGroup_Data = defineSkillGroup(
       "The incentives and decisions of owners, managers, and workers shape a firm's organization and production; competitive market structure is analyzed separately.",
     frontend: {
       en: 'Discover how people inside a company make economic decisions.',
+      it: "Scopri come le persone all'interno di un'azienda prendono decisioni economiche.",
       zh: '了解公司内部人员如何做出经济决策。',
       hi: 'जानें कि कंपनी के लोग आर्थिक फैसले कैसे लेते हैं।',
       es: 'Descubre cómo las personas de una empresa toman decisiones económicas.',

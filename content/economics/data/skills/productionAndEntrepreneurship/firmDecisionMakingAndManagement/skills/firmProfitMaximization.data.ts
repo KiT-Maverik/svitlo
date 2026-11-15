@@ -5,6 +5,7 @@ export const firmProfitMaximization_Skill_Data = defineSkill({
   id: '26acb5c2-2a9a-4a12-847c-9c7fdf0da6b6',
   name: {
     en: 'Firm Profit Maximization',
+    it: "Massimizzazione del profitto d'impresa",
     zh: '企业利润最大化',
     hi: 'फर्म के लाभ का अधिकतमकरण',
     es: 'Maximización de beneficios de la empresa',
@@ -39,6 +40,7 @@ export const firmProfitMaximization_Skill_Data = defineSkill({
       'Evaluate output decisions using the relationship between marginal revenue and marginal cost in a specified model.',
     frontend: {
       en: 'Explore how a firm chooses output to improve its profit.',
+      it: "Esplora come un'impresa sceglie quanto produrre per migliorare il proprio profitto.",
       zh: '探索企业如何选择产量以提高利润。',
       hi: 'जानें कि फर्म लाभ बढ़ाने के लिए उत्पादन मात्रा कैसे चुनती है।',
       es: 'Explora cómo una empresa elige su producción para aumentar sus ganancias.',

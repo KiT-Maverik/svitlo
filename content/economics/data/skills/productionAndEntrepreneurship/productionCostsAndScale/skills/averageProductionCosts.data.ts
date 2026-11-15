@@ -5,6 +5,7 @@ export const averageProductionCosts_Skill_Data = defineSkill({
   id: '11eef6c3-6d51-47d5-a930-4a50274ec738',
   name: {
     en: 'Average Production Costs',
+    it: 'Costi medi di produzione',
     zh: '平均生产成本',
     hi: 'औसत उत्पादन लागत',
     es: 'Costos medios de producción',
@@ -39,6 +40,7 @@ export const averageProductionCosts_Skill_Data = defineSkill({
       'Calculate cost per unit of output and explain how it depends on scale and the composition of costs.',
     frontend: {
       en: 'Find the average cost of producing a unit.',
+      it: "Calcola il costo medio per produrre un'unità.",
       zh: '计算生产一单位产品的平均成本。',
       hi: 'किसी वस्तु की एक इकाई बनाने की औसत लागत निकालें।',
       es: 'Calcula el costo promedio de producir una unidad.',

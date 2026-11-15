@@ -5,6 +5,7 @@ export const businessRevenueCostsAndProfit_Skill_Data = defineSkill({
   id: 'e88ecb49-8d9d-468e-a6d8-a48c89644f38',
   name: {
     en: 'Business Revenue, Costs, and Profit',
+    it: "Ricavi, costi e profitto d'impresa",
     zh: '企业收入、成本与利润',
     hi: 'व्यवसाय की आय, लागत और लाभ',
     es: 'Ingresos, costos y ganancias empresariales',
@@ -39,6 +40,7 @@ export const businessRevenueCostsAndProfit_Skill_Data = defineSkill({
       'Interpret turnover, expenses, and operating results without confusing profitability with available cash.',
     frontend: {
       en: 'Distinguish business revenue, expenses, profit, and cash on hand.',
+      it: "Distingui ricavi, spese, profitto e liquidità disponibile di un'impresa.",
       zh: '区分营业收入、费用、利润及手头现金。',
       hi: 'राजस्व, खर्च, लाभ और उपलब्ध नकद राशि में अंतर करें।',
       es: 'Distingue ingresos, gastos, beneficios y dinero disponible.',

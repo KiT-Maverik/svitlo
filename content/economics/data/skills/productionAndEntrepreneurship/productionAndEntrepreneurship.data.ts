@@ -10,6 +10,7 @@ export const productionAndEntrepreneurship_SkillDomain_Data = defineSkillDomain(
   id: '02c4f179-d868-4c51-8bf7-031bcd0bd182',
   title: {
     en: 'Production and Entrepreneurship',
+    it: 'Produzione e imprenditorialità',
     zh: '生产与创业',
     hi: 'उत्पादन और उद्यमिता',
     es: 'Producción y emprendimiento',
@@ -50,6 +51,7 @@ export const productionAndEntrepreneurship_SkillDomain_Data = defineSkillDomain(
       "Creating value combines resources, technology, organization, and risk. This domain studies firms' production decisions and the sustainability of their operations.",
     frontend: {
       en: 'Explore how businesses turn resources and ideas into products and services.',
+      it: 'Esplora come le imprese trasformano risorse e idee in prodotti e servizi.',
       zh: '探索企业如何将资源与创意转化成产品和服务。',
       hi: 'जानें कि व्यवसाय संसाधनों और विचारों को उत्पादों व सेवाओं में कैसे बदलते हैं।',
       es: 'Explora cómo las empresas transforman recursos e ideas en productos y servicios.',

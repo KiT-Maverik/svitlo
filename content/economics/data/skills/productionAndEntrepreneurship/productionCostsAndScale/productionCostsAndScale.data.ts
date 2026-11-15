@@ -13,6 +13,7 @@ export const productionCostsAndScale_SkillGroup_Data = defineSkillGroup({
   id: 'dcde5c13-0b61-48f5-b2cc-f0ac7e27a6b1',
   name: {
     en: 'Production Costs and Scale',
+    it: 'Costi di produzione e scala produttiva',
     zh: '生产成本与规模',
     hi: 'उत्पादन लागत और पैमाना',
     es: 'Costos y escala de producción',
@@ -54,6 +55,7 @@ export const productionCostsAndScale_SkillGroup_Data = defineSkillGroup({
       'Economic production decisions account for opportunity costs, time horizons, and how unit costs change with output.',
     frontend: {
       en: "Explore how the costs of production change with a firm's scale.",
+      it: "Esplora come i costi di produzione cambiano al variare della dimensione di un'impresa.",
       zh: '探索企业规模变化时生产成本如何改变。',
       hi: 'जानें कि कंपनी का पैमाना बदलने से उत्पादन लागत कैसे बदलती है।',
       es: 'Explora cómo cambian los costos cuando varía la escala empresarial.',
