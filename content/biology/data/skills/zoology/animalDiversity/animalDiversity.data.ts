@@ -25,6 +25,7 @@ export const animalDiversity_SkillGroup_Data = defineSkillGroup({
   id: '591a0c82-1daa-4be9-9393-1ce81a51152e',
   name: {
     en: 'Animal Diversity',
+    it: 'Diversità degli animali',
     zh: '动物多样性',
     hi: 'प्राणियों की विविधता',
     es: 'Diversidad animal',
@@ -78,6 +79,7 @@ export const animalDiversity_SkillGroup_Data = defineSkillGroup({
       'Identifying major animal groups requires diagnostic characteristics, including skeletal structure, body coverings, limbs, and developmental patterns, rather than incidental external resemblance.',
     frontend: {
       en: 'Recognize major animal groups by reliable body features rather than superficial similarities.',
+      it: 'Riconosci i principali gruppi animali attraverso caratteristiche corporee affidabili, non somiglianze superficiali.',
       zh: '探索主要动物类群的不同特征。',
       hi: 'प्राणियों के प्रमुख समूहों की अलग-अलग विशेषताओं को जानें।',
       es: 'Explora las diferentes características de los principales grupos de animales.',
