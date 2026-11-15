@@ -5,6 +5,7 @@ export const distinguishRepresentationAndAbstraction_Skill_Data = defineSkill({
   id: '58784e45-fa84-44ee-beb6-4feff017fb80',
   name: {
     en: 'Distinguish Representation and Abstraction',
+    it: "Distinguere rappresentazione e astrazione",
     zh: '区分具象与抽象',
     hi: 'प्रतिनिधित्व और अमूर्तन में अंतर करें',
     es: 'Distinguir representación y abstracción',
@@ -39,6 +40,7 @@ export const distinguishRepresentationAndAbstraction_Skill_Data = defineSkill({
       'Explain how a work may depict recognizable subjects, transform them or rely on nonrepresentational relationships.',
     frontend: {
       en: 'Explore the difference between showing recognizable subjects and using abstract forms.',
+      it: "Esplora la differenza tra raffigurare soggetti riconoscibili e usare forme astratte.",
       zh: '探索描绘可辨认对象与运用抽象形式之间的区别。',
       hi: 'पहचाने जा सकने वाले विषयों को दिखाने और अमूर्त रूपों का उपयोग करने के बीच का अंतर समझें।',
       es: 'Explora la diferencia entre representar temas reconocibles y utilizar formas abstractas.',
