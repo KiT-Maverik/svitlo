@@ -5,6 +5,7 @@ export const openLoopControl_Skill_Data = defineSkill({
   id: '2a02a615-0b4d-4abb-a217-93440de78fa2',
   name: {
     en: 'Open-loop control',
+    it: 'Controllo ad anello aperto',
     zh: '开环控制',
     hi: 'खुले पाश का नियंत्रण',
     es: 'Control de lazo abierto',
@@ -39,6 +40,7 @@ export const openLoopControl_Skill_Data = defineSkill({
       'Describe a control process whose command is set without measuring the resulting output for correction, and explain the consequences of changing loads or other disturbances.',
     frontend: {
       en: 'Understand systems that operate without measuring the result.',
+      it: 'Comprendi come funzionano i sistemi che operano senza misurare il risultato.',
       zh: '理解不测量实际结果便运行的控制系统。',
       hi: 'समझें कि बिना परिणाम मापे चलने वाली नियंत्रण प्रणालियाँ कैसे काम करती हैं।',
       es: 'Comprende los sistemas que funcionan sin medir el resultado.',
