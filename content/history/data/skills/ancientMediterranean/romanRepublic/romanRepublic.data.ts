@@ -42,13 +42,22 @@ export const romanRepublic_SkillGroup_Data = defineSkillGroup({
     kk: 'Рим республикасы',
     qm: 'Roma cumhuriyeti',
   },
-  skills: [
-    crisisOfRomanRepublic_Skill_Data,
-    earlyRomanCommunities_Skill_Data,
-    patricianPlebeianConflict_Skill_Data,
-    punicWars_Skill_Data,
-    romanRepublicanInstitutions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      crisisOfRomanRepublic: crisisOfRomanRepublic_Skill_Data,
+      earlyRomanCommunities: earlyRomanCommunities_Skill_Data,
+      patricianPlebeianConflict: patricianPlebeianConflict_Skill_Data,
+      punicWars: punicWars_Skill_Data,
+      romanRepublicanInstitutions: romanRepublicanInstitutions_Skill_Data,
+    },
+    order: [
+      'crisisOfRomanRepublic',
+      'earlyRomanCommunities',
+      'patricianPlebeianConflict',
+      'punicWars',
+      'romanRepublicanInstitutions',
+    ],
+  },
   description: {
     methodological:
       'Conquests and social conflicts reshaped republican institutions and helped produce concentrated individual rule.',

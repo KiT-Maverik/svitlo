@@ -41,12 +41,20 @@ export const productionFlow_SkillGroup_Data = defineSkillGroup({
     kk: 'Өндіріс ағыны',
     qm: 'İstisal aqımı',
   },
-  skills: [
-    automatedManufacturingCells_Skill_Data,
-    compareBatchAndContinuousProduction_Skill_Data,
-    identifyProductionWaste_Skill_Data,
-    traceProductionWorkflow_Skill_Data,
-  ],
+  skills: {
+    items: {
+      automatedManufacturingCells: automatedManufacturingCells_Skill_Data,
+      compareBatchAndContinuousProduction: compareBatchAndContinuousProduction_Skill_Data,
+      identifyProductionWaste: identifyProductionWaste_Skill_Data,
+      traceProductionWorkflow: traceProductionWorkflow_Skill_Data,
+    },
+    order: [
+      'automatedManufacturingCells',
+      'compareBatchAndContinuousProduction',
+      'identifyProductionWaste',
+      'traceProductionWorkflow',
+    ],
+  },
   description: {
     methodological:
       'Repeated manufacture introduces throughput limits and choices between flexible batches and continuous processes.',

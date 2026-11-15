@@ -41,12 +41,21 @@ export const moralConcepts_SkillGroup_Data = defineSkillGroup({
     kk: 'Моральдық ұғымдар',
     qm: 'Ahlâqiy añlamlar',
   },
-  skills: [
-    analyzeMoralDuty_Skill_Data,
-    distinguishIntentionsFromConsequences_Skill_Data,
-    distinguishMoralFromNonMoralJudgments_Skill_Data,
-    distinguishMoralResponsibilityFromCausalResponsibility_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeMoralDuty: analyzeMoralDuty_Skill_Data,
+      distinguishIntentionsFromConsequences: distinguishIntentionsFromConsequences_Skill_Data,
+      distinguishMoralFromNonMoralJudgments: distinguishMoralFromNonMoralJudgments_Skill_Data,
+      distinguishMoralResponsibilityFromCausalResponsibility:
+        distinguishMoralResponsibilityFromCausalResponsibility_Skill_Data,
+    },
+    order: [
+      'analyzeMoralDuty',
+      'distinguishIntentionsFromConsequences',
+      'distinguishMoralFromNonMoralJudgments',
+      'distinguishMoralResponsibilityFromCausalResponsibility',
+    ],
+  },
   description: {
     methodological:
       'Ethical claims use concepts such as duty, harm, intention, and virtue that cannot be reduced to personal approval.',

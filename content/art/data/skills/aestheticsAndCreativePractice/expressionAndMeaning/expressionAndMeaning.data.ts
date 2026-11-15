@@ -41,12 +41,20 @@ export const expressionAndMeaning_SkillGroup_Data = defineSkillGroup({
     kk: 'Бейнелеу және мағына',
     qm: 'İfade ve mana',
   },
-  skills: [
-    analyzeArtisticMetaphor_Skill_Data,
-    analyzeEmotionalExpression_Skill_Data,
-    interpretArtisticSymbols_Skill_Data,
-    relateArtisticFormToContent_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeArtisticMetaphor: analyzeArtisticMetaphor_Skill_Data,
+      analyzeEmotionalExpression: analyzeEmotionalExpression_Skill_Data,
+      interpretArtisticSymbols: interpretArtisticSymbols_Skill_Data,
+      relateArtisticFormToContent: relateArtisticFormToContent_Skill_Data,
+    },
+    order: [
+      'analyzeArtisticMetaphor',
+      'analyzeEmotionalExpression',
+      'interpretArtisticSymbols',
+      'relateArtisticFormToContent',
+    ],
+  },
   description: {
     methodological:
       'Symbolism and emotional character require interpretations anchored in artistic choices and context.',

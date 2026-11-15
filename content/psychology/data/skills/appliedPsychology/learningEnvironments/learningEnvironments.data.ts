@@ -40,7 +40,14 @@ export const learningEnvironments_SkillGroup_Data = defineSkillGroup({
     kk: 'Оқу орталары',
     qm: 'Ögrenüv muhitleri',
   },
-  skills: [feedbackInEducation_Skill_Data, learningEnvironmentDesign_Skill_Data, motivationalClimate_Skill_Data],
+  skills: {
+    items: {
+      feedbackInEducation: feedbackInEducation_Skill_Data,
+      learningEnvironmentDesign: learningEnvironmentDesign_Skill_Data,
+      motivationalClimate: motivationalClimate_Skill_Data,
+    },
+    order: ['feedbackInEducation', 'learningEnvironmentDesign', 'motivationalClimate'],
+  },
   description: {
     methodological:
       'Educational psychology examines attention, feedback, motivation, and differences among learners to understand conditions for effective learning.',

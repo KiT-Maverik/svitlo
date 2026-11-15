@@ -42,13 +42,22 @@ export const representationsAndPrototypes_SkillGroup_Data = defineSkillGroup({
     kk: 'Көрнекі үлгілер мен прототиптер',
     qm: 'Tasvirler ve prototipler',
   },
-  skills: [
-    buildAFunctionalPrototype_Skill_Data,
-    createADimensionedDrawing_Skill_Data,
-    createAFunctionalBlockDiagram_Skill_Data,
-    designRationale_Skill_Data,
-    interpretTechnicalSystemSchematics_Skill_Data,
-  ],
+  skills: {
+    items: {
+      buildAFunctionalPrototype: buildAFunctionalPrototype_Skill_Data,
+      createADimensionedDrawing: createADimensionedDrawing_Skill_Data,
+      createAFunctionalBlockDiagram: createAFunctionalBlockDiagram_Skill_Data,
+      designRationale: designRationale_Skill_Data,
+      interpretTechnicalSystemSchematics: interpretTechnicalSystemSchematics_Skill_Data,
+    },
+    order: [
+      'buildAFunctionalPrototype',
+      'createADimensionedDrawing',
+      'createAFunctionalBlockDiagram',
+      'designRationale',
+      'interpretTechnicalSystemSchematics',
+    ],
+  },
   description: {
     methodological:
       'Technical representations communicate geometry, operation and interfaces. A model is useful when it preserves properties that matter to the question being investigated.',

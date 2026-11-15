@@ -41,12 +41,20 @@ export const causationTimeAndPossibility_SkillGroup_Data = defineSkillGroup({
     kk: 'Себептілік, уақыт және мүмкіндік',
     qm: 'Sebeplilik, zaman ve imkân',
   },
-  skills: [
-    comparePhilosophicalAccountsOfTime_Skill_Data,
-    distinguishCausationFromTemporalSuccession_Skill_Data,
-    distinguishPossibilityFromNecessity_Skill_Data,
-    evaluateACounterfactualClaim_Skill_Data,
-  ],
+  skills: {
+    items: {
+      comparePhilosophicalAccountsOfTime: comparePhilosophicalAccountsOfTime_Skill_Data,
+      distinguishCausationFromTemporalSuccession: distinguishCausationFromTemporalSuccession_Skill_Data,
+      distinguishPossibilityFromNecessity: distinguishPossibilityFromNecessity_Skill_Data,
+      evaluateACounterfactualClaim: evaluateACounterfactualClaim_Skill_Data,
+    },
+    order: [
+      'comparePhilosophicalAccountsOfTime',
+      'distinguishCausationFromTemporalSuccession',
+      'distinguishPossibilityFromNecessity',
+      'evaluateACounterfactualClaim',
+    ],
+  },
   description: {
     methodological:
       'Metaphysical inquiry asks what causal dependence means and how temporal or modal claims relate beyond specific measurements.',

@@ -41,12 +41,20 @@ export const programStructureAndSyntax_SkillGroup_Data = defineSkillGroup({
     kk: 'Бағдарлама құрылымы мен синтаксисі',
     qm: 'Programma qurulışı ve sintaksis',
   },
-  skills: [
-    distinguishKeywordsFromIdentifiers_Skill_Data,
-    distinguishOperatorsExpressionsAndStatements_Skill_Data,
-    explainStatementBlockBoundaries_Skill_Data,
-    explainSyntaxHighlighting_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishKeywordsFromIdentifiers: distinguishKeywordsFromIdentifiers_Skill_Data,
+      distinguishOperatorsExpressionsAndStatements: distinguishOperatorsExpressionsAndStatements_Skill_Data,
+      explainStatementBlockBoundaries: explainStatementBlockBoundaries_Skill_Data,
+      explainSyntaxHighlighting: explainSyntaxHighlighting_Skill_Data,
+    },
+    order: [
+      'distinguishKeywordsFromIdentifiers',
+      'distinguishOperatorsExpressionsAndStatements',
+      'explainStatementBlockBoundaries',
+      'explainSyntaxHighlighting',
+    ],
+  },
   description: {
     methodological:
       'The language units of executable code include keywords, operators, identifiers, expressions, statements, and blocks. Editor highlighting helps identify them but does not prove a program correct.',

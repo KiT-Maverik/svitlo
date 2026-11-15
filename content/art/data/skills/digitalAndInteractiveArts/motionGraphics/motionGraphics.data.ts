@@ -40,7 +40,14 @@ export const motionGraphics_SkillGroup_Data = defineSkillGroup({
     kk: 'Қозғалыс графикасы',
     qm: 'Hareketli grafik',
   },
-  skills: [animateGraphicElements_Skill_Data, designKineticTypography_Skill_Data, sequenceMotionGraphics_Skill_Data],
+  skills: {
+    items: {
+      animateGraphicElements: animateGraphicElements_Skill_Data,
+      designKineticTypography: designKineticTypography_Skill_Data,
+      sequenceMotionGraphics: sequenceMotionGraphics_Skill_Data,
+    },
+    order: ['animateGraphicElements', 'designKineticTypography', 'sequenceMotionGraphics'],
+  },
   description: {
     methodological:
       'Moving designed graphics use visual change and pacing for expressive or communicative purposes; they differ from depicting characters in frame-by-frame or stop-motion cinema.',

@@ -39,12 +39,20 @@ export const epistemologyAndCriticalEvaluation_SkillDomain_Data = defineSkillDom
     kk: 'Эпистемология және сыни бағалау',
     qm: 'Bilgi nazariyesi ve tenqidiy baalav',
   },
-  groups: [
-    evidenceAndTestimony_SkillGroup_Data,
-    knowledgeAndJustification_SkillGroup_Data,
-    mediaAndPublicInformation_SkillGroup_Data,
-    uncertaintyAndSkepticism_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      evidenceAndTestimony: evidenceAndTestimony_SkillGroup_Data,
+      knowledgeAndJustification: knowledgeAndJustification_SkillGroup_Data,
+      mediaAndPublicInformation: mediaAndPublicInformation_SkillGroup_Data,
+      uncertaintyAndSkepticism: uncertaintyAndSkepticism_SkillGroup_Data,
+    },
+    order: [
+      'evidenceAndTestimony',
+      'knowledgeAndJustification',
+      'mediaAndPublicInformation',
+      'uncertaintyAndSkepticism',
+    ],
+  },
   description: {
     methodological:
       'Questions about knowledge concern what can be believed responsibly, what makes claims true, and when confidence should change. This domain applies general standards of justification to testimony and public information; scientific experimental design has its own domain.',

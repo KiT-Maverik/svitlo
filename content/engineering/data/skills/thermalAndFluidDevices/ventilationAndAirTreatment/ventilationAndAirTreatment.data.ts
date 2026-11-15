@@ -40,7 +40,14 @@ export const ventilationAndAirTreatment_SkillGroup_Data = defineSkillGroup({
     kk: 'Желдету және ауаны өңдеу',
     qm: 'Ava alıştırma ve temizleme',
   },
-  skills: [airConditioningSystems_Skill_Data, diagnoseRestrictedFluidFlow_Skill_Data, ventilationSystems_Skill_Data],
+  skills: {
+    items: {
+      airConditioningSystems: airConditioningSystems_Skill_Data,
+      diagnoseRestrictedFluidFlow: diagnoseRestrictedFluidFlow_Skill_Data,
+      ventilationSystems: ventilationSystems_Skill_Data,
+    },
+    order: ['airConditioningSystems', 'diagnoseRestrictedFluidFlow', 'ventilationSystems'],
+  },
   description: {
     methodological:
       'Indoor climate equipment needs functional air paths, treatment components and regulation appropriate to occupied spaces.',

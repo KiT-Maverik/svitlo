@@ -43,14 +43,24 @@ export const nuclearPhenomena_SkillGroup_Data = defineSkillGroup({
     kk: 'Ядролық құбылыстар',
     qm: 'Yadro adiseleri',
   },
-  skills: [
-    distinguishAlphaBetaAndGammaRadiation_Skill_Data,
-    distinguishNuclearTransformationFromChemicalChange_Skill_Data,
-    explainHalfLife_Skill_Data,
-    explainNuclearFission_Skill_Data,
-    explainNuclearFusion_Skill_Data,
-    explainRadioactivity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAlphaBetaAndGammaRadiation: distinguishAlphaBetaAndGammaRadiation_Skill_Data,
+      distinguishNuclearTransformationFromChemicalChange: distinguishNuclearTransformationFromChemicalChange_Skill_Data,
+      explainHalfLife: explainHalfLife_Skill_Data,
+      explainNuclearFission: explainNuclearFission_Skill_Data,
+      explainNuclearFusion: explainNuclearFusion_Skill_Data,
+      explainRadioactivity: explainRadioactivity_Skill_Data,
+    },
+    order: [
+      'distinguishAlphaBetaAndGammaRadiation',
+      'distinguishNuclearTransformationFromChemicalChange',
+      'explainHalfLife',
+      'explainNuclearFission',
+      'explainNuclearFusion',
+      'explainRadioactivity',
+    ],
+  },
   description: {
     methodological: 'Changes in atomic nuclei differ from chemical reactions and may release energy.',
     frontend: {

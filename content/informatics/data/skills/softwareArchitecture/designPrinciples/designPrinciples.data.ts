@@ -45,16 +45,28 @@ export const designPrinciples_SkillGroup_Data = defineSkillGroup({
     kk: 'Жобалау қағидалары',
     qm: 'Tasarlav printsipleri',
   },
-  skills: [
-    deferUnnecessaryFeaturesYAGNI_Skill_Data,
-    designDependenciesOnContractsDIP_Skill_Data,
-    extendBehaviorWithoutModifyingTheCoreOCP_Skill_Data,
-    identifyUnnecessaryDuplicationDRY_Skill_Data,
-    isolateASingleResponsibilitySRP_Skill_Data,
-    reduceUnnecessaryComplexityKISS_Skill_Data,
-    separateNarrowInterfacesISP_Skill_Data,
-    verifySubstitutabilityLSP_Skill_Data,
-  ],
+  skills: {
+    items: {
+      deferUnnecessaryFeaturesYAGNI: deferUnnecessaryFeaturesYAGNI_Skill_Data,
+      designDependenciesOnContractsDIP: designDependenciesOnContractsDIP_Skill_Data,
+      extendBehaviorWithoutModifyingTheCoreOCP: extendBehaviorWithoutModifyingTheCoreOCP_Skill_Data,
+      identifyUnnecessaryDuplicationDRY: identifyUnnecessaryDuplicationDRY_Skill_Data,
+      isolateASingleResponsibilitySRP: isolateASingleResponsibilitySRP_Skill_Data,
+      reduceUnnecessaryComplexityKISS: reduceUnnecessaryComplexityKISS_Skill_Data,
+      separateNarrowInterfacesISP: separateNarrowInterfacesISP_Skill_Data,
+      verifySubstitutabilityLSP: verifySubstitutabilityLSP_Skill_Data,
+    },
+    order: [
+      'deferUnnecessaryFeaturesYAGNI',
+      'designDependenciesOnContractsDIP',
+      'extendBehaviorWithoutModifyingTheCoreOCP',
+      'identifyUnnecessaryDuplicationDRY',
+      'isolateASingleResponsibilitySRP',
+      'reduceUnnecessaryComplexityKISS',
+      'separateNarrowInterfacesISP',
+      'verifySubstitutabilityLSP',
+    ],
+  },
   description: {
     methodological:
       'Quality criteria for software structure: limiting duplication and unnecessary complexity, separating responsibilities, enabling extension, and managing dependencies. Each principle addresses a different reason why a program may need to change.',

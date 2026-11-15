@@ -45,16 +45,28 @@ export const ultimateRealityAndDivinity_SkillGroup_Data = defineSkillGroup({
     kk: 'Түпкі шындық және құдайлық',
     qm: 'Soñkiqi aqiqat ve ilâhiylik',
   },
-  skills: [
-    analyzeACosmologicalArgument_Skill_Data,
-    analyzeADesignArgument_Skill_Data,
-    analyzeAnArgumentFromEvil_Skill_Data,
-    analyzeAnOntologicalArgument_Skill_Data,
-    analyzeNontheisticReligiousAccountsOfReality_Skill_Data,
-    comparePhilosophicalConceptionsOfDivinity_Skill_Data,
-    evaluateAProposedUltimateExplanation_Skill_Data,
-    reconstructAPhilosophicalArgumentAboutDivinity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeACosmologicalArgument: analyzeACosmologicalArgument_Skill_Data,
+      analyzeADesignArgument: analyzeADesignArgument_Skill_Data,
+      analyzeAnArgumentFromEvil: analyzeAnArgumentFromEvil_Skill_Data,
+      analyzeAnOntologicalArgument: analyzeAnOntologicalArgument_Skill_Data,
+      analyzeNontheisticReligiousAccountsOfReality: analyzeNontheisticReligiousAccountsOfReality_Skill_Data,
+      comparePhilosophicalConceptionsOfDivinity: comparePhilosophicalConceptionsOfDivinity_Skill_Data,
+      evaluateAProposedUltimateExplanation: evaluateAProposedUltimateExplanation_Skill_Data,
+      reconstructAPhilosophicalArgumentAboutDivinity: reconstructAPhilosophicalArgumentAboutDivinity_Skill_Data,
+    },
+    order: [
+      'analyzeACosmologicalArgument',
+      'analyzeADesignArgument',
+      'analyzeAnArgumentFromEvil',
+      'analyzeAnOntologicalArgument',
+      'analyzeNontheisticReligiousAccountsOfReality',
+      'comparePhilosophicalConceptionsOfDivinity',
+      'evaluateAProposedUltimateExplanation',
+      'reconstructAPhilosophicalArgumentAboutDivinity',
+    ],
+  },
   description: {
     methodological:
       'Religious and nonreligious accounts of ultimate reality include competing conceptions of divinity and nontheistic accounts of liberation or existence. Their arguments may invoke experience, explanation, definition, or objections, without settling a worldview by stipulation.',

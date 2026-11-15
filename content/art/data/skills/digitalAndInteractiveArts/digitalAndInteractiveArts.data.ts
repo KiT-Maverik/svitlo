@@ -40,13 +40,16 @@ export const digitalAndInteractiveArts_SkillDomain_Data = defineSkillDomain({
     kk: 'Цифрлық және интерактивті өнер',
     qm: 'Sanat-i raqemiy ve interaktiv',
   },
-  groups: [
-    digitalImages_SkillGroup_Data,
-    digitalThreeDimensionalArt_SkillGroup_Data,
-    generativeArt_SkillGroup_Data,
-    motionGraphics_SkillGroup_Data,
-    participatoryArt_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      digitalImages: digitalImages_SkillGroup_Data,
+      digitalThreeDimensionalArt: digitalThreeDimensionalArt_SkillGroup_Data,
+      generativeArt: generativeArt_SkillGroup_Data,
+      motionGraphics: motionGraphics_SkillGroup_Data,
+      participatoryArt: participatoryArt_SkillGroup_Data,
+    },
+    order: ['digitalImages', 'digitalThreeDimensionalArt', 'generativeArt', 'motionGraphics', 'participatoryArt'],
+  },
   description: {
     methodological:
       'Digital creative techniques provide editable imagery, audience-responsive experiences and rule-generated variation. The artistic design of outcomes is distinct from computer science implementation.',

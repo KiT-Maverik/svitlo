@@ -43,14 +43,24 @@ export const samplingAndElectronicMusic_SkillGroup_Data = defineSkillGroup({
     kk: 'Сэмплдеу және электрондық музыка',
     qm: 'Semplev ve elektron muzika',
   },
-  skills: [
-    arrangeMusicInASequencer_Skill_Data,
-    balanceAMusicMix_Skill_Data,
-    editAMusicalSample_Skill_Data,
-    layerElectronicRhythms_Skill_Data,
-    programDrumMachinePatterns_Skill_Data,
-    recordAMusicalSample_Skill_Data,
-  ],
+  skills: {
+    items: {
+      arrangeMusicInASequencer: arrangeMusicInASequencer_Skill_Data,
+      balanceAMusicMix: balanceAMusicMix_Skill_Data,
+      editAMusicalSample: editAMusicalSample_Skill_Data,
+      layerElectronicRhythms: layerElectronicRhythms_Skill_Data,
+      programDrumMachinePatterns: programDrumMachinePatterns_Skill_Data,
+      recordAMusicalSample: recordAMusicalSample_Skill_Data,
+    },
+    order: [
+      'arrangeMusicInASequencer',
+      'balanceAMusicMix',
+      'editAMusicalSample',
+      'layerElectronicRhythms',
+      'programDrumMachinePatterns',
+      'recordAMusicalSample',
+    ],
+  },
   description: {
     methodological:
       'Sequencers, drum machines and recorded excerpts are instruments for musical organization, not programming subjects in their own right.',

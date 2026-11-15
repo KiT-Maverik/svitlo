@@ -40,11 +40,14 @@ export const economicsOfEducation_SkillGroup_Data = defineSkillGroup({
     kk: 'Білім беру экономикасы',
     qm: 'Tasil iqtisadı',
   },
-  skills: [
-    economicInequalityInEducation_Skill_Data,
-    economicReturnsToEducation_Skill_Data,
-    educationFinancing_Skill_Data,
-  ],
+  skills: {
+    items: {
+      economicInequalityInEducation: economicInequalityInEducation_Skill_Data,
+      economicReturnsToEducation: economicReturnsToEducation_Skill_Data,
+      educationFinancing: educationFinancing_Skill_Data,
+    },
+    order: ['economicInequalityInEducation', 'economicReturnsToEducation', 'educationFinancing'],
+  },
   description: {
     methodological:
       'Investing in knowledge creates private and social returns and raises questions of financing, access, and uncertain information.',

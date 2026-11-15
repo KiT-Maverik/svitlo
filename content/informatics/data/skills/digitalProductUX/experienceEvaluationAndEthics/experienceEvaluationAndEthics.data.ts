@@ -36,7 +36,13 @@ export const experienceEvaluationAndEthics_SkillGroup_Data = defineSkillGroup({
     kk: 'Тәжірибені бағалау және этика',
     qm: 'Tecribeni baalav ve etika',
   },
-  skills: [identifyManipulativeInterfacePatterns_Skill_Data, testDigitalInterfaceUsability_Skill_Data],
+  skills: {
+    items: {
+      identifyManipulativeInterfacePatterns: identifyManipulativeInterfacePatterns_Skill_Data,
+      testDigitalInterfaceUsability: testDigitalInterfaceUsability_Skill_Data,
+    },
+    order: ['identifyManipulativeInterfacePatterns', 'testDigitalInterfaceUsability'],
+  },
   description: {
     methodological:
       "Test whether an interface supports real tasks and identify designs that covertly restrict users' informed choices.",

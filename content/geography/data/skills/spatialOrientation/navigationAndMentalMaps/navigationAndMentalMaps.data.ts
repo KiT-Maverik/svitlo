@@ -41,12 +41,20 @@ export const navigationAndMentalMaps_SkillGroup_Data = defineSkillGroup({
     kk: 'Бағдарлау және ойша карталар',
     qm: 'Yol tapuv ve zihniy haritalar',
   },
-  skills: [
-    constructARouteThroughOrderedWaypoints_Skill_Data,
-    useCardinalDirectionsToOrientARoute_Skill_Data,
-    useIntermediateDirectionsToDistinguishBearings_Skill_Data,
-    useMentalMapsForSpatialOrientation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      constructARouteThroughOrderedWaypoints: constructARouteThroughOrderedWaypoints_Skill_Data,
+      useCardinalDirectionsToOrientARoute: useCardinalDirectionsToOrientARoute_Skill_Data,
+      useIntermediateDirectionsToDistinguishBearings: useIntermediateDirectionsToDistinguishBearings_Skill_Data,
+      useMentalMapsForSpatialOrientation: useMentalMapsForSpatialOrientation_Skill_Data,
+    },
+    order: [
+      'constructARouteThroughOrderedWaypoints',
+      'useCardinalDirectionsToOrientARoute',
+      'useIntermediateDirectionsToDistinguishBearings',
+      'useMentalMapsForSpatialOrientation',
+    ],
+  },
   description: {
     methodological:
       'Moving between places relies on orientation, directional instructions, and sequences of turns. The focus is spatial navigation, not the mathematical calculation of distance.',

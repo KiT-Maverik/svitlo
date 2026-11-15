@@ -41,12 +41,20 @@ export const foodAndAgriculturalTechnology_SkillGroup_Data = defineSkillGroup({
     kk: 'Азық-түлік және ауыл шаруашылығы технологиялары',
     qm: 'Aşlıq ve ziraat tehnologiyası',
   },
-  skills: [
-    fermentationProductionEquipment_Skill_Data,
-    foodPreservationEquipment_Skill_Data,
-    irrigationEngineering_Skill_Data,
-    precisionAgriculturalEquipment_Skill_Data,
-  ],
+  skills: {
+    items: {
+      fermentationProductionEquipment: fermentationProductionEquipment_Skill_Data,
+      foodPreservationEquipment: foodPreservationEquipment_Skill_Data,
+      irrigationEngineering: irrigationEngineering_Skill_Data,
+      precisionAgriculturalEquipment: precisionAgriculturalEquipment_Skill_Data,
+    },
+    order: [
+      'fermentationProductionEquipment',
+      'foodPreservationEquipment',
+      'irrigationEngineering',
+      'precisionAgriculturalEquipment',
+    ],
+  },
   description: {
     methodological:
       'Food and field equipment must handle biological materials with variable properties and constraints involving spoilage, hygiene, water use and environmental conditions.',

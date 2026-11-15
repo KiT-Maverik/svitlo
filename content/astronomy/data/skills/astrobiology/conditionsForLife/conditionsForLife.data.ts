@@ -41,12 +41,15 @@ export const conditionsForLife_SkillGroup_Data = defineSkillGroup({
     he: 'תנאים לקיום חיים',
     vi: 'Điều kiện cho sự sống',
   },
-  skills: [
-    extremophileAnalogues_Skill_Data,
-    habitability_Skill_Data,
-    habitabilityThroughTime_Skill_Data,
-    prebioticChemistry_Skill_Data,
-  ],
+  skills: {
+    items: {
+      extremophileAnalogues: extremophileAnalogues_Skill_Data,
+      habitability: habitability_Skill_Data,
+      habitabilityThroughTime: habitabilityThroughTime_Skill_Data,
+      prebioticChemistry: prebioticChemistry_Skill_Data,
+    },
+    order: ['extremophileAnalogues', 'habitability', 'habitabilityThroughTime', 'prebioticChemistry'],
+  },
   description: {
     methodological:
       'Evaluating environments for life requires explicit biological and geochemical assumptions; familiar Earth conditions are useful evidence, not universal proof.',

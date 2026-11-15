@@ -45,16 +45,32 @@ export const philosophicalTraditions_SkillGroup_Data = defineSkillGroup({
     kk: 'Философиялық дәстүрлер',
     qm: 'Felsefiy ananeler',
   },
-  skills: [
-    analyzeAPhilosophicalArgumentFromAChineseTradition_Skill_Data,
-    analyzeAPhilosophicalArgumentFromALatinAmericanTradition_Skill_Data,
-    analyzeAPhilosophicalArgumentFromAnAfricanTradition_Skill_Data,
-    analyzeAPhilosophicalArgumentFromAnIndianTradition_Skill_Data,
-    analyzeAPhilosophicalArgumentFromAnIndigenousTradition_Skill_Data,
-    analyzeAPhilosophicalArgumentFromAnIslamicTradition_Skill_Data,
-    compareClassicalGreekPhilosophicalApproaches_Skill_Data,
-    comparePositionsAcrossPhilosophicalTraditions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAPhilosophicalArgumentFromAChineseTradition: analyzeAPhilosophicalArgumentFromAChineseTradition_Skill_Data,
+      analyzeAPhilosophicalArgumentFromALatinAmericanTradition:
+        analyzeAPhilosophicalArgumentFromALatinAmericanTradition_Skill_Data,
+      analyzeAPhilosophicalArgumentFromAnAfricanTradition:
+        analyzeAPhilosophicalArgumentFromAnAfricanTradition_Skill_Data,
+      analyzeAPhilosophicalArgumentFromAnIndianTradition: analyzeAPhilosophicalArgumentFromAnIndianTradition_Skill_Data,
+      analyzeAPhilosophicalArgumentFromAnIndigenousTradition:
+        analyzeAPhilosophicalArgumentFromAnIndigenousTradition_Skill_Data,
+      analyzeAPhilosophicalArgumentFromAnIslamicTradition:
+        analyzeAPhilosophicalArgumentFromAnIslamicTradition_Skill_Data,
+      compareClassicalGreekPhilosophicalApproaches: compareClassicalGreekPhilosophicalApproaches_Skill_Data,
+      comparePositionsAcrossPhilosophicalTraditions: comparePositionsAcrossPhilosophicalTraditions_Skill_Data,
+    },
+    order: [
+      'analyzeAPhilosophicalArgumentFromAChineseTradition',
+      'analyzeAPhilosophicalArgumentFromALatinAmericanTradition',
+      'analyzeAPhilosophicalArgumentFromAnAfricanTradition',
+      'analyzeAPhilosophicalArgumentFromAnIndianTradition',
+      'analyzeAPhilosophicalArgumentFromAnIndigenousTradition',
+      'analyzeAPhilosophicalArgumentFromAnIslamicTradition',
+      'compareClassicalGreekPhilosophicalApproaches',
+      'comparePositionsAcrossPhilosophicalTraditions',
+    ],
+  },
   description: {
     methodological:
       'Intellectual traditions developed across many cultures through original arguments and sustained exchanges. Greek, Indian, Chinese, Islamic, African, Latin American, and particular Indigenous lineages are examined as philosophical sources in their own right, without treating a region as a single doctrine.',

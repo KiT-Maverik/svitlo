@@ -40,11 +40,18 @@ export const locationAndReference_SkillGroup_Data = defineSkillGroup({
     kk: 'Орналасу және бағдар нүктелері',
     qm: 'Yerleşüv ve dayanç noqtaları',
   },
-  skills: [
-    describeALocationRelativeToAReferencePoint_Skill_Data,
-    identifyALocationUsingAnAbsoluteReference_Skill_Data,
-    identifyLocationAtLocalRegionalAndGlobalScales_Skill_Data,
-  ],
+  skills: {
+    items: {
+      describeALocationRelativeToAReferencePoint: describeALocationRelativeToAReferencePoint_Skill_Data,
+      identifyALocationUsingAnAbsoluteReference: identifyALocationUsingAnAbsoluteReference_Skill_Data,
+      identifyLocationAtLocalRegionalAndGlobalScales: identifyLocationAtLocalRegionalAndGlobalScales_Skill_Data,
+    },
+    order: [
+      'describeALocationRelativeToAReferencePoint',
+      'identifyALocationUsingAnAbsoluteReference',
+      'identifyLocationAtLocalRegionalAndGlobalScales',
+    ],
+  },
   description: {
     methodological:
       'Locations can be described relative to a chosen reference, identified using stable geographic or civic references, and situated within areas of different spatial extent. The identity of the reference must be explicit rather than assumed from the observer.',

@@ -42,13 +42,22 @@ export const ethicsAndPublicEffects_SkillGroup_Data = defineSkillGroup({
     kk: 'Этика және қоғамдық әсерлер',
     qm: 'Ahlâq ve cemiyetke tesir',
   },
-  skills: [
-    communicateDesignLimitations_Skill_Data,
-    evaluateEnvironmentalImpactsOfADesign_Skill_Data,
-    evaluateSocialImpactsOfADesign_Skill_Data,
-    identifyAffectedStakeholders_Skill_Data,
-    justifyResponsibleDesignDecisions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      communicateDesignLimitations: communicateDesignLimitations_Skill_Data,
+      evaluateEnvironmentalImpactsOfADesign: evaluateEnvironmentalImpactsOfADesign_Skill_Data,
+      evaluateSocialImpactsOfADesign: evaluateSocialImpactsOfADesign_Skill_Data,
+      identifyAffectedStakeholders: identifyAffectedStakeholders_Skill_Data,
+      justifyResponsibleDesignDecisions: justifyResponsibleDesignDecisions_Skill_Data,
+    },
+    order: [
+      'communicateDesignLimitations',
+      'evaluateEnvironmentalImpactsOfADesign',
+      'evaluateSocialImpactsOfADesign',
+      'identifyAffectedStakeholders',
+      'justifyResponsibleDesignDecisions',
+    ],
+  },
   description: {
     methodological:
       'Technical solutions create benefits and burdens for users, maintainers, neighbors and communities; limitations must be disclosed.',

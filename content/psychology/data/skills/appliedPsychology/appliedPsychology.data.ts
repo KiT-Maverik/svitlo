@@ -40,13 +40,22 @@ export const appliedPsychology_SkillDomain_Data = defineSkillDomain({
     kk: 'Қолданбалы психология',
     qm: 'Ameliy psihologiya',
   },
-  groups: [
-    communityMediaAndEnvironment_SkillGroup_Data,
-    healthBehavior_SkillGroup_Data,
-    humanFactorsAndUserResearch_SkillGroup_Data,
-    learningEnvironments_SkillGroup_Data,
-    workAndOrganizations_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      communityMediaAndEnvironment: communityMediaAndEnvironment_SkillGroup_Data,
+      healthBehavior: healthBehavior_SkillGroup_Data,
+      humanFactorsAndUserResearch: humanFactorsAndUserResearch_SkillGroup_Data,
+      learningEnvironments: learningEnvironments_SkillGroup_Data,
+      workAndOrganizations: workAndOrganizations_SkillGroup_Data,
+    },
+    order: [
+      'communityMediaAndEnvironment',
+      'healthBehavior',
+      'humanFactorsAndUserResearch',
+      'learningEnvironments',
+      'workAndOrganizations',
+    ],
+  },
   description: {
     methodological:
       'Psychological knowledge informs educational, occupational, health, design, and community settings. Applications translate evidence about people into context-sensitive decisions without claiming that a single intervention suits everyone.',

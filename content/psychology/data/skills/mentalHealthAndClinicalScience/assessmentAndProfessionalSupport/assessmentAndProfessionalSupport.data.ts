@@ -41,12 +41,20 @@ export const assessmentAndProfessionalSupport_SkillGroup_Data = defineSkillGroup
     kk: 'Бағалау және кәсіби қолдау',
     qm: 'Bahalav ve mütehassıs yardımı',
   },
-  skills: [
-    clinicalFormulation_Skill_Data,
-    clinicalInterviewPurpose_Skill_Data,
-    professionalRolesAndReferral_Skill_Data,
-    psychologicalScreeningVersusDiagnosis_Skill_Data,
-  ],
+  skills: {
+    items: {
+      clinicalFormulation: clinicalFormulation_Skill_Data,
+      clinicalInterviewPurpose: clinicalInterviewPurpose_Skill_Data,
+      professionalRolesAndReferral: professionalRolesAndReferral_Skill_Data,
+      psychologicalScreeningVersusDiagnosis: psychologicalScreeningVersusDiagnosis_Skill_Data,
+    },
+    order: [
+      'clinicalFormulation',
+      'clinicalInterviewPurpose',
+      'professionalRolesAndReferral',
+      'psychologicalScreeningVersusDiagnosis',
+    ],
+  },
   description: {
     methodological:
       'Clinical decisions use trained judgment, validated measures, and context; ethical education focuses on how professional care works rather than practicing diagnosis.',

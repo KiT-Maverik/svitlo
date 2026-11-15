@@ -44,15 +44,26 @@ export const telescopesAndDetectors_SkillGroup_Data = defineSkillGroup({
     he: 'טלסקופים וגלאים',
     vi: 'Kính thiên văn và đầu dò',
   },
-  skills: [
-    angularResolution_Skill_Data,
-    astronomicalDetectors_Skill_Data,
-    astronomicalInterferometry_Skill_Data,
-    lightGatheringAperture_Skill_Data,
-    opticalTelescopeSystems_Skill_Data,
-    radioAstronomy_Skill_Data,
-    spaceBasedObservation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      angularResolution: angularResolution_Skill_Data,
+      astronomicalDetectors: astronomicalDetectors_Skill_Data,
+      astronomicalInterferometry: astronomicalInterferometry_Skill_Data,
+      lightGatheringAperture: lightGatheringAperture_Skill_Data,
+      opticalTelescopeSystems: opticalTelescopeSystems_Skill_Data,
+      radioAstronomy: radioAstronomy_Skill_Data,
+      spaceBasedObservation: spaceBasedObservation_Skill_Data,
+    },
+    order: [
+      'angularResolution',
+      'astronomicalDetectors',
+      'astronomicalInterferometry',
+      'lightGatheringAperture',
+      'opticalTelescopeSystems',
+      'radioAstronomy',
+      'spaceBasedObservation',
+    ],
+  },
   description: {
     methodological:
       'Instrumentation alters the detail, wavelengths and measurable signals available to observers; its scientific limitations are as important as its capabilities.',

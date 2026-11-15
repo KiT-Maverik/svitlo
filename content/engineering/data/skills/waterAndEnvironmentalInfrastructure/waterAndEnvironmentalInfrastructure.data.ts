@@ -39,12 +39,15 @@ export const waterAndEnvironmentalInfrastructure_SkillDomain_Data = defineSkillD
     kk: 'Су және қоршаған орта инфрақұрылымы',
     qm: 'Suv ve çevre infrastrukturası',
   },
-  groups: [
-    environmentalControl_SkillGroup_Data,
-    hydraulicInfrastructure_SkillGroup_Data,
-    wastewaterAndDrainage_SkillGroup_Data,
-    waterSupply_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      environmentalControl: environmentalControl_SkillGroup_Data,
+      hydraulicInfrastructure: hydraulicInfrastructure_SkillGroup_Data,
+      wastewaterAndDrainage: wastewaterAndDrainage_SkillGroup_Data,
+      waterSupply: waterSupply_SkillGroup_Data,
+    },
+    order: ['environmentalControl', 'hydraulicInfrastructure', 'wastewaterAndDrainage', 'waterSupply'],
+  },
   description: {
     methodological:
       'Public services depend on connected intake, treatment, storage and collection systems. This domain concerns engineered infrastructure rather than natural water circulation or public-health instruction.',

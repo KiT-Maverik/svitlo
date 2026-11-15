@@ -40,13 +40,22 @@ export const electricalAndElectronicEngineering_SkillDomain_Data = defineSkillDo
     kk: 'Электр және электроника инженериясы',
     qm: 'Elektrik ve elektronika müendisligi',
   },
-  groups: [
-    circuitConstruction_SkillGroup_Data,
-    computingHardware_SkillGroup_Data,
-    electricalMeasurementAndProtection_SkillGroup_Data,
-    electronicComponents_SkillGroup_Data,
-    embeddedHardware_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      circuitConstruction: circuitConstruction_SkillGroup_Data,
+      computingHardware: computingHardware_SkillGroup_Data,
+      electricalMeasurementAndProtection: electricalMeasurementAndProtection_SkillGroup_Data,
+      electronicComponents: electronicComponents_SkillGroup_Data,
+      embeddedHardware: embeddedHardware_SkillGroup_Data,
+    },
+    order: [
+      'circuitConstruction',
+      'computingHardware',
+      'electricalMeasurementAndProtection',
+      'electronicComponents',
+      'embeddedHardware',
+    ],
+  },
   description: {
     methodological:
       'Circuits and electronic hardware distribute power, process signals and connect physical controls to useful outputs. The subject here is device architecture and correct component integration, not the scientific derivation of electromagnetic laws.',

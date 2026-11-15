@@ -40,7 +40,14 @@ export const solids_SkillGroup_Data = defineSkillGroup({
     pl: 'Bryły geometryczne',
     uk: 'Просторові тіла',
   },
-  skills: [shapeOnSolidSurface_Skill_Data, identify3dSolids_Skill_Data, spatialSolidsAttributes_Skill_Data],
+  skills: {
+    items: {
+      shapeOnSolidSurface: shapeOnSolidSurface_Skill_Data,
+      identify3dSolids: identify3dSolids_Skill_Data,
+      spatialSolidsAttributes: spatialSolidsAttributes_Skill_Data,
+    },
+    order: ['shapeOnSolidSurface', 'identify3dSolids', 'spatialSolidsAttributes'],
+  },
   description: {
     methodological:
       'Distinguishing three-dimensional solids from flat depictions and identifying their surfaces, faces, edges, and vertices.',

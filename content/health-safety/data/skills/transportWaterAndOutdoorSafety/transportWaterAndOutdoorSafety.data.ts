@@ -38,11 +38,14 @@ export const transportWaterAndOutdoorSafety_SkillDomain_Data = defineSkillDomain
     kk: 'Көлік, су және дала қауіпсіздігі',
     qm: 'Ulaşım, suv ve tışarıda havfsızlıq',
   },
-  groups: [
-    roadAndTransportSafety_SkillGroup_Data,
-    waterSafety_SkillGroup_Data,
-    weatherAndNatureHazards_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      roadAndTransportSafety: roadAndTransportSafety_SkillGroup_Data,
+      waterSafety: waterSafety_SkillGroup_Data,
+      weatherAndNatureHazards: weatherAndNatureHazards_SkillGroup_Data,
+    },
+    order: ['roadAndTransportSafety', 'waterSafety', 'weatherAndNatureHazards'],
+  },
   description: {
     methodological:
       'Movement outside controlled environments combines traffic rules, environmental conditions, and limited opportunities for immediate rescue. This domain addresses safe decisions rather than vehicle engineering.',

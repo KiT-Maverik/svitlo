@@ -39,12 +39,15 @@ export const humanGeography_SkillDomain_Data = defineSkillDomain({
     kk: 'Қоғамдық география',
     qm: 'İnsan coğrafiyası',
   },
-  groups: [
-    culturalGeography_SkillGroup_Data,
-    economicGeography_SkillGroup_Data,
-    politicalTerritories_SkillGroup_Data,
-    populationAndSettlement_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      culturalGeography: culturalGeography_SkillGroup_Data,
+      economicGeography: economicGeography_SkillGroup_Data,
+      politicalTerritories: politicalTerritories_SkillGroup_Data,
+      populationAndSettlement: populationAndSettlement_SkillGroup_Data,
+    },
+    order: ['culturalGeography', 'economicGeography', 'politicalTerritories', 'populationAndSettlement'],
+  },
   description: {
     methodological:
       'Settlement, mobility, culture, political territories, livelihoods and economic connections create spatial patterns across inhabited places. The focus is geographic distribution, diffusion, regional relationships and the effects of place, not national political history or business accounting.',

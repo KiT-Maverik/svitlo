@@ -42,13 +42,16 @@ export const savingAndInvesting_SkillGroup_Data = defineSkillGroup({
     kk: 'Жинақтау және инвестициялау',
     qm: 'Aqça toplav ve yatırım',
   },
-  skills: [
-    compoundInterest_Skill_Data,
-    emergencySavings_Skill_Data,
-    investmentDiversification_Skill_Data,
-    realReturn_Skill_Data,
-    simpleInterest_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compoundInterest: compoundInterest_Skill_Data,
+      emergencySavings: emergencySavings_Skill_Data,
+      investmentDiversification: investmentDiversification_Skill_Data,
+      realReturn: realReturn_Skill_Data,
+      simpleInterest: simpleInterest_Skill_Data,
+    },
+    order: ['compoundInterest', 'emergencySavings', 'investmentDiversification', 'realReturn', 'simpleInterest'],
+  },
   description: {
     methodological: 'Moving purchasing power into the future involves liquidity, returns, risk, and inflation.',
     frontend: {

@@ -41,12 +41,20 @@ export const crisesAndHistoricalTransformations_SkillGroup_Data = defineSkillGro
     kk: 'Дағдарыстар мен тарихи өзгерістер',
     qm: 'Buhranlar ve tarihiy deñişiklikler',
   },
-  skills: [
-    ancientEnvironmentalChallenges_Skill_Data,
-    ancientEpidemicsAndDemography_Skill_Data,
-    comparativeHistoricalTransformations_Skill_Data,
-    politicalDeclineAndContinuity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ancientEnvironmentalChallenges: ancientEnvironmentalChallenges_Skill_Data,
+      ancientEpidemicsAndDemography: ancientEpidemicsAndDemography_Skill_Data,
+      comparativeHistoricalTransformations: comparativeHistoricalTransformations_Skill_Data,
+      politicalDeclineAndContinuity: politicalDeclineAndContinuity_Skill_Data,
+    },
+    order: [
+      'ancientEnvironmentalChallenges',
+      'ancientEpidemicsAndDemography',
+      'comparativeHistoricalTransformations',
+      'politicalDeclineAndContinuity',
+    ],
+  },
   description: {
     methodological:
       'Climate shifts, wars, disease, and economic reorganization interacted but produced different outcomes across regions.',

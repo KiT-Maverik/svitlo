@@ -42,13 +42,22 @@ export const ancientTradeAndContact_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі сауда және байланыстар',
     qm: 'Qadimiy ticaret ve alâqalar',
   },
-  skills: [
-    ancientAmericanRiverAndSeaExchange_Skill_Data,
-    ancientIndianOceanTrade_Skill_Data,
-    ancientSilkRoads_Skill_Data,
-    culturalExchange_Skill_Data,
-    technologyTransfer_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ancientAmericanRiverAndSeaExchange: ancientAmericanRiverAndSeaExchange_Skill_Data,
+      ancientIndianOceanTrade: ancientIndianOceanTrade_Skill_Data,
+      ancientSilkRoads: ancientSilkRoads_Skill_Data,
+      culturalExchange: culturalExchange_Skill_Data,
+      technologyTransfer: technologyTransfer_Skill_Data,
+    },
+    order: [
+      'ancientAmericanRiverAndSeaExchange',
+      'ancientIndianOceanTrade',
+      'ancientSilkRoads',
+      'culturalExchange',
+      'technologyTransfer',
+    ],
+  },
   description: {
     methodological:
       'Exchange networks involved intermediaries; the spread of objects does not necessarily mean the migration of their makers.',

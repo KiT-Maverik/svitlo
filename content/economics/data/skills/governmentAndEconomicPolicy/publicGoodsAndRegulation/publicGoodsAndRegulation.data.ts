@@ -41,12 +41,15 @@ export const publicGoodsAndRegulation_SkillGroup_Data = defineSkillGroup({
     kk: 'Қоғамдық игіліктер және реттеу',
     qm: 'Cemaat malları ve tertip-qaydalar',
   },
-  skills: [
-    competitionPolicy_Skill_Data,
-    externalities_Skill_Data,
-    governmentFailure_Skill_Data,
-    publicGoods_Skill_Data,
-  ],
+  skills: {
+    items: {
+      competitionPolicy: competitionPolicy_Skill_Data,
+      externalities: externalities_Skill_Data,
+      governmentFailure: governmentFailure_Skill_Data,
+      publicGoods: publicGoods_Skill_Data,
+    },
+    order: ['competitionPolicy', 'externalities', 'governmentFailure', 'publicGoods'],
+  },
   description: {
     methodological:
       'Not every beneficial service can be efficiently supplied through individual market transactions; regulation also has limitations.',

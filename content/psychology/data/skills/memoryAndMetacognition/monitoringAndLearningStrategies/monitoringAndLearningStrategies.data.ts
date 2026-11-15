@@ -42,13 +42,22 @@ export const monitoringAndLearningStrategies_SkillGroup_Data = defineSkillGroup(
     kk: 'Оқуды бақылау және стратегиялар',
     qm: 'Ögrenüvni közetüv ve usullar',
   },
-  skills: [
-    illusionsOfLearning_Skill_Data,
-    interleavedPractice_Skill_Data,
-    retrievalPractice_Skill_Data,
-    selfTestingAndCalibration_Skill_Data,
-    strategySelectionForLearning_Skill_Data,
-  ],
+  skills: {
+    items: {
+      illusionsOfLearning: illusionsOfLearning_Skill_Data,
+      interleavedPractice: interleavedPractice_Skill_Data,
+      retrievalPractice: retrievalPractice_Skill_Data,
+      selfTestingAndCalibration: selfTestingAndCalibration_Skill_Data,
+      strategySelectionForLearning: strategySelectionForLearning_Skill_Data,
+    },
+    order: [
+      'illusionsOfLearning',
+      'interleavedPractice',
+      'retrievalPractice',
+      'selfTestingAndCalibration',
+      'strategySelectionForLearning',
+    ],
+  },
   description: {
     methodological:
       'Monitoring performance and choosing strategies require evidence beyond feelings of fluency or familiarity.',

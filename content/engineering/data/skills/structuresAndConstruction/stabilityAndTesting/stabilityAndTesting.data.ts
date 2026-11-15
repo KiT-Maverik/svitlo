@@ -41,12 +41,20 @@ export const stabilityAndTesting_SkillGroup_Data = defineSkillGroup({
     kk: 'Орнықтылық және сынақтар',
     qm: 'Turaqlılıq ve sınavlar',
   },
-  skills: [
-    compareStructuralModelsUnderLoad_Skill_Data,
-    evaluateStructuralStability_Skill_Data,
-    interpretStructuralDeformation_Skill_Data,
-    traceStructuralLoadPaths_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareStructuralModelsUnderLoad: compareStructuralModelsUnderLoad_Skill_Data,
+      evaluateStructuralStability: evaluateStructuralStability_Skill_Data,
+      interpretStructuralDeformation: interpretStructuralDeformation_Skill_Data,
+      traceStructuralLoadPaths: traceStructuralLoadPaths_Skill_Data,
+    },
+    order: [
+      'compareStructuralModelsUnderLoad',
+      'evaluateStructuralStability',
+      'interpretStructuralDeformation',
+      'traceStructuralLoadPaths',
+    ],
+  },
   description: {
     methodological:
       'Deformation, loss of equilibrium and local failure can all compromise a structure before every component breaks.',

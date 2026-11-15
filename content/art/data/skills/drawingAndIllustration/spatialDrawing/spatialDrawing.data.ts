@@ -42,13 +42,22 @@ export const spatialDrawing_SkillGroup_Data = defineSkillGroup({
     kk: 'Кеңістіктік сурет салу',
     qm: 'Mekânsal çizim',
   },
-  skills: [
-    constructOnePointPerspective_Skill_Data,
-    constructTwoPointPerspective_Skill_Data,
-    depictDepthWithOverlap_Skill_Data,
-    depictForeshortening_Skill_Data,
-    useRelativeProportions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      constructOnePointPerspective: constructOnePointPerspective_Skill_Data,
+      constructTwoPointPerspective: constructTwoPointPerspective_Skill_Data,
+      depictDepthWithOverlap: depictDepthWithOverlap_Skill_Data,
+      depictForeshortening: depictForeshortening_Skill_Data,
+      useRelativeProportions: useRelativeProportions_Skill_Data,
+    },
+    order: [
+      'constructOnePointPerspective',
+      'constructTwoPointPerspective',
+      'depictDepthWithOverlap',
+      'depictForeshortening',
+      'useRelativeProportions',
+    ],
+  },
   description: {
     methodological:
       'These methods depict depth and coherent form on flat surfaces, while leaving room for deliberate stylistic distortion.',

@@ -36,7 +36,14 @@ export const salesChannelsAndDistribution_SkillGroup_Data = defineSkillGroup({
     kk: 'Сату арналары және тарату',
     qm: 'Satış kanalları ve tarqatma',
   },
-  skills: [distributionChannels_Skill_Data, distributionCosts_Skill_Data, wholesaleTrade_Skill_Data],
+  skills: {
+    items: {
+      distributionChannels: distributionChannels_Skill_Data,
+      distributionCosts: distributionCosts_Skill_Data,
+      wholesaleTrade: wholesaleTrade_Skill_Data,
+    },
+    order: ['distributionChannels', 'distributionCosts', 'wholesaleTrade'],
+  },
   description: {
     methodological:
       'Goods can reach end consumers through different numbers of intermediaries, wholesale transactions, warehouses, and transport; channel choice affects costs, availability, and control over sales.',

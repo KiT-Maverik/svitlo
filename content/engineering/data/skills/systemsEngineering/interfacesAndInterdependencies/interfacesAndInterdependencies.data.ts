@@ -41,12 +41,20 @@ export const interfacesAndInterdependencies_SkillGroup_Data = defineSkillGroup({
     kk: 'Интерфейстер және өзара тәуелділік',
     qm: 'Bağlanış yerleri ve qarşılıqlı bağlılıq',
   },
-  skills: [
-    analyzeSubsystemDependencies_Skill_Data,
-    evaluateSystemLevelCompromises_Skill_Data,
-    identifyComponentInterfaces_Skill_Data,
-    predictTheEffectOfComponentChanges_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeSubsystemDependencies: analyzeSubsystemDependencies_Skill_Data,
+      evaluateSystemLevelCompromises: evaluateSystemLevelCompromises_Skill_Data,
+      identifyComponentInterfaces: identifyComponentInterfaces_Skill_Data,
+      predictTheEffectOfComponentChanges: predictTheEffectOfComponentChanges_Skill_Data,
+    },
+    order: [
+      'analyzeSubsystemDependencies',
+      'evaluateSystemLevelCompromises',
+      'identifyComponentInterfaces',
+      'predictTheEffectOfComponentChanges',
+    ],
+  },
   description: {
     methodological:
       'Local decisions affect neighboring components through mechanical, electrical, fluid and information connections.',

@@ -42,13 +42,22 @@ export const astronomicalSpectra_SkillGroup_Data = defineSkillGroup({
     uk: 'Астрономічні спектри',
     pl: 'Widma astronomiczne',
   },
-  skills: [
-    absorptionSpectralLines_Skill_Data,
-    continuousSpectra_Skill_Data,
-    dopplerShift_Skill_Data,
-    emissionSpectralLines_Skill_Data,
-    multiwavelengthObservation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      absorptionSpectralLines: absorptionSpectralLines_Skill_Data,
+      continuousSpectra: continuousSpectra_Skill_Data,
+      dopplerShift: dopplerShift_Skill_Data,
+      emissionSpectralLines: emissionSpectralLines_Skill_Data,
+      multiwavelengthObservation: multiwavelengthObservation_Skill_Data,
+    },
+    order: [
+      'absorptionSpectralLines',
+      'continuousSpectra',
+      'dopplerShift',
+      'emissionSpectralLines',
+      'multiwavelengthObservation',
+    ],
+  },
   description: {
     methodological:
       'Light encodes information about temperature, composition and motion through its distribution across wavelength and the signatures imprinted by matter.',

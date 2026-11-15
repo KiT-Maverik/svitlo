@@ -44,15 +44,26 @@ export const paintingTechniques_SkillGroup_Data = defineSkillGroup({
     kk: 'Кескіндеме техникасы',
     qm: 'Boya sürüv usulları',
   },
-  skills: [
-    applyAGlaze_Skill_Data,
-    applyWatercolorWashes_Skill_Data,
-    blendWetPaint_Skill_Data,
-    buildOpaqueLayers_Skill_Data,
-    selectPaintingSupports_Skill_Data,
-    useAcrylicPaintingTechniques_Skill_Data,
-    useOilPaintingTechniques_Skill_Data,
-  ],
+  skills: {
+    items: {
+      applyAGlaze: applyAGlaze_Skill_Data,
+      applyWatercolorWashes: applyWatercolorWashes_Skill_Data,
+      blendWetPaint: blendWetPaint_Skill_Data,
+      buildOpaqueLayers: buildOpaqueLayers_Skill_Data,
+      selectPaintingSupports: selectPaintingSupports_Skill_Data,
+      useAcrylicPaintingTechniques: useAcrylicPaintingTechniques_Skill_Data,
+      useOilPaintingTechniques: useOilPaintingTechniques_Skill_Data,
+    },
+    order: [
+      'applyAGlaze',
+      'applyWatercolorWashes',
+      'blendWetPaint',
+      'buildOpaqueLayers',
+      'selectPaintingSupports',
+      'useAcrylicPaintingTechniques',
+      'useOilPaintingTechniques',
+    ],
+  },
   description: {
     methodological:
       'Different physical application methods affect transparency, edges, layering and surface appearance.',

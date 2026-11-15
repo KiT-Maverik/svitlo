@@ -40,11 +40,18 @@ export const globesMapsAndProjection_SkillGroup_Data = defineSkillGroup({
     kk: 'Глобустар, карталар және проекциялар',
     qm: 'Globuslar, haritalar ve proyeksiyalar',
   },
-  skills: [
-    distinguishAGlobeFromAFlatMapAsEarthModels_Skill_Data,
-    recognizeProjectionDistortionInAreaOrShape_Skill_Data,
-    selectAGeographicRepresentationForAPurpose_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAGlobeFromAFlatMapAsEarthModels: distinguishAGlobeFromAFlatMapAsEarthModels_Skill_Data,
+      recognizeProjectionDistortionInAreaOrShape: recognizeProjectionDistortionInAreaOrShape_Skill_Data,
+      selectAGeographicRepresentationForAPurpose: selectAGeographicRepresentationForAPurpose_Skill_Data,
+    },
+    order: [
+      'distinguishAGlobeFromAFlatMapAsEarthModels',
+      'recognizeProjectionDistortionInAreaOrShape',
+      'selectAGeographicRepresentationForAPurpose',
+    ],
+  },
   description: {
     methodological:
       'A spherical Earth cannot be shown on a flat sheet without some distortion, and different representations support different questions. Choosing one is a reasoning decision rather than a display preference.',

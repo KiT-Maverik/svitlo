@@ -40,11 +40,14 @@ export const accessibleEnvironments_SkillGroup_Data = defineSkillGroup({
     kk: 'Қолжетімді орта',
     qm: 'İrişilebilir muhitler',
   },
-  skills: [
-    accessibleFixtureDesign_Skill_Data,
-    compareInclusiveDesignSolutions_Skill_Data,
-    evaluateContinuousAccessRoutes_Skill_Data,
-  ],
+  skills: {
+    items: {
+      accessibleFixtureDesign: accessibleFixtureDesign_Skill_Data,
+      compareInclusiveDesignSolutions: compareInclusiveDesignSolutions_Skill_Data,
+      evaluateContinuousAccessRoutes: evaluateContinuousAccessRoutes_Skill_Data,
+    },
+    order: ['accessibleFixtureDesign', 'compareInclusiveDesignSolutions', 'evaluateContinuousAccessRoutes'],
+  },
   description: {
     methodological:
       'Inclusive infrastructure requires usable routes and fixtures as well as accessible individual devices.',

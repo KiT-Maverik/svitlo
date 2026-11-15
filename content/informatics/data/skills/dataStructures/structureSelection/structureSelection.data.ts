@@ -41,12 +41,20 @@ export const structureSelection_SkillGroup_Data = defineSkillGroup({
     kk: 'Деректер құрылымын таңдау',
     qm: 'Malümat yapısını saylamaq',
   },
-  skills: [
-    chooseAStructureForRequiredOperations_Skill_Data,
-    compareCollectionInsertionCosts_Skill_Data,
-    compareElementAccessCosts_Skill_Data,
-    distinguishDataStructuresFromAlgorithms_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chooseAStructureForRequiredOperations: chooseAStructureForRequiredOperations_Skill_Data,
+      compareCollectionInsertionCosts: compareCollectionInsertionCosts_Skill_Data,
+      compareElementAccessCosts: compareElementAccessCosts_Skill_Data,
+      distinguishDataStructuresFromAlgorithms: distinguishDataStructuresFromAlgorithms_Skill_Data,
+    },
+    order: [
+      'chooseAStructureForRequiredOperations',
+      'compareCollectionInsertionCosts',
+      'compareElementAccessCosts',
+      'distinguishDataStructuresFromAlgorithms',
+    ],
+  },
   description: {
     methodological:
       'Select data structures based on required operations and evaluate access, insertion, and storage costs. The comparison concerns data organization rather than only algorithms that process it.',

@@ -41,12 +41,20 @@ export const readingPrograms_SkillGroup_Data = defineSkillGroup({
     kk: 'Бағдарламаларды оқу',
     qm: 'Programmalarnı oqumaq',
   },
-  skills: [
-    explainACommandsPurpose_Skill_Data,
-    predictConsequencesOfExecutionOrder_Skill_Data,
-    predictProgramOutput_Skill_Data,
-    traceProgramState_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainACommandsPurpose: explainACommandsPurpose_Skill_Data,
+      predictConsequencesOfExecutionOrder: predictConsequencesOfExecutionOrder_Skill_Data,
+      predictProgramOutput: predictProgramOutput_Skill_Data,
+      traceProgramState: traceProgramState_Skill_Data,
+    },
+    order: [
+      'explainACommandsPurpose',
+      'predictConsequencesOfExecutionOrder',
+      'predictProgramOutput',
+      'traceProgramState',
+    ],
+  },
   description: {
     methodological:
       'Interpreting existing commands and their execution order, including intermediate state changes and final outcomes. This differs from writing new instructions or fixing an identified defect.',

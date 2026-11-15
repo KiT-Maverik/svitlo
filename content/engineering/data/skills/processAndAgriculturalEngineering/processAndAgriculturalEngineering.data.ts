@@ -38,11 +38,14 @@ export const processAndAgriculturalEngineering_SkillDomain_Data = defineSkillDom
     kk: 'Технологиялық процестер мен ауыл шаруашылығы инженериясы',
     qm: 'Protsess ve ziraat müendisligi',
   },
-  groups: [
-    foodAndAgriculturalTechnology_SkillGroup_Data,
-    industrialProcessEquipment_SkillGroup_Data,
-    processArchitecture_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      foodAndAgriculturalTechnology: foodAndAgriculturalTechnology_SkillGroup_Data,
+      industrialProcessEquipment: industrialProcessEquipment_SkillGroup_Data,
+      processArchitecture: processArchitecture_SkillGroup_Data,
+    },
+    order: ['foodAndAgriculturalTechnology', 'industrialProcessEquipment', 'processArchitecture'],
+  },
   description: {
     methodological:
       'Some engineered systems transform flowing materials rather than assembling separate mechanical parts. Their design coordinates equipment, transfer rates, process conditions and product quality; agricultural and food technologies adapt these principles to living materials and variable field environments.',

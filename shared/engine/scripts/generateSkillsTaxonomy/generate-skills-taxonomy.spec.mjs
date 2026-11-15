@@ -73,18 +73,25 @@ before(() => {
   write(
     path.join(taxonomy, 'd/d.data.ts'),
     "import { g_SkillGroup_Data } from './g/g.data';\n" +
-      entity('SkillDomain', 'd', 'Grouped Domain', 'groups: [g_SkillGroup_Data]'),
+      entity('SkillDomain', 'd', 'Grouped Domain', "groups: { items: { g: g_SkillGroup_Data }, order: ['g'] }"),
   );
   write(
     path.join(taxonomy, 'd/g/g.data.ts'),
-    "import { s_Skill_Data } from './skills';\n" + entity('SkillGroup', 'g', 'Group', 'skills: [s_Skill_Data]'),
+    "import { s_Skill_Data } from './skills';\n" +
+      entity('SkillGroup', 'g', 'Group', "skills: { items: { s: s_Skill_Data }, order: ['s'] }"),
   );
   write(path.join(taxonomy, 'd/g/skills/index.ts'), "export { s_Skill_Data } from './s.data';\n");
   write(groupedSkill, entity('Skill', 's', 'Grouped Skill'));
   write(
     path.join(taxonomy, 'direct/direct.data.ts'),
     "import { t_Skill_Data } from './skills';\n" +
-      entity('SkillDomain', 'direct', 'Direct Domain', 'groups: [], skills: [t_Skill_Data]', true),
+      entity(
+        'SkillDomain',
+        'direct',
+        'Direct Domain',
+        "groups: { items: {}, order: [] }, skills: { items: { t: t_Skill_Data }, order: ['t'] }",
+        true,
+      ),
   );
   write(path.join(taxonomy, 'direct/skills/index.ts'), "export { t_Skill_Data } from './t.data';\n");
   write(directSkill, entity('Skill', 't', 'Direct Skill'));

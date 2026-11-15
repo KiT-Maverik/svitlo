@@ -41,12 +41,20 @@ export const habitats_SkillGroup_Data = defineSkillGroup({
     ka: 'საარსებო გარემოები',
     kk: 'Тіршілік орталары',
   },
-  skills: [
-    identifyAnOrganismsHabitat_Skill_Data,
-    identifyBioticAndAbioticFactors_Skill_Data,
-    predictAnOrganismsResponseToEnvironmentalChange_Skill_Data,
-    relateOrganismStructureToEnvironmentalConditions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      identifyAnOrganismsHabitat: identifyAnOrganismsHabitat_Skill_Data,
+      identifyBioticAndAbioticFactors: identifyBioticAndAbioticFactors_Skill_Data,
+      predictAnOrganismsResponseToEnvironmentalChange: predictAnOrganismsResponseToEnvironmentalChange_Skill_Data,
+      relateOrganismStructureToEnvironmentalConditions: relateOrganismStructureToEnvironmentalConditions_Skill_Data,
+    },
+    order: [
+      'identifyAnOrganismsHabitat',
+      'identifyBioticAndAbioticFactors',
+      'predictAnOrganismsResponseToEnvironmentalChange',
+      'relateOrganismStructureToEnvironmentalConditions',
+    ],
+  },
   description: {
     methodological:
       'Temperature, water, light, other organisms, and resources affect the survival prospects of a particular species.',

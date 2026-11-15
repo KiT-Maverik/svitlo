@@ -41,12 +41,20 @@ export const robotControl_SkillGroup_Data = defineSkillGroup({
     kk: 'Роботты басқару',
     qm: 'Robotnı idare etüv',
   },
-  skills: [
-    configureARepeatedRobotAction_Skill_Data,
-    createARobotMovementSequence_Skill_Data,
-    debugRobotBehavior_Skill_Data,
-    implementRobotObstacleResponse_Skill_Data,
-  ],
+  skills: {
+    items: {
+      configureARepeatedRobotAction: configureARepeatedRobotAction_Skill_Data,
+      createARobotMovementSequence: createARobotMovementSequence_Skill_Data,
+      debugRobotBehavior: debugRobotBehavior_Skill_Data,
+      implementRobotObstacleResponse: implementRobotObstacleResponse_Skill_Data,
+    },
+    order: [
+      'configureARepeatedRobotAction',
+      'createARobotMovementSequence',
+      'debugRobotBehavior',
+      'implementRobotObstacleResponse',
+    ],
+  },
   description: {
     methodological:
       'Construct and adjust commands for movement, obstacle response, and repeated robot operations. Unlike general programming, these algorithms interact with a physical or simulated environment.',

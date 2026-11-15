@@ -40,11 +40,14 @@ export const lightAndShadows_SkillGroup_Data = defineSkillGroup({
     kk: 'Жарық пен көлеңкелер',
     qm: 'Yarıq ve kölgeler',
   },
-  skills: [
-    explainHowAShadowForms_Skill_Data,
-    predictChangesInShadowSize_Skill_Data,
-    predictThePositionOfAShadow_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainHowAShadowForms: explainHowAShadowForms_Skill_Data,
+      predictChangesInShadowSize: predictChangesInShadowSize_Skill_Data,
+      predictThePositionOfAShadow: predictThePositionOfAShadow_Skill_Data,
+    },
+    order: ['explainHowAShadowForms', 'predictChangesInShadowSize', 'predictThePositionOfAShadow'],
+  },
   description: {
     methodological:
       "Obstacles and the source's position determine a shadow's appearance, direction, and size; a model enables qualitative predictions.",

@@ -39,12 +39,15 @@ export const humanCenteredEngineeringAndErgonomics_SkillDomain_Data = defineSkil
     kk: 'Адамға бағдарланған инженерия және эргономика',
     qm: 'İnsanğa yönelgen müendislik ve ergonomika',
   },
-  groups: [
-    accessibleEnvironments_SkillGroup_Data,
-    physicalInteraction_SkillGroup_Data,
-    productErgonomics_SkillGroup_Data,
-    userNeeds_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      accessibleEnvironments: accessibleEnvironments_SkillGroup_Data,
+      physicalInteraction: physicalInteraction_SkillGroup_Data,
+      productErgonomics: productErgonomics_SkillGroup_Data,
+      userNeeds: userNeeds_SkillGroup_Data,
+    },
+    order: ['accessibleEnvironments', 'physicalInteraction', 'productErgonomics', 'userNeeds'],
+  },
   description: {
     methodological:
       'Physical controls and built environments must suit real human capabilities. Engineering UX concerns shape, reach, grip, affordance, safe handling and access; digital navigation and software feedback are separate Informatics competencies.',

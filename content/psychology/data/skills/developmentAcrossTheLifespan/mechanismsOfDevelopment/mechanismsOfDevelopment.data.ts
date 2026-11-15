@@ -41,12 +41,20 @@ export const mechanismsOfDevelopment_SkillGroup_Data = defineSkillGroup({
     kk: 'Даму тетіктері',
     qm: 'İnkişaf mehanizmleri',
   },
-  skills: [
-    developmentalPlasticity_Skill_Data,
-    developmentalResearchDesigns_Skill_Data,
-    individualDevelopmentalVariation_Skill_Data,
-    maturationAndExperience_Skill_Data,
-  ],
+  skills: {
+    items: {
+      developmentalPlasticity: developmentalPlasticity_Skill_Data,
+      developmentalResearchDesigns: developmentalResearchDesigns_Skill_Data,
+      individualDevelopmentalVariation: individualDevelopmentalVariation_Skill_Data,
+      maturationAndExperience: maturationAndExperience_Skill_Data,
+    },
+    order: [
+      'developmentalPlasticity',
+      'developmentalResearchDesigns',
+      'individualDevelopmentalVariation',
+      'maturationAndExperience',
+    ],
+  },
   description: {
     methodological:
       'Research examines change over time, developmental diversity, and how environments interact with biological processes.',

@@ -44,15 +44,26 @@ export const presentation_SkillGroup_Data = defineSkillGroup({
     pl: 'Przedstawianie danych',
     uk: 'Подання даних',
   },
-  skills: [
-    linePlotMeasurements_Skill_Data,
-    readSimpleTable_Skill_Data,
-    readPictograph_Skill_Data,
-    buildPictograph_Skill_Data,
-    readBarChart_Skill_Data,
-    buildBarChart_Skill_Data,
-    scaledChart_Skill_Data,
-  ],
+  skills: {
+    items: {
+      linePlotMeasurements: linePlotMeasurements_Skill_Data,
+      readSimpleTable: readSimpleTable_Skill_Data,
+      readPictograph: readPictograph_Skill_Data,
+      buildPictograph: buildPictograph_Skill_Data,
+      readBarChart: readBarChart_Skill_Data,
+      buildBarChart: buildBarChart_Skill_Data,
+      scaledChart: scaledChart_Skill_Data,
+    },
+    order: [
+      'linePlotMeasurements',
+      'readSimpleTable',
+      'readPictograph',
+      'buildPictograph',
+      'readBarChart',
+      'buildBarChart',
+      'scaledChart',
+    ],
+  },
   description: {
     methodological:
       'Representing collected counts in tables, pictographs, and charts while correctly interpreting the scales and values of marks.',

@@ -40,11 +40,14 @@ export const waterSafety_SkillGroup_Data = defineSkillGroup({
     kk: 'Су қауіпсіздігі',
     qm: 'Suvda havfsızlıq',
   },
-  skills: [
-    assessSwimmingAndBathingHazards_Skill_Data,
-    respondToAPersonInDangerInWater_Skill_Data,
-    useWaterSafetyMeasures_Skill_Data,
-  ],
+  skills: {
+    items: {
+      assessSwimmingAndBathingHazards: assessSwimmingAndBathingHazards_Skill_Data,
+      respondToAPersonInDangerInWater: respondToAPersonInDangerInWater_Skill_Data,
+      useWaterSafetyMeasures: useWaterSafetyMeasures_Skill_Data,
+    },
+    order: ['assessSwimmingAndBathingHazards', 'respondToAPersonInDangerInWater', 'useWaterSafetyMeasures'],
+  },
   description: {
     methodological:
       'Drowning can occur quickly and silently; preventing entry into danger and using non-contact rescue options are distinct from trained water rescue.',

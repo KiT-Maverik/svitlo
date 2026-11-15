@@ -40,13 +40,22 @@ export const thinkingAndDecisionMaking_SkillDomain_Data = defineSkillDomain({
     kk: 'Ойлау және шешім қабылдау',
     qm: 'Fikirlenüv ve qarar berüv',
   },
-  groups: [
-    choicesUnderUncertainty_SkillGroup_Data,
-    heuristicsAndBiases_SkillGroup_Data,
-    languageAndCognitiveAbilities_SkillGroup_Data,
-    mentalRepresentation_SkillGroup_Data,
-    reasoningAndProblemSolving_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      choicesUnderUncertainty: choicesUnderUncertainty_SkillGroup_Data,
+      heuristicsAndBiases: heuristicsAndBiases_SkillGroup_Data,
+      languageAndCognitiveAbilities: languageAndCognitiveAbilities_SkillGroup_Data,
+      mentalRepresentation: mentalRepresentation_SkillGroup_Data,
+      reasoningAndProblemSolving: reasoningAndProblemSolving_SkillGroup_Data,
+    },
+    order: [
+      'choicesUnderUncertainty',
+      'heuristicsAndBiases',
+      'languageAndCognitiveAbilities',
+      'mentalRepresentation',
+      'reasoningAndProblemSolving',
+    ],
+  },
   description: {
     methodological:
       'Cognitive processes create concepts, guide inferences, solve problems, and select actions under limited information. The focus is what people actually do, not whether their reasoning satisfies a formal philosophical standard.',

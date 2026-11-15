@@ -41,12 +41,20 @@ export const publicReasonAndCivicLife_SkillGroup_Data = defineSkillGroup({
     kk: 'Қоғамдық ақыл және азаматтық өмір',
     qm: 'İçtimaiy aqıl ve vatandaşlıq ayatı',
   },
-  skills: [
-    analyzeDemocraticLegitimacy_Skill_Data,
-    assessAnArgumentAboutTheCommonGood_Skill_Data,
-    distinguishPublicReasonsFromPrivatePreferences_Skill_Data,
-    evaluateCompetingViewsOfPoliticalObligation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeDemocraticLegitimacy: analyzeDemocraticLegitimacy_Skill_Data,
+      assessAnArgumentAboutTheCommonGood: assessAnArgumentAboutTheCommonGood_Skill_Data,
+      distinguishPublicReasonsFromPrivatePreferences: distinguishPublicReasonsFromPrivatePreferences_Skill_Data,
+      evaluateCompetingViewsOfPoliticalObligation: evaluateCompetingViewsOfPoliticalObligation_Skill_Data,
+    },
+    order: [
+      'analyzeDemocraticLegitimacy',
+      'assessAnArgumentAboutTheCommonGood',
+      'distinguishPublicReasonsFromPrivatePreferences',
+      'evaluateCompetingViewsOfPoliticalObligation',
+    ],
+  },
   description: {
     methodological:
       'People with incompatible values must still make shared decisions. Philosophical inquiry examines how disagreements can be handled under pluralism and institutional accountability.',

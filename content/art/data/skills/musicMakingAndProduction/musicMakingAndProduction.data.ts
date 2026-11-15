@@ -39,12 +39,20 @@ export const musicMakingAndProduction_SkillDomain_Data = defineSkillDomain({
     kk: 'Музыка жасау және продюсерлік',
     qm: 'Muzika yaratması ve prodüserligi',
   },
-  groups: [
-    compositionAndImprovisation_SkillGroup_Data,
-    instrumentAndEnsemblePerformance_SkillGroup_Data,
-    samplingAndElectronicMusic_SkillGroup_Data,
-    voiceAndBodyPercussion_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      compositionAndImprovisation: compositionAndImprovisation_SkillGroup_Data,
+      instrumentAndEnsemblePerformance: instrumentAndEnsemblePerformance_SkillGroup_Data,
+      samplingAndElectronicMusic: samplingAndElectronicMusic_SkillGroup_Data,
+      voiceAndBodyPercussion: voiceAndBodyPercussion_SkillGroup_Data,
+    },
+    order: [
+      'compositionAndImprovisation',
+      'instrumentAndEnsemblePerformance',
+      'samplingAndElectronicMusic',
+      'voiceAndBodyPercussion',
+    ],
+  },
   description: {
     methodological:
       'Expressive music-making includes voice, instruments, improvisation, arrangement, and manipulation of recorded sounds. The use of electronic tools does not convert a musical outcome into an Informatics Skill.',

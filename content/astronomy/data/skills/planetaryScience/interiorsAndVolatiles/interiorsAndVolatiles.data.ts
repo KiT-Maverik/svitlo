@@ -42,13 +42,22 @@ export const interiorsAndVolatiles_SkillGroup_Data = defineSkillGroup({
     kk: 'Ішкі құрылым мен ұшпа заттар',
     qm: 'İçki qatlar ve uçucı maddeler',
   },
-  skills: [
-    cryovolcanism_Skill_Data,
-    planetaryInteriorStructure_Skill_Data,
-    planetaryMagneticFields_Skill_Data,
-    subsurfaceOceans_Skill_Data,
-    waterAndIceBeyondEarth_Skill_Data,
-  ],
+  skills: {
+    items: {
+      cryovolcanism: cryovolcanism_Skill_Data,
+      planetaryInteriorStructure: planetaryInteriorStructure_Skill_Data,
+      planetaryMagneticFields: planetaryMagneticFields_Skill_Data,
+      subsurfaceOceans: subsurfaceOceans_Skill_Data,
+      waterAndIceBeyondEarth: waterAndIceBeyondEarth_Skill_Data,
+    },
+    order: [
+      'cryovolcanism',
+      'planetaryInteriorStructure',
+      'planetaryMagneticFields',
+      'subsurfaceOceans',
+      'waterAndIceBeyondEarth',
+    ],
+  },
   description: {
     methodological:
       'Indirect observations of magnetic fields, heat and fluid materials constrain unseen layers and possible activity beneath planetary surfaces.',

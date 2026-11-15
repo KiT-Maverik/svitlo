@@ -43,14 +43,24 @@ export const graphs_SkillGroup_Data = defineSkillGroup({
     kk: 'Графтар',
     qm: 'Graflar',
   },
-  skills: [
-    distinguishDirectedAndUndirectedGraphs_Skill_Data,
-    distinguishTreesFromGraphsWithCycles_Skill_Data,
-    distinguishWeightedAndUnweightedGraphs_Skill_Data,
-    explainGraphStructure_Skill_Data,
-    findAPathInAGraph_Skill_Data,
-    identifyAdjacentVertices_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishDirectedAndUndirectedGraphs: distinguishDirectedAndUndirectedGraphs_Skill_Data,
+      distinguishTreesFromGraphsWithCycles: distinguishTreesFromGraphsWithCycles_Skill_Data,
+      distinguishWeightedAndUnweightedGraphs: distinguishWeightedAndUnweightedGraphs_Skill_Data,
+      explainGraphStructure: explainGraphStructure_Skill_Data,
+      findAPathInAGraph: findAPathInAGraph_Skill_Data,
+      identifyAdjacentVertices: identifyAdjacentVertices_Skill_Data,
+    },
+    order: [
+      'distinguishDirectedAndUndirectedGraphs',
+      'distinguishTreesFromGraphsWithCycles',
+      'distinguishWeightedAndUnweightedGraphs',
+      'explainGraphStructure',
+      'findAPathInAGraph',
+      'identifyAdjacentVertices',
+    ],
+  },
   description: {
     methodological:
       'Graphs describe vertices and connections, including cycles, directed relationships, and numeric edge weights.',

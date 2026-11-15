@@ -43,14 +43,17 @@ export const transmissions_SkillGroup_Data = defineSkillGroup({
     kk: 'Механикалық берілістер',
     qm: 'Mehanik ötkerüvler',
   },
-  skills: [
-    beltDrives_Skill_Data,
-    chainDrives_Skill_Data,
-    determineAGearRatio_Skill_Data,
-    gearTransmission_Skill_Data,
-    leverMechanisms_Skill_Data,
-    pulleySystems_Skill_Data,
-  ],
+  skills: {
+    items: {
+      beltDrives: beltDrives_Skill_Data,
+      chainDrives: chainDrives_Skill_Data,
+      determineAGearRatio: determineAGearRatio_Skill_Data,
+      gearTransmission: gearTransmission_Skill_Data,
+      leverMechanisms: leverMechanisms_Skill_Data,
+      pulleySystems: pulleySystems_Skill_Data,
+    },
+    order: ['beltDrives', 'chainDrives', 'determineAGearRatio', 'gearTransmission', 'leverMechanisms', 'pulleySystems'],
+  },
   description: {
     methodological:
       'Shafts, flexible elements and meshing components connect input motion to a useful output with potentially different speed, force and direction.',

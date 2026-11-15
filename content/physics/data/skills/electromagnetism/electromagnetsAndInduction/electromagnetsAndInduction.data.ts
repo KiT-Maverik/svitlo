@@ -39,7 +39,13 @@ export const electromagnetsAndInduction_SkillGroup_Data = defineSkillGroup({
     ka: 'ელექტრომაგნიტები და ინდუქცია',
     kk: 'Электромагниттер және индукция',
   },
-  skills: [explainHowInducedCurrentArises_Skill_Data, explainTheMagneticEffectOfElectricCurrent_Skill_Data],
+  skills: {
+    items: {
+      explainHowInducedCurrentArises: explainHowInducedCurrentArises_Skill_Data,
+      explainTheMagneticEffectOfElectricCurrent: explainTheMagneticEffectOfElectricCurrent_Skill_Data,
+    },
+    order: ['explainHowInducedCurrentArises', 'explainTheMagneticEffectOfElectricCurrent'],
+  },
   description: {
     methodological:
       'Electric current can create a magnetic field, and changing magnetic conditions can produce electrical effects, explaining many systems.',

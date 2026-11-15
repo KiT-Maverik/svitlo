@@ -40,11 +40,19 @@ export const environmentalGradients_SkillGroup_Data = defineSkillGroup({
     kk: 'Экологиялық градиенттер',
     qm: 'Çevre şartlarınıñ dereceli deñişüvi',
   },
-  skills: [
-    explainBroadEnvironmentalVariationWithLatitude_Skill_Data,
-    identifyEnvironmentalShiftsFromComparativeGeographicEvidence_Skill_Data,
-    recognizeAltitudinalChangesInNaturalConditions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainBroadEnvironmentalVariationWithLatitude: explainBroadEnvironmentalVariationWithLatitude_Skill_Data,
+      identifyEnvironmentalShiftsFromComparativeGeographicEvidence:
+        identifyEnvironmentalShiftsFromComparativeGeographicEvidence_Skill_Data,
+      recognizeAltitudinalChangesInNaturalConditions: recognizeAltitudinalChangesInNaturalConditions_Skill_Data,
+    },
+    order: [
+      'explainBroadEnvironmentalVariationWithLatitude',
+      'identifyEnvironmentalShiftsFromComparativeGeographicEvidence',
+      'recognizeAltitudinalChangesInNaturalConditions',
+    ],
+  },
   description: {
     methodological:
       'Natural conditions often vary systematically with elevation, latitude, and proximity to water. Such gradients help explain patterns without implying that every place at the same latitude is identical.',

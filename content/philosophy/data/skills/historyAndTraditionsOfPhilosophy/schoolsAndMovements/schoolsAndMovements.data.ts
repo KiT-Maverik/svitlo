@@ -40,11 +40,19 @@ export const schoolsAndMovements_SkillGroup_Data = defineSkillGroup({
     kk: 'Философиялық мектептер мен ағымдар',
     qm: 'Felsefe mektepleri ve aqımları',
   },
-  skills: [
-    analyzeAnEnlightenmentPhilosophicalArgument_Skill_Data,
-    compareExistentialistAndAnalyticApproachesToAProblem_Skill_Data,
-    compareMajorModernEpistemologicalApproaches_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAnEnlightenmentPhilosophicalArgument: analyzeAnEnlightenmentPhilosophicalArgument_Skill_Data,
+      compareExistentialistAndAnalyticApproachesToAProblem:
+        compareExistentialistAndAnalyticApproachesToAProblem_Skill_Data,
+      compareMajorModernEpistemologicalApproaches: compareMajorModernEpistemologicalApproaches_Skill_Data,
+    },
+    order: [
+      'analyzeAnEnlightenmentPhilosophicalArgument',
+      'compareExistentialistAndAnalyticApproachesToAProblem',
+      'compareMajorModernEpistemologicalApproaches',
+    ],
+  },
   description: {
     methodological:
       'Philosophical movements and schools arise around distinctive approaches to knowledge, reason, liberty, and existence; their boundaries and internal disagreements cannot be reduced to dates alone.',

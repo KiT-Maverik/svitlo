@@ -42,13 +42,16 @@ export const neuralCommunication_SkillGroup_Data = defineSkillGroup({
     kk: 'Нейрондық байланыс',
     qm: 'Sinir alâqası',
   },
-  skills: [
-    neuralExcitation_Skill_Data,
-    neuralInhibition_Skill_Data,
-    neuralPlasticity_Skill_Data,
-    neuralSignaling_Skill_Data,
-    neurotransmitterAction_Skill_Data,
-  ],
+  skills: {
+    items: {
+      neuralExcitation: neuralExcitation_Skill_Data,
+      neuralInhibition: neuralInhibition_Skill_Data,
+      neuralPlasticity: neuralPlasticity_Skill_Data,
+      neuralSignaling: neuralSignaling_Skill_Data,
+      neurotransmitterAction: neurotransmitterAction_Skill_Data,
+    },
+    order: ['neuralExcitation', 'neuralInhibition', 'neuralPlasticity', 'neuralSignaling', 'neurotransmitterAction'],
+  },
   description: {
     methodological:
       'Communication within nervous systems depends on electrical signals, chemical modulation, and changing connections that relate to behavioral functions.',

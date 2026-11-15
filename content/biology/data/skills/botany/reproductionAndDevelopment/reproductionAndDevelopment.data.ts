@@ -42,13 +42,22 @@ export const reproductionAndDevelopment_SkillGroup_Data = defineSkillGroup({
     kk: 'Көбею және даму',
     qm: 'Çoğaluv ve inkişaf',
   },
-  skills: [
-    describeGermination_Skill_Data,
-    explainTheRoleOfPollination_Skill_Data,
-    identifyTheRoleOfASeed_Skill_Data,
-    relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data,
-    sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data,
-  ],
+  skills: {
+    items: {
+      describeGermination: describeGermination_Skill_Data,
+      explainTheRoleOfPollination: explainTheRoleOfPollination_Skill_Data,
+      identifyTheRoleOfASeed: identifyTheRoleOfASeed_Skill_Data,
+      relateFruitCharacteristicsToSeedDispersalMethods: relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data,
+      sequenceStagesOfAFloweringPlantsLifeCycle: sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data,
+    },
+    order: [
+      'describeGermination',
+      'explainTheRoleOfPollination',
+      'identifyTheRoleOfASeed',
+      'relateFruitCharacteristicsToSeedDispersalMethods',
+      'sequenceStagesOfAFloweringPlantsLifeCycle',
+    ],
+  },
   description: {
     methodological:
       'A seed plant progresses from a seed through a seedling to producing the next generation; pollination and seed dispersal occur at different stages.',

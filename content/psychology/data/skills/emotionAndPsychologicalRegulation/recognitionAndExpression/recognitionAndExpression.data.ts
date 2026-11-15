@@ -41,12 +41,15 @@ export const recognitionAndExpression_SkillGroup_Data = defineSkillGroup({
     kk: 'Тану және білдіру',
     qm: 'Tanımaq ve ifade etmek',
   },
-  skills: [
-    culturalVariationInExpression_Skill_Data,
-    emotionalSelfAwareness_Skill_Data,
-    emotionVocabulary_Skill_Data,
-    readingEmotionalCues_Skill_Data,
-  ],
+  skills: {
+    items: {
+      culturalVariationInExpression: culturalVariationInExpression_Skill_Data,
+      emotionalSelfAwareness: emotionalSelfAwareness_Skill_Data,
+      emotionVocabulary: emotionVocabulary_Skill_Data,
+      readingEmotionalCues: readingEmotionalCues_Skill_Data,
+    },
+    order: ['culturalVariationInExpression', 'emotionalSelfAwareness', 'emotionVocabulary', 'readingEmotionalCues'],
+  },
   description: {
     methodological:
       'Emotional information is conveyed through multiple channels, but neither facial expression nor tone is an infallible window into another mind.',

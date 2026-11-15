@@ -40,11 +40,14 @@ export const bodyStructure_SkillGroup_Data = defineSkillGroup({
     kk: 'Дене құрылысы',
     qm: 'Beden quruluşu',
   },
-  skills: [
-    distinguishAnOrganFromAnOrganSystem_Skill_Data,
-    identifyMajorBodyParts_Skill_Data,
-    relateOrgansToTheirFunctions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAnOrganFromAnOrganSystem: distinguishAnOrganFromAnOrganSystem_Skill_Data,
+      identifyMajorBodyParts: identifyMajorBodyParts_Skill_Data,
+      relateOrgansToTheirFunctions: relateOrgansToTheirFunctions_Skill_Data,
+    },
+    order: ['distinguishAnOrganFromAnOrganSystem', 'identifyMajorBodyParts', 'relateOrgansToTheirFunctions'],
+  },
   description: {
     methodological:
       'External and internal body parts form organs and systems, each performing a particular function in the organism.',

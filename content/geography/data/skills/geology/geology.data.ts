@@ -41,14 +41,24 @@ export const geology_SkillDomain_Data = defineSkillDomain({
     kk: 'Геология',
     qm: 'Geologiya',
   },
-  groups: [
-    earthquakesAndVolcanism_SkillGroup_Data,
-    earthsInteriorAndPlateTectonics_SkillGroup_Data,
-    geologicalTimeAndEvidence_SkillGroup_Data,
-    mineralDeposits_SkillGroup_Data,
-    mineralsAndTheirProperties_SkillGroup_Data,
-    rocksAndTheRockCycle_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      earthquakesAndVolcanism: earthquakesAndVolcanism_SkillGroup_Data,
+      earthsInteriorAndPlateTectonics: earthsInteriorAndPlateTectonics_SkillGroup_Data,
+      geologicalTimeAndEvidence: geologicalTimeAndEvidence_SkillGroup_Data,
+      mineralDeposits: mineralDeposits_SkillGroup_Data,
+      mineralsAndTheirProperties: mineralsAndTheirProperties_SkillGroup_Data,
+      rocksAndTheRockCycle: rocksAndTheRockCycle_SkillGroup_Data,
+    },
+    order: [
+      'earthquakesAndVolcanism',
+      'earthsInteriorAndPlateTectonics',
+      'geologicalTimeAndEvidence',
+      'mineralDeposits',
+      'mineralsAndTheirProperties',
+      'rocksAndTheRockCycle',
+    ],
+  },
   description: {
     methodological:
       "Minerals and rocks, Earth's internal structure, tectonic activity, geological evidence and mineral deposits reveal the solid planet's origins and evolution through deep time. Its focus is recognizing materials, processes and spatial evidence, distinct from describing everyday terrain or individual surface features.",

@@ -41,12 +41,20 @@ export const socialContextAndExchange_SkillGroup_Data = defineSkillGroup({
     kk: 'Әлеуметтік контекст және алмасу',
     qm: 'Sosial bağlam ve alışveriş',
   },
-  skills: [
-    analyzeArtisticPatronage_Skill_Data,
-    analyzeArtisticTechnologyHistorically_Skill_Data,
-    interpretArtAsHistoricalEvidence_Skill_Data,
-    traceArtisticExchange_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeArtisticPatronage: analyzeArtisticPatronage_Skill_Data,
+      analyzeArtisticTechnologyHistorically: analyzeArtisticTechnologyHistorically_Skill_Data,
+      interpretArtAsHistoricalEvidence: interpretArtAsHistoricalEvidence_Skill_Data,
+      traceArtisticExchange: traceArtisticExchange_Skill_Data,
+    },
+    order: [
+      'analyzeArtisticPatronage',
+      'analyzeArtisticTechnologyHistorically',
+      'interpretArtAsHistoricalEvidence',
+      'traceArtisticExchange',
+    ],
+  },
   description: {
     methodological:
       'Artistic production responds to institutions, migration and technology without being reducible to them.',

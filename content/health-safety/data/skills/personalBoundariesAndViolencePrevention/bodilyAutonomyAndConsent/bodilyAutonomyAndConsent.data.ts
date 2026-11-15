@@ -40,11 +40,14 @@ export const bodilyAutonomyAndConsent_SkillGroup_Data = defineSkillGroup({
     kk: 'Дене дербестігі және келісім',
     qm: 'Beden müstakilligi ve rıza',
   },
-  skills: [
-    communicateRefusalAndLimits_Skill_Data,
-    recognizePersonalBoundaries_Skill_Data,
-    recognizeValidConsent_Skill_Data,
-  ],
+  skills: {
+    items: {
+      communicateRefusalAndLimits: communicateRefusalAndLimits_Skill_Data,
+      recognizePersonalBoundaries: recognizePersonalBoundaries_Skill_Data,
+      recognizeValidConsent: recognizeValidConsent_Skill_Data,
+    },
+    order: ['communicateRefusalAndLimits', 'recognizePersonalBoundaries', 'recognizeValidConsent'],
+  },
   description: {
     methodological:
       'Personal space, privacy, and permission govern respectful contact; consent must not be inferred from silence, fear, or power imbalance.',

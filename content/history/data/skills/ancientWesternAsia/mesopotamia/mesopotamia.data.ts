@@ -43,14 +43,24 @@ export const mesopotamia_SkillGroup_Data = defineSkillGroup({
     kk: 'Месопотамия',
     qm: 'Mezopotamiya',
   },
-  skills: [
-    akkadianEmpire_Skill_Data,
-    assyrianEmpire_Skill_Data,
-    babylonianKingdoms_Skill_Data,
-    cuneiformWriting_Skill_Data,
-    mesopotamianIrrigation_Skill_Data,
-    sumerianCityStates_Skill_Data,
-  ],
+  skills: {
+    items: {
+      akkadianEmpire: akkadianEmpire_Skill_Data,
+      assyrianEmpire: assyrianEmpire_Skill_Data,
+      babylonianKingdoms: babylonianKingdoms_Skill_Data,
+      cuneiformWriting: cuneiformWriting_Skill_Data,
+      mesopotamianIrrigation: mesopotamianIrrigation_Skill_Data,
+      sumerianCityStates: sumerianCityStates_Skill_Data,
+    },
+    order: [
+      'akkadianEmpire',
+      'assyrianEmpire',
+      'babylonianKingdoms',
+      'cuneiformWriting',
+      'mesopotamianIrrigation',
+      'sumerianCityStates',
+    ],
+  },
   description: {
     methodological:
       'The Tigris and Euphrates valleys supported cities, complex administration, writing, and successive supraregional states.',

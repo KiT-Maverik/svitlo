@@ -40,11 +40,14 @@ export const institutionsAndDevelopment_SkillGroup_Data = defineSkillGroup({
     kk: 'Институттар және даму',
     qm: 'Müesseseler ve inkişaf',
   },
-  skills: [
-    accessToFinanceAndBasicServices_Skill_Data,
-    corruptionAndEconomicIncentives_Skill_Data,
-    inclusiveEconomicInstitutions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      accessToFinanceAndBasicServices: accessToFinanceAndBasicServices_Skill_Data,
+      corruptionAndEconomicIncentives: corruptionAndEconomicIncentives_Skill_Data,
+      inclusiveEconomicInstitutions: inclusiveEconomicInstitutions_Skill_Data,
+    },
+    order: ['accessToFinanceAndBasicServices', 'corruptionAndEconomicIncentives', 'inclusiveEconomicInstitutions'],
+  },
   description: {
     methodological:
       'Rules, trust, state capacity, and access to resources influence investment and economic opportunity.',

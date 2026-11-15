@@ -41,12 +41,20 @@ export const readingPhilosophicalWorks_SkillGroup_Data = defineSkillGroup({
     kk: 'Философиялық еңбектерді оқу',
     qm: 'Felsefiy eserlerni oqumaq',
   },
-  skills: [
-    evaluateAPhilosophicalTextCritically_Skill_Data,
-    identifyTheCentralProblemInAPhilosophicalText_Skill_Data,
-    interpretAPhilosopherInHistoricalContext_Skill_Data,
-    reconstructAHistoricalPhilosophicalArgument_Skill_Data,
-  ],
+  skills: {
+    items: {
+      evaluateAPhilosophicalTextCritically: evaluateAPhilosophicalTextCritically_Skill_Data,
+      identifyTheCentralProblemInAPhilosophicalText: identifyTheCentralProblemInAPhilosophicalText_Skill_Data,
+      interpretAPhilosopherInHistoricalContext: interpretAPhilosopherInHistoricalContext_Skill_Data,
+      reconstructAHistoricalPhilosophicalArgument: reconstructAHistoricalPhilosophicalArgument_Skill_Data,
+    },
+    order: [
+      'evaluateAPhilosophicalTextCritically',
+      'identifyTheCentralProblemInAPhilosophicalText',
+      'interpretAPhilosopherInHistoricalContext',
+      'reconstructAHistoricalPhilosophicalArgument',
+    ],
+  },
   description: {
     methodological:
       'Texts require interpreting claims, their argumentative context, and the questions the author sought to answer; historical wording cannot always be mapped directly to modern categories.',

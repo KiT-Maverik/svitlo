@@ -36,7 +36,14 @@ export const changesAndConservation_SkillGroup_Data = defineSkillGroup({
     kk: 'Өзгерістер және сақталу',
     qm: 'Deñişüvler ve saqlanuv',
   },
-  skills: [chemicalChanges_Skill_Data, massConservation_Skill_Data, physicalChanges_Skill_Data],
+  skills: {
+    items: {
+      chemicalChanges: chemicalChanges_Skill_Data,
+      massConservation: massConservation_Skill_Data,
+      physicalChanges: physicalChanges_Skill_Data,
+    },
+    order: ['chemicalChanges', 'massConservation', 'physicalChanges'],
+  },
   description: {
     methodological:
       'Changes in form and changes in composition are distinct, while matter is conserved in appropriately defined systems.',

@@ -41,7 +41,15 @@ export const cardinality_SkillGroup_Data = defineSkillGroup({
     pl: 'Liczebność',
     uk: 'Кількість',
   },
-  skills: [basicCardinality_Skill_Data, compareSets_Skill_Data, groupAndCount_Skill_Data, zero_Skill_Data],
+  skills: {
+    items: {
+      basicCardinality: basicCardinality_Skill_Data,
+      compareSets: compareSets_Skill_Data,
+      groupAndCount: groupAndCount_Skill_Data,
+      zero: zero_Skill_Data,
+    },
+    order: ['basicCardinality', 'compareSets', 'groupAndCount', 'zero'],
+  },
   description: {
     methodological:
       'Understanding number as the cardinality of a set, including the empty set, and methods for determining and comparing the sizes of sets.',

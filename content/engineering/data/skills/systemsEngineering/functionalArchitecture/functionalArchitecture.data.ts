@@ -42,13 +42,22 @@ export const functionalArchitecture_SkillGroup_Data = defineSkillGroup({
     kk: 'Функционалдық архитектура',
     qm: 'İşlevsel mimarlıq',
   },
-  skills: [
-    identifyASystemFunction_Skill_Data,
-    identifySystemBoundaries_Skill_Data,
-    subsystemFunctions_Skill_Data,
-    traceAnOperatingSequence_Skill_Data,
-    traceInputsAndOutputs_Skill_Data,
-  ],
+  skills: {
+    items: {
+      identifyASystemFunction: identifyASystemFunction_Skill_Data,
+      identifySystemBoundaries: identifySystemBoundaries_Skill_Data,
+      subsystemFunctions: subsystemFunctions_Skill_Data,
+      traceAnOperatingSequence: traceAnOperatingSequence_Skill_Data,
+      traceInputsAndOutputs: traceInputsAndOutputs_Skill_Data,
+    },
+    order: [
+      'identifyASystemFunction',
+      'identifySystemBoundaries',
+      'subsystemFunctions',
+      'traceAnOperatingSequence',
+      'traceInputsAndOutputs',
+    ],
+  },
   description: {
     methodological:
       'The same overall service may be implemented by different assemblies; the function and system boundary must be distinguished from component names.',

@@ -43,14 +43,24 @@ export const artisticCollaborationAndEthics_SkillGroup_Data = defineSkillGroup({
     kk: 'Өнердегі ынтымақтастық және этика',
     qm: 'Sanat işbirligi ve etika',
   },
-  skills: [
-    assessCulturalAppropriation_Skill_Data,
-    collaborateArtistically_Skill_Data,
-    creditArtisticSources_Skill_Data,
-    giveArtisticFeedback_Skill_Data,
-    presentAnArtwork_Skill_Data,
-    respectCreativeRights_Skill_Data,
-  ],
+  skills: {
+    items: {
+      assessCulturalAppropriation: assessCulturalAppropriation_Skill_Data,
+      collaborateArtistically: collaborateArtistically_Skill_Data,
+      creditArtisticSources: creditArtisticSources_Skill_Data,
+      giveArtisticFeedback: giveArtisticFeedback_Skill_Data,
+      presentAnArtwork: presentAnArtwork_Skill_Data,
+      respectCreativeRights: respectCreativeRights_Skill_Data,
+    },
+    order: [
+      'assessCulturalAppropriation',
+      'collaborateArtistically',
+      'creditArtisticSources',
+      'giveArtisticFeedback',
+      'presentAnArtwork',
+      'respectCreativeRights',
+    ],
+  },
   description: {
     methodological:
       "Making and sharing art also demands communication, credit and respect for the rights and meanings of others' creative work.",

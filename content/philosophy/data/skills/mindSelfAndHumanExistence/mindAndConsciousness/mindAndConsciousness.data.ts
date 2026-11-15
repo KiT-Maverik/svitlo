@@ -41,12 +41,21 @@ export const mindAndConsciousness_SkillGroup_Data = defineSkillGroup({
     kk: 'Ақыл-ой мен сана',
     qm: 'Zihin ve şuur',
   },
-  skills: [
-    analyzeAPhilosophicalProblemOfArtificialConsciousness_Skill_Data,
-    compareTheoriesOfTheMindBodyRelation_Skill_Data,
-    distinguishMentalFromPhysicalDescriptions_Skill_Data,
-    explainTheProblemOfOtherMinds_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAPhilosophicalProblemOfArtificialConsciousness:
+        analyzeAPhilosophicalProblemOfArtificialConsciousness_Skill_Data,
+      compareTheoriesOfTheMindBodyRelation: compareTheoriesOfTheMindBodyRelation_Skill_Data,
+      distinguishMentalFromPhysicalDescriptions: distinguishMentalFromPhysicalDescriptions_Skill_Data,
+      explainTheProblemOfOtherMinds: explainTheProblemOfOtherMinds_Skill_Data,
+    },
+    order: [
+      'analyzeAPhilosophicalProblemOfArtificialConsciousness',
+      'compareTheoriesOfTheMindBodyRelation',
+      'distinguishMentalFromPhysicalDescriptions',
+      'explainTheProblemOfOtherMinds',
+    ],
+  },
   description: {
     methodological:
       'A first-person experience and a third-person physical description offer different perspectives on mental life. Philosophical theories disagree about how these perspectives relate.',

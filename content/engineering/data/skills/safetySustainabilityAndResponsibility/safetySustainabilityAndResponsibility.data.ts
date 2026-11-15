@@ -38,11 +38,14 @@ export const safetySustainabilityAndResponsibility_SkillDomain_Data = defineSkil
     kk: 'Қауіпсіздік, тұрақтылық және жауапкершілік',
     qm: 'Telükesizlik, devamlılıq ve mesuliyet',
   },
-  groups: [
-    ethicsAndPublicEffects_SkillGroup_Data,
-    lifeCycleAndResources_SkillGroup_Data,
-    riskAndProtection_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      ethicsAndPublicEffects: ethicsAndPublicEffects_SkillGroup_Data,
+      lifeCycleAndResources: lifeCycleAndResources_SkillGroup_Data,
+      riskAndProtection: riskAndProtection_SkillGroup_Data,
+    },
+    order: ['ethicsAndPublicEffects', 'lifeCycleAndResources', 'riskAndProtection'],
+  },
   description: {
     methodological:
       "Engineering decisions affect people, resources and ecosystems throughout a product's service life. This domain examines foreseeable hazards, life-cycle choices and accountable technical judgment without turning an untested model into a safety certification.",

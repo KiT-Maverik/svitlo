@@ -42,13 +42,22 @@ export const mineralDeposits_SkillGroup_Data = defineSkillGroup({
     kk: 'Пайдалы қазбалар кен орындары',
     qm: 'Mineral yataqları',
   },
-  skills: [
-    explainWhatConstitutesAMineralDeposit_Skill_Data,
-    explainWhyAMineralDepositMayOrMayNotBeAnOre_Skill_Data,
-    identifyGeographicConsequencesOfMineralExtraction_Skill_Data,
-    interpretMineralResourceDistributionOnAMap_Skill_Data,
-    recognizeGeologicalControlsOnMineralOccurrence_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainWhatConstitutesAMineralDeposit: explainWhatConstitutesAMineralDeposit_Skill_Data,
+      explainWhyAMineralDepositMayOrMayNotBeAnOre: explainWhyAMineralDepositMayOrMayNotBeAnOre_Skill_Data,
+      identifyGeographicConsequencesOfMineralExtraction: identifyGeographicConsequencesOfMineralExtraction_Skill_Data,
+      interpretMineralResourceDistributionOnAMap: interpretMineralResourceDistributionOnAMap_Skill_Data,
+      recognizeGeologicalControlsOnMineralOccurrence: recognizeGeologicalControlsOnMineralOccurrence_Skill_Data,
+    },
+    order: [
+      'explainWhatConstitutesAMineralDeposit',
+      'explainWhyAMineralDepositMayOrMayNotBeAnOre',
+      'identifyGeographicConsequencesOfMineralExtraction',
+      'interpretMineralResourceDistributionOnAMap',
+      'recognizeGeologicalControlsOnMineralOccurrence',
+    ],
+  },
   description: {
     methodological:
       'The geological distribution of useful concentrations of minerals is uneven and influenced by rock-forming processes, access and extraction decisions. A deposit is a natural concentration, while whether it can be worked as an ore is partly an economic and technical judgment.',

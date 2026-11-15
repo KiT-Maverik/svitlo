@@ -41,12 +41,15 @@ export const sleepAndDailyRhythms_SkillGroup_Data = defineSkillGroup({
     kk: 'Ұйқы және тәуліктік ырғақтар',
     qm: 'Yuqu ve künlük ritmler',
   },
-  skills: [
-    circadianTiming_Skill_Data,
-    sleepAndMemory_Skill_Data,
-    sleepDeprivationEffects_Skill_Data,
-    sleepStages_Skill_Data,
-  ],
+  skills: {
+    items: {
+      circadianTiming: circadianTiming_Skill_Data,
+      sleepAndMemory: sleepAndMemory_Skill_Data,
+      sleepDeprivationEffects: sleepDeprivationEffects_Skill_Data,
+      sleepStages: sleepStages_Skill_Data,
+    },
+    order: ['circadianTiming', 'sleepAndMemory', 'sleepDeprivationEffects', 'sleepStages'],
+  },
   description: {
     methodological:
       'Circadian timing and sleep states influence subsequent cognitive functioning, distinct from clinical sleep diagnosis.',

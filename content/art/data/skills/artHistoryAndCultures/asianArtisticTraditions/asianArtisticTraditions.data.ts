@@ -42,13 +42,22 @@ export const asianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
     kk: 'Азияның өнер дәстүрлері',
     qm: 'Asiya sanat adetleri',
   },
-  skills: [
-    analyzeChineseInkPainting_Skill_Data,
-    analyzeJapaneseUkiyoE_Skill_Data,
-    analyzeKoreanCeladon_Skill_Data,
-    analyzeMughalMiniaturePainting_Skill_Data,
-    analyzePersianMiniaturePainting_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeChineseInkPainting: analyzeChineseInkPainting_Skill_Data,
+      analyzeJapaneseUkiyoE: analyzeJapaneseUkiyoE_Skill_Data,
+      analyzeKoreanCeladon: analyzeKoreanCeladon_Skill_Data,
+      analyzeMughalMiniaturePainting: analyzeMughalMiniaturePainting_Skill_Data,
+      analyzePersianMiniaturePainting: analyzePersianMiniaturePainting_Skill_Data,
+    },
+    order: [
+      'analyzeChineseInkPainting',
+      'analyzeJapaneseUkiyoE',
+      'analyzeKoreanCeladon',
+      'analyzeMughalMiniaturePainting',
+      'analyzePersianMiniaturePainting',
+    ],
+  },
   description: {
     methodological:
       'Specific regional practices use different material systems, pictorial conventions and patronage contexts; geographic proximity does not imply shared aesthetic rules.',

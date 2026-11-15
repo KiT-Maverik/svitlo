@@ -36,7 +36,14 @@ export const demand_SkillGroup_Data = defineSkillGroup({
     kk: 'Сұраныс',
     qm: 'Talap',
   },
-  skills: [changeInQuantityDemanded_Skill_Data, lawOfDemand_Skill_Data, shiftInDemand_Skill_Data],
+  skills: {
+    items: {
+      changeInQuantityDemanded: changeInQuantityDemanded_Skill_Data,
+      lawOfDemand: lawOfDemand_Skill_Data,
+      shiftInDemand: shiftInDemand_Skill_Data,
+    },
+    order: ['changeInQuantityDemanded', 'lawOfDemand', 'shiftInDemand'],
+  },
   description: {
     methodological:
       'Desired purchase quantities depend on price, income, preferences, expectations, and prices of related products.',

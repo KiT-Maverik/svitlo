@@ -42,13 +42,22 @@ export const modelArchitecturesAndResources_SkillGroup_Data = defineSkillGroup({
     kk: 'Модель архитектуралары және ресурстар',
     qm: 'Model arhitekturaları ve resurslar',
   },
-  skills: [
-    chooseAModelForATask_Skill_Data,
-    compareDenseAndMoEModels_Skill_Data,
-    compareModelMemoryRequirements_Skill_Data,
-    compareResponseLatency_Skill_Data,
-    explainQuantization_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chooseAModelForATask: chooseAModelForATask_Skill_Data,
+      compareDenseAndMoEModels: compareDenseAndMoEModels_Skill_Data,
+      compareModelMemoryRequirements: compareModelMemoryRequirements_Skill_Data,
+      compareResponseLatency: compareResponseLatency_Skill_Data,
+      explainQuantization: explainQuantization_Skill_Data,
+    },
+    order: [
+      'chooseAModelForATask',
+      'compareDenseAndMoEModels',
+      'compareModelMemoryRequirements',
+      'compareResponseLatency',
+      'explainQuantization',
+    ],
+  },
   description: {
     methodological:
       'Compare AI model characteristics: activation of components, numerical precision, latency, memory requirements, and fit for a task. These depend on the model and execution conditions, not on a universal AI ranking.',

@@ -41,12 +41,15 @@ export const nuclearChemistry_SkillGroup_Data = defineSkillGroup({
     kk: 'Ядролық химия',
     qm: 'Çekirdek kimyası',
   },
-  skills: [
-    halfLife_Skill_Data,
-    isotopeTracers_Skill_Data,
-    nuclearTransmutation_Skill_Data,
-    radioactiveDecay_Skill_Data,
-  ],
+  skills: {
+    items: {
+      halfLife: halfLife_Skill_Data,
+      isotopeTracers: isotopeTracers_Skill_Data,
+      nuclearTransmutation: nuclearTransmutation_Skill_Data,
+      radioactiveDecay: radioactiveDecay_Skill_Data,
+    },
+    order: ['halfLife', 'isotopeTracers', 'nuclearTransmutation', 'radioactiveDecay'],
+  },
   description: {
     methodological:
       'Changes within atomic nuclei alter nuclide identities rather than ordinary electron bonding. The chemical emphasis is isotopic substances, decay and analytical applications; general nuclear-force physics belongs to Physics.',

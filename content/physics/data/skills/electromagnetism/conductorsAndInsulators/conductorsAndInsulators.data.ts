@@ -39,7 +39,13 @@ export const conductorsAndInsulators_SkillGroup_Data = defineSkillGroup({
     ka: 'გამტარები და იზოლატორები',
     kk: 'Өткізгіштер мен оқшаулағыштар',
   },
-  skills: [identifyElectricallyConductiveMaterials_Skill_Data, identifyElectricallyInsulatingMaterials_Skill_Data],
+  skills: {
+    items: {
+      identifyElectricallyConductiveMaterials: identifyElectricallyConductiveMaterials_Skill_Data,
+      identifyElectricallyInsulatingMaterials: identifyElectricallyInsulatingMaterials_Skill_Data,
+    },
+    order: ['identifyElectricallyConductiveMaterials', 'identifyElectricallyInsulatingMaterials'],
+  },
   description: {
     methodological:
       "Materials differ in how readily they permit electric charge to move; distinguish an electrical property of a material from a device's purpose.",

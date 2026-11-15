@@ -41,12 +41,15 @@ export const activeGalacticNuclei_SkillGroup_Data = defineSkillGroup({
     ka: 'აქტიური გალაქტიკური ბირთვები',
     kk: 'Белсенді галактикалық ядролар',
   },
-  skills: [
-    accretionPoweredEmission_Skill_Data,
-    quasars_Skill_Data,
-    relativisticJets_Skill_Data,
-    supermassiveBlackHoles_Skill_Data,
-  ],
+  skills: {
+    items: {
+      accretionPoweredEmission: accretionPoweredEmission_Skill_Data,
+      quasars: quasars_Skill_Data,
+      relativisticJets: relativisticJets_Skill_Data,
+      supermassiveBlackHoles: supermassiveBlackHoles_Skill_Data,
+    },
+    order: ['accretionPoweredEmission', 'quasars', 'relativisticJets', 'supermassiveBlackHoles'],
+  },
   description: {
     methodological:
       'In some galaxies, accretion onto a central supermassive black hole generates radiation and outflows that differ from normal starlight.',

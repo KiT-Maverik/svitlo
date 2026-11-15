@@ -42,15 +42,26 @@ export const artificialIntelligence_SkillDomain_Data = defineSkillDomain({
     kk: 'Жасанды интеллект',
     qm: 'Suniy intellekt',
   },
-  groups: [
-    aIFundamentals_SkillGroup_Data,
-    imitationAndUnderstanding_SkillGroup_Data,
-    languageModelTokensAndContext_SkillGroup_Data,
-    modelArchitecturesAndResources_SkillGroup_Data,
-    prompting_SkillGroup_Data,
-    reliabilityAndResponsibleAIUse_SkillGroup_Data,
-    safeInteractionWithAI_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      aIFundamentals: aIFundamentals_SkillGroup_Data,
+      imitationAndUnderstanding: imitationAndUnderstanding_SkillGroup_Data,
+      languageModelTokensAndContext: languageModelTokensAndContext_SkillGroup_Data,
+      modelArchitecturesAndResources: modelArchitecturesAndResources_SkillGroup_Data,
+      prompting: prompting_SkillGroup_Data,
+      reliabilityAndResponsibleAIUse: reliabilityAndResponsibleAIUse_SkillGroup_Data,
+      safeInteractionWithAI: safeInteractionWithAI_SkillGroup_Data,
+    },
+    order: [
+      'aIFundamentals',
+      'imitationAndUnderstanding',
+      'languageModelTokensAndContext',
+      'modelArchitecturesAndResources',
+      'prompting',
+      'reliabilityAndResponsibleAIUse',
+      'safeInteractionWithAI',
+    ],
+  },
   description: {
     methodological:
       'Examines systems performing recognition, prediction, generation, and other forms of intelligent information processing. Includes explicitly programmed rules and trained models, how they work, prompting, technical trade-offs, and reliability verification.',
