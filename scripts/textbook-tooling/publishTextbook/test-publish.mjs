@@ -16,7 +16,10 @@ import { tmpdir } from 'node:os';
 import { join, resolve, sep, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import { getSupportedLanguages } from '@svitlo/engine/runtime';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const { getSupportedLanguages } = require('@svitlo/engine/runtime');
 
 const root = resolve(process.cwd());
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
