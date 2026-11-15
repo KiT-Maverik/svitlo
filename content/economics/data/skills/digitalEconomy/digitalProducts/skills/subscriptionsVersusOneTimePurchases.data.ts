@@ -5,6 +5,7 @@ export const subscriptionsVersusOneTimePurchases_Skill_Data = defineSkill({
   id: '7858eb52-a565-4844-8525-35377ea99483',
   name: {
     en: 'Підписка та разова покупка',
+    it: 'Abbonamenti e acquisti una tantum',
     zh: '订阅与一次性购买',
     hi: 'सदस्यता बनाम एकमुश्त खरीद',
     es: 'Suscripciones frente a compras únicas',
@@ -39,6 +40,7 @@ export const subscriptionsVersusOneTimePurchases_Skill_Data = defineSkill({
       'Compare how payment streams and risks are distributed under subscriptions and one-time access purchases.',
     frontend: {
       en: 'Compare paying once with paying repeatedly for digital access.',
+      it: 'Confronta un pagamento unico con pagamenti ripetuti per accedere a contenuti digitali.',
       zh: '比较为数字产品支付一次与重复付费的区别。',
       hi: 'डिजिटल सेवा के लिए एक बार भुगतान और बार-बार भुगतान की तुलना करें।',
       es: 'Compara pagar una sola vez con pagar repetidamente por acceso digital.',

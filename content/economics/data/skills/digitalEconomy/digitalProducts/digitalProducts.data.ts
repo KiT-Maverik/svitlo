@@ -11,6 +11,7 @@ export const digitalProducts_SkillGroup_Data = defineSkillGroup({
   id: '2ccba606-5b57-4eb7-b4d8-f1087010988c',
   name: {
     en: 'Цифрові продукти',
+    it: 'Prodotti digitali',
     zh: '数字产品',
     hi: 'डिजिटल उत्पाद',
     es: 'Productos digitales',
@@ -50,6 +51,7 @@ export const digitalProducts_SkillGroup_Data = defineSkillGroup({
       'Information goods often involve large initial costs and low costs of reproduction, enabling different business models.',
     frontend: {
       en: 'Discover why digital products can be expensive to create but cheap to copy.',
+      it: 'Scopri perché creare un prodotto digitale può costare molto, mentre copiarlo costa poco.',
       zh: '了解为什么数字产品开发可能昂贵，但复制成本很低。',
       hi: 'जानें कि डिजिटल उत्पाद बनाना महँगा लेकिन उसकी प्रतिलिपि बनाना सस्ता क्यों हो सकता है।',
       es: 'Descubre por qué crear productos digitales puede ser costoso, pero copiarlos resulta barato.',

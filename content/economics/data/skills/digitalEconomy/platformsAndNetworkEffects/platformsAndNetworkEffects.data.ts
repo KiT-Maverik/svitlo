@@ -12,6 +12,7 @@ export const platformsAndNetworkEffects_SkillGroup_Data = defineSkillGroup({
   id: '402981d5-9eae-4abe-8b17-630965f4cf7f',
   name: {
     en: 'Платформи та мережеві ефекти',
+    it: 'Piattaforme ed effetti di rete',
     zh: '平台与网络效应',
     hi: 'प्लेटफ़ॉर्म और नेटवर्क प्रभाव',
     es: 'Plataformas y efectos de red',
@@ -52,6 +53,7 @@ export const platformsAndNetworkEffects_SkillGroup_Data = defineSkillGroup({
       "A service's value may depend on participant numbers on each side of the market, access rules, and economies of scale.",
     frontend: {
       en: 'Discover how platforms become more useful as more people participate.',
+      it: 'Scopri come le piattaforme diventano più utili quando aumenta il numero di partecipanti.',
       zh: '了解为什么参与者越多，平台可能越有用。',
       hi: 'जानें कि अधिक लोग जुड़ने पर प्लेटफ़ॉर्म अधिक उपयोगी क्यों बन सकता है।',
       es: 'Descubre por qué una plataforma puede ser más útil cuando participa más gente.',

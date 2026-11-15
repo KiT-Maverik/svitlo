@@ -7,6 +7,7 @@ export const financialTechnology_SkillGroup_Data = defineSkillGroup({
   id: 'd312f368-e15a-4c37-be64-c00773a9e72f',
   name: {
     en: 'Фінансові технології',
+    it: 'Tecnologie finanziarie',
     zh: '金融科技',
     hi: 'वित्तीय प्रौद्योगिकी',
     es: 'Tecnología financiera',
@@ -42,6 +43,7 @@ export const financialTechnology_SkillGroup_Data = defineSkillGroup({
       'Digital payment services and new asset classes alter financial intermediation, transaction speed, and risks; technological design does not by itself determine economic status.',
     frontend: {
       en: 'Discover how digital financial services change payments and risk.',
+      it: 'Scopri come i servizi finanziari digitali cambiano i pagamenti e i rischi.',
       zh: '探索数字金融服务如何改变支付与风险。',
       hi: 'जानें कि डिजिटल वित्तीय सेवाएँ भुगतान और जोखिम को कैसे बदलती हैं।',
       es: 'Descubre cómo los servicios financieros digitales cambian los pagos y los riesgos.',
