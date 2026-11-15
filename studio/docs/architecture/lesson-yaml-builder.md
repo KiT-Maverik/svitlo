@@ -18,12 +18,11 @@ Quest/Question/Flashcard roles would otherwise collide. See the
 [Stage 1 layout contract](./lesson-generated-source-layout.md).
 
 `production` is a **separate typed authoring concern inside the same YAML
-file**. Its source language and production specifications may create
-UUID-addressed `specification.md` files for Scenes/media, plus a
-`methodology.md` handoff when explicitly supplied. The Scene implementation itself, image/audio/video files, and translations
-are **not generated**. Stage 4 moves Lesson-only Scene and media handoff
-specifications beside each nested source `index.ts`; Course handoffs still
-use their historical ID-addressed locations. The separate registered Scene
+file**. Lesson Scene/media production specifications create colocated
+`specification.md` files beside their module `index.ts` and may create a
+Lesson-level `methodology.md` when supplied. The Scene implementation,
+image/audio/video binaries and translations are **not generated**. Course
+scaffolding retains UUID-addressed specification handoffs. The separate registered Scene
 implementation remains UUID-addressed under the textbook's `scenes/`.
 One identity comes from each node's `config.id`; no `sceneSpecKey`.
 
