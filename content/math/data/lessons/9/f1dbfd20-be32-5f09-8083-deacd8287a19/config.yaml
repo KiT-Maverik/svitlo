@@ -15,10 +15,10 @@ config:
       en: 'Different Cash, Same Total? Euro Amounts'
   section:
     items:
-      section1EqualValueCashDesk:
+      composeSixEuros:
         config:
           id: '157bde0f-15d4-437a-83f0-44959d08bdb8'
-          slug: 'section1EqualValueCashDesk'
+          slug: 'composeSixEuros'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Equal-Value Cash Desk'
           content:
             items:
-              text1:
+              askOneNoteOneCoin:
                 config:
                   id: '73ff4552-1f60-45eb-a18a-d634b4944dad'
-                  slug: 'text1'
+                  slug: 'askOneNoteOneCoin'
                   type: 'text'
                   params: {}
                   locale:
@@ -129,16 +129,16 @@ config:
                     The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
                   purpose: 'Proposed interactive Scene for Equal-Value Cash Desk'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainFivePlusOne:
                 config:
                   id: '75f778b9-5e0f-4740-88cb-9f3b574eb98a'
-                  slug: 'markdown2'
+                  slug: 'explainFivePlusOne'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '€5+€1=€6 with two pieces.'
-            order: ['text1', 'equalValueCashDesk', 'markdown2']
+            order: ['askOneNoteOneCoin', 'equalValueCashDesk', 'explainFivePlusOne']
         production:
           purpose: 'Equal-Value Cash Desk'
           pedagogicalIntent: |
@@ -156,10 +156,10 @@ config:
             - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2ThinkBeforeRevealingTheReason:
+      compareEquivalentAmounts:
         config:
           id: '3c27a7ea-5510-4d09-bbbd-61ec257973eb'
-          slug: 'section2ThinkBeforeRevealingTheReason'
+          slug: 'compareEquivalentAmounts'
           type: 'content'
           params: {}
           locale:
@@ -169,34 +169,34 @@ config:
               en: 'Think before revealing the reason'
           content:
             items:
-              text1:
+              comparePieceCounts:
                 config:
                   id: 'bc1af35b-da87-4838-8276-6ed13ac35b8e'
-                  slug: 'text1'
+                  slug: 'comparePieceCounts'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Could two cash pieces and three cash pieces both make six euros?'
-              markdown2:
+              explainEqualSixEuroValues:
                 config:
                   id: 'f7a40650-c8fd-4aef-867d-b17e96452225'
-                  slug: 'markdown2'
+                  slug: 'explainEqualSixEuroValues'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Yes: €5+€1 and three €2 coins both make six euros. The second purse has €5+€2+€2+€2=€11, greater than a €10 note.'
-              text3:
+              askCompareElevenEuros:
                 config:
                   id: 'be1af681-dc87-4b5e-8076-6bab38c35868'
-                  slug: 'text3'
+                  slug: 'askCompareElevenEuros'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Which is worth more: one ten-euro note or five euros plus three two-euro coins?'
-            order: ['text1', 'markdown2', 'text3']
+            order: ['comparePieceCounts', 'explainEqualSixEuroValues', 'askCompareElevenEuros']
         production:
           purpose: 'Think before revealing the reason'
           pedagogicalIntent: |
@@ -212,10 +212,10 @@ config:
             - **Transition:** Apply the same principle to the new Scene, without relying on the original display.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3CompareEuroPurses:
+      comparePurseValues:
         config:
           id: '6c0e83f8-f9b1-4827-922c-789282eb6e59'
-          slug: 'section3CompareEuroPurses'
+          slug: 'comparePurseValues'
           type: 'content'
           params: {}
           locale:
@@ -225,10 +225,10 @@ config:
               en: 'Compare Euro Purses'
           content:
             items:
-              text1:
+              compareTenAndEleven:
                 config:
                   id: 'c49eaeed-2cfa-494a-bd71-89e3de04c288'
-                  slug: 'text1'
+                  slug: 'compareTenAndEleven'
                   type: 'text'
                   params: {}
                   locale:
@@ -326,16 +326,16 @@ config:
                     The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
                   purpose: 'Proposed interactive Scene for Compare Euro Purses'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainGreaterPurse:
                 config:
                   id: '7ccba3ca-37b8-41c1-a556-c42883e2019f'
-                  slug: 'markdown2'
+                  slug: 'explainGreaterPurse'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'B is higher: €11>€10.'
-            order: ['text1', 'compareEuroPurses', 'markdown2']
+            order: ['compareTenAndEleven', 'compareEuroPurses', 'explainGreaterPurse']
         production:
           purpose: 'Compare Euro Purses'
           pedagogicalIntent: |
@@ -353,7 +353,7 @@ config:
             - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order: ['section1EqualValueCashDesk', 'section2ThinkBeforeRevealingTheReason', 'section3CompareEuroPurses']
+    order: ['composeSixEuros', 'compareEquivalentAmounts', 'comparePurseValues']
   flashcards:
     items: {}
     order: []
