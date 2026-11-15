@@ -43,14 +43,17 @@ export const skyPatterns_SkillGroup_Data = defineSkillGroup({
     ka: 'ცის მოხაზულობები',
     kk: 'Аспандағы өрнектер',
   },
-  skills: [
-    apparentBrightness_Skill_Data,
-    asterisms_Skill_Data,
-    constellations_Skill_Data,
-    dailySkyMotion_Skill_Data,
-    seasonalSkyVisibility_Skill_Data,
-    stellarProperMotion_Skill_Data,
-  ],
+  skills: {
+    items: {
+      apparentBrightness: apparentBrightness_Skill_Data,
+      asterisms: asterisms_Skill_Data,
+      constellations: constellations_Skill_Data,
+      dailySkyMotion: dailySkyMotion_Skill_Data,
+      seasonalSkyVisibility: seasonalSkyVisibility_Skill_Data,
+      stellarProperMotion: stellarProperMotion_Skill_Data,
+    },
+    order: ['apparentBrightness', 'asterisms', 'constellations', 'dailySkyMotion', 'seasonalSkyVisibility', 'stellarProperMotion'],
+  },
   description: {
     methodological:
       'Recognizable configurations make celestial scenes navigable, but their visibility and apparent arrangement depend on viewpoint and date.',

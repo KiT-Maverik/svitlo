@@ -42,13 +42,16 @@ export const astronomicalTime_SkillGroup_Data = defineSkillGroup({
     ka: 'ასტრონომიული დრო',
     kk: 'Астрономиялық уақыт',
   },
-  skills: [
-    astronomicalDatesAndEpochs_Skill_Data,
-    lunarCalendarCycles_Skill_Data,
-    siderealTime_Skill_Data,
-    solarCalendarCycles_Skill_Data,
-    solarTime_Skill_Data,
-  ],
+  skills: {
+    items: {
+      astronomicalDatesAndEpochs: astronomicalDatesAndEpochs_Skill_Data,
+      lunarCalendarCycles: lunarCalendarCycles_Skill_Data,
+      siderealTime: siderealTime_Skill_Data,
+      solarCalendarCycles: solarCalendarCycles_Skill_Data,
+      solarTime: solarTime_Skill_Data,
+    },
+    order: ['astronomicalDatesAndEpochs', 'lunarCalendarCycles', 'siderealTime', 'solarCalendarCycles', 'solarTime'],
+  },
   description: {
     methodological:
       'Timekeeping conventions derived from repeated celestial cycles support observation and comparison across dates, without constituting a curriculum in civil time zones.',

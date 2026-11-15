@@ -42,13 +42,16 @@ export const planetaryClasses_SkillGroup_Data = defineSkillGroup({
     kk: 'Ғаламшар денелерінің кластары',
     qm: 'Seyyare cisimleriniñ sınıfları',
   },
-  skills: [
-    giantPlanets_Skill_Data,
-    naturalSatellites_Skill_Data,
-    planetaryDensityAndComposition_Skill_Data,
-    planetaryRingSystems_Skill_Data,
-    terrestrialPlanets_Skill_Data,
-  ],
+  skills: {
+    items: {
+      giantPlanets: giantPlanets_Skill_Data,
+      naturalSatellites: naturalSatellites_Skill_Data,
+      planetaryDensityAndComposition: planetaryDensityAndComposition_Skill_Data,
+      planetaryRingSystems: planetaryRingSystems_Skill_Data,
+      terrestrialPlanets: terrestrialPlanets_Skill_Data,
+    },
+    order: ['giantPlanets', 'naturalSatellites', 'planetaryDensityAndComposition', 'planetaryRingSystems', 'terrestrialPlanets'],
+  },
   description: {
     methodological:
       'Composition, density and thermal history help explain why planets and moons display very different structures rather than simply different sizes.',
