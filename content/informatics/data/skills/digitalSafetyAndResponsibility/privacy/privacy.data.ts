@@ -13,6 +13,7 @@ export const privacy_SkillGroup_Data = defineSkillGroup({
   id: 'd423d3ee-86b0-4df8-9541-fe6dd83cb0ba',
   name: {
     en: 'Privacy',
+    it: 'Riservatezza',
     zh: '隐私',
     hi: 'निजता',
     es: 'Privacidad',
@@ -54,6 +55,7 @@ export const privacy_SkillGroup_Data = defineSkillGroup({
       'Identifying personal information, deciding who may receive it, and evaluating long-term consequences of disclosure. Privacy is not identical to password protection or responding to fraud.',
     frontend: {
       en: 'Discover how sharing information online can affect privacy.',
+      it: 'Scopri come la condivisione di informazioni online può influire sulla riservatezza.',
       zh: '了解在网上分享信息会如何影响隐私。',
       hi: 'जानें कि इंटरनेट पर जानकारी साझा करने से निजता कैसे प्रभावित होती है।',
       es: 'Descubre cómo compartir información en internet puede afectar a la privacidad.',

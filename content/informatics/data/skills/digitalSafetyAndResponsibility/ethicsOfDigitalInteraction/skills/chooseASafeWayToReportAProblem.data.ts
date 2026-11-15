@@ -5,6 +5,7 @@ export const chooseASafeWayToReportAProblem_Skill_Data = defineSkill({
   id: 'c6f6a76d-2696-4193-bd6f-b583de1bc47f',
   name: {
     en: 'Choose a Safe Way to Report a Problem',
+    it: 'Scegliere un modo sicuro per segnalare un problema',
     zh: '选择安全的问题举报方式',
     hi: 'समस्या की सुरक्षित रिपोर्ट करने का तरीका चुनना',
     es: 'Elegir una forma segura de denunciar un problema',
@@ -39,6 +40,7 @@ export const chooseASafeWayToReportAProblem_Skill_Data = defineSkill({
       "Determine when to contact a trusted adult, moderator, or official support and what minimum information to share without exposing other people's data. Selecting a reporting recipient differs from the immediate response to a dangerous message.",
     frontend: {
       en: 'Choose appropriate trusted people or official channels to report online problems.',
+      it: 'Scegli persone fidate o canali ufficiali adeguati per segnalare problemi online.',
       zh: '选择可信赖的人或官方渠道报告网络问题。',
       hi: 'ऑनलाइन समस्या की सूचना भरोसेमंद व्यक्ति या आधिकारिक माध्यम को दें।',
       es: 'Elige personas de confianza o canales oficiales para informar de problemas en internet.',
