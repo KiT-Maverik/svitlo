@@ -14,6 +14,7 @@ export const operantLearning_SkillGroup_Data = defineSkillGroup({
   id: '0d617633-5b85-4638-bbcf-1cc46a199bab',
   name: {
     en: 'Operant Learning',
+    it: 'Apprendimento operante',
     zh: '操作性学习',
     hi: 'क्रियाप्रसूत अधिगम',
     es: 'Aprendizaje operante',
@@ -66,6 +67,7 @@ export const operantLearning_SkillGroup_Data = defineSkillGroup({
       'Consequences influence the future frequency of actions; functional definitions depend on observed behavioral change rather than whether an outcome seems pleasant.',
     frontend: {
       en: 'Explore how rewards and consequences influence behavior.',
+      it: 'Esplora come ricompense e conseguenze influenzino il comportamento.',
       zh: '探索奖励和行为后果如何影响后续行为。',
       hi: 'जानें कि पुरस्कार और व्यवहार के परिणाम आगे के व्यवहार को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las recompensas y las consecuencias influyen en la conducta.',

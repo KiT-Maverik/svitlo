@@ -5,6 +5,7 @@ export const positivePunishment_Skill_Data = defineSkill({
   id: '48e29b60-24a6-4de1-9b9a-93e55b18afc0',
   name: {
     en: 'Positive Punishment',
+    it: 'Punizione positiva',
     zh: '正惩罚',
     hi: 'सकारात्मक दंड',
     es: 'Castigo positivo',
@@ -38,6 +39,7 @@ export const positivePunishment_Skill_Data = defineSkill({
     methodological: 'Identify an added consequence followed by a reduction in the future occurrence of a behavior.',
     frontend: {
       en: 'Recognize when adding a consequence reduces the chance of an action.',
+      it: 'Riconosci quando aggiungere una conseguenza riduce la probabilità di un\'azione.',
       zh: '识别增加某种行为后果何时会降低该行为发生的概率。',
       hi: 'पहचानें कि किसी परिणाम को जोड़ने से व्यवहार के दोहराए जाने की संभावना कब घटती है।',
       es: 'Reconoce cuándo añadir una consecuencia reduce la probabilidad de una conducta.',

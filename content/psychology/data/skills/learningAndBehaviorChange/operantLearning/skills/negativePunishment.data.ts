@@ -5,6 +5,7 @@ export const negativePunishment_Skill_Data = defineSkill({
   id: '573edf20-9194-434b-ae6e-3afff376d3c6',
   name: {
     en: 'Negative Punishment',
+    it: 'Punizione negativa',
     zh: '负惩罚',
     hi: 'नकारात्मक दंड',
     es: 'Castigo negativo',
@@ -39,6 +40,7 @@ export const negativePunishment_Skill_Data = defineSkill({
       'Identify the removal of a consequence followed by reduced future responding and distinguish it from negative reinforcement.',
     frontend: {
       en: 'Recognize when removing something desirable discourages a behavior.',
+      it: 'Riconosci quando sottrarre qualcosa di desiderabile scoraggia un comportamento.',
       zh: '识别移除某种令人向往的事物何时会降低行为发生的频率。',
       hi: 'पहचानें कि मनचाही चीज़ हटाए जाने से कोई व्यवहार कब कम होने लगता है।',
       es: 'Reconoce cuándo retirar algo deseable reduce la frecuencia de una conducta.',
