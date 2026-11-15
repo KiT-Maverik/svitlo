@@ -103,7 +103,7 @@ async function loadAssessmentBank(source, kind) {
   }
 }
 
-async function render(packageDirectory, kind) {
+export async function render(packageDirectory, kind) {
   const byKind = { question: [], flashcard: [] };
   const content = path.join(packageDirectory, 'data/lessons');
   for (const bucket of directories(content)) {

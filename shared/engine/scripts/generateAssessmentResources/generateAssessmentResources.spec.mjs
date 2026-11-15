@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { collectAssessmentConfigurators } from './generateAssessmentResources.mjs';
+import path from 'node:path';
+import { collectAssessmentConfigurators, render } from './generateAssessmentResources.mjs';
 
 const id = index => '00000000-0000-4000-8000-' + String(index).padStart(12, '0');
 const question = (key, number, type = 'selectOneAnswer') => ({
@@ -46,4 +47,34 @@ test('assessment stages reject wrong kinds, duplicate UUIDs, stale slugs, malfor
   );
   assert.throws(() => collectAssessmentConfigurators({ bank: [] }, 'question'), /Expected slug-keyed/);
   assert.throws(() => collectAssessmentConfigurators({}, 'flashcard'), /Empty authored/);
+});
+
+test('real Playground independently publishes full locale bodies while manifest contains metadata only', async () => {
+  const textbook = path.resolve(import.meta.dirname, '../../../../content/playground');
+  const owner = 'c/d3048d21-8690-5255-b62c-984c69ac272c';
+  const files = await render(textbook, 'all');
+  const manifest = JSON.parse(files.get(owner + '/assessment-manifest.json'));
+  const entries = Object.entries(manifest.entries);
+  assert.equal(manifest.lessonId, 'd3048d21-8690-5255-b62c-984c69ac272c');
+  assert.equal(entries.filter(([, value]) => value.kind === 'question').length, 6);
+  assert.equal(entries.filter(([, value]) => value.kind === 'flashcard').length, 3);
+  assert(!JSON.stringify(manifest).includes('content'));
+  for (const [uuid, entry] of entries) {
+    const prefix = owner + '/' + (entry.kind === 'question' ? 'questions' : 'flashcards') + '/' + uuid;
+    const base = JSON.parse(files.get(prefix + '/base.json'));
+    assert.equal(base.id, uuid);
+    assert.equal(typeof entry.contentHash, 'string');
+    assert.equal(entry.contentHash.length, 64);
+    assert(entry.languages.includes('uk'));
+    assert(entry.localeFiles.includes('uk'));
+    assert.equal(typeof JSON.parse(files.get(prefix + '/uk.json')), 'object');
+    assert(!('questions' in base), 'independent resource must not embed a whole Lesson bank');
+  }
+  assert.equal(files.size, 271, 'all six Questions and three Flashcards have complete localized publication');
+  const onlyQuestions = await render(textbook, 'question');
+  const onlyCards = await render(textbook, 'flashcard');
+  assert(onlyQuestions.has(owner + '/assessment-manifest.json'));
+  assert(onlyCards.has(owner + '/assessment-manifest.json'));
+  assert([...onlyQuestions.keys()].every(key => !key.includes('/flashcards/')));
+  assert([...onlyCards.keys()].every(key => !key.includes('/questions/')));
 });
