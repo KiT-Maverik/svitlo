@@ -8,8 +8,8 @@
  * Video poster: poster.<ext> or locale/<language>.poster.<ext>.
  * Only the final URL string is retained in authored Config/Props.
  */
-import { existsSync, lstatSync, readdirSync, readFileSync, realpathSync } from 'node:fs';
-import { basename, dirname, extname, join, relative, resolve, sep } from 'node:path';
+import { existsSync, lstatSync, readdirSync, statSync, realpathSync } from 'node:fs';
+import { basename, dirname, extname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const suffixes = {
@@ -47,7 +47,8 @@ function mediaLocation(moduleUrl: string): {
       start = i;
     }
   }
-  if (start < 2 || chunks[start - 2] !== 'content')
+  if (start < 2 || !(chunks[start - 2] === 'content' ||
+    (start >= 3 && chunks[start - 3] === 'content' && chunks[start - 2] === 'languages')))
     throw new Error('Lesson media definition must be inside a textbook UUID folder: ' + moduleFile);
   const textbookId = chunks[start - 1];
   if (!slug.test(textbookId) || chunks[start + 3].at(-1) !== chunks[start + 2])
@@ -98,7 +99,7 @@ export function resolveLessonMedia(
   const file = join(files, matches[0]);
   if (!lstatSync(file).isFile()) throw new Error('Non-regular Lesson media file: ' + file);
   // A zero-byte asset is never a valid playable/displayable file.
-  if (readFileSync(file).byteLength === 0) throw new Error('Empty Lesson media asset: ' + file);
+  if (statSync(file).size === 0) throw new Error('Empty Lesson media asset: ' + file);
   const publicParts = ['textbooks', textbookId, 'lessons', ...assetPath,
     ...(language ? ['locale'] : []), matches[0]];
   return '/' + publicParts.map(encodeURIComponent).join('/');
