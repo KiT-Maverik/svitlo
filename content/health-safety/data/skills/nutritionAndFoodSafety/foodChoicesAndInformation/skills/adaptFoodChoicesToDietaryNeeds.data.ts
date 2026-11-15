@@ -5,6 +5,7 @@ export const adaptFoodChoicesToDietaryNeeds_Skill_Data = defineSkill({
   id: 'c07436d2-edde-48c5-84f4-96f7697b228f',
   name: {
     en: 'Adapt food choices to dietary needs',
+    it: 'Adattare le scelte alimentari alle esigenze nutrizionali',
     zh: '根据饮食需求调整食物选择',
     hi: 'आहार आवश्यकताओं के अनुसार भोजन चुनना',
     es: 'Adaptar alimentos a necesidades dietéticas',
@@ -39,6 +40,7 @@ export const adaptFoodChoicesToDietaryNeeds_Skill_Data = defineSkill({
       'Select suitable alternatives for medical, nutritional, ethical or cultural dietary requirements, distinguishing individual preference from a potentially dangerous allergen exposure.',
     frontend: {
       en: 'Adapt food choices for genuine dietary requirements and preferences.',
+      it: 'Adatta le scelte alimentari a esigenze dietetiche reali e preferenze personali.',
       zh: '根据真实的饮食要求和个人偏好调整食物选择。',
       hi: 'वास्तविक आहार ज़रूरतों और पसंद के अनुसार भोजन चुनें।',
       es: 'Adapta tu alimentación a requisitos dietéticos reales y preferencias personales.',

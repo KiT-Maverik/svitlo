@@ -5,6 +5,7 @@ export const recognizeDietaryMisinformation_Skill_Data = defineSkill({
   id: '6f324622-539c-40d6-964c-d4cd82d6e6db',
   name: {
     en: 'Recognize dietary misinformation',
+    it: 'Riconoscere la disinformazione alimentare',
     zh: '识别饮食错误信息',
     hi: 'आहार संबंधी गलत जानकारी पहचानना',
     es: 'Reconocer desinformación alimentaria',
@@ -39,6 +40,7 @@ export const recognizeDietaryMisinformation_Skill_Data = defineSkill({
       'Distinguish evidence-based nutritional advice from detox claims, extreme restrictions, and unsupported promises of rapid results.',
     frontend: {
       en: 'Recognize unsupported claims about diets, detoxes and quick results.',
+      it: 'Riconosci affermazioni prive di prove su diete, disintossicazioni e risultati rapidi.',
       zh: '识别没有证据支持的饮食、排毒和快速见效说法。',
       hi: 'आहार, डिटॉक्स और तेज़ नतीजों के निराधार दावे पहचानें।',
       es: 'Reconoce afirmaciones sin pruebas sobre dietas, desintoxicación y resultados rápidos.',
