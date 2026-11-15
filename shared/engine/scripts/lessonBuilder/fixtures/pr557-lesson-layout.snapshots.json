@@ -1,5 +1,4 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "kind": "svitlo-lesson-layout-source-snapshots",
   "schemaVersion": 1,
   "description": "Immutable Git blob inventories for PR #557 baseline and manually edited prototype. Historical evidence, not an executable golden output or approved Lesson.",
