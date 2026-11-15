@@ -12,6 +12,7 @@ export const interparticleInteractions_SkillGroup_Data = defineSkillGroup({
   id: '323e4434-04cd-46a0-981e-6cabb5e0778f',
   name: {
     en: 'Interparticle Interactions',
+    it: "Interazioni tra particelle",
     zh: '粒子间相互作用',
     hi: 'कणों के बीच अंतःक्रियाएँ',
     es: 'Interacciones entre partículas',
@@ -52,6 +53,7 @@ export const interparticleInteractions_SkillGroup_Data = defineSkillGroup({
       'Attractions between distinct particles influence phase behavior, solubility and material properties without changing covalent connectivity.',
     frontend: {
       en: 'Discover how particles attract one another without forming new chemical bonds.',
+      it: "Scopri come le particelle si attraggono senza formare nuovi legami chimici.",
       zh: '了解粒子之间如何相互吸引，却不形成新的化学键。',
       hi: 'जानें कि नए रासायनिक बंध बनाए बिना कण एक-दूसरे को कैसे आकर्षित करते हैं।',
       es: 'Descubre cómo las partículas se atraen sin formar nuevos enlaces químicos.',
