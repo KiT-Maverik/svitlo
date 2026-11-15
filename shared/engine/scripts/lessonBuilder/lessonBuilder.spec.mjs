@@ -144,7 +144,8 @@ function readAll(lesson) {
 }
 function assertTypeScriptSyntax(files) {
   for (const [name, content] of files) {
-    if (!name.endsWith('.ts')) continue;
+    // An unfilled review.ts intentionally fails TypeScript parsing until review evidence is recorded.
+    if (!name.endsWith('.ts') || name === 'review.ts') continue;
     const ast = ts.createSourceFile(name, content, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
     assert.deepEqual(ast.parseDiagnostics, [], name);
   }
@@ -214,6 +215,40 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assert.match(files.get('sections/intro/prompt/index.ts'), /defineText<"prompt", LessonLanguages>/);
     assert.doesNotMatch([...files.values()].join('\n'), /Never emit translation|Light"|'Never emit translation'/);
     assertTypeScriptSyntax(files);
+  }));
+
+test('review.ts starts with mandatory unfilled evidence and is not overwritten', () =>
+  fixture(f => {
+    const result = runOne(f.lesson, 'generate', f.root);
+    assert(result.files.includes('review.ts'));
+    const reviewFile = f.generated('review.ts');
+    const pending = fs.readFileSync(reviewFile, 'utf8');
+    assert.match(pending, /import type \{ LessonReview \} from '@svitlo\/engine\/build'/);
+    assert.match(pending, /const = \{/);
+    assert.match(pending, /"experience-review": \{ pr: , language: , \}/);
+    assert.match(pending, /"methodology-review": \{ pr: , language: , \}/);
+    assert.match(pending, /locales: ,/);
+    assert.match(pending, /acceptance: ,/);
+    assert.match(pending, /locales: \{\}/);
+    assert.doesNotMatch(pending, /scientific:|export const|review_/);
+    const parsed = ts.createSourceFile('review.ts', pending, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+    assert(parsed.parseDiagnostics.length > 0, 'Generated Review must fail TypeScript parsing');
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+    const edited = pending.replace('acceptance: ,', 'acceptance: 123,');
+    fs.writeFileSync(reviewFile, edited);
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0, 'Do not reset manually recorded reviews');
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+    assert.equal(fs.readFileSync(reviewFile, 'utf8'), edited);
+    fs.unlinkSync(reviewFile);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /missing Lesson review record/);
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+  }));
+
+test('orphan review.ts blocks new scaffold creation', () =>
+  fixture(f => {
+    fs.writeFileSync(f.generated('review.ts'), 'const manual = {};\n');
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /incomplete Lesson source tree/);
+    assert(!fs.existsSync(f.generated('index.ts')));
   }));
 
 test('Skill IDs resolve to imported source symbols rather than hard-coded UUIDs', () =>
@@ -640,7 +675,7 @@ test('partial YAML remains a partial typed draft, without fabricated language or
     delete f.config.questions;
     f.save();
     const result = runOne(f.lesson, 'generate', f.root);
-    assert.deepEqual(result.files, ['index.ts']);
+    assert.deepEqual(result.files, ['review.ts', 'index.ts']);
     const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
     assert.match(code, /defineLesson\(\{/);
     assert.doesNotMatch(code, /params:|section:|flashcards:|questions:/);

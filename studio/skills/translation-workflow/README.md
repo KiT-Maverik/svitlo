@@ -11,6 +11,8 @@
 
 Reusable agent CI workflow: [Agent CI Artifacts](../../../.github/workflows/translation-review.yml). In a PR conversation, a **repository-owner-authored** `/agent-artifacts generate` triggers generation for that PR's head branch; when the agent is finished, `/agent-artifacts cleanup` removes its tracked artifacts. The workflow must exist in **main** before slash commands become active. A [dedicated merge guard](../../../.github/workflows/agent-ci-artifacts-guard.yml) blocks temporary files from entering `main` or `new-lesson` after the relevant workflow is active on the target branch. See [Agent CI Artifacts architecture](../../docs/architecture/agent-ci-artifacts.md).
 
+**Review outcomes live in the entity-owned `review.ts` when its typed contract exists; no permanent per-locale Markdown review reports.** For Lessons, `ai.locales` stores one verified integration PR for completed AI-language review, `human.locales` stores individual human language-review PRs, and review-specific linguistic decisions are short `//` comments directly above the relevant PR-valued entry. If `review.ts` is not yet available or assembled Props cannot be hashed, preserve the source-specific evidence in the actual PR and Production Issue for later reconciliation; do not fabricate an approval. The review agent remains read-only by default; the authorized coordinator records verified values.
+
 **Never edit generated Markdown to change translations.** It is a disposable view of canonical code. Do not add `.agent-ci-artifacts/` to `.gitignore`: the reviewer must access its temporary documents in the PR branch, and cleanup must remove them before merge.
 
 ## Lesson translation review references
