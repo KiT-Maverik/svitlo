@@ -14,6 +14,7 @@ export const rocksAndTheRockCycle_SkillGroup_Data = defineSkillGroup({
   id: '37bb8dfa-e97a-432c-a339-9e3fa46fbee3',
   name: {
     en: 'Rocks and the Rock Cycle',
+    it: 'Rocce e ciclo delle rocce',
     zh: '岩石与岩石循环',
     hi: 'चट्टानें और शैल चक्र',
     es: 'Rocas y ciclo de las rocas',
@@ -56,6 +57,7 @@ export const rocksAndTheRockCycle_SkillGroup_Data = defineSkillGroup({
       'Consolidated natural materials record formation through magma cooling, deposition and lithification, or alteration in the solid state. Classifications concern how a rock formed, and the rock cycle describes multiple possible paths between types rather than a mandatory fixed sequence.',
     frontend: {
       en: 'Learn how rocks form, change and move through different geological pathways.',
+      it: 'Scopri come le rocce si formano, si trasformano e seguono diversi percorsi geologici.',
       zh: '探索岩石如何形成、变化并经历不同的地质演变路径。',
       hi: 'जानें कि चट्टानें कैसे बनती हैं, बदलती हैं और विभिन्न भूवैज्ञानिक प्रक्रियाओं से गुजरती हैं।',
       es: 'Aprende cómo se forman y transforman las rocas a través de distintos procesos geológicos.',

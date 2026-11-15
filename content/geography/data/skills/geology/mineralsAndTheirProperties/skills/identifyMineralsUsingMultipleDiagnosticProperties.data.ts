@@ -5,6 +5,7 @@ export const identifyMineralsUsingMultipleDiagnosticProperties_Skill_Data = defi
   id: '8b9d2c38-e561-4696-aec6-c13fd82c50ee',
   name: {
     en: 'Identify minerals using multiple diagnostic properties',
+    it: 'Identificare i minerali attraverso più proprietà diagnostiche',
     zh: '利用多项鉴别性性质识别矿物',
     hi: 'कई नैदानिक गुणों से खनिजों की पहचान करना',
     es: 'Identificar minerales usando varias propiedades diagnósticas',
@@ -39,6 +40,7 @@ export const identifyMineralsUsingMultipleDiagnosticProperties_Skill_Data = defi
       'Combine evidence from observable properties to narrow possible mineral identities, recognizing that a single shared trait such as color rarely identifies a specimen reliably.',
     frontend: {
       en: 'Identify a mineral by comparing several properties instead of relying on color.',
+      it: 'Identifica un minerale confrontando diverse proprietà anziché basarti soltanto sul colore.',
       zh: '比较多项性质来鉴别矿物，而不只看颜色。',
       hi: 'रंग पर निर्भर रहने के बजाय कई गुणों की तुलना से खनिज पहचानें।',
       es: 'Identifica minerales comparando varias propiedades y no solo el color.',

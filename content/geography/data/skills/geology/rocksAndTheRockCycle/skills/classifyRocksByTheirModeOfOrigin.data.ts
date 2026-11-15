@@ -5,6 +5,7 @@ export const classifyRocksByTheirModeOfOrigin_Skill_Data = defineSkill({
   id: '4c95d2f4-60ac-423a-8664-fff6f9b24b90',
   name: {
     en: 'Classify rocks by their mode of origin',
+    it: 'Classificare le rocce secondo la loro origine',
     zh: '按成因分类岩石',
     hi: 'चट्टानों को उनकी उत्पत्ति के अनुसार वर्गीकृत करना',
     es: 'Clasificar rocas según su origen',
@@ -39,6 +40,7 @@ export const classifyRocksByTheirModeOfOrigin_Skill_Data = defineSkill({
       'Identify igneous, sedimentary and metamorphic examples by the processes and observable structures that formed them, rather than only by color or common names.',
     frontend: {
       en: 'Classify rocks by whether they formed through cooling, deposition or alteration.',
+      it: 'Classifica le rocce in base alla formazione per raffreddamento, deposizione o trasformazione.',
       zh: '根据冷却、沉积或变质成因对岩石分类。',
       hi: 'चट्टानों को ठंडा होने, निक्षेपण या रूपांतरण से बनने के आधार पर वर्गीकृत करें।',
       es: 'Clasifica rocas según se hayan formado por enfriamiento, sedimentación o transformación.',

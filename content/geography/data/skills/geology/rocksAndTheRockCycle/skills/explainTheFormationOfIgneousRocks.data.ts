@@ -5,6 +5,7 @@ export const explainTheFormationOfIgneousRocks_Skill_Data = defineSkill({
   id: '783f0617-da28-4c82-a960-6ae7ea6cd086',
   name: {
     en: 'Explain the formation of igneous rocks',
+    it: 'Spiegare la formazione delle rocce magmatiche',
     zh: '解释火成岩的形成',
     hi: 'आग्नेय चट्टानों का निर्माण समझाना',
     es: 'Explicar la formación de rocas ígneas',
@@ -39,6 +40,7 @@ export const explainTheFormationOfIgneousRocks_Skill_Data = defineSkill({
       'Relate cooling and solidification of magma or lava to the formation of new rocks and differences such as coarse versus fine crystal textures.',
     frontend: {
       en: 'Explain how cooling lava or magma produces igneous rocks.',
+      it: 'Spiega come il raffreddamento della lava o del magma produce rocce magmatiche.',
       zh: '解释冷却的熔岩或岩浆如何形成火成岩。',
       hi: 'समझाएँ कि लावा या माग्मा के ठंडा होने पर आग्नेय चट्टानें कैसे बनती हैं।',
       es: 'Explica cómo el enfriamiento de la lava o el magma produce rocas ígneas.',

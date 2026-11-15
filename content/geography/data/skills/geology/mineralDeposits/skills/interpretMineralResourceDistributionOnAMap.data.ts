@@ -5,6 +5,7 @@ export const interpretMineralResourceDistributionOnAMap_Skill_Data = defineSkill
   id: 'c1934a49-c9f8-4089-80a4-28b35cd90798',
   name: {
     en: 'Interpret mineral-resource distribution on a map',
+    it: 'Interpretare su una carta la distribuzione delle risorse minerarie',
     zh: '解读地图上的矿产资源分布',
     hi: 'नक्शे पर खनिज संसाधनों का वितरण समझना',
     es: 'Interpretar la distribución de recursos minerales en un mapa',
@@ -39,6 +40,7 @@ export const interpretMineralResourceDistributionOnAMap_Skill_Data = defineSkill
       'Locate documented mineral occurrences and major mining areas using an appropriate legend, distinguishing reported deposits from evidence that all nearby land contains the same resource.',
     frontend: {
       en: 'Use maps to locate mineral resources and mining areas.',
+      it: 'Usa le carte per localizzare le risorse minerarie e le aree estrattive.',
       zh: '使用地图定位矿产资源与采矿区。',
       hi: 'मानचित्रों की मदद से खनिज संसाधन और खनन क्षेत्र खोजें।',
       es: 'Utiliza mapas para localizar recursos minerales y zonas mineras.',

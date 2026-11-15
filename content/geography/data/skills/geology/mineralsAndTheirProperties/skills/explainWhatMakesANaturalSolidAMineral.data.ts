@@ -5,6 +5,7 @@ export const explainWhatMakesANaturalSolidAMineral_Skill_Data = defineSkill({
   id: '2ccea790-4e8f-475a-8d7e-816e3ef7898f',
   name: {
     en: 'Explain what makes a natural solid a mineral',
+    it: 'Spiegare che cosa rende minerale un solido naturale',
     zh: '解释天然固体成为矿物的条件',
     hi: 'प्राकृतिक ठोस को खनिज क्या बनाता है, समझाना',
     es: 'Explicar qué hace que un sólido natural sea un mineral',
@@ -39,6 +40,7 @@ export const explainWhatMakesANaturalSolidAMineral_Skill_Data = defineSkill({
       'Recognize the criteria used in introductory geology: natural origin, a normally inorganic solid state, characteristic composition and ordered internal structure. A manufactured glass shard or an aggregate of unrelated crystals does not automatically meet the mineral definition.',
     frontend: {
       en: 'Recognize what makes a natural crystalline solid a mineral.',
+      it: 'Riconosci quali caratteristiche rendono minerale un solido cristallino naturale.',
       zh: '识别天然晶体固体成为矿物所需的特征。',
       hi: 'समझें कि प्राकृतिक क्रिस्टलीय ठोस किन गुणों से खनिज कहलाता है।',
       es: 'Reconoce qué características hacen que un sólido cristalino natural sea un mineral.',
