@@ -5,6 +5,7 @@ export const recognizeHumanUsesOfMicroorganisms_Skill_Data = defineSkill({
   id: 'd8c1427d-2705-477b-99e2-7e33bb0d33fa',
   name: {
     en: 'Recognize Human Uses of Microorganisms',
+    it: "Riconoscere gli impieghi dei microrganismi da parte dell'uomo",
     zh: '识别人类对微生物的利用',
     hi: 'सूक्ष्मजीवों के मानवीय उपयोग पहचानना',
     es: 'Reconocer los usos humanos de los microorganismos',
@@ -38,6 +39,7 @@ export const recognizeHumanUsesOfMicroorganisms_Skill_Data = defineSkill({
     methodological: 'Identify how yeasts or bacteria are used to produce food or other products.',
     frontend: {
       en: 'Recognize ways bacteria and yeasts are used to produce foods and other materials.',
+    it: "Riconosci in quali modi batteri e lieviti vengono utilizzati per produrre alimenti e altri materiali.",
       zh: '认识细菌和酵母如何用于制造食品及其他材料。',
       hi: 'जानें कि खाद्य पदार्थ और दूसरी सामग्री बनाने में जीवाणुओं और यीस्ट का उपयोग कैसे होता है।',
       es: 'Reconoce cómo se utilizan las bacterias y las levaduras para producir alimentos y otros materiales.',
