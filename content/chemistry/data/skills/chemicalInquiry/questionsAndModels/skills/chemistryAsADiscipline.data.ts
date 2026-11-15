@@ -5,6 +5,7 @@ export const chemistryAsADiscipline_Skill_Data = defineSkill({
   id: '299dea1b-8847-43b0-a306-a4284ca2606a',
   name: {
     en: 'Chemistry as a Discipline',
+    it: "La chimica come disciplina",
     zh: '作为学科的化学',
     hi: 'एक विषय के रूप में रसायन विज्ञान',
     es: 'La química como disciplina',
@@ -39,6 +40,7 @@ export const chemistryAsADiscipline_Skill_Data = defineSkill({
       'Distinguish questions about composition, properties and transformations of matter from neighboring questions about motion, organisms or technological design.',
     frontend: {
       en: 'Discover which questions chemistry can answer about matter and its changes.',
+      it: "Scopri a quali domande sulla materia e sulle sue trasformazioni può rispondere la chimica.",
       zh: '了解化学能够回答关于物质及其变化的哪些问题。',
       hi: 'जानें कि पदार्थ और उसके परिवर्तनों के बारे में रसायन विज्ञान किन प्रश्नों का उत्तर दे सकता है।',
       es: 'Descubre qué preguntas puede responder la química sobre la materia y sus cambios.',

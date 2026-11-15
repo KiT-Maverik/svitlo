@@ -12,6 +12,7 @@ export const questionsAndModels_SkillGroup_Data = defineSkillGroup({
   id: 'e92e0187-6f45-476f-84e7-c0413b09556c',
   name: {
     en: 'Questions and Models',
+    it: "Domande e modelli",
     zh: '问题与模型',
     hi: 'प्रश्न और मॉडल',
     es: 'Preguntas y modelos',
@@ -52,6 +53,7 @@ export const questionsAndModels_SkillGroup_Data = defineSkillGroup({
       'Chemical claims can be examined by specifying substances, observable properties, conditions and possible particle-level explanations.',
     frontend: {
       en: 'Learn how chemical questions are framed and explained using evidence and models.',
+      it: "Impara a formulare domande di chimica e a trovare spiegazioni attraverso prove e modelli.",
       zh: '学习如何利用证据和模型提出并解释化学问题。',
       hi: 'जानें कि रसायन विज्ञान के प्रश्नों को प्रमाण और मॉडल से कैसे तैयार और समझाया जाता है।',
       es: 'Aprende a plantear y explicar preguntas químicas mediante pruebas y modelos.',
