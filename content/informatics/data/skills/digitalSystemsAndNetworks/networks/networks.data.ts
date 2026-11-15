@@ -41,12 +41,20 @@ export const networks_SkillGroup_Data = defineSkillGroup({
     kk: 'Желілер',
     qm: 'Ağlar',
   },
-  skills: [
-    distinguishTheInternetFromTheWeb_Skill_Data,
-    explainNetworkMessageDelivery_Skill_Data,
-    explainThePurposeOfAComputerNetwork_Skill_Data,
-    explainWirelessCommunication_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishTheInternetFromTheWeb: distinguishTheInternetFromTheWeb_Skill_Data,
+      explainNetworkMessageDelivery: explainNetworkMessageDelivery_Skill_Data,
+      explainThePurposeOfAComputerNetwork: explainThePurposeOfAComputerNetwork_Skill_Data,
+      explainWirelessCommunication: explainWirelessCommunication_Skill_Data,
+    },
+    order: [
+      'distinguishTheInternetFromTheWeb',
+      'explainNetworkMessageDelivery',
+      'explainThePurposeOfAComputerNetwork',
+      'explainWirelessCommunication',
+    ],
+  },
   description: {
     methodological:
       'Information exchange between connected devices, the distinction between the Internet and Web services, and communication channels. These competencies concern delivery, not message reliability or trustworthiness.',

@@ -39,12 +39,15 @@ export const observingTheSky_SkillDomain_Data = defineSkillDomain({
     ka: 'ცაზე დაკვირვება',
     kk: 'Аспанды бақылау',
   },
-  groups: [
-    astronomicalTime_SkillGroup_Data,
-    observationPractice_SkillGroup_Data,
-    skyGeometry_SkillGroup_Data,
-    skyPatterns_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      astronomicalTime: astronomicalTime_SkillGroup_Data,
+      observationPractice: observationPractice_SkillGroup_Data,
+      skyGeometry: skyGeometry_SkillGroup_Data,
+      skyPatterns: skyPatterns_SkillGroup_Data,
+    },
+    order: ['astronomicalTime', 'observationPractice', 'skyGeometry', 'skyPatterns'],
+  },
   description: {
     methodological:
       "This domain addresses how celestial positions, patterns, brightness and changes are represented from an observer's location on Earth. It treats the sky as an observable system while distinguishing apparent motion from the physical causes developed in celestial mechanics.",

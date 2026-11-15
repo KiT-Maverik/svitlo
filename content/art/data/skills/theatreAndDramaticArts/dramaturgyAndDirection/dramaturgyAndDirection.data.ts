@@ -41,12 +41,15 @@ export const dramaturgyAndDirection_SkillGroup_Data = defineSkillGroup({
     kk: 'Драматургия және режиссура',
     qm: 'Dramaturgiya ve rejissurlıq',
   },
-  skills: [
-    analyzeDramaticStructure_Skill_Data,
-    blockAStageScene_Skill_Data,
-    directAScene_Skill_Data,
-    interpretStageDirections_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeDramaticStructure: analyzeDramaticStructure_Skill_Data,
+      blockAStageScene: blockAStageScene_Skill_Data,
+      directAScene: directAScene_Skill_Data,
+      interpretStageDirections: interpretStageDirections_Skill_Data,
+    },
+    order: ['analyzeDramaticStructure', 'blockAStageScene', 'directAScene', 'interpretStageDirections'],
+  },
   description: {
     methodological:
       'Interpreting dramatic structure and organizing performers in space makes a chosen reading performable.',

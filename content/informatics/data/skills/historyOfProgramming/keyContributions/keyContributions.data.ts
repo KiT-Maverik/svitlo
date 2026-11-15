@@ -43,14 +43,24 @@ export const keyContributions_SkillGroup_Data = defineSkillGroup({
     kk: 'Негізгі үлестер',
     qm: 'Mühim qatqılar',
   },
-  skills: [
-    explainComputabilityTheory_Skill_Data,
-    explainEarlyElectronicProgramming_Skill_Data,
-    explainTheDevelopmentOfCompilers_Skill_Data,
-    explainTheDevelopmentOfSoftwareReliability_Skill_Data,
-    explainTheEliminationOfNetworkLoops_Skill_Data,
-    explainTheOriginsOfProgramming_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainComputabilityTheory: explainComputabilityTheory_Skill_Data,
+      explainEarlyElectronicProgramming: explainEarlyElectronicProgramming_Skill_Data,
+      explainTheDevelopmentOfCompilers: explainTheDevelopmentOfCompilers_Skill_Data,
+      explainTheDevelopmentOfSoftwareReliability: explainTheDevelopmentOfSoftwareReliability_Skill_Data,
+      explainTheEliminationOfNetworkLoops: explainTheEliminationOfNetworkLoops_Skill_Data,
+      explainTheOriginsOfProgramming: explainTheOriginsOfProgramming_Skill_Data,
+    },
+    order: [
+      'explainComputabilityTheory',
+      'explainEarlyElectronicProgramming',
+      'explainTheDevelopmentOfCompilers',
+      'explainTheDevelopmentOfSoftwareReliability',
+      'explainTheEliminationOfNetworkLoops',
+      'explainTheOriginsOfProgramming',
+    ],
+  },
   description: {
     methodological:
       'Historical developments in program descriptions, practical machine programming, compilation, software reliability, network protocols, and computability can be examined by the problems they solved and their lasting importance. Specific people and teams remain required examples in the Subject Proposition.',

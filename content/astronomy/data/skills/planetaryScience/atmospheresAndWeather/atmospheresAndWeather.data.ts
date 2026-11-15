@@ -41,12 +41,20 @@ export const atmospheresAndWeather_SkillGroup_Data = defineSkillGroup({
     kk: 'Атмосфералар мен ауа райы',
     qm: 'Atmosferalar ve ava vaziyeti',
   },
-  skills: [
-    atmosphericCirculation_Skill_Data,
-    atmosphericRetentionAndEscape_Skill_Data,
-    planetaryGreenhouseEffects_Skill_Data,
-    planetaryWeather_Skill_Data,
-  ],
+  skills: {
+    items: {
+      atmosphericCirculation: atmosphericCirculation_Skill_Data,
+      atmosphericRetentionAndEscape: atmosphericRetentionAndEscape_Skill_Data,
+      planetaryGreenhouseEffects: planetaryGreenhouseEffects_Skill_Data,
+      planetaryWeather: planetaryWeather_Skill_Data,
+    },
+    order: [
+      'atmosphericCirculation',
+      'atmosphericRetentionAndEscape',
+      'planetaryGreenhouseEffects',
+      'planetaryWeather',
+    ],
+  },
   description: {
     methodological:
       'Atmospheric behavior depends on composition, gravity, radiation, pressure and circulation in ways that vary widely from Earth.',

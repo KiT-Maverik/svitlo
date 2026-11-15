@@ -43,16 +43,19 @@ export const dataStructures_SkillDomain_Data = defineSkillDomain({
     kk: 'Деректер құрылымдары',
     qm: 'Malümat yapıları',
   },
-  groups: [
-    dictionaries_SkillGroup_Data,
-    graphs_SkillGroup_Data,
-    queue_SkillGroup_Data,
-    sequences_SkillGroup_Data,
-    sets_SkillGroup_Data,
-    stack_SkillGroup_Data,
-    structureSelection_SkillGroup_Data,
-    trees_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      dictionaries: dictionaries_SkillGroup_Data,
+      graphs: graphs_SkillGroup_Data,
+      queue: queue_SkillGroup_Data,
+      sequences: sequences_SkillGroup_Data,
+      sets: sets_SkillGroup_Data,
+      stack: stack_SkillGroup_Data,
+      structureSelection: structureSelection_SkillGroup_Data,
+      trees: trees_SkillGroup_Data,
+    },
+    order: ['dictionaries', 'graphs', 'queue', 'sequences', 'sets', 'stack', 'structureSelection', 'trees'],
+  },
   description: {
     methodological:
       'Organization of values in sequences, stacks, queues, dictionaries, sets, trees, and graphs, including access, modification, and selection of appropriate structures. A structure is not an algorithm for processing it.',

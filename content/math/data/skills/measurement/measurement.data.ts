@@ -40,13 +40,16 @@ export const measurement_SkillDomain_Data = defineSkillDomain({
     pl: 'Pomiary',
     uk: 'Вимірювання',
   },
-  groups: [
-    length_SkillGroup_Data,
-    mass_SkillGroup_Data,
-    capacity_SkillGroup_Data,
-    temperature_SkillGroup_Data,
-    general_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      length: length_SkillGroup_Data,
+      mass: mass_SkillGroup_Data,
+      capacity: capacity_SkillGroup_Data,
+      temperature: temperature_SkillGroup_Data,
+      general: general_SkillGroup_Data,
+    },
+    order: ['length', 'mass', 'capacity', 'temperature', 'general'],
+  },
   description: {
     methodological:
       'Measurement of physical quantities by comparison with units, instruments, and scales, covering length, mass, capacity, temperature, and consistent use of units.',

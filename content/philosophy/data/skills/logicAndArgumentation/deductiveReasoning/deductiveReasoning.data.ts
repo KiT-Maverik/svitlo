@@ -43,14 +43,24 @@ export const deductiveReasoning_SkillGroup_Data = defineSkillGroup({
     kk: 'Дедуктивті пайымдау',
     qm: 'Deduktiv fikir yürsetüv',
   },
-  skills: [
-    applyModusPonens_Skill_Data,
-    applyModusTollens_Skill_Data,
-    assessDeductiveValidity_Skill_Data,
-    distinguishValidityFromSoundness_Skill_Data,
-    evaluateACategoricalSyllogism_Skill_Data,
-    identifyAContradictionInASetOfClaims_Skill_Data,
-  ],
+  skills: {
+    items: {
+      applyModusPonens: applyModusPonens_Skill_Data,
+      applyModusTollens: applyModusTollens_Skill_Data,
+      assessDeductiveValidity: assessDeductiveValidity_Skill_Data,
+      distinguishValidityFromSoundness: distinguishValidityFromSoundness_Skill_Data,
+      evaluateACategoricalSyllogism: evaluateACategoricalSyllogism_Skill_Data,
+      identifyAContradictionInASetOfClaims: identifyAContradictionInASetOfClaims_Skill_Data,
+    },
+    order: [
+      'applyModusPonens',
+      'applyModusTollens',
+      'assessDeductiveValidity',
+      'distinguishValidityFromSoundness',
+      'evaluateACategoricalSyllogism',
+      'identifyAContradictionInASetOfClaims',
+    ],
+  },
   description: {
     methodological:
       'Deduction concerns whether it is possible for premises to be true while a conclusion is false. Logical form is evaluated separately from whether the premises describe the world correctly.',

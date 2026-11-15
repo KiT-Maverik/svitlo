@@ -41,12 +41,15 @@ export const storageAndDelivery_SkillGroup_Data = defineSkillGroup({
     kk: 'Энергияны сақтау және жеткізу',
     qm: 'Energiya saqlav ve yetkizüv',
   },
-  skills: [
-    electricalGridDistribution_Skill_Data,
-    rechargeableBatterySystems_Skill_Data,
-    thermalEnergyStorage_Skill_Data,
-    transformerUse_Skill_Data,
-  ],
+  skills: {
+    items: {
+      electricalGridDistribution: electricalGridDistribution_Skill_Data,
+      rechargeableBatterySystems: rechargeableBatterySystems_Skill_Data,
+      thermalEnergyStorage: thermalEnergyStorage_Skill_Data,
+      transformerUse: transformerUse_Skill_Data,
+    },
+    order: ['electricalGridDistribution', 'rechargeableBatterySystems', 'thermalEnergyStorage', 'transformerUse'],
+  },
   description: {
     methodological: 'Reliable supply requires matching time, location and suitable electrical or thermal interfaces.',
     frontend: {

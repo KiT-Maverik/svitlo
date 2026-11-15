@@ -41,12 +41,20 @@ export const landAndWater_SkillGroup_Data = defineSkillGroup({
     kk: 'Құрлық пен су',
     qm: 'Quru yer ve suv',
   },
-  skills: [
-    classifyCoastalLandformsAndPassages_Skill_Data,
-    classifyCommonLandformsByObservableCharacteristics_Skill_Data,
-    distinguishLakesRiversAndWetlandsByWaterBehavior_Skill_Data,
-    distinguishOceanSeaGulfAndBayInGeographicContext_Skill_Data,
-  ],
+  skills: {
+    items: {
+      classifyCoastalLandformsAndPassages: classifyCoastalLandformsAndPassages_Skill_Data,
+      classifyCommonLandformsByObservableCharacteristics: classifyCommonLandformsByObservableCharacteristics_Skill_Data,
+      distinguishLakesRiversAndWetlandsByWaterBehavior: distinguishLakesRiversAndWetlandsByWaterBehavior_Skill_Data,
+      distinguishOceanSeaGulfAndBayInGeographicContext: distinguishOceanSeaGulfAndBayInGeographicContext_Skill_Data,
+    },
+    order: [
+      'classifyCoastalLandformsAndPassages',
+      'classifyCommonLandformsByObservableCharacteristics',
+      'distinguishLakesRiversAndWetlandsByWaterBehavior',
+      'distinguishOceanSeaGulfAndBayInGeographicContext',
+    ],
+  },
   description: {
     methodological:
       'Natural geographic features are differentiated by relief, water movement, enclosure and spatial relationships to neighboring land or water. Object identification is separate from the physical processes that formed a coastline, mountain or river valley.',

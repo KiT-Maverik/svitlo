@@ -41,7 +41,15 @@ export const societiesAndStatesOfAncientIndia_SkillGroup_Data = defineSkillGroup
     kk: 'Ежелгі Үндістан қоғамдары мен мемлекеттері',
     qm: 'Qadimiy Hindistan cemiyetleri ve devletleri',
   },
-  skills: [guptaKingdom_Skill_Data, mahajanapadas_Skill_Data, mauryanEmpire_Skill_Data, vedicSocieties_Skill_Data],
+  skills: {
+    items: {
+      guptaKingdom: guptaKingdom_Skill_Data,
+      mahajanapadas: mahajanapadas_Skill_Data,
+      mauryanEmpire: mauryanEmpire_Skill_Data,
+      vedicSocieties: vedicSocieties_Skill_Data,
+    },
+    order: ['guptaKingdom', 'mahajanapadas', 'mauryanEmpire', 'vedicSocieties'],
+  },
   description: {
     methodological:
       'After the Vedic period, regional kingdoms and larger empires arose with differing political systems.',

@@ -41,12 +41,20 @@ export const curationAndPresentation_SkillGroup_Data = defineSkillGroup({
     kk: 'Кураторлық және таныстыру',
     qm: 'Kuratorlıq ve taqdim etüv',
   },
-  skills: [
-    analyzeDisplayContext_Skill_Data,
-    selectWorksForAnExhibition_Skill_Data,
-    sequenceAnExhibition_Skill_Data,
-    writeExhibitionInterpretationText_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeDisplayContext: analyzeDisplayContext_Skill_Data,
+      selectWorksForAnExhibition: selectWorksForAnExhibition_Skill_Data,
+      sequenceAnExhibition: sequenceAnExhibition_Skill_Data,
+      writeExhibitionInterpretationText: writeExhibitionInterpretationText_Skill_Data,
+    },
+    order: [
+      'analyzeDisplayContext',
+      'selectWorksForAnExhibition',
+      'sequenceAnExhibition',
+      'writeExhibitionInterpretationText',
+    ],
+  },
   description: {
     methodological:
       'Exhibiting work creates new relationships between artworks, their physical arrangement and audience access, independent of authoring the artworks.',

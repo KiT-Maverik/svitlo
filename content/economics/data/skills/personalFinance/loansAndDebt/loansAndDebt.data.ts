@@ -41,12 +41,15 @@ export const loansAndDebt_SkillGroup_Data = defineSkillGroup({
     kk: 'Несиелер мен қарыздар',
     qm: 'Borçlar ve qarızlar',
   },
-  skills: [
-    borrowerAffordability_Skill_Data,
-    creditHistory_Skill_Data,
-    latePaymentConsequences_Skill_Data,
-    totalCostOfCredit_Skill_Data,
-  ],
+  skills: {
+    items: {
+      borrowerAffordability: borrowerAffordability_Skill_Data,
+      creditHistory: creditHistory_Skill_Data,
+      latePaymentConsequences: latePaymentConsequences_Skill_Data,
+      totalCostOfCredit: totalCostOfCredit_Skill_Data,
+    },
+    order: ['borrowerAffordability', 'creditHistory', 'latePaymentConsequences', 'totalCostOfCredit'],
+  },
   description: {
     methodological: 'Borrowing permits earlier spending but creates future payments and obligations.',
     frontend: {

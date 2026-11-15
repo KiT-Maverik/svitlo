@@ -38,7 +38,14 @@ export const manufacturingAndProduction_SkillDomain_Data = defineSkillDomain({
     kk: 'Дайындау және өндіріс',
     qm: 'İmal ve istisal',
   },
-  groups: [assemblyAndQuality_SkillGroup_Data, materialShaping_SkillGroup_Data, productionFlow_SkillGroup_Data],
+  groups: {
+    items: {
+      assemblyAndQuality: assemblyAndQuality_SkillGroup_Data,
+      materialShaping: materialShaping_SkillGroup_Data,
+      productionFlow: productionFlow_SkillGroup_Data,
+    },
+    order: ['assemblyAndQuality', 'materialShaping', 'productionFlow'],
+  },
   description: {
     methodological:
       'Finished products require suitable forming processes, assembly, tolerances and inspection. Production engineering addresses repeatable manufacture under resource, quality and throughput limits.',

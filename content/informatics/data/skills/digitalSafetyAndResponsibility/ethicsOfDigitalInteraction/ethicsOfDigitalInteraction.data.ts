@@ -41,12 +41,20 @@ export const ethicsOfDigitalInteraction_SkillGroup_Data = defineSkillGroup({
     kk: 'Цифрлық өзара әрекеттесу этикасы',
     qm: 'Raqamlı munasebetler etikası',
   },
-  skills: [
-    attributeDigitalMaterials_Skill_Data,
-    chooseASafeWayToReportAProblem_Skill_Data,
-    distinguishDigitalContentLicenses_Skill_Data,
-    identifyAppropriateOnlineBehavior_Skill_Data,
-  ],
+  skills: {
+    items: {
+      attributeDigitalMaterials: attributeDigitalMaterials_Skill_Data,
+      chooseASafeWayToReportAProblem: chooseASafeWayToReportAProblem_Skill_Data,
+      distinguishDigitalContentLicenses: distinguishDigitalContentLicenses_Skill_Data,
+      identifyAppropriateOnlineBehavior: identifyAppropriateOnlineBehavior_Skill_Data,
+    },
+    order: [
+      'attributeDigitalMaterials',
+      'chooseASafeWayToReportAProblem',
+      'distinguishDigitalContentLicenses',
+      'identifyAppropriateOnlineBehavior',
+    ],
+  },
   description: {
     methodological:
       "Respect for other users and creators' rights, including recognizing bullying, attribution, and licensing conditions. Social norms and copyright differ from technical account protection.",

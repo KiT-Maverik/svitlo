@@ -41,12 +41,20 @@ export const cultureAndDiversity_SkillGroup_Data = defineSkillGroup({
     kk: 'Мәдениет және алуан түрлілік',
     qm: 'Medeniyet ve çeşitlilik',
   },
-  skills: [
-    avoidingPsychologicalEssentialism_Skill_Data,
-    biasInPsychologicalNorms_Skill_Data,
-    crossCulturalResearchComparability_Skill_Data,
-    culturalVariationInBehavior_Skill_Data,
-  ],
+  skills: {
+    items: {
+      avoidingPsychologicalEssentialism: avoidingPsychologicalEssentialism_Skill_Data,
+      biasInPsychologicalNorms: biasInPsychologicalNorms_Skill_Data,
+      crossCulturalResearchComparability: crossCulturalResearchComparability_Skill_Data,
+      culturalVariationInBehavior: culturalVariationInBehavior_Skill_Data,
+    },
+    order: [
+      'avoidingPsychologicalEssentialism',
+      'biasInPsychologicalNorms',
+      'crossCulturalResearchComparability',
+      'culturalVariationInBehavior',
+    ],
+  },
   description: {
     methodological:
       'Human psychological patterns must be examined against differences in context, institutions, and ways of interpreting experience.',

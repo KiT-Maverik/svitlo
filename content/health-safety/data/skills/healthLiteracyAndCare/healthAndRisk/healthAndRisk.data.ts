@@ -42,13 +42,22 @@ export const healthAndRisk_SkillGroup_Data = defineSkillGroup({
     kk: 'Денсаулық және тәуекелдер',
     qm: 'Sağlıq ve havflar',
   },
-  skills: [
-    assessHealthRelatedRisk_Skill_Data,
-    choosePreventiveHealthMeasures_Skill_Data,
-    identifyFactorsAffectingHealth_Skill_Data,
-    interpretBasicHealthMeasurements_Skill_Data,
-    recognizeChangesInHealthStatus_Skill_Data,
-  ],
+  skills: {
+    items: {
+      assessHealthRelatedRisk: assessHealthRelatedRisk_Skill_Data,
+      choosePreventiveHealthMeasures: choosePreventiveHealthMeasures_Skill_Data,
+      identifyFactorsAffectingHealth: identifyFactorsAffectingHealth_Skill_Data,
+      interpretBasicHealthMeasurements: interpretBasicHealthMeasurements_Skill_Data,
+      recognizeChangesInHealthStatus: recognizeChangesInHealthStatus_Skill_Data,
+    },
+    order: [
+      'assessHealthRelatedRisk',
+      'choosePreventiveHealthMeasures',
+      'identifyFactorsAffectingHealth',
+      'interpretBasicHealthMeasurements',
+      'recognizeChangesInHealthStatus',
+    ],
+  },
   description: {
     methodological:
       "Health depends on interacting physical, psychological, social, and environmental conditions. Risk factors affect probability rather than determining an individual's diagnosis.",

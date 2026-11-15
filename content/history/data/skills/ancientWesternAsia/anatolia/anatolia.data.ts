@@ -36,7 +36,14 @@ export const anatolia_SkillGroup_Data = defineSkillGroup({
     kk: 'Анадолы',
     qm: 'Anadolu',
   },
-  skills: [anatolianTradeNetworks_Skill_Data, hittiteKingdom_Skill_Data, urartu_Skill_Data],
+  skills: {
+    items: {
+      anatolianTradeNetworks: anatolianTradeNetworks_Skill_Data,
+      hittiteKingdom: hittiteKingdom_Skill_Data,
+      urartu: urartu_Skill_Data,
+    },
+    order: ['anatolianTradeNetworks', 'hittiteKingdom', 'urartu'],
+  },
   description: {
     methodological:
       'Mountain and plateau regions between the Aegean and Mesopotamia supported distinct kingdoms and cultural exchanges.',

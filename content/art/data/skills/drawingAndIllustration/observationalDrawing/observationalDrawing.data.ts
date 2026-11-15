@@ -42,13 +42,22 @@ export const observationalDrawing_SkillGroup_Data = defineSkillGroup({
     kk: 'Бақылау арқылы сурет салу',
     qm: 'Müşahedeye dayalı çizim',
   },
-  skills: [
-    constructContourDrawing_Skill_Data,
-    controlDrawingMarks_Skill_Data,
-    drawFromObservation_Skill_Data,
-    renderDrawnTexture_Skill_Data,
-    renderLightAndShadow_Skill_Data,
-  ],
+  skills: {
+    items: {
+      constructContourDrawing: constructContourDrawing_Skill_Data,
+      controlDrawingMarks: controlDrawingMarks_Skill_Data,
+      drawFromObservation: drawFromObservation_Skill_Data,
+      renderDrawnTexture: renderDrawnTexture_Skill_Data,
+      renderLightAndShadow: renderLightAndShadow_Skill_Data,
+    },
+    order: [
+      'constructContourDrawing',
+      'controlDrawingMarks',
+      'drawFromObservation',
+      'renderDrawnTexture',
+      'renderLightAndShadow',
+    ],
+  },
   description: {
     methodological:
       'Close observation of proportions, edges, tonal values and surfaces offers a foundation for describing visible subjects rather than relying on schematic symbols.',

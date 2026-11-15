@@ -41,12 +41,20 @@ export const informationSearchAndVerification_SkillGroup_Data = defineSkillGroup
     kk: 'Ақпарат іздеу және тексеру',
     qm: 'Malümat qıdıruv ve teşkerüv',
   },
-  skills: [
-    compareInformationSources_Skill_Data,
-    distinguishMessagesFromData_Skill_Data,
-    formulateAnInformationQuery_Skill_Data,
-    verifyAClaimAgainstASource_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareInformationSources: compareInformationSources_Skill_Data,
+      distinguishMessagesFromData: distinguishMessagesFromData_Skill_Data,
+      formulateAnInformationQuery: formulateAnInformationQuery_Skill_Data,
+      verifyAClaimAgainstASource: verifyAClaimAgainstASource_Skill_Data,
+    },
+    order: [
+      'compareInformationSources',
+      'distinguishMessagesFromData',
+      'formulateAnInformationQuery',
+      'verifyAClaimAgainstASource',
+    ],
+  },
   description: {
     methodological:
       'Find relevant facts and determine whether independent sources support a particular claim. Formulating queries, comparing reports, and verifying facts are distinct operations.',

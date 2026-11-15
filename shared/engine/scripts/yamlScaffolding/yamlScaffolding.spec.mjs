@@ -150,7 +150,12 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
                   type: 'checkpointItem',
                   slug: 'item',
                   question: structuredClone(sourceBlock),
-                  answer: group({ correct: structuredClone(sourceBlock) }),
+                  answer: {
+                    id: id(13),
+                    type: 'checkpointAnswer',
+                    slug: 'answer',
+                    content: group({ correct: structuredClone(sourceBlock) }),
+                  },
                 },
               }),
             },
@@ -175,7 +180,18 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     assert(sourceFiles.length > 1, 'Lesson Builder must emit multiple named draft modules');
     assert.equal(lessonDraft.changed, sourceFiles.length);
     assert.equal(fs.readFileSync(path.join(lessonDir, 'content.yaml'), 'utf8'), editorial);
-    const modules = sourceFiles.map(file => fs.readFileSync(path.join(lessonDir, file), 'utf8'));
+    // The Review register is an intentionally invalid, human-completed TypeScript draft.
+    // Test its unfinished shape separately; every actual configurator module must parse.
+    assert(sourceFiles.includes('review.ts'), 'Lesson Builder must scaffold the Review register');
+    const reviewDraft = fs.readFileSync(path.join(lessonDir, 'review.ts'), 'utf8');
+    assert(
+      ts.createSourceFile('review.ts', reviewDraft, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS)
+        .parseDiagnostics.length > 0,
+      'Review draft must retain unresolved TypeScript syntax until review evidence is verified',
+    );
+    const modules = sourceFiles
+      .filter(file => file !== 'review.ts')
+      .map(file => fs.readFileSync(path.join(lessonDir, file), 'utf8'));
     const lessonCode = modules.join('\n');
     const lessonCalls = modules.flatMap(calls);
     for (const name of [
@@ -185,6 +201,7 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
       'defineCarousel',
       'defineCheckpoint',
       'defineCheckpointItem',
+      'defineCheckpointAnswer',
       'defineQuestSection',
       'defineStage',
       'defineTask',

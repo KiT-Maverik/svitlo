@@ -41,14 +41,24 @@ export const ancientMediterranean_SkillDomain_Data = defineSkillDomain({
     kk: 'Ежелгі Жерорта теңізі әлемі',
     qm: 'Qadimiy Aqdeñiz dünyası',
   },
-  groups: [
-    aegeanBronzeAge_SkillGroup_Data,
-    greekCultureAndIdeas_SkillGroup_Data,
-    greekPoleis_SkillGroup_Data,
-    macedoniaAndHellenisticWorld_SkillGroup_Data,
-    romanEmpire_SkillGroup_Data,
-    romanRepublic_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      aegeanBronzeAge: aegeanBronzeAge_SkillGroup_Data,
+      greekCultureAndIdeas: greekCultureAndIdeas_SkillGroup_Data,
+      greekPoleis: greekPoleis_SkillGroup_Data,
+      macedoniaAndHellenisticWorld: macedoniaAndHellenisticWorld_SkillGroup_Data,
+      romanEmpire: romanEmpire_SkillGroup_Data,
+      romanRepublic: romanRepublic_SkillGroup_Data,
+    },
+    order: [
+      'aegeanBronzeAge',
+      'greekCultureAndIdeas',
+      'greekPoleis',
+      'macedoniaAndHellenisticWorld',
+      'romanEmpire',
+      'romanRepublic',
+    ],
+  },
   description: {
     methodological:
       'Aegean societies, Greek poleis, Hellenistic kingdoms, and Rome formed an interconnected but heterogeneous Mediterranean world.',

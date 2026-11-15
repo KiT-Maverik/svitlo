@@ -41,12 +41,20 @@ export const hydrologicConnections_SkillGroup_Data = defineSkillGroup({
     kk: 'Гидрологиялық байланыстар',
     qm: 'Suv devriniñ bağları',
   },
-  skills: [
-    compareGeographicWaterAvailabilityAcrossRegions_Skill_Data,
-    explainInfiltrationAndGroundwaterRecharge_Skill_Data,
-    explainSurfaceRunoffAsAWaterPathway_Skill_Data,
-    explainTheHydrologicCycle_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareGeographicWaterAvailabilityAcrossRegions: compareGeographicWaterAvailabilityAcrossRegions_Skill_Data,
+      explainInfiltrationAndGroundwaterRecharge: explainInfiltrationAndGroundwaterRecharge_Skill_Data,
+      explainSurfaceRunoffAsAWaterPathway: explainSurfaceRunoffAsAWaterPathway_Skill_Data,
+      explainTheHydrologicCycle: explainTheHydrologicCycle_Skill_Data,
+    },
+    order: [
+      'compareGeographicWaterAvailabilityAcrossRegions',
+      'explainInfiltrationAndGroundwaterRecharge',
+      'explainSurfaceRunoffAsAWaterPathway',
+      'explainTheHydrologicCycle',
+    ],
+  },
   description: {
     methodological:
       'Water changes location and state among the atmosphere, surface, living systems, and subsurface. This is a connected circulation model rather than a single linear loop.',

@@ -42,13 +42,22 @@ export const bleedingAndInjuries_SkillGroup_Data = defineSkillGroup({
     kk: 'Қан кету және жарақаттар',
     qm: 'Qan aqması ve yaralanmalar',
   },
-  skills: [
-    careForMinorWounds_Skill_Data,
-    controlExternalBleeding_Skill_Data,
-    immobilizeSuspectedFractures_Skill_Data,
-    recognizeHeadAndSpinalInjuryDanger_Skill_Data,
-    useATourniquetWhenIndicated_Skill_Data,
-  ],
+  skills: {
+    items: {
+      careForMinorWounds: careForMinorWounds_Skill_Data,
+      controlExternalBleeding: controlExternalBleeding_Skill_Data,
+      immobilizeSuspectedFractures: immobilizeSuspectedFractures_Skill_Data,
+      recognizeHeadAndSpinalInjuryDanger: recognizeHeadAndSpinalInjuryDanger_Skill_Data,
+      useATourniquetWhenIndicated: useATourniquetWhenIndicated_Skill_Data,
+    },
+    order: [
+      'careForMinorWounds',
+      'controlExternalBleeding',
+      'immobilizeSuspectedFractures',
+      'recognizeHeadAndSpinalInjuryDanger',
+      'useATourniquetWhenIndicated',
+    ],
+  },
   description: {
     methodological:
       'First aid aims to prevent immediate deterioration while avoiding unnecessary manipulation or delay in definitive medical care.',

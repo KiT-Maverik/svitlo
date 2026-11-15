@@ -41,12 +41,20 @@ export const historicalFilmMovements_SkillGroup_Data = defineSkillGroup({
     kk: 'Тарихи кино қозғалыстары',
     qm: 'Tarihiy film aqımları',
   },
-  skills: [
-    analyzeFrenchNewWaveCinema_Skill_Data,
-    analyzeGermanExpressionistCinema_Skill_Data,
-    analyzeIndianParallelCinema_Skill_Data,
-    analyzeUkrainianPoeticCinema_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeFrenchNewWaveCinema: analyzeFrenchNewWaveCinema_Skill_Data,
+      analyzeGermanExpressionistCinema: analyzeGermanExpressionistCinema_Skill_Data,
+      analyzeIndianParallelCinema: analyzeIndianParallelCinema_Skill_Data,
+      analyzeUkrainianPoeticCinema: analyzeUkrainianPoeticCinema_Skill_Data,
+    },
+    order: [
+      'analyzeFrenchNewWaveCinema',
+      'analyzeGermanExpressionistCinema',
+      'analyzeIndianParallelCinema',
+      'analyzeUkrainianPoeticCinema',
+    ],
+  },
   description: {
     methodological:
       'Movements in film history can be distinguished through camera, staging, editing, narrative and culturally situated aesthetic choices.',

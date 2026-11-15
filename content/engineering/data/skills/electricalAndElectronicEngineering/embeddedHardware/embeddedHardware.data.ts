@@ -41,12 +41,20 @@ export const embeddedHardware_SkillGroup_Data = defineSkillGroup({
     kk: 'Ендірілген аппараттық құралдар',
     qm: 'İçine yerleştirilgen cihazlar',
   },
-  skills: [
-    actuatorDriverCompatibility_Skill_Data,
-    hardwareInputOutputInterfaces_Skill_Data,
-    microcontrollerArchitecture_Skill_Data,
-    sensorInterfaceCompatibility_Skill_Data,
-  ],
+  skills: {
+    items: {
+      actuatorDriverCompatibility: actuatorDriverCompatibility_Skill_Data,
+      hardwareInputOutputInterfaces: hardwareInputOutputInterfaces_Skill_Data,
+      microcontrollerArchitecture: microcontrollerArchitecture_Skill_Data,
+      sensorInterfaceCompatibility: sensorInterfaceCompatibility_Skill_Data,
+    },
+    order: [
+      'actuatorDriverCompatibility',
+      'hardwareInputOutputInterfaces',
+      'microcontrollerArchitecture',
+      'sensorInterfaceCompatibility',
+    ],
+  },
   description: {
     methodological:
       'Controllers communicate with sensors and actuators through real physical interfaces; programming concepts are treated separately in Informatics.',

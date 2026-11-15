@@ -41,12 +41,20 @@ export const humanExistenceAndMeaning_SkillGroup_Data = defineSkillGroup({
     kk: 'Адам болмысы және мән',
     qm: 'İnsan yaşayışı ve mana',
   },
-  skills: [
-    analyzeAuthenticityAsAPhilosophicalConcept_Skill_Data,
-    analyzeThePhilosophicalSignificanceOfMortality_Skill_Data,
-    comparePhilosophicalAccountsOfMeaningInLife_Skill_Data,
-    distinguishALifePurposeFromAPassingPreference_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAuthenticityAsAPhilosophicalConcept: analyzeAuthenticityAsAPhilosophicalConcept_Skill_Data,
+      analyzeThePhilosophicalSignificanceOfMortality: analyzeThePhilosophicalSignificanceOfMortality_Skill_Data,
+      comparePhilosophicalAccountsOfMeaningInLife: comparePhilosophicalAccountsOfMeaningInLife_Skill_Data,
+      distinguishALifePurposeFromAPassingPreference: distinguishALifePurposeFromAPassingPreference_Skill_Data,
+    },
+    order: [
+      'analyzeAuthenticityAsAPhilosophicalConcept',
+      'analyzeThePhilosophicalSignificanceOfMortality',
+      'comparePhilosophicalAccountsOfMeaningInLife',
+      'distinguishALifePurposeFromAPassingPreference',
+    ],
+  },
   description: {
     methodological:
       'Existential reflection examines how people understand purpose, authenticity, finitude, and commitments, without prescribing a single life ideal or substituting for mental-health care.',

@@ -41,12 +41,15 @@ export const collectionProcessing_SkillGroup_Data = defineSkillGroup({
     kk: 'Жинақтарды өңдеу',
     qm: 'Toplamlarnı işlemek',
   },
-  skills: [
-    applyElementCounting_Skill_Data,
-    applyMaximumFinding_Skill_Data,
-    applyMinimumFinding_Skill_Data,
-    applySumAccumulation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      applyElementCounting: applyElementCounting_Skill_Data,
+      applyMaximumFinding: applyMaximumFinding_Skill_Data,
+      applyMinimumFinding: applyMinimumFinding_Skill_Data,
+      applySumAccumulation: applySumAccumulation_Skill_Data,
+    },
+    order: ['applyElementCounting', 'applyMaximumFinding', 'applyMinimumFinding', 'applySumAccumulation'],
+  },
   description: {
     methodological:
       'Step-by-step procedures that aggregate values while traversing a collection, such as counting, totaling, minimum, and maximum. Objects or cards can illustrate the operations.',

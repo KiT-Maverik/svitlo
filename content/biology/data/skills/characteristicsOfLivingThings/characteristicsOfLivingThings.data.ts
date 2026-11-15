@@ -36,8 +36,13 @@ export const characteristicsOfLivingThings_SkillDomain_Data = defineSkillDomain(
     kk: 'Тірі ағзалардың белгілері',
     qm: 'Canlılarnıñ hususiyetleri',
   },
-  groups: [],
-  skills: [classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data],
+  groups: { items: {}, order: [] },
+  skills: {
+    items: {
+      classifyObjectsAsLivingDeadOrNeverAlive: classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data,
+    },
+    order: ['classifyObjectsAsLivingDeadOrNeverAlive'],
+  },
   description: {
     methodological:
       'Life processes, biological origin, and the distinction between living organisms, dead remains, and things that have never been alive. This distinction requires consideration of actual life processes rather than appearance or movement alone.',

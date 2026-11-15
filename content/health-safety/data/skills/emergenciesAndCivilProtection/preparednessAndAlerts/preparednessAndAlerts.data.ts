@@ -41,12 +41,20 @@ export const preparednessAndAlerts_SkillGroup_Data = defineSkillGroup({
     kk: 'Дайындық және ескертулер',
     qm: 'Azırlıq ve tenbiler',
   },
-  skills: [
-    contactEmergencyServices_Skill_Data,
-    developAnEmergencyPlan_Skill_Data,
-    prepareEssentialEmergencySupplies_Skill_Data,
-    understandEmergencyAlerts_Skill_Data,
-  ],
+  skills: {
+    items: {
+      contactEmergencyServices: contactEmergencyServices_Skill_Data,
+      developAnEmergencyPlan: developAnEmergencyPlan_Skill_Data,
+      prepareEssentialEmergencySupplies: prepareEssentialEmergencySupplies_Skill_Data,
+      understandEmergencyAlerts: understandEmergencyAlerts_Skill_Data,
+    },
+    order: [
+      'contactEmergencyServices',
+      'developAnEmergencyPlan',
+      'prepareEssentialEmergencySupplies',
+      'understandEmergencyAlerts',
+    ],
+  },
   description: {
     methodological:
       'Effective readiness considers local hazards, people requiring assistance, communication failures, and the difference between a warning and an instruction.',

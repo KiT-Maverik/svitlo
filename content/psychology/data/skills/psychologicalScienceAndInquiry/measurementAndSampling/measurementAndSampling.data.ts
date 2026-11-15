@@ -42,13 +42,22 @@ export const measurementAndSampling_SkillGroup_Data = defineSkillGroup({
     kk: 'Өлшеу және іріктеу',
     qm: 'Ölçev ve saylav',
   },
-  skills: [
-    constructValidity_Skill_Data,
-    measurementBias_Skill_Data,
-    operationalDefinitions_Skill_Data,
-    reliabilityOfMeasures_Skill_Data,
-    representativeSampling_Skill_Data,
-  ],
+  skills: {
+    items: {
+      constructValidity: constructValidity_Skill_Data,
+      measurementBias: measurementBias_Skill_Data,
+      operationalDefinitions: operationalDefinitions_Skill_Data,
+      reliabilityOfMeasures: reliabilityOfMeasures_Skill_Data,
+      representativeSampling: representativeSampling_Skill_Data,
+    },
+    order: [
+      'constructValidity',
+      'measurementBias',
+      'operationalDefinitions',
+      'reliabilityOfMeasures',
+      'representativeSampling',
+    ],
+  },
   description: {
     methodological:
       'Operational measures offer imperfect indicators of psychological constructs, and recruitment choices limit generalization.',

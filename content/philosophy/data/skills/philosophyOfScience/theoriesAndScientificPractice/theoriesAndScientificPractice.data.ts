@@ -43,14 +43,24 @@ export const theoriesAndScientificPractice_SkillGroup_Data = defineSkillGroup({
     kk: 'Теориялар және ғылыми тәжірибе',
     qm: 'Nazariyeler ve ilmiy ameliyat',
   },
-  skills: [
-    distinguishAScientificTheoryFromAHypothesis_Skill_Data,
-    evaluateScientificPeerReview_Skill_Data,
-    evaluateTheFalsifiabilityOfAClaim_Skill_Data,
-    explainScientificSelfCorrection_Skill_Data,
-    explainTheRoleOfReplication_Skill_Data,
-    identifyConflictsOfInterestInResearch_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAScientificTheoryFromAHypothesis: distinguishAScientificTheoryFromAHypothesis_Skill_Data,
+      evaluateScientificPeerReview: evaluateScientificPeerReview_Skill_Data,
+      evaluateTheFalsifiabilityOfAClaim: evaluateTheFalsifiabilityOfAClaim_Skill_Data,
+      explainScientificSelfCorrection: explainScientificSelfCorrection_Skill_Data,
+      explainTheRoleOfReplication: explainTheRoleOfReplication_Skill_Data,
+      identifyConflictsOfInterestInResearch: identifyConflictsOfInterestInResearch_Skill_Data,
+    },
+    order: [
+      'distinguishAScientificTheoryFromAHypothesis',
+      'evaluateScientificPeerReview',
+      'evaluateTheFalsifiabilityOfAClaim',
+      'explainScientificSelfCorrection',
+      'explainTheRoleOfReplication',
+      'identifyConflictsOfInterestInResearch',
+    ],
+  },
   description: {
     methodological:
       'Scientific conclusions are provisional but not arbitrary: shared procedures, criticism, reproducibility, and explanatory success distinguish responsible inquiry from mere assertion.',

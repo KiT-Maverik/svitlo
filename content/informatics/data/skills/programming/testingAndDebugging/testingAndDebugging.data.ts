@@ -41,12 +41,20 @@ export const testingAndDebugging_SkillGroup_Data = defineSkillGroup({
     kk: 'Тестілеу және қателерді түзету',
     qm: 'Sınav ve hatalarnı tüzetüv',
   },
-  skills: [
-    detectIncorrectProgramBehavior_Skill_Data,
-    fixAProgramDefect_Skill_Data,
-    locateTheCauseOfAnError_Skill_Data,
-    testAProgramWithDifferentInputs_Skill_Data,
-  ],
+  skills: {
+    items: {
+      detectIncorrectProgramBehavior: detectIncorrectProgramBehavior_Skill_Data,
+      fixAProgramDefect: fixAProgramDefect_Skill_Data,
+      locateTheCauseOfAnError: locateTheCauseOfAnError_Skill_Data,
+      testAProgramWithDifferentInputs: testAProgramWithDifferentInputs_Skill_Data,
+    },
+    order: [
+      'detectIncorrectProgramBehavior',
+      'fixAProgramDefect',
+      'locateTheCauseOfAnError',
+      'testAProgramWithDifferentInputs',
+    ],
+  },
   description: {
     methodological:
       'Compare actual program behavior with requirements, find the cause of deviations, correct them, and test again. Detecting a defect, diagnosing it, changing code, and testing multiple cases are distinct abilities.',

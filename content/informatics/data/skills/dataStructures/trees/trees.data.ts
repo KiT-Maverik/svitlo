@@ -41,12 +41,20 @@ export const trees_SkillGroup_Data = defineSkillGroup({
     kk: 'Ағаштар',
     qm: 'Terekler',
   },
-  skills: [
-    distinguishLeafAndInternalTreeNodes_Skill_Data,
-    explainBinarySearchTrees_Skill_Data,
-    explainTreeStructure_Skill_Data,
-    findAPathInATree_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishLeafAndInternalTreeNodes: distinguishLeafAndInternalTreeNodes_Skill_Data,
+      explainBinarySearchTrees: explainBinarySearchTrees_Skill_Data,
+      explainTreeStructure: explainTreeStructure_Skill_Data,
+      findAPathInATree: findAPathInATree_Skill_Data,
+    },
+    order: [
+      'distinguishLeafAndInternalTreeNodes',
+      'explainBinarySearchTrees',
+      'explainTreeStructure',
+      'findAPathInATree',
+    ],
+  },
   description: {
     methodological:
       'Trees organize nodes and edges into acyclic hierarchies; binary search trees also impose an ordering rule on keys.',

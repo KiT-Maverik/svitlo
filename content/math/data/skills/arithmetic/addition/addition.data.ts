@@ -45,16 +45,28 @@ export const addition_SkillGroup_Data = defineSkillGroup({
     pl: 'Dodawanie',
     uk: 'Додавання',
   },
-  skills: [
-    addMeaning_Skill_Data,
-    addZero_Skill_Data,
-    commutativeAddition_Skill_Data,
-    makeTenStrategy_Skill_Data,
-    crossTenAddition_Skill_Data,
-    associativeAddition_Skill_Data,
-    columnAddition_Skill_Data,
-    regrouping_Skill_Data,
-  ],
+  skills: {
+    items: {
+      addMeaning: addMeaning_Skill_Data,
+      addZero: addZero_Skill_Data,
+      commutativeAddition: commutativeAddition_Skill_Data,
+      makeTenStrategy: makeTenStrategy_Skill_Data,
+      crossTenAddition: crossTenAddition_Skill_Data,
+      associativeAddition: associativeAddition_Skill_Data,
+      columnAddition: columnAddition_Skill_Data,
+      regrouping: regrouping_Skill_Data,
+    },
+    order: [
+      'addMeaning',
+      'addZero',
+      'commutativeAddition',
+      'makeTenStrategy',
+      'crossTenAddition',
+      'associativeAddition',
+      'columnAddition',
+      'regrouping',
+    ],
+  },
   description: {
     methodological:
       'Combining quantities, properties of sums, place-value regrouping, and methods for calculating and checking results.',

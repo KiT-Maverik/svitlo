@@ -41,12 +41,20 @@ export const pressureAndManipulation_SkillGroup_Data = defineSkillGroup({
     kk: 'Қысым және айла-шарғы',
     qm: 'Basqı ve aldatıcı tesir',
   },
-  skills: [
-    recognizeGroomingAndExploitation_Skill_Data,
-    recognizePsychologicalPressure_Skill_Data,
-    resistUnsafePeerPressure_Skill_Data,
-    setBoundariesInUnequalRelationships_Skill_Data,
-  ],
+  skills: {
+    items: {
+      recognizeGroomingAndExploitation: recognizeGroomingAndExploitation_Skill_Data,
+      recognizePsychologicalPressure: recognizePsychologicalPressure_Skill_Data,
+      resistUnsafePeerPressure: resistUnsafePeerPressure_Skill_Data,
+      setBoundariesInUnequalRelationships: setBoundariesInUnequalRelationships_Skill_Data,
+    },
+    order: [
+      'recognizeGroomingAndExploitation',
+      'recognizePsychologicalPressure',
+      'resistUnsafePeerPressure',
+      'setBoundariesInUnequalRelationships',
+    ],
+  },
   description: {
     methodological:
       'Coercion can use threats, secrecy, guilt, status, dependency, or urgency; a protective response need not persuade the aggressor.',

@@ -40,11 +40,18 @@ export const lightSourcesAndVisibility_SkillGroup_Data = defineSkillGroup({
     kk: 'Жарық көздері мен көріну',
     qm: 'Yarıq menbaları ve körünürlik',
   },
-  skills: [
-    classifyNaturalAndArtificialLightSources_Skill_Data,
-    distinguishALightSourceFromAnIlluminatedBody_Skill_Data,
-    explainTheConditionForAnObjectToBeVisible_Skill_Data,
-  ],
+  skills: {
+    items: {
+      classifyNaturalAndArtificialLightSources: classifyNaturalAndArtificialLightSources_Skill_Data,
+      distinguishALightSourceFromAnIlluminatedBody: distinguishALightSourceFromAnIlluminatedBody_Skill_Data,
+      explainTheConditionForAnObjectToBeVisible: explainTheConditionForAnObjectToBeVisible_Skill_Data,
+    },
+    order: [
+      'classifyNaturalAndArtificialLightSources',
+      'distinguishALightSourceFromAnIlluminatedBody',
+      'explainTheConditionForAnObjectToBeVisible',
+    ],
+  },
   description: {
     methodological:
       'An object is visible when light from it reaches the eye; a light source and an illuminated surface play different roles.',

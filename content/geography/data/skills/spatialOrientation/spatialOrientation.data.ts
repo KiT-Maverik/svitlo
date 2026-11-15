@@ -39,12 +39,15 @@ export const spatialOrientation_SkillDomain_Data = defineSkillDomain({
     kk: 'Кеңістікте бағдарлану',
     qm: 'Mekânda yön tapuv',
   },
-  groups: [
-    locationAndReference_SkillGroup_Data,
-    navigationAndMentalMaps_SkillGroup_Data,
-    spatialRelationships_SkillGroup_Data,
-    timeZones_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      locationAndReference: locationAndReference_SkillGroup_Data,
+      navigationAndMentalMaps: navigationAndMentalMaps_SkillGroup_Data,
+      spatialRelationships: spatialRelationships_SkillGroup_Data,
+      timeZones: timeZones_SkillGroup_Data,
+    },
+    order: ['locationAndReference', 'navigationAndMentalMaps', 'spatialRelationships', 'timeZones'],
+  },
   description: {
     methodological:
       'Locating and orienting oneself requires a stable or relative reference, directions, remembered spatial relationships and awareness of changing spatial and temporal frames. These competencies concern where places are, how we navigate between them, and how their civil and solar times relate—not how maps are drawn.',

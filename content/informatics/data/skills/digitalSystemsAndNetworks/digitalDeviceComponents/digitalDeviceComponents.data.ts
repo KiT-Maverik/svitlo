@@ -40,11 +40,14 @@ export const digitalDeviceComponents_SkillGroup_Data = defineSkillGroup({
     kk: 'Цифрлық құрылғылардың құрамдас бөліктері',
     qm: 'Raqamlı cihazlarnıñ parçaları',
   },
-  skills: [
-    distinguishHardwareFromSoftware_Skill_Data,
-    explainAProcessorsFunction_Skill_Data,
-    identifyDigitalDevices_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishHardwareFromSoftware: distinguishHardwareFromSoftware_Skill_Data,
+      explainAProcessorsFunction: explainAProcessorsFunction_Skill_Data,
+      identifyDigitalDevices: identifyDigitalDevices_Skill_Data,
+    },
+    order: ['distinguishHardwareFromSoftware', 'explainAProcessorsFunction', 'identifyDigitalDevices'],
+  },
   description: {
     methodological:
       'Roles of computing components: processors execute instructions, memory holds working data, and hardware and software interact. Network transmission belongs to a different group.',

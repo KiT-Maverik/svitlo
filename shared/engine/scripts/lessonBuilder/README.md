@@ -77,6 +77,15 @@ change `params.languages` or invent translations.
   Section, ContentBlock, Question, Flashcard, Checkpoint Item, Carousel Image/Scene slide,
   Quest Stage and Quest Task lives in its own `<slug>/index.ts` module. Generic
   arguments are based on the actual Engine Configurator signature.
+- `review.ts`: non-exported `LessonReview` skeleton with mandatory `ai.stages`
+  evidence for Lesson Production stages (PR + review language), a single
+  `ai.locales` integration PR, and required `human.acceptance` and
+  `human.locales` fields. Optional `human.scientific` is initially absent.
+  **The const identifier and mandatory values are deliberately blank and
+  syntactically invalid.** The specialist must first hash assembled Lesson
+  Props, then confirm review evidence for that revision; this builder cannot
+  hash an unfinished Lesson or fabricate sign-offs. A rerun never overwrites
+  recorded reviews; `check` only requires the file to exist.
 - `constants.ts`: source YAML `params.languages` as an Engine-checked readonly tuple
   and the shared `LessonLanguages` type. This is NOT an extra source of languages;
   the generated `defineLesson` references the same tuple, and nested definitions
@@ -114,7 +123,7 @@ change `params.languages` or invent translations.
 - Nested `define*` source keeps the authored Config values and source-locale
   localization. Pending `src: null` deliberately **fails TypeScript checking**
   until a media specialist provides the real asset. Generated draft modules
-  are syntactically valid but not guaranteed to be typecheck-clean.
+  are syntactically valid but not guaranteed to be typecheck-clean. Exception: the intentionally incomplete `review.ts` has syntax errors until its missing const identifier, review PR numbers, and languages are filled; it also blocks formatting of that draft file. Do not suppress these diagnostics.
 - `methodology.md` in the Lesson UUID directory, only when
   `production.methodology` is authored and the destination is safe to create.
 - For this **Lesson builder only**, `scene.production.specification` and
@@ -149,6 +158,21 @@ audio/video files**. An AI specialist performs those later and resolves the
 expected TypeScript diagnostics. Do not add placeholders, `as any`,
 `@ts-ignore`, invented media paths or fabricated locale strings to make the
 draft compile.
+
+
+### Checkpoint Answer role modules
+
+Each `checkpointItem` Config contains exactly one `question` Text and one identified `answer` Configurator:
+
+```text
+<checkpointItemSlug>/
+  index.ts                         # defineCheckpointItem
+  question/index.ts                # exactly one defineText; no extra question slug directory
+  answer/index.ts                  # defineCheckpointAnswer (authored UUID)
+  answer/<contentBlockSlug>/index.ts # recursive ContentBlocks with local text/code/assets
+```
+
+The Answer's YAML must include `config: { id, slug, type: checkpointAnswer, content: { items, order } }`. Its ID is a permanent authored entity identity, never inferred by the builder; the previous bare `answer: { items, order }` shape is not accepted as an alternate API. The Question's original Text slug remains in Config despite the role-based file path. Child media/Scene source paths stay module-relative (each `import.meta.url` belongs to the nested block). The builder is create-only and deliberately does not typecheck unfinished authored media.
 
 Quest Sections (`type: quest`) use named `stages` and `tasks` slug maps, each with a mandatory `start` entry. `questStage.content` contains two Video configurators (`video.medium`, `video.small`), nullable `audio.dialogue`/`narration`/`background`, one Image and one localized Subtitles configurator; `questTask.scene` contains exactly one Scene configurator. The builder emits `defineQuestSection`, `defineStage`, `defineTask`, and nested `define*` calls, without a Stage/Task `order` array. Missing media paths remain explicit `null` and Quest runtime playback remains **unsupported**; this is an authoring draft only.
 

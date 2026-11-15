@@ -41,12 +41,20 @@ export const buildings_SkillGroup_Data = defineSkillGroup({
     kk: 'Ғимараттар',
     qm: 'Binalar',
   },
-  skills: [
-    buildingEnvelopes_Skill_Data,
-    designAccessibleBuildingCirculation_Skill_Data,
-    identifyStructuralBuildingSystems_Skill_Data,
-    relateBuildingDesignToASite_Skill_Data,
-  ],
+  skills: {
+    items: {
+      buildingEnvelopes: buildingEnvelopes_Skill_Data,
+      designAccessibleBuildingCirculation: designAccessibleBuildingCirculation_Skill_Data,
+      identifyStructuralBuildingSystems: identifyStructuralBuildingSystems_Skill_Data,
+      relateBuildingDesignToASite: relateBuildingDesignToASite_Skill_Data,
+    },
+    order: [
+      'buildingEnvelopes',
+      'designAccessibleBuildingCirculation',
+      'identifyStructuralBuildingSystems',
+      'relateBuildingDesignToASite',
+    ],
+  },
   description: {
     methodological:
       'A complete building combines its main structure with weather protection, spatial access and environmental adaptation.',

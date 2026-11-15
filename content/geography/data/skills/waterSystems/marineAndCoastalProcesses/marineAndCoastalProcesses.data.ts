@@ -40,11 +40,18 @@ export const marineAndCoastalProcesses_SkillGroup_Data = defineSkillGroup({
     kk: 'Теңіз және жағалау үдерістері',
     qm: 'Deñiz ve yalığa bağlı adiseler',
   },
-  skills: [
-    identifyCoastalErosionAndDepositionFeatures_Skill_Data,
-    interpretGeographicPatternsOfOceanCurrents_Skill_Data,
-    interpretGeographicPatternsOfOceanTides_Skill_Data,
-  ],
+  skills: {
+    items: {
+      identifyCoastalErosionAndDepositionFeatures: identifyCoastalErosionAndDepositionFeatures_Skill_Data,
+      interpretGeographicPatternsOfOceanCurrents: interpretGeographicPatternsOfOceanCurrents_Skill_Data,
+      interpretGeographicPatternsOfOceanTides: interpretGeographicPatternsOfOceanTides_Skill_Data,
+    },
+    order: [
+      'identifyCoastalErosionAndDepositionFeatures',
+      'interpretGeographicPatternsOfOceanCurrents',
+      'interpretGeographicPatternsOfOceanTides',
+    ],
+  },
   description: {
     methodological:
       'Coastal and marine environments differ in exposure, enclosure, water movement, and relation to land. The emphasis is on geographic patterns and coastal form rather than detailed fluid dynamics.',

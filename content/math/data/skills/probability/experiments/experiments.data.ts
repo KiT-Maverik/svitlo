@@ -36,7 +36,12 @@ export const experiments_SkillGroup_Data = defineSkillGroup({
     pl: 'Doświadczenia losowe',
     uk: 'Експерименти',
   },
-  skills: [experimentVariation_Skill_Data],
+  skills: {
+    items: {
+      experimentVariation: experimentVariation_Skill_Data,
+    },
+    order: ['experimentVariation'],
+  },
   description: {
     methodological:
       'Variation in observed outcome frequencies across repeated series of random trials even when their conditions remain the same.',

@@ -41,12 +41,15 @@ export const spacecraftObservations_SkillGroup_Data = defineSkillGroup({
     he: 'תצפיות באמצעות חלליות',
     vi: 'Quan sát bằng tàu thăm dò không gian',
   },
-  skills: [
-    flybyMeasurements_Skill_Data,
-    landersAndRoversAsScientificProbes_Skill_Data,
-    orbitalMeasurements_Skill_Data,
-    sampleReturnEvidence_Skill_Data,
-  ],
+  skills: {
+    items: {
+      flybyMeasurements: flybyMeasurements_Skill_Data,
+      landersAndRoversAsScientificProbes: landersAndRoversAsScientificProbes_Skill_Data,
+      orbitalMeasurements: orbitalMeasurements_Skill_Data,
+      sampleReturnEvidence: sampleReturnEvidence_Skill_Data,
+    },
+    order: ['flybyMeasurements', 'landersAndRoversAsScientificProbes', 'orbitalMeasurements', 'sampleReturnEvidence'],
+  },
   description: {
     methodological:
       'Remote flybys, orbiters, landers and sample-return missions provide different access to remote worlds. These competencies concern scientific evidence, temporal coverage, sampling limits and interpretation; they exclude the engineering design of the vehicles.',

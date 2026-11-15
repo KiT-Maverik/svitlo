@@ -395,16 +395,18 @@ function render(e, value, kids) {
     imports.push('import { ' + x.slug + "_SkillGroup_Data } from './" + x.slug + '/' + x.slug + ".data';");
   if (skills.length)
     imports.push('import { ' + skills.map(x => x.slug + '_Skill_Data').join(', ') + " } from './skills';");
-  if (e.kind === 'SkillDomain') {
-    lines.push('  groups: [');
-    for (const x of groups) lines.push('    ' + x.slug + '_SkillGroup_Data,');
-    lines.push('  ],');
-  }
-  if (skills.length) {
-    lines.push('  skills: [');
-    for (const x of skills) lines.push('    ' + x.slug + '_Skill_Data,');
-    lines.push('  ],');
-  }
+  const addCollection = (name, children, kind) => {
+    lines.push('  ' + name + ': {');
+    lines.push('    items: {');
+    for (const child of children) lines.push('      ' + child.slug + ': ' + child.slug + '_' + kind + '_Data,');
+    lines.push('    },');
+    lines.push('    order: [');
+    for (const child of children) lines.push('      ' + JSON.stringify(child.slug) + ',');
+    lines.push('    ],');
+    lines.push('  },');
+  };
+  if (e.kind === 'SkillDomain') addCollection('groups', groups, 'SkillGroup');
+  if (skills.length) addCollection('skills', skills, 'Skill');
   lines.push('  description: {');
   lines.push('    methodological: ' + JSON.stringify(value.methodological) + ',');
   if (value.frontend) lines.push('    frontend: ' + dictionary(value.frontend, 4) + ',');
@@ -435,26 +437,34 @@ function stableMembership(e, kids) {
     const prop = optionalProperty(old, field);
     if (!prop) {
       if (members.length) return false;
-      if (field === 'groups') continue;
       continue;
     }
     const value = unwrap(prop.initializer);
-    if (ts.isArrayLiteralExpression(value)) {
-      if (value.elements.length !== members.length) return false;
-      const expected = new Set(members.map(x => x.slug + '_' + kind + '_Data'));
-      if (value.elements.some(x => !ts.isIdentifier(x) || !expected.has(x.text))) return false;
-    } else if (ts.isObjectLiteralExpression(value)) {
-      if (value.properties.length !== members.length) return false;
-      for (const member of members) {
-        const entry = value.properties.find(p => ts.isPropertyAssignment(p) && p.name?.text === member.slug);
-        if (
-          !entry ||
-          !ts.isIdentifier(entry.initializer) ||
-          entry.initializer.text !== member.slug + '_' + kind + '_Data'
-        )
-          return false;
-      }
-    } else return false;
+    if (!ts.isObjectLiteralExpression(value) || value.properties.length !== 2) return false;
+    const items = unwrap(optionalProperty(value, 'items')?.initializer);
+    const order = unwrap(optionalProperty(value, 'order')?.initializer);
+    if (!ts.isObjectLiteralExpression(items) || !ts.isArrayLiteralExpression(order)) return false;
+    if (items.properties.length !== members.length || order.elements.length !== members.length) return false;
+    const expected = new Set(members.map(x => x.slug));
+    const keys = [];
+    for (const entry of items.properties) {
+      if (
+        !ts.isPropertyAssignment(entry) ||
+        !(ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) ||
+        !ts.isIdentifier(entry.initializer) ||
+        !expected.has(entry.name.text) ||
+        entry.initializer.text !== entry.name.text + '_' + kind + '_Data'
+      )
+        return false;
+      keys.push(entry.name.text);
+    }
+    const ordered = [];
+    for (const entry of order.elements) {
+      if (!ts.isStringLiteral(entry) || !expected.has(entry.text)) return false;
+      ordered.push(entry.text);
+    }
+    if (new Set(keys).size !== keys.length || new Set(ordered).size !== ordered.length) return false;
+    if (keys.some(key => !ordered.includes(key))) return false;
   }
   return true;
 }

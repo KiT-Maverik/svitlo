@@ -40,13 +40,22 @@ export const firstAidAndImmediateResponse_SkillDomain_Data = defineSkillDomain({
     kk: 'Алғашқы көмек және шұғыл әрекет',
     qm: 'İlk yardım ve acele cevap',
   },
-  groups: [
-    basicLifeSupport_SkillGroup_Data,
-    bleedingAndInjuries_SkillGroup_Data,
-    environmentalAndAcuteInjuries_SkillGroup_Data,
-    initialAssessmentAndHelp_SkillGroup_Data,
-    medicalEmergencies_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      basicLifeSupport: basicLifeSupport_SkillGroup_Data,
+      bleedingAndInjuries: bleedingAndInjuries_SkillGroup_Data,
+      environmentalAndAcuteInjuries: environmentalAndAcuteInjuries_SkillGroup_Data,
+      initialAssessmentAndHelp: initialAssessmentAndHelp_SkillGroup_Data,
+      medicalEmergencies: medicalEmergencies_SkillGroup_Data,
+    },
+    order: [
+      'basicLifeSupport',
+      'bleedingAndInjuries',
+      'environmentalAndAcuteInjuries',
+      'initialAssessmentAndHelp',
+      'medicalEmergencies',
+    ],
+  },
   description: {
     methodological:
       'Immediate assistance aims to recognize danger, activate professional help, and provide appropriate basic interventions within training and scene safety. Clinical treatment and invasive procedures are not implied by inclusion in the taxonomy.',

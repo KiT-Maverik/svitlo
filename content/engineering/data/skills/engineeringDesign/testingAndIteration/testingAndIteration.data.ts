@@ -44,15 +44,26 @@ export const testingAndIteration_SkillGroup_Data = defineSkillGroup({
     kk: 'Сынақ және қайталап жетілдіру',
     qm: 'Sınav ve tekrar yahşılaştırma',
   },
-  skills: [
-    diagnoseAPrototypeFailure_Skill_Data,
-    evaluatePrototypePerformance_Skill_Data,
-    measurementUncertainty_Skill_Data,
-    planAnEngineeringTest_Skill_Data,
-    reviseADesignUsingEvidence_Skill_Data,
-    validateUserNeeds_Skill_Data,
-    verifyDesignRequirements_Skill_Data,
-  ],
+  skills: {
+    items: {
+      diagnoseAPrototypeFailure: diagnoseAPrototypeFailure_Skill_Data,
+      evaluatePrototypePerformance: evaluatePrototypePerformance_Skill_Data,
+      measurementUncertainty: measurementUncertainty_Skill_Data,
+      planAnEngineeringTest: planAnEngineeringTest_Skill_Data,
+      reviseADesignUsingEvidence: reviseADesignUsingEvidence_Skill_Data,
+      validateUserNeeds: validateUserNeeds_Skill_Data,
+      verifyDesignRequirements: verifyDesignRequirements_Skill_Data,
+    },
+    order: [
+      'diagnoseAPrototypeFailure',
+      'evaluatePrototypePerformance',
+      'measurementUncertainty',
+      'planAnEngineeringTest',
+      'reviseADesignUsingEvidence',
+      'validateUserNeeds',
+      'verifyDesignRequirements',
+    ],
+  },
   description: {
     methodological:
       'A plausible prototype is not proof of performance. Measurement, failure analysis and controlled revisions provide a basis for improving the proposed product.',

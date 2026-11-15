@@ -43,14 +43,24 @@ export const evidenceAndInterpretation_SkillGroup_Data = defineSkillGroup({
     kk: 'Дәлелдер және түсіндіру',
     qm: 'Deliller ve izaat',
   },
-  skills: [
-    analyticalReproducibility_Skill_Data,
-    confoundingVariables_Skill_Data,
-    correlationAndCausation_Skill_Data,
-    descriptiveStatisticsInResearch_Skill_Data,
-    evidenceQuality_Skill_Data,
-    studyReplication_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyticalReproducibility: analyticalReproducibility_Skill_Data,
+      confoundingVariables: confoundingVariables_Skill_Data,
+      correlationAndCausation: correlationAndCausation_Skill_Data,
+      descriptiveStatisticsInResearch: descriptiveStatisticsInResearch_Skill_Data,
+      evidenceQuality: evidenceQuality_Skill_Data,
+      studyReplication: studyReplication_Skill_Data,
+    },
+    order: [
+      'analyticalReproducibility',
+      'confoundingVariables',
+      'correlationAndCausation',
+      'descriptiveStatisticsInResearch',
+      'evidenceQuality',
+      'studyReplication',
+    ],
+  },
   description: {
     methodological:
       'Quantitative summaries and research transparency help discriminate robust patterns from noise and misleading causal stories.',

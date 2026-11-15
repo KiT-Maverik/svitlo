@@ -40,11 +40,14 @@ export const organizationAndMembership_SkillGroup_Data = defineSkillGroup({
     kk: 'Ұйымдасу және жүйеге жату',
     qm: 'Tertip ve sistemalarğa aitlik',
   },
-  skills: [
-    freeFloatingPlanets_Skill_Data,
-    gravitationallyBoundSystems_Skill_Data,
-    objectMembershipAndIsolation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      freeFloatingPlanets: freeFloatingPlanets_Skill_Data,
+      gravitationallyBoundSystems: gravitationallyBoundSystems_Skill_Data,
+      objectMembershipAndIsolation: objectMembershipAndIsolation_Skill_Data,
+    },
+    order: ['freeFloatingPlanets', 'gravitationallyBoundSystems', 'objectMembershipAndIsolation'],
+  },
   description: {
     methodological:
       "A body's membership in a system is a different property from its type; the same class of object can be gravitationally bound, ejected or found in a sparse galactic environment.",

@@ -42,13 +42,22 @@ export const hunterGathererSocieties_SkillGroup_Data = defineSkillGroup({
     kk: 'Аңшылар мен терімшілер қоғамдары',
     qm: 'Avcı ve toplayıcı cemiyetler',
   },
-  skills: [
-    controlledUseOfFire_Skill_Data,
-    earlyHumanCooperation_Skill_Data,
-    foragingEconomies_Skill_Data,
-    prehistoricSymbolicCulture_Skill_Data,
-    stoneToolTechnologies_Skill_Data,
-  ],
+  skills: {
+    items: {
+      controlledUseOfFire: controlledUseOfFire_Skill_Data,
+      earlyHumanCooperation: earlyHumanCooperation_Skill_Data,
+      foragingEconomies: foragingEconomies_Skill_Data,
+      prehistoricSymbolicCulture: prehistoricSymbolicCulture_Skill_Data,
+      stoneToolTechnologies: stoneToolTechnologies_Skill_Data,
+    },
+    order: [
+      'controlledUseOfFire',
+      'earlyHumanCooperation',
+      'foragingEconomies',
+      'prehistoricSymbolicCulture',
+      'stoneToolTechnologies',
+    ],
+  },
   description: {
     methodological:
       'Mobile and semi-sedentary societies used varied ecological niches, tools, and social arrangements.',

@@ -35,7 +35,7 @@ content/<book>/data/lessons/<last-uuid-digit>/<lesson-uuid>/
   config.yaml                   # immutable authored technical source
   index.ts                      # exports the Lesson configurator
   constants.ts                  # supported languages tuple and derived types
-  review.ts                     # review metadata and revision constant; no exports
+  review.ts                     # intentionally unfinished typed Review register; no exports
   methodology.md                # if supplied by production
   sections/
     index.ts                    # exports section: { items, order }
@@ -102,19 +102,15 @@ The **Stage 3 contract changes the historical Markdown file-mode folder from `lo
 
 **Quest:** Stage/Task are special nested configurators with their own required structure, not generic `{ items, order }` collections. Source layout should support their actual typed hierarchy without inventing a second order field. Quest runtime support remains separate.
 
-## Review metadata and source-revision binding
+## Review metadata and assembled-Props revision identity
 
-Proposed generation boundary: `review.ts` declares a locally typed, initially empty Review value and a revision constant; **exports nothing**. Reviews are never inferred from the existence of a PR or a generated file. Model the intended information without conflating review, approval and publication:
+**Stage 6 implementation:** the Lesson YAML scaffolder creates a non-exported `review.ts` beside `index.ts`, importing the strict Engine `LessonReview` type. Its variable identifier and required PR/language expressions are intentionally **missing**, so the generated Draft fails TypeScript parsing until actual completed Lesson Props and review evidence exist. Never fabricate a temporary successful identifier, placeholder PR numbers or approvals.
 
-- `human.acceptance`: PR number (numeric; exact optionality to define in Engine).
-- `human.scientific`: `{ pr: string, language: LanguageCode }`.
-- `human.languages`: language-to-review-PR mapping.
-- `ai.languages`: language-to-review-PR mapping.
-- `ai.stages`: production-stage-slug-to-review-PR mapping; these are **Lesson Production workflow stages**, never Quest Stages.
+The general `Review` type requires `ai.locales` (one integrated AI localization-review PR) and `human.acceptance` (owner-authorized PR) plus a required `human.locales` map (individual optional language→human review PRs). `human.scientific` is optional with `{ pr: number; language: LanguageCode }`. `LessonReview` adds mandatory `ai.stages` entries keyed by the exact Lesson Production stage slugs. Every stage entry stores `{ pr: number; language: LanguageCode }`. These are **Lesson Production**, never Quest, stages. The staged review file initially provides all required property keys with missing mandatory values, but does not write the optional scientific record.
 
-Restore/reconcile general Review and Lesson-specific Review types in Engine during the designated implementation stage. Keep incomplete initial metadata type-safe without false approvals. This file is authoring traceability, not Lesson Config/Props and not a runtime export.
+When a finished Lesson can actually produce `lesson.build.props({ languages })` for **all supported languages**, use the Build-only Engine function `hashLessonReviewProps` on that complete assembled structure. Canonically serialize JSON keys while retaining array order, compute SHA-256 and take the first 20 lowercase hex digits. This is a digest of **assembled Lesson Props**, **not** the intermediary YAML Config nor its production specifications. It includes all ordered nested Lesson content and localized Props. Bind that revision to the local `review.ts` variable, using **only** the digest as its identifier; prepend `_` if the first character is a digit, as TypeScript requires. Use `lessonReviewIdentifier` for the syntax-safe representation. The record itself is not part of Props. No separate review digest for every child is needed.
 
-The revision hash represents the **entire authored `config` tree**, recursively including entity IDs, slugs, params, locale dictionaries, children and their order, **excluding** `production` and generator implementation functions. Canonicalize object key order deterministically while preserving semantic ordered arrays, then use a collision-resistant digest (recommended SHA-256; suggested 20 hex chars/80 bits for a short display token; finalize length in the Review stage). The JavaScript variable name can be `configRevision`; a hash value is a **string**, so it does not need to begin with an alphabetic character. A digest flags possible stale approvals; it is not a security signature or approval itself. Entity-level hashes are **deferred** until a real use case is identified.
+Changes to external Scene implementation files or actual binary media may not change the Lesson Props digest if their references stay identical. Track their implementation and content independently; do not claim this digest covers them. Do not transfer review PR evidence from an older digest automatically. PR references indicate review evidence, **not** automatic editorial approval. Preserve detailed findings and exact pre-Props source revisions in the review PR and Production Issue until the coordinator verifies them against the assembled revision. For a decision narrowly affecting one reviewed Lesson/locale, include a short TypeScript comment immediately above its PR-valued entry. General policy belongs in Studio guidance. Do not create duplicate `experience-review.md`, `methodology-review.md` or per-locale review logs.
 
 ## Existing implementation compatibility: mandatory follow-up checks
 

@@ -41,12 +41,20 @@ export const architecturalFormAndStyle_SkillGroup_Data = defineSkillGroup({
     kk: 'Сәулеттік пішін мен стиль',
     qm: 'Mimari şekil ve üslüp',
   },
-  skills: [
-    analyzeABuildingFacade_Skill_Data,
-    compareArchitecturalStyles_Skill_Data,
-    composeArchitecturalMassing_Skill_Data,
-    interpretArchitecturalOrnament_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeABuildingFacade: analyzeABuildingFacade_Skill_Data,
+      compareArchitecturalStyles: compareArchitecturalStyles_Skill_Data,
+      composeArchitecturalMassing: composeArchitecturalMassing_Skill_Data,
+      interpretArchitecturalOrnament: interpretArchitecturalOrnament_Skill_Data,
+    },
+    order: [
+      'analyzeABuildingFacade',
+      'compareArchitecturalStyles',
+      'composeArchitecturalMassing',
+      'interpretArchitecturalOrnament',
+    ],
+  },
   description: {
     methodological:
       'Building volumes, facade rhythms and ornament carry expressive meaning independently of engineering feasibility.',

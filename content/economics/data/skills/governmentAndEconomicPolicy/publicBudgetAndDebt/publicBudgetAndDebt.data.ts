@@ -40,11 +40,14 @@ export const publicBudgetAndDebt_SkillGroup_Data = defineSkillGroup({
     kk: 'Мемлекеттік бюджет және қарыз',
     qm: 'Devlet bütçesi ve borcu',
   },
-  skills: [
-    budgetDeficitAndSurplus_Skill_Data,
-    governmentRevenuesAndExpenditures_Skill_Data,
-    publicDebtSustainability_Skill_Data,
-  ],
+  skills: {
+    items: {
+      budgetDeficitAndSurplus: budgetDeficitAndSurplus_Skill_Data,
+      governmentRevenuesAndExpenditures: governmentRevenuesAndExpenditures_Skill_Data,
+      publicDebtSustainability: publicDebtSustainability_Skill_Data,
+    },
+    order: ['budgetDeficitAndSurplus', 'governmentRevenuesAndExpenditures', 'publicDebtSustainability'],
+  },
   description: {
     methodological:
       'Government revenue and spending occur over time; deficits create future obligations and opportunity costs.',

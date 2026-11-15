@@ -121,22 +121,22 @@ describe('Configurators', () => {
         });
         const resource = carousel.build.props({ languages: ['en', 'uk'] });
         assert.equal(resource.base.locale?.title, 'Gallery');
-        assert.deepEqual(resource.locale?.en?.locale.slides?.map(slide => slide.locale), [
+        assert.deepEqual(resource.locale?.en?.locale.slides?.map(slide => slide?.type === 'image' ? slide.locale : undefined), [
           { src: 'https://example.com/a-en.png', alt: 'First' },
           { src: 'https://example.com/b.png', alt: 'Second', caption: 'A caption' },
         ]);
-        assert.equal(resource.locale?.uk?.locale.slides?.[0]?.locale.src, 'https://example.com/a-uk.png');
+        assert.equal(resource.locale?.uk?.locale.slides?.[0]?.type === 'image' ? resource.locale.uk.locale.slides[0]?.locale?.src : undefined, 'https://example.com/a-uk.png');
         const localized = carousel.build.overrides(
           {
             slides: { items: { first: { locale: { alt: { uk: 'Перший' } } } } },
           },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(localized.locale?.uk?.locale.slides?.map(slide => slide.locale), [
+        assert.deepEqual(localized.locale?.uk?.locale.slides?.map(slide => slide?.type === 'image' ? slide.locale : undefined), [
           { src: 'https://example.com/a-uk.png', alt: 'Перший' },
           { src: 'https://example.com/b.png', alt: 'Second', caption: 'Підпис' },
         ]);
-        assert.equal(localized.locale?.en?.locale.slides?.[0]?.locale.alt, 'First');
+        assert.equal(localized.locale?.en?.locale.slides?.[0]?.type === 'image' ? localized.locale.en.locale.slides[0]?.locale?.alt : undefined, 'First');
         assert.equal(JSON.stringify(localized).includes('additionalItems'), false);
         assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).locale?.en?.locale.slides?.length, 2);
       });
@@ -511,7 +511,7 @@ describe('Configurators', () => {
         patch.slides.items.first.locale.alt = 'Mutated caller';
         const published = publication.base.locale?.slides?.[0];
         assert.equal(published?.type, 'image');
-        if (published?.type === 'image') {
+        if (published?.type === 'image' && published.locale && 'alt' in published.locale) {
           assert.equal(published.locale.alt, 'Updated');
           published.locale.alt = 'Mutated result';
         }

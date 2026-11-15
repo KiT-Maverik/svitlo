@@ -40,13 +40,22 @@ export const stellarPropertiesAndEvolution_SkillDomain_Data = defineSkillDomain(
     kk: 'Жұлдыздардың қасиеттері мен эволюциясы',
     qm: 'Yıldızlarnıñ hususiyetleri ve evolyutsiyası',
   },
-  groups: [
-    starFormation_SkillGroup_Data,
-    stellarAndSubstellarClassification_SkillGroup_Data,
-    stellarEvolution_SkillGroup_Data,
-    stellarProperties_SkillGroup_Data,
-    stellarRemnants_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      starFormation: starFormation_SkillGroup_Data,
+      stellarAndSubstellarClassification: stellarAndSubstellarClassification_SkillGroup_Data,
+      stellarEvolution: stellarEvolution_SkillGroup_Data,
+      stellarProperties: stellarProperties_SkillGroup_Data,
+      stellarRemnants: stellarRemnants_SkillGroup_Data,
+    },
+    order: [
+      'starFormation',
+      'stellarAndSubstellarClassification',
+      'stellarEvolution',
+      'stellarProperties',
+      'stellarRemnants',
+    ],
+  },
   description: {
     methodological:
       'Stars are understood through measurements of their physical properties and models of formation, fusion, change and eventual remnants. The same competencies apply to the Sun where its properties form a useful comparison.',

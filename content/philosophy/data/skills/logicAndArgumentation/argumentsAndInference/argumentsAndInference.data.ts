@@ -41,12 +41,20 @@ export const argumentsAndInference_SkillGroup_Data = defineSkillGroup({
     kk: 'Дәлелдер мен қорытынды шығару',
     qm: 'Deliller ve netice çıqaruv',
   },
-  skills: [
-    distinguishAnArgumentFromAnExplanation_Skill_Data,
-    identifyAnArgumentsConclusion_Skill_Data,
-    identifyPremisesInAnArgument_Skill_Data,
-    reconstructAnArgumentInStandardForm_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAnArgumentFromAnExplanation: distinguishAnArgumentFromAnExplanation_Skill_Data,
+      identifyAnArgumentsConclusion: identifyAnArgumentsConclusion_Skill_Data,
+      identifyPremisesInAnArgument: identifyPremisesInAnArgument_Skill_Data,
+      reconstructAnArgumentInStandardForm: reconstructAnArgumentInStandardForm_Skill_Data,
+    },
+    order: [
+      'distinguishAnArgumentFromAnExplanation',
+      'identifyAnArgumentsConclusion',
+      'identifyPremisesInAnArgument',
+      'reconstructAnArgumentInStandardForm',
+    ],
+  },
   description: {
     methodological:
       'Arguments connect propositions through an inferential claim; assertions, explanations, and rhetorical appeals may occur nearby without playing the same role.',

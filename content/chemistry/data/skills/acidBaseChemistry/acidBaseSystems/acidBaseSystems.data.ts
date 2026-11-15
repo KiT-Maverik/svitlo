@@ -41,12 +41,15 @@ export const acidBaseSystems_SkillGroup_Data = defineSkillGroup({
     kk: 'Қышқыл-негіз жүйелері',
     qm: 'Asit-baza sistemaları',
   },
-  skills: [
-    acidBaseIndicators_Skill_Data,
-    acidBaseTitration_Skill_Data,
-    bufferSolutions_Skill_Data,
-    neutralization_Skill_Data,
-  ],
+  skills: {
+    items: {
+      acidBaseIndicators: acidBaseIndicators_Skill_Data,
+      acidBaseTitration: acidBaseTitration_Skill_Data,
+      bufferSolutions: bufferSolutions_Skill_Data,
+      neutralization: neutralization_Skill_Data,
+    },
+    order: ['acidBaseIndicators', 'acidBaseTitration', 'bufferSolutions', 'neutralization'],
+  },
   description: {
     methodological:
       'Neutralization, indicator responses, buffer equilibria and titration exemplify how acid–base behavior is observed, controlled and measured under specific conditions.',

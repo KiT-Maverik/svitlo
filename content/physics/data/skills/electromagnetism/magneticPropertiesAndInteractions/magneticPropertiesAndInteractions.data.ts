@@ -43,14 +43,24 @@ export const magneticPropertiesAndInteractions_SkillGroup_Data = defineSkillGrou
     ka: 'მაგნიტური თვისებები და ურთიერთქმედებები',
     kk: 'Магниттік қасиеттер мен өзара әрекеттесулер',
   },
-  skills: [
-    classifyObjectsByMagneticInteraction_Skill_Data,
-    explainMagneticActionWithoutContact_Skill_Data,
-    identifyMaterialsAttractedToAMagnet_Skill_Data,
-    predictInteractionsBetweenMagneticPoles_Skill_Data,
-    recognizeMagneticAttraction_Skill_Data,
-    recognizeMagneticRepulsion_Skill_Data,
-  ],
+  skills: {
+    items: {
+      classifyObjectsByMagneticInteraction: classifyObjectsByMagneticInteraction_Skill_Data,
+      explainMagneticActionWithoutContact: explainMagneticActionWithoutContact_Skill_Data,
+      identifyMaterialsAttractedToAMagnet: identifyMaterialsAttractedToAMagnet_Skill_Data,
+      predictInteractionsBetweenMagneticPoles: predictInteractionsBetweenMagneticPoles_Skill_Data,
+      recognizeMagneticAttraction: recognizeMagneticAttraction_Skill_Data,
+      recognizeMagneticRepulsion: recognizeMagneticRepulsion_Skill_Data,
+    },
+    order: [
+      'classifyObjectsByMagneticInteraction',
+      'explainMagneticActionWithoutContact',
+      'identifyMaterialsAttractedToAMagnet',
+      'predictInteractionsBetweenMagneticPoles',
+      'recognizeMagneticAttraction',
+      'recognizeMagneticRepulsion',
+    ],
+  },
   description: {
     methodological:
       'Materials and pole orientation affect interactions; direct contact between magnets is not required.',

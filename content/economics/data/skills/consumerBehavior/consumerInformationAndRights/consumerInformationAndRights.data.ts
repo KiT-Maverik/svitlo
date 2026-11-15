@@ -41,12 +41,15 @@ export const consumerInformationAndRights_SkillGroup_Data = defineSkillGroup({
     kk: 'Тұтынушы ақпараты мен құқықтары',
     qm: 'İstimalci malümatı ve aqları',
   },
-  skills: [
-    consumerRightsAndResponsibilities_Skill_Data,
-    qualityOfConsumerInformation_Skill_Data,
-    totalCostOfPurchase_Skill_Data,
-    unitPricing_Skill_Data,
-  ],
+  skills: {
+    items: {
+      consumerRightsAndResponsibilities: consumerRightsAndResponsibilities_Skill_Data,
+      qualityOfConsumerInformation: qualityOfConsumerInformation_Skill_Data,
+      totalCostOfPurchase: totalCostOfPurchase_Skill_Data,
+      unitPricing: unitPricing_Skill_Data,
+    },
+    order: ['consumerRightsAndResponsibilities', 'qualityOfConsumerInformation', 'totalCostOfPurchase', 'unitPricing'],
+  },
   description: {
     methodological:
       'Sound consumer decisions depend not only on price but also on product information, contract terms, and possible protections.',

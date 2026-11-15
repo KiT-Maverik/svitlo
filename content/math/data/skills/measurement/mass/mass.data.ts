@@ -41,7 +41,15 @@ export const mass_SkillGroup_Data = defineSkillGroup({
     pl: 'Masa',
     uk: 'Маса',
   },
-  skills: [centnerKilogram_Skill_Data, compareMass_Skill_Data, kilogramGram_Skill_Data, weighObject_Skill_Data],
+  skills: {
+    items: {
+      centnerKilogram: centnerKilogram_Skill_Data,
+      compareMass: compareMass_Skill_Data,
+      kilogramGram: kilogramGram_Skill_Data,
+      weighObject: weighObject_Skill_Data,
+    },
+    order: ['centnerKilogram', 'compareMass', 'kilogramGram', 'weighObject'],
+  },
   description: {
     methodological:
       'Mass as a physical quantity, its comparison with balances, reading its numerical value from instruments, and relationships among established units of mass. Mass is not identical to weight as a force.',

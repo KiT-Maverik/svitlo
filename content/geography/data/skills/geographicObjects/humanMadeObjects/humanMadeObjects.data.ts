@@ -40,11 +40,19 @@ export const humanMadeObjects_SkillGroup_Data = defineSkillGroup({
     kk: 'Адам жасаған нысандар',
     qm: 'İnsan yaratqan obyektler',
   },
-  skills: [
-    classifySettlementsByTheirGeographicCharacteristics_Skill_Data,
-    identifyCommonHumanMadeGeographicObjects_Skill_Data,
-    locateHumanMadeGeographicObjectsOnAMap_Skill_Data,
-  ],
+  skills: {
+    items: {
+      classifySettlementsByTheirGeographicCharacteristics:
+        classifySettlementsByTheirGeographicCharacteristics_Skill_Data,
+      identifyCommonHumanMadeGeographicObjects: identifyCommonHumanMadeGeographicObjects_Skill_Data,
+      locateHumanMadeGeographicObjectsOnAMap: locateHumanMadeGeographicObjectsOnAMap_Skill_Data,
+    },
+    order: [
+      'classifySettlementsByTheirGeographicCharacteristics',
+      'identifyCommonHumanMadeGeographicObjects',
+      'locateHumanMadeGeographicObjectsOnAMap',
+    ],
+  },
   description: {
     methodological:
       'People build or organize identifiable features such as settlements, roads, bridges, ports and waterways. Their classification concerns recognizably different physical or functional types; networks, economics and governance are studied in other Domains.',

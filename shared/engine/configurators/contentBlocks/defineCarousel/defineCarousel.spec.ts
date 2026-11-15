@@ -42,17 +42,17 @@ describe('Configurators', () => {
         const resource = carousel.build.props(scope);
         assert.equal(resource.base.locale?.slides, undefined);
         const en = resource.locale?.en?.locale.slides;
-        assert.deepEqual(en?.map(slide => [slide.id, slide.slug, slide.type]), [
+        assert.deepEqual(en?.map(slide => slide ? [slide.id, slide.slug, slide.type] : undefined), [
           [ids[2], 'second', 'image'], [ids[1], 'first', 'image'],
         ]);
-        assert.deepEqual(en?.map(slide => slide.locale), [
+        assert.deepEqual(en?.map(slide => slide?.type === 'image' ? slide.locale : undefined), [
           { src: 'https://example.com/b.png', alt: 'Second' },
           { src: 'https://example.com/en-a.png', alt: 'First' },
         ]);
-        assert.deepEqual(resource.locale?.uk?.locale.slides?.map(slide => slide.locale.src), [
+        assert.deepEqual(resource.locale?.uk?.locale.slides?.map(slide => slide?.type === 'image' ? slide.locale?.src : undefined), [
           'https://example.com/b.png', 'https://example.com/uk-a.png',
         ]);
-        assert.equal(resource.locale?.en?.locale.slides?.[0]?.params.fill, true);
+        assert.equal(resource.locale?.en?.locale.slides?.[0]?.type === 'image' ? resource.locale.en.locale.slides[0]?.params?.fill : undefined, true);
         assert.equal(JSON.stringify(resource).includes('"additionalItems"'), false);
         assert.equal(JSON.stringify(resource).includes('"order"'), false);
         assert.equal(carousel_Props_Schema.safeParse({
@@ -73,11 +73,11 @@ describe('Configurators', () => {
           slides: { items: { picture, activity }, order: ['picture', 'activity'] },
         });
         const built = carousel.build.props(scope);
-        assert.deepEqual(built.locale?.uk?.locale.slides?.map(slide => slide.type), ['image', 'scene']);
+        assert.deepEqual(built.locale?.uk?.locale.slides?.map(slide => slide?.type), ['image', 'scene']);
         const scene = built.locale?.uk?.locale.slides?.[1];
         assert.equal(scene?.id, ids[4]);
         assert.equal(scene?.type, 'scene');
-        if (scene?.type === 'scene') assert.deepEqual(scene.locale.value, { instruction: 'Обери' });
+        if (scene?.type === 'scene' && scene.locale && 'value' in scene.locale) assert.deepEqual(scene.locale.value, { instruction: 'Обери' });
         assert.equal(carousel_Props_Schema.safeParse({
           ...built.base, locale: { ...built.base.locale, ...built.locale?.uk?.locale },
         }).success, true);
@@ -114,7 +114,7 @@ describe('Configurators', () => {
         const built = carousel.build.overrides(patch, scope);
         assert.deepEqual(built.locale?.uk?.locale.slides?.map(slide => slide.type), ['scene', 'image']);
         const second = built.locale?.uk?.locale.slides?.[1];
-        if (second?.type === 'image') assert.equal(second.locale.alt, 'Другий');
+        if (second?.type === 'image' && second.locale && 'alt' in second.locale) assert.equal(second.locale.alt, 'Другий');
         assert.deepEqual(carousel.build.props(scope), before);
         assert.deepEqual(carousel.build.overrides(patch, scope), built);
       });

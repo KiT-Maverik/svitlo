@@ -37,7 +37,11 @@
               }
             }
           },
-          "required": ["assessmentMethod", "restrictions", "correctAnswers"],
+          "required": [
+            "assessmentMethod",
+            "restrictions",
+            "correctAnswers"
+          ],
           "additionalProperties": false
         },
         "locale": {
@@ -47,7 +51,9 @@
               "$ref": "#/$defs/__schema6"
             }
           },
-          "required": ["placeholder"],
+          "required": [
+            "placeholder"
+          ],
           "additionalProperties": false
         },
         "content": {
@@ -63,11 +69,20 @@
               "$ref": "#/$defs/__schema27"
             }
           },
-          "required": ["question"],
+          "required": [
+            "question"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale", "content"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale",
+        "content"
+      ],
       "additionalProperties": false
     },
     {
@@ -99,7 +114,10 @@
               }
             }
           },
-          "required": ["assessmentMethod", "restrictions"],
+          "required": [
+            "assessmentMethod",
+            "restrictions"
+          ],
           "additionalProperties": false
         },
         "locale": {
@@ -118,7 +136,10 @@
               "$ref": "#/$defs/__schema6"
             }
           },
-          "required": ["correctAnswers", "placeholder"],
+          "required": [
+            "correctAnswers",
+            "placeholder"
+          ],
           "additionalProperties": false
         },
         "content": {
@@ -134,11 +155,20 @@
               "$ref": "#/$defs/__schema27"
             }
           },
-          "required": ["question"],
+          "required": [
+            "question"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale", "content"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale",
+        "content"
+      ],
       "additionalProperties": false
     },
     {
@@ -170,7 +200,10 @@
               }
             }
           },
-          "required": ["assessmentMethod", "restrictions"],
+          "required": [
+            "assessmentMethod",
+            "restrictions"
+          ],
           "additionalProperties": false
         },
         "locale": {
@@ -180,7 +213,9 @@
               "$ref": "#/$defs/__schema6"
             }
           },
-          "required": ["placeholder"],
+          "required": [
+            "placeholder"
+          ],
           "additionalProperties": false
         },
         "content": {
@@ -202,11 +237,22 @@
               "$ref": "#/$defs/__schema9"
             }
           },
-          "required": ["question", "correctSequence", "distractors"],
+          "required": [
+            "question",
+            "correctSequence",
+            "distractors"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale", "content"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale",
+        "content"
+      ],
       "additionalProperties": false
     },
     {
@@ -238,7 +284,10 @@
               }
             }
           },
-          "required": ["assessmentMethod", "restrictions"],
+          "required": [
+            "assessmentMethod",
+            "restrictions"
+          ],
           "additionalProperties": false
         },
         "locale": {
@@ -248,7 +297,9 @@
               "$ref": "#/$defs/__schema6"
             }
           },
-          "required": ["placeholder"],
+          "required": [
+            "placeholder"
+          ],
           "additionalProperties": false
         },
         "content": {
@@ -278,7 +329,9 @@
                         "$ref": "#/$defs/__schema10"
                       }
                     },
-                    "required": ["correctAnswer"],
+                    "required": [
+                      "correctAnswer"
+                    ],
                     "additionalProperties": false
                   }
                 },
@@ -289,18 +342,32 @@
                   }
                 }
               },
-              "required": ["items", "order"],
+              "required": [
+                "items",
+                "order"
+              ],
               "additionalProperties": false
             },
             "distractors": {
               "$ref": "#/$defs/__schema9"
             }
           },
-          "required": ["question", "slots", "distractors"],
+          "required": [
+            "question",
+            "slots",
+            "distractors"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale", "content"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale",
+        "content"
+      ],
       "additionalProperties": false
     },
     {
@@ -332,7 +399,10 @@
               }
             }
           },
-          "required": ["assessmentMethod", "restrictions"],
+          "required": [
+            "assessmentMethod",
+            "restrictions"
+          ],
           "additionalProperties": false
         },
         "locale": {
@@ -342,7 +412,9 @@
               "$ref": "#/$defs/__schema6"
             }
           },
-          "required": ["placeholder"],
+          "required": [
+            "placeholder"
+          ],
           "additionalProperties": false
         },
         "content": {
@@ -378,7 +450,9 @@
                         }
                       }
                     },
-                    "required": ["correctAnswers"],
+                    "required": [
+                      "correctAnswers"
+                    ],
                     "additionalProperties": false
                   }
                 },
@@ -389,15 +463,28 @@
                   }
                 }
               },
-              "required": ["items", "order"],
+              "required": [
+                "items",
+                "order"
+              ],
               "additionalProperties": false
             }
           },
-          "required": ["question", "slots"],
+          "required": [
+            "question",
+            "slots"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale", "content"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale",
+        "content"
+      ],
       "additionalProperties": false
     },
     {
@@ -429,7 +516,10 @@
               }
             }
           },
-          "required": ["assessmentMethod", "restrictions"],
+          "required": [
+            "assessmentMethod",
+            "restrictions"
+          ],
           "additionalProperties": false
         },
         "locale": {
@@ -467,7 +557,10 @@
                         "$ref": "#/$defs/__schema10"
                       }
                     },
-                    "required": ["left", "right"],
+                    "required": [
+                      "left",
+                      "right"
+                    ],
                     "additionalProperties": false
                   }
                 },
@@ -478,15 +571,28 @@
                   }
                 }
               },
-              "required": ["items", "order"],
+              "required": [
+                "items",
+                "order"
+              ],
               "additionalProperties": false
             }
           },
-          "required": ["question", "pairs"],
+          "required": [
+            "question",
+            "pairs"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale", "content"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale",
+        "content"
+      ],
       "additionalProperties": false
     },
     {
@@ -518,7 +624,10 @@
               }
             }
           },
-          "required": ["assessmentMethod", "restrictions"],
+          "required": [
+            "assessmentMethod",
+            "restrictions"
+          ],
           "additionalProperties": false
         },
         "locale": {
@@ -542,11 +651,21 @@
               "$ref": "#/$defs/__schema9"
             }
           },
-          "required": ["question", "sequence"],
+          "required": [
+            "question",
+            "sequence"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale", "content"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale",
+        "content"
+      ],
       "additionalProperties": false
     },
     {
@@ -578,7 +697,10 @@
               }
             }
           },
-          "required": ["assessmentMethod", "restrictions"],
+          "required": [
+            "assessmentMethod",
+            "restrictions"
+          ],
           "additionalProperties": false
         },
         "locale": {
@@ -611,15 +733,29 @@
                   "$ref": "#/$defs/__schema9"
                 }
               },
-              "required": ["correct", "incorrect", "distractors"],
+              "required": [
+                "correct",
+                "incorrect",
+                "distractors"
+              ],
               "additionalProperties": false
             }
           },
-          "required": ["question", "answers"],
+          "required": [
+            "question",
+            "answers"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale", "content"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale",
+        "content"
+      ],
       "additionalProperties": false
     },
     {
@@ -651,7 +787,10 @@
               }
             }
           },
-          "required": ["assessmentMethod", "restrictions"],
+          "required": [
+            "assessmentMethod",
+            "restrictions"
+          ],
           "additionalProperties": false
         },
         "locale": {
@@ -684,15 +823,29 @@
                   "$ref": "#/$defs/__schema9"
                 }
               },
-              "required": ["correct", "incorrect", "distractors"],
+              "required": [
+                "correct",
+                "incorrect",
+                "distractors"
+              ],
               "additionalProperties": false
             }
           },
-          "required": ["question", "answers"],
+          "required": [
+            "question",
+            "answers"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale", "content"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale",
+        "content"
+      ],
       "additionalProperties": false
     }
   ],
@@ -832,7 +985,10 @@
           }
         }
       },
-      "required": ["items", "order"],
+      "required": [
+        "items",
+        "order"
+      ],
       "additionalProperties": false
     },
     "__schema10": {
@@ -878,15 +1034,24 @@
                 },
                 "indexPosition": {
                   "type": "string",
-                  "enum": ["left", "right"]
+                  "enum": [
+                    "left",
+                    "right"
+                  ]
                 },
                 "iconPosition": {
                   "type": "string",
-                  "enum": ["left", "right"]
+                  "enum": [
+                    "left",
+                    "right"
+                  ]
                 },
                 "chevronPosition": {
                   "type": "string",
-                  "enum": ["left", "right"]
+                  "enum": [
+                    "left",
+                    "right"
+                  ]
                 },
                 "enableChecks": {
                   "type": "boolean"
@@ -907,7 +1072,9 @@
                   "$ref": "#/$defs/__schema6"
                 }
               },
-              "required": ["title"],
+              "required": [
+                "title"
+              ],
               "additionalProperties": false
             },
             "content": {
@@ -941,58 +1108,89 @@
                       "answer": {
                         "type": "object",
                         "properties": {
-                          "items": {
-                            "type": "object",
-                            "propertyNames": {
-                              "type": "string"
-                            },
-                            "additionalProperties": {
-                              "oneOf": [
-                                {
-                                  "$ref": "#/$defs/__schema11"
-                                },
-                                {
-                                  "$ref": "#/$defs/__schema12"
-                                },
-                                {
-                                  "$ref": "#/$defs/__schema17"
-                                },
-                                {
-                                  "$ref": "#/$defs/__schema18"
-                                },
-                                {
-                                  "$ref": "#/$defs/__schema19"
-                                },
-                                {
-                                  "$ref": "#/$defs/__schema21"
-                                },
-                                {
-                                  "$ref": "#/$defs/__schema23"
-                                },
-                                {
-                                  "$ref": "#/$defs/__schema13"
-                                },
-                                {
-                                  "$ref": "#/$defs/__schema24"
-                                },
-                                {
-                                  "$ref": "#/$defs/__schema25"
-                                }
-                              ]
-                            }
+                          "id": {
+                            "$ref": "#/$defs/__schema0"
                           },
-                          "order": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
+                          "slug": {
+                            "$ref": "#/$defs/__schema1"
+                          },
+                          "type": {
+                            "type": "string",
+                            "const": "checkpointAnswer"
+                          },
+                          "content": {
+                            "type": "object",
+                            "properties": {
+                              "items": {
+                                "type": "object",
+                                "propertyNames": {
+                                  "type": "string"
+                                },
+                                "additionalProperties": {
+                                  "oneOf": [
+                                    {
+                                      "$ref": "#/$defs/__schema11"
+                                    },
+                                    {
+                                      "$ref": "#/$defs/__schema12"
+                                    },
+                                    {
+                                      "$ref": "#/$defs/__schema17"
+                                    },
+                                    {
+                                      "$ref": "#/$defs/__schema18"
+                                    },
+                                    {
+                                      "$ref": "#/$defs/__schema19"
+                                    },
+                                    {
+                                      "$ref": "#/$defs/__schema21"
+                                    },
+                                    {
+                                      "$ref": "#/$defs/__schema23"
+                                    },
+                                    {
+                                      "$ref": "#/$defs/__schema13"
+                                    },
+                                    {
+                                      "$ref": "#/$defs/__schema24"
+                                    },
+                                    {
+                                      "$ref": "#/$defs/__schema25"
+                                    }
+                                  ]
+                                }
+                              },
+                              "order": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "required": [
+                              "items",
+                              "order"
+                            ],
+                            "additionalProperties": false
                           }
                         },
-                        "required": ["items", "order"],
+                        "required": [
+                          "id",
+                          "slug",
+                          "type",
+                          "content"
+                        ],
                         "additionalProperties": false
                       }
                     },
-                    "required": ["id", "slug", "type", "question", "answer"],
+                    "required": [
+                      "id",
+                      "slug",
+                      "type",
+                      "question",
+                      "answer"
+                    ],
                     "additionalProperties": false
                   }
                 },
@@ -1003,11 +1201,21 @@
                   }
                 }
               },
-              "required": ["items", "order"],
+              "required": [
+                "items",
+                "order"
+              ],
               "additionalProperties": false
             }
           },
-          "required": ["id", "slug", "type", "params", "locale", "content"],
+          "required": [
+            "id",
+            "slug",
+            "type",
+            "params",
+            "locale",
+            "content"
+          ],
           "additionalProperties": false
         },
         {
@@ -1090,11 +1298,20 @@
               "additionalProperties": false
             }
           },
-          "required": ["fileLocation", "title"],
+          "required": [
+            "fileLocation",
+            "title"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale"
+      ],
       "additionalProperties": false
     },
     "__schema12": {
@@ -1122,7 +1339,10 @@
             },
             "objectFit": {
               "type": "string",
-              "enum": ["cover", "contain"]
+              "enum": [
+                "cover",
+                "contain"
+              ]
             },
             "loop": {
               "type": "boolean"
@@ -1136,7 +1356,10 @@
             },
             "transition": {
               "type": "string",
-              "enum": ["slide", "fade"]
+              "enum": [
+                "slide",
+                "fade"
+              ]
             },
             "transitionDurationMs": {
               "type": "number",
@@ -1209,11 +1432,19 @@
                         "$ref": "#/$defs/__schema6"
                       }
                     },
-                    "required": ["src", "alt"],
+                    "required": [
+                      "src",
+                      "alt"
+                    ],
                     "additionalProperties": false
                   }
                 },
-                "required": ["id", "slug", "type", "locale"],
+                "required": [
+                  "id",
+                  "slug",
+                  "type",
+                  "locale"
+                ],
                 "additionalProperties": false
               }
             },
@@ -1224,11 +1455,21 @@
               }
             }
           },
-          "required": ["items", "order"],
+          "required": [
+            "items",
+            "order"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale", "slides"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale",
+        "slides"
+      ],
       "additionalProperties": false
     },
     "__schema13": {
@@ -1276,10 +1517,17 @@
                   },
                   "tone": {
                     "type": "string",
-                    "enum": ["neutral", "info", "warning", "success"]
+                    "enum": [
+                      "neutral",
+                      "info",
+                      "warning",
+                      "success"
+                    ]
                   }
                 },
-                "required": ["applyStyle"],
+                "required": [
+                  "applyStyle"
+                ],
                 "additionalProperties": false
               }
             },
@@ -1300,7 +1548,9 @@
                   }
                 }
               },
-              "required": ["enabled"],
+              "required": [
+                "enabled"
+              ],
               "additionalProperties": false
             }
           },
@@ -1313,16 +1563,31 @@
               "$ref": "#/$defs/__schema6"
             }
           },
-          "required": ["value"],
+          "required": [
+            "value"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale"
+      ],
       "additionalProperties": false
     },
     "__schema14": {
       "type": "string",
-      "enum": ["highlight", "bold", "cursive", "underscore", "crossed", "variable"]
+      "enum": [
+        "highlight",
+        "bold",
+        "cursive",
+        "underscore",
+        "crossed",
+        "variable"
+      ]
     },
     "__schema15": {
       "type": "string"
@@ -1356,7 +1621,10 @@
               "minLength": 1
             }
           },
-          "required": ["language", "codeAsText"],
+          "required": [
+            "language",
+            "codeAsText"
+          ],
           "additionalProperties": false
         },
         "locale": {
@@ -1379,7 +1647,13 @@
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale"
+      ],
       "additionalProperties": false
     },
     "__schema18": {
@@ -1418,7 +1692,10 @@
             },
             "objectFit": {
               "type": "string",
-              "enum": ["contain", "cover"]
+              "enum": [
+                "contain",
+                "cover"
+              ]
             },
             "sizes": {
               "type": "string"
@@ -1458,11 +1735,20 @@
               "additionalProperties": false
             }
           },
-          "required": ["src", "alt"],
+          "required": [
+            "src",
+            "alt"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale"
+      ],
       "additionalProperties": false
     },
     "__schema19": {
@@ -1498,11 +1784,19 @@
               }
             }
           },
-          "required": ["value"],
+          "required": [
+            "value"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale"
+      ],
       "additionalProperties": false
     },
     "__schema20": {
@@ -1543,11 +1837,19 @@
               "$ref": "#/$defs/__schema22"
             }
           },
-          "required": ["value"],
+          "required": [
+            "value"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale"
+      ],
       "additionalProperties": false
     },
     "__schema22": {
@@ -1590,11 +1892,19 @@
               "const": null
             }
           },
-          "required": ["fileLocation"],
+          "required": [
+            "fileLocation"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale"
+      ],
       "additionalProperties": false
     },
     "__schema24": {
@@ -1655,11 +1965,21 @@
               "additionalProperties": false
             }
           },
-          "required": ["fileLocation", "poster", "label"],
+          "required": [
+            "fileLocation",
+            "poster",
+            "label"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale"
+      ],
       "additionalProperties": false
     },
     "__schema25": {
@@ -1683,10 +2003,15 @@
             },
             "mode": {
               "type": "string",
-              "enum": ["link", "embed"]
+              "enum": [
+                "link",
+                "embed"
+              ]
             }
           },
-          "required": ["mode"],
+          "required": [
+            "mode"
+          ],
           "additionalProperties": false
         },
         "locale": {
@@ -1717,11 +2042,20 @@
               "additionalProperties": false
             }
           },
-          "required": ["href", "label"],
+          "required": [
+            "href",
+            "label"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["id", "slug", "type", "params", "locale"],
+      "required": [
+        "id",
+        "slug",
+        "type",
+        "params",
+        "locale"
+      ],
       "additionalProperties": false
     },
     "__schema26": {

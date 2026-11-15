@@ -42,13 +42,22 @@ export const feedingRelationships_SkillGroup_Data = defineSkillGroup({
     ka: 'კვებითი კავშირები',
     kk: 'Қоректік байланыстар',
   },
-  skills: [
-    constructASimpleFoodChain_Skill_Data,
-    distinguishProducersAndConsumers_Skill_Data,
-    explainEnergyFlowInAnEcosystem_Skill_Data,
-    explainFoodWebs_Skill_Data,
-    recognizeDecomposers_Skill_Data,
-  ],
+  skills: {
+    items: {
+      constructASimpleFoodChain: constructASimpleFoodChain_Skill_Data,
+      distinguishProducersAndConsumers: distinguishProducersAndConsumers_Skill_Data,
+      explainEnergyFlowInAnEcosystem: explainEnergyFlowInAnEcosystem_Skill_Data,
+      explainFoodWebs: explainFoodWebs_Skill_Data,
+      recognizeDecomposers: recognizeDecomposers_Skill_Data,
+    },
+    order: [
+      'constructASimpleFoodChain',
+      'distinguishProducersAndConsumers',
+      'explainEnergyFlowInAnEcosystem',
+      'explainFoodWebs',
+      'recognizeDecomposers',
+    ],
+  },
   description: {
     methodological:
       'Matter and energy pass between organisms, and decomposers return matter to the environment; a disrupted relationship affects subsequent links.',

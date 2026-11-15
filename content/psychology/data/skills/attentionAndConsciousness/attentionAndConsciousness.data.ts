@@ -38,11 +38,14 @@ export const attentionAndConsciousness_SkillDomain_Data = defineSkillDomain({
     kk: 'Зейін және сана',
     qm: 'Diqqat ve şuurlılıq',
   },
-  groups: [
-    attentionAllocation_SkillGroup_Data,
-    awarenessAndAutomaticity_SkillGroup_Data,
-    sleepAndDailyRhythms_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      attentionAllocation: attentionAllocation_SkillGroup_Data,
+      awarenessAndAutomaticity: awarenessAndAutomaticity_SkillGroup_Data,
+      sleepAndDailyRhythms: sleepAndDailyRhythms_SkillGroup_Data,
+    },
+    order: ['attentionAllocation', 'awarenessAndAutomaticity', 'sleepAndDailyRhythms'],
+  },
   description: {
     methodological:
       'Not all available information receives equal processing or enters reportable awareness. Focus, automaticity, waking states, and sleep have related but distinct psychological mechanisms.',

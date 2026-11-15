@@ -36,7 +36,14 @@ export const marketResearch_SkillGroup_Data = defineSkillGroup({
     kk: 'Нарықты зерттеу',
     qm: 'Bazar araştırması',
   },
-  skills: [consumerSegmentation_Skill_Data, targetAudience_Skill_Data, testingMarketDemand_Skill_Data],
+  skills: {
+    items: {
+      consumerSegmentation: consumerSegmentation_Skill_Data,
+      targetAudience: targetAudience_Skill_Data,
+      testingMarketDemand: testingMarketDemand_Skill_Data,
+    },
+    order: ['consumerSegmentation', 'targetAudience', 'testingMarketDemand'],
+  },
   description: {
     methodological:
       'Audience needs and competitive conditions can be studied using observations, surveys, and tests of assumptions.',

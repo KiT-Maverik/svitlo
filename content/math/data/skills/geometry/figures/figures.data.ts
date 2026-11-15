@@ -42,13 +42,16 @@ export const figures_SkillGroup_Data = defineSkillGroup({
     pl: 'Figury płaskie',
     uk: 'Плоскі фігури',
   },
-  skills: [
-    identify2dShapes_Skill_Data,
-    shapeAttributes_Skill_Data,
-    polygon_Skill_Data,
-    triangleRectangleSquare_Skill_Data,
-    composeDecomposeShapes_Skill_Data,
-  ],
+  skills: {
+    items: {
+      identify2dShapes: identify2dShapes_Skill_Data,
+      shapeAttributes: shapeAttributes_Skill_Data,
+      polygon: polygon_Skill_Data,
+      triangleRectangleSquare: triangleRectangleSquare_Skill_Data,
+      composeDecomposeShapes: composeDecomposeShapes_Skill_Data,
+    },
+    order: ['identify2dShapes', 'shapeAttributes', 'polygon', 'triangleRectangleSquare', 'composeDecomposeShapes'],
+  },
   description: {
     methodological:
       'Properties of polygons and other plane figures that remain independent of scale or orientation, and composing shapes from parts.',

@@ -42,13 +42,22 @@ export const creativeDevelopment_SkillGroup_Data = defineSkillGroup({
     kk: 'Шығармашылық даму',
     qm: 'Yaratıcılıq inkişafı',
   },
-  skills: [
-    developAnArtisticSeries_Skill_Data,
-    explainArtisticDecisions_Skill_Data,
-    generateArtisticIdeas_Skill_Data,
-    produceArtisticStudies_Skill_Data,
-    reviseAnArtwork_Skill_Data,
-  ],
+  skills: {
+    items: {
+      developAnArtisticSeries: developAnArtisticSeries_Skill_Data,
+      explainArtisticDecisions: explainArtisticDecisions_Skill_Data,
+      generateArtisticIdeas: generateArtisticIdeas_Skill_Data,
+      produceArtisticStudies: produceArtisticStudies_Skill_Data,
+      reviseAnArtwork: reviseAnArtwork_Skill_Data,
+    },
+    order: [
+      'developAnArtisticSeries',
+      'explainArtisticDecisions',
+      'generateArtisticIdeas',
+      'produceArtisticStudies',
+      'reviseAnArtwork',
+    ],
+  },
   description: {
     methodological:
       'Original work grows through choices, experiments and refinement, but this catalog does not impose a fixed teaching sequence.',

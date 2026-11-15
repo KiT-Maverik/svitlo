@@ -42,13 +42,16 @@ export const materialShaping_SkillGroup_Data = defineSkillGroup({
     kk: 'Материалдарды қалыптау',
     qm: 'Materiallarnı şekillendirme',
   },
-  skills: [
-    additiveManufacturing_Skill_Data,
-    castingProcesses_Skill_Data,
-    formingProcesses_Skill_Data,
-    machiningProcesses_Skill_Data,
-    moldingProcesses_Skill_Data,
-  ],
+  skills: {
+    items: {
+      additiveManufacturing: additiveManufacturing_Skill_Data,
+      castingProcesses: castingProcesses_Skill_Data,
+      formingProcesses: formingProcesses_Skill_Data,
+      machiningProcesses: machiningProcesses_Skill_Data,
+      moldingProcesses: moldingProcesses_Skill_Data,
+    },
+    order: ['additiveManufacturing', 'castingProcesses', 'formingProcesses', 'machiningProcesses', 'moldingProcesses'],
+  },
   description: {
     methodological:
       'A manufacturing process imposes specific restrictions on geometry, material, waste and achievable accuracy.',

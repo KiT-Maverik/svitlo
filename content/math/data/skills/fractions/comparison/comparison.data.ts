@@ -36,7 +36,14 @@ export const comparison_SkillGroup_Data = defineSkillGroup({
     pl: 'Porównywanie ułamków',
     uk: 'Порівняння дробів',
   },
-  skills: [compareSameNumerator_Skill_Data, compareUnit_Skill_Data, sameDenominatorModel_Skill_Data],
+  skills: {
+    items: {
+      compareSameNumerator: compareSameNumerator_Skill_Data,
+      compareUnit: compareUnit_Skill_Data,
+      sameDenominatorModel: sameDenominatorModel_Skill_Data,
+    },
+    order: ['compareSameNumerator', 'compareUnit', 'sameDenominatorModel'],
+  },
   description: {
     methodological:
       'Comparing the magnitudes of fractional parts relative to the same whole while holding either the numerator or denominator fixed.',

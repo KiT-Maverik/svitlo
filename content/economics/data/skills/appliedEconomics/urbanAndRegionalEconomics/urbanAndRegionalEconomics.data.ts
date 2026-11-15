@@ -40,7 +40,14 @@ export const urbanAndRegionalEconomics_SkillGroup_Data = defineSkillGroup({
     kk: 'Қала және өңір экономикасы',
     qm: 'Şehir ve bölge iqtisadı',
   },
-  skills: [agglomerationEffects_Skill_Data, regionalEconomicDisparities_Skill_Data, regionalSpecialization_Skill_Data],
+  skills: {
+    items: {
+      agglomerationEffects: agglomerationEffects_Skill_Data,
+      regionalEconomicDisparities: regionalEconomicDisparities_Skill_Data,
+      regionalSpecialization: regionalSpecialization_Skill_Data,
+    },
+    order: ['agglomerationEffects', 'regionalEconomicDisparities', 'regionalSpecialization'],
+  },
   description: {
     methodological:
       'Concentrations of people and firms yield benefits from proximity, infrastructure constraints, and regional specialization.',

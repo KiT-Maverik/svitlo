@@ -39,12 +39,15 @@ export const mindSelfAndHumanExistence_SkillDomain_Data = defineSkillDomain({
     kk: 'Ақыл-ой, өзіндік болмыс және адам өмір сүруі',
     qm: 'Zihin, özlük ve insan yaşayışı',
   },
-  groups: [
-    agencyAndFreeWill_SkillGroup_Data,
-    humanExistenceAndMeaning_SkillGroup_Data,
-    mindAndConsciousness_SkillGroup_Data,
-    personalIdentity_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      agencyAndFreeWill: agencyAndFreeWill_SkillGroup_Data,
+      humanExistenceAndMeaning: humanExistenceAndMeaning_SkillGroup_Data,
+      mindAndConsciousness: mindAndConsciousness_SkillGroup_Data,
+      personalIdentity: personalIdentity_SkillGroup_Data,
+    },
+    order: ['agencyAndFreeWill', 'humanExistenceAndMeaning', 'mindAndConsciousness', 'personalIdentity'],
+  },
   description: {
     methodological:
       'Questions about subjective experience, the continuity of the self, deliberate action, and a meaningful human life cannot be resolved solely through psychological measurement. This domain examines theories of mind, identity, agency, and existential commitments, distinguishing them from empirical mental-health claims.',

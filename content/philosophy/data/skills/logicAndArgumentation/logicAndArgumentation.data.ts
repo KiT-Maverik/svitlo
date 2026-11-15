@@ -41,14 +41,24 @@ export const logicAndArgumentation_SkillDomain_Data = defineSkillDomain({
     kk: 'Логика және дәлелдеу',
     qm: 'Mantıq ve delillendirme',
   },
-  groups: [
-    argumentativeFallacies_SkillGroup_Data,
-    argumentsAndInference_SkillGroup_Data,
-    deductiveReasoning_SkillGroup_Data,
-    nonDeductiveReasoning_SkillGroup_Data,
-    predicateLogic_SkillGroup_Data,
-    propositionalLogic_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      argumentativeFallacies: argumentativeFallacies_SkillGroup_Data,
+      argumentsAndInference: argumentsAndInference_SkillGroup_Data,
+      deductiveReasoning: deductiveReasoning_SkillGroup_Data,
+      nonDeductiveReasoning: nonDeductiveReasoning_SkillGroup_Data,
+      predicateLogic: predicateLogic_SkillGroup_Data,
+      propositionalLogic: propositionalLogic_SkillGroup_Data,
+    },
+    order: [
+      'argumentativeFallacies',
+      'argumentsAndInference',
+      'deductiveReasoning',
+      'nonDeductiveReasoning',
+      'predicateLogic',
+      'propositionalLogic',
+    ],
+  },
   description: {
     methodological:
       'The central question is whether reasons support a conclusion and in what way. Formal entailment, defeasible inference, and argumentative defects are distinguished from psychological causes of belief, which belong chiefly to Psychology.',

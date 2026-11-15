@@ -41,12 +41,15 @@ export const composition_SkillGroup_Data = defineSkillGroup({
     kk: 'Құрам',
     qm: 'Terkip',
   },
-  skills: [
-    elementsAndCompounds_Skill_Data,
-    homogeneousAndHeterogeneousSamples_Skill_Data,
-    mixtures_Skill_Data,
-    pureSubstances_Skill_Data,
-  ],
+  skills: {
+    items: {
+      elementsAndCompounds: elementsAndCompounds_Skill_Data,
+      homogeneousAndHeterogeneousSamples: homogeneousAndHeterogeneousSamples_Skill_Data,
+      mixtures: mixtures_Skill_Data,
+      pureSubstances: pureSubstances_Skill_Data,
+    },
+    order: ['elementsAndCompounds', 'homogeneousAndHeterogeneousSamples', 'mixtures', 'pureSubstances'],
+  },
   description: {
     methodological:
       'A specimen may be a single chemical substance or a combination of substances; its everyday name does not establish its composition.',

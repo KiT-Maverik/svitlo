@@ -45,16 +45,28 @@ export const logicAndPatterns_SkillGroup_Data = defineSkillGroup({
     kk: 'Логика және заңдылықтар',
     qm: 'Mantıq ve qanunlıqlıqlar',
   },
-  skills: [
-    applyLogicalAND_Skill_Data,
-    applyLogicalNOT_Skill_Data,
-    applyLogicalOR_Skill_Data,
-    detectContradictoryRules_Skill_Data,
-    evaluateASimpleCondition_Skill_Data,
-    evaluateCompoundLogicalExpressions_Skill_Data,
-    predictAnOutcomeFromARule_Skill_Data,
-    recognizeAPattern_Skill_Data,
-  ],
+  skills: {
+    items: {
+      applyLogicalAND: applyLogicalAND_Skill_Data,
+      applyLogicalNOT: applyLogicalNOT_Skill_Data,
+      applyLogicalOR: applyLogicalOR_Skill_Data,
+      detectContradictoryRules: detectContradictoryRules_Skill_Data,
+      evaluateASimpleCondition: evaluateASimpleCondition_Skill_Data,
+      evaluateCompoundLogicalExpressions: evaluateCompoundLogicalExpressions_Skill_Data,
+      predictAnOutcomeFromARule: predictAnOutcomeFromARule_Skill_Data,
+      recognizeAPattern: recognizeAPattern_Skill_Data,
+    },
+    order: [
+      'applyLogicalAND',
+      'applyLogicalNOT',
+      'applyLogicalOR',
+      'detectContradictoryRules',
+      'evaluateASimpleCondition',
+      'evaluateCompoundLogicalExpressions',
+      'predictAnOutcomeFromARule',
+      'recognizeAPattern',
+    ],
+  },
   description: {
     methodological:
       'Reasoning from explicit rules includes finding patterns, evaluating simple statements, applying independent logical operations, combining conditions, and detecting contradictions. The focus is on truth and consequences, not necessarily executable code.',

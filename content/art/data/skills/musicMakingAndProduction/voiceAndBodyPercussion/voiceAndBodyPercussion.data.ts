@@ -42,13 +42,22 @@ export const voiceAndBodyPercussion_SkillGroup_Data = defineSkillGroup({
     kk: 'Дауыс және дене перкуссиясы',
     qm: 'Ses ve beden perkussiyası',
   },
-  skills: [
-    controlSungPitch_Skill_Data,
-    performBeatboxing_Skill_Data,
-    performBodyPercussion_Skill_Data,
-    phraseAVocalPerformance_Skill_Data,
-    singVocalHarmony_Skill_Data,
-  ],
+  skills: {
+    items: {
+      controlSungPitch: controlSungPitch_Skill_Data,
+      performBeatboxing: performBeatboxing_Skill_Data,
+      performBodyPercussion: performBodyPercussion_Skill_Data,
+      phraseAVocalPerformance: phraseAVocalPerformance_Skill_Data,
+      singVocalHarmony: singVocalHarmony_Skill_Data,
+    },
+    order: [
+      'controlSungPitch',
+      'performBeatboxing',
+      'performBodyPercussion',
+      'phraseAVocalPerformance',
+      'singVocalHarmony',
+    ],
+  },
   description: {
     methodological:
       'Vocal articulation, breath and deliberate bodily sounds allow melodic and rhythmic performance without external instruments.',

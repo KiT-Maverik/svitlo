@@ -140,6 +140,21 @@ function writeDraft(file, content, mode) {
 }
 
 /**
+ * A Review file belongs to humans after creation; checking the YAML may not
+ * compare it with the initially empty template or overwrite review evidence.
+ */
+function writeReviewDraft(file, content, mode) {
+  noSymlinks(file);
+  if (fs.existsSync(file)) {
+    if (mode === 'generate') fail('review.ts', '$', 'refusing to overwrite an authored Review file');
+    return 0;
+  }
+  if (mode === 'check') fail('review.ts', '$', 'missing Lesson review record');
+  fs.writeFileSync(file, content, { flag: 'wx' });
+  return 1;
+}
+
+/**
  * Source Markdown/Code files are editable authoring text, not generated TS.
  * Keep their exact bytes (no banner/checksum); compare them only in check mode,
  * and never replace existing content in creation-only mode.
@@ -206,6 +221,7 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   if (mode === 'generate') {
     const draftDirectories = ['sections', 'flashcards', 'questions'];
     const hasOrphans =
+      fs.existsSync(path.join(outputFolder, 'review.ts')) ||
       fs.existsSync(path.join(outputFolder, 'constants.ts')) ||
       draftDirectories.some(name => fs.existsSync(path.join(outputFolder, name)));
     if (hasOrphans) fail('index.ts', '$', 'incomplete Lesson source tree; refusing to mix drafts with existing files');
@@ -224,9 +240,12 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   for (const [relative, body] of modules) {
     const destination = path.join(outputFolder, relative);
     if (mode === 'generate') fs.mkdirSync(path.dirname(destination), { recursive: true });
-    changed += relative.endsWith('.ts')
-      ? writeDraft(destination, body, mode)
-      : writeAuthoredSource(destination, body, mode);
+    changed +=
+      relative === 'review.ts'
+        ? writeReviewDraft(destination, body, mode)
+        : relative.endsWith('.ts')
+          ? writeDraft(destination, body, mode)
+          : writeAuthoredSource(destination, body, mode);
   }
   const specs = mode === 'generate' ? writeProductionFiles(artifacts) : 0;
   return {

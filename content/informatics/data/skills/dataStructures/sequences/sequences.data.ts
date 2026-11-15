@@ -44,15 +44,26 @@ export const sequences_SkillGroup_Data = defineSkillGroup({
     kk: 'Тізбектер',
     qm: 'Sıralamalar',
   },
-  skills: [
-    accessASequenceElementByIndex_Skill_Data,
-    distinguishArraysFromLinkedLists_Skill_Data,
-    explainArrayStructure_Skill_Data,
-    explainListStructure_Skill_Data,
-    insertAnElementIntoASequence_Skill_Data,
-    removeAnElementFromASequence_Skill_Data,
-    traverseASequence_Skill_Data,
-  ],
+  skills: {
+    items: {
+      accessASequenceElementByIndex: accessASequenceElementByIndex_Skill_Data,
+      distinguishArraysFromLinkedLists: distinguishArraysFromLinkedLists_Skill_Data,
+      explainArrayStructure: explainArrayStructure_Skill_Data,
+      explainListStructure: explainListStructure_Skill_Data,
+      insertAnElementIntoASequence: insertAnElementIntoASequence_Skill_Data,
+      removeAnElementFromASequence: removeAnElementFromASequence_Skill_Data,
+      traverseASequence: traverseASequence_Skill_Data,
+    },
+    order: [
+      'accessASequenceElementByIndex',
+      'distinguishArraysFromLinkedLists',
+      'explainArrayStructure',
+      'explainListStructure',
+      'insertAnElementIntoASequence',
+      'removeAnElementFromASequence',
+      'traverseASequence',
+    ],
+  },
   description: {
     methodological:
       'Ordered collections including arrays, lists, and linked representations. Indexing, insertion, removal, and traversal have different requirements and costs.',

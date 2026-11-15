@@ -39,12 +39,20 @@ export const philosophyOfScience_SkillDomain_Data = defineSkillDomain({
     kk: 'Ғылым философиясы',
     qm: 'İlim felsefesi',
   },
-  groups: [
-    evidenceAndCausalInference_SkillGroup_Data,
-    experimentalDesign_SkillGroup_Data,
-    questionsAndHypotheses_SkillGroup_Data,
-    theoriesAndScientificPractice_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      evidenceAndCausalInference: evidenceAndCausalInference_SkillGroup_Data,
+      experimentalDesign: experimentalDesign_SkillGroup_Data,
+      questionsAndHypotheses: questionsAndHypotheses_SkillGroup_Data,
+      theoriesAndScientificPractice: theoriesAndScientificPractice_SkillGroup_Data,
+    },
+    order: [
+      'evidenceAndCausalInference',
+      'experimentalDesign',
+      'questionsAndHypotheses',
+      'theoriesAndScientificPractice',
+    ],
+  },
   description: {
     methodological:
       'Scientific inquiry is examined as a way of building, testing, and revising explanations. The focus is on general methodology and evidential justification; physics, biology, psychology, and other sciences own their domain-specific investigations.',
