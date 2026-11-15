@@ -39,7 +39,13 @@ export const energyTransferAndTransformation_SkillGroup_Data = defineSkillGroup(
     kk: 'Энергияның берілуі мен түрленуі',
     qm: 'Energiyanı keçirüv ve deñiştirüv',
   },
-  skills: [explainEnergyTransformationInAPhysicalProcess_Skill_Data, identifyEnergyTransferBetweenBodies_Skill_Data],
+  skills: {
+    items: {
+      explainEnergyTransformationInAPhysicalProcess: explainEnergyTransformationInAPhysicalProcess_Skill_Data,
+      identifyEnergyTransferBetweenBodies: identifyEnergyTransferBetweenBodies_Skill_Data,
+    },
+    order: ['explainEnergyTransformationInAPhysicalProcess', 'identifyEnergyTransferBetweenBodies'],
+  },
   description: {
     methodological:
       'Energy can pass between objects and change form; the sequence of events matters more than the name of a particular device.',

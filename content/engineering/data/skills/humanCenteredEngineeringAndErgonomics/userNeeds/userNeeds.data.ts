@@ -41,12 +41,20 @@ export const userNeeds_SkillGroup_Data = defineSkillGroup({
     kk: 'Пайдаланушы қажеттіліктері',
     qm: 'Qullanıcılarnıñ ihtiyaçları',
   },
-  skills: [
-    identifyAccessibilityBarriers_Skill_Data,
-    identifyPhysicalUserScenarios_Skill_Data,
-    observePhysicalUsabilityProblems_Skill_Data,
-    translateUseObservationsIntoRequirements_Skill_Data,
-  ],
+  skills: {
+    items: {
+      identifyAccessibilityBarriers: identifyAccessibilityBarriers_Skill_Data,
+      identifyPhysicalUserScenarios: identifyPhysicalUserScenarios_Skill_Data,
+      observePhysicalUsabilityProblems: observePhysicalUsabilityProblems_Skill_Data,
+      translateUseObservationsIntoRequirements: translateUseObservationsIntoRequirements_Skill_Data,
+    },
+    order: [
+      'identifyAccessibilityBarriers',
+      'identifyPhysicalUserScenarios',
+      'observePhysicalUsabilityProblems',
+      'translateUseObservationsIntoRequirements',
+    ],
+  },
   description: {
     methodological:
       "Design briefs must address users with differing abilities and usage contexts rather than projecting the designer's own preferences.",

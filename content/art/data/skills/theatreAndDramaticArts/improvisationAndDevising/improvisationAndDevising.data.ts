@@ -41,12 +41,20 @@ export const improvisationAndDevising_SkillGroup_Data = defineSkillGroup({
     kk: 'Импровизация және сахналық туынды жасау',
     qm: 'Doğaçlama ve sahne yaratımı',
   },
-  skills: [
-    createDramaticConflict_Skill_Data,
-    developDramaticOffers_Skill_Data,
-    deviseASceneCollaboratively_Skill_Data,
-    improviseADramaticScene_Skill_Data,
-  ],
+  skills: {
+    items: {
+      createDramaticConflict: createDramaticConflict_Skill_Data,
+      developDramaticOffers: developDramaticOffers_Skill_Data,
+      deviseASceneCollaboratively: deviseASceneCollaboratively_Skill_Data,
+      improviseADramaticScene: improviseADramaticScene_Skill_Data,
+    },
+    order: [
+      'createDramaticConflict',
+      'developDramaticOffers',
+      'deviseASceneCollaboratively',
+      'improviseADramaticScene',
+    ],
+  },
   description: {
     methodological:
       'Co-created drama develops from shared offers, emergent situations and meaningful conflict rather than only a finished script.',

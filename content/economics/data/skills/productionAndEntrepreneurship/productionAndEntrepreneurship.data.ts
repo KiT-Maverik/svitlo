@@ -39,12 +39,20 @@ export const productionAndEntrepreneurship_SkillDomain_Data = defineSkillDomain(
     kk: 'Өндіріс пен кәсіпкерлік',
     qm: 'İstisal ve işadamlıq',
   },
-  groups: [
-    entrepreneurshipAndAccounting_SkillGroup_Data,
-    firmDecisionMakingAndManagement_SkillGroup_Data,
-    productionCostsAndScale_SkillGroup_Data,
-    productiveResourcesAndTechnology_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      entrepreneurshipAndAccounting: entrepreneurshipAndAccounting_SkillGroup_Data,
+      firmDecisionMakingAndManagement: firmDecisionMakingAndManagement_SkillGroup_Data,
+      productionCostsAndScale: productionCostsAndScale_SkillGroup_Data,
+      productiveResourcesAndTechnology: productiveResourcesAndTechnology_SkillGroup_Data,
+    },
+    order: [
+      'entrepreneurshipAndAccounting',
+      'firmDecisionMakingAndManagement',
+      'productionCostsAndScale',
+      'productiveResourcesAndTechnology',
+    ],
+  },
   description: {
     methodological:
       "Creating value combines resources, technology, organization, and risk. This domain studies firms' production decisions and the sustainability of their operations.",

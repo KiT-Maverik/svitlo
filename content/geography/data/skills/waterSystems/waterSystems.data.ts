@@ -39,12 +39,20 @@ export const waterSystems_SkillDomain_Data = defineSkillDomain({
     kk: 'Су жүйелері',
     qm: 'Suv sistemaları',
   },
-  groups: [
-    frozenAndSubsurfaceWater_SkillGroup_Data,
-    hydrologicConnections_SkillGroup_Data,
-    marineAndCoastalProcesses_SkillGroup_Data,
-    riversAndDrainageBasins_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      frozenAndSubsurfaceWater: frozenAndSubsurfaceWater_SkillGroup_Data,
+      hydrologicConnections: hydrologicConnections_SkillGroup_Data,
+      marineAndCoastalProcesses: marineAndCoastalProcesses_SkillGroup_Data,
+      riversAndDrainageBasins: riversAndDrainageBasins_SkillGroup_Data,
+    },
+    order: [
+      'frozenAndSubsurfaceWater',
+      'hydrologicConnections',
+      'marineAndCoastalProcesses',
+      'riversAndDrainageBasins',
+    ],
+  },
   description: {
     methodological:
       'Water connects landscapes through drainage networks, oceans, atmosphere, and underground storage. Geographic questions center on where water moves and accumulates, how its distribution varies, and how water features shape places.',

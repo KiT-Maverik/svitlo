@@ -40,11 +40,14 @@ export const geographicCoordinates_SkillGroup_Data = defineSkillGroup({
     kk: 'Географиялық координаттар',
     qm: 'Coğrafiy koordinatlar',
   },
-  skills: [
-    interpretLatitude_Skill_Data,
-    interpretLongitude_Skill_Data,
-    locateAPointFromALatitudeLongitudePair_Skill_Data,
-  ],
+  skills: {
+    items: {
+      interpretLatitude: interpretLatitude_Skill_Data,
+      interpretLongitude: interpretLongitude_Skill_Data,
+      locateAPointFromALatitudeLongitudePair: locateAPointFromALatitudeLongitudePair_Skill_Data,
+    },
+    order: ['interpretLatitude', 'interpretLongitude', 'locateAPointFromALatitudeLongitudePair'],
+  },
   description: {
     methodological:
       'The graticule provides a worldwide angular reference for positions. Latitude and longitude are distinct measurements whose ordered combination identifies a location.',

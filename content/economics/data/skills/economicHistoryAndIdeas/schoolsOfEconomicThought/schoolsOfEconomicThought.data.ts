@@ -42,13 +42,22 @@ export const schoolsOfEconomicThought_SkillGroup_Data = defineSkillGroup({
     kk: 'Экономикалық ой мектептері',
     qm: 'İqtisadiy fikir mektepleri',
   },
-  skills: [
-    behavioralEconomicThought_Skill_Data,
-    classicalPoliticalEconomy_Skill_Data,
-    institutionalEconomicThought_Skill_Data,
-    keynesianApproaches_Skill_Data,
-    neoclassicalEconomics_Skill_Data,
-  ],
+  skills: {
+    items: {
+      behavioralEconomicThought: behavioralEconomicThought_Skill_Data,
+      classicalPoliticalEconomy: classicalPoliticalEconomy_Skill_Data,
+      institutionalEconomicThought: institutionalEconomicThought_Skill_Data,
+      keynesianApproaches: keynesianApproaches_Skill_Data,
+      neoclassicalEconomics: neoclassicalEconomics_Skill_Data,
+    },
+    order: [
+      'behavioralEconomicThought',
+      'classicalPoliticalEconomy',
+      'institutionalEconomicThought',
+      'keynesianApproaches',
+      'neoclassicalEconomics',
+    ],
+  },
   description: {
     methodological:
       'Economic schools offer differing models and assumptions concerning markets, government, money, and inequality.',

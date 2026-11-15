@@ -41,12 +41,20 @@ export const systemArchitecture_SkillGroup_Data = defineSkillGroup({
     kk: 'Күн жүйесінің құрылымы',
     qm: 'Küneş sistemasınıñ tertibi',
   },
-  skills: [
-    innerAndOuterSolarSystem_Skill_Data,
-    planetAndDwarfPlanetClassification_Skill_Data,
-    smallBodyReservoirs_Skill_Data,
-    solarSystemComponents_Skill_Data,
-  ],
+  skills: {
+    items: {
+      innerAndOuterSolarSystem: innerAndOuterSolarSystem_Skill_Data,
+      planetAndDwarfPlanetClassification: planetAndDwarfPlanetClassification_Skill_Data,
+      smallBodyReservoirs: smallBodyReservoirs_Skill_Data,
+      solarSystemComponents: solarSystemComponents_Skill_Data,
+    },
+    order: [
+      'innerAndOuterSolarSystem',
+      'planetAndDwarfPlanetClassification',
+      'smallBodyReservoirs',
+      'solarSystemComponents',
+    ],
+  },
   description: {
     methodological:
       'A planetary system includes one or more stars and gravitationally associated objects whose locations are described by nested orbital regions.',

@@ -41,12 +41,15 @@ export const nationalAccounts_SkillGroup_Data = defineSkillGroup({
     kk: 'Ұлттық шоттар',
     qm: 'Milliy esaplar',
   },
-  skills: [
-    aggregateExpenditureComponents_Skill_Data,
-    gdpPerCapitaAndWelfare_Skill_Data,
-    grossDomesticProduct_Skill_Data,
-    nominalAndRealOutput_Skill_Data,
-  ],
+  skills: {
+    items: {
+      aggregateExpenditureComponents: aggregateExpenditureComponents_Skill_Data,
+      gdpPerCapitaAndWelfare: gdpPerCapitaAndWelfare_Skill_Data,
+      grossDomesticProduct: grossDomesticProduct_Skill_Data,
+      nominalAndRealOutput: nominalAndRealOutput_Skill_Data,
+    },
+    order: ['aggregateExpenditureComponents', 'gdpPerCapitaAndWelfare', 'grossDomesticProduct', 'nominalAndRealOutput'],
+  },
   description: {
     methodological:
       'Aggregate economic activity is measured using consistent categories of production, income, and expenditure.',

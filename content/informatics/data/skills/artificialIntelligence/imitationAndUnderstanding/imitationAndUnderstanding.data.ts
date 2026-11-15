@@ -36,7 +36,13 @@ export const imitationAndUnderstanding_SkillGroup_Data = defineSkillGroup({
     kk: 'Еліктеу және түсіну',
     qm: 'Taqlit ve añlav',
   },
-  skills: [explainSearlesChineseRoom_Skill_Data, explainTheTuringTest_Skill_Data],
+  skills: {
+    items: {
+      explainSearlesChineseRoom: explainSearlesChineseRoom_Skill_Data,
+      explainTheTuringTest: explainTheTuringTest_Skill_Data,
+    },
+    order: ['explainSearlesChineseRoom', 'explainTheTuringTest'],
+  },
   description: {
     methodological:
       'Discussions of machine intelligence distinguish outward similarity of responses from claims of internal understanding. A behavioral criterion and a philosophical thought experiment ask different questions; neither alone proves or disproves consciousness.',

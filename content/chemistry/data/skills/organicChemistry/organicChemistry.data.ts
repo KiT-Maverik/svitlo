@@ -39,12 +39,15 @@ export const organicChemistry_SkillDomain_Data = defineSkillDomain({
     kk: 'Органикалық химия',
     qm: 'Organik kimya',
   },
-  groups: [
-    carbonFrameworks_SkillGroup_Data,
-    functionalGroups_SkillGroup_Data,
-    macromolecules_SkillGroup_Data,
-    organicTransformations_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      carbonFrameworks: carbonFrameworks_SkillGroup_Data,
+      functionalGroups: functionalGroups_SkillGroup_Data,
+      macromolecules: macromolecules_SkillGroup_Data,
+      organicTransformations: organicTransformations_SkillGroup_Data,
+    },
+    order: ['carbonFrameworks', 'functionalGroups', 'macromolecules', 'organicTransformations'],
+  },
   description: {
     methodological:
       'Carbon compounds are organized by connectivity, functional groups and reaction pathways. This domain focuses on chemical structure and transformations, distinct from physiological roles discussed in biology.',

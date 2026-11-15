@@ -42,13 +42,22 @@ export const formsOfEnergy_SkillGroup_Data = defineSkillGroup({
     kk: 'Энергия түрлері',
     qm: 'Energiya çeşitleri',
   },
-  skills: [
-    calculateGravitationalPotentialEnergy_Skill_Data,
-    classifyFormsOfEnergy_Skill_Data,
-    distinguishEnergyFromItsSource_Skill_Data,
-    explainKineticEnergyAsEnergyOfMotion_Skill_Data,
-    explainPotentialEnergy_Skill_Data,
-  ],
+  skills: {
+    items: {
+      calculateGravitationalPotentialEnergy: calculateGravitationalPotentialEnergy_Skill_Data,
+      classifyFormsOfEnergy: classifyFormsOfEnergy_Skill_Data,
+      distinguishEnergyFromItsSource: distinguishEnergyFromItsSource_Skill_Data,
+      explainKineticEnergyAsEnergyOfMotion: explainKineticEnergyAsEnergyOfMotion_Skill_Data,
+      explainPotentialEnergy: explainPotentialEnergy_Skill_Data,
+    },
+    order: [
+      'calculateGravitationalPotentialEnergy',
+      'classifyFormsOfEnergy',
+      'distinguishEnergyFromItsSource',
+      'explainKineticEnergyAsEnergyOfMotion',
+      'explainPotentialEnergy',
+    ],
+  },
   description: {
     methodological:
       'Motion, position, deformation, and internal state can be associated with different forms of energy; descriptions should refer to a specific physical system.',

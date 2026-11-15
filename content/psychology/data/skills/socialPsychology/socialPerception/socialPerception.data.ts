@@ -43,14 +43,24 @@ export const socialPerception_SkillGroup_Data = defineSkillGroup({
     kk: 'Әлеуметтік қабылдау',
     qm: 'Cemaatni añlav',
   },
-  skills: [
-    compassion_Skill_Data,
-    empathy_Skill_Data,
-    firstImpressions_Skill_Data,
-    perspectiveTaking_Skill_Data,
-    socialAttribution_Skill_Data,
-    stereotypeActivation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compassion: compassion_Skill_Data,
+      empathy: empathy_Skill_Data,
+      firstImpressions: firstImpressions_Skill_Data,
+      perspectiveTaking: perspectiveTaking_Skill_Data,
+      socialAttribution: socialAttribution_Skill_Data,
+      stereotypeActivation: stereotypeActivation_Skill_Data,
+    },
+    order: [
+      'compassion',
+      'empathy',
+      'firstImpressions',
+      'perspectiveTaking',
+      'socialAttribution',
+      'stereotypeActivation',
+    ],
+  },
   description: {
     methodological:
       'Judgments about other people are inferred from limited evidence and shaped by expectations, roles, and context.',

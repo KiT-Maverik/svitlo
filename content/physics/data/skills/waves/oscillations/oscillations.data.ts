@@ -41,12 +41,20 @@ export const oscillations_SkillGroup_Data = defineSkillGroup({
     kk: 'Тербелістер',
     qm: 'Titreşüvler',
   },
-  skills: [
-    detectVibrationsOfASoundSource_Skill_Data,
-    recognizeOscillatoryMotion_Skill_Data,
-    recognizeThePeriodicityOfOscillations_Skill_Data,
-    relateSoundToVibration_Skill_Data,
-  ],
+  skills: {
+    items: {
+      detectVibrationsOfASoundSource: detectVibrationsOfASoundSource_Skill_Data,
+      recognizeOscillatoryMotion: recognizeOscillatoryMotion_Skill_Data,
+      recognizeThePeriodicityOfOscillations: recognizeThePeriodicityOfOscillations_Skill_Data,
+      relateSoundToVibration: relateSoundToVibration_Skill_Data,
+    },
+    order: [
+      'detectVibrationsOfASoundSource',
+      'recognizeOscillatoryMotion',
+      'recognizeThePeriodicityOfOscillations',
+      'relateSoundToVibration',
+    ],
+  },
   description: {
     methodological:
       'Repetitive motion around a given state allows vibration, periodicity, and sound sources to be described.',

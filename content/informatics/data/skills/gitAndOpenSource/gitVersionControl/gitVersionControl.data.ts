@@ -43,14 +43,24 @@ export const gitVersionControl_SkillGroup_Data = defineSkillGroup({
     kk: 'Git нұсқаларды басқару',
     qm: 'Git versiya kontrolü',
   },
-  skills: [
-    distinguishLocalAndRemoteRepositories_Skill_Data,
-    explainABranch_Skill_Data,
-    explainACommit_Skill_Data,
-    explainAPullRequest_Skill_Data,
-    explainARepository_Skill_Data,
-    explainBranchMerging_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishLocalAndRemoteRepositories: distinguishLocalAndRemoteRepositories_Skill_Data,
+      explainABranch: explainABranch_Skill_Data,
+      explainACommit: explainACommit_Skill_Data,
+      explainAPullRequest: explainAPullRequest_Skill_Data,
+      explainARepository: explainARepository_Skill_Data,
+      explainBranchMerging: explainBranchMerging_Skill_Data,
+    },
+    order: [
+      'distinguishLocalAndRemoteRepositories',
+      'explainABranch',
+      'explainACommit',
+      'explainAPullRequest',
+      'explainARepository',
+      'explainBranchMerging',
+    ],
+  },
   description: {
     methodological:
       'Git provides a history of commits and branches, while change-review processes help combine the work of multiple contributors.',

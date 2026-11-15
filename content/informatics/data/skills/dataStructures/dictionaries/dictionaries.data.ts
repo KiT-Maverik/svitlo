@@ -40,11 +40,14 @@ export const dictionaries_SkillGroup_Data = defineSkillGroup({
     kk: 'Сөздіктер',
     qm: 'Lüğatlar',
   },
-  skills: [
-    explainDictionaryStructure_Skill_Data,
-    retrieveADictionaryValueByKey_Skill_Data,
-    updateADictionaryValue_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainDictionaryStructure: explainDictionaryStructure_Skill_Data,
+      retrieveADictionaryValueByKey: retrieveADictionaryValueByKey_Skill_Data,
+      updateADictionaryValue: updateADictionaryValue_Skill_Data,
+    },
+    order: ['explainDictionaryStructure', 'retrieveADictionaryValueByKey', 'updateADictionaryValue'],
+  },
   description: {
     methodological:
       'Key-to-value mappings supporting lookup, updates, and absent-key handling. A key need not be a positional sequence index.',

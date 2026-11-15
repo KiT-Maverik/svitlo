@@ -41,12 +41,20 @@ export const numeralSystems_SkillGroup_Data = defineSkillGroup({
     kk: 'Санау жүйелері',
     qm: 'Sayı sistemaları',
   },
-  skills: [
-    convertBetweenBinaryAndDecimal_Skill_Data,
-    distinguishBinaryAndHexadecimal_Skill_Data,
-    explainComputerBinaryLogic_Skill_Data,
-    explainPositionalNumeralSystems_Skill_Data,
-  ],
+  skills: {
+    items: {
+      convertBetweenBinaryAndDecimal: convertBetweenBinaryAndDecimal_Skill_Data,
+      distinguishBinaryAndHexadecimal: distinguishBinaryAndHexadecimal_Skill_Data,
+      explainComputerBinaryLogic: explainComputerBinaryLogic_Skill_Data,
+      explainPositionalNumeralSystems: explainPositionalNumeralSystems_Skill_Data,
+    },
+    order: [
+      'convertBetweenBinaryAndDecimal',
+      'distinguishBinaryAndHexadecimal',
+      'explainComputerBinaryLogic',
+      'explainPositionalNumeralSystems',
+    ],
+  },
   description: {
     methodological:
       'Positional numeral notation, bases, and place values; binary states connect mathematical notation to the technical representation of information.',

@@ -39,12 +39,15 @@ export const emotionAndPsychologicalRegulation_SkillDomain_Data = defineSkillDom
     kk: 'Эмоциялар және психологиялық реттеу',
     qm: 'Duyğular ve psihologik idare etüv',
   },
-  groups: [
-    emotionalProcesses_SkillGroup_Data,
-    recognitionAndExpression_SkillGroup_Data,
-    regulationStrategies_SkillGroup_Data,
-    stressAndCoping_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      emotionalProcesses: emotionalProcesses_SkillGroup_Data,
+      recognitionAndExpression: recognitionAndExpression_SkillGroup_Data,
+      regulationStrategies: regulationStrategies_SkillGroup_Data,
+      stressAndCoping: stressAndCoping_SkillGroup_Data,
+    },
+    order: ['emotionalProcesses', 'recognitionAndExpression', 'regulationStrategies', 'stressAndCoping'],
+  },
   description: {
     methodological:
       'Emotional responses combine appraisal, bodily activation, expression, and action tendencies. Regulation concerns responding flexibly to emotions, not suppressing every uncomfortable experience.',

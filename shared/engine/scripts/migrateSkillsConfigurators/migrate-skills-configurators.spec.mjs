@@ -68,11 +68,11 @@ test('dry-run preserves original sources; isolated preview upgrades all three le
     );
     assert.match(
       fs.readFileSync(path.join(preview, 'artistic/artistic.data.ts'), 'utf8'),
-      /groups: \[ seeing_SkillGroup_Data \]/,
+      /groups: \{ items: \{ seeing: seeing_SkillGroup_Data \}, order: \["seeing"\] \}/,
     );
     assert.match(
       fs.readFileSync(path.join(preview, 'artistic/seeing/seeing.data.ts'), 'utf8'),
-      /skills: \[ look_Skill_Data \]/,
+      /skills: \{ items: \{ look: look_Skill_Data \}, order: \["look"\] \}/,
     );
     for (const [name, content] of old)
       if (name.endsWith('index.ts')) assert.equal(fs.readFileSync(path.join(preview, name), 'utf8'), content);
@@ -119,7 +119,7 @@ test(
         new Map(result.files.map(item => [path.relative(preview, item.file), item.id])),
       );
       // The only allowed source edits: configurator/import names, Domain name→title,
-      // and replacement of keyed child maps by ordered configurator arrays.
+      // and replacement of keyed child maps by ordered items/order collections.
       for (const item of baseline.files) {
         const next = fs.readFileSync(path.join(preview, path.relative(art, item.file)), 'utf8');
         assert.equal(next, item.result);

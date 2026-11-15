@@ -20,7 +20,7 @@ on:
           - generate
           - cleanup
   pull_request:
-    branches: [main, new-lesson]
+    branches: [main, new-lesson, integration/italian-localization]
     types: [ready_for_review]
 
 permissions:
@@ -135,10 +135,14 @@ jobs:
           grep -q '## Question Bank' "$RUNNER_TEMP/lesson-uk.md"
           grep -q '## Flashcard Bank' "$RUNNER_TEMP/lesson-uk.md"
           grep -q 'Quiz uses references' "$RUNNER_TEMP/lesson-uk.md"
-      - name: Generate Skills and Lesson Markdown in every supported language
+      - name: Generate localized Markdown references (including incomplete draft previews)
         run: |
           node --check scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs
           node --check shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs
+          node --check shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-reference.mjs
+          node --check content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.mjs
+          node --test shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-reference.spec.mjs
+          node --test content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.spec.mjs
           node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs
       - name: Upload isolated CI result for trusted publish job
         if: success()
@@ -194,14 +198,16 @@ jobs:
           import path from 'node:path';
           const root = '.agent-ci-artifacts';
           const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8'));
-          if (manifest.kind !== 'pr-scoped-agent-ci-artifacts' ||
+          if (manifest.kind !== 'pr-scoped-agent-ci-artifacts' || ![2, 3].includes(manifest.schemaVersion) ||
               !Array.isArray(manifest.generated) || !Array.isArray(manifest.failures) ||
               manifest.generated.length === 0) throw Error('Invalid or empty agent artifact manifest');
           const expected = new Set();
           for (const entry of manifest.generated) {
             const name = entry.path;
             const segments = typeof name === 'string' ? name.split('/') : [];
-            const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6 : segments[1] === 'lessons-by-skill' ? 3 : segments[1] === 'assessment-methods' ? 3 : -1;
+            const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6
+              : segments[1] === 'lessons-by-skill' ? 3 : segments[1] === 'assessment-methods' ? 3
+              : segments[1] === 'ui-kit' ? 4 : segments[1] === 'geography-home-copy' ? 3 : -1;
             if (typeof name !== 'string' ||
                 segments[0] !== root || segments.length !== depth ||
                 segments.slice(2).some(part => !/^[a-zA-Z0-9._-]+$/.test(part) || part === '..') ||
@@ -209,6 +215,11 @@ jobs:
                 (segments[1] === 'lessons-by-skill' && !/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\.md$/.test(segments[2])) ||
                 expected.has(name) || !fs.statSync(name).isFile()) {
               throw Error('Invalid generated artifact entry: ' + String(name));
+            }
+            if (Object.hasOwn(entry, 'missing') &&
+                (!Number.isSafeInteger(entry.missing) || entry.missing < 0 ||
+                 entry.reviewReady !== (entry.missing === 0))) {
+              throw Error('Invalid missing-translation status: ' + name);
             }
             expected.add(name);
           }

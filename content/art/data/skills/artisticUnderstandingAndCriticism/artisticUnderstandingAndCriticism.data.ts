@@ -39,12 +39,15 @@ export const artisticUnderstandingAndCriticism_SkillDomain_Data = defineSkillDom
     kk: 'Өнерді түсіну және сын',
     qm: 'Sanatnı añlav ve tenqit',
   },
-  groups: [
-    curationAndPresentation_SkillGroup_Data,
-    formalLanguage_SkillGroup_Data,
-    formsAndPurposes_SkillGroup_Data,
-    interpretationAndEvaluation_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      curationAndPresentation: curationAndPresentation_SkillGroup_Data,
+      formalLanguage: formalLanguage_SkillGroup_Data,
+      formsAndPurposes: formsAndPurposes_SkillGroup_Data,
+      interpretationAndEvaluation: interpretationAndEvaluation_SkillGroup_Data,
+    },
+    order: ['curationAndPresentation', 'formalLanguage', 'formsAndPurposes', 'interpretationAndEvaluation'],
+  },
   description: {
     methodological:
       'Interpretation of artistic work depends on the medium, formal relationships, intentions and cultural contexts. This field supports attentive analysis of existing artworks rather than instruction in a particular material technique.',

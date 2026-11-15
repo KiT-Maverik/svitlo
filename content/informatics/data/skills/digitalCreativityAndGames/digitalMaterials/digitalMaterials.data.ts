@@ -40,11 +40,14 @@ export const digitalMaterials_SkillGroup_Data = defineSkillGroup({
     kk: 'Цифрлық материалдар',
     qm: 'Raqamlı materiallar',
   },
-  skills: [
-    chooseADigitalCreativeTool_Skill_Data,
-    createASimpleDigitalArtifact_Skill_Data,
-    editADigitalArtifact_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chooseADigitalCreativeTool: chooseADigitalCreativeTool_Skill_Data,
+      createASimpleDigitalArtifact: createASimpleDigitalArtifact_Skill_Data,
+      editADigitalArtifact: editADigitalArtifact_Skill_Data,
+    },
+    order: ['chooseADigitalCreativeTool', 'createASimpleDigitalArtifact', 'editADigitalArtifact'],
+  },
   description: {
     methodological:
       'Creating, modifying, and selecting tools for digital outcomes with specific purposes. Editing an existing file, for example, is a distinct action from choosing a tool for future work.',

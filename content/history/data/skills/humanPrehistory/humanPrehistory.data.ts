@@ -39,12 +39,20 @@ export const humanPrehistory_SkillDomain_Data = defineSkillDomain({
     kk: 'Адамзаттың тарихқа дейінгі дәуірі',
     qm: 'İnsaniyetniñ yazıdan evelki tarihı',
   },
-  groups: [
-    growingSocialComplexity_SkillGroup_Data,
-    humanOriginsAndDispersal_SkillGroup_Data,
-    hunterGathererSocieties_SkillGroup_Data,
-    transitionToFoodProduction_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      growingSocialComplexity: growingSocialComplexity_SkillGroup_Data,
+      humanOriginsAndDispersal: humanOriginsAndDispersal_SkillGroup_Data,
+      hunterGathererSocieties: hunterGathererSocieties_SkillGroup_Data,
+      transitionToFoodProduction: transitionToFoodProduction_SkillGroup_Data,
+    },
+    order: [
+      'growingSocialComplexity',
+      'humanOriginsAndDispersal',
+      'hunterGathererSocieties',
+      'transitionToFoodProduction',
+    ],
+  },
   description: {
     methodological:
       'The long era before written states encompasses human evolution, global dispersal, varied subsistence, and uneven regional transitions toward settlements and metallurgy.',

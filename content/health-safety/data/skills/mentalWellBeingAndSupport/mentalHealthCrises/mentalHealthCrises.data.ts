@@ -40,11 +40,14 @@ export const mentalHealthCrises_SkillGroup_Data = defineSkillGroup({
     kk: 'Психикалық денсаулық дағдарыстары',
     qm: 'Ruhiy sağlamlıq buhranları',
   },
-  skills: [
-    providePsychologicalFirstAid_Skill_Data,
-    recognizeAnAcutePsychologicalCrisis_Skill_Data,
-    respondToSelfHarmOrSuicideRisk_Skill_Data,
-  ],
+  skills: {
+    items: {
+      providePsychologicalFirstAid: providePsychologicalFirstAid_Skill_Data,
+      recognizeAnAcutePsychologicalCrisis: recognizeAnAcutePsychologicalCrisis_Skill_Data,
+      respondToSelfHarmOrSuicideRisk: respondToSelfHarmOrSuicideRisk_Skill_Data,
+    },
+    order: ['providePsychologicalFirstAid', 'recognizeAnAcutePsychologicalCrisis', 'respondToSelfHarmOrSuicideRisk'],
+  },
   description: {
     methodological:
       'Immediate safety and connection to competent support take priority over attempting therapy or managing a potentially dangerous situation alone.',

@@ -42,13 +42,22 @@ export const traitsAndPersonalityModels_SkillGroup_Data = defineSkillGroup({
     kk: 'Тұлғалық қасиеттер және үлгілер',
     qm: 'Şahsiyet hususiyetleri ve modelleri',
   },
-  skills: [
-    bigFiveTraitModel_Skill_Data,
-    personalityAssessment_Skill_Data,
-    personalityStabilityAndChange_Skill_Data,
-    traitSituationInteraction_Skill_Data,
-    traitVersusState_Skill_Data,
-  ],
+  skills: {
+    items: {
+      bigFiveTraitModel: bigFiveTraitModel_Skill_Data,
+      personalityAssessment: personalityAssessment_Skill_Data,
+      personalityStabilityAndChange: personalityStabilityAndChange_Skill_Data,
+      traitSituationInteraction: traitSituationInteraction_Skill_Data,
+      traitVersusState: traitVersusState_Skill_Data,
+    },
+    order: [
+      'bigFiveTraitModel',
+      'personalityAssessment',
+      'personalityStabilityAndChange',
+      'traitSituationInteraction',
+      'traitVersusState',
+    ],
+  },
   description: {
     methodological:
       'Trait models summarize recurring behavioral tendencies while leaving room for situational variation and change.',

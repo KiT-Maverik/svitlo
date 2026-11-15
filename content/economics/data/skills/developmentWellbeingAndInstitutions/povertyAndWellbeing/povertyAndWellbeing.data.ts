@@ -40,11 +40,14 @@ export const povertyAndWellbeing_SkillGroup_Data = defineSkillGroup({
     kk: 'Кедейлік және әл-ауқат',
     qm: 'Faqırlıq ve refah',
   },
-  skills: [
-    absoluteAndRelativePoverty_Skill_Data,
-    humanDevelopmentIndicators_Skill_Data,
-    multidimensionalPoverty_Skill_Data,
-  ],
+  skills: {
+    items: {
+      absoluteAndRelativePoverty: absoluteAndRelativePoverty_Skill_Data,
+      humanDevelopmentIndicators: humanDevelopmentIndicators_Skill_Data,
+      multidimensionalPoverty: multidimensionalPoverty_Skill_Data,
+    },
+    order: ['absoluteAndRelativePoverty', 'humanDevelopmentIndicators', 'multidimensionalPoverty'],
+  },
   description: {
     methodological:
       'Assessing living conditions requires attention to income, opportunities, and access to essential goods.',

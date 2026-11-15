@@ -41,12 +41,15 @@ export const galaxiesAndTheirEvolution_SkillGroup_Data = defineSkillGroup({
     ka: 'გალაქტიკები და მათი ევოლუცია',
     kk: 'Галактикалар және олардың эволюциясы',
   },
-  skills: [
-    galaxyGroupsAndClusters_Skill_Data,
-    galaxyInteractionsAndMergers_Skill_Data,
-    galaxyMorphology_Skill_Data,
-    galaxyStellarPopulations_Skill_Data,
-  ],
+  skills: {
+    items: {
+      galaxyGroupsAndClusters: galaxyGroupsAndClusters_Skill_Data,
+      galaxyInteractionsAndMergers: galaxyInteractionsAndMergers_Skill_Data,
+      galaxyMorphology: galaxyMorphology_Skill_Data,
+      galaxyStellarPopulations: galaxyStellarPopulations_Skill_Data,
+    },
+    order: ['galaxyGroupsAndClusters', 'galaxyInteractionsAndMergers', 'galaxyMorphology', 'galaxyStellarPopulations'],
+  },
   description: {
     methodological:
       'Galaxies differ in morphology, stellar content, formation history and interaction, rather than representing fixed shapes throughout cosmic time.',

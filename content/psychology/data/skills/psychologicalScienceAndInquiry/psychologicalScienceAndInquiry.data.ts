@@ -40,13 +40,22 @@ export const psychologicalScienceAndInquiry_SkillDomain_Data = defineSkillDomain
     kk: 'Психология ғылымы және зерттеу',
     qm: 'Psihologiya ilimi ve tetqiq',
   },
-  groups: [
-    evidenceAndInterpretation_SkillGroup_Data,
-    foundationsAndPerspectives_SkillGroup_Data,
-    measurementAndSampling_SkillGroup_Data,
-    researchEthics_SkillGroup_Data,
-    studyDesigns_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      evidenceAndInterpretation: evidenceAndInterpretation_SkillGroup_Data,
+      foundationsAndPerspectives: foundationsAndPerspectives_SkillGroup_Data,
+      measurementAndSampling: measurementAndSampling_SkillGroup_Data,
+      researchEthics: researchEthics_SkillGroup_Data,
+      studyDesigns: studyDesigns_SkillGroup_Data,
+    },
+    order: [
+      'evidenceAndInterpretation',
+      'foundationsAndPerspectives',
+      'measurementAndSampling',
+      'researchEthics',
+      'studyDesigns',
+    ],
+  },
   description: {
     methodological:
       'Psychology explains behavior and mental processes through empirical evidence, multiple levels of analysis, and ethical inquiry. Its explanations are provisional and require stronger support than anecdote or authority.',

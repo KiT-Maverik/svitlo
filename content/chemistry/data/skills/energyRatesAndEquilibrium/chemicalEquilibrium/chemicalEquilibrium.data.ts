@@ -42,13 +42,22 @@ export const chemicalEquilibrium_SkillGroup_Data = defineSkillGroup({
     kk: 'Химиялық тепе-теңдік',
     qm: 'Kimyeviy muvazenet',
   },
-  skills: [
-    dynamicEquilibrium_Skill_Data,
-    equilibriumConstants_Skill_Data,
-    equilibriumShifts_Skill_Data,
-    reactionReversibility_Skill_Data,
-    solubilityEquilibrium_Skill_Data,
-  ],
+  skills: {
+    items: {
+      dynamicEquilibrium: dynamicEquilibrium_Skill_Data,
+      equilibriumConstants: equilibriumConstants_Skill_Data,
+      equilibriumShifts: equilibriumShifts_Skill_Data,
+      reactionReversibility: reactionReversibility_Skill_Data,
+      solubilityEquilibrium: solubilityEquilibrium_Skill_Data,
+    },
+    order: [
+      'dynamicEquilibrium',
+      'equilibriumConstants',
+      'equilibriumShifts',
+      'reactionReversibility',
+      'solubilityEquilibrium',
+    ],
+  },
   description: {
     methodological:
       'Forward and reverse processes may continue while bulk composition becomes steady; equilibrium responds to conditions.',

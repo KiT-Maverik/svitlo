@@ -40,11 +40,14 @@ export const meaningAndReference_SkillGroup_Data = defineSkillGroup({
     kk: 'Мағына және референция',
     qm: "Ma'na ve işaret",
   },
-  skills: [
-    distinguishAWordFromItsReferent_Skill_Data,
-    distinguishSenseFromReference_Skill_Data,
-    identifySemanticAmbiguity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAWordFromItsReferent: distinguishAWordFromItsReferent_Skill_Data,
+      distinguishSenseFromReference: distinguishSenseFromReference_Skill_Data,
+      identifySemanticAmbiguity: identifySemanticAmbiguity_Skill_Data,
+    },
+    order: ['distinguishAWordFromItsReferent', 'distinguishSenseFromReference', 'identifySemanticAmbiguity'],
+  },
   description: {
     methodological:
       'Words and sentences can express meanings beyond identifying objects; context, concepts, and the distinction between expression and referent affect analysis.',

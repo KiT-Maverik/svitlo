@@ -36,7 +36,14 @@ export const economicSystems_SkillGroup_Data = defineSkillGroup({
     kk: 'Экономикалық жүйелер',
     qm: 'İqtisadiy sistemalar',
   },
-  skills: [centralPlanning_Skill_Data, marketCoordination_Skill_Data, mixedEconomies_Skill_Data],
+  skills: {
+    items: {
+      centralPlanning: centralPlanning_Skill_Data,
+      marketCoordination: marketCoordination_Skill_Data,
+      mixedEconomies: mixedEconomies_Skill_Data,
+    },
+    order: ['centralPlanning', 'marketCoordination', 'mixedEconomies'],
+  },
   description: {
     methodological:
       'Societies combine markets, planning, public coordination, traditions, and ownership forms in different ways.',

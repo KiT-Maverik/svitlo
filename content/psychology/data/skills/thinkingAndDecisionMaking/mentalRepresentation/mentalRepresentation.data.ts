@@ -42,13 +42,22 @@ export const mentalRepresentation_SkillGroup_Data = defineSkillGroup({
     kk: 'Менталдық репрезентация',
     qm: 'Zihniy tasavvur',
   },
-  skills: [
-    cognitiveSchemas_Skill_Data,
-    conceptFormation_Skill_Data,
-    exemplarBasedCategorization_Skill_Data,
-    mentalModels_Skill_Data,
-    prototypeBasedCategorization_Skill_Data,
-  ],
+  skills: {
+    items: {
+      cognitiveSchemas: cognitiveSchemas_Skill_Data,
+      conceptFormation: conceptFormation_Skill_Data,
+      exemplarBasedCategorization: exemplarBasedCategorization_Skill_Data,
+      mentalModels: mentalModels_Skill_Data,
+      prototypeBasedCategorization: prototypeBasedCategorization_Skill_Data,
+    },
+    order: [
+      'cognitiveSchemas',
+      'conceptFormation',
+      'exemplarBasedCategorization',
+      'mentalModels',
+      'prototypeBasedCategorization',
+    ],
+  },
   description: {
     methodological:
       'Categories, schemas, and internal models compress information, enabling predictions while sometimes concealing important differences.',

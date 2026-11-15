@@ -41,12 +41,20 @@ export const spacecraft_SkillGroup_Data = defineSkillGroup({
     kk: 'Ғарыш аппараттары',
     qm: 'Kosmos gemileri',
   },
-  skills: [
-    atmosphericReEntryProtection_Skill_Data,
-    identifySatelliteSubsystems_Skill_Data,
-    rocketPropulsionSystems_Skill_Data,
-    spacecraftAttitudeControl_Skill_Data,
-  ],
+  skills: {
+    items: {
+      atmosphericReEntryProtection: atmosphericReEntryProtection_Skill_Data,
+      identifySatelliteSubsystems: identifySatelliteSubsystems_Skill_Data,
+      rocketPropulsionSystems: rocketPropulsionSystems_Skill_Data,
+      spacecraftAttitudeControl: spacecraftAttitudeControl_Skill_Data,
+    },
+    order: [
+      'atmosphericReEntryProtection',
+      'identifySatelliteSubsystems',
+      'rocketPropulsionSystems',
+      'spacecraftAttitudeControl',
+    ],
+  },
   description: {
     methodological:
       'Space systems must coordinate propulsion and precision orientation with energy supply, thermal protection and mission hardware.',

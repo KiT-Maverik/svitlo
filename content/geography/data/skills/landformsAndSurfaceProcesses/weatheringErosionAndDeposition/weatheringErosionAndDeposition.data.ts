@@ -41,12 +41,20 @@ export const weatheringErosionAndDeposition_SkillGroup_Data = defineSkillGroup({
     kk: 'Үгілу, эрозия және шөгінді жиналу',
     qm: 'Yemirilme, eroziya ve çöküntü toplanması',
   },
-  skills: [
-    explainDepositionOfTransportedSediment_Skill_Data,
-    explainHowErosionTransportsSurfaceMaterial_Skill_Data,
-    explainTheFormationOfFluvialLandforms_Skill_Data,
-    explainWeatheringOfExposedRock_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainDepositionOfTransportedSediment: explainDepositionOfTransportedSediment_Skill_Data,
+      explainHowErosionTransportsSurfaceMaterial: explainHowErosionTransportsSurfaceMaterial_Skill_Data,
+      explainTheFormationOfFluvialLandforms: explainTheFormationOfFluvialLandforms_Skill_Data,
+      explainWeatheringOfExposedRock: explainWeatheringOfExposedRock_Skill_Data,
+    },
+    order: [
+      'explainDepositionOfTransportedSediment',
+      'explainHowErosionTransportsSurfaceMaterial',
+      'explainTheFormationOfFluvialLandforms',
+      'explainWeatheringOfExposedRock',
+    ],
+  },
   description: {
     methodological:
       'Rocks and sediment change on the exposed surface as material breaks down in place, is carried by water, wind, ice or gravity, and comes to rest elsewhere. These processes can alter valleys, coasts and plains without being confused with deep tectonic deformation.',

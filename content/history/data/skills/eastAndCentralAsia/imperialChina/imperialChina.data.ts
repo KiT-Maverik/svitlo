@@ -42,13 +42,22 @@ export const imperialChina_SkillGroup_Data = defineSkillGroup({
     kk: 'Империялық Қытай',
     qm: 'İmperatorlıq devrindeki Çin',
   },
-  skills: [
-    ancientChineseMetallurgy_Skill_Data,
-    fallOfHanAndSuccessorStates_Skill_Data,
-    hanDynasty_Skill_Data,
-    papermakingInAncientChina_Skill_Data,
-    qinEmpire_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ancientChineseMetallurgy: ancientChineseMetallurgy_Skill_Data,
+      fallOfHanAndSuccessorStates: fallOfHanAndSuccessorStates_Skill_Data,
+      hanDynasty: hanDynasty_Skill_Data,
+      papermakingInAncientChina: papermakingInAncientChina_Skill_Data,
+      qinEmpire: qinEmpire_Skill_Data,
+    },
+    order: [
+      'ancientChineseMetallurgy',
+      'fallOfHanAndSuccessorStates',
+      'hanDynasty',
+      'papermakingInAncientChina',
+      'qinEmpire',
+    ],
+  },
   description: {
     methodological: 'Territorial unification prompted administrative standardization and debate about rule.',
     frontend: {

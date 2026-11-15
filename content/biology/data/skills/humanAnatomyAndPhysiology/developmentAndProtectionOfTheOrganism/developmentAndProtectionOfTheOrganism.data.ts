@@ -41,12 +41,20 @@ export const developmentAndProtectionOfTheOrganism_SkillGroup_Data = defineSkill
     kk: 'Ағзаның дамуы мен қорғанысы',
     qm: 'Organizmnıñ inkişafı ve qorunuvı',
   },
-  skills: [
-    distinguishStagesOfHumanDevelopment_Skill_Data,
-    explainFunctionsOfTheHumanReproductiveSystem_Skill_Data,
-    explainTheImmuneSystemsProtectiveRole_Skill_Data,
-    explainTheImportanceOfSleepForRecovery_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishStagesOfHumanDevelopment: distinguishStagesOfHumanDevelopment_Skill_Data,
+      explainFunctionsOfTheHumanReproductiveSystem: explainFunctionsOfTheHumanReproductiveSystem_Skill_Data,
+      explainTheImmuneSystemsProtectiveRole: explainTheImmuneSystemsProtectiveRole_Skill_Data,
+      explainTheImportanceOfSleepForRecovery: explainTheImportanceOfSleepForRecovery_Skill_Data,
+    },
+    order: [
+      'distinguishStagesOfHumanDevelopment',
+      'explainFunctionsOfTheHumanReproductiveSystem',
+      'explainTheImmuneSystemsProtectiveRole',
+      'explainTheImportanceOfSleepForRecovery',
+    ],
+  },
   description: {
     methodological:
       'Changes from childhood to adulthood, immune mechanisms, and physiological recovery help maintain bodily functions over time.',

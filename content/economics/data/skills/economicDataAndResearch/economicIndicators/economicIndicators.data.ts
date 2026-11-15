@@ -41,12 +41,15 @@ export const economicIndicators_SkillGroup_Data = defineSkillGroup({
     kk: 'Экономикалық көрсеткіштер',
     qm: 'İqtisadiy köstergiçler',
   },
-  skills: [
-    economicDataQuality_Skill_Data,
-    economicTimeSeries_Skill_Data,
-    nominalAndRealMeasures_Skill_Data,
-    perCapitaMeasuresAndShares_Skill_Data,
-  ],
+  skills: {
+    items: {
+      economicDataQuality: economicDataQuality_Skill_Data,
+      economicTimeSeries: economicTimeSeries_Skill_Data,
+      nominalAndRealMeasures: nominalAndRealMeasures_Skill_Data,
+      perCapitaMeasuresAndShares: perCapitaMeasuresAndShares_Skill_Data,
+    },
+    order: ['economicDataQuality', 'economicTimeSeries', 'nominalAndRealMeasures', 'perCapitaMeasuresAndShares'],
+  },
   description: {
     methodological:
       'Numbers alone cannot explain economic circumstances without knowing the base, units, collection methods, and period.',

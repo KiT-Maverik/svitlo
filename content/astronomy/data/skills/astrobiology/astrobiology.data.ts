@@ -38,7 +38,14 @@ export const astrobiology_SkillDomain_Data = defineSkillDomain({
     he: 'אסטרוביולוגיה',
     vi: 'Sinh học vũ trụ',
   },
-  groups: [conditionsForLife_SkillGroup_Data, evidenceOfLife_SkillGroup_Data, searchEnvironments_SkillGroup_Data],
+  groups: {
+    items: {
+      conditionsForLife: conditionsForLife_SkillGroup_Data,
+      evidenceOfLife: evidenceOfLife_SkillGroup_Data,
+      searchEnvironments: searchEnvironments_SkillGroup_Data,
+    },
+    order: ['conditionsForLife', 'evidenceOfLife', 'searchEnvironments'],
+  },
   description: {
     methodological:
       'Scientific investigation of the possibility, conditions and evidence of life beyond Earth, including chemical origins, habitability and contamination risks. The methods of spacecraft observation are classified with astronomical instrumentation and evidence rather than presented as a separate astrobiological subject.',

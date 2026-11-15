@@ -40,13 +40,22 @@ export const informationAndData_SkillDomain_Data = defineSkillDomain({
     kk: 'Ақпарат және деректер',
     qm: 'Malümat ve verilgenler',
   },
-  groups: [
-    databases_SkillGroup_Data,
-    dataCollectionAndOrganization_SkillGroup_Data,
-    informationSearchAndVerification_SkillGroup_Data,
-    probabilityAndUncertainty_SkillGroup_Data,
-    statisticalInvestigation_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      databases: databases_SkillGroup_Data,
+      dataCollectionAndOrganization: dataCollectionAndOrganization_SkillGroup_Data,
+      informationSearchAndVerification: informationSearchAndVerification_SkillGroup_Data,
+      probabilityAndUncertainty: probabilityAndUncertainty_SkillGroup_Data,
+      statisticalInvestigation: statisticalInvestigation_SkillGroup_Data,
+    },
+    order: [
+      'databases',
+      'dataCollectionAndOrganization',
+      'informationSearchAndVerification',
+      'probabilityAndUncertainty',
+      'statisticalInvestigation',
+    ],
+  },
   description: {
     methodological:
       'Obtaining and verifying information, organizing datasets, finding patterns, and reasoning about uncertain events. A digital setting may overlap with mathematics, but these skills are classified locally within Informatics.',

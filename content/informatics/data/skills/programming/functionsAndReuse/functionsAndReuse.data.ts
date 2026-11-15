@@ -42,13 +42,22 @@ export const functionsAndReuse_SkillGroup_Data = defineSkillGroup({
     kk: 'Функциялар және қайта пайдалану',
     qm: 'Funktsiyalar ve yañıdan qullanuv',
   },
-  skills: [
-    callAFunctionWithArguments_Skill_Data,
-    defineAFunctionWithParameters_Skill_Data,
-    explainRecursion_Skill_Data,
-    explainThePurposeOfAFunction_Skill_Data,
-    useAFunctionsReturnValue_Skill_Data,
-  ],
+  skills: {
+    items: {
+      callAFunctionWithArguments: callAFunctionWithArguments_Skill_Data,
+      defineAFunctionWithParameters: defineAFunctionWithParameters_Skill_Data,
+      explainRecursion: explainRecursion_Skill_Data,
+      explainThePurposeOfAFunction: explainThePurposeOfAFunction_Skill_Data,
+      useAFunctionsReturnValue: useAFunctionsReturnValue_Skill_Data,
+    },
+    order: [
+      'callAFunctionWithArguments',
+      'defineAFunctionWithParameters',
+      'explainRecursion',
+      'explainThePurposeOfAFunction',
+      'useAFunctionsReturnValue',
+    ],
+  },
   description: {
     methodological:
       'Named sections of programs with inputs, outputs, and defined responsibilities that help divide tasks and avoid repeating the same logic.',

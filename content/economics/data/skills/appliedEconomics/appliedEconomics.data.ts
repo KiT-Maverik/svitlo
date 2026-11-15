@@ -41,14 +41,24 @@ export const appliedEconomics_SkillDomain_Data = defineSkillDomain({
     kk: 'Қолданбалы экономика',
     qm: 'Ameliy iqtisat',
   },
-  groups: [
-    agriculturalEconomics_SkillGroup_Data,
-    economicsOfEducation_SkillGroup_Data,
-    healthEconomics_SkillGroup_Data,
-    housingAndRealEstate_SkillGroup_Data,
-    transportAndInfrastructure_SkillGroup_Data,
-    urbanAndRegionalEconomics_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      agriculturalEconomics: agriculturalEconomics_SkillGroup_Data,
+      economicsOfEducation: economicsOfEducation_SkillGroup_Data,
+      healthEconomics: healthEconomics_SkillGroup_Data,
+      housingAndRealEstate: housingAndRealEstate_SkillGroup_Data,
+      transportAndInfrastructure: transportAndInfrastructure_SkillGroup_Data,
+      urbanAndRegionalEconomics: urbanAndRegionalEconomics_SkillGroup_Data,
+    },
+    order: [
+      'agriculturalEconomics',
+      'economicsOfEducation',
+      'healthEconomics',
+      'housingAndRealEstate',
+      'transportAndInfrastructure',
+      'urbanAndRegionalEconomics',
+    ],
+  },
   description: {
     methodological:
       'Specialized markets and institutional conditions in cities, housing, transport, education, healthcare, and agriculture create distinct economic mechanisms. This domain examines sector-specific choices and consequences without duplicating geographic, medical, educational, or agricultural competencies.',

@@ -41,12 +41,20 @@ export const awarenessAndAutomaticity_SkillGroup_Data = defineSkillGroup({
     kk: 'Саналы ұғыну және автоматтану',
     qm: 'Farqındalıq ve avtomatikleşüv',
   },
-  skills: [
-    alteredStatesOfConsciousness_Skill_Data,
-    effortfulAndAutomaticProcessing_Skill_Data,
-    limitsOfIntrospection_Skill_Data,
-    skillAutomaticity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      alteredStatesOfConsciousness: alteredStatesOfConsciousness_Skill_Data,
+      effortfulAndAutomaticProcessing: effortfulAndAutomaticProcessing_Skill_Data,
+      limitsOfIntrospection: limitsOfIntrospection_Skill_Data,
+      skillAutomaticity: skillAutomaticity_Skill_Data,
+    },
+    order: [
+      'alteredStatesOfConsciousness',
+      'effortfulAndAutomaticProcessing',
+      'limitsOfIntrospection',
+      'skillAutomaticity',
+    ],
+  },
   description: {
     methodological:
       'Deliberate processing differs from practiced routines, and retrospective introspection is an imperfect account of causes.',

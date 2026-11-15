@@ -42,13 +42,22 @@ export const transmissionAndProtection_SkillGroup_Data = defineSkillGroup({
     kk: 'Жұғу жолдары және қорғану',
     qm: 'Yayılma yolları ve qorunuv',
   },
-  skills: [
-    recognizeInfectionTransmissionRoutes_Skill_Data,
-    respiratoryHygiene_Skill_Data,
-    respondToSignsOfInfectiousIllness_Skill_Data,
-    safeContactWithBloodAndBodyFluids_Skill_Data,
-    vaccinationLiteracy_Skill_Data,
-  ],
+  skills: {
+    items: {
+      recognizeInfectionTransmissionRoutes: recognizeInfectionTransmissionRoutes_Skill_Data,
+      respiratoryHygiene: respiratoryHygiene_Skill_Data,
+      respondToSignsOfInfectiousIllness: respondToSignsOfInfectiousIllness_Skill_Data,
+      safeContactWithBloodAndBodyFluids: safeContactWithBloodAndBodyFluids_Skill_Data,
+      vaccinationLiteracy: vaccinationLiteracy_Skill_Data,
+    },
+    order: [
+      'recognizeInfectionTransmissionRoutes',
+      'respiratoryHygiene',
+      'respondToSignsOfInfectiousIllness',
+      'safeContactWithBloodAndBodyFluids',
+      'vaccinationLiteracy',
+    ],
+  },
   description: {
     methodological:
       'Infectious hazards can spread through different routes and require measures suited to the agent and environment, not one universal precaution.',

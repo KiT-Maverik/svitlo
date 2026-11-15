@@ -10,6 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
 import { loadFactoryRegistry, sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
+import { renderReviewDraft } from './reviewTemplate.mjs';
 
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const safeSlug = /^[a-z][A-Za-z0-9]*$/;
@@ -768,6 +769,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     '({\n' +
     rootFields.join(',\n') +
     '\n});\n';
+  put('review.ts', renderReviewDraft());
   put('index.ts', root);
   // Write the entrypoint last. A process interruption before this point
   // leaves an orphan tree, which runOne rejects rather than treating it as a

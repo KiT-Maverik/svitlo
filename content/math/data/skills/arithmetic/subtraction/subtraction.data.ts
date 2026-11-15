@@ -43,14 +43,24 @@ export const subtraction_SkillGroup_Data = defineSkillGroup({
     pl: 'Odejmowanie',
     uk: 'Віднімання',
   },
-  skills: [
-    subtractMeaning_Skill_Data,
-    subtractZero_Skill_Data,
-    subtractSelf_Skill_Data,
-    crossTenSubtraction_Skill_Data,
-    columnSubtraction_Skill_Data,
-    regrouping_Skill_Data,
-  ],
+  skills: {
+    items: {
+      subtractMeaning: subtractMeaning_Skill_Data,
+      subtractZero: subtractZero_Skill_Data,
+      subtractSelf: subtractSelf_Skill_Data,
+      crossTenSubtraction: crossTenSubtraction_Skill_Data,
+      columnSubtraction: columnSubtraction_Skill_Data,
+      regrouping: regrouping_Skill_Data,
+    },
+    order: [
+      'subtractMeaning',
+      'subtractZero',
+      'subtractSelf',
+      'crossTenSubtraction',
+      'columnSubtraction',
+      'regrouping',
+    ],
+  },
   description: {
     methodological:
       'Removing a part, finding a difference, regrouping place values, and verifying subtraction calculations.',

@@ -40,11 +40,18 @@ export const reliefAndElevation_SkillGroup_Data = defineSkillGroup({
     kk: 'Жер бедері мен биіктік',
     qm: 'Yer relyefi ve yükseklik',
   },
-  skills: [
-    interpretContourSpacingAsTerrainSteepness_Skill_Data,
-    interpretElevationRelativeToAVerticalReference_Skill_Data,
-    interpretRelativeReliefBetweenLocations_Skill_Data,
-  ],
+  skills: {
+    items: {
+      interpretContourSpacingAsTerrainSteepness: interpretContourSpacingAsTerrainSteepness_Skill_Data,
+      interpretElevationRelativeToAVerticalReference: interpretElevationRelativeToAVerticalReference_Skill_Data,
+      interpretRelativeReliefBetweenLocations: interpretRelativeReliefBetweenLocations_Skill_Data,
+    },
+    order: [
+      'interpretContourSpacingAsTerrainSteepness',
+      'interpretElevationRelativeToAVerticalReference',
+      'interpretRelativeReliefBetweenLocations',
+    ],
+  },
   description: {
     methodological:
       'The shape and vertical variation of terrain distinguish plains, hills, mountains, valleys and plateaus. Understanding elevation and relief also supports interpretation of slopes and contour information; foundational identification of landform categories belongs to Geographic Objects.',

@@ -39,12 +39,15 @@ export const atmosphereWeatherAndClimate_SkillDomain_Data = defineSkillDomain({
     kk: 'Атмосфера, ауа райы және климат',
     qm: 'Atmosfera, ava şaraiti ve iklim',
   },
-  groups: [
-    atmosphericHazards_SkillGroup_Data,
-    atmosphericProcesses_SkillGroup_Data,
-    climatePatterns_SkillGroup_Data,
-    weatherObservations_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      atmosphericHazards: atmosphericHazards_SkillGroup_Data,
+      atmosphericProcesses: atmosphericProcesses_SkillGroup_Data,
+      climatePatterns: climatePatterns_SkillGroup_Data,
+      weatherObservations: weatherObservations_SkillGroup_Data,
+    },
+    order: ['atmosphericHazards', 'atmosphericProcesses', 'climatePatterns', 'weatherObservations'],
+  },
   description: {
     methodological:
       'Weather describes atmospheric conditions at a place and time, whereas climate characterizes their long-term distributions and change. Geographic inquiry examines how clouds, precipitation, air motion and circulation vary across places, and how hazards and climate trends influence regions.',

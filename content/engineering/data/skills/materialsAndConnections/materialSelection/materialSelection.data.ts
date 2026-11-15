@@ -42,13 +42,22 @@ export const materialSelection_SkillGroup_Data = defineSkillGroup({
     kk: 'Материал таңдау',
     qm: 'Malzeme saylavı',
   },
-  skills: [
-    compositeMaterialApplications_Skill_Data,
-    distinguishMaterialStrengthAndStiffness_Skill_Data,
-    evaluateMaterialDurability_Skill_Data,
-    identifyRelevantMaterialProperties_Skill_Data,
-    materialSuitabilityAssessment_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compositeMaterialApplications: compositeMaterialApplications_Skill_Data,
+      distinguishMaterialStrengthAndStiffness: distinguishMaterialStrengthAndStiffness_Skill_Data,
+      evaluateMaterialDurability: evaluateMaterialDurability_Skill_Data,
+      identifyRelevantMaterialProperties: identifyRelevantMaterialProperties_Skill_Data,
+      materialSuitabilityAssessment: materialSuitabilityAssessment_Skill_Data,
+    },
+    order: [
+      'compositeMaterialApplications',
+      'distinguishMaterialStrengthAndStiffness',
+      'evaluateMaterialDurability',
+      'identifyRelevantMaterialProperties',
+      'materialSuitabilityAssessment',
+    ],
+  },
   description: {
     methodological:
       'A component needs a combination of properties matched to its actual loading, manufacturing process and environment.',

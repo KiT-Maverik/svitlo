@@ -40,11 +40,14 @@ export const commonPoolResources_SkillGroup_Data = defineSkillGroup({
     kk: 'Ортақ пайдаланылатын ресурстар',
     qm: 'Umumiy qullanılğan resurslar',
   },
-  skills: [
-    commonPoolResourceCharacteristics_Skill_Data,
-    commonResourceGovernance_Skill_Data,
-    renewableResourceDepletion_Skill_Data,
-  ],
+  skills: {
+    items: {
+      commonPoolResourceCharacteristics: commonPoolResourceCharacteristics_Skill_Data,
+      commonResourceGovernance: commonResourceGovernance_Skill_Data,
+      renewableResourceDepletion: renewableResourceDepletion_Skill_Data,
+    },
+    order: ['commonPoolResourceCharacteristics', 'commonResourceGovernance', 'renewableResourceDepletion'],
+  },
   description: {
     methodological:
       'Competition for use and difficulty excluding access create the risk of extracting too much from shared resources.',

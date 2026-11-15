@@ -40,13 +40,16 @@ export const ethicsAndMoralReasoning_SkillDomain_Data = defineSkillDomain({
     kk: 'Этика және моральдық пайымдау',
     qm: 'Etika ve ahlâqiy fikir yürsetüv',
   },
-  groups: [
-    appliedEthics_SkillGroup_Data,
-    ethicalFrameworks_SkillGroup_Data,
-    metaethics_SkillGroup_Data,
-    moralConcepts_SkillGroup_Data,
-    moralDeliberation_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      appliedEthics: appliedEthics_SkillGroup_Data,
+      ethicalFrameworks: ethicalFrameworks_SkillGroup_Data,
+      metaethics: metaethics_SkillGroup_Data,
+      moralConcepts: moralConcepts_SkillGroup_Data,
+      moralDeliberation: moralDeliberation_SkillGroup_Data,
+    },
+    order: ['appliedEthics', 'ethicalFrameworks', 'metaethics', 'moralConcepts', 'moralDeliberation'],
+  },
   description: {
     methodological:
       'Ethics studies what ought to be done, what makes actions right or wrong, and how moral reasons apply to individuals and institutions. It evaluates normative standards rather than describing the psychological development of moral feelings.',

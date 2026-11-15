@@ -43,14 +43,24 @@ export const romanEmpire_SkillGroup_Data = defineSkillGroup({
     kk: 'Рим империясы',
     qm: 'Roma imperiyası',
   },
-  skills: [
-    augustanPrincipate_Skill_Data,
-    dailyLifeInRomanEmpire_Skill_Data,
-    romanLaw_Skill_Data,
-    romanProvincialGovernment_Skill_Data,
-    spreadOfChristianity_Skill_Data,
-    transformationOfRomanEmpire_Skill_Data,
-  ],
+  skills: {
+    items: {
+      augustanPrincipate: augustanPrincipate_Skill_Data,
+      dailyLifeInRomanEmpire: dailyLifeInRomanEmpire_Skill_Data,
+      romanLaw: romanLaw_Skill_Data,
+      romanProvincialGovernment: romanProvincialGovernment_Skill_Data,
+      spreadOfChristianity: spreadOfChristianity_Skill_Data,
+      transformationOfRomanEmpire: transformationOfRomanEmpire_Skill_Data,
+    },
+    order: [
+      'augustanPrincipate',
+      'dailyLifeInRomanEmpire',
+      'romanLaw',
+      'romanProvincialGovernment',
+      'spreadOfChristianity',
+      'transformationOfRomanEmpire',
+    ],
+  },
   description: {
     methodological:
       'A huge diverse state relied on armies, provincial rule, law, cities, and infrastructure before profound later transformations.',

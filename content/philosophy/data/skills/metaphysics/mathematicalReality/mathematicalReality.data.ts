@@ -40,11 +40,14 @@ export const mathematicalReality_SkillGroup_Data = defineSkillGroup({
     kk: 'Математикалық шындық',
     qm: 'Matematik aqiqati',
   },
-  skills: [
-    analyzeMathematicalStructuralism_Skill_Data,
-    evaluateMathematicalNominalism_Skill_Data,
-    evaluateMathematicalPlatonism_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeMathematicalStructuralism: analyzeMathematicalStructuralism_Skill_Data,
+      evaluateMathematicalNominalism: evaluateMathematicalNominalism_Skill_Data,
+      evaluateMathematicalPlatonism: evaluateMathematicalPlatonism_Skill_Data,
+    },
+    order: ['analyzeMathematicalStructuralism', 'evaluateMathematicalNominalism', 'evaluateMathematicalPlatonism'],
+  },
   description: {
     methodological:
       'Philosophical accounts of mathematics disagree over whether its objects exist independently, are constructs of formal language, or are positions within structures. These ontological commitments are distinct from learning to perform mathematical operations.',

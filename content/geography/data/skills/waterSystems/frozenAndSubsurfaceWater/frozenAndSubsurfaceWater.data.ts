@@ -41,12 +41,20 @@ export const frozenAndSubsurfaceWater_SkillGroup_Data = defineSkillGroup({
     kk: 'Мұздаған және жерасты сулары',
     qm: 'Donğan ve yer astı suvları',
   },
-  skills: [
-    explainHowGlaciersFormAndMove_Skill_Data,
-    explainHowGlaciersReshapeTerrain_Skill_Data,
-    explainTheConceptOfAGroundwaterAquifer_Skill_Data,
-    interpretGeographicVariationsInFreshwaterStorage_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainHowGlaciersFormAndMove: explainHowGlaciersFormAndMove_Skill_Data,
+      explainHowGlaciersReshapeTerrain: explainHowGlaciersReshapeTerrain_Skill_Data,
+      explainTheConceptOfAGroundwaterAquifer: explainTheConceptOfAGroundwaterAquifer_Skill_Data,
+      interpretGeographicVariationsInFreshwaterStorage: interpretGeographicVariationsInFreshwaterStorage_Skill_Data,
+    },
+    order: [
+      'explainHowGlaciersFormAndMove',
+      'explainHowGlaciersReshapeTerrain',
+      'explainTheConceptOfAGroundwaterAquifer',
+      'interpretGeographicVariationsInFreshwaterStorage',
+    ],
+  },
   description: {
     methodological:
       'Snow, ice and groundwater store freshwater for different durations and interact with landscapes and human supplies. Their accumulation and discharge vary with climate, geology and geography rather than being visible only in rivers.',

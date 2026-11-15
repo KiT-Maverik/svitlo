@@ -41,12 +41,15 @@ export const electronicComponents_SkillGroup_Data = defineSkillGroup({
     kk: 'Электрондық құрамдастар',
     qm: 'Elektron komponentler',
   },
-  skills: [
-    capacitorApplications_Skill_Data,
-    diodeApplications_Skill_Data,
-    resistorApplications_Skill_Data,
-    transistorSwitching_Skill_Data,
-  ],
+  skills: {
+    items: {
+      capacitorApplications: capacitorApplications_Skill_Data,
+      diodeApplications: diodeApplications_Skill_Data,
+      resistorApplications: resistorApplications_Skill_Data,
+      transistorSwitching: transistorSwitching_Skill_Data,
+    },
+    order: ['capacitorApplications', 'diodeApplications', 'resistorApplications', 'transistorSwitching'],
+  },
   description: {
     methodological:
       'Components can limit, store, steer or switch electrical signals; their appropriate use depends on ratings and surrounding circuit context.',

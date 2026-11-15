@@ -40,13 +40,16 @@ export const atomsAndPeriodicity_SkillDomain_Data = defineSkillDomain({
     kk: 'Атомдар және периодтылық',
     qm: 'Atomlar ve devirlilik',
   },
-  groups: [
-    atomicStructure_SkillGroup_Data,
-    electronicStructure_SkillGroup_Data,
-    nuclearChemistry_SkillGroup_Data,
-    periodicOrganization_SkillGroup_Data,
-    periodicTrends_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      atomicStructure: atomicStructure_SkillGroup_Data,
+      electronicStructure: electronicStructure_SkillGroup_Data,
+      nuclearChemistry: nuclearChemistry_SkillGroup_Data,
+      periodicOrganization: periodicOrganization_SkillGroup_Data,
+      periodicTrends: periodicTrends_SkillGroup_Data,
+    },
+    order: ['atomicStructure', 'electronicStructure', 'nuclearChemistry', 'periodicOrganization', 'periodicTrends'],
+  },
   description: {
     methodological:
       'The organization and electronic structure of atoms underpin elemental identity, isotopes, ions and recurring chemical behavior. This domain describes atomic constituents and trends; bond formation is treated separately.',

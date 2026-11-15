@@ -40,11 +40,18 @@ export const biomesAndHabitats_SkillGroup_Data = defineSkillGroup({
     kk: 'Биомдар мен тіршілік орталары',
     qm: 'Biomlar ve yaşayış muhitleri',
   },
-  skills: [
-    compareHabitatConditionsBetweenGeographicLocations_Skill_Data,
-    identifyMajorTerrestrialBiomePatterns_Skill_Data,
-    recognizeTransitionZonesBetweenBiomes_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareHabitatConditionsBetweenGeographicLocations: compareHabitatConditionsBetweenGeographicLocations_Skill_Data,
+      identifyMajorTerrestrialBiomePatterns: identifyMajorTerrestrialBiomePatterns_Skill_Data,
+      recognizeTransitionZonesBetweenBiomes: recognizeTransitionZonesBetweenBiomes_Skill_Data,
+    },
+    order: [
+      'compareHabitatConditionsBetweenGeographicLocations',
+      'identifyMajorTerrestrialBiomePatterns',
+      'recognizeTransitionZonesBetweenBiomes',
+    ],
+  },
   description: {
     methodological:
       'Broad vegetation and habitat patterns reflect environmental conditions while local ecosystems can be more varied than a single biome label suggests.',

@@ -40,11 +40,14 @@ export const communicationAndInterpretation_SkillGroup_Data = defineSkillGroup({
     kk: 'Қарым-қатынас және түсіндіру',
     qm: 'Alâqalaşuv ve izaat',
   },
-  skills: [
-    distinguishLiteralMeaningFromImplication_Skill_Data,
-    evaluateContextualInterpretations_Skill_Data,
-    identifyASpeechAct_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishLiteralMeaningFromImplication: distinguishLiteralMeaningFromImplication_Skill_Data,
+      evaluateContextualInterpretations: evaluateContextualInterpretations_Skill_Data,
+      identifyASpeechAct: identifyASpeechAct_Skill_Data,
+    },
+    order: ['distinguishLiteralMeaningFromImplication', 'evaluateContextualInterpretations', 'identifyASpeechAct'],
+  },
   description: {
     methodological:
       'What a speaker says can differ from what a speaker conveys or does by saying it. Interpretation must take context and plausible alternatives into account.',

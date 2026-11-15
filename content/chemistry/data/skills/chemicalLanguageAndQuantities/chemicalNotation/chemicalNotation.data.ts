@@ -45,16 +45,28 @@ export const chemicalNotation_SkillGroup_Data = defineSkillGroup({
     kk: 'Химиялық белгілеу',
     qm: 'Kimyeviy işaretler',
   },
-  skills: [
-    chemicalFormulas_Skill_Data,
-    elementSymbols_Skill_Data,
-    empiricalFormulas_Skill_Data,
-    inorganicNomenclature_Skill_Data,
-    ionicCompoundFormulas_Skill_Data,
-    molecularFormulas_Skill_Data,
-    organicNomenclature_Skill_Data,
-    oxidationStates_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chemicalFormulas: chemicalFormulas_Skill_Data,
+      elementSymbols: elementSymbols_Skill_Data,
+      empiricalFormulas: empiricalFormulas_Skill_Data,
+      inorganicNomenclature: inorganicNomenclature_Skill_Data,
+      ionicCompoundFormulas: ionicCompoundFormulas_Skill_Data,
+      molecularFormulas: molecularFormulas_Skill_Data,
+      organicNomenclature: organicNomenclature_Skill_Data,
+      oxidationStates: oxidationStates_Skill_Data,
+    },
+    order: [
+      'chemicalFormulas',
+      'elementSymbols',
+      'empiricalFormulas',
+      'inorganicNomenclature',
+      'ionicCompoundFormulas',
+      'molecularFormulas',
+      'organicNomenclature',
+      'oxidationStates',
+    ],
+  },
   description: {
     methodological:
       'Symbols and formulas must preserve elemental identity, proportions and charge while being read according to their convention.',

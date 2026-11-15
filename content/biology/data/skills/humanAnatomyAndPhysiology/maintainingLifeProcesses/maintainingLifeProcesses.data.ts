@@ -45,16 +45,28 @@ export const maintainingLifeProcesses_SkillGroup_Data = defineSkillGroup({
     kk: 'Тіршілік үдерістерін қамтамасыз ету',
     qm: 'Yaşayış protsessleriniñ devamını temin etmek',
   },
-  skills: [
-    explainDigestionOfNutrients_Skill_Data,
-    explainGasExchangeInTheLungs_Skill_Data,
-    explainLungVentilation_Skill_Data,
-    explainNutrientAbsorption_Skill_Data,
-    explainTheHeartsRoleInCirculation_Skill_Data,
-    explainThePassageOfFoodThroughTheDigestiveSystem_Skill_Data,
-    explainTheRoleOfTheKidneysInExcretion_Skill_Data,
-    identifyBreathingChangesDuringPhysicalActivity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainDigestionOfNutrients: explainDigestionOfNutrients_Skill_Data,
+      explainGasExchangeInTheLungs: explainGasExchangeInTheLungs_Skill_Data,
+      explainLungVentilation: explainLungVentilation_Skill_Data,
+      explainNutrientAbsorption: explainNutrientAbsorption_Skill_Data,
+      explainTheHeartsRoleInCirculation: explainTheHeartsRoleInCirculation_Skill_Data,
+      explainThePassageOfFoodThroughTheDigestiveSystem: explainThePassageOfFoodThroughTheDigestiveSystem_Skill_Data,
+      explainTheRoleOfTheKidneysInExcretion: explainTheRoleOfTheKidneysInExcretion_Skill_Data,
+      identifyBreathingChangesDuringPhysicalActivity: identifyBreathingChangesDuringPhysicalActivity_Skill_Data,
+    },
+    order: [
+      'explainDigestionOfNutrients',
+      'explainGasExchangeInTheLungs',
+      'explainLungVentilation',
+      'explainNutrientAbsorption',
+      'explainTheHeartsRoleInCirculation',
+      'explainThePassageOfFoodThroughTheDigestiveSystem',
+      'explainTheRoleOfTheKidneysInExcretion',
+      'identifyBreathingChangesDuringPhysicalActivity',
+    ],
+  },
   description: {
     methodological:
       'Nutrients, oxygen, and blood travel along different pathways; their coordinated operation provides cells with resources.',

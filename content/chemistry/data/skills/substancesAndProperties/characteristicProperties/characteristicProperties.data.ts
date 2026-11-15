@@ -41,12 +41,15 @@ export const characteristicProperties_SkillGroup_Data = defineSkillGroup({
     kk: 'Сипаттамалық қасиеттер',
     qm: 'Ayırıcı hususiyetler',
   },
-  skills: [
-    chemicalProperties_Skill_Data,
-    density_Skill_Data,
-    physicalProperties_Skill_Data,
-    propertyBasedIdentification_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chemicalProperties: chemicalProperties_Skill_Data,
+      density: density_Skill_Data,
+      physicalProperties: physicalProperties_Skill_Data,
+      propertyBasedIdentification: propertyBasedIdentification_Skill_Data,
+    },
+    order: ['chemicalProperties', 'density', 'physicalProperties', 'propertyBasedIdentification'],
+  },
   description: {
     methodological:
       'Physical and chemical properties supply different evidence about substances, and measurements are meaningful only under stated conditions.',

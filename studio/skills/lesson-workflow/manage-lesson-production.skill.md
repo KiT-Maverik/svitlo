@@ -30,6 +30,16 @@ Status vocabulary: `not-started`, `in-progress`, `ready-for-review`, `changes-re
 
 Record in handoff: next actionable role(s), verified files/source Git blob or commit SHAs, active owner, draft PR links/branch, decision or approval URLs, blockers, last completed batch and **what can proceed without another prompt**. Prefer durable GitHub Issue body/links and PR descriptions to chat-only state. Do not paste full methodology or YAML content into Issue: the canonical source remains the Lesson folder.
 
+## Canonical Lesson review record
+
+The Lesson-root `review.ts` is the permanent typed `LessonReview` register once the Stage 6 feature exists. It is **not** replaced by `experience-review.md`, `methodology-review.md`, per-Section review files, or copied PR narratives. Preserve the detailed findings, verdicts, specific source revisions and approvals in the existing GitHub review PRs and the Lesson Production Issue; the `review.ts` entries reference their verified PR numbers.
+
+The planned mandatory `ai` record contains `stages` (per-stage PR plus review language) and one `locales` integration PR covering the complete AI-reviewed language scope. The mandatory `human` record includes owner-controlled `acceptance` and a `locales` map of individual human locale PRs; `scientific` is optional and stores the PR and review language. Follow the actual Engine `LessonReview` type once implemented; do not invent a provisional competing shape. Only the owner/authorized coordinator records `human.acceptance`. The existence of a PR number alone is not independent approval.
+
+The Lesson draft generator will create a `review.ts` with intentionally unfilled required entries and an absent revision-based constant identifier: it must not fabricate a passing review merely to satisfy TypeScript. A final review variable is bound to a digest of **assembled Lesson Props**, not `config.yaml`; Scene implementation or media-file changes without Props changes are outside that digest. Before Props can be built, the Issue and actual PRs temporarily preserve reviews of editorial sources. A coordinator may later record a stage PR in `review.ts` only after reconciling its verified evidence with the finalized Lesson Props revision. Never silently transfer approvals across revisions.
+
+For any local review decision (especially a locale-specific linguistic choice), place a short `//` comment immediately above the corresponding PR-valued `review.ts` entry when recording it, not a new Markdown history file. Global conventions remain in the owning Studio docs. For review-only failure/pending decisions, retain the PR/Issue evidence and leave the `review.ts` entry unresolved.
+
 ## Standard stage transitions
 
 Stage names and required evidence (order can be staggered **between Lessons**, but each Lesson respects prerequisites; no auto-approval):

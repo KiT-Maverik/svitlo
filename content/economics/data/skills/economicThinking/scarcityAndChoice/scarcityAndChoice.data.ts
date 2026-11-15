@@ -42,13 +42,22 @@ export const scarcityAndChoice_SkillGroup_Data = defineSkillGroup({
     kk: 'Тапшылық пен таңдау',
     qm: 'Azlıq ve saylav',
   },
-  skills: [
-    economicTradeoffs_Skill_Data,
-    marginalAnalysis_Skill_Data,
-    opportunityCost_Skill_Data,
-    productionPossibilitiesFrontier_Skill_Data,
-    resourceScarcity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      economicTradeoffs: economicTradeoffs_Skill_Data,
+      marginalAnalysis: marginalAnalysis_Skill_Data,
+      opportunityCost: opportunityCost_Skill_Data,
+      productionPossibilitiesFrontier: productionPossibilitiesFrontier_Skill_Data,
+      resourceScarcity: resourceScarcity_Skill_Data,
+    },
+    order: [
+      'economicTradeoffs',
+      'marginalAnalysis',
+      'opportunityCost',
+      'productionPossibilitiesFrontier',
+      'resourceScarcity',
+    ],
+  },
   description: {
     methodological:
       'Because not all wants can be satisfied at once, economic decisions involve comparing alternatives and considering the value of the options forgone.',

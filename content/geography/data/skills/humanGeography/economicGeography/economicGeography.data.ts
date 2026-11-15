@@ -42,13 +42,24 @@ export const economicGeography_SkillGroup_Data = defineSkillGroup({
     kk: 'Экономикалық география',
     qm: 'İqtisadiy coğrafiya',
   },
-  skills: [
-    explainBasicGeographicFactorsAffectingActivityLocation_Skill_Data,
-    explainGeographicInterdependenceBetweenRegions_Skill_Data,
-    explainGeographicSpecializationOfEconomicActivities_Skill_Data,
-    identifyLandUsePatternsInASettlementOrRegion_Skill_Data,
-    traceMovementOfGoodsOrPeopleThroughANetwork_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainBasicGeographicFactorsAffectingActivityLocation:
+        explainBasicGeographicFactorsAffectingActivityLocation_Skill_Data,
+      explainGeographicInterdependenceBetweenRegions: explainGeographicInterdependenceBetweenRegions_Skill_Data,
+      explainGeographicSpecializationOfEconomicActivities:
+        explainGeographicSpecializationOfEconomicActivities_Skill_Data,
+      identifyLandUsePatternsInASettlementOrRegion: identifyLandUsePatternsInASettlementOrRegion_Skill_Data,
+      traceMovementOfGoodsOrPeopleThroughANetwork: traceMovementOfGoodsOrPeopleThroughANetwork_Skill_Data,
+    },
+    order: [
+      'explainBasicGeographicFactorsAffectingActivityLocation',
+      'explainGeographicInterdependenceBetweenRegions',
+      'explainGeographicSpecializationOfEconomicActivities',
+      'identifyLandUsePatternsInASettlementOrRegion',
+      'traceMovementOfGoodsOrPeopleThroughANetwork',
+    ],
+  },
   description: {
     methodological:
       'Production, services, resources, settlement demand and transport networks are unevenly distributed and connect places. Geographic specialization and cross-regional dependence describe spatial relationships rather than prices or financial accounting.',

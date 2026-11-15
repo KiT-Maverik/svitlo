@@ -36,7 +36,14 @@ export const ancientJapan_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі Жапония',
     qm: 'Qadimiy Yaponiya',
   },
-  skills: [jomonCulture_Skill_Data, kofunPeriod_Skill_Data, yayoiCulture_Skill_Data],
+  skills: {
+    items: {
+      jomonCulture: jomonCulture_Skill_Data,
+      kofunPeriod: kofunPeriod_Skill_Data,
+      yayoiCulture: yayoiCulture_Skill_Data,
+    },
+    order: ['jomonCulture', 'kofunPeriod', 'yayoiCulture'],
+  },
   description: {
     methodological:
       'Archaeological traditions from pottery to rice farming and burial mounds show uneven regional changes.',

@@ -44,15 +44,26 @@ export const researchEthics_SkillGroup_Data = defineSkillGroup({
     kk: 'Зерттеу этикасы',
     qm: 'Tetqiqat ahlâqı',
   },
-  skills: [
-    deceptionInResearch_Skill_Data,
-    informedConsent_Skill_Data,
-    researchAnonymity_Skill_Data,
-    researchConfidentiality_Skill_Data,
-    researchDebriefing_Skill_Data,
-    researchWithVulnerableParticipants_Skill_Data,
-    riskBenefitAssessment_Skill_Data,
-  ],
+  skills: {
+    items: {
+      deceptionInResearch: deceptionInResearch_Skill_Data,
+      informedConsent: informedConsent_Skill_Data,
+      researchAnonymity: researchAnonymity_Skill_Data,
+      researchConfidentiality: researchConfidentiality_Skill_Data,
+      researchDebriefing: researchDebriefing_Skill_Data,
+      researchWithVulnerableParticipants: researchWithVulnerableParticipants_Skill_Data,
+      riskBenefitAssessment: riskBenefitAssessment_Skill_Data,
+    },
+    order: [
+      'deceptionInResearch',
+      'informedConsent',
+      'researchAnonymity',
+      'researchConfidentiality',
+      'researchDebriefing',
+      'researchWithVulnerableParticipants',
+      'riskBenefitAssessment',
+    ],
+  },
   description: {
     methodological:
       'Studies involving people must respect autonomy, dignity, safety, and confidentiality, including additional safeguards for vulnerable participants.',

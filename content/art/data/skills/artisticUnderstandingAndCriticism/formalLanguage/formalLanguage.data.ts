@@ -42,13 +42,22 @@ export const formalLanguage_SkillGroup_Data = defineSkillGroup({
     kk: 'Пішін тілі',
     qm: 'Forma tili',
   },
-  skills: [
-    analyzeArtisticRhythm_Skill_Data,
-    analyzeColorRelationships_Skill_Data,
-    analyzeComposition_Skill_Data,
-    analyzeLineAndShape_Skill_Data,
-    analyzeTextureAndSurface_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeArtisticRhythm: analyzeArtisticRhythm_Skill_Data,
+      analyzeColorRelationships: analyzeColorRelationships_Skill_Data,
+      analyzeComposition: analyzeComposition_Skill_Data,
+      analyzeLineAndShape: analyzeLineAndShape_Skill_Data,
+      analyzeTextureAndSurface: analyzeTextureAndSurface_Skill_Data,
+    },
+    order: [
+      'analyzeArtisticRhythm',
+      'analyzeColorRelationships',
+      'analyzeComposition',
+      'analyzeLineAndShape',
+      'analyzeTextureAndSurface',
+    ],
+  },
   description: {
     methodological:
       'Formal choices direct perception and establish relationships within a work. Analysis here is cross-medium rather than the execution of a technical medium-specific method.',

@@ -40,7 +40,14 @@ export const socialLearning_SkillGroup_Data = defineSkillGroup({
     kk: 'Әлеуметтік үйрену',
     qm: 'İçtimaiy ögrenüv',
   },
-  skills: [modelCharacteristics_Skill_Data, observationalLearning_Skill_Data, vicariousReinforcement_Skill_Data],
+  skills: {
+    items: {
+      modelCharacteristics: modelCharacteristics_Skill_Data,
+      observationalLearning: observationalLearning_Skill_Data,
+      vicariousReinforcement: vicariousReinforcement_Skill_Data,
+    },
+    order: ['modelCharacteristics', 'observationalLearning', 'vicariousReinforcement'],
+  },
   description: {
     methodological:
       'Observing models informs anticipated outcomes and possible actions even without immediate imitation.',

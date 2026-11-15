@@ -36,7 +36,12 @@ export const ordinal_SkillGroup_Data = defineSkillGroup({
     pl: 'Liczenie porządkowe',
     uk: 'Порядкова лічба',
   },
-  skills: [basicOrdinal_Skill_Data],
+  skills: {
+    items: {
+      basicOrdinal: basicOrdinal_Skill_Data,
+    },
+    order: ['basicOrdinal'],
+  },
   description: {
     methodological:
       "The distinction between an element's position in an ordered sequence and the total number of elements, separating 'which position?' from 'how many?'.",

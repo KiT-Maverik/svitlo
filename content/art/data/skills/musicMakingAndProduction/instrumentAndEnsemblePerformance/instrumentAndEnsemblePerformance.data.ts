@@ -42,13 +42,22 @@ export const instrumentAndEnsemblePerformance_SkillGroup_Data = defineSkillGroup
     kk: 'Аспапта және ансамбльде орындау',
     qm: 'Saz çalmaq ve ansambl icrası',
   },
-  skills: [
-    maintainAnEnsemblePart_Skill_Data,
-    performAnInstrumentalPhrase_Skill_Data,
-    produceInstrumentalTone_Skill_Data,
-    respondToMusicalCues_Skill_Data,
-    shapePerformanceDynamics_Skill_Data,
-  ],
+  skills: {
+    items: {
+      maintainAnEnsemblePart: maintainAnEnsemblePart_Skill_Data,
+      performAnInstrumentalPhrase: performAnInstrumentalPhrase_Skill_Data,
+      produceInstrumentalTone: produceInstrumentalTone_Skill_Data,
+      respondToMusicalCues: respondToMusicalCues_Skill_Data,
+      shapePerformanceDynamics: shapePerformanceDynamics_Skill_Data,
+    },
+    order: [
+      'maintainAnEnsemblePart',
+      'performAnInstrumentalPhrase',
+      'produceInstrumentalTone',
+      'respondToMusicalCues',
+      'shapePerformanceDynamics',
+    ],
+  },
   description: {
     methodological:
       'Sound production and responsiveness to fellow performers support coherent realization of musical ideas.',

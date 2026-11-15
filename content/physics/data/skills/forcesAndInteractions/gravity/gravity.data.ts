@@ -40,11 +40,18 @@ export const gravity_SkillGroup_Data = defineSkillGroup({
     kk: 'Гравитация',
     qm: 'Gravitatsiya',
   },
-  skills: [
-    distinguishABodysMassFromEarthsGravitationalForce_Skill_Data,
-    explainEarthsGravitationalForceOnABody_Skill_Data,
-    predictTheDirectionOfFalling_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishABodysMassFromEarthsGravitationalForce: distinguishABodysMassFromEarthsGravitationalForce_Skill_Data,
+      explainEarthsGravitationalForceOnABody: explainEarthsGravitationalForceOnABody_Skill_Data,
+      predictTheDirectionOfFalling: predictTheDirectionOfFalling_Skill_Data,
+    },
+    order: [
+      'distinguishABodysMassFromEarthsGravitationalForce',
+      'explainEarthsGravitationalForceOnABody',
+      'predictTheDirectionOfFalling',
+    ],
+  },
   description: {
     methodological:
       "Bodies with mass interact gravitationally even without touching. Earth's gravity governs falling near its surface, and other celestial bodies also exert gravitational influence.",

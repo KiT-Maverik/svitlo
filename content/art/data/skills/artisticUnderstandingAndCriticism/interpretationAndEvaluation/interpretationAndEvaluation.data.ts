@@ -42,13 +42,22 @@ export const interpretationAndEvaluation_SkillGroup_Data = defineSkillGroup({
     kk: 'Түсіндіру және бағалау',
     qm: 'Añlatma ve baalav',
   },
-  skills: [
-    compareArtisticInterpretations_Skill_Data,
-    describeArtworksPrecisely_Skill_Data,
-    distinguishObservationFromInterpretation_Skill_Data,
-    evaluateArtUsingCriteria_Skill_Data,
-    supportAnArtisticInterpretation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareArtisticInterpretations: compareArtisticInterpretations_Skill_Data,
+      describeArtworksPrecisely: describeArtworksPrecisely_Skill_Data,
+      distinguishObservationFromInterpretation: distinguishObservationFromInterpretation_Skill_Data,
+      evaluateArtUsingCriteria: evaluateArtUsingCriteria_Skill_Data,
+      supportAnArtisticInterpretation: supportAnArtisticInterpretation_Skill_Data,
+    },
+    order: [
+      'compareArtisticInterpretations',
+      'describeArtworksPrecisely',
+      'distinguishObservationFromInterpretation',
+      'evaluateArtUsingCriteria',
+      'supportAnArtisticInterpretation',
+    ],
+  },
   description: {
     methodological:
       'Judgments about art become more useful when observable evidence, contextual claims and chosen evaluative criteria are stated separately.',

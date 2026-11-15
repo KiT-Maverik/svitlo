@@ -42,13 +42,22 @@ export const populationAndSettlement_SkillGroup_Data = defineSkillGroup({
     kk: 'Халық және қоныстану',
     qm: 'Eali ve yerleşimler',
   },
-  skills: [
-    describeMigrationAsMovementBetweenPlaces_Skill_Data,
-    explainGeographicDriversOfMigration_Skill_Data,
-    explainGeographicFactorsShapingSettlementPatterns_Skill_Data,
-    explainUrbanizationAsGeographicChange_Skill_Data,
-    interpretAPopulationDensityMap_Skill_Data,
-  ],
+  skills: {
+    items: {
+      describeMigrationAsMovementBetweenPlaces: describeMigrationAsMovementBetweenPlaces_Skill_Data,
+      explainGeographicDriversOfMigration: explainGeographicDriversOfMigration_Skill_Data,
+      explainGeographicFactorsShapingSettlementPatterns: explainGeographicFactorsShapingSettlementPatterns_Skill_Data,
+      explainUrbanizationAsGeographicChange: explainUrbanizationAsGeographicChange_Skill_Data,
+      interpretAPopulationDensityMap: interpretAPopulationDensityMap_Skill_Data,
+    },
+    order: [
+      'describeMigrationAsMovementBetweenPlaces',
+      'explainGeographicDriversOfMigration',
+      'explainGeographicFactorsShapingSettlementPatterns',
+      'explainUrbanizationAsGeographicChange',
+      'interpretAPopulationDensityMap',
+    ],
+  },
   description: {
     methodological:
       'Population counts, density, migration, and settlement forms show how human presence is unevenly distributed. The same total population can occupy very different spatial patterns.',

@@ -43,14 +43,24 @@ export const gravitationalMotion_SkillGroup_Data = defineSkillGroup({
     kk: 'Гравитациялық қозғалыс',
     qm: 'Cazibe quveti tesirindeki areket',
   },
-  skills: [
-    barycentricMotion_Skill_Data,
-    keplersFirstLaw_Skill_Data,
-    keplersSecondLaw_Skill_Data,
-    keplersThirdLaw_Skill_Data,
-    orbitalEnergy_Skill_Data,
-    universalGravitation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      barycentricMotion: barycentricMotion_Skill_Data,
+      keplersFirstLaw: keplersFirstLaw_Skill_Data,
+      keplersSecondLaw: keplersSecondLaw_Skill_Data,
+      keplersThirdLaw: keplersThirdLaw_Skill_Data,
+      orbitalEnergy: orbitalEnergy_Skill_Data,
+      universalGravitation: universalGravitation_Skill_Data,
+    },
+    order: [
+      'barycentricMotion',
+      'keplersFirstLaw',
+      'keplersSecondLaw',
+      'keplersThirdLaw',
+      'orbitalEnergy',
+      'universalGravitation',
+    ],
+  },
   description: {
     methodological:
       'Gravitational interactions produce trajectories governed by mass, initial conditions and the reference frame in which motion is described.',

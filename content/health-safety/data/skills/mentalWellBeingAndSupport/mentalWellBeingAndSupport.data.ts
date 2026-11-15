@@ -38,11 +38,14 @@ export const mentalWellBeingAndSupport_SkillDomain_Data = defineSkillDomain({
     kk: 'Психикалық саулық пен қолдау',
     qm: 'Ruhiy sağlamlıq ve destek',
   },
-  groups: [
-    everydayCopingAndAssistance_SkillGroup_Data,
-    mentalHealthCrises_SkillGroup_Data,
-    recognizingStrain_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      everydayCopingAndAssistance: everydayCopingAndAssistance_SkillGroup_Data,
+      mentalHealthCrises: mentalHealthCrises_SkillGroup_Data,
+      recognizingStrain: recognizingStrain_SkillGroup_Data,
+    },
+    order: ['everydayCopingAndAssistance', 'mentalHealthCrises', 'recognizingStrain'],
+  },
   description: {
     methodological:
       'Health protection includes noticing psychological strain, choosing supportive coping strategies, and connecting people with qualified help. The psychological mechanisms of emotion and cognition belong principally to Psychology.',

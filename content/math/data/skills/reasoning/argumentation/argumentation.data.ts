@@ -42,13 +42,16 @@ export const argumentation_SkillGroup_Data = defineSkillGroup({
     pl: 'Argumentacja matematyczna',
     uk: 'Математична аргументація',
   },
-  skills: [
-    classifyAndJustify_Skill_Data,
-    findCounterexample_Skill_Data,
-    explainStrategy_Skill_Data,
-    distinguishExampleRule_Skill_Data,
-    drawConclusion_Skill_Data,
-  ],
+  skills: {
+    items: {
+      classifyAndJustify: classifyAndJustify_Skill_Data,
+      findCounterexample: findCounterexample_Skill_Data,
+      explainStrategy: explainStrategy_Skill_Data,
+      distinguishExampleRule: distinguishExampleRule_Skill_Data,
+      drawConclusion: drawConclusion_Skill_Data,
+    },
+    order: ['classifyAndJustify', 'findCounterexample', 'explainStrategy', 'distinguishExampleRule', 'drawConclusion'],
+  },
   description: {
     methodological:
       'Justifying conclusions from mathematical conditions, evaluating universal statements, and explaining the selected solution method.',

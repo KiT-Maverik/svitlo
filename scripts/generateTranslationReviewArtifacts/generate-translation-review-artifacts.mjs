@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
  * Build one complete, PR-scoped agent reference library from canonical Code.
- * On-demand only. No CLI modes: generate Skills and Lesson Markdown in every supported language.
- * Output: .agent-ci-artifacts/{taxonomies,lessons,lessons-by-skill}/... + manifest.json
+ * On-demand only. No CLI modes: generate every supported Code-derived Markdown reference.
+ * Absent translations become %%MISSING%% in preview-only documents, never in published content.
+ * Output: .agent-ci-artifacts/{taxonomies,lessons,lessons-by-skill,assessment-methods,ui-kit,geography-home-copy}/... + manifest.json
  * The CI workflow owns committing and cleaning this directory on the PR branch.
  */
 import fs from 'node:fs';
@@ -17,6 +18,8 @@ import {
 } from '../../shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.mjs';
 import { generate as generateLessonsBySkill } from '../../shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs';
 import { generateAssessmentMethodsReviewArtifacts } from '../../shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs';
+import { generateUiKitLocaleReviewArtifacts } from '../../shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-reference.mjs';
+import { generateHomeCopyReviewArtifacts } from '../../content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const output = path.join(root, '.agent-ci-artifacts');
@@ -92,7 +95,7 @@ const textbooks = packagesFromCode();
 const lessonPackages = [...new Set(discoverLessons(root).map(lesson => lesson.package))];
 if (!textbooks.length) throw new Error('No canonical Code Skills taxonomies available');
 const manifest = {
-  schemaVersion: 2,
+  schemaVersion: 3,
   kind: 'pr-scoped-agent-ci-artifacts',
   sourceCommit: commitSha(),
   packages: [...new Set([...textbooks.map(t => t.package), ...lessonPackages])].sort(),
@@ -110,7 +113,7 @@ for (const textbook of textbooks) {
   for (const locale of languages) {
     const result = spawnSync(
       process.execPath,
-      [generator, '--package', textbook.package, '--locale', locale, '--stdout'],
+      [generator, '--package', textbook.package, '--locale', locale, '--stdout', '--allow-missing'],
       {
         cwd: root,
         encoding: 'utf8',
@@ -136,6 +139,10 @@ for (const textbook of textbooks) {
     const markdown = canonicalLinks(raw, textbook.name, destination);
     fs.writeFileSync(destination, markdown, 'utf8');
     const count = label => Number(markdown.match(new RegExp('^' + label + ': (\\d+)$', 'm'))?.[1]);
+    const missing = count('Missing translations');
+    if (!Number.isSafeInteger(missing) || missing < 0) {
+      throw new Error('Taxonomy preview did not report translation coverage: ' + relative);
+    }
     manifest.generated.push({
       kind: 'taxonomy',
       textbook: textbook.package,
@@ -144,6 +151,8 @@ for (const textbook of textbooks) {
       domains: count('Domains'),
       groups: count('Groups'),
       skills: count('Skills'),
+      missing,
+      reviewReady: missing === 0,
     });
     saveManifest();
     process.stdout.write('Generated ' + relative + '\n');
@@ -169,10 +178,31 @@ const assessmentMethodsStats = generateAssessmentMethodsReviewArtifacts({
   languages,
   manifest,
   saveManifest,
+  allowMissing: true,
+});
+const uiKitStats = generateUiKitLocaleReviewArtifacts({
+  root,
+  output,
+  languages,
+  manifest,
+  saveManifest,
+  allowMissing: true,
+});
+const geographyStats = generateHomeCopyReviewArtifacts({
+  root,
+  output,
+  languages,
+  manifest,
+  saveManifest,
+  allowMissing: true,
 });
 saveManifest();
 manifest.summary = {
   assessmentMethodDocuments: assessmentMethodsStats.generated,
+  uiKitDocuments: uiKitStats.generated,
+  geographyHomeCopyDocuments: geographyStats.generated,
+  missingTranslations: manifest.generated.reduce((total, item) => total + (item.missing || 0), 0),
+  incompleteDocuments: manifest.generated.filter(item => item.missing > 0).length,
   taxonomyDocuments: manifest.generated.filter(item => item.kind === 'taxonomy').length,
   discoveredLessons: lessonStats.discoveredLessons,
   lessonDocuments: lessonStats.generated,
@@ -192,7 +222,7 @@ process.stdout.write(
 process.stdout.write(
   'Agent review library: ' +
     manifest.generated.length +
-    ' documents (Skills + Lessons + Assessment Methods), ' +
+    ' documents (Skills + Lessons + Assessment Methods + UI Kit + Geography), ' +
     manifest.failures.length +
     ' failed, ' +
     textbooks.length +
@@ -205,8 +235,7 @@ process.stdout.write(
 if (!manifest.generated.length) {
   throw new Error('No review Markdown generated; inspect .agent-ci-artifacts/manifest.json');
 }
-if (assessmentMethodsStats.failures) {
-  throw new Error(
-    'Assessment Methods references failed for ' + assessmentMethodsStats.failures + ' locales; inspect manifest.json',
-  );
-}
+// Individual missing translations and generator failures are recorded in the manifest;
+// they do not prevent publishing valid references for other entities/languages.
+// Reviewers MUST verify their own artifact has reviewReady=true and no relevant failures.
+

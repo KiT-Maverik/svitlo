@@ -42,13 +42,22 @@ export const privacy_SkillGroup_Data = defineSkillGroup({
     kk: 'Құпиялық',
     qm: 'Mahremiyet',
   },
-  skills: [
-    chooseSafeDataSharingMethods_Skill_Data,
-    distinguishAPrivateChatFromAPublicLink_Skill_Data,
-    explainDataReIdentification_Skill_Data,
-    identifyPersonalData_Skill_Data,
-    recognizeADigitalFootprint_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chooseSafeDataSharingMethods: chooseSafeDataSharingMethods_Skill_Data,
+      distinguishAPrivateChatFromAPublicLink: distinguishAPrivateChatFromAPublicLink_Skill_Data,
+      explainDataReIdentification: explainDataReIdentification_Skill_Data,
+      identifyPersonalData: identifyPersonalData_Skill_Data,
+      recognizeADigitalFootprint: recognizeADigitalFootprint_Skill_Data,
+    },
+    order: [
+      'chooseSafeDataSharingMethods',
+      'distinguishAPrivateChatFromAPublicLink',
+      'explainDataReIdentification',
+      'identifyPersonalData',
+      'recognizeADigitalFootprint',
+    ],
+  },
   description: {
     methodological:
       'Identifying personal information, deciding who may receive it, and evaluating long-term consequences of disclosure. Privacy is not identical to password protection or responding to fraud.',

@@ -43,14 +43,24 @@ export const metaethics_SkillGroup_Data = defineSkillGroup({
     kk: 'Метаэтика',
     qm: 'Metaetika',
   },
-  skills: [
-    analyzeMoralDisagreement_Skill_Data,
-    compareMoralRealismAndAntiRealism_Skill_Data,
-    distinguishMetaethicalFromNormativeQuestions_Skill_Data,
-    distinguishMoralCognitivismFromNonCognitivism_Skill_Data,
-    evaluateMoralRelativism_Skill_Data,
-    examineMoralMotivation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeMoralDisagreement: analyzeMoralDisagreement_Skill_Data,
+      compareMoralRealismAndAntiRealism: compareMoralRealismAndAntiRealism_Skill_Data,
+      distinguishMetaethicalFromNormativeQuestions: distinguishMetaethicalFromNormativeQuestions_Skill_Data,
+      distinguishMoralCognitivismFromNonCognitivism: distinguishMoralCognitivismFromNonCognitivism_Skill_Data,
+      evaluateMoralRelativism: evaluateMoralRelativism_Skill_Data,
+      examineMoralMotivation: examineMoralMotivation_Skill_Data,
+    },
+    order: [
+      'analyzeMoralDisagreement',
+      'compareMoralRealismAndAntiRealism',
+      'distinguishMetaethicalFromNormativeQuestions',
+      'distinguishMoralCognitivismFromNonCognitivism',
+      'evaluateMoralRelativism',
+      'examineMoralMotivation',
+    ],
+  },
   description: {
     methodological:
       'Inquiry into the meaning, objectivity, and epistemic standing of moral discourse underlies but does not itself prescribe codes of conduct. Normative theories decide how to act; metaethical theories examine the status of such judgments.',

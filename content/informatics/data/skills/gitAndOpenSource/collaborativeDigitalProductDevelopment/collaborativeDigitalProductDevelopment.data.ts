@@ -40,11 +40,14 @@ export const collaborativeDigitalProductDevelopment_SkillGroup_Data = defineSkil
     kk: 'Цифрлық өнімдерді бірлесіп әзірлеу',
     qm: 'Raqamlı mahsulatnı beraber işlep çıqarmaq',
   },
-  skills: [
-    coordinateChangesInASharedDigitalProject_Skill_Data,
-    explainContributionGuidelines_Skill_Data,
-    trackDigitalProductVersions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      coordinateChangesInASharedDigitalProject: coordinateChangesInASharedDigitalProject_Skill_Data,
+      explainContributionGuidelines: explainContributionGuidelines_Skill_Data,
+      trackDigitalProductVersions: trackDigitalProductVersions_Skill_Data,
+    },
+    order: ['coordinateChangesInASharedDigitalProject', 'explainContributionGuidelines', 'trackDigitalProductVersions'],
+  },
   description: {
     methodological:
       'Joint development requires agreed contribution and review rules, coordination among contributors, and tracking versions. Collaboration applies to public and private repositories and does not itself determine licensing.',

@@ -41,12 +41,15 @@ export const innerAsia_SkillGroup_Data = defineSkillGroup({
     kk: 'Ішкі Азия',
     qm: 'İçki Asiya',
   },
-  skills: [
-    centralAsianOasisCenters_Skill_Data,
-    sakaAndRelatedSteppeCultures_Skill_Data,
-    steppePastoralism_Skill_Data,
-    xiongnu_Skill_Data,
-  ],
+  skills: {
+    items: {
+      centralAsianOasisCenters: centralAsianOasisCenters_Skill_Data,
+      sakaAndRelatedSteppeCultures: sakaAndRelatedSteppeCultures_Skill_Data,
+      steppePastoralism: steppePastoralism_Skill_Data,
+      xiongnu: xiongnu_Skill_Data,
+    },
+    order: ['centralAsianOasisCenters', 'sakaAndRelatedSteppeCultures', 'steppePastoralism', 'xiongnu'],
+  },
   description: {
     methodological: 'Steppe and oasis societies created polities and connections among large agricultural states.',
     frontend: {

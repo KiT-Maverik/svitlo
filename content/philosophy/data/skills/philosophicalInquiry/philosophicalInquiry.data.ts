@@ -38,11 +38,14 @@ export const philosophicalInquiry_SkillDomain_Data = defineSkillDomain({
     kk: 'Философиялық зерттеу',
     qm: 'Felsefiy tetqiqat',
   },
-  groups: [
-    conceptualAnalysis_SkillGroup_Data,
-    dialogueAndDisagreement_SkillGroup_Data,
-    questionsAndProblems_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      conceptualAnalysis: conceptualAnalysis_SkillGroup_Data,
+      dialogueAndDisagreement: dialogueAndDisagreement_SkillGroup_Data,
+      questionsAndProblems: questionsAndProblems_SkillGroup_Data,
+    },
+    order: ['conceptualAnalysis', 'dialogueAndDisagreement', 'questionsAndProblems'],
+  },
   description: {
     methodological:
       'Philosophy investigates conceptual, normative, and foundational questions whose answers require reasons rather than observation alone. This domain concerns the practices used to formulate, refine, and discuss such questions; it is distinct from the formal evaluation of arguments in Logic.',

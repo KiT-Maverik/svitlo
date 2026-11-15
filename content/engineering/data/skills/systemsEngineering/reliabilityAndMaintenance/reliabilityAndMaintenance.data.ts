@@ -41,12 +41,20 @@ export const reliabilityAndMaintenance_SkillGroup_Data = defineSkillGroup({
     kk: 'Сенімділік және техникалық қызмет көрсету',
     qm: 'İşançlılıq ve tehnik baqım',
   },
-  skills: [
-    distinguishComponentAndSystemFailures_Skill_Data,
-    planPreventiveMaintenance_Skill_Data,
-    systemRedundancy_Skill_Data,
-    traceTechnicalFaults_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishComponentAndSystemFailures: distinguishComponentAndSystemFailures_Skill_Data,
+      planPreventiveMaintenance: planPreventiveMaintenance_Skill_Data,
+      systemRedundancy: systemRedundancy_Skill_Data,
+      traceTechnicalFaults: traceTechnicalFaults_Skill_Data,
+    },
+    order: [
+      'distinguishComponentAndSystemFailures',
+      'planPreventiveMaintenance',
+      'systemRedundancy',
+      'traceTechnicalFaults',
+    ],
+  },
   description: {
     methodological:
       'Operating systems face wear and faults, so diagnosis and continued service require explicit understanding of possible failure paths.',

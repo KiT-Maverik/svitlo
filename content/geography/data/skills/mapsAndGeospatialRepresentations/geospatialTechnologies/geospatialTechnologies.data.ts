@@ -40,11 +40,20 @@ export const geospatialTechnologies_SkillGroup_Data = defineSkillGroup({
     kk: 'Геокеңістіктік технологиялар',
     qm: 'Coğrafiy mekân tehnologiyaları',
   },
-  skills: [
-    analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data,
-    interpretRemoteSensingImagery_Skill_Data,
-    useSatellitePositioningInformationForGeographicOrientation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeGeographicRelationshipsUsingSpatialDataLayers:
+        analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data,
+      interpretRemoteSensingImagery: interpretRemoteSensingImagery_Skill_Data,
+      useSatellitePositioningInformationForGeographicOrientation:
+        useSatellitePositioningInformationForGeographicOrientation_Skill_Data,
+    },
+    order: [
+      'analyzeGeographicRelationshipsUsingSpatialDataLayers',
+      'interpretRemoteSensingImagery',
+      'useSatellitePositioningInformationForGeographicOrientation',
+    ],
+  },
   description: {
     methodological:
       'Satellite and aerial imagery, positioning systems and geographic information systems provide different kinds of geographically referenced evidence. The focus is interpreting and using that evidence for geographic questions, not programming a software package or memorizing individual interface controls.',
