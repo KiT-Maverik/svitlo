@@ -262,8 +262,10 @@ export function renderLessonModules(lesson, language, options = {}) {
       context === 'task' ? ['scene'] : [];
     for (const key of uses) {
       if (!Object.hasOwn(node, key)) continue;
-      const owner = (context === 'section' && node.type === 'quest' && ['stages','tasks'].includes(key))
-        ? join(directory, key) : directory;
+      const owner = (
+        (context === 'section' && node.type === 'quest' && ['stages', 'tasks'].includes(key)) ||
+        (context === 'checkpointItem' && ['question', 'answer'].includes(key))
+      ) ? join(directory, key) : directory;
       bindings.set(key, render(node[key], childContext(context, key, node), owner, imports, 0, '$.' + key));
     }
     return bindings;
