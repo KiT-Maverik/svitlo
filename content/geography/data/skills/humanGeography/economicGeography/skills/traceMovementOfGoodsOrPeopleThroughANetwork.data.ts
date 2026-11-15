@@ -5,6 +5,7 @@ export const traceMovementOfGoodsOrPeopleThroughANetwork_Skill_Data = defineSkil
   id: 'a8b8d107-e930-4b9a-8b48-c7d3984a1849',
   name: {
     en: 'Trace movement of goods or people through a network',
+    it: 'Tracciare gli spostamenti di merci o persone attraverso una rete',
     zh: '追踪商品或人员在网络中的流动',
     hi: 'किसी जाल में वस्तुओं या लोगों की आवाजाही का पता लगाना',
     es: 'Seguir el movimiento de bienes o personas por una red',
@@ -39,6 +40,7 @@ export const traceMovementOfGoodsOrPeopleThroughANetwork_Skill_Data = defineSkil
       'Follow origin, intermediate links, and destination while recognizing the constraints of routes and transfer points.',
     frontend: {
       en: 'Trace how goods or people travel through connected routes and transfer points.',
+      it: 'Ricostruisci come merci o persone si spostano lungo percorsi collegati e punti di interscambio.',
       zh: '追踪商品或人员如何沿连接的路线和换乘节点移动。',
       hi: 'जानें कि जुड़े मार्गों और स्थानांतरण केंद्रों से वस्तुएँ या लोग कैसे जाते हैं।',
       es: 'Sigue cómo viajan bienes o personas por rutas conectadas y puntos de transbordo.',
