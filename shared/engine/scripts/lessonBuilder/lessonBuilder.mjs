@@ -139,6 +139,24 @@ function writeDraft(file, content, mode) {
   return 1;
 }
 
+/**
+ * Source Markdown/Code files are editable authoring text, not generated TS.
+ * Keep their exact bytes (no banner/checksum); compare them only in check mode,
+ * and never replace existing content in creation-only mode.
+ */
+function writeAuthoredSource(file, content, mode) {
+  noSymlinks(file);
+  if (fs.existsSync(file)) {
+    if (mode === 'generate') fail(path.basename(file), '$', 'refusing to overwrite an authored source file');
+    if (fs.readFileSync(file, 'utf8') !== content)
+      fail(path.basename(file), '$', 'authored source differs from config.yaml; resolve the source of truth manually');
+    return 0;
+  }
+  if (mode === 'check') fail(path.basename(file), '$', 'missing authored source file');
+  fs.writeFileSync(file, content, { flag: 'wx' });
+  return 1;
+}
+
 export function runOne(source, mode = 'check', repo = repoRoot) {
   if (!['generate', 'check'].includes(mode)) throw new Error('Mode must be generate or check');
   const target = targetFor(source, repo);
@@ -174,7 +192,12 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
     fail(destinationData[0], '$', 'competing legacy Lesson entrypoint; modular layout requires a clean UUID folder');
   }
   const modules = renderLessonModules(lesson, language, { bookRoot: target.bookRoot, outputFolder });
-  const artifacts = productionFiles(outputFolder, tasks);
+  // Ordinary Text, Markdown and Code must contain authored learner-facing
+  // content, never a generated specification instead of their real text.
+  const artifacts = productionFiles(
+    outputFolder,
+    tasks.filter(task => !['text', 'markdown', 'code'].includes(task.type)),
+  );
 
   // A partial previous run may have left modules without the root entrypoint.
   // Never mix their contents with newly generated modules.
@@ -199,7 +222,9 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   for (const [relative, body] of modules) {
     const destination = path.join(outputFolder, relative);
     if (mode === 'generate') fs.mkdirSync(path.dirname(destination), { recursive: true });
-    changed += writeDraft(destination, body, mode);
+    changed += relative.endsWith('.ts')
+      ? writeDraft(destination, body, mode)
+      : writeAuthoredSource(destination, body, mode);
   }
   const specs = mode === 'generate' ? writeProductionFiles(artifacts) : 0;
   return {

@@ -432,6 +432,136 @@ test('reserved JavaScript keywords remain safe as authored ContentBlock slugs', 
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
 
+test('materializes invariant Markdown in text.md and Code in code.py beside their definitions', () =>
+  fixture(f => {
+    const items = f.config.section.items.intro.content.items;
+    items.equalityRule = {
+      id: id(71),
+      slug: 'equalityRule',
+      type: 'markdown',
+      params: {},
+      locale: { value: '# Equal values\n\n**2 + 3 = 5**.\n' },
+      __production: { specification: 'Do not generate this instead of real copy.' },
+    };
+    items.pythonExample = {
+      id: id(72),
+      slug: 'pythonExample',
+      type: 'code',
+      params: { language: 'python', codeAsText: 'print(2 + 3 == 5)\n' },
+      locale: {},
+      __production: { specification: 'Do not create code.specification.md.' },
+    };
+    f.config.section.items.intro.content.order.push('equalityRule', 'pythonExample');
+    f.save();
+    const result = runOne(f.lesson, 'generate', f.root);
+    const markdown = 'sections/intro/equalityRule/text.md';
+    const code = 'sections/intro/pythonExample/code.py';
+    assert(result.files.includes(markdown));
+    assert(result.files.includes(code));
+    assert.equal(fs.readFileSync(f.generated(markdown), 'utf8'), '# Equal values\n\n**2 + 3 = 5**.\n');
+    assert.equal(fs.readFileSync(f.generated(code), 'utf8'), 'print(2 + 3 == 5)\n');
+    const markdownModule = fs.readFileSync(f.generated('sections/intro/equalityRule/index.ts'), 'utf8');
+    assert.match(markdownModule, /files: \{\s*moduleUrl: import\.meta\.url/);
+    assert.doesNotMatch(markdownModule, /locale: \{\s*value:/);
+    const codeModule = fs.readFileSync(f.generated('sections/intro/pythonExample/index.ts'), 'utf8');
+    assert.match(codeModule, /import \{ defineCode, readCodeSource \} from '@svitlo\/engine\/build'/);
+    assert.match(codeModule, /codeAsText: readCodeSource\(import\.meta\.url, "py"\)/);
+    assert.doesNotMatch(codeModule, /print\(2 \+ 3/);
+    assertTypeScriptSyntax(readAll(f.lesson));
+    assert.equal(result.changed, readAll(f.lesson).size + 2);
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+    assert(!result.files.some(name => name.endsWith('specification.md') && /equalityRule|pythonExample/.test(name)));
+  }));
+
+test('localized Markdown creates only source-language locale/uk.md, without a default fallback', () =>
+  fixture(f => {
+    const items = f.config.section.items.intro.content.items;
+    items.sourceExplanation = {
+      id: id(73),
+      slug: 'sourceExplanation',
+      type: 'markdown',
+      params: {},
+      locale: { value: { uk: '# Значення рівні\n', en: '# Equal values\n' } },
+    };
+    f.config.section.items.intro.content.order.push('sourceExplanation');
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const base = 'sections/intro/sourceExplanation/';
+    assert.equal(fs.readFileSync(f.generated(base + 'locale/uk.md'), 'utf8'), '# Значення рівні\n');
+    assert(!fs.existsSync(f.generated(base + 'locale/en.md')));
+    assert(!fs.existsSync(f.generated(base + 'text.md')));
+    const rendered = fs.readFileSync(f.generated(base + 'index.ts'), 'utf8');
+    assert.match(rendered, /files: \{\s*moduleUrl: import\.meta\.url,\s*languages: \[\s*"uk"\s*\]/);
+    assert.doesNotMatch(rendered, /# Значення рівні|# Equal values/);
+    assertTypeScriptSyntax(readAll(f.lesson));
+  }));
+
+test('read-only checks reject modified Markdown/Code while generate skips existing root', () =>
+  fixture(f => {
+    const items = f.config.section.items.intro.content.items;
+    items.explanation = {
+      id: id(74),
+      slug: 'explanation',
+      type: 'markdown',
+      params: {},
+      locale: { value: '# Original text\n' },
+    };
+    f.config.section.items.intro.content.order.push('explanation');
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const file = f.generated('sections/intro/explanation/text.md');
+    fs.writeFileSync(file, '# Human revision\n');
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+    assert.equal(fs.readFileSync(file, 'utf8'), '# Human revision\n');
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /authored source differs from config.yaml/);
+  }));
+
+test('existing Markdown source blocks all new TS writes instead of being overwritten', () =>
+  fixture(f => {
+    const items = f.config.section.items.intro.content.items;
+    items.explanation = {
+      id: id(77),
+      slug: 'explanation',
+      type: 'markdown',
+      params: {},
+      locale: { value: '# Authored in YAML\n' },
+    };
+    f.config.section.items.intro.content.order.push('explanation');
+    f.save();
+    const sourceFile = f.generated('sections/intro/explanation/text.md');
+    fs.mkdirSync(path.dirname(sourceFile), { recursive: true });
+    fs.writeFileSync(sourceFile, '# Previously edited by a human\n');
+    assert.throws(
+      () => runOne(f.lesson, 'generate', f.root),
+      /incomplete Lesson source tree; refusing to mix drafts with existing files/,
+    );
+    assert.equal(fs.readFileSync(sourceFile, 'utf8'), '# Previously edited by a human\n');
+    assert.equal(fs.existsSync(f.generated('index.ts')), false);
+  }));
+
+test('invalid Code extension and empty Markdown never create an index.ts draft', () =>
+  fixture(f => {
+    const items = f.config.section.items.intro.content.items;
+    items.invalidCode = {
+      id: id(75),
+      slug: 'invalidCode',
+      type: 'code',
+      params: { language: '../../etc', codeAsText: 'print("hi")' },
+      locale: {},
+    };
+    f.config.section.items.intro.content.order.push('invalidCode');
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /Unsupported authored Code language/);
+    assert(!fs.existsSync(f.generated('index.ts')));
+    delete items.invalidCode;
+    f.config.section.items.intro.content.order.pop();
+    items.blank = { id: id(76), slug: 'blank', type: 'markdown', params: {}, locale: { value: '  ' } };
+    f.config.section.items.intro.content.order.push('blank');
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /Empty authored Markdown source/);
+    assert(!fs.existsSync(f.generated('index.ts')));
+  }));
+
 test('CLI discovers Lesson configs, generates safely, and reports SKIP', () =>
   fixture(f => {
     const messages = [];

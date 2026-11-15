@@ -110,6 +110,47 @@ export function childContext(parent, key, owner = {}) {
 }
 
 const asProperty = key => (identifier.test(key) ? key : JSON.stringify(key));
+// Canonical file extensions for Code's display language. The authored YAML
+// keeps the language name; source modules read the adjacent code.<extension>.
+const codeExtensions = {
+  typescript: 'ts',
+  ts: 'ts',
+  tsx: 'tsx',
+  javascript: 'js',
+  js: 'js',
+  jsx: 'jsx',
+  python: 'py',
+  py: 'py',
+  html: 'html',
+  css: 'css',
+  scss: 'scss',
+  json: 'json',
+  yaml: 'yaml',
+  yml: 'yml',
+  bash: 'sh',
+  shell: 'sh',
+  sh: 'sh',
+  sql: 'sql',
+  java: 'java',
+  kotlin: 'kt',
+  swift: 'swift',
+  rust: 'rs',
+  go: 'go',
+  c: 'c',
+  cpp: 'cpp',
+  csharp: 'cs',
+  cs: 'cs',
+  php: 'php',
+  ruby: 'rb',
+  rb: 'rb',
+  dart: 'dart',
+  xml: 'xml',
+  markdown: 'md',
+  md: 'md',
+};
+const rawExpression = Symbol('generated TypeScript expression');
+const expression = source => ({ [rawExpression]: source });
+
 const indent = level => '  '.repeat(level);
 const javascriptKeywords = new Set([
   'await',
@@ -233,6 +274,59 @@ export function renderLessonModules(lesson, language, options = {}) {
   if (!record(filtered) || filtered.type !== 'lesson')
     throw new Error('config.yaml:config.type: expected lesson type for the Lesson entrypoint');
   const files = new Map();
+  /**
+   * Extract only actually authored learner text. There is no mechanical
+   * synthesis from production.specification (which is not lesson copy).
+   * Markdown's invariant and localized shapes are mutually exclusive.
+   */
+  function fileBackedNode(node, context, directory) {
+    if (context !== 'block') return node;
+    if (node.type === 'markdown' && record(node.locale) && node.locale.value !== undefined) {
+      const source = node.locale.value;
+      const authored = { ...node, locale: { ...node.locale } };
+      if (typeof source === 'string') {
+        if (!source.trim()) throw new Error('Empty authored Markdown source: ' + directory);
+        put(path.posix.join(directory, 'text.md'), source);
+        authored.files = { moduleUrl: expression('import.meta.url') };
+      } else if (record(source)) {
+        const languages = Object.keys(source);
+        if (languages.length === 0) throw new Error('Empty localized Markdown source: ' + directory);
+        for (const language of languages) {
+          if (
+            !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(language) ||
+            typeof source[language] !== 'string' ||
+            !source[language].trim()
+          )
+            throw new Error('Invalid authored Markdown locale ' + JSON.stringify(language) + ': ' + directory);
+          put(path.posix.join(directory, 'locale', language + '.md'), source[language]);
+        }
+        authored.files = { moduleUrl: expression('import.meta.url'), languages };
+      } else {
+        throw new Error('Invalid authored Markdown value: ' + directory);
+      }
+      delete authored.locale.value;
+      return authored;
+    }
+    if (node.type === 'code' && record(node.params) && node.params.codeAsText !== undefined) {
+      const language = node.params.language;
+      const source = node.params.codeAsText;
+      if (typeof source !== 'string' || !source.trim())
+        throw new Error('Empty or invalid authored Code source: ' + directory);
+      const extension = typeof language === 'string' ? codeExtensions[language.toLowerCase()] : undefined;
+      if (!extension)
+        throw new Error('Unsupported authored Code language ' + JSON.stringify(language) + ': ' + directory);
+      put(path.posix.join(directory, 'code.' + extension), source);
+      return {
+        ...node,
+        params: {
+          ...node.params,
+          codeAsText: expression('readCodeSource(import.meta.url, ' + JSON.stringify(extension) + ')'),
+        },
+      };
+    }
+    return node;
+  }
+
   const languageValues = filtered.params?.languages;
   const hasLanguages =
     Array.isArray(languageValues) &&
@@ -257,7 +351,8 @@ export function renderLessonModules(lesson, language, options = {}) {
       : new Map();
 
   function moduleImports(directory, names, factory, needsLanguages, languageValue = false) {
-    const output = ['import { ' + factory + " } from '@svitlo/engine/build';"];
+    const factoryImports = factory === 'defineCode' ? factory + ', readCodeSource' : factory;
+    const output = ['import { ' + factoryImports + " } from '@svitlo/engine/build';"];
     for (const [alias, { symbol, location }] of [...names.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
       const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
       output.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
@@ -287,6 +382,7 @@ export function renderLessonModules(lesson, language, options = {}) {
   // Render plain source values and move every Configurator position into a
   // child module. Its containing object's ordinary metadata remains untouched.
   function render(value, context, ownerDirectory, imported, depth = 0, field = '$') {
+    if (value && typeof value === 'object' && value[rawExpression]) return value[rawExpression];
     if (context === 'nullableBlock') {
       return value === null ? 'null' : render(value, 'block', ownerDirectory, imported, depth, field);
     }
@@ -465,10 +561,11 @@ export function renderLessonModules(lesson, language, options = {}) {
   }
 
   function emitNode(node, context, directory) {
+    const authored = fileBackedNode(node, context, directory);
     const factory = factories[node.type];
     if (!factory) throw new Error('config.yaml: unknown factory for ' + node.type);
     const imports = new Map();
-    const bindings = generateParameters(node, context, directory, imports);
+    const bindings = generateParameters(authored, context, directory, imports);
     // All bound children are rendered with real source names but are never
     // inserted as an extra authored field into the Config.
     const extra = [];
@@ -480,10 +577,10 @@ export function renderLessonModules(lesson, language, options = {}) {
       } else extra.push('const ' + key + ' = ' + expression + ';\n');
     }
     const fields = [];
-    for (const [key, value] of Object.entries(node)) {
+    for (const [key, value] of Object.entries(authored)) {
       let rendered;
       if (bindings.has(key)) rendered = key;
-      else rendered = render(value, childContext(context, key, node), directory, imports, 1, '$.' + key);
+      else rendered = render(value, childContext(context, key, authored), directory, imports, 1, '$.' + key);
       fields.push('  ' + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered));
     }
     const content = fields.length ? '{\n' + fields.join(',\n') + '\n}' : '{}';
