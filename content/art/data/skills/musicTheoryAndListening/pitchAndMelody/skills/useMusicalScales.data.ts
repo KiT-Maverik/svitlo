@@ -5,6 +5,7 @@ export const useMusicalScales_Skill_Data = defineSkill({
   id: 'cf5b3f01-e50e-4011-a6a7-012c9bc67424',
   name: {
     en: 'Use Musical Scales',
+    it: 'Usare le scale musicali',
     zh: '使用音阶',
     hi: 'संगीत के स्केल का उपयोग करें',
     es: 'Usar escalas musicales',
@@ -38,6 +39,7 @@ export const useMusicalScales_Skill_Data = defineSkill({
     methodological: 'Organize a pitch collection within a specified tonal, modal or other musical system.',
     frontend: {
       en: 'Use a chosen set of notes to create musical patterns.',
+      it: 'Usa un insieme scelto di note per creare strutture musicali.',
       zh: '使用选定的一组音符创作音乐模式。',
       hi: 'चुने हुए स्वरों के समूह से संगीत के पैटर्न बनाएँ।',
       es: 'Usa un conjunto elegido de notas para crear patrones musicales.',
