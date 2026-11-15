@@ -39,12 +39,20 @@ export const historicalInquiry_SkillDomain_Data = defineSkillDomain({
     kk: 'Тарихи таным',
     qm: 'Tarihiy araştırma',
   },
-  groups: [
-    historicalExplanations_SkillGroup_Data,
-    historicalGeography_SkillGroup_Data,
-    historicalSources_SkillGroup_Data,
-    timeAndPeriodization_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      historicalExplanations: historicalExplanations_SkillGroup_Data,
+      historicalGeography: historicalGeography_SkillGroup_Data,
+      historicalSources: historicalSources_SkillGroup_Data,
+      timeAndPeriodization: timeAndPeriodization_SkillGroup_Data,
+    },
+    order: [
+      'historicalExplanations',
+      'historicalGeography',
+      'historicalSources',
+      'timeAndPeriodization',
+    ],
+  },
   description: {
     methodological:
       'Methods for establishing and checking knowledge of past societies through chronology, geography, source evidence, and historical inference. These competencies apply across ancient regions rather than defining a lesson sequence.',

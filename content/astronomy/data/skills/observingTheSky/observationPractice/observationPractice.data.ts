@@ -41,12 +41,20 @@ export const observationPractice_SkillGroup_Data = defineSkillGroup({
     ka: 'დაკვირვების პრაქტიკა',
     kk: 'Бақылау тәжірибесі',
   },
-  skills: [
-    astronomicalObservationRecords_Skill_Data,
-    observingConditions_Skill_Data,
-    safeSolarObservation_Skill_Data,
-    skyMapsAndStarCharts_Skill_Data,
-  ],
+  skills: {
+    items: {
+      astronomicalObservationRecords: astronomicalObservationRecords_Skill_Data,
+      observingConditions: observingConditions_Skill_Data,
+      safeSolarObservation: safeSolarObservation_Skill_Data,
+      skyMapsAndStarCharts: skyMapsAndStarCharts_Skill_Data,
+    },
+    order: [
+      'astronomicalObservationRecords',
+      'observingConditions',
+      'safeSolarObservation',
+      'skyMapsAndStarCharts',
+    ],
+  },
   description: {
     methodological:
       'Reliable sky observation requires choosing conditions, finding objects, maintaining records and avoiding preventable observational hazards.',

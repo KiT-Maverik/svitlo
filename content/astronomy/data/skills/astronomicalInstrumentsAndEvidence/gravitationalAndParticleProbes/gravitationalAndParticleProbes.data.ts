@@ -41,12 +41,20 @@ export const gravitationalAndParticleProbes_SkillGroup_Data = defineSkillGroup({
     he: 'תצפיות באמצעות כבידה וחלקיקים',
     vi: 'Thăm dò bằng hấp dẫn và hạt',
   },
-  skills: [
-    gravitationalLensing_Skill_Data,
-    gravitationalWaveAstronomy_Skill_Data,
-    multimessengerEvidence_Skill_Data,
-    neutrinoAstronomy_Skill_Data,
-  ],
+  skills: {
+    items: {
+      gravitationalLensing: gravitationalLensing_Skill_Data,
+      gravitationalWaveAstronomy: gravitationalWaveAstronomy_Skill_Data,
+      multimessengerEvidence: multimessengerEvidence_Skill_Data,
+      neutrinoAstronomy: neutrinoAstronomy_Skill_Data,
+    },
+    order: [
+      'gravitationalLensing',
+      'gravitationalWaveAstronomy',
+      'multimessengerEvidence',
+      'neutrinoAstronomy',
+    ],
+  },
   description: {
     methodological:
       'Gravitational lensing, gravitational waves and astrophysical particles supply information that differs from ordinary electromagnetic imaging and spectroscopy; a multimessenger inference combines distinct independent signals. Lensing is observed through light affected by gravity and is not itself a non-electromagnetic measurement.',

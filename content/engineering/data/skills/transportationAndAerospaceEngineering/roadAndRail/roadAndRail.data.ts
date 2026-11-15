@@ -41,12 +41,20 @@ export const roadAndRail_SkillGroup_Data = defineSkillGroup({
     kk: 'Автожол және теміржол',
     qm: 'Avtomobil ve demiryol transportı',
   },
-  skills: [
-    steeringSystems_Skill_Data,
-    suspensionSystems_Skill_Data,
-    vehicleBrakingSystems_Skill_Data,
-    vehicleDrivetrains_Skill_Data,
-  ],
+  skills: {
+    items: {
+      steeringSystems: steeringSystems_Skill_Data,
+      suspensionSystems: suspensionSystems_Skill_Data,
+      vehicleBrakingSystems: vehicleBrakingSystems_Skill_Data,
+      vehicleDrivetrains: vehicleDrivetrains_Skill_Data,
+    },
+    order: [
+      'steeringSystems',
+      'suspensionSystems',
+      'vehicleBrakingSystems',
+      'vehicleDrivetrains',
+    ],
+  },
   description: {
     methodological:
       'Surface vehicles depend on transmitting traction, guiding movement, supporting loads and maintaining control during stopping.',

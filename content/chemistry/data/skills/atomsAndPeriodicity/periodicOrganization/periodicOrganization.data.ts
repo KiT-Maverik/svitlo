@@ -41,12 +41,20 @@ export const periodicOrganization_SkillGroup_Data = defineSkillGroup({
     kk: 'Периодтық жүйелеу',
     qm: 'Devirli tertip',
   },
-  skills: [
-    elementFamilies_Skill_Data,
-    metalsNonmetalsAndMetalloids_Skill_Data,
-    periodicity_Skill_Data,
-    periodicTableStructure_Skill_Data,
-  ],
+  skills: {
+    items: {
+      elementFamilies: elementFamilies_Skill_Data,
+      metalsNonmetalsAndMetalloids: metalsNonmetalsAndMetalloids_Skill_Data,
+      periodicity: periodicity_Skill_Data,
+      periodicTableStructure: periodicTableStructure_Skill_Data,
+    },
+    order: [
+      'elementFamilies',
+      'metalsNonmetalsAndMetalloids',
+      'periodicity',
+      'periodicTableStructure',
+    ],
+  },
   description: {
     methodological:
       'The periodic table encodes repeating patterns in electron configurations and useful chemical categories.',

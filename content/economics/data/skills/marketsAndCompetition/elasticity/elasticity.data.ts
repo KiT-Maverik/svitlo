@@ -41,12 +41,20 @@ export const elasticity_SkillGroup_Data = defineSkillGroup({
     kk: 'Икемділік',
     qm: 'Elastiklik',
   },
-  skills: [
-    crossPriceElasticityOfDemand_Skill_Data,
-    incomeElasticityOfDemand_Skill_Data,
-    priceElasticityOfDemand_Skill_Data,
-    priceElasticityOfSupply_Skill_Data,
-  ],
+  skills: {
+    items: {
+      crossPriceElasticityOfDemand: crossPriceElasticityOfDemand_Skill_Data,
+      incomeElasticityOfDemand: incomeElasticityOfDemand_Skill_Data,
+      priceElasticityOfDemand: priceElasticityOfDemand_Skill_Data,
+      priceElasticityOfSupply: priceElasticityOfSupply_Skill_Data,
+    },
+    order: [
+      'crossPriceElasticityOfDemand',
+      'incomeElasticityOfDemand',
+      'priceElasticityOfDemand',
+      'priceElasticityOfSupply',
+    ],
+  },
   description: {
     methodological: 'Quantity responses to changes in price or income vary across products and time horizons.',
     frontend: {

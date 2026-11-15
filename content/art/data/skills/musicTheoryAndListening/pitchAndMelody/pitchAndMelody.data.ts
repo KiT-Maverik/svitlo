@@ -42,13 +42,22 @@ export const pitchAndMelody_SkillGroup_Data = defineSkillGroup({
     kk: 'Дыбыс биіктігі мен әуен',
     qm: 'Ses yüksekliği ve ezgi',
   },
-  skills: [
-    composeAMelody_Skill_Data,
-    distinguishMusicalIntervals_Skill_Data,
-    readPitchNotation_Skill_Data,
-    recognizeMelodicContour_Skill_Data,
-    useMusicalScales_Skill_Data,
-  ],
+  skills: {
+    items: {
+      composeAMelody: composeAMelody_Skill_Data,
+      distinguishMusicalIntervals: distinguishMusicalIntervals_Skill_Data,
+      readPitchNotation: readPitchNotation_Skill_Data,
+      recognizeMelodicContour: recognizeMelodicContour_Skill_Data,
+      useMusicalScales: useMusicalScales_Skill_Data,
+    },
+    order: [
+      'composeAMelody',
+      'distinguishMusicalIntervals',
+      'readPitchNotation',
+      'recognizeMelodicContour',
+      'useMusicalScales',
+    ],
+  },
   description: {
     methodological: 'Melodic patterns rely on relative pitch motion, intervals and a selected pitch collection.',
     frontend: {

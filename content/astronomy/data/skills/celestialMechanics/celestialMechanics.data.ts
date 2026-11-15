@@ -38,11 +38,14 @@ export const celestialMechanics_SkillDomain_Data = defineSkillDomain({
     kk: 'Аспан механикасы',
     qm: 'Kök mehanikası',
   },
-  groups: [
-    dynamicalInteractions_SkillGroup_Data,
-    gravitationalMotion_SkillGroup_Data,
-    orbitsAndRotations_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      dynamicalInteractions: dynamicalInteractions_SkillGroup_Data,
+      gravitationalMotion: gravitationalMotion_SkillGroup_Data,
+      orbitsAndRotations: orbitsAndRotations_SkillGroup_Data,
+    },
+    order: ['dynamicalInteractions', 'gravitationalMotion', 'orbitsAndRotations'],
+  },
   description: {
     methodological:
       'This domain concerns how gravity and angular momentum govern orbital motion, rotation and mutual perturbations across planetary and stellar systems. Geometrical appearances arising from these motions are addressed separately when the observational phenomenon itself is the competency.',

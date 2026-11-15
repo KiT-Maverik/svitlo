@@ -39,12 +39,20 @@ export const mixturesAndSolutions_SkillDomain_Data = defineSkillDomain({
     kk: 'Қоспалар және ерітінділер',
     qm: 'Qarışıqlar ve çezintiler',
   },
-  groups: [
-    concentration_SkillGroup_Data,
-    dissolutionAndSolubility_SkillGroup_Data,
-    mixtureSystems_SkillGroup_Data,
-    separation_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      concentration: concentration_SkillGroup_Data,
+      dissolutionAndSolubility: dissolutionAndSolubility_SkillGroup_Data,
+      mixtureSystems: mixtureSystems_SkillGroup_Data,
+      separation: separation_SkillGroup_Data,
+    },
+    order: [
+      'concentration',
+      'dissolutionAndSolubility',
+      'mixtureSystems',
+      'separation',
+    ],
+  },
   description: {
     methodological:
       'Components of mixtures retain their chemical identities while distribution, solubility and relative amounts determine useful properties. Separation methods exploit differences in physical behavior rather than requiring reaction.',

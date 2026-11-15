@@ -41,12 +41,20 @@ export const area_SkillGroup_Data = defineSkillGroup({
     pl: 'Pole powierzchni',
     uk: 'Площа',
   },
-  skills: [
-    compositeArea_Skill_Data,
-    areaAsCovering_Skill_Data,
-    countUnitSquares_Skill_Data,
-    rectangleAreaModel_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compositeArea: compositeArea_Skill_Data,
+      areaAsCovering: areaAsCovering_Skill_Data,
+      countUnitSquares: countUnitSquares_Skill_Data,
+      rectangleAreaModel: rectangleAreaModel_Skill_Data,
+    },
+    order: [
+      'compositeArea',
+      'areaAsCovering',
+      'countUnitSquares',
+      'rectangleAreaModel',
+    ],
+  },
   description: {
     methodological:
       'The extent of a planar region occupied by a figure, modeled using unit squares, rectangles, and decomposition of composite shapes.',

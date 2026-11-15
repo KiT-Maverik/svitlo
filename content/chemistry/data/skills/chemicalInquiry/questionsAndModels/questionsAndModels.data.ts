@@ -41,12 +41,20 @@ export const questionsAndModels_SkillGroup_Data = defineSkillGroup({
     kk: 'Сұрақтар және модельдер',
     qm: 'Sualler ve modeller',
   },
-  skills: [
-    chemicalModels_Skill_Data,
-    chemistryAsADiscipline_Skill_Data,
-    macroscopicAndParticleExplanations_Skill_Data,
-    testableChemicalPredictions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chemicalModels: chemicalModels_Skill_Data,
+      chemistryAsADiscipline: chemistryAsADiscipline_Skill_Data,
+      macroscopicAndParticleExplanations: macroscopicAndParticleExplanations_Skill_Data,
+      testableChemicalPredictions: testableChemicalPredictions_Skill_Data,
+    },
+    order: [
+      'chemicalModels',
+      'chemistryAsADiscipline',
+      'macroscopicAndParticleExplanations',
+      'testableChemicalPredictions',
+    ],
+  },
   description: {
     methodological:
       'Chemical claims can be examined by specifying substances, observable properties, conditions and possible particle-level explanations.',

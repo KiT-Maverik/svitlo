@@ -40,11 +40,14 @@ export const supportAndMovement_SkillGroup_Data = defineSkillGroup({
     kk: 'Тірек және қозғалыс',
     qm: 'Dayanç ve areket',
   },
-  skills: [
-    describeInteractionsBetweenBonesAndMuscles_Skill_Data,
-    explainTheRoleOfMusclesInMovement_Skill_Data,
-    explainTheRoleOfTheSkeleton_Skill_Data,
-  ],
+  skills: {
+    items: {
+      describeInteractionsBetweenBonesAndMuscles: describeInteractionsBetweenBonesAndMuscles_Skill_Data,
+      explainTheRoleOfMusclesInMovement: explainTheRoleOfMusclesInMovement_Skill_Data,
+      explainTheRoleOfTheSkeleton: explainTheRoleOfTheSkeleton_Skill_Data,
+    },
+    order: ['describeInteractionsBetweenBonesAndMuscles', 'explainTheRoleOfMusclesInMovement', 'explainTheRoleOfTheSkeleton'],
+  },
   description: {
     methodological:
       'Bones provide support and levers, muscles exert force, and joints determine the possible directions of movement.',

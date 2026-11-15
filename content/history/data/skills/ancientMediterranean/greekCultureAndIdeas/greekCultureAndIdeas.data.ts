@@ -41,12 +41,20 @@ export const greekCultureAndIdeas_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі грек мәдениеті мен ой дәстүрлері',
     qm: 'Qadimiy Yunan medeniyeti ve fikirleri',
   },
-  skills: [
-    ancientGreekArt_Skill_Data,
-    ancientGreekTheater_Skill_Data,
-    greekPhilosophy_Skill_Data,
-    greekReligionAndMythology_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ancientGreekArt: ancientGreekArt_Skill_Data,
+      ancientGreekTheater: ancientGreekTheater_Skill_Data,
+      greekPhilosophy: greekPhilosophy_Skill_Data,
+      greekReligionAndMythology: greekReligionAndMythology_Skill_Data,
+    },
+    order: [
+      'ancientGreekArt',
+      'ancientGreekTheater',
+      'greekPhilosophy',
+      'greekReligionAndMythology',
+    ],
+  },
   description: {
     methodological:
       'Greek religion, philosophy, and art varied across communities and periods rather than forming one fixed culture.',

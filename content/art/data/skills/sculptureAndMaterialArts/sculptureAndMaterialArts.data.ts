@@ -40,12 +40,20 @@ export const sculptureAndMaterialArts_SkillDomain_Data = defineSkillDomain({
     ka: 'ქანდაკება და მასალების ხელოვნება',
     kk: 'Мүсін және материалдық өнер',
   },
-  groups: [
-    ceramicsAndAssemblage_SkillGroup_Data,
-    printmaking_SkillGroup_Data,
-    sculpturalForm_SkillGroup_Data,
-    textilesAndDecorativeArts_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      ceramicsAndAssemblage: ceramicsAndAssemblage_SkillGroup_Data,
+      printmaking: printmaking_SkillGroup_Data,
+      sculpturalForm: sculpturalForm_SkillGroup_Data,
+      textilesAndDecorativeArts: textilesAndDecorativeArts_SkillGroup_Data,
+    },
+    order: [
+      'ceramicsAndAssemblage',
+      'printmaking',
+      'sculpturalForm',
+      'textilesAndDecorativeArts',
+    ],
+  },
   description: {
     methodological:
       'Physical media can be shaped, assembled, printed or woven to produce objects, editions and decorative surfaces. This domain concerns expressive material practices rather than engineering manufacture.',

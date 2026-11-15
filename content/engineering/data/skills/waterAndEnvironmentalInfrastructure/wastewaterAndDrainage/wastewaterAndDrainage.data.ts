@@ -41,12 +41,20 @@ export const wastewaterAndDrainage_SkillGroup_Data = defineSkillGroup({
     kk: 'Ағынды сулар және су ағызу',
     qm: 'Aqıntı suvlar ve suv ketirüv',
   },
-  skills: [
-    floodControlStructures_Skill_Data,
-    stormwaterDrainage_Skill_Data,
-    traceWastewaterCollection_Skill_Data,
-    wastewaterTreatment_Skill_Data,
-  ],
+  skills: {
+    items: {
+      floodControlStructures: floodControlStructures_Skill_Data,
+      stormwaterDrainage: stormwaterDrainage_Skill_Data,
+      traceWastewaterCollection: traceWastewaterCollection_Skill_Data,
+      wastewaterTreatment: wastewaterTreatment_Skill_Data,
+    },
+    order: [
+      'floodControlStructures',
+      'stormwaterDrainage',
+      'traceWastewaterCollection',
+      'wastewaterTreatment',
+    ],
+  },
   description: {
     methodological:
       'Sewage, storm runoff and treated discharge have different handling requirements; networks must account for capacity and contamination.',

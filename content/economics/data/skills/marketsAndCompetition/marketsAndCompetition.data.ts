@@ -41,14 +41,24 @@ export const marketsAndCompetition_SkillDomain_Data = defineSkillDomain({
     kk: 'Нарықтар және бәсеке',
     qm: 'Bazarlar ve raqiplik',
   },
-  groups: [
-    competitiveMarketStructures_SkillGroup_Data,
-    demand_SkillGroup_Data,
-    elasticity_SkillGroup_Data,
-    marketEquilibrium_SkillGroup_Data,
-    marketOutcomes_SkillGroup_Data,
-    supply_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      competitiveMarketStructures: competitiveMarketStructures_SkillGroup_Data,
+      demand: demand_SkillGroup_Data,
+      elasticity: elasticity_SkillGroup_Data,
+      marketEquilibrium: marketEquilibrium_SkillGroup_Data,
+      marketOutcomes: marketOutcomes_SkillGroup_Data,
+      supply: supply_SkillGroup_Data,
+    },
+    order: [
+      'competitiveMarketStructures',
+      'demand',
+      'elasticity',
+      'marketEquilibrium',
+      'marketOutcomes',
+      'supply',
+    ],
+  },
   description: {
     methodological:
       'Market prices and quantities arise from interactions between buyers and sellers under particular rules and competitive structures. This domain explains market mechanisms, not individual selling techniques.',

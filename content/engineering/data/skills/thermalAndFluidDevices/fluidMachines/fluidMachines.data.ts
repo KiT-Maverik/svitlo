@@ -41,12 +41,20 @@ export const fluidMachines_SkillGroup_Data = defineSkillGroup({
     kk: 'Сұйықтық және газ машиналары',
     qm: 'Sıyıqlıq ve gaz maşinaları',
   },
-  skills: [
-    gasCompressors_Skill_Data,
-    hydraulicActuators_Skill_Data,
-    liquidPumps_Skill_Data,
-    pneumaticActuators_Skill_Data,
-  ],
+  skills: {
+    items: {
+      gasCompressors: gasCompressors_Skill_Data,
+      hydraulicActuators: hydraulicActuators_Skill_Data,
+      liquidPumps: liquidPumps_Skill_Data,
+      pneumaticActuators: pneumaticActuators_Skill_Data,
+    },
+    order: [
+      'gasCompressors',
+      'hydraulicActuators',
+      'liquidPumps',
+      'pneumaticActuators',
+    ],
+  },
   description: {
     methodological:
       'Mechanical energy can produce fluid flow, pressure or driven motion using distinct devices with different operating media.',

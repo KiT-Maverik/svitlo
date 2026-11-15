@@ -41,12 +41,20 @@ export const formsAndPurposes_SkillGroup_Data = defineSkillGroup({
     kk: 'Пішіндер мен мақсаттар',
     qm: 'Forma ve maqsatlar',
   },
-  skills: [
-    classifyArtisticGenres_Skill_Data,
-    distinguishArtisticMedia_Skill_Data,
-    distinguishRepresentationAndAbstraction_Skill_Data,
-    interpretArtisticIntent_Skill_Data,
-  ],
+  skills: {
+    items: {
+      classifyArtisticGenres: classifyArtisticGenres_Skill_Data,
+      distinguishArtisticMedia: distinguishArtisticMedia_Skill_Data,
+      distinguishRepresentationAndAbstraction: distinguishRepresentationAndAbstraction_Skill_Data,
+      interpretArtisticIntent: interpretArtisticIntent_Skill_Data,
+    },
+    order: [
+      'classifyArtisticGenres',
+      'distinguishArtisticMedia',
+      'distinguishRepresentationAndAbstraction',
+      'interpretArtisticIntent',
+    ],
+  },
   description: {
     methodological:
       'Art can represent, express, question, commemorate or invite participation; genre labels and purposes are useful but not universal classifications.',

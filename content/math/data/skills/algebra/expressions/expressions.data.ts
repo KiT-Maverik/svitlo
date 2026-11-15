@@ -41,12 +41,20 @@ export const expressions_SkillGroup_Data = defineSkillGroup({
     pl: 'Wyrażenia',
     uk: 'Вирази',
   },
-  skills: [
-    orderOfOperations_Skill_Data,
-    parentheses_Skill_Data,
-    readNumericExpressions_Skill_Data,
-    variableValue_Skill_Data,
-  ],
+  skills: {
+    items: {
+      orderOfOperations: orderOfOperations_Skill_Data,
+      parentheses: parentheses_Skill_Data,
+      readNumericExpressions: readNumericExpressions_Skill_Data,
+      variableValue: variableValue_Skill_Data,
+    },
+    order: [
+      'orderOfOperations',
+      'parentheses',
+      'readNumericExpressions',
+      'variableValue',
+    ],
+  },
   description: {
     methodological:
       'The meanings of mathematical expressions involving operations, parentheses, and variables, including correct order of operations.',

@@ -41,12 +41,20 @@ export const surfacesAndGeology_SkillGroup_Data = defineSkillGroup({
     kk: 'Беттер мен геология',
     qm: 'Yüzler ve geologiya',
   },
-  skills: [
-    extraterrestrialVolcanism_Skill_Data,
-    impactCratering_Skill_Data,
-    planetaryTectonics_Skill_Data,
-    surfaceAgeEstimation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      extraterrestrialVolcanism: extraterrestrialVolcanism_Skill_Data,
+      impactCratering: impactCratering_Skill_Data,
+      planetaryTectonics: planetaryTectonics_Skill_Data,
+      surfaceAgeEstimation: surfaceAgeEstimation_Skill_Data,
+    },
+    order: [
+      'extraterrestrialVolcanism',
+      'impactCratering',
+      'planetaryTectonics',
+      'surfaceAgeEstimation',
+    ],
+  },
   description: {
     methodological:
       'Observable terrain records impacts, deformation, volcanism and erosion, with interpretation conditioned by the limits of remote data.',

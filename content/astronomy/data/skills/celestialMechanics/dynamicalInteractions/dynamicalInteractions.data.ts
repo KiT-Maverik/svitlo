@@ -41,12 +41,20 @@ export const dynamicalInteractions_SkillGroup_Data = defineSkillGroup({
     kk: 'Динамикалық өзара әрекеттесулер',
     qm: 'Dinamik tesirleşüvler',
   },
-  skills: [
-    gravitationalPerturbations_Skill_Data,
-    orbitalResonances_Skill_Data,
-    orbitalStability_Skill_Data,
-    tidalForces_Skill_Data,
-  ],
+  skills: {
+    items: {
+      gravitationalPerturbations: gravitationalPerturbations_Skill_Data,
+      orbitalResonances: orbitalResonances_Skill_Data,
+      orbitalStability: orbitalStability_Skill_Data,
+      tidalForces: tidalForces_Skill_Data,
+    },
+    order: [
+      'gravitationalPerturbations',
+      'orbitalResonances',
+      'orbitalStability',
+      'tidalForces',
+    ],
+  },
   description: {
     methodological:
       'Real celestial systems include many bodies, so resonances, tides and perturbations can alter otherwise idealized orbital motion.',

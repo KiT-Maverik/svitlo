@@ -41,12 +41,20 @@ export const ancientAndes_SkillGroup_Data = defineSkillGroup({
     kk: 'Анд таулары',
     qm: 'And dağları',
   },
-  skills: [
-    caralAndEarlyAndeanCenters_Skill_Data,
-    chavinCulture_Skill_Data,
-    mocheCulture_Skill_Data,
-    nazcaCulture_Skill_Data,
-  ],
+  skills: {
+    items: {
+      caralAndEarlyAndeanCenters: caralAndEarlyAndeanCenters_Skill_Data,
+      chavinCulture: chavinCulture_Skill_Data,
+      mocheCulture: mocheCulture_Skill_Data,
+      nazcaCulture: nazcaCulture_Skill_Data,
+    },
+    order: [
+      'caralAndEarlyAndeanCenters',
+      'chavinCulture',
+      'mocheCulture',
+      'nazcaCulture',
+    ],
+  },
   description: {
     methodological: 'Coastal valleys and highlands supported diverse farming, cities, and social coordination.',
     frontend: {

@@ -41,12 +41,20 @@ export const periodicTrends_SkillGroup_Data = defineSkillGroup({
     kk: 'Периодтық үрдістер',
     qm: 'Devirli mayiller',
   },
-  skills: [
-    atomicRadiusTrends_Skill_Data,
-    electronAffinity_Skill_Data,
-    electronegativity_Skill_Data,
-    ionizationEnergy_Skill_Data,
-  ],
+  skills: {
+    items: {
+      atomicRadiusTrends: atomicRadiusTrends_Skill_Data,
+      electronAffinity: electronAffinity_Skill_Data,
+      electronegativity: electronegativity_Skill_Data,
+      ionizationEnergy: ionizationEnergy_Skill_Data,
+    },
+    order: [
+      'atomicRadiusTrends',
+      'electronAffinity',
+      'electronegativity',
+      'ionizationEnergy',
+    ],
+  },
   description: {
     methodological:
       'Atomic size and electrostatic attraction influence recurring patterns and their important exceptions.',

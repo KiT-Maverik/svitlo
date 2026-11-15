@@ -44,15 +44,26 @@ export const pricingPromotionsAndFairness_SkillGroup_Data = defineSkillGroup({
     kk: 'Бағалар, акциялар және адалдық',
     qm: 'Fiyatlar, aktsiyalar ve insaf',
   },
-  skills: [
-    discountsAndPromotions_Skill_Data,
-    ethicalMarketing_Skill_Data,
-    hiddenChargesAndForcedExtras_Skill_Data,
-    manipulativeCommercialTactics_Skill_Data,
-    psychologicalPricing_Skill_Data,
-    retailPricingStrategies_Skill_Data,
-    subscriptionCancellationBarriers_Skill_Data,
-  ],
+  skills: {
+    items: {
+      discountsAndPromotions: discountsAndPromotions_Skill_Data,
+      ethicalMarketing: ethicalMarketing_Skill_Data,
+      hiddenChargesAndForcedExtras: hiddenChargesAndForcedExtras_Skill_Data,
+      manipulativeCommercialTactics: manipulativeCommercialTactics_Skill_Data,
+      psychologicalPricing: psychologicalPricing_Skill_Data,
+      retailPricingStrategies: retailPricingStrategies_Skill_Data,
+      subscriptionCancellationBarriers: subscriptionCancellationBarriers_Skill_Data,
+    },
+    order: [
+      'discountsAndPromotions',
+      'ethicalMarketing',
+      'hiddenChargesAndForcedExtras',
+      'manipulativeCommercialTactics',
+      'psychologicalPricing',
+      'retailPricingStrategies',
+      'subscriptionCancellationBarriers',
+    ],
+  },
   description: {
     methodological:
       'Price offers have commercial effects, but judging them requires verifying actual savings and methods of influencing buyers.',

@@ -42,13 +42,22 @@ export const climatePatterns_SkillGroup_Data = defineSkillGroup({
     kk: 'Климат заңдылықтары',
     qm: 'İklim tertipleri',
   },
-  skills: [
-    explainBroadClimateDifferencesUsingGeographicFactors_Skill_Data,
-    explainGeographicImpactsOfClimateChange_Skill_Data,
-    explainTheConceptOfClimate_Skill_Data,
-    interpretABasicClimateDiagram_Skill_Data,
-    interpretLongTermClimateTrends_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainBroadClimateDifferencesUsingGeographicFactors: explainBroadClimateDifferencesUsingGeographicFactors_Skill_Data,
+      explainGeographicImpactsOfClimateChange: explainGeographicImpactsOfClimateChange_Skill_Data,
+      explainTheConceptOfClimate: explainTheConceptOfClimate_Skill_Data,
+      interpretABasicClimateDiagram: interpretABasicClimateDiagram_Skill_Data,
+      interpretLongTermClimateTrends: interpretLongTermClimateTrends_Skill_Data,
+    },
+    order: [
+      'explainBroadClimateDifferencesUsingGeographicFactors',
+      'explainGeographicImpactsOfClimateChange',
+      'explainTheConceptOfClimate',
+      'interpretABasicClimateDiagram',
+      'interpretLongTermClimateTrends',
+    ],
+  },
   description: {
     methodological:
       'Climate summarizes the long-term distribution and variability of weather, not simply a typical day. Latitude, elevation, land–sea contrast, and circulation contribute to regional differences.',

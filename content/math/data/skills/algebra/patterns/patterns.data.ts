@@ -36,7 +36,13 @@ export const patterns_SkillGroup_Data = defineSkillGroup({
     pl: 'Prawidłowości',
     uk: 'Закономірності',
   },
-  skills: [arithmeticPattern_Skill_Data, growingPattern_Skill_Data],
+  skills: {
+    items: {
+      arithmeticPattern: arithmeticPattern_Skill_Data,
+      growingPattern: growingPattern_Skill_Data,
+    },
+    order: ['arithmeticPattern', 'growingPattern'],
+  },
   description: {
     methodological:
       "Regular numerical changes following a rule and recognizing a sequence's structure from several terms.",

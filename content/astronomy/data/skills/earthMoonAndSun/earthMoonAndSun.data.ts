@@ -39,12 +39,20 @@ export const earthMoonAndSun_SkillDomain_Data = defineSkillDomain({
     kk: 'Жер, Ай және Күн',
     qm: 'Yer, Ay ve Küneş',
   },
-  groups: [
-    earthMoonInteractions_SkillGroup_Data,
-    eclipsesAndAlignments_SkillGroup_Data,
-    lunarAppearance_SkillGroup_Data,
-    terrestrialSkyCycles_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      earthMoonInteractions: earthMoonInteractions_SkillGroup_Data,
+      eclipsesAndAlignments: eclipsesAndAlignments_SkillGroup_Data,
+      lunarAppearance: lunarAppearance_SkillGroup_Data,
+      terrestrialSkyCycles: terrestrialSkyCycles_SkillGroup_Data,
+    },
+    order: [
+      'earthMoonInteractions',
+      'eclipsesAndAlignments',
+      'lunarAppearance',
+      'terrestrialSkyCycles',
+    ],
+  },
   description: {
     methodological:
       "Here the distinctive geometry of Earth's viewpoint, rotation and revolution produces observable cycles. The scientific emphasis is on explaining familiar sky events from physical arrangements rather than on general geography or atmospheric meteorology.",

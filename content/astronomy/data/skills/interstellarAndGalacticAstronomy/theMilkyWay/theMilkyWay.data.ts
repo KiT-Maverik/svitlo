@@ -41,12 +41,20 @@ export const theMilkyWay_SkillGroup_Data = defineSkillGroup({
     ka: 'ირმის ნახტომი',
     kk: 'Құс жолы',
   },
-  skills: [
-    galacticRotation_Skill_Data,
-    milkyWayStructure_Skill_Data,
-    solarSystemsGalacticLocation_Skill_Data,
-    starClusters_Skill_Data,
-  ],
+  skills: {
+    items: {
+      galacticRotation: galacticRotation_Skill_Data,
+      milkyWayStructure: milkyWayStructure_Skill_Data,
+      solarSystemsGalacticLocation: solarSystemsGalacticLocation_Skill_Data,
+      starClusters: starClusters_Skill_Data,
+    },
+    order: [
+      'galacticRotation',
+      'milkyWayStructure',
+      'solarSystemsGalacticLocation',
+      'starClusters',
+    ],
+  },
   description: {
     methodological:
       'Our galaxy is mapped from an interior viewpoint by combining stellar distributions, gas, motions and distance measurements.',

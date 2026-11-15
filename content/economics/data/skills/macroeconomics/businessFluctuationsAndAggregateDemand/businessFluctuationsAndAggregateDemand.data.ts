@@ -42,13 +42,22 @@ export const businessFluctuationsAndAggregateDemand_SkillGroup_Data = defineSkil
     kk: 'Экономикалық ауытқулар және жиынтық сұраныс',
     qm: 'İqtisadiy dalğalanmalar ve umumiy talap',
   },
-  skills: [
-    aggregateDemand_Skill_Data,
-    aggregateSupply_Skill_Data,
-    businessCycle_Skill_Data,
-    macroeconomicShocks_Skill_Data,
-    multiplierEffect_Skill_Data,
-  ],
+  skills: {
+    items: {
+      aggregateDemand: aggregateDemand_Skill_Data,
+      aggregateSupply: aggregateSupply_Skill_Data,
+      businessCycle: businessCycle_Skill_Data,
+      macroeconomicShocks: macroeconomicShocks_Skill_Data,
+      multiplierEffect: multiplierEffect_Skill_Data,
+    },
+    order: [
+      'aggregateDemand',
+      'aggregateSupply',
+      'businessCycle',
+      'macroeconomicShocks',
+      'multiplierEffect',
+    ],
+  },
   description: {
     methodological:
       "Economic shocks affect output and employment through spending, expectations, and firms' responses.",

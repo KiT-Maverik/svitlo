@@ -42,12 +42,20 @@ export const informationDesign_SkillGroup_Data = defineSkillGroup({
     kk: 'Ақпарат дизайны',
     qm: 'Malümat dizaynı',
   },
-  skills: [
-    chooseAVisualEncoding_Skill_Data,
-    designADataGraphic_Skill_Data,
-    designAVisualDiagram_Skill_Data,
-    detectMisleadingGraphics_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chooseAVisualEncoding: chooseAVisualEncoding_Skill_Data,
+      designADataGraphic: designADataGraphic_Skill_Data,
+      designAVisualDiagram: designAVisualDiagram_Skill_Data,
+      detectMisleadingGraphics: detectMisleadingGraphics_Skill_Data,
+    },
+    order: [
+      'chooseAVisualEncoding',
+      'designADataGraphic',
+      'designAVisualDiagram',
+      'detectMisleadingGraphics',
+    ],
+  },
   description: {
     methodological:
       'Visualization makes relationships understandable through disciplined selection of visual encodings.',

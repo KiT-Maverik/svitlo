@@ -41,12 +41,20 @@ export const evidenceAndInterpretation_SkillGroup_Data = defineSkillGroup({
     uk: 'Докази та їх інтерпретація',
     pl: 'Dowody i ich interpretacja',
   },
-  skills: [
-    astronomicalLightCurves_Skill_Data,
-    astronomicalModelTesting_Skill_Data,
-    measurementUncertainty_Skill_Data,
-    observationalSelectionEffects_Skill_Data,
-  ],
+  skills: {
+    items: {
+      astronomicalLightCurves: astronomicalLightCurves_Skill_Data,
+      astronomicalModelTesting: astronomicalModelTesting_Skill_Data,
+      measurementUncertainty: measurementUncertainty_Skill_Data,
+      observationalSelectionEffects: observationalSelectionEffects_Skill_Data,
+    },
+    order: [
+      'astronomicalLightCurves',
+      'astronomicalModelTesting',
+      'measurementUncertainty',
+      'observationalSelectionEffects',
+    ],
+  },
   description: {
     methodological:
       'Astronomical conclusions require comparisons between predictions and measured signals, including attention to uncertainty and alternative explanations.',

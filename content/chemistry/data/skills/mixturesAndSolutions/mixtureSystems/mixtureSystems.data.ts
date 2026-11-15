@@ -36,7 +36,20 @@ export const mixtureSystems_SkillGroup_Data = defineSkillGroup({
     kk: 'Қоспалар жүйелері',
     qm: 'Qarışıq sistemaları',
   },
-  skills: [alloys_Skill_Data, colloids_Skill_Data, solutions_Skill_Data, suspensions_Skill_Data],
+  skills: {
+    items: {
+      alloys: alloys_Skill_Data,
+      colloids: colloids_Skill_Data,
+      solutions: solutions_Skill_Data,
+      suspensions: suspensions_Skill_Data,
+    },
+    order: [
+      'alloys',
+      'colloids',
+      'solutions',
+      'suspensions',
+    ],
+  },
   description: {
     methodological:
       'Mixtures may contain more than one phase or dispersed material with properties depending on particle size and composition.',

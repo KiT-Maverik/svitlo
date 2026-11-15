@@ -41,12 +41,20 @@ export const starFormation_SkillGroup_Data = defineSkillGroup({
     kk: 'Жұлдыздардың түзілуі',
     qm: 'Yıldızlarnıñ peyda oluvı',
   },
-  skills: [
-    molecularCloudCollapse_Skill_Data,
-    protostars_Skill_Data,
-    protostellarDisks_Skill_Data,
-    protostellarJets_Skill_Data,
-  ],
+  skills: {
+    items: {
+      molecularCloudCollapse: molecularCloudCollapse_Skill_Data,
+      protostars: protostars_Skill_Data,
+      protostellarDisks: protostellarDisks_Skill_Data,
+      protostellarJets: protostellarJets_Skill_Data,
+    },
+    order: [
+      'molecularCloudCollapse',
+      'protostars',
+      'protostellarDisks',
+      'protostellarJets',
+    ],
+  },
   description: {
     methodological:
       'Star birth occurs inside interstellar gas and dust and progresses through distinct gravitational and thermal stages.',

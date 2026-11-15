@@ -41,12 +41,20 @@ export const incomeAndBudgeting_SkillGroup_Data = defineSkillGroup({
     kk: 'Кіріс және бюджет',
     qm: 'Kirset ve bücet',
   },
-  skills: [
-    expenseTracking_Skill_Data,
-    financialGoals_Skill_Data,
-    personalBudget_Skill_Data,
-    personalIncomeSources_Skill_Data,
-  ],
+  skills: {
+    items: {
+      expenseTracking: expenseTracking_Skill_Data,
+      financialGoals: financialGoals_Skill_Data,
+      personalBudget: personalBudget_Skill_Data,
+      personalIncomeSources: personalIncomeSources_Skill_Data,
+    },
+    order: [
+      'expenseTracking',
+      'financialGoals',
+      'personalBudget',
+      'personalIncomeSources',
+    ],
+  },
   description: {
     methodological:
       'Money planning begins by understanding sources of income, recurring obligations, and the limits of available spending.',

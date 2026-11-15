@@ -36,7 +36,14 @@ export const supply_SkillGroup_Data = defineSkillGroup({
     kk: 'Ұсыныс',
     qm: 'Teklif',
   },
-  skills: [changeInQuantitySupplied_Skill_Data, lawOfSupply_Skill_Data, shiftInSupply_Skill_Data],
+  skills: {
+    items: {
+      changeInQuantitySupplied: changeInQuantitySupplied_Skill_Data,
+      lawOfSupply: lawOfSupply_Skill_Data,
+      shiftInSupply: shiftInSupply_Skill_Data,
+    },
+    order: ['changeInQuantitySupplied', 'lawOfSupply', 'shiftInSupply'],
+  },
   description: {
     methodological:
       "Sellers' production decisions depend on price, costs, productivity, expectations, and resource availability.",

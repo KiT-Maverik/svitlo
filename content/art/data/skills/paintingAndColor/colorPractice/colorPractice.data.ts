@@ -42,13 +42,22 @@ export const colorPractice_SkillGroup_Data = defineSkillGroup({
     kk: 'Түспен жұмыс тәжірибесі',
     qm: 'Tüsler üzerinde çalışma',
   },
-  skills: [
-    buildALimitedPalette_Skill_Data,
-    constructAValueScale_Skill_Data,
-    distinguishHueValueAndSaturation_Skill_Data,
-    mixPigmentColors_Skill_Data,
-    useComplementaryColors_Skill_Data,
-  ],
+  skills: {
+    items: {
+      buildALimitedPalette: buildALimitedPalette_Skill_Data,
+      constructAValueScale: constructAValueScale_Skill_Data,
+      distinguishHueValueAndSaturation: distinguishHueValueAndSaturation_Skill_Data,
+      mixPigmentColors: mixPigmentColors_Skill_Data,
+      useComplementaryColors: useComplementaryColors_Skill_Data,
+    },
+    order: [
+      'buildALimitedPalette',
+      'constructAValueScale',
+      'distinguishHueValueAndSaturation',
+      'mixPigmentColors',
+      'useComplementaryColors',
+    ],
+  },
   description: {
     methodological:
       'Choosing pigments and their relationships involves both material mixture and organized differences in perceived lightness and intensity.',

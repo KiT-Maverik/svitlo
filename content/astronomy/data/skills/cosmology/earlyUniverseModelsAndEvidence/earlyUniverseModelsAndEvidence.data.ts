@@ -41,12 +41,20 @@ export const earlyUniverseModelsAndEvidence_SkillGroup_Data = defineSkillGroup({
     ka: 'ადრეული სამყაროს მოდელები და მტკიცებულებები',
     kk: 'Ерте Ғаламның модельдері мен дәлелдері',
   },
-  skills: [
-    cosmicInflation_Skill_Data,
-    cosmicMicrowaveBackground_Skill_Data,
-    hotBigBangModel_Skill_Data,
-    primordialNucleosynthesis_Skill_Data,
-  ],
+  skills: {
+    items: {
+      cosmicInflation: cosmicInflation_Skill_Data,
+      cosmicMicrowaveBackground: cosmicMicrowaveBackground_Skill_Data,
+      hotBigBangModel: hotBigBangModel_Skill_Data,
+      primordialNucleosynthesis: primordialNucleosynthesis_Skill_Data,
+    },
+    order: [
+      'cosmicInflation',
+      'cosmicMicrowaveBackground',
+      'hotBigBangModel',
+      'primordialNucleosynthesis',
+    ],
+  },
   description: {
     methodological:
       'The early hot and dense Universe is reconstructed from relic radiation, primordial abundances and theoretical models whose predictions and evidence have different degrees of support.',

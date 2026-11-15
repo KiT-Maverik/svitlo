@@ -42,12 +42,20 @@ export const animation_SkillGroup_Data = defineSkillGroup({
     kk: 'Анимация',
     qm: 'Canlandırma',
   },
-  skills: [
-    animateFrameByFrame_Skill_Data,
-    controlAnimationTiming_Skill_Data,
-    createStopMotionAnimation_Skill_Data,
-    designAnimatedTransitions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      animateFrameByFrame: animateFrameByFrame_Skill_Data,
+      controlAnimationTiming: controlAnimationTiming_Skill_Data,
+      createStopMotionAnimation: createStopMotionAnimation_Skill_Data,
+      designAnimatedTransitions: designAnimatedTransitions_Skill_Data,
+    },
+    order: [
+      'animateFrameByFrame',
+      'controlAnimationTiming',
+      'createStopMotionAnimation',
+      'designAnimatedTransitions',
+    ],
+  },
   description: {
     methodological:
       'Animating involves designing change across successive states and controlling the temporal character of motion.',

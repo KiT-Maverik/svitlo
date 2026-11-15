@@ -42,13 +42,22 @@ export const earlyImagesAndAntiquity_SkillGroup_Data = defineSkillGroup({
     kk: 'Ерте бейнелер мен ежелгі дәуір',
     qm: 'Erken tasvirler ve antik çağ',
   },
-  skills: [
-    analyzeAncientEgyptianFuneraryImagery_Skill_Data,
-    analyzeClassicalGreekSculpture_Skill_Data,
-    analyzeMesopotamianNarrativeReliefs_Skill_Data,
-    analyzeRomanPortraiture_Skill_Data,
-    interpretUpperPaleolithicCavePainting_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAncientEgyptianFuneraryImagery: analyzeAncientEgyptianFuneraryImagery_Skill_Data,
+      analyzeClassicalGreekSculpture: analyzeClassicalGreekSculpture_Skill_Data,
+      analyzeMesopotamianNarrativeReliefs: analyzeMesopotamianNarrativeReliefs_Skill_Data,
+      analyzeRomanPortraiture: analyzeRomanPortraiture_Skill_Data,
+      interpretUpperPaleolithicCavePainting: interpretUpperPaleolithicCavePainting_Skill_Data,
+    },
+    order: [
+      'analyzeAncientEgyptianFuneraryImagery',
+      'analyzeClassicalGreekSculpture',
+      'analyzeMesopotamianNarrativeReliefs',
+      'analyzeRomanPortraiture',
+      'interpretUpperPaleolithicCavePainting',
+    ],
+  },
   description: {
     methodological:
       'These practices emerged in different historical settings and should be read through their own surviving works, functions and available archaeological evidence. Similar motifs do not imply that their makers shared one artistic tradition.',

@@ -42,13 +42,22 @@ export const stellarEvolution_SkillGroup_Data = defineSkillGroup({
     kk: 'Жұлдыздардың эволюциясы',
     qm: 'Yıldızlarnıñ evolyutsiyası',
   },
-  skills: [
-    advancedStellarFusion_Skill_Data,
-    mainSequence_Skill_Data,
-    redGiants_Skill_Data,
-    stellarLifetimes_Skill_Data,
-    supergiants_Skill_Data,
-  ],
+  skills: {
+    items: {
+      advancedStellarFusion: advancedStellarFusion_Skill_Data,
+      mainSequence: mainSequence_Skill_Data,
+      redGiants: redGiants_Skill_Data,
+      stellarLifetimes: stellarLifetimes_Skill_Data,
+      supergiants: supergiants_Skill_Data,
+    },
+    order: [
+      'advancedStellarFusion',
+      'mainSequence',
+      'redGiants',
+      'stellarLifetimes',
+      'supergiants',
+    ],
+  },
   description: {
     methodological:
       "Mass and composition strongly constrain the duration and physical stages of a star's nuclear-burning lifetime.",

@@ -39,12 +39,20 @@ export const geographicObjects_SkillDomain_Data = defineSkillDomain({
     kk: 'Географиялық нысандар',
     qm: 'Coğrafiy obyektler',
   },
-  groups: [
-    classification_SkillGroup_Data,
-    globalGeographicDivisions_SkillGroup_Data,
-    humanMadeObjects_SkillGroup_Data,
-    landAndWater_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      classification: classification_SkillGroup_Data,
+      globalGeographicDivisions: globalGeographicDivisions_SkillGroup_Data,
+      humanMadeObjects: humanMadeObjects_SkillGroup_Data,
+      landAndWater: landAndWater_SkillGroup_Data,
+    },
+    order: [
+      'classification',
+      'globalGeographicDivisions',
+      'humanMadeObjects',
+      'landAndWater',
+    ],
+  },
   description: {
     methodological:
       'The world contains natural and human-made places and features with recognizable form, position and geographic roles. Learners classify these objects, interpret the conventional division of Earth into continents, parts of the world, oceans and hemispheres, and locate both familiar and global features. Processes that create or change these features belong to the relevant physical and human geography Domains.',

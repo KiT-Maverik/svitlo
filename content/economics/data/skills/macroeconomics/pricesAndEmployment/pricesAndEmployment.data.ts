@@ -43,14 +43,24 @@ export const pricesAndEmployment_SkillGroup_Data = defineSkillGroup({
     kk: 'Бағалар және жұмыспен қамту',
     qm: 'Fiyatlar ve işnen temin',
   },
-  skills: [
-    causesAndMechanismsOfInflation_Skill_Data,
-    consumerPriceIndex_Skill_Data,
-    inflationAndDeflation_Skill_Data,
-    laborForceParticipationRate_Skill_Data,
-    typesOfUnemployment_Skill_Data,
-    unemploymentRate_Skill_Data,
-  ],
+  skills: {
+    items: {
+      causesAndMechanismsOfInflation: causesAndMechanismsOfInflation_Skill_Data,
+      consumerPriceIndex: consumerPriceIndex_Skill_Data,
+      inflationAndDeflation: inflationAndDeflation_Skill_Data,
+      laborForceParticipationRate: laborForceParticipationRate_Skill_Data,
+      typesOfUnemployment: typesOfUnemployment_Skill_Data,
+      unemploymentRate: unemploymentRate_Skill_Data,
+    },
+    order: [
+      'causesAndMechanismsOfInflation',
+      'consumerPriceIndex',
+      'inflationAndDeflation',
+      'laborForceParticipationRate',
+      'typesOfUnemployment',
+      'unemploymentRate',
+    ],
+  },
   description: {
     methodological: 'Changes in the general price level and labor utilization have different causes and effects.',
     frontend: {

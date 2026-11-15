@@ -42,13 +42,22 @@ export const transitionToFoodProduction_SkillGroup_Data = defineSkillGroup({
     kk: 'Азық-түлік өндіруге көшу',
     qm: 'Aş istisaline keçüv',
   },
-  skills: [
-    animalDomestication_Skill_Data,
-    earlyWeaving_Skill_Data,
-    permanentSettlements_Skill_Data,
-    plantDomestication_Skill_Data,
-    prehistoricPottery_Skill_Data,
-  ],
+  skills: {
+    items: {
+      animalDomestication: animalDomestication_Skill_Data,
+      earlyWeaving: earlyWeaving_Skill_Data,
+      permanentSettlements: permanentSettlements_Skill_Data,
+      plantDomestication: plantDomestication_Skill_Data,
+      prehistoricPottery: prehistoricPottery_Skill_Data,
+    },
+    order: [
+      'animalDomestication',
+      'earlyWeaving',
+      'permanentSettlements',
+      'plantDomestication',
+      'prehistoricPottery',
+    ],
+  },
   description: {
     methodological:
       'Cultivation, herding, and settlements emerged independently in multiple places rather than in one simultaneous universal revolution.',

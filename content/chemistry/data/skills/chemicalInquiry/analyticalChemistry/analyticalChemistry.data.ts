@@ -43,14 +43,24 @@ export const analyticalChemistry_SkillGroup_Data = defineSkillGroup({
     kk: 'Аналитикалық химия',
     qm: 'Analitik himiya',
   },
-  skills: [
-    analyticalInterferences_Skill_Data,
-    calibrationCurves_Skill_Data,
-    qualitativeAnalyteIdentification_Skill_Data,
-    quantitativeAnalyteDetermination_Skill_Data,
-    samplePreparationForAnalysis_Skill_Data,
-    spectroscopicEvidence_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyticalInterferences: analyticalInterferences_Skill_Data,
+      calibrationCurves: calibrationCurves_Skill_Data,
+      qualitativeAnalyteIdentification: qualitativeAnalyteIdentification_Skill_Data,
+      quantitativeAnalyteDetermination: quantitativeAnalyteDetermination_Skill_Data,
+      samplePreparationForAnalysis: samplePreparationForAnalysis_Skill_Data,
+      spectroscopicEvidence: spectroscopicEvidence_Skill_Data,
+    },
+    order: [
+      'analyticalInterferences',
+      'calibrationCurves',
+      'qualitativeAnalyteIdentification',
+      'quantitativeAnalyteDetermination',
+      'samplePreparationForAnalysis',
+      'spectroscopicEvidence',
+    ],
+  },
   description: {
     methodological:
       'Analytical chemistry identifies particular components in samples and determines their amounts. Sample treatment, chemical selectivity and calibration govern whether signals justify a conclusion; general observation and bulk property comparison are distinct competencies.',

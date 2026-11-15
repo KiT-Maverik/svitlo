@@ -41,12 +41,20 @@ export const exchangeAndInstitutions_SkillGroup_Data = defineSkillGroup({
     kk: 'Айырбас пен институттар',
     qm: 'Alış-veriş ve müessiseler',
   },
-  skills: [
-    divisionOfLabor_Skill_Data,
-    gainsFromVoluntaryExchange_Skill_Data,
-    propertyRights_Skill_Data,
-    transactionCosts_Skill_Data,
-  ],
+  skills: {
+    items: {
+      divisionOfLabor: divisionOfLabor_Skill_Data,
+      gainsFromVoluntaryExchange: gainsFromVoluntaryExchange_Skill_Data,
+      propertyRights: propertyRights_Skill_Data,
+      transactionCosts: transactionCosts_Skill_Data,
+    },
+    order: [
+      'divisionOfLabor',
+      'gainsFromVoluntaryExchange',
+      'propertyRights',
+      'transactionCosts',
+    ],
+  },
   description: {
     methodological:
       'Cooperation and resource allocation depend on specialization, agreements, rights, and mechanisms for enforcing them.',

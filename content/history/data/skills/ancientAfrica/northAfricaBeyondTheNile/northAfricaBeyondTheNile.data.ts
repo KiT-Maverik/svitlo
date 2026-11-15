@@ -41,12 +41,20 @@ export const northAfricaBeyondTheNile_SkillGroup_Data = defineSkillGroup({
     kk: 'Ніл аңғарынан тыс Солтүстік Африка',
     qm: 'Nil vadisinden tışqarı Şimaliy Afrika',
   },
-  skills: [
-    carthage_Skill_Data,
-    garamantes_Skill_Data,
-    northAfricanCulturalInteractions_Skill_Data,
-    numidianKingdoms_Skill_Data,
-  ],
+  skills: {
+    items: {
+      carthage: carthage_Skill_Data,
+      garamantes: garamantes_Skill_Data,
+      northAfricanCulturalInteractions: northAfricanCulturalInteractions_Skill_Data,
+      numidianKingdoms: numidianKingdoms_Skill_Data,
+    },
+    order: [
+      'carthage',
+      'garamantes',
+      'northAfricanCulturalInteractions',
+      'numidianKingdoms',
+    ],
+  },
   description: {
     methodological:
       'Carthaginian, Numidian, and Saharan societies maintained their own political traditions amid Mediterranean and inland contacts.',

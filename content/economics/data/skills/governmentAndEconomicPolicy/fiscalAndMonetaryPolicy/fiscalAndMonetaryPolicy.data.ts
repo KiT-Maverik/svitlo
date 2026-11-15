@@ -41,12 +41,20 @@ export const fiscalAndMonetaryPolicy_SkillGroup_Data = defineSkillGroup({
     kk: 'Бюджеттік және ақша-кредит саясаты',
     qm: 'Bütçe ve para siyaseti',
   },
-  skills: [
-    automaticStabilizers_Skill_Data,
-    fiscalStabilization_Skill_Data,
-    monetaryPolicy_Skill_Data,
-    monetaryTransmissionMechanism_Skill_Data,
-  ],
+  skills: {
+    items: {
+      automaticStabilizers: automaticStabilizers_Skill_Data,
+      fiscalStabilization: fiscalStabilization_Skill_Data,
+      monetaryPolicy: monetaryPolicy_Skill_Data,
+      monetaryTransmissionMechanism: monetaryTransmissionMechanism_Skill_Data,
+    },
+    order: [
+      'automaticStabilizers',
+      'fiscalStabilization',
+      'monetaryPolicy',
+      'monetaryTransmissionMechanism',
+    ],
+  },
   description: {
     methodological:
       'Macroeconomic stabilization employs budget decisions and central-bank instruments, both subject to delays.',

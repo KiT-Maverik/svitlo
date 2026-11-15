@@ -41,12 +41,20 @@ export const interparticleInteractions_SkillGroup_Data = defineSkillGroup({
     kk: 'Бөлшектер арасындағы әрекеттесулер',
     qm: 'Zerreler arası tesirleşmeler',
   },
-  skills: [
-    dipoleInteractions_Skill_Data,
-    dispersionForces_Skill_Data,
-    hydrogenBonding_Skill_Data,
-    structurePropertyRelationships_Skill_Data,
-  ],
+  skills: {
+    items: {
+      dipoleInteractions: dipoleInteractions_Skill_Data,
+      dispersionForces: dispersionForces_Skill_Data,
+      hydrogenBonding: hydrogenBonding_Skill_Data,
+      structurePropertyRelationships: structurePropertyRelationships_Skill_Data,
+    },
+    order: [
+      'dipoleInteractions',
+      'dispersionForces',
+      'hydrogenBonding',
+      'structurePropertyRelationships',
+    ],
+  },
   description: {
     methodological:
       'Attractions between distinct particles influence phase behavior, solubility and material properties without changing covalent connectivity.',

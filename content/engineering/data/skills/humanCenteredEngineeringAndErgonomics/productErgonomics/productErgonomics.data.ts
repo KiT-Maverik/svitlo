@@ -41,12 +41,20 @@ export const productErgonomics_SkillGroup_Data = defineSkillGroup({
     kk: 'Бұйым эргономикасы',
     qm: 'Mahsul ergonomikası',
   },
-  skills: [
-    adaptProductDimensions_Skill_Data,
-    evaluateControlReachability_Skill_Data,
-    evaluateGripAndHandling_Skill_Data,
-    evaluateOperatingPosture_Skill_Data,
-  ],
+  skills: {
+    items: {
+      adaptProductDimensions: adaptProductDimensions_Skill_Data,
+      evaluateControlReachability: evaluateControlReachability_Skill_Data,
+      evaluateGripAndHandling: evaluateGripAndHandling_Skill_Data,
+      evaluateOperatingPosture: evaluateOperatingPosture_Skill_Data,
+    },
+    order: [
+      'adaptProductDimensions',
+      'evaluateControlReachability',
+      'evaluateGripAndHandling',
+      'evaluateOperatingPosture',
+    ],
+  },
   description: {
     methodological:
       'Geometry, loads and posture influence whether a device can be operated comfortably and dependably.',

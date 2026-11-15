@@ -42,13 +42,22 @@ export const needsAndPreferences_SkillGroup_Data = defineSkillGroup({
     kk: 'Қажеттіліктер мен талғамдар',
     qm: 'İhtiyaclar ve tercihler',
   },
-  skills: [
-    consumerChoiceWithLimitedBudget_Skill_Data,
-    consumerPreferences_Skill_Data,
-    marginalUtility_Skill_Data,
-    needsAndWants_Skill_Data,
-    utility_Skill_Data,
-  ],
+  skills: {
+    items: {
+      consumerChoiceWithLimitedBudget: consumerChoiceWithLimitedBudget_Skill_Data,
+      consumerPreferences: consumerPreferences_Skill_Data,
+      marginalUtility: marginalUtility_Skill_Data,
+      needsAndWants: needsAndWants_Skill_Data,
+      utility: utility_Skill_Data,
+    },
+    order: [
+      'consumerChoiceWithLimitedBudget',
+      'consumerPreferences',
+      'marginalUtility',
+      'needsAndWants',
+      'utility',
+    ],
+  },
   description: {
     methodological:
       'Personal goals and preferences explain why identical goods need not have identical value for different buyers.',

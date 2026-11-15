@@ -41,12 +41,20 @@ export const waterSupply_SkillGroup_Data = defineSkillGroup({
     kk: 'Сумен жабдықтау',
     qm: 'Suv teminatı',
   },
-  skills: [
-    drinkingWaterTreatment_Skill_Data,
-    identifyDistributionLeakage_Skill_Data,
-    pressureManagement_Skill_Data,
-    traceDrinkingWaterSupply_Skill_Data,
-  ],
+  skills: {
+    items: {
+      drinkingWaterTreatment: drinkingWaterTreatment_Skill_Data,
+      identifyDistributionLeakage: identifyDistributionLeakage_Skill_Data,
+      pressureManagement: pressureManagement_Skill_Data,
+      traceDrinkingWaterSupply: traceDrinkingWaterSupply_Skill_Data,
+    },
+    order: [
+      'drinkingWaterTreatment',
+      'identifyDistributionLeakage',
+      'pressureManagement',
+      'traceDrinkingWaterSupply',
+    ],
+  },
   description: {
     methodological:
       'Safe, reliable distribution requires treatment and controlled hydraulic delivery from sources to users.',

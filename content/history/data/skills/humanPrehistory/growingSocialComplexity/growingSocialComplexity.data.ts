@@ -41,12 +41,20 @@ export const growingSocialComplexity_SkillGroup_Data = defineSkillGroup({
     kk: 'Қоғамдық күрделіліктің артуы',
     qm: 'Cemiyetniñ mürekkepleşüvi',
   },
-  skills: [
-    copperBronzeAndIron_Skill_Data,
-    emergenceOfUrbanCenters_Skill_Data,
-    exchangeBeforeStates_Skill_Data,
-    prehistoricInequality_Skill_Data,
-  ],
+  skills: {
+    items: {
+      copperBronzeAndIron: copperBronzeAndIron_Skill_Data,
+      emergenceOfUrbanCenters: emergenceOfUrbanCenters_Skill_Data,
+      exchangeBeforeStates: exchangeBeforeStates_Skill_Data,
+      prehistoricInequality: prehistoricInequality_Skill_Data,
+    },
+    order: [
+      'copperBronzeAndIron',
+      'emergenceOfUrbanCenters',
+      'exchangeBeforeStates',
+      'prehistoricInequality',
+    ],
+  },
   description: {
     methodological:
       'Larger communities and exchanges sometimes accompanied inequality and centralization but did not inevitably lead to them.',

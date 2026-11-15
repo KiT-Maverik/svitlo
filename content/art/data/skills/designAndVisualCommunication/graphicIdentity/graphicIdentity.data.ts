@@ -42,12 +42,20 @@ export const graphicIdentity_SkillGroup_Data = defineSkillGroup({
     kk: 'Графикалық сәйкестік',
     qm: 'Grafik kimlik',
   },
-  skills: [
-    adaptGraphicsAcrossFormats_Skill_Data,
-    buildAVisualIdentity_Skill_Data,
-    designAGraphicSymbol_Skill_Data,
-    designAPoster_Skill_Data,
-  ],
+  skills: {
+    items: {
+      adaptGraphicsAcrossFormats: adaptGraphicsAcrossFormats_Skill_Data,
+      buildAVisualIdentity: buildAVisualIdentity_Skill_Data,
+      designAGraphicSymbol: designAGraphicSymbol_Skill_Data,
+      designAPoster: designAPoster_Skill_Data,
+    },
+    order: [
+      'adaptGraphicsAcrossFormats',
+      'buildAVisualIdentity',
+      'designAGraphicSymbol',
+      'designAPoster',
+    ],
+  },
   description: {
     methodological:
       'Distinctive visual signs and consistent combinations establish recognizable communication across formats.',

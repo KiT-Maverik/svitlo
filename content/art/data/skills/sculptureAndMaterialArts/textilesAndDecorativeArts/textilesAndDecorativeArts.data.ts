@@ -42,12 +42,20 @@ export const textilesAndDecorativeArts_SkillGroup_Data = defineSkillGroup({
     ka: 'ტექსტილი და დეკორატიული ხელოვნება',
     kk: 'Тоқыма және сәндік өнер',
   },
-  skills: [
-    createAWovenStructure_Skill_Data,
-    createRepeatingOrnament_Skill_Data,
-    createTextileEmbellishment_Skill_Data,
-    designATextilePattern_Skill_Data,
-  ],
+  skills: {
+    items: {
+      createAWovenStructure: createAWovenStructure_Skill_Data,
+      createRepeatingOrnament: createRepeatingOrnament_Skill_Data,
+      createTextileEmbellishment: createTextileEmbellishment_Skill_Data,
+      designATextilePattern: designATextilePattern_Skill_Data,
+    },
+    order: [
+      'createAWovenStructure',
+      'createRepeatingOrnament',
+      'createTextileEmbellishment',
+      'designATextilePattern',
+    ],
+  },
   description: {
     methodological:
       'Fabric structures, embellishments and motif repetition embody distinctive artistic design choices and cultural traditions.',

@@ -36,7 +36,13 @@ export const firmDecisionMakingAndManagement_SkillGroup_Data = defineSkillGroup(
     kk: 'Фирманың шешімдері мен басқаруы',
     qm: 'Firmanıñ qararları ve idaresi',
   },
-  skills: [firmProfitMaximization_Skill_Data, ownersManagersAndWorkers_Skill_Data],
+  skills: {
+    items: {
+      firmProfitMaximization: firmProfitMaximization_Skill_Data,
+      ownersManagersAndWorkers: ownersManagersAndWorkers_Skill_Data,
+    },
+    order: ['firmProfitMaximization', 'ownersManagersAndWorkers'],
+  },
   description: {
     methodological:
       "The incentives and decisions of owners, managers, and workers shape a firm's organization and production; competitive market structure is analyzed separately.",

@@ -42,12 +42,20 @@ export const photographicTechnique_SkillGroup_Data = defineSkillGroup({
     kk: 'Фотография техникасы',
     qm: 'Fotoğraf tekniği',
   },
-  skills: [
-    composeAPhotograph_Skill_Data,
-    controlPhotographicExposure_Skill_Data,
-    useDepthOfField_Skill_Data,
-    usePhotographicLighting_Skill_Data,
-  ],
+  skills: {
+    items: {
+      composeAPhotograph: composeAPhotograph_Skill_Data,
+      controlPhotographicExposure: controlPhotographicExposure_Skill_Data,
+      useDepthOfField: useDepthOfField_Skill_Data,
+      usePhotographicLighting: usePhotographicLighting_Skill_Data,
+    },
+    order: [
+      'composeAPhotograph',
+      'controlPhotographicExposure',
+      'useDepthOfField',
+      'usePhotographicLighting',
+    ],
+  },
   description: {
     methodological:
       'Camera controls and light are treated as artistic choices, not as an engineering account of optical devices.',

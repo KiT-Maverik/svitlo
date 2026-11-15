@@ -37,7 +37,13 @@ export const particlesAndStates_SkillDomain_Data = defineSkillDomain({
     kk: 'Бөлшектер және заттың күйлері',
     qm: 'Parçacıqlar ve maddeniñ alları',
   },
-  groups: [particleBehavior_SkillGroup_Data, phasesAndTransitions_SkillGroup_Data],
+  groups: {
+    items: {
+      particleBehavior: particleBehavior_SkillGroup_Data,
+      phasesAndTransitions: phasesAndTransitions_SkillGroup_Data,
+    },
+    order: ['particleBehavior', 'phasesAndTransitions'],
+  },
   description: {
     methodological:
       'Particle arrangements and motion explain properties of solids, liquids and gases, including transitions between phases. Detailed equations of thermodynamics belong to their own chemical energy competencies.',

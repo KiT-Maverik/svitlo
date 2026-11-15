@@ -38,7 +38,14 @@ export const materialsAndConnections_SkillDomain_Data = defineSkillDomain({
     kk: 'Материалдар мен қосылыстар',
     qm: 'Malzemeler ve bağlanışlar',
   },
-  groups: [jointsAndFasteners_SkillGroup_Data, materialSelection_SkillGroup_Data, surfacesAndFit_SkillGroup_Data],
+  groups: {
+    items: {
+      jointsAndFasteners: jointsAndFasteners_SkillGroup_Data,
+      materialSelection: materialSelection_SkillGroup_Data,
+      surfacesAndFit: surfacesAndFit_SkillGroup_Data,
+    },
+    order: ['jointsAndFasteners', 'materialSelection', 'surfacesAndFit'],
+  },
   description: {
     methodological:
       'Material choice and the quality of interfaces determine whether parts carry loads, resist their environment, assemble correctly and remain usable. This domain focuses on technical suitability rather than the chemistry of substances.',

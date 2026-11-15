@@ -41,12 +41,20 @@ export const environmentalIncentivesAndPolicy_SkillGroup_Data = defineSkillGroup
     kk: 'Экологиялық ынталандыру мен саясат',
     qm: 'Çevre teşviqleri ve siyaseti',
   },
-  skills: [
-    economicAppraisalOfEnvironmentalProjects_Skill_Data,
-    emissionsPermitTrading_Skill_Data,
-    environmentalTaxes_Skill_Data,
-    socialCostOfPollution_Skill_Data,
-  ],
+  skills: {
+    items: {
+      economicAppraisalOfEnvironmentalProjects: economicAppraisalOfEnvironmentalProjects_Skill_Data,
+      emissionsPermitTrading: emissionsPermitTrading_Skill_Data,
+      environmentalTaxes: environmentalTaxes_Skill_Data,
+      socialCostOfPollution: socialCostOfPollution_Skill_Data,
+    },
+    order: [
+      'economicAppraisalOfEnvironmentalProjects',
+      'emissionsPermitTrading',
+      'environmentalTaxes',
+      'socialCostOfPollution',
+    ],
+  },
   description: {
     methodological:
       'Pollution and other externalities can be addressed with instruments that have differing costs and consequences.',

@@ -40,12 +40,20 @@ export const photographyAndFilm_SkillDomain_Data = defineSkillDomain({
     kk: 'Фотография және кино',
     qm: 'Fotoğrafçılıq ve film',
   },
-  groups: [
-    animation_SkillGroup_Data,
-    filmLanguage_SkillGroup_Data,
-    photographicCommunication_SkillGroup_Data,
-    photographicTechnique_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      animation: animation_SkillGroup_Data,
+      filmLanguage: filmLanguage_SkillGroup_Data,
+      photographicCommunication: photographicCommunication_SkillGroup_Data,
+      photographicTechnique: photographicTechnique_SkillGroup_Data,
+    },
+    order: [
+      'animation',
+      'filmLanguage',
+      'photographicCommunication',
+      'photographicTechnique',
+    ],
+  },
   description: {
     methodological:
       'Camera-based arts shape views of reality through frame, light and editing; moving-image forms add duration, sound and sequential meaning.',

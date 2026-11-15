@@ -39,12 +39,20 @@ export const planetaryScience_SkillDomain_Data = defineSkillDomain({
     kk: 'Планетология',
     qm: 'Seyyareler ilimi',
   },
-  groups: [
-    atmospheresAndWeather_SkillGroup_Data,
-    interiorsAndVolatiles_SkillGroup_Data,
-    planetaryClasses_SkillGroup_Data,
-    surfacesAndGeology_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      atmospheresAndWeather: atmospheresAndWeather_SkillGroup_Data,
+      interiorsAndVolatiles: interiorsAndVolatiles_SkillGroup_Data,
+      planetaryClasses: planetaryClasses_SkillGroup_Data,
+      surfacesAndGeology: surfacesAndGeology_SkillGroup_Data,
+    },
+    order: [
+      'atmospheresAndWeather',
+      'interiorsAndVolatiles',
+      'planetaryClasses',
+      'surfacesAndGeology',
+    ],
+  },
   description: {
     methodological:
       'Planetary science compares worlds by their surfaces, interiors, atmospheres and volatile materials. It uses Earth as one comparative case, but its categories also apply to moons, dwarf planets and worlds beyond the Solar System.',

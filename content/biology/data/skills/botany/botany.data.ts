@@ -40,13 +40,22 @@ export const botany_SkillDomain_Data = defineSkillDomain({
     kk: 'Ботаника',
     qm: 'Botanika',
   },
-  groups: [
-    nutritionAndGrowth_SkillGroup_Data,
-    plantAdaptations_SkillGroup_Data,
-    plantDiversity_SkillGroup_Data,
-    plantStructure_SkillGroup_Data,
-    reproductionAndDevelopment_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      nutritionAndGrowth: nutritionAndGrowth_SkillGroup_Data,
+      plantAdaptations: plantAdaptations_SkillGroup_Data,
+      plantDiversity: plantDiversity_SkillGroup_Data,
+      plantStructure: plantStructure_SkillGroup_Data,
+      reproductionAndDevelopment: reproductionAndDevelopment_SkillGroup_Data,
+    },
+    order: [
+      'nutritionAndGrowth',
+      'plantAdaptations',
+      'plantDiversity',
+      'plantStructure',
+      'reproductionAndDevelopment',
+    ],
+  },
   description: {
     methodological:
       'Study of plants as organisms capable of photosynthesis: vegetative and reproductive organ structure, life cycles, and the dependence of growth on environmental conditions. Unlike Ecology, the focus is on the plant rather than interactions within a community.',

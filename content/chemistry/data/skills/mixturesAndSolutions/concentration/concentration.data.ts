@@ -42,13 +42,22 @@ export const concentration_SkillGroup_Data = defineSkillGroup({
     kk: 'Концентрация',
     qm: 'Konsentratsiya',
   },
-  skills: [
-    colligativeProperties_Skill_Data,
-    concentrationComparisons_Skill_Data,
-    dilution_Skill_Data,
-    massFraction_Skill_Data,
-    molarConcentration_Skill_Data,
-  ],
+  skills: {
+    items: {
+      colligativeProperties: colligativeProperties_Skill_Data,
+      concentrationComparisons: concentrationComparisons_Skill_Data,
+      dilution: dilution_Skill_Data,
+      massFraction: massFraction_Skill_Data,
+      molarConcentration: molarConcentration_Skill_Data,
+    },
+    order: [
+      'colligativeProperties',
+      'concentrationComparisons',
+      'dilution',
+      'massFraction',
+      'molarConcentration',
+    ],
+  },
   description: {
     methodological:
       "A solution's composition can be represented in several quantitatively distinct ways, each with an appropriate denominator.",

@@ -41,12 +41,20 @@ export const landscapeAndPublicArt_SkillGroup_Data = defineSkillGroup({
     kk: 'Ландшафт және қоғамдық өнер',
     qm: 'Manzara ve cemaat sanatı',
   },
-  skills: [
-    analyzePublicArt_Skill_Data,
-    composeALandscapeView_Skill_Data,
-    designSiteSpecificArt_Skill_Data,
-    integrateArtWithArchitecture_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzePublicArt: analyzePublicArt_Skill_Data,
+      composeALandscapeView: composeALandscapeView_Skill_Data,
+      designSiteSpecificArt: designSiteSpecificArt_Skill_Data,
+      integrateArtWithArchitecture: integrateArtWithArchitecture_Skill_Data,
+    },
+    order: [
+      'analyzePublicArt',
+      'composeALandscapeView',
+      'designSiteSpecificArt',
+      'integrateArtWithArchitecture',
+    ],
+  },
   description: {
     methodological:
       'Outdoor artworks and landscape compositions respond to specific sites and the people who use them.',

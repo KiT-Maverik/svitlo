@@ -39,12 +39,20 @@ export const chemicalInquiry_SkillDomain_Data = defineSkillDomain({
     kk: 'Химиялық зерттеу',
     qm: 'Himiyeviy tetqiqat',
   },
-  groups: [
-    analyticalChemistry_SkillGroup_Data,
-    laboratoryReasoning_SkillGroup_Data,
-    measurementsAndEvidence_SkillGroup_Data,
-    questionsAndModels_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      analyticalChemistry: analyticalChemistry_SkillGroup_Data,
+      laboratoryReasoning: laboratoryReasoning_SkillGroup_Data,
+      measurementsAndEvidence: measurementsAndEvidence_SkillGroup_Data,
+      questionsAndModels: questionsAndModels_SkillGroup_Data,
+    },
+    order: [
+      'analyticalChemistry',
+      'laboratoryReasoning',
+      'measurementsAndEvidence',
+      'questionsAndModels',
+    ],
+  },
   description: {
     methodological:
       'Chemical knowledge connects observations of substances with explanations, testable models and reliable evidence. This domain covers chemistry-specific investigation and communication; general research methodology remains a cross-disciplinary concern.',

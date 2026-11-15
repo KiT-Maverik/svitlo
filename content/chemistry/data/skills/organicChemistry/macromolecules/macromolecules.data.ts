@@ -41,12 +41,20 @@ export const macromolecules_SkillGroup_Data = defineSkillGroup({
     kk: 'Макромолекулалар',
     qm: 'Makromolekulalar',
   },
-  skills: [
-    additionPolymers_Skill_Data,
-    condensationPolymers_Skill_Data,
-    polymerization_Skill_Data,
-    polymerStructureAndProperties_Skill_Data,
-  ],
+  skills: {
+    items: {
+      additionPolymers: additionPolymers_Skill_Data,
+      condensationPolymers: condensationPolymers_Skill_Data,
+      polymerization: polymerization_Skill_Data,
+      polymerStructureAndProperties: polymerStructureAndProperties_Skill_Data,
+    },
+    order: [
+      'additionPolymers',
+      'condensationPolymers',
+      'polymerization',
+      'polymerStructureAndProperties',
+    ],
+  },
   description: {
     methodological:
       'Repeated subunits and molecular architecture create materials with behaviors not predicted by monomer identities alone.',

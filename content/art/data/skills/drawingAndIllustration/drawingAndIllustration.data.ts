@@ -38,11 +38,14 @@ export const drawingAndIllustration_SkillDomain_Data = defineSkillDomain({
     kk: 'Сурет салу және иллюстрация',
     qm: 'Sızuv ve illüstratsiya',
   },
-  groups: [
-    illustrativeStorytelling_SkillGroup_Data,
-    observationalDrawing_SkillGroup_Data,
-    spatialDrawing_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      illustrativeStorytelling: illustrativeStorytelling_SkillGroup_Data,
+      observationalDrawing: observationalDrawing_SkillGroup_Data,
+      spatialDrawing: spatialDrawing_SkillGroup_Data,
+    },
+    order: ['illustrativeStorytelling', 'observationalDrawing', 'spatialDrawing'],
+  },
   description: {
     methodological:
       'Drawing creates marks and constructed spatial relationships, whereas illustration connects a visual image to a communicative narrative or concept. Neither is limited to literal realism.',

@@ -41,12 +41,20 @@ export const heatTransferEquipment_SkillGroup_Data = defineSkillGroup({
     kk: 'Жылу алмасу жабдықтары',
     qm: 'Issilik keçirüv cihazları',
   },
-  skills: [
-    heatExchangers_Skill_Data,
-    heatPumps_Skill_Data,
-    refrigerationEquipment_Skill_Data,
-    thermalInsulationSuitability_Skill_Data,
-  ],
+  skills: {
+    items: {
+      heatExchangers: heatExchangers_Skill_Data,
+      heatPumps: heatPumps_Skill_Data,
+      refrigerationEquipment: refrigerationEquipment_Skill_Data,
+      thermalInsulationSuitability: thermalInsulationSuitability_Skill_Data,
+    },
+    order: [
+      'heatExchangers',
+      'heatPumps',
+      'refrigerationEquipment',
+      'thermalInsulationSuitability',
+    ],
+  },
   description: {
     methodological:
       'Temperature-control devices combine energy input, circulation and insulation to maintain useful thermal conditions.',

@@ -40,11 +40,14 @@ export const plantAdaptations_SkillGroup_Data = defineSkillGroup({
     kk: 'Өсімдіктердің бейімделуі',
     qm: 'Ösümliklerniñ müitke uyğunlaşuvı',
   },
-  skills: [
-    describeSeasonalChangesInPlants_Skill_Data,
-    recognizeAdaptationsToTheEnvironment_Skill_Data,
-    relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      describeSeasonalChangesInPlants: describeSeasonalChangesInPlants_Skill_Data,
+      recognizeAdaptationsToTheEnvironment: recognizeAdaptationsToTheEnvironment_Skill_Data,
+      relatePlantStructuralFeaturesToEnvironmentalConditions: relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data,
+    },
+    order: ['describeSeasonalChangesInPlants', 'recognizeAdaptationsToTheEnvironment', 'relatePlantStructuralFeaturesToEnvironmentalConditions'],
+  },
   description: {
     methodological:
       'Leaf, root, and shoot forms and seasonal changes can improve survival when water or light is limited or temperatures are low.',

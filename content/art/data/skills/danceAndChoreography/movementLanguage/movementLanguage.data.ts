@@ -42,13 +42,22 @@ export const movementLanguage_SkillGroup_Data = defineSkillGroup({
     kk: 'Қозғалыс тілі',
     qm: 'Areket tili',
   },
-  skills: [
-    controlMovementAlignment_Skill_Data,
-    coordinateDanceWithPulse_Skill_Data,
-    performADancePhrase_Skill_Data,
-    useSpatialLevels_Skill_Data,
-    varyMovementDynamics_Skill_Data,
-  ],
+  skills: {
+    items: {
+      controlMovementAlignment: controlMovementAlignment_Skill_Data,
+      coordinateDanceWithPulse: coordinateDanceWithPulse_Skill_Data,
+      performADancePhrase: performADancePhrase_Skill_Data,
+      useSpatialLevels: useSpatialLevels_Skill_Data,
+      varyMovementDynamics: varyMovementDynamics_Skill_Data,
+    },
+    order: [
+      'controlMovementAlignment',
+      'coordinateDanceWithPulse',
+      'performADancePhrase',
+      'useSpatialLevels',
+      'varyMovementDynamics',
+    ],
+  },
   description: {
     methodological:
       'Bodily alignment, energy, pathways and temporal decisions distinguish expressive movement from simply moving between points.',

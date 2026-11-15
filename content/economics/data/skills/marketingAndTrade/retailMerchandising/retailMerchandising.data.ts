@@ -41,12 +41,20 @@ export const retailMerchandising_SkillGroup_Data = defineSkillGroup({
     kk: 'Бөлшек саудадағы тауарларды орналастыру',
     qm: 'Dükânda mallarnı yerleştirmek',
   },
-  skills: [
-    inventoryManagement_Skill_Data,
-    productDisplay_Skill_Data,
-    storeAssortment_Skill_Data,
-    storeNavigation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      inventoryManagement: inventoryManagement_Skill_Data,
+      productDisplay: productDisplay_Skill_Data,
+      storeAssortment: storeAssortment_Skill_Data,
+      storeNavigation: storeNavigation_Skill_Data,
+    },
+    order: [
+      'inventoryManagement',
+      'productDisplay',
+      'storeAssortment',
+      'storeNavigation',
+    ],
+  },
   description: {
     methodological:
       'Product placement, availability, presentation, and logistics affect how easily customers find and buy goods.',

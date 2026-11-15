@@ -41,12 +41,20 @@ export const riskAndProtection_SkillGroup_Data = defineSkillGroup({
     kk: 'Тәуекел және қорғаныс',
     qm: 'Risk ve qoruma',
   },
-  skills: [
-    evaluateTechnicalRisk_Skill_Data,
-    hazardControlMeasures_Skill_Data,
-    identifyEngineeringHazards_Skill_Data,
-    safetyMargins_Skill_Data,
-  ],
+  skills: {
+    items: {
+      evaluateTechnicalRisk: evaluateTechnicalRisk_Skill_Data,
+      hazardControlMeasures: hazardControlMeasures_Skill_Data,
+      identifyEngineeringHazards: identifyEngineeringHazards_Skill_Data,
+      safetyMargins: safetyMargins_Skill_Data,
+    },
+    order: [
+      'evaluateTechnicalRisk',
+      'hazardControlMeasures',
+      'identifyEngineeringHazards',
+      'safetyMargins',
+    ],
+  },
   description: {
     methodological:
       'Hazard control should be integrated into the physical design and take precedence over simple warnings.',

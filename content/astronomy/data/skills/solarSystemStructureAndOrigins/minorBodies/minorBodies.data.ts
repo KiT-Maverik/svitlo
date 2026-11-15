@@ -41,12 +41,20 @@ export const minorBodies_SkillGroup_Data = defineSkillGroup({
     kk: 'Күн жүйесінің кіші денелері',
     qm: 'Küneş sistemasınıñ kiçik cisimleri',
   },
-  skills: [
-    asteroids_Skill_Data,
-    comets_Skill_Data,
-    meteoroidsMeteorsAndMeteorites_Skill_Data,
-    transNeptunianObjects_Skill_Data,
-  ],
+  skills: {
+    items: {
+      asteroids: asteroids_Skill_Data,
+      comets: comets_Skill_Data,
+      meteoroidsMeteorsAndMeteorites: meteoroidsMeteorsAndMeteorites_Skill_Data,
+      transNeptunianObjects: transNeptunianObjects_Skill_Data,
+    },
+    order: [
+      'asteroids',
+      'comets',
+      'meteoroidsMeteorsAndMeteorites',
+      'transNeptunianObjects',
+    ],
+  },
   description: {
     methodological:
       'Small populations preserve clues about early formation while showing important differences in composition, orbital origin and activity.',

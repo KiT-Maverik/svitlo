@@ -41,12 +41,20 @@ export const structureAndFunctions_SkillGroup_Data = defineSkillGroup({
     kk: 'Құрылысы мен қызметтері',
     qm: 'Quruluş ve vazifeler',
   },
-  skills: [
-    explainTheRoleOfSensoryOrgansInBehavior_Skill_Data,
-    identifyProtectiveAdaptationsInAnimals_Skill_Data,
-    relateBodyCoveringsToTheirFunctions_Skill_Data,
-    relateLimbStructureToLocomotion_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainTheRoleOfSensoryOrgansInBehavior: explainTheRoleOfSensoryOrgansInBehavior_Skill_Data,
+      identifyProtectiveAdaptationsInAnimals: identifyProtectiveAdaptationsInAnimals_Skill_Data,
+      relateBodyCoveringsToTheirFunctions: relateBodyCoveringsToTheirFunctions_Skill_Data,
+      relateLimbStructureToLocomotion: relateLimbStructureToLocomotion_Skill_Data,
+    },
+    order: [
+      'explainTheRoleOfSensoryOrgansInBehavior',
+      'identifyProtectiveAdaptationsInAnimals',
+      'relateBodyCoveringsToTheirFunctions',
+      'relateLimbStructureToLocomotion',
+    ],
+  },
   description: {
     methodological:
       'The forms of limbs, body coverings, and sensory structures are explained by their roles in locomotion, orientation, and protection against danger.',

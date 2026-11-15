@@ -41,12 +41,20 @@ export const productAndValueProposition_SkillGroup_Data = defineSkillGroup({
     kk: 'Өнім және құндылық ұсынысы',
     qm: 'Mal ve qıymet teklifi',
   },
-  skills: [
-    commercialRoleOfPackaging_Skill_Data,
-    productLifeCycle_Skill_Data,
-    productPositioning_Skill_Data,
-    valueProposition_Skill_Data,
-  ],
+  skills: {
+    items: {
+      commercialRoleOfPackaging: commercialRoleOfPackaging_Skill_Data,
+      productLifeCycle: productLifeCycle_Skill_Data,
+      productPositioning: productPositioning_Skill_Data,
+      valueProposition: valueProposition_Skill_Data,
+    },
+    order: [
+      'commercialRoleOfPackaging',
+      'productLifeCycle',
+      'productPositioning',
+      'valueProposition',
+    ],
+  },
   description: {
     methodological:
       'A commercial offering combines benefits, quality, service, and differences from alternatives, not just physical features.',

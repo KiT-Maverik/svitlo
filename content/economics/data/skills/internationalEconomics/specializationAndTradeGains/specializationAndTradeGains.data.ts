@@ -41,12 +41,20 @@ export const specializationAndTradeGains_SkillGroup_Data = defineSkillGroup({
     kk: 'Мамандану және сауда пайдасы',
     qm: 'İhtisaslaşuv ve ticaret faydaları',
   },
-  skills: [
-    absoluteAdvantage_Skill_Data,
-    comparativeAdvantage_Skill_Data,
-    gainsFromInternationalTrade_Skill_Data,
-    globalValueChains_Skill_Data,
-  ],
+  skills: {
+    items: {
+      absoluteAdvantage: absoluteAdvantage_Skill_Data,
+      comparativeAdvantage: comparativeAdvantage_Skill_Data,
+      gainsFromInternationalTrade: gainsFromInternationalTrade_Skill_Data,
+      globalValueChains: globalValueChains_Skill_Data,
+    },
+    order: [
+      'absoluteAdvantage',
+      'comparativeAdvantage',
+      'gainsFromInternationalTrade',
+      'globalValueChains',
+    ],
+  },
   description: {
     methodological:
       'Relative rather than merely absolute advantages can explain the pattern of exchange between economies.',

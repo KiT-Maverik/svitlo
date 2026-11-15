@@ -41,12 +41,20 @@ export const internationalFinance_SkillGroup_Data = defineSkillGroup({
     kk: 'Халықаралық қаржы',
     qm: 'Halqlarara maliye',
   },
-  skills: [
-    currencyCrises_Skill_Data,
-    debtCrises_Skill_Data,
-    foreignDirectInvestment_Skill_Data,
-    internationalCapitalFlows_Skill_Data,
-  ],
+  skills: {
+    items: {
+      currencyCrises: currencyCrises_Skill_Data,
+      debtCrises: debtCrises_Skill_Data,
+      foreignDirectInvestment: foreignDirectInvestment_Skill_Data,
+      internationalCapitalFlows: internationalCapitalFlows_Skill_Data,
+    },
+    order: [
+      'currencyCrises',
+      'debtCrises',
+      'foreignDirectInvestment',
+      'internationalCapitalFlows',
+    ],
+  },
   description: {
     methodological:
       'Capital crosses borders through investments, loans, and other claims with distinctive benefits and risks.',

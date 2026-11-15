@@ -42,13 +42,22 @@ export const electricityFireAndGas_SkillGroup_Data = defineSkillGroup({
     kk: 'Электр, өрт және газ',
     qm: 'Elektrik, yangın ve gaz',
   },
-  skills: [
-    carbonMonoxideSafety_Skill_Data,
-    electricalSafety_Skill_Data,
-    firePrevention_Skill_Data,
-    gasLeakSafety_Skill_Data,
-    safeUseOfHeatingEquipment_Skill_Data,
-  ],
+  skills: {
+    items: {
+      carbonMonoxideSafety: carbonMonoxideSafety_Skill_Data,
+      electricalSafety: electricalSafety_Skill_Data,
+      firePrevention: firePrevention_Skill_Data,
+      gasLeakSafety: gasLeakSafety_Skill_Data,
+      safeUseOfHeatingEquipment: safeUseOfHeatingEquipment_Skill_Data,
+    },
+    order: [
+      'carbonMonoxideSafety',
+      'electricalSafety',
+      'firePrevention',
+      'gasLeakSafety',
+      'safeUseOfHeatingEquipment',
+    ],
+  },
   description: {
     methodological:
       'Electrical hazards, ignition and fire, fuel-gas leaks, carbon monoxide exposure and heating equipment require different prevention and emergency responses; intervening in faulty systems can endanger bystanders.',

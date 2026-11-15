@@ -40,7 +40,14 @@ export const causalityAndExperiments_SkillGroup_Data = defineSkillGroup({
     kk: 'Себептілік және эксперименттер',
     qm: 'Sebep-netice bağı ve tecribeler',
   },
-  skills: [confoundingFactors_Skill_Data, controlAndExperimentalGroups_Skill_Data, correlationAndCausation_Skill_Data],
+  skills: {
+    items: {
+      confoundingFactors: confoundingFactors_Skill_Data,
+      controlAndExperimentalGroups: controlAndExperimentalGroups_Skill_Data,
+      correlationAndCausation: correlationAndCausation_Skill_Data,
+    },
+    order: ['confoundingFactors', 'controlAndExperimentalGroups', 'correlationAndCausation'],
+  },
   description: {
     methodological:
       'Correlation does not necessarily demonstrate a causal effect; research design must account for alternative explanations.',

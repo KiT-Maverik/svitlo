@@ -41,12 +41,20 @@ export const numberLine_SkillGroup_Data = defineSkillGroup({
     pl: 'Oś liczbowa',
     uk: 'Числова пряма',
   },
-  skills: [
-    beforeAfterBetween_Skill_Data,
-    numberLine20_Skill_Data,
-    numberLine1000_Skill_Data,
-    distanceOnLine_Skill_Data,
-  ],
+  skills: {
+    items: {
+      beforeAfterBetween: beforeAfterBetween_Skill_Data,
+      numberLine20: numberLine20_Skill_Data,
+      numberLine1000: numberLine1000_Skill_Data,
+      distanceOnLine: distanceOnLine_Skill_Data,
+    },
+    order: [
+      'beforeAfterBetween',
+      'numberLine20',
+      'numberLine1000',
+      'distanceOnLine',
+    ],
+  },
   description: {
     methodological:
       'Numbers as points on an ordered scale with equal intervals; location, adjacency, and distance depend on the scale used.',

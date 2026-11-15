@@ -40,11 +40,14 @@ export const mapTypesAndThematicLayers_SkillGroup_Data = defineSkillGroup({
     kk: 'Карта түрлері мен тақырыптық қабаттар',
     qm: 'Harita çeşitleri ve mevzulu qatlamlar',
   },
-  skills: [
-    identifyCommonMapTypesByTheirInformationContent_Skill_Data,
-    interpretAThematicLegendAndItsValueClasses_Skill_Data,
-    selectAMapTypeForAGeographicQuestion_Skill_Data,
-  ],
+  skills: {
+    items: {
+      identifyCommonMapTypesByTheirInformationContent: identifyCommonMapTypesByTheirInformationContent_Skill_Data,
+      interpretAThematicLegendAndItsValueClasses: interpretAThematicLegendAndItsValueClasses_Skill_Data,
+      selectAMapTypeForAGeographicQuestion: selectAMapTypeForAGeographicQuestion_Skill_Data,
+    },
+    order: ['identifyCommonMapTypesByTheirInformationContent', 'interpretAThematicLegendAndItsValueClasses', 'selectAMapTypeForAGeographicQuestion'],
+  },
   description: {
     methodological:
       'Maps may emphasize general reference features, political territories, physical relief, topography or specific themes such as geology, population, climate, weather, transport and resources. Categories overlap: for example, a geological or population map is thematic, and many maps combine layers. Choosing the relevant content is distinct from choosing a globe or map scale.',

@@ -40,11 +40,14 @@ export const latinAmericanArtMovements_SkillGroup_Data = defineSkillGroup({
     kk: 'Латын Америкасындағы өнер қозғалыстары',
     qm: 'Latin Amerika sanat areketleri',
   },
-  skills: [
-    analyzeBrazilianConcreteArt_Skill_Data,
-    analyzeCuscoSchoolPainting_Skill_Data,
-    analyzeMexicanMuralism_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeBrazilianConcreteArt: analyzeBrazilianConcreteArt_Skill_Data,
+      analyzeCuscoSchoolPainting: analyzeCuscoSchoolPainting_Skill_Data,
+      analyzeMexicanMuralism: analyzeMexicanMuralism_Skill_Data,
+    },
+    order: ['analyzeBrazilianConcreteArt', 'analyzeCuscoSchoolPainting', 'analyzeMexicanMuralism'],
+  },
   description: {
     methodological:
       'These movements reflect different engagements with Indigenous heritage, colonial institutions, modernism and public expression in specified places.',

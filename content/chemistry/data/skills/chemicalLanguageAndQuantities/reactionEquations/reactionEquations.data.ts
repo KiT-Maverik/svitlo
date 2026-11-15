@@ -41,12 +41,20 @@ export const reactionEquations_SkillGroup_Data = defineSkillGroup({
     kk: 'Реакция теңдеулері',
     qm: 'Reaktsiya teñlemeleri',
   },
-  skills: [
-    balancingEquations_Skill_Data,
-    equationStateSymbols_Skill_Data,
-    symbolicEquations_Skill_Data,
-    wordEquations_Skill_Data,
-  ],
+  skills: {
+    items: {
+      balancingEquations: balancingEquations_Skill_Data,
+      equationStateSymbols: equationStateSymbols_Skill_Data,
+      symbolicEquations: symbolicEquations_Skill_Data,
+      wordEquations: wordEquations_Skill_Data,
+    },
+    order: [
+      'balancingEquations',
+      'equationStateSymbols',
+      'symbolicEquations',
+      'wordEquations',
+    ],
+  },
   description: {
     methodological:
       'An equation records reactants, products and stoichiometric relationships but is not, by itself, a mechanism.',

@@ -41,12 +41,20 @@ export const molecularAndExtendedStructure_SkillGroup_Data = defineSkillGroup({
     kk: 'Молекулалық және кеңейтілген құрылым',
     qm: 'Molekulalı ve şebekeli qurulışlar',
   },
-  skills: [
-    ionicLattices_Skill_Data,
-    molecularGeometry_Skill_Data,
-    molecularPolarity_Skill_Data,
-    networkSolids_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ionicLattices: ionicLattices_Skill_Data,
+      molecularGeometry: molecularGeometry_Skill_Data,
+      molecularPolarity: molecularPolarity_Skill_Data,
+      networkSolids: networkSolids_Skill_Data,
+    },
+    order: [
+      'ionicLattices',
+      'molecularGeometry',
+      'molecularPolarity',
+      'networkSolids',
+    ],
+  },
   description: {
     methodological:
       'Spatial arrangement and connectedness influence substance behavior independently of a simple formula.',

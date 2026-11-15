@@ -41,12 +41,20 @@ export const interstellarMatter_SkillGroup_Data = defineSkillGroup({
     ka: 'ვარსკვლავთშორისი ნივთიერება',
     kk: 'Жұлдызаралық зат',
   },
-  skills: [
-    interstellarChemicalCycling_Skill_Data,
-    interstellarDust_Skill_Data,
-    interstellarGas_Skill_Data,
-    nebulae_Skill_Data,
-  ],
+  skills: {
+    items: {
+      interstellarChemicalCycling: interstellarChemicalCycling_Skill_Data,
+      interstellarDust: interstellarDust_Skill_Data,
+      interstellarGas: interstellarGas_Skill_Data,
+      nebulae: nebulae_Skill_Data,
+    },
+    order: [
+      'interstellarChemicalCycling',
+      'interstellarDust',
+      'interstellarGas',
+      'nebulae',
+    ],
+  },
   description: {
     methodological:
       'Gas, dust, radiation and magnetic fields between stars are active participants in the cycling of matter across galaxies.',

@@ -41,12 +41,20 @@ export const pacificIslands_SkillGroup_Data = defineSkillGroup({
     kk: 'Тынық мұхит аралдары',
     qm: 'Pasifik adaları',
   },
-  skills: [
-    austronesianExpansion_Skill_Data,
-    earlyWesternPolynesianSettlement_Skill_Data,
-    lapitaCulture_Skill_Data,
-    oceanicNavigation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      austronesianExpansion: austronesianExpansion_Skill_Data,
+      earlyWesternPolynesianSettlement: earlyWesternPolynesianSettlement_Skill_Data,
+      lapitaCulture: lapitaCulture_Skill_Data,
+      oceanicNavigation: oceanicNavigation_Skill_Data,
+    },
+    order: [
+      'austronesianExpansion',
+      'earlyWesternPolynesianSettlement',
+      'lapitaCulture',
+      'oceanicNavigation',
+    ],
+  },
   description: {
     methodological:
       'Seafaring societies progressively settled distant archipelagos, transporting languages, crops, animals, and navigation knowledge.',

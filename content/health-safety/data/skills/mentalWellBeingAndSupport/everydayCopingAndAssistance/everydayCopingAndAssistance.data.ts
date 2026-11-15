@@ -41,12 +41,20 @@ export const everydayCopingAndAssistance_SkillGroup_Data = defineSkillGroup({
     kk: 'Күнделікті қиындықтарды еңсеру және көмек',
     qm: 'Kündelik qıyınlıqlarnen baş etüv ve yardım',
   },
-  skills: [
-    preventChronicOverload_Skill_Data,
-    seekMentalHealthSupport_Skill_Data,
-    supportSomeoneExperiencingDistress_Skill_Data,
-    useSafeCopingStrategies_Skill_Data,
-  ],
+  skills: {
+    items: {
+      preventChronicOverload: preventChronicOverload_Skill_Data,
+      seekMentalHealthSupport: seekMentalHealthSupport_Skill_Data,
+      supportSomeoneExperiencingDistress: supportSomeoneExperiencingDistress_Skill_Data,
+      useSafeCopingStrategies: useSafeCopingStrategies_Skill_Data,
+    },
+    order: [
+      'preventChronicOverload',
+      'seekMentalHealthSupport',
+      'supportSomeoneExperiencingDistress',
+      'useSafeCopingStrategies',
+    ],
+  },
   description: {
     methodological:
       'Helpful responses can involve self-care, support networks, appropriate boundaries, and referral rather than demanding that a person solve a crisis alone.',

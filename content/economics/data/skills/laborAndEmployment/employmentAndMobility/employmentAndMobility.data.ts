@@ -41,12 +41,20 @@ export const employmentAndMobility_SkillGroup_Data = defineSkillGroup({
     kk: 'Жұмыспен қамту және мобильдік',
     qm: 'İşnen temin ve areketlilik',
   },
-  skills: [
-    geographicLaborMobility_Skill_Data,
-    jobSearchAndMatching_Skill_Data,
-    laborMarketDiscrimination_Skill_Data,
-    occupationalMobility_Skill_Data,
-  ],
+  skills: {
+    items: {
+      geographicLaborMobility: geographicLaborMobility_Skill_Data,
+      jobSearchAndMatching: jobSearchAndMatching_Skill_Data,
+      laborMarketDiscrimination: laborMarketDiscrimination_Skill_Data,
+      occupationalMobility: occupationalMobility_Skill_Data,
+    },
+    order: [
+      'geographicLaborMobility',
+      'jobSearchAndMatching',
+      'laborMarketDiscrimination',
+      'occupationalMobility',
+    ],
+  },
   description: {
     methodological:
       'Job searches and occupational changes are constrained by information, location, and qualifications.',

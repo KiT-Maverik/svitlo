@@ -39,12 +39,20 @@ export const economicDataAndResearch_SkillDomain_Data = defineSkillDomain({
     kk: 'Экономикалық деректер мен зерттеулер',
     qm: 'İqtisadiy malümatlar ve araştırmalar',
   },
-  groups: [
-    causalityAndExperiments_SkillGroup_Data,
-    economicIndicators_SkillGroup_Data,
-    economicModels_SkillGroup_Data,
-    empiricalConclusionsAndForecasts_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      causalityAndExperiments: causalityAndExperiments_SkillGroup_Data,
+      economicIndicators: economicIndicators_SkillGroup_Data,
+      economicModels: economicModels_SkillGroup_Data,
+      empiricalConclusionsAndForecasts: empiricalConclusionsAndForecasts_SkillGroup_Data,
+    },
+    order: [
+      'causalityAndExperiments',
+      'economicIndicators',
+      'economicModels',
+      'empiricalConclusionsAndForecasts',
+    ],
+  },
   description: {
     methodological:
       'Economic claims are tested through measurement, models, comparison, and causal analysis. The emphasis is on the validity of conclusions rather than programming data-processing tools.',

@@ -41,12 +41,20 @@ export const entrepreneurshipAndAccounting_SkillGroup_Data = defineSkillGroup({
     kk: 'Кәсіпкерлік пен бухгалтерлік есеп',
     qm: 'İşadamlıq ve muasebe',
   },
-  skills: [
-    businessCashFlow_Skill_Data,
-    businessModel_Skill_Data,
-    businessRevenueCostsAndProfit_Skill_Data,
-    entrepreneurialOpportunity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      businessCashFlow: businessCashFlow_Skill_Data,
+      businessModel: businessModel_Skill_Data,
+      businessRevenueCostsAndProfit: businessRevenueCostsAndProfit_Skill_Data,
+      entrepreneurialOpportunity: entrepreneurialOpportunity_Skill_Data,
+    },
+    order: [
+      'businessCashFlow',
+      'businessModel',
+      'businessRevenueCostsAndProfit',
+      'entrepreneurialOpportunity',
+    ],
+  },
   description: {
     methodological:
       'A new business requires testing the value offered, organizing resources, and analyzing its financial results.',

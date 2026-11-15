@@ -41,12 +41,20 @@ export const stageExpressionAndPuppetry_SkillGroup_Data = defineSkillGroup({
     kk: 'Сахналық мәнер және қуыршақ театры',
     qm: 'Sahne ifadesi ve qurçaq tiyatrosı',
   },
-  skills: [
-    animateAPuppet_Skill_Data,
-    designCharacterCostume_Skill_Data,
-    designScenicAtmosphere_Skill_Data,
-    designStageLighting_Skill_Data,
-  ],
+  skills: {
+    items: {
+      animateAPuppet: animateAPuppet_Skill_Data,
+      designCharacterCostume: designCharacterCostume_Skill_Data,
+      designScenicAtmosphere: designScenicAtmosphere_Skill_Data,
+      designStageLighting: designStageLighting_Skill_Data,
+    },
+    order: [
+      'animateAPuppet',
+      'designCharacterCostume',
+      'designScenicAtmosphere',
+      'designStageLighting',
+    ],
+  },
   description: {
     methodological:
       'Scenery, costumes, light and animated objects carry expressive functions in a performance beyond decoration.',

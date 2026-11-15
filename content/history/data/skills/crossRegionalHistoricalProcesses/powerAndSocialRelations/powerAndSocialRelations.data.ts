@@ -41,12 +41,20 @@ export const powerAndSocialRelations_SkillGroup_Data = defineSkillGroup({
     kk: 'Билік және әлеуметтік қатынастар',
     qm: 'Akımiyet ve cemiyet alâqaları',
   },
-  skills: [
-    earlyStateFormation_Skill_Data,
-    slaveryAndOtherDependencies_Skill_Data,
-    socialHierarchies_Skill_Data,
-    womenInAncientSocieties_Skill_Data,
-  ],
+  skills: {
+    items: {
+      earlyStateFormation: earlyStateFormation_Skill_Data,
+      slaveryAndOtherDependencies: slaveryAndOtherDependencies_Skill_Data,
+      socialHierarchies: socialHierarchies_Skill_Data,
+      womenInAncientSocieties: womenInAncientSocieties_Skill_Data,
+    },
+    order: [
+      'earlyStateFormation',
+      'slaveryAndOtherDependencies',
+      'socialHierarchies',
+      'womenInAncientSocieties',
+    ],
+  },
   description: {
     methodological:
       'Comparing institutions requires identifying their functions rather than equating unfamiliar ancient names with familiar ones.',

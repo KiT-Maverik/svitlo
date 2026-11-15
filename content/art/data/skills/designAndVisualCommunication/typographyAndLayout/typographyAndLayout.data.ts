@@ -42,12 +42,20 @@ export const typographyAndLayout_SkillGroup_Data = defineSkillGroup({
     kk: 'Типография және беттеу',
     qm: 'Tipografiya ve yerleşim',
   },
-  skills: [
-    applyALayoutGrid_Skill_Data,
-    designReadableText_Skill_Data,
-    establishTypographicHierarchy_Skill_Data,
-    selectATypeface_Skill_Data,
-  ],
+  skills: {
+    items: {
+      applyALayoutGrid: applyALayoutGrid_Skill_Data,
+      designReadableText: designReadableText_Skill_Data,
+      establishTypographicHierarchy: establishTypographicHierarchy_Skill_Data,
+      selectATypeface: selectATypeface_Skill_Data,
+    },
+    order: [
+      'applyALayoutGrid',
+      'designReadableText',
+      'establishTypographicHierarchy',
+      'selectATypeface',
+    ],
+  },
   description: {
     methodological:
       'Text legibility, typographic tone and systematic spatial organization shape how designed information is read.',

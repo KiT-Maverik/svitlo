@@ -41,12 +41,20 @@ export const natureInspiredDesign_SkillGroup_Data = defineSkillGroup({
     kk: 'Табиғаттан шабыт алған жобалау',
     qm: 'Tabiattan ilham alğan dizayn',
   },
-  skills: [
-    abstractABiologicalPrinciple_Skill_Data,
-    applyANaturalPrincipleToADesign_Skill_Data,
-    evaluateBiomimeticPerformance_Skill_Data,
-    identifyFunctionalBiologicalStrategies_Skill_Data,
-  ],
+  skills: {
+    items: {
+      abstractABiologicalPrinciple: abstractABiologicalPrinciple_Skill_Data,
+      applyANaturalPrincipleToADesign: applyANaturalPrincipleToADesign_Skill_Data,
+      evaluateBiomimeticPerformance: evaluateBiomimeticPerformance_Skill_Data,
+      identifyFunctionalBiologicalStrategies: identifyFunctionalBiologicalStrategies_Skill_Data,
+    },
+    order: [
+      'abstractABiologicalPrinciple',
+      'applyANaturalPrincipleToADesign',
+      'evaluateBiomimeticPerformance',
+      'identifyFunctionalBiologicalStrategies',
+    ],
+  },
   description: {
     methodological:
       'A valid biological analogy extracts a function and tests whether it can work with different materials, geometry and scale.',

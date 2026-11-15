@@ -41,12 +41,20 @@ export const collection_SkillGroup_Data = defineSkillGroup({
     pl: 'Zbieranie danych',
     uk: 'Збирання даних',
   },
-  skills: [
-    formulateInvestigationQuestion_Skill_Data,
-    collectCounts_Skill_Data,
-    tallyMarks_Skill_Data,
-    fillSimpleTable_Skill_Data,
-  ],
+  skills: {
+    items: {
+      formulateInvestigationQuestion: formulateInvestigationQuestion_Skill_Data,
+      collectCounts: collectCounts_Skill_Data,
+      tallyMarks: tallyMarks_Skill_Data,
+      fillSimpleTable: fillSimpleTable_Skill_Data,
+    },
+    order: [
+      'formulateInvestigationQuestion',
+      'collectCounts',
+      'tallyMarks',
+      'fillSimpleTable',
+    ],
+  },
   description: {
     methodological:
       'Formulating an investigation question, selecting classification attributes, counting occurrences, and recording observations.',

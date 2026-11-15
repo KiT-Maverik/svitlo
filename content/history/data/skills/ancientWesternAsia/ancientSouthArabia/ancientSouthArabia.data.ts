@@ -36,7 +36,13 @@ export const ancientSouthArabia_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі Оңтүстік Арабия',
     qm: 'Qadimiy Cenübiy Arabistan',
   },
-  skills: [arabianTradeRoutes_Skill_Data, southArabianKingdoms_Skill_Data],
+  skills: {
+    items: {
+      arabianTradeRoutes: arabianTradeRoutes_Skill_Data,
+      southArabianKingdoms: southArabianKingdoms_Skill_Data,
+    },
+    order: ['arabianTradeRoutes', 'southArabianKingdoms'],
+  },
   description: {
     methodological: 'Oasis and mountain centers participated in long-distance trade before the Islamic period.',
     frontend: {

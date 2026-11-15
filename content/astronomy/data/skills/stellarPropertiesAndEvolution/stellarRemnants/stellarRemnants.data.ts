@@ -43,14 +43,24 @@ export const stellarRemnants_SkillGroup_Data = defineSkillGroup({
     kk: 'Жұлдыз қалдықтары',
     qm: 'Yıldız qaldıqları',
   },
-  skills: [
-    cosmicElementEnrichment_Skill_Data,
-    neutronStars_Skill_Data,
-    pulsars_Skill_Data,
-    stellarMassBlackHoles_Skill_Data,
-    supernovae_Skill_Data,
-    whiteDwarfs_Skill_Data,
-  ],
+  skills: {
+    items: {
+      cosmicElementEnrichment: cosmicElementEnrichment_Skill_Data,
+      neutronStars: neutronStars_Skill_Data,
+      pulsars: pulsars_Skill_Data,
+      stellarMassBlackHoles: stellarMassBlackHoles_Skill_Data,
+      supernovae: supernovae_Skill_Data,
+      whiteDwarfs: whiteDwarfs_Skill_Data,
+    },
+    order: [
+      'cosmicElementEnrichment',
+      'neutronStars',
+      'pulsars',
+      'stellarMassBlackHoles',
+      'supernovae',
+      'whiteDwarfs',
+    ],
+  },
   description: {
     methodological:
       'The final states of stars differ according to progenitor mass, mass loss and binary interactions; extreme events redistribute energy and elements.',

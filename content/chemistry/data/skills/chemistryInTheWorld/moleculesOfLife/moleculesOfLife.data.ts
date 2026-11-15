@@ -41,12 +41,20 @@ export const moleculesOfLife_SkillGroup_Data = defineSkillGroup({
     kk: 'Тіршілік молекулалары',
     qm: 'Ayat molekulaları',
   },
-  skills: [
-    carbohydrateChemistry_Skill_Data,
-    lipidChemistry_Skill_Data,
-    nucleicAcidChemistry_Skill_Data,
-    proteinChemistry_Skill_Data,
-  ],
+  skills: {
+    items: {
+      carbohydrateChemistry: carbohydrateChemistry_Skill_Data,
+      lipidChemistry: lipidChemistry_Skill_Data,
+      nucleicAcidChemistry: nucleicAcidChemistry_Skill_Data,
+      proteinChemistry: proteinChemistry_Skill_Data,
+    },
+    order: [
+      'carbohydrateChemistry',
+      'lipidChemistry',
+      'nucleicAcidChemistry',
+      'proteinChemistry',
+    ],
+  },
   description: {
     methodological:
       'Chemical structure explains molecular behavior that biology may later place in cellular or organismal context.',

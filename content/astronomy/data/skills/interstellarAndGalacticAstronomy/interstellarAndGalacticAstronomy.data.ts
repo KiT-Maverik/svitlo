@@ -39,12 +39,20 @@ export const interstellarAndGalacticAstronomy_SkillDomain_Data = defineSkillDoma
     ka: 'ვარსკვლავთშორისი და გალაქტიკური ასტრონომია',
     kk: 'Жұлдызаралық және галактикалық астрономия',
   },
-  groups: [
-    activeGalacticNuclei_SkillGroup_Data,
-    galaxiesAndTheirEvolution_SkillGroup_Data,
-    interstellarMatter_SkillGroup_Data,
-    theMilkyWay_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      activeGalacticNuclei: activeGalacticNuclei_SkillGroup_Data,
+      galaxiesAndTheirEvolution: galaxiesAndTheirEvolution_SkillGroup_Data,
+      interstellarMatter: interstellarMatter_SkillGroup_Data,
+      theMilkyWay: theMilkyWay_SkillGroup_Data,
+    },
+    order: [
+      'activeGalacticNuclei',
+      'galaxiesAndTheirEvolution',
+      'interstellarMatter',
+      'theMilkyWay',
+    ],
+  },
   description: {
     methodological:
       'This domain investigates matter between stars and the structure, dynamics and transformations of galaxies. The Milky Way is one case, while distant galaxies reveal different environments and stages of evolution.',

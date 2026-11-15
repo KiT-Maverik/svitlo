@@ -40,13 +40,22 @@ export const numeration_SkillDomain_Data = defineSkillDomain({
     pl: 'Liczby naturalne',
     uk: 'Натуральні числа',
   },
-  groups: [
-    notation_SkillGroup_Data,
-    placeValue_SkillGroup_Data,
-    comparison_SkillGroup_Data,
-    numberLine_SkillGroup_Data,
-    estimation_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      notation: notation_SkillGroup_Data,
+      placeValue: placeValue_SkillGroup_Data,
+      comparison: comparison_SkillGroup_Data,
+      numberLine: numberLine_SkillGroup_Data,
+      estimation: estimation_SkillGroup_Data,
+    },
+    order: [
+      'notation',
+      'placeValue',
+      'comparison',
+      'numberLine',
+      'estimation',
+    ],
+  },
   description: {
     methodological:
       'How natural numbers express quantity, how decimal positional notation works, and how numbers are compared, decomposed, and estimated.',

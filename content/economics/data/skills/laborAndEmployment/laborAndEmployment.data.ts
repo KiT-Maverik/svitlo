@@ -38,11 +38,14 @@ export const laborAndEmployment_SkillDomain_Data = defineSkillDomain({
     kk: 'Еңбек және жұмыспен қамту',
     qm: 'Emek ve işnen temin',
   },
-  groups: [
-    employmentAndMobility_SkillGroup_Data,
-    laborInstitutions_SkillGroup_Data,
-    laborSupplyAndDemand_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      employmentAndMobility: employmentAndMobility_SkillGroup_Data,
+      laborInstitutions: laborInstitutions_SkillGroup_Data,
+      laborSupplyAndDemand: laborSupplyAndDemand_SkillGroup_Data,
+    },
+    order: ['employmentAndMobility', 'laborInstitutions', 'laborSupplyAndDemand'],
+  },
   description: {
     methodological:
       'Labor markets connect working time, qualifications, pay, vacancies, and hiring rules. This domain distinguishes individual work decisions from aggregate unemployment.',

@@ -40,11 +40,14 @@ export const decisionsAndCommunication_SkillGroup_Data = defineSkillGroup({
     kk: 'Шешімдер және байланыс',
     qm: 'Qararlar ve haberleşüv',
   },
-  skills: [
-    communicateAGeographicConclusionWithEvidence_Skill_Data,
-    compareLocationsAgainstStatedGeographicCriteria_Skill_Data,
-    explainTradeOffsOfAProposedSpatialDecision_Skill_Data,
-  ],
+  skills: {
+    items: {
+      communicateAGeographicConclusionWithEvidence: communicateAGeographicConclusionWithEvidence_Skill_Data,
+      compareLocationsAgainstStatedGeographicCriteria: compareLocationsAgainstStatedGeographicCriteria_Skill_Data,
+      explainTradeOffsOfAProposedSpatialDecision: explainTradeOffsOfAProposedSpatialDecision_Skill_Data,
+    },
+    order: ['communicateAGeographicConclusionWithEvidence', 'compareLocationsAgainstStatedGeographicCriteria', 'explainTradeOffsOfAProposedSpatialDecision'],
+  },
   description: {
     methodological:
       'A geographic recommendation combines evidence about places with competing objectives and uncertainty. Maps can communicate reasoning, but they do not settle value judgments on their own.',

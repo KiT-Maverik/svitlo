@@ -38,11 +38,14 @@ export const environmentalAndResourceEconomics_SkillDomain_Data = defineSkillDom
     kk: 'Қоршаған орта және ресурстар экономикасы',
     qm: 'Çevre ve resurslar iqtisadiyatı',
   },
-  groups: [
-    commonPoolResources_SkillGroup_Data,
-    environmentalIncentivesAndPolicy_SkillGroup_Data,
-    sustainabilityAndIntertemporalChoice_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      commonPoolResources: commonPoolResources_SkillGroup_Data,
+      environmentalIncentivesAndPolicy: environmentalIncentivesAndPolicy_SkillGroup_Data,
+      sustainabilityAndIntertemporalChoice: sustainabilityAndIntertemporalChoice_SkillGroup_Data,
+    },
+    order: ['commonPoolResources', 'environmentalIncentivesAndPolicy', 'sustainabilityAndIntertemporalChoice'],
+  },
   description: {
     methodological:
       "Production and consumption depend on ecosystems, resources, and the environment's capacity to absorb impacts. This domain examines economic incentives, valuation, and rules governing nature rather than the physics or biology of underlying processes.",

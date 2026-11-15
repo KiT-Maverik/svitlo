@@ -41,12 +41,20 @@ export const skyGeometry_SkillGroup_Data = defineSkillGroup({
     ka: 'ცის გეომეტრია',
     kk: 'Аспан геометриясы',
   },
-  skills: [
-    angularSeparation_Skill_Data,
-    celestialSphere_Skill_Data,
-    equatorialCoordinates_Skill_Data,
-    horizonCoordinates_Skill_Data,
-  ],
+  skills: {
+    items: {
+      angularSeparation: angularSeparation_Skill_Data,
+      celestialSphere: celestialSphere_Skill_Data,
+      equatorialCoordinates: equatorialCoordinates_Skill_Data,
+      horizonCoordinates: horizonCoordinates_Skill_Data,
+    },
+    order: [
+      'angularSeparation',
+      'celestialSphere',
+      'equatorialCoordinates',
+      'horizonCoordinates',
+    ],
+  },
   description: {
     methodological:
       'Positions and separations in the visible sky can be communicated through directional frames and angular quantities rather than terrestrial distance alone.',

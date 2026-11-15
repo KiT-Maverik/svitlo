@@ -40,12 +40,15 @@ export const virology_SkillDomain_Data = defineSkillDomain({
     kk: 'Вирусология',
     qm: 'Virusologiya',
   },
-  groups: [],
-  skills: [
-    distinguishAVirusFromACellularOrganism_Skill_Data,
-    explainMechanismsOfViralTransmission_Skill_Data,
-    explainWhatAVirusIs_Skill_Data,
-  ],
+  groups: { items: {}, order: [] },
+  skills: {
+    items: {
+      distinguishAVirusFromACellularOrganism: distinguishAVirusFromACellularOrganism_Skill_Data,
+      explainMechanismsOfViralTransmission: explainMechanismsOfViralTransmission_Skill_Data,
+      explainWhatAVirusIs: explainWhatAVirusIs_Skill_Data,
+    },
+    order: ['distinguishAVirusFromACellularOrganism', 'explainMechanismsOfViralTransmission', 'explainWhatAVirusIs'],
+  },
   description: {
     methodological:
       'Viruses as noncellular infectious agents: structure, reproduction inside host cells, and routes of transmission. They are not cellular organisms, although they are studied alongside them.',

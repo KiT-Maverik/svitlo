@@ -44,15 +44,26 @@ export const materialsChemistry_SkillGroup_Data = defineSkillGroup({
     kk: 'Материалдар химиясы',
     qm: 'Materiallar kimyası',
   },
-  skills: [
-    alloysInUse_Skill_Data,
-    ceramics_Skill_Data,
-    corrosion_Skill_Data,
-    elastomers_Skill_Data,
-    glass_Skill_Data,
-    metalsInUse_Skill_Data,
-    plastics_Skill_Data,
-  ],
+  skills: {
+    items: {
+      alloysInUse: alloysInUse_Skill_Data,
+      ceramics: ceramics_Skill_Data,
+      corrosion: corrosion_Skill_Data,
+      elastomers: elastomers_Skill_Data,
+      glass: glass_Skill_Data,
+      metalsInUse: metalsInUse_Skill_Data,
+      plastics: plastics_Skill_Data,
+    },
+    order: [
+      'alloysInUse',
+      'ceramics',
+      'corrosion',
+      'elastomers',
+      'glass',
+      'metalsInUse',
+      'plastics',
+    ],
+  },
   description: {
     methodological:
       "A product's useful behavior depends on composition, microscopic structure and conditions of use, not merely its everyday material label.",

@@ -41,12 +41,20 @@ export const ancientIranianStates_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі Иран мемлекеттері',
     qm: 'Qadimiy İran devletleri',
   },
-  skills: [
-    achaemenidEmpire_Skill_Data,
-    achaemenidExpansion_Skill_Data,
-    ancientIranianReligions_Skill_Data,
-    medianConfederations_Skill_Data,
-  ],
+  skills: {
+    items: {
+      achaemenidEmpire: achaemenidEmpire_Skill_Data,
+      achaemenidExpansion: achaemenidExpansion_Skill_Data,
+      ancientIranianReligions: ancientIranianReligions_Skill_Data,
+      medianConfederations: medianConfederations_Skill_Data,
+    },
+    order: [
+      'achaemenidEmpire',
+      'achaemenidExpansion',
+      'ancientIranianReligions',
+      'medianConfederations',
+    ],
+  },
   description: {
     methodological:
       'States on the Iranian plateau and nearby territories governed diverse populations through administrative systems.',

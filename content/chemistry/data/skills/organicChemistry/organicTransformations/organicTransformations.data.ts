@@ -41,12 +41,20 @@ export const organicTransformations_SkillGroup_Data = defineSkillGroup({
     kk: 'Органикалық түрленулер',
     qm: 'Organik deñişüvler',
   },
-  skills: [
-    additionReactions_Skill_Data,
-    condensationReactions_Skill_Data,
-    eliminationReactions_Skill_Data,
-    substitutionReactions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      additionReactions: additionReactions_Skill_Data,
+      condensationReactions: condensationReactions_Skill_Data,
+      eliminationReactions: eliminationReactions_Skill_Data,
+      substitutionReactions: substitutionReactions_Skill_Data,
+    },
+    order: [
+      'additionReactions',
+      'condensationReactions',
+      'eliminationReactions',
+      'substitutionReactions',
+    ],
+  },
   description: {
     methodological:
       'Reaction family patterns link starting functional groups to plausible products while requiring mechanistic and condition-specific reasoning.',

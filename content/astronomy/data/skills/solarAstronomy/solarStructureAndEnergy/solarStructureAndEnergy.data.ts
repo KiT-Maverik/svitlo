@@ -41,12 +41,20 @@ export const solarStructureAndEnergy_SkillGroup_Data = defineSkillGroup({
     he: 'מבנה השמש והאנרגיה שלה',
     vi: 'Cấu trúc và năng lượng Mặt Trời',
   },
-  skills: [
-    solarAtmosphere_Skill_Data,
-    solarInterior_Skill_Data,
-    solarLuminosity_Skill_Data,
-    solarNuclearFusion_Skill_Data,
-  ],
+  skills: {
+    items: {
+      solarAtmosphere: solarAtmosphere_Skill_Data,
+      solarInterior: solarInterior_Skill_Data,
+      solarLuminosity: solarLuminosity_Skill_Data,
+      solarNuclearFusion: solarNuclearFusion_Skill_Data,
+    },
+    order: [
+      'solarAtmosphere',
+      'solarInterior',
+      'solarLuminosity',
+      'solarNuclearFusion',
+    ],
+  },
   description: {
     methodological:
       'Solar radiation originates from processes in the interior and travels outward through distinct plasma and atmospheric regions.',

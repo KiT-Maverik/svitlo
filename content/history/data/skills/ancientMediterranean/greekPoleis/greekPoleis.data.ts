@@ -43,14 +43,24 @@ export const greekPoleis_SkillGroup_Data = defineSkillGroup({
     kk: 'Грек полистері',
     qm: 'Yunan polisleri',
   },
-  skills: [
-    athenianDemocracy_Skill_Data,
-    grecoPersianWars_Skill_Data,
-    greekColonization_Skill_Data,
-    greekPolis_Skill_Data,
-    peloponnesianWar_Skill_Data,
-    spartanSystem_Skill_Data,
-  ],
+  skills: {
+    items: {
+      athenianDemocracy: athenianDemocracy_Skill_Data,
+      grecoPersianWars: grecoPersianWars_Skill_Data,
+      greekColonization: greekColonization_Skill_Data,
+      greekPolis: greekPolis_Skill_Data,
+      peloponnesianWar: peloponnesianWar_Skill_Data,
+      spartanSystem: spartanSystem_Skill_Data,
+    },
+    order: [
+      'athenianDemocracy',
+      'grecoPersianWars',
+      'greekColonization',
+      'greekPolis',
+      'peloponnesianWar',
+      'spartanSystem',
+    ],
+  },
   description: {
     methodological:
       'Self-governing citizen communities varied in political institutions, warfare, and who possessed political rights.',

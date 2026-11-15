@@ -41,12 +41,20 @@ export const inequality_SkillGroup_Data = defineSkillGroup({
     kk: 'Теңсіздік',
     qm: 'Teñsizlik',
   },
-  skills: [
-    giniCoefficient_Skill_Data,
-    incomeDistribution_Skill_Data,
-    intergenerationalEconomicMobility_Skill_Data,
-    wealthDistribution_Skill_Data,
-  ],
+  skills: {
+    items: {
+      giniCoefficient: giniCoefficient_Skill_Data,
+      incomeDistribution: incomeDistribution_Skill_Data,
+      intergenerationalEconomicMobility: intergenerationalEconomicMobility_Skill_Data,
+      wealthDistribution: wealthDistribution_Skill_Data,
+    },
+    order: [
+      'giniCoefficient',
+      'incomeDistribution',
+      'intergenerationalEconomicMobility',
+      'wealthDistribution',
+    ],
+  },
   description: {
     methodological:
       'Distributions of income and wealth can differ even among societies with identical average incomes.',

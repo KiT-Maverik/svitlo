@@ -39,10 +39,13 @@ export const naturalResources_SkillGroup_Data = defineSkillGroup({
     kk: 'Табиғи ресурстар',
     qm: 'Tabiiy resurslar',
   },
-  skills: [
-    explainReplenishmentAndDepletionOfNaturalResources_Skill_Data,
-    explainWhatMakesSomethingANaturalResource_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainReplenishmentAndDepletionOfNaturalResources: explainReplenishmentAndDepletionOfNaturalResources_Skill_Data,
+      explainWhatMakesSomethingANaturalResource: explainWhatMakesSomethingANaturalResource_Skill_Data,
+    },
+    order: ['explainReplenishmentAndDepletionOfNaturalResources', 'explainWhatMakesSomethingANaturalResource'],
+  },
   description: {
     methodological:
       'A natural resource is a material, stock or flow valued for human use, and availability depends on formation, replenishment, accessibility and demand. Geographic classifications should not equate renewable with inexhaustible or any deposit with a commercially recoverable resource.',

@@ -42,13 +42,22 @@ export const stellarProperties_SkillGroup_Data = defineSkillGroup({
     kk: 'Жұлдыздардың физикалық қасиеттері',
     qm: 'Yıldızlarnıñ fiziki hususiyetleri',
   },
-  skills: [
-    stellarHydrostaticEquilibrium_Skill_Data,
-    stellarLuminosity_Skill_Data,
-    stellarMass_Skill_Data,
-    stellarRadius_Skill_Data,
-    stellarTemperature_Skill_Data,
-  ],
+  skills: {
+    items: {
+      stellarHydrostaticEquilibrium: stellarHydrostaticEquilibrium_Skill_Data,
+      stellarLuminosity: stellarLuminosity_Skill_Data,
+      stellarMass: stellarMass_Skill_Data,
+      stellarRadius: stellarRadius_Skill_Data,
+      stellarTemperature: stellarTemperature_Skill_Data,
+    },
+    order: [
+      'stellarHydrostaticEquilibrium',
+      'stellarLuminosity',
+      'stellarMass',
+      'stellarRadius',
+      'stellarTemperature',
+    ],
+  },
   description: {
     methodological:
       'Observed spectra and brightness are combined with models to infer physical characteristics that cannot be measured by direct sampling.',

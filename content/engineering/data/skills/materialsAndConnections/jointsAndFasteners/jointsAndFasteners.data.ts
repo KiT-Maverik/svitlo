@@ -42,13 +42,22 @@ export const jointsAndFasteners_SkillGroup_Data = defineSkillGroup({
     kk: 'Қосылыстар мен бекіткіштер',
     qm: 'Bağlanışlar ve bekiticiler',
   },
-  skills: [
-    adhesiveJoints_Skill_Data,
-    joiningMethodSuitability_Skill_Data,
-    magneticFastening_Skill_Data,
-    threadedFastening_Skill_Data,
-    weldedJoints_Skill_Data,
-  ],
+  skills: {
+    items: {
+      adhesiveJoints: adhesiveJoints_Skill_Data,
+      joiningMethodSuitability: joiningMethodSuitability_Skill_Data,
+      magneticFastening: magneticFastening_Skill_Data,
+      threadedFastening: threadedFastening_Skill_Data,
+      weldedJoints: weldedJoints_Skill_Data,
+    },
+    order: [
+      'adhesiveJoints',
+      'joiningMethodSuitability',
+      'magneticFastening',
+      'threadedFastening',
+      'weldedJoints',
+    ],
+  },
   description: {
     methodological:
       'Connections can be temporary or permanent, transmit different forces and impose different maintenance requirements.',

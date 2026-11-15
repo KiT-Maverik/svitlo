@@ -41,12 +41,20 @@ export const motionConversion_SkillGroup_Data = defineSkillGroup({
     kk: 'Қозғалысты түрлендіру',
     qm: 'Areketni deñiştirüv',
   },
-  skills: [
-    articulatedLinkages_Skill_Data,
-    camMechanisms_Skill_Data,
-    crankSliderMechanisms_Skill_Data,
-    screwMechanisms_Skill_Data,
-  ],
+  skills: {
+    items: {
+      articulatedLinkages: articulatedLinkages_Skill_Data,
+      camMechanisms: camMechanisms_Skill_Data,
+      crankSliderMechanisms: crankSliderMechanisms_Skill_Data,
+      screwMechanisms: screwMechanisms_Skill_Data,
+    },
+    order: [
+      'articulatedLinkages',
+      'camMechanisms',
+      'crankSliderMechanisms',
+      'screwMechanisms',
+    ],
+  },
   description: {
     methodological:
       'Mechanical linkages and profiles transform rotation, translation or oscillation into required movement patterns.',

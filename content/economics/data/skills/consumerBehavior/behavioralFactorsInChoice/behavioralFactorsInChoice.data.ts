@@ -41,12 +41,20 @@ export const behavioralFactorsInChoice_SkillGroup_Data = defineSkillGroup({
     kk: 'Таңдаудың мінез-құлық факторлары',
     qm: 'Saylavda areketniñ sebepleri',
   },
-  skills: [
-    boundedRationality_Skill_Data,
-    choiceArchitecture_Skill_Data,
-    framingEffect_Skill_Data,
-    presentBias_Skill_Data,
-  ],
+  skills: {
+    items: {
+      boundedRationality: boundedRationality_Skill_Data,
+      choiceArchitecture: choiceArchitecture_Skill_Data,
+      framingEffect: framingEffect_Skill_Data,
+      presentBias: presentBias_Skill_Data,
+    },
+    order: [
+      'boundedRationality',
+      'choiceArchitecture',
+      'framingEffect',
+      'presentBias',
+    ],
+  },
   description: {
     methodological:
       'Limited attention and rationality, time preferences, presentation formats, and defaults can alter economic choices even when the formal options are unchanged.',

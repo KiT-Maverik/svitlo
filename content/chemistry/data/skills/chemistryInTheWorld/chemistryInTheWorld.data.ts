@@ -39,12 +39,20 @@ export const chemistryInTheWorld_SkillDomain_Data = defineSkillDomain({
     kk: 'Бізді қоршаған химия',
     qm: 'Dünyamızda kimya',
   },
-  groups: [
-    airAndWater_SkillGroup_Data,
-    materialsChemistry_SkillGroup_Data,
-    moleculesOfLife_SkillGroup_Data,
-    sustainableChemicalChoices_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      airAndWater: airAndWater_SkillGroup_Data,
+      materialsChemistry: materialsChemistry_SkillGroup_Data,
+      moleculesOfLife: moleculesOfLife_SkillGroup_Data,
+      sustainableChemicalChoices: sustainableChemicalChoices_SkillGroup_Data,
+    },
+    order: [
+      'airAndWater',
+      'materialsChemistry',
+      'moleculesOfLife',
+      'sustainableChemicalChoices',
+    ],
+  },
   description: {
     methodological:
       'Chemical concepts support understanding of manufactured materials, environmental systems and molecules associated with life. The emphasis is composition, transformation and evidence—not industrial process engineering, clinical advice or organism-level biology.',

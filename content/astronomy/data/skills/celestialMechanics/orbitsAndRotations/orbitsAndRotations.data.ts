@@ -42,13 +42,22 @@ export const orbitsAndRotations_SkillGroup_Data = defineSkillGroup({
     kk: 'Орбиталар мен айналу',
     qm: 'Orbitalar ve aylanmalar',
   },
-  skills: [
-    axialRotation_Skill_Data,
-    axialTilt_Skill_Data,
-    orbitalElements_Skill_Data,
-    orbitalPeriods_Skill_Data,
-    synchronousRotation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      axialRotation: axialRotation_Skill_Data,
+      axialTilt: axialTilt_Skill_Data,
+      orbitalElements: orbitalElements_Skill_Data,
+      orbitalPeriods: orbitalPeriods_Skill_Data,
+      synchronousRotation: synchronousRotation_Skill_Data,
+    },
+    order: [
+      'axialRotation',
+      'axialTilt',
+      'orbitalElements',
+      'orbitalPeriods',
+      'synchronousRotation',
+    ],
+  },
   description: {
     methodological:
       'Orbital shapes and body orientations are specified through distinct physical parameters that affect long-term celestial behavior.',

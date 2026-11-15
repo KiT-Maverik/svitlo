@@ -38,11 +38,14 @@ export const thermalAndFluidDevices_SkillDomain_Data = defineSkillDomain({
     kk: 'Жылу, сұйықтық және газ құрылғылары',
     qm: 'Issilik ve aqım cihazları',
   },
-  groups: [
-    fluidMachines_SkillGroup_Data,
-    heatTransferEquipment_SkillGroup_Data,
-    ventilationAndAirTreatment_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      fluidMachines: fluidMachines_SkillGroup_Data,
+      heatTransferEquipment: heatTransferEquipment_SkillGroup_Data,
+      ventilationAndAirTreatment: ventilationAndAirTreatment_SkillGroup_Data,
+    },
+    order: ['fluidMachines', 'heatTransferEquipment', 'ventilationAndAirTreatment'],
+  },
   description: {
     methodological:
       'Practical equipment moves heat, air and other fluids through controlled component chains. Here the object of study is the apparatus and its operating cycle, not the isolated thermodynamic or fluid laws.',

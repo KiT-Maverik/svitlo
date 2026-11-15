@@ -39,12 +39,20 @@ export const mechanismsAndMachines_SkillDomain_Data = defineSkillDomain({
     kk: 'Механизмдер мен машиналар',
     qm: 'Mehanizmler ve maşinalar',
   },
-  groups: [
-    guidanceAndRetention_SkillGroup_Data,
-    integratedMachines_SkillGroup_Data,
-    motionConversion_SkillGroup_Data,
-    transmissions_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      guidanceAndRetention: guidanceAndRetention_SkillGroup_Data,
+      integratedMachines: integratedMachines_SkillGroup_Data,
+      motionConversion: motionConversion_SkillGroup_Data,
+      transmissions: transmissions_SkillGroup_Data,
+    },
+    order: [
+      'guidanceAndRetention',
+      'integratedMachines',
+      'motionConversion',
+      'transmissions',
+    ],
+  },
   description: {
     methodological:
       'Moving assemblies redirect or transmit force, torque and motion to achieve tasks. This domain investigates how real mechanical arrangements work, not the underlying laws of mechanics as an independent science.',

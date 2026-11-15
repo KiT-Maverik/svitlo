@@ -41,12 +41,20 @@ export const duration_SkillGroup_Data = defineSkillGroup({
     pl: 'Czas trwania',
     uk: 'Тривалість',
   },
-  skills: [
-    convertHoursMinutes_Skill_Data,
-    convertMinutesSeconds_Skill_Data,
-    eventDuration_Skill_Data,
-    findStartOrEnd_Skill_Data,
-  ],
+  skills: {
+    items: {
+      convertHoursMinutes: convertHoursMinutes_Skill_Data,
+      convertMinutesSeconds: convertMinutesSeconds_Skill_Data,
+      eventDuration: eventDuration_Skill_Data,
+      findStartOrEnd: findStartOrEnd_Skill_Data,
+    },
+    order: [
+      'convertHoursMinutes',
+      'convertMinutesSeconds',
+      'eventDuration',
+      'findStartOrEnd',
+    ],
+  },
   description: {
     methodological:
       'Relationships among seconds, minutes, and hours, and deriving a time interval or instant from other known time information.',

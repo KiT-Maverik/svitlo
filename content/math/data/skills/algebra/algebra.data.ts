@@ -40,13 +40,22 @@ export const algebra_SkillDomain_Data = defineSkillDomain({
     pl: 'Algebra',
     uk: 'Алгебра',
   },
-  groups: [
-    equalities_SkillGroup_Data,
-    expressions_SkillGroup_Data,
-    formalization_SkillGroup_Data,
-    patterns_SkillGroup_Data,
-    unknowns_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      equalities: equalities_SkillGroup_Data,
+      expressions: expressions_SkillGroup_Data,
+      formalization: formalization_SkillGroup_Data,
+      patterns: patterns_SkillGroup_Data,
+      unknowns: unknowns_SkillGroup_Data,
+    },
+    order: [
+      'equalities',
+      'expressions',
+      'formalization',
+      'patterns',
+      'unknowns',
+    ],
+  },
   description: {
     methodological:
       'Mathematical expressions, equalities, inequalities, variables and unknowns, patterns, generalizations, and symbolic descriptions of relationships. The scope is not constrained to a particular age, numerical range, or notation.',

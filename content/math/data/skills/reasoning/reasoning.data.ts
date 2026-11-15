@@ -39,12 +39,20 @@ export const reasoning_SkillDomain_Data = defineSkillDomain({
     pl: 'Rozumowanie',
     uk: 'Міркування',
   },
-  groups: [
-    argumentation_SkillGroup_Data,
-    verification_SkillGroup_Data,
-    logic_SkillGroup_Data,
-    representations_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      argumentation: argumentation_SkillGroup_Data,
+      verification: verification_SkillGroup_Data,
+      logic: logic_SkillGroup_Data,
+      representations: representations_SkillGroup_Data,
+    },
+    order: [
+      'argumentation',
+      'verification',
+      'logic',
+      'representations',
+    ],
+  },
   description: {
     methodological:
       'Justifying mathematical statements, finding counterexamples, drawing logical conclusions, checking solutions, and translating between representations.',

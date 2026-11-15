@@ -41,12 +41,20 @@ export const printmaking_SkillGroup_Data = defineSkillGroup({
     kk: 'Баспа графикасы',
     qm: 'Baskı sanatı',
   },
-  skills: [
-    designAPrintMatrix_Skill_Data,
-    produceAReliefPrint_Skill_Data,
-    produceAStencilPrint_Skill_Data,
-    registerMultiplePrintLayers_Skill_Data,
-  ],
+  skills: {
+    items: {
+      designAPrintMatrix: designAPrintMatrix_Skill_Data,
+      produceAReliefPrint: produceAReliefPrint_Skill_Data,
+      produceAStencilPrint: produceAStencilPrint_Skill_Data,
+      registerMultiplePrintLayers: registerMultiplePrintLayers_Skill_Data,
+    },
+    order: [
+      'designAPrintMatrix',
+      'produceAReliefPrint',
+      'produceAStencilPrint',
+      'registerMultiplePrintLayers',
+    ],
+  },
   description: {
     methodological:
       'A designed matrix, stencil or transferable surface generates impressions that can be repeated with deliberate differences.',

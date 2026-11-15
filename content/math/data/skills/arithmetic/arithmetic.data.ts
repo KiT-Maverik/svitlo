@@ -40,13 +40,22 @@ export const arithmetic_SkillDomain_Data = defineSkillDomain({
     pl: 'Arytmetyka',
     uk: 'Арифметика',
   },
-  groups: [
-    addition_SkillGroup_Data,
-    subtraction_SkillGroup_Data,
-    additionSubtraction_SkillGroup_Data,
-    multiply_SkillGroup_Data,
-    divide_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      addition: addition_SkillGroup_Data,
+      subtraction: subtraction_SkillGroup_Data,
+      additionSubtraction: additionSubtraction_SkillGroup_Data,
+      multiply: multiply_SkillGroup_Data,
+      divide: divide_SkillGroup_Data,
+    },
+    order: [
+      'addition',
+      'subtraction',
+      'additionSubtraction',
+      'multiply',
+      'divide',
+    ],
+  },
   description: {
     methodological:
       'The meanings and properties of addition, subtraction, multiplication, and division; their relationships; exact and approximate calculation methods; justifications of algorithms; and result verification. The Curriculum determines numerical ranges and degree of formalization.',

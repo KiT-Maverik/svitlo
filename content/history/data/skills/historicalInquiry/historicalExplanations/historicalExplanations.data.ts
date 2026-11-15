@@ -41,12 +41,20 @@ export const historicalExplanations_SkillGroup_Data = defineSkillGroup({
     kk: 'Тарихи түсіндірмелер',
     qm: 'Tarihiy izaatlar',
   },
-  skills: [
-    continuityAndChange_Skill_Data,
-    historicalCausality_Skill_Data,
-    historicalComparison_Skill_Data,
-    historicalUncertainty_Skill_Data,
-  ],
+  skills: {
+    items: {
+      continuityAndChange: continuityAndChange_Skill_Data,
+      historicalCausality: historicalCausality_Skill_Data,
+      historicalComparison: historicalComparison_Skill_Data,
+      historicalUncertainty: historicalUncertainty_Skill_Data,
+    },
+    order: [
+      'continuityAndChange',
+      'historicalCausality',
+      'historicalComparison',
+      'historicalUncertainty',
+    ],
+  },
   description: {
     methodological:
       'Distinguish supported facts, explanatory models, values, uncertain reconstructions, and competing interpretations when reasoning about the past.',

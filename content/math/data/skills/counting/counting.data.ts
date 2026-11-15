@@ -40,13 +40,22 @@ export const counting_SkillDomain_Data = defineSkillDomain({
     pl: 'Liczenie',
     uk: 'Лічба',
   },
-  groups: [
-    sequence_SkillGroup_Data,
-    cardinality_SkillGroup_Data,
-    steps_SkillGroup_Data,
-    ordinal_SkillGroup_Data,
-    parity_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      sequence: sequence_SkillGroup_Data,
+      cardinality: cardinality_SkillGroup_Data,
+      steps: steps_SkillGroup_Data,
+      ordinal: ordinal_SkillGroup_Data,
+      parity: parity_SkillGroup_Data,
+    },
+    order: [
+      'sequence',
+      'cardinality',
+      'steps',
+      'ordinal',
+      'parity',
+    ],
+  },
   description: {
     methodological:
       'The concept of quantity develops through one-to-one correspondence between objects and number words, movement along the natural-number sequence, ordinal positions, and grouping objects for counting.',

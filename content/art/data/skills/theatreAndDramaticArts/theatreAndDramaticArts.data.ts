@@ -39,12 +39,20 @@ export const theatreAndDramaticArts_SkillDomain_Data = defineSkillDomain({
     kk: 'Театр және драмалық өнер',
     qm: 'Teatr ve dramatik sanatlar',
   },
-  groups: [
-    acting_SkillGroup_Data,
-    dramaturgyAndDirection_SkillGroup_Data,
-    improvisationAndDevising_SkillGroup_Data,
-    stageExpressionAndPuppetry_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      acting: acting_SkillGroup_Data,
+      dramaturgyAndDirection: dramaturgyAndDirection_SkillGroup_Data,
+      improvisationAndDevising: improvisationAndDevising_SkillGroup_Data,
+      stageExpressionAndPuppetry: stageExpressionAndPuppetry_SkillGroup_Data,
+    },
+    order: [
+      'acting',
+      'dramaturgyAndDirection',
+      'improvisationAndDevising',
+      'stageExpressionAndPuppetry',
+    ],
+  },
   description: {
     methodological:
       'Theatre creates meaning through embodied roles, dramatic situations, live collaboration and staging. Its practical focus differs from general literary theory or building stage machinery.',

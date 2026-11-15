@@ -40,7 +40,14 @@ export const empiricalConclusionsAndForecasts_SkillGroup_Data = defineSkillGroup
     kk: 'Эмпирикалық қорытындылар мен болжамдар',
     qm: 'Tecribiy neticeler ve tahminler',
   },
-  skills: [basicRegressionModel_Skill_Data, economicForecastUncertainty_Skill_Data, policyEffectEvaluation_Skill_Data],
+  skills: {
+    items: {
+      basicRegressionModel: basicRegressionModel_Skill_Data,
+      economicForecastUncertainty: economicForecastUncertainty_Skill_Data,
+      policyEffectEvaluation: policyEffectEvaluation_Skill_Data,
+    },
+    order: ['basicRegressionModel', 'economicForecastUncertainty', 'policyEffectEvaluation'],
+  },
   description: {
     methodological:
       'Policy evaluation and forecasting rely on evidence, explicit assumptions, and uncertainty assessment.',
