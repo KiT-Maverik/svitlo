@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
+import { defineText } from '../../configurators/contentBlocks/defineText/defineText';
+import { defineSelectOneAnswer } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer';
 import type { ContentBlock_Props } from '../../configurators/contentBlocks/contentBlock.types';
 import { createAssessmentResourceLoader, type ReadAssessmentFiles } from './createAssessmentResourceLoader';
 
@@ -134,4 +136,75 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
   const en = await loader.loadFlashcards({ lessonId, language: 'en', ids: [cardId] });
   assert.equal(textValue(en[0].content.back[0]), 'Back');
   assert.equal(requests.length, count + 1, 'Different locale needs separate selected files');
+});
+
+
+test('a completed Question is published and resolved separately with the requested language only', async () => {
+  const prompt = defineText({
+    id: '1ca19881-8948-44b4-8777-000000000001',
+    slug: 'prompt',
+    type: 'text',
+    params: {},
+    locale: { value: { en: 'What is equal?', uk: 'Що дорівнює?' } },
+  });
+  const correct = defineText({
+    id: '1ca19881-8948-44b4-8777-000000000002',
+    slug: 'correct',
+    type: 'text',
+    params: {},
+    locale: { value: { en: 'Two', uk: 'Два' } },
+  });
+  const incorrect = defineText({
+    id: '1ca19881-8948-44b4-8777-000000000003',
+    slug: 'incorrect',
+    type: 'text',
+    params: {},
+    locale: { value: { en: 'Three', uk: 'Три' } },
+  });
+  const content = {
+    question: { items: { prompt }, order: ['prompt'] },
+    answers: {
+      correct: { items: { correct }, order: ['correct'] },
+      incorrect: { items: { incorrect }, order: ['incorrect'] },
+      distractors: { items: {}, order: [] },
+    },
+  };
+  const question = defineSelectOneAnswer<'sampleQuestion', typeof content, ['en', 'uk']>({
+    id: questionId,
+    slug: 'sampleQuestion',
+    type: 'selectOneAnswer',
+    params: { assessmentMethod: 'retrieval', restrictions: [] },
+    locale: {},
+    content,
+  });
+  const publication = question.build.props({ languages: ['en', 'uk'] });
+  const { renderAssessmentResourceFiles } = await import('../../generators/assessments/renderAssessmentResourceFiles.utils');
+  const generated = renderAssessmentResourceFiles([
+    { source: 'sample-question.ts', lessonId, kind: 'question', languages: ['en', 'uk'], publication },
+  ]);
+  const data = new Map([...generated].map(([path, value]) => ['data/lessons/' + path, JSON.parse(value)]));
+  const requests: string[][] = [];
+  const loader = createAssessmentResourceLoader(async paths => {
+    requests.push([...paths]);
+    return new Map(paths.filter(path => data.has(path)).map(path => [path, data.get(path)]));
+  });
+
+  const uk = await loader.loadQuestions({ lessonId, language: 'uk', ids: [questionId] });
+  assert.equal(uk.length, 1);
+  assert.equal(uk[0].type, 'selectOneAnswer');
+  if (uk[0].type !== 'selectOneAnswer') throw new Error('Unexpected Question kind');
+  assert.equal(textValue(uk[0].content.question[0]), 'Що дорівнює?');
+  assert.equal(textValue(uk[0].content.answers.correct.correct), 'Два');
+  assert.equal(requests.length, 2, 'One manifest batch and one selected asset batch');
+  assert.deepEqual(requests[1], [
+    prefix + '/questions/' + questionId + '/base.json',
+    prefix + '/questions/' + questionId + '/uk.json',
+  ]);
+
+  const en = await loader.loadQuestions({ lessonId, language: 'en', ids: [questionId] });
+  assert.equal(en[0].type, 'selectOneAnswer');
+  if (en[0].type !== 'selectOneAnswer') throw new Error('Unexpected Question kind');
+  assert.equal(textValue(en[0].content.question[0]), 'What is equal?');
+  assert.equal(textValue(en[0].content.answers.incorrect.incorrect), 'Three');
+  assert.equal(requests.length, 3, 'Only requested locale is loaded after shared manifest');
 });
