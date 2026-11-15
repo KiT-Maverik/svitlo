@@ -5,6 +5,7 @@ export const identifyGeographicConsequencesOfLandUseChange_Skill_Data = defineSk
   id: '3ad5b492-16a3-4fd6-9b7b-97e4f84a388f',
   name: {
     en: 'Identify geographic consequences of land-use change',
+    it: "Individuare le conseguenze geografiche dei cambiamenti nell'uso del suolo",
     zh: '识别土地利用变化的地理后果',
     hi: 'भूमि उपयोग में बदलाव के भौगोलिक परिणाम पहचानना',
     es: 'Identificar consecuencias geográficas del cambio de uso del suelo',
@@ -39,6 +40,7 @@ export const identifyGeographicConsequencesOfLandUseChange_Skill_Data = defineSk
       'Explain plausible effects of paving, deforestation, or irrigation on runoff, habitat, or local conditions.',
     frontend: {
       en: 'Explain how paving, farming or clearing forests can change local environments.',
+      it: "Spiega come l'asfaltatura, l'agricoltura o il disboscamento possono modificare gli ambienti locali.",
       zh: '解释铺设硬化地面、耕作或清除森林如何改变当地环境。',
       hi: 'समझाएँ कि जमीन पक्की करना, खेती या जंगल काटना स्थानीय पर्यावरण को कैसे बदल सकते हैं।',
       es: 'Explica cómo pavimentar, cultivar o talar bosques puede cambiar el entorno local.',

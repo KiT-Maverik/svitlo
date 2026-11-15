@@ -11,6 +11,7 @@ export const evidenceAndInvestigation_SkillGroup_Data = defineSkillGroup({
   id: '9de41af8-a44a-409d-acee-238532f70e33',
   name: {
     en: 'Evidence and Investigation',
+    it: 'Prove e indagini',
     zh: '证据与调查',
     hi: 'साक्ष्य और जाँच',
     es: 'Pruebas e investigación',
@@ -50,6 +51,7 @@ export const evidenceAndInvestigation_SkillGroup_Data = defineSkillGroup({
       'Geographic claims are supported by observations located in space and time. Evidence may come from fieldwork, maps, images, measurements, or datasets and must be evaluated for limitations.',
     frontend: {
       en: 'Discover how to investigate spatial patterns using reliable, located observations.',
+      it: 'Scopri come studiare le distribuzioni spaziali usando osservazioni affidabili e georeferenziate.',
       zh: '了解如何使用可靠且具有位置信息的观测资料调查空间格局。',
       hi: 'जानें कि भरोसेमंद, स्थान से जुड़े अवलोकनों से स्थानिक प्रतिरूपों की जाँच कैसे करें।',
       es: 'Descubre cómo investigar patrones espaciales con observaciones fiables y bien localizadas.',
