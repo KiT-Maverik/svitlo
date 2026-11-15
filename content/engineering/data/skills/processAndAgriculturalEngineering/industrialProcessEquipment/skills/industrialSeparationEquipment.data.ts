@@ -5,6 +5,7 @@ export const industrialSeparationEquipment_Skill_Data = defineSkill({
   id: '9b4d991d-1794-4444-82f3-4d8a555499f4',
   name: {
     en: 'Industrial separation equipment',
+    it: 'Apparecchiature di separazione industriale',
     zh: '工业分离设备',
     hi: 'औद्योगिक पृथक्करण उपकरण',
     es: 'Equipos de separación industrial',
@@ -39,6 +40,7 @@ export const industrialSeparationEquipment_Skill_Data = defineSkill({
       'Distinguish practical roles for filtration, sedimentation, distillation or membrane systems based on which property enables separation.',
     frontend: {
       en: 'Recognize equipment that separates substances by physical properties.',
+      it: 'Riconosci le apparecchiature che separano le sostanze in base alle proprietà fisiche.',
       zh: '认识根据物理性质分离物质的设备。',
       hi: 'भौतिक गुणों के आधार पर पदार्थ अलग करने वाले उपकरणों को पहचानें।',
       es: 'Reconoce equipos que separan sustancias según sus propiedades físicas.',
