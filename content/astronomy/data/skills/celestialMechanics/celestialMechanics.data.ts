@@ -9,6 +9,7 @@ export const celestialMechanics_SkillDomain_Data = defineSkillDomain({
   id: 'beff441b-e494-47ba-84ed-10fa679fd636',
   title: {
     en: 'Celestial Mechanics',
+    it: 'Meccanica celeste',
     zh: '天体力学',
     hi: 'खगोलीय यांत्रिकी',
     es: 'Mecánica celeste',
@@ -48,6 +49,7 @@ export const celestialMechanics_SkillDomain_Data = defineSkillDomain({
       'This domain concerns how gravity and angular momentum govern orbital motion, rotation and mutual perturbations across planetary and stellar systems. Geometrical appearances arising from these motions are addressed separately when the observational phenomenon itself is the competency.',
     frontend: {
       en: 'Explore how gravity and motion shape the paths and rotations of objects in space.',
+      it: 'Esplora come gravità e movimento determinano orbite e rotazioni degli oggetti nello spazio.',
       zh: '探索引力和运动如何塑造太空中天体的运行轨道与自转。',
       hi: 'जानें कि गुरुत्वाकर्षण और गति अंतरिक्ष में पिंडों की कक्षाओं और घूर्णन को कैसे आकार देते हैं।',
       es: 'Explora cómo la gravedad y el movimiento determinan las órbitas y rotaciones de los cuerpos en el espacio.',

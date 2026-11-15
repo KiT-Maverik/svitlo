@@ -5,6 +5,7 @@ export const multimessengerEvidence_Skill_Data = defineSkill({
   id: '134a1b71-7e68-433b-87c0-e7163e549ffc',
   name: {
     en: 'Multimessenger Evidence',
+    it: 'Prove multimessaggero',
     qm: 'Bir qaç haberci delillerini birleştirüv',
     bn: 'বহু-বার্তাবাহক প্রমাণ',
     ur: 'کئی ذرائع سے حاصل شواہد',
@@ -39,6 +40,7 @@ export const multimessengerEvidence_Skill_Data = defineSkill({
       'Explain how electromagnetic light, neutrinos, gravitational waves and particles can offer complementary evidence about an astrophysical event.',
     frontend: {
       en: 'Combine light, gravitational waves and particle detections to investigate one cosmic event.',
+      it: 'Combina osservazioni della luce, delle onde gravitazionali e delle particelle per studiare un unico evento cosmico.',
       qm: 'Bir kosmik vaqianı araştırmaq içün yarıq, gravitatsion dalğalar ve zerrelerniñ közetüvlerini birleştiriñiz.',
       bn: 'একটি মহাজাগতিক ঘটনা জানতে আলো, মহাকর্ষীয় তরঙ্গ ও কণার পর্যবেক্ষণ একত্র করো।',
       ur: 'ایک ہی کائناتی واقعے کے مطالعے کے لیے روشنی، ثقلی لہروں اور ذرات کے مشاہدات یکجا کریں۔',

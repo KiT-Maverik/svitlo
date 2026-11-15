@@ -14,6 +14,7 @@ export const gravitationalMotion_SkillGroup_Data = defineSkillGroup({
   id: 'fa20bd50-b69d-4533-8320-395d75441a18',
   name: {
     en: 'Gravitational Motion',
+    it: 'Moto gravitazionale',
     zh: '引力运动',
     hi: 'गुरुत्वाकर्षण के कारण गति',
     es: 'Movimiento gravitacional',
@@ -56,6 +57,7 @@ export const gravitationalMotion_SkillGroup_Data = defineSkillGroup({
       'Gravitational interactions produce trajectories governed by mass, initial conditions and the reference frame in which motion is described.',
     frontend: {
       en: 'Discover how gravity governs the motion of celestial bodies.',
+      it: 'Scopri come la gravità governa il movimento dei corpi celesti.',
       zh: '了解引力如何支配天体的运动。',
       hi: 'जानें कि गुरुत्वाकर्षण खगोलीय पिंडों की गति को कैसे नियंत्रित करता है।',
       es: 'Descubre cómo la gravedad gobierna el movimiento de los cuerpos celestes.',
