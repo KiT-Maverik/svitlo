@@ -5,6 +5,7 @@ export const buildingEnvelopes_Skill_Data = defineSkill({
   id: 'faac5277-dce4-4710-9009-eab2403c63f2',
   name: {
     en: 'Building envelopes',
+    it: 'Involucri edilizi',
     zh: '建筑围护结构',
     hi: 'भवन का बाहरी आवरण',
     es: 'Envolventes de edificios',
@@ -38,6 +39,7 @@ export const buildingEnvelopes_Skill_Data = defineSkill({
     methodological: 'Relate roofs, walls and openings to control of moisture, weather and heat.',
     frontend: {
       en: 'Recognize how roofs, walls and windows protect a building from weather.',
+      it: 'Riconosci come tetti, pareti e finestre proteggono un edificio dagli agenti atmosferici.',
       zh: '认识屋顶、墙体和窗户如何保护建筑免受天气影响。',
       hi: 'जानें कि छत, दीवारें और खिड़कियाँ भवन को मौसम से कैसे बचाती हैं।',
       es: 'Reconoce cómo techos, muros y ventanas protegen un edificio de la intemperie.',
