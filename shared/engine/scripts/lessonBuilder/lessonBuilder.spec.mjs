@@ -8,6 +8,7 @@ import yaml from 'yaml';
 
 import { BuilderDiagnostic, loadFactoryRegistry, runOne, main } from './lessonBuilder.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
+import { lessonReviewStageSlugs, renderReviewDraft } from './reviewTemplate.mjs';
 
 const id = suffix => '00000000-0000-4000-8000-' + String(suffix).padStart(12, '0');
 const lessonId = id(12);
@@ -270,6 +271,40 @@ test('Carousel draft rejects unsupported children without writing anything', () 
     assert.equal(fs.existsSync(f.generated('sections/intro/gallery/index.ts')), false);
   }));
 
+test('Lesson Review draft and Studio stage names match the Engine camelCase contract', () => {
+  const source = fs.readFileSync(new URL('../../types/review.types.ts', import.meta.url), 'utf8');
+  const ast = ts.createSourceFile('review.types.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  const declaration = ast.statements.find(
+    statement => ts.isTypeAliasDeclaration(statement) && statement.name.text === 'LessonReviewStage',
+  );
+  assert.ok(declaration, 'Engine must declare the canonical LessonReviewStage union');
+  assert.ok(ts.isUnionTypeNode(declaration.type));
+  const stages = declaration.type.types.map(member => {
+    assert.ok(ts.isLiteralTypeNode(member) && ts.isStringLiteral(member.literal));
+    return member.literal.text;
+  });
+  assert.deepEqual(stages, lessonReviewStageSlugs);
+  assert.equal(new Set(stages).size, stages.length);
+  assert.ok(stages.every(stage => /^[a-z][a-zA-Z0-9]*$/.test(stage)));
+  assert.doesNotMatch(source, /lessonProductionStageToReviewStage|['"]experience-review['"]/);
+
+  const pending = renderReviewDraft();
+  const fields = [...pending.matchAll(/^    ([A-Za-z]+): \{ pr: , language: , \},$/gm)].map(match => match[1]);
+  assert.deepEqual(fields, stages);
+  assert.doesNotMatch(pending, /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
+  assert.match(pending, /^    locales: ,$/m);
+  assert.match(pending, /^    acceptance: ,$/m);
+  const filled = pending
+    .replace('const = {', 'const revision = {')
+    .replaceAll('pr: , language: ,', "pr: 10, language: 'en',")
+    .replace('    locales: ,', '    locales: 11,')
+    .replace('    acceptance: ,', '    acceptance: 12,');
+  assert.deepEqual(
+    ts.createSourceFile('review.ts', filled, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS).parseDiagnostics,
+    [],
+  );
+});
+
 test('review.ts starts with mandatory unfilled evidence and is not overwritten', () =>
   fixture(f => {
     const result = runOne(f.lesson, 'generate', f.root);
@@ -278,8 +313,11 @@ test('review.ts starts with mandatory unfilled evidence and is not overwritten',
     const pending = fs.readFileSync(reviewFile, 'utf8');
     assert.match(pending, /import type \{ LessonReview \} from '@svitlo\/engine\/build'/);
     assert.match(pending, /const = \{/);
-    assert.match(pending, /"experience-review": \{ pr: , language: , \}/);
-    assert.match(pending, /"methodology-review": \{ pr: , language: , \}/);
+    assert.match(pending, /experienceReview: \{ pr: , language: , \}/);
+    assert.match(pending, /methodologyReview: \{ pr: , language: , \}/);
+    assert.match(pending, /generateSources: \{ pr: , language: , \}/);
+    assert.match(pending, /resourceProduction: \{ pr: , language: , \}/);
+    assert.doesNotMatch(pending, /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
     assert.match(pending, /locales: ,/);
     assert.match(pending, /acceptance: ,/);
     assert.match(pending, /locales: \{\}/);

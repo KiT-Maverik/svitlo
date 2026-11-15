@@ -1,17 +1,18 @@
 /**
  * Draft-only Lesson Review template. The incomplete identifier and values
  * intentionally fail TypeScript until compiled Props and reviews are verified.
- * Keep these stages in sync with Engine's LessonReviewStage.
+ * Stage identifiers must match Engine's LessonReviewStage and Studio's
+ * Lesson Production tracker. All stage names use camelCase.
  */
 export const lessonReviewStageSlugs = [
   'methodology',
   'content',
-  'experience-review',
-  'methodology-review',
+  'experienceReview',
+  'methodologyReview',
   'questions',
   'flashcards',
-  'generate-sources',
-  'resource-production',
+  'generateSources',
+  'resourceProduction',
   'localization',
   'validation',
 ];
@@ -24,9 +25,7 @@ export function renderReviewDraft() {
     '// Complete PR numbers and review languages only after confirming evidence for that revision.',
     'const = {',
     '  ai: {',
-    '    stages: {',
-    ...lessonReviewStageSlugs.map(stage => '      ' + JSON.stringify(stage) + ': { pr: , language: , },'),
-    '    },',
+    ...lessonReviewStageSlugs.map(stage => '    ' + stage + ': { pr: , language: , },'),
     '    locales: ,',
     '  },',
     '  human: {',
