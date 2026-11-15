@@ -5,6 +5,7 @@ export const retrievalPractice_Skill_Data = defineSkill({
   id: '747bde95-c49e-4f34-b9df-8bc12b7fe822',
   name: {
     en: 'Retrieval Practice',
+    it: 'Pratica di recupero dalla memoria',
     zh: '提取练习',
     hi: 'पुनःस्मरण अभ्यास',
     es: 'Práctica de recuperación',
@@ -38,6 +39,7 @@ export const retrievalPractice_Skill_Data = defineSkill({
     methodological: 'Explain how attempting to remember influences later retention differently from rereading.',
     frontend: {
       en: 'Practice retrieving information to strengthen future memory.',
+      it: 'Esercitati a richiamare informazioni per rafforzarne il ricordo futuro.',
       zh: '练习主动回忆信息，以增强未来的记忆保持。',
       hi: 'भविष्य में बेहतर याद रखने के लिए स्मृति से जानकारी याद करने का अभ्यास करें।',
       es: 'Practica recuperar información de memoria para recordarla mejor más adelante.',

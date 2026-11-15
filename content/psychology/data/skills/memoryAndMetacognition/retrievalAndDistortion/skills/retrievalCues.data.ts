@@ -5,6 +5,7 @@ export const retrievalCues_Skill_Data = defineSkill({
   id: '68c14748-0ff2-46cc-a359-6c0f08c58aef',
   name: {
     en: 'Retrieval Cues',
+    it: 'Indizi di recupero',
     zh: '提取线索',
     hi: 'पुनःस्मरण संकेत',
     es: 'Pistas de recuperación',
@@ -38,6 +39,7 @@ export const retrievalCues_Skill_Data = defineSkill({
     methodological: 'Explain how contextual and semantic prompts can facilitate access to previously encoded material.',
     frontend: {
       en: 'Use contextual clues to help retrieve stored information.',
+      it: 'Usa indizi contestuali per facilitare il recupero delle informazioni memorizzate.',
       zh: '利用情境线索帮助提取已储存的信息。',
       hi: 'पहले से याद रखी जानकारी वापस लाने के लिए संदर्भ-संबंधी संकेतों का उपयोग करें।',
       es: 'Usa pistas del contexto para recuperar información almacenada.',

@@ -5,6 +5,7 @@ export const misinformationEffects_Skill_Data = defineSkill({
   id: 'be41d3ed-d0b9-4a25-90df-7e97ecd1b507',
   name: {
     en: 'Misinformation Effects',
+    it: 'Effetti della disinformazione sui ricordi',
     zh: '错误信息效应',
     hi: 'भ्रामक सूचना का प्रभाव',
     es: 'Efectos de la desinformación en la memoria',
@@ -38,6 +39,7 @@ export const misinformationEffects_Skill_Data = defineSkill({
     methodological: 'Analyze how post-event suggestions can alter later reports of remembered events.',
     frontend: {
       en: 'Explore how misleading information can change later recollection.',
+      it: 'Esplora come informazioni fuorvianti possano modificare i ricordi successivi.',
       zh: '探索误导性信息如何改变人们之后的回忆。',
       hi: 'जानें कि भ्रामक जानकारी बाद में याद आने वाली बातों को कैसे बदल सकती है।',
       es: 'Explora cómo la información engañosa puede cambiar los recuerdos posteriores.',

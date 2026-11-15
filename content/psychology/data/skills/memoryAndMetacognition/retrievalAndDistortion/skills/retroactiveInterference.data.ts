@@ -5,6 +5,7 @@ export const retroactiveInterference_Skill_Data = defineSkill({
   id: 'ef315a66-ce3c-4d7e-9c0c-813c1dd2182d',
   name: {
     en: 'Retroactive Interference',
+    it: 'Interferenza retroattiva',
     zh: '倒摄干扰',
     hi: 'पश्चप्रभावी हस्तक्षेप',
     es: 'Interferencia retroactiva',
@@ -38,6 +39,7 @@ export const retroactiveInterference_Skill_Data = defineSkill({
     methodological: 'Explain how subsequent learning may obstruct access to previously acquired information.',
     frontend: {
       en: 'Recognize how new information can interfere with older memories.',
+      it: 'Riconosci come le nuove informazioni possano interferire con i ricordi precedenti.',
       zh: '识别新学到的信息如何干扰较早的记忆。',
       hi: 'पहचानें कि नई जानकारी पुरानी यादों को याद करने में कैसे बाधा डाल सकती है।',
       es: 'Reconoce cómo la información nueva puede interferir con recuerdos anteriores.',

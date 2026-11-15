@@ -5,6 +5,7 @@ export const strategySelectionForLearning_Skill_Data = defineSkill({
   id: '861d55fb-d22a-4cb9-9671-c4e99754a569',
   name: {
     en: 'Strategy Selection for Learning',
+    it: 'Scelta delle strategie di apprendimento',
     zh: '学习策略的选择',
     hi: 'सीखने की रणनीतियों का चयन',
     es: 'Selección de estrategias de aprendizaje',
@@ -39,6 +40,7 @@ export const strategySelectionForLearning_Skill_Data = defineSkill({
       'Compare spacing, retrieval, elaboration, and organization for the demands of a given task rather than declaring a universal technique.',
     frontend: {
       en: 'Select learning strategies according to the skill, evidence and context.',
+      it: 'Scegli le strategie di apprendimento in base all\'abilità da acquisire, alle evidenze e al contesto.',
       zh: '根据要学的技能、证据和具体情境选择学习方法。',
       hi: 'सीखने वाले कौशल, प्रमाण और परिस्थिति के अनुसार अध्ययन का तरीका चुनें।',
       es: 'Elige estrategias según la habilidad, la evidencia y el contexto.',
