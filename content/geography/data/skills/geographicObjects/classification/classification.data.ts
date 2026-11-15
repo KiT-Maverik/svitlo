@@ -13,6 +13,7 @@ export const classification_SkillGroup_Data = defineSkillGroup({
   id: '0505341b-a757-427e-bf87-c375731353b4',
   name: {
     en: 'Classification',
+    it: 'Classificazione',
     zh: '分类',
     hi: 'वर्गीकरण',
     es: 'Clasificación',
@@ -54,6 +55,7 @@ export const classification_SkillGroup_Data = defineSkillGroup({
       "A geographic object is a distinguishable natural or human-made feature or place, while regions group places by an explicit criterion. Classification uses defining properties, not just memorized names; a region's boundary may depend on the chosen rule.",
     frontend: {
       en: 'Discover how features and regions are classified by their defining properties.',
+      it: 'Scopri come gli elementi e le regioni geografiche vengono classificati in base alle loro proprietà distintive.',
       zh: '了解如何根据地理事物和区域的关键特征进行分类。',
       hi: 'जानें कि भौगोलिक वस्तुओं और क्षेत्रों को उनकी विशेषताओं से कैसे वर्गीकृत किया जाता है।',
       es: 'Descubre cómo clasificar elementos y regiones según sus propiedades definitorias.',
