@@ -5,6 +5,7 @@ export const transformerUse_Skill_Data = defineSkill({
   id: '997562e6-d045-495a-ae33-a2e824b838cb',
   name: {
     en: 'Transformer use',
+    it: 'Utilizzo dei trasformatori',
     zh: '变压器的用途',
     hi: 'ट्रांसफॉर्मर का उपयोग',
     es: 'Uso de transformadores',
@@ -38,6 +39,7 @@ export const transformerUse_Skill_Data = defineSkill({
     methodological: 'Relate changing AC voltage levels to efficient transfer and equipment requirements.',
     frontend: {
       en: 'Understand why transformers change voltage in power networks.',
+      it: 'Comprendi perché i trasformatori modificano la tensione nelle reti elettriche.',
       zh: '理解电网为何使用变压器改变电压。',
       hi: 'समझें कि बिजली के नेटवर्क में ट्रांसफॉर्मर वोल्टेज क्यों बदलते हैं।',
       es: 'Comprende por qué los transformadores cambian la tensión en las redes eléctricas.',
