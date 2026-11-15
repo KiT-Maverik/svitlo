@@ -11,6 +11,7 @@ export const subtractSelf_Skill_Data = defineSkill({
     ka: 'გამოკლება — იგივე რიცხვი',
     kk: 'Азайту — бірдей сан',
     en: 'Subtraction — Same number',
+    it: 'Sottrazione — Un numero meno sé stesso',
     qm: 'Çıqaruv — aynı sayı',
     zh: '减法 — 同一个数',
     hi: 'घटाव — वही संख्या',
@@ -39,6 +40,7 @@ export const subtractSelf_Skill_Data = defineSkill({
       'For every number a, a - a = 0: removing an amount equal to the initial quantity leaves no remainder. This is consistent with the relationship between a number and its additive inverse.',
     frontend: {
       en: 'When you subtract a number from itself, nothing remains, so the difference is zero.',
+      it: 'Quando sottrai un numero da sé stesso non rimane nulla, quindi la differenza è zero.',
       qm: 'Bir sayıdan onıñ özüni çıqarsañ, iç bir şey qalmay ve farq sıfırğa teñ ola.',
       zh: '一个数减去它自己，剩下零，所以差是零。',
       hi: 'जब किसी संख्या में से वही संख्या घटाते हो, तो कुछ नहीं बचता और अंतर शून्य होता है।',
