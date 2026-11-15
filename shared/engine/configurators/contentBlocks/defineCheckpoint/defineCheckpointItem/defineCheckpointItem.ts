@@ -1,8 +1,8 @@
 import type { ConfiguratorChild } from '../../../../types/configuratorChild';
-import type { DeepPartial, LanguageScope, ChildSupporting, PublicationLanguageOptions } from '#types';
+import type { DeepPartial, LanguageScope, ChildSupporting, ChildrenSupporting, PublicationLanguageOptions } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import { resolvePublicationLanguages, validateRequestedPublication } from '../../../_shared__configurators';
-import type { ContentBlock_CheckpointAnswer_Configurator } from '../defineCheckpointAnswer';
+import type { ContentBlock_CheckpointAnswer_Configurator, Checkpoint_Allowed_Configurator } from '../defineCheckpointAnswer';
 import {
   checkpointItem_Config_Schema, checkpointItem_Props_Schema,
   type CheckpointItem_Overrides, type ContentBlock_CheckpointItem_Config,
@@ -113,8 +113,10 @@ export const defineCheckpointItem = <
     return output;
   };
 
-  const overrides = (
-    patch: CheckpointItem_Overrides<Answer>, options: PublicationLanguageOptions<Languages>,
+  const overrides = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
+    patch: CheckpointItem_Overrides<Answer, Added> & {
+      answer?: { content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> } };
+    }, options: PublicationLanguageOptions<Languages>,
   ): ItemPublication<ItemOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
