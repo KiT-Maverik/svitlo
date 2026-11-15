@@ -13,7 +13,7 @@ import type { ContentBlock_Markdown_Configurator, ContentBlock_Markdown_Props, C
 import { scene_Props_Schema } from '../../defineScene/defineScene.schemas';
 import type { ContentBlock_Scene_Configurator, ContentBlock_Scene_Props, ContentBlock_Scene_PropsBase } from '../../defineScene';
 import { subtitles_Props_Schema } from '../../defineSubtitles/defineSubtitles.schemas';
-import type { ContentBlock_Subtitles_Configurator, ContentBlock_Subtitles_Props, ContentBlock_Subtitles_PropsBase } from '../../defineSubtitles';
+import type { ContentBlock_Subtitles_Configurator, ContentBlock_Subtitles_Props } from '../../defineSubtitles';
 import { text_Props_Schema } from '../../defineText/defineText.schemas';
 import type { ContentBlock_Text_Configurator, ContentBlock_Text_Props, ContentBlock_Text_PropsBase } from '../../defineText';
 import { video_Props_Schema } from '../../defineVideo/defineVideo.schemas';
@@ -37,7 +37,7 @@ export type Checkpoint_Allowed_PropsBase =
   | ContentBlock_Audio_PropsBase | ContentBlock_Carousel_PropsBase
   | ContentBlock_Code_PropsBase | ContentBlock_Image_PropsBase
   | ContentBlock_Markdown_PropsBase | ContentBlock_Scene_PropsBase
-  | ContentBlock_Subtitles_PropsBase | ContentBlock_Text_PropsBase
+  | ReturnType<ContentBlock_Subtitles_Configurator['build']['props']>['base'] | ContentBlock_Text_PropsBase
   | ContentBlock_Video_PropsBase | ContentBlock_Youtube_PropsBase;
 
 const answerBase = identityBase_Schema.extend({ type: z.literal('checkpointAnswer') });
