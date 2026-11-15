@@ -164,12 +164,12 @@ export function renderUiKitComponentReference(options) {
   return lines.join('\n') + '\n';
 }
 
-export function generateUiKitLocaleReviewArtifacts({ root, output, languages, manifest, saveManifest, allowMissing = false }) {
+export function generateUiKitLocaleReviewArtifacts({ root, output, languages, manifest, saveManifest, allowMissing = false, components = uiKitComponents(root) }) {
   if (path.resolve(output) !== path.resolve(root, '.agent-ci-artifacts')) {
     throw new Error('UI Kit references must use the PR-scoped .agent-ci-artifacts directory');
   }
   const stats = { generated: 0, failures: 0 };
-  for (const component of uiKitComponents(root)) {
+  for (const component of components) {
     for (const locale of languages) {
       try {
         const relative = 'ui-kit/' + component + '/' + locale + '.md';

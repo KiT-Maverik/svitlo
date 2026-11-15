@@ -378,3 +378,10 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     }
   });
 });
+
+it('requires an exact Lesson UUID for read-only language inventory', () => {
+  const args = parseArguments(['--package', 'content/playground', '--lesson', lessonId, '--list-locales']);
+  assert.equal(args.listLocales, true);
+  assert.throws(() => parseArguments(['--package', 'content/playground', '--list-locales']), /Usage/);
+  assert.throws(() => parseArguments(['--package', 'content/playground', '--lesson', lessonId, '--locale', 'it', '--list-locales']), /Usage/);
+});

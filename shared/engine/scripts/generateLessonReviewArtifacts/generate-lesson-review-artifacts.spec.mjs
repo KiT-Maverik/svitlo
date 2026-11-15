@@ -26,6 +26,7 @@ function createGenerator(root) {
     `
 const args = process.argv.slice(2);
 const lookup = key => args[args.indexOf(key) + 1];
+if (args.includes('--list-locales')) { process.stdout.write(JSON.stringify(['en', 'uk'])); process.exit(0); }
 if (lookup('--locale') === 'qm') { console.error('No qm translation'); process.exit(2); }
 process.stdout.write('# ' + lookup('--lesson') + ': ' + lookup('--locale') + '\\n');
 `,
@@ -143,4 +144,37 @@ test('rejects symlinked lesson directories during discovery', () =>
     const group = path.join(root, 'content/playground/data/lessons/c');
     fs.symlinkSync(path.join(group, 'd3048d21-8690-5255-b62c-984c69ac272c'), path.join(group, 'linkedLesson'));
     assert.equal(discoverLessons(root).length, 1);
+  }));
+
+test('scoped Lesson generation visits only the selected textbook and locale', () =>
+  setup(root => {
+    createLesson(root, 'playground');
+    createLesson(root, 'math', '00000000-0000-5000-8000-000000000003', 'numbers');
+    createGenerator(root);
+    const output = path.join(root, '.agent-ci-artifacts');
+    fs.mkdirSync(output, { recursive: true });
+    const manifest = { generated: [], failures: [] };
+    const result = generateLessonReviewArtifacts({
+      root, output, languages: ['it'], packageName: 'content/math',
+      manifest, saveManifest: () => {},
+    });
+    assert.deepEqual(result, { discoveredLessons: 1, generated: 1, failures: 0 });
+    assert.deepEqual(manifest.generated.map(x => x.path),
+      ['.agent-ci-artifacts/lessons/math/3/00000000-0000-5000-8000-000000000003/it.md']);
+    assert.equal(fs.existsSync(path.join(output, 'lessons/playground')), false);
+  }));
+
+test('omitting locale enumerates only the languages declared by a scoped Lesson', () =>
+  setup(root => {
+    createLesson(root, 'playground');
+    createGenerator(root);
+    const output = path.join(root, '.agent-ci-artifacts');
+    fs.mkdirSync(output, { recursive: true });
+    const manifest = { generated: [], failures: [] };
+    const result = generateLessonReviewArtifacts({
+      root, output, languages: null, packageName: 'content/playground',
+      supportedLanguages: ['en', 'uk', 'it'], manifest, saveManifest: () => {},
+    });
+    assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 0 });
+    assert.deepEqual(manifest.generated.map(x => x.locale), ['en', 'uk']);
   }));
