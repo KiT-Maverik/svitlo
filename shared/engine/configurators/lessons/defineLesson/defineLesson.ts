@@ -218,7 +218,12 @@ export function defineLesson<
         ? Questions[Kind] & ChildrenSupporting<Languages, Questions[Kind]>
         : Questions[Kind];
     };
-  },
+  } & ([Extract<Sections[keyof Sections], { type: 'quiz' }>] extends [never]
+    ? {}
+    : { questions: Questions }) &
+    ([Extract<Sections[keyof Sections], { type: 'flashcards' }>] extends [never]
+      ? {}
+      : { flashcards: NonNullable<Lesson_Config['flashcards']> }),
 ) {
   validate(config as unknown as Lesson_Config);
   const metadataSchema = lesson_Config_Schema.omit({
