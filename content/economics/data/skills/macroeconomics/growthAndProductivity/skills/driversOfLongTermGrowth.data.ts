@@ -5,6 +5,7 @@ export const driversOfLongTermGrowth_Skill_Data = defineSkill({
   id: '38f1bd83-8f70-4c89-b3d7-0af56ca6cb9e',
   name: {
     en: 'Чинники довгострокового зростання',
+    it: 'Fattori della crescita di lungo periodo',
     zh: '长期增长的驱动因素',
     hi: 'दीर्घकालीन वृद्धि के कारक',
     es: 'Motores del crecimiento a largo plazo',
@@ -39,6 +40,7 @@ export const driversOfLongTermGrowth_Skill_Data = defineSkill({
       'Explain how capital accumulation, knowledge, demographics, and institutions contribute to productive capacity.',
     frontend: {
       en: 'Explore how skills, technology, investment, and institutions support growth.',
+      it: 'Esplora come competenze, tecnologia, investimenti e istituzioni favoriscono la crescita.',
       zh: '探索技能、技术、投资和制度如何推动增长。',
       hi: 'जानें कि कौशल, तकनीक, निवेश और संस्थाएँ वृद्धि में कैसे मदद करती हैं।',
       es: 'Explora cómo capacidades, tecnología, inversión e instituciones apoyan el crecimiento.',

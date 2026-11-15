@@ -12,6 +12,7 @@ export const nationalAccounts_SkillGroup_Data = defineSkillGroup({
   id: 'abf7a917-66db-4522-b08e-1fafc957b05a',
   name: {
     en: 'Національні рахунки',
+    it: 'Contabilità nazionale',
     zh: '国民经济核算',
     hi: 'राष्ट्रीय आय लेखांकन',
     es: 'Cuentas nacionales',
@@ -52,6 +53,7 @@ export const nationalAccounts_SkillGroup_Data = defineSkillGroup({
       'Aggregate economic activity is measured using consistent categories of production, income, and expenditure.',
     frontend: {
       en: 'Learn how economists measure overall economic activity.',
+      it: "Scopri come gli economisti misurano l'attività economica complessiva.",
       zh: '了解经济学家如何衡量整体经济活动。',
       hi: 'जानें कि अर्थशास्त्री समग्र आर्थिक गतिविधि को कैसे मापते हैं।',
       es: 'Descubre cómo miden los economistas la actividad económica total.',
