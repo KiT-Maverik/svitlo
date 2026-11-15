@@ -17,7 +17,7 @@ import {
   validateOrderedKeys,
 } from '../../_shared__configurators';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
-import { defineFlashcardSide, type FlashcardSide_Configurator } from '../defineFlashcardSide';
+import { defineFlashcardSide, flashcardSideConfigurator_Schema, type FlashcardSide_Configurator } from '../defineFlashcardSide';
 import {
   flashcard_Config_Schema,
   flashcard_Props_Schema,
@@ -95,8 +95,9 @@ const validate = (config: Flashcard_Config): void => {
     const collection = config.content?.[side];
     if (!collection && side === 'hint') continue;
     if (!collection) throw new Error('Flashcard content.' + side + ' is required');
-    if (collection.kind !== 'flashcardSide') throw new Error('Flashcard side must be a Configurator: ' + side);
-    collection.validate(side !== 'hint');
+    if (!flashcardSideConfigurator_Schema.safeParse(collection).success)
+      throw new Error('Flashcard side must be a Configurator: ' + side);
+    (collection as FlashcardSide_Configurator).validate(side !== 'hint');
   }
   for (const name of ['flags', 'relationships'] as const) {
     const collection = config.parameters[name];
