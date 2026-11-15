@@ -10,6 +10,7 @@ export const fractions_SkillDomain_Data = defineSkillDomain({
   id: 'f41a81b9-b6ba-46db-94a6-b687a239e6b9',
   title: {
     en: 'Fractions',
+    it: 'Frazioni',
     qm: 'Kesirler',
     lt: 'Trupmenos',
     lv: 'Daļas',
@@ -53,6 +54,7 @@ export const fractions_SkillDomain_Data = defineSkillDomain({
       'Fractions express part-to-whole relationships and positions on a number line. Their properties involve equal parts, numerator and denominator, equivalence, comparisons, and arithmetic operations; specific models and computational ranges depend on the learning context.',
     frontend: {
       en: 'Fractions show parts of a whole and positions on a number line. Learn how to represent, compare, and calculate with them.',
+      it: 'Le frazioni rappresentano parti di un intero e posizioni sulla retta numerica. Impara a rappresentarle, confrontarle e calcolare con esse.',
       qm: 'Kesirler bütünniñ parçalarını ve sayı sızığındaki yerlerni köstere. Olarnı tasvir etmekni, qıyaslavnı ve olarnen esaplavnı ögren.',
       zh: '分数表示整体的一部分，也能表示数轴上的位置。学习怎样表示、比较分数以及进行分数运算。',
       hi: 'भिन्न पूरे के भाग और संख्या रेखा पर स्थान दिखाते हैं। इन्हें लिखना, तुलना करना और इनसे गणना करना सीखें।',
