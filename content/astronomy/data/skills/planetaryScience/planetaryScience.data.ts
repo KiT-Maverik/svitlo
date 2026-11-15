@@ -10,6 +10,7 @@ export const planetaryScience_SkillDomain_Data = defineSkillDomain({
   id: 'adbaa859-119a-45d7-a929-9de4d468542b',
   title: {
     en: 'Planetary Science',
+    it: 'Scienze planetarie',
     zh: '行星科学',
     hi: 'ग्रह विज्ञान',
     es: 'Ciencia planetaria',
@@ -50,6 +51,7 @@ export const planetaryScience_SkillDomain_Data = defineSkillDomain({
       'Planetary science compares worlds by their surfaces, interiors, atmospheres and volatile materials. It uses Earth as one comparative case, but its categories also apply to moons, dwarf planets and worlds beyond the Solar System.',
     frontend: {
       en: 'Investigate what worlds are made of and how their surfaces, atmospheres and interiors work.',
+      it: 'Indaga di cosa sono fatti i mondi e come funzionano le loro superfici, atmosfere e strutture interne.',
       zh: '研究不同天体由什么组成，以及它们的表面、大气和内部如何运作。',
       hi: 'जानें कि विभिन्न ग्रहों और चंद्रमाओं में क्या पदार्थ हैं और उनकी सतहें, वायुमंडल और आंतरिक संरचनाएँ कैसे काम करती हैं।',
       es: 'Investiga de qué están hechos los mundos y cómo funcionan sus superficies, atmósferas e interiores.',
