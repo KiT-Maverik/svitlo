@@ -15,10 +15,10 @@ config:
       en: 'Which Operation Fits the Story?'
   section:
     items:
-      section1WhatHappensToTheCollection:
+      modelJoinAndRemoveStories:
         config:
           id: 'a8f5a774-3819-434d-965d-720a271771ab'
-          slug: 'section1WhatHappensToTheCollection'
+          slug: 'modelJoinAndRemoveStories'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'What happens to the collection?'
           content:
             items:
-              text1:
+              countAddedShells:
                 config:
                   id: '4fba3639-2f38-44ec-b655-097bb29b834e'
-                  slug: 'text1'
+                  slug: 'countAddedShells'
                   type: 'text'
                   params: {}
                   locale:
@@ -93,25 +93,25 @@ config:
                     The generic Playground renderer supports Scene resources, but this specific Scene is unimplemented. Coding Agent must validate actual context, semantic locales, WCAG 2.2 AA and tests before release. No invented API, Question correctness model, mastery record or Note persistence is authorized.
                   purpose: 'Proposed interactive Scene for What happens to the collection?'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              countRemovedCards:
                 config:
                   id: '4cba3180-3238-49a5-b755-0b0eb19b81bb'
-                  slug: 'text2'
+                  slug: 'countRemovedCards'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Now there are **12 cards** and **5 are given away**. What changes?'
-              markdown3:
+              explainOperationFromChange:
                 config:
                   id: 'decb8449-2a0d-4e70-8f0f-fb8338fce852'
-                  slug: 'markdown3'
+                  slug: 'explainOperationFromChange'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'When you know the parts being joined, addition finds the whole. When some of a known collection leaves, subtraction finds what remains.'
-            order: ['text1', 'storyRelationshipSwitch', 'text2', 'markdown3']
+            order: ['countAddedShells', 'storyRelationshipSwitch', 'countRemovedCards', 'explainOperationFromChange']
         production:
           purpose: 'What happens to the collection?'
           pedagogicalIntent: |
@@ -125,10 +125,10 @@ config:
             4. **`markdown`:** “When you know the parts being joined, addition finds the whole. When some of a known collection leaves, subtraction finds what remains.”
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2TheSameWordCanTellDifferentStories:
+      interpretRelativeComparisons:
         config:
           id: '2764dbe0-3649-49a9-9f69-b1ce16bc14cf'
-          slug: 'section2TheSameWordCanTellDifferentStories'
+          slug: 'interpretRelativeComparisons'
           type: 'content'
           params: {}
           locale:
@@ -138,10 +138,10 @@ config:
               en: 'The same word can tell different stories'
           content:
             items:
-              text1:
+              findSamWithMoreBeads:
                 config:
                   id: '55d3fd55-62a7-4ad8-9acf-249fa9e7a112'
-                  slug: 'text1'
+                  slug: 'findSamWithMoreBeads'
                   type: 'text'
                   params: {}
                   locale:
@@ -203,25 +203,25 @@ config:
                     The generic Playground renderer supports Scene resources, but this specific Scene is unimplemented. Coding Agent must validate actual context, semantic locales, WCAG 2.2 AA and tests before release. No invented API, Question correctness model, mastery record or Note persistence is authorized.
                   purpose: 'Proposed interactive Scene for The same word can tell different stories'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              reverseWhoHasMore:
                 config:
                   id: '52d3f89c-65a7-4f91-9bcf-2632a8e79f7f'
-                  slug: 'text2'
+                  slug: 'reverseWhoHasMore'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Now change **who** has more: Ava has **9 beads** and Ava has **4 more than Sam**. How many does **Sam** have? The word ‘more’ stayed, but which person is the larger group?'
-              markdown3:
+              reasonAboutUnknownRoles:
                 config:
                   id: '3b95f575-7ec1-48fc-936b-8f674df402e6'
-                  slug: 'markdown3'
+                  slug: 'reasonAboutUnknownRoles'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "Don't ask whether the story says ‘more’ or ‘less’. Ask: **Who has what? Which amount is unknown?**"
-            order: ['text1', 'storyRelationshipSwitch', 'text2', 'markdown3']
+            order: ['findSamWithMoreBeads', 'storyRelationshipSwitch', 'reverseWhoHasMore', 'reasonAboutUnknownRoles']
         production:
           purpose: 'The same word can tell different stories'
           pedagogicalIntent: |
@@ -236,10 +236,10 @@ config:
             5. **`markdown`:** “Don't ask whether the story says ‘more’ or ‘less’. Ask: **Who has what? Which amount is unknown?**”
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3ChooseFirstThenCalculate:
+      selectOperationBeforeComputing:
         config:
           id: 'b7882ba1-e969-4668-ad9b-fa3f8d4806b6'
-          slug: 'section3ChooseFirstThenCalculate'
+          slug: 'selectOperationBeforeComputing'
           type: 'content'
           params: {}
           locale:
@@ -249,10 +249,10 @@ config:
               en: 'Choose first, then calculate'
           content:
             items:
-              text1:
+              classifyMarkerPartition:
                 config:
                   id: '7d9a9570-1dbe-4d9d-88b1-ec0274331667'
-                  slug: 'text1'
+                  slug: 'classifyMarkerPartition'
                   type: 'text'
                   params: {}
                   locale:
@@ -314,16 +314,16 @@ config:
                     The generic Playground renderer supports Scene resources, but this specific Scene is unimplemented. Coding Agent must validate actual context, semantic locales, WCAG 2.2 AA and tests before release. No invented API, Question correctness model, mastery record or Note persistence is authorized.
                   purpose: 'Proposed interactive Scene for Choose first, then calculate'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              justifyResult:
                 config:
                   id: '809a9a29-1abe-48e4-87b1-ea6f753317fa'
-                  slug: 'text2'
+                  slug: 'justifyResult'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'What makes the answer reasonable?'
-            order: ['text1', 'storyRelationshipSwitch', 'text2']
+            order: ['classifyMarkerPartition', 'storyRelationshipSwitch', 'justifyResult']
         production:
           purpose: 'Choose first, then calculate'
           pedagogicalIntent: |
@@ -336,10 +336,10 @@ config:
             3. **`text`:** “What makes the answer reasonable?” Nine and six total fifteen and belong to the same whole.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4IndependentTransferTheWordingTrap:
+      solveInverseComparisonTransfer:
         config:
           id: '1d19b7a5-f7de-45fe-8222-e4a3ae5e887c'
-          slug: 'section4IndependentTransferTheWordingTrap'
+          slug: 'solveInverseComparisonTransfer'
           type: 'content'
           params: {}
           locale:
@@ -349,10 +349,10 @@ config:
               en: 'Independent transfer: the wording trap'
           content:
             items:
-              text1:
+              findTomFewerPencils:
                 config:
                   id: 'b7bf2344-eedb-408f-8a8c-2ca669fb40e1'
-                  slug: 'text1'
+                  slug: 'findTomFewerPencils'
                   type: 'text'
                   params: {}
                   locale:
@@ -414,25 +414,25 @@ config:
                     The generic Playground renderer supports Scene resources, but this specific Scene is unimplemented. Coding Agent must validate actual context, semantic locales, WCAG 2.2 AA and tests before release. No invented API, Question correctness model, mastery record or Note persistence is authorized.
                   purpose: 'Proposed interactive Scene for Independent transfer: the wording trap'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              checkWhoHasMore:
                 config:
                   id: 'babf27fd-efdb-4222-898c-2b1366fb3c28'
-                  slug: 'text2'
+                  slug: 'checkWhoHasMore'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'If Tom had fourteen, Tom would have more than Lina, but the story says Lina has more.'
-              markdown3:
+              reviewQuantityRoles:
                 config:
                   id: '6daf1518-840f-4e77-b6cd-fb3a6f0beb81'
-                  slug: 'markdown3'
+                  slug: 'reviewQuantityRoles'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '**Recall:** Follow the quantities and their roles; the same word can accompany different operations.'
-            order: ['text1', 'storyRelationshipSwitch', 'text2', 'markdown3']
+            order: ['findTomFewerPencils', 'storyRelationshipSwitch', 'checkWhoHasMore', 'reviewQuantityRoles']
         production:
           purpose: 'Independent transfer: the wording trap'
           pedagogicalIntent: |
@@ -448,10 +448,10 @@ config:
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
     order:
       [
-        'section1WhatHappensToTheCollection',
-        'section2TheSameWordCanTellDifferentStories',
-        'section3ChooseFirstThenCalculate',
-        'section4IndependentTransferTheWordingTrap',
+        'modelJoinAndRemoveStories',
+        'interpretRelativeComparisons',
+        'selectOperationBeforeComputing',
+        'solveInverseComparisonTransfer',
       ]
   flashcards:
     items: {}
