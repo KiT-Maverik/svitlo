@@ -5,6 +5,7 @@ export const programDrumMachinePatterns_Skill_Data = defineSkill({
   id: 'fe97f868-5b14-477d-80a3-de6b8923827a',
   name: {
     en: 'Program Drum-Machine Patterns',
+    it: 'Programmare pattern di drum machine',
     zh: '编排鼓机节奏型',
     hi: 'ड्रम मशीन के पैटर्न प्रोग्राम करें',
     es: 'Programar patrones de caja de ritmos',
@@ -38,6 +39,7 @@ export const programDrumMachinePatterns_Skill_Data = defineSkill({
     methodological: 'Place percussion events into time positions to produce a repeatable beat.',
     frontend: {
       en: 'Place drum sounds on a time grid to make a repeating beat.',
+      it: 'Posiziona i suoni di batteria su una griglia temporale per creare una pulsazione ripetuta.',
       zh: '将鼓声放在时间网格上，编排成重复的节拍。',
       hi: 'दोहराई जाने वाली ताल बनाने के लिए ड्रम ध्वनियों को समय ग्रिड पर रखें।',
       es: 'Coloca sonidos de batería en una cuadrícula temporal para crear un ritmo repetitivo.',
