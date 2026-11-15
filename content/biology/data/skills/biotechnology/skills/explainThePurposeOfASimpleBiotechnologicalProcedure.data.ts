@@ -5,6 +5,7 @@ export const explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data = de
   id: 'daa3c9f3-2de4-4850-a467-349aecb9b3f6',
   name: {
     en: 'Explain the Purpose of a Simple Biotechnological Procedure',
+    it: "Spiegare lo scopo di una semplice procedura biotecnologica",
     zh: '解释简单生物技术操作的目的',
     hi: 'एक सरल जैव प्रौद्योगिकीय प्रक्रिया का उद्देश्य समझाना',
     es: 'Explicar el propósito de un procedimiento biotecnológico sencillo',
@@ -39,6 +40,7 @@ export const explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data = de
       'Relate organisms, cells, or enzymes used in a procedure to a specific product or expected transformation.',
     frontend: {
       en: 'Connect the organisms or enzymes in a procedure with its intended product.',
+    it: "Collega gli organismi o gli enzimi impiegati in una procedura al prodotto che si intende ottenere.",
       zh: '将操作中使用的生物或酶与预期产品联系起来。',
       hi: 'प्रक्रिया में इस्तेमाल जीवों या एंजाइमों को उससे बनने वाले इच्छित उत्पाद से जोड़ें।',
       es: 'Relaciona los organismos o las enzimas utilizados en un procedimiento con el producto que se busca obtener.',
