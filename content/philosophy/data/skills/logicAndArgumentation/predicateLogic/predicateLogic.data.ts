@@ -14,6 +14,7 @@ export const predicateLogic_SkillGroup_Data = defineSkillGroup({
   id: '4f6a7013-0bd1-4923-8061-987248079eb3',
   name: {
     en: 'Predicate Logic',
+    it: 'Logica dei predicati',
     zh: '谓词逻辑',
     hi: 'विधेय तर्कशास्त्र',
     es: 'Lógica de predicados',
@@ -66,6 +67,7 @@ export const predicateLogic_SkillGroup_Data = defineSkillGroup({
       'Variables and quantifiers permit reasoning about individuals and collections. The relevant universe and scope of each quantifier must be made explicit to evaluate meaning and inference.',
     frontend: {
       en: 'Explore how quantifiers express claims about all or some members of a group.',
+      it: 'Esplora come i quantificatori esprimono affermazioni su tutti o su alcuni membri di un insieme.',
       zh: '探索量词如何表达针对某个群体中所有或部分成员的主张。',
       hi: 'जानें कि परिमाणक किसी समूह के सभी या कुछ सदस्यों के बारे में कथन कैसे व्यक्त करते हैं।',
       es: 'Explora cómo los cuantificadores expresan afirmaciones sobre todos o algunos miembros de un grupo.',

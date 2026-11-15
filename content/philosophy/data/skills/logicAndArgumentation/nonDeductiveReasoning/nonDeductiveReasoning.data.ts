@@ -12,6 +12,7 @@ export const nonDeductiveReasoning_SkillGroup_Data = defineSkillGroup({
   id: 'efea3959-c495-472e-99c9-c8aea629b408',
   name: {
     en: 'Non-deductive Reasoning',
+    it: 'Ragionamento non deduttivo',
     zh: '非演绎推理',
     hi: 'अनिगमनात्मक तर्क',
     es: 'Razonamiento no deductivo',
@@ -61,6 +62,7 @@ export const nonDeductiveReasoning_SkillGroup_Data = defineSkillGroup({
       'Many reasonable arguments support conclusions without guaranteeing them. Their strength depends on evidence, alternatives, sampling, or explanatory power rather than formal certainty.',
     frontend: {
       en: 'Learn to assess reasoning that offers support without guaranteeing certainty.',
+      it: 'Impara a valutare i ragionamenti che forniscono sostegno a una conclusione senza garantirne la certezza.',
       zh: '学习评估支持结论但不能保证绝对确定性的推理。',
       hi: 'ऐसे तर्क का मूल्यांकन सीखें जो निष्कर्ष को समर्थन देता है, पर पूर्ण निश्चितता नहीं देता।',
       es: 'Aprende a evaluar razonamientos que aportan apoyo sin garantizar certeza.',

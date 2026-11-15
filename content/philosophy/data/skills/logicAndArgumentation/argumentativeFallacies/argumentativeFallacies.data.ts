@@ -14,6 +14,7 @@ export const argumentativeFallacies_SkillGroup_Data = defineSkillGroup({
   id: 'fab984e1-fc83-4e0e-ae20-40e76d708fb3',
   name: {
     en: 'Argumentative Fallacies',
+    it: 'Fallacie argomentative',
     zh: '论证谬误',
     hi: 'तर्क संबंधी कुतर्क',
     es: 'Falacias argumentativas',
@@ -66,6 +67,7 @@ export const argumentativeFallacies_SkillGroup_Data = defineSkillGroup({
       "A flaw concerns the relation between claims and reasons, not necessarily the speaker's motives or a named cognitive bias. Context matters: surface wording alone rarely proves fallaciousness.",
     frontend: {
       en: 'Learn to recognize common flaws in the support offered for claims.',
+      it: 'Impara a riconoscere gli errori più comuni nelle ragioni addotte a sostegno delle affermazioni.',
       zh: '学习识别为主张提供支持时常见的推理缺陷。',
       hi: 'दावों के समर्थन में दिए गए तर्क की सामान्य कमियाँ पहचानना सीखें।',
       es: 'Aprende a reconocer fallos frecuentes en las razones ofrecidas para sostener afirmaciones.',
