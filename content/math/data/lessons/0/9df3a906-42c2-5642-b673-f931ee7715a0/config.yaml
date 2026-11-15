@@ -15,10 +15,10 @@ config:
       en: 'Same Spinner, Different Results'
   section:
     items:
-      section1:
+      countSpinsOfFairSpinner:
         config:
           id: '5c43e41e-1069-540d-a6f2-641e845c5733'
-          slug: 'section1'
+          slug: 'countSpinsOfFairSpinner'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Fix the spinner, count the spins'
           content:
             items:
-              text1:
+              describeFairSpinner:
                 config:
                   id: '8632feaf-d273-5eac-876d-7eaf4a86eab6'
-                  slug: 'text1'
+                  slug: 'describeFairSpinner'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'This spinner has one blue half and one yellow half. We assume it stops equally likely anywhere. We will spin ten times and record one color each time. Must we get exactly five blue and five yellow?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              simulateTenSpins:
                 config:
                   id: '85491350-e9e6-5855-b460-93509ad27267'
-                  slug: 'scene1'
+                  slug: 'simulateTenSpins'
                   type: 'scene'
                   params: {}
                   locale:
@@ -121,10 +121,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: 'Fix the spinner, count the spins: independent placement'
                   productionNotes: 'Original TrialRunComparator.scene-spec.md variant belongs to Fix the spinner, count the spins; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainChanceVsCount:
                 config:
                   id: '84e247bd-ea71-5e56-bf44-c7bdc6af4b84'
-                  slug: 'markdown1'
+                  slug: 'explainChanceVsCount'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -132,7 +132,7 @@ config:
                       en: 'A fair spinner gives both colors the same chance _on each spin_. It does not promise five of each in every short run. In this example, Run A has seven blue and three yellow.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['describeFairSpinner', 'simulateTenSpins', 'explainChanceVsCount']
         production:
           purpose: 'Fix the spinner, count the spins'
           productionNotes: |-
@@ -156,10 +156,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section2:
+      compareRepeatedTrialResults:
         config:
           id: '5b43e28b-0d69-5f54-a5f2-628b855c58c6'
-          slug: 'section2'
+          slug: 'compareRepeatedTrialResults'
           type: 'content'
           params: {}
           locale:
@@ -169,10 +169,10 @@ config:
               en: 'Two runs, different totals by color'
           content:
             items:
-              text1:
+              askAboutNewRun:
                 config:
                   id: '11c828ae-7cbc-5419-9302-a8ae9c97b9b7'
-                  slug: 'text1'
+                  slug: 'askAboutNewRun'
                   type: 'text'
                   params: {}
                   locale:
@@ -180,10 +180,10 @@ config:
                       en: 'We use the _same_ spinner for another ten spins. Could the numbers of blue and yellow change even though the chance for each color stays equal?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              runAnotherTenSpins:
                 config:
                   id: 'a33ce0af-53e5-515a-9254-60af18007e08'
-                  slug: 'scene1'
+                  slug: 'runAnotherTenSpins'
                   type: 'scene'
                   params: {}
                   locale:
@@ -262,10 +262,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: 'Two runs, different totals by color: independent placement'
                   productionNotes: 'Original TrialRunComparator.scene-spec.md variant belongs to Two runs, different totals by color; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainDifferentOutcomeCounts:
                 config:
                   id: '6471e38c-f28b-5883-9ed4-638c7d86c975'
-                  slug: 'markdown1'
+                  slug: 'explainDifferentOutcomeCounts'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -273,7 +273,7 @@ config:
                       en: 'Run A had seven blue and three yellow. Run B had four blue and six yellow. Both used ten spins of the same fair spinner. Different counts can happen without changing the chances.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['askAboutNewRun', 'runAnotherTenSpins', 'explainDifferentOutcomeCounts']
         production:
           purpose: 'Two runs, different totals by color'
           productionNotes: |-
@@ -298,10 +298,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section3:
+      distinguishChanceFromSample:
         config:
           id: '5a43e0f8-0e69-50e7-a4f2-60f8865c5a59'
-          slug: 'section3'
+          slug: 'distinguishChanceFromSample'
           type: 'content'
           params: {}
           locale:
@@ -311,10 +311,10 @@ config:
               en: 'Different sample, or different experiment?'
           content:
             items:
-              markdown1:
+              introduceBiasedSpinner:
                 config:
                   id: '9c606737-7854-55c8-96c2-e7379f784f32'
-                  slug: 'markdown1'
+                  slug: 'introduceBiasedSpinner'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -322,10 +322,10 @@ config:
                       en: 'Now we really change the spinner: four equal parts, three blue and one yellow. Is it still the same chance for blue as in our first spinner?'
                 production:
                   purpose: 'Provisional instructional explanation'
-              scene1:
+              compareSpinnerProbabilities:
                 config:
                   id: '094966f6-ef01-5263-b860-e6f6e8fe2919'
-                  slug: 'scene1'
+                  slug: 'compareSpinnerProbabilities'
                   type: 'scene'
                   params: {}
                   locale:
@@ -404,10 +404,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: 'Different sample, or different experiment?: independent placement'
                   productionNotes: 'Original TrialRunComparator.scene-spec.md variant belongs to Different sample, or different experiment?; see Section productionNotes. Unique stable Scene ID.'
-              text1:
+              explainChangedChances:
                 config:
                   id: 'd44123ed-5154-580a-957b-a3ed868e4e88'
-                  slug: 'text1'
+                  slug: 'explainChangedChances'
                   type: 'text'
                   params: {}
                   locale:
@@ -415,7 +415,7 @@ config:
                       en: 'Now the spinner is different: blue covers more of its circle. The chance has changed. Different counts with changed rules are not the same example as different counts from identical conditions.'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-            order: ['markdown1', 'scene1', 'text1']
+            order: ['introduceBiasedSpinner', 'compareSpinnerProbabilities', 'explainChangedChances']
         production:
           purpose: 'Different sample, or different experiment?'
           productionNotes: |-
@@ -439,10 +439,10 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-      section4:
+      compareSixSpinRuns:
         config:
           id: '6143ebfd-0b69-5c2e-abf2-6bfd875c5bec'
-          slug: 'section4'
+          slug: 'compareSixSpinRuns'
           type: 'content'
           params: {}
           locale:
@@ -452,10 +452,10 @@ config:
               en: 'A fresh pair of short runs'
           content:
             items:
-              text1:
+              presentTwoShortRuns:
                 config:
                   id: '0402f31c-bf6e-547f-853d-731c754d98d1'
-                  slug: 'text1'
+                  slug: 'presentTwoShortRuns'
                   type: 'text'
                   params: {}
                   locale:
@@ -463,10 +463,10 @@ config:
                       en: 'Two six-spin runs use the same fair half-blue, half-yellow spinner. One has three blue and three yellow; the other has two blue and four yellow. Must we change the spinner to explain this?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              simulateFairSpinnerRuns:
                 config:
                   id: '5780f1a5-ea2b-5840-8698-71a5072e8702'
-                  slug: 'scene1'
+                  slug: 'simulateFairSpinnerRuns'
                   type: 'scene'
                   params: {}
                   locale:
@@ -545,10 +545,10 @@ config:
                     Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
                   purpose: 'A fresh pair of short runs: independent placement'
                   productionNotes: 'Original TrialRunComparator.scene-spec.md variant belongs to A fresh pair of short runs; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainOutcomeVariation:
                 config:
                   id: '931b7d26-4558-516d-8d7d-fd26511d79eb'
-                  slug: 'markdown1'
+                  slug: 'explainOutcomeVariation'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -556,7 +556,7 @@ config:
                       en: 'The first run has three of each; the second has two blue and four yellow. Both are possible with the same fair spinner. Counts may vary from run to run even when the rule stays the same.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['presentTwoShortRuns', 'simulateFairSpinnerRuns', 'explainOutcomeVariation']
         production:
           purpose: 'A fresh pair of short runs'
           productionNotes: |-
@@ -580,7 +580,7 @@ config:
             **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
 
             **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['countSpinsOfFairSpinner', 'compareRepeatedTrialResults', 'distinguishChanceFromSample', 'compareSixSpinRuns']
   flashcards:
     items: {}
     order: []
