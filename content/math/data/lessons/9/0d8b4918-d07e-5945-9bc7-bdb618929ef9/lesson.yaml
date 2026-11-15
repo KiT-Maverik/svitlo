@@ -661,9 +661,6 @@ config:
       - 'varyNumeratorWithSameWhole'
       - 'compareThirdsAndQuarters'
       - 'interpretFreshFractionModels'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

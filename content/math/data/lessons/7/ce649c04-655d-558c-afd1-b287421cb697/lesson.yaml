@@ -13,9 +13,6 @@ config:
   locale:
     title:
       en: 'Zero as Dividend Is Not Zero as Divisor'
-  flashcards:
-    items: {}
-    order: []
   section:
     items:
       divideZeroAmongFour:

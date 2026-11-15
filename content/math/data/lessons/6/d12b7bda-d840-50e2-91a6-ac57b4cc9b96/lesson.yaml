@@ -13,9 +13,6 @@ config:
   locale:
     title:
       en: 'Finding an Unknown Minuend'
-  flashcards:
-    items: {}
-    order: []
   section:
     items:
       reconstructStartingAmount:

@@ -547,9 +547,6 @@ config:
       - 'findUnknownGroupSize'
       - 'findUnknownGroupCount'
       - 'solveFourTimesUnknown'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

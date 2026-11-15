@@ -549,9 +549,6 @@ config:
       - 'reverseMultiplicationByDivision'
       - 'findOtherFactFamilyDivision'
       - 'verifyNewDivision'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

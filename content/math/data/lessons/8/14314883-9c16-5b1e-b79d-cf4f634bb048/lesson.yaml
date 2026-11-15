@@ -690,9 +690,6 @@ config:
       - 'checkEstimateAgainstRuler'
       - 'compareEstimationErrors'
       - 'justifyNewEstimate'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

@@ -440,9 +440,6 @@ config:
             4. **markdown**: “Remember: **show the relationship before choosing the operation**.”
     order:
       ['representJoiningStory', 'matchAdditionModelToEquation', 'representTakingAway', 'buildIndependentStoryModel']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

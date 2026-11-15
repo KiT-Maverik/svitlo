@@ -708,9 +708,6 @@ config:
         'exploreFlatCrossSections',
         'identifyFacesSectionsDrawings',
       ]
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

@@ -641,9 +641,6 @@ config:
       - 'combineHourAndMinuteHands'
       - 'distinguishApproachingHour'
       - 'readUnfamiliarClock'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |
