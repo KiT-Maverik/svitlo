@@ -5,6 +5,7 @@ export const formulateAnEmpiricallyInvestigableQuestion_Skill_Data = defineSkill
   id: '13b81e9b-51b7-4b4a-a655-382ce641ceea',
   name: {
     en: 'Formulate an empirically investigable question',
+    it: 'Formulare una domanda indagabile empiricamente',
     zh: '提出可凭经验研究的问题',
     hi: 'अनुभवजन्य जाँच योग्य प्रश्न तैयार करें',
     es: 'Formular una pregunta investigable empíricamente',
@@ -39,6 +40,7 @@ export const formulateAnEmpiricallyInvestigableQuestion_Skill_Data = defineSkill
       'Identify observations or comparisons that could bear on a precise research question, while recognizing questions outside empirical testing.',
     frontend: {
       en: 'Ask a question that can be investigated through relevant evidence.',
+      it: 'Poni una domanda che possa essere esaminata attraverso prove pertinenti.',
       zh: '提出能够通过相关证据进行研究的问题。',
       hi: 'ऐसा सवाल पूछें जिसकी जाँच संबंधित साक्ष्यों से हो सके।',
       es: 'Plantea una pregunta que pueda investigarse con pruebas pertinentes.',

@@ -5,6 +5,7 @@ export const identifyAnIndependentVariable_Skill_Data = defineSkill({
   id: '001d5ec7-c138-4773-8a11-29d3a64c26f7',
   name: {
     en: 'Identify an independent variable',
+    it: 'Individuare una variabile indipendente',
     zh: '识别自变量',
     hi: 'स्वतंत्र चर पहचानें',
     es: 'Identificar una variable independiente',
@@ -39,6 +40,7 @@ export const identifyAnIndependentVariable_Skill_Data = defineSkill({
       'Recognize the hypothesized influence, manipulated factor, or explanatory predictor in a specified study, including designs where the researcher observes rather than sets its value.',
     frontend: {
       en: 'Identify the factor proposed to influence an outcome in a study.',
+      it: 'Individua il fattore che si ipotizza influenzi un risultato in uno studio.',
       zh: '找出研究中被认为会影响结果的因素。',
       hi: 'अध्ययन में परिणाम को प्रभावित करने वाला प्रस्तावित कारक पहचानें।',
       es: 'Identifica el factor que se supone que influye en el resultado de un estudio.',

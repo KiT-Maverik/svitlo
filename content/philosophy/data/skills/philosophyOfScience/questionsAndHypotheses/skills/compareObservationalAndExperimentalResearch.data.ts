@@ -5,6 +5,7 @@ export const compareObservationalAndExperimentalResearch_Skill_Data = defineSkil
   id: 'ae71ab07-4417-41b0-84a4-1f7f77fc4b16',
   name: {
     en: 'Compare observational and experimental research',
+    it: 'Confrontare ricerca osservazionale e sperimentale',
     zh: '比较观察性研究与实验研究',
     hi: 'प्रेक्षणात्मक और प्रयोगात्मक शोध की तुलना',
     es: 'Comparar investigación observacional y experimental',
@@ -39,6 +40,7 @@ export const compareObservationalAndExperimentalResearch_Skill_Data = defineSkil
       'Distinguish observing variation as it occurs from deliberately manipulating an explanatory factor.',
     frontend: {
       en: 'Distinguish watching natural variation from deliberately changing a factor.',
+      it: 'Distingui l\'osservazione delle variazioni naturali dalla modifica deliberata di un fattore.',
       zh: '区分观察自然变化与有意改变某一因素。',
       hi: 'स्वाभाविक बदलाव देखने और जानबूझकर किसी कारक को बदलने में अंतर करें।',
       es: 'Distingue observar variaciones naturales de modificar deliberadamente un factor.',
