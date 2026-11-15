@@ -210,7 +210,7 @@ A Scene implementer and media specialist receive those generated files and
 the original `config.yaml`; they supply real components/assets later.
 `image.config.locale.alt` is authored now, while `src: null` is **not**
 replaced with fake URLs. No generator invents translations or runtime
-capabilities. Existing `*.data.ts` causes a whole-entity SKIP without any write. When the input is an existing canonical UUID directory, it is skipped **before** parsing stale YAML (PR #531); when it is a staged single-ID YAML file, its ID is parsed first to derive the output path. Existing or manually changed specification files cannot
+capabilities. Existing `*.data.ts` causes a whole-entity SKIP without any write; for modular Lesson drafts, an existing root `index.ts` does the same. When the input is an existing canonical UUID directory, it is skipped **before** parsing stale YAML (PR #531); when it is a staged single-ID YAML file, its ID is parsed first to derive the output path. Existing or manually changed specification files cannot
 be clobbered. `check` remains read-only and strict.
 
 ## Scope versus the specialist editorial workflow
