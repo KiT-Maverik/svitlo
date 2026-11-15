@@ -5,6 +5,7 @@ export const feedbackControlLoops_Skill_Data = defineSkill({
   id: '23352aed-01cf-4cd2-9ca3-97596254ae14',
   name: {
     en: 'Feedback control loops',
+    it: 'Anelli di controllo in retroazione',
     zh: '反馈控制回路',
     hi: 'प्रतिपुष्टि नियंत्रण लूप',
     es: 'Bucles de control por retroalimentación',
@@ -38,6 +39,7 @@ export const feedbackControlLoops_Skill_Data = defineSkill({
     methodological: 'Locate setpoint, sensor, controller, actuator and physical plant in a working system.',
     frontend: {
       en: 'Trace how measured output feeds back into a controller.',
+      it: 'Segui come l\'uscita misurata viene riportata al controllore.',
       zh: '追踪测得的输出如何返回控制器。',
       hi: 'समझें कि मापा गया आउटपुट नियंत्रक तक वापस कैसे पहुँचता है।',
       es: 'Sigue cómo la salida medida vuelve al controlador.',
