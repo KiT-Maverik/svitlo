@@ -7,6 +7,7 @@ export const formalization_SkillGroup_Data = defineSkillGroup({
   id: 'b0e684f5-3064-41ab-9bca-f7e2fce2514f',
   name: {
     en: 'Symbolic modeling',
+    it: 'Modellizzazione simbolica',
     qm: 'İşaretler yardımınen model tüzmek',
     lt: 'Simbolinis modeliavimas',
     lv: 'Simboliskā modelēšana',
@@ -46,6 +47,7 @@ export const formalization_SkillGroup_Data = defineSkillGroup({
     methodological: 'Representing relationships in a short situation using arithmetic or simple algebraic notation.',
     frontend: {
       en: 'Learn to express real or mathematical situations using numbers, operation signs, and simple equations that preserve their meaning.',
+      it: 'Impara a rappresentare situazioni reali o matematiche usando numeri, segni di operazione e semplici equazioni che ne conservano il significato.',
       qm: 'Aqiqiy ya da matematik vaziyetlerni manasını saqlap qalğan sayılar, amel işaretleri ve sade musaviylikler yardımınen ifade etmekni ögren.',
       zh: '学习用数字、运算符号和简单方程表示实际或数学情境，同时保留原本的数量关系。',
       hi: 'संख्याओं, संक्रिया चिह्नों और सरल समीकरणों से वास्तविक या गणितीय स्थितियों के संबंध सही तरह दर्शाना सीखो।',
