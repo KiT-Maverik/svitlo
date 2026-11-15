@@ -41,13 +41,16 @@ export const eastAndCentralAsia_SkillDomain_Data = defineSkillDomain({
     kk: 'Шығыс және Орталық Азия',
     qm: 'Şarqiy ve Merkezi Asiya',
   },
-  groups: [
-    ancientJapan_SkillGroup_Data,
-    ancientKorea_SkillGroup_Data,
-    earlyChina_SkillGroup_Data,
-    imperialChina_SkillGroup_Data,
-    innerAsia_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      ancientJapan: ancientJapan_SkillGroup_Data,
+      ancientKorea: ancientKorea_SkillGroup_Data,
+      earlyChina: earlyChina_SkillGroup_Data,
+      imperialChina: imperialChina_SkillGroup_Data,
+      innerAsia: innerAsia_SkillGroup_Data,
+    },
+    order: ['ancientJapan', 'ancientKorea', 'earlyChina', 'imperialChina', 'innerAsia'],
+  },
   description: {
     methodological:
       'China, Korea, Japan, and Inner Asian steppe regions show coexistence and interaction between settled and mobile societies.',
