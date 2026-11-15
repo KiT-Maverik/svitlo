@@ -5,6 +5,7 @@ export const integrateArtWithArchitecture_Skill_Data = defineSkill({
   id: '7bc80a38-f97f-434b-aeef-df503785e6c2',
   name: {
     en: 'Integrate Art with Architecture',
+    it: "Integrare arte e architettura",
     zh: '将艺术融入建筑',
     hi: 'कला को वास्तुकला के साथ एकीकृत करें',
     es: 'Integrar el arte con la arquitectura',
@@ -38,6 +39,7 @@ export const integrateArtWithArchitecture_Skill_Data = defineSkill({
     methodological: 'Develop a purposeful artistic relationship between an intervention and built space.',
     frontend: {
       en: 'Design an artistic addition that relates purposefully to a building or space.',
+      it: "Progetta un intervento artistico che stabilisca un rapporto intenzionale con un edificio o uno spazio.",
       zh: '设计与建筑或空间形成有意义联系的艺术元素。',
       hi: 'ऐसा कलात्मक तत्व डिज़ाइन करें जो इमारत या स्थान से सार्थक रूप से जुड़ा हो।',
       es: 'Diseña una intervención artística que se relacione de forma intencionada con un edificio o espacio.',
