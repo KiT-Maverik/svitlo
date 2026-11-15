@@ -1197,17 +1197,10 @@
                 ],
                 "additionalProperties": false
               }
-            },
-            "order": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           "required": [
-            "items",
-            "order"
+            "items"
           ],
           "additionalProperties": false
         },

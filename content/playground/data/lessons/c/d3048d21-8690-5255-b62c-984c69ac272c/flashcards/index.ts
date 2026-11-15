@@ -1,4 +1,4 @@
-import { defineFlashcard } from '@svitlo/engine/build';
+import { defineFlashcard, defineFlashcardSide } from '@svitlo/engine/build';
 import { lightTravelsStraight } from '../questions/lightTravelsStraight';
 import { fastestMedium } from '../questions/fastestMedium';
 import { opaqueObjectShadow } from '../questions/opaqueObjectShadow';
@@ -12,14 +12,16 @@ const lightTravelsStraightFlashcard = defineFlashcard({
     flags: { items: {}, order: [] },
   },
   content: {
-    front: {
+    front: defineFlashcardSide({
       items: { question: lightTravelsStraight.content.question.items.question },
       order: ['question'],
-    },
-    back: {
+
+    }),
+    back: defineFlashcardSide({
       items: { straightLine: lightTravelsStraight.content.answers.correct.items.straightLine },
       order: ['straightLine'],
-    },
+
+    }),
   },
 });
 
@@ -32,14 +34,16 @@ const fastestMediumFlashcard = defineFlashcard({
     flags: { items: {}, order: [] },
   },
   content: {
-    front: {
+    front: defineFlashcardSide({
       items: { question: fastestMedium.content.question.items.question },
       order: ['question'],
-    },
-    back: {
+
+    }),
+    back: defineFlashcardSide({
       items: { vacuum: fastestMedium.content.answers.correct.items.vacuum },
       order: ['vacuum'],
-    },
+
+    }),
   },
 });
 
@@ -52,18 +56,19 @@ const opaqueObjectShadowFlashcard = defineFlashcard({
     flags: { items: {}, order: [] },
   },
   content: {
-    front: {
+    front: defineFlashcardSide({
       items: { question: opaqueObjectShadow.content.question.items.question },
       order: ['question'],
-    },
-    back: {
+
+    }),
+    back: defineFlashcardSide({
       items: { shadow: opaqueObjectShadow.content.answers.correct.items.shadow },
       order: ['shadow'],
-    },
+
+    }),
   },
 });
 
 export const howLightMovesFlashcards = {
   items: { lightTravelsStraightFlashcard, fastestMediumFlashcard, opaqueObjectShadowFlashcard },
-  order: ['lightTravelsStraightFlashcard', 'fastestMediumFlashcard', 'opaqueObjectShadowFlashcard'],
 };

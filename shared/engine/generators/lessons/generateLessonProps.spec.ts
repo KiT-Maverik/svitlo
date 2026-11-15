@@ -20,7 +20,7 @@ const makeLesson = (title: string | { en: string; uk: string } = { en: 'Light', 
     },
     locale: { title },
     section: { items: {}, order: [] },
-    flashcards: { items: {}, order: [] },
+    flashcards: { items: {} },
   });
 
 const entry = (source = 'content/playground/first.ts'): LessonPublicationEntry => ({
