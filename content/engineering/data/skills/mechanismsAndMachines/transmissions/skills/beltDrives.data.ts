@@ -5,6 +5,7 @@ export const beltDrives_Skill_Data = defineSkill({
   id: '21a87847-a6db-41d6-9af3-fe97039740cd',
   name: {
     en: 'Belt drives',
+    it: 'Trasmissioni a cinghia',
     zh: '带传动',
     hi: 'पट्टा संचरण',
     es: 'Transmisiones por correa',
@@ -39,6 +40,7 @@ export const beltDrives_Skill_Data = defineSkill({
       'Trace how tensioned flexible belts transfer motion between pulleys through friction or toothed engagement, including likely causes of slip.',
     frontend: {
       en: 'Understand how belt tension and pulley surfaces transfer rotation.',
+      it: 'Comprendi come la tensione della cinghia e le superfici delle pulegge trasmettono la rotazione.',
       zh: '了解皮带张力和带轮表面如何传递旋转。',
       hi: 'समझें कि पट्टे का तनाव और पुली की सतह घुमाव कैसे पहुँचाते हैं।',
       es: 'Comprende cómo la tensión de la correa y las poleas transmiten la rotación.',
