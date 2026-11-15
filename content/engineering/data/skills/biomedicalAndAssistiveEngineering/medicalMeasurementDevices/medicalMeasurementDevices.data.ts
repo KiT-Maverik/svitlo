@@ -11,6 +11,7 @@ export const medicalMeasurementDevices_SkillGroup_Data = defineSkillGroup({
   id: '4238e4eb-0fad-48c7-8693-bde20859e3bc',
   name: {
     en: 'Medical Measurement Devices',
+    it: 'Dispositivi di misurazione medica',
     zh: '医学测量设备',
     hi: 'चिकित्सीय मापन उपकरण',
     es: 'Dispositivos de medición médica',
@@ -50,6 +51,7 @@ export const medicalMeasurementDevices_SkillGroup_Data = defineSkillGroup({
       'Biomedical devices measure physiological or physical signals with specialized coupling, safety and reliability concerns distinct from ordinary industrial sensing.',
     frontend: {
       en: 'Learn how devices measure and image physiological conditions.',
+      it: 'Scopri come i dispositivi misurano le condizioni fisiologiche e ne producono immagini.',
       zh: '学习设备如何测量生理状态并生成医学影像。',
       hi: 'जानें कि उपकरण शारीरिक स्थितियों को कैसे मापते और उनका चित्रण करते हैं।',
       es: 'Aprende cómo los dispositivos miden y obtienen imágenes de condiciones fisiológicas.',
