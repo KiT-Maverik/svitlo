@@ -5,6 +5,7 @@ export const distinguishMentalFromPhysicalDescriptions_Skill_Data = defineSkill(
   id: '543e842f-a14e-4af4-8620-b69db56ad2f5',
   name: {
     en: 'Distinguish mental from physical descriptions',
+    it: 'Distinguere descrizioni mentali e fisiche',
     zh: '区分心理描述与物理描述',
     hi: 'मानसिक और भौतिक वर्णनों में अंतर करना',
     es: 'Distinguir descripciones mentales de físicas',
@@ -39,6 +40,7 @@ export const distinguishMentalFromPhysicalDescriptions_Skill_Data = defineSkill(
       'Identify when a claim describes subjective experience, observable behavior, or bodily processes, and why they are not automatically equivalent.',
     frontend: {
       en: 'Distinguish descriptions of feelings from descriptions of physical brain processes.',
+      it: 'Distingui le descrizioni delle sensazioni da quelle dei processi fisici del cervello.',
       zh: '区分对感受的描述与对大脑物理过程的描述。',
       hi: 'भावनाओं के वर्णन और मस्तिष्क की भौतिक प्रक्रियाओं के वर्णन में अंतर करें।',
       es: 'Distingue las descripciones de sentimientos de las de procesos físicos cerebrales.',

@@ -5,6 +5,7 @@ export const distinguishAnActionFromAnEvent_Skill_Data = defineSkill({
   id: 'e24663c9-db90-48bd-a512-ba83a7ea279b',
   name: {
     en: 'Distinguish an action from an event',
+    it: 'Distinguere un\'azione da un evento',
     zh: '区分行动与事件',
     hi: 'कर्म और घटना में अंतर करना',
     es: 'Distinguir una acción de un suceso',
@@ -39,6 +40,7 @@ export const distinguishAnActionFromAnEvent_Skill_Data = defineSkill({
       "Identify whether a description invokes an agent's intention or reason rather than only something that happened to a body.",
     frontend: {
       en: 'Distinguish an intentional action from something that merely happens.',
+      it: 'Distingui un\'azione intenzionale da qualcosa che semplicemente accade.',
       zh: '区分有意实施的行动与只是发生的事情。',
       hi: 'इरादतन किए गए कार्य और केवल घट जाने वाली घटना में अंतर करें।',
       es: 'Distingue una acción intencional de algo que simplemente sucede.',

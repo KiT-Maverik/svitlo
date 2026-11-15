@@ -5,6 +5,7 @@ export const evaluateConditionsOfMoralResponsibility_Skill_Data = defineSkill({
   id: '32098b6b-8718-4318-ae49-74e31e1d4129',
   name: {
     en: 'Evaluate conditions of moral responsibility',
+    it: 'Valutare le condizioni della responsabilità morale',
     zh: '评估道德责任的条件',
     hi: 'नैतिक जिम्मेदारी की शर्तों का मूल्यांकन',
     es: 'Evaluar las condiciones de la responsabilidad moral',
@@ -39,6 +40,7 @@ export const evaluateConditionsOfMoralResponsibility_Skill_Data = defineSkill({
       'Consider knowledge, control, intention, and coercion in judging whether blame or praise is warranted.',
     frontend: {
       en: 'Consider the knowledge and control needed for moral responsibility.',
+      it: 'Considera quali conoscenze e quale controllo siano necessari per la responsabilità morale.',
       zh: '思考承担道德责任所需的知识与控制能力。',
       hi: 'नैतिक जिम्मेदारी के लिए आवश्यक ज्ञान और नियंत्रण पर विचार करें।',
       es: 'Considera el conocimiento y el control necesarios para tener responsabilidad moral.',
