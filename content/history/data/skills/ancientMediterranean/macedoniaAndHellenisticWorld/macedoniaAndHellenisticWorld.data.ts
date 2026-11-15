@@ -7,6 +7,7 @@ export const macedoniaAndHellenisticWorld_SkillGroup_Data = defineSkillGroup({
   id: '78005c99-235d-4d1d-a852-bf5da04b7266',
   name: {
     en: 'Macedonia and the Hellenistic World',
+    it: "Macedonia e mondo ellenistico",
     zh: '马其顿与希腊化世界',
     hi: 'मकदूनिया और हेलेनिस्टिक विश्व',
     es: 'Macedonia y mundo helenístico',
@@ -36,19 +37,13 @@ export const macedoniaAndHellenisticWorld_SkillGroup_Data = defineSkillGroup({
     kk: 'Македония және эллинистік әлем',
     qm: 'Makedoniya ve ellinistik dünya',
   },
-  skills: {
-    items: {
-      conquestsOfAlexander: conquestsOfAlexander_Skill_Data,
-      hellenisticKingdoms: hellenisticKingdoms_Skill_Data,
-      riseOfMacedonia: riseOfMacedonia_Skill_Data,
-    },
-    order: ['conquestsOfAlexander', 'hellenisticKingdoms', 'riseOfMacedonia'],
-  },
+  skills: [conquestsOfAlexander_Skill_Data, hellenisticKingdoms_Skill_Data, riseOfMacedonia_Skill_Data],
   description: {
     methodological:
       "Macedon's rise, Alexander's campaigns, and successor kingdoms transformed Balkan, Egyptian, and Asian politics and exchanges.",
     frontend: {
       en: 'Explore the empires and cultures of the Hellenistic world.',
+      it: "Esplora gli imperi e le culture del mondo ellenistico.",
       zh: '探索希腊化世界的帝国与文化。',
       hi: 'हेलेनिस्टिक संसार के साम्राज्यों और संस्कृतियों के बारे में जानें।',
       es: 'Explora los imperios y culturas del mundo helenístico.',

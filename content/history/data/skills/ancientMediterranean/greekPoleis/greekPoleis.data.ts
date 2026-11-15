@@ -14,6 +14,7 @@ export const greekPoleis_SkillGroup_Data = defineSkillGroup({
   id: '1e05f5d6-12d6-4c51-bb52-8e99b0cf3bfe',
   name: {
     en: 'Greek Poleis',
+    it: "Poleis greche",
     zh: '希腊城邦',
     hi: 'यूनानी नगर-राज्य',
     es: 'Ciudades-Estado griegas',
@@ -43,29 +44,20 @@ export const greekPoleis_SkillGroup_Data = defineSkillGroup({
     kk: 'Грек полистері',
     qm: 'Yunan polisleri',
   },
-  skills: {
-    items: {
-      athenianDemocracy: athenianDemocracy_Skill_Data,
-      grecoPersianWars: grecoPersianWars_Skill_Data,
-      greekColonization: greekColonization_Skill_Data,
-      greekPolis: greekPolis_Skill_Data,
-      peloponnesianWar: peloponnesianWar_Skill_Data,
-      spartanSystem: spartanSystem_Skill_Data,
-    },
-    order: [
-      'athenianDemocracy',
-      'grecoPersianWars',
-      'greekColonization',
-      'greekPolis',
-      'peloponnesianWar',
-      'spartanSystem',
-    ],
-  },
+  skills: [
+    athenianDemocracy_Skill_Data,
+    grecoPersianWars_Skill_Data,
+    greekColonization_Skill_Data,
+    greekPolis_Skill_Data,
+    peloponnesianWar_Skill_Data,
+    spartanSystem_Skill_Data,
+  ],
   description: {
     methodological:
       'Self-governing citizen communities varied in political institutions, warfare, and who possessed political rights.',
     frontend: {
       en: 'Compare how different Greek city-states were governed.',
+      it: "Confronta i modi in cui erano governate le diverse città-Stato greche.",
       zh: '比较不同希腊城邦的治理方式。',
       hi: 'तुलना करें कि अलग-अलग यूनानी नगर-राज्य कैसे शासित थे।',
       es: 'Compara cómo se gobernaban las distintas ciudades-Estado griegas.',

@@ -14,6 +14,7 @@ export const romanEmpire_SkillGroup_Data = defineSkillGroup({
   id: '5e804ce3-42b3-46bf-b092-f045cae2add1',
   name: {
     en: 'Roman Empire',
+    it: "Impero romano",
     zh: '罗马帝国',
     hi: 'रोमन साम्राज्य',
     es: 'Imperio romano',
@@ -43,29 +44,20 @@ export const romanEmpire_SkillGroup_Data = defineSkillGroup({
     kk: 'Рим империясы',
     qm: 'Roma imperiyası',
   },
-  skills: {
-    items: {
-      augustanPrincipate: augustanPrincipate_Skill_Data,
-      dailyLifeInRomanEmpire: dailyLifeInRomanEmpire_Skill_Data,
-      romanLaw: romanLaw_Skill_Data,
-      romanProvincialGovernment: romanProvincialGovernment_Skill_Data,
-      spreadOfChristianity: spreadOfChristianity_Skill_Data,
-      transformationOfRomanEmpire: transformationOfRomanEmpire_Skill_Data,
-    },
-    order: [
-      'augustanPrincipate',
-      'dailyLifeInRomanEmpire',
-      'romanLaw',
-      'romanProvincialGovernment',
-      'spreadOfChristianity',
-      'transformationOfRomanEmpire',
-    ],
-  },
+  skills: [
+    augustanPrincipate_Skill_Data,
+    dailyLifeInRomanEmpire_Skill_Data,
+    romanLaw_Skill_Data,
+    romanProvincialGovernment_Skill_Data,
+    spreadOfChristianity_Skill_Data,
+    transformationOfRomanEmpire_Skill_Data,
+  ],
   description: {
     methodological:
       'A huge diverse state relied on armies, provincial rule, law, cities, and infrastructure before profound later transformations.',
     frontend: {
       en: 'Explore how the Roman Empire governed many different peoples.',
+      it: "Esplora come l'Impero romano governava popoli molto diversi.",
       zh: '探索罗马帝国如何统治众多不同的民族。',
       hi: 'जानें कि रोमन साम्राज्य ने अनेक अलग-अलग लोगों पर कैसे शासन किया।',
       es: 'Explora cómo el Imperio romano gobernó a muchos pueblos distintos.',

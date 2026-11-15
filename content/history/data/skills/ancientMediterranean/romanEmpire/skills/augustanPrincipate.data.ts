@@ -5,6 +5,7 @@ export const augustanPrincipate_Skill_Data = defineSkill({
   id: 'fd921b81-5d61-4419-80a1-dc52c10f25dd',
   name: {
     en: 'Augustan Principate',
+    it: "Principato di Augusto",
     zh: '奥古斯都的元首制',
     hi: 'ऑगस्टस का प्रिंसिपेट',
     es: 'Principado de Augusto',
@@ -39,6 +40,7 @@ export const augustanPrincipate_Skill_Data = defineSkill({
       'Explain imperial rule emerging under Augustus while some republican forms remained outwardly in place.',
     frontend: {
       en: 'Discover how Augustus established Roman imperial power.',
+      it: "Scopri come Augusto instaurò il potere imperiale romano.",
       zh: '了解奥古斯都如何建立罗马帝国的统治权力。',
       hi: 'जानें कि ऑगस्टस ने रोम में साम्राज्यवादी सत्ता कैसे स्थापित की।',
       es: 'Descubre cómo Augusto estableció el poder imperial romano.',
