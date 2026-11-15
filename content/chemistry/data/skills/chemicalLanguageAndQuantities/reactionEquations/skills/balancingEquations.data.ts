@@ -5,6 +5,7 @@ export const balancingEquations_Skill_Data = defineSkill({
   id: '24800a51-f812-4103-a046-b5359436b164',
   name: {
     en: 'Balancing Equations',
+    it: "Bilanciamento delle equazioni",
     zh: '配平化学方程式',
     hi: 'समीकरण संतुलन',
     es: 'Ajuste de ecuaciones',
@@ -38,6 +39,7 @@ export const balancingEquations_Skill_Data = defineSkill({
     methodological: 'Choose coefficients that conserve the number of each element without altering chemical formulas.',
     frontend: {
       en: 'Balance a chemical equation while keeping the formulas unchanged.',
+      it: "Bilancia un'equazione chimica senza modificare le formule delle sostanze.",
       zh: '在不改变化学式的情况下配平反应方程式。',
       hi: 'रासायनिक सूत्र बदले बिना समीकरण को संतुलित करें।',
       es: 'Ajusta una ecuación química sin modificar las fórmulas.',
