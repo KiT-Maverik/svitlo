@@ -9,6 +9,7 @@ export const processAndAgriculturalEngineering_SkillDomain_Data = defineSkillDom
   id: 'ed20c277-0b50-43ea-acfa-292b9c850283',
   title: {
     en: 'Process and Agricultural Engineering',
+    it: 'Ingegneria dei processi e agraria',
     zh: '过程与农业工程',
     hi: 'प्रक्रिया और कृषि अभियांत्रिकी',
     es: 'Ingeniería de procesos y agrícola',
@@ -48,6 +49,7 @@ export const processAndAgriculturalEngineering_SkillDomain_Data = defineSkillDom
       'Some engineered systems transform flowing materials rather than assembling separate mechanical parts. Their design coordinates equipment, transfer rates, process conditions and product quality; agricultural and food technologies adapt these principles to living materials and variable field environments.',
     frontend: {
       en: 'Explore systems that transform materials and support food and agricultural production.',
+      it: 'Esplora i sistemi che trasformano i materiali e sostengono la produzione alimentare e agricola.',
       zh: '探索改变材料的系统，以及支持食品和农业生产的工程系统。',
       hi: 'पदार्थों को बदलने और खाद्य व कृषि उत्पादन में सहायता करने वाली प्रणालियों को जानें।',
       es: 'Explora sistemas que transforman materiales y apoyan la producción de alimentos y la agricultura.',
