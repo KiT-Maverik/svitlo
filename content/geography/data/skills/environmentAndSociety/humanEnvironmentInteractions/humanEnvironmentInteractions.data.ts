@@ -12,6 +12,7 @@ export const humanEnvironmentInteractions_SkillGroup_Data = defineSkillGroup({
   id: '45d148d1-2a1b-4213-b0d1-7abd6bf19c5d',
   name: {
     en: 'Human–Environment Interactions',
+    it: 'Interazioni tra esseri umani e ambiente',
     zh: '人地相互作用',
     hi: 'मानव–पर्यावरण अंतःक्रियाएँ',
     es: 'Interacciones entre las personas y el medio ambiente',
@@ -52,6 +53,7 @@ export const humanEnvironmentInteractions_SkillGroup_Data = defineSkillGroup({
       'People use and alter environmental conditions, while climate, terrain, water and hazards shape the possibilities and constraints for human activities. These influences are reciprocal but not necessarily symmetric; different choices can reduce or intensify impacts.',
     frontend: {
       en: 'Discover how people adapt to, use and change their environments.',
+      it: 'Scopri come le persone si adattano agli ambienti in cui vivono, li utilizzano e li modificano.',
       zh: '了解人们如何适应、利用并改变周围环境。',
       hi: 'जानें कि लोग अपने परिवेश के अनुरूप कैसे ढलते, उसका उपयोग करते और उसे बदलते हैं।',
       es: 'Descubre cómo las personas se adaptan a su entorno, lo utilizan y lo transforman.',

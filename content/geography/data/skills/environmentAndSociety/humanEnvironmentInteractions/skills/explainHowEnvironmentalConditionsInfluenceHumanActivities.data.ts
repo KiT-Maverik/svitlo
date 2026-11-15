@@ -5,6 +5,7 @@ export const explainHowEnvironmentalConditionsInfluenceHumanActivities_Skill_Dat
   id: 'a40a0964-eddd-4bc8-9dd1-080f189cba89',
   name: {
     en: 'Explain how environmental conditions influence human activities',
+    it: 'Spiegare come le condizioni ambientali influenzano le attività umane',
     zh: '解释环境条件如何影响人类活动',
     hi: 'पर्यावरणीय स्थितियाँ मानव गतिविधियों को कैसे प्रभावित करती हैं, समझाना',
     es: 'Explicar cómo las condiciones ambientales influyen en la actividad humana',
@@ -39,6 +40,7 @@ export const explainHowEnvironmentalConditionsInfluenceHumanActivities_Skill_Dat
       'Relate climate, terrain, water or hazard exposure to patterns in settlement, movement, land use or work without suggesting that physical conditions alone determine human choices.',
     frontend: {
       en: 'Connect climate, terrain and other conditions with human activities.',
+      it: 'Collega il clima, il rilievo e altre condizioni alle attività umane.',
       zh: '将气候、地形和其他环境条件与人类活动联系起来。',
       hi: 'जलवायु, भूप्रदेश और अन्य स्थितियों को मानव गतिविधियों से जोड़ें।',
       es: 'Relaciona el clima, el relieve y otras condiciones con las actividades humanas.',

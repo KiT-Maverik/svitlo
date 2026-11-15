@@ -5,6 +5,7 @@ export const interpretStandardWeatherSymbolsOnAMap_Skill_Data = defineSkill({
   id: 'd0fbd9a0-ed51-41b8-afba-d78f3f746eb3',
   name: {
     en: 'Interpret standard weather symbols on a map',
+    it: 'Interpretare su una carta i simboli meteorologici convenzionali',
     zh: '解读地图上的标准天气符号',
     hi: 'मानचित्र पर मानक मौसम चिह्न समझना',
     es: 'Interpretar símbolos meteorológicos en un mapa',
@@ -39,6 +40,7 @@ export const interpretStandardWeatherSymbolsOnAMap_Skill_Data = defineSkill({
       'Use an explicit legend to identify rain, cloud, or wind indicators without relying on color alone.',
     frontend: {
       en: 'Use a legend to interpret weather symbols on a map.',
+      it: 'Usa la legenda per interpretare i simboli meteorologici su una carta.',
       zh: '利用图例理解地图上的天气符号。',
       hi: 'मानचित्र की कुंजी से मौसम संबंधी चिह्न समझें।',
       es: 'Utiliza la leyenda para comprender los símbolos del tiempo en un mapa.',
