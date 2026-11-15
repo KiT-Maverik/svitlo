@@ -46,16 +46,28 @@ export const medicalEmergencies_SkillGroup_Data = defineSkillGroup({
     kk: 'Шұғыл медициналық жағдайлар',
     qm: 'Acele tibbiy vaziyetler',
   },
-  skills: [
-    recognizeSignsOfAHeartAttack_Skill_Data,
-    recognizeSignsOfStroke_Skill_Data,
-    respondToSeizures_Skill_Data,
-    respondToSevereAllergicReaction_Skill_Data,
-    respondToSevereBreathingDifficulty_Skill_Data,
-    respondToSuspectedHypoglycaemia_Skill_Data,
-    respondToSuspectedOpioidOverdose_Skill_Data,
-    respondToSuspectedPoisoning_Skill_Data,
-  ],
+  skills: {
+    items: {
+      recognizeSignsOfAHeartAttack: recognizeSignsOfAHeartAttack_Skill_Data,
+      recognizeSignsOfStroke: recognizeSignsOfStroke_Skill_Data,
+      respondToSeizures: respondToSeizures_Skill_Data,
+      respondToSevereAllergicReaction: respondToSevereAllergicReaction_Skill_Data,
+      respondToSevereBreathingDifficulty: respondToSevereBreathingDifficulty_Skill_Data,
+      respondToSuspectedHypoglycaemia: respondToSuspectedHypoglycaemia_Skill_Data,
+      respondToSuspectedOpioidOverdose: respondToSuspectedOpioidOverdose_Skill_Data,
+      respondToSuspectedPoisoning: respondToSuspectedPoisoning_Skill_Data,
+    },
+    order: [
+      'recognizeSignsOfAHeartAttack',
+      'recognizeSignsOfStroke',
+      'respondToSeizures',
+      'respondToSevereAllergicReaction',
+      'respondToSevereBreathingDifficulty',
+      'respondToSuspectedHypoglycaemia',
+      'respondToSuspectedOpioidOverdose',
+      'respondToSuspectedPoisoning',
+    ],
+  },
   description: {
     methodological:
       'Prompt recognition and appropriate escalation are more important than attempting diagnosis or administering unfamiliar medication.',

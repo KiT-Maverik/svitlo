@@ -39,11 +39,14 @@ export const healthLiteracyAndCare_SkillDomain_Data = defineSkillDomain({
     kk: 'Денсаулық сауаттылығы және күтім',
     qm: 'Sağlıq bilgisini añlav ve baqım',
   },
-  groups: [
-    healthAndRisk_SkillGroup_Data,
-    healthInformationAndMedicines_SkillGroup_Data,
-    usingHealthcare_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      healthAndRisk: healthAndRisk_SkillGroup_Data,
+      healthInformationAndMedicines: healthInformationAndMedicines_SkillGroup_Data,
+      usingHealthcare: usingHealthcare_SkillGroup_Data,
+    },
+    order: ['healthAndRisk', 'healthInformationAndMedicines', 'usingHealthcare'],
+  },
   description: {
     methodological:
       'Personal health decisions rely on interpreting bodily changes, credible evidence, and the division of responsibility between self-care and professional services. This domain concerns informed choices and access to care rather than the biological mechanisms of disease.',

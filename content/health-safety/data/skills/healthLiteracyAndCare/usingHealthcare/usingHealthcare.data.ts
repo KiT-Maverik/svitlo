@@ -42,12 +42,20 @@ export const usingHealthcare_SkillGroup_Data = defineSkillGroup({
     kk: 'Медициналық көмекке жүгіну',
     qm: 'Tibbiy hızmetlerden faydalanuv',
   },
-  skills: [
-    chooseAnAppropriateLevelOfHealthcare_Skill_Data,
-    communicateSymptomsToAClinician_Skill_Data,
-    participateInInformedHealthcareDecisions_Skill_Data,
-    understandACarePlan_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chooseAnAppropriateLevelOfHealthcare: chooseAnAppropriateLevelOfHealthcare_Skill_Data,
+      communicateSymptomsToAClinician: communicateSymptomsToAClinician_Skill_Data,
+      participateInInformedHealthcareDecisions: participateInInformedHealthcareDecisions_Skill_Data,
+      understandACarePlan: understandACarePlan_Skill_Data,
+    },
+    order: [
+      'chooseAnAppropriateLevelOfHealthcare',
+      'communicateSymptomsToAClinician',
+      'participateInInformedHealthcareDecisions',
+      'understandACarePlan',
+    ],
+  },
   description: {
     methodological:
       'Seeking care effectively includes choosing an appropriate service, describing a concern, understanding an agreed plan, and knowing when assistance is urgent.',

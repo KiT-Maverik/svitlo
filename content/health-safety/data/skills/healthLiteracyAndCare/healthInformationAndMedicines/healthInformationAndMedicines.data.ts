@@ -41,11 +41,14 @@ export const healthInformationAndMedicines_SkillGroup_Data = defineSkillGroup({
     kk: 'Денсаулық ақпараты және дәрілер',
     qm: 'Sağlıq malümatı ve ilâclar',
   },
-  skills: [
-    evaluateHealthInformationSources_Skill_Data,
-    recognizeMisleadingHealthClaims_Skill_Data,
-    useMedicinesSafely_Skill_Data,
-  ],
+  skills: {
+    items: {
+      evaluateHealthInformationSources: evaluateHealthInformationSources_Skill_Data,
+      recognizeMisleadingHealthClaims: recognizeMisleadingHealthClaims_Skill_Data,
+      useMedicinesSafely: useMedicinesSafely_Skill_Data,
+    },
+    order: ['evaluateHealthInformationSources', 'recognizeMisleadingHealthClaims', 'useMedicinesSafely'],
+  },
   description: {
     methodological:
       'Claims about prevention and treatment should be evaluated against trustworthy evidence, and medicines require label-aware, safe handling; clinical observations and basic measurements are classified in Health and Risk.',
