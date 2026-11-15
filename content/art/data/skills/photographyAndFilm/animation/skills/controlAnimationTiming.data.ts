@@ -5,6 +5,7 @@ export const controlAnimationTiming_Skill_Data = defineSkill({
   id: '1b95fe44-dfa9-4a83-9a10-ddd8b8969496',
   name: {
     en: 'Control Animation Timing',
+    it: 'Gestire i tempi dell\'animazione',
 
     zh: '控制动画节奏',
     hi: 'एनीमेशन का समय नियंत्रित करें',
@@ -39,6 +40,7 @@ export const controlAnimationTiming_Skill_Data = defineSkill({
     methodological: 'Change pose intervals and spacing to suggest acceleration, weight or dramatic emphasis.',
     frontend: {
       en: 'Change the timing between poses to suggest speed, weight or emphasis.',
+      it: 'Varia i tempi tra le pose per suggerire velocità, peso o enfasi.',
 
       zh: '调整姿势之间的时间，以表现速度、重量或强调效果。',
       hi: 'गति, भार या नाटकीय ज़ोर दिखाने के लिए मुद्राओं के बीच का समय बदलें।',
