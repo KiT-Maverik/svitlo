@@ -5,6 +5,7 @@ export const rechargeableBatterySystems_Skill_Data = defineSkill({
   id: '07a24200-6e42-4c1f-98b3-dba6a63acb68',
   name: {
     en: 'Rechargeable battery systems',
+    it: 'Sistemi di batterie ricaricabili',
     zh: '可充电电池系统',
     hi: 'पुनर्भरणीय बैटरी प्रणालियाँ',
     es: 'Sistemas de baterías recargables',
@@ -38,6 +39,7 @@ export const rechargeableBatterySystems_Skill_Data = defineSkill({
     methodological: 'Identify cells, charging control and protective elements in practical energy storage.',
     frontend: {
       en: 'Recognize the parts and operating limitations of rechargeable battery systems.',
+      it: 'Riconosci i componenti e i limiti di funzionamento dei sistemi a batterie ricaricabili.',
       zh: '认识可充电电池系统的组成部分及运行限制。',
       hi: 'रिचार्ज होने वाली बैटरी प्रणालियों के हिस्से और संचालन की सीमाएँ पहचानें।',
       es: 'Reconoce los componentes y límites de funcionamiento de las baterías recargables.',
