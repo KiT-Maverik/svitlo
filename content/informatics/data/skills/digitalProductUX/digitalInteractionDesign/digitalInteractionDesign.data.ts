@@ -12,6 +12,7 @@ export const digitalInteractionDesign_SkillGroup_Data = defineSkillGroup({
   id: '74767923-3b47-4431-94cc-3168ccd2e73c',
   name: {
     en: 'Digital Interaction Design',
+    it: 'Progettazione delle interazioni digitali',
     zh: '数字交互设计',
     hi: 'डिजिटल इंटरैक्शन डिज़ाइन',
     es: 'Diseño de interacción digital',
@@ -52,6 +53,7 @@ export const digitalInteractionDesign_SkillGroup_Data = defineSkillGroup({
       'Designing user action flows in applications and digital devices, understandable transitions, status feedback, and safeguards against common errors.',
     frontend: {
       en: 'Explore how to plan intuitive actions and helpful responses in digital interfaces.',
+      it: 'Esplora come progettare azioni intuitive e risposte utili nelle interfacce digitali.',
       zh: '探索如何规划直观的操作和数字界面中的有用反馈。',
       hi: 'जानें कि डिजिटल इंटरफ़ेस में सहज क्रियाएँ और मददगार प्रतिक्रियाएँ कैसे बनाएँ।',
       es: 'Explora cómo planificar acciones intuitivas y respuestas útiles en interfaces digitales.',
