@@ -257,11 +257,11 @@ export function defineFlashcard<
     },
   } satisfies DeepPartial<Flashcard_Config>;
 
-  const buildSide = (
-    side: FlashcardSide_Configurator,
+  const buildSide = <Items extends Record<string, Block>>(
+    side: FlashcardSide_Configurator<Items, Languages>,
     languages: readonly LanguageCode[],
   ): SidePublication =>
-    side.build.props({ languages }) as unknown as SidePublication;
+    (side.build.props as (options: PublicationLanguageOptions) => SidePublication)({ languages });
 
   const buildFlags = (flags: Flashcard_Config['parameters']['flags'], languages: readonly LanguageCode[]) => {
     const entries = flags.order.map(key => splitLocalizedFields(flags.items[key]));
