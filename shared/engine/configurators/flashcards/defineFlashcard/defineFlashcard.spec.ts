@@ -258,10 +258,9 @@ describe('Configurators', () => {
             content: {
               ...source.content,
               front: defineFlashcardSide({
-                // @ts-expect-error Raw content must not be nested as a configurator.
-                items: { front: front.config.base },
+                items: { front: front.config.base } as never,
                 order: ['front'],
-              }),
+              }) as unknown as typeof source.content.front,
             },
           }),
         );
