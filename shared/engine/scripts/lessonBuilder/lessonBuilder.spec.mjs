@@ -87,7 +87,7 @@ function wrap(value) {
 function fixture(callback) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-modules-'));
   const workspace = path.join(root, 'content/playground');
-  const lesson = path.join(workspace, 'data/lessons/c', lessonId);
+  const lesson = path.join(workspace, 'data/lessons', lessonId.at(-1), lessonId);
   fs.mkdirSync(lesson, { recursive: true });
   fs.writeFileSync(path.join(workspace, 'package.json'), '{"name":"@svitlo/playground"}\n');
   const config = lessonConfig();
