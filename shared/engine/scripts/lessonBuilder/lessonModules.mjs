@@ -84,7 +84,23 @@ export function childContext(parent, key, owner = {}) {
 
 const asProperty = key => identifier.test(key) ? key : JSON.stringify(key);
 const indent = level => '  '.repeat(level);
-const join = (...parts) => path.posix.join(...parts);
+const javascriptKeywords = new Set([
+  'await', 'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger',
+  'default', 'delete', 'do', 'else', 'enum', 'export', 'extends', 'false',
+  'finally', 'for', 'function', 'if', 'import', 'in', 'instanceof', 'new',
+  'null', 'return', 'super', 'switch', 'this', 'throw', 'true', 'try',
+  'typeof', 'var', 'void', 'while', 'with', 'yield', 'let', 'static',
+]);
+// Folder names come from Config slugs AND unvalidated collection keys,
+// including Question kinds and pair/slot keys. Check every dynamic segment
+// before using posix.join, which would otherwise normalize ../ traversal.
+const join = (...parts) => {
+  for (const segment of parts.slice(1)) {
+    if (segment !== 'index.ts' && !safeSlug.test(segment))
+      throw new Error('Unsafe Lesson source path segment: ' + JSON.stringify(segment));
+  }
+  return path.posix.join(...parts);
+};
 const relativeImport = (fromDirectory, toDirectory) => {
   const value = path.posix.relative(fromDirectory || '.', toDirectory || '.');
   return value.startsWith('.') ? value : './' + value;
@@ -247,7 +263,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     if (context === 'stage') return 'stage_' + stem;
     if (context === 'task') return 'task_' + stem;
     if (context === 'question') return value.type + '_' + stem;
-    return reserved.has(stem) ? 'item_' + stem : stem;
+    return reserved.has(stem) || javascriptKeywords.has(stem) ? 'item_' + stem : stem;
   }
 
   function generateParameters(node, context, directory, imports) {
