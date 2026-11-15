@@ -10,6 +10,7 @@ export const socialPsychology_SkillDomain_Data = defineSkillDomain({
   id: 'bb5e56e5-17d7-4ae3-aac3-260f60352c56',
   title: {
     en: 'Social Psychology',
+    it: 'Psicologia sociale',
     zh: '社会心理学',
     hi: 'सामाजिक मनोविज्ञान',
     es: 'Psicología social',
@@ -53,6 +54,7 @@ export const socialPsychology_SkillDomain_Data = defineSkillDomain({
       'Thought and behavior change in the actual or imagined presence of others. Social processes involve interpretation, group membership, influence, and relationships without assuming all people respond alike.',
     frontend: {
       en: 'Discover how other people influence our beliefs, actions and relationships.',
+      it: 'Scopri come le altre persone influenzino le nostre convinzioni, azioni e relazioni.',
       zh: '探索他人如何影响我们的信念、行为和人际关系。',
       hi: 'जानें कि दूसरे लोग हमारे विश्वास, व्यवहार और संबंधों को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo otras personas influyen en nuestras creencias, acciones y relaciones.',
