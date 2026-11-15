@@ -11,6 +11,7 @@ export const humanMadeObjects_SkillGroup_Data = defineSkillGroup({
   id: '86224b4e-f36f-4767-9eb9-fc3886d25f8f',
   name: {
     en: 'Human-Made Objects',
+    it: 'Elementi geografici antropici',
     zh: '人造地理事物',
     hi: 'मानव निर्मित वस्तुएँ',
     es: 'Elementos construidos por el ser humano',
@@ -50,6 +51,7 @@ export const humanMadeObjects_SkillGroup_Data = defineSkillGroup({
       'People build or organize identifiable features such as settlements, roads, bridges, ports and waterways. Their classification concerns recognizably different physical or functional types; networks, economics and governance are studied in other Domains.',
     frontend: {
       en: 'Recognize settlements and infrastructure as human-made geographic features.',
+      it: "Riconosci insediamenti e infrastrutture come elementi geografici realizzati dall'essere umano.",
       zh: '认识聚落和基础设施也是人造的地理事物。',
       hi: 'बस्तियों और बुनियादी ढाँचे को मानव निर्मित भौगोलिक विशेषताओं के रूप में पहचानें।',
       es: 'Reconoce asentamientos e infraestructuras como elementos geográficos humanos.',

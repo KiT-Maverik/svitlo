@@ -5,6 +5,7 @@ export const explainTheConceptOfAContinent_Skill_Data = defineSkill({
   id: '97e5c9ef-988f-47a1-b876-f4db65b340b1',
   name: {
     en: 'Explain the concept of a continent',
+    it: 'Spiegare il concetto di continente',
     zh: '解释大陆的概念',
     hi: 'महाद्वीप की अवधारणा समझाना',
     es: 'Explicar el concepto de continente',
@@ -39,6 +40,7 @@ export const explainTheConceptOfAContinent_Skill_Data = defineSkill({
       'Describe a major connected or conventionally recognized continental landmass and recognize that geography education uses different models for grouping landmasses, such as Eurasia versus separately named Europe and Asia.',
     frontend: {
       en: 'Understand what a continent means in different geographic classification systems.',
+      it: 'Comprendi che cosa significa continente nei diversi sistemi di classificazione geografica.',
       zh: '了解不同地理分类体系中“大陆”的含义。',
       hi: 'जानें कि अलग-अलग भौगोलिक वर्गीकरणों में महाद्वीप का क्या अर्थ होता है।',
       es: 'Comprende qué significa un continente en distintos sistemas de clasificación geográfica.',

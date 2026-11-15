@@ -5,6 +5,7 @@ export const locateOceansOnAGlobe_Skill_Data = defineSkill({
   id: 'b28227fa-2cb5-4246-8035-ff161c329edf',
   name: {
     en: 'Locate oceans on a globe',
+    it: 'Localizzare gli oceani su un globo',
     zh: '在地球仪上定位大洋',
     hi: 'ग्लोब पर महासागर ढूँढ़ना',
     es: 'Localizar océanos en un globo terráqueo',
@@ -39,6 +40,7 @@ export const locateOceansOnAGlobe_Skill_Data = defineSkill({
       'Identify the principal named ocean basins and their positions relative to landmasses using an explicit naming convention rather than mistaking seas or map boundaries for physical barriers in the connected ocean.',
     frontend: {
       en: 'Find the major oceans in relation to landmasses on a globe.',
+      it: 'Individua i principali oceani in relazione alle masse continentali su un globo.',
       zh: '在地球仪上结合陆地分布找出主要大洋的位置。',
       hi: 'ग्लोब पर महाद्वीपीय भूभागों के संबंध में प्रमुख महासागर ढूँढ़ें।',
       es: 'Encuentra los océanos principales en relación con las masas terrestres del globo.',

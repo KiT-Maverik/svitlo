@@ -5,6 +5,7 @@ export const locateHumanMadeGeographicObjectsOnAMap_Skill_Data = defineSkill({
   id: '117274cb-f401-4cba-a17b-7b115cb3e8ff',
   name: {
     en: 'Locate human-made geographic objects on a map',
+    it: 'Localizzare su una carta elementi geografici antropici',
     zh: '在地图上定位人造地理事物',
     hi: 'मानचित्र पर मानव निर्मित भौगोलिक वस्तुएँ ढूँढ़ना',
     es: 'Localizar objetos geográficos humanos en un mapa',
@@ -39,6 +40,7 @@ export const locateHumanMadeGeographicObjectsOnAMap_Skill_Data = defineSkill({
       'Identify the location of a described settlement or infrastructure feature using its representation and spatial relationships, independently of its engineering design or ownership.',
     frontend: {
       en: 'Find settlements and infrastructure features using a map and spatial clues.',
+      it: 'Trova insediamenti e infrastrutture utilizzando una carta e indizi spaziali.',
       zh: '根据地图和空间线索找到聚落及基础设施的位置。',
       hi: 'मानचित्र और स्थानिक संकेतों से बस्तियाँ तथा बुनियादी ढाँचे ढूँढ़ें।',
       es: 'Encuentra asentamientos e infraestructuras usando el mapa y pistas espaciales.',
