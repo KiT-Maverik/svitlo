@@ -17,6 +17,7 @@ export const studyDesigns_SkillGroup_Data = defineSkillGroup({
   id: 'f5e74fc5-0e0f-47b7-a305-dd59686daabb',
   name: {
     en: 'Study Designs',
+    it: 'Disegni di studio',
     zh: '研究设计',
     hi: 'अनुसंधान अभिकल्प',
     es: 'Diseños de investigación',
@@ -75,6 +76,7 @@ export const studyDesigns_SkillGroup_Data = defineSkillGroup({
       'Different ways of collecting evidence answer different questions and support different levels of causal inference.',
     frontend: {
       en: 'Learn why different research designs support different conclusions.',
+      it: 'Scopri perché disegni di ricerca diversi consentano conclusioni differenti.',
       zh: '了解为什么不同的研究设计能支持不同类型的结论。',
       hi: 'जानें कि अलग-अलग अनुसंधान अभिकल्प अलग तरह के निष्कर्षों का समर्थन क्यों करते हैं।',
       es: 'Aprende por qué los distintos diseños de investigación permiten sacar conclusiones diferentes.',

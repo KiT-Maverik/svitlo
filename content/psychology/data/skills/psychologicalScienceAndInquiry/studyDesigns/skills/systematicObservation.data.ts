@@ -5,6 +5,7 @@ export const systematicObservation_Skill_Data = defineSkill({
   id: '562e1f23-7745-45db-8cf5-5c8bae50f07b',
   name: {
     en: 'Systematic Observation',
+    it: 'Osservazione sistematica',
     zh: '系统观察',
     hi: 'व्यवस्थित अवलोकन',
     es: 'Observación sistemática',
@@ -39,6 +40,7 @@ export const systematicObservation_Skill_Data = defineSkill({
       'Use predefined behavioral categories to distinguish structured observations from informal personal impressions.',
     frontend: {
       en: 'Record behavior using consistent observation rules rather than impressions.',
+      it: 'Registra i comportamenti seguendo regole di osservazione coerenti, anziché impressioni personali.',
       zh: '按照一致的观察规则记录行为，而不是依赖个人印象。',
       hi: 'व्यक्तिगत धारणाओं के बजाय एकसमान अवलोकन नियमों से व्यवहार दर्ज करें।',
       es: 'Registra la conducta siguiendo reglas de observación constantes en lugar de impresiones.',

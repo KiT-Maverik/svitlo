@@ -5,6 +5,7 @@ export const researchableHypotheses_Skill_Data = defineSkill({
   id: '348f3dac-3526-43d2-b0a7-ff4efd3b8a2a',
   name: {
     en: 'Researchable Hypotheses',
+    it: 'Ipotesi verificabili con la ricerca',
     zh: '可检验的假设',
     hi: 'परीक्षण योग्य परिकल्पनाएँ',
     es: 'Hipótesis investigables',
@@ -39,6 +40,7 @@ export const researchableHypotheses_Skill_Data = defineSkill({
       'Transform a broad statement about human behavior into a claim with observable variables and possible disconfirming evidence.',
     frontend: {
       en: 'Turn an everyday claim about behavior into a researchable hypothesis.',
+      it: 'Trasforma un\'affermazione quotidiana sul comportamento in un\'ipotesi che possa essere studiata.',
       zh: '把关于行为的日常说法转化为可以研究的假设。',
       hi: 'व्यवहार के बारे में रोज़मर्रा के किसी दावे को जाँच योग्य परिकल्पना में बदलें।',
       es: 'Convierte una afirmación cotidiana sobre la conducta en una hipótesis que se pueda investigar.',
