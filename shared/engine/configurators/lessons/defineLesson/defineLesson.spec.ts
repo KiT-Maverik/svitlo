@@ -135,6 +135,30 @@ describe('Configurators', () => {
         assert.doesNotThrow(() =>
           defineLesson({ ...input, section: withRecall, flashcards: { items: {}, order: [] } }),
         );
+        assert.doesNotThrow(() =>
+          lesson.build.overrides(
+            { section: { items: { intro: { locale: { title: { en: 'Retitled' } } } } } },
+            { languages: ['en'] },
+          ),
+        );
+        assert.deepEqual(
+          defineLesson({ ...input, questions: {} })
+            .build.overrides(
+              { section: { additionalItems: { banklessQuiz: quiz }, order: ['intro', 'banklessQuiz'] } },
+              { languages: ['en'] },
+            )
+            .base.section?.map(item => item.slug),
+          ['intro', 'banklessQuiz'],
+        );
+        assert.deepEqual(
+          defineLesson({ ...input, flashcards: { items: {}, order: [] } })
+            .build.overrides(
+              { section: { additionalItems: { banklessRecall: recall }, order: ['intro', 'banklessRecall'] } },
+              { languages: ['en'] },
+            )
+            .base.section?.map(item => item.slug),
+          ['intro', 'banklessRecall'],
+        );
         assert.throws(
           () =>
             lesson.build.overrides(
