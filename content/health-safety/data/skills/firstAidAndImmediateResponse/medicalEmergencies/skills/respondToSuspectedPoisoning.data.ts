@@ -5,6 +5,7 @@ export const respondToSuspectedPoisoning_Skill_Data = defineSkill({
   id: '71b84e35-3ad3-4a1e-a25d-0a472e519c7a',
   name: {
     en: 'Respond to suspected poisoning',
+    it: 'Reagire a un sospetto avvelenamento',
     zh: '应对疑似中毒',
     hi: 'संभावित विषाक्तता पर प्रतिक्रिया',
     es: 'Responder a una posible intoxicación',
@@ -39,6 +40,7 @@ export const respondToSuspectedPoisoning_Skill_Data = defineSkill({
       'Identify possible toxic exposures, prevent further exposure without risking the helper and seek poison-service or emergency guidance; do not induce vomiting or improvise remedies. Opioid-specific response is addressed separately.',
     frontend: {
       en: 'Seek poison or emergency guidance rather than improvising poisoning remedies.',
+      it: 'Chiedi indicazioni a un centro antiveleni o ai servizi di emergenza invece di improvvisare rimedi.',
       zh: '寻求中毒咨询或急救指导，不要自行尝试未经证实的解毒方法。',
       hi: 'मनमाने घरेलू उपाय आज़माने के बजाय ज़हर संबंधी विशेषज्ञ या आपात सलाह लो।',
       es: 'Solicita orientación toxicológica o de emergencias en vez de improvisar remedios.',
