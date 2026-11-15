@@ -5,6 +5,7 @@ export const explainSpeciation_Skill_Data = defineSkill({
   id: '9f4368dc-d646-45d7-aad8-6981773e55b4',
   name: {
     en: 'Explain Speciation',
+    it: 'Spiegare la speciazione',
     zh: '解释物种形成',
     hi: 'नई प्रजातियों का निर्माण समझाना',
     es: 'Explicar la formación de nuevas especies',
@@ -39,6 +40,7 @@ export const explainSpeciation_Skill_Data = defineSkill({
       'Explain how hereditary variation, population divergence, restricted gene flow, and reproductive isolation may give rise to new species; recognize that mechanisms of speciation differ among groups of organisms.',
     frontend: {
       en: 'Discover how populations can diverge and form new species.',
+      it: 'Scopri come le popolazioni possono divergere e dare origine a nuove specie.',
       zh: '探索不同种群如何逐渐分化并形成新物种。',
       hi: 'जानें कि अलग-अलग समष्टियाँ समय के साथ अलग होकर नई प्रजातियाँ कैसे बना सकती हैं।',
       es: 'Descubre cómo las poblaciones pueden divergir y dar origen a nuevas especies.',
