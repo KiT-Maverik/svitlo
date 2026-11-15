@@ -5,6 +5,7 @@ export const recognizeChangesInHealthStatus_Skill_Data = defineSkill({
   id: 'b296e972-4462-4fc4-882c-f988f47add03',
   name: {
     en: 'Recognize changes in health status',
+    it: 'Riconoscere i cambiamenti nello stato di salute',
     zh: '识别健康状况变化',
     hi: 'स्वास्थ्य स्थिति में बदलाव पहचानना',
     es: 'Reconocer cambios en el estado de salud',
@@ -39,6 +40,7 @@ export const recognizeChangesInHealthStatus_Skill_Data = defineSkill({
       'Distinguish a usual bodily variation from a new or worsening change that deserves monitoring or advice, without treating a single symptom as a definitive diagnosis.',
     frontend: {
       en: 'Recognize when a new bodily change deserves attention or professional advice.',
+      it: 'Riconosci quando un nuovo cambiamento corporeo merita attenzione o un parere professionale.',
       zh: '了解何时新的身体变化值得关注或咨询专业人士。',
       hi: 'पहचानें कि शरीर में नया बदलाव कब ध्यान या चिकित्सकीय सलाह माँगता है।',
       es: 'Reconoce cuándo un cambio corporal nuevo requiere atención o consejo profesional.',

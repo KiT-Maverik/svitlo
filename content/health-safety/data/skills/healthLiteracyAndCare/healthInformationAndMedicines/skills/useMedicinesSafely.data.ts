@@ -5,6 +5,7 @@ export const useMedicinesSafely_Skill_Data = defineSkill({
   id: '8e6792b7-2e18-4b9f-9feb-ea1a0354f324',
   name: {
     en: 'Use medicines safely',
+    it: 'Utilizzare i medicinali in sicurezza',
     zh: '安全用药',
     hi: 'दवाओं का सुरक्षित उपयोग',
     es: 'Usar medicamentos con seguridad',
@@ -39,6 +40,7 @@ export const useMedicinesSafely_Skill_Data = defineSkill({
       'Respect intended use, dosing instructions, contraindications, storage, expiry, and professional guidance; avoid sharing prescription medicine or guessing a dose.',
     frontend: {
       en: 'Follow medication guidance and avoid sharing or guessing doses.',
+      it: 'Segui le indicazioni sui medicinali ed evita di condividerli o improvvisarne le dosi.',
       zh: '遵循用药指导，不与他人分享药物，也不要猜测剂量。',
       hi: 'दवा के निर्देश मानें, दवाएँ साझा न करें और खुराक का अनुमान न लगाएँ।',
       es: 'Sigue las indicaciones de medicación; no compartas fármacos ni adivines dosis.',

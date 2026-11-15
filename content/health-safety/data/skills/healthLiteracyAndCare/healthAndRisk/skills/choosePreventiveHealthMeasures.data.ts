@@ -5,6 +5,7 @@ export const choosePreventiveHealthMeasures_Skill_Data = defineSkill({
   id: 'eb053c16-d41c-4e18-9c92-d87a841746f7',
   name: {
     en: 'Choose preventive health measures',
+    it: 'Scegliere misure preventive per la salute',
     zh: '选择预防性健康措施',
     hi: 'निवारक स्वास्थ्य उपाय चुनना',
     es: 'Elegir medidas preventivas de salud',
@@ -39,6 +40,7 @@ export const choosePreventiveHealthMeasures_Skill_Data = defineSkill({
       'Match health risks to evidence-based prevention such as vaccination, screening advice or protective daily habits, distinguishing the prevention of illness from first aid, clinical treatment and general accident avoidance.',
     frontend: {
       en: 'Choose suitable preventive measures using trustworthy health evidence.',
+      it: 'Scegli misure preventive appropriate sulla base di evidenze sanitarie affidabili.',
       zh: '利用可信的健康证据选择适当的预防措施。',
       hi: 'भरोसेमंद स्वास्थ्य प्रमाण के आधार पर उचित बचाव के उपाय चुनें।',
       es: 'Elige medidas preventivas adecuadas basadas en evidencia sanitaria fiable.',

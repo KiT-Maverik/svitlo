@@ -5,6 +5,7 @@ export const interpretBasicHealthMeasurements_Skill_Data = defineSkill({
   id: '3993a537-75bf-4668-af81-a06bcda36799',
   name: {
     en: 'Interpret basic health measurements',
+    it: 'Interpretare le misurazioni sanitarie di base',
     zh: '解读基本健康测量值',
     hi: 'बुनियादी स्वास्थ्य मापों को समझना',
     es: 'Interpretar mediciones básicas de salud',
@@ -39,6 +40,7 @@ export const interpretBasicHealthMeasurements_Skill_Data = defineSkill({
       'Relate observations such as temperature, pulse, or blood pressure to measurement conditions and reference context without making a diagnosis from one reading.',
     frontend: {
       en: 'Interpret basic health readings without treating one result as a diagnosis.',
+      it: 'Interpreta i valori sanitari di base senza considerare un singolo risultato come una diagnosi.',
       zh: '学会理解基本健康读数，不要把单次结果当作诊断。',
       hi: 'बुनियादी स्वास्थ्य माप समझें, लेकिन एक परिणाम को रोग का निदान न मानें।',
       es: 'Interpreta lecturas básicas de salud sin considerar un solo resultado como diagnóstico.',

@@ -5,6 +5,7 @@ export const recognizeMisleadingHealthClaims_Skill_Data = defineSkill({
   id: '954ac807-b5f4-4508-8c1f-706aff271e52',
   name: {
     en: 'Recognize misleading health claims',
+    it: 'Riconoscere affermazioni sanitarie ingannevoli',
     zh: '识别误导性健康说法',
     hi: 'भ्रामक स्वास्थ्य दावों को पहचानना',
     es: 'Reconocer afirmaciones sanitarias engañosas',
@@ -39,6 +40,7 @@ export const recognizeMisleadingHealthClaims_Skill_Data = defineSkill({
       'Identify miracle-cure promises, unsupported causal claims, and advertising disguised as medical advice, including claims about supplements.',
     frontend: {
       en: 'Spot unsupported miracle cures and misleading medical advertising.',
+      it: 'Individua le cure miracolose prive di prove e la pubblicità medica fuorviante.',
       zh: '识别缺乏证据的神奇疗法和误导性医疗广告。',
       hi: 'बिना प्रमाण के चमत्कारी इलाज के दावे और भ्रामक विज्ञापन पहचानें।',
       es: 'Detecta curas milagrosas sin pruebas y publicidad médica engañosa.',

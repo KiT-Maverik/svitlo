@@ -13,6 +13,7 @@ export const healthAndRisk_SkillGroup_Data = defineSkillGroup({
   id: 'f314106d-d5d8-4fb5-b8ae-562458c9bd31',
   name: {
     en: 'Health and Risk',
+    it: 'Salute e rischi',
     zh: '健康与风险',
     hi: 'स्वास्थ्य और जोखिम',
     es: 'Salud y riesgos',
@@ -42,27 +43,19 @@ export const healthAndRisk_SkillGroup_Data = defineSkillGroup({
     kk: 'Денсаулық және тәуекелдер',
     qm: 'Sağlıq ve havflar',
   },
-  skills: {
-    items: {
-      assessHealthRelatedRisk: assessHealthRelatedRisk_Skill_Data,
-      choosePreventiveHealthMeasures: choosePreventiveHealthMeasures_Skill_Data,
-      identifyFactorsAffectingHealth: identifyFactorsAffectingHealth_Skill_Data,
-      interpretBasicHealthMeasurements: interpretBasicHealthMeasurements_Skill_Data,
-      recognizeChangesInHealthStatus: recognizeChangesInHealthStatus_Skill_Data,
-    },
-    order: [
-      'assessHealthRelatedRisk',
-      'choosePreventiveHealthMeasures',
-      'identifyFactorsAffectingHealth',
-      'interpretBasicHealthMeasurements',
-      'recognizeChangesInHealthStatus',
-    ],
-  },
+  skills: [
+    assessHealthRelatedRisk_Skill_Data,
+    choosePreventiveHealthMeasures_Skill_Data,
+    identifyFactorsAffectingHealth_Skill_Data,
+    interpretBasicHealthMeasurements_Skill_Data,
+    recognizeChangesInHealthStatus_Skill_Data,
+  ],
   description: {
     methodological:
       "Health depends on interacting physical, psychological, social, and environmental conditions. Risk factors affect probability rather than determining an individual's diagnosis.",
     frontend: {
       en: 'Explore how different conditions and choices can influence health risks.',
+      it: 'Esplora come condizioni e scelte diverse possono influire sui rischi per la salute.',
       zh: '探索不同的条件和选择如何影响健康风险。',
       hi: 'जानें कि अलग परिस्थितियाँ और चुनाव स्वास्थ्य जोखिम को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo distintas condiciones y decisiones influyen en los riesgos para la salud.',

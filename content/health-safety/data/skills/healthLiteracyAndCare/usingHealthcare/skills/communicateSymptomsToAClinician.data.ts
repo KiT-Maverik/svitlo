@@ -5,6 +5,7 @@ export const communicateSymptomsToAClinician_Skill_Data = defineSkill({
   id: 'db7a94e9-b062-415c-b811-a0e51b029242',
   name: {
     en: 'Communicate symptoms to a clinician',
+    it: 'Comunicare i sintomi a un professionista sanitario',
     zh: '向医生清楚描述症状',
     hi: 'डॉक्टर को लक्षण स्पष्ट बताना',
     es: 'Comunicar síntomas a un profesional sanitario',
@@ -39,6 +40,7 @@ export const communicateSymptomsToAClinician_Skill_Data = defineSkill({
       'Convey onset, duration, relevant changes, treatments already taken, and questions without substituting an assumed diagnosis for observations.',
     frontend: {
       en: 'Describe symptoms and their timing clearly to a healthcare professional.',
+      it: 'Descrivi chiaramente i sintomi e quando si sono manifestati a un professionista sanitario.',
       zh: '向医护人员清楚描述症状及其出现时间。',
       hi: 'स्वास्थ्यकर्मी को लक्षण और उनका समय स्पष्ट बताएँ।',
       es: 'Describe con claridad los síntomas y cuándo comenzaron.',
