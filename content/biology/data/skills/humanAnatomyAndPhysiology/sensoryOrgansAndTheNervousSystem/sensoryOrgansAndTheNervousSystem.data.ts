@@ -12,6 +12,7 @@ export const sensoryOrgansAndTheNervousSystem_SkillGroup_Data = defineSkillGroup
   id: 'd3683f34-48a8-4b91-8453-a5be1e59d88a',
   name: {
     en: 'Sensory Organs and the Nervous System',
+    it: 'Organi di senso e sistema nervoso',
     zh: '感觉器官与神经系统',
     hi: 'इंद्रिय अंग और तंत्रिका तंत्र',
     es: 'Órganos de los sentidos y sistema nervioso',
@@ -52,6 +53,7 @@ export const sensoryOrgansAndTheNervousSystem_SkillGroup_Data = defineSkillGroup
       'Receptors detect different stimuli, the nervous system processes signals, and the skin also protects the body as a physical barrier.',
     frontend: {
       en: 'Discover how senses and nerves detect and respond to information.',
+      it: 'Scopri come gli organi di senso e i nervi rilevano informazioni e consentono di reagire.',
       zh: '探索感官和神经如何感知信息并作出反应。',
       hi: 'जानें कि इंद्रियाँ और तंत्रिकाएँ सूचना को कैसे ग्रहण करती और प्रतिक्रिया देती हैं।',
       es: 'Descubre cómo los sentidos y los nervios detectan información y responden a ella.',
