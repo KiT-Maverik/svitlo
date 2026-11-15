@@ -2,7 +2,8 @@ import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import { defineText } from '../../contentBlocks/defineText/defineText';
-import { defineFlashcardSide, flashcardSideConfigurator_Schema } from './defineFlashcardSide';
+import { defineFlashcardSide } from './defineFlashcardSide';
+import { flashcardSideConfigurator_Schema } from './defineFlashcardSide.schemas';
 
 describe('Configurators', () => {
   describe('Flashcards', () => {
@@ -78,7 +79,7 @@ describe('Configurators', () => {
           defineFlashcardSide({ items: { first }, order: ['missing'] }),
         );
         assert.throws(() =>
-          defineFlashcardSide({ items: { first: first.config.base } } as never),
+          defineFlashcardSide({ items: { first: first.config.base } as never, order: ['first'] }),
         );
       });
 
