@@ -12,6 +12,7 @@ export const powerAndSocialRelations_SkillGroup_Data = defineSkillGroup({
   id: '069c0e55-cd2f-49b1-ab91-2614dc1618c6',
   name: {
     en: 'Power and Social Relations',
+    it: "Potere e relazioni sociali",
     zh: '权力与社会关系',
     hi: 'सत्ता और सामाजिक संबंध',
     es: 'Poder y relaciones sociales',
@@ -41,20 +42,18 @@ export const powerAndSocialRelations_SkillGroup_Data = defineSkillGroup({
     kk: 'Билік және әлеуметтік қатынастар',
     qm: 'Akımiyet ve cemiyet alâqaları',
   },
-  skills: {
-    items: {
-      earlyStateFormation: earlyStateFormation_Skill_Data,
-      slaveryAndOtherDependencies: slaveryAndOtherDependencies_Skill_Data,
-      socialHierarchies: socialHierarchies_Skill_Data,
-      womenInAncientSocieties: womenInAncientSocieties_Skill_Data,
-    },
-    order: ['earlyStateFormation', 'slaveryAndOtherDependencies', 'socialHierarchies', 'womenInAncientSocieties'],
-  },
+  skills: [
+    earlyStateFormation_Skill_Data,
+    slaveryAndOtherDependencies_Skill_Data,
+    socialHierarchies_Skill_Data,
+    womenInAncientSocieties_Skill_Data,
+  ],
   description: {
     methodological:
       'Comparing institutions requires identifying their functions rather than equating unfamiliar ancient names with familiar ones.',
     frontend: {
       en: 'Explore how ancient people organized power and social relationships.',
+      it: "Esplora come le popolazioni antiche organizzavano il potere e le relazioni sociali.",
       zh: '探索古代人们如何组织权力与社会关系。',
       hi: 'जानें कि प्राचीन लोग सत्ता और सामाजिक संबंधों को कैसे व्यवस्थित करते थे।',
       es: 'Explora cómo las personas de la Antigüedad organizaban el poder y las relaciones sociales.',

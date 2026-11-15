@@ -15,6 +15,7 @@ export const productionAndKnowledge_SkillGroup_Data = defineSkillGroup({
   id: '742b4358-b545-4895-9856-453f918343d0',
   name: {
     en: 'Production and Knowledge',
+    it: "Produzione e conoscenza",
     zh: '生产与知识',
     hi: 'उत्पादन और ज्ञान',
     es: 'Producción y conocimiento',
@@ -44,31 +45,21 @@ export const productionAndKnowledge_SkillGroup_Data = defineSkillGroup({
     kk: 'Өндіріс және білім',
     qm: 'İstisal ve bilgi',
   },
-  skills: {
-    items: {
-      ancientAstronomicalKnowledge: ancientAstronomicalKnowledge_Skill_Data,
-      ancientCalendarSystems: ancientCalendarSystems_Skill_Data,
-      ancientMeasurementSystems: ancientMeasurementSystems_Skill_Data,
-      earlyUrbanInfrastructure: earlyUrbanInfrastructure_Skill_Data,
-      historyOfAncientMedicine: historyOfAncientMedicine_Skill_Data,
-      metallurgyAndHistoricalEffects: metallurgyAndHistoricalEffects_Skill_Data,
-      originsOfWriting: originsOfWriting_Skill_Data,
-    },
-    order: [
-      'ancientAstronomicalKnowledge',
-      'ancientCalendarSystems',
-      'ancientMeasurementSystems',
-      'earlyUrbanInfrastructure',
-      'historyOfAncientMedicine',
-      'metallurgyAndHistoricalEffects',
-      'originsOfWriting',
-    ],
-  },
+  skills: [
+    ancientAstronomicalKnowledge_Skill_Data,
+    ancientCalendarSystems_Skill_Data,
+    ancientMeasurementSystems_Skill_Data,
+    earlyUrbanInfrastructure_Skill_Data,
+    historyOfAncientMedicine_Skill_Data,
+    metallurgyAndHistoricalEffects_Skill_Data,
+    originsOfWriting_Skill_Data,
+  ],
   description: {
     methodological:
       'Evaluate material inventions and systems of information transmission by function, spread, and historical context rather than claims of being first.',
     frontend: {
       en: 'Explore how ancient societies made things and shared knowledge.',
+      it: "Esplora come le società antiche producevano beni e condividevano conoscenze.",
       zh: '探索古代社会如何制造物品与分享知识。',
       hi: 'जानें कि प्राचीन समाज वस्तुएँ कैसे बनाते और ज्ञान कैसे बाँटते थे।',
       es: 'Explora cómo las sociedades antiguas fabricaban objetos y compartían conocimientos.',

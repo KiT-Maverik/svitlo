@@ -5,6 +5,7 @@ export const ancientCalendarSystems_Skill_Data = defineSkill({
   id: 'e2786627-cbf9-4b59-aac7-da9cbf4de1ee',
   name: {
     en: 'Ancient Calendar Systems',
+    it: "Antichi sistemi di calendario",
     zh: '古代历法体系',
     hi: 'प्राचीन कैलेंडर प्रणालियाँ',
     es: 'Sistemas de calendario antiguos',
@@ -38,6 +39,7 @@ export const ancientCalendarSystems_Skill_Data = defineSkill({
     methodological: 'Compare month, season, and year reckoning used in farming, governance, and rituals.',
     frontend: {
       en: 'Learn how ancient calendars organized time.',
+      it: "Scopri come gli antichi calendari organizzavano il tempo.",
       zh: '了解古代历法如何帮助人们安排时间。',
       hi: 'जानें कि प्राचीन कैलेंडर समय को व्यवस्थित कैसे करते थे।',
       es: 'Aprende cómo los calendarios antiguos organizaban el tiempo.',
