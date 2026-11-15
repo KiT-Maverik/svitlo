@@ -291,7 +291,7 @@ test('Lesson Review draft and Studio stage names match the Engine camelCase cont
   const pending = renderReviewDraft();
   const fields = [...pending.matchAll(/^    ([A-Za-z]+): \{ pr: , language: , \},$/gm)].map(match => match[1]);
   assert.deepEqual(fields, stages);
-  assert.doesNotMatch(pending, /\\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
+  assert.doesNotMatch(pending, /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
   assert.match(pending, /^    locales: ,$/m);
   assert.match(pending, /^    acceptance: ,$/m);
   const filled = pending
