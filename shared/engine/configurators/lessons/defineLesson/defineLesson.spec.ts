@@ -237,15 +237,7 @@ describe('Configurators', () => {
           order: ['paragraph'],
         });
         const makeCard = <Slug extends string>(slug: Slug, cardId: string) =>
-          defineFlashcard<
-            Slug,
-            typeof side.items,
-            typeof side.items,
-            {},
-            {},
-            {},
-            ['en', 'uk']
-          >({
+          defineFlashcard<Slug, typeof side.items, typeof side.items, {}, {}, {}, ['en', 'uk']>({
             id: cardId,
             slug,
             type: 'flashcard',
@@ -278,29 +270,34 @@ describe('Configurators', () => {
           { flashcards: { items: { zetaCard: false }, additionalItems: { betaCard } } },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(replacement.base.flashcards?.map(card => card.slug), ['alphaCard', 'betaCard']);
+        assert.deepEqual(
+          replacement.base.flashcards?.map(card => card.slug),
+          ['alphaCard', 'betaCard'],
+        );
         assert.deepEqual(Object.keys(lesson.flashcards.items), ['zetaCard', 'alphaCard']);
         assert.equal('order' in lesson.flashcards, false);
         assert.throws(
-          () => lesson.build.overrides({ flashcards: { order: ['zetaCard', 'alphaCard'] } } as never, { languages: ['en'] }),
+          () =>
+            lesson.build.overrides({ flashcards: { order: ['zetaCard', 'alphaCard'] } } as never, {
+              languages: ['en'],
+            }),
           /Unknown flashcards override field/,
         );
-        assert.throws(
-          () =>
-            defineLesson({
-              id: id('15'),
-              slug: 'invalidRecallOrder',
-              type: 'lesson',
-              skills: [],
-              params: {
-                requireQuiz: false,
-                languages: ['en', 'uk'] as const,
-                sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
-              },
-              locale: { title: 'Invalid recall order' },
-              section: { items: { intro: section }, order: ['intro'] },
-              flashcards: { items: { zetaCard }, order: ['zetaCard'] },
-            } as never),
+        assert.throws(() =>
+          defineLesson({
+            id: id('15'),
+            slug: 'invalidRecallOrder',
+            type: 'lesson',
+            skills: [],
+            params: {
+              requireQuiz: false,
+              languages: ['en', 'uk'] as const,
+              sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
+            },
+            locale: { title: 'Invalid recall order' },
+            section: { items: { intro: section }, order: ['intro'] },
+            flashcards: { items: { zetaCard }, order: ['zetaCard'] },
+          } as never),
         );
       });
 

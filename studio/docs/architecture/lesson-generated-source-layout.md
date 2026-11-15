@@ -66,7 +66,7 @@ The examples in one directory describe **alternative entity-specific cases**, no
 
 ## Flashcard Configurator source handoff for Agent 5 (Issue #587)
 
-The Engine Flashcard API now expects three separate *structural* side configurators, instead of bare nested collection objects. The Lesson itself accepts only `flashcards: { items }`; `flashcards.order` is not an authored field and must not be emitted.
+The Engine Flashcard API now expects three separate _structural_ side configurators, instead of bare nested collection objects. The Lesson itself accepts only `flashcards: { items }`; `flashcards.order` is not an authored field and must not be emitted.
 
 For each Flashcard, emit `front/index.ts` and `back/index.ts` and, if authored, `hint/index.ts`. Each imports the corresponding descendant ContentBlocks and creates `defineFlashcardSide({ items, order })` with the original source order intact. Its parent `<cardSlug>/index.ts` imports these role-based symbols and passes `content: { front, back, hint? }` to `defineFlashcard`; derive generic child maps and the Lesson language tuple from the new actual Engine signatures. A side is **not** an independently identified entity: do not invent a UUID, slug, `config` wrapper, or additional YAML node. Keep the already established `front/<blockSlug>/index.ts`, `back/<blockSlug>/index.ts`, `hint/<blockSlug>/index.ts` paths, nested media handoffs and original permanent child identities.
 
