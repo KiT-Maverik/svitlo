@@ -10,6 +10,7 @@ export const atmosphereWeatherAndClimate_SkillDomain_Data = defineSkillDomain({
   id: '0932373f-a251-4619-9fc4-4779bd00cead',
   title: {
     en: 'Atmosphere, Weather, and Climate',
+    it: 'Atmosfera, tempo meteorologico e clima',
     zh: '大气、天气与气候',
     hi: 'वायुमंडल, मौसम और जलवायु',
     es: 'Atmósfera, tiempo y clima',
@@ -50,6 +51,7 @@ export const atmosphereWeatherAndClimate_SkillDomain_Data = defineSkillDomain({
       'Weather describes atmospheric conditions at a place and time, whereas climate characterizes their long-term distributions and change. Geographic inquiry examines how clouds, precipitation, air motion and circulation vary across places, and how hazards and climate trends influence regions.',
     frontend: {
       en: 'Explore atmospheric conditions, long-term climate patterns and weather-related hazards.',
+      it: 'Esplora le condizioni atmosferiche, gli andamenti climatici a lungo termine e i rischi legati al tempo meteorologico.',
       zh: '探索大气状况、长期气候规律和天气灾害。',
       hi: 'वायुमंडलीय दशाओं, दीर्घकालीन जलवायु प्रतिरूप और मौसमी खतरों का अध्ययन करें।',
       es: 'Explora las condiciones atmosféricas, los patrones climáticos de largo plazo y los riesgos meteorológicos.',

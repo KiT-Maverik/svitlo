@@ -13,6 +13,7 @@ export const climatePatterns_SkillGroup_Data = defineSkillGroup({
   id: '19c534a9-0755-459e-a150-38225482f643',
   name: {
     en: 'Climate Patterns',
+    it: 'Andamenti climatici',
     zh: '气候规律',
     hi: 'जलवायु के प्रतिरूप',
     es: 'Patrones climáticos',
@@ -54,6 +55,7 @@ export const climatePatterns_SkillGroup_Data = defineSkillGroup({
       'Climate summarizes the long-term distribution and variability of weather, not simply a typical day. Latitude, elevation, land–sea contrast, and circulation contribute to regional differences.',
     frontend: {
       en: 'Explore why different regions experience different long-term climate patterns.',
+      it: 'Esplora perché regioni diverse presentano andamenti climatici differenti nel lungo periodo.',
       zh: '探索不同地区为何具有不同的长期气候特征。',
       hi: 'जानें कि अलग-अलग क्षेत्रों की दीर्घकालीन जलवायु अलग क्यों होती है।',
       es: 'Explora por qué las regiones tienen distintos patrones climáticos de larga duración.',

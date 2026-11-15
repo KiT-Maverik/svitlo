@@ -5,6 +5,7 @@ export const explainHowPrecipitationForms_Skill_Data = defineSkill({
   id: 'b1d7f4df-7171-48ad-81b9-b3d4a13cc5ac',
   name: {
     en: 'Explain how precipitation forms',
+    it: 'Spiegare come si formano le precipitazioni',
     zh: '解释降水如何形成',
     hi: 'वर्षण कैसे होता है, समझाना',
     es: 'Explicar cómo se forma la precipitación',
@@ -39,6 +40,7 @@ export const explainHowPrecipitationForms_Skill_Data = defineSkill({
       'Recognize how condensed water or ice particles can grow and fall to the surface as rain, snow or other precipitation under suitable atmospheric conditions.',
     frontend: {
       en: 'Explore how droplets or ice grow and fall as precipitation.',
+      it: "Esplora come le gocce d'acqua o i cristalli di ghiaccio crescono e cadono sotto forma di precipitazioni.",
       zh: '了解水滴或冰晶如何长大并降落成为降水。',
       hi: 'जानें कि बूँदें या बर्फ़ के कण बढ़कर वर्षण के रूप में कैसे गिरते हैं।',
       es: 'Descubre cómo crecen gotas o cristales de hielo y caen como precipitación.',

@@ -12,6 +12,7 @@ export const atmosphericProcesses_SkillGroup_Data = defineSkillGroup({
   id: 'b9903371-5457-474d-bfc1-6d2d020aff6a',
   name: {
     en: 'Atmospheric Processes',
+    it: 'Processi atmosferici',
     zh: '大气过程',
     hi: 'वायुमंडलीय प्रक्रियाएँ',
     es: 'Procesos atmosféricos',
@@ -52,6 +53,7 @@ export const atmosphericProcesses_SkillGroup_Data = defineSkillGroup({
       'Water vapor, atmospheric pressure differences, moving air masses and energy exchanges explain the geographic formation and movement of weather systems. The focus is observable and spatially significant processes rather than equations of fluid mechanics.',
     frontend: {
       en: 'Discover what causes clouds, rainfall, wind and changing weather systems.',
+      it: 'Scopri che cosa provoca nuvole, pioggia, vento e cambiamenti delle condizioni meteorologiche.',
       zh: '了解云、降雨、风和天气系统变化的成因。',
       hi: 'जानें कि बादल, वर्षा, हवा और बदलती मौसम प्रणालियाँ क्यों बनती हैं।',
       es: 'Descubre qué provoca la formación de nubes, la lluvia y el viento, y los cambios en los sistemas meteorológicos.',

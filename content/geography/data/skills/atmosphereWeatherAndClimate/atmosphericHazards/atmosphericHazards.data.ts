@@ -11,6 +11,7 @@ export const atmosphericHazards_SkillGroup_Data = defineSkillGroup({
   id: '2d054268-d946-4660-98de-16b331e29c63',
   name: {
     en: 'Atmospheric Hazards',
+    it: 'Pericoli meteorologici',
     zh: '大气灾害',
     hi: 'वायुमंडलीय खतरे',
     es: 'Riesgos atmosféricos',
@@ -50,6 +51,7 @@ export const atmosphericHazards_SkillGroup_Data = defineSkillGroup({
       'Drought, storms, extreme temperatures, and heavy precipitation become hazards through the interaction of physical exposure and human vulnerability. Geographic representation helps identify where impacts are likely.',
     frontend: {
       en: 'Learn why hazardous weather affects different places and people in different ways.',
+      it: 'Scopri perché i fenomeni meteorologici pericolosi colpiscono luoghi e persone in modi diversi.',
       zh: '了解危险天气为何以不同方式影响不同地区和人群。',
       hi: 'जानें कि खतरनाक मौसम विभिन्न स्थानों और लोगों को अलग तरह प्रभावित क्यों करता है।',
       es: 'Descubre por qué el tiempo peligroso afecta de forma diferente a lugares y personas.',
