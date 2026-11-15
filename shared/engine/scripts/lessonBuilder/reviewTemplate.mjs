@@ -1,8 +1,8 @@
 /**
  * Draft-only Lesson Review template. The incomplete identifier and values
  * intentionally fail TypeScript until compiled Props and reviews are verified.
- * Keep the stage keys aligned with Engine's LessonReviewStage; external
- * Lesson Production Issue slugs are mapped separately in review.types.ts.
+ * Stage identifiers must match Engine's LessonReviewStage and Studio's
+ * Lesson Production tracker. All stage names use camelCase.
  */
 export const lessonReviewStageSlugs = [
   'methodology',

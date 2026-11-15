@@ -271,36 +271,27 @@ test('Carousel draft rejects unsupported children without writing anything', () 
     assert.equal(fs.existsSync(f.generated('sections/intro/gallery/index.ts')), false);
   }));
 
-test('Lesson Review draft matches the Engine stage mapping without mutating external Issue slugs', () => {
+test('Lesson Review draft and Studio stage names match the Engine camelCase contract', () => {
   const source = fs.readFileSync(new URL('../../types/review.types.ts', import.meta.url), 'utf8');
   const ast = ts.createSourceFile('review.types.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  const declaration = ast.statements
-    .filter(ts.isVariableStatement)
-    .flatMap(statement => [...statement.declarationList.declarations])
-    .find(item => item.name.getText(ast) === 'lessonProductionStageToReviewStage');
-  assert.ok(declaration, 'Engine must declare the canonical production-stage mapping');
-  const initializer = declaration.initializer;
-  assert.ok(ts.isAsExpression(initializer), 'Mapping must preserve literal value types');
-  const map = initializer.expression;
-  assert.ok(ts.isObjectLiteralExpression(map));
-  const stages = Object.fromEntries(
-    map.properties.map(property => {
-      assert.ok(ts.isPropertyAssignment(property));
-      assert.ok(ts.isStringLiteral(property.initializer));
-      return [property.name.text, property.initializer.text];
-    }),
+  const declaration = ast.statements.find(
+    statement => ts.isTypeAliasDeclaration(statement) && statement.name.text === 'LessonReviewStage',
   );
-  assert.equal(stages['experience-review'], 'experienceReview');
-  assert.equal(stages['methodology-review'], 'methodologyReview');
-  assert.equal(stages['generate-sources'], 'generateSources');
-  assert.equal(stages['resource-production'], 'resourceProduction');
-  assert.deepEqual(Object.values(stages), lessonReviewStageSlugs);
-  assert.equal(new Set(lessonReviewStageSlugs).size, lessonReviewStageSlugs.length);
+  assert.ok(declaration, 'Engine must declare the canonical LessonReviewStage union');
+  assert.ok(ts.isUnionTypeNode(declaration.type));
+  const stages = declaration.type.types.map(member => {
+    assert.ok(ts.isLiteralTypeNode(member) && ts.isStringLiteral(member.literal));
+    return member.literal.text;
+  });
+  assert.deepEqual(stages, lessonReviewStageSlugs);
+  assert.equal(new Set(stages).size, stages.length);
+  assert.ok(stages.every(stage => /^[a-z][a-zA-Z0-9]*$/.test(stage)));
+  assert.doesNotMatch(source, /lessonProductionStageToReviewStage|['"]experience-review['"]/);
 
   const pending = renderReviewDraft();
-  const fields = [...pending.matchAll(/^    ([A-Za-z]+): \{ pr: , language: , \},$/gm)].map(match => match[1]);
-  assert.deepEqual(fields, lessonReviewStageSlugs);
-  assert.doesNotMatch(pending, /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
+  const fields = [...pending.matchAll(/^    ([A-Za-z]+): \\{ pr: , language: , \\},$/gm)].map(match => match[1]);
+  assert.deepEqual(fields, stages);
+  assert.doesNotMatch(pending, /\\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
   assert.match(pending, /^    locales: ,$/m);
   assert.match(pending, /^    acceptance: ,$/m);
   const filled = pending

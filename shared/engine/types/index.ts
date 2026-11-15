@@ -1,11 +1,9 @@
 export type { DeepPartial } from './transformer.types';
-export { lessonProductionStageToReviewStage } from './review.types';
 export type {
   Review,
   ReviewEvidence,
   LessonReview,
   LessonReviewStage,
-  LessonProductionStageSlug,
 } from './review.types';
 export type { ResolveLocale } from './resolveLocale';
 

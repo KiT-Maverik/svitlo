@@ -23,29 +23,21 @@ export type Review = {
 };
 
 /**
- * External Lesson Production Issue stages use durable kebab-case slugs.
- * Map them explicitly to the camelCase review keys; never rewrite existing
- * Issue trackers or confuse them with Quest/Section stages.
- * 'completed' is a terminal status, not a review operation.
+ * Canonical Lesson Production review-stage identifiers, also used by Studio
+ * Issue trackers. These are not Quest/Section stages. 'completed' is a terminal
+ * production status and does not require a separate AI review entry.
  */
-export const lessonProductionStageToReviewStage = {
-  methodology: 'methodology',
-  content: 'content',
-  'experience-review': 'experienceReview',
-  'methodology-review': 'methodologyReview',
-  questions: 'questions',
-  flashcards: 'flashcards',
-  'generate-sources': 'generateSources',
-  'resource-production': 'resourceProduction',
-  localization: 'localization',
-  validation: 'validation',
-} as const;
-
-/** Existing Lesson Production tracker vocabulary (not review.ts keys). */
-export type LessonProductionStageSlug = keyof typeof lessonProductionStageToReviewStage;
-
-/** Canonical direct AI review field names in Lesson review.ts. */
-export type LessonReviewStage = (typeof lessonProductionStageToReviewStage)[LessonProductionStageSlug];
+export type LessonReviewStage =
+  | 'methodology'
+  | 'content'
+  | 'experienceReview'
+  | 'methodologyReview'
+  | 'questions'
+  | 'flashcards'
+  | 'generateSources'
+  | 'resourceProduction'
+  | 'localization'
+  | 'validation';
 
 /** Strict Lesson-specific extension: per-stage evidence is directly under ai. */
 export type LessonReview = Omit<Review, 'ai'> & {

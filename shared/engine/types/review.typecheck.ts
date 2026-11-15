@@ -1,5 +1,4 @@
-import { lessonProductionStageToReviewStage } from './review.types';
-import type { LessonProductionStageSlug, LessonReview, LessonReviewStage } from './review.types';
+import type { LessonReview, LessonReviewStage } from './review.types';
 
 type Assert<T extends true> = T;
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
@@ -22,7 +21,6 @@ type LessonReviewChecks = [
   >,
   Assert<Equal<keyof LessonReview['ai'], LessonReviewStage | 'locales'>>,
   Assert<Equal<'stages' extends keyof LessonReview['ai'] ? true : false, false>>,
-  Assert<Equal<'experience-review' extends LessonProductionStageSlug ? true : false, true>>,
 ];
 
 const completeReview: LessonReview = {
@@ -48,12 +46,12 @@ const completeReview: LessonReview = {
 
 // @ts-expect-error Stage evidence is mandatory even when the localization PR is present.
 const incompleteAi: LessonReview['ai'] = { locales: 20 };
-// @ts-expect-error The external workflow's kebab-case slugs are not review.ts field names.
-const externalStageKey: LessonReviewStage = 'experience-review';
-const mappedStage: LessonReviewStage = lessonProductionStageToReviewStage['experience-review'];
+// @ts-expect-error Legacy kebab-case is not part of the Lesson review stage vocabulary.
+const legacyStage: LessonReviewStage = 'experience-review';
+const canonicalStage: LessonReviewStage = 'experienceReview';
 
 void completeReview;
 void incompleteAi;
-void externalStageKey;
-void mappedStage;
+void legacyStage;
+void canonicalStage;
 export type { LessonReviewChecks };
