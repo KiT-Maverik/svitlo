@@ -14,6 +14,7 @@ export const transmissions_SkillGroup_Data = defineSkillGroup({
   id: '6ab9d99d-c8e3-4c63-9af3-b9a526a85db5',
   name: {
     en: 'Transmissions',
+    it: 'Trasmissioni meccaniche',
     zh: '传动机构',
     hi: 'संचरण तंत्र',
     es: 'Transmisiones mecánicas',
@@ -56,6 +57,7 @@ export const transmissions_SkillGroup_Data = defineSkillGroup({
       'Shafts, flexible elements and meshing components connect input motion to a useful output with potentially different speed, force and direction.',
     frontend: {
       en: 'Explore how shafts, gears and flexible drives carry motion between parts.',
+      it: 'Esplora come alberi, ingranaggi e trasmissioni flessibili trasferiscono il moto tra componenti.',
       zh: '探索轴、齿轮和柔性传动装置如何在部件之间传递运动。',
       hi: 'जानें कि शाफ्ट, गियर और लचीली ड्राइव पुर्जों के बीच गति कैसे पहुँचाते हैं।',
       es: 'Explora cómo ejes, engranajes y transmisiones flexibles trasladan el movimiento entre piezas.',
