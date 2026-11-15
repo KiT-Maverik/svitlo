@@ -10,6 +10,7 @@ export const electromagnetsAndInduction_SkillGroup_Data = defineSkillGroup({
   id: '50849984-5ce8-499c-9f7a-2230ce7370f8',
   name: {
     en: 'Electromagnets and Induction',
+    it: 'Elettromagneti e induzione',
     qm: 'Elektromagnitler ve induktsiya',
     zh: '电磁铁与电磁感应',
     hi: 'विद्युतचुंबक और विद्युतचुंबकीय प्रेरण',
@@ -51,6 +52,7 @@ export const electromagnetsAndInduction_SkillGroup_Data = defineSkillGroup({
       'Electric current can create a magnetic field, and changing magnetic conditions can produce electrical effects, explaining many systems.',
     frontend: {
       en: 'Discover how currents create magnetic fields and changing fields induce electricity.',
+      it: 'Scopri come le correnti generano campi magnetici e i campi variabili inducono corrente elettrica.',
       qm: 'Elektrik aqımı magnit maydanını nasıl yarata, deñişken magnit maydanı ise aqımnı nasıl induktsiya ete — bunı ögren.',
       zh: '了解电流如何产生磁场，以及变化的磁场如何感应电流。',
       hi: 'जानें कि धारा चुंबकीय क्षेत्र कैसे बनाती है और बदलते क्षेत्र विद्युत कैसे प्रेरित करते हैं।',

@@ -5,6 +5,7 @@ export const explainHowInducedCurrentArises_Skill_Data = defineSkill({
   id: 'b82a097f-1dba-421a-9c2f-dc65b1db8928',
   name: {
     en: 'Explain how induced current arises',
+    it: 'Spiegare come nasce una corrente indotta',
     qm: 'İnduktsion aqımnıñ nasıl peyda olğanını añlatmaq',
     zh: '解释感应电流的产生',
     hi: 'प्रेरित धारा कैसे उत्पन्न होती है, समझाना',
@@ -39,6 +40,7 @@ export const explainHowInducedCurrentArises_Skill_Data = defineSkill({
       'A changing magnetic flux through a closed conducting loop can induce an electromotive force and current; constant flux by itself does not generate current.',
     frontend: {
       en: 'Recognize when changing magnetic flux produces an induced current.',
+      it: 'Riconosci quando la variazione del flusso magnetico genera una corrente indotta.',
       qm: 'Qapalı keçirgen devrede magnit flüksı deñişkende induktsion elektrik aqımınıñ peyda olğanını tanı.',
       zh: '识别磁通量变化何时会产生感应电流。',
       hi: 'पहचानें कि बदलता चुंबकीय फ्लक्स कब प्रेरित धारा उत्पन्न करता है।',
