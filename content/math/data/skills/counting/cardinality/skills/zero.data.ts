@@ -5,6 +5,7 @@ export const zero_Skill_Data = defineSkill({
   id: 'a08e7d57-e613-4276-b6bf-3f06d7e1589a',
   name: {
     en: 'Understanding zero as an empty quantity',
+    it: 'Comprendere lo zero come quantità vuota',
     qm: 'Sıfırnı boş miqdar olaraq añlav',
     lt: 'Nulio kaip tuščio kiekio supratimas',
     lv: 'Nulles izpratne kā tukšu daudzumu',
@@ -39,6 +40,7 @@ export const zero_Skill_Data = defineSkill({
       'Zero is the cardinality of a set without elements; a container with nothing inside is not itself absent. Zero is a number that participates in the number sequence and arithmetic.',
     frontend: {
       en: 'Zero means there are no objects in a collection. An empty container still exists, and zero is a number.',
+      it: 'Zero significa che in un insieme non ci sono oggetti. Un contenitore vuoto continua a esistere e zero è un numero.',
       qm: 'Sıfır bir toplumda iç bir eşya olmağanını bildirir. Boş bir savut bar olmağa devam ete ve sıfır da bir sayıdır.',
       zh: '零表示一组中没有任何物品。空容器仍然存在，零也仍然是一个数。',
       hi: 'शून्य का मतलब है कि समूह में कोई वस्तु नहीं है। खाली डिब्बा फिर भी मौजूद है, और शून्य एक संख्या है।',
