@@ -5,6 +5,7 @@ export const flyweight_Skill_Data = defineSkill({
   id: 'b6eadcb3-ce95-4f54-becb-ca2db81995f5',
   name: {
     en: 'Flyweight',
+    it: 'Flyweight',
     zh: '享元模式',
     hi: 'फ़्लाईवेट',
     es: 'Peso ligero',
@@ -38,6 +39,7 @@ export const flyweight_Skill_Data = defineSkill({
     methodological: 'Share the immutable portion of state among many similar objects to reduce memory consumption.',
     frontend: {
       en: 'Share reusable object data to reduce unnecessary memory use.',
+      it: 'Condividi dati riutilizzabili tra oggetti per ridurre il consumo di memoria superfluo.',
       zh: '共享可复用的对象数据，减少不必要的内存占用。',
       hi: 'अनावश्यक मेमोरी उपयोग घटाने के लिए दोबारा इस्तेमाल योग्य ऑब्जेक्ट डेटा साझा करें।',
       es: 'Comparte datos reutilizables de objetos para reducir el uso innecesario de memoria.',

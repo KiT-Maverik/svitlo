@@ -9,6 +9,7 @@ export const designPatterns_SkillDomain_Data = defineSkillDomain({
   id: '566394c0-8f6c-4372-82b7-7384498fa095',
   title: {
     en: 'Design Patterns',
+    it: 'Pattern di progettazione',
     zh: '设计模式',
     hi: 'डिज़ाइन पैटर्न',
     es: 'Patrones de diseño',
@@ -44,6 +45,7 @@ export const designPatterns_SkillDomain_Data = defineSkillDomain({
       'The classic Gang of Four catalog describes 23 reusable structures for common object-design problems. Its three families focus on instance creation, component composition, and interactions. The existence of a pattern does not mean every problem should be made more complex to use one.',
     frontend: {
       en: 'Explore reusable ways to create, combine and coordinate software objects.',
+      it: 'Esplora soluzioni riutilizzabili per creare, combinare e coordinare oggetti software.',
       zh: '探索创建、组合和协调软件对象的可复用方法。',
       hi: 'सॉफ़्टवेयर ऑब्जेक्ट बनाने, जोड़ने और समन्वयित करने के पुनः उपयोग योग्य तरीके जानें।',
       es: 'Explora maneras reutilizables de crear, combinar y coordinar objetos de software.',

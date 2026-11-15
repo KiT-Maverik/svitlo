@@ -15,6 +15,7 @@ export const structural_SkillGroup_Data = defineSkillGroup({
   id: 'c33084e6-0f4c-43c3-af2d-309e0f6cbf62',
   name: {
     en: 'Structural',
+    it: 'Pattern strutturali',
     zh: '结构型模式',
     hi: 'संरचनात्मक पैटर्न',
     es: 'Patrones estructurales',
@@ -58,6 +59,7 @@ export const structural_SkillGroup_Data = defineSkillGroup({
       'Seven methods of combining components through adaptation, wrapping, nesting, intermediaries, or shared state.',
     frontend: {
       en: 'Discover patterns for connecting, wrapping and sharing software components.',
+      it: 'Scopri i pattern per collegare, avvolgere e condividere componenti software.',
       zh: '了解连接、包装和共享软件组件的模式。',
       hi: 'सॉफ़्टवेयर घटकों को जोड़ने, आवरण देने और साझा करने के पैटर्न जानें।',
       es: 'Descubre patrones para conectar, envolver y compartir componentes de software.',
