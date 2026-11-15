@@ -5,6 +5,7 @@ export const recognizeCommonLocalPlants_Skill_Data = defineSkill({
   id: 'c62f418f-749b-44d3-9afc-a20eba15217f',
   name: {
     en: 'Recognize Common Local Plants',
+    it: 'Riconoscere le piante comuni del territorio',
     zh: '识别常见的本地植物',
     hi: 'स्थानीय आम पौधों को पहचानना',
     es: 'Reconocer plantas locales comunes',
@@ -39,6 +40,7 @@ export const recognizeCommonLocalPlants_Skill_Data = defineSkill({
       'Identify familiar local species by characteristic combinations of leaves, stems, flowers, or fruits, rather than color alone.',
     frontend: {
       en: 'Identify familiar local plants using combinations of leaves, stems and other features.',
+      it: 'Identifica le piante comuni della tua zona osservando foglie, fusti e altre caratteristiche.',
       zh: '结合叶、茎和其他特征辨认身边熟悉的植物。',
       hi: 'पत्तियों, तनों और अन्य लक्षणों के मेल से आसपास के परिचित पौधों की पहचान करें।',
       es: 'Identifica plantas habituales de tu zona combinando características de hojas, tallos y otras partes.',
