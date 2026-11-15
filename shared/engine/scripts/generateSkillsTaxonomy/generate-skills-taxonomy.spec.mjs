@@ -73,18 +73,18 @@ before(() => {
   write(
     path.join(taxonomy, 'd/d.data.ts'),
     "import { g_SkillGroup_Data } from './g/g.data';\n" +
-      entity('SkillDomain', 'd', 'Grouped Domain', 'groups: [g_SkillGroup_Data]'),
+      entity('SkillDomain', 'd', 'Grouped Domain', "groups: { items: { g: g_SkillGroup_Data }, order: ['g'] }"),
   );
   write(
     path.join(taxonomy, 'd/g/g.data.ts'),
-    "import { s_Skill_Data } from './skills';\n" + entity('SkillGroup', 'g', 'Group', 'skills: [s_Skill_Data]'),
+    "import { s_Skill_Data } from './skills';\n" + entity('SkillGroup', 'g', 'Group', "skills: { items: { s: s_Skill_Data }, order: ['s'] }"),
   );
   write(path.join(taxonomy, 'd/g/skills/index.ts'), "export { s_Skill_Data } from './s.data';\n");
   write(groupedSkill, entity('Skill', 's', 'Grouped Skill'));
   write(
     path.join(taxonomy, 'direct/direct.data.ts'),
     "import { t_Skill_Data } from './skills';\n" +
-      entity('SkillDomain', 'direct', 'Direct Domain', 'groups: [], skills: [t_Skill_Data]', true),
+      entity('SkillDomain', 'direct', 'Direct Domain', "groups: { items: {}, order: [] }, skills: { items: { t: t_Skill_Data }, order: ['t'] }", true),
   );
   write(path.join(taxonomy, 'direct/skills/index.ts'), "export { t_Skill_Data } from './t.data';\n");
   write(directSkill, entity('Skill', 't', 'Direct Skill'));
@@ -139,14 +139,14 @@ test('canonical lowercase data/skills renders grouped and direct Skill hierarchi
   }
 });
 
-test('English source preview remains available while the new Italian translation is incomplete', () => {
+test('English source preview remains available while another registered translation is incomplete', () => {
   const original = entity('Skill', 's', 'Grouped Skill');
-  assert.ok(original.includes('"it": "Frontend Grouped Skill it"'), 'Italian test fixture must exist');
-  write(groupedSkill, original.replace('"it": "Frontend Grouped Skill it", ', ''));
+  assert.ok(original.includes('"uk": "Frontend Grouped Skill uk"'), 'Registered Ukrainian fixture must exist');
+  write(groupedSkill, original.replace('"uk": "Frontend Grouped Skill uk", ', ''));
   try {
     const strict = run('en', '--stdout');
     assert.notEqual(strict.status, 0);
-    assert.match(strict.stderr, /Missing required frontend locale it/);
+    assert.match(strict.stderr, /Missing required frontend locale uk/);
 
     const preview = run('en', '--stdout', '--source-only');
     assert.equal(preview.status, 0, preview.stderr);
@@ -154,7 +154,7 @@ test('English source preview remains available while the new Italian translation
     assert.match(preview.stdout, /Grouped Skill en/);
     assert.equal(fs.existsSync(output('en')), false, 'Preview never writes generated Markdown');
 
-    const invalidLocale = run('it', '--stdout', '--source-only');
+    const invalidLocale = run('uk', '--stdout', '--source-only');
     assert.notEqual(invalidLocale.status, 0);
     assert.match(invalidLocale.stderr, /use --locale en --stdout/);
 
@@ -166,20 +166,20 @@ test('English source preview remains available while the new Italian translation
   }
 });
 
-test('draft Italian Markdown marks missing fields without masking strict publication failures', () => {
+test('draft localized Markdown marks missing fields without masking strict publication failures', () => {
   const original = entity('Skill', 's', 'Grouped Skill');
-  write(groupedSkill, original.replace('"it": "Frontend Grouped Skill it", ', ''));
+  write(groupedSkill, original.replace('"uk": "Frontend Grouped Skill uk", ', ''));
   try {
-    const draft = run('it', '--stdout', '--allow-missing');
+    const draft = run('uk', '--stdout', '--allow-missing');
     assert.equal(draft.status, 0, draft.stderr);
     assert.match(draft.stdout, /^Missing translations: 1$/m);
-    assert.match(draft.stdout, /User-friendly description \(it\):\*\* %%MISSING%%/);
+    assert.match(draft.stdout, /User-friendly description \(uk\):\*\* %%MISSING%%/);
     assert.match(draft.stdout, /English explanation for Grouped Skill/);
-    assert.equal(fs.existsSync(output('it')), false);
-    const strict = run('it', '--stdout');
+    assert.equal(fs.existsSync(output('uk')), false);
+    const strict = run('uk', '--stdout');
     assert.notEqual(strict.status, 0);
-    assert.match(strict.stderr, /Missing required frontend locale it/);
-    const blockedWrite = run('it', '--allow-missing');
+    assert.match(strict.stderr, /Missing required frontend locale uk/);
+    const blockedWrite = run('uk', '--allow-missing');
     assert.notEqual(blockedWrite.status, 0);
     assert.match(blockedWrite.stderr, /read-only --stdout/);
   } finally {
