@@ -5,6 +5,7 @@ export const generateArtisticIdeas_Skill_Data = defineSkill({
   id: 'f3fecd9b-1db8-4fee-af67-5df3077f128d',
   name: {
     en: 'Generate Artistic Ideas',
+    it: "Generare idee artistiche",
     zh: '生成艺术创意',
     hi: 'कलात्मक विचार उत्पन्न करें',
     es: 'Generar ideas artísticas',
@@ -38,6 +39,7 @@ export const generateArtisticIdeas_Skill_Data = defineSkill({
     methodological: 'Develop distinct possible creative directions from a premise or material constraint.',
     frontend: {
       en: 'Develop several distinct artistic possibilities from one starting idea.',
+      it: "Sviluppa diverse possibilità artistiche a partire da un'unica idea iniziale.",
       zh: '从一个起始想法发展出几种不同的艺术可能性。',
       hi: 'एक शुरुआती विचार से कई अलग-अलग कलात्मक संभावनाएँ विकसित करें।',
       es: 'Desarrolla varias posibilidades artísticas distintas a partir de una idea inicial.',
