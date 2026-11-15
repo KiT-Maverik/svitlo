@@ -13,6 +13,7 @@ export const colorPractice_SkillGroup_Data = defineSkillGroup({
   id: '70584fc7-6d01-478e-a5f3-0c01880567b0',
   name: {
     en: 'Color Practice',
+    it: 'Pratica del colore',
     zh: '色彩实践',
     hi: 'रंग अभ्यास',
     es: 'Práctica del color',
@@ -54,6 +55,7 @@ export const colorPractice_SkillGroup_Data = defineSkillGroup({
       'Choosing pigments and their relationships involves both material mixture and organized differences in perceived lightness and intensity.',
     frontend: {
       en: 'Learn how lightness, intensity and mixed pigments change color relationships.',
+      it: 'Scopri come luminosità, intensità e pigmenti mescolati cambiano i rapporti tra i colori.',
       zh: '了解明度、强度和颜料混合如何改变色彩之间的关系。',
       hi: 'जानें कि हल्कापन, तीव्रता और मिले हुए रंगद्रव्य रंगों के आपसी संबंधों को कैसे बदलते हैं।',
       es: 'Descubre cómo la luminosidad, la intensidad y la mezcla de pigmentos modifican las relaciones entre los colores.',
