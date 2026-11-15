@@ -5,6 +5,7 @@ export const compositeMaterialApplications_Skill_Data = defineSkill({
   id: '51facdcb-f153-412e-b22c-b98ea7c68eb8',
   name: {
     en: 'Composite material applications',
+    it: 'Applicazioni dei materiali compositi',
     zh: '复合材料的应用',
     hi: 'मिश्रित सामग्रियों के उपयोग',
     es: 'Aplicaciones de materiales compuestos',
@@ -38,6 +39,7 @@ export const compositeMaterialApplications_Skill_Data = defineSkill({
     methodological: 'Recognize how combined constituents can deliver useful directional or mixed properties.',
     frontend: {
       en: 'Recognize how combined materials can offer useful properties.',
+      it: 'Riconosci come la combinazione di materiali può offrire proprietà utili.',
       zh: '识别组合不同材料如何获得有用的性质。',
       hi: 'समझें कि अलग सामग्रियाँ मिलाकर उपयोगी गुण कैसे मिल सकते हैं।',
       es: 'Reconoce cómo combinar materiales puede aportar propiedades útiles.',
