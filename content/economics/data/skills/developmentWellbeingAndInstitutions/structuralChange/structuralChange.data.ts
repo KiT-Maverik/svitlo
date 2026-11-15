@@ -11,6 +11,7 @@ export const structuralChange_SkillGroup_Data = defineSkillGroup({
   id: '11c727a8-6902-463b-93ea-a62b9ebdb522',
   name: {
     en: 'Структурні зміни',
+    it: 'Cambiamento strutturale',
     zh: '结构变化',
     hi: 'संरचनात्मक परिवर्तन',
     es: 'Cambio estructural',
@@ -46,6 +47,7 @@ export const structuralChange_SkillGroup_Data = defineSkillGroup({
       'As productivity increases, the shares of industries and occupations and the organization of work change.',
     frontend: {
       en: "Discover how an economy's mix of jobs and industries evolves.",
+      it: "Scopri come cambia nel tempo la composizione dei posti di lavoro e dei settori di un'economia.",
       zh: '了解经济中职业和产业构成如何演变。',
       hi: 'जानें कि अर्थव्यवस्था में नौकरियों और उद्योगों का मिश्रण कैसे बदलता है।',
       es: 'Descubre cómo evoluciona la combinación de empleos y sectores de una economía.',

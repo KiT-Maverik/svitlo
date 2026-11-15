@@ -5,6 +5,7 @@ export const technologicalCatchUp_Skill_Data = defineSkill({
   id: '16ce4fc4-2c65-41f1-b115-893ff35719c8',
   name: {
     en: 'Технологічне наздоганяння',
+    it: 'Recupero del divario tecnologico',
     zh: '技术追赶',
     hi: 'तकनीकी पकड़ बनाना',
     es: 'Convergencia tecnológica',
@@ -39,6 +40,7 @@ export const technologicalCatchUp_Skill_Data = defineSkill({
       'Assess conditions for adopting technology and knowledge from elsewhere and reasons why productivity gaps close at different speeds.',
     frontend: {
       en: 'Understand how countries learn from technology developed elsewhere.',
+      it: 'Comprendi come i paesi apprendono dalle tecnologie sviluppate altrove.',
       zh: '理解国家如何借鉴其他地方开发的技术。',
       hi: 'समझें कि देश दूसरे स्थानों पर विकसित तकनीक से कैसे सीखते हैं।',
       es: 'Comprende cómo los países aprenden de tecnologías desarrolladas en otros lugares.',

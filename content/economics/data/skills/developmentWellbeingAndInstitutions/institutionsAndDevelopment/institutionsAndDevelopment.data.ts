@@ -11,6 +11,7 @@ export const institutionsAndDevelopment_SkillGroup_Data = defineSkillGroup({
   id: 'fa842ffe-51ee-44f4-afb0-5d10d36f149f',
   name: {
     en: 'Інституції та розвиток',
+    it: 'Istituzioni e sviluppo',
     zh: '制度与发展',
     hi: 'संस्थाएँ और विकास',
     es: 'Instituciones y desarrollo',
@@ -50,6 +51,7 @@ export const institutionsAndDevelopment_SkillGroup_Data = defineSkillGroup({
       'Rules, trust, state capacity, and access to resources influence investment and economic opportunity.',
     frontend: {
       en: "Explore how institutions affect a society's chances of prosperity.",
+      it: 'Esplora come le istituzioni influiscono sulle possibilità di prosperità di una società.',
       zh: '探索制度如何影响社会实现繁荣的机会。',
       hi: 'जानें कि संस्थाएँ समाज की समृद्धि की संभावनाओं को कैसे प्रभावित करती हैं।',
       es: 'Explora cómo las instituciones influyen en las posibilidades de prosperidad de una sociedad.',
