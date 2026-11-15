@@ -5,6 +5,7 @@ export const compareMaterialsThermalInsulationProperties_Skill_Data = defineSkil
   id: 'eeee4637-f76a-4e77-b18b-93270bcbf39c',
   name: {
     en: "Compare materials' thermal-insulation properties",
+    it: 'Confrontare le proprietà isolanti termiche dei materiali',
     qm: 'Malzemelerniñ sıcaqlıq izolâtsiyası hususiyetlerini qıyaslamaq',
     zh: '比较材料的隔热性能',
     hi: 'पदार्थों के ऊष्मारोधन गुणों की तुलना करना',
@@ -38,6 +39,7 @@ export const compareMaterialsThermalInsulationProperties_Skill_Data = defineSkil
     methodological: 'Determine from experimental results which material slows heat transfer more effectively.',
     frontend: {
       en: 'Compare materials by how well they reduce unwanted heat transfer.',
+      it: 'Confronta i materiali in base alla capacità di ridurre i trasferimenti indesiderati di calore.',
       qm: 'Malzemeler sıcaqlıqnıñ istenmegen berilüvini nasıl yavaşlatqanına köre olarnı qıyasla.',
       zh: '根据材料减少不必要热量传递的效果进行比较。',
       hi: 'पदार्थ अनचाहे ऊष्मा स्थानांतरण को कितना कम करते हैं, इसके आधार पर तुलना करें।',
