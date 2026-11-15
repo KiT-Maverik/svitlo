@@ -5,6 +5,7 @@ export const predictTheDirectionOfAReflectedRay_Skill_Data = defineSkill({
   id: '13e4b49d-45c4-4716-a54e-ff38c974db71',
   name: {
     en: 'Predict the direction of a reflected ray',
+    it: 'Prevedere la direzione di un raggio riflesso',
     zh: '预测反射光线的方向',
     hi: 'परावर्तित किरण की दिशा का अनुमान लगाना',
     es: 'Predecir la dirección de un rayo reflejado',
@@ -39,6 +40,7 @@ export const predictTheDirectionOfAReflectedRay_Skill_Data = defineSkill({
       'According to the law of reflection, the angle between the ray and the surface normal is the same for incident and reflected rays.',
     frontend: {
       en: 'Predict reflection angles relative to the normal of a surface.',
+      it: 'Prevedi gli angoli di riflessione rispetto alla normale alla superficie.',
       zh: '预测光线反射后相对于表面法线的角度。',
       hi: 'सतह पर खींचे अभिलंब के सापेक्ष परावर्तित किरण का कोण बताओ।',
       es: 'Predice los ángulos de reflexión respecto a la normal de una superficie.',

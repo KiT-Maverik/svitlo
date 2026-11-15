@@ -5,6 +5,7 @@ export const explainHowAShadowForms_Skill_Data = defineSkill({
   id: '9d2e7b79-9a8b-45b8-b11e-a7d5a5a9550f',
   name: {
     en: 'Explain how a shadow forms',
+    it: 'Spiegare come si forma un\'ombra',
     zh: '解释阴影如何形成',
     hi: 'छाया कैसे बनती है, यह समझाना',
     es: 'Explicar cómo se forma una sombra',
@@ -38,6 +39,7 @@ export const explainHowAShadowForms_Skill_Data = defineSkill({
     methodological: 'Relate a shadow to the blocking of light by an opaque object.',
     frontend: {
       en: 'Explain how an opaque object blocks light to form a shadow.',
+      it: 'Spiega come un oggetto opaco blocca la luce formando un\'ombra.',
       zh: '解释不透明物体如何阻挡光线并形成阴影。',
       hi: 'समझाओ कि अपारदर्शी वस्तु प्रकाश रोककर छाया कैसे बनाती है।',
       es: 'Explica cómo un objeto opaco bloquea la luz y forma una sombra.',

@@ -7,6 +7,7 @@ export const lightReflection_SkillGroup_Data = defineSkillGroup({
   id: '8d5fbd39-1a3f-464b-80f9-379725d27dbe',
   name: {
     en: 'Light Reflection',
+    it: 'Riflessione della luce',
     zh: '光的反射',
     hi: 'प्रकाश का परावर्तन',
     es: 'Reflexión de la luz',
@@ -47,6 +48,7 @@ export const lightReflection_SkillGroup_Data = defineSkillGroup({
     methodological: 'A surface changes the direction of a light ray; mirrors provide a visible model of this behavior.',
     frontend: {
       en: 'Discover how light changes direction when it meets a reflecting surface.',
+      it: 'Scopri come la luce cambia direzione quando incontra una superficie riflettente.',
       zh: '探索光线遇到反射表面时如何改变方向。',
       hi: 'जानो कि परावर्तक सतह से टकराने पर प्रकाश किस तरह दिशा बदलता है।',
       es: 'Descubre cómo cambia de dirección la luz al encontrar una superficie reflectante.',
