@@ -146,7 +146,11 @@ config:
                         config:
                           id: "a11ce555-0000-4000-8000-000000000001"
                           slug: "fiveCountersSlide"
-                          type: "carouselSlide"
+                          type: "image"
+                          params:
+                            fill: true
+                            aspectRatio: 1.5
+                            objectFit: "contain"
                           locale:
                             src: null
                             alt:
@@ -160,17 +164,20 @@ config:
                         config:
                           id: "a11ce555-0000-4000-8000-000000000002"
                           slug: "threePlusTwoSlide"
-                          type: "carouselSlide"
+                          type: "scene"
+                          params: {}
                           locale:
-                            src:
-                              en: null
-                            alt:
-                              en: "Three counters next to two."
-                            caption:
-                              en: "Three plus two equals five."
+                            value:
+                              instruction:
+                                en: "Arrange three counters and two more to show five."
+                              feedback:
+                                correct:
+                                  en: "Three plus two equals five."
+                                incorrect:
+                                  en: "Count the groups and try again."
                         production:
-                          purpose: "Illustrate 3 + 2."
-                          specification: "Diagram with three plus two labeled counters."
+                          purpose: "Let learners interactively demonstrate 3 + 2 = 5."
+                          specification: "An accessible counting Scene for arranging 3 and 2 counters into five; support keyboard, screen reader, non-color cues, RTL, and reduced motion."
                     order: ["fiveCountersSlide", "threePlusTwoSlide"]
             order: ["meaningOfEquality", "explainWithMarkdown", "compareValuesCode", "counterGroupsImage", "compareGroupsScene", "counterArrangementsCarousel"]
         production:
@@ -562,4 +569,4 @@ production:
   documentLanguage: "en"
   purpose: "Temporary Lesson Builder structural acceptance fixture."
   audience: "Internal QA; not student-facing."
-  productionNotes: "DELETE after #576 and #577. Update Checkpoint/Carousel to #574/#575 contracts when implemented."
+  productionNotes: "Keep this permanent fixture for regression tests; remove only the superseded textbook staging copy through #577."

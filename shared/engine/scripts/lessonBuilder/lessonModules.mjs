@@ -29,13 +29,12 @@ const factoryContexts = new Set([
 ]);
 const sectionTypes = new Set(['content', 'quiz', 'practice', 'learningFlow', 'codingTask', 'flashcards']);
 const compositeTypes = new Set(['carousel', 'checkpoint']);
-const localMediaTypes = new Set(['image', 'video', 'audio', 'subtitles', 'carouselSlide']);
+const localMediaTypes = new Set(['image', 'video', 'audio', 'subtitles']);
 const mediaFields = {
   image: ['src'],
   video: ['fileLocation', 'poster'],
   audio: ['fileLocation'],
   subtitles: ['fileLocation'],
-  carouselSlide: ['src'],
 };
 
 const reserved = new Set([
@@ -441,6 +440,8 @@ export function renderLessonModules(lesson, language, options = {}) {
         throw new Error(
           'config.yaml:' + field + '.type: missing type discriminator for ' + context + ' factory dispatch',
         );
+      if (context === 'slide' && !['image', 'scene'].includes(value.type))
+        throw new Error('config.yaml:' + field + '.type: Carousel slides must be image or scene');
       if (!factories[value.type])
         throw new Error('config.yaml:' + field + '.type: unknown type "' + value.type + '"; no Engine define* factory');
       if (typeof value.slug !== 'string' || !safeSlug.test(value.slug))

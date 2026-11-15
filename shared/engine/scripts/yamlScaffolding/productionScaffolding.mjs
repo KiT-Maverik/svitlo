@@ -77,7 +77,7 @@ export function productionFiles(entityFolder, tasks, { nodeLocations } = {}) {
   for (const task of tasks) {
     const { id, type, production } = task;
     const colocated =
-      nodeLocations && ['scene', 'image', 'audio', 'video', 'subtitles', 'carouselSlide'].includes(type);
+      nodeLocations && ['scene', 'image', 'audio', 'video', 'subtitles'].includes(type);
     let destination;
     let body;
     function colocatedSpecification() {
@@ -98,7 +98,7 @@ export function productionFiles(entityFolder, tasks, { nodeLocations } = {}) {
         : path.join(textbookRoot, 'scenes', id.at(-1), id, 'specification.md');
       body = markdownForTask(task);
     } else if (
-      ['image', 'audio', 'video', 'subtitles', 'carouselSlide'].includes(type) &&
+      ['image', 'audio', 'video', 'subtitles'].includes(type) &&
       [production.prompt, production.specification, production.script, production.storyboard].some(text)
     ) {
       if (!uuid.test(id ?? ''))

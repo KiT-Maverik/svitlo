@@ -20,14 +20,12 @@ const {
   yamlVideo_Schema,
   yamlSubtitles_Schema,
   yamlQuestSection_Schema,
-  yamlCarouselSlide_Schema,
   yamlCheckpointItem_Schema,
   yamlCheckpointAnswerConfigurator_Schema,
   audio_Config_Schema,
   image_Config_Schema,
   video_Config_Schema,
   subtitles_Config_Schema,
-  carouselSlide_Config_Schema,
 } = require('../../dist/build.js');
 
 const id = '00000000-0000-4000-8000-000000000001';
@@ -53,7 +51,6 @@ test('all current polymorphic types have a concrete exported define* factory', (
     'flashcard',
     'checkpointItem',
     'checkpointAnswer',
-    'carouselSlide',
     'quest',
     'questStage',
     'questTask',
@@ -155,12 +152,6 @@ test('YAML media projections require null while Engine Config schemas require re
       fields: ['fileLocation'],
       config: { id, slug: 'captions', type: 'subtitles', params: {}, locale: { fileLocation: null } },
     },
-    {
-      yaml: yamlCarouselSlide_Schema,
-      engine: carouselSlide_Config_Schema,
-      fields: ['src'],
-      config: { id, slug: 'slide', type: 'carouselSlide', locale: { src: null, alt: { uk: 'Слайд' } } },
-    },
   ];
   for (const { yaml, engine, fields, config } of variants) {
     assert.equal(yaml.safeParse(config).success, true, config.type);
@@ -173,24 +164,32 @@ test('YAML media projections require null while Engine Config schemas require re
       filled.locale[field] = '/assets/real.png';
       assert.equal(yaml.safeParse(filled).success, false, config.type + '.' + field + ' must be null');
     }
-    if (config.type !== 'carouselSlide') {
-      assert.equal(yamlContentBlock_Schema.safeParse(config).success, true, config.type + ': nested union');
-    }
+    assert.equal(yamlContentBlock_Schema.safeParse(config).success, true, config.type + ': nested union');
   }
-  const slide = variants[4].config;
+  const picture = variants[0].config;
+  const activity = {
+    id, slug: 'activity', type: 'scene', params: {},
+    locale: { value: { instruction: { uk: 'Обери' } } },
+  };
   const carousel = {
     id,
     slug: 'gallery',
     type: 'carousel',
     params: {},
     locale: {},
-    slides: { items: { slide }, order: ['slide'] },
+    slides: { items: { picture, activity }, order: ['picture', 'activity'] },
   };
   assert.equal(yamlContentBlock_Schema.safeParse(carousel).success, true);
+  assert.equal(yamlContentBlock_Schema.safeParse({
+    ...carousel, slides: { items: { picture: textBlock }, order: ['picture'] },
+  }).success, false);
   assert.equal(
     yamlContentBlock_Schema.safeParse({
       ...carousel,
-      slides: { items: { slide: { ...slide, locale: { ...slide.locale, src: 'ready.png' } } }, order: ['slide'] },
+      slides: {
+        items: { picture: { ...picture, locale: { ...picture.locale, src: 'ready.png' } }, activity },
+        order: ['picture', 'activity'],
+      },
     }).success,
     false,
   );
@@ -212,10 +211,8 @@ test('JSON Schema retains required fields and literal null media even in nested 
       image: ['src'],
       audio: ['fileLocation'],
       video: ['fileLocation', 'poster'],
-      carouselSlide: ['src'],
       subtitles: ['fileLocation'],
     })) {
-      if (kind === 'contentBlock' && kindOfMedia === 'carouselSlide') continue;
       const block = media.get(kindOfMedia);
       assert(block, kind + ': missing ' + kindOfMedia);
       assert(block.required.includes('locale'), kind + ': required locale for ' + kindOfMedia);
