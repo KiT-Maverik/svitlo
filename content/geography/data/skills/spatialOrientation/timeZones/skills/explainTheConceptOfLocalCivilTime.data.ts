@@ -40,7 +40,7 @@ export const explainTheConceptOfLocalCivilTime_Skill_Data = defineSkill({
       "Explain that the legally observed clock time in a place depends on the jurisdiction and applicable time zone, and can differ from the Sun's position. Civil local time is not the same concept as local solar time, and different places can share one civil clock time.",
     frontend: {
       en: 'Distinguish the legal clock time at a location from time based on the Sun.',
-      it: "Distingui l'ora legale ufficiale di un luogo dall'ora basata sulla posizione del Sole.",
+      it: "Distingui l'ora civile ufficiale di un luogo dall'ora basata sulla posizione del Sole.",
       zh: '区分某地法律规定的钟表时间与由太阳位置决定的时间。',
       hi: 'किसी स्थान की कानूनी घड़ी के समय और सूर्य पर आधारित समय में अंतर करें।',
       es: 'Distingue la hora legal de un lugar de la hora basada en el Sol.',
