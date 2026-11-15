@@ -59,8 +59,9 @@ authoritative source references.
 The Props publisher supports the root `index.ts` entrypoint, and the
 textbook build must recognize that entrypoint independently of the existing
 `*.data.ts` convention. Do not mix both entrypoint styles inside one
-UUID directory. This stage does **not** change the still-UUID-addressed
-Scene/media production handoffs or create real assets.
+UUID directory. Stage 4 changes Lesson Scene/media specification handoffs to the colocated
+slug modules. It does **not** change Scene implementation IDs or create
+real binary assets.
 
 ## Stage 3 file-backed Markdown/Code
 
