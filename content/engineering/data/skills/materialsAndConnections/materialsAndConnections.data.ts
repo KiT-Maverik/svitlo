@@ -9,6 +9,7 @@ export const materialsAndConnections_SkillDomain_Data = defineSkillDomain({
   id: '8a847ef2-5004-4773-b074-50146f9d1b34',
   title: {
     en: 'Materials and Connections',
+    it: 'Materiali e collegamenti',
     zh: '材料与连接',
     hi: 'सामग्री और जोड़',
     es: 'Materiales y uniones',
@@ -44,6 +45,7 @@ export const materialsAndConnections_SkillDomain_Data = defineSkillDomain({
       'Material choice and the quality of interfaces determine whether parts carry loads, resist their environment, assemble correctly and remain usable. This domain focuses on technical suitability rather than the chemistry of substances.',
     frontend: {
       en: "Learn to choose materials and joining methods suited to a product's conditions.",
+      it: 'Impara a scegliere materiali e metodi di giunzione adatti alle condizioni d\'uso di un prodotto.',
       zh: '学习根据产品的使用条件选择合适的材料和连接方法。',
       hi: 'उत्पाद की परिस्थितियों के अनुसार उपयुक्त सामग्री और जोड़ने के तरीके चुनना सीखें।',
       es: 'Aprende a elegir materiales y uniones adecuados a las condiciones de uso de un producto.',
