@@ -13,6 +13,7 @@ export const drivesAndActuators_SkillGroup_Data = defineSkillGroup({
   id: 'e4ad551e-d663-4758-8b09-8893ea518de9',
   name: {
     en: 'Drives and Actuators',
+    it: 'Azionamenti e attuatori',
     zh: '驱动装置与执行器',
     hi: 'ड्राइव और प्रवर्तक',
     es: 'Accionamientos y actuadores',
@@ -54,6 +55,7 @@ export const drivesAndActuators_SkillGroup_Data = defineSkillGroup({
       'A controller requires suitable physical mechanisms to turn supplied energy into controllable displacement, rotation or force.',
     frontend: {
       en: 'Discover how powered actuators move physical components.',
+      it: 'Scopri come gli attuatori motorizzati muovono i componenti fisici.',
       zh: '了解由动力驱动的执行器如何移动物理部件。',
       hi: 'जानें कि ऊर्जाचालित प्रवर्तक भौतिक घटकों को कैसे चलाते हैं।',
       es: 'Descubre cómo los actuadores motorizados mueven componentes físicos.',
