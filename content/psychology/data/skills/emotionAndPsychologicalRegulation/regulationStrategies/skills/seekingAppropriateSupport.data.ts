@@ -5,6 +5,7 @@ export const seekingAppropriateSupport_Skill_Data = defineSkill({
   id: '1167bba9-f229-4d3a-b7d8-699366fc87c0',
   name: {
     en: 'Seeking Appropriate Support',
+    it: 'Cercare un sostegno adeguato',
     zh: '寻求适当支持',
     hi: 'उचित सहायता माँगना',
     es: 'Buscar apoyo apropiado',
@@ -39,6 +40,7 @@ export const seekingAppropriateSupport_Skill_Data = defineSkill({
       'Distinguish self-management from situations in which trusted or qualified assistance is an appropriate response.',
     frontend: {
       en: 'Identify when seeking support from a trusted person is appropriate.',
+      it: 'Individua quando è opportuno chiedere aiuto a una persona di fiducia.',
       zh: '判断何时适合向可信赖的人寻求帮助。',
       hi: 'जानें कि भरोसेमंद व्यक्ति से मदद लेना कब उचित है।',
       es: 'Identifica cuándo conviene pedir ayuda a alguien de confianza.',

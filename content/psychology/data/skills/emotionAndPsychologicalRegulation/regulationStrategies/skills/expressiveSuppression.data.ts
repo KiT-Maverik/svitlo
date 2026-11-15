@@ -5,6 +5,7 @@ export const expressiveSuppression_Skill_Data = defineSkill({
   id: 'ace8a6fd-95df-44cd-a4c7-164115e6a3b6',
   name: {
     en: 'Expressive Suppression',
+    it: 'Soppressione espressiva',
     zh: '表达抑制',
     hi: 'भावनात्मक अभिव्यक्ति का दमन',
     es: 'Supresión expresiva',
@@ -38,6 +39,7 @@ export const expressiveSuppression_Skill_Data = defineSkill({
     methodological: 'Evaluate potential immediate and interpersonal costs of withholding outward emotional expression.',
     frontend: {
       en: 'Recognize how hiding outward emotion differs from changing the feeling.',
+      it: 'Riconosci la differenza tra nascondere l\'espressione esterna di un\'emozione e modificare ciò che si prova.',
       zh: '认识隐藏外在情绪表达与改变内心感受之间的区别。',
       hi: 'समझें कि बाहर से भावना छिपाना और भीतर का एहसास बदलना अलग हैं।',
       es: 'Reconoce que ocultar una emoción por fuera no equivale a cambiar lo que sientes.',

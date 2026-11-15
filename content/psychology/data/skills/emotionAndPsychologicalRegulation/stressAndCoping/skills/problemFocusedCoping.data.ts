@@ -5,6 +5,7 @@ export const problemFocusedCoping_Skill_Data = defineSkill({
   id: 'c16b8db5-44fc-4e7d-8796-5d6a1de23464',
   name: {
     en: 'Problem-Focused Coping',
+    it: 'Strategie di coping centrate sul problema',
     zh: '问题导向的应对',
     hi: 'समस्या-केंद्रित सामना',
     es: 'Afrontamiento centrado en el problema',
@@ -38,6 +39,7 @@ export const problemFocusedCoping_Skill_Data = defineSkill({
     methodological: 'Explain responses aimed at modifying a controllable source of difficulty.',
     frontend: {
       en: 'Explore coping by changing the problem or conditions causing stress.',
+      it: 'Esplora come affrontare lo stress modificando il problema o le condizioni che lo causano.',
       zh: '探索通过改变压力来源或条件来应对压力。',
       hi: 'तनाव पैदा करने वाली समस्या या परिस्थितियाँ बदलकर सामना करना सीखें।',
       es: 'Explora cómo afrontar el estrés cambiando el problema o las condiciones que lo causan.',
