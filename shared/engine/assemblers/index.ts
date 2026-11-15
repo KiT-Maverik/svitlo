@@ -6,3 +6,4 @@ export type {
   PublishedLessonPropsOverride,
 } from './assembleLessonProps/assembleLessonProps';
 export * from './assembleCourseLesson/assembleCourseLesson';
+export * from './assessmentResources/assessmentResources';
