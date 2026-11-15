@@ -41,7 +41,14 @@ export const evacuationAndShelter_SkillGroup_Data = defineSkillGroup({
     kk: 'Эвакуация және баспана',
     qm: 'Tahliye ve sığınaq',
   },
-  skills: [chooseEvacuationOrShelter_Skill_Data, evacuateSafely_Skill_Data, shelterDuringImmediateDanger_Skill_Data],
+  skills: {
+    items: {
+      chooseEvacuationOrShelter: chooseEvacuationOrShelter_Skill_Data,
+      evacuateSafely: evacuateSafely_Skill_Data,
+      shelterDuringImmediateDanger: shelterDuringImmediateDanger_Skill_Data,
+    },
+    order: ['chooseEvacuationOrShelter', 'evacuateSafely', 'shelterDuringImmediateDanger'],
+  },
   description: {
     methodological:
       'The correct protective action may be evacuation or remaining under cover, depending on the hazard and official guidance.',
