@@ -5,6 +5,7 @@ export const produceAReliefPrint_Skill_Data = defineSkill({
   id: '65750767-9f4d-475c-85a6-9ea87745f862',
   name: {
     en: 'Produce a Relief Print',
+    it: 'Realizzare una stampa a rilievo',
     zh: '制作凸版画',
     hi: 'उभरे हुए हिस्सों से छाप बनाएँ',
     es: 'Crear una estampa en relieve',
@@ -38,6 +39,7 @@ export const produceAReliefPrint_Skill_Data = defineSkill({
     methodological: 'Apply ink to raised areas and transfer a designed impression to another surface.',
     frontend: {
       en: 'Transfer an image by inking the raised parts of a printing block.',
+      it: 'Trasferisci un\'immagine inchiostrando le parti in rilievo di una matrice.',
       zh: '给印版的凸起部分上墨，再转印图像。',
       hi: 'छपाई के ब्लॉक के उभरे हिस्सों पर स्याही लगाकर छवि स्थानांतरित करें।',
       es: 'Transfiere una imagen entintando las partes elevadas de una matriz.',
