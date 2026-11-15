@@ -5,6 +5,7 @@ export const explainMechanismsOfTraitInheritance_Skill_Data = defineSkill({
   id: 'd26699ca-8595-4e62-8d15-035c2262fe7f',
   name: {
     en: 'Explain Mechanisms of Trait Inheritance',
+    it: 'Spiegare i meccanismi di ereditarietà dei caratteri',
     zh: '解释性状遗传的机制',
     hi: 'लक्षणों की वंशागति के तरीके समझाना',
     es: 'Explicar los mecanismos de herencia de los rasgos',
@@ -39,6 +40,7 @@ export const explainMechanismsOfTraitInheritance_Skill_Data = defineSkill({
       'Explain the roles of genes, alleles, and chromosomes, segregation of alleles, and formation of their combinations in offspring. Apply Mendelian patterns where appropriate and distinguish them from polygenic and environmentally influenced traits.',
     frontend: {
       en: 'Explore how genes and their variants are inherited across generations.',
+      it: 'Scopri come i geni e le loro varianti vengono ereditati nel corso delle generazioni.',
       zh: '探索基因及其不同变体如何代代遗传。',
       hi: 'जानें कि जीन और उनके विभिन्न रूप पीढ़ी-दर-पीढ़ी कैसे विरासत में मिलते हैं।',
       es: 'Explora cómo los genes y sus variantes se heredan de una generación a otra.',
