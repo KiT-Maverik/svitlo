@@ -38,11 +38,14 @@ export const solarAstronomy_SkillDomain_Data = defineSkillDomain({
     he: 'אסטרונומיה של השמש',
     vi: 'Thiên văn học Mặt Trời',
   },
-  groups: [
-    heliosphericEffects_SkillGroup_Data,
-    magneticActivity_SkillGroup_Data,
-    solarStructureAndEnergy_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      heliosphericEffects: heliosphericEffects_SkillGroup_Data,
+      magneticActivity: magneticActivity_SkillGroup_Data,
+      solarStructureAndEnergy: solarStructureAndEnergy_SkillGroup_Data,
+    },
+    order: ['heliosphericEffects', 'magneticActivity', 'solarStructureAndEnergy'],
+  },
   description: {
     methodological:
       "The Sun is examined as a physical star whose radiation, plasma and magnetism affect the Solar System. Stellar populations and the Sun's long-term evolutionary fate are treated in stellar astronomy.",

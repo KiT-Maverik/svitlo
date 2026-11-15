@@ -42,13 +42,16 @@ export const formationAndChronology_SkillGroup_Data = defineSkillGroup({
     kk: 'Қалыптасуы және хронологиясы',
     qm: 'Peyda oluv ve vaqt tertibi',
   },
-  skills: [
-    ageOfTheSolarSystem_Skill_Data,
-    earlyDifferentiation_Skill_Data,
-    originOfTheMoon_Skill_Data,
-    planetaryAccretion_Skill_Data,
-    protoplanetaryDisks_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ageOfTheSolarSystem: ageOfTheSolarSystem_Skill_Data,
+      earlyDifferentiation: earlyDifferentiation_Skill_Data,
+      originOfTheMoon: originOfTheMoon_Skill_Data,
+      planetaryAccretion: planetaryAccretion_Skill_Data,
+      protoplanetaryDisks: protoplanetaryDisks_Skill_Data,
+    },
+    order: ['ageOfTheSolarSystem', 'earlyDifferentiation', 'originOfTheMoon', 'planetaryAccretion', 'protoplanetaryDisks'],
+  },
   description: {
     methodological:
       'The formation model must explain both shared planetary characteristics and striking differences among observed worlds.',
