@@ -16,6 +16,7 @@ import Container from '@mui/material/Container';
 import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
 import { ContentLanguageContext } from '../widgets/ContentBlockRenderer/ContentLanguageContext';
 import { EngineQuestionRenderer } from './EngineQuestionRenderer';
+import { EngineFlashcardsRenderer } from './EngineFlashcardsRenderer';
 import type {
   LearningLayoutTopBarProps,
   LearningLayoutBottomBarProps,
@@ -334,6 +335,16 @@ const MemoSection = memo(function LessonSection({
             sceneRegistry={sceneRegistry}
             messages={messages}
             onComplete={result => (result.passed ? actions.completeQuiz(section.id) : actions.failQuiz(section.id))}
+          />
+        ) : section.type === 'flashcards' ? (
+          <EngineFlashcardsRenderer
+            key={section.id}
+            lessonId={response.id}
+            language={language}
+            assessmentLoader={assessmentLoader}
+            section={section}
+            messages={messages}
+            sceneRegistry={sceneRegistry}
           />
         ) : (
           <EngineContentBlockRenderer
