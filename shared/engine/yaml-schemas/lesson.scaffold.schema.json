@@ -2210,8 +2210,7 @@
         "skills",
         "params",
         "locale",
-        "section",
-        "flashcards"
+        "section"
       ],
       "additionalProperties": false
     },
