@@ -5,6 +5,7 @@ export const cosmicStructureFormation_Skill_Data = defineSkill({
   id: 'cdb0f7e5-f1da-47d6-9a87-591471ca9bde',
   name: {
     en: 'Cosmic Structure Formation',
+    it: 'Formazione delle strutture cosmiche',
     qm: 'Kosmik quruluşnıñ peyda olması',
     zh: '宇宙结构形成',
     hi: 'ब्रह्मांडीय संरचना का निर्माण',
@@ -39,6 +40,7 @@ export const cosmicStructureFormation_Skill_Data = defineSkill({
       'Explain how initially small matter-density differences grow into galaxies and large-scale structure.',
     frontend: {
       en: 'See how tiny early differences in matter density developed into cosmic structure.',
+      it: 'Scopri come minuscole differenze iniziali nella densità della materia hanno prodotto le strutture cosmiche.',
       qm: 'Başlangıçtaki madde yoğunlığınıñ kiçik farqları zaman keçkeninen nasıl büyük kosmik quruluşlarğa aylanganını ögreniñiz.',
       zh: '了解早期物质密度的微小差异如何发展成宇宙结构。',
       hi: 'जानें कि आरंभिक पदार्थ घनत्व के छोटे अंतर कैसे बड़ी ब्रह्मांडीय संरचनाओं में बदल गए।',
