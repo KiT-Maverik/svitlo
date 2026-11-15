@@ -5,6 +5,7 @@ export const galaxyGroupsAndClusters_Skill_Data = defineSkill({
   id: '3e37d21f-07d6-42a3-b2ae-0232006782fe',
   name: {
     en: 'Galaxy Groups and Clusters',
+    it: 'Gruppi e ammassi di galassie',
     qm: 'Galaktika grupları ve toplulıqları',
     zh: '星系群与星系团',
     hi: 'आकाशगंगा समूह और गुच्छ',
@@ -38,6 +39,7 @@ export const galaxyGroupsAndClusters_Skill_Data = defineSkill({
     methodological: 'Interpret gravitationally associated galaxy populations and their larger-scale environments.',
     frontend: {
       en: 'Discover how gravity gathers galaxies into groups and clusters.',
+      it: 'Scopri come la gravità riunisce le galassie in gruppi e ammassi.',
       qm: 'Cazibe quveti galaktikalarnı nasıl gruplarğa ve büyük toplulıqlarğa toplağanını ögreniñiz.',
       zh: '了解引力如何将星系聚集成群和星系团。',
       hi: 'जानें कि गुरुत्वाकर्षण आकाशगंगाओं को समूहों और गुच्छों में कैसे बाँधता है।',

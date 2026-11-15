@@ -11,6 +11,7 @@ export const cosmology_SkillDomain_Data = defineSkillDomain({
   id: '7952ac93-5a92-4cc1-951b-e39b38b3708d',
   title: {
     en: 'Cosmology',
+    it: 'Cosmologia',
     qm: 'Kosmologiya',
     zh: '宇宙学',
     hi: 'ब्रह्मांड विज्ञान',
@@ -52,6 +53,7 @@ export const cosmology_SkillDomain_Data = defineSkillDomain({
       "Cosmology tests models for the Universe's large-scale composition, history and expansion using observations with known horizons and uncertainties. Unresolved questions must remain distinguishable from established evidence.",
     frontend: {
       en: "Investigate the Universe's expansion, history and large-scale structure using astronomical evidence.",
+      it: 'Indaga l\'espansione, la storia e la struttura su grande scala dell\'universo usando prove astronomiche.',
       qm: 'Astronomik deliller yardımınen Kâinatnıñ keñeyüvini, tarihını ve büyük miqyastaki quruluşını tetqiq etiñiz.',
       zh: '利用天文证据探索宇宙的膨胀、历史和大尺度结构。',
       hi: 'खगोलीय प्रमाणों से ब्रह्मांड के विस्तार, इतिहास और विशाल संरचना का अध्ययन करें।',
