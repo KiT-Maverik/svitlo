@@ -5,6 +5,7 @@ export const distinguishRecordsAndFields_Skill_Data = defineSkill({
   id: '9a87da4e-6ba1-4bb8-9dbb-da5cdccac9ef',
   name: {
     en: 'Distinguish Records and Fields',
+    it: 'Distinguere record e campi',
     zh: '区分记录与字段',
     hi: 'रिकॉर्ड और फ़ील्ड में अंतर करना',
     es: 'Distinguir registros y campos',
@@ -39,6 +40,7 @@ export const distinguishRecordsAndFields_Skill_Data = defineSkill({
       "Identify a row as a record of one entity or occurrence, and a column as a named field describing an attribute. A cell's particular value is not the definition of a field.",
     frontend: {
       en: 'Distinguish a record from the fields that describe it.',
+      it: 'Distingui un record dai campi che lo descrivono.',
       zh: '区分一条记录与描述它的各个字段。',
       hi: 'रिकॉर्ड को उसका वर्णन करने वाले फ़ील्ड से अलग पहचानें।',
       es: 'Distingue un registro de los campos que lo describen.',

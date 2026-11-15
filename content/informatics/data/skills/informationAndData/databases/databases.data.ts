@@ -13,6 +13,7 @@ export const databases_SkillGroup_Data = defineSkillGroup({
   id: '981dcc4c-1344-44b6-af1c-18d8a4d3f391',
   name: {
     en: 'Databases',
+    it: 'Basi di dati',
     zh: '数据库',
     hi: 'डेटाबेस',
     es: 'Bases de datos',
@@ -54,6 +55,7 @@ export const databases_SkillGroup_Data = defineSkillGroup({
       'Structured storage of interrelated information differs from a table laid out only for human reading. Records and fields define the structure, keys identify records, and relationships connect information across tables.',
     frontend: {
       en: 'Discover how databases structure records and connect related information.',
+      it: 'Scopri come i database strutturano i record e collegano le informazioni correlate.',
       zh: '了解数据库如何组织记录并连接相关信息。',
       hi: 'जानें कि डेटाबेस रिकॉर्ड कैसे व्यवस्थित करते और संबंधित जानकारी कैसे जोड़ते हैं।',
       es: 'Descubre cómo las bases de datos estructuran registros y conectan información relacionada.',

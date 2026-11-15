@@ -5,6 +5,7 @@ export const collectDataConsistently_Skill_Data = defineSkill({
   id: 'e8d82925-d952-4f95-b26a-21e5cbfa5ba6',
   name: {
     en: 'Collect Data Consistently',
+    it: 'Raccogliere dati in modo coerente',
     zh: '一致地收集数据',
     hi: 'एक समान तरीके से डेटा एकत्र करना',
     es: 'Recopilar datos de forma coherente',
@@ -39,6 +40,7 @@ export const collectDataConsistently_Skill_Data = defineSkill({
       'Gather records using a predefined procedure with the same units and attributes for each observation. Changing the procedure midway may make parts of the dataset difficult to compare.',
     frontend: {
       en: 'Collect measurements using consistent rules and units.',
+      it: 'Raccogli misurazioni usando regole e unità coerenti.',
       zh: '使用统一的规则和单位收集测量结果。',
       hi: 'एक समान नियमों और इकाइयों से माप दर्ज करें।',
       es: 'Recoge mediciones con reglas y unidades uniformes.',

@@ -12,6 +12,7 @@ export const dataCollectionAndOrganization_SkillGroup_Data = defineSkillGroup({
   id: 'c32c008f-12e8-4595-abbd-ee17221cf40c',
   name: {
     en: 'Data Collection and Organization',
+    it: 'Raccolta e organizzazione dei dati',
     zh: '数据收集与组织',
     hi: 'डेटा संग्रह और संगठन',
     es: 'Recopilación y organización de datos',
@@ -52,6 +53,7 @@ export const dataCollectionAndOrganization_SkillGroup_Data = defineSkillGroup({
       'Identify required fields, record observations consistently, classify by an attribute, and organize a table. Collecting data generates records; tabulation structures existing records.',
     frontend: {
       en: 'Learn to collect relevant information and organize comparable records.',
+      it: 'Impara a raccogliere informazioni pertinenti e organizzare registrazioni confrontabili.',
       zh: '学习收集相关信息并整理可比较的记录。',
       hi: 'संबंधित जानकारी इकट्ठा करना और तुलना योग्य रिकॉर्ड व्यवस्थित करना सीखें।',
       es: 'Aprende a recopilar información pertinente y organizar registros comparables.',

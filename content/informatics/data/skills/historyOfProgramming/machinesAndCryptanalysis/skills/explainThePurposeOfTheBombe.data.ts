@@ -5,6 +5,7 @@ export const explainThePurposeOfTheBombe_Skill_Data = defineSkill({
   id: 'dc49a75c-c502-4a5b-b6c6-ea0189a1853b',
   name: {
     en: 'Explain the Purpose of the Bombe',
+    it: 'Spiegare lo scopo della Bombe',
     zh: '解释 Bombe 机器的用途',
     hi: 'बॉम्ब मशीन का उद्देश्य समझाना',
     es: 'Explicar la función de la Bombe',
@@ -39,6 +40,7 @@ export const explainThePurposeOfTheBombe_Skill_Data = defineSkill({
       'The Bombe was an electromechanical machine used to test possible Enigma key settings, built upon earlier Polish cryptanalytic work.',
     frontend: {
       en: 'Understand how the Bombe helped test possible Enigma settings.',
+      it: 'Comprendi come la macchina Bombe aiutava a verificare possibili configurazioni di Enigma.',
       zh: '理解 Bombe 机器如何帮助测试 Enigma 的可能设置。',
       hi: 'समझें कि बॉम्ब मशीन ने एनिग्मा की संभावित सेटिंग्स जाँचने में कैसे मदद की।',
       es: 'Comprende cómo la Bombe ayudaba a probar posibles configuraciones de Enigma.',

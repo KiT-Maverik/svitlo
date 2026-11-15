@@ -11,6 +11,7 @@ export const machinesAndCryptanalysis_SkillGroup_Data = defineSkillGroup({
   id: 'fc8df315-fb6e-40e2-ac23-35404245f12b',
   name: {
     en: 'Machines and Cryptanalysis',
+    it: 'Macchine e crittoanalisi',
     zh: '计算机器与密码分析',
     hi: 'मशीनें और कूटविश्लेषण',
     es: 'Máquinas y criptoanálisis',
@@ -50,6 +51,7 @@ export const machinesAndCryptanalysis_SkillGroup_Data = defineSkillGroup({
       'The development of computing devices and specialized cryptanalytic machines illustrates how formal instructions and mechanized checking addressed historical problems. Philosophical issues of imitation and understanding belong to AI instead.',
     frontend: {
       en: 'Discover how machines and mathematical methods supported historical cryptanalysis.',
+      it: 'Scopri come macchine e metodi matematici hanno sostenuto la crittoanalisi nel passato.',
       zh: '了解机器和数学方法如何支持历史上的密码分析。',
       hi: 'जानें कि मशीनों और गणितीय विधियों ने ऐतिहासिक कूटविश्लेषण में कैसे मदद की।',
       es: 'Descubre cómo las máquinas y los métodos matemáticos contribuyeron al criptoanálisis histórico.',
