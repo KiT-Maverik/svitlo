@@ -16,6 +16,26 @@ The GitHub Issue is the **persistent, cross-chat state and coordination record**
 
 Both reviews are independent of the Screenwriter and of each other. The reviewers return specific, traceable findings; the Screenwriter revises `content.yaml`. An independent `pass` verdict is **not an editorial approval**: authorized sign-off must be linked. Each review identifies the exact `content.yaml` Git blob/revision. Content revisions require rechecking stale reviews; Methodology amendments may also invalidate approvals.
 
+## Lesson Production stage names vs. Review evidence keys
+
+The durable Issue stage names and editorial workflow records remain kebab-case.
+Engine's `lessonProductionStageToReviewStage` maps these external identifiers
+to **direct camelCase fields under `LessonReview.ai`**. Unchanged stages map
+to themselves. The four renamed fields are:
+
+| Issue / editorial stage | `review.ts` AI field |
+| --- | --- |
+| `experience-review` | `ai.experienceReview` |
+| `methodology-review` | `ai.methodologyReview` |
+| `generate-sources` | `ai.generateSources` |
+| `resource-production` | `ai.resourceProduction` |
+
+`ai.locales` remains the full-scope AI localization integration PR;
+`human.acceptance`, `human.locales` and optional `human.scientific` are
+unchanged. The review draft must retain its missing Props digest identifier
+and missing PR/language values until the actual revision-bound evidence is
+verified. A mapping of names is **not** an approval or a migration of evidence.
+
 ## Typical stage lifecycle
 
 1. Methodologist authors `methodology.md`; editor approves including the Quiz and Assessment Method plan.

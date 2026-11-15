@@ -8,6 +8,7 @@ import yaml from 'yaml';
 
 import { BuilderDiagnostic, loadFactoryRegistry, runOne, main } from './lessonBuilder.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
+import { lessonReviewStageSlugs, renderReviewDraft } from './reviewTemplate.mjs';
 
 const id = suffix => '00000000-0000-4000-8000-' + String(suffix).padStart(12, '0');
 const lessonId = id(12);
@@ -270,6 +271,49 @@ test('Carousel draft rejects unsupported children without writing anything', () 
     assert.equal(fs.existsSync(f.generated('sections/intro/gallery/index.ts')), false);
   }));
 
+test('Lesson Review draft matches the Engine stage mapping without mutating external Issue slugs', () => {
+  const source = fs.readFileSync(new URL('../../types/review.types.ts', import.meta.url), 'utf8');
+  const ast = ts.createSourceFile('review.types.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  const declaration = ast.statements
+    .filter(ts.isVariableStatement)
+    .flatMap(statement => [...statement.declarationList.declarations])
+    .find(item => item.name.getText(ast) === 'lessonProductionStageToReviewStage');
+  assert.ok(declaration, 'Engine must declare the canonical production-stage mapping');
+  const initializer = declaration.initializer;
+  assert.ok(ts.isAsExpression(initializer), 'Mapping must preserve literal value types');
+  const map = initializer.expression;
+  assert.ok(ts.isObjectLiteralExpression(map));
+  const stages = Object.fromEntries(
+    map.properties.map(property => {
+      assert.ok(ts.isPropertyAssignment(property));
+      assert.ok(ts.isStringLiteral(property.initializer));
+      return [property.name.text, property.initializer.text];
+    }),
+  );
+  assert.equal(stages['experience-review'], 'experienceReview');
+  assert.equal(stages['methodology-review'], 'methodologyReview');
+  assert.equal(stages['generate-sources'], 'generateSources');
+  assert.equal(stages['resource-production'], 'resourceProduction');
+  assert.deepEqual(Object.values(stages), lessonReviewStageSlugs);
+  assert.equal(new Set(lessonReviewStageSlugs).size, lessonReviewStageSlugs.length);
+
+  const pending = renderReviewDraft();
+  const fields = [...pending.matchAll(/^    ([A-Za-z]+): \{ pr: , language: , \},$/gm)].map(match => match[1]);
+  assert.deepEqual(fields, lessonReviewStageSlugs);
+  assert.doesNotMatch(pending, /\\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
+  assert.match(pending, /^    locales: ,$/m);
+  assert.match(pending, /^    acceptance: ,$/m);
+  const filled = pending
+    .replace('const = {', 'const revision = {')
+    .replaceAll('pr: , language: ,', "pr: 10, language: 'en',")
+    .replace('    locales: ,', '    locales: 11,')
+    .replace('    acceptance: ,', '    acceptance: 12,');
+  assert.deepEqual(
+    ts.createSourceFile('review.ts', filled, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS).parseDiagnostics,
+    [],
+  );
+});
+
 test('review.ts starts with mandatory unfilled evidence and is not overwritten', () =>
   fixture(f => {
     const result = runOne(f.lesson, 'generate', f.root);
@@ -278,8 +322,11 @@ test('review.ts starts with mandatory unfilled evidence and is not overwritten',
     const pending = fs.readFileSync(reviewFile, 'utf8');
     assert.match(pending, /import type \{ LessonReview \} from '@svitlo\/engine\/build'/);
     assert.match(pending, /const = \{/);
-    assert.match(pending, /"experience-review": \{ pr: , language: , \}/);
-    assert.match(pending, /"methodology-review": \{ pr: , language: , \}/);
+    assert.match(pending, /experienceReview: \{ pr: , language: , \}/);
+    assert.match(pending, /methodologyReview: \{ pr: , language: , \}/);
+    assert.match(pending, /generateSources: \{ pr: , language: , \}/);
+    assert.match(pending, /resourceProduction: \{ pr: , language: , \}/);
+    assert.doesNotMatch(pending, /\\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
     assert.match(pending, /locales: ,/);
     assert.match(pending, /acceptance: ,/);
     assert.match(pending, /locales: \{\}/);
