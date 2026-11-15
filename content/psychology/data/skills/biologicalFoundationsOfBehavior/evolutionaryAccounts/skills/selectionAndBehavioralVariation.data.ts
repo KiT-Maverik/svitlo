@@ -5,6 +5,7 @@ export const selectionAndBehavioralVariation_Skill_Data = defineSkill({
   id: 'dcd44bd0-eda2-4374-b517-964d3dedcf0a',
   name: {
     en: 'Selection and Behavioral Variation',
+    it: 'Selezione e variazione comportamentale',
     zh: '选择与行为差异',
     hi: 'चयन और व्यवहार विविधता',
     es: 'Selección y variación conductual',
@@ -39,6 +40,7 @@ export const selectionAndBehavioralVariation_Skill_Data = defineSkill({
       'Explain how inherited variation and differential reproduction could change behavioral predispositions across generations.',
     frontend: {
       en: 'Explain how inherited behavioral tendencies may change across generations.',
+      it: 'Spiega come tendenze comportamentali ereditarie possano cambiare nel corso delle generazioni.',
       zh: '解释可遗传的行为倾向如何跨世代发生变化。',
       hi: 'समझाएँ कि वंशानुगत व्यवहार प्रवृत्तियाँ पीढ़ियों के साथ कैसे बदल सकती हैं।',
       es: 'Explica cómo las tendencias conductuales heredadas pueden cambiar entre generaciones.',

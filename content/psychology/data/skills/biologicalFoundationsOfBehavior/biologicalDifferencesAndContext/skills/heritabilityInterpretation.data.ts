@@ -5,6 +5,7 @@ export const heritabilityInterpretation_Skill_Data = defineSkill({
   id: '6aead28b-b544-4e2f-8006-1790433d9d9c',
   name: {
     en: 'Heritability Interpretation',
+    it: 'Interpretazione dell\'ereditarietà',
     zh: '遗传率的解释',
     hi: 'आनुवंशिकता की व्याख्या',
     es: 'Interpretación de la heredabilidad',
@@ -39,6 +40,7 @@ export const heritabilityInterpretation_Skill_Data = defineSkill({
       "Distinguish statistical variation within a studied population from a fixed percentage of one individual's trait attributed to genes.",
     frontend: {
       en: "Understand why heritability is a population statistic, not a person's percentage.",
+      it: 'Comprendi perché l\'ereditarietà è una statistica riferita a una popolazione, non una percentuale attribuibile a una persona.',
       zh: '了解遗传率是群体统计指标，而不是个人特征中的遗传百分比。',
       hi: 'समझें कि आनुवंशिकता जनसमूह का सांख्यिकीय माप है, किसी व्यक्ति का प्रतिशत नहीं।',
       es: 'Comprende por qué la heredabilidad es un dato estadístico poblacional y no el porcentaje de una persona.',

@@ -5,6 +5,7 @@ export const evaluatingEvolutionaryClaims_Skill_Data = defineSkill({
   id: 'dc625d49-a611-44d8-92ce-12ae989be8f6',
   name: {
     en: 'Evaluating Evolutionary Claims',
+    it: 'Valutare le ipotesi evoluzionistiche',
     zh: '评估进化论主张',
     hi: 'विकासवादी दावों का मूल्यांकन',
     es: 'Evaluación de afirmaciones evolutivas',
@@ -39,6 +40,7 @@ export const evaluatingEvolutionaryClaims_Skill_Data = defineSkill({
       'Assess behavioral adaptation hypotheses against comparative evidence and plausible developmental or cultural alternatives.',
     frontend: {
       en: 'Evaluate evolutionary explanations using evidence rather than plausible stories alone.',
+      it: 'Valuta le spiegazioni evoluzionistiche sulla base delle prove, non soltanto di racconti plausibili.',
       zh: '利用证据而不仅是听起来合理的故事来评估进化解释。',
       hi: 'केवल संभावित कहानियों के बजाय प्रमाण के आधार पर विकासवादी व्याख्याओं का मूल्यांकन करें।',
       es: 'Evalúa explicaciones evolutivas con evidencia, no solo con historias plausibles.',

@@ -12,6 +12,7 @@ export const biologicalDifferencesAndContext_SkillGroup_Data = defineSkillGroup(
   id: 'c1836515-2a83-44a7-921e-66c09ba893c4',
   name: {
     en: 'Biological Differences and Context',
+    it: 'Differenze biologiche e contesto',
     zh: '生物差异与情境',
     hi: 'जैविक अंतर और संदर्भ',
     es: 'Diferencias biológicas y contexto',
@@ -60,6 +61,7 @@ export const biologicalDifferencesAndContext_SkillGroup_Data = defineSkillGroup(
       "Inherited characteristics, hormones, and environmental exposures jointly shape outcomes, without fixing a person's future.",
     frontend: {
       en: 'Discover how inherited factors, hormones and environments jointly shape behavior.',
+      it: 'Scopri come fattori ereditari, ormoni e ambienti contribuiscano insieme a plasmare il comportamento.',
       zh: '了解遗传因素、激素和环境如何共同塑造行为。',
       hi: 'जानें कि वंशानुगत कारक, हार्मोन और पर्यावरण मिलकर व्यवहार को कैसे आकार देते हैं।',
       es: 'Descubre cómo la herencia, las hormonas y el entorno moldean conjuntamente la conducta.',
