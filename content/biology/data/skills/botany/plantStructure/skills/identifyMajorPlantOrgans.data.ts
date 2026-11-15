@@ -5,6 +5,7 @@ export const identifyMajorPlantOrgans_Skill_Data = defineSkill({
   id: '05903430-3ad0-4905-aec1-57d0e994b356',
   name: {
     en: 'Identify Major Plant Organs',
+    it: 'Individuare i principali organi delle piante',
     zh: '识别植物的主要器官',
     hi: 'पौधों के प्रमुख अंग पहचानना',
     es: 'Identificar los principales órganos de las plantas',
@@ -39,6 +40,7 @@ export const identifyMajorPlantOrgans_Skill_Data = defineSkill({
       'On a plant or model, distinguish roots, stems, leaves, and reproductive organs, including flowers, by their position and distinguishing characteristics.',
     frontend: {
       en: 'Identify the major structures of a plant and where they are found.',
+      it: 'Individua le principali strutture di una pianta e dove si trovano.',
       zh: '识别植物的主要结构及其所在位置。',
       hi: 'पौधे के मुख्य भागों और उनके स्थानों को पहचानें।',
       es: 'Reconoce las principales estructuras de una planta y dónde se encuentran.',
