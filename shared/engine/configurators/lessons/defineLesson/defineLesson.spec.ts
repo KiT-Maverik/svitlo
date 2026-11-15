@@ -134,7 +134,7 @@ describe('Configurators', () => {
           },
           locale: { title: { en: 'Source language only' } },
           section: { items: {}, order: [] },
-          flashcards: { items: {}, order: [] },
+          flashcards: { items: {} },
         };
         assert.equal(lesson_Config_Schema.safeParse(draft).success, true, 'Config permits sparse locale dictionaries');
         const lesson = defineLesson(draft as never);
