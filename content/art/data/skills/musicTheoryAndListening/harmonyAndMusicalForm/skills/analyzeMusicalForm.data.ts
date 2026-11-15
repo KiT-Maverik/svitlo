@@ -5,6 +5,7 @@ export const analyzeMusicalForm_Skill_Data = defineSkill({
   id: 'f49ae89d-1ec7-4f5d-9ca6-dcd576aca79b',
   name: {
     en: 'Analyze Musical Form',
+    it: 'Analizzare la forma musicale',
     zh: '分析音乐曲式',
     hi: 'संगीत के रूप का विश्लेषण करें',
     es: 'Analizar la forma musical',
@@ -38,6 +39,7 @@ export const analyzeMusicalForm_Skill_Data = defineSkill({
     methodological: "Explain repetition, contrast and development within a work's sectional organization.",
     frontend: {
       en: 'Find repetition, contrast and development in the structure of a piece.',
+      it: 'Individua ripetizioni, contrasti e sviluppi nella struttura di un brano.',
       zh: '找出乐曲结构中的重复、对比和发展。',
       hi: 'रचना की संरचना में दोहराव, विरोधाभास और विकास पहचानें।',
       es: 'Encuentra repetición, contraste y desarrollo en la estructura de una pieza.',
