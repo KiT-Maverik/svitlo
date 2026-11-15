@@ -5,6 +5,7 @@ export const selfServingAttributions_Skill_Data = defineSkill({
   id: '38785797-d7e7-4c8b-a6fa-6850155bc311',
   name: {
     en: 'Self-Serving Attributions',
+    it: 'Attribuzioni a proprio favore',
     zh: '自利性归因',
     hi: 'स्वयं के पक्ष में कारण बताना',
     es: 'Atribuciones favorables a uno mismo',
@@ -38,6 +39,7 @@ export const selfServingAttributions_Skill_Data = defineSkill({
     methodological: 'Explain how explanations of successes and failures may protect a favorable self-image.',
     frontend: {
       en: 'Recognize when people take credit for success but blame circumstances for failure.',
+      it: 'Riconosci quando le persone si attribuiscono il merito dei successi ma imputano i fallimenti alle circostanze.',
       zh: '识别人们把成功归功于自己却把失败归因于环境的情况。',
       hi: 'पहचानें कि लोग सफलता का श्रेय खुद को और असफलता का दोष परिस्थितियों को कब देते हैं।',
       es: 'Reconoce cuándo las personas se atribuyen éxitos pero achacan fracasos a las circunstancias.',

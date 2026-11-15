@@ -5,6 +5,7 @@ export const selfEsteem_Skill_Data = defineSkill({
   id: '792137e6-abcc-419d-8f8e-f812772751a3',
   name: {
     en: 'Self-Esteem',
+    it: 'Autostima',
     zh: '自尊',
     hi: 'आत्म-सम्मान',
     es: 'Autoestima',
@@ -39,6 +40,7 @@ export const selfEsteem_Skill_Data = defineSkill({
       'Distinguish an overall evaluation of self-worth from domain-specific confidence or demonstrated skill.',
     frontend: {
       en: "Distinguish a person's general self-evaluation from specific abilities.",
+      it: 'Distingui la valutazione generale che una persona dà di sé dalle sue capacità specifiche.',
       zh: '区分一个人的总体自我评价和具体能力。',
       hi: 'व्यक्ति के समग्र आत्म-मूल्यांकन और विशिष्ट क्षमताओं में अंतर करें।',
       es: 'Distingue la evaluación general que una persona hace de sí misma de sus capacidades específicas.',
