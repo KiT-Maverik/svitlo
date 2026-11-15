@@ -17,7 +17,8 @@ import {
   validateOrderedKeys,
 } from '../../_shared__configurators';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
-import { defineFlashcardSide, flashcardSideConfigurator_Schema, type FlashcardSide_Configurator } from '../defineFlashcardSide';
+import { defineFlashcardSide, type FlashcardSide_Configurator } from '../defineFlashcardSide/defineFlashcardSide';
+import { flashcardSideConfigurator_Schema } from '../defineFlashcardSide/defineFlashcardSide.schemas';
 import {
   flashcard_Config_Schema,
   flashcard_Props_Schema,
