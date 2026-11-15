@@ -41,11 +41,14 @@ export const earliestAmericanPopulations_SkillGroup_Data = defineSkillGroup({
     kk: 'Америка құрлықтарының алғашқы тұрғындары',
     qm: 'Amerikalarnıñ ilk sakinleri',
   },
-  skills: [
-    adaptationToAmericanEcosystems_Skill_Data,
-    independentAmericanCropDomestication_Skill_Data,
-    peoplingOfTheAmericas_Skill_Data,
-  ],
+  skills: {
+    items: {
+      adaptationToAmericanEcosystems: adaptationToAmericanEcosystems_Skill_Data,
+      independentAmericanCropDomestication: independentAmericanCropDomestication_Skill_Data,
+      peoplingOfTheAmericas: peoplingOfTheAmericas_Skill_Data,
+    },
+    order: ['adaptationToAmericanEcosystems', 'independentAmericanCropDomestication', 'peoplingOfTheAmericas'],
+  },
   description: {
     methodological:
       'Examine early settlement dates and lifeways through archaeology, environmental research, and genetics.',

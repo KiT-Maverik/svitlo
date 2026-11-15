@@ -43,13 +43,16 @@ export const mesoamerica_SkillGroup_Data = defineSkillGroup({
     kk: 'Мезоамерика',
     qm: 'Mezoamerika',
   },
-  skills: [
-    earlyMayaCities_Skill_Data,
-    mayaWriting_Skill_Data,
-    mesoamericanCalendars_Skill_Data,
-    olmecCenters_Skill_Data,
-    teotihuacan_Skill_Data,
-  ],
+  skills: {
+    items: {
+      earlyMayaCities: earlyMayaCities_Skill_Data,
+      mayaWriting: mayaWriting_Skill_Data,
+      mesoamericanCalendars: mesoamericanCalendars_Skill_Data,
+      olmecCenters: olmecCenters_Skill_Data,
+      teotihuacan: teotihuacan_Skill_Data,
+    },
+    order: ['earlyMayaCities', 'mayaWriting', 'mesoamericanCalendars', 'olmecCenters', 'teotihuacan'],
+  },
   description: {
     methodological:
       'Independent urban centers, monumental ritual spaces, writing, and polities developed before European colonization.',

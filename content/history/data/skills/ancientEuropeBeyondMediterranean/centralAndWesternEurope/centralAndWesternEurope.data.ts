@@ -42,12 +42,15 @@ export const centralAndWesternEurope_SkillGroup_Data = defineSkillGroup({
     kk: 'Орталық және Батыс Еуропа',
     qm: 'Merkeziy ve Ğarbiy Avropa',
   },
-  skills: [
-    ancientGermanicCommunities_Skill_Data,
-    britainBeforeAndUnderRome_Skill_Data,
-    celticIronAgeCultures_Skill_Data,
-    europeanBronzeAge_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ancientGermanicCommunities: ancientGermanicCommunities_Skill_Data,
+      britainBeforeAndUnderRome: britainBeforeAndUnderRome_Skill_Data,
+      celticIronAgeCultures: celticIronAgeCultures_Skill_Data,
+      europeanBronzeAge: europeanBronzeAge_Skill_Data,
+    },
+    order: ['ancientGermanicCommunities', 'britainBeforeAndUnderRome', 'celticIronAgeCultures', 'europeanBronzeAge'],
+  },
   description: {
     methodological:
       'Study metallurgy, settlements, and confederations primarily through archaeological evidence and uneven external descriptions.',

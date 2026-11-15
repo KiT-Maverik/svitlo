@@ -43,13 +43,22 @@ export const saharaAndSubSaharanAfrica_SkillGroup_Data = defineSkillGroup({
     kk: 'Сахара және Сахарадан оңтүстік Африка',
     qm: 'Sahara ve Saharanıñ cenübinde Afrika',
   },
-  skills: [
-    ancientSaharanPastoralists_Skill_Data,
-    earlyBantuSpeakingDispersals_Skill_Data,
-    earlyWestAfricanUrbanCenters_Skill_Data,
-    nokCulture_Skill_Data,
-    saharanClimateChange_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ancientSaharanPastoralists: ancientSaharanPastoralists_Skill_Data,
+      earlyBantuSpeakingDispersals: earlyBantuSpeakingDispersals_Skill_Data,
+      earlyWestAfricanUrbanCenters: earlyWestAfricanUrbanCenters_Skill_Data,
+      nokCulture: nokCulture_Skill_Data,
+      saharanClimateChange: saharanClimateChange_Skill_Data,
+    },
+    order: [
+      'ancientSaharanPastoralists',
+      'earlyBantuSpeakingDispersals',
+      'earlyWestAfricanUrbanCenters',
+      'nokCulture',
+      'saharanClimateChange',
+    ],
+  },
   description: {
     methodological:
       'Environmental change, diverse livelihoods, and local technologies shaped societies beyond the Nile states.',

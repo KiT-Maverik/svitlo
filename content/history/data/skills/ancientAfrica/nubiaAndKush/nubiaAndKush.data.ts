@@ -42,7 +42,15 @@ export const nubiaAndKush_SkillGroup_Data = defineSkillGroup({
     kk: 'Нубия және Куш',
     qm: 'Nubiya ve Kuş',
   },
-  skills: [kermaCulture_Skill_Data, kingdomOfKush_Skill_Data, meroe_Skill_Data, nileCulturalExchange_Skill_Data],
+  skills: {
+    items: {
+      kermaCulture: kermaCulture_Skill_Data,
+      kingdomOfKush: kingdomOfKush_Skill_Data,
+      meroe: meroe_Skill_Data,
+      nileCulturalExchange: nileCulturalExchange_Skill_Data,
+    },
+    order: ['kermaCulture', 'kingdomOfKush', 'meroe', 'nileCulturalExchange'],
+  },
   description: {
     methodological:
       'Middle Nile societies formed independent political and cultural centers with complex relations to Egypt.',

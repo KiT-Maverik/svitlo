@@ -41,11 +41,14 @@ export const amazonAndCaribbean_SkillGroup_Data = defineSkillGroup({
     kk: 'Амазония және Кариб аймағы',
     qm: 'Amazon ve Karib deñizi avzası',
   },
-  skills: [
-    caribbeanIslandSettlement_Skill_Data,
-    earlyAmazonianSocieties_Skill_Data,
-    tropicalSouthAmericanFarming_Skill_Data,
-  ],
+  skills: {
+    items: {
+      caribbeanIslandSettlement: caribbeanIslandSettlement_Skill_Data,
+      earlyAmazonianSocieties: earlyAmazonianSocieties_Skill_Data,
+      tropicalSouthAmericanFarming: tropicalSouthAmericanFarming_Skill_Data,
+    },
+    order: ['caribbeanIslandSettlement', 'earlyAmazonianSocieties', 'tropicalSouthAmericanFarming'],
+  },
   description: {
     methodological:
       'River and island environments supported diverse cultures that cannot be judged only by the presence of stone cities.',
