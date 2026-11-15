@@ -57,7 +57,7 @@ const content = {
   }
 };
 
-export const selectOneAnswer_identifyTrueEquality = defineSelectOneAnswer<"identifyTrueEquality", typeof content, LessonLanguages>({
+export const identifyTrueEquality = defineSelectOneAnswer<"identifyTrueEquality", typeof content, LessonLanguages>({
   id: "a11ce555-0000-4000-8000-00000000001f",
   slug: "identifyTrueEquality",
   type: "selectOneAnswer",
