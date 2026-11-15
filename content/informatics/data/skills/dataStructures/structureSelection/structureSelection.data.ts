@@ -12,6 +12,7 @@ export const structureSelection_SkillGroup_Data = defineSkillGroup({
   id: 'b609551b-57f5-4188-8083-39cc8e116420',
   name: {
     en: 'Structure Selection',
+    it: 'Scelta delle strutture dati',
     zh: '数据结构选择',
     hi: 'डेटा संरचना का चयन',
     es: 'Selección de estructuras',
@@ -52,6 +53,7 @@ export const structureSelection_SkillGroup_Data = defineSkillGroup({
       'Select data structures based on required operations and evaluate access, insertion, and storage costs. The comparison concerns data organization rather than only algorithms that process it.',
     frontend: {
       en: 'Choose data structures according to how a program needs to use its data.',
+      it: 'Scegli le strutture dati in base a come un programma deve utilizzare le informazioni.',
       zh: '根据程序使用数据的方式选择数据结构。',
       hi: 'प्रोग्राम को डेटा का उपयोग जिस तरह करना है, उसके अनुसार संरचना चुनें।',
       es: 'Elige estructuras de datos según cómo deba utilizarlos un programa.',

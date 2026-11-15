@@ -5,6 +5,7 @@ export const distinguishLeafAndInternalTreeNodes_Skill_Data = defineSkill({
   id: 'ff117d95-52f6-4e7c-92c0-9d92f00c63d9',
   name: {
     en: 'Distinguish Leaf and Internal Tree Nodes',
+    it: 'Distinguere nodi foglia e nodi interni di un albero',
     zh: '区分叶节点与内部节点',
     hi: 'पत्ती और आंतरिक वृक्ष नोड में अंतर करना',
     es: 'Distinguir nodos hoja e internos de un árbol',
@@ -39,6 +40,7 @@ export const distinguishLeafAndInternalTreeNodes_Skill_Data = defineSkill({
       "A leaf has no children; an internal node has at least one child. The distinction follows the structure, not the node's name.",
     frontend: {
       en: 'Distinguish nodes with children from leaf nodes without children.',
+      it: 'Distingui i nodi con figli dai nodi foglia privi di figli.',
       zh: '区分有子节点的内部节点与没有子节点的叶节点。',
       hi: 'बच्चे वाले नोड और बिना बच्चे वाले पत्ती नोड में अंतर करें।',
       es: 'Distingue los nodos con hijos de los nodos hoja sin hijos.',
