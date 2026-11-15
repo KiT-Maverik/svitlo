@@ -58,7 +58,11 @@ test('real Playground independently publishes full locale bodies while manifest 
   assert.equal(manifest.lessonId, 'd3048d21-8690-5255-b62c-984c69ac272c');
   assert.equal(entries.filter(([, value]) => value.kind === 'question').length, 6);
   assert.equal(entries.filter(([, value]) => value.kind === 'flashcard').length, 3);
-  assert(!JSON.stringify(manifest).includes('content'));
+  assert.deepEqual(Object.keys(manifest).sort(), ['entries', 'lessonId']);
+  for (const [, entry] of entries) {
+    assert.equal(Object.hasOwn(entry, 'content'), false, 'the manifest must never contain assessment bodies');
+    assert.equal(Object.hasOwn(entry, 'answers'), false, 'no answer data in metadata');
+  }
   for (const [uuid, entry] of entries) {
     const prefix = owner + '/' + (entry.kind === 'question' ? 'questions' : 'flashcards') + '/' + uuid;
     const base = JSON.parse(files.get(prefix + '/base.json'));
