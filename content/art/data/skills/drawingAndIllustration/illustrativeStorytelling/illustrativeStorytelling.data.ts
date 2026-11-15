@@ -13,6 +13,7 @@ export const illustrativeStorytelling_SkillGroup_Data = defineSkillGroup({
   id: 'd29ab633-0b27-49b2-887d-8a30f9c0bf0e',
   name: {
     en: 'Illustrative Storytelling',
+    it: 'Narrazione per immagini',
     zh: '插画叙事',
     hi: 'चित्रात्मक कहानी-कथन',
     es: 'Narración ilustrada',
@@ -54,6 +55,7 @@ export const illustrativeStorytelling_SkillGroup_Data = defineSkillGroup({
       'Illustration selects and organizes imagery to clarify actions, ideas and character, including sequences that extend beyond one frame.',
     frontend: {
       en: 'Use pictures to communicate characters, actions and stories.',
+      it: 'Usa le immagini per comunicare personaggi, azioni e storie.',
       zh: '用图像传达人物、动作和故事。',
       hi: 'पात्रों, क्रियाओं और कहानियों को व्यक्त करने के लिए चित्रों का उपयोग करें।',
       es: 'Usa imágenes para comunicar personajes, acciones e historias.',
