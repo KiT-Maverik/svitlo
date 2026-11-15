@@ -13,6 +13,7 @@ export const movementLanguage_SkillGroup_Data = defineSkillGroup({
   id: '1cb3cffe-4c1a-4998-95f1-3ac523ed77c0',
   name: {
     en: 'Movement Language',
+    it: "Linguaggio del movimento",
     zh: '动作语言',
     hi: 'गतिशील भाषा',
     es: 'Lenguaje del movimiento',
@@ -54,6 +55,7 @@ export const movementLanguage_SkillGroup_Data = defineSkillGroup({
       'Bodily alignment, energy, pathways and temporal decisions distinguish expressive movement from simply moving between points.',
     frontend: {
       en: 'Use body position, energy, space and time to shape expressive movement.',
+      it: "Usa la posizione del corpo, l'energia, lo spazio e il tempo per dare forma al movimento espressivo.",
       zh: '运用身体姿态、力量、空间和时间塑造富有表现力的动作。',
       hi: 'अभिव्यंजक गति बनाने के लिए शरीर की स्थिति, ऊर्जा, स्थान और समय का उपयोग करें।',
       es: 'Usa la posición corporal, la energía, el espacio y el tiempo para dar forma al movimiento expresivo.',
