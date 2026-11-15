@@ -11,6 +11,7 @@ export const distributive_Skill_Data = defineSkill({
     ka: 'გამრავლება — განრიგებადობის თვისება',
     kk: 'Көбейту — үлестірімділік қасиеті',
     en: 'Multiplication — Distributive property',
+    it: 'Moltiplicazione — Proprietà distributiva',
     qm: 'Arttıruv — dağıtuv hasiyeti',
     zh: '乘法 — 分配律',
     hi: 'गुणा — वितरण नियम',
@@ -39,6 +40,7 @@ export const distributive_Skill_Data = defineSkill({
       "The distributive law relates a(b + c) to ab + ac. Splitting a factor into convenient addends preserves the product and recombines partial products while maintaining each part's role.",
     frontend: {
       en: 'You can split a number into parts, multiply each part by the same factor, and add the partial products to get the original product.',
+      it: 'Puoi scomporre un numero in parti, moltiplicare ciascuna per lo stesso fattore e sommare i prodotti parziali per ottenere il prodotto iniziale.',
       qm: 'Bir sayını parçalarğa ayırıp, er parçanı aynı arttırıcığa arttır ve alğan ara neticelerni qoş. Böylece başlanğıç arttıruvnıñ neticesini taparsıñ.',
       zh: '你能把一个数拆成几部分，分别乘以同一个因数，再把部分乘积相加得到原来的积。',
       hi: 'तुम किसी संख्या को हिस्सों में बाँटकर हर हिस्से को उसी गुणनखंड से गुणा कर सकते हो और आंशिक गुणनफल जोड़कर मूल उत्तर पा सकते हो।',
