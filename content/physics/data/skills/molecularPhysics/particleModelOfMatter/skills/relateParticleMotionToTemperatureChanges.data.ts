@@ -5,6 +5,7 @@ export const relateParticleMotionToTemperatureChanges_Skill_Data = defineSkill({
   id: 'c0a99d0c-bafd-4a2e-bd5d-1563c0c12ecc',
   name: {
     en: 'Relate particle motion to temperature changes',
+    it: 'Collegare il moto delle particelle alle variazioni di temperatura',
     qm: 'Parçacıqlarnıñ areketini temperatura deñişmesinen bağlamaq',
     zh: '将粒子运动与温度变化联系起来',
     hi: 'कणों की गति को तापमान परिवर्तन से जोड़ना',
@@ -39,6 +40,7 @@ export const relateParticleMotionToTemperatureChanges_Skill_Data = defineSkill({
       'Using an animation, explain why average particle motion generally becomes more vigorous when heated.',
     frontend: {
       en: 'Connect heating with changes in the typical motion of particles.',
+      it: 'Collega il riscaldamento ai cambiamenti del moto tipico delle particelle.',
       qm: 'Qızdırıluv parçacıqlarnıñ adetiy areketini nasıl deñiştirgenini añlat.',
       zh: '联系加热与粒子典型运动方式的变化。',
       hi: 'गर्म करने और कणों की सामान्य गति में बदलाव का संबंध समझें।',
