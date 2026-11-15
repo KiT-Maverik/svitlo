@@ -5,6 +5,7 @@ export const analyzeFilmShots_Skill_Data = defineSkill({
   id: '0d849731-c87a-475a-abce-07872ef88044',
   name: {
     en: 'Analyze Film Shots',
+    it: 'Analizzare le inquadrature cinematografiche',
 
     zh: '分析电影镜头',
     hi: 'फ़िल्म शॉट्स का विश्लेषण करें',
@@ -39,6 +40,7 @@ export const analyzeFilmShots_Skill_Data = defineSkill({
     methodological: 'Explain how shot size and camera viewpoint change attention or a depicted power relationship.',
     frontend: {
       en: 'See how close-ups and camera angles change what a scene communicates.',
+      it: 'Osserva come i primi piani e le angolazioni della camera cambiano ciò che una scena comunica.',
 
       zh: '观察特写和摄影机角度如何改变场景传达的信息。',
       hi: 'देखें कि क्लोज़-अप और कैमरा कोण किसी दृश्य के संदेश को कैसे बदलते हैं।',
