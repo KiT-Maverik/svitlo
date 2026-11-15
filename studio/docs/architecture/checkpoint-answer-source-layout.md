@@ -1,13 +1,17 @@
 # Checkpoint Answer Configurator and Lesson source layout
 
-**Status:** approved scope for a follow-up implementation PR, not implemented by this planning commit. Source design fixture: [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557); generator baseline: merged [PR #559](https://github.com/KiT-Maverik/svitlo/pull/559).
+**Status:** implementation in Draft PR [#574](https://github.com/KiT-Maverik/svitlo/pull/574); independent review and CI approval are required before merge. Source design fixture: [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557); generator baseline: merged [PR #559](https://github.com/KiT-Maverik/svitlo/pull/559).
 
-## Verified current behavior
+## Baseline before PR #574
 
 - `shared/engine/configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.ts` owns **question validation**, Answer collection validation, ordered published Answer Props, locale merging, addition/disabling/reordering and child overrides. `answer` is currently a plain `{ items, order }` object, **not** a Configurator.
 - The `question` field must be a single `defineText` Configurator and cannot be disabled. `answer` permits supported ContentBlocks, rejects nested Checkpoint and requires at least one enabled child.
 - `shared/engine/scripts/lessonBuilder/lessonModules.mjs` uses the role folder `question/` **plus an unnecessary child slug folder** and the role folder `answer/` plus child slug folders. Its tests assert `question/<textSlug>/index.ts` and `answer/<answerSlug>/index.ts`; no dedicated `answer/index.ts` module is emitted.
 - The manually edited PR #557 instead demonstrates `question/index.ts`, `answer/index.ts` and `answer/<contentBlockSlug>/index.ts`. Parts of this Draft are deliberately syntactically incomplete; it is design evidence, not a compilable test oracle.
+
+## Implemented authoring and Props boundaries
+
+The authoring contract is `defineCheckpointAnswer({ id, slug, type: 'checkpointAnswer', content: { items, order } })`. The `CheckpointItem` receives that configurator as its `answer` child and a single mandatory Text `question`. The Answer is independently validated and publishes its own ordered `content` collection; the Item deliberately projects it back to the existing learner-facing `answer: ContentBlock[]` Props with no extra runtime nesting. The authored Answer ID must remain stable once assigned. No legacy bare `{ items, order }` authoring fallback is supported.
 
 ## Approved target
 
@@ -28,9 +32,9 @@ sections/<sectionSlug>/<checkpointSlug>/
 
 The `question` role is a flat folder because the child is **always a single Text**. The `answer` role is an independently addressable composite because it has its **own properties, validation, ordering and Build logic**, and its ContentBlocks can contain further resources. Never group child blocks under `<contentType>/`. Keep stable YAML IDs and authored slugs unchanged; no semantic name guessing.
 
-## Implementation scope in a later chat
+## Implementation contract
 
-1. Introduce **`defineCheckpointAnswer`** as a distinct Engine Build-only Configurator with an explicitly typed Config/Props/overrides API, public Build exports and schema / factory registration. Proposed authored shape: dedicated identity (ID, slug, type) plus an ordered slug-keyed child collection; finalize exact field naming against the current Engine conventions before implementing. Do not fabricate missing Answer IDs during YAML migration.
+1. Introduce **`defineCheckpointAnswer`** as a distinct Engine Build-only Configurator with an explicitly typed Config/Props/overrides API, public Build exports and schema / factory registration. Proposed authored shape: dedicated identity (ID, slug, type) plus an ordered slug-keyed child collection; finalize exact field naming against the current Engine conventions before implementing. Do not fabricate missing Answer IDs during YAML migration. The Playground consumer migration in this PR deliberately authors four new permanent Answer UUIDs; the scaffolder must never synthesize or infer any UUID.
 2. Move Answer-owned responsibility from `defineCheckpointItem` into `defineCheckpointAnswer`: allowed child types, non-empty ordered collection, identity checks, `validate()`, `build.props({ languages })`, `build.overrides(patch, { languages })`, additions/disabling/reordering and locale propagation. `defineCheckpointItem` should own item identity, mandatory Text question and composition/delegation. Preserve existing learner-visible published Answer ordering/semantics unless an explicitly validated contract migration is necessary.
 3. Update YAML Config projection and registry for the new nested Answer Configurator. Audit all affected authoring samples, build consumers and UI Kit Checkpoint renderer. Do not silently accept the old bare collection as a second public API or invent IDs.
 4. Update the Lesson YAML-to-TypeScript Draft scaffolder to emit a **flat** `question/index.ts`, a `defineCheckpointAnswer` in `answer/index.ts`, and `answer/<slug>/index.ts` for every nested ContentBlock. Use correct relative imports, value/type generics, typed `{items,order}`, property shorthand and recursion. Existing Text's authored slug remains in its Config even though the module path is role-based.
@@ -47,4 +51,4 @@ The `question` role is a flat folder because the child is **always a single Text
 
 ## Non-goals and dependencies
 
-This PR starts as **planning-only Draft** and expects implementation in another chat. It must not merge while carrying only this plan as though the feature were shipped. Carousel Image/Scene polymorphism is separate. Stage 7 end-to-end acceptance integrates this change after implementation, not before. Review metadata belongs to PR #570 and is not modified here.
+This PR originally began as a planning-only Draft and now contains the Engine, scaffold, tests, and owned Playground consumer migration. It must remain Draft until CI and independent review pass. Carousel Image/Scene polymorphism is separate. Stage 7 end-to-end acceptance integrates this change after implementation, not before. Review metadata belongs to PR #570 and is not modified here.
