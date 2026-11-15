@@ -5,6 +5,7 @@ export const establishACharacterObjective_Skill_Data = defineSkill({
   id: 'd146aff5-0b04-4b95-a7d5-7f8501b7661d',
   name: {
     en: 'Establish a Character Objective',
+    it: 'Definire l\'obiettivo di un personaggio',
     zh: '确立角色目标',
     hi: 'पात्र का उद्देश्य तय करें',
     es: 'Establecer el objetivo de un personaje',
@@ -38,6 +39,7 @@ export const establishACharacterObjective_Skill_Data = defineSkill({
     methodological: 'Identify what a performed figure wants in a given scene and how that guides actions.',
     frontend: {
       en: 'Decide what a character wants and how that affects their actions.',
+      it: 'Decidi che cosa vuole un personaggio e in che modo questo influenza le sue azioni.',
       zh: '确定角色想要什么，以及这如何影响其行动。',
       hi: 'तय करें कि पात्र क्या चाहता है और यह उसके कार्यों को कैसे प्रभावित करता है।',
       es: 'Decide qué quiere un personaje y cómo eso influye en sus acciones.',
