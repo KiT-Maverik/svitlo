@@ -49,7 +49,6 @@ const sectionCollection = z.strictObject({
 });
 const flashcardCollection = z.strictObject({
   items: z.record(z.string(), z.custom<Flashcard_Configurator>()),
-  order: z.array(z.string()),
 });
 const questionBank = z.partialRecord(
   z.enum(lessonQuestionTypes),
@@ -166,7 +165,7 @@ export type Lesson_Overrides<
   AddedQuestions extends Lesson_QuestionBank = {},
 > = Lesson_Metadata_Overrides & {
   section?: Lesson_Ordered_Overrides<Sections, AddedSections>;
-  flashcards?: Lesson_Ordered_Overrides<Cards, AddedCards>;
+  flashcards?: Omit<Lesson_Ordered_Overrides<Cards, AddedCards>, 'order'>;
   questions?: Lesson_Question_Overrides<Questions, AddedQuestions>;
 };
 
