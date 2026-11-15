@@ -815,14 +815,27 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
   const document = yaml.parse(authored);
   const lesson = document.config;
   const sections = lesson.section.order.map(key => lesson.section.items[key].config);
-  const directBlocks = sections.flatMap(section =>
-    section.content.order.map(key => section.content.items[key].config),
-  );
+  const directBlocks = sections.flatMap(section => section.content.order.map(key => section.content.items[key].config));
   assert.equal(sections.length, 2);
-  assert.deepEqual(sections.map(section => section.content.order.length), [6, 6]);
+  assert.deepEqual(
+    sections.map(section => section.content.order.length),
+    [6, 6],
+  );
   assert.deepEqual(
     [...new Set(directBlocks.map(block => block.type))].sort(),
-    ['audio', 'carousel', 'checkpoint', 'code', 'image', 'markdown', 'scene', 'subtitles', 'text', 'video', 'youtube'].sort(),
+    [
+      'audio',
+      'carousel',
+      'checkpoint',
+      'code',
+      'image',
+      'markdown',
+      'scene',
+      'subtitles',
+      'text',
+      'video',
+      'youtube',
+    ].sort(),
   );
   assert.equal(document.production.documentLanguage, 'en');
 
@@ -839,10 +852,13 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
     // still produce an imported symbol, without depending on Mathematics.
     const skills = path.join(workspace, 'data/skills/algebra/equalities/skills');
     fs.mkdirSync(skills, { recursive: true });
-    fs.writeFileSync(path.join(skills, 'coverage.data.ts'),
+    fs.writeFileSync(
+      path.join(skills, 'coverage.data.ts'),
       "import { defineSkill } from '@svitlo/engine/build';\n" +
-      "export const coverageSkill_Skill_Data = defineSkill({ id: '" +
-      lesson.skills[0] + "', slug: 'coverageSkill' });\n");
+        "export const coverageSkill_Skill_Data = defineSkill({ id: '" +
+        lesson.skills[0] +
+        "', slug: 'coverageSkill' });\n",
+    );
 
     const first = runOne(staged, 'generate', root);
     assert.equal(first.lessonId, lesson.id);
@@ -868,22 +884,29 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
       'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/index.ts',
       'flashcards/equalityRecallCard/index.ts',
       'questions/selectOneAnswer/identifyTrueEquality/index.ts',
-    ]) assert(modules.has(name), 'Missing generated file ' + name);
+    ])
+      assert(modules.has(name), 'Missing generated file ' + name);
     assert.match(modules.get('index.ts'), /skills: \[coverageSkill_Skill_Data\.id\]/);
-    assert.match(modules.get('sections/reviewEquality/verifyEquality/compareFive/answer/index.ts'),
-      /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/);
+    assert.match(
+      modules.get('sections/reviewEquality/verifyEquality/compareFive/answer/index.ts'),
+      /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/,
+    );
     assert(![...modules.keys()].some(name => /\/(?:texts|images|scenes|slides)\//.test(name)));
-    assert.equal(fs.readFileSync(path.join(output,
-      'sections/exploreEquality/explainWithMarkdown/locale/en.md'), 'utf8'),
-      '## Compare both sides\n\n**3 + 2 = 4 + 1**, because both sides equal **5**.');
-    assert.match(fs.readFileSync(path.join(output,
-      'sections/exploreEquality/compareValuesCode/code.ts'), 'utf8'), /const left = 3 \+ 2/);
-    assert(fs.existsSync(path.join(output,
-      'sections/exploreEquality/compareGroupsScene/specification.md')));
-    assert(fs.existsSync(path.join(output,
-      'sections/reviewEquality/equalGroupsVideo/specification.md')));
-    assert(fs.existsSync(path.join(output,
-      'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/specification.md')));
+    assert.equal(
+      fs.readFileSync(path.join(output, 'sections/exploreEquality/explainWithMarkdown/locale/en.md'), 'utf8'),
+      '## Compare both sides\n\n**3 + 2 = 4 + 1**, because both sides equal **5**.',
+    );
+    assert.match(
+      fs.readFileSync(path.join(output, 'sections/exploreEquality/compareValuesCode/code.ts'), 'utf8'),
+      /const left = 3 \+ 2/,
+    );
+    assert(fs.existsSync(path.join(output, 'sections/exploreEquality/compareGroupsScene/specification.md')));
+    assert(fs.existsSync(path.join(output, 'sections/reviewEquality/equalGroupsVideo/specification.md')));
+    assert(
+      fs.existsSync(
+        path.join(output, 'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/specification.md'),
+      ),
+    );
     assertTypeScriptSyntax(modules);
     assert.equal(runOne(staged, 'check', root).changed, 0);
     assert.equal(runOne(staged, 'generate', root).skipped, true);
