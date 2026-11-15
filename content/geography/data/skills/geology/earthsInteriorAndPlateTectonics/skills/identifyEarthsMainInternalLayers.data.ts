@@ -5,6 +5,7 @@ export const identifyEarthsMainInternalLayers_Skill_Data = defineSkill({
   id: 'c818d0dd-d4c2-4839-87a4-878190052dda',
   name: {
     en: "Identify Earth's main internal layers",
+    it: 'Individuare i principali strati interni della Terra',
     zh: '识别地球内部的主要圈层',
     hi: 'पृथ्वी की मुख्य आंतरिक परतों की पहचान करना',
     es: 'Identificar las principales capas internas de la Tierra',
@@ -39,6 +40,7 @@ export const identifyEarthsMainInternalLayers_Skill_Data = defineSkill({
       'Locate the crust, mantle, outer core and inner core in a cross-section, and recognize that the mantle is predominantly solid while the outer core is liquid.',
     frontend: {
       en: 'Identify the crust, mantle, outer core and inner core.',
+      it: 'Individua la crosta, il mantello, il nucleo esterno e il nucleo interno.',
       zh: '识别地壳、地幔、外核与内核。',
       hi: 'भूपर्पटी, मैंटल, बाहरी क्रोड और भीतरी क्रोड पहचानें।',
       es: 'Identifica la corteza, el manto, el núcleo externo y el núcleo interno.',

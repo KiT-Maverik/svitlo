@@ -13,6 +13,7 @@ export const mineralDeposits_SkillGroup_Data = defineSkillGroup({
   id: '6f0f106a-e902-496f-ac21-9139a97683fa',
   name: {
     en: 'Mineral Deposits',
+    it: 'Giacimenti minerari',
     zh: '矿床',
     hi: 'खनिज निक्षेप',
     es: 'Yacimientos minerales',
@@ -54,6 +55,7 @@ export const mineralDeposits_SkillGroup_Data = defineSkillGroup({
       'The geological distribution of useful concentrations of minerals is uneven and influenced by rock-forming processes, access and extraction decisions. A deposit is a natural concentration, while whether it can be worked as an ore is partly an economic and technical judgment.',
     frontend: {
       en: 'Explore why useful mineral resources are concentrated in particular places.',
+      it: 'Esplora perché le risorse minerarie utili si concentrano in luoghi specifici.',
       zh: '探索有用的矿产资源为何集中分布在特定地点。',
       hi: 'जानें कि उपयोगी खनिज संसाधन कुछ विशेष स्थानों पर ही क्यों केंद्रित होते हैं।',
       es: 'Descubre por qué los recursos minerales útiles se concentran en determinados lugares.',

@@ -5,6 +5,7 @@ export const identifyMajorTypesOfPlateBoundaries_Skill_Data = defineSkill({
   id: 'e230f726-0413-4683-938c-39b8bbd846c8',
   name: {
     en: 'Identify major types of plate boundaries',
+    it: 'Individuare i principali tipi di margini delle placche',
     zh: '识别主要板块边界类型',
     hi: 'प्लेट सीमाओं के प्रमुख प्रकारों की पहचान करना',
     es: 'Identificar los principales tipos de límites de placas',
@@ -39,6 +40,7 @@ export const identifyMajorTypesOfPlateBoundaries_Skill_Data = defineSkill({
       'Classify divergent, convergent and transform settings from relative movement arrows or a boundary map, rather than guessing the type from a place name.',
     frontend: {
       en: 'Recognize boundaries where plates move apart, collide or slide past.',
+      it: 'Riconosci i margini dove le placche si allontanano, convergono o scorrono lateralmente.',
       zh: '识别板块相互远离、碰撞或横向滑动的边界。',
       hi: 'उन सीमाओं को पहचानें जहाँ प्लेटें अलग होती, टकराती या एक-दूसरे के पास से फिसलती हैं।',
       es: 'Reconoce límites donde las placas se separan, chocan o se deslizan lateralmente.',

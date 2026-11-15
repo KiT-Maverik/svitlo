@@ -12,6 +12,7 @@ export const geology_SkillDomain_Data = defineSkillDomain({
   id: '3d68dee0-0a19-4391-bcec-059cd8b60e7a',
   title: {
     en: 'Geology',
+    it: 'Geologia',
     zh: '地质学',
     hi: 'भूविज्ञान',
     es: 'Geología',
@@ -54,6 +55,7 @@ export const geology_SkillDomain_Data = defineSkillDomain({
       "Minerals and rocks, Earth's internal structure, tectonic activity, geological evidence and mineral deposits reveal the solid planet's origins and evolution through deep time. Its focus is recognizing materials, processes and spatial evidence, distinct from describing everyday terrain or individual surface features.",
     frontend: {
       en: "Discover what rocks and minerals reveal about Earth's structure, history and resources.",
+      it: 'Scopri che cosa rocce e minerali rivelano sulla struttura, la storia e le risorse della Terra.',
       zh: '探索岩石和矿物如何揭示地球的结构、历史与资源。',
       hi: 'जानें कि चट्टानें और खनिज पृथ्वी की संरचना, इतिहास और संसाधनों के बारे में क्या बताते हैं।',
       es: 'Descubre qué revelan las rocas y los minerales sobre la estructura, la historia y los recursos de la Tierra.',

@@ -12,6 +12,7 @@ export const geologicalTimeAndEvidence_SkillGroup_Data = defineSkillGroup({
   id: '5b4ae165-952a-4f4f-b233-7aefb73c247c',
   name: {
     en: 'Geological Time and Evidence',
+    it: 'Tempo geologico e prove del passato',
     zh: '地质时间与证据',
     hi: 'भूवैज्ञानिक समय और साक्ष्य',
     es: 'Tiempo geológico y evidencias',
@@ -52,6 +53,7 @@ export const geologicalTimeAndEvidence_SkillGroup_Data = defineSkillGroup({
       "Rock sequences, fossils and dated materials provide evidence of Earth's long history. Geologists reconstruct events using relative ordering as well as numerical measurements, and a geologic time scale communicates durations far larger than human history.",
     frontend: {
       en: "Explore how rocks and fossils provide evidence of Earth's long past.",
+      it: 'Esplora come rocce e fossili testimoniano il lungo passato della Terra.',
       zh: '探索岩石和化石如何为地球漫长的历史提供证据。',
       hi: 'चट्टानें और जीवाश्म पृथ्वी के लंबे अतीत के साक्ष्य कैसे देते हैं, यह जानें।',
       es: 'Explora cómo las rocas y los fósiles revelan el largo pasado de la Tierra.',

@@ -5,6 +5,7 @@ export const interpretAGeologicalTimeScale_Skill_Data = defineSkill({
   id: '278220f8-7fd4-44cc-8c7c-63b588474115',
   name: {
     en: 'Interpret a geological time scale',
+    it: 'Interpretare una scala dei tempi geologici',
     zh: '解读地质年代表',
     hi: 'भूवैज्ञानिक समय मापनी समझना',
     es: 'Interpretar una escala de tiempo geológico',
@@ -39,6 +40,7 @@ export const interpretAGeologicalTimeScale_Skill_Data = defineSkill({
       "Use labeled eons, eras or periods on a proportional timeline to place broad events in Earth's history, distinguishing relative sequence from a numerical estimate of age.",
     frontend: {
       en: "Read a geological timeline to place events in Earth's history.",
+      it: 'Leggi una linea del tempo geologica per collocare gli eventi nella storia della Terra.',
       zh: '利用地质时间轴确定地球历史上各事件发生的时期。',
       hi: 'भूवैज्ञानिक समयरेखा से घटनाओं को पृथ्वी के इतिहास में सही स्थान दें।',
       es: 'Lee una línea temporal geológica para situar acontecimientos en la historia de la Tierra.',
