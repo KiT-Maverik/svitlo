@@ -15,13 +15,7 @@ export const compareFive = defineCheckpointItem<'compareFive', { checkpointAnswe
     locale: { value: { en: 'Do 3 + 2 and 5 have the same value?' } },
   }),
   answer: {
-    items: { checkpointAnswer: defineText<'checkpointAnswer', EqualsMeansSameValue_Lesson_Languages>({
-        id: 'e6eedae0-25de-452a-860a-1efc46d56bc4',
-        slug: 'checkpointAnswer',
-        type: 'text',
-        params: {},
-        locale: { value: { en: 'Yes. Both sides equal 5.' } },
-      })},
+    items: { checkpointAnswer },
     order: ['checkpointAnswer'],
   },
 });
