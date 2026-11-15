@@ -11,6 +11,7 @@ export const dictionaries_SkillGroup_Data = defineSkillGroup({
   id: 'e81d7460-8e28-4a77-bdce-86467b907bbb',
   name: {
     en: 'Dictionaries',
+    it: 'Dizionari',
     zh: '字典',
     hi: 'डिक्शनरी',
     es: 'Diccionarios',
@@ -50,6 +51,7 @@ export const dictionaries_SkillGroup_Data = defineSkillGroup({
       'Key-to-value mappings supporting lookup, updates, and absent-key handling. A key need not be a positional sequence index.',
     frontend: {
       en: 'Discover how dictionaries connect unique keys with stored values.',
+      it: 'Scopri come i dizionari associano chiavi univoche ai valori memorizzati.',
       zh: '了解字典如何将唯一的键与存储的值关联起来。',
       hi: 'जानें कि डिक्शनरी विशिष्ट कुंजियों को संग्रहीत मानों से कैसे जोड़ती हैं।',
       es: 'Descubre cómo los diccionarios relacionan claves únicas con valores almacenados.',

@@ -5,6 +5,7 @@ export const recognizeAPattern_Skill_Data = defineSkill({
   id: '19dbf903-354a-41cb-90a1-07633df5f480',
   name: {
     en: 'Recognize a Pattern',
+    it: 'Riconoscere uno schema ricorrente',
     zh: '识别规律',
     hi: 'पैटर्न पहचानना',
     es: 'Reconocer un patrón',
@@ -39,6 +40,7 @@ export const recognizeAPattern_Skill_Data = defineSkill({
       "Infer a rule governing changes in a sequence's values or structure and test it against several elements. An observed repetition suggests a rule but does not guarantee what unseen data will contain.",
     frontend: {
       en: 'Recognize patterns in sequences and check whether a proposed rule fits.',
+      it: 'Riconosci gli schemi nelle sequenze e verifica se una regola proposta è adatta.',
       zh: '找出序列中的模式，并检查提出的规则是否适用。',
       hi: 'क्रमों में पैटर्न पहचानें और जाँचें कि सुझाया गया नियम सही बैठता है या नहीं।',
       es: 'Reconoce patrones en secuencias y comprueba si una regla propuesta se ajusta a ellos.',
