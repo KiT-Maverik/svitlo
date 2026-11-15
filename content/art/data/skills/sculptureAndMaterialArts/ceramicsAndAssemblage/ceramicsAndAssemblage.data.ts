@@ -41,12 +41,15 @@ export const ceramicsAndAssemblage_SkillGroup_Data = defineSkillGroup({
     kk: 'Керамика және ассамбляж',
     qm: 'Keramika ve hazır eşyalardan kompozitsiya',
   },
-  skills: [
-    createFoundObjectAssemblage_Skill_Data,
-    decorateACeramicSurface_Skill_Data,
-    handBuildACeramicForm_Skill_Data,
-    joinClayComponents_Skill_Data,
-  ],
+  skills: {
+    items: {
+      createFoundObjectAssemblage: createFoundObjectAssemblage_Skill_Data,
+      decorateACeramicSurface: decorateACeramicSurface_Skill_Data,
+      handBuildACeramicForm: handBuildACeramicForm_Skill_Data,
+      joinClayComponents: joinClayComponents_Skill_Data,
+    },
+    order: ['createFoundObjectAssemblage', 'decorateACeramicSurface', 'handBuildACeramicForm', 'joinClayComponents'],
+  },
   description: {
     methodological:
       'Clay manipulation and found-object combination produce expressive material choices not reducible to sculptural mass alone.',

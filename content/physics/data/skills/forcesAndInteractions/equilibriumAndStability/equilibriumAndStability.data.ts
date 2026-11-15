@@ -43,14 +43,24 @@ export const equilibriumAndStability_SkillGroup_Data = defineSkillGroup({
     kk: 'Тепе-теңдік және орнықтылық',
     qm: 'Muvasene ve turaqlılıq',
   },
-  skills: [
-    compareTheStrengthOfStructuralShapes_Skill_Data,
-    explainLoadTransfer_Skill_Data,
-    identifyStructuralSupportElements_Skill_Data,
-    predictStructuralStability_Skill_Data,
-    predictTheEffectOfCenterOfMassPositionOnStability_Skill_Data,
-    recognizeBalancedForces_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareTheStrengthOfStructuralShapes: compareTheStrengthOfStructuralShapes_Skill_Data,
+      explainLoadTransfer: explainLoadTransfer_Skill_Data,
+      identifyStructuralSupportElements: identifyStructuralSupportElements_Skill_Data,
+      predictStructuralStability: predictStructuralStability_Skill_Data,
+      predictTheEffectOfCenterOfMassPositionOnStability: predictTheEffectOfCenterOfMassPositionOnStability_Skill_Data,
+      recognizeBalancedForces: recognizeBalancedForces_Skill_Data,
+    },
+    order: [
+      'compareTheStrengthOfStructuralShapes',
+      'explainLoadTransfer',
+      'identifyStructuralSupportElements',
+      'predictStructuralStability',
+      'predictTheEffectOfCenterOfMassPositionOnStability',
+      'recognizeBalancedForces',
+    ],
+  },
   description: {
     methodological:
       "Balanced forces allow a body to remain at rest, while the arrangement of supports and loads affects a model's stability and deformation.",

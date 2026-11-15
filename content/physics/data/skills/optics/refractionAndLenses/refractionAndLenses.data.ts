@@ -39,10 +39,13 @@ export const refractionAndLenses_SkillGroup_Data = defineSkillGroup({
     kk: 'Жарықтың сынуы және линзалар',
     qm: 'Yarıqnıñ sınuvı ve linzalar',
   },
-  skills: [
-    distinguishConvergingAndDivergingLenses_Skill_Data,
-    explainLightRefractionAtTheBoundaryBetweenMedia_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishConvergingAndDivergingLenses: distinguishConvergingAndDivergingLenses_Skill_Data,
+      explainLightRefractionAtTheBoundaryBetweenMedia: explainLightRefractionAtTheBoundaryBetweenMedia_Skill_Data,
+    },
+    order: ['distinguishConvergingAndDivergingLenses', 'explainLightRefractionAtTheBoundaryBetweenMedia'],
+  },
   description: {
     methodological: 'Moving between media and the shape of a lens affect ray direction and image formation.',
     frontend: {

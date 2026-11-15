@@ -52,7 +52,14 @@ export const distancesAndPhysicalProperties_SkillGroup_Data = defineSkillGroup({
       standardCandles: standardCandles_Skill_Data,
       stellarParallax: stellarParallax_Skill_Data,
     },
-    order: ['absoluteMagnitude', 'apparentMagnitude', 'astronomicalDistanceUnits', 'cosmicDistanceLadder', 'standardCandles', 'stellarParallax'],
+    order: [
+      'absoluteMagnitude',
+      'apparentMagnitude',
+      'astronomicalDistanceUnits',
+      'cosmicDistanceLadder',
+      'standardCandles',
+      'stellarParallax',
+    ],
   },
   description: {
     methodological:

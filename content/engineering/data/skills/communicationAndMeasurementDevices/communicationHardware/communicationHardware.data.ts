@@ -42,13 +42,22 @@ export const communicationHardware_SkillGroup_Data = defineSkillGroup({
     kk: 'Байланыс жабдықтары',
     qm: 'Haberleşüv apparatları',
   },
-  skills: [
-    antennaFunctions_Skill_Data,
-    communicationsInfrastructure_Skill_Data,
-    radioReceivers_Skill_Data,
-    radioTransmitters_Skill_Data,
-    traceACommunicationSignalChain_Skill_Data,
-  ],
+  skills: {
+    items: {
+      antennaFunctions: antennaFunctions_Skill_Data,
+      communicationsInfrastructure: communicationsInfrastructure_Skill_Data,
+      radioReceivers: radioReceivers_Skill_Data,
+      radioTransmitters: radioTransmitters_Skill_Data,
+      traceACommunicationSignalChain: traceACommunicationSignalChain_Skill_Data,
+    },
+    order: [
+      'antennaFunctions',
+      'communicationsInfrastructure',
+      'radioReceivers',
+      'radioTransmitters',
+      'traceACommunicationSignalChain',
+    ],
+  },
   description: {
     methodological:
       'Physical communication chains depend on transducers, suitable electromagnetic or wired paths and receiving equipment.',

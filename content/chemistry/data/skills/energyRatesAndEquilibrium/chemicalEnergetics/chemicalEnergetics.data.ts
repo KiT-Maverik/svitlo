@@ -45,16 +45,28 @@ export const chemicalEnergetics_SkillGroup_Data = defineSkillGroup({
     kk: 'Химиялық энергетика',
     qm: 'Kimyeviy energetika',
   },
-  skills: [
-    bondEnergyEstimates_Skill_Data,
-    calorimetry_Skill_Data,
-    endothermicProcesses_Skill_Data,
-    entropy_Skill_Data,
-    exothermicProcesses_Skill_Data,
-    gibbsEnergy_Skill_Data,
-    hesssLaw_Skill_Data,
-    reactionEnthalpy_Skill_Data,
-  ],
+  skills: {
+    items: {
+      bondEnergyEstimates: bondEnergyEstimates_Skill_Data,
+      calorimetry: calorimetry_Skill_Data,
+      endothermicProcesses: endothermicProcesses_Skill_Data,
+      entropy: entropy_Skill_Data,
+      exothermicProcesses: exothermicProcesses_Skill_Data,
+      gibbsEnergy: gibbsEnergy_Skill_Data,
+      hesssLaw: hesssLaw_Skill_Data,
+      reactionEnthalpy: reactionEnthalpy_Skill_Data,
+    },
+    order: [
+      'bondEnergyEstimates',
+      'calorimetry',
+      'endothermicProcesses',
+      'entropy',
+      'exothermicProcesses',
+      'gibbsEnergy',
+      'hesssLaw',
+      'reactionEnthalpy',
+    ],
+  },
   description: {
     methodological:
       'Energy changes are properties of a system and its processes, not intrinsic fuel labels or a claim that breaking bonds alone releases energy.',

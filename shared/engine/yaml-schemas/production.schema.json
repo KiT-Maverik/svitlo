@@ -256,6 +256,76 @@
           "minLength": 1
         }
       }
+    },
+    "questStage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Learning purpose and visual/audio role of this Stage."
+        },
+        "storyboard": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Timeline and playback beats for the silent presentation video."
+        },
+        "specification": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional detailed Stage production specification."
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "questTask": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Learner action and intended guided-practice outcome."
+        },
+        "specification": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Branch, feedback, retry and accessibility expectations for the Task Scene."
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "subtitles": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Speech and meaningful audio events covered in localized captions."
+        },
+        "script": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Source-language WebVTT transcription/caption cues."
+        },
+        "specification": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Timing, speaker identification and localization guidance."
+        },
+        "productionNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
     }
   }
 }

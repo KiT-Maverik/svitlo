@@ -50,7 +50,13 @@ export const interiorsAndVolatiles_SkillGroup_Data = defineSkillGroup({
       subsurfaceOceans: subsurfaceOceans_Skill_Data,
       waterAndIceBeyondEarth: waterAndIceBeyondEarth_Skill_Data,
     },
-    order: ['cryovolcanism', 'planetaryInteriorStructure', 'planetaryMagneticFields', 'subsurfaceOceans', 'waterAndIceBeyondEarth'],
+    order: [
+      'cryovolcanism',
+      'planetaryInteriorStructure',
+      'planetaryMagneticFields',
+      'subsurfaceOceans',
+      'waterAndIceBeyondEarth',
+    ],
   },
   description: {
     methodological:

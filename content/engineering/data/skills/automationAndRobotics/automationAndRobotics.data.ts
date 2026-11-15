@@ -39,12 +39,15 @@ export const automationAndRobotics_SkillDomain_Data = defineSkillDomain({
     kk: 'Автоматтандыру және робототехника',
     qm: 'Avtomatlaştırma ve robot tehnıkası',
   },
-  groups: [
-    drivesAndActuators_SkillGroup_Data,
-    feedbackAndControl_SkillGroup_Data,
-    robotSystems_SkillGroup_Data,
-    sensorsAndMeasurement_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      drivesAndActuators: drivesAndActuators_SkillGroup_Data,
+      feedbackAndControl: feedbackAndControl_SkillGroup_Data,
+      robotSystems: robotSystems_SkillGroup_Data,
+      sensorsAndMeasurement: sensorsAndMeasurement_SkillGroup_Data,
+    },
+    order: ['drivesAndActuators', 'feedbackAndControl', 'robotSystems', 'sensorsAndMeasurement'],
+  },
   description: {
     methodological:
       'Robotic and automated machinery converts physical observations into controlled actions. Engineering competencies concern sensors, actuators, feedback, mechanism geometry and dependable operation; general algorithms and software authoring remain in Informatics.',

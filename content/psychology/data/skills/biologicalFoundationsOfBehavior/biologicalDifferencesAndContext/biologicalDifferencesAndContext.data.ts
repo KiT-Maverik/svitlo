@@ -41,12 +41,20 @@ export const biologicalDifferencesAndContext_SkillGroup_Data = defineSkillGroup(
     kk: 'Биологиялық айырмашылықтар және жағдай',
     qm: 'Biologik farqlar ve şarait',
   },
-  skills: [
-    geneEnvironmentInteraction_Skill_Data,
-    heritabilityInterpretation_Skill_Data,
-    hormonalInfluences_Skill_Data,
-    physiologicalStressResponses_Skill_Data,
-  ],
+  skills: {
+    items: {
+      geneEnvironmentInteraction: geneEnvironmentInteraction_Skill_Data,
+      heritabilityInterpretation: heritabilityInterpretation_Skill_Data,
+      hormonalInfluences: hormonalInfluences_Skill_Data,
+      physiologicalStressResponses: physiologicalStressResponses_Skill_Data,
+    },
+    order: [
+      'geneEnvironmentInteraction',
+      'heritabilityInterpretation',
+      'hormonalInfluences',
+      'physiologicalStressResponses',
+    ],
+  },
   description: {
     methodological:
       "Inherited characteristics, hormones, and environmental exposures jointly shape outcomes, without fixing a person's future.",

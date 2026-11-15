@@ -43,14 +43,24 @@ export const ancientSoutheastAsia_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі Оңтүстік-Шығыс Азия',
     qm: 'Qadimiy Cenübiy-Şarqiy Asiya',
   },
-  skills: [
-    culturalContactsWithIndia_Skill_Data,
-    dongSonCulture_Skill_Data,
-    earlyIslandSoutheastAsianCultures_Skill_Data,
-    earlySoutheastAsianFarming_Skill_Data,
-    earlySoutheastAsianStates_Skill_Data,
-    maritimeTradeOfSoutheastAsia_Skill_Data,
-  ],
+  skills: {
+    items: {
+      culturalContactsWithIndia: culturalContactsWithIndia_Skill_Data,
+      dongSonCulture: dongSonCulture_Skill_Data,
+      earlyIslandSoutheastAsianCultures: earlyIslandSoutheastAsianCultures_Skill_Data,
+      earlySoutheastAsianFarming: earlySoutheastAsianFarming_Skill_Data,
+      earlySoutheastAsianStates: earlySoutheastAsianStates_Skill_Data,
+      maritimeTradeOfSoutheastAsia: maritimeTradeOfSoutheastAsia_Skill_Data,
+    },
+    order: [
+      'culturalContactsWithIndia',
+      'dongSonCulture',
+      'earlyIslandSoutheastAsianCultures',
+      'earlySoutheastAsianFarming',
+      'earlySoutheastAsianStates',
+      'maritimeTradeOfSoutheastAsia',
+    ],
+  },
   description: {
     methodological:
       'River valleys, islands, and ports exchanged ideas with India and China while retaining local traditions.',

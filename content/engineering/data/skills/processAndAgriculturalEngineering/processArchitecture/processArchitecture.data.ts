@@ -42,13 +42,22 @@ export const processArchitecture_SkillGroup_Data = defineSkillGroup({
     kk: 'Процестердің құрылымы',
     qm: 'Protsess qurulışı',
   },
-  skills: [
-    dosingEquipment_Skill_Data,
-    identifyProcessBottlenecks_Skill_Data,
-    industrialMixingEquipment_Skill_Data,
-    interpretAProcessFlowDiagram_Skill_Data,
-    traceMaterialBalances_Skill_Data,
-  ],
+  skills: {
+    items: {
+      dosingEquipment: dosingEquipment_Skill_Data,
+      identifyProcessBottlenecks: identifyProcessBottlenecks_Skill_Data,
+      industrialMixingEquipment: industrialMixingEquipment_Skill_Data,
+      interpretAProcessFlowDiagram: interpretAProcessFlowDiagram_Skill_Data,
+      traceMaterialBalances: traceMaterialBalances_Skill_Data,
+    },
+    order: [
+      'dosingEquipment',
+      'identifyProcessBottlenecks',
+      'industrialMixingEquipment',
+      'interpretAProcessFlowDiagram',
+      'traceMaterialBalances',
+    ],
+  },
   description: {
     methodological:
       'Large production processes connect material inputs, transformations, recirculation and waste streams in a sequence where one operation constrains others.',

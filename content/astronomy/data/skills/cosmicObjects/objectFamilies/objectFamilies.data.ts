@@ -48,7 +48,12 @@ export const objectFamilies_SkillGroup_Data = defineSkillGroup({
       objectsAndPhenomena: objectsAndPhenomena_Skill_Data,
       stellarSubstellarAndPlanetaryBoundaries: stellarSubstellarAndPlanetaryBoundaries_Skill_Data,
     },
-    order: ['celestialObjectClassification', 'diffuseAndCompositeObjects', 'objectsAndPhenomena', 'stellarSubstellarAndPlanetaryBoundaries'],
+    order: [
+      'celestialObjectClassification',
+      'diffuseAndCompositeObjects',
+      'objectsAndPhenomena',
+      'stellarSubstellarAndPlanetaryBoundaries',
+    ],
   },
   description: {
     methodological:

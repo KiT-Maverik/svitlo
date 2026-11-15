@@ -42,13 +42,22 @@ export const planning_SkillGroup_Data = defineSkillGroup({
     pl: 'Planowanie rozwiązania',
     uk: 'Планування розв’язання',
   },
-  skills: [
-    twoStepPlan_Skill_Data,
-    threeStepPlan_Skill_Data,
-    constructInverseProblem_Skill_Data,
-    explainAnswerUnits_Skill_Data,
-    multipleSolutionStrategies_Skill_Data,
-  ],
+  skills: {
+    items: {
+      twoStepPlan: twoStepPlan_Skill_Data,
+      threeStepPlan: threeStepPlan_Skill_Data,
+      constructInverseProblem: constructInverseProblem_Skill_Data,
+      explainAnswerUnits: explainAnswerUnits_Skill_Data,
+      multipleSolutionStrategies: multipleSolutionStrategies_Skill_Data,
+    },
+    order: [
+      'twoStepPlan',
+      'threeStepPlan',
+      'constructInverseProblem',
+      'explainAnswerUnits',
+      'multipleSolutionStrategies',
+    ],
+  },
   description: {
     methodological:
       'Constructing and justifying a sequence of solution steps, checking units and answers, and considering alternative methods.',

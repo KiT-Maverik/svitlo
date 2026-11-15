@@ -44,15 +44,18 @@ export const structural_SkillGroup_Data = defineSkillGroup({
     kk: 'Құрылымдық үлгілер',
     qm: 'Quruluş şablonları',
   },
-  skills: [
-    adapter_Skill_Data,
-    bridge_Skill_Data,
-    composite_Skill_Data,
-    decorator_Skill_Data,
-    facade_Skill_Data,
-    flyweight_Skill_Data,
-    proxy_Skill_Data,
-  ],
+  skills: {
+    items: {
+      adapter: adapter_Skill_Data,
+      bridge: bridge_Skill_Data,
+      composite: composite_Skill_Data,
+      decorator: decorator_Skill_Data,
+      facade: facade_Skill_Data,
+      flyweight: flyweight_Skill_Data,
+      proxy: proxy_Skill_Data,
+    },
+    order: ['adapter', 'bridge', 'composite', 'decorator', 'facade', 'flyweight', 'proxy'],
+  },
   description: {
     methodological:
       'Seven methods of combining components through adaptation, wrapping, nesting, intermediaries, or shared state.',

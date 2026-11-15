@@ -40,13 +40,22 @@ export const personalFinance_SkillDomain_Data = defineSkillDomain({
     kk: 'Жеке қаржы',
     qm: 'Şahsiy maliye',
   },
-  groups: [
-    financialRisksAndProtection_SkillGroup_Data,
-    incomeAndBudgeting_SkillGroup_Data,
-    loansAndDebt_SkillGroup_Data,
-    paymentsAndTransactions_SkillGroup_Data,
-    savingAndInvesting_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      financialRisksAndProtection: financialRisksAndProtection_SkillGroup_Data,
+      incomeAndBudgeting: incomeAndBudgeting_SkillGroup_Data,
+      loansAndDebt: loansAndDebt_SkillGroup_Data,
+      paymentsAndTransactions: paymentsAndTransactions_SkillGroup_Data,
+      savingAndInvesting: savingAndInvesting_SkillGroup_Data,
+    },
+    order: [
+      'financialRisksAndProtection',
+      'incomeAndBudgeting',
+      'loansAndDebt',
+      'paymentsAndTransactions',
+      'savingAndInvesting',
+    ],
+  },
   description: {
     methodological:
       'Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.',

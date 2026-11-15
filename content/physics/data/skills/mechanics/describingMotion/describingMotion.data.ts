@@ -41,12 +41,20 @@ export const describingMotion_SkillGroup_Data = defineSkillGroup({
     kk: 'Қозғалысты сипаттау',
     qm: 'Areketni tarif etmek',
   },
-  skills: [
-    compareSpeedsOfMotion_Skill_Data,
-    describeTheDirectionOfMotion_Skill_Data,
-    identifyMotionRelativeToAReferencePoint_Skill_Data,
-    recognizePeriodicMotion_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareSpeedsOfMotion: compareSpeedsOfMotion_Skill_Data,
+      describeTheDirectionOfMotion: describeTheDirectionOfMotion_Skill_Data,
+      identifyMotionRelativeToAReferencePoint: identifyMotionRelativeToAReferencePoint_Skill_Data,
+      recognizePeriodicMotion: recognizePeriodicMotion_Skill_Data,
+    },
+    order: [
+      'compareSpeedsOfMotion',
+      'describeTheDirectionOfMotion',
+      'identifyMotionRelativeToAReferencePoint',
+      'recognizePeriodicMotion',
+    ],
+  },
   description: {
     methodological:
       'Position, direction, speed, and repetition are needed for a qualitative description of a trajectory; motion is always considered relative to a chosen reference.',

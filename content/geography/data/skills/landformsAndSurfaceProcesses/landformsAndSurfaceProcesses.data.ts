@@ -38,11 +38,14 @@ export const landformsAndSurfaceProcesses_SkillDomain_Data = defineSkillDomain({
     kk: 'Жер бедерінің пішіндері және жерүсті үдерістері',
     qm: 'Yer şekilleri ve yer yüzündeki süreçler',
   },
-  groups: [
-    reliefAndElevation_SkillGroup_Data,
-    soilsAndSurfaceSediments_SkillGroup_Data,
-    weatheringErosionAndDeposition_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      reliefAndElevation: reliefAndElevation_SkillGroup_Data,
+      soilsAndSurfaceSediments: soilsAndSurfaceSediments_SkillGroup_Data,
+      weatheringErosionAndDeposition: weatheringErosionAndDeposition_SkillGroup_Data,
+    },
+    order: ['reliefAndElevation', 'soilsAndSurfaceSediments', 'weatheringErosionAndDeposition'],
+  },
   description: {
     methodological:
       'Relief and unconsolidated surface materials form landscapes that change through weathering, transportation and deposition. This domain examines the recognizable forms and near-surface changes of terrain rather than the internal structure, mineralogy or deep-time evolution of solid Earth.',

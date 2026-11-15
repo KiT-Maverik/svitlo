@@ -38,11 +38,14 @@ export const systemsEngineering_SkillDomain_Data = defineSkillDomain({
     kk: 'Жүйелік инженерия',
     qm: 'Sistemalar mühendisligi',
   },
-  groups: [
-    functionalArchitecture_SkillGroup_Data,
-    interfacesAndInterdependencies_SkillGroup_Data,
-    reliabilityAndMaintenance_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      functionalArchitecture: functionalArchitecture_SkillGroup_Data,
+      interfacesAndInterdependencies: interfacesAndInterdependencies_SkillGroup_Data,
+      reliabilityAndMaintenance: reliabilityAndMaintenance_SkillGroup_Data,
+    },
+    order: ['functionalArchitecture', 'interfacesAndInterdependencies', 'reliabilityAndMaintenance'],
+  },
   description: {
     methodological:
       'An engineered system is defined by coordinated functions and exchanges, not just a collection of parts. This domain addresses architecture, interfaces, dependencies, reliability and the consequences of faults.',

@@ -40,11 +40,14 @@ export const conservationOfEnergy_SkillGroup_Data = defineSkillGroup({
     kk: 'Энергияның сақталуы',
     qm: 'Energiyanıñ saqlanuvı',
   },
-  skills: [
-    explainTheLawOfConservationOfEnergy_Skill_Data,
-    explainTheLossOfUsefulEnergy_Skill_Data,
-    refuteTheIdeaThatEnergyDisappears_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainTheLawOfConservationOfEnergy: explainTheLawOfConservationOfEnergy_Skill_Data,
+      explainTheLossOfUsefulEnergy: explainTheLossOfUsefulEnergy_Skill_Data,
+      refuteTheIdeaThatEnergyDisappears: refuteTheIdeaThatEnergyDisappears_Skill_Data,
+    },
+    order: ['explainTheLawOfConservationOfEnergy', 'explainTheLossOfUsefulEnergy', 'refuteTheIdeaThatEnergyDisappears'],
+  },
   description: {
     methodological:
       'The total energy of an isolated system is conserved even as its form or distribution among bodies changes. A decrease in energy available for useful work is not its disappearance; for an open system, exchange with the surroundings must be considered.',

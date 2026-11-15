@@ -43,14 +43,24 @@ export const influenceAndPersuasion_SkillGroup_Data = defineSkillGroup({
     kk: 'Ықпал және сендіру',
     qm: 'Tesir ve inandırmaq',
   },
-  skills: [
-    conformity_Skill_Data,
-    informationalSocialInfluence_Skill_Data,
-    normativeSocialInfluence_Skill_Data,
-    obedienceToAuthority_Skill_Data,
-    persuasionRoutes_Skill_Data,
-    recognizingPsychologicalManipulation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      conformity: conformity_Skill_Data,
+      informationalSocialInfluence: informationalSocialInfluence_Skill_Data,
+      normativeSocialInfluence: normativeSocialInfluence_Skill_Data,
+      obedienceToAuthority: obedienceToAuthority_Skill_Data,
+      persuasionRoutes: persuasionRoutes_Skill_Data,
+      recognizingPsychologicalManipulation: recognizingPsychologicalManipulation_Skill_Data,
+    },
+    order: [
+      'conformity',
+      'informationalSocialInfluence',
+      'normativeSocialInfluence',
+      'obedienceToAuthority',
+      'persuasionRoutes',
+      'recognizingPsychologicalManipulation',
+    ],
+  },
   description: {
     methodological:
       "Other people's behavior, claims, and group norms can shift beliefs or actions through identifiable social mechanisms.",

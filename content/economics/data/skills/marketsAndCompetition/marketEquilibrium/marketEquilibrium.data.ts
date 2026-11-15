@@ -41,12 +41,20 @@ export const marketEquilibrium_SkillGroup_Data = defineSkillGroup({
     kk: 'Нарықтық тепе-теңдік',
     qm: 'Bazar muvastığı',
   },
-  skills: [
-    effectsOfDemandChanges_Skill_Data,
-    effectsOfSupplyChanges_Skill_Data,
-    equilibriumPriceAndQuantity_Skill_Data,
-    marketShortagesAndSurpluses_Skill_Data,
-  ],
+  skills: {
+    items: {
+      effectsOfDemandChanges: effectsOfDemandChanges_Skill_Data,
+      effectsOfSupplyChanges: effectsOfSupplyChanges_Skill_Data,
+      equilibriumPriceAndQuantity: equilibriumPriceAndQuantity_Skill_Data,
+      marketShortagesAndSurpluses: marketShortagesAndSurpluses_Skill_Data,
+    },
+    order: [
+      'effectsOfDemandChanges',
+      'effectsOfSupplyChanges',
+      'equilibriumPriceAndQuantity',
+      'marketShortagesAndSurpluses',
+    ],
+  },
   description: {
     methodological:
       "The interaction of supply and demand coordinates participants' plans and explains what happens when they do not match.",

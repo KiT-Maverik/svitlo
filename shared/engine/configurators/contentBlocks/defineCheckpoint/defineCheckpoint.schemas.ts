@@ -12,7 +12,7 @@ import type {
   ContentBlock_CheckpointItem_Props,
 } from './defineCheckpointItem';
 
-export type { Checkpoint_Allowed_Configurator, Checkpoint_Allowed_Props } from './defineCheckpointItem';
+export type { Checkpoint_Allowed_Configurator, Checkpoint_Allowed_Props } from './defineCheckpointAnswer';
 
 const contentBlockBase = createContentBlockBaseSchema('checkpoint');
 

@@ -50,7 +50,13 @@ export const formationAndChronology_SkillGroup_Data = defineSkillGroup({
       planetaryAccretion: planetaryAccretion_Skill_Data,
       protoplanetaryDisks: protoplanetaryDisks_Skill_Data,
     },
-    order: ['ageOfTheSolarSystem', 'earlyDifferentiation', 'originOfTheMoon', 'planetaryAccretion', 'protoplanetaryDisks'],
+    order: [
+      'ageOfTheSolarSystem',
+      'earlyDifferentiation',
+      'originOfTheMoon',
+      'planetaryAccretion',
+      'protoplanetaryDisks',
+    ],
   },
   description: {
     methodological:

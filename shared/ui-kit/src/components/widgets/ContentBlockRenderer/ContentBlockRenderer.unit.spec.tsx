@@ -110,6 +110,19 @@ describe('ContentBlockRenderer', () => {
     expect(screen.getByRole('img', { name: 'Diagram' })).toBeVisible();
   });
 
+  it('rejects standalone WebVTT tracks rather than silently discarding captions', () => {
+    const subtitles: Extract<ContentBlockResponse, { type: 'subtitles' }> = {
+      id: 'captions',
+      slug: 'captions',
+      type: 'subtitles',
+      params: {},
+      locale: { fileLocation: '/captions.en.vtt' },
+    };
+    expect(() =>
+      render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[subtitles]} />),
+    ).toThrow('Subtitles require a media player');
+  });
+
   it('does not dispatch quiz entries as content blocks', () => {
     const quiz = { id: 'quiz', type: 'quiz' } as unknown as ContentBlockResponse;
     expect(() => render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[quiz]} />)).toThrow(

@@ -42,13 +42,22 @@ export const drivesAndActuators_SkillGroup_Data = defineSkillGroup({
     kk: 'Жетектер және атқарушы тетіктер',
     qm: 'Sürücüler ve areketlendirgicler',
   },
-  skills: [
-    actuatorSuitability_Skill_Data,
-    electricMotorConstruction_Skill_Data,
-    limitSwitches_Skill_Data,
-    motorDrivenActuation_Skill_Data,
-    servoPositioning_Skill_Data,
-  ],
+  skills: {
+    items: {
+      actuatorSuitability: actuatorSuitability_Skill_Data,
+      electricMotorConstruction: electricMotorConstruction_Skill_Data,
+      limitSwitches: limitSwitches_Skill_Data,
+      motorDrivenActuation: motorDrivenActuation_Skill_Data,
+      servoPositioning: servoPositioning_Skill_Data,
+    },
+    order: [
+      'actuatorSuitability',
+      'electricMotorConstruction',
+      'limitSwitches',
+      'motorDrivenActuation',
+      'servoPositioning',
+    ],
+  },
   description: {
     methodological:
       'A controller requires suitable physical mechanisms to turn supplied energy into controllable displacement, rotation or force.',

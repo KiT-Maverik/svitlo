@@ -41,12 +41,15 @@ export const humanOriginsAndDispersal_SkillGroup_Data = defineSkillGroup({
     kk: 'Адамдардың шығу тегі мен таралуы',
     qm: 'İnsanlarnıñ aslı ve yayılışı',
   },
-  skills: [
-    adaptationToEnvironments_Skill_Data,
-    emergenceOfHomoSapiens_Skill_Data,
-    originsOfHomo_Skill_Data,
-    peoplingOfContinents_Skill_Data,
-  ],
+  skills: {
+    items: {
+      adaptationToEnvironments: adaptationToEnvironments_Skill_Data,
+      emergenceOfHomoSapiens: emergenceOfHomoSapiens_Skill_Data,
+      originsOfHomo: originsOfHomo_Skill_Data,
+      peoplingOfContinents: peoplingOfContinents_Skill_Data,
+    },
+    order: ['adaptationToEnvironments', 'emergenceOfHomoSapiens', 'originsOfHomo', 'peoplingOfContinents'],
+  },
   description: {
     methodological:
       'Paleoanthropology, archaeology, and genetics jointly investigate human origins; major developments occurred at different times across regions.',

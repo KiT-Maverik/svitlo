@@ -41,12 +41,20 @@ export const roboticSystemComponents_SkillGroup_Data = defineSkillGroup({
     kk: 'Робот жүйесінің компоненттері',
     qm: 'Robot sistemasınıñ qisımları',
   },
-  skills: [
-    identifyAnActuatorsPurpose_Skill_Data,
-    identifyARobotController_Skill_Data,
-    identifyASensorsPurpose_Skill_Data,
-    modelTheSensorToActionRelationship_Skill_Data,
-  ],
+  skills: {
+    items: {
+      identifyAnActuatorsPurpose: identifyAnActuatorsPurpose_Skill_Data,
+      identifyARobotController: identifyARobotController_Skill_Data,
+      identifyASensorsPurpose: identifyASensorsPurpose_Skill_Data,
+      modelTheSensorToActionRelationship: modelTheSensorToActionRelationship_Skill_Data,
+    },
+    order: [
+      'identifyAnActuatorsPurpose',
+      'identifyARobotController',
+      'identifyASensorsPurpose',
+      'modelTheSensorToActionRelationship',
+    ],
+  },
   description: {
     methodological:
       'Information-processing roles of sensors, controllers, and actuators: receive a reading, apply a control rule, and change a state. This examines functional relationships rather than mechanical component design.',

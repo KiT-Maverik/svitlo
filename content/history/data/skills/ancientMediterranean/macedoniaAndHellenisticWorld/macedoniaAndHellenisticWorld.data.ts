@@ -36,7 +36,14 @@ export const macedoniaAndHellenisticWorld_SkillGroup_Data = defineSkillGroup({
     kk: 'Македония және эллинистік әлем',
     qm: 'Makedoniya ve ellinistik dünya',
   },
-  skills: [conquestsOfAlexander_Skill_Data, hellenisticKingdoms_Skill_Data, riseOfMacedonia_Skill_Data],
+  skills: {
+    items: {
+      conquestsOfAlexander: conquestsOfAlexander_Skill_Data,
+      hellenisticKingdoms: hellenisticKingdoms_Skill_Data,
+      riseOfMacedonia: riseOfMacedonia_Skill_Data,
+    },
+    order: ['conquestsOfAlexander', 'hellenisticKingdoms', 'riseOfMacedonia'],
+  },
   description: {
     methodological:
       "Macedon's rise, Alexander's campaigns, and successor kingdoms transformed Balkan, Egyptian, and Asian politics and exchanges.",

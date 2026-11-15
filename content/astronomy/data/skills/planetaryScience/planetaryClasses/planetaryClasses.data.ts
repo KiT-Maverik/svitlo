@@ -50,7 +50,13 @@ export const planetaryClasses_SkillGroup_Data = defineSkillGroup({
       planetaryRingSystems: planetaryRingSystems_Skill_Data,
       terrestrialPlanets: terrestrialPlanets_Skill_Data,
     },
-    order: ['giantPlanets', 'naturalSatellites', 'planetaryDensityAndComposition', 'planetaryRingSystems', 'terrestrialPlanets'],
+    order: [
+      'giantPlanets',
+      'naturalSatellites',
+      'planetaryDensityAndComposition',
+      'planetaryRingSystems',
+      'terrestrialPlanets',
+    ],
   },
   description: {
     methodological:

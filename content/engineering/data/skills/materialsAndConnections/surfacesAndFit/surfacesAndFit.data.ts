@@ -40,11 +40,14 @@ export const surfacesAndFit_SkillGroup_Data = defineSkillGroup({
     kk: 'Беттер мен қондырулар',
     qm: 'Yüzler ve uyğun keçmeler',
   },
-  skills: [
-    evaluateFrictionAtAnInterface_Skill_Data,
-    fitsAndClearances_Skill_Data,
-    protectiveSurfaceTreatments_Skill_Data,
-  ],
+  skills: {
+    items: {
+      evaluateFrictionAtAnInterface: evaluateFrictionAtAnInterface_Skill_Data,
+      fitsAndClearances: fitsAndClearances_Skill_Data,
+      protectiveSurfaceTreatments: protectiveSurfaceTreatments_Skill_Data,
+    },
+    order: ['evaluateFrictionAtAnInterface', 'fitsAndClearances', 'protectiveSurfaceTreatments'],
+  },
   description: {
     methodological: 'Small variations at contacting surfaces affect motion, grip, sealing, protection and assembly.',
     frontend: {

@@ -50,7 +50,13 @@ export const astronomicalSpectra_SkillGroup_Data = defineSkillGroup({
       emissionSpectralLines: emissionSpectralLines_Skill_Data,
       multiwavelengthObservation: multiwavelengthObservation_Skill_Data,
     },
-    order: ['absorptionSpectralLines', 'continuousSpectra', 'dopplerShift', 'emissionSpectralLines', 'multiwavelengthObservation'],
+    order: [
+      'absorptionSpectralLines',
+      'continuousSpectra',
+      'dopplerShift',
+      'emissionSpectralLines',
+      'multiwavelengthObservation',
+    ],
   },
   description: {
     methodological:

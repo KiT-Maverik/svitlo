@@ -2,13 +2,14 @@ import { z } from 'zod';
 
 import { audio_Config_Schema } from '../contentBlocks/defineAudio/defineAudio.schemas';
 import { carousel_Config_Schema } from '../contentBlocks/defineCarousel/defineCarousel.schemas';
-import { carouselSlide_Config_Schema } from '../contentBlocks/defineCarousel/defineCarouselSlide/defineCarouselSlide.schemas';
 import { checkpoint_Config_Schema } from '../contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
+import { checkpointAnswer_Config_Schema } from '../contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import { checkpointItem_Config_Schema } from '../contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
 import { code_Config_Schema } from '../contentBlocks/defineCode/defineCode.schemas';
 import { image_Config_Schema } from '../contentBlocks/defineImage/defineImage.schemas';
 import { markdown_Config_Schema } from '../contentBlocks/defineMarkdown/defineMarkdown.schemas';
 import { scene_Config_Schema } from '../contentBlocks/defineScene/defineScene.schemas';
+import { subtitles_Config_Schema } from '../contentBlocks/defineSubtitles/defineSubtitles.schemas';
 import { text_Config_Schema } from '../contentBlocks/defineText/defineText.schemas';
 import { video_Config_Schema } from '../contentBlocks/defineVideo/defineVideo.schemas';
 import { youtube_Config_Schema } from '../contentBlocks/defineYoutube/defineYoutube.schemas';
@@ -44,13 +45,14 @@ export const yamlVideo_Schema = video_Config_Schema.extend({
   }),
 });
 
-export const yamlCarouselSlide_Schema = carouselSlide_Config_Schema.extend({
-  locale: carouselSlide_Config_Schema.shape.locale.extend({ src: z.literal(null) }),
+/** Pending localized WebVTT files are explicit nulls, not invented paths. */
+export const yamlSubtitles_Schema = subtitles_Config_Schema.extend({
+  locale: subtitles_Config_Schema.shape.locale.extend({ fileLocation: z.literal(null) }),
 });
 
 export const yamlCarousel_Schema = carousel_Config_Schema.extend({
   slides: carousel_Config_Schema.shape.slides.extend({
-    items: z.record(z.string(), yamlCarouselSlide_Schema),
+    items: z.record(z.string(), z.discriminatedUnion('type', [yamlImage_Schema, scene_Config_Schema])),
   }),
 });
 
@@ -62,16 +64,21 @@ export const yamlCheckpointAnswer_Schema = z.discriminatedUnion('type', [
   yamlImage_Schema,
   markdown_Config_Schema,
   scene_Config_Schema,
+  yamlSubtitles_Schema,
   text_Config_Schema,
   yamlVideo_Schema,
   youtube_Config_Schema,
 ]);
 
-export const yamlCheckpointItem_Schema = checkpointItem_Config_Schema.extend({
-  question: text_Config_Schema,
-  answer: checkpointItem_Config_Schema.shape.answer.extend({
+export const yamlCheckpointAnswerConfigurator_Schema = checkpointAnswer_Config_Schema.extend({
+  content: checkpointAnswer_Config_Schema.shape.content.extend({
     items: z.record(z.string(), yamlCheckpointAnswer_Schema),
   }),
+});
+
+export const yamlCheckpointItem_Schema = checkpointItem_Config_Schema.extend({
+  question: text_Config_Schema,
+  answer: yamlCheckpointAnswerConfigurator_Schema,
 });
 
 export const yamlCheckpoint_Schema = checkpoint_Config_Schema.extend({
@@ -92,6 +99,7 @@ export const yamlContentBlock_Schema = z.discriminatedUnion('type', [
   yamlImage_Schema,
   markdown_Config_Schema,
   scene_Config_Schema,
+  yamlSubtitles_Schema,
   text_Config_Schema,
   yamlVideo_Schema,
   youtube_Config_Schema,

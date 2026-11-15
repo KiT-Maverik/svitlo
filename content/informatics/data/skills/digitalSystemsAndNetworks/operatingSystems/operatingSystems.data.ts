@@ -41,12 +41,20 @@ export const operatingSystems_SkillGroup_Data = defineSkillGroup({
     kk: 'Операциялық жүйелер',
     qm: 'Operatsion sistemalar',
   },
-  skills: [
-    distinguishOperatingSystemFamilies_Skill_Data,
-    explainAnOperatingSystemsPurpose_Skill_Data,
-    explainAnOSProcess_Skill_Data,
-    explainLinusTorvaldsRoleInLinux_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishOperatingSystemFamilies: distinguishOperatingSystemFamilies_Skill_Data,
+      explainAnOperatingSystemsPurpose: explainAnOperatingSystemsPurpose_Skill_Data,
+      explainAnOSProcess: explainAnOSProcess_Skill_Data,
+      explainLinusTorvaldsRoleInLinux: explainLinusTorvaldsRoleInLinux_Skill_Data,
+    },
+    order: [
+      'distinguishOperatingSystemFamilies',
+      'explainAnOperatingSystemsPurpose',
+      'explainAnOSProcess',
+      'explainLinusTorvaldsRoleInLinux',
+    ],
+  },
   description: {
     methodological:
       'An operating system manages programs, processes, files, and devices; it differs from applications running in its environment.',

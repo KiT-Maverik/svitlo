@@ -39,12 +39,15 @@ export const musicTheoryAndListening_SkillDomain_Data = defineSkillDomain({
     kk: 'Музыка теориясы және тыңдау',
     qm: 'Muzika nazariyesi ve diñleme',
   },
-  groups: [
-    harmonyAndMusicalForm_SkillGroup_Data,
-    musicalSoundAndTexture_SkillGroup_Data,
-    pitchAndMelody_SkillGroup_Data,
-    pulseAndRhythm_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      harmonyAndMusicalForm: harmonyAndMusicalForm_SkillGroup_Data,
+      musicalSoundAndTexture: musicalSoundAndTexture_SkillGroup_Data,
+      pitchAndMelody: pitchAndMelody_SkillGroup_Data,
+      pulseAndRhythm: pulseAndRhythm_SkillGroup_Data,
+    },
+    order: ['harmonyAndMusicalForm', 'musicalSoundAndTexture', 'pitchAndMelody', 'pulseAndRhythm'],
+  },
   description: {
     methodological:
       'Musical listening distinguishes acoustic character and patterned relationships among events. Theoretical models vary across traditions and are not confined to Western staff notation.',

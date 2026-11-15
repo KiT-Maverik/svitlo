@@ -40,11 +40,14 @@ export const medicalMeasurementDevices_SkillGroup_Data = defineSkillGroup({
     kk: 'Медициналық өлшеу құрылғылары',
     qm: 'Tıbbiy ölçü cihazları',
   },
-  skills: [
-    biomedicalMeasurementReliability_Skill_Data,
-    diagnosticImagingHardware_Skill_Data,
-    physiologicalMonitoringDevices_Skill_Data,
-  ],
+  skills: {
+    items: {
+      biomedicalMeasurementReliability: biomedicalMeasurementReliability_Skill_Data,
+      diagnosticImagingHardware: diagnosticImagingHardware_Skill_Data,
+      physiologicalMonitoringDevices: physiologicalMonitoringDevices_Skill_Data,
+    },
+    order: ['biomedicalMeasurementReliability', 'diagnosticImagingHardware', 'physiologicalMonitoringDevices'],
+  },
   description: {
     methodological:
       'Biomedical devices measure physiological or physical signals with specialized coupling, safety and reliability concerns distinct from ordinary industrial sensing.',

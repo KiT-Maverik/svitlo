@@ -41,12 +41,20 @@ export const representationAndStorage_SkillGroup_Data = defineSkillGroup({
     kk: 'Бейнелеу және сақтау',
     qm: 'Tasvirlev ve saqlav',
   },
-  skills: [
-    compareDigitalFileSizes_Skill_Data,
-    distinguishDigitalFormats_Skill_Data,
-    explainBinaryRepresentation_Skill_Data,
-    organizeFilesInDirectories_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareDigitalFileSizes: compareDigitalFileSizes_Skill_Data,
+      distinguishDigitalFormats: distinguishDigitalFormats_Skill_Data,
+      explainBinaryRepresentation: explainBinaryRepresentation_Skill_Data,
+      organizeFilesInDirectories: organizeFilesInDirectories_Skill_Data,
+    },
+    order: [
+      'compareDigitalFileSizes',
+      'distinguishDigitalFormats',
+      'explainBinaryRepresentation',
+      'organizeFilesInDirectories',
+    ],
+  },
   description: {
     methodological:
       "How digital devices encode, format, measure, and organize files and data. Distinguish the representation of information from the file system's organization.",

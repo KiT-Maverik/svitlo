@@ -43,14 +43,24 @@ export const laborSupplyAndDemand_SkillGroup_Data = defineSkillGroup({
     kk: 'Еңбек ұсынысы мен сұранысы',
     qm: 'Emek teklifi ve talap',
   },
-  skills: [
-    automationAndEmployment_Skill_Data,
-    humanCapital_Skill_Data,
-    laborDemand_Skill_Data,
-    laborSupply_Skill_Data,
-    wageDetermination_Skill_Data,
-    workLeisureTradeoff_Skill_Data,
-  ],
+  skills: {
+    items: {
+      automationAndEmployment: automationAndEmployment_Skill_Data,
+      humanCapital: humanCapital_Skill_Data,
+      laborDemand: laborDemand_Skill_Data,
+      laborSupply: laborSupply_Skill_Data,
+      wageDetermination: wageDetermination_Skill_Data,
+      workLeisureTradeoff: workLeisureTradeoff_Skill_Data,
+    },
+    order: [
+      'automationAndEmployment',
+      'humanCapital',
+      'laborDemand',
+      'laborSupply',
+      'wageDetermination',
+      'workLeisureTradeoff',
+    ],
+  },
   description: {
     methodological:
       'Workers and employers make interdependent decisions about working time, skills, wages, and numbers of jobs.',

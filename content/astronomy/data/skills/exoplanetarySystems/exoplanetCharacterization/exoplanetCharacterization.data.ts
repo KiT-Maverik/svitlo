@@ -50,7 +50,13 @@ export const exoplanetCharacterization_SkillGroup_Data = defineSkillGroup({
       exoplanetOrbitalProperties: exoplanetOrbitalProperties_Skill_Data,
       exoplanetRadius: exoplanetRadius_Skill_Data,
     },
-    order: ['exoplanetAtmosphericSpectra', 'exoplanetBulkComposition', 'exoplanetMass', 'exoplanetOrbitalProperties', 'exoplanetRadius'],
+    order: [
+      'exoplanetAtmosphericSpectra',
+      'exoplanetBulkComposition',
+      'exoplanetMass',
+      'exoplanetOrbitalProperties',
+      'exoplanetRadius',
+    ],
   },
   description: {
     methodological:

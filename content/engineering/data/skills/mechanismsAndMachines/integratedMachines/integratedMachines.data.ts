@@ -40,11 +40,14 @@ export const integratedMachines_SkillGroup_Data = defineSkillGroup({
     kk: 'Біріктірілген машиналар',
     qm: 'Birleşken maşinalar',
   },
-  skills: [
-    diagnoseTransmissionFaults_Skill_Data,
-    motionMechanismSuitability_Skill_Data,
-    traceMechanicalPowerTransmission_Skill_Data,
-  ],
+  skills: {
+    items: {
+      diagnoseTransmissionFaults: diagnoseTransmissionFaults_Skill_Data,
+      motionMechanismSuitability: motionMechanismSuitability_Skill_Data,
+      traceMechanicalPowerTransmission: traceMechanicalPowerTransmission_Skill_Data,
+    },
+    order: ['diagnoseTransmissionFaults', 'motionMechanismSuitability', 'traceMechanicalPowerTransmission'],
+  },
   description: {
     methodological:
       'Machines combine multiple components in a working sequence, so their behavior cannot be inferred from a single named part.',

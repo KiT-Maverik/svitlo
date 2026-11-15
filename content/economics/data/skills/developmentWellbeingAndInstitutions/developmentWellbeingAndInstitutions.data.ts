@@ -39,12 +39,15 @@ export const developmentWellbeingAndInstitutions_SkillDomain_Data = defineSkillD
     kk: 'Даму, әл-ауқат және институттар',
     qm: 'İnkişaf, refah ve müesseseler',
   },
-  groups: [
-    inequality_SkillGroup_Data,
-    institutionsAndDevelopment_SkillGroup_Data,
-    povertyAndWellbeing_SkillGroup_Data,
-    structuralChange_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      inequality: inequality_SkillGroup_Data,
+      institutionsAndDevelopment: institutionsAndDevelopment_SkillGroup_Data,
+      povertyAndWellbeing: povertyAndWellbeing_SkillGroup_Data,
+      structuralChange: structuralChange_SkillGroup_Data,
+    },
+    order: ['inequality', 'institutionsAndDevelopment', 'povertyAndWellbeing', 'structuralChange'],
+  },
   description: {
     methodological:
       "Long-term differences between countries and population groups arise from productivity, distribution of resources, and rules of social interaction. Growth does not necessarily improve everyone's living conditions equally.",

@@ -41,12 +41,15 @@ export const industrialProcessEquipment_SkillGroup_Data = defineSkillGroup({
     kk: 'Өнеркәсіптік процестер жабдығы',
     qm: 'Sanayi protsess cihazları',
   },
-  skills: [
-    chemicalReactorSystems_Skill_Data,
-    industrialSeparationEquipment_Skill_Data,
-    processContainment_Skill_Data,
-    processHeatingSystems_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chemicalReactorSystems: chemicalReactorSystems_Skill_Data,
+      industrialSeparationEquipment: industrialSeparationEquipment_Skill_Data,
+      processContainment: processContainment_Skill_Data,
+      processHeatingSystems: processHeatingSystems_Skill_Data,
+    },
+    order: ['chemicalReactorSystems', 'industrialSeparationEquipment', 'processContainment', 'processHeatingSystems'],
+  },
   description: {
     methodological:
       'Process apparatus can separate mixtures, support controlled chemical transformations or maintain thermal conditions while containing potentially hazardous materials.',

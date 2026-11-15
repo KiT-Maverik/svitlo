@@ -40,11 +40,18 @@ export const behavior_SkillGroup_Data = defineSkillGroup({
     kk: 'Жануарлардың мінез-құлқы',
     qm: 'Ayvanlarnıñ areketleri ve davranışı',
   },
-  skills: [
-    explainBenefitsOfGroupBehavior_Skill_Data,
-    explainTheRoleOfSignalsInAnimalCommunication_Skill_Data,
-    recognizeDefensiveBehavior_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainBenefitsOfGroupBehavior: explainBenefitsOfGroupBehavior_Skill_Data,
+      explainTheRoleOfSignalsInAnimalCommunication: explainTheRoleOfSignalsInAnimalCommunication_Skill_Data,
+      recognizeDefensiveBehavior: recognizeDefensiveBehavior_Skill_Data,
+    },
+    order: [
+      'explainBenefitsOfGroupBehavior',
+      'explainTheRoleOfSignalsInAnimalCommunication',
+      'recognizeDefensiveBehavior',
+    ],
+  },
   description: {
     methodological:
       'Animal actions arise in response to signals and needs; observation makes it possible to identify defense, communication, and benefits of living in groups.',

@@ -36,7 +36,14 @@ export const taxes_SkillGroup_Data = defineSkillGroup({
     kk: 'Салықтар',
     qm: 'Vergiler',
   },
-  skills: [directAndIndirectTaxes_Skill_Data, taxIncidence_Skill_Data, taxProgressivity_Skill_Data],
+  skills: {
+    items: {
+      directAndIndirectTaxes: directAndIndirectTaxes_Skill_Data,
+      taxIncidence: taxIncidence_Skill_Data,
+      taxProgressivity: taxProgressivity_Skill_Data,
+    },
+    order: ['directAndIndirectTaxes', 'taxIncidence', 'taxProgressivity'],
+  },
   description: {
     methodological:
       'Mandatory payments finance public revenue and can change the behavior of buyers, workers, and firms.',

@@ -41,12 +41,15 @@ export const sustainableChemicalChoices_SkillGroup_Data = defineSkillGroup({
     kk: 'Химиядағы тұрақты таңдау',
     qm: 'Devamlı kimyeviy saylavlar',
   },
-  skills: [
-    biodegradationAndPersistence_Skill_Data,
-    chemicalLifeCycles_Skill_Data,
-    greenChemistryPrinciples_Skill_Data,
-    recyclingChemistry_Skill_Data,
-  ],
+  skills: {
+    items: {
+      biodegradationAndPersistence: biodegradationAndPersistence_Skill_Data,
+      chemicalLifeCycles: chemicalLifeCycles_Skill_Data,
+      greenChemistryPrinciples: greenChemistryPrinciples_Skill_Data,
+      recyclingChemistry: recyclingChemistry_Skill_Data,
+    },
+    order: ['biodegradationAndPersistence', 'chemicalLifeCycles', 'greenChemistryPrinciples', 'recyclingChemistry'],
+  },
   description: {
     methodological:
       'Environmental and resource decisions benefit from chemical evidence about composition, persistence, transformations and alternatives.',

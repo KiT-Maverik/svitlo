@@ -39,12 +39,20 @@ export const southAndSoutheastAsia_SkillDomain_Data = defineSkillDomain({
     kk: 'Оңтүстік және Оңтүстік-Шығыс Азия',
     qm: 'Cenübiy ve Cenübiy-Şarqiy Asiya',
   },
-  groups: [
-    ancientSoutheastAsia_SkillGroup_Data,
-    indusCivilization_SkillGroup_Data,
-    religiousAndIntellectualTraditions_SkillGroup_Data,
-    societiesAndStatesOfAncientIndia_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      ancientSoutheastAsia: ancientSoutheastAsia_SkillGroup_Data,
+      indusCivilization: indusCivilization_SkillGroup_Data,
+      religiousAndIntellectualTraditions: religiousAndIntellectualTraditions_SkillGroup_Data,
+      societiesAndStatesOfAncientIndia: societiesAndStatesOfAncientIndia_SkillGroup_Data,
+    },
+    order: [
+      'ancientSoutheastAsia',
+      'indusCivilization',
+      'religiousAndIntellectualTraditions',
+      'societiesAndStatesOfAncientIndia',
+    ],
+  },
   description: {
     methodological:
       'From Indus cities to South Asian empires and early Southeast Asian states, the region followed diverse urban, religious, and commercial trajectories.',

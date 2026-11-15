@@ -1,241 +1,242 @@
 #!/usr/bin/env node
 /**
- * Build one complete, PR-scoped agent reference library from canonical Code.
- * On-demand only. No CLI modes: generate every supported Code-derived Markdown reference.
- * Absent translations become %%MISSING%% in preview-only documents, never in published content.
- * Output: .agent-ci-artifacts/{taxonomies,lessons,lessons-by-skill,assessment-methods,ui-kit,geography-home-copy}/... + manifest.json
- * The CI workflow owns committing and cleaning this directory on the PR branch.
+ * Generate only an explicitly requested PR-scoped Markdown reference family.
+ * No implicit all-packages/all-locales operation. --locale omitted means the
+ * selected textbook's supported languages (or each Lesson's own languages).
+ * Draft %%MISSING%% markers never enter authored data or published resources.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import ts from 'typescript';
-import {
-  discoverLessons,
-  generateLessonReviewArtifacts,
-} from '../../shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.mjs';
-import { generate as generateLessonsBySkill } from '../../shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs';
-import { generateAssessmentMethodsReviewArtifacts } from '../../shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs';
-import { generateUiKitLocaleReviewArtifacts } from '../../shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-reference.mjs';
-import { generateHomeCopyReviewArtifacts } from '../../content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.mjs';
+import { readSupportedLanguageCodes } from '../../shared/engine/scripts/readSupportedLanguages/read-supported-languages.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const output = path.join(root, '.agent-ci-artifacts');
-const generator = path.join(root, 'shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs');
+const families = new Set(['skills', 'lessons', 'assessment-methods', 'ui-kit', 'geography-home-copy']);
+const uuidPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 
-if (process.argv.length !== 2) {
-  throw new Error(
-    'No modes or arguments: run "node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs"',
-  );
-}
-function unwrap(node) {
-  while (node && (ts.isAsExpression(node) || ts.isSatisfiesExpression(node) || ts.isParenthesizedExpression(node))) {
-    node = node.expression;
+export function parseArguments(args) {
+  const options = {};
+  for (let i = 0; i < args.length; ++i) {
+    const key = args[i];
+    if (
+      !['--kind', '--package', '--locale', '--component', '--lesson'].includes(key) ||
+      Object.hasOwn(options, key.slice(2)) ||
+      !args[i + 1] ||
+      args[i + 1].startsWith('--')
+    ) {
+      throw new Error(
+        'Usage: --kind <skills|lessons|assessment-methods|ui-kit|geography-home-copy> ' +
+          '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>]',
+      );
+    }
+    options[key.slice(2)] = args[++i];
   }
-  return node;
+  if (!families.has(options.kind)) throw new Error('An explicit supported --kind is required');
+  const hasPackage = ['skills', 'lessons'].includes(options.kind);
+  if (hasPackage !== Boolean(options.package))
+    throw new Error('Only Skills and Lessons require --package content/<textbook>');
+  if (options.package && !/^content\/[a-z][a-z0-9-]*$/.test(options.package)) {
+    throw new Error('Unsafe textbook path: ' + options.package);
+  }
+  if (options.component && (options.kind !== 'ui-kit' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(options.component))) {
+    throw new Error('--component is only available for UI Kit dictionaries');
+  }
+  if (options.lesson && (options.kind !== 'lessons' || !uuidPattern.test(options.lesson))) {
+    throw new Error('--lesson requires Lessons and a canonical UUID');
+  }
+  if (options.locale && !/^[a-z]{2,4}$/.test(options.locale)) throw new Error('Invalid language code');
+  return options;
 }
-function localesFromCode() {
-  const file = path.join(root, 'shared/engine/schemas/languages.schemas.ts');
-  const source = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
-  let locales;
-  for (const statement of source.statements) {
-    if (!ts.isVariableStatement(statement)) continue;
-    for (const declaration of statement.declarationList.declarations) {
-      if (!ts.isIdentifier(declaration.name) || declaration.name.text !== 'DEFAULT_SUPPORTED_LANGUAGES') continue;
-      const array = unwrap(declaration.initializer);
-      if (!ts.isArrayLiteralExpression(array)) throw new Error('Unexpected language registry shape');
-      locales = array.elements.map(node => {
-        const obj = unwrap(node);
-        if (!ts.isObjectLiteralExpression(obj)) throw new Error('Unexpected language definition');
-        const property = obj.properties.find(p => ts.isPropertyAssignment(p) && p.name.getText(source) === 'language');
-        if (!property || !ts.isStringLiteral(property.initializer)) throw new Error('Missing language code');
-        return property.initializer.text;
-      });
+
+function checkTextbook(options) {
+  if (!options.package) return;
+  const directory = path.join(root, options.package);
+  const target = path.join(directory, options.kind === 'skills' ? 'data/skills' : 'data/lessons');
+  for (const location of [directory, target]) {
+    if (!fs.existsSync(location) || !fs.statSync(location).isDirectory() || fs.lstatSync(location).isSymbolicLink()) {
+      throw new Error('Missing or unsafe requested textbook directory: ' + location);
     }
   }
-  if (!locales?.length || new Set(locales).size !== locales.length) throw new Error('Invalid language roster');
-  return locales;
 }
-function packagesFromCode() {
-  const apps = path.join(root, 'content');
-  return fs
-    .readdirSync(apps, { withFileTypes: true })
-    .filter(x => x.isDirectory() && fs.existsSync(path.join(apps, x.name, 'data/skills')))
-    .map(x => ({ name: x.name, package: 'content/' + x.name }))
-    .sort((a, b) => a.name.localeCompare(b.name));
-}
-function commitSha() {
-  // Ignore artifact-only commits to keep the manifest stable across regeneration.
-  const r = spawnSync('git', ['log', '-1', '--format=%H', '--', '.', ':(exclude).agent-ci-artifacts/**'], {
+
+function sourceCommit() {
+  const info = spawnSync('git', ['log', '-1', '--format=%H', '--', '.', ':(exclude).agent-ci-artifacts/**'], {
     cwd: root,
     encoding: 'utf8',
   });
-  return r.status === 0 ? r.stdout.trim() : null;
+  if (info.status !== 0 || !/^[0-9a-f]{40}$/.test(info.stdout.trim())) throw new Error('Cannot determine source SHA');
+  return info.stdout.trim();
 }
-function canonicalLinks(markdown, appName, destination) {
-  // Original generated links are relative to <textbook>/docs/generated/skills/.
-  // Relocate links to the committed artifact's own directory.
-  const originalDir = path.join(root, 'content', appName, 'docs/generated/skills');
-  return markdown.replace(/\[([^\]]+\.data\.ts)\]\(([^)]+)\)/g, (_, label, url) => {
-    const target = path.resolve(originalDir, decodeURI(url));
-    const prefix = path.join(root, 'content', appName, 'data/skills') + path.sep;
-    if (!target.startsWith(prefix) || !target.endsWith('.data.ts')) {
-      throw new Error('Invalid generated canonical link: ' + url);
-    }
+
+function fixTaxonomyLinks(markdown, book, destination) {
+  const original = path.join(root, 'content', book, 'docs/generated/skills');
+  return markdown.replace(/\[([^\]]+\.data\.ts)\]\(([^)]+)\)/g, (_, label, value) => {
+    const resolved = path.resolve(original, decodeURI(value));
+    if (
+      !resolved.startsWith(path.join(root, 'content', book, 'data/skills') + path.sep) ||
+      !resolved.endsWith('.data.ts')
+    )
+      throw new Error('Unsafe canonical taxonomy link: ' + value);
     return (
-      '[' + label + '](' + encodeURI(path.relative(path.dirname(destination), target).split(path.sep).join('/')) + ')'
+      '[' + label + '](' + encodeURI(path.relative(path.dirname(destination), resolved).split(path.sep).join('/')) + ')'
     );
   });
 }
 
-const languages = localesFromCode();
-const textbooks = packagesFromCode();
-const lessonPackages = [...new Set(discoverLessons(root).map(lesson => lesson.package))];
-if (!textbooks.length) throw new Error('No canonical Code Skills taxonomies available');
-const manifest = {
-  schemaVersion: 3,
-  kind: 'pr-scoped-agent-ci-artifacts',
-  sourceCommit: commitSha(),
-  packages: [...new Set([...textbooks.map(t => t.package), ...lessonPackages])].sort(),
-  locales: languages,
-  generated: [],
-  failures: [],
-};
-fs.rmSync(output, { recursive: true, force: true });
-fs.mkdirSync(path.join(output, 'taxonomies'), { recursive: true });
-function saveManifest() {
-  fs.writeFileSync(path.join(output, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
-}
-saveManifest();
-for (const textbook of textbooks) {
-  for (const locale of languages) {
-    const result = spawnSync(
-      process.execPath,
-      [generator, '--package', textbook.package, '--locale', locale, '--stdout', '--allow-missing'],
-      {
-        cwd: root,
-        encoding: 'utf8',
-        timeout: 180_000,
-        maxBuffer: 32 * 1024 * 1024,
-      },
-    );
-    const raw = result.stdout || '';
-    if (result.error || result.status !== 0 || !raw.startsWith('<!-- GENERATED FROM CODE; DO NOT EDIT. -->')) {
-      const error = String(result.error?.message || result.stderr || 'No valid Markdown generated')
-        .trim()
-        .slice(0, 1500);
-      manifest.failures.push({ kind: 'taxonomy', textbook: textbook.package, locale, error });
-      process.stderr.write(
-        '::warning::Could not generate ' + textbook.name + '/' + locale + ': ' + error.replace(/\n/g, ' ') + '\n',
+export async function generate(options) {
+  checkTextbook(options);
+  const registered = readSupportedLanguageCodes(root);
+  if (options.locale && !registered.includes(options.locale)) {
+    throw new Error('Unsupported language: ' + options.locale);
+  }
+  const languages = options.locale ? [options.locale] : registered;
+  const manifest = {
+    schemaVersion: 3,
+    kind: 'pr-scoped-agent-ci-artifacts',
+    sourceCommit: sourceCommit(),
+    scope: {
+      kind: options.kind,
+      package: options.package ?? null,
+      locale: options.locale ?? null,
+      component: options.component ?? null,
+      lesson: options.lesson ?? null,
+    },
+    packages: options.package ? [options.package] : [],
+    locales: options.locale ? [options.locale] : [],
+    generated: [],
+    failures: [],
+  };
+  // A new request replaces the previous disposable reference library. Never change authored files.
+  fs.rmSync(output, { recursive: true, force: true });
+  fs.mkdirSync(output, { recursive: true });
+  const saveManifest = () =>
+    fs.writeFileSync(path.join(output, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
+  saveManifest();
+
+  if (options.kind === 'skills') {
+    const book = options.package.slice('content/'.length);
+    const generator = path.join(root, 'shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs');
+    for (const locale of languages) {
+      const result = spawnSync(
+        process.execPath,
+        [generator, '--package', options.package, '--locale', locale, '--stdout', '--allow-missing'],
+        { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 },
       );
+      try {
+        if (
+          result.error ||
+          result.status !== 0 ||
+          !result.stdout?.startsWith('<!-- GENERATED FROM CODE; DO NOT EDIT. -->')
+        ) {
+          throw new Error(result.error?.message || result.stderr || 'Empty/invalid taxonomy reference');
+        }
+        const relative = 'taxonomies/' + book + '/' + locale + '.md';
+        const destination = path.join(output, relative);
+        fs.mkdirSync(path.dirname(destination), { recursive: true });
+        const markdown = fixTaxonomyLinks(result.stdout, book, destination);
+        const count = label => Number(markdown.match(new RegExp('^' + label + ': (\\d+)$', 'm'))?.[1]);
+        const missing = count('Missing translations');
+        if (!Number.isSafeInteger(missing) || missing < 0) throw new Error('Missing translation coverage metadata');
+        fs.writeFileSync(destination, markdown);
+        manifest.generated.push({
+          kind: 'taxonomy',
+          textbook: options.package,
+          locale,
+          path: '.agent-ci-artifacts/' + relative,
+          domains: count('Domains'),
+          groups: count('Groups'),
+          skills: count('Skills'),
+          missing,
+          reviewReady: missing === 0,
+        });
+        process.stdout.write('Generated ' + relative + '\n');
+      } catch (error) {
+        const message = String(error.message || error).slice(0, 1500);
+        manifest.failures.push({ kind: 'taxonomy', textbook: options.package, locale, error: message });
+        process.stderr.write('::warning::Skills ' + book + '/' + locale + ': ' + message.replace(/\n/g, ' ') + '\n');
+      }
       saveManifest();
-      continue;
     }
-    const relative = 'taxonomies/' + textbook.name + '/' + locale + '.md';
-    const destination = path.join(output, relative);
-    fs.mkdirSync(path.dirname(destination), { recursive: true });
-    const markdown = canonicalLinks(raw, textbook.name, destination);
-    fs.writeFileSync(destination, markdown, 'utf8');
-    const count = label => Number(markdown.match(new RegExp('^' + label + ': (\\d+)$', 'm'))?.[1]);
-    const missing = count('Missing translations');
-    if (!Number.isSafeInteger(missing) || missing < 0) {
-      throw new Error('Taxonomy preview did not report translation coverage: ' + relative);
-    }
-    manifest.generated.push({
-      kind: 'taxonomy',
-      textbook: textbook.package,
-      locale,
-      path: '.agent-ci-artifacts/' + relative,
-      domains: count('Domains'),
-      groups: count('Groups'),
-      skills: count('Skills'),
-      missing,
-      reviewReady: missing === 0,
+  } else if (options.kind === 'lessons') {
+    const { generateLessonReviewArtifacts } =
+      await import('../../shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.mjs');
+    generateLessonReviewArtifacts({
+      root,
+      output,
+      manifest,
+      saveManifest,
+      packageName: options.package,
+      lessonId: options.lesson,
+      languages: options.locale ? languages : null,
+      supportedLanguages: registered,
     });
-    saveManifest();
-    process.stdout.write('Generated ' + relative + '\n');
+  } else if (options.kind === 'assessment-methods') {
+    const { generateAssessmentMethodsReviewArtifacts } =
+      await import('../../shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs');
+    generateAssessmentMethodsReviewArtifacts({ root, output, languages, manifest, saveManifest, allowMissing: true });
+  } else if (options.kind === 'ui-kit') {
+    const { uiKitComponents, generateUiKitLocaleReviewArtifacts } =
+      await import('../../shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-reference.mjs');
+    const components = options.component ? [options.component] : uiKitComponents(root);
+    const available = uiKitComponents(root);
+    if (components.some(component => !available.includes(component))) {
+      throw new Error('Unknown UI Kit dictionary: ' + options.component);
+    }
+    generateUiKitLocaleReviewArtifacts({
+      root,
+      output,
+      languages,
+      manifest,
+      saveManifest,
+      allowMissing: true,
+      components,
+    });
+  } else if (options.kind === 'geography-home-copy') {
+    const { generateHomeCopyReviewArtifacts } =
+      await import('../../content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.mjs');
+    generateHomeCopyReviewArtifacts({ root, output, languages, manifest, saveManifest, allowMissing: true });
+  }
+
+  manifest.locales = [
+    ...new Set([
+      ...manifest.generated.map(item => item.locale).filter(Boolean),
+      ...manifest.failures.map(item => item.locale).filter(Boolean),
+    ]),
+  ].sort();
+  manifest.summary = {
+    documents: manifest.generated.length,
+    failures: manifest.failures.length,
+    missingTranslations: manifest.generated.reduce((sum, item) => sum + (item.missing ?? 0), 0),
+    incompleteDocuments: manifest.generated.filter(item => item.reviewReady === false).length,
+    taxonomyDocuments: manifest.generated.filter(item => item.kind === 'taxonomy').length,
+    lessonDocuments: manifest.generated.filter(item => item.kind === 'lesson').length,
+    assessmentMethodDocuments: manifest.generated.filter(item => item.kind === 'assessment-method').length,
+    uiKitDocuments: manifest.generated.filter(item => item.kind === 'ui-kit-locale').length,
+    geographyHomeCopyDocuments: manifest.generated.filter(item => item.kind === 'geography-home-copy').length,
+  };
+  saveManifest();
+  if (manifest.generated.length === 0) {
+    throw new Error('No requested Markdown was generated. Inspect .agent-ci-artifacts/manifest.json failures.');
+  }
+  process.stdout.write(
+    'Generated ' +
+      manifest.generated.length +
+      ' requested documents, ' +
+      manifest.failures.length +
+      ' failures; source ' +
+      manifest.sourceCommit +
+      '\n',
+  );
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try {
+    await generate(parseArguments(process.argv.slice(2)));
+  } catch (error) {
+    process.stderr.write('Agent Markdown generation: ' + (error.message || String(error)) + '\n');
+    process.exitCode = 1;
   }
 }
-const lessonStats = generateLessonReviewArtifacts({ root, output, languages, manifest, saveManifest });
-const skillLookup = generateLessonsBySkill({ root, output: path.join(output, 'lessons-by-skill') });
-for (const problem of skillLookup.failures) {
-  manifest.failures.push({ kind: 'lessons-by-skill', ...problem });
-  process.stderr.write('::warning::Lesson Skill lookup ' + problem.lessonId + ': ' + problem.error + '\n');
-}
-for (const item of skillLookup.generated) {
-  manifest.generated.push({
-    kind: 'lessons-by-skill',
-    skillId: item.skillId,
-    lessons: item.lessons,
-    path: '.agent-ci-artifacts/lessons-by-skill/' + item.skillId + '.md',
-  });
-}
-const assessmentMethodsStats = generateAssessmentMethodsReviewArtifacts({
-  root,
-  output,
-  languages,
-  manifest,
-  saveManifest,
-  allowMissing: true,
-});
-const uiKitStats = generateUiKitLocaleReviewArtifacts({
-  root,
-  output,
-  languages,
-  manifest,
-  saveManifest,
-  allowMissing: true,
-});
-const geographyStats = generateHomeCopyReviewArtifacts({
-  root,
-  output,
-  languages,
-  manifest,
-  saveManifest,
-  allowMissing: true,
-});
-saveManifest();
-manifest.summary = {
-  assessmentMethodDocuments: assessmentMethodsStats.generated,
-  uiKitDocuments: uiKitStats.generated,
-  geographyHomeCopyDocuments: geographyStats.generated,
-  missingTranslations: manifest.generated.reduce((total, item) => total + (item.missing || 0), 0),
-  incompleteDocuments: manifest.generated.filter(item => item.missing > 0).length,
-  taxonomyDocuments: manifest.generated.filter(item => item.kind === 'taxonomy').length,
-  discoveredLessons: lessonStats.discoveredLessons,
-  lessonDocuments: lessonStats.generated,
-  lessonSkillLookupFiles: skillLookup.generated.length,
-  failures: manifest.failures.length,
-};
-saveManifest();
-process.stdout.write(
-  'Lesson reference library: ' +
-    lessonStats.generated +
-    ' documents from ' +
-    lessonStats.discoveredLessons +
-    ' lessons; ' +
-    lessonStats.failures +
-    ' failed\n',
-);
-process.stdout.write(
-  'Agent review library: ' +
-    manifest.generated.length +
-    ' documents (Skills + Lessons + Assessment Methods + UI Kit + Geography), ' +
-    manifest.failures.length +
-    ' failed, ' +
-    textbooks.length +
-    ' textbooks, ' +
-    languages.length +
-    ' locales; source ' +
-    manifest.sourceCommit +
-    '\n',
-);
-if (!manifest.generated.length) {
-  throw new Error('No review Markdown generated; inspect .agent-ci-artifacts/manifest.json');
-}
-// Individual missing translations and generator failures are recorded in the manifest;
-// they do not prevent publishing valid references for other entities/languages.
-// Reviewers MUST verify their own artifact has reviewReady=true and no relevant failures.
-

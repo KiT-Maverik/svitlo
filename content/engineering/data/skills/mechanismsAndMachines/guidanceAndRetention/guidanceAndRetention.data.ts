@@ -42,13 +42,16 @@ export const guidanceAndRetention_SkillGroup_Data = defineSkillGroup({
     kk: 'Қозғалысты бағыттау және бекіту',
     qm: 'Areketni yöneltüv ve tutuv',
   },
-  skills: [
-    bearings_Skill_Data,
-    brakingMechanisms_Skill_Data,
-    latches_Skill_Data,
-    locks_Skill_Data,
-    lubrication_Skill_Data,
-  ],
+  skills: {
+    items: {
+      bearings: bearings_Skill_Data,
+      brakingMechanisms: brakingMechanisms_Skill_Data,
+      latches: latches_Skill_Data,
+      locks: locks_Skill_Data,
+      lubrication: lubrication_Skill_Data,
+    },
+    order: ['bearings', 'brakingMechanisms', 'latches', 'locks', 'lubrication'],
+  },
   description: {
     methodological:
       'Motion must be supported and limited while interfaces are protected from damaging friction or unintended release.',

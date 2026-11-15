@@ -48,7 +48,12 @@ export const systemArchitecture_SkillGroup_Data = defineSkillGroup({
       smallBodyReservoirs: smallBodyReservoirs_Skill_Data,
       solarSystemComponents: solarSystemComponents_Skill_Data,
     },
-    order: ['innerAndOuterSolarSystem', 'planetAndDwarfPlanetClassification', 'smallBodyReservoirs', 'solarSystemComponents'],
+    order: [
+      'innerAndOuterSolarSystem',
+      'planetAndDwarfPlanetClassification',
+      'smallBodyReservoirs',
+      'solarSystemComponents',
+    ],
   },
   description: {
     methodological:

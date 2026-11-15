@@ -44,15 +44,26 @@ export const carbonFrameworks_SkillGroup_Data = defineSkillGroup({
     kk: 'Көміртек қаңқалары',
     qm: 'Karbon iskeletleri',
   },
-  skills: [
-    alkanes_Skill_Data,
-    alkenes_Skill_Data,
-    alkynes_Skill_Data,
-    aromaticCompounds_Skill_Data,
-    hydrocarbons_Skill_Data,
-    stereoisomerism_Skill_Data,
-    structuralIsomerism_Skill_Data,
-  ],
+  skills: {
+    items: {
+      alkanes: alkanes_Skill_Data,
+      alkenes: alkenes_Skill_Data,
+      alkynes: alkynes_Skill_Data,
+      aromaticCompounds: aromaticCompounds_Skill_Data,
+      hydrocarbons: hydrocarbons_Skill_Data,
+      stereoisomerism: stereoisomerism_Skill_Data,
+      structuralIsomerism: structuralIsomerism_Skill_Data,
+    },
+    order: [
+      'alkanes',
+      'alkenes',
+      'alkynes',
+      'aromaticCompounds',
+      'hydrocarbons',
+      'stereoisomerism',
+      'structuralIsomerism',
+    ],
+  },
   description: {
     methodological:
       "Carbon's bonding versatility permits chains, rings and varied structural representations for compounds containing carbon.",

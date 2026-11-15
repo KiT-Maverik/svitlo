@@ -50,7 +50,13 @@ export const evidenceOfLife_SkillGroup_Data = defineSkillGroup({
       planetaryProtection: planetaryProtection_Skill_Data,
       technosignatures: technosignatures_Skill_Data,
     },
-    order: ['abioticFalsePositives', 'biosignatures', 'lifeDetectionEvidenceStandards', 'planetaryProtection', 'technosignatures'],
+    order: [
+      'abioticFalsePositives',
+      'biosignatures',
+      'lifeDetectionEvidenceStandards',
+      'planetaryProtection',
+      'technosignatures',
+    ],
   },
   description: {
     methodological:

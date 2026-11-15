@@ -41,12 +41,20 @@ export const reliabilityAndResponsibleAIUse_SkillGroup_Data = defineSkillGroup({
     kk: 'ЖИ сенімділігі және жауапты пайдалану',
     qm: 'Suniy intellektniñ işançlılığı ve mesuliyetli qullanıluvı',
   },
-  skills: [
-    explainHumanResponsibilityForAIAssistedDecisions_Skill_Data,
-    protectPersonalDataInPrompts_Skill_Data,
-    recognizeAIBiasRisks_Skill_Data,
-    verifyFactsInAnAIResponse_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainHumanResponsibilityForAIAssistedDecisions: explainHumanResponsibilityForAIAssistedDecisions_Skill_Data,
+      protectPersonalDataInPrompts: protectPersonalDataInPrompts_Skill_Data,
+      recognizeAIBiasRisks: recognizeAIBiasRisks_Skill_Data,
+      verifyFactsInAnAIResponse: verifyFactsInAnAIResponse_Skill_Data,
+    },
+    order: [
+      'explainHumanResponsibilityForAIAssistedDecisions',
+      'protectPersonalDataInPrompts',
+      'recognizeAIBiasRisks',
+      'verifyFactsInAnAIResponse',
+    ],
+  },
   description: {
     methodological:
       'Protecting data and identifying unreliable results or unfair consequences of AI use. Fact-checking, bias assessment, and human accountability address different risks.',

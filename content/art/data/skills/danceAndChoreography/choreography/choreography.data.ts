@@ -42,13 +42,22 @@ export const choreography_SkillGroup_Data = defineSkillGroup({
     kk: 'Хореография',
     qm: 'Koreografiya',
   },
-  skills: [
-    choreographToMusic_Skill_Data,
-    createAMovementMotif_Skill_Data,
-    designDanceFormations_Skill_Data,
-    structureADanceComposition_Skill_Data,
-    varyAMovementMotif_Skill_Data,
-  ],
+  skills: {
+    items: {
+      choreographToMusic: choreographToMusic_Skill_Data,
+      createAMovementMotif: createAMovementMotif_Skill_Data,
+      designDanceFormations: designDanceFormations_Skill_Data,
+      structureADanceComposition: structureADanceComposition_Skill_Data,
+      varyAMovementMotif: varyAMovementMotif_Skill_Data,
+    },
+    order: [
+      'choreographToMusic',
+      'createAMovementMotif',
+      'designDanceFormations',
+      'structureADanceComposition',
+      'varyAMovementMotif',
+    ],
+  },
   description: {
     methodological:
       'Movement motifs and their transformations create deliberate time-space relationships among dancers.',

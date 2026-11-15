@@ -44,15 +44,26 @@ export const prompting_SkillGroup_Data = defineSkillGroup({
     kk: 'Промпт құрастыру',
     qm: 'Suniy intellektke sorav yazuv',
   },
-  skills: [
-    breakAComplexPromptIntoSubtasks_Skill_Data,
-    providePromptContext_Skill_Data,
-    refineAPromptBasedOnResults_Skill_Data,
-    specifyAnOutputFormat_Skill_Data,
-    specifyAPromptObjective_Skill_Data,
-    specifyARoleInAPrompt_Skill_Data,
-    specifyPromptConstraints_Skill_Data,
-  ],
+  skills: {
+    items: {
+      breakAComplexPromptIntoSubtasks: breakAComplexPromptIntoSubtasks_Skill_Data,
+      providePromptContext: providePromptContext_Skill_Data,
+      refineAPromptBasedOnResults: refineAPromptBasedOnResults_Skill_Data,
+      specifyAnOutputFormat: specifyAnOutputFormat_Skill_Data,
+      specifyAPromptObjective: specifyAPromptObjective_Skill_Data,
+      specifyARoleInAPrompt: specifyARoleInAPrompt_Skill_Data,
+      specifyPromptConstraints: specifyPromptConstraints_Skill_Data,
+    },
+    order: [
+      'breakAComplexPromptIntoSubtasks',
+      'providePromptContext',
+      'refineAPromptBasedOnResults',
+      'specifyAnOutputFormat',
+      'specifyAPromptObjective',
+      'specifyARoleInAPrompt',
+      'specifyPromptConstraints',
+    ],
+  },
   description: {
     methodological:
       'Specifying requirements for an AI request: objective, context, constraints, desired output format, and iterative refinement. Prompt components can vary independently; checking whether answers are true belongs to AI reliability.',

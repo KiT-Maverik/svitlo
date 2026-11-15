@@ -39,12 +39,20 @@ export const personalityAndIndividualVariation_SkillDomain_Data = defineSkillDom
     kk: 'Тұлға және жеке айырмашылықтар',
     qm: 'Şahsiyet ve ferdi farqlar',
   },
-  groups: [
-    cognitiveAndLearningDifferences_SkillGroup_Data,
-    cultureAndDiversity_SkillGroup_Data,
-    selfConceptAndIdentity_SkillGroup_Data,
-    traitsAndPersonalityModels_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      cognitiveAndLearningDifferences: cognitiveAndLearningDifferences_SkillGroup_Data,
+      cultureAndDiversity: cultureAndDiversity_SkillGroup_Data,
+      selfConceptAndIdentity: selfConceptAndIdentity_SkillGroup_Data,
+      traitsAndPersonalityModels: traitsAndPersonalityModels_SkillGroup_Data,
+    },
+    order: [
+      'cognitiveAndLearningDifferences',
+      'cultureAndDiversity',
+      'selfConceptAndIdentity',
+      'traitsAndPersonalityModels',
+    ],
+  },
   description: {
     methodological:
       "People differ in characteristic patterns of thought, feeling, and behavior, but measurement requires caution about situations, cultural meaning, and fairness. Describing a tendency never fixes a person's worth or destiny.",

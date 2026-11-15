@@ -7,6 +7,7 @@ import ts from 'typescript';
 import yaml from 'yaml';
 
 import { runOne } from '../lessonBuilder/lessonBuilder.mjs';
+import { productionFiles, splitScaffoldDocument } from './productionScaffolding.mjs';
 import { parseCourseYaml, renderCourseSource, verifyOrWriteGenerated } from '../courseBuilder/courseBuilder.mjs';
 
 const lessonId = '00000000-0000-4000-8000-00000000000c';
@@ -34,6 +35,71 @@ function wrapNode(value) {
   return typeof value.type === 'string' && (typeof value.id === 'string' || typeof value.lessonId === 'string')
     ? { config: fields }
     : fields;
+}
+
+function questNode(slug, offset) {
+  const block = (type, key, index, locale, params = {}) => ({
+    id: id(offset + index),
+    slug: key,
+    type,
+    params,
+    locale,
+  });
+  return {
+    id: id(offset),
+    slug,
+    type: 'quest',
+    params: {},
+    locale: { title: { uk: 'Практика' }, navigationLabel: { uk: 'Завдання' } },
+    stages: {
+      start: {
+        id: id(offset + 1),
+        slug: 'start',
+        type: 'questStage',
+        content: {
+          video: {
+            medium: block('video', 'medium', 2, {
+              fileLocation: null,
+              poster: null,
+              label: { uk: 'Приклад' },
+            }),
+            small: block('video', 'small', 3, {
+              fileLocation: null,
+              poster: null,
+              label: { uk: 'Приклад' },
+            }),
+          },
+          audio: {
+            dialogue: null,
+            narration: block('audio', 'narration', 4, {
+              fileLocation: null,
+              title: { uk: 'Опис' },
+            }),
+            background: null,
+          },
+          image: block(
+            'image',
+            'image',
+            5,
+            { src: null, alt: { uk: 'Схема' } },
+            {
+              fill: true,
+              aspectRatio: 1.5,
+            },
+          ),
+          subtitles: block('subtitles', 'subtitles', 6, { fileLocation: null }),
+        },
+      },
+    },
+    tasks: {
+      start: {
+        id: id(offset + 7),
+        slug: 'start',
+        type: 'questTask',
+        scene: block('scene', 'interaction', 8, { value: { instruction: { uk: 'Спробуй' } } }),
+      },
+    },
+  };
 }
 
 test('Studio editorial YAML remains intact while both builders emit nested TS drafts', () => {
@@ -68,7 +134,11 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
               id: id(3),
               type: 'carousel',
               slug: 'gallery',
-              slides: group({ slide: { id: id(4), type: 'carouselSlide', slug: 'slide' } }),
+              slides: group({ slide: {
+                id: id(4), type: 'image', slug: 'slide',
+                params: { fill: true, aspectRatio: 1.5 },
+                locale: { src: null, alt: { uk: 'Діаграма' } },
+              } }),
             },
             checkpoint: {
               id: id(5),
@@ -80,7 +150,12 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
                   type: 'checkpointItem',
                   slug: 'item',
                   question: structuredClone(sourceBlock),
-                  answer: group({ correct: structuredClone(sourceBlock) }),
+                  answer: {
+                    id: id(13),
+                    type: 'checkpointAnswer',
+                    slug: 'answer',
+                    content: group({ correct: structuredClone(sourceBlock) }),
+                  },
                 },
               }),
             },
@@ -88,6 +163,8 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
         },
       }),
     };
+    lesson.section.items.guided = questNode('guided', 70);
+    lesson.section.order.push('guided');
     const { documentLanguage: lessonLanguage, ...lessonConfig } = lesson;
     fs.writeFileSync(
       path.join(lessonDir, 'config.yaml'),
@@ -98,18 +175,41 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     );
     const editorial = 'kind: lesson-content-plan\nstatus: draft\nsections: []\n';
     fs.writeFileSync(path.join(lessonDir, 'content.yaml'), editorial);
-    assert.equal(runOne(lessonDir, 'generate', root).changed, 1);
+    const lessonDraft = runOne(lessonDir, 'generate', root);
+    const sourceFiles = lessonDraft.files.filter(file => file.endsWith('.ts'));
+    assert(sourceFiles.length > 1, 'Lesson Builder must emit multiple named draft modules');
+    assert.equal(lessonDraft.changed, sourceFiles.length);
     assert.equal(fs.readFileSync(path.join(lessonDir, 'content.yaml'), 'utf8'), editorial);
-    const lessonCode = fs.readFileSync(path.join(lessonDir, 'lightLesson.data.ts'), 'utf8');
-    const lessonCalls = calls(lessonCode);
+    // The Review register is an intentionally invalid, human-completed TypeScript draft.
+    // Test its unfinished shape separately; every actual configurator module must parse.
+    assert(sourceFiles.includes('review.ts'), 'Lesson Builder must scaffold the Review register');
+    const reviewDraft = fs.readFileSync(path.join(lessonDir, 'review.ts'), 'utf8');
+    assert(
+      ts.createSourceFile('review.ts', reviewDraft, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS)
+        .parseDiagnostics.length > 0,
+      'Review draft must retain unresolved TypeScript syntax until review evidence is verified',
+    );
+    const modules = sourceFiles
+      .filter(file => file !== 'review.ts')
+      .map(file => fs.readFileSync(path.join(lessonDir, file), 'utf8'));
+    const lessonCode = modules.join('\n');
+    const lessonCalls = modules.flatMap(calls);
     for (const name of [
       'defineLesson',
       'defineContentSection',
       'defineText',
       'defineCarousel',
-      'defineCarouselSlide',
       'defineCheckpoint',
       'defineCheckpointItem',
+      'defineCheckpointAnswer',
+      'defineQuestSection',
+      'defineStage',
+      'defineTask',
+      'defineVideo',
+      'defineAudio',
+      'defineImage',
+      'defineSubtitles',
+      'defineScene',
     ]) {
       assert(lessonCalls.includes(name), name + ' missing in Lesson draft');
     }
@@ -117,7 +217,7 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     assert(lessonCode.includes('import { '));
     assert(lessonCode.includes("from '@svitlo/engine/build'"));
 
-    const lessonImport = '../../../lessons/c/' + lessonId + '/lightLesson.data.ts';
+    const lessonImport = '../../../lessons/c/' + lessonId + '/index.ts';
     assert(fs.existsSync(path.resolve(courseDir, lessonImport)));
     const course = {
       documentLanguage: 'uk',
@@ -151,7 +251,11 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
                           id: id(11),
                           slug: 'gallery',
                           type: 'carousel',
-                          slides: group({ slide: { id: id(12), slug: 'slide', type: 'carouselSlide' } }),
+                          slides: group({ slide: {
+                             id: id(12), slug: 'slide', type: 'image',
+                             params: { fill: true, aspectRatio: 1.5 },
+                             locale: { src: null, alt: { uk: 'Діаграма' } },
+                           } }),
                         },
                       }),
                     },
@@ -164,6 +268,9 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
         },
       }),
     };
+    const episodeSections = course.content.items.module.content.items.chapter.content.items.episode.section;
+    episodeSections.items.guided = questNode('guided', 90);
+    episodeSections.order.push('guided');
     const { documentLanguage: courseLanguage, ...courseConfig } = course;
     const courseYaml = yaml.stringify({
       ...wrapNode(courseConfig),
@@ -183,7 +290,14 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
       'defineEpisode',
       'defineContentSection',
       'defineCarousel',
-      'defineCarouselSlide',
+      'defineQuestSection',
+      'defineStage',
+      'defineTask',
+      'defineVideo',
+      'defineAudio',
+      'defineImage',
+      'defineSubtitles',
+      'defineScene',
     ]) {
       assert(courseCalls.includes(name), name + ' missing in Course draft');
     }
@@ -194,6 +308,65 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     assert.equal(fs.readFileSync(path.join(courseDir, 'config.yaml'), 'utf8'), courseYaml);
     assert(!fs.existsSync(path.join(courseDir, 'generated')));
     assert(!fs.existsSync(path.join(lessonDir, 'generated')));
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('Quest Stage caption production creates a UUID-addressed Subtitles handoff', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'quest-subtitles-handoff-'));
+  try {
+    const captionId = id(151);
+    const lessonPath = path.join(root, 'content/math/data/lessons/c', lessonId);
+    const node = {
+      config: {
+        id: lessonId,
+        slug: 'questLesson',
+        type: 'lesson',
+        section: {
+          items: {
+            guided: {
+              config: {
+                id: id(150),
+                slug: 'guided',
+                type: 'quest',
+                stages: {
+                  start: {
+                    config: {
+                      id: id(152),
+                      slug: 'start',
+                      type: 'questStage',
+                      content: {
+                        subtitles: {
+                          config: {
+                            id: captionId,
+                            slug: 'subtitles',
+                            type: 'subtitles',
+                            params: {},
+                            locale: { fileLocation: null },
+                          },
+                          production: { script: 'WEBVTT\n\n00:00:00.000 --> 00:00:02.000\nNarrator: Begin.' },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      production: { documentLanguage: 'en' },
+    };
+    const split = splitScaffoldDocument(node);
+    assert.equal(split.config.section.items.guided.stages.start.content.subtitles.type, 'subtitles');
+    const handoffs = productionFiles(lessonPath, split.tasks);
+    assert.equal(handoffs.length, 1);
+    assert.equal(
+      handoffs[0].file,
+      path.join(root, 'content/math/data/assets', captionId.at(-1), captionId, 'specification.md'),
+    );
+    assert.match(handoffs[0].content, /WEBVTT/);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

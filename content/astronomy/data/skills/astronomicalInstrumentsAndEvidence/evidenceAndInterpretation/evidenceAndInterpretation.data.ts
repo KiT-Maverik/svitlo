@@ -48,7 +48,12 @@ export const evidenceAndInterpretation_SkillGroup_Data = defineSkillGroup({
       measurementUncertainty: measurementUncertainty_Skill_Data,
       observationalSelectionEffects: observationalSelectionEffects_Skill_Data,
     },
-    order: ['astronomicalLightCurves', 'astronomicalModelTesting', 'measurementUncertainty', 'observationalSelectionEffects'],
+    order: [
+      'astronomicalLightCurves',
+      'astronomicalModelTesting',
+      'measurementUncertainty',
+      'observationalSelectionEffects',
+    ],
   },
   description: {
     methodological:

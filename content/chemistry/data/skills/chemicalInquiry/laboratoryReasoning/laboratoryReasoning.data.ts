@@ -41,12 +41,20 @@ export const laboratoryReasoning_SkillGroup_Data = defineSkillGroup({
     kk: 'Зертханалық пайымдау',
     qm: 'Laboratoriyada fikir yürsetüv',
   },
-  skills: [
-    chemicalHandlingDecisions_Skill_Data,
-    chemicalHazardSymbols_Skill_Data,
-    evidenceBasedChemicalConclusions_Skill_Data,
-    experimentalVariables_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chemicalHandlingDecisions: chemicalHandlingDecisions_Skill_Data,
+      chemicalHazardSymbols: chemicalHazardSymbols_Skill_Data,
+      evidenceBasedChemicalConclusions: evidenceBasedChemicalConclusions_Skill_Data,
+      experimentalVariables: experimentalVariables_Skill_Data,
+    },
+    order: [
+      'chemicalHandlingDecisions',
+      'chemicalHazardSymbols',
+      'evidenceBasedChemicalConclusions',
+      'experimentalVariables',
+    ],
+  },
   description: {
     methodological:
       'Working with substances involves controlling exposure, maintaining traceability of samples and drawing conclusions that do not exceed the evidence.',

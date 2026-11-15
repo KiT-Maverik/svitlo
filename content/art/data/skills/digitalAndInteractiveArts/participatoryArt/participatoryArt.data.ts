@@ -41,12 +41,20 @@ export const participatoryArt_SkillGroup_Data = defineSkillGroup({
     kk: 'Интерактивті өнер',
     qm: 'Qatnaşuv sanat',
   },
-  skills: [
-    analyzeAudienceParticipation_Skill_Data,
-    createBranchingArtNarratives_Skill_Data,
-    designArtisticInteraction_Skill_Data,
-    designMultisensoryRelationships_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAudienceParticipation: analyzeAudienceParticipation_Skill_Data,
+      createBranchingArtNarratives: createBranchingArtNarratives_Skill_Data,
+      designArtisticInteraction: designArtisticInteraction_Skill_Data,
+      designMultisensoryRelationships: designMultisensoryRelationships_Skill_Data,
+    },
+    order: [
+      'analyzeAudienceParticipation',
+      'createBranchingArtNarratives',
+      'designArtisticInteraction',
+      'designMultisensoryRelationships',
+    ],
+  },
   description: {
     methodological:
       "Interaction and visitor choices can form part of a work's artistic expression rather than merely controlling a viewer.",

@@ -41,12 +41,20 @@ export const foundationsAndPerspectives_SkillGroup_Data = defineSkillGroup({
     kk: 'Негіздер мен көзқарастар',
     qm: 'Esaslar ve baqışlar',
   },
-  skills: [
-    explanationAndPrediction_Skill_Data,
-    historicalPsychologicalApproaches_Skill_Data,
-    psychologicalPerspectives_Skill_Data,
-    scopeOfPsychologicalScience_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explanationAndPrediction: explanationAndPrediction_Skill_Data,
+      historicalPsychologicalApproaches: historicalPsychologicalApproaches_Skill_Data,
+      psychologicalPerspectives: psychologicalPerspectives_Skill_Data,
+      scopeOfPsychologicalScience: scopeOfPsychologicalScience_Skill_Data,
+    },
+    order: [
+      'explanationAndPrediction',
+      'historicalPsychologicalApproaches',
+      'psychologicalPerspectives',
+      'scopeOfPsychologicalScience',
+    ],
+  },
   description: {
     methodological:
       'Scientific accounts distinguish description, prediction, and causal explanation while combining cognitive, biological, behavioral, and sociocultural perspectives.',

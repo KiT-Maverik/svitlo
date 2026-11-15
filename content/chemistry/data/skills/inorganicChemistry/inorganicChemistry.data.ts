@@ -38,7 +38,14 @@ export const inorganicChemistry_SkillDomain_Data = defineSkillDomain({
     kk: 'Бейорганикалық химия',
     qm: 'Neorganik kimya',
   },
-  groups: [elementFamiliesInContext_SkillGroup_Data, inorganicCompounds_SkillGroup_Data, ionsInWater_SkillGroup_Data],
+  groups: {
+    items: {
+      elementFamiliesInContext: elementFamiliesInContext_SkillGroup_Data,
+      inorganicCompounds: inorganicCompounds_SkillGroup_Data,
+      ionsInWater: ionsInWater_SkillGroup_Data,
+    },
+    order: ['elementFamiliesInContext', 'inorganicCompounds', 'ionsInWater'],
+  },
   description: {
     methodological:
       'The chemistry of elements and non-carbon-centered substance families provides a systematic account of familiar materials and dissolved ions. Organic chemistry handles carbon-based families in greater detail.',

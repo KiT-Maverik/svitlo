@@ -40,7 +40,14 @@ export const transportAndInfrastructure_SkillGroup_Data = defineSkillGroup({
     kk: 'Көлік және инфрақұрылым',
     qm: 'Naqliyat ve altyapı',
   },
-  skills: [congestionEconomics_Skill_Data, infrastructureInvestmentAppraisal_Skill_Data, transportDemand_Skill_Data],
+  skills: {
+    items: {
+      congestionEconomics: congestionEconomics_Skill_Data,
+      infrastructureInvestmentAppraisal: infrastructureInvestmentAppraisal_Skill_Data,
+      transportDemand: transportDemand_Skill_Data,
+    },
+    order: ['congestionEconomics', 'infrastructureInvestmentAppraisal', 'transportDemand'],
+  },
   description: {
     methodological:
       'Moving people and goods creates direct and external costs, while infrastructure requires large initial investments and lasts for long periods.',

@@ -38,11 +38,14 @@ export const movementSleepAndEverydayRoutines_SkillDomain_Data = defineSkillDoma
     kk: 'Қозғалыс, ұйқы және күнделікті әдеттер',
     qm: 'Areket, yuqu ve kündelikli adetler',
   },
-  groups: [
-    ergonomicsAndSensoryCare_SkillGroup_Data,
-    physicalActivity_SkillGroup_Data,
-    sleepAndRecovery_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      ergonomicsAndSensoryCare: ergonomicsAndSensoryCare_SkillGroup_Data,
+      physicalActivity: physicalActivity_SkillGroup_Data,
+      sleepAndRecovery: sleepAndRecovery_SkillGroup_Data,
+    },
+    order: ['ergonomicsAndSensoryCare', 'physicalActivity', 'sleepAndRecovery'],
+  },
   description: {
     methodological:
       'Physical functioning benefits from feasible movement, adequate recovery, and adjustments to daily environments. This domain concerns practical health habits, not the physiology of exercise as a separate science.',

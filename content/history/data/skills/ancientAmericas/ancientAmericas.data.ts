@@ -40,13 +40,22 @@ export const ancientAmericas_SkillDomain_Data = defineSkillDomain({
     kk: 'Америка құрлықтары',
     qm: 'Amerika qıtaları',
   },
-  groups: [
-    amazonAndCaribbean_SkillGroup_Data,
-    ancientAndes_SkillGroup_Data,
-    earliestAmericanPopulations_SkillGroup_Data,
-    mesoamerica_SkillGroup_Data,
-    northAmericaBeyondMesoamerica_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      amazonAndCaribbean: amazonAndCaribbean_SkillGroup_Data,
+      ancientAndes: ancientAndes_SkillGroup_Data,
+      earliestAmericanPopulations: earliestAmericanPopulations_SkillGroup_Data,
+      mesoamerica: mesoamerica_SkillGroup_Data,
+      northAmericaBeyondMesoamerica: northAmericaBeyondMesoamerica_SkillGroup_Data,
+    },
+    order: [
+      'amazonAndCaribbean',
+      'ancientAndes',
+      'earliestAmericanPopulations',
+      'mesoamerica',
+      'northAmericaBeyondMesoamerica',
+    ],
+  },
   description: {
     methodological:
       'American history includes early peopling, independent agriculture, complex cities and states, and diverse societies without major cities.',

@@ -48,7 +48,13 @@ export const stellarPropertiesAndEvolution_SkillDomain_Data = defineSkillDomain(
       stellarProperties: stellarProperties_SkillGroup_Data,
       stellarRemnants: stellarRemnants_SkillGroup_Data,
     },
-    order: ['starFormation', 'stellarAndSubstellarClassification', 'stellarEvolution', 'stellarProperties', 'stellarRemnants'],
+    order: [
+      'starFormation',
+      'stellarAndSubstellarClassification',
+      'stellarEvolution',
+      'stellarProperties',
+      'stellarRemnants',
+    ],
   },
   description: {
     methodological:

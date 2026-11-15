@@ -41,12 +41,15 @@ export const comparisons_SkillGroup_Data = defineSkillGroup({
     pl: 'Zadania na porównywanie',
     uk: 'Задачі на порівняння',
   },
-  skills: [
-    additiveComparison_Skill_Data,
-    increaseDecreaseNumber_Skill_Data,
-    multiplicativeComparison_Skill_Data,
-    increaseDecreaseFactor_Skill_Data,
-  ],
+  skills: {
+    items: {
+      additiveComparison: additiveComparison_Skill_Data,
+      increaseDecreaseNumber: increaseDecreaseNumber_Skill_Data,
+      multiplicativeComparison: multiplicativeComparison_Skill_Data,
+      increaseDecreaseFactor: increaseDecreaseFactor_Skill_Data,
+    },
+    order: ['additiveComparison', 'increaseDecreaseNumber', 'multiplicativeComparison', 'increaseDecreaseFactor'],
+  },
   description: {
     methodological:
       "Distinguishing additive comparison ('how many more or fewer') from multiplicative comparison ('how many times as many') and from problems describing a change in a quantity.",

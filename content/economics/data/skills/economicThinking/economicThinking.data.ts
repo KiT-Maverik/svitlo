@@ -39,12 +39,15 @@ export const economicThinking_SkillDomain_Data = defineSkillDomain({
     kk: 'Экономикалық ойлау',
     qm: 'İqtisadiy fikirlev',
   },
-  groups: [
-    exchangeAndInstitutions_SkillGroup_Data,
-    incentivesAndDecisions_SkillGroup_Data,
-    scarcityAndChoice_SkillGroup_Data,
-    strategicInteraction_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      exchangeAndInstitutions: exchangeAndInstitutions_SkillGroup_Data,
+      incentivesAndDecisions: incentivesAndDecisions_SkillGroup_Data,
+      scarcityAndChoice: scarcityAndChoice_SkillGroup_Data,
+      strategicInteraction: strategicInteraction_SkillGroup_Data,
+    },
+    order: ['exchangeAndInstitutions', 'incentivesAndDecisions', 'scarcityAndChoice', 'strategicInteraction'],
+  },
   description: {
     methodological:
       'Economic analysis examines how people and organizations choose among alternatives when resources are limited, respond to incentives, and coordinate decisions. It provides the conceptual foundation for other economic domains rather than a collection of everyday exercises.',

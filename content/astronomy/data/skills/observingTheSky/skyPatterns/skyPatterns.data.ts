@@ -52,7 +52,14 @@ export const skyPatterns_SkillGroup_Data = defineSkillGroup({
       seasonalSkyVisibility: seasonalSkyVisibility_Skill_Data,
       stellarProperMotion: stellarProperMotion_Skill_Data,
     },
-    order: ['apparentBrightness', 'asterisms', 'constellations', 'dailySkyMotion', 'seasonalSkyVisibility', 'stellarProperMotion'],
+    order: [
+      'apparentBrightness',
+      'asterisms',
+      'constellations',
+      'dailySkyMotion',
+      'seasonalSkyVisibility',
+      'stellarProperMotion',
+    ],
   },
   description: {
     methodological:

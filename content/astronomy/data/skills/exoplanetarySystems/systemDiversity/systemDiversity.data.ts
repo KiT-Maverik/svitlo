@@ -48,7 +48,12 @@ export const systemDiversity_SkillGroup_Data = defineSkillGroup({
       limitsOfHabitabilityIndicators: limitsOfHabitabilityIndicators_Skill_Data,
       planetaryMigration: planetaryMigration_Skill_Data,
     },
-    order: ['circumstellarHabitableZones', 'exoplanetSystemArchitectures', 'limitsOfHabitabilityIndicators', 'planetaryMigration'],
+    order: [
+      'circumstellarHabitableZones',
+      'exoplanetSystemArchitectures',
+      'limitsOfHabitabilityIndicators',
+      'planetaryMigration',
+    ],
   },
   description: {
     methodological: 'Comparing observed systems reveals patterns and exceptions relative to Solar System expectations.',

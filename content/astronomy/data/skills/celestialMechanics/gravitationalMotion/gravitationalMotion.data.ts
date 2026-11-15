@@ -52,7 +52,14 @@ export const gravitationalMotion_SkillGroup_Data = defineSkillGroup({
       orbitalEnergy: orbitalEnergy_Skill_Data,
       universalGravitation: universalGravitation_Skill_Data,
     },
-    order: ['barycentricMotion', 'keplersFirstLaw', 'keplersSecondLaw', 'keplersThirdLaw', 'orbitalEnergy', 'universalGravitation'],
+    order: [
+      'barycentricMotion',
+      'keplersFirstLaw',
+      'keplersSecondLaw',
+      'keplersThirdLaw',
+      'orbitalEnergy',
+      'universalGravitation',
+    ],
   },
   description: {
     methodological:

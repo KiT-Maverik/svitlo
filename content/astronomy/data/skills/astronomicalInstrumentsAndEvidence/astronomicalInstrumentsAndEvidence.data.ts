@@ -50,7 +50,14 @@ export const astronomicalInstrumentsAndEvidence_SkillDomain_Data = defineSkillDo
       spacecraftObservations: spacecraftObservations_SkillGroup_Data,
       telescopesAndDetectors: telescopesAndDetectors_SkillGroup_Data,
     },
-    order: ['astronomicalSpectra', 'distancesAndPhysicalProperties', 'evidenceAndInterpretation', 'gravitationalAndParticleProbes', 'spacecraftObservations', 'telescopesAndDetectors'],
+    order: [
+      'astronomicalSpectra',
+      'distancesAndPhysicalProperties',
+      'evidenceAndInterpretation',
+      'gravitationalAndParticleProbes',
+      'spacecraftObservations',
+      'telescopesAndDetectors',
+    ],
   },
   description: {
     methodological:

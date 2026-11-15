@@ -43,14 +43,24 @@ export const languageModelTokensAndContext_SkillGroup_Data = defineSkillGroup({
     kk: 'Тіл модельдерінің токендері және контексі',
     qm: 'Til modelleriniñ tokenleri ve konteksti',
   },
-  skills: [
-    distinguishSamplingFromChoosingTheMostLikelyToken_Skill_Data,
-    distinguishTokensCharactersAndWords_Skill_Data,
-    explainALanguageModelsContextWindow_Skill_Data,
-    explainContextWindowOverflow_Skill_Data,
-    explainNextTokenSelection_Skill_Data,
-    explainTokens_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishSamplingFromChoosingTheMostLikelyToken: distinguishSamplingFromChoosingTheMostLikelyToken_Skill_Data,
+      distinguishTokensCharactersAndWords: distinguishTokensCharactersAndWords_Skill_Data,
+      explainALanguageModelsContextWindow: explainALanguageModelsContextWindow_Skill_Data,
+      explainContextWindowOverflow: explainContextWindowOverflow_Skill_Data,
+      explainNextTokenSelection: explainNextTokenSelection_Skill_Data,
+      explainTokens: explainTokens_Skill_Data,
+    },
+    order: [
+      'distinguishSamplingFromChoosingTheMostLikelyToken',
+      'distinguishTokensCharactersAndWords',
+      'explainALanguageModelsContextWindow',
+      'explainContextWindowOverflow',
+      'explainNextTokenSelection',
+      'explainTokens',
+    ],
+  },
   description: {
     methodological:
       'Language models process tokens, evaluate possible continuations, and operate within a limited context window; model parameter count does not determine context length.',

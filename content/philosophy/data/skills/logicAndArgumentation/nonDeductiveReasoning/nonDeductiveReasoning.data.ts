@@ -41,12 +41,21 @@ export const nonDeductiveReasoning_SkillGroup_Data = defineSkillGroup({
     kk: 'Дедуктивті емес пайымдау',
     qm: 'Deduktiv olmağan fikir yürsetüv',
   },
-  skills: [
-    distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data,
-    evaluateAnalogicalReasoning_Skill_Data,
-    evaluateAnInductiveGeneralization_Skill_Data,
-    evaluateAnInferenceToTheBestExplanation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishDeductiveCertaintyFromProbabilisticSupport:
+        distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data,
+      evaluateAnalogicalReasoning: evaluateAnalogicalReasoning_Skill_Data,
+      evaluateAnInductiveGeneralization: evaluateAnInductiveGeneralization_Skill_Data,
+      evaluateAnInferenceToTheBestExplanation: evaluateAnInferenceToTheBestExplanation_Skill_Data,
+    },
+    order: [
+      'distinguishDeductiveCertaintyFromProbabilisticSupport',
+      'evaluateAnalogicalReasoning',
+      'evaluateAnInductiveGeneralization',
+      'evaluateAnInferenceToTheBestExplanation',
+    ],
+  },
   description: {
     methodological:
       'Many reasonable arguments support conclusions without guaranteeing them. Their strength depends on evidence, alternatives, sampling, or explanatory power rather than formal certainty.',

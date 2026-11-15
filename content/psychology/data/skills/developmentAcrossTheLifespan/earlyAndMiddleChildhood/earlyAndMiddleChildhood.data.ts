@@ -42,13 +42,22 @@ export const earlyAndMiddleChildhood_SkillGroup_Data = defineSkillGroup({
     kk: 'Ерте және орта балалық шақ',
     qm: 'Erte ve orta balalıq',
   },
-  skills: [
-    earlySocialAttachment_Skill_Data,
-    executiveFunctionDevelopment_Skill_Data,
-    objectPermanence_Skill_Data,
-    playAndLearning_Skill_Data,
-    theoryOfMindDevelopment_Skill_Data,
-  ],
+  skills: {
+    items: {
+      earlySocialAttachment: earlySocialAttachment_Skill_Data,
+      executiveFunctionDevelopment: executiveFunctionDevelopment_Skill_Data,
+      objectPermanence: objectPermanence_Skill_Data,
+      playAndLearning: playAndLearning_Skill_Data,
+      theoryOfMindDevelopment: theoryOfMindDevelopment_Skill_Data,
+    },
+    order: [
+      'earlySocialAttachment',
+      'executiveFunctionDevelopment',
+      'objectPermanence',
+      'playAndLearning',
+      'theoryOfMindDevelopment',
+    ],
+  },
   description: {
     methodological:
       'Rapid changes in attention, symbolic representation, relationships, and self-regulation create different opportunities for learning.',

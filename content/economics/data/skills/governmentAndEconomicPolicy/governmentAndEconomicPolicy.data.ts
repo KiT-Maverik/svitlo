@@ -40,13 +40,22 @@ export const governmentAndEconomicPolicy_SkillDomain_Data = defineSkillDomain({
     kk: 'Мемлекет және экономикалық саясат',
     qm: 'Devlet ve iqtisadiy siyaset',
   },
-  groups: [
-    fiscalAndMonetaryPolicy_SkillGroup_Data,
-    publicBudgetAndDebt_SkillGroup_Data,
-    publicGoodsAndRegulation_SkillGroup_Data,
-    redistributionAndSocialProtection_SkillGroup_Data,
-    taxes_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      fiscalAndMonetaryPolicy: fiscalAndMonetaryPolicy_SkillGroup_Data,
+      publicBudgetAndDebt: publicBudgetAndDebt_SkillGroup_Data,
+      publicGoodsAndRegulation: publicGoodsAndRegulation_SkillGroup_Data,
+      redistributionAndSocialProtection: redistributionAndSocialProtection_SkillGroup_Data,
+      taxes: taxes_SkillGroup_Data,
+    },
+    order: [
+      'fiscalAndMonetaryPolicy',
+      'publicBudgetAndDebt',
+      'publicGoodsAndRegulation',
+      'redistributionAndSocialProtection',
+      'taxes',
+    ],
+  },
   description: {
     methodological:
       'The public sector changes incentives, finances shared needs, and redistributes resources. Policy instruments have benefits, costs, risks, and political trade-offs; no single approach is assumed universally correct.',

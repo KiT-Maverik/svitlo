@@ -54,7 +54,15 @@ export const telescopesAndDetectors_SkillGroup_Data = defineSkillGroup({
       radioAstronomy: radioAstronomy_Skill_Data,
       spaceBasedObservation: spaceBasedObservation_Skill_Data,
     },
-    order: ['angularResolution', 'astronomicalDetectors', 'astronomicalInterferometry', 'lightGatheringAperture', 'opticalTelescopeSystems', 'radioAstronomy', 'spaceBasedObservation'],
+    order: [
+      'angularResolution',
+      'astronomicalDetectors',
+      'astronomicalInterferometry',
+      'lightGatheringAperture',
+      'opticalTelescopeSystems',
+      'radioAstronomy',
+      'spaceBasedObservation',
+    ],
   },
   description: {
     methodological:

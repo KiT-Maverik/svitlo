@@ -39,12 +39,20 @@ export const emergenciesAndCivilProtection_SkillDomain_Data = defineSkillDomain(
     kk: 'Төтенше жағдайлар және азаматтық қорғау',
     qm: 'Acil vaziyetler ve sivil qorçalav',
   },
-  groups: [
-    conflictRelatedDangers_SkillGroup_Data,
-    evacuationAndShelter_SkillGroup_Data,
-    naturalAndTechnologicalDisasters_SkillGroup_Data,
-    preparednessAndAlerts_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      conflictRelatedDangers: conflictRelatedDangers_SkillGroup_Data,
+      evacuationAndShelter: evacuationAndShelter_SkillGroup_Data,
+      naturalAndTechnologicalDisasters: naturalAndTechnologicalDisasters_SkillGroup_Data,
+      preparednessAndAlerts: preparednessAndAlerts_SkillGroup_Data,
+    },
+    order: [
+      'conflictRelatedDangers',
+      'evacuationAndShelter',
+      'naturalAndTechnologicalDisasters',
+      'preparednessAndAlerts',
+    ],
+  },
   description: {
     methodological:
       'Collective hazards can overwhelm normal routines and require verified alerts, protective shelter, evacuation, and coordination with responders. Local regulations and emergency numbers belong to contextual lessons, not permanent country-specific Skill identities.',

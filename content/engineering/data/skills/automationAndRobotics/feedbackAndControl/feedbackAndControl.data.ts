@@ -42,13 +42,22 @@ export const feedbackAndControl_SkillGroup_Data = defineSkillGroup({
     kk: 'Кері байланыс және басқару',
     qm: 'Keri bağ ve kontrol',
   },
-  skills: [
-    analyzeControlResponse_Skill_Data,
-    controlArchitectureTradeOffs_Skill_Data,
-    feedbackControlLoops_Skill_Data,
-    openLoopControl_Skill_Data,
-    safeControlFallback_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeControlResponse: analyzeControlResponse_Skill_Data,
+      controlArchitectureTradeOffs: controlArchitectureTradeOffs_Skill_Data,
+      feedbackControlLoops: feedbackControlLoops_Skill_Data,
+      openLoopControl: openLoopControl_Skill_Data,
+      safeControlFallback: safeControlFallback_Skill_Data,
+    },
+    order: [
+      'analyzeControlResponse',
+      'controlArchitectureTradeOffs',
+      'feedbackControlLoops',
+      'openLoopControl',
+      'safeControlFallback',
+    ],
+  },
   description: {
     methodological:
       'A controlled process needs commands, observations and actuation; feedback can improve regulation but also create delay or oscillation.',

@@ -40,7 +40,14 @@ export const historicalGeography_SkillGroup_Data = defineSkillGroup({
     kk: 'Тарихи география',
     qm: 'Tarihiy coğrafiya',
   },
-  skills: [environmentOfAncientSocieties_Skill_Data, historicalMaps_Skill_Data, migrationAndSettlement_Skill_Data],
+  skills: {
+    items: {
+      environmentOfAncientSocieties: environmentOfAncientSocieties_Skill_Data,
+      historicalMaps: historicalMaps_Skill_Data,
+      migrationAndSettlement: migrationAndSettlement_Skill_Data,
+    },
+    order: ['environmentOfAncientSocieties', 'historicalMaps', 'migrationAndSettlement'],
+  },
   description: {
     methodological:
       'Landscapes, climate, distances, and routes inform reconstructions of settlement and exchange without assuming geography determines history.',

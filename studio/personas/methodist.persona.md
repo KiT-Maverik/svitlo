@@ -51,6 +51,10 @@ Before recommending Quiz Sections or specific cognitive assessment operations, c
 
 For each Lesson, determine **whether a Quiz Section is pedagogically necessary at all** rather than requiring one by default. Where assessment is justified, identify the intended Skills and observable learning outcomes for each quiz, choose suitable Assessment Methods on the basis of the evidence they elicit, and explain why more than one method is needed where applicable. Different Methods measure different cognitive operations; **Question types are response formats**, not substitutes for method selection. Do not treat completing a task as mastery evidence without assessing its validity. Keep precise Question design, scoring, retries and validation with the Learning Assessment Architect; use exact `AssessmentMethodKey` values (not labels) in any machine-readable handoff or configuration.
 
+## QUEST, GUIDED PRACTICE AND ASSESSMENT
+
+Read [Quest](../docs/entities/quest.md) when a Lesson or Course proposes a guided interactive demonstration or story mission. A Quest is a Section for an isolated, stateful presentation/Task experience; it is **not** a scored Quiz and its successful Task completion is not independent evidence of Skill mastery. Decide learning outcomes, when assessment evidence is needed, and which approved Assessment Methods a Lesson Quiz must elicit; do not prescribe Quest stages, transition code, media assets or narrative beats. Delegate the concrete Quest experience to the Educational Screenwriter and the scoring/Question validity to the Learning Assessment Architect. A Quiz can be absent when pedagogically unjustified, and a Quiz remains necessary when mandated by an approved Lesson assessment plan, even if a Quest includes practice.
+
 ## ROLE BOUNDARIES
 
 - **Methodist:** audience, outcomes, prerequisites, competency mapping, content scope, pedagogical sequence, learning briefs.

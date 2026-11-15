@@ -41,14 +41,24 @@ export const marketingAndTrade_SkillDomain_Data = defineSkillDomain({
     kk: 'Маркетинг және сауда',
     qm: 'Marketing ve ticaret',
   },
-  groups: [
-    advertisingAndCommunications_SkillGroup_Data,
-    marketResearch_SkillGroup_Data,
-    pricingPromotionsAndFairness_SkillGroup_Data,
-    productAndValueProposition_SkillGroup_Data,
-    retailMerchandising_SkillGroup_Data,
-    salesChannelsAndDistribution_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      advertisingAndCommunications: advertisingAndCommunications_SkillGroup_Data,
+      marketResearch: marketResearch_SkillGroup_Data,
+      pricingPromotionsAndFairness: pricingPromotionsAndFairness_SkillGroup_Data,
+      productAndValueProposition: productAndValueProposition_SkillGroup_Data,
+      retailMerchandising: retailMerchandising_SkillGroup_Data,
+      salesChannelsAndDistribution: salesChannelsAndDistribution_SkillGroup_Data,
+    },
+    order: [
+      'advertisingAndCommunications',
+      'marketResearch',
+      'pricingPromotionsAndFairness',
+      'productAndValueProposition',
+      'retailMerchandising',
+      'salesChannelsAndDistribution',
+    ],
+  },
   description: {
     methodological:
       'Marketing examines how firms identify needs, develop offers, and communicate their value. Retail environments, price incentives, and fair influence on buyers are analyzed separately.',

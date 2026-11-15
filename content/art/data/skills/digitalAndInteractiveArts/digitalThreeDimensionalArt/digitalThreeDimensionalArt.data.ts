@@ -41,12 +41,20 @@ export const digitalThreeDimensionalArt_SkillGroup_Data = defineSkillGroup({
     kk: 'Үшөлшемді цифрлық өнер',
     qm: 'Modelleme, material, yarıq ve kompozitsiya vastasınen ifadeleyici sanal meydanlar qurmaq',
   },
-  skills: [
-    applyDigitalThreeDimensionalMaterials_Skill_Data,
-    composeADigitalThreeDimensionalScene_Skill_Data,
-    lightADigitalThreeDimensionalScene_Skill_Data,
-    modelDigitalThreeDimensionalForms_Skill_Data,
-  ],
+  skills: {
+    items: {
+      applyDigitalThreeDimensionalMaterials: applyDigitalThreeDimensionalMaterials_Skill_Data,
+      composeADigitalThreeDimensionalScene: composeADigitalThreeDimensionalScene_Skill_Data,
+      lightADigitalThreeDimensionalScene: lightADigitalThreeDimensionalScene_Skill_Data,
+      modelDigitalThreeDimensionalForms: modelDigitalThreeDimensionalForms_Skill_Data,
+    },
+    order: [
+      'applyDigitalThreeDimensionalMaterials',
+      'composeADigitalThreeDimensionalScene',
+      'lightADigitalThreeDimensionalScene',
+      'modelDigitalThreeDimensionalForms',
+    ],
+  },
   description: {
     methodological:
       'A digital scene requires modeling of volume, material appearance, lighting and viewpoint; the focus is expressive representation, not implementing a rendering engine.',

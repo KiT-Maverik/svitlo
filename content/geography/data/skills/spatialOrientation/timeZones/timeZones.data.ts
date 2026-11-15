@@ -43,14 +43,25 @@ export const timeZones_SkillGroup_Data = defineSkillGroup({
     kk: 'Уақыт белдеулері',
     qm: 'Vaqıt quşaqları',
   },
-  skills: [
-    determineCivilTimeUsingASpecifiedUTCOffset_Skill_Data,
-    explainSeasonalChangesToCivilClockTime_Skill_Data,
-    explainTheConceptOfLocalCivilTime_Skill_Data,
-    explainWhyLocalSolarTimeVariesWithLongitude_Skill_Data,
-    interpretCalendarDateChangesAcrossTheInternationalDateLine_Skill_Data,
-    interpretTimeZonesOnAGeographicMap_Skill_Data,
-  ],
+  skills: {
+    items: {
+      determineCivilTimeUsingASpecifiedUTCOffset: determineCivilTimeUsingASpecifiedUTCOffset_Skill_Data,
+      explainSeasonalChangesToCivilClockTime: explainSeasonalChangesToCivilClockTime_Skill_Data,
+      explainTheConceptOfLocalCivilTime: explainTheConceptOfLocalCivilTime_Skill_Data,
+      explainWhyLocalSolarTimeVariesWithLongitude: explainWhyLocalSolarTimeVariesWithLongitude_Skill_Data,
+      interpretCalendarDateChangesAcrossTheInternationalDateLine:
+        interpretCalendarDateChangesAcrossTheInternationalDateLine_Skill_Data,
+      interpretTimeZonesOnAGeographicMap: interpretTimeZonesOnAGeographicMap_Skill_Data,
+    },
+    order: [
+      'determineCivilTimeUsingASpecifiedUTCOffset',
+      'explainSeasonalChangesToCivilClockTime',
+      'explainTheConceptOfLocalCivilTime',
+      'explainWhyLocalSolarTimeVariesWithLongitude',
+      'interpretCalendarDateChangesAcrossTheInternationalDateLine',
+      'interpretTimeZonesOnAGeographicMap',
+    ],
+  },
   description: {
     methodological:
       "Earth's rotation gives different longitudes different solar timing, while societies coordinate clocks through geographically assigned civil time rules. The same place can be described by its solar time, legal time-zone assignment, UTC offset and calendar date; these are related but not interchangeable.",

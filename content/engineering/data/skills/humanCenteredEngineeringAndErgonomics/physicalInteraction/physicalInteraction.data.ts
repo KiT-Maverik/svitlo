@@ -41,12 +41,20 @@ export const physicalInteraction_SkillGroup_Data = defineSkillGroup({
     kk: 'Физикалық өзара әрекет',
     qm: 'Fiziki tesirleşüv',
   },
-  skills: [
-    designErrorResistantControls_Skill_Data,
-    evaluatePhysicalControlDiscoverability_Skill_Data,
-    evaluatePhysicalFeedback_Skill_Data,
-    testPhysicalProductUsability_Skill_Data,
-  ],
+  skills: {
+    items: {
+      designErrorResistantControls: designErrorResistantControls_Skill_Data,
+      evaluatePhysicalControlDiscoverability: evaluatePhysicalControlDiscoverability_Skill_Data,
+      evaluatePhysicalFeedback: evaluatePhysicalFeedback_Skill_Data,
+      testPhysicalProductUsability: testPhysicalProductUsability_Skill_Data,
+    },
+    order: [
+      'designErrorResistantControls',
+      'evaluatePhysicalControlDiscoverability',
+      'evaluatePhysicalFeedback',
+      'testPhysicalProductUsability',
+    ],
+  },
   description: {
     methodological:
       'Users should perceive the purpose of controls and the effects of their actions through appropriately designed physical cues.',

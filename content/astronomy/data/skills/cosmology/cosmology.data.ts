@@ -48,7 +48,13 @@ export const cosmology_SkillDomain_Data = defineSkillDomain({
       cosmicStructureAndEvolution: cosmicStructureAndEvolution_SkillGroup_Data,
       earlyUniverseModelsAndEvidence: earlyUniverseModelsAndEvidence_SkillGroup_Data,
     },
-    order: ['cosmicComponentsAndConstraints', 'cosmicExpansion', 'cosmicScales', 'cosmicStructureAndEvolution', 'earlyUniverseModelsAndEvidence'],
+    order: [
+      'cosmicComponentsAndConstraints',
+      'cosmicExpansion',
+      'cosmicScales',
+      'cosmicStructureAndEvolution',
+      'earlyUniverseModelsAndEvidence',
+    ],
   },
   description: {
     methodological:

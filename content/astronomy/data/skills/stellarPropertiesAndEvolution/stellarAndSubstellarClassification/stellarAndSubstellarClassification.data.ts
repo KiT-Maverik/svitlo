@@ -52,7 +52,14 @@ export const stellarAndSubstellarClassification_SkillGroup_Data = defineSkillGro
       stellarSpectralTypes: stellarSpectralTypes_Skill_Data,
       variableStars: variableStars_Skill_Data,
     },
-    order: ['binaryAndMultipleStars', 'brownDwarfs', 'hertzsprungRussellDiagram', 'stellarPopulations', 'stellarSpectralTypes', 'variableStars'],
+    order: [
+      'binaryAndMultipleStars',
+      'brownDwarfs',
+      'hertzsprungRussellDiagram',
+      'stellarPopulations',
+      'stellarSpectralTypes',
+      'variableStars',
+    ],
   },
   description: {
     methodological:

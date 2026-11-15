@@ -41,12 +41,20 @@ export const humanFactorsAndUserResearch_SkillGroup_Data = defineSkillGroup({
     kk: 'Адам факторлары және пайдаланушыларды зерттеу',
     qm: 'İnsan faktorları ve qullanıcı araştırmaları',
   },
-  skills: [
-    accessibleInteractionPsychology_Skill_Data,
-    cognitiveLoadInInterfaces_Skill_Data,
-    humanErrorAndSystemDesign_Skill_Data,
-    usabilityResearchMethods_Skill_Data,
-  ],
+  skills: {
+    items: {
+      accessibleInteractionPsychology: accessibleInteractionPsychology_Skill_Data,
+      cognitiveLoadInInterfaces: cognitiveLoadInInterfaces_Skill_Data,
+      humanErrorAndSystemDesign: humanErrorAndSystemDesign_Skill_Data,
+      usabilityResearchMethods: usabilityResearchMethods_Skill_Data,
+    },
+    order: [
+      'accessibleInteractionPsychology',
+      'cognitiveLoadInInterfaces',
+      'humanErrorAndSystemDesign',
+      'usabilityResearchMethods',
+    ],
+  },
   description: {
     methodological:
       'Design decisions benefit from evidence about human attention, memory, perception, workload, and error; implementation remains owned by engineering or informatics.',

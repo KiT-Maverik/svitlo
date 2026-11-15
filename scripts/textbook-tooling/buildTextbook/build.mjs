@@ -18,6 +18,7 @@ import { dirname, join, relative, resolve, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
+import { stageLessonMedia } from './stageLessonMedia.mjs';
 
 const root = resolve(process.cwd());
 const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
@@ -52,7 +53,16 @@ function filesUnder(folder, prefix = '') {
     })
     .sort();
 }
-const authored = folder => filesUnder(join(root, folder)).some(name => name.endsWith('.data.ts'));
+// An index.ts is a Lesson entrypoint only in its canonical UUID directory;
+// nested Section/ContentBlock barrel indexes are NOT standalone Lessons.
+const authored = folder =>
+  filesUnder(join(root, folder)).some(
+    name =>
+      name.endsWith('.data.ts') ||
+      (folder === 'data/lessons' &&
+        /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/index\.ts$/.test(name) &&
+        name.split('/')[1].at(-1) === name[0]),
+  );
 
 // Dependencies required for build-time content generation; none are included in
 // the runtime output. Standalone npm workspace builds start from a clean checkout.
@@ -178,6 +188,15 @@ for (const name of filesUnder(join(root, 'static'))) {
   mkdirSync(dirname(destination), { recursive: true });
   copyFileSync(join(root, 'static', name), destination);
 }
+// Stage source-local Lesson media after public/static copying so an
+// identical URL cannot silently replace a pre-existing textbook resource.
+const stagedLessonMedia = stageLessonMedia({
+  textbookRoot: root,
+  textbookId: id,
+  staticRoot: resources,
+  files: filesUnder(join(root, 'data/lessons')),
+});
+if (stagedLessonMedia) console.log('Staged ' + stagedLessonMedia + ' colocated Lesson media file(s)');
 const published = filesUnder(resources);
 for (const [source, prefix] of [
   ['data/lessons', 'data/lessons/'],

@@ -42,13 +42,16 @@ export const choicesUnderUncertainty_SkillGroup_Data = defineSkillGroup({
     kk: 'Белгісіздік жағдайындағы таңдау',
     qm: 'Belgisizlikte saylav',
   },
-  skills: [
-    baseRateNeglect_Skill_Data,
-    choiceArchitecture_Skill_Data,
-    delayDiscounting_Skill_Data,
-    lossAversion_Skill_Data,
-    riskPerception_Skill_Data,
-  ],
+  skills: {
+    items: {
+      baseRateNeglect: baseRateNeglect_Skill_Data,
+      choiceArchitecture: choiceArchitecture_Skill_Data,
+      delayDiscounting: delayDiscounting_Skill_Data,
+      lossAversion: lossAversion_Skill_Data,
+      riskPerception: riskPerception_Skill_Data,
+    },
+    order: ['baseRateNeglect', 'choiceArchitecture', 'delayDiscounting', 'lossAversion', 'riskPerception'],
+  },
   description: {
     methodological:
       'Decisions depend on reference points, delayed consequences, uncertainty, and how alternatives are presented.',

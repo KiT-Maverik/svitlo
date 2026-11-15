@@ -36,7 +36,13 @@ export const perimeterArea_SkillGroup_Data = defineSkillGroup({
     pl: 'Związek między obwodem a polem',
     uk: 'Зв’язок периметра та площі',
   },
-  skills: [areaPerimeterContrast_Skill_Data, perimeterVsArea_Skill_Data],
+  skills: {
+    items: {
+      areaPerimeterContrast: areaPerimeterContrast_Skill_Data,
+      perimeterVsArea: perimeterVsArea_Skill_Data,
+    },
+    order: ['areaPerimeterContrast', 'perimeterVsArea'],
+  },
   description: {
     methodological:
       'Perimeter measures the boundary and area measures the interior; the same value for one does not uniquely determine the other.',

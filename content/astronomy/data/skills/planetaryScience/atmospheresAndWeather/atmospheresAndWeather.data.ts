@@ -48,7 +48,12 @@ export const atmospheresAndWeather_SkillGroup_Data = defineSkillGroup({
       planetaryGreenhouseEffects: planetaryGreenhouseEffects_Skill_Data,
       planetaryWeather: planetaryWeather_Skill_Data,
     },
-    order: ['atmosphericCirculation', 'atmosphericRetentionAndEscape', 'planetaryGreenhouseEffects', 'planetaryWeather'],
+    order: [
+      'atmosphericCirculation',
+      'atmosphericRetentionAndEscape',
+      'planetaryGreenhouseEffects',
+      'planetaryWeather',
+    ],
   },
   description: {
     methodological:

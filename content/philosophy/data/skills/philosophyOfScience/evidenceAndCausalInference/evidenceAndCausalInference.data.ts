@@ -43,14 +43,24 @@ export const evidenceAndCausalInference_SkillGroup_Data = defineSkillGroup({
     kk: 'Дәлел және себептік қорытынды',
     qm: 'Deliller ve sebep-netice neticesi',
   },
-  skills: [
-    assessMeasurementValidity_Skill_Data,
-    assessSampleRepresentativeness_Skill_Data,
-    distinguishCorrelationFromCausation_Skill_Data,
-    evaluateACausalConclusionFromAStudy_Skill_Data,
-    evaluateSamplingUncertainty_Skill_Data,
-    identifyAConfoundingFactor_Skill_Data,
-  ],
+  skills: {
+    items: {
+      assessMeasurementValidity: assessMeasurementValidity_Skill_Data,
+      assessSampleRepresentativeness: assessSampleRepresentativeness_Skill_Data,
+      distinguishCorrelationFromCausation: distinguishCorrelationFromCausation_Skill_Data,
+      evaluateACausalConclusionFromAStudy: evaluateACausalConclusionFromAStudy_Skill_Data,
+      evaluateSamplingUncertainty: evaluateSamplingUncertainty_Skill_Data,
+      identifyAConfoundingFactor: identifyAConfoundingFactor_Skill_Data,
+    },
+    order: [
+      'assessMeasurementValidity',
+      'assessSampleRepresentativeness',
+      'distinguishCorrelationFromCausation',
+      'evaluateACausalConclusionFromAStudy',
+      'evaluateSamplingUncertainty',
+      'identifyAConfoundingFactor',
+    ],
+  },
   description: {
     methodological:
       'Observations become informative only through assumptions about measurement, variation, and alternative explanations. The quality of a causal conclusion is not identical to the size of an observed association.',

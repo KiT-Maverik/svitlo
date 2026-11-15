@@ -39,12 +39,15 @@ export const fluidMechanics_SkillDomain_Data = defineSkillDomain({
     kk: 'Сұйықтар мен газдар механикасы',
     qm: 'Sıyıqlıq ve gazlar mehanikası',
   },
-  groups: [
-    aerodynamics_SkillGroup_Data,
-    floatingAndBuoyancy_SkillGroup_Data,
-    hydrodynamics_SkillGroup_Data,
-    pressureInLiquidsAndGases_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      aerodynamics: aerodynamics_SkillGroup_Data,
+      floatingAndBuoyancy: floatingAndBuoyancy_SkillGroup_Data,
+      hydrodynamics: hydrodynamics_SkillGroup_Data,
+      pressureInLiquidsAndGases: pressureInLiquidsAndGases_SkillGroup_Data,
+    },
+    order: ['aerodynamics', 'floatingAndBuoyancy', 'hydrodynamics', 'pressureInLiquidsAndGases'],
+  },
   description: {
     methodological:
       "Water and air transmit pressure, flow, resist bodies' motion, and can provide buoyancy. Familiar containers, floating objects, and airflow make these phenomena accessible.",

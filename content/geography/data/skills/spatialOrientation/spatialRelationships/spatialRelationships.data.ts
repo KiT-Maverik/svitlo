@@ -40,11 +40,18 @@ export const spatialRelationships_SkillGroup_Data = defineSkillGroup({
     kk: 'Кеңістіктік байланыстар',
     qm: 'Mekâniy bağlar',
   },
-  skills: [
-    describeClusteredAndDispersedArrangements_Skill_Data,
-    distinguishAdjacencyFromProximity_Skill_Data,
-    identifyBarriersAndCorridorsBetweenPlaces_Skill_Data,
-  ],
+  skills: {
+    items: {
+      describeClusteredAndDispersedArrangements: describeClusteredAndDispersedArrangements_Skill_Data,
+      distinguishAdjacencyFromProximity: distinguishAdjacencyFromProximity_Skill_Data,
+      identifyBarriersAndCorridorsBetweenPlaces: identifyBarriersAndCorridorsBetweenPlaces_Skill_Data,
+    },
+    order: [
+      'describeClusteredAndDispersedArrangements',
+      'distinguishAdjacencyFromProximity',
+      'identifyBarriersAndCorridorsBetweenPlaces',
+    ],
+  },
   description: {
     methodological:
       'Places and features form patterns of nearness, containment, connection, concentration, and separation. These relationships matter even when the exact names of the locations change.',

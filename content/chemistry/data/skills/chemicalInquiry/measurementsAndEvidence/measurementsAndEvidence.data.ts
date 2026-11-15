@@ -42,13 +42,22 @@ export const measurementsAndEvidence_SkillGroup_Data = defineSkillGroup({
     kk: 'Өлшеулер мен дәлелдер',
     qm: 'Ölçevler ve deliller',
   },
-  skills: [
-    chemicalDataInterpretation_Skill_Data,
-    measurementUncertainty_Skill_Data,
-    measuringMass_Skill_Data,
-    measuringVolume_Skill_Data,
-    observingChemicalProperties_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chemicalDataInterpretation: chemicalDataInterpretation_Skill_Data,
+      measurementUncertainty: measurementUncertainty_Skill_Data,
+      measuringMass: measuringMass_Skill_Data,
+      measuringVolume: measuringVolume_Skill_Data,
+      observingChemicalProperties: observingChemicalProperties_Skill_Data,
+    },
+    order: [
+      'chemicalDataInterpretation',
+      'measurementUncertainty',
+      'measuringMass',
+      'measuringVolume',
+      'observingChemicalProperties',
+    ],
+  },
   description: {
     methodological:
       'Chemical conclusions depend on measured quantities, recorded conditions and the distinction between observed patterns and explanatory claims.',
