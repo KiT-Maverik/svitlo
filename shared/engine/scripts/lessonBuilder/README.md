@@ -102,6 +102,9 @@ change `params.languages` or invent translations.
     placeholders. The technical YAML must contain the real source-language
     learner text/code before scaffolding, authored through the approved
     editorial workflow. A production specification is not a replacement.
+  - Existing Playground Markdown sources were migrated from
+    `locales/<language>.md` to `locale/<language>.md` with byte-for-byte
+    identical Git blobs. The old folder shape is no longer supported.
   - `check` compares exact bytes of the extracted sources; `generate`
     never changes existing author-edited source files or a Lesson that already
     has a root entrypoint. Pending/missing Config is not filled with fake
