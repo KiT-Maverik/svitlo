@@ -5,6 +5,7 @@ export const identifyStructuralBuildingSystems_Skill_Data = defineSkill({
   id: '61f80161-5c2d-4686-a6a7-ffeb63d8e7d2',
   name: {
     en: 'Identify structural building systems',
+    it: 'Individuare i sistemi strutturali degli edifici',
     zh: '识别建筑承重体系',
     hi: 'भवन की भारवाही प्रणालियाँ पहचानें',
     es: 'Identificar sistemas estructurales de edificios',
@@ -38,6 +39,7 @@ export const identifyStructuralBuildingSystems_Skill_Data = defineSkill({
     methodological: 'Distinguish frames or load-bearing walls from internal partitions.',
     frontend: {
       en: 'Distinguish load-bearing frames or walls from ordinary partitions.',
+      it: 'Distingui telai e pareti portanti dalle normali pareti divisorie.',
       zh: '区分承重框架和墙体与普通隔墙。',
       hi: 'भार उठाने वाले फ्रेम या दीवारों को साधारण विभाजन दीवारों से अलग करें।',
       es: 'Distingue marcos y muros portantes de simples tabiques.',
