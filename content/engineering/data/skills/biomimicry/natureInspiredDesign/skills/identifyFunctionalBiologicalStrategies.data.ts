@@ -5,6 +5,7 @@ export const identifyFunctionalBiologicalStrategies_Skill_Data = defineSkill({
   id: '73f610ce-014c-420b-8bc5-07c49e14c201',
   name: {
     en: 'Identify functional biological strategies',
+    it: 'Individuare strategie funzionali biologiche',
     zh: '识别生物的功能策略',
     hi: 'जैविक कार्यात्मक रणनीतियों की पहचान',
     es: 'Identificar estrategias biológicas funcionales',
@@ -39,6 +40,7 @@ export const identifyFunctionalBiologicalStrategies_Skill_Data = defineSkill({
       'Describe the useful effect of a natural structure without portraying evolution as intentional invention.',
     frontend: {
       en: 'Identify how a living organism solves a functional problem.',
+      it: 'Individua come un organismo vivente risolve un problema funzionale.',
       zh: '找出生物如何解决某种功能问题。',
       hi: 'पहचानें कि कोई जीव कार्य से जुड़ी समस्या कैसे हल करता है।',
       es: 'Reconoce cómo un organismo resuelve un problema funcional.',
