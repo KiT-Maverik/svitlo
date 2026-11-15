@@ -5,6 +5,7 @@ export const comparePositionsAcrossPhilosophicalTraditions_Skill_Data = defineSk
   id: '85cadfad-83bb-4143-bb3c-66457a53eb17',
   name: {
     en: 'Compare positions across philosophical traditions',
+    it: 'Confrontare posizioni di diverse tradizioni filosofiche',
     zh: '比较不同哲学传统中的立场',
     hi: 'विभिन्न दार्शनिक परंपराओं के मतों की तुलना',
     es: 'Comparar posiciones entre tradiciones filosóficas',
@@ -39,6 +40,7 @@ export const comparePositionsAcrossPhilosophicalTraditions_Skill_Data = defineSk
       "Identify a genuine shared problem and meaningful conceptual differences without forcing one tradition's categories onto another.",
     frontend: {
       en: 'Compare how different traditions address similar philosophical questions.',
+      it: 'Confronta il modo in cui tradizioni diverse affrontano domande filosofiche simili.',
       zh: '比较不同传统如何回答相似的哲学问题。',
       hi: 'देखो कि अलग परंपराएँ समान दार्शनिक प्रश्नों का उत्तर कैसे देती हैं।',
       es: 'Compara cómo distintas tradiciones abordan preguntas filosóficas similares.',
