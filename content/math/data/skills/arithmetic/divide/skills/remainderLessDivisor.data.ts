@@ -11,6 +11,7 @@ export const remainderLessDivisor_Skill_Data = defineSkill({
     ka: 'გაყოფა — ნაშთი გამყოფზე ნაკლებია',
     kk: 'Бөлу — қалдық бөлгіштен кіші',
     en: 'Division — Remainder less than divisor',
+    it: 'Divisione — Resto minore del divisore',
     qm: 'Bölüv — bölüciden kiçik qaldıq',
     zh: '除法 — 余数小于除数',
     hi: 'भाग — शेषफल भाजक से कम',
@@ -39,6 +40,7 @@ export const remainderLessDivisor_Skill_Data = defineSkill({
       'For a positive divisor b, the canonical nonnegative remainder satisfies 0 <= r < b. A remainder at least as large as the divisor means another complete group is still possible.',
     frontend: {
       en: 'When dividing whole numbers by a positive number, the remainder must be at least zero and smaller than the divisor.',
+      it: 'Quando dividi numeri interi per un numero positivo, il resto deve essere maggiore o uguale a zero e minore del divisore.',
       qm: 'Tam sayılarnı musbet sayığa bölgen de qaldıq sıfırdan az olamay ve er vaqıt bölüciden kiçik olmalı.',
       zh: '正数作除数进行整数除法时，余数必须不小于零且小于除数。',
       hi: 'धनात्मक भाजक से पूर्णांक भाग में शेष शून्य या अधिक और भाजक से कम होना चाहिए।',
