@@ -9,6 +9,7 @@ export const transportWaterAndOutdoorSafety_SkillDomain_Data = defineSkillDomain
   id: 'f3c8bf08-9e87-49bb-85e2-bcf4006b6f8f',
   title: {
     en: 'Transport, Water and Outdoor Safety',
+    it: 'Sicurezza nei trasporti, in acqua e all\'aperto',
     zh: '交通、水域与户外安全',
     hi: 'यातायात, जल और बाहरी सुरक्षा',
     es: 'Seguridad en el transporte, el agua y al aire libre',
@@ -38,19 +39,17 @@ export const transportWaterAndOutdoorSafety_SkillDomain_Data = defineSkillDomain
     kk: 'Көлік, су және дала қауіпсіздігі',
     qm: 'Ulaşım, suv ve tışarıda havfsızlıq',
   },
-  groups: {
-    items: {
-      roadAndTransportSafety: roadAndTransportSafety_SkillGroup_Data,
-      waterSafety: waterSafety_SkillGroup_Data,
-      weatherAndNatureHazards: weatherAndNatureHazards_SkillGroup_Data,
-    },
-    order: ['roadAndTransportSafety', 'waterSafety', 'weatherAndNatureHazards'],
-  },
+  groups: [
+    roadAndTransportSafety_SkillGroup_Data,
+    waterSafety_SkillGroup_Data,
+    weatherAndNatureHazards_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Movement outside controlled environments combines traffic rules, environmental conditions, and limited opportunities for immediate rescue. This domain addresses safe decisions rather than vehicle engineering.',
     frontend: {
       en: 'Explore safe decisions when traveling, swimming and spending time outdoors.',
+      it: 'Esplora come prendere decisioni sicure in viaggio, durante il nuoto e nelle attività all\'aperto.',
       zh: '探索出行、游泳和户外活动时如何作出安全选择。',
       hi: 'यात्रा, तैराकी और बाहर समय बिताते समय सुरक्षित निर्णय लेना सीखें।',
       es: 'Explora decisiones seguras al viajar, nadar y pasar tiempo al aire libre.',

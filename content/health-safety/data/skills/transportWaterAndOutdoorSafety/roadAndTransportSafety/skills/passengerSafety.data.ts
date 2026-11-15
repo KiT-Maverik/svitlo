@@ -5,6 +5,7 @@ export const passengerSafety_Skill_Data = defineSkill({
   id: '4519513e-22fa-42ce-89a5-cc6c425a6676',
   name: {
     en: 'Passenger safety',
+    it: 'Sicurezza dei passeggeri',
     zh: '乘客安全',
     hi: 'यात्री सुरक्षा',
     es: 'Seguridad de los pasajeros',
@@ -39,6 +40,7 @@ export const passengerSafety_Skill_Data = defineSkill({
       'Recognize the role of seat belts, appropriate child restraints, safe boarding, and behavior in moving vehicles.',
     frontend: {
       en: 'Understand the protective purpose of seat belts and child restraints.',
+      it: 'Comprendi la funzione protettiva delle cinture di sicurezza e dei sistemi di ritenuta per bambini.',
       zh: '理解安全带与儿童约束系统的保护作用。',
       hi: 'सीट बेल्ट और बच्चों की सुरक्षा सीटों के सुरक्षात्मक उद्देश्य समझें।',
       es: 'Comprende cómo protegen los cinturones y los sistemas de retención infantil.',

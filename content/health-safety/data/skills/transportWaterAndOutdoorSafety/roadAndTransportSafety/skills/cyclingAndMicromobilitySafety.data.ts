@@ -5,6 +5,7 @@ export const cyclingAndMicromobilitySafety_Skill_Data = defineSkill({
   id: 'e18ffe7a-9700-4dd0-bf6d-72416b598e9d',
   name: {
     en: 'Cycling and micromobility safety',
+    it: 'Sicurezza in bicicletta e nella micromobilità',
     zh: '骑行与微出行安全',
     hi: 'साइकिल और सूक्ष्म परिवहन सुरक्षा',
     es: 'Seguridad ciclista y en micromovilidad',
@@ -39,6 +40,7 @@ export const cyclingAndMicromobilitySafety_Skill_Data = defineSkill({
       'Use protective equipment, safe positioning, visibility, and context-appropriate road rules for bicycles and similar devices.',
     frontend: {
       en: 'Use appropriate protection and visibility when cycling or using micromobility.',
+      it: 'Usa protezioni e accorgimenti per essere visibile quando vai in bicicletta o utilizzi mezzi di micromobilità.',
       zh: '骑行或使用小型代步工具时，采用合适的防护和醒目标识。',
       hi: 'साइकिल या छोटे वाहन चलाते समय उचित सुरक्षा और दृश्यता सुनिश्चित करें।',
       es: 'Usa protección adecuada y hazte visible al ir en bicicleta o micromovilidad.',

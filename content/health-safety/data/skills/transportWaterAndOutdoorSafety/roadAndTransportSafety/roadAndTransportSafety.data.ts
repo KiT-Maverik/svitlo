@@ -12,6 +12,7 @@ export const roadAndTransportSafety_SkillGroup_Data = defineSkillGroup({
   id: '6eb3608b-9d34-41a1-b452-ba8e1cd8a593',
   name: {
     en: 'Road and Transport Safety',
+    it: 'Sicurezza stradale e nei trasporti',
     zh: '道路与交通安全',
     hi: 'सड़क और यातायात सुरक्षा',
     es: 'Seguridad vial y del transporte',
@@ -41,20 +42,18 @@ export const roadAndTransportSafety_SkillGroup_Data = defineSkillGroup({
     kk: 'Жол және көлік қауіпсіздігі',
     qm: 'Yol ve ulaşım havfsızlığı',
   },
-  skills: {
-    items: {
-      cyclingAndMicromobilitySafety: cyclingAndMicromobilitySafety_Skill_Data,
-      passengerSafety: passengerSafety_Skill_Data,
-      pedestrianRoadSafety: pedestrianRoadSafety_Skill_Data,
-      safeDrivingDecisions: safeDrivingDecisions_Skill_Data,
-    },
-    order: ['cyclingAndMicromobilitySafety', 'passengerSafety', 'pedestrianRoadSafety', 'safeDrivingDecisions'],
-  },
+  skills: [
+    cyclingAndMicromobilitySafety_Skill_Data,
+    passengerSafety_Skill_Data,
+    pedestrianRoadSafety_Skill_Data,
+    safeDrivingDecisions_Skill_Data,
+  ],
   description: {
     methodological:
       'Protection differs for pedestrians, riders, passengers, and drivers; visible signals and protective equipment do not remove every traffic risk.',
     frontend: {
       en: 'Learn how road risks differ for pedestrians, passengers and vehicle users.',
+      it: 'Impara come i rischi stradali differiscono per pedoni, passeggeri e conducenti di veicoli.',
       zh: '了解行人、乘客与车辆使用者面临的不同道路风险。',
       hi: 'जानें कि पैदल यात्रियों, यात्रियों और वाहन चलाने वालों के सड़क जोखिम कैसे अलग हैं।',
       es: 'Conoce cómo cambian los riesgos viales para peatones, pasajeros y conductores.',

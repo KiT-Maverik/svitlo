@@ -5,6 +5,7 @@ export const respondToAPersonInDangerInWater_Skill_Data = defineSkill({
   id: '42d084c2-b8af-4d65-a5c9-cc8c1b011b79',
   name: {
     en: 'Respond to a person in danger in water',
+    it: 'Soccorrere una persona in pericolo in acqua',
     zh: '救助水中遇险者的安全应对',
     hi: 'पानी में संकटग्रस्त व्यक्ति की सुरक्षित सहायता',
     es: 'Responder ante una persona en peligro en el agua',
@@ -39,6 +40,7 @@ export const respondToAPersonInDangerInWater_Skill_Data = defineSkill({
       'Call for help and use safe reach-or-throw assistance where appropriate without putting an untrained rescuer into the water.',
     frontend: {
       en: 'Seek help and use safe non-entry assistance for someone in water danger.',
+      it: 'Chiedi aiuto e presta assistenza sicura senza entrare in acqua a una persona in pericolo.',
       zh: '寻求救援，优先采用岸上非下水援助方式。',
       hi: 'मदद बुलाएँ और पानी में उतरे बिना सुरक्षित सहायता दें।',
       es: 'Pide ayuda y ofrece asistencia segura sin entrar al agua.',
