@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { renderAssessmentResourceFiles, type AssessmentPublicationEntry } from './renderAssessmentResourceFiles.utils';
+import { mergeAssessmentResourceFiles, renderAssessmentResourceFiles, type AssessmentPublicationEntry } from './renderAssessmentResourceFiles.utils';
 
 const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const questionId = '08c3bae5-081a-5afc-bccf-e44078e137f2';
@@ -92,3 +92,22 @@ test('serialized bytes are independent of authored object insertion order', () =
   };
   assert.deepEqual([...renderAssessmentResourceFiles([first])], [...renderAssessmentResourceFiles([reordered])]);
 });
+
+
+test('merges independently produced Question/Flashcard stages into one non-duplicated manifest', () => {
+  const questionStage = renderAssessmentResourceFiles([question()]);
+  const flashcardStage = renderAssessmentResourceFiles([card()]);
+  const combined = mergeAssessmentResourceFiles([questionStage, flashcardStage]);
+  const manifestPath = 'c/' + lessonId + '/assessment-manifest.json';
+  const combinedManifest = JSON.parse(combined.get(manifestPath)!);
+  assert.deepEqual(Object.keys(combinedManifest.entries).sort(), [cardId, questionId].sort());
+  assert.equal(combinedManifest.entries[questionId].kind, 'question');
+  assert.equal(combinedManifest.entries[cardId].kind, 'flashcard');
+  assert.equal(combined.size, questionStage.size + flashcardStage.size - 1);
+  assert.deepEqual([...combined], [...mergeAssessmentResourceFiles([flashcardStage, questionStage])]);
+  assert.throws(() => mergeAssessmentResourceFiles([questionStage, questionStage]), /Duplicate Assessment UUID across stages/);
+  const noManifest = new Map(questionStage);
+  noManifest.delete(manifestPath);
+  assert.throws(() => mergeAssessmentResourceFiles([noManifest]), /Unindexed Assessment resource/);
+});
+

@@ -138,3 +138,90 @@ export function renderAssessmentResourceFiles(entries: readonly AssessmentPublic
   }
   return files;
 }
+
+
+/**
+ * Compose separately generated Question and Flashcard batches without touching
+ * their source files. A bank stage may emit only its own kind; the final static
+ * publisher must merge metadata manifests rather than letting the last writer
+ * replace another bank's manifest.
+ *
+ * Inputs are already-rendered, relative assessment file maps. All assets remain
+ * individual immutable resources, not embedded inside the merged metadata.
+ */
+export function mergeAssessmentResourceFiles(
+  batches: readonly ReadonlyMap<string, string>[],
+): AssessmentPublicationFiles {
+  const merged = new Map<string, string>();
+  const owners = new Map<string, Record<string, AssessmentResourceEntry>>();
+  const assets: { filename: string; lessonId: string; itemId: string; kind: AssessmentResourceKind; locale: string }[] = [];
+
+  for (const batch of batches) {
+    for (const [filename, body] of batch) {
+      if (typeof body !== 'string') throw new Error('Invalid Assessment resource body: ' + filename);
+      const manifestMatch = /^([a-f0-9])\/([a-f0-9-]{36})\/assessment-manifest\.json$/.exec(filename);
+      if (manifestMatch) {
+        const [, bucket, lessonId] = manifestMatch;
+        if (resolveEntityPath(lessonId) !== bucket + '/' + lessonId) {
+          throw new Error('Invalid Assessment manifest path: ' + filename);
+        }
+        const manifest = assessmentResourceManifest_Schema.parse(JSON.parse(body));
+        if (manifest.lessonId !== lessonId) throw new Error('Assessment manifest owner mismatch: ' + filename);
+        const entries = owners.get(lessonId) ?? {};
+        for (const [id, item] of Object.entries(manifest.entries)) {
+          if (Object.hasOwn(entries, id)) throw new Error('Duplicate Assessment UUID across stages: ' + id);
+          entries[id] = item;
+        }
+        owners.set(lessonId, entries);
+        continue;
+      }
+      const assetMatch =
+        /^([a-f0-9])\/([a-f0-9-]{36})\/(questions|flashcards)\/([a-f0-9-]{36})\/(base|[a-z]{2})\.json$/.exec(
+          filename,
+        );
+      if (!assetMatch) throw new Error('Invalid Assessment resource path: ' + filename);
+      const [, bucket, lessonId, collection, itemId, locale] = assetMatch;
+      if (resolveEntityPath(lessonId) !== bucket + '/' + lessonId || resolveEntityPath(itemId).split('/')[1] !== itemId) {
+        throw new Error('Invalid Assessment UUID path: ' + filename);
+      }
+      if (merged.has(filename)) throw new Error('Duplicate Assessment resource file: ' + filename);
+      JSON.parse(body); // Refuse malformed input rather than publishing an apparently complete file.
+      merged.set(filename, body);
+      assets.push({
+        filename,
+        lessonId,
+        itemId,
+        kind: collection === 'questions' ? 'question' : 'flashcard',
+        locale,
+      });
+    }
+  }
+  const assetFiles = new Set(assets.map(asset => asset.filename));
+  for (const asset of assets) {
+    const entry = owners.get(asset.lessonId)?.[asset.itemId];
+    if (!entry || entry.kind !== asset.kind || entry.lessonId !== asset.lessonId) {
+      throw new Error('Unindexed Assessment resource file: ' + asset.filename);
+    }
+    if (asset.locale !== 'base' && !entry.localeFiles?.includes(asset.locale as LanguageCode)) {
+      throw new Error('Assessment locale file is not declared in manifest: ' + asset.filename);
+    }
+  }
+  for (const [lessonId, entries] of owners) {
+    const lessonPath = resolveEntityPath(lessonId);
+    for (const [id, entry] of Object.entries(entries)) {
+      const folder = lessonPath + '/' + (entry.kind === 'question' ? 'questions' : 'flashcards') + '/' + id;
+      if (!assetFiles.has(folder + '/base.json')) throw new Error('Assessment resource base is missing: ' + folder);
+      for (const locale of entry.localeFiles ?? []) {
+        if (!assetFiles.has(folder + '/' + locale + '.json')) {
+          throw new Error('Assessment resource locale is missing: ' + folder + '/' + locale);
+        }
+      }
+    }
+    const manifest = assessmentResourceManifest_Schema.parse({
+      lessonId,
+      entries: Object.fromEntries(Object.entries(entries).sort(([left], [right]) => compare(left, right))),
+    });
+    merged.set(lessonPath + '/assessment-manifest.json', JSON.stringify(manifest, null, 2) + '\n');
+  }
+  return new Map([...merged].sort(([a], [b]) => compare(a, b)));
+}
