@@ -5,6 +5,7 @@ export const priceElasticityOfDemand_Skill_Data = defineSkill({
   id: '17a5e25d-f94d-4f1b-93fb-b50feb3e6784',
   name: {
     en: 'Price Elasticity of Demand',
+    it: 'Elasticità della domanda rispetto al prezzo',
     zh: '需求价格弹性',
     hi: 'माँग की कीमत लोच',
     es: 'Elasticidad precio de la demanda',
@@ -39,6 +40,7 @@ export const priceElasticityOfDemand_Skill_Data = defineSkill({
       'Evaluate the proportional change in quantity demanded following a price change and distinguish elasticity from the slope of the demand curve.',
     frontend: {
       en: 'Measure how strongly buying responds to a change in price.',
+      it: 'Misura quanto la domanda di acquisto reagisce a una variazione del prezzo.',
       zh: '衡量购买数量对价格变化的敏感程度。',
       hi: 'मापें कि कीमत बदलने से खरीद की मात्रा कितनी बदलती है।',
       es: 'Mide cuánto cambia la cantidad comprada cuando cambia el precio.',

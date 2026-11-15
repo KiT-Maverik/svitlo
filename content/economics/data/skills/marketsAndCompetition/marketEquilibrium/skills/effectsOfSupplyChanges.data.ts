@@ -5,6 +5,7 @@ export const effectsOfSupplyChanges_Skill_Data = defineSkill({
   id: '11277020-a12a-4b23-b314-a504246cee7f',
   name: {
     en: 'Effects of Changes in Supply',
+    it: "Effetti delle variazioni dell'offerta",
     zh: '供给变化的影响',
     hi: 'आपूर्ति बदलने के प्रभाव',
     es: 'Efectos de cambios en la oferta',
@@ -39,6 +40,7 @@ export const effectsOfSupplyChanges_Skill_Data = defineSkill({
       'Predict the direction of equilibrium price and quantity changes following a supply shift under specified demand conditions.',
     frontend: {
       en: 'Explore how changing supply can affect prices and quantities.',
+      it: "Esplora come i cambiamenti dell'offerta possono influenzare prezzi e quantità.",
       zh: '探索供给变化如何影响价格和数量。',
       hi: 'जानें कि आपूर्ति बदलने से कीमत और मात्रा कैसे प्रभावित होती हैं।',
       es: 'Explora cómo los cambios en la oferta afectan precios y cantidades.',
