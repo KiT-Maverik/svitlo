@@ -5,6 +5,7 @@ export const followMusicalPhrases_Skill_Data = defineSkill({
   id: '7e1474fe-182d-4854-b5a4-899670aa094f',
   name: {
     en: 'Follow Musical Phrases',
+    it: 'Seguire le frasi musicali',
     zh: '跟随乐句',
     hi: 'संगीत वाक्यांशों का अनुसरण करें',
     es: 'Seguir frases musicales',
@@ -38,6 +39,7 @@ export const followMusicalPhrases_Skill_Data = defineSkill({
     methodological: 'Perceive the beginnings, continuations and closures of recognizable musical ideas.',
     frontend: {
       en: 'Follow where a musical idea starts, develops and comes to a close.',
+      it: 'Segui dove un\'idea musicale inizia, si sviluppa e si conclude.',
       zh: '跟随一个音乐主题的开始、发展和结束。',
       hi: 'संगीत के विचार की शुरुआत, विकास और समापन को पहचानते हुए उसका अनुसरण करें।',
       es: 'Sigue dónde comienza una idea musical, cómo se desarrolla y cómo termina.',
