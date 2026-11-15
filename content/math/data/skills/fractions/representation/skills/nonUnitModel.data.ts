@@ -5,6 +5,7 @@ export const nonUnitModel_Skill_Data = defineSkill({
   id: 'ee8b4be0-4de7-4f66-9a05-7eca8f524caa',
   name: {
     en: 'Modeling fractions with multiple equal parts',
+    it: 'Rappresentare frazioni formate da più parti uguali',
     qm: 'Bir qaç teñ parçağa ait kesirlerni modellermek',
     lt: 'Trupmenų iš kelių lygių dalių modeliavimas',
     lv: 'Daļu modelēšana ar vairākām vienādām daļām',
@@ -39,6 +40,7 @@ export const nonUnitModel_Skill_Data = defineSkill({
       'The fraction a/b combines a selected count a of unit parts with their size 1/b for nonzero b. All parts refer to the same whole, and the numerator may equal or exceed the denominator.',
     frontend: {
       en: 'Combine several equal parts of the same whole to show a fraction such as 3/4. The number of parts can reach or exceed one whole.',
+      it: 'Unisci più parti uguali dello stesso intero per rappresentare una frazione come 3/4. Il numero di parti può raggiungere o superare un intero.',
       qm: 'Aynı bütünniñ bir qaç teñ parçasını birleştirip 3/4 kibi kesirni köster. Parçalar sayısı bir bütünni toltura ya da aşa bile.',
       zh: '把同一整体的几个等份合在一起表示3/4这样的分数；所取部分也可能达到或超过一个整体。',
       hi: 'एक ही पूरे के कई बराबर भाग मिलाकर 3/4 जैसा भिन्न दिखाएँ। हिस्से मिलकर एक पूरा या उससे अधिक भी हो सकते हैं।',
