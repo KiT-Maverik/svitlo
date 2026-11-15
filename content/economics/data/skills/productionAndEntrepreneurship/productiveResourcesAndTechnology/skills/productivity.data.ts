@@ -5,6 +5,7 @@ export const productivity_Skill_Data = defineSkill({
   id: '92fa2ed1-19b8-439a-82bc-df6cb090ceb3',
   name: {
     en: 'Productivity',
+    it: 'Produttività',
     zh: '生产率',
     hi: 'उत्पादकता',
     es: 'Productividad',
@@ -39,6 +40,7 @@ export const productivity_Skill_Data = defineSkill({
       'Measure output relative to a production input and distinguish labor productivity from total factor productivity.',
     frontend: {
       en: 'Explore how much output is produced from the resources used.',
+      it: 'Esplora quanta produzione si ottiene dalle risorse utilizzate.',
       zh: '探索使用一定资源能生产多少产出。',
       hi: 'जानें कि प्रयुक्त संसाधनों से कितनी मात्रा का उत्पादन होता है।',
       es: 'Explora cuánto se produce con los recursos utilizados.',
