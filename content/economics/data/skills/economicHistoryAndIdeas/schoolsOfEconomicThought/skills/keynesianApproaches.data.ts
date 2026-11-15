@@ -5,6 +5,7 @@ export const keynesianApproaches_Skill_Data = defineSkill({
   id: '18aa124e-562e-4523-b4e9-e6c29d2d75b7',
   name: {
     en: 'Кейнсіанські підходи',
+    it: 'Approcci keynesiani',
     zh: '凯恩斯主义方法',
     hi: 'केन्सीय दृष्टिकोण',
     es: 'Enfoques keynesianos',
@@ -39,6 +40,7 @@ export const keynesianApproaches_Skill_Data = defineSkill({
       'Explain the emphasis on aggregate demand, unstable employment, and the potential stabilizing role of policy.',
     frontend: {
       en: 'Explore why Keynesian approaches focus on demand and economic downturns.',
+      it: 'Esplora perché gli approcci keynesiani si concentrano sulla domanda e sulle recessioni economiche.',
       zh: '探索为什么凯恩斯主义强调需求与经济衰退。',
       hi: 'जानें कि केन्सीय विचार मांग और आर्थिक मंदी पर ज़ोर क्यों देते हैं।',
       es: 'Explora por qué los enfoques keynesianos se centran en la demanda y las recesiones.',

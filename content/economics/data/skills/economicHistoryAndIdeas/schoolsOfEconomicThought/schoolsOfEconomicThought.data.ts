@@ -13,6 +13,7 @@ export const schoolsOfEconomicThought_SkillGroup_Data = defineSkillGroup({
   id: '3560764d-b5e6-4f39-a257-453ddfd2acf8',
   name: {
     en: 'Напрями економічної думки',
+    it: 'Scuole di pensiero economico',
     zh: '经济思想流派',
     hi: 'आर्थिक विचारधाराएँ',
     es: 'Escuelas de pensamiento económico',
@@ -54,6 +55,7 @@ export const schoolsOfEconomicThought_SkillGroup_Data = defineSkillGroup({
       'Economic schools offer differing models and assumptions concerning markets, government, money, and inequality.',
     frontend: {
       en: 'Discover how economists have explained economic problems in different ways.',
+      it: 'Scopri come gli economisti hanno spiegato i problemi economici in modi differenti.',
       zh: '了解经济学家如何用不同方式解释经济问题。',
       hi: 'जानें कि अर्थशास्त्रियों ने आर्थिक समस्याओं को अलग-अलग तरीकों से कैसे समझाया।',
       es: 'Descubre cómo los economistas han explicado los problemas económicos de distintas maneras.',

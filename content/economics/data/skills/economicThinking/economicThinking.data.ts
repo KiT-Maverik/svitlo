@@ -10,6 +10,7 @@ export const economicThinking_SkillDomain_Data = defineSkillDomain({
   id: 'a9f4fa52-add3-4088-96ce-21ec720ef4ae',
   title: {
     en: 'Economic Thinking',
+    it: 'Ragionamento economico',
     zh: '经济思维',
     hi: 'आर्थिक चिंतन',
     es: 'Pensamiento económico',
@@ -50,6 +51,7 @@ export const economicThinking_SkillDomain_Data = defineSkillDomain({
       'Economic analysis examines how people and organizations choose among alternatives when resources are limited, respond to incentives, and coordinate decisions. It provides the conceptual foundation for other economic domains rather than a collection of everyday exercises.',
     frontend: {
       en: 'Understand how people make choices, respond to incentives, and share limited resources.',
+      it: 'Comprendi come le persone compiono scelte, rispondono agli incentivi e condividono risorse limitate.',
       zh: '理解人们如何做出选择、回应激励并分配有限资源。',
       hi: 'समझें कि लोग कैसे चुनाव करते हैं, प्रोत्साहनों पर प्रतिक्रिया देते हैं और सीमित संसाधन बाँटते हैं।',
       es: 'Comprende cómo las personas eligen, responden a incentivos y comparten recursos escasos.',
