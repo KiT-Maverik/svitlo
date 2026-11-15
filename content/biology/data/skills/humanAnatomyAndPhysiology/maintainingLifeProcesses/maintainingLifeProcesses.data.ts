@@ -16,6 +16,7 @@ export const maintainingLifeProcesses_SkillGroup_Data = defineSkillGroup({
   id: '135fbe86-2e20-4fdb-9e90-07e3c347fd0b',
   name: {
     en: 'Maintaining Life Processes',
+    it: 'Mantenimento dei processi vitali',
     zh: '维持生命的过程',
     hi: 'जीवन प्रक्रियाओं को बनाए रखना',
     es: 'Mantenimiento de los procesos vitales',
@@ -60,6 +61,7 @@ export const maintainingLifeProcesses_SkillGroup_Data = defineSkillGroup({
       'Nutrients, oxygen, and blood travel along different pathways; their coordinated operation provides cells with resources.',
     frontend: {
       en: "Investigate how digestion, breathing and circulation supply the body's cells.",
+      it: 'Esamina come digestione, respirazione e circolazione riforniscono le cellule del corpo.',
       zh: '研究消化、呼吸和血液循环如何为人体细胞提供所需物质。',
       hi: 'जानें कि पाचन, श्वसन और रक्त संचार शरीर की कोशिकाओं तक आवश्यक पदार्थ कैसे पहुँचाते हैं।',
       es: 'Investiga cómo la digestión, la respiración y la circulación abastecen las células del cuerpo.',
