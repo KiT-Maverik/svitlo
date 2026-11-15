@@ -5,6 +5,7 @@ export const maintainAnEnsemblePart_Skill_Data = defineSkill({
   id: '895a1d53-e34b-4ffd-a1df-370ab0d23326',
   name: {
     en: 'Maintain an Ensemble Part',
+    it: 'Mantenere la propria parte in un ensemble',
     zh: '保持合奏中的声部',
     hi: 'वाद्यवृंद में अपना भाग बनाए रखें',
     es: 'Mantener una parte en conjunto',
@@ -38,6 +39,7 @@ export const maintainAnEnsemblePart_Skill_Data = defineSkill({
     methodological: 'Sustain a distinct contribution while following shared tempo and structure.',
     frontend: {
       en: 'Keep your own musical part steady while performing with others.',
+      it: 'Mantieni stabile la tua parte musicale mentre suoni insieme agli altri.',
       zh: '与他人合奏时，保持自己的音乐声部稳定。',
       hi: 'दूसरों के साथ बजाते समय अपना संगीत भाग स्थिर रखें।',
       es: 'Mantén estable tu parte musical al tocar con otras personas.',
