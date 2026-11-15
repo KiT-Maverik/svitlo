@@ -2420,7 +2420,7 @@
                                 "const": true
                               },
                               "question": {
-                                "$ref": "#/$defs/__schema10"
+                                "$ref": "#/$defs/__schema13"
                               },
                               "answer": {
                                 "type": "object",
@@ -2455,22 +2455,22 @@
                                                   "$ref": "#/$defs/__schema9"
                                                 },
                                                 {
-                                                  "$ref": "#/$defs/__schema14"
+                                                  "$ref": "#/$defs/__schema17"
                                                 },
                                                 {
-                                                  "$ref": "#/$defs/__schema15"
-                                                },
-                                                {
-                                                  "$ref": "#/$defs/__schema16"
+                                                  "$ref": "#/$defs/__schema10"
                                                 },
                                                 {
                                                   "$ref": "#/$defs/__schema18"
                                                 },
                                                 {
+                                                  "$ref": "#/$defs/__schema11"
+                                                },
+                                                {
                                                   "$ref": "#/$defs/__schema20"
                                                 },
                                                 {
-                                                  "$ref": "#/$defs/__schema10"
+                                                  "$ref": "#/$defs/__schema13"
                                                 },
                                                 {
                                                   "$ref": "#/$defs/__schema21"
@@ -2566,22 +2566,22 @@
           "additionalProperties": false
         },
         {
-          "$ref": "#/$defs/__schema14"
+          "$ref": "#/$defs/__schema17"
         },
         {
-          "$ref": "#/$defs/__schema15"
-        },
-        {
-          "$ref": "#/$defs/__schema16"
+          "$ref": "#/$defs/__schema10"
         },
         {
           "$ref": "#/$defs/__schema18"
         },
         {
+          "$ref": "#/$defs/__schema11"
+        },
+        {
           "$ref": "#/$defs/__schema20"
         },
         {
-          "$ref": "#/$defs/__schema10"
+          "$ref": "#/$defs/__schema13"
         },
         {
           "$ref": "#/$defs/__schema21"
@@ -2768,58 +2768,14 @@
                     "type": "string"
                   },
                   "additionalProperties": {
-                    "type": "object",
-                    "properties": {
-                      "config": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "$ref": "#/$defs/__schema0"
-                          },
-                          "slug": {
-                            "$ref": "#/$defs/__schema1"
-                          },
-                          "type": {
-                            "type": "string",
-                            "const": "carouselSlide"
-                          },
-                          "locale": {
-                            "type": "object",
-                            "properties": {
-                              "src": {
-                                "type": "null",
-                                "const": null
-                              },
-                              "alt": {
-                                "$ref": "#/$defs/__schema4"
-                              },
-                              "caption": {
-                                "$ref": "#/$defs/__schema4"
-                              }
-                            },
-                            "required": [
-                              "src",
-                              "alt"
-                            ],
-                            "additionalProperties": false
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "slug",
-                          "type",
-                          "locale"
-                        ],
-                        "additionalProperties": false
+                    "oneOf": [
+                      {
+                        "$ref": "#/$defs/__schema10"
                       },
-                      "production": {
-                        "$ref": "#/$defs/__production/$defs/default"
+                      {
+                        "$ref": "#/$defs/__schema11"
                       }
-                    },
-                    "required": [
-                      "config"
-                    ],
-                    "additionalProperties": false
+                    ]
                   }
                 },
                 "order": {
@@ -2856,214 +2812,6 @@
       "additionalProperties": false
     },
     "__schema10": {
-      "type": "object",
-      "properties": {
-        "config": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "$ref": "#/$defs/__schema0"
-            },
-            "slug": {
-              "$ref": "#/$defs/__schema1"
-            },
-            "type": {
-              "type": "string",
-              "const": "text"
-            },
-            "params": {
-              "type": "object",
-              "properties": {
-                "disabled": {
-                  "$ref": "#/$defs/__schema2"
-                },
-                "variables": {
-                  "type": "object",
-                  "propertyNames": {
-                    "type": "string",
-                    "pattern": "^[a-z][A-Za-z0-9]*$"
-                  },
-                  "additionalProperties": {
-                    "type": "object",
-                    "properties": {
-                      "applyStyle": {
-                        "type": "array",
-                        "prefixItems": [
-                          {
-                            "$ref": "#/$defs/__schema11"
-                          }
-                        ],
-                        "items": {
-                          "$ref": "#/$defs/__schema11"
-                        },
-                        "minItems": 1
-                      },
-                      "applyColor": {
-                        "type": "string"
-                      },
-                      "tone": {
-                        "type": "string",
-                        "enum": [
-                          "neutral",
-                          "info",
-                          "warning",
-                          "success"
-                        ]
-                      }
-                    },
-                    "required": [
-                      "applyStyle"
-                    ],
-                    "additionalProperties": false
-                  }
-                },
-                "wrap": {
-                  "type": "object",
-                  "properties": {
-                    "enabled": {
-                      "type": "boolean",
-                      "const": true
-                    },
-                    "typographyProps": {
-                      "type": "object",
-                      "propertyNames": {
-                        "$ref": "#/$defs/__schema12"
-                      },
-                      "additionalProperties": {
-                        "$ref": "#/$defs/__schema13"
-                      }
-                    }
-                  },
-                  "required": [
-                    "enabled"
-                  ],
-                  "additionalProperties": false
-                }
-              },
-              "additionalProperties": false
-            },
-            "locale": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "$ref": "#/$defs/__schema4"
-                }
-              },
-              "required": [
-                "value"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "required": [
-            "id",
-            "slug",
-            "type",
-            "params",
-            "locale"
-          ],
-          "additionalProperties": false
-        },
-        "production": {
-          "$ref": "#/$defs/__production/$defs/default"
-        }
-      },
-      "required": [
-        "config"
-      ],
-      "additionalProperties": false
-    },
-    "__schema11": {
-      "type": "string",
-      "enum": [
-        "highlight",
-        "bold",
-        "cursive",
-        "underscore",
-        "crossed",
-        "variable"
-      ]
-    },
-    "__schema12": {
-      "type": "string"
-    },
-    "__schema13": {},
-    "__schema14": {
-      "type": "object",
-      "properties": {
-        "config": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "$ref": "#/$defs/__schema0"
-            },
-            "slug": {
-              "$ref": "#/$defs/__schema1"
-            },
-            "type": {
-              "type": "string",
-              "const": "code"
-            },
-            "params": {
-              "type": "object",
-              "properties": {
-                "disabled": {
-                  "$ref": "#/$defs/__schema2"
-                },
-                "language": {
-                  "type": "string",
-                  "minLength": 1
-                },
-                "codeAsText": {
-                  "type": "string",
-                  "minLength": 1
-                }
-              },
-              "required": [
-                "language",
-                "codeAsText"
-              ],
-              "additionalProperties": false
-            },
-            "locale": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "$ref": "#/$defs/__schema4"
-                },
-                "variables": {
-                  "type": "object",
-                  "propertyNames": {
-                    "type": "string",
-                    "pattern": "^[A-Z][A-Z0-9_]*$"
-                  },
-                  "additionalProperties": {
-                    "$ref": "#/$defs/__schema4"
-                  }
-                }
-              },
-              "additionalProperties": false
-            }
-          },
-          "required": [
-            "id",
-            "slug",
-            "type",
-            "params",
-            "locale"
-          ],
-          "additionalProperties": false
-        },
-        "production": {
-          "$ref": "#/$defs/__production/$defs/default"
-        }
-      },
-      "required": [
-        "config"
-      ],
-      "additionalProperties": false
-    },
-    "__schema15": {
       "type": "object",
       "properties": {
         "config": {
@@ -3170,7 +2918,287 @@
       ],
       "additionalProperties": false
     },
-    "__schema16": {
+    "__schema11": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "slug": {
+              "$ref": "#/$defs/__schema1"
+            },
+            "type": {
+              "type": "string",
+              "const": "scene"
+            },
+            "params": {
+              "type": "object",
+              "properties": {
+                "disabled": {
+                  "$ref": "#/$defs/__schema2"
+                }
+              },
+              "additionalProperties": false
+            },
+            "locale": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "$ref": "#/$defs/__schema12"
+                }
+              },
+              "required": [
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "id",
+            "slug",
+            "type",
+            "params",
+            "locale"
+          ],
+          "additionalProperties": false
+        },
+        "production": {
+          "$ref": "#/$defs/__production/$defs/scene"
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "__schema12": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/__schema4"
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema12"
+          }
+        }
+      ]
+    },
+    "__schema13": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "slug": {
+              "$ref": "#/$defs/__schema1"
+            },
+            "type": {
+              "type": "string",
+              "const": "text"
+            },
+            "params": {
+              "type": "object",
+              "properties": {
+                "disabled": {
+                  "$ref": "#/$defs/__schema2"
+                },
+                "variables": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "pattern": "^[a-z][A-Za-z0-9]*$"
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "applyStyle": {
+                        "type": "array",
+                        "prefixItems": [
+                          {
+                            "$ref": "#/$defs/__schema14"
+                          }
+                        ],
+                        "items": {
+                          "$ref": "#/$defs/__schema14"
+                        },
+                        "minItems": 1
+                      },
+                      "applyColor": {
+                        "type": "string"
+                      },
+                      "tone": {
+                        "type": "string",
+                        "enum": [
+                          "neutral",
+                          "info",
+                          "warning",
+                          "success"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "applyStyle"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "wrap": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "const": true
+                    },
+                    "typographyProps": {
+                      "type": "object",
+                      "propertyNames": {
+                        "$ref": "#/$defs/__schema15"
+                      },
+                      "additionalProperties": {
+                        "$ref": "#/$defs/__schema16"
+                      }
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "locale": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "$ref": "#/$defs/__schema4"
+                }
+              },
+              "required": [
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "id",
+            "slug",
+            "type",
+            "params",
+            "locale"
+          ],
+          "additionalProperties": false
+        },
+        "production": {
+          "$ref": "#/$defs/__production/$defs/default"
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "__schema14": {
+      "type": "string",
+      "enum": [
+        "highlight",
+        "bold",
+        "cursive",
+        "underscore",
+        "crossed",
+        "variable"
+      ]
+    },
+    "__schema15": {
+      "type": "string"
+    },
+    "__schema16": {},
+    "__schema17": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "slug": {
+              "$ref": "#/$defs/__schema1"
+            },
+            "type": {
+              "type": "string",
+              "const": "code"
+            },
+            "params": {
+              "type": "object",
+              "properties": {
+                "disabled": {
+                  "$ref": "#/$defs/__schema2"
+                },
+                "language": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "codeAsText": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "language",
+                "codeAsText"
+              ],
+              "additionalProperties": false
+            },
+            "locale": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "$ref": "#/$defs/__schema4"
+                },
+                "variables": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Z0-9_]*$"
+                  },
+                  "additionalProperties": {
+                    "$ref": "#/$defs/__schema4"
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "id",
+            "slug",
+            "type",
+            "params",
+            "locale"
+          ],
+          "additionalProperties": false
+        },
+        "production": {
+          "$ref": "#/$defs/__production/$defs/default"
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "__schema18": {
       "type": "object",
       "properties": {
         "config": {
@@ -3187,7 +3215,7 @@
               "const": "markdown"
             },
             "params": {
-              "$ref": "#/$defs/__schema17"
+              "$ref": "#/$defs/__schema19"
             },
             "locale": {
               "type": "object",
@@ -3230,7 +3258,7 @@
       ],
       "additionalProperties": false
     },
-    "__schema17": {
+    "__schema19": {
       "type": "object",
       "properties": {
         "disabled": {
@@ -3238,78 +3266,6 @@
         }
       },
       "additionalProperties": false
-    },
-    "__schema18": {
-      "type": "object",
-      "properties": {
-        "config": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "$ref": "#/$defs/__schema0"
-            },
-            "slug": {
-              "$ref": "#/$defs/__schema1"
-            },
-            "type": {
-              "type": "string",
-              "const": "scene"
-            },
-            "params": {
-              "type": "object",
-              "properties": {
-                "disabled": {
-                  "$ref": "#/$defs/__schema2"
-                }
-              },
-              "additionalProperties": false
-            },
-            "locale": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "$ref": "#/$defs/__schema19"
-                }
-              },
-              "required": [
-                "value"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "required": [
-            "id",
-            "slug",
-            "type",
-            "params",
-            "locale"
-          ],
-          "additionalProperties": false
-        },
-        "production": {
-          "$ref": "#/$defs/__production/$defs/scene"
-        }
-      },
-      "required": [
-        "config"
-      ],
-      "additionalProperties": false
-    },
-    "__schema19": {
-      "anyOf": [
-        {
-          "$ref": "#/$defs/__schema4"
-        },
-        {
-          "type": "object",
-          "propertyNames": {
-            "type": "string"
-          },
-          "additionalProperties": {
-            "$ref": "#/$defs/__schema19"
-          }
-        }
-      ]
     },
     "__schema20": {
       "type": "object",
@@ -3328,7 +3284,7 @@
               "const": "subtitles"
             },
             "params": {
-              "$ref": "#/$defs/__schema17"
+              "$ref": "#/$defs/__schema19"
             },
             "locale": {
               "type": "object",
@@ -3614,7 +3570,7 @@
                   "additionalProperties": false
                 },
                 "image": {
-                  "$ref": "#/$defs/__schema15"
+                  "$ref": "#/$defs/__schema10"
                 },
                 "subtitles": {
                   "$ref": "#/$defs/__schema20"
@@ -3663,7 +3619,7 @@
               "const": "questTask"
             },
             "scene": {
-              "$ref": "#/$defs/__schema18"
+              "$ref": "#/$defs/__schema11"
             }
           },
           "required": [

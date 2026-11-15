@@ -74,7 +74,7 @@ change `params.languages` or invent translations.
 - `index.ts` inside the canonical Lesson UUID directory: one `defineLesson` call, referencing
   named `section`, `flashcards`, and `questions` collections assembled by adjacent
   `sections/index.ts`, `flashcards/index.ts`, and `questions/index.ts`. Each nested
-  Section, ContentBlock, Question, Flashcard, Checkpoint Item, Carousel Slide,
+  Section, ContentBlock, Question, Flashcard, Checkpoint Item, Carousel Image/Scene slide,
   Quest Stage and Quest Task lives in its own `<slug>/index.ts` module. Generic
   arguments are based on the actual Engine Configurator signature.
 - `review.ts`: non-exported `LessonReview` skeleton with mandatory `ai.stages`
@@ -132,7 +132,7 @@ change `params.languages` or invent translations.
   remains inside the Config; a Scene implementation and lazy registry entry
   still live under textbook-owned `scenes/<bucket>/<scene-id>/`. Course
   scaffolding retains its existing UUID-addressed production handoffs.
-- For local Image/CarouselSlide `src: null`, Audio/Video/Subtitles
+- For local Image `src: null`, Audio/Video/Subtitles
   `fileLocation: null`, and Video `poster: null`, the draft generates
   `resolveLessonMedia(import.meta.url, kind, role, language?)` from the
   **Engine Build-only** export. A scalar null requests invariant media;
@@ -224,3 +224,14 @@ scaffolder does not silently perform pedagogical migrations.
 **Never run TypeScript validation as a scaffolder acceptance test.** Tests
 must instead cover deterministic output, factory dispatch, source-language
 filtering, safety and preservation of unresolved production work.
+
+## Carousel child modules
+
+Carousel accepts `defineImage` and `defineScene` children. The builder writes their
+`index.ts` directly into `<carouselSlug>/<childSlug>/`, without an intermediate
+`slides/` or kind-specific folder. Image assets and Scene production specifications
+are colocated with the actual child module. A pending Image `src: null` uses
+`resolveLessonMedia(import.meta.url, 'image', 'source', language?)` from its own
+source folder. The builder rejects unsupported Carousel child kinds before
+creating files. Scenes still require a separately authored implementation and
+registry entry; a draft specification is not a working Scene.

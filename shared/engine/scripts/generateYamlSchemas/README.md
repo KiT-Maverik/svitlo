@@ -26,8 +26,9 @@ the Course's direct Build overrides guide. Source language provenance is
 YAML Zod projections preserve all Engine-required Config fields; the only
 intentional type differences for pending local assets are `z.literal(null)`
 for `image.src`, `audio.fileLocation`, `video.fileLocation`,
-`video.poster`, `carouselSlide.src` and localized `subtitles.fileLocation`. Existing Config/Props schemas are
-unchanged. The YAML editor schema requires these keys to exist and be null;
+`video.poster` and localized `subtitles.fileLocation`. Carousel slides are native Image or Scene Configurator children; pending
+Carousel images use the same Image null path contract. Existing entity
+Config/Props schemas are unchanged apart from the intentional Carousel migration. The YAML editor schema requires these keys to exist and be null;
 the TypeScript draft remains invalid until real asset paths are supplied.
 
 The existing Config-only editor schemas and direct
