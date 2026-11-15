@@ -5,6 +5,7 @@ export const identifyBinarySearchPrerequisites_Skill_Data = defineSkill({
   id: 'c8fbb932-bc99-4db1-82ca-a0a9531fceef',
   name: {
     en: 'Identify Binary Search Prerequisites',
+    it: 'Individuare i prerequisiti della ricerca binaria',
     zh: '识别二分查找的前提条件',
     hi: 'द्विआधारी खोज की पूर्वशर्तें पहचानना',
     es: 'Identificar requisitos de búsqueda binaria',
@@ -39,6 +40,7 @@ export const identifyBinarySearchPrerequisites_Skill_Data = defineSkill({
       'Verify that elements are sorted under a consistent criterion and support less-than/greater-than comparisons; without these properties, eliminating half the candidates may be incorrect.',
     frontend: {
       en: 'Check whether data meets the sorting requirements for binary search.',
+      it: 'Verifica se i dati rispettano i requisiti di ordinamento per la ricerca binaria.',
       zh: '检查数据是否满足二分查找要求的排序条件。',
       hi: 'जाँचें कि डेटा द्विआधारी खोज की क्रमबद्धता शर्त पूरी करता है या नहीं।',
       es: 'Comprueba si los datos están ordenados como requiere la búsqueda binaria.',

@@ -14,6 +14,7 @@ export const search_SkillGroup_Data = defineSkillGroup({
   id: 'a6099e8e-8662-45f0-aaa1-68b47e3ca133',
   name: {
     en: 'Search',
+    it: 'Ricerca',
     zh: '搜索',
     hi: 'खोज',
     es: 'Búsqueda',
@@ -56,6 +57,7 @@ export const search_SkillGroup_Data = defineSkillGroup({
       'Methods of locating target items: scanning in order, halving a sorted range, or traversing an ordered tree. Each named algorithm has its own Skill, with prerequisite and comparison skills where independently meaningful.',
     frontend: {
       en: 'Discover how different search methods find an item in a collection.',
+      it: 'Scopri come diversi metodi di ricerca individuano un elemento in una collezione.',
       zh: '探索不同搜索方法如何在集合中找到所需元素。',
       hi: 'जानें कि अलग-अलग खोज विधियाँ संग्रह में तत्व कैसे ढूँढ़ती हैं।',
       es: 'Descubre cómo distintos métodos de búsqueda encuentran un elemento en una colección.',

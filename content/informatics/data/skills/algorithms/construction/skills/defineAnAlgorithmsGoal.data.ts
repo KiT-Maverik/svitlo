@@ -5,6 +5,7 @@ export const defineAnAlgorithmsGoal_Skill_Data = defineSkill({
   id: '51b1d000-2787-4ad0-ac03-3398de248da3',
   name: {
     en: "Define an Algorithm's Goal",
+    it: "Definire l'obiettivo di un algoritmo",
     zh: '定义算法目标',
     hi: 'एल्गोरिदम का लक्ष्य तय करना',
     es: 'Definir el objetivo de un algoritmo',
@@ -39,6 +40,7 @@ export const defineAnAlgorithmsGoal_Skill_Data = defineSkill({
       'Specify a verifiable outcome and acceptable inputs, such as finding the index of a target number in a sorted array or establishing its absence. Separate the objective from the steps of the solution.',
     frontend: {
       en: 'State what an algorithm must achieve and which inputs it accepts.',
+      it: 'Indica che cosa deve ottenere un algoritmo e quali dati in ingresso accetta.',
       zh: '说明算法必须实现的结果以及它接受哪些输入。',
       hi: 'बताएँ कि एल्गोरिदम को क्या हासिल करना है और वह कौन-से इनपुट स्वीकारता है।',
       es: 'Indica qué debe lograr un algoritmo y qué entradas acepta.',
