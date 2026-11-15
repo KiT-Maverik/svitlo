@@ -497,7 +497,8 @@ config:
                       en: 'The outside shape can change without changing capacity. Both of these containers hold **three full liters**. A **half-full** measuring cup does _not_ contain 1 L, so counting it as one liter gives an unreliable total.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['challengeContainerAppearances', 'compareThreeLiterContainers', 'explainShapeDoesNotDetermineCapacity']
+            order:
+              ['challengeContainerAppearances', 'compareThreeLiterContainers', 'explainShapeDoesNotDetermineCapacity']
         production:
           purpose: "Shape Doesn't Tell the Liter Count"
           productionNotes: |-

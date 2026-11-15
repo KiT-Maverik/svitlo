@@ -516,7 +516,8 @@ config:
             - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
             - **Planned Note:** Doubling one half rebuilds the original amount., only after complete evidence and explanation, not a score or wired event.
             - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
-    order: ['shareTwelveIntoHalves', 'rebuildWholeByDoubling', 'distinguishTwoGroupsFromPairs', 'halveAndDoubleNewTotals']
+    order:
+      ['shareTwelveIntoHalves', 'rebuildWholeByDoubling', 'distinguishTwoGroupsFromPairs', 'halveAndDoubleNewTotals']
   flashcards:
     items: {}
     order: []

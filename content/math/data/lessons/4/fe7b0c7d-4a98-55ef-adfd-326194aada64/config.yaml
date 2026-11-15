@@ -581,7 +581,13 @@ config:
             - Accessibility, locale and RTL requirements: Each phase announces tens and ones in words and numerals with explicit operand identity. Clear keyboard/touch stepping, readable focus, large type and equivalent nonvisual calculations; no answer visible only through animation or color.
             - Proposed unlocked Note(s): Note 4 “Line up ones with ones and tens with tens,” after the checked column example is explained (planned, not wired).
             - Implementation dependencies and review notes: Formative subtraction feedback is illustrative teaching, not a validated scored Question; a later Assessment Architect determines any assessment.
-    order: ['unbundleTenWithoutChangingValue', 'subtractSevenFromThirteen', 'exchangeTenInColumnSubtraction', 'verifyThirtyTwoMinusSeventeen']
+    order:
+      [
+        'unbundleTenWithoutChangingValue',
+        'subtractSevenFromThirteen',
+        'exchangeTenInColumnSubtraction',
+        'verifyThirtyTwoMinusSeventeen',
+      ]
   flashcards:
     items: {}
     order: []

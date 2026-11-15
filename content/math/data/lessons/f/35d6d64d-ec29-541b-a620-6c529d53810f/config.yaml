@@ -488,7 +488,13 @@ config:
             2. **`scene` Resource (proposed):** Statement Verifier entry D hides totals until inspected and offers optional hints “Compute five plus six” and “Compute eight plus two”. Values **11** and **10**; claim **11 > 10** is true. Incorrect “false” receives “Eleven is one more than ten; the sign says greater, so the claim is true.”
             3. **`text`:** Optional contrast “**8 − 3 > 2 + 4**” shows **5** versus **6**, so **5 > 6** is false. The corrected relation is **<**. Encourage explanation based on _both_ values.
             4. **`markdown`:** “**Recall:** First find or reason about each side's value. Then check whether the sign **=, <, >** describes the comparison accurately.”
-    order: ['verifyEqualityOfExpressions', 'compareValuesWithInequalities', 'rejectStrictSignForEqualValues', 'verifyIndependentComparisons']
+    order:
+      [
+        'verifyEqualityOfExpressions',
+        'compareValuesWithInequalities',
+        'rejectStrictSignForEqualValues',
+        'verifyIndependentComparisons',
+      ]
   flashcards:
     items: {}
     order: []

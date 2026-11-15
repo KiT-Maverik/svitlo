@@ -613,7 +613,13 @@ config:
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Reveal the full reason on demand, with no scored outcome.
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-    order: ['identifySpinnerOutcomes', 'correctIncompleteOutcomeList', 'listDistinctColorOutcomes', 'enumerateNewSpinnerOutcomes']
+    order:
+      [
+        'identifySpinnerOutcomes',
+        'correctIncompleteOutcomeList',
+        'listDistinctColorOutcomes',
+        'enumerateNewSpinnerOutcomes',
+      ]
   flashcards:
     items: {}
     order: []

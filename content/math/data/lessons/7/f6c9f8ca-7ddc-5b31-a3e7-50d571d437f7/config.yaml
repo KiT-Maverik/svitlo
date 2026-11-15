@@ -428,7 +428,8 @@ config:
                 production:
                   purpose: 'Transfer without a hint; authored markdown block 4'
                   specification: '4. **markdown**: “Remember: **show the relationship before choosing the operation**.”'
-            order: ['representBookMovement', 'buildNewStoryModel', 'explainFiveBooksRemain', 'recallModelBeforeCalculation']
+            order:
+              ['representBookMovement', 'buildNewStoryModel', 'explainFiveBooksRemain', 'recallModelBeforeCalculation']
         production:
           purpose: 'Transfer without a hint'
           pedagogicalIntent: 'Original Section 4 — Transfer without a hint; authoring draft only'
@@ -437,7 +438,8 @@ config:
             2. **scene (proposed)**: Fresh builder state with labeled counter alternative. Correct initial model: nine as whole, four removed, five remaining unknown; equation 9 − 4 = ?; answer five books.
             3. **text**: Reveal after reflection: “A good model explains the change. We knew nine books and four moved away. Five stayed on the desk.” Incorrect arrangement feedback: “Check whether the whole existed before the change.”
             4. **markdown**: “Remember: **show the relationship before choosing the operation**.”
-    order: ['representJoiningStory', 'matchAdditionModelToEquation', 'representTakingAway', 'buildIndependentStoryModel']
+    order:
+      ['representJoiningStory', 'matchAdditionModelToEquation', 'representTakingAway', 'buildIndependentStoryModel']
   flashcards:
     items: {}
     order: []

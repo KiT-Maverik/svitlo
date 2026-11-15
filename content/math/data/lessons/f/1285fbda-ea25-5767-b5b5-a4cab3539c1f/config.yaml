@@ -123,7 +123,13 @@ config:
                   locale:
                     value:
                       en: 'A number can be true but **not needed to answer this particular question**. That does not mean the number is false.'
-            order: ['countStarsAndCircles', 'questionEvidenceDesk', 'explainElevenRelevantShapes', 'distinguishExtraInformation']
+            order:
+              [
+                'countStarsAndCircles',
+                'questionEvidenceDesk',
+                'explainElevenRelevantShapes',
+                'distinguishExtraInformation',
+              ]
         production:
           purpose: 'A number that does not help this question'
           pedagogicalIntent: |
@@ -245,7 +251,13 @@ config:
                   locale:
                     value:
                       en: 'The _question_ decides what information helps. Check the relationship before calling a fact extra.'
-            order: ['countAllShapesInstead', 'questionEvidenceDesk', 'includeTrianglesInTotal', 'explainQuestionDependentRelevance']
+            order:
+              [
+                'countAllShapesInstead',
+                'questionEvidenceDesk',
+                'includeTrianglesInTotal',
+                'explainQuestionDependentRelevance',
+              ]
         production:
           purpose: 'Change the question, change which facts matter'
           pedagogicalIntent: |
@@ -367,7 +379,13 @@ config:
                   locale:
                     value:
                       en: 'When a needed number is missing, guessing it changes the problem. You may describe _what information is needed_ without supplying an answer.'
-            order: ['inspectVehiclesWithoutScooterCount', 'questionEvidenceDesk', 'explainMultiplePossibleTotals', 'stateRequiredInformation']
+            order:
+              [
+                'inspectVehiclesWithoutScooterCount',
+                'questionEvidenceDesk',
+                'explainMultiplePossibleTotals',
+                'stateRequiredInformation',
+              ]
         production:
           purpose: 'A number that the story does not give'
           pedagogicalIntent: |
@@ -489,7 +507,13 @@ config:
                   locale:
                     value:
                       en: 'Ask the question first; then look for facts that matter and facts you still need.'
-            order: ['classifyInformationCards', 'questionEvidenceDesk', 'explainExcessVersusShortage', 'reviewQuestionBeforeData']
+            order:
+              [
+                'classifyInformationCards',
+                'questionEvidenceDesk',
+                'explainExcessVersusShortage',
+                'reviewQuestionBeforeData',
+              ]
         production:
           purpose: 'Independent transfer: tell excess from shortage'
           pedagogicalIntent: |

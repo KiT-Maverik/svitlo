@@ -398,7 +398,13 @@ config:
                 production:
                   purpose: 'One example may support a true rule without proving it; authored markdown block 4'
                   specification: '4. **`markdown`:** “No counterexample found **yet** is not the same thing as proving a rule. First decide what the rule claims about all cases.”'
-            order: ['testAddingZeroClaim', 'inspectSupportingCases', 'explainNoUniversalProof', 'distinguishEvidenceFromProof']
+            order:
+              [
+                'testAddingZeroClaim',
+                'inspectSupportingCases',
+                'explainNoUniversalProof',
+                'distinguishEvidenceFromProof',
+              ]
         production:
           purpose: 'One example may support a true rule without proving it'
           pedagogicalIntent: 'Original Section 3 — One example may support a true rule without proving it; authoring draft only'
@@ -529,7 +535,13 @@ config:
                 production:
                   purpose: 'Independent transfer: refute a new “every” statement; authored markdown block 4'
                   specification: '4. **`markdown`:** “**Recall:** An example checks **one** case. A universal rule says **every** case. To disprove it, find **one case that fits the conditions but contradicts the conclusion**.”'
-            order: ['findEvenNumberAboveFive', 'testCounterexampleCandidate', 'explainFailedConditions', 'summarizeRefutation']
+            order:
+              [
+                'findEvenNumberAboveFive',
+                'testCounterexampleCandidate',
+                'explainFailedConditions',
+                'summarizeRefutation',
+              ]
         production:
           purpose: 'Independent transfer: refute a new “every” statement'
           pedagogicalIntent: 'Original Section 4 — Independent transfer: refute a new “every” statement; authoring draft only'
@@ -540,7 +552,8 @@ config:
             2. **`scene` Resource (proposed):** Detective entry D lets the learner choose a whole number from 0–20 via accessible stepper/typing. **6** is the simplest counterexample: 6 > 5 and 6 is even. Other eligible examples include 8, 10, 12 and so on. For choice 4: “Four is not greater than five, so it cannot test the claim.” For 7: “Seven is greater than five **and odd**; it supports the claim in one case but does not refute it.” For 6: “Six is greater than five, yet it is even; the rule says **every** such number is odd, so it is false.”
             3. **`text`:** The learner may speak to a trusted adult, choose a two-part explanatory sentence or type a short reason: “My number meets ___ but not ___.” A “Show complete explanation” control is available without response.
             4. **`markdown`:** “**Recall:** An example checks **one** case. A universal rule says **every** case. To disprove it, find **one case that fits the conditions but contradicts the conclusion**.”
-    order: ['distinguishExampleFromProof', 'findValidCounterexample', 'separateExamplesFromProof', 'refuteUniversalClaim']
+    order:
+      ['distinguishExampleFromProof', 'findValidCounterexample', 'separateExamplesFromProof', 'refuteUniversalClaim']
   flashcards:
     items: {}
     order: []

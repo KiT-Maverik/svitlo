@@ -382,7 +382,8 @@ config:
             1. **text**: “Seven cups stand on a shelf. A helper puts five more cups there. Say which numbers are known, describe the change, and name what is still unknown.”
             2. **text**: Reveal: “Known: seven, five, and the adding action. Unknown: number of cups afterward.” Do not demand a calculation or claim independent problem-solving mastery.
             3. **markdown**: “Remember: **given facts → relationship → question**.”
-    order: ['identifyStoryQuestion', 'identifyChangeRelationship', 'ignoreIrrelevantDetails', 'transferKnownUnknownMethod']
+    order:
+      ['identifyStoryQuestion', 'identifyChangeRelationship', 'ignoreIrrelevantDetails', 'transferKnownUnknownMethod']
   flashcards:
     items: {}
     order: []

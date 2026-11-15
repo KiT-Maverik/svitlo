@@ -671,7 +671,13 @@ config:
               3. **markdown — available:** "The two rigid pieces now make the **same six-cell rectangle** we began with. Every target square is covered **once**; we did not add, lose, stretch or layer the pieces. The total area is still **six square units**."
             - **Feedback:** Off-by-one placement B=(1,1),(2,1),(3,1) has an extra outside cell (3,1) and leaves the target cell (0,1) empty: "One extra square sticks out, and one target square is uncovered. Move B left one." B overlaps an upper row: "The shared cell has two layers, so it cannot count twice." A valid rigid rotation is permitted but must still fit the exact target.
             - **Transfer:** Ask if swapping piece colors changes area. Correct reasoning: "Color does not change any covered cells." Provide accessible cell-by-cell before/after explanation and reset.
-    order: ['splitRectangleWithoutChangingArea', 'rearrangeStripsSameArea', 'detectOverlapReducesCoverage', 'reconstructOriginalRectangle']
+    order:
+      [
+        'splitRectangleWithoutChangingArea',
+        'rearrangeStripsSameArea',
+        'detectOverlapReducesCoverage',
+        'reconstructOriginalRectangle',
+      ]
   flashcards:
     items: {}
     order: []

@@ -560,13 +560,7 @@ config:
             - **Independent practical extension:** If a physical ruler is available, locate its zero mark and the first centimeter space. Do not require this material for full Lesson completion.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order:
-      [
-        'locateRulerZero',
-        'countEqualRulerIntervals',
-        'alignRulerWithObject',
-        'transferRulerMeasurement',
-      ]
+    order: ['locateRulerZero', 'countEqualRulerIntervals', 'alignRulerWithObject', 'transferRulerMeasurement']
   flashcards:
     items: {}
     order: []

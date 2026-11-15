@@ -551,13 +551,7 @@ config:
             - **Feedback and progression:** The Scene reveals conceptual reasons, not numeric lengths or scoring. A child with no drag facility completes via labeled position controls. Optional physical paper-and-pencil extension is not required for equivalent online/offline learning.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order:
-      [
-        'distinguishPointSizeFromSymbol',
-        'compareLineTypes',
-        'identifySegmentEndpoints',
-        'constructSegmentAB',
-      ]
+    order: ['distinguishPointSizeFromSymbol', 'compareLineTypes', 'identifySegmentEndpoints', 'constructSegmentAB']
   flashcards:
     items: {}
     order: []

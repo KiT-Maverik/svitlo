@@ -126,7 +126,13 @@ config:
                   locale:
                     value:
                       en: 'Models are different ways to explain the **same relationship**. A diagram is good when it names what the numbers mean; a symbol is short, but we still need to know the story behind it.'
-            order: ['promptEightPlusThreeStory', 'connectFourRepresentations', 'explainEquivalentModels', 'summarizeModelRelationships']
+            order:
+              [
+                'promptEightPlusThreeStory',
+                'connectFourRepresentations',
+                'explainEquivalentModels',
+                'summarizeModelRelationships',
+              ]
         production:
           purpose: 'Four doors to the same change'
           pedagogicalIntent: |
@@ -485,7 +491,13 @@ config:
                   locale:
                     value:
                       en: '**Recall:** When moving between objects, diagrams, words and expressions, keep the **roles and relationships** the same. A number alone never tells the entire story.'
-            order: ['promptShellTransferStory', 'composeShellRepresentations', 'detectReversedChange', 'reviewRelationshipConsistency']
+            order:
+              [
+                'promptShellTransferStory',
+                'composeShellRepresentations',
+                'detectReversedChange',
+                'reviewRelationshipConsistency',
+              ]
         production:
           purpose: 'Your new story, your representations'
           pedagogicalIntent: |

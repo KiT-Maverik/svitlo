@@ -521,7 +521,13 @@ config:
                 production:
                   purpose: 'Independent transfer without a prebuilt pairing; authored markdown block 4'
                   specification: '4. **`markdown`:** “**Recall:** Compare compatible groups. Match equal units, count the unmatched excess, or subtract the smaller count from the larger.”'
-            order: ['compareBookQuantities', 'modelBookDifference', 'contrastTotalWithDifference', 'summarizeComparisonStrategy']
+            order:
+              [
+                'compareBookQuantities',
+                'modelBookDifference',
+                'contrastTotalWithDifference',
+                'summarizeComparisonStrategy',
+              ]
         production:
           purpose: 'Independent transfer without a prebuilt pairing'
           pedagogicalIntent: 'Original Section 4 — Independent transfer without a prebuilt pairing; authoring draft only'

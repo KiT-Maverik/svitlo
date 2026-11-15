@@ -111,7 +111,13 @@ config:
                   locale:
                     value:
                       en: '**Forward:** 46 + 27 = 73. **Backward check:** 73 − 27 = 46. An inverse operation undoes the change.'
-            order: ['promptFortySixPlusTwentySeven', 'reverseOperationChecker', 'checkBackwardToStart', 'explainInverseAddition']
+            order:
+              [
+                'promptFortySixPlusTwentySeven',
+                'reverseOperationChecker',
+                'checkBackwardToStart',
+                'explainInverseAddition',
+              ]
         production:
           purpose: 'A journey and the way back'
           pedagogicalIntent: |
@@ -221,7 +227,13 @@ config:
                   locale:
                     value:
                       en: 'Checking a result means using a relationship that can catch a mistake — not simply looking at whether the answer seems about the right size.'
-            order: ['challengeIncorrectSixtyThree', 'reverseOperationChecker', 'correctSumToSeventyThree', 'explainChecksCatchErrors']
+            order:
+              [
+                'challengeIncorrectSixtyThree',
+                'reverseOperationChecker',
+                'correctSumToSeventyThree',
+                'explainChecksCatchErrors',
+              ]
         production:
           purpose: 'A number that looks close, but fails'
           pedagogicalIntent: |
@@ -331,7 +343,13 @@ config:
                   locale:
                     value:
                       en: 'A subtraction result can be checked by putting the removed amount back.'
-            order: ['promptEightyFourMinusTwentyNine', 'reverseOperationChecker', 'hintReplaceRemovedStickers', 'explainAddBackCheck']
+            order:
+              [
+                'promptEightyFourMinusTwentyNine',
+                'reverseOperationChecker',
+                'hintReplaceRemovedStickers',
+                'explainAddBackCheck',
+              ]
         production:
           purpose: 'Undo subtraction with addition'
           pedagogicalIntent: |
@@ -441,7 +459,13 @@ config:
                   locale:
                     value:
                       en: '**Recall:** Addition can be checked by subtraction. Subtraction can be checked by addition. An inverse check checks the numbers, not whether you chose the right model for a story.'
-            order: ['askSixtyEightMinusNineteen', 'reverseOperationChecker', 'rejectRepeatedSubtraction', 'summarizeInverseChecks']
+            order:
+              [
+                'askSixtyEightMinusNineteen',
+                'reverseOperationChecker',
+                'rejectRepeatedSubtraction',
+                'summarizeInverseChecks',
+              ]
         production:
           purpose: 'Independent transfer: write a reverse check'
           pedagogicalIntent: |

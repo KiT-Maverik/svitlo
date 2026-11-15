@@ -487,8 +487,7 @@ config:
             - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order:
-      ['countThreeGroupsOfFour', 'varyNumberOfGroups', 'checkEqualGroupSizes', 'buildTwoGroupsOfFive']
+    order: ['countThreeGroupsOfFour', 'varyNumberOfGroups', 'checkEqualGroupSizes', 'buildTwoGroupsOfFive']
   flashcards:
     items: {}
     order: []

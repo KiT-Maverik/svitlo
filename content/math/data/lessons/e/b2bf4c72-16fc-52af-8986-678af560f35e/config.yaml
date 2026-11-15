@@ -514,13 +514,7 @@ config:
             - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-    order:
-      [
-        'alignTensAndOnes',
-        'exchangeTwelveOnes',
-        'addCarriedTen',
-        'practiceColumnRegrouping',
-      ]
+    order: ['alignTensAndOnes', 'exchangeTwelveOnes', 'addCarriedTen', 'practiceColumnRegrouping']
 production:
   documentLanguage: 'en'
   methodology: |
