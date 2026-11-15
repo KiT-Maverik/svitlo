@@ -5,6 +5,7 @@ export const constructContourDrawing_Skill_Data = defineSkill({
   id: '1674ebd2-682a-4177-859e-ed04d591e4c5',
   name: {
     en: 'Construct Contour Drawing',
+    it: 'Realizzare un disegno di contorno',
     zh: '绘制轮廓线画',
     hi: 'समोच्च रेखाचित्र बनाएँ',
     es: 'Construir un dibujo de contornos',
@@ -38,6 +39,7 @@ export const constructContourDrawing_Skill_Data = defineSkill({
     methodological: 'Translate significant boundaries and overlaps into lines that describe a subject.',
     frontend: {
       en: 'Use outlines and overlapping edges to describe what you see.',
+      it: 'Usa linee di contorno e bordi sovrapposti per descrivere ciò che vedi.',
       zh: '用轮廓线和重叠的边缘描绘所见之物。',
       hi: 'जो दिखाई दे उसे बाहरी रेखाओं और एक-दूसरे पर पड़ने वाले किनारों से दिखाएँ।',
       es: 'Utiliza contornos y bordes superpuestos para describir lo que ves.',
