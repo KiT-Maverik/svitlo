@@ -5,6 +5,7 @@ export const carveSubtractiveSculpture_Skill_Data = defineSkill({
   id: '50c6fa0f-52d0-4979-8d61-64daeca43068',
   name: {
     en: 'Carve Subtractive Sculpture',
+    it: 'Scolpire per sottrazione',
     zh: '雕刻减材雕塑',
     hi: 'घटाव विधि से मूर्तिकला तराशें',
     es: 'Tallar una escultura por sustracción',
@@ -38,6 +39,7 @@ export const carveSubtractiveSculpture_Skill_Data = defineSkill({
     methodological: 'Form an object by intentionally removing material while accounting for irreversible changes.',
     frontend: {
       en: 'Remove material carefully to reveal a planned three-dimensional form.',
+      it: 'Rimuovi il materiale con attenzione per ottenere una forma tridimensionale progettata in precedenza.',
       zh: '小心去除材料，逐步显现预先构想的三维形态。',
       hi: 'सावधानी से सामग्री हटाकर पहले से सोचा गया त्रि-आयामी रूप उभारें।',
       es: 'Retira material con cuidado para revelar una forma tridimensional planificada.',
