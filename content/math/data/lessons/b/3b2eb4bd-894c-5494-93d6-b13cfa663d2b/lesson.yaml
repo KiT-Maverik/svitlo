@@ -523,9 +523,6 @@ config:
         'interpretGroupingQuotient',
         'createTwoDivisionStories',
       ]
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

@@ -389,9 +389,6 @@ config:
       - 'combineTenTensIntoHundred'
       - 'explainRegroupingConservation'
       - 'crossHundredWithTens'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

@@ -698,9 +698,6 @@ config:
       - 'followGridDirections'
       - 'createLabeledGridMap'
       - 'transferGridNavigation'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

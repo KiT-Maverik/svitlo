@@ -407,9 +407,6 @@ config:
       - 'compareTensFirst'
       - 'chooseDecidingDigit'
       - 'orderTwoDigitNumbers'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

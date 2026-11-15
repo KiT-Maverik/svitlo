@@ -656,9 +656,6 @@ config:
         'compareAreaAcrossOutlines',
         'identifyOverlapsAndUnitSize',
       ]
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

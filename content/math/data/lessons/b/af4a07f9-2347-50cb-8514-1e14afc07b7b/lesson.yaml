@@ -594,9 +594,6 @@ config:
       - 'composeTeensFromTen'
       - 'countPastNineteen'
       - 'matchFourteenToObjects'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-
