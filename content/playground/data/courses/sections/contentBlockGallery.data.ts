@@ -3,6 +3,7 @@ import {
   defineCarousel,
   defineCarouselSlide,
   defineCheckpoint,
+  defineCheckpointAnswer,
   defineCheckpointItem,
   configuratorArrayToSlugMap,
   defineCode,
@@ -167,18 +168,23 @@ const interactiveCheckpoint = defineCheckpoint({
           locale: { value: 'How do I reveal this answer?' },
         }),
         check: true,
-        answer: {
-          items: configuratorArrayToSlugMap([
-            defineText({
-              id: '3fe35315-ae2e-57bf-9fa7-ec8ce278852d',
-              slug: 'checkpointAnswer',
-              type: 'text',
-              params: {},
-              locale: { value: 'Open the checkpoint row, then mark it complete.' },
-            }),
-          ]),
-          order: ['checkpointAnswer'],
-        },
+        answer: defineCheckpointAnswer({
+          id: '93befd3a-30f8-431a-a2d8-41d3983c5e99',
+          slug: 'revealAnswerContent',
+          type: 'checkpointAnswer',
+          content: {
+            items: configuratorArrayToSlugMap([
+              defineText({
+                id: '3fe35315-ae2e-57bf-9fa7-ec8ce278852d',
+                slug: 'checkpointAnswer',
+                type: 'text',
+                params: {},
+                locale: { value: 'Open the checkpoint row, then mark it complete.' },
+              }),
+            ]),
+            order: ['checkpointAnswer'],
+          },
+        }),
       }),
     ]),
     order: ['revealAnswer'],

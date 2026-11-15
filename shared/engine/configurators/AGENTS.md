@@ -1,6 +1,6 @@
 # Configurator architecture
 
-**Scope:** Authoring-time entity configurators and their validation/publication API. All ContentBlocks expose the stateless `build` API. `Carousel` owns `CarouselSlide` configurators, `Checkpoint` owns `CheckpointItem` configurators, and `CheckpointItem` owns its Text question and ordered answer ContentBlocks; other nested configurators may have distinct lifecycles. Root `AGENTS.md` and applicable Studio guidance also apply.
+**Scope:** Authoring-time entity configurators and their validation/publication API. All ContentBlocks expose the stateless `build` API. `Carousel` owns `CarouselSlide` configurators, `Checkpoint` owns `CheckpointItem` configurators, and `CheckpointItem` owns its Text question and an identified `CheckpointAnswer` Configurator; other nested configurators may have distinct lifecycles. Root `AGENTS.md` and applicable Studio guidance also apply.
 
 ## Ownership and public API
 

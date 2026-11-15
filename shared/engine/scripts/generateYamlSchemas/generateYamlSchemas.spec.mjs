@@ -21,6 +21,8 @@ const {
   yamlSubtitles_Schema,
   yamlQuestSection_Schema,
   yamlCarouselSlide_Schema,
+  yamlCheckpointItem_Schema,
+  yamlCheckpointAnswerConfigurator_Schema,
   audio_Config_Schema,
   image_Config_Schema,
   video_Config_Schema,
@@ -50,6 +52,7 @@ test('all current polymorphic types have a concrete exported define* factory', (
     'episode',
     'flashcard',
     'checkpointItem',
+    'checkpointAnswer',
     'carouselSlide',
     'quest',
     'questStage',
@@ -80,6 +83,32 @@ test('nested discriminator is required even in source-language-only YAML', () =>
     }).success,
     false,
   );
+});
+
+test('Checkpoint Item YAML requires an authored Answer Configurator with its own identity', () => {
+  const answer = {
+    id: '00000000-0000-4000-8000-000000000002',
+    slug: 'answer',
+    type: 'checkpointAnswer',
+    content: { items: { greeting: textBlock }, order: ['greeting'] },
+  };
+  const item = {
+    id: '00000000-0000-4000-8000-000000000003',
+    slug: 'item',
+    type: 'checkpointItem',
+    question: textBlock,
+    answer,
+  };
+  assert.equal(yamlCheckpointAnswerConfigurator_Schema.safeParse(answer).success, true);
+  assert.equal(yamlCheckpointItem_Schema.safeParse(item).success, true);
+  assert.equal(yamlCheckpointItem_Schema.safeParse({ ...item, answer: answer.content }).success, false);
+  assert.equal(yamlCheckpointItem_Schema.safeParse({
+    ...item, answer: { ...answer, id: undefined },
+  }).success, false);
+  assert.equal(yamlCheckpointItem_Schema.safeParse({
+    ...item, answer: { ...answer, type: 'text' },
+  }).success, false);
+  assert(yamlJsonSchemaDocuments()['lesson.schema.json'].includes('checkpointAnswer'));
 });
 
 test('YAML media projections require null while Engine Config schemas require real paths', () => {

@@ -159,6 +159,21 @@ expected TypeScript diagnostics. Do not add placeholders, `as any`,
 `@ts-ignore`, invented media paths or fabricated locale strings to make the
 draft compile.
 
+
+### Checkpoint Answer role modules
+
+Each `checkpointItem` Config contains exactly one `question` Text and one identified `answer` Configurator:
+
+```text
+<checkpointItemSlug>/
+  index.ts                         # defineCheckpointItem
+  question/index.ts                # exactly one defineText; no extra question slug directory
+  answer/index.ts                  # defineCheckpointAnswer (authored UUID)
+  answer/<contentBlockSlug>/index.ts # recursive ContentBlocks with local text/code/assets
+```
+
+The Answer's YAML must include `config: { id, slug, type: checkpointAnswer, content: { items, order } }`. Its ID is a permanent authored entity identity, never inferred by the builder; the previous bare `answer: { items, order }` shape is not accepted as an alternate API. The Question's original Text slug remains in Config despite the role-based file path. Child media/Scene source paths stay module-relative (each `import.meta.url` belongs to the nested block). The builder is create-only and deliberately does not typecheck unfinished authored media.
+
 Quest Sections (`type: quest`) use named `stages` and `tasks` slug maps, each with a mandatory `start` entry. `questStage.content` contains two Video configurators (`video.medium`, `video.small`), nullable `audio.dialogue`/`narration`/`background`, one Image and one localized Subtitles configurator; `questTask.scene` contains exactly one Scene configurator. The builder emits `defineQuestSection`, `defineStage`, `defineTask`, and nested `define*` calls, without a Stage/Task `order` array. Missing media paths remain explicit `null` and Quest runtime playback remains **unsupported**; this is an authoring draft only.
 
 The script selects factories only from

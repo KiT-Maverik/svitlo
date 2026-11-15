@@ -11,6 +11,7 @@ export type YamlConfiguratorType =
   | 'questTask'
   | 'carouselSlide'
   | 'checkpointItem'
+  | 'checkpointAnswer'
   | 'flashcard'
   | 'lesson'
   | 'episode'
@@ -39,6 +40,7 @@ export const yamlFactoryByType = {
   subtitles: 'defineSubtitles',
   carouselSlide: 'defineCarouselSlide',
   checkpointItem: 'defineCheckpointItem',
+  checkpointAnswer: 'defineCheckpointAnswer',
 
   content: 'defineContentSection',
   practice: 'definePracticeSection',
