@@ -15,10 +15,10 @@ config:
       en: 'Two at a Time: Counting Pairs'
   section:
     items:
-      section1PairStepWorkbench:
+      buildCountingByPairs:
         config:
           id: '834bdaf8-43bd-4e93-9f5a-14de5be490a1'
-          slug: 'section1PairStepWorkbench'
+          slug: 'buildCountingByPairs'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Pair-Step Workbench'
           content:
             items:
-              text1:
+              promptPairTotals:
                 config:
                   id: '71394ded-3390-4496-aff0-df6f09ebd270'
-                  slug: 'text1'
+                  slug: 'promptPairTotals'
                   type: 'text'
                   params: {}
                   locale:
@@ -132,16 +132,16 @@ config:
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
                   purpose: 'Proposed interactive Scene for Pair-Step Workbench'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainTwoFourSix:
                 config:
                   id: '543132ca-1c07-4d1d-abba-eec438078b77'
-                  slug: 'markdown2'
+                  slug: 'explainTwoFourSix'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'After three groups of two, there are six individual mittens. 3 pairs, 6 mittens; 2→4→6.'
-            order: ['text1', 'pairStepWorkbench', 'markdown2']
+            order: ['promptPairTotals', 'pairStepWorkbench', 'explainTwoFourSix']
         production:
           purpose: 'Pair-Step Workbench'
           pedagogicalIntent: |
@@ -182,10 +182,10 @@ config:
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2PairsAreNotSingleObjects:
+      distinguishPairsFromItems:
         config:
           id: 'b48a954e-f7af-41bb-8c9a-107c0f8040f9'
-          slug: 'section2PairsAreNotSingleObjects'
+          slug: 'distinguishPairsFromItems'
           type: 'content'
           params: {}
           locale:
@@ -195,34 +195,34 @@ config:
               en: 'Pairs Are Not Single Objects'
           content:
             items:
-              text1:
+              askFourPairsCount:
                 config:
                   id: 'acccec1f-1540-499e-aa1a-88e1deedada8'
-                  slug: 'text1'
+                  slug: 'askFourPairsCount'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'A table has four pairs of mittens. Does that mean four mittens or eight mittens?'
-              markdown2:
+              explainEightMittens:
                 config:
                   id: '825e4d54-e6e7-44d5-82d7-b1eeaae124bf'
-                  slug: 'markdown2'
+                  slug: 'explainEightMittens'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Eight mittens. There are four **groups** and each group contains **two**. Count by two: 2, 4, 6, 8. The number of pairs (four) and the number of mittens (eight) answer different questions.'
-              markdown3:
+              explainOddStartSequence:
                 config:
                   id: '835e4ee7-e5e7-4342-83d7-b381a9e1232c'
-                  slug: 'markdown3'
+                  slug: 'explainOddStartSequence'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'A sequence that begins at one may still add two each time: one loose mitten, then 3, 5 and 7 after whole pairs are added.'
-            order: ['text1', 'markdown2', 'markdown3']
+            order: ['askFourPairsCount', 'explainEightMittens', 'explainOddStartSequence']
         production:
           purpose: 'Pairs Are Not Single Objects'
           pedagogicalIntent: |
@@ -239,10 +239,10 @@ config:
             - **Transition:** Section 3 changes numbers or objects and asks for independent reasoning. The first Scene's state is not carried into the second.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3TwoStepTransfer:
+      applyTwoStepCounting:
         config:
           id: '890bc1c2-2479-4649-9707-73a09b1dfef7'
-          slug: 'section3TwoStepTransfer'
+          slug: 'applyTwoStepCounting'
           type: 'content'
           params: {}
           locale:
@@ -252,10 +252,10 @@ config:
               en: 'Two-Step Transfer'
           content:
             items:
-              text1:
+              askSixPairsSocks:
                 config:
                   id: '03592893-b60a-4778-b711-56158b3c23da'
-                  slug: 'text1'
+                  slug: 'askSixPairsSocks'
                   type: 'text'
                   params: {}
                   locale:
@@ -356,16 +356,16 @@ config:
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
                   purpose: 'Proposed interactive Scene for Two-Step Transfer'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              verifyTwelveAndFourteen:
                 config:
                   id: '235011b8-d9ff-4c2f-803c-f4a2ee9f4171'
-                  slug: 'markdown2'
+                  slug: 'verifyTwelveAndFourteen'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Six pairs contain twelve socks; seven pairs contain fourteen. 6×2=12; (6+1) pairs=14 socks, represented through repeated +2.'
-            order: ['text1', 'twoStepTransfer', 'markdown2']
+            order: ['askSixPairsSocks', 'twoStepTransfer', 'verifyTwelveAndFourteen']
         production:
           purpose: 'Two-Step Transfer'
           pedagogicalIntent: |
@@ -406,7 +406,7 @@ config:
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order: ['section1PairStepWorkbench', 'section2PairsAreNotSingleObjects', 'section3TwoStepTransfer']
+    order: ['buildCountingByPairs', 'distinguishPairsFromItems', 'applyTwoStepCounting']
   flashcards:
     items: {}
     order: []

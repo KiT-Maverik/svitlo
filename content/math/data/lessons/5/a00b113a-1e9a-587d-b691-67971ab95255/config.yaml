@@ -20,10 +20,10 @@ config:
       en: 'Read the Mass on a Graduated Scale'
   section:
     items:
-      section1WhichToolGivesANumber:
+      readGramScale:
         config:
           id: '01afc61e-ea6a-4764-837e-6569d8bbb413'
-          slug: 'section1WhichToolGivesANumber'
+          slug: 'readGramScale'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Which Tool Gives a Number?'
           content:
             items:
-              section1Text1:
+              compareBalanceAndScale:
                 config:
                   id: '619e822d-4ee7-4938-8678-eefc1901a5e9'
-                  slug: 'section1Text1'
+                  slug: 'compareBalanceAndScale'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  1. **text — currently supported:** "Our equal-arm balance could show which object was heavier. Can it tell us **exactly how many grams**? This different scale has numbered marks and a letter **g**. What might the number mean?"'
-              section1Scene2:
+              inspectGramPointer:
                 config:
                   id: '57540092-b080-4839-87df-8c2ae00b5481'
-                  slug: 'section1Scene2'
+                  slug: 'inspectGramPointer'
                   type: 'scene'
                   params: {}
                   locale:
@@ -162,10 +162,10 @@ config:
 
                       2. **scene — Resource type supported, custom Scene proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement A. Show an empty, zeroed ideal mass scale with seven major ticks (0–600 g in steps of 100 g) and **six** 100-gram intervals, each containing one midpoint tick worth 50 g. "Place object" sets pointer to **200 g**, exactly at major tick 200. Learner chooses reading "2", "200 g", or "200" and requests "Show how marks work."
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section1Markdown3:
+              explainScaleMarks:
                 config:
                   id: '85eda9b0-0a6a-491c-8317-b9b31c90d91f'
-                  slug: 'section1Markdown3'
+                  slug: 'explainScaleMarks'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -175,9 +175,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  3. **markdown — currently supported:** "The scale is labeled **grams**, written **g**. Its big marks go **0, 100, 200, 300, 400, 500, 600**. Our pointer reaches **200**, so the mass reading is **200 g**—not just ''2'' and not just ''200'' without a unit."'
             order:
-              - 'section1Text1'
-              - 'section1Scene2'
-              - 'section1Markdown3'
+              - 'compareBalanceAndScale'
+              - 'inspectGramPointer'
+              - 'explainScaleMarks'
         production:
           purpose: 'Which Tool Gives a Number?'
           pedagogicalIntent: 'Which Tool Gives a Number?'
@@ -194,10 +194,10 @@ config:
             - **Access:** Every tick has a named text position. "Read full scale" recites the ordered marks and spacing, not graphic color. The pointer state is announced as a position along the graduated scale.
             - **Planned Note:** "A mass reading is a number **with a unit**, such as 200 g."
 
-      section2HalfwayBetweenThreeHundredAndFourHundred:
+      readHalfwayTick:
         config:
           id: '684f5376-ab48-4c17-8496-7f5437911035'
-          slug: 'section2HalfwayBetweenThreeHundredAndFourHundred'
+          slug: 'readHalfwayTick'
           type: 'content'
           params: {}
           locale:
@@ -207,10 +207,10 @@ config:
               en: 'Halfway Between Three Hundred and Four Hundred'
           content:
             items:
-              section2Text1:
+              askMidpointBetween300And400:
                 config:
                   id: 'e1557776-68ad-475e-83f4-fe9d4a0c1eb5'
-                  slug: 'section2Text1'
+                  slug: 'askMidpointBetween300And400'
                   type: 'text'
                   params: {}
                   locale:
@@ -219,10 +219,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  1. **text — currently supported:** "Between **300 g** and **400 g** there is a small tick in the middle. If the big gap is **100 g**, how much is half the gap? What does the pointer mean when it stops there?"'
-              section2Scene2:
+              locate350GramMark:
                 config:
                   id: '7cf38afc-bee1-4143-8d49-fe478f5bd5f8'
-                  slug: 'section2Scene2'
+                  slug: 'locate350GramMark'
                   type: 'scene'
                   params: {}
                   locale:
@@ -336,10 +336,10 @@ config:
 
                       2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement B. Fixed scale 0–600 g, 100 g major interval and one intermediate 50 g tick per adjacent pair. Pointer **350 g** at exactly halfway in the 300–400 span. Learner can bracket 300→350→400, select "300 g", "350 g" or "400 g", then reveal an **equal-length pair of 50 g subintervals**.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section2Markdown3:
+              explainFiftyGramInterval:
                 config:
                   id: '6cf22014-7b78-4832-8d65-6ede9aef16f8'
-                  slug: 'section2Markdown3'
+                  slug: 'explainFiftyGramInterval'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -349,9 +349,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  3. **markdown — currently supported:** "We split the gap from **300 to 400** into two equal parts: **300→350** and **350→400**, each **50 grams**. The pointer is halfway, so we read **350 g**. The little tick has a value even without a printed number."'
             order:
-              - 'section2Text1'
-              - 'section2Scene2'
-              - 'section2Markdown3'
+              - 'askMidpointBetween300And400'
+              - 'locate350GramMark'
+              - 'explainFiftyGramInterval'
         production:
           purpose: 'Halfway Between Three Hundred and Four Hundred'
           pedagogicalIntent: 'Halfway Between Three Hundred and Four Hundred'
@@ -368,10 +368,10 @@ config:
             - **Access:** Textual interval summary before reveal says "pointer at midway tick between printed 300 and 400" (contains enough information to solve). A "Show major interval" control reveals all 100 g labels without requiring pointing at tiny marks.
             - **Planned Note:** "Halfway across a 100 g interval is 50 g more."
 
-      section3TheScaleWasnTAtZero:
+      resetScaleToZero:
         config:
           id: '2df18c43-5d40-4132-80c8-6f05d079b274'
-          slug: 'section3TheScaleWasnTAtZero'
+          slug: 'resetScaleToZero'
           type: 'content'
           params: {}
           locale:
@@ -381,10 +381,10 @@ config:
               en: "The Scale Wasn't at Zero"
           content:
             items:
-              section3Text1:
+              challengeEmptyScaleAt100:
                 config:
                   id: '69b24add-4fc7-42c9-8dc9-1d835bbc4597'
-                  slug: 'section3Text1'
+                  slug: 'challengeEmptyScaleAt100'
                   type: 'text'
                   params: {}
                   locale:
@@ -393,10 +393,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  1. **text — currently supported:** "This scale is **empty**, but the pointer already shows **100 g**. Would it be fair to weigh an object and trust its number? What should we check first?"'
-              section3Scene2:
+              correctScaleOffset:
                 config:
                   id: '0d7631ad-e2c6-465a-8f5d-1d3420ed8ac3'
-                  slug: 'section3Scene2'
+                  slug: 'correctScaleOffset'
                   type: 'scene'
                   params: {}
                   locale:
@@ -510,10 +510,10 @@ config:
 
                       2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement C. Model base-offset **+100 g** before tare. Empty instrument indicates **100 g**; place example object with fixed true modeled mass **350 g** without tare ⇒ apparent indicated reading **450 g**, which is **not** a valid object-only mass. Choose "Remove object", "Zero/tare empty scale" ⇒ offset becomes 0, empty pointer 0. Then "Place same object" ⇒ **350 g**. Learner can replay but not treat the earlier 450 g as correct.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section3Markdown3:
+              explainZeroingBeforeWeighing:
                 config:
                   id: 'b24908a6-395c-45d1-8884-52b433914fc3'
-                  slug: 'section3Markdown3'
+                  slug: 'explainZeroingBeforeWeighing'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -523,9 +523,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  3. **markdown — currently supported:** "An empty scale should start at **0 g**. When it did not, the reading included an unwanted offset. We reset the **empty** scale to zero and weighed the **same object** again. Now the pointer shows **350 g**. The object''s mass did not change."'
             order:
-              - 'section3Text1'
-              - 'section3Scene2'
-              - 'section3Markdown3'
+              - 'challengeEmptyScaleAt100'
+              - 'correctScaleOffset'
+              - 'explainZeroingBeforeWeighing'
         production:
           purpose: "The Scale Wasn't at Zero"
           pedagogicalIntent: "The Scale Wasn't at Zero"
@@ -542,10 +542,10 @@ config:
             - **Boundary:** Real scales may have advanced taring for container mass, but this Lesson's empty-zero procedure is intentionally narrow and reliable. No subtraction-based mass correction or force mechanics is taught.
             - **Planned Note:** "Check the empty scale reads **0** before measuring."
 
-      section4YourOwnMassReading:
+      measure550Grams:
         config:
           id: '327c30ab-c7db-4c49-879c-0f45523bc3a7'
-          slug: 'section4YourOwnMassReading'
+          slug: 'measure550Grams'
           type: 'content'
           params: {}
           locale:
@@ -555,10 +555,10 @@ config:
               en: 'Your Own Mass Reading'
           content:
             items:
-              section4Text1:
+              askHalfwayBetween500And600:
                 config:
                   id: '6568d35d-0dc7-4147-8aad-0cdd52026ec7'
-                  slug: 'section4Text1'
+                  slug: 'askHalfwayBetween500And600'
                   type: 'text'
                   params: {}
                   locale:
@@ -567,10 +567,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '  1. **text — currently supported:** "The scale is properly zeroed. The new pointer is on a small tick halfway **between 500 and 600 g**. What mass should we write? Include the unit."'
-              section4Scene2:
+              readNewMassPointer:
                 config:
                   id: '457f4bd0-d344-457d-8091-e89176aac63c'
-                  slug: 'section4Scene2'
+                  slug: 'readNewMassPointer'
                   type: 'scene'
                   params: {}
                   locale:
@@ -684,10 +684,10 @@ config:
 
                       2. **scene — proposed:** Graduated Mass Scale (full original source: Scene production.specification), placement D. Empty ready instrument at 0 g; example object mass **550 g** moves pointer to one minor tick midway 500–600. Learner selects/enters 500 g, 550 g, 600 g or bare 550; a separate accessible "Read scale intervals" control explains that 500→550 and 550→600 are equal **50 g** subintervals.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section4Markdown3:
+              justify550Grams:
                 config:
                   id: 'e8c705c3-27aa-4ccd-8325-6309bc485a07'
-                  slug: 'section4Markdown3'
+                  slug: 'justify550Grams'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -697,9 +697,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '  3. **markdown — currently supported:** "The last big gap goes from **500 to 600 grams**. Halfway is **550**. The mass is **550 g**. We used the actual little tick and wrote its unit, rather than guessing the nearest printed number."'
             order:
-              - 'section4Text1'
-              - 'section4Scene2'
-              - 'section4Markdown3'
+              - 'askHalfwayBetween500And600'
+              - 'readNewMassPointer'
+              - 'justify550Grams'
         production:
           purpose: 'Your Own Mass Reading'
           pedagogicalIntent: 'Your Own Mass Reading'
@@ -717,10 +717,10 @@ config:
             - **Low-tech transfer:** A virtual list of ticks and pointer positions is sufficient; no physical kitchen scale is required.
 
     order:
-      - 'section1WhichToolGivesANumber'
-      - 'section2HalfwayBetweenThreeHundredAndFourHundred'
-      - 'section3TheScaleWasnTAtZero'
-      - 'section4YourOwnMassReading'
+      - 'readGramScale'
+      - 'readHalfwayTick'
+      - 'resetScaleToZero'
+      - 'measure550Grams'
   flashcards:
     items: {}
     order: []

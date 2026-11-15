@@ -20,10 +20,10 @@ config:
       en: 'True or False? Compare Both Sides'
   section:
     items:
-      section1:
+      verifyEqualityOfExpressions:
         config:
           id: 'f31c7f8a-d717-5aa9-bdca-ff8aa8c48fb3'
-          slug: 'section1'
+          slug: 'verifyEqualityOfExpressions'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Test an equality with two expressions'
           content:
             items:
-              text1:
+              compareTwoSums:
                 config:
                   id: '7dafaafb-7f7a-53d8-beea-2afb04e95f36'
-                  slug: 'text1'
+                  slug: 'compareTwoSums'
                   type: 'text'
                   params: {}
                   locale:
@@ -44,10 +44,10 @@ config:
                       en: 'Does **3 + 5 = 4 + 4** tell the truth? Look at both sides before you decide.'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              testBothSidesEqual:
                 config:
                   id: '0b854ce4-9896-5909-ba9c-cce483cfd7e7'
-                  slug: 'scene1'
+                  slug: 'testBothSidesEqual'
                   type: 'scene'
                   params: {}
                   locale:
@@ -111,10 +111,10 @@ config:
                     The current generic renderer supports a Scene Resource, not this particular design. Coding Agent must verify concrete localization context, build a prop-free Scene and tests, review WCAG 2.2 AA and offline completeness, and seek editor approval. No runtime data, Question/Quiz config, score, persistence or Note event is introduced.
                   purpose: 'Test an equality with two expressions: independent scene placement'
                   productionNotes: 'Legacy Scene statementVerifier.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              text2:
+              explainEightEqualsEight:
                 config:
                   id: '7eafac8e-827a-5891-bfea-2c8e03e95da3'
-                  slug: 'text2'
+                  slug: 'explainEightEqualsEight'
                   type: 'text'
                   params: {}
                   locale:
@@ -122,7 +122,7 @@ config:
                       en: 'Look again: three plus five is eight; four plus four is also eight. A true equality does not require identical writing on each side.'
                 production:
                   purpose: 'Source learner prompt/feedback'
-            order: ['text1', 'scene1', 'text2']
+            order: ['compareTwoSums', 'testBothSidesEqual', 'explainEightEqualsEight']
         production:
           purpose: 'Test an equality with two expressions'
           productionNotes: |-
@@ -131,10 +131,10 @@ config:
             1. **`text`:** “Does **3 + 5 = 4 + 4** tell the truth? Look at both sides before you decide.” Invite a prediction without immediately revealing the totals.
             2. **`scene` Resource (proposed):** Statement Verifier (Scene specification statementVerifier embedded below), entry A, shows two equal-unit trays with groups 3+5 and 4+4, the original equality and separate “Check side” buttons. The learner can decide true/false then inspect **8** and **8**. “Yes, they are arranged differently but each side equals eight.”
             3. **`text`, misconception feedback:** If false chosen: “Look again: three plus five is eight; four plus four is also eight. A true equality does not require identical writing on each side.” No score, no forced retry.
-      section2:
+      compareValuesWithInequalities:
         config:
           id: 'f21c7df7-d417-55f0-bcca-fdf7a9c49146'
-          slug: 'section2'
+          slug: 'compareValuesWithInequalities'
           type: 'content'
           params: {}
           locale:
@@ -144,10 +144,10 @@ config:
               en: 'Less than, more than, and the values they compare'
           content:
             items:
-              markdown1:
+              defineLessGreaterSigns:
                 config:
                   id: '551333b8-f6cc-5cff-8f75-b3b81ebc05f5'
-                  slug: 'markdown1'
+                  slug: 'defineLessGreaterSigns'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -155,10 +155,10 @@ config:
                       en: 'The sign **<** says ‘the value on this side is **smaller** than the other value’. The sign **>** says ‘the value on this side is **greater**’. Neither sign is automatically an instruction to find an answer.'
                 production:
                   purpose: 'Source explanatory learner copy'
-              text1:
+              evaluateFivePlusTwo:
                 config:
                   id: 'e04eaada-aff9-56a5-a189-2ada56fa2e37'
-                  slug: 'text1'
+                  slug: 'evaluateFivePlusTwo'
                   type: 'text'
                   params: {}
                   locale:
@@ -166,10 +166,10 @@ config:
                       en: 'Is **5 + 2 < 4 + 4** true? Work out the left and right values.'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              testInequalitySign:
                 config:
                   id: 'ee01b193-0604-5ade-9d19-319300fde388'
-                  slug: 'scene1'
+                  slug: 'testInequalitySign'
                   type: 'scene'
                   params: {}
                   locale:
@@ -233,10 +233,10 @@ config:
                     The current generic renderer supports a Scene Resource, not this particular design. Coding Agent must verify concrete localization context, build a prop-free Scene and tests, review WCAG 2.2 AA and offline completeness, and seek editor approval. No runtime data, Question/Quiz config, score, persistence or Note event is introduced.
                   purpose: 'Less than, more than, and the values they compare: independent scene placement'
                   productionNotes: 'Legacy Scene statementVerifier.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              text2:
+              explainFalseGreaterClaim:
                 config:
                   id: 'df4ea947-acf9-51ec-a089-294757fa2fca'
-                  slug: 'text2'
+                  slug: 'explainFalseGreaterClaim'
                   type: 'text'
                   params: {}
                   locale:
@@ -244,7 +244,7 @@ config:
                       en: 'Try **9 − 2 > 3 + 5**. The left side is seven; the right side is eight. So the claim ‘seven is greater than eight’ is false.'
                 production:
                   purpose: 'Source learner prompt/feedback'
-            order: ['markdown1', 'text1', 'scene1', 'text2']
+            order: ['defineLessGreaterSigns', 'evaluateFivePlusTwo', 'testInequalitySign', 'explainFalseGreaterClaim']
         production:
           purpose: 'Less than, more than, and the values they compare'
           productionNotes: |-
@@ -254,10 +254,10 @@ config:
             2. **`text`:** “Is **5 + 2 < 4 + 4** true? Work out the left and right values.”
             3. **`scene` Resource (proposed):** Statement Verifier entry B. Reveal left **7**, right **8** separately and show **7 < 8**, true. Ask the learner to explain with “seven is smaller than eight” rather than “the arrow points that way”. For false: “Five plus two is seven; four plus four is eight. Seven really _is less than_ eight.”
             4. **`text`:** “Try **9 − 2 > 3 + 5**. The left side is seven; the right side is eight. So the claim ‘seven is greater than eight’ is false.” Offer learner-controlled reveal before explaining.
-      section3:
+      rejectStrictSignForEqualValues:
         config:
           id: 'f11c7c64-d517-5783-bbca-fc64aac492d9'
-          slug: 'section3'
+          slug: 'rejectStrictSignForEqualValues'
           type: 'content'
           params: {}
           locale:
@@ -267,10 +267,10 @@ config:
               en: 'What if the values are equal but the symbol says “less”?'
           content:
             items:
-              text1:
+              inspectEqualTenSums:
                 config:
                   id: 'b12a1029-9834-5486-b264-902940f0c308'
-                  slug: 'text1'
+                  slug: 'inspectEqualTenSums'
                   type: 'text'
                   params: {}
                   locale:
@@ -278,10 +278,10 @@ config:
                       en: 'Someone writes **4 + 6 < 8 + 2** and says it is true because both sides make ten. Is that a good reason?'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              testStrictInequality:
                 config:
                   id: '8dc3130a-dc25-5c97-bcda-930ad1fb8e99'
-                  slug: 'scene1'
+                  slug: 'testStrictInequality'
                   type: 'scene'
                   params: {}
                   locale:
@@ -345,10 +345,10 @@ config:
                     The current generic renderer supports a Scene Resource, not this particular design. Coding Agent must verify concrete localization context, build a prop-free Scene and tests, review WCAG 2.2 AA and offline completeness, and seek editor approval. No runtime data, Question/Quiz config, score, persistence or Note event is introduced.
                   purpose: 'What if the values are equal but the symbol says “less”?: independent scene placement'
                   productionNotes: 'Legacy Scene statementVerifier.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              markdown1:
+              explainEqualNotLess:
                 config:
                   id: '24fe5933-7d90-59f4-9f60-d93340ad8bb2'
-                  slug: 'markdown1'
+                  slug: 'explainEqualNotLess'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -356,7 +356,7 @@ config:
                       en: 'Equal values satisfy **=**, but not the strict signs **<** or **>**. A false claim may have correctly calculated numbers but the **wrong relation**.'
                 production:
                   purpose: 'Source explanatory learner copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['inspectEqualTenSums', 'testStrictInequality', 'explainEqualNotLess']
         production:
           purpose: 'What if the values are equal but the symbol says “less”?'
           productionNotes: |-
@@ -365,10 +365,10 @@ config:
             1. **`text`:** “Someone writes **4 + 6 < 8 + 2** and says it is true because both sides make ten. Is that a good reason?” Allow a prediction before showing values.
             2. **`scene` Resource (proposed):** Statement Verifier entry C compares **10** and **10**. Child must choose the relation to _repair_ the original statement from **<** to **=** while leaving the expressions unchanged. If select **>**, feedback: “Ten is not greater than ten.” If retain **<**, feedback: “Ten is not smaller than ten.” If choose **=**: “Yes. Equal values need equality, not strict less-than.”
             3. **`markdown`:** “Equal values satisfy **=**, but not the strict signs **<** or **>**. A false claim may have correctly calculated numbers but the **wrong relation**.”
-      section4:
+      verifyIndependentComparisons:
         config:
           id: 'f01c7ad1-da17-5f62-baca-fad1abc4946c'
-          slug: 'section4'
+          slug: 'verifyIndependentComparisons'
           type: 'content'
           params: {}
           locale:
@@ -378,10 +378,10 @@ config:
               en: 'Independent claim check'
           content:
             items:
-              text1:
+              judgeElevenGreaterThanTen:
                 config:
                   id: 'c6fcffa0-a3da-51b3-8837-7fa02fb00d51'
-                  slug: 'text1'
+                  slug: 'judgeElevenGreaterThanTen'
                   type: 'text'
                   params: {}
                   locale:
@@ -389,10 +389,10 @@ config:
                       en: 'Check **5 + 6 > 8 + 2**. Choose true or false, then explain what each side equals. The symbol is a claim, not a calculator button.'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              scene1:
+              evaluateClaimScene:
                 config:
                   id: '55cccba1-9ad2-53ec-84e4-4ba1f02bec82'
-                  slug: 'scene1'
+                  slug: 'evaluateClaimScene'
                   type: 'scene'
                   params: {}
                   locale:
@@ -456,10 +456,10 @@ config:
                     The current generic renderer supports a Scene Resource, not this particular design. Coding Agent must verify concrete localization context, build a prop-free Scene and tests, review WCAG 2.2 AA and offline completeness, and seek editor approval. No runtime data, Question/Quiz config, score, persistence or Note event is introduced.
                   purpose: 'Independent claim check: independent scene placement'
                   productionNotes: 'Legacy Scene statementVerifier.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
-              text2:
+              testSecondClaim:
                 config:
                   id: 'c9fd0459-a4da-5346-8b37-84592cb00898'
-                  slug: 'text2'
+                  slug: 'testSecondClaim'
                   type: 'text'
                   params: {}
                   locale:
@@ -467,10 +467,10 @@ config:
                       en: '**8 − 3 > 2 + 4**'
                 production:
                   purpose: 'Source learner prompt/feedback'
-              markdown1:
+              reviewComparisonSignRule:
                 config:
                   id: '9352ce9a-80c5-5611-8db5-4e9af252b66b'
-                  slug: 'markdown1'
+                  slug: 'reviewComparisonSignRule'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -478,7 +478,7 @@ config:
                       en: "**Recall:** First find or reason about each side's value. Then check whether the sign **=, <, >** describes the comparison accurately."
                 production:
                   purpose: 'Source explanatory learner copy'
-            order: ['text1', 'scene1', 'text2', 'markdown1']
+            order: ['judgeElevenGreaterThanTen', 'evaluateClaimScene', 'testSecondClaim', 'reviewComparisonSignRule']
         production:
           purpose: 'Independent claim check'
           productionNotes: |-
@@ -488,7 +488,13 @@ config:
             2. **`scene` Resource (proposed):** Statement Verifier entry D hides totals until inspected and offers optional hints “Compute five plus six” and “Compute eight plus two”. Values **11** and **10**; claim **11 > 10** is true. Incorrect “false” receives “Eleven is one more than ten; the sign says greater, so the claim is true.”
             3. **`text`:** Optional contrast “**8 − 3 > 2 + 4**” shows **5** versus **6**, so **5 > 6** is false. The corrected relation is **<**. Encourage explanation based on _both_ values.
             4. **`markdown`:** “**Recall:** First find or reason about each side's value. Then check whether the sign **=, <, >** describes the comparison accurately.”
-    order: ['section1', 'section2', 'section3', 'section4']
+    order:
+      [
+        'verifyEqualityOfExpressions',
+        'compareValuesWithInequalities',
+        'rejectStrictSignForEqualValues',
+        'verifyIndependentComparisons',
+      ]
   flashcards:
     items: {}
     order: []

@@ -15,10 +15,10 @@ config:
       en: 'Multiplying by Zero and One'
   section:
     items:
-      section1:
+      multiplyFourGroupsOfZero:
         config:
           id: 'af4a393b-c7e8-5c04-b9f8-b93b8aaf354e'
-          slug: 'section1'
+          slug: 'multiplyFourGroupsOfZero'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Four Empty Groups'
           content:
             items:
-              text1:
+              countFourEmptyBoxes:
                 config:
                   id: 'fdc7b51e-691b-5fc9-bf02-351e6ccc8c1f'
-                  slug: 'text1'
+                  slug: 'countFourEmptyBoxes'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'There are four boxes. Each has ZERO counters. How many counters altogether?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              modelZeroPerGroup:
                 config:
                   id: '17f726bf-29df-582a-870e-a6bfe23a9ee0'
-                  slug: 'scene1'
+                  slug: 'modelZeroPerGroup'
                   type: 'scene'
                   params: {}
                   locale:
@@ -107,10 +107,10 @@ config:
                     The generic scene resource renderer exists; **Zero and One Multiplication Lab itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: The canonical Skill combines ×0 and ×1 as approved. Keep the two laws distinct in the teaching and do not split the taxonomy without explicit editorial approval. Verify that a zero-sized group is unambiguously represented nonvisually.
                   purpose: 'Four Empty Groups'
                   productionNotes: 'Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for Four Empty Groups. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainProductZero:
                 config:
                   id: '321e239c-de61-5f53-ac80-a39cadb7f20d'
-                  slug: 'markdown1'
+                  slug: 'explainProductZero'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -118,7 +118,7 @@ config:
                       en: 'Four groups of zero contain no counters. Four times zero is zero: 4 × 0 = 0.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['countFourEmptyBoxes', 'modelZeroPerGroup', 'explainProductZero']
         production:
           purpose: 'Four Empty Groups'
           productionNotes: |-
@@ -134,10 +134,10 @@ config:
             - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
             - **Proposed Note:** “Any number times zero equals zero.” after this meaning has been explained (planned only).
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-      section2:
+      multiplyZeroGroupsOfFour:
         config:
           id: 'b04a3ace-cae8-50bd-baf8-bace89af33bb'
-          slug: 'section2'
+          slug: 'multiplyZeroGroupsOfFour'
           type: 'content'
           params: {}
           locale:
@@ -147,10 +147,10 @@ config:
               en: 'Zero Groups Is Still Zero'
           content:
             items:
-              text1:
+              countNoGroups:
                 config:
                   id: '6663659f-60c0-5edc-a79d-e59f0430db9e'
-                  slug: 'text1'
+                  slug: 'countNoGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -158,10 +158,10 @@ config:
                       en: 'What if we have ZERO groups of four counters? How many counters are in those groups?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              modelZeroGroupCases:
                 config:
                   id: '4ab30360-fda2-5065-b9ca-8360af7ec23f'
-                  slug: 'scene1'
+                  slug: 'modelZeroGroupCases'
                   type: 'scene'
                   params: {}
                   locale:
@@ -226,10 +226,10 @@ config:
                     The generic scene resource renderer exists; **Zero and One Multiplication Lab itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: The canonical Skill combines ×0 and ×1 as approved. Keep the two laws distinct in the teaching and do not split the taxonomy without explicit editorial approval. Verify that a zero-sized group is unambiguously represented nonvisually.
                   purpose: 'Zero Groups Is Still Zero'
                   productionNotes: 'Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for Zero Groups Is Still Zero. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainZeroFactor:
                 config:
                   id: 'c242e38d-81d2-58e6-bca5-638d1d93321c'
-                  slug: 'markdown1'
+                  slug: 'explainZeroFactor'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -237,7 +237,7 @@ config:
                       en: 'Zero groups of four contain zero counters. The pictures differ, but both products are zero.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['countNoGroups', 'modelZeroGroupCases', 'explainZeroFactor']
         production:
           purpose: 'Zero Groups Is Still Zero'
           productionNotes: |-
@@ -253,10 +253,10 @@ config:
             - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
             - **Proposed Note:** “Any number times zero equals zero.” after this meaning has been explained (planned only).
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-      section3:
+      compareMultiplyingByOne:
         config:
           id: 'b14a3c61-c9e8-5f2a-bbf8-bc6188af3228'
-          slug: 'section3'
+          slug: 'compareMultiplyingByOne'
           type: 'content'
           params: {}
           locale:
@@ -266,10 +266,10 @@ config:
               en: 'One Changes Nothing'
           content:
             items:
-              text1:
+              compareOnePerGroupAndOneGroup:
                 config:
                   id: '89a55630-7a2c-519b-8adf-d63035e3635d'
-                  slug: 'text1'
+                  slug: 'compareOnePerGroupAndOneGroup'
                   type: 'text'
                   params: {}
                   locale:
@@ -277,10 +277,10 @@ config:
                       en: 'Compare FOUR groups of ONE with ONE group of FOUR. How many counters in each?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              modelIdentityCases:
                 config:
                   id: '56779451-63a6-5f84-858f-1451d7843c46'
-                  slug: 'scene1'
+                  slug: 'modelIdentityCases'
                   type: 'scene'
                   params: {}
                   locale:
@@ -345,10 +345,10 @@ config:
                     The generic scene resource renderer exists; **Zero and One Multiplication Lab itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: The canonical Skill combines ×0 and ×1 as approved. Keep the two laws distinct in the teaching and do not split the taxonomy without explicit editorial approval. Verify that a zero-sized group is unambiguously represented nonvisually.
                   purpose: 'One Changes Nothing'
                   productionNotes: 'Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for One Changes Nothing. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainTimesOne:
                 config:
                   id: 'efc5a1ca-a94f-5c49-aa28-21ca237be687'
-                  slug: 'markdown1'
+                  slug: 'explainTimesOne'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -356,7 +356,7 @@ config:
                       en: '4 × 1 = 4 and 1 × 4 = 4. One group of four is four; four groups of one also make four.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['compareOnePerGroupAndOneGroup', 'modelIdentityCases', 'explainTimesOne']
         production:
           purpose: 'One Changes Nothing'
           productionNotes: |-
@@ -372,10 +372,10 @@ config:
             - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
             - **Proposed Note:** “Any number times one stays that number.” after this meaning has been explained (planned only).
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-      section4:
+      testZeroAndOneRules:
         config:
           id: 'b24a3df4-c4e8-574b-bcf8-bdf48faf3d2d'
-          slug: 'section4'
+          slug: 'testZeroAndOneRules'
           type: 'content'
           params: {}
           locale:
@@ -385,10 +385,10 @@ config:
               en: 'Test a New Number'
           content:
             items:
-              text1:
+              predictSevenTimesZeroAndOne:
                 config:
                   id: 'f8b618b9-4246-536e-b9f0-98b967c8b5cc'
-                  slug: 'text1'
+                  slug: 'predictSevenTimesZeroAndOne'
                   type: 'text'
                   params: {}
                   locale:
@@ -396,10 +396,10 @@ config:
                       en: 'Without drawing first: what are 7 × 0 and 7 × 1? And what is 7 + 0?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              tryNewFactors:
                 config:
                   id: 'c431cf7a-a216-5c6f-b349-4f7a0b0736f5'
-                  slug: 'scene1'
+                  slug: 'tryNewFactors'
                   type: 'scene'
                   params: {}
                   locale:
@@ -464,10 +464,10 @@ config:
                     The generic scene resource renderer exists; **Zero and One Multiplication Lab itself is proposed** and requires upstream Methodologist/editor approval, a separate approved Scene spec, prop-free implementation and own tests. Coding Agent confirms real locale and offline wiring. Assessment Architect alone can authorize scored Questions. Editorial issue: The canonical Skill combines ×0 and ×1 as approved. Keep the two laws distinct in the teaching and do not split the taxonomy without explicit editorial approval. Verify that a zero-sized group is unambiguously represented nonvisually.
                   purpose: 'Test a New Number'
                   productionNotes: 'Source Scene zeroOneMultiplicationLab.scene-spec.md; independent placement for Test a New Number. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              distinguishAdditionZero:
                 config:
                   id: '00430ba3-e422-534c-baa5-8ba328efe7f6'
-                  slug: 'markdown1'
+                  slug: 'distinguishAdditionZero'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -475,7 +475,7 @@ config:
                       en: '7 × 0 = 0; 7 × 1 = 7; 7 + 0 = 7. The operation matters. Multiplying by zero is not the same as adding zero.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['predictSevenTimesZeroAndOne', 'tryNewFactors', 'distinguishAdditionZero']
         production:
           purpose: 'Test a New Number'
           productionNotes: |-
@@ -491,7 +491,7 @@ config:
             - **Inclusive/localized operation:** Native keyboard/touch controls, visible focus, screen reader counts and contextual role labels, semantic RTL operand order and reduced-motion immediate states.
             - **Proposed Note:** “Any number times one stays that number.” after this meaning has been explained (planned only).
             - **Implementation dependency:** One independent prop-free Scene entry for this Section; no invented React mode prop, persisted score or Question object.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['multiplyFourGroupsOfZero', 'multiplyZeroGroupsOfFour', 'compareMultiplyingByOne', 'testZeroAndOneRules']
   flashcards:
     items: {}
     order: []

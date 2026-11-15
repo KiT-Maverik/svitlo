@@ -18,10 +18,10 @@ config:
     order: []
   section:
     items:
-      section1PutEveryDigitInItsPlace:
+      alignTensAndOnes:
         config:
           id: '50625b69-4341-42be-b9b0-34e3313514b8'
-          slug: 'section1PutEveryDigitInItsPlace'
+          slug: 'alignTensAndOnes'
           type: 'content'
           params: {}
           locale:
@@ -31,10 +31,10 @@ config:
               en: 'Put Every Digit in Its Place'
           content:
             items:
-              text1:
+              placeDigitsInColumns:
                 config:
                   id: '6f976e98-77a0-444f-804d-c4e67ea5ecad'
-                  slug: 'text1'
+                  slug: 'placeDigitsInColumns'
                   type: 'text'
                   params: {}
                   locale:
@@ -113,16 +113,16 @@ config:
                     Generic Scene Resource rendering exists; this specific Place Value Column Adder is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Confirm this Lesson's single-carry Grade 2 depth and separation from `additionRegroupingAcrossPlaces`, which extends the _value-preserving exchange_ across tens and hundreds.
                   purpose: 'Proposed interactive Scene for Put Every Digit in Its Place'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainPlaceValueColumns:
                 config:
                   id: '25cce94f-20d6-44a4-a62b-530d6c9b488a'
-                  slug: 'markdown2'
+                  slug: 'explainPlaceValueColumns'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'The tens columns count bundles of ten, and the ones columns count single objects. We add each kind to the same kind.'
-            order: ['text1', 'placeValueColumnAdder', 'markdown2']
+            order: ['placeDigitsInColumns', 'placeValueColumnAdder', 'explainPlaceValueColumns']
         production:
           purpose: 'Put Every Digit in Its Place'
           pedagogicalIntent: |
@@ -142,10 +142,10 @@ config:
             - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section2TwelveOnesNeedAnExchange:
+      exchangeTwelveOnes:
         config:
           id: '7cdd6c1d-1fcc-4c14-9209-b0773bdf6d76'
-          slug: 'section2TwelveOnesNeedAnExchange'
+          slug: 'exchangeTwelveOnes'
           type: 'content'
           params: {}
           locale:
@@ -155,10 +155,10 @@ config:
               en: 'Twelve Ones Need an Exchange'
           content:
             items:
-              text1:
+              regroupTwelveOnes:
                 config:
                   id: 'e7dfe9bc-9c88-47d9-8e3e-495a53392227'
-                  slug: 'text1'
+                  slug: 'regroupTwelveOnes'
                   type: 'text'
                   params: {}
                   locale:
@@ -237,16 +237,16 @@ config:
                     Generic Scene Resource rendering exists; this specific Place Value Column Adder is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Confirm this Lesson's single-carry Grade 2 depth and separation from `additionRegroupingAcrossPlaces`, which extends the _value-preserving exchange_ across tens and hundreds.
                   purpose: 'Proposed interactive Scene for Twelve Ones Need an Exchange'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainCarryingOneTen:
                 config:
                   id: '00997db3-2811-49d6-9afe-3ef15875c18c'
-                  slug: 'markdown2'
+                  slug: 'explainCarryingOneTen'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'We keep two ones and carry one full ten. That ten was made from ten of the twelve singles, not added from outside.'
-            order: ['text1', 'placeValueColumnAdder', 'markdown2']
+            order: ['regroupTwelveOnes', 'placeValueColumnAdder', 'explainCarryingOneTen']
         production:
           purpose: 'Twelve Ones Need an Exchange'
           pedagogicalIntent: |
@@ -266,10 +266,10 @@ config:
             - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section3CompleteTwentySevenPlusThirtyFive:
+      addCarriedTen:
         config:
           id: '2c19e903-4ea1-4db4-9a7a-26f591fdb196'
-          slug: 'section3CompleteTwentySevenPlusThirtyFive'
+          slug: 'addCarriedTen'
           type: 'content'
           params: {}
           locale:
@@ -279,10 +279,10 @@ config:
               en: 'Complete Twenty-Seven Plus Thirty-Five'
           content:
             items:
-              text1:
+              combineTensWithCarry:
                 config:
                   id: '67192a06-da03-4a79-9aa1-6494cf558647'
-                  slug: 'text1'
+                  slug: 'combineTensWithCarry'
                   type: 'text'
                   params: {}
                   locale:
@@ -361,16 +361,16 @@ config:
                     Generic Scene Resource rendering exists; this specific Place Value Column Adder is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Confirm this Lesson's single-carry Grade 2 depth and separation from `additionRegroupingAcrossPlaces`, which extends the _value-preserving exchange_ across tens and hundreds.
                   purpose: 'Proposed interactive Scene for Complete Twenty-Seven Plus Thirty-Five'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainSixtyTwo:
                 config:
                   id: '50113c2d-cd63-4df6-a9c0-f59b6cbd55ac'
-                  slug: 'markdown2'
+                  slug: 'explainSixtyTwo'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Seven plus five gave two ones and one ten. Two original tens plus three original tens plus the carried ten make six tens. Six tens and two ones make sixty-two.'
-            order: ['text1', 'placeValueColumnAdder', 'markdown2']
+            order: ['combineTensWithCarry', 'placeValueColumnAdder', 'explainSixtyTwo']
         production:
           purpose: 'Complete Twenty-Seven Plus Thirty-Five'
           pedagogicalIntent: |
@@ -390,10 +390,10 @@ config:
             - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section4TryANewColumn:
+      practiceColumnRegrouping:
         config:
           id: '5dc21267-7960-43e0-9f5c-3d09a7406d72'
-          slug: 'section4TryANewColumn'
+          slug: 'practiceColumnRegrouping'
           type: 'content'
           params: {}
           locale:
@@ -403,10 +403,10 @@ config:
               en: 'Try a New Column'
           content:
             items:
-              text1:
+              solveFortySixPlusTwentyEight:
                 config:
                   id: '015c1d8a-69b1-4555-92f4-3838ecf377c3'
-                  slug: 'text1'
+                  slug: 'solveFortySixPlusTwentyEight'
                   type: 'text'
                   params: {}
                   locale:
@@ -485,16 +485,16 @@ config:
                     Generic Scene Resource rendering exists; this specific Place Value Column Adder is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Confirm this Lesson's single-carry Grade 2 depth and separation from `additionRegroupingAcrossPlaces`, which extends the _value-preserving exchange_ across tens and hundreds.
                   purpose: 'Proposed interactive Scene for Try a New Column'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainRegroupedSum:
                 config:
                   id: '6008f801-70c3-4be2-b7c1-0aef3b7cbe08'
-                  slug: 'markdown2'
+                  slug: 'explainRegroupedSum'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Four tens and six ones plus two tens and eight ones make seven tens and four ones. Six plus eight gives fourteen, so the carried ten must be included.'
-            order: ['text1', 'placeValueColumnAdder', 'markdown2']
+            order: ['solveFortySixPlusTwentyEight', 'placeValueColumnAdder', 'explainRegroupedSum']
         production:
           purpose: 'Try a New Column'
           pedagogicalIntent: |
@@ -514,13 +514,7 @@ config:
             - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-    order:
-      [
-        'section1PutEveryDigitInItsPlace',
-        'section2TwelveOnesNeedAnExchange',
-        'section3CompleteTwentySevenPlusThirtyFive',
-        'section4TryANewColumn',
-      ]
+    order: ['alignTensAndOnes', 'exchangeTwelveOnes', 'addCarriedTen', 'practiceColumnRegrouping']
 production:
   documentLanguage: 'en'
   methodology: |
