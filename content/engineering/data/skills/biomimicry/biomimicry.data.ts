@@ -8,6 +8,7 @@ export const biomimicry_SkillDomain_Data = defineSkillDomain({
   id: 'f9d9e4b0-ceeb-4f89-b9a3-c6aaea519577',
   title: {
     en: 'Biomimicry',
+    it: 'Biomimetica',
     zh: '仿生学',
     hi: 'जैव-अनुकरण',
     es: 'Biomímesis',
@@ -43,6 +44,7 @@ export const biomimicry_SkillDomain_Data = defineSkillDomain({
       'Nature-inspired engineering abstracts useful functional strategies from living systems and subjects technical adaptations to testing. Evolution is not intentional design, and merely studying an organism is not itself an engineering competency.',
     frontend: {
       en: "Explore how nature's working strategies inspire useful technical designs.",
+      it: 'Esplora come le strategie funzionali della natura ispirano soluzioni tecniche utili.',
       zh: '探索大自然解决问题的方式如何启发有用的技术设计。',
       hi: 'जानें कि प्रकृति की कार्यकारी रणनीतियाँ उपयोगी तकनीकी डिज़ाइन को कैसे प्रेरित करती हैं।',
       es: 'Explora cómo las estrategias de la naturaleza inspiran diseños técnicos útiles.',
