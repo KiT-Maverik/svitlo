@@ -5,6 +5,7 @@ export const exchangeRateRegimes_Skill_Data = defineSkill({
   id: 'd3eb5343-6143-480c-8769-c40df425180d',
   name: {
     en: 'Режими валютного курсу',
+    it: 'Regimi di cambio',
     zh: '汇率制度',
     hi: 'विनिमय दर व्यवस्थाएँ',
     es: 'Regímenes cambiarios',
@@ -38,6 +39,7 @@ export const exchangeRateRegimes_Skill_Data = defineSkill({
     methodological: 'Compare floating and managed exchange-rate systems by policy freedom, risks, and reserve needs.',
     frontend: {
       en: 'Compare floating exchange rates with rates managed by authorities.',
+      it: 'Confronta i tassi di cambio fluttuanti con quelli gestiti dalle autorità.',
       zh: '比较浮动汇率与由当局管理的汇率。',
       hi: 'मुक्त रूप से बदलती विनिमय दर और अधिकारियों द्वारा नियंत्रित दर की तुलना करें।',
       es: 'Compara los tipos de cambio flotantes con los gestionados por las autoridades.',

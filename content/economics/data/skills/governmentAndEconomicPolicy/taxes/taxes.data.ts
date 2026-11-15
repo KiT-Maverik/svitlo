@@ -7,6 +7,7 @@ export const taxes_SkillGroup_Data = defineSkillGroup({
   id: '9cf49796-f5b6-4d6d-b3da-9c297159ed0a',
   name: {
     en: 'Податки',
+    it: 'Imposte',
     zh: '税收',
     hi: 'कर',
     es: 'Impuestos',
@@ -42,6 +43,7 @@ export const taxes_SkillGroup_Data = defineSkillGroup({
       'Mandatory payments finance public revenue and can change the behavior of buyers, workers, and firms.',
     frontend: {
       en: 'Understand how taxes raise public funds and influence decisions.',
+      it: 'Comprendi come le imposte finanziano i servizi pubblici e influenzano le decisioni.',
       zh: '理解税收如何筹集公共资金并影响经济决策。',
       hi: 'समझें कि कर सार्वजनिक धन कैसे जुटाते हैं और निर्णयों पर कैसे असर डालते हैं।',
       es: 'Comprende cómo los impuestos financian los servicios públicos e influyen en las decisiones.',

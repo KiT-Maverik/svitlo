@@ -5,6 +5,7 @@ export const targetedAndUniversalBenefits_Skill_Data = defineSkill({
   id: 'f0d72a67-c333-415e-b60a-c6078748686e',
   name: {
     en: 'Адресність і універсальність підтримки',
+    it: 'Sostegni mirati e universali',
     zh: '定向福利与普惠福利',
     hi: 'लक्षित और सार्वभौमिक लाभ',
     es: 'Prestaciones focalizadas y universales',
@@ -39,6 +40,7 @@ export const targetedAndUniversalBenefits_Skill_Data = defineSkill({
       'Compare coverage, administrative costs, and the risk of excluding those in need across program designs.',
     frontend: {
       en: 'Compare support available to everyone with support targeted to particular groups.',
+      it: 'Confronta il sostegno disponibile per tutti con quello destinato a gruppi specifici.',
       zh: '比较面向所有人的支持和针对特定群体的支持。',
       hi: 'सभी को मिलने वाली सहायता और विशेष समूहों को मिलने वाली सहायता की तुलना करें।',
       es: 'Compara el apoyo para toda la población con el dirigido a grupos específicos.',

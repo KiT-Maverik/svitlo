@@ -5,6 +5,7 @@ export const taxIncidence_Skill_Data = defineSkill({
   id: '4204124e-a98b-4f3d-b0f1-ec2ed9015d0f',
   name: {
     en: 'Податковий тягар',
+    it: 'Incidenza fiscale',
     zh: '税负归宿',
     hi: 'कर का वास्तविक भार',
     es: 'Incidencia fiscal',
@@ -39,6 +40,7 @@ export const taxIncidence_Skill_Data = defineSkill({
       'Analyze who ultimately bears the economic cost of a tax under different demand and supply elasticities.',
     frontend: {
       en: 'Explore who really pays the cost of a tax.',
+      it: "Esplora chi sostiene realmente il costo di un'imposta.",
       zh: '探索实际上由谁承担税收成本。',
       hi: 'जानें कि कर का बोझ वास्तव में किस पर पड़ता है।',
       es: 'Explora quién soporta realmente el coste de un impuesto.',
