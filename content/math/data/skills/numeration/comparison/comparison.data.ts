@@ -13,6 +13,7 @@ export const comparison_SkillGroup_Data = defineSkillGroup({
   id: 'c7676622-4e6b-4689-bebb-4ce30ab748b6',
   name: {
     en: 'Comparing numbers',
+    it: 'Confrontare i numeri',
     qm: 'Sayılarnı qıyaslav',
     lt: 'Skaičių palyginimas',
     lv: 'Skaitļu salīdzināšana',
@@ -57,6 +58,7 @@ export const comparison_SkillGroup_Data = defineSkillGroup({
       'Order relations between quantities and numerical representations, including comparison symbols and sorting numbers.',
     frontend: {
       en: 'Compare quantities and numbers to tell which is greater, smaller, or equal, and put numbers in order.',
+      it: 'Confronta quantità e numeri per stabilire quali sono maggiori, minori o uguali e per ordinarli.',
       qm: 'Miqdar ve sayılarnı qıyaslap qaysısınıñ daa büyük, daa kiçik ya da teñ olğanını ayt ve sayılarnı tertipke qoy.',
       zh: '比较数量和数的大小或相等关系，并按顺序排列数字。',
       hi: 'मात्राओं और संख्याओं की तुलना करके बड़ी, छोटी या बराबर पहचानें और उन्हें क्रम में रखें।',
