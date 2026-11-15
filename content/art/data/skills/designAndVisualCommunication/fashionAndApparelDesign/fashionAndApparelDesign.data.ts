@@ -14,6 +14,7 @@ export const fashionAndApparelDesign_SkillGroup_Data = defineSkillGroup({
   id: '3146968a-1438-4078-9b99-a05b14cef062',
   name: {
     en: 'Fashion and Apparel Design',
+    it: "Design della moda e dell'abbigliamento",
 
     zh: '时装与服装设计',
     hi: 'फ़ैशन और परिधान डिज़ाइन',
@@ -57,6 +58,7 @@ export const fashionAndApparelDesign_SkillGroup_Data = defineSkillGroup({
       'Garment design applies artistic decisions to forms worn on the body. Silhouette, material behavior, construction planning and coordinated collections distinguish this practice from textile-surface ornament and theatre-specific costume design.',
     frontend: {
       en: 'Explore how garment shape, fabric and detail turn a fashion idea into clothing.',
+      it: "Esplora come la forma del capo, il tessuto e i dettagli trasformano un'idea di moda in un indumento.",
 
       zh: '探索服装的廓形、面料和细节如何将时尚创意变成实际服装。',
       hi: 'जानें कि परिधान का आकार, कपड़ा और बारीकियाँ फैशन के विचार को पहनने योग्य वस्त्र में कैसे बदलती हैं।',
