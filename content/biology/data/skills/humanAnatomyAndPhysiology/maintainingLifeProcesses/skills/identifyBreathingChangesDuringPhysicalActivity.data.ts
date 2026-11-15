@@ -5,6 +5,7 @@ export const identifyBreathingChangesDuringPhysicalActivity_Skill_Data = defineS
   id: '7704b6a9-1337-49cb-bb19-7e5fab73f96d',
   name: {
     en: 'Identify Breathing Changes During Physical Activity',
+    it: "Individuare i cambiamenti della respirazione durante l'attività fisica",
     zh: '识别身体活动时呼吸的变化',
     hi: 'शारीरिक गतिविधि के दौरान श्वसन में बदलाव पहचानना',
     es: 'Identificar cambios en la respiración durante la actividad física',
@@ -39,6 +40,7 @@ export const identifyBreathingChangesDuringPhysicalActivity_Skill_Data = defineS
       'Relate faster and deeper breathing to the increased need of working muscles for oxygen and removal of CO₂.',
     frontend: {
       en: 'Explain why breathing changes during physical activity.',
+      it: "Spiega perché la respirazione cambia durante l'attività fisica.",
       zh: '解释为什么身体活动时呼吸会发生变化。',
       hi: 'शारीरिक गतिविधि के दौरान साँस लेने की दर और गहराई में होने वाले बदलावों को पहचानें।',
       es: 'Identifica cómo cambian la frecuencia y la profundidad de la respiración durante la actividad física.',
