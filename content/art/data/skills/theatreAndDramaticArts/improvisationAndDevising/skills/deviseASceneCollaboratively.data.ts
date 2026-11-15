@@ -5,6 +5,7 @@ export const deviseASceneCollaboratively_Skill_Data = defineSkill({
   id: 'ea121024-77bb-4ee1-b74d-3b25a7a9fb54',
   name: {
     en: 'Devise a Scene Collaboratively',
+    it: 'Ideare una scena in gruppo',
     zh: '合作创作场景',
     hi: 'मिलकर एक दृश्य की रचना करें',
     es: 'Crear una escena en colaboración',
@@ -38,6 +39,7 @@ export const deviseASceneCollaboratively_Skill_Data = defineSkill({
     methodological: 'Assemble contributions into a coherent performable dramatic episode.',
     frontend: {
       en: 'Work with others to shape ideas into a scene that can be performed.',
+      it: 'Collabora con altre persone per trasformare le idee in una scena che si possa rappresentare.',
       zh: '与他人合作，将创意塑造成可供演出的场景。',
       hi: 'दूसरों के साथ मिलकर विचारों को एक ऐसे दृश्य में ढालें जिसे प्रस्तुत किया जा सके।',
       es: 'Trabaja con otras personas para convertir ideas en una escena representable.',
