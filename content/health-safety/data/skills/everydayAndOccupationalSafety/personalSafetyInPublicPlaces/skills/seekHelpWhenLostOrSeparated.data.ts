@@ -5,6 +5,7 @@ export const seekHelpWhenLostOrSeparated_Skill_Data = defineSkill({
   id: 'c13df6a9-6b68-4b72-92fa-ba8bb58fce0d',
   name: {
     en: 'Seek help when lost or separated',
+    it: 'Chiedere aiuto quando ci si perde o si resta separati',
     zh: '迷路或走散时寻求帮助',
     hi: 'खो जाने या बिछड़ने पर मदद माँगना',
     es: 'Pedir ayuda al perderse o separarse',
@@ -39,6 +40,7 @@ export const seekHelpWhenLostOrSeparated_Skill_Data = defineSkill({
       'Use an appropriate safe location, identifiable helpers and reliable contact channels when separated from companions; avoid sharing unnecessary personal information or following an unverified stranger.',
     frontend: {
       en: 'Find a safe location and verified helpers if you become lost.',
+      it: 'Se ti perdi, cerca un luogo sicuro e persone affidabili a cui chiedere aiuto.',
       zh: '迷路时前往安全地点，并寻找经过确认的可靠援助者。',
       hi: 'खो जाने पर सुरक्षित स्थान और भरोसेमंद मददगार खोजें।',
       es: 'Si te pierdes, busca un lugar seguro y personas de ayuda verificadas.',

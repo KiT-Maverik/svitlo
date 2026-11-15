@@ -5,6 +5,7 @@ export const preventFallsInLivingSpaces_Skill_Data = defineSkill({
   id: 'a066486d-e957-4ec3-a6e6-aaed5f1b024a',
   name: {
     en: 'Prevent falls in living spaces',
+    it: 'Prevenire le cadute negli ambienti domestici',
     zh: '预防居室跌倒',
     hi: 'रहने की जगहों में गिरने से बचाव',
     es: 'Prevenir caídas en espacios habitables',
@@ -39,6 +40,7 @@ export const preventFallsInLivingSpaces_Skill_Data = defineSkill({
       'Identify slipping, tripping, unstable climbing, and unguarded height hazards and match them to safer arrangements.',
     frontend: {
       en: 'Recognize how slippery floors or unstable climbing can cause falls.',
+      it: 'Riconosci come pavimenti scivolosi o arrampicate su sostegni instabili possano provocare cadute.',
       zh: '认识湿滑地面或不稳固的攀爬方式如何导致跌倒。',
       hi: 'समझें कि फिसलन भरा फर्श और अस्थिर चढ़ाई कैसे गिरने का कारण बन सकते हैं।',
       es: 'Reconoce cómo los suelos resbaladizos o subirse a objetos inestables provocan caídas.',

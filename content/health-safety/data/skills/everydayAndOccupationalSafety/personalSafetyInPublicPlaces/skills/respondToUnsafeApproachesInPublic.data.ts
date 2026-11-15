@@ -5,6 +5,7 @@ export const respondToUnsafeApproachesInPublic_Skill_Data = defineSkill({
   id: '6c6860cf-618f-4ea2-9fae-65806459b4be',
   name: {
     en: 'Respond to unsafe approaches in public',
+    it: 'Reagire ad approcci pericolosi in pubblico',
     zh: '应对公共场所危险接近',
     hi: 'सार्वजनिक जगहों पर असुरक्षित संपर्क का जवाब',
     es: 'Responder a acercamientos inseguros en público',
@@ -39,6 +40,7 @@ export const respondToUnsafeApproachesInPublic_Skill_Data = defineSkill({
       'Recognize unwanted invitations, requests for secrecy, pressure to leave a safe location or other suspicious approaches; maintain distance, decline unsafe requests and seek support from an appropriate trusted person or service.',
     frontend: {
       en: 'Recognize unsafe invitations and seek appropriate assistance.',
+      it: 'Riconosci inviti non sicuri e chiedi un aiuto adeguato.',
       zh: '识别危险邀请，并寻求合适的援助。',
       hi: 'असुरक्षित निमंत्रण पहचानें और उचित सहायता लें।',
       es: 'Reconoce invitaciones peligrosas y pide ayuda adecuada.',
