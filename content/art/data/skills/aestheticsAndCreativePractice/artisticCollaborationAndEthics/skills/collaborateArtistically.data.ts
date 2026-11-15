@@ -5,6 +5,7 @@ export const collaborateArtistically_Skill_Data = defineSkill({
   id: '5750d84f-a518-4d89-b106-31b3e9e5ffd2',
   name: {
     en: 'Collaborate Artistically',
+    it: "Collaborare nella creazione artistica",
     zh: '开展艺术合作',
     hi: 'कलात्मक सहयोग करें',
     es: 'Colaborar artísticamente',
@@ -38,6 +39,7 @@ export const collaborateArtistically_Skill_Data = defineSkill({
     methodological: 'Coordinate shared decisions and complementary contributions toward an expressive outcome.',
     frontend: {
       en: "Combine different people's creative contributions into a shared artwork.",
+      it: "Collabora con altre persone alla realizzazione di un'opera, condividendo decisioni e responsabilità.",
       zh: '将不同人的创意贡献结合为共同的艺术作品。',
       hi: 'अलग-अलग लोगों के रचनात्मक योगदान को एक साझा कलाकृति में जोड़ें।',
       es: 'Combina las aportaciones creativas de distintas personas en una obra compartida.',
