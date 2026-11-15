@@ -12,6 +12,7 @@ export const landscapeAndPublicArt_SkillGroup_Data = defineSkillGroup({
   id: '118f4346-b897-418f-bcb7-02d754fc8df8',
   name: {
     en: 'Landscape and Public Art',
+    it: "Paesaggio e arte pubblica",
     zh: '景观与公共艺术',
     hi: 'परिदृश्य और सार्वजनिक कला',
     es: 'Paisaje y arte público',
@@ -52,6 +53,7 @@ export const landscapeAndPublicArt_SkillGroup_Data = defineSkillGroup({
       'Outdoor artworks and landscape compositions respond to specific sites and the people who use them.',
     frontend: {
       en: 'Use landscape and outdoor art to respond to places and their communities.',
+      it: "Usa il paesaggio e l'arte all'aperto per dialogare con i luoghi e le comunità.",
       zh: '探索景观与户外艺术如何回应场所及其社群。',
       hi: 'जानें कि परिदृश्य और बाहरी कला स्थानों तथा वहाँ के समुदायों के अनुरूप कैसे होती है।',
       es: 'Explora cómo el paisaje y el arte al aire libre responden a los lugares y sus comunidades.',
