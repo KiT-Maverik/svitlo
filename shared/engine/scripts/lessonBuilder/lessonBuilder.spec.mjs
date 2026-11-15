@@ -155,7 +155,7 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assert.doesNotMatch(root, /"id":|"slug":|"section":/);
     const section = files.get('sections/intro/index.ts');
     assert.match(section, /defineContentSection<"intro", typeof content\.items, LessonLanguages>/);
-    assert.match(section, /content,/);
+    assert.match(section, /\n  content\n\}\);/);
     assert.match(files.get('sections/index.ts'), /export const section =/);
     assert.match(files.get('constants.ts'), /export type LessonLanguages = typeof languages/);
     assert.match(files.get('sections/intro/prompt/index.ts'), /defineText<"prompt", LessonLanguages>/);
