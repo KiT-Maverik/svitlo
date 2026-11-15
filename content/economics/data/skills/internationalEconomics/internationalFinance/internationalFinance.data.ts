@@ -12,6 +12,7 @@ export const internationalFinance_SkillGroup_Data = defineSkillGroup({
   id: 'ed9e2528-b5b9-4b78-aa4e-97c57dd91cf1',
   name: {
     en: 'Міжнародні фінанси',
+    it: 'Finanza internazionale',
     zh: '国际金融',
     hi: 'अंतरराष्ट्रीय वित्त',
     es: 'Finanzas internacionales',
@@ -52,6 +53,7 @@ export const internationalFinance_SkillGroup_Data = defineSkillGroup({
       'Capital crosses borders through investments, loans, and other claims with distinctive benefits and risks.',
     frontend: {
       en: 'Explore how countries borrow and invest across borders.',
+      it: 'Esplora come i paesi prendono a prestito e investono oltre i propri confini.',
       zh: '探索各国如何跨境借贷与投资。',
       hi: 'जानें कि देश सीमाओं के पार उधार और निवेश कैसे करते हैं।',
       es: 'Explora cómo los países piden préstamos e invierten a través de las fronteras.',

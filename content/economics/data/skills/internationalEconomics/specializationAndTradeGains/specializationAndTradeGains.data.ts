@@ -12,6 +12,7 @@ export const specializationAndTradeGains_SkillGroup_Data = defineSkillGroup({
   id: '7ab3048b-121f-415a-925b-b02d81ebcb70',
   name: {
     en: 'Спеціалізація та вигоди торгівлі',
+    it: 'Specializzazione e benefici degli scambi',
     zh: '专业化与贸易收益',
     hi: 'विशेषज्ञता और व्यापार से लाभ',
     es: 'Especialización y beneficios del comercio',
@@ -52,6 +53,7 @@ export const specializationAndTradeGains_SkillGroup_Data = defineSkillGroup({
       'Relative rather than merely absolute advantages can explain the pattern of exchange between economies.',
     frontend: {
       en: 'Discover why countries specialize and what they gain from trading.',
+      it: 'Scopri perché i paesi si specializzano e quali benefici ottengono dal commercio.',
       zh: '了解各国为何实行专业化生产，以及从贸易中获得什么。',
       hi: 'जानें कि देश विशेषज्ञता क्यों अपनाते हैं और व्यापार से क्या लाभ पाते हैं।',
       es: 'Descubre por qué los países se especializan y qué ganan comerciando.',

@@ -5,6 +5,7 @@ export const absoluteAdvantage_Skill_Data = defineSkill({
   id: '2157554a-25f3-4f30-8d52-06f49de6ba63',
   name: {
     en: 'Абсолютна перевага',
+    it: 'Vantaggio assoluto',
     zh: '绝对优势',
     hi: 'निरपेक्ष लाभ',
     es: 'Ventaja absoluta',
@@ -38,6 +39,7 @@ export const absoluteAdvantage_Skill_Data = defineSkill({
     methodological: 'Determine whether one producer can make a product with fewer resources than another producer.',
     frontend: {
       en: 'Recognize who can produce something using fewer resources.',
+      it: 'Riconosci chi può produrre un bene impiegando meno risorse.',
       zh: '识别谁能够使用更少资源生产某种产品。',
       hi: 'पहचानें कि कौन कम संसाधनों से कोई वस्तु बना सकता है।',
       es: 'Reconoce quién puede producir algo utilizando menos recursos.',

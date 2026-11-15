@@ -5,6 +5,7 @@ export const debtCrises_Skill_Data = defineSkill({
   id: 'e206808f-57e9-4831-bd56-cb62c7ba0eca',
   name: {
     en: 'Боргові кризи',
+    it: 'Crisi del debito',
     zh: '债务危机',
     hi: 'ऋण संकट',
     es: 'Crisis de deuda',
@@ -39,6 +40,7 @@ export const debtCrises_Skill_Data = defineSkill({
       'Analyze an inability or risk of failing to meet debt obligations as financing conditions, payments, and creditor confidence change.',
     frontend: {
       en: 'Understand why borrowers or governments can face a debt crisis.',
+      it: 'Comprendi perché debitori o governi possono affrontare una crisi del debito.',
       zh: '理解借款人或政府为何可能面临债务危机。',
       hi: 'समझें कि उधारकर्ताओं या सरकारों पर ऋण संकट क्यों आ सकता है।',
       es: 'Comprende por qué los prestatarios o gobiernos pueden enfrentar una crisis de deuda.',
