@@ -5,6 +5,7 @@ export const marinePropulsion_Skill_Data = defineSkill({
   id: '6f5b69aa-b4a2-4d4e-8fed-71bacb9f0f58',
   name: {
     en: 'Marine propulsion',
+    it: 'Propulsione navale',
     zh: '船舶推进',
     hi: 'जहाज़ का प्रणोदन',
     es: 'Propulsión marina',
@@ -38,6 +39,7 @@ export const marinePropulsion_Skill_Data = defineSkill({
     methodological: 'Trace motor or engine output to propeller or waterjet thrust.',
     frontend: {
       en: 'Trace how marine engines and propellers move a vessel.',
+      it: 'Segui come motori e propulsori marini muovono un\'imbarcazione.',
       zh: '追踪船用发动机和螺旋桨如何推动船只前进。',
       hi: 'समझें कि जहाज़ के इंजन और प्रोपेलर नाव को कैसे आगे बढ़ाते हैं।',
       es: 'Sigue cómo los motores y las hélices marinas mueven una embarcación.',
