@@ -5,16 +5,17 @@
 **Related:** [Lesson entity](../entities/lesson.md), [Section entity](../entities/section.md), [Lesson YAML Builder](./lesson-yaml-builder.md), [source layout](./lesson-generated-source-layout.md), [unified YAML handoff](./yaml-config-scaffolding.md), [Lesson workflow](../../skills/lesson-workflow/README.md), [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557), [PR #576](https://github.com/KiT-Maverik/svitlo/pull/576).
 
 
-## Verified incremental implementation (15 November 2026)
+## Verified incremental implementation (16 November 2026)
 
 The existing Draft PR #606 branch now implements more than standalone resource primitives:
 
 - Engine `defineLesson` Config, Build outputs, Props and Course override paths omit full Question and Flashcard banks. Quiz and Flashcards Sections carry explicit UUID selection; the Quiz's deterministic sample/shuffle function selects final UUIDs before loading their resources. The derived YAML editor JSON Schemas have been regenerated.
 - Independent Question and Flashcard Build publication serializes one UUID-addressed base and sparse locale file per resource, with a metadata-only, cross-kind merged manifest. The two resource stages can run separately from already authored TypeScript bank modules, and the textbook build stages their files in its portable static manifest. **Editorial bank YAML-to-TypeScript stages are not implemented.**
+- Stage A Lesson Builder now accepts `lesson.yaml` only, rejects embedded root banks, and creates no Question/Flashcard TS directories. The independent editorial YAML files live beside it in the Lesson root; Stage B/C conversion remains deferred.
 - UI Kit's Quiz and Flashcards Sections use a host-injected async loader with selected-resource validation, locale handling, retry and cancellation. The Playground Web host supplies a static-file reader; no entire bank is passed through Lesson Props.
 - Verified via GitHub's `Content packages build` on commit `05a5ed8`: the Playground package generated **271 independent assessment files** and built **428 static resources**. Engine generator and ContentBlock Build API workflows also succeeded on that commit. Additional unit/integration tests and subsequent CI remain in progress.
 
-**Still mandatory before closing #605:** migrate the technical Lesson builder from `config.yaml` to `lesson.yaml` without changing Course YAML, reconcile approved `questions/questions.yaml` and `flashcards/flashcards.yaml` editorial content with independent stages, verify complete-publication UUID ownership and references, handle reused legacy Playground Lesson/Quiz examples without silently duplicating UUIDs, align Studio and fixtures, prove offline/accessibility and host behavior end to end, and obtain independent Development/QA review. Keep the acceptance checklist below unchecked until each boundary is verified.
+**Still mandatory before closing #605:** reconcile approved `questions.yaml` and `flashcards.yaml` editorial content with independent stages, verify complete-publication UUID ownership and references, handle reused legacy Playground Lesson/Quiz examples without silently duplicating UUIDs, align Studio and fixtures, prove offline/accessibility and host behavior end to end, and obtain independent Development/QA review. Keep the acceptance checklist below unchecked until each boundary is verified.
 
 ## Decision and nonnegotiable invariants
 
@@ -35,7 +36,7 @@ The existing Draft PR #606 branch now implements more than standalone resource p
 - `shared/engine/configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas.ts`: has no explicit bank-ID selection interface; Section `content` is for ContentBlocks and must stay separate.
 - `shared/engine/configurators/yaml/yamlLessonCourse.schemas.ts` / `shared/engine/scripts/generateYamlSchemas/`: initial Lesson YAML editor schema includes banks, derived through Zod and generated JSON Schema.
 - `shared/engine/scripts/lessonBuilder/lessonModules.mjs`: emits bank subtrees/imports from the one Lesson `config.yaml`; fixtures/tests depend on this; `generateLessonProps` publishes banks indirectly through Lesson Build.
-- Existing Studio already calls `questions/questions.yaml` and `flashcards/flashcards.yaml` distinct **editorial source-language** artifacts; they are **not automatically** equivalent to the nested technical `config` YAML representation.
+- Existing Studio already calls `questions.yaml` and `flashcards.yaml` distinct **editorial source-language** artifacts; they are **not automatically** equivalent to the nested technical `config` YAML representation.
 - Playground's `howLightMoves` imports complete banks into its `defineLesson` and its Quiz derives slugs with `Object.keys(howLightMovesQuestions.selectOneAnswer)`. Test fixtures, Math samples and documentation may have the same pattern.
 
 ## Source layout and three independent authoring stages
@@ -47,16 +48,16 @@ lesson.yaml                    # Stage A: technical Lesson/Section/ContentBlock 
 index.ts                       # generated Lesson Configurator (no bank imports)
 constants.ts                   # Lesson languages/typed scope
 sections/<sectionSlug>/...     # Section/ContentBlock source, including Quiz references
-questions/questions.yaml       # Stage B: canonical approved Question Bank source
+questions.yaml                 # Stage B: canonical approved Question Bank source
 questions/<questionSlug>/...   # generated Question TS modules, if authored and approved
-flashcards/flashcards.yaml     # Stage C: canonical approved Flashcard Bank source
+flashcards.yaml                # Stage C: canonical approved Flashcard Bank source
 flashcards/<cardSlug>/...      # generated Flashcard TS modules, if authored and approved
 review.ts                     # unchanged review record; not part of Props
 ```
 
 - Rename the **technical Lesson** input `config.yaml` to `lesson.yaml` in the Lesson Builder CLI, its input discovery/diagnostics, schema/docs, staged-source paths, fixture and invocation tests. Do **not** rename Course `config.yaml` without a separate explicit change. The name `lesson.yaml` does not change the Engine entity discriminator `type: lesson` or single `config.id` identity.
 - Stage A consumes **only** `lesson.yaml`. Keep each nested `{ config, production? }` envelope, source-language-only values, Markdown/Code extraction, colocated media/Scene specifications and no-overwrite behavior. It must not produce `questions/index.ts`, `flashcards/index.ts`, placeholder banks, invented Question UUIDs or bank imports. Existing root bank fields must cause a clear migration diagnostic, not silent omission.
-- Stage B consumes `questions/questions.yaml`; Stage C consumes `flashcards/flashcards.yaml`. These are different entrypoints, schemas, commands and tests with their own create-only behavior. Stage C remains downstream of approved Questions if cards reference Question-derived content. A Stage B/C run must not edit or regenerate the Stage A Lesson root `index.ts`.
+- The approved flat source layout requires no `questions/` or `flashcards/` directories when these YAML files are created. Those directories are optional future TypeScript outputs, not YAML prerequisites. Stage B consumes `questions.yaml`; Stage C consumes `flashcards.yaml`. These are different entrypoints, schemas, commands and tests with their own create-only behavior. Stage C remains downstream of approved Questions if cards reference Question-derived content. A Stage B/C run must not edit or regenerate the Stage A Lesson root `index.ts`.
 - **Source-of-truth reconciliation:** Studio currently defines these two bank YAML files as **editorial** schemas. Before implementing Stage B/C, inspect `studio/skills/lesson-workflow/lesson-questions.schema.json`, `lesson-flashcards.schema.json`, the authoring skills and their current files. Specify and implement deterministic mapping from approved editorial records to typed `define*` Configurators, or deliberately revise those canonical source schemas. Do **not** silently reinterpret editorial YAML as Engine Config or create competing independently editable duplicate bank YAML at the same path.
 - Keep `question.schema.json` and `flashcard.schema.json` as standalone editor guides; make Lesson-specific `lesson.schema.json` and `lesson.scaffold.schema.json` omit root bank fields entirely, including reachable schema branches solely for these banks. Update generated/checked-in schemas using the real Engine schema generation workflow.
 - The first stage may describe a Quiz/Flashcards Section before its bank exists; its references may be pending in an unfinished draft, and a separate composition/reference validation must identify missing entries. No arbitrary mutable post-generation patching of manually edited Lesson `index.ts`.
