@@ -5,6 +5,7 @@ export const brakingMechanisms_Skill_Data = defineSkill({
   id: 'b2365b60-4588-40e2-833d-2dcbe71e3566',
   name: {
     en: 'Braking mechanisms',
+    it: 'Meccanismi frenanti',
     zh: '制动机构',
     hi: 'ब्रेक लगाने के तंत्र',
     es: 'Mecanismos de frenado',
@@ -39,6 +40,7 @@ export const brakingMechanisms_Skill_Data = defineSkill({
       'Trace how contact forces or another braking device oppose a rotating component and transfer motion energy into heat or another form.',
     frontend: {
       en: 'Trace how braking devices slow a rotating part.',
+      it: 'Segui come i dispositivi frenanti rallentano una parte rotante.',
       zh: '追踪制动装置如何减慢旋转部件的速度。',
       hi: 'समझें कि ब्रेक घूमते हुए पुर्जे को कैसे धीमा करते हैं।',
       es: 'Sigue cómo los frenos reducen la velocidad de una pieza giratoria.',
