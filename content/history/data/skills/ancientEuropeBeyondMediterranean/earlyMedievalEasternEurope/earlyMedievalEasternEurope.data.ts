@@ -37,7 +37,12 @@ export const earlyMedievalEasternEurope_SkillGroup_Data = defineSkillGroup({
     kk: 'Ерте орта ғасырлардағы Шығыс Еуропа',
     qm: 'Erte orta asırlardaki Şarqiy Avropa',
   },
-  skills: [kyivanRus_Skill_Data],
+  skills: {
+    items: {
+      kyivanRus: kyivanRus_Skill_Data,
+    },
+    order: ['kyivanRus'],
+  },
   description: {
     methodological:
       'Study early medieval Eastern European polities and links with the Baltic, Black Sea, and Byzantine worlds as a limited chronological exception to the ancient focus.',
