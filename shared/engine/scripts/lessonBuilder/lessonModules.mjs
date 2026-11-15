@@ -211,7 +211,7 @@ const javascriptKeywords = new Set([
 // before using posix.join, which would otherwise normalize ../ traversal.
 const join = (...parts) => {
   for (const segment of parts.slice(1)) {
-    if (segment !== 'index.ts' && !safeSlug.test(segment))
+    if (segment !== 'index.ts' && !sceneSlug.test(segment))
       throw new Error('Unsafe Lesson source path segment: ' + JSON.stringify(segment));
   }
   return path.posix.join(...parts);
