@@ -654,9 +654,6 @@ config:
       - 'readUnitFractionNotation'
       - 'interpretFractionOfCollection'
       - 'readFractionInNewWhole'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

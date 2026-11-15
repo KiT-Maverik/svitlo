@@ -721,9 +721,6 @@ config:
       - 'readHalfwayTick'
       - 'resetScaleToZero'
       - 'measure550Grams'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

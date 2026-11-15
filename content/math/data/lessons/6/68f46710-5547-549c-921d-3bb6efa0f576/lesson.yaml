@@ -445,9 +445,6 @@ config:
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
     order:
       ['challengeVisualLengthJudgment', 'alignLengthsFairly', 'compareWithTransferStrip', 'justifyLengthComparison']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

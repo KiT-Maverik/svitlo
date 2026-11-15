@@ -541,9 +541,6 @@ config:
       - 'shareFifteenBetweenThree'
       - 'countThreesToEighteen'
       - 'divideTwentyOneByThree'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

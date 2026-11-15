@@ -609,9 +609,6 @@ config:
       - 'trackConstantFractionAmount'
       - 'compareThirdsAndSixths'
       - 'distinguishWholesForComparison'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

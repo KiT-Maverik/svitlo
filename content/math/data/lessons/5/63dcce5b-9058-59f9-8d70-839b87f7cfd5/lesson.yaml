@@ -13,9 +13,6 @@ config:
   locale:
     title:
       en: 'Classify Polygons by Sides and Corners'
-  flashcards:
-    items: {}
-    order: []
   section:
     items:
       identifyPolygonSides:

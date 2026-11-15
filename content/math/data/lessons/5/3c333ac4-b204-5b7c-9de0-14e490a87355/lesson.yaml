@@ -407,9 +407,6 @@ config:
             - **Accessibility / RTL / locale:** Explicit role labels 'Tens' and 'Ones', numeric counts and text ledger; semantic CSS layout for RTL with digit sequence and value retained. Accessible button alternatives rather than drag-only placement. Localized control names, keyboard/touch/switch focus order, reduced-motion instantaneous transitions and identical nonvisual numeric evidence are necessary.
             - **Implementation dependency:** Entire new Two-Digit Number Builder component is **proposed**, prop-free and unimplemented. Its scenario data belongs inside the Scene, not an invented Resource prop. No Question bank, score, mastery event or Note API.
     order: ['exchangeOnesForTen', 'explainQuantityPreservedInBundling', 'buildTwoDigitValues']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

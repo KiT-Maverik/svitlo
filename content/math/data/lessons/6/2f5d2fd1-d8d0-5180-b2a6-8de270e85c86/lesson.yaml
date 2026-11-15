@@ -541,9 +541,6 @@ config:
             - **Proposed unlocked Note(s):** “When the size of each group is known, division finds how many groups fit.” after the full explanation is visible (planned only).
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
     order: ['makeGroupsOfThree', 'contrastSharingAndGrouping', 'identifyIncompleteGroups', 'buildGroupsOfFive']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

@@ -593,9 +593,6 @@ config:
       - 'countShapesByCategory'
       - 'reconcileCategoryTotals'
       - 'classifyNewShapeSet'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |
