@@ -464,6 +464,9 @@ export function defineFlashcard<
           patch: never,
           options: PublicationLanguageOptions,
         ) => SidePublication)(change as never, { languages });
+        if (side !== 'hint' && built.base.length === 0) {
+          throw new Error('At least one item is required in Flashcard content.' + side);
+        }
         (output.base.content ??= {})[side] = built.base;
         addSideFiles(files, side, built);
       }
