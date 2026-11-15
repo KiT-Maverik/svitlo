@@ -98,6 +98,8 @@ The **Stage 3 contract changes the historical Markdown file-mode folder from `lo
 
 **Carousel:** the prototype still uses `defineCarouselSlide`. Replacing Slides with arbitrary `defineImage` or Scene children is **not approved as already supported**: current Engine Carousel Config/Props and UI Kit renderer must be redesigned and tested before that change. Treat polymorphic slides as an explicit follow-up decision, not Stage 1 implementation.
 
+**Follow-up in PR #575:** the preceding paragraph describes the historical Stage 1 baseline. The approved [Carousel Image/Scene design](./carousel-image-scene-slides.md) supersedes that baseline: `defineCarouselSlide` is retired in the Draft implementation, children now use typed Image/Scene configurators, and the builder places each child directly under its Carousel slug. This is **not** evidence of production readiness until the schema, build, CI and accessibility gates in #575 pass.
+
 **Quest:** Stage/Task are special nested configurators with their own required structure, not generic `{ items, order }` collections. Source layout should support their actual typed hierarchy without inventing a second order field. Quest runtime support remains separate.
 
 ## Review metadata and source-revision binding
