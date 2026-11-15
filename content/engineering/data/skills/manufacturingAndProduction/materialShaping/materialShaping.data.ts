@@ -13,6 +13,7 @@ export const materialShaping_SkillGroup_Data = defineSkillGroup({
   id: 'db80ab66-f290-48a7-8bda-4db02231df64',
   name: {
     en: 'Material Shaping',
+    it: 'Lavorazione e formatura dei materiali',
     zh: '材料成形',
     hi: 'सामग्री को आकार देना',
     es: 'Conformado de materiales',
@@ -54,6 +55,7 @@ export const materialShaping_SkillGroup_Data = defineSkillGroup({
       'A manufacturing process imposes specific restrictions on geometry, material, waste and achievable accuracy.',
     frontend: {
       en: 'Learn to distinguish methods of creating shapes from raw material.',
+      it: 'Impara a distinguere i metodi per ottenere forme a partire da materiali grezzi.',
       zh: '学习区分将原材料加工成特定形状的不同方法。',
       hi: 'कच्चे माल से आकार बनाने की अलग-अलग विधियों में अंतर करना सीखें।',
       es: 'Aprende a distinguir los métodos para crear formas a partir de materias primas.',
