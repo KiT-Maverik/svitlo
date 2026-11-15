@@ -12,6 +12,7 @@ export const ecosystems_SkillGroup_Data = defineSkillGroup({
   id: '6906d7a0-bd98-4a35-b568-e7113497b27a',
   name: {
     en: 'Ecosystems',
+    it: 'Ecosistemi',
     zh: '生态系统',
     hi: 'पारितंत्र',
     es: 'Ecosistemas',
@@ -52,6 +53,7 @@ export const ecosystems_SkillGroup_Data = defineSkillGroup({
       'Ecosystems develop under different physical conditions on land and in water, and can vary markedly in spatial extent and connectivity. Geography focuses on the distributions of terrestrial, marine and freshwater environments, their boundaries, fragmentation and regional relationships, rather than organism physiology.',
     frontend: {
       en: 'Explore where different ecosystems occur and how they connect across landscapes.',
+      it: 'Esplora dove si trovano i diversi ecosistemi e come sono collegati attraverso i paesaggi.',
       zh: '探索不同生态系统分布在哪里，以及它们如何在景观中相互连接。',
       hi: 'जानें कि अलग-अलग पारितंत्र कहाँ पाए जाते हैं और वे भू-दृश्यों में कैसे जुड़े होते हैं।',
       es: 'Explora dónde se encuentran distintos ecosistemas y cómo se conectan a través del paisaje.',

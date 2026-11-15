@@ -11,6 +11,7 @@ export const biomesAndHabitats_SkillGroup_Data = defineSkillGroup({
   id: '3f57866e-626f-449f-b278-f7abcca7e431',
   name: {
     en: 'Biomes and Habitats',
+    it: 'Biomi e habitat',
     zh: '生物群系与栖息地',
     hi: 'जैवप्रदेश और आवास',
     es: 'Biomas y hábitats',
@@ -50,6 +51,7 @@ export const biomesAndHabitats_SkillGroup_Data = defineSkillGroup({
       'Broad vegetation and habitat patterns reflect environmental conditions while local ecosystems can be more varied than a single biome label suggests.',
     frontend: {
       en: 'Discover why broad types of habitat occur in different parts of the world.',
+      it: 'Scopri perché grandi tipi di habitat si trovano in parti diverse del mondo.',
       zh: '了解为什么世界各地会形成不同的大类栖息地。',
       hi: 'जानें कि दुनिया के अलग-अलग हिस्सों में व्यापक प्रकार के आवास क्यों पाए जाते हैं।',
       es: 'Descubre por qué existen grandes tipos de hábitats en distintas partes del mundo.',

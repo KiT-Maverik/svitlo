@@ -11,6 +11,7 @@ export const mapsAndGeospatialRepresentations_SkillDomain_Data = defineSkillDoma
   id: '9c37d2cf-fae3-4c84-afb1-59c049ab5bbe',
   title: {
     en: 'Maps and Geospatial Representations',
+    it: 'Carte e rappresentazioni geospaziali',
     zh: '地图与地理空间表达',
     hi: 'मानचित्र और भूस्थानिक निरूपण',
     es: 'Mapas y representaciones geoespaciales',
@@ -52,6 +53,7 @@ export const mapsAndGeospatialRepresentations_SkillDomain_Data = defineSkillDoma
       'Geographic representations convey selected positions, attributes and relationships through maps, globes, sketches, coordinates, imagery and spatial data. Competence includes interpretation and purposeful creation while acknowledging selection, measurement, projection and source limitations.',
     frontend: {
       en: "Explore how maps, globes and spatial data represent Earth's features and relationships.",
+      it: 'Esplora come carte, globi e dati spaziali rappresentano gli elementi geografici della Terra e le loro relazioni.',
       zh: '探索地图、地球仪和空间数据如何表现地球的地物及其关系。',
       hi: 'जानें कि मानचित्र, ग्लोब और स्थानिक आँकड़े पृथ्वी की विशेषताओं और उनके संबंधों को कैसे दिखाते हैं।',
       es: 'Explora cómo mapas, globos y datos espaciales representan los elementos de la Tierra y sus relaciones.',

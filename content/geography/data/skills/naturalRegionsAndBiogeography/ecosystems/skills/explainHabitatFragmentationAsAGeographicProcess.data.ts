@@ -5,6 +5,7 @@ export const explainHabitatFragmentationAsAGeographicProcess_Skill_Data = define
   id: '5ec418a8-2ce0-45dc-a4eb-59903c29d330',
   name: {
     en: 'Explain habitat fragmentation as a geographic process',
+    it: 'Spiegare la frammentazione degli habitat come processo geografico',
     zh: '解释栖息地破碎化这一地理过程',
     hi: 'आवास विखंडन को भौगोलिक प्रक्रिया के रूप में समझाना',
     es: 'Explicar la fragmentación de hábitats como proceso geográfico',
@@ -39,6 +40,7 @@ export const explainHabitatFragmentationAsAGeographicProcess_Skill_Data = define
       'Relate roads, land-cover change or other barriers to the separation of formerly connected habitat areas, recognizing that the ecological consequences depend on species and landscape context.',
     frontend: {
       en: 'Explain how roads or land-use change can divide formerly connected habitats.',
+      it: "Spiega come strade o cambiamenti d'uso del suolo possono dividere habitat prima collegati.",
       zh: '解释道路或土地利用变化如何分割原本连通的栖息地。',
       hi: 'समझाएँ कि सड़कें या भूमि उपयोग में बदलाव पहले जुड़े आवासों को कैसे बाँट सकते हैं।',
       es: 'Explica cómo las carreteras o los cambios en el uso del suelo pueden dividir hábitats antes conectados.',
