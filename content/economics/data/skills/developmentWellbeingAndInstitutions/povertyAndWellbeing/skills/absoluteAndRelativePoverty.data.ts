@@ -5,6 +5,7 @@ export const absoluteAndRelativePoverty_Skill_Data = defineSkill({
   id: 'b6743675-e13a-4a0d-bc55-c97d55dd2d8c',
   name: {
     en: 'Абсолютна й відносна бідність',
+    it: 'Povertà assoluta e relativa',
     zh: '绝对贫困与相对贫困',
     hi: 'निरपेक्ष और सापेक्ष गरीबी',
     es: 'Pobreza absoluta y relativa',
@@ -39,6 +40,7 @@ export const absoluteAndRelativePoverty_Skill_Data = defineSkill({
       "Distinguish resource shortfalls against a basic threshold from living below a society's typical standard.",
     frontend: {
       en: 'Tell the difference between lacking essentials and being poor relative to others.',
+      it: 'Distingui la mancanza di beni essenziali dalla povertà rispetto alle condizioni degli altri.',
       zh: '区分缺乏基本生活必需品与相对于他人的贫困。',
       hi: 'आवश्यक चीज़ों की कमी और दूसरों की तुलना में गरीब होने का अंतर समझें।',
       es: 'Distingue entre carecer de lo esencial y ser pobre respecto a los demás.',

@@ -5,6 +5,7 @@ export const publicProgramEvaluation_Skill_Data = defineSkill({
   id: 'f604954e-bd01-4bc4-a345-1a6e688c92dc',
   name: {
     en: 'Оцінка державної програми',
+    it: 'Valutazione dei programmi pubblici',
     zh: '公共项目评估',
     hi: 'सरकारी कार्यक्रम का मूल्यांकन',
     es: 'Evaluación de programas públicos',
@@ -38,6 +39,7 @@ export const publicProgramEvaluation_Skill_Data = defineSkill({
     methodological: "Assess a program's stated objectives, actual outcomes, opportunity costs, and unintended effects.",
     frontend: {
       en: 'Decide whether a government program achieved its goals and at what cost.',
+      it: 'Valuta se un programma pubblico ha raggiunto i propri obiettivi e a quale costo.',
       zh: '判断政府项目是否实现目标以及成本是多少。',
       hi: 'तय करें कि सरकारी कार्यक्रम अपने लक्ष्य तक पहुँचा या नहीं और किस लागत पर।',
       es: 'Determina si un programa público cumplió sus objetivos y a qué coste.',

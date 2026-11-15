@@ -5,6 +5,7 @@ export const classicalPoliticalEconomy_Skill_Data = defineSkill({
   id: 'c85a9bab-8c52-4e03-bc68-8eea56f84e33',
   name: {
     en: 'Класична політична економія',
+    it: 'Economia politica classica',
     zh: '古典政治经济学',
     hi: 'शास्त्रीय राजनीतिक अर्थशास्त्र',
     es: 'Economía política clásica',
@@ -39,6 +40,7 @@ export const classicalPoliticalEconomy_Skill_Data = defineSkill({
       'Identify central questions of labor, value, division of labor, and accumulation in classical economic theories.',
     frontend: {
       en: 'Explore early economic ideas about labor, trade, and wealth.',
+      it: 'Esplora le prime idee economiche sul lavoro, il commercio e la ricchezza.',
       zh: '探索早期关于劳动、贸易和财富的经济思想。',
       hi: 'श्रम, व्यापार और धन के बारे में शुरुआती आर्थिक विचार जानें।',
       es: 'Explora las primeras ideas económicas sobre trabajo, comercio y riqueza.',

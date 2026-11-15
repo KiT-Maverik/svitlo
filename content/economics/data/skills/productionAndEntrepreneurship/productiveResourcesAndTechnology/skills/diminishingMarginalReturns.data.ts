@@ -5,6 +5,7 @@ export const diminishingMarginalReturns_Skill_Data = defineSkill({
   id: '5a3b0ecb-3f0b-4b18-8a33-3b4a0087c9e2',
   name: {
     en: 'Diminishing Marginal Returns',
+    it: 'Rendimenti marginali decrescenti',
     zh: '边际报酬递减',
     hi: 'घटता सीमांत प्रतिफल',
     es: 'Rendimientos marginales decrecientes',
@@ -39,6 +40,7 @@ export const diminishingMarginalReturns_Skill_Data = defineSkill({
       'Analyze changes in additional output when one variable input increases while other inputs and technology are fixed; distinguish marginal product from total output.',
     frontend: {
       en: 'Understand why adding more of one input may eventually yield less extra output.',
+      it: 'Comprendi perché aggiungere quantità sempre maggiori di un fattore produttivo può generare incrementi di produzione via via minori.',
       zh: '理解为什么不断增加一种投入最终可能带来越来越少的额外产出。',
       hi: 'समझें कि एक ही साधन बढ़ाते रहने पर अतिरिक्त उत्पादन अंततः कम क्यों हो सकता है।',
       es: 'Comprende por qué añadir más de un insumo puede acabar generando menos producto extra.',

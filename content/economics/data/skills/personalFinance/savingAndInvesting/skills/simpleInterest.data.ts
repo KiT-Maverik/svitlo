@@ -5,6 +5,7 @@ export const simpleInterest_Skill_Data = defineSkill({
   id: '033ebc6d-27a2-4cc7-aed3-a4dd2396ae9a',
   name: {
     en: 'Прості відсотки',
+    it: 'Interesse semplice',
     zh: '单利',
     hi: 'साधारण ब्याज',
     es: 'Interés simple',
@@ -38,6 +39,7 @@ export const simpleInterest_Skill_Data = defineSkill({
     methodological: 'Calculate interest on an unchanged principal using a specified rate and time period.',
     frontend: {
       en: 'Calculate interest that is earned only on the original amount.',
+      it: 'Calcola gli interessi maturati soltanto sul capitale iniziale.',
       zh: '计算只按原始本金产生的利息。',
       hi: 'केवल मूल राशि पर अर्जित ब्याज की गणना करें।',
       es: 'Calcula el interés generado solo por el importe inicial.',

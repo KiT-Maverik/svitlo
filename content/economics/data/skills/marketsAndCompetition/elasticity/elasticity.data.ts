@@ -12,6 +12,7 @@ export const elasticity_SkillGroup_Data = defineSkillGroup({
   id: '18110f21-9be8-462d-9556-b14e6a2e956b',
   name: {
     en: 'Elasticity',
+    it: 'Elasticità',
     zh: '弹性',
     hi: 'लोच',
     es: 'Elasticidad',
@@ -59,6 +60,7 @@ export const elasticity_SkillGroup_Data = defineSkillGroup({
     methodological: 'Quantity responses to changes in price or income vary across products and time horizons.',
     frontend: {
       en: 'Discover why buyers and sellers respond differently to price changes.',
+      it: 'Scopri perché acquirenti e venditori reagiscono diversamente alle variazioni dei prezzi.',
       zh: '了解为什么买方和卖方对价格变化的反应程度不同。',
       hi: 'जानें कि खरीदार और विक्रेता कीमत बदलने पर अलग तरह से प्रतिक्रिया क्यों देते हैं।',
       es: 'Descubre por qué compradores y vendedores reaccionan distinto a cambios de precio.',

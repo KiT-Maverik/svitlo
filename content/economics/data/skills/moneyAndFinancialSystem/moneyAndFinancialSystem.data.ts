@@ -10,6 +10,7 @@ export const moneyAndFinancialSystem_SkillDomain_Data = defineSkillDomain({
   id: '43d4b32d-b5bc-4245-9368-36aad346c56a',
   title: {
     en: 'Гроші та фінансова система',
+    it: 'Moneta e sistema finanziario',
     zh: '货币与金融体系',
     hi: 'मुद्रा और वित्तीय प्रणाली',
     es: 'Dinero y sistema financiero',
@@ -53,6 +54,7 @@ export const moneyAndFinancialSystem_SkillDomain_Data = defineSkillDomain({
       'Financial institutions redistribute funds across time and among economic participants. The focus is system instruments and mechanisms; personal financial decisions belong to a neighboring domain.',
     frontend: {
       en: 'Discover how money, banks, and financial markets connect the economy.',
+      it: "Scopri come moneta, banche e mercati finanziari collegano l'economia.",
       zh: '了解货币、银行和金融市场如何连接经济活动。',
       hi: 'जानें कि मुद्रा, बैंक और वित्तीय बाज़ार अर्थव्यवस्था को कैसे जोड़ते हैं।',
       es: 'Descubre cómo el dinero, los bancos y los mercados financieros conectan la economía.',

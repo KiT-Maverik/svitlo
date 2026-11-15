@@ -5,6 +5,7 @@ export const valueProposition_Skill_Data = defineSkill({
   id: '43d19d85-f573-499a-8795-8998a5b3f1a7',
   name: {
     en: 'Ціннісна пропозиція',
+    it: 'Proposta di valore',
     zh: '价值主张',
     hi: 'मूल्य प्रस्ताव',
     es: 'Propuesta de valor',
@@ -39,6 +40,7 @@ export const valueProposition_Skill_Data = defineSkill({
       'Explain which customer problem a product addresses and which verifiable properties support its claimed benefit.',
     frontend: {
       en: 'Describe the problem a product solves and the evidence for its benefits.',
+      it: 'Descrivi il problema che un prodotto risolve e le prove dei suoi benefici.',
       zh: '说明产品解决的问题及其优势的证据。',
       hi: 'उत्पाद किस समस्या का समाधान करता है और उसके लाभ का प्रमाण क्या है, बताएँ।',
       es: 'Describe el problema que resuelve un producto y las pruebas de sus beneficios.',

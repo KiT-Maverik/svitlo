@@ -5,6 +5,7 @@ export const creatorEconomy_Skill_Data = defineSkill({
   id: 'c9d31678-5d7a-48c9-bb99-5553c5dcd0ea',
   name: {
     en: 'Економіка творців',
+    it: 'Economia dei creatori di contenuti',
     zh: '创作者经济',
     hi: 'सर्जक अर्थव्यवस्था',
     es: 'Economía de los creadores',
@@ -39,6 +40,7 @@ export const creatorEconomy_Skill_Data = defineSkill({
       "Explain digital creators' revenue streams and dependence on audiences, intermediaries, advertising, and intellectual-property rights.",
     frontend: {
       en: 'Explore how online creators earn money and rely on digital platforms.',
+      it: 'Esplora come i creatori online guadagnano e dipendono dalle piattaforme digitali.',
       zh: '探索网络创作者如何赚钱，以及他们为何依赖数字平台。',
       hi: 'जानें कि ऑनलाइन सर्जक पैसे कैसे कमाते और डिजिटल प्लेटफ़ॉर्म पर निर्भर क्यों होते हैं।',
       es: 'Explora cómo ganan dinero los creadores en línea y por qué dependen de plataformas digitales.',

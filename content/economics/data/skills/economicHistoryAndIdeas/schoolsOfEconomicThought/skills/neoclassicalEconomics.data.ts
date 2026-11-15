@@ -5,6 +5,7 @@ export const neoclassicalEconomics_Skill_Data = defineSkill({
   id: 'bee62bd6-c215-43af-a2da-c01faff0618d',
   name: {
     en: 'Неокласична економіка',
+    it: 'Economia neoclassica',
     zh: '新古典经济学',
     hi: 'नवशास्त्रीय अर्थशास्त्र',
     es: 'Economía neoclásica',
@@ -39,6 +40,7 @@ export const neoclassicalEconomics_Skill_Data = defineSkill({
       'Interpret marginal decisions, equilibrium, and incentives in models of individual economic participants.',
     frontend: {
       en: 'Understand economic models based on incentives and choices at the margin.',
+      it: 'Comprendi i modelli economici basati sugli incentivi e sulle scelte al margine.',
       zh: '理解基于激励与边际选择的经济模型。',
       hi: 'प्रोत्साहनों और सीमांत निर्णयों पर आधारित आर्थिक मॉडल समझें।',
       es: 'Comprende modelos económicos basados en incentivos y decisiones marginales.',

@@ -5,6 +5,7 @@ export const opportunityCost_Skill_Data = defineSkill({
   id: '6f01ce8a-22c5-44bf-8193-3e6e1f8207f8',
   name: {
     en: 'Opportunity Cost',
+    it: 'Costo opportunità',
     zh: '机会成本',
     hi: 'अवसर लागत',
     es: 'Costo de oportunidad',
@@ -39,6 +40,7 @@ export const opportunityCost_Skill_Data = defineSkill({
       'Determine the value of the best alternative given up when choosing an option; do not automatically equate opportunity cost with monetary expenditure.',
     frontend: {
       en: 'Identify the most valuable option you give up when making a choice.',
+      it: "Individua l'alternativa di maggior valore a cui rinunci quando compi una scelta.",
       zh: '找出做出选择时放弃的最有价值的替代方案。',
       hi: 'चुनाव करते समय छोड़े गए सबसे मूल्यवान विकल्प को पहचानें।',
       es: 'Identifica la alternativa más valiosa que sacrificas al elegir.',

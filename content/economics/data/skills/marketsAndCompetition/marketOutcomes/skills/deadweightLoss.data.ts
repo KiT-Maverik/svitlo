@@ -5,6 +5,7 @@ export const deadweightLoss_Skill_Data = defineSkill({
   id: 'b791b139-b46a-4fa7-8cf0-1e4d50d030a0',
   name: {
     en: 'Deadweight Loss',
+    it: 'Perdita secca',
     zh: '无谓损失',
     hi: 'मृतभार हानि',
     es: 'Pérdida irrecuperable de eficiencia',
@@ -39,6 +40,7 @@ export const deadweightLoss_Skill_Data = defineSkill({
       'Analyze mutually beneficial exchanges that do not occur because of restrictions or distorted market incentives.',
     frontend: {
       en: 'Recognize when market conditions prevent exchanges that could benefit both sides.',
+      it: 'Riconosci quando le condizioni di mercato impediscono scambi vantaggiosi per entrambe le parti.',
       zh: '认识市场状况阻碍双方受益的交易时产生的效率损失。',
       hi: 'पहचानें कि बाजार की स्थिति दोनों को लाभदायक लेन-देन कब रोकती है।',
       es: 'Reconoce cuándo el mercado impide intercambios beneficiosos para ambas partes.',

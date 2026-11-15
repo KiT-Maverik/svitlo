@@ -5,6 +5,7 @@ export const grossDomesticProduct_Skill_Data = defineSkill({
   id: 'e0d655dc-2fed-407a-9a83-349a6c9917cc',
   name: {
     en: 'Валовий внутрішній продукт',
+    it: 'Prodotto interno lordo',
     zh: '国内生产总值',
     hi: 'सकल घरेलू उत्पाद',
     es: 'Producto interior bruto',
@@ -39,6 +40,7 @@ export const grossDomesticProduct_Skill_Data = defineSkill({
       'Interpret the value of final production within an economy over a stated period and recognize the limits of this indicator.',
     frontend: {
       en: 'Understand what GDP counts and what it leaves out.',
+      it: 'Comprendi che cosa include il PIL e che cosa esclude.',
       zh: '理解国内生产总值统计什么，又遗漏什么。',
       hi: 'समझें कि जीडीपी में क्या गिना जाता है और क्या नहीं।',
       es: 'Comprende qué contabiliza el PIB y qué deja fuera.',

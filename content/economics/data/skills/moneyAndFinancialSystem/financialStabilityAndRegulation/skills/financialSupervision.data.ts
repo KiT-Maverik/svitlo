@@ -5,6 +5,7 @@ export const financialSupervision_Skill_Data = defineSkill({
   id: '0285a5a8-5850-4253-b475-792e9f758dd4',
   name: {
     en: 'Фінансовий нагляд',
+    it: 'Vigilanza finanziaria',
     zh: '金融监管',
     hi: 'वित्तीय पर्यवेक्षण',
     es: 'Supervisión financiera',
@@ -39,6 +40,7 @@ export const financialSupervision_Skill_Data = defineSkill({
       'Explain the purposes of capital requirements, disclosure, and risk oversight at financial institutions.',
     frontend: {
       en: 'Understand how financial rules aim to reduce risks.',
+      it: 'Comprendi come le norme finanziarie mirano a ridurre i rischi.',
       zh: '理解金融规则如何力求降低风险。',
       hi: 'समझें कि वित्तीय नियम जोखिम घटाने का प्रयास कैसे करते हैं।',
       es: 'Comprende cómo las normas financieras buscan reducir los riesgos.',

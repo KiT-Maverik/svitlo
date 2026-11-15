@@ -5,6 +5,7 @@ export const agriculturalSeasonalityAndRisk_Skill_Data = defineSkill({
   id: '30c2d2c7-0dad-4384-81e2-c0c81946674e',
   name: {
     en: 'Сезонність та аграрні ризики',
+    it: 'Stagionalità e rischi agricoli',
     zh: '农业季节性与风险',
     hi: 'कृषि में मौसमीपन और जोखिम',
     es: 'Estacionalidad y riesgos agrícolas',
@@ -39,6 +40,7 @@ export const agriculturalSeasonalityAndRisk_Skill_Data = defineSkill({
       'Evaluate how seasonal cycles, weather shocks, and variable costs influence production and options for insurance or hedging.',
     frontend: {
       en: 'Understand how farmers manage seasonal uncertainty and weather risks.',
+      it: "Comprendi come gli agricoltori gestiscono l'incertezza stagionale e i rischi meteorologici.",
       zh: '理解农民如何应对季节性的不确定性和天气风险。',
       hi: 'समझें कि किसान मौसमी अनिश्चितता और मौसम के जोखिम कैसे सँभालते हैं।',
       es: 'Comprende cómo los agricultores manejan la incertidumbre estacional y los riesgos climáticos.',

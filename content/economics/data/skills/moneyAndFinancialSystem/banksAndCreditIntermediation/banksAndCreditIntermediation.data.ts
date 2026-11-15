@@ -7,6 +7,7 @@ export const banksAndCreditIntermediation_SkillGroup_Data = defineSkillGroup({
   id: '651971f7-1aaf-4476-8892-562958ccbcff',
   name: {
     en: 'Банки та кредитне посередництво',
+    it: 'Banche e intermediazione creditizia',
     zh: '银行与信贷中介',
     hi: 'बैंक और ऋण मध्यस्थता',
     es: 'Bancos e intermediación crediticia',
@@ -49,6 +50,7 @@ export const banksAndCreditIntermediation_SkillGroup_Data = defineSkillGroup({
       'Financial intermediaries connect savers and borrowers and manage liquidity and payment infrastructure.',
     frontend: {
       en: 'Understand how banks connect savings, loans, and payments.',
+      it: 'Comprendi come le banche collegano risparmio, prestiti e pagamenti.',
       zh: '理解银行如何连接储蓄、贷款和支付。',
       hi: 'समझें कि बैंक बचत, ऋण और भुगतान को कैसे जोड़ते हैं।',
       es: 'Comprende cómo los bancos conectan el ahorro, los préstamos y los pagos.',

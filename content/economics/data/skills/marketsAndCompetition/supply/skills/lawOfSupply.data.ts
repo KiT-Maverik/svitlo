@@ -5,6 +5,7 @@ export const lawOfSupply_Skill_Data = defineSkill({
   id: 'a8c63896-2cdf-48ea-a616-437df889c2f6',
   name: {
     en: 'Law of Supply',
+    it: "Legge dell'offerta",
     zh: '供给定律',
     hi: 'आपूर्ति का नियम',
     es: 'Ley de la oferta',
@@ -39,6 +40,7 @@ export const lawOfSupply_Skill_Data = defineSkill({
       'Interpret the usual positive relationship between price and quantity supplied when other conditions remain constant.',
     frontend: {
       en: 'Understand why producers often offer more at higher prices.',
+      it: 'Comprendi perché i produttori spesso offrono quantità maggiori a prezzi più alti.',
       zh: '理解为什么价格较高时生产者通常愿意供应更多。',
       hi: 'समझें कि अधिक कीमत पर उत्पादक अक्सर अधिक मात्रा क्यों देते हैं।',
       es: 'Comprende por qué los productores suelen ofrecer más a precios mayores.',

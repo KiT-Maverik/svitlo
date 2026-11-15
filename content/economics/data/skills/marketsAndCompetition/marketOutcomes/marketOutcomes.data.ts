@@ -7,6 +7,7 @@ export const marketOutcomes_SkillGroup_Data = defineSkillGroup({
   id: 'e5058dd8-ca2e-4122-a934-25a36180a04b',
   name: {
     en: 'Market Outcomes',
+    it: 'Risultati di mercato',
     zh: '市场结果',
     hi: 'बाजार के परिणाम',
     es: 'Resultados del mercado',
@@ -49,6 +50,7 @@ export const marketOutcomes_SkillGroup_Data = defineSkillGroup({
       'Gains from exchange and forgone opportunities help characterize welfare created or lost through economic choices under given market conditions.',
     frontend: {
       en: 'Explore who gains from market exchanges and when benefits are lost.',
+      it: 'Esplora chi trae beneficio dagli scambi di mercato e quando tali benefici vengono perduti.',
       zh: '探索谁从市场交换中获益，以及何时利益会损失。',
       hi: 'जानें कि बाजार विनिमय से किसे लाभ होता है और लाभ कब खो जाता है।',
       es: 'Explora quién gana con los intercambios y cuándo se pierden beneficios.',

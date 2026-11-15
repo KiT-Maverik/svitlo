@@ -5,6 +5,7 @@ export const multidimensionalPoverty_Skill_Data = defineSkill({
   id: '8f0e0d12-6df7-4289-8b72-343b2e371550',
   name: {
     en: 'Багатовимірна бідність',
+    it: 'Povertà multidimensionale',
     zh: '多维贫困',
     hi: 'बहुआयामी गरीबी',
     es: 'Pobreza multidimensional',
@@ -38,6 +39,7 @@ export const multidimensionalPoverty_Skill_Data = defineSkill({
     methodological: 'Evaluate deprivations in health, education, and housing beyond monetary income alone.',
     frontend: {
       en: 'Explore why poverty involves more than income.',
+      it: 'Esplora perché la povertà riguarda più del solo reddito.',
       zh: '探索为何贫困不仅仅与收入有关。',
       hi: 'जानें कि गरीबी केवल आय से जुड़ी समस्या क्यों नहीं है।',
       es: 'Explora por qué la pobreza abarca más que los ingresos.',

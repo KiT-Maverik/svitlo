@@ -5,6 +5,7 @@ export const confoundingFactors_Skill_Data = defineSkill({
   id: '2db8a465-28fc-4fb3-a561-1928e654ada6',
   name: {
     en: 'Змішувальні фактори',
+    it: 'Fattori confondenti',
     zh: '混杂因素',
     hi: 'भ्रामक कारक',
     es: 'Factores de confusión',
@@ -39,6 +40,7 @@ export const confoundingFactors_Skill_Data = defineSkill({
       'Identify outside variables that can produce a misleading apparent relationship between a proposed cause and outcome.',
     frontend: {
       en: 'Spot hidden factors that might explain an apparent economic link.',
+      it: 'Individua i fattori nascosti che potrebbero spiegare un apparente legame economico.',
       zh: '找出可能解释表面经济关联的隐藏因素。',
       hi: 'ऐसे छिपे कारक पहचानें जो दिखने वाले आर्थिक संबंध को समझा सकते हैं।',
       es: 'Identifica factores ocultos que podrían explicar una aparente relación económica.',

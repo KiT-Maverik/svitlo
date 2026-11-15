@@ -5,6 +5,7 @@ export const choiceUnderUncertainty_Skill_Data = defineSkill({
   id: '5be4cc74-4266-4789-af8b-76081409213e',
   name: {
     en: 'Choice Under Uncertainty',
+    it: 'Scelte in condizioni di incertezza',
     zh: '不确定条件下的选择',
     hi: 'अनिश्चितता में चुनाव',
     es: 'Decisiones bajo incertidumbre',
@@ -39,6 +40,7 @@ export const choiceUnderUncertainty_Skill_Data = defineSkill({
       'Distinguish outcomes known in advance, probabilistic results, and situations in which probabilities or even the outcomes themselves are unknown.',
     frontend: {
       en: 'Compare choices when the outcome is certain, risky, or unknown.',
+      it: 'Confronta le scelte quando il risultato è certo, rischioso o sconosciuto.',
       zh: '比较结果确定、有风险或未知时的不同选择。',
       hi: 'निश्चित, जोखिमपूर्ण या अज्ञात परिणामों वाले विकल्पों की तुलना करें।',
       es: 'Compara opciones con resultados ciertos, arriesgados o desconocidos.',

@@ -5,6 +5,7 @@ export const monetaryTransmissionMechanism_Skill_Data = defineSkill({
   id: '289f6894-f753-4b2c-b53f-2fb6aa76b154',
   name: {
     en: 'Трансмісійний механізм монетарної політики',
+    it: 'Meccanismo di trasmissione della politica monetaria',
     zh: '货币政策传导机制',
     hi: 'मौद्रिक नीति का संचरण तंत्र',
     es: 'Mecanismo de transmisión monetaria',
@@ -39,6 +40,7 @@ export const monetaryTransmissionMechanism_Skill_Data = defineSkill({
       'Trace how changes in policy interest rates affect market rates, expectations, exchange rates, and spending.',
     frontend: {
       en: "Understand how a central bank's decision reaches the wider economy.",
+      it: "Comprendi come una decisione della banca centrale si trasmette al resto dell'economia.",
       zh: '理解中央银行的决策如何影响更广泛的经济。',
       hi: 'समझें कि केंद्रीय बैंक का निर्णय पूरी अर्थव्यवस्था तक कैसे पहुँचता है।',
       es: 'Comprende cómo una decisión del banco central afecta a la economía en general.',

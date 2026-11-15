@@ -5,6 +5,7 @@ export const economicForecastUncertainty_Skill_Data = defineSkill({
   id: 'f53f97b1-f336-42ba-8bde-0f7113876f03',
   name: {
     en: 'Невизначеність економічного прогнозу',
+    it: 'Incertezza delle previsioni economiche',
     zh: '经济预测的不确定性',
     hi: 'आर्थिक पूर्वानुमान की अनिश्चितता',
     es: 'Incertidumbre en las previsiones económicas',
@@ -39,6 +40,7 @@ export const economicForecastUncertainty_Skill_Data = defineSkill({
       'Understand scenarios, intervals, and sources of error, distinguishing forecasts from guaranteed outcomes.',
     frontend: {
       en: 'Recognize uncertainty and different possibilities in economic predictions.',
+      it: "Riconosci l'incertezza e i diversi scenari possibili nelle previsioni economiche.",
       zh: '识别经济预测中的不确定性和多种可能结果。',
       hi: 'आर्थिक पूर्वानुमानों में अनिश्चितता और विभिन्न संभावनाओं को पहचानें।',
       es: 'Reconoce la incertidumbre y los distintos resultados posibles de las previsiones económicas.',

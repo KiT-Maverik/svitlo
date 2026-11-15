@@ -7,6 +7,7 @@ export const growthAndProductivity_SkillGroup_Data = defineSkillGroup({
   id: '970fc3fa-33f3-43fe-80d0-b4e95a6c0132',
   name: {
     en: 'Зростання та продуктивність',
+    it: 'Crescita e produttività',
     zh: '经济增长与生产率',
     hi: 'वृद्धि और उत्पादकता',
     es: 'Crecimiento y productividad',
@@ -48,6 +49,7 @@ export const growthAndProductivity_SkillGroup_Data = defineSkillGroup({
     methodological: 'Long-run aggregate output depends on technology, capital, labor, and institutional quality.',
     frontend: {
       en: 'Discover what helps an economy produce more over the long term.',
+      it: "Scopri che cosa aiuta un'economia a produrre di più nel lungo periodo.",
       zh: '了解哪些因素帮助经济实现长期增产。',
       hi: 'जानें कि दीर्घ अवधि में अर्थव्यवस्था का उत्पादन किससे बढ़ता है।',
       es: 'Descubre qué permite producir más a una economía a largo plazo.',

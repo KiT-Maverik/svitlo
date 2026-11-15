@@ -5,6 +5,7 @@ export const productionFunction_Skill_Data = defineSkill({
   id: '793df4db-d5da-41a4-b6e5-b2cb01655c5b',
   name: {
     en: 'Production Function',
+    it: 'Funzione di produzione',
     zh: '生产函数',
     hi: 'उत्पादन फलन',
     es: 'Función de producción',
@@ -39,6 +40,7 @@ export const productionFunction_Skill_Data = defineSkill({
       'Relate feasible output to quantities of inputs and technological capability within a specified model.',
     frontend: {
       en: "Connect a firm's inputs and technology with the amount it can make.",
+      it: "Collega i fattori produttivi e la tecnologia di un'impresa alla quantità che può produrre.",
       zh: '将企业投入和技术与可生产的数量联系起来。',
       hi: 'कंपनी के संसाधनों और तकनीक को उसके संभावित उत्पादन से जोड़ें।',
       es: 'Relaciona insumos y tecnología de una empresa con su producción posible.',

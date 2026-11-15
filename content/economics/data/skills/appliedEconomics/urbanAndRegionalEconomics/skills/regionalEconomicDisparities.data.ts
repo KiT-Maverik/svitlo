@@ -5,6 +5,7 @@ export const regionalEconomicDisparities_Skill_Data = defineSkill({
   id: 'ec5a67cc-f50b-440b-b88a-85cc9111e4e5',
   name: {
     en: 'Регіональні економічні відмінності',
+    it: 'Disparità economiche regionali',
     zh: '区域经济差异',
     hi: 'क्षेत्रीय आर्थिक असमानताएँ',
     es: 'Disparidades económicas regionales',
@@ -39,6 +40,7 @@ export const regionalEconomicDisparities_Skill_Data = defineSkill({
       "Compare territories' productivity, incomes, access to jobs, and infrastructure, distinguishing indicator levels from geographical location alone.",
     frontend: {
       en: 'Compare economic opportunities across regions using relevant measures.',
+      it: 'Confronta le opportunità economiche tra regioni usando indicatori pertinenti.',
       zh: '使用适当指标比较不同地区的经济机会。',
       hi: 'उचित संकेतकों से विभिन्न क्षेत्रों के आर्थिक अवसरों की तुलना करें।',
       es: 'Compara las oportunidades económicas de distintas regiones mediante indicadores pertinentes.',

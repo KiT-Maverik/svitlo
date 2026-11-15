@@ -5,6 +5,7 @@ export const automaticStabilizers_Skill_Data = defineSkill({
   id: '7d69f3b3-fc87-4ecf-b79c-4f866a61ca50',
   name: {
     en: 'Автоматичні стабілізатори',
+    it: 'Stabilizzatori automatici',
     zh: '自动稳定器',
     hi: 'स्वचालित स्थिरकारी',
     es: 'Estabilizadores automáticos',
@@ -39,6 +40,7 @@ export const automaticStabilizers_Skill_Data = defineSkill({
       'Explain how tax collections and transfers may change through the business cycle without new discretionary decisions.',
     frontend: {
       en: 'See how taxes and benefits respond automatically when the economy changes.',
+      it: "Scopri come imposte e prestazioni sociali reagiscono automaticamente ai cambiamenti dell'economia.",
       zh: '了解经济变化时税收和福利如何自动作出反应。',
       hi: 'समझें कि अर्थव्यवस्था बदलने पर कर और लाभ कैसे अपने आप बदलते हैं।',
       es: 'Descubre cómo los impuestos y las prestaciones responden automáticamente a los cambios económicos.',

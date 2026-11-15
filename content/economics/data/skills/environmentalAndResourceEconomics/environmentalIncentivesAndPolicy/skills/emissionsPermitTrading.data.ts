@@ -5,6 +5,7 @@ export const emissionsPermitTrading_Skill_Data = defineSkill({
   id: '5991a2da-2797-400d-8bcd-21f5635320a4',
   name: {
     en: 'Торгівля дозволами на викиди',
+    it: 'Scambio di permessi di emissione',
     zh: '排放许可交易',
     hi: 'उत्सर्जन परमिट का व्यापार',
     es: 'Comercio de permisos de emisión',
@@ -38,6 +39,7 @@ export const emissionsPermitTrading_Skill_Data = defineSkill({
     methodological: 'Explain limits on total emissions and transfers of allowances among participants.',
     frontend: {
       en: 'Discover how trading pollution permits works under an emissions cap.',
+      it: 'Scopri come funziona lo scambio di permessi di inquinamento entro un limite massimo di emissioni.',
       zh: '了解在排放总量上限下，污染许可交易如何运作。',
       hi: 'जानें कि उत्सर्जन सीमा के अंतर्गत प्रदूषण परमिट का व्यापार कैसे होता है।',
       es: 'Descubre cómo funciona el comercio de permisos de contaminación con un límite total de emisiones.',

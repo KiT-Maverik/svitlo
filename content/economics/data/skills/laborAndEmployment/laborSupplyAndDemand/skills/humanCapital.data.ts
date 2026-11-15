@@ -5,6 +5,7 @@ export const humanCapital_Skill_Data = defineSkill({
   id: '9a3e7fff-82f5-4468-9ae8-36dbfd62f09b',
   name: {
     en: 'Людський капітал',
+    it: 'Capitale umano',
     zh: '人力资本',
     hi: 'मानव पूँजी',
     es: 'Capital humano',
@@ -39,6 +40,7 @@ export const humanCapital_Skill_Data = defineSkill({
       'Evaluate the economic effects of education, experience, skills, and health on productivity and opportunities.',
     frontend: {
       en: 'Explore how education and skills affect earning opportunities.',
+      it: 'Esplora come istruzione e competenze influiscono sulle opportunità di guadagno.',
       zh: '探索教育和技能如何影响收入机会。',
       hi: 'जानें कि शिक्षा और कौशल कमाई के अवसरों को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo la educación y las habilidades influyen en las oportunidades de ingresos.',

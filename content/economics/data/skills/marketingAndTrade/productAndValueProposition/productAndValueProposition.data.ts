@@ -12,6 +12,7 @@ export const productAndValueProposition_SkillGroup_Data = defineSkillGroup({
   id: 'ee25f845-9931-474d-89d0-16c86a4579da',
   name: {
     en: 'Продукт і ціннісна пропозиція',
+    it: 'Prodotto e proposta di valore',
     zh: '产品与价值主张',
     hi: 'उत्पाद और मूल्य प्रस्ताव',
     es: 'Producto y propuesta de valor',
@@ -55,6 +56,7 @@ export const productAndValueProposition_SkillGroup_Data = defineSkillGroup({
       'A commercial offering combines benefits, quality, service, and differences from alternatives, not just physical features.',
     frontend: {
       en: 'Discover what makes a product or service valuable to customers.',
+      it: 'Scopri che cosa rende un prodotto o un servizio prezioso per i clienti.',
       zh: '发现是什么使产品或服务对顾客有价值。',
       hi: 'जानें कि कोई उत्पाद या सेवा ग्राहकों के लिए मूल्यवान क्यों है।',
       es: 'Descubre qué hace valioso un producto o servicio para sus clientes.',

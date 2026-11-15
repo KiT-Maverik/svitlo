@@ -5,6 +5,7 @@ export const inflationAndDeflation_Skill_Data = defineSkill({
   id: 'e4855891-1e61-4918-bd6d-494eefe83adc',
   name: {
     en: 'Інфляція та дефляція',
+    it: 'Inflazione e deflazione',
     zh: '通货膨胀与通货紧缩',
     hi: 'मुद्रास्फीति और अपस्फीति',
     es: 'Inflación y deflación',
@@ -39,6 +40,7 @@ export const inflationAndDeflation_Skill_Data = defineSkill({
       'Distinguish a sustained increase or decrease in the general price level from a price change for one product.',
     frontend: {
       en: 'Tell the difference between inflation and a price rise for one item.',
+      it: "Distingui l'inflazione dall'aumento del prezzo di un solo prodotto.",
       zh: '区分普遍通胀与单一商品价格上涨。',
       hi: 'सामान्य मुद्रास्फीति और किसी एक वस्तु की कीमत बढ़ने में अंतर पहचानें।',
       es: 'Distingue la inflación del aumento de precio de un solo producto.',

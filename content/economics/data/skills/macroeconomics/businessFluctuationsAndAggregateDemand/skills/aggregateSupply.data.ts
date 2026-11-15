@@ -5,6 +5,7 @@ export const aggregateSupply_Skill_Data = defineSkill({
   id: '71a64b7a-6a90-42f8-91a4-2bdde909a869',
   name: {
     en: 'Сукупна пропозиція',
+    it: 'Offerta aggregata',
     zh: '总供给',
     hi: 'समग्र आपूर्ति',
     es: 'Oferta agregada',
@@ -39,6 +40,7 @@ export const aggregateSupply_Skill_Data = defineSkill({
       'Analyze total production in relation to the price level, input costs, resource limits, and technology, distinguishing short- and long-run conditions.',
     frontend: {
       en: 'Discover what limits the total amount an economy can produce.',
+      it: "Scopri che cosa limita la quantità totale che un'economia può produrre.",
       zh: '了解是什么限制了经济所能生产的总量。',
       hi: 'जानें कि अर्थव्यवस्था के कुल उत्पादन की सीमा किन कारणों से तय होती है।',
       es: 'Descubre qué limita la producción total de una economía.',

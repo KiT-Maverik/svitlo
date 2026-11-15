@@ -11,6 +11,7 @@ export const povertyAndWellbeing_SkillGroup_Data = defineSkillGroup({
   id: '08c40c03-8d1c-490f-8e68-a3ce11baf921',
   name: {
     en: 'Бідність та добробут',
+    it: 'Povertà e benessere',
     zh: '贫困与福祉',
     hi: 'गरीबी और कल्याण',
     es: 'Pobreza y bienestar',
@@ -53,6 +54,7 @@ export const povertyAndWellbeing_SkillGroup_Data = defineSkillGroup({
       'Assessing living conditions requires attention to income, opportunities, and access to essential goods.',
     frontend: {
       en: 'Discover different ways to measure poverty and wellbeing.',
+      it: 'Scopri diversi modi per misurare la povertà e il benessere.',
       zh: '了解衡量贫困和福祉的不同方法。',
       hi: 'गरीबी और कल्याण को मापने के विभिन्न तरीकों के बारे में जानें।',
       es: 'Descubre distintas maneras de medir la pobreza y el bienestar.',

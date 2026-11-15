@@ -5,6 +5,7 @@ export const marginalAnalysis_Skill_Data = defineSkill({
   id: '821ebf4b-1770-4e84-bc1f-823114154aea',
   name: {
     en: 'Marginal Analysis',
+    it: 'Analisi marginale',
     zh: '边际分析',
     hi: 'सीमांत विश्लेषण',
     es: 'Análisis marginal',
@@ -39,6 +40,7 @@ export const marginalAnalysis_Skill_Data = defineSkill({
       'Compare the additional benefit and additional cost of one more unit of an activity rather than relying only on total outcomes.',
     frontend: {
       en: 'Decide whether one more unit of an activity is worth its extra cost.',
+      it: "Decidi se un'unità aggiuntiva di un'attività vale il suo costo aggiuntivo.",
       zh: '判断多进行一个单位活动是否值得额外成本。',
       hi: 'तय करें कि किसी काम की एक और इकाई का अतिरिक्त लाभ उसकी लागत के योग्य है या नहीं।',
       es: 'Decide si una unidad adicional de actividad vale su costo extra.',

@@ -5,6 +5,7 @@ export const retailPricingStrategies_Skill_Data = defineSkill({
   id: 'aa793e63-24b4-40b9-9e4f-750fb9b6e567',
   name: {
     en: 'Стратегії роздрібного ціноутворення',
+    it: 'Strategie di prezzo al dettaglio',
     zh: '零售定价策略',
     hi: 'खुदरा मूल्य निर्धारण रणनीतियाँ',
     es: 'Estrategias de precios minoristas',
@@ -38,6 +39,7 @@ export const retailPricingStrategies_Skill_Data = defineSkill({
     methodological: "Compare sellers' pricing choices in relation to costs, perceived value, and competition.",
     frontend: {
       en: 'Explore how stores choose prices for their products.',
+      it: 'Esplora come i negozi stabiliscono i prezzi dei loro prodotti.',
       zh: '探索商店如何决定商品价格。',
       hi: 'जानें कि दुकानें अपने उत्पादों की कीमत कैसे चुनती हैं।',
       es: 'Explora cómo las tiendas fijan los precios de sus productos.',

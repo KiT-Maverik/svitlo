@@ -5,6 +5,7 @@ export const distributionChannels_Skill_Data = defineSkill({
   id: '897a6489-4214-4f03-bfb6-b10e0824f105',
   name: {
     en: 'Канали збуту',
+    it: 'Canali di distribuzione',
     zh: '分销渠道',
     hi: 'वितरण चैनल',
     es: 'Canales de distribución',
@@ -38,6 +39,7 @@ export const distributionChannels_Skill_Data = defineSkill({
     methodological: 'Compare direct and intermediary-based routes to buyers by reach, commissions, control, and costs.',
     frontend: {
       en: 'Compare ways businesses can deliver products to customers.',
+      it: 'Confronta i diversi modi in cui le imprese possono consegnare i prodotti ai clienti.',
       zh: '比较企业向顾客交付商品的不同方式。',
       hi: 'व्यवसायों द्वारा ग्राहकों तक उत्पाद पहुँचाने के तरीकों की तुलना करें।',
       es: 'Compara las formas en que las empresas entregan productos a los clientes.',

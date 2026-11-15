@@ -5,6 +5,7 @@ export const financialGoals_Skill_Data = defineSkill({
   id: '38a695fa-8d21-4aa4-ace2-84c4611ed8ae',
   name: {
     en: 'Фінансові цілі',
+    it: 'Obiettivi finanziari',
     zh: '财务目标',
     hi: 'वित्तीय लक्ष्य',
     es: 'Metas financieras',
@@ -39,6 +40,7 @@ export const financialGoals_Skill_Data = defineSkill({
       'Connect a target amount, deadline, and realistic ways of saving to a specific financial objective.',
     frontend: {
       en: 'Plan how much to save and when to reach a goal.',
+      it: 'Pianifica quanto risparmiare e quando raggiungere un obiettivo.',
       zh: '规划实现某个目标需存多少钱以及何时实现。',
       hi: 'किसी लक्ष्य तक पहुँचने के लिए कितना और कब तक बचाना है, योजना बनाएँ।',
       es: 'Planifica cuánto ahorrar y cuándo alcanzar una meta.',

@@ -5,6 +5,7 @@ export const foodSecurityAsAnEconomicIssue_Skill_Data = defineSkill({
   id: '41fcf6ba-dc3c-450c-bd76-e1c009cf1990',
   name: {
     en: 'Продовольча безпека як економічна проблема',
+    it: 'La sicurezza alimentare come questione economica',
     zh: '粮食安全的经济问题',
     hi: 'खाद्य सुरक्षा का आर्थिक पहलू',
     es: 'Seguridad alimentaria como problema económico',
@@ -39,6 +40,7 @@ export const foodSecurityAsAnEconomicIssue_Skill_Data = defineSkill({
       'Analyze physical and economic access to food, stability of supplies, and why sufficient aggregate production does not ensure everyone can obtain food.',
     frontend: {
       en: 'Explore why enough food being produced does not mean everyone can afford or access it.',
+      it: 'Scopri perché produrre cibo a sufficienza non significa che tutti possano permetterselo o procurarselo.',
       zh: '探索为什么粮食产量充足并不意味着人人都买得起或能获得食物。',
       hi: 'जानें कि पर्याप्त भोजन बनने पर भी हर कोई उसे खरीद या प्राप्त क्यों नहीं कर पाता।',
       es: 'Explora por qué producir suficientes alimentos no significa que todos puedan comprarlos o acceder a ellos.',

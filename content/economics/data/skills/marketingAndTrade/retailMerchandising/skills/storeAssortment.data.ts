@@ -5,6 +5,7 @@ export const storeAssortment_Skill_Data = defineSkill({
   id: '3c033dd1-876c-439a-b371-f7f6d033e0c7',
   name: {
     en: 'Асортимент магазину',
+    it: 'Assortimento del negozio',
     zh: '商店商品组合',
     hi: 'दुकान में उत्पादों का चयन',
     es: 'Surtido de tienda',
@@ -39,6 +40,7 @@ export const storeAssortment_Skill_Data = defineSkill({
       'Evaluate a product range in light of customer needs, stock limits, available space, and unsold-inventory risk.',
     frontend: {
       en: 'Understand how stores decide which products to stock.',
+      it: 'Comprendi come i negozi decidono quali prodotti tenere in vendita.',
       zh: '了解商店如何决定经营哪些商品。',
       hi: 'समझें कि दुकानें कौन से उत्पाद रखेंगी, यह कैसे तय करती हैं।',
       es: 'Comprende cómo deciden las tiendas qué productos ofrecer.',

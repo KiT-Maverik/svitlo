@@ -5,6 +5,7 @@ export const consumerRightsAndResponsibilities_Skill_Data = defineSkill({
   id: '976c56e4-140d-44ba-8e54-58b6c28519d8',
   name: {
     en: 'Consumer Rights and Responsibilities',
+    it: 'Diritti e responsabilità dei consumatori',
     zh: '消费者权利与责任',
     hi: 'उपभोक्ता अधिकार और जिम्मेदारियाँ',
     es: 'Derechos y responsabilidades del consumidor',
@@ -38,6 +39,7 @@ export const consumerRightsAndResponsibilities_Skill_Data = defineSkill({
     methodological: 'Interpret warranties, returns, and buyer and seller obligations in the applicable legal context.',
     frontend: {
       en: 'Recognize the rights and responsibilities involved in buying something.',
+      it: 'Riconosci i diritti e le responsabilità che entrano in gioco quando si acquista qualcosa.',
       zh: '认识购买商品时涉及的权利与责任。',
       hi: 'खरीदारी से जुड़े अधिकारों और जिम्मेदारियों को पहचानें।',
       es: 'Reconoce los derechos y deberes que acompañan a una compra.',

@@ -12,6 +12,7 @@ export const fiscalAndMonetaryPolicy_SkillGroup_Data = defineSkillGroup({
   id: '819537f2-e856-4b72-8f39-1d508d9c63d2',
   name: {
     en: 'Фіскальна та монетарна політика',
+    it: 'Politica fiscale e monetaria',
     zh: '财政政策与货币政策',
     hi: 'राजकोषीय और मौद्रिक नीति',
     es: 'Política fiscal y monetaria',
@@ -55,6 +56,7 @@ export const fiscalAndMonetaryPolicy_SkillGroup_Data = defineSkillGroup({
       'Macroeconomic stabilization employs budget decisions and central-bank instruments, both subject to delays.',
     frontend: {
       en: 'Compare the main tools used to support economic stability.',
+      it: 'Confronta i principali strumenti usati per sostenere la stabilità economica.',
       zh: '比较维护经济稳定的主要政策工具。',
       hi: 'आर्थिक स्थिरता बनाए रखने के मुख्य नीतिगत साधनों की तुलना करें।',
       es: 'Compara las principales herramientas para mantener la estabilidad económica.',

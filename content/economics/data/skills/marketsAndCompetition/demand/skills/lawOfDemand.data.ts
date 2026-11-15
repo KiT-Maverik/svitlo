@@ -5,6 +5,7 @@ export const lawOfDemand_Skill_Data = defineSkill({
   id: '830c49fe-94f3-4ed2-8b7f-d1f5d115308d',
   name: {
     en: 'Law of Demand',
+    it: 'Legge della domanda',
     zh: '需求定律',
     hi: 'माँग का नियम',
     es: 'Ley de la demanda',
@@ -39,6 +40,7 @@ export const lawOfDemand_Skill_Data = defineSkill({
       'Interpret the relationship between price and quantity demanded when other factors are held constant, distinguishing the general pattern from possible exceptions.',
     frontend: {
       en: 'Explore why a higher price usually means fewer units are wanted.',
+      it: 'Esplora perché un prezzo più alto di solito comporta una quantità domandata inferiore.',
       zh: '探索为什么价格上涨通常会减少购买数量。',
       hi: 'जानें कि ऊँची कीमत का मतलब आमतौर पर कम मात्रा की माँग क्यों है।',
       es: 'Explora por qué un precio mayor suele reducir la cantidad solicitada.',

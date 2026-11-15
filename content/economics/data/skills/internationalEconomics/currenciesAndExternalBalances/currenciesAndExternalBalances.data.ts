@@ -12,6 +12,7 @@ export const currenciesAndExternalBalances_SkillGroup_Data = defineSkillGroup({
   id: 'eaffa40a-dc60-4464-bc0f-8de45d609d63',
   name: {
     en: 'Валюти та зовнішні баланси',
+    it: "Valute e saldi con l'estero",
     zh: '货币与对外收支',
     hi: 'मुद्राएँ और बाह्य खाते',
     es: 'Monedas y balanzas exteriores',
@@ -55,6 +56,7 @@ export const currenciesAndExternalBalances_SkillGroup_Data = defineSkillGroup({
       'International transactions involve exchange rates, payments, and financial claims on other countries.',
     frontend: {
       en: 'Learn how exchange rates and cross-border accounts work.',
+      it: "Impara come funzionano i tassi di cambio e i conti con l'estero.",
       zh: '了解汇率和跨境收支账户如何运作。',
       hi: 'जानें कि विनिमय दर और सीमा-पार खातों की व्यवस्था कैसे काम करती है।',
       es: 'Aprende cómo funcionan los tipos de cambio y las cuentas transfronterizas.',

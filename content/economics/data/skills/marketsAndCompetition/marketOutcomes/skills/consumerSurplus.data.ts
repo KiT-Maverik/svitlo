@@ -5,6 +5,7 @@ export const consumerSurplus_Skill_Data = defineSkill({
   id: '753015e8-9635-46ca-b04a-9ac50d1ea1f2',
   name: {
     en: 'Consumer Surplus',
+    it: 'Surplus del consumatore',
     zh: '消费者剩余',
     hi: 'उपभोक्ता अधिशेष',
     es: 'Excedente del consumidor',
@@ -39,6 +40,7 @@ export const consumerSurplus_Skill_Data = defineSkill({
       'Estimate the difference between willingness to pay and the actual price for the relevant units of consumption.',
     frontend: {
       en: 'See how paying less than you were willing to pay creates a benefit.',
+      it: 'Scopri il beneficio che ottieni pagando meno di quanto saresti disposto a pagare.',
       zh: '了解支付价格低于愿付价格为何带来收益。',
       hi: 'देखें कि देने को तैयार कीमत से कम भुगतान करने पर लाभ कैसे होता है।',
       es: 'Observa el beneficio de pagar menos de lo que estarías dispuesto a pagar.',

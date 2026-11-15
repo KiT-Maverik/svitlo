@@ -5,6 +5,7 @@ export const bankLending_Skill_Data = defineSkill({
   id: '1d6692d5-3372-4eff-91f6-184fbe4fe064',
   name: {
     en: 'Кредитування банками',
+    it: 'Prestiti bancari',
     zh: '银行贷款',
     hi: 'बैंकों द्वारा ऋण देना',
     es: 'Préstamos bancarios',
@@ -39,6 +40,7 @@ export const bankLending_Skill_Data = defineSkill({
       'Explain loan creation, risk assessment, and the effects of bank lending on balance sheets and deposit money.',
     frontend: {
       en: 'Explore how banks lend and how lending affects bank money.',
+      it: 'Esplora come le banche concedono prestiti e come il credito influisce sulla moneta bancaria.',
       zh: '探索银行如何放贷及贷款如何影响银行存款货币。',
       hi: 'जानें कि बैंक ऋण कैसे देते हैं और इससे बैंक धन पर क्या असर पड़ता है।',
       es: 'Explora cómo prestan los bancos y cómo afectan los préstamos al dinero bancario.',

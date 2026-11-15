@@ -5,6 +5,7 @@ export const transportDemand_Skill_Data = defineSkill({
   id: '711b3bfd-4ce1-418d-ba51-d4145b3e6d7a',
   name: {
     en: 'Попит на транспортні послуги',
+    it: 'Domanda di trasporto',
     zh: '交通运输需求',
     hi: 'परिवहन की माँग',
     es: 'Demanda de transporte',
@@ -39,6 +40,7 @@ export const transportDemand_Skill_Data = defineSkill({
       'Analyze how fare or price, travel time, frequency, reliability, and available alternatives affect choice of travel mode.',
     frontend: {
       en: 'Explore what makes people choose one way of traveling over another.',
+      it: 'Esplora che cosa spinge le persone a scegliere un mezzo di trasporto anziché un altro.',
       zh: '探索人们为什么选择某一种出行方式而不是另一种。',
       hi: 'जानें कि लोग यात्रा के एक साधन को दूसरे पर क्यों चुनते हैं।',
       es: 'Explora qué hace que las personas elijan un medio de transporte en lugar de otro.',

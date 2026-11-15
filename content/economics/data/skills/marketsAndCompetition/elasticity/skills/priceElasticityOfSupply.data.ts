@@ -5,6 +5,7 @@ export const priceElasticityOfSupply_Skill_Data = defineSkill({
   id: '14c86556-f336-45c5-b577-7880608a06ce',
   name: {
     en: 'Price Elasticity of Supply',
+    it: "Elasticità dell'offerta rispetto al prezzo",
     zh: '供给价格弹性',
     hi: 'पूर्ति की कीमत लोच',
     es: 'Elasticidad precio de la oferta',
@@ -39,6 +40,7 @@ export const priceElasticityOfSupply_Skill_Data = defineSkill({
       'Evaluate how much producers can change quantities offered when prices change, taking time constraints into account.',
     frontend: {
       en: 'Explore how quickly and strongly producers respond to higher prices.',
+      it: 'Esplora quanto rapidamente e intensamente i produttori reagiscono a prezzi più alti.',
       zh: '探索生产者对更高价格的反应速度与程度。',
       hi: 'देखें कि अधिक कीमत पर उत्पादक कितनी तेजी और मात्रा में प्रतिक्रिया देते हैं।',
       es: 'Explora la rapidez e intensidad con que productores responden a precios mayores.',

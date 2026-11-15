@@ -5,6 +5,7 @@ export const personalIncomeSources_Skill_Data = defineSkill({
   id: '1790c0d0-ea40-4b6a-8221-14f6b7c6072d',
   name: {
     en: 'Джерела особистого доходу',
+    it: 'Fonti di reddito personale',
     zh: '个人收入来源',
     hi: 'व्यक्तिगत आय के स्रोत',
     es: 'Fuentes de ingresos personales',
@@ -39,6 +40,7 @@ export const personalIncomeSources_Skill_Data = defineSkill({
       'Distinguish wages, business earnings, returns from assets, and transfers by their nature and stability.',
     frontend: {
       en: 'Recognize different ways people receive income.',
+      it: 'Riconosci i diversi modi in cui le persone percepiscono un reddito.',
       zh: '识别人们获得收入的不同方式。',
       hi: 'जानें कि लोगों को आय किन-किन तरीकों से मिलती है।',
       es: 'Reconoce las distintas formas de recibir ingresos.',

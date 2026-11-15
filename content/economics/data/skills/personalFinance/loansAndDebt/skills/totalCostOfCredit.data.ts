@@ -5,6 +5,7 @@ export const totalCostOfCredit_Skill_Data = defineSkill({
   id: 'c7cec123-a865-446f-83e5-0114b038ced1',
   name: {
     en: 'Повна вартість кредиту',
+    it: 'Costo totale del credito',
     zh: '贷款总成本',
     hi: 'ऋण की कुल लागत',
     es: 'Costo total del crédito',
@@ -39,6 +40,7 @@ export const totalCostOfCredit_Skill_Data = defineSkill({
       'Evaluate interest, fees, repayment schedules, and other mandatory payments under a particular loan agreement.',
     frontend: {
       en: 'Compare what a loan really costs over its full repayment period.',
+      it: "Confronta il costo reale di un prestito durante l'intero periodo di rimborso.",
       zh: '比较贷款在整个还款期内的真实费用。',
       hi: 'पूरी चुकौती अवधि में ऋण की वास्तविक लागत की तुलना करें।',
       es: 'Compara lo que cuesta realmente un préstamo durante toda su devolución.',

@@ -11,6 +11,7 @@ export const transportAndInfrastructure_SkillGroup_Data = defineSkillGroup({
   id: 'e9ddae22-2b8e-4528-859e-b785fa71826e',
   name: {
     en: 'Транспорт та інфраструктура',
+    it: 'Trasporti e infrastrutture',
     zh: '交通与基础设施',
     hi: 'परिवहन और अवसंरचना',
     es: 'Transporte e infraestructura',
@@ -53,6 +54,7 @@ export const transportAndInfrastructure_SkillGroup_Data = defineSkillGroup({
       'Moving people and goods creates direct and external costs, while infrastructure requires large initial investments and lasts for long periods.',
     frontend: {
       en: 'Discover the economic trade-offs behind transport and public infrastructure.',
+      it: 'Scopri i compromessi economici legati ai trasporti e alle infrastrutture pubbliche.',
       zh: '探索交通和公共基础设施背后的经济取舍。',
       hi: 'परिवहन और सार्वजनिक अवसंरचना के आर्थिक लाभ-हानि के समझौते जानें।',
       es: 'Explora las decisiones económicas y sus compensaciones en transporte e infraestructura pública.',

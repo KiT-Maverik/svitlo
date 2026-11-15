@@ -5,6 +5,7 @@ export const inclusiveEconomicInstitutions_Skill_Data = defineSkill({
   id: '230a0aa7-d30f-459c-adfa-7fd0a38165a1',
   name: {
     en: 'Інклюзивність економічних інституцій',
+    it: 'Istituzioni economiche inclusive',
     zh: '包容性经济制度',
     hi: 'समावेशी आर्थिक संस्थाएँ',
     es: 'Instituciones económicas inclusivas',
@@ -39,6 +40,7 @@ export const inclusiveEconomicInstitutions_Skill_Data = defineSkill({
       'Assess whether rules permit participation in economic life and protect people from arbitrary appropriation of resources.',
     frontend: {
       en: 'Recognize how fair access and secure rights can widen economic opportunity.',
+      it: 'Riconosci come un accesso equo e diritti garantiti possano ampliare le opportunità economiche.',
       zh: '认识公平准入与有保障的权利如何扩大经济机会。',
       hi: 'समझें कि समान पहुँच और सुरक्षित अधिकार आर्थिक अवसर कैसे बढ़ाते हैं।',
       es: 'Reconoce cómo el acceso justo y los derechos protegidos amplían las oportunidades económicas.',

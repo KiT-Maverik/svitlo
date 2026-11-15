@@ -5,6 +5,7 @@ export const gainsFromVoluntaryExchange_Skill_Data = defineSkill({
   id: 'f2b2dd68-bf1a-4e21-a157-a945dd6778c4',
   name: {
     en: 'Benefits of Voluntary Exchange',
+    it: 'Benefici dello scambio volontario',
     zh: '自愿交换的收益',
     hi: 'स्वैच्छिक विनिमय के लाभ',
     es: 'Beneficios del intercambio voluntario',
@@ -39,6 +40,7 @@ export const gainsFromVoluntaryExchange_Skill_Data = defineSkill({
       'Show when both parties may benefit from a voluntary transaction without assuming every real-world transaction is fair.',
     frontend: {
       en: 'Understand how trading can benefit both sides without guaranteeing fairness.',
+      it: 'Comprendi come uno scambio possa avvantaggiare entrambe le parti senza garantire che sia equo.',
       zh: '理解交易如何使双方受益，却不一定保证公平。',
       hi: 'समझें कि व्यापार दोनों पक्षों को लाभ पहुँचा सकता है, पर न्याय की गारंटी नहीं देता।',
       es: 'Entiende cómo comerciar puede beneficiar a ambas partes sin garantizar justicia.',

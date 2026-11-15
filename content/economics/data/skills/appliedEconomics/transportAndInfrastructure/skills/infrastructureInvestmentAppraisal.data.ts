@@ -5,6 +5,7 @@ export const infrastructureInvestmentAppraisal_Skill_Data = defineSkill({
   id: 'e8c832c8-5311-46e7-836f-82af1311b84b',
   name: {
     en: 'Оцінка інфраструктурних інвестицій',
+    it: 'Valutazione degli investimenti infrastrutturali',
     zh: '基础设施投资评估',
     hi: 'अवसंरचना निवेश का मूल्यांकन',
     es: 'Evaluación de inversiones en infraestructura',
@@ -39,6 +40,7 @@ export const infrastructureInvestmentAppraisal_Skill_Data = defineSkill({
       'Compare upfront and long-term project costs with travel-time savings, accessibility, and other social outcomes over a specified horizon.',
     frontend: {
       en: 'Assess whether a transport project provides benefits worth its full costs.',
+      it: 'Valuta se i benefici di un progetto di trasporto giustificano tutti i suoi costi.',
       zh: '评估交通项目的收益是否值得其全部成本。',
       hi: 'आकलन करें कि परिवहन परियोजना के लाभ उसकी पूरी लागत के उचित हैं या नहीं।',
       es: 'Evalúa si los beneficios de un proyecto de transporte justifican todos sus costos.',

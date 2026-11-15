@@ -5,6 +5,7 @@ export const assetRiskAndReturn_Skill_Data = defineSkill({
   id: '3fcd8e4c-9ca0-4db5-9bf7-520b253dedb4',
   name: {
     en: 'Ризик та дохідність активів',
+    it: 'Rischio e rendimento delle attività finanziarie',
     zh: '资产风险与收益',
     hi: 'संपत्ति का जोखिम और प्रतिफल',
     es: 'Riesgo y rentabilidad de activos',
@@ -39,6 +40,7 @@ export const assetRiskAndReturn_Skill_Data = defineSkill({
       'Analyze price volatility, expected returns, liquidity, and market relationships of financial assets and portfolios without offering personalized recommendations.',
     frontend: {
       en: 'Compare the risks, potential returns, and liquidity of financial assets.',
+      it: 'Confronta rischi, rendimenti potenziali e liquidità delle attività finanziarie.',
       zh: '比较金融资产的风险、潜在回报和流动性。',
       hi: 'वित्तीय संपत्तियों के जोखिम, संभावित प्रतिफल और तरलता की तुलना करें।',
       es: 'Compara riesgos, rendimientos posibles y liquidez de activos financieros.',

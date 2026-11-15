@@ -5,6 +5,7 @@ export const structuralTransformation_Skill_Data = defineSkill({
   id: 'b2383b5f-5b7d-4b35-952e-1f775b4fd8b6',
   name: {
     en: 'Структурна трансформація',
+    it: 'Trasformazione strutturale',
     zh: '结构转型',
     hi: 'संरचनात्मक रूपांतरण',
     es: 'Transformación estructural',
@@ -38,6 +39,7 @@ export const structuralTransformation_Skill_Data = defineSkill({
     methodological: 'Analyze movements of labor and capital between activities and the potential costs of transition.',
     frontend: {
       en: 'Explore what happens when workers and investment shift between industries.',
+      it: 'Scopri che cosa accade quando lavoratori e investimenti si spostano tra settori.',
       zh: '探索劳动者和投资在产业之间转移时发生什么。',
       hi: 'जानें कि श्रमिक और निवेश उद्योगों के बीच जाने से क्या बदलाव होते हैं।',
       es: 'Explora qué ocurre cuando trabajadores e inversiones se trasladan entre sectores.',

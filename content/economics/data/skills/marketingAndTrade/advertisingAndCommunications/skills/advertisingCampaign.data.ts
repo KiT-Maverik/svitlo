@@ -5,6 +5,7 @@ export const advertisingCampaign_Skill_Data = defineSkill({
   id: 'f7bf971e-fe2f-407d-85c3-accfa5be3616',
   name: {
     en: 'Рекламна кампанія',
+    it: 'Campagna pubblicitaria',
     zh: '广告活动',
     hi: 'विज्ञापन अभियान',
     es: 'Campaña publicitaria',
@@ -38,6 +39,7 @@ export const advertisingCampaign_Skill_Data = defineSkill({
     methodological: 'Plan a coordinated sequence of messages with a defined purpose, audience, and ethical limits.',
     frontend: {
       en: 'Plan a consistent series of messages to reach a particular audience.',
+      it: 'Pianifica una serie coerente di messaggi per raggiungere un pubblico specifico.',
       zh: '规划一系列一致的信息，触达特定受众。',
       hi: 'विशेष दर्शकों तक पहुँचने के लिए संदेशों की सुसंगत शृंखला बनाएँ।',
       es: 'Planifica una serie coherente de mensajes dirigida a un público concreto.',

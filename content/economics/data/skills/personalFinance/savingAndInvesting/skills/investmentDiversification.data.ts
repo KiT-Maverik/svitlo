@@ -5,6 +5,7 @@ export const investmentDiversification_Skill_Data = defineSkill({
   id: '0290d21f-3931-4a59-b7c0-d6929621ebd6',
   name: {
     en: 'Диверсифікація інвестицій',
+    it: 'Diversificazione degli investimenti',
     zh: '投资分散化',
     hi: 'निवेश का विविधीकरण',
     es: 'Diversificación de inversiones',
@@ -39,6 +40,7 @@ export const investmentDiversification_Skill_Data = defineSkill({
       'Explain how allocating funds among assets affects idiosyncratic risk without guaranteeing protection from losses.',
     frontend: {
       en: 'Learn why spreading investments can reduce some risks but not eliminate losses.',
+      it: 'Scopri perché distribuire gli investimenti può ridurre alcuni rischi ma non eliminare le perdite.',
       zh: '了解分散投资为何能降低部分风险，却无法消除亏损。',
       hi: 'सीखें कि निवेश बाँटने से कुछ जोखिम घटते हैं, पर घाटा खत्म नहीं होता।',
       es: 'Aprende por qué repartir inversiones reduce algunos riesgos, pero no elimina las pérdidas.',

@@ -11,6 +11,7 @@ export const economicModels_SkillGroup_Data = defineSkillGroup({
   id: 'f970f789-b7d4-4cfa-bab9-d69227223efc',
   name: {
     en: 'Економічні моделі',
+    it: 'Modelli economici',
     zh: '经济模型',
     hi: 'आर्थिक मॉडल',
     es: 'Modelos económicos',
@@ -53,6 +54,7 @@ export const economicModels_SkillGroup_Data = defineSkillGroup({
       'Simplified representations help isolate mechanisms, but their conclusions depend on starting assumptions.',
     frontend: {
       en: 'Explore how economists use simplified models to understand decisions.',
+      it: 'Esplora come gli economisti usano modelli semplificati per comprendere le decisioni.',
       zh: '探索经济学家如何用简化模型理解决策。',
       hi: 'जानें कि अर्थशास्त्री निर्णयों को समझने के लिए सरल मॉडल कैसे बनाते हैं।',
       es: 'Explora cómo los economistas usan modelos simplificados para comprender decisiones.',

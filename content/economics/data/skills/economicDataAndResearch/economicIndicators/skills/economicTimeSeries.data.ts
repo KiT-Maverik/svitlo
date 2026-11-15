@@ -5,6 +5,7 @@ export const economicTimeSeries_Skill_Data = defineSkill({
   id: 'a3edd45b-5bc9-4bf3-96db-4de358fb6e52',
   name: {
     en: 'Читання економічних часових рядів',
+    it: 'Lettura delle serie storiche economiche',
     zh: '经济时间序列',
     hi: 'आर्थिक समय-श्रृंखलाएँ',
     es: 'Series temporales económicas',
@@ -38,6 +39,7 @@ export const economicTimeSeries_Skill_Data = defineSkill({
     methodological: "Distinguish an indicator's level, absolute change, rate of change, and possible seasonality.",
     frontend: {
       en: 'Read how an economic measure changes over time.',
+      it: 'Leggi come cambia nel tempo un indicatore economico.',
       zh: '阅读某项经济指标如何随时间变化。',
       hi: 'देखें कि कोई आर्थिक माप समय के साथ कैसे बदलता है।',
       es: 'Lee cómo cambia una medida económica con el tiempo.',

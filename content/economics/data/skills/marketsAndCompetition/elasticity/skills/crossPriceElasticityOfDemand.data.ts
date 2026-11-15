@@ -5,6 +5,7 @@ export const crossPriceElasticityOfDemand_Skill_Data = defineSkill({
   id: 'ec7fe522-908b-457e-a19a-9f94d311b1f7',
   name: {
     en: 'Cross-price Elasticity of Demand',
+    it: 'Elasticità incrociata della domanda',
     zh: '需求交叉价格弹性',
     hi: 'माँग की पार-कीमत लोच',
     es: 'Elasticidad cruzada de la demanda',
@@ -39,6 +40,7 @@ export const crossPriceElasticityOfDemand_Skill_Data = defineSkill({
       "Determine how demand for one good responds to another good's price, interpreting possible substitution or complementarity.",
     frontend: {
       en: 'Find out whether two products are substitutes or complements.',
+      it: 'Scopri se due prodotti sono sostituti o complementari.',
       zh: '判断两种商品是替代品还是互补品。',
       hi: 'पता लगाएँ कि दो वस्तुएँ विकल्प हैं या पूरक।',
       es: 'Averigua si dos productos son sustitutos o complementarios.',

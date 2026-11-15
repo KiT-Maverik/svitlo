@@ -5,6 +5,7 @@ export const laborDemand_Skill_Data = defineSkill({
   id: '277405c7-fc0a-4378-aa7f-c8b972675cd1',
   name: {
     en: 'Попит на працю',
+    it: 'Domanda di lavoro',
     zh: '劳动力需求',
     hi: 'श्रम की माँग',
     es: 'Demanda de trabajo',
@@ -39,6 +40,7 @@ export const laborDemand_Skill_Data = defineSkill({
       "Relate hiring decisions to workers' expected contributions to output, product prices, and employers' costs.",
     frontend: {
       en: 'Explain why firms hire workers and how much labor they need.',
+      it: 'Spiega perché le imprese assumono lavoratori e di quanta manodopera hanno bisogno.',
       zh: '解释企业为何雇用劳动者以及需要多少劳动力。',
       hi: 'समझाएँ कि कंपनियाँ कर्मचारियों को क्यों नियुक्त करती हैं और कितने श्रमिक चाहिए।',
       es: 'Explica por qué las empresas contratan personal y cuánto trabajo necesitan.',

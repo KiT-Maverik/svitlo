@@ -5,6 +5,7 @@ export const productLifeCycle_Skill_Data = defineSkill({
   id: '293a846a-f294-4c00-b7f3-e5d24b9c2dab',
   name: {
     en: 'Життєвий цикл продукту',
+    it: 'Ciclo di vita del prodotto',
     zh: '产品生命周期',
     hi: 'उत्पाद जीवन चक्र',
     es: 'Ciclo de vida del producto',
@@ -39,6 +40,7 @@ export const productLifeCycle_Skill_Data = defineSkill({
       "Analyze possible changes in demand, competition, and marketing decisions over stages of a product's life.",
     frontend: {
       en: 'Explore how the market for a product can change over time.',
+      it: 'Esplora come il mercato di un prodotto può cambiare nel tempo.',
       zh: '探索产品市场如何随时间变化。',
       hi: 'जानें कि किसी उत्पाद का बाज़ार समय के साथ कैसे बदल सकता है।',
       es: 'Explora cómo puede cambiar con el tiempo el mercado de un producto.',
