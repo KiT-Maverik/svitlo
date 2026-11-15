@@ -5,6 +5,7 @@ export const blendWetPaint_Skill_Data = defineSkill({
   id: '5df43782-88b7-4714-b794-aa780ef4a4ba',
   name: {
     en: 'Blend Wet Paint',
+    it: 'Sfumare il colore ancora umido',
     zh: '趁湿调和颜料',
     hi: 'गीले रंगों को मिलाएँ',
     es: 'Fundir pintura húmeda',
@@ -38,6 +39,7 @@ export const blendWetPaint_Skill_Data = defineSkill({
     methodological: 'Manage still-wet passages to form smooth transitions or selected boundaries.',
     frontend: {
       en: 'Blend colors while paint is wet to create smooth or deliberate transitions.',
+      it: 'Mescola i colori prima che si asciughino per creare passaggi morbidi o intenzionalmente marcati.',
       zh: '趁颜料未干时调和颜色，形成平滑或有意设计的过渡。',
       hi: 'रंग के गीले रहते हुए उन्हें मिलाकर सहज या सोच-समझकर बनाए गए बदलाव तैयार करें।',
       es: 'Mezcla los colores mientras la pintura está húmeda para crear transiciones suaves o intencionadas.',
