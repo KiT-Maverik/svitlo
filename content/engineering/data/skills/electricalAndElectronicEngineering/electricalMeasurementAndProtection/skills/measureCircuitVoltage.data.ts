@@ -5,6 +5,7 @@ export const measureCircuitVoltage_Skill_Data = defineSkill({
   id: 'c063f468-8af5-4933-ae5d-c81ad318f4bd',
   name: {
     en: 'Measure circuit voltage',
+    it: 'Misurare la tensione in un circuito',
     zh: '测量电路电压',
     hi: 'परिपथ की वोल्टता मापना',
     es: 'Medir la tensión de un circuito',
@@ -38,6 +39,7 @@ export const measureCircuitVoltage_Skill_Data = defineSkill({
     methodological: 'Use a suitable meter across selected terminals to determine a potential difference.',
     frontend: {
       en: 'Measure the potential difference between two circuit points safely.',
+      it: 'Misura in sicurezza la differenza di potenziale tra due punti di un circuito.',
       zh: '安全测量电路中两点之间的电势差。',
       hi: 'परिपथ के दो बिंदुओं के बीच विभवांतर सुरक्षित ढंग से मापें।',
       es: 'Mide con seguridad la diferencia de potencial entre dos puntos de un circuito.',
