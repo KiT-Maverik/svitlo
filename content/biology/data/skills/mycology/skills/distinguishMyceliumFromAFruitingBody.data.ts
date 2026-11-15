@@ -5,6 +5,7 @@ export const distinguishMyceliumFromAFruitingBody_Skill_Data = defineSkill({
   id: '7e1a9f06-8143-418b-8fc9-db3c3ecc8411',
   name: {
     en: 'Distinguish Mycelium from a Fruiting Body',
+    it: 'Distinguere il micelio dal corpo fruttifero',
     zh: '区分菌丝体与子实体',
     hi: 'कवकजाल और फलनकाय में अंतर करना',
     es: 'Distinguir el micelio del cuerpo fructífero',
@@ -39,6 +40,7 @@ export const distinguishMyceliumFromAFruitingBody_Skill_Data = defineSkill({
       'Explain why an underground or concealed network of hyphae forms the main body of many fungi, while the visible mushroom cap is only a reproductive structure.',
     frontend: {
       en: "Discover how a fungus's hidden mycelium differs from its visible fruiting body.",
+      it: 'Scopri in che cosa il micelio nascosto di un fungo differisce dal suo corpo fruttifero visibile.',
       zh: '了解真菌隐藏的菌丝体与可见的子实体有何不同。',
       hi: 'जानें कि कवक का छिपा कवकजाल दिखाई देने वाले फलनकाय से कैसे अलग है।',
       es: 'Descubre cómo el micelio oculto de un hongo se diferencia de su cuerpo fructífero visible.',
