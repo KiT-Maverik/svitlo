@@ -5,6 +5,7 @@ export const classifyMusicalInstruments_Skill_Data = defineSkill({
   id: '92022335-969c-4461-acb6-5f76aac6d8a7',
   name: {
     en: 'Classify Musical Instruments',
+    it: 'Classificare gli strumenti musicali',
     zh: '乐器分类',
     hi: 'वाद्ययंत्रों का वर्गीकरण',
     es: 'Clasificar instrumentos musicales',
@@ -39,6 +40,7 @@ export const classifyMusicalInstruments_Skill_Data = defineSkill({
       'Use a named system of sound-source families while recognizing alternative cultural classifications.',
     frontend: {
       en: 'Group instruments by how they produce sound, while respecting different traditions.',
+      it: 'Raggruppa gli strumenti in base al modo in cui producono il suono, rispettando le diverse tradizioni.',
       zh: '根据发声方式给乐器分类，同时尊重不同传统。',
       hi: 'वाद्ययंत्रों को उनकी ध्वनि उत्पन्न करने की विधि के अनुसार समूहित करें और विभिन्न परंपराओं का सम्मान करें।',
       es: 'Agrupa los instrumentos según cómo producen sonido, respetando las distintas tradiciones.',
