@@ -5,6 +5,7 @@ export const spatialSolidsAttributes_Skill_Data = defineSkill({
   id: '3eec373e-4fff-46e8-a601-fc91759934f0',
   name: {
     en: 'Faces, edges and vertices of cubes and cuboids',
+    it: 'Facce, spigoli e vertici di cubi e parallelepipedi',
     qm: 'Kub ve dikdörtkenar prizmasınıñ yaqları, qırları ve köşeleri',
     lt: 'Kubų ir stačiakampių gretasienių sienos, briaunos ir viršūnės',
     lv: 'Kubu un taisnstūra paralēlskaldņu skaldnes, šķautnes un virsotnes',
@@ -39,6 +40,7 @@ export const spatialSolidsAttributes_Skill_Data = defineSkill({
       "A cube and a rectangular cuboid each have six faces, twelve edges, and eight vertices. A cube is a special case with equal edge lengths; a drawing may show only some of the solid's elements.",
     frontend: {
       en: 'A cube and a rectangular box each have 6 faces, 12 edges, and 8 corners. In a cube, all edges are equal.',
+      it: 'Un cubo e un parallelepipedo rettangolo hanno ciascuno 6 facce, 12 spigoli e 8 vertici. Nel cubo tutti gli spigoli hanno la stessa lunghezza.',
       qm: 'Kubnıñ da, dikdörtkenar qutunıñ da 6 yaqı, 12 qırı ve 8 köşesi bar. Kubnıñ bütün qırları bir uzunlıqta.',
       zh: '正方体和长方体都有6个面、12条棱和8个顶点。正方体的棱都一样长。',
       hi: 'घन और घनाभ दोनों में 6 फलक, 12 किनारे, 8 शीर्ष होते हैं। घन के सभी किनारे समान होते हैं।',
