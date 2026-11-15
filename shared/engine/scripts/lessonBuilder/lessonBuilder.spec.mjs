@@ -427,7 +427,7 @@ test('existing Markdown source blocks all new TS writes instead of being overwri
     fs.mkdirSync(path.dirname(sourceFile), { recursive: true });
     fs.writeFileSync(sourceFile, '# Previously edited by a human\n');
     assert.throws(() => runOne(f.lesson, 'generate', f.root),
-      /refusing to overwrite or mix drafts/);
+      /incomplete Lesson source tree; refusing to mix drafts with existing files/);
     assert.equal(fs.readFileSync(sourceFile, 'utf8'), '# Previously edited by a human\n');
     assert.equal(fs.existsSync(f.generated('index.ts')), false);
   }));
