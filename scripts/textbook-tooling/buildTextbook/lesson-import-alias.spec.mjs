@@ -15,7 +15,8 @@ const specifier = '#lessonsData/a/' + lessonId + '/constants';
 const mapping = './data/lessons/*.ts';
 
 function directories(root) {
-  return fs.readdirSync(root, { withFileTypes: true })
+  return fs
+    .readdirSync(root, { withFileTypes: true })
     .filter(item => item.isDirectory())
     .map(item => path.join(root, item.name));
 }
@@ -62,21 +63,28 @@ test('every textbook resolves deeply nested, package-local Lesson constants in T
         fs.mkdirSync(path.dirname(nested), { recursive: true });
         fs.writeFileSync(
           constants,
-          'export const lessonOwner = ' + JSON.stringify(pkg.name) + ";\n" +
+          'export const lessonOwner = ' +
+            JSON.stringify(pkg.name) +
+            ';\n' +
             "export const LessonLanguages = ['en', 'uk'] as const;\n",
         );
-        fs.writeFileSync(nested, [
-          "import { lessonOwner, LessonLanguages } from '" + specifier + "';",
-          "export const resolved = { owner: lessonOwner, language: LessonLanguages[0] };",
-          '',
-        ].join('\n'));
+        fs.writeFileSync(
+          nested,
+          [
+            "import { lessonOwner, LessonLanguages } from '" + specifier + "';",
+            'export const resolved = { owner: lessonOwner, language: LessonLanguages[0] };',
+            '',
+          ].join('\n'),
+        );
 
         const config = ts.readConfigFile(tsconfig, ts.sys.readFile);
         assert.equal(config.error, undefined, diagnosticText(config.error ? [config.error] : []));
         const parsed = ts.parseJsonConfigFileContent(config.config, ts.sys, fixture, undefined, tsconfig);
         assert.equal(parsed.errors.length, 0, diagnosticText(parsed.errors));
         assert.equal(
-          path.normalize(ts.resolveModuleName(specifier, nested, parsed.options, ts.sys).resolvedModule?.resolvedFileName ?? ''),
+          path.normalize(
+            ts.resolveModuleName(specifier, nested, parsed.options, ts.sys).resolvedModule?.resolvedFileName ?? '',
+          ),
           path.normalize(constants),
           'TypeScript resolved outside the owning textbook',
         );
