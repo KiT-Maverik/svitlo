@@ -5,6 +5,7 @@ export const distinguishAtomicFromCompoundPropositions_Skill_Data = defineSkill(
   id: '6b4056de-d47a-4c5f-a931-226f4780f8eb',
   name: {
     en: 'Distinguish atomic from compound propositions',
+    it: 'Distinguere proposizioni atomiche e composte',
     zh: '区分原子命题与复合命题',
     hi: 'सरल और संयुक्त प्रस्तावों में अंतर करना',
     es: 'Distinguir proposiciones atómicas y compuestas',
@@ -39,6 +40,7 @@ export const distinguishAtomicFromCompoundPropositions_Skill_Data = defineSkill(
       'A proposition can stand alone or form part of a statement built with logical connectives; truth-functional structure differs from the number of words in an ordinary sentence.',
     frontend: {
       en: 'Tell a single proposition apart from one assembled with logical connectives.',
+      it: 'Distingui una proposizione semplice da una costruita con connettivi logici.',
       zh: '区分单一命题与由逻辑连接词组成的复合命题。',
       hi: 'एक सरल प्रस्ताव और तार्किक संयोजकों से बने संयुक्त प्रस्ताव में अंतर करें।',
       es: 'Distingue una proposición simple de otra formada mediante conectores lógicos.',

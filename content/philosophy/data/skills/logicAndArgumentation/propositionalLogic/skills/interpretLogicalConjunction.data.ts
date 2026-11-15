@@ -5,6 +5,7 @@ export const interpretLogicalConjunction_Skill_Data = defineSkill({
   id: '080118d9-8de9-4f35-8b49-b15ae442e91e',
   name: {
     en: 'Interpret logical conjunction',
+    it: 'Interpretare la congiunzione logica',
     zh: '理解逻辑合取',
     hi: 'तार्किक संयोजन को समझना',
     es: 'Interpretar la conjunción lógica',
@@ -39,6 +40,7 @@ export const interpretLogicalConjunction_Skill_Data = defineSkill({
       "Apply the truth conditions of logical 'and' while distinguishing conjunction from a chronological or causal relationship.",
     frontend: {
       en: 'Recognize when a logical AND statement is true.',
+      it: 'Riconosci quando una proposizione con l\'operatore logico «E» è vera.',
       zh: '识别逻辑“与”命题在何时为真。',
       hi: "पहचानें कि तार्किक 'और' वाला कथन कब सत्य होता है।",
       es: "Reconoce cuándo es verdadera una afirmación lógica con 'Y'.",

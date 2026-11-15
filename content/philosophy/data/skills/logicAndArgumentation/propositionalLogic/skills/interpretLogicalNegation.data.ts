@@ -5,6 +5,7 @@ export const interpretLogicalNegation_Skill_Data = defineSkill({
   id: 'b8600bab-1d8d-4baa-bb89-2df6bf8438b4',
   name: {
     en: 'Interpret logical negation',
+    it: 'Interpretare la negazione logica',
     zh: '理解逻辑否定',
     hi: 'तार्किक निषेध को समझना',
     es: 'Interpretar la negación lógica',
@@ -39,6 +40,7 @@ export const interpretLogicalNegation_Skill_Data = defineSkill({
       'Determine when the denial of a proposition is true and distinguish negation from a stronger contrary statement.',
     frontend: {
       en: 'Understand how negating a claim changes its truth conditions.',
+      it: 'Comprendi come negare un\'affermazione ne modifichi le condizioni di verità.',
       zh: '了解否定某个主张如何改变其真假条件。',
       hi: 'समझें कि किसी कथन का निषेध उसकी सत्य-शर्तें कैसे बदलता है।',
       es: 'Comprende cómo negar una afirmación cambia sus condiciones de verdad.',

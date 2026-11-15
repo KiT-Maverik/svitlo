@@ -5,6 +5,7 @@ export const identifyAContradictionInASetOfClaims_Skill_Data = defineSkill({
   id: '8f643826-3b5e-4205-8f5b-8ffcdbb88afd',
   name: {
     en: 'Identify a contradiction in a set of claims',
+    it: 'Individuare una contraddizione tra affermazioni',
     zh: '识别一组主张中的矛盾',
     hi: 'कथनों के समूह में विरोधाभास पहचानना',
     es: 'Identificar una contradicción entre afirmaciones',
@@ -38,6 +39,7 @@ export const identifyAContradictionInASetOfClaims_Skill_Data = defineSkill({
     methodological: 'Show where commitments cannot all be true together under the same meanings and conditions.',
     frontend: {
       en: 'Recognize claims that cannot all be true under the same conditions.',
+      it: 'Riconosci affermazioni che, nelle stesse condizioni, non possono essere tutte vere.',
       zh: '找出在相同条件下不可能同时为真的主张。',
       hi: 'ऐसे कथन पहचानें जो समान परिस्थितियों में एक साथ सत्य नहीं हो सकते।',
       es: 'Reconoce afirmaciones que no pueden ser todas verdaderas bajo las mismas condiciones.',
