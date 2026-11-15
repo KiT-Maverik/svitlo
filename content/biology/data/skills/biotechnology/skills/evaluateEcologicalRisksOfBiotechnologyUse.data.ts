@@ -40,7 +40,7 @@ export const evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data = defineSkill(
       'Consider the likelihood of undesirable effects on nontarget species, ecosystem relationships, or the spread of organisms, distinguishing risk from demonstrated harm.',
     frontend: {
       en: 'Explore possible ecological risks of biotechnology without assuming every risk causes harm.',
-    it: "Esplora i possibili rischi ecologici delle biotecnologie, senza dare per scontato che ogni rischio provochi un danno.",
+      it: 'Esplora i possibili rischi ecologici delle biotecnologie, senza dare per scontato che ogni rischio provochi un danno.',
       zh: '探索生物技术可能带来的生态风险，但不要认为每种风险都会造成损害。',
       hi: 'जैव प्रौद्योगिकी के संभावित पारिस्थितिक जोखिमों को समझें, लेकिन यह न मानें कि हर जोखिम से नुकसान होता ही है।',
       es: 'Explora los posibles riesgos ecológicos de la biotecnología sin suponer que todo riesgo causa daños.',
