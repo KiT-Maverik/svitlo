@@ -10,6 +10,7 @@ export const mechanismsAndMachines_SkillDomain_Data = defineSkillDomain({
   id: '88d67d4b-b09b-485e-a0ff-bea7bbb47d58',
   title: {
     en: 'Mechanisms and Machines',
+    it: 'Meccanismi e macchine',
     zh: '机构与机械',
     hi: 'तंत्र और मशीनें',
     es: 'Mecanismos y máquinas',
@@ -50,6 +51,7 @@ export const mechanismsAndMachines_SkillDomain_Data = defineSkillDomain({
       'Moving assemblies redirect or transmit force, torque and motion to achieve tasks. This domain investigates how real mechanical arrangements work, not the underlying laws of mechanics as an independent science.',
     frontend: {
       en: 'Discover how mechanical components transmit force and transform movement.',
+      it: 'Scopri come i componenti meccanici trasmettono forze e trasformano movimenti.',
       zh: '探索机械部件如何传递力并改变运动形式。',
       hi: 'जानें कि मशीन के पुर्जे बल कैसे संचारित करते हैं और गति को कैसे बदलते हैं।',
       es: 'Descubre cómo los componentes mecánicos transmiten fuerzas y transforman movimientos.',
