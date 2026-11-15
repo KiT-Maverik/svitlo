@@ -10,6 +10,7 @@ export const musicMakingAndProduction_SkillDomain_Data = defineSkillDomain({
   id: '5c2d14b3-68e5-4a53-9aab-f419c1cccaae',
   title: {
     en: 'Music Making and Production',
+    it: 'Creazione e produzione musicale',
     zh: '音乐创作与制作',
     hi: 'संगीत निर्माण और उत्पादन',
     es: 'Creación y producción musical',
@@ -50,6 +51,7 @@ export const musicMakingAndProduction_SkillDomain_Data = defineSkillDomain({
       'Expressive music-making includes voice, instruments, improvisation, arrangement, and manipulation of recorded sounds. The use of electronic tools does not convert a musical outcome into an Informatics Skill.',
     frontend: {
       en: 'Make expressive music with your voice, instruments, improvisation and recorded sounds.',
+      it: 'Crea musica espressiva con voce, strumenti, improvvisazione e suoni registrati.',
       zh: '用声音、乐器、即兴创作和录制的声音制作富有表现力的音乐。',
       hi: 'अपनी आवाज़, वाद्ययंत्रों, तात्कालिक रचना और रिकॉर्ड की गई ध्वनियों से अभिव्यंजक संगीत बनाएँ।',
       es: 'Crea música expresiva con tu voz, instrumentos, improvisación y sonidos grabados.',
