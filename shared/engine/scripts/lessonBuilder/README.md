@@ -160,7 +160,6 @@ expected TypeScript diagnostics. Do not add placeholders, `as any`,
 `@ts-ignore`, invented media paths or fabricated locale strings to make the
 draft compile.
 
-
 ### Checkpoint Answer role modules
 
 Each `checkpointItem` Config contains exactly one `question` Text and one identified `answer` Configurator:
