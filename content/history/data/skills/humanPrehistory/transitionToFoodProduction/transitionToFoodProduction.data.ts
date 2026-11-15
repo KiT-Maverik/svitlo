@@ -13,6 +13,7 @@ export const transitionToFoodProduction_SkillGroup_Data = defineSkillGroup({
   id: '14b528ab-ae67-4b32-b2da-1affd02a5910',
   name: {
     en: 'Transitions to Food Production',
+    it: "Transizioni alla produzione alimentare",
     zh: '向食物生产的转变',
     hi: 'खाद्य उत्पादन की ओर बदलाव',
     es: 'Transiciones a la producción de alimentos',
@@ -42,21 +43,19 @@ export const transitionToFoodProduction_SkillGroup_Data = defineSkillGroup({
     kk: 'Азық-түлік өндіруге көшу',
     qm: 'Aş istisaline keçüv',
   },
-  skills: {
-    items: {
-      animalDomestication: animalDomestication_Skill_Data,
-      earlyWeaving: earlyWeaving_Skill_Data,
-      permanentSettlements: permanentSettlements_Skill_Data,
-      plantDomestication: plantDomestication_Skill_Data,
-      prehistoricPottery: prehistoricPottery_Skill_Data,
-    },
-    order: ['animalDomestication', 'earlyWeaving', 'permanentSettlements', 'plantDomestication', 'prehistoricPottery'],
-  },
+  skills: [
+    animalDomestication_Skill_Data,
+    earlyWeaving_Skill_Data,
+    permanentSettlements_Skill_Data,
+    plantDomestication_Skill_Data,
+    prehistoricPottery_Skill_Data,
+  ],
   description: {
     methodological:
       'Cultivation, herding, and settlements emerged independently in multiple places rather than in one simultaneous universal revolution.',
     frontend: {
       en: 'Discover how growing food spread in different places and times.',
+      it: "Scopri come la coltivazione del cibo si diffuse in luoghi ed epoche diverse.",
       zh: '探索不同地区在不同时期如何逐渐开始生产食物。',
       hi: 'जानें कि अलग-अलग स्थानों और समय में भोजन उगाने की प्रथा कैसे फैली।',
       es: 'Explora cómo el cultivo de plantas alimenticias se extendió en distintos lugares y épocas.',

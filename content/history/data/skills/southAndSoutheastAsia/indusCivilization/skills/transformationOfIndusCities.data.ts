@@ -5,6 +5,7 @@ export const transformationOfIndusCities_Skill_Data = defineSkill({
   id: '94eb068e-c5b6-49c7-a355-da7d0d5307e0',
   name: {
     en: 'Transformation of Indus Cities',
+    it: "Trasformazione delle città dell'Indo",
     zh: '印度河城市的转型',
     hi: 'सिंधु नगरों का परिवर्तन',
     es: 'Transformación de las ciudades del Indo',
@@ -39,6 +40,7 @@ export const transformationOfIndusCities_Skill_Data = defineSkill({
       'Analyze regional settlement changes and competing explanations without claiming a single sudden disappearance.',
     frontend: {
       en: 'Explore what may explain the changes in Indus cities.',
+      it: "Esplora quali fattori potrebbero spiegare i cambiamenti nelle città dell'Indo.",
       zh: '探索印度河城市发生变化的可能原因。',
       hi: 'सिंधु नगरों में हुए परिवर्तनों के संभावित कारणों का अध्ययन करें।',
       es: 'Explora las posibles explicaciones de los cambios en las ciudades del Indo.',

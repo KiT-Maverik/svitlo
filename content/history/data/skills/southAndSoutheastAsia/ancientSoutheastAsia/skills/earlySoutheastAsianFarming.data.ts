@@ -5,6 +5,7 @@ export const earlySoutheastAsianFarming_Skill_Data = defineSkill({
   id: '11a48885-dcaa-4f45-826e-8ba2ae3389e2',
   name: {
     en: 'Early Southeast Asian Farming Communities',
+    it: "Prime comunità agricole dell'Asia sudorientale",
     zh: '东南亚早期农业社区',
     hi: 'दक्षिण-पूर्व एशिया के प्रारंभिक कृषक समुदाय',
     es: 'Primeras comunidades agrícolas del Sudeste Asiático',
@@ -38,6 +39,7 @@ export const earlySoutheastAsianFarming_Skill_Data = defineSkill({
     methodological: 'Trace rice cultivation, crafts, and settlement on the Southeast Asian mainland.',
     frontend: {
       en: 'Discover how agriculture shaped early communities in Southeast Asia.',
+      it: "Scopri come l'agricoltura plasmò le prime comunità dell'Asia sudorientale.",
       zh: '了解农业如何塑造东南亚早期社群。',
       hi: 'जानें कि खेती ने प्रारंभिक समुदायों को कैसे आकार दिया।',
       es: 'Descubre cómo la agricultura transformó las primeras comunidades de la región.',

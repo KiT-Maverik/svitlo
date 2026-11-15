@@ -5,6 +5,7 @@ export const indusEconomy_Skill_Data = defineSkill({
   id: 'af5fe868-48d3-42bc-b182-b1243685783c',
   name: {
     en: 'Indus Economy',
+    it: "Economia della civiltà dell'Indo",
     zh: '印度河流域经济',
     hi: 'सिंधु क्षेत्र की अर्थव्यवस्था',
     es: 'Economía del Indo',
@@ -38,6 +39,7 @@ export const indusEconomy_Skill_Data = defineSkill({
     methodological: 'Describe farming, manufacturing, and land and maritime trade in the Indus region.',
     frontend: {
       en: 'Learn how Indus communities produced and exchanged goods.',
+      it: "Scopri come le comunità dell'Indo producevano e scambiavano beni.",
       zh: '了解印度河社群如何生产与交换商品。',
       hi: 'जानें कि सिंधु समुदाय वस्तुओं का उत्पादन और आदान-प्रदान कैसे करते थे।',
       es: 'Aprende cómo las comunidades del Indo producían e intercambiaban bienes.',

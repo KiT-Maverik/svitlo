@@ -14,6 +14,7 @@ export const ancientSoutheastAsia_SkillGroup_Data = defineSkillGroup({
   id: 'ee7d8586-eba9-48a9-84d7-d46a4a4b987a',
   name: {
     en: 'Southeast Asia',
+    it: "Asia sudorientale",
     zh: '古代东南亚',
     hi: 'प्राचीन दक्षिण-पूर्व एशिया',
     es: 'Sudeste Asiático antiguo',
@@ -43,29 +44,20 @@ export const ancientSoutheastAsia_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі Оңтүстік-Шығыс Азия',
     qm: 'Qadimiy Cenübiy-Şarqiy Asiya',
   },
-  skills: {
-    items: {
-      culturalContactsWithIndia: culturalContactsWithIndia_Skill_Data,
-      dongSonCulture: dongSonCulture_Skill_Data,
-      earlyIslandSoutheastAsianCultures: earlyIslandSoutheastAsianCultures_Skill_Data,
-      earlySoutheastAsianFarming: earlySoutheastAsianFarming_Skill_Data,
-      earlySoutheastAsianStates: earlySoutheastAsianStates_Skill_Data,
-      maritimeTradeOfSoutheastAsia: maritimeTradeOfSoutheastAsia_Skill_Data,
-    },
-    order: [
-      'culturalContactsWithIndia',
-      'dongSonCulture',
-      'earlyIslandSoutheastAsianCultures',
-      'earlySoutheastAsianFarming',
-      'earlySoutheastAsianStates',
-      'maritimeTradeOfSoutheastAsia',
-    ],
-  },
+  skills: [
+    culturalContactsWithIndia_Skill_Data,
+    dongSonCulture_Skill_Data,
+    earlyIslandSoutheastAsianCultures_Skill_Data,
+    earlySoutheastAsianFarming_Skill_Data,
+    earlySoutheastAsianStates_Skill_Data,
+    maritimeTradeOfSoutheastAsia_Skill_Data,
+  ],
   description: {
     methodological:
       'River valleys, islands, and ports exchanged ideas with India and China while retaining local traditions.',
     frontend: {
       en: 'Explore early Southeast Asian societies and maritime links.',
+      it: "Esplora le prime società dell'Asia sudorientale e i loro collegamenti marittimi.",
       zh: '探索早期东南亚社会及其海上联系。',
       hi: 'प्रारंभिक दक्षिण-पूर्व एशियाई समाजों और समुद्री संपर्कों को जानें।',
       es: 'Explora las primeras sociedades del Sudeste Asiático y sus vínculos marítimos.',
