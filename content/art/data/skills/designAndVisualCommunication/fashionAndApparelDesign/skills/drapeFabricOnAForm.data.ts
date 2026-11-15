@@ -5,6 +5,7 @@ export const drapeFabricOnAForm_Skill_Data = defineSkill({
   id: '9902ede9-c3bf-4fa5-b15e-1ee0159c4077',
   name: {
     en: 'Drape Fabric on a Form',
+    it: "Drappeggiare il tessuto su un manichino",
 
     zh: '在人体模型上进行面料垂坠造型',
     hi: 'किसी रूप पर कपड़े को ड्रेप करें',
@@ -40,6 +41,7 @@ export const drapeFabricOnAForm_Skill_Data = defineSkill({
       'Shape and arrange fabric directly on a body or dress form to explore volume, folds and construction relationships in three dimensions.',
     frontend: {
       en: 'Arrange fabric on a body or form to explore folds, fit and volume.',
+      it: "Disponi un tessuto su un corpo o un manichino per esplorare pieghe, vestibilità e volume.",
 
       zh: '在人体或模型上安排面料，探索褶皱、合身度和体积。',
       hi: 'शरीर या रूप पर कपड़ा रखकर सिलवटों, फिट और आयतन का अन्वेषण करें।',
