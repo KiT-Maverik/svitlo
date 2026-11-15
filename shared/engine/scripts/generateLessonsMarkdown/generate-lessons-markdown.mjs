@@ -18,13 +18,16 @@ import { resolveEntityPath, assembleLessonProps } from '@svitlo/engine/runtime';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const usage =
-  'Usage: --package content/<textbook> [--lesson <uuid>] --locale <language> (--stdout | --output <directory>)';
+  'Usage: --package content/<textbook> [--lesson <uuid>] (--locale <language> (--stdout | --output <directory>) | --lesson <uuid> --list-locales)';
 
 export function parseArguments(argv) {
   const options = {};
   for (let i = 0; i < argv.length; i++) {
     const flag = argv[i];
-    if (flag === '--stdout') {
+    if (flag === '--list-locales') {
+      if (Object.hasOwn(options, 'listLocales')) throw new Error('Duplicate --list-locales');
+      options.listLocales = true;
+    } else if (flag === '--stdout') {
       if (Object.hasOwn(options, 'stdout')) throw new Error('Duplicate --stdout');
       options.stdout = true;
     } else if (['--package', '--lesson', '--locale', '--output'].includes(flag)) {
@@ -34,7 +37,12 @@ export function parseArguments(argv) {
       options[flag.slice(2)] = value;
     } else throw new Error(`${usage}\nUnknown argument: ${flag}`);
   }
-  if (!options.package || !options.locale || Boolean(options.stdout) === Boolean(options.output))
+  if (
+    !options.package ||
+    (options.listLocales
+      ? !options.lesson || options.locale || options.stdout || options.output
+      : !options.locale || Boolean(options.stdout) === Boolean(options.output))
+  )
     throw new Error(usage);
   if (options.stdout && !options.lesson) throw new Error('--stdout requires --lesson to select exactly one document');
   if (!/^content\/[a-z][a-z0-9-]*$/.test(options.package))
@@ -139,11 +147,26 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
   realDirectory(path.join(root, 'content'), root);
   realDirectory(packageDirectory, path.join(root, 'content'));
   const locales = supportedLanguages(root);
-  if (!locales.includes(options.locale))
+  if (!options.listLocales && !locales.includes(options.locale))
     throw new Error(`Unsupported locale ${options.locale}; expected one of ${locales.join(', ')}`);
   const candidates = discoverLessons(packageDirectory);
   const selected = options.lesson ? candidates.filter(item => item.id === options.lesson) : candidates;
   if (!selected.length) throw new Error(`No matching canonical lessons for ${options.lesson ?? options.package}`);
+  if (options.listLocales) {
+    const item = selected[0];
+    const lesson = await loader(item.entry, packageDirectory);
+    if (lesson.id !== item.id) throw new Error('Lesson identity mismatch: ' + item.id);
+    const languages = lesson.config?.base?.params?.languages;
+    if (
+      !Array.isArray(languages) ||
+      !languages.length ||
+      new Set(languages).size !== languages.length ||
+      languages.some(code => !locales.includes(code))
+    ) {
+      throw new Error('Invalid Lesson supported languages: ' + item.id);
+    }
+    return JSON.stringify(languages) + '\n';
+  }
   const generated = [];
   for (const item of selected) {
     const lesson = await loader(item.entry, packageDirectory);
@@ -195,7 +218,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   try {
     const opts = parseArguments(process.argv.slice(2));
     const result = await generate(opts);
-    if (opts.stdout) process.stdout.write(result);
+    if (opts.stdout || opts.listLocales) process.stdout.write(result);
     else process.stderr.write(`Generated ${result} lesson review document(s).\n`);
   } catch (error) {
     process.stderr.write(

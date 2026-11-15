@@ -27,11 +27,16 @@ export function uiKitComponents(root = repoRoot) {
   const directory = path.join(root, sourceDirectory);
   const index = fs.readFileSync(path.join(directory, 'index.ts'), 'utf8');
   const entries = [...index.matchAll(/^export \* from '\.\/([a-zA-Z][a-zA-Z0-9]*)';$/gm)].map(match => match[1]);
-  const files = fs.readdirSync(directory)
+  const files = fs
+    .readdirSync(directory)
     .filter(name => name.endsWith('.ts') && !['index.ts', 'locale.types.ts'].includes(name))
     .map(name => name.slice(0, -3));
-  if (!entries.length || new Set(entries).size !== entries.length ||
-      entries.some(name => !files.includes(name)) || files.some(name => !entries.includes(name))) {
+  if (
+    !entries.length ||
+    new Set(entries).size !== entries.length ||
+    entries.some(name => !files.includes(name)) ||
+    files.some(name => !entries.includes(name))
+  ) {
     throw new Error('UI Kit component locale index and source files disagree');
   }
   return entries.sort();
@@ -70,8 +75,10 @@ function literal(node, vars, visited = new Set()) {
       if (ts.isShorthandPropertyAssignment(property)) {
         name = property.name.text;
         value = property.name;
-      } else if (ts.isPropertyAssignment(property) &&
-                 (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name))) {
+      } else if (
+        ts.isPropertyAssignment(property) &&
+        (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name))
+      ) {
         name = property.name.text;
         value = property.initializer;
       } else {
@@ -118,8 +125,10 @@ export function readUiKitComponentReference({ root = repoRoot, component, locale
   }
   if (!Object.hasOwn(dictionary, 'en')) throw new Error('Missing canonical English dictionary: ' + component);
   const english = flatten(dictionary.en);
-  const localized = dictionary[locale] === undefined && allowMissing && locale !== 'en'
-    ? Object.create(null) : flatten(dictionary[locale], '', Object.create(null), allowMissing && locale !== 'en');
+  const localized =
+    dictionary[locale] === undefined && allowMissing && locale !== 'en'
+      ? Object.create(null)
+      : flatten(dictionary[locale], '', Object.create(null), allowMissing && locale !== 'en');
   const keys = Object.keys(english);
   const extraKeys = Object.keys(localized).filter(key => !Object.hasOwn(english, key));
   if (extraKeys.length) throw new Error(component + '/' + locale + ' unexpected fields: ' + extraKeys.join(', '));
@@ -128,19 +137,31 @@ export function readUiKitComponentReference({ root = repoRoot, component, locale
     throw new Error(component + '/' + locale + ' missing fields: ' + missingKeys.join(', '));
   }
   return {
-    component, locale, relative, missing: missingKeys.length,
+    component,
+    locale,
+    relative,
+    missing: missingKeys.length,
     fields: keys.map(key => ({ key, english: english[key], translation: localized[key] ?? marker })),
   };
 }
 
 function escapeMarkdown(value) {
-  return value.replace(/\\/g, '\\\\').replace(/\r/g, '\\r').replace(/\n/g, '\\n')
+  return value
+    .replace(/\\/g, '\\\\')
+    .replace(/\r/g, '\\r')
+    .replace(/\n/g, '\\n')
     .replace(/([*_()[\]<>|])/g, '\\$1');
 }
 
 export function renderUiKitComponentReference(options) {
   const info = readUiKitComponentReference(options);
-  const destination = path.join(options.root ?? repoRoot, '.agent-ci-artifacts', 'ui-kit', info.component, info.locale + '.md');
+  const destination = path.join(
+    options.root ?? repoRoot,
+    '.agent-ci-artifacts',
+    'ui-kit',
+    info.component,
+    info.locale + '.md',
+  );
   const source = path.join(options.root ?? repoRoot, info.relative);
   const link = encodeURI(path.relative(path.dirname(destination), source).split(path.sep).join('/'));
   const lines = [
@@ -152,24 +173,36 @@ export function renderUiKitComponentReference(options) {
     'Fields: ' + info.fields.length,
     'Missing translations: ' + info.missing,
     '',
-    ...(options.allowMissing && info.missing > 0 ? ['> DRAFT REFERENCE: missing localized fields; not approved for independent review.', ''] : []),
+    ...(options.allowMissing && info.missing > 0
+      ? ['> DRAFT REFERENCE: missing localized fields; not approved for independent review.', '']
+      : []),
     'Compare every localized UI and accessibility message against the English source. No fallback is applied.',
     '',
   ];
   for (const field of info.fields) {
-    lines.push('- **' + escapeMarkdown(field.key) + '**',
+    lines.push(
+      '- **' + escapeMarkdown(field.key) + '**',
       '  - English: ' + escapeMarkdown(field.english),
-      '  - ' + info.locale + ': ' + escapeMarkdown(field.translation));
+      '  - ' + info.locale + ': ' + escapeMarkdown(field.translation),
+    );
   }
   return lines.join('\n') + '\n';
 }
 
-export function generateUiKitLocaleReviewArtifacts({ root, output, languages, manifest, saveManifest, allowMissing = false }) {
+export function generateUiKitLocaleReviewArtifacts({
+  root,
+  output,
+  languages,
+  manifest,
+  saveManifest,
+  allowMissing = false,
+  components = uiKitComponents(root),
+}) {
   if (path.resolve(output) !== path.resolve(root, '.agent-ci-artifacts')) {
     throw new Error('UI Kit references must use the PR-scoped .agent-ci-artifacts directory');
   }
   const stats = { generated: 0, failures: 0 };
-  for (const component of uiKitComponents(root)) {
+  for (const component of components) {
     for (const locale of languages) {
       try {
         const relative = 'ui-kit/' + component + '/' + locale + '.md';
@@ -179,15 +212,21 @@ export function generateUiKitLocaleReviewArtifacts({ root, output, languages, ma
         fs.mkdirSync(path.dirname(destination), { recursive: true });
         fs.writeFileSync(destination, markdown, 'utf8');
         manifest.generated.push({
-          kind: 'ui-kit-locale', component, locale, path: '.agent-ci-artifacts/' + relative,
-          missing: info.missing, reviewReady: info.missing === 0,
+          kind: 'ui-kit-locale',
+          component,
+          locale,
+          path: '.agent-ci-artifacts/' + relative,
+          missing: info.missing,
+          reviewReady: info.missing === 0,
         });
         stats.generated++;
       } catch (error) {
         const message = String(error.message || error).slice(0, 1500);
         manifest.failures.push({ kind: 'ui-kit-locale', component, locale, error: message });
         stats.failures++;
-        process.stderr.write('::warning::UI Kit ' + component + '/' + locale + ': ' + message.replace(/\n/g, ' ') + '\n');
+        process.stderr.write(
+          '::warning::UI Kit ' + component + '/' + locale + ': ' + message.replace(/\n/g, ' ') + '\n',
+        );
       }
       saveManifest();
     }
@@ -200,13 +239,22 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     const args = process.argv.slice(2);
     const allowMissing = args.includes('--allow-missing');
     const positional = args.filter(value => value !== '--allow-missing');
-    if (positional.length !== 5 || positional[0] !== '--component' || positional[2] !== '--locale' ||
-        positional[4] !== '--stdout' || args.filter(value => value === '--allow-missing').length > 1) {
+    if (
+      positional.length !== 5 ||
+      positional[0] !== '--component' ||
+      positional[2] !== '--locale' ||
+      positional[4] !== '--stdout' ||
+      args.filter(value => value === '--allow-missing').length > 1
+    ) {
       throw new Error('Usage: --component <name> --locale <language-code> --stdout [--allow-missing]');
     }
-    process.stdout.write(renderUiKitComponentReference({
-      component: positional[1], locale: positional[3], allowMissing,
-    }));
+    process.stdout.write(
+      renderUiKitComponentReference({
+        component: positional[1],
+        locale: positional[3],
+        allowMissing,
+      }),
+    );
   } catch (error) {
     process.stderr.write('UI Kit reference: ' + error.message + '\n');
     process.exitCode = 1;
