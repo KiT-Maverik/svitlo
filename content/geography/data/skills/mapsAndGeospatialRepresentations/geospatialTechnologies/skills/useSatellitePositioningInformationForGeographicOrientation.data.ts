@@ -5,6 +5,7 @@ export const useSatellitePositioningInformationForGeographicOrientation_Skill_Da
   id: 'ab9450c2-60c3-4101-afb8-dcf845252479',
   name: {
     en: 'Use satellite-positioning information for geographic orientation',
+    it: 'Usare il posizionamento satellitare per orientarsi nello spazio',
     zh: '使用卫星定位信息进行地理定位',
     hi: 'दिशा जानने के लिए उपग्रह स्थिति जानकारी का उपयोग',
     es: 'Usar datos de posicionamiento satelital para orientarse',
@@ -39,6 +40,7 @@ export const useSatellitePositioningInformationForGeographicOrientation_Skill_Da
       'Interpret a position supplied by a GNSS device in relation to a coordinate reference and the surrounding geography; recognize that positioning has uncertainty and does not directly describe what is at the location.',
     frontend: {
       en: 'Use a satellite-based location reading while recognizing possible uncertainty.',
+      it: 'Usa una posizione rilevata via satellite tenendo conto della possibile incertezza.',
       zh: '利用卫星测得的位置，同时意识到测量可能存在误差。',
       hi: 'उपग्रह से मिले स्थान का उपयोग करें, लेकिन उसकी संभावित अनिश्चितता भी समझें।',
       es: 'Usa una posición calculada por satélite teniendo en cuenta su posible imprecisión.',
