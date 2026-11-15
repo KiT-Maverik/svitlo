@@ -12,6 +12,7 @@ export const printmaking_SkillGroup_Data = defineSkillGroup({
   id: '1da9e005-d5bc-48bc-bda1-3313c80dcb0c',
   name: {
     en: 'Printmaking',
+    it: 'Tecniche di stampa artistica',
     zh: '版画制作',
     hi: 'मुद्रण कला',
     es: 'Grabado e impresión artística',
@@ -52,6 +53,7 @@ export const printmaking_SkillGroup_Data = defineSkillGroup({
       'A designed matrix, stencil or transferable surface generates impressions that can be repeated with deliberate differences.',
     frontend: {
       en: 'Make images by transferring designs from prepared surfaces.',
+      it: 'Crea immagini trasferendo disegni da superfici preparate.',
       zh: '通过将图案从预制表面转印出来制作图像。',
       hi: 'तैयार सतहों से डिज़ाइन स्थानांतरित करके चित्र बनाएँ।',
       es: 'Crea imágenes transfiriendo diseños desde superficies preparadas.',
