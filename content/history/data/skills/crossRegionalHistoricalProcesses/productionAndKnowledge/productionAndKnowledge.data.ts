@@ -45,15 +45,26 @@ export const productionAndKnowledge_SkillGroup_Data = defineSkillGroup({
     kk: 'Өндіріс және білім',
     qm: 'İstisal ve bilgi',
   },
-  skills: [
-    ancientAstronomicalKnowledge_Skill_Data,
-    ancientCalendarSystems_Skill_Data,
-    ancientMeasurementSystems_Skill_Data,
-    earlyUrbanInfrastructure_Skill_Data,
-    historyOfAncientMedicine_Skill_Data,
-    metallurgyAndHistoricalEffects_Skill_Data,
-    originsOfWriting_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ancientAstronomicalKnowledge: ancientAstronomicalKnowledge_Skill_Data,
+      ancientCalendarSystems: ancientCalendarSystems_Skill_Data,
+      ancientMeasurementSystems: ancientMeasurementSystems_Skill_Data,
+      earlyUrbanInfrastructure: earlyUrbanInfrastructure_Skill_Data,
+      historyOfAncientMedicine: historyOfAncientMedicine_Skill_Data,
+      metallurgyAndHistoricalEffects: metallurgyAndHistoricalEffects_Skill_Data,
+      originsOfWriting: originsOfWriting_Skill_Data,
+    },
+    order: [
+      'ancientAstronomicalKnowledge',
+      'ancientCalendarSystems',
+      'ancientMeasurementSystems',
+      'earlyUrbanInfrastructure',
+      'historyOfAncientMedicine',
+      'metallurgyAndHistoricalEffects',
+      'originsOfWriting',
+    ],
+  },
   description: {
     methodological:
       'Evaluate material inventions and systems of information transmission by function, spread, and historical context rather than claims of being first.',

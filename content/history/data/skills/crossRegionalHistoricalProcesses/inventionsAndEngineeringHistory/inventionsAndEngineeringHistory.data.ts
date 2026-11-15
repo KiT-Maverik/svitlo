@@ -42,12 +42,20 @@ export const inventionsAndEngineeringHistory_SkillGroup_Data = defineSkillGroup(
     kk: 'Өнертабыстар және инженерия тарихы',
     qm: 'İhtiralar ve mühendislik tarihi',
   },
-  skills: [
-    ancientConstructionAndLiftingMachines_Skill_Data,
-    ancientShipbuilding_Skill_Data,
-    ancientWheeledTransport_Skill_Data,
-    historicalWaterEngineering_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ancientConstructionAndLiftingMachines: ancientConstructionAndLiftingMachines_Skill_Data,
+      ancientShipbuilding: ancientShipbuilding_Skill_Data,
+      ancientWheeledTransport: ancientWheeledTransport_Skill_Data,
+      historicalWaterEngineering: historicalWaterEngineering_Skill_Data,
+    },
+    order: [
+      'ancientConstructionAndLiftingMachines',
+      'ancientShipbuilding',
+      'ancientWheeledTransport',
+      'historicalWaterEngineering',
+    ],
+  },
   description: {
     methodological:
       'Investigate the origins, changes, and transmission of technical solutions in relation to materials, needs, and consequences, not modern design practice.',

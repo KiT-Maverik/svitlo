@@ -44,14 +44,24 @@ export const everydayLifeInAntiquity_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі күнделікті өмір',
     qm: 'Qadimiy devirde kündelik yaşayış',
   },
-  skills: [
-    ancientDiets_Skill_Data,
-    ancientWorkAndOccupations_Skill_Data,
-    childhoodAndEducationInAntiquity_Skill_Data,
-    familyAndKinship_Skill_Data,
-    housingAndDomesticSpace_Skill_Data,
-    leisureAndPublicLife_Skill_Data,
-  ],
+  skills: {
+    items: {
+      ancientDiets: ancientDiets_Skill_Data,
+      ancientWorkAndOccupations: ancientWorkAndOccupations_Skill_Data,
+      childhoodAndEducationInAntiquity: childhoodAndEducationInAntiquity_Skill_Data,
+      familyAndKinship: familyAndKinship_Skill_Data,
+      housingAndDomesticSpace: housingAndDomesticSpace_Skill_Data,
+      leisureAndPublicLife: leisureAndPublicLife_Skill_Data,
+    },
+    order: [
+      'ancientDiets',
+      'ancientWorkAndOccupations',
+      'childhoodAndEducationInAntiquity',
+      'familyAndKinship',
+      'housingAndDomesticSpace',
+      'leisureAndPublicLife',
+    ],
+  },
   description: {
     methodological:
       'Compare dwellings, objects, texts, and images to reconstruct family relations and daily practices across regions.',

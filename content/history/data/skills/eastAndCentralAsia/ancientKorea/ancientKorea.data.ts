@@ -37,7 +37,15 @@ export const ancientKorea_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі Корея',
     qm: 'Qadimiy Koreya',
   },
-  skills: [baekje_Skill_Data, goguryeo_Skill_Data, gojoseon_Skill_Data, silla_Skill_Data],
+  skills: {
+    items: {
+      baekje: baekje_Skill_Data,
+      goguryeo: goguryeo_Skill_Data,
+      gojoseon: gojoseon_Skill_Data,
+      silla: silla_Skill_Data,
+    },
+    order: ['baekje', 'goguryeo', 'gojoseon', 'silla'],
+  },
   description: {
     methodological:
       'Study early Korean and Manchurian polities through texts and archaeology that do not always corroborate traditional founding dates.',

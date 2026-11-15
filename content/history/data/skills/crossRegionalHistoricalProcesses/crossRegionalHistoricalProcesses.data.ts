@@ -42,14 +42,24 @@ export const crossRegionalHistoricalProcesses_SkillDomain_Data = defineSkillDoma
     kk: 'Аймақаралық тарихи үдерістер',
     qm: 'Bölgelerara tarihiy süreçler',
   },
-  groups: [
-    ancientTradeAndContact_SkillGroup_Data,
-    crisesAndHistoricalTransformations_SkillGroup_Data,
-    everydayLifeInAntiquity_SkillGroup_Data,
-    inventionsAndEngineeringHistory_SkillGroup_Data,
-    powerAndSocialRelations_SkillGroup_Data,
-    productionAndKnowledge_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      ancientTradeAndContact: ancientTradeAndContact_SkillGroup_Data,
+      crisesAndHistoricalTransformations: crisesAndHistoricalTransformations_SkillGroup_Data,
+      everydayLifeInAntiquity: everydayLifeInAntiquity_SkillGroup_Data,
+      inventionsAndEngineeringHistory: inventionsAndEngineeringHistory_SkillGroup_Data,
+      powerAndSocialRelations: powerAndSocialRelations_SkillGroup_Data,
+      productionAndKnowledge: productionAndKnowledge_SkillGroup_Data,
+    },
+    order: [
+      'ancientTradeAndContact',
+      'crisesAndHistoricalTransformations',
+      'everydayLifeInAntiquity',
+      'inventionsAndEngineeringHistory',
+      'powerAndSocialRelations',
+      'productionAndKnowledge',
+    ],
+  },
   description: {
     methodological:
       'Study shared patterns of interaction among independent regional histories without inventing a single unified ancient civilization.',
