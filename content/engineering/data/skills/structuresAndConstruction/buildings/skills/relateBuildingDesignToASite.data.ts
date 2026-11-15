@@ -5,6 +5,7 @@ export const relateBuildingDesignToASite_Skill_Data = defineSkill({
   id: '79c41104-bc62-4bc8-8db8-2af5550863a3',
   name: {
     en: 'Relate building design to a site',
+    it: 'Adattare la progettazione dell\'edificio al sito',
     zh: '将建筑设计与场地相结合',
     hi: 'भवन डिजाइन को स्थल से जोड़ें',
     es: 'Relacionar el diseño de un edificio con su emplazamiento',
@@ -38,6 +39,7 @@ export const relateBuildingDesignToASite_Skill_Data = defineSkill({
     methodological: 'Identify consequences of wind, soil, terrain or climate for construction choices.',
     frontend: {
       en: 'Explain how site conditions influence building decisions.',
+      it: 'Spiega come le condizioni del sito influenzano le decisioni progettuali di un edificio.',
       zh: '解释场地条件如何影响建筑设计决策。',
       hi: 'समझाएँ कि स्थल की परिस्थितियाँ भवन संबंधी फैसलों को कैसे प्रभावित करती हैं।',
       es: 'Explica cómo las condiciones del terreno influyen en las decisiones de diseño.',
