@@ -5,6 +5,7 @@ export const neuralExcitation_Skill_Data = defineSkill({
   id: '688f6ec3-f631-4279-9b9d-6a1a2b755946',
   name: {
     en: 'Neural Excitation',
+    it: 'Eccitazione neuronale',
     zh: '神经兴奋',
     hi: 'तंत्रिका उत्तेजना',
     es: 'Excitación neuronal',
@@ -39,6 +40,7 @@ export const neuralExcitation_Skill_Data = defineSkill({
       'Explain how excitatory signals raise the probability of a target neuron or circuit becoming active under relevant conditions.',
     frontend: {
       en: 'Understand how excitatory signals increase the chance of neural activity.',
+      it: 'Comprendi come i segnali eccitatori aumentino la probabilità di attività neurale.',
       zh: '了解兴奋性信号如何提高神经元活动的可能性。',
       hi: 'समझें कि उत्तेजक संकेत तंत्रिका गतिविधि की संभावना कैसे बढ़ाते हैं।',
       es: 'Comprende cómo las señales excitadoras aumentan la probabilidad de actividad neuronal.',

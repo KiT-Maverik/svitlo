@@ -5,6 +5,7 @@ export const neuralPlasticity_Skill_Data = defineSkill({
   id: 'f3c8f8a3-e6ef-45eb-89d0-31ec7da1bfa1',
   name: {
     en: 'Neural Plasticity',
+    it: 'Plasticità neurale',
     zh: '神经可塑性',
     hi: 'तंत्रिका लचीलापन',
     es: 'Plasticidad neuronal',
@@ -39,6 +40,7 @@ export const neuralPlasticity_Skill_Data = defineSkill({
       'Relate experience-dependent changes in neural connections to learning and adaptation without claiming unlimited voluntary control.',
     frontend: {
       en: 'Explore how experience can change neural connections over time.',
+      it: 'Esplora come l\'esperienza possa modificare le connessioni neurali nel tempo.',
       zh: '探索经历如何随着时间改变神经连接。',
       hi: 'जानें कि अनुभव समय के साथ तंत्रिका संबंधों को कैसे बदल सकता है।',
       es: 'Explora cómo la experiencia puede modificar las conexiones neuronales con el tiempo.',
