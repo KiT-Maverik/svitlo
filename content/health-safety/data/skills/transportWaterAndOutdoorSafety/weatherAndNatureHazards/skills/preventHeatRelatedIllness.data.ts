@@ -5,6 +5,7 @@ export const preventHeatRelatedIllness_Skill_Data = defineSkill({
   id: 'd17c6e7b-e3ee-434d-884d-d534f0a89d27',
   name: {
     en: 'Prevent heat-related illness',
+    it: 'Prevenire i malesseri legati al caldo',
     zh: '预防高温相关疾病',
     hi: 'गर्मी से होने वाली बीमारी रोकना',
     es: 'Prevenir enfermedades relacionadas con el calor',
@@ -39,6 +40,7 @@ export const preventHeatRelatedIllness_Skill_Data = defineSkill({
       'Adjust clothing, activity, shade, cooling and fluids to temperature and exertion to reduce overheating; distinguish prevention from first aid after heat illness begins.',
     frontend: {
       en: 'Adjust clothing, shade, exertion and hydration to prevent overheating.',
+      it: 'Adatta abbigliamento, ombra, sforzo fisico e idratazione per evitare il surriscaldamento.',
       zh: '调节衣物、遮阴、活动强度与饮水量，防止身体过热。',
       hi: 'कपड़े, छाया, परिश्रम और पानी की मात्रा बदलकर अधिक गर्मी से बचें।',
       es: 'Ajusta ropa, sombra, esfuerzo e hidratación para evitar el sobrecalentamiento.',

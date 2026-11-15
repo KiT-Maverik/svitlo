@@ -5,6 +5,7 @@ export const safeNavigationInUnfamiliarTerrain_Skill_Data = defineSkill({
   id: 'e17e0688-3afb-41df-bd52-6f24e740932a',
   name: {
     en: 'Safe navigation in unfamiliar terrain',
+    it: 'Orientarsi in sicurezza su terreni sconosciuti',
     zh: '陌生地形安全导航',
     hi: 'अपरिचित इलाके में सुरक्षित रास्ता खोजना',
     es: 'Orientarse con seguridad en terreno desconocido',
@@ -39,6 +40,7 @@ export const safeNavigationInUnfamiliarTerrain_Skill_Data = defineSkill({
       'Consider route reliability, weather change, communications, and the limits of personal capability before and during an outing.',
     frontend: {
       en: 'Plan routes with weather, communication and personal limits in mind.',
+      it: 'Pianifica i percorsi tenendo conto del meteo, delle comunicazioni e dei tuoi limiti personali.',
       zh: '规划路线时兼顾天气、通信条件与个人能力限制。',
       hi: 'रास्ते की योजना बनाते समय मौसम, संपर्क और अपनी सीमाएँ ध्यान में रखें।',
       es: 'Planifica rutas considerando el tiempo, la comunicación y tus límites personales.',

@@ -5,6 +5,7 @@ export const preventColdExposureInjury_Skill_Data = defineSkill({
   id: '1322a701-0256-4f7c-915c-38fad6961146',
   name: {
     en: 'Prevent cold exposure injury',
+    it: 'Prevenire i danni da esposizione al freddo',
     zh: '预防寒冷暴露伤害',
     hi: 'ठंड के संपर्क से होने वाली चोट रोकना',
     es: 'Prevenir lesiones por exposición al frío',
@@ -39,6 +40,7 @@ export const preventColdExposureInjury_Skill_Data = defineSkill({
       'Account for wet clothing, wind, duration, suitable insulation, and warning signs of harmful cooling.',
     frontend: {
       en: 'Reduce harmful cold exposure by managing wetness, wind and insulation.',
+      it: 'Riduci l\'esposizione dannosa al freddo gestendo umidità, vento e isolamento termico.',
       zh: '通过保持干燥、防风与保暖，减少寒冷造成的伤害。',
       hi: 'गीलापन, हवा और गर्म कपड़ों का ध्यान रखकर ठंड का नुकसान कम करें।',
       es: 'Reduce daños por frío controlando humedad, viento y aislamiento térmico.',

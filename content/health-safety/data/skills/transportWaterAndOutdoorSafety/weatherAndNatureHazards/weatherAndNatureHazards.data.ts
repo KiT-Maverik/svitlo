@@ -14,6 +14,7 @@ export const weatherAndNatureHazards_SkillGroup_Data = defineSkillGroup({
   id: 'bd3105bb-91ea-4c43-bcdc-ceecdd9f8956',
   name: {
     en: 'Weather and Nature Hazards',
+    it: 'Pericoli meteorologici e naturali',
     zh: '天气与自然危险',
     hi: 'मौसम और प्रकृति के खतरे',
     es: 'Peligros meteorológicos y naturales',
@@ -43,29 +44,20 @@ export const weatherAndNatureHazards_SkillGroup_Data = defineSkillGroup({
     kk: 'Ауа райы және табиғи қауіптер',
     qm: 'Ava ve tabiat telükeleri',
   },
-  skills: {
-    items: {
-      preventColdExposureInjury: preventColdExposureInjury_Skill_Data,
-      preventHeatRelatedIllness: preventHeatRelatedIllness_Skill_Data,
-      protectAgainstHarmfulUVExposure: protectAgainstHarmfulUVExposure_Skill_Data,
-      safeNavigationInUnfamiliarTerrain: safeNavigationInUnfamiliarTerrain_Skill_Data,
-      thunderstormSafety: thunderstormSafety_Skill_Data,
-      wildlifeAndPlantSafety: wildlifeAndPlantSafety_Skill_Data,
-    },
-    order: [
-      'preventColdExposureInjury',
-      'preventHeatRelatedIllness',
-      'protectAgainstHarmfulUVExposure',
-      'safeNavigationInUnfamiliarTerrain',
-      'thunderstormSafety',
-      'wildlifeAndPlantSafety',
-    ],
-  },
+  skills: [
+    preventColdExposureInjury_Skill_Data,
+    preventHeatRelatedIllness_Skill_Data,
+    protectAgainstHarmfulUVExposure_Skill_Data,
+    safeNavigationInUnfamiliarTerrain_Skill_Data,
+    thunderstormSafety_Skill_Data,
+    wildlifeAndPlantSafety_Skill_Data,
+  ],
   description: {
     methodological:
       'Outdoor risks vary with temperature, sunlight, storms, terrain, and wildlife; adaptation depends on current conditions and local alerts.',
     frontend: {
       en: 'Recognize how changing weather and terrain affect outdoor safety.',
+      it: 'Riconosci come i cambiamenti del tempo e del terreno influiscono sulla sicurezza all\'aperto.',
       zh: '认识变化的天气和地形如何影响户外安全。',
       hi: 'समझें कि बदलता मौसम और भूभाग बाहर की सुरक्षा को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo el clima cambiante y el terreno afectan la seguridad al aire libre.',
