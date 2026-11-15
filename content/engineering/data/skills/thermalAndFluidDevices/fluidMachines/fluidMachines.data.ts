@@ -12,6 +12,7 @@ export const fluidMachines_SkillGroup_Data = defineSkillGroup({
   id: '9187f9ae-8ec0-47cd-88d4-b63ff79f763c',
   name: {
     en: 'Fluid Machines',
+    it: 'Macchine a fluido',
     zh: '流体机械',
     hi: 'द्रव मशीनें',
     es: 'Máquinas de fluidos',
@@ -52,6 +53,7 @@ export const fluidMachines_SkillGroup_Data = defineSkillGroup({
       'Mechanical energy can produce fluid flow, pressure or driven motion using distinct devices with different operating media.',
     frontend: {
       en: 'Discover how pumps and actuators move liquids and gases.',
+      it: 'Scopri come pompe e attuatori mettono in movimento liquidi e gas.',
       zh: '探索泵和执行器如何推动液体与气体。',
       hi: 'जानें कि पंप और एक्ट्यूएटर तरल एवं गैस को कैसे चलाते हैं।',
       es: 'Descubre cómo las bombas y los actuadores mueven líquidos y gases.',
