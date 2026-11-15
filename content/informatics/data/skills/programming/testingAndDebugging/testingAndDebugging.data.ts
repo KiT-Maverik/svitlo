@@ -12,6 +12,7 @@ export const testingAndDebugging_SkillGroup_Data = defineSkillGroup({
   id: '76829708-e899-494d-bb99-65cd18b04a4c',
   name: {
     en: 'Testing and Debugging',
+    it: 'Test e debug',
     zh: '测试与调试',
     hi: 'परीक्षण और दोष-सुधार',
     es: 'Pruebas y depuración',
@@ -52,6 +53,7 @@ export const testingAndDebugging_SkillGroup_Data = defineSkillGroup({
       'Compare actual program behavior with requirements, find the cause of deviations, correct them, and test again. Detecting a defect, diagnosing it, changing code, and testing multiple cases are distinct abilities.',
     frontend: {
       en: 'Discover how to find, explain and correct mistakes in programs.',
+      it: 'Scopri come individuare, spiegare e correggere gli errori nei programmi.',
       zh: '探索如何发现、解释并修正程序中的错误。',
       hi: 'जानें कि प्रोग्राम की गलतियाँ कैसे खोजें, समझाएँ और सुधारें।',
       es: 'Descubre cómo encontrar, explicar y corregir errores en los programas.',

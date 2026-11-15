@@ -5,6 +5,7 @@ export const traceProgramState_Skill_Data = defineSkill({
   id: '5267e1c5-bc2f-4600-b8a8-e86b9fc10fe1',
   name: {
     en: 'Trace Program State',
+    it: 'Seguire lo stato di un programma',
     zh: '跟踪程序状态',
     hi: 'प्रोग्राम की स्थिति का पता लगाना',
     es: 'Rastrear el estado del programa',
@@ -39,6 +40,7 @@ export const traceProgramState_Skill_Data = defineSkill({
       'Calculate intermediate values of variables, objects, and execution position across several commands; use a trace table to record when state changes. The final output may conceal those intermediate changes.',
     frontend: {
       en: 'Follow changes to variables and other values while a program runs.',
+      it: 'Segui le modifiche delle variabili e degli altri valori mentre un programma è in esecuzione.',
       zh: '程序运行时，跟踪变量和其他值的变化。',
       hi: 'प्रोग्राम के चलते समय चरों और अन्य मानों में होने वाले बदलावों को देखें।',
       es: 'Sigue cómo cambian las variables y otros valores mientras se ejecuta un programa.',
