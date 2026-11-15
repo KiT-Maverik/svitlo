@@ -11,6 +11,7 @@ export const by6_Skill_Data = defineSkill({
     ka: 'გამრავლება — × 6',
     kk: 'Көбейту — × 6',
     en: 'Multiplication — × 6',
+    it: 'Moltiplicazione — × 6',
     qm: 'Arttıruv — × 6',
     zh: '乘法 — × 6',
     hi: 'गुणा — × 6',
@@ -39,6 +40,7 @@ export const by6_Skill_Data = defineSkill({
       'Multiplication facts with factor six give multiples of six and may be derived from known multiples of five plus one more equal group or other equivalent decompositions. Strategy does not change product identity.',
     frontend: {
       en: 'To multiply by six, you can combine five equal groups with one more or use other known products.',
+      it: 'Per moltiplicare per sei puoi unire cinque gruppi uguali a un altro gruppo oppure usare prodotti già noti.',
       qm: 'Altığa arttırmaq içün beş teñ toparğa daa bir toparnı qoşa ya da başqa bilgen arttıruv neticelerini qullana bilesiñ.',
       zh: '计算乘以六时，你能先算五个相等的组再加一组，或利用其他已知乘积。',
       hi: 'छह से गुणा करने के लिए पाँच बराबर समूहों में एक और समूह जोड़ सकते हो या ज्ञात गुणनफल इस्तेमाल कर सकते हो।',
