@@ -42,12 +42,15 @@ export const roadAndTransportSafety_SkillGroup_Data = defineSkillGroup({
     kk: 'Жол және көлік қауіпсіздігі',
     qm: 'Yol ve ulaşım havfsızlığı',
   },
-  skills: [
-    cyclingAndMicromobilitySafety_Skill_Data,
-    passengerSafety_Skill_Data,
-    pedestrianRoadSafety_Skill_Data,
-    safeDrivingDecisions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      cyclingAndMicromobilitySafety: cyclingAndMicromobilitySafety_Skill_Data,
+      passengerSafety: passengerSafety_Skill_Data,
+      pedestrianRoadSafety: pedestrianRoadSafety_Skill_Data,
+      safeDrivingDecisions: safeDrivingDecisions_Skill_Data,
+    },
+    order: ['cyclingAndMicromobilitySafety', 'passengerSafety', 'pedestrianRoadSafety', 'safeDrivingDecisions'],
+  },
   description: {
     methodological:
       'Protection differs for pedestrians, riders, passengers, and drivers; visible signals and protective equipment do not remove every traffic risk.',

@@ -44,14 +44,24 @@ export const weatherAndNatureHazards_SkillGroup_Data = defineSkillGroup({
     kk: 'Ауа райы және табиғи қауіптер',
     qm: 'Ava ve tabiat telükeleri',
   },
-  skills: [
-    preventColdExposureInjury_Skill_Data,
-    preventHeatRelatedIllness_Skill_Data,
-    protectAgainstHarmfulUVExposure_Skill_Data,
-    safeNavigationInUnfamiliarTerrain_Skill_Data,
-    thunderstormSafety_Skill_Data,
-    wildlifeAndPlantSafety_Skill_Data,
-  ],
+  skills: {
+    items: {
+      preventColdExposureInjury: preventColdExposureInjury_Skill_Data,
+      preventHeatRelatedIllness: preventHeatRelatedIllness_Skill_Data,
+      protectAgainstHarmfulUVExposure: protectAgainstHarmfulUVExposure_Skill_Data,
+      safeNavigationInUnfamiliarTerrain: safeNavigationInUnfamiliarTerrain_Skill_Data,
+      thunderstormSafety: thunderstormSafety_Skill_Data,
+      wildlifeAndPlantSafety: wildlifeAndPlantSafety_Skill_Data,
+    },
+    order: [
+      'preventColdExposureInjury',
+      'preventHeatRelatedIllness',
+      'protectAgainstHarmfulUVExposure',
+      'safeNavigationInUnfamiliarTerrain',
+      'thunderstormSafety',
+      'wildlifeAndPlantSafety',
+    ],
+  },
   description: {
     methodological:
       'Outdoor risks vary with temperature, sunlight, storms, terrain, and wildlife; adaptation depends on current conditions and local alerts.',
