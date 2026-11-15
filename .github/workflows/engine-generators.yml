@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - 'shared/engine/generators/**'
-      - 'shared/engine/utils/resolveLessonMedia/**'
+      - 'shared/engine/utils/generators/resolveLessonMedia/**'
       - 'shared/engine/scripts/lessonBuilder/**'
       - 'shared/engine/index.ts'
       - 'shared/engine/package.json'
