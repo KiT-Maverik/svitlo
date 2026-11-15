@@ -31,5 +31,8 @@
       "types": "./dist/textbook/index.d.ts",
       "default": "./dist/textbook/index.js"
     }
+  },
+  "imports": {
+    "#lessonsData/*": "./data/lessons/*.ts"
   }
 }
