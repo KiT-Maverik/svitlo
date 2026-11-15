@@ -5,6 +5,7 @@ export const recognizePeriodicMotion_Skill_Data = defineSkill({
   id: 'c36a7728-a266-4a9d-9b71-03a9e2bd129f',
   name: {
     en: 'Recognize periodic motion',
+    it: 'Riconoscere il moto periodico',
     zh: '识别周期运动',
     hi: 'आवर्ती गति पहचानना',
     es: 'Reconocer el movimiento periódico',
@@ -39,6 +40,7 @@ export const recognizePeriodicMotion_Skill_Data = defineSkill({
       'Identify recurring physical states and distinguish regular cycles of motion from random or one-time changes in position.',
     frontend: {
       en: 'Recognize motion that repeats in a regular cycle.',
+      it: 'Riconosci un moto che si ripete con un ciclo regolare.',
       zh: '识别按固定周期重复的运动。',
       hi: 'ऐसी गति पहचानें जो नियमित चक्र में दोहराई जाती है।',
       es: 'Reconoce el movimiento que se repite en un ciclo regular.',

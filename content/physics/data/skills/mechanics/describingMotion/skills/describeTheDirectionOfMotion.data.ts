@@ -5,6 +5,7 @@ export const describeTheDirectionOfMotion_Skill_Data = defineSkill({
   id: 'afdae8eb-d3e3-43cb-bff6-0a22d17f86c1',
   name: {
     en: 'Describe the direction of motion',
+    it: 'Descrivere la direzione del moto',
     zh: '描述运动方向',
     hi: 'गति की दिशा का वर्णन करना',
     es: 'Describir la dirección del movimiento',
@@ -39,6 +40,7 @@ export const describeTheDirectionOfMotion_Skill_Data = defineSkill({
       "Determine the direction of a body's velocity or displacement relative to a selected reference frame, distinguishing direction from the total distance traveled.",
     frontend: {
       en: 'Identify the direction of motion from a chosen point of view.',
+      it: 'Individua la direzione del moto da un punto di vista scelto.',
       zh: '从选定的观察角度确定运动方向。',
       hi: 'चुने हुए संदर्भ बिंदु से गति की दिशा पहचानें।',
       es: 'Identifica la dirección del movimiento desde un punto de vista elegido.',

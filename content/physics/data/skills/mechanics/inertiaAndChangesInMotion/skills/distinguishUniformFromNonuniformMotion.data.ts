@@ -5,6 +5,7 @@ export const distinguishUniformFromNonuniformMotion_Skill_Data = defineSkill({
   id: 'fdbfcd59-7355-474e-8c8b-8802cd6a366f',
   name: {
     en: 'Distinguish uniform from nonuniform motion',
+    it: 'Distinguere il moto uniforme da quello non uniforme',
     zh: '区分匀速运动与非匀速运动',
     hi: 'समान और असमान गति में अंतर करना',
     es: 'Distinguir el movimiento uniforme del no uniforme',
@@ -39,6 +40,7 @@ export const distinguishUniformFromNonuniformMotion_Skill_Data = defineSkill({
       'Compare successive positions of an object to determine whether it travels equal distances in equal time intervals.',
     frontend: {
       en: 'Recognize constant-speed motion and motion that changes over time.',
+      it: 'Riconosci il moto a velocità costante e quello che varia nel tempo.',
       zh: '识别速度保持不变的运动和速度随时间变化的运动。',
       hi: 'स्थिर चाल वाली गति और समय के साथ बदलती चाल वाली गति में अंतर करें।',
       es: 'Reconoce el movimiento a rapidez constante y aquel cuya rapidez cambia con el tiempo.',

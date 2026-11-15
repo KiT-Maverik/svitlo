@@ -5,6 +5,7 @@ export const identifyMotionRelativeToAReferencePoint_Skill_Data = defineSkill({
   id: '352cfaf8-b0bb-4276-8b1d-e8c426d0d480',
   name: {
     en: 'Identify motion relative to a reference point',
+    it: 'Individuare il moto rispetto a un punto di riferimento',
     zh: '识别相对于参考点的运动',
     hi: 'संदर्भ बिंदु के सापेक्ष गति पहचानना',
     es: 'Identificar el movimiento respecto a un punto de referencia',
@@ -39,6 +40,7 @@ export const identifyMotionRelativeToAReferencePoint_Skill_Data = defineSkill({
       "Motion is a change in a body's position relative to a reference frame over time; an object can move relative to one reference and remain stationary relative to another.",
     frontend: {
       en: 'Explain why an object can move relative to one reference and rest relative to another.',
+      it: 'Spiega perché un oggetto può muoversi rispetto a un riferimento ed essere fermo rispetto a un altro.',
       zh: '解释为什么同一物体相对于一个参照物运动，却相对于另一个参照物静止。',
       hi: 'समझाएँ कि कोई वस्तु एक संदर्भ के सापेक्ष चलती और दूसरे के सापेक्ष स्थिर कैसे रह सकती है।',
       es: 'Explica por qué un objeto puede moverse respecto a una referencia y estar en reposo respecto a otra.',
