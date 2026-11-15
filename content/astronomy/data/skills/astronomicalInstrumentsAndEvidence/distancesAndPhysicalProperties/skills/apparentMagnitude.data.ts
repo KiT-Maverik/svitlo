@@ -5,6 +5,7 @@ export const apparentMagnitude_Skill_Data = defineSkill({
   id: 'f2259304-93e6-47e0-87cd-d3b5aa327765',
   name: {
     en: 'Apparent Magnitude',
+    it: 'Magnitudine apparente',
     qm: 'Körüngen yıldız büyükligi',
     bn: 'আপাত কান্তিমান',
     ur: 'ظاہری قدر',
@@ -38,6 +39,7 @@ export const apparentMagnitude_Skill_Data = defineSkill({
     methodological: 'Interpret a logarithmic brightness scale describing how bright a source appears to an observer.',
     frontend: {
       en: 'Understand the scale astronomers use to describe how bright a celestial object appears.',
+      it: 'Comprendi la scala usata dagli astronomi per descrivere quanto luminoso appare un oggetto celeste.',
       qm: 'Astronomlar kök cisminiñ ne qadar parlaq körüngenini bildirgen ölçü birligini añlañız.',
       bn: 'জ্যোতিষ্ক আমাদের কাছে কত উজ্জ্বল দেখায়, তা বোঝাতে ব্যবহৃত মাত্রা সম্পর্কে জানো।',
       ur: 'اس پیمانے کو سمجھیں جس سے بیان کیا جاتا ہے کہ کوئی آسمانی جسم کتنا روشن دکھائی دیتا ہے۔',
