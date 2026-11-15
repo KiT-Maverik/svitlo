@@ -7,6 +7,7 @@ export const watercraft_SkillGroup_Data = defineSkillGroup({
   id: '2f729c9f-3813-4796-9e50-d603b065e251',
   name: {
     en: 'Watercraft',
+    it: 'Imbarcazioni',
     zh: '船舶与水上交通工具',
     hi: 'जलयान',
     es: 'Embarcaciones',
@@ -42,6 +43,7 @@ export const watercraft_SkillGroup_Data = defineSkillGroup({
       'Vessels need suitable hulls, propulsion and steering while managing stability and water resistance.',
     frontend: {
       en: 'Discover how vessel design and equipment affect travel through water.',
+      it: 'Scopri come la progettazione e le dotazioni di un\'imbarcazione influiscono sul movimento nell\'acqua.',
       zh: '了解船体设计与设备如何影响水上航行。',
       hi: 'जानें कि जलयान का आकार और उपकरण पानी में यात्रा को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo el diseño del casco y el equipo influyen en el desplazamiento por agua.',
