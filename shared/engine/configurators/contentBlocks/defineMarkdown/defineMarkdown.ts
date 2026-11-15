@@ -40,7 +40,8 @@ type MarkdownOverridePropsBase = {
   locale?: DeepPartial<ContentBlock_Markdown_Locale<'props'>>;
 };
 
-type MarkdownFiles = { moduleUrl: string; languages: readonly LanguageCode[] };
+type MarkdownFiles =
+  { moduleUrl: string; languages: readonly LanguageCode[] } | { moduleUrl: string; languages?: never };
 
 type MarkdownInlineConfig<Slug extends string, Languages extends readonly LanguageCode[]> = Omit<
   ContentBlock_Markdown_Config,
@@ -56,16 +57,38 @@ type MarkdownFileConfig<Slug extends string, Languages extends readonly Language
   locale?: Omit<RequireLanguages<ContentBlock_Markdown_Locale<'config'>, Languages>, 'value'>;
 };
 
-function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Record<LanguageCode, string>> {
+/**
+ * Build-only source import; no file locations are retained in Props.
+ * A language-less files declaration means an invariant ./text.md;
+ * languages selects exact ./locale/<language>.md sources (never fallback).
+ */
+function readMarkdownFiles(files: MarkdownFiles): string | Partial<Record<LanguageCode, string>> {
+  const { moduleUrl } = files;
+  if (files.languages === undefined) {
+    const file = new URL('./text.md', moduleUrl);
+    let value: string;
+    try {
+      value = readFileSync(file, 'utf8');
+    } catch (cause) {
+      throw new Error('Missing or unreadable invariant Markdown file: ' + file.pathname, { cause });
+    }
+    if (!value.trim()) throw new Error('Empty invariant Markdown file: ' + file.pathname);
+    return value;
+  }
+
+  const { languages } = files;
   if (!languages.length || new Set(languages).size !== languages.length) {
     throw new Error('Markdown files: languages must be a non-empty list without duplicates');
   }
-
-  const directory = new URL('./locales/', moduleUrl);
+  const directory = new URL('./locale/', moduleUrl);
   const expected = new Set(languages);
-  const unexpected = readdirSync(directory).filter(
-    name => name.endsWith('.md') && !expected.has(name.slice(0, -3) as LanguageCode),
-  );
+  let existing: string[];
+  try {
+    existing = readdirSync(directory);
+  } catch (cause) {
+    throw new Error('Missing Markdown locale directory: ' + directory.pathname, { cause });
+  }
+  const unexpected = existing.filter(name => name.endsWith('.md') && !expected.has(name.slice(0, -3) as LanguageCode));
   if (unexpected.length) throw new Error('Unexpected Markdown locale files: ' + unexpected.join(', '));
 
   const values: Partial<Record<LanguageCode, string>> = {};
@@ -176,9 +199,11 @@ const mergeMarkdownForValidation = (
  * Define localized Markdown with optional Code-style replacement variables.
  *
  * @remarks
- * Store translations as `locales/<language>.md` beside the definition. Pass
- * `files: { moduleUrl: import.meta.url, languages }`; the files are read as
- * UTF-8 immediately and only their text is retained in the configurator.
+ * Store translations as `locale/<language>.md` beside the definition and
+ * pass `files: { moduleUrl: import.meta.url, languages }`. For invariant
+ * Markdown, store `text.md` beside the definition and pass
+ * `files: { moduleUrl: import.meta.url }` without a language/fallback.
+ * Both modes read UTF-8 at build time; only text reaches Props.
  * Missing, empty, duplicate or unexpected locales fail during definition.
  * Alternatively, supply `locale.value` directly when text is already loaded.
  *

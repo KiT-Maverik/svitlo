@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'shared/engine/generators/**'
+      - 'shared/engine/utils/generators/resolveLessonMedia/**'
+      - 'shared/engine/scripts/lessonBuilder/**'
       - 'shared/engine/index.ts'
       - 'shared/engine/package.json'
       - 'shared/engine/tsconfig*.json'
@@ -51,4 +53,7 @@ jobs:
             shared/engine/scripts/generateSkills/prepareSkillsPublication.spec.mjs \
             shared/engine/scripts/generateLessonProps/generateLessonProps.spec.mjs \
             shared/engine/scripts/generateCourseProps/generateCourseProps.spec.mjs \
-            shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs
+            shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs \
+            shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs \
+            shared/engine/.test-build/utils/generators/resolveLessonMedia/*.spec.js \
+            scripts/textbook-tooling/buildTextbook/stageLessonMedia.spec.mjs
