@@ -13,6 +13,7 @@ export const acting_SkillGroup_Data = defineSkillGroup({
   id: 'deb011d1-5957-44ae-8009-02fd0369c66d',
   name: {
     en: 'Acting',
+    it: 'Recitazione',
     zh: '表演',
     hi: 'अभिनय',
     es: 'Actuación',
@@ -54,6 +55,7 @@ export const acting_SkillGroup_Data = defineSkillGroup({
       "A character's objectives and relationships are expressed through controlled physical, vocal and responsive choices.",
     frontend: {
       en: 'Use your body, voice and responses to make a character believable.',
+      it: 'Usa il corpo, la voce e le tue reazioni per rendere credibile un personaggio.',
       zh: '运用身体、声音和回应，让角色真实可信。',
       hi: 'पात्र को विश्वसनीय बनाने के लिए शरीर, आवाज़ और प्रतिक्रियाओं का उपयोग करें।',
       es: 'Usa el cuerpo, la voz y las respuestas para dar credibilidad a un personaje.',
