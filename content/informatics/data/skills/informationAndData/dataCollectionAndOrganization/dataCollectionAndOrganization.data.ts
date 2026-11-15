@@ -41,12 +41,20 @@ export const dataCollectionAndOrganization_SkillGroup_Data = defineSkillGroup({
     kk: 'Деректерді жинау және ұйымдастыру',
     qm: 'Verilgenlerni toplav ve tertiplemek',
   },
-  skills: [
-    collectDataConsistently_Skill_Data,
-    groupDataByAttribute_Skill_Data,
-    identifyDataNeededForATask_Skill_Data,
-    presentDataInATable_Skill_Data,
-  ],
+  skills: {
+    items: {
+      collectDataConsistently: collectDataConsistently_Skill_Data,
+      groupDataByAttribute: groupDataByAttribute_Skill_Data,
+      identifyDataNeededForATask: identifyDataNeededForATask_Skill_Data,
+      presentDataInATable: presentDataInATable_Skill_Data,
+    },
+    order: [
+      'collectDataConsistently',
+      'groupDataByAttribute',
+      'identifyDataNeededForATask',
+      'presentDataInATable',
+    ],
+  },
   description: {
     methodological:
       'Identify required fields, record observations consistently, classify by an attribute, and organize a table. Collecting data generates records; tabulation structures existing records.',

@@ -41,12 +41,20 @@ export const healthBehavior_SkillGroup_Data = defineSkillGroup({
     kk: 'Денсаулыққа қатысты мінез-құлық',
     qm: 'Sağlıq ile bağlı areketler',
   },
-  skills: [
-    adherenceToCarePlans_Skill_Data,
-    behaviorChangeInterventions_Skill_Data,
-    healthBeliefsAndAction_Skill_Data,
-    socialSupportAndHealth_Skill_Data,
-  ],
+  skills: {
+    items: {
+      adherenceToCarePlans: adherenceToCarePlans_Skill_Data,
+      behaviorChangeInterventions: behaviorChangeInterventions_Skill_Data,
+      healthBeliefsAndAction: healthBeliefsAndAction_Skill_Data,
+      socialSupportAndHealth: socialSupportAndHealth_Skill_Data,
+    },
+    order: [
+      'adherenceToCarePlans',
+      'behaviorChangeInterventions',
+      'healthBeliefsAndAction',
+      'socialSupportAndHealth',
+    ],
+  },
   description: {
     methodological:
       'Health psychology examines how beliefs, routines, social surroundings, and perceived barriers affect health-related decisions, without replacing medical guidance.',

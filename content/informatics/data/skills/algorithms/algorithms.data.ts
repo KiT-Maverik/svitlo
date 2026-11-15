@@ -40,13 +40,22 @@ export const algorithms_SkillDomain_Data = defineSkillDomain({
     kk: 'Алгоритмдер',
     qm: 'Algoritmler',
   },
-  groups: [
-    analysis_SkillGroup_Data,
-    collectionProcessing_SkillGroup_Data,
-    construction_SkillGroup_Data,
-    search_SkillGroup_Data,
-    sorting_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      analysis: analysis_SkillGroup_Data,
+      collectionProcessing: collectionProcessing_SkillGroup_Data,
+      construction: construction_SkillGroup_Data,
+      search: search_SkillGroup_Data,
+      sorting: sorting_SkillGroup_Data,
+    },
+    order: [
+      'analysis',
+      'collectionProcessing',
+      'construction',
+      'search',
+      'sorting',
+    ],
+  },
   description: {
     methodological:
       'Repeatable procedures for computational problems, organized by purpose: searching, sorting, collection processing, general construction, and analysis. Every named elementary algorithm has its own independent Skill; prerequisites and performance assessments may be separate skills within the same group. Concrete models can explain algorithms without imposing an age limit on the taxonomy.',

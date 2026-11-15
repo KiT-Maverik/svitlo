@@ -42,13 +42,22 @@ export const knowledgeAndJustification_SkillGroup_Data = defineSkillGroup({
     kk: 'Білім және негіздеу',
     qm: 'Bilgi ve esaslandırma',
   },
-  skills: [
-    analyzeMathematicalProofAsJustification_Skill_Data,
-    compareAPrioriAndEmpiricalJustification_Skill_Data,
-    distinguishBeliefFromKnowledge_Skill_Data,
-    distinguishTruthFromJustification_Skill_Data,
-    evaluateReasonsForABelief_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeMathematicalProofAsJustification: analyzeMathematicalProofAsJustification_Skill_Data,
+      compareAPrioriAndEmpiricalJustification: compareAPrioriAndEmpiricalJustification_Skill_Data,
+      distinguishBeliefFromKnowledge: distinguishBeliefFromKnowledge_Skill_Data,
+      distinguishTruthFromJustification: distinguishTruthFromJustification_Skill_Data,
+      evaluateReasonsForABelief: evaluateReasonsForABelief_Skill_Data,
+    },
+    order: [
+      'analyzeMathematicalProofAsJustification',
+      'compareAPrioriAndEmpiricalJustification',
+      'distinguishBeliefFromKnowledge',
+      'distinguishTruthFromJustification',
+      'evaluateReasonsForABelief',
+    ],
+  },
   description: {
     methodological:
       'Belief, truth, evidence, and knowledge have distinct roles in epistemic evaluation. Competing theories of knowledge can disagree about exactly how those roles connect.',

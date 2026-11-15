@@ -40,11 +40,14 @@ export const valueAndTaste_SkillGroup_Data = defineSkillGroup({
     kk: 'Құндылық пен талғам',
     qm: 'Qıymet ve zevk',
   },
-  skills: [
-    analyzeAestheticPluralism_Skill_Data,
-    distinguishTasteFromAnArguedEvaluation_Skill_Data,
-    evaluateTheRoleOfExpertiseInAestheticJudgment_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAestheticPluralism: analyzeAestheticPluralism_Skill_Data,
+      distinguishTasteFromAnArguedEvaluation: distinguishTasteFromAnArguedEvaluation_Skill_Data,
+      evaluateTheRoleOfExpertiseInAestheticJudgment: evaluateTheRoleOfExpertiseInAestheticJudgment_Skill_Data,
+    },
+    order: ['analyzeAestheticPluralism', 'distinguishTasteFromAnArguedEvaluation', 'evaluateTheRoleOfExpertiseInAestheticJudgment'],
+  },
   description: {
     methodological:
       'Debates about taste raise questions about expertise, social convention, and the relation of appreciation to human flourishing.',

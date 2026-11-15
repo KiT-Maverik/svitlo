@@ -39,10 +39,13 @@ export const radiationAndMatter_SkillGroup_Data = defineSkillGroup({
     kk: 'Сәулелену және зат',
     qm: 'Nurlanuv ve madde',
   },
-  skills: [
-    distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data,
-    explainHeatingThroughRadiationAbsorption_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishEnergyEmissionFromReflectionOfReceivedLight: distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data,
+      explainHeatingThroughRadiationAbsorption: explainHeatingThroughRadiationAbsorption_Skill_Data,
+    },
+    order: ['distinguishEnergyEmissionFromReflectionOfReceivedLight', 'explainHeatingThroughRadiationAbsorption'],
+  },
   description: {
     methodological:
       'Materials can emit, reflect, transmit, or absorb energy; the outcomes depend on the type of radiation and the properties of matter.',

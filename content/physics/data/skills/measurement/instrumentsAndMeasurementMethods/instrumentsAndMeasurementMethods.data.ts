@@ -40,11 +40,14 @@ export const instrumentsAndMeasurementMethods_SkillGroup_Data = defineSkillGroup
     kk: 'Аспаптар және өлшеу әдістері',
     qm: 'Aletler ve ölçüv usulları',
   },
-  skills: [
-    explainWhyRepeatedMeasurementsMayDiffer_Skill_Data,
-    readASimpleMeasuringInstrument_Skill_Data,
-    readTemperatureFromAThermometer_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainWhyRepeatedMeasurementsMayDiffer: explainWhyRepeatedMeasurementsMayDiffer_Skill_Data,
+      readASimpleMeasuringInstrument: readASimpleMeasuringInstrument_Skill_Data,
+      readTemperatureFromAThermometer: readTemperatureFromAThermometer_Skill_Data,
+    },
+    order: ['explainWhyRepeatedMeasurementsMayDiffer', 'readASimpleMeasuringInstrument', 'readTemperatureFromAThermometer'],
+  },
   description: {
     methodological:
       "An instrument's reading depends on its scale, units, and correct use; the method of obtaining data matters as much as the number itself.",

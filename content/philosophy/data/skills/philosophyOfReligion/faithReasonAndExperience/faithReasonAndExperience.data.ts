@@ -41,12 +41,20 @@ export const faithReasonAndExperience_SkillGroup_Data = defineSkillGroup({
     kk: 'Сенім, ақыл және тәжірибе',
     qm: 'İman, aqıl ve tecribe',
   },
-  skills: [
-    compareFaithAndReasonAsSourcesOfJustification_Skill_Data,
-    distinguishPhilosophicalInquiryFromReligiousPractice_Skill_Data,
-    evaluateAReportedMiracleClaim_Skill_Data,
-    evaluateReligiousExperienceAsEvidence_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareFaithAndReasonAsSourcesOfJustification: compareFaithAndReasonAsSourcesOfJustification_Skill_Data,
+      distinguishPhilosophicalInquiryFromReligiousPractice: distinguishPhilosophicalInquiryFromReligiousPractice_Skill_Data,
+      evaluateAReportedMiracleClaim: evaluateAReportedMiracleClaim_Skill_Data,
+      evaluateReligiousExperienceAsEvidence: evaluateReligiousExperienceAsEvidence_Skill_Data,
+    },
+    order: [
+      'compareFaithAndReasonAsSourcesOfJustification',
+      'distinguishPhilosophicalInquiryFromReligiousPractice',
+      'evaluateAReportedMiracleClaim',
+      'evaluateReligiousExperienceAsEvidence',
+    ],
+  },
   description: {
     methodological:
       'Different accounts of religious knowledge appeal to reasoning, testimony, revelation, or experience. Philosophical examination weighs what these sources can justify and remains distinct from taking part in a religious practice.',

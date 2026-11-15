@@ -44,15 +44,26 @@ export const particleModelOfMatter_SkillGroup_Data = defineSkillGroup({
     ka: 'ნივთიერების ნაწილაკური მოდელი',
     kk: 'Заттың бөлшектік моделі',
   },
-  skills: [
-    compareParticleArrangementsInSolidsLiquidsAndGases_Skill_Data,
-    explainGasPressureThroughParticleMotion_Skill_Data,
-    explainRandomThermalMotionOfParticles_Skill_Data,
-    explainTheParticulateStructureOfMatter_Skill_Data,
-    explainThePropertiesOfStatesOfMatterThroughParticleMotion_Skill_Data,
-    explainThermalExpansionThroughParticleMotionAndInteractions_Skill_Data,
-    relateParticleMotionToTemperatureChanges_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareParticleArrangementsInSolidsLiquidsAndGases: compareParticleArrangementsInSolidsLiquidsAndGases_Skill_Data,
+      explainGasPressureThroughParticleMotion: explainGasPressureThroughParticleMotion_Skill_Data,
+      explainRandomThermalMotionOfParticles: explainRandomThermalMotionOfParticles_Skill_Data,
+      explainTheParticulateStructureOfMatter: explainTheParticulateStructureOfMatter_Skill_Data,
+      explainThePropertiesOfStatesOfMatterThroughParticleMotion: explainThePropertiesOfStatesOfMatterThroughParticleMotion_Skill_Data,
+      explainThermalExpansionThroughParticleMotionAndInteractions: explainThermalExpansionThroughParticleMotionAndInteractions_Skill_Data,
+      relateParticleMotionToTemperatureChanges: relateParticleMotionToTemperatureChanges_Skill_Data,
+    },
+    order: [
+      'compareParticleArrangementsInSolidsLiquidsAndGases',
+      'explainGasPressureThroughParticleMotion',
+      'explainRandomThermalMotionOfParticles',
+      'explainTheParticulateStructureOfMatter',
+      'explainThePropertiesOfStatesOfMatterThroughParticleMotion',
+      'explainThermalExpansionThroughParticleMotionAndInteractions',
+      'relateParticleMotionToTemperatureChanges',
+    ],
+  },
   description: {
     methodological:
       'Substances consist of particles with spaces and interactions between them; the model explains properties without requiring complex formulas.',

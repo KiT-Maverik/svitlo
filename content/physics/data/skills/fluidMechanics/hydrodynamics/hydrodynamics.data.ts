@@ -40,11 +40,14 @@ export const hydrodynamics_SkillGroup_Data = defineSkillGroup({
     kk: 'Гидродинамика',
     qm: 'Gidrodinamika',
   },
-  skills: [
-    compareResistanceToMotionInWaterAndAir_Skill_Data,
-    explainContinuityOfIncompressibleFluidFlow_Skill_Data,
-    explainWaterFlowBetweenContainersAtDifferentLevels_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareResistanceToMotionInWaterAndAir: compareResistanceToMotionInWaterAndAir_Skill_Data,
+      explainContinuityOfIncompressibleFluidFlow: explainContinuityOfIncompressibleFluidFlow_Skill_Data,
+      explainWaterFlowBetweenContainersAtDifferentLevels: explainWaterFlowBetweenContainersAtDifferentLevels_Skill_Data,
+    },
+    order: ['compareResistanceToMotionInWaterAndAir', 'explainContinuityOfIncompressibleFluidFlow', 'explainWaterFlowBetweenContainersAtDifferentLevels'],
+  },
   description: {
     methodological:
       'Water and other liquids flow under certain conditions and resist bodies moving through the stream; comparison with air explains differences between the media.',

@@ -39,12 +39,20 @@ export const metaphysics_SkillDomain_Data = defineSkillDomain({
     kk: 'Метафизика',
     qm: 'Metafizika',
   },
-  groups: [
-    causationTimeAndPossibility_SkillGroup_Data,
-    existenceAndCategories_SkillGroup_Data,
-    identityAndPersistence_SkillGroup_Data,
-    mathematicalReality_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      causationTimeAndPossibility: causationTimeAndPossibility_SkillGroup_Data,
+      existenceAndCategories: existenceAndCategories_SkillGroup_Data,
+      identityAndPersistence: identityAndPersistence_SkillGroup_Data,
+      mathematicalReality: mathematicalReality_SkillGroup_Data,
+    },
+    order: [
+      'causationTimeAndPossibility',
+      'existenceAndCategories',
+      'identityAndPersistence',
+      'mathematicalReality',
+    ],
+  },
   description: {
     methodological:
       'Metaphysics examines the most general categories of reality, such as what exists, how things persist, and what makes events possible. Its conceptual questions differ from describing particular natural mechanisms in the sciences.',

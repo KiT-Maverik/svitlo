@@ -41,12 +41,20 @@ export const transferAndBehavioralFlexibility_SkillGroup_Data = defineSkillGroup
     kk: 'Үйренуді тасымалдау және мінез-құлық икемділігі',
     qm: 'Ögrenilgenni köçürüv ve areket çevikligi',
   },
-  skills: [
-    contextDependentLearning_Skill_Data,
-    feedbackAndSkillAcquisition_Skill_Data,
-    learnedHelplessness_Skill_Data,
-    transferOfLearning_Skill_Data,
-  ],
+  skills: {
+    items: {
+      contextDependentLearning: contextDependentLearning_Skill_Data,
+      feedbackAndSkillAcquisition: feedbackAndSkillAcquisition_Skill_Data,
+      learnedHelplessness: learnedHelplessness_Skill_Data,
+      transferOfLearning: transferOfLearning_Skill_Data,
+    },
+    order: [
+      'contextDependentLearning',
+      'feedbackAndSkillAcquisition',
+      'learnedHelplessness',
+      'transferOfLearning',
+    ],
+  },
   description: {
     methodological:
       'Acquired responses must generalize appropriately across contexts while remaining sensitive to meaningful differences.',

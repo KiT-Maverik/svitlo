@@ -43,16 +43,28 @@ export const digitalSystemsAndNetworks_SkillDomain_Data = defineSkillDomain({
     kk: 'Цифрлық жүйелер мен желілер',
     qm: 'Raqamlı sistemalar ve ağlar',
   },
-  groups: [
-    digitalDeviceComponents_SkillGroup_Data,
-    memoryAndStorage_SkillGroup_Data,
-    networkModelsAndProtocols_SkillGroup_Data,
-    networks_SkillGroup_Data,
-    numeralSystems_SkillGroup_Data,
-    operatingSystems_SkillGroup_Data,
-    representationAndStorage_SkillGroup_Data,
-    taskExecution_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      digitalDeviceComponents: digitalDeviceComponents_SkillGroup_Data,
+      memoryAndStorage: memoryAndStorage_SkillGroup_Data,
+      networkModelsAndProtocols: networkModelsAndProtocols_SkillGroup_Data,
+      networks: networks_SkillGroup_Data,
+      numeralSystems: numeralSystems_SkillGroup_Data,
+      operatingSystems: operatingSystems_SkillGroup_Data,
+      representationAndStorage: representationAndStorage_SkillGroup_Data,
+      taskExecution: taskExecution_SkillGroup_Data,
+    },
+    order: [
+      'digitalDeviceComponents',
+      'memoryAndStorage',
+      'networkModelsAndProtocols',
+      'networks',
+      'numeralSystems',
+      'operatingSystems',
+      'representationAndStorage',
+      'taskExecution',
+    ],
+  },
   description: {
     methodological:
       'Explains interactions among hardware, software, encoding methods, and communication channels. These competencies concern the operation of digital infrastructure, not merely the use of devices.',

@@ -41,12 +41,20 @@ export const decompositionAndAbstraction_SkillGroup_Data = defineSkillGroup({
     kk: 'Бөлшектеу және абстракциялау',
     qm: 'Parçalarğa bölüv ve soyutlav',
   },
-  skills: [
-    buildAnAbstractSystemModel_Skill_Data,
-    decomposeAProblem_Skill_Data,
-    generalizeARepeatedMethod_Skill_Data,
-    identifyEssentialObjectProperties_Skill_Data,
-  ],
+  skills: {
+    items: {
+      buildAnAbstractSystemModel: buildAnAbstractSystemModel_Skill_Data,
+      decomposeAProblem: decomposeAProblem_Skill_Data,
+      generalizeARepeatedMethod: generalizeARepeatedMethod_Skill_Data,
+      identifyEssentialObjectProperties: identifyEssentialObjectProperties_Skill_Data,
+    },
+    order: [
+      'buildAnAbstractSystemModel',
+      'decomposeAProblem',
+      'generalizeARepeatedMethod',
+      'identifyEssentialObjectProperties',
+    ],
+  },
   description: {
     methodological:
       "Defining a problem's boundaries by breaking it into subproblems, identifying meaningful characteristics, and constructing a simplified model. These operations precede selecting a specific algorithm or class structure.",

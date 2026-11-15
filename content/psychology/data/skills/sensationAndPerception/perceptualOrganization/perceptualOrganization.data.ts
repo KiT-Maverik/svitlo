@@ -41,12 +41,20 @@ export const perceptualOrganization_SkillGroup_Data = defineSkillGroup({
     kk: 'Қабылдауды ұйымдастыру',
     qm: 'Qabul etüvni tertipleme',
   },
-  skills: [
-    bottomUpAndTopDownProcessing_Skill_Data,
-    figureGroundOrganization_Skill_Data,
-    gestaltGrouping_Skill_Data,
-    perceptualConstancy_Skill_Data,
-  ],
+  skills: {
+    items: {
+      bottomUpAndTopDownProcessing: bottomUpAndTopDownProcessing_Skill_Data,
+      figureGroundOrganization: figureGroundOrganization_Skill_Data,
+      gestaltGrouping: gestaltGrouping_Skill_Data,
+      perceptualConstancy: perceptualConstancy_Skill_Data,
+    },
+    order: [
+      'bottomUpAndTopDownProcessing',
+      'figureGroundOrganization',
+      'gestaltGrouping',
+      'perceptualConstancy',
+    ],
+  },
   description: {
     methodological:
       'The mind uses grouping cues and expectations to construct coherent objects from ambiguous sensory input.',

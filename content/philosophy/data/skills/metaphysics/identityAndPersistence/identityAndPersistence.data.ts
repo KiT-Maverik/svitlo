@@ -41,12 +41,20 @@ export const identityAndPersistence_SkillGroup_Data = defineSkillGroup({
     kk: 'Бірегейлік және уақыт бойы сақталу',
     qm: 'Ayniyet ve devamlılıq',
   },
-  skills: [
-    analyzeAMetaphysicalParadox_Skill_Data,
-    analyzeAPartWholeRelation_Skill_Data,
-    distinguishNumericalFromQualitativeIdentity_Skill_Data,
-    evaluatePersistenceThroughChange_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAMetaphysicalParadox: analyzeAMetaphysicalParadox_Skill_Data,
+      analyzeAPartWholeRelation: analyzeAPartWholeRelation_Skill_Data,
+      distinguishNumericalFromQualitativeIdentity: distinguishNumericalFromQualitativeIdentity_Skill_Data,
+      evaluatePersistenceThroughChange: evaluatePersistenceThroughChange_Skill_Data,
+    },
+    order: [
+      'analyzeAMetaphysicalParadox',
+      'analyzeAPartWholeRelation',
+      'distinguishNumericalFromQualitativeIdentity',
+      'evaluatePersistenceThroughChange',
+    ],
+  },
   description: {
     methodological:
       'Questions about sameness arise when material, properties, or relations change over time. Numerical identity is different from merely sharing characteristics.',

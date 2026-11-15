@@ -40,11 +40,14 @@ export const machinesAndCryptanalysis_SkillGroup_Data = defineSkillGroup({
     kk: 'Машиналар және криптоталдау',
     qm: 'Maşinalar ve şifre talili',
   },
-  skills: [
-    explainHistoricalCryptanalysisMethods_Skill_Data,
-    explainTheDevelopmentOfProgrammableComputers_Skill_Data,
-    explainThePurposeOfTheBombe_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainHistoricalCryptanalysisMethods: explainHistoricalCryptanalysisMethods_Skill_Data,
+      explainTheDevelopmentOfProgrammableComputers: explainTheDevelopmentOfProgrammableComputers_Skill_Data,
+      explainThePurposeOfTheBombe: explainThePurposeOfTheBombe_Skill_Data,
+    },
+    order: ['explainHistoricalCryptanalysisMethods', 'explainTheDevelopmentOfProgrammableComputers', 'explainThePurposeOfTheBombe'],
+  },
   description: {
     methodological:
       'The development of computing devices and specialized cryptanalytic machines illustrates how formal instructions and mechanized checking addressed historical problems. Philosophical issues of imitation and understanding belong to AI instead.',

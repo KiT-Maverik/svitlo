@@ -45,16 +45,28 @@ export const acoustics_SkillGroup_Data = defineSkillGroup({
     kk: 'Акустика',
     qm: 'Akustika',
   },
-  skills: [
-    compareTheLoudnessOfSounds_Skill_Data,
-    distinguishHighPitchedFromLowPitchedSounds_Skill_Data,
-    explainAnEchoAsSoundReflection_Skill_Data,
-    explainHowSoundLoudnessDependsOnOscillationAmplitude_Skill_Data,
-    explainHowSoundPitchDependsOnOscillationFrequency_Skill_Data,
-    explainSoundAttenuationWithDistance_Skill_Data,
-    explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener_Skill_Data,
-    recognizeSoundTransmissionThroughAMedium_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareTheLoudnessOfSounds: compareTheLoudnessOfSounds_Skill_Data,
+      distinguishHighPitchedFromLowPitchedSounds: distinguishHighPitchedFromLowPitchedSounds_Skill_Data,
+      explainAnEchoAsSoundReflection: explainAnEchoAsSoundReflection_Skill_Data,
+      explainHowSoundLoudnessDependsOnOscillationAmplitude: explainHowSoundLoudnessDependsOnOscillationAmplitude_Skill_Data,
+      explainHowSoundPitchDependsOnOscillationFrequency: explainHowSoundPitchDependsOnOscillationFrequency_Skill_Data,
+      explainSoundAttenuationWithDistance: explainSoundAttenuationWithDistance_Skill_Data,
+      explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener: explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener_Skill_Data,
+      recognizeSoundTransmissionThroughAMedium: recognizeSoundTransmissionThroughAMedium_Skill_Data,
+    },
+    order: [
+      'compareTheLoudnessOfSounds',
+      'distinguishHighPitchedFromLowPitchedSounds',
+      'explainAnEchoAsSoundReflection',
+      'explainHowSoundLoudnessDependsOnOscillationAmplitude',
+      'explainHowSoundPitchDependsOnOscillationFrequency',
+      'explainSoundAttenuationWithDistance',
+      'explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener',
+      'recognizeSoundTransmissionThroughAMedium',
+    ],
+  },
   description: {
     methodological:
       'Loudness, pitch, and the propagation of sound through a medium are related to oscillation properties; auditory experiences can be explored with safe simulations.',

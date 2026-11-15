@@ -39,12 +39,20 @@ export const waves_SkillDomain_Data = defineSkillDomain({
     kk: 'Толқындар',
     qm: 'Dalğalar',
   },
-  groups: [
-    acoustics_SkillGroup_Data,
-    oscillations_SkillGroup_Data,
-    wavePhenomena_SkillGroup_Data,
-    waveProperties_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      acoustics: acoustics_SkillGroup_Data,
+      oscillations: oscillations_SkillGroup_Data,
+      wavePhenomena: wavePhenomena_SkillGroup_Data,
+      waveProperties: waveProperties_SkillGroup_Data,
+    },
+    order: [
+      'acoustics',
+      'oscillations',
+      'wavePhenomena',
+      'waveProperties',
+    ],
+  },
   description: {
     methodological:
       'Oscillations produce recurring disturbances that can propagate through water, air, and other media. Sound is one manifestation, while wave patterns are visible on the surface of water.',

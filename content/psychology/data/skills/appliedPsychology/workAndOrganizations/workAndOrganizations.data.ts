@@ -41,12 +41,20 @@ export const workAndOrganizations_SkillGroup_Data = defineSkillGroup({
     kk: 'Жұмыс және ұйымдар',
     qm: 'İş ve teşkilâtlar',
   },
-  skills: [
-    organizationalStressors_Skill_Data,
-    personnelAssessmentFairness_Skill_Data,
-    teamCoordination_Skill_Data,
-    workMotivation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      organizationalStressors: organizationalStressors_Skill_Data,
+      personnelAssessmentFairness: personnelAssessmentFairness_Skill_Data,
+      teamCoordination: teamCoordination_Skill_Data,
+      workMotivation: workMotivation_Skill_Data,
+    },
+    order: [
+      'organizationalStressors',
+      'personnelAssessmentFairness',
+      'teamCoordination',
+      'workMotivation',
+    ],
+  },
   description: {
     methodological:
       'Individual motivation, coordination, organizational culture, and workplace design shape performance and wellbeing at work.',

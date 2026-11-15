@@ -41,12 +41,20 @@ export const simpleMachines_SkillGroup_Data = defineSkillGroup({
     kk: 'Қарапайым механизмдер',
     qm: 'Sade mehanizmler',
   },
-  skills: [
-    explainHowALeverWorks_Skill_Data,
-    explainHowAPulleyWorks_Skill_Data,
-    explainHowAWheelAndAxleWork_Skill_Data,
-    predictTheRotationOfMeshedGears_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainHowALeverWorks: explainHowALeverWorks_Skill_Data,
+      explainHowAPulleyWorks: explainHowAPulleyWorks_Skill_Data,
+      explainHowAWheelAndAxleWork: explainHowAWheelAndAxleWork_Skill_Data,
+      predictTheRotationOfMeshedGears: predictTheRotationOfMeshedGears_Skill_Data,
+    },
+    order: [
+      'explainHowALeverWorks',
+      'explainHowAPulleyWorks',
+      'explainHowAWheelAndAxleWork',
+      'predictTheRotationOfMeshedGears',
+    ],
+  },
   description: {
     methodological:
       'Levers, pulleys, wheels, and gears demonstrate the transmission of force and rotation. The focus here is on physical principles, not selecting a design or engineering a machine.',

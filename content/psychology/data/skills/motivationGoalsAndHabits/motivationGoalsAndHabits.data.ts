@@ -38,11 +38,14 @@ export const motivationGoalsAndHabits_SkillDomain_Data = defineSkillDomain({
     kk: 'Мотивация, мақсаттар және әдеттер',
     qm: 'Motivatsiya, maqsatlar ve adetler',
   },
-  groups: [
-    goalPursuitAndSelfControl_SkillGroup_Data,
-    habitMechanisms_SkillGroup_Data,
-    motivationalMechanisms_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      goalPursuitAndSelfControl: goalPursuitAndSelfControl_SkillGroup_Data,
+      habitMechanisms: habitMechanisms_SkillGroup_Data,
+      motivationalMechanisms: motivationalMechanisms_SkillGroup_Data,
+    },
+    order: ['goalPursuitAndSelfControl', 'habitMechanisms', 'motivationalMechanisms'],
+  },
   description: {
     methodological:
       'Motivation concerns what initiates, directs, and sustains action. Goals and habits reflect interactions among needs, rewards, expectations, self-control, and environmental cues rather than an unchanging amount of willpower.',

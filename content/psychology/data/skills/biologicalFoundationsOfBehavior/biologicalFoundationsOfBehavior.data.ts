@@ -39,12 +39,20 @@ export const biologicalFoundationsOfBehavior_SkillDomain_Data = defineSkillDomai
     kk: 'Мінез-құлықтың биологиялық негіздері',
     qm: 'Davranışnıñ biologik esasları',
   },
-  groups: [
-    biologicalDifferencesAndContext_SkillGroup_Data,
-    brainBehaviorRelationships_SkillGroup_Data,
-    evolutionaryAccounts_SkillGroup_Data,
-    neuralCommunication_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      biologicalDifferencesAndContext: biologicalDifferencesAndContext_SkillGroup_Data,
+      brainBehaviorRelationships: brainBehaviorRelationships_SkillGroup_Data,
+      evolutionaryAccounts: evolutionaryAccounts_SkillGroup_Data,
+      neuralCommunication: neuralCommunication_SkillGroup_Data,
+    },
+    order: [
+      'biologicalDifferencesAndContext',
+      'brainBehaviorRelationships',
+      'evolutionaryAccounts',
+      'neuralCommunication',
+    ],
+  },
   description: {
     methodological:
       'Neural, endocrine, genetic, and evolved processes influence experience and action through interaction with environments. This field emphasizes explanatory mechanisms rather than rote anatomical detail or biological determinism.',

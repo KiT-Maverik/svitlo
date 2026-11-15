@@ -41,12 +41,20 @@ export const illusionsAndMultisensoryPerception_SkillGroup_Data = defineSkillGro
     kk: 'Иллюзиялар және көпсезімдік қабылдау',
     qm: 'Qabul etüv illüziyaları ve çoq duyğulı qabul etüv',
   },
-  skills: [
-    crossModalIntegration_Skill_Data,
-    eyewitnessPerception_Skill_Data,
-    perceptualExpectations_Skill_Data,
-    visualIllusions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      crossModalIntegration: crossModalIntegration_Skill_Data,
+      eyewitnessPerception: eyewitnessPerception_Skill_Data,
+      perceptualExpectations: perceptualExpectations_Skill_Data,
+      visualIllusions: visualIllusions_Skill_Data,
+    },
+    order: [
+      'crossModalIntegration',
+      'eyewitnessPerception',
+      'perceptualExpectations',
+      'visualIllusions',
+    ],
+  },
   description: {
     methodological:
       'Systematic distortions and interactions across senses reveal how perception infers likely causes of stimulation.',

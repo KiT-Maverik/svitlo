@@ -43,14 +43,24 @@ export const search_SkillGroup_Data = defineSkillGroup({
     kk: 'Іздеу',
     qm: 'Qıdıruv',
   },
-  skills: [
-    applyBinarySearch_Skill_Data,
-    applyBinaryTreeSearch_Skill_Data,
-    applyLinearSearch_Skill_Data,
-    compareSearchMethodsByCheckCount_Skill_Data,
-    identifyBinarySearchPrerequisites_Skill_Data,
-    predictSearchScaling_Skill_Data,
-  ],
+  skills: {
+    items: {
+      applyBinarySearch: applyBinarySearch_Skill_Data,
+      applyBinaryTreeSearch: applyBinaryTreeSearch_Skill_Data,
+      applyLinearSearch: applyLinearSearch_Skill_Data,
+      compareSearchMethodsByCheckCount: compareSearchMethodsByCheckCount_Skill_Data,
+      identifyBinarySearchPrerequisites: identifyBinarySearchPrerequisites_Skill_Data,
+      predictSearchScaling: predictSearchScaling_Skill_Data,
+    },
+    order: [
+      'applyBinarySearch',
+      'applyBinaryTreeSearch',
+      'applyLinearSearch',
+      'compareSearchMethodsByCheckCount',
+      'identifyBinarySearchPrerequisites',
+      'predictSearchScaling',
+    ],
+  },
   description: {
     methodological:
       'Methods of locating target items: scanning in order, halving a sorted range, or traversing an ordered tree. Each named algorithm has its own Skill, with prerequisite and comparison skills where independently meaningful.',

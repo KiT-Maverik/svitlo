@@ -40,11 +40,14 @@ export const technologyAndSociety_SkillGroup_Data = defineSkillGroup({
     kk: 'Технология және қоғам',
     qm: 'Tehnologiyalar ve cemiyet',
   },
-  skills: [
-    analyzeHumanAutonomyInTechnologicalSystems_Skill_Data,
-    analyzeTechnologicalMediation_Skill_Data,
-    evaluateTechnologicalDeterminism_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeHumanAutonomyInTechnologicalSystems: analyzeHumanAutonomyInTechnologicalSystems_Skill_Data,
+      analyzeTechnologicalMediation: analyzeTechnologicalMediation_Skill_Data,
+      evaluateTechnologicalDeterminism: evaluateTechnologicalDeterminism_Skill_Data,
+    },
+    order: ['analyzeHumanAutonomyInTechnologicalSystems', 'analyzeTechnologicalMediation', 'evaluateTechnologicalDeterminism'],
+  },
   description: {
     methodological:
       'Technological artifacts and institutions shape the practical conditions of action, social change, and control. Philosophical analysis evaluates these mediation and agency claims rather than measuring product usage or engineering device performance.',

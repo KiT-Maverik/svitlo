@@ -41,12 +41,20 @@ export const rotationalMotion_SkillGroup_Data = defineSkillGroup({
     kk: 'Айналмалы қозғалыс',
     qm: 'Aylanma areket',
   },
-  skills: [
-    distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data,
-    explainConservationOfAngularMomentum_Skill_Data,
-    explainRotationalInertia_Skill_Data,
-    explainTorque_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishRotationAboutAnAxisFromMotionAlongACircle: distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data,
+      explainConservationOfAngularMomentum: explainConservationOfAngularMomentum_Skill_Data,
+      explainRotationalInertia: explainRotationalInertia_Skill_Data,
+      explainTorque: explainTorque_Skill_Data,
+    },
+    order: [
+      'distinguishRotationAboutAnAxisFromMotionAlongACircle',
+      'explainConservationOfAngularMomentum',
+      'explainRotationalInertia',
+      'explainTorque',
+    ],
+  },
   description: {
     methodological:
       "Rotation involves torque, mass distribution, and inertial properties. Conservation of angular momentum describes a system's motion when there is no net external torque.",

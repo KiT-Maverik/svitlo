@@ -38,11 +38,14 @@ export const philosophyOfReligion_SkillDomain_Data = defineSkillDomain({
     kk: 'Дін философиясы',
     qm: 'Din felsefesi',
   },
-  groups: [
-    diversityAndMeaning_SkillGroup_Data,
-    faithReasonAndExperience_SkillGroup_Data,
-    ultimateRealityAndDivinity_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      diversityAndMeaning: diversityAndMeaning_SkillGroup_Data,
+      faithReasonAndExperience: faithReasonAndExperience_SkillGroup_Data,
+      ultimateRealityAndDivinity: ultimateRealityAndDivinity_SkillGroup_Data,
+    },
+    order: ['diversityAndMeaning', 'faithReasonAndExperience', 'ultimateRealityAndDivinity'],
+  },
   description: {
     methodological:
       'Reasoned inquiry into religious and nonreligious worldviews considers ultimate explanations, sources of belief, conceptions of divinity, and coexistence under pluralism. This domain evaluates arguments without prescribing worship, faith, atheism, or other personal commitments.',

@@ -41,12 +41,20 @@ export const physicalQuantitiesAndUnits_SkillGroup_Data = defineSkillGroup({
     kk: 'Физикалық шамалар мен бірліктер',
     qm: 'Fizikiy miqdarlar ve ölçüv birlikleri',
   },
-  skills: [
-    compareMeasurementsOfTheSameQuantity_Skill_Data,
-    distinguishAPhysicalQuantityFromItsUnitOfMeasurement_Skill_Data,
-    explainThePhysicalMeaningOfABodysMass_Skill_Data,
-    selectAUnitForAFamiliarPhysicalQuantity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareMeasurementsOfTheSameQuantity: compareMeasurementsOfTheSameQuantity_Skill_Data,
+      distinguishAPhysicalQuantityFromItsUnitOfMeasurement: distinguishAPhysicalQuantityFromItsUnitOfMeasurement_Skill_Data,
+      explainThePhysicalMeaningOfABodysMass: explainThePhysicalMeaningOfABodysMass_Skill_Data,
+      selectAUnitForAFamiliarPhysicalQuantity: selectAUnitForAFamiliarPhysicalQuantity_Skill_Data,
+    },
+    order: [
+      'compareMeasurementsOfTheSameQuantity',
+      'distinguishAPhysicalQuantityFromItsUnitOfMeasurement',
+      'explainThePhysicalMeaningOfABodysMass',
+      'selectAUnitForAFamiliarPhysicalQuantity',
+    ],
+  },
   description: {
     methodological:
       'A single object can be described using different quantities; comparisons of the same quantity require compatible units and observation conditions.',

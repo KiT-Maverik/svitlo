@@ -38,11 +38,14 @@ export const digitalProductUX_SkillDomain_Data = defineSkillDomain({
     kk: 'Цифрлық өнімнің пайдаланушы тәжірибесі',
     qm: 'Raqamlı mahsulatnıñ qullanıcı tecribesi',
   },
-  groups: [
-    accessibility_SkillGroup_Data,
-    digitalInteractionDesign_SkillGroup_Data,
-    experienceEvaluationAndEthics_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      accessibility: accessibility_SkillGroup_Data,
+      digitalInteractionDesign: digitalInteractionDesign_SkillGroup_Data,
+      experienceEvaluationAndEthics: experienceEvaluationAndEthics_SkillGroup_Data,
+    },
+    order: ['accessibility', 'digitalInteractionDesign', 'experienceEvaluationAndEthics'],
+  },
   description: {
     methodological:
       "An Informatics perspective on people's experience with programs, digital devices, and electronic interfaces: goals, navigation, feedback, accessibility, usability, and ethics. Engineering separately studies UX for physical products and engineering systems; a shared discipline name does not imply shared Skill identities across textbooks.",

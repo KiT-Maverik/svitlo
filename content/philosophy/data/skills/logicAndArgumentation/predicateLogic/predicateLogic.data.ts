@@ -43,14 +43,24 @@ export const predicateLogic_SkillGroup_Data = defineSkillGroup({
     kk: 'Предикаттар логикасы',
     qm: 'Predikatlar mantığı',
   },
-  skills: [
-    analyzeTheScopeOfAQuantifier_Skill_Data,
-    distinguishPredicatesFromPropositions_Skill_Data,
-    evaluateAnInferenceWithQuantifiers_Skill_Data,
-    interpretExistentialQuantification_Skill_Data,
-    interpretUniversalQuantification_Skill_Data,
-    negateAQuantifiedProposition_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeTheScopeOfAQuantifier: analyzeTheScopeOfAQuantifier_Skill_Data,
+      distinguishPredicatesFromPropositions: distinguishPredicatesFromPropositions_Skill_Data,
+      evaluateAnInferenceWithQuantifiers: evaluateAnInferenceWithQuantifiers_Skill_Data,
+      interpretExistentialQuantification: interpretExistentialQuantification_Skill_Data,
+      interpretUniversalQuantification: interpretUniversalQuantification_Skill_Data,
+      negateAQuantifiedProposition: negateAQuantifiedProposition_Skill_Data,
+    },
+    order: [
+      'analyzeTheScopeOfAQuantifier',
+      'distinguishPredicatesFromPropositions',
+      'evaluateAnInferenceWithQuantifiers',
+      'interpretExistentialQuantification',
+      'interpretUniversalQuantification',
+      'negateAQuantifiedProposition',
+    ],
+  },
   description: {
     methodological:
       'Variables and quantifiers permit reasoning about individuals and collections. The relevant universe and scope of each quantifier must be made explicit to evaluate meaning and inference.',

@@ -38,7 +38,14 @@ export const modernPhysics_SkillDomain_Data = defineSkillDomain({
     kk: 'Қазіргі физика',
     qm: 'Zemaneviy fizika',
   },
-  groups: [atomsAndQuantumPhenomena_SkillGroup_Data, nuclearPhenomena_SkillGroup_Data, relativity_SkillGroup_Data],
+  groups: {
+    items: {
+      atomsAndQuantumPhenomena: atomsAndQuantumPhenomena_SkillGroup_Data,
+      nuclearPhenomena: nuclearPhenomena_SkillGroup_Data,
+      relativity: relativity_SkillGroup_Data,
+    },
+    order: ['atomsAndQuantumPhenomena', 'nuclearPhenomena', 'relativity'],
+  },
   description: {
     methodological:
       'Models of atoms, quantum and nuclear phenomena, and spacetime explain observations not covered by classical physics alone. Younger children can encounter the concepts without mathematical formalism.',

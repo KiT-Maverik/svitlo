@@ -40,11 +40,14 @@ export const evolutionaryAccounts_SkillGroup_Data = defineSkillGroup({
     kk: 'Эволюциялық түсіндірмелер',
     qm: 'Evolyutsiya izaatları',
   },
-  skills: [
-    adaptiveTradeOffs_Skill_Data,
-    evaluatingEvolutionaryClaims_Skill_Data,
-    selectionAndBehavioralVariation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      adaptiveTradeOffs: adaptiveTradeOffs_Skill_Data,
+      evaluatingEvolutionaryClaims: evaluatingEvolutionaryClaims_Skill_Data,
+      selectionAndBehavioralVariation: selectionAndBehavioralVariation_Skill_Data,
+    },
+    order: ['adaptiveTradeOffs', 'evaluatingEvolutionaryClaims', 'selectionAndBehavioralVariation'],
+  },
   description: {
     methodological:
       'Evolutionary explanations generate testable hypotheses about behavior but require evidence beyond a plausible adaptation story.',

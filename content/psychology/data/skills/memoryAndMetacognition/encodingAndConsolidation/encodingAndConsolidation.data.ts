@@ -41,12 +41,20 @@ export const encodingAndConsolidation_SkillGroup_Data = defineSkillGroup({
     kk: 'Кодтау және бекіту',
     qm: 'Kodlav ve sağlamlaştırma',
   },
-  skills: [
-    elaborativeEncoding_Skill_Data,
-    memoryConsolidation_Skill_Data,
-    organizationAndChunking_Skill_Data,
-    spacingEffects_Skill_Data,
-  ],
+  skills: {
+    items: {
+      elaborativeEncoding: elaborativeEncoding_Skill_Data,
+      memoryConsolidation: memoryConsolidation_Skill_Data,
+      organizationAndChunking: organizationAndChunking_Skill_Data,
+      spacingEffects: spacingEffects_Skill_Data,
+    },
+    order: [
+      'elaborativeEncoding',
+      'memoryConsolidation',
+      'organizationAndChunking',
+      'spacingEffects',
+    ],
+  },
   description: {
     methodological:
       'Attention, meaningful structure, and subsequent processing influence what can later be remembered.',

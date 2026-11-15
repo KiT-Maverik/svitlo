@@ -40,11 +40,14 @@ export const electromagneticRadiation_SkillGroup_Data = defineSkillGroup({
     kk: 'Электромагниттік сәулелену',
     qm: 'Elektromagnit nurlanuv',
   },
-  skills: [
-    distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data,
-    explainThePropagationOfElectromagneticWavesWithoutAir_Skill_Data,
-    relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishVisibleFromInvisibleElectromagneticRadiation: distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data,
+      explainThePropagationOfElectromagneticWavesWithoutAir: explainThePropagationOfElectromagneticWavesWithoutAir_Skill_Data,
+      relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum: relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum_Skill_Data,
+    },
+    order: ['distinguishVisibleFromInvisibleElectromagneticRadiation', 'explainThePropagationOfElectromagneticWavesWithoutAir', 'relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum'],
+  },
   description: {
     methodological:
       'Radio waves, infrared, visible, and ultraviolet radiation are different regions of the electromagnetic spectrum.',

@@ -42,13 +42,22 @@ export const ethicalFrameworks_SkillGroup_Data = defineSkillGroup({
     kk: 'Этикалық тәсілдер',
     qm: 'Etik nazariyeler',
   },
-  skills: [
-    applyCareEthicalReasoning_Skill_Data,
-    applyConsequentialistReasoning_Skill_Data,
-    applyDutyBasedReasoning_Skill_Data,
-    applyVirtueEthicalReasoning_Skill_Data,
-    compareEthicalFrameworksOnOneDilemma_Skill_Data,
-  ],
+  skills: {
+    items: {
+      applyCareEthicalReasoning: applyCareEthicalReasoning_Skill_Data,
+      applyConsequentialistReasoning: applyConsequentialistReasoning_Skill_Data,
+      applyDutyBasedReasoning: applyDutyBasedReasoning_Skill_Data,
+      applyVirtueEthicalReasoning: applyVirtueEthicalReasoning_Skill_Data,
+      compareEthicalFrameworksOnOneDilemma: compareEthicalFrameworksOnOneDilemma_Skill_Data,
+    },
+    order: [
+      'applyCareEthicalReasoning',
+      'applyConsequentialistReasoning',
+      'applyDutyBasedReasoning',
+      'applyVirtueEthicalReasoning',
+      'compareEthicalFrameworksOnOneDilemma',
+    ],
+  },
   description: {
     methodological:
       'Normative theories emphasize different criteria of moral assessment. A theory is not a universal formula that automatically resolves every difficult case.',

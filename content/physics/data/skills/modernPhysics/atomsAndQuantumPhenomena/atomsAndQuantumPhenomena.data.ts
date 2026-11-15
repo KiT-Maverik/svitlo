@@ -42,13 +42,22 @@ export const atomsAndQuantumPhenomena_SkillGroup_Data = defineSkillGroup({
     kk: 'Атомдар мен кванттық құбылыстар',
     qm: 'Atomlar ve kvant adiseleri',
   },
-  skills: [
-    distinguishAnAtomFromItsPrincipalComponents_Skill_Data,
-    explainAPhotonAsAQuantumOfElectromagneticRadiation_Skill_Data,
-    explainDiscreteAtomicEnergyStates_Skill_Data,
-    explainLightEmissionByAnExcitedAtom_Skill_Data,
-    explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAnAtomFromItsPrincipalComponents: distinguishAnAtomFromItsPrincipalComponents_Skill_Data,
+      explainAPhotonAsAQuantumOfElectromagneticRadiation: explainAPhotonAsAQuantumOfElectromagneticRadiation_Skill_Data,
+      explainDiscreteAtomicEnergyStates: explainDiscreteAtomicEnergyStates_Skill_Data,
+      explainLightEmissionByAnExcitedAtom: explainLightEmissionByAnExcitedAtom_Skill_Data,
+      explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects: explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects_Skill_Data,
+    },
+    order: [
+      'distinguishAnAtomFromItsPrincipalComponents',
+      'explainAPhotonAsAQuantumOfElectromagneticRadiation',
+      'explainDiscreteAtomicEnergyStates',
+      'explainLightEmissionByAnExcitedAtom',
+      'explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects',
+    ],
+  },
   description: {
     methodological:
       'Atomic models and discrete packets of energy help explain light and properties of matter that cannot be described solely in terms of mechanical motion.',

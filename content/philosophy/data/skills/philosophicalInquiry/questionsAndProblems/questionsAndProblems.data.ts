@@ -41,12 +41,20 @@ export const questionsAndProblems_SkillGroup_Data = defineSkillGroup({
     kk: 'Сұрақтар мен мәселелер',
     qm: 'Sualler ve meseleler',
   },
-  skills: [
-    distinguishAPhilosophicalProblemFromAnExample_Skill_Data,
-    distinguishPhilosophicalQuestionsFromEmpiricalQuestions_Skill_Data,
-    formulateAPhilosophicalQuestion_Skill_Data,
-    identifyAssumptionsInAPhilosophicalProblem_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAPhilosophicalProblemFromAnExample: distinguishAPhilosophicalProblemFromAnExample_Skill_Data,
+      distinguishPhilosophicalQuestionsFromEmpiricalQuestions: distinguishPhilosophicalQuestionsFromEmpiricalQuestions_Skill_Data,
+      formulateAPhilosophicalQuestion: formulateAPhilosophicalQuestion_Skill_Data,
+      identifyAssumptionsInAPhilosophicalProblem: identifyAssumptionsInAPhilosophicalProblem_Skill_Data,
+    },
+    order: [
+      'distinguishAPhilosophicalProblemFromAnExample',
+      'distinguishPhilosophicalQuestionsFromEmpiricalQuestions',
+      'formulateAPhilosophicalQuestion',
+      'identifyAssumptionsInAPhilosophicalProblem',
+    ],
+  },
   description: {
     methodological:
       'A productive philosophical problem can be examined through competing answers, explicit concepts, and reasons. The object is to make a question discussable without assuming that every question has a single empirical test.',

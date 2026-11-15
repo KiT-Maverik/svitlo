@@ -39,7 +39,13 @@ export const gasProperties_SkillGroup_Data = defineSkillGroup({
     ka: 'აირების თვისებები',
     kk: 'Газдардың қасиеттері',
   },
-  skills: [explainGasCompressibility_Skill_Data, explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data],
+  skills: {
+    items: {
+      explainGasCompressibility: explainGasCompressibility_Skill_Data,
+      explainHowGasPressureDependsOnTemperatureAtConstantVolume: explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data,
+    },
+    order: ['explainGasCompressibility', 'explainHowGasPressureDependsOnTemperatureAtConstantVolume'],
+  },
   description: {
     methodological:
       'The compressibility of gases and the dependence of their pressure on conditions follow from particle motion and the spaces between particles.',

@@ -41,7 +41,20 @@ export const habitMechanisms_SkillGroup_Data = defineSkillGroup({
     kk: 'Әдет механизмдері',
     qm: 'Adetlerniñ usulları',
   },
-  skills: [habitCues_Skill_Data, habitDisruption_Skill_Data, habitFormation_Skill_Data, habitSubstitution_Skill_Data],
+  skills: {
+    items: {
+      habitCues: habitCues_Skill_Data,
+      habitDisruption: habitDisruption_Skill_Data,
+      habitFormation: habitFormation_Skill_Data,
+      habitSubstitution: habitSubstitution_Skill_Data,
+    },
+    order: [
+      'habitCues',
+      'habitDisruption',
+      'habitFormation',
+      'habitSubstitution',
+    ],
+  },
   description: {
     methodological:
       'Repeated actions become cue-sensitive routines that can operate with reduced deliberation, though habits remain dependent on context.',

@@ -41,12 +41,20 @@ export const statisticalInvestigation_SkillGroup_Data = defineSkillGroup({
     kk: 'Статистикалық зерттеу',
     qm: 'Statistik araştırma',
   },
-  skills: [
-    compareSetsOfObservations_Skill_Data,
-    constructASimpleChart_Skill_Data,
-    findTheMostFrequentValue_Skill_Data,
-    readAChart_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareSetsOfObservations: compareSetsOfObservations_Skill_Data,
+      constructASimpleChart: constructASimpleChart_Skill_Data,
+      findTheMostFrequentValue: findTheMostFrequentValue_Skill_Data,
+      readAChart: readAChart_Skill_Data,
+    },
+    order: [
+      'compareSetsOfObservations',
+      'constructASimpleChart',
+      'findTheMostFrequentValue',
+      'readAChart',
+    ],
+  },
   description: {
     methodological:
       'Read and create visual representations of datasets, find frequencies, and compare observations. Statistical conclusions describe data and are not equivalent to predicting a random outcome.',

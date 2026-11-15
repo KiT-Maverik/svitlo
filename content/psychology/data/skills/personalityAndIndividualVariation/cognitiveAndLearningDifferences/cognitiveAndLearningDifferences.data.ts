@@ -42,13 +42,22 @@ export const cognitiveAndLearningDifferences_SkillGroup_Data = defineSkillGroup(
     kk: 'Танымдық және оқу айырмашылықтары',
     qm: 'İdrak ve ögrenüv farqları',
   },
-  skills: [
-    fairnessInCognitiveAssessment_Skill_Data,
-    individualCognitiveProfiles_Skill_Data,
-    natureAndNurtureInAbility_Skill_Data,
-    neurodevelopmentalVariability_Skill_Data,
-    standardizedScoreInterpretation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      fairnessInCognitiveAssessment: fairnessInCognitiveAssessment_Skill_Data,
+      individualCognitiveProfiles: individualCognitiveProfiles_Skill_Data,
+      natureAndNurtureInAbility: natureAndNurtureInAbility_Skill_Data,
+      neurodevelopmentalVariability: neurodevelopmentalVariability_Skill_Data,
+      standardizedScoreInterpretation: standardizedScoreInterpretation_Skill_Data,
+    },
+    order: [
+      'fairnessInCognitiveAssessment',
+      'individualCognitiveProfiles',
+      'natureAndNurtureInAbility',
+      'neurodevelopmentalVariability',
+      'standardizedScoreInterpretation',
+    ],
+  },
   description: {
     methodological:
       'Performance varies across abilities, experiences, and testing contexts, with no one score capturing every capability.',

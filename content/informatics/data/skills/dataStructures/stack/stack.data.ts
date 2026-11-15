@@ -40,7 +40,14 @@ export const stack_SkillGroup_Data = defineSkillGroup({
     kk: 'Стек',
     qm: 'Stek',
   },
-  skills: [explainLIFO_Skill_Data, popAnElementFromAStack_Skill_Data, pushAnElementOntoAStack_Skill_Data],
+  skills: {
+    items: {
+      explainLIFO: explainLIFO_Skill_Data,
+      popAnElementFromAStack: popAnElementFromAStack_Skill_Data,
+      pushAnElementOntoAStack: pushAnElementOntoAStack_Skill_Data,
+    },
+    order: ['explainLIFO', 'popAnElementFromAStack', 'pushAnElementOntoAStack'],
+  },
   description: {
     methodological:
       'A structure using last-in, first-out (LIFO) access to its top element. Pushing, popping, and handling an empty stack are distinct operations.',

@@ -39,12 +39,20 @@ export const memoryAndMetacognition_SkillDomain_Data = defineSkillDomain({
     kk: 'Жады және метатаным',
     qm: 'Hafıza ve metakognitsiya',
   },
-  groups: [
-    encodingAndConsolidation_SkillGroup_Data,
-    memorySystems_SkillGroup_Data,
-    monitoringAndLearningStrategies_SkillGroup_Data,
-    retrievalAndDistortion_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      encodingAndConsolidation: encodingAndConsolidation_SkillGroup_Data,
+      memorySystems: memorySystems_SkillGroup_Data,
+      monitoringAndLearningStrategies: monitoringAndLearningStrategies_SkillGroup_Data,
+      retrievalAndDistortion: retrievalAndDistortion_SkillGroup_Data,
+    },
+    order: [
+      'encodingAndConsolidation',
+      'memorySystems',
+      'monitoringAndLearningStrategies',
+      'retrievalAndDistortion',
+    ],
+  },
   description: {
     methodological:
       'Remembering involves encoding, retention, retrieval, reconstruction, and monitoring. Memory science explains why familiar material can be difficult to recall and why subjective confidence may mislead.',

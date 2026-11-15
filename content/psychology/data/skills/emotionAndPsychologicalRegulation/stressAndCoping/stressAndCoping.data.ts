@@ -42,13 +42,22 @@ export const stressAndCoping_SkillGroup_Data = defineSkillGroup({
     kk: 'Стресс және оны жеңу',
     qm: 'Stress ve onı yeñmek',
   },
-  skills: [
-    acuteStress_Skill_Data,
-    chronicStress_Skill_Data,
-    emotionFocusedCoping_Skill_Data,
-    problemFocusedCoping_Skill_Data,
-    stressAppraisal_Skill_Data,
-  ],
+  skills: {
+    items: {
+      acuteStress: acuteStress_Skill_Data,
+      chronicStress: chronicStress_Skill_Data,
+      emotionFocusedCoping: emotionFocusedCoping_Skill_Data,
+      problemFocusedCoping: problemFocusedCoping_Skill_Data,
+      stressAppraisal: stressAppraisal_Skill_Data,
+    },
+    order: [
+      'acuteStress',
+      'chronicStress',
+      'emotionFocusedCoping',
+      'problemFocusedCoping',
+      'stressAppraisal',
+    ],
+  },
   description: {
     methodological:
       'Stress is shaped by demands and perceived resources, with psychological consequences depending partly on duration and opportunities for recovery.',

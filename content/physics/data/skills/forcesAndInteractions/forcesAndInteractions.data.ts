@@ -38,7 +38,14 @@ export const forcesAndInteractions_SkillDomain_Data = defineSkillDomain({
     kk: 'Күштер және өзара әсерлесулер',
     qm: 'Quvetler ve tesirleşüvler',
   },
-  groups: [contactForcesAndFriction_SkillGroup_Data, equilibriumAndStability_SkillGroup_Data, gravity_SkillGroup_Data],
+  groups: {
+    items: {
+      contactForcesAndFriction: contactForcesAndFriction_SkillGroup_Data,
+      equilibriumAndStability: equilibriumAndStability_SkillGroup_Data,
+      gravity: gravity_SkillGroup_Data,
+    },
+    order: ['contactForcesAndFriction', 'equilibriumAndStability', 'gravity'],
+  },
   description: {
     methodological:
       'When bodies touch or affect one another at a distance, their motion, shape, or state of equilibrium may change. This Domain covers general concepts of force, contact, gravity, and stability; specifically magnetic and electric phenomena belong to Electromagnetism.',

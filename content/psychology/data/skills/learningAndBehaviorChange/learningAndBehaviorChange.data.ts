@@ -39,12 +39,20 @@ export const learningAndBehaviorChange_SkillDomain_Data = defineSkillDomain({
     kk: 'Үйрену және мінез-құлықтың өзгеруі',
     qm: 'Ögrenüv ve areketniñ deñişüvi',
   },
-  groups: [
-    operantLearning_SkillGroup_Data,
-    respondentConditioning_SkillGroup_Data,
-    socialLearning_SkillGroup_Data,
-    transferAndBehavioralFlexibility_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      operantLearning: operantLearning_SkillGroup_Data,
+      respondentConditioning: respondentConditioning_SkillGroup_Data,
+      socialLearning: socialLearning_SkillGroup_Data,
+      transferAndBehavioralFlexibility: transferAndBehavioralFlexibility_SkillGroup_Data,
+    },
+    order: [
+      'operantLearning',
+      'respondentConditioning',
+      'socialLearning',
+      'transferAndBehavioralFlexibility',
+    ],
+  },
   description: {
     methodological:
       'Past experience modifies responding through predictive cues, consequences, and social observation. This domain explains mechanisms of behavioral acquisition and flexibility rather than memory storage or a teaching sequence.',

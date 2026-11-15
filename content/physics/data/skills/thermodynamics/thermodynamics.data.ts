@@ -39,12 +39,20 @@ export const thermodynamics_SkillDomain_Data = defineSkillDomain({
     ka: 'თერმოდინამიკა',
     kk: 'Термодинамика',
   },
-  groups: [
-    heatTransferMechanisms_SkillGroup_Data,
-    phaseTransitions_SkillGroup_Data,
-    temperatureAndHeating_SkillGroup_Data,
-    thermalInsulation_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      heatTransferMechanisms: heatTransferMechanisms_SkillGroup_Data,
+      phaseTransitions: phaseTransitions_SkillGroup_Data,
+      temperatureAndHeating: temperatureAndHeating_SkillGroup_Data,
+      thermalInsulation: thermalInsulation_SkillGroup_Data,
+    },
+    order: [
+      'heatTransferMechanisms',
+      'phaseTransitions',
+      'temperatureAndHeating',
+      'thermalInsulation',
+    ],
+  },
   description: {
     methodological:
       'Thermal processes describe changes in temperature, energy transfer, and transitions between states of matter. Macroscopic observations are distinguished from particle-level explanations in the neighboring Domain.',

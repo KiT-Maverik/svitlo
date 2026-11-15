@@ -41,12 +41,20 @@ export const sets_SkillGroup_Data = defineSkillGroup({
     kk: 'Жиындар',
     qm: 'Kümeler',
   },
-  skills: [
-    computeSetIntersection_Skill_Data,
-    computeSetUnion_Skill_Data,
-    explainSetStructure_Skill_Data,
-    testSetMembership_Skill_Data,
-  ],
+  skills: {
+    items: {
+      computeSetIntersection: computeSetIntersection_Skill_Data,
+      computeSetUnion: computeSetUnion_Skill_Data,
+      explainSetStructure: explainSetStructure_Skill_Data,
+      testSetMembership: testSetMembership_Skill_Data,
+    },
+    order: [
+      'computeSetIntersection',
+      'computeSetUnion',
+      'explainSetStructure',
+      'testSetMembership',
+    ],
+  },
   description: {
     methodological:
       'Collections of unique elements supporting membership tests, union, and intersection. Positional indexing is not an inherent property of a set.',

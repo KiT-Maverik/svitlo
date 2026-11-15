@@ -40,11 +40,14 @@ export const electricChargesAndInteractions_SkillGroup_Data = defineSkillGroup({
     ka: 'ელექტრული მუხტები და ურთიერთქმედებები',
     kk: 'Электр зарядтары және өзара әрекеттесу',
   },
-  skills: [
-    distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data,
-    explainConservationOfElectricCharge_Skill_Data,
-    recognizeTheChargingOfObjectsByFriction_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAttractionFromRepulsionBetweenElectricCharges: distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data,
+      explainConservationOfElectricCharge: explainConservationOfElectricCharge_Skill_Data,
+      recognizeTheChargingOfObjectsByFriction: recognizeTheChargingOfObjectsByFriction_Skill_Data,
+    },
+    order: ['distinguishAttractionFromRepulsionBetweenElectricCharges', 'explainConservationOfElectricCharge', 'recognizeTheChargingOfObjectsByFriction'],
+  },
   description: {
     methodological:
       'Electrification, interactions between charged bodies, and charge transfer obey conservation of electric charge. Electric interaction can occur without direct contact.',

@@ -41,12 +41,20 @@ export const phaseTransitions_SkillGroup_Data = defineSkillGroup({
     ka: 'ფაზური გადასვლები',
     kk: 'Фазалық ауысулар',
   },
-  skills: [
-    distinguishEvaporationFromBoiling_Skill_Data,
-    distinguishMeltingFromFreezingOfWater_Skill_Data,
-    explainCondensation_Skill_Data,
-    explainEvaporation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishEvaporationFromBoiling: distinguishEvaporationFromBoiling_Skill_Data,
+      distinguishMeltingFromFreezingOfWater: distinguishMeltingFromFreezingOfWater_Skill_Data,
+      explainCondensation: explainCondensation_Skill_Data,
+      explainEvaporation: explainEvaporation_Skill_Data,
+    },
+    order: [
+      'distinguishEvaporationFromBoiling',
+      'distinguishMeltingFromFreezingOfWater',
+      'explainCondensation',
+      'explainEvaporation',
+    ],
+  },
   description: {
     methodological:
       'Melting, freezing, evaporation, and condensation link thermal conditions to changes of state of the same substance.',
