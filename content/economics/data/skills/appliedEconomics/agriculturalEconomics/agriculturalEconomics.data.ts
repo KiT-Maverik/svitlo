@@ -11,6 +11,7 @@ export const agriculturalEconomics_SkillGroup_Data = defineSkillGroup({
   id: 'd31cc523-188d-488b-972b-f222877bc173',
   name: {
     en: 'Сільське господарство',
+    it: 'Economia agricola',
     zh: '农业经济学',
     hi: 'कृषि अर्थशास्त्र',
     es: 'Economía agrícola',
@@ -50,6 +51,7 @@ export const agriculturalEconomics_SkillGroup_Data = defineSkillGroup({
       'Biological cycles, uncertain weather, land use, and international exchange shape agricultural markets.',
     frontend: {
       en: 'Discover why farming involves distinctive costs and risks.',
+      it: "Scopri perché l'agricoltura comporta costi e rischi particolari.",
       zh: '了解为什么农业有独特的成本与风险。',
       hi: 'जानें कि खेती की लागत और जोखिम अलग क्यों होते हैं।',
       es: 'Descubre por qué la agricultura tiene costos y riesgos particulares.',

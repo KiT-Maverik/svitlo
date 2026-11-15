@@ -11,6 +11,7 @@ export const economicsOfEducation_SkillGroup_Data = defineSkillGroup({
   id: '154a28e3-ec94-4701-8365-612622de732e',
   name: {
     en: 'Освіта',
+    it: "Economia dell'istruzione",
     zh: '教育经济学',
     hi: 'शिक्षा का अर्थशास्त्र',
     es: 'Economía de la educación',
@@ -50,6 +51,7 @@ export const economicsOfEducation_SkillGroup_Data = defineSkillGroup({
       'Investing in knowledge creates private and social returns and raises questions of financing, access, and uncertain information.',
     frontend: {
       en: 'Explore the benefits, costs, and funding of education.',
+      it: "Esplora i benefici, i costi e il finanziamento dell'istruzione.",
       zh: '探索教育的收益、成本与资金来源。',
       hi: 'शिक्षा के लाभ, लागत और वित्तपोषण के बारे में जानें।',
       es: 'Explora los beneficios, los costos y la financiación de la educación.',
