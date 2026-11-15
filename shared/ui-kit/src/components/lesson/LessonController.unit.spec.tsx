@@ -70,8 +70,6 @@ function fixture(required: boolean, allowNavigation = true): Lesson_Props {
         content: [text(14, 'Second section content')],
       },
     ],
-    questions: {},
-    flashcards: [],
   };
 }
 

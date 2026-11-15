@@ -131,12 +131,14 @@ describe('Configurators', () => {
           ...input,
           section: { items: { intro: section, banklessRecall: recall }, order: ['intro', 'banklessRecall'] },
         });
+        assert.equal(withQuiz.build.props({ languages: ['en'] }).base.section[1]?.type, 'quiz');
+        assert.equal(withRecall.build.props({ languages: ['en'] }).base.section[1]?.type, 'flashcards');
         assert.deepEqual(
-          withQuiz.build.props({ languages: ['en'] }).base.section[1]?.params.selection,
+          quiz.build.props({ languages: ['en'] }).base.params.selection,
           { mode: 'all', questionIds: [id('64')] },
         );
         assert.deepEqual(
-          withRecall.build.props({ languages: ['en'] }).base.section[1]?.params.selection,
+          recall.build.props({ languages: ['en'] }).base.params.selection,
           { flashcardIds: [id('65')] },
         );
         assert.deepEqual(
