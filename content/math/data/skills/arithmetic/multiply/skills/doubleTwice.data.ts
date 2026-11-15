@@ -11,6 +11,7 @@ export const doubleTwice_Skill_Data = defineSkill({
     ka: 'გამრავლება — ორჯერ გაორმაგება',
     kk: 'Көбейту — екі рет еселеу',
     en: 'Multiplication — Doubling twice',
+    it: 'Moltiplicazione — Raddoppiare due volte',
     qm: 'Arttıruv — eki kere ekileştirüv',
     zh: '乘法 — 连续翻倍两次',
     hi: 'गुणा — दो बार दुगुना करना',
@@ -39,6 +40,7 @@ export const doubleTwice_Skill_Data = defineSkill({
       'Four equal groups can be obtained by doubling and then doubling again. This is a calculation strategy for multiplication by four, not necessarily a separate general multiplication concept.',
     frontend: {
       en: 'You can multiply by four by doubling a number, then doubling the result again.',
+      it: 'Puoi moltiplicare per quattro raddoppiando un numero e poi raddoppiando di nuovo il risultato.',
       qm: 'Bir sayını evelâ eki qatına, soñra alğan neticeni tekrar eki qatına arttırıp dörtke arttıra bilesiñ.',
       zh: '你能先把一个数翻倍，再把结果翻倍，算出乘以四的结果。',
       hi: 'तुम किसी संख्या को दोगुना करके फिर उसका परिणाम दोगुना कर चार से गुणा कर सकते हो।',
