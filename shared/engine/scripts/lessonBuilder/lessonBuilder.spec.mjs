@@ -320,6 +320,31 @@ test('never writes files for unsafe slugs, unknown nested factories or symlinked
     assert.equal(fs.lstatSync(dest).isSymbolicLink(), true);
   }));
 
+test('rejects traversing collection names before writing modules', () =>
+  fixture(f => {
+    f.config.questions['../escape'] = f.config.questions.selectOneAnswer;
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root),
+      /Unsafe Lesson source path segment/);
+    assert.equal(fs.existsSync(f.generated('index.ts')), false);
+    assert.equal(fs.existsSync(path.join(f.root, 'escape')), false);
+  }));
+
+test('reserved JavaScript keywords remain safe as authored ContentBlock slugs', () =>
+  fixture(f => {
+    const items = f.config.section.items.intro.content.items;
+    const prompt = items.prompt;
+    delete items.prompt;
+    items.default = { ...prompt, slug: 'default' };
+    f.config.section.items.intro.content.order =
+      f.config.section.items.intro.content.order.map(name => name === 'prompt' ? 'default' : name);
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const code = fs.readFileSync(f.generated('sections/intro/default/index.ts'), 'utf8');
+    assert.match(code, /export const item_default = defineText<"default", LessonLanguages>/);
+    assertTypeScriptSyntax(readAll(f.lesson));
+  }));
+
 test('CLI discovers Lesson configs, generates safely, and reports SKIP', () =>
   fixture(f => {
     const messages = [];
