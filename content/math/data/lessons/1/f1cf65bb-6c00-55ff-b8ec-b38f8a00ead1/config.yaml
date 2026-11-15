@@ -15,10 +15,10 @@ config:
       en: 'Questions That Need Data'
   section:
     items:
-      section1:
+      distinguishDataQuestions:
         config:
           id: 'b1b041d5-9f83-58c6-bc5e-c1d5ea698de8'
-          slug: 'section1'
+          slug: 'distinguishDataQuestions'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Different kinds of questions'
           content:
             items:
-              text1:
+              compareQuestionKinds:
                 config:
                   id: '2c87e274-cc05-59b7-adc2-6274be04f91d'
-                  slug: 'text1'
+                  slug: 'compareQuestionKinds'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'What is 4 + 3? We can calculate that. Which fruit do six storybook children choose? We must ask or observe their choices.'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              exploreDataQuestion:
                 config:
                   id: 'b7ac8e6d-c1ac-5e08-a6c4-0e6de325c506'
-                  slug: 'scene1'
+                  slug: 'exploreDataQuestion'
                   type: 'scene'
                   params: {}
                   locale:
@@ -117,10 +117,10 @@ config:
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   purpose: 'Different kinds of questions'
                   productionNotes: 'Source Scene QuestionInvestigationLab.scene-spec.md; independent placement for Different kinds of questions. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainObservationRequirement:
                 config:
                   id: '9142040e-e21f-5975-8ba4-840ec2f98547'
-                  slug: 'markdown1'
+                  slug: 'explainObservationRequirement'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -128,7 +128,7 @@ config:
                       en: 'A data-investigation question needs observations or answers that might be different. An arithmetic fact already has one answer.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['compareQuestionKinds', 'exploreDataQuestion', 'explainObservationRequirement']
         production:
           purpose: 'Different kinds of questions'
           productionNotes: |-
@@ -147,10 +147,10 @@ config:
             **Misconception-specific explanation:** For ‘4 + 3 needs a survey’: “We already know the operation; everyone computing it correctly gets 7. We do not need different people’s choices.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
-      section2:
+      specifyRespondentsAndVariable:
         config:
           id: 'aeb03d1c-9e83-5733-b95e-bd1ced6992a1'
-          slug: 'section2'
+          slug: 'specifyRespondentsAndVariable'
           type: 'content'
           params: {}
           locale:
@@ -160,10 +160,10 @@ config:
               en: 'Ask whom and what'
           content:
             items:
-              text1:
+              refineFruitQuestion:
                 config:
                   id: '1ce44201-79f4-5ab6-9e1e-c2019338c470'
-                  slug: 'text1'
+                  slug: 'refineFruitQuestion'
                   type: 'text'
                   params: {}
                   locale:
@@ -171,10 +171,10 @@ config:
                       en: '‘Which fruit is best?’ is too unclear for our investigation. Try: ‘Which fruit would each of these six storybook children choose today?’'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              chooseSurveyScope:
                 config:
                   id: '3858a2d2-447e-5267-a770-22d27e8c4691'
-                  slug: 'scene1'
+                  slug: 'chooseSurveyScope'
                   type: 'scene'
                   params: {}
                   locale:
@@ -249,10 +249,10 @@ config:
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   purpose: 'Ask whom and what'
                   productionNotes: 'Source Scene QuestionInvestigationLab.scene-spec.md; independent placement for Ask whom and what. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainClearQuestion:
                 config:
                   id: 'fe8cfbfb-2b47-5b84-b8ef-7bfbdeb19f0a'
-                  slug: 'markdown1'
+                  slug: 'explainClearQuestion'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -260,7 +260,7 @@ config:
                       en: 'A clear question tells us whose answers we will collect and what each answer is about.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['refineFruitQuestion', 'chooseSurveyScope', 'explainClearQuestion']
         production:
           purpose: 'Ask whom and what'
           productionNotes: |-
@@ -279,10 +279,10 @@ config:
             **Misconception-specific explanation:** For a question missing the group: “We still need to know whose choices we are counting.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
-      section3:
+      collectVariedAnswers:
         config:
           id: 'afb03eaf-9d83-55a0-ba5e-beafec69910e'
-          slug: 'section3'
+          slug: 'collectVariedAnswers'
           type: 'content'
           params: {}
           locale:
@@ -292,10 +292,10 @@ config:
               en: 'Different answers give us data'
           content:
             items:
-              text1:
+              inspectFruitResponses:
                 config:
                   id: '1e26eff2-f51c-5815-9f61-6ff2f7688adf'
-                  slug: 'text1'
+                  slug: 'inspectFruitResponses'
                   type: 'text'
                   params: {}
                   locale:
@@ -303,10 +303,10 @@ config:
                       en: 'Let’s see the fictional answers: apple, banana, apple, pear, banana, apple. Which kinds appeared? Did everyone choose the same fruit?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              collectExampleData:
                 config:
                   id: 'd0b33b9b-b6f6-5b6e-bfca-bb9bc19d16a0'
-                  slug: 'scene1'
+                  slug: 'collectExampleData'
                   type: 'scene'
                   params: {}
                   locale:
@@ -381,10 +381,10 @@ config:
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   purpose: 'Different answers give us data'
                   productionNotes: 'Source Scene QuestionInvestigationLab.scene-spec.md; independent placement for Different answers give us data. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainResponseVariation:
                 config:
                   id: '52f36620-cafe-550f-8d55-e620158b5bcd'
-                  slug: 'markdown1'
+                  slug: 'explainResponseVariation'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -392,7 +392,7 @@ config:
                       en: 'The children gave different answers. Asking a question about their choices helped us collect information.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['inspectFruitResponses', 'collectExampleData', 'explainResponseVariation']
         production:
           purpose: 'Different answers give us data'
           productionNotes: |-
@@ -411,10 +411,10 @@ config:
             **Misconception-specific explanation:** For ‘we only need one response’: “One person's choice does not tell us which fruit the whole group selected.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
-      section4:
+      recognizeUniformData:
         config:
           id: 'acb039f6-a483-50a5-b75e-b9f6ef6995c7'
-          slug: 'section4'
+          slug: 'recognizeUniformData'
           type: 'content'
           params: {}
           locale:
@@ -424,10 +424,10 @@ config:
               en: 'What if all the answers match?'
           content:
             items:
-              markdown1:
+              evaluateAllAppleAnswers:
                 config:
                   id: '8a7a36c5-e562-593e-84dc-b6c5d539a6a8'
-                  slug: 'markdown1'
+                  slug: 'evaluateAllAppleAnswers'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -435,10 +435,10 @@ config:
                       en: 'Here is another fictional group. Everyone happened to pick an apple. Was ‘Which fruit did each child choose?’ still a data question?'
                 production:
                   purpose: 'Source explanatory copy'
-              scene1:
+              testUniformResponses:
                 config:
                   id: 'ec34b918-6a1f-545d-9b4c-391872a55843'
-                  slug: 'scene1'
+                  slug: 'testUniformResponses'
                   type: 'scene'
                   params: {}
                   locale:
@@ -513,10 +513,10 @@ config:
                     This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
                   purpose: 'What if all the answers match?'
                   productionNotes: 'Source Scene QuestionInvestigationLab.scene-spec.md; independent placement for What if all the answers match?. Variant/feedback retained under parent Section productionNotes.'
-              text1:
+              explainDataDespiteAgreement:
                 config:
                   id: '6a1f8aa7-9b12-5444-ab5a-0aa7b0980aea'
-                  slug: 'text1'
+                  slug: 'explainDataDespiteAgreement'
                   type: 'text'
                   params: {}
                   locale:
@@ -524,7 +524,7 @@ config:
                       en: 'Yes. Different children could have chosen differently, even when this group’s answers happened to match.'
                 production:
                   purpose: 'Source prompt or feedback'
-            order: ['markdown1', 'scene1', 'text1']
+            order: ['evaluateAllAppleAnswers', 'testUniformResponses', 'explainDataDespiteAgreement']
         production:
           purpose: 'What if all the answers match?'
           productionNotes: |-
@@ -543,7 +543,7 @@ config:
             **Misconception-specific explanation:** For ‘not a data question’: “We could not know everyone chose apple without finding out their choices. The answers could have varied.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['distinguishDataQuestions', 'specifyRespondentsAndVariable', 'collectVariedAnswers', 'recognizeUniformData']
   flashcards:
     items: {}
     order: []
