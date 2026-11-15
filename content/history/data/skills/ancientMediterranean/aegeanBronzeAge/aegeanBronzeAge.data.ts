@@ -11,6 +11,7 @@ export const aegeanBronzeAge_SkillGroup_Data = defineSkillGroup({
   id: 'ae48e3b7-4b07-423a-868c-6cd00f5d56b5',
   name: {
     en: 'Aegean Bronze Age',
+    it: "Età del bronzo nell'Egeo",
     zh: '爱琴海青铜时代',
     hi: 'एजियन कांस्य युग',
     es: 'Edad del Bronce egea',
@@ -40,19 +41,13 @@ export const aegeanBronzeAge_SkillGroup_Data = defineSkillGroup({
     kk: 'Эгей қола дәуірі',
     qm: 'Egey bronza devri',
   },
-  skills: {
-    items: {
-      lateBronzeAgeCollapse: lateBronzeAgeCollapse_Skill_Data,
-      minoanCivilization: minoanCivilization_Skill_Data,
-      mycenaeanCivilization: mycenaeanCivilization_Skill_Data,
-    },
-    order: ['lateBronzeAgeCollapse', 'minoanCivilization', 'mycenaeanCivilization'],
-  },
+  skills: [lateBronzeAgeCollapse_Skill_Data, minoanCivilization_Skill_Data, mycenaeanCivilization_Skill_Data],
   description: {
     methodological:
       'Island and mainland palace centers are known through archaeology, material exchange, and surviving writing systems.',
     frontend: {
       en: 'Discover the palace societies of the Bronze Age Aegean.',
+      it: "Scopri le società palaziali dell'Egeo nell'età del bronzo.",
       zh: '了解爱琴海青铜时代的宫殿社会。',
       hi: 'एजियन कांस्य युग के महल-केंद्रित समाजों के बारे में जानें।',
       es: 'Descubre las sociedades palaciales del Egeo durante la Edad del Bronce.',

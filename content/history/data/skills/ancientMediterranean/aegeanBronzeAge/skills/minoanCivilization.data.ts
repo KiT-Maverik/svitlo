@@ -5,6 +5,7 @@ export const minoanCivilization_Skill_Data = defineSkill({
   id: '910c57c6-83d3-4283-b2ff-460e50802ada',
   name: {
     en: 'Minoan Civilization',
+    it: "Civiltà minoica",
     zh: '米诺斯文明',
     hi: 'मिनोअन सभ्यता',
     es: 'Civilización minoica',
@@ -38,6 +39,7 @@ export const minoanCivilization_Skill_Data = defineSkill({
     methodological: 'Examine Cretan palaces and maritime links while acknowledging that Linear A remains undeciphered.',
     frontend: {
       en: 'Explore ancient Crete and the limits of what its writing reveals.',
+      it: "Esplora l'antica Creta e i limiti di ciò che la sua scrittura ci rivela.",
       zh: '探索古代克里特岛，并认识其文字材料能告诉我们的有限信息。',
       hi: 'प्राचीन क्रीट का अध्ययन करें और समझें कि उसकी लिपि से हम सीमित जानकारी ही पा सकते हैं।',
       es: 'Explora la antigua Creta y los límites de lo que revela su escritura.',

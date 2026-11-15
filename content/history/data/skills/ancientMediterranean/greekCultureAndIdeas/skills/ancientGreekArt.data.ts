@@ -5,6 +5,7 @@ export const ancientGreekArt_Skill_Data = defineSkill({
   id: 'a45831e2-e43e-421c-8f44-b717f38d1b6d',
   name: {
     en: 'Ancient Greek Art',
+    it: "Arte greca antica",
     zh: '古希腊艺术',
     hi: 'प्राचीन यूनानी कला',
     es: 'Arte griego antiguo',
@@ -39,6 +40,7 @@ export const ancientGreekArt_Skill_Data = defineSkill({
       'Examine sculpture, architecture, and imagery in the social and religious settings of archaic, classical, and Hellenistic eras.',
     frontend: {
       en: 'Recognize how Greek art changed and what roles it served.',
+      it: "Riconosci come cambiò l'arte greca e quali funzioni svolgeva.",
       zh: '认识希腊艺术如何变化以及它发挥的不同作用。',
       hi: 'पहचानें कि यूनानी कला कैसे बदली और उसकी क्या भूमिकाएँ थीं।',
       es: 'Reconoce cómo cambió el arte griego y qué funciones cumplía.',

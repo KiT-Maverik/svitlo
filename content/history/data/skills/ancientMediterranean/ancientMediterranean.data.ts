@@ -12,6 +12,7 @@ export const ancientMediterranean_SkillDomain_Data = defineSkillDomain({
   id: 'af195a28-6cbe-4020-b737-663f4bd36ccb',
   title: {
     en: 'Mediterranean',
+    it: "Mediterraneo",
     zh: '古代地中海世界',
     hi: 'प्राचीन भूमध्यसागरीय संसार',
     es: 'Mediterráneo antiguo',
@@ -41,29 +42,20 @@ export const ancientMediterranean_SkillDomain_Data = defineSkillDomain({
     kk: 'Ежелгі Жерорта теңізі әлемі',
     qm: 'Qadimiy Aqdeñiz dünyası',
   },
-  groups: {
-    items: {
-      aegeanBronzeAge: aegeanBronzeAge_SkillGroup_Data,
-      greekCultureAndIdeas: greekCultureAndIdeas_SkillGroup_Data,
-      greekPoleis: greekPoleis_SkillGroup_Data,
-      macedoniaAndHellenisticWorld: macedoniaAndHellenisticWorld_SkillGroup_Data,
-      romanEmpire: romanEmpire_SkillGroup_Data,
-      romanRepublic: romanRepublic_SkillGroup_Data,
-    },
-    order: [
-      'aegeanBronzeAge',
-      'greekCultureAndIdeas',
-      'greekPoleis',
-      'macedoniaAndHellenisticWorld',
-      'romanEmpire',
-      'romanRepublic',
-    ],
-  },
+  groups: [
+    aegeanBronzeAge_SkillGroup_Data,
+    greekCultureAndIdeas_SkillGroup_Data,
+    greekPoleis_SkillGroup_Data,
+    macedoniaAndHellenisticWorld_SkillGroup_Data,
+    romanEmpire_SkillGroup_Data,
+    romanRepublic_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Aegean societies, Greek poleis, Hellenistic kingdoms, and Rome formed an interconnected but heterogeneous Mediterranean world.',
     frontend: {
       en: 'Explore how different ancient societies shaped the Mediterranean.',
+      it: "Esplora come le diverse società antiche plasmarono il Mediterraneo.",
       zh: '探索不同的古代社会如何塑造地中海世界。',
       hi: 'जानें कि विभिन्न प्राचीन समाजों ने भूमध्यसागरीय क्षेत्र को कैसे आकार दिया।',
       es: 'Explora cómo distintas sociedades antiguas dieron forma al Mediterráneo.',

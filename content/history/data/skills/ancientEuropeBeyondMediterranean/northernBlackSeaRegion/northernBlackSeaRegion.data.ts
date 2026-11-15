@@ -12,6 +12,7 @@ export const northernBlackSeaRegion_SkillGroup_Data = defineSkillGroup({
   id: 'c64aa0c2-a81c-4147-86f2-2ccdf4c564cb',
   name: {
     en: 'Northern Black Sea Region',
+    it: "Regione settentrionale del Mar Nero",
     zh: '黑海北岸地区',
     hi: 'उत्तरी काला सागर क्षेत्र',
     es: 'Región septentrional del mar Negro',
@@ -41,20 +42,18 @@ export const northernBlackSeaRegion_SkillGroup_Data = defineSkillGroup({
     kk: 'Қара теңіздің солтүстік өңірі',
     qm: 'Qara Deñizniñ şimaliy bölgeleri',
   },
-  skills: {
-    items: {
-      earlySteppeCultures: earlySteppeCultures_Skill_Data,
-      greekCitiesOfBlackSea: greekCitiesOfBlackSea_Skill_Data,
-      sarmatians: sarmatians_Skill_Data,
-      scythianSocieties: scythianSocieties_Skill_Data,
-    },
-    order: ['earlySteppeCultures', 'greekCitiesOfBlackSea', 'sarmatians', 'scythianSocieties'],
-  },
+  skills: [
+    earlySteppeCultures_Skill_Data,
+    greekCitiesOfBlackSea_Skill_Data,
+    sarmatians_Skill_Data,
+    scythianSocieties_Skill_Data,
+  ],
   description: {
     methodological:
       "The steppe, forest-steppe, and coasts of today's Ukraine held diverse ancient populations without modern state identities being imposed on them.",
     frontend: {
       en: 'Explore ancient societies in the northern Black Sea region.',
+      it: "Esplora le società antiche della regione settentrionale del Mar Nero.",
       zh: '探索黑海北岸的古代社会。',
       hi: 'काला सागर के उत्तरी क्षेत्र के प्राचीन समाजों को जानें।',
       es: 'Explora las sociedades antiguas de la región norte del mar Negro.',

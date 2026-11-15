@@ -5,6 +5,7 @@ export const scythianSocieties_Skill_Data = defineSkill({
   id: '756a7dd6-6463-4b0d-83bd-5bc6acc85e0b',
   name: {
     en: 'Scythian Societies',
+    it: "Società scitiche",
     zh: '斯基泰社会',
     hi: 'स्किथियाई समाज',
     es: 'Sociedades escitas',
@@ -38,6 +39,7 @@ export const scythianSocieties_Skill_Data = defineSkill({
     methodological: 'Examine diverse Scythian groups, livelihoods, material culture, and regional contacts.',
     frontend: {
       en: 'Explore how Scythian communities lived and traded.',
+      it: "Esplora come vivevano e commerciavano le comunità scitiche.",
       zh: '探索斯基泰社群如何生活和开展贸易。',
       hi: 'जानें कि स्किथियाई समुदाय कैसे रहते और व्यापार करते थे।',
       es: 'Explora cómo vivían y comerciaban las comunidades escitas.',
