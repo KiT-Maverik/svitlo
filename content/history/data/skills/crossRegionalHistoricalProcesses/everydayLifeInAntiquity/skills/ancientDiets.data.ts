@@ -5,6 +5,7 @@ export const ancientDiets_Skill_Data = defineSkill({
   id: '0c9e6143-048a-4951-a9cd-b0edb5e6ce74',
   name: {
     en: 'Ancient Diets',
+    it: "Alimentazione nell'antichità",
     zh: '古代社会的饮食',
     hi: 'प्राचीन समाजों का भोजन',
     es: 'Alimentación de las sociedades antiguas',
@@ -38,6 +39,7 @@ export const ancientDiets_Skill_Data = defineSkill({
     methodological: 'Study ingredients, cooking, storage, livelihoods, and unequal access to food resources.',
     frontend: {
       en: 'Compare what different ancient communities ate.',
+      it: "Confronta ciò che mangiavano le diverse comunità antiche.",
       zh: '比较不同古代社群的饮食。',
       hi: 'तुलना करें कि अलग-अलग प्राचीन समुदाय क्या खाते थे।',
       es: 'Compara lo que comían distintas comunidades antiguas.',

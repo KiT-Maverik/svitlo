@@ -12,6 +12,7 @@ export const inventionsAndEngineeringHistory_SkillGroup_Data = defineSkillGroup(
   id: '7ee2d150-c8e0-4c5a-8fb5-f01cf2bc1fd2',
   name: {
     en: 'Inventions and Engineering History',
+    it: "Storia delle invenzioni e dell'ingegneria",
     zh: '发明与工程技术史',
     hi: 'आविष्कार और अभियांत्रिकी का इतिहास',
     es: 'Inventos e historia de la ingeniería',
@@ -41,25 +42,18 @@ export const inventionsAndEngineeringHistory_SkillGroup_Data = defineSkillGroup(
     kk: 'Өнертабыстар және инженерия тарихы',
     qm: 'İhtiralar ve mühendislik tarihi',
   },
-  skills: {
-    items: {
-      ancientConstructionAndLiftingMachines: ancientConstructionAndLiftingMachines_Skill_Data,
-      ancientShipbuilding: ancientShipbuilding_Skill_Data,
-      ancientWheeledTransport: ancientWheeledTransport_Skill_Data,
-      historicalWaterEngineering: historicalWaterEngineering_Skill_Data,
-    },
-    order: [
-      'ancientConstructionAndLiftingMachines',
-      'ancientShipbuilding',
-      'ancientWheeledTransport',
-      'historicalWaterEngineering',
-    ],
-  },
+  skills: [
+    ancientConstructionAndLiftingMachines_Skill_Data,
+    ancientShipbuilding_Skill_Data,
+    ancientWheeledTransport_Skill_Data,
+    historicalWaterEngineering_Skill_Data,
+  ],
   description: {
     methodological:
       'Investigate the origins, changes, and transmission of technical solutions in relation to materials, needs, and consequences, not modern design practice.',
     frontend: {
       en: 'Discover how ancient inventions changed over time.',
+      it: "Scopri come le invenzioni antiche cambiarono nel tempo.",
       zh: '探索古代发明如何随时间发生变化。',
       hi: 'जानें कि प्राचीन आविष्कार समय के साथ कैसे बदलते गए।',
       es: 'Descubre cómo cambiaron los inventos antiguos con el tiempo.',

@@ -14,6 +14,7 @@ export const everydayLifeInAntiquity_SkillGroup_Data = defineSkillGroup({
   id: 'fd3f6b88-5a95-49a7-9df4-bc044b840af6',
   name: {
     en: 'Everyday Life in Antiquity',
+    it: "Vita quotidiana nell'antichità",
     zh: '古代日常生活',
     hi: 'प्राचीन दैनिक जीवन',
     es: 'Vida cotidiana en la Antigüedad',
@@ -43,29 +44,20 @@ export const everydayLifeInAntiquity_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі күнделікті өмір',
     qm: 'Qadimiy devirde kündelik yaşayış',
   },
-  skills: {
-    items: {
-      ancientDiets: ancientDiets_Skill_Data,
-      ancientWorkAndOccupations: ancientWorkAndOccupations_Skill_Data,
-      childhoodAndEducationInAntiquity: childhoodAndEducationInAntiquity_Skill_Data,
-      familyAndKinship: familyAndKinship_Skill_Data,
-      housingAndDomesticSpace: housingAndDomesticSpace_Skill_Data,
-      leisureAndPublicLife: leisureAndPublicLife_Skill_Data,
-    },
-    order: [
-      'ancientDiets',
-      'ancientWorkAndOccupations',
-      'childhoodAndEducationInAntiquity',
-      'familyAndKinship',
-      'housingAndDomesticSpace',
-      'leisureAndPublicLife',
-    ],
-  },
+  skills: [
+    ancientDiets_Skill_Data,
+    ancientWorkAndOccupations_Skill_Data,
+    childhoodAndEducationInAntiquity_Skill_Data,
+    familyAndKinship_Skill_Data,
+    housingAndDomesticSpace_Skill_Data,
+    leisureAndPublicLife_Skill_Data,
+  ],
   description: {
     methodological:
       'Compare dwellings, objects, texts, and images to reconstruct family relations and daily practices across regions.',
     frontend: {
       en: 'Discover what ordinary people did in ancient daily life.',
+      it: "Scopri che cosa facevano le persone comuni nella vita quotidiana antica.",
       zh: '认识古代普通人的日常活动。',
       hi: 'जानें कि प्राचीन समय में आम लोग रोज़ क्या करते थे।',
       es: 'Descubre qué hacían las personas comunes en su vida diaria antigua.',

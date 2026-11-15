@@ -5,6 +5,7 @@ export const familyAndKinship_Skill_Data = defineSkill({
   id: '2ff755d4-04ca-4bcb-bbb6-528e74ad1292',
   name: {
     en: 'Family and Kinship',
+    it: "Famiglia e parentela",
     zh: '家庭与亲属关系',
     hi: 'परिवार और रिश्तेदारी',
     es: 'Familia y parentesco',
@@ -39,6 +40,7 @@ export const familyAndKinship_Skill_Data = defineSkill({
       'Compare household, marriage, kinship, and inheritance systems without imposing one modern family model.',
     frontend: {
       en: 'Discover how families and kinship worked in different ancient cultures.',
+      it: "Scopri come funzionavano la famiglia e i legami di parentela nelle diverse culture antiche.",
       zh: '了解不同古代文化中的家庭与亲属关系如何运作。',
       hi: 'जानें कि विभिन्न प्राचीन संस्कृतियों में परिवार और रिश्तेदारी कैसे काम करते थे।',
       es: 'Descubre cómo funcionaban las familias y el parentesco en distintas culturas antiguas.',

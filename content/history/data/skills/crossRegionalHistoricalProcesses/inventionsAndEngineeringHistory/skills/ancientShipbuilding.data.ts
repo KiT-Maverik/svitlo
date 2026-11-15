@@ -5,6 +5,7 @@ export const ancientShipbuilding_Skill_Data = defineSkill({
   id: 'b73816d8-fb54-46df-acc3-3212c7da6e9c',
   name: {
     en: 'Ancient Shipbuilding',
+    it: "Costruzione navale nell'antichità",
     zh: '古代造船',
     hi: 'प्राचीन जहाज़ निर्माण',
     es: 'Construcción naval antigua',
@@ -38,6 +39,7 @@ export const ancientShipbuilding_Skill_Data = defineSkill({
     methodological: 'Compare hull shapes, materials, sails, and steering methods across river and maritime societies.',
     frontend: {
       en: 'Explore how ancient ships were built and guided.',
+      it: "Esplora come venivano costruite e governate le navi antiche.",
       zh: '探索古代船只是如何建造和驾驶的。',
       hi: 'जानें कि प्राचीन जहाज़ कैसे बनाए और चलाए जाते थे।',
       es: 'Explora cómo se construían y gobernaban los barcos antiguos.',

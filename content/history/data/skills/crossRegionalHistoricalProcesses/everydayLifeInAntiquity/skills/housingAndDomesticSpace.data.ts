@@ -5,6 +5,7 @@ export const housingAndDomesticSpace_Skill_Data = defineSkill({
   id: '3bbe01f5-b52e-4bd4-ab86-ec717b946a65',
   name: {
     en: 'Housing and Domestic Space',
+    it: "Abitazioni e spazi domestici",
     zh: '古代住房与家庭空间',
     hi: 'आवास और घरेलू स्थान',
     es: 'Vivienda y espacios domésticos',
@@ -39,6 +40,7 @@ export const housingAndDomesticSpace_Skill_Data = defineSkill({
       'Relate house forms, household organization, and rooms to resources, climates, and social distinctions.',
     frontend: {
       en: 'Explore how people arranged and used their homes.',
+      it: "Esplora come le persone organizzavano e utilizzavano le proprie case.",
       zh: '探索古代人们如何安排与使用住房。',
       hi: 'जानें कि प्राचीन लोग अपने घरों को कैसे व्यवस्थित और इस्तेमाल करते थे।',
       es: 'Explora cómo se organizaban y utilizaban los hogares en la Antigüedad.',

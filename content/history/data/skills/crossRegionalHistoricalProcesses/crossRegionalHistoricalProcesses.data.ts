@@ -12,6 +12,7 @@ export const crossRegionalHistoricalProcesses_SkillDomain_Data = defineSkillDoma
   id: '963c15c5-4829-4514-9fea-8e2e5f6083f0',
   title: {
     en: 'Cross-Regional Historical Processes',
+    it: "Processi storici interregionali",
     zh: '跨区域历史进程',
     hi: 'अंतरक्षेत्रीय ऐतिहासिक प्रक्रियाएँ',
     es: 'Procesos históricos interregionales',
@@ -41,29 +42,20 @@ export const crossRegionalHistoricalProcesses_SkillDomain_Data = defineSkillDoma
     kk: 'Аймақаралық тарихи үдерістер',
     qm: 'Bölgelerara tarihiy süreçler',
   },
-  groups: {
-    items: {
-      ancientTradeAndContact: ancientTradeAndContact_SkillGroup_Data,
-      crisesAndHistoricalTransformations: crisesAndHistoricalTransformations_SkillGroup_Data,
-      everydayLifeInAntiquity: everydayLifeInAntiquity_SkillGroup_Data,
-      inventionsAndEngineeringHistory: inventionsAndEngineeringHistory_SkillGroup_Data,
-      powerAndSocialRelations: powerAndSocialRelations_SkillGroup_Data,
-      productionAndKnowledge: productionAndKnowledge_SkillGroup_Data,
-    },
-    order: [
-      'ancientTradeAndContact',
-      'crisesAndHistoricalTransformations',
-      'everydayLifeInAntiquity',
-      'inventionsAndEngineeringHistory',
-      'powerAndSocialRelations',
-      'productionAndKnowledge',
-    ],
-  },
+  groups: [
+    ancientTradeAndContact_SkillGroup_Data,
+    crisesAndHistoricalTransformations_SkillGroup_Data,
+    everydayLifeInAntiquity_SkillGroup_Data,
+    inventionsAndEngineeringHistory_SkillGroup_Data,
+    powerAndSocialRelations_SkillGroup_Data,
+    productionAndKnowledge_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Study shared patterns of interaction among independent regional histories without inventing a single unified ancient civilization.',
     frontend: {
       en: 'Explore historical processes that connected different societies.',
+      it: "Esplora i processi storici che collegavano società diverse.",
       zh: '探索把不同社会联系起来的历史进程。',
       hi: 'अलग-अलग समाजों को जोड़ने वाली ऐतिहासिक प्रक्रियाओं को जानें।',
       es: 'Explora procesos históricos que conectaron a distintas sociedades.',
