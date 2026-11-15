@@ -12,6 +12,7 @@ export const elementFamiliesInContext_SkillGroup_Data = defineSkillGroup({
   id: '4f2c1be2-a355-4fb2-a454-d90ab013c2f4',
   name: {
     en: 'Element Families in Context',
+    it: "Famiglie di elementi nel contesto chimico",
     zh: '元素族的化学行为',
     hi: 'तत्व परिवारों का संदर्भ',
     es: 'Familias de elementos en contexto',
@@ -47,6 +48,7 @@ export const elementFamiliesInContext_SkillGroup_Data = defineSkillGroup({
       'Elemental forms can vary in structure, oxidation state and behavior despite shared periodic classification.',
     frontend: {
       en: 'Compare chemical behavior among common families of elements.',
+      it: "Confronta il comportamento chimico delle principali famiglie di elementi.",
       zh: '比较常见元素族之间的化学行为。',
       hi: 'तत्वों के सामान्य समूहों के रासायनिक व्यवहार की तुलना करें।',
       es: 'Compara el comportamiento químico de familias comunes de elementos.',

@@ -5,6 +5,7 @@ export const allotropes_Skill_Data = defineSkill({
   id: '141ced17-c7cc-459b-8e6f-39721e413831',
   name: {
     en: 'Allotropes',
+    it: "Forme allotropiche",
     zh: '同素异形体',
     hi: 'अपररूप',
     es: 'Alótropos',
@@ -39,6 +40,7 @@ export const allotropes_Skill_Data = defineSkill({
       'Recognize distinct structural forms of one element, such as graphite and diamond, and their different properties.',
     frontend: {
       en: 'Discover how one element can form materials with different atomic arrangements.',
+      it: "Scopri come uno stesso elemento può formare materiali con disposizioni atomiche diverse.",
       zh: '了解同一种元素如何因原子排列不同而形成不同材料。',
       hi: 'जानें कि एक ही तत्व परमाणुओं की अलग व्यवस्था से अलग पदार्थ कैसे बना सकता है।',
       es: 'Descubre cómo un mismo elemento forma materiales distintos según la disposición de sus átomos.',

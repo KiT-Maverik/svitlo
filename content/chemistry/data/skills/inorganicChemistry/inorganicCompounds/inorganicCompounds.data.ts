@@ -13,6 +13,7 @@ export const inorganicCompounds_SkillGroup_Data = defineSkillGroup({
   id: '47d12c86-5c60-4241-aada-295be3553275',
   name: {
     en: 'Inorganic Compounds',
+    it: "Composti inorganici",
     zh: '无机化合物',
     hi: 'अकार्बनिक यौगिक',
     es: 'Compuestos inorgánicos',
@@ -54,6 +55,7 @@ export const inorganicCompounds_SkillGroup_Data = defineSkillGroup({
       'Inorganic formulas and classes describe varied substances whose behavior is not determined by a class name alone.',
     frontend: {
       en: 'Recognize broad categories of inorganic compounds without assuming all members act alike.',
+      it: "Riconosci le principali categorie di composti inorganici senza supporre che tutti si comportino allo stesso modo.",
       zh: '认识无机化合物的主要类别，不要认为同类物质的行为一定相同。',
       hi: 'अकार्बनिक यौगिकों की बड़ी श्रेणियों को पहचानें, लेकिन यह न मानें कि हर सदस्य एक जैसा व्यवहार करता है।',
       es: 'Reconoce grandes categorías de compuestos inorgánicos sin suponer que todos sus miembros se comportan igual.',
