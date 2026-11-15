@@ -5,6 +5,7 @@ export const explainGasExchangeInTheLungs_Skill_Data = defineSkill({
   id: 'c9484602-c122-429c-b758-cf5ae3b8ec7c',
   name: {
     en: 'Explain Gas Exchange in the Lungs',
+    it: 'Spiegare gli scambi gassosi nei polmoni',
     zh: '解释肺部气体交换',
     hi: 'फेफड़ों में गैस विनिमय समझाना',
     es: 'Explicar el intercambio de gases en los pulmones',
@@ -38,6 +39,7 @@ export const explainGasExchangeInTheLungs_Skill_Data = defineSkill({
     methodological: 'Explain the exchange of oxygen and carbon dioxide between the alveoli and blood.',
     frontend: {
       en: 'Understand how oxygen and carbon dioxide move between lung air spaces and blood.',
+      it: 'Comprendi come ossigeno e anidride carbonica passano tra gli spazi aerei dei polmoni e il sangue.',
       zh: '理解氧气和二氧化碳如何在肺泡中的空气与血液之间交换。',
       hi: 'समझें कि ऑक्सीजन और कार्बन डाइऑक्साइड फेफड़ों की वायुकोषिकाओं की हवा और रक्त के बीच कैसे आते-जाते हैं।',
       es: 'Comprende cómo el oxígeno y el dióxido de carbono pasan entre el aire de los alvéolos pulmonares y la sangre.',
