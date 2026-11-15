@@ -5,6 +5,7 @@ export const theoryOfMindDevelopment_Skill_Data = defineSkill({
   id: 'c39f9e47-6365-4272-ae51-a01fa04cf433',
   name: {
     en: 'Theory of Mind Development',
+    it: 'Sviluppo della teoria della mente',
     zh: '心理理论的发展',
     hi: 'मन के सिद्धांत का विकास',
     es: 'Desarrollo de la teoría de la mente',
@@ -39,6 +40,7 @@ export const theoryOfMindDevelopment_Skill_Data = defineSkill({
       "Describe increasing ability to represent that others may have beliefs or knowledge different from one's own.",
     frontend: {
       en: "Recognize the growing ability to think about others' beliefs and knowledge.",
+      it: 'Riconosci la crescente capacità di comprendere le convinzioni e le conoscenze altrui.',
       zh: '认识到儿童逐渐学会理解他人的信念和知识。',
       hi: 'पहचानें कि दूसरों के विश्वास और ज्ञान पर विचार करने की क्षमता कैसे बढ़ती है।',
       es: 'Reconoce cómo crece la capacidad de pensar sobre las creencias y los conocimientos de otras personas.',
