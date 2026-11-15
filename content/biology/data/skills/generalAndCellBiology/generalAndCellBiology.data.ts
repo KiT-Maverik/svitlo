@@ -10,6 +10,7 @@ export const generalAndCellBiology_SkillDomain_Data = defineSkillDomain({
   id: '189cda52-8721-4261-8731-544cc613aadb',
   title: {
     en: 'General and Cell Biology',
+    it: 'Biologia generale e cellulare',
     zh: '普通生物学与细胞生物学',
     hi: 'सामान्य एवं कोशिका जीवविज्ञान',
     es: 'Biología general y celular',
@@ -50,6 +51,7 @@ export const generalAndCellBiology_SkillDomain_Data = defineSkillDomain({
       'Shared principles of cellular organism organization, from the cell to interactions among organs, as well as metabolism, growth, and responses. Specific human systems and particular taxa are addressed in their respective Domains.',
     frontend: {
       en: 'Explore how cells and body structures work together to support the processes of life.',
+      it: 'Scopri come le cellule e le strutture del corpo collaborano per sostenere i processi vitali.',
       zh: '探索细胞和生物体的结构如何协同工作，维持生命活动。',
       hi: 'जानें कि कोशिकाएँ और शरीर की संरचनाएँ मिलकर जीवन की प्रक्रियाओं को कैसे बनाए रखती हैं।',
       es: 'Explora cómo las células y las estructuras de los seres vivos trabajan juntas para mantener los procesos vitales.',
