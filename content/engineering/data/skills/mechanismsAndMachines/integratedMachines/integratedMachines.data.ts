@@ -11,6 +11,7 @@ export const integratedMachines_SkillGroup_Data = defineSkillGroup({
   id: '017492af-88e9-4e95-b81e-762a0a488f28',
   name: {
     en: 'Integrated Machines',
+    it: 'Macchine integrate',
     zh: '综合机械',
     hi: 'एकीकृत मशीनें',
     es: 'Máquinas integradas',
@@ -50,6 +51,7 @@ export const integratedMachines_SkillGroup_Data = defineSkillGroup({
       'Machines combine multiple components in a working sequence, so their behavior cannot be inferred from a single named part.',
     frontend: {
       en: 'Explore how several mechanical mechanisms work together in a machine.',
+      it: 'Esplora come diversi meccanismi lavorano insieme in una macchina.',
       zh: '探索多种机械机构如何协同工作。',
       hi: 'जानें कि कई यांत्रिक तंत्र मिलकर मशीन में कैसे काम करते हैं।',
       es: 'Explora cómo varios mecanismos mecánicos trabajan juntos en una máquina.',
