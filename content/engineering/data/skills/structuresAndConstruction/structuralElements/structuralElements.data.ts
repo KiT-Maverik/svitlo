@@ -14,6 +14,7 @@ export const structuralElements_SkillGroup_Data = defineSkillGroup({
   id: '18633aac-eac9-45dd-be1d-625881c5ed90',
   name: {
     en: 'Structural Elements',
+    it: 'Elementi strutturali',
     zh: '结构构件',
     hi: 'संरचनात्मक तत्व',
     es: 'Elementos estructurales',
@@ -56,6 +57,7 @@ export const structuralElements_SkillGroup_Data = defineSkillGroup({
       'Characteristic forms route forces differently; a safe structure is not just a visually plausible shape.',
     frontend: {
       en: 'Learn how different structural parts transfer forces into the ground.',
+      it: 'Impara come diversi elementi strutturali trasferiscono le forze al terreno.',
       zh: '了解不同构件如何将力传递到地面。',
       hi: 'जानें कि अलग-अलग संरचनात्मक हिस्से बलों को जमीन तक कैसे पहुँचाते हैं।',
       es: 'Aprende cómo diferentes elementos transmiten fuerzas al terreno.',
