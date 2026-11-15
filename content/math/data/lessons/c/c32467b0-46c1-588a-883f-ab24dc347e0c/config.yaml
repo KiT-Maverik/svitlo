@@ -20,10 +20,10 @@ config:
       en: 'Reading Whole Hours'
   section:
     items:
-      section1:
+      distinguishClockHands:
         config:
           id: 'c32467b0-46c1-588a-883f-000000000004'
-          slug: 'section1'
+          slug: 'distinguishClockHands'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Two hands, different jobs'
           content:
             items:
-              section1Text1:
+              identifyHourHand:
                 config:
                   id: 'c32467b0-46c1-588a-883f-000000000001'
-                  slug: 'section1Text1'
+                  slug: 'identifyHourHand'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '1. **`text` (existing type):** “This clock has a short hour hand and a long minute hand. Their jobs are different. Which hand helps you find the hour?”'
-              section1Scene1:
+              exploreClockHandRoles:
                 config:
                   id: 'c32467b0-46c1-588a-883f-000000000002'
-                  slug: 'section1Scene1'
+                  slug: 'exploreClockHandRoles'
                   type: 'scene'
                   params: {}
                   locale:
@@ -119,10 +119,10 @@ config:
 
                     This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
                   productionNotes: "This placement in Two hands, different jobs refers to ClockExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section1Markdown1:
+              explainWholeHourHands:
                 config:
                   id: 'c32467b0-46c1-588a-883f-000000000003'
-                  slug: 'section1Markdown1'
+                  slug: 'explainWholeHourHands'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -132,9 +132,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '3. **`markdown` (existing type):** “The short hour hand points near the hour number. At an exact hour, the long minute hand points to 12.”'
             order:
-              - 'section1Text1'
-              - 'section1Scene1'
-              - 'section1Markdown1'
+              - 'identifyHourHand'
+              - 'exploreClockHandRoles'
+              - 'explainWholeHourHands'
         production:
           purpose: 'Two hands, different jobs'
           pedagogicalIntent: |-
@@ -154,10 +154,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section2:
+      buildThreeOClock:
         config:
           id: 'c32467b0-46c1-588a-883f-000000000008'
-          slug: 'section2'
+          slug: 'buildThreeOClock'
           type: 'content'
           params: {}
           locale:
@@ -167,10 +167,10 @@ config:
               en: "Build three o'clock"
           content:
             items:
-              section2Text1:
+              setThreeOClock:
                 config:
                   id: 'c32467b0-46c1-588a-883f-000000000005'
-                  slug: 'section2Text1'
+                  slug: 'setThreeOClock'
                   type: 'text'
                   params: {}
                   locale:
@@ -179,10 +179,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '1. **`text` (existing type):** “The hour hand is at 3 and the minute hand is at 12. What time is it?”'
-              section2Scene1:
+              positionClockHands:
                 config:
                   id: 'c32467b0-46c1-588a-883f-000000000006'
-                  slug: 'section2Scene1'
+                  slug: 'positionClockHands'
                   type: 'scene'
                   params: {}
                   locale:
@@ -253,10 +253,10 @@ config:
 
                     This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
                   productionNotes: "This placement in Build three o'clock refers to ClockExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section2Markdown1:
+              explainThreeOClock:
                 config:
                   id: 'c32467b0-46c1-588a-883f-000000000007'
-                  slug: 'section2Markdown1'
+                  slug: 'explainThreeOClock'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -266,9 +266,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '3. **`markdown` (existing type):** “It is 3:00, said ‘three o’clock’. The 00 says zero minutes after three.”'
             order:
-              - 'section2Text1'
-              - 'section2Scene1'
-              - 'section2Markdown1'
+              - 'setThreeOClock'
+              - 'positionClockHands'
+              - 'explainThreeOClock'
         production:
           purpose: "Build three o'clock"
           pedagogicalIntent: |-
@@ -288,10 +288,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section3:
+      changeWholeHour:
         config:
           id: 'c32467b0-46c1-588a-883f-00000000000c'
-          slug: 'section3'
+          slug: 'changeWholeHour'
           type: 'content'
           params: {}
           locale:
@@ -301,10 +301,10 @@ config:
               en: 'Change the hour, keep the pattern'
           content:
             items:
-              section3Markdown1:
+              setFourOClock:
                 config:
                   id: 'c32467b0-46c1-588a-883f-000000000009'
-                  slug: 'section3Markdown1'
+                  slug: 'setFourOClock'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -313,10 +313,10 @@ config:
                 production:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '1. **`markdown` (existing type):** “Now set 4:00. The shorter hand points to 4 while the longer hand is still at 12. Later, the short hand will move smoothly toward 5—not jump suddenly.”'
-              section3Scene1:
+              exploreDifferentHours:
                 config:
                   id: 'c32467b0-46c1-588a-883f-00000000000a'
-                  slug: 'section3Scene1'
+                  slug: 'exploreDifferentHours'
                   type: 'scene'
                   params: {}
                   locale:
@@ -387,10 +387,10 @@ config:
 
                     This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
                   productionNotes: "This placement in Change the hour, keep the pattern refers to ClockExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section3Text1:
+              explainHourPattern:
                 config:
                   id: 'c32467b0-46c1-588a-883f-00000000000b'
-                  slug: 'section3Text1'
+                  slug: 'explainHourPattern'
                   type: 'text'
                   params: {}
                   locale:
@@ -400,9 +400,9 @@ config:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '3. **`text` (existing type):** “At each exact hour, the long hand is at 12. The short hand tells which hour it is.”'
             order:
-              - 'section3Markdown1'
-              - 'section3Scene1'
-              - 'section3Text1'
+              - 'setFourOClock'
+              - 'exploreDifferentHours'
+              - 'explainHourPattern'
         production:
           purpose: 'Change the hour, keep the pattern'
           pedagogicalIntent: |-
@@ -422,10 +422,10 @@ config:
 
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section4:
+      readEightOClock:
         config:
           id: 'c32467b0-46c1-588a-883f-000000000010'
-          slug: 'section4'
+          slug: 'readEightOClock'
           type: 'content'
           params: {}
           locale:
@@ -435,10 +435,10 @@ config:
               en: 'Can you read a different clock?'
           content:
             items:
-              section4Text1:
+              readEightOClock:
                 config:
                   id: 'c32467b0-46c1-588a-883f-00000000000d'
-                  slug: 'section4Text1'
+                  slug: 'readEightOClock'
                   type: 'text'
                   params: {}
                   locale:
@@ -447,10 +447,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '1. **`text` (existing type):** “A new clock has its short hand at 8 and its long hand at 12. Read it first before opening the answer.”'
-              section4Scene1:
+              identifyUnknownClock:
                 config:
                   id: 'c32467b0-46c1-588a-883f-00000000000e'
-                  slug: 'section4Scene1'
+                  slug: 'identifyUnknownClock'
                   type: 'scene'
                   params: {}
                   locale:
@@ -521,10 +521,10 @@ config:
 
                     This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
                   productionNotes: "This placement in Can you read a different clock? refers to ClockExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section4Markdown1:
+              explainEightOClock:
                 config:
                   id: 'c32467b0-46c1-588a-883f-00000000000f'
-                  slug: 'section4Markdown1'
+                  slug: 'explainEightOClock'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -534,9 +534,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '3. **`markdown` (existing type):** “The short hand at 8 tells us eight; the long hand at 12 means zero minutes. The reading is 8:00.”'
             order:
-              - 'section4Text1'
-              - 'section4Scene1'
-              - 'section4Markdown1'
+              - 'readEightOClock'
+              - 'identifyUnknownClock'
+              - 'explainEightOClock'
         production:
           purpose: 'Can you read a different clock?'
           pedagogicalIntent: |-
@@ -557,10 +557,10 @@ config:
             **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'distinguishClockHands'
+      - 'buildThreeOClock'
+      - 'changeWholeHour'
+      - 'readEightOClock'
   flashcards:
     items: {}
     order: []

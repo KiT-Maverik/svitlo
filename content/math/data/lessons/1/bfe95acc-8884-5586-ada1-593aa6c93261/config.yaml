@@ -15,10 +15,10 @@ config:
       en: 'Say It With a Sign: Less, Greater, Equal'
   section:
     items:
-      section1:
+      chooseComparisonSign:
         config:
           id: 'ebf33a02-e54d-5f59-b6a1-ba0229a2be83'
-          slug: 'section1'
+          slug: 'chooseComparisonSign'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Relation Card Lab'
           content:
             items:
-              text1:
+              compareEightAndTwelve:
                 config:
                   id: 'afd55fd3-734e-5b88-b10f-dfd3eaaf5386'
-                  slug: 'text1'
+                  slug: 'compareEightAndTwelve'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'Eight dots on the first side and twelve on the second. Which sign makes the sentence true?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              chooseTrueSign:
                 config:
                   id: 'af10e88c-9be9-5019-9e28-688cb429e997'
-                  slug: 'scene1'
+                  slug: 'chooseTrueSign'
                   type: 'scene'
                   params: {}
                   locale:
@@ -135,10 +135,10 @@ config:
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
                   purpose: 'Relation Card Lab'
                   productionNotes: 'Source Scene relationCardLab.scene-spec.md; independent placement for Relation Card Lab. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainLessThan:
                 config:
                   id: 'fcc56cb1-6f12-5c32-b727-ecb1204078f4'
-                  slug: 'markdown1'
+                  slug: 'explainLessThan'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -146,7 +146,7 @@ config:
                       en: '8 < 12, read eight is less than twelve. 8 < 12; 12 is four more than 8, so they are not equal.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['compareEightAndTwelve', 'chooseTrueSign', 'explainLessThan']
         production:
           purpose: 'Relation Card Lab'
           productionNotes: |-
@@ -183,10 +183,10 @@ config:
             - **Boundary reasoning:** Do not imply the sign choice is a score; a child can inspect exact quantities before or after a prediction. Equal-value counts require the same sign even when one visual row is longer.
             - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
-      section2:
+      reverseComparisonSign:
         config:
           id: 'eaf3386f-e24d-5aa0-b5a1-b86f2aa2c016'
-          slug: 'section2'
+          slug: 'reverseComparisonSign'
           type: 'content'
           params: {}
           locale:
@@ -196,10 +196,10 @@ config:
               en: 'Would the Sign Still Tell the Truth?'
           content:
             items:
-              text1:
+              predictSignAfterSwap:
                 config:
                   id: '565d22b2-b26f-5515-9797-a2b2595e20c7'
-                  slug: 'text1'
+                  slug: 'predictSignAfterSwap'
                   type: 'text'
                   params: {}
                   locale:
@@ -207,10 +207,10 @@ config:
                       en: 'If 8 < 12 is true, may we swap the numbers and still write 12 < 8?'
                 production:
                   purpose: 'Source prompt or feedback'
-              markdown1:
+              explainReversedOrder:
                 config:
                   id: '28dd74e0-3600-520f-a33f-f4e046551ce5'
-                  slug: 'markdown1'
+                  slug: 'explainReversedOrder'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -218,10 +218,10 @@ config:
                       en: 'No. Twelve is greater than eight. After swapping their places, the true statement is 12 > 8. The sign must follow the quantities, not the position you remember.'
                 production:
                   purpose: 'Source explanatory copy'
-              markdown2:
+              explainEqualitySymmetry:
                 config:
                   id: '2bdd7999-3700-53a2-a63f-f9994355182c'
-                  slug: 'markdown2'
+                  slug: 'explainEqualitySymmetry'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -229,7 +229,7 @@ config:
                       en: 'When the numbers are equal, such as 7 = 7, switching them leaves equality true. In an RTL sentence, preserve mathematical operand order instead of flipping the signs automatically.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'markdown1', 'markdown2']
+            order: ['predictSignAfterSwap', 'explainReversedOrder', 'explainEqualitySymmetry']
         production:
           purpose: 'Would the Sign Still Tell the Truth?'
           productionNotes: |-
@@ -242,10 +242,10 @@ config:
             - **Meaningful feedback:** The example explicitly contrasts the likely mistaken response with a countable or numeric explanation. Child may reason before reading; current `text`/`markdown` renderers are **not** claimed to provide a delayed-answer or true-response validation widget.
             - **Accessibility and pacing:** Brief accessible written language, no sensory dependency. The explanatory text remains available to every learner and is never hidden behind a timed action.
             - **Transition:** Section 3 changes numbers or objects and asks for independent reasoning. The first Scene's state is not carried into the second.
-      section3:
+      checkSwappedComparison:
         config:
           id: 'e9f336dc-e34d-5c33-b4a1-b6dc2ba2c1a9'
-          slug: 'section3'
+          slug: 'checkSwappedComparison'
           type: 'content'
           params: {}
           locale:
@@ -255,10 +255,10 @@ config:
               en: 'Swap the Comparison'
           content:
             items:
-              text1:
+              testSwappedNumbers:
                 config:
                   id: 'fc6237c1-3747-57b6-bd9c-b7c1d1f612d8'
-                  slug: 'text1'
+                  slug: 'testSwappedNumbers'
                   type: 'text'
                   params: {}
                   locale:
@@ -266,10 +266,10 @@ config:
                       en: '8 < 12 is true. Swap the numbers. Does < still tell the truth?'
                 production:
                   purpose: 'Source prompt or feedback'
-              scene1:
+              visualizeReversedComparison:
                 config:
                   id: '71ad0e92-4dbe-5967-a0c4-8e92709a7609'
-                  slug: 'scene1'
+                  slug: 'visualizeReversedComparison'
                   type: 'scene'
                   params: {}
                   locale:
@@ -362,10 +362,10 @@ config:
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
                   purpose: 'Swap the Comparison'
                   productionNotes: 'Source Scene swapTheComparison.scene-spec.md; independent placement for Swap the Comparison. Variant/feedback retained under parent Section productionNotes.'
-              markdown1:
+              explainSignFlip:
                 config:
                   id: '0d66c8bb-9649-5884-87c9-48bb00ca5422'
-                  slug: 'markdown1'
+                  slug: 'explainSignFlip'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -373,7 +373,7 @@ config:
                       en: '12 > 8 is true. 12 < 8 is false. 8 < 12 and 12 > 8 express the same fact.'
                 production:
                   purpose: 'Source explanatory copy'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['testSwappedNumbers', 'visualizeReversedComparison', 'explainSignFlip']
         production:
           purpose: 'Swap the Comparison'
           productionNotes: |-
@@ -410,7 +410,7 @@ config:
             - **Boundary reasoning:** The sign must not be mirrored as a mere visual RTL effect; only the explicit user-operable Swap action changes operand order. Swapping identical values does not require changing =.
             - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
-    order: ['section1', 'section2', 'section3']
+    order: ['chooseComparisonSign', 'reverseComparisonSign', 'checkSwappedComparison']
   flashcards:
     items: {}
     order: []

@@ -16,10 +16,10 @@ config:
       en: 'How Many More or Fewer?'
   section:
     items:
-      section1:
+      matchEqualGroups:
         config:
           id: '2511bf30-3bda-43fb-affe-aba2d1901edd'
-          slug: 'section1'
+          slug: 'matchEqualGroups'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'When each object has a partner'
           content:
             items:
-              text1:
+              compareEqualPencilGroups:
                 config:
                   id: 'b538ebe5-ac9d-43de-9f0d-88f35e463c7c'
-                  slug: 'text1'
+                  slug: 'compareEqualPencilGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'When each object has a partner; authored text block 1'
                   specification: '1. **`text` Resource:** “Lena has **8 pencils**. Danylo has **8 pencils**. How many **more** pencils does one have than the other? Look at matching pairs.”'
-              scene2:
+              pairPencils:
                 config:
                   id: '890de18b-1546-4512-a63c-dae58daa3ecc'
-                  slug: 'scene2'
+                  slug: 'pairPencils'
                   type: 'scene'
                   params: {}
                   locale:
@@ -110,10 +110,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Comparison Gap Lab (Scene specification embedded in this config.yaml), entry A. Eight countable pencil icons in each labeled row, plus a matching ledger “eight paired, zero left unmatched.” Learner reveals one matched pair at a time or “Show all pairs”. Feedback: “All eight have partners; **zero pencils more**.”
                   productionNotes: 'Proposed unimplemented Scene, sourced from comparisonGapLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              explainZeroDifference:
                 config:
                   id: 'b338e8bf-aa9d-40b8-a10d-8c1960463fa2'
-                  slug: 'text3'
+                  slug: 'explainZeroDifference'
                   type: 'text'
                   params: {}
                   locale:
@@ -122,10 +122,10 @@ config:
                 production:
                   purpose: 'When each object has a partner; authored text block 3'
                   specification: '3. **`text`:** “More does not mean we should add here. The question asks **what the gap is**, and the groups are equal.”'
-              markdown4:
+              defineUnmatchedGap:
                 config:
                   id: '3517a860-9ad7-4ea3-827c-900aee040de5'
-                  slug: 'markdown4'
+                  slug: 'defineUnmatchedGap'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -134,7 +134,7 @@ config:
                 production:
                   purpose: 'When each object has a partner; authored markdown block 4'
                   specification: '4. **`markdown`:** “A comparison gap is how many units are **not matched** in the larger group. Equal groups have a gap of zero.”'
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order: ['compareEqualPencilGroups', 'pairPencils', 'explainZeroDifference', 'defineUnmatchedGap']
         production:
           purpose: 'When each object has a partner'
           pedagogicalIntent: 'Original Section 1 — When each object has a partner; authoring draft only'
@@ -145,10 +145,10 @@ config:
             2. **`scene` Resource (proposed):** Comparison Gap Lab (Scene specification embedded in this config.yaml), entry A. Eight countable pencil icons in each labeled row, plus a matching ledger “eight paired, zero left unmatched.” Learner reveals one matched pair at a time or “Show all pairs”. Feedback: “All eight have partners; **zero pencils more**.”
             3. **`text`:** “More does not mean we should add here. The question asks **what the gap is**, and the groups are equal.”
             4. **`markdown`:** “A comparison gap is how many units are **not matched** in the larger group. Equal groups have a gap of zero.”
-      section2:
+      countUnmatchedPencils:
         config:
           id: '2811c3e9-3cda-458e-aefe-aa0fce901a24'
-          slug: 'section2'
+          slug: 'countUnmatchedPencils'
           type: 'content'
           params: {}
           locale:
@@ -158,10 +158,10 @@ config:
               en: 'What stays unmatched?'
           content:
             items:
-              text1:
+              compareThirteenAndNine:
                 config:
                   id: '29879318-9cab-4b5f-b30b-b152392ad7e9'
-                  slug: 'text1'
+                  slug: 'compareThirteenAndNine'
                   type: 'text'
                   params: {}
                   locale:
@@ -170,10 +170,10 @@ config:
                 production:
                   purpose: 'What stays unmatched?; authored text block 1'
                   specification: '1. **`text`:** “Lena has **13 pencils**; Danylo has **9 pencils**. **How many more** does Lena have?” Invite a prediction before doing any calculation.'
-              scene2:
+              pairUnequalPencils:
                 config:
                   id: 'f214ba90-6c98-44d9-9355-a30e3afba837'
-                  slug: 'scene2'
+                  slug: 'pairUnequalPencils'
                   type: 'scene'
                   params: {}
                   locale:
@@ -239,10 +239,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Gap Lab entry B presents thirteen and nine equal-unit counters with labels and optional pair-reveal controls. Pair nine from each group, leave **4 unpaired** in Lena's group. Model **13 − 9 = 4 pencils**. Offer accessible nonvisual count summary at every reveal.
                   productionNotes: 'Proposed unimplemented Scene, sourced from comparisonGapLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              distinguishDifferenceFromSum:
                 config:
                   id: '2b87963e-9eab-4e85-b10b-ae2c372ad4c3'
-                  slug: 'text3'
+                  slug: 'distinguishDifferenceFromSum'
                   type: 'text'
                   params: {}
                   locale:
@@ -251,10 +251,10 @@ config:
                 production:
                   purpose: 'What stays unmatched?; authored text block 3'
                   specification: '3. **`text`, feedback:** For 22: “Thirteen plus nine counts **both collections together**, not the difference.” For 4: “Nine match nine; four remain without partners.”'
-              markdown4:
+              subtractToFindGap:
                 config:
                   id: 'dbbad2a9-c968-4c6e-865e-a7df5d2dc7ac'
-                  slug: 'markdown4'
+                  slug: 'subtractToFindGap'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -263,7 +263,7 @@ config:
                 production:
                   purpose: 'What stays unmatched?; authored markdown block 4'
                   specification: '4. **`markdown`:** “The **larger amount minus the smaller amount** gives the nonnegative gap: **13 − 9 = 4**. The answer is ‘four more pencils’, not just an unlabeled four.”'
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order: ['compareThirteenAndNine', 'pairUnequalPencils', 'distinguishDifferenceFromSum', 'subtractToFindGap']
         production:
           purpose: 'What stays unmatched?'
           pedagogicalIntent: 'Original Section 2 — What stays unmatched?; authoring draft only'
@@ -274,10 +274,10 @@ config:
             2. **`scene` Resource (proposed):** Gap Lab entry B presents thirteen and nine equal-unit counters with labels and optional pair-reveal controls. Pair nine from each group, leave **4 unpaired** in Lena's group. Model **13 − 9 = 4 pencils**. Offer accessible nonvisual count summary at every reveal.
             3. **`text`, feedback:** For 22: “Thirteen plus nine counts **both collections together**, not the difference.” For 4: “Nine match nine; four remain without partners.”
             4. **`markdown`:** “The **larger amount minus the smaller amount** gives the nonnegative gap: **13 − 9 = 4**. The answer is ‘four more pencils’, not just an unlabeled four.”
-      section3:
+      interpretFewerAsGap:
         config:
           id: '2711c256-3dda-4721-adfe-a87ccf901bb7'
-          slug: 'section3'
+          slug: 'interpretFewerAsGap'
           type: 'content'
           params: {}
           locale:
@@ -287,10 +287,10 @@ config:
               en: '“Fewer” changes the wording, not the gap'
           content:
             items:
-              text1:
+              rephraseAsFewer:
                 config:
                   id: '0c224707-387b-44f0-ab9a-60e1555d169a'
-                  slug: 'text1'
+                  slug: 'rephraseAsFewer'
                   type: 'text'
                   params: {}
                   locale:
@@ -299,10 +299,10 @@ config:
                 production:
                   purpose: '“Fewer” changes the wording, not the gap; authored text block 1'
                   specification: '1. **`text`:** “Lena has thirteen pencils and Danylo nine. How many **fewer** pencils does Danylo have than Lena? Is the answer different from ‘how many more does Lena have’?”'
-              scene2:
+              compareBothDescriptions:
                 config:
                   id: 'c5c2beb1-2388-4b58-8b8b-7c1f223197e6'
-                  slug: 'scene2'
+                  slug: 'compareBothDescriptions'
                   type: 'scene'
                   params: {}
                   locale:
@@ -368,10 +368,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Entry C keeps **the same counts 13 and 9** and reverses the wording only. The unmatched difference remains **4 pencils**. “More than” identifies Lena as larger; “fewer than” identifies Danylo as smaller. Ask the learner to name which group is being described.
                   productionNotes: 'Proposed unimplemented Scene, sourced from comparisonGapLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              explainSameDifference:
                 config:
                   id: '0e224a2d-3a7b-4816-a99a-5dbb535d1374'
-                  slug: 'text3'
+                  slug: 'explainSameDifference'
                   type: 'text'
                   params: {}
                   locale:
@@ -380,10 +380,10 @@ config:
                 production:
                   purpose: '“Fewer” changes the wording, not the gap; authored text block 3'
                   specification: '3. **`text`:** “Both questions compare the _same two groups_. The gap is four in either wording; we are naming it from different perspectives.”'
-              markdown4:
+              distinguishTimesAsMany:
                 config:
                   id: 'f0b23346-948e-42d1-b47d-0d14de104d57'
-                  slug: 'markdown4'
+                  slug: 'distinguishTimesAsMany'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -392,7 +392,7 @@ config:
                 production:
                   purpose: '“Fewer” changes the wording, not the gap; authored markdown block 4'
                   specification: '4. **`markdown`:** Clarify a separate question: “**How many times** as many?” is a **multiplicative** comparison, not another way to ask for the gap. We do not calculate a ratio in this Lesson.'
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order: ['rephraseAsFewer', 'compareBothDescriptions', 'explainSameDifference', 'distinguishTimesAsMany']
         production:
           purpose: '“Fewer” changes the wording, not the gap'
           pedagogicalIntent: 'Original Section 3 — “Fewer” changes the wording, not the gap; authoring draft only'
@@ -403,10 +403,10 @@ config:
             2. **`scene` Resource (proposed):** Entry C keeps **the same counts 13 and 9** and reverses the wording only. The unmatched difference remains **4 pencils**. “More than” identifies Lena as larger; “fewer than” identifies Danylo as smaller. Ask the learner to name which group is being described.
             3. **`text`:** “Both questions compare the _same two groups_. The gap is four in either wording; we are naming it from different perspectives.”
             4. **`markdown`:** Clarify a separate question: “**How many times** as many?” is a **multiplicative** comparison, not another way to ask for the gap. We do not calculate a ratio in this Lesson.
-      section4:
+      solveBookDifference:
         config:
           id: '2a11c70f-3eda-48b4-acfe-a6e9cc9016fe'
-          slug: 'section4'
+          slug: 'solveBookDifference'
           type: 'content'
           params: {}
           locale:
@@ -416,10 +416,10 @@ config:
               en: 'Independent transfer without a prebuilt pairing'
           content:
             items:
-              text1:
+              compareBookQuantities:
                 config:
                   id: '7a9de652-ed17-4d79-a1f5-5e184375598f'
-                  slug: 'text1'
+                  slug: 'compareBookQuantities'
                   type: 'text'
                   params: {}
                   locale:
@@ -428,10 +428,10 @@ config:
                 production:
                   purpose: 'Independent transfer without a prebuilt pairing; authored text block 1'
                   specification: '1. **`text`:** “A shelf holds **18 small books** and **11 large books**. How many **more small books than large books** are there?” These are two categories of the same unit “books”.'
-              scene2:
+              modelBookDifference:
                 config:
                   id: 'fe7f120e-bf81-4aa7-86eb-4b9018faf669'
-                  slug: 'scene2'
+                  slug: 'modelBookDifference'
                   type: 'scene'
                   params: {}
                   locale:
@@ -497,10 +497,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Gap Lab entry D starts with a textual list, no automatic aligned bars. Learner chooses to build a pairing model or instead perform **18 − 11 = 7 books** with accessible number/operator controls. Optional hint “Which group is larger?”; a second “Count how many are left after matching eleven.”
                   productionNotes: 'Proposed unimplemented Scene, sourced from comparisonGapLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              contrastTotalWithDifference:
                 config:
                   id: '789de32c-eb17-4a53-a3f5-613e45755cb5'
-                  slug: 'text3'
+                  slug: 'contrastTotalWithDifference'
                   type: 'text'
                   params: {}
                   locale:
@@ -509,10 +509,10 @@ config:
                 production:
                   purpose: 'Independent transfer without a prebuilt pairing; authored text block 3'
                   specification: '3. **`text`, feedback:** For 29: “That is all the books combined, but the question asks by how many one group exceeds the other.” For 7: “Eighteen is seven more than eleven. The gap is seven books.” If a learner proposes “7 small books in total”, clarify “Seven is the **difference**, not the whole small-book collection.”'
-              markdown4:
+              summarizeComparisonStrategy:
                 config:
                   id: '9e1f2cdf-5829-441c-83fa-4da973f862be'
-                  slug: 'markdown4'
+                  slug: 'summarizeComparisonStrategy'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -521,7 +521,7 @@ config:
                 production:
                   purpose: 'Independent transfer without a prebuilt pairing; authored markdown block 4'
                   specification: '4. **`markdown`:** “**Recall:** Compare compatible groups. Match equal units, count the unmatched excess, or subtract the smaller count from the larger.”'
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order: ['compareBookQuantities', 'modelBookDifference', 'contrastTotalWithDifference', 'summarizeComparisonStrategy']
         production:
           purpose: 'Independent transfer without a prebuilt pairing'
           pedagogicalIntent: 'Original Section 4 — Independent transfer without a prebuilt pairing; authoring draft only'
@@ -532,7 +532,7 @@ config:
             2. **`scene` Resource (proposed):** Gap Lab entry D starts with a textual list, no automatic aligned bars. Learner chooses to build a pairing model or instead perform **18 − 11 = 7 books** with accessible number/operator controls. Optional hint “Which group is larger?”; a second “Count how many are left after matching eleven.”
             3. **`text`, feedback:** For 29: “That is all the books combined, but the question asks by how many one group exceeds the other.” For 7: “Eighteen is seven more than eleven. The gap is seven books.” If a learner proposes “7 small books in total”, clarify “Seven is the **difference**, not the whole small-book collection.”
             4. **`markdown`:** “**Recall:** Compare compatible groups. Match equal units, count the unmatched excess, or subtract the smaller count from the larger.”
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['matchEqualGroups', 'countUnmatchedPencils', 'interpretFewerAsGap', 'solveBookDifference']
   flashcards:
     items: {}
     order: []

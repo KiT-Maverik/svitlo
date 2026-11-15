@@ -20,10 +20,10 @@ config:
       en: 'Taking Away Zero'
   section:
     items:
-      section1:
+      removeNoCounters:
         config:
           id: 'cc96d760-7f16-5b57-91fe-000000000004'
-          slug: 'section1'
+          slug: 'removeNoCounters'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Take Nothing Away'
           content:
             items:
-              text1:
+              predictSevenMinusZero:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-000000000001'
-                  slug: 'text1'
+                  slug: 'predictSevenMinusZero'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line:   1. **text — available:** “There are 7 counters. You must take away ZERO counters. How many stay?”'
-              scene1:
+              modelNoRemoval:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-000000000002'
-                  slug: 'scene1'
+                  slug: 'modelNoRemoval'
                   type: 'scene'
                   params: {}
                   locale:
@@ -106,10 +106,10 @@ config:
 
                     Scene generic renderer exists, Zero Removal Explorer does not. Requires prior Methodologist/editor approval and Scene Designer implementation with own tests and locale data. No invented props, assessment APIs or Note event.
                   productionNotes: 'Unique Scene placement scene1 in Take Nothing Away. Original:   2. **scene — proposed, supported resource:** `Zero Removal Explorer` (specification preserved in config.yaml), seven countable counters and a “Take away 0” action with visibly unchanged quantity.. Status: provisional only.'
-              markdown1:
+              explainIdentity:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-000000000003'
-                  slug: 'markdown1'
+                  slug: 'explainIdentity'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -119,9 +119,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line:   3. **markdown — available:** “You removed none. All seven remain: **7 − 0 = 7**.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'predictSevenMinusZero'
+              - 'modelNoRemoval'
+              - 'explainIdentity'
         production:
           purpose: 'Take Nothing Away'
           pedagogicalIntent: |-
@@ -138,10 +138,10 @@ config:
             - Note: “Taking away zero leaves the number unchanged,” planned after visible demonstration.
             - Dependencies: New custom Scene; text/markdown renderer exists.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section2:
+      compareZeroAndTwoRemoved:
         config:
           id: 'cc96d760-7f16-5b57-91fe-000000000008'
-          slug: 'section2'
+          slug: 'compareZeroAndTwoRemoved'
           type: 'content'
           params: {}
           locale:
@@ -151,10 +151,10 @@ config:
               en: 'Zero Is Different from Two'
           content:
             items:
-              text1:
+              contrastZeroAndTwo:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-000000000005'
-                  slug: 'text1'
+                  slug: 'contrastZeroAndTwo'
                   type: 'text'
                   params: {}
                   locale:
@@ -163,10 +163,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line:   1. **text — available:** “Begin with 7. Compare taking away 0 with taking away 2.”'
-              scene1:
+              visualizeRemovalDifference:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-000000000006'
-                  slug: 'scene1'
+                  slug: 'visualizeRemovalDifference'
                   type: 'scene'
                   params: {}
                   locale:
@@ -224,10 +224,10 @@ config:
 
                     Scene generic renderer exists, Zero Removal Explorer does not. Requires prior Methodologist/editor approval and Scene Designer implementation with own tests and locale data. No invented props, assessment APIs or Note event.
                   productionNotes: 'Unique Scene placement scene1 in Zero Is Different from Two. Original:   2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), comparison entry: two independently labeled trials from seven; removing 0 leaves 7; removing 2 leaves 5.. Status: provisional only.'
-              markdown1:
+              explainZeroVsTwo:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-000000000007'
-                  slug: 'markdown1'
+                  slug: 'explainZeroVsTwo'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -237,9 +237,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line:   3. **markdown — available:** “**7 − 0 = 7**. **7 − 2 = 5**. The first action removes nothing; the second removes two. Zero does not make the whole collection disappear.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'contrastZeroAndTwo'
+              - 'visualizeRemovalDifference'
+              - 'explainZeroVsTwo'
         production:
           purpose: 'Zero Is Different from Two'
           pedagogicalIntent: |-
@@ -256,10 +256,10 @@ config:
             - Note: No new Note; invite recall of previous one.
             - Dependencies: Scene entry with isolated state.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section3:
+      makeZeroLengthJump:
         config:
           id: 'cc96d760-7f16-5b57-91fe-00000000000c'
-          slug: 'section3'
+          slug: 'makeZeroLengthJump'
           type: 'content'
           params: {}
           locale:
@@ -269,10 +269,10 @@ config:
               en: 'A Jump of Zero'
           content:
             items:
-              markdown1:
+              describeZeroJump:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-000000000009'
-                  slug: 'markdown1'
+                  slug: 'describeZeroJump'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -281,10 +281,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line:   1. **markdown — available:** “Subtracting means a jump back on a number line. What happens when the jump is **0**?”'
-              scene1:
+              modelNumberLineStasis:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-00000000000a'
-                  slug: 'scene1'
+                  slug: 'modelNumberLineStasis'
                   type: 'scene'
                   params: {}
                   locale:
@@ -342,10 +342,10 @@ config:
 
                     Scene generic renderer exists, Zero Removal Explorer does not. Requires prior Methodologist/editor approval and Scene Designer implementation with own tests and locale data. No invented props, assessment APIs or Note event.
                   productionNotes: 'Unique Scene placement scene1 in A Jump of Zero. Original:   2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), number-line entry at seven; show zero-length displacement (no changed coordinate), and a contrast jump back two to five.. Status: provisional only.'
-              text1:
+              explainZeroStep:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-00000000000b'
-                  slug: 'text1'
+                  slug: 'explainZeroStep'
                   type: 'text'
                   params: {}
                   locale:
@@ -355,9 +355,9 @@ config:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line:   3. **text — available:** “A jump of zero leaves us at seven. **7 − 0 = 7**.”'
             order:
-              - 'markdown1'
-              - 'scene1'
-              - 'text1'
+              - 'describeZeroJump'
+              - 'modelNumberLineStasis'
+              - 'explainZeroStep'
         production:
           purpose: 'A Jump of Zero'
           pedagogicalIntent: |-
@@ -373,10 +373,10 @@ config:
             - Note: “A zero subtraction is a jump of zero,” optional planned cue, only if editorially distinct enough to merit recall.
             - Dependencies: Scene visualization, no separate image renderer.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section4:
+      generalizeSubtractingZero:
         config:
           id: 'cc96d760-7f16-5b57-91fe-000000000010'
-          slug: 'section4'
+          slug: 'generalizeSubtractingZero'
           type: 'content'
           params: {}
           locale:
@@ -386,10 +386,10 @@ config:
               en: 'Does the Starting Number Matter?'
           content:
             items:
-              text1:
+              predictThirteenMinusZero:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-00000000000d'
-                  slug: 'text1'
+                  slug: 'predictThirteenMinusZero'
                   type: 'text'
                   params: {}
                   locale:
@@ -398,10 +398,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line:   1. **text — available:** “There are **13** counters. Take away **0**. What is 13 − 0?”'
-              scene1:
+              testNewStartingAmount:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-00000000000e'
-                  slug: 'scene1'
+                  slug: 'testNewStartingAmount'
                   type: 'scene'
                   params: {}
                   locale:
@@ -459,10 +459,10 @@ config:
 
                     Scene generic renderer exists, Zero Removal Explorer does not. Requires prior Methodologist/editor approval and Scene Designer implementation with own tests and locale data. No invented props, assessment APIs or Note event.
                   productionNotes: 'Unique Scene placement scene1 in Does the Starting Number Matter?. Original:   2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), transfer entry with 13 counters, 13−0=13, plus optional case 0−0=0.. Status: provisional only.'
-              markdown1:
+              explainSubtractionIdentity:
                 config:
                   id: 'cc96d760-7f16-5b57-91fe-00000000000f'
-                  slug: 'markdown1'
+                  slug: 'explainSubtractionIdentity'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -472,9 +472,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line:   3. **markdown — available:** “Nothing was taken away, so **13 − 0 = 13**. The starting number stays the same. **0 − 13** reverses the order: it does not mean ‘start at thirteen and remove nothing’. We cannot take thirteen objects from an empty collection in this nonnegative counter model.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'predictThirteenMinusZero'
+              - 'testNewStartingAmount'
+              - 'explainSubtractionIdentity'
         production:
           purpose: 'Does the Starting Number Matter?'
           pedagogicalIntent: |-
@@ -491,10 +491,10 @@ config:
             - Dependencies: New Scene and teacher/editor review on non-example wording.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'removeNoCounters'
+      - 'compareZeroAndTwoRemoved'
+      - 'makeZeroLengthJump'
+      - 'generalizeSubtractingZero'
   flashcards:
     items: {}
     order: []

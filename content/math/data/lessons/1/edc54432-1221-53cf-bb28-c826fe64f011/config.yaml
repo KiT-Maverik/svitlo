@@ -15,10 +15,10 @@ config:
       en: 'Finding a Total with Equal Groups'
   section:
     items:
-      section1ThreeGroupsOfFour:
+      countThreeGroupsOfFour:
         config:
           id: 'b67e0257-46b0-4608-acb0-4ef968c794fa'
-          slug: 'section1ThreeGroupsOfFour'
+          slug: 'countThreeGroupsOfFour'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Three Groups of Four'
           content:
             items:
-              text1:
+              askTotalOfThreeGroups:
                 config:
                   id: 'a470b9ba-43de-4a3d-862d-4ba81f2bcb6b'
-                  slug: 'text1'
+                  slug: 'askTotalOfThreeGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -104,16 +104,16 @@ config:
                     Generic Lesson Scene Resource/rendering exists, but **Equal Group Counter is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: This overlaps the preexisting multiplicationEqualGroups Lesson only in prerequisite context; that Lesson targets expression reading and repeated addition. Editor should confirm a separate equalGroups-focused manipulable Lesson is useful rather than merge its materials.
                   purpose: 'Proposed interactive Scene for Three Groups of Four'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainTwelveCounters:
                 config:
                   id: 'fa609551-2c3a-437a-95fc-a2bf42e554c0'
-                  slug: 'markdown2'
+                  slug: 'explainTwelveCounters'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Three groups of four make twelve counters. In this model, 3 × 4 = 12.'
-            order: ['text1', 'equalGroupCounter', 'markdown2']
+            order: ['askTotalOfThreeGroups', 'equalGroupCounter', 'explainTwelveCounters']
         production:
           purpose: 'Three Groups of Four'
           pedagogicalIntent: |
@@ -133,10 +133,10 @@ config:
             - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2ChangeOneThing:
+      varyNumberOfGroups:
         config:
           id: '5af12ba3-c43b-4e2a-98d0-30594cd7c7d8'
-          slug: 'section2ChangeOneThing'
+          slug: 'varyNumberOfGroups'
           type: 'content'
           params: {}
           locale:
@@ -146,10 +146,10 @@ config:
               en: 'Change One Thing'
           content:
             items:
-              text1:
+              changeNumberOfGroups:
                 config:
                   id: '04b03ba6-d26d-489b-8ab3-74883aaa7e4d'
-                  slug: 'text1'
+                  slug: 'changeNumberOfGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -222,16 +222,16 @@ config:
                     Generic Lesson Scene Resource/rendering exists, but **Equal Group Counter is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: This overlaps the preexisting multiplicationEqualGroups Lesson only in prerequisite context; that Lesson targets expression reading and repeated addition. Editor should confirm a separate equalGroups-focused manipulable Lesson is useful rather than merge its materials.
                   purpose: 'Proposed interactive Scene for Change One Thing'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainGroupCountEffect:
                 config:
                   id: 'c7e3fbcd-22b5-4e90-9149-d39fc51ea6aa'
-                  slug: 'markdown2'
+                  slug: 'explainGroupCountEffect'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'When group size stays four, changing the number of groups changes the total: two groups make eight, three make twelve and four make sixteen.'
-            order: ['text1', 'equalGroupCounter', 'markdown2']
+            order: ['changeNumberOfGroups', 'equalGroupCounter', 'explainGroupCountEffect']
         production:
           purpose: 'Change One Thing'
           pedagogicalIntent: |
@@ -251,10 +251,10 @@ config:
             - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3DoTheyAllMatch:
+      checkEqualGroupSizes:
         config:
           id: 'af2161eb-93f4-417e-8013-f1e58264c458'
-          slug: 'section3DoTheyAllMatch'
+          slug: 'checkEqualGroupSizes'
           type: 'content'
           params: {}
           locale:
@@ -264,10 +264,10 @@ config:
               en: 'Do They All Match?'
           content:
             items:
-              text1:
+              identifyUnequalGroup:
                 config:
                   id: '2bbbd98e-b05f-400f-92f4-c1842eeb96cd'
-                  slug: 'text1'
+                  slug: 'identifyUnequalGroup'
                   type: 'text'
                   params: {}
                   locale:
@@ -340,16 +340,16 @@ config:
                     Generic Lesson Scene Resource/rendering exists, but **Equal Group Counter is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: This overlaps the preexisting multiplicationEqualGroups Lesson only in prerequisite context; that Lesson targets expression reading and repeated addition. Editor should confirm a separate equalGroups-focused manipulable Lesson is useful rather than merge its materials.
                   purpose: 'Proposed interactive Scene for Do They All Match?'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainGroupSizeMismatch:
                 config:
                   id: '65c78025-c2b3-4464-8b09-a9eb3878c72a'
-                  slug: 'markdown2'
+                  slug: 'explainGroupSizeMismatch'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'The middle group has three. The groups are not all the same size. Their total is eleven, but the statement 3 × 4 = 12 does not describe this picture.'
-            order: ['text1', 'equalGroupCounter', 'markdown2']
+            order: ['identifyUnequalGroup', 'equalGroupCounter', 'explainGroupSizeMismatch']
         production:
           purpose: 'Do They All Match?'
           pedagogicalIntent: |
@@ -369,10 +369,10 @@ config:
             - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4BuildYourOwnTotal:
+      buildTwoGroupsOfFive:
         config:
           id: 'd69a6626-8852-42b9-b9d3-d894f5a44867'
-          slug: 'section4BuildYourOwnTotal'
+          slug: 'buildTwoGroupsOfFive'
           type: 'content'
           params: {}
           locale:
@@ -382,10 +382,10 @@ config:
               en: 'Build Your Own Total'
           content:
             items:
-              text1:
+              constructOwnEqualGroups:
                 config:
                   id: '8b69e497-0641-4b68-bb6e-3059ec7ca38a'
-                  slug: 'text1'
+                  slug: 'constructOwnEqualGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -458,16 +458,16 @@ config:
                     Generic Lesson Scene Resource/rendering exists, but **Equal Group Counter is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: This overlaps the preexisting multiplicationEqualGroups Lesson only in prerequisite context; that Lesson targets expression reading and repeated addition. Editor should confirm a separate equalGroups-focused manipulable Lesson is useful rather than merge its materials.
                   purpose: 'Proposed interactive Scene for Build Your Own Total'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainProductTen:
                 config:
                   id: 'f2e4539c-008c-407f-bb9c-1a56062bde01'
-                  slug: 'markdown2'
+                  slug: 'explainProductTen'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Two groups of five make ten: 2 × 5 = 10. Three groups of five make fifteen.'
-            order: ['text1', 'equalGroupCounter', 'markdown2']
+            order: ['constructOwnEqualGroups', 'equalGroupCounter', 'explainProductTen']
         production:
           purpose: 'Build Your Own Total'
           pedagogicalIntent: |
@@ -488,7 +488,7 @@ config:
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
     order:
-      ['section1ThreeGroupsOfFour', 'section2ChangeOneThing', 'section3DoTheyAllMatch', 'section4BuildYourOwnTotal']
+      ['countThreeGroupsOfFour', 'varyNumberOfGroups', 'checkEqualGroupSizes', 'buildTwoGroupsOfFive']
   flashcards:
     items: {}
     order: []

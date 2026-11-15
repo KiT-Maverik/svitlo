@@ -16,10 +16,10 @@ config:
       en: 'Finding an Unknown Dividend in Exact Division'
   section:
     items:
-      section1:
+      shareTwelveIntoThreeGroups:
         config:
           id: '9be7dd87-594d-4048-86e8-948d89321816'
-          slug: 'section1'
+          slug: 'shareTwelveIntoThreeGroups'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'Three Equal Groups'
           content:
             items:
-              text1:
+              shareTwelveCounters:
                 config:
                   id: '29bf1baa-e9a4-4d7d-a675-7b2cd8b2b8c7'
-                  slug: 'text1'
+                  slug: 'shareTwelveCounters'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'Three Equal Groups; authored text block 1'
                   specification: '1. **text — available:** “Twelve counters are shared equally among three groups. How many will each group get?”'
-              scene2:
+              modelThreeEqualGroups:
                 config:
                   id: 'd19ace96-064a-4ed3-a589-211c6223f371'
-                  slug: 'scene2'
+                  slug: 'modelThreeEqualGroups'
                   type: 'scene'
                   params: {}
                   locale:
@@ -117,10 +117,10 @@ config:
 
                     2. **scene — available type/renderer, new implementation proposed:** Equal Groups Builder (Scene specification embedded in this config.yaml), known-whole entry: start with 12 counters and three labeled group containers; show four counters per group, one counted at a time on demand.
                   productionNotes: 'Proposed unimplemented Scene, sourced from equalGroupsBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              explainDividendRole:
                 config:
                   id: '4ce0388e-d431-454d-8c01-4fb0aa5b31bf'
-                  slug: 'markdown3'
+                  slug: 'explainDividendRole'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -129,7 +129,7 @@ config:
                 production:
                   purpose: 'Three Equal Groups; authored markdown block 3'
                   specification: '3. **markdown — available:** “We made 3 equal groups. Each group has 4. That means **12 ÷ 3 = 4**. Twelve is the whole; three is the number of groups; four is how many are in each group.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['shareTwelveCounters', 'modelThreeEqualGroups', 'explainDividendRole']
         production:
           purpose: 'Three Equal Groups'
           pedagogicalIntent: 'Original Section 1 — Three Equal Groups; authoring draft only'
@@ -147,10 +147,10 @@ config:
             - Accessibility, locale and RTL: No drag required; keyboard buttons can construct and inspect the groups. Labels name each group independently of color and layout. Read mathematical operands in correct order under RTL.
             - Proposed unlocked Note(s): No Note yet; check prerequisite understanding informally without a score.
             - Implementation dependencies and review notes: New Scene needed; children missing this mental model should be directed to foundational teaching, not forced through an “advanced” Lesson with a token hint.
-      section2:
+      rebuildMissingTotal:
         config:
           id: '9ce7df1a-5c4d-4501-83e8-8fd488321683'
-          slug: 'section2'
+          slug: 'rebuildMissingTotal'
           type: 'content'
           params: {}
           locale:
@@ -160,10 +160,10 @@ config:
               en: 'What Was the Total?'
           content:
             items:
-              text1:
+              countTotalFromGroups:
                 config:
                   id: 'a949168b-1790-45d0-90be-60996a03eb86'
-                  slug: 'text1'
+                  slug: 'countTotalFromGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -172,10 +172,10 @@ config:
                 production:
                   purpose: 'What Was the Total?; authored text block 1'
                   specification: '1. **text — available:** “Now the total is hidden. There are still 3 groups, with 4 counters in each. How many counters were there altogether?”'
-              scene2:
+              buildThreeGroupsOfFour:
                 config:
                   id: 'ef722d4d-7101-40b8-9188-0d472755332a'
-                  slug: 'scene2'
+                  slug: 'buildThreeGroupsOfFour'
                   type: 'scene'
                   params: {}
                   locale:
@@ -248,10 +248,10 @@ config:
 
                     2. **scene — renderer available, proposed new content:** Equal Groups Builder (Scene specification embedded in this config.yaml), hidden-whole entry: three groups of four, optional count-one-at-a-time; reveal **4 + 4 + 4 = 12**, then **3 × 4 = 12**.
                   productionNotes: 'Proposed unimplemented Scene, sourced from equalGroupsBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              multiplyToFindWhole:
                 config:
                   id: '5927d773-694f-4344-981b-b0298846941a'
-                  slug: 'markdown3'
+                  slug: 'multiplyToFindWhole'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -260,7 +260,7 @@ config:
                 production:
                   purpose: 'What Was the Total?; authored markdown block 3'
                   specification: '3. **markdown — available:** “We counted four three times: **4 + 4 + 4 = 12**. Multiplication says the same thing: **3 × 4 = 12**. The missing total is 12.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['countTotalFromGroups', 'buildThreeGroupsOfFour', 'multiplyToFindWhole']
         production:
           purpose: 'What Was the Total?'
           pedagogicalIntent: 'Original Section 2 — What Was the Total?; authoring draft only'
@@ -278,10 +278,10 @@ config:
             - Accessibility, locale and RTL: Each group has a readable ordinal and quantity. Repeated addition available as localized verbal/text explanation. No sound-only counting or timing.
             - Proposed unlocked Note(s): Note 1 “Missing whole = number of groups × each group’s size,” revealed after the 3 × 4 = 12 model is explained (planned, not wired).
             - Implementation dependencies and review notes: Same proposed Scene family in an isolated entry state; no public mode prop is presumed.
-      section3:
+      checkDividingTwelve:
         config:
           id: '9de7e0ad-5b4d-436e-84e8-9167873214f0'
-          slug: 'section3'
+          slug: 'checkDividingTwelve'
           type: 'content'
           params: {}
           locale:
@@ -291,10 +291,10 @@ config:
               en: 'Put Twelve Back'
           content:
             items:
-              markdown1:
+              substituteTwelveForUnknown:
                 config:
                   id: '07186776-5520-49ad-9be4-ea48ff8313ff'
-                  slug: 'markdown1'
+                  slug: 'substituteTwelveForUnknown'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -303,10 +303,10 @@ config:
                 production:
                   purpose: 'Put Twelve Back; authored markdown block 1'
                   specification: '1. **markdown — available:** “Our original equality was **□ ÷ 3 = 4**. We think the box is 12. Let’s put 12 in the box and check.”'
-              scene2:
+              checkOriginalDivision:
                 config:
                   id: '9dd180bc-be13-4939-aea3-f1764f33be4b'
-                  slug: 'scene2'
+                  slug: 'checkOriginalDivision'
                   type: 'scene'
                   params: {}
                   locale:
@@ -389,10 +389,10 @@ config:
 
                     2. **scene — supported block type, proposed Scene:** Division Equality Checker (Scene specification embedded in this config.yaml), guided substitution entry; show 12 ÷ 3 = 4 as a countable three-groups-of-four verification, with a wrong candidate contrast.
                   productionNotes: 'Proposed unimplemented Scene, sourced from divisionEqualityChecker.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              text3:
+              explainCorrectDividend:
                 config:
                   id: '2e204072-cb52-4be5-a356-a1647fc95a7f'
-                  slug: 'text3'
+                  slug: 'explainCorrectDividend'
                   type: 'text'
                   params: {}
                   locale:
@@ -401,7 +401,7 @@ config:
                 production:
                   purpose: 'Put Twelve Back; authored text block 3'
                   specification: '3. **text — available:** “**12 ÷ 3 = 4**, so twelve fits the missing place. If we tried another number, it would not share into three groups of four without something changing.”'
-            order: ['markdown1', 'scene2', 'text3']
+            order: ['substituteTwelveForUnknown', 'checkOriginalDivision', 'explainCorrectDividend']
         production:
           purpose: 'Put Twelve Back'
           pedagogicalIntent: 'Original Section 3 — Put Twelve Back; authoring draft only'
@@ -419,10 +419,10 @@ config:
             - Accessibility, locale and RTL: The actual candidate and full substituted equality must be read in the correct mathematical order with a navigable group list. No visual-only equality judgment.
             - Proposed unlocked Note(s): Note 2 “Check a missing dividend in the original division,” revealed after a full substitution has been explained (planned, not wired).
             - Implementation dependencies and review notes: New proposed checker Scene, not Quiz_Config or an Assessment Architect-owned Question.
-      section4:
+      solveNewDividend:
         config:
           id: '96e7d5a8-5e4d-4827-81e8-8cae8e321ff5'
-          slug: 'section4'
+          slug: 'solveNewDividend'
           type: 'content'
           params: {}
           locale:
@@ -432,10 +432,10 @@ config:
               en: 'Find a New Whole'
           content:
             items:
-              text1:
+              findWholeForFourGroups:
                 config:
                   id: 'fa3aeadd-313a-494a-936f-b0ffd6d19594'
-                  slug: 'text1'
+                  slug: 'findWholeForFourGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -444,10 +444,10 @@ config:
                 production:
                   purpose: 'Find a New Whole; authored text block 1'
                   specification: '1. **text — available:** “**□ ÷ 4 = 3.** Imagine sharing equally among 4 groups. Each group gets 3. What was the whole?”'
-              scene2:
+              exploreFourGroupsOfThree:
                 config:
                   id: '6c4e8933-eaa2-4836-abce-3a7961255a54'
-                  slug: 'scene2'
+                  slug: 'exploreFourGroupsOfThree'
                   type: 'scene'
                   params: {}
                   locale:
@@ -530,10 +530,10 @@ config:
 
                     2. **scene — supported block, proposed new content:** Division Equality Checker (Scene specification embedded in this config.yaml), independent entry: initially show the equality alone; on request display four groups of three; allow a candidate and show its substituted original division.
                   productionNotes: 'Proposed unimplemented Scene, sourced from divisionEqualityChecker.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              verifyNewDividend:
                 config:
                   id: '03a4692d-7b07-402e-a6e8-12c7f0033508'
-                  slug: 'markdown3'
+                  slug: 'verifyNewDividend'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -542,7 +542,7 @@ config:
                 production:
                   purpose: 'Find a New Whole; authored markdown block 3'
                   specification: '3. **markdown — available:** “Four groups of three make **3 + 3 + 3 + 3 = 12**, or **4 × 3 = 12**. Check **12 ÷ 4 = 3**. The missing dividend is 12.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['findWholeForFourGroups', 'exploreFourGroupsOfThree', 'verifyNewDividend']
         production:
           purpose: 'Find a New Whole'
           pedagogicalIntent: 'Original Section 4 — Find a New Whole; authoring draft only'
@@ -560,7 +560,7 @@ config:
             - Accessibility, locale and RTL: Text explanation and group counts match the visual; all controls operable via keyboard/touch and assistive technologies, with localized labels. Reduced motion shows equivalent end states.
             - Proposed unlocked Note(s): Revisit Notes 1 and 2; no additional Note required.
             - Implementation dependencies and review notes: Formative example only. Any scored assessment, attribution or readiness diagnostic belongs to Assessment Architect.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['shareTwelveIntoThreeGroups', 'rebuildMissingTotal', 'checkDividingTwelve', 'solveNewDividend']
   flashcards:
     items: {}
     order: []

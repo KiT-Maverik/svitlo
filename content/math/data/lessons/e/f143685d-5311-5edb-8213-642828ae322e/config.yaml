@@ -15,10 +15,10 @@ config:
       en: 'Draw Segments of a Given Length'
   section:
     items:
-      section1ReadingALengthOrMakingOne:
+      distinguishDrawingFromMeasuring:
         config:
           id: '8d321e59-67db-440a-a1c4-d2b3782838bc'
-          slug: 'section1ReadingALengthOrMakingOne'
+          slug: 'distinguishDrawingFromMeasuring'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Reading a Length or Making One?'
           content:
             items:
-              text1:
+              planFourCentimeterSegment:
                 config:
                   id: '8095f288-5954-4b7b-b5cf-8a361dd4a521'
-                  slug: 'text1'
+                  slug: 'planFourCentimeterSegment'
                   type: 'text'
                   params: {}
                   locale:
@@ -148,16 +148,16 @@ config:
                     Current Playground generic renderer can display a typed `scene` Resource, but **Measured Segment Maker does not exist**. After explicit Methodologist and Scene approval, Scene Designer/Coding Agent must implement independently testable prop-free roots, true locale content, accessible controls and deterministic geometry assertions. This batch does not add React, Lesson data, Questions, Quizzes, scored checking, Note persistence or invented event contracts.
                   purpose: 'Proposed interactive Scene for Reading a Length or Making One?'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainZeroToFour:
                 config:
                   id: '4a56319f-0a41-4bf0-b2c2-67bd9722752e'
-                  slug: 'markdown2'
+                  slug: 'explainZeroToFour'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '"To make a 4 cm segment, do not start by guessing a line. Put A at 0, mark B at 4, and draw one straight line between the marks. Four equal spaces make 4 centimeters."'
-            order: ['text1', 'measuredSegmentMaker', 'markdown2']
+            order: ['planFourCentimeterSegment', 'measuredSegmentMaker', 'explainZeroToFour']
         production:
           purpose: 'Reading a Length or Making One?'
           pedagogicalIntent: |
@@ -173,10 +173,10 @@ config:
             - **Accessibility:** Expose marks as selectable named controls and a text record "A at 0, B at 4, line straight." The worked result can be read or inspected interval by interval. Suggested future Note after reveal: "Construct: mark 0, mark the target, connect straight."
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2MakeThreeDifferentLengths:
+      constructThreeLengths:
         config:
           id: '90141f9f-f773-4084-91e9-38692297dea6'
-          slug: 'section2MakeThreeDifferentLengths'
+          slug: 'constructThreeLengths'
           type: 'content'
           params: {}
           locale:
@@ -186,10 +186,10 @@ config:
               en: 'Make Three Different Lengths'
           content:
             items:
-              text1:
+              chooseRequestedLength:
                 config:
                   id: 'fce990e2-2caf-4049-abff-639806b79917'
-                  slug: 'text1'
+                  slug: 'chooseRequestedLength'
                   type: 'text'
                   params: {}
                   locale:
@@ -306,16 +306,16 @@ config:
                     Current Playground generic renderer can display a typed `scene` Resource, but **Measured Segment Maker does not exist**. After explicit Methodologist and Scene approval, Scene Designer/Coding Agent must implement independently testable prop-free roots, true locale content, accessible controls and deterministic geometry assertions. This batch does not add React, Lesson data, Questions, Quizzes, scored checking, Note persistence or invented event contracts.
                   purpose: 'Proposed interactive Scene for Make Three Different Lengths'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainRulerMarkIntervals:
                 config:
                   id: '36d09c29-8a9f-4966-99ff-2e4f4878d01c'
-                  slug: 'markdown2'
+                  slug: 'explainRulerMarkIntervals'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '"The same ruler can help make different lengths. If we need 5 cm, our last mark is 5, because we count five spaces after 0. For 7 cm, our last mark is 7. We should verify the straight segment _after_ we draw it."'
-            order: ['text1', 'measuredSegmentMaker', 'markdown2']
+            order: ['chooseRequestedLength', 'measuredSegmentMaker', 'explainRulerMarkIntervals']
         production:
           purpose: 'Make Three Different Lengths'
           pedagogicalIntent: |
@@ -331,10 +331,10 @@ config:
             - **Access and autonomy:** Learner may try all targets in any order; a button sequence provides exactly the same construction as optional drag. No need to draw with a finger. Nonvisual ledger reports every chosen mark and connection type without giving the answer before checking.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3FindTheTwoMistakes:
+      diagnoseSegmentErrors:
         config:
           id: '1d87e5ab-9029-452a-a772-92c9aed0c810'
-          slug: 'section3FindTheTwoMistakes'
+          slug: 'diagnoseSegmentErrors'
           type: 'content'
           params: {}
           locale:
@@ -344,10 +344,10 @@ config:
               en: 'Find the Two Mistakes'
           content:
             items:
-              text1:
+              compareIncorrectSegments:
                 config:
                   id: '69e8574e-0e38-479b-ab56-6ff838a36945'
-                  slug: 'text1'
+                  slug: 'compareIncorrectSegments'
                   type: 'text'
                   params: {}
                   locale:
@@ -464,16 +464,16 @@ config:
                     Current Playground generic renderer can display a typed `scene` Resource, but **Measured Segment Maker does not exist**. After explicit Methodologist and Scene approval, Scene Designer/Coding Agent must implement independently testable prop-free roots, true locale content, accessible controls and deterministic geometry assertions. This batch does not add React, Lesson data, Questions, Quizzes, scored checking, Note persistence or invented event contracts.
                   purpose: 'Proposed interactive Scene for Find the Two Mistakes'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainEndpointsAndStraightness:
                 config:
                   id: 'be42fde5-4c4b-4d90-9bf7-0cafe69f8432'
-                  slug: 'markdown2'
+                  slug: 'explainEndpointsAndStraightness'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '"For a 5 cm straight segment, both conditions must hold: A at 0 and B at 5, and a single straight path joins A and B. The first sample is only 4 cm between its endpoints. The second is a _bent route_, not a segment."'
-            order: ['text1', 'measuredSegmentMaker', 'markdown2']
+            order: ['compareIncorrectSegments', 'measuredSegmentMaker', 'explainEndpointsAndStraightness']
         production:
           purpose: 'Find the Two Mistakes'
           pedagogicalIntent: |
@@ -489,10 +489,10 @@ config:
             - **Planned Note:** After diagnosis: "Correct endpoints **and** straight path are both needed."
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4BuildSixCentimetersYourself:
+      drawSixCentimeterSegment:
         config:
           id: '41fb1ddb-1619-4a08-bf35-66a56063480a'
-          slug: 'section4BuildSixCentimetersYourself'
+          slug: 'drawSixCentimeterSegment'
           type: 'content'
           params: {}
           locale:
@@ -502,10 +502,10 @@ config:
               en: 'Build Six Centimeters Yourself'
           content:
             items:
-              text1:
+              constructSixCentimeters:
                 config:
                   id: '4f24af3e-abe3-4e3d-b585-5a44a57c2f7b'
-                  slug: 'text1'
+                  slug: 'constructSixCentimeters'
                   type: 'text'
                   params: {}
                   locale:
@@ -622,16 +622,16 @@ config:
                     Current Playground generic renderer can display a typed `scene` Resource, but **Measured Segment Maker does not exist**. After explicit Methodologist and Scene approval, Scene Designer/Coding Agent must implement independently testable prop-free roots, true locale content, accessible controls and deterministic geometry assertions. This batch does not add React, Lesson data, Questions, Quizzes, scored checking, Note persistence or invented event contracts.
                   purpose: 'Proposed interactive Scene for Build Six Centimeters Yourself'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              verifySixIntervals:
                 config:
                   id: 'f5fd0e75-5921-477a-8461-bdab1a037ff0'
-                  slug: 'markdown2'
+                  slug: 'verifySixIntervals'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '"We marked 0 and 6 and drew a straight segment between them. That covers six one-centimeter intervals. The number 6 cm tells us the finished segment''s length, not the size of a dot or the thickness of the line."'
-            order: ['text1', 'measuredSegmentMaker', 'markdown2']
+            order: ['constructSixCentimeters', 'measuredSegmentMaker', 'verifySixIntervals']
         production:
           purpose: 'Build Six Centimeters Yourself'
           pedagogicalIntent: |
@@ -649,10 +649,10 @@ config:
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
     order:
       [
-        'section1ReadingALengthOrMakingOne',
-        'section2MakeThreeDifferentLengths',
-        'section3FindTheTwoMistakes',
-        'section4BuildSixCentimetersYourself',
+        'distinguishDrawingFromMeasuring',
+        'constructThreeLengths',
+        'diagnoseSegmentErrors',
+        'drawSixCentimeterSegment',
       ]
   flashcards:
     items: {}

@@ -18,10 +18,10 @@ config:
     order: []
   section:
     items:
-      section1HowManyWereThereAtFirst:
+      reconstructStartingAmount:
         config:
           id: 'f5dc4f64-3a00-4dcf-aaf1-1f7afed9d79d'
-          slug: 'section1HowManyWereThereAtFirst'
+          slug: 'reconstructStartingAmount'
           type: 'content'
           params: {}
           locale:
@@ -31,10 +31,10 @@ config:
               en: 'How Many Were There at First?'
           content:
             items:
-              text1:
+              inferOriginalCounterCount:
                 config:
                   id: '73534b29-57c2-4212-8ab5-01eb939cf93c'
-                  slug: 'text1'
+                  slug: 'inferOriginalCounterCount'
                   type: 'text'
                   params: {}
                   locale:
@@ -104,16 +104,16 @@ config:
                     Generic Scene Resource rendering is available; this specific Scene is proposed and awaits Methodologist Brief approval, editor-approved spec, Design Scene implementation and own tests. Coding Agent resolves independent prop-free entrypoints, real locale context and offline integration; Assessment Architect independently owns graded items.
                   purpose: 'Proposed interactive Scene for How Many Were There at First?'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              combineRemovedAndRemaining:
                 config:
                   id: '544045c6-63db-4579-896b-734098f80533'
-                  slug: 'markdown2'
+                  slug: 'combineRemovedAndRemaining'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'The 4 taken away and 7 left were all there at the start. Put them together: **4 + 7 = 11**. There were eleven before anything was removed.'
-            order: ['text1', 'beforeAfterBuilder', 'markdown2']
+            order: ['inferOriginalCounterCount', 'beforeAfterBuilder', 'combineRemovedAndRemaining']
         production:
           purpose: 'How Many Were There at First?'
           pedagogicalIntent: |
@@ -133,10 +133,10 @@ config:
             - Dependencies: New bespoke Scene; not yet implemented.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section2FillTheFirstBox:
+      fillMissingMinuend:
         config:
           id: '32dada0f-26c8-40e8-965b-3fad7678d3b6'
-          slug: 'section2FillTheFirstBox'
+          slug: 'fillMissingMinuend'
           type: 'content'
           params: {}
           locale:
@@ -146,10 +146,10 @@ config:
               en: 'Fill the First Box'
           content:
             items:
-              markdown1:
+              placeWholeInFirstBox:
                 config:
                   id: '8dd45000-4398-4047-b658-3e7652bb1385'
-                  slug: 'markdown1'
+                  slug: 'placeWholeInFirstBox'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -219,16 +219,16 @@ config:
                     Generic Scene Resource rendering is available; this specific Scene is proposed and awaits Methodologist Brief approval, editor-approved spec, Design Scene implementation and own tests. Coding Agent resolves independent prop-free entrypoints, real locale context and offline integration; Assessment Architect independently owns graded items.
                   purpose: 'Proposed interactive Scene for Fill the First Box'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              text2:
+              verifyElevenMinusFour:
                 config:
                   id: '55865fbf-e156-4f64-b300-a9056c757cfa'
-                  slug: 'text2'
+                  slug: 'verifyElevenMinusFour'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Check: **11 − 4 = 7**. That is the number still left. Both parts of the story fit.'
-            order: ['markdown1', 'beforeAfterBuilder', 'text2']
+            order: ['placeWholeInFirstBox', 'beforeAfterBuilder', 'verifyElevenMinusFour']
         production:
           purpose: 'Fill the First Box'
           pedagogicalIntent: |
@@ -247,10 +247,10 @@ config:
             - Dependencies: Scene-based formative checking only.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section3WhichNumberIsMissing:
+      distinguishMissingPositions:
         config:
           id: '1a9fad43-a42f-49ce-8282-b91d32e77098'
-          slug: 'section3WhichNumberIsMissing'
+          slug: 'distinguishMissingPositions'
           type: 'content'
           params: {}
           locale:
@@ -260,10 +260,10 @@ config:
               en: 'Which Number Is Missing?'
           content:
             items:
-              text1:
+              compareUnknownPositions:
                 config:
                   id: '6c36b446-dda8-4c9f-b3f2-cebc18a3710d'
-                  slug: 'text1'
+                  slug: 'compareUnknownPositions'
                   type: 'text'
                   params: {}
                   locale:
@@ -333,16 +333,16 @@ config:
                     Generic Scene Resource rendering is available; this specific Scene is proposed and awaits Methodologist Brief approval, editor-approved spec, Design Scene implementation and own tests. Coding Agent resolves independent prop-free entrypoints, real locale context and offline integration; Assessment Architect independently owns graded items.
                   purpose: 'Proposed interactive Scene for Which Number Is Missing?'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              contrastMinuendAndSubtrahend:
                 config:
                   id: 'e04a006d-3728-45d4-9035-b2b3ed79fd6a'
-                  slug: 'markdown2'
+                  slug: 'contrastMinuendAndSubtrahend'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "In the first equation, **11** was missing at the start. In the second, we already have 11 and must find the amount taken away: **4**. The blank's place changes the question."
-            order: ['text1', 'beforeAfterBuilder', 'markdown2']
+            order: ['compareUnknownPositions', 'beforeAfterBuilder', 'contrastMinuendAndSubtrahend']
         production:
           purpose: 'Which Number Is Missing?'
           pedagogicalIntent: |
@@ -362,10 +362,10 @@ config:
             - Dependencies: Independent prop-free placement, same approved scenario.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section4BuildANewBeginning:
+      solveNewStartingAmount:
         config:
           id: 'aa628794-86a6-4269-b76f-82b659f96353'
-          slug: 'section4BuildANewBeginning'
+          slug: 'solveNewStartingAmount'
           type: 'content'
           params: {}
           locale:
@@ -375,10 +375,10 @@ config:
               en: 'Build a New Beginning'
           content:
             items:
-              text1:
+              rebuildEightCounterStart:
                 config:
                   id: '3c0f6759-ec82-4d98-b93e-b26703eb0d56'
-                  slug: 'text1'
+                  slug: 'rebuildEightCounterStart'
                   type: 'text'
                   params: {}
                   locale:
@@ -448,16 +448,16 @@ config:
                     Generic Scene Resource rendering is available; this specific Scene is proposed and awaits Methodologist Brief approval, editor-approved spec, Design Scene implementation and own tests. Coding Agent resolves independent prop-free entrypoints, real locale context and offline integration; Assessment Architect independently owns graded items.
                   purpose: 'Proposed interactive Scene for Build a New Beginning'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              checkEightMinusThree:
                 config:
                   id: 'a6d9c156-5637-484f-b2a0-b5cc8a0345dd'
-                  slug: 'markdown2'
+                  slug: 'checkEightMinusThree'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Put the parts together: **3 + 5 = 8**. Check **8 − 3 = 5**. Eight was the starting whole.'
-            order: ['text1', 'beforeAfterBuilder', 'markdown2']
+            order: ['rebuildEightCounterStart', 'beforeAfterBuilder', 'checkEightMinusThree']
         production:
           purpose: 'Build a New Beginning'
           pedagogicalIntent: |
@@ -478,10 +478,10 @@ config:
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
     order:
       [
-        'section1HowManyWereThereAtFirst',
-        'section2FillTheFirstBox',
-        'section3WhichNumberIsMissing',
-        'section4BuildANewBeginning',
+        'reconstructStartingAmount',
+        'fillMissingMinuend',
+        'distinguishMissingPositions',
+        'solveNewStartingAmount',
       ]
 production:
   documentLanguage: 'en'

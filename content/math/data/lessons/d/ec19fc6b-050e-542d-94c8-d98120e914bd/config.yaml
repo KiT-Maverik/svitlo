@@ -15,10 +15,10 @@ config:
       en: 'Points, Lines and Segments'
   section:
     items:
-      section1CanAPointBeBig:
+      distinguishPointSizeFromSymbol:
         config:
           id: 'a11ed192-d637-453f-9489-0b1c29c20f09'
-          slug: 'section1CanAPointBeBig'
+          slug: 'distinguishPointSizeFromSymbol'
           type: 'content'
           params: {}
           locale:
@@ -149,10 +149,10 @@ config:
             - **Interaction and access:** "Enlarge marker", "Move marker", "Read point positions", "Reset"; no precision touch needed. Nonvisual state: "Point A stays in the same place; its marker grew." Reveal only after prediction. A simple localized Note about a point as a position is **planned**, not implemented.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2StraightCurvedOrMadeOfSegments:
+      compareLineTypes:
         config:
           id: 'cd44bd89-9f55-4420-9505-8fe350e58ada'
-          slug: 'section2StraightCurvedOrMadeOfSegments'
+          slug: 'compareLineTypes'
           type: 'content'
           params: {}
           locale:
@@ -283,10 +283,10 @@ config:
             - **Boundary and access:** Do not introduce a ray as a formal target or claim every curve is wavy. A screen reader gets three ordered path descriptions and a list of their components. Keyboard toggle moves selection and reveals descriptions, never requiring pointer tracing.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3WhereDoesASegmentStop:
+      identifySegmentEndpoints:
         config:
           id: '50680e98-5fed-46e7-9190-5292efd75bc9'
-          slug: 'section3WhereDoesASegmentStop'
+          slug: 'identifySegmentEndpoints'
           type: 'content'
           params: {}
           locale:
@@ -417,10 +417,10 @@ config:
             - **Access:** Text list identifies included endpoints and which path spans the two markers. The semantic difference is available without seeing arrows. Suggested future Note: "A segment is the straight piece between two endpoints."
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4MakeYourOwnAB:
+      constructSegmentAB:
         config:
           id: '486850f5-3092-4e16-b96f-60dbac357864'
-          slug: 'section4MakeYourOwnAB'
+          slug: 'constructSegmentAB'
           type: 'content'
           params: {}
           locale:
@@ -553,10 +553,10 @@ config:
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
     order:
       [
-        'section1CanAPointBeBig',
-        'section2StraightCurvedOrMadeOfSegments',
-        'section3WhereDoesASegmentStop',
-        'section4MakeYourOwnAB',
+        'distinguishPointSizeFromSymbol',
+        'compareLineTypes',
+        'identifySegmentEndpoints',
+        'constructSegmentAB',
       ]
   flashcards:
     items: {}
