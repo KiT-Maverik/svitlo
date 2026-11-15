@@ -169,6 +169,30 @@ for (const [source, generator, staged, target] of [
   mkdirSync(dirname(destination), { recursive: true });
   cpSync(generatedRoot, destination, { recursive: true });
 }
+// Stage independently authored Question/Flashcard resources beside (never inside)
+// Lesson Props. The static manifest and Publish CLI own their portable URLs.
+const assessmentBank = filesUnder(join(root, 'data/lessons')).some(name =>
+  /^[0-9a-f]\\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\\/(?:questions|flashcards)\\/index\\.ts$/.test(name),
+);
+if (assessmentBank) {
+  run(process.execPath, [
+    'shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.mjs',
+    '--package',
+    packageDirectory,
+    '--kind',
+    'all',
+    '--write',
+  ]);
+  const generatedAssessmentRoot = join(root, 'generated/assessments');
+  const destination = join(resources, 'data/lessons');
+  for (const name of filesUnder(generatedAssessmentRoot)) {
+    const target = join(destination, name);
+    if (existsSync(target)) throw new Error('Duplicate Assessment resource publication: ' + name);
+    mkdirSync(dirname(target), { recursive: true });
+    copyFileSync(join(generatedAssessmentRoot, name), target);
+  }
+}
+
 const sourcePublic = join(root, 'public');
 if (existsSync(sourcePublic)) {
   cpSync(sourcePublic, join(resources, 'textbooks', id), {

@@ -310,7 +310,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     );
     assert.match(markdown, /## Assessment resources/);
     assert.doesNotMatch(markdown, /## Question Bank|## Flashcard Bank/);
-    assert.match(markdown, /Quiz uses references/);
+    assert.match(markdown, /Quiz references independently published Question UUIDs/);
     assert.match(markdown, /Як рухається світло/);
     assert.doesNotMatch(markdown, /\[object Object\]|undefined/);
   });
