@@ -12,6 +12,7 @@ export const marketsAndCompetition_SkillDomain_Data = defineSkillDomain({
   id: '7f4ab068-ec3e-4cf4-bb8f-0fcfbe8175a2',
   title: {
     en: 'Markets and Competition',
+    it: 'Mercati e concorrenza',
     zh: '市场与竞争',
     hi: 'बाजार और प्रतिस्पर्धा',
     es: 'Mercados y competencia',
@@ -54,6 +55,7 @@ export const marketsAndCompetition_SkillDomain_Data = defineSkillDomain({
       'Market prices and quantities arise from interactions between buyers and sellers under particular rules and competitive structures. This domain explains market mechanisms, not individual selling techniques.',
     frontend: {
       en: 'Understand how buyers, sellers, and competition shape markets.',
+      it: 'Comprendi come acquirenti, venditori e concorrenza plasmano i mercati.',
       zh: '了解买方、卖方和竞争如何塑造市场。',
       hi: 'समझें कि खरीदार, विक्रेता और प्रतिस्पर्धा बाजार को कैसे आकार देते हैं।',
       es: 'Comprende cómo compradores, vendedores y competencia dan forma a los mercados.',

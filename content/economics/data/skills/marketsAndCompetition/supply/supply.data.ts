@@ -7,6 +7,7 @@ export const supply_SkillGroup_Data = defineSkillGroup({
   id: '30717fd6-6129-4cb7-ba9d-41c997ceffab',
   name: {
     en: 'Supply',
+    it: 'Offerta',
     zh: '供给',
     hi: 'आपूर्ति',
     es: 'Oferta',
@@ -42,6 +43,7 @@ export const supply_SkillGroup_Data = defineSkillGroup({
       "Sellers' production decisions depend on price, costs, productivity, expectations, and resource availability.",
     frontend: {
       en: 'Explore what determines how much producers are willing to offer.',
+      it: 'Esplora che cosa determina la quantità che i produttori sono disposti a offrire.',
       zh: '探索哪些因素决定生产者愿意提供多少商品。',
       hi: 'जानें कि उत्पादक कितनी मात्रा देने को तैयार होते हैं, यह किन बातों पर निर्भर है।',
       es: 'Explora qué determina cuánto están dispuestos a ofrecer los productores.',
