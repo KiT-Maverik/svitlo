@@ -5,6 +5,7 @@ export const goguryeo_Skill_Data = defineSkill({
   id: 'c0248f1b-2d4b-4426-bdde-d21623d45b58',
   name: {
     en: 'Goguryeo',
+    it: "Goguryeo",
     zh: '高句丽',
     hi: 'गोगुर्यो',
     es: 'Goguryeo',
@@ -38,6 +39,7 @@ export const goguryeo_Skill_Data = defineSkill({
     methodological: 'Trace early state formation in northern Korea and Manchuria and contacts with Chinese dynasties.',
     frontend: {
       en: 'Explore the beginnings of Goguryeo and its neighbors.',
+      it: "Esplora le origini di Goguryeo e i rapporti con i suoi vicini.",
       zh: '探索高句丽的起源及其与邻近社会的关系。',
       hi: 'गोगुर्यो की शुरुआत और उसके पड़ोसियों के बारे में जानें।',
       es: 'Explora los orígenes de Goguryeo y sus pueblos vecinos.',
