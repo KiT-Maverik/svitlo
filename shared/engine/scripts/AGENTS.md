@@ -36,9 +36,12 @@ Other named workflows have their own contracts. Inspect their entrypoints and te
   `null` values in the YAML-only Zod projections, never omitted or invented.
   Scene implementations, imports and untranslated locales remain separate
   downstream dependencies, not grounds to reject scaffolding.
-- Emit `specification.md` for Scenes in their ID-addressed textbook Scene folder
-  and for media under `data/assets/<bucket>/<uuid>/`; emit a Lesson/Course
-  `methodology.md` only when authored in production and safe to create.
+- For **modular Lesson** drafts, emit `specification.md` beside the Scene or
+  media `index.ts` source module, resolved by its authored UUID in the Config
+  tree; keep the actual Scene implementation in its registered textbook Scene
+  folder. Course/legacy workflows retain their ID-addressed handoffs until
+  explicitly migrated. Emit a Lesson/Course `methodology.md` only when
+  authored in production and safe to create. Never fabricate binary assets.
   Never invent source paths, create fake Scene code or overwrite edited specs.
 - A Course `config.yaml` also owns its optional root `overrides` sparse Build
   patch. Only `build.overrides(patch, { languages })` is supported; do not bring
