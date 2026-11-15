@@ -12,10 +12,10 @@ Canonical source:
 
 The [machine-readable snapshot inventory](../../../shared/engine/scripts/lessonBuilder/fixtures/pr557-lesson-layout.snapshots.json) pins **Git commit SHAs and blob SHAs** for every added file in two historical snapshots:
 
-| Snapshot | Immutable commit | Added files | Meaning |
-| --- | --- | ---: | --- |
-| Original Lesson Builder output | [`a3735dff24be4445c36fedd38997165732c67bfd`](https://github.com/KiT-Maverik/svitlo/commit/a3735dff24be4445c36fedd38997165732c67bfd) | 14 | One `equalsMeansSameValue.data.ts`, methodology and UUID-addressed `specification.md` handoffs |
-| User-edited prototype | [`9e500e1f521e6eebf86f0e556f93f5f673e212f3`](https://github.com/KiT-Maverik/svitlo/commit/9e500e1f521e6eebf86f0e556f93f5f673e212f3) | 51 | `index.ts`, `constants.ts`, `review.ts`, modular Sections/blocks, localized Markdown and illustrative media |
+| Snapshot                       | Immutable commit                                                                                                                    | Added files | Meaning                                                                                                     |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ----------: | ----------------------------------------------------------------------------------------------------------- |
+| Original Lesson Builder output | [`a3735dff24be4445c36fedd38997165732c67bfd`](https://github.com/KiT-Maverik/svitlo/commit/a3735dff24be4445c36fedd38997165732c67bfd) |          14 | One `equalsMeansSameValue.data.ts`, methodology and UUID-addressed `specification.md` handoffs              |
+| User-edited prototype          | [`9e500e1f521e6eebf86f0e556f93f5f673e212f3`](https://github.com/KiT-Maverik/svitlo/commit/9e500e1f521e6eebf86f0e556f93f5f673e212f3) |          51 | `index.ts`, `constants.ts`, `review.ts`, modular Sections/blocks, localized Markdown and illustrative media |
 
 These are **historical inventories, not runnable generated trees**: `config.yaml` existed before the first commit; the prototype deliberately contains TODO expressions, potentially invalid imports, illustrative assets and the temporary `demonstrationalSection`. The **later structure in this document**, not the prototype's literal paths, is the intended generator contract. In particular, the prototype still has type groupings (`texts/`, `scenes/`, `audio/`, etc.) that the user subsequently rejected. Do not copy them into the final generated layout. Do not mistake the 51-file snapshot for an exact future-output count.
 
@@ -58,7 +58,7 @@ The examples in one directory describe **alternative entity-specific cases**, no
 
 **Names vs identity:** the generator preserves the source YAML's permanent UUIDs and authored slug values. Semantic renaming (`text1` → `sameValueExplanation`) is **upstream editorial work** on the YAML. A deterministic builder must not guess a new name, change an ID, or silently renumber keys. Normalize folder paths according to source slugs and explicit hierarchy.
 
-**TypeScript style:** use bare valid identifier property keys (`id`, `slug`, `locale`, `en`, `items`, `order`) instead of `JSON.stringify(key)` on every property. Quote only keys requiring string-literal syntax; quoted *values* are unaffected. Keep the ordered `{ items, order }` contract; do not reintroduce authored arrays for maps. Emit the actual `define*` generic arguments: literal slug, child-map type, and derived Lesson languages type according to each current signature.
+**TypeScript style:** use bare valid identifier property keys (`id`, `slug`, `locale`, `en`, `items`, `order`) instead of `JSON.stringify(key)` on every property. Quote only keys requiring string-literal syntax; quoted _values_ are unaffected. Keep the ordered `{ items, order }` contract; do not reintroduce authored arrays for maps. Emit the actual `define*` generic arguments: literal slug, child-map type, and derived Lesson languages type according to each current signature.
 
 **Languages:** generate a readonly `LanguageCode`-checked tuple in `constants.ts`, with a derived type shared by nested configurators. Keep `params.languages` exactly as authored in YAML; no fabricated locale values. The example requires `en`, `pl`, `uk`, `qm`, while the initial source-locale-only draft is intentionally incomplete.
 
@@ -66,23 +66,23 @@ The examples in one directory describe **alternative entity-specific cases**, no
 
 ## File-backed source content and media
 
-| Kind | Invariant source | Localized source | Specialist specification |
-| --- | --- | --- | --- |
-| Text | ordinary `defineText` data | field-level `locale` config | **No** auto-generated specification for finished text |
-| Markdown | `<slug>/text.md` | `<slug>/locale/<language>.md` | **No** specification instead of real learner-facing Markdown |
-| Code | `<slug>/code.<extension>` | only if Code contract explicitly supports localization | **No** substitute for real code |
-| Scene | authored configurator | Scene's actual typed localized data | `<slug>/specification.md` next to Scene definition, if needed |
-| Audio/Image/Video | `<slug>/<slug>.<extension>` | `<slug>/locale/<language>.<extension>` | `<slug>/specification.md` while pending |
-| Subtitles | `<slug>/<slug>.<extension>` | `<slug>/locale/<language>.<extension>` | if production needs a separate caption authoring handoff |
-| External media (YouTube) | explicit authored URL | per current Config schema | no local file resolution |
+| Kind                     | Invariant source            | Localized source                                       | Specialist specification                                      |
+| ------------------------ | --------------------------- | ------------------------------------------------------ | ------------------------------------------------------------- |
+| Text                     | ordinary `defineText` data  | field-level `locale` config                            | **No** auto-generated specification for finished text         |
+| Markdown                 | `<slug>/text.md`            | `<slug>/locale/<language>.md`                          | **No** specification instead of real learner-facing Markdown  |
+| Code                     | `<slug>/code.<extension>`   | only if Code contract explicitly supports localization | **No** substitute for real code                               |
+| Scene                    | authored configurator       | Scene's actual typed localized data                    | `<slug>/specification.md` next to Scene definition, if needed |
+| Audio/Image/Video        | `<slug>/<slug>.<extension>` | `<slug>/locale/<language>.<extension>`                 | `<slug>/specification.md` while pending                       |
+| Subtitles                | `<slug>/<slug>.<extension>` | `<slug>/locale/<language>.<extension>`                 | if production needs a separate caption authoring handoff      |
+| External media (YouTube) | explicit authored URL       | per current Config schema                              | no local file resolution                                      |
 
 - **Invariant is not fallback:** never generate a fake `default`/`fallback` language. A string-valued Markdown source maps to `text.md`; a language map maps to `locale/<language>.md`.
 - Source files should be read by a **deterministic build-time, module-local mechanism**. Generated callers should not manually repeat paths; however, a plain imported function cannot reliably discover its caller's source folder or YAML property key on its own. Choose a source-bound wrapper, generated `import.meta.url` binding or explicit compilation transform in the implementation PR. Do not use stack-trace inspection or browser runtime `fs`.
 - `code.<extension>` uses an explicit/supported source-language and extension convention; `codeAsText` remains the final Engine Config value after resolving the authored file.
-- No fictional binary assets, placeholder URL values, or manually embedded filesystem paths in runtime Props. The authoring contract and publication contract are **distinct**: existing Engine `src`/`fileLocation` requirements can only be removed from generated *authoring source* once a separate resolver reliably populates valid public resource paths for publication.
+- No fictional binary assets, placeholder URL values, or manually embedded filesystem paths in runtime Props. The authoring contract and publication contract are **distinct**: existing Engine `src`/`fileLocation` requirements can only be removed from generated _authoring source_ once a separate resolver reliably populates valid public resource paths for publication.
 - Multiple media roles (main video, poster, captions, carousel images) require unambiguous naming and collision checks. Exact supported extensions, multi-role rules, and locale completeness checks remain open until the relevant Engine/UI Kit contracts are audited.
-- User-facing Markdown must be *finished content before technical scaffolding*. A technical builder cannot turn a Scene-like specification for Markdown into good instructional copy. Fix the upstream Lesson Production handoff instead.
-- Media and Scene specifications are *authoring instructions*, not runtime copy. Their new co-located addresses conflict with current UUID-addressed Scene/asset handoff rules: the responsible workflows, lazy Scene registry expectations and eventual packaged media paths must be updated together. Do not silently discard UUID identity or unrelated real assets.
+- User-facing Markdown must be _finished content before technical scaffolding_. A technical builder cannot turn a Scene-like specification for Markdown into good instructional copy. Fix the upstream Lesson Production handoff instead.
+- Media and Scene specifications are _authoring instructions_, not runtime copy. Their new co-located addresses conflict with current UUID-addressed Scene/asset handoff rules: the responsible workflows, lazy Scene registry expectations and eventual packaged media paths must be updated together. Do not silently discard UUID identity or unrelated real assets.
 
 ## Composite structures
 
@@ -108,16 +108,16 @@ The revision hash represents the **entire authored `config` tree**, recursively 
 
 ## Existing implementation compatibility: mandatory follow-up checks
 
-| Current component | Observed behavior | Stage 2+ obligation |
-| --- | --- | --- |
-| `shared/engine/scripts/lessonBuilder/lessonBuilder.mjs` | One `<slug>.data.ts` and UUID-addressed specialist handoffs; no validation/Props | Generate modular source without changing the draft-only and creation-only semantics |
-| `shared/engine/scripts/generateLessonProps/generateLessonProps.mjs` | Finds one `*.data.ts`, falling back to `index.ts`; requires a real `build.props()` Lesson | Ensure new root entrypoint can be discovered and loaded; fail on ambiguity; do not publish incomplete drafts |
-| `scripts/textbook-tooling/buildTextbook/build.mjs` | `authored('data/lessons')` recognizes only `*.data.ts` | Update detection for canonical `index.ts` Lesson entrypoints so compiled text books do not silently omit Lessons |
-| `shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs` | Emits Scene and media handoffs to UUID-addressed folders | Change output ownership and non-destructive write/skip/check behavior together with layout |
-| Current Engine media schemas and textbook static packaging | Expects explicit resolved file paths and packaged static resources | Preserve Props and runtime URLs until the new build-time resolver and manifest pipeline are verified |
-| Current Carousel and Quest schemas | Specialized child kinds/shape | Do not force generic block recursion where schemas intentionally restrict children |
+| Current component                                                   | Observed behavior                                                                         | Stage 2+ obligation                                                                                              |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `shared/engine/scripts/lessonBuilder/lessonBuilder.mjs`             | One `<slug>.data.ts` and UUID-addressed specialist handoffs; no validation/Props          | Generate modular source without changing the draft-only and creation-only semantics                              |
+| `shared/engine/scripts/generateLessonProps/generateLessonProps.mjs` | Finds one `*.data.ts`, falling back to `index.ts`; requires a real `build.props()` Lesson | Ensure new root entrypoint can be discovered and loaded; fail on ambiguity; do not publish incomplete drafts     |
+| `scripts/textbook-tooling/buildTextbook/build.mjs`                  | `authored('data/lessons')` recognizes only `*.data.ts`                                    | Update detection for canonical `index.ts` Lesson entrypoints so compiled text books do not silently omit Lessons |
+| `shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs`   | Emits Scene and media handoffs to UUID-addressed folders                                  | Change output ownership and non-destructive write/skip/check behavior together with layout                       |
+| Current Engine media schemas and textbook static packaging          | Expects explicit resolved file paths and packaged static resources                        | Preserve Props and runtime URLs until the new build-time resolver and manifest pipeline are verified             |
+| Current Carousel and Quest schemas                                  | Specialized child kinds/shape                                                             | Do not force generic block recursion where schemas intentionally restrict children                               |
 
-**Non-goals and safeguards:** no mass rewriting of other Math lessons in Stage 1; no schema loosenings or fake success from TypeScript suppression; no execution of generated incomplete samples as trusted code; no single-stage migration of Scenes, asset packaging, review types and production workflow. Update README/JSDoc/tests and affected architecture references in the *implementing* PR, not by pretending they already implement this document.
+**Non-goals and safeguards:** no mass rewriting of other Math lessons in Stage 1; no schema loosenings or fake success from TypeScript suppression; no execution of generated incomplete samples as trusted code; no single-stage migration of Scenes, asset packaging, review types and production workflow. Update README/JSDoc/tests and affected architecture references in the _implementing_ PR, not by pretending they already implement this document.
 
 ## Stage 1 exit criteria and follow-up test contract
 
