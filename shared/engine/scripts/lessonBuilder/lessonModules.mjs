@@ -155,8 +155,9 @@ export function renderLessonModules(lesson, language, options = {}) {
 
   function moduleImports(directory, names, factory, needsLanguages, languageValue = false) {
     const output = ["import { " + factory + " } from '@svitlo/engine/build';"];
-    for (const [alias, location] of [...names.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
-      output.push('import { ' + alias + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
+    for (const [alias, { symbol, location }] of [...names.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
+      const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
+      output.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
     }
     if (needsLanguages && languagesType) {
       const constantImport = relativeImport(directory, '');
@@ -187,10 +188,17 @@ export function renderLessonModules(lesson, language, options = {}) {
       const symbol = symbolFor(value, context);
       const childDirectory = join(ownerDirectory, value.slug);
       emitNode(value, context, childDirectory);
-      if (imported.has(symbol) && imported.get(symbol) !== childDirectory)
-        throw new Error('Duplicate imported symbol ' + symbol + ' at ' + field);
-      imported.set(symbol, childDirectory);
-      return symbol;
+      let alias = symbol;
+      if (imported.has(alias) && imported.get(alias).location !== childDirectory) {
+        // Different semantic roles can legitimately contain blocks with the
+        // same slug. Keep each child export short; alias only at the importer.
+        const suffix = childDirectory.split('/').slice(-3).join('_');
+        alias = symbol + '_' + suffix;
+        let index = 2;
+        while (imported.has(alias)) alias = symbol + '_' + suffix + '_' + index++;
+      }
+      imported.set(alias, { symbol, location: childDirectory });
+      return alias;
     }
     if (Array.isArray(value)) {
       if (!value.length) return '[]';
@@ -319,8 +327,9 @@ export function renderLessonModules(lesson, language, options = {}) {
     const imports = new Map();
     const collection = render(filtered[field], context, directory, imports, 0, '$.' + field);
     const lines = [];
-    for (const [alias, target] of [...imports.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
-      lines.push('import { ' + alias + ' } from ' + JSON.stringify(relativeImport(directory, target)) + ';');
+    for (const [alias, { symbol, location }] of [...imports.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
+      const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
+      lines.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
     }
     put(join(directory, 'index.ts'), (lines.length ? lines.join('\n') + '\n\n' : '') +
       'export const ' + field + ' = ' + collection + ';\n');
