@@ -14,6 +14,7 @@ export const reactionPatterns_SkillGroup_Data = defineSkillGroup({
   id: '96a6ca68-d9be-4a55-9b32-52cb43f655e7',
   name: {
     en: 'Reaction Patterns',
+    it: "Tipi di reazioni",
     zh: '反应类型',
     hi: 'अभिक्रियाओं के प्रकार',
     es: 'Tipos de reacciones',
@@ -56,6 +57,7 @@ export const reactionPatterns_SkillGroup_Data = defineSkillGroup({
       'Reaction patterns classify transformations such as combination, decomposition, precipitation, displacement, combustion and hydrolysis. Some categories may overlap and do not by themselves determine a detailed reaction mechanism.',
     frontend: {
       en: 'Discover common ways chemical reactions can be classified.',
+      it: "Scopri i modi più comuni per classificare le reazioni chimiche.",
       zh: '了解化学反应常见的分类方式。',
       hi: 'रासायनिक अभिक्रियाओं का वर्गीकरण करने के सामान्य तरीके जानें।',
       es: 'Descubre formas habituales de clasificar las reacciones químicas.',

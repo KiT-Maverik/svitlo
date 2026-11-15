@@ -5,6 +5,7 @@ export const hydrolysis_Skill_Data = defineSkill({
   id: '85e5aeb3-fbcf-4512-b36b-a4ab0bcbd0b8',
   name: {
     en: 'Hydrolysis',
+    it: "Idrolisi",
     zh: '水解',
     hi: 'जल-अपघटन',
     es: 'Hidrólisis',
@@ -38,6 +39,7 @@ export const hydrolysis_Skill_Data = defineSkill({
     methodological: 'Recognize reactions in which water participates in bond cleavage or chemical conversion.',
     frontend: {
       en: 'Recognize reactions in which water helps break or change chemical bonds.',
+      it: "Riconosci le reazioni in cui l'acqua contribuisce a rompere o modificare i legami chimici.",
       zh: '识别水参与断裂或改变化学键的反应。',
       hi: 'पहचानें कि किन अभिक्रियाओं में पानी रासायनिक बंध तोड़ने या बदलने में भाग लेता है।',
       es: 'Reconoce reacciones en las que el agua interviene al romper o modificar enlaces.',
