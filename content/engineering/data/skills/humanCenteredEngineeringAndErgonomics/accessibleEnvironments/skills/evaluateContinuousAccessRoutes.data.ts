@@ -5,6 +5,7 @@ export const evaluateContinuousAccessRoutes_Skill_Data = defineSkill({
   id: '2a70f463-6d13-447d-bb5b-28a57a5cd70e',
   name: {
     en: 'Evaluate continuous access routes',
+    it: 'Valutare percorsi accessibili continui',
     zh: '评估连续无障碍通道',
     hi: 'निरंतर सुगम मार्ग का मूल्यांकन',
     es: 'Evaluar recorridos accesibles continuos',
@@ -39,6 +40,7 @@ export const evaluateContinuousAccessRoutes_Skill_Data = defineSkill({
       'Assess an existing connected journey through buildings and public spaces, testing whether doors, surfaces, widths and level changes preserve access. This is different from designing a new internal circulation layout.',
     frontend: {
       en: 'Evaluate whether an entire route remains accessible without barriers.',
+      it: 'Valuta se un intero percorso rimane accessibile e privo di barriere.',
       zh: '评估整条路线能否始终畅通无障碍。',
       hi: 'जाँचें कि पूरा रास्ता बिना किसी बाधा के सुगम बना रहता है या नहीं।',
       es: 'Evalúa si un recorrido completo permanece accesible y sin barreras.',
