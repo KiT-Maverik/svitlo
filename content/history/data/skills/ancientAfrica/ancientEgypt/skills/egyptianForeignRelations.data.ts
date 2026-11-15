@@ -5,6 +5,7 @@ export const egyptianForeignRelations_Skill_Data = defineSkill({
   id: '2a98d27f-a2fe-433a-9247-80102db5e0e2',
   name: {
     en: 'Egyptian Foreign Relations',
+    it: "Relazioni estere dell'Egitto",
     zh: '埃及的对外关系',
     hi: 'मिस्र के विदेशी संबंध',
     es: 'Relaciones exteriores de Egipto',
@@ -38,6 +39,7 @@ export const egyptianForeignRelations_Skill_Data = defineSkill({
     methodological: "Trace Egypt's trade, diplomacy, and military relations with Nubia and Western Asian states.",
     frontend: {
       en: 'Explore how Egypt traded and negotiated with neighbors.',
+      it: "Esplora come l'Egitto commerciava e negoziava con i popoli vicini.",
       zh: '探索埃及如何与邻近地区进行贸易和外交。',
       hi: 'जानें कि मिस्र ने अपने पड़ोसियों से व्यापार और बातचीत कैसे की।',
       es: 'Explora cómo Egipto comerciaba y negociaba con sus vecinos.',

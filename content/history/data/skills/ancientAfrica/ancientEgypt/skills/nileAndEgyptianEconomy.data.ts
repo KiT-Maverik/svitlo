@@ -5,6 +5,7 @@ export const nileAndEgyptianEconomy_Skill_Data = defineSkill({
   id: '0e1d31ec-ec03-4a9d-ae29-b6cc3c0e9f5f',
   name: {
     en: 'The Nile and Egyptian Economy',
+    it: "Il Nilo e l'economia egizia",
     zh: '尼罗河与经济',
     hi: 'नील नदी और अर्थव्यवस्था',
     es: 'El Nilo y la economía',
@@ -38,6 +39,7 @@ export const nileAndEgyptianEconomy_Skill_Data = defineSkill({
     methodological: 'Relate farming and settlements to seasonal floods, canals, and organized land cultivation.',
     frontend: {
       en: 'Understand why Nile flooding mattered to Egyptian farming.',
+      it: "Comprendi perché le piene del Nilo erano importanti per l'agricoltura egizia.",
       zh: '理解尼罗河泛滥为何对埃及农业至关重要。',
       hi: 'समझें कि नील की बाढ़ मिस्र की खेती के लिए क्यों महत्वपूर्ण थी।',
       es: 'Comprende por qué las crecidas del Nilo eran importantes para la agricultura egipcia.',

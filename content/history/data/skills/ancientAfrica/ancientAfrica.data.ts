@@ -11,6 +11,7 @@ export const ancientAfrica_SkillDomain_Data = defineSkillDomain({
   id: 'c73e038b-1bfd-421b-adb5-b75dd00cebb0',
   title: {
     en: 'Africa',
+    it: "Africa",
     zh: '非洲',
     hi: 'अफ्रीका',
     es: 'África',
@@ -40,21 +41,19 @@ export const ancientAfrica_SkillDomain_Data = defineSkillDomain({
     kk: 'Африка',
     qm: 'Afrika',
   },
-  groups: {
-    items: {
-      ancientEgypt: ancientEgypt_SkillGroup_Data,
-      hornOfAfrica: hornOfAfrica_SkillGroup_Data,
-      northAfricaBeyondTheNile: northAfricaBeyondTheNile_SkillGroup_Data,
-      nubiaAndKush: nubiaAndKush_SkillGroup_Data,
-      saharaAndSubSaharanAfrica: saharaAndSubSaharanAfrica_SkillGroup_Data,
-    },
-    order: ['ancientEgypt', 'hornOfAfrica', 'northAfricaBeyondTheNile', 'nubiaAndKush', 'saharaAndSubSaharanAfrica'],
-  },
+  groups: [
+    ancientEgypt_SkillGroup_Data,
+    hornOfAfrica_SkillGroup_Data,
+    northAfricaBeyondTheNile_SkillGroup_Data,
+    nubiaAndKush_SkillGroup_Data,
+    saharaAndSubSaharanAfrica_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "Africa's ancient history extends beyond the Nile through independent political traditions, migrations, crafts, trade, and adaptation to varied environments.",
     frontend: {
       en: 'Explore the varied societies and cultures of ancient Africa.',
+      it: "Esplora le diverse società e culture dell'Africa antica.",
       zh: '探索古代非洲多样的社会与文化。',
       hi: 'प्राचीन अफ्रीका के विविध समाजों और संस्कृतियों के बारे में जानें।',
       es: 'Explora las diversas sociedades y culturas del África antigua.',

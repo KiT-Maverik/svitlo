@@ -5,6 +5,7 @@ export const egyptianWriting_Skill_Data = defineSkill({
   id: '0cf22559-8c41-4819-88c6-b5dd7f80e71a',
   name: {
     en: 'Egyptian Writing',
+    it: "Scrittura egizia",
     zh: '埃及文字',
     hi: 'मिस्री लेखन',
     es: 'Escritura egipcia',
@@ -38,6 +39,7 @@ export const egyptianWriting_Skill_Data = defineSkill({
     methodological: 'Explain hieroglyphic principles and parallel writing forms used in administration and culture.',
     frontend: {
       en: 'Discover how Egyptians wrote and recorded information.',
+      it: "Scopri come gli Egizi scrivevano e registravano le informazioni.",
       zh: '了解古埃及人如何书写和记录信息。',
       hi: 'जानें कि प्राचीन मिस्री लिखते और जानकारी दर्ज कैसे करते थे।',
       es: 'Descubre cómo escribían y registraban información los egipcios.',

@@ -5,6 +5,7 @@ export const egyptianConstruction_Skill_Data = defineSkill({
   id: 'a271bd69-0488-4798-8bb4-48b43ecd01b1',
   name: {
     en: 'Egyptian Construction',
+    it: "Tecniche edilizie egizie",
     zh: '埃及建筑',
     hi: 'मिस्री निर्माण कार्य',
     es: 'Construcción egipcia',
@@ -39,6 +40,7 @@ export const egyptianConstruction_Skill_Data = defineSkill({
       'Examine labor organization, building materials, and engineering of major monuments without pseudohistorical myths.',
     frontend: {
       en: 'Discover how ancient Egyptians organized large building projects.',
+      it: "Scopri come gli antichi Egizi organizzavano grandi progetti edilizi.",
       zh: '了解古埃及人如何组织大型建筑工程。',
       hi: 'जानें कि प्राचीन मिस्रियों ने विशाल निर्माण परियोजनाएँ कैसे संगठित कीं।',
       es: 'Descubre cómo los antiguos egipcios organizaban grandes obras de construcción.',

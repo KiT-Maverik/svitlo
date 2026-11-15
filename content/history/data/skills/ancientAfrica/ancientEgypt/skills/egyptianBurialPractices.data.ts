@@ -5,6 +5,7 @@ export const egyptianBurialPractices_Skill_Data = defineSkill({
   id: '1180dc48-b2d7-426d-ad0b-a5c646de0b51',
   name: {
     en: 'Egyptian Burial Practices',
+    it: "Pratiche funerarie egizie",
     zh: '埃及丧葬习俗',
     hi: 'मिस्र की अंत्येष्टि प्रथाएँ',
     es: 'Prácticas funerarias egipcias',
@@ -39,6 +40,7 @@ export const egyptianBurialPractices_Skill_Data = defineSkill({
       'Interpret tombs, burial goods, mummification, and ritual texts while noting social and historical variation.',
     frontend: {
       en: 'Learn what Egyptian burials reveal about beliefs and social life.',
+      it: "Scopri che cosa rivelano le sepolture egizie sulle credenze e sulla vita sociale.",
       zh: '了解埃及墓葬如何反映信仰与社会生活。',
       hi: 'जानें कि मिस्री समाधियाँ आस्था और सामाजिक जीवन के बारे में क्या बताती हैं।',
       es: 'Aprende qué revelan los enterramientos sobre las creencias y la vida social egipcias.',
