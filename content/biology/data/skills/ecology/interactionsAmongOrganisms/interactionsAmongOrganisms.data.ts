@@ -12,6 +12,7 @@ export const interactionsAmongOrganisms_SkillGroup_Data = defineSkillGroup({
   id: 'b6747083-f25f-4e46-91e9-2e8cf655f084',
   name: {
     en: 'Interactions Among Organisms',
+    it: 'Interazioni tra organismi',
     qm: 'Canlılar arasında alâqalar',
     zh: '生物之间的相互作用',
     hi: 'जीवों के बीच अंतःक्रियाएँ',
@@ -52,6 +53,7 @@ export const interactionsAmongOrganisms_SkillGroup_Data = defineSkillGroup({
       'Organisms may use one another as resources, compete, or benefit one another; the nature of an interaction is determined by its consequences for those involved.',
     frontend: {
       en: 'Explore how organisms compete, feed on one another or cooperate.',
+      it: 'Scopri come gli organismi competono, si nutrono gli uni degli altri o collaborano.',
       qm: 'Canlılarnıñ nasıl yarışqanını, bir-birini aşağanını ya da beraber çalışqanını ögreniñiz.',
       zh: '探索生物如何竞争、捕食或相互合作。',
       hi: 'जानें कि जीव कैसे प्रतिस्पर्धा करते हैं, एक-दूसरे को खाते हैं या सहयोग करते हैं।',
