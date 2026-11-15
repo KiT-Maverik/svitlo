@@ -5,6 +5,7 @@ export const solubility_Skill_Data = defineSkill({
   id: '4237f3d1-c7b8-42a5-a6ed-3cff50cdf48a',
   name: {
     en: 'Solubility',
+    it: "Solubilità",
     zh: '溶解度',
     hi: 'विलेयता',
     es: 'Solubilidad',
@@ -38,6 +39,7 @@ export const solubility_Skill_Data = defineSkill({
     methodological: 'Interpret the maximum equilibrium amount of solute under specified conditions.',
     frontend: {
       en: 'Understand how solubility limits the amount that dissolves under specific conditions.',
+      it: "Comprendi come la solubilità limita la quantità di sostanza disciolta in determinate condizioni.",
       zh: '了解在特定条件下，溶解度如何限制物质能够溶解的量。',
       hi: 'समझें कि निर्धारित परिस्थितियों में विलेयता घुलने की अधिकतम मात्रा कैसे सीमित करती है।',
       es: 'Comprende cómo la solubilidad limita la cantidad que puede disolverse en unas condiciones dadas.',

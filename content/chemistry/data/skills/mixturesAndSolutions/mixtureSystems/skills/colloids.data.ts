@@ -5,6 +5,7 @@ export const colloids_Skill_Data = defineSkill({
   id: '2b8ae0ab-6f68-483f-acee-4e596141dcfb',
   name: {
     en: 'Colloids',
+    it: "Colloidi",
     zh: '胶体',
     hi: 'कोलॉइड',
     es: 'Coloides',
@@ -39,6 +40,7 @@ export const colloids_Skill_Data = defineSkill({
       'Distinguish stable dispersions of intermediate-scale particles from molecular solutions and coarse suspensions.',
     frontend: {
       en: 'Distinguish colloids from true solutions and coarse suspensions.',
+      it: "Distingui i colloidi dalle soluzioni vere e proprie e dalle sospensioni grossolane.",
       zh: '区分胶体、真正的溶液和粗分散悬浊液。',
       hi: 'कोलॉइड को वास्तविक विलयन और मोटे निलंबन से अलग पहचानें।',
       es: 'Distingue los coloides de las soluciones verdaderas y las suspensiones gruesas.',

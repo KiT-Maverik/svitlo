@@ -5,6 +5,7 @@ export const gasSolubilityAndPressure_Skill_Data = defineSkill({
   id: 'fe213529-4131-423d-ac4d-4ec3c7fe39e3',
   name: {
     en: 'Gas Solubility and Pressure',
+    it: "Solubilità dei gas e pressione",
     zh: '气体溶解度与压力',
     hi: 'गैस की विलेयता और दाब',
     es: 'Solubilidad de gases y presión',
@@ -38,6 +39,7 @@ export const gasSolubilityAndPressure_Skill_Data = defineSkill({
     methodological: 'Relate gas dissolution to partial pressure and equilibrium under relevant conditions.',
     frontend: {
       en: 'Explain how gas pressure influences the amount of gas dissolved in a liquid.',
+      it: "Spiega come la pressione di un gas influenza la quantità che si scioglie in un liquido.",
       zh: '解释气体压力如何影响溶解在液体中的气体量。',
       hi: 'समझाएँ कि गैस का दाब द्रव में घुली गैस की मात्रा को कैसे प्रभावित करता है।',
       es: 'Explica cómo la presión de un gas afecta la cantidad disuelta en un líquido.',
