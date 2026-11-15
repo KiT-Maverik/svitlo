@@ -5,6 +5,7 @@ export const analyzeBuildingCirculation_Skill_Data = defineSkill({
   id: 'c7bef6d2-58cc-48ae-b3c4-084ff6b92294',
   name: {
     en: 'Analyze Building Circulation',
+    it: "Analizzare i percorsi in un edificio",
     zh: '分析建筑动线',
     hi: 'भवन में आवागमन का विश्लेषण करें',
     es: 'Analizar la circulación en un edificio',
@@ -38,6 +39,7 @@ export const analyzeBuildingCirculation_Skill_Data = defineSkill({
     methodological: 'Explain how entrances, routes and thresholds guide movement through a building.',
     frontend: {
       en: 'See how entrances and pathways guide people through a space.',
+      it: "Osserva come ingressi e percorsi guidano le persone attraverso gli spazi.",
       zh: '了解入口和通道如何引导人们在空间中移动。',
       hi: 'देखें कि प्रवेश-द्वार और रास्ते लोगों को किसी स्थान से कैसे गुज़ारते हैं।',
       es: 'Observa cómo las entradas y los recorridos guían a las personas por un espacio.',
