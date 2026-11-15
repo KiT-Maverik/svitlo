@@ -5,6 +5,7 @@ export const explainTheImportanceOfSleepForRecovery_Skill_Data = defineSkill({
   id: '5c341f9f-e5c2-409d-949b-77773ac572c7',
   name: {
     en: 'Explain the Importance of Sleep for Recovery',
+    it: "Spiegare l'importanza del sonno per il recupero",
     zh: '解释睡眠对身体恢复的重要性',
     hi: 'स्वास्थ्य-लाभ के लिए नींद का महत्व समझाना',
     es: 'Explicar la importancia del sueño para la recuperación',
@@ -39,6 +40,7 @@ export const explainTheImportanceOfSleepForRecovery_Skill_Data = defineSkill({
       'Relate sleep to neural regulation, memory, and restoration of functions without replacing explanations of mechanisms with rules about sleep schedules.',
     frontend: {
       en: 'Discover how sleep supports brain function, memory and recovery.',
+      it: 'Scopri come il sonno favorisce le funzioni cerebrali, la memoria e il recupero.',
       zh: '了解睡眠如何支持大脑工作、记忆和身体恢复。',
       hi: 'जानें कि नींद मस्तिष्क के काम, स्मृति और शरीर की रिकवरी में कैसे मदद करती है।',
       es: 'Descubre cómo el sueño favorece la función cerebral, la memoria y la recuperación.',
