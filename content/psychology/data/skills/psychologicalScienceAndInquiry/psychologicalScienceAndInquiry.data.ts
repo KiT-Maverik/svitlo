@@ -11,6 +11,7 @@ export const psychologicalScienceAndInquiry_SkillDomain_Data = defineSkillDomain
   id: 'cd1a92f9-77e8-49a4-94c4-7435a47ddd4e',
   title: {
     en: 'Psychological Science and Inquiry',
+    it: 'Scienza e ricerca psicologica',
     zh: '心理科学与探究',
     hi: 'मनोवैज्ञानिक विज्ञान और अनुसंधान',
     es: 'Ciencia e investigación psicológicas',
@@ -61,6 +62,7 @@ export const psychologicalScienceAndInquiry_SkillDomain_Data = defineSkillDomain
       'Psychology explains behavior and mental processes through empirical evidence, multiple levels of analysis, and ethical inquiry. Its explanations are provisional and require stronger support than anecdote or authority.',
     frontend: {
       en: 'Explore how psychologists investigate behavior and mental processes through careful research.',
+      it: 'Esplora come gli psicologi studino il comportamento e i processi mentali attraverso ricerche rigorose.',
       zh: '探索心理学家如何通过严谨的研究探究行为与心理过程。',
       hi: 'जानें कि मनोवैज्ञानिक सावधानीपूर्वक शोध से व्यवहार और मानसिक प्रक्रियाओं का अध्ययन कैसे करते हैं।',
       es: 'Explora cómo la psicología investiga la conducta y los procesos mentales mediante estudios rigurosos.',
