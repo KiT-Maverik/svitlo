@@ -9,6 +9,7 @@ export const communicationAndMeasurementDevices_SkillDomain_Data = defineSkillDo
   id: '2a858c0c-bfe4-417f-bc32-251de4294f0b',
   title: {
     en: 'Communication and Measurement Devices',
+    it: 'Dispositivi di comunicazione e misurazione',
     zh: '通信与测量设备',
     hi: 'संचार और मापन उपकरण',
     es: 'Dispositivos de comunicación y medición',
@@ -44,6 +45,7 @@ export const communicationAndMeasurementDevices_SkillDomain_Data = defineSkillDo
       'Radio, optical and navigation equipment generates, propagates, detects and uses physical signals. Competencies concern real emitters, interfaces, receivers and instrumentation, rather than networking programs or generic data-processing algorithms.',
     frontend: {
       en: 'Explore physical devices that transmit signals, form images and determine position.',
+      it: 'Esplora i dispositivi fisici che trasmettono segnali, formano immagini e determinano la posizione.',
       zh: '探索能够传输信号、形成图像和确定位置的物理设备。',
       hi: 'सिग्नल भेजने, चित्र बनाने और स्थान जानने वाले भौतिक उपकरणों का अध्ययन करें।',
       es: 'Explora dispositivos físicos que transmiten señales, forman imágenes y determinan posiciones.',
