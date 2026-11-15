@@ -5,6 +5,7 @@ export const protostellarJets_Skill_Data = defineSkill({
   id: '7c2311d7-aaf2-4bb0-b463-c621d409260e',
   name: {
     en: 'Protostellar Jets',
+    it: 'Getti protostellari',
     zh: '原恒星喷流',
     hi: 'आद्यतारकीय जेट',
     es: 'Chorros protoestelares',
@@ -39,6 +40,7 @@ export const protostellarJets_Skill_Data = defineSkill({
       'Explain the observed collimated outflows from young stellar systems and how their association with disks and magnetic fields constrains star-formation models.',
     frontend: {
       en: 'Learn why young stars may launch narrow jets of moving material.',
+      it: 'Scopri perché le stelle giovani possono emettere stretti getti di materia in movimento.',
       zh: '了解为什么年轻恒星可能向外喷射狭窄而快速的物质流。',
       hi: 'जानें कि युवा तारे संकरी और तेज पदार्थ-धाराएँ बाहर क्यों निकाल सकते हैं।',
       es: 'Aprende por qué las estrellas jóvenes pueden expulsar chorros estrechos de materia en movimiento.',

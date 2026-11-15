@@ -5,6 +5,7 @@ export const whiteDwarfs_Skill_Data = defineSkill({
   id: 'a4e63e0b-a162-4c94-9c45-55e5b6eafa1f',
   name: {
     en: 'White Dwarfs',
+    it: 'Nane bianche',
     zh: '白矮星',
     hi: 'श्वेत बौने तारे',
     es: 'Enanas blancas',
@@ -39,6 +40,7 @@ export const whiteDwarfs_Skill_Data = defineSkill({
       'Explain how a compact electron-degeneracy-supported remnant forms after some stars shed their outer layers.',
     frontend: {
       en: 'Understand how some stars leave behind dense white dwarfs.',
+      it: 'Comprendi come alcune stelle lasciano dietro di sé dense nane bianche.',
       zh: '了解为什么一些恒星在生命结束后留下致密的白矮星。',
       hi: 'समझें कि कुछ तारे अपने जीवन के अंत में सघन श्वेत बौने अवशेष क्यों छोड़ते हैं।',
       es: 'Comprende cómo algunas estrellas dejan tras de sí densas enanas blancas.',

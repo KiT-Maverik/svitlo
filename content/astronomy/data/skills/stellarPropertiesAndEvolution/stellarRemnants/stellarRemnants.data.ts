@@ -14,6 +14,7 @@ export const stellarRemnants_SkillGroup_Data = defineSkillGroup({
   id: '937abe9e-6b94-43f6-a594-e1ae09a7d0da',
   name: {
     en: 'Stellar Remnants',
+    it: 'Resti stellari',
     zh: '恒星遗骸',
     hi: 'तारकीय अवशेष',
     es: 'Remanentes estelares',
@@ -56,6 +57,7 @@ export const stellarRemnants_SkillGroup_Data = defineSkillGroup({
       'The final states of stars differ according to progenitor mass, mass loss and binary interactions; extreme events redistribute energy and elements.',
     frontend: {
       en: 'Explore the compact remains and explosive endings of different kinds of stars.',
+      it: 'Esplora i resti compatti e le fasi finali esplosive dei diversi tipi di stelle.',
       zh: '探索不同类型恒星的致密遗骸和爆炸性终结。',
       hi: 'जानें कि विभिन्न प्रकार के तारों का अंत विस्फोटों और सघन अवशेषों के रूप में कैसे होता है।',
       es: 'Explora los restos compactos y los finales explosivos de distintos tipos de estrellas.',
