@@ -5,6 +5,7 @@ export const distinguishTruthFromJustification_Skill_Data = defineSkill({
   id: 'ad6b40d9-2f9c-4a59-b2dc-2faeebcac57a',
   name: {
     en: 'Distinguish truth from justification',
+    it: 'Distinguere verità e giustificazione',
     zh: '区分真理与证成',
     hi: 'सत्य और औचित्य में अंतर करें',
     es: 'Distinguir verdad de justificación',
@@ -39,6 +40,7 @@ export const distinguishTruthFromJustification_Skill_Data = defineSkill({
       'Explain why a claim might be true for reasons its holder cannot supply, or well supported yet ultimately false.',
     frontend: {
       en: 'Distinguish a claim being true from having good reasons to believe it.',
+      it: 'Distingui il fatto che un\'affermazione sia vera dall\'avere buone ragioni per credervi.',
       zh: '区分一个说法是真的与有充分理由相信它。',
       hi: 'किसी कथन के सत्य होने और उसे मानने के अच्छे कारण होने में अंतर समझें।',
       es: 'Distingue que una afirmación sea verdadera de tener buenas razones para creerla.',

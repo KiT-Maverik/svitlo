@@ -5,6 +5,7 @@ export const distinguishDirectEvidenceFromHearsay_Skill_Data = defineSkill({
   id: 'f891c455-29a7-4540-ac7e-4fc905fda10b',
   name: {
     en: 'Distinguish direct evidence from hearsay',
+    it: 'Distinguere prove dirette e testimonianze indirette',
     zh: '区分直接证据与传闻',
     hi: 'प्रत्यक्ष साक्ष्य और सुनी-सुनाई बात में अंतर',
     es: 'Distinguir pruebas directas de información de oídas',
@@ -39,6 +40,7 @@ export const distinguishDirectEvidenceFromHearsay_Skill_Data = defineSkill({
       "Recognize what a record or witness directly establishes and what depends on another person's retelling.",
     frontend: {
       en: 'Distinguish firsthand records from claims repeated through others.',
+      it: 'Distingui le testimonianze di prima mano dalle affermazioni riportate da altre persone.',
       zh: '区分第一手记录与经他人转述的主张。',
       hi: 'प्रत्यक्ष अभिलेखों को दूसरों की बताई बातों से अलग पहचानें।',
       es: 'Distingue los registros de primera mano de afirmaciones repetidas por otros.',

@@ -5,6 +5,7 @@ export const analyzeEpistemicInjustice_Skill_Data = defineSkill({
   id: '2b43e1c8-3ef0-487c-b232-c60a4ea75fc0',
   name: {
     en: 'Analyze epistemic injustice',
+    it: 'Analizzare l\'ingiustizia epistemica',
     zh: '分析认识不公',
     hi: 'ज्ञान-संबंधी अन्याय का विश्लेषण',
     es: 'Analizar la injusticia epistémica',
@@ -39,6 +40,7 @@ export const analyzeEpistemicInjustice_Skill_Data = defineSkill({
       'Examine how prejudicial credibility judgments or unequal interpretive resources can wrong someone in their capacity as a knower, distinct from warranted critical assessment of testimony.',
     frontend: {
       en: 'Explore how unfair judgments about credibility can prevent people from being heard.',
+      it: 'Esplora come giudizi ingiusti sulla credibilità possano impedire alle persone di essere ascoltate.',
       zh: '探索不公平的可信度判断如何让人失去被倾听的机会。',
       hi: 'जानें कि विश्वसनीयता पर अनुचित निर्णय कैसे लोगों की आवाज़ दबा सकते हैं।',
       es: 'Explora cómo los juicios injustos sobre credibilidad pueden impedir que alguien sea escuchado.',
