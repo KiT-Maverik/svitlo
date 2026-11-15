@@ -12,6 +12,7 @@ export const organicTransformations_SkillGroup_Data = defineSkillGroup({
   id: 'f7370042-d159-4356-8d61-a5bc7c07220e',
   name: {
     en: 'Organic Transformations',
+    it: "Trasformazioni organiche",
     zh: '有机反应转化',
     hi: 'कार्बनिक रूपांतरण',
     es: 'Transformaciones orgánicas',
@@ -52,6 +53,7 @@ export const organicTransformations_SkillGroup_Data = defineSkillGroup({
       'Reaction family patterns link starting functional groups to plausible products while requiring mechanistic and condition-specific reasoning.',
     frontend: {
       en: 'Discover common patterns of change in organic reactions.',
+      it: "Scopri gli schemi più comuni delle trasformazioni nelle reazioni organiche.",
       zh: '认识有机化学反应中常见的变化模式。',
       hi: 'कार्बनिक अभिक्रियाओं में बदलाव के सामान्य रूपों को जानें।',
       es: 'Descubre patrones habituales de cambio en las reacciones orgánicas.',
