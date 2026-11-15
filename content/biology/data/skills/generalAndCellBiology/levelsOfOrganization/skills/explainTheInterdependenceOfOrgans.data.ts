@@ -5,6 +5,7 @@ export const explainTheInterdependenceOfOrgans_Skill_Data = defineSkill({
   id: '26e91acf-d978-4093-90e0-f9eca123e589',
   name: {
     en: 'Explain the Interdependence of Organs',
+    it: "Spiegare l'interdipendenza degli organi",
     zh: '说明器官之间的相互依赖',
     hi: 'अंगों की परस्पर निर्भरता समझाना',
     es: 'Explicar la interdependencia de los órganos',
@@ -38,6 +39,7 @@ export const explainTheInterdependenceOfOrgans_Skill_Data = defineSkill({
     methodological: 'Show why a disruption in one system can alter the functioning of another.',
     frontend: {
       en: 'Explore why different organs depend on one another.',
+      it: 'Scopri perché organi diversi dipendono gli uni dagli altri.',
       zh: '探索不同器官为什么需要相互配合。',
       hi: 'जानें कि विभिन्न अंग एक-दूसरे पर क्यों निर्भर होते हैं।',
       es: 'Explora por qué los distintos órganos dependen unos de otros.',
