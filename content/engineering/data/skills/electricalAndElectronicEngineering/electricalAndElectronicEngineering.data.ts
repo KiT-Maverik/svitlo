@@ -11,6 +11,7 @@ export const electricalAndElectronicEngineering_SkillDomain_Data = defineSkillDo
   id: '797f3dc0-f168-4e96-9322-cb552a2a868b',
   title: {
     en: 'Electrical and Electronic Engineering',
+    it: 'Ingegneria elettrica ed elettronica',
     zh: '电气与电子工程',
     hi: 'विद्युत और इलेक्ट्रॉनिकी अभियांत्रिकी',
     es: 'Ingeniería eléctrica y electrónica',
@@ -52,6 +53,7 @@ export const electricalAndElectronicEngineering_SkillDomain_Data = defineSkillDo
       'Circuits and electronic hardware distribute power, process signals and connect physical controls to useful outputs. The subject here is device architecture and correct component integration, not the scientific derivation of electromagnetic laws.',
     frontend: {
       en: 'Explore how electrical and electronic hardware is built, measured and protected.',
+      it: 'Esplora come si costruiscono, misurano e proteggono i dispositivi elettrici ed elettronici.',
       zh: '探索电气与电子硬件如何制造、测量和保护。',
       hi: 'जानें कि विद्युत और इलेक्ट्रॉनिक उपकरण कैसे बनाए, मापे और सुरक्षित रखे जाते हैं।',
       es: 'Explora cómo se construyen, miden y protegen los equipos eléctricos y electrónicos.',
