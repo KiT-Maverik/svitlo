@@ -5,6 +5,7 @@ export const solubilityEquilibrium_Skill_Data = defineSkill({
   id: '74f22eec-0932-4c3a-9bbf-b1aa958e64d1',
   name: {
     en: 'Solubility Equilibrium',
+    it: "Equilibrio di solubilità",
     zh: '溶解平衡',
     hi: 'विलेयता साम्य',
     es: 'Equilibrio de solubilidad',
@@ -39,6 +40,7 @@ export const solubilityEquilibrium_Skill_Data = defineSkill({
       'Interpret precipitation and dissolution in terms of competing ionic concentrations and an equilibrium threshold.',
     frontend: {
       en: 'Explore how dissolved ions and solids reach a balance between dissolving and precipitating.',
+      it: "Esplora come ioni disciolti e solidi raggiungono un equilibrio tra dissoluzione e precipitazione.",
       zh: '探索溶解的离子与固体如何在溶解和沉淀之间达到平衡。',
       hi: 'जानें कि घुले आयन और ठोस के बीच घुलने व अवक्षेप बनने का संतुलन कैसे बनता है।',
       es: 'Explora el equilibrio entre disolución y precipitación de iones disueltos y sólidos.',

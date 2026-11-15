@@ -5,6 +5,7 @@ export const reactionOrder_Skill_Data = defineSkill({
   id: '8575dfa6-ee26-41ae-ae03-274757824129',
   name: {
     en: 'Reaction Order',
+    it: "Ordine di reazione",
     zh: '反应级数',
     hi: 'अभिक्रिया की कोटि',
     es: 'Orden de reacción',
@@ -39,6 +40,7 @@ export const reactionOrder_Skill_Data = defineSkill({
       'Identify individual and overall concentration exponents of an empirical rate law and use them to predict rate changes when concentrations vary.',
     frontend: {
       en: 'Determine how the order of a reaction affects the way its rate changes.',
+      it: "Determina come l'ordine di reazione influisce sulla variazione della sua velocità.",
       zh: '确定反应级数如何影响反应速率的变化。',
       hi: 'जानें कि अभिक्रिया की कोटि उसकी दर के बदलने के तरीके को कैसे प्रभावित करती है।',
       es: 'Determina cómo el orden de una reacción afecta los cambios de velocidad.',

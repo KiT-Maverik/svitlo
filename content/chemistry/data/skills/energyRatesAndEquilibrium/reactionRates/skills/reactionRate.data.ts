@@ -5,6 +5,7 @@ export const reactionRate_Skill_Data = defineSkill({
   id: '692bb447-d64e-4a8c-baf4-ebaaceba85a9',
   name: {
     en: 'Reaction Rate',
+    it: "Velocità di reazione",
     zh: '反应速率',
     hi: 'अभिक्रिया दर',
     es: 'Velocidad de reacción',
@@ -38,6 +39,7 @@ export const reactionRate_Skill_Data = defineSkill({
     methodological: 'Interpret change in reactant or product amount over time with consistent sign and units.',
     frontend: {
       en: 'Calculate how fast reactants disappear or products appear over time.',
+      it: "Calcola la rapidità con cui i reagenti scompaiono o i prodotti si formano nel tempo.",
       zh: '计算反应物随时间消耗或生成物形成的快慢。',
       hi: 'गणना करें कि समय के साथ अभिकारक कितनी तेजी से घटते और उत्पाद बनते हैं।',
       es: 'Calcula qué tan rápido desaparecen los reactivos o aparecen los productos.',
