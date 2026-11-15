@@ -12,6 +12,7 @@ export const userNeeds_SkillGroup_Data = defineSkillGroup({
   id: '3eff673a-1572-4c17-9e2a-de32d4fc1209',
   name: {
     en: 'User Needs',
+    it: 'Esigenze degli utenti',
     zh: '用户需求',
     hi: 'उपयोगकर्ताओं की ज़रूरतें',
     es: 'Necesidades de los usuarios',
@@ -52,6 +53,7 @@ export const userNeeds_SkillGroup_Data = defineSkillGroup({
       "Design briefs must address users with differing abilities and usage contexts rather than projecting the designer's own preferences.",
     frontend: {
       en: 'Learn to investigate the practical activities and limitations of product users.',
+      it: 'Impara a studiare le attività pratiche e i limiti delle persone che utilizzano un prodotto.',
       zh: '学习研究产品使用者的实际活动和使用限制。',
       hi: 'उत्पाद का इस्तेमाल करने वाले लोगों की वास्तविक गतिविधियों और सीमाओं की जाँच करना सीखें।',
       es: 'Aprende a investigar las actividades prácticas y limitaciones de quienes usan un producto.',
