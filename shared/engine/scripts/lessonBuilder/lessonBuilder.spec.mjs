@@ -8,6 +8,7 @@ import yaml from 'yaml';
 
 import { BuilderDiagnostic, loadFactoryRegistry, runOne, main } from './lessonBuilder.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
+import { lessonReviewStageSlugs, renderReviewDraft } from './reviewTemplate.mjs';
 
 const id = suffix => '00000000-0000-4000-8000-' + String(suffix).padStart(12, '0');
 const lessonId = id(12);
@@ -78,7 +79,7 @@ function lessonConfig() {
         }),
       },
     }),
-    flashcards: group({
+    flashcards: { items: {
       remember: {
         id: id(9),
         slug: 'remember',
@@ -86,7 +87,7 @@ function lessonConfig() {
         parameters: { tags: [], flags: group({}), relationships: group({}) },
         content: { front: group({ front: block('front', 10) }), back: group({ back: block('back', 11) }) },
       },
-    }),
+    } },
     questions: {
       selectOneAnswer: {
         choice: {
@@ -198,6 +199,8 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
       'sections/intro/check/comparison/answer/correct/index.ts',
       'flashcards/index.ts',
       'flashcards/remember/index.ts',
+      'flashcards/remember/front/index.ts',
+      'flashcards/remember/back/index.ts',
       'flashcards/remember/front/front/index.ts',
       'flashcards/remember/back/back/index.ts',
       'questions/index.ts',
@@ -221,6 +224,13 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assert.match(section, /\n  content\n\}\);/);
     assert.match(files.get('sections/index.ts'), /export const section =/);
     assert.match(files.get('constants.ts'), /export type LessonLanguages = typeof languages/);
+    assert.match(section, /#lessonsData\/2\/00000000-0000-4000-8000-000000000012\/constants/);
+    assert.match(files.get('flashcards/remember/front/index.ts'), /defineFlashcardSide<typeof sideItems, LessonLanguages>/);
+    assert.match(files.get('flashcards/remember/front/index.ts'), /items: sideItems/);
+    assert.match(files.get('flashcards/remember/front/index.ts'), /order:/);
+    assert.match(files.get('flashcards/remember/back/index.ts'), /defineFlashcardSide/);
+    assert.doesNotMatch(files.get('flashcards/index.ts'), /order:/);
+    assert.doesNotMatch([...files.values()].join('\n'), /Scaffolded by|Draft content sha256/);
     assert.match(files.get('sections/intro/prompt/index.ts'), /defineText<"prompt", LessonLanguages>/);
     assert.doesNotMatch([...files.values()].join('\n'), /Never emit translation|Light"|'Never emit translation'/);
     assertTypeScriptSyntax(files);
@@ -270,6 +280,40 @@ test('Carousel draft rejects unsupported children without writing anything', () 
     assert.equal(fs.existsSync(f.generated('sections/intro/gallery/index.ts')), false);
   }));
 
+test('Lesson Review draft and Studio stage names match the Engine camelCase contract', () => {
+  const source = fs.readFileSync(new URL('../../types/review.types.ts', import.meta.url), 'utf8');
+  const ast = ts.createSourceFile('review.types.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  const declaration = ast.statements.find(
+    statement => ts.isTypeAliasDeclaration(statement) && statement.name.text === 'LessonReviewStage',
+  );
+  assert.ok(declaration, 'Engine must declare the canonical LessonReviewStage union');
+  assert.ok(ts.isUnionTypeNode(declaration.type));
+  const stages = declaration.type.types.map(member => {
+    assert.ok(ts.isLiteralTypeNode(member) && ts.isStringLiteral(member.literal));
+    return member.literal.text;
+  });
+  assert.deepEqual(stages, lessonReviewStageSlugs);
+  assert.equal(new Set(stages).size, stages.length);
+  assert.ok(stages.every(stage => /^[a-z][a-zA-Z0-9]*$/.test(stage)));
+  assert.doesNotMatch(source, /lessonProductionStageToReviewStage|['"]experience-review['"]/);
+
+  const pending = renderReviewDraft();
+  const fields = [...pending.matchAll(/^    ([A-Za-z]+): \{ pr: , language: , \},$/gm)].map(match => match[1]);
+  assert.deepEqual(fields, stages);
+  assert.doesNotMatch(pending, /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
+  assert.match(pending, /^    locales: ,$/m);
+  assert.match(pending, /^    acceptance: ,$/m);
+  const filled = pending
+    .replace('const = {', 'const revision = {')
+    .replaceAll('pr: , language: ,', "pr: 10, language: 'en',")
+    .replace('    locales: ,', '    locales: 11,')
+    .replace('    acceptance: ,', '    acceptance: 12,');
+  assert.deepEqual(
+    ts.createSourceFile('review.ts', filled, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS).parseDiagnostics,
+    [],
+  );
+});
+
 test('review.ts starts with mandatory unfilled evidence and is not overwritten', () =>
   fixture(f => {
     const result = runOne(f.lesson, 'generate', f.root);
@@ -278,8 +322,11 @@ test('review.ts starts with mandatory unfilled evidence and is not overwritten',
     const pending = fs.readFileSync(reviewFile, 'utf8');
     assert.match(pending, /import type \{ LessonReview \} from '@svitlo\/engine\/build'/);
     assert.match(pending, /const = \{/);
-    assert.match(pending, /"experience-review": \{ pr: , language: , \}/);
-    assert.match(pending, /"methodology-review": \{ pr: , language: , \}/);
+    assert.match(pending, /experienceReview: \{ pr: , language: , \}/);
+    assert.match(pending, /methodologyReview: \{ pr: , language: , \}/);
+    assert.match(pending, /generateSources: \{ pr: , language: , \}/);
+    assert.match(pending, /resourceProduction: \{ pr: , language: , \}/);
+    assert.doesNotMatch(pending, /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
     assert.match(pending, /locales: ,/);
     assert.match(pending, /acceptance: ,/);
     assert.match(pending, /locales: \{\}/);
@@ -341,6 +388,8 @@ test('Question and Flashcard nested objects receive real item imports and approp
     runOne(f.lesson, 'generate', f.root);
     const question = fs.readFileSync(f.generated('questions/selectOneAnswer/choice/index.ts'), 'utf8');
     assert.match(question, /defineSelectOneAnswer<"choice", typeof content, LessonLanguages>/);
+    assert.match(question, /export const choice = defineSelectOneAnswer/);
+    assert.match(fs.readFileSync(f.generated('questions/index.ts'), 'utf8'), /choice\s*\}/);
     assert.match(question, /questionPrompt/);
     assert.match(question, /yes/);
     const card = fs.readFileSync(f.generated('flashcards/remember/index.ts'), 'utf8');
@@ -405,7 +454,7 @@ test('create-only generate skips index.ts before parsing stale YAML; check detec
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
     f.config.locale.title.uk = 'Змінено';
     f.save();
-    assert.throws(() => runOne(f.lesson, 'check', f.root), /stale draft/);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /stale or manually edited draft/);
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
     assert.equal(fs.readFileSync(f.generated('index.ts'), 'utf8'), before);
     fs.writeFileSync(path.join(f.lesson, 'config.yaml'), 'invalid: [');
@@ -417,7 +466,7 @@ test('check refuses manual source modifications and missing nested modules', () 
     runOne(f.lesson, 'generate', f.root);
     const file = f.generated('sections/intro/prompt/index.ts');
     fs.appendFileSync(file, '// manually edited\n');
-    assert.throws(() => runOne(f.lesson, 'check', f.root), /modified manually/);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /stale or manually edited draft/);
     fs.unlinkSync(file);
     assert.throws(() => runOne(f.lesson, 'check', f.root), /missing draft/);
   }));
@@ -913,9 +962,18 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
       'sections/reviewEquality/verifyEquality/compareFive/answer/whyFiveMatches/index.ts',
       'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/index.ts',
       'flashcards/equalityRecallCard/index.ts',
+      'flashcards/equalityRecallCard/front/index.ts',
+      'flashcards/equalityRecallCard/back/index.ts',
+      'flashcards/equalityRecallCard/hint/index.ts',
       'questions/selectOneAnswer/identifyTrueEquality/index.ts',
     ]) assert(modules.has(name), 'Missing generated file ' + name);
     assert.match(modules.get('index.ts'), /skills: \[coverageSkill_Skill_Data\.id\]/);
+    assert.match(modules.get('questions/selectOneAnswer/identifyTrueEquality/index.ts'),
+      /export const identifyTrueEquality = defineSelectOneAnswer/);
+    assert.match(modules.get('questions/index.ts'), /identifyTrueEquality,?/);
+    assert.doesNotMatch(modules.get('flashcards/index.ts'), /order:/);
+    assert.match(modules.get('flashcards/equalityRecallCard/hint/index.ts'), /defineFlashcardSide/);
+    assert.doesNotMatch([...modules.values()].join('\n'), /Scaffolded by|Draft content sha256/);
     assert.match(modules.get('sections/reviewEquality/verifyEquality/compareFive/answer/index.ts'),
       /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/);
     const carouselRoot = 'sections/exploreEquality/counterArrangementsCarousel';
@@ -949,10 +1007,42 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
     assert.equal(runOne(staged, 'generate', root).skipped, true);
     const target = path.join(output, 'sections/exploreEquality/meaningOfEquality/index.ts');
     fs.appendFileSync(target, '\n// Intentional local author edit\n');
-    assert.throws(() => runOne(staged, 'check', root), /generated file was modified manually/);
+    assert.throws(() => runOne(staged, 'check', root), /stale or manually edited draft/);
     assert.equal(runOne(staged, 'generate', root).skipped, true);
     assert.match(fs.readFileSync(target, 'utf8'), /Intentional local author edit/);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('module rendering is deterministic and retains only source-language authoring', () =>
+  fixture(f => {
+    const first = renderLessonModules(f.config, 'uk');
+    const second = renderLessonModules(f.config, 'uk');
+    assert.deepEqual([...first], [...second]);
+    for (const [name, source] of first)
+      if (name.endsWith('.ts')) assert.doesNotMatch(source, /Scaffolded by|Draft content sha256/);
+    assert.doesNotMatch([...first.values()].join('\n'), /Never emit translation/);
+    assert.match(first.get('questions/index.ts'), /choice/);
+    assert.match(first.get('questions/selectOneAnswer/choice/index.ts'), /export const choice =/);
+  }));
+
+test('PascalCase Scene slug exports distinct Configurator with textbook-local imports', () =>
+  fixture(f => {
+    const content = f.config.section.items.intro.content;
+    content.items.CompareCountersScene = {
+      id: id(70),
+      slug: 'CompareCountersScene',
+      type: 'scene',
+      params: {},
+      locale: { value: { instruction: { uk: 'Порівняй групи' } } },
+    };
+    content.order.push('CompareCountersScene');
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const scene = fs.readFileSync(f.generated('sections/intro/CompareCountersScene/index.ts'), 'utf8');
+    assert.match(scene, /export const CompareCountersSceneConfig = defineScene/);
+    assert.match(scene, /#lessonsData\/2\/00000000-0000-4000-8000-000000000012\/constants/);
+    assert.match(fs.readFileSync(f.generated('sections/intro/index.ts'), 'utf8'), /CompareCountersSceneConfig/);
+    assertTypeScriptSyntax(readAll(f.lesson));
+  }));

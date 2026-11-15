@@ -19,7 +19,6 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
 import { loadFactoryRegistry } from '../yamlScaffolding/yamlScaffolding.mjs';
@@ -33,8 +32,6 @@ import {
 export { loadFactoryRegistry };
 
 export const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
-const header = '// Scaffolded by shared/engine/scripts/lessonBuilder/lessonBuilder.mjs; DRAFT FOR AI EDITING.\n';
-const checksumLabel = '// Draft content sha256: ';
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
 export class BuilderDiagnostic extends Error {
@@ -51,7 +48,6 @@ function fail(file, field, message) {
 }
 
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
-const digest = text => crypto.createHash('sha256').update(text).digest('hex');
 
 function noSymlinks(location) {
   let current = path.parse(path.resolve(location)).root;
@@ -111,31 +107,20 @@ function combineSources(root) {
   return { lesson, language: documentLanguage, tasks };
 }
 
+/** Compare exact bytes, without injecting any generated provenance comment. */
 function writeDraft(file, content, mode) {
-  const body = content;
-  const rendered = header + checksumLabel + digest(body) + '\n' + body;
   noSymlinks(file);
   if (fs.existsSync(file)) {
-    // Creation never updates an existing draft, regardless of its provenance.
     if (mode === 'generate') return 0;
-    const original = fs.readFileSync(file, 'utf8');
-    const expectedHeader = header + checksumLabel;
-    if (!original.startsWith(expectedHeader))
-      fail(path.basename(file), '$', 'refusing to overwrite a manually authored file');
-    const split = original.indexOf('\n', expectedHeader.length);
-    const checksum = original.slice(expectedHeader.length, split);
-    if (split < 0 || !/^[a-f0-9]{64}$/.test(checksum) || digest(original.slice(split + 1)) !== checksum)
-      fail(path.basename(file), '$', 'generated file was modified manually');
-    if (original === rendered) return 0;
-    if (mode === 'check')
-      fail(
-        path.basename(file),
-        '$',
-        'stale draft: existing file differs from YAML; generator will skip, so review manually',
-      );
+    if (fs.readFileSync(file, 'utf8') === content) return 0;
+    fail(
+      path.basename(file),
+      '$',
+      'stale or manually edited draft: existing file differs from YAML; generator will skip, so review manually',
+    );
   }
   if (mode === 'check') fail(path.basename(file), '$', 'missing draft; run content:generate:lessons');
-  fs.writeFileSync(file, rendered, { flag: 'wx' });
+  fs.writeFileSync(file, content, { flag: 'wx' });
   return 1;
 }
 

@@ -43,6 +43,6 @@ export const lightStory = defineLesson({
     },
   },
   locale: { title: 'The secret of light · Story' },
-  flashcards: { items: {}, order: [] },
+  flashcards: { items: {} },
   section: { items: { story }, order: ['story'] },
 });
