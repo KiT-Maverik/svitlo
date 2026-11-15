@@ -24,9 +24,9 @@ describe('Configurators', () => {
       ) => {
         const answer = text(answerId, 'answer', 'Invariant answer');
         const question = text(questionId, 'question', value);
-        const answerId = { first: 'a', second: 'b', later: 'c' }[slug as 'first' | 'second' | 'later'];
+        const compositeIdSuffix = { first: 'a', second: 'b', later: 'c' }[slug as 'first' | 'second' | 'later'];
         const answerConfigurator = defineCheckpointAnswer<'answer', { answer: typeof answer }, ['en', 'uk']>({
-          id: 'b775647f-203d-481a-a1c7-4d331c779d6' + answerId,
+          id: 'b775647f-203d-481a-a1c7-4d331c779d6' + compositeIdSuffix,
           slug: 'answer', type: 'checkpointAnswer',
           content: { items: configuratorArrayToSlugMap([answer]), order: ['answer'] },
         });
