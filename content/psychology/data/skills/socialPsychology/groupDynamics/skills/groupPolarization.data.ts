@@ -5,6 +5,7 @@ export const groupPolarization_Skill_Data = defineSkill({
   id: '5c739446-ef97-4784-8116-cfa7ba82afde',
   name: {
     en: 'Group Polarization',
+    it: 'Polarizzazione di gruppo',
     zh: '群体极化',
     hi: 'समूह ध्रुवीकरण',
     es: 'Polarización grupal',
@@ -39,6 +40,7 @@ export const groupPolarization_Skill_Data = defineSkill({
       'Describe how discussion among similarly inclined people can shift collective judgments toward more extreme positions.',
     frontend: {
       en: 'Understand why group discussion can make shared positions more extreme.',
+      it: 'Comprendi perché la discussione di gruppo possa rendere più estreme le posizioni condivise.',
       zh: '理解为何群体讨论可能使共同立场更加极端。',
       hi: 'समझें कि समूह चर्चा साझा राय को अधिक चरम क्यों बना सकती है।',
       es: 'Comprende por qué una discusión grupal puede volver más extremas las posiciones compartidas.',

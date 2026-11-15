@@ -5,6 +5,7 @@ export const persuasionRoutes_Skill_Data = defineSkill({
   id: '923f422b-97a8-490d-98ba-f8ce300308c8',
   name: {
     en: 'Persuasion Routes',
+    it: 'Vie della persuasione',
     zh: '说服的不同路径',
     hi: 'मनाने के अलग मार्ग',
     es: 'Vías de persuasión',
@@ -38,6 +39,7 @@ export const persuasionRoutes_Skill_Data = defineSkill({
     methodological: 'Compare careful evaluation of arguments with reliance on source or presentation cues.',
     frontend: {
       en: 'Compare different routes through which persuasive messages influence attitudes.',
+      it: 'Confronta i diversi percorsi attraverso cui i messaggi persuasivi influenzano gli atteggiamenti.',
       zh: '比较有说服力的信息通过哪些不同途径改变态度。',
       hi: 'तुलना करें कि संदेश विभिन्न रास्तों से लोगों के रवैये कैसे बदलते हैं।',
       es: 'Compara los distintos caminos por los que un mensaje persuasivo cambia las actitudes.',

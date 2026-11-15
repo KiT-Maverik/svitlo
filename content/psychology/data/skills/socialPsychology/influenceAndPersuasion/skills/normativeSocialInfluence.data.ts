@@ -5,6 +5,7 @@ export const normativeSocialInfluence_Skill_Data = defineSkill({
   id: '08ce2a5b-25f4-4eb5-aead-1b04a0b51de7',
   name: {
     en: 'Normative Social Influence',
+    it: 'Influenza sociale normativa',
     zh: '规范性社会影响',
     hi: 'मानक-आधारित सामाजिक प्रभाव',
     es: 'Influencia social normativa',
@@ -38,6 +39,7 @@ export const normativeSocialInfluence_Skill_Data = defineSkill({
     methodological: 'Explain compliance motivated by social approval or avoidance of rejection.',
     frontend: {
       en: "Recognize when the desire to fit in changes a person's behavior.",
+      it: 'Riconosci quando il desiderio di essere accettati modifica il comportamento di una persona.',
       zh: '认识想融入群体的愿望何时会改变人的行为。',
       hi: 'पहचानें कि समूह में घुलने की इच्छा कब व्यवहार बदल देती है।',
       es: 'Reconoce cuándo querer encajar en un grupo cambia nuestra conducta.',

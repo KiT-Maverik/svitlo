@@ -5,6 +5,7 @@ export const socialIdentity_Skill_Data = defineSkill({
   id: '83b5e5bd-a074-4c16-8405-03e477c703bf',
   name: {
     en: 'Social Identity',
+    it: 'Identità sociale',
     zh: '社会认同',
     hi: 'सामाजिक पहचान',
     es: 'Identidad social',
@@ -39,6 +40,7 @@ export const socialIdentity_Skill_Data = defineSkill({
       'Explain how membership in meaningful groups contributes to self-description and intergroup interpretation.',
     frontend: {
       en: 'Understand how belonging to a group influences social identity.',
+      it: 'Comprendi come l\'appartenenza a un gruppo influenzi l\'identità sociale.',
       zh: '理解群体归属感如何影响一个人的社会身份。',
       hi: 'समझें कि समूह से जुड़ाव किसी व्यक्ति की सामाजिक पहचान को कैसे प्रभावित करता है।',
       es: 'Comprende cómo pertenecer a un grupo influye en la identidad social.',

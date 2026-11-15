@@ -5,6 +5,7 @@ export const recognizingPsychologicalManipulation_Skill_Data = defineSkill({
   id: '8f19a282-dc6d-48c6-8283-c661a06f82e2',
   name: {
     en: 'Recognizing Psychological Manipulation',
+    it: 'Riconoscere la manipolazione psicologica',
     zh: '识别心理操纵',
     hi: 'मनोवैज्ञानिक हेरफेर पहचानना',
     es: 'Reconocer la manipulación psicológica',
@@ -39,6 +40,7 @@ export const recognizingPsychologicalManipulation_Skill_Data = defineSkill({
       'Identify exploitative uses of urgency, isolation, guilt, or unequal power without teaching techniques to manipulate others.',
     frontend: {
       en: 'Identify pressure tactics that exploit fear, guilt or social expectations.',
+      it: 'Individua le tattiche di pressione che sfruttano paura, senso di colpa o aspettative sociali.',
       zh: '识别利用恐惧、内疚或社会期待施加压力的手法。',
       hi: 'डर, अपराधबोध या सामाजिक अपेक्षाओं का लाभ उठाने वाले दबाव के तरीके पहचानें।',
       es: 'Identifica tácticas de presión que explotan el miedo, la culpa o las expectativas sociales.',

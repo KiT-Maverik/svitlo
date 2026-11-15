@@ -15,6 +15,7 @@ export const relationshipsAndCommunication_SkillGroup_Data = defineSkillGroup({
   id: '9a36af84-9ad0-4f0b-9707-751f77649c14',
   name: {
     en: 'Relationships and Communication',
+    it: 'Relazioni e comunicazione',
     zh: '人际关系与沟通',
     hi: 'संबंध और संचार',
     es: 'Relaciones y comunicación',
@@ -69,6 +70,7 @@ export const relationshipsAndCommunication_SkillGroup_Data = defineSkillGroup({
       "Relationships develop through mutual interpretation, reciprocal actions, boundaries, and social context rather than perfect reading of another's intentions.",
     frontend: {
       en: 'Learn to recognize healthy communication, boundaries and relational challenges.',
+      it: 'Impara a riconoscere una comunicazione sana, i confini personali e le difficoltà relazionali.',
       zh: '学习识别健康的交流方式、个人界限及关系中的难题。',
       hi: 'स्वस्थ बातचीत, व्यक्तिगत सीमाएँ और संबंधों की चुनौतियाँ पहचानना सीखें।',
       es: 'Aprende a reconocer una comunicación sana, límites personales y desafíos relacionales.',
