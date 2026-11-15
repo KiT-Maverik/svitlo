@@ -43,14 +43,24 @@ export const reasoningAndProblemSolving_SkillGroup_Data = defineSkillGroup({
     kk: 'Пайымдау және мәселе шешу',
     qm: 'Mantıq yürsetüv ve mesele çezüv',
   },
-  skills: [
-    deductiveReasoning_Skill_Data,
-    functionalFixedness_Skill_Data,
-    inductiveReasoning_Skill_Data,
-    insightAndRestructuring_Skill_Data,
-    meansEndsAnalysis_Skill_Data,
-    problemRepresentation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      deductiveReasoning: deductiveReasoning_Skill_Data,
+      functionalFixedness: functionalFixedness_Skill_Data,
+      inductiveReasoning: inductiveReasoning_Skill_Data,
+      insightAndRestructuring: insightAndRestructuring_Skill_Data,
+      meansEndsAnalysis: meansEndsAnalysis_Skill_Data,
+      problemRepresentation: problemRepresentation_Skill_Data,
+    },
+    order: [
+      'deductiveReasoning',
+      'functionalFixedness',
+      'inductiveReasoning',
+      'insightAndRestructuring',
+      'meansEndsAnalysis',
+      'problemRepresentation',
+    ],
+  },
   description: {
     methodological:
       "A person's representation of a challenge constrains which rules, heuristics, and solutions become available.",

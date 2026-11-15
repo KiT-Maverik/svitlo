@@ -36,7 +36,13 @@ export const lightReflection_SkillGroup_Data = defineSkillGroup({
     kk: 'Жарықтың шағылуы',
     qm: 'Yarıqnıñ aks etüvi',
   },
-  skills: [predictTheDirectionOfAReflectedRay_Skill_Data, recognizeLightReflection_Skill_Data],
+  skills: {
+    items: {
+      predictTheDirectionOfAReflectedRay: predictTheDirectionOfAReflectedRay_Skill_Data,
+      recognizeLightReflection: recognizeLightReflection_Skill_Data,
+    },
+    order: ['predictTheDirectionOfAReflectedRay', 'recognizeLightReflection'],
+  },
   description: {
     methodological: 'A surface changes the direction of a light ray; mirrors provide a visible model of this behavior.',
     frontend: {

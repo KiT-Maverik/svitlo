@@ -42,13 +42,16 @@ export const sequence_SkillGroup_Data = defineSkillGroup({
     pl: 'Ciągi liczbowe',
     uk: 'Числові послідовності',
   },
-  skills: [
-    oneToOne_Skill_Data,
-    forward20_Skill_Data,
-    backward20_Skill_Data,
-    forward100_Skill_Data,
-    forward1000_Skill_Data,
-  ],
+  skills: {
+    items: {
+      oneToOne: oneToOne_Skill_Data,
+      forward20: forward20_Skill_Data,
+      backward20: backward20_Skill_Data,
+      forward100: forward100_Skill_Data,
+      forward1000: forward1000_Skill_Data,
+    },
+    order: ['oneToOne', 'forward20', 'backward20', 'forward100', 'forward1000'],
+  },
   description: {
     methodological:
       'Naming consecutive natural numbers, moving forward and backward, and restoring missing elements of the sequence without necessarily starting from one.',

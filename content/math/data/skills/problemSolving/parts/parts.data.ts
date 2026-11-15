@@ -36,7 +36,13 @@ export const parts_SkillGroup_Data = defineSkillGroup({
     pl: 'Zadania o części i całości',
     uk: 'Задачі на частини й ціле',
   },
-  skills: [partWholeAddsub_Skill_Data, fractionsContext_Skill_Data],
+  skills: {
+    items: {
+      partWholeAddsub: partWholeAddsub_Skill_Data,
+      fractionsContext: fractionsContext_Skill_Data,
+    },
+    order: ['partWholeAddsub', 'fractionsContext'],
+  },
   description: {
     methodological:
       'Relationships between a whole and its parts in contextual problems, including unit fractional parts.',

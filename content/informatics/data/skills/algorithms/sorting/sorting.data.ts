@@ -41,12 +41,15 @@ export const sorting_SkillGroup_Data = defineSkillGroup({
     kk: 'Сұрыптау',
     qm: 'Sıralav',
   },
-  skills: [
-    applyBubbleSort_Skill_Data,
-    applyInsertionSort_Skill_Data,
-    applySelectionSort_Skill_Data,
-    explainASortingCriterion_Skill_Data,
-  ],
+  skills: {
+    items: {
+      applyBubbleSort: applyBubbleSort_Skill_Data,
+      applyInsertionSort: applyInsertionSort_Skill_Data,
+      applySelectionSort: applySelectionSort_Skill_Data,
+      explainASortingCriterion: explainASortingCriterion_Skill_Data,
+    },
+    order: ['applyBubbleSort', 'applyInsertionSort', 'applySelectionSort', 'explainASortingCriterion'],
+  },
   description: {
     methodological:
       'Put elements in order according to a criterion using successive selection, insertion into a sorted prefix, or swapping adjacent items. Each method has its own independently assessable Skill.',

@@ -42,13 +42,16 @@ export const inorganicCompounds_SkillGroup_Data = defineSkillGroup({
     kk: 'Бейорганикалық қосылыстар',
     qm: 'Neorganik birleşmeler',
   },
-  skills: [
-    coordinationCompounds_Skill_Data,
-    hydroxides_Skill_Data,
-    minerals_Skill_Data,
-    oxides_Skill_Data,
-    salts_Skill_Data,
-  ],
+  skills: {
+    items: {
+      coordinationCompounds: coordinationCompounds_Skill_Data,
+      hydroxides: hydroxides_Skill_Data,
+      minerals: minerals_Skill_Data,
+      oxides: oxides_Skill_Data,
+      salts: salts_Skill_Data,
+    },
+    order: ['coordinationCompounds', 'hydroxides', 'minerals', 'oxides', 'salts'],
+  },
   description: {
     methodological:
       'Inorganic formulas and classes describe varied substances whose behavior is not determined by a class name alone.',

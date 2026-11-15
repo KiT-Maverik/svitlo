@@ -41,12 +41,20 @@ export const weatherObservations_SkillGroup_Data = defineSkillGroup({
     kk: 'Ауа райын бақылау',
     qm: 'Ava şaraitini közatüv',
   },
-  skills: [
-    explainTheConceptOfWeather_Skill_Data,
-    identifyWeatherVariablesInAnObservation_Skill_Data,
-    interpretStandardWeatherSymbolsOnAMap_Skill_Data,
-    readTemperatureAndPrecipitationObservations_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainTheConceptOfWeather: explainTheConceptOfWeather_Skill_Data,
+      identifyWeatherVariablesInAnObservation: identifyWeatherVariablesInAnObservation_Skill_Data,
+      interpretStandardWeatherSymbolsOnAMap: interpretStandardWeatherSymbolsOnAMap_Skill_Data,
+      readTemperatureAndPrecipitationObservations: readTemperatureAndPrecipitationObservations_Skill_Data,
+    },
+    order: [
+      'explainTheConceptOfWeather',
+      'identifyWeatherVariablesInAnObservation',
+      'interpretStandardWeatherSymbolsOnAMap',
+      'readTemperatureAndPrecipitationObservations',
+    ],
+  },
   description: {
     methodological:
       'Weather is described by measurable conditions at a particular location and time. Observations must be interpreted with appropriate units and temporal context.',

@@ -36,7 +36,12 @@ export const formalization_SkillGroup_Data = defineSkillGroup({
     pl: 'Modelowanie symboliczne',
     uk: 'Символьне моделювання',
   },
-  skills: [translateSituation_Skill_Data],
+  skills: {
+    items: {
+      translateSituation: translateSituation_Skill_Data,
+    },
+    order: ['translateSituation'],
+  },
   description: {
     methodological: 'Representing relationships in a short situation using arithmetic or simple algebraic notation.',
     frontend: {

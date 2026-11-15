@@ -44,15 +44,18 @@ export const functionalGroups_SkillGroup_Data = defineSkillGroup({
     kk: 'Функционалдық топтар',
     qm: 'Funktsional toparlar',
   },
-  skills: [
-    alcohols_Skill_Data,
-    aldehydes_Skill_Data,
-    amides_Skill_Data,
-    amines_Skill_Data,
-    carboxylicAcids_Skill_Data,
-    esters_Skill_Data,
-    ketones_Skill_Data,
-  ],
+  skills: {
+    items: {
+      alcohols: alcohols_Skill_Data,
+      aldehydes: aldehydes_Skill_Data,
+      amides: amides_Skill_Data,
+      amines: amines_Skill_Data,
+      carboxylicAcids: carboxylicAcids_Skill_Data,
+      esters: esters_Skill_Data,
+      ketones: ketones_Skill_Data,
+    },
+    order: ['alcohols', 'aldehydes', 'amides', 'amines', 'carboxylicAcids', 'esters', 'ketones'],
+  },
   description: {
     methodological:
       'Different atom groups create families whose chemical behavior can be predicted more reliably than from molecular size alone.',

@@ -40,7 +40,14 @@ export const redistributionAndSocialProtection_SkillGroup_Data = defineSkillGrou
     kk: 'Қайта бөлу және әлеуметтік қорғау',
     qm: 'Qayta paylaştıruv ve içtimaiy qorçalav',
   },
-  skills: [publicProgramEvaluation_Skill_Data, socialTransfers_Skill_Data, targetedAndUniversalBenefits_Skill_Data],
+  skills: {
+    items: {
+      publicProgramEvaluation: publicProgramEvaluation_Skill_Data,
+      socialTransfers: socialTransfers_Skill_Data,
+      targetedAndUniversalBenefits: targetedAndUniversalBenefits_Skill_Data,
+    },
+    order: ['publicProgramEvaluation', 'socialTransfers', 'targetedAndUniversalBenefits'],
+  },
   description: {
     methodological:
       'Transfers and public services change resource distribution and insure against specified social risks.',

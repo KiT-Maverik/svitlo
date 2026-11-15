@@ -40,7 +40,14 @@ export const historicalEconomicTransformations_SkillGroup_Data = defineSkillGrou
     kk: 'Тарихи экономикалық өзгерістер',
     qm: 'Tarihiy iqtisadiy deñişiklikler',
   },
-  skills: [agrarianEconomies_Skill_Data, globalizationOfEconomicRelations_Skill_Data, industrialization_Skill_Data],
+  skills: {
+    items: {
+      agrarianEconomies: agrarianEconomies_Skill_Data,
+      globalizationOfEconomicRelations: globalizationOfEconomicRelations_Skill_Data,
+      industrialization: industrialization_Skill_Data,
+    },
+    order: ['agrarianEconomies', 'globalizationOfEconomicRelations', 'industrialization'],
+  },
   description: {
     methodological:
       'Technological, commercial, and institutional changes have transformed how goods are produced and distributed.',

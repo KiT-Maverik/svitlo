@@ -42,13 +42,22 @@ export const performingArtTraditions_SkillGroup_Data = defineSkillGroup({
     kk: 'Орындаушылық өнер дәстүрлері',
     qm: 'İcra sanatları adetleri',
   },
-  skills: [
-    analyzeBebopJazz_Skill_Data,
-    analyzeBharatanatyam_Skill_Data,
-    analyzeClassicalBalletTraditions_Skill_Data,
-    analyzeHipHopDJCulture_Skill_Data,
-    analyzeNohTheatre_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeBebopJazz: analyzeBebopJazz_Skill_Data,
+      analyzeBharatanatyam: analyzeBharatanatyam_Skill_Data,
+      analyzeClassicalBalletTraditions: analyzeClassicalBalletTraditions_Skill_Data,
+      analyzeHipHopDJCulture: analyzeHipHopDJCulture_Skill_Data,
+      analyzeNohTheatre: analyzeNohTheatre_Skill_Data,
+    },
+    order: [
+      'analyzeBebopJazz',
+      'analyzeBharatanatyam',
+      'analyzeClassicalBalletTraditions',
+      'analyzeHipHopDJCulture',
+      'analyzeNohTheatre',
+    ],
+  },
   description: {
     methodological:
       'Historical traditions in theatre, dance and music are interpreted through the characteristics and cultural roles of their performances, not by requiring a pupil to reproduce their techniques.',

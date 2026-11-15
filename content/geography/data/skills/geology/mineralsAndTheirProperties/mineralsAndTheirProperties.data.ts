@@ -40,11 +40,19 @@ export const mineralsAndTheirProperties_SkillGroup_Data = defineSkillGroup({
     kk: 'Минералдар және олардың қасиеттері',
     qm: 'Minerallar ve olarnıñ hususiyetleri',
   },
-  skills: [
-    characterizeMineralsUsingDiagnosticPhysicalProperties_Skill_Data,
-    explainWhatMakesANaturalSolidAMineral_Skill_Data,
-    identifyMineralsUsingMultipleDiagnosticProperties_Skill_Data,
-  ],
+  skills: {
+    items: {
+      characterizeMineralsUsingDiagnosticPhysicalProperties:
+        characterizeMineralsUsingDiagnosticPhysicalProperties_Skill_Data,
+      explainWhatMakesANaturalSolidAMineral: explainWhatMakesANaturalSolidAMineral_Skill_Data,
+      identifyMineralsUsingMultipleDiagnosticProperties: identifyMineralsUsingMultipleDiagnosticProperties_Skill_Data,
+    },
+    order: [
+      'characterizeMineralsUsingDiagnosticPhysicalProperties',
+      'explainWhatMakesANaturalSolidAMineral',
+      'identifyMineralsUsingMultipleDiagnosticProperties',
+    ],
+  },
   description: {
     methodological:
       'A mineral is a naturally occurring crystalline substance with characteristic structure and material properties. Its identity is inferred using complementary evidence such as scratch resistance, streak, luster and cleavage rather than relying on color or one test in isolation.',

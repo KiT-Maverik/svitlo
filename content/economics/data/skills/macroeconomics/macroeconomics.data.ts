@@ -39,12 +39,20 @@ export const macroeconomics_SkillDomain_Data = defineSkillDomain({
     kk: 'Макроэкономика',
     qm: 'Makroiqtisat',
   },
-  groups: [
-    businessFluctuationsAndAggregateDemand_SkillGroup_Data,
-    growthAndProductivity_SkillGroup_Data,
-    nationalAccounts_SkillGroup_Data,
-    pricesAndEmployment_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      businessFluctuationsAndAggregateDemand: businessFluctuationsAndAggregateDemand_SkillGroup_Data,
+      growthAndProductivity: growthAndProductivity_SkillGroup_Data,
+      nationalAccounts: nationalAccounts_SkillGroup_Data,
+      pricesAndEmployment: pricesAndEmployment_SkillGroup_Data,
+    },
+    order: [
+      'businessFluctuationsAndAggregateDemand',
+      'growthAndProductivity',
+      'nationalAccounts',
+      'pricesAndEmployment',
+    ],
+  },
   description: {
     methodological:
       "Aggregate production, employment, inflation, and economic change describe economy-wide relationships; their measures and models are not the same as each individual's wellbeing.",

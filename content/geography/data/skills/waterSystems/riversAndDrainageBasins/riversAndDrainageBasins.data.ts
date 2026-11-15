@@ -39,7 +39,13 @@ export const riversAndDrainageBasins_SkillGroup_Data = defineSkillGroup({
     kk: 'Өзендер мен су жиналу алаптары',
     qm: 'Özenler ve suv toplanğan havzalar',
   },
-  skills: [delineateADrainageBasinFromTerrain_Skill_Data, identifyTheMainPartsOfARiverNetwork_Skill_Data],
+  skills: {
+    items: {
+      delineateADrainageBasinFromTerrain: delineateADrainageBasinFromTerrain_Skill_Data,
+      identifyTheMainPartsOfARiverNetwork: identifyTheMainPartsOfARiverNetwork_Skill_Data,
+    },
+    order: ['delineateADrainageBasinFromTerrain', 'identifyTheMainPartsOfARiverNetwork'],
+  },
   description: {
     methodological:
       'Flowing water links sources, tributaries and outlets into networks, while topography governs the surface catchment of a river. Describing different types of water bodies as objects belongs to Geographic Objects.',

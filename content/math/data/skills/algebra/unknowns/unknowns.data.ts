@@ -43,14 +43,24 @@ export const unknowns_SkillGroup_Data = defineSkillGroup({
     pl: 'Wartości niewiadome',
     uk: 'Невідомі величини',
   },
-  skills: [
-    unknownAddend_Skill_Data,
-    unknownMinuend_Skill_Data,
-    unknownSubtrahend_Skill_Data,
-    unknownFactor_Skill_Data,
-    unknownDividend_Skill_Data,
-    unknownDivisor_Skill_Data,
-  ],
+  skills: {
+    items: {
+      unknownAddend: unknownAddend_Skill_Data,
+      unknownMinuend: unknownMinuend_Skill_Data,
+      unknownSubtrahend: unknownSubtrahend_Skill_Data,
+      unknownFactor: unknownFactor_Skill_Data,
+      unknownDividend: unknownDividend_Skill_Data,
+      unknownDivisor: unknownDivisor_Skill_Data,
+    },
+    order: [
+      'unknownAddend',
+      'unknownMinuend',
+      'unknownSubtrahend',
+      'unknownFactor',
+      'unknownDividend',
+      'unknownDivisor',
+    ],
+  },
   description: {
     methodological:
       'Relationships between components and results of the four arithmetic operations that allow an unknown quantity to be found and verified.',

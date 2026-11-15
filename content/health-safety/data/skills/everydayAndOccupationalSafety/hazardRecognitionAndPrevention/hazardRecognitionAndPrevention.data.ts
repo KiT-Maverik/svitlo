@@ -41,12 +41,20 @@ export const hazardRecognitionAndPrevention_SkillGroup_Data = defineSkillGroup({
     kk: 'Қауіпті анықтау және алдын алу',
     qm: 'Telükelerni tanımaq ve ögüni almaq',
   },
-  skills: [
-    chooseProtectiveMeasures_Skill_Data,
-    evaluateInjuryRisk_Skill_Data,
-    identifyHazardsInAnEnvironment_Skill_Data,
-    respondToUnsafeConditions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      chooseProtectiveMeasures: chooseProtectiveMeasures_Skill_Data,
+      evaluateInjuryRisk: evaluateInjuryRisk_Skill_Data,
+      identifyHazardsInAnEnvironment: identifyHazardsInAnEnvironment_Skill_Data,
+      respondToUnsafeConditions: respondToUnsafeConditions_Skill_Data,
+    },
+    order: [
+      'chooseProtectiveMeasures',
+      'evaluateInjuryRisk',
+      'identifyHazardsInAnEnvironment',
+      'respondToUnsafeConditions',
+    ],
+  },
   description: {
     methodological:
       'Risk management involves identifying possible harm, checking exposure, and favouring elimination or protective controls over mere caution.',

@@ -41,12 +41,20 @@ export const sensoryOrgansAndTheNervousSystem_SkillGroup_Data = defineSkillGroup
     kk: 'Сезім мүшелері мен жүйке жүйесі',
     qm: 'Sezgi organları ve sinir sisteması',
   },
-  skills: [
-    explainResponsesToStimuli_Skill_Data,
-    identifyTheSkinsProtectiveFunction_Skill_Data,
-    recognizeTheBrainsRoleInPerception_Skill_Data,
-    relateASenseOrganToTheInformationItDetects_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainResponsesToStimuli: explainResponsesToStimuli_Skill_Data,
+      identifyTheSkinsProtectiveFunction: identifyTheSkinsProtectiveFunction_Skill_Data,
+      recognizeTheBrainsRoleInPerception: recognizeTheBrainsRoleInPerception_Skill_Data,
+      relateASenseOrganToTheInformationItDetects: relateASenseOrganToTheInformationItDetects_Skill_Data,
+    },
+    order: [
+      'explainResponsesToStimuli',
+      'identifyTheSkinsProtectiveFunction',
+      'recognizeTheBrainsRoleInPerception',
+      'relateASenseOrganToTheInformationItDetects',
+    ],
+  },
   description: {
     methodological:
       'Receptors detect different stimuli, the nervous system processes signals, and the skin also protects the body as a physical barrier.',

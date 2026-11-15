@@ -42,13 +42,22 @@ export const databases_SkillGroup_Data = defineSkillGroup({
     kk: 'Деректер базалары',
     qm: 'Verilgenler bazaları',
   },
-  skills: [
-    designASimpleDatabaseSchema_Skill_Data,
-    distinguishRecordsAndFields_Skill_Data,
-    explainADatabaseTable_Skill_Data,
-    explainPrimaryKeys_Skill_Data,
-    modelRelationshipsBetweenTables_Skill_Data,
-  ],
+  skills: {
+    items: {
+      designASimpleDatabaseSchema: designASimpleDatabaseSchema_Skill_Data,
+      distinguishRecordsAndFields: distinguishRecordsAndFields_Skill_Data,
+      explainADatabaseTable: explainADatabaseTable_Skill_Data,
+      explainPrimaryKeys: explainPrimaryKeys_Skill_Data,
+      modelRelationshipsBetweenTables: modelRelationshipsBetweenTables_Skill_Data,
+    },
+    order: [
+      'designASimpleDatabaseSchema',
+      'distinguishRecordsAndFields',
+      'explainADatabaseTable',
+      'explainPrimaryKeys',
+      'modelRelationshipsBetweenTables',
+    ],
+  },
   description: {
     methodological:
       'Structured storage of interrelated information differs from a table laid out only for human reading. Records and fields define the structure, keys identify records, and relationships connect information across tables.',

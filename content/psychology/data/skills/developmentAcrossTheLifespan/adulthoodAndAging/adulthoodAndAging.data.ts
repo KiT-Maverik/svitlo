@@ -41,12 +41,15 @@ export const adulthoodAndAging_SkillGroup_Data = defineSkillGroup({
     kk: 'Ересектік және қартаю',
     qm: 'Büyük yaş ve qartayuv',
   },
-  skills: [
-    adultRoleTransitions_Skill_Data,
-    cognitiveAging_Skill_Data,
-    lifelongAdaptation_Skill_Data,
-    socioemotionalSelectivity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      adultRoleTransitions: adultRoleTransitions_Skill_Data,
+      cognitiveAging: cognitiveAging_Skill_Data,
+      lifelongAdaptation: lifelongAdaptation_Skill_Data,
+      socioemotionalSelectivity: socioemotionalSelectivity_Skill_Data,
+    },
+    order: ['adultRoleTransitions', 'cognitiveAging', 'lifelongAdaptation', 'socioemotionalSelectivity'],
+  },
   description: {
     methodological:
       'Psychological development continues through adulthood, including shifting roles, accumulated experience, and heterogeneous cognitive trajectories.',

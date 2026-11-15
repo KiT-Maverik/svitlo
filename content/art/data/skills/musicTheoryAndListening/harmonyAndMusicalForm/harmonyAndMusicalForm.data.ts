@@ -42,13 +42,22 @@ export const harmonyAndMusicalForm_SkillGroup_Data = defineSkillGroup({
     kk: 'Гармония және музыкалық форма',
     qm: 'Armoniya ve musiqiy şekil',
   },
-  skills: [
-    analyzeMusicalForm_Skill_Data,
-    constructAMusicalChord_Skill_Data,
-    identifyMusicalMotifs_Skill_Data,
-    interpretConsonanceAndDissonance_Skill_Data,
-    recognizeHarmonicProgressions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeMusicalForm: analyzeMusicalForm_Skill_Data,
+      constructAMusicalChord: constructAMusicalChord_Skill_Data,
+      identifyMusicalMotifs: identifyMusicalMotifs_Skill_Data,
+      interpretConsonanceAndDissonance: interpretConsonanceAndDissonance_Skill_Data,
+      recognizeHarmonicProgressions: recognizeHarmonicProgressions_Skill_Data,
+    },
+    order: [
+      'analyzeMusicalForm',
+      'constructAMusicalChord',
+      'identifyMusicalMotifs',
+      'interpretConsonanceAndDissonance',
+      'recognizeHarmonicProgressions',
+    ],
+  },
   description: {
     methodological:
       'Vertical sonorities and large-scale repetition create musical expectation within a chosen tradition.',

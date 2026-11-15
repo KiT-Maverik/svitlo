@@ -41,12 +41,20 @@ export const communityMediaAndEnvironment_SkillGroup_Data = defineSkillGroup({
     kk: 'Қауымдастық, медиа және орта',
     qm: 'Cemaat, media ve çevre',
   },
-  skills: [
-    communityInterventionEvaluation_Skill_Data,
-    environmentalBehaviorChange_Skill_Data,
-    mediaInfluenceOnJudgment_Skill_Data,
-    socialNormsInCommunities_Skill_Data,
-  ],
+  skills: {
+    items: {
+      communityInterventionEvaluation: communityInterventionEvaluation_Skill_Data,
+      environmentalBehaviorChange: environmentalBehaviorChange_Skill_Data,
+      mediaInfluenceOnJudgment: mediaInfluenceOnJudgment_Skill_Data,
+      socialNormsInCommunities: socialNormsInCommunities_Skill_Data,
+    },
+    order: [
+      'communityInterventionEvaluation',
+      'environmentalBehaviorChange',
+      'mediaInfluenceOnJudgment',
+      'socialNormsInCommunities',
+    ],
+  },
   description: {
     methodological:
       'Social structures and mediated information influence beliefs, cooperation, and behavior beyond a single interpersonal exchange.',

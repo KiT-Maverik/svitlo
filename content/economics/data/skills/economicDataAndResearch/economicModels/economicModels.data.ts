@@ -40,7 +40,14 @@ export const economicModels_SkillGroup_Data = defineSkillGroup({
     kk: 'Экономикалық модельдер',
     qm: 'İqtisadiy modeller',
   },
-  skills: [buildingEconomicModels_Skill_Data, ceterisParibusAssumption_Skill_Data, limitsOfEconomicModels_Skill_Data],
+  skills: {
+    items: {
+      buildingEconomicModels: buildingEconomicModels_Skill_Data,
+      ceterisParibusAssumption: ceterisParibusAssumption_Skill_Data,
+      limitsOfEconomicModels: limitsOfEconomicModels_Skill_Data,
+    },
+    order: ['buildingEconomicModels', 'ceterisParibusAssumption', 'limitsOfEconomicModels'],
+  },
   description: {
     methodological:
       'Simplified representations help isolate mechanisms, but their conclusions depend on starting assumptions.',

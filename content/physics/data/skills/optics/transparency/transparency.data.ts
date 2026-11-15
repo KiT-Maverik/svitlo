@@ -36,7 +36,12 @@ export const transparency_SkillGroup_Data = defineSkillGroup({
     kk: 'Мөлдірлік',
     qm: 'Şeffaflıq',
   },
-  skills: [classifyMaterialsByTransparency_Skill_Data],
+  skills: {
+    items: {
+      classifyMaterialsByTransparency: classifyMaterialsByTransparency_Skill_Data,
+    },
+    order: ['classifyMaterialsByTransparency'],
+  },
   description: {
     methodological:
       'Transparency characterizes the transmission, absorption, and scattering of visible light by a material and its ability to transmit an image.',

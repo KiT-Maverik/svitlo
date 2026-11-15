@@ -39,12 +39,15 @@ export const developmentAcrossTheLifespan_SkillDomain_Data = defineSkillDomain({
     kk: 'Өмір бойындағы даму',
     qm: 'Ömür boyunca inkişaf',
   },
-  groups: [
-    adolescenceAndIdentity_SkillGroup_Data,
-    adulthoodAndAging_SkillGroup_Data,
-    earlyAndMiddleChildhood_SkillGroup_Data,
-    mechanismsOfDevelopment_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      adolescenceAndIdentity: adolescenceAndIdentity_SkillGroup_Data,
+      adulthoodAndAging: adulthoodAndAging_SkillGroup_Data,
+      earlyAndMiddleChildhood: earlyAndMiddleChildhood_SkillGroup_Data,
+      mechanismsOfDevelopment: mechanismsOfDevelopment_SkillGroup_Data,
+    },
+    order: ['adolescenceAndIdentity', 'adulthoodAndAging', 'earlyAndMiddleChildhood', 'mechanismsOfDevelopment'],
+  },
   description: {
     methodological:
       'Cognition, relationships, identity, and emotional regulation change from infancy through older adulthood. Developmental patterns express interactions of maturation and lived experience, not identical milestones for every person.',

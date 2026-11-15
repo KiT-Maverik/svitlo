@@ -42,13 +42,22 @@ export const sculpturalForm_SkillGroup_Data = defineSkillGroup({
     kk: 'Мүсіндік пішін',
     qm: 'Heykel şekli',
   },
-  skills: [
-    carveSubtractiveSculpture_Skill_Data,
-    constructThreeDimensionalForm_Skill_Data,
-    createReliefSculpture_Skill_Data,
-    modelAdditiveSculpture_Skill_Data,
-    usePositiveAndNegativeSpace_Skill_Data,
-  ],
+  skills: {
+    items: {
+      carveSubtractiveSculpture: carveSubtractiveSculpture_Skill_Data,
+      constructThreeDimensionalForm: constructThreeDimensionalForm_Skill_Data,
+      createReliefSculpture: createReliefSculpture_Skill_Data,
+      modelAdditiveSculpture: modelAdditiveSculpture_Skill_Data,
+      usePositiveAndNegativeSpace: usePositiveAndNegativeSpace_Skill_Data,
+    },
+    order: [
+      'carveSubtractiveSculpture',
+      'constructThreeDimensionalForm',
+      'createReliefSculpture',
+      'modelAdditiveSculpture',
+      'usePositiveAndNegativeSpace',
+    ],
+  },
   description: {
     methodological:
       'Volume and void, physical viewpoints and material manipulation characterize three-dimensional artistic work.',

@@ -38,11 +38,14 @@ export const substancesAndProperties_SkillDomain_Data = defineSkillDomain({
     kk: 'Заттар және олардың қасиеттері',
     qm: 'Maddeler ve olarnıñ hususiyetleri',
   },
-  groups: [
-    changesAndConservation_SkillGroup_Data,
-    characteristicProperties_SkillGroup_Data,
-    composition_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      changesAndConservation: changesAndConservation_SkillGroup_Data,
+      characteristicProperties: characteristicProperties_SkillGroup_Data,
+      composition: composition_SkillGroup_Data,
+    },
+    order: ['changesAndConservation', 'characteristicProperties', 'composition'],
+  },
   description: {
     methodological:
       'Chemists classify samples by composition and characterize them through reproducible properties. This domain focuses on observable and bulk descriptions before explaining them through atomic structure or bonding.',

@@ -43,14 +43,24 @@ export const argumentativeFallacies_SkillGroup_Data = defineSkillGroup({
     kk: 'Дәлелдеудегі қателер',
     qm: 'Delillendirmede safsatalar',
   },
-  skills: [
-    detectAFalseDilemma_Skill_Data,
-    detectAnAdHominemFallacy_Skill_Data,
-    detectAnEquivocationFallacy_Skill_Data,
-    detectAStrawManArgument_Skill_Data,
-    detectCircularReasoning_Skill_Data,
-    evaluateAnAppealToAuthority_Skill_Data,
-  ],
+  skills: {
+    items: {
+      detectAFalseDilemma: detectAFalseDilemma_Skill_Data,
+      detectAnAdHominemFallacy: detectAnAdHominemFallacy_Skill_Data,
+      detectAnEquivocationFallacy: detectAnEquivocationFallacy_Skill_Data,
+      detectAStrawManArgument: detectAStrawManArgument_Skill_Data,
+      detectCircularReasoning: detectCircularReasoning_Skill_Data,
+      evaluateAnAppealToAuthority: evaluateAnAppealToAuthority_Skill_Data,
+    },
+    order: [
+      'detectAFalseDilemma',
+      'detectAnAdHominemFallacy',
+      'detectAnEquivocationFallacy',
+      'detectAStrawManArgument',
+      'detectCircularReasoning',
+      'evaluateAnAppealToAuthority',
+    ],
+  },
   description: {
     methodological:
       "A flaw concerns the relation between claims and reasons, not necessarily the speaker's motives or a named cognitive bias. Context matters: surface wording alone rarely proves fallaciousness.",

@@ -39,12 +39,20 @@ export const mentalHealthAndClinicalScience_SkillDomain_Data = defineSkillDomain
     kk: 'Психикалық денсаулық және клиникалық ғылым',
     qm: 'Ruhiy sağlıq ve klinik ilim',
   },
-  groups: [
-    assessmentAndProfessionalSupport_SkillGroup_Data,
-    interventionEvidenceAndEthics_SkillGroup_Data,
-    patternsOfPsychologicalDifficulty_SkillGroup_Data,
-    wellbeingAndImpairment_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      assessmentAndProfessionalSupport: assessmentAndProfessionalSupport_SkillGroup_Data,
+      interventionEvidenceAndEthics: interventionEvidenceAndEthics_SkillGroup_Data,
+      patternsOfPsychologicalDifficulty: patternsOfPsychologicalDifficulty_SkillGroup_Data,
+      wellbeingAndImpairment: wellbeingAndImpairment_SkillGroup_Data,
+    },
+    order: [
+      'assessmentAndProfessionalSupport',
+      'interventionEvidenceAndEthics',
+      'patternsOfPsychologicalDifficulty',
+      'wellbeingAndImpairment',
+    ],
+  },
   description: {
     methodological:
       'Clinical psychology investigates distress, impaired functioning, and evidence-based assessment and intervention. Learning these concepts does not authorize students to diagnose themselves or others, deliver therapy, or replace qualified professional care.',

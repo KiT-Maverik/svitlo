@@ -42,13 +42,22 @@ export const lateModernAndContemporaryPractices_SkillGroup_Data = defineSkillGro
     kk: 'Кейінгі модерн және заманауи тәжірибелер',
     qm: 'Keç modernizm ve çağdaş sanat tecribeleri',
   },
-  skills: [
-    analyzeConceptualArt_Skill_Data,
-    analyzeInstallationArt_Skill_Data,
-    analyzeMinimalism_Skill_Data,
-    analyzePerformanceArt_Skill_Data,
-    analyzePopArt_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeConceptualArt: analyzeConceptualArt_Skill_Data,
+      analyzeInstallationArt: analyzeInstallationArt_Skill_Data,
+      analyzeMinimalism: analyzeMinimalism_Skill_Data,
+      analyzePerformanceArt: analyzePerformanceArt_Skill_Data,
+      analyzePopArt: analyzePopArt_Skill_Data,
+    },
+    order: [
+      'analyzeConceptualArt',
+      'analyzeInstallationArt',
+      'analyzeMinimalism',
+      'analyzePerformanceArt',
+      'analyzePopArt',
+    ],
+  },
   description: {
     methodological:
       'Artworks in these practices can privilege ideas, everyday images, participation or spatial conditions over traditional single-object representation.',

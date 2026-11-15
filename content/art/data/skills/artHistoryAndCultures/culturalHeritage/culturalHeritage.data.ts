@@ -41,12 +41,20 @@ export const culturalHeritage_SkillGroup_Data = defineSkillGroup({
     kk: 'Мәдени мұра',
     qm: 'Medeniy miras',
   },
-  skills: [
-    assessCulturalRepatriation_Skill_Data,
-    distinguishConservationAndRestoration_Skill_Data,
-    evaluateMuseumRepresentation_Skill_Data,
-    investigateArtworkProvenance_Skill_Data,
-  ],
+  skills: {
+    items: {
+      assessCulturalRepatriation: assessCulturalRepatriation_Skill_Data,
+      distinguishConservationAndRestoration: distinguishConservationAndRestoration_Skill_Data,
+      evaluateMuseumRepresentation: evaluateMuseumRepresentation_Skill_Data,
+      investigateArtworkProvenance: investigateArtworkProvenance_Skill_Data,
+    },
+    order: [
+      'assessCulturalRepatriation',
+      'distinguishConservationAndRestoration',
+      'evaluateMuseumRepresentation',
+      'investigateArtworkProvenance',
+    ],
+  },
   description: {
     methodological:
       'Art-historical stewardship requires attention to provenance, preservation and representation of communities.',

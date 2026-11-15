@@ -36,7 +36,13 @@ export const personalSafetyInPublicPlaces_SkillGroup_Data = defineSkillGroup({
     kk: 'Қоғамдық орындардағы жеке қауіпсіздік',
     qm: 'Cemaat yerlerinde şahsiy havfsızlıq',
   },
-  skills: [respondToUnsafeApproachesInPublic_Skill_Data, seekHelpWhenLostOrSeparated_Skill_Data],
+  skills: {
+    items: {
+      respondToUnsafeApproachesInPublic: respondToUnsafeApproachesInPublic_Skill_Data,
+      seekHelpWhenLostOrSeparated: seekHelpWhenLostOrSeparated_Skill_Data,
+    },
+    order: ['respondToUnsafeApproachesInPublic', 'seekHelpWhenLostOrSeparated'],
+  },
   description: {
     methodological:
       'Being approached by unknown people or separated from familiar companions calls for independent judgement about safe distance, exit options and trustworthy assistance, without assuming every unfamiliar person is dangerous.',

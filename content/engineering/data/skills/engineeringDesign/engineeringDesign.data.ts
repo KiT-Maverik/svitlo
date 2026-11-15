@@ -39,12 +39,15 @@ export const engineeringDesign_SkillDomain_Data = defineSkillDomain({
     kk: 'Инженерлік жобалау',
     qm: 'Mühendislik layihalavı',
   },
-  groups: [
-    conceptSelection_SkillGroup_Data,
-    problemDefinition_SkillGroup_Data,
-    representationsAndPrototypes_SkillGroup_Data,
-    testingAndIteration_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      conceptSelection: conceptSelection_SkillGroup_Data,
+      problemDefinition: problemDefinition_SkillGroup_Data,
+      representationsAndPrototypes: representationsAndPrototypes_SkillGroup_Data,
+      testingAndIteration: testingAndIteration_SkillGroup_Data,
+    },
+    order: ['conceptSelection', 'problemDefinition', 'representationsAndPrototypes', 'testingAndIteration'],
+  },
   description: {
     methodological:
       'A design must respond to an actual need, not merely demonstrate a technology. This domain concerns converting uncertain problems into requirements, selecting feasible concepts, communicating designs and improving them using evidence.',

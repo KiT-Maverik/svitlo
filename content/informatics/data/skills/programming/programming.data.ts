@@ -43,16 +43,28 @@ export const programming_SkillDomain_Data = defineSkillDomain({
     kk: 'Бағдарламалау',
     qm: 'Programmalav',
   },
-  groups: [
-    dataTypesAndReferences_SkillGroup_Data,
-    functionsAndReuse_SkillGroup_Data,
-    programData_SkillGroup_Data,
-    programmingConstructs_SkillGroup_Data,
-    programmingParadigms_SkillGroup_Data,
-    programStructureAndSyntax_SkillGroup_Data,
-    readingPrograms_SkillGroup_Data,
-    testingAndDebugging_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      dataTypesAndReferences: dataTypesAndReferences_SkillGroup_Data,
+      functionsAndReuse: functionsAndReuse_SkillGroup_Data,
+      programData: programData_SkillGroup_Data,
+      programmingConstructs: programmingConstructs_SkillGroup_Data,
+      programmingParadigms: programmingParadigms_SkillGroup_Data,
+      programStructureAndSyntax: programStructureAndSyntax_SkillGroup_Data,
+      readingPrograms: readingPrograms_SkillGroup_Data,
+      testingAndDebugging: testingAndDebugging_SkillGroup_Data,
+    },
+    order: [
+      'dataTypesAndReferences',
+      'functionsAndReuse',
+      'programData',
+      'programmingConstructs',
+      'programmingParadigms',
+      'programStructureAndSyntax',
+      'readingPrograms',
+      'testingAndDebugging',
+    ],
+  },
   description: {
     methodological:
       'Reading, writing, running, and testing executable instructions that modify program state or produce results. Unlike abstract algorithm design, these competencies concern the behavior of an actual program.',

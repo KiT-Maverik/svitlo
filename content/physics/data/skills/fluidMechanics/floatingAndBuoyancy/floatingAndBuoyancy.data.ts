@@ -42,13 +42,22 @@ export const floatingAndBuoyancy_SkillGroup_Data = defineSkillGroup({
     kk: 'Жүзу және кері итеруші күш',
     qm: 'Suvda qalmaq ve köterici quvet',
   },
-  skills: [
-    distinguishRisingFloatingAndSinking_Skill_Data,
-    explainArchimedesPrinciple_Skill_Data,
-    explainBuoyantForce_Skill_Data,
-    explainDensity_Skill_Data,
-    predictHowALoadAffectsFloating_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishRisingFloatingAndSinking: distinguishRisingFloatingAndSinking_Skill_Data,
+      explainArchimedesPrinciple: explainArchimedesPrinciple_Skill_Data,
+      explainBuoyantForce: explainBuoyantForce_Skill_Data,
+      explainDensity: explainDensity_Skill_Data,
+      predictHowALoadAffectsFloating: predictHowALoadAffectsFloating_Skill_Data,
+    },
+    order: [
+      'distinguishRisingFloatingAndSinking',
+      'explainArchimedesPrinciple',
+      'explainBuoyantForce',
+      'explainDensity',
+      'predictHowALoadAffectsFloating',
+    ],
+  },
   description: {
     methodological:
       "A body's behavior in water is determined by gravity together with forces exerted by the liquid; material and shape may affect the outcome through average density.",

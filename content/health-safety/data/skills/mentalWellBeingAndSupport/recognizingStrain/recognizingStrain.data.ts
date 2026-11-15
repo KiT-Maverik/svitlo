@@ -40,11 +40,14 @@ export const recognizingStrain_SkillGroup_Data = defineSkillGroup({
     kk: 'Психологиялық жүктемені тану',
     qm: 'Ruhiy gerginlikni tanımaq',
   },
-  skills: [
-    recognizeHarmfulCopingPatterns_Skill_Data,
-    recognizeSignsOfStress_Skill_Data,
-    recognizeWarningSignsOfWorseningMentalHealth_Skill_Data,
-  ],
+  skills: {
+    items: {
+      recognizeHarmfulCopingPatterns: recognizeHarmfulCopingPatterns_Skill_Data,
+      recognizeSignsOfStress: recognizeSignsOfStress_Skill_Data,
+      recognizeWarningSignsOfWorseningMentalHealth: recognizeWarningSignsOfWorseningMentalHealth_Skill_Data,
+    },
+    order: ['recognizeHarmfulCopingPatterns', 'recognizeSignsOfStress', 'recognizeWarningSignsOfWorseningMentalHealth'],
+  },
   description: {
     methodological:
       'Distress varies in intensity and duration; a sign can indicate a need for support without establishing a psychiatric diagnosis.',

@@ -39,12 +39,15 @@ export const energy_SkillDomain_Data = defineSkillDomain({
     kk: 'Энергия',
     qm: 'Energiya',
   },
-  groups: [
-    conservationOfEnergy_SkillGroup_Data,
-    energyTransferAndTransformation_SkillGroup_Data,
-    formsOfEnergy_SkillGroup_Data,
-    workAndPower_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      conservationOfEnergy: conservationOfEnergy_SkillGroup_Data,
+      energyTransferAndTransformation: energyTransferAndTransformation_SkillGroup_Data,
+      formsOfEnergy: formsOfEnergy_SkillGroup_Data,
+      workAndPower: workAndPower_SkillGroup_Data,
+    },
+    order: ['conservationOfEnergy', 'energyTransferAndTransformation', 'formsOfEnergy', 'workAndPower'],
+  },
   description: {
     methodological:
       'Energy is a quantity that helps describe physical changes and connect phenomena involving motion, heating, light, and electricity. The emphasis is on energy transfer, transformation, and conservation rather than arithmetic formulas.',

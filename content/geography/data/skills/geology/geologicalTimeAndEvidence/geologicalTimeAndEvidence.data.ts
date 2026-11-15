@@ -41,12 +41,20 @@ export const geologicalTimeAndEvidence_SkillGroup_Data = defineSkillGroup({
     kk: 'Геологиялық уақыт пен дәлелдер',
     qm: 'Geologik zaman ve deliller',
   },
-  skills: [
-    distinguishRelativeFromNumericalGeologicalAges_Skill_Data,
-    interpretAGeologicalTimeScale_Skill_Data,
-    orderUndisturbedRockLayersByRelativeAge_Skill_Data,
-    useFossilsAsEvidenceOfPastEnvironments_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishRelativeFromNumericalGeologicalAges: distinguishRelativeFromNumericalGeologicalAges_Skill_Data,
+      interpretAGeologicalTimeScale: interpretAGeologicalTimeScale_Skill_Data,
+      orderUndisturbedRockLayersByRelativeAge: orderUndisturbedRockLayersByRelativeAge_Skill_Data,
+      useFossilsAsEvidenceOfPastEnvironments: useFossilsAsEvidenceOfPastEnvironments_Skill_Data,
+    },
+    order: [
+      'distinguishRelativeFromNumericalGeologicalAges',
+      'interpretAGeologicalTimeScale',
+      'orderUndisturbedRockLayersByRelativeAge',
+      'useFossilsAsEvidenceOfPastEnvironments',
+    ],
+  },
   description: {
     methodological:
       "Rock sequences, fossils and dated materials provide evidence of Earth's long history. Geologists reconstruct events using relative ordering as well as numerical measurements, and a geologic time scale communicates durations far larger than human history.",

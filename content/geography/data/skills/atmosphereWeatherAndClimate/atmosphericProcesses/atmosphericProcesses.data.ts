@@ -41,12 +41,20 @@ export const atmosphericProcesses_SkillGroup_Data = defineSkillGroup({
     kk: 'Атмосфералық үдерістер',
     qm: 'Atmosfera adiseleri',
   },
-  skills: [
-    explainHowCloudsForm_Skill_Data,
-    explainHowPrecipitationForms_Skill_Data,
-    explainTheFormationOfWind_Skill_Data,
-    interpretTheMovementOfAirMassesAndFronts_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainHowCloudsForm: explainHowCloudsForm_Skill_Data,
+      explainHowPrecipitationForms: explainHowPrecipitationForms_Skill_Data,
+      explainTheFormationOfWind: explainTheFormationOfWind_Skill_Data,
+      interpretTheMovementOfAirMassesAndFronts: interpretTheMovementOfAirMassesAndFronts_Skill_Data,
+    },
+    order: [
+      'explainHowCloudsForm',
+      'explainHowPrecipitationForms',
+      'explainTheFormationOfWind',
+      'interpretTheMovementOfAirMassesAndFronts',
+    ],
+  },
   description: {
     methodological:
       'Water vapor, atmospheric pressure differences, moving air masses and energy exchanges explain the geographic formation and movement of weather systems. The focus is observable and spatially significant processes rather than equations of fluid mechanics.',

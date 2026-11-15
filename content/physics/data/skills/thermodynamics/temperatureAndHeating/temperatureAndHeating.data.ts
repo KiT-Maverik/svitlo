@@ -41,12 +41,20 @@ export const temperatureAndHeating_SkillGroup_Data = defineSkillGroup({
     ka: 'ტემპერატურა და გათბობა',
     kk: 'Температура және қыздыру',
   },
-  skills: [
-    compareObjectsTemperatures_Skill_Data,
-    distinguishTemperatureFromTheSensationOfWarmth_Skill_Data,
-    recognizeCooling_Skill_Data,
-    recognizeHeating_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareObjectsTemperatures: compareObjectsTemperatures_Skill_Data,
+      distinguishTemperatureFromTheSensationOfWarmth: distinguishTemperatureFromTheSensationOfWarmth_Skill_Data,
+      recognizeCooling: recognizeCooling_Skill_Data,
+      recognizeHeating: recognizeHeating_Skill_Data,
+    },
+    order: [
+      'compareObjectsTemperatures',
+      'distinguishTemperatureFromTheSensationOfWarmth',
+      'recognizeCooling',
+      'recognizeHeating',
+    ],
+  },
   description: {
     methodological:
       'Temperature characterizes thermal state but is not the same as a subjective feeling of warmth or cold; heating and cooling are changes of state.',

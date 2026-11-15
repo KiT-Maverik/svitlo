@@ -42,13 +42,16 @@ export const electronicStructure_SkillGroup_Data = defineSkillGroup({
     kk: 'Электрондық құрылым',
     qm: 'Elektron qurulışı',
   },
-  skills: [
-    atomicOrbitals_Skill_Data,
-    electronConfigurations_Skill_Data,
-    electronShells_Skill_Data,
-    ionFormation_Skill_Data,
-    valenceElectrons_Skill_Data,
-  ],
+  skills: {
+    items: {
+      atomicOrbitals: atomicOrbitals_Skill_Data,
+      electronConfigurations: electronConfigurations_Skill_Data,
+      electronShells: electronShells_Skill_Data,
+      ionFormation: ionFormation_Skill_Data,
+      valenceElectrons: valenceElectrons_Skill_Data,
+    },
+    order: ['atomicOrbitals', 'electronConfigurations', 'electronShells', 'ionFormation', 'valenceElectrons'],
+  },
   description: {
     methodological:
       'Electron occupancy and energetic organization help explain reactivity and the behavior of valence electrons.',

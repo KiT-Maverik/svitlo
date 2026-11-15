@@ -41,7 +41,15 @@ export const heliosphericEffects_SkillGroup_Data = defineSkillGroup({
     he: 'השפעות ההליוספירה',
     vi: 'Ảnh hưởng của nhật quyển',
   },
-  skills: [auroralProcesses_Skill_Data, heliosphere_Skill_Data, solarWind_Skill_Data, spaceWeather_Skill_Data],
+  skills: {
+    items: {
+      auroralProcesses: auroralProcesses_Skill_Data,
+      heliosphere: heliosphere_Skill_Data,
+      solarWind: solarWind_Skill_Data,
+      spaceWeather: spaceWeather_Skill_Data,
+    },
+    order: ['auroralProcesses', 'heliosphere', 'solarWind', 'spaceWeather'],
+  },
   description: {
     methodological:
       'Solar material and magnetic fields extend outward and can influence planetary space environments even far from the solar surface.',

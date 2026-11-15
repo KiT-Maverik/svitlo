@@ -38,11 +38,14 @@ export const digitalAndConsumerSafety_SkillDomain_Data = defineSkillDomain({
     kk: 'Цифрлық және тұтынушы қауіпсіздігі',
     qm: 'Raqamlı ve istimalcı emniyeti',
   },
-  groups: [
-    fraudAndDeceptivePressure_SkillGroup_Data,
-    onlineInteractionSafety_SkillGroup_Data,
-    privacyAndAccountProtection_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      fraudAndDeceptivePressure: fraudAndDeceptivePressure_SkillGroup_Data,
+      onlineInteractionSafety: onlineInteractionSafety_SkillGroup_Data,
+      privacyAndAccountProtection: privacyAndAccountProtection_SkillGroup_Data,
+    },
+    order: ['fraudAndDeceptivePressure', 'onlineInteractionSafety', 'privacyAndAccountProtection'],
+  },
   description: {
     methodological:
       "Online environments expose people to privacy breaches, coercion, deception, and financial or personal exploitation. Computer security mechanisms belong primarily to Informatics; this domain concerns a person's protective decisions and recourse.",

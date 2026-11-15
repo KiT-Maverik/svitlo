@@ -40,11 +40,14 @@ export const taskExecution_SkillGroup_Data = defineSkillGroup({
     kk: 'Тапсырмаларды орындау',
     qm: 'Vazifelerni icra etmek',
   },
-  skills: [
-    distributeIndependentTasksAcrossExecutors_Skill_Data,
-    explainConcurrentExecution_Skill_Data,
-    explainParallelExecution_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distributeIndependentTasksAcrossExecutors: distributeIndependentTasksAcrossExecutors_Skill_Data,
+      explainConcurrentExecution: explainConcurrentExecution_Skill_Data,
+      explainParallelExecution: explainParallelExecution_Skill_Data,
+    },
+    order: ['distributeIndependentTasksAcrossExecutors', 'explainConcurrentExecution', 'explainParallelExecution'],
+  },
   description: {
     methodological:
       'Sequential execution, interleaving, and actual simultaneous work by multiple executors affect operation order and resource use. Concurrency organizes overlapping task progress; parallelism means operations truly execute at the same time. They are related but not identical.',

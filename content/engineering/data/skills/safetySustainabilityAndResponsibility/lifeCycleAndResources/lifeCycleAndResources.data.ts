@@ -42,13 +42,22 @@ export const lifeCycleAndResources_SkillGroup_Data = defineSkillGroup({
     kk: 'Өмірлік цикл және ресурстар',
     qm: 'Ömür devri ve resurslar',
   },
-  skills: [
-    compareEnvironmentalTradeOffs_Skill_Data,
-    designProductsForMaterialRecycling_Skill_Data,
-    designProductsForReuse_Skill_Data,
-    evaluateRepairability_Skill_Data,
-    traceAProductLifeCycle_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareEnvironmentalTradeOffs: compareEnvironmentalTradeOffs_Skill_Data,
+      designProductsForMaterialRecycling: designProductsForMaterialRecycling_Skill_Data,
+      designProductsForReuse: designProductsForReuse_Skill_Data,
+      evaluateRepairability: evaluateRepairability_Skill_Data,
+      traceAProductLifeCycle: traceAProductLifeCycle_Skill_Data,
+    },
+    order: [
+      'compareEnvironmentalTradeOffs',
+      'designProductsForMaterialRecycling',
+      'designProductsForReuse',
+      'evaluateRepairability',
+      'traceAProductLifeCycle',
+    ],
+  },
   description: {
     methodological:
       'Manufacture, operation, repair and disposal can create different impacts; improving one stage does not prove that the whole design is better.',

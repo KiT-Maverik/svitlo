@@ -41,12 +41,20 @@ export const aestheticJudgment_SkillGroup_Data = defineSkillGroup({
     kk: 'Эстетикалық пайым',
     qm: 'Estetik fikir',
   },
-  skills: [
-    analyzeTheRoleOfContextInAestheticExperience_Skill_Data,
-    compareObjectiveAndSubjectiveAccountsOfBeauty_Skill_Data,
-    distinguishAestheticFromInstrumentalValue_Skill_Data,
-    justifyAnAestheticJudgment_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeTheRoleOfContextInAestheticExperience: analyzeTheRoleOfContextInAestheticExperience_Skill_Data,
+      compareObjectiveAndSubjectiveAccountsOfBeauty: compareObjectiveAndSubjectiveAccountsOfBeauty_Skill_Data,
+      distinguishAestheticFromInstrumentalValue: distinguishAestheticFromInstrumentalValue_Skill_Data,
+      justifyAnAestheticJudgment: justifyAnAestheticJudgment_Skill_Data,
+    },
+    order: [
+      'analyzeTheRoleOfContextInAestheticExperience',
+      'compareObjectiveAndSubjectiveAccountsOfBeauty',
+      'distinguishAestheticFromInstrumentalValue',
+      'justifyAnAestheticJudgment',
+    ],
+  },
   description: {
     methodological:
       'An aesthetic evaluation can invoke perceptual qualities, interpretation, tradition, or standards that other observers may dispute.',

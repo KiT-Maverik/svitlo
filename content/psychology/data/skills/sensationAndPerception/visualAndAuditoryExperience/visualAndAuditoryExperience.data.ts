@@ -41,12 +41,15 @@ export const visualAndAuditoryExperience_SkillGroup_Data = defineSkillGroup({
     kk: 'Көру және есту тәжірибесі',
     qm: 'Körüv ve eşitüv tecribesi',
   },
-  skills: [
-    colorPerception_Skill_Data,
-    depthPerception_Skill_Data,
-    soundLocalization_Skill_Data,
-    speechPerception_Skill_Data,
-  ],
+  skills: {
+    items: {
+      colorPerception: colorPerception_Skill_Data,
+      depthPerception: depthPerception_Skill_Data,
+      soundLocalization: soundLocalization_Skill_Data,
+      speechPerception: speechPerception_Skill_Data,
+    },
+    order: ['colorPerception', 'depthPerception', 'soundLocalization', 'speechPerception'],
+  },
   description: {
     methodological:
       'Spatial, chromatic, and speech experiences emerge from interpreting patterns of visual or acoustic information.',

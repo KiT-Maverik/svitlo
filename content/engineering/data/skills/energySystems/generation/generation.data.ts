@@ -42,13 +42,22 @@ export const generation_SkillGroup_Data = defineSkillGroup({
     kk: 'Электр энергиясын өндіру',
     qm: 'Elektrik istisalı',
   },
-  skills: [
-    electricalGenerators_Skill_Data,
-    hydropowerInstallations_Skill_Data,
-    photovoltaicSystems_Skill_Data,
-    thermalPowerStations_Skill_Data,
-    windTurbines_Skill_Data,
-  ],
+  skills: {
+    items: {
+      electricalGenerators: electricalGenerators_Skill_Data,
+      hydropowerInstallations: hydropowerInstallations_Skill_Data,
+      photovoltaicSystems: photovoltaicSystems_Skill_Data,
+      thermalPowerStations: thermalPowerStations_Skill_Data,
+      windTurbines: windTurbines_Skill_Data,
+    },
+    order: [
+      'electricalGenerators',
+      'hydropowerInstallations',
+      'photovoltaicSystems',
+      'thermalPowerStations',
+      'windTurbines',
+    ],
+  },
   description: {
     methodological:
       'Electricity and heat can be produced through different converter chains with distinct resource and operating constraints.',

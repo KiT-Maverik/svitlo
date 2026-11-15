@@ -42,13 +42,22 @@ export const environmentalAndAcuteInjuries_SkillGroup_Data = defineSkillGroup({
     kk: 'Қоршаған орта және жедел жарақаттар',
     qm: 'Çevre tesiri ve keskin yaralar',
   },
-  skills: [
-    firstAidForChemicalExposure_Skill_Data,
-    firstAidForThermalBurns_Skill_Data,
-    provideFirstAidAfterDrowning_Skill_Data,
-    respondToHeatIllness_Skill_Data,
-    respondToHypothermia_Skill_Data,
-  ],
+  skills: {
+    items: {
+      firstAidForChemicalExposure: firstAidForChemicalExposure_Skill_Data,
+      firstAidForThermalBurns: firstAidForThermalBurns_Skill_Data,
+      provideFirstAidAfterDrowning: provideFirstAidAfterDrowning_Skill_Data,
+      respondToHeatIllness: respondToHeatIllness_Skill_Data,
+      respondToHypothermia: respondToHypothermia_Skill_Data,
+    },
+    order: [
+      'firstAidForChemicalExposure',
+      'firstAidForThermalBurns',
+      'provideFirstAidAfterDrowning',
+      'respondToHeatIllness',
+      'respondToHypothermia',
+    ],
+  },
   description: {
     methodological:
       "Temperature, substances, and water exposure can rapidly worsen an individual's condition and demand hazard-specific first aid.",

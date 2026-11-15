@@ -41,12 +41,20 @@ export const environmentalControl_SkillGroup_Data = defineSkillGroup({
     kk: 'Қоршаған ортаны бақылау',
     qm: 'Çevreni qoruv ve nezaret',
   },
-  skills: [
-    airFiltrationEquipment_Skill_Data,
-    contaminatedSiteRemediationEquipment_Skill_Data,
-    industrialEmissionsControl_Skill_Data,
-    solidWasteProcessingSystems_Skill_Data,
-  ],
+  skills: {
+    items: {
+      airFiltrationEquipment: airFiltrationEquipment_Skill_Data,
+      contaminatedSiteRemediationEquipment: contaminatedSiteRemediationEquipment_Skill_Data,
+      industrialEmissionsControl: industrialEmissionsControl_Skill_Data,
+      solidWasteProcessingSystems: solidWasteProcessingSystems_Skill_Data,
+    },
+    order: [
+      'airFiltrationEquipment',
+      'contaminatedSiteRemediationEquipment',
+      'industrialEmissionsControl',
+      'solidWasteProcessingSystems',
+    ],
+  },
   description: {
     methodological:
       'Public environmental infrastructure also treats polluted air and solid waste. The engineering problem is selecting and integrating collection, containment and treatment equipment rather than merely recognizing that pollution exists.',

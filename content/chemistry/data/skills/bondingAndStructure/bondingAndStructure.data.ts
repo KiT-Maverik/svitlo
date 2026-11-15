@@ -38,11 +38,14 @@ export const bondingAndStructure_SkillDomain_Data = defineSkillDomain({
     kk: 'Химиялық байланыстар және құрылым',
     qm: 'Kimyeviy bağlar ve qurulış',
   },
-  groups: [
-    chemicalBonds_SkillGroup_Data,
-    interparticleInteractions_SkillGroup_Data,
-    molecularAndExtendedStructure_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      chemicalBonds: chemicalBonds_SkillGroup_Data,
+      interparticleInteractions: interparticleInteractions_SkillGroup_Data,
+      molecularAndExtendedStructure: molecularAndExtendedStructure_SkillGroup_Data,
+    },
+    order: ['chemicalBonds', 'interparticleInteractions', 'molecularAndExtendedStructure'],
+  },
   description: {
     methodological:
       'Chemical properties arise partly from how atoms and ions are connected and how neighboring particles interact. This domain distinguishes intraparticle bonds from interactions between particles and from bulk structural arrangements.',

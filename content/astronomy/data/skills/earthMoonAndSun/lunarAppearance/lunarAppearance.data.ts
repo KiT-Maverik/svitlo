@@ -41,12 +41,15 @@ export const lunarAppearance_SkillGroup_Data = defineSkillGroup({
     kk: 'Айдың көрінісі',
     qm: 'Aynıñ körünişi',
   },
-  skills: [
-    lunarLibration_Skill_Data,
-    lunarMotion_Skill_Data,
-    lunarPhases_Skill_Data,
-    nearAndFarLunarHemispheres_Skill_Data,
-  ],
+  skills: {
+    items: {
+      lunarLibration: lunarLibration_Skill_Data,
+      lunarMotion: lunarMotion_Skill_Data,
+      lunarPhases: lunarPhases_Skill_Data,
+      nearAndFarLunarHemispheres: nearAndFarLunarHemispheres_Skill_Data,
+    },
+    order: ['lunarLibration', 'lunarMotion', 'lunarPhases', 'nearAndFarLunarHemispheres'],
+  },
   description: {
     methodological:
       "The Moon's changing appearance follows its illumination and orbital viewing geometry, not changes to its intrinsic light production.",

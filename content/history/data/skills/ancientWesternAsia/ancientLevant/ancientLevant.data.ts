@@ -41,12 +41,15 @@ export const ancientLevant_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі Левант',
     qm: 'Qadimiy Levant',
   },
-  skills: [
-    israelAndJudah_Skill_Data,
-    phoenicianCities_Skill_Data,
-    phoenicianWriting_Skill_Data,
-    religionsOfTheAncientLevant_Skill_Data,
-  ],
+  skills: {
+    items: {
+      israelAndJudah: israelAndJudah_Skill_Data,
+      phoenicianCities: phoenicianCities_Skill_Data,
+      phoenicianWriting: phoenicianWriting_Skill_Data,
+      religionsOfTheAncientLevant: religionsOfTheAncientLevant_Skill_Data,
+    },
+    order: ['israelAndJudah', 'phoenicianCities', 'phoenicianWriting', 'religionsOfTheAncientLevant'],
+  },
   description: {
     methodological:
       'Coastal towns, inland kingdoms, and religious traditions formed at routes connecting Egypt, Anatolia, and Mesopotamia.',

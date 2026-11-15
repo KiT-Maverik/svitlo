@@ -41,12 +41,15 @@ export const platformsAndNetworkEffects_SkillGroup_Data = defineSkillGroup({
     kk: 'Платформалар мен желілік әсерлер',
     qm: 'Platformalar ve şebeke tesirleri',
   },
-  skills: [
-    creatorEconomy_Skill_Data,
-    digitalPlatformCompetition_Skill_Data,
-    directAndIndirectNetworkEffects_Skill_Data,
-    twoSidedMarkets_Skill_Data,
-  ],
+  skills: {
+    items: {
+      creatorEconomy: creatorEconomy_Skill_Data,
+      digitalPlatformCompetition: digitalPlatformCompetition_Skill_Data,
+      directAndIndirectNetworkEffects: directAndIndirectNetworkEffects_Skill_Data,
+      twoSidedMarkets: twoSidedMarkets_Skill_Data,
+    },
+    order: ['creatorEconomy', 'digitalPlatformCompetition', 'directAndIndirectNetworkEffects', 'twoSidedMarkets'],
+  },
   description: {
     methodological:
       "A service's value may depend on participant numbers on each side of the market, access rules, and economies of scale.",

@@ -42,13 +42,24 @@ export const relativity_SkillGroup_Data = defineSkillGroup({
     kk: 'Салыстырмалылық теориясы',
     qm: 'Nisbiylik nazariyesi',
   },
-  skills: [
-    explainGravityAsSpacetimeCurvature_Skill_Data,
-    explainHowThePassageOfTimeDependsOnObserversRelativeMotion_Skill_Data,
-    explainTheEffectOfGravityOnThePassageOfTime_Skill_Data,
-    explainTheGravitationalDeflectionOfLight_Skill_Data,
-    recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainGravityAsSpacetimeCurvature: explainGravityAsSpacetimeCurvature_Skill_Data,
+      explainHowThePassageOfTimeDependsOnObserversRelativeMotion:
+        explainHowThePassageOfTimeDependsOnObserversRelativeMotion_Skill_Data,
+      explainTheEffectOfGravityOnThePassageOfTime: explainTheEffectOfGravityOnThePassageOfTime_Skill_Data,
+      explainTheGravitationalDeflectionOfLight: explainTheGravitationalDeflectionOfLight_Skill_Data,
+      recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity:
+        recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity_Skill_Data,
+    },
+    order: [
+      'explainGravityAsSpacetimeCurvature',
+      'explainHowThePassageOfTimeDependsOnObserversRelativeMotion',
+      'explainTheEffectOfGravityOnThePassageOfTime',
+      'explainTheGravitationalDeflectionOfLight',
+      'recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity',
+    ],
+  },
   description: {
     methodological:
       'Special relativity describes how measurements of space and time relate to motion, while general relativity describes gravity as spacetime geometry. They should not be confused with the history of astronomy or require formulas in an introductory curriculum.',

@@ -40,11 +40,14 @@ export const agriculturalEconomics_SkillGroup_Data = defineSkillGroup({
     kk: 'Ауыл шаруашылығы экономикасы',
     qm: 'Ziraat iqtisadı',
   },
-  skills: [
-    agriculturalMarkets_Skill_Data,
-    agriculturalSeasonalityAndRisk_Skill_Data,
-    foodSecurityAsAnEconomicIssue_Skill_Data,
-  ],
+  skills: {
+    items: {
+      agriculturalMarkets: agriculturalMarkets_Skill_Data,
+      agriculturalSeasonalityAndRisk: agriculturalSeasonalityAndRisk_Skill_Data,
+      foodSecurityAsAnEconomicIssue: foodSecurityAsAnEconomicIssue_Skill_Data,
+    },
+    order: ['agriculturalMarkets', 'agriculturalSeasonalityAndRisk', 'foodSecurityAsAnEconomicIssue'],
+  },
   description: {
     methodological:
       'Biological cycles, uncertain weather, land use, and international exchange shape agricultural markets.',

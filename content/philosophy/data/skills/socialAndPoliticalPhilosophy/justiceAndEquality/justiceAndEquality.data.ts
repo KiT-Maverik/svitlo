@@ -41,12 +41,20 @@ export const justiceAndEquality_SkillGroup_Data = defineSkillGroup({
     kk: 'Әділеттілік пен теңдік',
     qm: 'Adalet ve teñlik',
   },
-  skills: [
-    analyzeProceduralFairness_Skill_Data,
-    compareDistributivePrinciples_Skill_Data,
-    distinguishEqualityFromEquity_Skill_Data,
-    evaluateAClaimAboutDiscrimination_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeProceduralFairness: analyzeProceduralFairness_Skill_Data,
+      compareDistributivePrinciples: compareDistributivePrinciples_Skill_Data,
+      distinguishEqualityFromEquity: distinguishEqualityFromEquity_Skill_Data,
+      evaluateAClaimAboutDiscrimination: evaluateAClaimAboutDiscrimination_Skill_Data,
+    },
+    order: [
+      'analyzeProceduralFairness',
+      'compareDistributivePrinciples',
+      'distinguishEqualityFromEquity',
+      'evaluateAClaimAboutDiscrimination',
+    ],
+  },
   description: {
     methodological:
       'Claims of fairness depend on what is distributed, who qualifies for consideration, and which differences are morally relevant.',

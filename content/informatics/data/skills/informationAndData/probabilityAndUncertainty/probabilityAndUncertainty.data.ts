@@ -44,15 +44,26 @@ export const probabilityAndUncertainty_SkillGroup_Data = defineSkillGroup({
     kk: 'Ықтималдық және белгісіздік',
     qm: 'İhtimallıq ve belgisizlik',
   },
-  skills: [
-    compareProbabilitiesOfSimpleEvents_Skill_Data,
-    distinguishPossibilityFromProbability_Skill_Data,
-    distinguishRandomAndDeterministicEvents_Skill_Data,
-    explainEventPossibility_Skill_Data,
-    explainEventProbability_Skill_Data,
-    explainLimitsOfPrediction_Skill_Data,
-    useRandomnessInAModel_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareProbabilitiesOfSimpleEvents: compareProbabilitiesOfSimpleEvents_Skill_Data,
+      distinguishPossibilityFromProbability: distinguishPossibilityFromProbability_Skill_Data,
+      distinguishRandomAndDeterministicEvents: distinguishRandomAndDeterministicEvents_Skill_Data,
+      explainEventPossibility: explainEventPossibility_Skill_Data,
+      explainEventProbability: explainEventProbability_Skill_Data,
+      explainLimitsOfPrediction: explainLimitsOfPrediction_Skill_Data,
+      useRandomnessInAModel: useRandomnessInAModel_Skill_Data,
+    },
+    order: [
+      'compareProbabilitiesOfSimpleEvents',
+      'distinguishPossibilityFromProbability',
+      'distinguishRandomAndDeterministicEvents',
+      'explainEventPossibility',
+      'explainEventProbability',
+      'explainLimitsOfPrediction',
+      'useRandomnessInAModel',
+    ],
+  },
   description: {
     methodological:
       'Distinguishing possible and impossible outcomes, probabilistic models, comparisons of likelihoods, and limits of prediction. Randomness as a source of variation in a digital model is distinct from assessing a particular risk.',

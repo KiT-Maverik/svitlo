@@ -38,11 +38,14 @@ export const historyAndTraditionsOfPhilosophy_SkillDomain_Data = defineSkillDoma
     kk: 'Философия тарихы мен дәстүрлері',
     qm: 'Felsefe tarihi ve ananeleri',
   },
-  groups: [
-    philosophicalTraditions_SkillGroup_Data,
-    readingPhilosophicalWorks_SkillGroup_Data,
-    schoolsAndMovements_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      philosophicalTraditions: philosophicalTraditions_SkillGroup_Data,
+      readingPhilosophicalWorks: readingPhilosophicalWorks_SkillGroup_Data,
+      schoolsAndMovements: schoolsAndMovements_SkillGroup_Data,
+    },
+    order: ['philosophicalTraditions', 'readingPhilosophicalWorks', 'schoolsAndMovements'],
+  },
   description: {
     methodological:
       "Historically situated philosophical arguments develop through schools, intellectual movements, and traditions across cultures. Interpretation requires understanding both what a thinker argued and the debate that shaped the argument, without privileging one lineage as philosophy's default.",

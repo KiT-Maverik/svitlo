@@ -36,7 +36,12 @@ export const temperature_SkillGroup_Data = defineSkillGroup({
     pl: 'Temperatura',
     uk: 'Температура',
   },
-  skills: [readTemperature_Skill_Data],
+  skills: {
+    items: {
+      readTemperature: readTemperature_Skill_Data,
+    },
+    order: ['readTemperature'],
+  },
   description: {
     methodological:
       'Temperature as a physical quantity, its reading from a thermometer scale, interpretation of scale divisions, and correct temperature-unit notation; whether a reading is positive or negative does not determine membership in this group.',

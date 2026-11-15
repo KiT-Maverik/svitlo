@@ -45,16 +45,28 @@ export const modernArtMovements_SkillGroup_Data = defineSkillGroup({
     kk: 'Модернистік өнер қозғалыстары',
     qm: 'Modern sanat areketleri',
   },
-  skills: [
-    analyzeConstructivism_Skill_Data,
-    analyzeCubism_Skill_Data,
-    analyzeGermanExpressionistPainting_Skill_Data,
-    analyzeImpressionism_Skill_Data,
-    analyzePostImpressionism_Skill_Data,
-    analyzeRealistPainting_Skill_Data,
-    analyzeRomanticPainting_Skill_Data,
-    analyzeSurrealism_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeConstructivism: analyzeConstructivism_Skill_Data,
+      analyzeCubism: analyzeCubism_Skill_Data,
+      analyzeGermanExpressionistPainting: analyzeGermanExpressionistPainting_Skill_Data,
+      analyzeImpressionism: analyzeImpressionism_Skill_Data,
+      analyzePostImpressionism: analyzePostImpressionism_Skill_Data,
+      analyzeRealistPainting: analyzeRealistPainting_Skill_Data,
+      analyzeRomanticPainting: analyzeRomanticPainting_Skill_Data,
+      analyzeSurrealism: analyzeSurrealism_Skill_Data,
+    },
+    order: [
+      'analyzeConstructivism',
+      'analyzeCubism',
+      'analyzeGermanExpressionistPainting',
+      'analyzeImpressionism',
+      'analyzePostImpressionism',
+      'analyzeRealistPainting',
+      'analyzeRomanticPainting',
+      'analyzeSurrealism',
+    ],
+  },
   description: {
     methodological:
       'These named movements generated differing responses to social modernity and established visual conventions. Mastery of one movement does not imply mastery of its neighbors.',

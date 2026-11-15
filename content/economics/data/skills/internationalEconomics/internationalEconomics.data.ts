@@ -39,12 +39,15 @@ export const internationalEconomics_SkillDomain_Data = defineSkillDomain({
     kk: 'Халықаралық экономика',
     qm: 'Halqlarara iqtisat',
   },
-  groups: [
-    currenciesAndExternalBalances_SkillGroup_Data,
-    internationalFinance_SkillGroup_Data,
-    specializationAndTradeGains_SkillGroup_Data,
-    tradePolicy_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      currenciesAndExternalBalances: currenciesAndExternalBalances_SkillGroup_Data,
+      internationalFinance: internationalFinance_SkillGroup_Data,
+      specializationAndTradeGains: specializationAndTradeGains_SkillGroup_Data,
+      tradePolicy: tradePolicy_SkillGroup_Data,
+    },
+    order: ['currenciesAndExternalBalances', 'internationalFinance', 'specializationAndTradeGains', 'tradePolicy'],
+  },
   description: {
     methodological:
       'Countries are connected by flows of goods, services, capital, and foreign-currency payments. International economic effects cannot be reduced to the geography of trade routes.',

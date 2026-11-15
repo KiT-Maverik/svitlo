@@ -41,12 +41,21 @@ export const soilsAndSurfaceSediments_SkillGroup_Data = defineSkillGroup({
     kk: 'Топырақтар мен жерүсті шөгінділері',
     qm: 'Topraqlar ve yer yüzündeki çöküntiler',
   },
-  skills: [
-    classifyUnconsolidatedSedimentByGrainSize_Skill_Data,
-    explainHowASoilProfileDevelopsAtTheSurface_Skill_Data,
-    explainInfiltrationDifferencesAmongSurfaceMaterials_Skill_Data,
-    inferBasicLandUseConstraintsFromSoilConditions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      classifyUnconsolidatedSedimentByGrainSize: classifyUnconsolidatedSedimentByGrainSize_Skill_Data,
+      explainHowASoilProfileDevelopsAtTheSurface: explainHowASoilProfileDevelopsAtTheSurface_Skill_Data,
+      explainInfiltrationDifferencesAmongSurfaceMaterials:
+        explainInfiltrationDifferencesAmongSurfaceMaterials_Skill_Data,
+      inferBasicLandUseConstraintsFromSoilConditions: inferBasicLandUseConstraintsFromSoilConditions_Skill_Data,
+    },
+    order: [
+      'classifyUnconsolidatedSedimentByGrainSize',
+      'explainHowASoilProfileDevelopsAtTheSurface',
+      'explainInfiltrationDifferencesAmongSurfaceMaterials',
+      'inferBasicLandUseConstraintsFromSoilConditions',
+    ],
+  },
   description: {
     methodological:
       'Soil develops through alteration of parent material and accumulation of organic matter, while loose sediments vary in grain size and drainage. Their location and physical conditions influence water movement, vegetation and practical land use.',
