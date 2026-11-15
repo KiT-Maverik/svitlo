@@ -769,7 +769,7 @@ test('Checkpoint question and answer may reuse a block slug without file collisi
     const answerSource = fs.readFileSync(f.generated('sections/intro/check/comparison/answer/index.ts'), 'utf8');
     assert.match(answerSource, /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/);
     const item = fs.readFileSync(f.generated('sections/intro/check/comparison/index.ts'), 'utf8');
-    assert.match(item, /from ".\/question\/text"/);
-    assert.match(item, /from ".\/answer\/text"/);
+    assert.match(item, /from ".\/question"/);
+    assert.match(item, /from ".\/answer"/);
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
