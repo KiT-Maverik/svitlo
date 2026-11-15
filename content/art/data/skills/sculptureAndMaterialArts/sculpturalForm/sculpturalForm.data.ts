@@ -13,6 +13,7 @@ export const sculpturalForm_SkillGroup_Data = defineSkillGroup({
   id: '65afcf28-567a-4826-8ea2-69cc02876167',
   name: {
     en: 'Sculptural Form',
+    it: 'Forma scultorea',
     zh: '雕塑形态',
     hi: 'मूर्तिकला का रूप',
     es: 'Forma escultórica',
@@ -54,6 +55,7 @@ export const sculpturalForm_SkillGroup_Data = defineSkillGroup({
       'Volume and void, physical viewpoints and material manipulation characterize three-dimensional artistic work.',
     frontend: {
       en: 'Explore how volume, empty space and different viewpoints shape sculpture.',
+      it: 'Esplora come il volume, lo spazio vuoto e i diversi punti di vista diano forma a una scultura.',
       zh: '探索体积、空隙和不同视角如何塑造雕塑。',
       hi: 'जानें कि आयतन, खाली स्थान और अलग-अलग दृष्टिकोण मूर्तिकला को कैसे आकार देते हैं।',
       es: 'Explora cómo el volumen, el espacio vacío y los distintos puntos de vista dan forma a la escultura.',
