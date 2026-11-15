@@ -181,7 +181,7 @@ export function renderLessonModules(lesson, language, options = {}) {
       const authored = { ...node, locale: { ...node.locale } };
       if (typeof source === 'string') {
         if (!source.trim()) throw new Error('Empty authored Markdown source: ' + directory);
-        put(join(directory, 'text.md'), source);
+        put(path.posix.join(directory, 'text.md'), source);
         authored.files = { moduleUrl: expression('import.meta.url') };
       } else if (record(source)) {
         const languages = Object.keys(source);
@@ -189,7 +189,7 @@ export function renderLessonModules(lesson, language, options = {}) {
         for (const language of languages) {
           if (!/^[a-z]{2}(?:-[A-Z]{2})?$/.test(language) || typeof source[language] !== 'string' || !source[language].trim())
             throw new Error('Invalid authored Markdown locale ' + JSON.stringify(language) + ': ' + directory);
-          put(join(directory, 'locale', language + '.md'), source[language]);
+          put(path.posix.join(directory, 'locale', language + '.md'), source[language]);
         }
         authored.files = { moduleUrl: expression('import.meta.url'), languages };
       } else {
@@ -205,7 +205,7 @@ export function renderLessonModules(lesson, language, options = {}) {
         throw new Error('Empty or invalid authored Code source: ' + directory);
       const extension = typeof language === 'string' ? codeExtensions[language.toLowerCase()] : undefined;
       if (!extension) throw new Error('Unsupported authored Code language ' + JSON.stringify(language) + ': ' + directory);
-      put(join(directory, 'code.' + extension), source);
+      put(path.posix.join(directory, 'code.' + extension), source);
       return {
         ...node,
         params: { ...node.params, codeAsText: expression('readCodeSource(import.meta.url, ' + JSON.stringify(extension) + ')') },
