@@ -5,6 +5,7 @@ export const diagnoseAPrototypeFailure_Skill_Data = defineSkill({
   id: 'e5b479a6-c0ac-489c-bf3a-0970a3af8acc',
   name: {
     en: 'Diagnose a prototype failure',
+    it: 'Diagnosticare un guasto del prototipo',
     zh: '诊断原型故障',
     hi: 'प्रोटोटाइप की विफलता का कारण खोजना',
     es: 'Diagnosticar un fallo de prototipo',
@@ -38,6 +39,7 @@ export const diagnoseAPrototypeFailure_Skill_Data = defineSkill({
     methodological: 'Use symptoms and component relationships to identify a plausible cause of poor performance.',
     frontend: {
       en: 'Investigate which component or condition might explain a prototype failure.',
+      it: 'Indaga quale componente o condizione potrebbe spiegare un guasto del prototipo.',
       zh: '调查哪个部件或工作条件可能导致原型故障。',
       hi: 'जाँचें कि किस हिस्से या परिस्थिति से नमूने में खराबी आई होगी।',
       es: 'Investiga qué componente o condición pudo causar el fallo del prototipo.',
