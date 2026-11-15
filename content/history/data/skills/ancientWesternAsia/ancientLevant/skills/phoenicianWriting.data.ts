@@ -5,6 +5,7 @@ export const phoenicianWriting_Skill_Data = defineSkill({
   id: 'ff509e58-f4fb-412b-924c-d5f665019165',
   name: {
     en: 'Phoenician Writing',
+    it: "Scrittura fenicia",
     zh: '腓尼基文字',
     hi: 'फोनीशियाई लिपि',
     es: 'Escritura fenicia',
@@ -39,6 +40,7 @@ export const phoenicianWriting_Skill_Data = defineSkill({
       'Describe consonantal alphabetic writing and later influence without claiming Phoenicians invented all alphabets.',
     frontend: {
       en: 'Understand why Phoenician writing influenced later alphabets.',
+      it: "Comprendi perché la scrittura fenicia influenzò gli alfabeti successivi.",
       zh: '了解腓尼基文字为何影响了后来的字母系统。',
       hi: 'समझें कि फोनीशियाई लिपि ने बाद की वर्णमालाओं को क्यों प्रभावित किया।',
       es: 'Comprende por qué la escritura fenicia influyó en alfabetos posteriores.',

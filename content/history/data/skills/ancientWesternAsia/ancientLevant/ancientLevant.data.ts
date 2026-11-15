@@ -12,6 +12,7 @@ export const ancientLevant_SkillGroup_Data = defineSkillGroup({
   id: 'f3fc5abb-b868-4b99-8f26-b103ad1d34e7',
   name: {
     en: 'Levant',
+    it: "Levante",
     zh: '古代黎凡特',
     hi: 'प्राचीन लेवांत',
     es: 'Levante antiguo',
@@ -41,20 +42,18 @@ export const ancientLevant_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі Левант',
     qm: 'Qadimiy Levant',
   },
-  skills: {
-    items: {
-      israelAndJudah: israelAndJudah_Skill_Data,
-      phoenicianCities: phoenicianCities_Skill_Data,
-      phoenicianWriting: phoenicianWriting_Skill_Data,
-      religionsOfTheAncientLevant: religionsOfTheAncientLevant_Skill_Data,
-    },
-    order: ['israelAndJudah', 'phoenicianCities', 'phoenicianWriting', 'religionsOfTheAncientLevant'],
-  },
+  skills: [
+    israelAndJudah_Skill_Data,
+    phoenicianCities_Skill_Data,
+    phoenicianWriting_Skill_Data,
+    religionsOfTheAncientLevant_Skill_Data,
+  ],
   description: {
     methodological:
       'Coastal towns, inland kingdoms, and religious traditions formed at routes connecting Egypt, Anatolia, and Mesopotamia.',
     frontend: {
       en: 'Explore the trading kingdoms and traditions of the Levant.',
+      it: "Esplora i regni commerciali e le tradizioni del Levante.",
       zh: '探索黎凡特的贸易王国与文化传统。',
       hi: 'लेवांत के व्यापारिक राज्यों और परंपराओं के बारे में जानें।',
       es: 'Explora los reinos comerciales y las tradiciones del Levante.',

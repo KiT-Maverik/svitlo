@@ -11,6 +11,7 @@ export const ancientWesternAsia_SkillDomain_Data = defineSkillDomain({
   id: 'ff530e6e-024d-4a8c-9a16-3d0436cc9036',
   title: {
     en: 'Western Asia',
+    it: "Asia occidentale",
     zh: '古代西亚',
     hi: 'प्राचीन पश्चिमी एशिया',
     es: 'Asia occidental antigua',
@@ -40,21 +41,19 @@ export const ancientWesternAsia_SkillDomain_Data = defineSkillDomain({
     kk: 'Ежелгі Батыс Азия',
     qm: 'Qadimiy Ğarbiy Asiya',
   },
-  groups: {
-    items: {
-      anatolia: anatolia_SkillGroup_Data,
-      ancientIranianStates: ancientIranianStates_SkillGroup_Data,
-      ancientLevant: ancientLevant_SkillGroup_Data,
-      ancientSouthArabia: ancientSouthArabia_SkillGroup_Data,
-      mesopotamia: mesopotamia_SkillGroup_Data,
-    },
-    order: ['anatolia', 'ancientIranianStates', 'ancientLevant', 'ancientSouthArabia', 'mesopotamia'],
-  },
+  groups: [
+    anatolia_SkillGroup_Data,
+    ancientIranianStates_SkillGroup_Data,
+    ancientLevant_SkillGroup_Data,
+    ancientSouthArabia_SkillGroup_Data,
+    mesopotamia_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Early cities and states in Mesopotamia, the Levant, Anatolia, Iran, and Arabia developed through local environments and enduring trade, political, and cultural contact.',
     frontend: {
       en: 'Explore the diverse ancient societies of Western Asia.',
+      it: "Esplora le diverse società antiche dell'Asia occidentale.",
       zh: '探索古代西亚多样的社会。',
       hi: 'पश्चिमी एशिया के विविध प्राचीन समाजों के बारे में जानें।',
       es: 'Explora la diversidad de las sociedades antiguas de Asia occidental.',

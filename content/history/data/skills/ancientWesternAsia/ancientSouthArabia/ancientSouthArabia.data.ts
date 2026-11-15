@@ -7,6 +7,7 @@ export const ancientSouthArabia_SkillGroup_Data = defineSkillGroup({
   id: '8e230639-c72e-4e01-899e-f96e92c075aa',
   name: {
     en: 'South Arabia',
+    it: "Arabia meridionale",
     zh: '古代南阿拉伯',
     hi: 'प्राचीन दक्षिण अरब',
     es: 'Arabia meridional antigua',
@@ -36,17 +37,12 @@ export const ancientSouthArabia_SkillGroup_Data = defineSkillGroup({
     kk: 'Ежелгі Оңтүстік Арабия',
     qm: 'Qadimiy Cenübiy Arabistan',
   },
-  skills: {
-    items: {
-      arabianTradeRoutes: arabianTradeRoutes_Skill_Data,
-      southArabianKingdoms: southArabianKingdoms_Skill_Data,
-    },
-    order: ['arabianTradeRoutes', 'southArabianKingdoms'],
-  },
+  skills: [arabianTradeRoutes_Skill_Data, southArabianKingdoms_Skill_Data],
   description: {
     methodological: 'Oasis and mountain centers participated in long-distance trade before the Islamic period.',
     frontend: {
       en: 'Discover the trading kingdoms of ancient southern Arabia.',
+      it: "Scopri i regni commerciali dell'antica Arabia meridionale.",
       zh: '探索古代阿拉伯半岛南部的贸易王国。',
       hi: 'प्राचीन दक्षिणी अरब के व्यापारिक राज्यों को जानें।',
       es: 'Descubre los reinos comerciales del sur de Arabia en la Antigüedad.',

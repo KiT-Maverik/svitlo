@@ -5,6 +5,7 @@ export const akkadianEmpire_Skill_Data = defineSkill({
   id: '55fd6cf4-9437-411e-a2d4-3233e6c34b8b',
   name: {
     en: 'Akkadian Empire',
+    it: "Impero accadico",
     zh: '阿卡德帝国',
     hi: 'अक्कादी साम्राज्य',
     es: 'Imperio acadio',
@@ -38,6 +39,7 @@ export const akkadianEmpire_Skill_Data = defineSkill({
     methodological: 'Examine the early territorial union of multiple cities and limits on its political stability.',
     frontend: {
       en: 'Understand how the Akkadian rulers united several cities.',
+      it: "Comprendi come i sovrani accadici unirono diverse città.",
       zh: '理解阿卡德统治者如何统一多个城市。',
       hi: 'समझें कि अक्कादी शासकों ने कई नगरों को कैसे एकजुट किया।',
       es: 'Comprende cómo los gobernantes acadios unificaron varias ciudades.',
