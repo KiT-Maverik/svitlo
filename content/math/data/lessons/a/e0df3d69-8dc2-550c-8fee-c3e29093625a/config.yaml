@@ -15,10 +15,10 @@ config:
       en: 'Putting Numbers in Order to Twenty'
   section:
     items:
-      section1NumberCardOrganizer:
+      sortAscendingCards:
         config:
           id: 'fe31a0d8-554b-41af-809d-6816ecd596dd'
-          slug: 'section1NumberCardOrganizer'
+          slug: 'sortAscendingCards'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Number Card Organizer'
           content:
             items:
-              text1:
+              orderSmallNumbers:
                 config:
                   id: '786d8f4d-fdcf-4af2-9a43-88c7c39ff47c'
-                  slug: 'text1'
+                  slug: 'orderSmallNumbers'
                   type: 'text'
                   params: {}
                   locale:
@@ -128,16 +128,16 @@ config:
                     - QA must test every state/result above, locale copy, keyboard/screen-reader operation, LTR/RTL, mobile, reduced motion and genuine offline download; runtime implementation and its own tests are **not in this batch**.
                   purpose: 'Proposed interactive Scene for Number Card Organizer'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainAscendingOrder:
                 config:
                   id: 'cc41c7aa-7e95-45d9-a729-002c57413c73'
-                  slug: 'markdown2'
+                  slug: 'explainAscendingOrder'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '4, 6, 9 in nondecreasing order. 3, 8, 8, 10; 8 followed by 8 is acceptable.'
-            order: ['text1', 'orderCards', 'markdown2']
+            order: ['orderSmallNumbers', 'orderCards', 'explainAscendingOrder']
         production:
           purpose: 'Number Card Organizer'
           pedagogicalIntent: |
@@ -157,10 +157,10 @@ config:
             - **Implementation dependency:** Entire new Number Card Organizer component is **proposed**, prop-free and unimplemented. Its scenario data belongs inside the Scene, not an invented Resource prop. No Question bank, score, mastery event or Note API.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2OrderIsARuleNotAShape:
+      explainNondecreasingOrder:
         config:
           id: 'e136f155-0c39-40e2-9333-ec9bcb313ae0'
-          slug: 'section2OrderIsARuleNotAShape'
+          slug: 'explainNondecreasingOrder'
           type: 'content'
           params: {}
           locale:
@@ -170,34 +170,34 @@ config:
               en: 'Order is a rule, not a shape'
           content:
             items:
-              text1:
+              inspectRepeatedEight:
                 config:
                   id: '9f5d15f4-d862-4733-8f74-77fe62456455'
-                  slug: 'text1'
+                  slug: 'inspectRepeatedEight'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Would a row 3, 8, 8, 10 be correctly ordered from smallest to largest even with the repeated 8?'
-              markdown2:
+              explainNondecreasingRule:
                 config:
                   id: '8216edfb-ee0a-4ed8-b315-1435aa76cae2'
-                  slug: 'markdown2'
+                  slug: 'explainNondecreasingRule'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "Yes. Each next number is either the same or greater: three, eight, eight, ten. The second eight doesn't make the numbers go backward. Descending order reverses the comparison, not the number of cards."
-              text3:
+              applyOrderWithRepetition:
                 config:
                   id: 'a15d191a-da62-4a59-8d74-74d86045612f'
-                  slug: 'text3'
+                  slug: 'applyOrderWithRepetition'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Now explain the rule using a new example, not just the picture you saw.'
-            order: ['text1', 'markdown2', 'text3']
+            order: ['inspectRepeatedEight', 'explainNondecreasingRule', 'applyOrderWithRepetition']
         production:
           purpose: 'Order is a rule, not a shape'
           pedagogicalIntent: |
@@ -215,10 +215,10 @@ config:
             - **Accessibility:** Text-first explanation is equivalent nonvisual content. Any future hide/reveal affordance must work with keyboard and announce expanded state, but is not assumed implemented.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3ReverseAndRepair:
+      sortDescendingAndRepair:
         config:
           id: '93a08c64-fc4b-412d-b926-0deaa65761eb'
-          slug: 'section3ReverseAndRepair'
+          slug: 'sortDescendingAndRepair'
           type: 'content'
           params: {}
           locale:
@@ -228,10 +228,10 @@ config:
               en: 'Reverse and Repair'
           content:
             items:
-              text1:
+              sortDescendingCards:
                 config:
                   id: '7f0da029-e361-49cc-a1f6-295bb941d98e'
-                  slug: 'text1'
+                  slug: 'sortDescendingCards'
                   type: 'text'
                   params: {}
                   locale:
@@ -328,16 +328,16 @@ config:
                     - QA must test every state/result above, locale copy, keyboard/screen-reader operation, LTR/RTL, mobile, reduced motion and genuine offline download; runtime implementation and its own tests are **not in this batch**.
                   purpose: 'Proposed interactive Scene for Reverse and Repair'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainDescendingOrder:
                 config:
                   id: '928aeac6-0daa-4a63-b57c-9c50c5ad8025'
-                  slug: 'markdown2'
+                  slug: 'explainDescendingOrder'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '20, 19, 12, 0. 2, 5, 11, 17; 11 then 5 is a descending step, not ascending.'
-            order: ['text1', 'reverseAndRepair', 'markdown2']
+            order: ['sortDescendingCards', 'reverseAndRepair', 'explainDescendingOrder']
         production:
           purpose: 'Reverse and Repair'
           pedagogicalIntent: |
@@ -357,7 +357,7 @@ config:
             - **Implementation dependency:** Entire new Reverse and Repair component is **proposed**, prop-free and unimplemented. Its scenario data belongs inside the Scene, not an invented Resource prop. No Question bank, score, mastery event or Note API.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order: ['section1NumberCardOrganizer', 'section2OrderIsARuleNotAShape', 'section3ReverseAndRepair']
+    order: ['sortAscendingCards', 'explainNondecreasingOrder', 'sortDescendingAndRepair']
   flashcards:
     items: {}
     order: []
