@@ -526,9 +526,6 @@ config:
       - 'compareNoneSomeAll'
       - 'extendSubtractSelfRule'
       - 'generalizeSubtractSelf'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

@@ -545,9 +545,6 @@ config:
       - 'groupFirstTwoAddends'
       - 'groupLastTwoAddends'
       - 'chooseConvenientGrouping'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

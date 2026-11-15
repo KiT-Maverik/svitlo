@@ -548,9 +548,6 @@ config:
 
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
     order: ['joinTwoCollections', 'modelGrowingCollection', 'compareJoinAndChangeStories', 'representNewAdditionStory']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

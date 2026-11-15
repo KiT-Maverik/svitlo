@@ -544,9 +544,6 @@ config:
 
             **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
     order: ['distinguishDataQuestions', 'specifyRespondentsAndVariable', 'collectVariedAnswers', 'recognizeUniformData']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

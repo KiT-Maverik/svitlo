@@ -517,9 +517,6 @@ config:
             - Notes: Recall removed-part rule; no additional cue.
             - Dependencies: New Scene; no validated Quiz.
     order: ['identifyRemovedCounters', 'findRemovedAmountByDifference', 'verifyMissingSubtrahend', 'solveNewSubtrahend']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

@@ -613,9 +613,6 @@ config:
       - 'readHalfPastFromBothHands'
       - 'readQuarterToNextHour'
       - 'transferQuarterHourReading'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

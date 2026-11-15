@@ -332,9 +332,6 @@ config:
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
     order: ['testEvennessWithPairs', 'reasonFromLeftoverPairs', 'verifyParityAfterRearranging']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |
