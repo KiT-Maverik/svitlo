@@ -41,8 +41,7 @@ type MarkdownOverridePropsBase = {
 };
 
 type MarkdownFiles =
-  | { moduleUrl: string; languages: readonly LanguageCode[] }
-  | { moduleUrl: string; languages?: never };
+  { moduleUrl: string; languages: readonly LanguageCode[] } | { moduleUrl: string; languages?: never };
 
 type MarkdownInlineConfig<Slug extends string, Languages extends readonly LanguageCode[]> = Omit<
   ContentBlock_Markdown_Config,
@@ -89,9 +88,7 @@ function readMarkdownFiles(files: MarkdownFiles): string | Partial<Record<Langua
   } catch (cause) {
     throw new Error('Missing Markdown locale directory: ' + directory.pathname, { cause });
   }
-  const unexpected = existing.filter(name =>
-    name.endsWith('.md') && !expected.has(name.slice(0, -3) as LanguageCode),
-  );
+  const unexpected = existing.filter(name => name.endsWith('.md') && !expected.has(name.slice(0, -3) as LanguageCode));
   if (unexpected.length) throw new Error('Unexpected Markdown locale files: ' + unexpected.join(', '));
 
   const values: Partial<Record<LanguageCode, string>> = {};
