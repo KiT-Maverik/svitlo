@@ -199,8 +199,15 @@ export function renderLessonModules(lesson, language, options = {}) {
       ).join(',\n') + '\n' + indent(depth) + ']';
     }
     if (!record(value)) {
-      if (value === null || ['string', 'number', 'boolean'].includes(typeof value))
+      if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) {
+        // Flashcard flag discriminants are inferred from a standalone const
+        // parameters declaration. Preserve their literal types without freezing
+        // mutable { items, order } collections via a blanket "as const".
+        if (typeof value === 'string' &&
+          /^\$\.parameters\.(?:flags|relationships)\.items\.[^.]+\.(?:type|color)$/.test(field))
+          return JSON.stringify(value) + ' as const';
         return JSON.stringify(value);
+      }
       throw new Error('config.yaml:' + field + ': unsupported YAML value');
     }
     const entries = Object.entries(value);
