@@ -5,6 +5,7 @@ export const storyboardAFilmSequence_Skill_Data = defineSkill({
   id: 'b0e967bf-0b98-46ab-8193-7a187a42b31b',
   name: {
     en: 'Storyboard a Film Sequence',
+    it: 'Creare uno storyboard per una sequenza filmica',
 
     zh: '绘制电影分镜',
     hi: 'फ़िल्म स्टोरीबोर्ड बनाएं',
@@ -40,6 +41,7 @@ export const storyboardAFilmSequence_Skill_Data = defineSkill({
       'Translate a planned screen action into a sequence of drawn or otherwise represented frames that make camera views, blocking and narrative transitions intelligible.',
     frontend: {
       en: 'Plan a film scene through a sequence of pictures showing key camera views.',
+      it: 'Pianifica una scena attraverso immagini in sequenza che mostrino le inquadrature principali.',
 
       zh: '通过展示关键镜头视角的一系列图画来规划电影场景。',
       hi: 'मुख्य कैमरा दृश्यों वाले चित्रों की शृंखला से फ़िल्म दृश्य की योजना बनाएं।',
