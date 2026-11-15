@@ -180,7 +180,7 @@ describe('Engine Props Lesson events', () => {
       type: 'quiz',
       params: {
         isBlocker: true,
-        selection: { mode: 'all' },
+        selection: { mode: 'all', questionIds: [uuid(54)] },
         layout: { mode: 'stack' },
         feedbackMode: 'immediate',
         interaction: {
