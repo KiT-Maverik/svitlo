@@ -14,6 +14,7 @@ export const samplingAndElectronicMusic_SkillGroup_Data = defineSkillGroup({
   id: 'da346697-938e-422f-915c-bf467ab83fda',
   name: {
     en: 'Sampling and Electronic Music',
+    it: 'Campionamento e musica elettronica',
     zh: '采样与电子音乐',
     hi: 'सैंपलिंग और इलेक्ट्रॉनिक संगीत',
     es: 'Muestreo y música electrónica',
@@ -56,6 +57,7 @@ export const samplingAndElectronicMusic_SkillGroup_Data = defineSkillGroup({
       'Sequencers, drum machines and recorded excerpts are instruments for musical organization, not programming subjects in their own right.',
     frontend: {
       en: 'Use recordings and electronic tools to create and organize musical sounds.',
+      it: 'Usa registrazioni e strumenti elettronici per creare e organizzare suoni musicali.',
       zh: '使用录音和电子工具创作并组织音乐声音。',
       hi: 'संगीत ध्वनियाँ बनाने और व्यवस्थित करने के लिए रिकॉर्डिंग और इलेक्ट्रॉनिक उपकरणों का उपयोग करें।',
       es: 'Usa grabaciones y herramientas electrónicas para crear y organizar sonidos musicales.',
