@@ -7,6 +7,7 @@ export const changesAndConservation_SkillGroup_Data = defineSkillGroup({
   id: '6e21b5f4-a7d4-48b3-9124-1de198f9e6ff',
   name: {
     en: 'Changes and Conservation',
+    it: "Trasformazioni e conservazione",
     zh: '变化与守恒',
     hi: 'परिवर्तन और संरक्षण',
     es: 'Cambios y conservación',
@@ -42,6 +43,7 @@ export const changesAndConservation_SkillGroup_Data = defineSkillGroup({
       'Changes in form and changes in composition are distinct, while matter is conserved in appropriately defined systems.',
     frontend: {
       en: 'See how changes to matter differ from the creation of new substances.',
+      it: "Scopri la differenza tra i cambiamenti della materia e la formazione di nuove sostanze.",
       zh: '理解物质发生的变化与新物质的形成有何不同。',
       hi: 'समझें कि पदार्थ के रूप में बदलाव और नए पदार्थ बनने में क्या अंतर है।',
       es: 'Distingue los cambios de la materia de la formación de sustancias nuevas.',
