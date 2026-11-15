@@ -5,6 +5,7 @@ export const explainInheritance_Skill_Data = defineSkill({
   id: '4ab219a6-3b8f-4d43-912d-96faa16016b2',
   name: {
     en: 'Explain Inheritance',
+    it: "Spiegare l'ereditarietà",
     zh: '解释继承',
     hi: 'इनहेरिटेंस समझाना',
     es: 'Explicar la herencia',
@@ -39,6 +40,7 @@ export const explainInheritance_Skill_Data = defineSkill({
       "Explain relationships between base and derived types, where a derived type inherits defined properties or operations and may specialize them. Inheritance denotes an 'is a kind of' relationship, not a 'contains a part' relationship.",
     frontend: {
       en: 'Explain how a specialized class can inherit behavior from a broader class.',
+      it: 'Spiega come una classe specializzata può ereditare comportamenti da una classe più generale.',
       zh: '说明特化类如何继承更一般类的行为。',
       hi: 'समझाएँ कि विशिष्ट क्लास व्यापक क्लास का व्यवहार कैसे प्राप्त करती है।',
       es: 'Explica cómo una clase especializada puede heredar comportamiento de otra más general.',

@@ -21,6 +21,7 @@ export const objectModel_SkillGroup_Data = defineSkillGroup({
   id: 'f1ebe259-99e3-4187-930d-1f6a4077ad22',
   name: {
     en: 'Object Model',
+    it: 'Modello a oggetti',
     zh: '对象模型',
     hi: 'ऑब्जेक्ट मॉडल',
     es: 'Modelo de objetos',
@@ -70,6 +71,7 @@ export const objectModel_SkillGroup_Data = defineSkillGroup({
       'Organizing program behavior around objects: state, methods, classes, abstraction, encapsulation, and relationships between types. Describing an individual object and explaining class relationships are distinct abilities.',
     frontend: {
       en: 'Discover how software objects combine their state and behavior.',
+      it: 'Scopri come gli oggetti software combinano stato e comportamento.',
       zh: '了解软件对象如何结合自身的状态与行为。',
       hi: 'जानें कि सॉफ़्टवेयर ऑब्जेक्ट अपनी अवस्था और व्यवहार को कैसे जोड़ते हैं।',
       es: 'Descubre cómo los objetos de software reúnen estado y comportamiento.',

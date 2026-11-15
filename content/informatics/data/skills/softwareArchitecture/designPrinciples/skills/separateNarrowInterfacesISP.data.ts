@@ -5,6 +5,7 @@ export const separateNarrowInterfacesISP_Skill_Data = defineSkill({
   id: 'f6c5fd7e-015a-4139-af56-390b3faff3b0',
   name: {
     en: 'Separate Narrow Interfaces (ISP)',
+    it: 'Separare le interfacce ristrette (ISP)',
     zh: '分离精简接口（ISP）',
     hi: 'छोटे इंटरफ़ेस अलग करना (ISP)',
     es: 'Separar interfaces pequeñas (ISP)',
@@ -39,6 +40,7 @@ export const separateNarrowInterfacesISP_Skill_Data = defineSkill({
       'Split a large contract into role-specific interfaces so consumers depend only on needed operations. A read-only viewing device should not be required to implement editing or printing.',
     frontend: {
       en: 'Make interfaces small enough that clients need only the operations they use.',
+      it: 'Rendi le interfacce abbastanza piccole perché i client dipendano solo dalle operazioni che usano.',
       zh: '保持接口足够精简，让使用者只依赖所需的操作。',
       hi: 'इंटरफ़ेस इतने छोटे रखें कि ग्राहक केवल आवश्यक कार्यों पर निर्भर हों।',
       es: 'Diseña interfaces lo bastante específicas para que cada cliente dependa solo de lo que usa.',
