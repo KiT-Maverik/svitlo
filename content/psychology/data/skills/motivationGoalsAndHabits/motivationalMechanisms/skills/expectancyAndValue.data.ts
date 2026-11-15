@@ -5,6 +5,7 @@ export const expectancyAndValue_Skill_Data = defineSkill({
   id: '7ab7ea06-d25b-4cd7-8692-20a9c740fa67',
   name: {
     en: 'Expectancy and Value',
+    it: 'Aspettative e valore percepito',
     zh: '期望与价值',
     hi: 'अपेक्षा और मूल्य',
     es: 'Expectativa y valor',
@@ -38,6 +39,7 @@ export const expectancyAndValue_Skill_Data = defineSkill({
     methodological: 'Analyze how anticipated success and the perceived value of an outcome jointly influence effort.',
     frontend: {
       en: 'Explain why expectations and perceived value affect effort.',
+      it: 'Spiega perché le aspettative e il valore percepito influenzino l\'impegno.',
       zh: '解释预期成功的可能性和感知价值为何影响努力程度。',
       hi: 'समझाएँ कि सफलता की उम्मीद और समझा गया महत्व प्रयास को क्यों प्रभावित करते हैं।',
       es: 'Explica por qué las expectativas y el valor percibido afectan al esfuerzo.',
