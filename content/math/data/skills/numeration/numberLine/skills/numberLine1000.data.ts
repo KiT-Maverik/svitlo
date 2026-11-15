@@ -11,6 +11,7 @@ export const numberLine1000_Skill_Data = defineSkill({
     ka: 'რიცხვები მასშტაბიან რიცხვით წრფეზე 1000-მდე',
     kk: '1000-ға дейінгі сандар масштабталған сан түзуінде',
     en: 'Numbers on a scaled line to 1000',
+    it: 'Numeri su una retta graduata fino a 1000',
     qm: '1000-ge qadar miqyaslı sayı sızığı',
     zh: '在带刻度的数轴上标出1000以内的数',
     hi: '1000 तक मापांक वाली संख्या रेखा',
@@ -39,6 +40,7 @@ export const numberLine1000_Skill_Data = defineSkill({
       "A point's location on a number line depends on its coordinate, origin, and unit length. Equal numeric changes require equal distances on a uniform scale; arbitrary spacing distorts the model.",
     frontend: {
       en: 'Find numbers up to 1,000 on a number line using its starting point and scale. Equal number jumps take equal distances.',
+      it: 'Trova i numeri fino a 1000 su una retta numerica usando il punto di partenza e la scala. Salti numerici uguali corrispondono a distanze uguali.',
       qm: 'Başlanğıç noqtası ve miqyasını qullanıp sayı sızığında 1000-ge qadar sayılarnı tap. Teñ sayı adımları teñ mesafelerge uyğun kele.',
       zh: '根据数轴的起点和刻度找到1000以内的数。相同的数值差对应相同的距离。',
       hi: 'आरंभ बिंदु और पैमाने से संख्या रेखा पर 1,000 तक संख्याएँ खोजें। समान संख्यात्मक अंतर की दूरी समान होती है।',
