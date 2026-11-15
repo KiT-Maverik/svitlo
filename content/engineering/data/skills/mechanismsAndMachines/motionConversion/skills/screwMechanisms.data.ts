@@ -5,6 +5,7 @@ export const screwMechanisms_Skill_Data = defineSkill({
   id: '3674cfe6-6182-4d1f-9ed7-4f4252fb254d',
   name: {
     en: 'Screw mechanisms',
+    it: 'Meccanismi a vite',
     zh: '螺旋机构',
     hi: 'पेंच तंत्र',
     es: 'Mecanismos de tornillo',
@@ -39,6 +40,7 @@ export const screwMechanisms_Skill_Data = defineSkill({
       'Describe how the pitch and mating threads of a screw convert rotation into controlled axial displacement or a clamping force.',
     frontend: {
       en: 'Recognize how a screw converts turning into forward movement or pressure.',
+      it: 'Riconosci come una vite trasforma la rotazione in avanzamento o pressione.',
       zh: '识别螺杆如何把旋转转化为直线运动或压力。',
       hi: 'समझें कि पेंच घुमाव को आगे बढ़ने की गति या दबाव में कैसे बदलता है।',
       es: 'Reconoce cómo un tornillo convierte el giro en avance lineal o presión.',
