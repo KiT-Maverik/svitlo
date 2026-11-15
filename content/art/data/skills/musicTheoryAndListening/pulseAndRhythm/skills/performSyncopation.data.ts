@@ -5,6 +5,7 @@ export const performSyncopation_Skill_Data = defineSkill({
   id: 'd69083f0-78e8-4632-81fc-370c541b27a7',
   name: {
     en: 'Perform Syncopation',
+    it: 'Eseguire una sincope',
     zh: '演奏切分节奏',
     hi: 'सिंकॉपेशन प्रस्तुत करें',
     es: 'Interpretar la síncopa',
@@ -38,6 +39,7 @@ export const performSyncopation_Skill_Data = defineSkill({
     methodological: 'Place rhythmic emphasis against expected strong beats while preserving metric orientation.',
     frontend: {
       en: 'Emphasize unexpected beats while keeping the underlying pulse.',
+      it: 'Accenta tempi inattesi mantenendo la pulsazione di base.',
       zh: '在保持基础拍点的同时强调意外的节拍。',
       hi: 'मूल ताल बनाए रखते हुए अप्रत्याशित मात्राओं पर ज़ोर दें।',
       es: 'Enfatiza los tiempos inesperados sin perder el pulso subyacente.',
