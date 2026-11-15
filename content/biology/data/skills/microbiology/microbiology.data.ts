@@ -17,6 +17,7 @@ export const microbiology_SkillDomain_Data = defineSkillDomain({
   id: '3ed25895-70bb-442b-b62f-218f92f1ccaf',
   title: {
     en: 'Microbiology',
+    it: 'Microbiologia',
     zh: '微生物学',
     hi: 'सूक्ष्मजीवविज्ञान',
     es: 'Microbiología',
@@ -63,6 +64,7 @@ export const microbiology_SkillDomain_Data = defineSkillDomain({
       'Microscopic cellular life forms and their processes, including bacteria, fermentation, decomposition, and interactions with the human body. Microscopic size does not define a single taxon; this Domain considers the shared context of microbial processes.',
     frontend: {
       en: 'Discover the diversity of microscopic cellular life and its roles in nature and human activities.',
+      it: 'Scopri la varietà delle forme di vita cellulari microscopiche e il loro ruolo nella natura e nelle attività umane.',
       zh: '探索各种微小的细胞生物，以及它们在自然界和人类活动中的作用。',
       hi: 'सूक्ष्म कोशिकीय जीवों की विविधता और प्रकृति तथा मानव गतिविधियों में उनकी भूमिकाएँ जानें।',
       es: 'Descubre la diversidad de organismos celulares microscópicos y su papel en la naturaleza y las actividades humanas.',
