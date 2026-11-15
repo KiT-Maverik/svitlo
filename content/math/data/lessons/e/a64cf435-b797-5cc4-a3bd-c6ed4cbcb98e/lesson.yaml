@@ -384,9 +384,6 @@ config:
             3. **markdown**: “Remember: **given facts → relationship → question**.”
     order:
       ['identifyStoryQuestion', 'identifyChangeRelationship', 'ignoreIrrelevantDetails', 'transferKnownUnknownMethod']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

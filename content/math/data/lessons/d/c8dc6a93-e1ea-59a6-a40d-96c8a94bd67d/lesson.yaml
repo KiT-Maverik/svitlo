@@ -539,9 +539,6 @@ config:
             3. **`text`, feedback:** For 29: “That is all the books combined, but the question asks by how many one group exceeds the other.” For 7: “Eighteen is seven more than eleven. The gap is seven books.” If a learner proposes “7 small books in total”, clarify “Seven is the **difference**, not the whole small-book collection.”
             4. **`markdown`:** “**Recall:** Compare compatible groups. Match equal units, count the unmatched excess, or subtract the smaller count from the larger.”
     order: ['matchEqualGroups', 'countUnmatchedPencils', 'interpretFewerAsGap', 'solveBookDifference']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

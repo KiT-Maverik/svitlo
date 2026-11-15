@@ -495,9 +495,6 @@ config:
       - 'compareZeroAndTwoRemoved'
       - 'makeZeroLengthJump'
       - 'generalizeSubtractingZero'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

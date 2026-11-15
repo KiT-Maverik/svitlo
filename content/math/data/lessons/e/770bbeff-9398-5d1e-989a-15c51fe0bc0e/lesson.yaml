@@ -518,9 +518,6 @@ config:
         'translateDiagramToEquation',
         'buildConsistentRepresentations',
       ]
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

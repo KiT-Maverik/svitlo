@@ -554,9 +554,6 @@ config:
             4. **`markdown`:** “**Recall:** An example checks **one** case. A universal rule says **every** case. To disprove it, find **one case that fits the conditions but contradicts the conclusion**.”
     order:
       ['distinguishExampleFromProof', 'findValidCounterexample', 'separateExamplesFromProof', 'refuteUniversalClaim']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

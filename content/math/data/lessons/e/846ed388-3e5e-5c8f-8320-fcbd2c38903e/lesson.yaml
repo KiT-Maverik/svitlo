@@ -597,9 +597,6 @@ config:
       - 'testEqualShares'
       - 'recognizeEqualAreaShapes'
       - 'compareHalvesAcrossWholes'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

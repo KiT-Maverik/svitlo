@@ -13,9 +13,6 @@ config:
   locale:
     title:
       en: 'Add Tens and Ones in Columns'
-  flashcards:
-    items: {}
-    order: []
   section:
     items:
       alignTensAndOnes:
