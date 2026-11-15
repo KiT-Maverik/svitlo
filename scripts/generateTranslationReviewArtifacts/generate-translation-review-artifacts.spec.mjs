@@ -70,10 +70,10 @@ test('real Skills and UI Kit requests generate only their requested Markdown fil
     assert.equal(skills.failures.length, 0);
     assert.equal(fs.existsSync(path.join(workspace, 'lessons')), false);
 
-    const ui = request(['--kind', 'ui-kit', '--component', 'audio', '--locale', 'it']);
+    const ui = request(['--kind', 'ui-kit', '--component', 'audio', '--locale', 'uk']);
     assert.equal(ui.scope.kind, 'ui-kit');
     assert.equal(ui.scope.component, 'audio');
-    assert.deepEqual(ui.generated.map(item => item.path), ['.agent-ci-artifacts/ui-kit/audio/it.md']);
+    assert.deepEqual(ui.generated.map(item => item.path), ['.agent-ci-artifacts/ui-kit/audio/uk.md']);
     assert.equal(ui.failures.length, 0);
     assert.equal(fs.existsSync(path.join(workspace, 'taxonomies')), false);
   } finally {
