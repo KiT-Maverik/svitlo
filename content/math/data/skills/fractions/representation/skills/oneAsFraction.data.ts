@@ -5,6 +5,7 @@ export const oneAsFraction_Skill_Data = defineSkill({
   id: '24ae675d-82dc-4eb4-94fe-adc96f15e452',
   name: {
     en: 'Showing one whole as n/n',
+    it: 'Rappresentare un intero come n/n',
     qm: 'Bir bütüni n/n şeklinde köstermek',
     lt: 'Vieneto užrašymas trupmena n/n',
     lv: 'Viena veselā attēlošana kā n/n',
@@ -39,6 +40,7 @@ export const oneAsFraction_Skill_Data = defineSkill({
       'For nonzero n, n/n equals one whole: n parts of size 1/n reconstruct the unit. This is true independently of the partition or visual model.',
     frontend: {
       en: 'All the equal parts together make one whole: 2/2, 3/3, and 5/5 each equal 1.',
+      it: 'Tutte le parti uguali insieme formano un intero: 2/2, 3/3 e 5/5 valgono ciascuno 1.',
       qm: 'Bütün teñ parçalar birleştirilgende bir bütün ola: 2/2, 3/3 ve 5/5-niñ er biri 1-ge teñ.',
       zh: '所有等份合起来就是一个整体：2/2、3/3和5/5都等于1。',
       hi: 'सभी बराबर भाग मिलकर एक पूरा बनाते हैं: 2/2, 3/3 और 5/5 सभी 1 के बराबर हैं।',
