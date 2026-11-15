@@ -5,6 +5,7 @@ export const materialSuitabilityAssessment_Skill_Data = defineSkill({
   id: 'e23fd916-70e4-400b-b8fc-0be4ef9ffb5a',
   name: {
     en: 'Material suitability assessment',
+    it: 'Valutare l\'idoneità di un materiale',
     zh: '评估材料适用性',
     hi: 'सामग्री की उपयुक्तता का आकलन',
     es: 'Evaluar la idoneidad de materiales',
@@ -39,6 +40,7 @@ export const materialSuitabilityAssessment_Skill_Data = defineSkill({
       'Evaluate which material properties and processing limitations meet the expected loads and service environment. This is a reusable material-compatibility judgment rather than an individual choice question.',
     frontend: {
       en: 'Evaluate whether a material can meet the demands of a particular use.',
+      it: 'Valuta se un materiale soddisfa le esigenze di un utilizzo particolare.',
       zh: '评估材料能否满足某一用途的要求。',
       hi: 'जाँचें कि सामग्री किसी खास उपयोग की माँगें पूरी कर सकती है या नहीं।',
       es: 'Evalúa si un material responde a las exigencias de un uso concreto.',
