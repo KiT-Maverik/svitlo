@@ -5,6 +5,7 @@ export const avoidanceMotivation_Skill_Data = defineSkill({
   id: 'bbb4d156-c719-4972-8af2-a2b380e84c46',
   name: {
     en: 'Avoidance Motivation',
+    it: 'Motivazione all\'evitamento',
     zh: '回避动机',
     hi: 'बचाव की प्रेरणा',
     es: 'Motivación de evitación',
@@ -38,6 +39,7 @@ export const avoidanceMotivation_Skill_Data = defineSkill({
     methodological: 'Explain actions aimed at preventing or escaping an anticipated undesirable outcome.',
     frontend: {
       en: 'Recognize motivation to avoid an unwanted outcome.',
+      it: 'Riconosci la motivazione a evitare un risultato indesiderato.',
       zh: '认识避免不想要的结果的动机。',
       hi: 'अनचाहे परिणाम से बचने की प्रेरणा पहचानें।',
       es: 'Reconoce la motivación para evitar un resultado no deseado.',

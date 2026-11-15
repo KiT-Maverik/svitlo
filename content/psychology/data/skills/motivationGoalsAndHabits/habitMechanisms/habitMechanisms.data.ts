@@ -12,6 +12,7 @@ export const habitMechanisms_SkillGroup_Data = defineSkillGroup({
   id: '5c10bf19-b012-41dc-90a3-e9a970b3faba',
   name: {
     en: 'Habit Mechanisms',
+    it: 'Meccanismi delle abitudini',
     zh: '习惯机制',
     hi: 'आदतों के तंत्र',
     es: 'Mecanismos de los hábitos',
@@ -55,6 +56,7 @@ export const habitMechanisms_SkillGroup_Data = defineSkillGroup({
       'Repeated actions become cue-sensitive routines that can operate with reduced deliberation, though habits remain dependent on context.',
     frontend: {
       en: 'Discover how repeated actions become cues and habits.',
+      it: 'Scopri come le azioni ripetute si associno a segnali e diventino abitudini.',
       zh: '了解重复的行为如何在特定线索下变为习惯。',
       hi: 'जानें कि बार-बार किए गए कार्य कैसे संकेतों से जुड़कर आदत बनते हैं।',
       es: 'Descubre cómo las acciones repetidas se asocian con señales y se vuelven hábitos.',

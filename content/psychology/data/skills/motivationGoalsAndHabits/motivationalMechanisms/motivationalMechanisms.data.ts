@@ -15,6 +15,7 @@ export const motivationalMechanisms_SkillGroup_Data = defineSkillGroup({
   id: 'c27e6e57-c3af-46a3-9735-cc51591db37c',
   name: {
     en: 'Motivational Mechanisms',
+    it: 'Meccanismi motivazionali',
     zh: '动机机制',
     hi: 'प्रेरक तंत्र',
     es: 'Mecanismos de motivación',
@@ -69,6 +70,7 @@ export const motivationalMechanisms_SkillGroup_Data = defineSkillGroup({
       'Behavior is influenced by internal states and external incentives, with competing explanations and substantial individual variation.',
     frontend: {
       en: 'Discover different sources of motivation behind human action.',
+      it: 'Scopri le diverse fonti di motivazione che sostengono le azioni umane.',
       zh: '了解推动人类行动的不同动机来源。',
       hi: 'मानवीय क्रिया के पीछे प्रेरणा के विभिन्न स्रोत जानें।',
       es: 'Descubre distintas fuentes de motivación que impulsan las acciones humanas.',

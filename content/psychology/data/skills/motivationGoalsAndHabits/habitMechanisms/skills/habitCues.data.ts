@@ -5,6 +5,7 @@ export const habitCues_Skill_Data = defineSkill({
   id: 'f9ebd02e-eed2-4f4b-9794-f60c99fb1bcb',
   name: {
     en: 'Habit Cues',
+    it: 'Segnali che attivano le abitudini',
     zh: '习惯线索',
     hi: 'आदत के संकेत',
     es: 'Señales de los hábitos',
@@ -38,6 +39,7 @@ export const habitCues_Skill_Data = defineSkill({
     methodological: 'Identify environmental or internal signals that trigger a learned routine.',
     frontend: {
       en: 'Identify contextual signals that trigger a habitual response.',
+      it: 'Individua i segnali contestuali che innescano una risposta abituale.',
       zh: '识别触发习惯性反应的环境信号。',
       hi: 'परिस्थिति के वे संकेत पहचानें जो आदतन प्रतिक्रिया शुरू करते हैं।',
       es: 'Identifica las pistas del entorno que desencadenan una respuesta habitual.',

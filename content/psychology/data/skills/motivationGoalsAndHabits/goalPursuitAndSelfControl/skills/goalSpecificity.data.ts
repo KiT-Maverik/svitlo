@@ -5,6 +5,7 @@ export const goalSpecificity_Skill_Data = defineSkill({
   id: 'df95da3a-ba04-4915-9156-e096912dca9a',
   name: {
     en: 'Goal Specificity',
+    it: 'Specificità degli obiettivi',
     zh: '目标的具体性',
     hi: 'लक्ष्यों की स्पष्टता',
     es: 'Precisión de los objetivos',
@@ -39,6 +40,7 @@ export const goalSpecificity_Skill_Data = defineSkill({
       'Explain how a clearly defined target can guide action and progress monitoring differently from a vague intention.',
     frontend: {
       en: 'Understand how clear, specific goals can guide action.',
+      it: 'Comprendi come obiettivi chiari e specifici possano guidare l\'azione.',
       zh: '理解清晰而具体的目标如何指导行动。',
       hi: 'समझें कि स्पष्ट और विशेष लक्ष्य व्यवहार को कैसे दिशा देते हैं।',
       es: 'Comprende cómo unas metas claras y específicas guían la acción.',

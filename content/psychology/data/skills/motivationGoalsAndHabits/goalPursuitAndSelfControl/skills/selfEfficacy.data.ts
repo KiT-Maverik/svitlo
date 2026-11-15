@@ -5,6 +5,7 @@ export const selfEfficacy_Skill_Data = defineSkill({
   id: '50ccf5b8-d119-42bd-a661-1605e994d84b',
   name: {
     en: 'Self-Efficacy',
+    it: 'Autoefficacia',
     zh: '自我效能感',
     hi: 'आत्म-प्रभावकारिता',
     es: 'Autoeficacia',
@@ -39,6 +40,7 @@ export const selfEfficacy_Skill_Data = defineSkill({
       "Explain how beliefs about one's capability influence attempts, persistence, and response to setbacks without guaranteeing outcomes.",
     frontend: {
       en: "Recognize how belief in one's capability affects effort and persistence.",
+      it: 'Riconosci come la fiducia nelle proprie capacità influenzi impegno e perseveranza.',
       zh: '认识对自己能力的信念如何影响努力和坚持。',
       hi: 'समझें कि अपनी क्षमता पर भरोसा प्रयास और दृढ़ता को कैसे प्रभावित करता है।',
       es: 'Reconoce cómo confiar en la propia capacidad influye en el esfuerzo y la perseverancia.',
