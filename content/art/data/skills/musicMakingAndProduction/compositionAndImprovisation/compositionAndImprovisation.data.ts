@@ -13,6 +13,7 @@ export const compositionAndImprovisation_SkillGroup_Data = defineSkillGroup({
   id: '46737c7a-d01b-41a9-a3be-05b9d1cd3509',
   name: {
     en: 'Composition and Improvisation',
+    it: 'Composizione e improvvisazione',
     zh: '创作与即兴',
     hi: 'रचना और तात्कालिक सृजन',
     es: 'Composición e improvisación',
@@ -54,6 +55,7 @@ export const compositionAndImprovisation_SkillGroup_Data = defineSkillGroup({
       'Generating new musical phrases, forming completed pieces and arranging existing material require distinct authorial choices.',
     frontend: {
       en: 'Invent, combine and organize musical ideas into complete pieces.',
+      it: 'Inventa, combina e organizza idee musicali fino a creare brani completi.',
       zh: '构思、组合并组织音乐创意，形成完整作品。',
       hi: 'संगीत विचारों की कल्पना करें, उन्हें जोड़ें और पूर्ण रचनाओं में व्यवस्थित करें।',
       es: 'Inventa, combina y organiza ideas musicales para crear piezas completas.',
