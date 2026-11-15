@@ -14,6 +14,7 @@ export const keyContributions_SkillGroup_Data = defineSkillGroup({
   id: '202c64c7-e078-4640-94a8-6a9f4e0ac504',
   name: {
     en: 'Key Contributions',
+    it: 'Contributi fondamentali',
     zh: '重要贡献',
     hi: 'प्रमुख योगदान',
     es: 'Contribuciones clave',
@@ -56,6 +57,7 @@ export const keyContributions_SkillGroup_Data = defineSkillGroup({
       'Historical developments in program descriptions, practical machine programming, compilation, software reliability, network protocols, and computability can be examined by the problems they solved and their lasting importance. Specific people and teams remain required examples in the Subject Proposition.',
     frontend: {
       en: 'Explore major contributions to programming, reliability and computer networking.',
+      it: "Esplora i principali contributi alla programmazione, all'affidabilità del software e alle reti informatiche.",
       zh: '探索编程、软件可靠性与计算机网络领域的重要贡献。',
       hi: 'प्रोग्रामिंग, सॉफ़्टवेयर विश्वसनीयता और कंप्यूटर नेटवर्क में प्रमुख योगदान जानें।',
       es: 'Explora contribuciones importantes a la programación, la fiabilidad del software y las redes informáticas.',

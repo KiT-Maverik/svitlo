@@ -5,6 +5,7 @@ export const explainTheOriginsOfProgramming_Skill_Data = defineSkill({
   id: '2dffbde9-f974-48ba-88cd-b50f249693cf',
   name: {
     en: 'Explain the Origins of Programming',
+    it: 'Spiegare le origini della programmazione',
     zh: '解释编程的起源',
     hi: 'प्रोग्रामिंग की उत्पत्ति समझाना',
     es: 'Explicar los orígenes de la programación',
@@ -39,6 +40,7 @@ export const explainTheOriginsOfProgramming_Skill_Data = defineSkill({
       "Use descriptions for Charles Babbage's Analytical Engine to show how machine operations could be specified before modern computers existed. Examine Ada Lovelace's work and her vision of computation extending beyond ordinary arithmetic.",
     frontend: {
       en: "Learn how early machine designs and Ada Lovelace's work anticipated programming.",
+      it: 'Scopri come i primi progetti di macchine e il lavoro di Ada Lovelace anticiparono la programmazione.',
       zh: '了解早期机器设计与阿达·洛芙莱斯的工作如何预示编程。',
       hi: 'जानें कि शुरुआती मशीन डिज़ाइन और एडा लवलेस का काम प्रोग्रामिंग की ओर कैसे बढ़ा।',
       es: 'Descubre cómo los primeros diseños de máquinas y el trabajo de Ada Lovelace anticiparon la programación.',

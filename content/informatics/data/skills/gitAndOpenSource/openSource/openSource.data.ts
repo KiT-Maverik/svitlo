@@ -7,6 +7,7 @@ export const openSource_SkillGroup_Data = defineSkillGroup({
   id: '38319e39-b1af-439e-b6cf-15e209470aff',
   name: {
     en: 'Open Source',
+    it: 'Open source',
     zh: '开源',
     hi: 'मुक्त स्रोत',
     es: 'Código abierto',
@@ -42,6 +43,7 @@ export const openSource_SkillGroup_Data = defineSkillGroup({
       'Software openness depends not only on visibility of source code but also on rights to use, modify, and distribute it.',
     frontend: {
       en: 'Discover what permissions make software genuinely open source.',
+      it: 'Scopri quali autorizzazioni rendono un software realmente open source.',
       zh: '了解哪些许可使软件真正属于开源软件。',
       hi: 'जानें कि कौन-सी अनुमतियाँ सॉफ़्टवेयर को सच में मुक्त स्रोत बनाती हैं।',
       es: 'Descubre qué permisos hacen que un programa sea verdaderamente de código abierto.',

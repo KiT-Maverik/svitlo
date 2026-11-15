@@ -8,6 +8,7 @@ export const historyOfProgramming_SkillDomain_Data = defineSkillDomain({
   id: '2e78bd25-108e-4fc4-9a8a-98376c0efc29',
   title: {
     en: 'History of Programming',
+    it: 'Storia della programmazione',
     zh: '编程史',
     hi: 'प्रोग्रामिंग का इतिहास',
     es: 'Historia de la programación',
@@ -43,6 +44,7 @@ export const historyOfProgramming_SkillDomain_Data = defineSkillDomain({
       "Traces the origins of algorithmic ideas, programming practices, software tools, networking solutions, and computing machines in historical context. Recognizes individual and collaborative contributions, including women's long-undervalued work, without making every biography a separate competency.",
     frontend: {
       en: 'Discover how programming ideas and computing machines developed through history.',
+      it: 'Scopri come le idee della programmazione e le macchine per il calcolo si sono sviluppate nel tempo.',
       zh: '了解编程思想与计算机器在历史上如何发展。',
       hi: 'जानें कि प्रोग्रामिंग के विचार और कंप्यूटिंग मशीनें इतिहास में कैसे विकसित हुईं।',
       es: 'Descubre cómo se desarrollaron las ideas de programación y las máquinas de cálculo a lo largo de la historia.',

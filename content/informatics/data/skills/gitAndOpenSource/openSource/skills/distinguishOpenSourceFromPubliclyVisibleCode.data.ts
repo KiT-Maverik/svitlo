@@ -5,6 +5,7 @@ export const distinguishOpenSourceFromPubliclyVisibleCode_Skill_Data = defineSki
   id: '6e39f271-6cb5-4a40-97fa-1d3d688e9ee7',
   name: {
     en: 'Distinguish Open Source from Publicly Visible Code',
+    it: 'Distinguere open source e codice visibile pubblicamente',
     zh: '区分开源与公开可见的代码',
     hi: 'मुक्त स्रोत और सार्वजनिक कोड में अंतर करना',
     es: 'Distinguir código abierto de código visible públicamente',
@@ -39,6 +40,7 @@ export const distinguishOpenSourceFromPubliclyVisibleCode_Skill_Data = defineSki
       "Being able to read a program's source does not automatically grant permission to modify or redistribute it.",
     frontend: {
       en: 'Recognize that visible source code is not automatically open source.',
+      it: 'Riconosci che il codice sorgente visibile non è automaticamente open source.',
       zh: '认识到源代码可见并不代表自动获得开源许可。',
       hi: 'समझें कि कोड दिखने भर से वह मुक्त स्रोत नहीं बन जाता।',
       es: 'Reconoce que poder ver el código fuente no lo convierte automáticamente en código abierto.',
