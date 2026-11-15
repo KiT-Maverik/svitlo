@@ -15,10 +15,10 @@ config:
       en: 'When Ones Make a New Ten'
   section:
     items:
-      section1ThirteenLooseOnes:
+      countThirteenOnes:
         config:
           id: '776956e8-28e6-4797-a1ae-64aedd4cc7fd'
-          slug: 'section1ThirteenLooseOnes'
+          slug: 'countThirteenOnes'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Thirteen Loose Ones'
           content:
             items:
-              text1:
+              combineEightAndFive:
                 config:
                   id: '6abe7a1d-348d-4efa-9646-c8ff40e4ef1c'
-                  slug: 'text1'
+                  slug: 'combineEightAndFive'
                   type: 'text'
                   params: {}
                   locale:
@@ -110,7 +110,7 @@ config:
                     Generic Section Scene renderer exists; **Ten Exchange Workshop is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Check that the audience has mastered composing tens; distinguish crossing-ten exchange here from the previously drafted makeTenStrategy, which explicitly decomposes a second addend.
                   purpose: 'Proposed interactive Scene for Thirteen Loose Ones'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ['text1', 'tenExchangeWorkshop']
+            order: ['combineEightAndFive', 'tenExchangeWorkshop']
         production:
           purpose: 'Thirteen Loose Ones'
           pedagogicalIntent: |
@@ -129,10 +129,10 @@ config:
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2ExchangeTenKeepThree:
+      exchangeTenForBundle:
         config:
           id: '5b6f017c-3bb8-4d41-902b-484af5272e1f'
-          slug: 'section2ExchangeTenKeepThree'
+          slug: 'exchangeTenForBundle'
           type: 'content'
           params: {}
           locale:
@@ -142,10 +142,10 @@ config:
               en: 'Exchange Ten, Keep Three'
           content:
             items:
-              text1:
+              exchangeThirteenOnes:
                 config:
                   id: 'd0bff1e1-134f-4b10-90a2-52bb7ff02b62'
-                  slug: 'text1'
+                  slug: 'exchangeThirteenOnes'
                   type: 'text'
                   params: {}
                   locale:
@@ -224,7 +224,7 @@ config:
                     Generic Section Scene renderer exists; **Ten Exchange Workshop is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Check that the audience has mastered composing tens; distinguish crossing-ten exchange here from the previously drafted makeTenStrategy, which explicitly decomposes a second addend.
                   purpose: 'Proposed interactive Scene for Exchange Ten, Keep Three'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ['text1', 'tenExchangeWorkshop']
+            order: ['exchangeThirteenOnes', 'tenExchangeWorkshop']
         production:
           purpose: 'Exchange Ten, Keep Three'
           pedagogicalIntent: |
@@ -243,10 +243,10 @@ config:
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3AnotherPairThatCrossesTen:
+      regroupNinePlusFour:
         config:
           id: '79289d09-d47b-432a-951e-ec8f75c087a0'
-          slug: 'section3AnotherPairThatCrossesTen'
+          slug: 'regroupNinePlusFour'
           type: 'content'
           params: {}
           locale:
@@ -256,10 +256,10 @@ config:
               en: 'Another Pair That Crosses Ten'
           content:
             items:
-              text1:
+              predictNinePlusFour:
                 config:
                   id: 'fb5d9838-9087-459b-bd15-dfd2cf61ca15'
-                  slug: 'text1'
+                  slug: 'predictNinePlusFour'
                   type: 'text'
                   params: {}
                   locale:
@@ -338,7 +338,7 @@ config:
                     Generic Section Scene renderer exists; **Ten Exchange Workshop is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Check that the audience has mastered composing tens; distinguish crossing-ten exchange here from the previously drafted makeTenStrategy, which explicitly decomposes a second addend.
                   purpose: 'Proposed interactive Scene for Another Pair That Crosses Ten'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ['text1', 'tenExchangeWorkshop']
+            order: ['predictNinePlusFour', 'tenExchangeWorkshop']
         production:
           purpose: 'Another Pair That Crosses Ten'
           pedagogicalIntent: |
@@ -357,10 +357,10 @@ config:
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4LookForTheTenInSevenPlusSix:
+      exchangeSevenPlusSix:
         config:
           id: '3525fe93-9fe6-4b58-b258-c8c549bb774a'
-          slug: 'section4LookForTheTenInSevenPlusSix'
+          slug: 'exchangeSevenPlusSix'
           type: 'content'
           params: {}
           locale:
@@ -370,10 +370,10 @@ config:
               en: 'Look for the Ten in Seven Plus Six'
           content:
             items:
-              text1:
+              exchangeSevenPlusSix:
                 config:
                   id: '18b80496-0da8-45cd-8046-9ce4863909bb'
-                  slug: 'text1'
+                  slug: 'exchangeSevenPlusSix'
                   type: 'text'
                   params: {}
                   locale:
@@ -452,7 +452,7 @@ config:
                     Generic Section Scene renderer exists; **Ten Exchange Workshop is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Check that the audience has mastered composing tens; distinguish crossing-ten exchange here from the previously drafted makeTenStrategy, which explicitly decomposes a second addend.
                   purpose: 'Proposed interactive Scene for Look for the Ten in Seven Plus Six'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ['text1', 'tenExchangeWorkshop']
+            order: ['exchangeSevenPlusSix', 'tenExchangeWorkshop']
         production:
           purpose: 'Look for the Ten in Seven Plus Six'
           pedagogicalIntent: |
@@ -473,10 +473,10 @@ config:
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
     order:
       [
-        'section1ThirteenLooseOnes',
-        'section2ExchangeTenKeepThree',
-        'section3AnotherPairThatCrossesTen',
-        'section4LookForTheTenInSevenPlusSix',
+        'countThirteenOnes',
+        'exchangeTenForBundle',
+        'regroupNinePlusFour',
+        'exchangeSevenPlusSix',
       ]
   flashcards:
     items: {}
