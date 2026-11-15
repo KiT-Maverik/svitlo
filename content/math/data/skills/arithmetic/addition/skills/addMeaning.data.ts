@@ -11,6 +11,7 @@ export const addMeaning_Skill_Data = defineSkill({
     ka: 'შეკრება — მნიშვნელობა და მოდელები',
     kk: 'Қосу — мағынасы мен модельдері',
     en: 'Addition — Meaning and models',
+    it: 'Addizione — Significato e rappresentazioni',
     qm: 'Qoşuv — manası ve modelleri',
     zh: '加法 — 含义与模型',
     hi: 'जोड़ — अर्थ और मॉडल',
@@ -39,6 +40,7 @@ export const addMeaning_Skill_Data = defineSkill({
       'Addition can model the union of disjoint sets or an increase from an initial quantity. The same sum retains its value across scenarios, although the roles of components and the kind of change can differ.',
     frontend: {
       en: 'You can recognize when addition combines separate quantities or increases an existing quantity, and represent both situations with a sum.',
+      it: 'Puoi riconoscere quando un\'addizione riunisce quantità separate o aumenta una quantità esistente e rappresentare entrambe le situazioni con una somma.',
       qm: 'Qoşuvnıñ ayrı miqdarlarnı ne vaqıt birleştirgenini, bar olğan miqdarnı ise ne vaqıt arttırğanını ayıra ve er eki vaziyetni toplamnen köstere bilesiñ.',
       zh: '你能辨认加法何时表示把不同的数量合在一起，何时表示让原有数量增加，并用加法算式表示这两种情况。',
       hi: 'आप पहचान सकते हैं कि जोड़ कब अलग-अलग मात्राओं को मिलाता है और कब किसी मात्रा को बढ़ाता है, और दोनों स्थितियों को जोड़ से दिखा सकते हैं।',
