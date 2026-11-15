@@ -12,6 +12,7 @@ export const inequality_SkillGroup_Data = defineSkillGroup({
   id: '8a274f84-80f8-4691-be7f-60301d304b68',
   name: {
     en: 'Нерівність',
+    it: 'Disuguaglianza',
     zh: '不平等',
     hi: 'असमानता',
     es: 'Desigualdad',
@@ -52,6 +53,7 @@ export const inequality_SkillGroup_Data = defineSkillGroup({
       'Distributions of income and wealth can differ even among societies with identical average incomes.',
     frontend: {
       en: 'Explore why an average income does not reveal how resources are shared.',
+      it: 'Scopri perché il reddito medio non mostra come le risorse siano distribuite.',
       zh: '探索为何平均收入无法反映资源如何分配。',
       hi: 'समझें कि औसत आय से संसाधनों का बँटवारा क्यों पता नहीं चलता।',
       es: 'Explora por qué el ingreso promedio no revela cómo se reparten los recursos.',

@@ -5,6 +5,7 @@ export const needsAndWants_Skill_Data = defineSkill({
   id: 'ede7fbd0-769e-4f92-b602-81841ec87ab9',
   name: {
     en: 'Needs and Wants',
+    it: 'Bisogni e desideri',
     zh: '需要与想要',
     hi: 'जरूरतें और इच्छाएँ',
     es: 'Necesidades y deseos',
@@ -39,6 +40,7 @@ export const needsAndWants_Skill_Data = defineSkill({
       'Distinguish what is necessary for a specified goal or living conditions from additional preferences without imposing a universal list of desires.',
     frontend: {
       en: 'Tell the difference between needs and wants in a particular situation.',
+      it: 'Distingui i bisogni dai desideri in una situazione concreta.',
       zh: '在具体情境中区分需要和想要。',
       hi: 'किसी स्थिति में जरूरत और इच्छा का अंतर पहचानें।',
       es: 'Distingue entre necesidades y deseos en una situación concreta.',

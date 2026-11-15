@@ -13,6 +13,7 @@ export const needsAndPreferences_SkillGroup_Data = defineSkillGroup({
   id: 'ef68eb08-0f90-4788-b88c-518f92c4bc67',
   name: {
     en: 'Needs and Preferences',
+    it: 'Bisogni e preferenze',
     zh: '需求与偏好',
     hi: 'आवश्यकताएँ और प्राथमिकताएँ',
     es: 'Necesidades y preferencias',
@@ -54,6 +55,7 @@ export const needsAndPreferences_SkillGroup_Data = defineSkillGroup({
       'Personal goals and preferences explain why identical goods need not have identical value for different buyers.',
     frontend: {
       en: 'Discover why different people value products and experiences differently.',
+      it: 'Scopri perché persone diverse attribuiscono un valore diverso ai prodotti e alle esperienze.',
       zh: '了解为什么不同的人对商品和体验有不同评价。',
       hi: 'जानें कि अलग-अलग लोग वस्तुओं और अनुभवों को अलग महत्त्व क्यों देते हैं।',
       es: 'Descubre por qué diferentes personas valoran de distintas formas productos y experiencias.',

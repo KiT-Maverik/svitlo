@@ -5,6 +5,7 @@ export const consumerChoiceWithLimitedBudget_Skill_Data = defineSkill({
   id: '268e3742-9773-4342-b30b-f077b7b1a05d',
   name: {
     en: 'Consumer Choice with a Limited Budget',
+    it: 'Scelta del consumatore con un budget limitato',
     zh: '预算有限时的消费者选择',
     hi: 'सीमित बजट में उपभोक्ता का चुनाव',
     es: 'Elección del consumidor con presupuesto limitado',
@@ -39,6 +40,7 @@ export const consumerChoiceWithLimitedBudget_Skill_Data = defineSkill({
       'Compare affordable bundles of goods and services according to preferences, income, and prices; apply the consumer budget constraint without treating it as the full model of all resource constraints.',
     frontend: {
       en: 'Choose between available products when income and prices limit the options.',
+      it: 'Scegli tra i prodotti disponibili quando reddito e prezzi limitano le alternative.',
       zh: '在收入和价格限制下选择可购买的商品。',
       hi: 'आय और कीमतों की सीमा में उपलब्ध वस्तुओं में से चुनें।',
       es: 'Elige entre productos disponibles cuando ingresos y precios restringen las opciones.',
