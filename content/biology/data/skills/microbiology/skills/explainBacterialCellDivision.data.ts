@@ -5,6 +5,7 @@ export const explainBacterialCellDivision_Skill_Data = defineSkill({
   id: 'abe1fd36-849a-44b3-b907-a99ce7c84b34',
   name: {
     en: 'Explain Bacterial Cell Division',
+    it: 'Spiegare la divisione cellulare batterica',
     zh: '解释细菌细胞分裂',
     hi: 'जीवाणु कोशिका विभाजन समझाना',
     es: 'Explicar la división celular bacteriana',
@@ -39,6 +40,7 @@ export const explainBacterialCellDivision_Skill_Data = defineSkill({
       'Explain bacterial binary fission through replication of genetic material and formation of daughter cells, without confusing it with eukaryotic mitosis.',
     frontend: {
       en: 'Explain how bacterial cells reproduce by dividing in two.',
+      it: 'Spiega come le cellule batteriche si riproducono dividendosi in due.',
       zh: '解释细菌细胞如何通过一分为二进行繁殖。',
       hi: 'समझाएँ कि जीवाणु कोशिकाएँ दो भागों में बँटकर अपनी संख्या कैसे बढ़ाती हैं।',
       es: 'Explica cómo se reproducen las células bacterianas al dividirse en dos.',
