@@ -7,6 +7,7 @@ export const imitationAndUnderstanding_SkillGroup_Data = defineSkillGroup({
   id: '1a62b00f-132b-4dc7-bb7e-e5def980ca92',
   name: {
     en: 'Imitation and Understanding',
+    it: 'Imitazione e comprensione',
     zh: '模仿与理解',
     hi: 'अनुकरण और समझ',
     es: 'Imitación y comprensión',
@@ -42,6 +43,7 @@ export const imitationAndUnderstanding_SkillGroup_Data = defineSkillGroup({
       'Discussions of machine intelligence distinguish outward similarity of responses from claims of internal understanding. A behavioral criterion and a philosophical thought experiment ask different questions; neither alone proves or disproves consciousness.',
     frontend: {
       en: 'Examine the difference between convincing imitation and genuine understanding.',
+      it: "Esamina la differenza tra un'imitazione convincente e una comprensione autentica.",
       zh: '探讨令人信服的模仿与真正理解之间的区别。',
       hi: 'विश्वसनीय अनुकरण और वास्तविक समझ के बीच अंतर पर विचार करें।',
       es: 'Examina la diferencia entre una imitación convincente y una comprensión auténtica.',

@@ -5,6 +5,7 @@ export const explainContextWindowOverflow_Skill_Data = defineSkill({
   id: '27c90d7d-a28f-477f-bca4-8e8d8038113f',
   name: {
     en: 'Explain Context Window Overflow',
+    it: 'Spiegare il superamento della finestra di contesto',
     zh: '解释上下文窗口溢出',
     hi: 'संदर्भ सीमा पार होने की व्याख्या करना',
     es: 'Explicar el desbordamiento de la ventana de contexto',
@@ -39,6 +40,7 @@ export const explainContextWindowOverflow_Skill_Data = defineSkill({
       'Explain that when the limit is exceeded, a service may reject the request, truncate earlier content, or summarize parts of it.',
     frontend: {
       en: "Explore what can happen when a request exceeds a model's context limit.",
+      it: 'Esplora che cosa può accadere quando una richiesta supera il limite di contesto del modello.',
       zh: '探索请求超过模型上下文长度限制时可能发生什么。',
       hi: 'जानें कि अनुरोध मॉडल की संदर्भ सीमा से बड़ा हो जाए तो क्या हो सकता है।',
       es: 'Explora qué puede suceder si una solicitud supera el límite de contexto de un modelo.',

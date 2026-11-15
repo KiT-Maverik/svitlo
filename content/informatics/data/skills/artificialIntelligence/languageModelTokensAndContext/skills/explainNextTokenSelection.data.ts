@@ -5,6 +5,7 @@ export const explainNextTokenSelection_Skill_Data = defineSkill({
   id: 'f2386126-0f43-4cf4-96cf-67f8f3e8582c',
   name: {
     en: 'Explain Next-Token Selection',
+    it: 'Spiegare la selezione del token successivo',
     zh: '解释下一个词元的选择',
     hi: 'अगले टोकन का चयन समझाना',
     es: 'Explicar la selección del siguiente token',
@@ -39,6 +40,7 @@ export const explainNextTokenSelection_Skill_Data = defineSkill({
       'A model computes a probability distribution over continuations given the available context, then incorporates the chosen token into the context for the next step.',
     frontend: {
       en: 'Explain how language models choose a possible next token from context.',
+      it: 'Spiega come i modelli linguistici scelgono un possibile token successivo in base al contesto.',
       zh: '解释语言模型如何根据上下文选择可能的下一个词元。',
       hi: 'समझाएँ कि भाषा मॉडल संदर्भ के अनुसार संभावित अगला टोकन कैसे चुनते हैं।',
       es: 'Explica cómo los modelos de lenguaje eligen un posible token siguiente según el contexto.',
