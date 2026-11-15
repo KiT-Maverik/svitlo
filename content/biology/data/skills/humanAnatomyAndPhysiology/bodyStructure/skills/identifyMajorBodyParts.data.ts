@@ -5,6 +5,7 @@ export const identifyMajorBodyParts_Skill_Data = defineSkill({
   id: 'f7127c29-2cc2-40a6-bcd3-6a76ada392eb',
   name: {
     en: 'Identify Major Body Parts',
+    it: 'Individuare le principali parti del corpo',
     zh: '识别人体主要部位',
     hi: 'शरीर के मुख्य भाग पहचानना',
     es: 'Identificar las principales partes del cuerpo',
@@ -38,6 +39,7 @@ export const identifyMajorBodyParts_Skill_Data = defineSkill({
     methodological: 'Locate the head, trunk, limbs, and important external structures on a model of the human body.',
     frontend: {
       en: 'Recognize the major external parts of the human body.',
+      it: 'Riconosci le principali parti esterne del corpo umano.',
       zh: '认识人体的主要外部部位。',
       hi: 'मानव शरीर के मुख्य बाहरी भागों को पहचानें।',
       es: 'Reconoce las principales partes externas del cuerpo humano.',
