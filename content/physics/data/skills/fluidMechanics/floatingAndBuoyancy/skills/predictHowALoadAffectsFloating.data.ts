@@ -5,6 +5,7 @@ export const predictHowALoadAffectsFloating_Skill_Data = defineSkill({
   id: 'd09491e9-fca8-4cac-952d-4794e4e2372c',
   name: {
     en: 'Predict how a load affects floating',
+    it: 'Prevedere come un carico influisce sul galleggiamento',
     zh: '预测载荷对漂浮的影响',
     hi: 'भार से तैरने पर पड़ने वाले प्रभाव का अनुमान लगाना',
     es: 'Predecir cómo afecta una carga a la flotación',
@@ -39,6 +40,7 @@ export const predictHowALoadAffectsFloating_Skill_Data = defineSkill({
       'Increasing the mass of a load changes the buoyant force and displaced volume needed for equilibrium, so a body may become more deeply submerged.',
     frontend: {
       en: 'Predict how extra weight changes how deeply a floating object sits in water.',
+      it: 'Prevedi come un peso aggiuntivo modifica la profondità di immersione di un oggetto galleggiante.',
       zh: '预测额外重量如何改变漂浮物体浸入水中的深度。',
       hi: 'अनुमान लगाएँ कि अतिरिक्त भार से तैरती वस्तु कितनी अधिक डूबेगी।',
       es: 'Predice cómo el peso adicional cambia la profundidad a la que flota un objeto.',
