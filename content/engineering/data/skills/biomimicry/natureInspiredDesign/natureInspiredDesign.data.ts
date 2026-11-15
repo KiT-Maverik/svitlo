@@ -12,6 +12,7 @@ export const natureInspiredDesign_SkillGroup_Data = defineSkillGroup({
   id: 'c41b339c-cb86-4abf-9b89-fed29e9e7663',
   name: {
     en: 'Nature-Inspired Design',
+    it: 'Progettazione ispirata alla natura',
     zh: '自然启发的设计',
     hi: 'प्रकृति से प्रेरित डिज़ाइन',
     es: 'Diseño inspirado en la naturaleza',
@@ -60,6 +61,7 @@ export const natureInspiredDesign_SkillGroup_Data = defineSkillGroup({
       'A valid biological analogy extracts a function and tests whether it can work with different materials, geometry and scale.',
     frontend: {
       en: 'Learn to translate biological functions into engineering principles.',
+      it: 'Impara a trasformare le funzioni biologiche in principi ingegneristici.',
       zh: '学习把生物功能转化为工程原理。',
       hi: 'जैविक कार्यों को अभियांत्रिकी सिद्धांतों में बदलना सीखें।',
       es: 'Aprende a transformar funciones biológicas en principios de ingeniería.',

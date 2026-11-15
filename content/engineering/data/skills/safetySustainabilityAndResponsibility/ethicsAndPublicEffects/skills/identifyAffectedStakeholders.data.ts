@@ -5,6 +5,7 @@ export const identifyAffectedStakeholders_Skill_Data = defineSkill({
   id: 'be14eebe-7ac8-4496-bfc0-67212e2d5ae4',
   name: {
     en: 'Identify affected stakeholders',
+    it: 'Individuare le parti interessate',
     zh: '识别受影响的利益相关者',
     hi: 'प्रभावित हितधारकों की पहचान',
     es: 'Identificar a las partes interesadas afectadas',
@@ -38,6 +39,7 @@ export const identifyAffectedStakeholders_Skill_Data = defineSkill({
     methodological: "Distinguish users, workers, maintainers and others exposed to a product's consequences.",
     frontend: {
       en: 'Identify the groups who may benefit from or be harmed by a design.',
+      it: 'Individua i gruppi che potrebbero trarre benefici o subire danni da un progetto.',
       zh: '识别可能从设计中受益或受到伤害的群体。',
       hi: 'ऐसे समूहों की पहचान करें जिन्हें किसी डिज़ाइन से लाभ या नुकसान हो सकता है।',
       es: 'Identifica a los grupos que pueden beneficiarse o verse perjudicados por un diseño.',

@@ -5,6 +5,7 @@ export const airConditioningSystems_Skill_Data = defineSkill({
   id: '766d96c6-3add-43c5-bb13-aa9e0b128e38',
   name: {
     en: 'Air-conditioning systems',
+    it: 'Sistemi di climatizzazione',
     zh: '空调系统',
     hi: 'वातानुकूलन प्रणालियाँ',
     es: 'Sistemas de aire acondicionado',
@@ -38,6 +39,7 @@ export const airConditioningSystems_Skill_Data = defineSkill({
     methodological: 'Identify the cooling, distribution and control functions of a practical installation.',
     frontend: {
       en: 'Identify the cooling, distribution and control parts of air conditioning.',
+      it: 'Identifica i componenti di raffreddamento, distribuzione e controllo della climatizzazione.',
       zh: '识别空调中的制冷、分配和控制部件。',
       hi: 'एयर कंडीशनिंग के शीतलन, वितरण और नियंत्रण वाले भाग पहचानें।',
       es: 'Identifica las partes de enfriamiento, distribución y control del aire acondicionado.',

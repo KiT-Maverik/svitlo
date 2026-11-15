@@ -5,6 +5,7 @@ export const windTurbines_Skill_Data = defineSkill({
   id: '8e9026a4-bca4-4106-b6df-b0228253cbb0',
   name: {
     en: 'Wind turbines',
+    it: 'Turbine eoliche',
     zh: '风力涡轮机',
     hi: 'पवन टरबाइन',
     es: 'Aerogeneradores',
@@ -38,6 +39,7 @@ export const windTurbines_Skill_Data = defineSkill({
     methodological: 'Trace rotor, drive and generator functions within a wind-energy installation.',
     frontend: {
       en: 'Trace how a wind turbine drives a generator.',
+      it: 'Segui come una turbina eolica aziona un generatore.',
       zh: '追踪风力涡轮机如何驱动发电机。',
       hi: 'जानें कि पवन टरबाइन जनित्र को कैसे चलाती है।',
       es: 'Sigue cómo una turbina eólica acciona un generador.',

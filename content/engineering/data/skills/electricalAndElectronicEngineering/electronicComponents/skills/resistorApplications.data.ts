@@ -5,6 +5,7 @@ export const resistorApplications_Skill_Data = defineSkill({
   id: '6ea20918-30c0-41c9-9e5c-3ac348ed9814',
   name: {
     en: 'Resistor applications',
+    it: 'Applicazioni dei resistori',
     zh: '电阻器的应用',
     hi: 'प्रतिरोधकों के उपयोग',
     es: 'Aplicaciones de resistencias',
@@ -38,6 +39,7 @@ export const resistorApplications_Skill_Data = defineSkill({
     methodological: 'Identify current limiting, biasing and voltage division as different practical uses.',
     frontend: {
       en: 'Explore why resistors control current and divide voltage.',
+      it: 'Esplora come i resistori limitano la corrente e ripartiscono la tensione.',
       zh: '探索电阻器为何能限制电流并分配电压。',
       hi: 'जानें कि प्रतिरोधक धारा को सीमित और वोल्टता को विभाजित क्यों करते हैं।',
       es: 'Explora por qué las resistencias limitan la corriente y dividen el voltaje.',

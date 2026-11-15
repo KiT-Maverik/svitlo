@@ -5,6 +5,7 @@ export const accessibleFixtureDesign_Skill_Data = defineSkill({
   id: 'd71f8e71-da96-4768-9c3c-b4fe141926d2',
   name: {
     en: 'Accessible fixture design',
+    it: 'Progettazione di elementi accessibili',
     zh: '无障碍设施设计',
     hi: 'सुगम फिटिंगों का डिज़ाइन',
     es: 'Diseño de instalaciones accesibles',
@@ -39,6 +40,7 @@ export const accessibleFixtureDesign_Skill_Data = defineSkill({
       'Assess fixtures for reachable placement, operating force, usable grip and adequate clearance across varied physical abilities.',
     frontend: {
       en: 'Plan fittings and fixtures usable by people with different abilities.',
+      it: 'Progetta arredi fissi e accessori utilizzabili da persone con capacità diverse.',
       zh: '规划让不同能力的人都能使用的配件和固定设施。',
       hi: 'अलग-अलग क्षमताओं वाले लोगों के लिए उपयोगी फिटिंग और स्थायी सुविधाएँ बनाएँ।',
       es: 'Planifica accesorios e instalaciones utilizables por personas con distintas capacidades.',

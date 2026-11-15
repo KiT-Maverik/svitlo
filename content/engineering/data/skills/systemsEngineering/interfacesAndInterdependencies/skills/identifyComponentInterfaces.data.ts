@@ -5,6 +5,7 @@ export const identifyComponentInterfaces_Skill_Data = defineSkill({
   id: 'a7cdfc15-dfe2-4f74-a317-5718547496bc',
   name: {
     en: 'Identify component interfaces',
+    it: 'Individuare le interfacce tra componenti',
     zh: '识别组件接口',
     hi: 'घटकों के बीच संपर्क पहचानना',
     es: 'Identificar interfaces entre componentes',
@@ -38,6 +39,7 @@ export const identifyComponentInterfaces_Skill_Data = defineSkill({
     methodological: 'Determine what must physically cross a boundary between connected assemblies.',
     frontend: {
       en: 'Identify where mechanical, electrical or other connections cross between components.',
+      it: 'Individua i punti di collegamento meccanici, elettrici o di altro tipo tra i componenti.',
       zh: '识别部件之间机械、电气或其他连接的位置。',
       hi: 'पहचानें कि घटकों के बीच यांत्रिक, विद्युत या अन्य जोड़ कहाँ हैं।',
       es: 'Señala dónde se conectan los componentes por medios mecánicos, eléctricos u otros.',

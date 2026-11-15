@@ -5,6 +5,7 @@ export const thermalInsulationSuitability_Skill_Data = defineSkill({
   id: '40d0db59-d8fc-4e20-89fc-8439e34a5295',
   name: {
     en: 'Thermal insulation suitability',
+    it: 'Idoneità dell\'isolamento termico',
     zh: '隔热适用性',
     hi: 'ऊष्मीय इन्सुलेशन की उपयुक्तता',
     es: 'Idoneidad del aislamiento térmico',
@@ -39,6 +40,7 @@ export const thermalInsulationSuitability_Skill_Data = defineSkill({
       'Assess how an insulating arrangement manages conductive, convective and radiative heat transfer in an intended enclosure.',
     frontend: {
       en: 'Compare insulation arrangements by how they reduce unwanted heat transfer.',
+      it: 'Confronta le soluzioni di isolamento in base alla capacità di ridurre il trasferimento di calore indesiderato.',
       zh: '比较不同隔热布置减少不必要热传递的效果。',
       hi: 'अनचाहे ऊष्मा प्रवाह को घटाने के लिए विभिन्न इन्सुलेशन व्यवस्थाओं की तुलना करें।',
       es: 'Compara soluciones de aislamiento según cuánto reducen la transferencia de calor no deseada.',

@@ -5,6 +5,7 @@ export const controlArchitectureTradeOffs_Skill_Data = defineSkill({
   id: '783d4503-4231-4d22-9725-ba80a7209480',
   name: {
     en: 'Control architecture trade-offs',
+    it: 'Compromessi tra architetture di controllo',
     zh: '控制架构的权衡',
     hi: 'नियंत्रण संरचना के विकल्पों का संतुलन',
     es: 'Compromisos de arquitectura de control',
@@ -39,6 +40,7 @@ export const controlArchitectureTradeOffs_Skill_Data = defineSkill({
       'Compare the robustness, sensing cost, responsiveness and stability implications of open-loop versus feedback control as an engineering architecture decision, not merely a definition quiz.',
     frontend: {
       en: 'Compare control approaches according to their intended behavior and limitations.',
+      it: 'Confronta le strategie di controllo in base al comportamento previsto e ai loro limiti.',
       zh: '根据预期行为和限制比较不同控制方法。',
       hi: 'इच्छित व्यवहार और सीमाओं के अनुसार नियंत्रण विधियों की तुलना करें।',
       es: 'Compara enfoques de control según su comportamiento esperado y sus límites.',

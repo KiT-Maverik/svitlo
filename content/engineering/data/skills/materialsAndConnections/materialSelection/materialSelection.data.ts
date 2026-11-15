@@ -13,6 +13,7 @@ export const materialSelection_SkillGroup_Data = defineSkillGroup({
   id: '64e73baf-4901-42e8-848f-738225064f38',
   name: {
     en: 'Material Selection',
+    it: 'Selezione dei materiali',
     zh: '材料选择',
     hi: 'सामग्री का चयन',
     es: 'Selección de materiales',
@@ -63,6 +64,7 @@ export const materialSelection_SkillGroup_Data = defineSkillGroup({
       'A component needs a combination of properties matched to its actual loading, manufacturing process and environment.',
     frontend: {
       en: 'Explore how material properties affect technical performance.',
+      it: 'Esplora come le proprietà dei materiali influiscono sulle prestazioni tecniche.',
       zh: '探索材料的不同性质如何影响技术性能。',
       hi: 'जानें कि सामग्री के गुण तकनीकी प्रदर्शन को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las propiedades de los materiales afectan al rendimiento técnico.',

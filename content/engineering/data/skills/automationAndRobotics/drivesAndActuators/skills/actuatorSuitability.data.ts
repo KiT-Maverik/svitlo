@@ -5,6 +5,7 @@ export const actuatorSuitability_Skill_Data = defineSkill({
   id: '4f0e0455-8ed3-443c-ad1d-bf7b23f5ebe5',
   name: {
     en: 'Actuator suitability',
+    it: 'Scelta dell\'attuatore adatto',
     zh: '执行器适用性',
     hi: 'प्रवर्तक की उपयुक्तता',
     es: 'Idoneidad de actuadores',
@@ -39,6 +40,7 @@ export const actuatorSuitability_Skill_Data = defineSkill({
       'Relate required torque, force, travel, speed and duty cycle to an available driving principle and its energy supply.',
     frontend: {
       en: 'Choose actuators that fit required motion, forces and operating limits.',
+      it: 'Scegli attuatori adatti al movimento richiesto, alle forze in gioco e ai limiti operativi.',
       zh: '根据所需运动、力和工作限制选择执行器。',
       hi: 'आवश्यक गति, बल और संचालन सीमाओं के अनुसार प्रवर्तक चुनें।',
       es: 'Elige actuadores según movimiento, fuerzas y límites de funcionamiento.',

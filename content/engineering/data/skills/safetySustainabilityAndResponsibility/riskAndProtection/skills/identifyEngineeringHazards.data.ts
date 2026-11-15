@@ -5,6 +5,7 @@ export const identifyEngineeringHazards_Skill_Data = defineSkill({
   id: '294234e8-264d-4f83-bc61-b226e8bd1881',
   name: {
     en: 'Identify engineering hazards',
+    it: 'Individuare i pericoli ingegneristici',
     zh: '识别工程危害',
     hi: 'अभियांत्रिकी खतरों की पहचान',
     es: 'Identificar peligros de ingeniería',
@@ -38,6 +39,7 @@ export const identifyEngineeringHazards_Skill_Data = defineSkill({
     methodological: 'Recognize hazardous motion, temperature, electricity, pressure or stored energy in intended use.',
     frontend: {
       en: 'Identify physical dangers associated with a technical design.',
+      it: 'Individua i pericoli fisici associati a un progetto tecnico.',
       zh: '识别技术设计中可能存在的物理危险。',
       hi: 'तकनीकी डिज़ाइन से जुड़े भौतिक खतरों को पहचानें।',
       es: 'Identifica los peligros físicos asociados con un diseño técnico.',

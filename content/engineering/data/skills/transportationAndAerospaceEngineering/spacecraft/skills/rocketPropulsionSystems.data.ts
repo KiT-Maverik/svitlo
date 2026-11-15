@@ -5,6 +5,7 @@ export const rocketPropulsionSystems_Skill_Data = defineSkill({
   id: '94733e64-37f4-4a90-9d5a-f312e914b75b',
   name: {
     en: 'Rocket propulsion systems',
+    it: 'Sistemi di propulsione a razzo',
     zh: '火箭推进系统',
     hi: 'रॉकेट प्रणोदन प्रणालियाँ',
     es: 'Sistemas de propulsión de cohetes',
@@ -38,6 +39,7 @@ export const rocketPropulsionSystems_Skill_Data = defineSkill({
     methodological: 'Identify propellant supply, energy release and nozzle as functions of a launch engine.',
     frontend: {
       en: 'Recognize how rocket systems produce thrust by ejecting mass.',
+      it: 'Riconosci come i sistemi a razzo producono spinta espellendo massa.',
       zh: '认识火箭如何通过喷出物质产生推力。',
       hi: 'समझें कि रॉकेट पदार्थ को बाहर निकालकर धक्का कैसे पैदा करता है।',
       es: 'Reconoce cómo los cohetes generan empuje expulsando masa.',

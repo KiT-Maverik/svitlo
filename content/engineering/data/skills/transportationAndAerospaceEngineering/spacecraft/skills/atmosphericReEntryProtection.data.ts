@@ -5,6 +5,7 @@ export const atmosphericReEntryProtection_Skill_Data = defineSkill({
   id: '88ecbc94-562c-4aa8-ac10-d794a952404b',
   name: {
     en: 'Atmospheric re-entry protection',
+    it: 'Protezione durante il rientro atmosferico',
     zh: '大气再入防护',
     hi: 'वायुमंडलीय पुनःप्रवेश संरक्षण',
     es: 'Protección durante la reentrada atmosférica',
@@ -38,6 +39,7 @@ export const atmosphericReEntryProtection_Skill_Data = defineSkill({
     methodological: 'Connect intense heating and mechanical loading to vehicle shielding and geometry.',
     frontend: {
       en: 'Recognize why spacecraft need protection from heating during re-entry.',
+      it: 'Riconosci perché i veicoli spaziali devono essere protetti dal riscaldamento durante il rientro.',
       zh: '认识航天器再入大气层时为何需要防热保护。',
       hi: 'समझें कि वायुमंडल में वापसी के दौरान अंतरिक्ष यान को गर्मी से सुरक्षा क्यों चाहिए।',
       es: 'Reconoce por qué las naves espaciales necesitan protección contra el calor al reentrar.',

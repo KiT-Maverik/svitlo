@@ -5,6 +5,7 @@ export const flowControlValves_Skill_Data = defineSkill({
   id: '79f6df33-300d-453f-a04c-0726940dbbfd',
   name: {
     en: 'Flow-control valves',
+    it: 'Valvole di regolazione della portata',
     zh: '流量控制阀',
     hi: 'प्रवाह नियंत्रण वाल्व',
     es: 'Válvulas de control de caudal',
@@ -38,6 +39,7 @@ export const flowControlValves_Skill_Data = defineSkill({
     methodological: 'Identify isolation, throttling or direction-control functions in piping.',
     frontend: {
       en: 'Recognize how valves regulate water and other fluid flows.',
+      it: 'Riconosci come le valvole regolano il flusso di acqua e altri fluidi.',
       zh: '理解阀门如何调节水和其他流体的流动。',
       hi: 'जानें कि वाल्व पानी और अन्य द्रवों के प्रवाह को कैसे नियंत्रित करते हैं।',
       es: 'Reconoce cómo las válvulas regulan el flujo de agua y otros fluidos.',

@@ -5,6 +5,7 @@ export const fitsAndClearances_Skill_Data = defineSkill({
   id: '323fbd57-3ebc-41ec-b0e3-d36a9020b742',
   name: {
     en: 'Fits and clearances',
+    it: 'Accoppiamenti e giochi',
     zh: '配合与间隙',
     hi: 'फिट और क्लीयरेंस',
     es: 'Ajustes y holguras',
@@ -39,6 +40,7 @@ export const fitsAndClearances_Skill_Data = defineSkill({
       "Relate permissible gaps and interference between mating parts to sliding, rotation, retention or sealing. This is distinct from decoding a production drawing's dimensional specification.",
     frontend: {
       en: 'Understand how clearances and fits affect moving or sealing parts.',
+      it: 'Comprendi come giochi e accoppiamenti influiscono sulle parti mobili o di tenuta.',
       zh: '了解间隙与配合如何影响运动部件和密封部件。',
       hi: 'समझें कि अंतराल और फिट चलने वाले तथा सील वाले हिस्सों को कैसे प्रभावित करते हैं।',
       es: 'Comprende cómo los juegos y ajustes afectan a piezas móviles o de sellado.',

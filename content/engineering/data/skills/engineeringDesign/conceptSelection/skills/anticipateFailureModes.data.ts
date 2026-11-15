@@ -5,6 +5,7 @@ export const anticipateFailureModes_Skill_Data = defineSkill({
   id: '128c362f-db2f-4d46-b60d-51fb69a558e5',
   name: {
     en: 'Anticipate failure modes',
+    it: 'Prevedere le modalità di guasto',
     zh: '预判故障模式',
     hi: 'संभावित विफलता के रूप पहचानना',
     es: 'Anticipar modos de fallo',
@@ -38,6 +39,7 @@ export const anticipateFailureModes_Skill_Data = defineSkill({
     methodological: 'Predict credible ways a proposed arrangement might fail to deliver its intended function.',
     frontend: {
       en: 'Predict credible ways a design could fail in use.',
+      it: 'Prevedi i modi plausibili in cui un progetto potrebbe guastarsi durante l\'uso.',
       zh: '预测设计在使用过程中可能出现的合理故障。',
       hi: 'अनुमान लगाएँ कि उपयोग में डिज़ाइन किन वास्तविक तरीकों से असफल हो सकता है।',
       es: 'Prevé formas plausibles en las que un diseño podría fallar al usarse.',

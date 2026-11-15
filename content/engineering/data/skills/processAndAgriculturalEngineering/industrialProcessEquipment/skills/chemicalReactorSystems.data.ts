@@ -5,6 +5,7 @@ export const chemicalReactorSystems_Skill_Data = defineSkill({
   id: '8e4132d7-1988-41d3-b2d4-691206bd945c',
   name: {
     en: 'Chemical reactor systems',
+    it: 'Sistemi di reattori chimici',
     zh: '化学反应器系统',
     hi: 'रासायनिक रिएक्टर प्रणालियाँ',
     es: 'Sistemas de reactores químicos',
@@ -39,6 +40,7 @@ export const chemicalReactorSystems_Skill_Data = defineSkill({
       'Identify containment, feed, mixing, heat control and product removal functions in a vessel designed for a controlled transformation.',
     frontend: {
       en: 'Identify the controlled functions of chemical reaction vessels.',
+      it: 'Identifica le funzioni controllate dei recipienti per reazioni chimiche.',
       zh: '识别化学反应容器受到控制的各项功能。',
       hi: 'रासायनिक अभिक्रिया पात्रों के नियंत्रित कार्यों को पहचानें।',
       es: 'Identifica las funciones controladas de los recipientes de reacción química.',

@@ -5,6 +5,7 @@ export const hardwareInputOutputInterfaces_Skill_Data = defineSkill({
   id: 'e6254bce-3e31-4953-add4-94fda120d0e8',
   name: {
     en: 'Hardware input-output interfaces',
+    it: 'Interfacce hardware di ingresso e uscita',
     zh: '硬件输入输出接口',
     hi: 'हार्डवेयर इनपुट-आउटपुट इंटरफ़ेस',
     es: 'Interfaces físicas de entrada y salida',
@@ -38,6 +39,7 @@ export const hardwareInputOutputInterfaces_Skill_Data = defineSkill({
     methodological: 'Distinguish real electrical signaling and connector limitations from software data semantics.',
     frontend: {
       en: 'Understand how hardware input and output interfaces connect devices.',
+      it: 'Comprendi come le interfacce hardware di ingresso e uscita collegano i dispositivi.',
       zh: '理解硬件输入和输出接口如何连接设备。',
       hi: 'समझें कि हार्डवेयर इनपुट और आउटपुट इंटरफ़ेस उपकरणों को कैसे जोड़ते हैं।',
       es: 'Comprende cómo las interfaces físicas de entrada y salida conectan dispositivos.',

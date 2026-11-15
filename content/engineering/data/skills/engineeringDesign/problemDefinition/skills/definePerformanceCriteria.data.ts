@@ -5,6 +5,7 @@ export const definePerformanceCriteria_Skill_Data = defineSkill({
   id: '51a6729a-bfa8-4917-bb3c-1744f36db8b4',
   name: {
     en: 'Define performance criteria',
+    it: 'Definire criteri prestazionali',
     zh: '制定性能标准',
     hi: 'प्रदर्शन मानदंड तय करना',
     es: 'Definir criterios de rendimiento',
@@ -39,6 +40,7 @@ export const definePerformanceCriteria_Skill_Data = defineSkill({
       'State observable success conditions such as load capacity, flow, travel, access or power consumption.',
     frontend: {
       en: 'Define measurable outcomes that show whether a design succeeds.',
+      it: 'Definisci risultati misurabili per stabilire se un progetto ha successo.',
       zh: '制定可测量的结果，用来判断设计是否成功。',
       hi: 'ऐसे मापने योग्य परिणाम तय करें जो डिज़ाइन की सफलता दिखाएँ।',
       es: 'Define resultados medibles para comprobar si un diseño funciona.',

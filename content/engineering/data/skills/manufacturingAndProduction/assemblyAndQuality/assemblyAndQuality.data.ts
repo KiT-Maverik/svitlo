@@ -12,6 +12,7 @@ export const assemblyAndQuality_SkillGroup_Data = defineSkillGroup({
   id: '2defad84-67bf-44b1-ba44-ba36b8d54770',
   name: {
     en: 'Assembly and Quality',
+    it: 'Assemblaggio e qualità',
     zh: '装配与质量',
     hi: 'संयोजन और गुणवत्ता',
     es: 'Montaje y calidad',
@@ -60,6 +61,7 @@ export const assemblyAndQuality_SkillGroup_Data = defineSkillGroup({
       'Making components separately is insufficient when fits, order of installation or verification are wrong.',
     frontend: {
       en: 'Discover how assembly plans and checks help produce reliable products.',
+      it: 'Scopri come i piani di assemblaggio e i controlli aiutano a realizzare prodotti affidabili.',
       zh: '了解装配计划和检查如何帮助生产可靠的产品。',
       hi: 'जानें कि संयोजन की योजना और जाँच भरोसेमंद उत्पाद बनाने में कैसे मदद करती है।',
       es: 'Descubre cómo los planes de montaje y las comprobaciones ayudan a obtener productos fiables.',

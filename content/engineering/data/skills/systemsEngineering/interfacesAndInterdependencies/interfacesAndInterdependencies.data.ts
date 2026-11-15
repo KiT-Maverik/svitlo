@@ -12,6 +12,7 @@ export const interfacesAndInterdependencies_SkillGroup_Data = defineSkillGroup({
   id: '0dba9a82-19a3-4cab-960c-0b3b47298db6',
   name: {
     en: 'Interfaces and Interdependencies',
+    it: 'Interfacce e interdipendenze',
     zh: '接口与相互依赖',
     hi: 'इंटरफ़ेस और परस्पर निर्भरता',
     es: 'Interfaces e interdependencias',
@@ -60,6 +61,7 @@ export const interfacesAndInterdependencies_SkillGroup_Data = defineSkillGroup({
       'Local decisions affect neighboring components through mechanical, electrical, fluid and information connections.',
     frontend: {
       en: 'Discover how connected components depend on each other.',
+      it: 'Scopri come i componenti collegati dipendono gli uni dagli altri.',
       zh: '探索相互连接的部件如何彼此依赖。',
       hi: 'जुड़े हुए घटक कैसे एक-दूसरे पर निर्भर करते हैं, जानें।',
       es: 'Descubre cómo dependen entre sí los componentes conectados.',

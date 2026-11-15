@@ -12,6 +12,7 @@ export const physicalInteraction_SkillGroup_Data = defineSkillGroup({
   id: 'b0b71eb9-2627-4b2e-b4d1-49193af0ecd4',
   name: {
     en: 'Physical Interaction',
+    it: 'Interazione fisica',
     zh: '实体交互',
     hi: 'भौतिक संपर्क',
     es: 'Interacción física',
@@ -60,6 +61,7 @@ export const physicalInteraction_SkillGroup_Data = defineSkillGroup({
       'Users should perceive the purpose of controls and the effects of their actions through appropriately designed physical cues.',
     frontend: {
       en: 'Learn to improve how people discover and operate physical controls.',
+      it: 'Impara a migliorare la facilità con cui le persone individuano e utilizzano i comandi fisici.',
       zh: '学习改进人们发现和操作实体控制装置的方式。',
       hi: 'जानें कि लोग भौतिक नियंत्रणों को कैसे ढूँढ़ते और चलाते हैं और इसे कैसे बेहतर बनाया जाए।',
       es: 'Aprende a mejorar cómo las personas encuentran y usan los controles físicos.',

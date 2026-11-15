@@ -5,6 +5,7 @@ export const identifyDistributionLeakage_Skill_Data = defineSkill({
   id: 'ba2ee3b4-9485-4430-9ff4-0cfc17fb4691',
   name: {
     en: 'Identify distribution leakage',
+    it: 'Individuare perdite nella rete di distribuzione',
     zh: '识别配水管网漏水',
     hi: 'वितरण नेटवर्क में रिसाव पहचानें',
     es: 'Identificar fugas en la distribución',
@@ -38,6 +39,7 @@ export const identifyDistributionLeakage_Skill_Data = defineSkill({
     methodological: 'Interpret pressure or flow irregularities as possible evidence of lost water.',
     frontend: {
       en: 'Identify signs of water leaks in distribution infrastructure.',
+      it: 'Individua i segnali di perdite d\'acqua nelle infrastrutture di distribuzione.',
       zh: '查找供水设施中漏水的迹象。',
       hi: 'जल वितरण ढाँचे में पानी के रिसाव के संकेत पहचानें।',
       es: 'Detecta señales de fugas en las instalaciones de distribución de agua.',

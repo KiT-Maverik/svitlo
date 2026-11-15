@@ -5,6 +5,7 @@ export const traceProductionWorkflow_Skill_Data = defineSkill({
   id: '0a05af9d-af16-467b-a5fd-67ad2624baab',
   name: {
     en: 'Trace production workflow',
+    it: 'Seguire il flusso di produzione',
     zh: '追踪生产工作流程',
     hi: 'उत्पादन कार्यप्रवाह का पता लगाना',
     es: 'Seguir el flujo de fabricación',
@@ -38,6 +39,7 @@ export const traceProductionWorkflow_Skill_Data = defineSkill({
     methodological: 'Identify stations and movement of parts from raw inputs to completed products.',
     frontend: {
       en: 'Trace a product through successive stages of manufacturing.',
+      it: 'Segui un prodotto attraverso le fasi successive della fabbricazione.',
       zh: '追踪产品依次经过的制造阶段。',
       hi: 'उत्पाद के लगातार निर्माण चरणों को क्रम से देखें।',
       es: 'Sigue el recorrido de un producto por las etapas sucesivas de fabricación.',

@@ -5,6 +5,7 @@ export const reviseADesignUsingEvidence_Skill_Data = defineSkill({
   id: 'cd0050ea-986f-4f1a-b3d4-b2461e2948af',
   name: {
     en: 'Revise a design using evidence',
+    it: 'Rivedere un progetto sulla base dei dati',
     zh: '根据证据修改设计',
     hi: 'प्रमाण के आधार पर डिज़ाइन बदलना',
     es: 'Revisar un diseño a partir de pruebas',
@@ -38,6 +39,7 @@ export const reviseADesignUsingEvidence_Skill_Data = defineSkill({
     methodological: 'Change an identified feature on the basis of test results and explain the expected benefit.',
     frontend: {
       en: 'Use test results to justify a change to a design.',
+      it: 'Utilizza i risultati delle prove per giustificare una modifica progettuale.',
       zh: '根据测试结果，说明修改设计的理由。',
       hi: 'परीक्षण परिणामों से डिज़ाइन में बदलाव का औचित्य बताएं।',
       es: 'Utiliza los resultados de pruebas para justificar cambios en un diseño.',

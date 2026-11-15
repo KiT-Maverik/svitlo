@@ -5,6 +5,7 @@ export const inputDeviceHardware_Skill_Data = defineSkill({
   id: 'cb942b26-b1bd-4ce3-bdf9-af32e94b8395',
   name: {
     en: 'Input device hardware',
+    it: 'Hardware dei dispositivi di ingresso',
     zh: '输入设备硬件',
     hi: 'इनपुट उपकरण हार्डवेयर',
     es: 'Hardware de dispositivos de entrada',
@@ -39,6 +40,7 @@ export const inputDeviceHardware_Skill_Data = defineSkill({
       'Explain how mechanical switches, touch sensing or pointing-device transducers convert user actions into electrical signals.',
     frontend: {
       en: 'Explore how keyboards, sensors and other devices provide computer input.',
+      it: 'Esplora come tastiere, sensori e altri dispositivi forniscono dati in ingresso al computer.',
       zh: '探索键盘、传感器等输入设备如何将操作转换为计算机输入信号。',
       hi: 'जानें कि कीबोर्ड, माउस और अन्य इनपुट उपकरण क्रियाएँ कैसे पहचानते हैं।',
       es: 'Explora cómo teclados, ratones y otros dispositivos detectan acciones.',

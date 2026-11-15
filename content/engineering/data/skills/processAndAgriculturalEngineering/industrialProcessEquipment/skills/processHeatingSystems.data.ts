@@ -5,6 +5,7 @@ export const processHeatingSystems_Skill_Data = defineSkill({
   id: '0771fce1-c22f-4ea3-91ee-c5a294e4284c',
   name: {
     en: 'Process heating systems',
+    it: 'Sistemi di riscaldamento di processo',
     zh: '工艺加热系统',
     hi: 'प्रक्रिया तापन प्रणालियाँ',
     es: 'Sistemas de calentamiento de procesos',
@@ -39,6 +40,7 @@ export const processHeatingSystems_Skill_Data = defineSkill({
       'Trace heat delivery and temperature regulation through industrial apparatus rather than treating a heater as an isolated element.',
     frontend: {
       en: 'Trace how heating equipment transfers energy to a process stream.',
+      it: 'Segui come le apparecchiature di riscaldamento trasferiscono energia a un flusso di processo.',
       zh: '追踪加热设备如何向工艺物流传递能量。',
       hi: 'पता लगाएँ कि तापन उपकरण प्रक्रिया की धारा में ऊर्जा कैसे पहुँचाते हैं।',
       es: 'Sigue cómo los equipos de calentamiento transfieren energía a una corriente de proceso.',

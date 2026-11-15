@@ -5,6 +5,7 @@ export const traceWastewaterCollection_Skill_Data = defineSkill({
   id: 'a2e6ba4c-b2ba-4c44-9330-4192793adec9',
   name: {
     en: 'Trace wastewater collection',
+    it: 'Seguire la raccolta delle acque reflue',
     zh: '追踪污水收集流程',
     hi: 'अपशिष्ट जल संग्रह का मार्ग पहचानें',
     es: 'Seguir la recogida de aguas residuales',
@@ -38,6 +39,7 @@ export const traceWastewaterCollection_Skill_Data = defineSkill({
     methodological: 'Follow used water from connected properties to treatment facilities.',
     frontend: {
       en: 'Follow wastewater from buildings to collection and treatment facilities.',
+      it: 'Segui il percorso delle acque reflue dagli edifici fino agli impianti di raccolta e trattamento.',
       zh: '沿污水从建筑物到收集和处理设施的路线追踪。',
       hi: 'इमारतों से संग्रह और उपचार संयंत्रों तक गंदे पानी का रास्ता देखें।',
       es: 'Sigue las aguas residuales desde los edificios hasta la red y la planta de tratamiento.',

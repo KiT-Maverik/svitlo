@@ -5,6 +5,7 @@ export const traceTechnicalFaults_Skill_Data = defineSkill({
   id: '9c1ede4e-664a-4096-9284-507be793e26c',
   name: {
     en: 'Trace technical faults',
+    it: 'Ricostruire i guasti tecnici',
     zh: '追踪技术故障',
     hi: 'तकनीकी दोष का पता लगाना',
     es: 'Rastrear fallos técnicos',
@@ -38,6 +39,7 @@ export const traceTechnicalFaults_Skill_Data = defineSkill({
     methodological: 'Use symptoms and dependencies to locate a likely malfunction in a connected system.',
     frontend: {
       en: 'Trace the symptoms of a malfunction through dependent components.',
+      it: 'Segui i sintomi di un malfunzionamento attraverso i componenti dipendenti.',
       zh: '沿着相互依赖的部件追踪设备故障症状。',
       hi: 'एक दूसरे पर निर्भर हिस्सों में खराबी के लक्षणों का रास्ता तलाशें।',
       es: 'Sigue los síntomas de una avería a través de componentes dependientes.',

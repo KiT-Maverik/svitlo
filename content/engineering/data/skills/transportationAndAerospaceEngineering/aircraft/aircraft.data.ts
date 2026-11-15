@@ -12,6 +12,7 @@ export const aircraft_SkillGroup_Data = defineSkillGroup({
   id: 'acbc287e-750d-4f24-a738-0d59e3f523fb',
   name: {
     en: 'Aircraft',
+    it: 'Aeromobili',
     zh: '航空器',
     hi: 'विमान',
     es: 'Aeronaves',
@@ -60,6 +61,7 @@ export const aircraft_SkillGroup_Data = defineSkillGroup({
       'Aircraft incorporate propulsion, lifting surfaces, stabilization and control; different layouts solve different flight missions.',
     frontend: {
       en: 'Explore the major assemblies used to support and control aircraft.',
+      it: 'Esplora i principali gruppi di componenti che sostengono e controllano gli aeromobili.',
       zh: '探索支撑和控制航空器的主要结构与装置。',
       hi: 'विमानों को सहारा देने और नियंत्रित करने वाली मुख्य संरचनाएँ जानें।',
       es: 'Explora los conjuntos principales que sostienen y controlan las aeronaves.',

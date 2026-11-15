@@ -5,6 +5,7 @@ export const identifyASystemFunction_Skill_Data = defineSkill({
   id: 'b31ffc7c-8620-4ade-96b5-5f33965a1fff',
   name: {
     en: 'Identify a system function',
+    it: 'Individuare una funzione di sistema',
     zh: '识别系统功能',
     hi: 'प्रणाली का कार्य पहचानना',
     es: 'Identificar una función del sistema',
@@ -38,6 +39,7 @@ export const identifyASystemFunction_Skill_Data = defineSkill({
     methodological: 'State the useful transformation or service that a machine or infrastructure delivers.',
     frontend: {
       en: 'Identify the useful task that an engineered system performs.',
+      it: 'Individua il compito utile svolto da un sistema ingegnerizzato.',
       zh: '确定工程系统执行的有用任务。',
       hi: 'किसी अभियांत्रिकी प्रणाली का उपयोगी कार्य पहचानें।',
       es: 'Identifica la tarea útil que realiza un sistema técnico.',

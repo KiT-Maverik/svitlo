@@ -5,6 +5,7 @@ export const formulateADesignProblem_Skill_Data = defineSkill({
   id: '7a35c241-f3e6-4d41-9254-c6a002bbb00d',
   name: {
     en: 'Formulate a design problem',
+    it: 'Formulare un problema di progettazione',
     zh: '表述设计问题',
     hi: 'डिज़ाइन समस्या तैयार करना',
     es: 'Formular un problema de diseño',
@@ -39,6 +40,7 @@ export const formulateADesignProblem_Skill_Data = defineSkill({
       'Specify the required function, intended users and operating context without predetermining the technical solution.',
     frontend: {
       en: 'Describe what a technical solution must do and who will use it.',
+      it: 'Descrivi cosa deve fare una soluzione tecnica e chi la utilizzerà.',
       zh: '说明技术解决方案必须完成什么任务，以及谁会使用它。',
       hi: 'बताएँ कि तकनीकी समाधान क्या करेगा और उसका उपयोग कौन करेगा।',
       es: 'Describe qué debe hacer la solución técnica y quién la utilizará.',

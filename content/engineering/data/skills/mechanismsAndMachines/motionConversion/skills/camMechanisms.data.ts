@@ -5,6 +5,7 @@ export const camMechanisms_Skill_Data = defineSkill({
   id: 'ef3832e3-6413-4710-82b4-ba0f91be45bf',
   name: {
     en: 'Cam mechanisms',
+    it: 'Meccanismi a camma',
     zh: '凸轮机构',
     hi: 'कैम तंत्र',
     es: 'Mecanismos de leva',
@@ -38,6 +39,7 @@ export const camMechanisms_Skill_Data = defineSkill({
     methodological: 'Connect a shaped rotating profile with the timed displacement of a follower.',
     frontend: {
       en: 'Understand how a rotating cam moves a follower.',
+      it: 'Comprendi come una camma rotante muove un elemento inseguitore.',
       zh: '了解旋转的凸轮如何推动从动件。',
       hi: 'समझें कि घूमता कैम अनुयायी पुर्जे को कैसे चलाता है।',
       es: 'Comprende cómo una leva giratoria mueve un seguidor.',

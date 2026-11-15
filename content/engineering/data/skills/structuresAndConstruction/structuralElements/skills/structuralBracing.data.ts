@@ -5,6 +5,7 @@ export const structuralBracing_Skill_Data = defineSkill({
   id: '776b5cbf-81d8-4f9e-a5a9-40bb93b20a8a',
   name: {
     en: 'Structural bracing',
+    it: 'Controventature strutturali',
     zh: '结构支撑',
     hi: 'संरचनात्मक ब्रेसिंग',
     es: 'Arriostramiento estructural',
@@ -39,6 +40,7 @@ export const structuralBracing_Skill_Data = defineSkill({
       'Trace how diagonal members or other lateral systems prevent unwanted sway and redistribute horizontal actions.',
     frontend: {
       en: 'Understand how braces prevent unwanted sideways motion.',
+      it: 'Comprendi come le controventature impediscono movimenti laterali indesiderati.',
       zh: '理解斜撑如何防止结构不必要的横向移动。',
       hi: 'समझें कि सहायक ब्रेस अवांछित पार्श्व गति को कैसे रोकते हैं।',
       es: 'Comprende cómo los arriostramientos evitan desplazamientos laterales indeseados.',

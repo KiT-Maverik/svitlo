@@ -5,6 +5,7 @@ export const analyzeSubsystemDependencies_Skill_Data = defineSkill({
   id: '8dc55400-10b9-40c7-a1d4-74dca8819455',
   name: {
     en: 'Analyze subsystem dependencies',
+    it: 'Analizzare le dipendenze tra sottosistemi',
     zh: '分析子系统依赖关系',
     hi: 'उपप्रणालियों की निर्भरता का विश्लेषण',
     es: 'Analizar dependencias entre subsistemas',
@@ -38,6 +39,7 @@ export const analyzeSubsystemDependencies_Skill_Data = defineSkill({
     methodological: "Show how a limitation or interruption in one part influences another part's operation.",
     frontend: {
       en: 'Explain how a problem in one subsystem affects other parts.',
+      it: 'Spiega come un problema in un sottosistema influisce sulle altre parti.',
       zh: '解释一个子系统的问题如何影响其他部分。',
       hi: 'समझाएँ कि एक उपप्रणाली की समस्या दूसरे हिस्सों पर कैसे असर डालती है।',
       es: 'Explica cómo un problema en un subsistema afecta a otras partes.',

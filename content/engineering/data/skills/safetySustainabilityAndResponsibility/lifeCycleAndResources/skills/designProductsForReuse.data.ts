@@ -5,6 +5,7 @@ export const designProductsForReuse_Skill_Data = defineSkill({
   id: 'c16212d9-3fc6-45e5-b477-6dc1a2f52e6c',
   name: {
     en: 'Design products for reuse',
+    it: 'Progettare prodotti per il riutilizzo',
     zh: '设计可重复使用的产品',
     hi: 'पुनः उपयोग के लिए उत्पाद डिज़ाइन करना',
     es: 'Diseñar productos para reutilización',
@@ -39,6 +40,7 @@ export const designProductsForReuse_Skill_Data = defineSkill({
       'Identify durable, cleanable or interchangeable features that make repeated service or a second use feasible.',
     frontend: {
       en: 'Consider design choices that allow a product to be used again.',
+      it: 'Considera scelte progettuali che consentano di utilizzare nuovamente un prodotto.',
       zh: '考虑让产品能够再次使用的设计方案。',
       hi: 'ऐसे डिज़ाइन विकल्प सोचें जिनसे उत्पाद फिर इस्तेमाल हो सके।',
       es: 'Considera opciones de diseño que permitan volver a utilizar un producto.',

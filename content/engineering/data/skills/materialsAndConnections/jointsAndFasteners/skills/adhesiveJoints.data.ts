@@ -5,6 +5,7 @@ export const adhesiveJoints_Skill_Data = defineSkill({
   id: 'b69ce746-077b-4e3b-9602-19c8cb8406ab',
   name: {
     en: 'Adhesive joints',
+    it: 'Giunzioni adesive',
     zh: '胶粘接头',
     hi: 'चिपकने वाले जोड़',
     es: 'Uniones adhesivas',
@@ -38,6 +39,7 @@ export const adhesiveJoints_Skill_Data = defineSkill({
     methodological: 'Relate bonding, compatible surfaces and load direction to joint performance.',
     frontend: {
       en: 'Explore how adhesives connect suitable surfaces.',
+      it: 'Esplora come gli adesivi uniscono superfici idonee.',
       zh: '探索胶粘剂如何连接适合的表面。',
       hi: 'जानें कि चिपकने वाली सामग्री उपयुक्त सतहों को कैसे जोड़ती है।',
       es: 'Descubre cómo los adhesivos unen superficies compatibles.',

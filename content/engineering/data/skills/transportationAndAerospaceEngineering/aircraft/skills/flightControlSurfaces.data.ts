@@ -5,6 +5,7 @@ export const flightControlSurfaces_Skill_Data = defineSkill({
   id: '492d14dd-d66d-4442-8220-ce50f656b1fa',
   name: {
     en: 'Flight control surfaces',
+    it: 'Superfici di controllo del volo',
     zh: '飞机操纵面',
     hi: 'विमान नियंत्रण सतहें',
     es: 'Superficies de control de vuelo',
@@ -38,6 +39,7 @@ export const flightControlSurfaces_Skill_Data = defineSkill({
     methodological: 'Relate ailerons, elevators and rudders to changes in orientation rather than thrust.',
     frontend: {
       en: 'Explain how movable control surfaces change aircraft orientation.',
+      it: 'Spiega come le superfici mobili di controllo modificano l\'orientamento di un aeromobile.',
       zh: '解释可移动的操纵面如何改变飞机的姿态。',
       hi: 'समझाएँ कि चल नियंत्रण सतहें विमान की दिशा और स्थिति कैसे बदलती हैं।',
       es: 'Explica cómo las superficies móviles de control cambian la orientación del avión.',

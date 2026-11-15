@@ -9,6 +9,7 @@ export const manufacturingAndProduction_SkillDomain_Data = defineSkillDomain({
   id: 'f7851bd5-c6a1-4715-9e3b-00d856f9e215',
   title: {
     en: 'Manufacturing and Production',
+    it: 'Fabbricazione e produzione',
     zh: '制造与生产',
     hi: 'विनिर्माण और उत्पादन',
     es: 'Fabricación y producción',
@@ -51,6 +52,7 @@ export const manufacturingAndProduction_SkillDomain_Data = defineSkillDomain({
       'Finished products require suitable forming processes, assembly, tolerances and inspection. Production engineering addresses repeatable manufacture under resource, quality and throughput limits.',
     frontend: {
       en: 'Explore how materials are shaped, products assembled and production quality controlled.',
+      it: 'Esplora come si modellano i materiali, si assemblano i prodotti e si controlla la qualità della produzione.',
       zh: '探索材料如何成形、产品如何组装，以及如何控制生产质量。',
       hi: 'जानें कि सामग्री को आकार कैसे दिया जाता है, उत्पाद कैसे जोड़े जाते हैं और उत्पादन की गुणवत्ता कैसे नियंत्रित होती है।',
       es: 'Explora cómo se da forma a los materiales, se ensamblan los productos y se controla la calidad de producción.',

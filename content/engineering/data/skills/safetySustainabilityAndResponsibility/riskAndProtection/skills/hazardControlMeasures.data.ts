@@ -5,6 +5,7 @@ export const hazardControlMeasures_Skill_Data = defineSkill({
   id: 'aa73f24c-74ab-41f3-9997-fde6351ff6c1',
   name: {
     en: 'Hazard-control measures',
+    it: 'Misure di controllo dei pericoli',
     zh: '危害控制措施',
     hi: 'खतरा नियंत्रण उपाय',
     es: 'Medidas de control de peligros',
@@ -39,6 +40,7 @@ export const hazardControlMeasures_Skill_Data = defineSkill({
       'Distinguish elimination, guarding, isolation, automatic protection and warnings by the actual risks each addresses. Selecting a particular safeguard for an exercise is a task variant.',
     frontend: {
       en: 'Choose technical measures that reduce exposure to hazards.',
+      it: 'Scegli misure tecniche che riducano l\'esposizione ai pericoli.',
       zh: '选择能够减少接触危险的技术措施。',
       hi: 'ऐसे तकनीकी उपाय चुनें जो खतरों के संपर्क को घटाएँ।',
       es: 'Elige medidas técnicas que reduzcan la exposición a peligros.',

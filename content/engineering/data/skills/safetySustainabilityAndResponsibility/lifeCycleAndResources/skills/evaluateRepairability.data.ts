@@ -5,6 +5,7 @@ export const evaluateRepairability_Skill_Data = defineSkill({
   id: 'd7c89c97-1b64-45dd-8740-403afc24d989',
   name: {
     en: 'Evaluate repairability',
+    it: 'Valutare la riparabilità',
     zh: '评估可维修性',
     hi: 'मरम्मत योग्यता का मूल्यांकन',
     es: 'Evaluar la reparabilidad',
@@ -38,6 +39,7 @@ export const evaluateRepairability_Skill_Data = defineSkill({
     methodological: 'Recognize the importance of accessible parts, reversible fasteners and replacement options.',
     frontend: {
       en: 'Evaluate how easily a product can be serviced or repaired.',
+      it: 'Valuta quanto facilmente un prodotto può essere sottoposto a manutenzione o riparato.',
       zh: '评估产品维护或维修的难易程度。',
       hi: 'मूल्यांकन करें कि उत्पाद की सर्विस या मरम्मत कितनी आसान है।',
       es: 'Evalúa qué tan fácil resulta mantener o reparar un producto.',

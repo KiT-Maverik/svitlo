@@ -5,6 +5,7 @@ export const calibrateASensor_Skill_Data = defineSkill({
   id: 'e9baf5e7-6c21-4fa9-8126-16d2d9a33734',
   name: {
     en: 'Calibrate a sensor',
+    it: 'Calibrare un sensore',
     zh: '校准传感器',
     hi: 'संवेदक का अंशांकन',
     es: 'Calibrar un sensor',
@@ -38,6 +39,7 @@ export const calibrateASensor_Skill_Data = defineSkill({
     methodological: 'Relate device readings to known references and correct or qualify the measurements.',
     frontend: {
       en: 'Calibrate a sensor against a known reference.',
+      it: 'Calibra un sensore confrontandolo con un riferimento noto.',
       zh: '使用已知参考值校准传感器读数。',
       hi: 'ज्ञात मानक से तुलना करके संवेदक की रीडिंग समायोजित करें।',
       es: 'Ajusta la lectura del sensor usando referencias conocidas.',

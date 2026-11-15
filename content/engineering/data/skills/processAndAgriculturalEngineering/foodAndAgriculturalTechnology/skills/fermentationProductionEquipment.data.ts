@@ -5,6 +5,7 @@ export const fermentationProductionEquipment_Skill_Data = defineSkill({
   id: '936209eb-190b-4e79-b63b-f3cf67d541d2',
   name: {
     en: 'Fermentation production equipment',
+    it: 'Attrezzature per la produzione mediante fermentazione',
     zh: '发酵生产设备',
     hi: 'किण्वन उत्पादन उपकरण',
     es: 'Equipos de producción por fermentación',
@@ -39,6 +40,7 @@ export const fermentationProductionEquipment_Skill_Data = defineSkill({
       'Trace the functions of a vessel, controlled conditions and material handling in an engineered biological production process.',
     frontend: {
       en: 'Understand the controlled equipment used in fermentation production.',
+      it: 'Comprendi le attrezzature controllate utilizzate nei processi produttivi di fermentazione.',
       zh: '了解发酵生产中使用的受控设备。',
       hi: 'किण्वन उत्पादन में इस्तेमाल होने वाले नियंत्रित उपकरणों को समझें।',
       es: 'Comprende el equipo controlado utilizado en la producción mediante fermentación.',

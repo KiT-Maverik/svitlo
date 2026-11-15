@@ -12,6 +12,7 @@ export const heatTransferEquipment_SkillGroup_Data = defineSkillGroup({
   id: 'dd8d5349-d66f-4634-847b-2470ce2fe04d',
   name: {
     en: 'Heat Transfer Equipment',
+    it: 'Apparecchiature per il trasferimento di calore',
     zh: '传热设备',
     hi: 'ऊष्मा स्थानांतरण उपकरण',
     es: 'Equipos de transferencia de calor',
@@ -55,6 +56,7 @@ export const heatTransferEquipment_SkillGroup_Data = defineSkillGroup({
       'Temperature-control devices combine energy input, circulation and insulation to maintain useful thermal conditions.',
     frontend: {
       en: 'Learn how equipment transfers heat and maintains chosen temperatures.',
+      it: 'Scopri come le apparecchiature trasferiscono calore e mantengono le temperature desiderate.',
       zh: '了解设备如何传递热量并维持所需温度。',
       hi: 'जानें कि उपकरण ऊष्मा कैसे स्थानांतरित करते और चुना गया तापमान बनाए रखते हैं।',
       es: 'Aprende cómo los equipos transfieren calor y mantienen temperaturas determinadas.',

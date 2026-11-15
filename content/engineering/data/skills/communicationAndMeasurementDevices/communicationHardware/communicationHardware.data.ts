@@ -13,6 +13,7 @@ export const communicationHardware_SkillGroup_Data = defineSkillGroup({
   id: '8d97fde8-65d4-4e43-a83b-447009a4f243',
   name: {
     en: 'Communication Hardware',
+    it: 'Apparecchiature di comunicazione',
     zh: '通信硬件',
     hi: 'संचार हार्डवेयर',
     es: 'Hardware de comunicación',
@@ -63,6 +64,7 @@ export const communicationHardware_SkillGroup_Data = defineSkillGroup({
       'Physical communication chains depend on transducers, suitable electromagnetic or wired paths and receiving equipment.',
     frontend: {
       en: 'Discover the components that send and receive information.',
+      it: 'Scopri i componenti che inviano e ricevono informazioni.',
       zh: '了解发送和接收信息的物理部件。',
       hi: 'सूचना भेजने और प्राप्त करने वाले घटकों के बारे में जानें।',
       es: 'Descubre los componentes que envían y reciben información.',

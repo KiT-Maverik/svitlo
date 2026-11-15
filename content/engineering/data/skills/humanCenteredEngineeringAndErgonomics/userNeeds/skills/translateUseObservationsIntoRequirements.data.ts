@@ -5,6 +5,7 @@ export const translateUseObservationsIntoRequirements_Skill_Data = defineSkill({
   id: '1549c4f8-3b37-4ddc-a5f5-b52c7043298f',
   name: {
     en: 'Translate use observations into requirements',
+    it: 'Tradurre le osservazioni d\'uso in requisiti',
     zh: '将使用观察转化为需求',
     hi: 'उपयोग संबंधी अवलोकन से आवश्यकताएँ बनाना',
     es: 'Convertir observaciones de uso en requisitos',
@@ -38,6 +39,7 @@ export const translateUseObservationsIntoRequirements_Skill_Data = defineSkill({
     methodological: 'Define a physical success condition based on an observed problem.',
     frontend: {
       en: 'Convert user observations into specific technical requirements.',
+      it: 'Trasforma le osservazioni sugli utenti in requisiti tecnici specifici.',
       zh: '把用户行为观察转化为具体的技术要求。',
       hi: 'उपयोगकर्ता के अवलोकनों को विशिष्ट तकनीकी आवश्यकताओं में बदलें।',
       es: 'Transforma observaciones de los usuarios en requisitos técnicos concretos.',

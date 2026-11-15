@@ -5,6 +5,7 @@ export const seriesCircuitArrangements_Skill_Data = defineSkill({
   id: 'ed211a16-75bb-4251-b4e5-92b22f0207d6',
   name: {
     en: 'Series circuit arrangements',
+    it: 'Configurazioni di circuiti in serie',
     zh: '串联电路结构',
     hi: 'श्रृंखला परिपथ विन्यास',
     es: 'Disposición de circuitos en serie',
@@ -38,6 +39,7 @@ export const seriesCircuitArrangements_Skill_Data = defineSkill({
     methodological: 'Identify how interruption of one common current path affects dependent loads.',
     frontend: {
       en: 'Recognize how series arrangements share one current path.',
+      it: 'Riconosci come i collegamenti in serie condividono un unico percorso di corrente.',
       zh: '识别串联连接只有一条电流路径的特点。',
       hi: 'समझें कि श्रृंखला परिपथ में धारा का केवल एक मार्ग होता है।',
       es: 'Reconoce que los componentes en serie comparten una sola trayectoria de corriente.',

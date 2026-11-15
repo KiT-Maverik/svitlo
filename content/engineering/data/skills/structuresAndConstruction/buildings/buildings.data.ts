@@ -12,6 +12,7 @@ export const buildings_SkillGroup_Data = defineSkillGroup({
   id: '356dd08c-bff1-4177-8264-a0db71f5e130',
   name: {
     en: 'Buildings',
+    it: 'Edifici',
     zh: '建筑物',
     hi: 'भवन',
     es: 'Edificios',
@@ -60,6 +61,7 @@ export const buildings_SkillGroup_Data = defineSkillGroup({
       'A complete building combines its main structure with weather protection, spatial access and environmental adaptation.',
     frontend: {
       en: 'Explore how buildings combine structural support and environmental protection.',
+      it: 'Esplora come gli edifici combinano sostegno strutturale e protezione dall\'ambiente esterno.',
       zh: '探索建筑如何结合结构支撑与环境防护。',
       hi: 'जानें कि भवन संरचनात्मक सहारे और मौसम से सुरक्षा को कैसे जोड़ते हैं।',
       es: 'Explora cómo los edificios combinan soporte estructural y protección del entorno.',

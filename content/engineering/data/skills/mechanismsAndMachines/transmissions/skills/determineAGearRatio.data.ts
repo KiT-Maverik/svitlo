@@ -5,6 +5,7 @@ export const determineAGearRatio_Skill_Data = defineSkill({
   id: '076cb2f5-42f5-4bed-bc10-f9fdead82eb8',
   name: {
     en: 'Determine a gear ratio',
+    it: 'Determinare un rapporto di trasmissione',
     zh: '计算齿轮传动比',
     hi: 'गियर अनुपात निर्धारित करना',
     es: 'Determinar una relación de transmisión',
@@ -38,6 +39,7 @@ export const determineAGearRatio_Skill_Data = defineSkill({
     methodological: 'Calculate relative rotation or speed using the teeth of a gear pair.',
     frontend: {
       en: 'Calculate how gear tooth counts determine speed ratios.',
+      it: 'Calcola come il numero di denti degli ingranaggi determina i rapporti di velocità.',
       zh: '计算齿数如何决定齿轮的转速比。',
       hi: 'गियर के दाँतों की संख्या से गति का अनुपात कैसे निकलता है, गणना करें।',
       es: 'Calcula cómo el número de dientes determina la relación de velocidades.',

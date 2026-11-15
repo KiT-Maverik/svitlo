@@ -9,6 +9,7 @@ export const energySystems_SkillDomain_Data = defineSkillDomain({
   id: '765547fa-7745-41a4-bf42-bb02bd5c86c8',
   title: {
     en: 'Energy Systems',
+    it: 'Sistemi energetici',
     zh: '能源系统',
     hi: 'ऊर्जा प्रणालियाँ',
     es: 'Sistemas energéticos',
@@ -51,6 +52,7 @@ export const energySystems_SkillDomain_Data = defineSkillDomain({
       'Useful energy services depend on conversion, storage, power delivery and load management. The engineering emphasis is on connected equipment and operational limitations, while the principles of energy conservation belong to Physics.',
     frontend: {
       en: 'Discover how engineered systems generate, store, move and use energy.',
+      it: 'Scopri come i sistemi ingegnerizzati producono, immagazzinano, trasferiscono e utilizzano energia.',
       zh: '探索工程系统如何生产、储存、输送和使用能源。',
       hi: 'जानें कि इंजीनियरिंग प्रणालियाँ ऊर्जा का उत्पादन, भंडारण, वितरण और उपयोग कैसे करती हैं।',
       es: 'Descubre cómo los sistemas técnicos generan, almacenan, transportan y utilizan energía.',

@@ -12,6 +12,7 @@ export const waterSupply_SkillGroup_Data = defineSkillGroup({
   id: '535ed8e3-ba53-473c-9c60-c368167e5b9b',
   name: {
     en: 'Water Supply',
+    it: 'Approvvigionamento idrico',
     zh: '供水系统',
     hi: 'जल आपूर्ति',
     es: 'Abastecimiento de agua',
@@ -55,6 +56,7 @@ export const waterSupply_SkillGroup_Data = defineSkillGroup({
       'Safe, reliable distribution requires treatment and controlled hydraulic delivery from sources to users.',
     frontend: {
       en: 'Discover how water reaches homes and other places safely.',
+      it: 'Scopri come l\'acqua raggiunge in sicurezza le abitazioni e gli altri luoghi.',
       zh: '探索水如何安全地到达家庭和其他场所。',
       hi: 'जानें कि पानी घरों और अन्य स्थानों तक सुरक्षित कैसे पहुँचता है।',
       es: 'Descubre cómo llega el agua de forma segura a hogares y otros lugares.',

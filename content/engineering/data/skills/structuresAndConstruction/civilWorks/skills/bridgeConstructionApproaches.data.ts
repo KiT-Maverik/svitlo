@@ -5,6 +5,7 @@ export const bridgeConstructionApproaches_Skill_Data = defineSkill({
   id: '57f16ae0-2b7c-4fd6-9e0b-8cbcca1acdb0',
   name: {
     en: 'Bridge construction approaches',
+    it: 'Metodi di costruzione dei ponti',
     zh: '桥梁施工方法',
     hi: 'पुल निर्माण की विधियाँ',
     es: 'Métodos de construcción de puentes',
@@ -38,6 +39,7 @@ export const bridgeConstructionApproaches_Skill_Data = defineSkill({
     methodological: 'Compare supported or staged methods for creating a span.',
     frontend: {
       en: 'Compare different methods for constructing a bridge span.',
+      it: 'Confronta diversi metodi per costruire la campata di un ponte.',
       zh: '比较不同的桥跨建造方法。',
       hi: 'पुल के फैलाव बनाने की अलग-अलग विधियों की तुलना करें।',
       es: 'Compara distintos métodos para construir un tramo de puente.',

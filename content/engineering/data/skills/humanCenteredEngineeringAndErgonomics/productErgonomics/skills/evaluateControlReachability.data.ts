@@ -5,6 +5,7 @@ export const evaluateControlReachability_Skill_Data = defineSkill({
   id: 'e649d896-9262-45cc-bcbe-0e593d750818',
   name: {
     en: 'Evaluate control reachability',
+    it: 'Valutare la raggiungibilità dei comandi',
     zh: '评估控制装置的可触及性',
     hi: 'नियंत्रण तक पहुँच का मूल्यांकन',
     es: 'Evaluar el alcance de los controles',
@@ -38,6 +39,7 @@ export const evaluateControlReachability_Skill_Data = defineSkill({
     methodological: 'Check access to buttons, handles or levers from intended operating positions.',
     frontend: {
       en: "Check whether people can comfortably reach a product's controls.",
+      it: 'Verifica se le persone possono raggiungere comodamente i comandi di un prodotto.',
       zh: '检查人们能否舒适地够到产品的控制装置。',
       hi: 'जाँचें कि लोग उत्पाद के नियंत्रणों तक आराम से पहुँच पाते हैं या नहीं।',
       es: 'Comprueba si las personas pueden alcanzar cómodamente los controles de un producto.',

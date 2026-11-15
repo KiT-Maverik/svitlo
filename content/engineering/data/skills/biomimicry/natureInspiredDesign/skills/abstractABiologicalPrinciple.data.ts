@@ -5,6 +5,7 @@ export const abstractABiologicalPrinciple_Skill_Data = defineSkill({
   id: 'ccdf6900-e82c-4fe2-8039-9d3a0acca976',
   name: {
     en: 'Abstract a biological principle',
+    it: 'Astrarre un principio biologico',
     zh: '抽象提炼生物原理',
     hi: 'जैविक सिद्धांत का सार निकालना',
     es: 'Abstraer un principio biológico',
@@ -38,6 +39,7 @@ export const abstractABiologicalPrinciple_Skill_Data = defineSkill({
     methodological: "Separate a transferable mechanism from the organism's particular form or habitat.",
     frontend: {
       en: 'Describe a biological mechanism without copying irrelevant natural details.',
+      it: 'Descrivi un meccanismo biologico senza riprodurre dettagli naturali irrilevanti.',
       zh: '描述生物机制，而不照搬无关的自然细节。',
       hi: 'अनावश्यक प्राकृतिक विवरणों की नकल किए बिना जैविक तंत्र समझाएँ।',
       es: 'Describe un mecanismo biológico sin copiar detalles naturales irrelevantes.',

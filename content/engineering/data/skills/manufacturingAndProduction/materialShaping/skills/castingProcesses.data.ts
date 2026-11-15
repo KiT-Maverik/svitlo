@@ -5,6 +5,7 @@ export const castingProcesses_Skill_Data = defineSkill({
   id: '81719fda-dcce-4815-a261-237e6913452d',
   name: {
     en: 'Casting processes',
+    it: 'Processi di colata',
     zh: '铸造工艺',
     hi: 'ढलाई प्रक्रियाएँ',
     es: 'Procesos de fundición',
@@ -39,6 +40,7 @@ export const castingProcesses_Skill_Data = defineSkill({
       'Trace a poured molten or fluid material through filling a cavity, solidifying and removing a cast product.',
     frontend: {
       en: 'Recognize how liquid material solidifies in a casting form.',
+      it: 'Riconosci come un materiale liquido solidifica all\'interno di uno stampo di colata.',
       zh: '认识液态材料如何在铸型中凝固。',
       hi: 'पहचानें कि तरल पदार्थ साँचे में जमकर ठोस कैसे बनता है।',
       es: 'Reconoce cómo se solidifica un material líquido dentro de un molde de fundición.',

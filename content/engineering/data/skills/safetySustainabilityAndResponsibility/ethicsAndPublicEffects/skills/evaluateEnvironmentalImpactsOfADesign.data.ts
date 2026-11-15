@@ -5,6 +5,7 @@ export const evaluateEnvironmentalImpactsOfADesign_Skill_Data = defineSkill({
   id: 'c94743d1-d11a-465d-8d5d-2c0f738773dd',
   name: {
     en: 'Evaluate environmental impacts of a design',
+    it: 'Valutare gli impatti ambientali di un progetto',
     zh: '评估设计的环境影响',
     hi: 'डिज़ाइन के पर्यावरणीय प्रभावों का मूल्यांकन',
     es: 'Evaluar los impactos ambientales de un diseño',
@@ -39,6 +40,7 @@ export const evaluateEnvironmentalImpactsOfADesign_Skill_Data = defineSkill({
       'Consider pollution, habitat disruption and resource burdens beyond the immediate operation of the intended product.',
     frontend: {
       en: "Examine a design's possible effects on the surrounding environment.",
+      it: 'Esamina i possibili effetti di un progetto sull\'ambiente circostante.',
       zh: '检查设计可能对周围环境产生的影响。',
       hi: 'आसपास के पर्यावरण पर डिज़ाइन के संभावित प्रभाव जाँचें।',
       es: 'Examina los posibles efectos de un diseño en el entorno.',
