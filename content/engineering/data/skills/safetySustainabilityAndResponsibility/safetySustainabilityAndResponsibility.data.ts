@@ -9,6 +9,7 @@ export const safetySustainabilityAndResponsibility_SkillDomain_Data = defineSkil
   id: 'ad5edac8-e854-44a1-a97d-130783e68137',
   title: {
     en: 'Safety, Sustainability, and Responsibility',
+    it: 'Sicurezza, sostenibilità e responsabilità',
     zh: '安全、可持续性与责任',
     hi: 'सुरक्षा, सततता और उत्तरदायित्व',
     es: 'Seguridad, sostenibilidad y responsabilidad',
@@ -48,6 +49,7 @@ export const safetySustainabilityAndResponsibility_SkillDomain_Data = defineSkil
       "Engineering decisions affect people, resources and ecosystems throughout a product's service life. This domain examines foreseeable hazards, life-cycle choices and accountable technical judgment without turning an untested model into a safety certification.",
     frontend: {
       en: 'Explore how engineering choices affect safety, resources and society over time.',
+      it: 'Esplora come le scelte ingegneristiche influiscono nel tempo sulla sicurezza, sulle risorse e sulla società.',
       zh: '探索工程选择如何长期影响安全、资源和社会。',
       hi: 'जानें कि अभियांत्रिकी विकल्प समय के साथ सुरक्षा, संसाधनों और समाज को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las decisiones de ingeniería afectan con el tiempo a la seguridad, los recursos y la sociedad.',
