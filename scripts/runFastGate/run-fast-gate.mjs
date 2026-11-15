@@ -182,6 +182,18 @@ function runGate(changed) {
     ]);
   }
 
+  // Markdown reference tests run when their code changes, not on each agent-artifacts request.
+  if (changed.some(file =>
+    file.startsWith('scripts/generateTranslationReviewArtifacts/') ||
+    file.startsWith('shared/engine/scripts/generateLessonReviewArtifacts/') ||
+    file === 'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs'
+  )) {
+    exec('node', ['--test',
+      'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs',
+      'shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs',
+    ]);
+  }
+
   // Lesson builder is Engine-owned deterministic tooling: test it only when its
   // implementation, dependency, or canonical editorial input schemas change.
   if (
