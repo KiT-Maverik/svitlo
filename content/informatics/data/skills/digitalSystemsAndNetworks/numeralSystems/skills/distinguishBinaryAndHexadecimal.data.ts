@@ -5,6 +5,7 @@ export const distinguishBinaryAndHexadecimal_Skill_Data = defineSkill({
   id: '595295a3-72b0-49d0-a66a-1b09ae6e69a4',
   name: {
     en: 'Distinguish Binary and Hexadecimal',
+    it: 'Distinguere binario ed esadecimale',
     zh: '区分二进制与十六进制',
     hi: 'द्विआधारी और षोडशाधारी में अंतर करना',
     es: 'Distinguir binario y hexadecimal',
@@ -39,6 +40,7 @@ export const distinguishBinaryAndHexadecimal_Skill_Data = defineSkill({
       "Explain that one hexadecimal digit corresponds to four bits and shortens the representation without changing the number's value.",
     frontend: {
       en: 'Understand why hexadecimal is a shorter way to write groups of bits.',
+      it: "Comprendi perché l'esadecimale consente di scrivere gruppi di bit in modo più compatto.",
       zh: '理解为什么十六进制可以更简短地表示一组比特。',
       hi: 'समझें कि हेक्साडेसिमल में बिटों के समूह को कम अंकों में क्यों लिखा जा सकता है।',
       es: 'Comprende por qué el hexadecimal permite escribir grupos de bits de forma más breve.',

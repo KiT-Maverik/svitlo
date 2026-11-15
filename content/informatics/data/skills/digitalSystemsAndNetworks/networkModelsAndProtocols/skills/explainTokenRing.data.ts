@@ -5,6 +5,7 @@ export const explainTokenRing_Skill_Data = defineSkill({
   id: '2c3627a4-f409-4512-a6de-c95499100d89',
   name: {
     en: 'Explain Token Ring',
+    it: 'Spiegare Token Ring',
     zh: '解释令牌环网',
     hi: 'टोकन रिंग समझाना',
     es: 'Explicar Token Ring',
@@ -39,6 +40,7 @@ export const explainTokenRing_Skill_Data = defineSkill({
       'Describe how a token grants transmission rights to participants in a defined sequence and how this differs from devices contending for access to a shared medium.',
     frontend: {
       en: 'Explore how passing a token can control which device may send data.',
+      it: 'Esplora come il passaggio di un token può controllare quale dispositivo è autorizzato a trasmettere dati.',
       zh: '探索通过传递令牌如何控制哪个设备可以发送数据。',
       hi: 'जानें कि टोकन पास करने से किस उपकरण को डेटा भेजने की अनुमति मिलती है, यह कैसे तय होता है।',
       es: 'Explora cómo pasar un testigo controla qué dispositivo puede enviar datos.',

@@ -12,6 +12,7 @@ export const operatingSystems_SkillGroup_Data = defineSkillGroup({
   id: '4c74a30d-a22a-4e9c-b5cd-01edc0e0d623',
   name: {
     en: 'Operating Systems',
+    it: 'Sistemi operativi',
     zh: '操作系统',
     hi: 'ऑपरेटिंग सिस्टम',
     es: 'Sistemas operativos',
@@ -52,6 +53,7 @@ export const operatingSystems_SkillGroup_Data = defineSkillGroup({
       'An operating system manages programs, processes, files, and devices; it differs from applications running in its environment.',
     frontend: {
       en: 'Explore how operating systems manage programs, files and devices.',
+      it: 'Esplora come i sistemi operativi gestiscono programmi, file e dispositivi.',
       zh: '探索操作系统如何管理程序、文件和设备。',
       hi: 'जानें कि ऑपरेटिंग सिस्टम प्रोग्राम, फ़ाइलों और उपकरणों का प्रबंधन कैसे करते हैं।',
       es: 'Explora cómo los sistemas operativos administran programas, archivos y dispositivos.',

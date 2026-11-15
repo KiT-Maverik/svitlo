@@ -5,6 +5,7 @@ export const distinguishTheInternetFromTheWeb_Skill_Data = defineSkill({
   id: 'b99bbf74-3c53-4e83-b1c0-08322f1f7825',
   name: {
     en: 'Distinguish the Internet from the Web',
+    it: 'Distinguere Internet dal Web',
     zh: '区分互联网与万维网',
     hi: 'इंटरनेट और वेब में अंतर करना',
     es: 'Distinguir Internet de la Web',
@@ -39,6 +40,7 @@ export const distinguishTheInternetFromTheWeb_Skill_Data = defineSkill({
       'Explain that the Internet is interconnected network infrastructure, while the Web is a service for accessing resources through browsers and Web protocols. Email or file transfer can use the Internet without a webpage.',
     frontend: {
       en: "Distinguish the Internet's network infrastructure from websites on the Web.",
+      it: "Distingui l'infrastruttura di rete di Internet dai siti presenti sul Web.",
       zh: '区分互联网的网络基础设施和万维网上的网站。',
       hi: 'इंटरनेट की नेटवर्क संरचना और वेब पर उपलब्ध वेबसाइटों में अंतर करें।',
       es: 'Distingue la infraestructura de redes de Internet de los sitios web de la Web.',

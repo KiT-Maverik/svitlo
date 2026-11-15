@@ -12,6 +12,7 @@ export const numeralSystems_SkillGroup_Data = defineSkillGroup({
   id: 'bbae0d23-ce7b-409e-90ab-6a696ba38781',
   name: {
     en: 'Numeral Systems',
+    it: 'Sistemi di numerazione',
     zh: '记数系统',
     hi: 'संख्या पद्धतियाँ',
     es: 'Sistemas de numeración',
@@ -52,6 +53,7 @@ export const numeralSystems_SkillGroup_Data = defineSkillGroup({
       'Positional numeral notation, bases, and place values; binary states connect mathematical notation to the technical representation of information.',
     frontend: {
       en: 'Learn how digits represent numbers in systems with different bases.',
+      it: 'Impara come le cifre rappresentano i numeri in sistemi con basi differenti.',
       zh: '学习不同进制中数字如何表示数值。',
       hi: 'जानें कि अलग-अलग आधार वाली संख्या पद्धतियों में अंक संख्याएँ कैसे दर्शाते हैं।',
       es: 'Aprende cómo los dígitos representan números en sistemas con distintas bases.',

@@ -12,6 +12,7 @@ export const networks_SkillGroup_Data = defineSkillGroup({
   id: '196716f7-13e8-4ff6-b81d-c4f82c9ca18e',
   name: {
     en: 'Networks',
+    it: 'Reti',
     zh: '计算机网络',
     hi: 'कंप्यूटर नेटवर्क',
     es: 'Redes',
@@ -52,6 +53,7 @@ export const networks_SkillGroup_Data = defineSkillGroup({
       'Information exchange between connected devices, the distinction between the Internet and Web services, and communication channels. These competencies concern delivery, not message reliability or trustworthiness.',
     frontend: {
       en: 'Discover how connected devices send messages and share resources.',
+      it: 'Scopri come i dispositivi connessi inviano messaggi e condividono risorse.',
       zh: '了解互联设备如何发送消息和共享资源。',
       hi: 'जानें कि जुड़े हुए उपकरण संदेश कैसे भेजते हैं और संसाधन कैसे साझा करते हैं।',
       es: 'Descubre cómo los dispositivos conectados envían mensajes y comparten recursos.',
