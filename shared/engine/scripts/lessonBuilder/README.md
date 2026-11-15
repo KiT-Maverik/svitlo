@@ -117,13 +117,34 @@ change `params.languages` or invent translations.
   are syntactically valid but not guaranteed to be typecheck-clean.
 - `methodology.md` in the Lesson UUID directory, only when
   `production.methodology` is authored and the destination is safe to create.
-- `content/<book>/scenes/<bucket>/<scene-id>/specification.md` from each
-  `scene.production.specification`. No `sceneSpecKey` or duplicate Scene ID.
-- `content/<book>/data/assets/<bucket>/<asset-id>/specification.md` for
-  requested image/audio/video production. Image `alt` belongs in `config.locale.alt`;
-  its pending `src: null` stays unresolved until a real asset exists.
+- For this **Lesson builder only**, `scene.production.specification` and
+  media production instructions are materialized as `specification.md`
+  **beside the corresponding nested `<slug>/index.ts`**. The full UUID
+  remains inside the Config; a Scene implementation and lazy registry entry
+  still live under textbook-owned `scenes/<bucket>/<scene-id>/`. Course
+  scaffolding retains its existing UUID-addressed production handoffs.
+- For local Image/CarouselSlide `src: null`, Audio/Video/Subtitles
+  `fileLocation: null`, and Video `poster: null`, the draft generates
+  `resolveLessonMedia(import.meta.url, kind, role, language?)` from the
+  **Engine Build-only** export. A scalar null requests invariant media;
+  `{ uk: null }` requests source-language `locale/uk.<extension>`.
+  Explicit external URLs remain unchanged. Asset filenames are:
+  `<blockSlug>.<extension>`, `poster.<extension>`,
+  `locale/<language>.<extension>`, and
+  `locale/<language>.poster.<extension>` for localized posters.
+- Supported source formats: images `svg/png/jpg/jpeg/webp/gif/avif`;
+  video `mp4/webm`; audio `mp3/wav/ogg/m4a/flac`; subtitles `vtt/srt`.
+  A resolver requires exactly one nonempty regular file for a role/locale;
+  ambiguous extensions, missing files and symlinks fail explicitly.
+- The textbook build stages matching source media from
+  `data/lessons/<bucket>/<uuid>/<nested-slug-path>/` into
+  `dist/static/textbooks/<book>/lessons/<bucket>/<uuid>/<nested-slug-path>/`.
+  The published Props hold the URL `/textbooks/<book>/lessons/...`, never
+  a filesystem path. Collisions with `public/` or `static/` are rejected,
+  and the output is listed in the textbook manifest. No media files are
+  fabricated or downloaded by scaffolding.
 
-Generated specifications are **handoffs, not implemented Scenes, images or
+Generated colocated specifications are **handoffs, not implemented Scenes, images or
 audio/video files**. An AI specialist performs those later and resolves the
 expected TypeScript diagnostics. Do not add placeholders, `as any`,
 `@ts-ignore`, invented media paths or fabricated locale strings to make the
