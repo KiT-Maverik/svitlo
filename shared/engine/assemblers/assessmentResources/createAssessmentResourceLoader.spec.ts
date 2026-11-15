@@ -140,21 +140,21 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
 
 
 test('a completed Question is published and resolved separately with the requested language only', async () => {
-  const prompt = defineText({
+  const prompt = defineText<'prompt', ['en', 'uk']>({
     id: '1ca19881-8948-44b4-8777-000000000001',
     slug: 'prompt',
     type: 'text',
     params: {},
     locale: { value: { en: 'What is equal?', uk: 'Що дорівнює?' } },
   });
-  const correct = defineText({
+  const correct = defineText<'correct', ['en', 'uk']>({
     id: '1ca19881-8948-44b4-8777-000000000002',
     slug: 'correct',
     type: 'text',
     params: {},
     locale: { value: { en: 'Two', uk: 'Два' } },
   });
-  const incorrect = defineText({
+  const incorrect = defineText<'incorrect', ['en', 'uk']>({
     id: '1ca19881-8948-44b4-8777-000000000003',
     slug: 'incorrect',
     type: 'text',
