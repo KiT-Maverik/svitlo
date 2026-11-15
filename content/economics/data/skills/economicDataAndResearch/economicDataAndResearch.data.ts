@@ -10,6 +10,7 @@ export const economicDataAndResearch_SkillDomain_Data = defineSkillDomain({
   id: 'feb1ad22-0cd9-4aea-b1c6-9865a07880e0',
   title: {
     en: 'Економічні дані та дослідження',
+    it: 'Dati e ricerca economica',
     zh: '经济数据与研究',
     hi: 'आर्थिक आँकड़े और शोध',
     es: 'Datos e investigación económica',
@@ -50,6 +51,7 @@ export const economicDataAndResearch_SkillDomain_Data = defineSkillDomain({
       'Economic claims are tested through measurement, models, comparison, and causal analysis. The emphasis is on the validity of conclusions rather than programming data-processing tools.',
     frontend: {
       en: 'Discover how economists use data and models to test claims.',
+      it: 'Scopri come gli economisti usano dati e modelli per verificare le affermazioni.',
       zh: '了解经济学家如何用数据和模型检验观点。',
       hi: 'जानें कि अर्थशास्त्री आँकड़ों और मॉडलों से दावों की जाँच कैसे करते हैं।',
       es: 'Descubre cómo los economistas usan datos y modelos para comprobar afirmaciones.',

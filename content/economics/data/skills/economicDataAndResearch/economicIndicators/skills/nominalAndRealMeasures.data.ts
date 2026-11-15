@@ -5,6 +5,7 @@ export const nominalAndRealMeasures_Skill_Data = defineSkill({
   id: 'a3dfe606-9e90-4776-99a9-5e258ead9f3f',
   name: {
     en: 'Номінальні та реальні величини',
+    it: 'Misure nominali e reali',
     zh: '名义与实际指标',
     hi: 'नाममात्र और वास्तविक माप',
     es: 'Medidas nominales y reales',
@@ -39,6 +40,7 @@ export const nominalAndRealMeasures_Skill_Data = defineSkill({
       'Convert monetary indicators using appropriate price indexes while considering reference bases, periods, and comparability. This general measurement technique applies to earnings, wages, output, and other quantities.',
     frontend: {
       en: 'Adjust monetary figures for price changes to compare their real value.',
+      it: 'Tieni conto delle variazioni dei prezzi per confrontare il valore reale di importi monetari.',
       zh: '调整货币数值以考虑价格变化，并比较其实际价值。',
       hi: 'मूल्य परिवर्तन को ध्यान में रखकर धनराशियों की वास्तविक कीमत की तुलना करें।',
       es: 'Ajusta las cifras monetarias según los cambios de precios para comparar su valor real.',

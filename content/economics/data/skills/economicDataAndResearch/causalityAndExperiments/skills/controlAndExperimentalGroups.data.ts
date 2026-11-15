@@ -5,6 +5,7 @@ export const controlAndExperimentalGroups_Skill_Data = defineSkill({
   id: '18e5f33e-18d0-42af-ab8e-86fb8358b166',
   name: {
     en: 'Контрольна та експериментальна групи',
+    it: 'Gruppi di controllo e sperimentali',
     zh: '对照组与实验组',
     hi: 'नियंत्रण और प्रयोगात्मक समूह',
     es: 'Grupos de control y experimentales',
@@ -38,6 +39,7 @@ export const controlAndExperimentalGroups_Skill_Data = defineSkill({
     methodological: 'Explain why comparable groups and random assignment help estimate the effects of a change.',
     frontend: {
       en: 'Understand why fair comparisons need suitable control groups.',
+      it: 'Comprendi perché confronti corretti richiedono gruppi di controllo adeguati.',
       zh: '理解为什么公平比较需要合适的对照组。',
       hi: 'समझें कि निष्पक्ष तुलना के लिए उचित नियंत्रण समूह क्यों चाहिए।',
       es: 'Comprende por qué las comparaciones justas necesitan grupos de control adecuados.',
