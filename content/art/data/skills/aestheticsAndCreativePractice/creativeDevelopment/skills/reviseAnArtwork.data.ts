@@ -5,6 +5,7 @@ export const reviseAnArtwork_Skill_Data = defineSkill({
   id: '502c81e6-87a6-483a-8030-920e6e988f9b',
   name: {
     en: 'Revise an Artwork',
+    it: "Rielaborare un'opera d'arte",
     zh: '修改艺术作品',
     hi: 'कलाकृति में संशोधन करें',
     es: 'Revisar una obra de arte',
@@ -38,6 +39,7 @@ export const reviseAnArtwork_Skill_Data = defineSkill({
     methodological: 'Make purposeful changes after comparing an intended effect with the observed result.',
     frontend: {
       en: 'Improve an artwork by comparing its effect with what you intended.',
+      it: "Migliora un'opera confrontando l'effetto che produce con quello che volevi ottenere.",
       zh: '比较预期效果与实际效果，并据此有目的地改进作品。',
       hi: 'अपेक्षित प्रभाव और वास्तविक परिणाम की तुलना करके कलाकृति में सोच-समझकर बदलाव करें।',
       es: 'Mejora una obra comparando su efecto con lo que pretendías lograr.',
