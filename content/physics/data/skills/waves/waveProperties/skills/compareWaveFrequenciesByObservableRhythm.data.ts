@@ -5,6 +5,7 @@ export const compareWaveFrequenciesByObservableRhythm_Skill_Data = defineSkill({
   id: '9ccf65b4-bb45-4d53-a7b5-b5dfe77c8606',
   name: {
     en: 'Compare wave frequencies by observable rhythm',
+    it: 'Confrontare le frequenze delle onde attraverso il ritmo osservabile',
     zh: '根据可观察的节奏比较波的频率',
     hi: 'देखे जाने वाले ताल से तरंग आवृत्तियों की तुलना करना',
     es: 'Comparar frecuencias de ondas según su ritmo observable',
@@ -38,6 +39,7 @@ export const compareWaveFrequenciesByObservableRhythm_Skill_Data = defineSkill({
     methodological: 'In two animations, identify which produces more recurring crests in the same amount of time.',
     frontend: {
       en: 'Compare waves by how many cycles occur during the same time.',
+      it: 'Confronta le onde in base al numero di cicli che si verificano nello stesso tempo.',
       zh: '比较相同时间内出现的波动周期数。',
       hi: 'एक ही समय में होने वाले चक्रों की संख्या से तरंगों की तुलना करें।',
       es: 'Compara ondas según cuántos ciclos ocurren en el mismo tiempo.',

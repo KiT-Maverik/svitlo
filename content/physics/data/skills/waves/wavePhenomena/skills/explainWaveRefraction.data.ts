@@ -5,6 +5,7 @@ export const explainWaveRefraction_Skill_Data = defineSkill({
   id: '5fc476c0-d592-489d-b2e9-ea77918f416a',
   name: {
     en: 'Explain wave refraction',
+    it: 'Spiegare la rifrazione delle onde',
     zh: '解释波的折射',
     hi: 'तरंग अपवर्तन समझाना',
     es: 'Explicar la refracción de ondas',
@@ -39,6 +40,7 @@ export const explainWaveRefraction_Skill_Data = defineSkill({
       "A change in propagation speed at a boundary between media can change a wave's direction while the source frequency stays the same.",
     frontend: {
       en: 'Understand why wave direction may change when propagation speed changes.',
+      it: 'Comprendi perché la direzione di un\'onda può cambiare quando varia la sua velocità di propagazione.',
       zh: '理解传播速度变化时波的方向为什么可能改变。',
       hi: 'समझें कि प्रसार की चाल बदलने पर तरंग की दिशा क्यों बदल सकती है।',
       es: 'Comprende por qué una onda puede cambiar de dirección cuando cambia su velocidad de propagación.',

@@ -5,6 +5,7 @@ export const explainWaveReflection_Skill_Data = defineSkill({
   id: '7b35ea20-c5a1-494e-a34c-e173139eb26e',
   name: {
     en: 'Explain wave reflection',
+    it: 'Spiegare la riflessione delle onde',
     zh: '解释波的反射',
     hi: 'तरंग परावर्तन समझाना',
     es: 'Explicar la reflexión de ondas',
@@ -39,6 +40,7 @@ export const explainWaveReflection_Skill_Data = defineSkill({
       'Part of a disturbance may return from a boundary between media, changing its direction of propagation.',
     frontend: {
       en: 'Explain how a wave can turn back when it reaches a boundary.',
+      it: 'Spiega come un\'onda può tornare indietro quando raggiunge un confine.',
       zh: '解释波到达边界时如何折返回来。',
       hi: 'समझाएँ कि सीमा पर पहुँचकर तरंग कैसे लौट सकती है।',
       es: 'Explica cómo una onda puede regresar al llegar a un límite.',

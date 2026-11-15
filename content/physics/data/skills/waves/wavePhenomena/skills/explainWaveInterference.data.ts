@@ -5,6 +5,7 @@ export const explainWaveInterference_Skill_Data = defineSkill({
   id: '43ac1661-d431-4c5b-9d57-b0bcea31e389',
   name: {
     en: 'Explain wave interference',
+    it: 'Spiegare l\'interferenza delle onde',
     zh: '解释波的干涉',
     hi: 'तरंग व्यतिकरण समझाना',
     es: 'Explicar la interferencia de ondas',
@@ -38,6 +39,7 @@ export const explainWaveInterference_Skill_Data = defineSkill({
     methodological: 'Superposed waves may reinforce or weaken the resulting disturbance depending on their phases.',
     frontend: {
       en: 'Recognize when overlapping waves reinforce or cancel one another.',
+      it: 'Riconosci quando onde sovrapposte si rafforzano o si annullano a vicenda.',
       zh: '认识叠加的波如何相互增强或减弱。',
       hi: 'पहचानें कि मिलती हुई तरंगें कैसे एक-दूसरे को बढ़ाती या कम करती हैं।',
       es: 'Reconoce cuándo las ondas superpuestas se refuerzan o se debilitan.',

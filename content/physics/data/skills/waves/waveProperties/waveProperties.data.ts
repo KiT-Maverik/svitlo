@@ -14,6 +14,7 @@ export const waveProperties_SkillGroup_Data = defineSkillGroup({
   id: 'c4d818f6-530c-452d-b3ee-8c6614c4ba70',
   name: {
     en: 'Wave Properties',
+    it: 'Proprietà delle onde',
     zh: '波的性质',
     hi: 'तरंगों के गुण',
     es: 'Propiedades de las ondas',
@@ -66,6 +67,7 @@ export const waveProperties_SkillGroup_Data = defineSkillGroup({
       'Waves have a direction of propagation, a characteristic rhythm, and a disturbance magnitude; observing water waves distinguishes wave propagation from transport of all the water.',
     frontend: {
       en: 'Discover how waves propagate and how their properties are measured.',
+      it: 'Scopri come si propagano le onde e come vengono misurate le loro proprietà.',
       zh: '探索波如何传播以及如何测量其性质。',
       hi: 'जानें कि तरंगें कैसे फैलती हैं और उनके गुण कैसे मापे जाते हैं।',
       es: 'Descubre cómo se propagan las ondas y cómo se miden sus propiedades.',

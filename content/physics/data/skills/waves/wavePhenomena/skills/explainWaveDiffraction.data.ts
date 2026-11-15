@@ -5,6 +5,7 @@ export const explainWaveDiffraction_Skill_Data = defineSkill({
   id: '4614e3bc-91c4-4907-aedc-74b511ee726c',
   name: {
     en: 'Explain wave diffraction',
+    it: 'Spiegare la diffrazione delle onde',
     zh: '解释波的衍射',
     hi: 'तरंग विवर्तन समझाना',
     es: 'Explicar la difracción de ondas',
@@ -39,6 +40,7 @@ export const explainWaveDiffraction_Skill_Data = defineSkill({
       'Waves may bend around obstacles or spread after passing through openings depending on relative dimensions and wavelength.',
     frontend: {
       en: 'Explore how waves spread around obstacles or through openings.',
+      it: 'Esplora come le onde si propagano attorno agli ostacoli o attraverso le aperture.',
       zh: '探索波如何绕过障碍物或穿过开口后扩散。',
       hi: 'जानें कि तरंगें बाधाओं के आसपास या छिद्रों से गुजरने पर कैसे फैलती हैं।',
       es: 'Explora cómo las ondas rodean obstáculos o se extienden al pasar por aberturas.',
