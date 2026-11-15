@@ -5,6 +5,7 @@ export const predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data = define
   id: '2468e942-b179-4056-96dd-1de593d6e194',
   name: {
     en: 'Predict Effects of Changing Conditions on Plant Growth',
+    it: 'Prevedere gli effetti dei cambiamenti ambientali sulla crescita delle piante',
     zh: '预测条件变化对植物生长的影响',
     hi: 'बदलती परिस्थितियों का पौधों की वृद्धि पर प्रभाव बताना',
     es: 'Predecir los efectos de cambiar las condiciones en el crecimiento vegetal',
@@ -39,6 +40,7 @@ export const predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data = define
       'Predict observable changes in growth when light, water, or minerals are insufficient, while accounting for other conditions held constant.',
     frontend: {
       en: "Predict how changes in resources affect a plant's growth.",
+      it: 'Prevedi come le variazioni delle risorse disponibili influenzano la crescita di una pianta.',
       zh: '预测资源条件改变会如何影响植物的生长。',
       hi: 'अनुमान लगाएँ कि संसाधनों में बदलाव पौधों की वृद्धि को कैसे प्रभावित करता है।',
       es: 'Predice cómo los cambios en los recursos afectan el crecimiento de una planta.',

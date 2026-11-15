@@ -5,6 +5,7 @@ export const recognizeCompetition_Skill_Data = defineSkill({
   id: '5a2d2f91-3a8e-483c-83b7-d38552459783',
   name: {
     en: 'Recognize Competition',
+    it: 'Riconoscere la competizione',
     zh: '识别竞争关系',
     hi: 'प्रतिस्पर्धा पहचानना',
     es: 'Reconocer la competencia',
@@ -39,6 +40,7 @@ export const recognizeCompetition_Skill_Data = defineSkill({
       'Recognize situations in which limited food, light, or territory reduces resource availability to others.',
     frontend: {
       en: 'Identify examples of organisms competing for limited resources.',
+      it: 'Individua esempi di organismi che competono per risorse limitate.',
       zh: '识别生物争夺有限资源的实例。',
       hi: 'ऐसे उदाहरण पहचानें जहाँ जीव सीमित संसाधनों के लिए प्रतिस्पर्धा करते हैं।',
       es: 'Identifica ejemplos de organismos que compiten por recursos limitados.',

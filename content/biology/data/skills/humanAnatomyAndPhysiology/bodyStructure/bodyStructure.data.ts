@@ -11,6 +11,7 @@ export const bodyStructure_SkillGroup_Data = defineSkillGroup({
   id: '89ff6336-56ca-4763-8058-5b9f999946ee',
   name: {
     en: 'Body Structure',
+    it: 'Struttura del corpo',
     zh: '人体结构',
     hi: 'शरीर की संरचना',
     es: 'Estructura del cuerpo',
@@ -53,6 +54,7 @@ export const bodyStructure_SkillGroup_Data = defineSkillGroup({
       'External and internal body parts form organs and systems, each performing a particular function in the organism.',
     frontend: {
       en: 'Learn how body parts, organs and systems fit together.',
+      it: 'Scopri come le parti del corpo, gli organi e gli apparati si collegano tra loro.',
       zh: '了解身体部位、器官和器官系统如何相互组成整体。',
       hi: 'जानें कि शरीर के भाग, अंग और अंग-तंत्र आपस में कैसे जुड़े हैं।',
       es: 'Aprende cómo se organizan las partes del cuerpo, los órganos y los sistemas de órganos.',

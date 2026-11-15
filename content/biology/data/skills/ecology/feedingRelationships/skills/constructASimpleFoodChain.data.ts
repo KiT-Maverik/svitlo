@@ -5,6 +5,7 @@ export const constructASimpleFoodChain_Skill_Data = defineSkill({
   id: '52d7022f-bf92-46b5-bc2b-dcf27f823f31',
   name: {
     en: 'Construct a Simple Food Chain',
+    it: 'Costruire una semplice catena alimentare',
     zh: '构建简单的食物链',
     hi: 'सरल खाद्य शृंखला बनाना',
     es: 'Construir una cadena alimentaria sencilla',
@@ -38,6 +39,7 @@ export const constructASimpleFoodChain_Skill_Data = defineSkill({
     methodological: 'Correctly arrange the direction of matter and energy transfer between a producer and consumers.',
     frontend: {
       en: 'Build a food chain showing who obtains energy and matter from whom.',
+      it: 'Costruisci una catena alimentare che mostri quali organismi ricavano energia e materia da altri.',
       zh: '构建一条食物链，表明生物从谁那里获得物质和能量。',
       hi: 'ऐसी खाद्य शृंखला बनाएँ जिसमें दिखे कि कौन किससे पदार्थ और ऊर्जा प्राप्त करता है।',
       es: 'Construye una cadena alimentaria que muestre quién obtiene materia y energía de quién.',

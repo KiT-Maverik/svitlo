@@ -5,6 +5,7 @@ export const relateLimbStructureToLocomotion_Skill_Data = defineSkill({
   id: '6f4ee2d9-cdd9-4512-8133-b1bf649f9d38',
   name: {
     en: 'Relate Limb Structure to Locomotion',
+    it: 'Collegare la struttura degli arti alla locomozione',
     zh: '将肢体结构与运动方式联系起来',
     hi: 'अंगों की बनावट को गति से जोड़ना',
     es: 'Relacionar la estructura de las extremidades con la locomoción',
@@ -39,6 +40,7 @@ export const relateLimbStructureToLocomotion_Skill_Data = defineSkill({
       'Relate the shape of legs, fins, or wings to the requirements of walking, swimming, digging, or flying.',
     frontend: {
       en: 'Connect the shapes of limbs with walking, swimming, digging or flying.',
+      it: 'Collega le forme degli arti al cammino, al nuoto, allo scavo o al volo.',
       zh: '将肢体的形状与行走、游泳、挖掘或飞行联系起来。',
       hi: 'पैरों, पंखों या अन्य अंगों की बनावट को चलने, तैरने, खोदने या उड़ने से जोड़ें।',
       es: 'Relaciona las formas de las extremidades con caminar, nadar, excavar o volar.',

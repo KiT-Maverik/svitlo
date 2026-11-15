@@ -5,6 +5,7 @@ export const recognizeFlatwormCharacteristics_Skill_Data = defineSkill({
   id: 'e0ef059a-68ef-4b0d-a27c-3be16ef25ff0',
   name: {
     en: 'Recognize Flatworm Characteristics',
+    it: 'Riconoscere le caratteristiche dei platelminti',
     zh: '识别扁形动物的特征',
     hi: 'चपटे कृमियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los platelmintos',
@@ -39,6 +40,7 @@ export const recognizeFlatwormCharacteristics_Skill_Data = defineSkill({
       'Identify the flattened body and other features of flatworms, including free-living and parasitic forms, without confusing them with annelids.',
     frontend: {
       en: 'Recognize flatworms and distinguish them from segmented worms.',
+      it: 'Riconosci i vermi piatti e distinguili dai vermi segmentati.',
       zh: '识别扁形动物并将它们与身体分节的蠕虫区分开。',
       hi: 'चपटे कृमियों को पहचानें और उन्हें खंडित शरीर वाले कृमियों से अलग करें।',
       es: 'Reconoce los gusanos planos y distínguelos de los gusanos segmentados.',

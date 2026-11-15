@@ -5,6 +5,7 @@ export const distinguishAnOrganFromAnOrganSystem_Skill_Data = defineSkill({
   id: 'dbd3d359-8944-493a-9404-35228706548b',
   name: {
     en: 'Distinguish an Organ from an Organ System',
+    it: 'Distinguere un organo da un apparato',
     zh: '区分器官与器官系统',
     hi: 'अंग और अंग-तंत्र में अंतर करना',
     es: 'Distinguir un órgano de un sistema de órganos',
@@ -38,6 +39,7 @@ export const distinguishAnOrganFromAnOrganSystem_Skill_Data = defineSkill({
     methodological: 'Distinguish a single anatomical structure from a functional association of several organs.',
     frontend: {
       en: 'Distinguish an individual organ from a system of cooperating organs.',
+      it: 'Distingui un singolo organo da un insieme di organi che collaborano.',
       zh: '区分单个器官与多个器官协同工作的系统。',
       hi: 'एक अंग और मिलकर काम करने वाले अनेक अंगों के तंत्र में अंतर करें।',
       es: 'Distingue un órgano individual de un sistema de órganos que trabajan juntos.',

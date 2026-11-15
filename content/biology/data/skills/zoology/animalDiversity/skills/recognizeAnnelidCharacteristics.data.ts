@@ -5,6 +5,7 @@ export const recognizeAnnelidCharacteristics_Skill_Data = defineSkill({
   id: '8c313e97-8e10-43c6-b263-fcc626355e81',
   name: {
     en: 'Recognize Annelid Characteristics',
+    it: 'Riconoscere le caratteristiche degli anellidi',
     zh: '识别环节动物的特征',
     hi: 'वलयकृमियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los anélidos',
@@ -39,6 +40,7 @@ export const recognizeAnnelidCharacteristics_Skill_Data = defineSkill({
       'Recognize the segmented body of annelids and distinguish them from nematodes and flatworms, even where all these animals have similarly elongated bodies.',
     frontend: {
       en: 'Recognize segmented worms and distinguish them from other worm-shaped animals.',
+      it: 'Riconosci i vermi segmentati e distinguili dagli altri animali di forma vermiforme.',
       zh: '识别身体分节的蠕虫，并将其与其他蠕虫状动物区分开。',
       hi: 'खंडित शरीर वाले कृमियों को पहचानें और उन्हें अन्य कृमि जैसे प्राणियों से अलग करें।',
       es: 'Reconoce gusanos de cuerpo segmentado y distínguelos de otros animales con forma de gusano.',

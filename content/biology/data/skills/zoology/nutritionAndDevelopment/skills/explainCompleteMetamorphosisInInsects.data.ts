@@ -5,6 +5,7 @@ export const explainCompleteMetamorphosisInInsects_Skill_Data = defineSkill({
   id: '4fc41bc2-a024-4702-9446-842305bdef5d',
   name: {
     en: 'Explain Complete Metamorphosis in Insects',
+    it: 'Spiegare la metamorfosi completa negli insetti',
     zh: '解释昆虫的完全变态',
     hi: 'कीटों में पूर्ण कायांतरण समझाना',
     es: 'Explicar la metamorfosis completa en insectos',
@@ -39,6 +40,7 @@ export const explainCompleteMetamorphosisInInsects_Skill_Data = defineSkill({
       'Explain the four developmental stages of insects with complete metamorphosis: egg, larva, pupa, and imago; using butterflies, beetles, or flies as examples, distinguish the markedly different functions and structures of larvae and adults.',
     frontend: {
       en: 'Follow the egg, larva, pupa and adult stages of complete insect metamorphosis.',
+      it: 'Segui le fasi di uovo, larva, pupa e adulto nella metamorfosi completa degli insetti.',
       zh: '了解昆虫完全变态经历的卵、幼虫、蛹和成虫四个阶段。',
       hi: 'कीटों के पूर्ण कायांतरण के अंडा, लार्वा, प्यूपा और वयस्क चरणों को समझें।',
       es: 'Sigue las etapas de huevo, larva, pupa y adulto de la metamorfosis completa de los insectos.',

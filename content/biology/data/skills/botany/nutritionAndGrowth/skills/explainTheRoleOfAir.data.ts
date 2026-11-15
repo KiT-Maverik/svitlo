@@ -5,6 +5,7 @@ export const explainTheRoleOfAir_Skill_Data = defineSkill({
   id: '93955ebd-9fc3-4ba2-acfa-99d4782ea693',
   name: {
     en: 'Explain the Role of Air',
+    it: "Spiegare il ruolo dell'aria",
     zh: '解释空气的作用',
     hi: 'वायु की भूमिका समझाना',
     es: 'Explicar la función del aire',
@@ -39,6 +40,7 @@ export const explainTheRoleOfAir_Skill_Data = defineSkill({
       'Distinguish the use of carbon dioxide during photosynthesis from the use of oxygen during cellular respiration.',
     frontend: {
       en: "Distinguish plants' use of carbon dioxide and oxygen in different processes.",
+      it: "Distingui l'utilizzo dell'anidride carbonica e dell'ossigeno da parte delle piante nei diversi processi.",
       zh: '区分植物在不同过程中对二氧化碳和氧气的利用。',
       hi: 'पौधों द्वारा अलग-अलग प्रक्रियाओं में कार्बन डाइऑक्साइड और ऑक्सीजन के उपयोग में अंतर करें।',
       es: 'Distingue cómo utilizan las plantas el dióxido de carbono y el oxígeno en distintos procesos.',

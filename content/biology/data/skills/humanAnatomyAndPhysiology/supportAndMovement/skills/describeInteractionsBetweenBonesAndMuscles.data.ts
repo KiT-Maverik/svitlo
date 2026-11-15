@@ -5,6 +5,7 @@ export const describeInteractionsBetweenBonesAndMuscles_Skill_Data = defineSkill
   id: 'a0c53efb-58bb-40cc-849a-32f33557a02d',
   name: {
     en: 'Describe Interactions Between Bones and Muscles',
+    it: 'Descrivere le interazioni tra ossa e muscoli',
     zh: '描述骨骼与肌肉的相互作用',
     hi: 'हड्डियों और मांसपेशियों की पारस्परिक क्रिया बताना',
     es: 'Describir la interacción entre huesos y músculos',
@@ -39,6 +40,7 @@ export const describeInteractionsBetweenBonesAndMuscles_Skill_Data = defineSkill
       'Explain movement at a joint through muscle attachments to bones and the interaction of muscles acting in opposite directions.',
     frontend: {
       en: 'Understand how muscles pull on bones to move joints.',
+      it: 'Comprendi come i muscoli esercitano una trazione sulle ossa per muovere le articolazioni.',
       zh: '理解肌肉如何牵拉骨骼，使关节活动。',
       hi: 'समझें कि मांसपेशियाँ हड्डियों को खींचकर जोड़ों को कैसे चलाती हैं।',
       es: 'Comprende cómo los músculos tiran de los huesos para mover las articulaciones.',

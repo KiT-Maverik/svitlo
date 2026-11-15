@@ -12,6 +12,7 @@ export const structureAndFunctions_SkillGroup_Data = defineSkillGroup({
   id: '54861785-2bd9-424e-8249-ed2334755aab',
   name: {
     en: 'Structure and Functions',
+    it: 'Struttura e funzioni',
     zh: '结构与功能',
     hi: 'संरचना और कार्य',
     es: 'Estructura y funciones',
@@ -60,6 +61,7 @@ export const structureAndFunctions_SkillGroup_Data = defineSkillGroup({
       'The forms of limbs, body coverings, and sensory structures are explained by their roles in locomotion, orientation, and protection against danger.',
     frontend: {
       en: 'Explore how animal structures help them move, sense and protect themselves.',
+      it: "Scopri come le strutture degli animali li aiutano a muoversi, percepire l'ambiente e proteggersi.",
       zh: '探索动物的身体结构如何帮助它们运动、感知环境和保护自己。',
       hi: 'जानें कि जानवरों की शरीर संरचनाएँ चलने, परिवेश को महसूस करने और अपनी रक्षा करने में कैसे मदद करती हैं।',
       es: 'Explora cómo las estructuras del cuerpo de los animales les ayudan a moverse, percibir su entorno y protegerse.',

@@ -5,6 +5,7 @@ export const recognizeTheBrainsRoleInPerception_Skill_Data = defineSkill({
   id: '70ec7147-b764-4969-9ba9-aa83e22c4962',
   name: {
     en: 'Recognize the Brain’s Role in Perception',
+    it: 'Riconoscere il ruolo del cervello nella percezione',
     zh: '认识大脑在感知中的作用',
     hi: 'संवेदी अनुभूति में मस्तिष्क की भूमिका पहचानना',
     es: 'Reconocer el papel del cerebro en la percepción',
@@ -39,6 +40,7 @@ export const recognizeTheBrainsRoleInPerception_Skill_Data = defineSkill({
       'Understand that nerve signals from the sense organs are processed in the brain rather than being turned into conscious sensations by the eyes or ears themselves.',
     frontend: {
       en: 'Explain why the brain plays a central role in interpreting sensory information.',
+      it: "Spiega perché il cervello svolge un ruolo centrale nell'interpretazione delle informazioni sensoriali.",
       zh: '解释为什么大脑在理解感觉信息时起着核心作用。',
       hi: 'समझाएँ कि इंद्रियों से मिली जानकारी को समझने में मस्तिष्क की केंद्रीय भूमिका क्यों है।',
       es: 'Explica por qué el cerebro tiene un papel central al interpretar la información sensorial.',

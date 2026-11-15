@@ -5,6 +5,7 @@ export const distinguishUnicellularAndMulticellularOrganisms_Skill_Data = define
   id: '066b9494-9c0f-412a-83e9-244d424c4302',
   name: {
     en: 'Distinguish Unicellular and Multicellular Organisms',
+    it: 'Distinguere organismi unicellulari e pluricellulari',
     zh: '区分单细胞生物和多细胞生物',
     hi: 'एककोशिकीय और बहुकोशिकीय जीवों में अंतर करना',
     es: 'Distinguir organismos unicelulares y pluricelulares',
@@ -39,6 +40,7 @@ export const distinguishUnicellularAndMulticellularOrganisms_Skill_Data = define
       'Determine whether a single cell carries out all functions of an organism or many specialized cells work together.',
     frontend: {
       en: 'Distinguish organisms made of one cell from those made of many specialized cells.',
+      it: 'Distingui gli organismi formati da una sola cellula da quelli costituiti da molte cellule specializzate.',
       zh: '区分由一个细胞构成的生物和由许多特化细胞构成的生物。',
       hi: 'एक कोशिका से बने जीवों और अनेक विशिष्ट कोशिकाओं से बने जीवों में अंतर करें।',
       es: 'Distingue los organismos formados por una sola célula de los que tienen muchas células especializadas.',

@@ -5,6 +5,7 @@ export const explainLungVentilation_Skill_Data = defineSkill({
   id: 'd92454c4-9472-401a-b58f-113d7f5f6e52',
   name: {
     en: 'Explain Lung Ventilation',
+    it: 'Spiegare la ventilazione polmonare',
     zh: '解释肺通气',
     hi: 'फुफ्फुसीय वायु-संचालन समझाना',
     es: 'Explicar la ventilación pulmonar',
@@ -39,6 +40,7 @@ export const explainLungVentilation_Skill_Data = defineSkill({
       'Explain inhalation and exhalation as air movement caused by respiratory muscle activity, changes in thoracic cavity volume, and pressure differences; distinguish ventilation from alveolar gas exchange and cellular respiration.',
     frontend: {
       en: 'Explain how breathing muscles move air into and out of the lungs.',
+      it: "Spiega come i muscoli respiratori fanno entrare e uscire l'aria dai polmoni.",
       zh: '解释呼吸肌如何使空气进出肺部。',
       hi: 'समझाएँ कि श्वसन मांसपेशियाँ हवा को फेफड़ों के अंदर और बाहर कैसे ले जाती हैं।',
       es: 'Explica cómo los músculos respiratorios hacen entrar y salir aire de los pulmones.',

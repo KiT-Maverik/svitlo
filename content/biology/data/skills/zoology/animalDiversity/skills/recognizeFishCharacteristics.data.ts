@@ -5,6 +5,7 @@ export const recognizeFishCharacteristics_Skill_Data = defineSkill({
   id: 'fe493158-2c89-4ca5-9e85-08e6ec99da38',
   name: {
     en: 'Recognize Fish Characteristics',
+    it: 'Riconoscere le caratteristiche dei pesci',
     zh: '识别鱼类的特征',
     hi: 'मछलियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los peces',
@@ -39,6 +40,7 @@ export const recognizeFishCharacteristics_Skill_Data = defineSkill({
       'Identify typical traits of aquatic vertebrates with gill respiration and fins while accounting for the diversity of fish.',
     frontend: {
       en: 'Identify typical features of fish while recognizing their diversity.',
+      it: 'Identifica le caratteristiche tipiche dei pesci tenendo conto della loro diversità.',
       zh: '识别鱼类的典型特征，同时认识鱼类的多样性。',
       hi: 'मछलियों की विविधता को ध्यान में रखते हुए उनकी सामान्य विशेषताएँ पहचानें।',
       es: 'Identifica los rasgos típicos de los peces teniendo en cuenta su diversidad.',

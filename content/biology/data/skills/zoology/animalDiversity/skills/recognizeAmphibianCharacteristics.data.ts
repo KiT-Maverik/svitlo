@@ -5,6 +5,7 @@ export const recognizeAmphibianCharacteristics_Skill_Data = defineSkill({
   id: '8ef5ace8-ab51-4f31-9564-7f56fe98b7e3',
   name: {
     en: 'Recognize Amphibian Characteristics',
+    it: 'Riconoscere le caratteristiche degli anfibi',
     zh: '识别两栖动物的特征',
     hi: 'उभयचरों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los anfibios',
@@ -39,6 +40,7 @@ export const recognizeAmphibianCharacteristics_Skill_Data = defineSkill({
       'Identify characteristic features of a group in which development is often associated with water and adults may use lungs and skin for respiration.',
     frontend: {
       en: 'Recognize common features of amphibians and their development.',
+      it: 'Riconosci le caratteristiche comuni degli anfibi e del loro sviluppo.',
       zh: '识别两栖动物及其发育过程的共同特征。',
       hi: 'उभयचरों और उनके विकास की सामान्य विशेषताएँ पहचानें।',
       es: 'Reconoce los rasgos comunes de los anfibios y de su desarrollo.',

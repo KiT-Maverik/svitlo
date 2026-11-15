@@ -5,6 +5,7 @@ export const explainTheRoleOfPollination_Skill_Data = defineSkill({
   id: '4181ef8b-cdc8-4fd7-9a46-bc2e1bed6631',
   name: {
     en: 'Explain the Role of Pollination',
+    it: "Spiegare il ruolo dell'impollinazione",
     zh: '解释传粉的作用',
     hi: 'परागण की भूमिका समझाना',
     es: 'Explicar la función de la polinización',
@@ -39,6 +40,7 @@ export const explainTheRoleOfPollination_Skill_Data = defineSkill({
       'Explain transfer of pollen to a stigma or another receptive structure as a step preceding fertilization.',
     frontend: {
       en: 'Explain the part pollination plays before fertilization.',
+      it: "Spiega quale ruolo svolge l'impollinazione prima della fecondazione.",
       zh: '说明传粉在受精之前起什么作用。',
       hi: 'समझाएँ कि निषेचन से पहले परागण की क्या भूमिका होती है।',
       es: 'Explica qué papel desempeña la polinización antes de la fecundación.',

@@ -5,6 +5,7 @@ export const explainTheirRoleInDecomposition_Skill_Data = defineSkill({
   id: '62f24b4f-4656-4d83-aab3-44ba153cb24c',
   name: {
     en: 'Explain Their Role in Decomposition',
+    it: 'Spiegare il ruolo dei microrganismi nella decomposizione',
     zh: '解释微生物在分解过程中的作用',
     hi: 'अपघटन में सूक्ष्मजीवों की भूमिका समझाना',
     es: 'Explicar el papel de los microorganismos en la descomposición',
@@ -39,6 +40,7 @@ export const explainTheirRoleInDecomposition_Skill_Data = defineSkill({
       'Show how bacteria and other microorganisms break down organic residues and return substances to circulation.',
     frontend: {
       en: 'Explore how microscopic organisms break down dead organic matter.',
+      it: 'Scopri come gli organismi microscopici degradano la materia organica morta.',
       zh: '了解微小的生物如何分解死亡的有机物。',
       hi: 'जानें कि सूक्ष्म जीव मृत जैविक पदार्थ को कैसे विघटित करते हैं।',
       es: 'Explora cómo los organismos microscópicos descomponen la materia orgánica muerta.',

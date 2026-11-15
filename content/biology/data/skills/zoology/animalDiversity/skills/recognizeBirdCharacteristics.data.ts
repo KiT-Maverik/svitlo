@@ -5,6 +5,7 @@ export const recognizeBirdCharacteristics_Skill_Data = defineSkill({
   id: '774a8afe-32ef-429f-af0d-e9e0d48ff6cf',
   name: {
     en: 'Recognize Bird Characteristics',
+    it: 'Riconoscere le caratteristiche degli uccelli',
     zh: '识别鸟类的特征',
     hi: 'पक्षियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de las aves',
@@ -39,6 +40,7 @@ export const recognizeBirdCharacteristics_Skill_Data = defineSkill({
       'Use feathers as the primary diagnostic characteristic of birds, regardless of their ability to fly.',
     frontend: {
       en: 'Recognize birds by their feathers, even when they cannot fly.',
+      it: 'Riconosci gli uccelli dalle piume, anche quando non sono in grado di volare.',
       zh: '根据羽毛识别鸟类，即使它们不会飞。',
       hi: 'पक्षियों को उनके परों से पहचानें, भले ही वे उड़ न सकें।',
       es: 'Reconoce las aves por sus plumas, incluso cuando no pueden volar.',

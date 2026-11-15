@@ -5,6 +5,7 @@ export const identifyProtectiveAdaptationsInAnimals_Skill_Data = defineSkill({
   id: '87773289-a8e1-4152-bc93-7ba6bc1594d9',
   name: {
     en: 'Identify Protective Adaptations in Animals',
+    it: 'Individuare gli adattamenti protettivi negli animali',
     zh: '识别动物的防御适应特征',
     hi: 'प्राणियों में रक्षात्मक अनुकूलन पहचानना',
     es: 'Identificar adaptaciones protectoras en los animales',
@@ -39,6 +40,7 @@ export const identifyProtectiveAdaptationsInAnimals_Skill_Data = defineSkill({
       'Identify the function of camouflage, shells or armor, spines, and other defensive structures in particular situations.',
     frontend: {
       en: 'Recognize structures that help animals defend themselves.',
+      it: 'Riconosci le strutture che aiutano gli animali a difendersi.',
       zh: '识别帮助动物保护自己的身体结构。',
       hi: 'ऐसी संरचनाएँ पहचानें जो जानवरों को अपनी रक्षा करने में मदद करती हैं।',
       es: 'Reconoce estructuras que ayudan a los animales a defenderse.',

@@ -5,6 +5,7 @@ export const recognizeMutuallyBeneficialRelationships_Skill_Data = defineSkill({
   id: '0cf1b018-c59b-4778-9431-e6adc564538a',
   name: {
     en: 'Recognize Mutually Beneficial Relationships',
+    it: 'Riconoscere le relazioni reciprocamente vantaggiose',
     zh: '识别互利关系',
     hi: 'दोनों को लाभ देने वाले संबंध पहचानना',
     es: 'Reconocer relaciones de beneficio mutuo',
@@ -38,6 +39,7 @@ export const recognizeMutuallyBeneficialRelationships_Skill_Data = defineSkill({
     methodological: 'Identify interactions that increase the fitness of both species rather than only one.',
     frontend: {
       en: 'Recognize relationships that benefit both species involved.',
+      it: 'Riconosci le relazioni che apportano benefici a entrambe le specie coinvolte.',
       zh: '识别让参与双方物种都受益的关系。',
       hi: 'ऐसे संबंध पहचानें जिनसे शामिल दोनों प्रजातियों को लाभ मिलता है।',
       es: 'Identifica relaciones que benefician a las dos especies participantes.',

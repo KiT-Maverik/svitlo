@@ -10,6 +10,7 @@ export const ecology_SkillDomain_Data = defineSkillDomain({
   id: 'e425631d-499d-428d-b68f-217a8867af95',
   title: {
     en: 'Ecology',
+    it: 'Ecologia',
     qm: 'Ekologiya',
     zh: '生态学',
     hi: 'पारिस्थितिकी',
@@ -53,6 +54,7 @@ export const ecology_SkillDomain_Data = defineSkillDomain({
       'Dependencies among organisms, populations, nonliving factors, and flows of matter and energy, together with the consequences of disrupted relationships. The geographical distribution of natural zones and climate processes belongs to Geography.',
     frontend: {
       en: 'Explore how organisms depend on one another and on their environments.',
+      it: 'Scopri come gli organismi dipendono gli uni dagli altri e dal loro ambiente.',
       qm: 'Canlılarnıñ bir-birine ve etraftaki müitke nasıl bağlı olğanını ögreniñiz.',
       zh: '探索生物如何相互依赖，以及如何依赖周围环境。',
       hi: 'जानें कि जीव एक-दूसरे और अपने पर्यावरण पर कैसे निर्भर रहते हैं।',

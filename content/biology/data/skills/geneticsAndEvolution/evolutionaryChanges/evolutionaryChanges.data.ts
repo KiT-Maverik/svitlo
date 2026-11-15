@@ -16,6 +16,7 @@ export const evolutionaryChanges_SkillGroup_Data = defineSkillGroup({
   id: '00e1ba26-ce3a-4517-8d04-c29f54960bc4',
   name: {
     en: 'Evolutionary Changes',
+    it: 'Cambiamenti evolutivi',
     qm: 'Evolütsion deñişmeler',
     zh: '进化变化',
     hi: 'विकासवादी परिवर्तन',
@@ -73,6 +74,7 @@ export const evolutionaryChanges_SkillGroup_Data = defineSkillGroup({
       'Hereditary variation and differences in reproductive success alter the prevalence of traits in populations across generations; this is not the same as development of an individual organism.',
     frontend: {
       en: 'Discover how inherited variation changes within populations over generations.',
+      it: 'Scopri come la variabilità ereditaria cambia nelle popolazioni nel corso delle generazioni.',
       qm: 'Populyatsiyalardaki nesilden nesilge keçken farqlar zaman keçken sayın nasıl deñişkenini ögreniñiz.',
       zh: '了解遗传变异如何在种群中随着世代更替而发生变化。',
       hi: 'जानें कि आबादियों में वंशानुगत विविधता पीढ़ियों के दौरान कैसे बदलती है।',
