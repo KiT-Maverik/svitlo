@@ -41,12 +41,20 @@ export const pressureInLiquidsAndGases_SkillGroup_Data = defineSkillGroup({
     kk: 'Сұйықтар мен газдардағы қысым',
     qm: 'Sıyıqlıqlar ve gazlarda basım',
   },
-  skills: [
-    explainPressureTransmissionInAnEnclosedLiquid_Skill_Data,
-    explainWhyWaterPressureIncreasesWithDepth_Skill_Data,
-    identifyGasPressureInExamples_Skill_Data,
-    recognizeLiquidPressureActingInDifferentDirections_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainPressureTransmissionInAnEnclosedLiquid: explainPressureTransmissionInAnEnclosedLiquid_Skill_Data,
+      explainWhyWaterPressureIncreasesWithDepth: explainWhyWaterPressureIncreasesWithDepth_Skill_Data,
+      identifyGasPressureInExamples: identifyGasPressureInExamples_Skill_Data,
+      recognizeLiquidPressureActingInDifferentDirections: recognizeLiquidPressureActingInDifferentDirections_Skill_Data,
+    },
+    order: [
+      'explainPressureTransmissionInAnEnclosedLiquid',
+      'explainWhyWaterPressureIncreasesWithDepth',
+      'identifyGasPressureInExamples',
+      'recognizeLiquidPressureActingInDifferentDirections',
+    ],
+  },
   description: {
     methodological:
       'Pressure is transmitted through a medium and changes with depth in still water; container examples help distinguish pressure from the mere amount of water.',

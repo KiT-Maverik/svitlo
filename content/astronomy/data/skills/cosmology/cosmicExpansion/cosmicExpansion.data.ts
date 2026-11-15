@@ -41,12 +41,15 @@ export const cosmicExpansion_SkillGroup_Data = defineSkillGroup({
     ka: 'კოსმოსური გაფართოება',
     kk: 'Ғаламның кеңеюі',
   },
-  skills: [
-    cosmologicalModels_Skill_Data,
-    cosmologicalRedshift_Skill_Data,
-    expansionVersusBoundSystems_Skill_Data,
-    hubbleLemaitreRelation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      cosmologicalModels: cosmologicalModels_Skill_Data,
+      cosmologicalRedshift: cosmologicalRedshift_Skill_Data,
+      expansionVersusBoundSystems: expansionVersusBoundSystems_Skill_Data,
+      hubbleLemaitreRelation: hubbleLemaitreRelation_Skill_Data,
+    },
+    order: ['cosmologicalModels', 'cosmologicalRedshift', 'expansionVersusBoundSystems', 'hubbleLemaitreRelation'],
+  },
   description: {
     methodological:
       'Large-scale redshift patterns support an evolving cosmic geometry, not an ordinary explosion into pre-existing empty space.',

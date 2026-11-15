@@ -40,11 +40,14 @@ export const analysis_SkillGroup_Data = defineSkillGroup({
     kk: 'Талдау',
     qm: 'Talil',
   },
-  skills: [
-    distinguishLinearAndLogarithmicGrowth_Skill_Data,
-    estimateAnAlgorithmsWorstCase_Skill_Data,
-    explainTimeMemoryTradeOffs_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishLinearAndLogarithmicGrowth: distinguishLinearAndLogarithmicGrowth_Skill_Data,
+      estimateAnAlgorithmsWorstCase: estimateAnAlgorithmsWorstCase_Skill_Data,
+      explainTimeMemoryTradeOffs: explainTimeMemoryTradeOffs_Skill_Data,
+    },
+    order: ['distinguishLinearAndLogarithmicGrowth', 'estimateAnAlgorithmsWorstCase', 'explainTimeMemoryTradeOffs'],
+  },
   description: {
     methodological:
       'Compare procedures using worst-case operation bounds, time growth classes, and memory costs. These are cross-cutting ways to assess algorithms, not additional algorithms themselves.',

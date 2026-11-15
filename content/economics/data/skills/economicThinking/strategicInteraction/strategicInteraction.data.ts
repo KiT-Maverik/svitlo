@@ -40,7 +40,14 @@ export const strategicInteraction_SkillGroup_Data = defineSkillGroup({
     kk: 'Стратегиялық өзара әрекет',
     qm: 'Strategik qarşılıqlı areket',
   },
-  skills: [collectiveActionProblem_Skill_Data, strategicEquilibrium_Skill_Data, strategicInterdependence_Skill_Data],
+  skills: {
+    items: {
+      collectiveActionProblem: collectiveActionProblem_Skill_Data,
+      strategicEquilibrium: strategicEquilibrium_Skill_Data,
+      strategicInterdependence: strategicInterdependence_Skill_Data,
+    },
+    order: ['collectiveActionProblem', 'strategicEquilibrium', 'strategicInterdependence'],
+  },
   description: {
     methodological:
       "The consequences of one participant's decision may depend on others' choices, and individual incentives can diverge from collective interests.",

@@ -40,13 +40,22 @@ export const sensationAndPerception_SkillDomain_Data = defineSkillDomain({
     kk: 'Түйсік және қабылдау',
     qm: 'Duyğu ve qabul etüv',
   },
-  groups: [
-    bodyAndChemicalSenses_SkillGroup_Data,
-    illusionsAndMultisensoryPerception_SkillGroup_Data,
-    perceptualOrganization_SkillGroup_Data,
-    sensoryDetection_SkillGroup_Data,
-    visualAndAuditoryExperience_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      bodyAndChemicalSenses: bodyAndChemicalSenses_SkillGroup_Data,
+      illusionsAndMultisensoryPerception: illusionsAndMultisensoryPerception_SkillGroup_Data,
+      perceptualOrganization: perceptualOrganization_SkillGroup_Data,
+      sensoryDetection: sensoryDetection_SkillGroup_Data,
+      visualAndAuditoryExperience: visualAndAuditoryExperience_SkillGroup_Data,
+    },
+    order: [
+      'bodyAndChemicalSenses',
+      'illusionsAndMultisensoryPerception',
+      'perceptualOrganization',
+      'sensoryDetection',
+      'visualAndAuditoryExperience',
+    ],
+  },
   description: {
     methodological:
       'Sensory information is detected, selected, organized, and interpreted into an experienced world. Psychological perception differs from simple measurement of physical stimuli or anatomy of sense organs.',

@@ -45,15 +45,26 @@ export const filmLanguage_SkillGroup_Data = defineSkillGroup({
     kk: 'Кино тілі',
     qm: 'Film tili',
   },
-  skills: [
-    analyzeFilmShots_Skill_Data,
-    coordinateSoundAndImage_Skill_Data,
-    createMeaningThroughMontage_Skill_Data,
-    editFilmContinuity_Skill_Data,
-    planAShotSequence_Skill_Data,
-    storyboardAFilmSequence_Skill_Data,
-    writeAScreenplay_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeFilmShots: analyzeFilmShots_Skill_Data,
+      coordinateSoundAndImage: coordinateSoundAndImage_Skill_Data,
+      createMeaningThroughMontage: createMeaningThroughMontage_Skill_Data,
+      editFilmContinuity: editFilmContinuity_Skill_Data,
+      planAShotSequence: planAShotSequence_Skill_Data,
+      storyboardAFilmSequence: storyboardAFilmSequence_Skill_Data,
+      writeAScreenplay: writeAScreenplay_Skill_Data,
+    },
+    order: [
+      'analyzeFilmShots',
+      'coordinateSoundAndImage',
+      'createMeaningThroughMontage',
+      'editFilmContinuity',
+      'planAShotSequence',
+      'storyboardAFilmSequence',
+      'writeAScreenplay',
+    ],
+  },
   description: {
     methodological: 'Relations among shots, timing and sound establish meaning across a moving-image work.',
     frontend: {

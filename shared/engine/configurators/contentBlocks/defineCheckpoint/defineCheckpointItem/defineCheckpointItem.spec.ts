@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import { configuratorArrayToSlugMap } from '../../../_shared__configurators';
 import { defineText } from '../../defineText';
+import { defineCheckpointAnswer } from '../defineCheckpointAnswer';
 import { defineCheckpointItem, checkpointItem_Config_Schema, checkpointItem_Props_Schema } from './index';
 
 describe('Configurators', () => {
@@ -25,20 +26,24 @@ describe('Configurators', () => {
         const question = makeText(questionId, 'question', { en: 'Question?', uk: 'Питання?' });
         const first = makeText(firstId, 'first', 'Always visible');
         const second = makeText(secondId, 'second', { en: 'Second', uk: 'Другий' });
+        const answer = defineCheckpointAnswer<
+          'answerContent', { first: typeof first; second: typeof second }, ['en', 'uk']
+        >({
+          id: 'b775647f-203d-481a-a1c7-4d331c779d6f',
+          slug: 'answerContent', type: 'checkpointAnswer',
+          content: { items: configuratorArrayToSlugMap([first, second]), order: ['second', 'first'] },
+        });
         const item = defineCheckpointItem<
-          'example',
-          { first: typeof first; second: typeof second },
-          typeof question,
-          ['en', 'uk']
+          'example', typeof answer, typeof question, ['en', 'uk']
         >({
           id: itemId,
           slug: 'example',
           type: 'checkpointItem',
           check: true,
           question,
-          answer: { items: configuratorArrayToSlugMap([first, second]), order: ['second', 'first'] },
+          answer,
         });
-        return { question, first, second, item };
+        return { question, first, second, answer, item };
       };
 
       test('CheckpointItem builds sorted Props without items, order, or configurators', () => {
@@ -86,7 +91,7 @@ describe('Configurators', () => {
           },
         );
         assert.deepEqual(item.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
-        assert.deepEqual(item.build.overrides({ answer: {} }, { languages: ['en', 'uk'] }), {
+        assert.deepEqual(item.build.overrides({ answer: { content: {} } }, { languages: ['en', 'uk'] }), {
           base: {},
           locale: undefined,
         });
@@ -96,11 +101,11 @@ describe('Configurators', () => {
         const { item } = example();
         const built = item.build.overrides(
           {
-            answer: {
+            answer: { content: {
               items: {
                 second: { locale: { value: { uk: 'Друга відповідь' } } },
               },
-            },
+            } },
           },
           { languages: ['en', 'uk'] },
         );
@@ -122,11 +127,11 @@ describe('Configurators', () => {
         const { item } = example();
         const later = makeText(thirdId, 'later', { en: 'Later', uk: 'Пізніше' });
         const change = {
-          answer: {
+          answer: { content: {
             items: { first: false as const },
             additionalItems: configuratorArrayToSlugMap([later]),
             order: ['later', 'second'] as ('later' | 'second')[],
-          },
+          } },
         };
         const original = item.build.props({ languages: ['en', 'uk'] });
         const built = item.build.overrides(change, { languages: ['en', 'uk'] });
@@ -151,27 +156,27 @@ describe('Configurators', () => {
           () =>
             item.build.overrides(
               {
-                answer: { additionalItems: configuratorArrayToSlugMap([later]) },
+                answer: { content: { additionalItems: configuratorArrayToSlugMap([later]) } },
               },
               { languages: ['en', 'uk'] },
             ),
-          /answer.order is required/,
+          /content.order is required/,
         );
         assert.throws(
           () =>
             item.build.overrides(
               {
-                answer: { items: { first: false } },
+                answer: { content: { items: { first: false } } },
               },
               { languages: ['en', 'uk'] },
             ),
-          /answer.order is required/,
+          /content.order is required/,
         );
         assert.throws(
           () =>
             item.build.overrides(
               {
-                answer: { order: ['first', 'first'] },
+                answer: { content: { order: ['first', 'first'] } },
               },
               { languages: ['en', 'uk'] },
             ),
@@ -181,7 +186,7 @@ describe('Configurators', () => {
           () =>
             item.build.overrides(
               {
-                answer: { items: { first: false, second: false }, order: [] },
+                answer: { content: { items: { first: false, second: false }, order: [] } },
               },
               { languages: ['en', 'uk'] },
             ),
@@ -191,7 +196,7 @@ describe('Configurators', () => {
           () =>
             item.build.overrides(
               {
-                answer: { additionalItems: configuratorArrayToSlugMap([first]), order: ['second', 'first'] },
+                answer: { content: { additionalItems: configuratorArrayToSlugMap([first]), order: ['second', 'first'] } },
               } as never,
               { languages: ['en', 'uk'] },
             ),
@@ -201,7 +206,7 @@ describe('Configurators', () => {
           () =>
             item.build.overrides(
               {
-                answer: { items: { unknown: false }, order: ['first', 'second'] },
+                answer: { content: { items: { unknown: false }, order: ['first', 'second'] } },
               } as never,
               { languages: ['en', 'uk'] },
             ),
@@ -211,7 +216,7 @@ describe('Configurators', () => {
           () =>
             item.build.overrides(
               {
-                answer: { items: { second: { id: thirdId } } },
+                answer: { content: { items: { second: { id: thirdId } } } },
               } as never,
               { languages: ['en', 'uk'] },
             ),
@@ -226,7 +231,7 @@ describe('Configurators', () => {
           { slug: 'other' },
           { type: 'text' },
           { check: false },
-          { answer: { additionalItems: { other: false } } },
+          { answer: { content: { additionalItems: { other: false } } } },
           { question: { params: { disabled: true } } },
           { question: { slug: 'renamed' } },
         ]) {

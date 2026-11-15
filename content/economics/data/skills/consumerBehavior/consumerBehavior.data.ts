@@ -38,11 +38,14 @@ export const consumerBehavior_SkillDomain_Data = defineSkillDomain({
     kk: 'Тұтынушы мінез-құлқы',
     qm: 'İstimalciniñ areketi',
   },
-  groups: [
-    behavioralFactorsInChoice_SkillGroup_Data,
-    consumerInformationAndRights_SkillGroup_Data,
-    needsAndPreferences_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      behavioralFactorsInChoice: behavioralFactorsInChoice_SkillGroup_Data,
+      consumerInformationAndRights: consumerInformationAndRights_SkillGroup_Data,
+      needsAndPreferences: needsAndPreferences_SkillGroup_Data,
+    },
+    order: ['behavioralFactorsInChoice', 'consumerInformationAndRights', 'needsAndPreferences'],
+  },
   description: {
     methodological:
       "Consumers evaluate needs, quality, alternatives, and information under varying incomes and psychological constraints. This domain analyzes their choices rather than sellers' methods of promoting goods.",

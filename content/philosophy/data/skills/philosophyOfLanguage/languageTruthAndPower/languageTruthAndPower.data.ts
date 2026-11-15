@@ -41,12 +41,20 @@ export const languageTruthAndPower_SkillGroup_Data = defineSkillGroup({
     kk: 'Тіл, ақиқат және билік',
     qm: 'Til, aqiqat ve akimiyet',
   },
-  skills: [
-    analyzeAFramingChoice_Skill_Data,
-    analyzeATruthConditionalClaim_Skill_Data,
-    distinguishDescriptiveFromEvaluativeLanguage_Skill_Data,
-    evaluateAClaimAboutLinguisticRepresentation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAFramingChoice: analyzeAFramingChoice_Skill_Data,
+      analyzeATruthConditionalClaim: analyzeATruthConditionalClaim_Skill_Data,
+      distinguishDescriptiveFromEvaluativeLanguage: distinguishDescriptiveFromEvaluativeLanguage_Skill_Data,
+      evaluateAClaimAboutLinguisticRepresentation: evaluateAClaimAboutLinguisticRepresentation_Skill_Data,
+    },
+    order: [
+      'analyzeAFramingChoice',
+      'analyzeATruthConditionalClaim',
+      'distinguishDescriptiveFromEvaluativeLanguage',
+      'evaluateAClaimAboutLinguisticRepresentation',
+    ],
+  },
   description: {
     methodological:
       'Descriptive categories, framing, and public speech influence which interpretations appear available. Evaluating their justification differs from explaining psychological persuasion.',

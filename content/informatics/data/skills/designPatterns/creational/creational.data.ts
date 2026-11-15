@@ -42,13 +42,16 @@ export const creational_SkillGroup_Data = defineSkillGroup({
     kk: 'Тудырушы үлгілер',
     qm: 'Yaratıcı şablonlar',
   },
-  skills: [
-    abstractFactory_Skill_Data,
-    builder_Skill_Data,
-    factoryMethod_Skill_Data,
-    prototype_Skill_Data,
-    singleton_Skill_Data,
-  ],
+  skills: {
+    items: {
+      abstractFactory: abstractFactory_Skill_Data,
+      builder: builder_Skill_Data,
+      factoryMethod: factoryMethod_Skill_Data,
+      prototype: prototype_Skill_Data,
+      singleton: singleton_Skill_Data,
+    },
+    order: ['abstractFactory', 'builder', 'factoryMethod', 'prototype', 'singleton'],
+  },
   description: {
     methodological:
       'Five approaches to constructing instances and object families that separate creation logic from usage.',

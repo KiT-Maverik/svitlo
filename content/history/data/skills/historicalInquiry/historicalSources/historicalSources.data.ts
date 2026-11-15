@@ -42,13 +42,22 @@ export const historicalSources_SkillGroup_Data = defineSkillGroup({
     kk: 'Тарихи дереккөздер',
     qm: 'Tarihiy menbalar',
   },
-  skills: [
-    archaeologicalDating_Skill_Data,
-    archaeologicalSources_Skill_Data,
-    sourceCriticism_Skill_Data,
-    visualHistoricalSources_Skill_Data,
-    writtenHistoricalSources_Skill_Data,
-  ],
+  skills: {
+    items: {
+      archaeologicalDating: archaeologicalDating_Skill_Data,
+      archaeologicalSources: archaeologicalSources_Skill_Data,
+      sourceCriticism: sourceCriticism_Skill_Data,
+      visualHistoricalSources: visualHistoricalSources_Skill_Data,
+      writtenHistoricalSources: writtenHistoricalSources_Skill_Data,
+    },
+    order: [
+      'archaeologicalDating',
+      'archaeologicalSources',
+      'sourceCriticism',
+      'visualHistoricalSources',
+      'writtenHistoricalSources',
+    ],
+  },
   description: {
     methodological:
       'Material, written, and visual traces differ in how they were created, preserved, and interpreted and in their reliability.',

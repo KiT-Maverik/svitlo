@@ -94,6 +94,89 @@ required Engine Config fields. Only the explicit pending media `null` values
 violate final Config typing; missing translations and Scene implementations
 are separate downstream work.
 
+### Quest Section nested Config authoring (draft only)
+
+A Quest is a Section in \`section.items\` of a standalone Lesson or Course-owned Episode. The **Section's parent collection** has an \`order\`, but **Quest's own \`stages\` and \`tasks\` do not**. They are camelCase slug maps, each with a mandatory \`start\`. Every Stage owns exactly two silent Video configurators (\`medium\` and \`small\`), three explicitly nullable Audio tracks, one Image and one localized Subtitles asset; every Task owns exactly one Scene. Do not emit a second nested \`content.items/order\` collection for a Quest Stage.
+
+The following is a **Quest node fragment** to place at a Section's \`items.guidedPractice\` key; UUIDs and source-language strings must be replaced with approved real content before publication:
+
+\`\`\`yaml
+config:
+id: 00000000-0000-4000-8000-000000000101
+slug: guidedPractice
+type: quest
+params: { skippable: false }
+locale:
+title: { uk: Керована практика }
+navigationLabel: { uk: Практика }
+stages:
+start:
+config:
+id: 00000000-0000-4000-8000-000000000102
+slug: start
+type: questStage
+content:
+video:
+medium:
+config:
+id: 00000000-0000-4000-8000-000000000103
+slug: medium
+type: video
+params: {}
+locale: { fileLocation: null, poster: null, label: { uk: Показ прикладу } }
+small:
+config:
+id: 00000000-0000-4000-8000-000000000104
+slug: small
+type: video
+params: {}
+locale: { fileLocation: null, poster: null, label: { uk: Показ прикладу } }
+audio:
+dialogue: null
+narration:
+config:
+id: 00000000-0000-4000-8000-000000000105
+slug: narration
+type: audio
+params: {}
+locale: { fileLocation: null, title: { uk: Аудіоопис } }
+background: null
+image:
+config:
+id: 00000000-0000-4000-8000-000000000106
+slug: image
+type: image
+params: { fill: true, aspectRatio: 1.5 }
+locale: { src: null, alt: { uk: Схема прикладу } }
+subtitles:
+config:
+id: 00000000-0000-4000-8000-000000000107
+slug: subtitles
+type: subtitles
+params: {}
+locale: { fileLocation: null } # Additional named Stages may be added without an order array.
+tasks:
+start:
+config:
+id: 00000000-0000-4000-8000-000000000108
+slug: start
+type: questTask
+scene:
+config:
+id: 00000000-0000-4000-8000-000000000109
+slug: taskScene
+type: scene
+params: {}
+locale:
+value: { instruction: { uk: Повтори самостійно } }
+production:
+specification: |
+Implement an accessible guided-practice Scene with retries,
+meaningful feedback and keyboard/screen-reader equivalents.
+\`\`\`
+
+The YAML editor schema composes these nested \`config\` and optional \`production\` envelopes from Engine Zod. The Lesson/Course scaffolders create \`defineQuestSection\`, \`defineStage\`, \`defineTask\` and media/Scene TypeScript **drafts**; pending \`null\` means real assets remain unproduced. \`defineLesson\`/\`defineEpisode\` do **not** yet accept Quest as a runtime-publishable Section, nor does a Quest player exist. Quest guided practice never automatically satisfies an approved Quiz assessment requirement.
+
 ### Course and Build overrides
 
 A Course uses the same `config.yaml` node form for Course, Module, Chapter,
@@ -118,16 +201,24 @@ provided, scaffolders create:
 
 - `<Lesson|Course UUID folder>/methodology.md` from
   `production.methodology`, without overwriting an existing approved file;
-- `content/<book>/scenes/<last-hex>/<scene-id>/specification.md`
-  from `scene.production.specification`, without a `sceneSpecKey`;
-- `content/<book>/data/assets/<last-hex>/<resource-id>/specification.md`
-  for pending image/audio/video requirements.
+- For **modular Lesson source**, `specification.md` beside each nested Scene,
+  Image, Video, Audio, Subtitles or CarouselSlide Config `index.ts`, with
+  the Config UUID preserved and no `sceneSpecKey`. For **Course/legacy**
+  production, Scene specs still use `content/<book>/scenes/<bucket>/<uuid>/`
+  and media specs use `data/assets/<bucket>/<uuid>/` until independently
+  migrated. Executable Scene code continues to live under the UUID-addressed
+  registered `scenes/` subtree.
 
 A Scene implementer and media specialist receive those generated files and
 the original `config.yaml`; they supply real components/assets later.
-`image.config.locale.alt` is authored now, while `src: null` is **not**
-replaced with fake URLs. No generator invents translations or runtime
-capabilities. Existing `*.data.ts` causes a whole-entity SKIP without any write. When the input is an existing canonical UUID directory, it is skipped **before** parsing stale YAML (PR #531); when it is a staged single-ID YAML file, its ID is parsed first to derive the output path. Existing or manually changed specification files cannot
+`image.config.locale.alt` is authored now. In **Lesson** draft modules,
+`src: null`, `fileLocation: null` and `poster: null` become Build-only
+`resolveLessonMedia(import.meta.url, kind, role, language?)` calls that
+require an actual file beside the Config. Unavailable assets throw during
+publication instead of receiving fabricated URLs. The textbook package
+stages named media under `/textbooks/<book>/lessons/...` and keeps only URL
+strings in published Props. No generator invents translations or runtime
+capabilities. Existing `*.data.ts` causes a whole-entity SKIP without any write; for modular Lesson drafts, an existing root `index.ts` does the same. When the input is an existing canonical UUID directory, it is skipped **before** parsing stale YAML (PR #531); when it is a staged single-ID YAML file, its ID is parsed first to derive the output path. Existing or manually changed specification files cannot
 be clobbered. `check` remains read-only and strict.
 
 ## Scope versus the specialist editorial workflow

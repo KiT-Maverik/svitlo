@@ -40,11 +40,14 @@ export const electricAndMagneticFields_SkillGroup_Data = defineSkillGroup({
     ka: 'ელექტრული და მაგნიტური ველები',
     kk: 'Электр және магнит өрістері',
   },
-  skills: [
-    distinguishElectricFromMagneticFields_Skill_Data,
-    explainTheElectricField_Skill_Data,
-    explainTheMagneticField_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishElectricFromMagneticFields: distinguishElectricFromMagneticFields_Skill_Data,
+      explainTheElectricField: explainTheElectricField_Skill_Data,
+      explainTheMagneticField: explainTheMagneticField_Skill_Data,
+    },
+    order: ['distinguishElectricFromMagneticFields', 'explainTheElectricField', 'explainTheMagneticField'],
+  },
   description: {
     methodological:
       'Fields describe interactions involving electric charges and magnetic systems without direct contact, but their physical effects differ.',

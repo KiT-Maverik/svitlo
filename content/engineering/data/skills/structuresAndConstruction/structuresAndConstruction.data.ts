@@ -39,12 +39,15 @@ export const structuresAndConstruction_SkillDomain_Data = defineSkillDomain({
     kk: 'Құрылымдар және құрылыс',
     qm: 'Qurulışlar ve bina yapuvı',
   },
-  groups: [
-    buildings_SkillGroup_Data,
-    civilWorks_SkillGroup_Data,
-    stabilityAndTesting_SkillGroup_Data,
-    structuralElements_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      buildings: buildings_SkillGroup_Data,
+      civilWorks: civilWorks_SkillGroup_Data,
+      stabilityAndTesting: stabilityAndTesting_SkillGroup_Data,
+      structuralElements: structuralElements_SkillGroup_Data,
+    },
+    order: ['buildings', 'civilWorks', 'stabilityAndTesting', 'structuralElements'],
+  },
   description: {
     methodological:
       'Load-bearing works transfer applied actions into suitable supports while satisfying functional, environmental and construction constraints. This domain treats the built solution rather than architectural style.',

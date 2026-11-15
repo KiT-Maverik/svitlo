@@ -42,13 +42,22 @@ export const musicalSoundAndTexture_SkillGroup_Data = defineSkillGroup({
     kk: 'Музыкалық дыбыс пен фактура',
     qm: 'Musiqiy ses ve faktura',
   },
-  skills: [
-    classifyMusicalInstruments_Skill_Data,
-    distinguishPitchFromLoudness_Skill_Data,
-    followMusicalPhrases_Skill_Data,
-    identifyMusicalTexture_Skill_Data,
-    identifyMusicalTimbre_Skill_Data,
-  ],
+  skills: {
+    items: {
+      classifyMusicalInstruments: classifyMusicalInstruments_Skill_Data,
+      distinguishPitchFromLoudness: distinguishPitchFromLoudness_Skill_Data,
+      followMusicalPhrases: followMusicalPhrases_Skill_Data,
+      identifyMusicalTexture: identifyMusicalTexture_Skill_Data,
+      identifyMusicalTimbre: identifyMusicalTimbre_Skill_Data,
+    },
+    order: [
+      'classifyMusicalInstruments',
+      'distinguishPitchFromLoudness',
+      'followMusicalPhrases',
+      'identifyMusicalTexture',
+      'identifyMusicalTimbre',
+    ],
+  },
   description: {
     methodological:
       'Timbre, sound sources and simultaneous parts provide perceptual distinctions beyond the height or intensity of a note.',

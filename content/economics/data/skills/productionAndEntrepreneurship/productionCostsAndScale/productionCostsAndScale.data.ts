@@ -42,13 +42,22 @@ export const productionCostsAndScale_SkillGroup_Data = defineSkillGroup({
     kk: 'Өндіріс шығындары мен ауқымы',
     qm: 'İstisal masrafları ve miqyas',
   },
-  skills: [
-    averageProductionCosts_Skill_Data,
-    economicProfit_Skill_Data,
-    economiesOfScale_Skill_Data,
-    fixedAndVariableCosts_Skill_Data,
-    marginalProductionCost_Skill_Data,
-  ],
+  skills: {
+    items: {
+      averageProductionCosts: averageProductionCosts_Skill_Data,
+      economicProfit: economicProfit_Skill_Data,
+      economiesOfScale: economiesOfScale_Skill_Data,
+      fixedAndVariableCosts: fixedAndVariableCosts_Skill_Data,
+      marginalProductionCost: marginalProductionCost_Skill_Data,
+    },
+    order: [
+      'averageProductionCosts',
+      'economicProfit',
+      'economiesOfScale',
+      'fixedAndVariableCosts',
+      'marginalProductionCost',
+    ],
+  },
   description: {
     methodological:
       'Economic production decisions account for opportunity costs, time horizons, and how unit costs change with output.',

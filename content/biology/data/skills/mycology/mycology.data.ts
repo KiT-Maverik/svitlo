@@ -41,13 +41,21 @@ export const mycology_SkillDomain_Data = defineSkillDomain({
     kk: 'Микология',
     qm: 'Mikologiya',
   },
-  groups: [],
-  skills: [
-    distinguishMyceliumFromAFruitingBody_Skill_Data,
-    explainTheRoleOfFungiInDecomposingOrganicRemains_Skill_Data,
-    identifyTheMainPartsOfAMushroomFruitingBody_Skill_Data,
-    recognizeFungiAsADistinctGroupOfOrganisms_Skill_Data,
-  ],
+  groups: { items: {}, order: [] },
+  skills: {
+    items: {
+      distinguishMyceliumFromAFruitingBody: distinguishMyceliumFromAFruitingBody_Skill_Data,
+      explainTheRoleOfFungiInDecomposingOrganicRemains: explainTheRoleOfFungiInDecomposingOrganicRemains_Skill_Data,
+      identifyTheMainPartsOfAMushroomFruitingBody: identifyTheMainPartsOfAMushroomFruitingBody_Skill_Data,
+      recognizeFungiAsADistinctGroupOfOrganisms: recognizeFungiAsADistinctGroupOfOrganisms_Skill_Data,
+    },
+    order: [
+      'distinguishMyceliumFromAFruitingBody',
+      'explainTheRoleOfFungiInDecomposingOrganicRemains',
+      'identifyTheMainPartsOfAMushroomFruitingBody',
+      'recognizeFungiAsADistinctGroupOfOrganisms',
+    ],
+  },
   description: {
     methodological:
       'Fungi as a distinct branch of cellular life: nutrition, mycelium, fruiting bodies, and the role of fungi in matter cycling. Microscopic fungi overlap with Microbiology in scale, but their structure and biological characteristics are central here.',

@@ -41,12 +41,20 @@ export const preventionAndAccessToHelp_SkillGroup_Data = defineSkillGroup({
     kk: 'Алдын алу және көмекке қол жеткізу',
     qm: 'Ögüni aluv ve yardımğa irişüv',
   },
-  skills: [
-    recognizeBehaviouralDependenceRisks_Skill_Data,
-    recognizeSignsOfProblematicUse_Skill_Data,
-    respondToOffersOfHarmfulSubstances_Skill_Data,
-    seekHelpForSubstanceRelatedProblems_Skill_Data,
-  ],
+  skills: {
+    items: {
+      recognizeBehaviouralDependenceRisks: recognizeBehaviouralDependenceRisks_Skill_Data,
+      recognizeSignsOfProblematicUse: recognizeSignsOfProblematicUse_Skill_Data,
+      respondToOffersOfHarmfulSubstances: respondToOffersOfHarmfulSubstances_Skill_Data,
+      seekHelpForSubstanceRelatedProblems: seekHelpForSubstanceRelatedProblems_Skill_Data,
+    },
+    order: [
+      'recognizeBehaviouralDependenceRisks',
+      'recognizeSignsOfProblematicUse',
+      'respondToOffersOfHarmfulSubstances',
+      'seekHelpForSubstanceRelatedProblems',
+    ],
+  },
   description: {
     methodological:
       'Dependence involves more than a single behaviour; early support and non-stigmatizing treatment pathways matter.',

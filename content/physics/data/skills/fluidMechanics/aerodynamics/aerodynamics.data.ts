@@ -40,11 +40,18 @@ export const aerodynamics_SkillGroup_Data = defineSkillGroup({
     kk: 'Аэродинамика',
     qm: 'Aerodinamika',
   },
-  skills: [
-    explainAerodynamicLift_Skill_Data,
-    explainTheOriginOfAirResistanceDuringMotion_Skill_Data,
-    predictTheEffectOfShapeOnMotionThroughAir_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainAerodynamicLift: explainAerodynamicLift_Skill_Data,
+      explainTheOriginOfAirResistanceDuringMotion: explainTheOriginOfAirResistanceDuringMotion_Skill_Data,
+      predictTheEffectOfShapeOnMotionThroughAir: predictTheEffectOfShapeOnMotionThroughAir_Skill_Data,
+    },
+    order: [
+      'explainAerodynamicLift',
+      'explainTheOriginOfAirResistanceDuringMotion',
+      'predictTheEffectOfShapeOnMotionThroughAir',
+    ],
+  },
   description: {
     methodological:
       'Air exerts drag on moving bodies; shape and relative speed affect the interaction. Building aircraft or designing hulls are Engineering applications.',

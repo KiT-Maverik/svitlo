@@ -41,14 +41,24 @@ export const mechanics_SkillDomain_Data = defineSkillDomain({
     kk: 'Механика',
     qm: 'Mehanika',
   },
-  groups: [
-    describingMotion_SkillGroup_Data,
-    inertiaAndChangesInMotion_SkillGroup_Data,
-    momentumAndCollisions_SkillGroup_Data,
-    newtonsLaws_SkillGroup_Data,
-    rotationalMotion_SkillGroup_Data,
-    simpleMachines_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      describingMotion: describingMotion_SkillGroup_Data,
+      inertiaAndChangesInMotion: inertiaAndChangesInMotion_SkillGroup_Data,
+      momentumAndCollisions: momentumAndCollisions_SkillGroup_Data,
+      newtonsLaws: newtonsLaws_SkillGroup_Data,
+      rotationalMotion: rotationalMotion_SkillGroup_Data,
+      simpleMachines: simpleMachines_SkillGroup_Data,
+    },
+    order: [
+      'describingMotion',
+      'inertiaAndChangesInMotion',
+      'momentumAndCollisions',
+      'newtonsLaws',
+      'rotationalMotion',
+      'simpleMachines',
+    ],
+  },
   description: {
     methodological:
       "Mechanics describes changes in bodies' positions over time, the inertial properties of motion, and the transmission of mechanical action through simple systems. Basic explanations of types of forces and equilibrium are assigned to the neighboring Domain.",

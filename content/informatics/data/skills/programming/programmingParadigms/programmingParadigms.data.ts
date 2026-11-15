@@ -41,12 +41,20 @@ export const programmingParadigms_SkillGroup_Data = defineSkillGroup({
     kk: 'Бағдарламалау парадигмалары',
     qm: 'Programmalav paradigmaları',
   },
-  skills: [
-    distinguishImperativeAndDeclarativeApproaches_Skill_Data,
-    explainFunctionalProgramming_Skill_Data,
-    explainObjectOrientedProgramming_Skill_Data,
-    explainProceduralProgramming_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishImperativeAndDeclarativeApproaches: distinguishImperativeAndDeclarativeApproaches_Skill_Data,
+      explainFunctionalProgramming: explainFunctionalProgramming_Skill_Data,
+      explainObjectOrientedProgramming: explainObjectOrientedProgramming_Skill_Data,
+      explainProceduralProgramming: explainProceduralProgramming_Skill_Data,
+    },
+    order: [
+      'distinguishImperativeAndDeclarativeApproaches',
+      'explainFunctionalProgramming',
+      'explainObjectOrientedProgramming',
+      'explainProceduralProgramming',
+    ],
+  },
   description: {
     methodological:
       'Compare code organization through stepwise state changes, functional transformation of values, object modeling, and description of desired results. A language may support several paradigms.',

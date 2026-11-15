@@ -41,12 +41,20 @@ export const assemblyAndQuality_SkillGroup_Data = defineSkillGroup({
     kk: 'Құрастыру және сапа',
     qm: 'Cıyuv ve keyfiyet',
   },
-  skills: [
-    diagnoseManufacturingDefects_Skill_Data,
-    interpretManufacturingTolerances_Skill_Data,
-    planAnAssemblySequence_Skill_Data,
-    qualityInspection_Skill_Data,
-  ],
+  skills: {
+    items: {
+      diagnoseManufacturingDefects: diagnoseManufacturingDefects_Skill_Data,
+      interpretManufacturingTolerances: interpretManufacturingTolerances_Skill_Data,
+      planAnAssemblySequence: planAnAssemblySequence_Skill_Data,
+      qualityInspection: qualityInspection_Skill_Data,
+    },
+    order: [
+      'diagnoseManufacturingDefects',
+      'interpretManufacturingTolerances',
+      'planAnAssemblySequence',
+      'qualityInspection',
+    ],
+  },
   description: {
     methodological:
       'Making components separately is insufficient when fits, order of installation or verification are wrong.',

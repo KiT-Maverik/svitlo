@@ -39,12 +39,15 @@ export const digitalSafetyAndResponsibility_SkillDomain_Data = defineSkillDomain
     kk: 'Цифрлық қауіпсіздік және жауапкершілік',
     qm: 'Raqamlı havfsızlıq ve mesuliyet',
   },
-  groups: [
-    accountProtection_SkillGroup_Data,
-    ethicsOfDigitalInteraction_SkillGroup_Data,
-    privacy_SkillGroup_Data,
-    socialAndEnvironmentalImpactOfComputing_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      accountProtection: accountProtection_SkillGroup_Data,
+      ethicsOfDigitalInteraction: ethicsOfDigitalInteraction_SkillGroup_Data,
+      privacy: privacy_SkillGroup_Data,
+      socialAndEnvironmentalImpactOfComputing: socialAndEnvironmentalImpactOfComputing_SkillGroup_Data,
+    },
+    order: ['accountProtection', 'ethicsOfDigitalInteraction', 'privacy', 'socialAndEnvironmentalImpactOfComputing'],
+  },
   description: {
     methodological:
       'Protection of personal information and accounts, respect for others, and the consequences of digital technologies. Designing and testing digital interface UX belongs to a separate Informatics domain.',

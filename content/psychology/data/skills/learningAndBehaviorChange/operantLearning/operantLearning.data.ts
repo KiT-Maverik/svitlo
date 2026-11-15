@@ -43,14 +43,24 @@ export const operantLearning_SkillGroup_Data = defineSkillGroup({
     kk: 'Операнттық үйрену',
     qm: 'Operant ögrenüv',
   },
-  skills: [
-    negativePunishment_Skill_Data,
-    negativeReinforcement_Skill_Data,
-    operantConditioning_Skill_Data,
-    positivePunishment_Skill_Data,
-    positiveReinforcement_Skill_Data,
-    reinforcementSchedules_Skill_Data,
-  ],
+  skills: {
+    items: {
+      negativePunishment: negativePunishment_Skill_Data,
+      negativeReinforcement: negativeReinforcement_Skill_Data,
+      operantConditioning: operantConditioning_Skill_Data,
+      positivePunishment: positivePunishment_Skill_Data,
+      positiveReinforcement: positiveReinforcement_Skill_Data,
+      reinforcementSchedules: reinforcementSchedules_Skill_Data,
+    },
+    order: [
+      'negativePunishment',
+      'negativeReinforcement',
+      'operantConditioning',
+      'positivePunishment',
+      'positiveReinforcement',
+      'reinforcementSchedules',
+    ],
+  },
   description: {
     methodological:
       'Consequences influence the future frequency of actions; functional definitions depend on observed behavioral change rather than whether an outcome seems pleasant.',

@@ -42,13 +42,22 @@ export const pulseAndRhythm_SkillGroup_Data = defineSkillGroup({
     kk: 'Пульс пен ырғақ',
     qm: 'Nabız ve ritim',
   },
-  skills: [
-    interpretMusicalMeter_Skill_Data,
-    maintainASteadyBeat_Skill_Data,
-    performSyncopation_Skill_Data,
-    reproduceARhythmicPattern_Skill_Data,
-    usePolyrhythm_Skill_Data,
-  ],
+  skills: {
+    items: {
+      interpretMusicalMeter: interpretMusicalMeter_Skill_Data,
+      maintainASteadyBeat: maintainASteadyBeat_Skill_Data,
+      performSyncopation: performSyncopation_Skill_Data,
+      reproduceARhythmicPattern: reproduceARhythmicPattern_Skill_Data,
+      usePolyrhythm: usePolyrhythm_Skill_Data,
+    },
+    order: [
+      'interpretMusicalMeter',
+      'maintainASteadyBeat',
+      'performSyncopation',
+      'reproduceARhythmicPattern',
+      'usePolyrhythm',
+    ],
+  },
   description: {
     methodological:
       'A steady temporal reference can coexist with differing performed durations, accents and layered rhythmic cycles.',

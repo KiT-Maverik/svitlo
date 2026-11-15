@@ -36,7 +36,14 @@ export const housingAndRealEstate_SkillGroup_Data = defineSkillGroup({
     kk: 'Тұрғын үй және жылжымайтын мүлік',
     qm: 'Mesken ve taşınmaz mülk',
   },
-  skills: [housingAffordability_Skill_Data, housingMarket_Skill_Data, landUseEconomics_Skill_Data],
+  skills: {
+    items: {
+      housingAffordability: housingAffordability_Skill_Data,
+      housingMarket: housingMarket_Skill_Data,
+      landUseEconomics: landUseEconomics_Skill_Data,
+    },
+    order: ['housingAffordability', 'housingMarket', 'landUseEconomics'],
+  },
   description: {
     methodological:
       'Housing prices and affordability depend on land, construction, income, mortgage finance, local demand, and regulation.',

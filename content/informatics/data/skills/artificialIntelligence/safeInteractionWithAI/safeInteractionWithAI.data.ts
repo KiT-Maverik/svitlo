@@ -41,12 +41,20 @@ export const safeInteractionWithAI_SkillGroup_Data = defineSkillGroup({
     kk: 'ЖИ-мен қауіпсіз әрекеттесу',
     qm: 'Suniy intellektnen havfsız muamele',
   },
-  skills: [
-    explainRisksOfOverrelianceOnAI_Skill_Data,
-    identifyUntrustedInstructionsInAIInput_Skill_Data,
-    protectSecretsWhenUsingAI_Skill_Data,
-    recognizeAISycophancy_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainRisksOfOverrelianceOnAI: explainRisksOfOverrelianceOnAI_Skill_Data,
+      identifyUntrustedInstructionsInAIInput: identifyUntrustedInstructionsInAIInput_Skill_Data,
+      protectSecretsWhenUsingAI: protectSecretsWhenUsingAI_Skill_Data,
+      recognizeAISycophancy: recognizeAISycophancy_Skill_Data,
+    },
+    order: [
+      'explainRisksOfOverrelianceOnAI',
+      'identifyUntrustedInstructionsInAIInput',
+      'protectSecretsWhenUsingAI',
+      'recognizeAISycophancy',
+    ],
+  },
   description: {
     methodological:
       'Recognizing unjustified model confidence, excessive agreement, dependency risks, and the need for continued human judgment.',

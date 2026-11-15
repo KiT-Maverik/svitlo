@@ -6,8 +6,11 @@ export type YamlConfiguratorType =
   | ContentBlock_Type
   | Question_Type
   | Section_Type
-  | 'carouselSlide'
+  | 'quest'
+  | 'questStage'
+  | 'questTask'
   | 'checkpointItem'
+  | 'checkpointAnswer'
   | 'flashcard'
   | 'lesson'
   | 'episode'
@@ -34,8 +37,8 @@ export const yamlFactoryByType = {
   markdown: 'defineMarkdown',
   audio: 'defineAudio',
   subtitles: 'defineSubtitles',
-  carouselSlide: 'defineCarouselSlide',
   checkpointItem: 'defineCheckpointItem',
+  checkpointAnswer: 'defineCheckpointAnswer',
 
   content: 'defineContentSection',
   practice: 'definePracticeSection',
@@ -43,6 +46,9 @@ export const yamlFactoryByType = {
   learningFlow: 'defineLearningFlowSection',
   flashcards: 'defineFlashcardsSection',
   quiz: 'defineQuizSection',
+  quest: 'defineQuestSection',
+  questStage: 'defineStage',
+  questTask: 'defineTask',
 
   selectOneAnswer: 'defineSelectOneAnswer',
   selectMultipleAnswers: 'defineSelectMultipleAnswers',

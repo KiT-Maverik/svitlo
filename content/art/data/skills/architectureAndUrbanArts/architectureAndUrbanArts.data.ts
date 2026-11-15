@@ -39,12 +39,15 @@ export const architectureAndUrbanArts_SkillDomain_Data = defineSkillDomain({
     kk: 'Сәулет және қалалық өнер',
     qm: 'Mimarlıq ve şeer sanatları',
   },
-  groups: [
-    architecturalFormAndStyle_SkillGroup_Data,
-    architecturalSpace_SkillGroup_Data,
-    landscapeAndPublicArt_SkillGroup_Data,
-    urbanComposition_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      architecturalFormAndStyle: architecturalFormAndStyle_SkillGroup_Data,
+      architecturalSpace: architecturalSpace_SkillGroup_Data,
+      landscapeAndPublicArt: landscapeAndPublicArt_SkillGroup_Data,
+      urbanComposition: urbanComposition_SkillGroup_Data,
+    },
+    order: ['architecturalFormAndStyle', 'architecturalSpace', 'landscapeAndPublicArt', 'urbanComposition'],
+  },
   description: {
     methodological:
       'Buildings, streets and public spaces are experienced as artistic spatial compositions and cultural symbols. Structural mechanics, building safety and infrastructure engineering remain elsewhere.',

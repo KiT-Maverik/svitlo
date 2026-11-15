@@ -38,11 +38,14 @@ export const exoplanetarySystems_SkillDomain_Data = defineSkillDomain({
     kk: 'Экзопланеталық жүйелер',
     qm: 'Ekzoseyyare sistemaları',
   },
-  groups: [
-    exoplanetCharacterization_SkillGroup_Data,
-    exoplanetDetection_SkillGroup_Data,
-    systemDiversity_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      exoplanetCharacterization: exoplanetCharacterization_SkillGroup_Data,
+      exoplanetDetection: exoplanetDetection_SkillGroup_Data,
+      systemDiversity: systemDiversity_SkillGroup_Data,
+    },
+    order: ['exoplanetCharacterization', 'exoplanetDetection', 'systemDiversity'],
+  },
   description: {
     methodological:
       'Planetary systems beyond the Sun provide evidence about the diversity of worlds and formation outcomes. Detection, physical inference and habitability are separated to avoid treating an apparent signal as proof of a specific environment.',

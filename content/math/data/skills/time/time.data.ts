@@ -38,7 +38,14 @@ export const time_SkillDomain_Data = defineSkillDomain({
     pl: 'Czas',
     uk: 'Час',
   },
-  groups: [calendar_SkillGroup_Data, clock_SkillGroup_Data, duration_SkillGroup_Data],
+  groups: {
+    items: {
+      calendar: calendar_SkillGroup_Data,
+      clock: clock_SkillGroup_Data,
+      duration: duration_SkillGroup_Data,
+    },
+    order: ['calendar', 'clock', 'duration'],
+  },
   description: {
     methodological:
       'Calendar cycles, ways to represent instants, and calculations of event durations, distinguishing a date, a clock reading, and an elapsed interval.',

@@ -44,15 +44,26 @@ export const programmingConstructs_SkillGroup_Data = defineSkillGroup({
     kk: 'Бағдарламалау конструкциялары',
     qm: 'Programmalav qurulışları',
   },
-  skills: [
-    detectAnInfiniteLoop_Skill_Data,
-    handleAnEvent_Skill_Data,
-    implementALoop_Skill_Data,
-    implementConditionalBehavior_Skill_Data,
-    moveLoopInvariantComputationsOutsideALoop_Skill_Data,
-    orderOverlappingConditionalChecks_Skill_Data,
-    writeASequenceOfCommands_Skill_Data,
-  ],
+  skills: {
+    items: {
+      detectAnInfiniteLoop: detectAnInfiniteLoop_Skill_Data,
+      handleAnEvent: handleAnEvent_Skill_Data,
+      implementALoop: implementALoop_Skill_Data,
+      implementConditionalBehavior: implementConditionalBehavior_Skill_Data,
+      moveLoopInvariantComputationsOutsideALoop: moveLoopInvariantComputationsOutsideALoop_Skill_Data,
+      orderOverlappingConditionalChecks: orderOverlappingConditionalChecks_Skill_Data,
+      writeASequenceOfCommands: writeASequenceOfCommands_Skill_Data,
+    },
+    order: [
+      'detectAnInfiniteLoop',
+      'handleAnEvent',
+      'implementALoop',
+      'implementConditionalBehavior',
+      'moveLoopInvariantComputationsOutsideALoop',
+      'orderOverlappingConditionalChecks',
+      'writeASequenceOfCommands',
+    ],
+  },
   description: {
     methodological:
       'Using executable commands, conditions, loops, and event responses to control a program. Unlike algorithm design, the constructs must be implemented in a particular execution environment.',

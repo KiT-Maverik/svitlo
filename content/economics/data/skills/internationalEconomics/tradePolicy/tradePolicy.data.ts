@@ -36,7 +36,14 @@ export const tradePolicy_SkillGroup_Data = defineSkillGroup({
     kk: 'Сауда саясаты',
     qm: 'Ticaret siyaseti',
   },
-  skills: [importTariffs_Skill_Data, quotasAndNonTariffBarriers_Skill_Data, tradeAgreements_Skill_Data],
+  skills: {
+    items: {
+      importTariffs: importTariffs_Skill_Data,
+      quotasAndNonTariffBarriers: quotasAndNonTariffBarriers_Skill_Data,
+      tradeAgreements: tradeAgreements_Skill_Data,
+    },
+    order: ['importTariffs', 'quotasAndNonTariffBarriers', 'tradeAgreements'],
+  },
   description: {
     methodological:
       'Government barriers and agreements affect prices, competition, revenue, and the interests of different participants.',

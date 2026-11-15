@@ -42,13 +42,22 @@ export const nutritionAndGrowth_SkillGroup_Data = defineSkillGroup({
     kk: 'Қоректену және өсу',
     qm: 'Beslenüv ve ösüv',
   },
-  skills: [
-    explainPlantsNeedForWater_Skill_Data,
-    explainTheRoleOfAir_Skill_Data,
-    explainTheRoleOfLight_Skill_Data,
-    identifyTheRoleOfMineralNutrition_Skill_Data,
-    predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainPlantsNeedForWater: explainPlantsNeedForWater_Skill_Data,
+      explainTheRoleOfAir: explainTheRoleOfAir_Skill_Data,
+      explainTheRoleOfLight: explainTheRoleOfLight_Skill_Data,
+      identifyTheRoleOfMineralNutrition: identifyTheRoleOfMineralNutrition_Skill_Data,
+      predictEffectsOfChangingConditionsOnPlantGrowth: predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data,
+    },
+    order: [
+      'explainPlantsNeedForWater',
+      'explainTheRoleOfAir',
+      'explainTheRoleOfLight',
+      'identifyTheRoleOfMineralNutrition',
+      'predictEffectsOfChangingConditionsOnPlantGrowth',
+    ],
+  },
   description: {
     methodological:
       'Water, light, atmospheric gases, and minerals play different roles; deviations in environmental conditions change the rate and pattern of plant development.',

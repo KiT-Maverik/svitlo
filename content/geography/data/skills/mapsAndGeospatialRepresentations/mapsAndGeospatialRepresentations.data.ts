@@ -40,13 +40,22 @@ export const mapsAndGeospatialRepresentations_SkillDomain_Data = defineSkillDoma
     kk: 'Карталар мен геокеңістіктік бейнелеулер',
     qm: 'Haritalar ve coğrafiy mekân tasvirleri',
   },
-  groups: [
-    geographicCoordinates_SkillGroup_Data,
-    geospatialTechnologies_SkillGroup_Data,
-    globesMapsAndProjection_SkillGroup_Data,
-    mapDesignAndConventions_SkillGroup_Data,
-    mapTypesAndThematicLayers_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      geographicCoordinates: geographicCoordinates_SkillGroup_Data,
+      geospatialTechnologies: geospatialTechnologies_SkillGroup_Data,
+      globesMapsAndProjection: globesMapsAndProjection_SkillGroup_Data,
+      mapDesignAndConventions: mapDesignAndConventions_SkillGroup_Data,
+      mapTypesAndThematicLayers: mapTypesAndThematicLayers_SkillGroup_Data,
+    },
+    order: [
+      'geographicCoordinates',
+      'geospatialTechnologies',
+      'globesMapsAndProjection',
+      'mapDesignAndConventions',
+      'mapTypesAndThematicLayers',
+    ],
+  },
   description: {
     methodological:
       'Geographic representations convey selected positions, attributes and relationships through maps, globes, sketches, coordinates, imagery and spatial data. Competence includes interpretation and purposeful creation while acknowledging selection, measurement, projection and source limitations.',

@@ -42,13 +42,22 @@ export const opticalDevices_SkillGroup_Data = defineSkillGroup({
     kk: 'Оптикалық құрылғылар',
     qm: 'Optik cihazlar',
   },
-  skills: [
-    cameraHardware_Skill_Data,
-    fiberOpticCommunicationSystems_Skill_Data,
-    identifyLaserDeviceHazards_Skill_Data,
-    laserDeviceArchitecture_Skill_Data,
-    opticalComponentSuitability_Skill_Data,
-  ],
+  skills: {
+    items: {
+      cameraHardware: cameraHardware_Skill_Data,
+      fiberOpticCommunicationSystems: fiberOpticCommunicationSystems_Skill_Data,
+      identifyLaserDeviceHazards: identifyLaserDeviceHazards_Skill_Data,
+      laserDeviceArchitecture: laserDeviceArchitecture_Skill_Data,
+      opticalComponentSuitability: opticalComponentSuitability_Skill_Data,
+    },
+    order: [
+      'cameraHardware',
+      'fiberOpticCommunicationSystems',
+      'identifyLaserDeviceHazards',
+      'laserDeviceArchitecture',
+      'opticalComponentSuitability',
+    ],
+  },
   description: {
     methodological:
       'Optical components manipulate or detect light for imaging, sensing and transmission; lasers require particular source and exposure precautions.',

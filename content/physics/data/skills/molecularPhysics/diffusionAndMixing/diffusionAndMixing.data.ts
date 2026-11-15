@@ -36,7 +36,12 @@ export const diffusionAndMixing_SkillGroup_Data = defineSkillGroup({
     ka: 'დიფუზია და შერევა',
     kk: 'Диффузия және араласу',
   },
-  skills: [explainDiffusion_Skill_Data],
+  skills: {
+    items: {
+      explainDiffusion: explainDiffusion_Skill_Data,
+    },
+    order: ['explainDiffusion'],
+  },
   description: {
     methodological: 'Random thermal motion can cause particles to spread gradually without deliberate stirring.',
     frontend: {

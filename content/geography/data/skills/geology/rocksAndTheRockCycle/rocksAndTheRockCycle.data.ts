@@ -43,14 +43,24 @@ export const rocksAndTheRockCycle_SkillGroup_Data = defineSkillGroup({
     kk: 'Тау жыныстары және олардың айналымы',
     qm: 'Qayalar ve qaya devri',
   },
-  skills: [
-    classifyRocksByTheirModeOfOrigin_Skill_Data,
-    distinguishARockFromAMineral_Skill_Data,
-    explainTheFormationOfIgneousRocks_Skill_Data,
-    explainTheFormationOfMetamorphicRocks_Skill_Data,
-    explainTheFormationOfSedimentaryRocks_Skill_Data,
-    traceAPathwayThroughTheRockCycle_Skill_Data,
-  ],
+  skills: {
+    items: {
+      classifyRocksByTheirModeOfOrigin: classifyRocksByTheirModeOfOrigin_Skill_Data,
+      distinguishARockFromAMineral: distinguishARockFromAMineral_Skill_Data,
+      explainTheFormationOfIgneousRocks: explainTheFormationOfIgneousRocks_Skill_Data,
+      explainTheFormationOfMetamorphicRocks: explainTheFormationOfMetamorphicRocks_Skill_Data,
+      explainTheFormationOfSedimentaryRocks: explainTheFormationOfSedimentaryRocks_Skill_Data,
+      traceAPathwayThroughTheRockCycle: traceAPathwayThroughTheRockCycle_Skill_Data,
+    },
+    order: [
+      'classifyRocksByTheirModeOfOrigin',
+      'distinguishARockFromAMineral',
+      'explainTheFormationOfIgneousRocks',
+      'explainTheFormationOfMetamorphicRocks',
+      'explainTheFormationOfSedimentaryRocks',
+      'traceAPathwayThroughTheRockCycle',
+    ],
+  },
   description: {
     methodological:
       'Consolidated natural materials record formation through magma cooling, deposition and lithification, or alteration in the solid state. Classifications concern how a rock formed, and the rock cycle describes multiple possible paths between types rather than a mandatory fixed sequence.',

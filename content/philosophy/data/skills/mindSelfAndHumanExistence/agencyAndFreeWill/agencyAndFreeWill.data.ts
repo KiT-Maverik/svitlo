@@ -42,13 +42,22 @@ export const agencyAndFreeWill_SkillGroup_Data = defineSkillGroup({
     kk: 'Әрекет ету қабілеті және ерік бостандығы',
     qm: 'Areket etüv qabiliyeti ve serbest irade',
   },
-  skills: [
-    compareCompatibilistAndIncompatibilistFreedom_Skill_Data,
-    compareDeterminismAndIndeterminism_Skill_Data,
-    distinguishAnActionFromAnEvent_Skill_Data,
-    distinguishReasonsForActionFromCausesOfBehavior_Skill_Data,
-    evaluateConditionsOfMoralResponsibility_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareCompatibilistAndIncompatibilistFreedom: compareCompatibilistAndIncompatibilistFreedom_Skill_Data,
+      compareDeterminismAndIndeterminism: compareDeterminismAndIndeterminism_Skill_Data,
+      distinguishAnActionFromAnEvent: distinguishAnActionFromAnEvent_Skill_Data,
+      distinguishReasonsForActionFromCausesOfBehavior: distinguishReasonsForActionFromCausesOfBehavior_Skill_Data,
+      evaluateConditionsOfMoralResponsibility: evaluateConditionsOfMoralResponsibility_Skill_Data,
+    },
+    order: [
+      'compareCompatibilistAndIncompatibilistFreedom',
+      'compareDeterminismAndIndeterminism',
+      'distinguishAnActionFromAnEvent',
+      'distinguishReasonsForActionFromCausesOfBehavior',
+      'evaluateConditionsOfMoralResponsibility',
+    ],
+  },
   description: {
     methodological:
       'Acting for reasons, selecting among alternatives, and being accountable are connected but separable philosophical ideas.',

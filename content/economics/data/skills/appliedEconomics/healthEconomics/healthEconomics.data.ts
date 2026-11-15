@@ -40,11 +40,14 @@ export const healthEconomics_SkillGroup_Data = defineSkillGroup({
     kk: 'Денсаулық сақтау экономикасы',
     qm: 'Sağlıq iqtisadı',
   },
-  skills: [
-    healthcareFinancing_Skill_Data,
-    healthcareServiceMarkets_Skill_Data,
-    healthInsuranceAndMoralHazard_Skill_Data,
-  ],
+  skills: {
+    items: {
+      healthcareFinancing: healthcareFinancing_Skill_Data,
+      healthcareServiceMarkets: healthcareServiceMarkets_Skill_Data,
+      healthInsuranceAndMoralHazard: healthInsuranceAndMoralHazard_Skill_Data,
+    },
+    order: ['healthcareFinancing', 'healthcareServiceMarkets', 'healthInsuranceAndMoralHazard'],
+  },
   description: {
     methodological:
       'Healthcare markets involve substantial information asymmetry, insurance arrangements, and external effects of population health.',

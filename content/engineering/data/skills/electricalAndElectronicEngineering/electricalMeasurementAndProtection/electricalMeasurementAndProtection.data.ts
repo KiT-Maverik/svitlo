@@ -42,13 +42,22 @@ export const electricalMeasurementAndProtection_SkillGroup_Data = defineSkillGro
     kk: 'Электрлік өлшеу және қорғаныс',
     qm: 'Elektrik ölçüv ve qorçalav',
   },
-  skills: [
-    electricalIsolation_Skill_Data,
-    measureCircuitCurrent_Skill_Data,
-    measureCircuitVoltage_Skill_Data,
-    overcurrentProtection_Skill_Data,
-    protectiveGrounding_Skill_Data,
-  ],
+  skills: {
+    items: {
+      electricalIsolation: electricalIsolation_Skill_Data,
+      measureCircuitCurrent: measureCircuitCurrent_Skill_Data,
+      measureCircuitVoltage: measureCircuitVoltage_Skill_Data,
+      overcurrentProtection: overcurrentProtection_Skill_Data,
+      protectiveGrounding: protectiveGrounding_Skill_Data,
+    },
+    order: [
+      'electricalIsolation',
+      'measureCircuitCurrent',
+      'measureCircuitVoltage',
+      'overcurrentProtection',
+      'protectiveGrounding',
+    ],
+  },
   description: {
     methodological:
       'Measurements must be connected correctly, while protective devices prevent harmful operating conditions rather than simply switching equipment normally.',

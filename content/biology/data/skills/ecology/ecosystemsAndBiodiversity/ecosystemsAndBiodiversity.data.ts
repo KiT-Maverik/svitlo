@@ -44,15 +44,26 @@ export const ecosystemsAndBiodiversity_SkillGroup_Data = defineSkillGroup({
     ka: 'ეკოსისტემები და ბიომრავალფეროვნება',
     kk: 'Экожүйелер мен биоалуантүрлілік',
   },
-  skills: [
-    distinguishAnOrganismPopulationAndCommunity_Skill_Data,
-    explainMatterCyclingInEcosystems_Skill_Data,
-    explainTheImportanceOfBiodiversity_Skill_Data,
-    explainTheInterdependenceOfEcosystemComponents_Skill_Data,
-    identifyThreatsToLocalSpecies_Skill_Data,
-    justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data,
-    recognizeNaturalCommunitiesOfUkraine_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAnOrganismPopulationAndCommunity: distinguishAnOrganismPopulationAndCommunity_Skill_Data,
+      explainMatterCyclingInEcosystems: explainMatterCyclingInEcosystems_Skill_Data,
+      explainTheImportanceOfBiodiversity: explainTheImportanceOfBiodiversity_Skill_Data,
+      explainTheInterdependenceOfEcosystemComponents: explainTheInterdependenceOfEcosystemComponents_Skill_Data,
+      identifyThreatsToLocalSpecies: identifyThreatsToLocalSpecies_Skill_Data,
+      justifyProtectionOfSpeciesListedInRedDataBooks: justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data,
+      recognizeNaturalCommunitiesOfUkraine: recognizeNaturalCommunitiesOfUkraine_Skill_Data,
+    },
+    order: [
+      'distinguishAnOrganismPopulationAndCommunity',
+      'explainMatterCyclingInEcosystems',
+      'explainTheImportanceOfBiodiversity',
+      'explainTheInterdependenceOfEcosystemComponents',
+      'identifyThreatsToLocalSpecies',
+      'justifyProtectionOfSpeciesListedInRedDataBooks',
+      'recognizeNaturalCommunitiesOfUkraine',
+    ],
+  },
   description: {
     methodological:
       'Individual organisms, populations, and communities interact with one another and with nonliving factors. Changes in species composition or resource availability can have indirect consequences for an entire ecosystem, making these relationships and the role of biodiversity important to understand.',

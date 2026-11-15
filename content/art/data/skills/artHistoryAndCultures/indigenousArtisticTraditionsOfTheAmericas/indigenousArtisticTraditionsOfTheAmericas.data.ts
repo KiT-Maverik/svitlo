@@ -40,11 +40,14 @@ export const indigenousArtisticTraditionsOfTheAmericas_SkillGroup_Data = defineS
     kk: 'Америка байырғы халықтарының көркемдік дәстүрлері',
     qm: 'Amerika yerli halklarınıñ sanat adetleri',
   },
-  skills: [
-    analyzeAndeanWeavingTraditions_Skill_Data,
-    analyzeClassicMayaReliefSculpture_Skill_Data,
-    analyzeHaidaFormlineArt_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeAndeanWeavingTraditions: analyzeAndeanWeavingTraditions_Skill_Data,
+      analyzeClassicMayaReliefSculpture: analyzeClassicMayaReliefSculpture_Skill_Data,
+      analyzeHaidaFormlineArt: analyzeHaidaFormlineArt_Skill_Data,
+    },
+    order: ['analyzeAndeanWeavingTraditions', 'analyzeClassicMayaReliefSculpture', 'analyzeHaidaFormlineArt'],
+  },
   description: {
     methodological:
       "Works are understood within named peoples' histories and living cultural continuities, with attention to provenance and the limits of outsider interpretation.",

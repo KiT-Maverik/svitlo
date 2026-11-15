@@ -42,13 +42,22 @@ export const sensoryDetection_SkillGroup_Data = defineSkillGroup({
     kk: 'Сезімдік анықтау',
     qm: 'Duyğu işaretini sezmek',
   },
-  skills: [
-    detectionThresholds_Skill_Data,
-    differenceThresholds_Skill_Data,
-    sensationVersusPerception_Skill_Data,
-    sensoryAdaptation_Skill_Data,
-    sensoryTransduction_Skill_Data,
-  ],
+  skills: {
+    items: {
+      detectionThresholds: detectionThresholds_Skill_Data,
+      differenceThresholds: differenceThresholds_Skill_Data,
+      sensationVersusPerception: sensationVersusPerception_Skill_Data,
+      sensoryAdaptation: sensoryAdaptation_Skill_Data,
+      sensoryTransduction: sensoryTransduction_Skill_Data,
+    },
+    order: [
+      'detectionThresholds',
+      'differenceThresholds',
+      'sensationVersusPerception',
+      'sensoryAdaptation',
+      'sensoryTransduction',
+    ],
+  },
   description: {
     methodological:
       'Sensitivity depends on stimulus intensity, adaptation, and detection conditions rather than a perfectly fixed threshold.',

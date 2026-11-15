@@ -42,12 +42,15 @@ export const appliedGraphics_SkillGroup_Data = defineSkillGroup({
     kk: 'Қолданбалы графика',
     qm: 'Tatbiqiy grafika',
   },
-  skills: [
-    checkVisualAccessibility_Skill_Data,
-    designAnEditorialSpread_Skill_Data,
-    designAPictogramFamily_Skill_Data,
-    designPackagingGraphics_Skill_Data,
-  ],
+  skills: {
+    items: {
+      checkVisualAccessibility: checkVisualAccessibility_Skill_Data,
+      designAnEditorialSpread: designAnEditorialSpread_Skill_Data,
+      designAPictogramFamily: designAPictogramFamily_Skill_Data,
+      designPackagingGraphics: designPackagingGraphics_Skill_Data,
+    },
+    order: ['checkVisualAccessibility', 'designAnEditorialSpread', 'designAPictogramFamily', 'designPackagingGraphics'],
+  },
   description: {
     methodological:
       'Packaging, editorial designs and pictograms require visual decisions constrained by surfaces or public information.',

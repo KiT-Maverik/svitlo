@@ -40,11 +40,14 @@ export const ukrainianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
     kk: 'Украинаның өнер дәстүрлері',
     qm: 'Ukraina sanat adetleri',
   },
-  skills: [
-    analyzeBoychukism_Skill_Data,
-    analyzePetrykivkaDecorativePainting_Skill_Data,
-    analyzeUkrainianBaroqueIconPainting_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeBoychukism: analyzeBoychukism_Skill_Data,
+      analyzePetrykivkaDecorativePainting: analyzePetrykivkaDecorativePainting_Skill_Data,
+      analyzeUkrainianBaroqueIconPainting: analyzeUkrainianBaroqueIconPainting_Skill_Data,
+    },
+    order: ['analyzeBoychukism', 'analyzePetrykivkaDecorativePainting', 'analyzeUkrainianBaroqueIconPainting'],
+  },
   description: {
     methodological:
       'These practices distinguish decorative folk art, historical religious painting and a twentieth-century monumental-art movement while acknowledging their exchanges and transformations.',

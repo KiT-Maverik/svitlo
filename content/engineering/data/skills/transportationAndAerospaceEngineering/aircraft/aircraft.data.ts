@@ -41,12 +41,20 @@ export const aircraft_SkillGroup_Data = defineSkillGroup({
     kk: 'Әуе кемелері',
     qm: 'Ava gemileri',
   },
-  skills: [
-    compareAircraftPropulsionTechnologies_Skill_Data,
-    fixedWingAircraftArchitecture_Skill_Data,
-    flightControlSurfaces_Skill_Data,
-    rotorcraftControl_Skill_Data,
-  ],
+  skills: {
+    items: {
+      compareAircraftPropulsionTechnologies: compareAircraftPropulsionTechnologies_Skill_Data,
+      fixedWingAircraftArchitecture: fixedWingAircraftArchitecture_Skill_Data,
+      flightControlSurfaces: flightControlSurfaces_Skill_Data,
+      rotorcraftControl: rotorcraftControl_Skill_Data,
+    },
+    order: [
+      'compareAircraftPropulsionTechnologies',
+      'fixedWingAircraftArchitecture',
+      'flightControlSurfaces',
+      'rotorcraftControl',
+    ],
+  },
   description: {
     methodological:
       'Aircraft incorporate propulsion, lifting surfaces, stabilization and control; different layouts solve different flight missions.',

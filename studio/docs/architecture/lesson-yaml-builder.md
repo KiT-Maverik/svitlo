@@ -10,13 +10,20 @@
 The Engine-owned `shared/engine/scripts/lessonBuilder/lessonBuilder.mjs`
 selects `define*` factories through
 `shared/engine/configurators/yaml/yamlFactoryByType.ts`, unwraps only
-`config`, and mechanically emits a named `<slug>.data.ts` draft.
+`config`, and mechanically emits an `index.ts` Lesson draft, a typed
+`constants.ts` language tuple, and recursively nested `sections/`,
+`flashcards/`, and `questions/` module trees. Source-relative content is
+organized by slug; role-specific subfolders are retained where distinct
+Quest/Question/Flashcard roles would otherwise collide. See the
+[Stage 1 layout contract](./lesson-generated-source-layout.md).
 
 `production` is a **separate typed authoring concern inside the same YAML
-file**. Its source language and production specifications may create
-UUID-addressed `specification.md` files for Scenes/media, plus a
-`methodology.md` handoff when explicitly supplied. The Scene itself,
-image/audio/video files, and translations are **not generated**.
+file**. Lesson Scene/media production specifications create colocated
+`specification.md` files beside their module `index.ts` and may create a
+Lesson-level `methodology.md` when supplied. The Scene implementation,
+image/audio/video binaries and translations are **not generated**. Course
+scaffolding retains UUID-addressed specification handoffs. The separate registered Scene
+implementation remains UUID-addressed under the textbook's `scenes/`.
 One identity comes from each node's `config.id`; no `sceneSpecKey`.
 
 The technical `config.yaml` is created from independently reviewed
@@ -40,6 +47,28 @@ None of these is executed by the draft scaffolder as validation.
 `config.params.languages` retains the intended publication locales.
 Other language values are not fabricated.
 
+## Stage 2 source-module behavior
+
+Generated TypeScript uses valid unquoted object keys, shorthand collection
+properties, factory-specific generic arguments, and types derived from the
+Lesson's immutable YAML language tuple. Skill UUIDs are resolved to actual
+textbook Skill imports, never replaced with invented symbols. Unresolved or
+duplicate Skill references are reported rather than silently serialized as
+authoritative source references.
+
+The Props publisher supports the root `index.ts` entrypoint, and the
+textbook build must recognize that entrypoint independently of the existing
+`*.data.ts` convention. Do not mix both entrypoint styles inside one
+UUID directory. Stage 4 changes Lesson Scene/media specification handoffs to the colocated
+slug modules. It does **not** change Scene implementation IDs or create
+real binary assets.
+
+## Stage 3 file-backed Markdown/Code
+
+The draft builder now extracts _authored source content_ from Markdown `locale.value` into `text.md` (invariant scalar) or `locale/<documentLanguage>.md` (localized map). Code `params.codeAsText` is written exactly to `code.<extension>` using a known language-to-extension mapping. It emits pathless build-time reading bindings in the corresponding `defineMarkdown` or `defineCode` module and never embeds finished copy as a second literal.
+
+The builder **does not transform a `production.specification` description into learner-facing Markdown or Code**, and does not create such specifications for ordinary Text, Markdown or Code. An editor/Screenwriter must provide real source-language learning text in the technical YAML before scaffolding; draft-only absent content is left incomplete. Exact source bytes are checked read-only and never overwritten during generation. File paths do not enter runtime JSON.
+
 ## TypeScript failure is intentional
 
 If a Lesson contains explicit pending media `null` values, untranslated
@@ -56,7 +85,7 @@ convenience, **not an acceptance or completion gate**.
 ## Creation-only write policy
 
 `generate` skips the Lesson before parsing YAML when its destination UUID
-directory contains any `*.data.ts`. New drafts and requested handoff Markdown
+directory contains any `*.data.ts` or a root `index.ts`. New drafts and requested handoff Markdown
 are created without overwriting unrelated or edited files; `check` is
 read-only and strict. Unsafe symlink paths remain rejected.
 

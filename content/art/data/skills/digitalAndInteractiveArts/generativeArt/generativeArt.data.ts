@@ -41,12 +41,20 @@ export const generativeArt_SkillGroup_Data = defineSkillGroup({
     kk: 'Генеративті өнер',
     qm: 'Yaratıcı algoritm sanat',
   },
-  skills: [
-    analyzeGenerativeAuthorship_Skill_Data,
-    createGenerativeVisualRules_Skill_Data,
-    curateGenerativeOutputs_Skill_Data,
-    useArtisticRandomness_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeGenerativeAuthorship: analyzeGenerativeAuthorship_Skill_Data,
+      createGenerativeVisualRules: createGenerativeVisualRules_Skill_Data,
+      curateGenerativeOutputs: curateGenerativeOutputs_Skill_Data,
+      useArtisticRandomness: useArtisticRandomness_Skill_Data,
+    },
+    order: [
+      'analyzeGenerativeAuthorship',
+      'createGenerativeVisualRules',
+      'curateGenerativeOutputs',
+      'useArtisticRandomness',
+    ],
+  },
   description: {
     methodological:
       'Constraints, transformations and automated variation offer materials that still require deliberate artistic decisions.',

@@ -62,6 +62,7 @@ Config nodes.
   is removed before `defineCourse`.
 - `production.methodology` may create a new `methodology.md` in the Course
   UUID folder, with no overwrite of a pre-existing independent document.
+- Course-owned Episode Sections may contain Quest (`type: quest`) with named `stages` and `tasks` maps (each with a mandatory `start`), Stage media configurators (medium/small video, three nullable audio tracks, Image and Subtitles), and Task Scene configurators. These become nested `defineQuestSection`/`defineStage`/`defineTask` draft calls, **not** a playable/publishable Quest player.
 - Scene and media specifications in nested Episode/Section/ContentBlock
   nodes use their own Config IDs for deterministic specification paths.
 - Existing `type: lesson` Course children refer to **standalone Lessons**.

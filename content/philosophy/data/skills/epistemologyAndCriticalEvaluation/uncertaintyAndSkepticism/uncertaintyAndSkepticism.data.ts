@@ -41,12 +41,20 @@ export const uncertaintyAndSkepticism_SkillGroup_Data = defineSkillGroup({
     kk: 'Белгісіздік және скептицизм',
     qm: 'Belgisizlik ve şübecilik',
   },
-  skills: [
-    calibrateConfidenceToEvidence_Skill_Data,
-    evaluateASkepticalChallenge_Skill_Data,
-    identifyADisagreementAboutEvidenceStandards_Skill_Data,
-    recognizeTheLimitsOfPersonalKnowledge_Skill_Data,
-  ],
+  skills: {
+    items: {
+      calibrateConfidenceToEvidence: calibrateConfidenceToEvidence_Skill_Data,
+      evaluateASkepticalChallenge: evaluateASkepticalChallenge_Skill_Data,
+      identifyADisagreementAboutEvidenceStandards: identifyADisagreementAboutEvidenceStandards_Skill_Data,
+      recognizeTheLimitsOfPersonalKnowledge: recognizeTheLimitsOfPersonalKnowledge_Skill_Data,
+    },
+    order: [
+      'calibrateConfidenceToEvidence',
+      'evaluateASkepticalChallenge',
+      'identifyADisagreementAboutEvidenceStandards',
+      'recognizeTheLimitsOfPersonalKnowledge',
+    ],
+  },
   description: {
     methodological:
       'Rational inquiry must accommodate incomplete evidence and the possibility of error without collapsing into indiscriminate doubt.',

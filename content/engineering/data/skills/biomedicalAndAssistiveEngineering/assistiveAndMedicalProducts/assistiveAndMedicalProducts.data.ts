@@ -40,11 +40,14 @@ export const assistiveAndMedicalProducts_SkillGroup_Data = defineSkillGroup({
     kk: 'Көмекші және медициналық бұйымдар',
     qm: 'Yardımcı ve tıbbiy mahsulatlar',
   },
-  skills: [
-    evaluateMedicalDeviceDesignConstraints_Skill_Data,
-    hearingAssistanceDevices_Skill_Data,
-    prostheticDeviceFunctions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      evaluateMedicalDeviceDesignConstraints: evaluateMedicalDeviceDesignConstraints_Skill_Data,
+      hearingAssistanceDevices: hearingAssistanceDevices_Skill_Data,
+      prostheticDeviceFunctions: prostheticDeviceFunctions_Skill_Data,
+    },
+    order: ['evaluateMedicalDeviceDesignConstraints', 'hearingAssistanceDevices', 'prostheticDeviceFunctions'],
+  },
   description: {
     methodological:
       'Devices that contact or support human bodies require function, fit and safety considerations beyond an ordinary consumer gadget.',

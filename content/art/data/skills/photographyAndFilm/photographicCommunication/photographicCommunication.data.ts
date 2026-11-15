@@ -42,12 +42,20 @@ export const photographicCommunication_SkillGroup_Data = defineSkillGroup({
     kk: 'Фотографиялық коммуникация',
     qm: 'Fotoğrafla iletişim',
   },
-  skills: [
-    createAPhotographicPortrait_Skill_Data,
-    createAPhotographicSeries_Skill_Data,
-    distinguishDocumentaryAndStagedPhotography_Skill_Data,
-    editPhotographyExpressively_Skill_Data,
-  ],
+  skills: {
+    items: {
+      createAPhotographicPortrait: createAPhotographicPortrait_Skill_Data,
+      createAPhotographicSeries: createAPhotographicSeries_Skill_Data,
+      distinguishDocumentaryAndStagedPhotography: distinguishDocumentaryAndStagedPhotography_Skill_Data,
+      editPhotographyExpressively: editPhotographyExpressively_Skill_Data,
+    },
+    order: [
+      'createAPhotographicPortrait',
+      'createAPhotographicSeries',
+      'distinguishDocumentaryAndStagedPhotography',
+      'editPhotographyExpressively',
+    ],
+  },
   description: {
     methodological:
       'A photograph may document, stage or sequence an event, making truthfulness and narrative intention distinct considerations.',

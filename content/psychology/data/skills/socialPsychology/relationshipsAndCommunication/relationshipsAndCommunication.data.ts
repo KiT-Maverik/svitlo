@@ -44,15 +44,26 @@ export const relationshipsAndCommunication_SkillGroup_Data = defineSkillGroup({
     kk: 'Қарым-қатынас және байланыс',
     qm: 'Munasebetler ve haberleşüv',
   },
-  skills: [
-    activeListening_Skill_Data,
-    attachmentInRelationships_Skill_Data,
-    interpersonalConflict_Skill_Data,
-    nonverbalCommunication_Skill_Data,
-    personalBoundaries_Skill_Data,
-    relationshipRepair_Skill_Data,
-    voluntaryConsent_Skill_Data,
-  ],
+  skills: {
+    items: {
+      activeListening: activeListening_Skill_Data,
+      attachmentInRelationships: attachmentInRelationships_Skill_Data,
+      interpersonalConflict: interpersonalConflict_Skill_Data,
+      nonverbalCommunication: nonverbalCommunication_Skill_Data,
+      personalBoundaries: personalBoundaries_Skill_Data,
+      relationshipRepair: relationshipRepair_Skill_Data,
+      voluntaryConsent: voluntaryConsent_Skill_Data,
+    },
+    order: [
+      'activeListening',
+      'attachmentInRelationships',
+      'interpersonalConflict',
+      'nonverbalCommunication',
+      'personalBoundaries',
+      'relationshipRepair',
+      'voluntaryConsent',
+    ],
+  },
   description: {
     methodological:
       "Relationships develop through mutual interpretation, reciprocal actions, boundaries, and social context rather than perfect reading of another's intentions.",

@@ -41,12 +41,15 @@ export const timeAndPeriodization_SkillGroup_Data = defineSkillGroup({
     kk: 'Уақыт пен кезеңдеу',
     qm: 'Vaqıt ve devirlerge bölüv',
   },
-  skills: [
-    bceAndCeDating_Skill_Data,
-    historicalChronology_Skill_Data,
-    historicalPeriodization_Skill_Data,
-    synchronizingCivilizations_Skill_Data,
-  ],
+  skills: {
+    items: {
+      bceAndCeDating: bceAndCeDating_Skill_Data,
+      historicalChronology: historicalChronology_Skill_Data,
+      historicalPeriodization: historicalPeriodization_Skill_Data,
+      synchronizingCivilizations: synchronizingCivilizations_Skill_Data,
+    },
+    order: ['bceAndCeDating', 'historicalChronology', 'historicalPeriodization', 'synchronizingCivilizations'],
+  },
   description: {
     methodological:
       'Historical time uses relative and absolute dating; period boundaries are analytical conventions, not universal natural transitions occurring everywhere simultaneously.',

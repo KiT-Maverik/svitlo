@@ -42,13 +42,22 @@ export const aestheticPerception_SkillGroup_Data = defineSkillGroup({
     kk: 'Эстетикалық қабылдау',
     qm: 'Estetik idrak',
   },
-  skills: [
-    analyzePerceptualAmbiguity_Skill_Data,
-    compareAestheticCriteria_Skill_Data,
-    describeAnAestheticExperience_Skill_Data,
-    distinguishBeautyAndArtisticValue_Skill_Data,
-    relateContrastToAttention_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzePerceptualAmbiguity: analyzePerceptualAmbiguity_Skill_Data,
+      compareAestheticCriteria: compareAestheticCriteria_Skill_Data,
+      describeAnAestheticExperience: describeAnAestheticExperience_Skill_Data,
+      distinguishBeautyAndArtisticValue: distinguishBeautyAndArtisticValue_Skill_Data,
+      relateContrastToAttention: relateContrastToAttention_Skill_Data,
+    },
+    order: [
+      'analyzePerceptualAmbiguity',
+      'compareAestheticCriteria',
+      'describeAnAestheticExperience',
+      'distinguishBeautyAndArtisticValue',
+      'relateContrastToAttention',
+    ],
+  },
   description: {
     methodological:
       'Responses to art involve attentive perception, prior expectations and variable values without establishing universal audience reactions.',

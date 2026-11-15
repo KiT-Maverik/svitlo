@@ -40,7 +40,14 @@ export const northAmericaBeyondMesoamerica_SkillGroup_Data = defineSkillGroup({
     kk: 'Мезоамерикадан тыс Солтүстік Америка',
     qm: 'Mezoamerika tışındaki Şimaliy Amerika',
   },
-  skills: [adenaAndHopewellTraditions_Skill_Data, ancientSouthwesternNorthAmerica_Skill_Data, povertyPoint_Skill_Data],
+  skills: {
+    items: {
+      adenaAndHopewellTraditions: adenaAndHopewellTraditions_Skill_Data,
+      ancientSouthwesternNorthAmerica: ancientSouthwesternNorthAmerica_Skill_Data,
+      povertyPoint: povertyPoint_Skill_Data,
+    },
+    order: ['adenaAndHopewellTraditions', 'ancientSouthwesternNorthAmerica', 'povertyPoint'],
+  },
   description: {
     methodological:
       'River basins and arid regions had independent exchange networks, ritual spaces, and collective works.',

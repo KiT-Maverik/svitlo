@@ -44,15 +44,26 @@ export const heuristicsAndBiases_SkillGroup_Data = defineSkillGroup({
     kk: 'Эвристикалар және когнитивтік бұрмалаулар',
     qm: 'Evristikalar ve taraflılıq',
   },
-  skills: [
-    anchoringBias_Skill_Data,
-    availabilityHeuristic_Skill_Data,
-    confirmationBias_Skill_Data,
-    framingEffects_Skill_Data,
-    fundamentalAttributionError_Skill_Data,
-    hindsightBias_Skill_Data,
-    representativenessHeuristic_Skill_Data,
-  ],
+  skills: {
+    items: {
+      anchoringBias: anchoringBias_Skill_Data,
+      availabilityHeuristic: availabilityHeuristic_Skill_Data,
+      confirmationBias: confirmationBias_Skill_Data,
+      framingEffects: framingEffects_Skill_Data,
+      fundamentalAttributionError: fundamentalAttributionError_Skill_Data,
+      hindsightBias: hindsightBias_Skill_Data,
+      representativenessHeuristic: representativenessHeuristic_Skill_Data,
+    },
+    order: [
+      'anchoringBias',
+      'availabilityHeuristic',
+      'confirmationBias',
+      'framingEffects',
+      'fundamentalAttributionError',
+      'hindsightBias',
+      'representativenessHeuristic',
+    ],
+  },
   description: {
     methodological:
       'Fast judgments exploit convenient cues but may be systematically distorted by memory, presentation, or expectations.',

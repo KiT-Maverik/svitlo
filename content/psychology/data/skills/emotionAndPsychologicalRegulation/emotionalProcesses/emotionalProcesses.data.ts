@@ -42,13 +42,16 @@ export const emotionalProcesses_SkillGroup_Data = defineSkillGroup({
     kk: 'Эмоциялық үдерістер',
     qm: 'Duyğu adiseleri',
   },
-  skills: [
-    emotionalAppraisal_Skill_Data,
-    emotionFunctions_Skill_Data,
-    emotionTheories_Skill_Data,
-    moodAndEmotion_Skill_Data,
-    physiologyOfEmotion_Skill_Data,
-  ],
+  skills: {
+    items: {
+      emotionalAppraisal: emotionalAppraisal_Skill_Data,
+      emotionFunctions: emotionFunctions_Skill_Data,
+      emotionTheories: emotionTheories_Skill_Data,
+      moodAndEmotion: moodAndEmotion_Skill_Data,
+      physiologyOfEmotion: physiologyOfEmotion_Skill_Data,
+    },
+    order: ['emotionalAppraisal', 'emotionFunctions', 'emotionTheories', 'moodAndEmotion', 'physiologyOfEmotion'],
+  },
   description: {
     methodological:
       'Emotions emerge from interpretations, physiological changes, and situational information that interact in complex ways.',

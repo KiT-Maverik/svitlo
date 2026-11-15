@@ -41,12 +41,15 @@ export const northernBlackSeaRegion_SkillGroup_Data = defineSkillGroup({
     kk: 'Қара теңіздің солтүстік өңірі',
     qm: 'Qara Deñizniñ şimaliy bölgeleri',
   },
-  skills: [
-    earlySteppeCultures_Skill_Data,
-    greekCitiesOfBlackSea_Skill_Data,
-    sarmatians_Skill_Data,
-    scythianSocieties_Skill_Data,
-  ],
+  skills: {
+    items: {
+      earlySteppeCultures: earlySteppeCultures_Skill_Data,
+      greekCitiesOfBlackSea: greekCitiesOfBlackSea_Skill_Data,
+      sarmatians: sarmatians_Skill_Data,
+      scythianSocieties: scythianSocieties_Skill_Data,
+    },
+    order: ['earlySteppeCultures', 'greekCitiesOfBlackSea', 'sarmatians', 'scythianSocieties'],
+  },
   description: {
     methodological:
       "The steppe, forest-steppe, and coasts of today's Ukraine held diverse ancient populations without modern state identities being imposed on them.",

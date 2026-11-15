@@ -41,12 +41,15 @@ export const adolescenceAndIdentity_SkillGroup_Data = defineSkillGroup({
     kk: 'Жасөспірімдік кезең және бірегейлік',
     qm: 'Ösmürlik ve kimlik',
   },
-  skills: [
-    adolescentRiskTaking_Skill_Data,
-    autonomyDevelopment_Skill_Data,
-    identityExploration_Skill_Data,
-    peerInfluenceInAdolescence_Skill_Data,
-  ],
+  skills: {
+    items: {
+      adolescentRiskTaking: adolescentRiskTaking_Skill_Data,
+      autonomyDevelopment: autonomyDevelopment_Skill_Data,
+      identityExploration: identityExploration_Skill_Data,
+      peerInfluenceInAdolescence: peerInfluenceInAdolescence_Skill_Data,
+    },
+    order: ['adolescentRiskTaking', 'autonomyDevelopment', 'identityExploration', 'peerInfluenceInAdolescence'],
+  },
   description: {
     methodological:
       'Developing autonomy, identity, peer relationships, and cognitive control interact with social expectations and opportunities.',

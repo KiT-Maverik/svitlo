@@ -39,12 +39,15 @@ export const aestheticsAndCreativePractice_SkillDomain_Data = defineSkillDomain(
     kk: 'Эстетика және шығармашылық тәжірибе',
     qm: 'Estetika ve icadiy faaliyet',
   },
-  groups: [
-    aestheticPerception_SkillGroup_Data,
-    artisticCollaborationAndEthics_SkillGroup_Data,
-    creativeDevelopment_SkillGroup_Data,
-    expressionAndMeaning_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      aestheticPerception: aestheticPerception_SkillGroup_Data,
+      artisticCollaborationAndEthics: artisticCollaborationAndEthics_SkillGroup_Data,
+      creativeDevelopment: creativeDevelopment_SkillGroup_Data,
+      expressionAndMeaning: expressionAndMeaning_SkillGroup_Data,
+    },
+    order: ['aestheticPerception', 'artisticCollaborationAndEthics', 'creativeDevelopment', 'expressionAndMeaning'],
+  },
   description: {
     methodological:
       'Artistic experience, imagination, revision and ethical decisions cross individual media. This domain avoids prescribing a universal theory of beauty or one compulsory creative workflow.',

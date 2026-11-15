@@ -14,6 +14,25 @@ Review one or more Svitlo localizations **by reading generated Markdown referenc
 
 **Source of truth for Skills:** `content/<textbook>/data/skills/`. For Lessons, Courses and other locale-bearing types, verify the actual canonical paths and equivalent entity-specific generator; do not assume that a Skills taxonomy Markdown renders their content. Generated Markdown is temporary, disposable, **not** an editorial source and must never be manually corrected in place.
 
+## Canonical review record and local language decisions
+
+Completed review evidence is recorded in the **entity-owned `review.ts`** (for Lessons: the root `review.ts` beside `index.ts`, typed `LessonReview` when Stage 6 is implemented), **not** in per-entity/per-language Markdown review reports. Generated `.agent-ci-artifacts/**/*.md` is a temporary read-only _input_ to reviews, never the permanent review result.
+
+For Lesson AI localization review, `ai.locales` is **one numeric PR**: the final translation/review **integration PR**, recorded only after **all** intended Lesson languages have actually been independently reviewed and the scope/assembled Props revision verified. Do not place translator or individual reviewer subtask PR numbers into that field or treat generating all languages as reviewing all languages. Human linguistic review is recorded separately in `human.locales[language]` as that language's verified PR; other entity kinds follow their **actual** available Engine Review contract, never a fabricated Lesson-specific shape.
+
+When a linguistic review reaches a decision **specific to this reviewed entity/locale**, put a concise `//` comment **immediately above the PR-valued field** in that entity's `review.ts` explaining the chosen wording/terminology and reason, for example:
+
+```ts
+human: {
+  locales: {
+    // This Lesson uses the localized classroom term rather than the general glossary synonym.
+    uk: 1234,
+  },
+},
+```
+
+For a Lesson AI-wide `ai.locales` PR, put any applicable short locale-specific note immediately above its numeric entry, identifying the affected locale in the comment. Do **not** copy a full linguistic report, invent sign-off, or write the same decision into every entity; shared glossary/orthography decisions belong in global canonical guidance. Reviewer agents remain **read-only** by default: the authorized integration coordinator records verified PR references and comments after review gates, source revision, and real sign-off checks. If `review.ts` or stable assembled Props do not yet exist, preserve precise results and PR links in the review PR and Production Issue until the record can be populated; **do not create substitute review Markdown**. A PR reference denotes evidence, not proof of approval by itself.
+
 ## ONE CANONICAL GENERATED LIBRARY
 
 All agents share the repository-level temporary folder. The existing generator may emit several entity kinds, but **review is allowed only for the kinds actually supported by the current code and manifest**:
@@ -38,9 +57,9 @@ All agents share the repository-level temporary folder. The existing generator m
       <every supported language key>.md
 ```
 
-One generation attempts **all available supported reference collections in every registered language** (including Skills taxonomies, Lessons and Assessment Methods where generator support exists). There is **no user-facing option to generate one book, one domain, or one locale**. The agent simply picks the documents it needs from this complete reference library, according to its assigned scope. **Generating all languages does not mean reviewing or altering all languages.** If the task is to review Crimean Tatar Astronomy, read `.agent-ci-artifacts/taxonomies/astronomy/qm.md`; use other Markdown files only when they materially help terminology comparison.
+Generation is **scoped by entity family and, for Skills/Lessons, textbook**. Supplying a language generates only that language; omitting it generates only the selected textbook's registered Skills locales or each Lesson's declared `params.languages`. It never implicitly generates other textbooks or entity families. **Generating multiple languages does not mean reviewing or altering all languages.** If the task is to review Crimean Tatar Astronomy, read `.agent-ci-artifacts/taxonomies/astronomy/qm.md`; use other Markdown files only when they materially help terminology comparison.
 
-The generator reads `shared/contracts/src/types/languages.ts` for the live language roster and discovers supported content sources. For Skills, it uses [Skills Code → Markdown](../../../scripts/generate-skills-taxonomy.mjs); for Lessons and Assessment Methods, separate entity-specific generators/adapters must be confirmed. Course/UI Kit support cannot be assumed from this list. It rewrites source links for the temporary directory. `manifest.json` records which files were actually generated, which failed, and the exact source commit. **Do not assume 100% generation coverage if the manifest contains failures.** Never fabricate missing artifacts.
+The scope dispatcher reads the current Engine language roster. Skills use [Skills Code → Markdown](../../../shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs), Lessons use [Lesson Code → Markdown](../../../shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs), and Assessment Methods, UI Kit dictionaries and Geography home copy have explicit standalone adapters. Courses require a separately verified generator. It rewrites source links for the temporary directory. `manifest.json` records which files were actually generated, which failed, and the exact source commit. **Do not assume 100% generation coverage if the manifest contains failures.** Never fabricate missing artifacts.
 
 ## GET OR REFRESH THE LIBRARY (ON DEMAND)
 
@@ -53,10 +72,14 @@ The generator reads `shared/contracts/src/types/languages.ts` for the live langu
 A single **permanent** workflow, [Agent CI Artifacts](../../../.github/workflows/translation-review.yml), accepts an owner-authorized command posted in the PR conversation:
 
 ```text
-/agent-artifacts generate
+/agent-artifacts generate skills content/astronomy qm
+/agent-artifacts generate lessons content/math uk
+/agent-artifacts generate assessment-methods it
+/agent-artifacts generate ui-kit audio it
+/agent-artifacts generate geography-home-copy it
 ```
 
-The workflow resolves the PR, checks out its **current head commit** (not necessarily `main`), generates **supported** reference collections × languages on an isolated read-only worker, and then commits the resulting `.agent-ci-artifacts/` files **only to the same PR branch**. The agent can read them directly through GitHub as ordinary files, by exact path. It does **not** need the user to upload the Markdown. For manual execution, GitHub Actions → **Agent CI Artifacts** → **Run workflow** takes a PR number and `generate` operation.
+The workflow resolves the PR, checks out its **current head commit** (not necessarily `main`), generates **only the selected reference family, textbook and requested locale(s)** on an isolated read-only worker, and then commits the resulting `.agent-ci-artifacts/` files **only to the same PR branch**. The agent can read them directly through GitHub as ordinary files, by exact path. It does **not** need the user to upload the Markdown. For manual execution, GitHub Actions → **Agent CI Artifacts** → **Run workflow** requires the PR number, `generate` and an explicit reference scope (kind, textbook where applicable, optional locale/component/Lesson UUID).
 
 **Important deployment prerequisite:** GitHub only processes `issue_comment` and `workflow_dispatch` from workflows present on the **default branch**. If this workflow has not yet been merged into `main`, comment commands will not run. Do not claim a CI job exists or was triggered. In that situation, use a checkout/local execution, or report the activation prerequisite. On first adoption, merge the workflow infrastructure via a clean PR with no `.agent-ci-artifacts/` data; only then run it for translation-review PRs.
 
@@ -67,21 +90,21 @@ The workflow resolves the PR, checks out its **current head commit** (not necess
 From the repository root, run:
 
 ```bash
-node scripts/generate-translation-review-artifacts.mjs
+node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind skills --package content/astronomy --locale qm
 ```
 
-This runs the same currently supported all-entity/all-locale generation and populates `.agent-ci-artifacts/` locally. The agent may use these documents in the local checkout. If GitHub access is only via a file-reading connector and no workflow has been activated, do **not** pretend local execution occurred.
+This generates only the requested scope into `.agent-ci-artifacts/` locally. Omit `--locale` only when the assigned review needs all languages available in that scope. The agent may use these documents in the local checkout. If GitHub access is only via a file-reading connector and no workflow has been activated, do **not** pretend local execution occurred.
 
 ## REVIEW PROCESS
 
 1. **Resolve scope and source.** Determine the assigned entity kinds and exact IDs/paths, locale(s), branch/PR, and authoritative source meaning. Under a Translation Production Issue, verify all translator PRs have been merged, pin the reviewed integrated SHA and follow the hard generator-stop condition above. Locate `manifest.json`; generate/refresh once if missing or stale relative to the intended source. Record the commit to which the generated documents refer.
-2. **Select only useful documents.** The complete library is generated, but the reviewer reads the **entity-appropriate localized Markdown** paths listed in the manifest: `taxonomies/<textbook>/<locale>.md` for Skills, actual `lessons/...` paths for Lessons, `assessment-methods/<locale>.md` for Assessment Methods, or a separately verified generator for other kinds. Verify source SHA, complete requested entity IDs and no relevant failures before reviewing. Do not infer Course/UI Kit support from the taxonomy generator; optionally read comparison languages. For long views, process sections/domains in batches while keeping a shared glossary and a single cumulative issue log. Do not demand user prompts for the next domain or artifact.
+2. **Select only useful documents.** Generate just the assigned scope, then read the **entity-appropriate localized Markdown** paths listed in the manifest: `taxonomies/<textbook>/<locale>.md` for Skills, actual `lessons/...` paths for Lessons, `assessment-methods/<locale>.md` for Assessment Methods, or a separately verified generator for other kinds. Verify source SHA, complete requested entity IDs and no relevant failures before reviewing. Do not infer Course/UI Kit support from the taxonomy generator; optionally read comparison languages. For long views, process sections/domains in batches while keeping a shared glossary and a single cumulative issue log. Do not demand user prompts for the next domain or artifact.
 3. **Audit all assigned entities.** Compare every translated title and available frontend description against the English methodological definition and educational context; evaluate accuracy, grammar, orthography, tone, age appropriateness, ambiguity, false friends, scientific terminology and internal consistency across domains.
    Apply the Persona's **Learner Address & Register** policy when evaluating student-directed wording. Check the locale's natural educational register and whether singular/plural conveys real audience meaning; do not label an acceptable alternative as a definite error just because another domain uses a different form.
 4. **Apply language-specific guidance.** For Crimean Tatar (`qm`), follow the Persona's **Crimean Tatar → international → Turkish** hierarchy, approved Latin spelling and provisional-review policy. A carefully adapted Turkish **technical term** may be appropriate, but Turkish entire sentences are not Crimean Tatar localization.
 5. **Produce actionable findings.** Cite specific textbook, locale, canonical code link/path, field (`name.<locale>` or `description.frontend.<locale>`), current wording, recommended wording, rationale, confidence, severity and sources actually checked. Differentiate definite errors from plausible linguistic variants or unverified proposals. No false native-speaker or standards certifications. **Report separate counts for semantic/scientific errors, linguistic/terminology errors, and style/register-only harmonizations.** For address-form inconsistencies, record the locale-specific editorial rule and representative examples; do not interpret bulk style harmonization as many independent translation failures.
 6. **Apply corrections only when explicitly authorized.** This skill alone is read-only. In a Production Issue, corrections belong to the reviewer PR and must not overlap another active reviewer's editable files. For edits, switch to [Technical Translation](./technical-translation.skill.md) and its actual TypeScript verification gate; modify **only** authorized locale fields in canonical code. Refresh the temporary library if another review of the updated text is required.
-7. **Report coherent results.** Provide overall coverage, key terminology decisions, number of reviewed entities and outstanding questions. Complete the entire assigned scope without unnecessary user interruptions.
+7. **Report coherent results.** Provide overall coverage, key terminology decisions, number of reviewed entities and outstanding questions in the PR/Issue; the authorized coordinator later records verified review PRs and local comments in the entity's `review.ts` as described above. Complete the entire assigned scope without unnecessary user interruptions.
 
 ## REQUIRED CLEANUP BEFORE MERGE
 

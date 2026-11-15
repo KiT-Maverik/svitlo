@@ -42,13 +42,22 @@ export const brainBehaviorRelationships_SkillGroup_Data = defineSkillGroup({
     kk: 'Ми мен мінез-құлық байланыстары',
     qm: 'Miy ve davranış alâqaları',
   },
-  skills: [
-    executiveControlNetworks_Skill_Data,
-    functionalSpecialization_Skill_Data,
-    motorNeuralPathways_Skill_Data,
-    neuroimagingInference_Skill_Data,
-    sensoryNeuralPathways_Skill_Data,
-  ],
+  skills: {
+    items: {
+      executiveControlNetworks: executiveControlNetworks_Skill_Data,
+      functionalSpecialization: functionalSpecialization_Skill_Data,
+      motorNeuralPathways: motorNeuralPathways_Skill_Data,
+      neuroimagingInference: neuroimagingInference_Skill_Data,
+      sensoryNeuralPathways: sensoryNeuralPathways_Skill_Data,
+    },
+    order: [
+      'executiveControlNetworks',
+      'functionalSpecialization',
+      'motorNeuralPathways',
+      'neuroimagingInference',
+      'sensoryNeuralPathways',
+    ],
+  },
   description: {
     methodological:
       'Distributed neural systems support specific psychological functions; brain scans and localized damage require cautious interpretation.',

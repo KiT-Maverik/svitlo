@@ -41,7 +41,15 @@ export const calendar_SkillGroup_Data = defineSkillGroup({
     pl: 'Kalendarz',
     uk: 'Календар',
   },
-  skills: [daySequence_Skill_Data, leapYearDays_Skill_Data, weekMonthYear_Skill_Data, calendarInterval_Skill_Data],
+  skills: {
+    items: {
+      daySequence: daySequence_Skill_Data,
+      leapYearDays: leapYearDays_Skill_Data,
+      weekMonthYear: weekMonthYear_Skill_Data,
+      calendarInterval: calendarInterval_Skill_Data,
+    },
+    order: ['daySequence', 'leapYearDays', 'weekMonthYear', 'calendarInterval'],
+  },
   description: {
     methodological:
       'Navigating days, weeks, months, and years while accounting for varying month lengths and leap years.',

@@ -41,12 +41,20 @@ export const dialogueAndDisagreement_SkillGroup_Data = defineSkillGroup({
     kk: 'Диалог пен келіспеушілік',
     qm: 'Dialog ve fikir ayrılığı',
   },
-  skills: [
-    askAProbingPhilosophicalQuestion_Skill_Data,
-    reconstructAnotherPersonsPositionFairly_Skill_Data,
-    respondToAPhilosophicalObjection_Skill_Data,
-    reviseAPositionInLightOfReasons_Skill_Data,
-  ],
+  skills: {
+    items: {
+      askAProbingPhilosophicalQuestion: askAProbingPhilosophicalQuestion_Skill_Data,
+      reconstructAnotherPersonsPositionFairly: reconstructAnotherPersonsPositionFairly_Skill_Data,
+      respondToAPhilosophicalObjection: respondToAPhilosophicalObjection_Skill_Data,
+      reviseAPositionInLightOfReasons: reviseAPositionInLightOfReasons_Skill_Data,
+    },
+    order: [
+      'askAProbingPhilosophicalQuestion',
+      'reconstructAnotherPersonsPositionFairly',
+      'respondToAPhilosophicalObjection',
+      'reviseAPositionInLightOfReasons',
+    ],
+  },
   description: {
     methodological:
       'Reasoned dialogue seeks understanding and justified revision, not simply winning assent. Participants must fairly represent alternatives and keep interpersonal respect separate from agreement.',

@@ -42,13 +42,22 @@ export const appliedEthics_SkillGroup_Data = defineSkillGroup({
     kk: 'Қолданбалы этика',
     qm: 'Ameliy etika',
   },
-  skills: [
-    evaluateConsentInAnEthicalScenario_Skill_Data,
-    evaluateDutiesTowardNonhumanAnimals_Skill_Data,
-    evaluateEnvironmentalObligations_Skill_Data,
-    evaluateEthicalImplicationsOfAutomatedDecisions_Skill_Data,
-    evaluatePrivacyAsAnEthicalValue_Skill_Data,
-  ],
+  skills: {
+    items: {
+      evaluateConsentInAnEthicalScenario: evaluateConsentInAnEthicalScenario_Skill_Data,
+      evaluateDutiesTowardNonhumanAnimals: evaluateDutiesTowardNonhumanAnimals_Skill_Data,
+      evaluateEnvironmentalObligations: evaluateEnvironmentalObligations_Skill_Data,
+      evaluateEthicalImplicationsOfAutomatedDecisions: evaluateEthicalImplicationsOfAutomatedDecisions_Skill_Data,
+      evaluatePrivacyAsAnEthicalValue: evaluatePrivacyAsAnEthicalValue_Skill_Data,
+    },
+    order: [
+      'evaluateConsentInAnEthicalScenario',
+      'evaluateDutiesTowardNonhumanAnimals',
+      'evaluateEnvironmentalObligations',
+      'evaluateEthicalImplicationsOfAutomatedDecisions',
+      'evaluatePrivacyAsAnEthicalValue',
+    ],
+  },
   description: {
     methodological:
       'Ethical principles face distinctive challenges when rights, vulnerable people, nonhuman life, and emerging technologies are involved.',

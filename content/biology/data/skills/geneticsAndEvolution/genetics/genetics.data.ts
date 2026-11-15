@@ -42,13 +42,22 @@ export const genetics_SkillGroup_Data = defineSkillGroup({
     ka: 'გენეტიკა',
     kk: 'Генетика',
   },
-  skills: [
-    distinguishAGeneFromATrait_Skill_Data,
-    explainExpressionOfGeneticInformation_Skill_Data,
-    explainMechanismsOfTraitInheritance_Skill_Data,
-    explainTransmissionOfHereditaryInformation_Skill_Data,
-    recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAGeneFromATrait: distinguishAGeneFromATrait_Skill_Data,
+      explainExpressionOfGeneticInformation: explainExpressionOfGeneticInformation_Skill_Data,
+      explainMechanismsOfTraitInheritance: explainMechanismsOfTraitInheritance_Skill_Data,
+      explainTransmissionOfHereditaryInformation: explainTransmissionOfHereditaryInformation_Skill_Data,
+      recognizeDNAsRoleInStoringHereditaryInformation: recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data,
+    },
+    order: [
+      'distinguishAGeneFromATrait',
+      'explainExpressionOfGeneticInformation',
+      'explainMechanismsOfTraitInheritance',
+      'explainTransmissionOfHereditaryInformation',
+      'recognizeDNAsRoleInStoringHereditaryInformation',
+    ],
+  },
   description: {
     methodological:
       'Genes, as segments of hereditary information, help explain relatedness and differences; how a trait is expressed also depends on regulation and the environment.',

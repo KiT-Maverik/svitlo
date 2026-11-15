@@ -41,12 +41,20 @@ export const politicalAuthority_SkillGroup_Data = defineSkillGroup({
     kk: 'Саяси билік',
     qm: 'Siyasiy akimiyet',
   },
-  skills: [
-    analyzeCivilDisobedience_Skill_Data,
-    compareSocialContractArguments_Skill_Data,
-    evaluateTheLegitimacyOfPoliticalAuthority_Skill_Data,
-    evaluateTheLimitsOfStateCoercion_Skill_Data,
-  ],
+  skills: {
+    items: {
+      analyzeCivilDisobedience: analyzeCivilDisobedience_Skill_Data,
+      compareSocialContractArguments: compareSocialContractArguments_Skill_Data,
+      evaluateTheLegitimacyOfPoliticalAuthority: evaluateTheLegitimacyOfPoliticalAuthority_Skill_Data,
+      evaluateTheLimitsOfStateCoercion: evaluateTheLimitsOfStateCoercion_Skill_Data,
+    },
+    order: [
+      'analyzeCivilDisobedience',
+      'compareSocialContractArguments',
+      'evaluateTheLegitimacyOfPoliticalAuthority',
+      'evaluateTheLimitsOfStateCoercion',
+    ],
+  },
   description: {
     methodological:
       'Institutions exercise collective power that requires justification. Political legitimacy, coercion, and obedience are distinct concepts.',

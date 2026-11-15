@@ -42,13 +42,22 @@ export const wavePhenomena_SkillGroup_Data = defineSkillGroup({
     kk: 'Толқындық құбылыстар',
     qm: 'Dalğa adiseleri',
   },
-  skills: [
-    explainResonance_Skill_Data,
-    explainWaveDiffraction_Skill_Data,
-    explainWaveInterference_Skill_Data,
-    explainWaveReflection_Skill_Data,
-    explainWaveRefraction_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainResonance: explainResonance_Skill_Data,
+      explainWaveDiffraction: explainWaveDiffraction_Skill_Data,
+      explainWaveInterference: explainWaveInterference_Skill_Data,
+      explainWaveReflection: explainWaveReflection_Skill_Data,
+      explainWaveRefraction: explainWaveRefraction_Skill_Data,
+    },
+    order: [
+      'explainResonance',
+      'explainWaveDiffraction',
+      'explainWaveInterference',
+      'explainWaveReflection',
+      'explainWaveRefraction',
+    ],
+  },
   description: {
     methodological:
       'Reflection, refraction, interference, diffraction, and resonance can occur in different kinds of physical waves.',

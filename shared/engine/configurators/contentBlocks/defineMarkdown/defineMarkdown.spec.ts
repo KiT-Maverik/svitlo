@@ -20,7 +20,7 @@ describe('Configurators', () => {
 
       function withMarkdownFiles(run: (moduleUrl: string, directory: string) => void) {
         const root = mkdtempSync(join(tmpdir(), 'markdown-definition-'));
-        const directory = join(root, 'locales');
+        const directory = join(root, 'locale');
         mkdirSync(directory);
         try {
           run(pathToFileURL(join(root, 'definition.ts')).href, directory);
@@ -75,6 +75,29 @@ describe('Configurators', () => {
           assert.throws(() => withFiles([]), /non-empty/);
           writeFileSync(join(directory, 'fr.md'), 'Bonjour');
           assert.throws(() => withFiles(['en', 'uk']), /Unexpected Markdown locale files: fr\.md/);
+        });
+      });
+
+      test('invariant Markdown resolves text.md without a fake default locale', () => {
+        withMarkdownFiles((moduleUrl, directory) => {
+          writeFileSync(join(directory, '../text.md'), '# 2 + 3 = 5\n');
+          const markdown = defineMarkdown<'example', ['en', 'uk']>({
+            ...base,
+            files: { moduleUrl },
+          });
+          assert.equal(markdown.config.base.locale?.value, '# 2 + 3 = 5\n');
+          assert.deepEqual(markdown.config.locales(), { locale: {} });
+          assert.equal(markdown.build.props({ languages: ['en', 'uk'] }).base.locale?.value, '# 2 + 3 = 5\n');
+          assert.equal(markdown.build.props({ languages: ['en', 'uk'] }).locale, undefined);
+        });
+      });
+
+      test('invariant Markdown rejects missing or empty text.md without falling back', () => {
+        withMarkdownFiles((moduleUrl, directory) => {
+          const block = () => defineMarkdown({ ...base, files: { moduleUrl } });
+          assert.throws(block, /Missing or unreadable invariant Markdown file/);
+          writeFileSync(join(directory, '../text.md'), '  \n ');
+          assert.throws(block, /Empty invariant Markdown file/);
         });
       });
 

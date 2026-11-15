@@ -41,12 +41,20 @@ export const civilWorks_SkillGroup_Data = defineSkillGroup({
     kk: 'Азаматтық құрылыс жұмыстары',
     qm: 'İnşaat mühendisligi işleri',
   },
-  skills: [
-    bridgeConstructionApproaches_Skill_Data,
-    pavementLayers_Skill_Data,
-    planConstructionStages_Skill_Data,
-    tunnelConstructionConstraints_Skill_Data,
-  ],
+  skills: {
+    items: {
+      bridgeConstructionApproaches: bridgeConstructionApproaches_Skill_Data,
+      pavementLayers: pavementLayers_Skill_Data,
+      planConstructionStages: planConstructionStages_Skill_Data,
+      tunnelConstructionConstraints: tunnelConstructionConstraints_Skill_Data,
+    },
+    order: [
+      'bridgeConstructionApproaches',
+      'pavementLayers',
+      'planConstructionStages',
+      'tunnelConstructionConstraints',
+    ],
+  },
   description: {
     methodological:
       'Large built assets require sequential construction and coordination with the ground and existing infrastructure.',

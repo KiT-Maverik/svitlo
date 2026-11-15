@@ -38,7 +38,14 @@ export const energySystems_SkillDomain_Data = defineSkillDomain({
     kk: 'Энергетикалық жүйелер',
     qm: 'Energiya sistemaları',
   },
-  groups: [energyPerformance_SkillGroup_Data, generation_SkillGroup_Data, storageAndDelivery_SkillGroup_Data],
+  groups: {
+    items: {
+      energyPerformance: energyPerformance_SkillGroup_Data,
+      generation: generation_SkillGroup_Data,
+      storageAndDelivery: storageAndDelivery_SkillGroup_Data,
+    },
+    order: ['energyPerformance', 'generation', 'storageAndDelivery'],
+  },
   description: {
     methodological:
       'Useful energy services depend on conversion, storage, power delivery and load management. The engineering emphasis is on connected equipment and operational limitations, while the principles of energy conservation belong to Physics.',

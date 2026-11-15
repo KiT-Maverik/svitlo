@@ -42,13 +42,22 @@ export const attentionAllocation_SkillGroup_Data = defineSkillGroup({
     kk: 'Зейінді бөлу',
     qm: 'Diqqatnı paylaştırma',
   },
-  skills: [
-    attentionalCapture_Skill_Data,
-    dividedAttention_Skill_Data,
-    inattentionalBlindness_Skill_Data,
-    selectiveAttention_Skill_Data,
-    sustainedAttention_Skill_Data,
-  ],
+  skills: {
+    items: {
+      attentionalCapture: attentionalCapture_Skill_Data,
+      dividedAttention: dividedAttention_Skill_Data,
+      inattentionalBlindness: inattentionalBlindness_Skill_Data,
+      selectiveAttention: selectiveAttention_Skill_Data,
+      sustainedAttention: sustainedAttention_Skill_Data,
+    },
+    order: [
+      'attentionalCapture',
+      'dividedAttention',
+      'inattentionalBlindness',
+      'selectiveAttention',
+      'sustainedAttention',
+    ],
+  },
   description: {
     methodological: 'Competing demands determine which inputs or tasks are prioritized and when performance degrades.',
     frontend: {

@@ -36,7 +36,14 @@ export const angles_SkillGroup_Data = defineSkillGroup({
     pl: 'Kąty',
     uk: 'Кути',
   },
-  skills: [angleAsTurn_Skill_Data, rightAngle_Skill_Data, angleTypes_Skill_Data],
+  skills: {
+    items: {
+      angleAsTurn: angleAsTurn_Skill_Data,
+      rightAngle: rightAngle_Skill_Data,
+      angleTypes: angleTypes_Skill_Data,
+    },
+    order: ['angleAsTurn', 'rightAngle', 'angleTypes'],
+  },
   description: {
     methodological:
       'Angles as relationships between rays and as measures of turn, with the right angle serving as a reference for classification.',

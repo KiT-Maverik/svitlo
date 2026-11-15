@@ -42,13 +42,22 @@ export const problemDefinition_SkillGroup_Data = defineSkillGroup({
     kk: 'Мәселені анықтау',
     qm: 'Mesele belgilev',
   },
-  skills: [
-    definePerformanceCriteria_Skill_Data,
-    formulateADesignProblem_Skill_Data,
-    identifyAnEngineeringNeed_Skill_Data,
-    identifyDesignConstraints_Skill_Data,
-    prioritizeRequirements_Skill_Data,
-  ],
+  skills: {
+    items: {
+      definePerformanceCriteria: definePerformanceCriteria_Skill_Data,
+      formulateADesignProblem: formulateADesignProblem_Skill_Data,
+      identifyAnEngineeringNeed: identifyAnEngineeringNeed_Skill_Data,
+      identifyDesignConstraints: identifyDesignConstraints_Skill_Data,
+      prioritizeRequirements: prioritizeRequirements_Skill_Data,
+    },
+    order: [
+      'definePerformanceCriteria',
+      'formulateADesignProblem',
+      'identifyAnEngineeringNeed',
+      'identifyDesignConstraints',
+      'prioritizeRequirements',
+    ],
+  },
   description: {
     methodological:
       'A clear brief distinguishes what needs to change, how success will be measured and which resources or conditions constrain possible solutions.',
