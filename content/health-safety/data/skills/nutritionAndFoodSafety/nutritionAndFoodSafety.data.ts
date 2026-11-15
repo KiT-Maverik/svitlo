@@ -39,11 +39,14 @@ export const nutritionAndFoodSafety_SkillDomain_Data = defineSkillDomain({
     kk: 'Тамақтану және азық-түлік қауіпсіздігі',
     qm: 'Beslenüv ve aş havfsızlığı',
   },
-  groups: [
-    foodborneHazards_SkillGroup_Data,
-    foodChoicesAndInformation_SkillGroup_Data,
-    nutritionalFoundations_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      foodborneHazards: foodborneHazards_SkillGroup_Data,
+      foodChoicesAndInformation: foodChoicesAndInformation_SkillGroup_Data,
+      nutritionalFoundations: nutritionalFoundations_SkillGroup_Data,
+    },
+    order: ['foodborneHazards', 'foodChoicesAndInformation', 'nutritionalFoundations'],
+  },
   description: {
     methodological:
       'Eating and drinking support health through nutrients, adequate intake, and safe preparation. Nutritional choices and microbial or chemical food hazards are distinct competencies, even though the same meal can involve both.',

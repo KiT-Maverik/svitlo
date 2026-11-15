@@ -42,12 +42,20 @@ export const foodChoicesAndInformation_SkillGroup_Data = defineSkillGroup({
     kk: 'Тағам таңдау және ақпарат',
     qm: 'Aş saylavı ve malümat',
   },
-  skills: [
-    adaptFoodChoicesToDietaryNeeds_Skill_Data,
-    interpretFoodLabels_Skill_Data,
-    manageFoodAllergyRisks_Skill_Data,
-    recognizeDietaryMisinformation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      adaptFoodChoicesToDietaryNeeds: adaptFoodChoicesToDietaryNeeds_Skill_Data,
+      interpretFoodLabels: interpretFoodLabels_Skill_Data,
+      manageFoodAllergyRisks: manageFoodAllergyRisks_Skill_Data,
+      recognizeDietaryMisinformation: recognizeDietaryMisinformation_Skill_Data,
+    },
+    order: [
+      'adaptFoodChoicesToDietaryNeeds',
+      'interpretFoodLabels',
+      'manageFoodAllergyRisks',
+      'recognizeDietaryMisinformation',
+    ],
+  },
   description: {
     methodological:
       'Marketing, accessibility, food labels, allergies, and personal circumstances shape real-life nutritional decisions.',

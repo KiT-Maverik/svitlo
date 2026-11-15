@@ -43,13 +43,22 @@ export const foodborneHazards_SkillGroup_Data = defineSkillGroup({
     kk: 'Тағам арқылы таралатын қауіптер',
     qm: 'Aş vastasınen kelgen telükeler',
   },
-  skills: [
-    maintainHygieneDuringFoodPreparation_Skill_Data,
-    preventRawToReadyFoodCrossContamination_Skill_Data,
-    recognizeUnsafeFoodSituations_Skill_Data,
-    safeCookingAndReheating_Skill_Data,
-    safeFoodStorage_Skill_Data,
-  ],
+  skills: {
+    items: {
+      maintainHygieneDuringFoodPreparation: maintainHygieneDuringFoodPreparation_Skill_Data,
+      preventRawToReadyFoodCrossContamination: preventRawToReadyFoodCrossContamination_Skill_Data,
+      recognizeUnsafeFoodSituations: recognizeUnsafeFoodSituations_Skill_Data,
+      safeCookingAndReheating: safeCookingAndReheating_Skill_Data,
+      safeFoodStorage: safeFoodStorage_Skill_Data,
+    },
+    order: [
+      'maintainHygieneDuringFoodPreparation',
+      'preventRawToReadyFoodCrossContamination',
+      'recognizeUnsafeFoodSituations',
+      'safeCookingAndReheating',
+      'safeFoodStorage',
+    ],
+  },
   description: {
     methodological:
       'Food safety depends on separation, temperature, handling, and storage; appearance or smell alone cannot always establish whether food is safe.',

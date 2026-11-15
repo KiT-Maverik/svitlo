@@ -42,12 +42,20 @@ export const physicalActivity_SkillGroup_Data = defineSkillGroup({
     kk: 'Дене белсенділігі',
     qm: 'Beden faaliyeti',
   },
-  skills: [
-    planRegularPhysicalActivity_Skill_Data,
-    prepareForPhysicalExertion_Skill_Data,
-    preventExerciseRelatedInjury_Skill_Data,
-    recognizeWarningSignsDuringActivity_Skill_Data,
-  ],
+  skills: {
+    items: {
+      planRegularPhysicalActivity: planRegularPhysicalActivity_Skill_Data,
+      prepareForPhysicalExertion: prepareForPhysicalExertion_Skill_Data,
+      preventExerciseRelatedInjury: preventExerciseRelatedInjury_Skill_Data,
+      recognizeWarningSignsDuringActivity: recognizeWarningSignsDuringActivity_Skill_Data,
+    },
+    order: [
+      'planRegularPhysicalActivity',
+      'prepareForPhysicalExertion',
+      'preventExerciseRelatedInjury',
+      'recognizeWarningSignsDuringActivity',
+    ],
+  },
   description: {
     methodological:
       'Activity can vary by intensity, form, and personal ability; protective choices include gradual progression and responding to warning signals.',
