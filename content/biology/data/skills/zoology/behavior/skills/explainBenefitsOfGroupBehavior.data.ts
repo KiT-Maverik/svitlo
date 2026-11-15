@@ -5,6 +5,7 @@ export const explainBenefitsOfGroupBehavior_Skill_Data = defineSkill({
   id: 'c126a8fa-0e62-4645-8ddc-40ccd22bcf49',
   name: {
     en: 'Explain Benefits of Group Behavior',
+    it: 'Spiegare i vantaggi del comportamento di gruppo',
     zh: '解释群体行为的益处',
     hi: 'समूह व्यवहार के लाभ समझाना',
     es: 'Explicar los beneficios del comportamiento grupal',
@@ -39,6 +40,7 @@ export const explainBenefitsOfGroupBehavior_Skill_Data = defineSkill({
       'Explain how cooperative foraging, defense, or care for offspring may improve the success of individuals.',
     frontend: {
       en: 'Discover how group behavior may help animals feed, defend themselves and care for young.',
+      it: 'Scopri come la vita di gruppo può aiutare gli animali a nutrirsi, difendersi e prendersi cura dei piccoli.',
       zh: '了解群体行为如何帮助动物觅食、自卫和照顾幼崽。',
       hi: 'जानें कि समूह में रहने और काम करने से प्राणियों को भोजन पाने, रक्षा करने और बच्चों की देखभाल में कैसे मदद मिल सकती है।',
       es: 'Descubre cómo el comportamiento grupal puede ayudar a los animales a alimentarse, defenderse y cuidar a sus crías.',
