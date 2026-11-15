@@ -5,6 +5,7 @@ export const representativenessHeuristic_Skill_Data = defineSkill({
   id: '473f6cca-2007-45d8-8684-d2a9757d6b50',
   name: {
     en: 'Representativeness Heuristic',
+    it: 'Euristica della rappresentatività',
     zh: '代表性启发式',
     hi: 'प्रतिनिधित्व आधारित अनुमान-विधि',
     es: 'Heurística de representatividad',
@@ -39,6 +40,7 @@ export const representativenessHeuristic_Skill_Data = defineSkill({
       'Explain judging likelihood by resemblance to a familiar category while neglecting relevant background information.',
     frontend: {
       en: 'Recognize when similarity to a stereotype replaces relevant probability.',
+      it: 'Riconosci quando la somiglianza con uno stereotipo prende il posto di una probabilità pertinente.',
       zh: '识别何时人们用与刻板印象的相似程度取代实际概率。',
       hi: 'पहचानें कि कब किसी रूढ़ छवि से समानता को वास्तविक संभावना के बजाय इस्तेमाल किया जाता है।',
       es: 'Reconoce cuándo la semejanza con un estereotipo sustituye a la probabilidad relevante.',
