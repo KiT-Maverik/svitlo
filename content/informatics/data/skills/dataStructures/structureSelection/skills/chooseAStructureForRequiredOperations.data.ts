@@ -5,6 +5,7 @@ export const chooseAStructureForRequiredOperations_Skill_Data = defineSkill({
   id: 'a76b95ef-efed-47ce-a4de-5056e19e0f22',
   name: {
     en: 'Choose a Structure for Required Operations',
+    it: 'Scegliere una struttura in base alle operazioni richieste',
     zh: '根据所需操作选择数据结构',
     hi: 'आवश्यक क्रियाओं के लिए डेटा संरचना चुनना',
     es: 'Elegir una estructura para las operaciones necesarias',
@@ -39,6 +40,7 @@ export const chooseAStructureForRequiredOperations_Skill_Data = defineSkill({
       'Identify whether a task needs positional indexing, uniqueness, key lookup, FIFO/LIFO order, or hierarchical relationships.',
     frontend: {
       en: 'Select a collection that suits indexing, membership, queues or relationships.',
+      it: "Scegli una collezione adatta all'indicizzazione, all'appartenenza, alle code o alle relazioni.",
       zh: '选择适合索引访问、成员检查、队列处理或关系表示的集合。',
       hi: 'सूचकांक, सदस्यता, कतार या संबंधों की जरूरत के अनुसार संग्रह चुनें।',
       es: 'Selecciona una colección adecuada para índices, pertenencia, colas o relaciones.',

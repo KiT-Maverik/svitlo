@@ -5,6 +5,7 @@ export const popAnElementFromAStack_Skill_Data = defineSkill({
   id: '6ceb4b87-a744-4a52-98fe-c2b3e13b7404',
   name: {
     en: 'Pop an Element from a Stack',
+    it: 'Estrarre un elemento da una pila',
     zh: '从栈中弹出元素',
     hi: 'स्टैक से एक तत्व निकालना',
     es: 'Sacar un elemento de una pila',
@@ -38,6 +39,7 @@ export const popAnElementFromAStack_Skill_Data = defineSkill({
     methodological: 'Use `pop` to remove the top value while accounting for the special case of an empty stack.',
     frontend: {
       en: 'Remove the most recent element while checking whether a stack is empty.',
+      it: "Rimuovi l'elemento inserito più di recente verificando che la pila non sia vuota.",
       zh: '移除最近加入的元素，同时检查栈是否为空。',
       hi: 'स्टैक खाली है या नहीं जाँचते हुए सबसे हाल का तत्व निकालें।',
       es: 'Retira el elemento más reciente y comprueba si la pila está vacía.',

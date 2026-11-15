@@ -5,6 +5,7 @@ export const testSetMembership_Skill_Data = defineSkill({
   id: '78226a20-e21f-479a-84fe-ef99787c5c5e',
   name: {
     en: 'Test Set Membership',
+    it: "Verificare l'appartenenza a un insieme",
     zh: '检查集合成员关系',
     hi: 'समुच्चय की सदस्यता जाँचना',
     es: 'Comprobar pertenencia a un conjunto',
@@ -38,6 +39,7 @@ export const testSetMembership_Skill_Data = defineSkill({
     methodological: 'Determine whether a value belongs to a set without requiring its positional index.',
     frontend: {
       en: 'Check whether a particular value belongs to a set.',
+      it: 'Controlla se un determinato valore appartiene a un insieme.',
       zh: '检查指定的值是否属于某个集合。',
       hi: 'जाँचें कि कोई विशेष मान समुच्चय में है या नहीं।',
       es: 'Comprueba si un valor concreto pertenece a un conjunto.',

@@ -12,6 +12,7 @@ export const sets_SkillGroup_Data = defineSkillGroup({
   id: '526a36eb-6cd4-41d6-aa8e-72ed92effbd1',
   name: {
     en: 'Sets',
+    it: 'Insiemi',
     zh: '集合',
     hi: 'समुच्चय',
     es: 'Conjuntos',
@@ -52,6 +53,7 @@ export const sets_SkillGroup_Data = defineSkillGroup({
       'Collections of unique elements supporting membership tests, union, and intersection. Positional indexing is not an inherent property of a set.',
     frontend: {
       en: 'Explore collections of unique values and operations on their membership.',
+      it: 'Esplora le collezioni di valori univoci e le operazioni di appartenenza.',
       zh: '探索不重复值的集合以及判断元素是否属于集合的操作。',
       hi: 'अलग-अलग मानों वाले समुच्चय और उनमें सदस्यता की जाँच के तरीके जानें।',
       es: 'Explora conjuntos de valores únicos y operaciones para comprobar su pertenencia.',

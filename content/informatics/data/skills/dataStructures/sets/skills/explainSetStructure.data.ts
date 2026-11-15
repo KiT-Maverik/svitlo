@@ -5,6 +5,7 @@ export const explainSetStructure_Skill_Data = defineSkill({
   id: '4eb8ec63-1695-49cb-ab91-cb26136d67ad',
   name: {
     en: 'Explain Set Structure',
+    it: 'Spiegare la struttura di un insieme',
     zh: '解释集合结构',
     hi: 'समुच्चय की संरचना समझाना',
     es: 'Explicar la estructura de un conjunto',
@@ -39,6 +40,7 @@ export const explainSetStructure_Skill_Data = defineSkill({
       'A set consists of unique elements under a defined equality rule; inserting an existing value does not add another copy.',
     frontend: {
       en: 'Understand why a set stores only one copy of each distinct element.',
+      it: 'Comprendi perché un insieme conserva una sola copia di ciascun elemento distinto.',
       zh: '理解为什么集合只保存每个不同元素的一份。',
       hi: 'समझें कि समुच्चय प्रत्येक अलग तत्व की केवल एक प्रति क्यों रखता है।',
       es: 'Comprende por qué un conjunto guarda una sola copia de cada elemento distinto.',
