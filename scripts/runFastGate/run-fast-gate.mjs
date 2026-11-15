@@ -165,6 +165,23 @@ function runGate(changed) {
     ]);
   }
 
+  // Keep review-reference generators testable independently of incomplete textbooks.
+  if (
+    changed.some(
+      file =>
+        file.startsWith('shared/ui-kit/scripts/generateUiKitLocaleReference/') ||
+        file.startsWith('content/geography/scripts/generateHomeCopyReference/') ||
+        file.startsWith('shared/engine/scripts/readSupportedLanguages/') ||
+        file === 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs',
+    )
+  ) {
+    exec('node', [
+      '--test',
+      'shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-reference.spec.mjs',
+      'content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.spec.mjs',
+    ]);
+  }
+
   // Lesson builder is Engine-owned deterministic tooling: test it only when its
   // implementation, dependency, or canonical editorial input schemas change.
   if (
