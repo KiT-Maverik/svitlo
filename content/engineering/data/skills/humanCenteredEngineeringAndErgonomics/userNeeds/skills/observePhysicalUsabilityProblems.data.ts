@@ -5,6 +5,7 @@ export const observePhysicalUsabilityProblems_Skill_Data = defineSkill({
   id: '666e063b-9912-4baf-aed6-a11e9631e307',
   name: {
     en: 'Observe physical usability problems',
+    it: 'Osservare problemi di usabilità fisica',
     zh: '观察实体使用障碍',
     hi: 'भौतिक उपयोग की कठिनाइयाँ देखना',
     es: 'Observar problemas de uso físico',
@@ -38,6 +39,7 @@ export const observePhysicalUsabilityProblems_Skill_Data = defineSkill({
     methodological: 'Distinguish witnessed hesitation or failed handling from assumptions about users.',
     frontend: {
       en: "Observe where someone struggles with a product's physical operation.",
+      it: 'Osserva in quali situazioni una persona incontra difficoltà nell\'utilizzo fisico di un prodotto.',
       zh: '观察人们在操作实体产品时遇到的困难。',
       hi: 'देखें कि किसी व्यक्ति को उत्पाद को भौतिक रूप से चलाने में कहाँ कठिनाई होती है।',
       es: 'Observa en qué momentos alguien tiene dificultades al manejar físicamente un producto.',
