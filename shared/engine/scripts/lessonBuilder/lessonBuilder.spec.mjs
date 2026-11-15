@@ -49,7 +49,8 @@ function lessonConfig() {
               first: {
                 id: id(4),
                 slug: 'first',
-                type: 'carouselSlide',
+                type: 'image',
+                params: { fill: true, aspectRatio: 1.5 },
                 locale: { src: { uk: '/example.svg', en: '/never.svg' }, alt: { uk: 'Опис' } },
               },
             }),
@@ -158,7 +159,8 @@ test('factory dispatch uses the canonical Engine registry', () => {
     'carousel',
     'checkpoint',
     'checkpointItem',
-    'carouselSlide',
+    'image',
+    'scene',
     'flashcard',
     'selectOneAnswer',
     'quest',
@@ -214,6 +216,50 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assert.match(files.get('sections/intro/prompt/index.ts'), /defineText<"prompt", LessonLanguages>/);
     assert.doesNotMatch([...files.values()].join('\n'), /Never emit translation|Light"|'Never emit translation'/);
     assertTypeScriptSyntax(files);
+  }));
+
+test('Carousel Image and Scene children are independently scaffolded below their authored slugs', () =>
+  fixture(f => {
+    const slides = f.config.section.items.intro.content.items.gallery.slides;
+    slides.items.first.locale.src = { uk: null, en: '/external-image.svg' };
+    slides.items.first.__production = { prompt: 'Draw a picture showing equal groups' };
+    slides.items.activity = {
+      id: id(91),
+      slug: 'activity',
+      type: 'scene',
+      params: {},
+      locale: { value: { instruction: { uk: 'Обери групу', en: 'Not a translation' } } },
+      __production: { specification: '# Interactive activity\\n\\nChoose equal groups.' },
+    };
+    slides.order.push('activity');
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const image = fs.readFileSync(f.generated('sections/intro/gallery/first/index.ts'), 'utf8');
+    const scene = fs.readFileSync(f.generated('sections/intro/gallery/activity/index.ts'), 'utf8');
+    const carousel = fs.readFileSync(f.generated('sections/intro/gallery/index.ts'), 'utf8');
+    assert.match(image, /defineImage<"first", LessonLanguages>/);
+    assert.match(image, /resolveLessonMedia\\(import\\.meta\\.url, "image", "source", "uk"\\)/);
+    assert.doesNotMatch(image, /Not a translation/);
+    assert.match(scene, /defineScene<"activity", LessonLanguages>/);
+    assert.match(scene, /Обери групу/);
+    assert.match(carousel, /defineCarousel<"gallery", typeof slides\\.items, LessonLanguages>/);
+    assert.match(carousel, /\.\\/first/);
+    assert.match(carousel, /\.\\/activity/);
+    assert(fs.existsSync(f.generated('sections/intro/gallery/first/specification.md')));
+    assert(fs.existsSync(f.generated('sections/intro/gallery/activity/specification.md')));
+    assert(!fs.existsSync(f.generated('sections/intro/gallery/slides')));
+    assert(!fs.existsSync(f.generated('sections/intro/gallery/image')));
+    assert(!fs.existsSync(f.generated('sections/intro/gallery/scene')));
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+    assertTypeScriptSyntax(readAll(f.lesson));
+  }));
+
+test('Carousel draft rejects unsupported children without writing anything', () =>
+  fixture(f => {
+    f.config.section.items.intro.content.items.gallery.slides.items.first.type = 'text';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /Carousel slides must be image or scene/);
+    assert.equal(fs.existsSync(f.generated('sections/intro/gallery/index.ts')), false);
   }));
 
 test('Skill IDs resolve to imported source symbols rather than hard-coded UUIDs', () =>
