@@ -553,9 +553,6 @@ config:
             **Implementation dependencies:** Proposed self-contained prop-free entry, no new resource type, Quiz config, invented Note event or scoring state.
     order:
       ['combineThreeAndFiveCounters', 'reverseAddendOrder', 'distinguishSwapFromAdding', 'applyCommutativityToNewPair']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

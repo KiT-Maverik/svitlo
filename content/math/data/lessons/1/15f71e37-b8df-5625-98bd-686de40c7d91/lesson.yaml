@@ -518,9 +518,6 @@ config:
             - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
     order:
       ['shareTwelveIntoHalves', 'rebuildWholeByDoubling', 'distinguishTwoGroupsFromPairs', 'halveAndDoubleNewTotals']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

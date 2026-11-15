@@ -665,9 +665,6 @@ config:
             - **Feedback:** If a route includes a blocked edge move, explain which square is out of bounds, do not silently wrap. If an alternative arrives at the goal with a different final heading, "You reached the target. You are facing another way; that is fine because we only asked for the square." Offer a distinct optional challenge to finish facing east, clearly labeled as optional.
             - **Independent practice handoff:** The child can verbally teach a short route to a person using two visible reference landmarks. No scoring or mastery decision.
     order: ['distinguishTurnsFromSteps', 'followOrderedRoute', 'testStartingOrientation', 'givePreciseRouteDirections']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

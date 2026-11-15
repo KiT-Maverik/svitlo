@@ -418,9 +418,6 @@ config:
       - 'section2EqualityDoesNotJustAnnounceTheAnswer'
       - 'section3RepairAFalseEquality'
       - 'section4IndependentTransfer'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |

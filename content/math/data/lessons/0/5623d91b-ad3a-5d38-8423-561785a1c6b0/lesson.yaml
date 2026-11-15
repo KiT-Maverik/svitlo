@@ -363,9 +363,6 @@ config:
       - 'identifyObserverPerspective'
       - 'switchObserverPosition'
       - 'describePositionsPrecisely'
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |-

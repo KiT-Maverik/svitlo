@@ -13,9 +13,6 @@ config:
   locale:
     title:
       en: 'A Step Back: Counting Backward to Twenty'
-  flashcards:
-    items: {}
-    order: []
   section:
     items:
       countBackOneAtATime:

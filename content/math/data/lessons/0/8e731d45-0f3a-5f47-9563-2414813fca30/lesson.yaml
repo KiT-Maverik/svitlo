@@ -677,9 +677,6 @@ config:
             - **Reflective checkpoint:** "If we poured three liters into this container and stopped, how much would be inside? Is that the same as its capacity?" Reveal "3 L contents, 4 L capacity" without a score.
             - **Boundary:** Whole liters only, no fractional pour arithmetic, no ml conversion, no physical calibration claim.
     order: ['defineOneLiterReference', 'countLiterMeasures', 'compareShapeAndCapacity', 'measureNewContainer']
-  flashcards:
-    items: {}
-    order: []
 production:
   documentLanguage: 'en'
   methodology: |
