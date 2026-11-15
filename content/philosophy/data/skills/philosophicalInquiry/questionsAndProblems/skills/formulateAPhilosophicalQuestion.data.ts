@@ -5,6 +5,7 @@ export const formulateAPhilosophicalQuestion_Skill_Data = defineSkill({
   id: '31414c27-042c-4b36-9f8c-7311ae4fa202',
   name: {
     en: 'Formulate a philosophical question',
+    it: 'Formulare una domanda filosofica',
     zh: '提出哲学问题',
     hi: 'दार्शनिक प्रश्न तैयार करना',
     es: 'Formular una pregunta filosófica',
@@ -39,6 +40,7 @@ export const formulateAPhilosophicalQuestion_Skill_Data = defineSkill({
       'Turn an ordinary puzzlement into an open question about meaning, reasons, values, or assumptions that admits more than a yes-or-no preference.',
     frontend: {
       en: 'Ask an open question about reasons, meaning or values rather than a simple preference.',
+      it: 'Poni una domanda aperta su ragioni, significati o valori, anziché esprimere una semplice preferenza.',
       zh: '提出一个关于理由、意义或价值的开放性问题，而不仅是表达个人偏好。',
       hi: 'केवल पसंद पूछने के बजाय कारण, अर्थ या मूल्यों पर एक खुला प्रश्न पूछें।',
       es: 'Plantea una pregunta abierta sobre razones, significado o valores, no solo sobre preferencias.',
