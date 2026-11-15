@@ -66,3 +66,12 @@
   background: var(--mui-palette-action-hover);
   border-radius: 12px;
 }
+.content :global(.katex) {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.content :global(.katex-display) {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}

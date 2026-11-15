@@ -118,3 +118,7 @@ If `quizRequired: false`, do **not** create a Quiz. A non-Quiz practice bank may
 Before handing off, demonstrate: explicit, proportionate default Quiz selections with no accidental full-bank inclusion; full-bank preservation for future Custom Practice; exact coverage of all required quiz-method pairs; transparent outcome/Skill coverage; validated distinctness of each kept item; type/method compatibility; complete correct-answer logic; meaningful explanations; media and accessibility dependency handling; source-language-only content; real canonical references; no invented Skills or methods; no unsupported claims about scoring, media, runtime or approvals.
 
 A reviewer pass is not automatic editorial approval. Report blockers and affected Questions precisely; request explicit approval for material plan changes. Never conceal gaps by increasing item quantity.
+
+## LaTeX in Markdown ContentBlocks
+
+When creating mathematical Question prompts, solutions or explanations as a `markdown` ContentBlock, use `$...$` or `$$...$$` LaTeX per [Markdown formulas](../docs/entities/markdown-content-block.md). Preserve exact mathematical meaning of the answer model and nearby accessible prose. Ordinary `text` ContentBlocks and arbitrary strings do not automatically render LaTeX.
