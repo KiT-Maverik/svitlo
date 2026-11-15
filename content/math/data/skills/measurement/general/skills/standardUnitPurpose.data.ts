@@ -5,6 +5,7 @@ export const standardUnitPurpose_Skill_Data = defineSkill({
   id: '543a4960-c0e1-43cf-911b-4c59b6c36571',
   name: {
     en: 'Explaining why common measurement units are needed',
+    it: 'Spiegare perché servono unità di misura condivise',
     qm: 'Ortaq ölçü birlikleri ne içün kerek olğanını añlatmaq',
     lt: 'Bendrų matavimo vienetų poreikio aiškinimas',
     lv: 'Kopīgu mērvienību nepieciešamības skaidrošana',
@@ -39,6 +40,7 @@ export const standardUnitPurpose_Skill_Data = defineSkill({
       'Measurements can be compared meaningfully only with their quantities and units. Equivalent units require conversion to a common scale; equal numerals in different units can represent different magnitudes.',
     frontend: {
       en: 'You can explain why measurements need matching units to be compared and convert them when necessary, instead of comparing numbers alone.',
+      it: 'Puoi spiegare perché per confrontare le misure servono unità compatibili e convertirle quando necessario, invece di confrontare soltanto i numeri.',
       qm: 'Ölçüvlerni qıyaslav içün birlikleri uyğun olması ne içün kerek olğanını añlata ve kerek olğanda olarnı çevire bilesiñ. Yalıñız sayılarnı qıyaslama.',
       zh: '你能解释为什么比较测量结果需要统一单位，必要时进行换算，而不只是比较数字大小。',
       hi: 'आप बता सकते हैं कि मापों की तुलना के लिए संगत इकाइयाँ क्यों ज़रूरी हैं, और केवल संख्याएँ देखने के बजाय ज़रूरत पर इकाइयाँ बदल सकते हैं।',
