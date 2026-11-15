@@ -154,6 +154,7 @@ export function mergeAssessmentResourceFiles(
 ): AssessmentPublicationFiles {
   const merged = new Map<string, string>();
   const owners = new Map<string, Record<string, AssessmentResourceEntry>>();
+  const globallyOwned = new Map<string, string>();
   const assets: { filename: string; lessonId: string; itemId: string; kind: AssessmentResourceKind; locale: string }[] = [];
 
   for (const batch of batches) {
@@ -170,6 +171,10 @@ export function mergeAssessmentResourceFiles(
         const entries = owners.get(lessonId) ?? {};
         for (const [id, item] of Object.entries(manifest.entries)) {
           if (Object.hasOwn(entries, id)) throw new Error('Duplicate Assessment UUID across stages: ' + id);
+          if (globallyOwned.has(id) && globallyOwned.get(id) !== lessonId) {
+            throw new Error('Duplicate Assessment UUID across Lessons: ' + id);
+          }
+          globallyOwned.set(id, lessonId);
           entries[id] = item;
         }
         owners.set(lessonId, entries);

@@ -105,7 +105,11 @@ test('merges independently produced Question/Flashcard stages into one non-dupli
   assert.equal(combinedManifest.entries[cardId].kind, 'flashcard');
   assert.equal(combined.size, questionStage.size + flashcardStage.size - 1);
   assert.deepEqual([...combined], [...mergeAssessmentResourceFiles([flashcardStage, questionStage])]);
-  assert.throws(() => mergeAssessmentResourceFiles([questionStage, questionStage]), /Duplicate Assessment UUID across stages/);
+  assert.throws(() => mergeAssessmentResourceFiles([questionStage, questionStage]), /Duplicate Assessment resource file/);
+  const otherLesson = renderAssessmentResourceFiles([
+    { ...question(), lessonId: '00000000-0000-4000-8000-000000000010' },
+  ]);
+  assert.throws(() => mergeAssessmentResourceFiles([questionStage, otherLesson]), /Duplicate Assessment UUID across Lessons/);
   const noManifest = new Map(questionStage);
   noManifest.delete(manifestPath);
   assert.throws(() => mergeAssessmentResourceFiles([noManifest]), /Unindexed Assessment resource/);
