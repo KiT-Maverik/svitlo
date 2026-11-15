@@ -11,6 +11,7 @@ export const mapTypesAndThematicLayers_SkillGroup_Data = defineSkillGroup({
   id: '31643ccb-26da-4092-98ba-62ac872f5072',
   name: {
     en: 'Map Types and Thematic Layers',
+    it: 'Tipi di carte e livelli tematici',
     zh: '地图类型与专题图层',
     hi: 'मानचित्र के प्रकार और विषयगत परतें',
     es: 'Tipos de mapas y capas temáticas',
@@ -50,6 +51,7 @@ export const mapTypesAndThematicLayers_SkillGroup_Data = defineSkillGroup({
       'Maps may emphasize general reference features, political territories, physical relief, topography or specific themes such as geology, population, climate, weather, transport and resources. Categories overlap: for example, a geological or population map is thematic, and many maps combine layers. Choosing the relevant content is distinct from choosing a globe or map scale.',
     frontend: {
       en: 'Discover how different maps show boundaries, landforms, weather, people and more.',
+      it: 'Scopri come carte diverse rappresentano confini, forme del rilievo, tempo meteorologico, popolazione e altro.',
       zh: '了解不同地图如何展示边界、地形、天气、人口等信息。',
       hi: 'जानें कि अलग-अलग मानचित्र सीमाएँ, स्थलरूप, मौसम, जनसंख्या आदि कैसे दिखाते हैं।',
       es: 'Descubre cómo distintos mapas muestran fronteras, relieves, tiempo atmosférico, personas y más.',

@@ -12,6 +12,7 @@ export const mapDesignAndConventions_SkillGroup_Data = defineSkillGroup({
   id: '32a65fba-5775-4bfa-9ff6-4aab2def03c4',
   name: {
     en: 'Map Design and Conventions',
+    it: 'Progettazione e convenzioni cartografiche',
     zh: '地图设计与制图惯例',
     hi: 'मानचित्र निर्माण और परंपराएँ',
     es: 'Diseño y convenciones cartográficas',
@@ -52,6 +53,7 @@ export const mapDesignAndConventions_SkillGroup_Data = defineSkillGroup({
       'Creating and interpreting maps requires deliberate choices of symbols, legends, orientation, scale and labels. Conventions allow readers to infer geographic meaning from an authored representation without treating a map as a literal replica of the ground.',
     frontend: {
       en: 'Learn how symbols, legends, scale and orientation make a map understandable.',
+      it: 'Impara come simboli, legende, scala e orientamento rendono comprensibile una carta.',
       zh: '了解符号、图例、比例尺和方向标识如何帮助读懂地图。',
       hi: 'जानें कि चिह्न, संकेत सूची, मापनी और दिशा मानचित्र को कैसे समझने योग्य बनाते हैं।',
       es: 'Aprende cómo los símbolos, las leyendas, la escala y la orientación permiten comprender un mapa.',
