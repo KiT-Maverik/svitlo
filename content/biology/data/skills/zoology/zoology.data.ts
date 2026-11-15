@@ -10,6 +10,7 @@ export const zoology_SkillDomain_Data = defineSkillDomain({
   id: 'afaca13a-3925-4c2b-92ff-ff447bdc5f51',
   title: {
     en: 'Zoology',
+    it: 'Zoologia',
     zh: '动物学',
     hi: 'प्राणिविज्ञान',
     es: 'Zoología',
@@ -50,6 +51,7 @@ export const zoology_SkillDomain_Data = defineSkillDomain({
       'Comparison of major animal groups, relationships between structure and function, feeding patterns, development, and behavior. Food chains and interspecies networks as whole systems belong to Ecology.',
     frontend: {
       en: 'Discover how animals differ in structure, movement, growth and behavior.',
+      it: 'Scopri come gli animali differiscono per struttura, movimento, crescita e comportamento.',
       zh: '探索动物在身体结构、运动、生长和行为方面的差异。',
       hi: 'जानें कि जानवरों की शारीरिक संरचना, गति, वृद्धि और व्यवहार में क्या अंतर होते हैं।',
       es: 'Descubre cómo varían los animales en su estructura, movimiento, crecimiento y comportamiento.',
