@@ -15,6 +15,7 @@ export const filmLanguage_SkillGroup_Data = defineSkillGroup({
   id: 'ef99cf61-0359-4e16-804d-a576bd76c776',
   name: {
     en: 'Film Language',
+    it: 'Linguaggio cinematografico',
 
     zh: '电影语言',
     hi: 'फ़िल्म की भाषा',
@@ -58,6 +59,7 @@ export const filmLanguage_SkillGroup_Data = defineSkillGroup({
     methodological: 'Relations among shots, timing and sound establish meaning across a moving-image work.',
     frontend: {
       en: 'Explore how individual shots, edits and sounds work together in film.',
+      it: 'Esplora come inquadrature, montaggio e suoni collaborano in un film.',
 
       zh: '探索单个镜头、剪辑和声音如何在电影中协同作用。',
       hi: 'जानें कि अलग-अलग शॉट, संपादन और ध्वनियाँ फ़िल्म में कैसे मिलकर काम करती हैं।',
