@@ -21,6 +21,8 @@ const {
   yamlSubtitles_Schema,
   yamlQuestSection_Schema,
   yamlCarouselSlide_Schema,
+  yamlCheckpointItem_Schema,
+  yamlCheckpointAnswerConfigurator_Schema,
   audio_Config_Schema,
   image_Config_Schema,
   video_Config_Schema,
@@ -50,6 +52,7 @@ test('all current polymorphic types have a concrete exported define* factory', (
     'episode',
     'flashcard',
     'checkpointItem',
+    'checkpointAnswer',
     'carouselSlide',
     'quest',
     'questStage',
@@ -80,6 +83,32 @@ test('nested discriminator is required even in source-language-only YAML', () =>
     }).success,
     false,
   );
+});
+
+test('Checkpoint Item YAML requires an authored Answer Configurator with its own identity', () => {
+  const answer = {
+    id: '00000000-0000-4000-8000-000000000002',
+    slug: 'answer',
+    type: 'checkpointAnswer',
+    content: { items: { greeting: textBlock }, order: ['greeting'] },
+  };
+  const item = {
+    id: '00000000-0000-4000-8000-000000000003',
+    slug: 'item',
+    type: 'checkpointItem',
+    question: textBlock,
+    answer,
+  };
+  assert.equal(yamlCheckpointAnswerConfigurator_Schema.safeParse(answer).success, true);
+  assert.equal(yamlCheckpointItem_Schema.safeParse(item).success, true);
+  assert.equal(yamlCheckpointItem_Schema.safeParse({ ...item, answer: answer.content }).success, false);
+  assert.equal(yamlCheckpointItem_Schema.safeParse({
+    ...item, answer: { ...answer, id: undefined },
+  }).success, false);
+  assert.equal(yamlCheckpointItem_Schema.safeParse({
+    ...item, answer: { ...answer, type: 'text' },
+  }).success, false);
+  assert(yamlJsonSchemaDocuments()['lesson.schema.json'].includes('checkpointAnswer'));
 });
 
 test('YAML media projections require null while Engine Config schemas require real paths', () => {
@@ -278,18 +307,6 @@ test('reused nested Config schemas are shared by reference instead of expanded c
 });
 
 test('checked-in editor schemas match the current Engine Zod source', () => {
-  // Temporary CI-assisted extraction: regenerate the authoritative documents
-  // in the test environment and print exact UTF-8 bytes for branch update.
-  // This block is removed from the PR after the checked-in artifacts are updated.
-  for (const [name, value] of Object.entries(yamlJsonSchemaDocuments())) {
-    const local = new URL('../../yaml-schemas/' + name, import.meta.url);
-    const current = JSON.stringify(JSON.parse(fs.readFileSync(local, 'utf8')));
-    if (current === JSON.stringify(JSON.parse(value))) continue;
-    const encoded = Buffer.from(value, 'utf8').toString('base64');
-    for (let offset = 0; offset < encoded.length; offset += 1200) {
-      console.log('SVITLO_SCHEMA_EXPORT::' + name + '::' + offset + '::' + encoded.slice(offset, offset + 1200));
-    }
-  }
   assert.equal(generateYamlSchemas('--check').length, 10);
 });
 
