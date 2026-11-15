@@ -16,7 +16,7 @@ Review one or more Svitlo localizations **by reading generated Markdown referenc
 
 ## Canonical review record and local language decisions
 
-Completed review evidence is recorded in the **entity-owned `review.ts`** (for Lessons: the root `review.ts` beside `index.ts`, typed `LessonReview` when Stage 6 is implemented), **not** in per-entity/per-language Markdown review reports. Generated `.agent-ci-artifacts/**/*.md` is a temporary read-only *input* to reviews, never the permanent review result.
+Completed review evidence is recorded in the **entity-owned `review.ts`** (for Lessons: the root `review.ts` beside `index.ts`, typed `LessonReview` when Stage 6 is implemented), **not** in per-entity/per-language Markdown review reports. Generated `.agent-ci-artifacts/**/*.md` is a temporary read-only _input_ to reviews, never the permanent review result.
 
 For Lesson AI localization review, `ai.locales` is **one numeric PR**: the final translation/review **integration PR**, recorded only after **all** intended Lesson languages have actually been independently reviewed and the scope/assembled Props revision verified. Do not place translator or individual reviewer subtask PR numbers into that field or treat generating all languages as reviewing all languages. Human linguistic review is recorded separately in `human.locales[language]` as that language's verified PR; other entity kinds follow their **actual** available Engine Review contract, never a fabricated Lesson-specific shape.
 

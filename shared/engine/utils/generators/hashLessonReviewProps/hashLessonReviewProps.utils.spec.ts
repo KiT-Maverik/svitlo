@@ -6,7 +6,10 @@ import { hashLessonReviewProps, lessonReviewIdentifier } from './hashLessonRevie
 const sample = () => ({
   base: {
     id: 'lesson',
-    section: [{ slug: 'intro', locale: { value: 'One' } }, { slug: 'next', locale: { value: 'Two' } }],
+    section: [
+      { slug: 'intro', locale: { value: 'One' } },
+      { slug: 'next', locale: { value: 'Two' } },
+    ],
   },
   locale: { uk: { title: 'Світло' }, en: { title: 'Light' } },
 });

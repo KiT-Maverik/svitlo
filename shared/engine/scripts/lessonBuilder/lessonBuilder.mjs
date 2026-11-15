@@ -240,11 +240,12 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   for (const [relative, body] of modules) {
     const destination = path.join(outputFolder, relative);
     if (mode === 'generate') fs.mkdirSync(path.dirname(destination), { recursive: true });
-    changed += relative === 'review.ts'
-      ? writeReviewDraft(destination, body, mode)
-      : relative.endsWith('.ts')
-        ? writeDraft(destination, body, mode)
-        : writeAuthoredSource(destination, body, mode);
+    changed +=
+      relative === 'review.ts'
+        ? writeReviewDraft(destination, body, mode)
+        : relative.endsWith('.ts')
+          ? writeDraft(destination, body, mode)
+          : writeAuthoredSource(destination, body, mode);
   }
   const specs = mode === 'generate' ? writeProductionFiles(artifacts) : 0;
   return {
