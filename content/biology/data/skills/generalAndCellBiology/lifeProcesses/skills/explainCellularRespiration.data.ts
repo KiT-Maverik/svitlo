@@ -5,6 +5,7 @@ export const explainCellularRespiration_Skill_Data = defineSkill({
   id: 'b2ea43cb-f044-4ff8-841e-2bcfec153448',
   name: {
     en: 'Explain Cellular Respiration',
+    it: 'Spiegare la respirazione cellulare',
     zh: '解释细胞呼吸',
     hi: 'कोशिकीय श्वसन समझाना',
     es: 'Explicar la respiración celular',
@@ -39,6 +40,7 @@ export const explainCellularRespiration_Skill_Data = defineSkill({
       'Explain how cells obtain usable energy by breaking down organic compounds while synthesizing ATP. Distinguish aerobic and anaerobic pathways, and do not equate cellular respiration with lung ventilation or gas exchange in respiratory organs.',
     frontend: {
       en: 'Learn how cells release usable energy from organic substances.',
+      it: 'Scopri come le cellule ricavano energia utilizzabile dalle sostanze organiche.',
       zh: '了解细胞如何从有机物中释放可利用的能量。',
       hi: 'जानें कि कोशिकाएँ कार्बनिक पदार्थों से उपयोगी ऊर्जा कैसे प्राप्त करती हैं।',
       es: 'Aprende cómo las células liberan energía utilizable de sustancias orgánicas.',
