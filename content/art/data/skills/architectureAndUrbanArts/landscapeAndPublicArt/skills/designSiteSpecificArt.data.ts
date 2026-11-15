@@ -5,6 +5,7 @@ export const designSiteSpecificArt_Skill_Data = defineSkill({
   id: 'b1d4747c-69a6-41aa-b026-d3acf1eaafa8',
   name: {
     en: 'Design Site-Specific Art',
+    it: "Progettare un'opera d'arte per un luogo specifico",
     zh: '设计场域特定艺术',
     hi: 'स्थान-विशिष्ट कला डिज़ाइन करें',
     es: 'Diseñar arte específico para un lugar',
@@ -38,6 +39,7 @@ export const designSiteSpecificArt_Skill_Data = defineSkill({
     methodological: "Adapt artistic form to a location's scale, history and use.",
     frontend: {
       en: 'Create art that responds to the location where people encounter it.',
+      it: "Crea un'opera che dialoghi con il luogo in cui le persone la incontrano.",
       zh: '创作能够回应人们所处场所的艺术作品。',
       hi: 'ऐसी कला बनाएँ जो उस स्थान के अनुरूप हो जहाँ लोग उसे देखते हैं।',
       es: 'Crea arte que responda al lugar donde las personas se encuentran con él.',
