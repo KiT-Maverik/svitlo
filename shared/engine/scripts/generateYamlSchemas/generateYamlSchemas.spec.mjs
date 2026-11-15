@@ -278,6 +278,18 @@ test('reused nested Config schemas are shared by reference instead of expanded c
 });
 
 test('checked-in editor schemas match the current Engine Zod source', () => {
+  // Temporary CI-assisted extraction: regenerate the authoritative documents
+  // in the test environment and print exact UTF-8 bytes for branch update.
+  // This block is removed from the PR after the checked-in artifacts are updated.
+  for (const [name, value] of Object.entries(yamlJsonSchemaDocuments())) {
+    const local = new URL('../../yaml-schemas/' + name, import.meta.url);
+    const current = JSON.stringify(JSON.parse(fs.readFileSync(local, 'utf8')));
+    if (current === JSON.stringify(JSON.parse(value))) continue;
+    const encoded = Buffer.from(value, 'utf8').toString('base64');
+    for (let offset = 0; offset < encoded.length; offset += 1200) {
+      console.log('SVITLO_SCHEMA_EXPORT::' + name + '::' + offset + '::' + encoded.slice(offset, offset + 1200));
+    }
+  }
   assert.equal(generateYamlSchemas('--check').length, 10);
 });
 
