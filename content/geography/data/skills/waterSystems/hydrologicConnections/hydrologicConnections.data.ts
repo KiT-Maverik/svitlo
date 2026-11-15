@@ -12,6 +12,7 @@ export const hydrologicConnections_SkillGroup_Data = defineSkillGroup({
   id: 'b9a75b6d-93fb-4b7b-a8e7-76566745ed52',
   name: {
     en: 'Hydrologic Connections',
+    it: 'Connessioni idrologiche',
     zh: '水文联系',
     hi: 'जल विज्ञान संबंध',
     es: 'Conexiones hidrológicas',
@@ -52,6 +53,7 @@ export const hydrologicConnections_SkillGroup_Data = defineSkillGroup({
       'Water changes location and state among the atmosphere, surface, living systems, and subsurface. This is a connected circulation model rather than a single linear loop.',
     frontend: {
       en: 'See how water circulates between air, land, organisms and underground stores.',
+      it: "Scopri come l'acqua circola tra atmosfera, terre emerse, organismi e riserve sotterranee.",
       zh: '了解水如何在空气、陆地、生物和地下储存中循环。',
       hi: 'जानें कि पानी हवा, भूमि, जीवों और भूमिगत भंडार के बीच कैसे घूमता है।',
       es: 'Observa cómo circula el agua entre aire, tierra, seres vivos y depósitos subterráneos.',

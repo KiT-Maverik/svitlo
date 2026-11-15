@@ -11,6 +11,7 @@ export const marineAndCoastalProcesses_SkillGroup_Data = defineSkillGroup({
   id: '63e99f33-ae1e-4269-aa0d-a9fa80f739e2',
   name: {
     en: 'Marine and Coastal Processes',
+    it: 'Processi marini e costieri',
     zh: '海洋与海岸过程',
     hi: 'समुद्री और तटीय प्रक्रियाएँ',
     es: 'Procesos marinos y costeros',
@@ -50,6 +51,7 @@ export const marineAndCoastalProcesses_SkillGroup_Data = defineSkillGroup({
       'Coastal and marine environments differ in exposure, enclosure, water movement, and relation to land. The emphasis is on geographic patterns and coastal form rather than detailed fluid dynamics.',
     frontend: {
       en: 'Explore how waves, tides and currents affect coasts and oceans.',
+      it: 'Esplora come onde, maree e correnti influenzano le coste e gli oceani.',
       zh: '探索波浪、潮汐和洋流如何影响海岸与海洋。',
       hi: 'जानें कि लहरें, ज्वार-भाटा और समुद्री धाराएँ तटों तथा महासागरों को कैसे प्रभावित करती हैं।',
       es: 'Explora cómo las olas, mareas y corrientes afectan las costas y océanos.',

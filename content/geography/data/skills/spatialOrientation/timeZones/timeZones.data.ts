@@ -14,6 +14,7 @@ export const timeZones_SkillGroup_Data = defineSkillGroup({
   id: '18fb384e-b4d0-4684-8183-d9e1092720ad',
   name: {
     en: 'Time Zones',
+    it: 'Fusi orari',
     zh: '时区',
     hi: 'समय क्षेत्र',
     es: 'Husos horarios',
@@ -56,6 +57,7 @@ export const timeZones_SkillGroup_Data = defineSkillGroup({
       "Earth's rotation gives different longitudes different solar timing, while societies coordinate clocks through geographically assigned civil time rules. The same place can be described by its solar time, legal time-zone assignment, UTC offset and calendar date; these are related but not interchangeable.",
     frontend: {
       en: 'Explore how Earth’s rotation and local rules shape the time shown on clocks.',
+      it: "Esplora come la rotazione terrestre e le regole locali determinano l'ora indicata dagli orologi.",
       zh: '探索地球自转和各地规定如何决定时钟显示的时间。',
       hi: 'जानें कि पृथ्वी का घूर्णन और स्थानीय नियम घड़ियों पर दिखने वाले समय को कैसे तय करते हैं।',
       es: 'Explora cómo la rotación de la Tierra y las normas locales determinan la hora de los relojes.',

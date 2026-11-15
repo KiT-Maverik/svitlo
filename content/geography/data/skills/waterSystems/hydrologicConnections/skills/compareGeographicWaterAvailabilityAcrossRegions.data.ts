@@ -5,6 +5,7 @@ export const compareGeographicWaterAvailabilityAcrossRegions_Skill_Data = define
   id: '01e72fb2-d2c9-413e-ab2f-5ecdaa9125d8',
   name: {
     en: 'Compare geographic water availability across regions',
+    it: 'Confrontare la disponibilità geografica di acqua tra regioni',
     zh: '比较不同地区的水资源可获得性',
     hi: 'क्षेत्रों में जल उपलब्धता की तुलना करना',
     es: 'Comparar la disponibilidad de agua entre regiones',
@@ -39,6 +40,7 @@ export const compareGeographicWaterAvailabilityAcrossRegions_Skill_Data = define
       'Relate precipitation, storage, seasonal variation, and demand to differences in accessible fresh water, rather than equating wet weather with secure supply.',
     frontend: {
       en: 'Compare the availability of fresh water in different regions.',
+      it: 'Confronta la disponibilità di acqua dolce in regioni diverse.',
       zh: '比较不同地区可利用的淡水资源。',
       hi: 'अलग-अलग क्षेत्रों में उपलब्ध मीठे पानी की तुलना करें।',
       es: 'Compara el agua dulce disponible en distintas regiones.',

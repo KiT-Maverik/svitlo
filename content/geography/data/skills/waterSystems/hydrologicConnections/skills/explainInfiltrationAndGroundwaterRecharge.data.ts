@@ -5,6 +5,7 @@ export const explainInfiltrationAndGroundwaterRecharge_Skill_Data = defineSkill(
   id: '9d02979e-3df6-448f-85a8-bf411f3a2cb9',
   name: {
     en: 'Explain infiltration and groundwater recharge',
+    it: "Spiegare l'infiltrazione e la ricarica delle falde acquifere",
     zh: '解释下渗与地下水补给',
     hi: 'अंतःस्रवण और भूजल पुनर्भरण समझाना',
     es: 'Explicar la infiltración y recarga de acuíferos',
@@ -39,6 +40,7 @@ export const explainInfiltrationAndGroundwaterRecharge_Skill_Data = defineSkill(
       'Connect water entering permeable soils and rock to subsurface flow and replenishment of groundwater storage, distinguishing a downward pathway from direct surface runoff.',
     frontend: {
       en: 'Explain how water enters soil and rock and replenishes groundwater.',
+      it: "Spiega come l'acqua penetra nel suolo e nelle rocce e ricarica le falde sotterranee.",
       zh: '解释水怎样进入土壤和岩石并补充地下水。',
       hi: 'बताएँ कि पानी मिट्टी और चट्टानों में जाकर भूजल कैसे भरता है।',
       es: 'Explica cómo el agua penetra en el suelo y las rocas y repone el agua subterránea.',
