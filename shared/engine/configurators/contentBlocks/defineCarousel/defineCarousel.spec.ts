@@ -147,6 +147,27 @@ describe('Configurators', () => {
         }), /expected.*image|expected.*scene|Unsupported.*type|Invalid Carousel slides|must be/i);
       });
 
+      test('excludes disabled Image/Scene children and rejects an empty active Carousel', () => {
+        const { carousel } = example();
+        const disabled = carousel.build.overrides(
+          { slides: { items: { first: { params: { disabled: true } } } } },
+          scope,
+        );
+        assert.deepEqual(disabled.locale?.en?.locale.slides?.map(slide => slide.slug), ['second']);
+        assert.deepEqual(disabled.locale?.uk?.locale.slides?.map(slide => slide.slug), ['second']);
+
+        assert.throws(
+          () => carousel.build.overrides(
+            { slides: { items: {
+              first: { params: { disabled: true } },
+              second: { params: { disabled: true } },
+            } } },
+            scope,
+          ),
+          /At least one active Carousel slide/,
+        );
+      });
+
       test('keeps an isolated authored snapshot and enforces matching slugs', () => {
         const { carousel, first } = example();
         assert.throws(() => defineCarousel<'invalid', { different: typeof first }, ['en', 'uk']>({

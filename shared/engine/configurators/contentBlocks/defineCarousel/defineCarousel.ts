@@ -147,7 +147,13 @@ export const defineCarousel = <
           )
         : undefined;
       return { resource, patch };
+    }).filter(({ resource, patch }) => {
+      // Disabled children are absent from resolved Carousel Props, like other nested
+      // ContentBlocks. Preserve the authored collection and its order unchanged.
+      const effective = mergeForValidation(resource.base, patch?.base ?? {});
+      return effective.params.disabled !== true;
     });
+    if (!entries.length) throw new Error('At least one active Carousel slide is required');
 
     const arraySchema = z.array(carousel_Slide_Props_Schema).min(1);
     const invariant = entries.map(({ resource, patch }) =>
