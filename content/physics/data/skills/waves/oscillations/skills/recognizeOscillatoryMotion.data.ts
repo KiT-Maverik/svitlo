@@ -5,6 +5,7 @@ export const recognizeOscillatoryMotion_Skill_Data = defineSkill({
   id: '36e397bb-7467-40d4-8627-62ed6e627128',
   name: {
     en: 'Recognize oscillatory motion',
+    it: 'Riconoscere il moto oscillatorio',
     zh: '识别振荡运动',
     hi: 'दोलन गति पहचानना',
     es: 'Reconocer el movimiento oscilatorio',
@@ -39,6 +40,7 @@ export const recognizeOscillatoryMotion_Skill_Data = defineSkill({
       'Oscillation is a change in a physical state around equilibrium that may recur; not every motion involving reversals is harmonic oscillation.',
     frontend: {
       en: 'Recognize when a physical state oscillates around equilibrium.',
+      it: 'Riconosci quando uno stato fisico oscilla intorno all\'equilibrio.',
       zh: '识别物理状态围绕平衡状态振荡的情形。',
       hi: 'पहचानें कि कोई भौतिक अवस्था संतुलन के आसपास कब दोलन करती है।',
       es: 'Reconoce cuándo un estado físico oscila alrededor del equilibrio.',

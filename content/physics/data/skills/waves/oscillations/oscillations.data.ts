@@ -12,6 +12,7 @@ export const oscillations_SkillGroup_Data = defineSkillGroup({
   id: 'b8ff6d72-4de9-4a0b-a58c-f24de25acc44',
   name: {
     en: 'Oscillations',
+    it: 'Oscillazioni',
     zh: '振荡',
     hi: 'दोलन',
     es: 'Oscilaciones',
@@ -60,6 +61,7 @@ export const oscillations_SkillGroup_Data = defineSkillGroup({
       'Repetitive motion around a given state allows vibration, periodicity, and sound sources to be described.',
     frontend: {
       en: 'Learn how repeating motion creates oscillations and sound sources.',
+      it: 'Impara come il moto ripetitivo produce oscillazioni e sorgenti sonore.',
       zh: '了解重复运动如何产生振荡和声源。',
       hi: 'जानें कि दोहराव वाली गति से दोलन और ध्वनि स्रोत कैसे बनते हैं।',
       es: 'Aprende cómo el movimiento repetitivo produce oscilaciones y fuentes sonoras.',

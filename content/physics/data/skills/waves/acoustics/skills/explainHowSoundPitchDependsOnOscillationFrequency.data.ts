@@ -5,6 +5,7 @@ export const explainHowSoundPitchDependsOnOscillationFrequency_Skill_Data = defi
   id: '635c153a-5166-4981-90f5-885bdeb82b81',
   name: {
     en: 'Explain how sound pitch depends on oscillation frequency',
+    it: 'Spiegare come l\'altezza del suono dipende dalla frequenza delle oscillazioni',
     zh: '解释声音的音高如何取决于振动频率',
     hi: 'ध्वनि का तारत्व कंपन आवृत्ति पर निर्भर होना समझाना',
     es: 'Explicar cómo el tono depende de la frecuencia de oscilación',
@@ -39,6 +40,7 @@ export const explainHowSoundPitchDependsOnOscillationFrequency_Skill_Data = defi
       'All else being equal, a higher sound frequency corresponds to a higher pitch; it is not the same as increased loudness.',
     frontend: {
       en: 'Connect higher sound frequency with higher perceived pitch.',
+      it: 'Collega frequenze sonore più elevate a suoni percepiti come più acuti.',
       zh: '联系更高的声音频率与听起来更高的音调。',
       hi: 'अधिक ध्वनि आवृत्ति को अधिक ऊँचे तारत्व से जोड़ें।',
       es: 'Relaciona mayor frecuencia sonora con un tono percibido más agudo.',
