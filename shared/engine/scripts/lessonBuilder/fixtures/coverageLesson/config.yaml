@@ -485,7 +485,6 @@ config:
               order: ["cardHint"]
         production:
           rationale: "One succinct definition."
-    order: ["equalityRecallCard"]
   questions:
     selectOneAnswer:
       identifyTrueEquality:
