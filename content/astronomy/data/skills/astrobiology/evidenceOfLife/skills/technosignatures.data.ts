@@ -5,6 +5,7 @@ export const technosignatures_Skill_Data = defineSkill({
   id: '586a73a0-713c-4a4c-9349-b735a6221945',
   name: {
     en: 'Technosignatures',
+    it: 'Tecno-firme',
     qm: 'Tehnologiya işaretleri',
     bn: 'প্রযুক্তির চিহ্ন',
     ur: 'ٹیکنالوجی کے نشانات',
@@ -39,6 +40,7 @@ export const technosignatures_Skill_Data = defineSkill({
       'Interpret possible observable indicators of technology without confusing an unexplained signal with confirmed intelligence.',
     frontend: {
       en: 'Consider what an unusual signal might reveal about technology without calling it proof of intelligence.',
+      it: 'Considera cosa potrebbe rivelare un segnale insolito riguardo alla tecnologia, senza scambiarlo per una prova di intelligenza.',
       qm: 'Alışılmağan signal tehnologiya aqqında ne ayta bilgenini araştırıñız, amma onı aqıl barlığınıñ isbatı dep saymañız.',
       bn: 'অস্বাভাবিক কোনো সংকেত প্রযুক্তি সম্পর্কে কী ইঙ্গিত দিতে পারে, তা ভাবো, তবে সেটিকে বুদ্ধিমান জীবনের প্রমাণ মনে কোরো না।',
       ur: 'غور کریں کہ غیر معمولی اشارہ ٹیکنالوجی کے بارے میں کیا بتا سکتا ہے، مگر اسے ذہین زندگی کا ثبوت نہ سمجھیں۔',

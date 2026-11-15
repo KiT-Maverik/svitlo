@@ -5,6 +5,7 @@ export const abioticFalsePositives_Skill_Data = defineSkill({
   id: '426e4998-d7b9-4bae-ba1c-c0e51dd78159',
   name: {
     en: 'Abiotic False Positives',
+    it: 'Falsi positivi di origine abiotica',
     qm: 'Cansız sebeplerden kelgen yañlış işaretler',
     bn: 'অজৈব কারণে ভ্রান্ত ইতিবাচক সংকেত',
     ur: 'غیر حیاتی جھوٹے مثبت اشارے',
@@ -39,6 +40,7 @@ export const abioticFalsePositives_Skill_Data = defineSkill({
       'Identify nonbiological processes capable of producing signals superficially similar to biosignatures.',
     frontend: {
       en: 'Discover how nonliving processes can imitate signs that might suggest life.',
+      it: 'Scopri come processi non biologici possano imitare segni che sembrano indicare la vita.',
       qm: 'Cansız protsesslerniñ yaşayış bar dep düşündire bilgen işaretlerni nasıl taqlit etkenini ögreniñiz.',
       bn: 'জীবনহীন প্রক্রিয়া কীভাবে জীবনের লক্ষণের মতো সংকেত তৈরি করতে পারে, তা জানো।',
       ur: 'جانیں کہ غیر جاندار عمل زندگی کی علامتوں جیسے اشارے کیسے پیدا کر سکتے ہیں۔',
