@@ -5,6 +5,7 @@ export const applySumAccumulation_Skill_Data = defineSkill({
   id: 'c9b0d468-57c3-4e48-90ce-f1aacc8a2536',
   name: {
     en: 'Apply Sum Accumulation',
+    it: "Applicare l'accumulo di una somma",
     zh: '应用累加求和算法',
     hi: 'योग संचय लागू करना',
     es: 'Aplicar acumulación de sumas',
@@ -38,6 +39,7 @@ export const applySumAccumulation_Skill_Data = defineSkill({
     methodological: 'Traverse a numeric collection, adding each value to an accumulator initialized to zero.',
     frontend: {
       en: 'Add collection values into a running total.',
+      it: 'Somma i valori di una collezione mantenendo un totale aggiornato.',
       zh: '逐项累加集合中的数值，形成持续更新的总和。',
       hi: 'संग्रह के मानों को एक-एक करके चलती कुल राशि में जोड़ें।',
       es: 'Suma los valores de la colección a un total que se actualiza.',

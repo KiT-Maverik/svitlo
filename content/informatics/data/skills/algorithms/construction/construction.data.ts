@@ -14,6 +14,7 @@ export const construction_SkillGroup_Data = defineSkillGroup({
   id: '0313947e-0474-4685-a697-515adc14eada',
   name: {
     en: 'Construction',
+    it: 'Costruzione di algoritmi',
     zh: '算法构建',
     hi: 'एल्गोरिदम निर्माण',
     es: 'Construcción',
@@ -56,6 +57,7 @@ export const construction_SkillGroup_Data = defineSkillGroup({
       "General ways of specifying an algorithm's goal, sequence, conditions, and repetition, regardless of purpose. Distinguish describing a correct procedure from implementing it in a programming language.",
     frontend: {
       en: 'Learn to specify the actions, conditions and stopping rules of an algorithm.',
+      it: 'Impara a specificare le azioni, le condizioni e i criteri di arresto di un algoritmo.',
       zh: '学习如何明确算法的操作、条件与终止规则。',
       hi: 'एल्गोरिदम की क्रियाएँ, शर्तें और रुकने के नियम तय करना सीखें।',
       es: 'Aprende a especificar acciones, condiciones y reglas de parada de un algoritmo.',
