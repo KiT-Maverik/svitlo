@@ -13,6 +13,7 @@ export const relativity_SkillGroup_Data = defineSkillGroup({
   id: '98116782-7e48-4474-b437-26dab39ea837',
   name: {
     en: 'Relativity',
+    it: 'Relatività',
     zh: '相对论',
     hi: 'सापेक्षता',
     es: 'Relatividad',
@@ -65,6 +66,7 @@ export const relativity_SkillGroup_Data = defineSkillGroup({
       'Special relativity describes how measurements of space and time relate to motion, while general relativity describes gravity as spacetime geometry. They should not be confused with the history of astronomy or require formulas in an introductory curriculum.',
     frontend: {
       en: 'Discover how motion and gravity affect measurements of space and time.',
+      it: 'Scopri come il movimento e la gravità influenzano le misurazioni dello spazio e del tempo.',
       zh: '探索运动和引力如何影响空间与时间的测量。',
       hi: 'जानो कि गति और गुरुत्वाकर्षण स्थान तथा समय के मापन को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo el movimiento y la gravedad afectan las mediciones del espacio y del tiempo.',

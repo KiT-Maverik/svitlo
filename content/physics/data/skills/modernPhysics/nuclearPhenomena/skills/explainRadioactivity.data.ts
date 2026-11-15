@@ -5,6 +5,7 @@ export const explainRadioactivity_Skill_Data = defineSkill({
   id: 'fa53395a-5f54-43ca-bec4-7119999f5297',
   name: {
     en: 'Explain radioactivity',
+    it: 'Spiegare la radioattività',
     zh: '解释放射性',
     hi: 'रेडियोधर्मिता समझाना',
     es: 'Explicar la radiactividad',
@@ -39,6 +40,7 @@ export const explainRadioactivity_Skill_Data = defineSkill({
       'Unstable atomic nuclei spontaneously transform while emitting particles or energy; this is not an ordinary chemical reaction.',
     frontend: {
       en: 'Explain how unstable atomic nuclei undergo radioactive transformations.',
+      it: 'Spiega come i nuclei atomici instabili subiscono trasformazioni radioattive.',
       zh: '解释不稳定的原子核如何发生放射性转变。',
       hi: 'समझाओ कि अस्थिर परमाणु नाभिक रेडियोधर्मी परिवर्तन कैसे करते हैं।',
       es: 'Explica cómo los núcleos atómicos inestables sufren transformaciones radiactivas.',

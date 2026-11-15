@@ -5,6 +5,7 @@ export const explainTheGravitationalDeflectionOfLight_Skill_Data = defineSkill({
   id: 'd37fc9be-0bf9-41c0-a7e0-6a74b8d6bb48',
   name: {
     en: 'Explain the gravitational deflection of light',
+    it: 'Spiegare la deviazione gravitazionale della luce',
     zh: '解释光线的引力偏折',
     hi: 'गुरुत्वाकर्षण से प्रकाश का मुड़ना समझाना',
     es: 'Explicar la desviación gravitatoria de la luz',
@@ -39,6 +40,7 @@ export const explainTheGravitationalDeflectionOfLight_Skill_Data = defineSkill({
       'Near massive bodies, spacetime geometry changes light trajectories; this is not refraction at the boundary of two optical media.',
     frontend: {
       en: 'Explain how gravity bends light trajectories without ordinary optical refraction.',
+      it: 'Spiega come la gravità curva le traiettorie della luce senza la normale rifrazione ottica.',
       zh: '解释引力如何弯曲光的传播路径，而这并非普通的光学折射。',
       hi: 'समझाओ कि गुरुत्वाकर्षण प्रकाश का मार्ग कैसे मोड़ता है, जबकि यह साधारण प्रकाशीय अपवर्तन नहीं है।',
       es: 'Explica cómo la gravedad curva la trayectoria de la luz sin tratarse de refracción óptica ordinaria.',
