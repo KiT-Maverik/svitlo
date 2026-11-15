@@ -198,6 +198,10 @@ const mergeMarkdownForValidation = (
 /**
  * Define localized Markdown with optional Code-style replacement variables.
  *
+ * Supports inline LaTeX formulas (`$...$`) and display formulas (`$$...$$`)
+ * in Markdown source. UI Kit renders them with KaTeX; Engine stores the original
+ * Markdown unchanged. Escape literal dollar signs as `\$`.
+ *
  * @remarks
  * Store translations as `locale/<language>.md` beside the definition and
  * pass `files: { moduleUrl: import.meta.url, languages }`. For invariant
