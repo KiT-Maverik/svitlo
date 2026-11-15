@@ -5,6 +5,7 @@ export const meroe_Skill_Data = defineSkill({
   id: '708fcbb0-8846-41eb-b81d-5e10c7026132',
   name: {
     en: 'Meroë',
+    it: "Meroe",
     zh: '麦罗埃',
     hi: 'मेरोए',
     es: 'Meroe',
@@ -38,6 +39,7 @@ export const meroe_Skill_Data = defineSkill({
     methodological: "Explore the later Kushite city's royal culture, metallurgy, and distinct writing.",
     frontend: {
       en: 'Discover the city and culture of Meroë.',
+      it: "Scopri la città e la cultura di Meroe.",
       zh: '探索麦罗埃的城市与文化。',
       hi: 'मेरोए के नगर और संस्कृति को जानें।',
       es: 'Descubre la ciudad y la cultura de Meroe.',

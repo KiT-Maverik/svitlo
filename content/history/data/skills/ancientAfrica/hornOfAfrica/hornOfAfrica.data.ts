@@ -11,6 +11,7 @@ export const hornOfAfrica_SkillGroup_Data = defineSkillGroup({
   id: 'dd64dd81-5094-4eb5-9ee0-28d02a5498ec',
   name: {
     en: 'Horn of Africa',
+    it: "Corno d'Africa",
     zh: '非洲之角',
     hi: 'अफ्रीका का सींग',
     es: 'Cuerno de África',
@@ -40,19 +41,13 @@ export const hornOfAfrica_SkillGroup_Data = defineSkillGroup({
     kk: 'Африка мүйісі',
     qm: 'Afrika Boynuzu',
   },
-  skills: {
-    items: {
-      aksumiteKingdom: aksumiteKingdom_Skill_Data,
-      christianizationOfAksum: christianizationOfAksum_Skill_Data,
-      earlyEthiopianHighlandStates: earlyEthiopianHighlandStates_Skill_Data,
-    },
-    order: ['aksumiteKingdom', 'christianizationOfAksum', 'earlyEthiopianHighlandStates'],
-  },
+  skills: [aksumiteKingdom_Skill_Data, christianizationOfAksum_Skill_Data, earlyEthiopianHighlandStates_Skill_Data],
   description: {
     methodological:
       'Red Sea connections linked highland farming societies with maritime exchanges between Africa and Arabia.',
     frontend: {
       en: 'Explore ancient societies near the Red Sea and Ethiopian highlands.',
+      it: "Esplora le società antiche nei pressi del Mar Rosso e degli altopiani etiopici.",
       zh: '探索红海沿岸与埃塞俄比亚高原的古代社会。',
       hi: 'लाल सागर और इथियोपियाई उच्चभूमि के आसपास के प्राचीन समाजों को जानें।',
       es: 'Explora las sociedades antiguas cercanas al mar Rojo y las tierras altas de Etiopía.',

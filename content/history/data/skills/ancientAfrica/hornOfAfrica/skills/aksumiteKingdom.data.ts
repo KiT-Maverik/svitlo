@@ -5,6 +5,7 @@ export const aksumiteKingdom_Skill_Data = defineSkill({
   id: 'c57cf80a-f1c9-46ea-bcf2-229384afffe0',
   name: {
     en: 'Kingdom of Aksum',
+    it: "Regno di Axum",
     zh: '阿克苏姆王国',
     hi: 'अक्सुम साम्राज्य',
     es: 'Reino de Aksum',
@@ -38,6 +39,7 @@ export const aksumiteKingdom_Skill_Data = defineSkill({
     methodological: 'Study late-antique Aksumite kingship, international trade, coinage, and monuments.',
     frontend: {
       en: 'Explore how Aksum traded and governed in late antiquity.',
+      it: "Esplora come Axum commerciava e governava nella tarda antichità.",
       zh: '探索阿克苏姆如何在古代晚期开展贸易与治理。',
       hi: 'जानें कि उत्तर-प्राचीन काल में अक्सुम ने व्यापार और शासन कैसे किया।',
       es: 'Explora cómo Aksum comerciaba y gobernaba en la Antigüedad tardía.',
