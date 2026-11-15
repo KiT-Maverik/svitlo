@@ -92,3 +92,17 @@ read-only and strict. Unsafe symlink paths remain rejected.
 Use the current README and test file for invocation flags. Do not trust
 historical Creator API names or draft generator examples instead of
 the actual script.
+
+## Separate React Scene scaffold
+
+The Lesson Builder owns only the nested `defineScene` source module and its
+colocated `specification.md`. The opted-in
+[Scene Scaffolding workflow](../../../shared/engine/scripts/sceneScaffolding/README.md)
+independently reads the same technical `config.yaml` production specifications
+and creates an **executable React draft** under the textbook's UUID-addressed
+`scenes/<bucket>/<scene-uuid>/`, only in already Scene-capable packages.
+Generation is creation-only and never registers unfinished components.
+The separate Lesson Builder emission agent is responsible for aligning
+PascalCase Scene slug acceptance and `SceneNameConfig` symbols with
+executable `SceneName` components. Legacy lowerCamelCase authored slugs
+remain valid source identities; they map to PascalCase component filenames.

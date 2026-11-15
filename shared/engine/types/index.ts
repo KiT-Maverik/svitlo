@@ -1,5 +1,10 @@
 export type { DeepPartial } from './transformer.types';
-export type { Review, ReviewEvidence, LessonReview, LessonReviewStage } from './review.types';
+export type {
+  Review,
+  ReviewEvidence,
+  LessonReview,
+  LessonReviewStage,
+} from './review.types';
 export type { ResolveLocale } from './resolveLocale';
 
 export type {

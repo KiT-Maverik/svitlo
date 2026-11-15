@@ -77,8 +77,9 @@ change `params.languages` or invent translations.
   Section, ContentBlock, Question, Flashcard, Checkpoint Item, Carousel Image/Scene slide,
   Quest Stage and Quest Task lives in its own `<slug>/index.ts` module. Generic
   arguments are based on the actual Engine Configurator signature.
-- `review.ts`: non-exported `LessonReview` skeleton with mandatory `ai.stages`
-  evidence for Lesson Production stages (PR + review language), a single
+- `review.ts`: non-exported `LessonReview` skeleton with mandatory direct
+  `ai.<camelCaseStage>` fields (PR + review language), matching the same
+  camelCase identifiers in Lesson Production trackers, plus a single
   `ai.locales` integration PR, and required `human.acceptance` and
   `human.locales` fields. Optional `human.scientific` is initially absent.
   **The const identifier and mandatory values are deliberately blank and
