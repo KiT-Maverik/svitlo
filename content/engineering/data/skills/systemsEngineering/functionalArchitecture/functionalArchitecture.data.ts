@@ -13,6 +13,7 @@ export const functionalArchitecture_SkillGroup_Data = defineSkillGroup({
   id: 'cf1d0359-b6b7-4552-b2f9-2769346971bd',
   name: {
     en: 'Functional Architecture',
+    it: 'Architettura funzionale',
     zh: '功能架构',
     hi: 'कार्यात्मक संरचना',
     es: 'Arquitectura funcional',
@@ -54,6 +55,7 @@ export const functionalArchitecture_SkillGroup_Data = defineSkillGroup({
       'The same overall service may be implemented by different assemblies; the function and system boundary must be distinguished from component names.',
     frontend: {
       en: 'Learn how functions and boundaries define an engineered system.',
+      it: 'Impara come le funzioni e i confini definiscono un sistema ingegnerizzato.',
       zh: '学习如何通过功能和边界定义工程系统。',
       hi: 'जानें कि कार्य और सीमाएँ किसी अभियांत्रिकी प्रणाली को कैसे परिभाषित करते हैं।',
       es: 'Aprende cómo las funciones y los límites definen un sistema diseñado.',
