@@ -5,6 +5,7 @@ export const checkVisualAccessibility_Skill_Data = defineSkill({
   id: '529a749d-ac17-4c66-8428-b8d9310a8370',
   name: {
     en: 'Check Visual Accessibility',
+    it: "Verificare l'accessibilità visiva",
 
     zh: '检查视觉无障碍性',
     hi: 'दृश्य सुगम्यता जाँचें',
@@ -39,6 +40,7 @@ export const checkVisualAccessibility_Skill_Data = defineSkill({
     methodological: 'Revise barriers arising from low contrast, inappropriate text scale or color-only distinctions.',
     frontend: {
       en: 'Spot and fix visual barriers such as weak contrast or color-only cues.',
+      it: "Individua e correggi ostacoli visivi come il contrasto insufficiente o le indicazioni basate soltanto sui colori.",
 
       zh: '识别并修复低对比度或仅靠颜色区分造成的视觉障碍。',
       hi: 'कम कंट्रास्ट या केवल रंग पर निर्भर संकेतों जैसी दृश्य बाधाओं को पहचानें और ठीक करें।',
