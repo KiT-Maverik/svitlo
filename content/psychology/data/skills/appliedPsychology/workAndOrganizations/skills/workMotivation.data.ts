@@ -5,6 +5,7 @@ export const workMotivation_Skill_Data = defineSkill({
   id: '03405acb-35e2-4e46-9b5b-cd664fe4a83e',
   name: {
     en: 'Work Motivation',
+    it: 'Motivazione al lavoro',
     zh: '工作动机',
     hi: 'काम करने की प्रेरणा',
     es: 'Motivación laboral',
@@ -39,6 +40,7 @@ export const workMotivation_Skill_Data = defineSkill({
       'Analyze how perceived fairness, autonomy, incentives, and meaningful goals influence workplace effort.',
     frontend: {
       en: 'Explore why autonomy, fairness and clear goals affect motivation at work.',
+      it: 'Esplora perché autonomia, equità e obiettivi chiari influenzino la motivazione lavorativa.',
       zh: '探索为什么自主性、公平性与明确目标会影响工作积极性。',
       hi: 'जानें कि स्वायत्तता, निष्पक्षता और स्पष्ट लक्ष्य काम की प्रेरणा को क्यों प्रभावित करते हैं।',
       es: 'Explora por qué la autonomía, la justicia y las metas claras influyen en la motivación laboral.',

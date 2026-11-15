@@ -5,6 +5,7 @@ export const organizationalStressors_Skill_Data = defineSkill({
   id: 'd263f5c3-73dc-434a-8232-d17ee757a998',
   name: {
     en: 'Organizational Stressors',
+    it: 'Fattori di stress organizzativi',
     zh: '组织压力源',
     hi: 'संगठन में तनाव के स्रोत',
     es: 'Factores de estrés organizacional',
@@ -39,6 +40,7 @@ export const organizationalStressors_Skill_Data = defineSkill({
       'Identify how workload, lack of control, and interpersonal conditions contribute to work-related strain.',
     frontend: {
       en: 'Recognize workplace conditions that can contribute to stress.',
+      it: 'Riconosci le condizioni lavorative che possono contribuire allo stress.',
       zh: '识别可能导致工作压力的职场条件。',
       hi: 'कार्यस्थल की उन स्थितियों को पहचानें जो तनाव बढ़ा सकती हैं।',
       es: 'Reconoce condiciones laborales que pueden contribuir al estrés.',

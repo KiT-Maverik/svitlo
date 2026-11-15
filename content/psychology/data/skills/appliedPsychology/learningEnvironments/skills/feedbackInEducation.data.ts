@@ -5,6 +5,7 @@ export const feedbackInEducation_Skill_Data = defineSkill({
   id: '5740806a-5b37-4648-88db-b23205ff1b29',
   name: {
     en: 'Feedback in Education',
+    it: 'Feedback nell\'istruzione',
     zh: '教育中的反馈',
     hi: 'शिक्षा में प्रतिक्रिया',
     es: 'Retroalimentación en la educación',
@@ -38,6 +39,7 @@ export const feedbackInEducation_Skill_Data = defineSkill({
     methodological: "Distinguish informative performance feedback from judgments about a learner's fixed ability.",
     frontend: {
       en: 'Recognize feedback that helps improve performance rather than labeling ability.',
+      it: 'Riconosci i riscontri che aiutano a migliorare le prestazioni anziché etichettare le capacità.',
       zh: '识别有助于提高表现、而非给能力贴标签的反馈。',
       hi: 'ऐसी प्रतिक्रिया पहचानें जो क्षमता का लेबल लगाने के बजाय प्रदर्शन सुधारने में मदद करे।',
       es: 'Reconoce comentarios que ayudan a mejorar el desempeño en vez de etiquetar capacidades.',
