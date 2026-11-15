@@ -5,6 +5,7 @@ export const identifyAccessibilityBarriers_Skill_Data = defineSkill({
   id: '13f0ad7a-679a-48a3-890d-0eb33a2906d5',
   name: {
     en: 'Identify accessibility barriers',
+    it: 'Individuare barriere all\'accessibilità',
     zh: '识别妨碍无障碍使用的因素',
     hi: 'सुगम्यता की बाधाएँ पहचानना',
     es: 'Identificar barreras de accesibilidad',
@@ -38,6 +39,7 @@ export const identifyAccessibilityBarriers_Skill_Data = defineSkill({
     methodological: 'Recognize force, reach, mobility, hearing, sight or dexterity obstacles introduced by a design.',
     frontend: {
       en: 'Recognize obstacles that prevent people with different abilities from using a space.',
+      it: 'Riconosci gli ostacoli che impediscono a persone con capacità diverse di utilizzare uno spazio.',
       zh: '发现阻止不同能力的人使用空间的障碍。',
       hi: 'ऐसी बाधाएँ पहचानें जो अलग-अलग क्षमताओं वाले लोगों को स्थान का उपयोग करने से रोकती हैं।',
       es: 'Reconoce obstáculos que impiden usar un espacio a personas con distintas capacidades.',
