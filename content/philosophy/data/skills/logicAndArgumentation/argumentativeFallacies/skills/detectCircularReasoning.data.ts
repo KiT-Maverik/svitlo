@@ -5,6 +5,7 @@ export const detectCircularReasoning_Skill_Data = defineSkill({
   id: '53966a3d-61b6-424f-9218-b22ebc55af6f',
   name: {
     en: 'Detect circular reasoning',
+    it: 'Riconoscere un ragionamento circolare',
     zh: '识别循环论证',
     hi: 'चक्राकार तर्क की पहचान',
     es: 'Detectar un razonamiento circular',
@@ -39,6 +40,7 @@ export const detectCircularReasoning_Skill_Data = defineSkill({
       'Recognize when the offered support presupposes the very claim at issue without independent justification.',
     frontend: {
       en: 'Recognize arguments that assume the conclusion they claim to prove.',
+      it: 'Riconosci le argomentazioni che presuppongono la conclusione che pretendono di dimostrare.',
       zh: '识别把待证明的结论当作前提的论证。',
       hi: 'ऐसे तर्क पहचानें जो सिद्ध किए जाने वाले निष्कर्ष को ही पहले से मान लेते हैं।',
       es: 'Reconoce argumentos que presuponen la conclusión que afirman demostrar.',

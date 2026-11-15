@@ -5,6 +5,7 @@ export const interpretUniversalQuantification_Skill_Data = defineSkill({
   id: '111aca7c-22d7-44ac-a5b5-1aa500711288',
   name: {
     en: 'Interpret universal quantification',
+    it: 'Interpretare la quantificazione universale',
     zh: '理解全称量化',
     hi: 'सार्विक परिमाणीकरण की व्याख्या',
     es: 'Interpretar la cuantificación universal',
@@ -39,6 +40,7 @@ export const interpretUniversalQuantification_Skill_Data = defineSkill({
       'Determine what it means for a property to hold for every element of a specified domain and how one counterexample would matter.',
     frontend: {
       en: 'Read a statement that applies to every member of a specified group.',
+      it: 'Leggi un\'affermazione che vale per ogni membro di un insieme specificato.',
       zh: '读懂适用于某个指定群体每位成员的陈述。',
       hi: 'किसी निर्धारित समूह के प्रत्येक सदस्य पर लागू कथन को समझें।',
       es: 'Lee una afirmación que se aplica a cada miembro de un grupo definido.',

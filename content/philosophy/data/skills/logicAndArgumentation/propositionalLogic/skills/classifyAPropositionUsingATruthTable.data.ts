@@ -5,6 +5,7 @@ export const classifyAPropositionUsingATruthTable_Skill_Data = defineSkill({
   id: 'f0ac214e-9523-48f7-8831-5fe92f07a197',
   name: {
     en: 'Classify a proposition using a truth table',
+    it: 'Classificare una proposizione tramite una tavola di verità',
     zh: '用真值表分类命题',
     hi: 'सत्यता सारणी से प्रस्ताव का वर्गीकरण',
     es: 'Clasificar una proposición con una tabla de verdad',
@@ -39,6 +40,7 @@ export const classifyAPropositionUsingATruthTable_Skill_Data = defineSkill({
       'Distinguish tautological, contradictory, and contingent expressions through their truth values under all assignments.',
     frontend: {
       en: 'Use truth tables to recognize always-true, always-false and contingent statements.',
+      it: 'Usa le tavole di verità per riconoscere enunciati sempre veri, sempre falsi o contingenti.',
       zh: '使用真值表识别重言式、矛盾式和偶然为真的命题。',
       hi: 'सत्यता सारणी से सदैव सत्य, सदैव असत्य और परिस्थितिनुसार सत्य कथन पहचानें।',
       es: 'Usa tablas de verdad para reconocer enunciados siempre verdaderos, siempre falsos y contingentes.',
