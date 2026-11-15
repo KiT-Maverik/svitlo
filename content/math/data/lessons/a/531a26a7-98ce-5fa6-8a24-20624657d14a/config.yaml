@@ -15,10 +15,10 @@ config:
       en: 'Five in Every Pack: Count by Fives'
   section:
     items:
-      section1FiveStripBuilder:
+      countAddedFiveStrips:
         config:
           id: '24ddbb32-f956-48df-be86-5ee8fc3dea9d'
-          slug: 'section1FiveStripBuilder'
+          slug: 'countAddedFiveStrips'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Five-Strip Builder'
           content:
             items:
-              text1:
+              addFiveDotStrips:
                 config:
                   id: '8d983283-4eb0-4d22-80b3-421de748743c'
-                  slug: 'text1'
+                  slug: 'addFiveDotStrips'
                   type: 'text'
                   params: {}
                   locale:
@@ -132,16 +132,16 @@ config:
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
                   purpose: 'Proposed interactive Scene for Five-Strip Builder'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainFifteenDots:
                 config:
                   id: 'f40629c8-1334-4969-a183-5fda7ea03033'
-                  slug: 'markdown2'
+                  slug: 'explainFifteenDots'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Three strips contain fifteen dots, not three dots. 1 strip=5, 2=10, 3=15 dots.'
-            order: ['text1', 'fiveStripBuilder', 'markdown2']
+            order: ['addFiveDotStrips', 'fiveStripBuilder', 'explainFifteenDots']
         production:
           purpose: 'Five-Strip Builder'
           pedagogicalIntent: |
@@ -182,10 +182,10 @@ config:
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2FourPacksAreNotFourObjects:
+      distinguishPacksFromUnits:
         config:
           id: 'dc3aef2d-2907-4824-abcd-230b3445c0d2'
-          slug: 'section2FourPacksAreNotFourObjects'
+          slug: 'distinguishPacksFromUnits'
           type: 'content'
           params: {}
           locale:
@@ -195,34 +195,34 @@ config:
               en: 'Four Packs Are Not Four Objects'
           content:
             items:
-              text1:
+              countFourPacks:
                 config:
                   id: 'be66d7cc-3574-45e9-bf03-652eaba44c23'
-                  slug: 'text1'
+                  slug: 'countFourPacks'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'There are four strips with five dots on each. How many strips and how many dots?'
-              markdown2:
+              explainTwentyDots:
                 config:
                   id: 'aace2863-522f-4286-a244-6cc56ff50c68'
-                  slug: 'markdown2'
+                  slug: 'explainTwentyDots'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Four strips, but twenty dots altogether. Count the five dots added by each strip: 5,10,15,20. The group count (four) is different from the total count (twenty).'
-              markdown3:
+              compareIncompleteFinalPack:
                 config:
                   id: 'a9ce26d0-532f-4419-a144-6b3270f50dfb'
-                  slug: 'markdown3'
+                  slug: 'compareIncompleteFinalPack'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'If the last strip has just four dots, you must count those four. The total then is 5+5+5+4=19, not 20.'
-            order: ['text1', 'markdown2', 'markdown3']
+            order: ['countFourPacks', 'explainTwentyDots', 'compareIncompleteFinalPack']
         production:
           purpose: 'Four Packs Are Not Four Objects'
           pedagogicalIntent: |
@@ -239,10 +239,10 @@ config:
             - **Transition:** Section 3 changes numbers or objects and asks for independent reasoning. The first Scene's state is not carried into the second.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3FivePackTransfer:
+      applyFiveGroupsToCrayons:
         config:
           id: 'c275ef5f-6392-49da-b37a-b15dd5e09ba0'
-          slug: 'section3FivePackTransfer'
+          slug: 'applyFiveGroupsToCrayons'
           type: 'content'
           params: {}
           locale:
@@ -252,10 +252,10 @@ config:
               en: 'Five-Pack Transfer'
           content:
             items:
-              text1:
+              calculateFiveCrayonBoxes:
                 config:
                   id: 'a623afa2-f7e7-4e4b-9348-3afce5e13e15'
-                  slug: 'text1'
+                  slug: 'calculateFiveCrayonBoxes'
                   type: 'text'
                   params: {}
                   locale:
@@ -356,16 +356,16 @@ config:
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
                   purpose: 'Proposed interactive Scene for Five-Pack Transfer'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainTwentyFiveAndThirty:
                 config:
                   id: 'ad39d3e9-3c84-4fa0-a8c7-6af3a6235ca2'
-                  slug: 'markdown2'
+                  slug: 'explainTwentyFiveAndThirty'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Five boxes contain twenty-five crayons; six boxes contain thirty. 5 groups of 5=25; 6 groups of 5=30.'
-            order: ['text1', 'fivePackTransfer', 'markdown2']
+            order: ['calculateFiveCrayonBoxes', 'fivePackTransfer', 'explainTwentyFiveAndThirty']
         production:
           purpose: 'Five-Pack Transfer'
           pedagogicalIntent: |
@@ -406,7 +406,7 @@ config:
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order: ['section1FiveStripBuilder', 'section2FourPacksAreNotFourObjects', 'section3FivePackTransfer']
+    order: ['countAddedFiveStrips', 'distinguishPacksFromUnits', 'applyFiveGroupsToCrayons']
   flashcards:
     items: {}
     order: []

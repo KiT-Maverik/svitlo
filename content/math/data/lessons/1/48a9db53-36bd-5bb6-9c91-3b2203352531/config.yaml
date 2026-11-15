@@ -20,10 +20,10 @@ config:
       en: 'Half Past, Quarter Past, Quarter To'
   section:
     items:
-      section1:
+      relateQuarterTurnToFifteenMinutes:
         config:
           id: '48a9db53-36bd-5bb6-9c91-000000000004'
-          slug: 'section1'
+          slug: 'relateQuarterTurnToFifteenMinutes'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Why is 3 fifteen minutes?'
           content:
             items:
-              section1Text1:
+              watchMinuteHandQuarterTurn:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-000000000001'
-                  slug: 'section1Text1'
+                  slug: 'watchMinuteHandQuarterTurn'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '1. **`text`** (supported Resource type) — “Watch the long minute hand move around the dial. One complete trip is 60 minutes. If we stop one quarter of the way, how many minutes have gone by?”'
-              section1Scene1:
+              modelQuarterHour:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-000000000002'
-                  slug: 'section1Scene1'
+                  slug: 'modelQuarterHour'
                   type: 'scene'
                   params: {}
                   locale:
@@ -127,10 +127,10 @@ config:
 
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
                   productionNotes: "This placement in Why is 3 fifteen minutes? refers to ClockQuarterExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section1Markdown1:
+              explainThreeMeansFifteen:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-000000000003'
-                  slug: 'section1Markdown1'
+                  slug: 'explainThreeMeansFifteen'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -140,9 +140,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '3. **`markdown`** (supported Resource type) — “One quarter of an hour is 15 minutes. When the long hand points at 3, we are 15 minutes after the hour—quarter past.”'
             order:
-              - 'section1Text1'
-              - 'section1Scene1'
-              - 'section1Markdown1'
+              - 'watchMinuteHandQuarterTurn'
+              - 'modelQuarterHour'
+              - 'explainThreeMeansFifteen'
         production:
           purpose: 'Why is 3 fifteen minutes?'
           pedagogicalIntent: |-
@@ -167,10 +167,10 @@ config:
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section2:
+      readHalfPastFromBothHands:
         config:
           id: '48a9db53-36bd-5bb6-9c91-000000000008'
-          slug: 'section2'
+          slug: 'readHalfPastFromBothHands'
           type: 'content'
           params: {}
           locale:
@@ -180,10 +180,10 @@ config:
               en: 'Two clocks, one half-hour'
           content:
             items:
-              section2Text1:
+              positionHourHandAtSixThirty:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-000000000005'
-                  slug: 'section2Text1'
+                  slug: 'positionHourHandAtSixThirty'
                   type: 'text'
                   params: {}
                   locale:
@@ -192,10 +192,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '1. **`text`** (supported Resource type) — “At half past six, the long hand is at 6. Where would the short hand be: exactly on 6 or halfway toward 7?”'
-              section2Scene1:
+              exploreHalfPastClocks:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-000000000006'
-                  slug: 'section2Scene1'
+                  slug: 'exploreHalfPastClocks'
                   type: 'scene'
                   params: {}
                   locale:
@@ -274,10 +274,10 @@ config:
 
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
                   productionNotes: "This placement in Two clocks, one half-hour refers to ClockQuarterExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section2Markdown1:
+              explainThirtyMinutes:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-000000000007'
-                  slug: 'section2Markdown1'
+                  slug: 'explainThirtyMinutes'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -287,9 +287,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '3. **`markdown`** (supported Resource type) — “Half an hour is 30 minutes. At 6:30, the long hand points to 6 and the short hand has moved halfway toward 7.”'
             order:
-              - 'section2Text1'
-              - 'section2Scene1'
-              - 'section2Markdown1'
+              - 'positionHourHandAtSixThirty'
+              - 'exploreHalfPastClocks'
+              - 'explainThirtyMinutes'
         production:
           purpose: 'Two clocks, one half-hour'
           pedagogicalIntent: |-
@@ -314,10 +314,10 @@ config:
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section3:
+      readQuarterToNextHour:
         config:
           id: '48a9db53-36bd-5bb6-9c91-00000000000c'
-          slug: 'section3'
+          slug: 'readQuarterToNextHour'
           type: 'content'
           params: {}
           locale:
@@ -327,10 +327,10 @@ config:
               en: 'The tricky quarter before the next hour'
           content:
             items:
-              section3Text1:
+              compareQuarterToEight:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-000000000009'
-                  slug: 'section3Text1'
+                  slug: 'compareQuarterToEight'
                   type: 'text'
                   params: {}
                   locale:
@@ -339,10 +339,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '1. **`text`** (supported Resource type) — “It is 7:45. Is it quarter to eight, or quarter to seven? Look at where the short hand is going.”'
-              section3Scene1:
+              inspectSevenFortyFive:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-00000000000a'
-                  slug: 'section3Scene1'
+                  slug: 'inspectSevenFortyFive'
                   type: 'scene'
                   params: {}
                   locale:
@@ -421,10 +421,10 @@ config:
 
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
                   productionNotes: "This placement in The tricky quarter before the next hour refers to ClockQuarterExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section3Markdown1:
+              explainFifteenMinutesRemaining:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-00000000000b'
-                  slug: 'section3Markdown1'
+                  slug: 'explainFifteenMinutesRemaining'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -434,9 +434,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '3. **`markdown`** (supported Resource type) — “Three quarters of an hour—45 minutes—have passed since seven. One quarter—15 minutes—remains until eight. The digital reading is still 7:45.”'
             order:
-              - 'section3Text1'
-              - 'section3Scene1'
-              - 'section3Markdown1'
+              - 'compareQuarterToEight'
+              - 'inspectSevenFortyFive'
+              - 'explainFifteenMinutesRemaining'
         production:
           purpose: 'The tricky quarter before the next hour'
           pedagogicalIntent: |-
@@ -461,10 +461,10 @@ config:
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section4:
+      transferQuarterHourReading:
         config:
           id: '48a9db53-36bd-5bb6-9c91-000000000010'
-          slug: 'section4'
+          slug: 'transferQuarterHourReading'
           type: 'content'
           params: {}
           locale:
@@ -474,10 +474,10 @@ config:
               en: 'Read a new clock, not a remembered answer'
           content:
             items:
-              section4Text1:
+              readTenFortyFive:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-00000000000d'
-                  slug: 'section4Text1'
+                  slug: 'readTenFortyFive'
                   type: 'text'
                   params: {}
                   locale:
@@ -486,10 +486,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '1. **`text`** (supported Resource type) — “The long hand is at 9. The short hand is between 10 and 11, closer to 11. Say the time, then write it in digits.”'
-              section4Scene1:
+              practiceNewClock:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-00000000000e'
-                  slug: 'section4Scene1'
+                  slug: 'practiceNewClock'
                   type: 'scene'
                   params: {}
                   locale:
@@ -568,10 +568,10 @@ config:
 
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
                   productionNotes: "This placement in Read a new clock, not a remembered answer refers to ClockQuarterExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section4Markdown1:
+              explainQuarterToEleven:
                 config:
                   id: '48a9db53-36bd-5bb6-9c91-00000000000f'
-                  slug: 'section4Markdown1'
+                  slug: 'explainQuarterToEleven'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -581,9 +581,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '3. **`markdown`** (supported Resource type) — “This is 10:45, quarter to eleven. It is 45 minutes after ten and 15 minutes before eleven.”'
             order:
-              - 'section4Text1'
-              - 'section4Scene1'
-              - 'section4Markdown1'
+              - 'readTenFortyFive'
+              - 'practiceNewClock'
+              - 'explainQuarterToEleven'
         production:
           purpose: 'Read a new clock, not a remembered answer'
           pedagogicalIntent: |-
@@ -609,10 +609,10 @@ config:
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'relateQuarterTurnToFifteenMinutes'
+      - 'readHalfPastFromBothHands'
+      - 'readQuarterToNextHour'
+      - 'transferQuarterHourReading'
   flashcards:
     items: {}
     order: []
