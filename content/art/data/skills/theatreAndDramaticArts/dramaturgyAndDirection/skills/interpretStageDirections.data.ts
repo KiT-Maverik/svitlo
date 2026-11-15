@@ -5,6 +5,7 @@ export const interpretStageDirections_Skill_Data = defineSkill({
   id: '5bec4a38-1be3-4b18-bfb8-c3a74cf303a5',
   name: {
     en: 'Interpret Stage Directions',
+    it: 'Interpretare le indicazioni sceniche',
     zh: '解读舞台指示',
     hi: 'मंच-निर्देशों की व्याख्या करें',
     es: 'Interpretar las acotaciones escénicas',
@@ -38,6 +39,7 @@ export const interpretStageDirections_Skill_Data = defineSkill({
     methodological: 'Turn indications of movement or delivery into plausible dramatic action.',
     frontend: {
       en: 'Turn written stage instructions into purposeful actions.',
+      it: 'Trasforma le indicazioni scritte per la scena in azioni intenzionali.',
       zh: '将书面的舞台指示转化为有目的的行动。',
       hi: 'लिखित मंच निर्देशों को उद्देश्यपूर्ण क्रियाओं में बदलें।',
       es: 'Convierte las instrucciones escénicas escritas en acciones con intención.',
