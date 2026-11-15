@@ -5,6 +5,7 @@ export const orderTheLevelsCellTissueOrganSystem_Skill_Data = defineSkill({
   id: '989b8b8c-7031-4951-be54-bf311192c4bc',
   name: {
     en: 'Order the Levels “Cell → Tissue → Organ → System”',
+    it: 'Ordinare i livelli «cellula → tessuto → organo → apparato»',
     zh: '排列细胞、组织、器官和系统的层次',
     hi: 'कोशिका, ऊतक, अंग और तंत्र के स्तर क्रम में रखना',
     es: 'Ordenar los niveles célula, tejido, órgano y sistema',
@@ -39,6 +40,7 @@ export const orderTheLevelsCellTissueOrganSystem_Skill_Data = defineSkill({
       'Establish how cells form tissues, tissues form organs, and organs can work together within a system.',
     frontend: {
       en: 'Arrange cells, tissues, organs and organ systems by their levels of organization.',
+      it: 'Disponi cellule, tessuti, organi e apparati secondo i rispettivi livelli di organizzazione.',
       zh: '按照结构层次排列细胞、组织、器官和器官系统。',
       hi: 'कोशिकाओं, ऊतकों, अंगों और अंग तंत्रों को संगठन के क्रम में रखें।',
       es: 'Ordena las células, los tejidos, los órganos y los sistemas según su nivel de organización.',
