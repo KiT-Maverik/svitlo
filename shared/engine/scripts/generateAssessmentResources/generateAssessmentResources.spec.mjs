@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import path from 'node:path';
 import { collectAssessmentConfigurators, render } from './generateAssessmentResources.mjs';
+import { loadLessonData, assembleLessonProps, selectQuizQuestionIds, validateAssessmentReferences } from '@svitlo/engine/build';
 
 const id = index => '00000000-0000-4000-8000-' + String(index).padStart(12, '0');
 const question = (key, number, type = 'selectOneAnswer') => ({
@@ -81,4 +82,41 @@ test('real Playground independently publishes full locale bodies while manifest 
   assert(onlyCards.has(owner + '/assessment-manifest.json'));
   assert([...onlyQuestions.keys()].every(key => !key.includes('/flashcards/')));
   assert([...onlyCards.keys()].every(key => !key.includes('/questions/')));
+});
+
+test('actual Playground Quiz UUID references resolve against the independent Question manifest', async () => {
+  const textbook = path.resolve(import.meta.dirname, '../../../../content/playground');
+  const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
+  const owner = 'c/' + lessonId;
+  const entry = path.join(textbook, 'data/lessons', owner, 'index.ts');
+  const lesson = await loadLessonData(entry);
+  const published = lesson.build.props({ languages: ['uk'] });
+  const response = assembleLessonProps(published, 'uk');
+  assert.equal(Object.hasOwn(response, 'questions'), false);
+  assert.equal(Object.hasOwn(response, 'flashcards'), false);
+  const quiz = response.section.find(item => item.type === 'quiz');
+  assert(quiz, 'canonical Lesson requires a Quiz Section');
+  const candidates = selectQuizQuestionIds(quiz.params.selection, quiz.id);
+  const files = await render(textbook, 'question');
+  const manifest = JSON.parse(files.get(owner + '/assessment-manifest.json'));
+  const selected = validateAssessmentReferences(manifest, {
+    lessonId,
+    sectionId: quiz.id,
+    kind: 'question',
+    ids: candidates,
+    language: 'uk',
+  });
+  assert.equal(selected.length, candidates.length);
+  assert.deepEqual(
+    candidates,
+    Object.values(quiz.params.selection.questionIds).slice(0, candidates.length),
+    'all-mode selection should preserve the curated Question order',
+  );
+  assert.throws(() => validateAssessmentReferences(manifest, {
+    lessonId,
+    sectionId: quiz.id,
+    kind: 'flashcard',
+    ids: candidates,
+    language: 'uk',
+  }), /wrong resource type/);
 });
