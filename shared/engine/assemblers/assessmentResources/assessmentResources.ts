@@ -15,6 +15,8 @@ export const assessmentResourceEntry_Schema = z.strictObject({
   kind: z.enum(['question', 'flashcard']),
   questionType: z.enum(questionTypes).optional(),
   languages: z.array(languageCode_Schema).nonempty(),
+  /** Only the published locale fragments; invariant-only entries need no locale file. */
+  localeFiles: z.array(languageCode_Schema).optional(),
   contentHash: z.string().regex(/^[0-9a-f]{64}$/, 'Expected a SHA-256 content hash'),
 });
 export type AssessmentResourceEntry = z.infer<typeof assessmentResourceEntry_Schema>;
@@ -106,6 +108,9 @@ export function validateAssessmentReferences(
     }
     if (entry.languages.length !== new Set(entry.languages).size) {
       throw new Error('Duplicate language for assessment UUID ' + id);
+    }
+    if (entry.localeFiles?.some(code => !entry.languages.includes(code))) {
+      throw new Error('Unexpected locale fragment for assessment UUID ' + id);
     }
     if (!entry.languages.includes(language)) {
       throw new Error('Assessment UUID ' + id + ' is unavailable in ' + language);

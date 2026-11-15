@@ -126,6 +126,7 @@ export function renderAssessmentResourceFiles(entries: readonly AssessmentPublic
       kind,
       ...(kind === 'question' ? { questionType: type as AssessmentResourceEntry['questionType'] } : {}),
       languages,
+      localeFiles: Object.keys(locale) as LanguageCode[],
       contentHash: hash,
     };
     (manifests.get(lessonPath) ?? (manifests.set(lessonPath, {}), manifests.get(lessonPath)!))[itemId] = item;
