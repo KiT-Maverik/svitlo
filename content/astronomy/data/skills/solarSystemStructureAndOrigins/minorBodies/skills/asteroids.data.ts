@@ -5,6 +5,7 @@ export const asteroids_Skill_Data = defineSkill({
   id: '4c0e7f06-9295-4c13-a1fe-c331623541ec',
   name: {
     en: 'Asteroids',
+    it: 'Asteroidi',
     zh: '小行星',
     hi: 'क्षुद्रग्रह',
     es: 'Asteroides',
@@ -39,6 +40,7 @@ export const asteroids_Skill_Data = defineSkill({
       'Explain the properties, diversity and orbital behavior of predominantly rocky or metallic small Solar System bodies.',
     frontend: {
       en: 'Explore the variety of rocky and metal-rich asteroids and their orbits.',
+      it: 'Esplora la varietà degli asteroidi rocciosi e ricchi di metalli e le loro orbite.',
       zh: '探索富含岩石和金属的小行星有哪些不同种类，以及它们沿怎样的轨道运行。',
       hi: 'चट्टानी और धातु-समृद्ध क्षुद्रग्रहों की विविधता तथा उनकी कक्षाओं को जानें।',
       es: 'Explora la variedad de asteroides rocosos y ricos en metales, así como sus órbitas.',

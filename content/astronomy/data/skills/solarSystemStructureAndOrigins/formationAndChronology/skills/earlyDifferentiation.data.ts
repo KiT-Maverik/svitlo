@@ -5,6 +5,7 @@ export const earlyDifferentiation_Skill_Data = defineSkill({
   id: 'b8bbcc95-d17c-4911-a908-eb804c62b3e5',
   name: {
     en: 'Early Differentiation',
+    it: 'Differenziazione primordiale',
     zh: '早期分异',
     hi: 'प्रारंभिक आंतरिक विभेदीकरण',
     es: 'Diferenciación temprana',
@@ -39,6 +40,7 @@ export const earlyDifferentiation_Skill_Data = defineSkill({
       'Explain how heating and density sorting lead young planetary bodies to develop distinct interior layers.',
     frontend: {
       en: 'Understand how young worlds develop layers as their materials separate.',
+      it: 'Comprendi come i mondi giovani sviluppano strati quando i loro materiali si separano.',
       zh: '了解年轻的行星天体如何因物质分离而逐渐形成内部层次。',
       hi: 'समझें कि युवा ग्रह-पिंडों के पदार्थ अलग होने पर उनके भीतर अलग-अलग परतें कैसे बनती हैं।',
       es: 'Comprende cómo los cuerpos planetarios jóvenes forman capas internas al separarse sus materiales.',

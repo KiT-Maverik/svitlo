@@ -5,6 +5,7 @@ export const transNeptunianObjects_Skill_Data = defineSkill({
   id: 'ecbfddf7-50e6-404e-84f6-dd247737169d',
   name: {
     en: 'Trans-Neptunian Objects',
+    it: 'Oggetti transnettuniani',
     zh: '海王星外天体',
     hi: 'वरुण-पार पिंड',
     es: 'Objetos transneptunianos',
@@ -38,6 +39,7 @@ export const transNeptunianObjects_Skill_Data = defineSkill({
     methodological: 'Classify bodies beyond Neptune and relate their diverse orbits to the outer Solar System.',
     frontend: {
       en: 'Explore the varied objects orbiting beyond Neptune.',
+      it: 'Esplora la varietà degli oggetti che orbitano oltre Nettuno.',
       zh: '探索海王星轨道以外形态多样的天体。',
       hi: 'वरुण ग्रह की कक्षा से परे घूमने वाले विभिन्न पिंडों के बारे में जानें।',
       es: 'Explora los distintos objetos que orbitan más allá de Neptuno.',

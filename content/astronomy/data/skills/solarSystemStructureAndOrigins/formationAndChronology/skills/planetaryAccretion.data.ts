@@ -5,6 +5,7 @@ export const planetaryAccretion_Skill_Data = defineSkill({
   id: '5283487f-f82a-4c87-9a7b-8ebe905058aa',
   name: {
     en: 'Planetary Accretion',
+    it: 'Accrescimento planetario',
     zh: '行星吸积',
     hi: 'ग्रहों का अभिवृद्धि द्वारा निर्माण',
     es: 'Acreción planetaria',
@@ -38,6 +39,7 @@ export const planetaryAccretion_Skill_Data = defineSkill({
     methodological: 'Describe how collisions and gravitational growth build larger bodies from smaller solid material.',
     frontend: {
       en: 'Explain how smaller material comes together to build larger planetary bodies.',
+      it: 'Spiega come materiali più piccoli si uniscono formando corpi planetari più grandi.',
       zh: '解释较小的固体物质如何聚集，逐渐形成更大的行星天体。',
       hi: 'समझाएँ कि छोटे ठोस पदार्थ एकत्र होकर बड़े ग्रह-पिंड कैसे बनाते हैं।',
       es: 'Explica cómo los materiales sólidos pequeños se unen para formar cuerpos planetarios más grandes.',

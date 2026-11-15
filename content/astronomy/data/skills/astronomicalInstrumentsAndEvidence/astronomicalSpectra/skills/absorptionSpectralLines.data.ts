@@ -5,6 +5,7 @@ export const absorptionSpectralLines_Skill_Data = defineSkill({
   id: 'ef2d4c77-f2f2-4837-8c58-cab4b2bab70d',
   name: {
     en: 'Absorption Spectral Lines',
+    it: 'Righe spettrali di assorbimento',
     qm: 'Yutuluv spektr çizgileri',
     bn: 'শোষণ বর্ণক্রম রেখা',
     ur: 'جذبی طیفی خطوط',
@@ -39,6 +40,7 @@ export const absorptionSpectralLines_Skill_Data = defineSkill({
       'Interpret dark spectral features produced by matter absorbing characteristic wavelengths from background radiation.',
     frontend: {
       en: 'Recognize dark spectral lines as clues to material absorbing light.',
+      it: 'Riconosci nelle righe scure dello spettro indizi sui materiali che assorbono la luce.',
       qm: 'Qaranlıq spektr çizgilerini yarıqnı yutqan madde aqqında işaretler olaraq tanıñız.',
       bn: 'বর্ণক্রমের অন্ধকার রেখাকে পদার্থের আলো শোষণের চিহ্ন হিসেবে চিনতে শেখো।',
       ur: 'تاریک طیفی خطوط کو مادے کے روشنی جذب کرنے کے اشارے کے طور پر پہچانیں۔',

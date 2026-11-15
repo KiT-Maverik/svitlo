@@ -5,6 +5,7 @@ export const dopplerShift_Skill_Data = defineSkill({
   id: '07adc502-1c59-4109-b03d-92828c606ca3',
   name: {
     en: 'Doppler Shift',
+    it: 'Effetto Doppler',
     qm: 'Doppler tayuvı',
     bn: 'ডপলার সরণ',
     ur: 'ڈاپلر انزياح',
@@ -39,6 +40,7 @@ export const dopplerShift_Skill_Data = defineSkill({
       'Interpret wavelength shifts due to relative radial motion, distinguishing this local effect from cosmological expansion.',
     frontend: {
       en: 'Use shifts in wavelength to investigate motion toward or away from an observer.',
+      it: 'Usa gli spostamenti delle lunghezze d\'onda per studiare il moto verso un osservatore o in direzione opposta.',
       qm: 'Dalğa uzunlığınıñ deñişüvine baqıp, cisimniñ közeticige yaqınlaşqanını ya da uzaqlaşqanını araştırıñız.',
       bn: 'তরঙ্গদৈর্ঘ্যের পরিবর্তন থেকে বস্তু পর্যবেক্ষকের দিকে আসছে, না দূরে যাচ্ছে, তা অনুসন্ধান করো।',
       ur: 'طولِ موج میں تبدیلیوں سے معلوم کریں کہ کوئی جسم مشاہدہ کرنے والے کی طرف آ رہا ہے یا اس سے دور جا رہا ہے۔',

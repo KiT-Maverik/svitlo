@@ -5,6 +5,7 @@ export const lifeDetectionEvidenceStandards_Skill_Data = defineSkill({
   id: '15e852cb-eac1-4bac-8e9f-6a0366b94ec9',
   name: {
     en: 'Life-Detection Evidence Standards',
+    it: 'Criteri di prova per rilevare la vita',
     qm: 'Yaşayışnı tapuv delilleriniñ standartları',
     bn: 'জীবন শনাক্তের প্রমাণের মানদণ্ড',
     ur: 'زندگی کی دریافت کے ثبوت کے معیارات',
@@ -39,6 +40,7 @@ export const lifeDetectionEvidenceStandards_Skill_Data = defineSkill({
       'Distinguish suggestive observations from convergent, independently checked evidence sufficient to support a life claim.',
     frontend: {
       en: 'Explore why extraordinary claims of extraterrestrial life need multiple independent checks.',
+      it: 'Esplora perché affermazioni straordinarie sulla vita extraterrestre richiedono più verifiche indipendenti.',
       qm: 'Yerden tışta yaşayış tapılğanı aqqındaki alışılmağan iddialar ne içün bir qaç mustaqil teşkerüv talap etkenini ögreniñiz.',
       bn: 'ভিনগ্রহের জীবন সম্পর্কে অসাধারণ দাবির জন্য একাধিক স্বাধীন যাচাই কেন দরকার, তা জানো।',
       ur: 'جانیں کہ غیر زمینی زندگی کے غیر معمولی دعووں کے لیے کئی آزادانہ جانچیں کیوں ضروری ہیں۔',

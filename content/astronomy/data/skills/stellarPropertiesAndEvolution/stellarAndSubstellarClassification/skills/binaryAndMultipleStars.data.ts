@@ -5,6 +5,7 @@ export const binaryAndMultipleStars_Skill_Data = defineSkill({
   id: 'afc3597d-3650-463f-96c7-c8e6f84f9827',
   name: {
     en: 'Binary and Multiple Stars',
+    it: 'Stelle binarie e multiple',
     zh: '双星与多星系统',
     hi: 'द्वितारा और बहु-तारा प्रणालियाँ',
     es: 'Estrellas binarias y múltiples',
@@ -39,6 +40,7 @@ export const binaryAndMultipleStars_Skill_Data = defineSkill({
       'Explain how gravitationally bound stellar systems are identified and used to estimate stellar properties.',
     frontend: {
       en: 'Explore how pairs and groups of stars orbit one another.',
+      it: 'Esplora come coppie e gruppi di stelle orbitano gli uni intorno agli altri.',
       zh: '探索成对或成组的恒星如何围绕共同的质心运行。',
       hi: 'जानें कि दो या अधिक तारे एक-दूसरे के चारों ओर कैसे परिक्रमा करते हैं।',
       es: 'Explora cómo parejas y grupos de estrellas orbitan unas alrededor de otras.',

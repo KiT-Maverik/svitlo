@@ -5,6 +5,7 @@ export const cosmicInflation_Skill_Data = defineSkill({
   id: '649414ff-1aaa-4f0f-bd27-05872ff0c1ba',
   name: {
     en: 'Cosmic Inflation',
+    it: 'Inflazione cosmica',
     qm: 'Kosmik inflyatsiya',
     zh: '宇宙暴胀',
     hi: 'ब्रह्मांडीय स्फीति',
@@ -39,6 +40,7 @@ export const cosmicInflation_Skill_Data = defineSkill({
       'Explain the hypothesized early accelerated-expansion phase, distinguish its predicted consequences from direct observation and evaluate what existing cosmic evidence can and cannot establish.',
     frontend: {
       en: 'Explore the idea of cosmic inflation and distinguish predictions from confirmed evidence.',
+      it: 'Esplora l\'ipotesi dell\'inflazione cosmica, distinguendo le previsioni dalle prove confermate.',
       qm: 'Kosmik inflyatsiya fikrini araştırıp, onıñ qabaqtan aytqan neticelerini tasdiqlanğan delillerden ayırıñız.',
       zh: '探索宇宙暴胀的理论，并区分模型预测与已经证实的证据。',
       hi: 'ब्रह्मांडीय स्फीति की परिकल्पना जानें और उसकी भविष्यवाणियों तथा प्रेक्षणीय प्रमाणों में अंतर करें।',

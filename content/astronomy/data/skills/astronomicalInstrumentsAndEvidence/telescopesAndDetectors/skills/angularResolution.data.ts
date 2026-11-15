@@ -5,6 +5,7 @@ export const angularResolution_Skill_Data = defineSkill({
   id: 'a2c2454e-d66e-453e-869a-3220e5b27c4f',
   name: {
     en: 'Angular Resolution',
+    it: 'Risoluzione angolare',
     qm: 'Bucaq ayırdetüv qabiliyeti',
     bn: 'কৌণিক বিভেদন ক্ষমতা',
     ur: 'زاویائی تفریق کی صلاحیت',
@@ -39,6 +40,7 @@ export const angularResolution_Skill_Data = defineSkill({
       'Explain the ability to distinguish nearby sources, including effects of aperture, wavelength and atmospheric seeing.',
     frontend: {
       en: 'Explain why two nearby objects may look separate or blend together in a telescope.',
+      it: 'Spiega perché due oggetti vicini possono apparire separati oppure confondersi in un telescopio.',
       qm: 'Teleskopta birbirine yaqın eki cisim ne içün ayrıq ya da bir cisim kibi körünebilgenini añlatıñız.',
       bn: 'ব্যাখ্যা করো, আকাশে কাছাকাছি থাকা দুটি বস্তু দূরবীক্ষণ যন্ত্রে কেন আলাদা দেখা যেতে পারে অথবা একসঙ্গে মিশে যেতে পারে।',
       ur: 'وضاحت کریں کہ آسمان میں قریب نظر آنے والے دو اجرام دوربین سے الگ الگ کیوں دکھ سکتے ہیں یا ایک میں مدغم کیوں لگ سکتے ہیں۔',

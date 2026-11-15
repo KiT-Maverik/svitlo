@@ -5,6 +5,7 @@ export const giantPlanets_Skill_Data = defineSkill({
   id: '567f6eb6-89db-4bd0-b898-4b2eab564848',
   name: {
     en: 'Giant Planets',
+    it: 'Pianeti giganti',
     zh: '巨行星',
     hi: 'विशाल ग्रह',
     es: 'Planetas gigantes',
@@ -39,6 +40,7 @@ export const giantPlanets_Skill_Data = defineSkill({
       'Distinguish gas giants from ice giants using composition, interior models and observable atmospheric properties.',
     frontend: {
       en: 'Distinguish gas giants and ice giants by their composition and internal structure.',
+      it: 'Distingui i giganti gassosi dai giganti ghiacciati in base alla composizione e alla struttura interna.',
       zh: '依据组成成分和内部结构，区分气态巨行星与冰巨行星。',
       hi: 'संरचना और आंतरिक बनावट के आधार पर गैस दानवों और हिम दानवों के बीच अंतर करें।',
       es: 'Distingue los gigantes gaseosos de los gigantes helados por su composición y estructura interna.',

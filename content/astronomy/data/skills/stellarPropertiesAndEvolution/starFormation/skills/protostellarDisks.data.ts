@@ -5,6 +5,7 @@ export const protostellarDisks_Skill_Data = defineSkill({
   id: '58d6ffac-a27a-4d85-a3a2-30a8fdf220ae',
   name: {
     en: 'Protostellar Disks',
+    it: 'Dischi protostellari',
     zh: '原恒星盘',
     hi: 'आद्यतारकीय चक्रिकाएँ',
     es: 'Discos protoestelares',
@@ -39,6 +40,7 @@ export const protostellarDisks_Skill_Data = defineSkill({
       'Explain how circumstellar accretion disks transport matter and angular momentum during the early growth of stars.',
     frontend: {
       en: 'Explore how a disk of material feeds a developing star.',
+      it: 'Esplora come un disco di materia alimenta una stella in formazione.',
       zh: '探索环绕新生恒星的物质盘如何为恒星提供物质。',
       hi: 'जानें कि पदार्थ की चक्रिका विकसित हो रहे तारे को सामग्री कैसे पहुँचाती है।',
       es: 'Explora cómo un disco de material alimenta a una estrella en formación.',

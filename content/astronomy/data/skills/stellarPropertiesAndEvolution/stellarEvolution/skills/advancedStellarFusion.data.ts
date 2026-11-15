@@ -5,6 +5,7 @@ export const advancedStellarFusion_Skill_Data = defineSkill({
   id: 'af51c535-5c82-433c-ad18-8bd814100494',
   name: {
     en: 'Advanced Stellar Fusion',
+    it: 'Fusione nucleare nelle fasi stellari avanzate',
     zh: '恒星后期核聚变',
     hi: 'तारों में उन्नत नाभिकीय संलयन',
     es: 'Fusión nuclear estelar avanzada',
@@ -38,6 +39,7 @@ export const advancedStellarFusion_Skill_Data = defineSkill({
     methodological: 'Explain how later nuclear-burning stages depend on stellar mass and can create heavier nuclei.',
     frontend: {
       en: 'Discover how some stars fuse heavier elements in later stages of their lives.',
+      it: 'Scopri come alcune stelle fondono elementi più pesanti nelle ultime fasi della loro vita.',
       zh: '探索一些恒星如何在生命后期通过核聚变形成较重的元素。',
       hi: 'जानें कि कुछ तारे अपने जीवन के बाद के चरणों में भारी तत्वों का संलयन कैसे करते हैं।',
       es: 'Descubre cómo algunas estrellas fusionan elementos más pesados en etapas tardías de su vida.',

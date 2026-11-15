@@ -5,6 +5,7 @@ export const celestialObjectClassification_Skill_Data = defineSkill({
   id: '24694578-66ca-4d96-9340-96b035373381',
   name: {
     en: 'Celestial Object Classification',
+    it: 'Classificazione degli oggetti celesti',
     zh: '天体分类',
     hi: 'खगोलीय पिंडों का वर्गीकरण',
     es: 'Clasificación de objetos celestes',
@@ -39,6 +40,7 @@ export const celestialObjectClassification_Skill_Data = defineSkill({
       'Classify astronomical sources as stellar bodies, planetary bodies, compact remnants, diffuse clouds, star clusters, galaxies or other broad physical types using characteristic evidence rather than appearance alone.',
     frontend: {
       en: 'Recognize major categories of celestial objects by their physical properties.',
+      it: 'Riconosci le principali categorie di oggetti celesti in base alle loro proprietà fisiche.',
       zh: '根据物理性质识别天体的主要类别。',
       hi: 'भौतिक गुणों के आधार पर खगोलीय पिंडों की मुख्य श्रेणियाँ पहचानें।',
       es: 'Reconoce las principales categorías de objetos celestes por sus propiedades físicas.',

@@ -5,6 +5,7 @@ export const exoplanetOrbitalProperties_Skill_Data = defineSkill({
   id: 'e3a012cd-914d-4058-8beb-d518ba4831c3',
   name: {
     en: 'Exoplanet Orbital Properties',
+    it: 'Proprietà orbitali degli esopianeti',
     zh: '系外行星轨道特征',
     hi: 'बहिर्ग्रहों की कक्षीय विशेषताएँ',
     es: 'Propiedades orbitales de exoplanetas',
@@ -38,6 +39,7 @@ export const exoplanetOrbitalProperties_Skill_Data = defineSkill({
     methodological: 'Infer or compare orbital period, eccentricity and star–planet distance using available data.',
     frontend: {
       en: 'Compare the periods, shapes and sizes of exoplanet orbits.',
+      it: 'Confronta periodi, forme e dimensioni delle orbite degli esopianeti.',
       zh: '比较系外行星轨道的周期、形状和大小。',
       hi: 'बहिर्ग्रहों की कक्षाओं के काल, आकार और विस्तार की तुलना करें।',
       es: 'Compara los períodos, las formas y los tamaños de las órbitas de exoplanetas.',

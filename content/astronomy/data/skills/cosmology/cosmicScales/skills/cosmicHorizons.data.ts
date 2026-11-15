@@ -5,6 +5,7 @@ export const cosmicHorizons_Skill_Data = defineSkill({
   id: 'b30d80f3-0a46-48dc-be1e-1801a00a8b44',
   name: {
     en: 'Cosmic Horizons',
+    it: 'Orizzonti cosmologici',
     qm: 'Kosmik ufqlar',
     zh: '宇宙视界',
     hi: 'ब्रह्मांडीय क्षितिज',
@@ -39,6 +40,7 @@ export const cosmicHorizons_Skill_Data = defineSkill({
       'Interpret limits on observable or causally connected regions without treating them as physical walls.',
     frontend: {
       en: 'Explore limits on how far signals can reach us or influence other regions.',
+      it: 'Esplora i limiti della distanza da cui i segnali possono raggiungerci o influenzare altre regioni.',
       qm: 'Signallarnıñ bizge ne qadar uzaqtan yetişebilegenini ya da başqa bölgelere tesir ete bilgenini araştırıñız.',
       zh: '了解信号能传播到我们这里或影响其他区域的范围限制。',
       hi: 'जानें कि संकेत कितनी दूर से हम तक पहुँच सकते हैं या दूसरे क्षेत्रों को प्रभावित कर सकते हैं।',

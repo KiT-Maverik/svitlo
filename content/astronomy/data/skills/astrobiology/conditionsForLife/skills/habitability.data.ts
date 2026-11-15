@@ -5,6 +5,7 @@ export const habitability_Skill_Data = defineSkill({
   id: 'ffb659ed-b31f-4282-9653-af21af95a950',
   name: {
     en: 'Habitability',
+    it: 'Abitabilità',
     qm: 'Yaşayışqa uyğunlıq',
     bn: 'বাসযোগ্যতা',
     ur: 'زندگی کے لیے موزونیت',
@@ -39,6 +40,7 @@ export const habitability_Skill_Data = defineSkill({
       'Evaluate energy sources, chemical building blocks, solvent availability and environmental stability as possible prerequisites for known life.',
     frontend: {
       en: 'Explore the energy, chemistry, liquids and stability that could make an environment habitable.',
+      it: 'Esplora come energia, sostanze chimiche, liquidi e condizioni stabili potrebbero rendere un ambiente adatto alla vita.',
       qm: 'Energiya, kimyeviy maddeler, sıyıqlıqlar ve sabit şartlar bir müitni yaşayışqa nasıl uyğun ete bilgenini araştırıñız.',
       bn: 'শক্তি, রাসায়নিক উপাদান, তরল ও স্থিতিশীল পরিবেশ কীভাবে কোনো স্থানকে জীবনের উপযোগী করতে পারে, তা জানো।',
       ur: 'جانیں کہ توانائی، کیمیائی اجزا، مائعات اور مستحکم ماحول کسی جگہ کو زندگی کے لیے موزوں کیسے بنا سکتے ہیں۔',

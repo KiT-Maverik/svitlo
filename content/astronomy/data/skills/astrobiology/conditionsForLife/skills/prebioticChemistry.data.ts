@@ -5,6 +5,7 @@ export const prebioticChemistry_Skill_Data = defineSkill({
   id: '3b16b753-608f-40a7-84b5-3cc810b906ce',
   name: {
     en: 'Prebiotic Chemistry',
+    it: 'Chimica prebiotica',
     qm: 'Yaşayıştan evelki kimya',
     bn: 'জীবন-পূর্ব রসায়ন',
     ur: 'قبل از حیات کی کیمیا',
@@ -39,6 +40,7 @@ export const prebioticChemistry_Skill_Data = defineSkill({
       "Explain plausible nonliving chemical pathways relevant to life's origins while distinguishing hypotheses from established histories.",
     frontend: {
       en: "Discover how nonliving chemistry might produce ingredients relevant to life's origins.",
+      it: 'Scopri come processi chimici non biologici potrebbero produrre ingredienti importanti per l\'origine della vita.',
       qm: 'Cansız kimyeviy protsessler yaşayışnıñ menşeine alâqalı maddelerni nasıl peyda ete bilgenini ögreniñiz.',
       bn: 'জীবিত প্রাণীর সাহায্য ছাড়াই রাসায়নিক প্রক্রিয়ায় জীবনের উৎপত্তির জন্য গুরুত্বপূর্ণ পদার্থ কীভাবে তৈরি হতে পারে, তা জানো।',
       ur: 'دریافت کریں کہ غیر جاندار کیمیائی عمل زندگی کے آغاز سے متعلق مادے کیسے بنا سکتے تھے۔',

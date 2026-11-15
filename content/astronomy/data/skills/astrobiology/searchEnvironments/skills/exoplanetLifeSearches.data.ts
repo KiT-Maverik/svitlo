@@ -5,6 +5,7 @@ export const exoplanetLifeSearches_Skill_Data = defineSkill({
   id: 'ec69f7d3-d0ee-48c0-b54e-b207d975cc8b',
   name: {
     en: 'Exoplanet Life Searches',
+    it: 'Ricerca della vita sugli esopianeti',
     qm: 'Ekzoplanetalarda yaşayış izlevleri',
     bn: 'বহির্গ্রহে জীবনের অনুসন্ধান',
     ur: 'فراشمسی سیاروں پر زندگی کی تلاش',
@@ -39,6 +40,7 @@ export const exoplanetLifeSearches_Skill_Data = defineSkill({
       'Interpret the capabilities and limitations of remote atmospheric and planetary measurements in searches for life.',
     frontend: {
       en: 'Learn what distant planetary measurements can reveal—and cannot reveal—about possible life.',
+      it: 'Scopri cosa possono e non possono rivelare le misurazioni dei pianeti lontani sulla possibile presenza di vita.',
       qm: 'Uzaqtaki planetalar ölçüvleri yaşayış ihtimalı aqqında neni köstere bilgenini ve neni köstere olamağanını ögreniñiz.',
       bn: 'দূরবর্তী গ্রহের পরিমাপ থেকে সম্ভাব্য জীবন সম্পর্কে কী জানা যায় এবং কী জানা যায় না, তা বোঝো।',
       ur: 'جانیں کہ دور دراز سیاروں کی پیمائشیں ممکنہ زندگی کے بارے میں کیا بتا سکتی ہیں اور کیا نہیں۔',

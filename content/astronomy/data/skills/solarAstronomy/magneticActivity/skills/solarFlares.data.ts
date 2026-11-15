@@ -5,6 +5,7 @@ export const solarFlares_Skill_Data = defineSkill({
   id: 'dccfa219-be59-472e-8e61-bbde949d0092',
   name: {
     en: 'Solar Flares',
+    it: 'Brillamenti solari',
     qm: 'Küneş parlavları',
     bn: 'সৌর শিখা',
     ur: 'شمسی شعلے',
@@ -38,6 +39,7 @@ export const solarFlares_Skill_Data = defineSkill({
     methodological: 'Describe rapid magnetic-energy release and its observable radiation signatures.',
     frontend: {
       en: 'Understand how rapid magnetic changes produce solar flares.',
+      it: 'Comprendi come rapidi cambiamenti magnetici producono i brillamenti solari.',
       qm: 'Magnit meydanınıñ tez deñişüvleri Küneş parlavlarını nasıl peyda etkenini añlañız.',
       bn: 'চৌম্বক ক্ষেত্রের দ্রুত পরিবর্তন কীভাবে সৌর শিখা তৈরি করে, তা বোঝো।',
       ur: 'سمجھیں کہ مقناطیسی میدان میں تیز تبدیلیاں شمسی شعلے کیسے پیدا کرتی ہیں۔',

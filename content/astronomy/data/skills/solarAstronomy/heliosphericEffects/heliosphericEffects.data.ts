@@ -12,6 +12,7 @@ export const heliosphericEffects_SkillGroup_Data = defineSkillGroup({
   id: 'f02ffa81-886b-4ba4-acd1-cfffe28487a9',
   name: {
     en: 'Heliospheric Effects',
+    it: 'Effetti eliosferici',
     qm: 'Heliosfera tesirleri',
     bn: 'হেলিওস্ফিয়ারের প্রভাব',
     ur: 'شمسی کرۂ اثر کے اثرات',
@@ -55,6 +56,7 @@ export const heliosphericEffects_SkillGroup_Data = defineSkillGroup({
       'Solar material and magnetic fields extend outward and can influence planetary space environments even far from the solar surface.',
     frontend: {
       en: "Investigate how the Sun's particles and magnetic fields affect surrounding space.",
+      it: 'Indaga come particelle e campi magnetici del Sole influenzano lo spazio circostante.',
       qm: 'Küneşniñ zerreleri ve magnit meydanları etraftaki fezağa nasıl tesir etkenini araştırıñız.',
       bn: 'সূর্য থেকে আসা কণা ও চৌম্বক ক্ষেত্র কীভাবে আশপাশের মহাকাশকে প্রভাবিত করে তা অনুসন্ধান করো।',
       ur: 'تحقیق کریں کہ سورج سے آنے والے ذرات اور مقناطیسی میدان اردگرد کی خلائی فضا کو کیسے متاثر کرتے ہیں۔',

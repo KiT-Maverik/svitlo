@@ -5,6 +5,7 @@ export const stellarParallax_Skill_Data = defineSkill({
   id: '7192ef38-85e2-4ca1-9b4c-0b33d46dca00',
   name: {
     en: 'Stellar Parallax',
+    it: 'Parallasse stellare',
     qm: 'Yıldız parallaksı',
     bn: 'নাক্ষত্রিক লম্বন',
     ur: 'نجمی اختلافِ منظر',
@@ -39,6 +40,7 @@ export const stellarParallax_Skill_Data = defineSkill({
       'Infer distances to nearby stars from the apparent displacement caused by changing observing positions.',
     frontend: {
       en: "Use a nearby star's changing apparent position to estimate its distance.",
+      it: 'Usa il cambiamento della posizione apparente di una stella vicina per stimarne la distanza.',
       qm: 'Yaqın yıldıznıñ körüngen yeri deñişkenine baqıp, onıñ mesafesini esaplañız.',
       bn: 'কাছের নক্ষত্রের আপাত অবস্থান বদল থেকে তার দূরত্বের অনুমান করো।',
       ur: 'قریب کے ستارے کی ظاہری جگہ بدلنے سے اس کا فاصلہ معلوم کرنے کی کوشش کریں۔',

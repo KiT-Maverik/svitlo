@@ -12,6 +12,7 @@ export const minorBodies_SkillGroup_Data = defineSkillGroup({
   id: 'a0f454be-1873-4da3-a5dc-6f4669a4b2ac',
   name: {
     en: 'Minor Bodies',
+    it: 'Corpi minori',
     zh: '太阳系小天体',
     hi: 'छोटे सौरमंडलीय पिंड',
     es: 'Cuerpos menores del Sistema Solar',
@@ -55,6 +56,7 @@ export const minorBodies_SkillGroup_Data = defineSkillGroup({
       'Small populations preserve clues about early formation while showing important differences in composition, orbital origin and activity.',
     frontend: {
       en: 'Learn about smaller Solar System bodies and what they reveal about its past.',
+      it: 'Scopri i corpi più piccoli del Sistema solare e cosa rivelano sul suo passato.',
       zh: '了解太阳系中较小的天体，以及它们能揭示哪些关于太阳系过去的信息。',
       hi: 'सौरमंडल के छोटे पिंडों और उनसे उसके अतीत के बारे में मिलने वाले संकेतों के बारे में जानें।',
       es: 'Conoce los cuerpos más pequeños del Sistema Solar y lo que revelan sobre su pasado.',

@@ -5,6 +5,7 @@ export const gravitationallyBoundSystems_Skill_Data = defineSkill({
   id: 'ebd660c6-6401-42b3-a604-2766b56cdd69',
   name: {
     en: 'Gravitationally Bound Systems',
+    it: 'Sistemi legati gravitazionalmente',
     zh: '引力束缚系统',
     hi: 'गुरुत्वाकर्षण से बँधे तंत्र',
     es: 'Sistemas ligados gravitacionalmente',
@@ -39,6 +40,7 @@ export const gravitationallyBoundSystems_Skill_Data = defineSkill({
       'Distinguish satellite systems, planetary systems, multiple stars, star clusters, galaxies and galaxy clusters by physical membership and characteristic scales.',
     frontend: {
       en: 'Compare planetary systems, star clusters, galaxies and other gravitationally connected systems.',
+      it: 'Confronta sistemi planetari, ammassi stellari, galassie e altri sistemi tenuti insieme dalla gravità.',
       zh: '比较行星系统、星团、星系以及其他通过引力相互联系的系统。',
       hi: 'ग्रह प्रणालियों, तारा समूहों, आकाशगंगाओं और अन्य गुरुत्वीय रूप से जुड़े तंत्रों की तुलना करें।',
       es: 'Compara sistemas planetarios, cúmulos estelares, galaxias y otros sistemas unidos por la gravedad.',

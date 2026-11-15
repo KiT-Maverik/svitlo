@@ -5,6 +5,7 @@ export const lunarCalendarCycles_Skill_Data = defineSkill({
   id: '2c28cd1a-08de-461a-9373-6f6224331189',
   name: {
     en: 'Lunar Calendar Cycles',
+    it: 'Cicli del calendario lunare',
     qm: 'Ay taqvimi devirleri',
     zh: '阴历周期',
     hi: 'चंद्र कैलेंडर के चक्र',
@@ -39,6 +40,7 @@ export const lunarCalendarCycles_Skill_Data = defineSkill({
       'Relate lunar-based calendar intervals to Moon phases while recognizing different calendar conventions.',
     frontend: {
       en: 'Connect the changing phases of the Moon with lunar calendar cycles.',
+      it: 'Collega le fasi mutevoli della Luna ai cicli dei calendari lunari.',
       qm: 'Aynıñ deñişken fazalarını Ay taqviminiñ devirleri ile bağlañız.',
       zh: '了解月相的周期性变化与阴历周期之间的联系。',
       hi: 'समझें कि चंद्रमा की बदलती कलाएँ चंद्र कैलेंडर के चक्रों से कैसे जुड़ी हैं।',

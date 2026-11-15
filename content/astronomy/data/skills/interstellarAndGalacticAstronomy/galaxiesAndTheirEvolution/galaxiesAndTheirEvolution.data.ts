@@ -12,6 +12,7 @@ export const galaxiesAndTheirEvolution_SkillGroup_Data = defineSkillGroup({
   id: 'aa40e4d5-7025-4cbd-9f06-2cd0ef767f75',
   name: {
     en: 'Galaxies and Their Evolution',
+    it: 'Galassie e loro evoluzione',
     qm: 'Galaktikalar ve olarnıñ inkişafı',
     zh: '星系及其演化',
     hi: 'आकाशगंगाएँ और उनका विकास',
@@ -55,6 +56,7 @@ export const galaxiesAndTheirEvolution_SkillGroup_Data = defineSkillGroup({
       'Galaxies differ in morphology, stellar content, formation history and interaction, rather than representing fixed shapes throughout cosmic time.',
     frontend: {
       en: 'Explore different galaxy shapes and how galaxies change over time.',
+      it: 'Esplora le diverse forme delle galassie e come cambiano nel tempo.',
       qm: 'Galaktikalarnıñ çeşit şekillerini ve zaman boyunca nasıl deñişkenlerini araştırıñız.',
       zh: '探索不同的星系形状，以及星系如何随时间变化。',
       hi: 'विभिन्न आकार की आकाशगंगाओं और समय के साथ उनमें होने वाले परिवर्तनों को जानें।',

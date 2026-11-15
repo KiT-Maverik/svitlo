@@ -5,6 +5,7 @@ export const measurementUncertainty_Skill_Data = defineSkill({
   id: '9beca053-75d2-489f-a882-2f7bcc1a49f6',
   name: {
     en: 'Measurement Uncertainty',
+    it: 'Incertezza di misura',
     qm: 'Ölçüv belirsizligi',
     bn: 'পরিমাপের অনিশ্চয়তা',
     ur: 'پیمائش کی غیر یقینی کیفیت',
@@ -39,6 +40,7 @@ export const measurementUncertainty_Skill_Data = defineSkill({
       'Evaluate how instrument limits, measurement error and model assumptions affect the confidence of an astronomical inference.',
     frontend: {
       en: 'Recognize how errors and assumptions affect confidence in astronomical measurements.',
+      it: 'Riconosci come errori e ipotesi influenzano l\'affidabilità delle misurazioni astronomiche.',
       qm: 'Ölçüv hataları ve farazlar astronomik ölçüvlerge işançqa nasıl tesir etkenini tanıñız.',
       bn: 'ত্রুটি ও অনুমান কীভাবে জ্যোতির্বৈজ্ঞানিক পরিমাপের ওপর আস্থাকে প্রভাবিত করে তা বোঝো।',
       ur: 'سمجھیں کہ غلطیاں اور مفروضے فلکیاتی پیمائشوں پر اعتماد کو کیسے متاثر کرتے ہیں۔',

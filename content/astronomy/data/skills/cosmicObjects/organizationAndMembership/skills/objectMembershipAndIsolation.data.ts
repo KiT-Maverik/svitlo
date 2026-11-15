@@ -5,6 +5,7 @@ export const objectMembershipAndIsolation_Skill_Data = defineSkill({
   id: 'c883bf63-0436-4b2d-85ab-4dad7377a5e2',
   name: {
     en: 'Object Membership and Isolation',
+    it: 'Appartenenza e isolamento degli oggetti',
     zh: '天体的系统归属与孤立状态',
     hi: 'खगोलीय पिंड की सदस्यता और एकाकीपन',
     es: 'Pertenencia y aislamiento de los objetos',
@@ -39,6 +40,7 @@ export const objectMembershipAndIsolation_Skill_Data = defineSkill({
       'Determine whether an astronomical object is a member of a larger bound system or is apparently isolated, and explain why gravitational context does not by itself determine intrinsic object type.',
     frontend: {
       en: 'Find out whether an object belongs to a larger system without confusing that with what kind of object it is.',
+      it: 'Scopri se un oggetto appartiene a un sistema più grande, senza confondere tale appartenenza con il suo tipo.',
       zh: '判断天体是否属于更大的系统，同时不要把它的归属关系与天体类型混为一谈。',
       hi: 'पता करें कि कोई पिंड बड़े तंत्र का हिस्सा है या नहीं, और इस बात को उसके प्रकार से अलग रखें।',
       es: 'Averigua si un objeto pertenece a un sistema mayor sin confundir esa relación con el tipo de objeto que es.',

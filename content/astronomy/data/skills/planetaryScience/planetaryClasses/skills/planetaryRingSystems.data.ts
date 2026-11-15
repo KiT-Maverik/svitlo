@@ -5,6 +5,7 @@ export const planetaryRingSystems_Skill_Data = defineSkill({
   id: '0d5c5349-48a3-4455-af87-5985d873aba6',
   name: {
     en: 'Planetary Ring Systems',
+    it: 'Sistemi di anelli planetari',
     zh: '行星环系统',
     hi: 'ग्रहों की वलय प्रणालियाँ',
     es: 'Sistemas de anillos planetarios',
@@ -39,6 +40,7 @@ export const planetaryRingSystems_Skill_Data = defineSkill({
       'Interpret the composition, dynamics, formation and evolution of rings around planets or other bodies, including interactions with nearby satellites and differences between dense rings and diffuse dust populations.',
     frontend: {
       en: 'Explore how planetary rings form, change and interact with nearby moons.',
+      it: 'Esplora come gli anelli planetari si formano, cambiano e interagiscono con le lune vicine.',
       zh: '探索行星环如何形成、变化，以及如何与附近的卫星相互作用。',
       hi: 'जानें कि ग्रहों के छल्ले कैसे बनते और बदलते हैं तथा पास के चंद्रमाओं से कैसे प्रभावित होते हैं।',
       es: 'Explora cómo se forman y cambian los anillos de los planetas y cómo interactúan con lunas cercanas.',
