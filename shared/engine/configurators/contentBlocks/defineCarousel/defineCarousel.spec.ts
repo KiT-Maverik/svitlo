@@ -153,8 +153,8 @@ describe('Configurators', () => {
           { slides: { items: { first: { params: { disabled: true } } } } },
           scope,
         );
-        assert.deepEqual(disabled.locale?.en?.locale.slides?.map(slide => slide.slug), ['second']);
-        assert.deepEqual(disabled.locale?.uk?.locale.slides?.map(slide => slide.slug), ['second']);
+        assert.deepEqual(disabled.locale?.en?.locale.slides?.map(slide => slide?.slug), ['second']);
+        assert.deepEqual(disabled.locale?.uk?.locale.slides?.map(slide => slide?.slug), ['second']);
 
         assert.throws(
           () => carousel.build.overrides(

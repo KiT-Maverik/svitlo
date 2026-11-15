@@ -319,6 +319,7 @@ export const defineCarousel = <
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       if (!order.length) throw new Error('At least one active Carousel slide is required');
 
+      const sourcePublication = props(options);
       const modifiesSlides =
         Object.keys(changes).length > 0 || Object.keys(additions).length > 0 || patch.slides?.order !== undefined;
       if (modifiesSlides) {
@@ -330,10 +331,20 @@ export const defineCarousel = <
         for (const [language, entries] of Object.entries(built.locale)) {
           (files[language as LanguageCode] ??= { locale: {} }).locale.slides = entries;
         }
+        // When a localized child is disabled or removed, the remaining slides may
+        // be invariant. Override the original language-specific arrays as well;
+        // otherwise the old arrays would resurrect the removed slide at assembly.
+        if (built.base) {
+          for (const language of languages) {
+            if (sourcePublication.locale?.[language]?.locale.slides && !built.locale[language]) {
+              (files[language] ??= { locale: {} }).locale.slides = structuredClone(built.base);
+            }
+          }
+        }
       }
 
       output.locale = Object.keys(files).length ? files : undefined;
-      validateRequestedPublication(carousel_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(carousel_Props_Schema, sourcePublication, languages, output);
       return output;
     } catch (error) {
       throw new Error(
