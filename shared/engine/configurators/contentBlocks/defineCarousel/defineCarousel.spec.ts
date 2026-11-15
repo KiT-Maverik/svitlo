@@ -112,7 +112,7 @@ describe('Configurators', () => {
           },
         };
         const built = carousel.build.overrides(patch, scope);
-        assert.deepEqual(built.locale?.uk?.locale.slides?.map(slide => slide.type), ['scene', 'image']);
+        assert.deepEqual(built.locale?.uk?.locale.slides?.map(slide => slide?.type), ['scene', 'image']);
         const second = built.locale?.uk?.locale.slides?.[1];
         if (second?.type === 'image' && second.locale && 'alt' in second.locale) assert.equal(second.locale.alt, 'Другий');
         assert.deepEqual(carousel.build.props(scope), before);
