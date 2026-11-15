@@ -175,7 +175,8 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   }
 
   if (!fs.existsSync(path.join(target.root, 'lesson.yaml')) && fs.existsSync(path.join(target.root, 'config.yaml')))
-    fail('config.yaml', '
+    fail('config.yaml', '$', 'legacy technical Lesson source: migrate explicitly to lesson.yaml; no automatic rewrite');
+  const { lesson, language, tasks } = combineSources(target.root);
   if (typeof lesson.id !== 'string' || !uuidPattern.test(lesson.id))
     fail('lesson.yaml', 'config.id', 'a Lesson UUID is required for ID-addressed output');
   const outputFolder = path.join(target.bookRoot, 'data/lessons', lesson.id.at(-1), lesson.id);

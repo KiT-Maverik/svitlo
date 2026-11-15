@@ -44,7 +44,7 @@ function resolveSource(source, repo) {
   noSymlinks(file);
   if (!fs.statSync(file).isFile()) throw new Error('Expected a regular lesson.yaml');
   const relative = path.relative(repo, file).split(path.sep).join('/');
-  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/.+\/config\.yaml$/.exec(relative);
+  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/.+\/lesson\.yaml$/.exec(relative);
   if (!match) throw new Error('Lesson lesson.yaml must be inside content/<book>/');
   const bookRoot = path.join(repo, 'content', match[1]);
   return { file, bookRoot };
