@@ -5,6 +5,7 @@ export const coordinateDanceWithPulse_Skill_Data = defineSkill({
   id: 'c716f197-9189-4f6a-a22d-d641e0be25e7',
   name: {
     en: 'Coordinate Dance with Pulse',
+    it: "Coordinare la danza con il battito musicale",
     zh: '让舞蹈与节拍协调',
     hi: 'नृत्य को ताल के साथ समन्वित करें',
     es: 'Coordinar la danza con el pulso',
@@ -38,6 +39,7 @@ export const coordinateDanceWithPulse_Skill_Data = defineSkill({
     methodological: 'Relate bodily movement to a chosen rhythmic reference while preserving movement intent.',
     frontend: {
       en: 'Connect your movements with a musical beat without losing their expression.',
+      it: "Sincronizza i movimenti con il battito musicale senza perdere espressività.",
       zh: '让动作与音乐节拍相连，同时保持动作的表现力。',
       hi: 'अभिव्यक्ति बनाए रखते हुए अपनी गतियों को संगीत की ताल से जोड़ें।',
       es: 'Conecta tus movimientos con el pulso musical sin perder su expresividad.',
