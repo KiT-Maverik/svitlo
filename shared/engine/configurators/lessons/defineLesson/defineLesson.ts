@@ -218,9 +218,7 @@ export function defineLesson<
         ? Questions[Kind] & ChildrenSupporting<Languages, Questions[Kind]>
         : Questions[Kind];
     };
-  } & ([Extract<Sections[keyof Sections], { type: 'quiz' }>] extends [never]
-    ? {}
-    : { questions: Questions }) &
+  } & ([Extract<Sections[keyof Sections], { type: 'quiz' }>] extends [never] ? {} : { questions: Questions }) &
     ([Extract<Sections[keyof Sections], { type: 'flashcards' }>] extends [never]
       ? {}
       : { flashcards: NonNullable<Lesson_Config['flashcards']> }),
@@ -420,9 +418,12 @@ export function defineLesson<
       throw new Error(label + '.order is required when adding or disabling children');
     }
     // Flashcards are a named bank; never require or accept an authored order.
-    const order = label === 'flashcards'
-      ? Object.keys(enabled).filter(key => enabled[key] !== false).sort()
-      : patch?.order ?? sourceOrder;
+    const order =
+      label === 'flashcards'
+        ? Object.keys(enabled)
+            .filter(key => enabled[key] !== false)
+            .sort()
+        : (patch?.order ?? sourceOrder);
     const orderIssues = validateOrderedKeys({ items: enabled, order }, { path: label, allowDisabled: true });
     if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
     const active = Object.fromEntries(Object.entries(enabled).filter(entry => entry[1] !== false));
@@ -569,8 +570,7 @@ export function defineLesson<
           config.flashcards !== undefined || Object.keys(cards.active).length > 0
             ? { items: cards.active as Record<string, Flashcard_Configurator> }
             : undefined,
-        questions:
-          config.questions !== undefined || Object.keys(nextQuestions).length > 0 ? nextQuestions : undefined,
+        questions: config.questions !== undefined || Object.keys(nextQuestions).length > 0 ? nextQuestions : undefined,
       });
       // Child overrides can disable a Quiz without removing its configurator from the map.
       if (

@@ -34,9 +34,7 @@ const flashcardCollection = lesson_Config_Schema.shape.flashcards.unwrap().exten
 export const yamlLesson_Schema: z.ZodType = lesson_Config_Schema.extend({
   section: sectionCollection,
   flashcards: flashcardCollection.optional(),
-  questions: z
-    .partialRecord(z.enum(questionTypes), z.record(z.string(), yamlQuestion_Schema))
-    .optional(),
+  questions: z.partialRecord(z.enum(questionTypes), z.record(z.string(), yamlQuestion_Schema)).optional(),
 });
 
 /** Episodes are Course-owned and do not inherit Lesson's assessment contract. */
@@ -59,10 +57,7 @@ export const yamlLessonReference_Schema = z.strictObject({
 
 export const yamlChapter_Schema = chapter_Config_Schema.extend({
   content: chapter_Config_Schema.shape.content.extend({
-    items: z.record(
-      z.string(),
-      z.discriminatedUnion('type', [yamlEpisode_Schema, yamlLessonReference_Schema]),
-    ),
+    items: z.record(z.string(), z.discriminatedUnion('type', [yamlEpisode_Schema, yamlLessonReference_Schema])),
   }),
 });
 
