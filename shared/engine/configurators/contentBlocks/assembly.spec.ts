@@ -525,7 +525,7 @@ describe('Configurators', () => {
         authored.alt = 'Mutated author';
         const original = carousel.build.props({ languages: ['en', 'uk'] }).base.locale?.slides?.[0];
         assert.equal(original?.type, 'image');
-        if (original?.type === 'image') assert.equal(original.locale.alt, 'Original');
+        if (original?.type === 'image') assert.equal(original.locale?.alt, 'Original');
         assert.throws(
           () =>
             carousel.build.overrides({ slides: { items: { first: { locale: { typo: 'invalid' } } } } } as never, {
