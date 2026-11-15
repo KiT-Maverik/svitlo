@@ -5,6 +5,7 @@ export const precisionAgriculturalEquipment_Skill_Data = defineSkill({
   id: '2c393825-7461-430f-8a28-866ca1379438',
   name: {
     en: 'Precision agricultural equipment',
+    it: 'Attrezzature per l\'agricoltura di precisione',
     zh: '精准农业设备',
     hi: 'सटीक कृषि उपकरण',
     es: 'Equipos de agricultura de precisión',
@@ -39,6 +40,7 @@ export const precisionAgriculturalEquipment_Skill_Data = defineSkill({
       'Identify the sensing, positioning and variable-delivery functions of machines that adapt work to field conditions.',
     frontend: {
       en: 'Explore machines that adjust agricultural operations using measured field conditions.',
+      it: 'Esplora le macchine che regolano le operazioni agricole in base alle condizioni misurate nei campi.',
       zh: '探索根据田间测量条件调整作业的农业机械。',
       hi: 'ऐसी मशीनें जानें जो खेत की मापी हुई स्थितियों के अनुसार कृषि कार्य बदलती हैं।',
       es: 'Explora máquinas que ajustan las tareas agrícolas según condiciones medidas del campo.',
