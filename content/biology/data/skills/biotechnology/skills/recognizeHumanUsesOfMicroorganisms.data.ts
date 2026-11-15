@@ -39,7 +39,7 @@ export const recognizeHumanUsesOfMicroorganisms_Skill_Data = defineSkill({
     methodological: 'Identify how yeasts or bacteria are used to produce food or other products.',
     frontend: {
       en: 'Recognize ways bacteria and yeasts are used to produce foods and other materials.',
-    it: "Riconosci in quali modi batteri e lieviti vengono utilizzati per produrre alimenti e altri materiali.",
+      it: 'Riconosci in quali modi batteri e lieviti vengono utilizzati per produrre alimenti e altri materiali.',
       zh: '认识细菌和酵母如何用于制造食品及其他材料。',
       hi: 'जानें कि खाद्य पदार्थ और दूसरी सामग्री बनाने में जीवाणुओं और यीस्ट का उपयोग कैसे होता है।',
       es: 'Reconoce cómo se utilizan las bacterias y las levaduras para producir alimentos y otros materiales.',
