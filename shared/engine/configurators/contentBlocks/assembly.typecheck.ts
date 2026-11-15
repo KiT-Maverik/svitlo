@@ -303,3 +303,24 @@ defineCarousel<'invalidGallery', { ukOnly: typeof ukOnlySlide }, ['uk', 'en']>({
     order: ['ukOnly'],
   },
 });
+
+/** Carousel infers the exact Image/Scene child kinds and validates localized overrides. */
+const mixedCarousel = defineCarousel<'mixedGallery', { image: typeof image; scene: typeof scene }, ['en']>({
+  id,
+  slug: 'mixedGallery',
+  type: 'carousel',
+  params: {},
+  locale: { title: { en: 'Explore' } },
+  slides: { items: { image, scene }, order: ['image', 'scene'] },
+});
+mixedCarousel.build.overrides(
+  { slides: { items: { scene: { locale: { value: { heading: { en: 'Updated' } } } } } } },
+  { languages: ['en'] },
+);
+defineCarousel({
+  id, slug: 'invalidChild', type: 'carousel', params: {}, locale: {},
+  slides: { items: {
+    // @ts-expect-error Text is not a Carousel Image/Scene child.
+    text,
+  }, order: ['text'] },
+});
