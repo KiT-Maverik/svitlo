@@ -5,6 +5,7 @@ export const insertAnElementIntoASequence_Skill_Data = defineSkill({
   id: 'e3448d37-825b-4ba1-a5ae-d06633a391a7',
   name: {
     en: 'Insert an Element into a Sequence',
+    it: 'Inserire un elemento in una sequenza',
     zh: '向序列中插入元素',
     hi: 'अनुक्रम में एक तत्व डालना',
     es: 'Insertar un elemento en una secuencia',
@@ -39,6 +40,7 @@ export const insertAnElementIntoASequence_Skill_Data = defineSkill({
       'Add a new item at a specified position and predict how it affects the order of other items or links between nodes.',
     frontend: {
       en: 'Insert an item at the right place in an ordered sequence.',
+      it: 'Inserisci un elemento nella posizione corretta di una sequenza ordinata.',
       zh: '将元素插入有序序列中的正确位置。',
       hi: 'क्रमबद्ध अनुक्रम में तत्व को सही स्थान पर डालें।',
       es: 'Inserta un elemento en la posición adecuada de una secuencia ordenada.',

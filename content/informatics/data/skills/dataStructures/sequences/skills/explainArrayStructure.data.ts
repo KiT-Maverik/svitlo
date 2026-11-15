@@ -5,6 +5,7 @@ export const explainArrayStructure_Skill_Data = defineSkill({
   id: '4da4f86c-c32d-4290-ad2a-45259e12a7d7',
   name: {
     en: 'Explain Array Structure',
+    it: 'Spiegare la struttura di un array',
     zh: '解释数组结构',
     hi: 'सरणी की संरचना समझाना',
     es: 'Explicar la estructura de un arreglo',
@@ -39,6 +40,7 @@ export const explainArrayStructure_Skill_Data = defineSkill({
       'An array holds items at defined positions and supports index-based access; rules for length and element types depend on the language.',
     frontend: {
       en: 'Understand how arrays store items at positions identified by indexes.',
+      it: 'Comprendi come gli array memorizzano elementi in posizioni identificate da indici.',
       zh: '理解数组如何将元素存放在由索引标识的位置。',
       hi: 'समझें कि सरणी तत्वों को सूचकांक से पहचाने जाने वाले स्थानों पर कैसे रखती है।',
       es: 'Comprende cómo un arreglo guarda elementos en posiciones identificadas por índices.',

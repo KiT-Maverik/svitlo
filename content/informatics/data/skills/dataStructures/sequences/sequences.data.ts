@@ -15,6 +15,7 @@ export const sequences_SkillGroup_Data = defineSkillGroup({
   id: 'd5b263c3-3b43-4643-8655-3541acac0461',
   name: {
     en: 'Sequences',
+    it: 'Sequenze',
     zh: '序列',
     hi: 'अनुक्रम',
     es: 'Secuencias',
@@ -58,6 +59,7 @@ export const sequences_SkillGroup_Data = defineSkillGroup({
       'Ordered collections including arrays, lists, and linked representations. Indexing, insertion, removal, and traversal have different requirements and costs.',
     frontend: {
       en: 'Explore ordered collections and how to access, add and remove their elements.',
+      it: 'Esplora le collezioni ordinate e come accedere ai loro elementi, aggiungerli e rimuoverli.',
       zh: '探索有序集合，以及如何访问、添加和移除其中的元素。',
       hi: 'क्रमबद्ध संग्रहों और उनके तत्वों को पाने, जोड़ने और हटाने के तरीकों को जानें।',
       es: 'Explora las colecciones ordenadas y cómo acceder, añadir y quitar sus elementos.',

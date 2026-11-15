@@ -7,6 +7,7 @@ export const queue_SkillGroup_Data = defineSkillGroup({
   id: 'b02a645d-3062-4d00-90c6-0e9ae9958d87',
   name: {
     en: 'Queue',
+    it: 'Code',
     zh: '队列',
     hi: 'कतार',
     es: 'Cola',
@@ -42,6 +43,7 @@ export const queue_SkillGroup_Data = defineSkillGroup({
       'A structure following first-in, first-out (FIFO) order: elements join at the back and leave from the front.',
     frontend: {
       en: 'Learn how a queue processes items in the order they arrived.',
+      it: "Impara come una coda elabora gli elementi nell'ordine in cui sono arrivati.",
       zh: '了解队列如何按照元素到达的顺序处理它们。',
       hi: 'जानें कि कतार तत्वों को उनके आने के क्रम में कैसे संसाधित करती है।',
       es: 'Aprende cómo una cola procesa los elementos en el orden en que llegan.',
