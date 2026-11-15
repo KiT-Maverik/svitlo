@@ -224,13 +224,13 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assert.match(section, /\n  content\n\}\);/);
     assert.match(files.get('sections/index.ts'), /export const section =/);
     assert.match(files.get('constants.ts'), /export type LessonLanguages = typeof languages/);
-    assert.match(section, /#lessonsData\\/2\\/00000000-0000-4000-8000-000000000012\\/constants/);
+    assert.match(section, /#lessonsData\/2\/00000000-0000-4000-8000-000000000012\/constants/);
     assert.match(files.get('flashcards/remember/front/index.ts'), /defineFlashcardSide<typeof sideItems, LessonLanguages>/);
     assert.match(files.get('flashcards/remember/front/index.ts'), /items: sideItems/);
     assert.match(files.get('flashcards/remember/front/index.ts'), /order:/);
     assert.match(files.get('flashcards/remember/back/index.ts'), /defineFlashcardSide/);
     assert.doesNotMatch(files.get('flashcards/index.ts'), /order:/);
-    assert.doesNotMatch([...files.values()].join('\\n'), /Scaffolded by|Draft content sha256/);
+    assert.doesNotMatch([...files.values()].join('\n'), /Scaffolded by|Draft content sha256/);
     assert.match(files.get('sections/intro/prompt/index.ts'), /defineText<"prompt", LessonLanguages>/);
     assert.doesNotMatch([...files.values()].join('\n'), /Never emit translation|Light"|'Never emit translation'/);
     assertTypeScriptSyntax(files);
@@ -389,7 +389,7 @@ test('Question and Flashcard nested objects receive real item imports and approp
     const question = fs.readFileSync(f.generated('questions/selectOneAnswer/choice/index.ts'), 'utf8');
     assert.match(question, /defineSelectOneAnswer<"choice", typeof content, LessonLanguages>/);
     assert.match(question, /export const choice = defineSelectOneAnswer/);
-    assert.match(fs.readFileSync(f.generated('questions/index.ts'), 'utf8'), /choice\\s*\\}/);
+    assert.match(fs.readFileSync(f.generated('questions/index.ts'), 'utf8'), /choice\s*\}/);
     assert.match(question, /questionPrompt/);
     assert.match(question, /yes/);
     const card = fs.readFileSync(f.generated('flashcards/remember/index.ts'), 'utf8');
@@ -967,13 +967,13 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
       'flashcards/equalityRecallCard/hint/index.ts',
       'questions/selectOneAnswer/identifyTrueEquality/index.ts',
     ]) assert(modules.has(name), 'Missing generated file ' + name);
-    assert.match(modules.get('index.ts'), /skills: \\[coverageSkill_Skill_Data\\.id\\]/);
+    assert.match(modules.get('index.ts'), /skills: \[coverageSkill_Skill_Data\.id\]/);
     assert.match(modules.get('questions/selectOneAnswer/identifyTrueEquality/index.ts'),
       /export const identifyTrueEquality = defineSelectOneAnswer/);
     assert.match(modules.get('questions/index.ts'), /identifyTrueEquality,?/);
     assert.doesNotMatch(modules.get('flashcards/index.ts'), /order:/);
     assert.match(modules.get('flashcards/equalityRecallCard/hint/index.ts'), /defineFlashcardSide/);
-    assert.doesNotMatch([...modules.values()].join('\\n'), /Scaffolded by|Draft content sha256/);
+    assert.doesNotMatch([...modules.values()].join('\n'), /Scaffolded by|Draft content sha256/);
     assert.match(modules.get('sections/reviewEquality/verifyEquality/compareFive/answer/index.ts'),
       /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/);
     const carouselRoot = 'sections/exploreEquality/counterArrangementsCarousel';
@@ -1022,7 +1022,7 @@ test('module rendering is deterministic and retains only source-language authori
     assert.deepEqual([...first], [...second]);
     for (const [name, source] of first)
       if (name.endsWith('.ts')) assert.doesNotMatch(source, /Scaffolded by|Draft content sha256/);
-    assert.doesNotMatch([...first.values()].join('\\n'), /Never emit translation/);
+    assert.doesNotMatch([...first.values()].join('\n'), /Never emit translation/);
     assert.match(first.get('questions/index.ts'), /choice/);
     assert.match(first.get('questions/selectOneAnswer/choice/index.ts'), /export const choice =/);
   }));
@@ -1042,7 +1042,7 @@ test('PascalCase Scene slug exports distinct Configurator with textbook-local im
     runOne(f.lesson, 'generate', f.root);
     const scene = fs.readFileSync(f.generated('sections/intro/CompareCountersScene/index.ts'), 'utf8');
     assert.match(scene, /export const CompareCountersSceneConfig = defineScene/);
-    assert.match(scene, /#lessonsData\\/2\\/00000000-0000-4000-8000-000000000012\\/constants/);
+    assert.match(scene, /#lessonsData\/2\/00000000-0000-4000-8000-000000000012\/constants/);
     assert.match(fs.readFileSync(f.generated('sections/intro/index.ts'), 'utf8'), /CompareCountersSceneConfig/);
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
