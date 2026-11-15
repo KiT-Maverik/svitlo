@@ -5,6 +5,7 @@ export const evaluateSystemLevelCompromises_Skill_Data = defineSkill({
   id: 'd4b6ce17-2b70-4b59-9d6c-78f79adfec51',
   name: {
     en: 'Evaluate system-level compromises',
+    it: 'Valutare i compromessi a livello di sistema',
     zh: '评估系统层面的取舍',
     hi: 'प्रणाली-स्तरीय समझौतों का मूल्यांकन',
     es: 'Evaluar compromisos a nivel de sistema',
@@ -38,6 +39,7 @@ export const evaluateSystemLevelCompromises_Skill_Data = defineSkill({
     methodological: 'Explain why optimizing one part may worsen total cost, complexity, efficiency or reliability.',
     frontend: {
       en: 'Recognize why making one component better can worsen the complete system.',
+      it: 'Riconosci perché migliorare un componente può peggiorare le prestazioni del sistema complessivo.',
       zh: '理解为何改进一个组件可能使整个系统表现变差。',
       hi: 'पहचानें कि एक हिस्सा बेहतर करने से पूरी प्रणाली क्यों खराब हो सकती है।',
       es: 'Reconoce por qué mejorar una pieza puede empeorar el sistema completo.',
