@@ -454,7 +454,7 @@ test('create-only generate skips index.ts before parsing stale YAML; check detec
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
     f.config.locale.title.uk = 'Змінено';
     f.save();
-    assert.throws(() => runOne(f.lesson, 'check', f.root), /stale draft/);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /stale or manually edited draft/);
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
     assert.equal(fs.readFileSync(f.generated('index.ts'), 'utf8'), before);
     fs.writeFileSync(path.join(f.lesson, 'config.yaml'), 'invalid: [');
@@ -466,7 +466,7 @@ test('check refuses manual source modifications and missing nested modules', () 
     runOne(f.lesson, 'generate', f.root);
     const file = f.generated('sections/intro/prompt/index.ts');
     fs.appendFileSync(file, '// manually edited\n');
-    assert.throws(() => runOne(f.lesson, 'check', f.root), /modified manually/);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /stale or manually edited draft/);
     fs.unlinkSync(file);
     assert.throws(() => runOne(f.lesson, 'check', f.root), /missing draft/);
   }));
