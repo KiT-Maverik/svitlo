@@ -5,6 +5,7 @@ export const analyzeTechnologicalMediation_Skill_Data = defineSkill({
   id: '23ddb3b7-91dc-4dc5-815f-5a2a51415f98',
   name: {
     en: 'Analyze technological mediation',
+    it: 'Analizzare la mediazione tecnologica',
     zh: '分析技术中介作用',
     hi: 'तकनीकी मध्यस्थता का विश्लेषण',
     es: 'Analizar la mediación tecnológica',
@@ -39,6 +40,7 @@ export const analyzeTechnologicalMediation_Skill_Data = defineSkill({
       "Examine how a technological artifact changes the available actions, relationships, or choices through which people engage the world, without reducing the issue to the device's technical operation.",
     frontend: {
       en: 'Examine how technology changes the choices and relationships available to people.',
+      it: 'Esamina come la tecnologia cambi le scelte e le relazioni a disposizione delle persone.',
       zh: '研究技术如何改变人们可作出的选择和可建立的关系。',
       hi: 'देखो कि तकनीक लोगों के सामने उपलब्ध विकल्पों और संबंधों को कैसे बदलती है।',
       es: 'Examina cómo la tecnología cambia las opciones y relaciones disponibles para las personas.',

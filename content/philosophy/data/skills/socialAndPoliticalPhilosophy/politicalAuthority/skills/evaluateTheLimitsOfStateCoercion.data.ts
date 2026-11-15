@@ -5,6 +5,7 @@ export const evaluateTheLimitsOfStateCoercion_Skill_Data = defineSkill({
   id: '9d155123-a679-47a4-a44b-9191bad81c12',
   name: {
     en: 'Evaluate the limits of state coercion',
+    it: 'Valutare i limiti della coercizione statale',
     zh: '评估国家强制力的界限',
     hi: 'राज्य के बलप्रयोग की सीमाओं का मूल्यांकन',
     es: 'Evaluar los límites de la coerción estatal',
@@ -39,6 +40,7 @@ export const evaluateTheLimitsOfStateCoercion_Skill_Data = defineSkill({
       'Assess competing grounds for restricting individual actions, such as preventing harm or protecting rights.',
     frontend: {
       en: 'Consider when restrictions on personal freedom might be justified.',
+      it: 'Considera quando le limitazioni della libertà personale potrebbero essere giustificate.',
       zh: '思考在什么情况下限制个人自由可能是正当的。',
       hi: 'सोचो कि व्यक्तिगत स्वतंत्रता पर रोक कब उचित हो सकती है।',
       es: 'Considera cuándo podría estar justificado restringir la libertad personal.',

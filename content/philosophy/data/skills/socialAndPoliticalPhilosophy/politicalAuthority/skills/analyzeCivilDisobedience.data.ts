@@ -5,6 +5,7 @@ export const analyzeCivilDisobedience_Skill_Data = defineSkill({
   id: '03a44015-0a41-46c3-90a4-5d0183729448',
   name: {
     en: 'Analyze civil disobedience',
+    it: 'Analizzare la disobbedienza civile',
     zh: '分析公民不服从',
     hi: 'सविनय अवज्ञा का विश्लेषण',
     es: 'Analizar la desobediencia civil',
@@ -39,6 +40,7 @@ export const analyzeCivilDisobedience_Skill_Data = defineSkill({
       'Consider the moral conditions, aims, and limits of nonviolent principled lawbreaking without equating legality with morality.',
     frontend: {
       en: 'Discuss moral arguments about principled, nonviolent disobedience of laws.',
+      it: 'Discuti le argomentazioni morali sulla disobbedienza alle leggi, basata su principi e non violenta.',
       zh: '讨论基于原则、非暴力地违反法律的道德理由。',
       hi: 'सिद्धांतों के आधार पर अहिंसक रूप से कानून न मानने के नैतिक तर्कों पर चर्चा करो।',
       es: 'Debate los argumentos morales a favor de desobedecer las leyes de manera no violenta y por principios.',
