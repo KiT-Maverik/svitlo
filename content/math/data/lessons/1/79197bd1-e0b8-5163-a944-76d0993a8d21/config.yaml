@@ -20,10 +20,10 @@ config:
       en: 'Subtracting a Number from Itself'
   section:
     items:
-      section1TakeAwayTheWholeGroup:
+      removeEntireGroup:
         config:
           id: 'ea5400b7-9f0c-81a8-8b6a-e6024e32571d'
-          slug: 'section1TakeAwayTheWholeGroup'
+          slug: 'removeEntireGroup'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Take Away the Whole Group'
           content:
             items:
-              section1Text1:
+              askRemoveSixOfSix:
                 config:
                   id: 'd6448f8a-e4be-897b-8a12-8947c8e86fb6'
-                  slug: 'section1Text1'
+                  slug: 'askRemoveSixOfSix'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Take Away the Whole Group; provisional draft.'
                   specification: '  1. **text — available:** “There are **6 counters**. Take away **all 6**. What remains?”'
-              scene1Block2:
+              removeAllCounters:
                 config:
                   id: '27a57736-caa2-8843-8516-87b2a811b8c7'
-                  slug: 'scene1Block2'
+                  slug: 'removeAllCounters'
                   type: 'scene'
                   params: {}
                   locale:
@@ -111,10 +111,10 @@ config:
 
                       2. **scene — typed/renderer supported, new Scene proposed:** Whole Removal Workbench (preserved in Scene production.specification), complete-removal entry: six countable counters; remove exactly six with learner-paced controls; a labeled removed area and zero left.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section1Markdown3:
+              explainZeroRemainder:
                 config:
                   id: 'a15de7b7-9167-8d13-8107-959bb13daf3f'
-                  slug: 'section1Markdown3'
+                  slug: 'explainZeroRemainder'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -124,9 +124,9 @@ config:
                   purpose: 'Legacy markdown block of Take Away the Whole Group; provisional draft.'
                   specification: '  3. **markdown — available:** “We had six. We took all six. **No counters remain. 6 − 6 = 0.**”'
             order:
-              - 'section1Text1'
-              - 'scene1Block2'
-              - 'section1Markdown3'
+              - 'askRemoveSixOfSix'
+              - 'removeAllCounters'
+              - 'explainZeroRemainder'
         production:
           purpose: 'Experience complete removal as a meaningful result of zero.'
           pedagogicalIntent: 'Experience complete removal as a meaningful result of zero.'
@@ -146,10 +146,10 @@ config:
             - Note: “A number minus itself leaves zero,” proposed after the six-minus-six model (not wired).
             - Dependencies: Scene proposed, general text and markdown available.
 
-      section2NoneSomeOrAll:
+      compareNoneSomeAll:
         config:
           id: '0f6a3717-1161-8b00-8e11-3b85401ab792'
-          slug: 'section2NoneSomeOrAll'
+          slug: 'compareNoneSomeAll'
           type: 'content'
           params: {}
           locale:
@@ -159,10 +159,10 @@ config:
               en: 'None, Some, or All?'
           content:
             items:
-              section2Text1:
+              askRemovalOptions:
                 config:
                   id: 'd56f77bc-cac2-862f-8101-daad4eac7b3e'
-                  slug: 'section2Text1'
+                  slug: 'askRemovalOptions'
                   type: 'text'
                   params: {}
                   locale:
@@ -171,10 +171,10 @@ config:
                 production:
                   purpose: 'Legacy text block of None, Some, or All?; provisional draft.'
                   specification: '  1. **text — available:** “Start with six each time. What is left if you remove **0**, **2**, or **6**?”'
-              scene2Block2:
+              compareRemovalAmounts:
                 config:
                   id: '95d40ae0-f98f-803a-8dc1-c33ae19a19e0'
-                  slug: 'scene2Block2'
+                  slug: 'compareRemovalAmounts'
                   type: 'scene'
                   params: {}
                   locale:
@@ -237,10 +237,10 @@ config:
 
                       2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), three independently reset cases: 6−0=6, 6−2=4, 6−6=0.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section2Markdown3:
+              explainSubtractingZeroOrAll:
                 config:
                   id: '8d263f8b-ebb2-8b59-8f72-18ab79e68c79'
-                  slug: 'section2Markdown3'
+                  slug: 'explainSubtractingZeroOrAll'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -250,9 +250,9 @@ config:
                   purpose: 'Legacy markdown block of None, Some, or All?; provisional draft.'
                   specification: '  3. **markdown — available:** “Taking away none leaves **6**. Taking away some leaves **4**. Taking away the whole group leaves **0**. These different questions do not have the same answer.”'
             order:
-              - 'section2Text1'
-              - 'scene2Block2'
-              - 'section2Markdown3'
+              - 'askRemovalOptions'
+              - 'compareRemovalAmounts'
+              - 'explainSubtractingZeroOrAll'
         production:
           purpose: 'Discriminate a−a=0 from a−0=a and partial removal.'
           pedagogicalIntent: 'Discriminate a−a=0 from a−0=a and partial removal.'
@@ -271,10 +271,10 @@ config:
             - Note: “Subtracting all is different from subtracting none,” planned at contrast reveal.
             - Dependencies: Same bespoke Scene, independent state.
 
-      section3ABiggerGroupSameReason:
+      extendSubtractSelfRule:
         config:
           id: '2d5f5185-3250-80b4-8fba-5f6df0b59e5c'
-          slug: 'section3ABiggerGroupSameReason'
+          slug: 'extendSubtractSelfRule'
           type: 'content'
           params: {}
           locale:
@@ -284,10 +284,10 @@ config:
               en: 'A Bigger Group, Same Reason'
           content:
             items:
-              section3Markdown1:
+              challengeTwelveAndZero:
                 config:
                   id: '595e3831-8a7b-8118-85af-f637e68aaf1e'
-                  slug: 'section3Markdown1'
+                  slug: 'challengeTwelveAndZero'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -296,10 +296,10 @@ config:
                 production:
                   purpose: 'Legacy markdown block of A Bigger Group, Same Reason; provisional draft.'
                   specification: '  1. **markdown — available:** “Twelve counters. Remove twelve. Think before you count: will any remain? How about **0 − 0**?”'
-              scene3Block2:
+              removeMatchingAmounts:
                 config:
                   id: 'c463540a-94d6-85f5-8208-91f892bde007'
-                  slug: 'scene3Block2'
+                  slug: 'removeMatchingAmounts'
                   type: 'scene'
                   params: {}
                   locale:
@@ -362,10 +362,10 @@ config:
 
                       2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), transfer entry with 12−12=0, optional 0−0=0.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section3Text3:
+              explainZeroMinusZero:
                 config:
                   id: 'e4df6e30-17a8-8154-8386-af9950f120fd'
-                  slug: 'section3Text3'
+                  slug: 'explainZeroMinusZero'
                   type: 'text'
                   params: {}
                   locale:
@@ -375,9 +375,9 @@ config:
                   purpose: 'Legacy text block of A Bigger Group, Same Reason; provisional draft.'
                   specification: '  3. **text — available:** “**12 − 12 = 0.** The whole group was taken away. **0 − 0 = 0**, because the empty group stays empty when nothing is removed.”'
             order:
-              - 'section3Markdown1'
-              - 'scene3Block2'
-              - 'section3Text3'
+              - 'challengeTwelveAndZero'
+              - 'removeMatchingAmounts'
+              - 'explainZeroMinusZero'
         production:
           purpose: 'Transfer from concrete counting of six to twelve; include zero boundary.'
           pedagogicalIntent: 'Transfer from concrete counting of six to twelve; include zero boundary.'
@@ -396,10 +396,10 @@ config:
             - Note: No new Note needed if original is recalled.
             - Dependencies: New Scene transfer entry.
 
-      section4ExplainAndCheck:
+      generalizeSubtractSelf:
         config:
           id: 'eddb0772-28d5-806c-85b5-1a9c50bb9d82'
-          slug: 'section4ExplainAndCheck'
+          slug: 'generalizeSubtractSelf'
           type: 'content'
           params: {}
           locale:
@@ -409,10 +409,10 @@ config:
               en: 'Explain and Check'
           content:
             items:
-              section4Text1:
+              promptSelfSubtractionExamples:
                 config:
                   id: '56dc31ff-ec88-8663-85fc-d36e6fa8d4f2'
-                  slug: 'section4Text1'
+                  slug: 'promptSelfSubtractionExamples'
                   type: 'text'
                   params: {}
                   locale:
@@ -421,10 +421,10 @@ config:
                 production:
                   purpose: 'Legacy text block of Explain and Check; provisional draft.'
                   specification: '  1. **text — available:** “When a number is taken away from itself, what remains? Choose one example: **9 − 9**, **4 − 4**, or **0 − 0**.”'
-              scene4Block2:
+              checkSelfSubtraction:
                 config:
                   id: 'c4958634-5f7c-8e95-8fc5-a27db42c5adc'
-                  slug: 'scene4Block2'
+                  slug: 'checkSelfSubtraction'
                   type: 'scene'
                   params: {}
                   locale:
@@ -487,10 +487,10 @@ config:
 
                       2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), independent entry with a chosen example, before/removed/after values and reversible verification using 0 + a = a.
                   productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
-              section4Markdown3:
+              justifyDifferenceZero:
                 config:
                   id: '87e3c4d6-da39-8387-867b-ae8b7ba129da'
-                  slug: 'section4Markdown3'
+                  slug: 'justifyDifferenceZero'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -500,9 +500,9 @@ config:
                   purpose: 'Legacy markdown block of Explain and Check; provisional draft.'
                   specification: '  3. **markdown — available:** “The full amount has been removed, so **a − a = 0**. For example **9 − 9 = 0**. Check: **0 + 9 = 9**. If we had taken away zero instead, **9 − 0 = 9**.”'
             order:
-              - 'section4Text1'
-              - 'scene4Block2'
-              - 'section4Markdown3'
+              - 'promptSelfSubtractionExamples'
+              - 'checkSelfSubtraction'
+              - 'justifyDifferenceZero'
         production:
           purpose: 'Generalize a−a=0 and verify by inverse addition.'
           pedagogicalIntent: 'Generalize a−a=0 and verify by inverse addition.'
@@ -522,10 +522,10 @@ config:
             - Dependencies: Scene implementation and later separate Assessment Architect review if scored tasks desired.
 
     order:
-      - 'section1TakeAwayTheWholeGroup'
-      - 'section2NoneSomeOrAll'
-      - 'section3ABiggerGroupSameReason'
-      - 'section4ExplainAndCheck'
+      - 'removeEntireGroup'
+      - 'compareNoneSomeAll'
+      - 'extendSubtractSelfRule'
+      - 'generalizeSubtractSelf'
   flashcards:
     items: {}
     order: []

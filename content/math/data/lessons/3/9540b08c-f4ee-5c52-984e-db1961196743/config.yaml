@@ -18,10 +18,10 @@ config:
     order: []
   section:
     items:
-      section1PairingBridge:
+      pairObjectsToCompare:
         config:
           id: 'a2ba1967-6ea1-4ae8-bbd3-2fbd9fef5346'
-          slug: 'section1PairingBridge'
+          slug: 'pairObjectsToCompare'
           type: 'content'
           params: {}
           locale:
@@ -31,10 +31,10 @@ config:
               en: 'Pairing Bridge'
           content:
             items:
-              text1:
+              askFourVersusThree:
                 config:
                   id: 'b85bec8a-9b92-4e1d-a05e-e5dc71bee037'
-                  slug: 'text1'
+                  slug: 'askFourVersusThree'
                   type: 'text'
                   params: {}
                   locale:
@@ -131,16 +131,16 @@ config:
                     - QA must test every state/result above, locale copy, keyboard/screen-reader operation, LTR/RTL, mobile, reduced motion and genuine offline download; runtime implementation and its own tests are **not in this batch**.
                   purpose: 'Proposed interactive Scene for Pairing Bridge'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainUnmatchedObject:
                 config:
                   id: '0ef6b701-6629-4bda-b192-7e53e299d33c'
-                  slug: 'markdown2'
+                  slug: 'explainUnmatchedObject'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '4 vs 3: A has one more item, B one fewer. 5 vs 5 are equally many even if one row is longer.'
-            order: ['text1', 'pairingBridge', 'markdown2']
+            order: ['askFourVersusThree', 'pairingBridge', 'explainUnmatchedObject']
         production:
           purpose: 'Pairing Bridge'
           pedagogicalIntent: |
@@ -160,10 +160,10 @@ config:
             - **Implementation dependency:** Entire new Pairing Bridge component is **proposed**, prop-free and unimplemented. Its scenario data belongs inside the Scene, not an invented Resource prop. No Question bank, score, mastery event or Note API.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section2DoesBiggerLookingMeanMore:
+      separateSpacingFromCount:
         config:
           id: 'e0aac093-1bbf-4d6c-8d16-1d75a0ae698e'
-          slug: 'section2DoesBiggerLookingMeanMore'
+          slug: 'separateSpacingFromCount'
           type: 'content'
           params: {}
           locale:
@@ -173,34 +173,34 @@ config:
               en: "Does 'bigger-looking' mean 'more'?"
           content:
             items:
-              text1:
+              challengeLongAndShortRows:
                 config:
                   id: '6e06b696-8a88-4e51-a7a9-a7149dc29f5f'
-                  slug: 'text1'
+                  slug: 'challengeLongAndShortRows'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'A long row of five dots is next to a short row of five dots. Can they be equally many?'
-              markdown2:
+              matchDotsOneToOne:
                 config:
                   id: '14885f1d-d7cb-48fe-bdaa-e01bcf923394'
-                  slug: 'markdown2'
+                  slug: 'matchDotsOneToOne'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Yes. Count or match the dots one by one: five pairs form and none is left over. Spacing changes how long a row looks; the number of items remains five. Likewise, if one set has one unmatched item after pairing, it has more items.'
-              text3:
+              promptCountExplanation:
                 config:
                   id: '6c06b370-8888-4b2b-a9a9-aa3a9fc2a285'
-                  slug: 'text3'
+                  slug: 'promptCountExplanation'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Now explain the rule using a new example, not just the picture you saw.'
-            order: ['text1', 'markdown2', 'text3']
+            order: ['challengeLongAndShortRows', 'matchDotsOneToOne', 'promptCountExplanation']
         production:
           purpose: "Does 'bigger-looking' mean 'more'?"
           pedagogicalIntent: |
@@ -218,10 +218,10 @@ config:
             - **Accessibility:** Text-first explanation is equivalent nonvisual content. Any future hide/reveal affordance must work with keyboard and announce expanded state, but is not assumed implemented.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section3AppearanceVersusAmount:
+      compareAmountNotSize:
         config:
           id: '1ed94e64-c3b5-4075-9a1b-26660734426f'
-          slug: 'section3AppearanceVersusAmount'
+          slug: 'compareAmountNotSize'
           type: 'content'
           params: {}
           locale:
@@ -231,10 +231,10 @@ config:
               en: 'Appearance Versus Amount'
           content:
             items:
-              text1:
+              askBigBooksVersusCounters:
                 config:
                   id: '16705229-2e34-4214-a682-c7d7e445dcb2'
-                  slug: 'text1'
+                  slug: 'askBigBooksVersusCounters'
                   type: 'text'
                   params: {}
                   locale:
@@ -331,16 +331,16 @@ config:
                     - QA must test every state/result above, locale copy, keyboard/screen-reader operation, LTR/RTL, mobile, reduced motion and genuine offline download; runtime implementation and its own tests are **not in this batch**.
                   purpose: 'Proposed interactive Scene for Appearance Versus Amount'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainFiveVsThree:
                 config:
                   id: '81e6bcc6-e913-4b1b-901d-e6dcd617d399'
-                  slug: 'markdown2'
+                  slug: 'explainFiveVsThree'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '5 counters are more numerous than 3 books. 8 pencils exceed 6 erasers by two objects, regardless of row length.'
-            order: ['text1', 'appearanceVsAmount', 'markdown2']
+            order: ['askBigBooksVersusCounters', 'appearanceVsAmount', 'explainFiveVsThree']
         production:
           purpose: 'Appearance Versus Amount'
           pedagogicalIntent: |
@@ -360,7 +360,7 @@ config:
             - **Implementation dependency:** Entire new Appearance Versus Amount component is **proposed**, prop-free and unimplemented. Its scenario data belongs inside the Scene, not an invented Resource prop. No Question bank, score, mastery event or Note API.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-    order: ['section1PairingBridge', 'section2DoesBiggerLookingMeanMore', 'section3AppearanceVersusAmount']
+    order: ['pairObjectsToCompare', 'separateSpacingFromCount', 'compareAmountNotSize']
 production:
   documentLanguage: 'en'
   methodology: |

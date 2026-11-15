@@ -16,10 +16,10 @@ config:
       en: 'Plan Two Steps Before You Calculate'
   section:
     items:
-      section1:
+      findHiddenIntermediateTotal:
         config:
           id: 'fbe56bf4-4c28-41f3-aa69-759aae15db51'
-          slug: 'section1'
+          slug: 'findHiddenIntermediateTotal'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'A question that hides another question'
           content:
             items:
-              text1:
+              solveBooksRemainingPrompt:
                 config:
                   id: '6d74f0ca-efba-4415-a17e-3af861daf8d3'
-                  slug: 'text1'
+                  slug: 'solveBooksRemainingPrompt'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'A question that hides another question: text resource at position 1 (source provisional)'
                   specification: '1. **`text` Resource:** “A classroom shelf has **8 red books** and **7 blue books**. **6 books** are borrowed. How many books remain on the shelf?” Ask: “Can you subtract six from the total before you know how many books were there?” Let the learner predict what must be found first.'
-              scene2:
+              modelBookCountPlan:
                 config:
                   id: '3adea6b6-3ca9-4ddb-bf1f-8a70f0e0c845'
-                  slug: 'scene2'
+                  slug: 'modelBookCountPlan'
                   type: 'scene'
                   params: {}
                   locale:
@@ -115,10 +115,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Two-Step Dependency Planner (full Scene specification embedded in this config.yaml), entry A. Separate the cards “red books: eight”, “blue books: seven”, “borrowed: six”, “total before borrowing: ?”, “remaining books: ?”. The learner connects the two unknowns with text-labeled dependency arrows (or uses a simple ordered choice panel), without performing arithmetic immediately.
                   productionNotes: 'Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              text3:
+              calculateInitialBooks:
                 config:
                   id: '6b74eda4-edba-40ef-a37e-3e1e63dafbf9'
-                  slug: 'text3'
+                  slug: 'calculateInitialBooks'
                   type: 'text'
                   params: {}
                   locale:
@@ -127,10 +127,10 @@ config:
                 production:
                   purpose: 'A question that hides another question: text resource at position 3 (source provisional)'
                   specification: '3. **`text`:** First plan card: “Find the original total: **8 + 7 = 15 books**.” Second: “Find those remaining: **15 − 6 = 9 books**.” Wrong plan “8 − 6 = 2” feedback: “That only subtracts from the red group, but we need the total on the shelf. We were not told that the six were all borrowed from red.” A mathematically valid alternative decomposition must not be globally declared invalid; the point is preserving the **meaning** of the quantities.'
-              markdown4:
+              distinguishIntermediateAnswer:
                 config:
                   id: 'f3339467-9b80-4930-a190-84897ecb9a6a'
-                  slug: 'markdown4'
+                  slug: 'distinguishIntermediateAnswer'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -139,7 +139,13 @@ config:
                 production:
                   purpose: 'A question that hides another question: markdown resource at position 4 (source provisional)'
                   specification: '4. **`markdown`:** “The first answer, **15**, helps us answer the second question. It is **not the final answer**. We can name it: ‘original total of books’.”'
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order:
+              [
+                'solveBooksRemainingPrompt',
+                'modelBookCountPlan',
+                'calculateInitialBooks',
+                'distinguishIntermediateAnswer',
+              ]
         production:
           purpose: 'identify what the final question depends on._'
           pedagogicalIntent: 'Original Section 1: A question that hides another question (provisional draft)'
@@ -150,10 +156,10 @@ config:
             2. **`scene` Resource (proposed):** Two-Step Dependency Planner (full Scene specification embedded in this config.yaml), entry A. Separate the cards “red books: eight”, “blue books: seven”, “borrowed: six”, “total before borrowing: ?”, “remaining books: ?”. The learner connects the two unknowns with text-labeled dependency arrows (or uses a simple ordered choice panel), without performing arithmetic immediately.
             3. **`text`:** First plan card: “Find the original total: **8 + 7 = 15 books**.” Second: “Find those remaining: **15 − 6 = 9 books**.” Wrong plan “8 − 6 = 2” feedback: “That only subtracts from the red group, but we need the total on the shelf. We were not told that the six were all borrowed from red.” A mathematically valid alternative decomposition must not be globally declared invalid; the point is preserving the **meaning** of the quantities.
             4. **`markdown`:** “The first answer, **15**, helps us answer the second question. It is **not the final answer**. We can name it: ‘original total of books’.”
-      section2:
+      planForCombinedStickers:
         config:
           id: 'fee570ad-4d28-4386-a969-7407ab15d698'
-          slug: 'section2'
+          slug: 'planForCombinedStickers'
           type: 'content'
           params: {}
           locale:
@@ -163,10 +169,10 @@ config:
               en: 'The plan has to answer the final question'
           content:
             items:
-              text1:
+              chooseFirstUnknown:
                 config:
                   id: '744fe38f-972e-4474-8614-2119828e36ee'
-                  slug: 'text1'
+                  slug: 'chooseFirstUnknown'
                   type: 'text'
                   params: {}
                   locale:
@@ -175,10 +181,10 @@ config:
                 production:
                   purpose: 'The plan has to answer the final question: text resource at position 1 (source provisional)'
                   specification: '1. **`text`:** “Ava has **12 stickers**. Sam has **3 fewer stickers than Ava**. How many stickers do **they have together**? Which is the first missing number?”'
-              scene2:
+              modelSamStickerAmount:
                 config:
                   id: '01023469-99ad-4fb4-8786-16c753f5d082'
-                  slug: 'scene2'
+                  slug: 'modelSamStickerAmount'
                   type: 'scene'
                   params: {}
                   locale:
@@ -249,10 +255,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Planner entry B shows named known Ava=12, comparison gap 3, Sam=?, combined total=?. Learner first chooses “Find Sam's amount” and builds **12 − 3 = 9 stickers**. Next chooses “Add Ava's and Sam's amounts” and builds **12 + 9 = 21 stickers**.
                   productionNotes: 'Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              text3:
+              explainNineIsIntermediate:
                 config:
                   id: '764fe6b5-992e-479a-8414-1df3808e33c8'
-                  slug: 'text3'
+                  slug: 'explainNineIsIntermediate'
                   type: 'text'
                   params: {}
                   locale:
@@ -261,10 +267,10 @@ config:
                 production:
                   purpose: 'The plan has to answer the final question: text resource at position 3 (source provisional)'
                   specification: "3. **`text`, feedback:** For stopping at 9: “Nine answers **how many Sam has**, not how many they have together.” For 12+3=15 as Sam: “Three fewer means Sam has _less_ than Ava.” For directly 12+3=15 as total: “This adds Ava's amount to the _difference_, not Sam's amount.” For 21: “Together they have twenty-one stickers: twelve plus nine.”"
-              markdown4:
+              outlineTwoStepStickerPlan:
                 config:
                   id: '32718cbe-e0c8-4ded-942c-fa3ca511ca13'
-                  slug: 'markdown4'
+                  slug: 'outlineTwoStepStickerPlan'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -273,7 +279,8 @@ config:
                 production:
                   purpose: 'The plan has to answer the final question: markdown resource at position 4 (source provisional)'
                   specification: '4. **`markdown`:** “A good plan names both questions: **First, how many does Sam have? Second, how many do they have together?**”'
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order:
+              ['chooseFirstUnknown', 'modelSamStickerAmount', 'explainNineIsIntermediate', 'outlineTwoStepStickerPlan']
         production:
           purpose: 'distinguish a meaningful first calculation from a complete solution._'
           pedagogicalIntent: 'Original Section 2: The plan has to answer the final question (provisional draft)'
@@ -284,10 +291,10 @@ config:
             2. **`scene` Resource (proposed):** Planner entry B shows named known Ava=12, comparison gap 3, Sam=?, combined total=?. Learner first chooses “Find Sam's amount” and builds **12 − 3 = 9 stickers**. Next chooses “Add Ava's and Sam's amounts” and builds **12 + 9 = 21 stickers**.
             3. **`text`, feedback:** For stopping at 9: “Nine answers **how many Sam has**, not how many they have together.” For 12+3=15 as Sam: “Three fewer means Sam has _less_ than Ava.” For directly 12+3=15 as total: “This adds Ava's amount to the _difference_, not Sam's amount.” For 21: “Together they have twenty-one stickers: twelve plus nine.”
             4. **`markdown`:** “A good plan names both questions: **First, how many does Sam have? Second, how many do they have together?**”
-      section3:
+      orderDependentSteps:
         config:
           id: 'fde56f1a-4e28-4519-a869-7274ac15d82b'
-          slug: 'section3'
+          slug: 'orderDependentSteps'
           type: 'content'
           params: {}
           locale:
@@ -297,10 +304,10 @@ config:
               en: 'Change the steps, inspect the dependency'
           content:
             items:
-              text1:
+              identifyNeededFirstStep:
                 config:
                   id: '0a4e6878-f3ce-47bb-84a4-c34a2cc75f6d'
-                  slug: 'text1'
+                  slug: 'identifyNeededFirstStep'
                   type: 'text'
                   params: {}
                   locale:
@@ -309,10 +316,10 @@ config:
                 production:
                   purpose: 'Change the steps, inspect the dependency: text resource at position 1 (source provisional)'
                   specification: "1. **`text`:** “You are handed these two proposed steps for Ava and Sam: **A. 12 + Sam's stickers**; **B. 12 − 3**. Which one can you complete using the known information _right now_?”"
-              scene2:
+              inspectStepDependency:
                 config:
                   id: 'bed72af0-ec1c-405d-bb27-0636e3990fe3'
-                  slug: 'scene2'
+                  slug: 'inspectStepDependency'
                   type: 'scene'
                   params: {}
                   locale:
@@ -383,10 +390,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Planner entry C. The “combined total” step displays “Sam's stickers: ?” until the learner completes the intermediate **B**. If the learner attempts A first, respond: “To combine Ava's and Sam's amounts, we must know Sam's count. Finding it first gives nine.” If B first, unlock the meaningful input “Sam = 9” and let A become **12+9=21**. This is **conceptual dependency**, not an arbitrary software gate; offer a complete explanation without requiring a successful click.
                   productionNotes: 'Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              text3:
+              explainPlanFromDependencies:
                 config:
                   id: '0c4e6b9e-f5ce-4ae1-82a4-c0242ac75c47'
-                  slug: 'text3'
+                  slug: 'explainPlanFromDependencies'
                   type: 'text'
                   params: {}
                   locale:
@@ -395,7 +402,7 @@ config:
                 production:
                   purpose: 'Change the steps, inspect the dependency: text resource at position 3 (source provisional)'
                   specification: "3. **`text`:** “The story listed Ava's twelve, then three fewer, then the question about the total. A plan follows **which quantities are needed**. Different valid strategies may still reach the same result.”"
-            order: ['text1', 'scene2', 'text3']
+            order: ['identifyNeededFirstStep', 'inspectStepDependency', 'explainPlanFromDependencies']
         production:
           purpose: 'show why step order follows missing information rather than the order of numbers in a sentence._'
           pedagogicalIntent: 'Original Section 3: Change the steps, inspect the dependency (provisional draft)'
@@ -405,10 +412,10 @@ config:
             1. **`text`:** “You are handed these two proposed steps for Ava and Sam: **A. 12 + Sam's stickers**; **B. 12 − 3**. Which one can you complete using the known information _right now_?”
             2. **`scene` Resource (proposed):** Planner entry C. The “combined total” step displays “Sam's stickers: ?” until the learner completes the intermediate **B**. If the learner attempts A first, respond: “To combine Ava's and Sam's amounts, we must know Sam's count. Finding it first gives nine.” If B first, unlock the meaningful input “Sam = 9” and let A become **12+9=21**. This is **conceptual dependency**, not an arbitrary software gate; offer a complete explanation without requiring a successful click.
             3. **`text`:** “The story listed Ava's twelve, then three fewer, then the question about the total. A plan follows **which quantities are needed**. Different valid strategies may still reach the same result.”
-      section4:
+      applyTwoStepPlanToShells:
         config:
           id: 'f8e5673b-4f28-46ac-a769-70e1b115e00a'
-          slug: 'section4'
+          slug: 'applyTwoStepPlanToShells'
           type: 'content'
           params: {}
           locale:
@@ -418,10 +425,10 @@ config:
               en: 'Independent transfer: draw a short plan'
           content:
             items:
-              text1:
+              planShellsTransfer:
                 config:
                   id: '8ad6069d-0dc8-42c2-971a-3c03934ba488'
-                  slug: 'text1'
+                  slug: 'planShellsTransfer'
                   type: 'text'
                   params: {}
                   locale:
@@ -430,10 +437,10 @@ config:
                 production:
                   purpose: 'Independent transfer: draw a short plan: text resource at position 1 (source provisional)'
                   specification: '1. **`text`:** “Mila has **14 shells**. Theo has **5 fewer shells than Mila**. **How many shells do they have altogether?** Give yourself two questions to answer, then choose operations.”'
-              scene2:
+              modelShellCountDependency:
                 config:
                   id: 'cf3e03f3-5ebf-491e-a2d8-7595f40c8660'
-                  slug: 'scene2'
+                  slug: 'modelShellCountDependency'
                   type: 'scene'
                   params: {}
                   locale:
@@ -504,10 +511,10 @@ config:
 
                     2. **`scene` Resource (proposed):** Planner entry D. Show the complete story with empty intermediate/final cards; provide keyboard/touch selection of known roles, unknown Theo=?, combined total=? and operations. Hints are optional: “Who has fewer?” and “Whose number is still missing?” Expected first **14 − 5 = 9 shells (Theo)**; second **14 + 9 = 23 shells (combined)**.
                   productionNotes: 'Scene twoStepPlanner.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              text3:
+              explainIntermediateShellCount:
                 config:
                   id: '88d60377-0bc8-4f9c-991a-3f29954ba7ae'
-                  slug: 'text3'
+                  slug: 'explainIntermediateShellCount'
                   type: 'text'
                   params: {}
                   locale:
@@ -516,10 +523,10 @@ config:
                 production:
                   purpose: 'Independent transfer: draw a short plan: text resource at position 3 (source provisional)'
                   specification: "3. **`text`, feedback:** If answer 9 only: “That is Theo's amount, but the question says _altogether_.” If 14+5=19: “Five is the **difference**, not Theo's count.” If 23: “Theo has nine, Mila has fourteen, and together they have twenty-three.” Allow a mathematical alternative plan only if both quantities and dependency can be explained consistently."
-              markdown4:
+              summarizeTwoStepPlanning:
                 config:
                   id: '1c2de2e8-de6a-4a2f-bdff-54bad5350079'
-                  slug: 'markdown4'
+                  slug: 'summarizeTwoStepPlanning'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -528,7 +535,13 @@ config:
                 production:
                   purpose: 'Independent transfer: draw a short plan: markdown resource at position 4 (source provisional)'
                   specification: '4. **`markdown`:** “**Recall:** Identify the final unknown. Ask **what missing quantity must be found first?** Give that intermediate a name and unit, then use it in the second step.”'
-            order: ['text1', 'scene2', 'text3', 'markdown4']
+            order:
+              [
+                'planShellsTransfer',
+                'modelShellCountDependency',
+                'explainIntermediateShellCount',
+                'summarizeTwoStepPlanning',
+              ]
         production:
           purpose: 'learners select the intermediate before seeing the operations._'
           pedagogicalIntent: 'Original Section 4: Independent transfer: draw a short plan (provisional draft)'
@@ -539,7 +552,7 @@ config:
             2. **`scene` Resource (proposed):** Planner entry D. Show the complete story with empty intermediate/final cards; provide keyboard/touch selection of known roles, unknown Theo=?, combined total=? and operations. Hints are optional: “Who has fewer?” and “Whose number is still missing?” Expected first **14 − 5 = 9 shells (Theo)**; second **14 + 9 = 23 shells (combined)**.
             3. **`text`, feedback:** If answer 9 only: “That is Theo's amount, but the question says _altogether_.” If 14+5=19: “Five is the **difference**, not Theo's count.” If 23: “Theo has nine, Mila has fourteen, and together they have twenty-three.” Allow a mathematical alternative plan only if both quantities and dependency can be explained consistently.
             4. **`markdown`:** “**Recall:** Identify the final unknown. Ask **what missing quantity must be found first?** Give that intermediate a name and unit, then use it in the second step.”
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['findHiddenIntermediateTotal', 'planForCombinedStickers', 'orderDependentSteps', 'applyTwoStepPlanToShells']
   flashcards:
     items: {}
     order: []

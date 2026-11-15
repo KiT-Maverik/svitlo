@@ -15,10 +15,10 @@ config:
       en: 'One Object, One Count'
   section:
     items:
-      section1SixButtonsInATray:
+      countSixButtonsOnce:
         config:
           id: 'd12a43e2-a164-4fad-a4fc-0ef828c272f3'
-          slug: 'section1SixButtonsInATray'
+          slug: 'countSixButtonsOnce'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Six buttons in a tray'
           content:
             items:
-              text1:
+              countEachButton:
                 config:
                   id: '71b59233-f83f-444c-bbc7-e1ed0f03e476'
-                  slug: 'text1'
+                  slug: 'countEachButton'
                   type: 'text'
                   params: {}
                   locale:
@@ -122,16 +122,16 @@ config:
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   purpose: 'Proposed interactive Scene for Six buttons in a tray'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainOneToOneCounting:
                 config:
                   id: 'd89d09d8-b6b4-4ce3-8e15-06ca041bc0fd'
-                  slug: 'markdown2'
+                  slug: 'explainOneToOneCounting'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'The sixth different button corresponds to the word six. Example: Six buttons, six distinct count words.'
-            order: ['text1', 'countEveryObjectOnceLab', 'markdown2']
+            order: ['countEachButton', 'countEveryObjectOnceLab', 'explainOneToOneCounting']
         production:
           purpose: 'Six buttons in a tray'
           pedagogicalIntent: |
@@ -150,10 +150,10 @@ config:
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2ScatteredPebbles:
+      countScatteredPebbles:
         config:
           id: '226f6a14-865a-4131-bc51-ca860b442333'
-          slug: 'section2ScatteredPebbles'
+          slug: 'countScatteredPebbles'
           type: 'content'
           params: {}
           locale:
@@ -163,10 +163,10 @@ config:
               en: 'Scattered pebbles'
           content:
             items:
-              text1:
+              predictPebbleCount:
                 config:
                   id: 'a3a135d9-b2d3-4700-98ee-d077e3d056b6'
-                  slug: 'text1'
+                  slug: 'predictPebbleCount'
                   type: 'text'
                   params: {}
                   locale:
@@ -257,16 +257,16 @@ config:
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   purpose: 'Proposed interactive Scene for Scattered pebbles'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainOrderIndependence:
                 config:
                   id: 'e759f7d6-7be2-4b67-bda0-af7c99237c3d'
-                  slug: 'markdown2'
+                  slug: 'explainOrderIndependence'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Any order counts the same seven distinct objects. Example: Seven pebbles stay seven when scattered.'
-            order: ['text1', 'countEveryObjectOnceLab', 'markdown2']
+            order: ['predictPebbleCount', 'countEveryObjectOnceLab', 'explainOrderIndependence']
         production:
           purpose: 'Scattered pebbles'
           pedagogicalIntent: |
@@ -285,10 +285,10 @@ config:
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3FindTheMissingStone:
+      findUncountedStone:
         config:
           id: '8a63a49e-cea0-4415-97f6-c9a8769c9cd7'
-          slug: 'section3FindTheMissingStone'
+          slug: 'findUncountedStone'
           type: 'content'
           params: {}
           locale:
@@ -298,10 +298,10 @@ config:
               en: 'Find the missing stone'
           content:
             items:
-              text1:
+              spotUncountedStone:
                 config:
                   id: 'f050bb2f-8d40-49b4-b332-3edd55c6803a'
-                  slug: 'text1'
+                  slug: 'spotUncountedStone'
                   type: 'text'
                   params: {}
                   locale:
@@ -392,16 +392,16 @@ config:
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   purpose: 'Proposed interactive Scene for Find the missing stone'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainIncompleteCount:
                 config:
                   id: '453f4784-a962-4abb-98bc-fb9afaec43d1'
-                  slug: 'markdown2'
+                  slug: 'explainIncompleteCount'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'One unmarked stone means the count is incomplete; the final total is six. Example: Five marked plus one unmarked = six stones.'
-            order: ['text1', 'countEveryObjectOnceLab', 'markdown2']
+            order: ['spotUncountedStone', 'countEveryObjectOnceLab', 'explainIncompleteCount']
         production:
           purpose: 'Find the missing stone'
           pedagogicalIntent: |
@@ -420,10 +420,10 @@ config:
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4PathOfNineStones:
+      countNineStones:
         config:
           id: '853eaed6-c0b4-4db7-8bf7-fc34ca9cacd5'
-          slug: 'section4PathOfNineStones'
+          slug: 'countNineStones'
           type: 'content'
           params: {}
           locale:
@@ -433,10 +433,10 @@ config:
               en: 'Path of nine stones'
           content:
             items:
-              text1:
+              countPathStones:
                 config:
                   id: '8483cf87-e5cd-489a-b5b0-74f90cb8f574'
-                  slug: 'text1'
+                  slug: 'countPathStones'
                   type: 'text'
                   params: {}
                   locale:
@@ -527,16 +527,16 @@ config:
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
                   purpose: 'Proposed interactive Scene for Path of nine stones'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              markdown2:
+              explainNineDistinctCounts:
                 config:
                   id: '67c3c6ec-132d-4c31-b7b2-2076cb31457b'
-                  slug: 'markdown2'
+                  slug: 'explainNineDistinctCounts'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Nine different marks correspond to nine count words, without repetition. Example: There are nine stones; each received one word.'
-            order: ['text1', 'countEveryObjectOnceLab', 'markdown2']
+            order: ['countPathStones', 'countEveryObjectOnceLab', 'explainNineDistinctCounts']
         production:
           purpose: 'Path of nine stones'
           pedagogicalIntent: |
@@ -555,13 +555,7 @@ config:
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-    order:
-      [
-        'section1SixButtonsInATray',
-        'section2ScatteredPebbles',
-        'section3FindTheMissingStone',
-        'section4PathOfNineStones',
-      ]
+    order: ['countSixButtonsOnce', 'countScatteredPebbles', 'findUncountedStone', 'countNineStones']
   flashcards:
     items: {}
     order: []

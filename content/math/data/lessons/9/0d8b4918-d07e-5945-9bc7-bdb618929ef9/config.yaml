@@ -22,10 +22,10 @@ config:
       en: 'From One Part to Several Parts'
   section:
     items:
-      section1FourPartsButHowManyChosen:
+      identifySelectedQuarterParts:
         config:
           id: 'ad0d96a1-9b1d-47c9-8ef8-9eb748e80fdf'
-          slug: 'section1FourPartsButHowManyChosen'
+          slug: 'identifySelectedQuarterParts'
           type: 'content'
           params: {}
           locale:
@@ -35,10 +35,10 @@ config:
               en: 'Four parts, but how many chosen?'
           content:
             items:
-              section1Text1:
+              chooseThreeOfFourParts:
                 config:
                   id: '3b04cf8f-240a-4670-82dc-14d3edd2bd2c'
-                  slug: 'section1Text1'
+                  slug: 'chooseThreeOfFourParts'
                   type: 'text'
                   params: {}
                   locale:
@@ -47,10 +47,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '1. **`text` — existing Resource block type.** “Here is one strip cut into four equal pieces. We colored one piece last time and wrote 1/4. What if we color three pieces without changing the cuts?”'
-              section1Scene2:
+              exploreThreeQuarters:
                 config:
                   id: '8ae3081f-e442-4d0c-8405-4b9adaa40e89'
-                  slug: 'section1Scene2'
+                  slug: 'exploreThreeQuarters'
                   type: 'scene'
                   params: {}
                   locale:
@@ -137,10 +137,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FractionBuilder (full original source: Scene production.specification): FractionBuilder starts with a fixed 12-cell strip divided into four three-cell pieces. Reveal the boundary of each piece, then let the learner select one, two or three whole pieces; the fraction name stays hidden until prediction.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section1Markdown3:
+              distinguishNumeratorAndDenominator:
                 config:
                   id: 'b2e53773-9ade-46de-8572-09bf6d491812'
-                  slug: 'section1Markdown3'
+                  slug: 'distinguishNumeratorAndDenominator'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -150,9 +150,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '3. **`markdown` — existing Resource block type.** “The bottom 4 still describes four equal pieces in the whole. The top 3 tells us three of those pieces are selected: 3/4.”'
             order:
-              - 'section1Text1'
-              - 'section1Scene2'
-              - 'section1Markdown3'
+              - 'chooseThreeOfFourParts'
+              - 'exploreThreeQuarters'
+              - 'distinguishNumeratorAndDenominator'
         production:
           purpose: 'Four parts, but how many chosen?'
           pedagogicalIntent: 'Four parts, but how many chosen?'
@@ -181,10 +181,10 @@ config:
 
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
-      section2ChangeTheTopNumberKeepThePartSize:
+      varyNumeratorWithSameWhole:
         config:
           id: 'c3227f8f-4050-448b-83e2-b0c080904bc4'
-          slug: 'section2ChangeTheTopNumberKeepThePartSize'
+          slug: 'varyNumeratorWithSameWhole'
           type: 'content'
           params: {}
           locale:
@@ -194,10 +194,10 @@ config:
               en: 'Change the top number, keep the part size'
           content:
             items:
-              section2Markdown1:
+              selectMoreEqualParts:
                 config:
                   id: '037b4e8e-656b-44d9-8878-73223e68f975'
-                  slug: 'section2Markdown1'
+                  slug: 'selectMoreEqualParts'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -206,10 +206,10 @@ config:
                 production:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '1. **`markdown` — existing Resource block type.** “The strip stays the same. Select one, then two, then three, then all four pieces. Which number in the fraction changes?”'
-              section2Scene2:
+              adjustSelectedParts:
                 config:
                   id: '58f39197-4974-43f4-85ee-6ffeb4690d9d'
-                  slug: 'section2Scene2'
+                  slug: 'adjustSelectedParts'
                   type: 'scene'
                   params: {}
                   locale:
@@ -296,10 +296,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FractionBuilder (full original source: Scene production.specification): Pin the whole and four equal partitions in place. One button per equal unit part toggles its selection. Show the sequence 1/4, 2/4, 3/4, 4/4 after the learner builds each example; include an optional 0/4 empty state.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section2Text3:
+              explainFourQuarters:
                 config:
                   id: '35e71247-9cc1-4c32-8d45-934e54639d3b'
-                  slug: 'section2Text3'
+                  slug: 'explainFourQuarters'
                   type: 'text'
                   params: {}
                   locale:
@@ -309,9 +309,9 @@ config:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '3. **`text` — existing Resource block type.** “The top number changes as we select more same-sized parts. At 4/4, all four parts are selected, so we have one whole.”'
             order:
-              - 'section2Markdown1'
-              - 'section2Scene2'
-              - 'section2Text3'
+              - 'selectMoreEqualParts'
+              - 'adjustSelectedParts'
+              - 'explainFourQuarters'
         production:
           purpose: 'Change the top number, keep the part size'
           pedagogicalIntent: 'Change the top number, keep the part size'
@@ -340,10 +340,10 @@ config:
 
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
-      section3ChangeTheBottomNumberInstead:
+      compareThirdsAndQuarters:
         config:
           id: 'ff046725-788a-4d5d-817b-7578f6f58f00'
-          slug: 'section3ChangeTheBottomNumberInstead'
+          slug: 'compareThirdsAndQuarters'
           type: 'content'
           params: {}
           locale:
@@ -353,10 +353,10 @@ config:
               en: 'Change the bottom number instead'
           content:
             items:
-              section3Text1:
+              compareTwoThirdsTwoQuarters:
                 config:
                   id: '1241490a-d122-4ef4-8135-7c4f52568bb1'
-                  slug: 'section3Text1'
+                  slug: 'compareTwoThirdsTwoQuarters'
                   type: 'text'
                   params: {}
                   locale:
@@ -365,10 +365,10 @@ config:
                 production:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '1. **`text` — existing Resource block type.** “We will keep choosing two pieces. In one whole there are three equal pieces; in the same whole there are four equal pieces. Which two-piece amount is larger?”'
-              section3Scene2:
+              changePartitionSize:
                 config:
                   id: 'f4d06c05-740b-4089-8a6f-73164ab4df9a'
-                  slug: 'section3Scene2'
+                  slug: 'changePartitionSize'
                   type: 'scene'
                   params: {}
                   locale:
@@ -455,10 +455,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FractionBuilder (full original source: Scene production.specification): Use the same 12-cell strip. In compare mode switch from thirds (4+4+4) to quarters (3+3+3+3). Select two equal pieces in each model; show 2/3 covers eight cells while 2/4 covers six.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section3Markdown3:
+              explainDifferentPartSizes:
                 config:
                   id: '67fd0b6b-c434-4195-875f-f0b0a4966a4e'
-                  slug: 'section3Markdown3'
+                  slug: 'explainDifferentPartSizes'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -468,9 +468,9 @@ config:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '3. **`markdown` — existing Resource block type.** “The top number is two in both cases. But thirds are bigger pieces than quarters of the same whole, so 2/3 covers more than 2/4.”'
             order:
-              - 'section3Text1'
-              - 'section3Scene2'
-              - 'section3Markdown3'
+              - 'compareTwoThirdsTwoQuarters'
+              - 'changePartitionSize'
+              - 'explainDifferentPartSizes'
         production:
           purpose: 'Change the bottom number instead'
           pedagogicalIntent: 'Change the bottom number instead'
@@ -498,10 +498,10 @@ config:
 
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
-      section4ANewPictureToExplainAlone:
+      interpretFreshFractionModels:
         config:
           id: 'dfaa6176-2527-42dc-88df-a0eed2520344'
-          slug: 'section4ANewPictureToExplainAlone'
+          slug: 'interpretFreshFractionModels'
           type: 'content'
           params: {}
           locale:
@@ -511,10 +511,10 @@ config:
               en: 'A new picture to explain alone'
           content:
             items:
-              section4Markdown1:
+              describeShadedFourPartBadge:
                 config:
                   id: 'a2bdfaea-389d-4f6a-8a83-97cc70a3424c'
-                  slug: 'section4Markdown1'
+                  slug: 'describeShadedFourPartBadge'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -523,10 +523,10 @@ config:
                 production:
                   purpose: 'Original learner-facing markdown block, provisional editorial draft'
                   specification: '1. **`markdown` — existing Resource block type.** “A new rectangular badge has four equal squares. Three are marked. Tell what the top and bottom numbers mean. Now look at another badge divided unequally: can three shaded pieces still be 3/4?”'
-              section4Scene2:
+              testEqualPartRequirement:
                 config:
                   id: '06e1fb9c-0390-4cae-8a99-a4d0bfe873e2'
-                  slug: 'section4Scene2'
+                  slug: 'testEqualPartRequirement'
                   type: 'scene'
                   params: {}
                   locale:
@@ -613,10 +613,10 @@ config:
 
                     2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FractionBuilder (full original source: Scene production.specification): Transfer mode shows a fresh 2×2 four-cell badge with three cells selected, then a rectangle split into widths 1+1+2+4 (unequal) with three regions selected. Learner selects the valid fraction claim and one reason; reveal full worked explanation on request.
                   productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
-              section4Text3:
+              explainWhyUnequalPartsFail:
                 config:
                   id: 'a5c9547b-ab6a-463f-8325-23f90d86b1bd'
-                  slug: 'section4Text3'
+                  slug: 'explainWhyUnequalPartsFail'
                   type: 'text'
                   params: {}
                   locale:
@@ -626,9 +626,9 @@ config:
                   purpose: 'Original learner-facing text block, provisional editorial draft'
                   specification: '3. **`text` — existing Resource block type.** “The first badge shows 3/4: three chosen squares out of four equal squares. The second has unequal pieces, so 3/4 is not justified by counting colored regions.”'
             order:
-              - 'section4Markdown1'
-              - 'section4Scene2'
-              - 'section4Text3'
+              - 'describeShadedFourPartBadge'
+              - 'testEqualPartRequirement'
+              - 'explainWhyUnequalPartsFail'
         production:
           purpose: 'A new picture to explain alone'
           pedagogicalIntent: 'A new picture to explain alone'
@@ -657,10 +657,10 @@ config:
             **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
 
     order:
-      - 'section1FourPartsButHowManyChosen'
-      - 'section2ChangeTheTopNumberKeepThePartSize'
-      - 'section3ChangeTheBottomNumberInstead'
-      - 'section4ANewPictureToExplainAlone'
+      - 'identifySelectedQuarterParts'
+      - 'varyNumeratorWithSameWhole'
+      - 'compareThirdsAndQuarters'
+      - 'interpretFreshFractionModels'
   flashcards:
     items: {}
     order: []

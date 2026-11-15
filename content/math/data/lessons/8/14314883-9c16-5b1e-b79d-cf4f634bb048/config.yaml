@@ -20,10 +20,10 @@ config:
       en: 'Estimate Length, Then Measure'
   section:
     items:
-      section1:
+      estimateUsingKnownLength:
         config:
           id: '14314883-9c16-5b1e-b79d-000000000004'
-          slug: 'section1'
+          slug: 'estimateUsingKnownLength'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Use a Known Length as a Clue'
           content:
             items:
-              text1:
+              compareWithTenCentimeterStrip:
                 config:
                   id: '14314883-9c16-5b1e-b79d-000000000001'
-                  slug: 'text1'
+                  slug: 'compareWithTenCentimeterStrip'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original source resource (including pedagogical direction):   1. **text — currently rendered:** "This short strip is our **10 cm reference**. The mystery strip looks a little longer. Could it be about **11 cm**, **12 cm**, or **15 cm**? Make an estimate, not a perfect guess. What did you compare?"'
-              scene1:
+              exploreReferenceLength:
                 config:
                   id: '14314883-9c16-5b1e-b79d-000000000002'
-                  slug: 'scene1'
+                  slug: 'exploreReferenceLength'
                   type: 'scene'
                   params: {}
                   locale:
@@ -158,10 +158,10 @@ config:
 
                     The current generic Section accepts a `scene` Resource, but **Length Estimate Laboratory does not yet exist**. An editor must approve the lesson and Scene specifications first. Future Scene Designer/Coding Agent verifies actual locale provider hooks and creates deterministic prop-free components, unit-valid tests, equitable pre-reveal descriptive modes and complete offline assets. No React, runtime Lesson, scored assessment, learner analytics or Note persistence is part of this batch. The rubric for a "reasonable" estimate remains an editorial/Assessment Architect decision rather than a hidden threshold.
                   productionNotes: 'Placement 1 in Use a Known Length as a Clue. Source resource:   2. **scene — Resource type exists, custom model proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage A. Show fixed reference bar labeled **10 cm** beside an unlabeled mystery bar of exact model length **12 cm** but with **no grid/ticks/endpoint ruler labels** until after estimate. Learner picks an approximate centimeter number (11,12,15 permitted) and a reason choice ("similar to ten; slightly longer", "more than twice ten", "not sure"). Record estimate in **cm** in local unscored state, then press "Measure" to align a ruler at zero and reveal 0→12 as **12 cm**.. Separate stable Scene identity per placement; implementation pending.'
-              markdown1:
+              explainTwelveCentimeterMeasure:
                 config:
                   id: '14314883-9c16-5b1e-b79d-000000000003'
-                  slug: 'markdown1'
+                  slug: 'explainTwelveCentimeterMeasure'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -171,9 +171,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original source resource (including pedagogical direction):   3. **markdown — currently rendered:** "Our reference is **10 cm** long. The mystery strip was a little longer, so a value a little above 10 made sense. The ruler shows **12 cm**. Measuring checks an estimate; it does not turn estimation into a guessing contest."'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'compareWithTenCentimeterStrip'
+              - 'exploreReferenceLength'
+              - 'explainTwelveCentimeterMeasure'
         production:
           purpose: 'Use a Known Length as a Clue'
           pedagogicalIntent: |-
@@ -186,10 +186,10 @@ config:
             - **Explanatory feedback:** For 11: "You estimated 11 cm; the ruler says 12 cm. Your estimate is 1 cm **below** the measurement." For 12: "Your estimate and measurement match." For 15: "You estimated 15 cm, 3 cm **above** the measured length. Look again at how much longer it is than the 10 cm reference." No hidden acceptable-range pass/fail, positive/negative numerical error sign confusion, or premature answer reveal.
             - **Access:** Meaningful nonvisual comparison says "Mystery is a little longer than one ten-centimeter reference and much shorter than two", not "exactly two intervals longer". Learner may request a coarse hint before estimating, with the same benchmark language.
           productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
-      section2:
+      checkEstimateAgainstRuler:
         config:
           id: '14314883-9c16-5b1e-b79d-000000000008'
-          slug: 'section2'
+          slug: 'checkEstimateAgainstRuler'
           type: 'content'
           params: {}
           locale:
@@ -199,10 +199,10 @@ config:
               en: 'Compare the Numbers Using the Same Unit'
           content:
             items:
-              text1:
+              estimateFifteenCentimeters:
                 config:
                   id: '14314883-9c16-5b1e-b79d-000000000005'
-                  slug: 'text1'
+                  slug: 'estimateFifteenCentimeters'
                   type: 'text'
                   params: {}
                   locale:
@@ -211,10 +211,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original source resource (including pedagogical direction):   1. **text — available:** "A second mystery strip looks longer than **10 cm**, but shorter than **20 cm** (two reference strips). I think it might be **15 cm**. Let''s check with the ruler."'
-              scene1:
+              measureSixteenCentimeters:
                 config:
                   id: '14314883-9c16-5b1e-b79d-000000000006'
-                  slug: 'scene1'
+                  slug: 'measureSixteenCentimeters'
                   type: 'scene'
                   params: {}
                   locale:
@@ -324,10 +324,10 @@ config:
 
                     The current generic Section accepts a `scene` Resource, but **Length Estimate Laboratory does not yet exist**. An editor must approve the lesson and Scene specifications first. Future Scene Designer/Coding Agent verifies actual locale provider hooks and creates deterministic prop-free components, unit-valid tests, equitable pre-reveal descriptive modes and complete offline assets. No React, runtime Lesson, scored assessment, learner analytics or Note persistence is part of this batch. The rubric for a "reasonable" estimate remains an editorial/Assessment Architect decision rather than a hidden threshold.
                   productionNotes: 'Placement 1 in Compare the Numbers Using the Same Unit. Source resource:   2. **scene — proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage B. True fixed model length **16 cm**, reference length **10 cm**. Learner chooses an estimate in cm (e.g. 14,15,16,18) and then reveals ruler aligned at 0. Worked demonstration specifically selects **15 cm**, reveals **16 cm** and highlights that 16 is **1 greater than 15**. Display "Estimated 15 cm; measured 16 cm; estimate was **1 cm below**." An independent alternative chosen by learner produces correct feedback based on chosen number, not a predetermined "correct estimate".. Separate stable Scene identity per placement; implementation pending.'
-              markdown1:
+              explainOneCentimeterDifference:
                 config:
                   id: '14314883-9c16-5b1e-b79d-000000000007'
-                  slug: 'markdown1'
+                  slug: 'explainOneCentimeterDifference'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -337,9 +337,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original source resource (including pedagogical direction):   3. **markdown — available:** "**15 cm** was our estimate. **16 cm** is what the ruler showed. The estimate is **1 cm less** than the measured length. Both values are in **centimeters**, so they can be compared directly."'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'estimateFifteenCentimeters'
+              - 'measureSixteenCentimeters'
+              - 'explainOneCentimeterDifference'
         production:
           purpose: 'Compare the Numbers Using the Same Unit'
           pedagogicalIntent: |-
@@ -353,10 +353,10 @@ config:
             - **Access:** Report values in a structured comparison table or verbal sentence, not color-only bars. The bar is fixed while the ruler appears, so measurement never visually changes the mystery length.
             - **Planned Note:** After reveal: "Compare estimate and measurement in the **same unit**."
           productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
-      section3:
+      compareEstimationErrors:
         config:
           id: '14314883-9c16-5b1e-b79d-00000000000c'
-          slug: 'section3'
+          slug: 'compareEstimationErrors'
           type: 'content'
           params: {}
           locale:
@@ -366,10 +366,10 @@ config:
               en: 'Two Estimates, One Object'
           content:
             items:
-              text1:
+              judgeTwoEstimates:
                 config:
                   id: '14314883-9c16-5b1e-b79d-000000000009'
-                  slug: 'text1'
+                  slug: 'judgeTwoEstimates'
                   type: 'text'
                   params: {}
                   locale:
@@ -378,10 +378,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original source resource (including pedagogical direction):   1. **text — available:** "Two people estimated the **same** strip. One said **20 cm**; another said **25 cm**. The ruler shows **18 cm**. Which estimate was nearer? How much higher was each?"'
-              scene1:
+              compareDistancesToEighteen:
                 config:
                   id: '14314883-9c16-5b1e-b79d-00000000000a'
-                  slug: 'scene1'
+                  slug: 'compareDistancesToEighteen'
                   type: 'scene'
                   params: {}
                   locale:
@@ -491,10 +491,10 @@ config:
 
                     The current generic Section accepts a `scene` Resource, but **Length Estimate Laboratory does not yet exist**. An editor must approve the lesson and Scene specifications first. Future Scene Designer/Coding Agent verifies actual locale provider hooks and creates deterministic prop-free components, unit-valid tests, equitable pre-reveal descriptive modes and complete offline assets. No React, runtime Lesson, scored assessment, learner analytics or Note persistence is part of this batch. The rubric for a "reasonable" estimate remains an editorial/Assessment Architect decision rather than a hidden threshold.
                   productionNotes: 'Placement 1 in Two Estimates, One Object. Source resource:   2. **scene — proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage C; true fixed length **18 cm**, reference 10 cm. Before revealing ruler, child sees two recorded estimates 20 and 25 cm as separate markers. After "Measure", show: 20 vs 18 → **2 cm above**; 25 vs 18 → **7 cm above**. The strip remains unchanged. Next show misleading comparison "20" with **no unit** vs "18 cm"; invite choice "Can we compare directly?" and explain unit requirement.. Separate stable Scene identity per placement; implementation pending.'
-              markdown1:
+              explainCloserEstimate:
                 config:
                   id: '14314883-9c16-5b1e-b79d-00000000000b'
-                  slug: 'markdown1'
+                  slug: 'explainCloserEstimate'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -504,9 +504,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original source resource (including pedagogical direction):   3. **markdown — available:** "The 20 cm estimate is **2 cm higher**, and the 25 cm estimate is **7 cm higher** than the same measured length. Both missed the exact number, but the first was closer. Saying only ''20'' without a unit does not say how long something is."'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'judgeTwoEstimates'
+              - 'compareDistancesToEighteen'
+              - 'explainCloserEstimate'
         production:
           purpose: 'Two Estimates, One Object'
           pedagogicalIntent: |-
@@ -519,10 +519,10 @@ config:
             - **Feedback:** If child claims strip shrank from 25 to 18: "The strip never changed. **25** was a prediction, not a measured size." If they call 25 a 'wrong measurement': "It was an estimate. We compare it to the later measurement and explain the difference." Clarify that a **wild estimate** can be less useful without assigning points or "good enough" threshold.
             - **Planned Note:** "An estimate can be above or below a measured length; the **difference** tells how far."
           productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
-      section4:
+      justifyNewEstimate:
         config:
           id: '14314883-9c16-5b1e-b79d-000000000010'
-          slug: 'section4'
+          slug: 'justifyNewEstimate'
           type: 'content'
           params: {}
           locale:
@@ -532,10 +532,10 @@ config:
               en: 'Make an Estimate You Can Defend'
           content:
             items:
-              text1:
+              predictNewStripLength:
                 config:
                   id: '14314883-9c16-5b1e-b79d-00000000000d'
-                  slug: 'text1'
+                  slug: 'predictNewStripLength'
                   type: 'text'
                   params: {}
                   locale:
@@ -544,10 +544,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original source resource (including pedagogical direction):   1. **text — available:** "The reference strip is **10 cm**. A new mystery strip looks a little more than twice as long. First choose your estimate **in cm** and tell what you noticed. Only then measure it."'
-              scene1:
+              checkEstimateOnRuler:
                 config:
                   id: '14314883-9c16-5b1e-b79d-00000000000e'
-                  slug: 'scene1'
+                  slug: 'checkEstimateOnRuler'
                   type: 'scene'
                   params: {}
                   locale:
@@ -657,10 +657,10 @@ config:
 
                     The current generic Section accepts a `scene` Resource, but **Length Estimate Laboratory does not yet exist**. An editor must approve the lesson and Scene specifications first. Future Scene Designer/Coding Agent verifies actual locale provider hooks and creates deterministic prop-free components, unit-valid tests, equitable pre-reveal descriptive modes and complete offline assets. No React, runtime Lesson, scored assessment, learner analytics or Note persistence is part of this batch. The rubric for a "reasonable" estimate remains an editorial/Assessment Architect decision rather than a hidden threshold.
                   productionNotes: 'Placement 1 in Make an Estimate You Can Defend. Source resource:   2. **scene — proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage D. True model length **23 cm**, concealed until measurement. Before reveal, offer coarse size comparison **between 20 and 25 cm** without exact interval boundary labels. Learner selects any whole-centimeter estimate **18–28**, says/reference-selects a reason and commits it. Press "Measure" to reveal a ruler scale 0–25 (or consistent paged 0–30) and the end at **23 cm**. Feedback computed from estimate `e`: when e<23 → "**23−e cm below**"; e=23 → "matches"; e>23 → "**e−23 cm above**". Show the exact intervals and final number to all modes **after** the estimate.. Separate stable Scene identity per placement; implementation pending.'
-              markdown1:
+              explainEvidenceBasedEstimate:
                 config:
                   id: '14314883-9c16-5b1e-b79d-00000000000f'
-                  slug: 'markdown1'
+                  slug: 'explainEvidenceBasedEstimate'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -670,9 +670,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original source resource (including pedagogical direction):   3. **markdown — available:** "A checkable estimate has **a reference, a unit and a reason**. The ruler found **23 cm**. If you chose **22 cm**, that is **1 cm below**; if you chose **24 cm**, it is **1 cm above**. We can keep the useful benchmark and adjust our next estimate."'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'predictNewStripLength'
+              - 'checkEstimateOnRuler'
+              - 'explainEvidenceBasedEstimate'
         production:
           purpose: 'Make an Estimate You Can Defend'
           pedagogicalIntent: |-
@@ -686,10 +686,10 @@ config:
             - **Offline practical transfer:** An optional ruler check on a real book edge may be proposed, but users without a ruler must have exactly the same conceptual estimation and checking interaction in the self-contained Scene.
           productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'estimateUsingKnownLength'
+      - 'checkEstimateAgainstRuler'
+      - 'compareEstimationErrors'
+      - 'justifyNewEstimate'
   flashcards:
     items: {}
     order: []

@@ -20,10 +20,10 @@ config:
       en: 'Three Addends, Different Groups'
   section:
     items:
-      section1:
+      countThreeSeparateGroups:
         config:
           id: '0de9cfa9-ea0a-5fe8-9f47-000000000004'
-          slug: 'section1'
+          slug: 'countThreeSeparateGroups'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Three Collections Make Nine'
           content:
             items:
-              section1Text1:
+              promptTotalOfThreeGroups:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-000000000001'
-                  slug: 'section1Text1'
+                  slug: 'promptTotalOfThreeGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '- **Learner-facing text resource (supported):** “Three separate groups have 2, 3 and 4 counters. How many counters in all?”'
-              section1Scene1:
+              countThreeGroups:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-000000000002'
-                  slug: 'section1Scene1'
+                  slug: 'countThreeGroups'
                   type: 'scene'
                   params: {}
                   locale:
@@ -119,10 +119,10 @@ config:
 
                     Generic Section Scene renderer exists; **Grouping Brackets Playground is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Explicitly separate associativity (parentheses) from previously taught addition commutativity (operand order); make-ten as an efficient example must support, not replace, the three-addend rule.
                   productionNotes: "This placement in Three Collections Make Nine refers to groupingBracketsPlayground.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section1Markdown1:
+              establishNineTotal:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-000000000003'
-                  slug: 'section1Markdown1'
+                  slug: 'establishNineTotal'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -132,9 +132,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '- **Learner-facing markdown resource (supported):** “Two, three and four make nine counters. We will keep those same nine while changing which pair is counted first.” Exact expression: **2 + 3 + 4 = 9**.'
             order:
-              - 'section1Text1'
-              - 'section1Scene1'
-              - 'section1Markdown1'
+              - 'promptTotalOfThreeGroups'
+              - 'countThreeGroups'
+              - 'establishNineTotal'
         production:
           purpose: 'Three Collections Make Nine'
           pedagogicalIntent: |-
@@ -150,10 +150,10 @@ config:
             - **Proposed unlocked Note(s):** None in this Section.
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section2:
+      groupFirstTwoAddends:
         config:
           id: '0de9cfa9-ea0a-5fe8-9f47-000000000008'
-          slug: 'section2'
+          slug: 'groupFirstTwoAddends'
           type: 'content'
           params: {}
           locale:
@@ -163,10 +163,10 @@ config:
               en: 'First Two Together'
           content:
             items:
-              section2Text1:
+              predictFirstPairSubtotal:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-000000000005'
-                  slug: 'section2Text1'
+                  slug: 'predictFirstPairSubtotal'
                   type: 'text'
                   params: {}
                   locale:
@@ -175,10 +175,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '- **Learner-facing text resource (supported):** “What if we add the first two groups before the third?”'
-              section2Scene1:
+              groupTwoAndThree:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-000000000006'
-                  slug: 'section2Scene1'
+                  slug: 'groupTwoAndThree'
                   type: 'scene'
                   params: {}
                   locale:
@@ -249,10 +249,10 @@ config:
 
                     Generic Section Scene renderer exists; **Grouping Brackets Playground is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Explicitly separate associativity (parentheses) from previously taught addition commutativity (operand order); make-ten as an efficient example must support, not replace, the three-addend rule.
                   productionNotes: "This placement in First Two Together refers to groupingBracketsPlayground.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section2Markdown1:
+              explainFivePlusFour:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-000000000007'
-                  slug: 'section2Markdown1'
+                  slug: 'explainFivePlusFour'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -262,9 +262,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '- **Learner-facing markdown resource (supported):** “The first two groups make five. Then five plus four makes nine. Nothing was created or lost when we counted them as a subtotal.” Exact expression: **(2 + 3) + 4 = 5 + 4 = 9**.'
             order:
-              - 'section2Text1'
-              - 'section2Scene1'
-              - 'section2Markdown1'
+              - 'predictFirstPairSubtotal'
+              - 'groupTwoAndThree'
+              - 'explainFivePlusFour'
         production:
           purpose: 'First Two Together'
           pedagogicalIntent: |-
@@ -280,10 +280,10 @@ config:
             - **Proposed unlocked Note(s):** “With three addends, we can add the first two or last two first.” after the complete model and explanation have been shown (planned, not wired).
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section3:
+      groupLastTwoAddends:
         config:
           id: '0de9cfa9-ea0a-5fe8-9f47-00000000000c'
-          slug: 'section3'
+          slug: 'groupLastTwoAddends'
           type: 'content'
           params: {}
           locale:
@@ -293,10 +293,10 @@ config:
               en: 'Last Two Together'
           content:
             items:
-              section3Text1:
+              predictLastPairSubtotal:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-000000000009'
-                  slug: 'section3Text1'
+                  slug: 'predictLastPairSubtotal'
                   type: 'text'
                   params: {}
                   locale:
@@ -305,10 +305,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '- **Learner-facing text resource (supported):** “Now add the last two groups first. Is the result still nine?”'
-              section3Scene1:
+              groupThreeAndFour:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-00000000000a'
-                  slug: 'section3Scene1'
+                  slug: 'groupThreeAndFour'
                   type: 'scene'
                   params: {}
                   locale:
@@ -379,10 +379,10 @@ config:
 
                     Generic Section Scene renderer exists; **Grouping Brackets Playground is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Explicitly separate associativity (parentheses) from previously taught addition commutativity (operand order); make-ten as an efficient example must support, not replace, the three-addend rule.
                   productionNotes: "This placement in Last Two Together refers to groupingBracketsPlayground.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section3Markdown1:
+              explainTwoPlusSeven:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-00000000000b'
-                  slug: 'section3Markdown1'
+                  slug: 'explainTwoPlusSeven'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -392,9 +392,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '- **Learner-facing markdown resource (supported):** “Three and four make seven, then two plus seven makes nine. The subtotal changed from five to seven; the final sum stayed nine.” Exact expression: **2 + (3 + 4) = 2 + 7 = 9**.'
             order:
-              - 'section3Text1'
-              - 'section3Scene1'
-              - 'section3Markdown1'
+              - 'predictLastPairSubtotal'
+              - 'groupThreeAndFour'
+              - 'explainTwoPlusSeven'
         production:
           purpose: 'Last Two Together'
           pedagogicalIntent: |-
@@ -410,10 +410,10 @@ config:
             - **Proposed unlocked Note(s):** “Only the grouping changes; every original addend and the final total stay the same.” after the complete model and explanation have been shown (planned, not wired).
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section4:
+      chooseConvenientGrouping:
         config:
           id: '0de9cfa9-ea0a-5fe8-9f47-000000000010'
-          slug: 'section4'
+          slug: 'chooseConvenientGrouping'
           type: 'content'
           params: {}
           locale:
@@ -423,10 +423,10 @@ config:
               en: 'Group Six, Four and Three'
           content:
             items:
-              section4Text1:
+              choosePairMakingTen:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-00000000000d'
-                  slug: 'section4Text1'
+                  slug: 'choosePairMakingTen'
                   type: 'text'
                   params: {}
                   locale:
@@ -435,10 +435,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '- **Learner-facing text resource (supported):** “For 6 + 4 + 3, which pair could make ten first?”'
-              section4Scene1:
+              groupSixFourThree:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-00000000000e'
-                  slug: 'section4Scene1'
+                  slug: 'groupSixFourThree'
                   type: 'scene'
                   params: {}
                   locale:
@@ -509,10 +509,10 @@ config:
 
                     Generic Section Scene renderer exists; **Grouping Brackets Playground is proposed**, not implemented. Requires editorial approval of the new Methodologist Brief, separate approval of Content and this Scene spec, then Scene Designer implementation and own tests. Coding Agent verifies prop-free registration, genuine locale context and complete offline availability. Assessment Architect owns any scored Question separately. Editorial review: Explicitly separate associativity (parentheses) from previously taught addition commutativity (operand order); make-ten as an efficient example must support, not replace, the three-addend rule.
                   productionNotes: "This placement in Group Six, Four and Three refers to groupingBracketsPlayground.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section4Markdown1:
+              explainAssociativeGrouping:
                 config:
                   id: '0de9cfa9-ea0a-5fe8-9f47-00000000000f'
-                  slug: 'section4Markdown1'
+                  slug: 'explainAssociativeGrouping'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -522,9 +522,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '- **Learner-facing markdown resource (supported):** “Six and four make a useful ten. Adding three makes thirteen. Or four and three make seven, then six plus seven makes thirteen. Grouping helps us choose a convenient calculation.” Exact expression: **(6 + 4) + 3 = 13; 6 + (4 + 3) = 13**.'
             order:
-              - 'section4Text1'
-              - 'section4Scene1'
-              - 'section4Markdown1'
+              - 'choosePairMakingTen'
+              - 'groupSixFourThree'
+              - 'explainAssociativeGrouping'
         production:
           purpose: 'Group Six, Four and Three'
           pedagogicalIntent: |-
@@ -541,10 +541,10 @@ config:
             - **Dependencies/status:** Scene is new and unimplemented. No API for Notes, scoring, question grading, Scene props or lesson assembly is invented.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'countThreeSeparateGroups'
+      - 'groupFirstTwoAddends'
+      - 'groupLastTwoAddends'
+      - 'chooseConvenientGrouping'
   flashcards:
     items: {}
     order: []

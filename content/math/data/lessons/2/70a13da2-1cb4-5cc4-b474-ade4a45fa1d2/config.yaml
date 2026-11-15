@@ -20,10 +20,10 @@ config:
       en: 'Regrouping Through a Zero Place'
   section:
     items:
-      section1:
+      findTensAcrossZero:
         config:
           id: '70a13da2-1cb4-5cc4-b474-000000000004'
-          slug: 'section1'
+          slug: 'findTensAcrossZero'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Where Can the Tens Come From?'
           content:
             items:
-              section1Text1:
+              recognizeZeroTens:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-000000000001'
-                  slug: 'section1Text1'
+                  slug: 'recognizeZeroTens'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **text — supported:** “Here is **302**: three hundreds, zero tens, two ones. We want to take away five ones. We have only two loose ones. Can we make more without changing 302?”'
-              section1Scene1:
+              exploreHundredsExchange:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-000000000002'
-                  slug: 'section1Scene1'
+                  slug: 'exploreHundredsExchange'
                   type: 'scene'
                   params: {}
                   locale:
@@ -110,10 +110,10 @@ config:
 
                     Generic scene Resource rendering is available; this Scene is **proposed** and depends on prior Methodologist/editorial approval and its own Scene spec review. Coding Agent designs prop-free Scene entries, localization and tests; no scored assessment or false offline-sync API. Editor must retain the age/readiness gate.
                   productionNotes: "This placement in Where Can the Tens Come From? refers to hundredExchangeLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section1Markdown1:
+              explainHundredAsTenTens:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-000000000003'
-                  slug: 'section1Markdown1'
+                  slug: 'explainHundredAsTenTens'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -123,9 +123,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — supported:** “There are **0 tens**, so we cannot exchange a ten yet. But **one hundred is ten tens**. We can exchange from the hundreds place first.”'
             order:
-              - 'section1Text1'
-              - 'section1Scene1'
-              - 'section1Markdown1'
+              - 'recognizeZeroTens'
+              - 'exploreHundredsExchange'
+              - 'explainHundredAsTenTens'
         production:
           purpose: 'Where Can the Tens Come From?'
           pedagogicalIntent: |-
@@ -141,10 +141,10 @@ config:
             - Note: “One hundred = ten tens,” planned after the first equivalence explanation.
             - Dependencies: New Hundred Exchange Lab component; not implemented.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section2:
+      exchangeHundredThenTen:
         config:
           id: '70a13da2-1cb4-5cc4-b474-000000000008'
-          slug: 'section2'
+          slug: 'exchangeHundredThenTen'
           type: 'content'
           params: {}
           locale:
@@ -154,10 +154,10 @@ config:
               en: 'Two Exchanges, Same Three Hundred Two'
           content:
             items:
-              section2Markdown1:
+              traceTwoRegroupings:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-000000000005'
-                  slug: 'section2Markdown1'
+                  slug: 'traceTwoRegroupings'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -166,10 +166,10 @@ config:
                 production:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  1. **markdown — supported:** “First exchange a hundred: **3 hundreds + 0 tens + 2 ones → 2 hundreds + 10 tens + 2 ones**. Then exchange a ten: **2 hundreds + 9 tens + 12 ones**. The whole number is still 302.”'
-              section2Scene1:
+              performTwoExchanges:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-000000000006'
-                  slug: 'section2Scene1'
+                  slug: 'performTwoExchanges'
                   type: 'scene'
                   params: {}
                   locale:
@@ -231,10 +231,10 @@ config:
 
                     Generic scene Resource rendering is available; this Scene is **proposed** and depends on prior Methodologist/editorial approval and its own Scene spec review. Coding Agent designs prop-free Scene entries, localization and tests; no scored assessment or false offline-sync API. Editor must retain the age/readiness gate.
                   productionNotes: "This placement in Two Exchanges, Same Three Hundred Two refers to hundredExchangeLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section2Text1:
+              explainEquivalent302:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-000000000007'
-                  slug: 'section2Text1'
+                  slug: 'explainEquivalent302'
                   type: 'text'
                   params: {}
                   locale:
@@ -244,9 +244,9 @@ config:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  3. **text — supported:** “We did not add more. We changed how the same amount is grouped. Now we have twelve ones, so we can take away five ones.”'
             order:
-              - 'section2Markdown1'
-              - 'section2Scene1'
-              - 'section2Text1'
+              - 'traceTwoRegroupings'
+              - 'performTwoExchanges'
+              - 'explainEquivalent302'
         production:
           purpose: 'Two Exchanges, Same Three Hundred Two'
           pedagogicalIntent: |-
@@ -262,10 +262,10 @@ config:
             - Note: “Exchanging changes the form, not the value,” planned after both equality checks.
             - Dependencies: Same proposed Scene with isolated Section entry, distinct prop-free setup.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section3:
+      subtractAfterRegrouping:
         config:
           id: '70a13da2-1cb4-5cc4-b474-00000000000c'
-          slug: 'section3'
+          slug: 'subtractAfterRegrouping'
           type: 'content'
           params: {}
           locale:
@@ -275,10 +275,10 @@ config:
               en: 'Use the Exchange to Subtract'
           content:
             items:
-              section3Text1:
+              setUp302Minus175:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-000000000009'
-                  slug: 'section3Text1'
+                  slug: 'setUp302Minus175'
                   type: 'text'
                   params: {}
                   locale:
@@ -287,10 +287,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **text — supported:** “Now write **302 − 175** in hundreds, tens and ones columns. We have already exchanged to **2 hundreds, 9 tens, 12 ones**. Can we take away 1 hundred, 7 tens and 5 ones?”'
-              section3Scene1:
+              subtractWithExchangedUnits:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-00000000000a'
-                  slug: 'section3Scene1'
+                  slug: 'subtractWithExchangedUnits'
                   type: 'scene'
                   params: {}
                   locale:
@@ -373,10 +373,10 @@ config:
 
                     The generic Lesson Scene renderer exists; **Zero Bridge Column Board is proposed**, requiring separate editorial and Scene spec approvals and Coding Agent implementation with its own tests. Three-digit exchange through zero is readiness-gated enrichment, not an assumed competency of all first/second graders. Coding Agent must verify local scene state, selected locale content and equivalent nonvisual operation; Assessment Architect owns any scored Question design. No fictional API or runtime field is part of this document.
                   productionNotes: "This placement in Use the Exchange to Subtract refers to zeroBridgeColumnBoard.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section3Markdown1:
+              verify127:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-00000000000b'
-                  slug: 'section3Markdown1'
+                  slug: 'verify127'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -386,9 +386,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — supported:** “**302 − 175 = 127**. We had 2H, 9T, 12O after exchanging. Take away 1H, 7T, 5O. That leaves **1H, 2T, 7O = 127**. Check the original amount: **127 + 175 = 302**.”'
             order:
-              - 'section3Text1'
-              - 'section3Scene1'
-              - 'section3Markdown1'
+              - 'setUp302Minus175'
+              - 'subtractWithExchangedUnits'
+              - 'verify127'
         production:
           purpose: 'Use the Exchange to Subtract'
           pedagogicalIntent: |-
@@ -405,10 +405,10 @@ config:
             - Note: “Exchange a hundred, then a ten when the tens place is empty,” after the full example, planned.
             - Dependencies: New Zero Bridge Column Board. No scored Quiz.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section4:
+      applyRegroupingTo403:
         config:
           id: '70a13da2-1cb4-5cc4-b474-000000000010'
-          slug: 'section4'
+          slug: 'applyRegroupingTo403'
           type: 'content'
           params: {}
           locale:
@@ -418,10 +418,10 @@ config:
               en: 'Try Another Zero in the Tens Place'
           content:
             items:
-              section4Text1:
+              challenge403Minus186:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-00000000000d'
-                  slug: 'section4Text1'
+                  slug: 'challenge403Minus186'
                   type: 'text'
                   params: {}
                   locale:
@@ -430,10 +430,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **text — supported:** “Try **403 − 186**. Four hundreds, zero tens, three ones. How do we take away six ones when the tens place is empty?”'
-              section4Scene1:
+              model403Exchange:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-00000000000e'
-                  slug: 'section4Scene1'
+                  slug: 'model403Exchange'
                   type: 'scene'
                   params: {}
                   locale:
@@ -516,10 +516,10 @@ config:
 
                     The generic Lesson Scene renderer exists; **Zero Bridge Column Board is proposed**, requiring separate editorial and Scene spec approvals and Coding Agent implementation with its own tests. Three-digit exchange through zero is readiness-gated enrichment, not an assumed competency of all first/second graders. Coding Agent must verify local scene state, selected locale content and equivalent nonvisual operation; Assessment Architect owns any scored Question design. No fictional API or runtime field is part of this document.
                   productionNotes: "This placement in Try Another Zero in the Tens Place refers to zeroBridgeColumnBoard.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section4Markdown1:
+              explain217:
                 config:
                   id: '70a13da2-1cb4-5cc4-b474-00000000000f'
-                  slug: 'section4Markdown1'
+                  slug: 'explain217'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -529,9 +529,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — supported:** “After both exchanges, 403 is **3 hundreds + 9 tens + 13 ones**. Subtract: **13−6=7** ones, **9−8=1** ten, **3−1=2** hundreds. So **403−186=217**. Check: **217+186=403**.”'
             order:
-              - 'section4Text1'
-              - 'section4Scene1'
-              - 'section4Markdown1'
+              - 'challenge403Minus186'
+              - 'model403Exchange'
+              - 'explain217'
         production:
           purpose: 'Try Another Zero in the Tens Place'
           pedagogicalIntent: |-
@@ -548,10 +548,10 @@ config:
             - Dependencies: Formative only; no assessed mastery of the broader regrouping Skill.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'findTensAcrossZero'
+      - 'exchangeHundredThenTen'
+      - 'subtractAfterRegrouping'
+      - 'applyRegroupingTo403'
   flashcards:
     items: {}
     order: []

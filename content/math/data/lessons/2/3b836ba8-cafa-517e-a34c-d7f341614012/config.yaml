@@ -15,10 +15,10 @@ config:
       en: 'Two Ways Addition Works'
   section:
     items:
-      section1:
+      joinTwoCollections:
         config:
           id: 'c91cc640-5f69-50b7-93cb-4640b92dbe59'
-          slug: 'section1'
+          slug: 'joinTwoCollections'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Two Collections, One Total'
           content:
             items:
-              text1:
+              countBlueAndYellowCounters:
                 config:
                   id: 'fcaad635-8943-539a-bde5-56352fb49288'
-                  slug: 'text1'
+                  slug: 'countBlueAndYellowCounters'
                   type: 'text'
                   params: {}
                   locale:
@@ -39,10 +39,10 @@ config:
                       en: 'Three blue counters are in one bowl and two yellow counters in another. How many counters do both bowls hold?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              combineTwoBowls:
                 config:
                   id: 'fdf8058e-d4a3-5d53-ad0f-858e303b3519'
-                  slug: 'scene1'
+                  slug: 'combineTwoBowls'
                   type: 'scene'
                   params: {}
                   locale:
@@ -112,10 +112,10 @@ config:
                     Existing generic `scene` Resource and Lesson rendering are available; **Joining and Growing Lab itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: The two meanings must remain distinct in translations, particularly 'both' versus 'more arrived'; no additional curriculum assignment is assumed.
                   purpose: 'Two Collections, One Total: independent placement'
                   productionNotes: 'Original joiningGrowingLab.scene-spec.md variant belongs to Two Collections, One Total; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainFiveTogether:
                 config:
                   id: '7671d8af-705d-5278-b0d4-58aff5bed332'
-                  slug: 'markdown1'
+                  slug: 'explainFiveTogether'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -123,7 +123,7 @@ config:
                       en: 'The first bowl has three and the second has two. Counting both disjoint sets once gives five. Nothing had to arrive later; we joined the quantities in our counting.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['countBlueAndYellowCounters', 'combineTwoBowls', 'explainFiveTogether']
         production:
           purpose: 'Two Collections, One Total'
           productionNotes: |-
@@ -148,10 +148,10 @@ config:
             **Proposed unlocked Note:** “Adding can combine two separate groups.” after the whole demonstration and explanation are available (planned, not wired).
 
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
-      section2:
+      modelGrowingCollection:
         config:
           id: 'cc1ccaf9-6069-524a-96cb-4af9b62db9a0'
-          slug: 'section2'
+          slug: 'modelGrowingCollection'
           type: 'content'
           params: {}
           locale:
@@ -161,10 +161,10 @@ config:
               en: 'Now Two More Arrive'
           content:
             items:
-              text1:
+              predictAfterArrival:
                 config:
                   id: '2e55e7a8-291e-5cbb-af90-67a86ed56c15'
-                  slug: 'text1'
+                  slug: 'predictAfterArrival'
                   type: 'text'
                   params: {}
                   locale:
@@ -172,10 +172,10 @@ config:
                       en: 'Three counters are on the table. Two more arrive. How many are on the table now?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              addTwoCounters:
                 config:
                   id: '00435239-d660-5aa4-af5a-d2395487276e'
-                  slug: 'scene1'
+                  slug: 'addTwoCounters'
                   type: 'scene'
                   params: {}
                   locale:
@@ -245,10 +245,10 @@ config:
                     Existing generic `scene` Resource and Lesson rendering are available; **Joining and Growing Lab itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: The two meanings must remain distinct in translations, particularly 'both' versus 'more arrived'; no additional curriculum assignment is assumed.
                   purpose: 'Now Two More Arrive: independent placement'
                   productionNotes: 'Original joiningGrowingLab.scene-spec.md variant belongs to Now Two More Arrive; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainFiveAfterIncrease:
                 config:
                   id: '90130052-9994-5ce9-8a75-8052bcac690f'
-                  slug: 'markdown1'
+                  slug: 'explainFiveAfterIncrease'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -256,7 +256,7 @@ config:
                       en: 'Three were already here, and two arrived; now there are five. This time addition describes a change in one collection, although the numbers match the bowl story.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['predictAfterArrival', 'addTwoCounters', 'explainFiveAfterIncrease']
         production:
           purpose: 'Now Two More Arrive'
           productionNotes: |-
@@ -281,10 +281,10 @@ config:
             **Proposed unlocked Note:** “Adding can also show how a group grows.” after the whole demonstration and explanation are available (planned, not wired).
 
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
-      section3:
+      compareJoinAndChangeStories:
         config:
           id: 'cb1cc966-6169-53dd-95cb-4966b72dbb33'
-          slug: 'section3'
+          slug: 'compareJoinAndChangeStories'
           type: 'content'
           params: {}
           locale:
@@ -294,10 +294,10 @@ config:
               en: 'Same Numbers, Different Story'
           content:
             items:
-              text1:
+              classifyAdditionStories:
                 config:
                   id: '445f52d7-922c-597c-8599-d2d7f3ad2eb6'
-                  slug: 'text1'
+                  slug: 'classifyAdditionStories'
                   type: 'text'
                   params: {}
                   locale:
@@ -305,10 +305,10 @@ config:
                       en: 'Which story joins two groups? Which story makes one group grow?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              compareModels:
                 config:
                   id: 'b1c0d9a8-441c-5a85-a0d8-59a8e20f7e67'
-                  slug: 'scene1'
+                  slug: 'compareModels'
                   type: 'scene'
                   params: {}
                   locale:
@@ -378,10 +378,10 @@ config:
                     Existing generic `scene` Resource and Lesson rendering are available; **Joining and Growing Lab itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: The two meanings must remain distinct in translations, particularly 'both' versus 'more arrived'; no additional curriculum assignment is assumed.
                   purpose: 'Same Numbers, Different Story: independent placement'
                   productionNotes: 'Original joiningGrowingLab.scene-spec.md variant belongs to Same Numbers, Different Story; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainTwoMeaningsSameSum:
                 config:
                   id: 'b8f82695-8051-5306-b35a-a6951cf5cf84'
-                  slug: 'markdown1'
+                  slug: 'explainTwoMeaningsSameSum'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -389,7 +389,7 @@ config:
                       en: "Both stories have a total of five, but in one we combined separate bowls and in the other two new counters arrived. The equality alone doesn't tell the entire story."
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['classifyAdditionStories', 'compareModels', 'explainTwoMeaningsSameSum']
         production:
           purpose: 'Same Numbers, Different Story'
           productionNotes: |-
@@ -414,10 +414,10 @@ config:
             **Proposed unlocked Note:** None: connect the two prior concepts.
 
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
-      section4:
+      representNewAdditionStory:
         config:
           id: 'ce1cce1f-5a69-58d8-98cb-4e1fbc2dc312'
-          slug: 'section4'
+          slug: 'representNewAdditionStory'
           type: 'content'
           params: {}
           locale:
@@ -427,10 +427,10 @@ config:
               en: 'Make and Explain a New Sum'
           content:
             items:
-              text1:
+              solveFourPlusThree:
                 config:
                   id: 'a438cb62-c426-574d-a573-4b6254148063'
-                  slug: 'text1'
+                  slug: 'solveFourPlusThree'
                   type: 'text'
                   params: {}
                   locale:
@@ -438,10 +438,10 @@ config:
                       en: 'Four counters are waiting. Three more arrive. How many now? Can you also make a two-bowl story for those numbers?'
                 production:
                   purpose: 'Provisional learner prompt/feedback'
-              scene1:
+              createNewSumModels:
                 config:
                   id: '932defab-781b-59d6-8245-6fab51929e3c'
-                  slug: 'scene1'
+                  slug: 'createNewSumModels'
                   type: 'scene'
                   params: {}
                   locale:
@@ -511,10 +511,10 @@ config:
                     Existing generic `scene` Resource and Lesson rendering are available; **Joining and Growing Lab itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: The two meanings must remain distinct in translations, particularly 'both' versus 'more arrived'; no additional curriculum assignment is assumed.
                   purpose: 'Make and Explain a New Sum: independent placement'
                   productionNotes: 'Original joiningGrowingLab.scene-spec.md variant belongs to Make and Explain a New Sum; see Section productionNotes. Unique stable Scene ID.'
-              markdown1:
+              explainSevenAsTotal:
                 config:
                   id: 'dd78f9f0-7f74-5e17-97db-79f0a1d2a761'
-                  slug: 'markdown1'
+                  slug: 'explainSevenAsTotal'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -522,7 +522,7 @@ config:
                       en: 'Four plus three equals seven. We can grow a group of four by three or count two separate groups of four and three. Both contain seven overall.'
                 production:
                   purpose: 'Provisional instructional explanation'
-            order: ['text1', 'scene1', 'markdown1']
+            order: ['solveFourPlusThree', 'createNewSumModels', 'explainSevenAsTotal']
         production:
           purpose: 'Make and Explain a New Sum'
           productionNotes: |-
@@ -547,7 +547,7 @@ config:
             **Proposed unlocked Note:** “Adding can combine two separate groups.” after the whole demonstration and explanation are available (planned, not wired).
 
             **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['joinTwoCollections', 'modelGrowingCollection', 'compareJoinAndChangeStories', 'representNewAdditionStory']
   flashcards:
     items: {}
     order: []

@@ -16,10 +16,10 @@ config:
       en: 'How Much Change Comes Back?'
   section:
     items:
-      section1:
+      calculateChangeFromTenEuros:
         config:
           id: '92921210-d5e6-4953-a4ab-40b2a33d7505'
-          slug: 'section1'
+          slug: 'calculateChangeFromTenEuros'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: "Cashier's Change Workbench"
           content:
             items:
-              text1:
+              askSixEuroPurchase:
                 config:
                   id: 'd00a6345-dcc0-4356-bbcd-8c03eb116624'
-                  slug: 'text1'
+                  slug: 'askSixEuroPurchase'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: "Cashier's Change Workbench; authored text block 1"
                   specification: '1. **`text` — existing generic renderer:** “A €6 item is paid with €10. How many euros should come back?”'
-              scene2:
+              simulateCashierChange:
                 config:
                   id: '3ac1da6b-92e5-479a-a91f-6595bca4a284'
-                  slug: 'scene2'
+                  slug: 'simulateCashierChange'
                   type: 'scene'
                   params: {}
                   locale:
@@ -135,10 +135,10 @@ config:
 
                     2. **`scene` — generic type supported, bespoke implementation proposed:** Cashier's Change Workbench (Scene specification embedded in this config.yaml). Price tag €6, paid by a real €10 banknote, empty return tray with accessible choices of actual €1/€2 coins. A second independent price tag €7 with the same payment.
                   productionNotes: 'Proposed unimplemented Scene, sourced from cashierChangeWorkbench.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              verifyFourEuroChange:
                 config:
                   id: '44fc1fc5-7366-4a4a-8997-9cdb3f400e78'
-                  slug: 'markdown3'
+                  slug: 'verifyFourEuroChange'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -147,7 +147,7 @@ config:
                 production:
                   purpose: "Cashier's Change Workbench; authored markdown block 3"
                   specification: '3. **`markdown` — existing generic renderer:** “Exactly €4 change is due; two €2 coins are a valid return. €10−€6=€4; €6+€4=€10.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askSixEuroPurchase', 'simulateCashierChange', 'verifyFourEuroChange']
         production:
           purpose: 'Develop the principle through a manipulable concrete model and a counterexample.'
           pedagogicalIntent: "Original Section 1 — Cashier's Change Workbench; authoring draft only"
@@ -166,10 +166,10 @@ config:
             - **Instructional boundary:** Do not offer nonstandard €3 or €4 single coins as if valid. The current payment is sufficient for both Scene cases.
             - **Accessibility and RTL:** Separate semantic ledger fields Price, Paid, Returned, Check. Every coin has value/kind and stable ID; keyboard and screen reader can build exactly the same change amount without dragging. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
             - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Change is the part of sufficient payment left after the price: price + change = amount paid.” is planned only, with no event or persistence.
-      section2:
+      detectIncorrectChange:
         config:
           id: '959216c9-d6e6-4ae6-a3ab-3f1fa03d704c'
-          slug: 'section2'
+          slug: 'detectIncorrectChange'
           type: 'content'
           params: {}
           locale:
@@ -179,10 +179,10 @@ config:
               en: "Check the Cashier's Result"
           content:
             items:
-              text1:
+              challengeThreeEuroReturn:
                 config:
                   id: 'c459d3f8-8650-4857-8fcb-b4625b6e8f31'
-                  slug: 'text1'
+                  slug: 'challengeThreeEuroReturn'
                   type: 'text'
                   params: {}
                   locale:
@@ -191,10 +191,10 @@ config:
                 production:
                   purpose: "Check the Cashier's Result; authored text block 1"
                   specification: '1. **`text` (existing renderer):** “An item is €8. You hand over €10. A cashier offers €3 back. Does the price plus return match what you paid?”'
-              markdown2:
+              correctCashierSum:
                 config:
                   id: '4accb0af-5953-4f5c-b891-77a9ae17c2de'
-                  slug: 'markdown2'
+                  slug: 'correctCashierSum'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -203,10 +203,10 @@ config:
                 production:
                   purpose: "Check the Cashier's Result; authored markdown block 2"
                   specification: '2. **`markdown` (existing renderer):** “No: 8+3=11, but you paid 10. The right return is €2 because 8+2=10.”'
-              markdown3:
+              explainZeroAndInsufficientPayment:
                 config:
                   id: '49ccaf1c-5a54-40ef-b791-7616af17c471'
-                  slug: 'markdown3'
+                  slug: 'explainZeroAndInsufficientPayment'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -215,7 +215,7 @@ config:
                 production:
                   purpose: "Check the Cashier's Result; authored markdown block 3"
                   specification: "3. **`markdown` (existing renderer):** “When €5 is offered for a €8 cost, €3 more is needed; this isn't negative change. Exact €10 for €10 means zero change.”"
-            order: ['text1', 'markdown2', 'markdown3']
+            order: ['challengeThreeEuroReturn', 'correctCashierSum', 'explainZeroAndInsufficientPayment']
         production:
           purpose: 'Retrieve a numerical invariant and contrast it with a likely mistaken shortcut without score or response validation.'
           pedagogicalIntent: "Original Section 2 — Check the Cashier's Result; authoring draft only"
@@ -229,10 +229,10 @@ config:
             - **Instructional dialogue:** Invite a child to give a private, spoken or recorded-on-paper answer before reading the explanation. The existing text/Markdown blocks do not implement hidden-answer input or auto-grading, so no such widget, correctness tracking or KnowledgeCheckpoint API is claimed.
             - **Misconception feedback:** Subtracting payment from cost and treating a negative as returned change; treating the price itself as change; counting the number of cash pieces rather than value; believing exact payment gives money back; accepting a cashier's return without checking the price+return equality. Use the detailed preceding Scene model if the child remains unsure.
             - **Navigation and access:** The explanation remains legible to a screen reader and does not require a visual page transition, sound or animation.
-      section3:
+      inspectReceiptAndPayment:
         config:
           id: '94921536-d7e6-4c79-a2ab-3d8ca13d71df'
-          slug: 'section3'
+          slug: 'inspectReceiptAndPayment'
           type: 'content'
           params: {}
           locale:
@@ -242,10 +242,10 @@ config:
               en: 'Receipt and Payment Inspector'
           content:
             items:
-              text1:
+              askElevenEuroPurchase:
                 config:
                   id: 'cfb8b0e7-7046-4d28-872a-eb71299b1e22'
-                  slug: 'text1'
+                  slug: 'askElevenEuroPurchase'
                   type: 'text'
                   params: {}
                   locale:
@@ -254,10 +254,10 @@ config:
                 production:
                   purpose: 'Receipt and Payment Inspector; authored text block 1'
                   specification: '1. **`text` — existing generic renderer:** “A €11 item is paid with one €10 and one €5 note. How much should be returned?”'
-              scene2:
+              inspectPaymentTotals:
                 config:
                   id: '6614ef11-4bae-4600-a29e-010f78f811fe'
-                  slug: 'scene2'
+                  slug: 'inspectPaymentTotals'
                   type: 'scene'
                   params: {}
                   locale:
@@ -348,10 +348,10 @@ config:
 
                     2. **`scene` — generic type supported, bespoke implementation proposed:** Receipt and Payment Inspector (Scene specification embedded in this config.yaml). Four independently selectable cases: price €11, paid €10+€5 notes (=€15); price €8, paid €10 with proposed €3 return; price €8, paid €5 (short); price €10, paid €10 (exact).
                   productionNotes: 'Proposed unimplemented Scene, sourced from receiptAndPaymentInspector.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
-              markdown3:
+              verifyFifteenMinusEleven:
                 config:
                   id: 'b55c1ddf-316e-4aac-beae-b2b1c959a8d6'
-                  slug: 'markdown3'
+                  slug: 'verifyFifteenMinusEleven'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -360,7 +360,7 @@ config:
                 production:
                   purpose: 'Receipt and Payment Inspector; authored markdown block 3'
                   specification: '3. **`markdown` — existing generic renderer:** “€4 change is due on €15 paid for €11. €10+€5=€15; €15−€11=€4; €11+€4=€15.”'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['askElevenEuroPurchase', 'inspectPaymentTotals', 'verifyFifteenMinusEleven']
         production:
           purpose: 'Apply the principle to unfamiliar quantities or representations, not replay the first model.'
           pedagogicalIntent: 'Original Section 3 — Receipt and Payment Inspector; authoring draft only'
@@ -379,7 +379,7 @@ config:
             - **Instructional boundary:** The shortfall is labelled '€3 more needed', not a financial recommendation or a negative change. The user does not perform a real checkout.
             - **Accessibility and RTL:** Read each payment piece, paid total, price, claimed return, and checked equality separately. Under RTL the mathematical addition/subtraction and money-unit interpretation remain unchanged. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
             - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Insufficient payment has a shortfall, not returned change; exact payment gives zero change.” is planned only, with no event or persistence.
-    order: ['section1', 'section2', 'section3']
+    order: ['calculateChangeFromTenEuros', 'detectIncorrectChange', 'inspectReceiptAndPayment']
   flashcards:
     items: {}
     order: []

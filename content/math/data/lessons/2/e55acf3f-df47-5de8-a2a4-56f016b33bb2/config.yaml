@@ -21,10 +21,10 @@ config:
       en: "A Number's Place on the Line"
   section:
     items:
-      section1:
+      moveAcrossEqualIntervals:
         config:
           id: 'e55acf3f-df47-5de8-a2a4-000000000004'
-          slug: 'section1'
+          slug: 'moveAcrossEqualIntervals'
           type: 'content'
           params: {}
           locale:
@@ -34,10 +34,10 @@ config:
               en: 'Equal-Tick Trail'
           content:
             items:
-              text1:
+              advanceFromTenToTwelve:
                 config:
                   id: 'e55acf3f-df47-5de8-a2a4-000000000001'
-                  slug: 'text1'
+                  slug: 'advanceFromTenToTwelve'
                   type: 'text'
                   params: {}
                   locale:
@@ -46,10 +46,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line:   1. **`text` — existing generic renderer:** “Start at 10. Make exactly two one-unit moves toward larger numbers. Where do you arrive?”'
-              scene1:
+              moveTwoOneUnitSteps:
                 config:
                   id: 'e55acf3f-df47-5de8-a2a4-000000000002'
-                  slug: 'scene1'
+                  slug: 'moveTwoOneUnitSteps'
                   type: 'scene'
                   params: {}
                   locale:
@@ -142,10 +142,10 @@ config:
 
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
                   productionNotes: 'Unique Scene placement scene1 in Equal-Tick Trail. Original:   2. **`scene` — generic type exists, **specific Scene proposed**:** `Equal-Tick Trail` (specification preserved in config.yaml). A mathematically fixed horizontal line with integer ticks 0–20. Consecutive tick centres have the same geometric spacing. A labelled increasing-direction arrow points toward increasing values; current marker at 10. On mobile, the visible window may scroll over this unchanged 21-tick model, with keyboard-accessible numeric list for the entire range.. Status: provisional only.'
-              markdown1:
+              explainEqualIntervals:
                 config:
                   id: 'e55acf3f-df47-5de8-a2a4-000000000003'
-                  slug: 'markdown1'
+                  slug: 'explainEqualIntervals'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -155,9 +155,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line:   3. **`markdown` — existing generic renderer:** “The marker arrives at 12 after two distinct equal unit intervals. 10 + 1 + 1 = 12; two equal gaps.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'advanceFromTenToTwelve'
+              - 'moveTwoOneUnitSteps'
+              - 'explainEqualIntervals'
         production:
           purpose: 'Equal-Tick Trail'
           pedagogicalIntent: |-
@@ -195,10 +195,10 @@ config:
             - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section2:
+      countGapsBetweenTicks:
         config:
           id: 'e55acf3f-df47-5de8-a2a4-000000000008'
-          slug: 'section2'
+          slug: 'countGapsBetweenTicks'
           type: 'content'
           params: {}
           locale:
@@ -208,10 +208,10 @@ config:
               en: 'How Many Hops?'
           content:
             items:
-              text1:
+              countThreeHops:
                 config:
                   id: 'e55acf3f-df47-5de8-a2a4-000000000005'
-                  slug: 'text1'
+                  slug: 'countThreeHops'
                   type: 'text'
                   params: {}
                   locale:
@@ -220,10 +220,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: "Authored resource line:   1. **`text` — existing renderer:** “From 5 to 8, how many one-unit moves do you make? Why isn't the answer two?”"
-              markdown1:
+              distinguishTicksFromGaps:
                 config:
                   id: 'e55acf3f-df47-5de8-a2a4-000000000006'
-                  slug: 'markdown1'
+                  slug: 'distinguishTicksFromGaps'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -232,10 +232,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line:   2. **`markdown` — existing renderer:** “Three: 5→6, then 6→7, then 7→8. There are two numbers strictly inside the endpoints (6 and 7), but three gaps to travel.”'
-              markdown2:
+              explainIntervalsVsMarks:
                 config:
                   id: 'e55acf3f-df47-5de8-a2a4-000000000007'
-                  slug: 'markdown2'
+                  slug: 'explainIntervalsVsMarks'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -245,9 +245,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: "Authored resource line:   3. **`markdown` — existing renderer:** “Counting ticks and counting the intervals between ticks are different questions. A line's numbers still increase in their declared direction if the page uses RTL.”"
             order:
-              - 'text1'
-              - 'markdown1'
-              - 'markdown2'
+              - 'countThreeHops'
+              - 'distinguishTicksFromGaps'
+              - 'explainIntervalsVsMarks'
         production:
           purpose: 'How Many Hops?'
           pedagogicalIntent: |-
@@ -261,10 +261,10 @@ config:
             - **Accessibility and pacing:** Brief accessible written language, no sensory dependency. The explanatory text remains available to every learner and is never hidden behind a timed action.
             - **Transition:** Section 3 changes numbers or objects and asks for independent reasoning. The first Scene's state is not carried into the second.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section3:
+      identifyImmediateNeighbors:
         config:
           id: 'e55acf3f-df47-5de8-a2a4-00000000000c'
-          slug: 'section3'
+          slug: 'identifyImmediateNeighbors'
           type: 'content'
           params: {}
           locale:
@@ -274,10 +274,10 @@ config:
               en: 'Between the Ticks'
           content:
             items:
-              text1:
+              findNeighborsOfTen:
                 config:
                   id: 'e55acf3f-df47-5de8-a2a4-000000000009'
-                  slug: 'text1'
+                  slug: 'findNeighborsOfTen'
                   type: 'text'
                   params: {}
                   locale:
@@ -286,10 +286,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line:   1. **`text` — existing generic renderer:** “Find the number just before 10 and just after 10.”'
-              scene1:
+              locatePreviousAndNext:
                 config:
                   id: 'e55acf3f-df47-5de8-a2a4-00000000000a'
-                  slug: 'scene1'
+                  slug: 'locatePreviousAndNext'
                   type: 'scene'
                   params: {}
                   locale:
@@ -382,10 +382,10 @@ config:
 
                     Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
                   productionNotes: 'Unique Scene placement scene1 in Between the Ticks. Original:   2. **`scene` — generic type exists, **specific Scene proposed**:** `Between the Ticks` (specification preserved in config.yaml). Same invariant 0–20 scale, independently initialized marker at 10 and accessible numeric selection. Two fixed endpoint probes: 7 & 11, then 12 & 16. Strict between means excluding highlighted endpoint labels.. Status: provisional only.'
-              markdown1:
+              explainOneUnitNeighbors:
                 config:
                   id: 'e55acf3f-df47-5de8-a2a4-00000000000b'
-                  slug: 'markdown1'
+                  slug: 'explainOneUnitNeighbors'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -395,9 +395,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line:   3. **`markdown` — existing generic renderer:** “9 is immediately before 10; 11 is immediately after it. 9, 10, 11: immediate neighbors differ by one.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'findNeighborsOfTen'
+              - 'locatePreviousAndNext'
+              - 'explainOneUnitNeighbors'
         production:
           purpose: 'Between the Ticks'
           pedagogicalIntent: |-
@@ -436,9 +436,9 @@ config:
             - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
+      - 'moveAcrossEqualIntervals'
+      - 'countGapsBetweenTicks'
+      - 'identifyImmediateNeighbors'
   flashcards:
     items: {}
     order: []

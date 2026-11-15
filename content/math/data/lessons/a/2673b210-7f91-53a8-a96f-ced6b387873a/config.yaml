@@ -21,10 +21,10 @@ config:
       en: 'From Tally Marks to a Table'
   section:
     items:
-      section1:
+      recordObservationsWithTallies:
         config:
           id: '2673b210-7f91-53a8-a96f-000000000004'
-          slug: 'section1'
+          slug: 'recordObservationsWithTallies'
           type: 'content'
           params: {}
           locale:
@@ -34,10 +34,10 @@ config:
               en: 'A mark for each new card'
           content:
             items:
-              text1:
+              markEachPictureCard:
                 config:
                   id: '2673b210-7f91-53a8-a96f-000000000001'
-                  slug: 'text1'
+                  slug: 'markEachPictureCard'
                   type: 'text'
                   params: {}
                   locale:
@@ -46,10 +46,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original source resource (including pedagogical direction): 1. **`text`** (supported Resource type) — “Twelve picture cards will appear, one at a time. Every time you see a bird, cat or dog, make one mark in its group. Which row will you use for a bird?”'
-              scene1:
+              tallyCategoryCounts:
                 config:
                   id: '2673b210-7f91-53a8-a96f-000000000002'
-                  slug: 'scene1'
+                  slug: 'tallyCategoryCounts'
                   type: 'scene'
                   params: {}
                   locale:
@@ -131,10 +131,10 @@ config:
 
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
                   productionNotes: 'Placement 1 in A mark for each new card. Source resource: 2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Observation mode shows twelve named cards in a fixed order: bird, cat, bird, dog, bird, cat, bird, cat, bird, dog, cat, bird. Show the next card only when requested; learner chooses its labelled category.. Separate stable Scene identity per placement; implementation pending.'
-              markdown1:
+              explainOneMarkPerCard:
                 config:
                   id: '2673b210-7f91-53a8-a96f-000000000003'
-                  slug: 'markdown1'
+                  slug: 'explainOneMarkPerCard'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -144,9 +144,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original source resource (including pedagogical direction): 3. **`markdown`** (supported Resource type) — “One card gives one tally mark, in one row. The marks remember our count so we do not have to start again each time.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'markEachPictureCard'
+              - 'tallyCategoryCounts'
+              - 'explainOneMarkPerCard'
         production:
           purpose: 'A mark for each new card'
           pedagogicalIntent: |-
@@ -171,10 +171,10 @@ config:
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
           productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
-      section2:
+      bundleTalliesInFives:
         config:
           id: '2673b210-7f91-53a8-a96f-000000000008'
-          slug: 'section2'
+          slug: 'bundleTalliesInFives'
           type: 'content'
           params: {}
           locale:
@@ -184,10 +184,10 @@ config:
               en: 'A bundle of five'
           content:
             items:
-              text1:
+              predictFifthTallyMark:
                 config:
                   id: '2673b210-7f91-53a8-a96f-000000000005'
-                  slug: 'text1'
+                  slug: 'predictFifthTallyMark'
                   type: 'text'
                   params: {}
                   locale:
@@ -196,10 +196,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original source resource (including pedagogical direction): 1. **`text`** (supported Resource type) — “When the fifth bird arrives, do we add a fifth upright mark—or cross the four marks to show one complete group of five?”'
-              scene1:
+              groupFiveStrokes:
                 config:
                   id: '2673b210-7f91-53a8-a96f-000000000006'
-                  slug: 'scene1'
+                  slug: 'groupFiveStrokes'
                   type: 'scene'
                   params: {}
                   locale:
@@ -281,10 +281,10 @@ config:
 
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
                   productionNotes: 'Placement 1 in A bundle of five. Source resource: 2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Tally mode isolates the bird row. Step through counts 1, 2, 3, 4, 5, 6; at five the four upright marks gain one crossing stroke, and at six one new upright stroke appears.. Separate stable Scene identity per placement; implementation pending.'
-              markdown1:
+              explainCrossedFifthMark:
                 config:
                   id: '2673b210-7f91-53a8-a96f-000000000007'
-                  slug: 'markdown1'
+                  slug: 'explainCrossedFifthMark'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -294,9 +294,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original source resource (including pedagogical direction): 3. **`markdown`** (supported Resource type) — “Four straight strokes plus one crossing stroke stand for five. Add one more straight stroke for six. It is a group of five and one more—not six groups.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'predictFifthTallyMark'
+              - 'groupFiveStrokes'
+              - 'explainCrossedFifthMark'
         production:
           purpose: 'A bundle of five'
           pedagogicalIntent: |-
@@ -321,10 +321,10 @@ config:
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
           productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
-      section3:
+      translateTalliesIntoTable:
         config:
           id: '2673b210-7f91-53a8-a96f-00000000000c'
-          slug: 'section3'
+          slug: 'translateTalliesIntoTable'
           type: 'content'
           params: {}
           locale:
@@ -334,10 +334,10 @@ config:
               en: 'Put the marks into a table'
           content:
             items:
-              markdown1:
+              organizeBirdCatDogCounts:
                 config:
                   id: '2673b210-7f91-53a8-a96f-000000000009'
-                  slug: 'markdown1'
+                  slug: 'organizeBirdCatDogCounts'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -346,10 +346,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: "Original source resource (including pedagogical direction): 1. **`markdown`** (supported Resource type) — “Our observations are six birds, four cats and two dogs. Let's put each count next to the correct label.”"
-              scene1:
+              completeFrequencyTable:
                 config:
                   id: '2673b210-7f91-53a8-a96f-00000000000a'
-                  slug: 'scene1'
+                  slug: 'completeFrequencyTable'
                   type: 'scene'
                   params: {}
                   locale:
@@ -431,10 +431,10 @@ config:
 
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
                   productionNotes: 'Placement 1 in Put the marks into a table. Source resource: 2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Table mode has three rows Bird/Cat/Dog and columns Category, Tally, Count. Learner places the 6, 4 and 2 numerals into the matching rows after reading the tallies; the 12 observation cards remain available.. Separate stable Scene identity per placement; implementation pending.'
-              text1:
+              explainCountsFromMarks:
                 config:
                   id: '2673b210-7f91-53a8-a96f-00000000000b'
-                  slug: 'text1'
+                  slug: 'explainCountsFromMarks'
                   type: 'text'
                   params: {}
                   locale:
@@ -444,9 +444,9 @@ config:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original source resource (including pedagogical direction): 3. **`text`** (supported Resource type) — “Bird: a group of five and one, count 6. Cat: four marks, count 4. Dog: two marks, count 2. Together that is 12 cards.”'
             order:
-              - 'markdown1'
-              - 'scene1'
-              - 'text1'
+              - 'organizeBirdCatDogCounts'
+              - 'completeFrequencyTable'
+              - 'explainCountsFromMarks'
         production:
           purpose: 'Put the marks into a table'
           pedagogicalIntent: |-
@@ -472,10 +472,10 @@ config:
 
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
           productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
-      section4:
+      makeIndependentTallyTable:
         config:
           id: '2673b210-7f91-53a8-a96f-000000000010'
-          slug: 'section4'
+          slug: 'makeIndependentTallyTable'
           type: 'content'
           params: {}
           locale:
@@ -485,10 +485,10 @@ config:
               en: 'Fresh observations, your table'
           content:
             items:
-              text1:
+              countNewSymbolCards:
                 config:
                   id: '2673b210-7f91-53a8-a96f-00000000000d'
-                  slug: 'text1'
+                  slug: 'countNewSymbolCards'
                   type: 'text'
                   params: {}
                   locale:
@@ -497,10 +497,10 @@ config:
                 production:
                   purpose: 'Source-authored learner-facing text resource'
                   specification: 'Original source resource (including pedagogical direction): 1. **`text`** (supported Resource type) — “Now count eight new cards: five stars, two moons, one sun. Make the marks first, then write the count in each row.”'
-              scene1:
+              buildFreshTallyTable:
                 config:
                   id: '2673b210-7f91-53a8-a96f-00000000000e'
-                  slug: 'scene1'
+                  slug: 'buildFreshTallyTable'
                   type: 'scene'
                   params: {}
                   locale:
@@ -582,10 +582,10 @@ config:
 
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
                   productionNotes: "Placement 1 in Fresh observations, your table. Source resource: 2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Transfer mode starts with eight cards in mixed order and blank tally and count cells, no pre-filled numbers. Learner can request 'How do I group five?' once or reveal afterward.. Separate stable Scene identity per placement; implementation pending."
-              markdown1:
+              verifyTableTotals:
                 config:
                   id: '2673b210-7f91-53a8-a96f-00000000000f'
-                  slug: 'markdown1'
+                  slug: 'verifyTableTotals'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -595,9 +595,9 @@ config:
                   purpose: 'Source-authored learner-facing markdown resource'
                   specification: 'Original source resource (including pedagogical direction): 3. **`markdown`** (supported Resource type) — “Star has one complete group of five: 5. Moon has two marks: 2. Sun has one mark: 1. The table total is 5 + 2 + 1 = 8.”'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'countNewSymbolCards'
+              - 'buildFreshTallyTable'
+              - 'verifyTableTotals'
         production:
           purpose: 'Fresh observations, your table'
           pedagogicalIntent: |-
@@ -623,10 +623,10 @@ config:
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
           productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'recordObservationsWithTallies'
+      - 'bundleTalliesInFives'
+      - 'translateTalliesIntoTable'
+      - 'makeIndependentTallyTable'
   flashcards:
     items: {}
     order: []

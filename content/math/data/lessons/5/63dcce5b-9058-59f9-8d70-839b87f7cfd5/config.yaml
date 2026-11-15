@@ -18,10 +18,10 @@ config:
     order: []
   section:
     items:
-      section1WhichMarksAreSides:
+      identifyPolygonSides:
         config:
           id: 'c8d52181-6a62-4984-9bcb-d2dbb06ffd66'
-          slug: 'section1WhichMarksAreSides'
+          slug: 'identifyPolygonSides'
           type: 'content'
           params: {}
           locale:
@@ -31,10 +31,10 @@ config:
               en: 'Which Marks Are Sides?'
           content:
             items:
-              text1:
+              questionTiltedQuadrilateral:
                 config:
                   id: '53749e50-13dc-4149-a2c7-bc3edd78e6d7'
-                  slug: 'text1'
+                  slug: 'questionTiltedQuadrilateral'
                   type: 'text'
                   params: {}
                   locale:
@@ -141,16 +141,16 @@ config:
                     The Lesson renderer handles a `scene` block, but this bespoke Scene **does not exist**. Scene Designer must implement and test it only after editorial approval, with real localized strings, no props and explicit nonvisual equivalent. Editor to review irregular five- and six-sided outlines and optional non-crossing vertex controls. No Question/Quiz, mastery, Note persistence or fabricated event contract.
                   purpose: 'Proposed interactive Scene for Which Marks Are Sides?'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainSidesAndVertices:
                 config:
                   id: '18148557-23db-4a66-a003-eb759c16f5dc'
-                  slug: 'markdown2'
+                  slug: 'explainSidesAndVertices'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'The **sides** are straight pieces of the outside edge. A **corner**, or **vertex**, is where one side meets the next. This outline has **4 sides and 4 vertices**. A line drawn _inside_ it is not an extra outer side.'
-            order: ['text1', 'polygonOutlineInvestigator', 'markdown2']
+            order: ['questionTiltedQuadrilateral', 'polygonOutlineInvestigator', 'explainSidesAndVertices']
         production:
           purpose: 'Which Marks Are Sides?'
           pedagogicalIntent: |
@@ -167,10 +167,10 @@ config:
             - **Planned Note:** "Sides are the straight parts of the outside edge."
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section2IsItAPolygon:
+      testPolygonDefinition:
         config:
           id: '704e9c09-fe1e-4e94-a8fb-3733c26ee806'
-          slug: 'section2IsItAPolygon'
+          slug: 'testPolygonDefinition'
           type: 'content'
           params: {}
           locale:
@@ -180,10 +180,10 @@ config:
               en: 'Is It a Polygon?'
           content:
             items:
-              markdown1:
+              defineClosedStraightBoundary:
                 config:
                   id: '45f7e382-2f94-4ec3-a9f5-2b84309a7db5'
-                  slug: 'markdown1'
+                  slug: 'defineClosedStraightBoundary'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -290,16 +290,16 @@ config:
                     The Lesson renderer handles a `scene` block, but this bespoke Scene **does not exist**. Scene Designer must implement and test it only after editorial approval, with real localized strings, no props and explicit nonvisual equivalent. Editor to review irregular five- and six-sided outlines and optional non-crossing vertex controls. No Question/Quiz, mastery, Note persistence or fabricated event contract.
                   purpose: 'Proposed interactive Scene for Is It a Polygon?'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              text2:
+              contrastCurvesAndOpenShapes:
                 config:
                   id: 'b65ba3f1-c832-41a0-922e-c9232f37038a'
-                  slug: 'text2'
+                  slug: 'contrastCurvesAndOpenShapes'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'The circle is a flat shape, but its boundary curves. An open zigzag has straight pieces, but the ends do not join. Both fail the polygon rule.'
-            order: ['markdown1', 'polygonOutlineInvestigator', 'text2']
+            order: ['defineClosedStraightBoundary', 'polygonOutlineInvestigator', 'contrastCurvesAndOpenShapes']
         production:
           purpose: 'Is It a Polygon?'
           pedagogicalIntent: |
@@ -315,10 +315,10 @@ config:
             - **Boundary:** Never imply any flat/closed shape is a polygon; exclude self-crossing examples at this level rather than silently grading them as ordinary polygons.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section3FourFiveSixTheShapeCanLookDifferent:
+      classifyBySideCount:
         config:
           id: 'c520fa4a-da44-4291-bc62-adb441b1b503'
-          slug: 'section3FourFiveSixTheShapeCanLookDifferent'
+          slug: 'classifyBySideCount'
           type: 'content'
           params: {}
           locale:
@@ -328,10 +328,10 @@ config:
               en: 'Four, Five, Six: The Shape Can Look Different'
           content:
             items:
-              text1:
+              askPentagonAfterRotation:
                 config:
                   id: 'fc5a74bb-4e4a-4260-ae39-9a7999929606'
-                  slug: 'text1'
+                  slug: 'askPentagonAfterRotation'
                   type: 'text'
                   params: {}
                   locale:
@@ -438,16 +438,16 @@ config:
                     The Lesson renderer handles a `scene` block, but this bespoke Scene **does not exist**. Scene Designer must implement and test it only after editorial approval, with real localized strings, no props and explicit nonvisual equivalent. Editor to review irregular five- and six-sided outlines and optional non-crossing vertex controls. No Question/Quiz, mastery, Note persistence or fabricated event contract.
                   purpose: 'Proposed interactive Scene for Four, Five, Six: The Shape Can Look Different'
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              explainInvariantSideCount:
                 config:
                   id: 'efd39030-7a89-49c7-ab08-1df61bb5682d'
-                  slug: 'markdown2'
+                  slug: 'explainInvariantSideCount'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Turning did not add an edge. The five outside edges still meet at five vertices: that is a **pentagon**. A polygon with three sides is a triangle, with four is a quadrilateral, with six is a hexagon.'
-            order: ['text1', 'polygonOutlineInvestigator', 'markdown2']
+            order: ['askPentagonAfterRotation', 'polygonOutlineInvestigator', 'explainInvariantSideCount']
         production:
           purpose: 'Four, Five, Six: The Shape Can Look Different'
           pedagogicalIntent: |
@@ -463,10 +463,10 @@ config:
             - **Proposed Note:** "For a simple polygon, sides and vertices come in matching counts."
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-      section4ExplainDonTJustGuess:
+      justifyPolygonClassification:
         config:
           id: '9d65f422-6ffc-43df-b6bd-f4e45c023d61'
-          slug: 'section4ExplainDonTJustGuess'
+          slug: 'justifyPolygonClassification'
           type: 'content'
           params: {}
           locale:
@@ -476,10 +476,10 @@ config:
               en: "Explain, Don't Just Guess"
           content:
             items:
-              text1:
+              compareValidAndInvalidPolygons:
                 config:
                   id: '81f68d73-d2cf-4022-b8fb-c4a974954f30'
-                  slug: 'text1'
+                  slug: 'compareValidAndInvalidPolygons'
                   type: 'text'
                   params: {}
                   locale:
@@ -586,16 +586,16 @@ config:
                     The Lesson renderer handles a `scene` block, but this bespoke Scene **does not exist**. Scene Designer must implement and test it only after editorial approval, with real localized strings, no props and explicit nonvisual equivalent. Editor to review irregular five- and six-sided outlines and optional non-crossing vertex controls. No Question/Quiz, mastery, Note persistence or fabricated event contract.
                   purpose: "Proposed interactive Scene for Explain, Don't Just Guess"
                   productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
-              markdown2:
+              applyPolygonRules:
                 config:
                   id: '6c115318-a369-4c69-8c56-d74662fc2937'
-                  slug: 'markdown2'
+                  slug: 'applyPolygonRules'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Check the rule **before** counting. For the first, five straight sides close the shape. In the second, a curved part breaks the rule. Looking almost like a familiar polygon is not enough.'
-            order: ['text1', 'polygonOutlineInvestigator', 'markdown2']
+            order: ['compareValidAndInvalidPolygons', 'polygonOutlineInvestigator', 'applyPolygonRules']
         production:
           purpose: "Explain, Don't Just Guess"
           pedagogicalIntent: |
@@ -611,13 +611,7 @@ config:
             - **Independent transfer:** Find a closed shape in a room or drawing, trace its outline with a finger (optional), or use an accessible described outline. Ask for property evidence rather than an object-name guess.
 
           productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
-    order:
-      [
-        'section1WhichMarksAreSides',
-        'section2IsItAPolygon',
-        'section3FourFiveSixTheShapeCanLookDifferent',
-        'section4ExplainDonTJustGuess',
-      ]
+    order: ['identifyPolygonSides', 'testPolygonDefinition', 'classifyBySideCount', 'justifyPolygonClassification']
 production:
   documentLanguage: 'en'
   methodology: |

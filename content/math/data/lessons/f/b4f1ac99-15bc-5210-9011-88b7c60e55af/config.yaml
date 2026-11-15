@@ -16,10 +16,10 @@ config:
       en: 'One Group or One in Each?'
   section:
     items:
-      section1:
+      divideIntoOneGroup:
         config:
           id: '78927096-62c3-4d7d-8d4f-6ee815db21bf'
-          slug: 'section1'
+          slug: 'divideIntoOneGroup'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'Six in One Group'
           content:
             items:
-              text1:
+              shareSixInOneGroup:
                 config:
                   id: '377304e4-c371-4d7f-baf7-3e9e1da62ed1'
-                  slug: 'text1'
+                  slug: 'shareSixInOneGroup'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'Six in One Group: text resource at position 1 (source provisional)'
                   specification: '- **Text resource (available):** “Six counters shared into ONE group. How many in it?”'
-              scene2:
+              modelOneGroup:
                 config:
                   id: 'e58d8244-3e57-47f9-aacc-9cd209a2a76f'
-                  slug: 'scene2'
+                  slug: 'modelOneGroup'
                   type: 'scene'
                   params: {}
                   locale:
@@ -114,10 +114,10 @@ config:
 
                     - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Move all six counters from an initial pool to exactly one named receiving group; allow individual or one-action transfer.
                   productionNotes: 'Scene oneSelfDivisionStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainDivisorOne:
                 config:
                   id: '37f58a38-e286-4747-991c-c84215e97311'
-                  slug: 'markdown3'
+                  slug: 'explainDivisorOne'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -126,7 +126,7 @@ config:
                 production:
                   purpose: 'Six in One Group: markdown resource at position 3 (source provisional)'
                   specification: '- **Markdown resource (available):** “The divisor one counts groups. All six counters go into that one group.” Equation **6 ÷ 1 = 6; 1 × 6 = 6**.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['shareSixInOneGroup', 'modelOneGroup', 'explainDivisorOne']
         production:
           purpose: 'Build and read 6 ÷ 1 = 6 as one group containing six.'
           pedagogicalIntent: 'Original Section 1: Six in One Group (provisional draft)'
@@ -142,10 +142,10 @@ config:
             - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
             - **Planned Note:** Divide by one: the only group gets the whole amount., only after complete evidence and explanation, not a score or wired event.
             - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
-      section2:
+      shareOnePerGroup:
         config:
           id: '77926f03-5fc3-48c4-904f-73a116db2352'
-          slug: 'section2'
+          slug: 'shareOnePerGroup'
           type: 'content'
           params: {}
           locale:
@@ -155,10 +155,10 @@ config:
               en: 'One in Each of Six'
           content:
             items:
-              text1:
+              shareSixAmongSix:
                 config:
                   id: 'e5f6dd85-637b-47fa-8456-4a43823e93d0'
-                  slug: 'text1'
+                  slug: 'shareSixAmongSix'
                   type: 'text'
                   params: {}
                   locale:
@@ -167,10 +167,10 @@ config:
                 production:
                   purpose: 'One in Each of Six: text resource at position 1 (source provisional)'
                   specification: '- **Text resource (available):** “Six counters shared among SIX groups. How many in each?”'
-              scene2:
+              modelOnePerGroup:
                 config:
                   id: 'a410dbab-fd42-4b46-b2ec-cdd561b21ab8'
-                  slug: 'scene2'
+                  slug: 'modelOnePerGroup'
                   type: 'scene'
                   params: {}
                   locale:
@@ -240,10 +240,10 @@ config:
 
                     - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Give one original counter to each of six named groups, tracking the unchanged total six.
                   productionNotes: 'Scene oneSelfDivisionStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainQuotientOne:
                 config:
                   id: '2e7f6305-310b-40fe-89da-3a1b17e85144'
-                  slug: 'markdown3'
+                  slug: 'explainQuotientOne'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -252,7 +252,7 @@ config:
                 production:
                   purpose: 'One in Each of Six: markdown resource at position 3 (source provisional)'
                   specification: '- **Markdown resource (available):** “Six groups each get one. The quotient is one counter per group.” Equation **6 ÷ 6 = 1; 6 × 1 = 6**.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['shareSixAmongSix', 'modelOnePerGroup', 'explainQuotientOne']
         production:
           purpose: 'Build and read 6 ÷ 6 = 1 as six groups of one.'
           pedagogicalIntent: 'Original Section 2: One in Each of Six (provisional draft)'
@@ -268,10 +268,10 @@ config:
             - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
             - **Planned Note:** A positive number divided by itself gives one in each group., only after complete evidence and explanation, not a score or wired event.
             - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
-      section3:
+      compareDivisorsOneAndSix:
         config:
           id: '76926d70-60c3-4a57-8f4f-720e17db24e5'
-          slug: 'section3'
+          slug: 'compareDivisorsOneAndSix'
           type: 'content'
           params: {}
           locale:
@@ -281,10 +281,10 @@ config:
               en: 'The Same Whole, Different Share'
           content:
             items:
-              text1:
+              compareTwoSharingModels:
                 config:
                   id: '3a3b7126-bb31-4dc9-806e-f3fc253d4467'
-                  slug: 'text1'
+                  slug: 'compareTwoSharingModels'
                   type: 'text'
                   params: {}
                   locale:
@@ -293,10 +293,10 @@ config:
                 production:
                   purpose: 'The Same Whole, Different Share: text resource at position 1 (source provisional)'
                   specification: '- **Text resource (available):** “Why are the answers to 6 ÷ 1 and 6 ÷ 6 different?”'
-              scene2:
+              contrastSharingCases:
                 config:
                   id: '4ebc294a-6261-4097-93c3-1d4c85c92191'
-                  slug: 'scene2'
+                  slug: 'contrastSharingCases'
                   type: 'scene'
                   params: {}
                   locale:
@@ -366,10 +366,10 @@ config:
 
                     - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Compare two separately labeled models with ledger entries Total6/Groups1/Each6 and Total6/Groups6/Each1; select which number names groups.
                   productionNotes: 'Scene oneSelfDivisionStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainGroupCount:
                 config:
                   id: 'c94d07ba-48d2-4079-bae0-b2605d76695f'
-                  slug: 'markdown3'
+                  slug: 'explainGroupCount'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -378,7 +378,7 @@ config:
                 production:
                   purpose: 'The Same Whole, Different Share: markdown resource at position 3 (source provisional)'
                   specification: '- **Markdown resource (available):** “The total remains six, but changing the number of groups changes the size of each share.” Equation **6 ÷ 1 = 6; 6 ÷ 6 = 1**.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['compareTwoSharingModels', 'contrastSharingCases', 'explainGroupCount']
         production:
           purpose: 'Compare divisor and quotient roles in both models and verify with multiplication.'
           pedagogicalIntent: 'Original Section 3: The Same Whole, Different Share (provisional draft)'
@@ -394,10 +394,10 @@ config:
             - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
             - **Planned Note:** A positive number divided by itself gives one in each group., only after complete evidence and explanation, not a score or wired event.
             - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
-      section4:
+      testNineAndZero:
         config:
           id: '7d927875-5dc3-459e-924f-76c710db19e0'
-          slug: 'section4'
+          slug: 'testNineAndZero'
           type: 'content'
           params: {}
           locale:
@@ -407,10 +407,10 @@ config:
               en: 'Nine and a Boundary'
           content:
             items:
-              text1:
+              testNineAndUndefinedCase:
                 config:
                   id: '46116697-3484-436c-871c-de59d3fb9936'
-                  slug: 'text1'
+                  slug: 'testNineAndUndefinedCase'
                   type: 'text'
                   params: {}
                   locale:
@@ -419,10 +419,10 @@ config:
                 production:
                   purpose: 'Nine and a Boundary: text resource at position 1 (source provisional)'
                   specification: '- **Text resource (available):** “Try 9 ÷ 1, 9 ÷ 9 and 0 ÷ 0. Which expression is undefined?”'
-              scene2:
+              exploreBoundaryCases:
                 config:
                   id: 'f299b021-31a5-455c-a676-56077e81277a'
-                  slug: 'scene2'
+                  slug: 'exploreBoundaryCases'
                   type: 'scene'
                   params: {}
                   locale:
@@ -492,10 +492,10 @@ config:
 
                     - **Scene resource (generic type exists; new implementation proposed):** One and Self Division Studio (full Scene specification embedded in this config.yaml). Offer two independent nine-counter stories and a zero-divisor non-example with no quotient result; disclose reasons without requiring a guess.
                   productionNotes: 'Scene oneSelfDivisionStudio.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainZeroDivisor:
                 config:
                   id: 'ea01f72f-027d-44f0-a807-a9e99e60652a'
-                  slug: 'markdown3'
+                  slug: 'explainZeroDivisor'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -504,7 +504,7 @@ config:
                 production:
                   purpose: 'Nine and a Boundary: markdown resource at position 3 (source provisional)'
                   specification: '- **Markdown resource (available):** “One group receives nine; nine groups receive one. The divisor cannot be zero, so 0 ÷ 0 is not one.” Equation **9 ÷ 1 = 9; 9 ÷ 9 = 1; 0 ÷ 0 undefined**.'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['testNineAndUndefinedCase', 'exploreBoundaryCases', 'explainZeroDivisor']
         production:
           purpose: 'Apply to nine and reject 0 ÷ 0 as undefined.'
           pedagogicalIntent: 'Original Section 4: Nine and a Boundary (provisional draft)'
@@ -520,7 +520,7 @@ config:
             - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
             - **Planned Note:** A positive number divided by itself gives one in each group., only after complete evidence and explanation, not a score or wired event.
             - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order: ['divideIntoOneGroup', 'shareOnePerGroup', 'compareDivisorsOneAndSix', 'testNineAndZero']
   flashcards:
     items: {}
     order: []

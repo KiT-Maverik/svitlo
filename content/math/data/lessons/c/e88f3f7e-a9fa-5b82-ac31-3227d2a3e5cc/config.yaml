@@ -16,10 +16,10 @@ config:
       en: 'Split Shapes and Build Them Again'
   section:
     items:
-      section1:
+      splitRectangleWithoutChangingArea:
         config:
           id: '26100adb-73b2-4a54-8a9e-67250de16956'
-          slug: 'section1'
+          slug: 'splitRectangleWithoutChangingArea'
           type: 'content'
           params: {}
           locale:
@@ -29,10 +29,10 @@ config:
               en: 'Does a Cut Create More Space?'
           content:
             items:
-              text1:
+              predictAreaAfterCut:
                 config:
                   id: 'af1e3abd-62d2-442a-b030-4c27d8f5ba24'
-                  slug: 'text1'
+                  slug: 'predictAreaAfterCut'
                   type: 'text'
                   params: {}
                   locale:
@@ -41,10 +41,10 @@ config:
                 production:
                   purpose: 'Does a Cut Create More Space?: text resource at position 1 (source provisional)'
                   specification: '1. **text — available:** "This rectangle covers **six equal squares**. We draw a line between its two rows. Do we now have more flat space than before, or the same six squares?"'
-              scene2:
+              splitRectangleModel:
                 config:
                   id: 'ce24e213-2a91-4016-bb95-5a513b14de84'
-                  slug: 'scene2'
+                  slug: 'splitRectangleModel'
                   type: 'scene'
                   params: {}
                   locale:
@@ -154,10 +154,10 @@ config:
 
                     2. **scene — type supported, custom Scene proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement A. Start two rows of three cells: row-top (0,0),(1,0),(2,0); row-bottom (0,1),(1,1),(2,1). "Show dividing seam" draws an **internal** line along the shared row boundary, not an added outer border. "Separate pieces" offsets the two rigid **1×3** row strips without changing unit cells. Piece A has 3 cells, B has 3; together **6**.
                   productionNotes: 'Scene shapePieceWorkshop.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainAreaConservation:
                 config:
                   id: '7b2f5d8d-3c3b-490e-9135-8d1fac15a278'
-                  slug: 'markdown3'
+                  slug: 'explainAreaConservation'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -166,7 +166,7 @@ config:
                 production:
                   purpose: 'Does a Cut Create More Space?: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — available:** "We have **two pieces**, but we did not make extra area. Each piece covers **three unit squares**. Three plus three is **six**. The dividing line is a **seam inside** the original shape."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['predictAreaAfterCut', 'splitRectangleModel', 'explainAreaConservation']
         production:
           purpose: 'understand decomposition into nonoverlapping parts, not new area.'
           pedagogicalIntent: 'Original Section 1: Does a Cut Create More Space? (provisional draft)'
@@ -180,10 +180,10 @@ config:
             - **Explanatory feedback:** If learner says "more" after splitting: "A new line changed the picture, but the **same six square pieces** are still there." If they confuse seam with outside: "The seam sits **between** pieces; it is not on the original outside edge." Correct predictions get the reason, not a badge/score.
             - **Access:** Both pieces listed by exact cell count and relative location before/after; no visual tracking needed.
             - **Planned Note:** "Cutting without losing or adding pieces keeps the total area."
-      section2:
+      rearrangeStripsSameArea:
         config:
           id: '27100c6e-76b2-4f0d-879e-626c0ce167c3'
-          slug: 'section2'
+          slug: 'rearrangeStripsSameArea'
           type: 'content'
           params: {}
           locale:
@@ -193,10 +193,10 @@ config:
               en: 'Turn Two Short Strips into One Long Strip'
           content:
             items:
-              text1:
+              joinStripsIntoLongRow:
                 config:
                   id: '5dd0de5c-b1b3-45ef-af61-1402b6330cc5'
-                  slug: 'text1'
+                  slug: 'joinStripsIntoLongRow'
                   type: 'text'
                   params: {}
                   locale:
@@ -205,10 +205,10 @@ config:
                 production:
                   purpose: 'Turn Two Short Strips into One Long Strip: text resource at position 1 (source provisional)'
                   specification: '1. **text — available:** "Two strips each cover three equal squares. Could they join into **one long strip**? Predict whether the area changes—and what happens to the outside edge."'
-              scene2:
+              rearrangeEqualAreaPieces:
                 config:
                   id: 'db9ac22c-6e3b-4e49-9c13-b25e0cc4aeeb'
-                  slug: 'scene2'
+                  slug: 'rearrangeEqualAreaPieces'
                   type: 'scene'
                   params: {}
                   locale:
@@ -318,10 +318,10 @@ config:
 
                     2. **scene — proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement B. Piece A occupies cells (0,0),(1,0),(2,0); the learner places piece B at (3,0),(4,0),(5,0). All pieces translate **rigidly**. Result: **1×6** region, area **6**, outside border **14 unit edges**; original 2×3 rectangle also area **6** but outside border **10 unit edges**. Optional boundary-edge reveal **counts** rather than an assessed perimeter question.
                   productionNotes: 'Scene shapePieceWorkshop.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainPerimeterChange:
                 config:
                   id: '474b7d40-ffdd-4ed7-8a5e-6ab6b165e145'
-                  slug: 'markdown3'
+                  slug: 'explainPerimeterChange'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -330,7 +330,7 @@ config:
                 production:
                   purpose: 'Turn Two Short Strips into One Long Strip: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — available:** "The six squares are still here. The **area stayed six square units**. But the long shape has a **different outside outline** from the shorter, wider rectangle. Area and outline describe different things."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['joinStripsIntoLongRow', 'rearrangeEqualAreaPieces', 'explainPerimeterChange']
         production:
           purpose: 'verify area preservation when rigid pieces reassemble into a new outline.'
           pedagogicalIntent: 'Original Section 2: Turn Two Short Strips into One Long Strip (provisional draft)'
@@ -344,10 +344,10 @@ config:
             - **Feedback:** If learner predicts area 12 because the shape got longer: "Length changed, but it is only one square high. We still have **two strips of three cells**." If learner claims the outside edge must remain the same: "Trace the outer edges of the two versions; some inner joins became outside edges, so the outline can change."
             - **Exactness:** A shared edge between the two adjacent bars is internal, not an exterior border. The 1×6 construction must have **no gap**, including between cells 2 and 3.
             - **Planned Note:** "Moving rigid parts can change the outline but keep the area."
-      section3:
+      detectOverlapReducesCoverage:
         config:
           id: '28100e01-75b2-4d7a-889e-63ff0be16630'
-          slug: 'section3'
+          slug: 'detectOverlapReducesCoverage'
           type: 'content'
           params: {}
           locale:
@@ -357,10 +357,10 @@ config:
               en: 'Hidden Overlap, Missing Area'
           content:
             items:
-              text1:
+              identifyOverlappingSquare:
                 config:
                   id: 'b7b02da3-2c2d-4258-951b-a69118696a66'
-                  slug: 'text1'
+                  slug: 'identifyOverlappingSquare'
                   type: 'text'
                   params: {}
                   locale:
@@ -369,10 +369,10 @@ config:
                 production:
                   purpose: 'Hidden Overlap, Missing Area: text resource at position 1 (source provisional)'
                   specification: '1. **text — available:** "Someone says, ''Two three-square strips always cover six different squares, even if I lay one partly on top of the other.'' Is that true? Look at the shared square."'
-              scene2:
+              modelHiddenOverlap:
                 config:
                   id: '9020a435-f27a-47d0-8ad0-512f5258bd8a'
-                  slug: 'scene2'
+                  slug: 'modelHiddenOverlap'
                   type: 'scene'
                   params: {}
                   locale:
@@ -482,10 +482,10 @@ config:
 
                     2. **scene — proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement C. A occupies (0,0),(1,0),(2,0), B occupies (2,0),(3,0),(4,0): **one overlap** (2,0). Although the pieces contain 3+3=6 unit cells **of material**, their union covers only **5 distinct grid cells**. "Slide B one cell to the right" changes B to (3,0),(4,0),(5,0) ⇒ union **6** nonoverlapping cells. Separate "Remove a piece" demo covers only three cells.
                   productionNotes: 'Scene shapePieceWorkshop.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              explainUnionArea:
                 config:
                   id: 'ec3d877b-bb24-487c-bd30-e1d13ebbcefa'
-                  slug: 'markdown3'
+                  slug: 'explainUnionArea'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -494,7 +494,7 @@ config:
                 production:
                   purpose: 'Hidden Overlap, Missing Area: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — available:** "Both pieces _contain_ three squares, but when they overlap on one square, **only five different places are covered**. For a valid reassembly, pieces must fit with **no overlap and no gap**. Shift the strip and we cover six different cells again."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['identifyOverlappingSquare', 'modelHiddenOverlap', 'explainUnionArea']
         production:
           purpose: 'reject counting material pieces when the area of their planar union differs.'
           pedagogicalIntent: 'Original Section 3: Hidden Overlap, Missing Area (provisional draft)'
@@ -508,10 +508,10 @@ config:
             - **Feedback:** If learner counts shared cell twice: "That is **one place**, even though two layers cover it." If learner thinks overlapped area vanished from the pieces: "The pieces still have six squares of material; the flat _region they cover together_ has only five distinct squares when layered." If learner leaves a gap in the target outline: "The target region isn't fully reconstructed; join the strips edge to edge."
             - **Access:** The ledger reads both **piece totals** and **distinct occupied cells**, with repeated cell named explicitly.
             - **Reflection:** "What stayed the same about the pieces? What changed about the region they cover?" Unscored checkpoint, no scored Question.
-      section4:
+      reconstructOriginalRectangle:
         config:
           id: '29100f94-70b2-459b-859e-5f4612e17135'
-          slug: 'section4'
+          slug: 'reconstructOriginalRectangle'
           type: 'content'
           params: {}
           locale:
@@ -521,10 +521,10 @@ config:
               en: 'Rebuild the Whole'
           content:
             items:
-              text1:
+              rebuildTwoRowRectangle:
                 config:
                   id: 'e53ab4ea-5634-46fd-8bf4-1cb498bebad7'
-                  slug: 'text1'
+                  slug: 'rebuildTwoRowRectangle'
                   type: 'text'
                   params: {}
                   locale:
@@ -533,10 +533,10 @@ config:
                 production:
                   purpose: 'Rebuild the Whole: text resource at position 1 (source provisional)'
                   specification: '1. **text — available:** "Start with two separate strips, each three squares long. Make the original **two-row, three-column rectangle** again. How do you know you didn''t lose or overlap anything?"'
-              scene2:
+              reconstructWithStrips:
                 config:
                   id: '4fb6f7d6-6da0-4353-8f05-6df486f19661'
-                  slug: 'scene2'
+                  slug: 'reconstructWithStrips'
                   type: 'scene'
                   params: {}
                   locale:
@@ -646,10 +646,10 @@ config:
 
                     2. **scene — proposed:** Shape Piece Workshop (full Scene specification embedded in this config.yaml), placement D. Piece A fixed at (0,0),(1,0),(2,0), B initially at (4,2),(5,2),(6,2) in a larger board; learner moves/rotates whole B using named discrete controls and aligns it beneath A: target B=(0,1),(1,1),(2,1). Success when union equals **exactly** the six target cells, with no overlap/extra cells and both rigid pieces unaltered. Alternate placement above A is allowed **only when target outline is defined accordingly**; this preset target is explicitly the 2×3 region at rows0/1.
                   productionNotes: 'Scene shapePieceWorkshop.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
-              markdown3:
+              verifySixCells:
                 config:
                   id: '95dcf3ce-b5be-46cd-9f22-cc28abe60b6f'
-                  slug: 'markdown3'
+                  slug: 'verifySixCells'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -658,7 +658,7 @@ config:
                 production:
                   purpose: 'Rebuild the Whole: markdown resource at position 3 (source provisional)'
                   specification: '3. **markdown — available:** "The two rigid pieces now make the **same six-cell rectangle** we began with. Every target square is covered **once**; we did not add, lose, stretch or layer the pieces. The total area is still **six square units**."'
-            order: ['text1', 'scene2', 'markdown3']
+            order: ['rebuildTwoRowRectangle', 'reconstructWithStrips', 'verifySixCells']
         production:
           purpose: 'independent decomposition/recomposition and an explanation of the invariant.'
           pedagogicalIntent: 'Original Section 4: Rebuild the Whole (provisional draft)'
@@ -671,7 +671,13 @@ config:
               3. **markdown — available:** "The two rigid pieces now make the **same six-cell rectangle** we began with. Every target square is covered **once**; we did not add, lose, stretch or layer the pieces. The total area is still **six square units**."
             - **Feedback:** Off-by-one placement B=(1,1),(2,1),(3,1) has an extra outside cell (3,1) and leaves the target cell (0,1) empty: "One extra square sticks out, and one target square is uncovered. Move B left one." B overlaps an upper row: "The shared cell has two layers, so it cannot count twice." A valid rigid rotation is permitted but must still fit the exact target.
             - **Transfer:** Ask if swapping piece colors changes area. Correct reasoning: "Color does not change any covered cells." Provide accessible cell-by-cell before/after explanation and reset.
-    order: ['section1', 'section2', 'section3', 'section4']
+    order:
+      [
+        'splitRectangleWithoutChangingArea',
+        'rearrangeStripsSameArea',
+        'detectOverlapReducesCoverage',
+        'reconstructOriginalRectangle',
+      ]
   flashcards:
     items: {}
     order: []
