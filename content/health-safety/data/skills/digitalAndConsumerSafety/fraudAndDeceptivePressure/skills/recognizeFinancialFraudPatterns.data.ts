@@ -5,6 +5,7 @@ export const recognizeFinancialFraudPatterns_Skill_Data = defineSkill({
   id: 'b56b1957-8734-4d3d-860c-0dd7db12fe13',
   name: {
     en: 'Recognize financial fraud patterns',
+    it: 'Riconoscere gli schemi delle frodi finanziarie',
     zh: '识别金融欺诈模式',
     hi: 'वित्तीय धोखाधड़ी के तरीके पहचानना',
     es: 'Reconocer patrones de fraude financiero',
@@ -39,6 +40,7 @@ export const recognizeFinancialFraudPatterns_Skill_Data = defineSkill({
       'Identify advance-fee demands, fake prizes, fraudulent marketplaces, and requests to transfer funds outside trusted channels.',
     frontend: {
       en: 'Recognize fake prizes, payment demands and fraudulent sales offers.',
+      it: 'Riconosci falsi premi, richieste di pagamento e offerte di vendita fraudolente.',
       zh: '识别虚假中奖信息、付款要求和欺诈性销售优惠。',
       hi: 'नकली इनाम, पैसे माँगने के बहाने और झूठी बिक्री पेशकश पहचानो।',
       es: 'Identifica premios falsos, exigencias de pago y ofertas de venta fraudulentas.',

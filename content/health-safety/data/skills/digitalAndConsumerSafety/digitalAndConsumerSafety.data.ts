@@ -9,6 +9,7 @@ export const digitalAndConsumerSafety_SkillDomain_Data = defineSkillDomain({
   id: '393ba847-2916-407a-bf88-3d3b408af530',
   title: {
     en: 'Digital and Consumer Safety',
+    it: 'Sicurezza digitale e tutela dei consumatori',
     zh: '数字与消费安全',
     hi: 'डिजिटल और उपभोक्ता सुरक्षा',
     es: 'Seguridad digital y del consumidor',
@@ -38,19 +39,17 @@ export const digitalAndConsumerSafety_SkillDomain_Data = defineSkillDomain({
     kk: 'Цифрлық және тұтынушы қауіпсіздігі',
     qm: 'Raqamlı ve istimalcı emniyeti',
   },
-  groups: {
-    items: {
-      fraudAndDeceptivePressure: fraudAndDeceptivePressure_SkillGroup_Data,
-      onlineInteractionSafety: onlineInteractionSafety_SkillGroup_Data,
-      privacyAndAccountProtection: privacyAndAccountProtection_SkillGroup_Data,
-    },
-    order: ['fraudAndDeceptivePressure', 'onlineInteractionSafety', 'privacyAndAccountProtection'],
-  },
+  groups: [
+    fraudAndDeceptivePressure_SkillGroup_Data,
+    onlineInteractionSafety_SkillGroup_Data,
+    privacyAndAccountProtection_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "Online environments expose people to privacy breaches, coercion, deception, and financial or personal exploitation. Computer security mechanisms belong primarily to Informatics; this domain concerns a person's protective decisions and recourse.",
     frontend: {
       en: 'Discover how to protect personal information and respond to deceptive online behavior.',
+      it: 'Scopri come proteggere le informazioni personali e reagire ai comportamenti ingannevoli online.',
       zh: '了解如何保护个人信息并应对网络上的欺骗行为。',
       hi: 'व्यक्तिगत जानकारी की सुरक्षा और ऑनलाइन धोखे का जवाब देना सीखो।',
       es: 'Descubre cómo proteger datos personales y responder a engaños en línea.',

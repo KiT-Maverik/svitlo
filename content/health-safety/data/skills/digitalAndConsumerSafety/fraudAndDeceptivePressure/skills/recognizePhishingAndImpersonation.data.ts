@@ -5,6 +5,7 @@ export const recognizePhishingAndImpersonation_Skill_Data = defineSkill({
   id: 'cb5a3fcf-85a6-4a72-9277-f3e4608c71ec',
   name: {
     en: 'Recognize phishing and impersonation',
+    it: 'Riconoscere phishing e furto d\'identità',
     zh: '识别网络钓鱼与身份冒充',
     hi: 'फ़िशिंग और पहचान की नकल पहचानना',
     es: 'Reconocer phishing y suplantación de identidad',
@@ -39,6 +40,7 @@ export const recognizePhishingAndImpersonation_Skill_Data = defineSkill({
       'Inspect suspicious messages, sender claims, and links rather than trusting apparent identity or familiar branding.',
     frontend: {
       en: 'Check suspicious links and messages rather than trusting their appearance.',
+      it: 'Verifica collegamenti e messaggi sospetti invece di fidarti del loro aspetto.',
       zh: '核实可疑链接和消息，不要仅凭外观就相信它们。',
       hi: 'संदिग्ध लिंक और संदेशों की जाँच करो; उनकी दिखावट पर भरोसा मत करो।',
       es: 'Verifica enlaces y mensajes sospechosos en vez de fiarte de su apariencia.',
