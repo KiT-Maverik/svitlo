@@ -5,6 +5,7 @@ export const elastomers_Skill_Data = defineSkill({
   id: 'ea34d875-6f00-4af9-907d-9a23e7b1badb',
   name: {
     en: 'Elastomers',
+    it: "Elastomeri",
     zh: '弹性体',
     hi: 'इलास्टोमर',
     es: 'Elastómeros',
@@ -39,6 +40,7 @@ export const elastomers_Skill_Data = defineSkill({
       'Explain recoverable deformation in rubberlike polymer networks through chain mobility and cross-linking, without treating all elastic substances as identical plastics.',
     frontend: {
       en: 'Explore why some linked polymer networks can stretch and return to shape.',
+      it: "Esplora perché alcune reti polimeriche collegate possono allungarsi e tornare alla forma iniziale.",
       zh: '探索为什么某些交联聚合物网络能够拉伸并恢复形状。',
       hi: 'जानें कि कुछ जुड़े हुए बहुलक जाल खिंचने के बाद फिर आकार में कैसे लौटते हैं।',
       es: 'Explora por qué algunas redes poliméricas enlazadas pueden estirarse y recuperar su forma.',

@@ -12,6 +12,7 @@ export const moleculesOfLife_SkillGroup_Data = defineSkillGroup({
   id: '8d2574a8-f62f-4a76-a2e7-6c364869bdcd',
   name: {
     en: 'Molecules of Life',
+    it: "Molecole della vita",
     zh: '生命分子',
     hi: 'जीवन के अणु',
     es: 'Moléculas de la vida',
@@ -52,6 +53,7 @@ export const moleculesOfLife_SkillGroup_Data = defineSkillGroup({
       'Chemical structure explains molecular behavior that biology may later place in cellular or organismal context.',
     frontend: {
       en: 'Explore the molecular structures behind important biological materials.',
+      it: "Esplora le strutture molecolari alla base di importanti materiali biologici.",
       zh: '探索重要生物物质背后的分子结构。',
       hi: 'महत्त्वपूर्ण जैविक पदार्थों की आणविक संरचनाओं का अध्ययन करें।',
       es: 'Explora las estructuras moleculares de importantes sustancias biológicas.',
