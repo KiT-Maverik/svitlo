@@ -63,7 +63,7 @@ function renderBlock(
     case 'image':
       return <Image {...response} messages={messages.image} />;
     case 'carousel':
-      return <Carousel {...response} messages={messages} />;
+      return <Carousel {...response} messages={messages} sceneRegistry={sceneRegistry} />;
     case 'subtitles':
       // WebVTT resources require a synchronized player, not standalone block rendering.
       throw new Error('Subtitles require a media player; they cannot render as standalone content');

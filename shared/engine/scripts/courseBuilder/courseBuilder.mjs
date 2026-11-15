@@ -291,6 +291,12 @@ function renderConfigFields(node, state, indent, location) {
     fields
       .map(([key, value]) => {
         const collection = (typedCollections[node.type] ?? []).includes(key);
+        if (node.type === 'carousel' && key === 'slides' && record(value) && record(value.items)) {
+          for (const [slug, slide] of Object.entries(value.items)) {
+            if (!record(slide) || !['image', 'scene'].includes(slide.type))
+              fail('TYPE', location + '.slides.items.' + slug + ': Carousel slides must be image or scene');
+          }
+        }
         let expression;
         if (node.type === 'quest' && (key === 'stages' || key === 'tasks')) {
           expression = renderValue(value, state, indent + 1, location + '.' + key, true);

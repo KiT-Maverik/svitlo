@@ -5,7 +5,6 @@ import test from 'node:test';
 import {
   defineAudio,
   defineCarousel,
-  defineCarouselSlide,
   defineCode,
   defineImage,
   defineMarkdown,
@@ -25,7 +24,7 @@ describe('Configurators', () => {
           alt: string | Record<'en' | 'uk', string>;
           caption?: string | Record<'en' | 'uk', string>;
         },
-      ) => defineCarouselSlide<Slug, ['en', 'uk']>({ id, slug, type: 'carouselSlide', locale });
+      ) => defineImage<Slug, ['en', 'uk']>({ id, slug, type: 'image', params: { fill: true, aspectRatio: 1.5 }, locale });
 
       test('Published locale bodies already match Props and require no embedding', () => {
         const block = defineAudio<'localeShape', ['en']>({
@@ -122,22 +121,22 @@ describe('Configurators', () => {
         });
         const resource = carousel.build.props({ languages: ['en', 'uk'] });
         assert.equal(resource.base.locale?.title, 'Gallery');
-        assert.deepEqual(resource.locale?.en?.locale.slides, [
+        assert.deepEqual(resource.locale?.en?.locale.slides?.map(slide => slide?.type === 'image' ? slide.locale : undefined), [
           { src: 'https://example.com/a-en.png', alt: 'First' },
           { src: 'https://example.com/b.png', alt: 'Second', caption: 'A caption' },
         ]);
-        assert.equal(resource.locale?.uk?.locale.slides?.[0]?.src, 'https://example.com/a-uk.png');
+        assert.equal(resource.locale?.uk?.locale.slides?.[0]?.type === 'image' ? resource.locale.uk.locale.slides[0]?.locale?.src : undefined, 'https://example.com/a-uk.png');
         const localized = carousel.build.overrides(
           {
             slides: { items: { first: { locale: { alt: { uk: 'Перший' } } } } },
           },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(localized.locale?.uk?.locale.slides, [
+        assert.deepEqual(localized.locale?.uk?.locale.slides?.map(slide => slide?.type === 'image' ? slide.locale : undefined), [
           { src: 'https://example.com/a-uk.png', alt: 'Перший' },
           { src: 'https://example.com/b.png', alt: 'Second', caption: 'Підпис' },
         ]);
-        assert.equal(localized.locale?.en?.locale.slides?.[0]?.alt, 'First');
+        assert.equal(localized.locale?.en?.locale.slides?.[0]?.type === 'image' ? localized.locale.en.locale.slides[0]?.locale?.alt : undefined, 'First');
         assert.equal(JSON.stringify(localized).includes('additionalItems'), false);
         assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).locale?.en?.locale.slides?.length, 2);
       });
@@ -501,19 +500,32 @@ describe('Configurators', () => {
         });
         const patch = { slides: { items: { first: { locale: { alt: 'Updated' } } } } };
         const publication = carousel.build.overrides(patch, { languages: ['en', 'uk'] });
-        assert.deepEqual(publication.base.locale?.slides, [{ src: 'https://example.com/a.png', alt: 'Updated' }]);
+        const expected = {
+          id,
+          slug: 'first',
+          type: 'image',
+          params: { fill: true, aspectRatio: 1.5 },
+          locale: { src: 'https://example.com/a.png', alt: 'Updated' },
+        };
+        assert.deepEqual(publication.base.locale?.slides, [expected]);
         patch.slides.items.first.locale.alt = 'Mutated caller';
-        assert.equal(publication.base.locale?.slides?.[0]?.alt, 'Updated');
-        if (publication.base.locale?.slides?.[0]) publication.base.locale.slides[0].alt = 'Mutated result';
+        const published = publication.base.locale?.slides?.[0];
+        assert.equal(published?.type, 'image');
+        if (published?.type === 'image' && published.locale && 'alt' in published.locale) {
+          assert.equal(published.locale.alt, 'Updated');
+          published.locale.alt = 'Mutated result';
+        }
         assert.deepEqual(
           carousel.build.overrides(
             { slides: { items: { first: { locale: { alt: 'Updated' } } } } },
             { languages: ['en', 'uk'] },
           ).base.locale?.slides,
-          [{ src: 'https://example.com/a.png', alt: 'Updated' }],
+          [expected],
         );
         authored.alt = 'Mutated author';
-        assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).base.locale?.slides?.[0]?.alt, 'Original');
+        const original = carousel.build.props({ languages: ['en', 'uk'] }).base.locale?.slides?.[0];
+        assert.equal(original?.type, 'image');
+        if (original?.type === 'image') assert.equal(original.locale?.alt, 'Original');
         assert.throws(
           () =>
             carousel.build.overrides({ slides: { items: { first: { locale: { typo: 'invalid' } } } } } as never, {

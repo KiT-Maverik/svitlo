@@ -11,7 +11,6 @@ import {
   defineAudio,
   defineVideo,
   defineCarousel,
-  defineCarouselSlide,
   defineScene,
 } from './contentBlocks';
 
@@ -57,10 +56,11 @@ describe('Configurators', () => {
             params: {},
             locale: { fileLocation: url('clip.mp4'), poster: url('poster.jpg'), label: 'Video' },
           };
-          const photoSlide = defineCarouselSlide({
+          const photoSlide = defineImage({
             id,
             slug: 'photo',
-            type: 'carouselSlide',
+            type: 'image',
+            params: { fill: true, aspectRatio: 1.5 },
             locale: { src: url('photo.png'), alt: 'Photo' },
           });
           const carouselConfig = {
@@ -104,10 +104,11 @@ describe('Configurators', () => {
           );
           assert.throws(
             () =>
-              photoSlide.validate({
+              photoSlide.config.validate({
                 id,
                 slug: 'photo',
-                type: 'carouselSlide',
+                type: 'image',
+                params: { fill: true, aspectRatio: 1.5 },
                 locale: { src: url('missing.png'), alt: 'Photo' },
               }),
             /Missing local media file at locale.src/,

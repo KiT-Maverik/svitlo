@@ -49,7 +49,8 @@ function lessonConfig() {
               first: {
                 id: id(4),
                 slug: 'first',
-                type: 'carouselSlide',
+                type: 'image',
+                params: { fill: true, aspectRatio: 1.5 },
                 locale: { src: { uk: '/example.svg', en: '/never.svg' }, alt: { uk: 'Опис' } },
               },
             }),
@@ -65,7 +66,12 @@ function lessonConfig() {
                 slug: 'comparison',
                 type: 'checkpointItem',
                 question: block('checkPrompt', 7),
-                answer: group({ correct: block('correct', 8) }),
+                answer: {
+                  id: id(17),
+                  slug: 'answer',
+                  type: 'checkpointAnswer',
+                  content: group({ correct: block('correct', 8) }),
+                },
               },
             }),
           },
@@ -159,7 +165,9 @@ test('factory dispatch uses the canonical Engine registry', () => {
     'carousel',
     'checkpoint',
     'checkpointItem',
-    'carouselSlide',
+    'checkpointAnswer',
+    'image',
+    'scene',
     'flashcard',
     'selectOneAnswer',
     'quest',
@@ -185,7 +193,8 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
       'sections/intro/gallery/first/index.ts',
       'sections/intro/check/index.ts',
       'sections/intro/check/comparison/index.ts',
-      'sections/intro/check/comparison/question/checkPrompt/index.ts',
+      'sections/intro/check/comparison/question/index.ts',
+      'sections/intro/check/comparison/answer/index.ts',
       'sections/intro/check/comparison/answer/correct/index.ts',
       'flashcards/index.ts',
       'flashcards/remember/index.ts',
@@ -215,6 +224,50 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assert.match(files.get('sections/intro/prompt/index.ts'), /defineText<"prompt", LessonLanguages>/);
     assert.doesNotMatch([...files.values()].join('\n'), /Never emit translation|Light"|'Never emit translation'/);
     assertTypeScriptSyntax(files);
+  }));
+
+test('Carousel Image and Scene children are independently scaffolded below their authored slugs', () =>
+  fixture(f => {
+    const slides = f.config.section.items.intro.content.items.gallery.slides;
+    slides.items.first.locale.src = { uk: null, en: '/external-image.svg' };
+    slides.items.first.__production = { prompt: 'Draw a picture showing equal groups' };
+    slides.items.activity = {
+      id: id(91),
+      slug: 'activity',
+      type: 'scene',
+      params: {},
+      locale: { value: { instruction: { uk: 'Обери групу', en: 'Not a translation' } } },
+      __production: { specification: '# Interactive activity\n\nChoose equal groups.' },
+    };
+    slides.order.push('activity');
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const image = fs.readFileSync(f.generated('sections/intro/gallery/first/index.ts'), 'utf8');
+    const scene = fs.readFileSync(f.generated('sections/intro/gallery/activity/index.ts'), 'utf8');
+    const carousel = fs.readFileSync(f.generated('sections/intro/gallery/index.ts'), 'utf8');
+    assert.match(image, /defineImage<"first", LessonLanguages>/);
+    assert.match(image, /resolveLessonMedia\(import\.meta\.url, "image", "source", "uk"\)/);
+    assert.doesNotMatch(image, /Not a translation/);
+    assert.match(scene, /defineScene<"activity", LessonLanguages>/);
+    assert.match(scene, /Обери групу/);
+    assert.match(carousel, /defineCarousel<"gallery", typeof slides\.items, LessonLanguages>/);
+    assert.match(carousel, /\.\/first/);
+    assert.match(carousel, /\.\/activity/);
+    assert(fs.existsSync(f.generated('sections/intro/gallery/first/specification.md')));
+    assert(fs.existsSync(f.generated('sections/intro/gallery/activity/specification.md')));
+    assert(!fs.existsSync(f.generated('sections/intro/gallery/slides')));
+    assert(!fs.existsSync(f.generated('sections/intro/gallery/image')));
+    assert(!fs.existsSync(f.generated('sections/intro/gallery/scene')));
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+    assertTypeScriptSyntax(readAll(f.lesson));
+  }));
+
+test('Carousel draft rejects unsupported children without writing anything', () =>
+  fixture(f => {
+    f.config.section.items.intro.content.items.gallery.slides.items.first.type = 'text';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /Carousel slides must be image or scene/);
+    assert.equal(fs.existsSync(f.generated('sections/intro/gallery/index.ts')), false);
   }));
 
 test('review.ts starts with mandatory unfilled evidence and is not overwritten', () =>
@@ -786,14 +839,120 @@ test('Checkpoint question and answer may reuse a block slug without file collisi
   fixture(f => {
     const checkpointItem = f.config.section.items.intro.content.items.check.content.items.comparison;
     checkpointItem.question.slug = 'text';
-    checkpointItem.answer.items.correct.slug = 'text';
+    checkpointItem.answer.content.items.correct.slug = 'text';
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const names = [...readAll(f.lesson).keys()];
-    assert(names.includes('sections/intro/check/comparison/question/text/index.ts'));
+    assert(names.includes('sections/intro/check/comparison/question/index.ts'));
+    assert(!names.some(name => name.includes('/question/text/')));
     assert(names.includes('sections/intro/check/comparison/answer/text/index.ts'));
+    assert(names.includes('sections/intro/check/comparison/answer/index.ts'));
+    const answerSource = fs.readFileSync(f.generated('sections/intro/check/comparison/answer/index.ts'), 'utf8');
+    assert.match(answerSource, /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/);
     const item = fs.readFileSync(f.generated('sections/intro/check/comparison/index.ts'), 'utf8');
-    assert.match(item, /from ".\/question\/text"/);
-    assert.match(item, /from ".\/answer\/text"/);
+    assert.match(item, /from ".\/question"/);
+    assert.match(item, /from ".\/answer"/);
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
+
+test('Engine-owned coverage Lesson stays reproducible across YAML, nested modules, and handoffs', () => {
+  const fixtureSource = new URL('./fixtures/coverageLesson/config.yaml', import.meta.url);
+  const authored = fs.readFileSync(fixtureSource, 'utf8');
+  const document = yaml.parse(authored);
+  const lesson = document.config;
+  const sections = lesson.section.order.map(key => lesson.section.items[key].config);
+  const directBlocks = sections.flatMap(section =>
+    section.content.order.map(key => section.content.items[key].config),
+  );
+  assert.equal(sections.length, 2);
+  assert.deepEqual(sections.map(section => section.content.order.length), [6, 6]);
+  assert.deepEqual(
+    [...new Set(directBlocks.map(block => block.type))].sort(),
+    ['audio', 'carousel', 'checkpoint', 'code', 'image', 'markdown', 'scene', 'subtitles', 'text', 'video', 'youtube'].sort(),
+  );
+  assert.equal(document.production.documentLanguage, 'en');
+
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-engine-coverage-'));
+  const workspace = path.join(root, 'content/playground');
+  const staged = path.join(workspace, 'staging/coverageLesson/config.yaml');
+  const output = path.join(workspace, 'data/lessons', lesson.id.at(-1), lesson.id);
+  try {
+    fs.mkdirSync(path.dirname(staged), { recursive: true });
+    fs.writeFileSync(path.join(workspace, 'package.json'), '{"name":"@svitlo/playground"}\n');
+    fs.writeFileSync(staged, authored);
+
+    // The authoring fixture uses a synthetic Skill identity; resolution must
+    // still produce an imported symbol, without depending on Mathematics.
+    const skills = path.join(workspace, 'data/skills/algebra/equalities/skills');
+    fs.mkdirSync(skills, { recursive: true });
+    fs.writeFileSync(path.join(skills, 'coverage.data.ts'),
+      "import { defineSkill } from '@svitlo/engine/build';\n" +
+      "export const coverageSkill_Skill_Data = defineSkill({ id: '" +
+      lesson.skills[0] + "', slug: 'coverageSkill' });\n");
+
+    const first = runOne(staged, 'generate', root);
+    assert.equal(first.lessonId, lesson.id);
+    assert(first.changed > 20, 'Representative fixture should emit a full module tree');
+    const modules = readAll(output);
+    for (const name of [
+      'index.ts',
+      'constants.ts',
+      'sections/index.ts',
+      'sections/exploreEquality/index.ts',
+      'sections/exploreEquality/meaningOfEquality/index.ts',
+      'sections/exploreEquality/explainWithMarkdown/index.ts',
+      'sections/exploreEquality/compareValuesCode/index.ts',
+      'sections/exploreEquality/counterArrangementsCarousel/index.ts',
+      'sections/exploreEquality/counterArrangementsCarousel/fiveCountersSlide/index.ts',
+      'sections/exploreEquality/counterArrangementsCarousel/threePlusTwoSlide/index.ts',
+      'sections/reviewEquality/index.ts',
+      'sections/reviewEquality/verifyEquality/index.ts',
+      'sections/reviewEquality/verifyEquality/compareFive/index.ts',
+      'sections/reviewEquality/verifyEquality/compareFive/question/index.ts',
+      'sections/reviewEquality/verifyEquality/compareFive/answer/index.ts',
+      'sections/reviewEquality/verifyEquality/compareFive/answer/whyFiveMatches/index.ts',
+      'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/index.ts',
+      'flashcards/equalityRecallCard/index.ts',
+      'questions/selectOneAnswer/identifyTrueEquality/index.ts',
+    ]) assert(modules.has(name), 'Missing generated file ' + name);
+    assert.match(modules.get('index.ts'), /skills: \[coverageSkill_Skill_Data\.id\]/);
+    assert.match(modules.get('sections/reviewEquality/verifyEquality/compareFive/answer/index.ts'),
+      /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/);
+    const carouselRoot = 'sections/exploreEquality/counterArrangementsCarousel';
+    const imageSlide = modules.get(carouselRoot + '/fiveCountersSlide/index.ts');
+    const sceneSlide = modules.get(carouselRoot + '/threePlusTwoSlide/index.ts');
+    assert.match(imageSlide, /defineImage<"fiveCountersSlide", LessonLanguages>/);
+    assert.match(imageSlide, /resolveLessonMedia\(import\.meta\.url, "image", "source"\)/);
+    assert.match(sceneSlide, /defineScene<"threePlusTwoSlide", LessonLanguages>/);
+    assert.match(sceneSlide, /Arrange three counters and two more to show five/);
+    const authoredSlides = lesson.section.items.exploreEquality.config.content.items.counterArrangementsCarousel.config.slides;
+    assert.deepEqual(authoredSlides.order, ['fiveCountersSlide', 'threePlusTwoSlide']);
+    assert.deepEqual(authoredSlides.order.map(key => authoredSlides.items[key].config.type), ['image', 'scene']);
+    assert(fs.existsSync(path.join(output, carouselRoot, 'fiveCountersSlide/specification.md')));
+    assert(fs.existsSync(path.join(output, carouselRoot, 'threePlusTwoSlide/specification.md')));
+    assert(!fs.existsSync(path.join(output, carouselRoot, 'slides')));
+
+    assert(![...modules.keys()].some(name => /\/(?:texts|images|scenes|slides)\//.test(name)));
+    assert.equal(fs.readFileSync(path.join(output,
+      'sections/exploreEquality/explainWithMarkdown/locale/en.md'), 'utf8'),
+      '## Compare both sides\n\n**3 + 2 = 4 + 1**, because both sides equal **5**.');
+    assert.match(fs.readFileSync(path.join(output,
+      'sections/exploreEquality/compareValuesCode/code.ts'), 'utf8'), /const left = 3 \+ 2/);
+    assert(fs.existsSync(path.join(output,
+      'sections/exploreEquality/compareGroupsScene/specification.md')));
+    assert(fs.existsSync(path.join(output,
+      'sections/reviewEquality/equalGroupsVideo/specification.md')));
+    assert(fs.existsSync(path.join(output,
+      'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/specification.md')));
+    assertTypeScriptSyntax(modules);
+    assert.equal(runOne(staged, 'check', root).changed, 0);
+    assert.equal(runOne(staged, 'generate', root).skipped, true);
+    const target = path.join(output, 'sections/exploreEquality/meaningOfEquality/index.ts');
+    fs.appendFileSync(target, '\n// Intentional local author edit\n');
+    assert.throws(() => runOne(staged, 'check', root), /generated file was modified manually/);
+    assert.equal(runOne(staged, 'generate', root).skipped, true);
+    assert.match(fs.readFileSync(target, 'utf8'), /Intentional local author edit/);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});

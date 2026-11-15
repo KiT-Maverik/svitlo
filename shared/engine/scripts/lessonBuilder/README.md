@@ -74,7 +74,7 @@ change `params.languages` or invent translations.
 - `index.ts` inside the canonical Lesson UUID directory: one `defineLesson` call, referencing
   named `section`, `flashcards`, and `questions` collections assembled by adjacent
   `sections/index.ts`, `flashcards/index.ts`, and `questions/index.ts`. Each nested
-  Section, ContentBlock, Question, Flashcard, Checkpoint Item, Carousel Slide,
+  Section, ContentBlock, Question, Flashcard, Checkpoint Item, Carousel Image/Scene slide,
   Quest Stage and Quest Task lives in its own `<slug>/index.ts` module. Generic
   arguments are based on the actual Engine Configurator signature.
 - `review.ts`: non-exported `LessonReview` skeleton with mandatory `ai.stages`
@@ -132,7 +132,7 @@ change `params.languages` or invent translations.
   remains inside the Config; a Scene implementation and lazy registry entry
   still live under textbook-owned `scenes/<bucket>/<scene-id>/`. Course
   scaffolding retains its existing UUID-addressed production handoffs.
-- For local Image/CarouselSlide `src: null`, Audio/Video/Subtitles
+- For local Image `src: null`, Audio/Video/Subtitles
   `fileLocation: null`, and Video `poster: null`, the draft generates
   `resolveLessonMedia(import.meta.url, kind, role, language?)` from the
   **Engine Build-only** export. A scalar null requests invariant media;
@@ -158,6 +158,21 @@ audio/video files**. An AI specialist performs those later and resolves the
 expected TypeScript diagnostics. Do not add placeholders, `as any`,
 `@ts-ignore`, invented media paths or fabricated locale strings to make the
 draft compile.
+
+
+### Checkpoint Answer role modules
+
+Each `checkpointItem` Config contains exactly one `question` Text and one identified `answer` Configurator:
+
+```text
+<checkpointItemSlug>/
+  index.ts                         # defineCheckpointItem
+  question/index.ts                # exactly one defineText; no extra question slug directory
+  answer/index.ts                  # defineCheckpointAnswer (authored UUID)
+  answer/<contentBlockSlug>/index.ts # recursive ContentBlocks with local text/code/assets
+```
+
+The Answer's YAML must include `config: { id, slug, type: checkpointAnswer, content: { items, order } }`. Its ID is a permanent authored entity identity, never inferred by the builder; the previous bare `answer: { items, order }` shape is not accepted as an alternate API. The Question's original Text slug remains in Config despite the role-based file path. Child media/Scene source paths stay module-relative (each `import.meta.url` belongs to the nested block). The builder is create-only and deliberately does not typecheck unfinished authored media.
 
 Quest Sections (`type: quest`) use named `stages` and `tasks` slug maps, each with a mandatory `start` entry. `questStage.content` contains two Video configurators (`video.medium`, `video.small`), nullable `audio.dialogue`/`narration`/`background`, one Image and one localized Subtitles configurator; `questTask.scene` contains exactly one Scene configurator. The builder emits `defineQuestSection`, `defineStage`, `defineTask`, and nested `define*` calls, without a Stage/Task `order` array. Missing media paths remain explicit `null` and Quest runtime playback remains **unsupported**; this is an authoring draft only.
 
@@ -209,3 +224,14 @@ scaffolder does not silently perform pedagogical migrations.
 **Never run TypeScript validation as a scaffolder acceptance test.** Tests
 must instead cover deterministic output, factory dispatch, source-language
 filtering, safety and preservation of unresolved production work.
+
+## Carousel child modules
+
+Carousel accepts `defineImage` and `defineScene` children. The builder writes their
+`index.ts` directly into `<carouselSlug>/<childSlug>/`, without an intermediate
+`slides/` or kind-specific folder. Image assets and Scene production specifications
+are colocated with the actual child module. A pending Image `src: null` uses
+`resolveLessonMedia(import.meta.url, 'image', 'source', language?)` from its own
+source folder. The builder rejects unsupported Carousel child kinds before
+creating files. Scenes still require a separately authored implementation and
+registry entry; a draft specification is not a working Scene.
