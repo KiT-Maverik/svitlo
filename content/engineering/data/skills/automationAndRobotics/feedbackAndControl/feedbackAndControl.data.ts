@@ -13,6 +13,7 @@ export const feedbackAndControl_SkillGroup_Data = defineSkillGroup({
   id: '28ec73c0-7da7-4e04-b15d-9916a293cda1',
   name: {
     en: 'Feedback and Control',
+    it: 'Retroazione e controllo',
     zh: '反馈与控制',
     hi: 'प्रतिपुष्टि और नियंत्रण',
     es: 'Retroalimentación y control',
@@ -54,6 +55,7 @@ export const feedbackAndControl_SkillGroup_Data = defineSkillGroup({
       'A controlled process needs commands, observations and actuation; feedback can improve regulation but also create delay or oscillation.',
     frontend: {
       en: 'Explore systems that use feedback to regulate physical processes.',
+      it: 'Esplora i sistemi che utilizzano la retroazione per regolare i processi fisici.',
       zh: '探索利用反馈调节物理过程的系统。',
       hi: 'जानें कि प्रतिपुष्टि से भौतिक प्रक्रियाओं को नियंत्रित कैसे किया जाता है।',
       es: 'Explora sistemas que regulan procesos físicos mediante retroalimentación.',
