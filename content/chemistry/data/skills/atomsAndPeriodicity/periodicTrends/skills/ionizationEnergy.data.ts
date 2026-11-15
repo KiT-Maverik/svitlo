@@ -5,6 +5,7 @@ export const ionizationEnergy_Skill_Data = defineSkill({
   id: 'd3aea96c-838d-4166-b649-467ad83161cf',
   name: {
     en: 'Ionization Energy',
+    it: "Energia di ionizzazione",
     zh: '电离能',
     hi: 'आयनन ऊर्जा',
     es: 'Energía de ionización',
@@ -38,6 +39,7 @@ export const ionizationEnergy_Skill_Data = defineSkill({
     methodological: 'Interpret the energy needed to remove an electron and its relation to atomic structure.',
     frontend: {
       en: 'Understand the energy required to remove an electron from an atom.',
+      it: "Comprendi l'energia necessaria per sottrarre un elettrone a un atomo.",
       zh: '了解从原子移除一个电子所需的能量。',
       hi: 'समझें कि परमाणु से एक इलेक्ट्रॉन हटाने के लिए कितनी ऊर्जा चाहिए।',
       es: 'Comprende la energía necesaria para quitar un electrón de un átomo.',

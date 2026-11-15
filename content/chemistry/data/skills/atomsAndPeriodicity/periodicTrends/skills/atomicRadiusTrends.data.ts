@@ -5,6 +5,7 @@ export const atomicRadiusTrends_Skill_Data = defineSkill({
   id: '435bad9a-d2b7-4c52-b10c-ba425f4b0df8',
   name: {
     en: 'Atomic Radius Trends',
+    it: "Andamenti del raggio atomico",
     zh: '原子半径的变化趋势',
     hi: 'परमाणु त्रिज्या के रुझान',
     es: 'Tendencias del radio atómico',
@@ -38,6 +39,7 @@ export const atomicRadiusTrends_Skill_Data = defineSkill({
     methodological: 'Explain broad size trends across periods and down groups using nuclear charge and shielding.',
     frontend: {
       en: 'Compare how atomic sizes change across the periodic table.',
+      it: "Confronta come cambiano le dimensioni degli atomi nella tavola periodica.",
       zh: '比较不同位置的元素在周期表中原子大小如何变化。',
       hi: 'तुलना करें कि आवर्त सारणी में परमाणुओं का आकार कैसे बदलता है।',
       es: 'Compara cómo cambia el tamaño de los átomos a lo largo de la tabla periódica.',

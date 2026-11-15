@@ -5,6 +5,7 @@ export const electronegativity_Skill_Data = defineSkill({
   id: '4acf4838-b8d4-4302-9381-34db845efa03',
   name: {
     en: 'Electronegativity',
+    it: "Elettronegatività",
     zh: '电负性',
     hi: 'विद्युतऋणात्मकता',
     es: 'Electronegatividad',
@@ -38,6 +39,7 @@ export const electronegativity_Skill_Data = defineSkill({
     methodological: 'Use relative electron-attracting tendency to reason about bonds and polarity.',
     frontend: {
       en: 'Use electronegativity to reason about how atoms share electrons.',
+      it: "Usa l'elettronegatività per ragionare su come gli atomi condividono gli elettroni.",
       zh: '利用电负性理解原子在化学键中如何共享电子。',
       hi: 'विद्युतऋणात्मकता से समझें कि परमाणु इलेक्ट्रॉनों को कैसे साझा करते हैं।',
       es: 'Usa la electronegatividad para razonar cómo comparten electrones los átomos.',
