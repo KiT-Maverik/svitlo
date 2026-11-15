@@ -63,9 +63,11 @@ function assertRepositoryLessonIdsUnique() {
 
 function lessonSource(directory) {
   const authoredFiles = fs.readdirSync(directory).filter(name => name.endsWith('.data.ts'));
-  if (authoredFiles.length > 1) throw new Error('Ambiguous Lesson entrypoints: ' + directory);
-  if (authoredFiles.length === 1) return path.join(directory, authoredFiles[0]);
   const index = path.join(directory, 'index.ts');
+  if (authoredFiles.length > 1 || (authoredFiles.length === 1 && fs.existsSync(index))) {
+    throw new Error('Ambiguous Lesson entrypoints: ' + directory);
+  }
+  if (authoredFiles.length === 1) return path.join(directory, authoredFiles[0]);
   return fs.existsSync(index) ? index : undefined;
 }
 
