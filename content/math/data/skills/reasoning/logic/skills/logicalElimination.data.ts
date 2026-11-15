@@ -5,6 +5,7 @@ export const logicalElimination_Skill_Data = defineSkill({
   id: '0322e05e-0418-4031-8473-5b84e7ebb363',
   name: {
     en: 'Eliminating impossible options in a logical problem',
+    it: 'Eliminare le possibilità impossibili in un problema logico',
     qm: 'Mantıq meselesinde imkânsız variantlarnı elemek',
     lt: 'Neįmanomų variantų atmetimas loginėje užduotyje',
     lv: 'Neiespējamu variantu izslēgšana loģikas uzdevumā',
@@ -39,6 +40,7 @@ export const logicalElimination_Skill_Data = defineSkill({
       'In a puzzle with three doors and constraints ruling out two choices, the remaining door is the only possible answer; logical exclusion determines it without guessing.',
     frontend: {
       en: 'You can use the given conditions to rule out impossible choices and find the only valid answer without guessing.',
+      it: 'Puoi usare le condizioni date per escludere le scelte impossibili e trovare l\'unica risposta valida senza tirare a indovinare.',
       qm: 'Berilgen şartlarğa esaslanıp, imkânsız saylavlarnı ele ve tahmin yürsetmeden birden-bir doğru cevabını tap.',
       zh: '你能根据给定条件排除不可能的选项，不靠猜测找出唯一符合条件的答案。',
       hi: 'आप दी गई शर्तों से असंभव विकल्प हटाकर बिना अनुमान लगाए एकमात्र सही उत्तर ढूँढ़ सकते हैं।',
