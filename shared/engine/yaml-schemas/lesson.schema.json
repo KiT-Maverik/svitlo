@@ -1998,7 +1998,6 @@
     "params",
     "locale",
     "section",
-    "flashcards",
     "documentLanguage"
   ],
   "additionalProperties": false,
