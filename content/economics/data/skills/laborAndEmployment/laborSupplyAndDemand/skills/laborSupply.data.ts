@@ -5,6 +5,7 @@ export const laborSupply_Skill_Data = defineSkill({
   id: 'e082c807-ae2b-4300-bac9-ab018b0fc1dc',
   name: {
     en: 'Пропозиція праці',
+    it: 'Offerta di lavoro',
     zh: '劳动力供给',
     hi: 'श्रम की आपूर्ति',
     es: 'Oferta de trabajo',
@@ -39,6 +40,7 @@ export const laborSupply_Skill_Data = defineSkill({
       'Analyze how wages, alternative opportunities, working conditions, and preferences affect desired and feasible working hours and participation in employment.',
     frontend: {
       en: 'Understand why people choose different amounts and kinds of paid work.',
+      it: 'Comprendi perché le persone scelgono quantità e tipi diversi di lavoro retribuito.',
       zh: '理解人们为何选择不同数量和类型的有偿工作。',
       hi: 'समझें कि लोग अलग-अलग तरह और मात्रा में सवेतन काम क्यों चुनते हैं।',
       es: 'Comprende por qué las personas eligen distintos tipos y cantidades de trabajo remunerado.',

@@ -5,6 +5,7 @@ export const workLeisureTradeoff_Skill_Data = defineSkill({
   id: '310779b5-0b28-4e61-854e-6bf62557137f',
   name: {
     en: 'Вибір між працею та дозвіллям',
+    it: 'Scelta tra lavoro e tempo libero',
     zh: '工作与闲暇的权衡',
     hi: 'काम और अवकाश का चुनाव',
     es: 'Elección entre trabajo y ocio',
@@ -38,6 +39,7 @@ export const workLeisureTradeoff_Skill_Data = defineSkill({
     methodological: 'Analyze choices between paid work, free time, and unpaid duties under stated constraints.',
     frontend: {
       en: 'Explore the trade-offs between earning income, rest, and other responsibilities.',
+      it: 'Esplora i compromessi tra reddito, riposo e altre responsabilità.',
       zh: '探索收入、休息和其他责任之间的取舍。',
       hi: 'कमाई, आराम और दूसरी जिम्मेदारियों के बीच समझौते समझें।',
       es: 'Explora los compromisos entre ingresos, descanso y otras responsabilidades.',

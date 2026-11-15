@@ -5,6 +5,7 @@ export const wageDetermination_Skill_Data = defineSkill({
   id: '1dbd3d70-9cfc-4636-89a6-410ac609ac5d',
   name: {
     en: 'Формування заробітної плати',
+    it: 'Determinazione dei salari',
     zh: '工资决定',
     hi: 'वेतन निर्धारण',
     es: 'Determinación salarial',
@@ -38,6 +39,7 @@ export const wageDetermination_Skill_Data = defineSkill({
     methodological: 'Identify how productivity, bargaining power, institutions, and market conditions affect pay.',
     frontend: {
       en: 'Discover why wages differ between jobs and workplaces.',
+      it: 'Scopri perché le retribuzioni differiscono tra professioni e luoghi di lavoro.',
       zh: '探索不同工作和单位的工资为何不同。',
       hi: 'जानें कि अलग-अलग नौकरियों और कार्यस्थलों में वेतन क्यों अलग होता है।',
       es: 'Descubre por qué varían los salarios entre empleos y lugares de trabajo.',

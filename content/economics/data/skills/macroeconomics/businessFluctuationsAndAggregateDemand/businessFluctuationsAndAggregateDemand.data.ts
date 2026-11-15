@@ -13,6 +13,7 @@ export const businessFluctuationsAndAggregateDemand_SkillGroup_Data = defineSkil
   id: '839e0bd3-937d-4f69-b8c7-af64e160bca9',
   name: {
     en: 'Коливання та сукупний попит',
+    it: 'Fluttuazioni economiche e domanda aggregata',
     zh: '经济波动与总需求',
     hi: 'आर्थिक उतार-चढ़ाव और समग्र माँग',
     es: 'Fluctuaciones económicas y demanda agregada',
@@ -54,6 +55,7 @@ export const businessFluctuationsAndAggregateDemand_SkillGroup_Data = defineSkil
       "Economic shocks affect output and employment through spending, expectations, and firms' responses.",
     frontend: {
       en: 'Explore why economies experience periods of expansion and slowdown.',
+      it: 'Esplora perché le economie attraversano periodi di espansione e rallentamento.',
       zh: '探索经济为何会经历扩张和放缓。',
       hi: 'जानें कि अर्थव्यवस्थाएँ विस्तार और मंदी के दौर से क्यों गुजरती हैं।',
       es: 'Explora por qué las economías pasan por períodos de expansión y desaceleración.',
