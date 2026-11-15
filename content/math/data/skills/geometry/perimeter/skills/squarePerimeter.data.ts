@@ -5,6 +5,7 @@ export const squarePerimeter_Skill_Data = defineSkill({
   id: '109234af-0003-4dca-9b7a-a0fdfb791835',
   name: {
     en: 'Calculating the perimeter of a square',
+    it: 'Calcolare il perimetro di un quadrato',
     qm: 'Kvadratnıñ perimetrini esaplav',
     lt: 'Kvadrato perimetro apskaičiavimas',
     lv: 'Kvadrāta perimetra aprēķināšana',
@@ -39,6 +40,7 @@ export const squarePerimeter_Skill_Data = defineSkill({
       'All four sides of a square are equal, so its perimeter is four times the side length, P = 4a. Perimeter is a linear magnitude distinct from area a².',
     frontend: {
       en: 'Find a square’s perimeter by multiplying one side length by four.',
+      it: 'Trova il perimetro di un quadrato moltiplicando per quattro la lunghezza di un lato.',
       qm: 'Kvadratnıñ bir tarafınıñ uzunlığını dörtke arttıraraq perimetrini tap.',
       zh: '用正方形一条边的长度乘以4求周长。',
       hi: 'वर्ग की एक भुजा को चार से गुणा करके परिमाप निकालें।',
