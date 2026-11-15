@@ -5,6 +5,7 @@ export const evaluateEnergyEfficiency_Skill_Data = defineSkill({
   id: '5a22596f-3e6d-4845-813f-9da9eb39be43',
   name: {
     en: 'Evaluate energy efficiency',
+    it: 'Valutare l\'efficienza energetica',
     zh: '评估能源效率',
     hi: 'ऊर्जा दक्षता का मूल्यांकन',
     es: 'Evaluar la eficiencia energética',
@@ -38,6 +39,7 @@ export const evaluateEnergyEfficiency_Skill_Data = defineSkill({
     methodological: 'Compare useful device output with energy input and identify major losses.',
     frontend: {
       en: 'Evaluate whether a system delivers useful output efficiently.',
+      it: 'Valuta se un sistema fornisce il risultato utile con un impiego efficiente dell\'energia.',
       zh: '评估系统能否高效地提供有用输出。',
       hi: 'जाँचें कि कोई प्रणाली उपयोगी परिणाम कितनी दक्षता से देती है।',
       es: 'Evalúa si un sistema ofrece resultados útiles de forma eficiente.',
