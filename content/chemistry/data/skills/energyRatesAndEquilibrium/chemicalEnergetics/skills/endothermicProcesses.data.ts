@@ -5,6 +5,7 @@ export const endothermicProcesses_Skill_Data = defineSkill({
   id: '9e1b3d80-a2c9-494b-9f31-b4f20225129e',
   name: {
     en: 'Endothermic Processes',
+    it: "Processi endotermici",
     zh: '吸热过程',
     hi: 'ऊष्माशोषी प्रक्रियाएँ',
     es: 'Procesos endotérmicos',
@@ -39,6 +40,7 @@ export const endothermicProcesses_Skill_Data = defineSkill({
       'Interpret positive system enthalpy change and recognize that absorbing heat need not mean a reaction cannot occur.',
     frontend: {
       en: 'Recognize when a process absorbs heat without assuming it cannot proceed.',
+      it: "Riconosci quando un processo assorbe calore senza supporre che non possa avvenire.",
       zh: '识别吸收热量的过程，但不认为它必然无法进行。',
       hi: 'ऊष्मा लेने वाली प्रक्रिया पहचानें, यह न मानें कि वह हो ही नहीं सकती।',
       es: 'Reconoce procesos que absorben calor sin suponer que no pueden ocurrir.',

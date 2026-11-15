@@ -5,6 +5,7 @@ export const hesssLaw_Skill_Data = defineSkill({
   id: '5e7d3cd2-39fe-4dca-a76a-335aff7cbb85',
   name: {
     en: "Hess's Law",
+    it: "Legge di Hess",
     zh: '赫斯定律',
     hi: 'हेस का नियम',
     es: 'Ley de Hess',
@@ -39,6 +40,7 @@ export const hesssLaw_Skill_Data = defineSkill({
       'Combine known reaction equations and associated enthalpy changes to determine an overall enthalpy change using the state-function character of enthalpy.',
     frontend: {
       en: "Combine known reaction energy changes to calculate another reaction's enthalpy.",
+      it: "Combina variazioni energetiche note di reazioni per calcolare l'entalpia di un'altra reazione.",
       zh: '组合已知反应的能量变化来计算另一反应的焓变。',
       hi: 'ज्ञात अभिक्रियाओं के ऊर्जा परिवर्तनों से दूसरी अभिक्रिया की एन्थैल्पी निकालें।',
       es: 'Combina cambios de entalpía conocidos para calcular el cambio de entalpía de otra reacción.',

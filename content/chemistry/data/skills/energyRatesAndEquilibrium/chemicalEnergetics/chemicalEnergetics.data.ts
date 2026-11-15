@@ -16,6 +16,7 @@ export const chemicalEnergetics_SkillGroup_Data = defineSkillGroup({
   id: 'b1f1c17b-f136-4bb8-ad70-84521202cf3f',
   name: {
     en: 'Chemical Energetics',
+    it: "Energetica chimica",
     zh: '化学能量学',
     hi: 'रासायनिक ऊर्जिकी',
     es: 'Energética química',
@@ -60,6 +61,7 @@ export const chemicalEnergetics_SkillGroup_Data = defineSkillGroup({
       'Energy changes are properties of a system and its processes, not intrinsic fuel labels or a claim that breaking bonds alone releases energy.',
     frontend: {
       en: 'Discover how energy is absorbed, released or redistributed during chemical changes.',
+      it: "Scopri come l'energia viene assorbita, liberata o ridistribuita durante le trasformazioni chimiche.",
       zh: '了解化学变化中能量如何被吸收、释放或重新分配。',
       hi: 'जानें कि रासायनिक परिवर्तन में ऊर्जा कैसे अवशोषित, मुक्त या पुनर्वितरित होती है।',
       es: 'Descubre cómo se absorbe, libera o redistribuye la energía en cambios químicos.',

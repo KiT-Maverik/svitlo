@@ -5,6 +5,7 @@ export const bondEnergyEstimates_Skill_Data = defineSkill({
   id: '23452c58-5aa2-4aad-b152-8633f315a70b',
   name: {
     en: 'Bond Energy Estimates',
+    it: "Stime delle energie di legame",
     zh: '键能估算',
     hi: 'बंध ऊर्जा से अनुमान',
     es: 'Estimaciones con energías de enlace',
@@ -39,6 +40,7 @@ export const bondEnergyEstimates_Skill_Data = defineSkill({
       'Approximate enthalpy changes from bonds broken and formed while recognizing average bond-energy limitations.',
     frontend: {
       en: 'Estimate reaction energy from bonds broken and formed while recognizing model limits.',
+      it: "Stima l'energia di reazione dai legami spezzati e formati, riconoscendo i limiti del modello.",
       zh: '根据断裂和形成的化学键估算反应能量，理解模型的局限。',
       hi: 'टूटने और बनने वाले बंधों से अभिक्रिया ऊर्जा का अनुमान लगाएँ, मॉडल की सीमाएँ पहचानें।',
       es: 'Estima la energía de reacción según enlaces rotos y formados, reconociendo las limitaciones.',
