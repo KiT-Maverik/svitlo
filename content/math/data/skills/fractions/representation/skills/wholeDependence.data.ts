@@ -5,6 +5,7 @@ export const wholeDependence_Skill_Data = defineSkill({
   id: 'ff4e8348-80c0-49dd-8f49-191c9673b3e4',
   name: {
     en: 'Explaining how part size depends on the whole',
+    it: 'Spiegare come la dimensione di una parte dipende dall\'intero',
     qm: 'Parçanıñ ölçüsi bütünden bağlı olğanını añlatmaq',
     lt: 'Dalies dydžio priklausomybės nuo visumos aiškinimas',
     lv: 'Daļas lieluma atkarības no veseluma skaidrošana',
@@ -39,6 +40,7 @@ export const wholeDependence_Skill_Data = defineSkill({
       'The same fractional notation denotes the same proportion of different wholes, but its absolute magnitude depends on the size of each whole. Comparing parts from different wholes requires a shared unit or comparable magnitude.',
     frontend: {
       en: 'A fraction tells what share of a whole you have. Half of a big whole is larger than half of a small whole.',
+      it: 'Una frazione indica quale parte di un intero possiedi. La metà di un intero grande è più grande della metà di un intero piccolo.',
       qm: 'Kesir bütünniñ ne qadar payını alğanıñnı bildirir. Büyük bütünniñ yarısı kiçik bütünniñ yarısından büyüktir.',
       zh: '分数表示占整体的比例。同样是二分之一，大整体的一半比小整体的一半大。',
       hi: 'भिन्न पूरे का हिस्सा बताता है। बड़े पूरे का आधा, छोटे पूरे के आधे से बड़ा होता है।',
