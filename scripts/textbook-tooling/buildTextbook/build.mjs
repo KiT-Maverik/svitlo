@@ -172,7 +172,7 @@ for (const [source, generator, staged, target] of [
 // Stage independently authored Question/Flashcard resources beside (never inside)
 // Lesson Props. The static manifest and Publish CLI own their portable URLs.
 const assessmentBank = filesUnder(join(root, 'data/lessons')).some(name =>
-  /^[0-9a-f]\\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\\/(?:questions|flashcards)\\/index\\.ts$/.test(name),
+  /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/(?:questions|flashcards)\/index\.ts$/.test(name),
 );
 if (assessmentBank) {
   run(process.execPath, [
