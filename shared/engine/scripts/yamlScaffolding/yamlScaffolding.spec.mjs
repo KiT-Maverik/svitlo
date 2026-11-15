@@ -134,11 +134,15 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
               id: id(3),
               type: 'carousel',
               slug: 'gallery',
-              slides: group({ slide: {
-                id: id(4), type: 'image', slug: 'slide',
-                params: { fill: true, aspectRatio: 1.5 },
-                locale: { src: null, alt: { uk: 'Діаграма' } },
-              } }),
+              slides: group({
+                slide: {
+                  id: id(4),
+                  type: 'image',
+                  slug: 'slide',
+                  params: { fill: true, aspectRatio: 1.5 },
+                  locale: { src: null, alt: { uk: 'Діаграма' } },
+                },
+              }),
             },
             checkpoint: {
               id: id(5),
@@ -185,8 +189,8 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     assert(sourceFiles.includes('review.ts'), 'Lesson Builder must scaffold the Review register');
     const reviewDraft = fs.readFileSync(path.join(lessonDir, 'review.ts'), 'utf8');
     assert(
-      ts.createSourceFile('review.ts', reviewDraft, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS)
-        .parseDiagnostics.length > 0,
+      ts.createSourceFile('review.ts', reviewDraft, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS).parseDiagnostics
+        .length > 0,
       'Review draft must retain unresolved TypeScript syntax until review evidence is verified',
     );
     const modules = sourceFiles
@@ -251,11 +255,15 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
                           id: id(11),
                           slug: 'gallery',
                           type: 'carousel',
-                          slides: group({ slide: {
-                             id: id(12), slug: 'slide', type: 'image',
-                             params: { fill: true, aspectRatio: 1.5 },
-                             locale: { src: null, alt: { uk: 'Діаграма' } },
-                           } }),
+                          slides: group({
+                            slide: {
+                              id: id(12),
+                              slug: 'slide',
+                              type: 'image',
+                              params: { fill: true, aspectRatio: 1.5 },
+                              locale: { src: null, alt: { uk: 'Діаграма' } },
+                            },
+                          }),
                         },
                       }),
                     },

@@ -42,24 +42,15 @@
             },
             "indexPosition": {
               "type": "string",
-              "enum": [
-                "left",
-                "right"
-              ]
+              "enum": ["left", "right"]
             },
             "iconPosition": {
               "type": "string",
-              "enum": [
-                "left",
-                "right"
-              ]
+              "enum": ["left", "right"]
             },
             "chevronPosition": {
               "type": "string",
-              "enum": [
-                "left",
-                "right"
-              ]
+              "enum": ["left", "right"]
             },
             "enableChecks": {
               "type": "boolean"
@@ -80,9 +71,7 @@
               "$ref": "#/$defs/__schema4"
             }
           },
-          "required": [
-            "title"
-          ],
+          "required": ["title"],
           "additionalProperties": false
         },
         "content": {
@@ -176,29 +165,15 @@
                             }
                           }
                         },
-                        "required": [
-                          "items",
-                          "order"
-                        ],
+                        "required": ["items", "order"],
                         "additionalProperties": false
                       }
                     },
-                    "required": [
-                      "id",
-                      "slug",
-                      "type",
-                      "content"
-                    ],
+                    "required": ["id", "slug", "type", "content"],
                     "additionalProperties": false
                   }
                 },
-                "required": [
-                  "id",
-                  "slug",
-                  "type",
-                  "question",
-                  "answer"
-                ],
+                "required": ["id", "slug", "type", "question", "answer"],
                 "additionalProperties": false
               }
             },
@@ -209,21 +184,11 @@
               }
             }
           },
-          "required": [
-            "items",
-            "order"
-          ],
+          "required": ["items", "order"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale",
-        "content"
-      ],
+      "required": ["id", "slug", "type", "params", "locale", "content"],
       "additionalProperties": false
     },
     {
@@ -306,20 +271,11 @@
               "additionalProperties": false
             }
           },
-          "required": [
-            "fileLocation",
-            "title"
-          ],
+          "required": ["fileLocation", "title"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema1": {
@@ -415,10 +371,7 @@
             },
             "objectFit": {
               "type": "string",
-              "enum": [
-                "cover",
-                "contain"
-              ]
+              "enum": ["cover", "contain"]
             },
             "loop": {
               "type": "boolean"
@@ -432,10 +385,7 @@
             },
             "transition": {
               "type": "string",
-              "enum": [
-                "slide",
-                "fade"
-              ]
+              "enum": ["slide", "fade"]
             },
             "transitionDurationMs": {
               "type": "number",
@@ -499,21 +449,11 @@
               }
             }
           },
-          "required": [
-            "items",
-            "order"
-          ],
+          "required": ["items", "order"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale",
-        "slides"
-      ],
+      "required": ["id", "slug", "type", "params", "locale", "slides"],
       "additionalProperties": false
     },
     "__schema8": {
@@ -552,10 +492,7 @@
             },
             "objectFit": {
               "type": "string",
-              "enum": [
-                "contain",
-                "cover"
-              ]
+              "enum": ["contain", "cover"]
             },
             "sizes": {
               "type": "string"
@@ -595,20 +532,11 @@
               "additionalProperties": false
             }
           },
-          "required": [
-            "src",
-            "alt"
-          ],
+          "required": ["src", "alt"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema9": {
@@ -640,19 +568,11 @@
               "$ref": "#/$defs/__schema10"
             }
           },
-          "required": [
-            "value"
-          ],
+          "required": ["value"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema10": {
@@ -716,17 +636,10 @@
                   },
                   "tone": {
                     "type": "string",
-                    "enum": [
-                      "neutral",
-                      "info",
-                      "warning",
-                      "success"
-                    ]
+                    "enum": ["neutral", "info", "warning", "success"]
                   }
                 },
-                "required": [
-                  "applyStyle"
-                ],
+                "required": ["applyStyle"],
                 "additionalProperties": false
               }
             },
@@ -747,9 +660,7 @@
                   }
                 }
               },
-              "required": [
-                "enabled"
-              ],
+              "required": ["enabled"],
               "additionalProperties": false
             }
           },
@@ -762,31 +673,16 @@
               "$ref": "#/$defs/__schema4"
             }
           },
-          "required": [
-            "value"
-          ],
+          "required": ["value"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema12": {
       "type": "string",
-      "enum": [
-        "highlight",
-        "bold",
-        "cursive",
-        "underscore",
-        "crossed",
-        "variable"
-      ]
+      "enum": ["highlight", "bold", "cursive", "underscore", "crossed", "variable"]
     },
     "__schema13": {
       "type": "string"
@@ -820,10 +716,7 @@
               "minLength": 1
             }
           },
-          "required": [
-            "language",
-            "codeAsText"
-          ],
+          "required": ["language", "codeAsText"],
           "additionalProperties": false
         },
         "locale": {
@@ -846,13 +739,7 @@
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema16": {
@@ -888,19 +775,11 @@
               }
             }
           },
-          "required": [
-            "value"
-          ],
+          "required": ["value"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema17": {
@@ -936,19 +815,11 @@
               "const": null
             }
           },
-          "required": [
-            "fileLocation"
-          ],
+          "required": ["fileLocation"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema19": {
@@ -1009,21 +880,11 @@
               "additionalProperties": false
             }
           },
-          "required": [
-            "fileLocation",
-            "poster",
-            "label"
-          ],
+          "required": ["fileLocation", "poster", "label"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
     "__schema20": {
@@ -1047,15 +908,10 @@
             },
             "mode": {
               "type": "string",
-              "enum": [
-                "link",
-                "embed"
-              ]
+              "enum": ["link", "embed"]
             }
           },
-          "required": [
-            "mode"
-          ],
+          "required": ["mode"],
           "additionalProperties": false
         },
         "locale": {
@@ -1086,20 +942,11 @@
               "additionalProperties": false
             }
           },
-          "required": [
-            "href",
-            "label"
-          ],
+          "required": ["href", "label"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "slug",
-        "type",
-        "params",
-        "locale"
-      ],
+      "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     }
   },

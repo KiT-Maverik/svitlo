@@ -449,7 +449,8 @@ export function renderLessonModules(lesson, language, options = {}) {
       const symbol = symbolFor(value, context);
       // The mandatory Text question and the Answer Configurator have fixed
       // semantic role paths. Their own authored slugs still live in Config.
-      const roleRoot = (context === 'checkpointAnswer' && field === '$.answer') ||
+      const roleRoot =
+        (context === 'checkpointAnswer' && field === '$.answer') ||
         (context === 'block' && field === '$.question' && ownerDirectory.endsWith('/question'));
       const childDirectory = roleRoot ? ownerDirectory : join(ownerDirectory, value.slug);
       emitNode(value, context, childDirectory);
@@ -552,15 +553,15 @@ export function renderLessonModules(lesson, language, options = {}) {
               ? ['question', 'answer']
               : context === 'checkpointAnswer'
                 ? ['content']
-              : context === 'question'
-                ? ['content']
-                : context === 'flashcard'
-                  ? ['content', 'parameters']
-                  : context === 'stage'
-                    ? ['content']
-                    : context === 'task'
-                      ? ['scene']
-                      : [];
+                : context === 'question'
+                  ? ['content']
+                  : context === 'flashcard'
+                    ? ['content', 'parameters']
+                    : context === 'stage'
+                      ? ['content']
+                      : context === 'task'
+                        ? ['scene']
+                        : [];
     for (const key of uses) {
       if (!Object.hasOwn(node, key)) continue;
       const owner =
@@ -590,8 +591,7 @@ export function renderLessonModules(lesson, language, options = {}) {
       );
     if (context === 'checkpointItem')
       return '<' + [slug, typeOf('answer'), typeOf('question'), languagesType].join(', ') + '>';
-    if (context === 'checkpointAnswer')
-      return '<' + [slug, 'typeof content.items', languagesType].join(', ') + '>';
+    if (context === 'checkpointAnswer') return '<' + [slug, 'typeof content.items', languagesType].join(', ') + '>';
     if (context === 'question') return '<' + [slug, typeOf('content'), languagesType].join(', ') + '>';
     if (context === 'flashcard') {
       const content = name =>

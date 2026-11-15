@@ -75,7 +75,11 @@ export function Carousel({
   const paused = playback === 'paused' || (playback === 'auto' && temporarilyPaused);
   // A Scene may be interactive: never replace it with a timed advance.
   const canAutoplay =
-    autoplay && multiple && currentSlide.type !== 'scene' && !paused && visible &&
+    autoplay &&
+    multiple &&
+    currentSlide.type !== 'scene' &&
+    !paused &&
+    visible &&
     (!reduceMotion || playback === 'playing');
 
   function goTo(target: number, direction?: -1 | 1) {
@@ -175,8 +179,10 @@ export function Carousel({
     transition === 'fade' ? styles.fadeOut : visualDirection > 0 ? styles.exitToLeft : styles.exitToRight;
   // Never mount a second, inert copy of an interactive Scene during an animation.
   const showTransition =
-    transitionState !== null && animated &&
-    currentSlide.type === 'image' && slides[transitionState.from]?.type === 'image';
+    transitionState !== null &&
+    animated &&
+    currentSlide.type === 'image' &&
+    slides[transitionState.from]?.type === 'image';
   const style = { '--carousel-duration': String(duration) + 'ms' } as CSSProperties;
 
   function slideLabel(slide: ContentBlock_Carousel_SlideProps, position: number) {

@@ -15,10 +15,7 @@ export type ContentBlock_Carousel_SlideConfigurator = ConfiguratorChild<
 >;
 
 /** Carousel children retain the complete, type-discriminated ContentBlock Props contract. */
-export const carousel_Slide_Props_Schema = z.discriminatedUnion('type', [
-  image_Props_Schema,
-  scene_Props_Schema,
-]);
+export const carousel_Slide_Props_Schema = z.discriminatedUnion('type', [image_Props_Schema, scene_Props_Schema]);
 export type ContentBlock_Carousel_SlideProps = z.infer<typeof carousel_Slide_Props_Schema>;
 
 const contentBlockBase = createContentBlockBaseSchema('carousel');

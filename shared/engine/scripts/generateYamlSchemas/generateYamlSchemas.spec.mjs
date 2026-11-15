@@ -99,12 +99,20 @@ test('Checkpoint Item YAML requires an authored Answer Configurator with its own
   assert.equal(yamlCheckpointAnswerConfigurator_Schema.safeParse(answer).success, true);
   assert.equal(yamlCheckpointItem_Schema.safeParse(item).success, true);
   assert.equal(yamlCheckpointItem_Schema.safeParse({ ...item, answer: answer.content }).success, false);
-  assert.equal(yamlCheckpointItem_Schema.safeParse({
-    ...item, answer: { ...answer, id: undefined },
-  }).success, false);
-  assert.equal(yamlCheckpointItem_Schema.safeParse({
-    ...item, answer: { ...answer, type: 'text' },
-  }).success, false);
+  assert.equal(
+    yamlCheckpointItem_Schema.safeParse({
+      ...item,
+      answer: { ...answer, id: undefined },
+    }).success,
+    false,
+  );
+  assert.equal(
+    yamlCheckpointItem_Schema.safeParse({
+      ...item,
+      answer: { ...answer, type: 'text' },
+    }).success,
+    false,
+  );
   assert(yamlJsonSchemaDocuments()['lesson.schema.json'].includes('checkpointAnswer'));
 });
 
@@ -168,7 +176,10 @@ test('YAML media projections require null while Engine Config schemas require re
   }
   const picture = variants[0].config;
   const activity = {
-    id, slug: 'activity', type: 'scene', params: {},
+    id,
+    slug: 'activity',
+    type: 'scene',
+    params: {},
     locale: { value: { instruction: { uk: 'Обери' } } },
   };
   const carousel = {
@@ -180,9 +191,13 @@ test('YAML media projections require null while Engine Config schemas require re
     slides: { items: { picture, activity }, order: ['picture', 'activity'] },
   };
   assert.equal(yamlContentBlock_Schema.safeParse(carousel).success, true);
-  assert.equal(yamlContentBlock_Schema.safeParse({
-    ...carousel, slides: { items: { picture: textBlock }, order: ['picture'] },
-  }).success, false);
+  assert.equal(
+    yamlContentBlock_Schema.safeParse({
+      ...carousel,
+      slides: { items: { picture: textBlock }, order: ['picture'] },
+    }).success,
+    false,
+  );
   assert.equal(
     yamlContentBlock_Schema.safeParse({
       ...carousel,

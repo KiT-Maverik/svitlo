@@ -6,13 +6,7 @@ import { join } from 'node:path';
 import test from 'node:test';
 
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
-import {
-  defineImage,
-  defineAudio,
-  defineVideo,
-  defineCarousel,
-  defineScene,
-} from './contentBlocks';
+import { defineImage, defineAudio, defineVideo, defineCarousel, defineScene } from './contentBlocks';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {

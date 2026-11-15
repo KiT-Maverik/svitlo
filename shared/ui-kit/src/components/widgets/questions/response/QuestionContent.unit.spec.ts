@@ -35,7 +35,8 @@ describe('Carousel accessible question labels', () => {
   });
 
   it('prioritizes an explicit Carousel title over the child slide label', () => {
-    expect(questionBlockLabel({ ...carousel, locale: { title: 'Compare values', slides: [scene] } }))
-      .toBe('Compare values');
+    expect(questionBlockLabel({ ...carousel, locale: { title: 'Compare values', slides: [scene] } })).toBe(
+      'Compare values',
+    );
   });
 });

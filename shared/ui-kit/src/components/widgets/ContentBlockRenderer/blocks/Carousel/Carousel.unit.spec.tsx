@@ -13,9 +13,27 @@ const gallery: ContentBlock_Carousel_Props = {
   locale: {
     title: 'Gallery',
     slides: [
-      { id: 'image-one', slug: 'imageOne', type: 'image', params: { fill: true, aspectRatio: 1.5 }, locale: { src: '/one.png', alt: 'First image', caption: 'First caption' } },
-      { id: 'image-two', slug: 'imageTwo', type: 'image', params: { fill: true, aspectRatio: 1.5 }, locale: { src: '/two.png', alt: 'Second image' } },
-      { id: 'image-three', slug: 'imageThree', type: 'image', params: { fill: true, aspectRatio: 1.5 }, locale: { src: '/three.png', alt: 'Third image' } },
+      {
+        id: 'image-one',
+        slug: 'imageOne',
+        type: 'image',
+        params: { fill: true, aspectRatio: 1.5 },
+        locale: { src: '/one.png', alt: 'First image', caption: 'First caption' },
+      },
+      {
+        id: 'image-two',
+        slug: 'imageTwo',
+        type: 'image',
+        params: { fill: true, aspectRatio: 1.5 },
+        locale: { src: '/two.png', alt: 'Second image' },
+      },
+      {
+        id: 'image-three',
+        slug: 'imageThree',
+        type: 'image',
+        params: { fill: true, aspectRatio: 1.5 },
+        locale: { src: '/three.png', alt: 'Third image' },
+      },
     ],
   },
 };
@@ -48,7 +66,12 @@ describe('carousel content block', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Next' }));
     expect(screen.getByRole('img', { name: 'First image' })).toBeVisible();
 
-    rerender(<ContentBlockRenderer messages={enUiKitMessages} blocks={[{ ...gallery, params: { ...gallery.params, loop: false } }]} />);
+    rerender(
+      <ContentBlockRenderer
+        messages={enUiKitMessages}
+        blocks={[{ ...gallery, params: { ...gallery.params, loop: false } }]}
+      />,
+    );
     expect(screen.getByRole('button', { name: 'Back' })).toBeDisabled();
     fireEvent.click(screen.getByRole('button', { name: 'Next' }));
     fireEvent.click(screen.getByRole('button', { name: 'Next' }));
@@ -82,7 +105,11 @@ describe('carousel content block', () => {
   });
 
   it('does not display multi-slide controls for a single image', () => {
-    show({ ...gallery, params: { ...gallery.params, autoplay: true }, locale: { ...gallery.locale, slides: [gallery.locale.slides[0]] } });
+    show({
+      ...gallery,
+      params: { ...gallery.params, autoplay: true },
+      locale: { ...gallery.locale, slides: [gallery.locale.slides[0]] },
+    });
     expect(screen.queryByRole('button', { name: 'Next' })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Pause slideshow' })).not.toBeInTheDocument();
   });
@@ -90,7 +117,9 @@ describe('carousel content block', () => {
   it('mounts a registered interactive Scene with its published locale and preserves its interaction', () => {
     const interaction = vi.fn();
     const Activity = ({ locales }: { locales: ResponseOf<'scene'>['locale']['value'] }) => (
-      <button onClick={interaction} type="button">{typeof locales === 'string' ? locales : 'Explore the scene'}</button>
+      <button onClick={interaction} type="button">
+        {typeof locales === 'string' ? locales : 'Explore the scene'}
+      </button>
     );
     const registry: SceneRegistry = id => (id === 'scene-slide' ? Activity : undefined);
     const mixed: ContentBlock_Carousel_Props = {
@@ -101,7 +130,10 @@ describe('carousel content block', () => {
         slides: [
           gallery.locale.slides[0],
           {
-            id: 'scene-slide', slug: 'activity', type: 'scene', params: {},
+            id: 'scene-slide',
+            slug: 'activity',
+            type: 'scene',
+            params: {},
             locale: { value: 'Try this activity' },
           },
         ],
@@ -119,11 +151,15 @@ describe('carousel content block', () => {
 
   it('does not silently render a Scene without a registered implementation', () => {
     const mixed: ContentBlock_Carousel_Props = {
-      ...gallery, params: { startIndex: 1 },
-      locale: { title: 'Missing Scene', slides: [
-        gallery.locale.slides[0],
-        { id: 'unregistered', slug: 'missing', type: 'scene', params: {}, locale: { value: 'Preview' } },
-      ] },
+      ...gallery,
+      params: { startIndex: 1 },
+      locale: {
+        title: 'Missing Scene',
+        slides: [
+          gallery.locale.slides[0],
+          { id: 'unregistered', slug: 'missing', type: 'scene', params: {}, locale: { value: 'Preview' } },
+        ],
+      },
     };
     expect(() => show(mixed)).toThrow(/Unregistered scene id: unregistered/);
   });
