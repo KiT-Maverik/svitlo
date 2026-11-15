@@ -12,6 +12,7 @@ export const culturalHeritage_SkillGroup_Data = defineSkillGroup({
   id: '286a3455-8dc6-4593-937c-8ccfd09c7605',
   name: {
     en: 'Cultural Heritage',
+    it: "Patrimonio culturale",
     zh: '文化遗产',
     hi: 'सांस्कृतिक विरासत',
     es: 'Patrimonio cultural',
@@ -52,6 +53,7 @@ export const culturalHeritage_SkillGroup_Data = defineSkillGroup({
       'Art-historical stewardship requires attention to provenance, preservation and representation of communities.',
     frontend: {
       en: 'Explore how the origins, care and display of cultural objects affect communities.',
+      it: "Esplora come l'origine, la conservazione e l'esposizione degli oggetti culturali influenzano le comunità.",
       zh: '了解文化物品的来源、保护与展示如何影响社群。',
       hi: 'जानें कि सांस्कृतिक वस्तुओं की उत्पत्ति, देखभाल और प्रदर्शनी समुदायों को कैसे प्रभावित करती है।',
       es: 'Explora cómo el origen, cuidado y exhibición de los objetos culturales afectan a las comunidades.',
