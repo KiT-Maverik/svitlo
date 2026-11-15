@@ -11,6 +11,7 @@ export const communicationAndInterpretation_SkillGroup_Data = defineSkillGroup({
   id: 'c0c167ff-700f-4f23-97a7-f9dfe9fac1a6',
   name: {
     en: 'Communication and Interpretation',
+    it: 'Comunicazione e interpretazione',
     zh: '交流与解释',
     hi: 'संवाद और व्याख्या',
     es: 'Comunicación e interpretación',
@@ -53,6 +54,7 @@ export const communicationAndInterpretation_SkillGroup_Data = defineSkillGroup({
       'What a speaker says can differ from what a speaker conveys or does by saying it. Interpretation must take context and plausible alternatives into account.',
     frontend: {
       en: 'Learn how context affects what people say and communicate.',
+      it: 'Impara come il contesto influenzi ciò che le persone dicono e comunicano.',
       zh: '了解语境如何影响人们说出和传达的内容。',
       hi: 'जानो कि संदर्भ लोगों के कहने और समझाने के अर्थ पर कैसे असर डालता है।',
       es: 'Aprende cómo el contexto influye en lo que las personas dicen y comunican.',

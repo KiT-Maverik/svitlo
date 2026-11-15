@@ -11,6 +11,7 @@ export const mathematicalReality_SkillGroup_Data = defineSkillGroup({
   id: 'f54a8748-11ce-4ecf-905c-f63e2ee7d5f6',
   name: {
     en: 'Mathematical Reality',
+    it: 'Realtà matematica',
     zh: '数学实在论问题',
     hi: 'गणितीय वास्तविकता',
     es: 'Realidad matemática',
@@ -53,6 +54,7 @@ export const mathematicalReality_SkillGroup_Data = defineSkillGroup({
       'Philosophical accounts of mathematics disagree over whether its objects exist independently, are constructs of formal language, or are positions within structures. These ontological commitments are distinct from learning to perform mathematical operations.',
     frontend: {
       en: 'Explore debates about whether mathematical objects exist independently of people.',
+      it: 'Esplora il dibattito sull\'esistenza degli oggetti matematici indipendentemente dagli esseri umani.',
       zh: '探索数学对象是否独立于人而存在的争论。',
       hi: 'जानें कि गणितीय वस्तुएँ मनुष्यों से स्वतंत्र रूप से मौजूद हैं या नहीं।',
       es: 'Explora el debate sobre si los objetos matemáticos existen independientemente de las personas.',

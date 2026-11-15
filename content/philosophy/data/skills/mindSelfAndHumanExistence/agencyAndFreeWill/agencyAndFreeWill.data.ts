@@ -13,6 +13,7 @@ export const agencyAndFreeWill_SkillGroup_Data = defineSkillGroup({
   id: '2b40a5b3-f6bc-4511-a487-03fa26289936',
   name: {
     en: 'Agency and Free Will',
+    it: 'Capacità di agire e libero arbitrio',
     zh: '能动性与自由意志',
     hi: 'क्रियाशीलता और स्वतंत्र इच्छा',
     es: 'Agencia y libre albedrío',
@@ -63,6 +64,7 @@ export const agencyAndFreeWill_SkillGroup_Data = defineSkillGroup({
       'Acting for reasons, selecting among alternatives, and being accountable are connected but separable philosophical ideas.',
     frontend: {
       en: 'Explore how choice, reasons and responsibility relate to freedom.',
+      it: 'Esplora come le scelte, le ragioni e la responsabilità si rapportano alla libertà.',
       zh: '探索选择、理由和责任与自由之间的关系。',
       hi: 'जानें कि चुनाव, कारण और जिम्मेदारी स्वतंत्रता से कैसे जुड़े हैं।',
       es: 'Explora cómo se relacionan la elección, las razones y la responsabilidad con la libertad.',

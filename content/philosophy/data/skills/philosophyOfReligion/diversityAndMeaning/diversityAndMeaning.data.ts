@@ -11,6 +11,7 @@ export const diversityAndMeaning_SkillGroup_Data = defineSkillGroup({
   id: 'c41e8ecd-cd05-4614-93a5-95b3ecfee6e7',
   name: {
     en: 'Diversity and Meaning',
+    it: 'Diversità e significato',
     zh: '多样性与意义',
     hi: 'विविधता और अर्थ',
     es: 'Diversidad y sentido',
@@ -57,6 +58,7 @@ export const diversityAndMeaning_SkillGroup_Data = defineSkillGroup({
       "Competing outlooks on religion, nonbelief, and life purpose raise interpretive and normative problems. Dialogue must distinguish a disagreement about truth from respect for people's freedom of conscience.",
     frontend: {
       en: "Learn to discuss differences in religion, nonbelief and life's meaning respectfully.",
+      it: 'Impara a discutere con rispetto delle differenze tra religioni, assenza di fede e concezioni del senso della vita.',
       zh: '学习如何以尊重的态度讨论宗教、非信仰与生命意义方面的差异。',
       hi: 'धर्म, अविश्वास और जीवन के अर्थ से जुड़े मतभेदों पर सम्मानपूर्वक चर्चा करना सीखें।',
       es: 'Aprende a debatir con respeto las diferencias sobre religión, no creencia y sentido de la vida.',
