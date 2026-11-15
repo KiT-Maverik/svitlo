@@ -5,7 +5,7 @@ config:
   id: "a11ce555-0000-4000-8000-0000000000ff"
   slug: "equalityGeneratorCoverage"
   type: "lesson"
-  skills: ["a11ce555-0000-4000-8000-0000000000ef"]
+  skills: ["974af868-5b72-4a5a-a88e-8f7e03e48661"]
   params:
     languages: ["en"]
     requireQuiz: false
