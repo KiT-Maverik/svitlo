@@ -8,6 +8,7 @@ export const biomedicalAndAssistiveEngineering_SkillDomain_Data = defineSkillDom
   id: '47038e6b-6a25-40ad-876b-06514696de76',
   title: {
     en: 'Biomedical and Assistive Engineering',
+    it: 'Ingegneria biomedica e delle tecnologie assistive',
     zh: '生物医学与辅助工程',
     hi: 'जैवचिकित्सा और सहायक अभियांत्रिकी',
     es: 'Ingeniería biomédica y de asistencia',
@@ -43,6 +44,7 @@ export const biomedicalAndAssistiveEngineering_SkillDomain_Data = defineSkillDom
       'Devices supporting, measuring or interacting with human bodies must satisfy suitable physical interfaces, reliability and safe-use constraints. Clinical diagnosis and the biology of the human body remain outside this engineering domain.',
     frontend: {
       en: 'Explore technical products that support health, mobility and medical measurement.',
+      it: 'Esplora i prodotti tecnologici che favoriscono la salute, la mobilità e le misurazioni mediche.',
       zh: '探索支持健康、行动能力和医学测量的技术产品。',
       hi: 'स्वास्थ्य, गतिशीलता और चिकित्सीय मापन में सहायक तकनीकी उत्पादों को जानें।',
       es: 'Explora productos técnicos que apoyan la salud, la movilidad y las mediciones médicas.',
