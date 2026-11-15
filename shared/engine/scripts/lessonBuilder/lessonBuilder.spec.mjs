@@ -808,3 +808,91 @@ test('Checkpoint question and answer may reuse a block slug without file collisi
     assert.match(item, /from ".\/answer"/);
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
+
+test('Engine-owned coverage Lesson stays reproducible across YAML, nested modules, and handoffs', () => {
+  const fixtureSource = new URL('./fixtures/coverageLesson/config.yaml', import.meta.url);
+  const authored = fs.readFileSync(fixtureSource, 'utf8');
+  const document = yaml.parse(authored);
+  const lesson = document.config;
+  const sections = lesson.section.order.map(key => lesson.section.items[key].config);
+  const directBlocks = sections.flatMap(section =>
+    section.content.order.map(key => section.content.items[key].config),
+  );
+  assert.equal(sections.length, 2);
+  assert.deepEqual(sections.map(section => section.content.order.length), [6, 6]);
+  assert.deepEqual(
+    [...new Set(directBlocks.map(block => block.type))].sort(),
+    ['audio', 'carousel', 'checkpoint', 'code', 'image', 'markdown', 'scene', 'subtitles', 'text', 'video', 'youtube'].sort(),
+  );
+  assert.equal(document.production.documentLanguage, 'en');
+
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-engine-coverage-'));
+  const workspace = path.join(root, 'content/playground');
+  const staged = path.join(workspace, 'staging/coverageLesson/config.yaml');
+  const output = path.join(workspace, 'data/lessons', lesson.id.at(-1), lesson.id);
+  try {
+    fs.mkdirSync(path.dirname(staged), { recursive: true });
+    fs.writeFileSync(path.join(workspace, 'package.json'), '{"name":"@svitlo/playground"}\n');
+    fs.writeFileSync(staged, authored);
+
+    // The authoring fixture uses a synthetic Skill identity; resolution must
+    // still produce an imported symbol, without depending on Mathematics.
+    const skills = path.join(workspace, 'data/skills/algebra/equalities/skills');
+    fs.mkdirSync(skills, { recursive: true });
+    fs.writeFileSync(path.join(skills, 'coverage.data.ts'),
+      "import { defineSkill } from '@svitlo/engine/build';\n" +
+      "export const coverageSkill_Skill_Data = defineSkill({ id: '" +
+      lesson.skills[0] + "', slug: 'coverageSkill' });\n");
+
+    const first = runOne(staged, 'generate', root);
+    assert.equal(first.lessonId, lesson.id);
+    assert(first.changed > 20, 'Representative fixture should emit a full module tree');
+    const modules = readAll(output);
+    for (const name of [
+      'index.ts',
+      'constants.ts',
+      'sections/index.ts',
+      'sections/exploreEquality/index.ts',
+      'sections/exploreEquality/meaningOfEquality/index.ts',
+      'sections/exploreEquality/explainWithMarkdown/index.ts',
+      'sections/exploreEquality/compareValuesCode/index.ts',
+      'sections/exploreEquality/counterArrangementsCarousel/index.ts',
+      'sections/exploreEquality/counterArrangementsCarousel/fiveCountersSlide/index.ts',
+      'sections/exploreEquality/counterArrangementsCarousel/threePlusTwoSlide/index.ts',
+      'sections/reviewEquality/index.ts',
+      'sections/reviewEquality/verifyEquality/index.ts',
+      'sections/reviewEquality/verifyEquality/compareFive/index.ts',
+      'sections/reviewEquality/verifyEquality/compareFive/question/index.ts',
+      'sections/reviewEquality/verifyEquality/compareFive/answer/index.ts',
+      'sections/reviewEquality/verifyEquality/compareFive/answer/whyFiveMatches/index.ts',
+      'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/index.ts',
+      'flashcards/equalityRecallCard/index.ts',
+      'questions/selectOneAnswer/identifyTrueEquality/index.ts',
+    ]) assert(modules.has(name), 'Missing generated file ' + name);
+    assert.match(modules.get('index.ts'), /skills: \[coverageSkill_Skill_Data\.id\]/);
+    assert.match(modules.get('sections/reviewEquality/verifyEquality/compareFive/answer/index.ts'),
+      /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/);
+    assert(![...modules.keys()].some(name => /\/(?:texts|images|scenes|slides)\//.test(name)));
+    assert.equal(fs.readFileSync(path.join(output,
+      'sections/exploreEquality/explainWithMarkdown/locale/en.md'), 'utf8'),
+      '## Compare both sides\n\n**3 + 2 = 4 + 1**, because both sides equal **5**.');
+    assert.match(fs.readFileSync(path.join(output,
+      'sections/exploreEquality/compareValuesCode/code.ts'), 'utf8'), /const left = 3 \+ 2/);
+    assert(fs.existsSync(path.join(output,
+      'sections/exploreEquality/compareGroupsScene/specification.md')));
+    assert(fs.existsSync(path.join(output,
+      'sections/reviewEquality/equalGroupsVideo/specification.md')));
+    assert(fs.existsSync(path.join(output,
+      'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/specification.md')));
+    assertTypeScriptSyntax(modules);
+    assert.equal(runOne(staged, 'check', root).changed, 0);
+    assert.equal(runOne(staged, 'generate', root).skipped, true);
+    const target = path.join(output, 'sections/exploreEquality/meaningOfEquality/index.ts');
+    fs.appendFileSync(target, '\n// Intentional local author edit\n');
+    assert.throws(() => runOne(staged, 'check', root), /generated file was modified manually/);
+    assert.equal(runOne(staged, 'generate', root).skipped, true);
+    assert.match(fs.readFileSync(target, 'utf8'), /Intentional local author edit/);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
