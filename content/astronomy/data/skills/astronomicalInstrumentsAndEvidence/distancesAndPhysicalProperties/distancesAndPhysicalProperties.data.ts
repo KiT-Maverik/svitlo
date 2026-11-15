@@ -43,14 +43,17 @@ export const distancesAndPhysicalProperties_SkillGroup_Data = defineSkillGroup({
     uk: 'Відстані та фізичні властивості',
     pl: 'Odległości i właściwości fizyczne',
   },
-  skills: [
-    absoluteMagnitude_Skill_Data,
-    apparentMagnitude_Skill_Data,
-    astronomicalDistanceUnits_Skill_Data,
-    cosmicDistanceLadder_Skill_Data,
-    standardCandles_Skill_Data,
-    stellarParallax_Skill_Data,
-  ],
+  skills: {
+    items: {
+      absoluteMagnitude: absoluteMagnitude_Skill_Data,
+      apparentMagnitude: apparentMagnitude_Skill_Data,
+      astronomicalDistanceUnits: astronomicalDistanceUnits_Skill_Data,
+      cosmicDistanceLadder: cosmicDistanceLadder_Skill_Data,
+      standardCandles: standardCandles_Skill_Data,
+      stellarParallax: stellarParallax_Skill_Data,
+    },
+    order: ['absoluteMagnitude', 'apparentMagnitude', 'astronomicalDistanceUnits', 'cosmicDistanceLadder', 'standardCandles', 'stellarParallax'],
+  },
   description: {
     methodological:
       'Astronomical measurements connect remote observations to inferred size, distance and energy output using explicit models rather than direct contact.',

@@ -42,13 +42,16 @@ export const evidenceOfLife_SkillGroup_Data = defineSkillGroup({
     he: 'ראיות לקיום חיים',
     vi: 'Bằng chứng về sự sống',
   },
-  skills: [
-    abioticFalsePositives_Skill_Data,
-    biosignatures_Skill_Data,
-    lifeDetectionEvidenceStandards_Skill_Data,
-    planetaryProtection_Skill_Data,
-    technosignatures_Skill_Data,
-  ],
+  skills: {
+    items: {
+      abioticFalsePositives: abioticFalsePositives_Skill_Data,
+      biosignatures: biosignatures_Skill_Data,
+      lifeDetectionEvidenceStandards: lifeDetectionEvidenceStandards_Skill_Data,
+      planetaryProtection: planetaryProtection_Skill_Data,
+      technosignatures: technosignatures_Skill_Data,
+    },
+    order: ['abioticFalsePositives', 'biosignatures', 'lifeDetectionEvidenceStandards', 'planetaryProtection', 'technosignatures'],
+  },
   description: {
     methodological:
       'A proposed sign of life must be weighed against nonbiological processes and the limits of the measuring instrument.',
