@@ -5,6 +5,7 @@ export const useArtisticRandomness_Skill_Data = defineSkill({
   id: '131ac879-9190-434a-893a-8990e5552607',
   name: {
     en: 'Use Artistic Randomness',
+    it: 'Usare la casualità nell\'arte',
     zh: '运用艺术随机性',
     hi: 'कलात्मक यादृच्छिकता का उपयोग करें',
     es: 'Usar el azar artístico',
@@ -38,6 +39,7 @@ export const useArtisticRandomness_Skill_Data = defineSkill({
     methodological: 'Control ranges and distributions to produce bounded and purposeful variation.',
     frontend: {
       en: 'Use controlled chance to create surprising variations within your artistic plan.',
+      it: 'Usa il caso in modo controllato per creare variazioni sorprendenti all\'interno del tuo progetto artistico.',
       zh: '在艺术计划范围内运用受控的偶然性，创造出人意料的变化。',
       hi: 'अपनी कलात्मक योजना के भीतर नियंत्रित संयोग से आश्चर्यजनक विविधताएँ बनाएँ।',
       es: 'Usa el azar controlado para crear variaciones sorprendentes dentro de tu plan artístico.',
