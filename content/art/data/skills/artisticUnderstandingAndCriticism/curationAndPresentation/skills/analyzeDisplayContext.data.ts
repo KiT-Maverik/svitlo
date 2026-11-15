@@ -5,6 +5,7 @@ export const analyzeDisplayContext_Skill_Data = defineSkill({
   id: '4765dc0e-020b-4ce2-91ff-934674bd285e',
   name: {
     en: 'Analyze Display Context',
+    it: "Analizzare il contesto espositivo",
     zh: '分析展示语境',
     hi: 'प्रदर्शन के संदर्भ का विश्लेषण करें',
     es: 'Analizar el contexto de exhibición',
@@ -38,6 +39,7 @@ export const analyzeDisplayContext_Skill_Data = defineSkill({
     methodological: 'Explain how scale, lighting, placement and accompanying labels affect reception.',
     frontend: {
       en: "Explore how light, scale, position and labels influence an artwork's presentation.",
+      it: "Esplora come illuminazione, dimensioni, posizione e didascalie influenzano la presentazione di un'opera.",
       zh: '探索灯光、尺度、位置和标签如何影响艺术作品的呈现。',
       hi: 'जानें कि रोशनी, आकार, स्थान और लेबल किसी कलाकृति की प्रस्तुति को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo la luz, la escala, la ubicación y las etiquetas influyen en la presentación de una obra.',
