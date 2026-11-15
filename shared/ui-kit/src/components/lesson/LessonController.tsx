@@ -303,7 +303,9 @@ const MemoSection = memo(function LessonSection({
   response,
   messages,
   sceneRegistry,
-}: Pick<LessonProps, 'response' | 'messages' | 'sceneRegistry'>) {
+  language,
+  assessmentLoader,
+}: Pick<LessonProps, 'response' | 'messages' | 'sceneRegistry' | 'language' | 'assessmentLoader'>) {
   const { step, completedCheckpoints } = useLessonSection();
   const actions = useLessonActions();
   const section = response.section[step];
@@ -325,7 +327,9 @@ const MemoSection = memo(function LessonSection({
         {section.type === 'quiz' ? (
           <EngineQuestionRenderer
             key={section.id}
-            lesson={response}
+            lessonId={response.id}
+            language={language}
+            assessmentLoader={assessmentLoader}
             section={section}
             sceneRegistry={sceneRegistry}
             messages={messages}
@@ -354,6 +358,7 @@ function LessonControllerRuntime({
   topics: courseTopics,
   layout: Layout,
   sceneRegistry,
+  assessmentLoader,
   contentLoading,
   editableSectionParams = EMPTY_EDITABLE,
   contentError,
@@ -599,7 +604,7 @@ function LessonControllerRuntime({
                     </StepperContext.Provider>
                     <SectionContext.Provider value={section}>
                       <ContentLanguageContext.Provider value={language}>
-                        <MemoSection response={response} messages={messages} sceneRegistry={sceneRegistry} />
+                        <MemoSection response={response} language={language} assessmentLoader={assessmentLoader} messages={messages} sceneRegistry={sceneRegistry} />
                       </ContentLanguageContext.Provider>
                     </SectionContext.Provider>
                   </>
