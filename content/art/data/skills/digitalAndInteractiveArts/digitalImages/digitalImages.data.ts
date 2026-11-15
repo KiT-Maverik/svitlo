@@ -12,6 +12,7 @@ export const digitalImages_SkillGroup_Data = defineSkillGroup({
   id: 'a8166fd3-1aab-4794-a7cc-606ce922ce96',
   name: {
     en: 'Digital Images',
+    it: "Immagini digitali",
     zh: '数字图像',
     hi: 'पिक्सेल, आकृतियों, परतों और चुनिंदा बदलावों से डिजिटल चित्र बनाएँ।',
     es: 'Crear imágenes digitales con píxeles, formas, capas y ediciones selectivas.',
@@ -51,6 +52,7 @@ export const digitalImages_SkillGroup_Data = defineSkillGroup({
     methodological: 'Pixel and path-based media allow complementary approaches to composition and selective revision.',
     frontend: {
       en: 'Make digital pictures using pixels, shapes, layers and selective changes.',
+      it: "Crea immagini digitali usando pixel, forme, livelli e modifiche mirate.",
       zh: '使用像素、形状、图层和局部调整创作数字图像。',
       hi: 'पिक्सेल, आकृतियों, परतों और चुनिंदा बदलावों से डिजिटल चित्र बनाएँ।',
       es: 'Crea imágenes digitales con píxeles, formas, capas y cambios selectivos.',
