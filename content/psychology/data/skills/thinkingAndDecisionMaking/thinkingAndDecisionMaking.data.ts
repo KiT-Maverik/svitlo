@@ -11,6 +11,7 @@ export const thinkingAndDecisionMaking_SkillDomain_Data = defineSkillDomain({
   id: 'ef02b82d-bf4c-438b-8b82-f1a69855dada',
   title: {
     en: 'Thinking and Decision-Making',
+    it: 'Pensiero e processi decisionali',
     zh: '思维与决策',
     hi: 'चिंतन और निर्णय लेना',
     es: 'Pensamiento y toma de decisiones',
@@ -61,6 +62,7 @@ export const thinkingAndDecisionMaking_SkillDomain_Data = defineSkillDomain({
       'Cognitive processes create concepts, guide inferences, solve problems, and select actions under limited information. The focus is what people actually do, not whether their reasoning satisfies a formal philosophical standard.',
     frontend: {
       en: 'Explore how people form concepts, solve problems and make imperfect decisions.',
+      it: 'Esplora come le persone formino concetti, risolvano problemi e prendano decisioni imperfette.',
       zh: '探索人们如何形成概念、解决问题并作出不总是完美的决定。',
       hi: 'जानें कि लोग अवधारणाएँ कैसे बनाते, समस्याएँ कैसे हल करते और कभी-कभी अपूर्ण निर्णय कैसे लेते हैं।',
       es: 'Explora cómo las personas forman conceptos, resuelven problemas y toman decisiones imperfectas.',
