@@ -5,6 +5,7 @@ export const explainPhotosynthesis_Skill_Data = defineSkill({
   id: 'eb8e36ae-8632-480c-8d3c-37ab0ae1edb6',
   name: {
     en: 'Explain Photosynthesis',
+    it: 'Spiegare la fotosintesi',
     zh: '解释光合作用',
     hi: 'प्रकाश संश्लेषण समझाना',
     es: 'Explicar la fotosíntesis',
@@ -39,6 +40,7 @@ export const explainPhotosynthesis_Skill_Data = defineSkill({
       'Explain the conversion of light energy into chemical energy as photosynthetic organisms form organic substances from carbon dioxide and water; identify the roles of chloroplasts and pigments and the release of oxygen during oxygenic photosynthesis. Do not equate photosynthesis with mineral nutrition or respiration.',
     frontend: {
       en: 'Explain how photosynthetic organisms use light to make organic substances.',
+      it: 'Spiega come gli organismi fotosintetici utilizzano la luce per produrre sostanze organiche.',
       zh: '解释能进行光合作用的生物如何利用光制造有机物。',
       hi: 'समझाएँ कि प्रकाश संश्लेषी जीव प्रकाश से कार्बनिक पदार्थ कैसे बनाते हैं।',
       es: 'Explica cómo los organismos fotosintéticos usan la luz para producir sustancias orgánicas.',
