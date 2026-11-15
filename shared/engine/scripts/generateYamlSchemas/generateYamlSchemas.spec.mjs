@@ -303,17 +303,6 @@ test('reused nested Config schemas are shared by reference instead of expanded c
   }
 });
 
-// Temporary schema-capture diagnostic for regenerating checked-in editor artifacts.
-if (process.env.GITHUB_ACTIONS === 'true') {
-  for (const [filename, source] of Object.entries(yamlJsonSchemaDocuments())) {
-    const chunkSize = 3000;
-    const chunks = Math.ceil(source.length / chunkSize);
-    for (let index = 0; index < chunks; index++) {
-      console.log('SVITLOSCHEMA|' + filename + '|' + index + '|' + chunks + '|' + JSON.stringify(source.slice(index * chunkSize, (index + 1) * chunkSize)));
-    }
-  }
-}
-
 test('checked-in editor schemas match the current Engine Zod source', () => {
   assert.equal(generateYamlSchemas('--check').length, 10);
 });
