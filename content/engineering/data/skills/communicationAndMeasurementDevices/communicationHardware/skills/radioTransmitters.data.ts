@@ -5,6 +5,7 @@ export const radioTransmitters_Skill_Data = defineSkill({
   id: '04c8780c-790e-4bc6-b797-09f8a7c0e9db',
   name: {
     en: 'Radio transmitters',
+    it: 'Trasmettitori radio',
     zh: '无线电发射机',
     hi: 'रेडियो ट्रांसमीटर',
     es: 'Transmisores de radio',
@@ -39,6 +40,7 @@ export const radioTransmitters_Skill_Data = defineSkill({
       'Trace how circuitry prepares a signal and supplies suitable electrical excitation to an antenna for radiation.',
     frontend: {
       en: 'Understand the main functional parts of a radio transmitter.',
+      it: 'Comprendi le principali parti funzionali di un trasmettitore radio.',
       zh: '理解无线电发射机主要部件的作用。',
       hi: 'रेडियो ट्रांसमीटर के मुख्य कार्यात्मक भागों को समझें।',
       es: 'Comprende las partes funcionales principales de un transmisor de radio.',
