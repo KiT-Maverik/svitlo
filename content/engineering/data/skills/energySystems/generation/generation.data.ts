@@ -13,6 +13,7 @@ export const generation_SkillGroup_Data = defineSkillGroup({
   id: '0a132a12-8f66-47a2-bbe0-3bb6c20f2b00',
   name: {
     en: 'Generation',
+    it: 'Produzione di energia elettrica',
     zh: '发电',
     hi: 'विद्युत उत्पादन',
     es: 'Generación de energía',
@@ -54,6 +55,7 @@ export const generation_SkillGroup_Data = defineSkillGroup({
       'Electricity and heat can be produced through different converter chains with distinct resource and operating constraints.',
     frontend: {
       en: 'Explore different technical ways to produce electrical power.',
+      it: 'Esplora diversi metodi tecnici per produrre energia elettrica.',
       zh: '探索生产电力的不同技术方法。',
       hi: 'बिजली पैदा करने के अलग-अलग तकनीकी तरीके जानें।',
       es: 'Explora distintas formas técnicas de producir electricidad.',
