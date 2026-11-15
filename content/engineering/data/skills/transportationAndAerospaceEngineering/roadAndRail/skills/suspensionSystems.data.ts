@@ -5,6 +5,7 @@ export const suspensionSystems_Skill_Data = defineSkill({
   id: '4f38b0e0-d390-4443-b278-61d194edebeb',
   name: {
     en: 'Suspension systems',
+    it: 'Sistemi di sospensione',
     zh: '悬架系统',
     hi: 'निलंबन प्रणालियाँ',
     es: 'Sistemas de suspensión',
@@ -38,6 +39,7 @@ export const suspensionSystems_Skill_Data = defineSkill({
     methodological: 'Relate springs, dampers and supports to maintaining contact and controlling motion.',
     frontend: {
       en: 'Recognize how suspensions manage loads and road irregularities.',
+      it: 'Riconosci come le sospensioni gestiscono i carichi e le irregolarità della strada.',
       zh: '认识悬架如何承受载荷并减缓道路不平造成的影响。',
       hi: 'जानें कि निलंबन भार और सड़क की असमानताओं को कैसे संभालता है।',
       es: 'Reconoce cómo la suspensión gestiona cargas y las irregularidades del camino.',
