@@ -13,6 +13,7 @@ export const electricalMeasurementAndProtection_SkillGroup_Data = defineSkillGro
   id: 'e1010bac-5dbe-4d67-9461-de50a0b1b608',
   name: {
     en: 'Electrical Measurement and Protection',
+    it: 'Misure e protezioni elettriche',
     zh: '电气测量与保护',
     hi: 'विद्युत मापन और संरक्षण',
     es: 'Medición y protección eléctrica',
@@ -54,6 +55,7 @@ export const electricalMeasurementAndProtection_SkillGroup_Data = defineSkillGro
       'Measurements must be connected correctly, while protective devices prevent harmful operating conditions rather than simply switching equipment normally.',
     frontend: {
       en: 'Learn how electrical measurements and protection devices support safety.',
+      it: 'Scopri come le misurazioni elettriche e i dispositivi di protezione contribuiscono alla sicurezza.',
       zh: '了解电气测量与保护装置如何提高安全性。',
       hi: 'जानें कि विद्युत मापन और सुरक्षा उपकरण सुरक्षा कैसे बढ़ाते हैं।',
       es: 'Aprende cómo las mediciones y protecciones eléctricas mejoran la seguridad.',
