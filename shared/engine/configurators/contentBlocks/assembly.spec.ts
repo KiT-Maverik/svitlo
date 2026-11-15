@@ -500,19 +500,32 @@ describe('Configurators', () => {
         });
         const patch = { slides: { items: { first: { locale: { alt: 'Updated' } } } } };
         const publication = carousel.build.overrides(patch, { languages: ['en', 'uk'] });
-        assert.deepEqual(publication.base.locale?.slides, [{ src: 'https://example.com/a.png', alt: 'Updated' }]);
+        const expected = {
+          id,
+          slug: 'first',
+          type: 'image',
+          params: { fill: true, aspectRatio: 1.5 },
+          locale: { src: 'https://example.com/a.png', alt: 'Updated' },
+        };
+        assert.deepEqual(publication.base.locale?.slides, [expected]);
         patch.slides.items.first.locale.alt = 'Mutated caller';
-        assert.equal(publication.base.locale?.slides?.[0]?.alt, 'Updated');
-        if (publication.base.locale?.slides?.[0]) publication.base.locale.slides[0].alt = 'Mutated result';
+        const published = publication.base.locale?.slides?.[0];
+        assert.equal(published?.type, 'image');
+        if (published?.type === 'image') {
+          assert.equal(published.locale.alt, 'Updated');
+          published.locale.alt = 'Mutated result';
+        }
         assert.deepEqual(
           carousel.build.overrides(
             { slides: { items: { first: { locale: { alt: 'Updated' } } } } },
             { languages: ['en', 'uk'] },
           ).base.locale?.slides,
-          [{ src: 'https://example.com/a.png', alt: 'Updated' }],
+          [expected],
         );
         authored.alt = 'Mutated author';
-        assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).base.locale?.slides?.[0]?.alt, 'Original');
+        const original = carousel.build.props({ languages: ['en', 'uk'] }).base.locale?.slides?.[0];
+        assert.equal(original?.type, 'image');
+        if (original?.type === 'image') assert.equal(original.locale.alt, 'Original');
         assert.throws(
           () =>
             carousel.build.overrides({ slides: { items: { first: { locale: { typo: 'invalid' } } } } } as never, {
