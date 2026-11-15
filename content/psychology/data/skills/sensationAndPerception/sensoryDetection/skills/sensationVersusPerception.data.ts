@@ -5,6 +5,7 @@ export const sensationVersusPerception_Skill_Data = defineSkill({
   id: '1fb21908-12ad-4031-98b0-a17d8faede5b',
   name: {
     en: 'Sensation versus Perception',
+    it: 'Sensazione e percezione a confronto',
     zh: '感觉与知觉的区别',
     hi: 'संवेदना बनाम प्रत्यक्षण',
     es: 'Sensación frente a percepción',
@@ -39,6 +40,7 @@ export const sensationVersusPerception_Skill_Data = defineSkill({
       'Distinguish sensory encoding of stimulation from the interpretation of what that stimulation represents.',
     frontend: {
       en: 'Distinguish detecting a stimulus from interpreting what it means.',
+      it: 'Distingui la rilevazione di uno stimolo dall\'interpretazione del suo significato.',
       zh: '区分检测刺激与解释刺激意味着什么。',
       hi: 'उत्तेजना का पता लगाने और उसका अर्थ समझने में अंतर करें।',
       es: 'Distingue entre detectar un estímulo e interpretar su significado.',

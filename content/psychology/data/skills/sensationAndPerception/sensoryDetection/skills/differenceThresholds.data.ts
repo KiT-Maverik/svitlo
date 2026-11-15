@@ -5,6 +5,7 @@ export const differenceThresholds_Skill_Data = defineSkill({
   id: 'cf68cc37-d3a0-4a8d-a522-533be3994bc7',
   name: {
     en: 'Difference Thresholds',
+    it: 'Soglie differenziali',
     zh: '差别阈限',
     hi: 'भेद सीमा',
     es: 'Umbrales diferenciales',
@@ -38,6 +39,7 @@ export const differenceThresholds_Skill_Data = defineSkill({
     methodological: 'Relate the detectable difference between stimuli to their starting intensity and context.',
     frontend: {
       en: 'Recognize when a difference between two stimuli becomes noticeable.',
+      it: 'Riconosci quando una differenza tra due stimoli diventi percepibile.',
       zh: '认识两个刺激之间的差异何时能够被发现。',
       hi: 'पहचानें कि दो उत्तेजनाओं के बीच अंतर कब महसूस होने लगता है।',
       es: 'Reconoce cuándo empieza a notarse una diferencia entre dos estímulos.',
