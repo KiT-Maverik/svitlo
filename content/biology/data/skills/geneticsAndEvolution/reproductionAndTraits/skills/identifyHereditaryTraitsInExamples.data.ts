@@ -5,6 +5,7 @@ export const identifyHereditaryTraitsInExamples_Skill_Data = defineSkill({
   id: 'e3891512-115c-4542-8807-1cd48de726a1',
   name: {
     en: 'Identify Hereditary Traits in Examples',
+    it: 'Individuare caratteri ereditari negli esempi',
     zh: '从实例中识别遗传性状',
     hi: 'उदाहरणों में वंशानुगत लक्षण पहचानना',
     es: 'Identificar rasgos hereditarios en ejemplos',
@@ -39,6 +40,7 @@ export const identifyHereditaryTraitsInExamples_Skill_Data = defineSkill({
       'Identify similarities between generations associated with the transmission of genetic information.',
     frontend: {
       en: 'Recognize inherited traits in examples of parents and offspring.',
+      it: 'Riconosci i caratteri ereditari in esempi di genitori e discendenti.',
       zh: '从亲代和子代的实例中辨认遗传性状。',
       hi: 'माता-पिता और संतान के उदाहरणों में विरासत में मिले लक्षण पहचानें।',
       es: 'Reconoce rasgos heredados en ejemplos de progenitores y descendientes.',
