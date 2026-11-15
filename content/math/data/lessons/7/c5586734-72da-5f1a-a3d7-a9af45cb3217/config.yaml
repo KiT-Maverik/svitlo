@@ -20,10 +20,10 @@ config:
       en: 'Check Division with Multiplication'
   section:
     items:
-      section1:
+      representThreeGroupsOfFour:
         config:
           id: 'c5586734-72da-5f1a-a3d7-000000000004'
-          slug: 'section1'
+          slug: 'representThreeGroupsOfFour'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'From Three Times Four to Twelve'
           content:
             items:
-              text1:
+              buildThreeGroupsOfFour:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-000000000001'
-                  slug: 'text1'
+                  slug: 'buildThreeGroupsOfFour'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: - **Text Resource (currently renderable):** “Three equal groups have four counters in each. What multiplication equation names all twelve?”'
-              scene1:
+              modelMultiplicationProduct:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-000000000002'
-                  slug: 'scene1'
+                  slug: 'modelMultiplicationProduct'
                   type: 'scene'
                   params: {}
                   locale:
@@ -119,10 +119,10 @@ config:
 
                     Generic `scene` Resource rendering exists, but **Inverse Fact Family Machine is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: Ensure the inverse-check procedure always compares the reconstructed product against the _original dividend_, not against the proposed quotient. One fact family is an example, not a claim to assess full division fluency.
                   productionNotes: "Unique Scene placement scene1 in From Three Times Four to Twelve. Original: - **Scene Resource (generic type renderable; custom component PROPOSED):** `Inverse Fact Family Machine` (specification preserved in config.yaml), independent Section 1. Show 3 labeled groups × 4 each (12 unique counter IDs) and a native 'Build product' action. Display 3×4=12 and label group count 3, group size 4, product 12.. Status: provisional only."
-              markdown1:
+              explainOriginalProduct:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-000000000003'
-                  slug: 'markdown1'
+                  slug: 'explainOriginalProduct'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -132,9 +132,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: - **Markdown Resource (currently renderable):** “Three groups of four make twelve. We will use this known whole to explore what happens when the group count or group size is asked for.” Mathematical record: **3 × 4 = 12**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'buildThreeGroupsOfFour'
+              - 'modelMultiplicationProduct'
+              - 'explainOriginalProduct'
         production:
           purpose: 'From Three Times Four to Twelve'
           pedagogicalIntent: |-
@@ -151,10 +151,10 @@ config:
             - **Planned Note:** No new Note in this Section.
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section2:
+      reverseMultiplicationByDivision:
         config:
           id: 'c5586734-72da-5f1a-a3d7-000000000008'
-          slug: 'section2'
+          slug: 'reverseMultiplicationByDivision'
           type: 'content'
           params: {}
           locale:
@@ -164,10 +164,10 @@ config:
               en: 'Undo Multiplication by Sharing'
           content:
             items:
-              text1:
+              shareTwelveIntoThreeGroups:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-000000000005'
-                  slug: 'text1'
+                  slug: 'shareTwelveIntoThreeGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -176,10 +176,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: - **Text Resource (currently renderable):** “If twelve are shared among three groups, how many are in each? Which multiplication checks it?”'
-              scene1:
+              showInverseRelationship:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-000000000006'
-                  slug: 'scene1'
+                  slug: 'showInverseRelationship'
                   type: 'scene'
                   params: {}
                   locale:
@@ -250,10 +250,10 @@ config:
 
                     Generic `scene` Resource rendering exists, but **Inverse Fact Family Machine is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: Ensure the inverse-check procedure always compares the reconstructed product against the _original dividend_, not against the proposed quotient. One fact family is an example, not a claim to assess full division fluency.
                   productionNotes: "Unique Scene placement scene1 in Undo Multiplication by Sharing. Original: - **Scene Resource (generic type renderable; custom component PROPOSED):** `Inverse Fact Family Machine` (specification preserved in config.yaml), independent Section 2. Re-use the 12-counter group model, not duplicate counters. Present total 12 and three groups, reveal four each; show exact 12÷3=4 then 'Check' 3×4=12, with all numerical roles named.. Status: provisional only."
-              markdown1:
+              verifyThreeTimesFour:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-000000000007'
-                  slug: 'markdown1'
+                  slug: 'verifyThreeTimesFour'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -263,9 +263,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: - **Markdown Resource (currently renderable):** “Twelve divided by three gives four in each group. Three groups times four each make the original twelve, so our quotient fits.” Mathematical record: **12 ÷ 3 = 4; 3 × 4 = 12**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'shareTwelveIntoThreeGroups'
+              - 'showInverseRelationship'
+              - 'verifyThreeTimesFour'
         production:
           purpose: 'Undo Multiplication by Sharing'
           pedagogicalIntent: |-
@@ -282,10 +282,10 @@ config:
             - **Planned Note:** “To check an exact division, multiply divisor by quotient to get the dividend.” once the model and its numerical reasoning are explained (not yet wired).
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section3:
+      findOtherFactFamilyDivision:
         config:
           id: 'c5586734-72da-5f1a-a3d7-00000000000c'
-          slug: 'section3'
+          slug: 'findOtherFactFamilyDivision'
           type: 'content'
           params: {}
           locale:
@@ -295,10 +295,10 @@ config:
               en: 'Another Division From the Same Product'
           content:
             items:
-              text1:
+              formGroupsOfFour:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-000000000009'
-                  slug: 'text1'
+                  slug: 'formGroupsOfFour'
                   type: 'text'
                   params: {}
                   locale:
@@ -307,10 +307,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: - **Text Resource (currently renderable):** “What if each group must contain four? How many groups of four can we make from twelve?”'
-              scene1:
+              exploreOtherDivision:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-00000000000a'
-                  slug: 'scene1'
+                  slug: 'exploreOtherDivision'
                   type: 'scene'
                   params: {}
                   locale:
@@ -381,10 +381,10 @@ config:
 
                     Generic `scene` Resource rendering exists, but **Inverse Fact Family Machine is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: Ensure the inverse-check procedure always compares the reconstructed product against the _original dividend_, not against the proposed quotient. One fact family is an example, not a claim to assess full division fluency.
                   productionNotes: "Unique Scene placement scene1 in Another Division From the Same Product. Original: - **Scene Resource (generic type renderable; custom component PROPOSED):** `Inverse Fact Family Machine` (specification preserved in config.yaml), independent Section 3. Change the story label to 'four in each', revealing three groups; annotate 12÷4=3, and check divisor 4 × quotient 3 = 12. Show both division facts next to 3×4=12 with their story labels.. Status: provisional only."
-              markdown1:
+              explainFactFamily:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-00000000000b'
-                  slug: 'markdown1'
+                  slug: 'explainFactFamily'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -394,9 +394,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: - **Markdown Resource (currently renderable):** “Twelve contains three complete groups of four. Multiplying four by three returns twelve. The divisor and quotient have different positions now, so we read them carefully.” Mathematical record: **12 ÷ 4 = 3; 4 × 3 = 12**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'formGroupsOfFour'
+              - 'exploreOtherDivision'
+              - 'explainFactFamily'
         production:
           purpose: 'Another Division From the Same Product'
           pedagogicalIntent: |-
@@ -413,10 +413,10 @@ config:
             - **Planned Note:** “One multiplication fact can help us read two connected exact division facts.” once the model and its numerical reasoning are explained (not yet wired).
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
-      section4:
+      verifyNewDivision:
         config:
           id: 'c5586734-72da-5f1a-a3d7-000000000010'
-          slug: 'section4'
+          slug: 'verifyNewDivision'
           type: 'content'
           params: {}
           locale:
@@ -426,10 +426,10 @@ config:
               en: 'Check a New Quotient'
           content:
             items:
-              text1:
+              judgeTwentyDividedByFive:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-00000000000d'
-                  slug: 'text1'
+                  slug: 'judgeTwentyDividedByFive'
                   type: 'text'
                   params: {}
                   locale:
@@ -438,10 +438,10 @@ config:
                 production:
                   purpose: 'Learner-facing authored text resource'
                   specification: 'Authored resource line: - **Text Resource (currently renderable):** “Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?”'
-              scene1:
+              testDivisionAnswer:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-00000000000e'
-                  slug: 'scene1'
+                  slug: 'testDivisionAnswer'
                   type: 'scene'
                   params: {}
                   locale:
@@ -512,10 +512,10 @@ config:
 
                     Generic `scene` Resource rendering exists, but **Inverse Fact Family Machine is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: Ensure the inverse-check procedure always compares the reconstructed product against the _original dividend_, not against the proposed quotient. One fact family is an example, not a claim to assess full division fluency.
                   productionNotes: 'Unique Scene placement scene1 in Check a New Quotient. Original: - **Scene Resource (generic type renderable; custom component PROPOSED):** `Inverse Fact Family Machine` (specification preserved in config.yaml), independent Section 4. Independent transfer board with 20 counters, target 5 groups. Child checks candidates 4 or 5 by computing 5×candidate (20 vs 25) with optional visual groups, then selects which matches ORIGINAL dividend twenty.. Status: provisional only.'
-              markdown1:
+              explainMultiplicationCheck:
                 config:
                   id: 'c5586734-72da-5f1a-a3d7-00000000000f'
-                  slug: 'markdown1'
+                  slug: 'explainMultiplicationCheck'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -525,9 +525,9 @@ config:
                   purpose: 'Learner-facing authored markdown resource'
                   specification: 'Authored resource line: - **Markdown Resource (currently renderable):** “The proposed quotient is four. Five groups of four use twenty counters, so 20 divided by five equals four. Five groups of five would need twenty-five; it is not the same original total.” Mathematical record: **20 ÷ 5 = 4 because 5 × 4 = 20**.'
             order:
-              - 'text1'
-              - 'scene1'
-              - 'markdown1'
+              - 'judgeTwentyDividedByFive'
+              - 'testDivisionAnswer'
+              - 'explainMultiplicationCheck'
         production:
           purpose: 'Check a New Quotient'
           pedagogicalIntent: |-
@@ -545,10 +545,10 @@ config:
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
           productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'representThreeGroupsOfFour'
+      - 'reverseMultiplicationByDivision'
+      - 'findOtherFactFamilyDivision'
+      - 'verifyNewDivision'
   flashcards:
     items: {}
     order: []
