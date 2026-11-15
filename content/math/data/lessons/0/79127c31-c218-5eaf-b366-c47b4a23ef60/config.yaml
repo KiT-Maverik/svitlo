@@ -15,10 +15,10 @@ config:
       en: 'Share Equally: How Many in Each Group?'
   section:
     items:
-      section1GiveEveryoneAnEqualShare:
+      shareTwelveEqually:
         config:
           id: '76e137d7-5530-4dee-9b92-82e1744c36a0'
-          slug: 'section1GiveEveryoneAnEqualShare'
+          slug: 'shareTwelveEqually'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'Give Everyone an Equal Share'
           content:
             items:
-              text1:
+              askEqualSharesOfTwelve:
                 config:
                   id: '410e433a-7d44-4f3f-8e77-68b046180115'
-                  slug: 'text1'
+                  slug: 'askEqualSharesOfTwelve'
                   type: 'text'
                   params: {}
                   locale:
@@ -110,7 +110,7 @@ config:
                     Generic Scene rendering is supported; **Fair Sharing Workshop is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Formally introducing quotient/remainder terminology is optional for Grade 2; retain the accuracy of the non-exact case. Do not overlap the existing unknownDividend Lesson's purpose of recovering a hidden starting total.
                   purpose: 'Proposed interactive Scene for Give Everyone an Equal Share'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ['text1', 'fairSharingWorkshop']
+            order: ['askEqualSharesOfTwelve', 'fairSharingWorkshop']
         production:
           purpose: 'Give Everyone an Equal Share'
           pedagogicalIntent: |
@@ -129,10 +129,10 @@ config:
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2WhatDoTheNumbersMean:
+      interpretDivisionRoles:
         config:
           id: '4bbcbe2b-4151-4546-9508-4f090ef7b774'
-          slug: 'section2WhatDoTheNumbersMean'
+          slug: 'interpretDivisionRoles'
           type: 'content'
           params: {}
           locale:
@@ -142,10 +142,10 @@ config:
               en: 'What Do the Numbers Mean?'
           content:
             items:
-              text1:
+              nameDividendDivisorQuotient:
                 config:
                   id: '3ab26bce-21ff-4237-86af-ba38d52bc639'
-                  slug: 'text1'
+                  slug: 'nameDividendDivisorQuotient'
                   type: 'text'
                   params: {}
                   locale:
@@ -224,7 +224,7 @@ config:
                     Generic Scene rendering is supported; **Fair Sharing Workshop is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Formally introducing quotient/remainder terminology is optional for Grade 2; retain the accuracy of the non-exact case. Do not overlap the existing unknownDividend Lesson's purpose of recovering a hidden starting total.
                   purpose: 'Proposed interactive Scene for What Do the Numbers Mean?'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ['text1', 'fairSharingWorkshop']
+            order: ['nameDividendDivisorQuotient', 'fairSharingWorkshop']
         production:
           purpose: 'What Do the Numbers Mean?'
           pedagogicalIntent: |
@@ -243,10 +243,10 @@ config:
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3WhatIfOneCounterIsLeft:
+      exploreRemainder:
         config:
           id: '8e4ad9fd-39f7-4d94-945a-8497e2187fa6'
-          slug: 'section3WhatIfOneCounterIsLeft'
+          slug: 'exploreRemainder'
           type: 'content'
           params: {}
           locale:
@@ -256,10 +256,10 @@ config:
               en: 'What if One Counter Is Left?'
           content:
             items:
-              text1:
+              askShareThirteen:
                 config:
                   id: '8562711c-ebcd-4d59-a077-f3fadb2b3217'
-                  slug: 'text1'
+                  slug: 'askShareThirteen'
                   type: 'text'
                   params: {}
                   locale:
@@ -338,7 +338,7 @@ config:
                     Generic Scene rendering is supported; **Fair Sharing Workshop is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Formally introducing quotient/remainder terminology is optional for Grade 2; retain the accuracy of the non-exact case. Do not overlap the existing unknownDividend Lesson's purpose of recovering a hidden starting total.
                   purpose: 'Proposed interactive Scene for What if One Counter Is Left?'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ['text1', 'fairSharingWorkshop']
+            order: ['askShareThirteen', 'fairSharingWorkshop']
         production:
           purpose: 'What if One Counter Is Left?'
           pedagogicalIntent: |
@@ -357,10 +357,10 @@ config:
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4ShareTenWithTwoGroups:
+      shareTenBetweenTwo:
         config:
           id: 'c045d934-2fec-45ff-9d4f-6b2e6c45c251'
-          slug: 'section4ShareTenWithTwoGroups'
+          slug: 'shareTenBetweenTwo'
           type: 'content'
           params: {}
           locale:
@@ -370,10 +370,10 @@ config:
               en: 'Share Ten With Two Groups'
           content:
             items:
-              text1:
+              askTenInTwoGroups:
                 config:
                   id: 'd6a769f9-3173-49c2-9bab-9b7f1ca00b20'
-                  slug: 'text1'
+                  slug: 'askTenInTwoGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -452,7 +452,7 @@ config:
                     Generic Scene rendering is supported; **Fair Sharing Workshop is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Formally introducing quotient/remainder terminology is optional for Grade 2; retain the accuracy of the non-exact case. Do not overlap the existing unknownDividend Lesson's purpose of recovering a hidden starting total.
                   purpose: 'Proposed interactive Scene for Share Ten With Two Groups'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ['text1', 'fairSharingWorkshop']
+            order: ['askTenInTwoGroups', 'fairSharingWorkshop']
         production:
           purpose: 'Share Ten With Two Groups'
           pedagogicalIntent: |
@@ -473,10 +473,10 @@ config:
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
     order:
       [
-        'section1GiveEveryoneAnEqualShare',
-        'section2WhatDoTheNumbersMean',
-        'section3WhatIfOneCounterIsLeft',
-        'section4ShareTenWithTwoGroups',
+        'shareTwelveEqually',
+        'interpretDivisionRoles',
+        'exploreRemainder',
+        'shareTenBetweenTwo',
       ]
   flashcards:
     items: {}
