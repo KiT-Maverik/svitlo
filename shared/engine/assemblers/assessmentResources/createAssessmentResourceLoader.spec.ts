@@ -1,7 +1,15 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
+import type { ContentBlock_Props } from '../../configurators/contentBlocks/contentBlock.types';
 import { createAssessmentResourceLoader, type ReadAssessmentFiles } from './createAssessmentResourceLoader';
+
+
+function textValue(block: ContentBlock_Props | undefined): string {
+  assert.equal(block?.type, 'text');
+  if (block?.type !== 'text') throw new Error('Expected a resolved Text block');
+  return block.locale.value;
+}
 
 const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const questionId = '08c3bae5-081a-5afc-bccf-e44078e137f2';
@@ -110,8 +118,8 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
   const uk = await loader.loadFlashcards({ lessonId, language: 'uk', ids: [cardId] });
   assert.equal(uk.length, 1);
   assert.equal(uk[0].id, cardId);
-  assert.equal(uk[0].content.front[0].locale.value, 'Перед');
-  assert.equal(uk[0].content.back[0].locale.value, 'Назад');
+  assert.equal(textValue(uk[0].content.front[0]), 'Перед');
+  assert.equal(textValue(uk[0].content.back[0]), 'Назад');
   assert.deepEqual(requests[0], [prefix + '/assessment-manifest.json']);
   assert.deepEqual(requests[1], [
     prefix + '/flashcards/' + cardId + '/base.json',
@@ -124,6 +132,6 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
   const third = await loader.loadFlashcards({ lessonId, language: 'uk', ids: [cardId] });
   assert.equal(third[0].content.front[0].slug, 'front', 'Cached Props must be returned as independent snapshots');
   const en = await loader.loadFlashcards({ lessonId, language: 'en', ids: [cardId] });
-  assert.equal(en[0].content.back[0].locale.value, 'Back');
+  assert.equal(textValue(en[0].content.back[0]), 'Back');
   assert.equal(requests.length, count + 1, 'Different locale needs separate selected files');
 });
