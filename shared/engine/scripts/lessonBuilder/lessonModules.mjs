@@ -83,6 +83,22 @@ export function childContext(parent, key, owner = {}) {
 }
 
 const asProperty = key => identifier.test(key) ? key : JSON.stringify(key);
+// Canonical file extensions for Code's display language. The authored YAML
+// keeps the language name; source modules read the adjacent code.<extension>.
+const codeExtensions = {
+  typescript: 'ts', ts: 'ts', tsx: 'tsx',
+  javascript: 'js', js: 'js', jsx: 'jsx',
+  python: 'py', py: 'py', html: 'html', css: 'css',
+  scss: 'scss', json: 'json', yaml: 'yaml', yml: 'yml',
+  bash: 'sh', shell: 'sh', sh: 'sh', sql: 'sql',
+  java: 'java', kotlin: 'kt', swift: 'swift', rust: 'rs', go: 'go',
+  c: 'c', cpp: 'cpp', csharp: 'cs', cs: 'cs',
+  php: 'php', ruby: 'rb', rb: 'rb', dart: 'dart', xml: 'xml',
+  markdown: 'md', md: 'md',
+};
+const rawExpression = Symbol('generated TypeScript expression');
+const expression = source => ({ [rawExpression]: source });
+
 const indent = level => '  '.repeat(level);
 const javascriptKeywords = new Set([
   'await', 'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger',
@@ -153,6 +169,51 @@ export function renderLessonModules(lesson, language, options = {}) {
   if (!record(filtered) || filtered.type !== 'lesson')
     throw new Error('config.yaml:config.type: expected lesson type for the Lesson entrypoint');
   const files = new Map();
+  /**
+   * Extract only actually authored learner text. There is no mechanical
+   * synthesis from production.specification (which is not lesson copy).
+   * Markdown's invariant and localized shapes are mutually exclusive.
+   */
+  function fileBackedNode(node, context, directory) {
+    if (context !== 'block') return node;
+    if (node.type === 'markdown' && record(node.locale) && node.locale.value !== undefined) {
+      const source = node.locale.value;
+      const authored = { ...node, locale: { ...node.locale } };
+      if (typeof source === 'string') {
+        if (!source.trim()) throw new Error('Empty authored Markdown source: ' + directory);
+        put(join(directory, 'text.md'), source);
+        authored.files = { moduleUrl: expression('import.meta.url') };
+      } else if (record(source)) {
+        const languages = Object.keys(source);
+        if (languages.length === 0) throw new Error('Empty localized Markdown source: ' + directory);
+        for (const language of languages) {
+          if (!/^[a-z]{2}(?:-[A-Z]{2})?$/.test(language) || typeof source[language] !== 'string' || !source[language].trim())
+            throw new Error('Invalid authored Markdown locale ' + JSON.stringify(language) + ': ' + directory);
+          put(join(directory, 'locale', language + '.md'), source[language]);
+        }
+        authored.files = { moduleUrl: expression('import.meta.url'), languages };
+      } else {
+        throw new Error('Invalid authored Markdown value: ' + directory);
+      }
+      delete authored.locale.value;
+      return authored;
+    }
+    if (node.type === 'code' && record(node.params) && node.params.codeAsText !== undefined) {
+      const language = node.params.language;
+      const source = node.params.codeAsText;
+      if (typeof source !== 'string' || !source.trim())
+        throw new Error('Empty or invalid authored Code source: ' + directory);
+      const extension = typeof language === 'string' ? codeExtensions[language.toLowerCase()] : undefined;
+      if (!extension) throw new Error('Unsupported authored Code language ' + JSON.stringify(language) + ': ' + directory);
+      put(join(directory, 'code.' + extension), source);
+      return {
+        ...node,
+        params: { ...node.params, codeAsText: expression('readCodeSource(import.meta.url, ' + JSON.stringify(extension) + ')') },
+      };
+    }
+    return node;
+  }
+
   const languageValues = filtered.params?.languages;
   const hasLanguages = Array.isArray(languageValues) && languageValues.length > 0 &&
     languageValues.every(value => typeof value === 'string');
@@ -170,7 +231,8 @@ export function renderLessonModules(lesson, language, options = {}) {
     ? skillIndex(options.bookRoot) : new Map();
 
   function moduleImports(directory, names, factory, needsLanguages, languageValue = false) {
-    const output = ["import { " + factory + " } from '@svitlo/engine/build';"];
+    const factoryImports = factory === 'defineCode' ? factory + ', readCodeSource' : factory;
+    const output = ["import { " + factoryImports + " } from '@svitlo/engine/build';"];
     for (const [alias, { symbol, location }] of [...names.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
       const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
       output.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
@@ -190,7 +252,233 @@ export function renderLessonModules(lesson, language, options = {}) {
 
   // Render plain source values and move every Configurator position into a
   // child module. Its containing object's ordinary metadata remains untouched.
-  function render(value, context, ownerDirectory, imported, depth = 0, field = '$') {
+  function render(value, context, ownerDirectory, imported, depth = 0, field = '    if (context === 'nullableBlock') {
+      return value === null ? 'null' : render(value, 'block', ownerDirectory, imported, depth, field);
+    }
+    if (factoryContexts.has(context)) {
+      if (!record(value) || typeof value.type !== 'string')
+        throw new Error('config.yaml:' + field + '.type: missing type discriminator for ' + context + ' factory dispatch');
+      if (!factories[value.type])
+        throw new Error('config.yaml:' + field + '.type: unknown type "' + value.type + '"; no Engine define* factory');
+      if (typeof value.slug !== 'string' || !safeSlug.test(value.slug))
+        throw new Error('config.yaml:' + field + '.slug: unsafe or missing camelCase slug');
+      const symbol = symbolFor(value, context);
+      const childDirectory = join(ownerDirectory, value.slug);
+      emitNode(value, context, childDirectory);
+      let alias = symbol;
+      if (imported.has(alias) && imported.get(alias).location !== childDirectory) {
+        // Different semantic roles can legitimately contain blocks with the
+        // same slug. Keep each child export short; alias only at the importer.
+        const suffix = childDirectory.split('/').slice(-3).join('_');
+        alias = symbol + '_' + suffix;
+        let index = 2;
+        while (imported.has(alias)) alias = symbol + '_' + suffix + '_' + index++;
+      }
+      imported.set(alias, { symbol, location: childDirectory });
+      return alias;
+    }
+    if (Array.isArray(value)) {
+      if (!value.length) return '[]';
+      return '[\n' + value.map((item, index) =>
+        indent(depth + 1) + render(item, 'plain', ownerDirectory, imported, depth + 1, field + '[' + index + ']')
+      ).join(',\n') + '\n' + indent(depth) + ']';
+    }
+    if (!record(value)) {
+      if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) {
+        // Flashcard flag discriminants are inferred from a standalone const
+        // parameters declaration. Preserve their literal types without freezing
+        // mutable { items, order } collections via a blanket "as const".
+        if (typeof value === 'string' &&
+          /^\$\.parameters\.(?:flags|relationships)\.items\.[^.]+\.(?:type|color)$/.test(field))
+          return JSON.stringify(value) + ' as const';
+        return JSON.stringify(value);
+      }
+      throw new Error('config.yaml:' + field + ': unsupported YAML value');
+    }
+    const entries = Object.entries(value);
+    if (!entries.length) return '{}';
+    return '{\n' + entries.map(([key, child]) => {
+      const nextContext = childContext(context, key, value);
+      let nextDirectory = ownerDirectory;
+      if (context === 'questionBank') nextDirectory = join(ownerDirectory, key);
+      if (context === 'flashcardContent' && ['front', 'back', 'hint'].includes(key))
+        nextDirectory = join(ownerDirectory, key);
+      if (context === 'questionAnswers' && ['correct', 'incorrect', 'distractors'].includes(key))
+        nextDirectory = join(ownerDirectory, key);
+      if (context === 'questStageContent' && ['video', 'audio'].includes(key))
+        nextDirectory = join(ownerDirectory, key);
+      // Pair/Slot entries are plain named records rather than Configurators.
+      // Their map key still owns a directory, so repeated child slugs in
+      // different pairs never compete for the same generated file.
+      if (context === 'pairItems' || context === 'slotItems' ||
+          context === 'pair' && ['left', 'right'].includes(key) ||
+          context === 'slot' && key === 'correctAnswer')
+        nextDirectory = join(ownerDirectory, key);
+      const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, field + '.' + key);
+      return indent(depth + 1) + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered);
+    }).join(',\n') + '\n' + indent(depth) + '}';
+  }
+
+  function symbolFor(value, context) {
+    const stem = value.slug;
+    if (context === 'stage') return 'stage_' + stem;
+    if (context === 'task') return 'task_' + stem;
+    if (context === 'question') return value.type + '_' + stem;
+    return reserved.has(stem) || javascriptKeywords.has(stem) ? 'item_' + stem : stem;
+  }
+
+  function generateParameters(node, context, directory, imports) {
+    const bindings = new Map();
+    const uses = context === 'section' && node.type === 'quest' ? ['stages', 'tasks'] :
+      context === 'section' && sectionTypes.has(node.type) ? ['content'] :
+      context === 'block' && compositeTypes.has(node.type) ? [node.type === 'carousel' ? 'slides' : 'content'] :
+      context === 'checkpointItem' ? ['question', 'answer'] :
+      context === 'question' ? ['content'] :
+      context === 'flashcard' ? ['content', 'parameters'] :
+      context === 'stage' ? ['content'] :
+      context === 'task' ? ['scene'] : [];
+    for (const key of uses) {
+      if (!Object.hasOwn(node, key)) continue;
+      const owner = (
+        (context === 'section' && node.type === 'quest' && ['stages', 'tasks'].includes(key)) ||
+        (context === 'checkpointItem' && ['question', 'answer'].includes(key))
+      ) ? join(directory, key) : directory;
+      bindings.set(key, render(node[key], childContext(context, key, node), owner, imports, 0, '$.' + key));
+    }
+    return bindings;
+  }
+
+  function genericFor(node, context, bindings) {
+    if (!languagesType) return '';
+    const slug = JSON.stringify(node.slug);
+    const typeOf = key => bindings.has(key) ? 'typeof ' + key : '{}';
+    if (context === 'section' && node.type === 'quest')
+      return '<' + [slug, typeOf('stages'), typeOf('tasks'), languagesType].join(', ') + '>';
+    if ((context === 'section' && sectionTypes.has(node.type)) ||
+        (context === 'block' && compositeTypes.has(node.type)))
+      return '<' + [slug, 'typeof ' + (node.type === 'carousel' ? 'slides' : 'content') + '.items', languagesType].join(', ') + '>';
+    if (context === 'checkpointItem')
+      return '<' + [slug, bindings.has('answer') ? 'typeof answer.items' : '{}',
+        typeOf('question'), languagesType].join(', ') + '>';
+    if (context === 'question') return '<' + [slug, typeOf('content'), languagesType].join(', ') + '>';
+    if (context === 'flashcard') {
+      const content = name => bindings.has('content') && node.content?.[name] ? 'typeof content.' + name + '.items' : '{}';
+      const params = name => bindings.has('parameters') && node.parameters?.[name] ?
+        'typeof parameters.' + name + '.items' : '{}';
+      return '<' + [slug, content('front'), content('back'), content('hint'),
+        params('flags'), params('relationships'), languagesType].join(', ') + '>';
+    }
+    return '<' + [slug, languagesType].join(', ') + '>';
+  }
+
+  function emitNode(node, context, directory) {
+    const authored = fileBackedNode(node, context, directory);
+    const factory = factories[node.type];
+    if (!factory) throw new Error('config.yaml: unknown factory for ' + node.type);
+    const imports = new Map();
+    const bindings = generateParameters(authored, context, directory, imports);
+    // All bound children are rendered with real source names but are never
+    // inserted as an extra authored field into the Config.
+    const extra = [];
+    for (const [key, expression] of bindings) {
+      if (key === 'scene' || key === 'question') {
+        // A single nested Configurator is imported under its actual symbol;
+        // bind the field name through a local alias only when needed.
+        extra.push('const ' + key + ' = ' + expression + ';\n');
+      } else extra.push('const ' + key + ' = ' + expression + ';\n');
+    }
+    const fields = [];
+    for (const [key, value] of Object.entries(authored)) {
+      let rendered;
+      if (bindings.has(key)) rendered = key;
+      else rendered = render(value, childContext(context, key, authored), directory, imports, 1, '$.' + key);
+      fields.push('  ' + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered));
+    }
+    const content = fields.length ? '{\n' + fields.join(',\n') + '\n}' : '{}';
+    const name = symbolFor(node, context);
+    const importHead = moduleImports(directory, imports, factory, true);
+    const result = importHead + (extra.length ? extra.join('') + '\n' : '') +
+      'export const ' + name + ' = ' + factory + genericFor(node, context, bindings) + '(' + content + ');\n';
+    put(join(directory, 'index.ts'), result);
+  }
+
+  function emitCollection(field, context, directory) {
+    if (!Object.hasOwn(filtered, field)) return;
+    const imports = new Map();
+    const collection = render(filtered[field], context, directory, imports, 0, '$.' + field);
+    const lines = [];
+    for (const [alias, { symbol, location }] of [...imports.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
+      const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
+      lines.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
+    }
+    put(join(directory, 'index.ts'), (lines.length ? lines.join('\n') + '\n\n' : '') +
+      'export const ' + field + ' = ' + collection + ';\n');
+  }
+
+  emitCollection('section', 'sectionCollection', 'sections');
+  emitCollection('flashcards', 'flashcardCollection', 'flashcards');
+  emitCollection('questions', 'questionBank', 'questions');
+
+  const rootImports = ["import { defineLesson } from '@svitlo/engine/build';"];
+  for (const [field, directory] of [['section', 'sections'], ['flashcards', 'flashcards'], ['questions', 'questions']]) {
+    if (Object.hasOwn(filtered, field)) rootImports.push(
+      'import { ' + field + ' } from ' + JSON.stringify('./' + directory) + ';');
+  }
+  if (hasLanguages) {
+    rootImports.push("import { languages } from './constants';");
+    rootImports.push("import type { LessonLanguages } from './constants';");
+  }
+  const skillNames = new Map();
+  if (Array.isArray(skillIds)) {
+    for (const id of skillIds) {
+      const match = skills.get(id);
+      if (!match) throw new Error('Unresolved Skill ID ' + JSON.stringify(id) + ' in Lesson ' + filtered.slug);
+      if (skillNames.has(match.symbol) && skillNames.get(match.symbol) !== match.file)
+        throw new Error('Ambiguous Skill export ' + match.symbol);
+      skillNames.set(match.symbol, match.file);
+    }
+  }
+  for (const [symbol, absolute] of [...skillNames.entries()].sort((a,b) => a[0].localeCompare(b[0]))) {
+    const target = path.relative(options.outputFolder, absolute).split(path.sep).join('/').replace(/\.ts$/, '');
+    rootImports.push('import { ' + symbol + ' } from ' + JSON.stringify(target.startsWith('.') ? target : './' + target) + ';');
+  }
+  const rootFields = [];
+  for (const [key, value] of Object.entries(filtered)) {
+    if (key === 'skills' && Array.isArray(value)) {
+      rootFields.push('  skills: [' + value.map(id => skills.get(id).symbol + '.id').join(', ') + ']');
+      continue;
+    }
+    if (['section', 'flashcards', 'questions'].includes(key)) {
+      rootFields.push('  ' + key);
+      continue;
+    }
+    if (key === 'params' && record(value) && hasLanguages) {
+      const entries = Object.entries(value);
+      rootFields.push('  params: {\n' + entries.map(([name, v]) =>
+        '    ' + (name === 'languages' ? 'languages' : asProperty(name) + ': ' + render(v, 'plain', '', new Map(), 2, '$.params.' + name))
+      ).join(',\n') + '\n  }');
+      continue;
+    }
+    rootFields.push('  ' + asProperty(key) + ': ' + render(value, childContext('lesson', key, filtered), '', new Map(), 1, '$.' + key));
+  }
+  const langArgs = hasLanguages ? '<' + [
+    JSON.stringify(filtered.slug), 'LessonLanguages',
+    Object.hasOwn(filtered, 'section') ? 'typeof section.items' : '{}',
+    Object.hasOwn(filtered, 'flashcards') ? 'typeof flashcards.items' : '{}',
+    Object.hasOwn(filtered, 'questions') ? 'typeof questions' : '{}'
+  ].join(', ') + '>' : '';
+  const root = rootImports.join('\n') + '\n\n' +
+    'export const ' + filtered.slug + '_Lesson = defineLesson' + langArgs + '({\n' +
+    rootFields.join(',\n') + '\n});\n';
+  put('index.ts', root);
+  // Write the entrypoint last. A process interruption before this point
+  // leaves an orphan tree, which runOne rejects rather than treating it as a
+  // complete Lesson on the next creation-only run.
+  return new Map([...files.entries()].sort((a, b) =>
+    a[0] === 'index.ts' ? 1 : b[0] === 'index.ts' ? -1 : a[0].localeCompare(b[0])));
+}
+) {
+    if (value && typeof value === 'object' && value[rawExpression]) return value[rawExpression];
     if (context === 'nullableBlock') {
       return value === null ? 'null' : render(value, 'block', ownerDirectory, imported, depth, field);
     }
