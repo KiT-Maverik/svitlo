@@ -10,6 +10,7 @@ export const refractionAndLenses_SkillGroup_Data = defineSkillGroup({
   id: 'c9296b9c-bb52-4cf4-82ef-1dbfa8d7883d',
   name: {
     en: 'Refraction and Lenses',
+    it: 'Rifrazione e lenti',
     zh: '折射与透镜',
     hi: 'अपवर्तन और लेंस',
     es: 'Refracción y lentes',
@@ -50,6 +51,7 @@ export const refractionAndLenses_SkillGroup_Data = defineSkillGroup({
     methodological: 'Moving between media and the shape of a lens affect ray direction and image formation.',
     frontend: {
       en: 'Explore how light bends between materials and through lenses.',
+      it: 'Esplora come la luce cambia direzione passando tra materiali e attraverso le lenti.',
       zh: '探索光线穿过不同材料的界面和透镜时如何改变方向。',
       hi: 'जानो कि विभिन्न पदार्थों की सीमा तथा लेंस से गुजरते समय प्रकाश कैसे मुड़ता है।',
       es: 'Explora cómo se desvía la luz al pasar de un material a otro y a través de lentes.',

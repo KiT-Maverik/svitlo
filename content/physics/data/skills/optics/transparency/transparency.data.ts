@@ -7,6 +7,7 @@ export const transparency_SkillGroup_Data = defineSkillGroup({
   id: '8e97eed3-4d52-4756-9d6e-e7388ce2510c',
   name: {
     en: 'Transparency',
+    it: 'Trasparenza',
     zh: '透光性',
     hi: 'पारदर्शिता',
     es: 'Transparencia',
@@ -47,6 +48,7 @@ export const transparency_SkillGroup_Data = defineSkillGroup({
       'Transparency characterizes the transmission, absorption, and scattering of visible light by a material and its ability to transmit an image.',
     frontend: {
       en: 'Learn how materials differ in the amount and clarity of light they transmit.',
+      it: 'Impara come i materiali differiscono per quantità e nitidezza della luce che trasmettono.',
       zh: '了解各种材料在透过光线的多少和清晰程度上有何不同。',
       hi: 'जानो कि अलग-अलग पदार्थ प्रकाश को कितनी मात्रा में और कितनी स्पष्टता से गुजरने देते हैं।',
       es: 'Aprende cómo varían los materiales en la cantidad y nitidez de la luz que transmiten.',
