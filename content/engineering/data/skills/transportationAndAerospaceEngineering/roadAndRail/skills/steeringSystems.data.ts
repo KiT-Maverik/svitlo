@@ -5,6 +5,7 @@ export const steeringSystems_Skill_Data = defineSkill({
   id: 'ee0dfe38-d51b-4fe6-94e5-ce60842712e7',
   name: {
     en: 'Steering systems',
+    it: 'Sistemi sterzanti',
     zh: '转向系统',
     hi: 'स्टीयरिंग प्रणालियाँ',
     es: 'Sistemas de dirección',
@@ -38,6 +39,7 @@ export const steeringSystems_Skill_Data = defineSkill({
     methodological: 'Identify how wheel or axle orientation controls direction.',
     frontend: {
       en: "Explain how steering components change a vehicle's direction.",
+      it: 'Spiega come i componenti dello sterzo cambiano la direzione di un veicolo.',
       zh: '解释转向部件如何改变车辆行驶方向。',
       hi: 'समझाएँ कि स्टीयरिंग के हिस्से वाहन की दिशा कैसे बदलते हैं।',
       es: 'Explica cómo los componentes de dirección cambian el rumbo del vehículo.',
