@@ -5,6 +5,7 @@ export const understandEmergencyAlerts_Skill_Data = defineSkill({
   id: '262234a3-0bdc-47d7-ad04-6a9b997ba028',
   name: {
     en: 'Understand emergency alerts',
+    it: 'Comprendere gli avvisi di emergenza',
     zh: '理解紧急警报',
     hi: 'आपातकालीन चेतावनियाँ समझना',
     es: 'Comprender alertas de emergencia',
@@ -39,6 +40,7 @@ export const understandEmergencyAlerts_Skill_Data = defineSkill({
       'Distinguish authoritative warnings and protective instructions from rumours, outdated messages, or unverified reposts.',
     frontend: {
       en: 'Distinguish official protective warnings from rumors and outdated messages.',
+      it: 'Distingui gli avvisi ufficiali di protezione dalle voci infondate e dai messaggi superati.',
       zh: '区分官方防护警告、谣言和过时消息。',
       hi: 'आधिकारिक सुरक्षा चेतावनियों को अफवाहों और पुरानी सूचनाओं से अलग पहचानें।',
       es: 'Distingue las alertas oficiales de protección de rumores y mensajes desactualizados.',

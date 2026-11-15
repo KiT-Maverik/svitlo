@@ -12,6 +12,7 @@ export const preparednessAndAlerts_SkillGroup_Data = defineSkillGroup({
   id: '46337d52-efc7-4dff-bab7-e7ed47375763',
   name: {
     en: 'Preparedness and Alerts',
+    it: 'Preparazione e allerta',
     zh: '应急准备与预警',
     hi: 'तैयारी और चेतावनियाँ',
     es: 'Preparación y alertas',
@@ -41,25 +42,18 @@ export const preparednessAndAlerts_SkillGroup_Data = defineSkillGroup({
     kk: 'Дайындық және ескертулер',
     qm: 'Azırlıq ve tenbiler',
   },
-  skills: {
-    items: {
-      contactEmergencyServices: contactEmergencyServices_Skill_Data,
-      developAnEmergencyPlan: developAnEmergencyPlan_Skill_Data,
-      prepareEssentialEmergencySupplies: prepareEssentialEmergencySupplies_Skill_Data,
-      understandEmergencyAlerts: understandEmergencyAlerts_Skill_Data,
-    },
-    order: [
-      'contactEmergencyServices',
-      'developAnEmergencyPlan',
-      'prepareEssentialEmergencySupplies',
-      'understandEmergencyAlerts',
-    ],
-  },
+  skills: [
+    contactEmergencyServices_Skill_Data,
+    developAnEmergencyPlan_Skill_Data,
+    prepareEssentialEmergencySupplies_Skill_Data,
+    understandEmergencyAlerts_Skill_Data,
+  ],
   description: {
     methodological:
       'Effective readiness considers local hazards, people requiring assistance, communication failures, and the difference between a warning and an instruction.',
     frontend: {
       en: 'Discover how official alerts and advance planning support emergency readiness.',
+      it: 'Scopri come gli avvisi ufficiali e la pianificazione preventiva aiutano a prepararsi alle emergenze.',
       zh: '了解官方警报与提前规划如何帮助应对突发事件。',
       hi: 'जानें कि आधिकारिक चेतावनियाँ और पहले से बनाई योजना आपात तैयारी में कैसे मदद करती हैं।',
       es: 'Descubre cómo las alertas oficiales y la planificación anticipada ayudan a estar preparado.',
