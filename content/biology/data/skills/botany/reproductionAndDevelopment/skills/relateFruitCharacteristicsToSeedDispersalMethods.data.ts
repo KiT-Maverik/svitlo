@@ -5,6 +5,7 @@ export const relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data = defin
   id: '9dba3430-d028-4a0f-a0ee-ec8624a6b7d6',
   name: {
     en: 'Relate Fruit Characteristics to Seed Dispersal Methods',
+    it: 'Collegare le caratteristiche dei frutti ai metodi di dispersione dei semi',
     zh: '将果实特征与种子传播方式联系起来',
     hi: 'फल की विशेषताओं को बीज प्रसार से जोड़ना',
     es: 'Relacionar las características de los frutos con la dispersión',
@@ -38,6 +39,7 @@ export const relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data = defin
     methodological: 'Compare adaptations of fruits and seeds to transport by wind, water, or animals.',
     frontend: {
       en: 'Connect the shapes of fruits and seeds with the ways they spread.',
+      it: 'Collega le forme di frutti e semi ai modi in cui vengono dispersi.',
       zh: '将果实和种子的形状与其传播方式联系起来。',
       hi: 'फलों और बीजों की आकृतियों को उनके फैलने के तरीकों से जोड़ें।',
       es: 'Relaciona las formas de frutos y semillas con sus métodos de dispersión.',
