@@ -7,30 +7,30 @@
 ## Reproducible baseline and edited prototype
 
 Canonical source:
-\`content/math/data/lessons/0/92177be3-97a1-5ca4-b21a-07f0dac27f50/config.yaml\`
-(\`equalsMeansSameValue\`).
+`content/math/data/lessons/0/92177be3-97a1-5ca4-b21a-07f0dac27f50/config.yaml`
+(`equalsMeansSameValue`).
 
 The [machine-readable snapshot inventory](../../../shared/engine/scripts/lessonBuilder/fixtures/pr557-lesson-layout.snapshots.json) pins **Git commit SHAs and blob SHAs** for every added file in two historical snapshots:
 
 | Snapshot | Immutable commit | Added files | Meaning |
 | --- | --- | ---: | --- |
-| Original Lesson Builder output | [\`a3735dff24be4445c36fedd38997165732c67bfd\`](https://github.com/KiT-Maverik/svitlo/commit/a3735dff24be4445c36fedd38997165732c67bfd) | 14 | One \`equalsMeansSameValue.data.ts\`, methodology and UUID-addressed \`specification.md\` handoffs |
-| User-edited prototype | [\`9e500e1f521e6eebf86f0e556f93f5f673e212f3\`](https://github.com/KiT-Maverik/svitlo/commit/9e500e1f521e6eebf86f0e556f93f5f673e212f3) | 51 | \`index.ts\`, \`constants.ts\`, \`review.ts\`, modular Sections/blocks, localized Markdown and illustrative media |
+| Original Lesson Builder output | [`a3735dff24be4445c36fedd38997165732c67bfd`](https://github.com/KiT-Maverik/svitlo/commit/a3735dff24be4445c36fedd38997165732c67bfd) | 14 | One `equalsMeansSameValue.data.ts`, methodology and UUID-addressed `specification.md` handoffs |
+| User-edited prototype | [`9e500e1f521e6eebf86f0e556f93f5f673e212f3`](https://github.com/KiT-Maverik/svitlo/commit/9e500e1f521e6eebf86f0e556f93f5f673e212f3) | 51 | `index.ts`, `constants.ts`, `review.ts`, modular Sections/blocks, localized Markdown and illustrative media |
 
-These are **historical inventories, not runnable generated trees**: \`config.yaml\` existed before the first commit; the prototype deliberately contains TODO expressions, potentially invalid imports, illustrative assets and the temporary \`demonstrationalSection\`. The **later structure in this document**, not the prototype's literal paths, is the intended generator contract. In particular, the prototype still has type groupings (\`texts/\`, \`scenes/\`, \`audio/\`, etc.) that the user subsequently rejected. Do not copy them into the final generated layout. Do not mistake the 51-file snapshot for an exact future-output count.
+These are **historical inventories, not runnable generated trees**: `config.yaml` existed before the first commit; the prototype deliberately contains TODO expressions, potentially invalid imports, illustrative assets and the temporary `demonstrationalSection`. The **later structure in this document**, not the prototype's literal paths, is the intended generator contract. In particular, the prototype still has type groupings (`texts/`, `scenes/`, `audio/`, etc.) that the user subsequently rejected. Do not copy them into the final generated layout. Do not mistake the 51-file snapshot for an exact future-output count.
 
 ## Source-of-truth and scope
 
-1. **Input:** one technical \`config.yaml\` with paired \`config\` and optional \`production\` at every Configurator node. \`config.id\` is the permanent ID; \`production.documentLanguage\` is source-language provenance. This is unchanged.
-2. **Mechanical output:** reproducible, statically typed \`define*\` **source drafts**, source-relative content files and explicit specialist handoffs. The scaffolder must not infer educational semantics, approve content, translate, fabricate assets or call \`build.props()\`.
-3. **Publication:** a separate Engine Props generator validates completed configurators, and textbook tooling stages JSON and media. Engine \`runtime\` must never import authoring source, Node file readers or \`@svitlo/engine/build\`.
-4. **Safety:** existing authored work is immutable by default; maintain creation-only / \`SKIP\` behavior until a separately designed overwrite/migration contract replaces it.
+1. **Input:** one technical `config.yaml` with paired `config` and optional `production` at every Configurator node. `config.id` is the permanent ID; `production.documentLanguage` is source-language provenance. This is unchanged.
+2. **Mechanical output:** reproducible, statically typed `define*` **source drafts**, source-relative content files and explicit specialist handoffs. The scaffolder must not infer educational semantics, approve content, translate, fabricate assets or call `build.props()`.
+3. **Publication:** a separate Engine Props generator validates completed configurators, and textbook tooling stages JSON and media. Engine `runtime` must never import authoring source, Node file readers or `@svitlo/engine/build`.
+4. **Safety:** existing authored work is immutable by default; maintain creation-only / `SKIP` behavior until a separately designed overwrite/migration contract replaces it.
 
 This contract is a target for future follow-up PRs. Current behavior is described by [Lesson Builder](../../../shared/engine/scripts/lessonBuilder/README.md), [Lesson YAML architecture](./lesson-yaml-builder.md), and the actual code, **not** by this target-layout document.
 
 ## Desired source tree (illustrative, not a literal generated fixture)
 
-\`\`\`text
+```text
 content/<book>/data/lessons/<last-uuid-digit>/<lesson-uuid>/
   config.yaml                   # immutable authored technical source
   index.ts                      # exports the Lesson configurator
@@ -52,34 +52,34 @@ content/<book>/data/lessons/<last-uuid-digit>/<lesson-uuid>/
           <language>.<extension> # localized media, when produced
         <nestedSlug>/
           index.ts              # recursively nested entities
-\`\`\`
+```
 
-The examples in one directory describe **alternative entity-specific cases**, not a requirement to emit all files for every block. \`<blockSlug>\` directories replace \`<type>/<slug>\` grouping. Direct siblings in the same collection have distinct, safe camelCase slugs. \`sections/index.ts\` assembles the ordered section collection, and the Lesson imports it with \`section\` property shorthand. At further nesting boundaries, emit appropriately named local \`index.ts\`/barrel exports and use shorthand items when it preserves type safety and clarity.
+The examples in one directory describe **alternative entity-specific cases**, not a requirement to emit all files for every block. `<blockSlug>` directories replace `<type>/<slug>` grouping. Direct siblings in the same collection have distinct, safe camelCase slugs. `sections/index.ts` assembles the ordered section collection, and the Lesson imports it with `section` property shorthand. At further nesting boundaries, emit appropriately named local `index.ts`/barrel exports and use shorthand items when it preserves type safety and clarity.
 
-**Names vs identity:** the generator preserves the source YAML's permanent UUIDs and authored slug values. Semantic renaming (\`text1\` → \`sameValueExplanation\`) is **upstream editorial work** on the YAML. A deterministic builder must not guess a new name, change an ID, or silently renumber keys. Normalize folder paths according to source slugs and explicit hierarchy.
+**Names vs identity:** the generator preserves the source YAML's permanent UUIDs and authored slug values. Semantic renaming (`text1` → `sameValueExplanation`) is **upstream editorial work** on the YAML. A deterministic builder must not guess a new name, change an ID, or silently renumber keys. Normalize folder paths according to source slugs and explicit hierarchy.
 
-**TypeScript style:** use bare valid identifier property keys (\`id\`, \`slug\`, \`locale\`, \`en\`, \`items\`, \`order\`) instead of \`JSON.stringify(key)\` on every property. Quote only keys requiring string-literal syntax; quoted *values* are unaffected. Keep the ordered \`{ items, order }\` contract; do not reintroduce authored arrays for maps. Emit the actual \`define*\` generic arguments: literal slug, child-map type, and derived Lesson languages type according to each current signature.
+**TypeScript style:** use bare valid identifier property keys (`id`, `slug`, `locale`, `en`, `items`, `order`) instead of `JSON.stringify(key)` on every property. Quote only keys requiring string-literal syntax; quoted *values* are unaffected. Keep the ordered `{ items, order }` contract; do not reintroduce authored arrays for maps. Emit the actual `define*` generic arguments: literal slug, child-map type, and derived Lesson languages type according to each current signature.
 
-**Languages:** generate a readonly \`LanguageCode\`-checked tuple in \`constants.ts\`, with a derived type shared by nested configurators. Keep \`params.languages\` exactly as authored in YAML; no fabricated locale values. The example requires \`en\`, \`pl\`, \`uk\`, \`qm\`, while the initial source-locale-only draft is intentionally incomplete.
+**Languages:** generate a readonly `LanguageCode`-checked tuple in `constants.ts`, with a derived type shared by nested configurators. Keep `params.languages` exactly as authored in YAML; no fabricated locale values. The example requires `en`, `pl`, `uk`, `qm`, while the initial source-locale-only draft is intentionally incomplete.
 
-**Skills:** resolve YAML Skill UUIDs against existing textbook Skill definitions and import their exported symbols at build time, e.g. \`skills: [equalityMeaning_Skill_Data.id]\`; never guess a Skill or replace an unresolved UUID with an invented reference. Immutable IDs remain in YAML and published JSON. This must be verified against actual export paths and compiled TypeScript in the later generator PR.
+**Skills:** resolve YAML Skill UUIDs against existing textbook Skill definitions and import their exported symbols at build time, e.g. `skills: [equalityMeaning_Skill_Data.id]`; never guess a Skill or replace an unresolved UUID with an invented reference. Immutable IDs remain in YAML and published JSON. This must be verified against actual export paths and compiled TypeScript in the later generator PR.
 
 ## File-backed source content and media
 
 | Kind | Invariant source | Localized source | Specialist specification |
 | --- | --- | --- | --- |
-| Text | ordinary \`defineText\` data | field-level \`locale\` config | **No** auto-generated specification for finished text |
-| Markdown | \`<slug>/text.md\` | \`<slug>/locale/<language>.md\` | **No** specification instead of real learner-facing Markdown |
-| Code | \`<slug>/code.<extension>\` | only if Code contract explicitly supports localization | **No** substitute for real code |
-| Scene | authored configurator | Scene's actual typed localized data | \`<slug>/specification.md\` next to Scene definition, if needed |
-| Audio/Image/Video | \`<slug>/<slug>.<extension>\` | \`<slug>/locale/<language>.<extension>\` | \`<slug>/specification.md\` while pending |
-| Subtitles | \`<slug>/<slug>.<extension>\` | \`<slug>/locale/<language>.<extension>\` | if production needs a separate caption authoring handoff |
+| Text | ordinary `defineText` data | field-level `locale` config | **No** auto-generated specification for finished text |
+| Markdown | `<slug>/text.md` | `<slug>/locale/<language>.md` | **No** specification instead of real learner-facing Markdown |
+| Code | `<slug>/code.<extension>` | only if Code contract explicitly supports localization | **No** substitute for real code |
+| Scene | authored configurator | Scene's actual typed localized data | `<slug>/specification.md` next to Scene definition, if needed |
+| Audio/Image/Video | `<slug>/<slug>.<extension>` | `<slug>/locale/<language>.<extension>` | `<slug>/specification.md` while pending |
+| Subtitles | `<slug>/<slug>.<extension>` | `<slug>/locale/<language>.<extension>` | if production needs a separate caption authoring handoff |
 | External media (YouTube) | explicit authored URL | per current Config schema | no local file resolution |
 
-- **Invariant is not fallback:** never generate a fake \`default\`/\`fallback\` language. A string-valued Markdown source maps to \`text.md\`; a language map maps to \`locale/<language>.md\`.
-- Source files should be read by a **deterministic build-time, module-local mechanism**. Generated callers should not manually repeat paths; however, a plain imported function cannot reliably discover its caller's source folder or YAML property key on its own. Choose a source-bound wrapper, generated \`import.meta.url\` binding or explicit compilation transform in the implementation PR. Do not use stack-trace inspection or browser runtime \`fs\`.
-- \`code.<extension>\` uses an explicit/supported source-language and extension convention; \`codeAsText\` remains the final Engine Config value after resolving the authored file.
-- No fictional binary assets, placeholder URL values, or manually embedded filesystem paths in runtime Props. The authoring contract and publication contract are **distinct**: existing Engine \`src\`/\`fileLocation\` requirements can only be removed from generated *authoring source* once a separate resolver reliably populates valid public resource paths for publication.
+- **Invariant is not fallback:** never generate a fake `default`/`fallback` language. A string-valued Markdown source maps to `text.md`; a language map maps to `locale/<language>.md`.
+- Source files should be read by a **deterministic build-time, module-local mechanism**. Generated callers should not manually repeat paths; however, a plain imported function cannot reliably discover its caller's source folder or YAML property key on its own. Choose a source-bound wrapper, generated `import.meta.url` binding or explicit compilation transform in the implementation PR. Do not use stack-trace inspection or browser runtime `fs`.
+- `code.<extension>` uses an explicit/supported source-language and extension convention; `codeAsText` remains the final Engine Config value after resolving the authored file.
+- No fictional binary assets, placeholder URL values, or manually embedded filesystem paths in runtime Props. The authoring contract and publication contract are **distinct**: existing Engine `src`/`fileLocation` requirements can only be removed from generated *authoring source* once a separate resolver reliably populates valid public resource paths for publication.
 - Multiple media roles (main video, poster, captions, carousel images) require unambiguous naming and collision checks. Exact supported extensions, multi-role rules, and locale completeness checks remain open until the relevant Engine/UI Kit contracts are audited.
 - User-facing Markdown must be *finished content before technical scaffolding*. A technical builder cannot turn a Scene-like specification for Markdown into good instructional copy. Fix the upstream Lesson Production handoff instead.
 - Media and Scene specifications are *authoring instructions*, not runtime copy. Their new co-located addresses conflict with current UUID-addressed Scene/asset handoff rules: the responsible workflows, lazy Scene registry expectations and eventual packaged media paths must be updated together. Do not silently discard UUID identity or unrelated real assets.
@@ -88,32 +88,32 @@ The examples in one directory describe **alternative entity-specific cases**, no
 
 **Checkpoint:** organize each nested Item, Question, Answer and allowed ContentBlock recursively in its parent's slug directory. Collection order stays explicit. Avoid central folders of blocks by type.
 
-**Carousel:** the prototype still uses \`defineCarouselSlide\`. Replacing Slides with arbitrary \`defineImage\` or Scene children is **not approved as already supported**: current Engine Carousel Config/Props and UI Kit renderer must be redesigned and tested before that change. Treat polymorphic slides as an explicit follow-up decision, not Stage 1 implementation.
+**Carousel:** the prototype still uses `defineCarouselSlide`. Replacing Slides with arbitrary `defineImage` or Scene children is **not approved as already supported**: current Engine Carousel Config/Props and UI Kit renderer must be redesigned and tested before that change. Treat polymorphic slides as an explicit follow-up decision, not Stage 1 implementation.
 
-**Quest:** Stage/Task are special nested configurators with their own required structure, not generic \`{ items, order }\` collections. Source layout should support their actual typed hierarchy without inventing a second order field. Quest runtime support remains separate.
+**Quest:** Stage/Task are special nested configurators with their own required structure, not generic `{ items, order }` collections. Source layout should support their actual typed hierarchy without inventing a second order field. Quest runtime support remains separate.
 
 ## Review metadata and source-revision binding
 
-Proposed generation boundary: \`review.ts\` declares a locally typed, initially empty Review value and a revision constant; **exports nothing**. Reviews are never inferred from the existence of a PR or a generated file. Model the intended information without conflating review, approval and publication:
+Proposed generation boundary: `review.ts` declares a locally typed, initially empty Review value and a revision constant; **exports nothing**. Reviews are never inferred from the existence of a PR or a generated file. Model the intended information without conflating review, approval and publication:
 
-- \`human.acceptance\`: PR number (numeric; exact optionality to define in Engine).
-- \`human.scientific\`: \`{ pr: string, language: LanguageCode }\`.
-- \`human.languages\`: language-to-review-PR mapping.
-- \`ai.languages\`: language-to-review-PR mapping.
-- \`ai.stages\`: production-stage-slug-to-review-PR mapping; these are **Lesson Production workflow stages**, never Quest Stages.
+- `human.acceptance`: PR number (numeric; exact optionality to define in Engine).
+- `human.scientific`: `{ pr: string, language: LanguageCode }`.
+- `human.languages`: language-to-review-PR mapping.
+- `ai.languages`: language-to-review-PR mapping.
+- `ai.stages`: production-stage-slug-to-review-PR mapping; these are **Lesson Production workflow stages**, never Quest Stages.
 
 Restore/reconcile general Review and Lesson-specific Review types in Engine during the designated implementation stage. Keep incomplete initial metadata type-safe without false approvals. This file is authoring traceability, not Lesson Config/Props and not a runtime export.
 
-The revision hash represents the **entire authored \`config\` tree**, recursively including entity IDs, slugs, params, locale dictionaries, children and their order, **excluding** \`production\` and generator implementation functions. Canonicalize object key order deterministically while preserving semantic ordered arrays, then use a collision-resistant digest (recommended SHA-256; suggested 20 hex chars/80 bits for a short display token; finalize length in the Review stage). The JavaScript variable name can be \`configRevision\`; a hash value is a **string**, so it does not need to begin with an alphabetic character. A digest flags possible stale approvals; it is not a security signature or approval itself. Entity-level hashes are **deferred** until a real use case is identified.
+The revision hash represents the **entire authored `config` tree**, recursively including entity IDs, slugs, params, locale dictionaries, children and their order, **excluding** `production` and generator implementation functions. Canonicalize object key order deterministically while preserving semantic ordered arrays, then use a collision-resistant digest (recommended SHA-256; suggested 20 hex chars/80 bits for a short display token; finalize length in the Review stage). The JavaScript variable name can be `configRevision`; a hash value is a **string**, so it does not need to begin with an alphabetic character. A digest flags possible stale approvals; it is not a security signature or approval itself. Entity-level hashes are **deferred** until a real use case is identified.
 
 ## Existing implementation compatibility: mandatory follow-up checks
 
 | Current component | Observed behavior | Stage 2+ obligation |
 | --- | --- | --- |
-| \`shared/engine/scripts/lessonBuilder/lessonBuilder.mjs\` | One \`<slug>.data.ts\` and UUID-addressed specialist handoffs; no validation/Props | Generate modular source without changing the draft-only and creation-only semantics |
-| \`shared/engine/scripts/generateLessonProps/generateLessonProps.mjs\` | Finds one \`*.data.ts\`, falling back to \`index.ts\`; requires a real \`build.props()\` Lesson | Ensure new root entrypoint can be discovered and loaded; fail on ambiguity; do not publish incomplete drafts |
-| \`scripts/textbook-tooling/buildTextbook/build.mjs\` | \`authored('data/lessons')\` recognizes only \`*.data.ts\` | Update detection for canonical \`index.ts\` Lesson entrypoints so compiled text books do not silently omit Lessons |
-| \`shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs\` | Emits Scene and media handoffs to UUID-addressed folders | Change output ownership and non-destructive write/skip/check behavior together with layout |
+| `shared/engine/scripts/lessonBuilder/lessonBuilder.mjs` | One `<slug>.data.ts` and UUID-addressed specialist handoffs; no validation/Props | Generate modular source without changing the draft-only and creation-only semantics |
+| `shared/engine/scripts/generateLessonProps/generateLessonProps.mjs` | Finds one `*.data.ts`, falling back to `index.ts`; requires a real `build.props()` Lesson | Ensure new root entrypoint can be discovered and loaded; fail on ambiguity; do not publish incomplete drafts |
+| `scripts/textbook-tooling/buildTextbook/build.mjs` | `authored('data/lessons')` recognizes only `*.data.ts` | Update detection for canonical `index.ts` Lesson entrypoints so compiled text books do not silently omit Lessons |
+| `shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs` | Emits Scene and media handoffs to UUID-addressed folders | Change output ownership and non-destructive write/skip/check behavior together with layout |
 | Current Engine media schemas and textbook static packaging | Expects explicit resolved file paths and packaged static resources | Preserve Props and runtime URLs until the new build-time resolver and manifest pipeline are verified |
 | Current Carousel and Quest schemas | Specialized child kinds/shape | Do not force generic block recursion where schemas intentionally restrict children |
 
