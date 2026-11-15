@@ -78,8 +78,10 @@ describe('resolveLessonMedia (Build only)', () => {
       const sourceLocale = join(root, 'elsewhere');
       mkdirSync(sourceLocale);
       symlinkSync(sourceLocale, join(directory, 'locale'));
-      assert.throws(() => resolveLessonMedia(moduleUrl, 'image', 'source', 'uk'),
-        /Symlinked Lesson media source directory/);
+      assert.throws(
+        () => resolveLessonMedia(moduleUrl, 'image', 'source', 'uk'),
+        /Symlinked Lesson media source directory/,
+      );
     });
   });
 });

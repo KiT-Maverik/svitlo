@@ -76,8 +76,8 @@ export function productionFiles(entityFolder, tasks, { nodeLocations } = {}) {
   const outputs = [];
   for (const task of tasks) {
     const { id, type, production } = task;
-    const colocated = nodeLocations &&
-      ['scene', 'image', 'audio', 'video', 'subtitles', 'carouselSlide'].includes(type);
+    const colocated =
+      nodeLocations && ['scene', 'image', 'audio', 'video', 'subtitles', 'carouselSlide'].includes(type);
     let destination;
     let body;
     function colocatedSpecification() {

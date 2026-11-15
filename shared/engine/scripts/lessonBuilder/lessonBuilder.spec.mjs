@@ -12,36 +12,58 @@ import { renderLessonModules } from './lessonModules.mjs';
 const id = suffix => '00000000-0000-4000-8000-' + String(suffix).padStart(12, '0');
 const lessonId = id(12);
 const block = (slug, number, value = 'Текст') => ({
-  id: id(number), slug, type: 'text', params: {},
+  id: id(number),
+  slug,
+  type: 'text',
+  params: {},
   locale: { value: { uk: value, en: 'Never emit translation' } },
 });
 const group = items => ({ items, order: Object.keys(items) });
 function lessonConfig() {
   return {
-    id: lessonId, slug: 'lightLesson', type: 'lesson', skills: [],
+    id: lessonId,
+    slug: 'lightLesson',
+    type: 'lesson',
+    skills: [],
     params: {
-      languages: ['uk', 'en'], requireQuiz: false,
+      languages: ['uk', 'en'],
+      requireQuiz: false,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { uk: 'Світло', en: 'Light' } },
     section: group({
       intro: {
-        id: id(1), slug: 'intro', type: 'content', params: {},
+        id: id(1),
+        slug: 'intro',
+        type: 'content',
+        params: {},
         locale: { title: { uk: 'Вступ' }, navigationLabel: { uk: 'Початок' } },
         content: group({
           prompt: block('prompt', 2),
           gallery: {
-            id: id(3), slug: 'gallery', type: 'carousel', params: {},
+            id: id(3),
+            slug: 'gallery',
+            type: 'carousel',
+            params: {},
             slides: group({
-              first: { id: id(4), slug: 'first', type: 'carouselSlide',
-                locale: { src: { uk: '/example.svg', en: '/never.svg' }, alt: { uk: 'Опис' } } },
+              first: {
+                id: id(4),
+                slug: 'first',
+                type: 'carouselSlide',
+                locale: { src: { uk: '/example.svg', en: '/never.svg' }, alt: { uk: 'Опис' } },
+              },
             }),
           },
           check: {
-            id: id(5), slug: 'check', type: 'checkpoint', params: {},
+            id: id(5),
+            slug: 'check',
+            type: 'checkpoint',
+            params: {},
             content: group({
               comparison: {
-                id: id(6), slug: 'comparison', type: 'checkpointItem',
+                id: id(6),
+                slug: 'comparison',
+                type: 'checkpointItem',
                 question: block('checkPrompt', 7),
                 answer: group({ correct: block('correct', 8) }),
               },
@@ -52,16 +74,20 @@ function lessonConfig() {
     }),
     flashcards: group({
       remember: {
-        id: id(9), slug: 'remember', type: 'flashcard',
+        id: id(9),
+        slug: 'remember',
+        type: 'flashcard',
         parameters: { tags: [], flags: group({}), relationships: group({}) },
-        content: { front: group({ front: block('front', 10) }),
-          back: group({ back: block('back', 11) }) },
+        content: { front: group({ front: block('front', 10) }), back: group({ back: block('back', 11) }) },
       },
     }),
     questions: {
       selectOneAnswer: {
         choice: {
-          id: id(13), slug: 'choice', type: 'selectOneAnswer', params: {},
+          id: id(13),
+          slug: 'choice',
+          type: 'selectOneAnswer',
+          params: {},
           content: {
             question: group({ questionPrompt: block('questionPrompt', 14) }),
             answers: {
@@ -91,8 +117,11 @@ function fixture(callback) {
   fs.mkdirSync(lesson, { recursive: true });
   fs.writeFileSync(path.join(workspace, 'package.json'), '{"name":"@svitlo/playground"}\n');
   const config = lessonConfig();
-  const save = () => fs.writeFileSync(path.join(lesson, 'config.yaml'),
-    yaml.stringify({ ...wrap(config), production: { documentLanguage: 'uk', ...config.__production } }));
+  const save = () =>
+    fs.writeFileSync(
+      path.join(lesson, 'config.yaml'),
+      yaml.stringify({ ...wrap(config), production: { documentLanguage: 'uk', ...config.__production } }),
+    );
   try {
     save();
     return callback({ root, workspace, lesson, config, save, generated: name => path.join(lesson, name) });
@@ -123,8 +152,19 @@ function assertTypeScriptSyntax(files) {
 
 test('factory dispatch uses the canonical Engine registry', () => {
   const registry = loadFactoryRegistry();
-  for (const type of ['lesson', 'content', 'carousel', 'checkpoint', 'checkpointItem',
-    'carouselSlide', 'flashcard', 'selectOneAnswer', 'quest', 'questStage', 'questTask'])
+  for (const type of [
+    'lesson',
+    'content',
+    'carousel',
+    'checkpoint',
+    'checkpointItem',
+    'carouselSlide',
+    'flashcard',
+    'selectOneAnswer',
+    'quest',
+    'questStage',
+    'questTask',
+  ])
     assert.equal(typeof registry[type], 'string', type);
 });
 
@@ -134,15 +174,25 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assert.equal(result.lessonId, lessonId);
     const files = readAll(f.lesson);
     assert.equal(result.changed, files.size);
-    for (const name of ['index.ts', 'constants.ts', 'sections/index.ts', 'sections/intro/index.ts',
-      'sections/intro/prompt/index.ts', 'sections/intro/gallery/index.ts',
+    for (const name of [
+      'index.ts',
+      'constants.ts',
+      'sections/index.ts',
+      'sections/intro/index.ts',
+      'sections/intro/prompt/index.ts',
+      'sections/intro/gallery/index.ts',
       'sections/intro/gallery/first/index.ts',
-      'sections/intro/check/index.ts', 'sections/intro/check/comparison/index.ts',
+      'sections/intro/check/index.ts',
+      'sections/intro/check/comparison/index.ts',
       'sections/intro/check/comparison/question/checkPrompt/index.ts',
       'sections/intro/check/comparison/answer/correct/index.ts',
-      'flashcards/index.ts', 'flashcards/remember/index.ts',
-      'flashcards/remember/front/front/index.ts', 'flashcards/remember/back/back/index.ts',
-      'questions/index.ts', 'questions/selectOneAnswer/choice/index.ts']) {
+      'flashcards/index.ts',
+      'flashcards/remember/index.ts',
+      'flashcards/remember/front/front/index.ts',
+      'flashcards/remember/back/back/index.ts',
+      'questions/index.ts',
+      'questions/selectOneAnswer/choice/index.ts',
+    ]) {
       assert.ok(files.has(name), 'Missing ' + name);
     }
     assert.ok(![...files.keys()].some(name => name.includes('/texts/') || name.includes('/images/')));
@@ -151,7 +201,10 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assert.match(root, /skills: \[\]/);
     assert.match(root, /params: \{\s*languages,/);
     assert.match(root, /section,\s*flashcards,\s*questions/);
-    assert.match(root, /defineLesson<"lightLesson", LessonLanguages, typeof section\.items, typeof flashcards\.items, typeof questions>/);
+    assert.match(
+      root,
+      /defineLesson<"lightLesson", LessonLanguages, typeof section\.items, typeof flashcards\.items, typeof questions>/,
+    );
     assert.doesNotMatch(root, /"id":|"slug":|"section":/);
     const section = files.get('sections/intro/index.ts');
     assert.match(section, /defineContentSection<"intro", typeof content\.items, LessonLanguages>/);
@@ -168,14 +221,21 @@ test('Skill IDs resolve to imported source symbols rather than hard-coded UUIDs'
     const skillId = id(99);
     const folder = path.join(f.workspace, 'data/skills/algebra/example/skills');
     fs.mkdirSync(folder, { recursive: true });
-    fs.writeFileSync(path.join(folder, 'example.data.ts'),
+    fs.writeFileSync(
+      path.join(folder, 'example.data.ts'),
       "import { defineSkill } from '@svitlo/engine/build';\n" +
-      "export const example_Skill_Data = defineSkill({ id: '" + skillId + "', slug: 'example' });\n");
+        "export const example_Skill_Data = defineSkill({ id: '" +
+        skillId +
+        "', slug: 'example' });\n",
+    );
     f.config.skills = [skillId];
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
-    assert.match(code, /import \{ example_Skill_Data \} from "\.\.\/\.\.\/\.\.\/skills\/algebra\/example\/skills\/example\.data"/);
+    assert.match(
+      code,
+      /import \{ example_Skill_Data \} from "\.\.\/\.\.\/\.\.\/skills\/algebra\/example\/skills\/example\.data"/,
+    );
     assert.match(code, /skills: \[example_Skill_Data\.id\]/);
     assert.doesNotMatch(code, new RegExp(skillId));
   }));
@@ -205,27 +265,39 @@ test('Quest uses distinct stages/tasks namespaces and their nested media remain 
   fixture(f => {
     const media = (type, slug, n) => ({ id: id(n), slug, type, params: {}, locale: {} });
     f.config.section.items.quest = {
-      id: id(20), slug: 'quest', type: 'quest', params: {},
+      id: id(20),
+      slug: 'quest',
+      type: 'quest',
+      params: {},
       stages: {
-        start: { id: id(21), slug: 'start', type: 'questStage', content: {
-          video: { medium: media('video', 'medium', 22), small: media('video', 'small', 23) },
-          audio: { dialogue: media('audio', 'dialogue', 24), narration: null, background: null },
-          image: media('image', 'image', 25), subtitles: media('subtitles', 'subtitles', 26),
-        } },
+        start: {
+          id: id(21),
+          slug: 'start',
+          type: 'questStage',
+          content: {
+            video: { medium: media('video', 'medium', 22), small: media('video', 'small', 23) },
+            audio: { dialogue: media('audio', 'dialogue', 24), narration: null, background: null },
+            image: media('image', 'image', 25),
+            subtitles: media('subtitles', 'subtitles', 26),
+          },
+        },
       },
       tasks: {
-        start: { id: id(27), slug: 'start', type: 'questTask',
-          scene: media('scene', 'taskScene', 28) },
+        start: { id: id(27), slug: 'start', type: 'questTask', scene: media('scene', 'taskScene', 28) },
       },
     };
     f.config.section.order.push('quest');
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const files = readAll(f.lesson);
-    for (const name of ['sections/quest/stages/start/index.ts', 'sections/quest/tasks/start/index.ts',
+    for (const name of [
+      'sections/quest/stages/start/index.ts',
+      'sections/quest/tasks/start/index.ts',
       'sections/quest/stages/start/video/medium/index.ts',
       'sections/quest/stages/start/audio/dialogue/index.ts',
-      'sections/quest/tasks/start/taskScene/index.ts']) assert.ok(files.has(name), name);
+      'sections/quest/tasks/start/taskScene/index.ts',
+    ])
+      assert.ok(files.has(name), name);
     assert.match(files.get('sections/quest/index.ts'), /typeof stages, typeof tasks, LessonLanguages/);
     assert.match(files.get('sections/quest/stages/start/index.ts'), /narration: null/);
     assertTypeScriptSyntax(files);
@@ -237,7 +309,10 @@ test('create-only generate skips index.ts before parsing stale YAML; check detec
     const before = fs.readFileSync(f.generated('index.ts'), 'utf8');
     assert(first.changed > 1);
     assert.deepEqual(runOne(f.lesson, 'generate', f.root), {
-      changed: 0, skipped: true, files: ['index.ts'], lessonId,
+      changed: 0,
+      skipped: true,
+      files: ['index.ts'],
+      lessonId,
     });
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
     f.config.locale.title.uk = 'Змінено';
@@ -287,17 +362,26 @@ test('co-locates Scene/media production handoffs with their slug modules', () =>
     const imageId = id(52);
     f.config.__production = { methodology: '# Lesson method\n\nPractice equal groups.' };
     f.config.section.items.intro.content.items.visualScene = {
-      id: sceneId, slug: 'visualScene', type: 'scene', __production: {
+      id: sceneId,
+      slug: 'visualScene',
+      type: 'scene',
+      __production: {
         specification: '# Scene specification\n\nCompare the groups.',
       },
     };
     f.config.section.items.intro.content.items.visualImage = {
-      id: imageId, slug: 'visualImage', type: 'image', locale: { src: null },
+      id: imageId,
+      slug: 'visualImage',
+      type: 'image',
+      locale: { src: null },
       __production: { purpose: 'Show equality', prompt: 'Two groups of counters.' },
     };
     f.save();
     runOne(f.lesson, 'generate', f.root);
-    assert.match(fs.readFileSync(f.generated('sections/intro/visualScene/specification.md'), 'utf8'), /Compare the groups/);
+    assert.match(
+      fs.readFileSync(f.generated('sections/intro/visualScene/specification.md'), 'utf8'),
+      /Compare the groups/,
+    );
     assert.match(fs.readFileSync(f.generated('sections/intro/visualImage/specification.md'), 'utf8'), /Two groups/);
     assert(!fs.existsSync(path.join(f.workspace, 'scenes', sceneId.at(-1), sceneId, 'specification.md')));
     assert(!fs.existsSync(path.join(f.workspace, 'data/assets', imageId.at(-1), imageId, 'specification.md')));
@@ -312,7 +396,10 @@ test('local video, poster, subtitles and localized images use role-aware source 
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
     items.videoExplanation = {
-      id: id(81), slug: 'videoExplanation', type: 'video', params: {},
+      id: id(81),
+      slug: 'videoExplanation',
+      type: 'video',
+      params: {},
       locale: {
         fileLocation: { uk: null, en: '/external/video.mp4' },
         poster: null,
@@ -321,15 +408,24 @@ test('local video, poster, subtitles and localized images use role-aware source 
       __production: { purpose: 'Visual guidance', script: 'Two groups' },
     };
     items.localAudio = {
-      id: id(82), slug: 'localAudio', type: 'audio', params: {},
+      id: id(82),
+      slug: 'localAudio',
+      type: 'audio',
+      params: {},
       locale: { fileLocation: null, title: { uk: 'Звук' } },
     };
     items.localCaptions = {
-      id: id(83), slug: 'localCaptions', type: 'subtitles', params: {},
+      id: id(83),
+      slug: 'localCaptions',
+      type: 'subtitles',
+      params: {},
       locale: { fileLocation: { uk: null } },
     };
     items.localPicture = {
-      id: id(84), slug: 'localPicture', type: 'image', params: { fill: true, aspectRatio: 1.5 },
+      id: id(84),
+      slug: 'localPicture',
+      type: 'image',
+      params: { fill: true, aspectRatio: 1.5 },
       locale: { src: { uk: null, en: '/external/picture.svg' }, alt: { uk: 'Картинка' } },
     };
     f.config.section.items.intro.content.order.push('videoExplanation', 'localAudio', 'localCaptions', 'localPicture');
@@ -370,8 +466,7 @@ test('rejects traversing collection names before writing modules', () =>
   fixture(f => {
     f.config.questions['../escape'] = f.config.questions.selectOneAnswer;
     f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.root),
-      /Unsafe Lesson source path segment/);
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /Unsafe Lesson source path segment/);
     assert.equal(fs.existsSync(f.generated('index.ts')), false);
     assert.equal(fs.existsSync(path.join(f.root, 'escape')), false);
   }));
@@ -382,8 +477,9 @@ test('reserved JavaScript keywords remain safe as authored ContentBlock slugs', 
     const prompt = items.prompt;
     delete items.prompt;
     items.default = { ...prompt, slug: 'default' };
-    f.config.section.items.intro.content.order =
-      f.config.section.items.intro.content.order.map(name => name === 'prompt' ? 'default' : name);
+    f.config.section.items.intro.content.order = f.config.section.items.intro.content.order.map(name =>
+      name === 'prompt' ? 'default' : name,
+    );
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const code = fs.readFileSync(f.generated('sections/intro/default/index.ts'), 'utf8');
@@ -395,12 +491,17 @@ test('materializes invariant Markdown in text.md and Code in code.py beside thei
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
     items.equalityRule = {
-      id: id(71), slug: 'equalityRule', type: 'markdown', params: {},
+      id: id(71),
+      slug: 'equalityRule',
+      type: 'markdown',
+      params: {},
       locale: { value: '# Equal values\n\n**2 + 3 = 5**.\n' },
       __production: { specification: 'Do not generate this instead of real copy.' },
     };
     items.pythonExample = {
-      id: id(72), slug: 'pythonExample', type: 'code',
+      id: id(72),
+      slug: 'pythonExample',
+      type: 'code',
       params: { language: 'python', codeAsText: 'print(2 + 3 == 5)\n' },
       locale: {},
       __production: { specification: 'Do not create code.specification.md.' },
@@ -431,7 +532,10 @@ test('localized Markdown creates only source-language locale/uk.md, without a de
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
     items.sourceExplanation = {
-      id: id(73), slug: 'sourceExplanation', type: 'markdown', params: {},
+      id: id(73),
+      slug: 'sourceExplanation',
+      type: 'markdown',
+      params: {},
       locale: { value: { uk: '# Значення рівні\n', en: '# Equal values\n' } },
     };
     f.config.section.items.intro.content.order.push('sourceExplanation');
@@ -450,8 +554,13 @@ test('localized Markdown creates only source-language locale/uk.md, without a de
 test('read-only checks reject modified Markdown/Code while generate skips existing root', () =>
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
-    items.explanation = { id: id(74), slug: 'explanation', type: 'markdown', params: {},
-      locale: { value: '# Original text\n' } };
+    items.explanation = {
+      id: id(74),
+      slug: 'explanation',
+      type: 'markdown',
+      params: {},
+      locale: { value: '# Original text\n' },
+    };
     f.config.section.items.intro.content.order.push('explanation');
     f.save();
     runOne(f.lesson, 'generate', f.root);
@@ -465,15 +574,22 @@ test('read-only checks reject modified Markdown/Code while generate skips existi
 test('existing Markdown source blocks all new TS writes instead of being overwritten', () =>
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
-    items.explanation = { id: id(77), slug: 'explanation', type: 'markdown',
-      params: {}, locale: { value: '# Authored in YAML\n' } };
+    items.explanation = {
+      id: id(77),
+      slug: 'explanation',
+      type: 'markdown',
+      params: {},
+      locale: { value: '# Authored in YAML\n' },
+    };
     f.config.section.items.intro.content.order.push('explanation');
     f.save();
     const sourceFile = f.generated('sections/intro/explanation/text.md');
     fs.mkdirSync(path.dirname(sourceFile), { recursive: true });
     fs.writeFileSync(sourceFile, '# Previously edited by a human\n');
-    assert.throws(() => runOne(f.lesson, 'generate', f.root),
-      /incomplete Lesson source tree; refusing to mix drafts with existing files/);
+    assert.throws(
+      () => runOne(f.lesson, 'generate', f.root),
+      /incomplete Lesson source tree; refusing to mix drafts with existing files/,
+    );
     assert.equal(fs.readFileSync(sourceFile, 'utf8'), '# Previously edited by a human\n');
     assert.equal(fs.existsSync(f.generated('index.ts')), false);
   }));
@@ -481,8 +597,13 @@ test('existing Markdown source blocks all new TS writes instead of being overwri
 test('invalid Code extension and empty Markdown never create an index.ts draft', () =>
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
-    items.invalidCode = { id: id(75), slug: 'invalidCode', type: 'code',
-      params: { language: '../../etc', codeAsText: 'print("hi")' }, locale: {} };
+    items.invalidCode = {
+      id: id(75),
+      slug: 'invalidCode',
+      type: 'code',
+      params: { language: '../../etc', codeAsText: 'print("hi")' },
+      locale: {},
+    };
     f.config.section.items.intro.content.order.push('invalidCode');
     f.save();
     assert.throws(() => runOne(f.lesson, 'generate', f.root), /Unsupported authored Code language/);
@@ -504,7 +625,9 @@ test('CLI discovers Lesson configs, generates safely, and reports SKIP', () =>
       console.log = value => messages.push(value);
       main(['generate', '--source', path.relative(f.root, f.lesson)], f.root);
       main(['generate', '--source', path.relative(f.root, f.lesson)], f.root);
-    } finally { console.log = old; }
+    } finally {
+      console.log = old;
+    }
     assert(messages.some(x => /file\(s\) written/.test(x)));
     assert(messages.some(x => /SKIP Lesson/.test(x)));
   }));
@@ -544,7 +667,10 @@ test('matching Question pairs with repeated child slugs are isolated by pair and
   fixture(f => {
     f.config.questions.matchBlocks = {
       match: {
-        id: id(60), slug: 'match', type: 'matchBlocks', params: {},
+        id: id(60),
+        slug: 'match',
+        type: 'matchBlocks',
+        params: {},
         content: {
           question: group({ question: block('questionText', 61) }),
           pairs: group({
@@ -568,7 +694,8 @@ test('matching Question pairs with repeated child slugs are isolated by pair and
       'questions/matchBlocks/match/first/right/label/index.ts',
       'questions/matchBlocks/match/second/left/label/index.ts',
       'questions/matchBlocks/match/second/right/label/index.ts',
-    ]) assert.ok(names.includes(location), location);
+    ])
+      assert.ok(names.includes(location), location);
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
 
@@ -576,7 +703,9 @@ test('production handoff conflict is diagnosed before writing any source module'
   fixture(f => {
     const sceneId = id(70);
     f.config.section.items.intro.content.items.visualScene = {
-      id: sceneId, slug: 'visualScene', type: 'scene',
+      id: sceneId,
+      slug: 'visualScene',
+      type: 'scene',
       __production: { specification: '# Expected Scene specification' },
     };
     f.save();

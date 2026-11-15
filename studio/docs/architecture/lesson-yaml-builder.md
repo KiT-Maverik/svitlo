@@ -65,7 +65,7 @@ real binary assets.
 
 ## Stage 3 file-backed Markdown/Code
 
-The draft builder now extracts *authored source content* from Markdown `locale.value` into `text.md` (invariant scalar) or `locale/<documentLanguage>.md` (localized map). Code `params.codeAsText` is written exactly to `code.<extension>` using a known language-to-extension mapping. It emits pathless build-time reading bindings in the corresponding `defineMarkdown` or `defineCode` module and never embeds finished copy as a second literal.
+The draft builder now extracts _authored source content_ from Markdown `locale.value` into `text.md` (invariant scalar) or `locale/<documentLanguage>.md` (localized map). Code `params.codeAsText` is written exactly to `code.<extension>` using a known language-to-extension mapping. It emits pathless build-time reading bindings in the corresponding `defineMarkdown` or `defineCode` module and never embeds finished copy as a second literal.
 
 The builder **does not transform a `production.specification` description into learner-facing Markdown or Code**, and does not create such specifications for ordinary Text, Markdown or Code. An editor/Screenwriter must provide real source-language learning text in the technical YAML before scaffolding; draft-only absent content is left incomplete. Exact source bytes are checked read-only and never overwritten during generation. File paths do not enter runtime JSON.
 

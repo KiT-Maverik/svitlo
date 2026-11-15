@@ -165,7 +165,10 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   const sourceRelative = path.relative(target.bookRoot, target.root).split(path.sep).join('/');
   const canonicalSource = /^data\/lessons\/[0-9a-f]\/[0-9a-f-]{36}$/.test(sourceRelative);
   const existing = canonicalSource
-    ? fs.readdirSync(target.root).filter(name => name.endsWith('.data.ts') || name === 'index.ts').sort()
+    ? fs
+        .readdirSync(target.root)
+        .filter(name => name.endsWith('.data.ts') || name === 'index.ts')
+        .sort()
     : [];
   if (mode === 'generate' && existing.length) {
     return { changed: 0, skipped: true, files: existing, lessonId: target.lessonId };
@@ -177,7 +180,10 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   const outputFolder = path.join(target.bookRoot, 'data/lessons', lesson.id.at(-1), lesson.id);
   noSymlinks(outputFolder);
   const destinationData = fs.existsSync(outputFolder)
-    ? fs.readdirSync(outputFolder).filter(name => name.endsWith('.data.ts') || name === 'index.ts').sort()
+    ? fs
+        .readdirSync(outputFolder)
+        .filter(name => name.endsWith('.data.ts') || name === 'index.ts')
+        .sort()
     : [];
   if (mode === 'generate' && destinationData.length) {
     return { changed: 0, skipped: true, files: destinationData, lessonId: lesson.id };
@@ -189,15 +195,18 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   const modules = renderLessonModules(lesson, language, { bookRoot: target.bookRoot, outputFolder, nodeLocations });
   // Ordinary Text, Markdown and Code must contain authored learner-facing
   // content, never a generated specification instead of their real text.
-  const artifacts = productionFiles(outputFolder, tasks.filter(
-    task => !['text', 'markdown', 'code'].includes(task.type),
-  ), { nodeLocations });
+  const artifacts = productionFiles(
+    outputFolder,
+    tasks.filter(task => !['text', 'markdown', 'code'].includes(task.type)),
+    { nodeLocations },
+  );
 
   // A partial previous run may have left modules without the root entrypoint.
   // Never mix their contents with newly generated modules.
   if (mode === 'generate') {
     const draftDirectories = ['sections', 'flashcards', 'questions'];
-    const hasOrphans = fs.existsSync(path.join(outputFolder, 'constants.ts')) ||
+    const hasOrphans =
+      fs.existsSync(path.join(outputFolder, 'constants.ts')) ||
       draftDirectories.some(name => fs.existsSync(path.join(outputFolder, name)));
     if (hasOrphans) fail('index.ts', '$', 'incomplete Lesson source tree; refusing to mix drafts with existing files');
   }

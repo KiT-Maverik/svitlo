@@ -24,8 +24,13 @@ function fixture(fn) {
     files.push(relative);
   };
   try {
-    fn({ textbookRoot, staticRoot, files, add,
-      destination: relative => path.join(staticRoot, 'textbooks/math/lessons', relative) });
+    fn({
+      textbookRoot,
+      staticRoot,
+      files,
+      add,
+      destination: relative => path.join(staticRoot, 'textbooks/math/lessons', relative),
+    });
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }
@@ -42,24 +47,24 @@ test('stages invariant, localized and poster media in textbook namespace without
     assert.equal(fs.readFileSync(f.destination(base + '/videoExample.mp4'), 'utf8'), 'actual-video-binary');
     assert.equal(fs.readFileSync(f.destination(base + '/locale/uk.poster.webp'), 'utf8'), 'uk-poster');
     assert.equal(fs.existsSync(f.destination(base + '/specification.md')), false);
-    assert.equal(fs.readFileSync(path.join(f.textbookRoot, 'data/lessons', base, 'specification.md'), 'utf8'),
-      '# authoring only');
+    assert.equal(
+      fs.readFileSync(path.join(f.textbookRoot, 'data/lessons', base, 'specification.md'), 'utf8'),
+      '# authoring only',
+    );
   }));
 
 test('rejects ambiguous extensions before copying any media', () =>
   fixture(f => {
     f.add(base + '/videoExample.mp4', 'first');
     f.add(base + '/videoExample.webm', 'second');
-    assert.throws(() => stageLessonMedia({ ...f, textbookId: 'math' }),
-      /Ambiguous Lesson media extensions/);
+    assert.throws(() => stageLessonMedia({ ...f, textbookId: 'math' }), /Ambiguous Lesson media extensions/);
     assert.equal(fs.existsSync(f.destination(base + '/videoExample.mp4')), false);
   }));
 
 test('rejects invalid media naming, stale UUID buckets and absent defining modules', () =>
   fixture(f => {
     f.add(base + '/stray.mp4', 'invalid');
-    assert.throws(() => stageLessonMedia({ ...f, textbookId: 'math' }),
-      /Unexpected Lesson media file naming/);
+    assert.throws(() => stageLessonMedia({ ...f, textbookId: 'math' }), /Unexpected Lesson media file naming/);
   }));
 
 test('refuses to overwrite already staged public/static media', () =>
@@ -68,7 +73,6 @@ test('refuses to overwrite already staged public/static media', () =>
     f.add(filename, 'source');
     fs.mkdirSync(path.dirname(f.destination(filename)), { recursive: true });
     fs.writeFileSync(f.destination(filename), 'pre-existing');
-    assert.throws(() => stageLessonMedia({ ...f, textbookId: 'math' }),
-      /Duplicate textbook Lesson media publication/);
+    assert.throws(() => stageLessonMedia({ ...f, textbookId: 'math' }), /Duplicate textbook Lesson media publication/);
     assert.equal(fs.readFileSync(f.destination(filename), 'utf8'), 'pre-existing');
   }));

@@ -14,16 +14,41 @@ import { loadFactoryRegistry, sourceAuthoringCopy } from '../yamlScaffolding/yam
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const safeSlug = /^[a-z][A-Za-z0-9]*$/;
 const identifier = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
-const factoryContexts = new Set(['lesson', 'section', 'stage', 'task', 'block', 'slide', 'checkpointItem', 'question', 'flashcard']);
+const factoryContexts = new Set([
+  'lesson',
+  'section',
+  'stage',
+  'task',
+  'block',
+  'slide',
+  'checkpointItem',
+  'question',
+  'flashcard',
+]);
 const sectionTypes = new Set(['content', 'quiz', 'practice', 'learningFlow', 'codingTask', 'flashcards']);
 const compositeTypes = new Set(['carousel', 'checkpoint']);
 const localMediaTypes = new Set(['image', 'video', 'audio', 'subtitles', 'carouselSlide']);
 const mediaFields = {
-  image: ['src'], video: ['fileLocation', 'poster'],
-  audio: ['fileLocation'], subtitles: ['fileLocation'], carouselSlide: ['src'],
+  image: ['src'],
+  video: ['fileLocation', 'poster'],
+  audio: ['fileLocation'],
+  subtitles: ['fileLocation'],
+  carouselSlide: ['src'],
 };
 
-const reserved = new Set(['content', 'slides', 'stages', 'tasks', 'question', 'answer', 'parameters', 'section', 'flashcards', 'questions', 'languages']);
+const reserved = new Set([
+  'content',
+  'slides',
+  'stages',
+  'tasks',
+  'question',
+  'answer',
+  'parameters',
+  'section',
+  'flashcards',
+  'questions',
+  'languages',
+]);
 
 export function childContext(parent, key, owner = {}) {
   const collections = {
@@ -37,9 +62,14 @@ export function childContext(parent, key, owner = {}) {
   };
   if (collections[parent] && key === 'items') return collections[parent];
   const members = {
-    sectionItems: 'section', flashcardItems: 'flashcard', blockItems: 'block',
-    slideItems: 'slide', checkpointItems: 'checkpointItem', questionGroup: 'question',
-    pairItems: 'pair', slotItems: 'slot',
+    sectionItems: 'section',
+    flashcardItems: 'flashcard',
+    blockItems: 'block',
+    slideItems: 'slide',
+    checkpointItems: 'checkpointItem',
+    questionGroup: 'question',
+    pairItems: 'pair',
+    slotItems: 'slot',
   };
   if (members[parent]) return members[parent];
   if (parent === 'questionBank') return 'questionGroup';
@@ -88,30 +118,90 @@ export function childContext(parent, key, owner = {}) {
   return 'plain';
 }
 
-const asProperty = key => identifier.test(key) ? key : JSON.stringify(key);
+const asProperty = key => (identifier.test(key) ? key : JSON.stringify(key));
 // Canonical file extensions for Code's display language. The authored YAML
 // keeps the language name; source modules read the adjacent code.<extension>.
 const codeExtensions = {
-  typescript: 'ts', ts: 'ts', tsx: 'tsx',
-  javascript: 'js', js: 'js', jsx: 'jsx',
-  python: 'py', py: 'py', html: 'html', css: 'css',
-  scss: 'scss', json: 'json', yaml: 'yaml', yml: 'yml',
-  bash: 'sh', shell: 'sh', sh: 'sh', sql: 'sql',
-  java: 'java', kotlin: 'kt', swift: 'swift', rust: 'rs', go: 'go',
-  c: 'c', cpp: 'cpp', csharp: 'cs', cs: 'cs',
-  php: 'php', ruby: 'rb', rb: 'rb', dart: 'dart', xml: 'xml',
-  markdown: 'md', md: 'md',
+  typescript: 'ts',
+  ts: 'ts',
+  tsx: 'tsx',
+  javascript: 'js',
+  js: 'js',
+  jsx: 'jsx',
+  python: 'py',
+  py: 'py',
+  html: 'html',
+  css: 'css',
+  scss: 'scss',
+  json: 'json',
+  yaml: 'yaml',
+  yml: 'yml',
+  bash: 'sh',
+  shell: 'sh',
+  sh: 'sh',
+  sql: 'sql',
+  java: 'java',
+  kotlin: 'kt',
+  swift: 'swift',
+  rust: 'rs',
+  go: 'go',
+  c: 'c',
+  cpp: 'cpp',
+  csharp: 'cs',
+  cs: 'cs',
+  php: 'php',
+  ruby: 'rb',
+  rb: 'rb',
+  dart: 'dart',
+  xml: 'xml',
+  markdown: 'md',
+  md: 'md',
 };
 const rawExpression = Symbol('generated TypeScript expression');
 const expression = source => ({ [rawExpression]: source });
 
 const indent = level => '  '.repeat(level);
 const javascriptKeywords = new Set([
-  'await', 'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger',
-  'default', 'delete', 'do', 'else', 'enum', 'export', 'extends', 'false',
-  'finally', 'for', 'function', 'if', 'import', 'in', 'instanceof', 'new',
-  'null', 'return', 'super', 'switch', 'this', 'throw', 'true', 'try',
-  'typeof', 'var', 'void', 'while', 'with', 'yield', 'let', 'static',
+  'await',
+  'break',
+  'case',
+  'catch',
+  'class',
+  'const',
+  'continue',
+  'debugger',
+  'default',
+  'delete',
+  'do',
+  'else',
+  'enum',
+  'export',
+  'extends',
+  'false',
+  'finally',
+  'for',
+  'function',
+  'if',
+  'import',
+  'in',
+  'instanceof',
+  'new',
+  'null',
+  'return',
+  'super',
+  'switch',
+  'this',
+  'throw',
+  'true',
+  'try',
+  'typeof',
+  'var',
+  'void',
+  'while',
+  'with',
+  'yield',
+  'let',
+  'static',
 ]);
 // Folder names come from Config slugs AND unvalidated collection keys,
 // including Question kinds and pair/slot keys. Check every dynamic segment
@@ -133,23 +223,41 @@ function skillIndex(bookRoot) {
   const found = new Map();
   function visit(directory) {
     if (!fs.existsSync(directory)) return;
-    for (const entry of fs.readdirSync(directory, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+    for (const entry of fs
+      .readdirSync(directory, { withFileTypes: true })
+      .sort((a, b) => a.name.localeCompare(b.name))) {
       const absolute = path.join(directory, entry.name);
       if (entry.isSymbolicLink()) throw new Error('Refusing symlinked Skill path: ' + absolute);
-      if (entry.isDirectory()) { visit(absolute); continue; }
+      if (entry.isDirectory()) {
+        visit(absolute);
+        continue;
+      }
       if (!entry.isFile() || !entry.name.endsWith('.data.ts')) continue;
       const ast = ts.createSourceFile(absolute, fs.readFileSync(absolute, 'utf8'), ts.ScriptTarget.Latest, true);
       if (ast.parseDiagnostics.length) throw new Error('Invalid Skill source: ' + absolute);
       for (const statement of ast.statements) {
-        if (!ts.isVariableStatement(statement) || !statement.modifiers?.some(x => x.kind === ts.SyntaxKind.ExportKeyword)) continue;
+        if (
+          !ts.isVariableStatement(statement) ||
+          !statement.modifiers?.some(x => x.kind === ts.SyntaxKind.ExportKeyword)
+        )
+          continue;
         for (const declaration of statement.declarationList.declarations) {
-          if (!ts.isIdentifier(declaration.name) || !declaration.initializer || !ts.isCallExpression(declaration.initializer)) continue;
+          if (
+            !ts.isIdentifier(declaration.name) ||
+            !declaration.initializer ||
+            !ts.isCallExpression(declaration.initializer)
+          )
+            continue;
           const call = declaration.initializer;
-          if (!ts.isIdentifier(call.expression) || call.expression.text !== 'defineSkill' || !call.arguments.length) continue;
+          if (!ts.isIdentifier(call.expression) || call.expression.text !== 'defineSkill' || !call.arguments.length)
+            continue;
           const object = call.arguments[0];
           if (!ts.isObjectLiteralExpression(object)) continue;
-          const id = object.properties.find(prop =>
-            ts.isPropertyAssignment(prop) && (ts.isIdentifier(prop.name) || ts.isStringLiteral(prop.name)) && prop.name.text === 'id'
+          const id = object.properties.find(
+            prop =>
+              ts.isPropertyAssignment(prop) &&
+              (ts.isIdentifier(prop.name) || ts.isStringLiteral(prop.name)) &&
+              prop.name.text === 'id',
           );
           if (!id || !ts.isStringLiteral(id.initializer)) continue;
           const uuid = id.initializer.text;
@@ -191,9 +299,14 @@ export function renderLessonModules(lesson, language, options = {}) {
         const value = locale[field];
         const role = field === 'poster' ? 'poster' : 'source';
         const buildCall = language =>
-          expression('resolveLessonMedia(import.meta.url, ' +
-            JSON.stringify(node.type) + ', ' + JSON.stringify(role) +
-            (language === undefined ? '' : ', ' + JSON.stringify(language)) + ')');
+          expression(
+            'resolveLessonMedia(import.meta.url, ' +
+              JSON.stringify(node.type) +
+              ', ' +
+              JSON.stringify(role) +
+              (language === undefined ? '' : ', ' + JSON.stringify(language)) +
+              ')',
+          );
         if (value === null) {
           locale[field] = buildCall(undefined);
           changed = true;
@@ -222,7 +335,11 @@ export function renderLessonModules(lesson, language, options = {}) {
         const languages = Object.keys(source);
         if (languages.length === 0) throw new Error('Empty localized Markdown source: ' + directory);
         for (const language of languages) {
-          if (!/^[a-z]{2}(?:-[A-Z]{2})?$/.test(language) || typeof source[language] !== 'string' || !source[language].trim())
+          if (
+            !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(language) ||
+            typeof source[language] !== 'string' ||
+            !source[language].trim()
+          )
             throw new Error('Invalid authored Markdown locale ' + JSON.stringify(language) + ': ' + directory);
           put(path.posix.join(directory, 'locale', language + '.md'), source[language]);
         }
@@ -239,44 +356,67 @@ export function renderLessonModules(lesson, language, options = {}) {
       if (typeof source !== 'string' || !source.trim())
         throw new Error('Empty or invalid authored Code source: ' + directory);
       const extension = typeof language === 'string' ? codeExtensions[language.toLowerCase()] : undefined;
-      if (!extension) throw new Error('Unsupported authored Code language ' + JSON.stringify(language) + ': ' + directory);
+      if (!extension)
+        throw new Error('Unsupported authored Code language ' + JSON.stringify(language) + ': ' + directory);
       put(path.posix.join(directory, 'code.' + extension), source);
       return {
         ...node,
-        params: { ...node.params, codeAsText: expression('readCodeSource(import.meta.url, ' + JSON.stringify(extension) + ')') },
+        params: {
+          ...node.params,
+          codeAsText: expression('readCodeSource(import.meta.url, ' + JSON.stringify(extension) + ')'),
+        },
       };
     }
     return node;
   }
 
   const languageValues = filtered.params?.languages;
-  const hasLanguages = Array.isArray(languageValues) && languageValues.length > 0 &&
+  const hasLanguages =
+    Array.isArray(languageValues) &&
+    languageValues.length > 0 &&
     languageValues.every(value => typeof value === 'string');
   const languagesType = hasLanguages ? 'LessonLanguages' : null;
   if (hasLanguages) {
-    files.set('constants.ts',
+    files.set(
+      'constants.ts',
       "import type { LanguageCode } from '@svitlo/engine/build';\n\n" +
-      'export const languages = ' + JSON.stringify(languageValues) +
-      ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n' +
-      'export type LessonLanguages = typeof languages;\n');
+        'export const languages = ' +
+        JSON.stringify(languageValues) +
+        ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n' +
+        'export type LessonLanguages = typeof languages;\n',
+    );
   }
 
   const skillIds = filtered.skills;
-  const skills = Array.isArray(skillIds) && skillIds.length && options.bookRoot && options.outputFolder
-    ? skillIndex(options.bookRoot) : new Map();
+  const skills =
+    Array.isArray(skillIds) && skillIds.length && options.bookRoot && options.outputFolder
+      ? skillIndex(options.bookRoot)
+      : new Map();
 
   function moduleImports(directory, names, factory, needsLanguages, languageValue = false, needsMedia = false) {
-    const factoryImports = [factory, ...(factory === 'defineCode' ? ['readCodeSource'] : []),
-      ...(needsMedia ? ['resolveLessonMedia'] : [])].join(', ');
-    const output = ["import { " + factoryImports + " } from '@svitlo/engine/build';"];
+    const factoryImports = [
+      factory,
+      ...(factory === 'defineCode' ? ['readCodeSource'] : []),
+      ...(needsMedia ? ['resolveLessonMedia'] : []),
+    ].join(', ');
+    const output = ['import { ' + factoryImports + " } from '@svitlo/engine/build';"];
     for (const [alias, { symbol, location }] of [...names.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
       const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
       output.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
     }
     if (needsLanguages && languagesType) {
       const constantImport = relativeImport(directory, '');
-      output.push('import type { LessonLanguages } from ' + JSON.stringify(constantImport + (constantImport.endsWith('/') ? '' : '/') + 'constants') + ';');
-      if (languageValue) output.push('import { languages } from ' + JSON.stringify(constantImport + (constantImport.endsWith('/') ? '' : '/') + 'constants') + ';');
+      output.push(
+        'import type { LessonLanguages } from ' +
+          JSON.stringify(constantImport + (constantImport.endsWith('/') ? '' : '/') + 'constants') +
+          ';',
+      );
+      if (languageValue)
+        output.push(
+          'import { languages } from ' +
+            JSON.stringify(constantImport + (constantImport.endsWith('/') ? '' : '/') + 'constants') +
+            ';',
+        );
     }
     return output.join('\n') + '\n\n';
   }
@@ -295,7 +435,9 @@ export function renderLessonModules(lesson, language, options = {}) {
     }
     if (factoryContexts.has(context)) {
       if (!record(value) || typeof value.type !== 'string')
-        throw new Error('config.yaml:' + field + '.type: missing type discriminator for ' + context + ' factory dispatch');
+        throw new Error(
+          'config.yaml:' + field + '.type: missing type discriminator for ' + context + ' factory dispatch',
+        );
       if (!factories[value.type])
         throw new Error('config.yaml:' + field + '.type: unknown type "' + value.type + '"; no Engine define* factory');
       if (typeof value.slug !== 'string' || !safeSlug.test(value.slug))
@@ -317,17 +459,28 @@ export function renderLessonModules(lesson, language, options = {}) {
     }
     if (Array.isArray(value)) {
       if (!value.length) return '[]';
-      return '[\n' + value.map((item, index) =>
-        indent(depth + 1) + render(item, 'plain', ownerDirectory, imported, depth + 1, field + '[' + index + ']')
-      ).join(',\n') + '\n' + indent(depth) + ']';
+      return (
+        '[\n' +
+        value
+          .map(
+            (item, index) =>
+              indent(depth + 1) + render(item, 'plain', ownerDirectory, imported, depth + 1, field + '[' + index + ']'),
+          )
+          .join(',\n') +
+        '\n' +
+        indent(depth) +
+        ']'
+      );
     }
     if (!record(value)) {
       if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) {
         // Flashcard flag discriminants are inferred from a standalone const
         // parameters declaration. Preserve their literal types without freezing
         // mutable { items, order } collections via a blanket "as const".
-        if (typeof value === 'string' &&
-          /^\$\.parameters\.(?:flags|relationships)\.items\.[^.]+\.(?:type|color)$/.test(field))
+        if (
+          typeof value === 'string' &&
+          /^\$\.parameters\.(?:flags|relationships)\.items\.[^.]+\.(?:type|color)$/.test(field)
+        )
           return JSON.stringify(value) + ' as const';
         return JSON.stringify(value);
       }
@@ -335,26 +488,39 @@ export function renderLessonModules(lesson, language, options = {}) {
     }
     const entries = Object.entries(value);
     if (!entries.length) return '{}';
-    return '{\n' + entries.map(([key, child]) => {
-      const nextContext = childContext(context, key, value);
-      let nextDirectory = ownerDirectory;
-      if (context === 'questionBank') nextDirectory = join(ownerDirectory, key);
-      if (context === 'flashcardContent' && ['front', 'back', 'hint'].includes(key))
-        nextDirectory = join(ownerDirectory, key);
-      if (context === 'questionAnswers' && ['correct', 'incorrect', 'distractors'].includes(key))
-        nextDirectory = join(ownerDirectory, key);
-      if (context === 'questStageContent' && ['video', 'audio'].includes(key))
-        nextDirectory = join(ownerDirectory, key);
-      // Pair/Slot entries are plain named records rather than Configurators.
-      // Their map key still owns a directory, so repeated child slugs in
-      // different pairs never compete for the same generated file.
-      if (context === 'pairItems' || context === 'slotItems' ||
-          context === 'pair' && ['left', 'right'].includes(key) ||
-          context === 'slot' && key === 'correctAnswer')
-        nextDirectory = join(ownerDirectory, key);
-      const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, field + '.' + key);
-      return indent(depth + 1) + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered);
-    }).join(',\n') + '\n' + indent(depth) + '}';
+    return (
+      '{\n' +
+      entries
+        .map(([key, child]) => {
+          const nextContext = childContext(context, key, value);
+          let nextDirectory = ownerDirectory;
+          if (context === 'questionBank') nextDirectory = join(ownerDirectory, key);
+          if (context === 'flashcardContent' && ['front', 'back', 'hint'].includes(key))
+            nextDirectory = join(ownerDirectory, key);
+          if (context === 'questionAnswers' && ['correct', 'incorrect', 'distractors'].includes(key))
+            nextDirectory = join(ownerDirectory, key);
+          if (context === 'questStageContent' && ['video', 'audio'].includes(key))
+            nextDirectory = join(ownerDirectory, key);
+          // Pair/Slot entries are plain named records rather than Configurators.
+          // Their map key still owns a directory, so repeated child slugs in
+          // different pairs never compete for the same generated file.
+          if (
+            context === 'pairItems' ||
+            context === 'slotItems' ||
+            (context === 'pair' && ['left', 'right'].includes(key)) ||
+            (context === 'slot' && key === 'correctAnswer')
+          )
+            nextDirectory = join(ownerDirectory, key);
+          const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, field + '.' + key);
+          return (
+            indent(depth + 1) + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered)
+          );
+        })
+        .join(',\n') +
+      '\n' +
+      indent(depth) +
+      '}'
+    );
   }
 
   function symbolFor(value, context) {
@@ -367,20 +533,31 @@ export function renderLessonModules(lesson, language, options = {}) {
 
   function generateParameters(node, context, directory, imports) {
     const bindings = new Map();
-    const uses = context === 'section' && node.type === 'quest' ? ['stages', 'tasks'] :
-      context === 'section' && sectionTypes.has(node.type) ? ['content'] :
-      context === 'block' && compositeTypes.has(node.type) ? [node.type === 'carousel' ? 'slides' : 'content'] :
-      context === 'checkpointItem' ? ['question', 'answer'] :
-      context === 'question' ? ['content'] :
-      context === 'flashcard' ? ['content', 'parameters'] :
-      context === 'stage' ? ['content'] :
-      context === 'task' ? ['scene'] : [];
+    const uses =
+      context === 'section' && node.type === 'quest'
+        ? ['stages', 'tasks']
+        : context === 'section' && sectionTypes.has(node.type)
+          ? ['content']
+          : context === 'block' && compositeTypes.has(node.type)
+            ? [node.type === 'carousel' ? 'slides' : 'content']
+            : context === 'checkpointItem'
+              ? ['question', 'answer']
+              : context === 'question'
+                ? ['content']
+                : context === 'flashcard'
+                  ? ['content', 'parameters']
+                  : context === 'stage'
+                    ? ['content']
+                    : context === 'task'
+                      ? ['scene']
+                      : [];
     for (const key of uses) {
       if (!Object.hasOwn(node, key)) continue;
-      const owner = (
+      const owner =
         (context === 'section' && node.type === 'quest' && ['stages', 'tasks'].includes(key)) ||
         (context === 'checkpointItem' && ['question', 'answer'].includes(key))
-      ) ? join(directory, key) : directory;
+          ? join(directory, key)
+          : directory;
       bindings.set(key, render(node[key], childContext(context, key, node), owner, imports, 0, '$.' + key));
     }
     return bindings;
@@ -389,22 +566,43 @@ export function renderLessonModules(lesson, language, options = {}) {
   function genericFor(node, context, bindings) {
     if (!languagesType) return '';
     const slug = JSON.stringify(node.slug);
-    const typeOf = key => bindings.has(key) ? 'typeof ' + key : '{}';
+    const typeOf = key => (bindings.has(key) ? 'typeof ' + key : '{}');
     if (context === 'section' && node.type === 'quest')
       return '<' + [slug, typeOf('stages'), typeOf('tasks'), languagesType].join(', ') + '>';
-    if ((context === 'section' && sectionTypes.has(node.type)) ||
-        (context === 'block' && compositeTypes.has(node.type)))
-      return '<' + [slug, 'typeof ' + (node.type === 'carousel' ? 'slides' : 'content') + '.items', languagesType].join(', ') + '>';
+    if (
+      (context === 'section' && sectionTypes.has(node.type)) ||
+      (context === 'block' && compositeTypes.has(node.type))
+    )
+      return (
+        '<' +
+        [slug, 'typeof ' + (node.type === 'carousel' ? 'slides' : 'content') + '.items', languagesType].join(', ') +
+        '>'
+      );
     if (context === 'checkpointItem')
-      return '<' + [slug, bindings.has('answer') ? 'typeof answer.items' : '{}',
-        typeOf('question'), languagesType].join(', ') + '>';
+      return (
+        '<' +
+        [slug, bindings.has('answer') ? 'typeof answer.items' : '{}', typeOf('question'), languagesType].join(', ') +
+        '>'
+      );
     if (context === 'question') return '<' + [slug, typeOf('content'), languagesType].join(', ') + '>';
     if (context === 'flashcard') {
-      const content = name => bindings.has('content') && node.content?.[name] ? 'typeof content.' + name + '.items' : '{}';
-      const params = name => bindings.has('parameters') && node.parameters?.[name] ?
-        'typeof parameters.' + name + '.items' : '{}';
-      return '<' + [slug, content('front'), content('back'), content('hint'),
-        params('flags'), params('relationships'), languagesType].join(', ') + '>';
+      const content = name =>
+        bindings.has('content') && node.content?.[name] ? 'typeof content.' + name + '.items' : '{}';
+      const params = name =>
+        bindings.has('parameters') && node.parameters?.[name] ? 'typeof parameters.' + name + '.items' : '{}';
+      return (
+        '<' +
+        [
+          slug,
+          content('front'),
+          content('back'),
+          content('hint'),
+          params('flags'),
+          params('relationships'),
+          languagesType,
+        ].join(', ') +
+        '>'
+      );
     }
     return '<' + [slug, languagesType].join(', ') + '>';
   }
@@ -439,10 +637,25 @@ export function renderLessonModules(lesson, language, options = {}) {
     }
     const content = fields.length ? '{\n' + fields.join(',\n') + '\n}' : '{}';
     const name = symbolFor(node, context);
-    const importHead = moduleImports(directory, imports, factory, true, false,
-      authored !== node && localMediaTypes.has(node.type));
-    const result = importHead + (extra.length ? extra.join('') + '\n' : '') +
-      'export const ' + name + ' = ' + factory + genericFor(node, context, bindings) + '(' + content + ');\n';
+    const importHead = moduleImports(
+      directory,
+      imports,
+      factory,
+      true,
+      false,
+      authored !== node && localMediaTypes.has(node.type),
+    );
+    const result =
+      importHead +
+      (extra.length ? extra.join('') + '\n' : '') +
+      'export const ' +
+      name +
+      ' = ' +
+      factory +
+      genericFor(node, context, bindings) +
+      '(' +
+      content +
+      ');\n';
     put(join(directory, 'index.ts'), result);
   }
 
@@ -455,8 +668,10 @@ export function renderLessonModules(lesson, language, options = {}) {
       const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
       lines.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
     }
-    put(join(directory, 'index.ts'), (lines.length ? lines.join('\n') + '\n\n' : '') +
-      'export const ' + field + ' = ' + collection + ';\n');
+    put(
+      join(directory, 'index.ts'),
+      (lines.length ? lines.join('\n') + '\n\n' : '') + 'export const ' + field + ' = ' + collection + ';\n',
+    );
   }
 
   emitCollection('section', 'sectionCollection', 'sections');
@@ -464,9 +679,13 @@ export function renderLessonModules(lesson, language, options = {}) {
   emitCollection('questions', 'questionBank', 'questions');
 
   const rootImports = ["import { defineLesson } from '@svitlo/engine/build';"];
-  for (const [field, directory] of [['section', 'sections'], ['flashcards', 'flashcards'], ['questions', 'questions']]) {
-    if (Object.hasOwn(filtered, field)) rootImports.push(
-      'import { ' + field + ' } from ' + JSON.stringify('./' + directory) + ';');
+  for (const [field, directory] of [
+    ['section', 'sections'],
+    ['flashcards', 'flashcards'],
+    ['questions', 'questions'],
+  ]) {
+    if (Object.hasOwn(filtered, field))
+      rootImports.push('import { ' + field + ' } from ' + JSON.stringify('./' + directory) + ';');
   }
   if (hasLanguages) {
     rootImports.push("import { languages } from './constants';");
@@ -482,9 +701,11 @@ export function renderLessonModules(lesson, language, options = {}) {
       skillNames.set(match.symbol, match.file);
     }
   }
-  for (const [symbol, absolute] of [...skillNames.entries()].sort((a,b) => a[0].localeCompare(b[0]))) {
+  for (const [symbol, absolute] of [...skillNames.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
     const target = path.relative(options.outputFolder, absolute).split(path.sep).join('/').replace(/\.ts$/, '');
-    rootImports.push('import { ' + symbol + ' } from ' + JSON.stringify(target.startsWith('.') ? target : './' + target) + ';');
+    rootImports.push(
+      'import { ' + symbol + ' } from ' + JSON.stringify(target.startsWith('.') ? target : './' + target) + ';',
+    );
   }
   const rootFields = [];
   for (const [key, value] of Object.entries(filtered)) {
@@ -498,27 +719,56 @@ export function renderLessonModules(lesson, language, options = {}) {
     }
     if (key === 'params' && record(value) && hasLanguages) {
       const entries = Object.entries(value);
-      rootFields.push('  params: {\n' + entries.map(([name, v]) =>
-        '    ' + (name === 'languages' ? 'languages' : asProperty(name) + ': ' + render(v, 'plain', '', new Map(), 2, '$.params.' + name))
-      ).join(',\n') + '\n  }');
+      rootFields.push(
+        '  params: {\n' +
+          entries
+            .map(
+              ([name, v]) =>
+                '    ' +
+                (name === 'languages'
+                  ? 'languages'
+                  : asProperty(name) + ': ' + render(v, 'plain', '', new Map(), 2, '$.params.' + name)),
+            )
+            .join(',\n') +
+          '\n  }',
+      );
       continue;
     }
-    rootFields.push('  ' + asProperty(key) + ': ' + render(value, childContext('lesson', key, filtered), '', new Map(), 1, '$.' + key));
+    rootFields.push(
+      '  ' +
+        asProperty(key) +
+        ': ' +
+        render(value, childContext('lesson', key, filtered), '', new Map(), 1, '$.' + key),
+    );
   }
-  const langArgs = hasLanguages ? '<' + [
-    JSON.stringify(filtered.slug), 'LessonLanguages',
-    Object.hasOwn(filtered, 'section') ? 'typeof section.items' : '{}',
-    Object.hasOwn(filtered, 'flashcards') ? 'typeof flashcards.items' : '{}',
-    Object.hasOwn(filtered, 'questions') ? 'typeof questions' : '{}'
-  ].join(', ') + '>' : '';
-  const root = rootImports.join('\n') + '\n\n' +
-    'export const ' + filtered.slug + '_Lesson = defineLesson' + langArgs + '({\n' +
-    rootFields.join(',\n') + '\n});\n';
+  const langArgs = hasLanguages
+    ? '<' +
+      [
+        JSON.stringify(filtered.slug),
+        'LessonLanguages',
+        Object.hasOwn(filtered, 'section') ? 'typeof section.items' : '{}',
+        Object.hasOwn(filtered, 'flashcards') ? 'typeof flashcards.items' : '{}',
+        Object.hasOwn(filtered, 'questions') ? 'typeof questions' : '{}',
+      ].join(', ') +
+      '>'
+    : '';
+  const root =
+    rootImports.join('\n') +
+    '\n\n' +
+    'export const ' +
+    filtered.slug +
+    '_Lesson = defineLesson' +
+    langArgs +
+    '({\n' +
+    rootFields.join(',\n') +
+    '\n});\n';
   put('index.ts', root);
   // Write the entrypoint last. A process interruption before this point
   // leaves an orphan tree, which runOne rejects rather than treating it as a
   // complete Lesson on the next creation-only run.
-  return new Map([...files.entries()].sort((a, b) =>
-    a[0] === 'index.ts' ? 1 : b[0] === 'index.ts' ? -1 : a[0].localeCompare(b[0])));
+  return new Map(
+    [...files.entries()].sort((a, b) =>
+      a[0] === 'index.ts' ? 1 : b[0] === 'index.ts' ? -1 : a[0].localeCompare(b[0]),
+    ),
+  );
 }
-
