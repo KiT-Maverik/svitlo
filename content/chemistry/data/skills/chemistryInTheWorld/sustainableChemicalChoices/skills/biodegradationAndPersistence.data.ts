@@ -5,6 +5,7 @@ export const biodegradationAndPersistence_Skill_Data = defineSkill({
   id: '97550704-df3a-40e1-a57d-c62d88699fa9',
   name: {
     en: 'Biodegradation and Persistence',
+    it: "Biodegradazione e persistenza",
     zh: '生物降解与持久性',
     hi: 'जैव अपघटन और स्थायित्व',
     es: 'Biodegradación y persistencia',
@@ -39,6 +40,7 @@ export const biodegradationAndPersistence_Skill_Data = defineSkill({
       'Distinguish chemically or biologically degradable compounds from persistent materials under actual environmental conditions.',
     frontend: {
       en: 'Understand when substances break down in the environment and when they persist.',
+      it: "Comprendi quando le sostanze si degradano nell'ambiente e quando vi persistono.",
       zh: '理解物质何时会在环境中分解，何时会长期存在。',
       hi: 'समझें कि पदार्थ पर्यावरण में कब टूटते हैं और कब लंबे समय तक बने रहते हैं।',
       es: 'Comprende cuándo las sustancias se degradan en el ambiente y cuándo permanecen.',

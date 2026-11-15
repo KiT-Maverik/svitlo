@@ -5,6 +5,7 @@ export const recyclingChemistry_Skill_Data = defineSkill({
   id: '16a40829-d6f3-4674-98c6-a49962ca1b2d',
   name: {
     en: 'Recycling Chemistry',
+    it: "Chimica del riciclo",
     zh: '回收利用的化学',
     hi: 'पुनर्चक्रण का रसायन',
     es: 'Química del reciclaje',
@@ -39,6 +40,7 @@ export const recyclingChemistry_Skill_Data = defineSkill({
       'Explain when chemical composition enables or limits separation, reprocessing and material recovery.',
     frontend: {
       en: 'Explore how material composition affects recycling and recovery.',
+      it: "Esplora come la composizione dei materiali influisce sul riciclo e sul recupero.",
       zh: '探索材料的化学组成如何影响回收和再利用。',
       hi: 'जानें कि पदार्थों की रासायनिक संरचना पुनर्चक्रण और पुनर्प्राप्ति को कैसे प्रभावित करती है।',
       es: 'Explora cómo la composición de los materiales afecta al reciclaje y la recuperación.',

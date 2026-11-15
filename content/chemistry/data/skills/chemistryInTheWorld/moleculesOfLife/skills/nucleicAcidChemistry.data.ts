@@ -5,6 +5,7 @@ export const nucleicAcidChemistry_Skill_Data = defineSkill({
   id: '1874a1f0-a5a2-4233-80c0-9c92416a9977',
   name: {
     en: 'Nucleic Acid Chemistry',
+    it: "Chimica degli acidi nucleici",
     zh: '核酸化学',
     hi: 'न्यूक्लिक अम्लों का रसायन',
     es: 'Química de los ácidos nucleicos',
@@ -39,6 +40,7 @@ export const nucleicAcidChemistry_Skill_Data = defineSkill({
       'Identify nucleotide components and the covalent framework of nucleic acids without teaching genetic inheritance as the primary competency.',
     frontend: {
       en: 'Understand the chemical building blocks and backbone of DNA and RNA.',
+      it: "Comprendi le unità chimiche fondamentali e lo scheletro molecolare di DNA e RNA.",
       zh: '了解 DNA 和 RNA 的化学组成单元及其骨架结构。',
       hi: 'DNA और RNA के रासायनिक निर्माण खंडों और मुख्य ढाँचे को समझें।',
       es: 'Comprende los componentes químicos y la estructura central del ADN y ARN.',
