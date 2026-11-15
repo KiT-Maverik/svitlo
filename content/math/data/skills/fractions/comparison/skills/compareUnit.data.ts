@@ -5,6 +5,7 @@ export const compareUnit_Skill_Data = defineSkill({
   id: '733feb81-4849-4e85-8cfa-fc85f32d2679',
   name: {
     en: 'Comparing unit fractions of the same whole',
+    it: 'Confrontare frazioni unitarie dello stesso intero',
     qm: 'Aynı bütünniñ birlik kesirlerini qıyaslav',
     lt: 'To paties vieneto vienetinių trupmenų palyginimas',
     lv: 'Viena veselā vienības daļu salīdzināšana',
@@ -39,6 +40,7 @@ export const compareUnit_Skill_Data = defineSkill({
       'The unit fraction 1/n denotes one of n equal parts of the same whole. Increasing the positive denominator reduces the size of that part; comparison presupposes the same unit.',
     frontend: {
       en: 'For fractions with 1 on top, dividing the same whole into more equal parts makes each part smaller: 1/4 is smaller than 1/2.',
+      it: 'Nelle frazioni con numeratore 1, dividere lo stesso intero in un numero maggiore di parti uguali rende ogni parte più piccola: 1/4 è minore di 1/2.',
       qm: 'Payı 1 olğan kesirlerde aynı bütüni daa çoq teñ parçağa bölseñ, er parça kiçik ola: 1/4, 1/2-den kiçik.',
       zh: '分子为1时，同一整体分成的等份越多，每份越小：1/4小于1/2。',
       hi: 'अंश 1 हो तो एक ही पूरे को जितने अधिक बराबर भागों में बाँटेंगे, भाग उतना छोटा होगा: 1/4 < 1/2।',
