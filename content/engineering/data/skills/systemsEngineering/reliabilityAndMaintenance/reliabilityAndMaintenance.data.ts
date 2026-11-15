@@ -12,6 +12,7 @@ export const reliabilityAndMaintenance_SkillGroup_Data = defineSkillGroup({
   id: 'd38a799a-5bc5-4823-b551-986f5971c5dc',
   name: {
     en: 'Reliability and Maintenance',
+    it: 'Affidabilità e manutenzione',
     zh: '可靠性与维护',
     hi: 'विश्वसनीयता और रखरखाव',
     es: 'Fiabilidad y mantenimiento',
@@ -52,6 +53,7 @@ export const reliabilityAndMaintenance_SkillGroup_Data = defineSkillGroup({
       'Operating systems face wear and faults, so diagnosis and continued service require explicit understanding of possible failure paths.',
     frontend: {
       en: 'Explore how engineers manage failures and maintain reliable operation.',
+      it: 'Esplora come gli ingegneri gestiscono i guasti e mantengono un funzionamento affidabile.',
       zh: '了解工程师如何处理故障并维持可靠运行。',
       hi: 'जानें कि अभियंता विफलताओं से कैसे निपटते हैं और भरोसेमंद संचालन बनाए रखते हैं।',
       es: 'Descubre cómo se gestionan las averías y se mantiene un funcionamiento fiable.',
