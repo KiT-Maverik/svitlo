@@ -41,11 +41,14 @@ export const toolsAndWorkplaces_SkillGroup_Data = defineSkillGroup({
     kk: 'Құралдар және жұмыс орындары',
     qm: 'Aletler ve iş yerleri',
   },
-  skills: [
-    followSafeEquipmentProcedures_Skill_Data,
-    readSafetySignsAndInstructions_Skill_Data,
-    usePersonalProtectiveEquipment_Skill_Data,
-  ],
+  skills: {
+    items: {
+      followSafeEquipmentProcedures: followSafeEquipmentProcedures_Skill_Data,
+      readSafetySignsAndInstructions: readSafetySignsAndInstructions_Skill_Data,
+      usePersonalProtectiveEquipment: usePersonalProtectiveEquipment_Skill_Data,
+    },
+    order: ['followSafeEquipmentProcedures', 'readSafetySignsAndInstructions', 'usePersonalProtectiveEquipment'],
+  },
   description: {
     methodological:
       'Protective procedures depend on the activity, equipment, and conditions; professional work requires role-appropriate training.',

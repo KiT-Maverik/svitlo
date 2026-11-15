@@ -41,13 +41,22 @@ export const everydayAndOccupationalSafety_SkillDomain_Data = defineSkillDomain(
     kk: 'Күнделікті және еңбек қауіпсіздігі',
     qm: 'Kündelik ve iş yerinde havfsızlıq',
   },
-  groups: [
-    electricityFireAndGas_SkillGroup_Data,
-    hazardRecognitionAndPrevention_SkillGroup_Data,
-    householdHazards_SkillGroup_Data,
-    personalSafetyInPublicPlaces_SkillGroup_Data,
-    toolsAndWorkplaces_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      electricityFireAndGas: electricityFireAndGas_SkillGroup_Data,
+      hazardRecognitionAndPrevention: hazardRecognitionAndPrevention_SkillGroup_Data,
+      householdHazards: householdHazards_SkillGroup_Data,
+      personalSafetyInPublicPlaces: personalSafetyInPublicPlaces_SkillGroup_Data,
+      toolsAndWorkplaces: toolsAndWorkplaces_SkillGroup_Data,
+    },
+    order: [
+      'electricityFireAndGas',
+      'hazardRecognitionAndPrevention',
+      'householdHazards',
+      'personalSafetyInPublicPlaces',
+      'toolsAndWorkplaces',
+    ],
+  },
   description: {
     methodological:
       'Injuries often arise from foreseeable hazards in homes, workplaces, educational spaces, and public facilities. Preventive controls and safe equipment use take priority over reacting after an incident.',

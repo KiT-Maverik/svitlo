@@ -43,13 +43,22 @@ export const householdHazards_SkillGroup_Data = defineSkillGroup({
     kk: 'Үйдегі қауіптер',
     qm: 'Evdeki telükeler',
   },
-  skills: [
-    preventEntrapmentAndSuffocationHazards_Skill_Data,
-    preventFallsInLivingSpaces_Skill_Data,
-    preventHouseholdPoisoning_Skill_Data,
-    safeHandlingOfHotSurfacesAndLiquids_Skill_Data,
-    safeUseOfSharpObjects_Skill_Data,
-  ],
+  skills: {
+    items: {
+      preventEntrapmentAndSuffocationHazards: preventEntrapmentAndSuffocationHazards_Skill_Data,
+      preventFallsInLivingSpaces: preventFallsInLivingSpaces_Skill_Data,
+      preventHouseholdPoisoning: preventHouseholdPoisoning_Skill_Data,
+      safeHandlingOfHotSurfacesAndLiquids: safeHandlingOfHotSurfacesAndLiquids_Skill_Data,
+      safeUseOfSharpObjects: safeUseOfSharpObjects_Skill_Data,
+    },
+    order: [
+      'preventEntrapmentAndSuffocationHazards',
+      'preventFallsInLivingSpaces',
+      'preventHouseholdPoisoning',
+      'safeHandlingOfHotSurfacesAndLiquids',
+      'safeUseOfSharpObjects',
+    ],
+  },
   description: {
     methodological:
       'Ordinary domestic objects and spaces can cause falls, burns, poisoning, cuts, and injury when access or use is unsafe.',
