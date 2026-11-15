@@ -99,7 +99,7 @@ function readScenes(file) {
   if (document.errors.length) throw new Error('config.yaml: ' + document.errors.map(x => x.message).join('; '));
   const { config, documentLanguage, tasks } = splitScaffoldDocument(document.toJS({ maxAliasCount: 0 }));
   if (config.type !== 'lesson') throw new Error('config.yaml: expected a Lesson root');
-  if (typeof documentLanguage !== 'string' || !documentLanguage)
+  if (typeof documentLanguage !== 'string' || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(documentLanguage))
     throw new Error('config.yaml: production.documentLanguage is required');
   const specs = new Map();
   for (const task of tasks) {

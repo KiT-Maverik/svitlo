@@ -151,7 +151,7 @@ test('rejects unsafe/duplicate identities and missing production specs before wr
   second.config.slug = 'demoScene';
   second.config.id = sceneId;
   f.save();
-  assert.throws(() => runOne(f.source, 'generate', f.repo), /Duplicate Scene UUID/);
+  assert.throws(() => runOne(f.source, 'generate', f.repo), /Duplicate Scene (UUID|production identity)/);
 });
 
 test('rejects invalid textbook setup, symlinks, malformed YAML, and unsafe inputs', t => {
@@ -169,6 +169,14 @@ test('rejects invalid textbook setup, symlinks, malformed YAML, and unsafe input
   fs.symlinkSync(f.book, output, 'dir');
   assert.throws(() => runOne(f.source, 'generate', f.repo), /Refusing symlink/);
   assert.throws(() => runOne(path.join(f.repo, 'outside.yaml'), 'generate', f.repo));
+});
+
+test('rejects unsafe source-language strings instead of injecting them into TS comments', t => {
+  const f = fixture(t);
+  f.config.production.documentLanguage = 'uk\nconst arbitrary = true';
+  f.save();
+  assert.throws(() => runOne(f.source, 'generate', f.repo), /production.documentLanguage/);
+  assert.equal(fs.existsSync(f.folder(sceneId)), false);
 });
 
 test('CLI only acts on an explicit source and select option', t => {
