@@ -12,6 +12,7 @@ export const civilWorks_SkillGroup_Data = defineSkillGroup({
   id: 'e4b57c5b-354d-443a-8205-3f3673b29a4a',
   name: {
     en: 'Civil Works',
+    it: 'Opere civili',
     zh: '土木工程项目',
     hi: 'सिविल निर्माण कार्य',
     es: 'Obras civiles',
@@ -52,6 +53,7 @@ export const civilWorks_SkillGroup_Data = defineSkillGroup({
       'Large built assets require sequential construction and coordination with the ground and existing infrastructure.',
     frontend: {
       en: 'Discover how engineers plan major construction projects.',
+      it: 'Scopri come gli ingegneri pianificano grandi progetti di costruzione.',
       zh: '探索工程师如何规划大型建设项目。',
       hi: 'जानें कि अभियंता बड़े निर्माण कार्यों की योजना कैसे बनाते हैं।',
       es: 'Descubre cómo los ingenieros planifican grandes proyectos de construcción.',
