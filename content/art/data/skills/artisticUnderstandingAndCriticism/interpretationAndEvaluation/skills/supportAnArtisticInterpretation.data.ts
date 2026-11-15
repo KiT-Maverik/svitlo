@@ -5,6 +5,7 @@ export const supportAnArtisticInterpretation_Skill_Data = defineSkill({
   id: '6ccf1320-6283-4bcf-b757-30062f99bbd9',
   name: {
     en: 'Support an Artistic Interpretation',
+    it: "Motivare un'interpretazione artistica",
     zh: '为艺术诠释提供依据',
     hi: 'कलात्मक व्याख्या का समर्थन करें',
     es: 'Respaldar una interpretación artística',
@@ -38,6 +39,7 @@ export const supportAnArtisticInterpretation_Skill_Data = defineSkill({
     methodological: 'Defend a reading with identifiable artistic decisions and context relevant to the work.',
     frontend: {
       en: 'Use details from a work to explain and support your interpretation.',
+      it: "Usa particolari dell'opera per spiegare e sostenere la tua interpretazione.",
       zh: '运用作品中的具体细节解释并支持你的解读。',
       hi: 'अपनी व्याख्या को समझाने और उसका समर्थन करने के लिए कलाकृति के विवरणों का उपयोग करें।',
       es: 'Utiliza detalles de la obra para explicar y respaldar tu interpretación.',
