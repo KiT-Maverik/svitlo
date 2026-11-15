@@ -12,6 +12,7 @@ export const observationPractice_SkillGroup_Data = defineSkillGroup({
   id: '6b5700fb-8ba9-4483-9b1b-5c6a28347e12',
   name: {
     en: 'Observation Practice',
+    it: 'Pratica dell\'osservazione',
     qm: 'Közetüv ameliyatı',
     zh: '观测实践',
     hi: 'अवलोकन का अभ्यास',
@@ -52,6 +53,7 @@ export const observationPractice_SkillGroup_Data = defineSkillGroup({
       'Reliable sky observation requires choosing conditions, finding objects, maintaining records and avoiding preventable observational hazards.',
     frontend: {
       en: 'Plan safe, useful sky observations and keep records that others can understand.',
+      it: 'Pianifica osservazioni del cielo sicure e utili e registra i risultati in modo comprensibile agli altri.',
       qm: 'Kökni emniyetli ve faydalı közetmekni planlaştırıp, başqaları da añlay bilecek yazılarnı tutıñız.',
       zh: '学习规划安全、有效的天空观测，并做好便于他人理解的记录。',
       hi: 'आकाश का सुरक्षित और उपयोगी अवलोकन करने की योजना बनाना और दूसरों के समझने योग्य रिकॉर्ड रखना सीखें।',
