@@ -5,6 +5,7 @@ export const singVocalHarmony_Skill_Data = defineSkill({
   id: '2f1dd157-7b16-491b-9a3c-5aa4c4a3070c',
   name: {
     en: 'Sing Vocal Harmony',
+    it: 'Cantare una parte armonica',
     zh: '演唱声乐和声',
     hi: 'स्वर सामंजस्य गाएँ',
     es: 'Cantar armonía vocal',
@@ -38,6 +39,7 @@ export const singVocalHarmony_Skill_Data = defineSkill({
     methodological: 'Maintain an independent pitch part in relation to other simultaneous voices.',
     frontend: {
       en: 'Sing your own harmony part while other voices sound at the same time.',
+      it: 'Canta la tua parte armonica mentre altre voci cantano contemporaneamente.',
       zh: '当其他人同时演唱时，唱出自己的和声声部。',
       hi: 'जब अन्य आवाज़ें साथ गाएँ, तब अपना अलग सामंजस्य वाला स्वर गाएँ।',
       es: 'Canta tu propia parte armónica mientras otras voces suenan al mismo tiempo.',
