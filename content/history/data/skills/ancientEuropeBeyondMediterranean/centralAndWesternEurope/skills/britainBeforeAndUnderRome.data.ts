@@ -5,6 +5,7 @@ export const britainBeforeAndUnderRome_Skill_Data = defineSkill({
   id: 'f638bab0-b8db-4a56-894a-efb34f5caee8',
   name: {
     en: 'Britain Before and Under Roman Rule',
+    it: "Britannia prima e durante il dominio romano",
     zh: '罗马统治前与统治下的不列颠',
     hi: 'रोमन शासन से पहले और उसके दौरान ब्रिटेन',
     es: 'Britania antes y durante el dominio romano',
@@ -38,6 +39,7 @@ export const britainBeforeAndUnderRome_Skill_Data = defineSkill({
     methodological: 'Compare indigenous British communities, Roman conquest, and forms of interaction on the island.',
     frontend: {
       en: 'Explore Britain before and during Roman rule.',
+      it: "Esplora la Britannia prima e durante il dominio romano.",
       zh: '探索罗马统治前及统治时期的不列颠。',
       hi: 'रोमन शासन से पहले और उसके दौरान ब्रिटेन के इतिहास का अध्ययन करें।',
       es: 'Explora Britania antes y durante el dominio romano.',

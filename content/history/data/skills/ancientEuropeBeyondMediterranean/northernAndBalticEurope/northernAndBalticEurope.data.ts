@@ -11,6 +11,7 @@ export const northernAndBalticEurope_SkillGroup_Data = defineSkillGroup({
   id: 'bf1a7561-91f6-4c82-8671-9ee2e2081088',
   name: {
     en: 'Northern and Baltic Europe',
+    it: "Europa settentrionale e baltica",
     zh: '北欧与波罗的海地区',
     hi: 'उत्तरी और बाल्टिक यूरोप',
     es: 'Europa septentrional y báltica',
@@ -40,18 +41,12 @@ export const northernAndBalticEurope_SkillGroup_Data = defineSkillGroup({
     kk: 'Солтүстік және Балтық Еуропасы',
     qm: 'Şimaliy ve Baltıq Avropası',
   },
-  skills: {
-    items: {
-      ancientNorthernEuropeanEconomies: ancientNorthernEuropeanEconomies_Skill_Data,
-      balticAmberTrade: balticAmberTrade_Skill_Data,
-      scandinavianIronAge: scandinavianIronAge_Skill_Data,
-    },
-    order: ['ancientNorthernEuropeanEconomies', 'balticAmberTrade', 'scandinavianIronAge'],
-  },
+  skills: [ancientNorthernEuropeanEconomies_Skill_Data, balticAmberTrade_Skill_Data, scandinavianIronAge_Skill_Data],
   description: {
     methodological: 'Rivers and seas connected communities with differing farming, herding, and craft traditions.',
     frontend: {
       en: 'Discover how northern Europeans connected through waterways.',
+      it: "Scopri come le popolazioni dell'Europa settentrionale erano collegate dalle vie d'acqua.",
       zh: '了解北欧居民如何通过水路保持联系。',
       hi: 'जानें कि उत्तरी यूरोप के लोग जलमार्गों से कैसे जुड़े थे।',
       es: 'Descubre cómo los europeos del norte se conectaban mediante vías navegables.',

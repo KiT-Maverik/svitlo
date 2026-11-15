@@ -10,6 +10,7 @@ export const ancientEuropeBeyondMediterranean_SkillDomain_Data = defineSkillDoma
   id: '397058c6-6268-4a12-b3d3-35e8248f66c1',
   title: {
     en: 'Europe Beyond the Mediterranean',
+    it: "Europa oltre il Mediterraneo",
     zh: '地中海以外的古代欧洲',
     hi: 'भूमध्यसागर के बाहर का प्राचीन यूरोप',
     es: 'Europa antigua fuera del Mediterráneo',
@@ -39,25 +40,18 @@ export const ancientEuropeBeyondMediterranean_SkillDomain_Data = defineSkillDoma
     kk: 'Жерорта теңізінен тыс ежелгі Еуропа',
     qm: 'Aqdeñizden tış qadimiy Avropa',
   },
-  groups: {
-    items: {
-      centralAndWesternEurope: centralAndWesternEurope_SkillGroup_Data,
-      earlyMedievalEasternEurope: earlyMedievalEasternEurope_SkillGroup_Data,
-      northernAndBalticEurope: northernAndBalticEurope_SkillGroup_Data,
-      northernBlackSeaRegion: northernBlackSeaRegion_SkillGroup_Data,
-    },
-    order: [
-      'centralAndWesternEurope',
-      'earlyMedievalEasternEurope',
-      'northernAndBalticEurope',
-      'northernBlackSeaRegion',
-    ],
-  },
+  groups: [
+    centralAndWesternEurope_SkillGroup_Data,
+    earlyMedievalEasternEurope_SkillGroup_Data,
+    northernAndBalticEurope_SkillGroup_Data,
+    northernBlackSeaRegion_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Most European communities existed beyond the political frameworks of Greek poleis and Rome while sustaining diverse local and distant connections.',
     frontend: {
       en: 'Discover ancient European societies beyond Greece and Rome.',
+      it: "Scopri le società europee antiche al di fuori della Grecia e di Roma.",
       zh: '探索希腊和罗马以外的古代欧洲社会。',
       hi: 'यूनान और रोम से परे प्राचीन यूरोपीय समाजों की खोज करें।',
       es: 'Descubre las sociedades europeas antiguas más allá de Grecia y Roma.',

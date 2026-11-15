@@ -5,6 +5,7 @@ export const ancientGermanicCommunities_Skill_Data = defineSkill({
   id: '531a83f6-9f27-4cf9-a8fb-edaf985e127d',
   name: {
     en: 'Ancient Germanic Communities',
+    it: "Antiche comunità germaniche",
     zh: '古代日耳曼语族社群',
     hi: 'प्राचीन जर्मनिक-भाषी समुदाय',
     es: 'Comunidades germánicas antiguas',
@@ -38,6 +39,7 @@ export const ancientGermanicCommunities_Skill_Data = defineSkill({
     methodological: 'Examine diverse Central and Northern European societies and their contacts with Rome.',
     frontend: {
       en: 'Discover the variety of ancient Germanic-speaking communities.',
+      it: "Scopri la varietà delle antiche comunità di lingua germanica.",
       zh: '了解古代日耳曼语族社群的多样性。',
       hi: 'प्राचीन जर्मनिक भाषाएँ बोलने वाले समुदायों की विविधता को जानें।',
       es: 'Descubre la diversidad de las antiguas comunidades de habla germánica.',

@@ -7,6 +7,7 @@ export const earlyMedievalEasternEurope_SkillGroup_Data = defineSkillGroup({
   id: 'f763fd64-839e-4349-a597-e4e980ea588e',
   name: {
     en: 'Early Medieval Eastern Europe',
+    it: "Europa orientale nell'alto Medioevo",
     zh: '中世纪早期东欧',
     hi: 'प्रारंभिक मध्यकालीन पूर्वी यूरोप',
     es: 'Europa oriental en la Alta Edad Media',
@@ -36,17 +37,13 @@ export const earlyMedievalEasternEurope_SkillGroup_Data = defineSkillGroup({
     kk: 'Ерте орта ғасырлардағы Шығыс Еуропа',
     qm: 'Erte orta asırlardaki Şarqiy Avropa',
   },
-  skills: {
-    items: {
-      kyivanRus: kyivanRus_Skill_Data,
-    },
-    order: ['kyivanRus'],
-  },
+  skills: [kyivanRus_Skill_Data],
   description: {
     methodological:
       'Study early medieval Eastern European polities and links with the Baltic, Black Sea, and Byzantine worlds as a limited chronological exception to the ancient focus.',
     frontend: {
       en: 'Explore early medieval states and trade connections in Eastern Europe.',
+      it: "Esplora i primi Stati medievali e le reti commerciali dell'Europa orientale.",
       zh: '探索中世纪早期东欧的国家及贸易联系。',
       hi: 'पूर्वी यूरोप के प्रारंभिक मध्यकालीन राज्यों और व्यापारिक संबंधों का अध्ययन करें।',
       es: 'Explora los Estados y vínculos comerciales de la Europa oriental altomedieval.',

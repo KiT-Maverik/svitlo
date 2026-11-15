@@ -5,6 +5,7 @@ export const kyivanRus_Skill_Data = defineSkill({
   id: '80a36811-c314-40c2-aa55-63c41d13a3e8',
   name: {
     en: 'Kyivan Rus',
+    it: "Rus' di Kyiv",
     zh: '基辅罗斯',
     hi: 'कीवियाई रुस',
     es: 'Rus de Kyiv',
@@ -39,6 +40,7 @@ export const kyivanRus_Skill_Data = defineSkill({
       'Trace the Kyiv-centered polity of the late ninth through thirteenth centuries, princely government, diverse populations, Byzantine relations, Christianization, and river trade, including the Varangians-to-Greeks route. Distinguish evidence from chronicle traditions and later nationalist interpretations.',
     frontend: {
       en: 'Explore the people, rulers and trade routes of medieval Kyivan Rus.',
+      it: "Esplora le popolazioni, i sovrani e le rotte commerciali della Rus' di Kyiv medievale.",
       zh: '探索中世纪基辅罗斯的居民、统治者和贸易路线。',
       hi: 'मध्यकालीन कीवियाई रुस के लोगों, शासकों और व्यापार मार्गों को जानें।',
       es: 'Descubre los pueblos, gobernantes y rutas comerciales de la Rus de Kyiv medieval.',
