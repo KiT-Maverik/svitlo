@@ -5,6 +5,7 @@ export const xiongnu_Skill_Data = defineSkill({
   id: '02bd7c0b-da3e-47b4-8f71-2d786b482209',
   name: {
     en: 'Xiongnu',
+    it: "Xiongnu",
     zh: '匈奴',
     hi: 'शियोंगनू',
     es: 'Xiongnu',
@@ -38,6 +39,7 @@ export const xiongnu_Skill_Data = defineSkill({
     methodological: 'Examine the Xiongnu political confederation and diplomatic or military ties with Han China.',
     frontend: {
       en: 'Discover how the Xiongnu interacted with the Han Empire.',
+      it: "Scopri come gli Xiongnu interagivano con l'Impero Han.",
       zh: '了解匈奴与汉帝国如何交往。',
       hi: 'जानें कि शियोंगनू का हान साम्राज्य से कैसा संबंध था।',
       es: 'Descubre cómo interactuaron los xiongnu con el Imperio Han.',

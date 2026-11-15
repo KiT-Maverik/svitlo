@@ -11,6 +11,7 @@ export const eastAndCentralAsia_SkillDomain_Data = defineSkillDomain({
   id: 'c151bf39-0aba-4a40-b75f-40788f187631',
   title: {
     en: 'East and Central Asia',
+    it: "Asia orientale e centrale",
     zh: '东亚与中亚',
     hi: 'पूर्वी और मध्य एशिया',
     es: 'Asia oriental y central',
@@ -40,21 +41,19 @@ export const eastAndCentralAsia_SkillDomain_Data = defineSkillDomain({
     kk: 'Шығыс және Орталық Азия',
     qm: 'Şarqiy ve Merkezi Asiya',
   },
-  groups: {
-    items: {
-      ancientJapan: ancientJapan_SkillGroup_Data,
-      ancientKorea: ancientKorea_SkillGroup_Data,
-      earlyChina: earlyChina_SkillGroup_Data,
-      imperialChina: imperialChina_SkillGroup_Data,
-      innerAsia: innerAsia_SkillGroup_Data,
-    },
-    order: ['ancientJapan', 'ancientKorea', 'earlyChina', 'imperialChina', 'innerAsia'],
-  },
+  groups: [
+    ancientJapan_SkillGroup_Data,
+    ancientKorea_SkillGroup_Data,
+    earlyChina_SkillGroup_Data,
+    imperialChina_SkillGroup_Data,
+    innerAsia_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'China, Korea, Japan, and Inner Asian steppe regions show coexistence and interaction between settled and mobile societies.',
     frontend: {
       en: 'Explore the diverse ancient societies of East and Central Asia.',
+      it: "Esplora le diverse società antiche dell'Asia orientale e centrale.",
       zh: '探索东亚和中亚多样的古代社会。',
       hi: 'पूर्वी और मध्य एशिया के विविध प्राचीन समाजों के बारे में जानें।',
       es: 'Explora la diversidad de las sociedades antiguas de Asia oriental y central.',

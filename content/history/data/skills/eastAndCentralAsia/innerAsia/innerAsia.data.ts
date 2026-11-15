@@ -12,6 +12,7 @@ export const innerAsia_SkillGroup_Data = defineSkillGroup({
   id: '7aa11b7a-047f-4c39-968d-9f18b9e16e5e',
   name: {
     en: 'Inner Asia',
+    it: "Asia interna",
     zh: '内亚',
     hi: 'आंतरिक एशिया',
     es: 'Asia interior',
@@ -41,19 +42,17 @@ export const innerAsia_SkillGroup_Data = defineSkillGroup({
     kk: 'Ішкі Азия',
     qm: 'İçki Asiya',
   },
-  skills: {
-    items: {
-      centralAsianOasisCenters: centralAsianOasisCenters_Skill_Data,
-      sakaAndRelatedSteppeCultures: sakaAndRelatedSteppeCultures_Skill_Data,
-      steppePastoralism: steppePastoralism_Skill_Data,
-      xiongnu: xiongnu_Skill_Data,
-    },
-    order: ['centralAsianOasisCenters', 'sakaAndRelatedSteppeCultures', 'steppePastoralism', 'xiongnu'],
-  },
+  skills: [
+    centralAsianOasisCenters_Skill_Data,
+    sakaAndRelatedSteppeCultures_Skill_Data,
+    steppePastoralism_Skill_Data,
+    xiongnu_Skill_Data,
+  ],
   description: {
     methodological: 'Steppe and oasis societies created polities and connections among large agricultural states.',
     frontend: {
       en: 'Explore the mobile and settled societies of Inner Asia.',
+      it: "Esplora le società nomadi e sedentarie dell'Asia interna.",
       zh: '探索内亚的游牧与定居社会。',
       hi: 'आंतरिक एशिया के चलायमान और बसे हुए समाजों के बारे में जानें।',
       es: 'Explora las sociedades móviles y sedentarias del Asia interior.',

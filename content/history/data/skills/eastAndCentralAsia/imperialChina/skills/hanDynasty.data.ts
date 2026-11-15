@@ -5,6 +5,7 @@ export const hanDynasty_Skill_Data = defineSkill({
   id: '9707c11a-9878-461b-91ac-13bb1038d684',
   name: {
     en: 'Han Dynasty',
+    it: "Dinastia Han",
     zh: '汉朝',
     hi: 'हान राजवंश',
     es: 'Dinastía Han',
@@ -38,6 +39,7 @@ export const hanDynasty_Skill_Data = defineSkill({
     methodological: 'Trace bureaucracy, border policy, and economic networks in the Han Empire.',
     frontend: {
       en: 'Learn how Han rulers administered and connected their empire.',
+      it: "Scopri come i sovrani Han amministravano e collegavano le varie parti dell'impero.",
       zh: '探索汉朝统治者如何管理并连接帝国各地。',
       hi: 'जानें कि हान शासकों ने अपने साम्राज्य का प्रशासन और संपर्क कैसे व्यवस्थित किया।',
       es: 'Aprende cómo los gobernantes Han administraban y conectaban su imperio.',

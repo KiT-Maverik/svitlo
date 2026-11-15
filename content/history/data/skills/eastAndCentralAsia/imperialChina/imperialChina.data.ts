@@ -13,6 +13,7 @@ export const imperialChina_SkillGroup_Data = defineSkillGroup({
   id: '54400f62-60bd-47bf-80b8-4e6d1e2433a8',
   name: {
     en: 'Imperial China',
+    it: "Cina imperiale",
     zh: '帝制中国',
     hi: 'साम्राज्यकालीन चीन',
     es: 'China imperial',
@@ -42,26 +43,18 @@ export const imperialChina_SkillGroup_Data = defineSkillGroup({
     kk: 'Империялық Қытай',
     qm: 'İmperatorlıq devrindeki Çin',
   },
-  skills: {
-    items: {
-      ancientChineseMetallurgy: ancientChineseMetallurgy_Skill_Data,
-      fallOfHanAndSuccessorStates: fallOfHanAndSuccessorStates_Skill_Data,
-      hanDynasty: hanDynasty_Skill_Data,
-      papermakingInAncientChina: papermakingInAncientChina_Skill_Data,
-      qinEmpire: qinEmpire_Skill_Data,
-    },
-    order: [
-      'ancientChineseMetallurgy',
-      'fallOfHanAndSuccessorStates',
-      'hanDynasty',
-      'papermakingInAncientChina',
-      'qinEmpire',
-    ],
-  },
+  skills: [
+    ancientChineseMetallurgy_Skill_Data,
+    fallOfHanAndSuccessorStates_Skill_Data,
+    hanDynasty_Skill_Data,
+    papermakingInAncientChina_Skill_Data,
+    qinEmpire_Skill_Data,
+  ],
   description: {
     methodological: 'Territorial unification prompted administrative standardization and debate about rule.',
     frontend: {
       en: 'Explore how Chinese dynasties governed large territories.',
+      it: "Esplora come le dinastie cinesi governavano vasti territori.",
       zh: '探索中国各朝代如何治理广阔的疆域。',
       hi: 'जानें कि चीनी राजवंशों ने विशाल क्षेत्रों पर कैसे शासन किया।',
       es: 'Explora cómo las dinastías chinas gobernaron extensos territorios.',

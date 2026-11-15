@@ -5,6 +5,7 @@ export const qinEmpire_Skill_Data = defineSkill({
   id: '5107d995-4332-464a-aa5d-f08115ab63af',
   name: {
     en: 'Qin Empire',
+    it: "Impero Qin",
     zh: '秦帝国',
     hi: 'छिन साम्राज्य',
     es: 'Imperio Qin',
@@ -38,6 +39,7 @@ export const qinEmpire_Skill_Data = defineSkill({
     methodological: "Explain centralization and standardization under China's first imperial dynasty.",
     frontend: {
       en: 'Discover the policies that helped the Qin unite China.',
+      it: "Scopri le politiche che aiutarono i Qin a unificare la Cina.",
       zh: '了解哪些政策帮助秦国统一了中国。',
       hi: 'उन नीतियों के बारे में जानें जिनसे छिन ने चीन को एकजुट किया।',
       es: 'Descubre las políticas que ayudaron a los Qin a unificar China.',
