@@ -5,6 +5,7 @@ export const designScenicAtmosphere_Skill_Data = defineSkill({
   id: '52a2bd59-7ed3-4195-b443-cc5963b6f4f6',
   name: {
     en: 'Design Scenic Atmosphere',
+    it: 'Progettare l\'atmosfera scenica',
     zh: '设计舞台氛围',
     hi: 'मंचीय वातावरण डिज़ाइन करें',
     es: 'Diseñar la atmósfera escénica',
@@ -38,6 +39,7 @@ export const designScenicAtmosphere_Skill_Data = defineSkill({
     methodological: 'Relate setting details, spatial arrangement and visual character to a dramatic situation.',
     frontend: {
       en: 'Choose stage details that help establish the mood and setting.',
+      it: 'Scegli dettagli della scenografia che aiutino a definire l\'atmosfera e l\'ambientazione.',
       zh: '选择有助于营造情绪和场景环境的舞台细节。',
       hi: 'ऐसे मंचीय विवरण चुनें जो मनोदशा और परिवेश स्थापित करें।',
       es: 'Elige detalles escénicos que ayuden a crear el ambiente y el lugar.',
