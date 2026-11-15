@@ -5,6 +5,7 @@ export const samplePreparationForAnalysis_Skill_Data = defineSkill({
   id: '5b155555-02b4-4dee-81aa-fe56824b7e44',
   name: {
     en: 'Sample Preparation for Analysis',
+    it: "Preparazione del campione per l'analisi",
     zh: '分析前的样品制备',
     hi: 'विश्लेषण के लिए नमूना तैयार करना',
     es: 'Preparación de muestras para análisis',
@@ -39,6 +40,7 @@ export const samplePreparationForAnalysis_Skill_Data = defineSkill({
       'Choose sample treatment, such as dissolution, extraction or dilution, to make a specified analyte measurable while considering contamination and analyte loss.',
     frontend: {
       en: 'Choose ways to prepare a sample while avoiding contamination or material loss.',
+      it: "Scegli come preparare un campione evitando contaminazioni o perdite di materiale.",
       zh: '选择制备样品的方法，同时避免污染或物质损失。',
       hi: 'संदूषण या पदार्थ के नुकसान से बचते हुए नमूना तैयार करने के तरीके चुनें।',
       es: 'Elige cómo preparar una muestra evitando la contaminación o la pérdida de material.',
