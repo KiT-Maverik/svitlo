@@ -5,6 +5,7 @@ export const performBodyPercussion_Skill_Data = defineSkill({
   id: 'ca80b1d4-83cc-43b6-ab47-595cb3a6d4be',
   name: {
     en: 'Perform Body Percussion',
+    it: 'Eseguire percussioni corporee',
     zh: '表演身体打击乐',
     hi: 'शारीरिक तालवाद्य प्रस्तुत करें',
     es: 'Practicar percusión corporal',
@@ -38,6 +39,7 @@ export const performBodyPercussion_Skill_Data = defineSkill({
     methodological: 'Organize sounds made by clapping, stepping or tapping the body into a rhythmic line.',
     frontend: {
       en: 'Build rhythms by clapping, stepping, tapping or using other body sounds.',
+      it: 'Costruisci ritmi battendo le mani, i piedi, tamburellando o producendo altri suoni con il corpo.',
       zh: '通过拍手、跺脚、敲击身体或使用其他身体声音来创作节奏。',
       hi: 'ताली बजाकर, कदम रखकर, शरीर पर थपकी देकर या अन्य शारीरिक ध्वनियों से लय बनाएँ।',
       es: 'Crea ritmos dando palmadas, pisadas, golpes suaves u otros sonidos corporales.',
