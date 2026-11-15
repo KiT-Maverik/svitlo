@@ -6,6 +6,7 @@ import type {
   ContentBlock_Text_Props,
   ContentBlock_Checkpoint_Props,
   QuizSection_Props,
+  AssessmentResourceLoader,
 } from '@svitlo/engine/runtime';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
@@ -98,7 +99,7 @@ function TestLayout({ messages, ...props }: LessonLearningLayoutProps) {
     </>
   );
 }
-function showLesson(response = fixture(true), editableSectionParams: readonly 'allowNavigation'[] = []) {
+function showLesson(response = fixture(true), editableSectionParams: readonly 'allowNavigation'[] = [], assessmentLoader?: AssessmentResourceLoader) {
   observed.length = 0;
   received.length = 0;
   releaseBlocker = undefined;
@@ -110,6 +111,7 @@ function showLesson(response = fixture(true), editableSectionParams: readonly 'a
       layout={TestLayout}
       messages={enUiKitMessages}
       editableSectionParams={editableSectionParams}
+      assessmentLoader={assessmentLoader}
     />,
   );
 }
@@ -229,7 +231,7 @@ describe('Engine Props Lesson Controller', () => {
       type: 'quiz',
       params: {
         isBlocker: true,
-        selection: { mode: 'all', questionSlugs: ['whatIsLight'] },
+        selection: { mode: 'all', questionIds: [question.id] },
         layout: { mode: 'stack' },
         feedbackMode: 'immediate',
         interaction: {
@@ -248,11 +250,19 @@ describe('Engine Props Lesson Controller', () => {
       content: [],
     };
     // Published Question Props arrive as JSON, without source-only TypeScript metadata.
-    response.questions = { selectOneAnswer: [JSON.parse(JSON.stringify(question))] };
     response.section = [quiz, response.section[1]];
-    showLesson(response);
+    const loader: AssessmentResourceLoader = {
+      loadQuestions: async ({ lessonId, language, ids }) => {
+        expect(lessonId).toBe(response.id);
+        expect(language).toBe('en');
+        expect(ids).toEqual([question.id]);
+        return [JSON.parse(JSON.stringify(question))] as never;
+      },
+      loadFlashcards: async () => [],
+    };
+    showLesson(response, [], loader);
     expect(navigationButton('next')).toBeDisabled();
-    fireEvent.click(screen.getByRole('radio', { name: /Radiation/i }));
+    fireEvent.click(await screen.findByRole('radio', { name: /Radiation/i }));
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
     await waitFor(() => expect(navigationButton('next')).toBeEnabled());
     expect(received).toContain('quizCompleted');
