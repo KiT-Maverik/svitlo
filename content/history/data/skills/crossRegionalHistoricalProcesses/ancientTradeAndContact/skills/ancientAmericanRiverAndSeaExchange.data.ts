@@ -5,6 +5,7 @@ export const ancientAmericanRiverAndSeaExchange_Skill_Data = defineSkill({
   id: 'a8748580-103c-4f8b-9917-e385014cd5f3',
   name: {
     en: 'Ancient American River and Sea Exchange',
+    it: "Scambi fluviali e marittimi nelle Americhe antiche",
     zh: '古代美洲河流与海上交流',
     hi: 'प्राचीन अमेरिका में नदी और समुद्री आदान-प्रदान',
     es: 'Intercambio fluvial y marítimo en la América antigua',
@@ -39,6 +40,7 @@ export const ancientAmericanRiverAndSeaExchange_Skill_Data = defineSkill({
       'Study regional circulation of materials and traditions among river basins, coasts, and islands in the Americas.',
     frontend: {
       en: 'Trace early trade connections by river and sea in the Americas.',
+      it: "Segui le prime connessioni commerciali attraverso fiumi e mari nelle Americhe.",
       zh: '追踪古代美洲沿河流与海洋进行的早期贸易联系。',
       hi: 'प्राचीन अमेरिका में नदियों और समुद्रों से जुड़े शुरुआती व्यापार संबंधों का पता लगाएँ।',
       es: 'Sigue las primeras conexiones comerciales por ríos y mares en las Américas.',

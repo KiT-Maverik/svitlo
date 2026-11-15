@@ -5,6 +5,7 @@ export const babylonianKingdoms_Skill_Data = defineSkill({
   id: '8c3a30bf-ec11-4251-b8b4-59b723ff807d',
   name: {
     en: 'Babylonian Kingdoms',
+    it: "Regni babilonesi",
     zh: '巴比伦诸王国',
     hi: 'बेबीलोनियाई राज्य',
     es: 'Reinos babilónicos',
@@ -39,6 +40,7 @@ export const babylonianKingdoms_Skill_Data = defineSkill({
       'Explore royal centralization, legal texts, and urban culture across different periods of Babylonian history.',
     frontend: {
       en: 'Explore government, laws and life in ancient Babylon.',
+      it: "Esplora il governo, le leggi e la vita nell'antica Babilonia.",
       zh: '探索古代巴比伦的统治、法律和生活。',
       hi: 'प्राचीन बेबीलोन के शासन, कानून और जीवन का अध्ययन करें।',
       es: 'Explora el gobierno, las leyes y la vida en la antigua Babilonia.',

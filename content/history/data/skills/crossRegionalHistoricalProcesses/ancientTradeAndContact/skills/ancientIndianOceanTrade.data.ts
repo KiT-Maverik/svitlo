@@ -5,6 +5,7 @@ export const ancientIndianOceanTrade_Skill_Data = defineSkill({
   id: '0727b9ee-9e76-4a8d-9159-29f8a79c9628',
   name: {
     en: 'Ancient Indian Ocean Trade',
+    it: "Commercio antico nell'Oceano Indiano",
     zh: '古代印度洋贸易',
     hi: 'प्राचीन हिंद महासागर व्यापार',
     es: 'Comercio antiguo del océano Índico',
@@ -38,6 +39,7 @@ export const ancientIndianOceanTrade_Skill_Data = defineSkill({
     methodological: 'Examine monsoon-linked routes among South Asia, Arabia, Africa, and neighboring coasts.',
     frontend: {
       en: 'Follow ships and goods across the ancient Indian Ocean.',
+      it: "Segui le navi e le merci che attraversavano l'Oceano Indiano nell'antichità.",
       zh: '追踪古代印度洋上的船只与货物往来。',
       hi: 'प्राचीन हिंद महासागर में जहाज़ों और माल की आवाजाही का पता लगाएँ।',
       es: 'Sigue la circulación de barcos y mercancías por el antiguo océano Índico.',
