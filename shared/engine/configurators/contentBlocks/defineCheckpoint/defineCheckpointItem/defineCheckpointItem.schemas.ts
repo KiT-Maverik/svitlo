@@ -5,6 +5,8 @@ import type { ContentBlock_Text_Configurator, ContentBlock_Text_Overrides, Conte
 import {
   checkpointAnswer_Child_Props_Schema,
   type Checkpoint_Allowed_Props,
+  type Checkpoint_Allowed_Configurator,
+  type CheckpointAnswer_Overrides,
 } from '../defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import type { ContentBlock_CheckpointAnswer_Configurator } from '../defineCheckpointAnswer';
 
@@ -30,8 +32,11 @@ export type ContentBlock_CheckpointItem_Props = Omit<z.infer<typeof checkpointIt
 export type CheckpointItem_Question_Overrides = Omit<ContentBlock_Text_Overrides, 'params'> & {
   params?: Omit<NonNullable<ContentBlock_Text_Overrides['params']>, 'disabled'> & { disabled?: never };
 };
-export type CheckpointItem_Overrides<Answer extends ContentBlock_CheckpointAnswer_Configurator> = {
+export type CheckpointItem_Overrides<
+  Answer extends ContentBlock_CheckpointAnswer_Configurator,
+  Added extends Record<string, Checkpoint_Allowed_Configurator> = {},
+> = {
   check?: true;
   question?: CheckpointItem_Question_Overrides;
-  answer?: Parameters<Answer['build']['overrides']>[0];
+  answer?: CheckpointAnswer_Overrides<Answer['content']['items'], Added>;
 };
