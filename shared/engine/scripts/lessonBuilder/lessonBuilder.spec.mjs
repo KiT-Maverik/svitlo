@@ -300,7 +300,7 @@ test('Lesson Review draft matches the Engine stage mapping without mutating exte
   const pending = renderReviewDraft();
   const fields = [...pending.matchAll(/^    ([A-Za-z]+): \{ pr: , language: , \},$/gm)].map(match => match[1]);
   assert.deepEqual(fields, lessonReviewStageSlugs);
-  assert.doesNotMatch(pending, /\\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
+  assert.doesNotMatch(pending, /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
   assert.match(pending, /^    locales: ,$/m);
   assert.match(pending, /^    acceptance: ,$/m);
   const filled = pending
@@ -326,7 +326,7 @@ test('review.ts starts with mandatory unfilled evidence and is not overwritten',
     assert.match(pending, /methodologyReview: \{ pr: , language: , \}/);
     assert.match(pending, /generateSources: \{ pr: , language: , \}/);
     assert.match(pending, /resourceProduction: \{ pr: , language: , \}/);
-    assert.doesNotMatch(pending, /\\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
+    assert.doesNotMatch(pending, /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
     assert.match(pending, /locales: ,/);
     assert.match(pending, /acceptance: ,/);
     assert.match(pending, /locales: \{\}/);
