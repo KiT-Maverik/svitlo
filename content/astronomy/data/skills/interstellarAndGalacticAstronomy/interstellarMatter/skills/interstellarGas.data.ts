@@ -5,6 +5,7 @@ export const interstellarGas_Skill_Data = defineSkill({
   id: '2f3620e1-d1ab-4087-b053-582e47d10d14',
   name: {
     en: 'Interstellar Gas',
+    it: 'Gas interstellare',
     qm: 'Yıldızlararası gaz',
     zh: '星际气体',
     hi: 'अंतरतारकीय गैस',
@@ -39,6 +40,7 @@ export const interstellarGas_Skill_Data = defineSkill({
       'Interpret evidence for diffuse ionized, neutral and molecular gas and the conditions associated with these phases.',
     frontend: {
       en: 'Distinguish different forms of gas found between stars.',
+      it: 'Distingui le diverse forme di gas presenti tra le stelle.',
       qm: 'Yıldızlar arasında rastkelgen gaznıñ çeşit şekillerini ayırıñız.',
       zh: '区分恒星之间存在的不同形式气体。',
       hi: 'तारों के बीच मिलने वाली गैस के विभिन्न रूपों में अंतर करें।',

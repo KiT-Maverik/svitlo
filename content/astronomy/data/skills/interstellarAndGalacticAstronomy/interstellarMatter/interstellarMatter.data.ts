@@ -12,6 +12,7 @@ export const interstellarMatter_SkillGroup_Data = defineSkillGroup({
   id: '9c92c9d0-5b03-475a-beb6-678aa43131c2',
   name: {
     en: 'Interstellar Matter',
+    it: 'Materia interstellare',
     qm: 'Yıldızlararası madde',
     zh: '星际物质',
     hi: 'अंतरतारकीय पदार्थ',
@@ -52,6 +53,7 @@ export const interstellarMatter_SkillGroup_Data = defineSkillGroup({
       'Gas, dust, radiation and magnetic fields between stars are active participants in the cycling of matter across galaxies.',
     frontend: {
       en: 'Discover how gas, dust and magnetic fields influence the space between stars.',
+      it: 'Scopri come gas, polveri e campi magnetici influenzano lo spazio tra le stelle.',
       qm: 'Gaz, toz ve magnit meydanlarınıñ yıldızlar arasındaki fezağa tesirini ögreniñiz.',
       zh: '了解气体、尘埃和磁场如何影响恒星之间的空间。',
       hi: 'जानें कि गैस, धूल और चुंबकीय क्षेत्र तारों के बीच के अंतरिक्ष को कैसे प्रभावित करते हैं।',

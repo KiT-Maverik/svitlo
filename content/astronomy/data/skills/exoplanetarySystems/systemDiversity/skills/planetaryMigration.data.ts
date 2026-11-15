@@ -5,6 +5,7 @@ export const planetaryMigration_Skill_Data = defineSkill({
   id: 'b93bad8b-69cb-48e9-b936-d567dd661e74',
   name: {
     en: 'Planetary Migration',
+    it: 'Migrazione planetaria',
     zh: '行星迁移',
     hi: 'ग्रहों का कक्षीय प्रवास',
     es: 'Migración planetaria',
@@ -39,6 +40,7 @@ export const planetaryMigration_Skill_Data = defineSkill({
       'Explain how interactions with disks or other planets can change orbital locations after formation.',
     frontend: {
       en: 'Explore how planets may move to different orbits after forming.',
+      it: 'Esplora come i pianeti possano spostarsi su orbite diverse dopo la loro formazione.',
       zh: '探索行星形成后为何可能移动到不同的轨道。',
       hi: 'जानें कि बनने के बाद ग्रह अलग-अलग कक्षाओं में कैसे जा सकते हैं।',
       es: 'Explora cómo los planetas pueden desplazarse a otras órbitas después de formarse.',
