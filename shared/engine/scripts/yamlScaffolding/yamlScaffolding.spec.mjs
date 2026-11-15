@@ -166,10 +166,14 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     );
     const editorial = 'kind: lesson-content-plan\nstatus: draft\nsections: []\n';
     fs.writeFileSync(path.join(lessonDir, 'content.yaml'), editorial);
-    assert.equal(runOne(lessonDir, 'generate', root).changed, 1);
+    const lessonDraft = runOne(lessonDir, 'generate', root);
+    const sourceFiles = lessonDraft.files.filter(file => file.endsWith('.ts'));
+    assert(sourceFiles.length > 1, 'Lesson Builder must emit multiple named draft modules');
+    assert.equal(lessonDraft.changed, sourceFiles.length);
     assert.equal(fs.readFileSync(path.join(lessonDir, 'content.yaml'), 'utf8'), editorial);
-    const lessonCode = fs.readFileSync(path.join(lessonDir, 'lightLesson.data.ts'), 'utf8');
-    const lessonCalls = calls(lessonCode);
+    const modules = sourceFiles.map(file => fs.readFileSync(path.join(lessonDir, file), 'utf8'));
+    const lessonCode = modules.join('\n');
+    const lessonCalls = modules.flatMap(calls);
     for (const name of [
       'defineLesson',
       'defineContentSection',
@@ -193,7 +197,7 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     assert(lessonCode.includes('import { '));
     assert(lessonCode.includes("from '@svitlo/engine/build'"));
 
-    const lessonImport = '../../../lessons/c/' + lessonId + '/lightLesson.data.ts';
+    const lessonImport = '../../../lessons/c/' + lessonId + '/index.ts';
     assert(fs.existsSync(path.resolve(courseDir, lessonImport)));
     const course = {
       documentLanguage: 'uk',
