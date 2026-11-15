@@ -5,6 +5,7 @@ export const analyzeHumanAutonomyInTechnologicalSystems_Skill_Data = defineSkill
   id: 'dfb7bf17-89af-462b-b47b-9db218de5cc9',
   name: {
     en: 'Analyze human autonomy in technological systems',
+    it: 'Analizzare l\'autonomia umana nei sistemi tecnologici',
     zh: '分析技术系统中的人的自主性',
     hi: 'तकनीकी प्रणालियों में मानवीय स्वायत्तता का विश्लेषण',
     es: 'Analizar la autonomía humana en sistemas tecnológicos',
@@ -39,6 +40,7 @@ export const analyzeHumanAutonomyInTechnologicalSystems_Skill_Data = defineSkill
       'Evaluate when reliance on automated or networked systems enhances or constrains meaningful choice and control, separate from the narrower ethics of individual algorithmic decisions.',
     frontend: {
       en: "Explore when technology increases or reduces a person's control over their decisions.",
+      it: 'Esplora quando la tecnologia aumenti o riduca il controllo di una persona sulle proprie decisioni.',
       zh: '探索技术何时增强或削弱人对自身决定的掌控。',
       hi: 'जानो कि तकनीक कब किसी व्यक्ति की अपने निर्णयों पर पकड़ बढ़ाती या घटाती है।',
       es: 'Explora cuándo la tecnología aumenta o reduce el control de una persona sobre sus decisiones.',

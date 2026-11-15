@@ -5,6 +5,7 @@ export const distinguishSenseFromReference_Skill_Data = defineSkill({
   id: '20ff8cbf-f885-4ec2-9ce8-5687cea20f2f',
   name: {
     en: 'Distinguish sense from reference',
+    it: 'Distinguere senso e riferimento',
     zh: '区分内涵与指称',
     hi: 'अभिप्राय और निर्देश में भेद',
     es: 'Distinguir sentido y referencia',
@@ -39,6 +40,7 @@ export const distinguishSenseFromReference_Skill_Data = defineSkill({
       'Analyze how different expressions can pick out the same entity while presenting it in different ways.',
     frontend: {
       en: 'Recognize how different expressions can refer to the same entity in different ways.',
+      it: 'Riconosci come espressioni diverse possano riferirsi alla stessa entità in modi differenti.',
       zh: '识别不同表达如何以不同方式指向同一个对象。',
       hi: 'समझो कि अलग अभिव्यक्तियाँ एक ही चीज़ को अलग तरह से कैसे दर्शाती हैं।',
       es: 'Reconoce cómo distintas expresiones pueden referirse a la misma entidad de maneras diferentes.',
