@@ -15,10 +15,10 @@ config:
       en: 'Check an Answer by Working Backward'
   section:
     items:
-      section1AJourneyAndTheWayBack:
+      undoAdditionWithSubtraction:
         config:
           id: '156b6355-5e1a-47a2-a561-43cb0dee5b68'
-          slug: 'section1AJourneyAndTheWayBack'
+          slug: 'undoAdditionWithSubtraction'
           type: 'content'
           params: {}
           locale:
@@ -28,10 +28,10 @@ config:
               en: 'A journey and the way back'
           content:
             items:
-              text1:
+              promptFortySixPlusTwentySeven:
                 config:
                   id: 'da5df7f4-296e-44f3-ad16-3beea7f75a9d'
-                  slug: 'text1'
+                  slug: 'promptFortySixPlusTwentySeven'
                   type: 'text'
                   params: {}
                   locale:
@@ -93,25 +93,25 @@ config:
                     Generic Playground Scene resources are presently renderable, but this custom Checker is **new**. Coding Agent must inspect context and implementation contracts, create real localized strings, test arithmetic and access routes, and satisfy approval gates. This document creates no React, runtime Lesson data, Questions, Quizzes, score persistence, mastery rules or Note behavior.
                   purpose: 'Proposed interactive Scene for A journey and the way back'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              checkBackwardToStart:
                 config:
                   id: 'dd5dfcad-2a6e-4686-ac16-3a5ba4f755e4'
-                  slug: 'text2'
+                  slug: 'checkBackwardToStart'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: '73 − 27 = **46**. We returned to the original start, so the proposed sum passes this check.'
-              markdown3:
+              explainInverseAddition:
                 config:
                   id: '7bc3ee68-7c68-442b-9255-26f2b61081ed'
-                  slug: 'markdown3'
+                  slug: 'explainInverseAddition'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '**Forward:** 46 + 27 = 73. **Backward check:** 73 − 27 = 46. An inverse operation undoes the change.'
-            order: ['text1', 'reverseOperationChecker', 'text2', 'markdown3']
+            order: ['promptFortySixPlusTwentySeven', 'reverseOperationChecker', 'checkBackwardToStart', 'explainInverseAddition']
         production:
           purpose: 'A journey and the way back'
           pedagogicalIntent: |
@@ -125,10 +125,10 @@ config:
             4. **`markdown`:** “**Forward:** 46 + 27 = 73. **Backward check:** 73 − 27 = 46. An inverse operation undoes the change.”
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section2ANumberThatLooksCloseButFails:
+      catchWrongSumWithInverse:
         config:
           id: 'c43ef4f6-3bab-4349-ada9-ce604f0d5dfb'
-          slug: 'section2ANumberThatLooksCloseButFails'
+          slug: 'catchWrongSumWithInverse'
           type: 'content'
           params: {}
           locale:
@@ -138,10 +138,10 @@ config:
               en: 'A number that looks close, but fails'
           content:
             items:
-              text1:
+              challengeIncorrectSixtyThree:
                 config:
                   id: '21606da7-bec1-4c78-b95d-5bd58e6c7dde'
-                  slug: 'text1'
+                  slug: 'challengeIncorrectSixtyThree'
                   type: 'text'
                   params: {}
                   locale:
@@ -203,25 +203,25 @@ config:
                     Generic Playground Scene resources are presently renderable, but this custom Checker is **new**. Coding Agent must inspect context and implementation contracts, create real localized strings, test arithmetic and access routes, and satisfy approval gates. This document creates no React, runtime Lesson data, Questions, Quizzes, score persistence, mastery rules or Note behavior.
                   purpose: 'Proposed interactive Scene for A number that looks close, but fails'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              correctSumToSeventyThree:
                 config:
                   id: '22606f3a-c1c1-4131-b65d-571c8d6c7c4b'
-                  slug: 'text2'
+                  slug: 'correctSumToSeventyThree'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Our check exposed a mismatch. We must correct the addition: 46 + 27 = **73**, then 73 − 27 = **46**.'
-              markdown3:
+              explainChecksCatchErrors:
                 config:
                   id: 'afa6469f-aef9-4f9c-a3f6-bbf5b2666082'
-                  slug: 'markdown3'
+                  slug: 'explainChecksCatchErrors'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'Checking a result means using a relationship that can catch a mistake — not simply looking at whether the answer seems about the right size.'
-            order: ['text1', 'reverseOperationChecker', 'text2', 'markdown3']
+            order: ['challengeIncorrectSixtyThree', 'reverseOperationChecker', 'correctSumToSeventyThree', 'explainChecksCatchErrors']
         production:
           purpose: 'A number that looks close, but fails'
           pedagogicalIntent: |
@@ -235,10 +235,10 @@ config:
             4. **`markdown`:** “Checking a result means using a relationship that can catch a mistake — not simply looking at whether the answer seems about the right size.”
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section3UndoSubtractionWithAddition:
+      undoSubtractionWithAddition:
         config:
           id: '88a4d9ec-c107-49f3-ba88-256ee99b4bbd'
-          slug: 'section3UndoSubtractionWithAddition'
+          slug: 'undoSubtractionWithAddition'
           type: 'content'
           params: {}
           locale:
@@ -248,10 +248,10 @@ config:
               en: 'Undo subtraction with addition'
           content:
             items:
-              text1:
+              promptEightyFourMinusTwentyNine:
                 config:
                   id: '7c6226d1-12e5-4376-a325-8abf070621dc'
-                  slug: 'text1'
+                  slug: 'promptEightyFourMinusTwentyNine'
                   type: 'text'
                   params: {}
                   locale:
@@ -313,25 +313,25 @@ config:
                     Generic Playground Scene resources are presently renderable, but this custom Checker is **new**. Coding Agent must inspect context and implementation contracts, create real localized strings, test arithmetic and access routes, and satisfy approval gates. This document creates no React, runtime Lesson data, Questions, Quizzes, score persistence, mastery rules or Note behavior.
                   purpose: 'Proposed interactive Scene for Undo subtraction with addition'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              hintReplaceRemovedStickers:
                 config:
                   id: '79622218-11e5-41e3-a425-8c520a062695'
-                  slug: 'text2'
+                  slug: 'hintReplaceRemovedStickers'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'You took more away from the remainder; try putting back the removed stickers.'
-              markdown3:
+              explainAddBackCheck:
                 config:
                   id: '426ceb11-4b82-4e6a-a748-1887397178c0'
-                  slug: 'markdown3'
+                  slug: 'explainAddBackCheck'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: 'A subtraction result can be checked by putting the removed amount back.'
-            order: ['text1', 'reverseOperationChecker', 'text2', 'markdown3']
+            order: ['promptEightyFourMinusTwentyNine', 'reverseOperationChecker', 'hintReplaceRemovedStickers', 'explainAddBackCheck']
         production:
           purpose: 'Undo subtraction with addition'
           pedagogicalIntent: |
@@ -345,10 +345,10 @@ config:
             4. **`markdown`:** “A subtraction result can be checked by putting the removed amount back.”
 
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
-      section4IndependentTransferWriteAReverseCheck:
+      writeIndependentReverseCheck:
         config:
           id: '8ab025be-5b95-4c0d-aaca-c1ec5260f2db'
-          slug: 'section4IndependentTransferWriteAReverseCheck'
+          slug: 'writeIndependentReverseCheck'
           type: 'content'
           params: {}
           locale:
@@ -358,10 +358,10 @@ config:
               en: 'Independent transfer: write a reverse check'
           content:
             items:
-              text1:
+              askSixtyEightMinusNineteen:
                 config:
                   id: '5283bf4f-6f7b-46ac-8e18-ced13bb3dc3e'
-                  slug: 'text1'
+                  slug: 'askSixtyEightMinusNineteen'
                   type: 'text'
                   params: {}
                   locale:
@@ -423,25 +423,25 @@ config:
                     Generic Playground Scene resources are presently renderable, but this custom Checker is **new**. Coding Agent must inspect context and implementation contracts, create real localized strings, test arithmetic and access routes, and satisfy approval gates. This document creates no React, runtime Lesson data, Questions, Quizzes, score persistence, mastery rules or Note behavior.
                   purpose: 'Proposed interactive Scene for Independent transfer: write a reverse check'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-              text2:
+              rejectRepeatedSubtraction:
                 config:
                   id: '5383c0e2-727b-4b65-8b18-ca183ab3daab'
-                  slug: 'text2'
+                  slug: 'rejectRepeatedSubtraction'
                   type: 'text'
                   params: {}
                   locale:
                     value:
                       en: 'Subtracting again does not undo the first subtraction.'
-              markdown3:
+              summarizeInverseChecks:
                 config:
                   id: '7e63b137-641e-4330-82e6-1311a29209e2'
-                  slug: 'markdown3'
+                  slug: 'summarizeInverseChecks'
                   type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: '**Recall:** Addition can be checked by subtraction. Subtraction can be checked by addition. An inverse check checks the numbers, not whether you chose the right model for a story.'
-            order: ['text1', 'reverseOperationChecker', 'text2', 'markdown3']
+            order: ['askSixtyEightMinusNineteen', 'reverseOperationChecker', 'rejectRepeatedSubtraction', 'summarizeInverseChecks']
         production:
           purpose: 'Independent transfer: write a reverse check'
           pedagogicalIntent: |
@@ -457,10 +457,10 @@ config:
           productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
     order:
       [
-        'section1AJourneyAndTheWayBack',
-        'section2ANumberThatLooksCloseButFails',
-        'section3UndoSubtractionWithAddition',
-        'section4IndependentTransferWriteAReverseCheck',
+        'undoAdditionWithSubtraction',
+        'catchWrongSumWithInverse',
+        'undoSubtractionWithAddition',
+        'writeIndependentReverseCheck',
       ]
   flashcards:
     items: {}
