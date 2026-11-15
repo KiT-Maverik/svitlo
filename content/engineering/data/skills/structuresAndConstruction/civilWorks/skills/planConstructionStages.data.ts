@@ -5,6 +5,7 @@ export const planConstructionStages_Skill_Data = defineSkill({
   id: 'ec47830f-0aff-4875-8d3b-71cc855c8eb3',
   name: {
     en: 'Plan construction stages',
+    it: 'Pianificare le fasi di costruzione',
     zh: '规划施工阶段',
     hi: 'निर्माण के चरणों की योजना बनाएँ',
     es: 'Planificar fases de construcción',
@@ -38,6 +39,7 @@ export const planConstructionStages_Skill_Data = defineSkill({
     methodological: 'Sequence foundations, supports, structure and services with realistic dependencies.',
     frontend: {
       en: 'Order construction steps according to their structural dependencies.',
+      it: 'Ordina le fasi costruttive in base alle loro dipendenze strutturali.',
       zh: '根据结构上的前后依赖安排施工步骤。',
       hi: 'संरचनात्मक निर्भरताओं के अनुसार निर्माण कार्यों का क्रम निर्धारित करें।',
       es: 'Ordena las etapas de obra según sus dependencias estructurales.',
