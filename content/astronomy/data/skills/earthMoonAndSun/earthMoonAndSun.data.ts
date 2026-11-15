@@ -10,6 +10,7 @@ export const earthMoonAndSun_SkillDomain_Data = defineSkillDomain({
   id: '8e12cd2c-68ad-467a-a428-f2337f072915',
   title: {
     en: 'Earth, Moon and Sun',
+    it: 'Terra, Luna e Sole',
     zh: '地球、月球与太阳',
     hi: 'पृथ्वी, चंद्रमा और सूर्य',
     es: 'La Tierra, la Luna y el Sol',
@@ -50,6 +51,7 @@ export const earthMoonAndSun_SkillDomain_Data = defineSkillDomain({
       "Here the distinctive geometry of Earth's viewpoint, rotation and revolution produces observable cycles. The scientific emphasis is on explaining familiar sky events from physical arrangements rather than on general geography or atmospheric meteorology.",
     frontend: {
       en: 'Understand how the movements and positions of Earth, the Moon and the Sun create familiar patterns in the sky.',
+      it: 'Comprendi come movimenti e posizioni di Terra, Luna e Sole creano configurazioni familiari nel cielo.',
       zh: '了解地球、月球和太阳的运动与位置如何形成天空中熟悉的周期性变化。',
       hi: 'समझें कि पृथ्वी, चंद्रमा और सूर्य की गति तथा स्थिति से आकाश में दिखाई देने वाले परिचित चक्र कैसे बनते हैं।',
       es: 'Comprende cómo los movimientos y las posiciones de la Tierra, la Luna y el Sol producen patrones conocidos en el cielo.',

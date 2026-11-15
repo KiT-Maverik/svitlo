@@ -12,6 +12,7 @@ export const terrestrialSkyCycles_SkillGroup_Data = defineSkillGroup({
   id: 'c8f35ba8-a7b9-4e99-83bc-1f21326aafc7',
   name: {
     en: 'Terrestrial Sky Cycles',
+    it: 'Cicli celesti terrestri',
     zh: '地球上的天空周期',
     hi: 'पृथ्वी से दिखने वाले आकाशीय चक्र',
     es: 'Ciclos del cielo terrestre',
@@ -52,6 +53,7 @@ export const terrestrialSkyCycles_SkillGroup_Data = defineSkillGroup({
       "Earth's orientation with respect to sunlight generates daily and annual changes in the visible sky and the duration of daylight.",
     frontend: {
       en: "Explore how Earth's rotation and tilt shape daylight and seasonal changes.",
+      it: 'Esplora come rotazione e inclinazione della Terra determinano la durata del giorno e i cambiamenti stagionali.',
       zh: '探索地球的自转和地轴倾斜如何影响日照时间与季节变化。',
       hi: 'जानें कि पृथ्वी का घूर्णन और उसकी धुरी का झुकाव दिन के उजाले तथा ऋतुओं में होने वाले बदलावों को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo la rotación de la Tierra y la inclinación de su eje influyen en la duración del día y los cambios estacionales.',

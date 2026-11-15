@@ -12,6 +12,7 @@ export const dynamicalInteractions_SkillGroup_Data = defineSkillGroup({
   id: '62929efc-6b42-43e7-9068-10639b784945',
   name: {
     en: 'Dynamical Interactions',
+    it: 'Interazioni dinamiche',
     zh: '动力学相互作用',
     hi: 'गतिकीय अंतःक्रियाएँ',
     es: 'Interacciones dinámicas',
@@ -52,6 +53,7 @@ export const dynamicalInteractions_SkillGroup_Data = defineSkillGroup({
       'Real celestial systems include many bodies, so resonances, tides and perturbations can alter otherwise idealized orbital motion.',
     frontend: {
       en: 'Explore how tides and other gravitational interactions alter celestial motions.',
+      it: 'Esplora come le maree e altre interazioni gravitazionali modificano i moti celesti.',
       zh: '探索潮汐和其他引力相互作用如何改变天体的运动。',
       hi: 'जानें कि ज्वारीय प्रभाव और अन्य गुरुत्वीय अंतःक्रियाएँ खगोलीय पिंडों की गति को कैसे बदलती हैं।',
       es: 'Explora cómo las mareas y otras interacciones gravitatorias modifican el movimiento de los cuerpos celestes.',
