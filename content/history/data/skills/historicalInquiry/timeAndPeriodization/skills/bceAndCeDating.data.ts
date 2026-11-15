@@ -5,7 +5,7 @@ export const bceAndCeDating_Skill_Data = defineSkill({
   id: '35ba8e99-cbb8-4c15-865a-343f2c740145',
   name: {
     en: 'BCE and CE Dating',
-    it: "Datazione a.C. e d.C.",
+    it: "Datazione prima e durante l’era comune",
     zh: '公元前与公元纪年',
     hi: 'ईसा पूर्व और ईस्वी सन् की तिथियाँ',
     es: 'Datación antes y después de la era común',
@@ -40,7 +40,7 @@ export const bceAndCeDating_Skill_Data = defineSkill({
       'Interpret years and centuries in both eras and correctly calculate intervals without a year zero in conventional dating.',
     frontend: {
       en: 'Read BCE and CE dates and calculate the time between them.',
-      it: "Leggi le date avanti Cristo e dopo Cristo e calcola il tempo trascorso tra esse.",
+      it: "Leggi le date prima dell’era comune e dell’era comune e calcola l’intervallo di tempo tra esse.",
       zh: '读取公元前和公元日期，并计算两者之间的时间。',
       hi: 'ईसा पूर्व और ईस्वी सन् की तिथियाँ पढ़ें और उनके बीच समय की गणना करें।',
       es: 'Lee fechas a. e. c. y e. c. y calcula el tiempo transcurrido entre ellas.',
