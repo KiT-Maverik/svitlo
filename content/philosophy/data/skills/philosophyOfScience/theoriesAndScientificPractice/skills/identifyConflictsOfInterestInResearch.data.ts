@@ -5,6 +5,7 @@ export const identifyConflictsOfInterestInResearch_Skill_Data = defineSkill({
   id: 'ad0bd056-1366-4701-a5eb-4566e4d7a9a4',
   name: {
     en: 'Identify conflicts of interest in research',
+    it: 'Individuare conflitti d\'interesse nella ricerca',
     zh: '识别研究中的利益冲突',
     hi: 'अनुसंधान में हितों का टकराव पहचानें',
     es: 'Identificar conflictos de interés en la investigación',
@@ -39,6 +40,7 @@ export const identifyConflictsOfInterestInResearch_Skill_Data = defineSkill({
       'Recognize relationships that may create incentives to bias design, interpretation, or publication without assuming misconduct.',
     frontend: {
       en: 'Notice relationships that could influence how researchers conduct or report a study.',
+      it: 'Nota le relazioni che potrebbero influenzare il modo in cui i ricercatori svolgono o presentano uno studio.',
       zh: '留意可能影响研究者进行或报告研究的关系。',
       hi: 'ऐसे संबंध पहचानें जो शोध करने या उसकी रिपोर्ट देने के तरीके को प्रभावित कर सकते हैं।',
       es: 'Detecta relaciones que podrían influir en cómo se realiza o comunica una investigación.',

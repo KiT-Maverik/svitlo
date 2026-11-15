@@ -5,6 +5,7 @@ export const comparePhilosophicalAccountsOfTime_Skill_Data = defineSkill({
   id: 'e96dabd0-88d7-4e03-8049-a1c40adfe5da',
   name: {
     en: 'Compare philosophical accounts of time',
+    it: 'Confrontare le concezioni filosofiche del tempo',
     zh: '比较关于时间的哲学观点',
     hi: 'समय के दार्शनिक सिद्धांतों की तुलना',
     es: 'Comparar concepciones filosóficas del tiempo',
@@ -39,6 +40,7 @@ export const comparePhilosophicalAccountsOfTime_Skill_Data = defineSkill({
       'Explain differences between views that privilege the present and views treating past, present, and future as equally real.',
     frontend: {
       en: 'Compare views about whether only the present or all times are equally real.',
+      it: 'Confronta le posizioni secondo cui soltanto il presente, oppure tutti i tempi, sarebbero ugualmente reali.',
       zh: '比较只有现在真实存在与所有时间同等真实的观点。',
       hi: 'केवल वर्तमान के वास्तविक होने और सभी समयों के समान वास्तविक होने के विचारों की तुलना करें।',
       es: 'Compara que solo existe el presente con que todos los tiempos son igualmente reales.',

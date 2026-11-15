@@ -5,6 +5,7 @@ export const distinguishPropertiesFromObjects_Skill_Data = defineSkill({
   id: '548cff5b-2644-450d-8432-a23907bd8741',
   name: {
     en: 'Distinguish properties from objects',
+    it: 'Distinguere le proprietà dagli oggetti',
     zh: '区分属性与对象',
     hi: 'गुणों और वस्तुओं में अंतर करें',
     es: 'Distinguir propiedades de objetos',
@@ -39,6 +40,7 @@ export const distinguishPropertiesFromObjects_Skill_Data = defineSkill({
       'Separate a bearer from qualities attributed to it, while recognizing that some metaphysical theories analyze this distinction differently.',
     frontend: {
       en: 'Separate an object from the properties attributed to it.',
+      it: 'Distingui un oggetto dalle proprietà che gli vengono attribuite.',
       zh: '把对象本身与赋予它的性质区分开来。',
       hi: 'किसी वस्तु को उससे जोड़े गए गुणों से अलग पहचानें।',
       es: 'Separa un objeto de las propiedades que se le atribuyen.',

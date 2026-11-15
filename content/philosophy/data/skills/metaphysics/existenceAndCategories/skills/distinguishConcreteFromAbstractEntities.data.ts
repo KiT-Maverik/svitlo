@@ -5,6 +5,7 @@ export const distinguishConcreteFromAbstractEntities_Skill_Data = defineSkill({
   id: '89f5fe46-05d7-4674-8fb7-a8750b59e795',
   name: {
     en: 'Distinguish concrete from abstract entities',
+    it: 'Distinguere entità concrete e astratte',
     zh: '区分具体实体与抽象实体',
     hi: 'ठोस और अमूर्त सत्ताओं में अंतर करें',
     es: 'Distinguir entidades concretas y abstractas',
@@ -39,6 +40,7 @@ export const distinguishConcreteFromAbstractEntities_Skill_Data = defineSkill({
       'Assess whether a proposed entity has spatial or causal features characteristic of concrete things or is treated as abstract, such as a mathematical object.',
     frontend: {
       en: 'Distinguish physical objects from entities such as numbers or abstract ideas.',
+      it: 'Distingui gli oggetti fisici da entità come i numeri o le idee astratte.',
       zh: '区分物理对象与数字或抽象观念等实体。',
       hi: 'भौतिक वस्तुओं को संख्याओं या अमूर्त विचारों जैसी सत्ताओं से अलग करें।',
       es: 'Distingue objetos físicos de entidades como números o ideas abstractas.',
