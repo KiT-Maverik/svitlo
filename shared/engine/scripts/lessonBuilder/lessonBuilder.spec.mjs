@@ -580,10 +580,12 @@ test('production handoff conflict is diagnosed before writing any source module'
       __production: { specification: '# Expected Scene specification' },
     };
     f.save();
-    const destination = path.join(f.workspace, 'scenes', sceneId.at(-1), sceneId, 'specification.md');
+    const destination = f.generated('sections/intro/visualScene/specification.md');
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     fs.writeFileSync(destination, '# Hand-edited specification\n');
-    assert.throws(() => runOne(f.lesson, 'generate', f.root), /refusing to overwrite/);
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /incomplete Lesson source tree/);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /refusing to overwrite/);
+    assert.equal(fs.readFileSync(destination, 'utf8'), '# Hand-edited specification\n');
     assert.equal(fs.existsSync(f.generated('constants.ts')), false);
     assert.equal(fs.existsSync(f.generated('index.ts')), false);
   }));
