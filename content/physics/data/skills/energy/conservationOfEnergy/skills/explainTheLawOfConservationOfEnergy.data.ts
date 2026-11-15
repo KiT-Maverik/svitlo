@@ -5,6 +5,7 @@ export const explainTheLawOfConservationOfEnergy_Skill_Data = defineSkill({
   id: 'a3b58cfc-580f-4be9-b6c1-343839f01488',
   name: {
     en: 'Explain the law of conservation of energy',
+    it: 'Spiegare la legge di conservazione dell\'energia',
     zh: '解释能量守恒定律',
     hi: 'ऊर्जा संरक्षण का नियम समझाना',
     es: 'Explicar la ley de conservación de la energía',
@@ -39,6 +40,7 @@ export const explainTheLawOfConservationOfEnergy_Skill_Data = defineSkill({
       'The total energy of an isolated system remains unchanged; for an open system, energy exchange with the surroundings must be taken into account.',
     frontend: {
       en: 'Explain how energy remains conserved even when forms or locations change.',
+      it: 'Spiega come l\'energia si conserva anche quando cambia forma o posizione.',
       zh: '说明能量改变形式或位置时为何仍守恒。',
       hi: 'समझाएँ कि रूप या स्थान बदलने पर भी ऊर्जा कैसे संरक्षित रहती है।',
       es: 'Explica cómo la energía se conserva aunque cambie de forma o ubicación.',
