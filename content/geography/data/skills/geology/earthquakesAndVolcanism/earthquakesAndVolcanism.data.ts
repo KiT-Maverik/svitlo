@@ -13,6 +13,7 @@ export const earthquakesAndVolcanism_SkillGroup_Data = defineSkillGroup({
   id: '5afabf1f-c809-4fbd-9916-25eb5ed14e76',
   name: {
     en: 'Earthquakes and Volcanism',
+    it: 'Terremoti e vulcanismo',
     zh: '地震与火山活动',
     hi: 'भूकंप और ज्वालामुखीय गतिविधि',
     es: 'Terremotos y vulcanismo',
@@ -54,6 +55,7 @@ export const earthquakesAndVolcanism_SkillGroup_Data = defineSkillGroup({
       'Sudden slip on faults and the movement of magma produce recognizable geological events with uneven spatial occurrence. This group addresses causes, observable landforms and spatial exposure; it does not prescribe individual emergency procedures or detailed physical equations.',
     frontend: {
       en: 'Discover how earthquakes and volcanic activity shape different regions.',
+      it: "Scopri come i terremoti e l'attività vulcanica modellano regioni diverse.",
       zh: '探索地震与火山活动如何塑造不同地区。',
       hi: 'जानें कि भूकंप और ज्वालामुखीय गतिविधियाँ विभिन्न क्षेत्रों का स्वरूप कैसे बदलती हैं।',
       es: 'Descubre cómo los terremotos y la actividad volcánica modelan distintas regiones.',

@@ -13,6 +13,7 @@ export const earthsInteriorAndPlateTectonics_SkillGroup_Data = defineSkillGroup(
   id: '692dec97-2393-4514-8359-c67922bfaca4',
   name: {
     en: "Earth's Interior and Plate Tectonics",
+    it: 'Struttura interna della Terra e tettonica delle placche',
     zh: '地球内部与板块构造',
     hi: 'पृथ्वी का आंतरिक भाग और प्लेट विवर्तनिकी',
     es: 'Interior de la Tierra y tectónica de placas',
@@ -54,6 +55,7 @@ export const earthsInteriorAndPlateTectonics_SkillGroup_Data = defineSkillGroup(
       'Earth has internal layers with different composition and mechanical properties, while its outer lithospheric plates move across a geologically active planet. Plate interactions explain large-scale patterns of faults, relief and geological activity, not every small local feature.',
     frontend: {
       en: "Explore Earth's internal layers and the movement of its tectonic plates.",
+      it: 'Esplora gli strati interni della Terra e il movimento delle sue placche tettoniche.',
       zh: '探索地球内部的各个圈层和构造板块的运动。',
       hi: 'पृथ्वी की आंतरिक परतों और विवर्तनिक प्लेटों की गति का अन्वेषण करें।',
       es: 'Explora las capas internas de la Tierra y el movimiento de sus placas tectónicas.',
