@@ -11,6 +11,7 @@ export const digitalMaterials_SkillGroup_Data = defineSkillGroup({
   id: '311e23f8-daee-44c7-bfd2-36f679bd8226',
   name: {
     en: 'Digital Materials',
+    it: 'Materiali digitali',
     zh: '数字素材',
     hi: 'डिजिटल सामग्री',
     es: 'Materiales digitales',
@@ -50,6 +51,7 @@ export const digitalMaterials_SkillGroup_Data = defineSkillGroup({
       'Creating, modifying, and selecting tools for digital outcomes with specific purposes. Editing an existing file, for example, is a distinct action from choosing a tool for future work.',
     frontend: {
       en: 'Learn to create, edit and choose tools for purposeful digital content.',
+      it: 'Impara a creare, modificare e scegliere strumenti per contenuti digitali con uno scopo preciso.',
       zh: '学习如何为明确的目标创建、编辑数字内容并选择合适的工具。',
       hi: 'सार्थक डिजिटल सामग्री बनाने और संपादित करने तथा उसके लिए सही उपकरण चुनने का अभ्यास करें।',
       es: 'Aprende a crear y editar contenido digital y a elegir herramientas según tus objetivos.',

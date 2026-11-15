@@ -12,6 +12,7 @@ export const proceduralGeneration_SkillGroup_Data = defineSkillGroup({
   id: '9db6f9e5-6ec4-45dc-b07d-907575574e25',
   name: {
     en: 'Procedural Generation',
+    it: 'Generazione procedurale',
     zh: '程序化生成',
     hi: 'प्रक्रियात्मक सृजन',
     es: 'Generación procedimental',
@@ -52,6 +53,7 @@ export const proceduralGeneration_SkillGroup_Data = defineSkillGroup({
       'Produce images, sounds, objects, or game worlds through rules and parameters instead of storing every finished variant. Distinguish parameter changes, reproducibility through a seed, and resource trade-offs.',
     frontend: {
       en: 'Discover how algorithms can create many content variations from compact rules.',
+      it: 'Scopri come gli algoritmi possono creare molte varianti di contenuto partendo da poche regole.',
       zh: '了解算法如何根据简洁的规则生成多种不同的内容。',
       hi: 'जानें कि एल्गोरिदम छोटे नियमों से सामग्री के कई रूप कैसे बना सकते हैं।',
       es: 'Descubre cómo los algoritmos generan muchas variantes de contenido a partir de reglas breves.',
