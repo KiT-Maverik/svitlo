@@ -13,6 +13,7 @@ export const guidanceAndRetention_SkillGroup_Data = defineSkillGroup({
   id: '3ed9a99c-8635-4a5b-b232-ca17743ee80e',
   name: {
     en: 'Guidance and Retention',
+    it: 'Guida e ritenuta',
     zh: '运动导向与固定',
     hi: 'गति का मार्गदर्शन और रोकथाम',
     es: 'Guiado y retención',
@@ -54,6 +55,7 @@ export const guidanceAndRetention_SkillGroup_Data = defineSkillGroup({
       'Motion must be supported and limited while interfaces are protected from damaging friction or unintended release.',
     frontend: {
       en: 'Explore the parts that support motion and prevent accidental release.',
+      it: 'Esplora i componenti che sostengono il movimento e impediscono il rilascio accidentale.',
       zh: '了解哪些部件支撑运动并防止意外松脱。',
       hi: 'जानें कि कौन से पुर्जे गति को सहारा देते और अचानक छूटने से रोकते हैं।',
       es: 'Explora qué piezas sostienen el movimiento y evitan liberaciones accidentales.',
