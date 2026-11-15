@@ -9,6 +9,7 @@ export const movementSleepAndEverydayRoutines_SkillDomain_Data = defineSkillDoma
   id: 'ec59c28f-6362-471e-8ce0-e510b83f94ac',
   title: {
     en: 'Movement, Sleep and Everyday Routines',
+    it: 'Movimento, sonno e abitudini quotidiane',
     zh: '运动、睡眠与日常习惯',
     hi: 'शारीरिक गतिविधि, नींद और दैनिक आदतें',
     es: 'Movimiento, sueño y rutinas diarias',
@@ -38,19 +39,17 @@ export const movementSleepAndEverydayRoutines_SkillDomain_Data = defineSkillDoma
     kk: 'Қозғалыс, ұйқы және күнделікті әдеттер',
     qm: 'Areket, yuqu ve kündelikli adetler',
   },
-  groups: {
-    items: {
-      ergonomicsAndSensoryCare: ergonomicsAndSensoryCare_SkillGroup_Data,
-      physicalActivity: physicalActivity_SkillGroup_Data,
-      sleepAndRecovery: sleepAndRecovery_SkillGroup_Data,
-    },
-    order: ['ergonomicsAndSensoryCare', 'physicalActivity', 'sleepAndRecovery'],
-  },
+  groups: [
+    ergonomicsAndSensoryCare_SkillGroup_Data,
+    physicalActivity_SkillGroup_Data,
+    sleepAndRecovery_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Physical functioning benefits from feasible movement, adequate recovery, and adjustments to daily environments. This domain concerns practical health habits, not the physiology of exercise as a separate science.',
     frontend: {
       en: 'Explore sustainable habits for movement, recovery and comfortable daily activities.',
+      it: 'Esplora abitudini sostenibili per muoverti, recuperare le energie e svolgere comodamente le attività quotidiane.',
       zh: '探索有助于活动、恢复和舒适日常生活的可持续习惯。',
       hi: 'ऐसी टिकाऊ आदतें अपनाएँ जो गतिविधि, आराम और रोज़मर्रा के कामों में मदद करें।',
       es: 'Descubre hábitos sostenibles para moverte, recuperarte y realizar tus actividades cotidianas con comodidad.',

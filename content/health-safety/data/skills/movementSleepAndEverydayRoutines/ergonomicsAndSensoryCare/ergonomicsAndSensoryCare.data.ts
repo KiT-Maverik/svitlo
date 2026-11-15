@@ -11,6 +11,7 @@ export const ergonomicsAndSensoryCare_SkillGroup_Data = defineSkillGroup({
   id: 'a866822d-a2b0-4de7-b49e-f706daa847ec',
   name: {
     en: 'Ergonomics and Sensory Care',
+    it: 'Ergonomia e cura dei sensi',
     zh: '人体工学与感官保护',
     hi: 'एर्गोनॉमिक्स और इंद्रियों की देखभाल',
     es: 'Ergonomía y cuidado de los sentidos',
@@ -40,19 +41,13 @@ export const ergonomicsAndSensoryCare_SkillGroup_Data = defineSkillGroup({
     kk: 'Эргономика және сезім мүшелерін қорғау',
     qm: 'Ergonomika ve sezgi organlarını qoruv',
   },
-  skills: {
-    items: {
-      adaptAnErgonomicWorkspace: adaptAnErgonomicWorkspace_Skill_Data,
-      manageVisualStrain: manageVisualStrain_Skill_Data,
-      protectHearingFromNoise: protectHearingFromNoise_Skill_Data,
-    },
-    order: ['adaptAnErgonomicWorkspace', 'manageVisualStrain', 'protectHearingFromNoise'],
-  },
+  skills: [adaptAnErgonomicWorkspace_Skill_Data, manageVisualStrain_Skill_Data, protectHearingFromNoise_Skill_Data],
   description: {
     methodological:
       'Workspaces and devices can be adapted to reduce strain, fatigue, and exposure rather than enforcing a single rigid body position.',
     frontend: {
       en: 'Learn how workspaces and devices can reduce strain on the senses and body.',
+      it: 'Impara come gli spazi di lavoro e i dispositivi possono ridurre l\'affaticamento dei sensi e del corpo.',
       zh: '了解如何通过调整工作空间和设备来减少身体与感官的负担。',
       hi: 'जानें कि कार्यस्थल और उपकरण बदलकर शरीर और इंद्रियों पर तनाव कैसे घटाएँ।',
       es: 'Aprende cómo adaptar el espacio de trabajo y los dispositivos para reducir la tensión corporal y sensorial.',

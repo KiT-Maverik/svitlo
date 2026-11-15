@@ -12,6 +12,7 @@ export const physicalActivity_SkillGroup_Data = defineSkillGroup({
   id: '3244da43-c224-40e6-b362-92f3d33dc09b',
   name: {
     en: 'Physical Activity',
+    it: 'Attività fisica',
     zh: '身体活动',
     hi: 'शारीरिक गतिविधि',
     es: 'Actividad física',
@@ -41,25 +42,18 @@ export const physicalActivity_SkillGroup_Data = defineSkillGroup({
     kk: 'Дене белсенділігі',
     qm: 'Beden faaliyeti',
   },
-  skills: {
-    items: {
-      planRegularPhysicalActivity: planRegularPhysicalActivity_Skill_Data,
-      prepareForPhysicalExertion: prepareForPhysicalExertion_Skill_Data,
-      preventExerciseRelatedInjury: preventExerciseRelatedInjury_Skill_Data,
-      recognizeWarningSignsDuringActivity: recognizeWarningSignsDuringActivity_Skill_Data,
-    },
-    order: [
-      'planRegularPhysicalActivity',
-      'prepareForPhysicalExertion',
-      'preventExerciseRelatedInjury',
-      'recognizeWarningSignsDuringActivity',
-    ],
-  },
+  skills: [
+    planRegularPhysicalActivity_Skill_Data,
+    prepareForPhysicalExertion_Skill_Data,
+    preventExerciseRelatedInjury_Skill_Data,
+    recognizeWarningSignsDuringActivity_Skill_Data,
+  ],
   description: {
     methodological:
       'Activity can vary by intensity, form, and personal ability; protective choices include gradual progression and responding to warning signals.',
     frontend: {
       en: 'Discover how to stay active while respecting personal capacities.',
+      it: 'Scopri come mantenerti attivo rispettando le tue capacità personali.',
       zh: '了解如何在尊重个人能力的前提下保持活动。',
       hi: 'जानें कि अपनी क्षमता का सम्मान करते हुए सक्रिय कैसे रहें।',
       es: 'Descubre cómo mantenerte activo respetando tus capacidades.',
