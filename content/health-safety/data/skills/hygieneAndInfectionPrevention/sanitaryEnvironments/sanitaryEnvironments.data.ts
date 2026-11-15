@@ -41,7 +41,14 @@ export const sanitaryEnvironments_SkillGroup_Data = defineSkillGroup({
     kk: 'Санитарлық орта',
     qm: 'Temiz ve sıhhatlı çevre',
   },
-  skills: [cleaningAndDisinfection_Skill_Data, indoorAirAndVentilation_Skill_Data, safeDrinkingWater_Skill_Data],
+  skills: {
+    items: {
+      cleaningAndDisinfection: cleaningAndDisinfection_Skill_Data,
+      indoorAirAndVentilation: indoorAirAndVentilation_Skill_Data,
+      safeDrinkingWater: safeDrinkingWater_Skill_Data,
+    },
+    order: ['cleaningAndDisinfection', 'indoorAirAndVentilation', 'safeDrinkingWater'],
+  },
   description: {
     methodological:
       'Water, indoor air, surfaces, and sanitation infrastructure influence exposure and should be managed according to actual contamination pathways.',
