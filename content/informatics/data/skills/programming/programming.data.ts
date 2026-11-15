@@ -14,6 +14,7 @@ export const programming_SkillDomain_Data = defineSkillDomain({
   id: '620ddff3-1b68-4866-9549-ec60a22209d2',
   title: {
     en: 'Programming',
+    it: 'Programmazione',
     zh: '程序设计',
     hi: 'प्रोग्रामिंग',
     es: 'Programación',
@@ -58,6 +59,7 @@ export const programming_SkillDomain_Data = defineSkillDomain({
       'Reading, writing, running, and testing executable instructions that modify program state or produce results. Unlike abstract algorithm design, these competencies concern the behavior of an actual program.',
     frontend: {
       en: 'Learn to understand, write and test instructions that a computer executes.',
+      it: 'Impara a comprendere, scrivere e verificare le istruzioni eseguite da un computer.',
       zh: '学习理解、编写和测试计算机执行的指令。',
       hi: 'कंप्यूटर द्वारा चलाए जाने वाले निर्देशों को समझना, लिखना और परखना सीखें।',
       es: 'Aprende a comprender, escribir y probar instrucciones que ejecuta una computadora.',

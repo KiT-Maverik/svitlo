@@ -12,6 +12,7 @@ export const programStructureAndSyntax_SkillGroup_Data = defineSkillGroup({
   id: '30fcb41c-3ae7-4294-870b-ac9b2507a304',
   name: {
     en: 'Program Structure and Syntax',
+    it: 'Struttura e sintassi dei programmi',
     zh: '程序结构与语法',
     hi: 'प्रोग्राम संरचना और सिंटैक्स',
     es: 'Estructura y sintaxis de programas',
@@ -52,6 +53,7 @@ export const programStructureAndSyntax_SkillGroup_Data = defineSkillGroup({
       'The language units of executable code include keywords, operators, identifiers, expressions, statements, and blocks. Editor highlighting helps identify them but does not prove a program correct.',
     frontend: {
       en: 'Learn how programming languages organize keywords, expressions and blocks.',
+      it: 'Impara come i linguaggi di programmazione organizzano parole chiave, espressioni e blocchi.',
       zh: '学习编程语言如何组织关键字、表达式和代码块。',
       hi: 'जानें कि प्रोग्रामिंग भाषाएँ कीवर्ड, व्यंजकों और ब्लॉकों को कैसे व्यवस्थित करती हैं।',
       es: 'Aprende cómo los lenguajes de programación organizan palabras clave, expresiones y bloques.',
