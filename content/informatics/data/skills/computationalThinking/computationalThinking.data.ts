@@ -8,6 +8,7 @@ export const computationalThinking_SkillDomain_Data = defineSkillDomain({
   id: 'fe626b09-cb42-4cc5-9694-7c31fa3e55b3',
   title: {
     en: 'Computational Thinking',
+    it: 'Pensiero computazionale',
     zh: '计算思维',
     hi: 'संगणकीय चिंतन',
     es: 'Pensamiento computacional',
@@ -43,6 +44,7 @@ export const computationalThinking_SkillDomain_Data = defineSkillDomain({
       'Turning open-ended problems into formalized tasks by identifying relevant information, defining rules, and constructing solutions that can be repeated and checked. Unlike programming, this does not necessarily require expressing the solution as executable code.',
     frontend: {
       en: 'Explore how to break complex problems into clear steps, patterns and rules.',
+      it: 'Esplora come scomporre problemi complessi in passaggi, schemi e regole chiari.',
       zh: '探索如何将复杂问题拆解为清晰的步骤、模式和规则。',
       hi: 'जानें कि जटिल समस्याओं को स्पष्ट चरणों, पैटर्न और नियमों में कैसे बाँटा जाता है।',
       es: 'Explora cómo dividir problemas complejos en pasos, patrones y reglas claros.',

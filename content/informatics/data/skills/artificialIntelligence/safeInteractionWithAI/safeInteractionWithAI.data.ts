@@ -12,6 +12,7 @@ export const safeInteractionWithAI_SkillGroup_Data = defineSkillGroup({
   id: '7d772a91-a37b-43bb-a150-aefbfb53aeaf',
   name: {
     en: 'Safe Interaction with AI',
+    it: "Interazione sicura con l'intelligenza artificiale",
     zh: '与人工智能安全互动',
     hi: 'एआई के साथ सुरक्षित बातचीत',
     es: 'Interacción segura con la IA',
@@ -52,6 +53,7 @@ export const safeInteractionWithAI_SkillGroup_Data = defineSkillGroup({
       'Recognizing unjustified model confidence, excessive agreement, dependency risks, and the need for continued human judgment.',
     frontend: {
       en: 'Recognize interaction patterns that can make AI advice misleading or unhealthy.',
+      it: "Riconosci modalità di interazione che possono rendere i consigli dell'IA fuorvianti o dannosi.",
       zh: '识别可能使人工智能建议产生误导或带来不健康依赖的互动方式。',
       hi: 'ऐसे बातचीत के तरीक़े पहचानें जिनसे एआई की सलाह भ्रामक बन सकती है या अस्वस्थ निर्भरता बढ़ सकती है।',
       es: 'Reconoce formas de interactuar que pueden volver engañosos los consejos de IA o fomentar una dependencia perjudicial.',
