@@ -4,6 +4,12 @@ const en = { title: 'Check your knowledge', check: 'Check', checked: 'Checked' }
 
 export type Checkpoint_Locale = typeof en;
 
+const it: Checkpoint_Locale = {
+  title: 'Verifica le tue conoscenze',
+  check: 'Verifica',
+  checked: 'Verificato',
+};
+
 const zh: Checkpoint_Locale = { title: '检验你的知识', check: '确认', checked: '已确认' };
 
 const hi: Checkpoint_Locale = { title: 'अपना ज्ञान जाँचें', check: 'जाँचें', checked: 'जाँचा गया' };
@@ -130,6 +136,7 @@ const qm: Checkpoint_Locale = { title: 'Bilgiñni tekşer', check: 'Tekşer', ch
 
 export const checkpoint: UiKit_Component_Locale<Checkpoint_Locale> = {
   en,
+  it,
   zh,
   hi,
   es,

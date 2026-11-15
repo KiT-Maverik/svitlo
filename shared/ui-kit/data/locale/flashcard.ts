@@ -16,6 +16,20 @@ const en = {
 
 export type Flashcard_Locale = typeof en;
 
+const it: Flashcard_Locale = {
+  flashcard: {
+    region: 'Scheda di ripasso',
+    flags: { warning: 'Attenzione' },
+    actions: {
+      menu: 'Azioni della scheda',
+      reveal: 'Mostra la risposta',
+      forgot: 'Non ricordo',
+      remembered: 'Ricordo',
+      addLabel: 'Aggiungi etichetta',
+    },
+  },
+};
+
 const zh: Flashcard_Locale = {
   flashcard: {
     region: '学习卡片',
@@ -405,6 +419,7 @@ const qm: Flashcard_Locale = {
 /** Complete framework-independent card messages; review translations editorially. */
 export const flashcard: UiKit_Component_Locale<Flashcard_Locale> = {
   en,
+  it,
   zh,
   hi,
   es,
