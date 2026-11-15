@@ -5,6 +5,7 @@ export const analyzeConstructivism_Skill_Data = defineSkill({
   id: '90c442c6-c00d-4c57-a2fc-4d8556e150ff',
   name: {
     en: 'Analyze Constructivism',
+    it: "Analizzare il Costruttivismo",
     zh: '分析构成主义',
     hi: 'रचनावाद का विश्लेषण करें',
     es: 'Analizar el constructivismo',
@@ -39,6 +40,7 @@ export const analyzeConstructivism_Skill_Data = defineSkill({
       'Relate abstract geometry, material experimentation and the ambition to connect art with social production in selected Constructivist practices.',
     frontend: {
       en: 'Explore how Constructivist artists connected geometry, materials and social ideas.',
+      it: "Esplora come gli artisti costruttivisti collegavano geometria, materiali e idee sociali.",
       zh: '了解构成主义艺术家如何结合几何形式、实验材料与社会理念。',
       hi: 'जानें कि रचनावादी कलाकारों ने ज्यामितीय रूपों, प्रयोगात्मक सामग्रियों और सामाजिक विचारों को कैसे जोड़ा।',
       es: 'Explora cómo los artistas constructivistas combinaron formas geométricas, materiales experimentales e ideas sociales.',
