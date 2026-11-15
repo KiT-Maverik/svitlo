@@ -5,6 +5,7 @@ export const distinguishMetaethicalFromNormativeQuestions_Skill_Data = defineSki
   id: 'c4df7235-9ce2-4fbb-b067-58a627ba4d2b',
   name: {
     en: 'Distinguish metaethical from normative questions',
+    it: 'Distinguere domande metaetiche e normative',
     zh: '区分元伦理问题与规范伦理问题',
     hi: 'अधिनैतिक और मानक नैतिक प्रश्नों में अंतर',
     es: 'Distinguir preguntas metaéticas de normativas',
@@ -39,6 +40,7 @@ export const distinguishMetaethicalFromNormativeQuestions_Skill_Data = defineSki
       'Separate questions about which actions are right from questions about what moral claims mean and whether their truth is objective.',
     frontend: {
       en: 'Distinguish asking what is right from asking what moral judgments mean.',
+      it: 'Distingui il chiedersi che cosa sia giusto dal chiedersi che cosa significhino i giudizi morali.',
       zh: '区分询问什么是正确的，与询问道德判断是什么意思。',
       hi: 'नैतिक रूप से क्या सही है और नैतिक निर्णयों का क्या अर्थ है, इन प्रश्नों में अंतर करें।',
       es: 'Distingue preguntar qué es correcto de preguntar qué significan los juicios morales.',

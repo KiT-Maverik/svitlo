@@ -5,6 +5,7 @@ export const distinguishMoralResponsibilityFromCausalResponsibility_Skill_Data =
   id: '735a47da-9dd5-4e1a-b99d-d12272e768e8',
   name: {
     en: 'Distinguish moral responsibility from causal responsibility',
+    it: 'Distinguere responsabilità morale e responsabilità causale',
     zh: '区分道德责任与因果责任',
     hi: 'नैतिक जिम्मेदारी और कारणात्मक जिम्मेदारी में अंतर',
     es: 'Distinguir responsabilidad moral y responsabilidad causal',
@@ -39,6 +40,7 @@ export const distinguishMoralResponsibilityFromCausalResponsibility_Skill_Data =
       'Separate causing an outcome from being appropriately accountable for it under relevant knowledge and control conditions.',
     frontend: {
       en: 'Distinguish responsibility for causing something from deserving moral blame.',
+      it: 'Distingui l\'essere responsabili di aver causato qualcosa dal meritare un rimprovero morale.',
       zh: '区分造成某事的责任与应受道德责备的责任。',
       hi: 'किसी घटना का कारण बनने और नैतिक दोष का पात्र होने में अंतर करें।',
       es: 'Distingue entre causar algo y merecer un reproche moral.',

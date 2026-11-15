@@ -5,6 +5,7 @@ export const examineMoralMotivation_Skill_Data = defineSkill({
   id: '835f9f0c-c93a-4def-9357-cc35bae7e587',
   name: {
     en: 'Examine moral motivation',
+    it: 'Esaminare la motivazione morale',
     zh: '探讨道德动机',
     hi: 'नैतिक प्रेरणा की जाँच',
     es: 'Examinar la motivación moral',
@@ -39,6 +40,7 @@ export const examineMoralMotivation_Skill_Data = defineSkill({
       'Compare philosophical positions on whether sincerely judging an act right necessarily motivates someone to perform it, without substituting a psychological causal theory.',
     frontend: {
       en: 'Consider whether believing something is right necessarily motivates action.',
+      it: 'Considera se credere che qualcosa sia giusto motivi necessariamente ad agire.',
       zh: '思考相信某事正确是否必然会促使人采取行动。',
       hi: 'विचार करें कि किसी बात को सही मानना क्या अनिवार्य रूप से कार्रवाई की प्रेरणा देता है।',
       es: 'Considera si creer que algo es correcto necesariamente motiva a actuar.',
