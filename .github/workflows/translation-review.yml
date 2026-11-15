@@ -246,6 +246,11 @@ jobs:
       - name: Validate downloaded files and commit only agent artifacts
         env:
           TARGET_BRANCH: ${{ needs.resolve.outputs.branch }}
+          REQUEST_KIND: ${{ needs.resolve.outputs.kind }}
+          REQUEST_BOOK: ${{ needs.resolve.outputs.textbook }}
+          REQUEST_LOCALE: ${{ needs.resolve.outputs.locale }}
+          REQUEST_COMPONENT: ${{ needs.resolve.outputs.component }}
+          REQUEST_LESSON: ${{ needs.resolve.outputs.lesson }}
         shell: bash
         run: |
           set -euo pipefail
@@ -268,6 +273,18 @@ jobs:
               !manifest.scope || !['skills', 'lessons', 'ui-kit', 'assessment-methods', 'geography-home-copy'].includes(manifest.scope.kind) ||
               !Array.isArray(manifest.generated) || !Array.isArray(manifest.failures) ||
               manifest.generated.length === 0) throw Error('Invalid or empty agent artifact manifest');
+          const requested = {
+            kind: process.env.REQUEST_KIND,
+            package: process.env.REQUEST_BOOK || null,
+            locale: process.env.REQUEST_LOCALE || null,
+            component: process.env.REQUEST_COMPONENT || null,
+            lesson: process.env.REQUEST_LESSON || null,
+          };
+          for (const [key, value] of Object.entries(requested)) {
+            if (manifest.scope[key] !== value) {
+              throw Error('Manifest scope disagrees with authorized request: ' + key);
+            }
+          }
           const expectedKinds = { skills: 'taxonomy', lessons: 'lesson',
             'ui-kit': 'ui-kit-locale', 'assessment-methods': 'assessment-method',
             'geography-home-copy': 'geography-home-copy' };
@@ -284,6 +301,10 @@ jobs:
             }
             if (manifest.scope.component && entry.component !== manifest.scope.component) {
               throw Error('Generated document outside requested UI Kit component');
+            }
+            if (manifest.scope.lesson && entry.lesson !==
+                manifest.scope.lesson.slice(-1) + '/' + manifest.scope.lesson) {
+              throw Error('Generated document outside requested Lesson UUID');
             }
             const name = entry.path;
             const segments = typeof name === 'string' ? name.split('/') : [];
