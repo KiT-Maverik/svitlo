@@ -12,6 +12,7 @@ export const bioInspiredTechnologies_SkillGroup_Data = defineSkillGroup({
   id: 'a56ffc78-7789-4050-8f10-d80e3de2c126',
   name: {
     en: 'Bio-Inspired Technologies',
+    it: 'Tecnologie bioispirate',
     zh: '仿生技术',
     hi: 'जैव-प्रेरित प्रौद्योगिकियाँ',
     es: 'Tecnologías bioinspiradas',
@@ -51,6 +52,7 @@ export const bioInspiredTechnologies_SkillGroup_Data = defineSkillGroup({
     methodological: 'Distinct examples show recurring design strategies, not a separate Skill for every organism.',
     frontend: {
       en: 'Discover devices and materials inspired by biological forms and surfaces.',
+      it: 'Scopri dispositivi e materiali ispirati alle forme e alle superfici biologiche.',
       zh: '探索受生物形态和表面结构启发的设备与材料。',
       hi: 'जैविक आकृतियों और सतहों से प्रेरित उपकरणों और पदार्थों को जानें।',
       es: 'Descubre dispositivos y materiales inspirados en las formas y superficies de los seres vivos.',
