@@ -5,7 +5,7 @@ export const lunarTidalEvolution_Skill_Data = defineSkill({
   id: '9765ed5b-6c61-4d7e-8fca-ae6fbff52065',
   name: {
     en: 'Lunar Tidal Evolution',
-    it: 'Evoluzione delle maree lunari',
+    it: 'Evoluzione mareale del sistema Terra–Luna',
     zh: '月球潮汐演化',
     hi: 'चंद्रमा का ज्वारीय विकास',
     es: 'Evolución mareal de la Luna',
