@@ -7,6 +7,8 @@ import type {
   ContentBlock_Checkpoint_Props,
   QuizSection_Props,
   AssessmentResourceLoader,
+  Flashcard_Props,
+  FlashcardsSection_Props,
 } from '@svitlo/engine/runtime';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
@@ -206,6 +208,45 @@ describe('Engine Props Lesson Controller', () => {
     showLesson(fixture(false));
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.learningLayout.actions.openSettings }));
     expect(screen.getByRole('slider', { name: 'Volume' })).toHaveAttribute('aria-valuenow', '100');
+  });
+
+  it('loads only the selected Flashcard UUID and reveals the separate response on demand', async () => {
+    const response = fixture(false);
+    const card: Flashcard_Props = {
+      id: uuid(90),
+      slug: 'lightCard',
+      type: 'flashcard',
+      parameters: { tags: [], flags: [] },
+      content: {
+        front: [text(91, 'What travels in a straight line?')],
+        back: [text(92, 'Light does.')],
+      },
+    };
+    const recall: FlashcardsSection_Props = {
+      id: uuid(93),
+      slug: 'recall',
+      type: 'flashcards',
+      params: { selection: { flashcardIds: [card.id] } },
+      locale: { title: 'Recall', navigationLabel: 'Flashcards' },
+      content: [],
+    };
+    response.section = [recall, response.section[1]];
+    const requests: string[][] = [];
+    const loader: AssessmentResourceLoader = {
+      loadQuestions: async () => [],
+      loadFlashcards: async ({ lessonId, language, ids }) => {
+        expect(lessonId).toBe(response.id);
+        expect(language).toBe('en');
+        requests.push([...ids]);
+        return [card];
+      },
+    };
+    showLesson(response, [], loader);
+    expect(screen.queryByText('Light does.')).toBeNull();
+    expect(await screen.findByText('What travels in a straight line?')).toBeVisible();
+    expect(requests).toEqual([[card.id]]);
+    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.flashcard.flashcard.actions.reveal }));
+    expect(screen.getByText('Light does.')).toBeVisible();
   });
 
   it('completes a blocking Engine Quiz after a Question attempt', async () => {
