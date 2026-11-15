@@ -5,6 +5,7 @@ export const recognizeHumanInfluencesOnACulturalLandscape_Skill_Data = defineSki
   id: 'a7a1d269-1b05-4194-8d98-eb52a8d5b241',
   name: {
     en: 'Recognize human influences on a cultural landscape',
+    it: 'Riconoscere le influenze umane su un paesaggio culturale',
     zh: '识别文化景观中的人类影响',
     hi: 'सांस्कृतिक परिदृश्य पर मानव प्रभाव पहचानना',
     es: 'Reconocer la influencia humana en un paisaje cultural',
@@ -39,6 +40,7 @@ export const recognizeHumanInfluencesOnACulturalLandscape_Skill_Data = defineSki
       'Identify visible patterns such as farmland, places of worship, or historic streets without assuming all communities share one culture.',
     frontend: {
       en: "Recognize visible human influences on a place's cultural landscape.",
+      it: "Riconosci le tracce visibili dell'azione umana nel paesaggio culturale di un luogo.",
       zh: '识别一个地方文化景观中可见的人类活动痕迹。',
       hi: 'किसी स्थान के सांस्कृतिक परिदृश्य पर दिखने वाले मानवीय प्रभावों को पहचानें।',
       es: 'Reconoce las huellas visibles de la actividad humana en el paisaje cultural de un lugar.',

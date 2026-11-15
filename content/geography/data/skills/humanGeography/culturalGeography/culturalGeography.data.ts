@@ -12,6 +12,7 @@ export const culturalGeography_SkillGroup_Data = defineSkillGroup({
   id: '0c32e711-1217-4b60-9fba-feb0158b0a02',
   name: {
     en: 'Cultural Geography',
+    it: 'Geografia culturale',
     zh: '文化地理学',
     hi: 'सांस्कृतिक भूगोल',
     es: 'Geografía cultural',
@@ -52,6 +53,7 @@ export const culturalGeography_SkillGroup_Data = defineSkillGroup({
       'Languages, practices, built environments and cultural identities form geographic distributions that evolve through human movement and interaction. Geographic interpretation describes spatial patterns and diffusion without assigning one culture to all inhabitants of a territory.',
     frontend: {
       en: 'Discover how cultural practices, languages and landscapes vary across places.',
+      it: "Scopri come le pratiche culturali, le lingue e i paesaggi variano da un luogo all'altro.",
       zh: '了解文化习俗、语言和文化景观如何因地点而异。',
       hi: 'जानें कि सांस्कृतिक प्रथाएँ, भाषाएँ और सांस्कृतिक परिदृश्य अलग-अलग स्थानों में कैसे भिन्न होते हैं।',
       es: 'Descubre cómo varían las prácticas culturales, las lenguas y los paisajes según el lugar.',
