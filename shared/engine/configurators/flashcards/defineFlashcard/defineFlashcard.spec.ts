@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import { defineText } from '../../contentBlocks/defineText/defineText';
 import { defineFlashcard } from './defineFlashcard';
+import { defineFlashcardSide } from '../defineFlashcardSide';
 import {
   flashcard_Config_Schema,
   flashcard_Props_Schema,
@@ -80,9 +81,9 @@ describe('Configurators', () => {
           },
         },
         content: {
-          front: { items: { front }, order: ['front'] },
-          back: { items: { back }, order: ['back'] },
-          hint: { items: { hint }, order: ['hint'] },
+          front: defineFlashcardSide<{ front: typeof front }, ['en', 'uk']>({ items: { front }, order: ['front'] }),
+          back: defineFlashcardSide<{ back: typeof back }, ['en', 'uk']>({ items: { back }, order: ['back'] }),
+          hint: defineFlashcardSide<{ hint: typeof hint }, ['en', 'uk']>({ items: { hint }, order: ['hint'] }),
         },
       };
       const defineBilingualFlashcard = (
@@ -111,8 +112,8 @@ describe('Configurators', () => {
           type: 'flashcard',
           parameters: { tags: [], flags: { items: {}, order: [] } },
           content: {
-            front: { items: { extra }, order: ['extra'] },
-            back: { items: { extra }, order: ['extra'] },
+            front: defineFlashcardSide({ items: { extra }, order: ['extra'] }),
+            back: defineFlashcardSide({ items: { extra }, order: ['extra'] }),
           },
         });
         const resource = card.build.props({ languages: ['en', 'uk'] });
@@ -256,11 +257,11 @@ describe('Configurators', () => {
             ...source,
             content: {
               ...source.content,
-              front: {
+              front: defineFlashcardSide({
                 // @ts-expect-error Raw content must not be nested as a configurator.
                 items: { front: front.config.base },
                 order: ['front'],
-              },
+              }),
             },
           }),
         );
