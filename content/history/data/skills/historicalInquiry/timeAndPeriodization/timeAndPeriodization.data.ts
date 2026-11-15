@@ -12,6 +12,7 @@ export const timeAndPeriodization_SkillGroup_Data = defineSkillGroup({
   id: 'fee37e4b-2452-48e5-8ff3-d4ff63a51e63',
   name: {
     en: 'Time and Periodization',
+    it: "Tempo e periodizzazione",
     zh: '时间与历史分期',
     hi: 'समय और काल-विभाजन',
     es: 'Tiempo y periodización',
@@ -41,20 +42,18 @@ export const timeAndPeriodization_SkillGroup_Data = defineSkillGroup({
     kk: 'Уақыт пен кезеңдеу',
     qm: 'Vaqıt ve devirlerge bölüv',
   },
-  skills: {
-    items: {
-      bceAndCeDating: bceAndCeDating_Skill_Data,
-      historicalChronology: historicalChronology_Skill_Data,
-      historicalPeriodization: historicalPeriodization_Skill_Data,
-      synchronizingCivilizations: synchronizingCivilizations_Skill_Data,
-    },
-    order: ['bceAndCeDating', 'historicalChronology', 'historicalPeriodization', 'synchronizingCivilizations'],
-  },
+  skills: [
+    bceAndCeDating_Skill_Data,
+    historicalChronology_Skill_Data,
+    historicalPeriodization_Skill_Data,
+    synchronizingCivilizations_Skill_Data,
+  ],
   description: {
     methodological:
       'Historical time uses relative and absolute dating; period boundaries are analytical conventions, not universal natural transitions occurring everywhere simultaneously.',
     frontend: {
       en: 'Explore how dates and historical periods help us organize the past.',
+      it: "Esplora come le date e i periodi storici ci aiutano a organizzare il passato.",
       zh: '探索日期和历史时期如何帮助我们整理过去。',
       hi: 'जानें कि तिथियाँ और ऐतिहासिक काल अतीत को व्यवस्थित समझने में कैसे मदद करते हैं।',
       es: 'Explora cómo las fechas y los períodos históricos nos ayudan a organizar el pasado.',

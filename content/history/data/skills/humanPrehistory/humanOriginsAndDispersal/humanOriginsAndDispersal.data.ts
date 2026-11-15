@@ -12,6 +12,7 @@ export const humanOriginsAndDispersal_SkillGroup_Data = defineSkillGroup({
   id: '34016e25-e0ac-45f4-be94-9db66febf661',
   name: {
     en: 'Human Origins and Dispersal',
+    it: "Origini e migrazioni umane",
     zh: '人类起源与迁徙',
     hi: 'मानव उत्पत्ति और प्रसार',
     es: 'Orígenes y dispersión humanos',
@@ -41,20 +42,18 @@ export const humanOriginsAndDispersal_SkillGroup_Data = defineSkillGroup({
     kk: 'Адамдардың шығу тегі мен таралуы',
     qm: 'İnsanlarnıñ aslı ve yayılışı',
   },
-  skills: {
-    items: {
-      adaptationToEnvironments: adaptationToEnvironments_Skill_Data,
-      emergenceOfHomoSapiens: emergenceOfHomoSapiens_Skill_Data,
-      originsOfHomo: originsOfHomo_Skill_Data,
-      peoplingOfContinents: peoplingOfContinents_Skill_Data,
-    },
-    order: ['adaptationToEnvironments', 'emergenceOfHomoSapiens', 'originsOfHomo', 'peoplingOfContinents'],
-  },
+  skills: [
+    adaptationToEnvironments_Skill_Data,
+    emergenceOfHomoSapiens_Skill_Data,
+    originsOfHomo_Skill_Data,
+    peoplingOfContinents_Skill_Data,
+  ],
   description: {
     methodological:
       'Paleoanthropology, archaeology, and genetics jointly investigate human origins; major developments occurred at different times across regions.',
     frontend: {
       en: 'Discover what evidence reveals about our ancestors and migrations.',
+      it: "Scopri che cosa rivelano le testimonianze sui nostri antenati e sulle migrazioni.",
       zh: '探索有关祖先和迁徙的证据能揭示什么。',
       hi: 'जानें कि प्रमाण हमारे पूर्वजों और प्रवासों के बारे में क्या बताते हैं।',
       es: 'Descubre qué revelan las pruebas sobre nuestros antepasados y sus migraciones.',

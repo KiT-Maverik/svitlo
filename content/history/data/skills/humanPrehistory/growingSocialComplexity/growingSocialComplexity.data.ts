@@ -12,6 +12,7 @@ export const growingSocialComplexity_SkillGroup_Data = defineSkillGroup({
   id: '8e0c5ba0-75c9-40cb-b71f-0841f645de49',
   name: {
     en: 'Growing Social Complexity',
+    it: "Crescente complessità sociale",
     zh: '社会结构日益复杂',
     hi: 'सामाजिक जटिलता का विकास',
     es: 'Creciente complejidad social',
@@ -41,20 +42,18 @@ export const growingSocialComplexity_SkillGroup_Data = defineSkillGroup({
     kk: 'Қоғамдық күрделіліктің артуы',
     qm: 'Cemiyetniñ mürekkepleşüvi',
   },
-  skills: {
-    items: {
-      copperBronzeAndIron: copperBronzeAndIron_Skill_Data,
-      emergenceOfUrbanCenters: emergenceOfUrbanCenters_Skill_Data,
-      exchangeBeforeStates: exchangeBeforeStates_Skill_Data,
-      prehistoricInequality: prehistoricInequality_Skill_Data,
-    },
-    order: ['copperBronzeAndIron', 'emergenceOfUrbanCenters', 'exchangeBeforeStates', 'prehistoricInequality'],
-  },
+  skills: [
+    copperBronzeAndIron_Skill_Data,
+    emergenceOfUrbanCenters_Skill_Data,
+    exchangeBeforeStates_Skill_Data,
+    prehistoricInequality_Skill_Data,
+  ],
   description: {
     methodological:
       'Larger communities and exchanges sometimes accompanied inequality and centralization but did not inevitably lead to them.',
     frontend: {
       en: 'Explore how larger settlements sometimes changed society.',
+      it: "Esplora come gli insediamenti più grandi talvolta cambiarono la società.",
       zh: '探索较大的聚落有时如何改变社会。',
       hi: 'जानें कि बड़ी बस्तियों ने कभी-कभी समाज को कैसे बदला।',
       es: 'Explora cómo los asentamientos más grandes transformaron a veces la sociedad.',
