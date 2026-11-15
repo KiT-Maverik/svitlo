@@ -5,6 +5,7 @@ export const respondToSevereAllergicReaction_Skill_Data = defineSkill({
   id: '743cd98e-10fb-4e3b-9a77-98ef804086d1',
   name: {
     en: 'Respond to severe allergic reaction',
+    it: 'Reagire a una grave reazione allergica',
     zh: '应对严重过敏反应',
     hi: 'गंभीर एलर्जी प्रतिक्रिया पर मदद',
     es: 'Responder a una reacción alérgica grave',
@@ -39,6 +40,7 @@ export const respondToSevereAllergicReaction_Skill_Data = defineSkill({
       'Recognize possible anaphylaxis and the need for rapid emergency help and appropriate trained use of prescribed rescue medication.',
     frontend: {
       en: 'Recognize a severe allergic reaction as an emergency requiring prompt care.',
+      it: 'Riconosci una reazione allergica grave come un\'emergenza che richiede cure tempestive.',
       zh: '识别严重过敏反应属于需要迅速救治的紧急情况。',
       hi: 'गंभीर एलर्जी को ऐसी आपात स्थिति मानो जिसमें तुरंत इलाज चाहिए।',
       es: 'Reconoce una reacción alérgica grave como una urgencia que necesita atención rápida.',

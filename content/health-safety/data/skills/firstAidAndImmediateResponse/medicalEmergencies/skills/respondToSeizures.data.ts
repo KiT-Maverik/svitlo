@@ -5,6 +5,7 @@ export const respondToSeizures_Skill_Data = defineSkill({
   id: 'ec5c9c19-4b7e-4e66-bd6a-dcb7458e0ed2',
   name: {
     en: 'Respond to seizures',
+    it: 'Intervenire durante una crisi convulsiva',
     zh: '应对癫痫发作',
     hi: 'दौरे पड़ने पर मदद करना',
     es: 'Responder a convulsiones',
@@ -39,6 +40,7 @@ export const respondToSeizures_Skill_Data = defineSkill({
       'Protect the person from surrounding injury, avoid harmful restraint, and recognize conditions requiring urgent assistance.',
     frontend: {
       en: 'Keep a person experiencing a seizure safe without restraining them.',
+      it: 'Proteggi la persona durante una crisi convulsiva senza immobilizzarla.',
       zh: '保护正在抽搐的人，不要强行限制其动作。',
       hi: 'दौरा पड़ रहे व्यक्ति की सुरक्षा करो, उसे ज़बरदस्ती न पकड़ो।',
       es: 'Protege a quien sufre una convulsión sin sujetarlo por la fuerza.',

@@ -5,6 +5,7 @@ export const careForAnUnresponsivePersonWhoIsBreathingNormally_Skill_Data = defi
   id: '7361d00f-61f7-4d4a-9de9-5354669ddef5',
   name: {
     en: 'Care for an unresponsive person who is breathing normally',
+    it: 'Assistere una persona incosciente che respira normalmente',
     zh: '照护无反应但呼吸正常者',
     hi: 'बेहोश लेकिन सामान्य साँस ले रहे व्यक्ति की देखभाल',
     es: 'Cuidar a una persona inconsciente que respira normalmente',
@@ -39,6 +40,7 @@ export const careForAnUnresponsivePersonWhoIsBreathingNormally_Skill_Data = defi
       'Provide appropriate positioning and continuous monitoring while arranging urgent help for an unresponsive person who breathes normally; account for possible trauma and avoid unnecessary movement.',
     frontend: {
       en: 'Help an unresponsive person who is breathing while monitoring and awaiting care.',
+      it: 'Aiuta una persona che non risponde ma respira, sorvegliandola mentre attendi i soccorsi.',
       zh: '在等待救援时帮助仍有正常呼吸的无反应者，并持续观察。',
       hi: 'सामान्य साँस ले रहे अनुत्तरदायी व्यक्ति को मदद दो और सहायता आने तक निगरानी रखो।',
       es: 'Ayuda y vigila a quien no responde pero respira mientras esperas asistencia.',

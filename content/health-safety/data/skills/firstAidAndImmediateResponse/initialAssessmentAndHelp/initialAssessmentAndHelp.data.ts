@@ -12,6 +12,7 @@ export const initialAssessmentAndHelp_SkillGroup_Data = defineSkillGroup({
   id: 'd1b9f24a-d464-4349-89f3-d0a657b816ec',
   name: {
     en: 'Initial Assessment and Help',
+    it: 'Valutazione iniziale e richiesta di aiuto',
     zh: '初步评估与援助',
     hi: 'प्रारंभिक जाँच और सहायता',
     es: 'Evaluación inicial y ayuda',
@@ -41,25 +42,18 @@ export const initialAssessmentAndHelp_SkillGroup_Data = defineSkillGroup({
     kk: 'Бастапқы бағалау және көмек',
     qm: 'İlk baquv ve yardım',
   },
-  skills: {
-    items: {
-      assessBreathing: assessBreathing_Skill_Data,
-      assessResponsiveness: assessResponsiveness_Skill_Data,
-      assessSceneSafetyBeforeHelping: assessSceneSafetyBeforeHelping_Skill_Data,
-      careForAnUnresponsivePersonWhoIsBreathingNormally: careForAnUnresponsivePersonWhoIsBreathingNormally_Skill_Data,
-    },
-    order: [
-      'assessBreathing',
-      'assessResponsiveness',
-      'assessSceneSafetyBeforeHelping',
-      'careForAnUnresponsivePersonWhoIsBreathingNormally',
-    ],
-  },
+  skills: [
+    assessBreathing_Skill_Data,
+    assessResponsiveness_Skill_Data,
+    assessSceneSafetyBeforeHelping_Skill_Data,
+    careForAnUnresponsivePersonWhoIsBreathingNormally_Skill_Data,
+  ],
   description: {
     methodological:
       'Initial response begins with rescuer safety, recognition of urgent changes in responsiveness or breathing, and continued observation. Calling for help uses the shared competency in Emergencies and Civil Protection rather than a duplicate Skill.',
     frontend: {
       en: 'Discover the first steps for assessing someone who might need emergency help.',
+      it: 'Scopri i primi passi per valutare una persona che potrebbe aver bisogno di soccorso urgente.',
       zh: '了解评估可能需要急救的人员时应采取的第一步。',
       hi: 'आपात सहायता की ज़रूरत वाले व्यक्ति की जाँच के शुरुआती चरण जानो।',
       es: 'Descubre los primeros pasos para evaluar a alguien que podría necesitar ayuda urgente.',

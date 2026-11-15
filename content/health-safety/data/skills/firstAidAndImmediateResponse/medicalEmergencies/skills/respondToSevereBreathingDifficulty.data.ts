@@ -5,6 +5,7 @@ export const respondToSevereBreathingDifficulty_Skill_Data = defineSkill({
   id: '62cb02e8-1dc8-4d87-84c3-67d748640f4b',
   name: {
     en: 'Respond to severe breathing difficulty',
+    it: 'Reagire a una grave difficoltà respiratoria',
     zh: '应对严重呼吸困难',
     hi: 'साँस की गंभीर तकलीफ़ पर मदद',
     es: 'Responder a dificultad respiratoria grave',
@@ -39,6 +40,7 @@ export const respondToSevereBreathingDifficulty_Skill_Data = defineSkill({
       'Recognize major difficulty breathing, severe respiratory distress or rapidly worsening symptoms as reasons to activate emergency assistance and support a safe position while awaiting qualified care.',
     frontend: {
       en: 'Seek urgent assistance for severe or worsening breathing problems.',
+      it: 'Richiedi assistenza urgente in caso di problemi respiratori gravi o in peggioramento.',
       zh: '呼吸严重困难或持续恶化时立即寻求紧急援助。',
       hi: 'साँस लेने में गंभीर या बढ़ती कठिनाई पर तुरंत सहायता माँगो।',
       es: 'Solicita ayuda urgente ante dificultades respiratorias graves o que empeoran.',

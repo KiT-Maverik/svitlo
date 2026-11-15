@@ -16,6 +16,7 @@ export const medicalEmergencies_SkillGroup_Data = defineSkillGroup({
   id: 'fae5a6bf-f81e-4142-bf4e-53866f75eb4d',
   name: {
     en: 'Medical Emergencies',
+    it: 'Emergenze mediche',
     zh: '医疗紧急情况',
     hi: 'चिकित्सीय आपात स्थितियाँ',
     es: 'Emergencias médicas',
@@ -45,33 +46,22 @@ export const medicalEmergencies_SkillGroup_Data = defineSkillGroup({
     kk: 'Шұғыл медициналық жағдайлар',
     qm: 'Acele tibbiy vaziyetler',
   },
-  skills: {
-    items: {
-      recognizeSignsOfAHeartAttack: recognizeSignsOfAHeartAttack_Skill_Data,
-      recognizeSignsOfStroke: recognizeSignsOfStroke_Skill_Data,
-      respondToSeizures: respondToSeizures_Skill_Data,
-      respondToSevereAllergicReaction: respondToSevereAllergicReaction_Skill_Data,
-      respondToSevereBreathingDifficulty: respondToSevereBreathingDifficulty_Skill_Data,
-      respondToSuspectedHypoglycaemia: respondToSuspectedHypoglycaemia_Skill_Data,
-      respondToSuspectedOpioidOverdose: respondToSuspectedOpioidOverdose_Skill_Data,
-      respondToSuspectedPoisoning: respondToSuspectedPoisoning_Skill_Data,
-    },
-    order: [
-      'recognizeSignsOfAHeartAttack',
-      'recognizeSignsOfStroke',
-      'respondToSeizures',
-      'respondToSevereAllergicReaction',
-      'respondToSevereBreathingDifficulty',
-      'respondToSuspectedHypoglycaemia',
-      'respondToSuspectedOpioidOverdose',
-      'respondToSuspectedPoisoning',
-    ],
-  },
+  skills: [
+    recognizeSignsOfAHeartAttack_Skill_Data,
+    recognizeSignsOfStroke_Skill_Data,
+    respondToSeizures_Skill_Data,
+    respondToSevereAllergicReaction_Skill_Data,
+    respondToSevereBreathingDifficulty_Skill_Data,
+    respondToSuspectedHypoglycaemia_Skill_Data,
+    respondToSuspectedOpioidOverdose_Skill_Data,
+    respondToSuspectedPoisoning_Skill_Data,
+  ],
   description: {
     methodological:
       'Prompt recognition and appropriate escalation are more important than attempting diagnosis or administering unfamiliar medication.',
     frontend: {
       en: 'Learn warning signs that require a rapid medical emergency response.',
+      it: 'Impara a riconoscere i segnali d\'allarme che richiedono un rapido intervento sanitario.',
       zh: '识别需要迅速启动紧急医疗救援的警示信号。',
       hi: 'ऐसे चेतावनी संकेत पहचानो जिनमें तुरंत आपात चिकित्सा सहायता चाहिए।',
       es: 'Aprende a reconocer señales de alerta que requieren respuesta médica urgente.',

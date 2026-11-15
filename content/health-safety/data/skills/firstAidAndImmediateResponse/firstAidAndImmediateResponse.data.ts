@@ -11,6 +11,7 @@ export const firstAidAndImmediateResponse_SkillDomain_Data = defineSkillDomain({
   id: 'd5869e78-d660-4634-99a8-a7b05e8ce81b',
   title: {
     en: 'First Aid and Immediate Response',
+    it: 'Primo soccorso e intervento immediato',
     zh: '急救与即时应对',
     hi: 'प्राथमिक उपचार और त्वरित प्रतिक्रिया',
     es: 'Primeros auxilios y respuesta inmediata',
@@ -40,27 +41,19 @@ export const firstAidAndImmediateResponse_SkillDomain_Data = defineSkillDomain({
     kk: 'Алғашқы көмек және шұғыл әрекет',
     qm: 'İlk yardım ve acele cevap',
   },
-  groups: {
-    items: {
-      basicLifeSupport: basicLifeSupport_SkillGroup_Data,
-      bleedingAndInjuries: bleedingAndInjuries_SkillGroup_Data,
-      environmentalAndAcuteInjuries: environmentalAndAcuteInjuries_SkillGroup_Data,
-      initialAssessmentAndHelp: initialAssessmentAndHelp_SkillGroup_Data,
-      medicalEmergencies: medicalEmergencies_SkillGroup_Data,
-    },
-    order: [
-      'basicLifeSupport',
-      'bleedingAndInjuries',
-      'environmentalAndAcuteInjuries',
-      'initialAssessmentAndHelp',
-      'medicalEmergencies',
-    ],
-  },
+  groups: [
+    basicLifeSupport_SkillGroup_Data,
+    bleedingAndInjuries_SkillGroup_Data,
+    environmentalAndAcuteInjuries_SkillGroup_Data,
+    initialAssessmentAndHelp_SkillGroup_Data,
+    medicalEmergencies_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Immediate assistance aims to recognize danger, activate professional help, and provide appropriate basic interventions within training and scene safety. Clinical treatment and invasive procedures are not implied by inclusion in the taxonomy.',
     frontend: {
       en: 'Learn to recognize urgent danger, call for help and give appropriate basic assistance.',
+      it: 'Impara a riconoscere i pericoli urgenti, chiamare aiuto e prestare un\'assistenza di base adeguata.',
       zh: '学会识别紧急危险、呼叫援助并提供适当的基本帮助。',
       hi: 'आपात खतरे को पहचानना, सहायता बुलाना और उचित बुनियादी मदद देना सीखो।',
       es: 'Aprende a reconocer peligros urgentes, pedir ayuda y prestar asistencia básica adecuada.',

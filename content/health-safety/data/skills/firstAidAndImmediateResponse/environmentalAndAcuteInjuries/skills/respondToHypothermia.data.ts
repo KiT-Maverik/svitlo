@@ -5,6 +5,7 @@ export const respondToHypothermia_Skill_Data = defineSkill({
   id: '49b1fe87-f90b-4746-a7fc-93c62102d0c6',
   name: {
     en: 'Respond to hypothermia',
+    it: 'Reagire all\'ipotermia',
     zh: '应对失温',
     hi: 'हाइपोथर्मिया पर प्रतिक्रिया',
     es: 'Responder a la hipotermia',
@@ -39,6 +40,7 @@ export const respondToHypothermia_Skill_Data = defineSkill({
       'Limit further cooling, handle an affected person carefully, and recognize that severe cold exposure needs urgent assessment.',
     frontend: {
       en: 'Reduce further heat loss and seek assessment for dangerous cold exposure.',
+      it: 'Riduci ulteriori perdite di calore e richiedi una valutazione dopo un\'esposizione pericolosa al freddo.',
       zh: '减少进一步热量流失，并对危险的寒冷暴露寻求医疗评估。',
       hi: 'शरीर से और गर्मी निकलना कम करो और खतरनाक ठंड के संपर्क पर जाँच कराओ।',
       es: 'Evita una mayor pérdida de calor y solicita evaluación por exposición peligrosa al frío.',
