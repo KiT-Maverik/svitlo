@@ -5,6 +5,7 @@ export const registerMultiplePrintLayers_Skill_Data = defineSkill({
   id: 'a8a4c111-e2fa-4ca4-96bb-0b02c9bc698a',
   name: {
     en: 'Register Multiple Print Layers',
+    it: 'Allineare più strati di stampa',
     zh: '套准多层印版',
     hi: 'कई मुद्रण परतों का संरेखण करें',
     es: 'Registrar varias capas de impresión',
@@ -38,6 +39,7 @@ export const registerMultiplePrintLayers_Skill_Data = defineSkill({
     methodological: 'Align successive impressions so separate colors or image parts meet deliberately.',
     frontend: {
       en: 'Line up printed layers so their colors and shapes meet as intended.',
+      it: 'Allinea gli strati stampati in modo che colori e forme combacino come previsto.',
       zh: '对齐各个印刷层，使颜色和形状按预期衔接。',
       hi: 'मुद्रित परतों को इस तरह मिलाएँ कि उनके रंग और आकृतियाँ सही ढंग से जुड़ें।',
       es: 'Alinea las capas impresas para que sus colores y formas coincidan como se desea.',
