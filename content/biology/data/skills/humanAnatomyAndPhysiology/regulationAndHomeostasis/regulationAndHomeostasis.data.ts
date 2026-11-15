@@ -7,6 +7,7 @@ export const regulationAndHomeostasis_SkillGroup_Data = defineSkillGroup({
   id: 'dd9f31e0-6af3-43cc-a4c2-9887ceea1b07',
   name: {
     en: 'Regulation and Homeostasis',
+    it: 'Regolazione e omeostasi',
     zh: '调节与稳态',
     hi: 'नियमन और समस्थिति',
     es: 'Regulación y homeostasis',
@@ -42,6 +43,7 @@ export const regulationAndHomeostasis_SkillGroup_Data = defineSkillGroup({
       'Nervous and hormonal signals coordinate organ functions, while feedback mechanisms maintain key internal conditions within viable ranges.',
     frontend: {
       en: 'Discover how hormones, nerves and feedback help regulate body functions.',
+      it: 'Scopri come ormoni, nervi e meccanismi di retroazione aiutano a regolare le funzioni del corpo.',
       zh: '探索激素、神经和反馈机制如何调节身体功能。',
       hi: 'जानें कि हार्मोन, तंत्रिकाएँ और प्रतिपुष्टि शरीर के कार्यों को कैसे नियंत्रित करते हैं।',
       es: 'Descubre cómo las hormonas, los nervios y la retroalimentación regulan las funciones corporales.',
