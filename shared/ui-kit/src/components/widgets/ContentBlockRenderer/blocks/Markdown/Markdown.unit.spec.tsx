@@ -31,7 +31,10 @@ describe('Markdown content block', () => {
     render(
       <Markdown
         {...response}
-        locale={{ ...response.locale, value: '## Practice\n\n- **First** point\n- *Second* point\n\nUse `const`.\n\n```js\nconst answer = 42;\n```' }}
+        locale={{
+          ...response.locale,
+          value: '## Practice\n\n- **First** point\n- *Second* point\n\nUse `const`.\n\n```js\nconst answer = 42;\n```',
+        }}
       />,
     );
     const article = screen.getByRole('article');
@@ -56,19 +59,31 @@ describe('Markdown content block', () => {
   });
 
   it('replaces Code-style markers before rendering Markdown', () => {
-    render(<Markdown {...response} locale={{ ...response.locale, value: '# %_%NAME%_%', variables: { NAME: 'Ada' } }} />);
+    render(
+      <Markdown {...response} locale={{ ...response.locale, value: '# %_%NAME%_%', variables: { NAME: 'Ada' } }} />,
+    );
     expect(screen.getByRole('heading', { name: 'Ada' })).toBeVisible();
   });
 
   it('sanitizes HTML supplied through variables', () => {
-    render(<Markdown {...response} locale={{ ...response.locale, value: '**%_%VALUE%_%**', variables: { VALUE: '<script>alert(1)</script>Safe' } }} />);
+    render(
+      <Markdown
+        {...response}
+        locale={{ ...response.locale, value: '**%_%VALUE%_%**', variables: { VALUE: '<script>alert(1)</script>Safe' } }}
+      />,
+    );
     const article = screen.getByRole('article');
     expect(article.querySelector('script')).toBeNull();
     expect(article).toHaveTextContent('Safe');
   });
 
   it('supports the authored mark and aside elements', () => {
-    render(<Markdown {...response} locale={{ ...response.locale, value: "<aside><mark>Highlighted lesson</mark></aside>" }} />);
+    render(
+      <Markdown
+        {...response}
+        locale={{ ...response.locale, value: '<aside><mark>Highlighted lesson</mark></aside>' }}
+      />,
+    );
     expect(screen.getByRole('article').querySelector('aside mark')).toHaveTextContent('Highlighted lesson');
   });
 
@@ -76,7 +91,11 @@ describe('Markdown content block', () => {
     render(
       <Markdown
         {...response}
-        locale={{ ...response.locale, value: '<p onclick="alert(1)">Safe content</p><script>alert(1)</script><img src="image.png" onerror="alert(1)" alt="Example" />' }}
+        locale={{
+          ...response.locale,
+          value:
+            '<p onclick="alert(1)">Safe content</p><script>alert(1)</script><img src="image.png" onerror="alert(1)" alt="Example" />',
+        }}
       />,
     );
     const article = screen.getByRole('article');
@@ -90,7 +109,10 @@ describe('Markdown content block', () => {
     render(
       <Markdown
         {...response}
-        locale={{ ...response.locale, value: '<a href="javascript:alert(1)">Unsafe URL</a> and [safe URL](https://example.org)' }}
+        locale={{
+          ...response.locale,
+          value: '<a href="javascript:alert(1)">Unsafe URL</a> and [safe URL](https://example.org)',
+        }}
       />,
     );
     const article = screen.getByRole('article');
@@ -100,10 +122,10 @@ describe('Markdown content block', () => {
   });
 
   it('updates the rendered content when a response changes', () => {
-    const { rerender } = render(<Markdown {...response} locale={{ ...response.locale, value: "**Before**" }} />);
+    const { rerender } = render(<Markdown {...response} locale={{ ...response.locale, value: '**Before**' }} />);
     expect(screen.getByText('Before').tagName).toBe('STRONG');
 
-    rerender(<Markdown {...response} locale={{ ...response.locale, value: "*After*" }} />);
+    rerender(<Markdown {...response} locale={{ ...response.locale, value: '*After*' }} />);
     expect(screen.getByText('After').tagName).toBe('EM');
     expect(screen.queryByText('Before')).toBeNull();
   });
@@ -117,10 +139,7 @@ describe('Markdown content block', () => {
 
   it('renders inline and display LaTeX with accessible MathML', () => {
     render(
-      <Markdown
-        {...response}
-        locale={{ ...response.locale, value: 'Area $S = \\pi r^2$.\n\n$$\nE = mc^2\n$$' }}
-      />,
+      <Markdown {...response} locale={{ ...response.locale, value: 'Area $S = \\pi r^2$.\n\n$$\nE = mc^2\n$$' }} />,
     );
     const article = screen.getByRole('article');
     expect(article).toHaveTextContent('Area');
@@ -130,12 +149,7 @@ describe('Markdown content block', () => {
   });
 
   it('renders math after resolving localized Markdown variables', () => {
-    render(
-      <Markdown
-        {...response}
-        locale={{ value: 'Square: $%_%FORMULA%_%$', variables: { FORMULA: 'x^2' } }}
-      />,
-    );
+    render(<Markdown {...response} locale={{ value: 'Square: $%_%FORMULA%_%$', variables: { FORMULA: 'x^2' } }} />);
     expect(screen.getByRole('article').querySelector('.katex')).not.toBeNull();
     expect(screen.getByRole('article')).toHaveTextContent('Square:');
   });
@@ -160,10 +174,7 @@ describe('Markdown content block', () => {
 
   it('does not trust dangerous TeX links and keeps raw HTML sanitized', () => {
     render(
-      <Markdown
-        {...response}
-        locale={{ value: '<script>alert(1)</script> $\\href{javascript:alert(1)}{click}$' }}
-      />,
+      <Markdown {...response} locale={{ value: '<script>alert(1)</script> $\\href{javascript:alert(1)}{click}$' }} />,
     );
     const article = screen.getByRole('article');
     expect(article.querySelector('script')).toBeNull();
@@ -179,7 +190,10 @@ describe('Markdown content block', () => {
 
   it('renders the same safe Markdown on the server', () => {
     const html = renderToStaticMarkup(
-      <Markdown {...response} locale={{ ...response.locale, value: "<aside><mark>Safe note</mark></aside><script>alert(1)</script>" }} />,
+      <Markdown
+        {...response}
+        locale={{ ...response.locale, value: '<aside><mark>Safe note</mark></aside><script>alert(1)</script>' }}
+      />,
     );
     expect(html).toContain('<article');
     expect(html).toContain('<aside><mark>Safe note</mark></aside>');

@@ -20,7 +20,6 @@ Regular Sections contain ordered ContentBlocks (current discriminant `type`; no 
 
 `content.yaml` is not a runtime Lesson Props object or a direct `defineLesson` Config. The Engine YAML → TypeScript draft scaffolder mechanically emits unfinished `define*` code **from the separate Config-shaped projection**, without editorial validation, TypeScript completeness guarantees or publishing. [Implement Scene](../../skills/lesson-workflow/implement-scene.skill.md) handles only approved Scene React behavior, tests, integration and source-locale text; translation agents complete other languages. [Lesson](./lesson.md), [Section](./section.md) and [Lesson editorial artifacts](../architecture/lesson-editorial-document.md) establish boundaries and review policy.
 
-
 ## Quest editorial blueprint
 
 [Quest](./quest.md) is a planned Section presentation option for autonomous interactive workspaces with branching Stage media and Task Scenes. When proposing a Quest, describe the start Stage, initial Task, every branch/reaction, pedagogical intent, feedback, Task Scene behavior, mandatory media alternatives, captions/transcripts, nonvisual interaction, reduced-motion and offline prerequisites. It is not a scored Quiz, nor an Episode-level storyline introduced into a standalone Lesson. The editorial plan schema can express a Quest proposal, but **the Engine Config-to-YAML runtime pipeline and UI are not wired yet**; classify production as pending platform capability.
