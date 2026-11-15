@@ -10,6 +10,7 @@ export const southAndSoutheastAsia_SkillDomain_Data = defineSkillDomain({
   id: '7cae92ab-143d-4cc9-9389-f5e1d9d659e9',
   title: {
     en: 'South and Southeast Asia',
+    it: "Asia meridionale e sudorientale",
     zh: '南亚与东南亚',
     hi: 'दक्षिण और दक्षिण-पूर्व एशिया',
     es: 'Asia meridional y sudoriental',
@@ -39,25 +40,18 @@ export const southAndSoutheastAsia_SkillDomain_Data = defineSkillDomain({
     kk: 'Оңтүстік және Оңтүстік-Шығыс Азия',
     qm: 'Cenübiy ve Cenübiy-Şarqiy Asiya',
   },
-  groups: {
-    items: {
-      ancientSoutheastAsia: ancientSoutheastAsia_SkillGroup_Data,
-      indusCivilization: indusCivilization_SkillGroup_Data,
-      religiousAndIntellectualTraditions: religiousAndIntellectualTraditions_SkillGroup_Data,
-      societiesAndStatesOfAncientIndia: societiesAndStatesOfAncientIndia_SkillGroup_Data,
-    },
-    order: [
-      'ancientSoutheastAsia',
-      'indusCivilization',
-      'religiousAndIntellectualTraditions',
-      'societiesAndStatesOfAncientIndia',
-    ],
-  },
+  groups: [
+    ancientSoutheastAsia_SkillGroup_Data,
+    indusCivilization_SkillGroup_Data,
+    religiousAndIntellectualTraditions_SkillGroup_Data,
+    societiesAndStatesOfAncientIndia_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'From Indus cities to South Asian empires and early Southeast Asian states, the region followed diverse urban, religious, and commercial trajectories.',
     frontend: {
       en: 'Explore the ancient societies of South and Southeast Asia.',
+      it: "Esplora le società antiche dell'Asia meridionale e sudorientale.",
       zh: '探索古代南亚与东南亚的社会。',
       hi: 'प्राचीन दक्षिण और दक्षिण-पूर्व एशिया के समाजों को जानें।',
       es: 'Explora las sociedades antiguas del sur y sureste de Asia.',

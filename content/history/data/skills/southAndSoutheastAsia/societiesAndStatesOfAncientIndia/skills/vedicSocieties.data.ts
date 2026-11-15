@@ -5,6 +5,7 @@ export const vedicSocieties_Skill_Data = defineSkill({
   id: 'a3707296-1f32-434a-a36e-074fd1f85349',
   name: {
     en: 'Vedic Societies',
+    it: "Società vediche",
     zh: '吠陀时代的社会',
     hi: 'वैदिक समाज',
     es: 'Sociedades védicas',
@@ -38,6 +39,7 @@ export const vedicSocieties_Skill_Data = defineSkill({
     methodological: 'Examine oral traditions, economic activity, and changing social structures in northern India.',
     frontend: {
       en: 'Learn about the people and oral traditions of Vedic India.',
+      it: "Scopri le popolazioni e le tradizioni orali dell'India vedica.",
       zh: '了解吠陀时代印度的人民与口述传统。',
       hi: 'वैदिक भारत के लोगों और मौखिक परंपराओं को जानें।',
       es: 'Conoce a los pueblos y las tradiciones orales de la India védica.',
