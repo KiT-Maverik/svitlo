@@ -5,6 +5,7 @@ export const identifyRobotSubsystems_Skill_Data = defineSkill({
   id: 'ef410372-ea72-4e5b-ac98-ae91a4a0091f',
   name: {
     en: 'Identify robot subsystems',
+    it: 'Identificare i sottosistemi di un robot',
     zh: '识别机器人子系统',
     hi: 'रोबोट की उपप्रणालियाँ पहचानना',
     es: 'Identificar subsistemas de un robot',
@@ -38,6 +39,7 @@ export const identifyRobotSubsystems_Skill_Data = defineSkill({
     methodological: 'Assign roles to structure, power, sensors, actuators and controller in a robot.',
     frontend: {
       en: 'Identify the sensors, controller, drives and frame in a robot.',
+      it: 'Individua i sensori, il controllore, gli azionamenti e la struttura portante di un robot.',
       zh: '识别机器人中的传感器、控制器、驱动装置和机架。',
       hi: 'रोबोट में सेंसर, नियंत्रक, ड्राइव और ढाँचे की पहचान करें।',
       es: 'Identifica los sensores, el controlador, los accionamientos y el bastidor de un robot.',
