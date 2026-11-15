@@ -11,6 +11,7 @@ export const algebra_SkillDomain_Data = defineSkillDomain({
   id: '5b1cb581-be28-4de4-a854-b32fbfea95d7',
   title: {
     en: 'Algebra',
+    it: 'Algebra',
     qm: 'Algebra',
     lt: 'Algebra',
     lv: 'Algebra',
@@ -55,6 +56,7 @@ export const algebra_SkillDomain_Data = defineSkillDomain({
       'Mathematical expressions, equalities, inequalities, variables and unknowns, patterns, generalizations, and symbolic descriptions of relationships. The scope is not constrained to a particular age, numerical range, or notation.',
     frontend: {
       en: 'Explore how equations, expressions, letters standing for numbers, and patterns can describe relationships and help you find unknown values.',
+      it: 'Scopri come equazioni, espressioni, lettere che rappresentano numeri e regolarità possono descrivere relazioni e aiutarti a trovare valori sconosciuti.',
       qm: 'Musaviylikler, ifadeler, sayılar yerine qullanılğan arifler ve sayı nümüneleri arasındaki bağlılıqlarnı nasıl köstergenini araştır. Olarnıñ yardımınen belli olmağan qıymetlerni tap.',
       zh: '探索方程、表达式、代表数字的字母和数列规律怎样描述数量关系并帮助求出未知值。',
       hi: 'जानो कि समीकरण, व्यंजक, संख्याओं के स्थान पर अक्षर और संख्या-पैटर्न संबंध कैसे दिखाते हैं तथा अज्ञात मान खोजने में मदद करते हैं।',
