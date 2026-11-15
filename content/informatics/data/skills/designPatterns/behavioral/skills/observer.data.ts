@@ -5,6 +5,7 @@ export const observer_Skill_Data = defineSkill({
   id: '54077d59-4091-478a-ba0a-e92f9311d281',
   name: {
     en: 'Observer',
+    it: 'Osservatore',
     zh: '观察者模式',
     hi: 'ऑब्ज़र्वर',
     es: 'Observador',
@@ -39,6 +40,7 @@ export const observer_Skill_Data = defineSkill({
       'Notify subscribers when a source changes without knowing which particular action each subscriber will take.',
     frontend: {
       en: 'Notify interested subscribers when an observed object changes.',
+      it: 'Notifica agli iscritti interessati quando un oggetto osservato cambia.',
       zh: '当被观察对象发生变化时通知感兴趣的订阅者。',
       hi: 'निगरानी किए जाने वाले ऑब्जेक्ट के बदलने पर इच्छुक ग्राहकों को सूचना दें।',
       es: 'Notifica a los suscriptores interesados cuando cambia un objeto observado.',

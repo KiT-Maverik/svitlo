@@ -5,6 +5,7 @@ export const strategy_Skill_Data = defineSkill({
   id: '45125235-b694-460e-ac64-2ab5edc9f4b0',
   name: {
     en: 'Strategy',
+    it: 'Strategia',
     zh: '策略模式',
     hi: 'स्ट्रैटेजी',
     es: 'Estrategia',
@@ -39,6 +40,7 @@ export const strategy_Skill_Data = defineSkill({
       'Interchange algorithms sharing an interface so the solution method can change independently of the client.',
     frontend: {
       en: 'Swap between algorithms that all follow one shared interface.',
+      it: "Passa da un algoritmo all'altro mantenendo un'interfaccia comune.",
       zh: '在遵守同一接口的不同算法之间切换。',
       hi: 'एक साझा इंटरफ़ेस अपनाने वाले अलग-अलग एल्गोरिदम के बीच बदलाव करें।',
       es: 'Alterna entre algoritmos que cumplen una misma interfaz.',

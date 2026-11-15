@@ -5,6 +5,7 @@ export const iterator_Skill_Data = defineSkill({
   id: '1e7127bc-f931-4027-8274-88b03bdeb9e7',
   name: {
     en: 'Iterator',
+    it: 'Iteratore',
     zh: '迭代器模式',
     hi: 'इटरेटर',
     es: 'Iterador',
@@ -39,6 +40,7 @@ export const iterator_Skill_Data = defineSkill({
       'Traverse collection elements through a defined interface without exposing their internal representation.',
     frontend: {
       en: 'Visit collection elements without exposing how the collection is stored.',
+      it: 'Visita gli elementi di una collezione senza esporre come sono memorizzati.',
       zh: '无需暴露集合的存储方式即可访问其中的元素。',
       hi: 'संग्रह की आंतरिक भंडारण विधि बताए बिना उसके तत्व देखें।',
       es: 'Recorre los elementos de una colección sin exponer cómo se almacenan.',

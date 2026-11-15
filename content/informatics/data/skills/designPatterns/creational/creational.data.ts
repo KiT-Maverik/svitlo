@@ -13,6 +13,7 @@ export const creational_SkillGroup_Data = defineSkillGroup({
   id: '05e2c408-0705-48cb-8c2e-b10ff4ef8d4b',
   name: {
     en: 'Creational',
+    it: 'Pattern creazionali',
     zh: '创建型模式',
     hi: 'सृजनात्मक पैटर्न',
     es: 'Patrones creacionales',
@@ -54,6 +55,7 @@ export const creational_SkillGroup_Data = defineSkillGroup({
       'Five approaches to constructing instances and object families that separate creation logic from usage.',
     frontend: {
       en: 'Learn patterns for constructing objects without tying clients to concrete types.',
+      it: 'Impara i modelli per creare oggetti senza vincolare il codice client a tipi concreti.',
       zh: '学习构建对象而不使使用者依赖具体类型的模式。',
       hi: 'ठोस प्रकारों पर निर्भर हुए बिना ऑब्जेक्ट बनाने के पैटर्न सीखें।',
       es: 'Aprende patrones para construir objetos sin vincular a sus clientes con tipos concretos.',

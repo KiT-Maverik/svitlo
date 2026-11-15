@@ -5,6 +5,7 @@ export const mediator_Skill_Data = defineSkill({
   id: '1eefdde3-93db-4c4b-ba1d-1a7d9e64ceef',
   name: {
     en: 'Mediator',
+    it: 'Mediatore',
     zh: '中介者模式',
     hi: 'मध्यस्थ',
     es: 'Mediador',
@@ -39,6 +40,7 @@ export const mediator_Skill_Data = defineSkill({
       'Move interactions between several components into a mediator so each component need not depend directly on every other one.',
     frontend: {
       en: 'Coordinate component interactions through a central mediator.',
+      it: 'Coordina le interazioni tra componenti attraverso un mediatore centrale.',
       zh: '通过中央中介者协调组件之间的交互。',
       hi: 'एक केंद्रीय मध्यस्थ के माध्यम से घटकों की अंतःक्रिया का समन्वय करें।',
       es: 'Coordina las interacciones entre componentes mediante un mediador central.',
