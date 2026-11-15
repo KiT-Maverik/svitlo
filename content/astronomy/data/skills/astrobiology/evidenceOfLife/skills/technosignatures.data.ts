@@ -5,7 +5,7 @@ export const technosignatures_Skill_Data = defineSkill({
   id: '586a73a0-713c-4a4c-9349-b735a6221945',
   name: {
     en: 'Technosignatures',
-    it: 'Tecno-firme',
+    it: 'Tecnofirme',
     qm: 'Tehnologiya işaretleri',
     bn: 'প্রযুক্তির চিহ্ন',
     ur: 'ٹیکنالوجی کے نشانات',
