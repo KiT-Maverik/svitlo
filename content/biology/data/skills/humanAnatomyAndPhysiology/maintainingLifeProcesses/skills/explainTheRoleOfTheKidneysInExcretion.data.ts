@@ -5,6 +5,7 @@ export const explainTheRoleOfTheKidneysInExcretion_Skill_Data = defineSkill({
   id: '557e8dd0-795f-4baa-9e73-7f5a2edeb43d',
   name: {
     en: 'Explain the Role of the Kidneys in Excretion',
+    it: "Spiegare il ruolo dei reni nell'escrezione",
     zh: '解释肾脏在排泄中的作用',
     hi: 'उत्सर्जन में गुर्दों की भूमिका समझाना',
     es: 'Explicar la función de los riñones en la excreción',
@@ -39,6 +40,7 @@ export const explainTheRoleOfTheKidneysInExcretion_Skill_Data = defineSkill({
       'Explain blood filtration, selective reabsorption of water and needed substances, and urine formation as means of removing metabolic waste and maintaining the internal environment.',
     frontend: {
       en: "Explain how kidneys filter blood and help maintain the body's internal balance.",
+      it: "Spiega come i reni filtrano il sangue e contribuiscono a mantenere l'equilibrio interno del corpo.",
       zh: '解释肾脏如何过滤血液并帮助维持体内环境的平衡。',
       hi: 'समझाएँ कि गुर्दे रक्त को कैसे छानते हैं और शरीर का आंतरिक संतुलन बनाए रखते हैं।',
       es: 'Explica cómo los riñones filtran la sangre y ayudan a mantener el equilibrio interno del cuerpo.',
