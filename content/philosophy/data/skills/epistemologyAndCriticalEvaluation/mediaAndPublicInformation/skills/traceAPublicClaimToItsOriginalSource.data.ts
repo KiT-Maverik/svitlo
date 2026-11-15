@@ -5,7 +5,7 @@ export const traceAPublicClaimToItsOriginalSource_Skill_Data = defineSkill({
   id: '968bd359-751e-428a-a3ea-853cffe01fd7',
   name: {
     en: 'Trace a public claim to its original source',
-    it: 'Risale alla fonte originale di un\'affermazione pubblica',
+    it: 'Risalire alla fonte originale di un\'affermazione pubblica',
     zh: '追溯公共主张的原始来源',
     hi: 'सार्वजनिक दावे का मूल स्रोत खोजें',
     es: 'Rastrear una afirmación pública hasta su fuente original',
