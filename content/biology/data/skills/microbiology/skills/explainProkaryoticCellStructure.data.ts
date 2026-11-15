@@ -5,6 +5,7 @@ export const explainProkaryoticCellStructure_Skill_Data = defineSkill({
   id: '66036238-3e1a-471d-9080-ae3aa23d4659',
   name: {
     en: 'Explain Prokaryotic Cell Structure',
+    it: 'Spiegare la struttura delle cellule procariotiche',
     zh: '解释原核细胞结构',
     hi: 'प्रोकैरियोटिक कोशिका संरचना समझाना',
     es: 'Explicar la estructura de la célula procariota',
@@ -39,6 +40,7 @@ export const explainProkaryoticCellStructure_Skill_Data = defineSkill({
       'Explain the organization of bacterial and archaeal cells without a membrane-bound nucleus and the roles of the membrane, cytoplasm, genetic material, and ribosomes; distinguish prokaryotic from eukaryotic cell organization.',
     frontend: {
       en: 'Explore how bacterial and archaeal cells function without a membrane-bound nucleus.',
+      it: 'Scopri come funzionano le cellule di batteri e archei senza un nucleo delimitato da membrana.',
       zh: '探索细菌和古菌细胞如何在没有膜包裹的细胞核的情况下发挥功能。',
       hi: 'जानें कि जीवाणु और आर्किया की कोशिकाएँ झिल्ली से घिरे केंद्रक के बिना कैसे कार्य करती हैं।',
       es: 'Explora cómo funcionan las células de bacterias y arqueas sin un núcleo rodeado por una membrana.',
