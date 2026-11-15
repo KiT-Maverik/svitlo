@@ -5,6 +5,7 @@ export const trackDigitalProductVersions_Skill_Data = defineSkill({
   id: 'bb643b50-a138-463f-80f0-e99f320fee80',
   name: {
     en: 'Track Digital Product Versions',
+    it: 'Tenere traccia delle versioni di un prodotto digitale',
     zh: '跟踪数字产品版本',
     hi: 'डिजिटल उत्पाद के संस्करणों का रिकॉर्ड रखना',
     es: 'Seguir versiones de un producto digital',
@@ -39,6 +40,7 @@ export const trackDigitalProductVersions_Skill_Data = defineSkill({
       "Compare successive file or project states, identify when changes appeared, and restore earlier saved versions where necessary. Multiple files labeled 'final2' do not necessarily form a transparent history.",
     frontend: {
       en: 'Use version history to find when changes happened or restore earlier work.',
+      it: 'Usa la cronologia delle versioni per trovare quando sono avvenute modifiche o ripristinare lavori precedenti.',
       zh: '使用版本历史查找修改发生的时间，或恢复早期工作。',
       hi: 'संस्करण इतिहास से पता करें कि बदलाव कब हुए या पुराना काम वापस लाएँ।',
       es: 'Usa el historial de versiones para saber cuándo ocurrieron cambios o recuperar trabajo anterior.',

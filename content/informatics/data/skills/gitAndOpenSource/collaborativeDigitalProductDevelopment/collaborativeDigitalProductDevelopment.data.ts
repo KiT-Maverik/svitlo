@@ -11,6 +11,7 @@ export const collaborativeDigitalProductDevelopment_SkillGroup_Data = defineSkil
   id: 'e7f67d8b-7f3a-4a06-b69e-319330212afe',
   name: {
     en: 'Collaborative Digital Product Development',
+    it: 'Sviluppo collaborativo di prodotti digitali',
     zh: '协作式数字产品开发',
     hi: 'सहयोगात्मक डिजिटल उत्पाद विकास',
     es: 'Desarrollo colaborativo de productos digitales',
@@ -50,6 +51,7 @@ export const collaborativeDigitalProductDevelopment_SkillGroup_Data = defineSkil
       'Joint development requires agreed contribution and review rules, coordination among contributors, and tracking versions. Collaboration applies to public and private repositories and does not itself determine licensing.',
     frontend: {
       en: 'Explore how teams organize contributions, reviews and project versions.',
+      it: 'Esplora come i gruppi organizzano contributi, revisioni e versioni dei progetti.',
       zh: '探索团队如何组织贡献、评审和项目版本。',
       hi: 'जानें कि टीमें योगदान, समीक्षा और परियोजना संस्करण कैसे व्यवस्थित करती हैं।',
       es: 'Explora cómo los equipos organizan contribuciones, revisiones y versiones del proyecto.',
