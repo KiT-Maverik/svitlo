@@ -12,6 +12,7 @@ export const awarenessAndAutomaticity_SkillGroup_Data = defineSkillGroup({
   id: 'dfa867cf-ad2e-4620-a80a-47af9961798c',
   name: {
     en: 'Awareness and Automaticity',
+    it: 'Consapevolezza e automatismi',
     zh: '意识觉察与自动化',
     hi: 'जागरूकता और स्वचालितता',
     es: 'Conciencia y automaticidad',
@@ -60,6 +61,7 @@ export const awarenessAndAutomaticity_SkillGroup_Data = defineSkillGroup({
       'Deliberate processing differs from practiced routines, and retrospective introspection is an imperfect account of causes.',
     frontend: {
       en: 'Explore differences between deliberate effort and practiced automatic processes.',
+      it: 'Esplora le differenze tra lo sforzo deliberato e i processi che diventano automatici con la pratica.',
       zh: '比较需要刻意努力的处理与通过练习形成的自动化过程。',
       hi: 'जानबूझकर प्रयास करने और अभ्यास से स्वचालित हुई प्रक्रियाओं के बीच अंतर जानें।',
       es: 'Explora las diferencias entre el esfuerzo deliberado y los procesos automatizados por la práctica.',

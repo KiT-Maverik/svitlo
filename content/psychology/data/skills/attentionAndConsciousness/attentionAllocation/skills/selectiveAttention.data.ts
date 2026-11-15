@@ -5,6 +5,7 @@ export const selectiveAttention_Skill_Data = defineSkill({
   id: 'e1f2de02-ad66-4f43-b4dd-3181a9b12228',
   name: {
     en: 'Selective Attention',
+    it: 'Attenzione selettiva',
     zh: '选择性注意',
     hi: 'चयनात्मक ध्यान',
     es: 'Atención selectiva',
@@ -38,6 +39,7 @@ export const selectiveAttention_Skill_Data = defineSkill({
     methodological: 'Explain priority given to task-relevant information amid competing signals.',
     frontend: {
       en: 'Explain how a person focuses on relevant information amid distractions.',
+      it: 'Spiega come una persona si concentri sulle informazioni pertinenti nonostante le distrazioni.',
       zh: '解释人如何在干扰中聚焦于相关信息。',
       hi: 'समझाएँ कि व्यक्ति ध्यान भटकाने वाली चीज़ों के बीच प्रासंगिक जानकारी पर कैसे ध्यान देता है।',
       es: 'Explica cómo una persona se concentra en información relevante pese a las distracciones.',

@@ -5,6 +5,7 @@ export const alteredStatesOfConsciousness_Skill_Data = defineSkill({
   id: '1078ee13-1ac1-420a-8686-526971f29645',
   name: {
     en: 'Altered States of Consciousness',
+    it: 'Stati alterati di coscienza',
     zh: '意识改变状态',
     hi: 'चेतना की परिवर्तित अवस्थाएँ',
     es: 'Estados alterados de conciencia',
@@ -38,6 +39,7 @@ export const alteredStatesOfConsciousness_Skill_Data = defineSkill({
     methodological: 'Evaluate subjective reports of changed awareness alongside independently observable task effects.',
     frontend: {
       en: 'Explore how changes in awareness can be studied through reports and behavior.',
+      it: 'Esplora come i cambiamenti nella consapevolezza possano essere studiati attraverso resoconti e comportamenti.',
       zh: '探索如何通过个人报告和行为研究意识变化。',
       hi: 'जानें कि लोगों की रिपोर्ट और व्यवहार से चेतना में बदलाव का अध्ययन कैसे होता है।',
       es: 'Explora cómo se estudian los cambios de conciencia mediante relatos y conductas.',
