@@ -5,6 +5,7 @@ export const modelRelationshipsBetweenTables_Skill_Data = defineSkill({
   id: 'c5a78cb5-08f9-4ca8-8c72-e8bfc889e7bc',
   name: {
     en: 'Model Relationships Between Tables',
+    it: 'Modellare le relazioni tra tabelle',
     zh: '建模表之间的关系',
     hi: 'तालिकाओं के बीच संबंधों का मॉडल बनाना',
     es: 'Modelar relaciones entre tablas',
@@ -39,6 +40,7 @@ export const modelRelationshipsBetweenTables_Skill_Data = defineSkill({
       "Explain how identifiers link records from different tables, such as a `studentId` in a completed-assignment record referencing a particular student. Distinguish a record's own key from a reference to another record.",
     frontend: {
       en: 'Connect information in different tables using identifiers.',
+      it: 'Collega informazioni di tabelle diverse usando identificatori.',
       zh: '使用标识符连接不同表中的信息。',
       hi: 'पहचानकर्ताओं से अलग-अलग तालिकाओं की जानकारी जोड़ें।',
       es: 'Conecta información de distintas tablas mediante identificadores.',

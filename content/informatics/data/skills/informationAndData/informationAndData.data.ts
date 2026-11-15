@@ -11,6 +11,7 @@ export const informationAndData_SkillDomain_Data = defineSkillDomain({
   id: 'a6147899-9aae-4981-988a-8f3562a72a47',
   title: {
     en: 'Information and Data',
+    it: 'Informazioni e dati',
     zh: '信息与数据',
     hi: 'सूचना और डेटा',
     es: 'Información y datos',
@@ -52,6 +53,7 @@ export const informationAndData_SkillDomain_Data = defineSkillDomain({
       'Obtaining and verifying information, organizing datasets, finding patterns, and reasoning about uncertain events. A digital setting may overlap with mathematics, but these skills are classified locally within Informatics.',
     frontend: {
       en: 'Explore how to find trustworthy information, organize data and reason about uncertainty.',
+      it: "Esplora come trovare informazioni affidabili, organizzare dati e ragionare sull'incertezza.",
       zh: '探索如何寻找可靠的信息、整理数据并思考不确定性。',
       hi: 'विश्वसनीय सूचना खोजना, डेटा व्यवस्थित करना और अनिश्चितता पर विचार करना सीखें।',
       es: 'Explora cómo encontrar información fiable, organizar datos y razonar sobre la incertidumbre.',

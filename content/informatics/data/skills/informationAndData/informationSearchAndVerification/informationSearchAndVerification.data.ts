@@ -12,6 +12,7 @@ export const informationSearchAndVerification_SkillGroup_Data = defineSkillGroup
   id: '9d222908-c5d9-4a48-9ae9-df8865d76f73',
   name: {
     en: 'Information Search and Verification',
+    it: 'Ricerca e verifica delle informazioni',
     zh: '信息搜索与核实',
     hi: 'सूचना खोज और सत्यापन',
     es: 'Búsqueda y verificación de información',
@@ -52,6 +53,7 @@ export const informationSearchAndVerification_SkillGroup_Data = defineSkillGroup
       'Find relevant facts and determine whether independent sources support a particular claim. Formulating queries, comparing reports, and verifying facts are distinct operations.',
     frontend: {
       en: 'Learn how to search for evidence and check whether a claim is supported.',
+      it: "Impara a cercare prove e a controllare se un'affermazione è fondata.",
       zh: '学习如何寻找证据并核实一个说法是否有依据。',
       hi: 'जानें कि प्रमाण कैसे खोजें और किसी दावे का समर्थन जाँचें।',
       es: 'Aprende a buscar pruebas y comprobar si una afirmación está respaldada.',

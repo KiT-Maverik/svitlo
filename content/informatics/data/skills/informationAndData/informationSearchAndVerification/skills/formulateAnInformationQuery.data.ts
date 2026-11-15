@@ -5,6 +5,7 @@ export const formulateAnInformationQuery_Skill_Data = defineSkill({
   id: '9c3c5f3a-e11f-4ab6-a9f6-2b8cdd31366a',
   name: {
     en: 'Formulate an Information Query',
+    it: 'Formulare una ricerca di informazioni',
     zh: '制定信息检索查询',
     hi: 'सूचना खोज प्रश्न तैयार करना',
     es: 'Formular una consulta de información',
@@ -39,6 +40,7 @@ export const formulateAnInformationQuery_Skill_Data = defineSkill({
       "Convert a specific information need into search terms and qualifiers likely to retrieve relevant resources. For example, specify an object's name, location, or period instead of an overly general term.",
     frontend: {
       en: 'Choose specific search terms that match what you need to find.',
+      it: 'Scegli termini di ricerca specifici e pertinenti a ciò che vuoi trovare.',
       zh: '选择符合所需信息的具体搜索词。',
       hi: 'अपनी ज़रूरत के अनुसार विशिष्ट खोज शब्द चुनें।',
       es: 'Elige términos de búsqueda específicos que correspondan a lo que necesitas encontrar.',
