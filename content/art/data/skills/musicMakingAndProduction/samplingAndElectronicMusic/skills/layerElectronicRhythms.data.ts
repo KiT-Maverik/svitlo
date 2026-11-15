@@ -5,6 +5,7 @@ export const layerElectronicRhythms_Skill_Data = defineSkill({
   id: 'bb8cf848-a26b-428a-996d-135953b53f5f',
   name: {
     en: 'Layer Electronic Rhythms',
+    it: 'Sovrapporre ritmi elettronici',
     zh: '叠加电子节奏',
     hi: 'इलेक्ट्रॉनिक लयों की परतें बनाएँ',
     es: 'Superponer ritmos electrónicos',
@@ -38,6 +39,7 @@ export const layerElectronicRhythms_Skill_Data = defineSkill({
     methodological: 'Coordinate different percussive sound roles into a structured electronic groove.',
     frontend: {
       en: 'Combine different electronic percussion parts into one groove.',
+      it: 'Combina diverse parti di percussioni elettroniche in un unico groove.',
       zh: '将不同的电子打击乐声部组合成一个律动。',
       hi: 'अलग-अलग इलेक्ट्रॉनिक तालवाद्य भागों को एक ग्रूव में मिलाएँ।',
       es: 'Combina distintas partes de percusión electrónica en un solo ritmo.',
