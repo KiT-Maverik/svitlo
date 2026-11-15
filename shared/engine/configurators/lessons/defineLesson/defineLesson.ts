@@ -124,7 +124,7 @@ const validate = (config: Lesson_Config): void => {
   lesson_Config_Schema.parse(config);
   for (const [name, collection, kinds] of [
     ['section', config.section, sectionTypes],
-    ['flashcards', config.flashcards, ['flashcard']],
+    ['flashcards', config.flashcards ?? { items: {} }, ['flashcard']],
   ] as const) {
     const issues = [
       ...(name === 'section' ? validateOrderedKeys(collection as Lesson_Config['section'], { path: name }) : []),
@@ -144,6 +144,14 @@ const validate = (config: Lesson_Config): void => {
       ) {
         throw new Error('Invalid Lesson ' + name + ' Build API or identity: ' + key);
       }
+    }
+  }
+  for (const [key, child] of Object.entries(config.section.items)) {
+    if (child.type === 'quiz' && config.questions === undefined) {
+      throw new Error('Quiz Section "' + key + '" requires Lesson.questions');
+    }
+    if (child.type === 'flashcards' && config.flashcards === undefined) {
+      throw new Error('Flashcards Section "' + key + '" requires Lesson.flashcards');
     }
   }
   if (
@@ -181,7 +189,9 @@ const validate = (config: Lesson_Config): void => {
  * Question slug. Quiz Sections select from this bank through `params.selection`,
  * allowing a Question to be reused without duplicating its content. Questions
  * are not Section ContentBlocks. Use `section` to organize the instructional
- * sequence and `flashcards` for independent recall material. Enable
+ * sequence and optional `flashcards` for independent recall material. Quiz
+ * Sections require `questions`; Flashcards Sections require `flashcards`.
+ * Enable
  * `params.requireQuiz` when at least one enabled Quiz Section is mandatory.
  *
  * `params.sections.allowSkipping` controls whether Sections may be skipped
@@ -202,13 +212,18 @@ export function defineLesson<
     params: Omit<Lesson_Config['params'], 'languages'> & { languages: Languages };
     locale: RequireLanguages<Lesson_Config['locale'], Languages>;
     section: { items: Sections & ChildrenSupporting<Languages, Sections>; order: string[] };
-    flashcards: { items: Cards & ChildrenSupporting<Languages, Cards> };
+    flashcards?: { items: Cards & ChildrenSupporting<Languages, Cards> };
     questions?: Questions & {
       [Kind in keyof Questions]: Questions[Kind] extends Record<string, Question_Configurator>
         ? Questions[Kind] & ChildrenSupporting<Languages, Questions[Kind]>
         : Questions[Kind];
     };
-  },
+  } & ([Extract<Sections[keyof Sections], { type: 'quiz' }>] extends [never]
+    ? {}
+    : { questions: Questions }) &
+    ([Extract<Sections[keyof Sections], { type: 'flashcards' }>] extends [never]
+      ? {}
+      : { flashcards: NonNullable<Lesson_Config['flashcards']> }),
 ) {
   validate(config as unknown as Lesson_Config);
   const metadataSchema = lesson_Config_Schema.omit({
@@ -221,7 +236,7 @@ export function defineLesson<
   const { id, type, slug } = authored;
   const initialSections: Sections = { ...config.section.items };
   const sectionOrder = [...config.section.order];
-  const initialCards: Cards = { ...config.flashcards.items };
+  const initialCards: Cards = config.flashcards ? { ...config.flashcards.items } : ({} as Cards);
   // Flashcards form a recall bank, not an instructional sequence. Slugs give deterministic publication order.
   const flashcardOrder = Object.keys(initialCards).sort();
   const initialQuestions: Lesson_QuestionBank = Object.fromEntries(
@@ -550,8 +565,12 @@ export function defineLesson<
       validate({
         ...own,
         section: { items: sections.active as Record<string, Section_Configurator>, order: [...sections.order] },
-        flashcards: { items: cards.active as Record<string, Flashcard_Configurator> },
-        questions: nextQuestions,
+        flashcards:
+          config.flashcards !== undefined || Object.keys(cards.active).length > 0
+            ? { items: cards.active as Record<string, Flashcard_Configurator> }
+            : undefined,
+        questions:
+          config.questions !== undefined || Object.keys(nextQuestions).length > 0 ? nextQuestions : undefined,
       });
       // Child overrides can disable a Quiz without removing its configurator from the map.
       if (

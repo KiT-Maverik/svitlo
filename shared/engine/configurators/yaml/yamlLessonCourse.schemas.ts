@@ -26,14 +26,14 @@ export const yamlFlashcard_Schema = flashcard_Config_Schema.extend({
 const sectionCollection = lesson_Config_Schema.shape.section.extend({
   items: z.record(z.string(), yamlSection_Schema),
 });
-const flashcardCollection = lesson_Config_Schema.shape.flashcards.extend({
+const flashcardCollection = lesson_Config_Schema.shape.flashcards.unwrap().extend({
   items: z.record(z.string(), yamlFlashcard_Schema),
 });
 
 /** Standalone Lesson YAML is a serializable Config tree, never published Props. */
 export const yamlLesson_Schema: z.ZodType = lesson_Config_Schema.extend({
   section: sectionCollection,
-  flashcards: flashcardCollection,
+  flashcards: flashcardCollection.optional(),
   questions: z
     .partialRecord(z.enum(questionTypes), z.record(z.string(), yamlQuestion_Schema))
     .optional(),

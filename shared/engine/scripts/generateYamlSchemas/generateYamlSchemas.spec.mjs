@@ -256,9 +256,9 @@ test('Lesson/Course draft envelopes document source language, import coordinates
   const overrides = JSON.parse(docs['courseOverrides.schema.json']);
   assert(lesson.required.includes('documentLanguage'));
   assert(lesson.required.includes('type'));
-  assert(lesson.required.includes('flashcards')); // Required structure is never silently relaxed.
+  assert(!lesson.required.includes('flashcards'), 'A Lesson without Flashcards must remain authorable');
   assert.equal(course.properties.documentLanguage.type, 'string');
-  for (const field of ['id', 'slug', 'type', 'skills', 'params', 'locale', 'section', 'flashcards']) {
+  for (const field of ['id', 'slug', 'type', 'skills', 'params', 'locale', 'section']) {
     assert(lesson.required.includes(field), 'Missing Lesson required field: ' + field);
   }
   for (const field of ['id', 'slug', 'type', 'params', 'locale', 'content']) {

@@ -59,7 +59,7 @@ const questionBank = z.partialRecord(
 export const lesson_Config_Schema = identity.extend({
   ...addUnifiedLocale({ title: localizationSwitch.config }),
   section: sectionCollection,
-  flashcards: flashcardCollection,
+  flashcards: flashcardCollection.optional(),
   questions: questionBank.optional(),
   events: z.record(z.string(), z.json()).optional(),
 });
