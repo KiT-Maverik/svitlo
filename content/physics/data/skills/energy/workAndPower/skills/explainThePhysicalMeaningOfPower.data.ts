@@ -5,6 +5,7 @@ export const explainThePhysicalMeaningOfPower_Skill_Data = defineSkill({
   id: '80d3808e-6f21-4639-9c1a-323582a67ff9',
   name: {
     en: 'Explain the physical meaning of power',
+    it: 'Spiegare il significato fisico della potenza',
     zh: '解释功率的物理意义',
     hi: 'शक्ति का भौतिक अर्थ समझाना',
     es: 'Explicar el significado físico de la potencia',
@@ -39,6 +40,7 @@ export const explainThePhysicalMeaningOfPower_Skill_Data = defineSkill({
       'Power describes the rate of doing work or transferring energy and is not a separate form of energy.',
     frontend: {
       en: 'Understand power as the rate at which energy is transferred or work is done.',
+      it: 'Comprendi la potenza come velocità con cui si trasferisce energia o si compie lavoro.',
       zh: '理解功率是能量传递或做功的快慢。',
       hi: 'शक्ति को ऊर्जा स्थानांतरण या कार्य करने की दर के रूप में समझें।',
       es: 'Comprende la potencia como la rapidez de transferencia de energía o realización de trabajo.',
