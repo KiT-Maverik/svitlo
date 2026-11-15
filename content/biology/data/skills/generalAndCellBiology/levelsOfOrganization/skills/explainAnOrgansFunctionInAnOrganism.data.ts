@@ -5,6 +5,7 @@ export const explainAnOrgansFunctionInAnOrganism_Skill_Data = defineSkill({
   id: 'e3dc428a-09ea-4a1d-8eb9-eeb89f5d64d1',
   name: {
     en: 'Explain an Organ’s Function in an Organism',
+    it: 'Spiegare la funzione di un organo in un organismo',
     zh: '说明器官在生物体中的作用',
     hi: 'जीव में अंग के कार्य को समझाना',
     es: 'Explicar la función de un órgano en un organismo',
@@ -39,6 +40,7 @@ export const explainAnOrgansFunctionInAnOrganism_Skill_Data = defineSkill({
       'Explain how a particular structure contributes to overall life processes, such as absorbing or transporting substances.',
     frontend: {
       en: 'Explain how a particular organ helps the entire organism function.',
+      it: "Spiega come un determinato organo contribuisce al funzionamento dell'intero organismo.",
       zh: '解释某个器官如何帮助整个生物体维持生命活动。',
       hi: 'समझाएँ कि एक विशेष अंग पूरे जीव के काम में कैसे योगदान देता है।',
       es: 'Explica cómo un órgano concreto contribuye al funcionamiento de todo el organismo.',
