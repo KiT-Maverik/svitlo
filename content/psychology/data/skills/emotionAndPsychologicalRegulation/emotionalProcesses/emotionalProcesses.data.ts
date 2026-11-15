@@ -13,6 +13,7 @@ export const emotionalProcesses_SkillGroup_Data = defineSkillGroup({
   id: '30801456-e62b-422e-8c5b-58809ad131b6',
   name: {
     en: 'Emotional Processes',
+    it: 'Processi emotivi',
     zh: '情绪过程',
     hi: 'भावनात्मक प्रक्रियाएँ',
     es: 'Procesos emocionales',
@@ -57,6 +58,7 @@ export const emotionalProcesses_SkillGroup_Data = defineSkillGroup({
       'Emotions emerge from interpretations, physiological changes, and situational information that interact in complex ways.',
     frontend: {
       en: 'Discover the functions, bodily responses and interpretations involved in emotion.',
+      it: 'Scopri le funzioni, le risposte corporee e le interpretazioni coinvolte nelle emozioni.',
       zh: '了解情绪的作用、身体反应和解释过程。',
       hi: 'भावनाओं की भूमिकाएँ, शारीरिक प्रतिक्रियाएँ और व्याख्याएँ जानें।',
       es: 'Descubre las funciones, respuestas corporales e interpretaciones de las emociones.',

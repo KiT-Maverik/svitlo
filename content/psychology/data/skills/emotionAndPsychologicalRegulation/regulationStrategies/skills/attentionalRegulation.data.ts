@@ -5,6 +5,7 @@ export const attentionalRegulation_Skill_Data = defineSkill({
   id: 'e6f9ebbf-ee77-4688-8154-e81c330fd11d',
   name: {
     en: 'Attentional Regulation',
+    it: 'Regolazione dell\'attenzione',
     zh: '注意力调节',
     hi: 'ध्यान का नियमन',
     es: 'Regulación de la atención',
@@ -39,6 +40,7 @@ export const attentionalRegulation_Skill_Data = defineSkill({
       'Explain how directing focus alters emotional intensity or persistence, including limits of distraction.',
     frontend: {
       en: 'Redirect attention intentionally when a different focus is helpful.',
+      it: 'Sposta intenzionalmente l\'attenzione quando è utile concentrarsi su altro.',
       zh: '在有帮助的时候有意识地转移注意力。',
       hi: 'जब मददगार हो, तो जानबूझकर ध्यान किसी दूसरी बात पर लगाएँ।',
       es: 'Dirige tu atención deliberadamente a otro foco cuando resulte útil.',

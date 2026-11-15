@@ -5,6 +5,7 @@ export const emotionFunctions_Skill_Data = defineSkill({
   id: 'b0d8fc16-8861-458b-8781-e35f99ed293a',
   name: {
     en: 'Emotion Functions',
+    it: 'Funzioni delle emozioni',
     zh: '情绪的功能',
     hi: 'भावनाओं के कार्य',
     es: 'Funciones de las emociones',
@@ -39,6 +40,7 @@ export const emotionFunctions_Skill_Data = defineSkill({
       'Explain how emotion can signal needs, orient attention, and prepare action while avoiding fixed rules for every person.',
     frontend: {
       en: 'Understand how emotions help signal needs, threats and opportunities.',
+      it: 'Comprendi come le emozioni aiutino a segnalare bisogni, minacce e opportunità.',
       zh: '理解情绪如何提示需求、威胁和机会。',
       hi: 'समझें कि भावनाएँ ज़रूरतों, खतरों और अवसरों का संकेत कैसे देती हैं।',
       es: 'Comprende cómo las emociones señalan necesidades, amenazas y oportunidades.',

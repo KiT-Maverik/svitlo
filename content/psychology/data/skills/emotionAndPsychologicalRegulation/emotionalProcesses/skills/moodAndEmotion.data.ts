@@ -5,6 +5,7 @@ export const moodAndEmotion_Skill_Data = defineSkill({
   id: '1ffa6d9c-6235-41fc-bcab-e64a781373f5',
   name: {
     en: 'Mood and Emotion',
+    it: 'Umore ed emozione',
     zh: '心境与情绪',
     hi: 'मनोदशा और भावना',
     es: 'Estado de ánimo y emoción',
@@ -39,6 +40,7 @@ export const moodAndEmotion_Skill_Data = defineSkill({
       'Distinguish relatively persistent affective states from briefer reactions focused on a specific event.',
     frontend: {
       en: 'Distinguish a short emotional episode from a longer-lasting mood.',
+      it: 'Distingui un episodio emotivo breve da uno stato d\'animo più duraturo.',
       zh: '区分短暂的情绪体验和持续较久的心境。',
       hi: 'छोटी भावनात्मक घटना और अधिक समय तक रहने वाली मनोदशा का अंतर समझें।',
       es: 'Distingue una emoción breve de un estado de ánimo más duradero.',
