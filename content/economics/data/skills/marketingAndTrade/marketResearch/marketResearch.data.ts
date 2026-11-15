@@ -7,6 +7,7 @@ export const marketResearch_SkillGroup_Data = defineSkillGroup({
   id: 'fedfd6f9-c0b4-4f21-8854-d765fa9c2561',
   name: {
     en: 'Дослідження ринку',
+    it: 'Ricerche di mercato',
     zh: '市场研究',
     hi: 'बाज़ार अनुसंधान',
     es: 'Investigación de mercado',
@@ -42,6 +43,7 @@ export const marketResearch_SkillGroup_Data = defineSkillGroup({
       'Audience needs and competitive conditions can be studied using observations, surveys, and tests of assumptions.',
     frontend: {
       en: 'Learn how businesses gather evidence about customers and competitors.',
+      it: 'Scopri come le imprese raccolgono informazioni su clienti e concorrenti.',
       zh: '了解企业如何收集顾客与竞争者的证据。',
       hi: 'जानें कि व्यवसाय ग्राहकों और प्रतिस्पर्धियों के बारे में साक्ष्य कैसे जुटाते हैं।',
       es: 'Aprende cómo las empresas reúnen pruebas sobre clientes y competidores.',

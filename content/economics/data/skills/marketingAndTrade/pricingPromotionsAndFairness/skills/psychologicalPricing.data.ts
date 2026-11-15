@@ -5,6 +5,7 @@ export const psychologicalPricing_Skill_Data = defineSkill({
   id: '8a4f213d-742e-4d5f-8e78-8d4ae1eced11',
   name: {
     en: 'Психологічне ціноутворення',
+    it: 'Prezzi psicologici',
     zh: '心理定价',
     hi: 'मनोवैज्ञानिक मूल्य निर्धारण',
     es: 'Precios psicológicos',
@@ -39,6 +40,7 @@ export const psychologicalPricing_Skill_Data = defineSkill({
       'Analyze the effect of price thresholds, endings such as 99, comparative or crossed-out prices, and reference prices on perceived value; effects vary by market and context and are not guaranteed by a numerical format.',
     frontend: {
       en: 'Explore why prices ending in 99 or crossed-out comparisons influence perception.',
+      it: 'Esplora perché i prezzi che terminano con 99 o i confronti con prezzi barrati influenzano la percezione.',
       zh: '探索以99结尾的价格和划线原价为何影响感受。',
       hi: 'जानें कि 99 पर खत्म होने वाली कीमतें और काटे गए पुराने दाम धारणा क्यों बदलते हैं।',
       es: 'Explora por qué los precios terminados en 99 y las comparaciones tachadas influyen en la percepción.',

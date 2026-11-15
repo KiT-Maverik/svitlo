@@ -5,6 +5,7 @@ export const consumerSegmentation_Skill_Data = defineSkill({
   id: 'f6c8a7f1-5302-4090-9ad6-fbf55fcc61ff',
   name: {
     en: 'Сегментація споживачів',
+    it: 'Segmentazione dei consumatori',
     zh: '消费者细分',
     hi: 'ग्राहक विभाजन',
     es: 'Segmentación de consumidores',
@@ -39,6 +40,7 @@ export const consumerSegmentation_Skill_Data = defineSkill({
       'Identify groups with distinct needs or behavior using justified criteria without treating stereotypes as facts.',
     frontend: {
       en: 'Group customers according to meaningful differences, not stereotypes.',
+      it: 'Raggruppa i clienti in base a differenze significative, non a stereotipi.',
       zh: '根据有意义的差异而非刻板印象对顾客分组。',
       hi: 'रूढ़ धारणाओं के बजाय अर्थपूर्ण अंतर के अनुसार ग्राहकों को समूहों में बाँटें।',
       es: 'Agrupa clientes por diferencias relevantes, no por estereotipos.',

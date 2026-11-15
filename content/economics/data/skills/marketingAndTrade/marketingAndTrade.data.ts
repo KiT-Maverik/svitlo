@@ -12,6 +12,7 @@ export const marketingAndTrade_SkillDomain_Data = defineSkillDomain({
   id: 'b4bbb2db-d764-4ee3-a188-8aa084ff9929',
   title: {
     en: 'Маркетинг і торгівля',
+    it: 'Marketing e commercio',
     zh: '营销与贸易',
     hi: 'विपणन और व्यापार',
     es: 'Mercadotecnia y comercio',
@@ -54,6 +55,7 @@ export const marketingAndTrade_SkillDomain_Data = defineSkillDomain({
       'Marketing examines how firms identify needs, develop offers, and communicate their value. Retail environments, price incentives, and fair influence on buyers are analyzed separately.',
     frontend: {
       en: 'Explore how businesses understand customers, present products, and sell responsibly.',
+      it: 'Esplora come le imprese comprendono i clienti, presentano i prodotti e vendono responsabilmente.',
       zh: '探索企业如何了解顾客、展示产品并负责任地销售。',
       hi: 'जानें कि व्यवसाय ग्राहकों को कैसे समझते, उत्पाद पेश करते और जिम्मेदारी से बेचते हैं।',
       es: 'Explora cómo las empresas conocen a sus clientes, presentan productos y venden con responsabilidad.',
