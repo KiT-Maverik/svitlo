@@ -44,14 +44,24 @@ export const violenceAndProtection_SkillGroup_Data = defineSkillGroup({
     kk: 'Зорлық және қорғану',
     qm: 'Zulum ve qorunuv',
   },
-  skills: [
-    recognizeBullying_Skill_Data,
-    recognizeDomesticAndSexualViolence_Skill_Data,
-    recognizeHarassment_Skill_Data,
-    respondSafelyToBullying_Skill_Data,
-    seekProtectionAfterViolence_Skill_Data,
-    supportAPersonAffectedByViolence_Skill_Data,
-  ],
+  skills: {
+    items: {
+      recognizeBullying: recognizeBullying_Skill_Data,
+      recognizeDomesticAndSexualViolence: recognizeDomesticAndSexualViolence_Skill_Data,
+      recognizeHarassment: recognizeHarassment_Skill_Data,
+      respondSafelyToBullying: respondSafelyToBullying_Skill_Data,
+      seekProtectionAfterViolence: seekProtectionAfterViolence_Skill_Data,
+      supportAPersonAffectedByViolence: supportAPersonAffectedByViolence_Skill_Data,
+    },
+    order: [
+      'recognizeBullying',
+      'recognizeDomesticAndSexualViolence',
+      'recognizeHarassment',
+      'respondSafelyToBullying',
+      'seekProtectionAfterViolence',
+      'supportAPersonAffectedByViolence',
+    ],
+  },
   description: {
     methodological:
       'Violence can be physical, psychological, sexual, economic, or digital; protection and reporting should avoid exposing affected people to retaliation.',

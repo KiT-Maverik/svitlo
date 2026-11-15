@@ -39,11 +39,14 @@ export const personalBoundariesAndViolencePrevention_SkillDomain_Data = defineSk
     kk: 'Жеке шекаралар және зорлықтың алдын алу',
     qm: 'Şahsiy sıñırlar ve zulumğa qarşı tedbirler',
   },
-  groups: [
-    bodilyAutonomyAndConsent_SkillGroup_Data,
-    pressureAndManipulation_SkillGroup_Data,
-    violenceAndProtection_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      bodilyAutonomyAndConsent: bodilyAutonomyAndConsent_SkillGroup_Data,
+      pressureAndManipulation: pressureAndManipulation_SkillGroup_Data,
+      violenceAndProtection: violenceAndProtection_SkillGroup_Data,
+    },
+    order: ['bodilyAutonomyAndConsent', 'pressureAndManipulation', 'violenceAndProtection'],
+  },
   description: {
     methodological:
       'Safety in relationships requires bodily autonomy, recognition of coercion, and effective routes to protection. Mechanisms of social influence are studied in Psychology; here the emphasis is on avoiding harm and obtaining help.',

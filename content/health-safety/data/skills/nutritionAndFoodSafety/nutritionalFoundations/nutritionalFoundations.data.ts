@@ -42,12 +42,15 @@ export const nutritionalFoundations_SkillGroup_Data = defineSkillGroup({
     kk: 'Тамақтану негіздері',
     qm: 'Beslenüv esasları',
   },
-  skills: [
-    balancedDietaryPatterns_Skill_Data,
-    hydration_Skill_Data,
-    interpretDietaryEnergyBalance_Skill_Data,
-    understandTheRolesOfNutrients_Skill_Data,
-  ],
+  skills: {
+    items: {
+      balancedDietaryPatterns: balancedDietaryPatterns_Skill_Data,
+      hydration: hydration_Skill_Data,
+      interpretDietaryEnergyBalance: interpretDietaryEnergyBalance_Skill_Data,
+      understandTheRolesOfNutrients: understandTheRolesOfNutrients_Skill_Data,
+    },
+    order: ['balancedDietaryPatterns', 'hydration', 'interpretDietaryEnergyBalance', 'understandTheRolesOfNutrients'],
+  },
   description: {
     methodological:
       'Food supplies energy and essential nutrients; dietary adequacy depends on patterns over time rather than judging a single meal as healthy or unhealthy.',
