@@ -41,11 +41,14 @@ export const developmentAndBodilyCare_SkillGroup_Data = defineSkillGroup({
     kk: 'Даму және дене күтімі',
     qm: 'İnkişaf ve beden baqımı',
   },
-  skills: [
-    manageMenstrualHealth_Skill_Data,
-    recognizeReproductiveHealthConcerns_Skill_Data,
-    understandPubertalChanges_Skill_Data,
-  ],
+  skills: {
+    items: {
+      manageMenstrualHealth: manageMenstrualHealth_Skill_Data,
+      recognizeReproductiveHealthConcerns: recognizeReproductiveHealthConcerns_Skill_Data,
+      understandPubertalChanges: understandPubertalChanges_Skill_Data,
+    },
+    order: ['manageMenstrualHealth', 'recognizeReproductiveHealthConcerns', 'understandPubertalChanges'],
+  },
   description: {
     methodological:
       'Changes through puberty differ in timing and expression; normal variation and symptoms needing assessment should not be conflated.',

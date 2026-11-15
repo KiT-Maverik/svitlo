@@ -42,12 +42,20 @@ export const substanceRelatedRisks_SkillGroup_Data = defineSkillGroup({
     kk: 'Заттарға байланысты қауіптер',
     qm: 'Maddelernen bağlı havflar',
   },
-  skills: [
-    recognizeAlcoholRelatedRisks_Skill_Data,
-    recognizeDrugRelatedRisks_Skill_Data,
-    recognizeMedicineMisuse_Skill_Data,
-    recognizeTobaccoAndNicotineRisks_Skill_Data,
-  ],
+  skills: {
+    items: {
+      recognizeAlcoholRelatedRisks: recognizeAlcoholRelatedRisks_Skill_Data,
+      recognizeDrugRelatedRisks: recognizeDrugRelatedRisks_Skill_Data,
+      recognizeMedicineMisuse: recognizeMedicineMisuse_Skill_Data,
+      recognizeTobaccoAndNicotineRisks: recognizeTobaccoAndNicotineRisks_Skill_Data,
+    },
+    order: [
+      'recognizeAlcoholRelatedRisks',
+      'recognizeDrugRelatedRisks',
+      'recognizeMedicineMisuse',
+      'recognizeTobaccoAndNicotineRisks',
+    ],
+  },
   description: {
     methodological:
       'Effects depend on the substance, amount, context, interactions, and vulnerability; legal availability does not imply harmlessness.',

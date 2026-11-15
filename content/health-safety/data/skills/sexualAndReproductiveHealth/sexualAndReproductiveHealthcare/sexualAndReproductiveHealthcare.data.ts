@@ -42,12 +42,20 @@ export const sexualAndReproductiveHealthcare_SkillGroup_Data = defineSkillGroup(
     kk: 'Жыныстық және репродуктивтік денсаулық сақтау',
     qm: 'Cinsiy ve nesil artırma sağlıq hızmetleri',
   },
-  skills: [
-    preventSexuallyTransmittedInfections_Skill_Data,
-    seekConfidentialSexualHealthAdvice_Skill_Data,
-    understandContraception_Skill_Data,
-    understandPregnancyRelatedHealthcare_Skill_Data,
-  ],
+  skills: {
+    items: {
+      preventSexuallyTransmittedInfections: preventSexuallyTransmittedInfections_Skill_Data,
+      seekConfidentialSexualHealthAdvice: seekConfidentialSexualHealthAdvice_Skill_Data,
+      understandContraception: understandContraception_Skill_Data,
+      understandPregnancyRelatedHealthcare: understandPregnancyRelatedHealthcare_Skill_Data,
+    },
+    order: [
+      'preventSexuallyTransmittedInfections',
+      'seekConfidentialSexualHealthAdvice',
+      'understandContraception',
+      'understandPregnancyRelatedHealthcare',
+    ],
+  },
   description: {
     methodological:
       'Risk reduction and access to care include prevention of sexually transmitted infections, contraception, pregnancy-related care and confidential advice. These are health-service competencies, not a prescribed set of personal choices.',
