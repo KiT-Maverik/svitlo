@@ -5,6 +5,7 @@ export const relateOrgansToTheirFunctions_Skill_Data = defineSkill({
   id: 'ee9958e9-74cc-4158-8119-c9cefe975712',
   name: {
     en: 'Relate Organs to Their Functions',
+    it: 'Collegare gli organi alle loro funzioni',
     zh: '将器官与功能联系起来',
     hi: 'अंगों को उनके कार्यों से जोड़ना',
     es: 'Relacionar los órganos con sus funciones',
@@ -39,6 +40,7 @@ export const relateOrgansToTheirFunctions_Skill_Data = defineSkill({
       'Associate the lungs with gas exchange, the heart with blood movement, and the stomach and intestines with food processing.',
     frontend: {
       en: 'Connect organs such as the lungs, heart and intestines with their functions.',
+      it: 'Collega organi come polmoni, cuore e intestino alle rispettive funzioni.',
       zh: '将肺、心脏和肠道等器官与各自的功能联系起来。',
       hi: 'फेफड़ों, हृदय और आँतों जैसे अंगों को उनके कार्यों से जोड़ें।',
       es: 'Relaciona órganos como los pulmones, el corazón y los intestinos con sus funciones.',
