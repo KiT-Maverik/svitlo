@@ -5,6 +5,7 @@ export const foundations_Skill_Data = defineSkill({
   id: '4a22a35c-bf94-44c7-851b-2829ee711836',
   name: {
     en: 'Foundations',
+    it: 'Fondazioni',
     zh: '地基与基础',
     hi: 'नींव',
     es: 'Cimentaciones',
@@ -38,6 +39,7 @@ export const foundations_Skill_Data = defineSkill({
     methodological: 'Connect bearing and settlement conditions with transferring structural loads to ground.',
     frontend: {
       en: "Explain how foundations transfer a structure's weight into the ground.",
+      it: 'Spiega come le fondazioni trasferiscono il peso di una struttura al terreno.',
       zh: '解释基础如何将建筑重量传递到土壤。',
       hi: 'समझाएँ कि नींव संरचना का भार जमीन तक कैसे पहुँचाती है।',
       es: 'Explica cómo las cimentaciones transmiten el peso de una estructura al terreno.',
