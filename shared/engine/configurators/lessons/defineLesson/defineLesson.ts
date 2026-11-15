@@ -170,7 +170,7 @@ export function defineLesson<
   const metadataSchema = lesson_Config_Schema.omit({
     section: true,
   });
-  const authored = structuredClone(metadataSchema.parse(config));
+  const authored = structuredClone(metadataSchema.parse(Object.fromEntries(Object.entries(config).filter(([key]) => key !== 'section'))));
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type, slug } = authored;
   const initialSections: Sections = { ...config.section.items };

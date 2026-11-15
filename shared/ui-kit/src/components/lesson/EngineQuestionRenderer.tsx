@@ -395,10 +395,12 @@ export function EngineQuestionRenderer({
     if (!assessmentLoader) {
       setLoad({ identity, status: 'error', questions: [] });
     } else {
-      assessmentLoader.loadQuestions({ lessonId, language, ids, signal: controller.signal }).then(
-        result => {
+      assessmentLoader.loadQuestions({ lessonId, language, ids, signal: controller.signal })
+        .then(result => selectQuizQuestions(result, ids))
+        .then(
+        questions => {
           if (!controller.signal.aborted)
-            setLoad({ identity, status: 'ready', questions: selectQuizQuestions(result, ids) });
+            setLoad({ identity, status: 'ready', questions });
         },
         () => {
           if (!controller.signal.aborted) setLoad({ identity, status: 'error', questions: [] });
