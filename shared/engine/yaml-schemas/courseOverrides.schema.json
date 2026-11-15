@@ -2471,46 +2471,6 @@
         },
         "section": {
           "$ref": "#/$defs/patchCollection"
-        },
-        "flashcards": {
-          "$ref": "#/$defs/patchCollection"
-        },
-        "questions": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object",
-            "properties": {
-              "items": {
-                "type": "object",
-                "additionalProperties": {
-                  "anyOf": [
-                    {
-                      "const": false
-                    },
-                    {
-                      "$ref": "#/$defs/buildPatch"
-                    }
-                  ]
-                }
-              },
-              "additionalItems": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "minLength": 1
-                    }
-                  },
-                  "required": [
-                    "type"
-                  ]
-                }
-              }
-            },
-            "additionalProperties": false
-          }
         }
       },
       "additionalProperties": false
