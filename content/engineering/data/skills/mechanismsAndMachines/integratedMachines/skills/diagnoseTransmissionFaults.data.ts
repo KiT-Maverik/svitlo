@@ -5,6 +5,7 @@ export const diagnoseTransmissionFaults_Skill_Data = defineSkill({
   id: 'dc8453f8-46fa-44ec-a641-2bf31effafd4',
   name: {
     en: 'Diagnose transmission faults',
+    it: 'Diagnosticare guasti alla trasmissione',
     zh: '诊断传动故障',
     hi: 'संचरण में खराबी पहचानना',
     es: 'Diagnosticar fallos de transmisión',
@@ -38,6 +39,7 @@ export const diagnoseTransmissionFaults_Skill_Data = defineSkill({
     methodological: 'Connect slipping, jamming or unexpected movement to plausible defects.',
     frontend: {
       en: 'Diagnose slipping, jamming and other transmission problems.',
+      it: 'Diagnostica slittamenti, inceppamenti e altri problemi di trasmissione.',
       zh: '诊断打滑、卡滞及其他传动问题。',
       hi: 'फिसलन, जाम होने और संचरण की अन्य समस्याएँ पहचानें।',
       es: 'Diagnostica deslizamientos, atascos y otros problemas de transmisión.',
