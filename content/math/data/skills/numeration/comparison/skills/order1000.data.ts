@@ -11,6 +11,7 @@ export const order1000_Skill_Data = defineSkill({
     ka: 'სამნიშნა რიცხვების შედარება და დალაგება',
     kk: 'Үш таңбалы сандарды салыстыру және реттеу',
     en: 'Comparing and ordering three-digit numbers',
+    it: 'Confrontare e ordinare numeri di tre cifre',
     qm: 'Üç raqamlı sayılarnı qıyaslav ve tertiplemek',
     zh: '比较并排列三位数',
     hi: 'तीन अंकों की संख्याओं की तुलना और क्रम',
@@ -39,6 +40,7 @@ export const order1000_Skill_Data = defineSkill({
       'Compare three-digit decimal numerals from hundreds through tens to ones; the first unequal place determines their order. Lower-place zeros cannot outweigh a larger higher-place digit.',
     frontend: {
       en: 'Compare three-digit numbers by hundreds first, then tens, then ones. The first different digit decides which is greater.',
+      it: 'Confronta i numeri di tre cifre osservando prima le centinaia, poi le decine e infine le unità. La prima cifra diversa stabilisce quale numero è maggiore.',
       qm: 'Üç raqamlı sayılarnı evelâ yüzlüklerge, soñra onluqlarğa, soñunda birliklerge köre qıyasla. Birinci farqlı raqam qaysı sayınıñ daa büyük olğanını belgiley.',
       zh: '比较三位数时先看百位，再看十位和个位；第一个不同的数位决定大小。',
       hi: 'तीन अंकों की तुलना में पहले सैकड़ा, फिर दहाई, फिर इकाई देखें। पहला अलग अंक बड़ा-छोटा तय करता है।',
