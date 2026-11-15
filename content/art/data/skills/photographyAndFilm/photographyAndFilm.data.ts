@@ -10,6 +10,7 @@ export const photographyAndFilm_SkillDomain_Data = defineSkillDomain({
   id: '13d7eab9-4206-48c8-900e-044a0f39b9ea',
   title: {
     en: 'Photography and Film',
+    it: 'Fotografia e cinema',
 
     zh: '摄影与电影',
     hi: 'फ़ोटोग्राफ़ी और फ़िल्म',
@@ -51,6 +52,7 @@ export const photographyAndFilm_SkillDomain_Data = defineSkillDomain({
       'Camera-based arts shape views of reality through frame, light and editing; moving-image forms add duration, sound and sequential meaning.',
     frontend: {
       en: 'Explore how framing, light, image sequences and sound shape photographs and films.',
+      it: 'Esplora come inquadratura, luce, sequenze di immagini e suoni plasmano fotografie e film.',
 
       zh: '探索取景、光线、图像序列和声音如何塑造照片与电影。',
       hi: 'जानें कि फ़्रेमिंग, प्रकाश, छवियों का क्रम और ध्वनि तस्वीरों व फ़िल्मों को कैसे आकार देते हैं।',
