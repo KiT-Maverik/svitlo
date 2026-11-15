@@ -1,8 +1,20 @@
 # Separate Lesson composition from Question and Flashcard banks
 
-**Status:** owner-approved target architecture; **not implemented**. This document is the work specification for [Issue #605](https://github.com/KiT-Maverik/svitlo/issues/605). It supersedes that Issue's earlier proposal to remove banks from the first-stage YAML while keeping them in final Lesson Config/Props.
+**Status:** owner-approved target architecture; **partial resource-layer implementation in Draft PR #606, full migration not implemented**. This document is the work specification for [Issue #605](https://github.com/KiT-Maverik/svitlo/issues/605). It supersedes that Issue's earlier proposal to remove banks from the first-stage YAML while keeping them in final Lesson Config/Props.
 **Scope:** Engine Build and runtime contracts; Section selection; independent YAML/TS authoring, generation and validation; static resource publishing/assembling; UI Kit/host loading; textbooks and Studio migration.
 **Related:** [Lesson entity](../entities/lesson.md), [Section entity](../entities/section.md), [Lesson YAML Builder](./lesson-yaml-builder.md), [source layout](./lesson-generated-source-layout.md), [unified YAML handoff](./yaml-config-scaffolding.md), [Lesson workflow](../../skills/lesson-workflow/README.md), [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557), [PR #576](https://github.com/KiT-Maverik/svitlo/pull/576).
+
+
+## Verified incremental implementation (15 November 2026)
+
+The current Draft branch implements **only reusable independent assessment-resource infrastructure**:
+
+- \`shared/engine/assemblers/assessmentResources/assessmentResources.ts\` defines UUID-addressed resource paths, a strict metadata-only manifest schema, owner/type/language/reference validation, and deterministic UUID candidate selection for Quiz. It is **not yet the active \`defineQuizSection\` API**.
+- \`shared/engine/generators/assessments/renderAssessmentResourceFiles.utils.ts\` converts independently built Question/Flashcard \`{ base, locale }\` Props into UUID-addressed files plus a manifest. UUID collision checks span Lessons; the serializer is **not yet wired into textbook builds or Stage B/C YAML production**.
+- \`shared/engine/assemblers/assessmentResources/createAssessmentResourceLoader.ts\` provides a host-injected, batched, scoped loader with locale fragment handling, explicit missing-file errors, cancellation checks, per-locale caching and validated resolved Props. **The UI Kit and hosts do not yet consume this loader.**
+- Tests now run under the Engine \`npm test\` script. CI for commit \`ffe22ca\` passed FastGate, Engine generators, ContentBlock Build API, PR labels and agent-artifact checks. The tests cover a successful independent Flashcard publication/load, caching, missing files, cancellation, collisions and deterministic output. These CI checks are **not evidence of Web/offline/SSR integration**, which is pending.
+
+**Still mandatory before closing #605:** remove Lesson bank fields from all Config/Props/Build/overrides, implement actual UUID-based Quiz/Flashcards Section interfaces, independent bank YAML and draft/publish commands, integrate textbook packaging and selected-resource UI/host loading, migrate existing authored consumers without content loss, regenerate schemas and complete independent technical/QA reviews. Keep every acceptance checkbox below unchecked until its end-to-end boundary is verified.
 
 ## Decision and nonnegotiable invariants
 
