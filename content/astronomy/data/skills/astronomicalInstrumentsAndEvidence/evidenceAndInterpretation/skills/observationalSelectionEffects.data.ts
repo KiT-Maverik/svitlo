@@ -5,6 +5,7 @@ export const observationalSelectionEffects_Skill_Data = defineSkill({
   id: 'ece5cc9f-a000-4a4c-9a60-a37cef48807b',
   name: {
     en: 'Observational Selection Effects',
+    it: 'Effetti di selezione osservativa',
     qm: 'Közetüvde saylav tesirleri',
     bn: 'পর্যবেক্ষণগত নির্বাচনের প্রভাব',
     ur: 'مشاہداتی انتخاب کے اثرات',
@@ -39,6 +40,7 @@ export const observationalSelectionEffects_Skill_Data = defineSkill({
       'Identify how detection thresholds and survey methods bias the populations of celestial objects that appear in catalogs.',
     frontend: {
       en: 'Discover why telescopes and surveys detect some objects more easily than others.',
+      it: 'Scopri perché telescopi e campagne osservative individuano alcuni oggetti più facilmente di altri.',
       qm: 'Teleskoplar ve közetüv programları bazı cisimlerni başqalarından ne içün daa qolay tapqanını ögreniñiz.',
       bn: 'দূরবীক্ষণ যন্ত্র ও সমীক্ষা কেন কিছু জ্যোতিষ্ক অন্যদের তুলনায় সহজে খুঁজে পায়, তা জানো।',
       ur: 'جانیں کہ دوربینیں اور فلکیاتی سروے بعض اجرام کو دوسروں کے مقابلے میں آسانی سے کیوں دریافت کرتے ہیں۔',
