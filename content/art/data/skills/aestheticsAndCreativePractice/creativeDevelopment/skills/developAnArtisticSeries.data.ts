@@ -5,6 +5,7 @@ export const developAnArtisticSeries_Skill_Data = defineSkill({
   id: '374704ad-a86e-40e3-bbce-3c3c7a97a2d2',
   name: {
     en: 'Develop an Artistic Series',
+    it: "Sviluppare una serie artistica",
     zh: '创作系列艺术作品',
     hi: 'कलात्मक शृंखला विकसित करें',
     es: 'Desarrollar una serie artística',
@@ -38,6 +39,7 @@ export const developAnArtisticSeries_Skill_Data = defineSkill({
     methodological: 'Create related works that sustain a coherent inquiry through selected variations.',
     frontend: {
       en: 'Create a related set of artworks that explores one idea in different ways.',
+      it: "Crea una serie di opere collegate che esplorano la stessa idea in modi diversi.",
       zh: '创作一组相互关联的作品，以不同方式探索同一个想法。',
       hi: 'एक विचार को अलग-अलग तरीकों से तलाशने वाली संबंधित कलाकृतियों की श्रृंखला बनाएँ।',
       es: 'Crea un conjunto de obras relacionadas que explore una idea de distintas maneras.',
