@@ -7,6 +7,7 @@ export const sustainabilityAndIntertemporalChoice_SkillGroup_Data = defineSkillG
   id: 'aa7653a3-7df3-4c59-b61b-96cc77329c93',
   name: {
     en: 'Стійкість та міжчасовий вибір',
+    it: 'Sostenibilità e scelta intertemporale',
     zh: '可持续性与跨期选择',
     hi: 'सततता और समय के पार चुनाव',
     es: 'Sostenibilidad y elecciones intertemporales',
@@ -42,6 +43,7 @@ export const sustainabilityAndIntertemporalChoice_SkillGroup_Data = defineSkillG
       'Present decisions can change future resource availability, risks, and wellbeing across generations.',
     frontend: {
       en: "Explore how today's choices influence the resources left for tomorrow.",
+      it: 'Esplora come le scelte di oggi influenzano le risorse lasciate per il futuro.',
       zh: '探索今天的选择如何影响留给未来的资源。',
       hi: 'जानें कि आज के चुनाव कल के लिए बचे संसाधनों को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las decisiones de hoy afectan los recursos disponibles mañana.',

@@ -5,6 +5,7 @@ export const fiscalStabilization_Skill_Data = defineSkill({
   id: '0d410760-001b-4433-a4c4-d450229a3f40',
   name: {
     en: 'Фіскальна стабілізація',
+    it: 'Stabilizzazione fiscale',
     zh: '财政稳定政策',
     hi: 'राजकोषीय स्थिरीकरण',
     es: 'Estabilización fiscal',
@@ -39,6 +40,7 @@ export const fiscalStabilization_Skill_Data = defineSkill({
       'Analyze how changes in public spending or taxation affect aggregate demand and the government budget.',
     frontend: {
       en: 'Explore how government spending and taxes may influence economic activity.',
+      it: "Esplora come la spesa pubblica e le imposte possono influenzare l'attività economica.",
       zh: '探索政府支出和税收如何影响经济活动。',
       hi: 'जानें कि सरकारी खर्च और कर आर्थिक गतिविधियों को कैसे प्रभावित कर सकते हैं।',
       es: 'Explora cómo el gasto público y los impuestos pueden influir en la actividad económica.',
