@@ -252,7 +252,9 @@ export function renderLessonModules(lesson, language, options = {}) {
 
   // Render plain source values and move every Configurator position into a
   // child module. Its containing object's ordinary metadata remains untouched.
-  function render(value, context, ownerDirectory, imported, depth = 0, field = '    if (context === 'nullableBlock') {
+  function render(value, context, ownerDirectory, imported, depth = 0, field = '$') {
+    if (value && typeof value === 'object' && value[rawExpression]) return value[rawExpression];
+    if (context === 'nullableBlock') {
       return value === null ? 'null' : render(value, 'block', ownerDirectory, imported, depth, field);
     }
     if (factoryContexts.has(context)) {
