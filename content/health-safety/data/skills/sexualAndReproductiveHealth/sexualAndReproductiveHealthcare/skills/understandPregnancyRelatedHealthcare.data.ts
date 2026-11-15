@@ -5,6 +5,7 @@ export const understandPregnancyRelatedHealthcare_Skill_Data = defineSkill({
   id: '3ca85448-d55c-4787-9500-ad596a9ac1d2',
   name: {
     en: 'Understand pregnancy-related healthcare',
+    it: 'Comprendere l\'assistenza sanitaria in gravidanza',
     zh: '了解妊娠相关医疗',
     hi: 'गर्भावस्था से जुड़ी स्वास्थ्य देखभाल समझें',
     es: 'Comprender la atención sanitaria durante el embarazo',
@@ -39,6 +40,7 @@ export const understandPregnancyRelatedHealthcare_Skill_Data = defineSkill({
       'Identify the roles of testing, timely medical assessment, antenatal care, and support services in different circumstances.',
     frontend: {
       en: 'Understand the role of testing and professional pregnancy-related care.',
+      it: 'Comprendi il ruolo degli esami e dell\'assistenza professionale durante la gravidanza.',
       zh: '理解检测和专业孕期医疗服务的作用。',
       hi: 'जाँच और विशेषज्ञ गर्भावस्था देखभाल की भूमिका समझें।',
       es: 'Comprende la utilidad de las pruebas y de la atención profesional durante el embarazo.',

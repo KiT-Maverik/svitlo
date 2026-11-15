@@ -5,6 +5,7 @@ export const preventSexuallyTransmittedInfections_Skill_Data = defineSkill({
   id: 'd41e89a4-690b-4acb-a7f3-7ae8b0d13ffd',
   name: {
     en: 'Prevent sexually transmitted infections',
+    it: 'Prevenire le infezioni sessualmente trasmissibili',
     zh: '预防性传播感染',
     hi: 'यौन संचारित संक्रमणों से बचाव करें',
     es: 'Prevenir infecciones de transmisión sexual',
@@ -39,6 +40,7 @@ export const preventSexuallyTransmittedInfections_Skill_Data = defineSkill({
       'Distinguish routes of transmission and evidence-based protective methods, testing, and vaccination where relevant.',
     frontend: {
       en: 'Recognize ways to reduce sexually transmitted infection risks.',
+      it: 'Riconosci i modi per ridurre il rischio di infezioni sessualmente trasmissibili.',
       zh: '了解降低性传播感染风险的方法。',
       hi: 'यौन संचारित संक्रमणों के जोखिम कम करने के उपाय पहचानें।',
       es: 'Conoce formas de reducir el riesgo de infecciones de transmisión sexual.',

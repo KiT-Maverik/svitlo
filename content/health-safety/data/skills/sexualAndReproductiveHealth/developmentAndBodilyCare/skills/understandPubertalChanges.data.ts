@@ -5,6 +5,7 @@ export const understandPubertalChanges_Skill_Data = defineSkill({
   id: '058bc677-6f96-4648-8b64-13f71c2e4cff',
   name: {
     en: 'Understand pubertal changes',
+    it: 'Comprendere i cambiamenti della pubertà',
     zh: '理解青春期变化',
     hi: 'यौवन के बदलाव समझें',
     es: 'Comprender los cambios de la pubertad',
@@ -39,6 +40,7 @@ export const understandPubertalChanges_Skill_Data = defineSkill({
       'Distinguish common physical changes and variations in timing from unsupported claims about a single correct developmental pattern.',
     frontend: {
       en: 'Recognize common differences in the timing and nature of pubertal changes.',
+      it: 'Riconosci le comuni differenze nei tempi e nelle caratteristiche dei cambiamenti puberali.',
       zh: '认识到青春期变化的时间和方式存在常见的个体差异。',
       hi: 'जानें कि यौवन के बदलाव का समय और स्वरूप व्यक्तियों में अलग हो सकता है।',
       es: 'Reconoce diferencias normales en el momento y la forma de los cambios puberales.',
