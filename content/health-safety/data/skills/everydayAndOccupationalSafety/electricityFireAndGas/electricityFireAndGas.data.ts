@@ -13,6 +13,7 @@ export const electricityFireAndGas_SkillGroup_Data = defineSkillGroup({
   id: 'fcf34a31-0a82-4f29-89ce-9d4aedec6254',
   name: {
     en: 'Electricity, Fire and Gas',
+    it: 'Elettricità, incendi e gas',
     zh: '电力、火灾与燃气',
     hi: 'बिजली, आग और गैस',
     es: 'Electricidad, fuego y gas',
@@ -42,21 +43,19 @@ export const electricityFireAndGas_SkillGroup_Data = defineSkillGroup({
     kk: 'Электр, өрт және газ',
     qm: 'Elektrik, yangın ve gaz',
   },
-  skills: {
-    items: {
-      carbonMonoxideSafety: carbonMonoxideSafety_Skill_Data,
-      electricalSafety: electricalSafety_Skill_Data,
-      firePrevention: firePrevention_Skill_Data,
-      gasLeakSafety: gasLeakSafety_Skill_Data,
-      safeUseOfHeatingEquipment: safeUseOfHeatingEquipment_Skill_Data,
-    },
-    order: ['carbonMonoxideSafety', 'electricalSafety', 'firePrevention', 'gasLeakSafety', 'safeUseOfHeatingEquipment'],
-  },
+  skills: [
+    carbonMonoxideSafety_Skill_Data,
+    electricalSafety_Skill_Data,
+    firePrevention_Skill_Data,
+    gasLeakSafety_Skill_Data,
+    safeUseOfHeatingEquipment_Skill_Data,
+  ],
   description: {
     methodological:
       'Electrical hazards, ignition and fire, fuel-gas leaks, carbon monoxide exposure and heating equipment require different prevention and emergency responses; intervening in faulty systems can endanger bystanders.',
     frontend: {
       en: 'Discover distinct risks from electricity, fire, gas and combustion appliances.',
+      it: 'Scopri i diversi rischi legati all\'elettricità, agli incendi, al gas e agli apparecchi a combustione.',
       zh: '了解电、火、气体及燃烧设备各自不同的危险。',
       hi: 'बिजली, आग, गैस और दहन उपकरणों से जुड़े अलग-अलग खतरों को समझें।',
       es: 'Conoce los distintos riesgos de la electricidad, el fuego, el gas y los aparatos de combustión.',

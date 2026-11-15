@@ -5,6 +5,7 @@ export const gasLeakSafety_Skill_Data = defineSkill({
   id: 'abdc04d1-b141-45ae-95fe-f20724dc5578',
   name: {
     en: 'Gas leak safety',
+    it: 'Sicurezza in caso di fuga di gas',
     zh: '燃气泄漏安全',
     hi: 'गैस रिसाव सुरक्षा',
     es: 'Seguridad ante fugas de gas',
@@ -39,6 +40,7 @@ export const gasLeakSafety_Skill_Data = defineSkill({
       'Recognize suspected leakage of combustible fuel gas and the risk of fire or explosion; withdraw from danger, seek appropriate assistance and avoid unsafe attempts to inspect or repair the system.',
     frontend: {
       en: 'Recognize gas-leak concerns and seek safety rather than attempting repairs.',
+      it: 'Riconosci i segnali di una possibile fuga di gas e mettiti al sicuro invece di tentare riparazioni.',
       zh: '识别燃气泄漏迹象，优先远离危险，不自行修理。',
       hi: 'गैस रिसाव के संकेत पहचानें और खुद मरम्मत करने के बजाय सुरक्षित स्थान पर जाएँ।',
       es: 'Reconoce señales de fuga de gas y ponte a salvo en lugar de intentar repararla.',

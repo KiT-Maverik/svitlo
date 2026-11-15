@@ -5,6 +5,7 @@ export const safeUseOfHeatingEquipment_Skill_Data = defineSkill({
   id: '3394e2d3-0793-42e8-b57e-d292ae9017e3',
   name: {
     en: 'Safe use of heating equipment',
+    it: 'Uso sicuro degli apparecchi di riscaldamento',
     zh: '安全使用取暖设备',
     hi: 'हीटिंग उपकरणों का सुरक्षित उपयोग',
     es: 'Uso seguro de calefactores',
@@ -39,6 +40,7 @@ export const safeUseOfHeatingEquipment_Skill_Data = defineSkill({
       'Account for ventilation, clearance, stable installation, and manufacturer instructions rather than improvised operation.',
     frontend: {
       en: 'Use heaters with suitable ventilation and safe clearance.',
+      it: 'Utilizza gli apparecchi di riscaldamento con una ventilazione adeguata e mantenendo le distanze di sicurezza.',
       zh: '使用取暖设备时保持适当通风，并远离易燃物。',
       hi: 'हीटर इस्तेमाल करते समय उचित हवा का प्रवाह और ज्वलनशील वस्तुओं से दूरी रखें।',
       es: 'Usa calefactores con ventilación adecuada y lejos de materiales inflamables.',

@@ -13,6 +13,7 @@ export const householdHazards_SkillGroup_Data = defineSkillGroup({
   id: '079a6a37-422d-45bb-9143-0072a0d4ff44',
   name: {
     en: 'Household Hazards',
+    it: 'Pericoli domestici',
     zh: '居家危险',
     hi: 'घर के खतरे',
     es: 'Peligros domésticos',
@@ -42,27 +43,19 @@ export const householdHazards_SkillGroup_Data = defineSkillGroup({
     kk: 'Үйдегі қауіптер',
     qm: 'Evdeki telükeler',
   },
-  skills: {
-    items: {
-      preventEntrapmentAndSuffocationHazards: preventEntrapmentAndSuffocationHazards_Skill_Data,
-      preventFallsInLivingSpaces: preventFallsInLivingSpaces_Skill_Data,
-      preventHouseholdPoisoning: preventHouseholdPoisoning_Skill_Data,
-      safeHandlingOfHotSurfacesAndLiquids: safeHandlingOfHotSurfacesAndLiquids_Skill_Data,
-      safeUseOfSharpObjects: safeUseOfSharpObjects_Skill_Data,
-    },
-    order: [
-      'preventEntrapmentAndSuffocationHazards',
-      'preventFallsInLivingSpaces',
-      'preventHouseholdPoisoning',
-      'safeHandlingOfHotSurfacesAndLiquids',
-      'safeUseOfSharpObjects',
-    ],
-  },
+  skills: [
+    preventEntrapmentAndSuffocationHazards_Skill_Data,
+    preventFallsInLivingSpaces_Skill_Data,
+    preventHouseholdPoisoning_Skill_Data,
+    safeHandlingOfHotSurfacesAndLiquids_Skill_Data,
+    safeUseOfSharpObjects_Skill_Data,
+  ],
   description: {
     methodological:
       'Ordinary domestic objects and spaces can cause falls, burns, poisoning, cuts, and injury when access or use is unsafe.',
     frontend: {
       en: 'Explore preventable dangers in ordinary household environments.',
+      it: 'Esplora i pericoli prevenibili negli ambienti domestici quotidiani.',
       zh: '探索普通家庭环境中可预防的危险。',
       hi: 'सामान्य घरेलू वातावरण में रोके जा सकने वाले खतरों को जानें।',
       es: 'Explora peligros que pueden prevenirse en hogares comunes.',

@@ -5,6 +5,7 @@ export const electricalSafety_Skill_Data = defineSkill({
   id: 'b03a43ca-ef42-4240-ba00-55d0b0198a58',
   name: {
     en: 'Electrical safety',
+    it: 'Sicurezza elettrica',
     zh: '用电安全',
     hi: 'बिजली से सुरक्षा',
     es: 'Seguridad eléctrica',
@@ -39,6 +40,7 @@ export const electricalSafety_Skill_Data = defineSkill({
       'Recognize damaged wiring, water-related hazards, overloaded circuits, and the limits of safe user action.',
     frontend: {
       en: 'Identify dangerous wiring and know when not to touch it.',
+      it: 'Individua i cablaggi pericolosi e riconosci quando non bisogna toccarli.',
       zh: '识别危险电线，并知道何时绝不能触碰。',
       hi: 'खतरनाक तार पहचानें और जानें कि उन्हें कब नहीं छूना चाहिए।',
       es: 'Identifica cables peligrosos y aprende cuándo no tocarlos.',

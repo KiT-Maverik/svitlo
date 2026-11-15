@@ -5,6 +5,7 @@ export const carbonMonoxideSafety_Skill_Data = defineSkill({
   id: 'f0639413-44af-4196-801d-1f1a1de8667e',
   name: {
     en: 'Carbon monoxide safety',
+    it: 'Sicurezza contro il monossido di carbonio',
     zh: '一氧化碳安全',
     hi: 'कार्बन मोनोऑक्साइड से सुरक्षा',
     es: 'Seguridad frente al monóxido de carbono',
@@ -39,6 +40,7 @@ export const carbonMonoxideSafety_Skill_Data = defineSkill({
       'Understand that carbon monoxide from combustion may be invisible and odorless, recognize alarm or exposure concerns, and prioritize getting to safety and obtaining emergency evaluation rather than relying on smell.',
     frontend: {
       en: 'Recognize why carbon monoxide can be dangerous without warning smells.',
+      it: 'Riconosci perché il monossido di carbonio può essere pericoloso anche senza odori di avvertimento.',
       zh: '了解无气味预警的一氧化碳为何也十分危险。',
       hi: 'समझें कि कार्बन मोनोऑक्साइड बिना गंध के भी खतरनाक क्यों है।',
       es: 'Entiende por qué el monóxido de carbono es peligroso aunque no tenga olor que avise.',

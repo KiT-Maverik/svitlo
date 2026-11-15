@@ -5,6 +5,7 @@ export const firePrevention_Skill_Data = defineSkill({
   id: '2ca54667-e966-4eb8-88f7-8a7c60e56a27',
   name: {
     en: 'Fire prevention',
+    it: 'Prevenzione degli incendi',
     zh: '火灾预防',
     hi: 'आग लगने से बचाव',
     es: 'Prevención de incendios',
@@ -39,6 +40,7 @@ export const firePrevention_Skill_Data = defineSkill({
       'Identify ignition sources, flammable materials, and preventive practices appropriate to the setting.',
     frontend: {
       en: 'Reduce ignition risks by recognizing flammable materials and unsafe practices.',
+      it: 'Riduci il rischio di innesco riconoscendo materiali infiammabili e comportamenti non sicuri.',
       zh: '识别易燃材料和危险操作，降低起火风险。',
       hi: 'ज्वलनशील पदार्थों और असुरक्षित तरीकों को पहचानकर आग लगने का खतरा कम करें।',
       es: 'Reduce el riesgo de incendio al reconocer materiales inflamables y prácticas inseguras.',

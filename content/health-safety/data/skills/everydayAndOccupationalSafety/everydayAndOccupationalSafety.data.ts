@@ -11,6 +11,7 @@ export const everydayAndOccupationalSafety_SkillDomain_Data = defineSkillDomain(
   id: '49caa4a6-5c6a-4991-b835-737798296f1a',
   title: {
     en: 'Everyday and Occupational Safety',
+    it: 'Sicurezza quotidiana e sul lavoro',
     zh: '日常与职业安全',
     hi: 'दैनिक जीवन और कार्यस्थल सुरक्षा',
     es: 'Seguridad cotidiana y laboral',
@@ -40,27 +41,19 @@ export const everydayAndOccupationalSafety_SkillDomain_Data = defineSkillDomain(
     kk: 'Күнделікті және еңбек қауіпсіздігі',
     qm: 'Kündelik ve iş yerinde havfsızlıq',
   },
-  groups: {
-    items: {
-      electricityFireAndGas: electricityFireAndGas_SkillGroup_Data,
-      hazardRecognitionAndPrevention: hazardRecognitionAndPrevention_SkillGroup_Data,
-      householdHazards: householdHazards_SkillGroup_Data,
-      personalSafetyInPublicPlaces: personalSafetyInPublicPlaces_SkillGroup_Data,
-      toolsAndWorkplaces: toolsAndWorkplaces_SkillGroup_Data,
-    },
-    order: [
-      'electricityFireAndGas',
-      'hazardRecognitionAndPrevention',
-      'householdHazards',
-      'personalSafetyInPublicPlaces',
-      'toolsAndWorkplaces',
-    ],
-  },
+  groups: [
+    electricityFireAndGas_SkillGroup_Data,
+    hazardRecognitionAndPrevention_SkillGroup_Data,
+    householdHazards_SkillGroup_Data,
+    personalSafetyInPublicPlaces_SkillGroup_Data,
+    toolsAndWorkplaces_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Injuries often arise from foreseeable hazards in homes, workplaces, educational spaces, and public facilities. Preventive controls and safe equipment use take priority over reacting after an incident.',
     frontend: {
       en: 'Learn to identify and prevent everyday hazards at home, school and work.',
+      it: 'Impara a individuare e prevenire i pericoli comuni a casa, a scuola e al lavoro.',
       zh: '识别并预防家庭、学校和工作场所的日常危险。',
       hi: 'घर, स्कूल और कार्यस्थल के सामान्य खतरों को पहचानना और रोकना सीखें।',
       es: 'Aprende a reconocer y prevenir peligros cotidianos en casa, la escuela y el trabajo.',
