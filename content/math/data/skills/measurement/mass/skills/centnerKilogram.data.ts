@@ -5,6 +5,7 @@ export const centnerKilogram_Skill_Data = defineSkill({
   id: '3eb50b43-90c3-4a4a-ae8b-1cfa460fab1d',
   name: {
     en: 'Using centners and kilograms in problems',
+    it: 'Usare quintali e chilogrammi nei problemi',
     qm: 'Meselelerde sentner ve kilogram qullanmaq',
     lt: 'Centnerių ir kilogramų naudojimas uždaviniuose',
     lv: 'Centneru un kilogramu izmantošana uzdevumos',
@@ -39,6 +40,7 @@ export const centnerKilogram_Skill_Data = defineSkill({
       'Where the metric centner is used, one centner equals 100 kilograms, while one metric tonne equals 1,000 kilograms. The centner is context-dependent, not universal across countries or curricula.',
     frontend: {
       en: 'You can use the metric centner in problems where this unit is used, knowing that 1 centner equals 100 kilograms, not 1,000 kilograms.',
+      it: 'Puoi usare il quintale metrico nei problemi in cui compare questa unità, sapendo che 1 quintale equivale a 100 chilogrammi, non a 1000.',
       qm: 'Bu birlik qullanılğan meselelerde metrik sentnerni qullana bilesiñ. 1 sentner 100 kilogramğa teñ, 1000 kilogramğa degil.',
       zh: '你能在使用公担这个单位的问题中换算，知道1公担等于100千克，而不是1000千克。',
       hi: 'आप जहाँ मीट्रिक क्विंटल का उपयोग होता है वहाँ इससे जुड़े प्रश्न हल कर सकते हैं, जानते हुए कि 1 क्विंटल 100 किलोग्राम होता है, 1,000 नहीं।',
