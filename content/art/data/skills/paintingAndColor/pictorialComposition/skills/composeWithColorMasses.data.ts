@@ -5,6 +5,7 @@ export const composeWithColorMasses_Skill_Data = defineSkill({
   id: '4f9a90c2-f646-4fe2-b4c0-f76ac10ad730',
   name: {
     en: 'Compose with Color Masses',
+    it: 'Comporre con grandi campiture di colore',
     zh: '运用色块进行构图',
     hi: 'रंग-क्षेत्रों से संयोजन करें',
     es: 'Componer mediante masas de color',
@@ -38,6 +39,7 @@ export const composeWithColorMasses_Skill_Data = defineSkill({
     methodological: 'Balance large colored areas and their relationships before relying on smaller detail.',
     frontend: {
       en: 'Arrange large color areas before adding small details.',
+      it: 'Disponi le grandi zone cromatiche prima di aggiungere i piccoli dettagli.',
       zh: '先安排好大色块，再添加细节。',
       hi: 'छोटे विवरण जोड़ने से पहले बड़े रंग-क्षेत्रों की व्यवस्था करें।',
       es: 'Organiza las grandes áreas de color antes de añadir pequeños detalles.',
