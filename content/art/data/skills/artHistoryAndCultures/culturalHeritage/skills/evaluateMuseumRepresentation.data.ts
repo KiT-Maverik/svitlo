@@ -5,6 +5,7 @@ export const evaluateMuseumRepresentation_Skill_Data = defineSkill({
   id: '0b87b153-500f-4a67-9817-cbe08d6af07b',
   name: {
     en: 'Evaluate Museum Representation',
+    it: "Valutare la rappresentazione nei musei",
     zh: '评估博物馆的呈现方式',
     hi: 'संग्रहालय में प्रस्तुति का मूल्यांकन करें',
     es: 'Evaluar la representación en los museos',
@@ -38,6 +39,7 @@ export const evaluateMuseumRepresentation_Skill_Data = defineSkill({
     methodological: 'Analyze whose perspectives and contexts are emphasized or omitted in displays.',
     frontend: {
       en: 'Consider whose histories and perspectives are present or missing in museums.',
+      it: "Rifletti su quali storie e prospettive sono presenti nei musei e quali invece mancano.",
       zh: '思考博物馆呈现了谁的历史和观点，又遗漏了谁的。',
       hi: 'विचार करें कि संग्रहालयों में किनके इतिहास और दृष्टिकोण मौजूद हैं और किनके अनुपस्थित।',
       es: 'Considera qué historias y perspectivas están presentes o ausentes en los museos.',
