@@ -13,6 +13,7 @@ export const conceptSelection_SkillGroup_Data = defineSkillGroup({
   id: '1bf1f831-a448-4f02-a8f5-2e2ab554b5fb',
   name: {
     en: 'Concept Selection',
+    it: 'Selezione del concetto progettuale',
     zh: '方案选择',
     hi: 'अवधारणा का चयन',
     es: 'Selección de conceptos',
@@ -54,6 +55,7 @@ export const conceptSelection_SkillGroup_Data = defineSkillGroup({
       'Competing technical arrangements can meet the same need in different ways; choosing responsibly requires functional comparison and defensible compromises.',
     frontend: {
       en: 'Learn to compare possible ways of meeting a technical need.',
+      it: 'Impara a confrontare diversi modi per soddisfare un\'esigenza tecnica.',
       zh: '学习比较满足某种技术需求的不同方式。',
       hi: 'किसी तकनीकी ज़रूरत को पूरा करने के अलग तरीकों की तुलना करना सीखें।',
       es: 'Aprende a comparar distintas maneras de satisfacer una necesidad técnica.',
