@@ -20,10 +20,10 @@ config:
       en: 'Finding an Unknown Divisor'
   section:
     items:
-      section1:
+      identifyDivisorInSharing:
         config:
           id: 'b3901353-a049-5613-a541-000000000004'
-          slug: 'section1'
+          slug: 'identifyDivisorInSharing'
           type: 'content'
           params: {}
           locale:
@@ -33,10 +33,10 @@ config:
               en: 'Twelve Shared Fairly'
           content:
             items:
-              section1Text1:
+              interpretEqualGroups:
                 config:
                   id: 'b3901353-a049-5613-a541-000000000001'
-                  slug: 'section1Text1'
+                  slug: 'interpretEqualGroups'
                   type: 'text'
                   params: {}
                   locale:
@@ -45,10 +45,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **text — available:** “Twelve counters are shared equally among **3 groups**. Each group has **4**. What does each number tell us?”'
-              section1Scene1:
+              modelEqualSharing:
                 config:
                   id: 'b3901353-a049-5613-a541-000000000002'
-                  slug: 'section1Scene1'
+                  slug: 'modelEqualSharing'
                   type: 'scene'
                   params: {}
                   locale:
@@ -112,10 +112,10 @@ config:
 
                     Existing generic scene Resource/rendering is available; this particular Scene is proposed and needs editor approval of upstream Draft Brief, separate Scene spec approval and later Design Scene tests. Coding Agent chooses actual prop-free component organization, locale wiring and offline behavior; Assessment Architect validates graded checks if separately authorized. The advanced prerequisite gate remains mandatory.
                   productionNotes: "This placement in Twelve Shared Fairly refers to missingDivisorSharingLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section1Markdown1:
+              explainDivisionTerms:
                 config:
                   id: 'b3901353-a049-5613-a541-000000000003'
-                  slug: 'section1Markdown1'
+                  slug: 'explainDivisionTerms'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -125,9 +125,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — available:** “**12 ÷ 3 = 4**. Twelve was the total. Three was the number of groups. Four was in each group. The number after ÷ is called the divisor.”'
             order:
-              - 'section1Text1'
-              - 'section1Scene1'
-              - 'section1Markdown1'
+              - 'interpretEqualGroups'
+              - 'modelEqualSharing'
+              - 'explainDivisionTerms'
         production:
           purpose: 'Twelve Shared Fairly'
           pedagogicalIntent: |-
@@ -144,10 +144,10 @@ config:
             - Note: No new Note yet; this recalls a prerequisite.
             - Dependencies: Custom Scene proposed.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section2:
+      findNumberOfGroups:
         config:
           id: 'b3901353-a049-5613-a541-000000000008'
-          slug: 'section2'
+          slug: 'findNumberOfGroups'
           type: 'content'
           params: {}
           locale:
@@ -157,10 +157,10 @@ config:
               en: 'How Many Groups Could There Be?'
           content:
             items:
-              section2Text1:
+              determineMissingGroupCount:
                 config:
                   id: 'b3901353-a049-5613-a541-000000000005'
-                  slug: 'section2Text1'
+                  slug: 'determineMissingGroupCount'
                   type: 'text'
                   params: {}
                   locale:
@@ -169,10 +169,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **text — available:** “**12 ÷ □ = 4**. We have twelve counters altogether and want **4 in each group**. How many groups can we make?”'
-              section2Scene1:
+              buildGroupsOfFour:
                 config:
                   id: 'b3901353-a049-5613-a541-000000000006'
-                  slug: 'section2Scene1'
+                  slug: 'buildGroupsOfFour'
                   type: 'scene'
                   params: {}
                   locale:
@@ -236,10 +236,10 @@ config:
 
                     Existing generic scene Resource/rendering is available; this particular Scene is proposed and needs editor approval of upstream Draft Brief, separate Scene spec approval and later Design Scene tests. Coding Agent chooses actual prop-free component organization, locale wiring and offline behavior; Assessment Architect validates graded checks if separately authorized. The advanced prerequisite gate remains mandatory.
                   productionNotes: "This placement in How Many Groups Could There Be? refers to missingDivisorSharingLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section2Markdown1:
+              deriveDivisorByDivision:
                 config:
                   id: 'b3901353-a049-5613-a541-000000000007'
-                  slug: 'section2Markdown1'
+                  slug: 'deriveDivisorByDivision'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -249,9 +249,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — available:** “Four, eight, twelve: we made **3 groups** of four. To find the missing divisor we can calculate **12 ÷ 4 = 3**. The original box is **3**.”'
             order:
-              - 'section2Text1'
-              - 'section2Scene1'
-              - 'section2Markdown1'
+              - 'determineMissingGroupCount'
+              - 'buildGroupsOfFour'
+              - 'deriveDivisorByDivision'
         production:
           purpose: 'How Many Groups Could There Be?'
           pedagogicalIntent: |-
@@ -267,10 +267,10 @@ config:
             - Note: “Missing divisor = dividend ÷ nonzero quotient (when exact),” after model and exact arithmetic.
             - Dependencies: Bespoke prop-free entry, no automatic graded Question.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section3:
+      verifyMissingDivisor:
         config:
           id: 'b3901353-a049-5613-a541-00000000000c'
-          slug: 'section3'
+          slug: 'verifyMissingDivisor'
           type: 'content'
           params: {}
           locale:
@@ -280,10 +280,10 @@ config:
               en: 'Does the Number Really Work?'
           content:
             items:
-              section3Markdown1:
+              substituteDivisorInEquality:
                 config:
                   id: 'b3901353-a049-5613-a541-000000000009'
-                  slug: 'section3Markdown1'
+                  slug: 'substituteDivisorInEquality'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -292,10 +292,10 @@ config:
                 production:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: "  1. **markdown — available:** “We found **3** groups. Put it into the box of the **original** division: **12 ÷ 3 = 4**. Let's try other numbers and see why they fail.”"
-              section3Scene1:
+              testDivisorChoices:
                 config:
                   id: 'b3901353-a049-5613-a541-00000000000a'
-                  slug: 'section3Scene1'
+                  slug: 'testDivisorChoices'
                   type: 'scene'
                   params: {}
                   locale:
@@ -359,10 +359,10 @@ config:
 
                     Existing generic scene Resource/rendering is available; this particular Scene is proposed and needs editor approval of upstream Draft Brief, separate Scene spec approval and later Design Scene tests. Coding Agent chooses actual prop-free component organization, locale wiring and offline behavior; Assessment Architect validates graded checks if separately authorized. The advanced prerequisite gate remains mandatory.
                   productionNotes: "This placement in Does the Number Really Work? refers to missingDivisorSharingLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section3Text1:
+              explainValidDivisor:
                 config:
                   id: 'b3901353-a049-5613-a541-00000000000b'
-                  slug: 'section3Text1'
+                  slug: 'explainValidDivisor'
                   type: 'text'
                   params: {}
                   locale:
@@ -372,9 +372,9 @@ config:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  3. **text — available:** “**12 ÷ 3 = 4** is true. **12 ÷ 4 = 3**, not four. You must never divide by zero.”'
             order:
-              - 'section3Markdown1'
-              - 'section3Scene1'
-              - 'section3Text1'
+              - 'substituteDivisorInEquality'
+              - 'testDivisorChoices'
+              - 'explainValidDivisor'
         production:
           purpose: 'Does the Number Really Work?'
           pedagogicalIntent: |-
@@ -390,10 +390,10 @@ config:
             - Note: “Check the divisor in the original division; it must not be zero,” after comparison.
             - Dependencies: Trial choices strictly formative, not validated quiz items.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
-      section4:
+      solveNewDivisor:
         config:
           id: 'b3901353-a049-5613-a541-000000000010'
-          slug: 'section4'
+          slug: 'solveNewDivisor'
           type: 'content'
           params: {}
           locale:
@@ -403,10 +403,10 @@ config:
               en: 'A New Missing Divisor'
           content:
             items:
-              section4Text1:
+              solveTwentyDividedByUnknown:
                 config:
                   id: 'b3901353-a049-5613-a541-00000000000d'
-                  slug: 'section4Text1'
+                  slug: 'solveTwentyDividedByUnknown'
                   type: 'text'
                   params: {}
                   locale:
@@ -415,10 +415,10 @@ config:
                 production:
                   purpose: 'Original text resource from source Screenwriter draft'
                   specification: '  1. **text — available:** “**20 ÷ □ = 5.** Twenty counters shared equally: five in each group. How many groups must there be?”'
-              section4Scene1:
+              modelFourGroups:
                 config:
                   id: 'b3901353-a049-5613-a541-00000000000e'
-                  slug: 'section4Scene1'
+                  slug: 'modelFourGroups'
                   type: 'scene'
                   params: {}
                   locale:
@@ -482,10 +482,10 @@ config:
 
                     Existing generic scene Resource/rendering is available; this particular Scene is proposed and needs editor approval of upstream Draft Brief, separate Scene spec approval and later Design Scene tests. Coding Agent chooses actual prop-free component organization, locale wiring and offline behavior; Assessment Architect validates graded checks if separately authorized. The advanced prerequisite gate remains mandatory.
                   productionNotes: "This placement in A New Missing Divisor refers to missingDivisorSharingLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
-              section4Markdown1:
+              verifyByDivision:
                 config:
                   id: 'b3901353-a049-5613-a541-00000000000f'
-                  slug: 'section4Markdown1'
+                  slug: 'verifyByDivision'
                   type: 'markdown'
                   params: {}
                   locale:
@@ -495,9 +495,9 @@ config:
                   purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: '  3. **markdown — available:** “**20 ÷ 5 = 4** finds the number of groups. Check the **original** division: **20 ÷ 4 = 5**. Four is the missing divisor.”'
             order:
-              - 'section4Text1'
-              - 'section4Scene1'
-              - 'section4Markdown1'
+              - 'solveTwentyDividedByUnknown'
+              - 'modelFourGroups'
+              - 'verifyByDivision'
         production:
           purpose: 'A New Missing Divisor'
           pedagogicalIntent: |-
@@ -514,10 +514,10 @@ config:
             - Dependencies: Scene proposed, readiness requirement retained.
           productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - 'section1'
-      - 'section2'
-      - 'section3'
-      - 'section4'
+      - 'identifyDivisorInSharing'
+      - 'findNumberOfGroups'
+      - 'verifyMissingDivisor'
+      - 'solveNewDivisor'
   flashcards:
     items: {}
     order: []
