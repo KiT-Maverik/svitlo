@@ -11,6 +11,7 @@ export const flexiblePartition_Skill_Data = defineSkill({
     ka: 'რიცხვის სხვადასხვა გზით დაშლა',
     kk: 'Санды әртүрлі тәсілмен жіктеу',
     en: 'Flexible number partitioning',
+    it: 'Scomporre un numero in modi diversi',
     qm: 'Sayını türlü parçalarga ayırmaq',
     zh: '灵活拆分数',
     hi: 'संख्याओं का लचीला विभाजन',
@@ -39,6 +40,7 @@ export const flexiblePartition_Skill_Data = defineSkill({
       'A single number admits several equivalent additive decompositions, including non-place-value partitions. These rely on the associative property of addition and distinguish a value from a particular written representation.',
     frontend: {
       en: 'Split the same number into different sums without changing its value: 146 can be 100 + 40 + 6 or 130 + 16.',
+      it: 'Scomponi lo stesso numero in somme diverse senza cambiarne il valore: 146 può essere 100 + 40 + 6 oppure 130 + 16.',
       qm: 'Aynı sayını qıymetini deñiştirmeden türlü toplamlarğa ayır: 146 = 100 + 40 + 6 ya da 130 + 16 ola bile.',
       zh: '同一个数可以拆成不同的加法式，值不变，例如146 = 100 + 40 + 6，也可以是130 + 16。',
       hi: 'एक ही संख्या अलग-अलग योगों में टूट सकती है, जैसे 146 = 100 + 40 + 6 या 130 + 16।',
