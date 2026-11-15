@@ -5,6 +5,7 @@ export const identifyUnnecessaryDuplicationDRY_Skill_Data = defineSkill({
   id: '45dffed7-6d1b-428a-82c9-37f3196b3696',
   name: {
     en: 'Identify Unnecessary Duplication (DRY)',
+    it: 'Individuare duplicazioni superflue (DRY)',
     zh: '识别不必要的重复（DRY）',
     hi: 'अनावश्यक दोहराव पहचानना (DRY)',
     es: 'Identificar duplicación innecesaria (DRY)',
@@ -39,6 +40,7 @@ export const identifyUnnecessaryDuplicationDRY_Skill_Data = defineSkill({
       'Find repeated logic or a repeated rule in several locations that requires fixes to be replicated. Similar-looking lines are not necessarily duplication when they represent independent rules.',
     frontend: {
       en: 'Find duplicated rules that could cause inconsistent future changes.',
+      it: 'Trova le regole duplicate che potrebbero provocare modifiche future incoerenti.',
       zh: '找出可能导致日后修改不一致的重复规则。',
       hi: 'ऐसे दोहराए गए नियम खोजें जो भविष्य में असंगत बदलाव पैदा कर सकते हैं।',
       es: 'Encuentra reglas duplicadas que pueden causar cambios inconsistentes en el futuro.',

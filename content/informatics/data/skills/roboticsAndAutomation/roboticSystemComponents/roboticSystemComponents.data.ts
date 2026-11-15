@@ -12,6 +12,7 @@ export const roboticSystemComponents_SkillGroup_Data = defineSkillGroup({
   id: '9f96ada8-9d7a-4879-bd0d-25bb482d107d',
   name: {
     en: 'Robotic System Components',
+    it: 'Componenti dei sistemi robotici',
     zh: '机器人系统的组成部分',
     hi: 'रोबोट प्रणाली के घटक',
     es: 'Componentes de un sistema robótico',
@@ -52,6 +53,7 @@ export const roboticSystemComponents_SkillGroup_Data = defineSkillGroup({
       'Information-processing roles of sensors, controllers, and actuators: receive a reading, apply a control rule, and change a state. This examines functional relationships rather than mechanical component design.',
     frontend: {
       en: 'Learn how a robot detects conditions, decides what to do and acts.',
+      it: 'Impara come un robot rileva le condizioni, decide che cosa fare e agisce.',
       zh: '了解机器人如何感知环境、作出决定并执行动作。',
       hi: 'जानें कि रोबोट स्थितियाँ कैसे महसूस करता है, निर्णय लेता है और काम करता है।',
       es: 'Aprende cómo un robot detecta situaciones, decide qué hacer y actúa.',

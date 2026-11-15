@@ -5,6 +5,7 @@ export const deferUnnecessaryFeaturesYAGNI_Skill_Data = defineSkill({
   id: 'a2bf67f0-ca2c-40d4-b3a7-6286b3d00147',
   name: {
     en: 'Defer Unnecessary Features (YAGNI)',
+    it: 'Rimandare le funzionalità non necessarie (YAGNI)',
     zh: '推迟不必要的功能（YAGNI）',
     hi: 'अनावश्यक सुविधाएँ टालना (YAGNI)',
     es: 'Posponer funciones innecesarias (YAGNI)',
@@ -39,6 +40,7 @@ export const deferUnnecessaryFeaturesYAGNI_Skill_Data = defineSkill({
       'Distinguish functionality needed now from a merely imagined future scenario and avoid building the latter prematurely. Unlike KISS, the question is whether the feature is needed, not how complex its implementation is.',
     frontend: {
       en: 'Avoid implementing features that are only imagined future possibilities.',
+      it: 'Evita di implementare funzionalità che sono soltanto possibilità future immaginate.',
       zh: '避免实现只存在于想象中的未来功能。',
       hi: 'केवल कल्पित भविष्य के लिए सुविधाएँ बनाने से बचें।',
       es: 'Evita implementar funciones que solo son posibilidades futuras imaginadas.',
