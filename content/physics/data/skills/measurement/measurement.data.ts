@@ -8,6 +8,7 @@ export const measurement_SkillDomain_Data = defineSkillDomain({
   id: '4355ac3d-d328-4ce5-9a2a-8b5ec21edcc4',
   title: {
     en: 'Measurement',
+    it: 'Misurazione',
     zh: '测量',
     hi: 'मापन',
     es: 'Medición',
@@ -49,6 +50,7 @@ export const measurement_SkillDomain_Data = defineSkillDomain({
       'Physical measurement connects an observable property to an agreed method of comparison through the choice of quantity, unit, and instrument. Its purpose is to make descriptions of phenomena reproducible without tying them to formulas or mathematics lessons.',
     frontend: {
       en: 'Explore how physicists measure properties using quantities, units and reliable methods.',
+      it: 'Esplora come i fisici misurano le proprietà usando grandezze, unità e metodi affidabili.',
       zh: '探索物理学家如何借助物理量、单位和可靠的方法测量物体的性质。',
       hi: 'जानें कि भौतिक विज्ञानी राशियों, इकाइयों और विश्वसनीय विधियों से गुणों का मापन कैसे करते हैं।',
       es: 'Explora cómo los físicos miden propiedades mediante magnitudes, unidades y métodos fiables.',
