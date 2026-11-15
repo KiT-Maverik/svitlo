@@ -5,6 +5,7 @@ export const evaluateSafeRobotOperation_Skill_Data = defineSkill({
   id: 'a6acf9e9-9950-40e3-b80e-980f31ab1e97',
   name: {
     en: 'Evaluate safe robot operation',
+    it: 'Valutare la sicurezza operativa di un robot',
     zh: '评估机器人的安全运行',
     hi: 'रोबोट के सुरक्षित संचालन का मूल्यांकन',
     es: 'Evaluar el funcionamiento seguro de un robot',
@@ -38,6 +39,7 @@ export const evaluateSafeRobotOperation_Skill_Data = defineSkill({
     methodological: 'Identify guards, speed limits, stop systems or separation required around moving robots.',
     frontend: {
       en: "Assess how a robot's operating conditions affect safety.",
+      it: 'Valuta come le condizioni operative di un robot influiscono sulla sicurezza.',
       zh: '评估机器人的工作条件如何影响安全。',
       hi: 'आकलन करें कि रोबोट की कामकाजी परिस्थितियाँ सुरक्षा को कैसे प्रभावित करती हैं।',
       es: 'Evalúa cómo las condiciones de operación de un robot afectan la seguridad.',
