@@ -10,6 +10,7 @@ export const architectureAndUrbanArts_SkillDomain_Data = defineSkillDomain({
   id: '126f6ab5-e879-4982-abff-1729deeeb793',
   title: {
     en: 'Architecture and Urban Arts',
+    it: "Architettura e arti urbane",
     zh: '建筑与城市艺术',
     hi: 'वास्तुकला और शहरी कला',
     es: 'Arquitectura y artes urbanas',
@@ -50,6 +51,7 @@ export const architectureAndUrbanArts_SkillDomain_Data = defineSkillDomain({
       'Buildings, streets and public spaces are experienced as artistic spatial compositions and cultural symbols. Structural mechanics, building safety and infrastructure engineering remain elsewhere.',
     frontend: {
       en: 'Discover how buildings, streets and public spaces create visual and cultural experiences.',
+      it: "Scopri come edifici, strade e spazi pubblici danno vita a esperienze visive e culturali.",
       zh: '探索建筑、街道和公共空间如何创造视觉与文化体验。',
       hi: 'जानें कि इमारतें, सड़कें और सार्वजनिक स्थान दृश्य तथा सांस्कृतिक अनुभव कैसे बनाते हैं।',
       es: 'Descubre cómo los edificios, las calles y los espacios públicos crean experiencias visuales y culturales.',
