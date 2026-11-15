@@ -14,6 +14,7 @@ export const plantDiversity_SkillGroup_Data = defineSkillGroup({
   id: '57abdae5-4627-4d50-9edd-56bad9b9c31e',
   name: {
     en: 'Plant Diversity',
+    it: 'Diversità delle piante',
     zh: '植物多样性',
     hi: 'पौधों की विविधता',
     es: 'Diversidad vegetal',
@@ -56,6 +57,7 @@ export const plantDiversity_SkillGroup_Data = defineSkillGroup({
       'External structure, branching patterns, and seasonality provide grounds for comparing familiar species without equating growth form with biological relatedness.',
     frontend: {
       en: 'Recognize the variety of plants using their distinctive features.',
+      it: 'Riconosci la varietà delle piante attraverso le loro caratteristiche distintive.',
       zh: '根据不同特征认识各种植物。',
       hi: 'पौधों की विविधता को उनकी विशिष्ट विशेषताओं से पहचानें।',
       es: 'Reconoce la variedad de plantas por sus características distintivas.',
