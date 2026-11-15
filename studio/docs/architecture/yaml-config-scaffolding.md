@@ -201,16 +201,24 @@ provided, scaffolders create:
 
 - `<Lesson|Course UUID folder>/methodology.md` from
   `production.methodology`, without overwriting an existing approved file;
-- `content/<book>/scenes/<last-hex>/<scene-id>/specification.md`
-  from `scene.production.specification`, without a `sceneSpecKey`;
-- `content/<book>/data/assets/<last-hex>/<resource-id>/specification.md`
-  for pending image/audio/video requirements.
+- For **modular Lesson source**, `specification.md` beside each nested Scene,
+  Image, Video, Audio, Subtitles or CarouselSlide Config `index.ts`, with
+  the Config UUID preserved and no `sceneSpecKey`. For **Course/legacy**
+  production, Scene specs still use `content/<book>/scenes/<bucket>/<uuid>/`
+  and media specs use `data/assets/<bucket>/<uuid>/` until independently
+  migrated. Executable Scene code continues to live under the UUID-addressed
+  registered `scenes/` subtree.
 
 A Scene implementer and media specialist receive those generated files and
 the original `config.yaml`; they supply real components/assets later.
-`image.config.locale.alt` is authored now, while `src: null` is **not**
-replaced with fake URLs. No generator invents translations or runtime
-capabilities. Existing `*.data.ts` causes a whole-entity SKIP without any write. When the input is an existing canonical UUID directory, it is skipped **before** parsing stale YAML (PR #531); when it is a staged single-ID YAML file, its ID is parsed first to derive the output path. Existing or manually changed specification files cannot
+`image.config.locale.alt` is authored now. In **Lesson** draft modules,
+`src: null`, `fileLocation: null` and `poster: null` become Build-only
+`resolveLessonMedia(import.meta.url, kind, role, language?)` calls that
+require an actual file beside the Config. Unavailable assets throw during
+publication instead of receiving fabricated URLs. The textbook package
+stages named media under `/textbooks/<book>/lessons/...` and keeps only URL
+strings in published Props. No generator invents translations or runtime
+capabilities. Existing `*.data.ts` causes a whole-entity SKIP without any write; for modular Lesson drafts, an existing root `index.ts` does the same. When the input is an existing canonical UUID directory, it is skipped **before** parsing stale YAML (PR #531); when it is a staged single-ID YAML file, its ID is parsed first to derive the output path. Existing or manually changed specification files cannot
 be clobbered. `check` remains read-only and strict.
 
 ## Scope versus the specialist editorial workflow
