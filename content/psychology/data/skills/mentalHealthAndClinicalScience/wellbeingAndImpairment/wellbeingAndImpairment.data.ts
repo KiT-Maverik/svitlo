@@ -12,6 +12,7 @@ export const wellbeingAndImpairment_SkillGroup_Data = defineSkillGroup({
   id: '8909faa4-31e0-4e46-b06c-67f61890a840',
   name: {
     en: 'Wellbeing and Impairment',
+    it: 'Benessere e compromissione del funzionamento',
     zh: '心理福祉与功能受损',
     hi: 'कल्याण और कार्यक्षमता में बाधा',
     es: 'Bienestar y deterioro funcional',
@@ -55,6 +56,7 @@ export const wellbeingAndImpairment_SkillGroup_Data = defineSkillGroup({
       'Psychological wellbeing is multidimensional, and the presence of an unpleasant emotion alone is not evidence of a disorder.',
     frontend: {
       en: 'Learn how wellbeing and distress differ from clinical impairment.',
+      it: 'Scopri come benessere e sofferenza psicologica differiscano dalla compromissione clinicamente significativa.',
       zh: '了解心理福祉、痛苦和临床意义的功能受损之间的差异。',
       hi: 'समझें कि मानसिक कल्याण और परेशानी, नैदानिक रूप से महत्वपूर्ण बाधा से कैसे अलग हैं।',
       es: 'Aprende cómo el bienestar y el malestar difieren del deterioro clínicamente significativo.',

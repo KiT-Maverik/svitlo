@@ -5,6 +5,7 @@ export const mentalHealthStigma_Skill_Data = defineSkill({
   id: '8c897f6e-791f-47f6-b5f9-1b8cefd32d9a',
   name: {
     en: 'Mental Health Stigma',
+    it: 'Stigma legato alla salute mentale',
     zh: '心理健康污名',
     hi: 'मानसिक स्वास्थ्य से जुड़ा कलंक',
     es: 'Estigma de la salud mental',
@@ -39,6 +40,7 @@ export const mentalHealthStigma_Skill_Data = defineSkill({
       'Analyze how stereotypes and discriminatory assumptions affect people seeking understanding or care.',
     frontend: {
       en: 'Explore how stereotypes and stigma can harm people facing psychological difficulties.',
+      it: 'Esplora come stereotipi e stigma possano danneggiare le persone che affrontano difficoltà psicologiche.',
       zh: '探索刻板印象和污名如何伤害面临心理困难的人。',
       hi: 'जानें कि रूढ़ियाँ और कलंक मानसिक कठिनाइयों से जूझ रहे लोगों को कैसे नुकसान पहुँचाते हैं।',
       es: 'Explora cómo los estereotipos y el estigma perjudican a personas con dificultades psicológicas.',

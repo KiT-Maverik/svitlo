@@ -5,6 +5,7 @@ export const psychologicalWellbeing_Skill_Data = defineSkill({
   id: 'e67827a7-f0b5-4bf0-b57e-e83a73f6ce19',
   name: {
     en: 'Psychological Wellbeing',
+    it: 'Benessere psicologico',
     zh: '心理福祉',
     hi: 'मनोवैज्ञानिक कल्याण',
     es: 'Bienestar psicológico',
@@ -39,6 +40,7 @@ export const psychologicalWellbeing_Skill_Data = defineSkill({
       'Explain dimensions such as functioning, connection, and life satisfaction without assuming permanent happiness.',
     frontend: {
       en: 'Recognize that psychological wellbeing involves more than feeling happy.',
+      it: 'Riconosci che il benessere psicologico comprende più del semplice sentirsi felici.',
       zh: '认识心理健康不只是感到快乐。',
       hi: 'समझें कि मानसिक कल्याण का अर्थ केवल खुश महसूस करना नहीं है।',
       es: 'Reconoce que el bienestar psicológico va más allá de sentirse feliz.',
