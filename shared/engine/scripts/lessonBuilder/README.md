@@ -115,7 +115,7 @@ This is **Stage 2** of the [Lesson source-layout rollout](../../../../studio/doc
 It changes the **TypeScript module tree only**. Markdown/Code file loading,
 co-located Scene/media specifications, optional Carousel child polymorphism,
 Review creation and asset publication are intentionally unchanged and belong
-to later stages. Quest `stages/` and `tasks/` and Question/Flashcard
+to later stages. Quest `stages/` and `tasks/`, Checkpoint Item `question/` and `answer/`, and Question/Flashcard
 `front/`, `back/`, `correct/` and `incorrect/` role directories remain
 where sibling slug collisions would otherwise occur. Ordinary Section
 ContentBlocks do **not** have type-grouped directories.
