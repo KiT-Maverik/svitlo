@@ -5,6 +5,7 @@ export const traceArtisticExchange_Skill_Data = defineSkill({
   id: 'be5667ea-b2a5-41f1-863b-b2938da25c58',
   name: {
     en: 'Trace Artistic Exchange',
+    it: "Ricostruire gli scambi artistici",
     zh: '追踪艺术交流',
     hi: 'कलात्मक आदान-प्रदान का पता लगाएँ',
     es: 'Rastrear los intercambios artísticos',
@@ -38,6 +39,7 @@ export const traceArtisticExchange_Skill_Data = defineSkill({
     methodological: 'Identify how cultural contact transforms techniques, subjects or artistic conventions.',
     frontend: {
       en: 'Trace how contact between cultures changes artistic techniques and ideas.',
+      it: "Ripercorri come i contatti tra culture trasformano le tecniche e le idee artistiche.",
       zh: '追踪不同文化接触如何改变艺术技法与观念。',
       hi: 'जानें कि विभिन्न संस्कृतियों के संपर्क से कला की तकनीकें और विचार कैसे बदलते हैं।',
       es: 'Sigue cómo el contacto entre culturas transforma las técnicas y las ideas artísticas.',
