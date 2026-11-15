@@ -5,6 +5,7 @@ export const arrangeMusicInASequencer_Skill_Data = defineSkill({
   id: 'a7b50b05-c9e9-478d-9bd1-aab53203a7cd',
   name: {
     en: 'Arrange Music in a Sequencer',
+    it: 'Arrangiare musica in un sequencer',
     zh: '在音序器中编排音乐',
     hi: 'सीक्वेंसर में संगीत व्यवस्थित करें',
     es: 'Organizar música en un secuenciador',
@@ -38,6 +39,7 @@ export const arrangeMusicInASequencer_Skill_Data = defineSkill({
     methodological: 'Organize sound parts over time into sections, transitions and variations.',
     frontend: {
       en: 'Arrange recorded or electronic musical parts into sections over time.',
+      it: 'Disponi parti musicali registrate o elettroniche in sezioni lungo il tempo.',
       zh: '将录制或电子音乐声部按时间编排成不同段落。',
       hi: 'रिकॉर्ड किए गए या इलेक्ट्रॉनिक संगीत भागों को समय के अनुसार खंडों में व्यवस्थित करें।',
       es: 'Organiza partes musicales grabadas o electrónicas en secciones a lo largo del tiempo.',
