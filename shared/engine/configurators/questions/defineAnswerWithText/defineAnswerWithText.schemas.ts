@@ -40,7 +40,7 @@ export const answerWithText_Override_Config_Schema: z.ZodType<Question_AnswerWit
     ),
   );
 
-export const answerWithText_Props_Schema = questionBase.extend({
+export const answerWithText_Props_Schema = questionBase.omit({ slug: true }).extend({
   params,
   ...addUnifiedLocale({ correctAnswers: z.array(localizationSwitch.props), placeholder: localizationSwitch.props }),
   content: questionCommonContent_Props_Schema,

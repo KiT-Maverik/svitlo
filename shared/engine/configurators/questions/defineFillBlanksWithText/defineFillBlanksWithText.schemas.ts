@@ -50,7 +50,7 @@ export const fillBlanksWithText_Override_Config_Schema: z.ZodType<Question_FillB
     ),
   );
 
-export const fillBlanksWithText_Props_Schema = questionBase.extend({
+export const fillBlanksWithText_Props_Schema = questionBase.omit({ slug: true }).extend({
   params,
   ...addUnifiedLocale({
     slots: z.array(z.object({ selector: z.string(), correctAnswers: z.array(localizationSwitch.props) })),

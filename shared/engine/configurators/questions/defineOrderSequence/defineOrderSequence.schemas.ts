@@ -35,7 +35,7 @@ export const orderSequence_Override_Config_Schema: z.ZodType<Question_OrderSeque
   ),
 );
 
-export const orderSequence_Props_Schema = questionBase.extend({
+export const orderSequence_Props_Schema = questionBase.omit({ slug: true }).extend({
   params,
   ...addUnifiedLocale({}),
   content: questionCommonContent_Props_Schema.extend({ sequence: z.array(contentBlockResolved_Schema).min(1) }),

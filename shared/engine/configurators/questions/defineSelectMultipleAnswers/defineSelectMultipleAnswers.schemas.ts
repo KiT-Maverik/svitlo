@@ -43,7 +43,7 @@ export const selectMultipleAnswers_Override_Config_Schema: z.ZodType<Question_Se
     ),
   );
 
-export const selectMultipleAnswers_Props_Schema = questionBase.extend({
+export const selectMultipleAnswers_Props_Schema = questionBase.omit({ slug: true }).extend({
   params,
   ...addUnifiedLocale({}),
   content: questionCommonContent_Props_Schema.extend({

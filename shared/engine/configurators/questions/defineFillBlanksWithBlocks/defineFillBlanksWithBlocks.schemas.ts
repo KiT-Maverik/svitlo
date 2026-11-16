@@ -44,7 +44,7 @@ export const fillBlanksWithBlocks_Override_Config_Schema: z.ZodType<Question_Fil
     ),
   );
 
-export const fillBlanksWithBlocks_Props_Schema = questionBase.extend({
+export const fillBlanksWithBlocks_Props_Schema = questionBase.omit({ slug: true }).extend({
   params,
   ...addUnifiedLocale({ placeholder: localizationSwitch.props }),
   content: questionCommonContent_Props_Schema.extend({

@@ -41,7 +41,7 @@ export const buildAnswerWithBlocks_Override_Config_Schema: z.ZodType<Question_Bu
     ),
   );
 
-export const buildAnswerWithBlocks_Props_Schema = questionBase.extend({
+export const buildAnswerWithBlocks_Props_Schema = questionBase.omit({ slug: true }).extend({
   params,
   ...addUnifiedLocale({ placeholder: localizationSwitch.props }),
   content: questionCommonContent_Props_Schema.extend({

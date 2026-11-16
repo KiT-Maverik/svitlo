@@ -42,7 +42,7 @@ export const selectOneAnswer_Override_Config_Schema: z.ZodType<Question_SelectOn
     ),
   );
 
-export const selectOneAnswer_Props_Schema = questionBase.extend({
+export const selectOneAnswer_Props_Schema = questionBase.omit({ slug: true }).extend({
   params,
   ...addUnifiedLocale({}),
   content: questionCommonContent_Props_Schema.extend({

@@ -37,7 +37,7 @@ export const answerWithNumber_Override_Config_Schema: z.ZodType<Question_AnswerW
     ),
   );
 
-export const answerWithNumber_Props_Schema = questionBase.extend({
+export const answerWithNumber_Props_Schema = questionBase.omit({ slug: true }).extend({
   params,
   ...addUnifiedLocale({ placeholder: localizationSwitch.props }),
   content: questionCommonContent_Props_Schema,
