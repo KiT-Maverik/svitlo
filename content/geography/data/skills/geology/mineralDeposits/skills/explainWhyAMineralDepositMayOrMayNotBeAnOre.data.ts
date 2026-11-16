@@ -5,7 +5,7 @@ export const explainWhyAMineralDepositMayOrMayNotBeAnOre_Skill_Data = defineSkil
   id: 'e642faff-65e7-473b-92ce-16ac87dfc589',
   name: {
     en: 'Explain why a mineral deposit may or may not be an ore',
-    it: 'Spiegare perché un giacimento minerario può essere o non essere un giacimento sfruttabile',
+    it: 'Spiegare perché non tutti i giacimenti minerari sono sfruttabili',
     zh: '解释为何并非所有矿床都具有经济开采价值',
     hi: 'खनिज निक्षेप कब अयस्क होता है और कब नहीं, समझाना',
     es: 'Explicar por qué algunos yacimientos minerales pueden explotarse y otros no',
@@ -40,7 +40,7 @@ export const explainWhyAMineralDepositMayOrMayNotBeAnOre_Skill_Data = defineSkil
       "Relate concentration, recoverability, access and prevailing economic or technical conditions to whether extraction is practical, without equating 'ore' with every rock containing metal.",
     frontend: {
       en: 'Explain why some deposits are practical to extract and others are not.',
-      it: 'Spiega perché alcuni giacimenti possono essere estratti in modo praticabile e altri no.',
+      it: 'Spiega perché lo sfruttamento di alcuni giacimenti è praticabile e di altri no.',
       zh: '解释为什么有些矿床适合开采，而另一些不适合。',
       hi: 'समझाएँ कि कुछ निक्षेपों से खनन व्यावहारिक क्यों है और दूसरों से नहीं।',
       es: 'Explica por qué algunos yacimientos pueden explotarse y otros no.',
