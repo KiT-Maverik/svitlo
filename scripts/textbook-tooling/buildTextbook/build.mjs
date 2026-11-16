@@ -13,12 +13,15 @@ import {
   cpSync,
   writeFileSync,
   chmodSync,
+  mkdtempSync,
+  renameSync,
 } from 'node:fs';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
-import { stageLessonMedia } from './stageLessonMedia.mjs';
+import { stageTextbookAssets } from './stageTextbookAssets.mjs';
+import { randomUUID } from 'node:crypto';
 
 const root = resolve(process.cwd());
 const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
@@ -32,7 +35,8 @@ if (pkg.name !== '@svitlo/' + id) throw new Error('Textbook workspace identity m
 const hasScenes = Boolean(pkg.exports?.['./scenes']);
 const hasStyles = Boolean(pkg.exports?.['./styles']);
 if (hasStyles && !hasScenes) throw new Error('Scene styles require a Scene export');
-const dist = join(root, 'dist');
+const finalDist = join(root, 'dist');
+const dist = mkdtempSync(join(root, '.textbook-build-staging-'));
 const resources = join(dist, 'static');
 
 function run(program, args, cwd = repo) {
@@ -80,7 +84,17 @@ if (hasScenes && pkg.scripts?.['content:check:scenes']) {
   run(process.execPath, [join(repo, 'scripts/textbook-tooling/generateScenes/generate-scenes.mjs'), '--check'], root);
 }
 
-rmSync(dist, { recursive: true, force: true });
+// Before modifying generated content or the distribution, validate every
+// effective Lesson/Course media reference in the requested package.
+const mediaMode = process.env.SVITLO_MEDIA_MODE === 'draft' ? 'draft' : 'production';
+for (const [source, generator] of [
+  ['data/lessons', 'shared/engine/scripts/generateLessonProps/generateLessonProps.mjs'],
+  ['data/courses', 'shared/engine/scripts/generateCourseProps/generateCourseProps.mjs'],
+]) {
+  if (!authored(source)) continue;
+  run(process.execPath, [generator, '--package', packageDirectory, '--preflight', ...(mediaMode === 'draft' ? ['--draft'] : [])]);
+}
+try {
 mkdirSync(resources, { recursive: true });
 const common = {
   absWorkingDir: root,
@@ -137,7 +151,7 @@ if (hasStyles) {
   writeFileSync(join(dist, 'styles.css'), css.map(name => '@import "./' + name + '";').join('\n') + '\n');
 }
 
-run('npx', ['tsc', '-p', packageDirectory + '/tsconfig.declarations.json']);
+run('npx', ['tsc', '-p', packageDirectory + '/tsconfig.declarations.json', '--outDir', join(dist, '.declarations')]);
 for (const [from, to] of [
   ['textbook.d.ts', 'textbook/index.d.ts'],
   ...(hasScenes
@@ -162,7 +176,7 @@ for (const [source, generator, staged, target] of [
   ['data/courses', 'shared/engine/scripts/generateCourseProps/generateCourseProps.mjs', 'courses', 'data/courses'],
 ]) {
   if (!authored(source)) continue;
-  run(process.execPath, [generator, '--package', packageDirectory, '--write']);
+  run(process.execPath, [generator, '--package', packageDirectory, '--write', ...(mediaMode === 'draft' && (staged === 'lessons' || staged === 'courses') ? ['--draft'] : [])]);
   const generatedRoot = join(root, 'generated', staged);
   if (!existsSync(generatedRoot)) throw new Error('Generator did not produce ' + generatedRoot);
   const destination = join(resources, target);
@@ -212,15 +226,9 @@ for (const name of filesUnder(join(root, 'static'))) {
   mkdirSync(dirname(destination), { recursive: true });
   copyFileSync(join(root, 'static', name), destination);
 }
-// Stage source-local Lesson media after public/static copying so an
-// identical URL cannot silently replace a pre-existing textbook resource.
-const stagedLessonMedia = stageLessonMedia({
-  textbookRoot: root,
-  textbookId: id,
-  staticRoot: resources,
-  files: filesUnder(join(root, 'data/lessons')),
-});
-if (stagedLessonMedia) console.log('Staged ' + stagedLessonMedia + ' colocated Lesson media file(s)');
+// Stage the entire reusable textbook assets tree, not individual block files.
+const stagedTextbookAssets = stageTextbookAssets({ textbookRoot: root, textbookId: id, staticRoot: resources });
+if (stagedTextbookAssets) console.log('Staged ' + stagedTextbookAssets + ' textbook media file(s)');
 const published = filesUnder(resources);
 for (const [source, prefix] of [
   ['data/lessons', 'data/lessons/'],
@@ -260,3 +268,22 @@ console.log(
       (sceneResult ? Object.keys(sceneResult.metafile.outputs).length : 0)) +
     ' ESM outputs',
 );
+
+// Switch the finished portable package only after all build and content checks
+// have succeeded. Preserve the prior dist if the final rename fails.
+const backupDist = join(root, '.textbook-build-backup-' + randomUUID());
+let movedPrevious = false;
+try {
+  if (existsSync(finalDist)) {
+    renameSync(finalDist, backupDist);
+    movedPrevious = true;
+  }
+  renameSync(dist, finalDist);
+  if (movedPrevious) rmSync(backupDist, { recursive: true, force: true });
+} catch (error) {
+  if (movedPrevious) renameSync(backupDist, finalDist);
+  throw error;
+}
+} finally {
+  if (existsSync(dist)) rmSync(dist, { recursive: true, force: true });
+}
