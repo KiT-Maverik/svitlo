@@ -1,4 +1,5 @@
 import { defineAudio, resolveLessonMedia } from '@svitlo/engine/build';
+
 import type { LessonLanguages } from "#lessonsData/f/a11ce555-0000-4000-8000-0000000000ff/constants";
 
 export const spokenExplanation = defineAudio<"spokenExplanation", LessonLanguages>({
