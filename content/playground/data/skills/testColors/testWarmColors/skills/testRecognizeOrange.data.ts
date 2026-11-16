@@ -6,7 +6,7 @@ export const testRecognizeOrange_Skill_Data = defineSkill({
   id: '00000000-0000-4000-8000-000000000002',
   name: {
     en: '[TEST en] Recognize orange',
-    it: '[TEST it] Riconoscere l\'arancione',
+    it: "[TEST it] Riconoscere l'arancione",
     zh: '[TEST zh] Recognize orange',
     hi: '[TEST hi] Recognize orange',
     es: '[TEST es] Recognize orange',

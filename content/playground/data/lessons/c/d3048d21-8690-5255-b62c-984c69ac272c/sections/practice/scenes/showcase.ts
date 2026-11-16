@@ -380,7 +380,7 @@ const it: Locale = {
     eyebrow: 'ESPLORA · CONFRONTA · OSSERVA',
     title: 'Una sola luce. Mezzi diversi.',
     description:
-      'Passa da un mezzo all\'altro e confronta il tempo impiegato dalla luce a percorrere la stessa distanza. Il punto si muove ripetutamente tra la sorgente e lo schermo.',
+      "Passa da un mezzo all'altro e confronta il tempo impiegato dalla luce a percorrere la stessa distanza. Il punto si muove ripetutamente tra la sorgente e lo schermo.",
   },
   selector: {
     label: 'Mezzo di propagazione della luce',
@@ -399,11 +399,11 @@ const it: Locale = {
     speedUnit: 'km/s',
   },
   insight: {
-    quote: '“La velocità della luce dipende dal mezzo: nell\'acqua la luce si propaga più lentamente che nel vuoto.”',
+    quote: "“La velocità della luce dipende dal mezzo: nell'acqua la luce si propaga più lentamente che nel vuoto.”",
   },
   notes: {
     caption:
-      'L\'animazione è molto rallentata, ma conserva i rapporti tra le velocità. Aria e vuoto sembrano quasi identici. Il movimento di ritorno serve solo a ripetere il modello e non rappresenta una riflessione. I valori sono approssimativi per la luce visibile e variano secondo le condizioni.',
+      "L'animazione è molto rallentata, ma conserva i rapporti tra le velocità. Aria e vuoto sembrano quasi identici. Il movimento di ritorno serve solo a ripetere il modello e non rappresenta una riflessione. I valori sono approssimativi per la luce visibile e variano secondo le condizioni.",
     model: 'Modello: v = c / n.',
     sourceLink: "Valori dell'indice di rifrazione da OpenStax",
   },

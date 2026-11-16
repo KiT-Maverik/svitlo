@@ -54,7 +54,7 @@ export const practiceSection = definePracticeSection({
             bn: 'শূন্যস্থান, বায়ু ও পানিতে আলোর গতির তুলনা করো।',
             de: 'Vergleiche die Lichtgeschwindigkeit im Vakuum, in Luft und in Wasser.',
             en: 'Compare the speed of light in vacuum, air and water.',
-            it: 'Confronta la velocità della luce nel vuoto, nell\'aria e nell\'acqua.',
+            it: "Confronta la velocità della luce nel vuoto, nell'aria e nell'acqua.",
             es: 'Compara la velocidad de la luz en el vacío, el aire y el agua.',
             et: 'Võrdle valguse kiirust vaakumis, õhus ja vees.',
             fr: 'Compare la vitesse de la lumière dans le vide, l’air et l’eau.',
