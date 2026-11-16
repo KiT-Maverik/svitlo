@@ -152,13 +152,17 @@ export const defineCheckpoint = <
   // Transitional read-only-by-convention access for existing authoring consumers.
   const content = { items: { ...initialItems }, order: [...initialOrder] };
 
-  const base = {
+  const readBase = () => {
+    const source = copyAuthored();
+    return {
     id,
     slug,
     type,
-    params: structuredClone(authored.params),
-    locale: onlyStrings(authored.locale),
-  } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
+    params: structuredClone(source.params),
+    locale: onlyStrings(source.locale),
+    } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
+  };
+  let cachedBase: ReturnType<typeof readBase> | undefined;
 
   const splitOwnLocale = (input: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) => {
     const { base: invariant, locale } = splitLocalizedFields(input);
@@ -377,7 +381,7 @@ export const defineCheckpoint = <
     validate,
     build: { props, overrides },
     config: {
-      base,
+      get base() { return cachedBase ??= readBase(); },
       locales: (): { locale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),

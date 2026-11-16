@@ -128,13 +128,17 @@ export const definePracticeSection = <
   const initialOrder = [...config.content.order];
   const content = { items: { ...initialItems }, order: [...initialOrder] };
 
-  const base = {
+  const readBase = () => {
+    const source = copyAuthored();
+    return {
     id,
     slug,
     type,
-    params: structuredClone(authored.params),
-    locale: onlyStrings(authored.locale),
-  } satisfies DeepPartial<PracticeSection_Config>;
+    params: structuredClone(source.params),
+    locale: onlyStrings(source.locale),
+    } satisfies DeepPartial<PracticeSection_Config>;
+  };
+  let cachedBase: ReturnType<typeof readBase> | undefined;
 
   const ownLocale = (input: DeepPartial<PracticeSection_Locale<'config'>>) => {
     const split = splitLocalizedFields(input);
@@ -327,7 +331,7 @@ export const definePracticeSection = <
     validate,
     build: { props, overrides },
     config: {
-      base,
+      get base() { return cachedBase ??= readBase(); },
       locales: (): { locale: DeepPartial<PracticeSection_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),

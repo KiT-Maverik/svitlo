@@ -188,13 +188,17 @@ export const defineCarousel = <
     return { base: parsedInvariant.success ? parsedInvariant.data : undefined, locale: localized };
   };
 
-  const base = {
+  const readBase = () => {
+    const source = copyAuthored();
+    return {
     id,
     type,
     slug,
-    params: structuredClone(authored.params),
-    locale: onlyStrings(authored.locale),
-  } satisfies DeepPartial<ContentBlock_Carousel_Config>;
+    params: structuredClone(source.params),
+    locale: onlyStrings(source.locale),
+    } satisfies DeepPartial<ContentBlock_Carousel_Config>;
+  };
+  let cachedBase: ReturnType<typeof readBase> | undefined;
 
   const props = (
     options: PublicationLanguageOptions<Languages>,
@@ -364,7 +368,7 @@ export const defineCarousel = <
     validate,
     build: { props, overrides },
     config: {
-      base,
+      get base() { return cachedBase ??= readBase(); },
       locales: (): { locale: DeepPartial<ContentBlock_Carousel_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),
