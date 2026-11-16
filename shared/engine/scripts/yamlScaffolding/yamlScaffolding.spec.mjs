@@ -167,7 +167,7 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     lesson.section.order.push('guided');
     const { documentLanguage: lessonLanguage, ...lessonConfig } = lesson;
     fs.writeFileSync(
-      path.join(lessonDir, 'config.yaml'),
+      path.join(lessonDir, 'lesson.yaml'),
       yaml.stringify({
         ...wrapNode(lessonConfig),
         production: { documentLanguage: lessonLanguage },
@@ -175,11 +175,17 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     );
     const editorial = 'kind: lesson-content-plan\nstatus: draft\nsections: []\n';
     fs.writeFileSync(path.join(lessonDir, 'content.yaml'), editorial);
+    fs.writeFileSync(path.join(lessonDir, 'questions.yaml'), '# independent question source\n');
+    fs.writeFileSync(path.join(lessonDir, 'flashcards.yaml'), '# independent flashcard source\n');
     const lessonDraft = runOne(lessonDir, 'generate', root);
     const sourceFiles = lessonDraft.files.filter(file => file.endsWith('.ts'));
     assert(sourceFiles.length > 1, 'Lesson Builder must emit multiple named draft modules');
     assert.equal(lessonDraft.changed, sourceFiles.length);
     assert.equal(fs.readFileSync(path.join(lessonDir, 'content.yaml'), 'utf8'), editorial);
+    assert.equal(fs.readFileSync(path.join(lessonDir, 'questions.yaml'), 'utf8'), '# independent question source\n');
+    assert.equal(fs.readFileSync(path.join(lessonDir, 'flashcards.yaml'), 'utf8'), '# independent flashcard source\n');
+    assert.equal(fs.existsSync(path.join(lessonDir, 'questions')), false);
+    assert.equal(fs.existsSync(path.join(lessonDir, 'flashcards')), false);
     // The Review register is an intentionally invalid, human-completed TypeScript draft.
     // Test its unfinished shape separately; every actual configurator module must parse.
     assert(sourceFiles.includes('review.ts'), 'Lesson Builder must scaffold the Review register');

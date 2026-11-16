@@ -1,6 +1,6 @@
 # Deterministic Lesson YAML → TypeScript draft scaffolder
 
-**Current input:** one `config.yaml` per Lesson UUID directory, with
+**Current input:** one `lesson.yaml` per Lesson UUID directory, with
 `{ config, production? }` at every nested entity node. See the
 [unified YAML authoring handoff](./yaml-config-scaffolding.md) and
 [actual Lesson Builder README](../../../shared/engine/scripts/lessonBuilder/README.md).
@@ -11,10 +11,9 @@ The Engine-owned `shared/engine/scripts/lessonBuilder/lessonBuilder.mjs`
 selects `define*` factories through
 `shared/engine/configurators/yaml/yamlFactoryByType.ts`, unwraps only
 `config`, and mechanically emits an `index.ts` Lesson draft, a typed
-`constants.ts` language tuple, and recursively nested `sections/`,
-`flashcards/`, and `questions/` module trees. Source-relative content is
+`constants.ts` language tuple, and recursively nested `sections/` module trees. Question and Flashcard resources belong to independent authoring/build stages. Source-relative content is
 organized by slug; role-specific subfolders are retained where distinct
-Quest/Question/Flashcard roles would otherwise collide. See the
+Quest/Checkpoint roles would otherwise collide. See the
 [Stage 1 layout contract](./lesson-generated-source-layout.md).
 
 `production` is a **separate typed authoring concern inside the same YAML
@@ -26,8 +25,8 @@ scaffolding retains UUID-addressed specification handoffs. The separate register
 implementation remains UUID-addressed under the textbook's `scenes/`.
 One identity comes from each node's `config.id`; no `sceneSpecKey`.
 
-The technical `config.yaml` is created from independently reviewed
-Methodologist/Screenwriter/Assessment/Flashcard sources when applicable.
+The technical `lesson.yaml` is created from independently reviewed
+Methodologist/Screenwriter sources when applicable.
 Migrating legacy `content.md` and `methodologist-brief.md` is explicitly
 authorized editorial work, never an automatic side effect of this builder.
 For new authoring, methodology text can live once in the YAML production
@@ -51,7 +50,8 @@ Other language values are not fabricated.
 
 Generated TypeScript uses valid unquoted object keys, shorthand collection
 properties, factory-specific generic arguments, and types derived from the
-Lesson's immutable YAML language tuple. Skill UUIDs are resolved to actual
+provisional active `languages` tuple in `constants.ts` (initially the source
+document language). The complete planned YAML language tuple stays untouched. Skill UUIDs are resolved to actual
 textbook Skill imports, never replaced with invented symbols. Unresolved or
 duplicate Skill references are reported rather than silently serialized as
 authoritative source references.
@@ -62,6 +62,45 @@ textbook build must recognize that entrypoint independently of the existing
 UUID directory. Stage 4 changes Lesson Scene/media specification handoffs to the colocated
 slug modules. It does **not** change Scene implementation IDs or create
 real binary assets.
+
+## Provisional source-language authoring scope (implemented)
+
+The Lesson YAML `config.params.languages` remains the **complete planned**
+language set, with its original values and order. During initial scaffolding,
+`renderLessonModules` creates one active `constants.ts` export using a
+new one-element tuple from `production.documentLanguage` **directly**, not
+by truncating, slicing or filtering the YAML tuple. The complete YAML tuple
+is emitted separately as a **commented-out declaration of the same name** for
+manual activation after translations are ready.
+
+For example, `production.documentLanguage: en` and
+`config.params.languages: [en, uk, pl, qm]` produce:
+
+```ts
+import type { LanguageCode } from '@svitlo/engine/build';
+
+// Restore the complete language set when translations are ready:
+// export const languages = ["en","uk","pl","qm"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+
+export const languages = ["en"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+export type LessonLanguages = typeof languages;
+```
+
+The root `defineLesson` uses the active `languages` value; nested
+Configurators use its derived `LessonLanguages` type. This enables an
+initial source-language-only Lesson draft without inventing translations or
+loosening `RequireLanguages` / `ChildrenSupporting`. Only the active source
+language can be previewed/published until translations are truly present.
+After completing the translations, the author can manually activate the
+commented full declaration and deactivate the provisional one; the existing
+TypeScript constraints enforce expanded coverage.
+
+The builder never modifies the YAML or overwrites existing authored
+`constants.ts` (or other Lesson source) files. `generate` retains its
+creation-only `SKIP` protection, and `check` remains strictly read-only.
+The scaffolder is still draft-only; pending media, Scene, Review and other
+dependencies may prevent TypeScript compilation. This does not introduce
+a new Props API, language override, or publication mode.
 
 ## Stage 3 file-backed Markdown/Code
 
@@ -98,7 +137,7 @@ the actual script.
 The Lesson Builder owns only the nested `defineScene` source module and its
 colocated `specification.md`. The opted-in
 [Scene Scaffolding workflow](../../../shared/engine/scripts/sceneScaffolding/README.md)
-independently reads the same technical `config.yaml` production specifications
+independently reads the same technical `lesson.yaml` production specifications
 and creates an **executable React draft** under the textbook's UUID-addressed
 `scenes/<bucket>/<scene-uuid>/`, only in already Scene-capable packages.
 Generation is creation-only and never registers unfinished components.

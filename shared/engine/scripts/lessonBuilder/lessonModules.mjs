@@ -284,7 +284,12 @@ export function renderLessonModules(lesson, language, options = {}) {
   const factories = options.factories ?? loadFactoryRegistry();
   const filtered = sourceAuthoringCopy(lesson, language);
   if (!record(filtered) || filtered.type !== 'lesson')
-    throw new Error('config.yaml:config.type: expected lesson type for the Lesson entrypoint');
+    throw new Error('lesson.yaml:config.type: expected lesson type for the Lesson entrypoint');
+  for (const field of ['questions', 'flashcards']) {
+    if (Object.hasOwn(filtered, field))
+      throw new Error('lesson.yaml:config.' + field +
+        ': embedded banks are no longer supported; author ' + field + '.yaml at the Lesson root');
+  }
   const files = new Map();
   const nodeLocations = options.nodeLocations;
 
@@ -384,8 +389,12 @@ export function renderLessonModules(lesson, language, options = {}) {
     files.set(
       'constants.ts',
       "import type { LanguageCode } from '@svitlo/engine/build';\n\n" +
-        'export const languages = ' +
+        '// Restore the complete language set when translations are ready:\n' +
+        '// export const languages = ' +
         JSON.stringify(languageValues) +
+        ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n\n' +
+        'export const languages = ' +
+        JSON.stringify([language]) +
         ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n' +
         'export type LessonLanguages = typeof languages;\n',
     );
@@ -430,14 +439,14 @@ export function renderLessonModules(lesson, language, options = {}) {
     if (factoryContexts.has(context)) {
       if (!record(value) || typeof value.type !== 'string')
         throw new Error(
-          'config.yaml:' + field + '.type: missing type discriminator for ' + context + ' factory dispatch',
+          'lesson.yaml:' + field + '.type: missing type discriminator for ' + context + ' factory dispatch',
         );
       if (context === 'slide' && !['image', 'scene'].includes(value.type))
-        throw new Error('config.yaml:' + field + '.type: Carousel slides must be image or scene');
+        throw new Error('lesson.yaml:' + field + '.type: Carousel slides must be image or scene');
       if (!factories[value.type])
-        throw new Error('config.yaml:' + field + '.type: unknown type "' + value.type + '"; no Engine define* factory');
+        throw new Error('lesson.yaml:' + field + '.type: unknown type "' + value.type + '"; no Engine define* factory');
       if (typeof value.slug !== 'string' || !(value.type === 'scene' ? sceneSlug : safeSlug).test(value.slug))
-        throw new Error('config.yaml:' + field + '.slug: unsafe or missing camelCase slug');
+        throw new Error('lesson.yaml:' + field + '.slug: unsafe or missing camelCase slug');
       const symbol = symbolFor(value, context);
       // The mandatory Text question and the Answer Configurator have fixed
       // semantic role paths. Their own authored slugs still live in Config.
@@ -484,7 +493,7 @@ export function renderLessonModules(lesson, language, options = {}) {
           return JSON.stringify(value) + ' as const';
         return JSON.stringify(value);
       }
-      throw new Error('config.yaml:' + field + ': unsupported YAML value');
+      throw new Error('lesson.yaml:' + field + ': unsupported YAML value');
     }
     const entries = Object.entries(value);
     if (!entries.length) return '{}';
@@ -512,7 +521,7 @@ export function renderLessonModules(lesson, language, options = {}) {
           )
             nextDirectory = join(ownerDirectory, key);
           if (context === 'flashcardContent' && ['front', 'back', 'hint'].includes(key)) {
-            if (!record(child)) throw new Error('config.yaml:' + field + '.' + key + ': expected Flashcard side');
+            if (!record(child)) throw new Error('lesson.yaml:' + field + '.' + key + ': expected Flashcard side');
             emitFlashcardSide(key, child, nextDirectory);
             imported.set(key, { symbol: key, location: nextDirectory });
             return indent(depth + 1) + key;
@@ -651,7 +660,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     }
     const authored = fileBackedNode(node, context, directory);
     const factory = factories[node.type];
-    if (!factory) throw new Error('config.yaml: unknown factory for ' + node.type);
+    if (!factory) throw new Error('lesson.yaml: unknown factory for ' + node.type);
     const imports = new Map();
     const bindings = generateParameters(authored, context, directory, imports);
     // All bound children are rendered with real source names but are never
@@ -711,15 +720,9 @@ export function renderLessonModules(lesson, language, options = {}) {
   }
 
   emitCollection('section', 'sectionCollection', 'sections');
-  emitCollection('flashcards', 'flashcardCollection', 'flashcards');
-  emitCollection('questions', 'questionBank', 'questions');
 
   const rootImports = ["import { defineLesson } from '@svitlo/engine/build';"];
-  for (const [field, directory] of [
-    ['section', 'sections'],
-    ['flashcards', 'flashcards'],
-    ['questions', 'questions'],
-  ]) {
+  for (const [field, directory] of [['section', 'sections']]) {
     if (Object.hasOwn(filtered, field))
       rootImports.push('import { ' + field + ' } from ' + JSON.stringify('./' + directory) + ';');
   }
@@ -749,7 +752,7 @@ export function renderLessonModules(lesson, language, options = {}) {
       rootFields.push('  skills: [' + value.map(id => skills.get(id).symbol + '.id').join(', ') + ']');
       continue;
     }
-    if (['section', 'flashcards', 'questions'].includes(key)) {
+    if (key === 'section') {
       rootFields.push('  ' + key);
       continue;
     }
@@ -783,8 +786,6 @@ export function renderLessonModules(lesson, language, options = {}) {
         JSON.stringify(filtered.slug),
         'LessonLanguages',
         Object.hasOwn(filtered, 'section') ? 'typeof section.items' : '{}',
-        Object.hasOwn(filtered, 'flashcards') ? 'typeof flashcards.items' : '{}',
-        Object.hasOwn(filtered, 'questions') ? 'typeof questions' : '{}',
       ].join(', ') +
       '>'
     : '';

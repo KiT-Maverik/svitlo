@@ -249,7 +249,7 @@ describe('Configurators', () => {
                   order: ['list', 'acronym', 'duplicate'],
                 },
               },
-            }),
+            }).build.props({ languages: ['en'] }),
           /Duplicate built-in Flashcard flag/,
         );
         assert.throws(() =>
@@ -262,7 +262,7 @@ describe('Configurators', () => {
                 order: ['front'],
               }) as unknown as typeof source.content.front,
             },
-          }),
+          }).build.props({ languages: ['en'] }),
         );
       });
 

@@ -94,10 +94,10 @@ export const defineVideo = <
       Languages
     >,
 ) => {
-  const authored = structuredClone(parseAndValidate(config));
+  const authored: ContentBlock_Video_Config = structuredClone(config);
   const { id, type } = authored;
   const slug = config.slug;
-  const copyAuthored = () => video_Config_Schema.parse(structuredClone(authored));
+  const copyAuthored = () => structuredClone(authored);
   const base = {
     id,
     type,

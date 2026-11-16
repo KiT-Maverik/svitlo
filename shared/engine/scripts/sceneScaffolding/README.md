@@ -1,7 +1,7 @@
 # React Scene draft scaffolding
 
 An **opt-in, separate** Engine workflow for executable React Scene drafts. It reads
-a single Lesson technical `config.yaml` (including nested Carousel/Quest Scenes)
+a single Lesson technical `lesson.yaml` (including nested Carousel/Quest Scenes)
 and the authored `production.specification` belonging to each Scene's UUID.
 Unlike `lessonBuilder`, this workflow **never** emits `defineScene` sources,
 mutates Lesson files, runs Config validation, translates text, registers Scenes,
@@ -11,9 +11,9 @@ Scene directory so implementers can work at that location.
 
 ## Invocation
 
-    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs generate --source content/<book>/data/lessons/<bucket>/<uuid>/config.yaml
-    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs generate --source content/<book>/staging/config.yaml --scene-id <scene-uuid>
-    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs check --source content/<book>/staging/config.yaml
+    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs generate --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml
+    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs generate --source content/<book>/staging/lesson.yaml --scene-id <scene-uuid>
+    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs check --source content/<book>/staging/lesson.yaml
     node --test shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs
 
 `generate` is deterministic, create-only and logs `SKIP` whenever the Scene's

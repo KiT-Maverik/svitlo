@@ -117,9 +117,9 @@ export function defineSkillGroup<
     description: RequireLanguages<SkillGroup_Config['description'], Languages>;
   },
 ): SkillGroup_Configurator<Slug, Skills, Languages> {
-  validate(config);
   const metadataSchema = skillGroup_Config_Schema.omit({ skills: true });
-  const authored = metadataSchema.parse(config);
+  const { skills: _skills, ...metadataInput } = config;
+  const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id } = authored;
   const slug = config.slug;
@@ -189,6 +189,7 @@ export function defineSkillGroup<
     options: PublicationLanguageOptions<Languages>,
   ): SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyAuthored(), skills: { items: initialItems, order: initialOrder } });
     const current = copyAuthored();
     const own = splitOwn({ name: current.name, description: current.description });
     const children = buildSkills(initialItems, initialOrder, languages);
@@ -214,6 +215,7 @@ export function defineSkillGroup<
   ): SkillGroupPublication<SkillGroupOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyAuthored(), skills: { items: initialItems, order: initialOrder } });
       if (!isRecord(patch)) throw new Error('Expected SkillGroup overrides object');
       for (const key of Object.keys(patch)) {
         if (!['name', 'description', 'skills'].includes(key))

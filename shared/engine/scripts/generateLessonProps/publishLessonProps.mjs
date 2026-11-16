@@ -10,11 +10,13 @@ export { assertSafeDirectoryPath } from '../../generators/safeGeneratedPath/asse
 
 const lessonFile =
   /^([0-9a-f])\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/(base|[a-z]{2})\.json$/;
+const assessmentFile =
+  /^([0-9a-f])\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/(?:assessment-manifest\.json|(questions|flashcards)\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/(?:base|[a-z]{2})\.json)$/;
 
 function validateFiles(files) {
   if (!(files instanceof Map)) throw new Error('Expected a Map of generated Lesson files');
   for (const [relative, body] of files) {
-    const match = typeof relative === 'string' && lessonFile.exec(relative);
+    const match = typeof relative === 'string' && (lessonFile.exec(relative) ?? assessmentFile.exec(relative));
     if (!match || match[1] !== match[2].slice(-1)) {
       throw new Error('Invalid generated Lesson path: ' + String(relative));
     }

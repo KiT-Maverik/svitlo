@@ -78,7 +78,7 @@ describe('Configurators', () => {
               ...fields,
               slug: 'duplicateGroup',
               skills: { items: { reading }, order: ['reading', 'reading'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /duplicate|appears|order/i,
         );
         assert.throws(
@@ -89,7 +89,7 @@ describe('Configurators', () => {
               title: localized,
               description,
               groups: { items: { literacy: group }, order: ['literacy', 'literacy'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /duplicate|appears|order/i,
         );
         assert.throws(
@@ -100,7 +100,7 @@ describe('Configurators', () => {
               title: localized,
               description,
               skills: { items: { reading }, order: ['reading', 'reading'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /duplicate|appears|order/i,
         );
       });

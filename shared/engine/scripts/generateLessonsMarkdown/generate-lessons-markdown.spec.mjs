@@ -131,58 +131,11 @@ function fixture(locale = 'uk') {
         slug: 'quiz',
         type: 'quiz',
         locale: { title: t('Quiz', 'Тест'), navigationLabel: t('Quiz', 'Тест') },
-        params: { selection: { mode: 'all' }, layout: { mode: 'stepper' } },
+        params: { selection: { mode: 'all', questionIds: ['00000000-0000-4000-8000-000000000001'] }, layout: { mode: 'stepper' } },
         content: [],
       },
     ],
-    questions: {
-      selectOneAnswer: [
-        {
-          id: 'q-1',
-          slug: 'why-light',
-          type: 'selectOneAnswer',
-          params: {},
-          locale: {},
-          content: {
-            question: [block('prompt', 'Which path?', 'Який шлях?')],
-            answers: {
-              correct: { straight: block('straight', 'Straight line', 'Пряма лінія') },
-              incorrect: { curved: block('curved', 'Curved line', 'Крива лінія') },
-            },
-          },
-        },
-      ],
-      matchBlocks: [
-        {
-          id: 'q-2',
-          slug: 'match-beams',
-          type: 'matchBlocks',
-          params: {},
-          locale: {},
-          content: { question: [block('matchPrompt', 'Match rays', 'Зіставте промені')] },
-        },
-      ],
-    },
-    flashcards: [
-      {
-        id: 'flash-1',
-        slug: 'lightFlashcard',
-        type: 'flashcard',
-        parameters: {
-          tags: ['physics'],
-          flags: [
-            { type: 'list', count: 2 },
-            { type: 'custom', value: t('Review', 'Повторення'), color: 'info', icon: 'bookmark' },
-          ],
-          relationships: [{ relationshipId: 'r-1', type: 'reverse', relatedFlashcardId: 'flash-2', position: 'peer' }],
-        },
-        content: {
-          front: [block('front', 'What travels?', 'Що поширюється?')],
-          back: [block('back', 'Light', 'Світло')],
-          hint: [],
-        },
-      },
-    ],
+
   };
 }
 
@@ -201,7 +154,7 @@ function temporaryRepo() {
 }
 
 describe('Current Lesson Props → localized Markdown review projection', () => {
-  it('renders one complete selected-language document with Question/Flashcard banks and media metadata', () => {
+  it('renders a selected-language Lesson with independent assessment UUIDs and media metadata', () => {
     const markdown = renderLessonMarkdown({
       lesson: fixture('uk'),
       locale: 'uk',
@@ -212,11 +165,10 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     assert.match(markdown, /## Lesson/);
     assert.ok(markdown.indexOf('Теорія') < markdown.indexOf('Тест'));
     assert.match(markdown, /Світло/);
-    assert.match(markdown, /Quiz uses references into the Question Bank/);
-    assert.match(markdown, /why-light/);
-    assert.equal((markdown.match(/### 1\. why-light · selectOneAnswer/g) ?? []).length, 1);
-    assert.match(markdown, /## Question Bank/);
-    assert.match(markdown, /## Flashcard Bank/);
+    assert.match(markdown, /Quiz references independently published Question UUIDs/);
+    assert.match(markdown, /00000000-0000-4000-8000-000000000001/);
+    assert.match(markdown, /## Assessment resources/);
+    assert.doesNotMatch(markdown, /## Question Bank|## Flashcard Bank/);
     for (const expected of [
       'Скинути',
       'Промінь',
@@ -227,12 +179,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
       'Озвучення',
       'Перший промінь',
       'Підпис слайда',
-      'Зіставте промені',
       'повітря',
-      'relationshipId',
-      'physics',
-      'Повторення',
-      'bookmark',
     ])
       assert.ok(markdown.includes(expected), 'Missing review field: ' + expected);
     assert.doesNotMatch(markdown, /Ray caption|Image unavailable|Playback failed|Straight line|First beam/);
@@ -348,7 +295,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     }
   });
 
-  it('renders the actual Playground Lesson configurator and its resolved Question/Flashcard Props', async () => {
+  it('renders the actual Playground Lesson with independent assessment references', async () => {
     const root = repositoryRoot;
     const lesson = await loadLesson(realLessonEntry, realPackage);
     assert.equal(lesson.id, lessonId);
@@ -361,9 +308,9 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
       },
       { root },
     );
-    assert.match(markdown, /## Question Bank/);
-    assert.match(markdown, /## Flashcard Bank/);
-    assert.match(markdown, /Quiz uses references/);
+    assert.match(markdown, /## Assessment resources/);
+    assert.doesNotMatch(markdown, /## Question Bank|## Flashcard Bank/);
+    assert.match(markdown, /Quiz references independently published Question UUIDs/);
     assert.match(markdown, /Як рухається світло/);
     assert.doesNotMatch(markdown, /\[object Object\]|undefined/);
   });

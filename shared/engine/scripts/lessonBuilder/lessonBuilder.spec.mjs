@@ -79,33 +79,6 @@ function lessonConfig() {
         }),
       },
     }),
-    flashcards: { items: {
-      remember: {
-        id: id(9),
-        slug: 'remember',
-        type: 'flashcard',
-        parameters: { tags: [], flags: group({}), relationships: group({}) },
-        content: { front: group({ front: block('front', 10) }), back: group({ back: block('back', 11) }) },
-      },
-    } },
-    questions: {
-      selectOneAnswer: {
-        choice: {
-          id: id(13),
-          slug: 'choice',
-          type: 'selectOneAnswer',
-          params: {},
-          content: {
-            question: group({ questionPrompt: block('questionPrompt', 14) }),
-            answers: {
-              correct: group({ yes: block('yes', 15) }),
-              incorrect: group({ no: block('no', 16) }),
-              distractors: group({}),
-            },
-          },
-        },
-      },
-    },
   };
 }
 function wrap(value) {
@@ -126,7 +99,7 @@ function fixture(callback) {
   const config = lessonConfig();
   const save = () =>
     fs.writeFileSync(
-      path.join(lesson, 'config.yaml'),
+      path.join(lesson, 'lesson.yaml'),
       yaml.stringify({ ...wrap(config), production: { documentLanguage: 'uk', ...config.__production } }),
     );
   try {
@@ -197,14 +170,6 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
       'sections/intro/check/comparison/question/index.ts',
       'sections/intro/check/comparison/answer/index.ts',
       'sections/intro/check/comparison/answer/correct/index.ts',
-      'flashcards/index.ts',
-      'flashcards/remember/index.ts',
-      'flashcards/remember/front/index.ts',
-      'flashcards/remember/back/index.ts',
-      'flashcards/remember/front/front/index.ts',
-      'flashcards/remember/back/back/index.ts',
-      'questions/index.ts',
-      'questions/selectOneAnswer/choice/index.ts',
     ]) {
       assert.ok(files.has(name), 'Missing ' + name);
     }
@@ -213,11 +178,10 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assert.match(root, /import \{ languages \} from '\.\/constants'/);
     assert.match(root, /skills: \[\]/);
     assert.match(root, /params: \{\s*languages,/);
-    assert.match(root, /section,\s*flashcards,\s*questions/);
-    assert.match(
-      root,
-      /defineLesson<"lightLesson", LessonLanguages, typeof section\.items, typeof flashcards\.items, typeof questions>/,
-    );
+    assert.match(root, /defineLesson<"lightLesson", LessonLanguages, typeof section\.items>/);
+    assert.doesNotMatch(root, /flashcards|questions/);
+    assert.equal(fs.existsSync(f.generated('questions')), false);
+    assert.equal(fs.existsSync(f.generated('flashcards')), false);
     assert.doesNotMatch(root, /"id":|"slug":|"section":/);
     const section = files.get('sections/intro/index.ts');
     assert.match(section, /defineContentSection<"intro", typeof content\.items, LessonLanguages>/);
@@ -225,15 +189,53 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assert.match(files.get('sections/index.ts'), /export const section =/);
     assert.match(files.get('constants.ts'), /export type LessonLanguages = typeof languages/);
     assert.match(section, /#lessonsData\/2\/00000000-0000-4000-8000-000000000012\/constants/);
-    assert.match(files.get('flashcards/remember/front/index.ts'), /defineFlashcardSide<typeof sideItems, LessonLanguages>/);
-    assert.match(files.get('flashcards/remember/front/index.ts'), /items: sideItems/);
-    assert.match(files.get('flashcards/remember/front/index.ts'), /order:/);
-    assert.match(files.get('flashcards/remember/back/index.ts'), /defineFlashcardSide/);
-    assert.doesNotMatch(files.get('flashcards/index.ts'), /order:/);
     assert.doesNotMatch([...files.values()].join('\n'), /Scaffolded by|Draft content sha256/);
     assert.match(files.get('sections/intro/prompt/index.ts'), /defineText<"prompt", LessonLanguages>/);
     assert.doesNotMatch([...files.values()].join('\n'), /Never emit translation|Light"|'Never emit translation'/);
     assertTypeScriptSyntax(files);
+  }));
+
+test('Lesson constants use documentLanguage, preserving the full planned tuple for manual restoration', () =>
+  fixture(f => {
+    f.config.params.languages = ['en', 'uk', 'pl', 'qm'];
+    f.config.__production = { documentLanguage: 'uk' }; // Deliberately not the first planned language.
+    f.save();
+    const source = fs.readFileSync(f.generated('lesson.yaml'), 'utf8');
+    assert.deepEqual(yaml.parse(source).config.params.languages, ['en', 'uk', 'pl', 'qm']);
+
+    runOne(f.lesson, 'generate', f.root);
+    const constantsFile = f.generated('constants.ts');
+    const constants = fs.readFileSync(constantsFile, 'utf8');
+    assert.equal(constants, [
+      "import type { LanguageCode } from '@svitlo/engine/build';",
+      '',
+      '// Restore the complete language set when translations are ready:',
+      '// export const languages = ["en","uk","pl","qm"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];',
+      '',
+      'export const languages = ["uk"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];',
+      'export type LessonLanguages = typeof languages;',
+      '',
+    ].join('\n'));
+    assert.equal([...constants.matchAll(/^export const languages =/gm)].length, 1);
+    assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), source, 'Never modify the planned YAML tuple');
+
+    const files = readAll(f.lesson);
+    assert.match(files.get('index.ts'), /import \{ languages \} from '\.\/constants'/);
+    assert.match(files.get('index.ts'), /defineLesson<"lightLesson", LessonLanguages, typeof section\.items>/);
+    assert.match(files.get('sections/intro/index.ts'), /defineContentSection<"intro", typeof content\.items, LessonLanguages>/);
+    assert.match(files.get('sections/intro/prompt/index.ts'), /defineText<"prompt", LessonLanguages>/);
+    assert.match(files.get('sections/intro/gallery/index.ts'), /defineCarousel<"gallery", typeof slides\.items, LessonLanguages>/);
+    assert.doesNotMatch([...files.values()].join('\n'), /Never emit translation|"Light"/);
+    assertTypeScriptSyntax(files);
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+
+    const manuallyEdited = constants.replace('export const languages = ["uk"]', 'export const languages = ["en"]');
+    assert.notEqual(manuallyEdited, constants);
+    fs.writeFileSync(constantsFile, manuallyEdited);
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true, 'Create-only must not overwrite constants');
+    assert.equal(fs.readFileSync(constantsFile, 'utf8'), manuallyEdited);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /stale or manually edited draft/);
+    assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), source);
   }));
 
 test('Carousel Image and Scene children are independently scaffolded below their authored slugs', () =>
@@ -383,19 +385,45 @@ test('unknown Skill UUID produces a deterministic unresolved dependency instead 
     assert.equal(fs.existsSync(f.generated('index.ts')), false);
   }));
 
-test('Question and Flashcard nested objects receive real item imports and appropriate generic types', () =>
+test('rejects embedded banks without generating Lesson modules or changing sibling YAML files', () =>
   fixture(f => {
-    runOne(f.lesson, 'generate', f.root);
-    const question = fs.readFileSync(f.generated('questions/selectOneAnswer/choice/index.ts'), 'utf8');
-    assert.match(question, /defineSelectOneAnswer<"choice", typeof content, LessonLanguages>/);
-    assert.match(question, /export const choice = defineSelectOneAnswer/);
-    assert.match(fs.readFileSync(f.generated('questions/index.ts'), 'utf8'), /choice\s*\}/);
-    assert.match(question, /questionPrompt/);
-    assert.match(question, /yes/);
-    const card = fs.readFileSync(f.generated('flashcards/remember/index.ts'), 'utf8');
-    assert.match(card, /defineFlashcard<"remember", typeof content\.front\.items, typeof content\.back\.items/);
-    assert.match(card, /LessonLanguages>/);
-    assertTypeScriptSyntax(readAll(f.lesson));
+    fs.writeFileSync(f.generated('questions.yaml'), '# independent editorial source\n');
+    fs.writeFileSync(f.generated('flashcards.yaml'), '# independent editorial source\n');
+    f.config.questions = { selectOneAnswer: {} };
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /lesson.yaml:config.questions: embedded banks/);
+    assert.equal(fs.existsSync(f.generated('index.ts')), false);
+    delete f.config.questions;
+    f.config.flashcards = { items: {} };
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /lesson.yaml:config.flashcards: embedded banks/);
+    delete f.config.flashcards;
+    f.save();
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, undefined);
+    assert.equal(fs.readFileSync(f.generated('questions.yaml'), 'utf8'), '# independent editorial source\n');
+    assert.equal(fs.readFileSync(f.generated('flashcards.yaml'), 'utf8'), '# independent editorial source\n');
+    assert.equal(fs.existsSync(f.generated('questions')), false);
+    assert.equal(fs.existsSync(f.generated('flashcards')), false);
+  }));
+
+test('existing independent assessment TypeScript directories do not block Lesson scaffolding', () =>
+  fixture(f => {
+    for (const kind of ['questions', 'flashcards']) {
+      fs.mkdirSync(f.generated(kind));
+      fs.writeFileSync(f.generated(kind + '/index.ts'), 'export const keep = true;\n');
+    }
+    const result = runOne(f.lesson, 'generate', f.root);
+    assert(result.changed > 0);
+    for (const kind of ['questions', 'flashcards'])
+      assert.equal(fs.readFileSync(f.generated(kind + '/index.ts'), 'utf8'), 'export const keep = true;\n');
+  }));
+
+test('old technical config.yaml is rejected when supplied explicitly', () =>
+  fixture(f => {
+    fs.renameSync(f.generated('lesson.yaml'), f.generated('config.yaml'));
+    assert.throws(() => runOne(f.generated('config.yaml'), 'generate', f.root), /Expected lesson.yaml source/);
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /legacy technical Lesson source/);
+    assert.equal(fs.existsSync(f.generated('index.ts')), false);
   }));
 
 test('Quest uses distinct stages/tasks namespaces and their nested media remain separate modules', () =>
@@ -457,7 +485,7 @@ test('create-only generate skips index.ts before parsing stale YAML; check detec
     assert.throws(() => runOne(f.lesson, 'check', f.root), /stale or manually edited draft/);
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
     assert.equal(fs.readFileSync(f.generated('index.ts'), 'utf8'), before);
-    fs.writeFileSync(path.join(f.lesson, 'config.yaml'), 'invalid: [');
+    fs.writeFileSync(path.join(f.lesson, 'lesson.yaml'), 'invalid: [');
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
   }));
 
@@ -482,9 +510,9 @@ test('preflight protects manually authored entrypoints, orphan trees and staged 
     fs.writeFileSync(f.generated('sections/manual/index.ts'), 'export const neverErase = true;\n');
     assert.throws(() => runOne(f.lesson, 'generate', f.root), /incomplete Lesson source tree/);
     fs.rmSync(f.generated('sections'), { recursive: true });
-    const staged = path.join(f.workspace, 'staging/config.yaml');
+    const staged = path.join(f.workspace, 'staging/lesson.yaml');
     fs.mkdirSync(path.dirname(staged), { recursive: true });
-    const document = yaml.parse(fs.readFileSync(f.generated('config.yaml'), 'utf8'));
+    const document = yaml.parse(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'));
     const second = id(45);
     document.config.id = second;
     fs.writeFileSync(staged, yaml.stringify(document));
@@ -601,9 +629,9 @@ test('never writes files for unsafe slugs, unknown nested factories or symlinked
 
 test('rejects traversing collection names before writing modules', () =>
   fixture(f => {
-    f.config.questions['../escape'] = f.config.questions.selectOneAnswer;
+    f.config.section.items.intro.content.items.prompt.slug = '../escape';
     f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.root), /Unsafe Lesson source path segment/);
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /unsafe or missing camelCase slug/);
     assert.equal(fs.existsSync(f.generated('index.ts')), false);
     assert.equal(fs.existsSync(path.join(f.root, 'escape')), false);
   }));
@@ -705,7 +733,7 @@ test('read-only checks reject modified Markdown/Code while generate skips existi
     fs.writeFileSync(file, '# Human revision\n');
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
     assert.equal(fs.readFileSync(file, 'utf8'), '# Human revision\n');
-    assert.throws(() => runOne(f.lesson, 'check', f.root), /authored source differs from config.yaml/);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /authored source differs from lesson.yaml/);
   }));
 
 test('existing Markdown source blocks all new TS writes instead of being overwritten', () =>
@@ -773,8 +801,6 @@ test('partial YAML remains a partial typed draft, without fabricated language or
   fixture(f => {
     delete f.config.params;
     delete f.config.section;
-    delete f.config.flashcards;
-    delete f.config.questions;
     f.save();
     const result = runOne(f.lesson, 'generate', f.root);
     assert.deepEqual(result.files, ['review.ts', 'index.ts']);
@@ -782,57 +808,6 @@ test('partial YAML remains a partial typed draft, without fabricated language or
     assert.match(code, /defineLesson\(\{/);
     assert.doesNotMatch(code, /params:|section:|flashcards:|questions:/);
     assert.equal(fs.existsSync(f.generated('constants.ts')), false);
-    assertTypeScriptSyntax(readAll(f.lesson));
-  }));
-
-test('Flashcard flag localization prunes non-source languages and retains literal type/color discriminants', () =>
-  fixture(f => {
-    f.config.flashcards.items.remember.parameters.flags = group({
-      custom: { type: 'custom', color: 'red', value: { uk: 'Лише українська', en: 'SECRET' } },
-    });
-    f.save();
-    runOne(f.lesson, 'generate', f.root);
-    const code = fs.readFileSync(f.generated('flashcards/remember/index.ts'), 'utf8');
-    assert.match(code, /type: "custom" as const/);
-    assert.match(code, /color: "red" as const/);
-    assert.match(code, /Лише українська/);
-    assert.doesNotMatch(code, /SECRET/);
-    assertTypeScriptSyntax(readAll(f.lesson));
-  }));
-
-test('matching Question pairs with repeated child slugs are isolated by pair and role', () =>
-  fixture(f => {
-    f.config.questions.matchBlocks = {
-      match: {
-        id: id(60),
-        slug: 'match',
-        type: 'matchBlocks',
-        params: {},
-        content: {
-          question: group({ question: block('questionText', 61) }),
-          pairs: group({
-            first: {
-              left: block('label', 62, 'Ліва A'),
-              right: block('label', 63, 'Права A'),
-            },
-            second: {
-              left: block('label', 64, 'Ліва B'),
-              right: block('label', 65, 'Права B'),
-            },
-          }),
-        },
-      },
-    };
-    f.save();
-    runOne(f.lesson, 'generate', f.root);
-    const names = [...readAll(f.lesson).keys()];
-    for (const location of [
-      'questions/matchBlocks/match/first/left/label/index.ts',
-      'questions/matchBlocks/match/first/right/label/index.ts',
-      'questions/matchBlocks/match/second/left/label/index.ts',
-      'questions/matchBlocks/match/second/right/label/index.ts',
-    ])
-      assert.ok(names.includes(location), location);
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
 
@@ -858,9 +833,9 @@ test('production handoff conflict is diagnosed before writing any source module'
 
 test('staged sources require valid UUIDs and reject symlinked canonical destinations', () =>
   fixture(f => {
-    const staged = path.join(f.workspace, 'staging/config.yaml');
+    const staged = path.join(f.workspace, 'staging/lesson.yaml');
     fs.mkdirSync(path.dirname(staged), { recursive: true });
-    const doc = yaml.parse(fs.readFileSync(f.generated('config.yaml'), 'utf8'));
+    const doc = yaml.parse(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'));
     doc.config.id = '../malicious';
     fs.writeFileSync(staged, yaml.stringify(doc));
     assert.throws(() => runOne(staged, 'generate', f.root), /Lesson UUID is required/);
@@ -905,7 +880,7 @@ test('Checkpoint question and answer may reuse a block slug without file collisi
   }));
 
 test('Engine-owned coverage Lesson stays reproducible across YAML, nested modules, and handoffs', () => {
-  const fixtureSource = new URL('./fixtures/coverageLesson/config.yaml', import.meta.url);
+  const fixtureSource = new URL('./fixtures/coverageLesson/lesson.yaml', import.meta.url);
   const authored = fs.readFileSync(fixtureSource, 'utf8');
   const document = yaml.parse(authored);
   const lesson = document.config;
@@ -923,7 +898,7 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
 
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-engine-coverage-'));
   const workspace = path.join(root, 'content/playground');
-  const staged = path.join(workspace, 'staging/coverageLesson/config.yaml');
+  const staged = path.join(workspace, 'staging/coverageLesson/lesson.yaml');
   const output = path.join(workspace, 'data/lessons', lesson.id.at(-1), lesson.id);
   try {
     fs.mkdirSync(path.dirname(staged), { recursive: true });
@@ -961,18 +936,10 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
       'sections/reviewEquality/verifyEquality/compareFive/answer/index.ts',
       'sections/reviewEquality/verifyEquality/compareFive/answer/whyFiveMatches/index.ts',
       'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/index.ts',
-      'flashcards/equalityRecallCard/index.ts',
-      'flashcards/equalityRecallCard/front/index.ts',
-      'flashcards/equalityRecallCard/back/index.ts',
-      'flashcards/equalityRecallCard/hint/index.ts',
-      'questions/selectOneAnswer/identifyTrueEquality/index.ts',
     ]) assert(modules.has(name), 'Missing generated file ' + name);
     assert.match(modules.get('index.ts'), /skills: \[coverageSkill_Skill_Data\.id\]/);
-    assert.match(modules.get('questions/selectOneAnswer/identifyTrueEquality/index.ts'),
-      /export const identifyTrueEquality = defineSelectOneAnswer/);
-    assert.match(modules.get('questions/index.ts'), /identifyTrueEquality,?/);
-    assert.doesNotMatch(modules.get('flashcards/index.ts'), /order:/);
-    assert.match(modules.get('flashcards/equalityRecallCard/hint/index.ts'), /defineFlashcardSide/);
+    assert.equal(fs.existsSync(path.join(output, 'questions')), false);
+    assert.equal(fs.existsSync(path.join(output, 'flashcards')), false);
     assert.doesNotMatch([...modules.values()].join('\n'), /Scaffolded by|Draft content sha256/);
     assert.match(modules.get('sections/reviewEquality/verifyEquality/compareFive/answer/index.ts'),
       /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/);
@@ -1023,8 +990,8 @@ test('module rendering is deterministic and retains only source-language authori
     for (const [name, source] of first)
       if (name.endsWith('.ts')) assert.doesNotMatch(source, /Scaffolded by|Draft content sha256/);
     assert.doesNotMatch([...first.values()].join('\n'), /Never emit translation/);
-    assert.match(first.get('questions/index.ts'), /choice/);
-    assert.match(first.get('questions/selectOneAnswer/choice/index.ts'), /export const choice =/);
+    assert.equal(first.has('questions/index.ts'), false);
+    assert.equal(first.has('flashcards/index.ts'), false);
   }));
 
 test('PascalCase Scene slug exports distinct Configurator with textbook-local imports', () =>

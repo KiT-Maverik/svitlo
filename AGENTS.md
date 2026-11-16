@@ -74,7 +74,7 @@ Before creating or updating GitHub Issues, pull requests, or branches, read and 
 
 ## Translation Production Issue coordination
 
-For authorized translation of a defined group of localized entities (Skills, Lessons, Assessment Methods, Courses, UI Kit or other typed content), first read [Manage Translation Production](studio/skills/translation-workflow/manage-translation-production.skill.md) and find/reuse/create a single [Translation Production Issue](.github/ISSUE_TEMPLATE/translation-production.yml) for that fixed entity + target-locale scope. Coordinate translator Draft PRs → one integration branch → independent reviewer Draft PRs **after all translation merges**. A missing per-entity localized Markdown generator is an **immediate review stop** requiring an explicit chat report, not a fallback to manual code scanning. Keep review artifacts on reviewer PR branches and clean before integration merges. Routine isolated copy fixes do not require a production campaign Issue.
+For authorized translation of localized entities, read [Manage Translation Production](studio/skills/translation-workflow/manage-translation-production.skill.md) and use a single Translation Production Issue. Translator Draft PRs target one integration branch. **The repository owner decides when independent review starts and on which source PR/SHA**, including review directly on an unmerged translator PR. There is no universal requirement to merge all translator PRs before a review. Validate scoped source-derived Markdown and its manifest; missing or incomplete artifacts block only the relevant review. Clean artifacts from the working PR before merging it. The parent integration PR may merge to `main` only with separate owner approval.
 
 ## Lesson production Issue handoff
 

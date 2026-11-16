@@ -268,7 +268,12 @@ test('Lesson/Course draft envelopes document source language, import coordinates
   assert.equal(overrides.additionalProperties, false);
   assert.deepEqual(Object.keys(overrides.properties).sort(), ['content', 'locale', 'params']);
   assert.equal(overrides.properties.content.properties.items.type, 'object');
-  assert.equal(overrides.$defs.buildPatch.properties.questions.type, 'object');
+  assert.equal(Object.hasOwn(overrides.$defs.buildPatch.properties, 'questions'), false);
+  assert.equal(Object.hasOwn(overrides.$defs.buildPatch.properties, 'flashcards'), false);
+  const courseScaffold = JSON.parse(docs['course.scaffold.schema.json']);
+  const nested = courseScaffold.$defs.__overrides.$defs.buildPatch.properties;
+  assert.equal(Object.hasOwn(nested, 'questions'), false);
+  assert.equal(Object.hasOwn(nested, 'flashcards'), false);
   assert(!Object.hasOwn(overrides.properties, 'operations'));
   assert(JSON.stringify(course).includes('"source"'));
 });
