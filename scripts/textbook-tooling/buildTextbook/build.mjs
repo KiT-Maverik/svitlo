@@ -84,6 +84,9 @@ if (hasScenes && pkg.scripts?.['content:check:scenes']) {
   run(process.execPath, [join(repo, 'scripts/textbook-tooling/generateScenes/generate-scenes.mjs'), '--check'], root);
 }
 
+const assessmentBank = filesUnder(join(root, 'data/lessons')).some(name =>
+  /^[0-9a-f]\\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\\/(?:questions|flashcards)\\/index\\.ts$/.test(name),
+);
 // Before modifying generated content or the distribution, validate every
 // effective Lesson/Course media reference in the requested package.
 try {
@@ -94,6 +97,13 @@ for (const [source, generator] of [
 ]) {
   if (!authored(source)) continue;
   run(process.execPath, [generator, '--package', packageDirectory, '--preflight', ...(mediaMode === 'draft' ? ['--draft'] : [])]);
+}
+if (assessmentBank) {
+  run(process.execPath, [
+    'shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.mjs',
+    '--package', packageDirectory, '--kind', 'all', '--preflight',
+    ...(mediaMode === 'draft' ? ['--draft'] : []),
+  ]);
 }
 mkdirSync(resources, { recursive: true });
 const common = {
@@ -185,9 +195,6 @@ for (const [source, generator, staged, target] of [
 }
 // Stage independently authored Question/Flashcard resources beside (never inside)
 // Lesson Props. The static manifest and Publish CLI own their portable URLs.
-const assessmentBank = filesUnder(join(root, 'data/lessons')).some(name =>
-  /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/(?:questions|flashcards)\/index\.ts$/.test(name),
-);
 if (assessmentBank) {
   run(process.execPath, [
     'shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.mjs',
@@ -196,6 +203,7 @@ if (assessmentBank) {
     '--kind',
     'all',
     '--write',
+    ...(mediaMode === 'draft' ? ['--draft'] : []),
   ]);
   const generatedAssessmentRoot = join(root, 'generated/assessments');
   const destination = join(resources, 'data/lessons');
