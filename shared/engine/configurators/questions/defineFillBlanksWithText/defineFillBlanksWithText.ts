@@ -105,8 +105,8 @@ export const defineFillBlanksWithText = <
       };
   } & ConfigWithLanguages<Question_FillBlanksWithText_Config, Languages>,
 ) => {
-  validate(config);
-  const authored = cloneJson(metadataSchema.parse(config));
+  const { content: _content, ...metadataInput } = config;
+  const authored = cloneJson(metadataInput);
   const { id, type } = authored;
   const slug = config.slug;
   const copyMetadata = () => cloneJson(authored);
@@ -220,6 +220,7 @@ export const defineFillBlanksWithText = <
     options: PublicationLanguageOptions<Languages>,
   ): QuestionResourcePublication<Question_FillBlanksWithText_Props> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyMetadata(), content: initialContent });
     const metadata = copyMetadata();
     const own = ownProps(metadata, languages);
     const common = resolveCommonContent(initialContent, languages);
@@ -248,6 +249,7 @@ export const defineFillBlanksWithText = <
   ): QuestionOverridePublication<Question_FillBlanksWithText_Props> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyMetadata(), content: initialContent });
       ensureQuestionPatchShape(patch);
       const metadataPatch = fillBlanksWithText_Override_Config_Schema.parse({
         ...(patch.params !== undefined ? { params: patch.params } : {}),

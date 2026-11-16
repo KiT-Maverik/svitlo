@@ -133,23 +133,28 @@ describe('Configurators', () => {
         });
         assert.equal(withQuiz.build.props({ languages: ['en'] }).base.section[1]?.type, 'quiz');
         assert.equal(withRecall.build.props({ languages: ['en'] }).base.section[1]?.type, 'flashcards');
+        assert.deepEqual(quiz.build.props({ languages: ['en'] }).base.params.selection, {
+          mode: 'all',
+          questionIds: [id('64')],
+        });
+        assert.deepEqual(recall.build.props({ languages: ['en'] }).base.params.selection, { flashcardIds: [id('65')] });
         assert.deepEqual(
-          quiz.build.props({ languages: ['en'] }).base.params.selection,
-          { mode: 'all', questionIds: [id('64')] },
-        );
-        assert.deepEqual(
-          recall.build.props({ languages: ['en'] }).base.params.selection,
-          { flashcardIds: [id('65')] },
-        );
-        assert.deepEqual(
-          lesson.build.overrides(
-            { section: { additionalItems: { banklessQuiz: quiz }, order: ['intro', 'banklessQuiz'] } },
-            { languages: ['en'] },
-          ).base.section?.map(item => item.slug),
+          lesson.build
+            .overrides(
+              { section: { additionalItems: { banklessQuiz: quiz }, order: ['intro', 'banklessQuiz'] } },
+              { languages: ['en'] },
+            )
+            .base.section?.map(item => item.slug),
           ['intro', 'banklessQuiz'],
         );
-        assert.throws(() => lesson.build.overrides({ questions: {} } as never, { languages: ['en'] }), /Unknown Lesson override field/);
-        assert.throws(() => lesson.build.overrides({ flashcards: {} } as never, { languages: ['en'] }), /Unknown Lesson override field/);
+        assert.throws(
+          () => lesson.build.overrides({ questions: {} } as never, { languages: ['en'] }),
+          /Unknown Lesson override field/,
+        );
+        assert.throws(
+          () => lesson.build.overrides({ flashcards: {} } as never, { languages: ['en'] }),
+          /Unknown Lesson override field/,
+        );
         assert.equal(
           lesson_Config_Schema.safeParse({ ...input, questions: {} }).success,
           false,
@@ -345,7 +350,7 @@ describe('Configurators', () => {
               programId: id('04'),
               locale: { title: 'Legacy' },
               section: { items: { intro: section }, order: ['intro'] },
-            } as never),
+            } as never).build.props({ languages: ['en'] }),
           /programId/,
         );
       });
@@ -365,7 +370,7 @@ describe('Configurators', () => {
               },
               locale: { title: 'Wrong' },
               section: { items: { wrongKey: section }, order: ['wrongKey'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /matching .* configurator/,
         );
       });
@@ -384,14 +389,13 @@ describe('Configurators', () => {
           locale: { title: { en: 'Quiz required', uk: 'Квіз обов’язковий' } },
         };
 
-        assert.throws(
-          () =>
-            defineLesson({
-              ...lessonInput,
-              section: { items: { intro: section }, order: ['intro'] },
-            }),
-          /at least one enabled Quiz/,
-        );
+        const deferred = defineLesson({
+          ...lessonInput,
+          section: { items: { intro: section }, order: ['intro'] },
+        });
+        assert.equal(deferred.slug, 'quizRequiredLesson');
+        assert.throws(() => deferred.build.props({ languages: ['en', 'uk'] }), /at least one enabled Quiz/);
+        assert.throws(() => deferred.build.overrides({}, { languages: ['en', 'uk'] }), /at least one enabled Quiz/);
 
         const quiz = defineQuizSection<'knowledgeQuiz', {}, ['en', 'uk']>({
           id: id('08'),
@@ -465,7 +469,7 @@ describe('Configurators', () => {
             defineLesson({
               ...lessonInput,
               section: { items: { disabledQuiz }, order: ['disabledQuiz'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /at least one enabled Quiz/,
         );
       });

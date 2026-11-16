@@ -166,11 +166,11 @@ export function defineLesson<
     section: { items: Sections & ChildrenSupporting<Languages, Sections>; order: string[] };
   },
 ) {
-  validate(config as unknown as Lesson_Config);
   const metadataSchema = lesson_Config_Schema.omit({
     section: true,
   });
-  const authored = structuredClone(metadataSchema.parse(Object.fromEntries(Object.entries(config).filter(([key]) => key !== 'section'))));
+  const { section: _section, ...metadataInput } = config;
+  const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type, slug } = authored;
   const initialSections: Sections = { ...config.section.items };
@@ -224,17 +224,14 @@ export function defineLesson<
     return { bases, locales };
   };
 
-  const addLocalizedArray = (
-    files: Files,
-    key: 'section',
-    values: ReturnType<typeof buildOrdered>['locales'],
-  ) => {
+  const addLocalizedArray = (files: Files, key: 'section', values: ReturnType<typeof buildOrdered>['locales']) => {
     for (const [code, children] of Object.entries(values)) {
       (files[code as LanguageCode] ??= {})[key] = children as never;
     }
   };
   const props = (options: PublicationLanguageOptions<Languages>): Publication<Lesson_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } });
     const own = copyAuthored();
     for (const code of languages) {
       if (!own.params.languages.includes(code))
@@ -336,6 +333,7 @@ export function defineLesson<
   ): Publication<OverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } });
       for (const code of languages) {
         if (!authored.params.languages.includes(code))
           throw new Error('Lesson does not support publication language: ' + code);

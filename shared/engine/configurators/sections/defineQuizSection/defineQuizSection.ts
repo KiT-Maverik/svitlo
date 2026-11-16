@@ -173,10 +173,10 @@ export const defineQuizSection = <
     content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
   } & ConfigWithLanguages<QuizSection_Config, Languages>,
 ) => {
-  validate(config);
   // Metadata is copied; children hold independent, immutable authoring snapshots.
   const metadataSchema = quizSection_Config_Schema.omit({ content: true });
-  const authored = structuredClone(metadataSchema.parse(config));
+  const { content: _content, ...metadataInput } = config;
+  const authored: Omit<QuizSection_Config, 'content'> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type, slug } = authored;
   const initialItems: Items = { ...config.content.items };
@@ -242,6 +242,7 @@ export const defineQuizSection = <
 
   const props = (options: PublicationLanguageOptions<Languages>): Publication<QuizSection_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
     const children = buildContent(initialItems, initialOrder, languages);
@@ -272,6 +273,7 @@ export const defineQuizSection = <
   ): Publication<OverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
       if (!isRecord(patch)) throw new Error('Expected an overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'content'].includes(key)) {

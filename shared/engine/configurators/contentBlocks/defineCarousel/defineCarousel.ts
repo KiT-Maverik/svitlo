@@ -104,9 +104,9 @@ export const defineCarousel = <
     slides: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
   } & ConfigWithLanguages<ContentBlock_Carousel_Config, Languages>,
 ) => {
-  validate(config);
   const metadataSchema = carousel_Config_Schema.omit({ slides: true });
-  const authored = metadataSchema.parse(config);
+  const { slides: _slides, ...metadataInput } = config;
+  const authored: Omit<ContentBlock_Carousel_Config, 'slides'> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
@@ -137,28 +137,28 @@ export const defineCarousel = <
     base: ContentBlock_Carousel_SlideProps[] | undefined;
     locale: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideProps[]>>;
   } => {
-    const entries = order.map(key => {
-      const slide = items[key];
-      const resource = slide.build.props({ languages });
-      const patch = Object.hasOwn(patches, key)
-        ? (slide.build.overrides as (patch: never, options: PublicationLanguageOptions) => SlidePatch)(
-            patches[key] as never,
-            { languages },
-          )
-        : undefined;
-      return { resource, patch };
-    }).filter(({ resource, patch }) => {
-      // Disabled children are absent from resolved Carousel Props, like other nested
-      // ContentBlocks. Preserve the authored collection and its order unchanged.
-      const effective = mergeForValidation(resource.base, patch?.base ?? {});
-      return effective.params.disabled !== true;
-    });
+    const entries = order
+      .map(key => {
+        const slide = items[key];
+        const resource = slide.build.props({ languages });
+        const patch = Object.hasOwn(patches, key)
+          ? (slide.build.overrides as (patch: never, options: PublicationLanguageOptions) => SlidePatch)(
+              patches[key] as never,
+              { languages },
+            )
+          : undefined;
+        return { resource, patch };
+      })
+      .filter(({ resource, patch }) => {
+        // Disabled children are absent from resolved Carousel Props, like other nested
+        // ContentBlocks. Preserve the authored collection and its order unchanged.
+        const effective = mergeForValidation(resource.base, patch?.base ?? {});
+        return effective.params.disabled !== true;
+      });
     if (!entries.length) throw new Error('At least one active Carousel slide is required');
 
     const arraySchema = z.array(carousel_Slide_Props_Schema).min(1);
-    const invariant = entries.map(({ resource, patch }) =>
-      mergeForValidation(resource.base, patch?.base ?? {}),
-    );
+    const invariant = entries.map(({ resource, patch }) => mergeForValidation(resource.base, patch?.base ?? {}));
     const parsedInvariant = arraySchema.safeParse(invariant);
 
     const translatedLanguages = languages.filter(language =>
@@ -190,8 +190,8 @@ export const defineCarousel = <
 
   const base = {
     id,
-    type,
     slug,
+    type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
@@ -200,6 +200,7 @@ export const defineCarousel = <
     options: PublicationLanguageOptions<Languages>,
   ): CarouselPublication<ContentBlock_Carousel_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyAuthored(), slides: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);
     const built = buildSlides(initialItems, initialOrder, languages);
@@ -240,6 +241,7 @@ export const defineCarousel = <
   ): CarouselPublication<CarouselOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyAuthored(), slides: { items: initialItems, order: initialOrder } });
       if (!isRecord(patch)) throw new Error('Expected Carousel overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'slides'].includes(key)) {
