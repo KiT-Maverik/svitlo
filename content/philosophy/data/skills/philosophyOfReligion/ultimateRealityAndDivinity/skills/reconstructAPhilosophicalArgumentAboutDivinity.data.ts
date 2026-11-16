@@ -5,6 +5,7 @@ export const reconstructAPhilosophicalArgumentAboutDivinity_Skill_Data = defineS
   id: '986ee53c-2f08-4f41-939f-8f8c6f704c74',
   name: {
     en: 'Reconstruct a philosophical argument about divinity',
+    it: 'Ricostruire un\'argomentazione filosofica sulla divinità',
     zh: '重构关于神性的哲学论证',
     hi: 'दिव्यता के बारे में दार्शनिक तर्क का पुनर्निर्माण',
     es: 'Reconstruir un argumento filosófico sobre la divinidad',
@@ -39,6 +40,7 @@ export const reconstructAPhilosophicalArgumentAboutDivinity_Skill_Data = defineS
       'Identify premises and conclusion in a theistic, atheistic, or agnostic argument without treating the position as settled by its name.',
     frontend: {
       en: 'Identify the reasons offered in an argument for or against the divine.',
+      it: 'Individua premesse e conclusioni di argomentazioni teistiche, ateistiche o agnostiche sulla divinità.',
       zh: '找出支持或反对神性存在的论证中所提出的理由。',
       hi: 'दिव्यता के पक्ष या विपक्ष में दिए गए तर्क के आधारों की पहचान करें।',
       es: 'Identifica las razones presentadas en un argumento a favor o en contra de lo divino.',

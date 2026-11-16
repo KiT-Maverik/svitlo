@@ -5,6 +5,7 @@ export const distinguishPersonalIdentityFromSimilarity_Skill_Data = defineSkill(
   id: '0e6e491f-28ff-4a4d-a842-42c8e501365a',
   name: {
     en: 'Distinguish personal identity from similarity',
+    it: 'Distinguere identità personale e somiglianza',
     zh: '区分个人同一性与相似性',
     hi: 'व्यक्तिगत पहचान और समानता में अंतर करना',
     es: 'Distinguir identidad personal de semejanza',
@@ -39,6 +40,7 @@ export const distinguishPersonalIdentityFromSimilarity_Skill_Data = defineSkill(
       'Explain why sharing a personality or appearance is not enough to establish that two persons are numerically identical.',
     frontend: {
       en: 'Recognize why two similar people are not necessarily the same individual.',
+      it: 'Riconosci perché due persone simili non siano necessariamente lo stesso individuo.',
       zh: '理解为什么两个相似的人不一定是同一个人。',
       hi: 'समझें कि दो मिलते-जुलते लोग जरूरी नहीं कि वही एक व्यक्ति हों।',
       es: 'Comprende por qué dos personas parecidas no son necesariamente la misma persona.',

@@ -5,6 +5,7 @@ export const analyzeMathematicalProofAsJustification_Skill_Data = defineSkill({
   id: 'a1842a3f-58a0-43c9-8f30-ad2d104c050a',
   name: {
     en: 'Analyze mathematical proof as justification',
+    it: 'Analizzare la dimostrazione matematica come giustificazione',
     zh: '分析数学证明的证成作用',
     hi: 'औचित्य के रूप में गणितीय प्रमाण का विश्लेषण',
     es: 'Analizar la demostración matemática como justificación',
@@ -39,6 +40,7 @@ export const analyzeMathematicalProofAsJustification_Skill_Data = defineSkill({
       "Examine why deductive proof has a distinctive epistemic role in mathematics, distinguishing formal derivability from experimental confirmation and acknowledging debates about proof's explanatory value.",
     frontend: {
       en: 'Explore why mathematical proof differs from evidence gathered through experiments.',
+      it: 'Esplora perché una dimostrazione matematica differisca dalle prove raccolte tramite esperimenti.',
       zh: '探索数学证明为何不同于实验收集的证据。',
       hi: 'जानें कि गणितीय प्रमाण प्रयोगों से प्राप्त साक्ष्य से क्यों भिन्न है।',
       es: 'Explora por qué una demostración matemática difiere de las pruebas obtenidas mediante experimentos.',

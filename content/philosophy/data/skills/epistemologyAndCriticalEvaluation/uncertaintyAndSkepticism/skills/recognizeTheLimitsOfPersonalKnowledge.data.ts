@@ -5,6 +5,7 @@ export const recognizeTheLimitsOfPersonalKnowledge_Skill_Data = defineSkill({
   id: '0987f8e8-aecb-46a7-aad2-2ac5bf179bf9',
   name: {
     en: 'Recognize the limits of personal knowledge',
+    it: 'Riconoscere i limiti della propria conoscenza',
     zh: '认识个人知识的局限',
     hi: 'अपने ज्ञान की सीमाएँ पहचानें',
     es: 'Reconocer los límites del conocimiento personal',
@@ -39,6 +40,7 @@ export const recognizeTheLimitsOfPersonalKnowledge_Skill_Data = defineSkill({
       'Differentiate what one has observed, inferred, learned from others, or cannot currently establish.',
     frontend: {
       en: 'Recognize the difference between what you observed and what you only inferred.',
+      it: 'Riconosci la differenza tra ciò che hai osservato e ciò che hai soltanto dedotto.',
       zh: '区分你亲眼观察到的与只是推断出来的内容。',
       hi: 'आपने जो स्वयं देखा है और जो केवल अनुमान लगाया है, उनमें अंतर करें।',
       es: 'Distingue entre lo que observaste directamente y lo que solo inferiste.',

@@ -5,6 +5,7 @@ export const evaluatePrivacyAsAnEthicalValue_Skill_Data = defineSkill({
   id: '095065ea-2168-4aff-a215-4694146a8a77',
   name: {
     en: 'Evaluate privacy as an ethical value',
+    it: 'Valutare la riservatezza come valore etico',
     zh: '将隐私作为伦理价值加以评估',
     hi: 'निजता का नैतिक मूल्य के रूप में मूल्यांकन',
     es: 'Evaluar la privacidad como valor ético',
@@ -39,6 +40,7 @@ export const evaluatePrivacyAsAnEthicalValue_Skill_Data = defineSkill({
       'Reason about informational control, trust, and harms of disclosure beyond compliance with a particular law.',
     frontend: {
       en: 'Consider why privacy matters even beyond legal requirements.',
+      it: 'Considera perché la riservatezza sia importante anche al di là degli obblighi di legge.',
       zh: '思考为什么即使法律没有要求，隐私仍然重要。',
       hi: 'विचार करें कि कानूनी आवश्यकताओं से परे भी निजता क्यों महत्वपूर्ण है।',
       es: 'Considera por qué la privacidad importa incluso más allá de las exigencias legales.',

@@ -5,6 +5,7 @@ export const analyzeMathematicalStructuralism_Skill_Data = defineSkill({
   id: '28f83330-11da-4242-887d-173ab239f7be',
   name: {
     en: 'Analyze mathematical structuralism',
+    it: 'Analizzare lo strutturalismo matematico',
     zh: '分析数学结构主义',
     hi: 'गणितीय संरचनावाद का विश्लेषण',
     es: 'Analizar el estructuralismo matemático',
@@ -39,6 +40,7 @@ export const analyzeMathematicalStructuralism_Skill_Data = defineSkill({
       'Evaluate the claim that mathematical objects are understood through positions and relations in structures rather than through individually identifying intrinsic properties.',
     frontend: {
       en: 'Explore whether mathematical objects are best understood by their relationships.',
+      it: 'Esplora se gli oggetti matematici si comprendano meglio attraverso le loro relazioni.',
       zh: '探索数学对象是否最好通过彼此的关系来理解。',
       hi: 'जानें कि गणितीय वस्तुओं को उनके संबंधों के आधार पर समझना बेहतर है या नहीं।',
       es: 'Explora si los objetos matemáticos se comprenden mejor por sus relaciones.',

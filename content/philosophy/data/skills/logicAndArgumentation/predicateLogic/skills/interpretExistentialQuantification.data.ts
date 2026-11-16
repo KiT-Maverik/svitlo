@@ -5,6 +5,7 @@ export const interpretExistentialQuantification_Skill_Data = defineSkill({
   id: 'be241204-a754-44b7-94bd-ee3afedf0eaa',
   name: {
     en: 'Interpret existential quantification',
+    it: 'Interpretare la quantificazione esistenziale',
     zh: '理解存在量化',
     hi: 'अस्तित्वात्मक परिमाणीकरण की व्याख्या',
     es: 'Interpretar la cuantificación existencial',
@@ -39,6 +40,7 @@ export const interpretExistentialQuantification_Skill_Data = defineSkill({
       'Determine what it means for at least one element of a specified domain to satisfy a property, without implying uniqueness.',
     frontend: {
       en: "Understand how 'there exists' means at least one matching example.",
+      it: 'Comprendi che «esiste» indica almeno un caso che soddisfa la condizione.',
       zh: '理解“存在”表示至少有一个符合条件的例子。',
       hi: "समझें कि 'अस्तित्व है' का अर्थ कम से कम एक उपयुक्त उदाहरण होना है।",
       es: "Comprende que 'existe' significa que hay al menos un ejemplo que cumple la condición.",

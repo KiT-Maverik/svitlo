@@ -5,6 +5,7 @@ export const analyzeAPersonhoodCriterion_Skill_Data = defineSkill({
   id: 'bd45cdaf-b88e-4988-9307-72ca55deb4a3',
   name: {
     en: 'Analyze a personhood criterion',
+    it: 'Analizzare un criterio di essere persona',
     zh: '分析人格资格的判准',
     hi: 'व्यक्ति माने जाने की कसौटी का विश्लेषण',
     es: 'Analizar un criterio de condición de persona',
@@ -39,6 +40,7 @@ export const analyzeAPersonhoodCriterion_Skill_Data = defineSkill({
       'Test a proposed condition of being a person against borderline cases without assigning anyone lesser real-world dignity.',
     frontend: {
       en: 'Test ideas about personhood against difficult cases without denying human dignity.',
+      it: 'Metti alla prova le idee su che cosa significhi essere una persona attraverso casi difficili, senza negare la dignità umana.',
       zh: '用困难案例检验人格资格的标准，同时不否定人的尊严。',
       hi: 'मानवीय गरिमा को नकारे बिना कठिन उदाहरणों से व्यक्ति माने जाने की कसौटियों को परखें।',
       es: 'Pon a prueba criterios sobre quién es persona mediante casos difíciles, sin negar la dignidad humana.',

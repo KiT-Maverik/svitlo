@@ -5,6 +5,7 @@ export const detectAnAdHominemFallacy_Skill_Data = defineSkill({
   id: 'cb327ba8-2a2a-4411-8b3b-bcc5bc51f37c',
   name: {
     en: 'Detect an ad hominem fallacy',
+    it: 'Riconoscere una fallacia ad hominem',
     zh: '识别人身攻击谬误',
     hi: 'व्यक्ति-आक्रमण कुतर्क पहचानना',
     es: 'Detectar una falacia ad hominem',
@@ -39,6 +40,7 @@ export const detectAnAdHominemFallacy_Skill_Data = defineSkill({
       'Identify when a personal attack substitutes for addressing reasons, while distinguishing relevant credibility evidence from irrelevant insults.',
     frontend: {
       en: 'Recognize when a personal attack replaces relevant reasoning.',
+      it: 'Riconosci quando un attacco personale sostituisce un ragionamento pertinente.',
       zh: '识别以人身攻击取代相关理由的情况。',
       hi: 'पहचानें कि कब किसी व्यक्ति पर हमला प्रासंगिक तर्क की जगह ले लेता है।',
       es: 'Reconoce cuándo un ataque personal sustituye al razonamiento pertinente.',

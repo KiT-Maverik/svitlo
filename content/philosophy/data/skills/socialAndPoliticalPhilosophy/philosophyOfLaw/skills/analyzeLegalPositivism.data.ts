@@ -5,6 +5,7 @@ export const analyzeLegalPositivism_Skill_Data = defineSkill({
   id: '9e79e11b-eef6-461d-8d1a-d816ae4891d5',
   name: {
     en: 'Analyze legal positivism',
+    it: 'Analizzare il positivismo giuridico',
     zh: '分析法律实证主义',
     hi: 'विधिक प्रत्यक्षवाद का विश्लेषण',
     es: 'Analizar el positivismo jurídico',
@@ -39,6 +40,7 @@ export const analyzeLegalPositivism_Skill_Data = defineSkill({
       'Evaluate accounts that identify valid law through social sources or institutional practices rather than making moral correctness a necessary condition of legal validity.',
     frontend: {
       en: 'Examine the view that legal validity depends on social sources rather than moral merit.',
+      it: 'Esamina la posizione secondo cui la validità di una norma deriva dalle fonti sociali, non dal suo valore morale.',
       zh: '研究法律效力取决于社会来源而非道德优劣的观点。',
       hi: 'जाँचो कि कानून की वैधता नैतिक अच्छाई के बजाय सामाजिक स्रोतों पर आधारित है, इस मत का क्या अर्थ है।',
       es: 'Examina la idea de que la validez del derecho depende de fuentes sociales y no de su mérito moral.',

@@ -5,6 +5,7 @@ export const detectAStrawManArgument_Skill_Data = defineSkill({
   id: '9ffb1b1c-5d0e-48bc-a6bd-3581025cf6a7',
   name: {
     en: 'Detect a straw-man argument',
+    it: 'Riconoscere l\'argomento dell\'uomo di paglia',
     zh: '识别稻草人论证',
     hi: 'पुतला-तर्क की पहचान',
     es: 'Detectar un argumento del hombre de paja',
@@ -39,6 +40,7 @@ export const detectAStrawManArgument_Skill_Data = defineSkill({
       'Show where a position is distorted into an easier target and recover the actual view before evaluating it.',
     frontend: {
       en: "Notice when someone's position is distorted into an easier argument to attack.",
+      it: 'Nota quando la posizione di qualcuno viene distorta per renderla più facile da attaccare.',
       zh: '注意某人的真实立场何时被歪曲成更容易攻击的版本。',
       hi: 'पहचानें कि कब किसी के विचार को तोड़-मरोड़कर आसान निशाना बनाया जाता है।',
       es: 'Detecta cuando se distorsiona la postura de alguien para atacarla más fácilmente.',

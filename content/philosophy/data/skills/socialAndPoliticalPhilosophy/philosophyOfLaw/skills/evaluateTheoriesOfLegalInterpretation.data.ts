@@ -5,6 +5,7 @@ export const evaluateTheoriesOfLegalInterpretation_Skill_Data = defineSkill({
   id: '3e893fb8-15d1-42a7-8ca3-a320536da219',
   name: {
     en: 'Evaluate theories of legal interpretation',
+    it: 'Valutare le teorie dell\'interpretazione giuridica',
     zh: '评估法律解释理论',
     hi: 'कानूनी व्याख्या के सिद्धांतों का मूल्यांकन',
     es: 'Evaluar teorías de interpretación jurídica',
@@ -39,6 +40,7 @@ export const evaluateTheoriesOfLegalInterpretation_Skill_Data = defineSkill({
       'Assess how text, legislative purpose, precedent, and institutional role support competing interpretations of a legal provision without deciding a real legal dispute.',
     frontend: {
       en: 'Consider how text, purpose and precedent affect interpretations of a legal rule.',
+      it: 'Considera come testo, finalità e precedenti influenzino l\'interpretazione di una norma.',
       zh: '思考文本、立法目的和判例如何影响对法律规则的解释。',
       hi: 'विचार करो कि शब्द, उद्देश्य और पूर्व फैसले कानूनी नियम की व्याख्या को कैसे प्रभावित करते हैं।',
       es: 'Considera cómo el texto, la finalidad y los precedentes influyen en la interpretación de una norma jurídica.',

@@ -5,6 +5,7 @@ export const distinguishAPhilosophicalProblemFromAnExample_Skill_Data = defineSk
   id: '1daa7dab-287b-44eb-a880-531f09cbd36c',
   name: {
     en: 'Distinguish a philosophical problem from an example',
+    it: 'Distinguere un problema filosofico da un esempio',
     zh: '区分哲学问题与例子',
     hi: 'दार्शनिक समस्या और उदाहरण में अंतर',
     es: 'Distinguir un problema filosófico de un ejemplo',
@@ -39,6 +40,7 @@ export const distinguishAPhilosophicalProblemFromAnExample_Skill_Data = defineSk
       'Separate the general issue, such as whether promises create obligations, from the particular story used to make it vivid.',
     frontend: {
       en: 'Distinguish a general philosophical issue from a story illustrating it.',
+      it: 'Distingui una questione filosofica generale da un racconto che la illustra.',
       zh: '区分一般性的哲学问题与用来说明它的具体故事。',
       hi: 'सामान्य दार्शनिक समस्या को उसे स्पष्ट करने वाली कहानी से अलग पहचानें।',
       es: 'Distingue una cuestión filosófica general de la historia que sirve para ilustrarla.',

@@ -5,6 +5,7 @@ export const evaluateACounterfactualClaim_Skill_Data = defineSkill({
   id: '06b88a4b-f514-4fbc-9bba-80c1feb82b81',
   name: {
     en: 'Evaluate a counterfactual claim',
+    it: 'Valutare un\'affermazione controfattuale',
     zh: '评估反事实主张',
     hi: 'प्रतिवास्तविक दावे का मूल्यांकन',
     es: 'Evaluar una afirmación contrafáctica',
@@ -39,6 +40,7 @@ export const evaluateACounterfactualClaim_Skill_Data = defineSkill({
       'Examine what would follow if specified conditions had differed while keeping relevant background assumptions coherent.',
     frontend: {
       en: 'Assess what might follow under an imagined alternative set of conditions.',
+      it: 'Valuta che cosa potrebbe seguire in un insieme alternativo e immaginato di condizioni.',
       zh: '考察在假想的不同条件下可能会出现什么结果。',
       hi: 'कल्पना करें कि परिस्थितियाँ अलग होतीं तो क्या परिणाम निकलते।',
       es: 'Evalúa qué podría suceder si las condiciones fueran distintas de las reales.',

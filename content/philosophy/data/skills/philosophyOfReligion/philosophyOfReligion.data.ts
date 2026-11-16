@@ -9,6 +9,7 @@ export const philosophyOfReligion_SkillDomain_Data = defineSkillDomain({
   id: '17d7f442-f9b6-455b-88b1-4a6cdc54398c',
   title: {
     en: 'Philosophy of Religion',
+    it: 'Filosofia della religione',
     zh: '宗教哲学',
     hi: 'धर्म का दर्शन',
     es: 'Filosofía de la religión',
@@ -51,6 +52,7 @@ export const philosophyOfReligion_SkillDomain_Data = defineSkillDomain({
       'Reasoned inquiry into religious and nonreligious worldviews considers ultimate explanations, sources of belief, conceptions of divinity, and coexistence under pluralism. This domain evaluates arguments without prescribing worship, faith, atheism, or other personal commitments.',
     frontend: {
       en: 'Explore arguments about religious and nonreligious worldviews without prescribing belief.',
+      it: 'Esplora argomentazioni sulle visioni del mondo religiose e non religiose, senza prescrivere alcuna fede.',
       zh: '探讨宗教与非宗教世界观的相关论证，而不要求接受任何特定信仰。',
       hi: 'किसी विशेष आस्था को अपनाने की अपेक्षा किए बिना धार्मिक और गैर-धार्मिक विश्वदृष्टियों के पक्ष और विपक्ष में तर्कों का अध्ययन करें।',
       es: 'Explora argumentos sobre visiones religiosas y no religiosas del mundo sin imponer creencias.',

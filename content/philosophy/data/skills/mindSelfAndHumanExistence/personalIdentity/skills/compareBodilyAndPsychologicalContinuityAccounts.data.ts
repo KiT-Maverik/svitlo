@@ -5,6 +5,7 @@ export const compareBodilyAndPsychologicalContinuityAccounts_Skill_Data = define
   id: '372796d1-3e4c-47d9-9a9f-f950f5323104',
   name: {
     en: 'Compare bodily and psychological continuity accounts',
+    it: 'Confrontare le teorie della continuità corporea e psicologica',
     zh: '比较身体连续性与心理连续性理论',
     hi: 'शारीरिक और मनोवैज्ञानिक निरंतरता के सिद्धांतों की तुलना',
     es: 'Comparar teorías de continuidad corporal y psicológica',
@@ -38,6 +39,7 @@ export const compareBodilyAndPsychologicalContinuityAccounts_Skill_Data = define
     methodological: 'Assess how different criteria handle change, memory loss, and hypothetical transfer scenarios.',
     frontend: {
       en: 'Compare body-based and psychology-based accounts of personal identity.',
+      it: 'Confronta le concezioni dell\'identità personale basate sul corpo e sulla continuità psicologica.',
       zh: '比较以身体和心理为基础的个人同一性理论。',
       hi: 'व्यक्तिगत पहचान के शारीरिक और मनोवैज्ञानिक आधार वाले सिद्धांतों की तुलना करें।',
       es: 'Compara teorías de identidad personal basadas en el cuerpo y en la psicología.',

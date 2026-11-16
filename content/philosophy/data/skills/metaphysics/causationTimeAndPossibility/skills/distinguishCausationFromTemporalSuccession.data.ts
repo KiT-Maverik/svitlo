@@ -5,6 +5,7 @@ export const distinguishCausationFromTemporalSuccession_Skill_Data = defineSkill
   id: '34a9b327-fce5-4914-b869-b0b74a424cc4',
   name: {
     en: 'Distinguish causation from temporal succession',
+    it: 'Distinguere causalità e successione temporale',
     zh: '区分因果关系与时间先后',
     hi: 'कारणता और समय के क्रम में अंतर करें',
     es: 'Distinguir causalidad de sucesión temporal',
@@ -39,6 +40,7 @@ export const distinguishCausationFromTemporalSuccession_Skill_Data = defineSkill
       'Recognize that one event occurring before another does not itself establish a productive or counterfactual dependence.',
     frontend: {
       en: 'Recognize why an earlier event is not necessarily the cause of a later one.',
+      it: 'Riconosci perché un evento precedente non sia necessariamente la causa di uno successivo.',
       zh: '较早发生的事件不一定是后来事件的原因。',
       hi: 'पहले हुई घटना बाद की घटना का कारण जरूरी नहीं है।',
       es: 'Un suceso anterior no es necesariamente la causa de otro posterior.',

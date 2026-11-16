@@ -12,6 +12,7 @@ export const uncertaintyAndSkepticism_SkillGroup_Data = defineSkillGroup({
   id: 'dd6f875c-0aeb-4987-addc-9f860327a0a2',
   name: {
     en: 'Uncertainty and Skepticism',
+    it: 'Incertezza e scetticismo',
     zh: '不确定性与怀疑论',
     hi: 'अनिश्चितता और संशयवाद',
     es: 'Incertidumbre y escepticismo',
@@ -60,6 +61,7 @@ export const uncertaintyAndSkepticism_SkillGroup_Data = defineSkillGroup({
       'Rational inquiry must accommodate incomplete evidence and the possibility of error without collapsing into indiscriminate doubt.',
     frontend: {
       en: 'Discover how to think responsibly when evidence is incomplete.',
+      it: 'Scopri come ragionare in modo responsabile quando le prove sono incomplete.',
       zh: '了解证据不完整时如何负责任地思考。',
       hi: 'जानें कि साक्ष्य अधूरे होने पर जिम्मेदारी से कैसे सोचें।',
       es: 'Descubre cómo razonar responsablemente cuando las pruebas son incompletas.',

@@ -5,6 +5,7 @@ export const explainRandomAssignment_Skill_Data = defineSkill({
   id: 'b48d17a0-8bc2-4473-b726-c541c66c379c',
   name: {
     en: 'Explain random assignment',
+    it: 'Spiegare l\'assegnazione casuale',
     zh: '解释随机分配',
     hi: 'यादृच्छिक आवंटन समझाएँ',
     es: 'Explicar la asignación aleatoria',
@@ -39,6 +40,7 @@ export const explainRandomAssignment_Skill_Data = defineSkill({
       'Show how allocating participants or units by chance can reduce systematic pre-existing differences between comparison groups.',
     frontend: {
       en: 'Explain how assigning groups by chance can reduce pre-existing differences.',
+      it: 'Spiega come assegnare le persone ai gruppi in modo casuale possa ridurre le differenze preesistenti.',
       zh: '说明随机分组如何减少原本存在的群体差异。',
       hi: 'बताएँ कि प्रतिभागियों को यादृच्छिक रूप से समूहों में बाँटने से पहले से मौजूद अंतर कैसे कम हो सकते हैं।',
       es: 'Explica cómo asignar al azar a las personas a distintos grupos puede reducir las diferencias iniciales.',

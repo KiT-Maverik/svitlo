@@ -5,6 +5,7 @@ export const assessDeductiveValidity_Skill_Data = defineSkill({
   id: '96f9b6c3-b770-4753-aa7b-cdbefddefd0d',
   name: {
     en: 'Assess deductive validity',
+    it: 'Valutare la validità deduttiva',
     zh: '评估演绎有效性',
     hi: 'निगमनात्मक वैधता का मूल्यांकन',
     es: 'Evaluar la validez deductiva',
@@ -39,6 +40,7 @@ export const assessDeductiveValidity_Skill_Data = defineSkill({
       'Determine whether a conclusion must hold if the premises hold, using logical structure rather than agreement with the conclusion.',
     frontend: {
       en: 'Check whether premises could all be true while a conclusion is false.',
+      it: 'Verifica se tutte le premesse possano essere vere mentre la conclusione è falsa.',
       zh: '检查是否可能所有前提都为真而结论却为假。',
       hi: 'जाँचें कि क्या सभी आधार-वाक्य सत्य और निष्कर्ष असत्य हो सकता है।',
       es: 'Comprueba si todas las premisas podrían ser verdaderas y la conclusión falsa.',

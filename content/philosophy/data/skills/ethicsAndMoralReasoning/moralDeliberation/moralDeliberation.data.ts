@@ -13,6 +13,7 @@ export const moralDeliberation_SkillGroup_Data = defineSkillGroup({
   id: '07cfce9b-855e-48cb-92a9-da2cc4e48ca2',
   name: {
     en: 'Moral Deliberation',
+    it: 'Deliberazione morale',
     zh: '道德审议',
     hi: 'नैतिक विवेचना',
     es: 'Deliberación moral',
@@ -63,6 +64,7 @@ export const moralDeliberation_SkillGroup_Data = defineSkillGroup({
       'Difficult cases require identifying who is affected, which reasons conflict, and whether an apparent compromise respects relevant obligations.',
     frontend: {
       en: 'Learn to reason through difficult choices with competing ethical considerations.',
+      it: 'Impara a ragionare su scelte difficili in cui entrano in conflitto diverse considerazioni etiche.',
       zh: '学习在相互冲突的伦理考量之间推理并作出艰难选择。',
       hi: 'परस्पर टकराते नैतिक विचारों के बीच कठिन विकल्पों पर तर्क करना सीखें।',
       es: 'Aprende a razonar ante decisiones difíciles con consideraciones éticas contrapuestas.',

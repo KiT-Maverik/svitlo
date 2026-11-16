@@ -5,6 +5,7 @@ export const analyzeAPhilosophicalArgumentFromAChineseTradition_Skill_Data = def
   id: '2f7424e8-70cd-41e4-a613-4f852732e078',
   name: {
     en: 'Analyze a philosophical argument from a Chinese tradition',
+    it: 'Analizzare un\'argomentazione filosofica di una tradizione cinese',
     zh: '分析中国传统中的哲学论证',
     hi: 'चीनी परंपरा के दार्शनिक तर्क का विश्लेषण',
     es: 'Analizar un argumento de una tradición filosófica china',
@@ -39,6 +40,7 @@ export const analyzeAPhilosophicalArgumentFromAChineseTradition_Skill_Data = def
       'Interpret a position in a specific Chinese philosophical lineage, such as Confucian or Daoist thinking, without conflating them.',
     frontend: {
       en: 'Interpret a philosophical claim from a Chinese tradition in its proper context.',
+      it: 'Interpreta una tesi filosofica di una tradizione cinese nel suo contesto appropriato.',
       zh: '结合适当的背景解释中国哲学传统中的一个主张。',
       hi: 'किसी चीनी दार्शनिक परंपरा के विचार को उसके उचित संदर्भ में समझो।',
       es: 'Interpreta una tesis de una tradición china en su contexto específico.',

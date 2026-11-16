@@ -5,6 +5,7 @@ export const compareDeterminismAndIndeterminism_Skill_Data = defineSkill({
   id: 'f5d50e7e-7faa-414b-b22f-e51b5f3632b8',
   name: {
     en: 'Compare determinism and indeterminism',
+    it: 'Confrontare determinismo e indeterminismo',
     zh: '比较决定论与非决定论',
     hi: 'नियतिवाद और अनियतिवाद की तुलना',
     es: 'Comparar determinismo e indeterminismo',
@@ -39,6 +40,7 @@ export const compareDeterminismAndIndeterminism_Skill_Data = defineSkill({
       'Explain the different claims about how events are determined and why randomness alone does not establish control.',
     frontend: {
       en: 'Compare a fully determined world with one that allows indeterminate events.',
+      it: 'Confronta un mondo completamente determinato con uno in cui siano possibili eventi indeterminati.',
       zh: '比较一切都被决定的世界与容许不确定事件的世界。',
       hi: 'ऐसी दुनिया की तुलना करें जहाँ सब कुछ निर्धारित है, और ऐसी दुनिया से जहाँ अनिश्चित घटनाएँ संभव हैं।',
       es: 'Compara un mundo totalmente determinado con otro donde pueden ocurrir sucesos indeterminados.',

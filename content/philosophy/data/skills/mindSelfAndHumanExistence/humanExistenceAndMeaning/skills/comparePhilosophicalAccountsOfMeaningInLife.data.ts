@@ -5,6 +5,7 @@ export const comparePhilosophicalAccountsOfMeaningInLife_Skill_Data = defineSkil
   id: '43b8e7ab-a1c4-4afc-8875-14172346d91d',
   name: {
     en: 'Compare philosophical accounts of meaning in life',
+    it: 'Confrontare le concezioni filosofiche del senso della vita',
     zh: '比较人生意义的哲学理论',
     hi: 'जीवन के अर्थ के दार्शनिक दृष्टिकोणों की तुलना',
     es: 'Comparar teorías filosóficas del sentido de la vida',
@@ -39,6 +40,7 @@ export const comparePhilosophicalAccountsOfMeaningInLife_Skill_Data = defineSkil
       'Contrast accounts that ground human meaning in relationships, achievement, self-authorship, transcendence, religious commitments, or nonreligious purposes, assessing their philosophical reasons without requiring adherence to any worldview.',
     frontend: {
       en: 'Compare different ideas about what gives human life meaning.',
+      it: 'Confronta idee diverse su ciò che dà significato alla vita umana.',
       zh: '比较关于什么赋予人生意义的不同看法。',
       hi: 'मानव जीवन को अर्थ देने वाली चीजों के बारे में विभिन्न विचारों की तुलना करें।',
       es: 'Compara distintas ideas sobre qué da sentido a la vida humana.',

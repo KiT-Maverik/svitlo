@@ -5,6 +5,7 @@ export const analyzeAPhilosophicalArgumentFromAnIndianTradition_Skill_Data = def
   id: '81f59106-a212-47ec-890e-0ffdbb13fd1d',
   name: {
     en: 'Analyze a philosophical argument from an Indian tradition',
+    it: 'Analizzare un\'argomentazione filosofica di una tradizione indiana',
     zh: '分析印度哲学传统中的论证',
     hi: 'भारतीय दर्शन के तर्क का विश्लेषण',
     es: 'Analizar un argumento de una tradición filosófica india',
@@ -39,6 +40,7 @@ export const analyzeAPhilosophicalArgumentFromAnIndianTradition_Skill_Data = def
       'Identify claims and reasons in a specific Indian philosophical school while preserving its distinctive terms and internal disagreements.',
     frontend: {
       en: 'Explore an argument from a specific Indian philosophical school.',
+      it: 'Esplora un\'argomentazione di una specifica scuola filosofica indiana.',
       zh: '探索某个印度哲学学派提出的论证。',
       hi: 'किसी विशिष्ट भारतीय दार्शनिक विद्यालय के तर्क को समझो।',
       es: 'Explora un argumento de una escuela filosófica india concreta.',

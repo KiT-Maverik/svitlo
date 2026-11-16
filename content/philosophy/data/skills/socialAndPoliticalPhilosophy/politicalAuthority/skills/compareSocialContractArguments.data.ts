@@ -5,6 +5,7 @@ export const compareSocialContractArguments_Skill_Data = defineSkill({
   id: 'dff32b6a-15ca-4d5c-af3f-ecf77a5329c3',
   name: {
     en: 'Compare social contract arguments',
+    it: 'Confrontare argomentazioni contrattualiste',
     zh: '比较社会契约论证',
     hi: 'सामाजिक अनुबंध के तर्कों की तुलना',
     es: 'Comparar argumentos del contrato social',
@@ -39,6 +40,7 @@ export const compareSocialContractArguments_Skill_Data = defineSkill({
       'Explain how alternative accounts use consent, cooperation, security, or fairness to justify political obligations.',
     frontend: {
       en: "Evaluate the reasons offered for public institutions' authority to make rules.",
+      it: 'Confronta come le teorie del contratto sociale giustifichino gli obblighi politici tramite consenso, cooperazione, sicurezza o equità.',
       zh: '评价为公共机构制定规则的权威提出的理由。',
       hi: 'सार्वजनिक संस्थाओं को नियम बनाने का अधिकार क्यों दिया जाए, इसके तर्कों का मूल्यांकन करो।',
       es: 'Evalúa las razones que justifican la autoridad de las instituciones públicas para establecer normas.',

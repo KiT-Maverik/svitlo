@@ -5,6 +5,7 @@ export const compareInterpretationsOfAnArtwork_Skill_Data = defineSkill({
   id: 'fb1e384b-9a03-4ff4-b01e-67c31301c3d7',
   name: {
     en: 'Compare interpretations of an artwork',
+    it: 'Confrontare interpretazioni di un\'opera d\'arte',
     zh: '比较艺术作品的解释',
     hi: 'कलाकृति की व्याख्याओं की तुलना',
     es: 'Comparar interpretaciones de una obra de arte',
@@ -39,6 +40,7 @@ export const compareInterpretationsOfAnArtwork_Skill_Data = defineSkill({
       "Evaluate rival readings by their attention to the work's features and context rather than assuming every reading is equally supported.",
     frontend: {
       en: 'Compare interpretations of an artwork using evidence from its features and history.',
+      it: 'Confronta le interpretazioni di un\'opera usando prove tratte dalle sue caratteristiche e dalla sua storia.',
       zh: '依据作品特点及历史背景比较不同解读。',
       hi: 'कलाकृति की विशेषताओं और इतिहास के प्रमाणों से अलग व्याख्याओं की तुलना करो।',
       es: 'Compara interpretaciones usando pruebas de sus características e historia.',

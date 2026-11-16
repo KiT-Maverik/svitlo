@@ -5,6 +5,7 @@ export const formulateATestableHypothesis_Skill_Data = defineSkill({
   id: '3c558899-7d5b-45eb-a0e8-bfa02feb479f',
   name: {
     en: 'Formulate a testable hypothesis',
+    it: 'Formulare un\'ipotesi verificabile',
     zh: '提出可检验的假设',
     hi: 'परीक्षण योग्य परिकल्पना तैयार करें',
     es: 'Formular una hipótesis comprobable',
@@ -39,6 +40,7 @@ export const formulateATestableHypothesis_Skill_Data = defineSkill({
       'State a possible answer whose empirical implications can be investigated rather than relying on an unfalsifiable restatement.',
     frontend: {
       en: 'Propose an explanation that could be tested against observations.',
+      it: 'Proponi una spiegazione che possa essere messa alla prova mediante osservazioni.',
       zh: '提出一种可以对照观察结果进行检验的解释。',
       hi: 'ऐसी व्याख्या सुझाएँ जिसकी जाँच अवलोकनों से की जा सके।',
       es: 'Propón una explicación que pueda ponerse a prueba mediante observaciones.',

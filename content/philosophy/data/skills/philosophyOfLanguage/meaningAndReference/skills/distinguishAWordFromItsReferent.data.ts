@@ -5,6 +5,7 @@ export const distinguishAWordFromItsReferent_Skill_Data = defineSkill({
   id: 'ba12f3d8-38a5-436e-86c6-8b392f44496b',
   name: {
     en: 'Distinguish a word from its referent',
+    it: 'Distinguere una parola dal suo referente',
     zh: '区分词语与其指称对象',
     hi: 'शब्द और उसके निर्देश्य में भेद',
     es: 'Distinguir una palabra de su referente',
@@ -38,6 +39,7 @@ export const distinguishAWordFromItsReferent_Skill_Data = defineSkill({
     methodological: 'Explain why a linguistic expression and the person, object, or kind it denotes are not identical.',
     frontend: {
       en: 'Distinguish a word from the thing or person it names.',
+      it: 'Distingui una parola dalla cosa o dalla persona che essa nomina.',
       zh: '区分一个词语和它所命名的事物或人。',
       hi: 'शब्द को उस वस्तु या व्यक्ति से अलग पहचानो जिसका वह नाम है।',
       es: 'Distingue una palabra de la cosa o persona que nombra.',

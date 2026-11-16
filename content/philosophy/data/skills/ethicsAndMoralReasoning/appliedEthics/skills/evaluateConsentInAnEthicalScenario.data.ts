@@ -5,6 +5,7 @@ export const evaluateConsentInAnEthicalScenario_Skill_Data = defineSkill({
   id: '6e4f2369-b3fa-4a27-ab2e-9856b757825d',
   name: {
     en: 'Evaluate consent in an ethical scenario',
+    it: 'Valutare il consenso in una situazione etica',
     zh: '评估伦理情境中的同意',
     hi: 'नैतिक परिदृश्य में सहमति का मूल्यांकन',
     es: 'Evaluar el consentimiento en una situación ética',
@@ -39,6 +40,7 @@ export const evaluateConsentInAnEthicalScenario_Skill_Data = defineSkill({
       "Assess whether a decision is adequately informed, voluntary, and within the decision-maker's authority.",
     frontend: {
       en: 'Check whether consent is informed, voluntary and given by the right person.',
+      it: 'Verifica che il consenso sia informato, volontario e prestato dalla persona appropriata.',
       zh: '检查同意是否知情、自愿，并由有权同意的人作出。',
       hi: 'जाँचें कि सहमति जानकारी के आधार पर, स्वेच्छा से और उचित व्यक्ति द्वारा दी गई है या नहीं।',
       es: 'Comprueba si el consentimiento es informado, voluntario y otorgado por quien corresponde.',

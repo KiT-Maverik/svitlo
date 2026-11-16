@@ -12,6 +12,7 @@ export const causationTimeAndPossibility_SkillGroup_Data = defineSkillGroup({
   id: '0a0eec2f-b437-468f-9aad-d19d755aeac5',
   name: {
     en: 'Causation, Time, and Possibility',
+    it: 'Causalità, tempo e possibilità',
     zh: '因果、时间与可能性',
     hi: 'कारणता, समय और संभावना',
     es: 'Causalidad, tiempo y posibilidad',
@@ -60,6 +61,7 @@ export const causationTimeAndPossibility_SkillGroup_Data = defineSkillGroup({
       'Metaphysical inquiry asks what causal dependence means and how temporal or modal claims relate beyond specific measurements.',
     frontend: {
       en: 'Examine philosophical ideas about cause, time and what could have happened.',
+      it: 'Esamina le idee filosofiche sulle cause, sul tempo e su ciò che sarebbe potuto accadere.',
       zh: '探索关于原因、时间和本可能发生之事的哲学思想。',
       hi: 'कारण, समय और क्या हो सकता था, इनसे जुड़े दार्शनिक विचार देखें।',
       es: 'Examina ideas filosóficas sobre causas, tiempo y lo que podría haber sucedido.',

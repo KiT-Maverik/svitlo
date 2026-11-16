@@ -12,6 +12,7 @@ export const languageTruthAndPower_SkillGroup_Data = defineSkillGroup({
   id: 'c837574a-91d4-4909-9266-63a3f0511575',
   name: {
     en: 'Language, Truth, and Power',
+    it: 'Linguaggio, verità e potere',
     zh: '语言、真理与权力',
     hi: 'भाषा, सत्य और सत्ता',
     es: 'Lenguaje, verdad y poder',
@@ -60,6 +61,7 @@ export const languageTruthAndPower_SkillGroup_Data = defineSkillGroup({
       'Descriptive categories, framing, and public speech influence which interpretations appear available. Evaluating their justification differs from explaining psychological persuasion.',
     frontend: {
       en: 'Explore how language expresses judgments and shapes public discussion.',
+      it: 'Esplora come il linguaggio esprima giudizi e influenzi il dibattito pubblico.',
       zh: '探索语言如何表达判断并影响公共讨论。',
       hi: 'जानो कि भाषा मूल्यांकन कैसे व्यक्त करती है और सार्वजनिक चर्चा को कैसे आकार देती है।',
       es: 'Explora cómo el lenguaje expresa juicios y da forma al debate público.',

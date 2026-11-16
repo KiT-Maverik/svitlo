@@ -5,6 +5,7 @@ export const evaluateEthicalImplicationsOfAutomatedDecisions_Skill_Data = define
   id: 'bc1581c3-3678-4712-8e6c-2aa128551507',
   name: {
     en: 'Evaluate ethical implications of automated decisions',
+    it: 'Valutare le implicazioni etiche delle decisioni automatizzate',
     zh: '评估自动化决策的伦理影响',
     hi: 'स्वचालित निर्णयों के नैतिक प्रभावों का मूल्यांकन',
     es: 'Evaluar implicaciones éticas de decisiones automatizadas',
@@ -39,6 +40,7 @@ export const evaluateEthicalImplicationsOfAutomatedDecisions_Skill_Data = define
       'Assess responsibility, contestability, fairness, and potential harm when an algorithm influences consequential choices.',
     frontend: {
       en: 'Evaluate fairness, accountability and harm in decisions influenced by algorithms.',
+      it: 'Valuta equità, responsabilità e possibili danni nelle decisioni influenzate dagli algoritmi.',
       zh: '评估受算法影响的决策中的公平性、问责性和伤害风险。',
       hi: 'एल्गोरिदम से प्रभावित निर्णयों में निष्पक्षता, जवाबदेही और हानि का मूल्यांकन करें।',
       es: 'Evalúa justicia, rendición de cuentas y daños en decisiones influidas por algoritmos.',

@@ -5,6 +5,7 @@ export const identifySemanticAmbiguity_Skill_Data = defineSkill({
   id: 'ec2e5bd8-cc62-411e-9b9b-c53dc4846d5f',
   name: {
     en: 'Identify semantic ambiguity',
+    it: 'Individuare un\'ambiguità semantica',
     zh: '识别语义歧义',
     hi: 'अर्थगत अस्पष्टता की पहचान',
     es: 'Identificar ambigüedad semántica',
@@ -39,6 +40,7 @@ export const identifySemanticAmbiguity_Skill_Data = defineSkill({
       'Recognize when a sentence admits multiple readings due to a word or syntactic structure rather than simply lacking evidence.',
     frontend: {
       en: 'Find sentences with more than one possible meaning.',
+      it: 'Trova enunciati che ammettono più di un significato possibile.',
       zh: '找出可能具有不止一种意义的句子。',
       hi: 'ऐसे वाक्य खोजो जिनके एक से अधिक अर्थ हो सकते हैं।',
       es: 'Encuentra oraciones con más de un significado posible.',

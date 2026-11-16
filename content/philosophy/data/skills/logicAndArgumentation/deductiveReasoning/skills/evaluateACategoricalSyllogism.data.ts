@@ -5,6 +5,7 @@ export const evaluateACategoricalSyllogism_Skill_Data = defineSkill({
   id: 'beab0d9a-3e61-41c2-8d74-77bb0c0d9bff',
   name: {
     en: 'Evaluate a categorical syllogism',
+    it: 'Valutare un sillogismo categorico',
     zh: '评估直言三段论',
     hi: 'श्रेणीबद्ध न्यायवाक्य का मूल्यांकन',
     es: 'Evaluar un silogismo categórico',
@@ -39,6 +40,7 @@ export const evaluateACategoricalSyllogism_Skill_Data = defineSkill({
       'Examine whether relations among classes support the proposed conclusion, rather than relying on familiar subject matter.',
     frontend: {
       en: 'Determine whether statements about categories logically support a conclusion.',
+      it: 'Determina se affermazioni su determinate categorie sostengano logicamente una conclusione.',
       zh: '判断关于类别的陈述是否在逻辑上支持结论。',
       hi: 'जाँचें कि वर्गों से जुड़े कथन तार्किक रूप से निष्कर्ष का समर्थन करते हैं या नहीं।',
       es: 'Determina si los enunciados sobre categorías respaldan lógicamente una conclusión.',

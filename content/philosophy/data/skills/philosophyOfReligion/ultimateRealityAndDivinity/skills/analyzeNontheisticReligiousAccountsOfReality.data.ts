@@ -5,6 +5,7 @@ export const analyzeNontheisticReligiousAccountsOfReality_Skill_Data = defineSki
   id: 'fe1e9f85-b288-4c70-83e6-6e956e6168bd',
   name: {
     en: 'Analyze nontheistic religious accounts of reality',
+    it: 'Analizzare concezioni religiose non teistiche della realtà',
     zh: '分析非有神论宗教的实在观',
     hi: 'अनिश्वरवादी धार्मिक वास्तविकता-दृष्टियों का विश्लेषण',
     es: 'Analizar concepciones religiosas no teístas de la realidad',
@@ -39,6 +40,7 @@ export const analyzeNontheisticReligiousAccountsOfReality_Skill_Data = defineSki
       'Examine how a particular nontheistic religious tradition understands reality, suffering, liberation, or ultimate truth without incorrectly treating absence of a creator deity as absence of religion.',
     frontend: {
       en: 'Explore religious views that do not depend on belief in a creator deity.',
+      it: 'Esplora visioni religiose che non dipendono dalla fede in una divinità creatrice.',
       zh: '探索不依赖造物主神信仰的宗教观点。',
       hi: 'ऐसे धार्मिक दृष्टिकोणों को समझें जो सृष्टिकर्ता देवता में विश्वास पर निर्भर नहीं हैं।',
       es: 'Explora visiones religiosas que no dependen de creer en una deidad creadora.',

@@ -13,6 +13,7 @@ export const knowledgeAndJustification_SkillGroup_Data = defineSkillGroup({
   id: '4f98fb29-5b82-4274-96bc-1482c64fd6fb',
   name: {
     en: 'Knowledge and Justification',
+    it: 'Conoscenza e giustificazione',
     zh: '知识与证成',
     hi: 'ज्ञान और औचित्य',
     es: 'Conocimiento y justificación',
@@ -63,6 +64,7 @@ export const knowledgeAndJustification_SkillGroup_Data = defineSkillGroup({
       'Belief, truth, evidence, and knowledge have distinct roles in epistemic evaluation. Competing theories of knowledge can disagree about exactly how those roles connect.',
     frontend: {
       en: 'Discover how belief, truth, evidence and knowledge relate but differ.',
+      it: 'Scopri come credenza, verità, prove e conoscenza siano collegate, pur rimanendo concetti distinti.',
       zh: '了解信念、真理、证据和知识如何相互关联又有所不同。',
       hi: 'जानें कि विश्वास, सत्य, प्रमाण और ज्ञान कैसे जुड़े हैं, फिर भी अलग हैं।',
       es: 'Descubre cómo se relacionan y se distinguen la creencia, la verdad, la evidencia y el conocimiento.',

@@ -5,6 +5,7 @@ export const respondToAPhilosophicalObjection_Skill_Data = defineSkill({
   id: '4dcb687e-5763-4c31-9152-dc7752822c9b',
   name: {
     en: 'Respond to a philosophical objection',
+    it: 'Rispondere a un\'obiezione filosofica',
     zh: '回应哲学异议',
     hi: 'दार्शनिक आपत्ति का उत्तर देना',
     es: 'Responder a una objeción filosófica',
@@ -39,6 +40,7 @@ export const respondToAPhilosophicalObjection_Skill_Data = defineSkill({
       "Address the actual challenge to a claim, rather than diverting to the objector's identity or motives.",
     frontend: {
       en: 'Address the substance of an objection instead of attacking its author.',
+      it: 'Affronta il contenuto di un\'obiezione invece di attaccare chi la formula.',
       zh: '回应异议本身的内容，而不是攻击提出异议的人。',
       hi: 'आपत्ति करने वाले व्यक्ति पर हमला करने के बजाय आपत्ति के वास्तविक तर्क का उत्तर दें।',
       es: 'Responde al contenido de una objeción en vez de atacar a quien la plantea.',

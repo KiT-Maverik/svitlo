@@ -11,6 +11,7 @@ export const existenceAndCategories_SkillGroup_Data = defineSkillGroup({
   id: 'c80030d6-098c-420f-8894-ca83b7eb8c6a',
   name: {
     en: 'Existence and Categories',
+    it: 'Esistenza e categorie',
     zh: '存在与范畴',
     hi: 'अस्तित्व और श्रेणियाँ',
     es: 'Existencia y categorías',
@@ -53,6 +54,7 @@ export const existenceAndCategories_SkillGroup_Data = defineSkillGroup({
       'Different theories posit concrete objects, properties, events, or abstract entities; their classification determines what kinds of ontological commitments a claim makes.',
     frontend: {
       en: 'Examine different kinds of things that philosophers consider real.',
+      it: 'Esamina i diversi tipi di entità che i filosofi considerano reali.',
       zh: '考察哲学家认为真实存在的不同事物类型。',
       hi: 'विचार करें कि दार्शनिक किन अलग-अलग प्रकार की वस्तुओं को वास्तविक मानते हैं।',
       es: 'Examina distintos tipos de cosas que los filósofos consideran reales.',

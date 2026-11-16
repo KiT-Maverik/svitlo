@@ -5,6 +5,7 @@ export const analyzeAMetaphysicalParadox_Skill_Data = defineSkill({
   id: '549767ca-09f5-4f1b-a58f-e19070b25b6f',
   name: {
     en: 'Analyze a metaphysical paradox',
+    it: 'Analizzare un paradosso metafisico',
     zh: '分析形而上学悖论',
     hi: 'आधिभौतिक विरोधाभास का विश्लेषण',
     es: 'Analizar una paradoja metafísica',
@@ -39,6 +40,7 @@ export const analyzeAMetaphysicalParadox_Skill_Data = defineSkill({
       'Identify apparently plausible assumptions that generate inconsistent conclusions in a puzzle about reality.',
     frontend: {
       en: 'Uncover conflicting assumptions in puzzles about the nature of reality.',
+      it: 'Individua i presupposti in conflitto nei problemi sulla natura della realtà.',
       zh: '找出关于现实本质的难题中相互冲突的假设。',
       hi: 'वास्तविकता से जुड़ी पहेलियों में टकराती मान्यताओं को खोजें।',
       es: 'Descubre supuestos incompatibles en problemas sobre la naturaleza de la realidad.',

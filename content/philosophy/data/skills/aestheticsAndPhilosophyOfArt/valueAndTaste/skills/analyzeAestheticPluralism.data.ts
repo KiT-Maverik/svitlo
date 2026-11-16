@@ -5,6 +5,7 @@ export const analyzeAestheticPluralism_Skill_Data = defineSkill({
   id: '8109bd2c-0448-49f4-b4aa-d60a744171b9',
   name: {
     en: 'Analyze aesthetic pluralism',
+    it: 'Analizzare il pluralismo estetico',
     zh: '分析审美多元主义',
     hi: 'सौंदर्यात्मक बहुलतावाद का विश्लेषण',
     es: 'Analizar el pluralismo estético',
@@ -39,6 +40,7 @@ export const analyzeAestheticPluralism_Skill_Data = defineSkill({
       'Examine how multiple traditions can sustain meaningful standards without requiring one global ranking of their forms.',
     frontend: {
       en: 'Explore how different artistic traditions can have meaningful standards of value.',
+      it: 'Esplora come diverse tradizioni artistiche possano avere criteri di valore significativi.',
       zh: '探索不同艺术传统如何拥有各自有意义的价值标准。',
       hi: 'जानो कि अलग कला परंपराओं के अपने सार्थक मूल्य मानदंड कैसे हो सकते हैं।',
       es: 'Explora cómo distintas tradiciones artísticas pueden tener criterios de valor significativos.',

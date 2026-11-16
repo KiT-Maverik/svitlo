@@ -11,6 +11,7 @@ export const schoolsAndMovements_SkillGroup_Data = defineSkillGroup({
   id: 'ef8fce1e-df27-4702-9d54-1040f4e0965e',
   name: {
     en: 'Schools and Movements',
+    it: 'Scuole e movimenti',
     zh: '哲学学派与思潮',
     hi: 'दार्शनिक विद्यालय और आंदोलन',
     es: 'Escuelas y movimientos filosóficos',
@@ -58,6 +59,7 @@ export const schoolsAndMovements_SkillGroup_Data = defineSkillGroup({
       'Philosophical movements and schools arise around distinctive approaches to knowledge, reason, liberty, and existence; their boundaries and internal disagreements cannot be reduced to dates alone.',
     frontend: {
       en: 'Discover how different philosophical schools approach shared questions.',
+      it: 'Scopri come diverse scuole filosofiche affrontano domande comuni.',
       zh: '探索不同哲学学派如何处理共同的问题。',
       hi: 'जानो कि विभिन्न दार्शनिक विद्यालय एक जैसे प्रश्नों को कैसे देखते हैं।',
       es: 'Descubre cómo diferentes escuelas filosóficas abordan preguntas comunes.',

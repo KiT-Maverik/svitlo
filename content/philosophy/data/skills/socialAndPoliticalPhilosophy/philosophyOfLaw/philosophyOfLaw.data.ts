@@ -12,6 +12,7 @@ export const philosophyOfLaw_SkillGroup_Data = defineSkillGroup({
   id: '65eb7d82-e6c3-49ed-8af0-60b055994e0b',
   name: {
     en: 'Philosophy of Law',
+    it: 'Filosofia del diritto',
     zh: '法哲学',
     hi: 'विधि दर्शन',
     es: 'Filosofía del derecho',
@@ -60,6 +61,7 @@ export const philosophyOfLaw_SkillGroup_Data = defineSkillGroup({
       "Jurisprudence considers what makes a norm legally valid, why legal institutions claim authority, and how rules should be interpreted. These questions are not limited to any country's current statutes or to political legitimacy in general.",
     frontend: {
       en: 'Explore what makes legal rules authoritative and how they should be interpreted.',
+      it: 'Esplora che cosa conferisca autorità alle norme giuridiche e come debbano essere interpretate.',
       zh: '探索法律规则何以具有权威，以及应如何解释它们。',
       hi: 'जानो कि कानूनी नियमों का अधिकार कहाँ से आता है और उनकी व्याख्या कैसे करनी चाहिए।',
       es: 'Explora qué da autoridad a las normas jurídicas y cómo deben interpretarse.',

@@ -5,6 +5,7 @@ export const evaluateTechnologicalDeterminism_Skill_Data = defineSkill({
   id: 'ce28db1f-a7df-4a52-8b43-51b4c55fe834',
   name: {
     en: 'Evaluate technological determinism',
+    it: 'Valutare il determinismo tecnologico',
     zh: '评估技术决定论',
     hi: 'तकनीकी नियतिवाद का मूल्यांकन',
     es: 'Evaluar el determinismo tecnológico',
@@ -39,6 +40,7 @@ export const evaluateTechnologicalDeterminism_Skill_Data = defineSkill({
       'Assess arguments that technological development determines social arrangements, including objections based on political choice, design, and historical contingency.',
     frontend: {
       en: 'Question whether technological change alone determines how societies develop.',
+      it: 'Metti in discussione l\'idea che il solo cambiamento tecnologico determini lo sviluppo delle società.',
       zh: '质疑技术变化是否单独决定社会的发展方向。',
       hi: 'प्रश्न उठाओ कि क्या केवल तकनीकी बदलाव समाज के विकास को तय कर देता है।',
       es: 'Cuestiona si el cambio tecnológico por sí solo determina cómo se desarrollan las sociedades.',

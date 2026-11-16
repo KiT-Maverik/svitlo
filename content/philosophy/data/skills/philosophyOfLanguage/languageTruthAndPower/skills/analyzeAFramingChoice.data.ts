@@ -5,6 +5,7 @@ export const analyzeAFramingChoice_Skill_Data = defineSkill({
   id: '0a59bbb2-7839-4ef6-a6b8-15ce24292f3d',
   name: {
     en: 'Analyze a framing choice',
+    it: 'Analizzare una scelta di inquadramento linguistico',
     zh: '分析表述框架的选择',
     hi: 'प्रस्तुति के ढाँचे का विश्लेषण',
     es: 'Analizar una elección de encuadre',
@@ -39,6 +40,7 @@ export const analyzeAFramingChoice_Skill_Data = defineSkill({
       'Explain how alternate labels foreground different aspects of one issue and test what evidence each framing leaves out.',
     frontend: {
       en: 'Compare labels that highlight different aspects of the same issue.',
+      it: 'Confronta formulazioni che mettono in risalto aspetti diversi della stessa questione.',
       zh: '比较突出同一问题不同侧面的称谓。',
       hi: 'एक ही मुद्दे के अलग पहलुओं पर ज़ोर देने वाले नामों की तुलना करो।',
       es: 'Compara etiquetas que destacan distintos aspectos del mismo asunto.',

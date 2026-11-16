@@ -5,6 +5,7 @@ export const distinguishPublicReasonsFromPrivatePreferences_Skill_Data = defineS
   id: '737e402a-7f8b-444d-a6b2-00d6842fc53e',
   name: {
     en: 'Distinguish public reasons from private preferences',
+    it: 'Distinguere ragioni pubbliche e preferenze private',
     zh: '区分公共理由与私人偏好',
     hi: 'सार्वजनिक कारणों और निजी पसंद में अंतर',
     es: 'Distinguir razones públicas de preferencias privadas',
@@ -39,6 +40,7 @@ export const distinguishPublicReasonsFromPrivatePreferences_Skill_Data = defineS
       'Identify justifications aimed at principles others can evaluate, rather than asserting that a personal desire must settle collective policy.',
     frontend: {
       en: 'Distinguish public reasons from preferences that others have no reason to share.',
+      it: 'Distingui le ragioni pubbliche dalle preferenze che gli altri non hanno motivo di condividere.',
       zh: '区分可以公开讨论的理由与他人无须认同的个人喜好。',
       hi: 'सभी के सामने जाँचे जा सकने वाले तर्कों को ऐसी निजी पसंद से अलग करो जिन्हें दूसरों को मानना ज़रूरी नहीं।',
       es: 'Distingue razones públicas de preferencias que otros no tienen por qué compartir.',

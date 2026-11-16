@@ -5,6 +5,7 @@ export const distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data = 
   id: '88b8cd6a-7c67-4420-942b-ebdc1d53eb86',
   name: {
     en: 'Distinguish deductive certainty from probabilistic support',
+    it: 'Distinguere certezza deduttiva e sostegno probabilistico',
     zh: '区分演绎确定性与概率支持',
     hi: 'निगमनात्मक निश्चितता और संभाव्य समर्थन में अंतर',
     es: 'Distinguir certeza deductiva de apoyo probabilístico',
@@ -39,6 +40,7 @@ export const distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data = 
       'Recognize that a well-supported conclusion can remain revisable when the reasoning is non-deductive.',
     frontend: {
       en: 'Distinguish logically certain deductions from conclusions supported by probability.',
+      it: 'Distingui le deduzioni logicamente certe dalle conclusioni sostenute da probabilità.',
       zh: '区分逻辑上必然的结论与仅受到概率支持的结论。',
       hi: 'तार्किक रूप से निश्चित निष्कर्ष और केवल संभावना द्वारा समर्थित निष्कर्ष में अंतर करें।',
       es: 'Distingue deducciones lógicamente ciertas de conclusiones apoyadas por probabilidades.',

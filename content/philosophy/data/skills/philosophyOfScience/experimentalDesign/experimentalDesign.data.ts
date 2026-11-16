@@ -17,6 +17,7 @@ export const experimentalDesign_SkillGroup_Data = defineSkillGroup({
   id: '7cc7abaa-73ff-4500-b0b1-c18b01b22012',
   name: {
     en: 'Experimental Design',
+    it: 'Progettazione degli esperimenti',
     zh: '实验设计',
     hi: 'प्रयोग की रूपरेखा',
     es: 'Diseño experimental',
@@ -75,6 +76,7 @@ export const experimentalDesign_SkillGroup_Data = defineSkillGroup({
       'Controlled investigations attempt to isolate explanatory factors while managing confounding, expectations, and ethical constraints. Particular safeguards solve different problems and are not interchangeable.',
     frontend: {
       en: 'Discover how research designs can make comparisons more trustworthy.',
+      it: 'Scopri come la progettazione della ricerca possa rendere più affidabili i confronti.',
       zh: '探索研究设计如何使比较结果更加可靠。',
       hi: 'जानें कि शोध की योजना तुलनाओं को अधिक विश्वसनीय कैसे बनाती है।',
       es: 'Descubre cómo los diseños de investigación hacen las comparaciones más fiables.',

@@ -5,6 +5,7 @@ export const useAThoughtExperimentToExamineAConcept_Skill_Data = defineSkill({
   id: 'b5ab14d3-4b5f-4059-80ea-9be45032b6f1',
   name: {
     en: 'Use a thought experiment to examine a concept',
+    it: 'Usare un esperimento mentale per esaminare un concetto',
     zh: '用思想实验考察概念',
     hi: 'विचार प्रयोग से अवधारणा की पड़ताल करना',
     es: 'Examinar un concepto mediante un experimento mental',
@@ -39,6 +40,7 @@ export const useAThoughtExperimentToExamineAConcept_Skill_Data = defineSkill({
       'Vary features of an imagined situation to isolate a philosophical principle; make clear which assumptions are stipulated rather than observed.',
     frontend: {
       en: 'Use an imagined scenario to test an idea while keeping its assumptions clear.',
+      it: 'Usa uno scenario immaginario per mettere alla prova un\'idea, mantenendo espliciti i suoi presupposti.',
       zh: '用假想情境检验一种观点，同时明确其中的假设。',
       hi: 'काल्पनिक स्थिति के सहारे किसी विचार की जाँच करें और उसकी मान्यताओं को स्पष्ट रखें।',
       es: 'Usa una situación imaginaria para examinar una idea dejando claros sus supuestos.',

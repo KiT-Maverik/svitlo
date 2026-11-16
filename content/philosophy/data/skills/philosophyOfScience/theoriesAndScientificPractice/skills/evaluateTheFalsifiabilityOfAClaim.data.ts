@@ -5,6 +5,7 @@ export const evaluateTheFalsifiabilityOfAClaim_Skill_Data = defineSkill({
   id: '980c7176-434c-45c9-978e-25477bcf4f9e',
   name: {
     en: 'Evaluate the falsifiability of a claim',
+    it: 'Valutare la falsificabilità di un\'affermazione',
     zh: '评估主张的可证伪性',
     hi: 'किसी दावे की खंडनीयता जाँचें',
     es: 'Evaluar la falsabilidad de una afirmación',
@@ -39,6 +40,7 @@ export const evaluateTheFalsifiabilityOfAClaim_Skill_Data = defineSkill({
       'Assess whether plausible observations could count against a proposition without treating falsifiability as the sole criterion of science.',
     frontend: {
       en: 'Ask what observations could count against a scientific claim.',
+      it: 'Domandati quali osservazioni potrebbero confutare un\'affermazione scientifica.',
       zh: '思考哪些观察结果可能反驳某项科学主张。',
       hi: 'पूछें कि कौन से अवलोकन वैज्ञानिक दावे के विरुद्ध जा सकते हैं।',
       es: 'Pregunta qué observaciones podrían contar en contra de una afirmación científica.',

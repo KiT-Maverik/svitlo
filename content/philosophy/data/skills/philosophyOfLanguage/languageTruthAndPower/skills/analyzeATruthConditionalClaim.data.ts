@@ -5,6 +5,7 @@ export const analyzeATruthConditionalClaim_Skill_Data = defineSkill({
   id: '437013ab-c15c-495a-a45c-9456e0163186',
   name: {
     en: 'Analyze a truth-conditional claim',
+    it: 'Analizzare un\'affermazione in termini di condizioni di verità',
     zh: '分析真值条件主张',
     hi: 'सत्य-शर्तीय कथन का विश्लेषण',
     es: 'Analizar una afirmación con condiciones de verdad',
@@ -39,6 +40,7 @@ export const analyzeATruthConditionalClaim_Skill_Data = defineSkill({
       'Identify circumstances under which an assertion would count as true or false while recognizing context-dependent expressions.',
     frontend: {
       en: 'Identify which circumstances would make a statement true or false.',
+      it: 'Individua le circostanze che renderebbero un enunciato vero o falso.',
       zh: '识别在什么情况下一个陈述是真的或假的。',
       hi: 'पहचानो कि किन परिस्थितियों में कोई कथन सही या गलत होगा।',
       es: 'Identifica en qué circunstancias una afirmación sería verdadera o falsa.',

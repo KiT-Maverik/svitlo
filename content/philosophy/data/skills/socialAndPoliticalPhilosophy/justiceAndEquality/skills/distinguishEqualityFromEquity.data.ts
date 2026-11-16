@@ -5,6 +5,7 @@ export const distinguishEqualityFromEquity_Skill_Data = defineSkill({
   id: 'd7acd870-6374-47fe-9c29-4391ed4fdf12',
   name: {
     en: 'Distinguish equality from equity',
+    it: 'Distinguere uguaglianza ed equità',
     zh: '区分平等与公平对待',
     hi: 'समानता और न्यायसंगत व्यवहार में भेद',
     es: 'Distinguir igualdad y equidad',
@@ -39,6 +40,7 @@ export const distinguishEqualityFromEquity_Skill_Data = defineSkill({
       'Compare giving identical treatment with responding to relevant differences in needs or disadvantage, without assuming one always settles justice.',
     frontend: {
       en: 'Compare treating people identically with accounting for relevant differences.',
+      it: 'Confronta il trattamento identico delle persone con la considerazione delle differenze pertinenti.',
       zh: '比较对所有人一视同仁与考虑相关差异的做法。',
       hi: 'सभी से एक-सा व्यवहार करने और उनकी प्रासंगिक भिन्नताओं को ध्यान में रखने की तुलना करो।',
       es: 'Compara tratar a todos por igual con tener en cuenta diferencias relevantes.',

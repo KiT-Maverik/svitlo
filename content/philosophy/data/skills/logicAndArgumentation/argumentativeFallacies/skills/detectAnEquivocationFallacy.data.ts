@@ -5,6 +5,7 @@ export const detectAnEquivocationFallacy_Skill_Data = defineSkill({
   id: '14c8c084-88e7-4874-8e69-7e693dc5c367',
   name: {
     en: 'Detect an equivocation fallacy',
+    it: 'Riconoscere una fallacia di equivocazione',
     zh: '识别偷换概念谬误',
     hi: 'द्विअर्थी शब्दप्रयोग का कुतर्क पहचानना',
     es: 'Detectar una falacia de equivocación',
@@ -39,6 +40,7 @@ export const detectAnEquivocationFallacy_Skill_Data = defineSkill({
       'Trace a shift between meanings of the same expression that makes an inference appear stronger than it is.',
     frontend: {
       en: 'Spot when the meaning of a word shifts within an argument.',
+      it: 'Individua quando il significato di una parola cambia nel corso di un\'argomentazione.',
       zh: '识别同一个词在论证过程中悄悄改变含义的情况。',
       hi: 'पहचानें कि तर्क के दौरान किसी शब्द का अर्थ कब बदल जाता है।',
       es: 'Detecta cuando una palabra cambia de significado dentro de un argumento.',

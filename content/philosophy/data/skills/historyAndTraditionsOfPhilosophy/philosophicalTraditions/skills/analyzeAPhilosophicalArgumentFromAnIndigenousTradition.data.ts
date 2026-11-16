@@ -5,6 +5,7 @@ export const analyzeAPhilosophicalArgumentFromAnIndigenousTradition_Skill_Data =
   id: 'd4e58aca-2da5-4c5c-a3f4-571f14e02a84',
   name: {
     en: 'Analyze a philosophical argument from an Indigenous tradition',
+    it: 'Analizzare un\'argomentazione filosofica di una tradizione indigena',
     zh: '分析原住民哲学传统中的论证',
     hi: 'आदिवासी दार्शनिक परंपरा के तर्क का विश्लेषण',
     es: 'Analizar un argumento de una tradición filosófica indígena',
@@ -39,6 +40,7 @@ export const analyzeAPhilosophicalArgumentFromAnIndigenousTradition_Skill_Data =
       "Interpret philosophical claims from a particular Indigenous people or intellectual tradition on their own conceptual terms, recognizing differences among communities and avoiding a generic 'Indigenous worldview'.",
     frontend: {
       en: 'Consider philosophical ideas from a particular Indigenous tradition on its own terms.',
+      it: 'Considera le idee filosofiche di una specifica tradizione indigena secondo le sue stesse categorie.',
       zh: '按照某个原住民传统自身的思想框架理解其哲学观念。',
       hi: 'किसी आदिवासी परंपरा के विचारों को उसी के संदर्भ में समझो।',
       es: 'Considera las ideas de una tradición indígena desde sus propios conceptos.',
