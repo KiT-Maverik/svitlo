@@ -268,7 +268,7 @@ Groups: 7 · Skills: 34
 
 **Methodological description (English):** Examines systems performing recognition, prediction, generation, and other forms of intelligent information processing. Includes explicitly programmed rules and trained models, how they work, prompting, technical trade-offs, and reliability verification.
 
-**User-friendly description (it):** Scopri come i sistemi di intelligenza artificiale apprendono, prevedono, generano contenuti e a volte sbagliano.
+**User-friendly description (it):** Scopri come i sistemi di IA, basati su regole o su modelli addestrati, possono riconoscere dati, fare previsioni o generare contenuti, e perché a volte sbagliano.
 
 #### Fondamenti di intelligenza artificiale
 
@@ -922,7 +922,7 @@ Skills: 7
 
 **Methodological description (English):** Add a new item at a specified position and predict how it affects the order of other items or links between nodes.
 
-**User-friendly description (it):** Inserisci un elemento nella posizione corretta di una sequenza ordinata.
+**User-friendly description (it):** Inserisci un elemento in una posizione indicata e osserva come cambiano l'ordine o i collegamenti della sequenza.
 
 ##### Rimuovere un elemento da una sequenza
 
@@ -3002,7 +3002,7 @@ Skills: 4
 
 **Methodological description (English):** Narrow a defect to a particular instruction, condition, or state transition by tracing execution and testing hypotheses. Recognizing a wrong result does not by itself identify its cause.
 
-**User-friendly description (it):** Risalire dall'errore di programmazione all'istruzione o alla condizione che lo provoca.
+**User-friendly description (it):** Individua l'istruzione, la condizione o il cambiamento di stato che provoca un errore seguendo l'esecuzione del programma.
 
 ##### Verificare un programma con dati in ingresso diversi
 
