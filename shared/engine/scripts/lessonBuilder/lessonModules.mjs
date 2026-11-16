@@ -390,18 +390,28 @@ export function renderLessonModules(lesson, language, options = {}) {
       ? skillIndex(options.bookRoot)
       : new Map();
 
+  // Keep package imports, textbook aliases and relative dependencies in distinct groups.
+  // Empty groups are omitted so leaf modules and root-only drafts stay compact.
+  const groupedImports = (...groups) =>
+    groups
+      .filter(group => group.length)
+      .map(group => group.join('\n'))
+      .join('\n\n') + '\n\n';
+
   function moduleImports(directory, names, factory, needsLanguages, languageValue = false) {
     const factoryImports = [factory, ...(factory === 'defineCode' ? ['readCodeSource'] : [])].join(', ');
-    const output = ['import { ' + factoryImports + " } from '@svitlo/engine/build';"];
+    const packageImports = ['import { ' + factoryImports + " } from '@svitlo/engine/build';"];
+    const aliasImports = [];
+    const localImports = [];
+    if (needsLanguages && languagesType) {
+      aliasImports.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
+      if (languageValue) aliasImports.push('import { languages } from ' + JSON.stringify(constantsSpecifier) + ';');
+    }
     for (const [alias, { symbol, location }] of [...names.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
       const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
-      output.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
+      localImports.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
     }
-    if (needsLanguages && languagesType) {
-      output.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
-      if (languageValue) output.push('import { languages } from ' + JSON.stringify(constantsSpecifier) + ';');
-    }
-    return output.join('\n') + '\n\n';
+    return groupedImports(packageImports, aliasImports, localImports);
   }
 
   function put(relative, content) {
@@ -632,19 +642,10 @@ export function renderLessonModules(lesson, language, options = {}) {
           ': ' +
           render(value, 'plain', directory, imports, 1, '$.content.' + role + '.' + key),
     );
-    const importsHead = ["import { defineFlashcardSide } from '@svitlo/engine/build';"];
-    for (const [alias, { symbol, location }] of [...imports.entries()]
-      .filter(([, entry]) => entry.location !== '__reserved__')
-      .sort((a, b) => a[0].localeCompare(b[0]))) {
-      const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
-      importsHead.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
-    }
-    if (languagesType)
-      importsHead.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
+    const usedImports = new Map([...imports].filter(([, entry]) => entry.location !== '__reserved__'));
     put(
       join(directory, 'index.ts'),
-      importsHead.join('\n') +
-        '\n\n' +
+      moduleImports(directory, usedImports, 'defineFlashcardSide', true) +
         'const sideItems = ' +
         sideItems +
         ';\n\n' +
@@ -799,8 +800,7 @@ export function renderLessonModules(lesson, language, options = {}) {
       '>'
     : '';
   const root =
-    rootImports.join('\n') +
-    '\n\n' +
+    groupedImports([rootImports[0]], rootImports.slice(1)) +
     'export const ' +
     filtered.slug +
     '_Lesson = defineLesson' +
