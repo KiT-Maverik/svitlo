@@ -12,6 +12,7 @@ export const magneticActivity_SkillGroup_Data = defineSkillGroup({
   id: '477e03be-7e47-4d37-b428-ac6c4066addd',
   name: {
     en: 'Magnetic Activity',
+    it: 'Attività magnetica',
     qm: 'Magnit faaliyeti',
     bn: 'সূর্যের চৌম্বকীয় কার্যকলাপ',
     ur: 'سورج کی مقناطیسی سرگرمی',
@@ -55,6 +56,7 @@ export const magneticActivity_SkillGroup_Data = defineSkillGroup({
       'Magnetic fields in solar plasma produce time-variable surface features and energetic events rather than a perfectly steady star.',
     frontend: {
       en: 'Explore how changing solar magnetic fields produce spots and energetic events.',
+      it: 'Esplora come i cambiamenti dei campi magnetici solari producono macchie ed eventi energetici.',
       qm: 'Küneşniñ deñişken magnit meydanları lekeler ve küçlü vaqialar nasıl peyda etkenini araştırıñız.',
       bn: 'সূর্যের পরিবর্তনশীল চৌম্বক ক্ষেত্র কীভাবে কালো দাগ ও শক্তিশালী ঘটনা সৃষ্টি করে, তা অন্বেষণ করো।',
       ur: 'جانیں کہ سورج کے بدلتے مقناطیسی میدان دھبے اور طاقتور واقعات کیسے پیدا کرتے ہیں۔',

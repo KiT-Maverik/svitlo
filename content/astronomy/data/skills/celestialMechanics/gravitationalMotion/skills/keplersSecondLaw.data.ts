@@ -5,6 +5,7 @@ export const keplersSecondLaw_Skill_Data = defineSkill({
   id: '08453948-3f5d-4e81-92b4-d1e3a083a326',
   name: {
     en: "Kepler's Second Law",
+    it: 'Seconda legge di Keplero',
     zh: '开普勒第二定律',
     hi: 'केप्लर का द्वितीय नियम',
     es: 'Segunda ley de Kepler',
@@ -39,6 +40,7 @@ export const keplersSecondLaw_Skill_Data = defineSkill({
       'Use the equal-areas-in-equal-times relation to explain variation in orbital speed as an orbiting body changes its distance from the central focus.',
     frontend: {
       en: 'Explain why an orbiting body moves faster when it is closer to the central body.',
+      it: 'Spiega perché un corpo in orbita si muove più velocemente quando è vicino al corpo centrale.',
       zh: '解释为什么公转天体接近中心天体时运动速度更快。',
       hi: 'समझाएँ कि परिक्रमा करता पिंड केंद्रीय पिंड के निकट होने पर अधिक तेज़ क्यों चलता है।',
       es: 'Explica por qué un cuerpo en órbita se mueve más rápido cuando está más cerca del cuerpo central.',

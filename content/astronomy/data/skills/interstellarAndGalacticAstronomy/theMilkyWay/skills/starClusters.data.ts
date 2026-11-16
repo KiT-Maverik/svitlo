@@ -5,6 +5,7 @@ export const starClusters_Skill_Data = defineSkill({
   id: 'c23c0f53-51a5-48e5-bf31-effb38b8927d',
   name: {
     en: 'Star Clusters',
+    it: 'Ammassi stellari',
     qm: 'Yıldız toplulıqları',
     zh: '星团',
     hi: 'तारा समूह',
@@ -39,6 +40,7 @@ export const starClusters_Skill_Data = defineSkill({
       'Distinguish open and globular clusters by structure, typical populations and galactic environments.',
     frontend: {
       en: 'Compare open and globular star clusters and where they are found.',
+      it: 'Confronta gli ammassi stellari aperti e globulari e scopri dove si trovano.',
       qm: 'Açıq ve küre şeklindeki yıldız toplulıqlarını, em de olarnıñ qayda bulunğanını teñeştiriñiz.',
       zh: '比较疏散星团与球状星团及其分布。',
       hi: 'खुले और गोलाकार तारा समूहों तथा उनके स्थानों की तुलना करें।',

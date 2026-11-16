@@ -5,6 +5,7 @@ export const solarWind_Skill_Data = defineSkill({
   id: 'c4838113-08a4-4146-ba4b-aff8d6e59012',
   name: {
     en: 'Solar Wind',
+    it: 'Vento solare',
     qm: 'Küneş yeli',
     bn: 'সৌর বায়ু',
     ur: 'شمسی ہوا',
@@ -39,6 +40,7 @@ export const solarWind_Skill_Data = defineSkill({
       'Explain the outward flow of charged solar particles and their transport of magnetic fields through space.',
     frontend: {
       en: 'Explore the stream of charged particles flowing outward from the Sun.',
+      it: 'Esplora il flusso di particelle cariche che si propaga verso l\'esterno dal Sole.',
       qm: 'Küneşten tışqarı aqqan elektrik yüklü zerreler aqımını araştırıñız.',
       bn: 'সূর্য থেকে মহাকাশের দিকে বয়ে যাওয়া আধানযুক্ত কণার প্রবাহ সম্পর্কে জানো।',
       ur: 'سورج سے باہر خلا کی طرف بہنے والے بار دار ذرات کے بہاؤ کے بارے میں جانیں۔',

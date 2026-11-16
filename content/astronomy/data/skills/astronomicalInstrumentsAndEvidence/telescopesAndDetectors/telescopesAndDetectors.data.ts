@@ -15,6 +15,7 @@ export const telescopesAndDetectors_SkillGroup_Data = defineSkillGroup({
   id: '922c69ea-ab21-43f5-b975-21066259b7d2',
   name: {
     en: 'Telescopes and Detectors',
+    it: 'Telescopi e rivelatori',
     qm: 'Teleskoplar ve detektorlar',
     bn: 'দূরবীক্ষণ যন্ত্র ও শনাক্তকারী',
     ur: 'دوربینیں اور آشکارے',
@@ -69,6 +70,7 @@ export const telescopesAndDetectors_SkillGroup_Data = defineSkillGroup({
       'Instrumentation alters the detail, wavelengths and measurable signals available to observers; its scientific limitations are as important as its capabilities.',
     frontend: {
       en: 'Explore what telescopes and detectors can reveal and why their measurements have limits.',
+      it: 'Esplora ciò che telescopi e rivelatori possono rivelare e perché le loro misurazioni hanno dei limiti.',
       qm: 'Teleskoplar ve detektorlar neler kösterebilgenini ve olarnıñ ölçüvlerinde ne çeşit sıñırlar barlığını araştırıñız.',
       bn: 'দূরবীক্ষণ যন্ত্র ও শনাক্তকারী কী তথ্য প্রকাশ করতে পারে এবং তাদের পরিমাপের সীমাবদ্ধতা কেন আছে, তা জানো।',
       ur: 'جانیں کہ دوربینیں اور آشکارے کیا ظاہر کر سکتے ہیں اور ان کی پیمائشوں کی حدود کیوں ہوتی ہیں۔',

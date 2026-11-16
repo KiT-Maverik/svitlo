@@ -5,6 +5,7 @@ export const hertzsprungRussellDiagram_Skill_Data = defineSkill({
   id: '06611619-f7bc-4472-9e8d-24befba4a5eb',
   name: {
     en: 'Hertzsprung–Russell Diagram',
+    it: 'Diagramma di Hertzsprung–Russell',
     zh: '赫罗图',
     hi: 'हर्ट्ज़स्प्रुंग–रसेल आरेख',
     es: 'Diagrama de Hertzsprung–Russell',
@@ -39,6 +40,7 @@ export const hertzsprungRussellDiagram_Skill_Data = defineSkill({
       'Interpret the distribution of stars by luminosity and temperature and identify major evolutionary regions.',
     frontend: {
       en: 'Read a Hertzsprung–Russell diagram to compare temperatures, luminosities and stellar stages.',
+      it: 'Leggi un diagramma di Hertzsprung–Russell per confrontare temperature, luminosità e fasi evolutive delle stelle.',
       zh: '学会阅读赫罗图，比较恒星的温度、光度和演化阶段。',
       hi: 'हर्ट्ज़स्प्रुंग–रसेल आरेख पढ़कर तारों के तापमान, दीप्ति और विकास अवस्थाओं की तुलना करें।',
       es: 'Interpreta un diagrama de Hertzsprung–Russell para comparar temperaturas, luminosidades y etapas estelares.',

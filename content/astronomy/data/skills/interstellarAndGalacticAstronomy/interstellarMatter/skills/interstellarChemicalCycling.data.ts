@@ -5,6 +5,7 @@ export const interstellarChemicalCycling_Skill_Data = defineSkill({
   id: '7c752177-67d2-4dd4-a2f1-fd0dc557e9a2',
   name: {
     en: 'Interstellar Chemical Cycling',
+    it: 'Ciclo chimico interstellare',
     qm: 'Yıldızlararası kimyeviy devir',
     zh: '星际化学循环',
     hi: 'अंतरतारकीय रासायनिक चक्र',
@@ -39,6 +40,7 @@ export const interstellarChemicalCycling_Skill_Data = defineSkill({
       'Explain how stellar outflows and explosive events replenish and alter material available for new star formation.',
     frontend: {
       en: 'Explore how dying stars return material to space for new generations of stars.',
+      it: 'Esplora come le stelle morenti restituiscono materia allo spazio per le nuove generazioni stellari.',
       qm: 'Ölgen yıldızlarnıñ maddeni fezağa qaytarıp, yañı yıldız nesillerine malzeme bergenini araştırıñız.',
       zh: '了解衰亡恒星如何将物质送回太空，供新一代恒星形成。',
       hi: 'जानें कि मरते हुए तारे नई पीढ़ी के तारों के लिए पदार्थ अंतरिक्ष में कैसे लौटाते हैं।',

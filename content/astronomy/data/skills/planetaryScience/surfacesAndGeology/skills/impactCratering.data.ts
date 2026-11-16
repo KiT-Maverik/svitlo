@@ -5,6 +5,7 @@ export const impactCratering_Skill_Data = defineSkill({
   id: '4c274b29-274d-45fe-9d2e-3a01a8a6354d',
   name: {
     en: 'Impact Cratering',
+    it: 'Formazione dei crateri da impatto',
     zh: '撞击坑形成',
     hi: 'टक्कर से क्रेटर बनना',
     es: 'Formación de cráteres de impacto',
@@ -39,6 +40,7 @@ export const impactCratering_Skill_Data = defineSkill({
       'Explain how collisions produce craters and why crater populations can reveal relative surface history.',
     frontend: {
       en: 'Understand how impacts create craters and what crater patterns reveal.',
+      it: 'Comprendi come gli impatti creano crateri e cosa rivelano le loro distribuzioni.',
       zh: '了解撞击如何形成陨石坑，以及陨石坑的分布能揭示什么。',
       hi: 'समझें कि टक्करों से गर्त कैसे बनते हैं और उनके पैटर्न से क्या पता चलता है।',
       es: 'Comprende cómo las colisiones crean cráteres y qué revelan sus patrones.',

@@ -5,6 +5,7 @@ export const celestialSphere_Skill_Data = defineSkill({
   id: 'b2fefba3-1633-4613-a31a-0bc6077c3251',
   name: {
     en: 'Celestial Sphere',
+    it: 'Sfera celeste',
     qm: 'Kök küresi',
     zh: '天球',
     hi: 'खगोलीय गोला',
@@ -39,6 +40,7 @@ export const celestialSphere_Skill_Data = defineSkill({
       'Interpret the apparent projection of distant objects onto an imaginary sphere without treating that sphere as a physical shell.',
     frontend: {
       en: 'Understand the imaginary celestial sphere used to map the night sky.',
+      it: 'Comprendi come si usa la sfera celeste immaginaria per rappresentare il cielo notturno.',
       qm: 'Geceki kökni haritada köstermek içün qullanılğan hayaliy kök küresini añlañız.',
       zh: '了解用于绘制夜空地图的假想天球。',
       hi: 'रात के आकाश का मानचित्र बनाने में इस्तेमाल होने वाले काल्पनिक खगोलीय गोले को समझें।',

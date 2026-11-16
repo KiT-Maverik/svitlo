@@ -5,6 +5,7 @@ export const solarNuclearFusion_Skill_Data = defineSkill({
   id: '2928b6ee-8889-480f-a69e-44a21da9c922',
   name: {
     en: 'Solar Nuclear Fusion',
+    it: 'Fusione nucleare solare',
     qm: 'Küneşte yadroviy birleşüv',
     bn: 'সূর্যের নিউক্লীয় সংযোজন',
     ur: 'سورج میں جوہری انضمام',
@@ -39,6 +40,7 @@ export const solarNuclearFusion_Skill_Data = defineSkill({
       'Explain how hydrogen fusion powers the Sun, distinguishing nuclear reactions from chemical combustion.',
     frontend: {
       en: 'Explain why fusion—not ordinary burning—powers the Sun.',
+      it: 'Spiega perché il Sole è alimentato dalla fusione nucleare e non da una normale combustione.',
       qm: 'Küneşni adi yanma degil, yadroviy birleşüv ne içün energiya ile temin etkenini añlatıñız.',
       bn: 'ব্যাখ্যা করো, সাধারণ দহনের বদলে নিউক্লীয় সংযোজন কীভাবে সূর্যকে শক্তি জোগায়।',
       ur: 'وضاحت کریں کہ عام جلنے کے بجائے جوہری انضمام سورج کو توانائی کیوں فراہم کرتا ہے۔',

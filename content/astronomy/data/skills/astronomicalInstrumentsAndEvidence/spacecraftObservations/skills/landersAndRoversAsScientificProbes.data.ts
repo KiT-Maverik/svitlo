@@ -5,6 +5,7 @@ export const landersAndRoversAsScientificProbes_Skill_Data = defineSkill({
   id: 'bf514e0a-7d8d-4671-80b7-9924a93c665c',
   name: {
     en: 'Landers and Rovers as Scientific Probes',
+    it: 'Lander e rover come sonde scientifiche',
     qm: 'Qonuv apparatları ve roverler ilmiy alet olaraq',
     bn: 'বৈজ্ঞানিক অনুসন্ধানে অবতরণযান ও রোভার',
     ur: 'سائنسی تحقیق میں لینڈرز اور روورز',
@@ -39,6 +40,7 @@ export const landersAndRoversAsScientificProbes_Skill_Data = defineSkill({
       'Interpret the local environmental evidence obtained by landed missions without treating vehicle design as an astronomy competency.',
     frontend: {
       en: 'Learn what surface probes and rovers can discover from local measurements.',
+      it: 'Scopri cosa possono rivelare lander e rover attraverso misurazioni effettuate sul posto.',
       qm: 'Yer üstüne qonğan apparatlar ve roverler yerli ölçüvlerden neler ögrene bilgenini araştırıñız.',
       bn: 'পৃষ্ঠে সরাসরি পরিমাপ করে অবতরণযান ও রোভার কী আবিষ্কার করতে পারে, তা জানো।',
       ur: 'جانیں کہ لینڈرز اور روورز سطح پر براہِ راست پیمائش سے کیا دریافت کر سکتے ہیں۔',

@@ -8,6 +8,7 @@ export const cosmicObjects_SkillDomain_Data = defineSkillDomain({
   id: '0bec5a68-7348-47dd-a603-0f6172e7e058',
   title: {
     en: 'Cosmic Objects',
+    it: 'Oggetti cosmici',
     zh: '宇宙天体与结构',
     hi: 'ब्रह्मांडीय पिंड',
     es: 'Objetos cósmicos',
@@ -49,6 +50,7 @@ export const cosmicObjects_SkillDomain_Data = defineSkillDomain({
       "An overview of what kinds of physical objects and extended structures exist beyond Earth and how they are identified and organized. It teaches classification across cosmic scales and distinguishes an object's physical nature from its environment or apparent visual form; detailed physics belongs to the specialized planetary, stellar, galactic and cosmological domains.",
     frontend: {
       en: 'Explore the different kinds of objects and structures found in the universe and how astronomers classify them.',
+      it: 'Esplora i diversi tipi di oggetti e strutture presenti nell\'universo e scopri come gli astronomi li classificano.',
       zh: '探索宇宙中的各类天体和结构，以及天文学家如何对它们进行分类。',
       hi: 'ब्रह्मांड में मिलने वाले विभिन्न पिंडों और संरचनाओं तथा खगोलविदों द्वारा उनके वर्गीकरण को जानें।',
       es: 'Explora los distintos tipos de objetos y estructuras del universo y cómo los clasifican los astrónomos.',

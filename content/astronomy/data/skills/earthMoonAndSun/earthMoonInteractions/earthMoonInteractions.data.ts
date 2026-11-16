@@ -7,6 +7,7 @@ export const earthMoonInteractions_SkillGroup_Data = defineSkillGroup({
   id: 'b9f1d7ef-6fe1-4117-9cad-ca18730737af',
   name: {
     en: 'Earth–Moon Interactions',
+    it: 'Interazioni Terra–Luna',
     zh: '地月相互作用',
     hi: 'पृथ्वी–चंद्रमा की पारस्परिक क्रियाएँ',
     es: 'Interacciones entre la Tierra y la Luna',
@@ -49,6 +50,7 @@ export const earthMoonInteractions_SkillGroup_Data = defineSkillGroup({
       'The Earth–Moon system is a long-term dynamical pair whose interactions create measurable effects on Earth and its satellite.',
     frontend: {
       en: 'Explore how the Moon and Earth influence each other through gravity.',
+      it: 'Esplora come Terra e Luna si influenzano reciprocamente attraverso la gravità.',
       zh: '探索月球和地球如何通过引力相互影响。',
       hi: 'जानें कि पृथ्वी और चंद्रमा गुरुत्वाकर्षण के माध्यम से एक-दूसरे को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo la Luna y la Tierra se influyen mutuamente mediante la gravedad.',

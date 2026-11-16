@@ -5,6 +5,7 @@ export const orbitalPeriods_Skill_Data = defineSkill({
   id: '846d1abb-c8de-4d15-831a-54ce9ad98a30',
   name: {
     en: 'Orbital Periods',
+    it: 'Periodi orbitali',
     zh: '公转周期',
     hi: 'कक्षीय अवधियाँ',
     es: 'Períodos orbitales',
@@ -39,6 +40,7 @@ export const orbitalPeriods_Skill_Data = defineSkill({
       "Interpret the time needed to complete an orbit and compare sidereal and synodic periods, distinguishing orbital revolution from rotation about the body's own axis.",
     frontend: {
       en: 'Distinguish the time taken to orbit another body from the time taken to spin.',
+      it: 'Distingui il tempo necessario a compiere un\'orbita attorno a un altro corpo da quello necessario a ruotare sul proprio asse.',
       zh: '区分天体绕另一天体运行一周所需的时间与绕自身轴旋转所需的时间。',
       hi: 'किसी अन्य पिंड की परिक्रमा करने में लगने वाले समय और अपनी धुरी पर घूमने के समय में अंतर करें।',
       es: 'Distingue el tiempo necesario para orbitar otro cuerpo del tiempo que tarda un cuerpo en girar sobre sí mismo.',

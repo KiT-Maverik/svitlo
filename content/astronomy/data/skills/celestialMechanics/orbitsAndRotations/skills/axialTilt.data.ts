@@ -5,6 +5,7 @@ export const axialTilt_Skill_Data = defineSkill({
   id: 'dd97c791-4f4c-48f5-bc52-57a2b35e41a5',
   name: {
     en: 'Axial Tilt',
+    it: 'Inclinazione assiale',
     zh: '自转轴倾角',
     hi: 'अक्षीय झुकाव',
     es: 'Inclinación axial',
@@ -39,6 +40,7 @@ export const axialTilt_Skill_Data = defineSkill({
       "Interpret the angle between a body's spin axis and orbital reference direction and explain its influence on illumination geometry and seasons.",
     frontend: {
       en: "Explore how the tilt of a world's axis changes the pattern of illumination.",
+      it: 'Esplora come l\'inclinazione dell\'asse di un mondo modifichi la distribuzione dell\'illuminazione.',
       zh: '探索天体自转轴的倾斜如何改变其表面受到光照的方式。',
       hi: 'जानें कि किसी ग्रह जैसे पिंड की धुरी का झुकाव उस पर पड़ने वाले प्रकाश के स्वरूप को कैसे बदलता है।',
       es: 'Explora cómo la inclinación del eje de un mundo cambia el patrón de iluminación que recibe.',

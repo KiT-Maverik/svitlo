@@ -5,6 +5,7 @@ export const freeFloatingPlanets_Skill_Data = defineSkill({
   id: 'e7e468cf-17ff-42b1-84a8-ec993cdf29ae',
   name: {
     en: 'Free-Floating Planets',
+    it: 'Pianeti erranti',
     zh: '自由漂浮行星',
     hi: 'स्वतंत्र रूप से घूमने वाले ग्रह',
     es: 'Planetas errantes',
@@ -39,6 +40,7 @@ export const freeFloatingPlanets_Skill_Data = defineSkill({
       'Explain planetary-mass objects not gravitationally bound to a host star, including proposed ejection or isolated-formation origins and detection by microlensing or thermal infrared emission; distinguish low illumination from a complete absence of radiation.',
     frontend: {
       en: 'Learn how planets without a host star may form, move and be detected.',
+      it: 'Scopri come possono formarsi e muoversi i pianeti senza una stella ospite e come è possibile individuarli.',
       zh: '了解没有宿主恒星的行星可能如何形成、移动，以及如何被探测到。',
       hi: 'जानें कि किसी तारे से बँधे न होने वाले ग्रह कैसे बन सकते हैं, चलते हैं और खोजे जा सकते हैं।',
       es: 'Aprende cómo pueden formarse, desplazarse y detectarse los planetas que no orbitan una estrella anfitriona.',

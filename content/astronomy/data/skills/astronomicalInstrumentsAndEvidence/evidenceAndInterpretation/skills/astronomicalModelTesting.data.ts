@@ -5,6 +5,7 @@ export const astronomicalModelTesting_Skill_Data = defineSkill({
   id: 'b8fc21c2-b6ee-4027-95aa-62d160f3edff',
   name: {
     en: 'Astronomical Model Testing',
+    it: 'Verifica dei modelli astronomici',
     qm: 'Astronomik modellerni sınav',
     bn: 'জ্যোতির্বৈজ্ঞানিক মডেল যাচাই',
     ur: 'فلکیاتی نمونوں کی جانچ',
@@ -39,6 +40,7 @@ export const astronomicalModelTesting_Skill_Data = defineSkill({
       'Compare competing explanations with observations and revised predictions, including historically important planetary models.',
     frontend: {
       en: 'Compare astronomical models against evidence and decide which predictions hold up.',
+      it: 'Confronta i modelli astronomici con le prove e valuta quali previsioni trovano conferma.',
       qm: 'Astronomik modellerni delillernen teñeştirip, olarnıñ qabaqtan aytqan neticeleri doğrulanğanını teşkeriñiz.',
       bn: 'জ্যোতির্বৈজ্ঞানিক মডেলের পূর্বাভাস পর্যবেক্ষণের সঙ্গে তুলনা করে কোনটি প্রমাণের সঙ্গে মেলে তা নির্ধারণ করো।',
       ur: 'فلکیاتی نمونوں کی پیش گوئیوں کا مشاہدات سے موازنہ کریں اور دیکھیں کون سی درست ثابت ہوتی ہیں۔',

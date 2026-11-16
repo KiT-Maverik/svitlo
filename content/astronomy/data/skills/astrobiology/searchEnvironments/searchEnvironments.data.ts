@@ -11,6 +11,7 @@ export const searchEnvironments_SkillGroup_Data = defineSkillGroup({
   id: 'f2ee296d-7ca0-4318-a494-cb036f74b21b',
   name: {
     en: 'Search Environments',
+    it: 'Ambienti di ricerca',
     qm: 'Yaşayış izlenilgen müitler',
     bn: 'জীবন অনুসন্ধানের পরিবেশ',
     ur: 'زندگی کی تلاش کے ماحول',
@@ -53,6 +54,7 @@ export const searchEnvironments_SkillGroup_Data = defineSkillGroup({
       'Search strategies differ for nearby worlds whose material can be sampled and distant worlds known mainly through remote measurements.',
     frontend: {
       en: 'Compare scientific methods for searching different worlds and environments for life.',
+      it: 'Confronta i metodi scientifici per cercare la vita su mondi e in ambienti differenti.',
       qm: 'Çeşit dünyalarda ve müitlerde yaşayış izlemek içün qullanılğan ilmiy usullarnı teñeştiriñiz.',
       bn: 'বিভিন্ন জগৎ ও পরিবেশে জীবন খোঁজার বৈজ্ঞানিক পদ্ধতিগুলোর তুলনা করো।',
       ur: 'مختلف دنیاؤں اور ماحول میں زندگی تلاش کرنے کے سائنسی طریقوں کا موازنہ کریں۔',

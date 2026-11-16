@@ -5,6 +5,7 @@ export const galaxyMorphology_Skill_Data = defineSkill({
   id: '73b44801-2b4b-4da3-98c3-c874cca5532c',
   name: {
     en: 'Galaxy Morphology',
+    it: 'Morfologia galattica',
     qm: 'Galaktikalarnıñ şekilleri',
     zh: '星系形态',
     hi: 'आकाशगंगाओं की आकृति',
@@ -39,6 +40,7 @@ export const galaxyMorphology_Skill_Data = defineSkill({
       'Distinguish spiral, elliptical and irregular galaxies while recognizing that visual shape alone does not determine history.',
     frontend: {
       en: 'Recognize spiral, elliptical and irregular galaxies without treating shape as their full history.',
+      it: 'Riconosci galassie a spirale, ellittiche e irregolari senza ridurre tutta la loro storia alla forma.',
       qm: 'Spiral, ellips ve tertipsiz galaktikalarnı ayırıp tanıñız, amma şekilni olarnıñ bütün tarihı dep saymañız.',
       zh: '辨认旋涡、椭圆和不规则星系，但不要仅凭形状判断它们的全部历史。',
       hi: 'सर्पिल, दीर्घवृत्ताकार और अनियमित आकाशगंगाएँ पहचानें, पर उनकी आकृति को उनका पूरा इतिहास न मानें।',

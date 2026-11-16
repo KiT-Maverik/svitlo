@@ -5,6 +5,7 @@ export const planetaryProtection_Skill_Data = defineSkill({
   id: '9262da0d-1abd-4c3a-92ab-bf16e38d2c65',
   name: {
     en: 'Planetary Protection',
+    it: 'Protezione planetaria',
     qm: 'Planetalarni qorçalama',
     bn: 'গ্রহ সুরক্ষা',
     ur: 'سیاروی تحفظ',
@@ -39,6 +40,7 @@ export const planetaryProtection_Skill_Data = defineSkill({
       'Explain why forward and backward biological contamination controls matter for mission science and credible life-detection results.',
     frontend: {
       en: 'Understand why avoiding contamination matters in the search for extraterrestrial life.',
+      it: 'Comprendi perché evitare la contaminazione è importante nella ricerca della vita extraterrestre.',
       qm: 'Yerden tışta yaşayış izlegende başqa dünyalarnı kirlendirmemek ne içün müim olğanını añlañız.',
       bn: 'ভিনগ্রহের জীবন খোঁজার সময় জৈব দূষণ এড়ানো কেন গুরুত্বপূর্ণ, তা বোঝো।',
       ur: 'سمجھیں کہ غیر زمینی زندگی کی تلاش میں حیاتیاتی آلودگی سے بچنا کیوں اہم ہے۔',

@@ -5,6 +5,7 @@ export const stellarSubstellarAndPlanetaryBoundaries_Skill_Data = defineSkill({
   id: '989bd772-381f-4aae-9e1a-2188f40b3fc0',
   name: {
     en: 'Stellar, Substellar and Planetary Boundaries',
+    it: 'Confini tra stelle, oggetti substellari e pianeti',
     zh: '恒星、亚恒星与行星的分类界限',
     hi: 'तारों, उपतारकीय पिंडों और ग्रहों की सीमाएँ',
     es: 'Límites entre estrellas, objetos subestelares y planetas',
@@ -39,6 +40,7 @@ export const stellarSubstellarAndPlanetaryBoundaries_Skill_Data = defineSkill({
       'Compare physically distinct stars, brown dwarfs and planetary-mass bodies using fusion and mass constraints while acknowledging uncertainties near classification boundaries.',
     frontend: {
       en: 'Explore how stars, brown dwarfs and planets differ, including where their categories overlap.',
+      it: 'Esplora le differenze tra stelle, nane brune e pianeti, comprese le zone di confine tra queste categorie.',
       zh: '探索恒星、褐矮星和行星的区别，以及它们分类边界模糊的地方。',
       hi: 'जानें कि तारे, भूरे बौने और ग्रह कैसे अलग हैं और उनकी श्रेणियों की सीमाएँ कहाँ अस्पष्ट हो सकती हैं।',
       es: 'Explora las diferencias entre estrellas, enanas marrones y planetas, incluso donde sus categorías se solapan.',

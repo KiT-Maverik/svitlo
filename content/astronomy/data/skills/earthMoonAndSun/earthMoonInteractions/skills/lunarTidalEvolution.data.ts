@@ -5,6 +5,7 @@ export const lunarTidalEvolution_Skill_Data = defineSkill({
   id: '9765ed5b-6c61-4d7e-8fca-ae6fbff52065',
   name: {
     en: 'Lunar Tidal Evolution',
+    it: 'Evoluzione mareale del sistema Terra–Luna',
     zh: '月球潮汐演化',
     hi: 'चंद्रमा का ज्वारीय विकास',
     es: 'Evolución mareal de la Luna',
@@ -39,6 +40,7 @@ export const lunarTidalEvolution_Skill_Data = defineSkill({
       "Explain how tidal dissipation affects Earth's rotation and the Moon's orbital distance over long timescales.",
     frontend: {
       en: "See how tidal interactions slowly change Earth's rotation and the Moon's orbit.",
+      it: 'Scopri come le interazioni di marea modificano lentamente la rotazione terrestre e l\'orbita della Luna.',
       zh: '了解潮汐相互作用如何缓慢改变地球自转和月球轨道。',
       hi: 'जानें कि ज्वारीय पारस्परिक क्रियाएँ धीरे-धीरे पृथ्वी के घूर्णन और चंद्रमा की कक्षा को कैसे बदलती हैं।',
       es: 'Observa cómo las interacciones de marea cambian lentamente la rotación de la Tierra y la órbita de la Luna.',

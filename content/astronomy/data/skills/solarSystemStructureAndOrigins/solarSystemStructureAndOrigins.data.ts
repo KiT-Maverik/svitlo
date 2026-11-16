@@ -9,6 +9,7 @@ export const solarSystemStructureAndOrigins_SkillDomain_Data = defineSkillDomain
   id: '93dfe9fe-c278-4574-9de3-86f7abc26a15',
   title: {
     en: 'Solar System Structure and Origins',
+    it: 'Struttura e origini del Sistema solare',
     zh: '太阳系的结构与起源',
     hi: 'सौरमंडल की संरचना और उत्पत्ति',
     es: 'Estructura y origen del Sistema Solar',
@@ -51,6 +52,7 @@ export const solarSystemStructureAndOrigins_SkillDomain_Data = defineSkillDomain
       "The Solar System is classified by its orbital organization and by evidence of formation from a common disk. Individual worlds are examined in planetary science, while the Sun's internal structure and activity belong to solar astronomy.",
     frontend: {
       en: 'Explore the arrangement of the Solar System and the evidence for how it formed.',
+      it: 'Esplora la disposizione del Sistema solare e le prove della sua formazione.',
       zh: '探索太阳系中天体的排列方式，以及揭示其形成过程的证据。',
       hi: 'सौरमंडल की व्यवस्था और उसके बनने के प्रमाणों का अध्ययन करें।',
       es: 'Explora cómo está organizado el Sistema Solar y qué pruebas explican cómo se formó.',

@@ -5,6 +5,7 @@ export const equatorialCoordinates_Skill_Data = defineSkill({
   id: 'fe335c55-c2a9-4818-8693-bf731a20ba57',
   name: {
     en: 'Equatorial Coordinates',
+    it: 'Coordinate equatoriali',
     qm: 'Ekvatorial koordinatalar',
     zh: '赤道坐标',
     hi: 'विषुवतीय निर्देशांक',
@@ -38,6 +39,7 @@ export const equatorialCoordinates_Skill_Data = defineSkill({
     methodological: "Interpret right ascension and declination as a coordinate system tied to Earth's rotational axis.",
     frontend: {
       en: 'Read right ascension and declination to locate objects on a celestial map.',
+      it: 'Leggi ascensione retta e declinazione per localizzare gli oggetti su una carta celeste.',
       qm: 'Kök haritasında cisimlerni tapmaq içün doğru çıquv ve meyil koordinatalarını oquñız.',
       zh: '根据赤经和赤纬在天图上确定天体的位置。',
       hi: 'विषुवांश और क्रांति पढ़कर खगोलीय मानचित्र पर पिंडों की स्थिति खोजें।',

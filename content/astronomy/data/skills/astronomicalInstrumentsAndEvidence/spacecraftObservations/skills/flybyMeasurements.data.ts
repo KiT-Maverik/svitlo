@@ -5,6 +5,7 @@ export const flybyMeasurements_Skill_Data = defineSkill({
   id: '84d48274-98a0-44d1-9876-f7e57bd5da60',
   name: {
     en: 'Flyby Measurements',
+    it: 'Misurazioni durante i sorvoli',
     qm: 'Yaqından uçıp keçüv ölçüvleri',
     bn: 'পাশ দিয়ে উড়ে যাওয়ার সময় পরিমাপ',
     ur: 'قریب سے گزرتے وقت پیمائشیں',
@@ -39,6 +40,7 @@ export const flybyMeasurements_Skill_Data = defineSkill({
       'Interpret scientific information obtained during a brief spacecraft encounter, including coverage constraints.',
     frontend: {
       en: 'See what a brief spacecraft flyby can reveal—and what it may miss.',
+      it: 'Scopri cosa può rivelare un breve sorvolo di una sonda spaziale e quali dati può non raccogliere.',
       qm: 'Kosmik apparatnıñ qısqa yaqından uçuvı neni köstere bilgenini ve neni körmey qala bilgenini ögreniñiz.',
       bn: 'মহাকাশযান কোনো জ্যোতিষ্কের কাছ দিয়ে অল্প সময়ে উড়ে গেলে কী জানা যায় এবং কী অজানা থেকে যেতে পারে, তা দেখো।',
       ur: 'دیکھیں کہ کسی آسمانی جسم کے قریب سے خلائی جہاز کے مختصر گزرنے پر کیا معلوم ہو سکتا ہے اور کیا رہ سکتا ہے۔',

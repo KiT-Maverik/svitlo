@@ -5,6 +5,7 @@ export const nearAndFarLunarHemispheres_Skill_Data = defineSkill({
   id: 'b012cc82-e835-456b-a692-55ee8dbebd0a',
   name: {
     en: 'Near and Far Lunar Hemispheres',
+    it: 'Emisferi lunari vicino e lontano',
     zh: '月球的正面与背面半球',
     hi: 'चंद्रमा के निकट और दूरस्थ गोलार्ध',
     es: 'Hemisferios visible y oculto de la Luna',
@@ -39,6 +40,7 @@ export const nearAndFarLunarHemispheres_Skill_Data = defineSkill({
       'Distinguish the hemisphere generally facing Earth from the opposite hemisphere without equating the far side with permanent darkness.',
     frontend: {
       en: 'Understand why the far side of the Moon is not always dark.',
+      it: 'Comprendi perché la faccia nascosta della Luna non è sempre al buio.',
       zh: '了解为什么月球背面并不总是黑暗的。',
       hi: 'समझें कि चंद्रमा का पृथ्वी से दूर वाला भाग हमेशा अँधेरे में क्यों नहीं रहता।',
       es: 'Comprende por qué la cara oculta de la Luna no está siempre a oscuras.',

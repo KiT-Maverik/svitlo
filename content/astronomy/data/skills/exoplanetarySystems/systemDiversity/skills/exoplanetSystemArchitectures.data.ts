@@ -5,6 +5,7 @@ export const exoplanetSystemArchitectures_Skill_Data = defineSkill({
   id: '52ed50b3-419b-4e6b-a364-e4ae9c6b564c',
   name: {
     en: 'Exoplanet System Architectures',
+    it: 'Strutture dei sistemi esoplanetari',
     zh: '系外行星系统的布局',
     hi: 'बहिर्ग्रहीय प्रणालियों की बनावट',
     es: 'Arquitecturas de sistemas exoplanetarios',
@@ -39,6 +40,7 @@ export const exoplanetSystemArchitectures_Skill_Data = defineSkill({
       'Compare tightly packed, resonant, eccentric and other planetary arrangements using orbital evidence.',
     frontend: {
       en: 'Compare systems with tightly packed planets, unusual orbits or orbital resonances.',
+      it: 'Confronta sistemi con pianeti molto ravvicinati, orbite insolite o risonanze orbitali.',
       zh: '比较行星密集排列、轨道特殊或存在轨道共振的不同系统。',
       hi: 'पास-पास ग्रहों, असामान्य कक्षाओं या कक्षीय अनुनाद वाली प्रणालियों की तुलना करें।',
       es: 'Compara sistemas con planetas muy próximos, órbitas inusuales o resonancias orbitales.',

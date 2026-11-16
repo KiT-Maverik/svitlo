@@ -5,6 +5,7 @@ export const siderealTime_Skill_Data = defineSkill({
   id: 'f8287f39-a8a4-4c79-a4ba-c7083d09197b',
   name: {
     en: 'Sidereal Time',
+    it: 'Tempo siderale',
     qm: 'Yıldız vaqtı',
     zh: '恒星时',
     hi: 'नाक्षत्र समय',
@@ -39,6 +40,7 @@ export const siderealTime_Skill_Data = defineSkill({
       'Explain how rotation relative to distant stars defines sidereal time and predicts which celestial coordinates cross a local meridian.',
     frontend: {
       en: "Use the stars' apparent motion to understand sidereal time.",
+      it: 'Usa il moto apparente delle stelle per comprendere il tempo siderale.',
       qm: 'Yıldızlarnıñ kökteki körüngen areketi yardımınen yıldız vaqtını añlañız.',
       zh: '通过恒星的视运动理解恒星时。',
       hi: 'तारों की आभासी गति के आधार पर नाक्षत्र समय को समझें।',

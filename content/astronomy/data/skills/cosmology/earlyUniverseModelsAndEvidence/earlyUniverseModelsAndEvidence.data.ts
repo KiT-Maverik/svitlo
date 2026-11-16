@@ -12,6 +12,7 @@ export const earlyUniverseModelsAndEvidence_SkillGroup_Data = defineSkillGroup({
   id: '5f2429de-5bff-42a4-a60f-8d9faafe0a0b',
   name: {
     en: 'Early-Universe Models and Evidence',
+    it: 'Modelli e prove dell\'universo primordiale',
     qm: 'Erte Kâinat modelleri ve delilleri',
     zh: '早期宇宙模型与证据',
     hi: 'आरंभिक ब्रह्मांड के मॉडल और प्रमाण',
@@ -55,6 +56,7 @@ export const earlyUniverseModelsAndEvidence_SkillGroup_Data = defineSkillGroup({
       'The early hot and dense Universe is reconstructed from relic radiation, primordial abundances and theoretical models whose predictions and evidence have different degrees of support.',
     frontend: {
       en: 'Explore the evidence used to reconstruct the early, hot Universe.',
+      it: 'Esplora le prove usate per ricostruire l\'universo primordiale, caldo e denso.',
       qm: 'Erte ve sıcaq Kâinatnıñ tarihını tiklemek içün qullanılğan delillerni araştırıñız.',
       zh: '探索科学家用来重建早期高温宇宙的证据。',
       hi: 'आरंभिक गर्म ब्रह्मांड को समझने में इस्तेमाल होने वाले प्रमाणों को जानें।',

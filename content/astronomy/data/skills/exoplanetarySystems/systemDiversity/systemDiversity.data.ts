@@ -12,6 +12,7 @@ export const systemDiversity_SkillGroup_Data = defineSkillGroup({
   id: '2fdf0bf7-2911-4ca4-a23f-9dc2030d3f14',
   name: {
     en: 'System Diversity',
+    it: 'Diversità dei sistemi planetari',
     zh: '行星系统的多样性',
     hi: 'ग्रह प्रणालियों की विविधता',
     es: 'Diversidad de sistemas',
@@ -59,6 +60,7 @@ export const systemDiversity_SkillGroup_Data = defineSkillGroup({
     methodological: 'Comparing observed systems reveals patterns and exceptions relative to Solar System expectations.',
     frontend: {
       en: 'Discover how planetary systems can differ greatly from our own.',
+      it: 'Scopri quanto i sistemi planetari possano differire dal nostro.',
       zh: '探索其他行星系统可能与我们的太阳系有多大差异。',
       hi: 'जानें कि अन्य ग्रह प्रणालियाँ हमारे सौर मंडल से कितनी भिन्न हो सकती हैं।',
       es: 'Descubre cuánto pueden diferir otros sistemas planetarios del nuestro.',
