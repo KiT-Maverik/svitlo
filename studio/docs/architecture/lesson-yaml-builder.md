@@ -62,6 +62,25 @@ UUID directory. Stage 4 changes Lesson Scene/media specification handoffs to the
 slug modules. It does **not** change Scene implementation IDs or create
 real binary assets.
 
+## Approved next change: temporary authoring language scope
+
+**Status: approved implementation requirement, not yet implemented.** The Lesson
+YAML `config.params.languages` remains the complete planned language set.
+The draft scaffolder should generate `constants.ts` with the **single existing**
+export `languages`: an active tuple containing only
+`production.documentLanguage`, and the complete YAML language tuple kept as
+a commented-out alternative using the **same export name**. The derived
+`LessonLanguages` type and all nested configurators continue to use this one
+export. This allows source-language-only Lesson preview/publication without
+invented translations or weakened Zod/TypeScript localization contracts.
+An author can manually switch to the full tuple when translations are ready.
+Preserve existing creation-only/no-overwrite behavior.
+
+The owning implementation PR must update the Engine Lesson Builder, tests,
+README and this architecture document to describe verified behavior. It must
+not add `draft.props()`, a second `productionLanguages`/`debugLanguages`
+export, or automatic publication approval for unreviewed translations.
+
 ## Stage 3 file-backed Markdown/Code
 
 The draft builder now extracts _authored source content_ from Markdown `locale.value` into `text.md` (invariant scalar) or `locale/<documentLanguage>.md` (localized map). Code `params.codeAsText` is written exactly to `code.<extension>` using a known language-to-extension mapping. It emits pathless build-time reading bindings in the corresponding `defineMarkdown` or `defineCode` module and never embeds finished copy as a second literal.
