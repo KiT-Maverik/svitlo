@@ -11,6 +11,7 @@ export const sanitaryEnvironments_SkillGroup_Data = defineSkillGroup({
   id: '586f5efd-49e8-495f-945c-14fc1bfcd5a0',
   name: {
     en: 'Sanitary Environments',
+    it: 'Ambienti igienicamente sicuri',
     zh: '卫生环境',
     hi: 'स्वच्छ परिवेश',
     es: 'Entornos higiénicos',
@@ -53,6 +54,7 @@ export const sanitaryEnvironments_SkillGroup_Data = defineSkillGroup({
       'Water, indoor air, surfaces, and sanitation infrastructure influence exposure and should be managed according to actual contamination pathways.',
     frontend: {
       en: 'Explore how safe water, air and surfaces affect infection risk.',
+      it: 'Esplora come acqua, aria e superfici sicure influiscono sul rischio di infezione.',
       zh: '探索安全饮水、空气和物体表面如何影响感染风险。',
       hi: 'जानें कि सुरक्षित पानी, हवा और सतहें संक्रमण जोखिम को कैसे प्रभावित करती हैं।',
       es: 'Explora cómo el agua segura, el aire y las superficies afectan al riesgo de infección.',

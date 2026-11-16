@@ -5,6 +5,7 @@ export const interpretFoodLabels_Skill_Data = defineSkill({
   id: 'fc2251e9-a092-41a0-ac0f-d7696026cbba',
   name: {
     en: 'Interpret food labels',
+    it: 'Interpretare le etichette alimentari',
     zh: '阅读食品标签',
     hi: 'खाद्य लेबल समझना',
     es: 'Interpretar etiquetas alimentarias',
@@ -39,6 +40,7 @@ export const interpretFoodLabels_Skill_Data = defineSkill({
       'Use ingredient lists, nutritional information, serving quantities, and date markings without treating a marketing slogan as evidence.',
     frontend: {
       en: 'Read food ingredients, serving sizes and nutritional information.',
+      it: 'Leggi gli ingredienti, le porzioni e le informazioni nutrizionali degli alimenti.',
       zh: '阅读配料、份量及营养成分信息。',
       hi: 'खाद्य सामग्री, परोसने की मात्रा और पोषण संबंधी जानकारी पढ़ें।',
       es: 'Lee ingredientes, tamaños de ración e información nutricional.',

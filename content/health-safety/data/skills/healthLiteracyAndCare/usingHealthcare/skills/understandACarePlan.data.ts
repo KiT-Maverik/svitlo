@@ -5,6 +5,7 @@ export const understandACarePlan_Skill_Data = defineSkill({
   id: '2bb82ddf-6303-4dc1-a83b-49413617a16a',
   name: {
     en: 'Understand a care plan',
+    it: 'Comprendere un piano di cura',
     zh: '理解医疗护理计划',
     hi: 'उपचार योजना को समझना',
     es: 'Comprender un plan de atención',
@@ -39,6 +40,7 @@ export const understandACarePlan_Skill_Data = defineSkill({
       "Interpret the purpose, timing, follow-up, and precautions of a clinician's instructions and clarify uncertainty before acting.",
     frontend: {
       en: 'Understand the purpose, schedule and precautions of an agreed care plan.',
+      it: 'Comprendi lo scopo, i tempi e le precauzioni di un piano di cura concordato.',
       zh: '理解商定护理计划的目的、时间安排和注意事项。',
       hi: 'तय उपचार योजना का उद्देश्य, समय और सावधानियाँ समझें।',
       es: 'Comprende el propósito, los horarios y las precauciones del plan acordado.',

@@ -5,6 +5,7 @@ export const controlExternalBleeding_Skill_Data = defineSkill({
   id: '41e9caf9-b94f-4bfd-9512-048120508924',
   name: {
     en: 'Control external bleeding',
+    it: 'Controllare le emorragie esterne',
     zh: '控制外部出血',
     hi: 'बाहरी रक्तस्राव रोकना',
     es: 'Controlar una hemorragia externa',
@@ -39,6 +40,7 @@ export const controlExternalBleeding_Skill_Data = defineSkill({
       'Apply appropriate direct pressure and escalation when bleeding is severe, while protecting the responder from body-fluid exposure.',
     frontend: {
       en: 'Use appropriate pressure to control bleeding while protecting yourself.',
+      it: 'Applica una pressione adeguata per controllare il sanguinamento proteggendo anche te stesso.',
       zh: '在保护自身安全的同时，利用适当的按压方式止血。',
       hi: 'अपनी सुरक्षा रखते हुए उचित दबाव से रक्तस्राव नियंत्रित करो।',
       es: 'Aplica presión adecuada para controlar el sangrado mientras te proteges.',

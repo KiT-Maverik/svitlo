@@ -5,6 +5,7 @@ export const prepareEssentialEmergencySupplies_Skill_Data = defineSkill({
   id: 'ac080471-b854-4e67-b890-9dc58445fa38',
   name: {
     en: 'Prepare essential emergency supplies',
+    it: 'Preparare le scorte essenziali per le emergenze',
     zh: '准备必要应急物资',
     hi: 'आवश्यक आपातकालीन सामग्री तैयार करना',
     es: 'Preparar suministros esenciales de emergencia',
@@ -39,6 +40,7 @@ export const prepareEssentialEmergencySupplies_Skill_Data = defineSkill({
       'Match water, medicine, documents, lighting, and other essentials to plausible disruption and household needs.',
     frontend: {
       en: "Choose essential supplies suited to your household's emergency needs.",
+      it: 'Scegli le scorte indispensabili adatte alle esigenze di emergenza della tua famiglia.',
       zh: '根据家庭应急需求选择必要物资。',
       hi: 'अपने घर की आपात आवश्यकताओं के अनुसार जरूरी सामान चुनें।',
       es: 'Elige suministros esenciales según las necesidades de emergencia de tu hogar.',

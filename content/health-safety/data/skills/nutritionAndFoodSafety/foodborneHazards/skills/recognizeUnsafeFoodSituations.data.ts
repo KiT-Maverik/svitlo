@@ -5,6 +5,7 @@ export const recognizeUnsafeFoodSituations_Skill_Data = defineSkill({
   id: 'f83eb01b-a07d-4187-99bd-33b4b1ff7af8',
   name: {
     en: 'Recognize unsafe food situations',
+    it: 'Riconoscere situazioni alimentari non sicure',
     zh: '识别不安全的食品情况',
     hi: 'खाद्य सुरक्षा के जोखिम पहचानना',
     es: 'Reconocer situaciones alimentarias inseguras',
@@ -39,6 +40,7 @@ export const recognizeUnsafeFoodSituations_Skill_Data = defineSkill({
       'Identify spoilage, damaged packaging, unsafe water, and uncertain storage histories while understanding that some hazards are invisible.',
     frontend: {
       en: 'Spot food-safety concerns even when food looks normal.',
+      it: 'Individua i rischi per la sicurezza alimentare anche quando il cibo sembra normale.',
       zh: '即使食物看起来正常，也要留意食品安全风险。',
       hi: 'खाना सामान्य दिखे तब भी सुरक्षा संबंधी खतरों को पहचानें।',
       es: 'Detecta problemas de seguridad alimentaria aunque la comida parezca normal.',

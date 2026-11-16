@@ -5,6 +5,7 @@ export const recognizeExplosiveOrdnanceRisk_Skill_Data = defineSkill({
   id: '90f3442c-df86-476b-a8c0-c454206540ac',
   name: {
     en: 'Recognize explosive ordnance risk',
+    it: 'Riconoscere il rischio degli ordigni esplosivi',
     zh: '识别爆炸性弹药危险',
     hi: 'विस्फोटक आयुध के खतरे पहचानना',
     es: 'Reconocer riesgos de municiones explosivas',
@@ -39,6 +40,7 @@ export const recognizeExplosiveOrdnanceRisk_Skill_Data = defineSkill({
       'Treat mines, unexploded devices, fragments, and abandoned suspicious objects as potentially lethal even without obvious warning signs.',
     frontend: {
       en: 'Recognize that unknown ordnance and abandoned devices can be lethal.',
+      it: 'Riconosci che ordigni sconosciuti e dispositivi abbandonati possono essere mortali.',
       zh: '认识不明弹药和遗弃装置可能造成致命伤害。',
       hi: 'समझें कि अज्ञात आयुध और छोड़े गए उपकरण जानलेवा हो सकते हैं।',
       es: 'Reconoce que las municiones desconocidas y los dispositivos abandonados pueden ser mortales.',

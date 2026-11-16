@@ -5,6 +5,7 @@ export const identifyFactorsAffectingHealth_Skill_Data = defineSkill({
   id: '73c5e7bf-7843-4df4-8dd5-8d02e4cef091',
   name: {
     en: 'Identify factors affecting health',
+    it: 'Individuare i fattori che influiscono sulla salute',
     zh: '识别影响健康的因素',
     hi: 'स्वास्थ्य को प्रभावित करने वाले कारक पहचानना',
     es: 'Identificar factores que afectan la salud',
@@ -39,6 +40,7 @@ export const identifyFactorsAffectingHealth_Skill_Data = defineSkill({
       'Connect habits, exposures, living conditions, heredity, and access to services with health outcomes while avoiding simplistic one-cause explanations.',
     frontend: {
       en: 'Identify how habits and environments affect health alongside other factors.',
+      it: 'Individua come abitudini e ambienti, insieme ad altri fattori, influiscono sulla salute.',
       zh: '了解习惯和环境如何与其他因素一起影响健康。',
       hi: 'समझें कि आदतें और वातावरण अन्य कारकों के साथ स्वास्थ्य को कैसे प्रभावित करते हैं।',
       es: 'Identifica cómo los hábitos y el entorno influyen en la salud junto con otros factores.',

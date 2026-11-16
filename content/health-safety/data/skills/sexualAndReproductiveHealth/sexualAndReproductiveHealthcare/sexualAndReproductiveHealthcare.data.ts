@@ -12,6 +12,7 @@ export const sexualAndReproductiveHealthcare_SkillGroup_Data = defineSkillGroup(
   id: 'da0ae39b-2045-4b9a-82f5-386b5969df6e',
   name: {
     en: 'Sexual and Reproductive Healthcare',
+    it: 'Assistenza sanitaria sessuale e riproduttiva',
     zh: '性与生殖健康医疗',
     hi: 'यौन और प्रजनन स्वास्थ्य सेवाएँ',
     es: 'Atención sanitaria sexual y reproductiva',
@@ -60,6 +61,7 @@ export const sexualAndReproductiveHealthcare_SkillGroup_Data = defineSkillGroup(
       'Risk reduction and access to care include prevention of sexually transmitted infections, contraception, pregnancy-related care and confidential advice. These are health-service competencies, not a prescribed set of personal choices.',
     frontend: {
       en: 'Understand healthcare options for prevention, pregnancy and sexual health.',
+      it: 'Comprendi le opzioni sanitarie per la prevenzione, la gravidanza e la salute sessuale.',
       zh: '了解预防、妊娠和性健康方面的医疗选择。',
       hi: 'रोकथाम, गर्भावस्था और यौन स्वास्थ्य के लिए उपलब्ध चिकित्सा विकल्प समझें।',
       es: 'Conoce las opciones de atención para prevención, embarazo y salud sexual.',

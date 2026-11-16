@@ -5,6 +5,7 @@ export const firstAidForChemicalExposure_Skill_Data = defineSkill({
   id: '52229138-f718-4f74-84aa-655a0e75ab47',
   name: {
     en: 'First aid for chemical exposure',
+    it: 'Primo soccorso in caso di esposizione chimica',
     zh: '化学品暴露后的急救',
     hi: 'रसायन के संपर्क में आने पर प्राथमिक उपचार',
     es: 'Primeros auxilios por exposición química',
@@ -39,6 +40,7 @@ export const firstAidForChemicalExposure_Skill_Data = defineSkill({
       'Prioritize rescuer protection, interruption of exposure when safe and appropriate professional or poison-service instructions for skin, eye or inhalation contact; avoid improvised neutralization or hazardous handling.',
     frontend: {
       en: 'Protect yourself and seek specific guidance after a harmful chemical exposure.',
+      it: 'Proteggiti e cerca indicazioni specifiche dopo l\'esposizione a una sostanza chimica nociva.',
       zh: '在有害化学品暴露后先保护自己，并寻求具体的专业指导。',
       hi: 'हानिकारक रसायन के संपर्क के बाद खुद को सुरक्षित रखो और विशिष्ट सलाह लो।',
       es: 'Protégete y solicita indicaciones específicas tras una exposición química nociva.',

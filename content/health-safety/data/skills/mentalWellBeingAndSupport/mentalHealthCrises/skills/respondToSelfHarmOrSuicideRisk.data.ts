@@ -5,6 +5,7 @@ export const respondToSelfHarmOrSuicideRisk_Skill_Data = defineSkill({
   id: '0dda830b-c52a-436f-b92c-0ec0b16efca0',
   name: {
     en: 'Respond to self-harm or suicide risk',
+    it: 'Reagire al rischio di autolesionismo o suicidio',
     zh: '应对自伤或自杀风险',
     hi: 'स्वयं को चोट पहुँचाने या आत्महत्या के जोखिम पर प्रतिक्रिया दें',
     es: 'Responder al riesgo de autolesión o suicidio',
@@ -39,6 +40,7 @@ export const respondToSelfHarmOrSuicideRisk_Skill_Data = defineSkill({
       "Prioritize safety, timely emergency or crisis-service involvement, and staying within one's competence without secrecy promises.",
     frontend: {
       en: 'Understand why self-harm concerns require prompt safety support.',
+      it: 'Comprendi perché i timori di autolesionismo richiedono un sostegno tempestivo per la sicurezza.',
       zh: '了解为何自伤相关担忧需要迅速获得安全支持。',
       hi: 'समझें कि स्वयं को नुकसान पहुँचाने की आशंका में तत्काल सुरक्षा सहायता क्यों जरूरी है।',
       es: 'Comprende por qué cualquier preocupación por autolesiones requiere apoyo rápido para mantener la seguridad.',

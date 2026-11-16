@@ -5,6 +5,7 @@ export const automatedExternalDefibrillatorUse_Skill_Data = defineSkill({
   id: '126b740d-5ab9-4288-b0d5-2302fe1c7e5b',
   name: {
     en: 'Automated external defibrillator use',
+    it: 'Uso del defibrillatore automatico esterno',
     zh: '使用自动体外除颤器',
     hi: 'स्वचालित बाहरी डिफिब्रिलेटर का उपयोग',
     es: 'Uso del desfibrilador externo automático',
@@ -39,6 +40,7 @@ export const automatedExternalDefibrillatorUse_Skill_Data = defineSkill({
       'Recognize an AED, follow its prompts, and coordinate its use with resuscitation while maintaining scene safety.',
     frontend: {
       en: "Understand how to follow an AED's instructions during resuscitation.",
+      it: 'Comprendi come seguire le istruzioni di un DAE durante la rianimazione.',
       zh: '理解如何在复苏过程中遵循自动体外除颤器的指示。',
       hi: 'पुनर्जीवन के दौरान AED के निर्देशों का पालन कैसे करें, यह समझो।',
       es: 'Comprende cómo seguir las indicaciones del DEA durante la reanimación.',

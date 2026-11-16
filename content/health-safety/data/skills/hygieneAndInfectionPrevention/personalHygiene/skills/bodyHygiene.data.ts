@@ -5,6 +5,7 @@ export const bodyHygiene_Skill_Data = defineSkill({
   id: '89b8d725-b37a-4121-8c41-5724157eb7f5',
   name: {
     en: 'Body hygiene',
+    it: 'Igiene del corpo',
     zh: '身体卫生',
     hi: 'शरीर की स्वच्छता',
     es: 'Higiene corporal',
@@ -39,6 +40,7 @@ export const bodyHygiene_Skill_Data = defineSkill({
       'Select suitable cleaning and personal-care routines for skin, hair, and intimate areas without assuming excessive washing is beneficial.',
     frontend: {
       en: 'Choose appropriate routines for caring for your skin and body.',
+      it: 'Scegli abitudini adeguate per prenderti cura della pelle e del corpo.',
       zh: '为皮肤和身体选择适当的清洁护理习惯。',
       hi: 'त्वचा और शरीर की देखभाल के लिए उचित सफाई की आदतें चुनें।',
       es: 'Elige rutinas adecuadas para cuidar la piel y el cuerpo.',

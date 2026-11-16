@@ -5,6 +5,7 @@ export const recognizeSignsOfAHeartAttack_Skill_Data = defineSkill({
   id: '73d5fe41-ef84-45a2-a5f0-6de23aef5647',
   name: {
     en: 'Recognize signs of a heart attack',
+    it: 'Riconoscere i segni di un infarto',
     zh: '识别心脏病发作的迹象',
     hi: 'दिल का दौरा पड़ने के संकेत पहचानना',
     es: 'Reconocer señales de infarto',
@@ -39,6 +40,7 @@ export const recognizeSignsOfAHeartAttack_Skill_Data = defineSkill({
       'Identify concerning chest discomfort and associated symptoms as possible medical emergencies requiring timely assistance.',
     frontend: {
       en: 'Recognize symptoms that may indicate a heart attack.',
+      it: 'Riconosci i sintomi che potrebbero indicare un infarto.',
       zh: '识别可能提示心脏病发作的症状。',
       hi: 'ऐसे लक्षण पहचानो जो दिल के दौरे का संकेत दे सकते हैं।',
       es: 'Reconoce síntomas que pueden indicar un infarto cardíaco.',

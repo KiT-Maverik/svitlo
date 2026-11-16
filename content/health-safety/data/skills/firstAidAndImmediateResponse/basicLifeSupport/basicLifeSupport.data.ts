@@ -11,6 +11,7 @@ export const basicLifeSupport_SkillGroup_Data = defineSkillGroup({
   id: '64beb776-f80c-4418-a58c-f20d1ba281e3',
   name: {
     en: 'Basic Life Support',
+    it: 'Supporto vitale di base',
     zh: '基本生命支持',
     hi: 'बुनियादी जीवन रक्षक सहायता',
     es: 'Soporte vital básico',
@@ -53,6 +54,7 @@ export const basicLifeSupport_SkillGroup_Data = defineSkillGroup({
       "Resuscitation competencies require validated techniques and updated guidance appropriate to the person's age, circumstances, and responder training.",
     frontend: {
       en: 'Explore recognized methods of basic life support within current training.',
+      it: 'Esplora i metodi riconosciuti di supporto vitale di base nell\'ambito della formazione ricevuta.',
       zh: '了解根据当前培训内容认可的基本生命支持方法。',
       hi: 'मौजूदा प्रशिक्षण के अनुसार मान्य जीवन रक्षक तरीकों को जानो।',
       es: 'Explora métodos reconocidos de soporte vital básico según la formación actual.',

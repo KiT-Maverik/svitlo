@@ -5,6 +5,7 @@ export const chooseAnAppropriateLevelOfHealthcare_Skill_Data = defineSkill({
   id: 'd9fed1f1-9981-4216-8117-56c3eb1720b5',
   name: {
     en: 'Choose an appropriate level of healthcare',
+    it: 'Scegliere il livello di assistenza sanitaria adeguato',
     zh: '选择适当的医疗服务级别',
     hi: 'उचित स्तर की स्वास्थ्य सेवा चुनना',
     es: 'Elegir el nivel adecuado de atención',
@@ -39,6 +40,7 @@ export const chooseAnAppropriateLevelOfHealthcare_Skill_Data = defineSkill({
       'Distinguish routine consultation, timely professional assessment, and urgent emergency response by the nature and progression of symptoms.',
     frontend: {
       en: 'Recognize when a concern needs routine care or urgent help.',
+      it: 'Riconosci quando un problema richiede una visita ordinaria oppure un intervento urgente.',
       zh: '区分哪些问题可以常规就诊，哪些需要紧急帮助。',
       hi: 'पहचानें कि कब सामान्य चिकित्सा और कब तत्काल सहायता ज़रूरी है।',
       es: 'Reconoce cuándo un problema necesita atención rutinaria o ayuda urgente.',

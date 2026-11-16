@@ -5,6 +5,7 @@ export const recognizeInfectionTransmissionRoutes_Skill_Data = defineSkill({
   id: '76b7e737-2afe-489b-9868-319f89bd8103',
   name: {
     en: 'Recognize infection transmission routes',
+    it: 'Riconoscere le vie di trasmissione delle infezioni',
     zh: '识别感染传播途径',
     hi: 'संक्रमण के फैलने के मार्ग पहचानना',
     es: 'Reconocer vías de transmisión de infecciones',
@@ -39,6 +40,7 @@ export const recognizeInfectionTransmissionRoutes_Skill_Data = defineSkill({
       'Distinguish respiratory, contact, foodborne, bloodborne, and vector-related exposure when considering prevention.',
     frontend: {
       en: 'Recognize contact, respiratory, foodborne and other transmission pathways.',
+      it: 'Riconosci la trasmissione per contatto, respiratoria, alimentare e attraverso altre vie.',
       zh: '识别接触、呼吸、食物以及其他感染传播途径。',
       hi: 'संपर्क, साँस, भोजन और संक्रमण के अन्य रास्ते पहचानें।',
       es: 'Reconoce vías de transmisión por contacto, respiración, alimentos y otras formas.',

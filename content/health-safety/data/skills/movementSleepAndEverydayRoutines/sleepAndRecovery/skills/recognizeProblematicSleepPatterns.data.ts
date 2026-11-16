@@ -5,6 +5,7 @@ export const recognizeProblematicSleepPatterns_Skill_Data = defineSkill({
   id: 'e4c6eb2e-feb3-457e-9ec2-83bfa46ea982',
   name: {
     en: 'Recognize problematic sleep patterns',
+    it: 'Riconoscere abitudini di sonno problematiche',
     zh: '识别异常睡眠模式',
     hi: 'नींद की चिंताजनक समस्याएँ पहचानना',
     es: 'Reconocer patrones de sueño problemáticos',
@@ -39,6 +40,7 @@ export const recognizeProblematicSleepPatterns_Skill_Data = defineSkill({
       'Notice persistent disruption or dangerous sleepiness and distinguish a need for evaluation from an occasional poor night.',
     frontend: {
       en: 'Notice when persistent sleep problems deserve professional attention.',
+      it: 'Nota quando problemi persistenti del sonno meritano attenzione professionale.',
       zh: '注意持续的睡眠问题何时需要专业帮助。',
       hi: 'पहचानें कि लगातार नींद की समस्या में विशेषज्ञ से कब सलाह लेनी चाहिए।',
       es: 'Detecta cuándo los problemas persistentes de sueño merecen atención profesional.',

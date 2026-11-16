@@ -5,6 +5,7 @@ export const recognizeHarmfulCopingPatterns_Skill_Data = defineSkill({
   id: '0742b03b-9184-4a41-ac16-6f40699654e6',
   name: {
     en: 'Recognize harmful coping patterns',
+    it: 'Riconoscere strategie dannose di gestione delle difficoltà',
     zh: '识别有害的应对模式',
     hi: 'हानिकारक सामना करने की आदतें पहचानें',
     es: 'Reconocer formas perjudiciales de afrontar dificultades',
@@ -39,6 +40,7 @@ export const recognizeHarmfulCopingPatterns_Skill_Data = defineSkill({
       'Distinguish restorative actions from strategies that may intensify distress or introduce additional risks.',
     frontend: {
       en: 'Recognize coping habits that may create new problems.',
+      it: 'Riconosci le abitudini con cui si affrontano le difficoltà che possono creare nuovi problemi.',
       zh: '识别可能带来新问题的应对习惯。',
       hi: 'ऐसी आदतों को पहचानें जो कठिनाइयों से निपटने के बजाय नई समस्याएँ पैदा कर सकती हैं।',
       es: 'Identifica hábitos de afrontamiento que pueden generar nuevos problemas.',

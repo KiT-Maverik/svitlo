@@ -13,6 +13,7 @@ export const transmissionAndProtection_SkillGroup_Data = defineSkillGroup({
   id: 'aa64b2a4-45ef-48d9-ab71-9344160fc668',
   name: {
     en: 'Transmission and Protection',
+    it: 'Trasmissione e protezione',
     zh: '传播途径与防护',
     hi: 'संक्रमण फैलाव और सुरक्षा',
     es: 'Transmisión y protección',
@@ -63,6 +64,7 @@ export const transmissionAndProtection_SkillGroup_Data = defineSkillGroup({
       'Infectious hazards can spread through different routes and require measures suited to the agent and environment, not one universal precaution.',
     frontend: {
       en: 'Discover how infections spread and which precautions fit each route.',
+      it: 'Scopri come si diffondono le infezioni e quali precauzioni sono adatte a ciascuna via di trasmissione.',
       zh: '了解感染如何传播，以及每种途径需要哪些预防措施。',
       hi: 'समझें कि संक्रमण कैसे फैलते हैं और हर रास्ते के लिए कौन सी सावधानी सही है।',
       es: 'Descubre cómo se transmiten las infecciones y qué precauciones corresponden a cada vía.',

@@ -5,6 +5,7 @@ export const recognizeBullying_Skill_Data = defineSkill({
   id: 'e598d0d1-c81f-4b0e-ba41-5cf9c52b7d21',
   name: {
     en: 'Recognize bullying',
+    it: 'Riconoscere il bullismo',
     zh: '识别霸凌',
     hi: 'धमकाकर परेशान करना पहचानें',
     es: 'Reconocer el acoso escolar y entre pares',
@@ -39,6 +40,7 @@ export const recognizeBullying_Skill_Data = defineSkill({
       'Identify a pattern of harmful repeated conduct involving a power imbalance, distinguishing bullying from a mutual disagreement or an isolated conflict.',
     frontend: {
       en: 'Distinguish repeated bullying involving power imbalance from ordinary conflict.',
+      it: 'Distingui il bullismo ripetuto, caratterizzato da uno squilibrio di potere, dai conflitti comuni.',
       zh: '区分存在权力不平衡的反复霸凌与普通冲突。',
       hi: 'शक्ति के असंतुलन के साथ बार-बार होने वाली बदमाशी को सामान्य झगड़े से अलग करें।',
       es: 'Distingue el acoso repetido con desequilibrio de poder de un conflicto habitual.',

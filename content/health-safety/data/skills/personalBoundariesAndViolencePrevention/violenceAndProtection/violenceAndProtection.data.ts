@@ -14,6 +14,7 @@ export const violenceAndProtection_SkillGroup_Data = defineSkillGroup({
   id: 'e2d120cc-42ab-4840-b8da-275e385a5e6a',
   name: {
     en: 'Violence and Protection',
+    it: 'Violenza e protezione',
     zh: '暴力与保护',
     hi: 'हिंसा और सुरक्षा',
     es: 'Violencia y protección',
@@ -66,6 +67,7 @@ export const violenceAndProtection_SkillGroup_Data = defineSkillGroup({
       'Violence can be physical, psychological, sexual, economic, or digital; protection and reporting should avoid exposing affected people to retaliation.',
     frontend: {
       en: 'Recognize harmful behaviors and learn how to seek protection.',
+      it: 'Riconosci i comportamenti dannosi e impara come cercare protezione.',
       zh: '识别有害行为并学习如何寻求保护。',
       hi: 'हानिकारक व्यवहार पहचानें और संरक्षण पाने के तरीके सीखें।',
       es: 'Reconoce comportamientos dañinos y aprende cómo buscar protección.',

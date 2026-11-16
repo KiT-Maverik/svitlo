@@ -5,6 +5,7 @@ export const safeCookingAndReheating_Skill_Data = defineSkill({
   id: '026dd100-864e-4727-828a-9c2f98faee45',
   name: {
     en: 'Safe cooking and reheating',
+    it: 'Cottura e riscaldamento sicuri degli alimenti',
     zh: '安全烹饪与重新加热',
     hi: 'सुरक्षित पकाना और दोबारा गर्म करना',
     es: 'Cocción y recalentamiento seguros',
@@ -39,6 +40,7 @@ export const safeCookingAndReheating_Skill_Data = defineSkill({
       'Relate sufficient heating to reducing specified foodborne hazards rather than relying only on colour or texture.',
     frontend: {
       en: 'Recognize why proper cooking and reheating are important.',
+      it: 'Comprendi perché una cottura e un riscaldamento adeguati sono importanti.',
       zh: '了解为什么充分烹饪和重新加热食物很重要。',
       hi: 'समझें कि खाना सही तरह पकाना और दोबारा गरम करना क्यों ज़रूरी है।',
       es: 'Comprende por qué es importante cocinar y recalentar bien los alimentos.',

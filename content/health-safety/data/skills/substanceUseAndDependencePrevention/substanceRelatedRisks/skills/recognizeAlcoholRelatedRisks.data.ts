@@ -5,6 +5,7 @@ export const recognizeAlcoholRelatedRisks_Skill_Data = defineSkill({
   id: '0401fa95-4368-4ac0-90bf-942d26a713e9',
   name: {
     en: 'Recognize alcohol-related risks',
+    it: 'Riconoscere i rischi legati all\'alcol',
     zh: '识别酒精相关风险',
     hi: 'शराब से जुड़े जोखिम पहचानें',
     es: 'Reconocer riesgos relacionados con el alcohol',
@@ -39,6 +40,7 @@ export const recognizeAlcoholRelatedRisks_Skill_Data = defineSkill({
       'Identify impaired judgment, coordination, poisoning risk, and longer-term health consequences associated with alcohol.',
     frontend: {
       en: 'Recognize how alcohol can affect safety, judgment and long-term health.',
+      it: 'Riconosci come l\'alcol può influire sulla sicurezza, sul giudizio e sulla salute a lungo termine.',
       zh: '认识酒精对安全、判断能力和长期健康的影响。',
       hi: 'समझें कि शराब सुरक्षा, निर्णय क्षमता और लंबे समय के स्वास्थ्य को कैसे प्रभावित करती है।',
       es: 'Reconoce cómo el alcohol puede afectar la seguridad, el juicio y la salud a largo plazo.',

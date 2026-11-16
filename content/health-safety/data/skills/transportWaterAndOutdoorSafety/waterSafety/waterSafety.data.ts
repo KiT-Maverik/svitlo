@@ -11,6 +11,7 @@ export const waterSafety_SkillGroup_Data = defineSkillGroup({
   id: 'f6e99946-af37-40a2-9514-7f9335463f81',
   name: {
     en: 'Water Safety',
+    it: 'Sicurezza in acqua',
     zh: '水域安全',
     hi: 'जल सुरक्षा',
     es: 'Seguridad en el agua',
@@ -53,6 +54,7 @@ export const waterSafety_SkillGroup_Data = defineSkillGroup({
       'Drowning can occur quickly and silently; preventing entry into danger and using non-contact rescue options are distinct from trained water rescue.',
     frontend: {
       en: 'Discover how to prevent drowning and respond without creating another casualty.',
+      it: 'Scopri come prevenire l\'annegamento e intervenire senza mettere in pericolo un\'altra persona.',
       zh: '了解如何预防溺水，并在不增加伤亡的情况下帮助遇险者。',
       hi: 'जानें कि डूबने से कैसे बचें और खुद को या दूसरों को जोखिम में डाले बिना मदद कैसे करें।',
       es: 'Aprende a prevenir ahogamientos y ayudar sin ponerte ni poner a otras personas en peligro.',

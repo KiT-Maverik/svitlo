@@ -5,6 +5,7 @@ export const safeHandlingOfHotSurfacesAndLiquids_Skill_Data = defineSkill({
   id: 'e95ffc05-c374-45e0-ad85-cbc5a5ed8f8c',
   name: {
     en: 'Safe handling of hot surfaces and liquids',
+    it: 'Maneggiare in sicurezza superfici e liquidi caldi',
     zh: '安全接触高温表面与液体',
     hi: 'गर्म सतहों और तरल पदार्थों को सुरक्षित संभालना',
     es: 'Manipulación segura de superficies y líquidos calientes',
@@ -38,6 +39,7 @@ export const safeHandlingOfHotSurfacesAndLiquids_Skill_Data = defineSkill({
     methodological: 'Recognize scalding and contact-burn hazards in kitchens, bathrooms, and heating areas.',
     frontend: {
       en: 'Recognize burn risks from hot objects and liquids.',
+      it: 'Riconosci i rischi di ustione causati da oggetti e liquidi caldi.',
       zh: '识别高温物品和液体引发的烫伤风险。',
       hi: 'गर्म वस्तुओं और तरल पदार्थों से जलने के जोखिम पहचानें।',
       es: 'Reconoce el riesgo de quemaduras por objetos y líquidos calientes.',

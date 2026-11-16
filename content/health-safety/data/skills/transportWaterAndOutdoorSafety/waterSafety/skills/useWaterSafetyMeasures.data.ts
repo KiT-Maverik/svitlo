@@ -5,6 +5,7 @@ export const useWaterSafetyMeasures_Skill_Data = defineSkill({
   id: '988fc1d4-29c0-4d2b-b1e0-a2fb0d1505ef',
   name: {
     en: 'Use water-safety measures',
+    it: 'Applicare misure di sicurezza in acqua',
     zh: '采用水域安全措施',
     hi: 'जल सुरक्षा उपाय अपनाना',
     es: 'Usar medidas de seguridad acuática',
@@ -39,6 +40,7 @@ export const useWaterSafetyMeasures_Skill_Data = defineSkill({
       'Select appropriate flotation, supervision, and activity limitations while recognizing the limits of swimming ability.',
     frontend: {
       en: 'Use flotation, supervision and other appropriate swimming precautions.',
+      it: 'Usa dispositivi di galleggiamento, sorveglianza e altre precauzioni appropriate per il nuoto.',
       zh: '采用漂浮辅助设备、成人看护等合适的游泳防护措施。',
       hi: 'उचित तैरने के सहारे, निगरानी और अन्य जल सावधानियाँ अपनाएँ।',
       es: 'Usa dispositivos de flotación, supervisión y otras precauciones apropiadas al nadar.',

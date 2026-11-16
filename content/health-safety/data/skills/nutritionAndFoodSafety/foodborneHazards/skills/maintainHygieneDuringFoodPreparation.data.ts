@@ -5,6 +5,7 @@ export const maintainHygieneDuringFoodPreparation_Skill_Data = defineSkill({
   id: 'eed0b8d7-c1de-4cad-b96e-56f80df4d8f2',
   name: {
     en: 'Maintain hygiene during food preparation',
+    it: 'Mantenere l\'igiene durante la preparazione degli alimenti',
     zh: '备餐时保持卫生',
     hi: 'भोजन तैयार करते समय स्वच्छता बनाए रखना',
     es: 'Mantener la higiene al preparar alimentos',
@@ -39,6 +40,7 @@ export const maintainHygieneDuringFoodPreparation_Skill_Data = defineSkill({
       'Maintain clean hands, utensils and work surfaces while preparing meals, limiting microbial contamination without subsuming the distinct task of keeping raw foods separate from ready-to-eat foods.',
     frontend: {
       en: 'Keep hands and kitchen surfaces clean while preparing food.',
+      it: 'Mantieni pulite le mani e le superfici della cucina mentre prepari da mangiare.',
       zh: '准备食物时保持双手和厨房表面清洁。',
       hi: 'भोजन बनाते समय हाथ और रसोई की सतहें साफ रखें।',
       es: 'Mantén limpias las manos y las superficies de cocina al preparar alimentos.',

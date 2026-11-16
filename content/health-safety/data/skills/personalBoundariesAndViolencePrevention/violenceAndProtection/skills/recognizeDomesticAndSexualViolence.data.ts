@@ -5,6 +5,7 @@ export const recognizeDomesticAndSexualViolence_Skill_Data = defineSkill({
   id: 'cd9f4079-2397-45f1-8713-9b7d9eacdfe2',
   name: {
     en: 'Recognize domestic and sexual violence',
+    it: 'Riconoscere la violenza domestica e sessuale',
     zh: '识别家庭暴力与性暴力',
     hi: 'घरेलू और यौन हिंसा पहचानें',
     es: 'Reconocer la violencia doméstica y sexual',
@@ -39,6 +40,7 @@ export const recognizeDomesticAndSexualViolence_Skill_Data = defineSkill({
       'Identify controlling, threatening, non-consensual, or abusive behaviour, including harm by familiar or trusted people.',
     frontend: {
       en: 'Recognize controlling, threatening or non-consensual behavior as violence.',
+      it: 'Riconosci come violenza i comportamenti di controllo, minaccia o privi di consenso.',
       zh: '把控制、威胁或未经同意的行为识别为暴力。',
       hi: 'नियंत्रण, धमकी या बिना सहमति के व्यवहार को हिंसा के रूप में पहचानें।',
       es: 'Identifica como violencia la conducta controladora, amenazante o sin consentimiento.',

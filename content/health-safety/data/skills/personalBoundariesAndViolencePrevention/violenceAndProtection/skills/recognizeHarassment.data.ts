@@ -5,6 +5,7 @@ export const recognizeHarassment_Skill_Data = defineSkill({
   id: '646a2b40-c9ee-49bc-b9da-396bdbd624b4',
   name: {
     en: 'Recognize harassment',
+    it: 'Riconoscere le molestie',
     zh: '识别骚扰',
     hi: 'उत्पीड़न पहचानें',
     es: 'Reconocer el hostigamiento',
@@ -39,6 +40,7 @@ export const recognizeHarassment_Skill_Data = defineSkill({
       'Identify intimidating, degrading, discriminatory or otherwise unwanted targeted conduct, which may be serious even without a repeated bullying pattern.',
     frontend: {
       en: 'Identify harassment that can cause harm even when it is not repeated.',
+      it: 'Individua le molestie che possono provocare danni anche quando non si ripetono.',
       zh: '识别即使不反复发生也可能造成伤害的骚扰行为。',
       hi: 'ऐसा उत्पीड़न पहचानें जो दोहराया न जाए, फिर भी नुकसान पहुँचा सकता है।',
       es: 'Identifica hostigamientos que pueden causar daño aunque no se repitan.',

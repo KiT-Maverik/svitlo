@@ -5,6 +5,7 @@ export const manageFoodAllergyRisks_Skill_Data = defineSkill({
   id: 'd8aba279-b0f8-4769-983f-6b7b6859bf1d',
   name: {
     en: 'Manage food allergy risks',
+    it: 'Gestire i rischi delle allergie alimentari',
     zh: '管理食物过敏风险',
     hi: 'खाद्य एलर्जी का जोखिम संभालना',
     es: 'Gestionar riesgos de alergias alimentarias',
@@ -39,6 +40,7 @@ export const manageFoodAllergyRisks_Skill_Data = defineSkill({
       'Identify allergens and cross-contact warnings, verify ingredients, take appropriate avoidance precautions and understand when an allergic reaction requires urgent care.',
     frontend: {
       en: 'Identify allergens and avoid dangerous ingredient cross-contact.',
+      it: 'Individua gli allergeni ed evita i pericolosi contatti incrociati tra ingredienti.',
       zh: '识别过敏原并避免危险的配料交叉接触。',
       hi: 'एलर्जी पैदा करने वाले पदार्थ पहचानें और सामग्री का खतरनाक संपर्क रोकें।',
       es: 'Identifica alérgenos y evita el contacto cruzado peligroso entre ingredientes.',

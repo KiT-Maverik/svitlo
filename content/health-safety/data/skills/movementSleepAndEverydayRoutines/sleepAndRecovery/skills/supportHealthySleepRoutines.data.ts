@@ -5,6 +5,7 @@ export const supportHealthySleepRoutines_Skill_Data = defineSkill({
   id: '0c5c41be-0dd2-424b-a4f5-3c36f315058d',
   name: {
     en: 'Support healthy sleep routines',
+    it: 'Favorire abitudini di sonno sane',
     zh: '培养健康睡眠习惯',
     hi: 'स्वस्थ नींद की दिनचर्या अपनाना',
     es: 'Favorecer rutinas de sueño saludables',
@@ -39,6 +40,7 @@ export const supportHealthySleepRoutines_Skill_Data = defineSkill({
       'Identify modifiable factors such as light, noise, stimulants, and schedule regularity that can affect sleep.',
     frontend: {
       en: 'Adjust routines and surroundings to support better sleep.',
+      it: 'Adatta le abitudini e l\'ambiente circostante per favorire un sonno migliore.',
       zh: '调整日常安排和周围环境，改善睡眠。',
       hi: 'बेहतर नींद के लिए आदतें और आसपास का वातावरण बदलें।',
       es: 'Adapta tus hábitos y el entorno para dormir mejor.',

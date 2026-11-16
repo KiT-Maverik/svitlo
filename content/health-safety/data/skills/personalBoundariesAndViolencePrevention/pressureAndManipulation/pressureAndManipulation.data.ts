@@ -12,6 +12,7 @@ export const pressureAndManipulation_SkillGroup_Data = defineSkillGroup({
   id: 'cb387d75-231c-49d7-a416-ce0009a08306',
   name: {
     en: 'Pressure and Manipulation',
+    it: 'Pressione e manipolazione',
     zh: '施压与操控',
     hi: 'दबाव और हेरफेर',
     es: 'Presión y manipulación',
@@ -60,6 +61,7 @@ export const pressureAndManipulation_SkillGroup_Data = defineSkillGroup({
       'Coercion can use threats, secrecy, guilt, status, dependency, or urgency; a protective response need not persuade the aggressor.',
     frontend: {
       en: 'Discover how coercion may use guilt, threats or secrecy rather than free choice.',
+      it: 'Scopri come la coercizione può sfruttare il senso di colpa, le minacce o la segretezza anziché una scelta libera.',
       zh: '了解胁迫可能利用内疚、威胁或保密要求取代自由选择。',
       hi: 'समझें कि मजबूरी में स्वतंत्र चुनाव की जगह अपराधबोध, धमकी या गोपनीयता का दबाव हो सकता है।',
       es: 'Descubre cómo la coacción puede usar culpa, amenazas o secretos en lugar de una elección libre.',

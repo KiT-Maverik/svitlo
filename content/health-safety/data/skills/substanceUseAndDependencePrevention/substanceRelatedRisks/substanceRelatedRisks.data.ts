@@ -12,6 +12,7 @@ export const substanceRelatedRisks_SkillGroup_Data = defineSkillGroup({
   id: 'a5bdfa8f-8081-4d4f-8fc3-d5fa60482616',
   name: {
     en: 'Substance-Related Risks',
+    it: 'Rischi legati alle sostanze',
     zh: '物质相关风险',
     hi: 'पदार्थों से जुड़े जोखिम',
     es: 'Riesgos relacionados con sustancias',
@@ -60,6 +61,7 @@ export const substanceRelatedRisks_SkillGroup_Data = defineSkillGroup({
       'Effects depend on the substance, amount, context, interactions, and vulnerability; legal availability does not imply harmlessness.',
     frontend: {
       en: 'Explore how substance effects and risks vary with circumstances.',
+      it: 'Esplora come gli effetti e i rischi delle sostanze cambiano a seconda delle circostanze.',
       zh: '了解物质的影响和风险如何随情况而变化。',
       hi: 'जानें कि विभिन्न परिस्थितियों में पदार्थों के प्रभाव और जोखिम कैसे बदलते हैं।',
       es: 'Explora cómo los efectos y riesgos de las sustancias varían según las circunstancias.',

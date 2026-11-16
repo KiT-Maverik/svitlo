@@ -5,6 +5,7 @@ export const safeContactWithBloodAndBodyFluids_Skill_Data = defineSkill({
   id: 'efba41e9-a578-4cfd-a7f0-3b49b085ae2f',
   name: {
     en: 'Safe contact with blood and body fluids',
+    it: 'Contatto sicuro con sangue e fluidi corporei',
     zh: '安全接触血液与体液',
     hi: 'रक्त और शारीरिक द्रवों से सुरक्षित संपर्क',
     es: 'Contacto seguro con sangre y fluidos corporales',
@@ -39,6 +40,7 @@ export const safeContactWithBloodAndBodyFluids_Skill_Data = defineSkill({
       'Avoid direct unprotected exposure and understand when barriers, handwashing, and professional assistance are necessary.',
     frontend: {
       en: 'Recognize why blood and body fluids require protective handling.',
+      it: 'Comprendi perché il contatto con sangue e fluidi corporei richiede misure di protezione.',
       zh: '了解为什么处理血液和体液时必须采取防护措施。',
       hi: 'समझें कि रक्त और शारीरिक द्रवों को संभालते समय सुरक्षा क्यों ज़रूरी है।',
       es: 'Reconoce por qué la sangre y los fluidos corporales requieren protección al manipularlos.',

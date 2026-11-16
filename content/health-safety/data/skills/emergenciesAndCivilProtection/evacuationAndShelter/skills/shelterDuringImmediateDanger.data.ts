@@ -5,6 +5,7 @@ export const shelterDuringImmediateDanger_Skill_Data = defineSkill({
   id: '1f1d60fb-56ef-4457-9030-05157ba662eb',
   name: {
     en: 'Shelter during immediate danger',
+    it: 'Trovare riparo durante un pericolo immediato',
     zh: '迫在眉睫的危险中避难',
     hi: 'तत्काल खतरे में आश्रय लेना',
     es: 'Refugiarse ante un peligro inmediato',
@@ -38,6 +39,7 @@ export const shelterDuringImmediateDanger_Skill_Data = defineSkill({
     methodological: 'Recognize suitable protected locations and conditions under which a shelter becomes unsafe.',
     frontend: {
       en: 'Choose appropriate shelter during an immediate threat.',
+      it: 'Scegli un riparo adeguato durante una minaccia immediata.',
       zh: '紧急威胁出现时选择合适的避难地点。',
       hi: 'तत्काल खतरे में उपयुक्त सुरक्षित आश्रय चुनें।',
       es: 'Elige un refugio adecuado ante una amenaza inmediata.',

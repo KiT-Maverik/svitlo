@@ -5,6 +5,7 @@ export const pedestrianRoadSafety_Skill_Data = defineSkill({
   id: '58155722-2a34-4f66-af11-c951908c6674',
   name: {
     en: 'Pedestrian road safety',
+    it: 'Sicurezza stradale dei pedoni',
     zh: '行人道路安全',
     hi: 'पैदल यात्री सड़क सुरक्षा',
     es: 'Seguridad vial para peatones',
@@ -39,6 +40,7 @@ export const pedestrianRoadSafety_Skill_Data = defineSkill({
       'Assess crossings, visibility, traffic movement, signals, and distractions before entering a roadway.',
     frontend: {
       en: 'Choose safer crossing points by watching traffic, signals and visibility.',
+      it: 'Scegli punti di attraversamento più sicuri osservando traffico, segnali e visibilità.',
       zh: '观察车辆、信号及视线情况，选择更安全的过街地点。',
       hi: 'यातायात, संकेत और दृश्यता देखकर सुरक्षित सड़क पार करने की जगह चुनें।',
       es: 'Elige cruces seguros observando el tráfico, las señales y la visibilidad.',

@@ -5,6 +5,7 @@ export const readSafetySignsAndInstructions_Skill_Data = defineSkill({
   id: '27a12e4d-5840-4a20-bc6b-26a77612e8c3',
   name: {
     en: 'Read safety signs and instructions',
+    it: 'Leggere segnali e istruzioni di sicurezza',
     zh: '阅读安全标志和说明',
     hi: 'सुरक्षा संकेत और निर्देश पढ़ना',
     es: 'Leer señales e instrucciones de seguridad',
@@ -39,6 +40,7 @@ export const readSafetySignsAndInstructions_Skill_Data = defineSkill({
       'Interpret warning symbols, restricted areas, and equipment guidance in context instead of treating a label as complete protection.',
     frontend: {
       en: 'Understand workplace warnings and the limits of safety labels.',
+      it: 'Comprendi gli avvisi sul luogo di lavoro e i limiti delle etichette di sicurezza.',
       zh: '理解工作场所警告及安全标签本身的局限性。',
       hi: 'कार्यस्थल की चेतावनियों और सुरक्षा लेबलों की सीमाएँ समझें।',
       es: 'Comprende las advertencias laborales y los límites de las etiquetas de seguridad.',

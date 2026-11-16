@@ -5,6 +5,7 @@ export const protectHearingFromNoise_Skill_Data = defineSkill({
   id: 'f1dcfadd-48e1-4acb-872b-3a3432545928',
   name: {
     en: 'Protect hearing from noise',
+    it: 'Proteggere l\'udito dal rumore',
     zh: '保护听力免受噪声伤害',
     hi: 'शोर से सुनने की क्षमता बचाना',
     es: 'Proteger la audición frente al ruido',
@@ -39,6 +40,7 @@ export const protectHearingFromNoise_Skill_Data = defineSkill({
       'Relate loudness and exposure time to hearing risk, including personal listening devices and noisy environments.',
     frontend: {
       en: 'Recognize why volume and listening time both affect hearing safety.',
+      it: 'Riconosci perché sia il volume sia la durata dell\'ascolto influiscono sulla sicurezza dell\'udito.',
       zh: '了解音量和聆听时间为什么都会影响听力安全。',
       hi: 'समझें कि आवाज़ की तीव्रता और सुनने का समय दोनों सुनने की सुरक्षा पर कैसे असर डालते हैं।',
       es: 'Comprende por qué tanto el volumen como el tiempo de escucha afectan a la seguridad auditiva.',

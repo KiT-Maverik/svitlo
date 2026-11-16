@@ -5,6 +5,7 @@ export const supportAPersonAffectedByViolence_Skill_Data = defineSkill({
   id: '25f0cff0-30cb-40ab-a353-23e30bf65273',
   name: {
     en: 'Support a person affected by violence',
+    it: 'Sostenere una persona che ha subito violenza',
     zh: '支持受暴力影响的人',
     hi: 'हिंसा से प्रभावित व्यक्ति का साथ दें',
     es: 'Apoyar a una persona afectada por la violencia',
@@ -39,6 +40,7 @@ export const supportAPersonAffectedByViolence_Skill_Data = defineSkill({
       "Respond without blame, respect the person's choices and immediate safety, and facilitate qualified support rather than investigating the incident.",
     frontend: {
       en: 'Support someone affected by violence without blame or unsafe investigation.',
+      it: 'Sostieni una persona colpita dalla violenza senza colpevolizzarla né condurre indagini pericolose.',
       zh: '不责备对方，也不进行危险的私自调查，而是给予支持。',
       hi: 'बिना दोष दिए या असुरक्षित जाँच किए हिंसा से प्रभावित व्यक्ति को सहारा दें।',
       es: 'Apoya sin culpar a la persona ni realizar investigaciones que puedan ponerla en peligro.',

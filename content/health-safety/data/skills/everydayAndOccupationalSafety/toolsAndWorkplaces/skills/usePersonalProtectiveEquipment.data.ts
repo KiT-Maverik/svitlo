@@ -5,6 +5,7 @@ export const usePersonalProtectiveEquipment_Skill_Data = defineSkill({
   id: 'ba87649c-9373-40d8-8925-1f1731366f98',
   name: {
     en: 'Use personal protective equipment',
+    it: 'Utilizzare dispositivi di protezione individuale',
     zh: '使用个人防护装备',
     hi: 'व्यक्तिगत सुरक्षा उपकरणों का उपयोग',
     es: 'Utilizar equipos de protección individual',
@@ -39,6 +40,7 @@ export const usePersonalProtectiveEquipment_Skill_Data = defineSkill({
       'Match protection to the hazard and fit, recognizing that protective equipment does not eliminate the hazard.',
     frontend: {
       en: 'Choose protective equipment that matches a particular hazard.',
+      it: 'Scegli dispositivi di protezione adeguati al pericolo specifico.',
       zh: '选择与具体危险相匹配的防护装备。',
       hi: 'विशेष खतरे के अनुरूप सुरक्षा उपकरण चुनें।',
       es: 'Elige protección adecuada para cada peligro específico.',

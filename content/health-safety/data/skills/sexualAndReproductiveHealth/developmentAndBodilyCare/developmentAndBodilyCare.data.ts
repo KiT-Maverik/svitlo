@@ -11,6 +11,7 @@ export const developmentAndBodilyCare_SkillGroup_Data = defineSkillGroup({
   id: '0562dc6a-4366-4774-ac8b-8db8684c8eca',
   name: {
     en: 'Development and Bodily Care',
+    it: 'Sviluppo e cura del corpo',
     zh: '身体发育与个人护理',
     hi: 'विकास और शारीरिक देखभाल',
     es: 'Desarrollo y cuidado corporal',
@@ -53,6 +54,7 @@ export const developmentAndBodilyCare_SkillGroup_Data = defineSkillGroup({
       'Changes through puberty differ in timing and expression; normal variation and symptoms needing assessment should not be conflated.',
     frontend: {
       en: 'Explore bodily changes through puberty and appropriate personal care.',
+      it: 'Esplora i cambiamenti del corpo durante la pubertà e le forme appropriate di cura personale.',
       zh: '了解青春期的身体变化和适当的个人护理。',
       hi: 'यौवन के दौरान शरीर में होने वाले बदलाव और उचित स्वच्छता जानें।',
       es: 'Descubre los cambios físicos de la pubertad y los cuidados personales adecuados.',

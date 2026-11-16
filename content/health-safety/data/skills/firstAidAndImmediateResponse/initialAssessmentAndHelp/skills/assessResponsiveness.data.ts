@@ -5,6 +5,7 @@ export const assessResponsiveness_Skill_Data = defineSkill({
   id: '1528d30a-1844-416a-8831-15443ce146e5',
   name: {
     en: 'Assess responsiveness',
+    it: 'Valutare la reattività',
     zh: '评估反应能力',
     hi: 'प्रतिक्रिया का आकलन',
     es: 'Evaluar el nivel de respuesta',
@@ -39,6 +40,7 @@ export const assessResponsiveness_Skill_Data = defineSkill({
       'Check whether a person responds and recognize when reduced responsiveness requires immediate escalation.',
     frontend: {
       en: 'Recognize when someone is not responding normally.',
+      it: 'Riconosci quando una persona non risponde normalmente agli stimoli.',
       zh: '识别一个人无法正常回应的情况。',
       hi: 'पहचानो कि कोई व्यक्ति सामान्य रूप से प्रतिक्रिया नहीं दे रहा है।',
       es: 'Reconoce cuando una persona no responde de forma normal.',

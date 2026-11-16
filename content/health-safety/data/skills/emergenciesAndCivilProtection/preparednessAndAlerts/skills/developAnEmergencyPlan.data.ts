@@ -5,6 +5,7 @@ export const developAnEmergencyPlan_Skill_Data = defineSkill({
   id: '7cb7e6e5-3bc2-4ead-92bd-686e7e9773fb',
   name: {
     en: 'Develop an emergency plan',
+    it: 'Preparare un piano di emergenza',
     zh: '制定应急计划',
     hi: 'आपातकालीन योजना बनाना',
     es: 'Elaborar un plan de emergencia',
@@ -39,6 +40,7 @@ export const developAnEmergencyPlan_Skill_Data = defineSkill({
       'Identify meeting points, accessible exits, contacts, responsibilities, and alternatives if communication or transport fails.',
     frontend: {
       en: 'Plan safe exits, contacts and alternatives for likely disruptions.',
+      it: 'Pianifica uscite sicure, contatti e alternative per possibili interruzioni dei servizi.',
       zh: '为可能发生的中断情况规划安全出口、联系人和备用方案。',
       hi: 'संभावित बाधाओं के लिए सुरक्षित निकास, संपर्क और वैकल्पिक उपाय तय करें।',
       es: 'Planifica salidas seguras, contactos y alternativas ante posibles interrupciones.',

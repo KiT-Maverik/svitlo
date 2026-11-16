@@ -13,6 +13,7 @@ export const environmentalAndAcuteInjuries_SkillGroup_Data = defineSkillGroup({
   id: 'd7576a20-a73f-4949-9312-29ff843b80a3',
   name: {
     en: 'Environmental and Acute Injuries',
+    it: 'Lesioni acute e legate all\'ambiente',
     zh: '环境因素与急性损伤',
     hi: 'पर्यावरणीय और अचानक चोटें',
     es: 'Lesiones ambientales y agudas',
@@ -63,6 +64,7 @@ export const environmentalAndAcuteInjuries_SkillGroup_Data = defineSkillGroup({
       "Temperature, substances, and water exposure can rapidly worsen an individual's condition and demand hazard-specific first aid.",
     frontend: {
       en: 'Discover safer responses to burns, exposure, temperature emergencies and drowning.',
+      it: 'Scopri come reagire in modo più sicuro a ustioni, esposizioni pericolose, emergenze termiche e annegamento.',
       zh: '了解如何更安全地应对烧伤、有害物质暴露、极端温度造成的急症和溺水。',
       hi: 'जलने, हानिकारक संपर्क, तापमान संकट और डूबने पर सुरक्षित प्रतिक्रिया के तरीके जानो।',
       es: 'Descubre respuestas más seguras a quemaduras, exposiciones, emergencias térmicas y ahogamiento.',

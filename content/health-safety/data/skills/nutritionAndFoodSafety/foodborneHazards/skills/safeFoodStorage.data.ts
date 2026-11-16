@@ -5,6 +5,7 @@ export const safeFoodStorage_Skill_Data = defineSkill({
   id: 'e20dc306-5258-475b-b80f-11e9d150d10c',
   name: {
     en: 'Safe food storage',
+    it: 'Conservazione sicura degli alimenti',
     zh: '安全储存食物',
     hi: 'भोजन का सुरक्षित भंडारण',
     es: 'Almacenamiento seguro de alimentos',
@@ -39,6 +40,7 @@ export const safeFoodStorage_Skill_Data = defineSkill({
       'Select appropriate storage conditions and time limits, distinguishing shelf-stable from perishable foods.',
     frontend: {
       en: 'Store perishable foods under appropriate conditions.',
+      it: 'Conserva gli alimenti deperibili in condizioni appropriate.',
       zh: '在适当条件下储存容易变质的食物。',
       hi: 'जल्दी खराब होने वाले खाद्य पदार्थ सही परिस्थितियों में रखें।',
       es: 'Guarda los alimentos perecederos en condiciones adecuadas.',

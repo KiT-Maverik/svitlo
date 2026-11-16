@@ -12,6 +12,7 @@ export const foodChoicesAndInformation_SkillGroup_Data = defineSkillGroup({
   id: '2bc5c50a-8f91-4d44-8337-8ab1e50c600c',
   name: {
     en: 'Food Choices and Information',
+    it: 'Scelte alimentari e informazioni',
     zh: '食物选择与信息',
     hi: 'भोजन चुनना और जानकारी',
     es: 'Elección de alimentos e información',
@@ -60,6 +61,7 @@ export const foodChoicesAndInformation_SkillGroup_Data = defineSkillGroup({
       'Marketing, accessibility, food labels, allergies, and personal circumstances shape real-life nutritional decisions.',
     frontend: {
       en: 'Learn to use labels and evidence when selecting foods.',
+      it: 'Impara a usare le etichette e le prove disponibili per scegliere gli alimenti.',
       zh: '选购食物时学会使用标签和可靠证据。',
       hi: 'भोजन चुनते समय लेबल और विश्वसनीय प्रमाण का उपयोग करना सीखें।',
       es: 'Aprende a usar etiquetas y pruebas fiables al elegir alimentos.',

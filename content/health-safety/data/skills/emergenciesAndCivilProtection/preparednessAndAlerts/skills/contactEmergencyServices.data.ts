@@ -5,6 +5,7 @@ export const contactEmergencyServices_Skill_Data = defineSkill({
   id: 'a2851cfd-2b80-4271-a3a6-e8686f585bc4',
   name: {
     en: 'Contact emergency services',
+    it: 'Contattare i servizi di emergenza',
     zh: '联系紧急救援服务',
     hi: 'आपातकालीन सेवाओं से संपर्क करना',
     es: 'Contactar los servicios de emergencia',
@@ -39,6 +40,7 @@ export const contactEmergencyServices_Skill_Data = defineSkill({
       "Communicate location, type of emergency, persons affected and critical changes clearly, including during medical first aid, while following dispatcher instructions and ensuring the caller's own safety.",
     frontend: {
       en: 'Explain an emergency clearly to dispatchers while following their instructions.',
+      it: 'Descrivi chiaramente un\'emergenza agli operatori e segui le loro istruzioni.',
       zh: '向接线员清楚说明紧急情况，并遵循其指示。',
       hi: 'डिस्पैचर को आपात स्थिति स्पष्ट बताएँ और उनके निर्देश मानें।',
       es: 'Explica claramente la emergencia al operador y sigue sus instrucciones.',

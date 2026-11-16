@@ -5,6 +5,7 @@ export const participateInInformedHealthcareDecisions_Skill_Data = defineSkill({
   id: 'ab1238a7-77fc-497b-be07-ba1f96aa1d13',
   name: {
     en: 'Participate in informed healthcare decisions',
+    it: 'Partecipare a decisioni sanitarie informate',
     zh: '参与知情医疗决策',
     hi: 'सूचित चिकित्सा निर्णयों में भाग लेना',
     es: 'Participar en decisiones sanitarias informadas',
@@ -39,6 +40,7 @@ export const participateInInformedHealthcareDecisions_Skill_Data = defineSkill({
       'Recognize the roles of understandable information, consent, alternatives, privacy, and the right to ask questions in clinical encounters.',
     frontend: {
       en: 'Explore consent, privacy and your right to ask questions during healthcare.',
+      it: 'Esplora il consenso, la riservatezza e il tuo diritto di fare domande durante l\'assistenza sanitaria.',
       zh: '了解医疗中的知情同意、隐私和提问权利。',
       hi: 'चिकित्सा में सहमति, निजता और प्रश्न पूछने के अधिकार को समझें।',
       es: 'Explora el consentimiento, la privacidad y tu derecho a hacer preguntas durante la atención médica.',

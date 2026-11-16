@@ -5,6 +5,7 @@ export const recognizePersonalBoundaries_Skill_Data = defineSkill({
   id: 'c5f04c4c-cd7e-4e0f-b15b-d0fde5fee871',
   name: {
     en: 'Recognize personal boundaries',
+    it: 'Riconoscere i confini personali',
     zh: '识别个人边界',
     hi: 'व्यक्तिगत सीमाएँ पहचानें',
     es: 'Reconocer los límites personales',
@@ -39,6 +40,7 @@ export const recognizePersonalBoundaries_Skill_Data = defineSkill({
       'Distinguish acceptable from unwanted contact and intrusion into personal space, possessions, or sensitive information.',
     frontend: {
       en: "Recognize when contact or sharing invades someone's personal limits.",
+      it: 'Riconosci quando un contatto o una condivisione viola i confini personali di qualcuno.',
       zh: '识别接触或分享行为何时侵犯他人的个人界限。',
       hi: 'पहचानें कि स्पर्श या जानकारी बाँटना कब किसी की निजी सीमा का उल्लंघन करता है।',
       es: 'Identifica cuándo un contacto o compartir información invade los límites de alguien.',

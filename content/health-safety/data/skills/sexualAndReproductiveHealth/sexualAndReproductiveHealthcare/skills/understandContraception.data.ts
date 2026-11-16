@@ -5,6 +5,7 @@ export const understandContraception_Skill_Data = defineSkill({
   id: '40d1e888-f932-4bfd-be1b-d288c104c87d',
   name: {
     en: 'Understand contraception',
+    it: 'Comprendere la contraccezione',
     zh: '了解避孕方法',
     hi: 'गर्भनिरोधक तरीकों को समझें',
     es: 'Comprender los métodos anticonceptivos',
@@ -39,6 +40,7 @@ export const understandContraception_Skill_Data = defineSkill({
       'Compare major methods by intended function, limitations, access considerations, and need for appropriate professional advice.',
     frontend: {
       en: 'Compare the functions and limitations of major contraception methods.',
+      it: 'Confronta le funzioni e i limiti dei principali metodi contraccettivi.',
       zh: '比较主要避孕方法的作用和局限。',
       hi: 'मुख्य गर्भनिरोधक उपायों के काम और सीमाओं की तुलना करें।',
       es: 'Compara cómo funcionan los principales métodos anticonceptivos y cuáles son sus límites.',

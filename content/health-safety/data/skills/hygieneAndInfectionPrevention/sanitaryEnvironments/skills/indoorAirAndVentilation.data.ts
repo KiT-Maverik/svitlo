@@ -5,6 +5,7 @@ export const indoorAirAndVentilation_Skill_Data = defineSkill({
   id: '8af94903-ecd2-401d-84bd-e790c667be27',
   name: {
     en: 'Indoor air and ventilation',
+    it: 'Aria interna e ventilazione',
     zh: '室内空气与通风',
     hi: 'घर के भीतर की हवा और वेंटिलेशन',
     es: 'Aire interior y ventilación',
@@ -39,6 +40,7 @@ export const indoorAirAndVentilation_Skill_Data = defineSkill({
       'Identify circumstances in which fresh-air exchange and source control reduce airborne exposure, while accounting for outdoor hazards.',
     frontend: {
       en: 'Use ventilation to reduce indoor exposure while considering outside hazards.',
+      it: 'Usa la ventilazione per ridurre l\'esposizione negli ambienti chiusi, considerando anche i pericoli esterni.',
       zh: '利用通风减少室内暴露，同时注意室外危险。',
       hi: 'बाहरी खतरों को ध्यान में रखते हुए कमरे में हवा का आवागमन बढ़ाएँ।',
       es: 'Ventila para reducir la exposición en interiores sin olvidar los peligros exteriores.',

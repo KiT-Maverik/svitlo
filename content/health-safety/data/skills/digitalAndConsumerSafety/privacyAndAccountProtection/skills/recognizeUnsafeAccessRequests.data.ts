@@ -5,6 +5,7 @@ export const recognizeUnsafeAccessRequests_Skill_Data = defineSkill({
   id: '8c964d6c-4cc1-4029-9550-f8649ef101dc',
   name: {
     en: 'Recognize unsafe access requests',
+    it: 'Riconoscere richieste di accesso sospette',
     zh: '识别不安全的访问请求',
     hi: 'असुरक्षित पहुँच अनुरोध पहचानना',
     es: 'Reconocer solicitudes de acceso inseguras',
@@ -39,6 +40,7 @@ export const recognizeUnsafeAccessRequests_Skill_Data = defineSkill({
       'Distinguish legitimate authentication from requests for passwords, verification codes, or remote access by untrusted parties.',
     frontend: {
       en: 'Recognize suspicious requests for passwords or verification codes.',
+      it: 'Riconosci le richieste sospette di password o codici di verifica.',
       zh: '识别索取密码或验证码的可疑要求。',
       hi: 'पासवर्ड या सत्यापन कोड माँगने वाले संदिग्ध अनुरोध पहचानो।',
       es: 'Reconoce solicitudes sospechosas de contraseñas o códigos de verificación.',

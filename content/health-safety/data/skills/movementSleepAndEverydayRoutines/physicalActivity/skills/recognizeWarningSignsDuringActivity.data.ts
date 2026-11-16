@@ -5,6 +5,7 @@ export const recognizeWarningSignsDuringActivity_Skill_Data = defineSkill({
   id: 'd3f45933-7f00-4f06-be9f-ca48a0bde88d',
   name: {
     en: 'Recognize warning signs during activity',
+    it: 'Riconoscere i segnali d\'allarme durante l\'attività',
     zh: '识别运动中的警示信号',
     hi: 'गतिविधि के दौरान चेतावनी के संकेत पहचानना',
     es: 'Reconocer señales de alarma durante la actividad',
@@ -39,6 +40,7 @@ export const recognizeWarningSignsDuringActivity_Skill_Data = defineSkill({
       'Distinguish ordinary exertion from concerning symptoms or conditions requiring stopping, assistance, or medical assessment.',
     frontend: {
       en: 'Recognize symptoms that mean an activity should stop.',
+      it: 'Riconosci i sintomi che indicano la necessità di interrompere un\'attività.',
       zh: '识别表明应停止活动的症状。',
       hi: 'ऐसे लक्षण पहचानें जिन पर गतिविधि रोक देनी चाहिए।',
       es: 'Reconoce los síntomas que indican que debes detener la actividad.',

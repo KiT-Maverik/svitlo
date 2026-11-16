@@ -5,6 +5,7 @@ export const cardiopulmonaryResuscitation_Skill_Data = defineSkill({
   id: 'a4256aa9-3595-4c24-ba2c-048235fe5874',
   name: {
     en: 'Cardiopulmonary resuscitation',
+    it: 'Rianimazione cardiopolmonare',
     zh: '心肺复苏',
     hi: 'हृदय-फेफड़ा पुनर्जीवन',
     es: 'Reanimación cardiopulmonar',
@@ -39,6 +40,7 @@ export const cardiopulmonaryResuscitation_Skill_Data = defineSkill({
       "Recognize when CPR is indicated and apply current age-appropriate basic life support principles within the responder's training.",
     frontend: {
       en: 'Recognize when chest compressions and other CPR measures may be needed.',
+      it: 'Riconosci quando possono essere necessarie le compressioni toraciche e altre manovre di rianimazione cardiopolmonare.',
       zh: '识别何时可能需要胸外按压和其他心肺复苏措施。',
       hi: 'पहचानो कि छाती दबाने और अन्य CPR उपायों की आवश्यकता कब हो सकती है।',
       es: 'Reconoce cuándo pueden necesitarse compresiones torácicas y otras medidas de RCP.',

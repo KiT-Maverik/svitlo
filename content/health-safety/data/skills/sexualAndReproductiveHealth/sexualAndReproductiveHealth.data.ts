@@ -8,6 +8,7 @@ export const sexualAndReproductiveHealth_SkillDomain_Data = defineSkillDomain({
   id: 'a994dfe0-00f2-470e-b070-53b6ef18338e',
   title: {
     en: 'Sexual and Reproductive Health',
+    it: 'Salute sessuale e riproduttiva',
     zh: '性与生殖健康',
     hi: 'यौन और प्रजनन स्वास्थ्य',
     es: 'Salud sexual y reproductiva',
@@ -49,6 +50,7 @@ export const sexualAndReproductiveHealth_SkillDomain_Data = defineSkillDomain({
       'Practical knowledge about bodily development, sexual health, prevention, and access to services supports informed and safe choices. Anatomy and reproductive mechanisms are mainly Biology; moral evaluation is not substituted for factual health information.',
     frontend: {
       en: 'Learn factual information about development, reproductive health and available care.',
+      it: 'Impara informazioni attendibili sullo sviluppo, la salute riproduttiva e l\'assistenza disponibile.',
       zh: '了解身体发育、生殖健康及可获得的医疗服务的真实信息。',
       hi: 'विकास, प्रजनन स्वास्थ्य और उपलब्ध देखभाल के बारे में तथ्यात्मक जानकारी लें।',
       es: 'Aprende información fiable sobre el desarrollo, la salud reproductiva y la atención disponible.',

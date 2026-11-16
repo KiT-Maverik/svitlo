@@ -9,6 +9,7 @@ export const healthLiteracyAndCare_SkillDomain_Data = defineSkillDomain({
   id: '2b02c97b-de3a-47cc-bb1e-b98e5dc031c2',
   title: {
     en: 'Health Literacy and Care',
+    it: 'Alfabetizzazione sanitaria e assistenza',
     zh: '健康素养与医疗护理',
     hi: 'स्वास्थ्य साक्षरता और देखभाल',
     es: 'Conocimientos de salud y atención sanitaria',
@@ -51,6 +52,7 @@ export const healthLiteracyAndCare_SkillDomain_Data = defineSkillDomain({
       'Personal health decisions rely on interpreting bodily changes, credible evidence, and the division of responsibility between self-care and professional services. This domain concerns informed choices and access to care rather than the biological mechanisms of disease.',
     frontend: {
       en: 'Learn to recognize health changes, use reliable information and seek appropriate care.',
+      it: 'Impara a riconoscere i cambiamenti della salute, usare informazioni affidabili e cercare assistenza adeguata.',
       zh: '学会识别健康状况的变化、使用可靠信息并寻求适当的医疗帮助。',
       hi: 'स्वास्थ्य में बदलाव पहचानना, भरोसेमंद जानकारी उपयोग करना और उचित देखभाल लेना सीखें।',
       es: 'Aprende a reconocer cambios de salud, consultar información fiable y buscar atención adecuada.',

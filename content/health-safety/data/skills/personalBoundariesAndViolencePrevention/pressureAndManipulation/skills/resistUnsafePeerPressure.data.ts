@@ -5,6 +5,7 @@ export const resistUnsafePeerPressure_Skill_Data = defineSkill({
   id: 'c763026d-5ced-414c-ba97-24760fdacb80',
   name: {
     en: 'Resist unsafe peer pressure',
+    it: 'Resistere alle pressioni pericolose dei coetanei',
     zh: '抵制危险的同伴压力',
     hi: 'असुरक्षित साथियों के दबाव का विरोध करें',
     es: 'Resistir la presión peligrosa del grupo',
@@ -39,6 +40,7 @@ export const resistUnsafePeerPressure_Skill_Data = defineSkill({
       'Use refusal, disengagement, and supportive allies when a group promotes hazardous or humiliating behaviour.',
     frontend: {
       en: 'Find safe ways to refuse harmful requests from peers.',
+      it: 'Trova modi sicuri per rifiutare richieste dannose provenienti dai coetanei.',
       zh: '找到安全拒绝同伴有害要求的方法。',
       hi: 'साथियों की नुकसानदेह माँगों को सुरक्षित ढंग से मना करने के तरीके खोजें।',
       es: 'Encuentra maneras seguras de rechazar peticiones dañinas de tus compañeros.',

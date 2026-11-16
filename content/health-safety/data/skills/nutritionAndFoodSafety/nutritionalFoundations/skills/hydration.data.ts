@@ -5,6 +5,7 @@ export const hydration_Skill_Data = defineSkill({
   id: '1afd2315-ce40-4998-ba77-c12142561ce1',
   name: {
     en: 'Hydration',
+    it: 'Idratazione',
     zh: '水分补充',
     hi: 'जलयोजन',
     es: 'Hidratación',
@@ -39,6 +40,7 @@ export const hydration_Skill_Data = defineSkill({
       'Recognize fluid needs and common signs of insufficient intake while accounting for activity, climate, and health circumstances.',
     frontend: {
       en: 'Understand how activity and surroundings affect hydration needs.',
+      it: 'Comprendi come l\'attività e l\'ambiente influiscono sul fabbisogno di liquidi.',
       zh: '了解活动量和环境如何影响身体对水分的需求。',
       hi: 'जानें कि गतिविधि और मौसम शरीर की पानी की ज़रूरत को कैसे बदलते हैं।',
       es: 'Comprende cómo la actividad y el entorno cambian tus necesidades de líquidos.',

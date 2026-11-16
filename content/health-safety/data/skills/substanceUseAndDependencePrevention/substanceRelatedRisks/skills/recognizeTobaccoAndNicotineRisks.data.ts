@@ -5,6 +5,7 @@ export const recognizeTobaccoAndNicotineRisks_Skill_Data = defineSkill({
   id: '7c0c779d-88c2-40d4-a193-2da43601f439',
   name: {
     en: 'Recognize tobacco and nicotine risks',
+    it: 'Riconoscere i rischi del tabacco e della nicotina',
     zh: '识别烟草与尼古丁风险',
     hi: 'तंबाकू और निकोटीन के जोखिम पहचानें',
     es: 'Reconocer riesgos del tabaco y la nicotina',
@@ -39,6 +40,7 @@ export const recognizeTobaccoAndNicotineRisks_Skill_Data = defineSkill({
       'Connect smoking, vaping, and other nicotine exposure with dependence and health harm, including second-hand exposure.',
     frontend: {
       en: 'Understand risks from smoking, vaping and nicotine exposure.',
+      it: 'Comprendi i rischi del fumo, delle sigarette elettroniche e dell\'esposizione alla nicotina.',
       zh: '了解吸烟、电子烟及尼古丁暴露带来的风险。',
       hi: 'धूम्रपान, वेपिंग और निकोटीन के संपर्क के जोखिम समझें।',
       es: 'Comprende los riesgos de fumar, vapear y exponerse a la nicotina.',
