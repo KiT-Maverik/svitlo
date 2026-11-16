@@ -256,7 +256,7 @@ config:
                   params: {}
                   locale:
                     fileName:
-                      en: 550e8400-e29b-41d4-a716-446655440006.vtt
+                      en: 550e8400-e29b-41d4-a716-446655440006.mp4
                     posterFileName: 550e8400-e29b-41d4-a716-446655440008.webp
                     title:
                       en: "Compare two groups"
