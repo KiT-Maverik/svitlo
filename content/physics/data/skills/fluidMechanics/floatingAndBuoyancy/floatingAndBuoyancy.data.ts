@@ -13,6 +13,7 @@ export const floatingAndBuoyancy_SkillGroup_Data = defineSkillGroup({
   id: 'ec35cc92-8e33-4a04-a19a-bf1071ff8db7',
   name: {
     en: 'Floating and Buoyancy',
+    it: 'Galleggiamento e spinta di Archimede',
     zh: '漂浮与浮力',
     hi: 'तैरना और उत्प्लावन',
     es: 'Flotación y empuje',
@@ -63,6 +64,7 @@ export const floatingAndBuoyancy_SkillGroup_Data = defineSkillGroup({
       "A body's behavior in water is determined by gravity together with forces exerted by the liquid; material and shape may affect the outcome through average density.",
     frontend: {
       en: 'Explore how density and buoyancy determine whether objects float or sink.',
+      it: 'Esplora come densità e spinta idrostatica determinano se un oggetto galleggia o affonda.',
       zh: '探索密度与浮力如何决定物体漂浮还是下沉。',
       hi: 'जानें कि घनत्व और उत्प्लावन कैसे तय करते हैं कि वस्तुएँ तैरेंगी या डूबेंगी।',
       es: 'Explora cómo la densidad y el empuje determinan si los objetos flotan o se hunden.',

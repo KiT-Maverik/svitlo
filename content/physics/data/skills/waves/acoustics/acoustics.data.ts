@@ -16,6 +16,7 @@ export const acoustics_SkillGroup_Data = defineSkillGroup({
   id: '7ad407f0-8bcf-4aff-b77b-d2a0c34f01e4',
   name: {
     en: 'Acoustics',
+    it: 'Acustica',
     zh: '声学',
     hi: 'ध्वनिकी',
     es: 'Acústica',
@@ -74,6 +75,7 @@ export const acoustics_SkillGroup_Data = defineSkillGroup({
       'Loudness, pitch, and the propagation of sound through a medium are related to oscillation properties; auditory experiences can be explored with safe simulations.',
     frontend: {
       en: 'Explore how vibration and sound propagation affect what we hear.',
+      it: 'Esplora come le vibrazioni e la propagazione del suono influenzano ciò che ascoltiamo.',
       zh: '探索振动和声音传播如何影响我们的听觉。',
       hi: 'जानें कि कंपन और ध्वनि प्रसार हमारी सुनने की अनुभूति को कैसे बदलते हैं।',
       es: 'Explora cómo las vibraciones y la propagación del sonido influyen en lo que escuchamos.',

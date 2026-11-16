@@ -5,6 +5,7 @@ export const compareSpeedsOfMotion_Skill_Data = defineSkill({
   id: '4bf09cc0-ca22-4a2f-a00f-08befa0aca19',
   name: {
     en: 'Compare speeds of motion',
+    it: 'Confrontare le velocità di movimento',
     zh: '比较运动速度',
     hi: 'गति की चालों की तुलना करना',
     es: 'Comparar velocidades de movimiento',
@@ -39,6 +40,7 @@ export const compareSpeedsOfMotion_Skill_Data = defineSkill({
       'Speed relates displacement or distance to time; comparisons account for whether the same time intervals or different periods of motion are involved.',
     frontend: {
       en: 'Compare how quickly objects move over specified time intervals.',
+      it: 'Confronta quanto rapidamente si muovono gli oggetti in intervalli di tempo specificati.',
       zh: '比较物体在指定时间间隔内运动得有多快。',
       hi: 'तय समय अंतरालों में वस्तुओं के चलने की तेज़ी की तुलना करें।',
       es: 'Compara la rapidez con que se mueven los objetos durante intervalos de tiempo determinados.',

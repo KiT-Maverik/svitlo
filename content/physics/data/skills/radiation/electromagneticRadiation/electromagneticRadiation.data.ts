@@ -11,6 +11,7 @@ export const electromagneticRadiation_SkillGroup_Data = defineSkillGroup({
   id: '5f434721-4d8a-4132-8182-5538bab84899',
   name: {
     en: 'Electromagnetic Radiation',
+    it: 'Radiazione elettromagnetica',
     zh: '电磁辐射',
     hi: 'विद्युतचुंबकीय विकिरण',
     es: 'Radiación electromagnética',
@@ -60,6 +61,7 @@ export const electromagneticRadiation_SkillGroup_Data = defineSkillGroup({
       'Radio waves, infrared, visible, and ultraviolet radiation are different regions of the electromagnetic spectrum.',
     frontend: {
       en: 'Discover visible and invisible parts of the electromagnetic spectrum.',
+      it: 'Scopri le parti visibili e invisibili dello spettro elettromagnetico.',
       zh: '认识电磁波谱中可见与不可见的部分。',
       hi: 'विद्युतचुंबकीय वर्णक्रम के दृश्य और अदृश्य भागों के बारे में जानो।',
       es: 'Descubre las partes visibles e invisibles del espectro electromagnético.',

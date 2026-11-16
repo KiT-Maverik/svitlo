@@ -5,6 +5,7 @@ export const distinguishSourceOscillationFromWavePropagation_Skill_Data = define
   id: '19c06485-1d79-436d-a240-33e612e70fa5',
   name: {
     en: 'Distinguish source oscillation from wave propagation',
+    it: 'Distinguere l\'oscillazione della sorgente dalla propagazione dell\'onda',
     zh: '区分波源振动与波的传播',
     hi: 'स्रोत के कंपन और तरंग प्रसार में अंतर करना',
     es: 'Distinguir la oscilación de la fuente de la propagación de la onda',
@@ -39,6 +40,7 @@ export const distinguishSourceOscillationFromWavePropagation_Skill_Data = define
       "An oscillating source creates a disturbance that propagates through a medium, while the medium's particles do not necessarily move along with the wavefront.",
     frontend: {
       en: 'Distinguish a vibrating source from the disturbance traveling away from it.',
+      it: 'Distingui una sorgente vibrante dalla perturbazione che si propaga lontano da essa.',
       zh: '区分振动的波源和离开波源向外传播的扰动。',
       hi: 'कंपन करने वाले स्रोत और उससे दूर फैलने वाले विक्षोभ में अंतर करें।',
       es: 'Distingue una fuente que vibra de la perturbación que se aleja de ella.',

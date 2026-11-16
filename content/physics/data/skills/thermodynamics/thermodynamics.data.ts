@@ -10,6 +10,7 @@ export const thermodynamics_SkillDomain_Data = defineSkillDomain({
   id: '6cfe5648-73f4-4db4-a52b-f070d7f11430',
   title: {
     en: 'Thermodynamics',
+    it: 'Termodinamica',
     qm: 'Termodinamika',
     zh: '热力学',
     hi: 'ऊष्मागतिकी',
@@ -53,6 +54,7 @@ export const thermodynamics_SkillDomain_Data = defineSkillDomain({
       'Thermal processes describe changes in temperature, energy transfer, and transitions between states of matter. Macroscopic observations are distinguished from particle-level explanations in the neighboring Domain.',
     frontend: {
       en: 'Explore temperature, heating, energy transfer and changes of state.',
+      it: 'Esplora temperatura, riscaldamento, trasferimenti di energia e passaggi di stato.',
       qm: 'Temperatura, qızdırıluv, energiyanıñ berilüvi ve maddeniñ al deñişmelerini araştır.',
       zh: '探索温度、加热、能量传递以及物质状态的变化。',
       hi: 'तापमान, गर्म होने की प्रक्रिया, ऊर्जा के स्थानांतरण और पदार्थ की अवस्थाओं में बदलाव का अध्ययन करें।',

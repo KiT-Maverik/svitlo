@@ -5,6 +5,7 @@ export const predictTheRotationOfMeshedGears_Skill_Data = defineSkill({
   id: 'c750d2e9-3c4f-4e61-a019-958b9bd246f0',
   name: {
     en: 'Predict the rotation of meshed gears',
+    it: 'Prevedere la rotazione degli ingranaggi accoppiati',
     zh: '预测啮合齿轮的转动',
     hi: 'जुड़े हुए गियरों के घूमने का अनुमान लगाना',
     es: 'Predecir la rotación de engranajes acoplados',
@@ -39,6 +40,7 @@ export const predictTheRotationOfMeshedGears_Skill_Data = defineSkill({
       'A directly meshed pair of gears rotates in opposite directions, and the ratio of their angular velocities depends on the number of teeth.',
     frontend: {
       en: 'Predict how interlocking gears rotate and how their tooth counts affect speed.',
+      it: 'Prevedi come ruotano gli ingranaggi in presa e come il numero dei denti influisce sulla velocità.',
       zh: '预测相互啮合的齿轮如何转动，以及齿数如何影响转速。',
       hi: 'अनुमान लगाएँ कि आपस में लगे गियर कैसे घूमेंगे और दाँतों की संख्या चाल को कैसे प्रभावित करेगी।',
       es: 'Predice cómo giran los engranajes engranados y cómo el número de dientes afecta su velocidad.',

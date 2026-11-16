@@ -5,6 +5,7 @@ export const explainThePhysicalMeaningOfABodysMass_Skill_Data = defineSkill({
   id: '964dbe75-6bbb-4bb7-86c0-92d5b06a8753',
   name: {
     en: "Explain the physical meaning of a body's mass",
+    it: 'Spiegare il significato fisico della massa di un corpo',
     zh: '解释物体质量的物理意义',
     hi: 'वस्तु के द्रव्यमान का भौतिक अर्थ समझाना',
     es: 'Explicar el significado físico de la masa de un cuerpo',
@@ -39,6 +40,7 @@ export const explainThePhysicalMeaningOfABodysMass_Skill_Data = defineSkill({
       "Mass characterizes a body's inertia: under the same applied influence, a more massive body is generally harder to change in motion. Mass must not be equated with gravitational force, which can depend on location.",
     frontend: {
       en: 'Understand mass as resistance to changes in motion rather than gravitational force.',
+      it: 'Comprendi la massa come resistenza ai cambiamenti del moto, non come forza gravitazionale.',
       zh: '理解质量表示物体对运动状态改变的抵抗，而不是重力。',
       hi: 'समझें कि द्रव्यमान गति में बदलाव का प्रतिरोध दर्शाता है, न कि गुरुत्वाकर्षण बल।',
       es: 'Comprende la masa como resistencia a los cambios del movimiento y no como fuerza gravitatoria.',

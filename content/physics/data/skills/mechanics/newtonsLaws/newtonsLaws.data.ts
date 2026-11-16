@@ -11,6 +11,7 @@ export const newtonsLaws_SkillGroup_Data = defineSkillGroup({
   id: '665f18c6-b5fe-4777-85fc-8d3b880b6a61',
   name: {
     en: "Newton's Laws",
+    it: 'Leggi di Newton',
     zh: '牛顿运动定律',
     hi: 'न्यूटन के गति के नियम',
     es: 'Leyes de Newton',
@@ -53,6 +54,7 @@ export const newtonsLaws_SkillGroup_Data = defineSkillGroup({
       "Newton's laws establish the relationships among forces, inertia, and changes in bodies' motion in the appropriate reference frames.",
     frontend: {
       en: "Learn how Newton's laws connect forces with changes in motion.",
+      it: 'Impara come le leggi di Newton collegano le forze alle variazioni del moto.',
       zh: '学习牛顿定律如何把力与运动变化联系起来。',
       hi: 'जानें कि न्यूटन के नियम बल और गति में परिवर्तन को कैसे जोड़ते हैं।',
       es: 'Aprende cómo las leyes de Newton relacionan las fuerzas con los cambios de movimiento.',

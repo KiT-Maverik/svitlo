@@ -5,6 +5,7 @@ export const compareMeasurementsOfTheSameQuantity_Skill_Data = defineSkill({
   id: 'db888803-d934-466f-bddb-318bf7201fc2',
   name: {
     en: 'Compare measurements of the same quantity',
+    it: 'Confrontare misure della stessa grandezza',
     zh: '比较同一物理量的测量结果',
     hi: 'एक ही राशि के मापों की तुलना करना',
     es: 'Comparar medidas de una misma magnitud',
@@ -39,6 +40,7 @@ export const compareMeasurementsOfTheSameQuantity_Skill_Data = defineSkill({
       'Given consistent units and clearly stated conditions, determine which measured value is larger or smaller; this is physical interpretation, not arithmetic practice.',
     frontend: {
       en: 'Compare measurements made under consistent conditions and units.',
+      it: 'Confronta misurazioni effettuate in condizioni e unità coerenti.',
       zh: '在相同的条件和单位下比较测量结果。',
       hi: 'समान परिस्थितियों और इकाइयों में किए गए मापों की तुलना करें।',
       es: 'Compara medidas realizadas con unidades y condiciones coherentes.',

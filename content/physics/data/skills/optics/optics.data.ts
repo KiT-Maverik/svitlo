@@ -11,6 +11,7 @@ export const optics_SkillDomain_Data = defineSkillDomain({
   id: 'ceb0d29f-42e8-4ed3-b88f-ee8de5b753ea',
   title: {
     en: 'Optics',
+    it: 'Ottica',
     zh: '光学',
     hi: 'प्रकाशिकी',
     es: 'Óptica',
@@ -55,6 +56,7 @@ export const optics_SkillDomain_Data = defineSkillDomain({
       'Optics studies the propagation of light, image formation, and the interaction of light rays with surfaces, water, and lenses. The broader electromagnetic radiation spectrum is classified separately.',
     frontend: {
       en: 'Explore how visible light travels, reflects, refracts and forms images.',
+      it: 'Esplora come la luce visibile si propaga, si riflette, si rifrange e forma immagini.',
       zh: '探索可见光如何传播、反射、折射并形成图像。',
       hi: 'जानें कि दृश्य प्रकाश कैसे फैलता है, परावर्तित और अपवर्तित होता है तथा प्रतिबिंब बनाता है।',
       es: 'Explora cómo viaja la luz visible, se refleja, se refracta y forma imágenes.',

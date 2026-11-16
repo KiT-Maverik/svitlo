@@ -5,6 +5,7 @@ export const distinguishWaveEnergyTransferFromMatterTransport_Skill_Data = defin
   id: 'c8a193cf-dbcf-40af-8249-3a69af7640e6',
   name: {
     en: 'Distinguish wave energy transfer from matter transport',
+    it: 'Distinguere il trasferimento di energia delle onde dal trasporto di materia',
     zh: '区分波的能量传递与物质输运',
     hi: 'तरंग द्वारा ऊर्जा स्थानांतरण और पदार्थ परिवहन में अंतर करना',
     es: 'Distinguir transferencia de energía y transporte de materia por ondas',
@@ -39,6 +40,7 @@ export const distinguishWaveEnergyTransferFromMatterTransport_Skill_Data = defin
       'A wave carries energy without necessarily transporting the entire medium over the corresponding distance.',
     frontend: {
       en: 'Explain how waves transfer energy without transporting an entire medium.',
+      it: 'Spiega come le onde trasferiscono energia senza trasportare l\'intero mezzo.',
       zh: '解释波如何传递能量而不搬运整个介质。',
       hi: 'समझाएँ कि पूरी माध्यम सामग्री को ले जाए बिना तरंगें ऊर्जा कैसे स्थानांतरित करती हैं।',
       es: 'Explica cómo las ondas transfieren energía sin transportar todo el medio.',

@@ -11,6 +11,7 @@ export const hydrodynamics_SkillGroup_Data = defineSkillGroup({
   id: '45ba85be-1a0a-47ee-896e-585e6c29fa5f',
   name: {
     en: 'Hydrodynamics',
+    it: 'Idrodinamica',
     zh: '流体动力学',
     hi: 'द्रवगतिकी',
     es: 'Hidrodinámica',
@@ -57,6 +58,7 @@ export const hydrodynamics_SkillGroup_Data = defineSkillGroup({
       'Water and other liquids flow under certain conditions and resist bodies moving through the stream; comparison with air explains differences between the media.',
     frontend: {
       en: 'Understand how water flows and resists objects moving through it.',
+      it: 'Comprendi come scorre l\'acqua e come oppone resistenza agli oggetti che la attraversano.',
       zh: '理解水如何流动，以及它如何阻碍物体在其中运动。',
       hi: 'समझें कि पानी कैसे बहता है और उसमें चलती वस्तुओं का विरोध करता है।',
       es: 'Comprende cómo fluye el agua y se opone al movimiento de los objetos.',

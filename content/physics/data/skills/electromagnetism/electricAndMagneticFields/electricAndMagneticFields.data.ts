@@ -11,6 +11,7 @@ export const electricAndMagneticFields_SkillGroup_Data = defineSkillGroup({
   id: 'd355d665-81df-43f8-9d7b-57eed091c939',
   name: {
     en: 'Electric and Magnetic Fields',
+    it: 'Campi elettrici e magnetici',
     qm: 'Elektrik ve magnit maydanları',
     zh: '电场与磁场',
     hi: 'विद्युत और चुंबकीय क्षेत्र',
@@ -53,6 +54,7 @@ export const electricAndMagneticFields_SkillGroup_Data = defineSkillGroup({
       'Fields describe interactions involving electric charges and magnetic systems without direct contact, but their physical effects differ.',
     frontend: {
       en: 'Learn how electric and magnetic fields exert different kinds of forces.',
+      it: 'Scopri come i campi elettrici e magnetici esercitano tipi diversi di forze.',
       qm: 'Elektrik ve magnit maydanlarınıñ çeşit türlü quvetlerni nasıl meydanğa ketirgenini ögren.',
       zh: '了解电场和磁场如何产生不同类型的力。',
       hi: 'जानें कि विद्युत और चुंबकीय क्षेत्र किस प्रकार अलग-अलग बल लगाते हैं।',

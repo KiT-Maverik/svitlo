@@ -5,6 +5,7 @@ export const explainPotentialEnergy_Skill_Data = defineSkill({
   id: '8a54fd7a-5fb8-4d1a-95bb-ee74be672fe8',
   name: {
     en: 'Explain potential energy',
+    it: 'Spiegare l\'energia potenziale',
     zh: '解释势能',
     hi: 'स्थितिज ऊर्जा समझाना',
     es: 'Explicar la energía potencial',
@@ -39,6 +40,7 @@ export const explainPotentialEnergy_Skill_Data = defineSkill({
       "Potential energy is related to a physical system's configuration and interactions among its components, including bodies' positions in a gravitational field or elastic deformation. Its value is specified relative to a chosen zero level; this competency addresses physical meaning rather than calculation.",
     frontend: {
       en: 'Understand potential energy as related to configuration and a chosen reference level.',
+      it: 'Comprendi l\'energia potenziale in relazione alla configurazione e a un livello di riferimento scelto.',
       zh: '理解势能与系统的构型及选定的参考零点有关。',
       hi: 'समझें कि स्थितिज ऊर्जा विन्यास और चुने गए संदर्भ स्तर से जुड़ी है।',
       es: 'Comprende que la energía potencial depende de la configuración y del nivel de referencia elegido.',

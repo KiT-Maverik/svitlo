@@ -5,6 +5,7 @@ export const explainGravityAsSpacetimeCurvature_Skill_Data = defineSkill({
   id: '86937193-51cb-4582-bb5a-8809fa4884d4',
   name: {
     en: 'Explain gravity as spacetime curvature',
+    it: 'Spiegare la gravità come curvatura dello spaziotempo',
     zh: '解释引力是时空弯曲的表现',
     hi: 'गुरुत्वाकर्षण को दिक्काल की वक्रता से समझाना',
     es: 'Explicar la gravedad como curvatura del espacio-tiempo',
@@ -39,6 +40,7 @@ export const explainGravityAsSpacetimeCurvature_Skill_Data = defineSkill({
       'Recognize the general relativity concept that the distribution of mass and energy affects spacetime geometry; do not treat a rubber-sheet-and-ball analogy as a literal mechanism of gravity.',
     frontend: {
       en: 'Recognize gravity as a consequence of curved spacetime in general relativity.',
+      it: 'Riconosci la gravità come conseguenza della curvatura dello spaziotempo nella relatività generale.',
       zh: '认识到在广义相对论中，引力是弯曲时空带来的效应。',
       hi: 'पहचानो कि सामान्य सापेक्षता में गुरुत्वाकर्षण वक्र दिक्काल का परिणाम है।',
       es: 'Reconoce la gravedad como consecuencia del espacio-tiempo curvado en la relatividad general.',

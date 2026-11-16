@@ -5,6 +5,7 @@ export const explainWaveSpeed_Skill_Data = defineSkill({
   id: 'c228c253-8af8-4adf-b13f-3d3285343c8b',
   name: {
     en: 'Explain wave speed',
+    it: 'Spiegare la velocità di propagazione di un\'onda',
     zh: '解释波速',
     hi: 'तरंग की चाल समझाना',
     es: 'Explicar la velocidad de onda',
@@ -39,6 +40,7 @@ export const explainWaveSpeed_Skill_Data = defineSkill({
       'Wave speed describes the propagation of a disturbance and differs from the motion of particles within the medium.',
     frontend: {
       en: 'Distinguish the speed of a wave from the motion of material particles.',
+      it: 'Distingui la velocità di un\'onda dal movimento delle particelle materiali.',
       zh: '区分波的传播速度与介质粒子的运动。',
       hi: 'तरंग के प्रसार की चाल को माध्यम के कणों की गति से अलग समझें।',
       es: 'Distingue la velocidad de propagación de la onda del movimiento de las partículas del medio.',

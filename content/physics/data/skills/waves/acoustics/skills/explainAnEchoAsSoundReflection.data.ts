@@ -5,6 +5,7 @@ export const explainAnEchoAsSoundReflection_Skill_Data = defineSkill({
   id: '9647b23b-383a-4264-aa48-7d323de13fbc',
   name: {
     en: 'Explain an echo as sound reflection',
+    it: 'Spiegare l\'eco come riflessione del suono',
     zh: '把回声解释为声音的反射',
     hi: 'प्रतिध्वनि को ध्वनि परावर्तन के रूप में समझाना',
     es: 'Explicar un eco como reflexión del sonido',
@@ -39,6 +40,7 @@ export const explainAnEchoAsSoundReflection_Skill_Data = defineSkill({
       'Using an echo in an empty room, recognize a returning sound wave after it interacts with a surface.',
     frontend: {
       en: 'Explain an echo as a sound wave reflecting from a surface.',
+      it: 'Spiega l\'eco come un\'onda sonora che si riflette su una superficie.',
       zh: '解释回声是声波从表面反射后返回。',
       hi: 'समझाएँ कि प्रतिध्वनि किसी सतह से ध्वनि तरंग के लौटने से बनती है।',
       es: 'Explica un eco como una onda sonora reflejada por una superficie.',

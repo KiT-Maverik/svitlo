@@ -5,6 +5,7 @@ export const explainTorque_Skill_Data = defineSkill({
   id: '29bc63d7-6fcb-40f0-be0e-fca4c67aa4df',
   name: {
     en: 'Explain torque',
+    it: 'Spiegare il momento di una forza',
     zh: '解释力矩',
     hi: 'बलाघूर्ण समझाना',
     es: 'Explicar el momento de una fuerza',
@@ -39,6 +40,7 @@ export const explainTorque_Skill_Data = defineSkill({
       "The turning effect of a force depends on its direction and lever arm relative to the axis, not merely on the force's magnitude.",
     frontend: {
       en: 'Explain why the same force can turn an object differently depending on its lever arm.',
+      it: 'Spiega perché la stessa forza può produrre rotazioni diverse a seconda del braccio della leva.',
       zh: '解释为什么相同的力在力臂不同时产生不同的转动效果。',
       hi: 'समझाएँ कि बल भुजा अलग होने पर समान बल वस्तु को अलग तरह से क्यों घुमाता है।',
       es: 'Explica por qué la misma fuerza puede girar un objeto de forma distinta según su brazo de palanca.',

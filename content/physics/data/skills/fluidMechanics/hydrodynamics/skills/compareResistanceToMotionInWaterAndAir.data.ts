@@ -5,6 +5,7 @@ export const compareResistanceToMotionInWaterAndAir_Skill_Data = defineSkill({
   id: 'b51cb2ba-c063-4b2c-b3bc-957d1dd86cc9',
   name: {
     en: 'Compare resistance to motion in water and air',
+    it: 'Confrontare la resistenza al moto in acqua e nell\'aria',
     zh: '比较物体在水中和空气中运动的阻力',
     hi: 'पानी और हवा में गति के प्रतिरोध की तुलना करना',
     es: 'Comparar la resistencia al movimiento en agua y aire',
@@ -39,6 +40,7 @@ export const compareResistanceToMotionInWaterAndAir_Skill_Data = defineSkill({
       'Use qualitative examples to recognize why moving the same object through water and through air feels different.',
     frontend: {
       en: 'Compare resistance experienced by the same object in water and air.',
+      it: 'Confronta la resistenza incontrata dallo stesso oggetto nell\'acqua e nell\'aria.',
       zh: '比较同一物体在水和空气中运动时受到的阻力。',
       hi: 'एक ही वस्तु को पानी और हवा में चलाने पर होने वाले प्रतिरोध की तुलना करें।',
       es: 'Compara la resistencia que encuentra el mismo objeto al moverse por agua y aire.',

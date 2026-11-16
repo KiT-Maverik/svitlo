@@ -5,6 +5,7 @@ export const explainConservationOfLinearMomentum_Skill_Data = defineSkill({
   id: 'ab4634a3-9aa6-46a3-b356-06e4149cab48',
   name: {
     en: 'Explain conservation of linear momentum',
+    it: 'Spiegare la conservazione della quantità di moto',
     zh: '解释线动量守恒',
     hi: 'रेखीय संवेग संरक्षण समझाना',
     es: 'Explicar la conservación del momento lineal',
@@ -39,6 +40,7 @@ export const explainConservationOfLinearMomentum_Skill_Data = defineSkill({
       'In the absence of a net external impulse, the total momentum of a system remains constant even though individual bodies change their momenta.',
     frontend: {
       en: 'Understand why total momentum remains constant without external impulse.',
+      it: 'Comprendi perché la quantità di moto totale rimane costante in assenza di impulso esterno netto.',
       zh: '理解为什么没有外部冲量时系统的总动量保持不变。',
       hi: 'समझें कि बाहरी आवेग के बिना कुल संवेग स्थिर क्यों रहता है।',
       es: 'Comprende por qué el momento lineal total permanece constante cuando no hay impulso externo.',

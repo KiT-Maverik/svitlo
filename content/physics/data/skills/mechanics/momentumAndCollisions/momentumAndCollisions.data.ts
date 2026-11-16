@@ -12,6 +12,7 @@ export const momentumAndCollisions_SkillGroup_Data = defineSkillGroup({
   id: '1d8aeab0-47a2-44b2-8254-77494f6288d1',
   name: {
     en: 'Momentum and Collisions',
+    it: 'Quantità di moto e urti',
     zh: '动量与碰撞',
     hi: 'संवेग और टक्कर',
     es: 'Cantidad de movimiento y colisiones',
@@ -60,6 +61,7 @@ export const momentumAndCollisions_SkillGroup_Data = defineSkillGroup({
       "Momentum characterizes a body's motion, while collisions demonstrate momentum transfer and change. In the absence of external impulse, the total momentum of a system is conserved regardless of the type of collision.",
     frontend: {
       en: 'Discover how moving bodies exchange momentum during collisions.',
+      it: 'Scopri come i corpi in movimento si scambiano quantità di moto durante gli urti.',
       zh: '探索运动物体如何在碰撞中交换动量。',
       hi: 'जानें कि टक्कर के समय चलती वस्तुओं के बीच संवेग का आदान-प्रदान कैसे होता है।',
       es: 'Descubre cómo los cuerpos en movimiento intercambian cantidad de movimiento durante las colisiones.',

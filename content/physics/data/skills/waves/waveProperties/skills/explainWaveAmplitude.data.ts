@@ -5,6 +5,7 @@ export const explainWaveAmplitude_Skill_Data = defineSkill({
   id: 'b37aea45-1cf2-462e-aa89-c90381baf5b6',
   name: {
     en: 'Explain wave amplitude',
+    it: 'Spiegare l\'ampiezza di un\'onda',
     zh: '解释波的振幅',
     hi: 'तरंग आयाम समझाना',
     es: 'Explicar la amplitud de una onda',
@@ -39,6 +40,7 @@ export const explainWaveAmplitude_Skill_Data = defineSkill({
       "Amplitude is the greatest deviation of a physical quantity from its equilibrium value, not the wave's frequency.",
     frontend: {
       en: 'Understand amplitude as the largest deviation from an equilibrium state.',
+      it: 'Comprendi l\'ampiezza come massimo scostamento da uno stato di equilibrio.',
       zh: '理解振幅是相对于平衡状态的最大偏离量。',
       hi: 'आयाम को संतुलन अवस्था से अधिकतम विचलन के रूप में समझें।',
       es: 'Comprende la amplitud como la máxima desviación del equilibrio.',

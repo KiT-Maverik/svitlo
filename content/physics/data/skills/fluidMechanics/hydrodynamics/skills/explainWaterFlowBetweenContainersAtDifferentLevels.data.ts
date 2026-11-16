@@ -5,6 +5,7 @@ export const explainWaterFlowBetweenContainersAtDifferentLevels_Skill_Data = def
   id: 'd9059629-3197-4323-8b61-789e1a997af6',
   name: {
     en: 'Explain water flow between containers at different levels',
+    it: 'Spiegare il flusso d\'acqua tra recipienti a livelli diversi',
     zh: '解释不同水位容器之间的水流',
     hi: 'अलग जलस्तर वाले पात्रों के बीच पानी का बहाव समझाना',
     es: 'Explicar el flujo de agua entre recipientes a distintos niveles',
@@ -39,6 +40,7 @@ export const explainWaterFlowBetweenContainersAtDifferentLevels_Skill_Data = def
       'A hydrostatic pressure difference between connected vessels causes liquid to flow until pressures balance or other forces intervene.',
     frontend: {
       en: 'Explain why water moves between vessels at different levels.',
+      it: 'Spiega perché l\'acqua si muove tra recipienti che si trovano a livelli diversi.',
       zh: '解释为什么水会在水位不同的容器间流动。',
       hi: 'समझाएँ कि अलग ऊँचाइयों पर स्थित पात्रों के बीच पानी क्यों बहता है।',
       es: 'Explica por qué el agua circula entre recipientes situados a diferentes niveles.',

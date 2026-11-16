@@ -5,6 +5,7 @@ export const explainDensity_Skill_Data = defineSkill({
   id: '0accadef-6cbc-477f-bd95-8e3175903fda',
   name: {
     en: 'Explain density',
+    it: 'Spiegare la densità',
     zh: '解释密度',
     hi: 'घनत्व समझाना',
     es: 'Explicar la densidad',
@@ -39,6 +40,7 @@ export const explainDensity_Skill_Data = defineSkill({
       "Density is the mass per unit volume of a substance and helps determine the relationship between a body's properties and those of the surrounding medium.",
     frontend: {
       en: 'Understand density as the amount of mass in a given volume.',
+      it: 'Comprendi la densità come quantità di massa contenuta in un dato volume.',
       zh: '理解密度是一定体积内所含的质量。',
       hi: 'समझें कि घनत्व प्रति इकाई आयतन का द्रव्यमान है।',
       es: 'Comprende la densidad como masa por unidad de volumen.',

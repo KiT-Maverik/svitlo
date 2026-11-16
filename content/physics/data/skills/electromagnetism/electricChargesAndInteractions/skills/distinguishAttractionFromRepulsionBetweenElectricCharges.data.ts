@@ -5,6 +5,7 @@ export const distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data
   id: '5c8e5306-0b4e-488f-a545-4cd7bb2419fc',
   name: {
     en: 'Distinguish attraction from repulsion between electric charges',
+    it: 'Distinguere attrazione e repulsione tra cariche elettriche',
     qm: 'Elektrik yükleriniñ tartıluvı ve itilüvini ayırmaq',
     zh: '区分电荷间的吸引与排斥',
     hi: 'विद्युत आवेशों के आकर्षण और प्रतिकर्षण में अंतर करना',
@@ -39,6 +40,7 @@ export const distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data
       'Like charges repel and unlike charges attract; electric interaction is distinct from magnetic interaction.',
     frontend: {
       en: 'Distinguish attraction between opposite charges from repulsion between like charges.',
+      it: 'Distingui l\'attrazione tra cariche opposte dalla repulsione tra cariche dello stesso segno.',
       qm: 'Qarşı işaretli elektrik yükleriniñ tartıluvını aynı işaretli yüklerniñ bir-birini itüvinden ayır.',
       zh: '区分异种电荷互相吸引和同种电荷互相排斥。',
       hi: 'विपरीत आवेशों के आकर्षण और समान आवेशों के प्रतिकर्षण में अंतर करें।',

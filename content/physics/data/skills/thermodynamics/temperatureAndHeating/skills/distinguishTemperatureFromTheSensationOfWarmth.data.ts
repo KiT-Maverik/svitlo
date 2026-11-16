@@ -5,6 +5,7 @@ export const distinguishTemperatureFromTheSensationOfWarmth_Skill_Data = defineS
   id: 'd38935af-72be-4728-bd55-dae223d738ff',
   name: {
     en: 'Distinguish temperature from the sensation of warmth',
+    it: 'Distinguere la temperatura dalla sensazione di calore',
     qm: 'Temperaturanı sıcaqlıq duyğusından ayırmaq',
     zh: '区分温度与温暖的感觉',
     hi: 'तापमान और गर्माहट की अनुभूति में अंतर करना',
@@ -38,6 +39,7 @@ export const distinguishTemperatureFromTheSensationOfWarmth_Skill_Data = defineS
     methodological: 'Explain why the sensation of touch is not always an accurate measure of temperature.',
     frontend: {
       en: 'Explain why two objects at the same temperature can feel different.',
+      it: 'Spiega perché due oggetti alla stessa temperatura possono dare sensazioni diverse al tatto.',
       qm: 'Bir temperaturada olğan eki cisimniñ toqunğanda neden çeşit türlü sezilgenini añlat.',
       zh: '解释为什么两个温度相同的物体摸起来可能感觉不同。',
       hi: 'समझाएँ कि समान तापमान की दो वस्तुएँ छूने पर अलग क्यों महसूस हो सकती हैं।',

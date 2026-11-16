@@ -5,6 +5,7 @@ export const explainHowSoundLoudnessDependsOnOscillationAmplitude_Skill_Data = d
   id: '453ab793-e11b-4873-93be-a14a0469655e',
   name: {
     en: 'Explain how sound loudness depends on oscillation amplitude',
+    it: 'Spiegare come l\'intensità percepita del suono dipende dall\'ampiezza delle oscillazioni',
     zh: '解释声音的响度如何受振幅影响',
     hi: 'ध्वनि की तेज़ी कंपन आयाम पर निर्भर होना समझाना',
     es: 'Explicar cómo la sonoridad depende de la amplitud de oscilación',
@@ -39,6 +40,7 @@ export const explainHowSoundLoudnessDependsOnOscillationAmplitude_Skill_Data = d
       'All else being equal, a greater sound-pressure amplitude means greater intensity, although perceived loudness also depends on frequency.',
     frontend: {
       en: 'Connect greater sound amplitude with intensity while accounting for perception.',
+      it: 'Collega un\'ampiezza sonora maggiore all\'intensità, tenendo conto della percezione.',
       zh: '联系更大的声波振幅与声强，同时考虑听觉感知。',
       hi: 'बड़े ध्वनि आयाम को अधिक तीव्रता से जोड़ें, लेकिन सुनने की अनुभूति भी ध्यान में रखें।',
       es: 'Relaciona mayor amplitud sonora con intensidad, teniendo en cuenta la percepción.',

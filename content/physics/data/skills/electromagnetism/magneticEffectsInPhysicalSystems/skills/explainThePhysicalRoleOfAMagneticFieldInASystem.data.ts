@@ -5,6 +5,7 @@ export const explainThePhysicalRoleOfAMagneticFieldInASystem_Skill_Data = define
   id: '66cf4310-0dfe-4abf-82b4-9c7c6b696ce7',
   name: {
     en: 'Explain the physical role of a magnetic field in a system',
+    it: 'Spiegare il ruolo fisico di un campo magnetico in un sistema',
     qm: 'Sistemada magnit maydanınıñ fizik rolüni añlatmaq',
     zh: '解释磁场在系统中的物理作用',
     hi: 'किसी प्रणाली में चुंबकीय क्षेत्र की भौतिक भूमिका समझाना',
@@ -39,6 +40,7 @@ export const explainThePhysicalRoleOfAMagneticFieldInASystem_Skill_Data = define
       "Determine how magnetic interaction affects a system's motion or state without proceeding to select a technical component.",
     frontend: {
       en: 'Explain how a magnetic field influences motion or another physical state.',
+      it: 'Spiega come un campo magnetico influenza il moto o un\'altra condizione fisica.',
       qm: 'Magnit maydanı areketke ya da sistemanıñ diger fizik alına nasıl tesir etkenini añlat.',
       zh: '解释磁场如何影响运动或其他物理状态。',
       hi: 'समझाएँ कि चुंबकीय क्षेत्र गति या दूसरी भौतिक अवस्था को कैसे प्रभावित करता है।',

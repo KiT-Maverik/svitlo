@@ -5,6 +5,7 @@ export const predictTheEffectOfForceDirection_Skill_Data = defineSkill({
   id: '309a0536-d434-4fe5-8762-1dcf4bdbbe3a',
   name: {
     en: 'Predict the effect of force direction',
+    it: 'Prevedere l\'effetto della direzione di una forza',
     zh: '预测力的方向产生的影响',
     hi: 'बल की दिशा के प्रभाव का अनुमान लगाना',
     es: 'Predecir el efecto de la dirección de una fuerza',
@@ -39,6 +40,7 @@ export const predictTheEffectOfForceDirection_Skill_Data = defineSkill({
       'The direction of the net force relative to velocity determines whether motion speeds up, slows down, or changes direction.',
     frontend: {
       en: 'Predict how force direction affects speeding up, slowing down or turning.',
+      it: 'Prevedi come la direzione della forza risultante influisce sull\'accelerazione, sul rallentamento o sul cambiamento di direzione del moto.',
       zh: '预测力的方向如何影响加速、减速或转弯。',
       hi: 'अनुमान लगाएँ कि बल की दिशा गति बढ़ाने, घटाने या मोड़ने पर कैसे असर डालती है।',
       es: 'Predice cómo la dirección de una fuerza influye en acelerar, frenar o cambiar de dirección.',

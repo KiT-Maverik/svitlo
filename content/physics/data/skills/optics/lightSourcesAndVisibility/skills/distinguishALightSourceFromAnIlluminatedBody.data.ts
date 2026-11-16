@@ -5,6 +5,7 @@ export const distinguishALightSourceFromAnIlluminatedBody_Skill_Data = defineSki
   id: '1a086eaa-546b-4cbb-9644-73cae752f540',
   name: {
     en: 'Distinguish a light source from an illuminated body',
+    it: 'Distinguere una sorgente luminosa da un corpo illuminato',
     zh: '区分光源与被照亮的物体',
     hi: 'प्रकाश स्रोत और प्रकाशित वस्तु में अंतर करना',
     es: 'Distinguir una fuente de luz de un cuerpo iluminado',
@@ -38,6 +39,7 @@ export const distinguishALightSourceFromAnIlluminatedBody_Skill_Data = defineSki
     methodological: 'Recognize a body that emits light and one that reflects it.',
     frontend: {
       en: 'Distinguish something that emits light from something it illuminates.',
+      it: 'Distingui una sorgente che emette luce da un corpo illuminato che la riflette.',
       zh: '区分自身发光的物体与被其他光源照亮的物体。',
       hi: 'स्वयं प्रकाश देने वाली वस्तु और प्रकाश से प्रकाशित वस्तु में अंतर करो।',
       es: 'Distingue un objeto que emite luz de otro que solo recibe su iluminación.',

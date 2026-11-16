@@ -12,6 +12,7 @@ export const temperatureAndHeating_SkillGroup_Data = defineSkillGroup({
   id: '4e0156d6-7880-4fb0-8fff-b003ca29afc9',
   name: {
     en: 'Temperature and Heating',
+    it: 'Temperatura e riscaldamento',
     qm: 'Temperatura ve qızdırıluv',
     zh: '温度与加热',
     hi: 'तापमान और गर्म करना',
@@ -60,6 +61,7 @@ export const temperatureAndHeating_SkillGroup_Data = defineSkillGroup({
       'Temperature characterizes thermal state but is not the same as a subjective feeling of warmth or cold; heating and cooling are changes of state.',
     frontend: {
       en: 'Learn to distinguish temperature measurements from feelings of warmth.',
+      it: 'Impara a distinguere le misurazioni della temperatura dalla sensazione di calore.',
       qm: 'Temperaturanıñ ölçülmesini sıcaqlıq duyğusından ayırmağı ögren.',
       zh: '学习区分温度测量值与主观的冷热感觉。',
       hi: 'तापमान के माप और गर्माहट की अनुभूति में अंतर करना सीखें।',

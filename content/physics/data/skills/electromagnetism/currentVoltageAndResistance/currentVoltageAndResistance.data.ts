@@ -13,6 +13,7 @@ export const currentVoltageAndResistance_SkillGroup_Data = defineSkillGroup({
   id: '5dad7c80-6230-420d-880c-f9ef4e5b7775',
   name: {
     en: 'Current, Voltage, and Resistance',
+    it: 'Corrente, tensione e resistenza',
     qm: 'Aqım, voltaj ve rezistans',
     zh: '电流、电压与电阻',
     hi: 'विद्युत धारा, वोल्टता और प्रतिरोध',
@@ -63,6 +64,7 @@ export const currentVoltageAndResistance_SkillGroup_Data = defineSkillGroup({
       'Current describes the flow of electric charge, voltage is a potential difference, and resistance is opposition to current under specified physical conditions.',
     frontend: {
       en: 'Discover how current, voltage, resistance and power describe circuits.',
+      it: 'Scopri come corrente, tensione, resistenza e potenza descrivono i circuiti elettrici.',
       qm: 'Elektrik aqımı, voltaj, rezistans ve quvet elektr devrelerini nasıl tasvir etkenini ögren.',
       zh: '了解电流、电压、电阻和功率如何描述电路。',
       hi: 'जानें कि धारा, वोल्टता, प्रतिरोध और शक्ति से परिपथ का वर्णन कैसे होता है।',

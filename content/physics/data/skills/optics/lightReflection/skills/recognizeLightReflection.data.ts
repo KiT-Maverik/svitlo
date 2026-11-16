@@ -5,6 +5,7 @@ export const recognizeLightReflection_Skill_Data = defineSkill({
   id: '0f51028e-3eb5-4310-8e8c-d2b7c60e8f1f',
   name: {
     en: 'Recognize light reflection',
+    it: 'Riconoscere la riflessione della luce',
     zh: '识别光的反射',
     hi: 'प्रकाश का परावर्तन पहचानना',
     es: 'Reconocer la reflexión de la luz',
@@ -38,6 +39,7 @@ export const recognizeLightReflection_Skill_Data = defineSkill({
     methodological: 'Identify situations in which light returns from a surface.',
     frontend: {
       en: 'Recognize when light bounces back from a surface.',
+      it: 'Riconosci quando la luce viene riflessa da una superficie.',
       zh: '认识光线从物体表面反弹的情况。',
       hi: 'पहचानो कि प्रकाश कब किसी सतह से टकराकर वापस लौटता है।',
       es: 'Reconoce cuándo la luz rebota en una superficie.',

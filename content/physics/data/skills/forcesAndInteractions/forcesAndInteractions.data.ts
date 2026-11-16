@@ -9,6 +9,7 @@ export const forcesAndInteractions_SkillDomain_Data = defineSkillDomain({
   id: '1af49c02-4fe8-455a-9e1e-2a83c3b08353',
   title: {
     en: 'Forces and Interactions',
+    it: 'Forze e interazioni',
     zh: '力与相互作用',
     hi: 'बल और अंतःक्रियाएँ',
     es: 'Fuerzas e interacciones',
@@ -51,6 +52,7 @@ export const forcesAndInteractions_SkillDomain_Data = defineSkillDomain({
       'When bodies touch or affect one another at a distance, their motion, shape, or state of equilibrium may change. This Domain covers general concepts of force, contact, gravity, and stability; specifically magnetic and electric phenomena belong to Electromagnetism.',
     frontend: {
       en: 'Discover how forces change motion, deform objects and maintain stability.',
+      it: 'Scopri come le forze modificano il moto, deformano gli oggetti e mantengono la stabilità.',
       zh: '探索力如何改变运动、使物体变形并维持稳定。',
       hi: 'जानें कि बल गति कैसे बदलते हैं, वस्तुओं को विकृत कैसे करते हैं और स्थिरता कैसे बनाए रखते हैं।',
       es: 'Descubre cómo las fuerzas cambian el movimiento, deforman objetos y mantienen la estabilidad.',

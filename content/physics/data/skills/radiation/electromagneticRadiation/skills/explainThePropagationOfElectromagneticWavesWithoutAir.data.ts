@@ -5,6 +5,7 @@ export const explainThePropagationOfElectromagneticWavesWithoutAir_Skill_Data = 
   id: 'aef96ceb-8f55-4666-87fe-43ab7a68c0e9',
   name: {
     en: 'Explain the propagation of electromagnetic waves without air',
+    it: 'Spiegare la propagazione delle onde elettromagnetiche senza aria',
     zh: '解释电磁波如何在没有空气的环境中传播',
     hi: 'हवा के बिना विद्युतचुंबकीय तरंगों के प्रसार को समझाना',
     es: 'Explicar la propagación de las ondas electromagnéticas sin aire',
@@ -38,6 +39,7 @@ export const explainThePropagationOfElectromagneticWavesWithoutAir_Skill_Data = 
     methodological: 'Use sunlight to explain why electromagnetic radiation can propagate through the vacuum of space.',
     frontend: {
       en: 'Explain why electromagnetic waves travel through the vacuum of space.',
+      it: 'Spiega perché le onde elettromagnetiche si propagano nel vuoto dello spazio.',
       zh: '解释为什么电磁波能够穿越太空的真空。',
       hi: 'समझाओ कि विद्युतचुंबकीय तरंगें अंतरिक्ष के निर्वात से कैसे गुजर सकती हैं।',
       es: 'Explica por qué las ondas electromagnéticas pueden viajar por el vacío del espacio.',

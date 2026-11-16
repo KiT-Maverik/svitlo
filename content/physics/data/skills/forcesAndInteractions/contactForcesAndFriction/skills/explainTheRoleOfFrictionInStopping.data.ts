@@ -5,6 +5,7 @@ export const explainTheRoleOfFrictionInStopping_Skill_Data = defineSkill({
   id: '16645082-1602-4ac9-835b-a045c14c6d03',
   name: {
     en: 'Explain the role of friction in stopping',
+    it: 'Spiegare il ruolo dell\'attrito nell\'arresto',
     zh: '解释摩擦力在停止运动中的作用',
     hi: 'गति रोकने में घर्षण की भूमिका समझाना',
     es: 'Explicar el papel del rozamiento al detener un objeto',
@@ -39,6 +40,7 @@ export const explainTheRoleOfFrictionInStopping_Skill_Data = defineSkill({
       'Friction during sliding or rolling can reduce kinetic energy of motion, converting it into the internal energy of the bodies and surroundings.',
     frontend: {
       en: 'Explain how friction slows motion and transfers energy into the surroundings.',
+      it: 'Spiega come l\'attrito rallenta il moto e trasferisce energia all\'ambiente circostante.',
       zh: '解释摩擦力如何减慢运动，并把能量传递给周围环境。',
       hi: 'समझाएँ कि घर्षण गति कैसे धीमी करता है और ऊर्जा आसपास के वातावरण में कैसे पहुँचती है।',
       es: 'Explica cómo el rozamiento ralentiza el movimiento y transfiere energía al entorno.',

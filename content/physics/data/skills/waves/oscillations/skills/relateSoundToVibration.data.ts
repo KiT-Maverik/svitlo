@@ -5,6 +5,7 @@ export const relateSoundToVibration_Skill_Data = defineSkill({
   id: 'c654b040-0038-4cc0-9572-65084614e710',
   name: {
     en: 'Relate sound to vibration',
+    it: 'Collegare il suono alla vibrazione',
     zh: '将声音与振动联系起来',
     hi: 'ध्वनि को कंपन से जोड़ना',
     es: 'Relacionar sonido y vibración',
@@ -39,6 +40,7 @@ export const relateSoundToVibration_Skill_Data = defineSkill({
       'Sound arises when an oscillating source disturbs an elastic medium; oscillation without a medium does not produce a mechanical sound wave.',
     frontend: {
       en: 'Connect a vibrating source with the sound disturbance it produces.',
+      it: 'Collega una sorgente vibrante alla perturbazione sonora che produce.',
       zh: '联系振动的声源与它产生的声音扰动。',
       hi: 'कंपन करने वाले स्रोत को उससे उत्पन्न ध्वनि विक्षोभ से जोड़ें।',
       es: 'Relaciona una fuente vibrante con la perturbación sonora que produce.',

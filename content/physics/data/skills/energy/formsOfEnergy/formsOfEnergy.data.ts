@@ -13,6 +13,7 @@ export const formsOfEnergy_SkillGroup_Data = defineSkillGroup({
   id: '854d44a8-a3d8-4280-85f3-2f0c0b546cc6',
   name: {
     en: 'Forms of Energy',
+    it: 'Forme di energia',
     zh: '能量的形式',
     hi: 'ऊर्जा के रूप',
     es: 'Formas de energía',
@@ -63,6 +64,7 @@ export const formsOfEnergy_SkillGroup_Data = defineSkillGroup({
       'Motion, position, deformation, and internal state can be associated with different forms of energy; descriptions should refer to a specific physical system.',
     frontend: {
       en: 'Recognize different forms of energy in changing physical situations.',
+      it: 'Riconosci diverse forme di energia in situazioni fisiche che cambiano.',
       zh: '识别变化的物理情境中的不同能量形式。',
       hi: 'बदलती भौतिक स्थितियों में ऊर्जा के विभिन्न रूप पहचानें।',
       es: 'Reconoce distintas formas de energía en situaciones físicas cambiantes.',

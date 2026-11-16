@@ -5,6 +5,7 @@ export const explainContinuityOfIncompressibleFluidFlow_Skill_Data = defineSkill
   id: 'a73d644b-8fb6-48e4-8761-aca06dca23cc',
   name: {
     en: 'Explain continuity of incompressible-fluid flow',
+    it: 'Spiegare la continuità del flusso di un fluido incomprimibile',
     zh: '解释不可压缩流体的连续性',
     hi: 'असंपीड्य द्रव प्रवाह की निरंतरता समझाना',
     es: 'Explicar la continuidad del flujo de un fluido incompresible',
@@ -39,6 +40,7 @@ export const explainContinuityOfIncompressibleFluidFlow_Skill_Data = defineSkill
       "For steady flow without leakage, a change in a channel's cross-sectional area is associated with a change in fluid speed.",
     frontend: {
       en: 'Connect changes in channel width with the speed of steady incompressible flow.',
+      it: 'Collega le variazioni dell\'area della sezione di un condotto alla velocità di un flusso stazionario incomprimibile.',
       zh: '解释在稳定、无泄漏的不可压缩流动中，流道横截面积的变化如何影响流速。',
       hi: 'प्रवाह मार्ग के अनुप्रस्थ काट के क्षेत्रफल में बदलाव को स्थिर असंपीड्य प्रवाह की चाल से जोड़ें।',
       es: 'Relaciona los cambios en la sección del canal con la velocidad de un flujo constante e incompresible.',
