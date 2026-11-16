@@ -1,4 +1,5 @@
 import { defineLesson } from '@svitlo/engine/build';
+
 import { section } from "./sections";
 import { languages } from './constants';
 import type { LessonLanguages } from './constants';
