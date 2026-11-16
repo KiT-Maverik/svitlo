@@ -13,7 +13,7 @@ describe('Configurators', () => {
         slug: 'diagram' as const,
         type: 'image' as const,
         params: { width: 640, height: 480 },
-        locale: { src: { en: 'https://example.org/en.png', uk: 'https://example.org/uk.png' }, alt: 'Diagram' },
+        locale: { fileName: { en: 'https://example.org/en.png', uk: 'https://example.org/uk.png' }, alt: 'Diagram' },
       });
 
       test('publishes translated source and invariant alternative text', () => {

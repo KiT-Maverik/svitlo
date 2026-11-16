@@ -31,13 +31,9 @@ const factoryContexts = new Set([
 const sectionTypes = new Set(['content', 'quiz', 'practice', 'learningFlow', 'codingTask', 'flashcards']);
 const compositeTypes = new Set(['carousel', 'checkpoint']);
 const localMediaTypes = new Set(['image', 'video', 'audio', 'subtitles']);
-const mediaFields = {
-  image: ['src'],
-  video: ['fileLocation', 'poster'],
-  audio: ['fileLocation'],
-  subtitles: ['fileLocation'],
-};
-
+// Reserved pending identity; never allocate physical resource UUIDs while scaffolding.
+const UNRESOLVED_RESOURCE_UUID = '00000000-0000-0000-0000-000000000000';
+const pendingMediaExtensions = { image: 'webp', audio: 'mp3', video: 'mp4', subtitles: 'vtt' };
 const reserved = new Set([
   'content',
   'slides',
@@ -287,8 +283,13 @@ export function renderLessonModules(lesson, language, options = {}) {
     throw new Error('lesson.yaml:config.type: expected lesson type for the Lesson entrypoint');
   for (const field of ['questions', 'flashcards']) {
     if (Object.hasOwn(filtered, field))
-      throw new Error('lesson.yaml:config.' + field +
-        ': embedded banks are no longer supported; author ' + field + '.yaml at the Lesson root');
+      throw new Error(
+        'lesson.yaml:config.' +
+          field +
+          ': embedded banks are no longer supported; author ' +
+          field +
+          '.yaml at the Lesson root',
+      );
   }
   const files = new Map();
   const nodeLocations = options.nodeLocations;
@@ -300,45 +301,28 @@ export function renderLessonModules(lesson, language, options = {}) {
    */
   function fileBackedNode(node, context, directory) {
     if (context !== 'block' && context !== 'slide') return node;
-    if (localMediaTypes.has(node.type) && record(node.locale)) {
-      const locale = { ...node.locale };
-      let changed = false;
-      for (const field of mediaFields[node.type]) {
-        const value = locale[field];
-        const role = field === 'poster' ? 'poster' : 'source';
-        const buildCall = language =>
-          expression(
-            'resolveLessonMedia(import.meta.url, ' +
-              JSON.stringify(node.type) +
-              ', ' +
-              JSON.stringify(role) +
-              (language === undefined ? '' : ', ' + JSON.stringify(language)) +
-              ')',
+    if (localMediaTypes.has(node.type)) {
+      const locale = record(node.locale) ? node.locale : {};
+      const fields = node.type === 'video' ? ['fileName', 'posterFileName'] : ['fileName'];
+      for (const field of fields) {
+        if (Object.hasOwn(locale, field)) {
+          throw new Error(
+            'lesson.yaml: media ' + field + ' belongs in generated TypeScript, not technical YAML: ' + directory,
           );
-        if (value === null) {
-          locale[field] = buildCall(undefined);
-          changed = true;
-        } else if (record(value)) {
-          const next = { ...value };
-          for (const [language, source] of Object.entries(next)) {
-            if (source === null) {
-              next[language] = buildCall(language);
-              changed = true;
-            }
-          }
-          locale[field] = next;
         }
       }
-      if (changed) return { ...node, locale };
-      return node;
+      return {
+        ...node,
+        locale: { ...locale, ...Object.fromEntries(fields.map(field => [field, null])) },
+      };
     }
     if (node.type === 'markdown' && record(node.locale) && node.locale.value !== undefined) {
       const source = node.locale.value;
       const authored = { ...node, locale: { ...node.locale } };
       if (typeof source === 'string') {
         if (!source.trim()) throw new Error('Empty authored Markdown source: ' + directory);
-        put(path.posix.join(directory, 'text.md'), source);
-        authored.files = { moduleUrl: expression('import.meta.url') };
+        put(path.posix.join(directory, 'markdown.md'), source);
+        authored.locale.value = expression('readMarkdown(import.meta.url)');
       } else if (record(source)) {
         const languages = Object.keys(source);
         if (languages.length === 0) throw new Error('Empty localized Markdown source: ' + directory);
@@ -349,13 +333,12 @@ export function renderLessonModules(lesson, language, options = {}) {
             !source[language].trim()
           )
             throw new Error('Invalid authored Markdown locale ' + JSON.stringify(language) + ': ' + directory);
-          put(path.posix.join(directory, 'locale', language + '.md'), source[language]);
+          put(path.posix.join(directory, language + '.md'), source[language]);
         }
-        authored.files = { moduleUrl: expression('import.meta.url'), languages };
+        authored.locale.value = expression('readMarkdown(import.meta.url, ' + JSON.stringify([language]) + ')');
       } else {
         throw new Error('Invalid authored Markdown value: ' + directory);
       }
-      delete authored.locale.value;
       return authored;
     }
     if (node.type === 'code' && record(node.params) && node.params.codeAsText !== undefined) {
@@ -389,8 +372,12 @@ export function renderLessonModules(lesson, language, options = {}) {
     files.set(
       'constants.ts',
       "import type { LanguageCode } from '@svitlo/engine/build';\n\n" +
-        'export const languages = ' +
+        '// Restore the complete language set when translations are ready:\n' +
+        '// export const languages = ' +
         JSON.stringify(languageValues) +
+        ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n\n' +
+        'export const languages = ' +
+        JSON.stringify([language]) +
         ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n' +
         'export type LessonLanguages = typeof languages;\n',
     );
@@ -402,22 +389,31 @@ export function renderLessonModules(lesson, language, options = {}) {
       ? skillIndex(options.bookRoot)
       : new Map();
 
-  function moduleImports(directory, names, factory, needsLanguages, languageValue = false, needsMedia = false) {
+  // Keep package imports, textbook aliases and relative dependencies in distinct groups.
+  // Empty groups are omitted so leaf modules and root-only drafts stay compact.
+  const groupedImports = (...groups) =>
+    groups
+      .filter(group => group.length)
+      .map(group => group.join('\n'))
+      .join('\n\n') + '\n\n';
+
+  function moduleImports(directory, names, factory, needsLanguages, languageValue = false) {
     const factoryImports = [
       factory,
-      ...(factory === 'defineCode' ? ['readCodeSource'] : []),
-      ...(needsMedia ? ['resolveLessonMedia'] : []),
+      ...(factory === 'defineCode' ? ['readCodeSource'] : factory === 'defineMarkdown' ? ['readMarkdown'] : []),
     ].join(', ');
-    const output = ['import { ' + factoryImports + " } from '@svitlo/engine/build';"];
+    const packageImports = ['import { ' + factoryImports + " } from '@svitlo/engine/build';"];
+    const aliasImports = [];
+    const localImports = [];
+    if (needsLanguages && languagesType) {
+      aliasImports.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
+      if (languageValue) aliasImports.push('import { languages } from ' + JSON.stringify(constantsSpecifier) + ';');
+    }
     for (const [alias, { symbol, location }] of [...names.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
       const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
-      output.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
+      localImports.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
     }
-    if (needsLanguages && languagesType) {
-      output.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
-      if (languageValue) output.push('import { languages } from ' + JSON.stringify(constantsSpecifier) + ';');
-    }
-    return output.join('\n') + '\n\n';
+    return groupedImports(packageImports, aliasImports, localImports);
   }
 
   function put(relative, content) {
@@ -429,6 +425,10 @@ export function renderLessonModules(lesson, language, options = {}) {
   // child module. Its containing object's ordinary metadata remains untouched.
   function render(value, context, ownerDirectory, imported, depth = 0, field = '$') {
     if (value && typeof value === 'object' && value[rawExpression]) return value[rawExpression];
+    if (value === null && context.startsWith('pendingMedia:')) {
+      const kind = context.slice('pendingMedia:'.length);
+      return JSON.stringify(UNRESOLVED_RESOURCE_UUID + '.' + pendingMediaExtensions[kind]);
+    }
     if (context === 'nullableBlock') {
       return value === null ? 'null' : render(value, 'block', ownerDirectory, imported, depth, field);
     }
@@ -446,7 +446,8 @@ export function renderLessonModules(lesson, language, options = {}) {
       const symbol = symbolFor(value, context);
       // The mandatory Text question and the Answer Configurator have fixed
       // semantic role paths. Their own authored slugs still live in Config.
-      const roleRoot = (context === 'checkpointAnswer' && field === '$.answer') ||
+      const roleRoot =
+        (context === 'checkpointAnswer' && field === '$.answer') ||
         (context === 'block' && field === '$.question' && ownerDirectory.endsWith('/question'));
       const childDirectory = roleRoot ? ownerDirectory : join(ownerDirectory, value.slug);
       emitNode(value, context, childDirectory);
@@ -497,7 +498,11 @@ export function renderLessonModules(lesson, language, options = {}) {
       '{\n' +
       entries
         .map(([key, child]) => {
-          const nextContext = childContext(context, key, value);
+          const nextContext = context.startsWith('pendingMedia:')
+            ? context
+            : context.startsWith('mediaLocale:') && (key === 'fileName' || key === 'posterFileName')
+              ? 'pendingMedia:' + (key === 'posterFileName' ? 'image' : context.slice('mediaLocale:'.length))
+              : childContext(context, key, value);
           let nextDirectory = ownerDirectory;
           if (context === 'questionBank') nextDirectory = join(ownerDirectory, key);
           if (context === 'flashcardContent' && ['front', 'back', 'hint'].includes(key))
@@ -523,8 +528,17 @@ export function renderLessonModules(lesson, language, options = {}) {
             return indent(depth + 1) + key;
           }
           const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, field + '.' + key);
+          const pendingComment =
+            child === null && nextContext.startsWith('pendingMedia:')
+              ? indent(depth + 1) +
+                '// TODO(asset): Auto-generated unresolved media placeholder; no physical asset exists.\n' +
+                indent(depth + 1) +
+                '// Replace with actual UUID.extension before production.\n'
+              : '';
           return (
-            indent(depth + 1) + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered)
+            pendingComment +
+            indent(depth + 1) +
+            (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered)
           );
         })
         .join(',\n') +
@@ -555,15 +569,15 @@ export function renderLessonModules(lesson, language, options = {}) {
               ? ['question', 'answer']
               : context === 'checkpointAnswer'
                 ? ['content']
-              : context === 'question'
-                ? ['content']
-                : context === 'flashcard'
-                  ? ['content', 'parameters']
-                  : context === 'stage'
-                    ? ['content']
-                    : context === 'task'
-                      ? ['scene']
-                      : [];
+                : context === 'question'
+                  ? ['content']
+                  : context === 'flashcard'
+                    ? ['content', 'parameters']
+                    : context === 'stage'
+                      ? ['content']
+                      : context === 'task'
+                        ? ['scene']
+                        : [];
     for (const key of uses) {
       if (!Object.hasOwn(node, key)) continue;
       const owner =
@@ -593,8 +607,7 @@ export function renderLessonModules(lesson, language, options = {}) {
       );
     if (context === 'checkpointItem')
       return '<' + [slug, typeOf('answer'), typeOf('question'), languagesType].join(', ') + '>';
-    if (context === 'checkpointAnswer')
-      return '<' + [slug, 'typeof content.items', languagesType].join(', ') + '>';
+    if (context === 'checkpointAnswer') return '<' + [slug, 'typeof content.items', languagesType].join(', ') + '>';
     if (context === 'question') return '<' + [slug, typeOf('content'), languagesType].join(', ') + '>';
     if (context === 'flashcard') {
       const content = name =>
@@ -621,30 +634,30 @@ export function renderLessonModules(lesson, language, options = {}) {
   // Flashcard sides have no UUID. The role-local barrel owns the ordered block map.
   function emitFlashcardSide(role, side, directory) {
     const reservedImports = new Set([role, 'sideItems', 'defineFlashcardSide', 'LessonLanguages']);
-    const imports = new Map(
-      [...reservedImports].map(name => [name, { symbol: name, location: '__reserved__' }]),
-    );
+    const imports = new Map([...reservedImports].map(name => [name, { symbol: name, location: '__reserved__' }]));
     const sideItems = render(side.items, 'blockItems', directory, imports, 0, '$.content.' + role + '.items');
     const fields = Object.entries(side).map(([key, value]) =>
       key === 'items'
         ? '  items: sideItems'
-        : '  ' + asProperty(key) + ': ' + render(value, 'plain', directory, imports, 1, '$.content.' + role + '.' + key),
+        : '  ' +
+          asProperty(key) +
+          ': ' +
+          render(value, 'plain', directory, imports, 1, '$.content.' + role + '.' + key),
     );
-    const importsHead = ["import { defineFlashcardSide } from '@svitlo/engine/build';"];
-    for (const [alias, { symbol, location }] of [...imports.entries()]
-      .filter(([, entry]) => entry.location !== '__reserved__')
-      .sort((a, b) => a[0].localeCompare(b[0]))) {
-      const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
-      importsHead.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
-    }
-    if (languagesType) importsHead.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
+    const usedImports = new Map([...imports].filter(([, entry]) => entry.location !== '__reserved__'));
     put(
       join(directory, 'index.ts'),
-      importsHead.join('\n') + '\n\n' +
-        'const sideItems = ' + sideItems + ';\n\n' +
-        'export const ' + role + ' = defineFlashcardSide<' +
+      moduleImports(directory, usedImports, 'defineFlashcardSide', true) +
+        'const sideItems = ' +
+        sideItems +
+        ';\n\n' +
+        'export const ' +
+        role +
+        ' = defineFlashcardSide<' +
         (languagesType ? 'typeof sideItems, LessonLanguages' : 'typeof sideItems') +
-        '>({\n' + fields.join(',\n') + '\n});\n',
+        '>({\n' +
+        fields.join(',\n') +
+        '\n});\n',
     );
   }
 
@@ -673,19 +686,22 @@ export function renderLessonModules(lesson, language, options = {}) {
     for (const [key, value] of Object.entries(authored)) {
       let rendered;
       if (bindings.has(key)) rendered = key;
-      else rendered = render(value, childContext(context, key, authored), directory, imports, 1, '$.' + key);
+      else
+        rendered = render(
+          value,
+          key === 'locale' && localMediaTypes.has(authored.type)
+            ? 'mediaLocale:' + authored.type
+            : childContext(context, key, authored),
+          directory,
+          imports,
+          1,
+          '$.' + key,
+        );
       fields.push('  ' + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered));
     }
     const content = fields.length ? '{\n' + fields.join(',\n') + '\n}' : '{}';
     const name = symbolFor(node, context);
-    const importHead = moduleImports(
-      directory,
-      imports,
-      factory,
-      true,
-      false,
-      authored !== node && localMediaTypes.has(node.type),
-    );
+    const importHead = moduleImports(directory, imports, factory, true, false);
     const result =
       importHead +
       (extra.length ? extra.join('') + '\n' : '') +
@@ -786,8 +802,7 @@ export function renderLessonModules(lesson, language, options = {}) {
       '>'
     : '';
   const root =
-    rootImports.join('\n') +
-    '\n\n' +
+    groupedImports([rootImports[0]], rootImports.slice(1)) +
     'export const ' +
     filtered.slug +
     '_Lesson = defineLesson' +

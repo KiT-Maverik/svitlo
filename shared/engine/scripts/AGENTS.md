@@ -36,8 +36,11 @@ Other named workflows have their own contracts. Inspect their entrypoints and te
   type-specific. A combined `*.scaffold.schema.json` is generated for editing,
   **not validated during scaffolding**.
 - Use `production.documentLanguage` as source locale; YAML Config must
-  preserve every Engine-required field. Pending media paths are explicit
-  `null` values in the YAML-only Zod projections, never omitted or invented.
+  preserve every Engine-required **non-media** field. Technical Lesson YAML must
+  omit `fileName` and `posterFileName` entirely, including nested media.
+  Lesson Builder inserts reserved Nil UUID filenames and TODO(asset) into
+  generated TypeScript. The specialist later replaces these placeholders with
+  actual stable UUID.extension filenames; Engine Config remains strict.
   Scene implementations, imports and untranslated locales remain separate
   downstream dependencies, not grounds to reject scaffolding.
 - For **modular Lesson** drafts, emit `specification.md` beside the Scene or
@@ -62,9 +65,9 @@ Other named workflows have their own contracts. Inspect their entrypoints and te
 
 ## Intentionally failing TypeScript is the expected draft handoff
 
-- **Generated TypeScript is expected to fail TypeScript checking until dependencies are resolved.** Required Config structure is complete; literal `null` marks unfinished media. Missing Scene implementations/imports, additional locales and unresolved references are work for the next AI agent, not scaffolder bugs.
+- **Generated TypeScript is expected to fail TypeScript checking until dependencies are resolved.** Required Config structure includes reserved Nil UUID media placeholders with adjacent TODO(asset), not assigned asset identities. Missing Scene implementations/imports, additional locales and unresolved references are work for the next AI agent, not scaffolder bugs.
 - The scaffolder's job is to emit a deterministic, syntactically well-formed, recognizable `define*` source draft and preserve its unresolved work. **Explicit exception:** the Lesson `review.ts` draft is intentionally syntactically invalid until its assembled Props hash becomes the const identifier and verified review PR/language values are supplied; all other generated source modules must parse. **Successful TypeScript compilation, Engine Config validation, Props generation, and publication are explicitly NOT acceptance conditions for a draft scaffolder.** The scaffolder run itself should succeed for otherwise supported incomplete draft inputs; it must not execute or gate on TypeScript checks.
-- **Do not "fix" draft TypeScript diagnostics inside a scaffolder** by inventing `src`, `fileLocation`, import targets, Scene components, other language strings, default educational content, or values that pretend a pending resource exists. Do not silence errors with `as any`, `@ts-ignore`, weakened Config types, or fictitious passing fixtures. Preserve explicit nulls for unavailable required media resources and make outstanding work clear to the finishing agent.
+- **Do not "fix" draft TypeScript diagnostics inside a scaffolder** by inventing `src`, `fileLocation`, import targets, Scene components, other language strings, default educational content, or values that pretend a pending resource exists. Do not silence errors with `as any`, `@ts-ignore`, weakened Config types, or fictitious passing fixtures. For Lesson drafts, preserve the automatically inserted Nil UUID filenames and adjacent `TODO(asset)` markers until the specialist supplies real media; technical Lesson YAML omits these media fields entirely. Course Builder remains a separate legacy workflow until its own refactor. Make outstanding work clear to the finishing agent.
 - Preserve the distinction between **expected type errors** and **generator defects**. YAML syntax/dispatch failures, incorrectly emitted TypeScript syntax, lost authored data, wrong file placement, unintended overwrites, and incorrect factory selection remain defects. If a completely authored input happens to produce valid TypeScript, do not inject artificial errors merely to make it fail; the deliberate failure applies to incomplete drafts, not every possible input.
 - A later specialist agent completes media/Scene assets, translations and Config fields, then uses TypeScript diagnostics to verify and finish its own work. The separate publication pipeline runs only after those dependencies are actually resolved.
 

@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import test from 'node:test';
 import { pathToFileURL } from 'node:url';
 
-import { defineMarkdown, markdown_Props_Schema } from './index';
+import { defineMarkdown, markdown_Props_Schema, readMarkdown } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -20,8 +20,7 @@ describe('Configurators', () => {
 
       function withMarkdownFiles(run: (moduleUrl: string, directory: string) => void) {
         const root = mkdtempSync(join(tmpdir(), 'markdown-definition-'));
-        const directory = join(root, 'locale');
-        mkdirSync(directory);
+        const directory = root;
         try {
           run(pathToFileURL(join(root, 'definition.ts')).href, directory);
         } finally {
@@ -29,25 +28,24 @@ describe('Configurators', () => {
         }
       }
 
-      test('Markdown reads locale files beside definition and publishes only their text', () => {
+      test('readMarkdown loads colocated language files and preserves Config/Props content', () => {
         withMarkdownFiles((moduleUrl, directory) => {
           writeFileSync(join(directory, 'en.md'), '# Hello %_%NAME%_%\n');
           writeFileSync(join(directory, 'uk.md'), '# Привіт %_%NAME%_%\n');
 
+          const value = readMarkdown(moduleUrl, ['en', 'uk'] as const);
+          assert.deepEqual(value, { en: '# Hello %_%NAME%_%\n', uk: '# Привіт %_%NAME%_%\n' });
           const markdown = defineMarkdown<'example', ['en', 'uk']>({
             ...base,
-            files: { moduleUrl, languages: ['en', 'uk'] },
-            locale: { variables: { NAME: { en: 'Ada', uk: 'Ада' } } },
+            locale: { value, variables: { NAME: { en: 'Ada', uk: 'Ада' } } },
           });
-
           assert.deepEqual(markdown.config.base.locale, {});
           assert.deepEqual(markdown.config.locales(), {
             locale: {
-              value: { en: '# Hello %_%NAME%_%\n', uk: '# Привіт %_%NAME%_%\n' },
+              value,
               variables: { NAME: { en: 'Ada', uk: 'Ада' } },
             },
           });
-          assert.equal('files' in markdown.config.base, false);
           assert.equal(
             markdown_Props_Schema.safeParse({
               ...base,
@@ -55,35 +53,34 @@ describe('Configurators', () => {
             }).success,
             true,
           );
+          assert.deepEqual(markdown.build.props({ languages: ['uk'] }).locale, {
+            uk: { locale: { value: '# Привіт %_%NAME%_%\n', variables: { NAME: 'Ада' } } },
+          });
         });
       });
 
-      test('Markdown file mode rejects missing, empty, duplicate, and unexpected language files', () => {
+      test('readMarkdown rejects missing, empty, repeated, invalid and non-regular language files', () => {
         withMarkdownFiles((moduleUrl, directory) => {
           writeFileSync(join(directory, 'en.md'), 'Hello');
-          const withFiles = (languages: readonly ('en' | 'uk')[]) =>
-            defineMarkdown({
-              ...base,
-              files: { moduleUrl, languages },
-            });
-
-          assert.throws(() => withFiles(['en', 'uk']), /Missing or unreadable Markdown locale file: .*uk\.md/);
+          assert.throws(() => readMarkdown(moduleUrl, ['en', 'uk']), /Missing or invalid Markdown file: .*uk\.md/);
           writeFileSync(join(directory, 'uk.md'), ' \n ');
-          assert.throws(() => withFiles(['en', 'uk']), /Empty Markdown locale file: .*uk\.md/);
+          assert.throws(() => readMarkdown(moduleUrl, ['en', 'uk']), /Empty Markdown file: .*uk\.md/);
           writeFileSync(join(directory, 'uk.md'), 'Привіт');
-          assert.throws(() => withFiles(['en', 'en']), /without duplicates/);
-          assert.throws(() => withFiles([]), /non-empty/);
-          writeFileSync(join(directory, 'fr.md'), 'Bonjour');
-          assert.throws(() => withFiles(['en', 'uk']), /Unexpected Markdown locale files: fr\.md/);
+          assert.throws(() => readMarkdown(moduleUrl, ['en', 'en']), /without duplicates/);
+          assert.throws(() => readMarkdown(moduleUrl, [] as unknown as ['en']), /non-empty/);
+          assert.throws(() => readMarkdown(moduleUrl, ['../unsafe' as 'en']), /Invalid Markdown language code/);
+          mkdirSync(join(directory, 'fr.md'));
+          assert.throws(() => readMarkdown(moduleUrl, ['fr']), /Missing or invalid Markdown file: .*fr\.md/);
+          assert.deepEqual(readMarkdown(moduleUrl, ['en', 'uk']), { en: 'Hello', uk: 'Привіт' });
         });
       });
 
-      test('invariant Markdown resolves text.md without a fake default locale', () => {
+      test('readMarkdown resolves invariant markdown.md without a default locale', () => {
         withMarkdownFiles((moduleUrl, directory) => {
-          writeFileSync(join(directory, '../text.md'), '# 2 + 3 = 5\n');
+          writeFileSync(join(directory, 'markdown.md'), '# 2 + 3 = 5\n');
           const markdown = defineMarkdown<'example', ['en', 'uk']>({
             ...base,
-            files: { moduleUrl },
+            locale: { value: readMarkdown(moduleUrl) },
           });
           assert.equal(markdown.config.base.locale?.value, '# 2 + 3 = 5\n');
           assert.deepEqual(markdown.config.locales(), { locale: {} });
@@ -92,12 +89,11 @@ describe('Configurators', () => {
         });
       });
 
-      test('invariant Markdown rejects missing or empty text.md without falling back', () => {
+      test('readMarkdown rejects missing or empty markdown.md without fallback', () => {
         withMarkdownFiles((moduleUrl, directory) => {
-          const block = () => defineMarkdown({ ...base, files: { moduleUrl } });
-          assert.throws(block, /Missing or unreadable invariant Markdown file/);
-          writeFileSync(join(directory, '../text.md'), '  \n ');
-          assert.throws(block, /Empty invariant Markdown file/);
+          assert.throws(() => readMarkdown(moduleUrl), /Missing or invalid Markdown file: .*markdown\.md/);
+          writeFileSync(join(directory, 'markdown.md'), '  \n ');
+          assert.throws(() => readMarkdown(moduleUrl), /Empty Markdown file: .*markdown\.md/);
         });
       });
 

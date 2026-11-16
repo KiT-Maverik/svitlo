@@ -50,7 +50,8 @@ Other language values are not fabricated.
 
 Generated TypeScript uses valid unquoted object keys, shorthand collection
 properties, factory-specific generic arguments, and types derived from the
-Lesson's immutable YAML language tuple. Skill UUIDs are resolved to actual
+provisional active `languages` tuple in `constants.ts` (initially the source
+document language). The complete planned YAML language tuple stays untouched. Skill UUIDs are resolved to actual
 textbook Skill imports, never replaced with invented symbols. Unresolved or
 duplicate Skill references are reported rather than silently serialized as
 authoritative source references.
@@ -62,6 +63,45 @@ UUID directory. Stage 4 changes Lesson Scene/media specification handoffs to the
 slug modules. It does **not** change Scene implementation IDs or create
 real binary assets.
 
+## Provisional source-language authoring scope (implemented)
+
+The Lesson YAML `config.params.languages` remains the **complete planned**
+language set, with its original values and order. During initial scaffolding,
+`renderLessonModules` creates one active `constants.ts` export using a
+new one-element tuple from `production.documentLanguage` **directly**, not
+by truncating, slicing or filtering the YAML tuple. The complete YAML tuple
+is emitted separately as a **commented-out declaration of the same name** for
+manual activation after translations are ready.
+
+For example, `production.documentLanguage: en` and
+`config.params.languages: [en, uk, pl, qm]` produce:
+
+```ts
+import type { LanguageCode } from '@svitlo/engine/build';
+
+// Restore the complete language set when translations are ready:
+// export const languages = ["en","uk","pl","qm"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+
+export const languages = ['en'] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+export type LessonLanguages = typeof languages;
+```
+
+The root `defineLesson` uses the active `languages` value; nested
+Configurators use its derived `LessonLanguages` type. This enables an
+initial source-language-only Lesson draft without inventing translations or
+loosening `RequireLanguages` / `ChildrenSupporting`. Only the active source
+language can be previewed/published until translations are truly present.
+After completing the translations, the author can manually activate the
+commented full declaration and deactivate the provisional one; the existing
+TypeScript constraints enforce expanded coverage.
+
+The builder never modifies the YAML or overwrites existing authored
+`constants.ts` (or other Lesson source) files. `generate` retains its
+creation-only `SKIP` protection, and `check` remains strictly read-only.
+The scaffolder is still draft-only; pending media, Scene, Review and other
+dependencies may prevent TypeScript compilation. This does not introduce
+a new Props API, language override, or publication mode.
+
 ## Stage 3 file-backed Markdown/Code
 
 The draft builder now extracts _authored source content_ from Markdown `locale.value` into `text.md` (invariant scalar) or `locale/<documentLanguage>.md` (localized map). Code `params.codeAsText` is written exactly to `code.<extension>` using a known language-to-extension mapping. It emits pathless build-time reading bindings in the corresponding `defineMarkdown` or `defineCode` module and never embeds finished copy as a second literal.
@@ -70,12 +110,20 @@ The builder **does not transform a `production.specification` description into l
 
 ## TypeScript failure is intentional
 
-If a Lesson contains explicit pending media `null` values, untranslated
-locales, an unfinished Scene implementation or unresolved Question references,
-the scaffolded TypeScript **is expected to fail typechecking by design**.
-Required YAML Config fields must not be omitted. The next coding/media agent
-owns those errors and follows the recorded specifications. The scaffolder
-must not inject placeholders or suppress types to make CI green.
+Technical `lesson.yaml` **omits** `fileName` and `posterFileName` entirely
+for Image, Audio, Video, Subtitles and their nested Carousel/Quest variants;
+neither `null` nor a speculative UUID filename belongs in YAML. The
+Lesson Builder deliberately inserts a reserved Nil UUID with the required
+media extension and an adjacent `TODO(asset)` in generated TypeScript.
+This is an unresolved dependency, not a real resource identity. A later
+media specialist replaces these placeholders with validated physical
+`UUID.extension` asset names.
+
+Untranslated locales, incomplete Scenes, Review evidence and unresolved
+Question references may still prevent TypeScript compilation by design.
+**Non-media** YAML Config fields remain required. The scaffolder must not
+invent educational content, translations or real assets, and must not
+suppress TypeScript diagnostics to make CI green.
 
 The scaffolder must not run Zod/AJV, TS checks, editorial approvals,
 `build.props()`, Props generation or publication. It is a code-shaping

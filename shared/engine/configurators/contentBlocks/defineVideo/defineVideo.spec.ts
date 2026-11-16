@@ -14,8 +14,8 @@ describe('Configurators', () => {
         type: 'video' as const,
         params: {},
         locale: {
-          fileLocation: 'https://example.org/clip.mp4',
-          poster: 'https://example.org/preview.png',
+          fileName: 'https://example.org/clip.mp4',
+          posterFileName: 'https://example.org/preview.png',
           label: { en: 'Demonstration', uk: 'Демонстрація' },
         },
       });

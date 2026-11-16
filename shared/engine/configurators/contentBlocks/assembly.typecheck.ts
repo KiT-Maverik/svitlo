@@ -5,6 +5,7 @@ import {
   defineCode,
   defineImage,
   defineMarkdown,
+  readMarkdown,
   defineScene,
   defineVideo,
   defineYoutube,
@@ -24,7 +25,7 @@ const audio = defineAudio<'audio', ['en']>({
   slug: 'audio',
   type: 'audio',
   params: {},
-  locale: { title: { en: 'Narration' }, fileLocation: 'https://example.com/a.mp3' },
+  locale: { title: { en: 'Narration' }, fileName: 'https://example.com/a.mp3' },
 });
 const carousel = defineCarousel({
   id,
@@ -39,7 +40,7 @@ const carousel = defineCarousel({
         slug: 'first',
         type: 'image',
         params: { fill: true, aspectRatio: 1.5 },
-        locale: { src: 'https://example.com/image.png', alt: 'Alt' },
+        locale: { fileName: 'https://example.com/image.png', alt: 'Alt' },
       }),
     },
     order: ['first'],
@@ -57,7 +58,7 @@ const image = defineImage<'image', ['en']>({
   slug: 'image',
   type: 'image',
   params: { width: 100, height: 100 },
-  locale: { src: 'https://example.com/image.png', alt: { en: 'Diagram' } },
+  locale: { fileName: 'https://example.com/image.png', alt: { en: 'Diagram' } },
 });
 const markdown = defineMarkdown<'markdown', ['en']>({
   id,
@@ -66,6 +67,20 @@ const markdown = defineMarkdown<'markdown', ['en']>({
   params: {},
   locale: { value: { en: 'Hello' } },
 });
+// The source-language reader cannot satisfy a Lesson after its language tuple expands.
+const incompleteMarkdown = () =>
+  defineMarkdown<'incompleteMarkdown', ['en', 'uk']>({
+    id,
+    slug: 'incompleteMarkdown',
+    type: 'markdown',
+    params: {},
+    locale: {
+      // @ts-expect-error The Markdown reader returned only en; uk is required.
+      value: readMarkdown(import.meta.url, ['en'] as const),
+    },
+  });
+void incompleteMarkdown;
+
 const scene = defineScene<'scene', ['en']>({
   id,
   slug: 'scene',
@@ -79,8 +94,8 @@ const video = defineVideo<'video', ['en']>({
   type: 'video',
   params: {},
   locale: {
-    fileLocation: 'https://example.com/movie.mp4',
-    poster: 'https://example.com/movie.jpg',
+    fileName: 'https://example.com/movie.mp4',
+    posterFileName: 'https://example.com/movie.jpg',
     label: { en: 'Movie' },
   },
 });
@@ -256,7 +271,7 @@ const bilingualSlide = defineImage<'bilingualSlide', ['uk', 'en']>({
   slug: 'bilingualSlide',
   type: 'image',
   params: { fill: true, aspectRatio: 1.5 },
-  locale: { src: 'https://example.com/image.png', alt: { uk: 'Фото', en: 'Photo' } },
+  locale: { fileName: 'https://example.com/image.png', alt: { uk: 'Фото', en: 'Photo' } },
 });
 void bilingualSlide;
 
@@ -265,14 +280,14 @@ const ukOnlySlide = defineImage<'ukOnly', ['uk']>({
   slug: 'ukOnly',
   type: 'image',
   params: { fill: true, aspectRatio: 1.5 },
-  locale: { src: 'https://example.com/uk-only.png', alt: { uk: 'Лише українською' } },
+  locale: { fileName: 'https://example.com/uk-only.png', alt: { uk: 'Лише українською' } },
 });
 const bilingualSlideForGallery = defineImage<'bilingual', ['uk', 'en']>({
   id,
   slug: 'bilingual',
   type: 'image',
   params: { fill: true, aspectRatio: 1.5 },
-  locale: { src: 'https://example.com/bilingual.png', alt: { uk: 'Фото', en: 'Photo' } },
+  locale: { fileName: 'https://example.com/bilingual.png', alt: { uk: 'Фото', en: 'Photo' } },
 });
 const typedCarouselSupports = defineCarousel<
   'typedGallery',

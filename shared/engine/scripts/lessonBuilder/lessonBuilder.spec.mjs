@@ -52,7 +52,7 @@ function lessonConfig() {
                 slug: 'first',
                 type: 'image',
                 params: { fill: true, aspectRatio: 1.5 },
-                locale: { src: { uk: '/example.svg', en: '/never.svg' }, alt: { uk: 'Опис' } },
+                locale: { alt: { uk: 'Опис' } },
               },
             }),
           },
@@ -195,10 +195,61 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assertTypeScriptSyntax(files);
   }));
 
+test('Lesson constants use documentLanguage, preserving the full planned tuple for manual restoration', () =>
+  fixture(f => {
+    f.config.params.languages = ['en', 'uk', 'pl', 'qm'];
+    f.config.__production = { documentLanguage: 'uk' }; // Deliberately not the first planned language.
+    f.save();
+    const source = fs.readFileSync(f.generated('lesson.yaml'), 'utf8');
+    assert.deepEqual(yaml.parse(source).config.params.languages, ['en', 'uk', 'pl', 'qm']);
+
+    runOne(f.lesson, 'generate', f.root);
+    const constantsFile = f.generated('constants.ts');
+    const constants = fs.readFileSync(constantsFile, 'utf8');
+    assert.equal(
+      constants,
+      [
+        "import type { LanguageCode } from '@svitlo/engine/build';",
+        '',
+        '// Restore the complete language set when translations are ready:',
+        '// export const languages = ["en","uk","pl","qm"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];',
+        '',
+        'export const languages = ["uk"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];',
+        'export type LessonLanguages = typeof languages;',
+        '',
+      ].join('\n'),
+    );
+    assert.equal([...constants.matchAll(/^export const languages =/gm)].length, 1);
+    assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), source, 'Never modify the planned YAML tuple');
+
+    const files = readAll(f.lesson);
+    assert.match(files.get('index.ts'), /import \{ languages \} from '\.\/constants'/);
+    assert.match(files.get('index.ts'), /defineLesson<"lightLesson", LessonLanguages, typeof section\.items>/);
+    assert.match(
+      files.get('sections/intro/index.ts'),
+      /defineContentSection<"intro", typeof content\.items, LessonLanguages>/,
+    );
+    assert.match(files.get('sections/intro/prompt/index.ts'), /defineText<"prompt", LessonLanguages>/);
+    assert.match(
+      files.get('sections/intro/gallery/index.ts'),
+      /defineCarousel<"gallery", typeof slides\.items, LessonLanguages>/,
+    );
+    assert.doesNotMatch([...files.values()].join('\n'), /Never emit translation|"Light"/);
+    assertTypeScriptSyntax(files);
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+
+    const manuallyEdited = constants.replace('export const languages = ["uk"]', 'export const languages = ["en"]');
+    assert.notEqual(manuallyEdited, constants);
+    fs.writeFileSync(constantsFile, manuallyEdited);
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true, 'Create-only must not overwrite constants');
+    assert.equal(fs.readFileSync(constantsFile, 'utf8'), manuallyEdited);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /stale or manually edited draft/);
+    assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), source);
+  }));
+
 test('Carousel Image and Scene children are independently scaffolded below their authored slugs', () =>
   fixture(f => {
     const slides = f.config.section.items.intro.content.items.gallery.slides;
-    slides.items.first.locale.src = { uk: null, en: '/external-image.svg' };
     slides.items.first.__production = { prompt: 'Draw a picture showing equal groups' };
     slides.items.activity = {
       id: id(91),
@@ -215,7 +266,8 @@ test('Carousel Image and Scene children are independently scaffolded below their
     const scene = fs.readFileSync(f.generated('sections/intro/gallery/activity/index.ts'), 'utf8');
     const carousel = fs.readFileSync(f.generated('sections/intro/gallery/index.ts'), 'utf8');
     assert.match(image, /defineImage<"first", LessonLanguages>/);
-    assert.match(image, /resolveLessonMedia\(import\.meta\.url, "image", "source", "uk"\)/);
+    assert.match(image, /fileName: "00000000-0000-0000-0000-000000000000.webp"/);
+    assert.match(image, /TODO\(asset\)/);
     assert.doesNotMatch(image, /Not a translation/);
     assert.match(scene, /defineScene<"activity", LessonLanguages>/);
     assert.match(scene, /Обери групу/);
@@ -229,6 +281,41 @@ test('Carousel Image and Scene children are independently scaffolded below their
     assert(!fs.existsSync(f.generated('sections/intro/gallery/scene')));
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
     assertTypeScriptSyntax(readAll(f.lesson));
+  }));
+
+test('omitted media fields create deterministic TODO(asset) placeholders without changing YAML', () =>
+  fixture(f => {
+    const items = f.config.section.items.intro.content.items;
+    items.sound = { id: id(80), slug: 'sound', type: 'audio', params: {}, locale: { title: { uk: 'Аудіо' } } };
+    items.movie = { id: id(81), slug: 'movie', type: 'video', params: {}, locale: { label: { uk: 'Відео' } } };
+    items.captions = { id: id(82), slug: 'captions', type: 'subtitles', params: {}, locale: {} };
+    f.config.section.items.intro.content.order.push('sound', 'movie', 'captions');
+    f.save();
+    const before = fs.readFileSync(f.generated('lesson.yaml'), 'utf8');
+    assert(!before.includes('fileName:') && !before.includes('posterFileName:'));
+    runOne(f.lesson, 'generate', f.root);
+    const files = [
+      'sections/intro/gallery/first/index.ts',
+      'sections/intro/sound/index.ts',
+      'sections/intro/movie/index.ts',
+      'sections/intro/captions/index.ts',
+    ].map(name => fs.readFileSync(f.generated(name), 'utf8'));
+    for (const [i, ext] of ['webp', 'mp3', 'mp4', 'vtt'].entries()) {
+      assert(files[i].includes('fileName: "00000000-0000-0000-0000-000000000000.' + ext + '"'));
+      assert.match(files[i], /TODO\(asset\)/);
+    }
+    assert(files[2].includes('posterFileName: "00000000-0000-0000-0000-000000000000.webp"'));
+    assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), before);
+    assertTypeScriptSyntax(readAll(f.lesson));
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+  }));
+
+test('Lesson Builder refuses YAML-only media fields even when they are null', () =>
+  fixture(f => {
+    f.config.section.items.intro.content.items.gallery.slides.items.first.locale.fileName = null;
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /belongs in generated TypeScript, not technical YAML/);
+    assert.equal(fs.existsSync(f.generated('index.ts')), false);
   }));
 
 test('Carousel draft rejects unsupported children without writing anything', () =>
@@ -259,7 +346,10 @@ test('Lesson Review draft and Studio stage names match the Engine camelCase cont
   const pending = renderReviewDraft();
   const fields = [...pending.matchAll(/^    ([A-Za-z]+): \{ pr: , language: , \},$/gm)].map(match => match[1]);
   assert.deepEqual(fields, stages);
-  assert.doesNotMatch(pending, /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
+  assert.doesNotMatch(
+    pending,
+    /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/,
+  );
   assert.match(pending, /^    locales: ,$/m);
   assert.match(pending, /^    acceptance: ,$/m);
   const filled = pending
@@ -285,7 +375,10 @@ test('review.ts starts with mandatory unfilled evidence and is not overwritten',
     assert.match(pending, /methodologyReview: \{ pr: , language: , \}/);
     assert.match(pending, /generateSources: \{ pr: , language: , \}/);
     assert.match(pending, /resourceProduction: \{ pr: , language: , \}/);
-    assert.doesNotMatch(pending, /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/);
+    assert.doesNotMatch(
+      pending,
+      /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/,
+    );
     assert.match(pending, /locales: ,/);
     assert.match(pending, /acceptance: ,/);
     assert.match(pending, /locales: \{\}/);
@@ -495,7 +588,7 @@ test('co-locates Scene/media production handoffs with their slug modules', () =>
       id: imageId,
       slug: 'visualImage',
       type: 'image',
-      locale: { src: null },
+      locale: {},
       __production: { purpose: 'Show equality', prompt: 'Two groups of counters.' },
     };
     f.save();
@@ -508,13 +601,13 @@ test('co-locates Scene/media production handoffs with their slug modules', () =>
     assert(!fs.existsSync(path.join(f.workspace, 'scenes', sceneId.at(-1), sceneId, 'specification.md')));
     assert(!fs.existsSync(path.join(f.workspace, 'data/assets', imageId.at(-1), imageId, 'specification.md')));
     const imageModule = fs.readFileSync(f.generated('sections/intro/visualImage/index.ts'), 'utf8');
-    assert.match(imageModule, /import \{ defineImage, resolveLessonMedia \} from '@svitlo\/engine\/build'/);
-    assert.match(imageModule, /src: resolveLessonMedia\(import\.meta\.url, "image", "source"\)/);
+    assert.match(imageModule, /import \{ defineImage \} from '@svitlo\/engine\/build'/);
+    assert.match(imageModule, /fileName: "00000000-0000-0000-0000-000000000000.webp"/);
     assert.match(fs.readFileSync(f.generated('methodology.md'), 'utf8'), /Lesson method/);
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
   }));
 
-test('local video, poster, subtitles and localized images use role-aware source readers', () =>
+test('all media kinds and Video posters receive statically generated placeholders', () =>
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
     items.videoExplanation = {
@@ -522,47 +615,35 @@ test('local video, poster, subtitles and localized images use role-aware source 
       slug: 'videoExplanation',
       type: 'video',
       params: {},
-      locale: {
-        fileLocation: { uk: null, en: '/external/video.mp4' },
-        poster: null,
-        label: { uk: 'Відеопояснення' },
-      },
+      locale: { label: { uk: 'Відеопояснення' } },
       __production: { purpose: 'Visual guidance', script: 'Two groups' },
     };
-    items.localAudio = {
-      id: id(82),
-      slug: 'localAudio',
-      type: 'audio',
-      params: {},
-      locale: { fileLocation: null, title: { uk: 'Звук' } },
-    };
-    items.localCaptions = {
-      id: id(83),
-      slug: 'localCaptions',
-      type: 'subtitles',
-      params: {},
-      locale: { fileLocation: { uk: null } },
-    };
+    items.localAudio = { id: id(82), slug: 'localAudio', type: 'audio', params: {}, locale: { title: { uk: 'Звук' } } };
+    items.localCaptions = { id: id(83), slug: 'localCaptions', type: 'subtitles', params: {}, locale: {} };
     items.localPicture = {
       id: id(84),
       slug: 'localPicture',
       type: 'image',
       params: { fill: true, aspectRatio: 1.5 },
-      locale: { src: { uk: null, en: '/external/picture.svg' }, alt: { uk: 'Картинка' } },
+      locale: { alt: { uk: 'Картинка' } },
     };
     f.config.section.items.intro.content.order.push('videoExplanation', 'localAudio', 'localCaptions', 'localPicture');
     f.save();
     runOne(f.lesson, 'generate', f.root);
-    const video = fs.readFileSync(f.generated('sections/intro/videoExplanation/index.ts'), 'utf8');
-    assert.match(video, /fileLocation: \{\s*uk: resolveLessonMedia\(import\.meta\.url, "video", "source", "uk"\)/);
-    assert.match(video, /poster: resolveLessonMedia\(import\.meta\.url, "video", "poster"\)/);
-    assert.doesNotMatch(video, /\/external\/video\.mp4/);
-    const audio = fs.readFileSync(f.generated('sections/intro/localAudio/index.ts'), 'utf8');
-    assert.match(audio, /fileLocation: resolveLessonMedia\(import\.meta\.url, "audio", "source"\)/);
-    const captions = fs.readFileSync(f.generated('sections/intro/localCaptions/index.ts'), 'utf8');
-    assert.match(captions, /"subtitles", "source", "uk"/);
-    const image = fs.readFileSync(f.generated('sections/intro/localPicture/index.ts'), 'utf8');
-    assert.match(image, /"image", "source", "uk"/);
+    const read = name => fs.readFileSync(f.generated('sections/intro/' + name + '/index.ts'), 'utf8');
+    const media = [
+      ['videoExplanation', 'mp4'],
+      ['localAudio', 'mp3'],
+      ['localCaptions', 'vtt'],
+      ['localPicture', 'webp'],
+    ];
+    for (const [name, extension] of media) {
+      const content = read(name);
+      assert(content.includes('fileName: "00000000-0000-0000-0000-000000000000.' + extension + '"'));
+      assert.match(content, /TODO\(asset\)/);
+    }
+    const video = read('videoExplanation');
+    assert(video.includes('posterFileName: "00000000-0000-0000-0000-000000000000.webp"'));
     assertTypeScriptSyntax(readAll(f.lesson));
     assert(fs.existsSync(f.generated('sections/intro/videoExplanation/specification.md')));
   }));
@@ -609,7 +690,7 @@ test('reserved JavaScript keywords remain safe as authored ContentBlock slugs', 
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
 
-test('materializes invariant Markdown in text.md and Code in code.py beside their definitions', () =>
+test('materializes invariant Markdown in markdown.md and Code in code.py beside their definitions', () =>
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
     items.equalityRule = {
@@ -631,15 +712,16 @@ test('materializes invariant Markdown in text.md and Code in code.py beside thei
     f.config.section.items.intro.content.order.push('equalityRule', 'pythonExample');
     f.save();
     const result = runOne(f.lesson, 'generate', f.root);
-    const markdown = 'sections/intro/equalityRule/text.md';
+    const markdown = 'sections/intro/equalityRule/markdown.md';
     const code = 'sections/intro/pythonExample/code.py';
     assert(result.files.includes(markdown));
     assert(result.files.includes(code));
     assert.equal(fs.readFileSync(f.generated(markdown), 'utf8'), '# Equal values\n\n**2 + 3 = 5**.\n');
     assert.equal(fs.readFileSync(f.generated(code), 'utf8'), 'print(2 + 3 == 5)\n');
     const markdownModule = fs.readFileSync(f.generated('sections/intro/equalityRule/index.ts'), 'utf8');
-    assert.match(markdownModule, /files: \{\s*moduleUrl: import\.meta\.url/);
-    assert.doesNotMatch(markdownModule, /locale: \{\s*value:/);
+    assert.match(markdownModule, /locale: \{\s*value: readMarkdown\(import\.meta\.url\)/);
+    assert.match(markdownModule, /import \{ defineMarkdown, readMarkdown \} from '@svitlo\/engine\/build'/);
+    assert.doesNotMatch(markdownModule, /files:/);
     const codeModule = fs.readFileSync(f.generated('sections/intro/pythonExample/index.ts'), 'utf8');
     assert.match(codeModule, /import \{ defineCode, readCodeSource \} from '@svitlo\/engine\/build'/);
     assert.match(codeModule, /codeAsText: readCodeSource\(import\.meta\.url, "py"\)/);
@@ -650,7 +732,7 @@ test('materializes invariant Markdown in text.md and Code in code.py beside thei
     assert(!result.files.some(name => name.endsWith('specification.md') && /equalityRule|pythonExample/.test(name)));
   }));
 
-test('localized Markdown creates only source-language locale/uk.md, without a default fallback', () =>
+test('localized Markdown creates only source-language uk.md beside its module, without a fallback', () =>
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
     items.sourceExplanation = {
@@ -664,11 +746,12 @@ test('localized Markdown creates only source-language locale/uk.md, without a de
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const base = 'sections/intro/sourceExplanation/';
-    assert.equal(fs.readFileSync(f.generated(base + 'locale/uk.md'), 'utf8'), '# Значення рівні\n');
-    assert(!fs.existsSync(f.generated(base + 'locale/en.md')));
-    assert(!fs.existsSync(f.generated(base + 'text.md')));
+    assert.equal(fs.readFileSync(f.generated(base + 'uk.md'), 'utf8'), '# Значення рівні\n');
+    assert(!fs.existsSync(f.generated(base + 'en.md')));
+    assert(!fs.existsSync(f.generated(base + 'markdown.md')));
     const rendered = fs.readFileSync(f.generated(base + 'index.ts'), 'utf8');
-    assert.match(rendered, /files: \{\s*moduleUrl: import\.meta\.url,\s*languages: \[\s*"uk"\s*\]/);
+    assert.match(rendered, /value: readMarkdown\(import\.meta\.url, \["uk"\]\)/);
+    assert.doesNotMatch(rendered, /files:/);
     assert.doesNotMatch(rendered, /# Значення рівні|# Equal values/);
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
@@ -686,7 +769,7 @@ test('read-only checks reject modified Markdown/Code while generate skips existi
     f.config.section.items.intro.content.order.push('explanation');
     f.save();
     runOne(f.lesson, 'generate', f.root);
-    const file = f.generated('sections/intro/explanation/text.md');
+    const file = f.generated('sections/intro/explanation/markdown.md');
     fs.writeFileSync(file, '# Human revision\n');
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
     assert.equal(fs.readFileSync(file, 'utf8'), '# Human revision\n');
@@ -705,7 +788,7 @@ test('existing Markdown source blocks all new TS writes instead of being overwri
     };
     f.config.section.items.intro.content.order.push('explanation');
     f.save();
-    const sourceFile = f.generated('sections/intro/explanation/text.md');
+    const sourceFile = f.generated('sections/intro/explanation/markdown.md');
     fs.mkdirSync(path.dirname(sourceFile), { recursive: true });
     fs.writeFileSync(sourceFile, '# Previously edited by a human\n');
     assert.throws(
@@ -842,14 +925,27 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
   const document = yaml.parse(authored);
   const lesson = document.config;
   const sections = lesson.section.order.map(key => lesson.section.items[key].config);
-  const directBlocks = sections.flatMap(section =>
-    section.content.order.map(key => section.content.items[key].config),
-  );
+  const directBlocks = sections.flatMap(section => section.content.order.map(key => section.content.items[key].config));
   assert.equal(sections.length, 2);
-  assert.deepEqual(sections.map(section => section.content.order.length), [6, 6]);
+  assert.deepEqual(
+    sections.map(section => section.content.order.length),
+    [6, 6],
+  );
   assert.deepEqual(
     [...new Set(directBlocks.map(block => block.type))].sort(),
-    ['audio', 'carousel', 'checkpoint', 'code', 'image', 'markdown', 'scene', 'subtitles', 'text', 'video', 'youtube'].sort(),
+    [
+      'audio',
+      'carousel',
+      'checkpoint',
+      'code',
+      'image',
+      'markdown',
+      'scene',
+      'subtitles',
+      'text',
+      'video',
+      'youtube',
+    ].sort(),
   );
   assert.equal(document.production.documentLanguage, 'en');
 
@@ -866,10 +962,13 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
     // still produce an imported symbol, without depending on Mathematics.
     const skills = path.join(workspace, 'data/skills/algebra/equalities/skills');
     fs.mkdirSync(skills, { recursive: true });
-    fs.writeFileSync(path.join(skills, 'coverage.data.ts'),
+    fs.writeFileSync(
+      path.join(skills, 'coverage.data.ts'),
       "import { defineSkill } from '@svitlo/engine/build';\n" +
-      "export const coverageSkill_Skill_Data = defineSkill({ id: '" +
-      lesson.skills[0] + "', slug: 'coverageSkill' });\n");
+        "export const coverageSkill_Skill_Data = defineSkill({ id: '" +
+        lesson.skills[0] +
+        "', slug: 'coverageSkill' });\n",
+    );
 
     const first = runOne(staged, 'generate', root);
     assert.equal(first.lessonId, lesson.id);
@@ -893,39 +992,50 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
       'sections/reviewEquality/verifyEquality/compareFive/answer/index.ts',
       'sections/reviewEquality/verifyEquality/compareFive/answer/whyFiveMatches/index.ts',
       'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/index.ts',
-    ]) assert(modules.has(name), 'Missing generated file ' + name);
+    ])
+      assert(modules.has(name), 'Missing generated file ' + name);
     assert.match(modules.get('index.ts'), /skills: \[coverageSkill_Skill_Data\.id\]/);
     assert.equal(fs.existsSync(path.join(output, 'questions')), false);
     assert.equal(fs.existsSync(path.join(output, 'flashcards')), false);
     assert.doesNotMatch([...modules.values()].join('\n'), /Scaffolded by|Draft content sha256/);
-    assert.match(modules.get('sections/reviewEquality/verifyEquality/compareFive/answer/index.ts'),
-      /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/);
+    assert.match(
+      modules.get('sections/reviewEquality/verifyEquality/compareFive/answer/index.ts'),
+      /defineCheckpointAnswer<"answer", typeof content\.items, LessonLanguages>/,
+    );
     const carouselRoot = 'sections/exploreEquality/counterArrangementsCarousel';
     const imageSlide = modules.get(carouselRoot + '/fiveCountersSlide/index.ts');
     const sceneSlide = modules.get(carouselRoot + '/threePlusTwoSlide/index.ts');
     assert.match(imageSlide, /defineImage<"fiveCountersSlide", LessonLanguages>/);
-    assert.match(imageSlide, /resolveLessonMedia\(import\.meta\.url, "image", "source"\)/);
+    assert.match(imageSlide, /fileName: "00000000-0000-0000-0000-000000000000.webp"/);
     assert.match(sceneSlide, /defineScene<"threePlusTwoSlide", LessonLanguages>/);
     assert.match(sceneSlide, /Arrange three counters and two more to show five/);
-    const authoredSlides = lesson.section.items.exploreEquality.config.content.items.counterArrangementsCarousel.config.slides;
+    const authoredSlides =
+      lesson.section.items.exploreEquality.config.content.items.counterArrangementsCarousel.config.slides;
     assert.deepEqual(authoredSlides.order, ['fiveCountersSlide', 'threePlusTwoSlide']);
-    assert.deepEqual(authoredSlides.order.map(key => authoredSlides.items[key].config.type), ['image', 'scene']);
+    assert.deepEqual(
+      authoredSlides.order.map(key => authoredSlides.items[key].config.type),
+      ['image', 'scene'],
+    );
     assert(fs.existsSync(path.join(output, carouselRoot, 'fiveCountersSlide/specification.md')));
     assert(fs.existsSync(path.join(output, carouselRoot, 'threePlusTwoSlide/specification.md')));
     assert(!fs.existsSync(path.join(output, carouselRoot, 'slides')));
 
     assert(![...modules.keys()].some(name => /\/(?:texts|images|scenes|slides)\//.test(name)));
-    assert.equal(fs.readFileSync(path.join(output,
-      'sections/exploreEquality/explainWithMarkdown/locale/en.md'), 'utf8'),
-      '## Compare both sides\n\n**3 + 2 = 4 + 1**, because both sides equal **5**.');
-    assert.match(fs.readFileSync(path.join(output,
-      'sections/exploreEquality/compareValuesCode/code.ts'), 'utf8'), /const left = 3 \+ 2/);
-    assert(fs.existsSync(path.join(output,
-      'sections/exploreEquality/compareGroupsScene/specification.md')));
-    assert(fs.existsSync(path.join(output,
-      'sections/reviewEquality/equalGroupsVideo/specification.md')));
-    assert(fs.existsSync(path.join(output,
-      'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/specification.md')));
+    assert.equal(
+      fs.readFileSync(path.join(output, 'sections/exploreEquality/explainWithMarkdown/en.md'), 'utf8'),
+      '## Compare both sides\n\n**3 + 2 = 4 + 1**, because both sides equal **5**.',
+    );
+    assert.match(
+      fs.readFileSync(path.join(output, 'sections/exploreEquality/compareValuesCode/code.ts'), 'utf8'),
+      /const left = 3 \+ 2/,
+    );
+    assert(fs.existsSync(path.join(output, 'sections/exploreEquality/compareGroupsScene/specification.md')));
+    assert(fs.existsSync(path.join(output, 'sections/reviewEquality/equalGroupsVideo/specification.md')));
+    assert(
+      fs.existsSync(
+        path.join(output, 'sections/reviewEquality/verifyEquality/compareFive/answer/answerDiagram/specification.md'),
+      ),
+    );
     assertTypeScriptSyntax(modules);
     assert.equal(runOne(staged, 'check', root).changed, 0);
     assert.equal(runOne(staged, 'generate', root).skipped, true);
@@ -938,6 +1048,61 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('groups generated Lesson imports by package, alias and relative dependencies', () =>
+  fixture(f => {
+    const files = renderLessonModules(f.config, 'uk');
+    const alias = `#lessonsData/${lessonId.at(-1)}/${lessonId}/constants`;
+
+    const section = files.get('sections/intro/index.ts');
+    assert.ok(
+      section.startsWith(
+        [
+          "import { defineContentSection } from '@svitlo/engine/build';",
+          '',
+          `import type { LessonLanguages } from "${alias}";`,
+          '',
+          'import { check } from "./check";',
+          'import { gallery } from "./gallery";',
+          'import { prompt } from "./prompt";',
+          '',
+          'const content =',
+        ].join('\n'),
+      ),
+      section,
+    );
+
+    const leaf = files.get('sections/intro/prompt/index.ts');
+    assert.ok(
+      leaf.startsWith(
+        [
+          "import { defineText } from '@svitlo/engine/build';",
+          '',
+          `import type { LessonLanguages } from "${alias}";`,
+          '',
+          'export const prompt =',
+        ].join('\n'),
+      ),
+      leaf,
+    );
+
+    const root = files.get('index.ts');
+    assert.ok(
+      root.startsWith(
+        [
+          "import { defineLesson } from '@svitlo/engine/build';",
+          '',
+          'import { section } from "./sections";',
+          "import { languages } from './constants';",
+          "import type { LessonLanguages } from './constants';",
+          '',
+          'export const lightLesson_Lesson =',
+        ].join('\n'),
+      ),
+      root,
+    );
+    assertTypeScriptSyntax(files);
+  }));
 
 test('module rendering is deterministic and retains only source-language authoring', () =>
   fixture(f => {

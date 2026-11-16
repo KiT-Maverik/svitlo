@@ -20,11 +20,12 @@ describe('Configurators', () => {
       const slide = <const Slug extends string>(
         slug: Slug,
         locale: {
-          src: string | Record<'en' | 'uk', string>;
+          fileName: string | Record<'en' | 'uk', string>;
           alt: string | Record<'en' | 'uk', string>;
           caption?: string | Record<'en' | 'uk', string>;
         },
-      ) => defineImage<Slug, ['en', 'uk']>({ id, slug, type: 'image', params: { fill: true, aspectRatio: 1.5 }, locale });
+      ) =>
+        defineImage<Slug, ['en', 'uk']>({ id, slug, type: 'image', params: { fill: true, aspectRatio: 1.5 }, locale });
 
       test('Published locale bodies already match Props and require no embedding', () => {
         const block = defineAudio<'localeShape', ['en']>({
@@ -32,7 +33,7 @@ describe('Configurators', () => {
           slug: 'localeShape',
           type: 'audio',
           params: {},
-          locale: { title: { en: 'Hello' }, fileLocation: 'https://example.com/audio.mp3' },
+          locale: { title: { en: 'Hello' }, fileName: 'https://example.com/audio.mp3' },
         });
         const result = block.build.props({ languages: ['en'] });
         assert.deepEqual(result.locale?.en, { locale: { title: 'Hello' } });
@@ -56,7 +57,7 @@ describe('Configurators', () => {
           params: {},
           locale: {
             title: 'Narration',
-            fileLocation: { en: 'https://example.com/en.mp3', uk: 'https://example.com/uk.mp3' },
+            fileName: { en: 'https://example.com/en.mp3', uk: 'https://example.com/uk.mp3' },
             fallback: { offline: 'Offline', retry: { en: 'Retry', uk: 'Повторити' } },
           },
         };
@@ -103,11 +104,11 @@ describe('Configurators', () => {
 
       test('Carousel publishes ordered complete localized arrays and handles sparse child overrides', () => {
         const first = slide('first', {
-          src: { en: 'https://example.com/a-en.png', uk: 'https://example.com/a-uk.png' },
+          fileName: { en: 'https://example.com/a-en.png', uk: 'https://example.com/a-uk.png' },
           alt: 'First',
         });
         const second = slide('second', {
-          src: 'https://example.com/b.png',
+          fileName: 'https://example.com/b.png',
           alt: 'Second',
           caption: { en: 'A caption', uk: 'Підпис' },
         });
@@ -121,22 +122,38 @@ describe('Configurators', () => {
         });
         const resource = carousel.build.props({ languages: ['en', 'uk'] });
         assert.equal(resource.base.locale?.title, 'Gallery');
-        assert.deepEqual(resource.locale?.en?.locale.slides?.map(slide => slide?.type === 'image' ? slide.locale : undefined), [
-          { src: 'https://example.com/a-en.png', alt: 'First' },
-          { src: 'https://example.com/b.png', alt: 'Second', caption: 'A caption' },
-        ]);
-        assert.equal(resource.locale?.uk?.locale.slides?.[0]?.type === 'image' ? resource.locale.uk.locale.slides[0]?.locale?.src : undefined, 'https://example.com/a-uk.png');
+        assert.deepEqual(
+          resource.locale?.en?.locale.slides?.map(slide => (slide?.type === 'image' ? slide.locale : undefined)),
+          [
+            { src: 'https://example.com/a-en.png', alt: 'First' },
+            { src: 'https://example.com/b.png', alt: 'Second', caption: 'A caption' },
+          ],
+        );
+        assert.equal(
+          resource.locale?.uk?.locale.slides?.[0]?.type === 'image'
+            ? resource.locale.uk.locale.slides[0]?.locale?.src
+            : undefined,
+          'https://example.com/a-uk.png',
+        );
         const localized = carousel.build.overrides(
           {
             slides: { items: { first: { locale: { alt: { uk: 'Перший' } } } } },
           },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(localized.locale?.uk?.locale.slides?.map(slide => slide?.type === 'image' ? slide.locale : undefined), [
-          { src: 'https://example.com/a-uk.png', alt: 'Перший' },
-          { src: 'https://example.com/b.png', alt: 'Second', caption: 'Підпис' },
-        ]);
-        assert.equal(localized.locale?.en?.locale.slides?.[0]?.type === 'image' ? localized.locale.en.locale.slides[0]?.locale?.alt : undefined, 'First');
+        assert.deepEqual(
+          localized.locale?.uk?.locale.slides?.map(slide => (slide?.type === 'image' ? slide.locale : undefined)),
+          [
+            { src: 'https://example.com/a-uk.png', alt: 'Перший' },
+            { src: 'https://example.com/b.png', alt: 'Second', caption: 'Підпис' },
+          ],
+        );
+        assert.equal(
+          localized.locale?.en?.locale.slides?.[0]?.type === 'image'
+            ? localized.locale.en.locale.slides[0]?.locale?.alt
+            : undefined,
+          'First',
+        );
         assert.equal(JSON.stringify(localized).includes('additionalItems'), false);
         assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).locale?.en?.locale.slides?.length, 2);
       });
@@ -185,7 +202,7 @@ describe('Configurators', () => {
           slug: 'diagram',
           params: { width: 600, height: 400 },
           locale: {
-            src: 'https://example.com/image.png',
+            fileName: 'https://example.com/image.png',
             alt: { en: 'Diagram', uk: 'Схема' },
             fallback: { offline: 'Offline' },
           },
@@ -300,8 +317,8 @@ describe('Configurators', () => {
           slug: 'movie',
           params: {},
           locale: {
-            fileLocation: 'https://example.com/movie.mp4',
-            poster: 'https://example.com/poster.png',
+            fileName: 'https://example.com/movie.mp4',
+            posterFileName: 'https://example.com/poster.png',
             label: { en: 'Movie', uk: 'Відео' },
             fallback: { offline: 'Offline' },
           },
@@ -348,7 +365,7 @@ describe('Configurators', () => {
           type: 'audio',
           slug: 'audio',
           params: {},
-          locale: { title: 'Audio', fileLocation: 'https://example.com/audio.mp3' },
+          locale: { title: 'Audio', fileName: 'https://example.com/audio.mp3' },
         });
         assert.equal('override' in block, false);
         assert.equal('disable' in block, false);
@@ -363,7 +380,7 @@ describe('Configurators', () => {
       test('Carousel rejects a language lacking complete slide fields', () => {
         // Deliberately incomplete dictionaries exercise runtime publication validation.
         const mixed = slide('mixed', {
-          src: { en: 'https://example.com/en.png' },
+          fileName: { en: 'https://example.com/en.png' },
           alt: { uk: 'Українською' },
         } as never);
         const carousel = defineCarousel<'mixedSlides', { mixed: typeof mixed }, ['en', 'uk']>({
@@ -400,14 +417,14 @@ describe('Configurators', () => {
       });
 
       test('Flat ContentBlocks publish stateless Props without the legacy assemble surface', () => {
-        const invariantSlide = slide('first', { src: 'https://example.com/a.png', alt: 'A' });
+        const invariantSlide = slide('first', { fileName: 'https://example.com/a.png', alt: 'A' });
         const blocks = [
           defineAudio({
             id,
             slug: 'a',
             type: 'audio',
             params: {},
-            locale: { title: 'Audio', fileLocation: 'https://example.com/a.mp3' },
+            locale: { title: 'Audio', fileName: 'https://example.com/a.mp3' },
           }),
           defineCarousel<'b', { first: typeof invariantSlide }, ['en', 'uk']>({
             id,
@@ -432,7 +449,7 @@ describe('Configurators', () => {
             slug: 'd',
             type: 'image',
             params: { width: 200, height: 100 },
-            locale: { src: 'https://example.com/a.png', alt: 'A' },
+            locale: { fileName: 'https://example.com/a.png', alt: 'A' },
           }),
           defineMarkdown({
             id,
@@ -454,8 +471,8 @@ describe('Configurators', () => {
             type: 'video',
             params: {},
             locale: {
-              fileLocation: 'https://example.com/a.mp4',
-              poster: 'https://example.com/a.png',
+              fileName: 'https://example.com/a.mp4',
+              posterFileName: 'https://example.com/a.png',
               label: 'Video',
             },
           }),
@@ -488,7 +505,7 @@ describe('Configurators', () => {
       });
 
       test('Carousel slide overrides and published output are mutation-isolated', () => {
-        const authored = { src: 'https://example.com/a.png', alt: 'Original' };
+        const authored = { fileName: 'https://example.com/a.png', alt: 'Original' };
         const first = slide('first', authored);
         const carousel = defineCarousel<'atomicSlides', { first: typeof first }, ['en', 'uk']>({
           id,

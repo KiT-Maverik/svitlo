@@ -14,7 +14,7 @@ describe('Configurators', () => {
           slug: 'sample',
           type: 'audio',
           params: {},
-          locale: { fileLocation: 'https://example.org/lesson.mp3', title: { en: 'Listen', uk: 'Слухай' } },
+          locale: { fileName: 'https://example.org/lesson.mp3', title: { en: 'Listen', uk: 'Слухай' } },
         });
         const resource = audio.build.props(scope);
         assert.equal(resource.base.locale?.fileLocation, 'https://example.org/lesson.mp3');
@@ -28,7 +28,7 @@ describe('Configurators', () => {
           slug: 'sample',
           type: 'audio',
           params: {},
-          locale: { fileLocation: 'https://example.org/lesson.mp3', title: { en: 'Listen', uk: 'Слухай' } },
+          locale: { fileName: 'https://example.org/lesson.mp3', title: { en: 'Listen', uk: 'Слухай' } },
         });
         const before = audio.build.props(scope);
         const patch = audio.build.overrides({ locale: { title: { uk: 'Прослухай' } } }, scope);
