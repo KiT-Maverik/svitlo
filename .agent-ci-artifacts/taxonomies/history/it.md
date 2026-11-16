@@ -2118,7 +2118,7 @@ Skills: 5
 
 **Methodological description (English):** Cultivation, herding, and settlements emerged independently in multiple places rather than in one simultaneous universal revolution.
 
-**User-friendly description (it):** Scopri come la coltivazione del cibo si diffuse in luoghi ed epoche diverse.
+**User-friendly description (it):** Scopri come agricoltura e allevamento nacquero in modo indipendente in regioni ed epoche diverse.
 
 ##### Domesticazione degli animali
 
