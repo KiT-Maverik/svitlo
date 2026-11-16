@@ -5,7 +5,7 @@ export const plantDomestication_Skill_Data = defineSkill({
   id: '171498b6-3d50-4234-a026-3f16058051d8',
   name: {
     en: 'Plant Domestication',
-    it: "Domesticazione delle piante",
+    it: 'Domesticazione delle piante',
     zh: '植物驯化',
     hi: 'पौधों का पालतूकरण',
     es: 'Domesticación de plantas',
@@ -40,7 +40,7 @@ export const plantDomestication_Skill_Data = defineSkill({
       'Distinguish initial cultivation from long-term biological and economic domestication of wild plants.',
     frontend: {
       en: 'Explain how people gradually transformed wild plants into crops.',
-      it: "Spiega come le persone trasformarono gradualmente le piante selvatiche in colture.",
+      it: 'Spiega come le persone trasformarono gradualmente le piante selvatiche in colture.',
       zh: '解释人们如何逐渐把野生植物变成栽培作物。',
       hi: 'समझाएँ कि लोगों ने धीरे-धीरे जंगली पौधों को खेती की फसलों में कैसे बदला।',
       es: 'Explica cómo las personas transformaron gradualmente plantas silvestres en cultivos.',

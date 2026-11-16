@@ -11,7 +11,7 @@ export const ancientWesternAsia_SkillDomain_Data = defineSkillDomain({
   id: 'ff530e6e-024d-4a8c-9a16-3d0436cc9036',
   title: {
     en: 'Western Asia',
-    it: "Asia occidentale",
+    it: 'Asia occidentale',
     zh: '古代西亚',
     hi: 'प्राचीन पश्चिमी एशिया',
     es: 'Asia occidental antigua',

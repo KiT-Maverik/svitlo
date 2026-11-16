@@ -11,7 +11,7 @@ export const eastAndCentralAsia_SkillDomain_Data = defineSkillDomain({
   id: 'c151bf39-0aba-4a40-b75f-40788f187631',
   title: {
     en: 'East and Central Asia',
-    it: "Asia orientale e centrale",
+    it: 'Asia orientale e centrale',
     zh: '东亚与中亚',
     hi: 'पूर्वी और मध्य एशिया',
     es: 'Asia oriental y central',

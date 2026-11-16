@@ -5,7 +5,7 @@ export const scandinavianIronAge_Skill_Data = defineSkill({
   id: '75012ac4-9286-4f63-8550-5b4e2d7a6926',
   name: {
     en: 'Scandinavian Iron Age',
-    it: "Età del ferro in Scandinavia",
+    it: 'Età del ferro in Scandinavia',
     zh: '斯堪的纳维亚铁器时代',
     hi: 'स्कैंडिनेविया का लौह युग',
     es: 'Edad del Hierro escandinava',

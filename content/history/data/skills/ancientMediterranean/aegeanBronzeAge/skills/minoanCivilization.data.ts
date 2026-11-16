@@ -5,7 +5,7 @@ export const minoanCivilization_Skill_Data = defineSkill({
   id: '910c57c6-83d3-4283-b2ff-460e50802ada',
   name: {
     en: 'Minoan Civilization',
-    it: "Civiltà minoica",
+    it: 'Civiltà minoica',
     zh: '米诺斯文明',
     hi: 'मिनोअन सभ्यता',
     es: 'Civilización minoica',

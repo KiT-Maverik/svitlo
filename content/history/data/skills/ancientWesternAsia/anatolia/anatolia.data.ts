@@ -7,7 +7,7 @@ export const anatolia_SkillGroup_Data = defineSkillGroup({
   id: '9d8bb3ae-50c3-4140-bfab-1c3c35d3ddcd',
   name: {
     en: 'Anatolia',
-    it: "Anatolia",
+    it: 'Anatolia',
     zh: '安纳托利亚',
     hi: 'अनातोलिया',
     es: 'Anatolia',

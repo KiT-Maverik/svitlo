@@ -5,7 +5,7 @@ export const ancientGreekArt_Skill_Data = defineSkill({
   id: 'a45831e2-e43e-421c-8f44-b717f38d1b6d',
   name: {
     en: 'Ancient Greek Art',
-    it: "Arte greca antica",
+    it: 'Arte greca antica',
     zh: '古希腊艺术',
     hi: 'प्राचीन यूनानी कला',
     es: 'Arte griego antiguo',

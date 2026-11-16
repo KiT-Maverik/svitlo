@@ -5,7 +5,7 @@ export const synchronizingCivilizations_Skill_Data = defineSkill({
   id: '4ee549d5-8c6a-429e-9540-1293697dc80f',
   name: {
     en: 'Synchronizing Civilizations',
-    it: "Sincronizzazione delle civiltà",
+    it: 'Sincronizzazione delle civiltà',
     zh: '不同文明的年代对照',
     hi: 'सभ्यताओं की कालगत तुलना',
     es: 'Sincronización de civilizaciones',
@@ -40,7 +40,7 @@ export const synchronizingCivilizations_Skill_Data = defineSkill({
       'Compare events in separate regions on one timeline without assuming their societies developed at the same rate.',
     frontend: {
       en: 'See which historical events happened at the same time in different regions.',
-      it: "Individua gli eventi storici avvenuti nello stesso periodo in regioni diverse.",
+      it: 'Individua gli eventi storici avvenuti nello stesso periodo in regioni diverse.',
       zh: '了解不同地区的哪些历史事件发生在同一时期。',
       hi: 'देखें कि अलग-अलग क्षेत्रों की कौन-सी ऐतिहासिक घटनाएँ एक ही समय में हुईं।',
       es: 'Descubre qué acontecimientos históricos ocurrieron al mismo tiempo en distintas regiones.',

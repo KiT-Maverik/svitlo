@@ -5,7 +5,7 @@ export const sumerianCityStates_Skill_Data = defineSkill({
   id: 'e17f88e3-0fd7-4ddc-b1f3-183fb1566675',
   name: {
     en: 'Sumerian City-States',
-    it: "Città-Stato sumere",
+    it: 'Città-Stato sumere',
     zh: '苏美尔城邦',
     hi: 'सुमेर के नगर-राज्य',
     es: 'Ciudades-Estado sumerias',

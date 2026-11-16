@@ -5,7 +5,7 @@ export const lapitaCulture_Skill_Data = defineSkill({
   id: 'd88e29f1-1ab8-4dc0-bb85-f72cbe3e3d7c',
   name: {
     en: 'Lapita Culture',
-    it: "Cultura Lapita",
+    it: 'Cultura Lapita',
     zh: '拉皮塔文化',
     hi: 'लापिता संस्कृति',
     es: 'Cultura lapita',
@@ -40,7 +40,7 @@ export const lapitaCulture_Skill_Data = defineSkill({
       'Interpret decorated pottery, settlements, and movements documented archaeologically in western Oceania.',
     frontend: {
       en: 'Discover the pottery and voyaging traditions of Lapita communities.',
-      it: "Scopri le ceramiche e le tradizioni di navigazione delle comunità Lapita.",
+      it: 'Scopri le ceramiche e le tradizioni di navigazione delle comunità Lapita.',
       zh: '探索拉皮塔社群的陶器与航海传统。',
       hi: 'लापिता समुदायों की मिट्टी के बर्तनों और समुद्री यात्राओं की परंपराओं को जानें।',
       es: 'Explora la cerámica y las tradiciones de navegación de las comunidades lapita.',

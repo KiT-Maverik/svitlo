@@ -5,7 +5,7 @@ export const earlyRomanCommunities_Skill_Data = defineSkill({
   id: 'adf1adab-16d8-4020-94d4-0ac8abdb2d48',
   name: {
     en: 'Early Roman Communities',
-    it: "Prime comunità romane",
+    it: 'Prime comunità romane',
     zh: '早期罗马社群',
     hi: 'प्रारंभिक रोमन समुदाय',
     es: 'Primeras comunidades romanas',
@@ -39,7 +39,7 @@ export const earlyRomanCommunities_Skill_Data = defineSkill({
     methodological: 'Locate Rome among Italian peoples and trace Etruscan and Latin influences.',
     frontend: {
       en: 'Learn how Rome developed among neighboring communities in Italy.',
-      it: "Scopri come Roma si sviluppò tra le comunità vicine della penisola italiana.",
+      it: 'Scopri come Roma si sviluppò tra le comunità vicine della penisola italiana.',
       zh: '探索罗马如何在意大利周边社群之间发展起来。',
       hi: 'जानें कि इटली के पड़ोसी समुदायों के बीच रोम कैसे विकसित हुआ।',
       es: 'Aprende cómo Roma se desarrolló entre comunidades vecinas de Italia.',

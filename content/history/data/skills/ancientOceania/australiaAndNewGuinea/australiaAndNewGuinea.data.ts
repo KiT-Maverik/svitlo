@@ -12,7 +12,7 @@ export const australiaAndNewGuinea_SkillGroup_Data = defineSkillGroup({
   id: '789a7c3c-8525-43fb-827f-1834d88ab398',
   name: {
     en: 'Australia and New Guinea',
-    it: "Australia e Nuova Guinea",
+    it: 'Australia e Nuova Guinea',
     zh: '澳大利亚与新几内亚',
     hi: 'ऑस्ट्रेलिया और न्यू गिनी',
     es: 'Australia y Nueva Guinea',

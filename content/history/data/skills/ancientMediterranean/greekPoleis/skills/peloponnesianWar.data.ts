@@ -5,7 +5,7 @@ export const peloponnesianWar_Skill_Data = defineSkill({
   id: '6cb2f95d-078e-44e4-bee2-15e759be3eaa',
   name: {
     en: 'Peloponnesian War',
-    it: "Guerra del Peloponneso",
+    it: 'Guerra del Peloponneso',
     zh: '伯罗奔尼撒战争',
     hi: 'पेलोपोनीसियन युद्ध',
     es: 'Guerra del Peloponeso',
@@ -39,7 +39,7 @@ export const peloponnesianWar_Skill_Data = defineSkill({
     methodological: 'Explain rivalry between Athens and Sparta, alliances, and long-term effects of interstate wars.',
     frontend: {
       en: 'Explore why Athens and Sparta fought and what followed.',
-      it: "Esplora perché Atene e Sparta combatterono e quali furono le conseguenze.",
+      it: 'Esplora perché Atene e Sparta combatterono e quali furono le conseguenze.',
       zh: '探索雅典与斯巴达为何交战以及战争的后果。',
       hi: 'जानें कि एथेंस और स्पार्टा में युद्ध क्यों हुआ और उसके बाद क्या हुआ।',
       es: 'Explora por qué lucharon Atenas y Esparta y qué sucedió después.',

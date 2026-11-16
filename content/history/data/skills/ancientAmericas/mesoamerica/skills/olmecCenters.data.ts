@@ -5,7 +5,7 @@ export const olmecCenters_Skill_Data = defineSkill({
   id: 'a8381be5-b3f9-4ca1-ab34-bed9eab81d9a',
   name: {
     en: 'Olmec Centers',
-    it: "Centri olmechi",
+    it: 'Centri olmechi',
     zh: '奥尔梅克中心',
     hi: 'ओल्मेक केंद्र',
     es: 'Centros olmecas',
@@ -39,7 +39,7 @@ export const olmecCenters_Skill_Data = defineSkill({
     methodological: 'Study early Mesoamerican monumental sculpture, ritual spaces, and debated cultural influence.',
     frontend: {
       en: 'Discover what the Olmec centers reveal about early Mesoamerica.',
-      it: "Scopri che cosa rivelano i centri olmechi sulla prima Mesoamerica.",
+      it: 'Scopri che cosa rivelano i centri olmechi sulla prima Mesoamerica.',
       zh: '了解奥尔梅克中心揭示的早期中美洲历史。',
       hi: 'जानें कि ओल्मेक केंद्र आरंभिक मेसोअमेरिका के बारे में क्या बताते हैं।',
       es: 'Descubre qué revelan los centros olmecas sobre la Mesoamérica temprana.',

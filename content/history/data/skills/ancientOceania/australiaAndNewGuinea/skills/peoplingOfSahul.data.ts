@@ -5,7 +5,7 @@ export const peoplingOfSahul_Skill_Data = defineSkill({
   id: '7cdc322e-aa81-4f63-ac23-52db586948e6',
   name: {
     en: 'Peopling of Sahul',
-    it: "Popolamento di Sahul",
+    it: 'Popolamento di Sahul',
     zh: '萨胡尔大陆的定居',
     hi: 'साहुल का प्रारंभिक बसाव',
     es: 'Poblamiento de Sahul',
@@ -40,7 +40,7 @@ export const peoplingOfSahul_Skill_Data = defineSkill({
       'Trace early sea crossings and settlement of the landmass uniting Australia and New Guinea when sea levels were lower.',
     frontend: {
       en: 'Understand how early seafarers reached the continent of Sahul.',
-      it: "Comprendi come i primi navigatori raggiunsero il continente di Sahul.",
+      it: 'Comprendi come i primi navigatori raggiunsero il continente di Sahul.',
       zh: '了解早期航海者如何抵达萨胡尔大陆。',
       hi: 'जानें कि शुरुआती नाविक साहुल महाद्वीप तक कैसे पहुँचे।',
       es: 'Comprende cómo los primeros navegantes llegaron al continente de Sahul.',

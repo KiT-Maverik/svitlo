@@ -61,7 +61,7 @@ export const inventionsAndEngineeringHistory_SkillGroup_Data = defineSkillGroup(
       'Investigate the origins, changes, and transmission of technical solutions in relation to materials, needs, and consequences, not modern design practice.',
     frontend: {
       en: 'Discover how ancient inventions changed over time.',
-      it: "Scopri come le invenzioni antiche cambiarono nel tempo.",
+      it: 'Scopri come le invenzioni antiche cambiarono nel tempo.',
       zh: '探索古代发明如何随时间发生变化。',
       hi: 'जानें कि प्राचीन आविष्कार समय के साथ कैसे बदलते गए।',
       es: 'Descubre cómo cambiaron los inventos antiguos con el tiempo.',

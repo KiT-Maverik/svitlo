@@ -5,7 +5,7 @@ export const foragingEconomies_Skill_Data = defineSkill({
   id: '1c43f4c0-73f3-41ab-bb8e-f4c2f2980106',
   name: {
     en: 'Foraging Economies',
-    it: "Economie basate sulla raccolta di risorse spontanee",
+    it: 'Economie basate sulla raccolta di risorse spontanee',
     zh: '采集狩猎经济',
     hi: 'शिकार और संग्रहण की अर्थव्यवस्था',
     es: 'Economías de recolección y caza',
@@ -39,7 +39,7 @@ export const foragingEconomies_Skill_Data = defineSkill({
     methodological: 'Relate gathering, hunting, fishing, and seasonal movement to local environmental conditions.',
     frontend: {
       en: 'Understand how early people obtained food from wild resources.',
-      it: "Comprendi come le prime popolazioni ricavavano cibo dalle risorse naturali selvatiche.",
+      it: 'Comprendi come le prime popolazioni ricavavano cibo dalle risorse naturali selvatiche.',
       zh: '了解早期人类如何从野生资源中获取食物。',
       hi: 'समझें कि शुरुआती लोग जंगली संसाधनों से भोजन कैसे प्राप्त करते थे।',
       es: 'Comprende cómo los primeros humanos obtenían alimentos de recursos silvestres.',

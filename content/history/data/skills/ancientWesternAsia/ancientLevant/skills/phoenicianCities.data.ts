@@ -5,7 +5,7 @@ export const phoenicianCities_Skill_Data = defineSkill({
   id: 'f6aa2838-1b69-4fbb-aa5a-296de07acfe4',
   name: {
     en: 'Phoenician Cities',
-    it: "Città fenicie",
+    it: 'Città fenicie',
     zh: '腓尼基城市',
     hi: 'फोनीशियाई नगर',
     es: 'Ciudades fenicias',
@@ -39,7 +39,7 @@ export const phoenicianCities_Skill_Data = defineSkill({
     methodological: 'Examine maritime commerce, craft centers, and colonial networks in the eastern Mediterranean.',
     frontend: {
       en: 'Discover how Phoenician cities connected the Mediterranean.',
-      it: "Scopri come le città fenicie collegavano le regioni del Mediterraneo.",
+      it: 'Scopri come le città fenicie collegavano le regioni del Mediterraneo.',
       zh: '了解腓尼基城市如何连接地中海各地。',
       hi: 'जानें कि फोनीशियाई नगरों ने भूमध्यसागर के क्षेत्रों को कैसे जोड़ा।',
       es: 'Descubre cómo las ciudades fenicias conectaron el Mediterráneo.',

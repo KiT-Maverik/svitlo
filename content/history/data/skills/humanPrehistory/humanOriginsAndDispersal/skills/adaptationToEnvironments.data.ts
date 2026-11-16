@@ -5,7 +5,7 @@ export const adaptationToEnvironments_Skill_Data = defineSkill({
   id: '628ab257-8ca4-4d9e-aaf3-4cd77233fa0c',
   name: {
     en: 'Adaptation to Natural Environments',
-    it: "Adattamento agli ambienti naturali",
+    it: 'Adattamento agli ambienti naturali',
     zh: '适应自然环境',
     hi: 'प्राकृतिक पर्यावरण के अनुरूप ढलना',
     es: 'Adaptación a los entornos naturales',
@@ -39,7 +39,7 @@ export const adaptationToEnvironments_Skill_Data = defineSkill({
     methodological: 'Identify how communities adjusted to cold, arid, forested, and coastal settings.',
     frontend: {
       en: 'Discover how early communities adapted to different environments.',
-      it: "Scopri come le prime comunità si adattarono ad ambienti diversi.",
+      it: 'Scopri come le prime comunità si adattarono ad ambienti diversi.',
       zh: '了解早期社群如何适应不同的环境。',
       hi: 'जानें कि शुरुआती समुदाय अलग-अलग पर्यावरण के अनुकूल कैसे हुए।',
       es: 'Descubre cómo las primeras comunidades se adaptaron a distintos entornos.',

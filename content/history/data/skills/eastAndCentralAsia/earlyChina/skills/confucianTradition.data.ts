@@ -5,7 +5,7 @@ export const confucianTradition_Skill_Data = defineSkill({
   id: '41d45a2e-3b1a-4bca-820b-e96a5789a86b',
   name: {
     en: 'Confucian Tradition',
-    it: "Tradizione confuciana",
+    it: 'Tradizione confuciana',
     zh: '儒家传统',
     hi: 'कन्फ्यूशियस परंपरा',
     es: 'Tradición confuciana',
@@ -39,7 +39,7 @@ export const confucianTradition_Skill_Data = defineSkill({
     methodological: 'Study Confucius and followers on ethical improvement, social relations, and government.',
     frontend: {
       en: 'Explore Confucian ideas about conduct and good government.',
-      it: "Esplora le idee confuciane sul comportamento e sul buon governo.",
+      it: 'Esplora le idee confuciane sul comportamento e sul buon governo.',
       zh: '探索儒家关于个人行为和良好治理的思想。',
       hi: 'आचरण और सुशासन के बारे में कन्फ्यूशियस के विचार जानें।',
       es: 'Explora las ideas confucianas sobre la conducta y el buen gobierno.',

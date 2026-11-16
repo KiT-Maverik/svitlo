@@ -5,7 +5,7 @@ export const pharaonicRule_Skill_Data = defineSkill({
   id: '967b8736-f1a7-4807-a511-2b04fd59ec31',
   name: {
     en: 'Pharaonic Rule',
-    it: "Il governo dei faraoni",
+    it: 'Il governo dei faraoni',
     zh: '法老统治',
     hi: 'फ़राओ का शासन',
     es: 'Gobierno de los faraones',
@@ -40,7 +40,7 @@ export const pharaonicRule_Skill_Data = defineSkill({
       'Describe relations among sacral kingship, officials, priests, and local administration across different eras.',
     frontend: {
       en: 'Explore how pharaohs governed alongside officials and priests.',
-      it: "Esplora come i faraoni governavano insieme a funzionari e sacerdoti.",
+      it: 'Esplora come i faraoni governavano insieme a funzionari e sacerdoti.',
       zh: '探索法老如何与官员及祭司共同治理国家。',
       hi: 'जानें कि फ़राओ अधिकारियों और पुरोहितों के साथ कैसे शासन करते थे।',
       es: 'Explora cómo los faraones gobernaban junto con funcionarios y sacerdotes.',

@@ -5,7 +5,7 @@ export const cuneiformWriting_Skill_Data = defineSkill({
   id: '628bd56b-f348-4fbc-bb30-cefe90a9e857',
   name: {
     en: 'Cuneiform Writing',
-    it: "Scrittura cuneiforme",
+    it: 'Scrittura cuneiforme',
     zh: '楔形文字',
     hi: 'कीलाक्षर लेखन',
     es: 'Escritura cuneiforme',
@@ -40,7 +40,7 @@ export const cuneiformWriting_Skill_Data = defineSkill({
       'Trace the emergence of writing from accounting and its expansion to law, scholarship, and literature.',
     frontend: {
       en: 'Discover how cuneiform writing developed beyond record keeping.',
-      it: "Scopri come la scrittura cuneiforme si sviluppò oltre la semplice registrazione di dati.",
+      it: 'Scopri come la scrittura cuneiforme si sviluppò oltre la semplice registrazione di dati.',
       zh: '了解楔形文字如何超越记账用途并不断发展。',
       hi: 'जानें कि कीलाक्षर लेखन लेखा-जोखा रखने से आगे कैसे विकसित हुआ।',
       es: 'Descubre cómo la escritura cuneiforme evolucionó más allá del registro de cuentas.',

@@ -5,7 +5,7 @@ export const adenaAndHopewellTraditions_Skill_Data = defineSkill({
   id: '6d3a03ef-5ca8-42cd-a4cc-43a50c68dec6',
   name: {
     en: 'Adena and Hopewell Traditions',
-    it: "Tradizioni Adena e Hopewell",
+    it: 'Tradizioni Adena e Hopewell',
     zh: '阿迪纳与霍普韦尔传统',
     hi: 'अडेना और होपवेल परंपराएँ',
     es: 'Tradiciones Adena y Hopewell',
@@ -39,7 +39,7 @@ export const adenaAndHopewellTraditions_Skill_Data = defineSkill({
     methodological: 'Examine ceremonial earthworks and material connections in eastern North America.',
     frontend: {
       en: 'Learn what Adena and Hopewell sites reveal about ancient communities.',
-      it: "Scopri che cosa rivelano i siti Adena e Hopewell sulle comunità antiche.",
+      it: 'Scopri che cosa rivelano i siti Adena e Hopewell sulle comunità antiche.',
       zh: '了解阿迪纳与霍普韦尔遗址能揭示哪些古代社群生活。',
       hi: 'जानें कि अडेना और होपवेल स्थल प्राचीन समुदायों के बारे में क्या बताते हैं।',
       es: 'Descubre qué muestran los sitios Adena y Hopewell sobre las comunidades antiguas.',

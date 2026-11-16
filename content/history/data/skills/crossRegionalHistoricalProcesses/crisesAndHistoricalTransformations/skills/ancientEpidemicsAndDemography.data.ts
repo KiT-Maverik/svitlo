@@ -40,7 +40,7 @@ export const ancientEpidemicsAndDemography_Skill_Data = defineSkill({
       'Assess possible effects of disease, movement, and population change while recognizing limited evidence.',
     frontend: {
       en: 'Explore what historians can learn about ancient epidemics.',
-      it: "Esplora che cosa possono apprendere gli storici sulle epidemie antiche.",
+      it: 'Esplora che cosa possono apprendere gli storici sulle epidemie antiche.',
       zh: '探索历史学家能从古代流行病中了解到什么。',
       hi: 'जानें कि इतिहासकार प्राचीन महामारियों के बारे में क्या पता लगा सकते हैं।',
       es: 'Explora qué pueden averiguar los historiadores sobre las epidemias antiguas.',

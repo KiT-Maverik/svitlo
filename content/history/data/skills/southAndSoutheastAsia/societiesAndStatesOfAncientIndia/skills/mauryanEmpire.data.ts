@@ -5,7 +5,7 @@ export const mauryanEmpire_Skill_Data = defineSkill({
   id: '6e8e6c87-7ecd-4f8b-8021-2ff2f4b2c044',
   name: {
     en: 'Mauryan Empire',
-    it: "Impero Maurya",
+    it: 'Impero Maurya',
     zh: '孔雀帝国',
     hi: 'मौर्य साम्राज्य',
     es: 'Imperio maurya',
@@ -39,7 +39,7 @@ export const mauryanEmpire_Skill_Data = defineSkill({
     methodological: "Explain imperial administration and Ashoka's policies using edicts and other sources.",
     frontend: {
       en: "Discover how Mauryan rulers governed and what Ashoka's edicts reveal.",
-      it: "Scopri come governavano i sovrani Maurya e che cosa rivelano gli editti di Ashoka.",
+      it: 'Scopri come governavano i sovrani Maurya e che cosa rivelano gli editti di Ashoka.',
       zh: '了解孔雀王朝如何统治，以及阿育王敕令所揭示的历史。',
       hi: 'जानें कि मौर्य शासकों ने शासन कैसे किया और अशोक के अभिलेख क्या बताते हैं।',
       es: 'Descubre cómo gobernaban los mauryas y qué revelan los edictos de Ashoka.',

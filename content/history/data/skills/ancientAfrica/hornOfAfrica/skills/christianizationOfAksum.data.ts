@@ -5,7 +5,7 @@ export const christianizationOfAksum_Skill_Data = defineSkill({
   id: '0836363b-9d09-4c0d-b4b6-d1ea0430b220',
   name: {
     en: 'Christianization of Aksum',
-    it: "Cristianizzazione di Axum",
+    it: 'Cristianizzazione di Axum',
     zh: '阿克苏姆的基督教化',
     hi: 'अक्सुम का ईसाईकरण',
     es: 'Cristianización de Aksum',
@@ -39,7 +39,7 @@ export const christianizationOfAksum_Skill_Data = defineSkill({
     methodological: "Trace Christianity's spread in the fourth century and the gradual transformation of institutions.",
     frontend: {
       en: 'Understand how Christianity became important in Aksum.',
-      it: "Comprendi come il cristianesimo acquisì importanza ad Axum.",
+      it: 'Comprendi come il cristianesimo acquisì importanza ad Axum.',
       zh: '理解基督教如何在阿克苏姆变得重要。',
       hi: 'समझें कि अक्सुम में ईसाई धर्म कैसे महत्वपूर्ण हुआ।',
       es: 'Comprende cómo el cristianismo adquirió importancia en Aksum.',

@@ -5,7 +5,7 @@ export const kingdomOfKush_Skill_Data = defineSkill({
   id: 'e8f95e20-080b-4e90-a409-48052aa78cf8',
   name: {
     en: 'Kingdom of Kush',
-    it: "Regno di Kush",
+    it: 'Regno di Kush',
     zh: '库施王国',
     hi: 'कुश साम्राज्य',
     es: 'Reino de Kush',

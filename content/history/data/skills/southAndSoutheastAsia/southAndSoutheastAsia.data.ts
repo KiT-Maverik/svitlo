@@ -10,7 +10,7 @@ export const southAndSoutheastAsia_SkillDomain_Data = defineSkillDomain({
   id: '7cae92ab-143d-4cc9-9389-f5e1d9d659e9',
   title: {
     en: 'South and Southeast Asia',
-    it: "Asia meridionale e sudorientale",
+    it: 'Asia meridionale e sudorientale',
     zh: '南亚与东南亚',
     hi: 'दक्षिण और दक्षिण-पूर्व एशिया',
     es: 'Asia meridional y sudoriental',

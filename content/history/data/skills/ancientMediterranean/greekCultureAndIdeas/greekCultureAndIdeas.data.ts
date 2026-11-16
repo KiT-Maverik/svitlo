@@ -12,7 +12,7 @@ export const greekCultureAndIdeas_SkillGroup_Data = defineSkillGroup({
   id: 'f5e5caa8-dff9-4db1-ad33-7d6fcb46f407',
   name: {
     en: 'Greek Culture and Intellectual Traditions',
-    it: "Cultura greca e tradizioni intellettuali",
+    it: 'Cultura greca e tradizioni intellettuali',
     zh: '古希腊文化与思想传统',
     hi: 'यूनानी संस्कृति और बौद्धिक परंपराएँ',
     es: 'Cultura e ideas de la Grecia antigua',

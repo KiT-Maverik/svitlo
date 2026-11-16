@@ -5,7 +5,7 @@ export const saharanClimateChange_Skill_Data = defineSkill({
   id: 'e9fac5b2-7335-463e-85c5-76a48f80c08d',
   name: {
     en: 'Saharan Climate Change',
-    it: "Cambiamenti climatici nel Sahara",
+    it: 'Cambiamenti climatici nel Sahara',
     zh: '撒哈拉气候变化',
     hi: 'सहारा का जलवायु परिवर्तन',
     es: 'Cambios climáticos del Sáhara',
@@ -40,7 +40,7 @@ export const saharanClimateChange_Skill_Data = defineSkill({
       'Connect wetter ancient periods and later drying to settlement and routes using several kinds of environmental evidence.',
     frontend: {
       en: 'See how changing Saharan climate influenced settlement and travel.',
-      it: "Scopri come i cambiamenti climatici del Sahara influenzarono gli insediamenti e gli spostamenti.",
+      it: 'Scopri come i cambiamenti climatici del Sahara influenzarono gli insediamenti e gli spostamenti.',
       zh: '了解撒哈拉气候变化如何影响定居与出行。',
       hi: 'जानें कि सहारा की बदलती जलवायु ने बसावट और यात्राओं को कैसे प्रभावित किया।',
       es: 'Observa cómo los cambios del clima sahariano influyeron en los asentamientos y viajes.',

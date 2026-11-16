@@ -39,7 +39,7 @@ export const centralAsianOasisCenters_Skill_Data = defineSkill({
     methodological: 'Study towns, caravans, and cultural mediation along early inland trade routes.',
     frontend: {
       en: 'Explore the oasis cities that connected ancient trade routes.',
-      it: "Esplora le città delle oasi che collegavano le antiche rotte commerciali.",
+      it: 'Esplora le città delle oasi che collegavano le antiche rotte commerciali.',
       zh: '探索连接古代贸易路线的绿洲城市。',
       hi: 'प्राचीन व्यापार मार्गों को जोड़ने वाले नखलिस्तानी नगरों का अध्ययन करें।',
       es: 'Explora las ciudades de oasis que conectaban las antiguas rutas comerciales.',

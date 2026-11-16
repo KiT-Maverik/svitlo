@@ -5,7 +5,7 @@ export const historicalWaterEngineering_Skill_Data = defineSkill({
   id: 'a285f2fd-6d7f-434b-b78a-261875a3b867',
   name: {
     en: 'Historical Water Engineering',
-    it: "Ingegneria idraulica nella storia",
+    it: 'Ingegneria idraulica nella storia',
     zh: '古代水利工程',
     hi: 'प्राचीन जल अभियांत्रिकी',
     es: 'Ingeniería hidráulica histórica',

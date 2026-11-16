@@ -5,7 +5,7 @@ export const independentAmericanCropDomestication_Skill_Data = defineSkill({
   id: 'e3d33281-cd81-41ed-9313-ddfbae69e388',
   name: {
     en: 'Independent American Crop Domestication',
-    it: "Domesticazione indipendente delle piante coltivate nelle Americhe",
+    it: 'Domesticazione indipendente delle piante coltivate nelle Americhe',
     zh: '美洲作物的独立驯化',
     hi: 'अमेरिका में फसलों का स्वतंत्र घरेलूकरण',
     es: 'Domesticación independiente de cultivos en América',
@@ -40,7 +40,7 @@ export const independentAmericanCropDomestication_Skill_Data = defineSkill({
       'Examine separately evolving centers for maize, squash, potato, and other crops with their own chronologies.',
     frontend: {
       en: 'Discover plants domesticated by ancient American communities.',
-      it: "Scopri quali piante furono domesticate dalle antiche comunità americane.",
+      it: 'Scopri quali piante furono domesticate dalle antiche comunità americane.',
       zh: '认识古代美洲各地独立驯化的农作物。',
       hi: 'जानें कि प्राचीन अमेरिकी समुदायों ने किन पौधों का स्वतंत्र रूप से घरेलूकरण किया।',
       es: 'Descubre las plantas domesticadas por las antiguas comunidades americanas.',

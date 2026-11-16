@@ -5,7 +5,7 @@ export const religionsOfTheAncientLevant_Skill_Data = defineSkill({
   id: '0e910841-6bbf-4b11-826c-f6208848fdb4',
   name: {
     en: 'Religious Traditions of the Ancient Levant',
-    it: "Tradizioni religiose del Levante antico",
+    it: 'Tradizioni religiose del Levante antico',
     zh: '古代黎凡特的宗教传统',
     hi: 'प्राचीन लेवांत की धार्मिक परंपराएँ',
     es: 'Tradiciones religiosas del antiguo Levante',
@@ -39,7 +39,7 @@ export const religionsOfTheAncientLevant_Skill_Data = defineSkill({
     methodological: 'Study varied cults and the historical development of Israelite monotheism in context.',
     frontend: {
       en: 'Discover the different religious traditions of the ancient Levant.',
-      it: "Scopri le diverse tradizioni religiose del Levante antico.",
+      it: 'Scopri le diverse tradizioni religiose del Levante antico.',
       zh: '探索古代黎凡特不同的宗教传统。',
       hi: 'प्राचीन लेवांत की विभिन्न धार्मिक परंपराओं को जानें।',
       es: 'Descubre las diversas tradiciones religiosas del Levante antiguo.',

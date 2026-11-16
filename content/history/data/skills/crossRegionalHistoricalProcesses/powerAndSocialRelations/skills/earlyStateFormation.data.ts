@@ -5,7 +5,7 @@ export const earlyStateFormation_Skill_Data = defineSkill({
   id: '5a42bc6f-f945-40f5-9b86-fe6fd7bc9f8c',
   name: {
     en: 'Early State Formation',
-    it: "Formazione dei primi Stati",
+    it: 'Formazione dei primi Stati',
     zh: '早期国家的形成',
     hi: 'प्रारंभिक राज्यों का निर्माण',
     es: 'Formación de los primeros Estados',
@@ -40,7 +40,7 @@ export const earlyStateFormation_Skill_Data = defineSkill({
       'Examine durable political authority, resource management, and coercion without presuming one universal route to statehood.',
     frontend: {
       en: 'Discover different ways early states and governments emerged.',
-      it: "Scopri i diversi modi in cui nacquero i primi Stati e governi.",
+      it: 'Scopri i diversi modi in cui nacquero i primi Stati e governi.',
       zh: '认识早期国家与政府出现的不同途径。',
       hi: 'जानें कि शुरुआती राज्य और शासन व्यवस्थाएँ अलग-अलग तरीकों से कैसे उभरीं।',
       es: 'Descubre distintas formas en que surgieron los primeros Estados y gobiernos.',

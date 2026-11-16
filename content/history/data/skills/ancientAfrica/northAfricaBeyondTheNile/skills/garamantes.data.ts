@@ -5,7 +5,7 @@ export const garamantes_Skill_Data = defineSkill({
   id: '89b9c800-e3bb-4fe3-be9a-9e154f3fc120',
   name: {
     en: 'Garamantes',
-    it: "Garamanti",
+    it: 'Garamanti',
     zh: '加拉曼特人',
     hi: 'गरामांतेस',
     es: 'Garamantes',
@@ -39,7 +39,7 @@ export const garamantes_Skill_Data = defineSkill({
     methodological: "Examine the Fezzan oasis civilization's agriculture, settlements, and trans-Saharan contacts.",
     frontend: {
       en: 'Discover how Garamantes communities lived in Saharan oases.',
-      it: "Scopri come vivevano le comunità dei Garamanti nelle oasi del Sahara.",
+      it: 'Scopri come vivevano le comunità dei Garamanti nelle oasi del Sahara.',
       zh: '探索加拉曼特人在撒哈拉绿洲的生活。',
       hi: 'जानें कि गरामांतेस सहारा के नखलिस्तानों में कैसे रहते थे।',
       es: 'Descubre cómo vivían los garamantes en los oasis del Sáhara.',

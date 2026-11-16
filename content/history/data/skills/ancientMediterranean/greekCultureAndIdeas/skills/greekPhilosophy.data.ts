@@ -5,7 +5,7 @@ export const greekPhilosophy_Skill_Data = defineSkill({
   id: '97f10304-8abf-49c0-bf85-74ee40cbc24f',
   name: {
     en: 'Greek Philosophy',
-    it: "Filosofia greca",
+    it: 'Filosofia greca',
     zh: '古希腊哲学',
     hi: 'यूनानी दर्शन',
     es: 'Filosofía griega',

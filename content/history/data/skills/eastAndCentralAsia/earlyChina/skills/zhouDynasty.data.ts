@@ -5,7 +5,7 @@ export const zhouDynasty_Skill_Data = defineSkill({
   id: 'cad57066-0756-41ad-ae58-f8c1b809dce5',
   name: {
     en: 'Zhou Dynasty',
-    it: "Dinastia Zhou",
+    it: 'Dinastia Zhou',
     zh: '周朝',
     hi: 'झोउ राजवंश',
     es: 'Dinastía Zhou',

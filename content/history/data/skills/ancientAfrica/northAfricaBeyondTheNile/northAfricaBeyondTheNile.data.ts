@@ -12,7 +12,7 @@ export const northAfricaBeyondTheNile_SkillGroup_Data = defineSkillGroup({
   id: '1a0ba7c6-d424-4499-8f24-f4e1138fc594',
   name: {
     en: 'North Africa Beyond the Nile',
-    it: "Africa settentrionale oltre il Nilo",
+    it: 'Africa settentrionale oltre il Nilo',
     zh: '尼罗河流域以外的北非',
     hi: 'नील घाटी से बाहर उत्तरी अफ्रीका',
     es: 'África del Norte fuera del valle del Nilo',

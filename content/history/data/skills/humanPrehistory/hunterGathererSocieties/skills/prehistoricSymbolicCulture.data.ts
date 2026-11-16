@@ -5,7 +5,7 @@ export const prehistoricSymbolicCulture_Skill_Data = defineSkill({
   id: '7a6701aa-647b-413e-8517-31f253bfb0fd',
   name: {
     en: 'Prehistoric Symbolic Culture',
-    it: "Cultura simbolica preistorica",
+    it: 'Cultura simbolica preistorica',
     zh: '史前象征文化',
     hi: 'प्रागैतिहासिक प्रतीकात्मक संस्कृति',
     es: 'Cultura simbólica prehistórica',

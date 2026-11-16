@@ -5,7 +5,7 @@ export const caralAndEarlyAndeanCenters_Skill_Data = defineSkill({
   id: '6f196a1e-663e-4dc3-80ca-6bbc4aa19072',
   name: {
     en: 'Caral and Early Andean Centers',
-    it: "Caral e i primi centri andini",
+    it: 'Caral e i primi centri andini',
     zh: '卡拉尔与早期安第斯中心',
     hi: 'काराल और प्रारंभिक एंडीज़ केंद्र',
     es: 'Caral y primeros centros andinos',
@@ -39,7 +39,7 @@ export const caralAndEarlyAndeanCenters_Skill_Data = defineSkill({
     methodological: 'Examine monumental architecture and public coordination in Norte Chico settlements.',
     frontend: {
       en: 'Explore the early monumental centers of Caral and Norte Chico.',
-      it: "Esplora i primi centri monumentali di Caral e del Norte Chico.",
+      it: 'Esplora i primi centri monumentali di Caral e del Norte Chico.',
       zh: '探索卡拉尔与北奇科地区早期的纪念性建筑中心。',
       hi: 'काराल और नॉर्ते चीको के शुरुआती विशाल स्थापत्य केंद्रों को जानें।',
       es: 'Explora los primeros centros monumentales de Caral y Norte Chico.',

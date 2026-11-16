@@ -5,7 +5,7 @@ export const historyOfAncientMedicine_Skill_Data = defineSkill({
   id: 'a038d659-92d3-4399-b56f-72c701f98203',
   name: {
     en: 'History of Ancient Medicine',
-    it: "Storia della medicina antica",
+    it: 'Storia della medicina antica',
     zh: '古代医学史',
     hi: 'प्राचीन चिकित्सा का इतिहास',
     es: 'Historia de la medicina antigua',
@@ -40,7 +40,7 @@ export const historyOfAncientMedicine_Skill_Data = defineSkill({
       'Study medical beliefs, practices, and texts across cultures without confusing historical ideas with modern proof of effectiveness.',
     frontend: {
       en: 'Discover what ancient societies believed about healing.',
-      it: "Scopri quali idee avevano le società antiche sulla cura delle malattie.",
+      it: 'Scopri quali idee avevano le società antiche sulla cura delle malattie.',
       zh: '了解古代社会对治疗疾病有哪些观念。',
       hi: 'जानें कि प्राचीन समाज उपचार और रोगमुक्ति के बारे में क्या मानते थे।',
       es: 'Descubre qué creían las sociedades antiguas sobre la curación.',

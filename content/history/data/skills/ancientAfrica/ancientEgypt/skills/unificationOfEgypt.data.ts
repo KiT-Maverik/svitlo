@@ -39,7 +39,7 @@ export const unificationOfEgypt_Skill_Data = defineSkill({
     methodological: 'Reconstruct early centralization using archaeological and visual evidence.',
     frontend: {
       en: 'Explore how early Egyptian lands came under centralized rule.',
-      it: "Esplora come i primi territori egizi furono riuniti sotto un potere centrale.",
+      it: 'Esplora come i primi territori egizi furono riuniti sotto un potere centrale.',
       zh: '探索早期埃及各地如何形成中央集权统治。',
       hi: 'जानें कि प्रारंभिक मिस्री क्षेत्र एक केंद्रीय शासन के अधीन कैसे आए।',
       es: 'Explora cómo las primeras regiones egipcias quedaron bajo un gobierno centralizado.',

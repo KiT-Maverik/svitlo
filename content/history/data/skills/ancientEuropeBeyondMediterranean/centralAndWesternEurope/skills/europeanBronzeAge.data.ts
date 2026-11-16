@@ -5,7 +5,7 @@ export const europeanBronzeAge_Skill_Data = defineSkill({
   id: '7cbe6eb7-b1cd-465d-80db-fab78e37eecc',
   name: {
     en: 'European Bronze Age',
-    it: "Età del bronzo in Europa",
+    it: 'Età del bronzo in Europa',
     zh: '欧洲青铜时代',
     hi: 'यूरोपीय कांस्य युग',
     es: 'Edad del Bronce europea',

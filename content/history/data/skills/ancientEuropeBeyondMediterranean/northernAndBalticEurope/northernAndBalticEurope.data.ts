@@ -11,7 +11,7 @@ export const northernAndBalticEurope_SkillGroup_Data = defineSkillGroup({
   id: 'bf1a7561-91f6-4c82-8671-9ee2e2081088',
   name: {
     en: 'Northern and Baltic Europe',
-    it: "Europa settentrionale e baltica",
+    it: 'Europa settentrionale e baltica',
     zh: '北欧与波罗的海地区',
     hi: 'उत्तरी और बाल्टिक यूरोप',
     es: 'Europa septentrional y báltica',

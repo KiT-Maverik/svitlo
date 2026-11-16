@@ -5,7 +5,7 @@ export const sarmatians_Skill_Data = defineSkill({
   id: '366742ce-dd5e-41fd-8ab3-353f604b4327',
   name: {
     en: 'Sarmatians',
-    it: "Sarmati",
+    it: 'Sarmati',
     zh: '萨尔马提亚人',
     hi: 'सार्माटियन',
     es: 'Sármatas',
@@ -39,7 +39,7 @@ export const sarmatians_Skill_Data = defineSkill({
     methodological: 'Trace Sarmatian dispersal, cavalry, and exchange networks in the northern Black Sea steppes.',
     frontend: {
       en: 'Discover the history of Sarmatian groups in the steppe.',
-      it: "Scopri la storia dei gruppi sarmati nelle steppe.",
+      it: 'Scopri la storia dei gruppi sarmati nelle steppe.',
       zh: '了解草原地区萨尔马提亚各族群的历史。',
       hi: 'स्तेपी क्षेत्र में सार्माटियन समूहों के इतिहास को जानें।',
       es: 'Descubre la historia de los grupos sármatas en las estepas.',

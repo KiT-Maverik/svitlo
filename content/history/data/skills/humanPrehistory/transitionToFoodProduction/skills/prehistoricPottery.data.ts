@@ -5,7 +5,7 @@ export const prehistoricPottery_Skill_Data = defineSkill({
   id: '0a267743-a56f-43ab-af54-c387b0c04bc0',
   name: {
     en: 'Prehistoric Pottery',
-    it: "Ceramica preistorica",
+    it: 'Ceramica preistorica',
     zh: '史前陶器',
     hi: 'प्रागैतिहासिक मिट्टी के बर्तन',
     es: 'Cerámica prehistórica',
@@ -40,7 +40,7 @@ export const prehistoricPottery_Skill_Data = defineSkill({
       'Trace fired pottery and its uses for cooking and storage without assuming farming always came first.',
     frontend: {
       en: 'Learn why people began making ceramic containers.',
-      it: "Scopri perché le persone iniziarono a produrre recipienti in ceramica.",
+      it: 'Scopri perché le persone iniziarono a produrre recipienti in ceramica.',
       zh: '了解人们为何开始制作陶制容器。',
       hi: 'जानें कि लोगों ने मिट्टी के पके बर्तन क्यों बनाना शुरू किए।',
       es: 'Aprende por qué las personas comenzaron a fabricar recipientes de cerámica.',

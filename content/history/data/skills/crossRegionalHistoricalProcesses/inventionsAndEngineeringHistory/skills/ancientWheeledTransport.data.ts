@@ -39,7 +39,7 @@ export const ancientWheeledTransport_Skill_Data = defineSkill({
     methodological: 'Relate the spread of wheeled vehicles to roads, draft animals, and economic needs.',
     frontend: {
       en: 'Learn how wheeled vehicles spread in the ancient world.',
-      it: "Scopri come i veicoli su ruote si diffusero nel mondo antico.",
+      it: 'Scopri come i veicoli su ruote si diffusero nel mondo antico.',
       zh: '了解轮式车辆如何在古代世界传播。',
       hi: 'जानें कि पहिएदार वाहन प्राचीन दुनिया में कैसे फैले।',
       es: 'Aprende cómo se extendieron los vehículos con ruedas por el mundo antiguo.',

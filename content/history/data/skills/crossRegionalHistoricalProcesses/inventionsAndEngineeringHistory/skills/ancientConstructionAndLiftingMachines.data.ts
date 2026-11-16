@@ -5,7 +5,7 @@ export const ancientConstructionAndLiftingMachines_Skill_Data = defineSkill({
   id: 'b0fb4196-e9ac-4a6b-9aac-3ef694fc599b',
   name: {
     en: 'Ancient Construction and Lifting Machines',
-    it: "Macchine antiche per costruire e sollevare",
+    it: 'Macchine antiche per costruire e sollevare',
     zh: '古代建筑与起重机械',
     hi: 'प्राचीन निर्माण और भारोत्तोलन मशीनें',
     es: 'Máquinas antiguas de construcción y elevación',

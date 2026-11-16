@@ -5,7 +5,7 @@ export const achaemenidEmpire_Skill_Data = defineSkill({
   id: 'ec1fc96f-ce6c-401e-91bf-2c914ed23206',
   name: {
     en: 'Achaemenid Empire',
-    it: "Impero achemenide",
+    it: 'Impero achemenide',
     zh: '阿契美尼德帝国',
     hi: 'हख़ामनी साम्राज्य',
     es: 'Imperio aqueménida',

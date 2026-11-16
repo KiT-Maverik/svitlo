@@ -5,7 +5,7 @@ export const ancientSaharanPastoralists_Skill_Data = defineSkill({
   id: '89c98f7f-10cd-4622-bb8a-18eb8c688ad8',
   name: {
     en: 'Ancient Saharan Pastoralists',
-    it: "Antiche comunità pastorali del Sahara",
+    it: 'Antiche comunità pastorali del Sahara',
     zh: '古代撒哈拉牧民',
     hi: 'प्राचीन सहारा के पशुपालक',
     es: 'Antiguos pastores del Sáhara',
@@ -40,7 +40,7 @@ export const ancientSaharanPastoralists_Skill_Data = defineSkill({
       'Interpret herding, mobility, and rock art as evidence of life under changing environmental conditions.',
     frontend: {
       en: 'Discover how ancient Saharan pastoral communities lived.',
-      it: "Scopri come vivevano le antiche comunità di pastori del Sahara.",
+      it: 'Scopri come vivevano le antiche comunità di pastori del Sahara.',
       zh: '探索古代撒哈拉牧业社区的生活方式。',
       hi: 'जानें कि प्राचीन सहारा के पशुपालक समुदाय कैसे रहते थे।',
       es: 'Descubre cómo vivían las comunidades pastoriles del Sáhara antiguo.',
