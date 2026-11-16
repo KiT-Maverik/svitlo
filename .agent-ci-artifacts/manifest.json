@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "dbf3fb9e0933e3ca7282336be08139ef82fa6914",
+  "sourceCommit": "6d90d442aaa3231dcec1048e8c25c1a7b8674c04",
   "scope": {
     "kind": "assessment-methods",
     "package": null,
