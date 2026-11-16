@@ -102,13 +102,13 @@ Skills: 6
 
 **User-friendly description (it):** Collabora con altre persone alla realizzazione di un'opera, condividendo decisioni e responsabilità.
 
-##### Riconoscere le fonti artistiche
+##### Citare le fonti artistiche
 
 [creditArtisticSources.data.ts](../../../content/art/data/skills/aestheticsAndCreativePractice/artisticCollaborationAndEthics/skills/creditArtisticSources.data.ts)
 
 **Methodological description (English):** Identify the relevant original creators and materials incorporated into another work.
 
-**User-friendly description (it):** Riconosci il contributo degli artisti e dei materiali che hanno ispirato o reso possibile il tuo lavoro.
+**User-friendly description (it):** Riconosci e cita gli artisti e le fonti dei materiali che contribuiscono alla tua opera.
 
 ##### Fornire un riscontro artistico
 
@@ -132,7 +132,7 @@ Skills: 6
 
 **Methodological description (English):** Distinguish licenses, attribution and permitted reuse from an assumption that access equals permission.
 
-**User-friendly description (it):** Verifica se un'opera d'arte può essere riutilizzata e indica le attribuzioni richieste dai suoi diritti.
+**User-friendly description (it):** Verifica se puoi riutilizzare un'opera d'arte e cita gli autori secondo le condizioni della licenza.
 
 #### Sviluppo creativo
 
@@ -1464,7 +1464,7 @@ Skills: 6
 
 **Methodological description (English):** Create a coherent series of garment designs that explores a shared expressive concept through intentional variations of silhouette, material or detail.
 
-**User-friendly description (it):** Progetta una serie coerente di completi con differenze studiate.
+**User-friendly description (it):** Progetta una serie coordinata di proposte d'abbigliamento, con variazioni studiate.
 
 ##### Disegnare cartamodelli
 
@@ -2114,7 +2114,7 @@ Skills: 6
 
 **Methodological description (English):** Organize sound parts over time into sections, transitions and variations.
 
-**User-friendly description (it):** Disponi parti musicali registrate o elettroniche in sezioni lungo il tempo.
+**User-friendly description (it):** Nel sequencer, organizza parti musicali registrate o elettroniche in sezioni, transizioni e variazioni.
 
 ##### Bilanciare un mix musicale
 
