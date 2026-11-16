@@ -31,13 +31,6 @@ const factoryContexts = new Set([
 const sectionTypes = new Set(['content', 'quiz', 'practice', 'learningFlow', 'codingTask', 'flashcards']);
 const compositeTypes = new Set(['carousel', 'checkpoint']);
 const localMediaTypes = new Set(['image', 'video', 'audio', 'subtitles']);
-const mediaFields = {
-  image: ['src'],
-  video: ['fileLocation', 'poster'],
-  audio: ['fileLocation'],
-  subtitles: ['fileLocation'],
-};
-
 const reserved = new Set([
   'content',
   'slides',
@@ -300,38 +293,6 @@ export function renderLessonModules(lesson, language, options = {}) {
    */
   function fileBackedNode(node, context, directory) {
     if (context !== 'block' && context !== 'slide') return node;
-    if (localMediaTypes.has(node.type) && record(node.locale)) {
-      const locale = { ...node.locale };
-      let changed = false;
-      for (const field of mediaFields[node.type]) {
-        const value = locale[field];
-        const role = field === 'poster' ? 'poster' : 'source';
-        const buildCall = language =>
-          expression(
-            'resolveLessonMedia(import.meta.url, ' +
-              JSON.stringify(node.type) +
-              ', ' +
-              JSON.stringify(role) +
-              (language === undefined ? '' : ', ' + JSON.stringify(language)) +
-              ')',
-          );
-        if (value === null) {
-          locale[field] = buildCall(undefined);
-          changed = true;
-        } else if (record(value)) {
-          const next = { ...value };
-          for (const [language, source] of Object.entries(next)) {
-            if (source === null) {
-              next[language] = buildCall(language);
-              changed = true;
-            }
-          }
-          locale[field] = next;
-        }
-      }
-      if (changed) return { ...node, locale };
-      return node;
-    }
     if (node.type === 'markdown' && record(node.locale) && node.locale.value !== undefined) {
       const source = node.locale.value;
       const authored = { ...node, locale: { ...node.locale } };
@@ -402,11 +363,10 @@ export function renderLessonModules(lesson, language, options = {}) {
       ? skillIndex(options.bookRoot)
       : new Map();
 
-  function moduleImports(directory, names, factory, needsLanguages, languageValue = false, needsMedia = false) {
+  function moduleImports(directory, names, factory, needsLanguages, languageValue = false) {
     const factoryImports = [
       factory,
       ...(factory === 'defineCode' ? ['readCodeSource'] : []),
-      ...(needsMedia ? ['resolveLessonMedia'] : []),
     ].join(', ');
     const output = ['import { ' + factoryImports + " } from '@svitlo/engine/build';"];
     for (const [alias, { symbol, location }] of [...names.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
@@ -684,7 +644,6 @@ export function renderLessonModules(lesson, language, options = {}) {
       factory,
       true,
       false,
-      authored !== node && localMediaTypes.has(node.type),
     );
     const result =
       importHead +

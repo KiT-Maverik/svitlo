@@ -26,29 +26,11 @@ import { youtube_Config_Schema } from '../contentBlocks/defineYoutube/defineYout
  * Each variant retains the concrete Engine Config schema's params, locale,
  * identity and discriminating type; only the opaque child fields are replaced.
  */
-/** YAML only: required pending local assets are explicit null until produced. */
-export const yamlAudio_Schema = audio_Config_Schema.extend({
-  locale: audio_Config_Schema.shape.locale.extend({ fileLocation: z.literal(null) }),
-});
-
-// Image Config has a cross-field refinement: project the existing structural
-// shape without redefining or weakening the real Config schema.
-export const yamlImage_Schema = z.object({
-  ...image_Config_Schema.shape,
-  locale: image_Config_Schema.shape.locale.extend({ src: z.literal(null) }),
-});
-
-export const yamlVideo_Schema = video_Config_Schema.extend({
-  locale: video_Config_Schema.shape.locale.extend({
-    fileLocation: z.literal(null),
-    poster: z.literal(null),
-  }),
-});
-
-/** Pending localized WebVTT files are explicit nulls, not invented paths. */
-export const yamlSubtitles_Schema = subtitles_Config_Schema.extend({
-  locale: subtitles_Config_Schema.shape.locale.extend({ fileLocation: z.literal(null) }),
-});
+/** YAML and Engine share the strict, non-null UUID filename Config contract. */
+export const yamlAudio_Schema = audio_Config_Schema;
+export const yamlImage_Schema = image_Config_Schema;
+export const yamlVideo_Schema = video_Config_Schema;
+export const yamlSubtitles_Schema = subtitles_Config_Schema;
 
 export const yamlCarousel_Schema = carousel_Config_Schema.extend({
   slides: carousel_Config_Schema.shape.slides.extend({

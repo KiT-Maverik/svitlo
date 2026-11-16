@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import { deepStrict_Schema } from '#schemas';
+import { deepStrict_Schema, subtitlesMediaReference_Schema, localizedMediaReference_Schema } from '#schemas';
 import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 
 const kind = createContentBlockBaseSchema('subtitles');
 export const subtitles_Config_Schema = kind.extend({
-  ...addUnifiedLocale({ fileLocation: localizationSwitch.config }),
+  ...addUnifiedLocale({ fileName: localizedMediaReference_Schema(subtitlesMediaReference_Schema) }),
 }).strict();
 export const subtitles_Props_Schema = kind.extend({
   ...addUnifiedLocale({ fileLocation: localizationSwitch.props }),
@@ -19,4 +19,3 @@ export const subtitles_Override_Config_Schema = z.deepPartial(
   })),
 );
 export type ContentBlock_Subtitles_Overrides = z.infer<typeof subtitles_Override_Config_Schema>;
-

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { DeepPartial } from '#types';
-import { deepStrict_Schema } from '#schemas';
+import { deepStrict_Schema, audioMediaReference_Schema, localizedMediaReference_Schema } from '#schemas';
 import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
 
 import type { Configurator_Mode } from '../../configurator.schemas';
@@ -12,24 +12,33 @@ const params = contentBlockBase.shape.params.extend({});
 
 const audioBase = contentBlockBase.extend({ params });
 
-const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
-  fileLocation: localizationSwitch[mode],
-  title: localizationSwitch[mode],
-  description: localizationSwitch[mode].optional(),
-  fallback: z
-    .object({
-      offline: localizationSwitch[mode].optional(),
-      unavailable: localizationSwitch[mode].optional(),
-      playbackError: localizationSwitch[mode].optional(),
-      retry: localizationSwitch[mode].optional(),
-    })
-    .optional(),
-});
+const configLocale = {
+  fileName: localizedMediaReference_Schema(audioMediaReference_Schema),
+  title: localizationSwitch.config,
+  description: localizationSwitch.config.optional(),
+  fallback: z.object({
+    offline: localizationSwitch.config.optional(),
+    unavailable: localizationSwitch.config.optional(),
+    playbackError: localizationSwitch.config.optional(),
+    retry: localizationSwitch.config.optional(),
+  }).optional(),
+};
+const propsLocale = {
+  fileLocation: localizationSwitch.props,
+  title: localizationSwitch.props,
+  description: localizationSwitch.props.optional(),
+  fallback: z.object({
+    offline: localizationSwitch.props.optional(),
+    unavailable: localizationSwitch.props.optional(),
+    playbackError: localizationSwitch.props.optional(),
+    retry: localizationSwitch.props.optional(),
+  }).optional(),
+};
 export type ContentBlock_Audio_Locale<Mode extends Configurator_Mode> = z.infer<
-  z.ZodObject<ReturnType<typeof locale<Mode>>>
+  z.ZodObject<Mode extends 'config' ? typeof configLocale : typeof propsLocale>
 >;
 
-export const audio_Config_Schema = audioBase.extend(addUnifiedLocale(locale('config')));
+export const audio_Config_Schema = audioBase.extend(addUnifiedLocale(configLocale));
 export type ContentBlock_Audio_Config = z.infer<typeof audio_Config_Schema>;
 
 /** Sparse overrides derive permitted fields directly from the authored Config Schema. */
@@ -48,5 +57,5 @@ export type ContentBlock_Audio_PropsBase = z.infer<typeof audioBase> & {
   locale?: DeepPartial<ContentBlock_Audio_Locale<'props'>>;
 };
 
-export const audio_Props_Schema = audioBase.extend(addUnifiedLocale(locale('props')));
+export const audio_Props_Schema = audioBase.extend(addUnifiedLocale(propsLocale));
 export type ContentBlock_Audio_Props = z.infer<typeof audio_Props_Schema>;

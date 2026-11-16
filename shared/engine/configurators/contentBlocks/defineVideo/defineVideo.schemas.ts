@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { DeepPartial } from '#types';
-import { deepStrict_Schema } from '#schemas';
+import { deepStrict_Schema, imageMediaReference_Schema, videoMediaReference_Schema, localizedMediaReference_Schema } from '#schemas';
 import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
 
 import type { Configurator_Mode } from '../../configurator.schemas';
@@ -12,27 +12,35 @@ const params = contentBlockBase.shape.params.extend({});
 
 const videoBase = contentBlockBase.extend({ params });
 
-const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
-  fileLocation: localizationSwitch[mode],
-  poster: localizationSwitch[mode],
-  // Optional visible title, separate from the video player label.
-  title: localizationSwitch[mode].optional(),
-  // Required accessible name for the video player and fallback.
-  label: localizationSwitch[mode],
-  fallback: z
-    .object({
-      offline: localizationSwitch[mode].optional(),
-      unavailable: localizationSwitch[mode].optional(),
-      playbackError: localizationSwitch[mode].optional(),
-      retry: localizationSwitch[mode].optional(),
-    })
-    .optional(),
-});
+const configLocale = {
+  fileName: localizedMediaReference_Schema(videoMediaReference_Schema),
+  posterFileName: localizedMediaReference_Schema(imageMediaReference_Schema),
+  title: localizationSwitch.config.optional(),
+  label: localizationSwitch.config,
+  fallback: z.object({
+    offline: localizationSwitch.config.optional(),
+    unavailable: localizationSwitch.config.optional(),
+    playbackError: localizationSwitch.config.optional(),
+    retry: localizationSwitch.config.optional(),
+  }).optional(),
+};
+const propsLocale = {
+  fileLocation: localizationSwitch.props,
+  poster: localizationSwitch.props,
+  title: localizationSwitch.props.optional(),
+  label: localizationSwitch.props,
+  fallback: z.object({
+    offline: localizationSwitch.props.optional(),
+    unavailable: localizationSwitch.props.optional(),
+    playbackError: localizationSwitch.props.optional(),
+    retry: localizationSwitch.props.optional(),
+  }).optional(),
+};
 export type ContentBlock_Video_Locale<Mode extends Configurator_Mode> = z.infer<
-  z.ZodObject<ReturnType<typeof locale<Mode>>>
+  z.ZodObject<Mode extends 'config' ? typeof configLocale : typeof propsLocale>
 >;
 
-export const video_Config_Schema = videoBase.extend(addUnifiedLocale(locale('config')));
+export const video_Config_Schema = videoBase.extend(addUnifiedLocale(configLocale));
 export type ContentBlock_Video_Config = z.infer<typeof video_Config_Schema>;
 
 /** Sparse overrides derive permitted fields directly from the authored Config Schema. */
@@ -51,5 +59,5 @@ export type ContentBlock_Video_PropsBase = z.infer<typeof videoBase> & {
   locale?: DeepPartial<ContentBlock_Video_Locale<'props'>>;
 };
 
-export const video_Props_Schema = videoBase.extend(addUnifiedLocale(locale('props')));
+export const video_Props_Schema = videoBase.extend(addUnifiedLocale(propsLocale));
 export type ContentBlock_Video_Props = z.infer<typeof video_Props_Schema>;
