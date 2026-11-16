@@ -125,10 +125,10 @@ export const defineCodingTaskSection = <
     content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
   } & ConfigWithLanguages<CodingTaskSection_Config, Languages>,
 ) => {
-  validate(config);
   // Metadata is copied; children hold independent, immutable authoring snapshots.
   const metadataSchema = codingTaskSection_Config_Schema.omit({ content: true });
-  const authored = structuredClone(metadataSchema.parse(config));
+  const { content: _content, ...metadataInput } = config;
+  const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type, slug } = authored;
   const initialItems: Items = { ...config.content.items };
@@ -194,6 +194,7 @@ export const defineCodingTaskSection = <
 
   const props = (options: PublicationLanguageOptions<Languages>): Publication<CodingTaskSection_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
     const children = buildContent(initialItems, initialOrder, languages);
@@ -224,6 +225,7 @@ export const defineCodingTaskSection = <
   ): Publication<OverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
       if (!isRecord(patch)) throw new Error('Expected an overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'content'].includes(key)) {
