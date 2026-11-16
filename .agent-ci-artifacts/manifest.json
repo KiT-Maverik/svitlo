@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "b38e37ca1a4f183041c3fecf3d381e5a7d04472e",
+  "sourceCommit": "94fea04e1a41802a10bf7710590c7b6eb1dda624",
   "scope": {
     "kind": "skills",
     "package": "content/biology",

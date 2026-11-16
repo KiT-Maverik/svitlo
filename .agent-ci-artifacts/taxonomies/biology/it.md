@@ -40,7 +40,7 @@ Groups: 0 · Skills: 5
 
 **Methodological description (English):** Define genetic modification as the intentional alteration of genetic material by biotechnological methods. Distinguish changing DNA from simply selecting organisms by traits without assuming that every genetic change automatically brings benefits or harm.
 
-**User-friendly description (it):** Spiega come la modificazione genetica cambia il DNA, a differenza della selezione degli organismi genitori per la riproduzione.
+**User-friendly description (it):** Spiega come la modificazione genetica cambia il DNA, mentre nella selezione artificiale si scelgono gli organismi da far riprodurre.
 
 #### Spiegare il principio della selezione artificiale
 
@@ -784,7 +784,7 @@ Skills: 5
 
 **Methodological description (English):** Genes, as segments of hereditary information, help explain relatedness and differences; how a trait is expressed also depends on regulation and the environment.
 
-**User-friendly description (it):** Scopri come DNA, geni e loro attività determinano le caratteristiche ereditarie.
+**User-friendly description (it):** Scopri come il DNA, i geni e la loro attività influenzano i caratteri ereditari.
 
 ##### Distinguere un gene da un carattere
 
