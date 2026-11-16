@@ -4,7 +4,7 @@
 
 ## Commands for PR comments
 
-An authorized repository owner can comment on a same-repository **Draft agent PR**:
+After the owner authorizes the relevant review, a GitHub user with repository `write`, `maintain`, or `admin` permission may post the following commands on a same-repository **Draft agent PR**. The workflow checks real repository permissions through GitHub's API, not the commenter's `author_association`:
 
 ```text
 /agent-artifacts generate skills content/astronomy it
