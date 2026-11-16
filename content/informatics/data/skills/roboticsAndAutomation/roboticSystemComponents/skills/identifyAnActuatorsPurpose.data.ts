@@ -5,6 +5,7 @@ export const identifyAnActuatorsPurpose_Skill_Data = defineSkill({
   id: 'e221ab8e-3bb1-4fce-bf7c-ee82245d2310',
   name: {
     en: "Identify an Actuator's Purpose",
+    it: 'Individuare lo scopo di un attuatore',
     zh: '识别执行器的用途',
     hi: 'एक्चुएटर का उद्देश्य पहचानना',
     es: 'Identificar la función de un actuador',
@@ -39,6 +40,7 @@ export const identifyAnActuatorsPurpose_Skill_Data = defineSkill({
       'Recognize a device that receives a command and performs a physical action: a motor rotates a wheel while an LED changes light output. An actuator is not a sensor even if connected to the same controller.',
     frontend: {
       en: 'Explain how motors, lights and other actuators carry out commands.',
+      it: 'Spiega come motori, luci e altri attuatori eseguono i comandi.',
       zh: '解释电机、灯以及其他执行器如何执行指令。',
       hi: 'समझाएँ कि मोटर, बत्ती और दूसरे एक्चुएटर आदेशों का पालन कैसे करते हैं।',
       es: 'Explica cómo motores, luces y otros actuadores ejecutan órdenes.',

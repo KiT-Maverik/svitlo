@@ -5,6 +5,7 @@ export const designDigitalInterfaceNavigation_Skill_Data = defineSkill({
   id: '0acb5c21-aa20-47bf-af6c-4cac5ec05147',
   name: {
     en: 'Design Digital Interface Navigation',
+    it: "Progettare la navigazione di un'interfaccia digitale",
     zh: '设计数字界面导航',
     hi: 'डिजिटल इंटरफ़ेस नेविगेशन डिज़ाइन करना',
     es: 'Diseñar la navegación de una interfaz digital',
@@ -39,6 +40,7 @@ export const designDigitalInterfaceNavigation_Skill_Data = defineSkill({
       'Organize transitions among screens, sections, or states so users can find desired actions and understand their current position within a digital product.',
     frontend: {
       en: 'Arrange screens and navigation so people can find the right actions.',
+      it: 'Organizza schermate e navigazione affinché le persone trovino le azioni giuste.',
       zh: '合理安排页面和导航，让人们找到正确的操作。',
       hi: 'स्क्रीन और नेविगेशन इस तरह व्यवस्थित करें कि लोग सही कार्रवाई ढूँढ सकें।',
       es: 'Organiza las pantallas y la navegación para que las personas encuentren las acciones adecuadas.',

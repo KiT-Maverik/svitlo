@@ -14,6 +14,7 @@ export const gitVersionControl_SkillGroup_Data = defineSkillGroup({
   id: '1a71deba-af48-4da5-b376-75b0172e1570',
   name: {
     en: 'Git Version Control',
+    it: 'Controllo di versione con Git',
     zh: 'Git 版本控制',
     hi: 'Git संस्करण नियंत्रण',
     es: 'Control de versiones con Git',
@@ -66,6 +67,7 @@ export const gitVersionControl_SkillGroup_Data = defineSkillGroup({
       'Git provides a history of commits and branches, while change-review processes help combine the work of multiple contributors.',
     frontend: {
       en: 'Learn how Git records versions and helps teams combine changes.',
+      it: 'Impara come Git registra le versioni e aiuta i gruppi a unire le modifiche.',
       zh: '学习 Git 如何记录版本并帮助团队整合修改。',
       hi: 'जानें कि Git संस्करण कैसे दर्ज करता है और टीमों को बदलाव मिलाने में कैसे मदद करता है।',
       es: 'Aprende cómo Git registra versiones y ayuda a los equipos a integrar cambios.',

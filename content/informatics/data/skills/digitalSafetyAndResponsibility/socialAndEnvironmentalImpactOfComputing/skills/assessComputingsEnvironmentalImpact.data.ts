@@ -5,6 +5,7 @@ export const assessComputingsEnvironmentalImpact_Skill_Data = defineSkill({
   id: '40d8ceff-cdaf-4995-8e06-2f904e450dcd',
   name: {
     en: "Assess Computing's Environmental Impact",
+    it: "Valutare l'impatto ambientale dell'informatica",
     zh: '评估计算技术对环境的影响',
     hi: 'कंप्यूटिंग का पर्यावरणीय प्रभाव आँकना',
     es: 'Evaluar el impacto ambiental de la informática',
@@ -39,6 +40,7 @@ export const assessComputingsEnvironmentalImpact_Skill_Data = defineSkill({
       'Connect devices and services with energy consumption, resource extraction, hardware lifespan, and electronic waste. Comparing alternatives requires more than electricity used during one run.',
     frontend: {
       en: "Compare computing's energy, material and electronic-waste impacts.",
+      it: "Confronta gli impatti dell'informatica sul consumo di energia, sui materiali e sui rifiuti elettronici.",
       zh: '比较计算活动带来的能源、材料与电子废弃物影响。',
       hi: 'ऊर्जा, सामग्री और इलेक्ट्रॉनिक कचरे के लिहाज़ से कंप्यूटिंग के प्रभावों की तुलना करें।',
       es: 'Compara el consumo energético, los materiales y los residuos electrónicos relacionados con la informática.',

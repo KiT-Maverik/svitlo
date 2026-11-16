@@ -5,6 +5,7 @@ export const explainBinarySearchTrees_Skill_Data = defineSkill({
   id: '395ffcf3-049f-4327-b39f-231eb8d0702f',
   name: {
     en: 'Explain Binary Search Trees',
+    it: 'Spiegare gli alberi binari di ricerca',
     zh: '解释二叉搜索树',
     hi: 'द्विआधारी खोज वृक्ष समझाना',
     es: 'Explicar los árboles binarios de búsqueda',
@@ -39,6 +40,7 @@ export const explainBinarySearchTrees_Skill_Data = defineSkill({
       'Keys in a binary search tree obey an ordering rule across subtrees that is not required of an arbitrary tree.',
     frontend: {
       en: 'Understand the ordering rule that makes a binary search tree searchable.',
+      it: 'Comprendi la regola di ordinamento che permette la ricerca in un albero binario.',
       zh: '理解使二叉搜索树能够搜索的键排序规则。',
       hi: 'समझें कि कुंजियों का क्रम द्विआधारी खोज वृक्ष में खोज को कैसे संभव बनाता है।',
       es: 'Comprende la regla de orden de las claves que permite buscar en un árbol binario.',

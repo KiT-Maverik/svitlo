@@ -5,6 +5,7 @@ export const defineAFunctionWithParameters_Skill_Data = defineSkill({
   id: 'b19954db-a639-446f-8031-f0af7d93aade',
   name: {
     en: 'Define a Function with Parameters',
+    it: 'Definire una funzione con parametri',
     zh: '定义带参数的函数',
     hi: 'पैरामीटर वाला फलन परिभाषित करना',
     es: 'Definir una función con parámetros',
@@ -39,6 +40,7 @@ export const defineAFunctionWithParameters_Skill_Data = defineSkill({
       'Create a function whose input parameters represent values used inside its body rather than hard-coding a single example.',
     frontend: {
       en: 'Write a function that accepts parameters rather than fixed example values.',
+      it: 'Scrivi una funzione che accetti parametri anziché valori di esempio fissi.',
       zh: '编写接收参数而不是固定示例值的函数。',
       hi: 'ऐसा फलन लिखें जो तय उदाहरण मानों के बजाय पैरामीटर स्वीकार करता हो।',
       es: 'Escribe una función que acepte parámetros en lugar de valores fijos de ejemplo.',

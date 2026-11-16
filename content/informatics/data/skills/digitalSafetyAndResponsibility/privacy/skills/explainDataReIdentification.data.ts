@@ -5,6 +5,7 @@ export const explainDataReIdentification_Skill_Data = defineSkill({
   id: '0ed0ddb2-1ef9-4fbc-bb0a-aad4ae45dbf8',
   name: {
     en: 'Explain Data Re-identification',
+    it: 'Spiegare la reidentificazione dei dati',
     zh: '解释数据重新识别',
     hi: 'डेटा से दोबारा पहचान समझाना',
     es: 'Explicar la reidentificación de datos',
@@ -39,6 +40,7 @@ export const explainDataReIdentification_Skill_Data = defineSkill({
       'Explain how supposedly anonymized records can sometimes be linked to a person through external clues, such as habitual routes and times.',
     frontend: {
       en: 'Explain how separately collected details can identify a person again.',
+      it: 'Spiega come informazioni raccolte separatamente possono permettere di identificare nuovamente una persona.',
       zh: '说明分别收集的细节怎样组合后再次识别一个人。',
       hi: 'समझाएँ कि अलग-अलग जुटाए गए विवरणों से किसी व्यक्ति की पहचान फिर कैसे हो सकती है।',
       es: 'Explica cómo detalles recogidos por separado pueden volver a identificar a una persona.',

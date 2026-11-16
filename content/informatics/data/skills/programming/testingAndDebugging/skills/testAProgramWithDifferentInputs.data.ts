@@ -5,6 +5,7 @@ export const testAProgramWithDifferentInputs_Skill_Data = defineSkill({
   id: '3f81b086-fa88-4f90-bde2-d5245a529ac3',
   name: {
     en: 'Test a Program with Different Inputs',
+    it: 'Verificare un programma con dati in ingresso diversi',
     zh: '用不同输入测试程序',
     hi: 'अलग-अलग इनपुट से प्रोग्राम जाँचना',
     es: 'Probar un programa con distintas entradas',
@@ -39,6 +40,7 @@ export const testAProgramWithDifferentInputs_Skill_Data = defineSkill({
       'Choose valid and boundary input sets, compare actual with expected results, and identify cases where the program behaves differently. One successful run does not establish overall correctness.',
     frontend: {
       en: 'Test a program using different inputs, including boundary cases.',
+      it: 'Prova un programma con dati in ingresso differenti, compresi i casi limite.',
       zh: '使用不同的输入测试程序，包括边界情况。',
       hi: 'विभिन्न इनपुट और सीमांत मामलों से प्रोग्राम का परीक्षण करें।',
       es: 'Prueba el programa con diferentes entradas, incluidos los casos límite.',

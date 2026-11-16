@@ -5,6 +5,7 @@ export const verifyFactsInAnAIResponse_Skill_Data = defineSkill({
   id: '4f039591-11ed-4341-90ab-7389f7ce8efe',
   name: {
     en: 'Verify Facts in an AI Response',
+    it: "Verificare i fatti in una risposta dell'IA",
     zh: '核实人工智能回答中的事实',
     hi: 'एआई के उत्तर में तथ्यों की जाँच करना',
     es: 'Verificar hechos en una respuesta de IA',
@@ -39,6 +40,7 @@ export const verifyFactsInAnAIResponse_Skill_Data = defineSkill({
       'Identify verifiable claims from model output and compare them with independent trustworthy sources, checking provenance, date, and context. An AI response cannot confirm itself or another retelling of the same response.',
     frontend: {
       en: 'Check factual claims from an AI response using reliable independent sources.',
+      it: "Verifica le affermazioni fattuali di una risposta dell'IA usando fonti indipendenti affidabili.",
       zh: '使用可靠、独立的信息来源核查人工智能回答中的事实性说法。',
       hi: 'एआई के जवाब के तथ्यात्मक दावों को विश्वसनीय स्वतंत्र स्रोतों से जाँचें।',
       es: 'Comprueba las afirmaciones de una respuesta de IA con fuentes independientes y fiables.',

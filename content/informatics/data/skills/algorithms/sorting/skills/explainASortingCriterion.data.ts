@@ -5,6 +5,7 @@ export const explainASortingCriterion_Skill_Data = defineSkill({
   id: 'edc1241e-3837-406b-ab4a-4ad443beb2c3',
   name: {
     en: 'Explain a Sorting Criterion',
+    it: 'Spiegare un criterio di ordinamento',
     zh: '解释排序标准',
     hi: 'क्रमबद्धता का मानदंड समझाना',
     es: 'Explicar un criterio de ordenación',
@@ -39,6 +40,7 @@ export const explainASortingCriterion_Skill_Data = defineSkill({
       'Define a key and direction such as ascending numbers or alphabetic names; all comparisons in the algorithm must follow that rule.',
     frontend: {
       en: 'Choose the value or property used to order a collection.',
+      it: 'Scegli il valore o la proprietà in base a cui ordinare una collezione.',
       zh: '选择用于给集合排序的值或属性。',
       hi: 'संग्रह को क्रम में लगाने के लिए मान या गुण चुनें।',
       es: 'Elige el valor o la propiedad que se usará para ordenar una colección.',

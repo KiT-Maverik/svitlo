@@ -5,6 +5,7 @@ export const validateDataAgainstAContract_Skill_Data = defineSkill({
   id: 'c148f5f4-d326-4263-b3bd-ded33b46cd8b',
   name: {
     en: 'Validate Data Against a Contract',
+    it: 'Convalidare i dati rispetto a un contratto',
     zh: '依据约定验证数据',
     hi: 'अनुबंध के अनुसार डेटा सत्यापित करना',
     es: 'Validar datos frente a un contrato',
@@ -39,6 +40,7 @@ export const validateDataAgainstAContract_Skill_Data = defineSkill({
       'Identify when received values violate an expected type or format and use validation or explicit conversion instead of silently assuming compatibility.',
     frontend: {
       en: 'Check whether input matches a required type or structure before using it.',
+      it: 'Verifica che i dati in ingresso corrispondano a un tipo o a una struttura richiesti prima di utilizzarli.',
       zh: '使用输入前，检查其类型或结构是否符合要求。',
       hi: 'इनपुट इस्तेमाल करने से पहले जाँचें कि उसका प्रकार या संरचना आवश्यक शर्तों से मेल खाती है।',
       es: 'Comprueba si los datos de entrada cumplen el tipo o la estructura requeridos antes de usarlos.',

@@ -5,6 +5,7 @@ export const explainAPullRequest_Skill_Data = defineSkill({
   id: '290254f4-b565-411d-afa8-39ca433f5430',
   name: {
     en: 'Explain a Pull Request',
+    it: 'Spiegare una pull request',
     zh: '解释拉取请求',
     hi: 'पुल रिक्वेस्ट समझाना',
     es: 'Explicar una solicitud de incorporación de cambios',
@@ -39,6 +40,7 @@ export const explainAPullRequest_Skill_Data = defineSkill({
       'A pull request on a collaborative development platform organizes review of proposed changes before they are merged.',
     frontend: {
       en: 'Explore how pull requests organize proposed changes for review.',
+      it: 'Esplora come le pull request organizzano le modifiche proposte per la revisione.',
       zh: '探索拉取请求如何组织拟议修改并供团队评审。',
       hi: 'जानें कि पुल रिक्वेस्ट प्रस्तावित बदलावों को समीक्षा के लिए कैसे व्यवस्थित करती है।',
       es: 'Explora cómo las solicitudes de cambios organizan propuestas para su revisión.',

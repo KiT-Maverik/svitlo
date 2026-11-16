@@ -5,6 +5,7 @@ export const useInputData_Skill_Data = defineSkill({
   id: 'd78501df-c1f6-4c9f-96df-97c074fa7394',
   name: {
     en: 'Use Input Data',
+    it: 'Utilizzare dati in ingresso',
     zh: '使用输入数据',
     hi: 'इनपुट डेटा का उपयोग करना',
     es: 'Usar datos de entrada',
@@ -39,6 +40,7 @@ export const useInputData_Skill_Data = defineSkill({
       'Accept an external value as program input and use it in a computation or choice of action. The output should depend on input rather than on a fixed example.',
     frontend: {
       en: 'Use information entered from outside the program to determine its behavior.',
+      it: "Usa le informazioni inserite dall'esterno del programma per determinarne il comportamento.",
       zh: '利用从程序外部输入的信息决定程序的行为。',
       hi: 'प्रोग्राम के बाहर से दी गई जानकारी के आधार पर उसका व्यवहार तय करें।',
       es: 'Usa información introducida desde fuera del programa para determinar su comportamiento.',

@@ -5,6 +5,7 @@ export const distinguishHardwareFromSoftware_Skill_Data = defineSkill({
   id: 'd37f8131-8eb4-48c6-acbb-69552431c23f',
   name: {
     en: 'Distinguish Hardware from Software',
+    it: 'Distinguere hardware e software',
     zh: '区分硬件与软件',
     hi: 'हार्डवेयर और सॉफ़्टवेयर में अंतर करना',
     es: 'Distinguir hardware de software',
@@ -39,6 +40,7 @@ export const distinguishHardwareFromSoftware_Skill_Data = defineSkill({
       'Differentiate tangible device components from instructions and data governing their behavior; explain their interaction, such as software controlling a camera through a hardware interface.',
     frontend: {
       en: 'Distinguish physical computer parts from the software that controls them.',
+      it: 'Distingui le parti fisiche di un computer dai programmi che le controllano.',
       zh: '区分计算机的实体部件和控制它们的软件。',
       hi: 'कंप्यूटर के भौतिक पुर्जों और उन्हें नियंत्रित करने वाले सॉफ़्टवेयर में अंतर करें।',
       es: 'Distingue las partes físicas de una computadora del software que las controla.',

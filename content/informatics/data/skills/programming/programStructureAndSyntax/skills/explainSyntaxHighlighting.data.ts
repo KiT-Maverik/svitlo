@@ -5,6 +5,7 @@ export const explainSyntaxHighlighting_Skill_Data = defineSkill({
   id: 'b169b97a-aed5-4e87-a4ba-345f3e86a846',
   name: {
     en: 'Explain Syntax Highlighting',
+    it: "Spiegare l'evidenziazione della sintassi",
     zh: '解释语法高亮',
     hi: 'सिंटैक्स हाइलाइटिंग समझाना',
     es: 'Explicar el resaltado de sintaxis',
@@ -39,6 +40,7 @@ export const explainSyntaxHighlighting_Skill_Data = defineSkill({
       'Recognize editor coloring of keywords, strings, comments, and names as a visual aid; correctly colored code is not necessarily correct.',
     frontend: {
       en: 'Understand what syntax coloring helps reveal and what it cannot prove.',
+      it: 'Comprendi che cosa aiuta a riconoscere la colorazione della sintassi e che cosa non può dimostrare.',
       zh: '理解语法着色能够提示什么，以及不能证明什么。',
       hi: 'समझें कि कोड के रंग क्या दिखाते हैं और क्या साबित नहीं कर सकते।',
       es: 'Comprende qué ayuda a mostrar el coloreado de sintaxis y qué no puede demostrar.',

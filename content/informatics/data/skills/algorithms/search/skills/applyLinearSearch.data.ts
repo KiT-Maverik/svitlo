@@ -5,6 +5,7 @@ export const applyLinearSearch_Skill_Data = defineSkill({
   id: '0db01fdb-33f9-49b6-99ca-e35d87a00912',
   name: {
     en: 'Apply Linear Search',
+    it: 'Applicare la ricerca lineare',
     zh: '应用线性查找',
     hi: 'रैखिक खोज लागू करना',
     es: 'Aplicar búsqueda lineal',
@@ -39,6 +40,7 @@ export const applyLinearSearch_Skill_Data = defineSkill({
       'Inspect items one by one until the target is found or the collection ends; prior sorting is unnecessary. In the no-match case the entire collection may need checking.',
     frontend: {
       en: 'Find a target by inspecting elements one after another.',
+      it: "Trova un elemento cercato esaminando gli elementi uno dopo l'altro.",
       zh: '依次检查元素，直到找到目标或遍历结束。',
       hi: 'लक्ष्य मिलने या संग्रह समाप्त होने तक तत्व एक-एक करके जाँचें।',
       es: 'Encuentra un objetivo examinando los elementos uno por uno.',

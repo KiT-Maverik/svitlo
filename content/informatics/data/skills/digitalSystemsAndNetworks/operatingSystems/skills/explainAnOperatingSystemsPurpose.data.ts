@@ -5,6 +5,7 @@ export const explainAnOperatingSystemsPurpose_Skill_Data = defineSkill({
   id: '5f5c1649-de2a-4829-8efe-22c139921352',
   name: {
     en: "Explain an Operating System's Purpose",
+    it: 'Spiegare lo scopo di un sistema operativo',
     zh: '解释操作系统的用途',
     hi: 'ऑपरेटिंग सिस्टम का उद्देश्य समझाना',
     es: 'Explicar el propósito de un sistema operativo',
@@ -39,6 +40,7 @@ export const explainAnOperatingSystemsPurpose_Skill_Data = defineSkill({
       'Describe how an OS coordinates launching programs and accessing files and devices so individual applications need not implement all hardware operations themselves.',
     frontend: {
       en: 'Understand how an operating system coordinates software and hardware.',
+      it: 'Comprendi come un sistema operativo coordina software e hardware.',
       zh: '理解操作系统如何协调软件与硬件。',
       hi: 'समझें कि ऑपरेटिंग सिस्टम सॉफ़्टवेयर और हार्डवेयर के बीच तालमेल कैसे करता है।',
       es: 'Comprende cómo un sistema operativo coordina el software y el hardware.',

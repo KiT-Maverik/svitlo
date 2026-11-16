@@ -5,6 +5,7 @@ export const implementALoop_Skill_Data = defineSkill({
   id: '6751a06e-4504-4c0d-8f05-95656ab4b8c3',
   name: {
     en: 'Implement a Loop',
+    it: 'Implementare un ciclo',
     zh: '实现循环',
     hi: 'लूप लागू करना',
     es: 'Implementar un bucle',
@@ -39,6 +40,7 @@ export const implementALoop_Skill_Data = defineSkill({
       'Express repeated instructions using a counter or termination condition and correctly update state between iterations. An instruction repeats by rule rather than through manual duplication.',
     frontend: {
       en: 'Use loops to repeat instructions until the right stopping point.',
+      it: 'Usa i cicli per ripetere istruzioni fino alla corretta condizione di arresto.',
       zh: '使用循环重复执行命令，直到满足正确的停止条件。',
       hi: 'सही रुकने की स्थिति आने तक निर्देश दोहराने के लिए लूप का उपयोग करें।',
       es: 'Usa bucles para repetir instrucciones hasta alcanzar la condición de parada adecuada.',

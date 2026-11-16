@@ -5,6 +5,7 @@ export const explainGraphStructure_Skill_Data = defineSkill({
   id: 'd399fca3-1e34-435a-82f0-b40345399ef4',
   name: {
     en: 'Explain Graph Structure',
+    it: 'Spiegare la struttura di un grafo',
     zh: '解释图的结构',
     hi: 'ग्राफ़ की संरचना समझाना',
     es: 'Explicar la estructura de un grafo',
@@ -38,6 +39,7 @@ export const explainGraphStructure_Skill_Data = defineSkill({
     methodological: 'Represent a road or social network as vertices and edges without assuming every graph is a tree.',
     frontend: {
       en: 'Recognize graph vertices and the edges connecting them.',
+      it: 'Riconosci i vertici di un grafo e gli archi che li collegano.',
       zh: '识别图中的顶点以及连接它们的边。',
       hi: 'ग्राफ़ के शीर्षों और उन्हें जोड़ने वाले किनारों को पहचानें।',
       es: 'Reconoce los vértices de un grafo y las aristas que los conectan.',

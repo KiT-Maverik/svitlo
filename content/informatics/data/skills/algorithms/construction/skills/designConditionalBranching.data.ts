@@ -5,6 +5,7 @@ export const designConditionalBranching_Skill_Data = defineSkill({
   id: '2ba0a75d-a0d5-4e5a-bc0c-ebf60a547b1e',
   name: {
     en: 'Design Conditional Branching',
+    it: 'Progettare diramazioni condizionali',
     zh: '设计条件分支',
     hi: 'सशर्त शाखाएँ बनाना',
     es: 'Diseñar ramificaciones condicionales',
@@ -39,6 +40,7 @@ export const designConditionalBranching_Skill_Data = defineSkill({
       'Specify mutually exclusive or priority-based paths using testable conditions, including the action taken when a condition is false. For example, choose one half of a search range after comparing numbers.',
     frontend: {
       en: 'Plan different paths through an algorithm according to explicit conditions.',
+      it: 'Pianifica percorsi diversi in un algoritmo in base a condizioni esplicite.',
       zh: '根据明确可检验的条件为算法规划不同执行路径。',
       hi: 'स्पष्ट जाँची जा सकने वाली शर्तों के अनुसार एल्गोरिदम के अलग रास्ते बनाएँ।',
       es: 'Planifica diferentes caminos del algoritmo según condiciones explícitas.',

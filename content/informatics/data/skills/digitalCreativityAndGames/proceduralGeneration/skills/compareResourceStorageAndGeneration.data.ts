@@ -5,6 +5,7 @@ export const compareResourceStorageAndGeneration_Skill_Data = defineSkill({
   id: '99f4d5fd-2c5c-46c6-b9da-c8c27a563c2b',
   name: {
     en: 'Compare Resource Storage and Generation',
+    it: 'Confrontare memorizzazione e generazione delle risorse',
     zh: '比较资源存储与生成',
     hi: 'संसाधन भंडारण और सृजन की तुलना',
     es: 'Comparar almacenamiento y generación de recursos',
@@ -39,6 +40,7 @@ export const compareResourceStorageAndGeneration_Skill_Data = defineSkill({
       'Assess trade-offs between stored data volume, compact rule descriptions, initialization time, and CPU/GPU/RAM use. Procedural generation is not the same as lossless or lossy compression of a ready-made file.',
     frontend: {
       en: 'Compare the storage saved by procedural generation with the computation it requires.',
+      it: 'Confronta lo spazio risparmiato dalla generazione procedurale con i calcoli necessari.',
       zh: '比较程序化生成节省的存储空间与它所需的计算量。',
       hi: 'प्रक्रियात्मक सृजन से बचने वाली भंडारण जगह और लगने वाली गणना की तुलना करें।',
       es: 'Compara el almacenamiento que ahorra la generación procedimental con el cálculo que requiere.',

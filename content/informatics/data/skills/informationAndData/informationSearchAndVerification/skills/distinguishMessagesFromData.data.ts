@@ -5,6 +5,7 @@ export const distinguishMessagesFromData_Skill_Data = defineSkill({
   id: '46aeedfa-5976-449d-89c3-97901d99b779',
   name: {
     en: 'Distinguish Messages from Data',
+    it: 'Distinguere i messaggi dai dati',
     zh: '区分消息与数据',
     hi: 'संदेश और डेटा में अंतर करना',
     es: 'Distinguir mensajes de datos',
@@ -39,6 +40,7 @@ export const distinguishMessagesFromData_Skill_Data = defineSkill({
       "Differentiate individually recorded values from a message that conveys meaning to an audience in context. For example, the number '18' communicates a temperature only once the unit and measured object are supplied.",
     frontend: {
       en: 'Distinguish a recorded value from the meaning a message gives it.',
+      it: 'Distingui un valore registrato dal significato che un messaggio gli attribuisce.',
       zh: '区分记录的数值与消息赋予它的意义。',
       hi: 'दर्ज मान और संदेश द्वारा दिए गए उसके अर्थ में अंतर समझें।',
       es: 'Distingue un valor registrado del significado que le atribuye un mensaje.',

@@ -5,6 +5,7 @@ export const explainProceduralResourceGeneration_Skill_Data = defineSkill({
   id: '267b7e9d-3edb-4275-9fe9-f212ef291a4f',
   name: {
     en: 'Explain Procedural Resource Generation',
+    it: 'Spiegare la generazione procedurale delle risorse',
     zh: '解释程序化资源生成',
     hi: 'प्रक्रियात्मक संसाधन सृजन समझाना',
     es: 'Explicar la generación procedimental de recursos',
@@ -39,6 +40,7 @@ export const explainProceduralResourceGeneration_Skill_Data = defineSkill({
       'Distinguish storing a finished image, sound, or world from running rules that generate one from parameters. Compact rules can create a large resource but require computation at generation time.',
     frontend: {
       en: 'Explain how a generator creates resources instead of storing every finished variation.',
+      it: 'Spiega come un generatore crea risorse anziché memorizzare tutte le varianti già pronte.',
       zh: '说明生成器如何创建资源，而不必保存每一种成品变体。',
       hi: 'समझाएँ कि हर तैयार रूप को सहेजने के बजाय जनरेटर संसाधन कैसे बनाता है।',
       es: 'Explica cómo un generador crea recursos en vez de almacenar cada variante terminada.',

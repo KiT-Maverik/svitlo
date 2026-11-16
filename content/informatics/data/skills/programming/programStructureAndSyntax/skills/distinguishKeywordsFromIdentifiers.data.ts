@@ -5,6 +5,7 @@ export const distinguishKeywordsFromIdentifiers_Skill_Data = defineSkill({
   id: '904f7ab8-8e5a-4b09-a57d-4b87bf21a48b',
   name: {
     en: 'Distinguish Keywords from Identifiers',
+    it: 'Distinguere parole chiave e identificatori',
     zh: '区分关键字与标识符',
     hi: 'कीवर्ड और पहचानकर्ताओं में अंतर करना',
     es: 'Distinguir palabras clave de identificadores',
@@ -39,6 +40,7 @@ export const distinguishKeywordsFromIdentifiers_Skill_Data = defineSkill({
       'Separate reserved language constructs from programmer-chosen names for variables and functions; naming rules vary by language.',
     frontend: {
       en: 'Distinguish language keywords from names chosen by programmers.',
+      it: 'Distingui le parole chiave del linguaggio dai nomi scelti dai programmatori.',
       zh: '区分语言保留的关键字和程序员自己选择的名称。',
       hi: 'भाषा के आरक्षित शब्दों और प्रोग्रामर द्वारा चुने नामों में अंतर करें।',
       es: 'Distingue las palabras reservadas del lenguaje de los nombres elegidos por quienes programan.',

@@ -5,6 +5,7 @@ export const prototype_Skill_Data = defineSkill({
   id: 'a3fbd495-5b5b-4032-baaa-11e9f23de2b0',
   name: {
     en: 'Prototype',
+    it: 'Prototype',
     zh: '原型模式',
     hi: 'प्रोटोटाइप',
     es: 'Prototipo',
@@ -39,6 +40,7 @@ export const prototype_Skill_Data = defineSkill({
       "Create a new object by copying a configured exemplar, considering shared nested data and the new object's identity.",
     frontend: {
       en: 'Create new objects by copying a configured example.',
+      it: 'Crea nuovi oggetti copiando un esempio già configurato.',
       zh: '通过复制已配置好的示例来创建新对象。',
       hi: 'पहले से तैयार उदाहरण की प्रतिलिपि बनाकर नए ऑब्जेक्ट बनाएं।',
       es: 'Crea objetos nuevos copiando un ejemplo ya configurado.',

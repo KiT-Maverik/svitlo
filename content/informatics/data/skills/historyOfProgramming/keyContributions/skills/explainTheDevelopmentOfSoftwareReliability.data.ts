@@ -5,6 +5,7 @@ export const explainTheDevelopmentOfSoftwareReliability_Skill_Data = defineSkill
   id: '7916abc7-ba07-450f-8efe-c15e7564f922',
   name: {
     en: 'Explain the Development of Software Reliability',
+    it: "Spiegare lo sviluppo dell'affidabilità del software",
     zh: '解释软件可靠性的发展',
     hi: 'सॉफ़्टवेयर विश्वसनीयता का विकास समझाना',
     es: 'Explicar el desarrollo de la fiabilidad del software',
@@ -39,6 +40,7 @@ export const explainTheDevelopmentOfSoftwareReliability_Skill_Data = defineSkill
       "Use spaceflight software to explain error handling, execution priorities, and recovery from failures. Include Margaret Hamilton's leadership of Apollo software work and the collaborative nature of its development.",
     frontend: {
       en: 'Understand why error handling and reliable software mattered in the Apollo missions.',
+      it: 'Comprendi perché la gestione degli errori e un software affidabile erano importanti nelle missioni Apollo.',
       zh: '理解为什么错误处理与可靠的软件对阿波罗任务至关重要。',
       hi: 'समझें कि अपोलो मिशनों में त्रुटि सँभालने और विश्वसनीय सॉफ़्टवेयर का महत्व क्यों था।',
       es: 'Comprende por qué gestionar errores y contar con software fiable fue crucial para las misiones Apolo.',

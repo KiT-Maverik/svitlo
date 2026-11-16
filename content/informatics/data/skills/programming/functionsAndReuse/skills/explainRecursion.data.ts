@@ -5,6 +5,7 @@ export const explainRecursion_Skill_Data = defineSkill({
   id: '00025f01-ef21-4851-acc8-8c42c1aed040',
   name: {
     en: 'Explain Recursion',
+    it: 'Spiegare la ricorsione',
     zh: '解释递归',
     hi: 'पुनरावर्तन समझाना',
     es: 'Explicar la recursión',
@@ -39,6 +40,7 @@ export const explainRecursion_Skill_Data = defineSkill({
       'Trace a function that calls itself on a simpler case and identify the base condition that ends the calls. For example, computing a factorial involves both reducing the argument and terminating at the base case.',
     frontend: {
       en: 'Understand how a recursive function solves smaller cases and eventually stops.',
+      it: 'Comprendi come una funzione ricorsiva risolve casi più piccoli e alla fine termina.',
       zh: '理解递归函数如何解决更小的问题并最终停止。',
       hi: 'समझें कि पुनरावर्ती फलन छोटे मामलों को हल करके अंततः कैसे रुकता है।',
       es: 'Comprende cómo una función recursiva resuelve casos más pequeños y finalmente termina.',

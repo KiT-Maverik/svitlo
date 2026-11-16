@@ -5,6 +5,7 @@ export const distinguishOperatorsExpressionsAndStatements_Skill_Data = defineSki
   id: 'b544af6d-2d85-4f4a-ad3d-a41352ce10c6',
   name: {
     en: 'Distinguish Operators, Expressions, and Statements',
+    it: 'Distinguere operatori, espressioni e istruzioni',
     zh: '区分运算符、表达式与语句',
     hi: 'ऑपरेटर, व्यंजक और कथन में अंतर करना',
     es: 'Distinguir operadores, expresiones y sentencias',
@@ -39,6 +40,7 @@ export const distinguishOperatorsExpressionsAndStatements_Skill_Data = defineSki
       'Explain that an operator acts on operands, an expression produces a value, and a statement directs an action; one line of code may contain several such units.',
     frontend: {
       en: 'Recognize the difference between operators, expressions and statements.',
+      it: 'Riconosci la differenza tra operatori, espressioni e istruzioni.',
       zh: '识别运算符、表达式和语句之间的区别。',
       hi: 'ऑपरेटर, व्यंजक और कथनों के बीच का अंतर पहचानें।',
       es: 'Reconoce la diferencia entre operadores, expresiones y sentencias.',

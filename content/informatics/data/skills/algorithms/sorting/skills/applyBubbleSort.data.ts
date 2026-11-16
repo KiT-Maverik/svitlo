@@ -5,6 +5,7 @@ export const applyBubbleSort_Skill_Data = defineSkill({
   id: '8d93d23b-c641-4b73-8361-ede81e84e9d4',
   name: {
     en: 'Apply Bubble Sort',
+    it: "Applicare l'ordinamento a bolle",
     zh: '应用冒泡排序',
     hi: 'बबल सॉर्ट लागू करना',
     es: 'Aplicar ordenación de burbuja',
@@ -39,6 +40,7 @@ export const applyBubbleSort_Skill_Data = defineSkill({
       'Compare adjacent elements and swap out-of-order pairs, repeating passes until the entire collection is correctly sorted.',
     frontend: {
       en: 'Sort by swapping neighboring values that are in the wrong order.',
+      it: "Ordina scambiando i valori adiacenti che si trovano nell'ordine sbagliato.",
       zh: '通过交换顺序错误的相邻元素来排序。',
       hi: 'गलत क्रम में मौजूद पड़ोसी मानों की अदला-बदली करके क्रमबद्ध करें।',
       es: 'Ordena intercambiando valores vecinos que estén en el orden incorrecto.',

@@ -5,6 +5,7 @@ export const builder_Skill_Data = defineSkill({
   id: '379ba3ad-4f90-4690-b78e-2a4ad112606a',
   name: {
     en: 'Builder',
+    it: 'Costruttore',
     zh: '建造者',
     hi: 'बिल्डर',
     es: 'Constructor',
@@ -39,6 +40,7 @@ export const builder_Skill_Data = defineSkill({
       'Construct a complex object step by step through a separate builder, with sequences of steps reusable for different results.',
     frontend: {
       en: 'Assemble a complex object one step at a time using a builder.',
+      it: 'Assembla un oggetto complesso un passaggio alla volta usando un costruttore dedicato.',
       zh: '使用建造者逐步组装复杂对象。',
       hi: 'बिल्डर की सहायता से जटिल ऑब्जेक्ट को चरण-दर-चरण तैयार करें।',
       es: 'Ensambla un objeto complejo paso a paso mediante un constructor.',

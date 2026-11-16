@@ -5,6 +5,7 @@ export const debugRobotBehavior_Skill_Data = defineSkill({
   id: 'f63b004b-94f5-4422-9275-af6f6ba4263e',
   name: {
     en: 'Debug Robot Behavior',
+    it: 'Eseguire il debug del comportamento di un robot',
     zh: '调试机器人行为',
     hi: 'रोबोट के व्यवहार में त्रुटि सुधारना',
     es: 'Depurar el comportamiento de un robot',
@@ -39,6 +40,7 @@ export const debugRobotBehavior_Skill_Data = defineSkill({
       'Determine whether a navigation or response error arises from a sensor reading, controller condition, or actuator command, and correct the appropriate rule. Debugging requires comparing expected and observed actions.',
     frontend: {
       en: "Find whether a robot's unexpected behavior comes from sensing, logic or action.",
+      it: 'Determina se un comportamento inatteso del robot dipende da sensori, logica o azioni.',
       zh: '查明机器人异常行为是源于感知、控制逻辑还是执行动作。',
       hi: 'पता करें कि रोबोट का अनपेक्षित व्यवहार सेंसर, नियंत्रण तर्क या क्रिया से आया है।',
       es: 'Averigua si una conducta inesperada se debe a la detección, la lógica o la acción.',

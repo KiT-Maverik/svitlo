@@ -5,6 +5,7 @@ export const detectIncorrectProgramBehavior_Skill_Data = defineSkill({
   id: '33da9c77-a33b-40f4-a2c5-c458623184b3',
   name: {
     en: 'Detect Incorrect Program Behavior',
+    it: 'Rilevare un comportamento errato del programma',
     zh: '发现程序行为错误',
     hi: 'प्रोग्राम का गलत व्यवहार पहचानना',
     es: 'Detectar un comportamiento incorrecto del programa',
@@ -39,6 +40,7 @@ export const detectIncorrectProgramBehavior_Skill_Data = defineSkill({
       'Compare actual results or responses with requirements and identify a specific deviation such as a wrong value, missing response, or crash. An incorrect result need not be a runtime error; finding its root cause is a separate skill.',
     frontend: {
       en: "Recognize when a program's behavior differs from its requirements.",
+      it: 'Riconosci quando il comportamento di un programma differisce dai requisiti.',
       zh: '识别程序行为与要求不一致的情况。',
       hi: 'पहचानें कि प्रोग्राम का व्यवहार आवश्यकताओं से कब अलग है।',
       es: 'Reconoce cuándo el comportamiento de un programa no cumple sus requisitos.',

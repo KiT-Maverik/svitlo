@@ -5,6 +5,7 @@ export const memento_Skill_Data = defineSkill({
   id: '4b1f7c11-8b1b-4995-823a-d960d2b16bfb',
   name: {
     en: 'Memento',
+    it: 'Memento',
     zh: '备忘录模式',
     hi: 'मेमेंटो',
     es: 'Memento',
@@ -39,6 +40,7 @@ export const memento_Skill_Data = defineSkill({
       "Save an external snapshot that allows restoring an object's state without revealing its internal implementation.",
     frontend: {
       en: "Save an object's state so it can later be restored.",
+      it: 'Salva lo stato di un oggetto in modo da poterlo ripristinare successivamente.',
       zh: '保存对象的状态，以便以后恢复。',
       hi: 'ऑब्जेक्ट की अवस्था सहेजें ताकि बाद में उसे वापस लाया जा सके।',
       es: 'Guarda el estado de un objeto para poder restaurarlo después.',

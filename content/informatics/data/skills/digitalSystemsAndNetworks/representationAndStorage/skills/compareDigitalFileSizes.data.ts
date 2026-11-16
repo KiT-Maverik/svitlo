@@ -5,6 +5,7 @@ export const compareDigitalFileSizes_Skill_Data = defineSkill({
   id: '0b0ba4f0-7029-4d74-b68b-7943a3ecaf88',
   name: {
     en: 'Compare Digital File Sizes',
+    it: 'Confrontare le dimensioni dei file digitali',
     zh: '比较数字文件大小',
     hi: 'डिजिटल फ़ाइलों के आकार की तुलना करना',
     es: 'Comparar tamaños de archivos digitales',
@@ -39,6 +40,7 @@ export const compareDigitalFileSizes_Skill_Data = defineSkill({
       'Relate stored byte counts to file sizes, compare measurement units correctly, and explain why visually similar materials may differ in size because of format or compression.',
     frontend: {
       en: 'Compare file sizes and explain why format and compression make a difference.',
+      it: 'Confronta le dimensioni dei file e spiega perché il formato e la compressione fanno la differenza.',
       zh: '比较文件大小，并解释格式和压缩方式为何产生影响。',
       hi: 'फ़ाइल आकारों की तुलना करें और समझाएँ कि फ़ॉर्मैट व संपीड़न से अंतर क्यों पड़ता है।',
       es: 'Compara tamaños de archivos y explica cómo influyen el formato y la compresión.',

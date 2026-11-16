@@ -5,6 +5,7 @@ export const explainNetworkMessageDelivery_Skill_Data = defineSkill({
   id: '8c0afe9a-0d97-4afc-a89e-e8ea8f002cbb',
   name: {
     en: 'Explain Network Message Delivery',
+    it: 'Spiegare la consegna dei messaggi di rete',
     zh: '解释网络消息的传送',
     hi: 'नेटवर्क संदेश पहुँचाना समझाना',
     es: 'Explicar la entrega de mensajes en una red',
@@ -39,6 +40,7 @@ export const explainNetworkMessageDelivery_Skill_Data = defineSkill({
       'Model a data path from a sender through intermediary network nodes to the recipient; separate destination addressing and transport from message content. Delivery need not occur over one direct physical cable.',
     frontend: {
       en: 'Trace how messages travel through network devices to their destination.',
+      it: 'Ricostruisci come i messaggi attraversano i dispositivi di rete fino alla destinazione.',
       zh: '跟踪消息如何经过网络设备到达目的地。',
       hi: 'देखें कि संदेश नेटवर्क उपकरणों से होकर गंतव्य तक कैसे पहुँचते हैं।',
       es: 'Sigue cómo los mensajes atraviesan dispositivos de red hasta llegar a su destino.',

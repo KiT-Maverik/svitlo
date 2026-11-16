@@ -5,6 +5,7 @@ export const predictAnOutcomeFromARule_Skill_Data = defineSkill({
   id: '47f930b4-e3a8-47a0-b9e1-f971c9c1893a',
   name: {
     en: 'Predict an Outcome from a Rule',
+    it: 'Prevedere un risultato a partire da una regola',
     zh: '根据规则预测结果',
     hi: 'नियम से परिणाम का अनुमान लगाना',
     es: 'Predecir un resultado a partir de una regla',
@@ -39,6 +40,7 @@ export const predictAnOutcomeFromARule_Skill_Data = defineSkill({
       'Derive the next state or value from an explicit rule and initial conditions, such as one transition of a finite-state machine. Unlike statistical forecasting, the rule determines the outcome here.',
     frontend: {
       en: 'Work out what happens next when a rule and starting state are known.',
+      it: 'Determina che cosa succede dopo quando conosci una regola e lo stato iniziale.',
       zh: '在已知规则和初始状态时，推断下一步会发生什么。',
       hi: 'नियम और प्रारंभिक स्थिति ज्ञात होने पर पता लगाएँ कि आगे क्या होगा।',
       es: 'Deduce qué sucede después cuando se conocen una regla y un estado inicial.',

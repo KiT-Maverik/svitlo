@@ -5,6 +5,7 @@ export const explainANetworkProtocol_Skill_Data = defineSkill({
   id: '17c3abed-83d1-436d-b85d-cce1acacf947',
   name: {
     en: 'Explain a Network Protocol',
+    it: 'Spiegare un protocollo di rete',
     zh: '解释网络协议',
     hi: 'नेटवर्क प्रोटोकॉल समझाना',
     es: 'Explicar un protocolo de red',
@@ -39,6 +40,7 @@ export const explainANetworkProtocol_Skill_Data = defineSkill({
       'A protocol specifies message formats and rules that enable devices to exchange information correctly.',
     frontend: {
       en: 'Explain why devices need agreed rules for exchanging messages.',
+      it: 'Spiega perché i dispositivi devono concordare regole comuni per scambiarsi messaggi.',
       zh: '解释设备为何需要共同约定的规则来交换消息。',
       hi: 'समझाएँ कि संदेशों का आदान-प्रदान करने के लिए उपकरणों को तय नियमों की आवश्यकता क्यों होती है।',
       es: 'Explica por qué los dispositivos necesitan reglas acordadas para intercambiar mensajes.',

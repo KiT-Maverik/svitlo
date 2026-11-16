@@ -5,6 +5,7 @@ export const explainRAM_Skill_Data = defineSkill({
   id: '8ba809d1-b245-4088-b7c4-c4294bd8f805',
   name: {
     en: 'Explain RAM',
+    it: 'Spiegare la RAM',
     zh: '解释随机存取存储器（RAM）',
     hi: 'RAM समझाना',
     es: 'Explicar la RAM',
@@ -39,6 +40,7 @@ export const explainRAM_Skill_Data = defineSkill({
       'RAM holds working instructions and data for fast access during execution; its contents are usually lost when power is removed.',
     frontend: {
       en: 'Explore how RAM holds working information while a computer runs.',
+      it: 'Esplora come la RAM conserva le informazioni di lavoro mentre un computer è in funzione.',
       zh: '探索计算机运行时RAM如何保存正在使用的信息。',
       hi: 'जानें कि कंप्यूटर चलते समय RAM काम में आने वाली जानकारी कैसे रखती है।',
       es: 'Descubre cómo la RAM guarda la información de trabajo mientras funciona una computadora.',

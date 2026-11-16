@@ -5,6 +5,7 @@ export const explainEventProbability_Skill_Data = defineSkill({
   id: 'ab964120-109e-44f8-8af2-9404aa3cebdb',
   name: {
     en: 'Explain Event Probability',
+    it: 'Spiegare la probabilità di un evento',
     zh: '解释事件的概率',
     hi: 'घटना की प्रायिकता समझाना',
     es: 'Explicar la probabilidad de un suceso',
@@ -39,6 +40,7 @@ export const explainEventProbability_Skill_Data = defineSkill({
       "Estimate or interpret an event's chance using the model and its assumptions, including whether outcomes are equally likely. If a prize is equally likely to occupy any of 100 hiding places, a random first guess has a 1% chance of success.",
     frontend: {
       en: 'Estimate the chance of an event using a stated probability model.',
+      it: 'Stima la probabilità di un evento utilizzando un modello probabilistico dichiarato.',
       zh: '依据明确的概率模型估计事件发生的机会。',
       hi: 'स्पष्ट प्रायिकता मॉडल से घटना का अवसर अनुमानित करें।',
       es: 'Estima la probabilidad de un suceso según un modelo probabilístico declarado.',

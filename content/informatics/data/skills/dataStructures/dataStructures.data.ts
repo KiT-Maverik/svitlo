@@ -14,6 +14,7 @@ export const dataStructures_SkillDomain_Data = defineSkillDomain({
   id: '5babb94d-b2d6-45b8-9ccf-c81e976de325',
   title: {
     en: 'Data Structures',
+    it: 'Strutture dati',
     zh: '数据结构',
     hi: 'डेटा संरचनाएँ',
     es: 'Estructuras de datos',
@@ -61,6 +62,7 @@ export const dataStructures_SkillDomain_Data = defineSkillDomain({
       'Organization of values in sequences, stacks, queues, dictionaries, sets, trees, and graphs, including access, modification, and selection of appropriate structures. A structure is not an algorithm for processing it.',
     frontend: {
       en: 'Learn how collections, keys, trees and networks organize data for different operations.',
+      it: 'Scopri come collezioni, chiavi, alberi e reti organizzano i dati per operazioni diverse.',
       zh: '了解集合、键、树和网络如何组织数据，以便执行不同的操作。',
       hi: 'जानें कि संग्रह, कुंजियाँ, वृक्ष और नेटवर्क अलग-अलग कार्यों के लिए डेटा को कैसे व्यवस्थित करते हैं।',
       es: 'Aprende cómo las colecciones, las claves, los árboles y las redes organizan los datos para distintas operaciones.',

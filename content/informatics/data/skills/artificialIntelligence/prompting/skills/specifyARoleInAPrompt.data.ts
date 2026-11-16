@@ -5,6 +5,7 @@ export const specifyARoleInAPrompt_Skill_Data = defineSkill({
   id: '2c8f162e-6d4e-4967-82e1-f7317c339d86',
   name: {
     en: 'Specify a Role in a Prompt',
+    it: 'Specificare un ruolo in un prompt',
     zh: '在提示词中指定角色',
     hi: 'प्रॉम्प्ट में भूमिका तय करना',
     es: 'Especificar un rol en un prompt',
@@ -39,6 +40,7 @@ export const specifyARoleInAPrompt_Skill_Data = defineSkill({
       'State a desired subject-matter role or response style without treating the declared role as evidence of actual professional experience.',
     frontend: {
       en: 'Set a useful perspective or style without mistaking it for real expertise.',
+      it: 'Definisci una prospettiva o uno stile utile senza confonderlo con una competenza reale.',
       zh: '设定有用的视角或表达风格，但不要误以为这代表真实的专业能力。',
       hi: 'उपयोगी दृष्टिकोण या शैली बताएँ, पर उसे वास्तविक विशेषज्ञता का प्रमाण न मानें।',
       es: 'Indica una perspectiva o estilo útil sin confundirlo con experiencia profesional real.',

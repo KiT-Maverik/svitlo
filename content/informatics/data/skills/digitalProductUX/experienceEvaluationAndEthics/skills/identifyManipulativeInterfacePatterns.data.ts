@@ -5,6 +5,7 @@ export const identifyManipulativeInterfacePatterns_Skill_Data = defineSkill({
   id: '1b725956-d440-4b52-84b2-8c21fe590797',
   name: {
     en: 'Identify Manipulative Interface Patterns',
+    it: 'Individuare schemi manipolativi nelle interfacce',
     zh: '识别操纵性界面设计模式',
     hi: 'भ्रामक इंटरफ़ेस पैटर्न पहचानना',
     es: 'Identificar patrones manipuladores de interfaz',
@@ -39,6 +40,7 @@ export const identifyManipulativeInterfacePatterns_Skill_Data = defineSkill({
       'Recognize designs that covertly steer people toward unwanted choices, such as confusing cancellation, preselected add-ons, or deceptive button wording. Distinguish persuasive design from hidden restrictions on informed choice.',
     frontend: {
       en: 'Recognize interface tricks that hide costs, force choices or obstruct cancellation.',
+      it: "Riconosci i trucchi delle interfacce che nascondono costi, impongono scelte o ostacolano l'annullamento.",
       zh: '识别隐藏费用、强迫选择或阻碍取消操作的界面套路。',
       hi: 'छिपी कीमतों, जबरन विकल्पों या रद्द करने में बाधा डालने वाली इंटरफ़ेस चालें पहचानें।',
       es: 'Reconoce trucos de interfaz que ocultan costes, fuerzan elecciones o dificultan cancelar.',

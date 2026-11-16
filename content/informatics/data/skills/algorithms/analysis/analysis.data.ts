@@ -11,6 +11,7 @@ export const analysis_SkillGroup_Data = defineSkillGroup({
   id: 'bc6b726f-667c-4681-a3d8-4fc2bc81e2d0',
   name: {
     en: 'Analysis',
+    it: 'Analisi',
     zh: '算法分析',
     hi: 'एल्गोरिदम विश्लेषण',
     es: 'Análisis',
@@ -53,6 +54,7 @@ export const analysis_SkillGroup_Data = defineSkillGroup({
       'Compare procedures using worst-case operation bounds, time growth classes, and memory costs. These are cross-cutting ways to assess algorithms, not additional algorithms themselves.',
     frontend: {
       en: "Explore how time and memory needs change with an algorithm's input.",
+      it: 'Esplora come il tempo e la memoria necessari cambiano in base ai dati in ingresso di un algoritmo.',
       zh: '探索算法的时间和内存需求如何随着输入变化。',
       hi: 'जानें कि इनपुट बदलने पर एल्गोरिदम की समय और स्मृति जरूरतें कैसे बदलती हैं।',
       es: 'Explora cómo cambian las necesidades de tiempo y memoria de un algoritmo según su entrada.',

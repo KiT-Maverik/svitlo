@@ -5,6 +5,7 @@ export const designASimpleDatabaseSchema_Skill_Data = defineSkill({
   id: 'be337a54-262a-4bf5-a9ad-54fffb8247b3',
   name: {
     en: 'Design a Simple Database Schema',
+    it: 'Progettare uno schema semplice di database',
     zh: '设计简单的数据库模式',
     hi: 'सरल डेटाबेस स्कीमा तैयार करना',
     es: 'Diseñar un esquema de base de datos sencillo',
@@ -39,6 +40,7 @@ export const designASimpleDatabaseSchema_Skill_Data = defineSkill({
       'Independently identify entities, fields, keys, and required relationships for a task without needlessly duplicating facts. For example, model books and loans separately for a library; this designs a coherent schema rather than describing an existing table.',
     frontend: {
       en: 'Plan a simple database with suitable entities, fields and links.',
+      it: 'Progetta un database semplice con entità, campi e collegamenti adeguati.',
       zh: '规划包含适当实体、字段和关系的简单数据库。',
       hi: 'उपयुक्त एंटिटी, फ़ील्ड और संबंधों वाला सरल डेटाबेस तैयार करें।',
       es: 'Planifica una base de datos sencilla con entidades, campos y vínculos apropiados.',

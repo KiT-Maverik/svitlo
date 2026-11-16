@@ -11,6 +11,7 @@ export const algorithms_SkillDomain_Data = defineSkillDomain({
   id: 'da4ddcbb-6fe6-4dff-90ec-8363cfcda35d',
   title: {
     en: 'Algorithms',
+    it: 'Algoritmi',
     zh: '算法',
     hi: 'एल्गोरिदम',
     es: 'Algoritmos',
@@ -55,6 +56,7 @@ export const algorithms_SkillDomain_Data = defineSkillDomain({
       'Repeatable procedures for computational problems, organized by purpose: searching, sorting, collection processing, general construction, and analysis. Every named elementary algorithm has its own independent Skill; prerequisites and performance assessments may be separate skills within the same group. Concrete models can explain algorithms without imposing an age limit on the taxonomy.',
     frontend: {
       en: 'Explore how to design, apply and compare repeatable methods for solving problems.',
+      it: 'Esplora come progettare, applicare e confrontare metodi ripetibili per risolvere problemi.',
       zh: '探索如何设计、应用和比较可重复使用的问题解决方法。',
       hi: 'समस्याएँ हल करने के दोहराए जा सकने वाले तरीके बनाना, लागू करना और तुलना करना सीखें।',
       es: 'Explora cómo diseñar, aplicar y comparar métodos repetibles para resolver problemas.',

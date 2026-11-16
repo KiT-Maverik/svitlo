@@ -5,6 +5,7 @@ export const assessAnEmailSendersAuthenticity_Skill_Data = defineSkill({
   id: '4bbfbe52-aecf-41ab-b745-9b3b94832c21',
   name: {
     en: "Assess an Email Sender's Authenticity",
+    it: "Valutare l'autenticità del mittente di un'email",
     zh: '评估电子邮件发件人的真实性',
     hi: 'ईमेल भेजने वाले की प्रामाणिकता जाँचना',
     es: 'Evaluar la autenticidad del remitente de un correo',
@@ -39,6 +40,7 @@ export const assessAnEmailSendersAuthenticity_Skill_Data = defineSkill({
       "Recognize that a sender's displayed name and image do not prove identity; check the address and an independent communication channel.",
     frontend: {
       en: "Check an email sender's identity beyond the displayed name or picture.",
+      it: "Verifica l'identità del mittente di un'email oltre il nome o l'immagine visualizzati.",
       zh: '核查发件人的身份，而不仅仅看显示名称或头像。',
       hi: 'दिखने वाले नाम या चित्र के अलावा प्रेषक की पहचान जाँचें।',
       es: 'Comprueba la identidad del remitente más allá del nombre o la imagen mostrados.',

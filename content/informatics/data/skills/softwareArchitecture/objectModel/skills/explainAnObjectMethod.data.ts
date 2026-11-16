@@ -5,6 +5,7 @@ export const explainAnObjectMethod_Skill_Data = defineSkill({
   id: 'd230cfc9-5e2d-4e31-8b24-0fe21d3c32df',
   name: {
     en: 'Explain an Object Method',
+    it: 'Spiegare un metodo di un oggetto',
     zh: '解释对象方法',
     hi: 'ऑब्जेक्ट की विधि समझाना',
     es: 'Explicar un método de objeto',
@@ -39,6 +40,7 @@ export const explainAnObjectMethod_Skill_Data = defineSkill({
       'Show how invoking an object operation reads or changes its state; a method definition does not mean the operation has already run.',
     frontend: {
       en: "Explain how calling a method can read or change an object's state.",
+      it: 'Spiega come chiamare un metodo può leggere o modificare lo stato di un oggetto.',
       zh: '说明调用方法如何读取或改变对象的状态。',
       hi: 'समझाएँ कि मेथड कॉल से ऑब्जेक्ट की अवस्था कैसे पढ़ी या बदली जा सकती है।',
       es: 'Explica cómo invocar un método permite leer o cambiar el estado de un objeto.',

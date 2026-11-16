@@ -5,6 +5,7 @@ export const explainTreeStructure_Skill_Data = defineSkill({
   id: 'cdf2054a-f756-4bd3-abf7-2b71c074ac88',
   name: {
     en: 'Explain Tree Structure',
+    it: 'Spiegare la struttura di un albero',
     zh: '解释树结构',
     hi: 'वृक्ष की संरचना समझाना',
     es: 'Explicar la estructura de un árbol',
@@ -39,6 +40,7 @@ export const explainTreeStructure_Skill_Data = defineSkill({
       'Identify roots, nodes, edges, and parent–child relationships within a hierarchy; trees need not be binary.',
     frontend: {
       en: 'Recognize roots, branches, nodes and connections in a tree.',
+      it: 'Riconosci radici, rami, nodi e collegamenti nella struttura ad albero.',
       zh: '识别树中的根、分支、节点以及它们之间的连接。',
       hi: 'वृक्ष की जड़, शाखाएँ, नोड और उनके संबंध पहचानें।',
       es: 'Reconoce la raíz, las ramas, los nodos y sus conexiones en un árbol.',

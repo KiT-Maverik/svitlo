@@ -5,6 +5,7 @@ export const chooseAModelForATask_Skill_Data = defineSkill({
   id: '424a062d-9f9b-4c98-a182-fd62eb82574f',
   name: {
     en: 'Choose a Model for a Task',
+    it: 'Scegliere un modello per un compito',
     zh: '为任务选择模型',
     hi: 'किसी कार्य के लिए मॉडल चुनना',
     es: 'Elegir un modelo para una tarea',
@@ -39,6 +40,7 @@ export const chooseAModelForATask_Skill_Data = defineSkill({
       'Weigh independent constraints for a scenario—accuracy, latency, available memory, cost, and privacy—and justify the selection. No single model is best on every criterion simultaneously.',
     frontend: {
       en: 'Choose a model based on task quality, speed, cost, privacy and available memory.',
+      it: 'Scegli un modello in base alla qualità sul compito, alla velocità, ai costi, alla privacy e alla memoria disponibile.',
       zh: '根据任务质量、速度、成本、隐私和可用内存选择合适模型。',
       hi: 'कार्य की गुणवत्ता, गति, लागत, गोपनीयता और उपलब्ध मेमोरी के आधार पर मॉडल चुनें।',
       es: 'Elige un modelo según calidad, velocidad, costo, privacidad y memoria disponible.',

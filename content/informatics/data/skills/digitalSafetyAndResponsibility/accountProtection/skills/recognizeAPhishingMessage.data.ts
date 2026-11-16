@@ -5,6 +5,7 @@ export const recognizeAPhishingMessage_Skill_Data = defineSkill({
   id: '488abc6b-a03e-4127-9457-974181354a79',
   name: {
     en: 'Recognize a Phishing Message',
+    it: 'Riconoscere un messaggio di phishing',
     zh: '识别网络钓鱼信息',
     hi: 'फ़िशिंग संदेश पहचानना',
     es: 'Reconocer un mensaje de phishing',
@@ -39,6 +40,7 @@ export const recognizeAPhishingMessage_Skill_Data = defineSkill({
       'Identify attempts to elicit passwords, confirmation codes, or secrets through impersonation, urgency, threats, or fake forms. This examines intent and social-engineering tactics; technical domain checks and safe responses are separate skills.',
     frontend: {
       en: 'Recognize messages that impersonate others to steal passwords or codes.',
+      it: 'Riconosci i messaggi che si spacciano per altri per rubare password o codici.',
       zh: '识别冒充他人以窃取密码或验证码的消息。',
       hi: 'ऐसे संदेश पहचानें जो किसी और का रूप धरकर पासवर्ड या कोड चुराना चाहते हैं।',
       es: 'Detecta mensajes que suplantan a otros para robar contraseñas o códigos.',

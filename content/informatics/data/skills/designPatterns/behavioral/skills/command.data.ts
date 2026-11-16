@@ -5,6 +5,7 @@ export const command_Skill_Data = defineSkill({
   id: '0eac5920-8305-49ab-82a9-af32a37f6203',
   name: {
     en: 'Command',
+    it: 'Comando',
     zh: '命令模式',
     hi: 'कमांड',
     es: 'Orden',
@@ -38,6 +39,7 @@ export const command_Skill_Data = defineSkill({
     methodological: 'Represent an action as a request object that can be stored, queued, or executed later.',
     frontend: {
       en: 'Represent an operation as an object that can be stored or scheduled.',
+      it: "Rappresenta un'operazione come un oggetto che può essere conservato o pianificato.",
       zh: '将操作表示为可以存储或安排执行的对象。',
       hi: 'किसी कार्य को ऐसे ऑब्जेक्ट के रूप में दिखाएं जिसे सहेजा या निर्धारित किया जा सके।',
       es: 'Representa una operación como objeto que se puede guardar o programar.',

@@ -5,6 +5,7 @@ export const explainTheTuringTest_Skill_Data = defineSkill({
   id: 'f2ecc296-cf43-45d6-827f-0375b4f93b64',
   name: {
     en: 'Explain the Turing Test',
+    it: 'Spiegare il test di Turing',
     zh: '解释图灵测试',
     hi: 'ट्यूरिंग परीक्षण समझाना',
     es: 'Explicar la prueba de Turing',
@@ -39,6 +40,7 @@ export const explainTheTuringTest_Skill_Data = defineSkill({
       "Explain Alan Turing's proposed approach to evaluating whether a machine can produce dialogue that a person cannot distinguish from human responses under test conditions. Successful imitation does not establish consciousness or comprehensive understanding.",
     frontend: {
       en: 'Understand what the Turing Test evaluates and what it cannot establish.',
+      it: 'Comprendi che cosa valuta il test di Turing e che cosa non può dimostrare.',
       zh: '理解图灵测试评估什么，以及它无法证明什么。',
       hi: 'समझें कि ट्यूरिंग परीक्षण क्या परखता है और क्या सिद्ध नहीं कर सकता।',
       es: 'Comprende qué evalúa la prueba de Turing y qué no puede demostrar.',

@@ -5,6 +5,7 @@ export const preventCommonDigitalInteractionErrors_Skill_Data = defineSkill({
   id: 'ea96960b-4471-421a-86b6-f15dcec63a3e',
   name: {
     en: 'Prevent Common Digital Interaction Errors',
+    it: 'Prevenire gli errori comuni nelle interazioni digitali',
     zh: '预防常见数字交互错误',
     hi: 'डिजिटल संवाद की आम गलतियाँ रोकना',
     es: 'Prevenir errores comunes de interacción digital',
@@ -39,6 +40,7 @@ export const preventCommonDigitalInteractionErrors_Skill_Data = defineSkill({
       'Identify actions that are easy to perform incorrectly and choose digital safeguards, such as clear labels, input validation, or confirmation before irreversible operations.',
     frontend: {
       en: 'Use labels, validation and confirmation to prevent avoidable mistakes.',
+      it: 'Usa etichette, convalide e conferme per evitare errori prevenibili.',
       zh: '通过标签、验证和确认步骤防止可避免的错误。',
       hi: 'लेबल, जाँच और पुष्टि के ज़रिए टाली जा सकने वाली गलतियाँ रोकें।',
       es: 'Usa etiquetas, validación y confirmación para prevenir errores evitables.',

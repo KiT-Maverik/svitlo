@@ -5,6 +5,7 @@ export const identifyAppropriateOnlineBehavior_Skill_Data = defineSkill({
   id: '1b98e383-dda7-467f-823c-d26d96551ac7',
   name: {
     en: 'Identify Appropriate Online Behavior',
+    it: 'Riconoscere comportamenti appropriati online',
     zh: '识别恰当的网络行为',
     hi: 'उचित ऑनलाइन व्यवहार पहचानना',
     es: 'Identificar conductas apropiadas en internet',
@@ -39,6 +40,7 @@ export const identifyAppropriateOnlineBehavior_Skill_Data = defineSkill({
       'Distinguish respectful communication from repeated humiliation, threats, and bullying. Disagreement alone is not cyberbullying, and anonymity does not make harmful messages acceptable.',
     frontend: {
       en: 'Recognize threats, harassment and bullying in digital communication.',
+      it: 'Riconosci minacce, molestie e bullismo nelle comunicazioni digitali.',
       zh: '识别数字交流中的威胁、骚扰和欺凌。',
       hi: 'डिजिटल बातचीत में धमकी, उत्पीड़न और बदमाशी पहचानें।',
       es: 'Reconoce amenazas, acoso e intimidación en la comunicación digital.',

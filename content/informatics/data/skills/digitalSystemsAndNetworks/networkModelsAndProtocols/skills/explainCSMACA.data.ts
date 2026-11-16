@@ -5,6 +5,7 @@ export const explainCSMACA_Skill_Data = defineSkill({
   id: '6525705d-4238-434e-bdec-11698781e0b6',
   name: {
     en: 'Explain CSMA/CA',
+    it: 'Spiegare CSMA/CA',
     zh: '解释 CSMA/CA',
     hi: 'CSMA/CA समझाना',
     es: 'Explicar CSMA/CA',
@@ -39,6 +40,7 @@ export const explainCSMACA_Skill_Data = defineSkill({
       'Describe why a wireless network checks whether a radio channel is busy and seeks to reduce collisions through waiting and agreed access rules; avoidance does not guarantee that collisions never occur.',
     frontend: {
       en: 'Explain how wireless devices try to avoid transmitting over a busy channel.',
+      it: 'Spiega come i dispositivi wireless cercano di evitare di trasmettere su un canale occupato.',
       zh: '解释无线设备如何尝试避免在繁忙信道上传输数据。',
       hi: 'समझाएँ कि वायरलेस उपकरण व्यस्त चैनल पर प्रसारण से कैसे बचने की कोशिश करते हैं।',
       es: 'Explica cómo los dispositivos inalámbricos intentan evitar transmitir por un canal ocupado.',

@@ -5,6 +5,7 @@ export const explainAnObjectProperty_Skill_Data = defineSkill({
   id: '7db2da96-a2a1-487f-81c6-ed150fed34dc',
   name: {
     en: 'Explain an Object Property',
+    it: 'Spiegare una proprietà di un oggetto',
     zh: '解释对象属性',
     hi: 'ऑब्जेक्ट गुण समझाना',
     es: 'Explicar una propiedad de objeto',
@@ -39,6 +40,7 @@ export const explainAnObjectProperty_Skill_Data = defineSkill({
       "Distinguish an attribute as a named state value from a method as an available action, such as a robot's coordinate versus its movement command.",
     frontend: {
       en: "Distinguish an object's stored property from the operations it can perform.",
+      it: 'Distingui una proprietà memorizzata di un oggetto dalle operazioni che può eseguire.',
       zh: '区分对象存储的属性与它能执行的操作。',
       hi: 'ऑब्जेक्ट के संग्रहीत गुण और उसके द्वारा किए जा सकने वाले कार्य में अंतर करें।',
       es: 'Distingue una propiedad almacenada de las operaciones que el objeto puede realizar.',

@@ -5,6 +5,7 @@ export const explainPositionalNumeralSystems_Skill_Data = defineSkill({
   id: 'e02a99c1-3a90-4c83-9411-55df84c217a3',
   name: {
     en: 'Explain Positional Numeral Systems',
+    it: 'Spiegare i sistemi di numerazione posizionali',
     zh: '解释位置记数法',
     hi: 'स्थानिक संख्या पद्धति समझाना',
     es: 'Explicar los sistemas de numeración posicional',
@@ -39,6 +40,7 @@ export const explainPositionalNumeralSystems_Skill_Data = defineSkill({
       'Explain that digit values depend on position and base, so `10` denotes different quantities in binary and decimal.',
     frontend: {
       en: 'Understand why the place of a digit changes its value in a number.',
+      it: 'Comprendi perché la posizione di una cifra cambia il suo valore in un numero.',
       zh: '理解为什么数字所处的位置会改变它在数中的数值。',
       hi: 'समझें कि अंक की जगह बदलने पर संख्या में उसका मान क्यों बदलता है।',
       es: 'Comprende por qué la posición de un dígito cambia su valor en un número.',

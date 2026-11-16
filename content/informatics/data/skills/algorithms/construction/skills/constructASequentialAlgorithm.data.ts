@@ -5,6 +5,7 @@ export const constructASequentialAlgorithm_Skill_Data = defineSkill({
   id: '1ab60caa-36e7-4cc8-9e2e-64f13352717c',
   name: {
     en: 'Construct a Sequential Algorithm',
+    it: 'Costruire un algoritmo sequenziale',
     zh: '构建顺序算法',
     hi: 'क्रमिक एल्गोरिदम बनाना',
     es: 'Construir un algoritmo secuencial',
@@ -39,6 +40,7 @@ export const constructASequentialAlgorithm_Skill_Data = defineSkill({
       'Specify a finite ordered sequence of actions in which each uses the state left by the preceding step, without branching. This is a logical solution description; coding the steps as executable instructions belongs to Programming.',
     frontend: {
       en: 'Describe a finite series of steps performed in the correct order.',
+      it: "Descrivi una sequenza finita di passaggi eseguiti nell'ordine corretto.",
       zh: '描述按正确顺序执行的一组有限步骤。',
       hi: 'सही क्रम में किए जाने वाले सीमित चरणों की शृंखला बताएँ।',
       es: 'Describe una serie finita de pasos realizados en el orden correcto.',

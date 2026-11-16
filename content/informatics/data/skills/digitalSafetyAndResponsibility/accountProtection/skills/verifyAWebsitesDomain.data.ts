@@ -5,6 +5,7 @@ export const verifyAWebsitesDomain_Skill_Data = defineSkill({
   id: '41659055-755a-46d0-ac1d-090c651e8f11',
   name: {
     en: "Verify a Website's Domain",
+    it: 'Verificare il dominio di un sito web',
     zh: '核实网站域名',
     hi: 'वेबसाइट का डोमेन जाँचना',
     es: 'Verificar el dominio de un sitio web',
@@ -39,6 +40,7 @@ export const verifyAWebsitesDomain_Skill_Data = defineSkill({
       'Determine the actual domain in a link, separating it from subdomains, paths, and button labels, and detect impersonation through minor spelling changes or lookalike characters. In `facebook.com.example.org` the domain is `example.org`; visual similarity or HTTPS does not prove that an operator is trustworthy.',
     frontend: {
       en: 'Read the real domain in a website address and spot misleading lookalikes.',
+      it: "Leggi il vero dominio nell'indirizzo di un sito e riconosci le imitazioni ingannevoli.",
       zh: '读出网址中的真实域名，并识别易混淆的仿冒地址。',
       hi: 'वेबसाइट के पते में असली डोमेन पढ़ें और मिलते-जुलते नकली पते पहचानें।',
       es: 'Lee el dominio real de una dirección web y detecta imitaciones engañosas.',

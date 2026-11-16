@@ -5,6 +5,7 @@ export const distinguishARealObjectFromItsAbstractModel_Skill_Data = defineSkill
   id: '23e942cf-c34d-4393-9c6e-80127191fd58',
   name: {
     en: 'Distinguish a Real Object from Its Abstract Model',
+    it: 'Distinguere un oggetto reale dal suo modello astratto',
     zh: '区分真实物体与其抽象模型',
     hi: 'वास्तविक वस्तु और उसके अमूर्त मॉडल में अंतर करना',
     es: 'Distinguir un objeto real de su modelo abstracto',
@@ -39,6 +40,7 @@ export const distinguishARealObjectFromItsAbstractModel_Skill_Data = defineSkill
       'Explain that a software object represents only selected characteristics of a thing or concept; a fictional entity can also have a useful object model.',
     frontend: {
       en: 'Recognize that a software model represents only selected features of something.',
+      it: 'Riconosci che un modello software rappresenta solo caratteristiche selezionate di qualcosa.',
       zh: '认识到软件模型只表示某事物被选定的特征。',
       hi: 'समझें कि सॉफ़्टवेयर मॉडल किसी चीज़ के चुने हुए पहलू ही दर्शाता है।',
       es: 'Reconoce que un modelo de software representa solo características seleccionadas de algo.',

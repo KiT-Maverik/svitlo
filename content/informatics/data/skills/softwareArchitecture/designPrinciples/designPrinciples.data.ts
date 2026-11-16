@@ -16,6 +16,7 @@ export const designPrinciples_SkillGroup_Data = defineSkillGroup({
   id: '6fa9da4d-1357-4877-b577-1f45443b58f6',
   name: {
     en: 'Design Principles',
+    it: 'Principi di progettazione',
     zh: '设计原则',
     hi: 'डिज़ाइन सिद्धांत',
     es: 'Principios de diseño',
@@ -72,6 +73,7 @@ export const designPrinciples_SkillGroup_Data = defineSkillGroup({
       'Quality criteria for software structure: limiting duplication and unnecessary complexity, separating responsibilities, enabling extension, and managing dependencies. Each principle addresses a different reason why a program may need to change.',
     frontend: {
       en: 'Learn principles for keeping software understandable and adaptable.',
+      it: 'Impara i principi per mantenere il software comprensibile e adattabile.',
       zh: '学习让软件易于理解和适应变化的原则。',
       hi: 'सॉफ़्टवेयर को समझने योग्य और अनुकूलनीय रखने के सिद्धांत सीखें।',
       es: 'Aprende principios para mantener el software comprensible y adaptable.',

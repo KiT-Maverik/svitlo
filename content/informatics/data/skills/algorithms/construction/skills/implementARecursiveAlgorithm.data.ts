@@ -5,6 +5,7 @@ export const implementARecursiveAlgorithm_Skill_Data = defineSkill({
   id: 'c98208a0-581d-4000-a9d4-a73b3dbb192a',
   name: {
     en: 'Implement a Recursive Algorithm',
+    it: 'Implementare un algoritmo ricorsivo',
     zh: '实现递归算法',
     hi: 'पुनरावर्ती एल्गोरिदम लागू करना',
     es: 'Implementar un algoritmo recursivo',
@@ -39,6 +40,7 @@ export const implementARecursiveAlgorithm_Skill_Data = defineSkill({
       'Independently construct a recursive solution with a valid base case and progressively smaller subproblems so calls terminate. Test boundary inputs; being able to explain existing recursion is not equivalent to designing an algorithm.',
     frontend: {
       en: 'Build a recursive algorithm with smaller subproblems and a terminating base case.',
+      it: 'Costruisci un algoritmo ricorsivo con sottoproblemi più piccoli e un caso base che termina.',
       zh: '构建能将问题缩小并通过基本情况结束的递归算法。',
       hi: 'ऐसा पुनरावर्ती एल्गोरिदम बनाएँ जो छोटी समस्याओं तक जाए और आधार स्थिति पर रुके।',
       es: 'Construye un algoritmo recursivo con subproblemas menores y un caso base que detenga la recursión.',

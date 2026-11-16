@@ -5,6 +5,7 @@ export const convertBetweenBinaryAndDecimal_Skill_Data = defineSkill({
   id: '01f66f87-337b-40b9-b193-b22da9dda836',
   name: {
     en: 'Convert Between Binary and Decimal',
+    it: 'Convertire tra binario e decimale',
     zh: '二进制与十进制互相转换',
     hi: 'द्विआधारी और दशमलव के बीच परिवर्तन करना',
     es: 'Convertir entre binario y decimal',
@@ -39,6 +40,7 @@ export const convertBetweenBinaryAndDecimal_Skill_Data = defineSkill({
       'Represent a small integer as a sum of powers of two and recover a value from its binary positions, distinguishing the notation from the number itself.',
     frontend: {
       en: 'Convert small numbers between binary and decimal notation.',
+      it: 'Converti numeri piccoli tra rappresentazione binaria e decimale.',
       zh: '在二进制和十进制记数法之间转换较小的数。',
       hi: 'छोटी संख्याओं को द्विआधारी और दशमलव रूपों में बदलें।',
       es: 'Convierte números pequeños entre notación binaria y decimal.',

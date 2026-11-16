@@ -5,6 +5,7 @@ export const distinguishWeightedAndUnweightedGraphs_Skill_Data = defineSkill({
   id: '6c7fba6b-cf2e-4189-af8a-71dbcb3319ad',
   name: {
     en: 'Distinguish Weighted and Unweighted Graphs',
+    it: 'Distinguere grafi pesati e non pesati',
     zh: '区分带权图和无权图',
     hi: 'भारित और अभारित ग्राफ़ में अंतर करना',
     es: 'Distinguir grafos ponderados y no ponderados',
@@ -39,6 +40,7 @@ export const distinguishWeightedAndUnweightedGraphs_Skill_Data = defineSkill({
       'Identify how numeric edge weights can represent time, distance, or cost rather than simply whether a link exists.',
     frontend: {
       en: 'Recognize when graph connections carry numbers such as distance or cost.',
+      it: 'Riconosci quando i collegamenti di un grafo hanno valori numerici come distanze o costi.',
       zh: '识别哪些图的连接带有距离或成本等数值。',
       hi: 'पहचानें कि किन ग्राफ़ के किनारों पर दूरी या लागत जैसी संख्याएँ होती हैं।',
       es: 'Reconoce cuándo las conexiones de un grafo tienen números como distancia o costo.',

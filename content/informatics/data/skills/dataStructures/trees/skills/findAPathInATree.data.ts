@@ -5,6 +5,7 @@ export const findAPathInATree_Skill_Data = defineSkill({
   id: '90e25d5f-4911-4c9b-ae07-5b0e4f469b5c',
   name: {
     en: 'Find a Path in a Tree',
+    it: 'Trovare un percorso in un albero',
     zh: '在树中寻找路径',
     hi: 'वृक्ष में पथ खोजना',
     es: 'Encontrar un camino en un árbol',
@@ -39,6 +40,7 @@ export const findAPathInATree_Skill_Data = defineSkill({
       'Identify the actual sequence of connected nodes between two positions without inventing nonexistent links.',
     frontend: {
       en: 'Follow the connected route between two nodes in a tree.',
+      it: 'Segui il percorso che collega due nodi di un albero.',
       zh: '沿着树中节点之间真实存在的连接寻找路径。',
       hi: 'वृक्ष के दो नोडों के बीच मौजूद जुड़ावों से होकर पथ खोजें।',
       es: 'Sigue las conexiones reales entre dos nodos de un árbol.',

@@ -5,6 +5,7 @@ export const applyBinarySearch_Skill_Data = defineSkill({
   id: 'eada55a2-1744-405b-843c-df5dda18f92f',
   name: {
     en: 'Apply Binary Search',
+    it: 'Applicare la ricerca binaria',
     zh: '应用二分查找',
     hi: 'द्विआधारी खोज लागू करना',
     es: 'Aplicar búsqueda binaria',
@@ -39,6 +40,7 @@ export const applyBinarySearch_Skill_Data = defineSkill({
       'Inspect the middle element of a sorted range, discard the half that cannot contain the target, and repeat until a match or an empty range.',
     frontend: {
       en: 'Find a value in sorted data by repeatedly discarding half the range.',
+      it: "Trova un valore in dati ordinati eliminando ripetutamente metà dell'intervallo.",
       zh: '通过反复排除排序数据的一半来查找目标值。',
       hi: 'क्रमबद्ध डेटा में बार-बार आधा हिस्सा हटाकर मान खोजें।',
       es: 'Encuentra un valor en datos ordenados descartando la mitad del rango repetidamente.',

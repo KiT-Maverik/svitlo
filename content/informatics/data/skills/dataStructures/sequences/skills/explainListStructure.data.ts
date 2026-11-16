@@ -5,6 +5,7 @@ export const explainListStructure_Skill_Data = defineSkill({
   id: '0e179570-6509-4fdc-bba0-bbf2e145f204',
   name: {
     en: 'Explain List Structure',
+    it: 'Spiegare la struttura di una lista',
     zh: '解释列表结构',
     hi: 'सूची की संरचना समझाना',
     es: 'Explicar la estructura de una lista',
@@ -39,6 +40,7 @@ export const explainListStructure_Skill_Data = defineSkill({
       'A list represents an ordered collection with element operations, regardless of whether its underlying representation uses an array or linked nodes.',
     frontend: {
       en: 'Recognize lists as ordered collections that can be represented in different ways.',
+      it: 'Riconosci le liste come collezioni ordinate che possono essere rappresentate in modi diversi.',
       zh: '认识列表是有序集合，可以用不同方式表示。',
       hi: 'समझें कि सूचियाँ क्रमबद्ध संग्रह हैं और उन्हें अलग-अलग तरीकों से दर्शाया जा सकता है।',
       es: 'Reconoce las listas como colecciones ordenadas que pueden representarse de distintas maneras.',

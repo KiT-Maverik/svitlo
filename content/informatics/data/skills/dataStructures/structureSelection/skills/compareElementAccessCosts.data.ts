@@ -5,6 +5,7 @@ export const compareElementAccessCosts_Skill_Data = defineSkill({
   id: '3167babf-d227-4f39-8f4a-6e0c7a61f533',
   name: {
     en: 'Compare Element Access Costs',
+    it: 'Confrontare i costi di accesso agli elementi',
     zh: '比较元素访问成本',
     hi: 'तत्व तक पहुँच की लागत की तुलना करना',
     es: 'Comparar costos de acceso a elementos',
@@ -39,6 +40,7 @@ export const compareElementAccessCosts_Skill_Data = defineSkill({
       'Compare typical direct access in an indexed array with traversal through a linked list to the desired node.',
     frontend: {
       en: 'Compare how quickly arrays and linked lists reach a particular element.',
+      it: 'Confronta la rapidità con cui array e liste concatenate raggiungono un determinato elemento.',
       zh: '比较数组和链表到达指定元素所需的时间。',
       hi: 'तुलना करें कि सरणी और लिंक्ड सूची किसी विशेष तत्व तक कितनी जल्दी पहुँचती हैं।',
       es: 'Compara la rapidez con la que arreglos y listas enlazadas llegan a un elemento.',

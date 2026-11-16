@@ -5,6 +5,7 @@ export const explainTheEliminationOfNetworkLoops_Skill_Data = defineSkill({
   id: '85118226-9961-4f8d-961e-f08abb3ae508',
   name: {
     en: 'Explain the Elimination of Network Loops',
+    it: "Spiegare l'eliminazione dei cicli di rete",
     zh: '解释网络环路的消除',
     hi: 'नेटवर्क लूप रोकना समझाना',
     es: 'Explicar la eliminación de bucles de red',
@@ -39,6 +40,7 @@ export const explainTheEliminationOfNetworkLoops_Skill_Data = defineSkill({
       "Use the history of local-area network bridges to explain how redundant physical links can create frame-forwarding loops and how Spanning Tree Protocol creates a loop-free logical topology. Credit Radia Perlman's contribution without mistaking STP for an IP routing algorithm.",
     frontend: {
       en: 'Explore how the Spanning Tree Protocol helped prevent loops in local networks.',
+      it: 'Esplora come il protocollo Spanning Tree ha aiutato a prevenire i cicli nelle reti locali.',
       zh: '探索生成树协议如何帮助防止局域网中的环路。',
       hi: 'जानें कि स्पैनिंग ट्री प्रोटोकॉल स्थानीय नेटवर्क में लूप को कैसे रोकता है।',
       es: 'Explora cómo el protocolo de árbol de expansión ayuda a evitar bucles en redes locales.',
