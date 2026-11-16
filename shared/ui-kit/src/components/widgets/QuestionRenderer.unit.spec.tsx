@@ -231,7 +231,7 @@ describe('Quiz Section presentation', () => {
 });
 
 describe('accessible Question labels', () => {
-  it('resolves an accessible media label for the selected content language', () => {
+  it('uses the already-localized accessible media label from runtime props', () => {
     const block = {
       id: uuid(101),
       slug: 'audioChoice',
@@ -241,11 +241,11 @@ describe('accessible Question labels', () => {
         fileLocation: '/recording.mp4',
         poster: '/poster.png',
         label: 'Recording',
-        title: { en: 'Recording', uk: 'Запис' },
+        title: 'Запис',
       },
     };
     expect(questionBlockLabel(block, 'uk')).toBe('Запис');
-    expect(() => questionBlockLabel(block, 'ar')).toThrow('Missing localized content at video.title for ar');
+    expect(questionBlockLabel(block, 'ar')).toBe('Запис');
   });
 
   it('rejects subtitles as question labels until a synchronized media renderer exists', () => {

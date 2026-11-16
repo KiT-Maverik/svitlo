@@ -7,6 +7,7 @@ export const testPolygonShapes_SkillGroup_Data = defineSkillGroup({
   id: '00000000-0000-4000-8000-000000000013',
   name: {
     en: '[TEST en] Polygon shapes',
+    it: '[TEST it] Forme poligonali',
     zh: '[TEST zh] Polygon shapes',
     hi: '[TEST hi] Polygon shapes',
     es: '[TEST es] Polygon shapes',
@@ -47,6 +48,7 @@ export const testPolygonShapes_SkillGroup_Data = defineSkillGroup({
     methodological: 'Synthetic Playground fixture for testPolygonShapes; testing only, not curricular content.',
     frontend: {
       en: '[TEST en] Synthetic testPolygonShapes fixture.',
+      it: '[TEST it] Fixture sintetica per testPolygonShapes.',
       zh: '[TEST zh] Synthetic testPolygonShapes fixture.',
       hi: '[TEST hi] Synthetic testPolygonShapes fixture.',
       es: '[TEST es] Synthetic testPolygonShapes fixture.',

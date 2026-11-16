@@ -8,6 +8,7 @@ export const testShapes_SkillDomain_Data = defineSkillDomain({
   id: '00000000-0000-4000-8000-000000000014',
   title: {
     en: '[TEST en] Shape recognition',
+    it: '[TEST it] Riconoscimento delle forme',
     zh: '[TEST zh] Shape recognition',
     hi: '[TEST hi] Shape recognition',
     es: '[TEST es] Shape recognition',
@@ -45,6 +46,7 @@ export const testShapes_SkillDomain_Data = defineSkillDomain({
     methodological: 'Synthetic Playground fixture for testShapes; testing only, not curricular content.',
     frontend: {
       en: '[TEST en] Synthetic testShapes fixture.',
+      it: '[TEST it] Fixture sintetica per testShapes.',
       zh: '[TEST zh] Synthetic testShapes fixture.',
       hi: '[TEST hi] Synthetic testShapes fixture.',
       es: '[TEST es] Synthetic testShapes fixture.',

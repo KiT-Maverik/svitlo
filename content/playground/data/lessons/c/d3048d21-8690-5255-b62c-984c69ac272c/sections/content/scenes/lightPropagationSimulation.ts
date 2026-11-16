@@ -260,6 +260,30 @@ const id: Locale = {
   },
 };
 
+const it: Locale = {
+  scene: {
+    title: 'Segui il percorso della luce',
+    description: 'Dalla sorgente allo schermo in linea retta.',
+    accessibleName: 'Animazione della luce che si propaga dalla sorgente allo schermo',
+  },
+  track: {
+    accessibleDescription:
+      'Un indicatore giallo si muove in linea retta dalla sorgente a sinistra allo schermo a destra.',
+    source: 'Sorgente luminosa',
+    screen: 'Schermo',
+  },
+  controls: {
+    play: 'Riproduci',
+    pause: 'Pausa',
+    speed: 'Velocità',
+    speedAccessibleName: "Velocità dell'animazione",
+    speedUnit: '×',
+  },
+  hints: {
+    scale: 'Modello semplificato: la velocità della luce non è rappresentata in scala.',
+  },
+};
+
 const ja: Locale = {
   scene: {
     title: '光の進む道をたどろう',
@@ -703,6 +727,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.scene.title,
           hi: hi.scene.title,
           id: id.scene.title,
+          it: it.scene.title,
           ja: ja.scene.title,
           ka: ka.scene.title,
           kk: kk.scene.title,
@@ -734,6 +759,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.scene.description,
           hi: hi.scene.description,
           id: id.scene.description,
+          it: it.scene.description,
           ja: ja.scene.description,
           ka: ka.scene.description,
           kk: kk.scene.description,
@@ -765,6 +791,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.scene.accessibleName,
           hi: hi.scene.accessibleName,
           id: id.scene.accessibleName,
+          it: it.scene.accessibleName,
           ja: ja.scene.accessibleName,
           ka: ka.scene.accessibleName,
           kk: kk.scene.accessibleName,
@@ -798,6 +825,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.track.accessibleDescription,
           hi: hi.track.accessibleDescription,
           id: id.track.accessibleDescription,
+          it: it.track.accessibleDescription,
           ja: ja.track.accessibleDescription,
           ka: ka.track.accessibleDescription,
           kk: kk.track.accessibleDescription,
@@ -829,6 +857,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.track.source,
           hi: hi.track.source,
           id: id.track.source,
+          it: it.track.source,
           ja: ja.track.source,
           ka: ka.track.source,
           kk: kk.track.source,
@@ -860,6 +889,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.track.screen,
           hi: hi.track.screen,
           id: id.track.screen,
+          it: it.track.screen,
           ja: ja.track.screen,
           ka: ka.track.screen,
           kk: kk.track.screen,
@@ -893,6 +923,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.controls.play,
           hi: hi.controls.play,
           id: id.controls.play,
+          it: it.controls.play,
           ja: ja.controls.play,
           ka: ka.controls.play,
           kk: kk.controls.play,
@@ -924,6 +955,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.controls.pause,
           hi: hi.controls.pause,
           id: id.controls.pause,
+          it: it.controls.pause,
           ja: ja.controls.pause,
           ka: ka.controls.pause,
           kk: kk.controls.pause,
@@ -955,6 +987,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.controls.speed,
           hi: hi.controls.speed,
           id: id.controls.speed,
+          it: it.controls.speed,
           ja: ja.controls.speed,
           ka: ka.controls.speed,
           kk: kk.controls.speed,
@@ -986,6 +1019,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.controls.speedAccessibleName,
           hi: hi.controls.speedAccessibleName,
           id: id.controls.speedAccessibleName,
+          it: it.controls.speedAccessibleName,
           ja: ja.controls.speedAccessibleName,
           ka: ka.controls.speedAccessibleName,
           kk: kk.controls.speedAccessibleName,
@@ -1017,6 +1051,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.controls.speedUnit,
           hi: hi.controls.speedUnit,
           id: id.controls.speedUnit,
+          it: it.controls.speedUnit,
           ja: ja.controls.speedUnit,
           ka: ka.controls.speedUnit,
           kk: kk.controls.speedUnit,
@@ -1050,6 +1085,7 @@ export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPro
           he: he.hints.scale,
           hi: hi.hints.scale,
           id: id.hints.scale,
+          it: it.hints.scale,
           ja: ja.hints.scale,
           ka: ka.hints.scale,
           kk: kk.hints.scale,

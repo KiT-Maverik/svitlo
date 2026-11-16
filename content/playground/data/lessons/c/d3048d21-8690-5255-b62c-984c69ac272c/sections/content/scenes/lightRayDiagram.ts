@@ -134,6 +134,18 @@ const id: Locale = {
   },
 };
 
+const it: Locale = {
+  scene: {
+    title: 'Segui il percorso della luce',
+    description: 'Dalla sorgente allo schermo in linea retta.',
+  },
+  labels: {
+    source: 'Sorgente luminosa',
+    direction: 'Direzione della luce',
+    screen: 'Schermo',
+  },
+};
+
 const ja: Locale = {
   scene: {
     title: '光の進む道をたどろう',
@@ -372,6 +384,7 @@ export const lightRayDiagram: ReturnType<typeof defineScene<'lightRayDiagram'>> 
           he: he.scene.title,
           hi: hi.scene.title,
           id: id.scene.title,
+          it: it.scene.title,
           ja: ja.scene.title,
           ka: ka.scene.title,
           kk: kk.scene.title,
@@ -403,6 +416,7 @@ export const lightRayDiagram: ReturnType<typeof defineScene<'lightRayDiagram'>> 
           he: he.scene.description,
           hi: hi.scene.description,
           id: id.scene.description,
+          it: it.scene.description,
           ja: ja.scene.description,
           ka: ka.scene.description,
           kk: kk.scene.description,
@@ -436,6 +450,7 @@ export const lightRayDiagram: ReturnType<typeof defineScene<'lightRayDiagram'>> 
           he: he.labels.source,
           hi: hi.labels.source,
           id: id.labels.source,
+          it: it.labels.source,
           ja: ja.labels.source,
           ka: ka.labels.source,
           kk: kk.labels.source,
@@ -467,6 +482,7 @@ export const lightRayDiagram: ReturnType<typeof defineScene<'lightRayDiagram'>> 
           he: he.labels.direction,
           hi: hi.labels.direction,
           id: id.labels.direction,
+          it: it.labels.direction,
           ja: ja.labels.direction,
           ka: ka.labels.direction,
           kk: kk.labels.direction,
@@ -498,6 +514,7 @@ export const lightRayDiagram: ReturnType<typeof defineScene<'lightRayDiagram'>> 
           he: he.labels.screen,
           hi: hi.labels.screen,
           id: id.labels.screen,
+          it: it.labels.screen,
           ja: ja.labels.screen,
           ka: ka.labels.screen,
           kk: kk.labels.screen,

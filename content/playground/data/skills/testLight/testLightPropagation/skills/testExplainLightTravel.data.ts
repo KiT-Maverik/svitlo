@@ -6,6 +6,7 @@ export const testExplainLightTravel_Skill_Data = defineSkill({
   slug: 'testExplainLightTravel',
   name: {
     en: '[TEST en] Explain how light travels',
+    it: '[TEST it] Spiegare come si propaga la luce',
     zh: '[TEST zh] Explain how light travels',
     hi: '[TEST hi] Explain how light travels',
     es: '[TEST es] Explain how light travels',
@@ -39,6 +40,7 @@ export const testExplainLightTravel_Skill_Data = defineSkill({
     methodological: 'Playground fixture for straight-line light propagation, light speeds in media, and shadows.',
     frontend: {
       en: '[TEST en] Explain straight-line light propagation and shadows.',
+      it: '[TEST it] Spiegare la propagazione rettilinea della luce e la formazione delle ombre.',
       zh: '[TEST zh] Explain straight-line light propagation and shadows.',
       hi: '[TEST hi] Explain straight-line light propagation and shadows.',
       es: '[TEST es] Explain straight-line light propagation and shadows.',

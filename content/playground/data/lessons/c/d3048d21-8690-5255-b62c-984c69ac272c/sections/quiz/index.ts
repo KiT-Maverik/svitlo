@@ -7,6 +7,7 @@ const title = {
   bn: 'কুইজ',
   de: 'Quiz',
   en: 'Quiz',
+  it: 'Quiz',
   es: 'Cuestionario',
   et: 'Test',
   fr: 'Quiz',
