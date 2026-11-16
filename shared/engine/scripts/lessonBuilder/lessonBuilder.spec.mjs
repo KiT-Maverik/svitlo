@@ -52,7 +52,7 @@ function lessonConfig() {
                 slug: 'first',
                 type: 'image',
                 params: { fill: true, aspectRatio: 1.5 },
-                locale: { fileName: { uk: '550e8400-e29b-41d4-a716-446655440050.svg', en: '550e8400-e29b-41d4-a716-446655440051.svg' }, alt: { uk: 'Опис' } },
+                locale: { alt: { uk: 'Опис' } },
               },
             }),
           },
@@ -198,7 +198,6 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
 test('Carousel Image and Scene children are independently scaffolded below their authored slugs', () =>
   fixture(f => {
     const slides = f.config.section.items.intro.content.items.gallery.slides;
-    slides.items.first.locale.fileName = { uk: '550e8400-e29b-41d4-a716-446655440052.svg', en: 'https://example.org/external-image.svg' };
     slides.items.first.__production = { prompt: 'Draw a picture showing equal groups' };
     slides.items.activity = {
       id: id(91),
@@ -215,7 +214,8 @@ test('Carousel Image and Scene children are independently scaffolded below their
     const scene = fs.readFileSync(f.generated('sections/intro/gallery/activity/index.ts'), 'utf8');
     const carousel = fs.readFileSync(f.generated('sections/intro/gallery/index.ts'), 'utf8');
     assert.match(image, /defineImage<"first", LessonLanguages>/);
-    assert.match(image, /fileName: \{\s*uk: "550e8400\-e29b\-41d4\-a716\-446655440052.svg"/);
+    assert.match(image, /fileName: "00000000-0000-0000-0000-000000000000.webp"/);
+    assert.match(image, /TODO\(asset\)/);
     assert.doesNotMatch(image, /Not a translation/);
     assert.match(scene, /defineScene<"activity", LessonLanguages>/);
     assert.match(scene, /Обери групу/);
@@ -231,34 +231,41 @@ test('Carousel Image and Scene children are independently scaffolded below their
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
 
-test('pending YAML media null emits a stable Nil UUID and TODO(asset) without changing YAML', () =>
+test('omitted media fields create deterministic TODO(asset) placeholders without changing YAML', () =>
   fixture(f => {
-    const media = f.config.section.items.intro.content.items;
-    media.gallery.slides.items.first.locale.fileName = { uk: null, en: '550e8400-e29b-41d4-a716-446655440051.svg' };
-    media.sound = { id: id(80), slug: 'sound', type: 'audio', params: {},
-      locale: { fileName: null, title: { uk: 'Аудіо' } } };
-    media.movie = { id: id(81), slug: 'movie', type: 'video', params: {},
-      locale: { fileName: null, posterFileName: null, label: { uk: 'Відео' } } };
-    media.captions = { id: id(82), slug: 'captions', type: 'subtitles', params: {},
-      locale: { fileName: { uk: null } } };
-    media.order.push('sound', 'movie', 'captions');
+    const items = f.config.section.items.intro.content.items;
+    items.sound = { id: id(80), slug: 'sound', type: 'audio', params: {},
+      locale: { title: { uk: 'Аудіо' } } };
+    items.movie = { id: id(81), slug: 'movie', type: 'video', params: {},
+      locale: { label: { uk: 'Відео' } } };
+    items.captions = { id: id(82), slug: 'captions', type: 'subtitles', params: {}, locale: {} };
+    f.config.section.items.intro.content.order.push('sound', 'movie', 'captions');
     f.save();
     const before = fs.readFileSync(f.generated('lesson.yaml'), 'utf8');
+    assert(!before.includes('fileName:') && !before.includes('posterFileName:'));
     runOne(f.lesson, 'generate', f.root);
-    const modules = [
+    const files = [
       'sections/intro/gallery/first/index.ts',
       'sections/intro/sound/index.ts',
       'sections/intro/movie/index.ts',
       'sections/intro/captions/index.ts',
     ].map(name => fs.readFileSync(f.generated(name), 'utf8'));
-    for (const [index, ext] of ['webp', 'mp3', 'mp4', 'vtt'].entries()) {
-      assert.match(modules[index], new RegExp('00000000-0000-0000-0000-000000000000\\\\.' + ext));
-      assert.match(modules[index], /TODO\\(asset\\)/);
+    for (const [i, ext] of ['webp', 'mp3', 'mp4', 'vtt'].entries()) {
+      assert(files[i].includes('fileName: "00000000-0000-0000-0000-000000000000.' + ext + '"'));
+      assert.match(files[i], /TODO\(asset\)/);
     }
-    assert.match(modules[2], /posterFileName: "00000000-0000-0000-0000-000000000000.webp"/);
+    assert(files[2].includes('posterFileName: "00000000-0000-0000-0000-000000000000.webp"'));
     assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), before);
     assertTypeScriptSyntax(readAll(f.lesson));
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+  }));
+
+test('Lesson Builder refuses YAML-only media fields even when they are null', () =>
+  fixture(f => {
+    f.config.section.items.intro.content.items.gallery.slides.items.first.locale.fileName = null;
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /belongs in generated TypeScript, not technical YAML/);
+    assert.equal(fs.existsSync(f.generated('index.ts')), false);
   }));
 
 test('Carousel draft rejects unsupported children without writing anything', () =>
@@ -525,7 +532,7 @@ test('co-locates Scene/media production handoffs with their slug modules', () =>
       id: imageId,
       slug: 'visualImage',
       type: 'image',
-      locale: { fileName: '550e8400-e29b-41d4-a716-446655440053.webp' },
+      locale: {},
       __production: { purpose: 'Show equality', prompt: 'Two groups of counters.' },
     };
     f.save();
@@ -539,60 +546,39 @@ test('co-locates Scene/media production handoffs with their slug modules', () =>
     assert(!fs.existsSync(path.join(f.workspace, 'data/assets', imageId.at(-1), imageId, 'specification.md')));
     const imageModule = fs.readFileSync(f.generated('sections/intro/visualImage/index.ts'), 'utf8');
     assert.match(imageModule, /import \{ defineImage \} from '@svitlo\/engine\/build'/);
-    assert.match(imageModule, /fileName: "550e8400-e29b-41d4-a716-446655440053.webp"/);
+    assert.match(imageModule, /fileName: "00000000-0000-0000-0000-000000000000.webp"/);
     assert.match(fs.readFileSync(f.generated('methodology.md'), 'utf8'), /Lesson method/);
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
   }));
 
-test('local video, poster, subtitles and localized images preserve UUID filename references', () =>
+test('all media kinds and Video posters receive statically generated placeholders', () =>
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
-    items.videoExplanation = {
-      id: id(81),
-      slug: 'videoExplanation',
-      type: 'video',
-      params: {},
-      locale: {
-        fileName: { uk: '550e8400-e29b-41d4-a716-446655440054.mp4', en: 'https://example.org/external/video.mp4' },
-        posterFileName: '550e8400-e29b-41d4-a716-446655440055.webp',
-        label: { uk: 'Відеопояснення' },
-      },
-      __production: { purpose: 'Visual guidance', script: 'Two groups' },
-    };
-    items.localAudio = {
-      id: id(82),
-      slug: 'localAudio',
-      type: 'audio',
-      params: {},
-      locale: { fileName: '550e8400-e29b-41d4-a716-446655440056.mp3', title: { uk: 'Звук' } },
-    };
-    items.localCaptions = {
-      id: id(83),
-      slug: 'localCaptions',
-      type: 'subtitles',
-      params: {},
-      locale: { fileName: { uk: '550e8400-e29b-41d4-a716-446655440057.vtt' } },
-    };
-    items.localPicture = {
-      id: id(84),
-      slug: 'localPicture',
-      type: 'image',
-      params: { fill: true, aspectRatio: 1.5 },
-      locale: { fileName: { uk: '550e8400-e29b-41d4-a716-446655440058.svg', en: 'https://example.org/external/picture.svg' }, alt: { uk: 'Картинка' } },
-    };
+    items.videoExplanation = { id: id(81), slug: 'videoExplanation', type: 'video', params: {},
+      locale: { label: { uk: 'Відеопояснення' } },
+      __production: { purpose: 'Visual guidance', script: 'Two groups' } };
+    items.localAudio = { id: id(82), slug: 'localAudio', type: 'audio', params: {},
+      locale: { title: { uk: 'Звук' } } };
+    items.localCaptions = { id: id(83), slug: 'localCaptions', type: 'subtitles', params: {}, locale: {} };
+    items.localPicture = { id: id(84), slug: 'localPicture', type: 'image',
+      params: { fill: true, aspectRatio: 1.5 }, locale: { alt: { uk: 'Картинка' } } };
     f.config.section.items.intro.content.order.push('videoExplanation', 'localAudio', 'localCaptions', 'localPicture');
     f.save();
     runOne(f.lesson, 'generate', f.root);
-    const video = fs.readFileSync(f.generated('sections/intro/videoExplanation/index.ts'), 'utf8');
-    assert.match(video, /fileName: \\{\s*uk: "550e8400-e29b-41d4-a716-446655440054.mp4"/);
-    assert.match(video, /posterFileName: "550e8400-e29b-41d4-a716-446655440055.webp"/);
-    assert.doesNotMatch(video, /external\/video\.mp4/);
-    const audio = fs.readFileSync(f.generated('sections/intro/localAudio/index.ts'), 'utf8');
-    assert.match(audio, /fileName: "550e8400-e29b-41d4-a716-446655440056.mp3"/);
-    const captions = fs.readFileSync(f.generated('sections/intro/localCaptions/index.ts'), 'utf8');
-    assert.match(captions, /fileName: \\{\s*uk: "550e8400-e29b-41d4-a716-446655440057.vtt"/);
-    const image = fs.readFileSync(f.generated('sections/intro/localPicture/index.ts'), 'utf8');
-    assert.match(image, /fileName: \\{\s*uk: "550e8400-e29b-41d4-a716-446655440058.svg"/);
+    const read = name => fs.readFileSync(f.generated('sections/intro/' + name + '/index.ts'), 'utf8');
+    const media = [
+      ['videoExplanation', 'mp4'],
+      ['localAudio', 'mp3'],
+      ['localCaptions', 'vtt'],
+      ['localPicture', 'webp'],
+    ];
+    for (const [name, extension] of media) {
+      const content = read(name);
+      assert(content.includes('fileName: "00000000-0000-0000-0000-000000000000.' + extension + '"'));
+      assert.match(content, /TODO\(asset\)/);
+    }
+    const video = read('videoExplanation');
+    assert(video.includes('posterFileName: "00000000-0000-0000-0000-000000000000.webp"'));
     assertTypeScriptSyntax(readAll(f.lesson));
     assert(fs.existsSync(f.generated('sections/intro/videoExplanation/specification.md')));
   }));
@@ -934,7 +920,7 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
     const imageSlide = modules.get(carouselRoot + '/fiveCountersSlide/index.ts');
     const sceneSlide = modules.get(carouselRoot + '/threePlusTwoSlide/index.ts');
     assert.match(imageSlide, /defineImage<"fiveCountersSlide", LessonLanguages>/);
-    assert.match(imageSlide, /fileName: "550e8400-e29b-41d4-a716-446655440002.webp"/);
+    assert.match(imageSlide, /fileName: "00000000-0000-0000-0000-000000000000.webp"/);
     assert.match(sceneSlide, /defineScene<"threePlusTwoSlide", LessonLanguages>/);
     assert.match(sceneSlide, /Arrange three counters and two more to show five/);
     const authoredSlides = lesson.section.items.exploreEquality.config.content.items.counterArrangementsCarousel.config.slides;
