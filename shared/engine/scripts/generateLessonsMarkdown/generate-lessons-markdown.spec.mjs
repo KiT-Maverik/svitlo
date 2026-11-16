@@ -166,7 +166,8 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     });
     assert.match(markdown, /^# Тестовий урок Engine/m);
     assert.match(markdown, /## Lesson/);
-    assert.ok(markdown.indexOf('Теорія') < markdown.indexOf('Тест'));
+    const theoryIndex = markdown.indexOf('Теорія');
+    assert.ok(theoryIndex >= 0 && markdown.indexOf('Тест', theoryIndex) > theoryIndex);
     assert.match(markdown, /Світло/);
     assert.match(markdown, /Quiz references independently published Question UUIDs/);
     assert.match(markdown, /00000000-0000-4000-8000-000000000001/);
