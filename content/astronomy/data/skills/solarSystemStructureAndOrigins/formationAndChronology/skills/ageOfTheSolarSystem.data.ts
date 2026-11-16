@@ -40,7 +40,7 @@ export const ageOfTheSolarSystem_Skill_Data = defineSkill({
       'Interpret radiometric and meteoritic evidence used to constrain the time of Solar System formation.',
     frontend: {
       en: "Discover how meteorites and radioactive dating help estimate the Solar System's age.",
-      it: 'Scopri come meteoriti e datazione radioattiva aiutano a stimare l\'età del Sistema solare.',
+      it: 'Scopri come i meteoriti e la datazione radiometrica aiutano a stimare l\'età del Sistema solare.',
       zh: '了解陨石和放射性定年法如何帮助估计太阳系的年龄。',
       hi: 'जानें कि उल्कापिंड और रेडियोधर्मी डेटिंग से सौरमंडल की आयु का अनुमान कैसे लगाया जाता है।',
       es: 'Descubre cómo los meteoritos y la datación radiométrica ayudan a calcular la edad del Sistema Solar.',
