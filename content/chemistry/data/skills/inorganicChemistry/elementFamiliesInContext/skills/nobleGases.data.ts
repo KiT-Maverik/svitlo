@@ -5,7 +5,7 @@ export const nobleGases_Skill_Data = defineSkill({
   id: '46ba83f0-c014-4704-ad2a-4bcea51c0a51',
   name: {
     en: 'Noble Gases',
-    it: "Gas nobili",
+    it: 'Gas nobili',
     zh: '稀有气体',
     hi: 'उत्कृष्ट गैसें',
     es: 'Gases nobles',
@@ -40,7 +40,7 @@ export const nobleGases_Skill_Data = defineSkill({
       'Explain low typical reactivity from electron structure while recognizing that compounds of some noble gases exist.',
     frontend: {
       en: 'Understand why noble gases are usually unreactive but not completely incapable of bonding.',
-      it: "Comprendi perché i gas nobili sono di solito poco reattivi ma non del tutto incapaci di formare legami.",
+      it: 'Comprendi perché i gas nobili sono di solito poco reattivi ma non del tutto incapaci di formare legami.',
       zh: '理解稀有气体通常不活泼，但有些也能够形成化学键。',
       hi: 'समझें कि उत्कृष्ट गैसें सामान्यतः कम अभिक्रियाशील होती हैं, लेकिन कुछ बंध बना सकती हैं।',
       es: 'Comprende por qué los gases nobles suelen reaccionar poco, aunque algunos pueden formar enlaces.',

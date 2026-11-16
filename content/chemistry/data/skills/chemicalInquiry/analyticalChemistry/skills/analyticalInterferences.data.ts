@@ -5,7 +5,7 @@ export const analyticalInterferences_Skill_Data = defineSkill({
   id: '998b9a25-7413-466d-9992-8492d569bea1',
   name: {
     en: 'Analytical Interferences',
-    it: "Interferenze analitiche",
+    it: 'Interferenze analitiche',
     zh: '分析干扰',
     hi: 'विश्लेषणात्मक व्यवधान',
     es: 'Interferencias analíticas',
@@ -40,7 +40,7 @@ export const analyticalInterferences_Skill_Data = defineSkill({
       'Identify when other sample components alter a chemical signal or selective response and determine whether a method can distinguish the target analyte.',
     frontend: {
       en: 'Recognize when other chemicals interfere with an analytical measurement.',
-      it: "Riconosci quando altre sostanze chimiche interferiscono con una misurazione analitica.",
+      it: 'Riconosci quando altre sostanze chimiche interferiscono con una misurazione analitica.',
       zh: '识别其他化学物质何时会干扰分析测量。',
       hi: 'पहचानें कि दूसरे रसायन किसी विश्लेषणात्मक मापन में कब बाधा डालते हैं।',
       es: 'Reconoce cuándo otras sustancias interfieren con una medición analítica.',

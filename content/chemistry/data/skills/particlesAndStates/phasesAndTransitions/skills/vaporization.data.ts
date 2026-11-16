@@ -5,7 +5,7 @@ export const vaporization_Skill_Data = defineSkill({
   id: 'd4b8e9b7-f999-4d5c-a0c2-ec4cda63f58a',
   name: {
     en: 'Vaporization',
-    it: "Vaporizzazione",
+    it: 'Vaporizzazione',
     zh: '汽化',
     hi: 'वाष्पीकरण',
     es: 'Vaporización',

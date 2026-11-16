@@ -5,7 +5,7 @@ export const esters_Skill_Data = defineSkill({
   id: '98f15f0f-962f-406c-9b32-dce442d6684a',
   name: {
     en: 'Esters',
-    it: "Esteri",
+    it: 'Esteri',
     zh: '酯',
     hi: 'एस्टर',
     es: 'Ésteres',
@@ -39,7 +39,7 @@ export const esters_Skill_Data = defineSkill({
     methodological: 'Recognize the ester linkage and its formation or hydrolysis relationships.',
     frontend: {
       en: 'Recognize ester linkages and how esters form or break down.',
-      it: "Riconosci il legame estereo e come gli esteri si formano o si scindono.",
+      it: 'Riconosci il legame estereo e come gli esteri si formano o si scindono.',
       zh: '识别酯键，并了解酯如何生成或分解。',
       hi: 'एस्टर बंध पहचानें और समझें कि एस्टर कैसे बनते या टूटते हैं।',
       es: 'Reconoce los enlaces éster y cómo se forman o descomponen los ésteres.',

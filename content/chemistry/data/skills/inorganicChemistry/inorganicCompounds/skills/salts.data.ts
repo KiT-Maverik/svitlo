@@ -5,7 +5,7 @@ export const salts_Skill_Data = defineSkill({
   id: '3013fa17-2f97-4ffe-9277-cf7d6cbef863',
   name: {
     en: 'Salts',
-    it: "Sali",
+    it: 'Sali',
     zh: '盐类',
     hi: 'लवण',
     es: 'Sales',
@@ -39,7 +39,7 @@ export const salts_Skill_Data = defineSkill({
     methodological: 'Recognize ionic compounds and their compositional relationship to cations and anions.',
     frontend: {
       en: 'Identify salts as compounds built from positively and negatively charged ions.',
-      it: "Identifica i sali come composti costituiti da ioni con carica positiva e negativa.",
+      it: 'Identifica i sali come composti costituiti da ioni con carica positiva e negativa.',
       zh: '识别由带正电和负电的离子组成的盐。',
       hi: 'सकारात्मक और नकारात्मक आवेश वाले आयनों से बने यौगिकों को लवण के रूप में पहचानें।',
       es: 'Identifica las sales como compuestos formados por iones de carga positiva y negativa.',

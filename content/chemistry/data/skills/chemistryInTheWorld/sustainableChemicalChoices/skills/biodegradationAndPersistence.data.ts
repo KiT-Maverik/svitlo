@@ -5,7 +5,7 @@ export const biodegradationAndPersistence_Skill_Data = defineSkill({
   id: '97550704-df3a-40e1-a57d-c62d88699fa9',
   name: {
     en: 'Biodegradation and Persistence',
-    it: "Biodegradazione e persistenza",
+    it: 'Biodegradazione e persistenza',
     zh: '生物降解与持久性',
     hi: 'जैव अपघटन और स्थायित्व',
     es: 'Biodegradación y persistencia',

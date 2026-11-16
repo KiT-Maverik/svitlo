@@ -5,7 +5,7 @@ export const reactionEvidence_Skill_Data = defineSkill({
   id: '0ad7b95e-2f81-424f-a1f6-91e85547c28c',
   name: {
     en: 'Reaction Evidence',
-    it: "Indizi di una reazione",
+    it: 'Indizi di una reazione',
     zh: '化学反应的证据',
     hi: 'अभिक्रिया के प्रमाण',
     es: 'Evidencias de reacción',
@@ -40,7 +40,7 @@ export const reactionEvidence_Skill_Data = defineSkill({
       'Interpret gas evolution, precipitates, color changes or thermal effects as possible evidence, with appropriate alternative explanations.',
     frontend: {
       en: 'Assess whether bubbles, colors or temperature changes indicate a chemical reaction.',
-      it: "Valuta se bolle, cambiamenti di colore o di temperatura indicano una reazione chimica.",
+      it: 'Valuta se bolle, cambiamenti di colore o di temperatura indicano una reazione chimica.',
       zh: '评估气泡、颜色或温度变化是否意味着发生了化学反应。',
       hi: 'जाँचें कि बुलबुले, रंग या तापमान में बदलाव अभिक्रिया का संकेत हैं या नहीं।',
       es: 'Evalúa si burbujas o cambios de color o temperatura indican una reacción química.',

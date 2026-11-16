@@ -5,7 +5,7 @@ export const atmosphericChemicalChanges_Skill_Data = defineSkill({
   id: 'c0fe2718-aa7e-44af-aa34-375189ae2dd4',
   name: {
     en: 'Atmospheric Chemical Changes',
-    it: "Trasformazioni chimiche atmosferiche",
+    it: 'Trasformazioni chimiche atmosferiche',
     zh: '大气中的化学变化',
     hi: 'वायुमंडलीय रासायनिक परिवर्तन',
     es: 'Cambios químicos atmosféricos',

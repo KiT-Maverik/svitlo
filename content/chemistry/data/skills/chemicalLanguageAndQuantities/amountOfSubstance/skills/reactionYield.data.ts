@@ -5,7 +5,7 @@ export const reactionYield_Skill_Data = defineSkill({
   id: '29862c83-a1cd-436d-8544-eca7dc52a5ad',
   name: {
     en: 'Reaction Yield',
-    it: "Resa di reazione",
+    it: 'Resa di reazione',
     zh: '反应产率',
     hi: 'अभिक्रिया की उपज',
     es: 'Rendimiento de reacción',
@@ -40,7 +40,7 @@ export const reactionYield_Skill_Data = defineSkill({
       'Distinguish theoretical yield, observed yield and percentage yield without attributing every shortfall to one cause.',
     frontend: {
       en: 'Compare theoretical and actual reaction yields and explain percentage yield.',
-      it: "Confronta la resa teorica e quella effettiva di una reazione e spiega la resa percentuale.",
+      it: 'Confronta la resa teorica e quella effettiva di una reazione e spiega la resa percentuale.',
       zh: '比较理论产率与实际产率，并解释百分产率。',
       hi: 'सैद्धांतिक और वास्तविक उपज की तुलना करें तथा प्रतिशत उपज समझाएँ।',
       es: 'Compara el rendimiento teórico con el real y explica el rendimiento porcentual.',

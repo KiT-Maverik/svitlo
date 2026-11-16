@@ -5,7 +5,7 @@ export const reactionEnthalpy_Skill_Data = defineSkill({
   id: '5df513d5-6670-430f-a3ee-01c546869409',
   name: {
     en: 'Reaction Enthalpy',
-    it: "Entalpia di reazione",
+    it: 'Entalpia di reazione',
     zh: '反应焓变',
     hi: 'अभिक्रिया की एन्थैल्पी',
     es: 'Entalpía de reacción',

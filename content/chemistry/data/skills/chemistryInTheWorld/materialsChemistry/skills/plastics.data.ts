@@ -5,7 +5,7 @@ export const plastics_Skill_Data = defineSkill({
   id: '79b6fb2b-da42-441d-83d4-062ddb64f023',
   name: {
     en: 'Plastics',
-    it: "Materie plastiche",
+    it: 'Materie plastiche',
     zh: '塑料',
     hi: 'प्लास्टिक',
     es: 'Plásticos',
@@ -40,7 +40,7 @@ export const plastics_Skill_Data = defineSkill({
       'Relate polymer chemistry and processing to the shaping, durability and temperature-dependent behavior of plastic materials.',
     frontend: {
       en: 'Understand how polymers and processing influence the properties of plastics.',
-      it: "Comprendi come i polimeri e i processi di lavorazione influiscono sulle proprietà delle materie plastiche.",
+      it: 'Comprendi come i polimeri e i processi di lavorazione influiscono sulle proprietà delle materie plastiche.',
       zh: '理解聚合物结构和加工过程如何影响塑料的性质。',
       hi: 'समझें कि बहुलक और निर्माण की विधियाँ प्लास्टिक के गुणों को कैसे प्रभावित करती हैं।',
       es: 'Comprende cómo los polímeros y el procesamiento influyen en las propiedades de los plásticos.',

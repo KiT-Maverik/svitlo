@@ -5,7 +5,7 @@ export const acidBaseTitration_Skill_Data = defineSkill({
   id: 'b73628cd-5a8b-4941-a160-b9d128105bf3',
   name: {
     en: 'Acid–Base Titration',
-    it: "Titolazione acido-base",
+    it: 'Titolazione acido-base',
     zh: '酸碱滴定',
     hi: 'अम्ल–क्षार अनुमापन',
     es: 'Valoración ácido-base',
@@ -39,7 +39,7 @@ export const acidBaseTitration_Skill_Data = defineSkill({
     methodological: 'Use a measured equivalence relationship to infer an unknown amount or concentration.',
     frontend: {
       en: 'Use acid–base titration measurements to determine an unknown amount.',
-      it: "Usa le misure di una titolazione acido-base per determinare una quantità incognita.",
+      it: 'Usa le misure di una titolazione acido-base per determinare una quantità incognita.',
       zh: '利用酸碱滴定测量来确定未知的物质的量。',
       hi: 'अम्ल–क्षार अनुमापन के मापन से अज्ञात मात्रा निर्धारित करें।',
       es: 'Utiliza medidas de valoración ácido-base para determinar una cantidad desconocida.',

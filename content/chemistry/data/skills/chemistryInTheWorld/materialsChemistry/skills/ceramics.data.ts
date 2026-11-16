@@ -5,7 +5,7 @@ export const ceramics_Skill_Data = defineSkill({
   id: 'd9a47c0f-3cac-4645-859a-d23a7e0aea7b',
   name: {
     en: 'Ceramics',
-    it: "Ceramiche",
+    it: 'Ceramiche',
     zh: '陶瓷材料',
     hi: 'सिरेमिक पदार्थ',
     es: 'Cerámicas',
@@ -40,7 +40,7 @@ export const ceramics_Skill_Data = defineSkill({
       'Relate inorganic nonmetallic ceramic composition, microstructure and processing to characteristic mechanical and thermal behavior, recognizing that some ceramics contain glassy phases.',
     frontend: {
       en: 'Explore how ceramic composition and structure influence strength and heat resistance.',
-      it: "Esplora come la composizione e la struttura delle ceramiche influenzano la resistenza meccanica e al calore.",
+      it: 'Esplora come la composizione e la struttura delle ceramiche influenzano la resistenza meccanica e al calore.',
       zh: '探索陶瓷的组成和结构如何影响其强度和耐热性。',
       hi: 'जानें कि सिरेमिक की संरचना और संघटन से उसकी मजबूती और ताप-सहिष्णुता कैसे बदलती है।',
       es: 'Explora cómo la composición y la estructura de las cerámicas influyen en su resistencia y tolerancia al calor.',

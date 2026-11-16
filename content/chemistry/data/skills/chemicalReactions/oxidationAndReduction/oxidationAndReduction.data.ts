@@ -13,7 +13,7 @@ export const oxidationAndReduction_SkillGroup_Data = defineSkillGroup({
   id: 'c683cf4a-511d-4fb9-94bf-bdeca8a7493f',
   name: {
     en: 'Oxidation and Reduction',
-    it: "Ossidazione e riduzione",
+    it: 'Ossidazione e riduzione',
     zh: '氧化与还原',
     hi: 'ऑक्सीकरण और अपचयन',
     es: 'Oxidación y reducción',
@@ -58,7 +58,7 @@ export const oxidationAndReduction_SkillGroup_Data = defineSkillGroup({
       'Electron bookkeeping describes an important class of reactions even when electrons are not explicitly transferred between discrete ions.',
     frontend: {
       en: 'Explore how oxidation and reduction relate to electron changes.',
-      it: "Esplora come ossidazione e riduzione siano legate ai cambiamenti degli elettroni.",
+      it: 'Esplora come ossidazione e riduzione siano legate ai cambiamenti degli elettroni.',
       zh: '探索氧化和还原与电子变化的关系。',
       hi: 'जानें कि ऑक्सीकरण व अपचयन इलेक्ट्रॉनों के परिवर्तन से कैसे जुड़े हैं।',
       es: 'Explora cómo la oxidación y la reducción se relacionan con los electrones.',

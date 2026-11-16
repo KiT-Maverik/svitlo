@@ -5,7 +5,7 @@ export const oxidation_Skill_Data = defineSkill({
   id: 'd48e61de-49bb-45ca-8880-b2c9c58f3543',
   name: {
     en: 'Oxidation',
-    it: "Ossidazione",
+    it: 'Ossidazione',
     zh: '氧化',
     hi: 'ऑक्सीकरण',
     es: 'Oxidación',

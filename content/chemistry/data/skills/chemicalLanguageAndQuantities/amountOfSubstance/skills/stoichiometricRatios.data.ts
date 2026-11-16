@@ -5,7 +5,7 @@ export const stoichiometricRatios_Skill_Data = defineSkill({
   id: '050ebfa5-4ea4-4848-a223-d0cd5deb91ea',
   name: {
     en: 'Stoichiometric Ratios',
-    it: "Rapporti stechiometrici",
+    it: 'Rapporti stechiometrici',
     zh: '化学计量比',
     hi: 'स्टॉइकियोमितीय अनुपात',
     es: 'Relaciones estequiométricas',

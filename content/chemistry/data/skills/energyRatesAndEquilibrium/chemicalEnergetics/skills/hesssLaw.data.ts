@@ -5,7 +5,7 @@ export const hesssLaw_Skill_Data = defineSkill({
   id: '5e7d3cd2-39fe-4dca-a76a-335aff7cbb85',
   name: {
     en: "Hess's Law",
-    it: "Legge di Hess",
+    it: 'Legge di Hess',
     zh: '赫斯定律',
     hi: 'हेस का नियम',
     es: 'Ley de Hess',

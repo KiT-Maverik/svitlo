@@ -15,7 +15,7 @@ export const functionalGroups_SkillGroup_Data = defineSkillGroup({
   id: '94a44d15-8cac-4625-9fea-2a61f4d7a969',
   name: {
     en: 'Functional Groups',
-    it: "Gruppi funzionali",
+    it: 'Gruppi funzionali',
     zh: '官能团',
     hi: 'क्रियात्मक समूह',
     es: 'Grupos funcionales',
@@ -62,7 +62,7 @@ export const functionalGroups_SkillGroup_Data = defineSkillGroup({
       'Different atom groups create families whose chemical behavior can be predicted more reliably than from molecular size alone.',
     frontend: {
       en: 'Recognize functional groups that shape the behavior of organic compounds.',
-      it: "Riconosci i gruppi funzionali che determinano il comportamento dei composti organici.",
+      it: 'Riconosci i gruppi funzionali che determinano il comportamento dei composti organici.',
       zh: '识别决定有机化合物化学行为的官能团。',
       hi: 'ऐसे क्रियात्मक समूह पहचानें जो कार्बनिक यौगिकों के व्यवहार को प्रभावित करते हैं।',
       es: 'Reconoce grupos funcionales que determinan el comportamiento de compuestos orgánicos.',

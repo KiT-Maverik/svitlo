@@ -5,7 +5,7 @@ export const additionPolymers_Skill_Data = defineSkill({
   id: '8db806be-f79f-456e-875d-c1e29e784e13',
   name: {
     en: 'Addition Polymers',
-    it: "Polimeri di addizione",
+    it: 'Polimeri di addizione',
     zh: '加成聚合物',
     hi: 'योगज बहुलक',
     es: 'Polímeros de adición',
@@ -39,7 +39,7 @@ export const additionPolymers_Skill_Data = defineSkill({
     methodological: 'Recognize repeat-unit formation from suitable unsaturated monomers.',
     frontend: {
       en: 'Recognize polymers formed by joining suitable unsaturated monomers.',
-      it: "Riconosci i polimeri ottenuti unendo monomeri insaturi adatti.",
+      it: 'Riconosci i polimeri ottenuti unendo monomeri insaturi adatti.',
       zh: '识别由适当的不饱和单体连接形成的聚合物。',
       hi: 'ऐसे बहुलक पहचानें जो उपयुक्त असंतृप्त एकलकों को जोड़ने से बनते हैं।',
       es: 'Reconoce polímeros formados al unir monómeros insaturados adecuados.',

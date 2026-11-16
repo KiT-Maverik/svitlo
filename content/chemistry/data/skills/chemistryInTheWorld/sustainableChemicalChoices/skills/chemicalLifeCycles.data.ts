@@ -5,7 +5,7 @@ export const chemicalLifeCycles_Skill_Data = defineSkill({
   id: '8da44d2b-c294-4dbd-9284-18fea2641908',
   name: {
     en: 'Chemical Life Cycles',
-    it: "Cicli di vita delle sostanze chimiche",
+    it: 'Cicli di vita delle sostanze chimiche',
     zh: '化学物质的生命周期',
     hi: 'रासायनिक पदार्थों का जीवन चक्र',
     es: 'Ciclos de vida de sustancias químicas',

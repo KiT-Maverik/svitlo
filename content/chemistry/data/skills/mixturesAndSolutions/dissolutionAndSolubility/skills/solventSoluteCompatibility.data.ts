@@ -5,7 +5,7 @@ export const solventSoluteCompatibility_Skill_Data = defineSkill({
   id: '9b58c345-0ff1-4108-82c5-95baf273ed2f',
   name: {
     en: 'Solvent–Solute Compatibility',
-    it: "Compatibilità tra solvente e soluto",
+    it: 'Compatibilità tra solvente e soluto',
     zh: '溶剂与溶质的相容性',
     hi: 'विलायक और विलेय की अनुकूलता',
     es: 'Compatibilidad entre disolvente y soluto',
@@ -40,7 +40,7 @@ export const solventSoluteCompatibility_Skill_Data = defineSkill({
       'Reason about dissolution from particle interactions, polarity and molecular structure without treating “like dissolves like” as an absolute rule.',
     frontend: {
       en: 'Use particle interactions to predict whether substances may dissolve together.',
-      it: "Usa le interazioni tra particelle per prevedere se le sostanze possono dissolversi insieme.",
+      it: 'Usa le interazioni tra particelle per prevedere se le sostanze possono dissolversi insieme.',
       zh: '根据粒子间的相互作用，预测两种物质能否相互溶解。',
       hi: 'कणों की अंतःक्रियाओं से अनुमान लगाएँ कि पदार्थ एक-दूसरे में घुलेंगे या नहीं।',
       es: 'Usa las interacciones entre partículas para predecir si las sustancias podrán disolverse juntas.',

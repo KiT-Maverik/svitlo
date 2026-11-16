@@ -14,7 +14,7 @@ export const dissolutionAndSolubility_SkillGroup_Data = defineSkillGroup({
   id: '5dcc9f58-7421-4f6d-9520-d77096ed007f',
   name: {
     en: 'Dissolution and Solubility',
-    it: "Dissoluzione e solubilità",
+    it: 'Dissoluzione e solubilità',
     zh: '溶解与溶解度',
     hi: 'घुलन और विलेयता',
     es: 'Disolución y solubilidad',
@@ -66,7 +66,7 @@ export const dissolutionAndSolubility_SkillGroup_Data = defineSkillGroup({
     methodological: 'Dissolution reflects competing interactions and may depend strongly on substance and conditions.',
     frontend: {
       en: 'Explore what controls whether and how much of a substance dissolves.',
-      it: "Esplora quali fattori determinano se e quanto una sostanza si dissolve.",
+      it: 'Esplora quali fattori determinano se e quanto una sostanza si dissolve.',
       zh: '探索是什么决定物质能否溶解，以及能够溶解多少。',
       hi: 'जानें कि कोई पदार्थ घुलेगा या नहीं और कितना घुलेगा, यह किन बातों पर निर्भर करता है।',
       es: 'Explora qué determina si una sustancia se disuelve y en qué cantidad.',

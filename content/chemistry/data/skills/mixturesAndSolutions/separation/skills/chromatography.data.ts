@@ -5,7 +5,7 @@ export const chromatography_Skill_Data = defineSkill({
   id: 'bdd051bf-da8e-449e-b681-6eebbd9034d7',
   name: {
     en: 'Chromatography',
-    it: "Cromatografia",
+    it: 'Cromatografia',
     zh: '色谱法',
     hi: 'क्रोमैटोग्राफी',
     es: 'Cromatografía',
@@ -39,7 +39,7 @@ export const chromatography_Skill_Data = defineSkill({
     methodological: 'Interpret differential movement or partitioning of mixture components between phases.',
     frontend: {
       en: 'Understand how chromatography separates components through different movement between phases.',
-      it: "Comprendi come la cromatografia separa i componenti in base al loro diverso movimento tra le fasi.",
+      it: 'Comprendi come la cromatografia separa i componenti in base al loro diverso movimento tra le fasi.',
       zh: '理解色谱法如何利用组分在不同相之间移动速度的差异来分离它们。',
       hi: 'समझें कि विभिन्न अवस्थाओं के बीच घटकों की अलग गति से क्रोमैटोग्राफी उन्हें कैसे अलग करती है।',
       es: 'Comprende cómo la cromatografía separa componentes según su distinto desplazamiento entre fases.',

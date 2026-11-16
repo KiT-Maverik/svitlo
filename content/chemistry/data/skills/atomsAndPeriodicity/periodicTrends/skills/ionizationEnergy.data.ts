@@ -5,7 +5,7 @@ export const ionizationEnergy_Skill_Data = defineSkill({
   id: 'd3aea96c-838d-4166-b649-467ad83161cf',
   name: {
     en: 'Ionization Energy',
-    it: "Energia di ionizzazione",
+    it: 'Energia di ionizzazione',
     zh: '电离能',
     hi: 'आयनन ऊर्जा',
     es: 'Energía de ionización',

@@ -5,7 +5,7 @@ export const electronegativity_Skill_Data = defineSkill({
   id: '4acf4838-b8d4-4302-9381-34db845efa03',
   name: {
     en: 'Electronegativity',
-    it: "Elettronegatività",
+    it: 'Elettronegatività',
     zh: '电负性',
     hi: 'विद्युतऋणात्मकता',
     es: 'Electronegatividad',

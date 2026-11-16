@@ -5,7 +5,7 @@ export const periodicTableStructure_Skill_Data = defineSkill({
   id: '59616b96-9c8d-41e9-94eb-126d6afb3485',
   name: {
     en: 'Periodic Table Structure',
-    it: "Struttura della tavola periodica",
+    it: 'Struttura della tavola periodica',
     zh: '元素周期表结构',
     hi: 'आवर्त सारणी की संरचना',
     es: 'Estructura de la tabla periódica',
@@ -40,7 +40,7 @@ export const periodicTableStructure_Skill_Data = defineSkill({
       'Interpret periods, groups and element symbols as an organized classification rather than a list ordered by bulk mass.',
     frontend: {
       en: 'Read the groups, periods and symbols of the periodic table.',
-      it: "Leggi gruppi, periodi e simboli della tavola periodica.",
+      it: 'Leggi gruppi, periodi e simboli della tavola periodica.',
       zh: '读懂周期表中的族、周期和元素符号。',
       hi: 'आवर्त सारणी के समूहों, आवर्तों और प्रतीकों को पढ़ना सीखें।',
       es: 'Interpreta los grupos, períodos y símbolos de la tabla periódica.',

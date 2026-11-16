@@ -5,7 +5,7 @@ export const homogeneousAndHeterogeneousSamples_Skill_Data = defineSkill({
   id: '747dd6bb-d6b4-4c4d-997c-a90fc6d97551',
   name: {
     en: 'Homogeneous and Heterogeneous Samples',
-    it: "Campioni omogenei ed eterogenei",
+    it: 'Campioni omogenei ed eterogenei',
     zh: '均匀与不均匀样品',
     hi: 'समांगी और विषमांगी नमूने',
     es: 'Muestras homogéneas y heterogéneas',
@@ -39,7 +39,7 @@ export const homogeneousAndHeterogeneousSamples_Skill_Data = defineSkill({
     methodological: 'Classify samples by whether their composition and phases are uniform at the relevant scale.',
     frontend: {
       en: 'Tell whether a sample is uniform or contains visibly different parts or phases.',
-      it: "Stabilisci se un campione è uniforme oppure presenta parti o fasi visibilmente diverse.",
+      it: 'Stabilisci se un campione è uniforme oppure presenta parti o fasi visibilmente diverse.',
       zh: '判断样品是否均匀，或含有不同的可见部分或物相。',
       hi: 'बताएँ कि नमूना एकसमान है या उसके अलग-अलग भाग या अवस्थाएँ दिखाई देती हैं।',
       es: 'Distingue si una muestra es uniforme o tiene partes o fases diferentes visibles.',

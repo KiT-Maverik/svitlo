@@ -5,7 +5,7 @@ export const electronConfigurations_Skill_Data = defineSkill({
   id: '86b38fb6-e7a5-41e8-8519-819495d7f90f',
   name: {
     en: 'Electron Configurations',
-    it: "Configurazioni elettroniche",
+    it: 'Configurazioni elettroniche',
     zh: '电子排布',
     hi: 'इलेक्ट्रॉन विन्यास',
     es: 'Configuraciones electrónicas',
@@ -40,7 +40,7 @@ export const electronConfigurations_Skill_Data = defineSkill({
       'Represent electron occupation for atoms and ions, respecting the applicable filling rules and exceptions.',
     frontend: {
       en: 'Represent how electrons occupy states in atoms and ions.',
-      it: "Rappresenta come gli elettroni occupano gli stati disponibili negli atomi e negli ioni.",
+      it: 'Rappresenta come gli elettroni occupano gli stati disponibili negli atomi e negli ioni.',
       zh: '表示电子在原子和离子中的不同能态上的分布。',
       hi: 'दिखाएँ कि परमाणुओं और आयनों में इलेक्ट्रॉन विभिन्न अवस्थाओं में कैसे स्थित होते हैं।',
       es: 'Representa cómo ocupan los electrones los estados de átomos e iones.',

@@ -5,7 +5,7 @@ export const suspensions_Skill_Data = defineSkill({
   id: '771facf6-9cc7-4518-a2e5-fb84139f5393',
   name: {
     en: 'Suspensions',
-    it: "Sospensioni",
+    it: 'Sospensioni',
     zh: '悬浊液',
     hi: 'निलंबन',
     es: 'Suspensiones',
@@ -39,7 +39,7 @@ export const suspensions_Skill_Data = defineSkill({
     methodological: 'Identify dispersed particles large enough to separate or settle under appropriate conditions.',
     frontend: {
       en: 'Recognize suspensions containing dispersed particles that can settle.',
-      it: "Riconosci le sospensioni contenenti particelle disperse che possono depositarsi.",
+      it: 'Riconosci le sospensioni contenenti particelle disperse che possono depositarsi.',
       zh: '识别含有分散颗粒、这些颗粒可能沉降的悬浊液。',
       hi: 'ऐसे निलंबन पहचानें जिनके बिखरे कण तल में बैठ सकते हैं।',
       es: 'Reconoce suspensiones con partículas dispersas que pueden sedimentarse.',

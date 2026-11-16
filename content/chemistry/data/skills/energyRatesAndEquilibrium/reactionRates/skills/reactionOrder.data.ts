@@ -5,7 +5,7 @@ export const reactionOrder_Skill_Data = defineSkill({
   id: '8575dfa6-ee26-41ae-ae03-274757824129',
   name: {
     en: 'Reaction Order',
-    it: "Ordine di reazione",
+    it: 'Ordine di reazione',
     zh: '反应级数',
     hi: 'अभिक्रिया की कोटि',
     es: 'Orden de reacción',

@@ -40,7 +40,7 @@ export const quantitativeAnalyteDetermination_Skill_Data = defineSkill({
       'Infer the amount or concentration of a specified analyte from a justified measured signal and calculation, accounting for relevant dilution or recovery factors.',
     frontend: {
       en: 'Determine how much of a target substance is present from appropriate measurements.',
-      it: "Determina la quantità di una sostanza bersaglio mediante misurazioni appropriate.",
+      it: 'Determina la quantità di una sostanza bersaglio mediante misurazioni appropriate.',
       zh: '根据适当的测量确定目标物质的含量。',
       hi: 'उचित मापों से पता लगाएँ कि लक्ष्य पदार्थ कितनी मात्रा में मौजूद है।',
       es: 'Determina cuánto analito contiene una muestra mediante mediciones adecuadas.',

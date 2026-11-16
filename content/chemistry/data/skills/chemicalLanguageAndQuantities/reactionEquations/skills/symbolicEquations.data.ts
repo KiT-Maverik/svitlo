@@ -5,7 +5,7 @@ export const symbolicEquations_Skill_Data = defineSkill({
   id: '21039737-b899-407c-8035-6c75cabc3d9d',
   name: {
     en: 'Symbolic Equations',
-    it: "Equazioni chimiche simboliche",
+    it: 'Equazioni chimiche simboliche',
     zh: '化学符号方程式',
     hi: 'प्रतीकात्मक समीकरण',
     es: 'Ecuaciones simbólicas',
@@ -39,7 +39,7 @@ export const symbolicEquations_Skill_Data = defineSkill({
     methodological: 'Translate a chemical transformation into formulas with correct reactant and product identities.',
     frontend: {
       en: 'Write chemical formulas that correctly represent reactants and products.',
-      it: "Scrivi formule chimiche che rappresentino correttamente reagenti e prodotti.",
+      it: 'Scrivi formule chimiche che rappresentino correttamente reagenti e prodotti.',
       zh: '用正确的化学式表示反应物与生成物。',
       hi: 'अभिकारकों और उत्पादों को सही रासायनिक सूत्रों से दर्शाएँ।',
       es: 'Escribe fórmulas que representen correctamente reactivos y productos.',

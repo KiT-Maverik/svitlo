@@ -12,7 +12,7 @@ export const acidBaseSystems_SkillGroup_Data = defineSkillGroup({
   id: 'e2ae79c7-d289-4876-9e50-387883d1e4a0',
   name: {
     en: 'Acid–Base Systems',
-    it: "Sistemi acido-base",
+    it: 'Sistemi acido-base',
     zh: '酸碱体系',
     hi: 'अम्ल–क्षार तंत्र',
     es: 'Sistemas ácido-base',
@@ -56,7 +56,7 @@ export const acidBaseSystems_SkillGroup_Data = defineSkillGroup({
       'Neutralization, indicator responses, buffer equilibria and titration exemplify how acid–base behavior is observed, controlled and measured under specific conditions.',
     frontend: {
       en: 'Discover how acids and bases react and how their effects are measured.',
-      it: "Scopri come reagiscono acidi e basi e come si misurano i loro effetti.",
+      it: 'Scopri come reagiscono acidi e basi e come si misurano i loro effetti.',
       zh: '了解酸碱如何发生反应及如何测量其影响。',
       hi: 'जानें कि अम्ल और क्षार कैसे प्रतिक्रिया करते हैं और उनके प्रभाव कैसे मापते हैं।',
       es: 'Descubre cómo reaccionan los ácidos y las bases y cómo se miden sus efectos.',

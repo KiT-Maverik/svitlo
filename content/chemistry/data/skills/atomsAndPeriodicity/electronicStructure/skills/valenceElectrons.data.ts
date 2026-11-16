@@ -5,7 +5,7 @@ export const valenceElectrons_Skill_Data = defineSkill({
   id: 'aedfffca-cacd-4bad-894c-768b02f29f0d',
   name: {
     en: 'Valence Electrons',
-    it: "Elettroni di valenza",
+    it: 'Elettroni di valenza',
     zh: '价电子',
     hi: 'संयोजक इलेक्ट्रॉन',
     es: 'Electrones de valencia',
@@ -40,7 +40,7 @@ export const valenceElectrons_Skill_Data = defineSkill({
       'Use outer-electron arrangements to reason about common chemical behavior and bonding possibilities.',
     frontend: {
       en: 'Use outer electrons to explain similarities in how elements react.',
-      it: "Usa gli elettroni più esterni per spiegare le somiglianze nel comportamento reattivo degli elementi.",
+      it: 'Usa gli elettroni più esterni per spiegare le somiglianze nel comportamento reattivo degli elementi.',
       zh: '用最外层电子解释不同元素反应方式中的相似之处。',
       hi: 'बाहरी इलेक्ट्रॉनों की मदद से तत्वों की अभिक्रियाओं में समानताएँ समझाएँ।',
       es: 'Usa los electrones externos para explicar semejanzas en la reactividad de los elementos.',

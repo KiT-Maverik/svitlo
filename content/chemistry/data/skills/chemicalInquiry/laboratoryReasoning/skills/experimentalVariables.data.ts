@@ -5,7 +5,7 @@ export const experimentalVariables_Skill_Data = defineSkill({
   id: 'a695f60b-e728-4cfb-b843-575f82f4a330',
   name: {
     en: 'Experimental Variables',
-    it: "Variabili sperimentali",
+    it: 'Variabili sperimentali',
     zh: '实验变量',
     hi: 'प्रयोगात्मक चर',
     es: 'Variables experimentales',

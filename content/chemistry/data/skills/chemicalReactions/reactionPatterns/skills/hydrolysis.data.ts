@@ -5,7 +5,7 @@ export const hydrolysis_Skill_Data = defineSkill({
   id: '85e5aeb3-fbcf-4512-b36b-a4ab0bcbd0b8',
   name: {
     en: 'Hydrolysis',
-    it: "Idrolisi",
+    it: 'Idrolisi',
     zh: '水解',
     hi: 'जल-अपघटन',
     es: 'Hidrólisis',

@@ -5,7 +5,7 @@ export const bondPolarity_Skill_Data = defineSkill({
   id: '6bc56a04-e33f-48c9-8482-7cc2b3b0b709',
   name: {
     en: 'Bond Polarity',
-    it: "Polarità del legame",
+    it: 'Polarità del legame',
     zh: '键的极性',
     hi: 'बंध की ध्रुवीयता',
     es: 'Polaridad de enlace',
@@ -40,7 +40,7 @@ export const bondPolarity_Skill_Data = defineSkill({
       'Use electronegativity differences to characterize unequal electron sharing without equating every polar bond with a polar molecule.',
     frontend: {
       en: 'Explore why electrons can be shared unevenly in a chemical bond.',
-      it: "Esplora perché gli elettroni possono essere condivisi in modo diseguale in un legame chimico.",
+      it: 'Esplora perché gli elettroni possono essere condivisi in modo diseguale in un legame chimico.',
       zh: '了解为什么化学键中的电子有时会被不均等地共享。',
       hi: 'जानें कि रासायनिक बंध में इलेक्ट्रॉन असमान रूप से क्यों साझा हो सकते हैं।',
       es: 'Explora por qué los electrones pueden compartirse de forma desigual en un enlace.',

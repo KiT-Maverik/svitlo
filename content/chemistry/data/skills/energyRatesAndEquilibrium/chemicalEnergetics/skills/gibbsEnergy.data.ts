@@ -5,7 +5,7 @@ export const gibbsEnergy_Skill_Data = defineSkill({
   id: '9007dc88-e77d-415c-9f00-0c90e217b296',
   name: {
     en: 'Gibbs Energy',
-    it: "Energia libera di Gibbs",
+    it: 'Energia libera di Gibbs',
     zh: '吉布斯自由能',
     hi: 'गिब्स मुक्त ऊर्जा',
     es: 'Energía de Gibbs',

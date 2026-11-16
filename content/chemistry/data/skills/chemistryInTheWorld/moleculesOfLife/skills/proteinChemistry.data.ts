@@ -5,7 +5,7 @@ export const proteinChemistry_Skill_Data = defineSkill({
   id: '703714db-00e9-4796-9b1c-b748e83109b1',
   name: {
     en: 'Protein Chemistry',
-    it: "Chimica delle proteine",
+    it: 'Chimica delle proteine',
     zh: '蛋白质化学',
     hi: 'प्रोटीन का रसायन',
     es: 'Química de las proteínas',
@@ -39,7 +39,7 @@ export const proteinChemistry_Skill_Data = defineSkill({
     methodological: 'Relate amino-acid connectivity and chemical interactions to protein structure.',
     frontend: {
       en: 'See how amino acids and their interactions shape protein structure.',
-      it: "Scopri come gli amminoacidi e le loro interazioni determinano la struttura delle proteine.",
+      it: 'Scopri come gli amminoacidi e le loro interazioni determinano la struttura delle proteine.',
       zh: '了解氨基酸及其相互作用如何决定蛋白质结构。',
       hi: 'जानें कि अमीनो अम्ल और उनकी आपसी क्रियाएँ प्रोटीन की संरचना कैसे तय करती हैं।',
       es: 'Observa cómo los aminoácidos y sus interacciones determinan la estructura de las proteínas.',

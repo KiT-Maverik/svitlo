@@ -5,7 +5,7 @@ export const alcohols_Skill_Data = defineSkill({
   id: 'fa006fc4-22c9-475d-a86d-fbcdee5afa44',
   name: {
     en: 'Alcohols',
-    it: "Alcoli",
+    it: 'Alcoli',
     zh: '醇',
     hi: 'ऐल्कोहॉल',
     es: 'Alcoholes',
@@ -40,7 +40,7 @@ export const alcohols_Skill_Data = defineSkill({
       'Recognize a hydroxyl group attached to an appropriate carbon framework and its characteristic chemistry.',
     frontend: {
       en: 'Identify alcohol structures and the reactions associated with their hydroxyl group.',
-      it: "Identifica la struttura degli alcoli e le reazioni associate al loro gruppo ossidrilico.",
+      it: 'Identifica la struttura degli alcoli e le reazioni associate al loro gruppo ossidrilico.',
       zh: '识别醇的结构及其羟基相关的化学反应。',
       hi: 'ऐल्कोहॉल की संरचना और उनके हाइड्रॉक्सिल समूह से जुड़ी अभिक्रियाएँ पहचानें।',
       es: 'Identifica las estructuras de los alcoholes y las reacciones asociadas a su grupo hidroxilo.',

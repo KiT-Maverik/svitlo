@@ -5,7 +5,7 @@ export const amides_Skill_Data = defineSkill({
   id: '9fac13f7-0545-4b36-b62e-48bd31cc9b5f',
   name: {
     en: 'Amides',
-    it: "Ammidi",
+    it: 'Ammidi',
     zh: '酰胺',
     hi: 'ऐमाइड',
     es: 'Amidas',

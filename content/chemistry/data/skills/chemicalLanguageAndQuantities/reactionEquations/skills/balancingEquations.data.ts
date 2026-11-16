@@ -5,7 +5,7 @@ export const balancingEquations_Skill_Data = defineSkill({
   id: '24800a51-f812-4103-a046-b5359436b164',
   name: {
     en: 'Balancing Equations',
-    it: "Bilanciamento delle equazioni",
+    it: 'Bilanciamento delle equazioni',
     zh: '配平化学方程式',
     hi: 'समीकरण संतुलन',
     es: 'Ajuste de ecuaciones',

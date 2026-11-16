@@ -5,7 +5,7 @@ export const molecularPolarity_Skill_Data = defineSkill({
   id: '8033aa47-bff2-4ff5-aafc-8873784b6d8a',
   name: {
     en: 'Molecular Polarity',
-    it: "Polarità molecolare",
+    it: 'Polarità molecolare',
     zh: '分子极性',
     hi: 'आणविक ध्रुवीयता',
     es: 'Polaridad molecular',
@@ -39,7 +39,7 @@ export const molecularPolarity_Skill_Data = defineSkill({
     methodological: 'Combine bond polarities with geometry to infer whether a molecule has a net dipole.',
     frontend: {
       en: 'Combine bond polarity and molecular shape to understand overall molecular polarity.',
-      it: "Combina la polarità dei legami e la forma della molecola per comprenderne la polarità complessiva.",
+      it: 'Combina la polarità dei legami e la forma della molecola per comprenderne la polarità complessiva.',
       zh: '结合化学键的极性与分子形状，判断整个分子的极性。',
       hi: 'बंध की ध्रुवीयता और अणु की आकृति मिलाकर पूरे अणु की ध्रुवीयता समझें।',
       es: 'Combina la polaridad de los enlaces y la forma molecular para comprender la polaridad total.',

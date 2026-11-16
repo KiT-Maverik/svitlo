@@ -5,7 +5,7 @@ export const synthesisReactions_Skill_Data = defineSkill({
   id: '872b5fdb-df33-4250-8662-10e3d71d34b3',
   name: {
     en: 'Synthesis Reactions',
-    it: "Reazioni di sintesi",
+    it: 'Reazioni di sintesi',
     zh: '化合反应',
     hi: 'संयोजन अभिक्रियाएँ',
     es: 'Reacciones de síntesis',
@@ -39,7 +39,7 @@ export const synthesisReactions_Skill_Data = defineSkill({
     methodological: 'Recognize processes producing a new compound from simpler starting substances.',
     frontend: {
       en: 'Recognize when simpler substances combine to form a new compound.',
-      it: "Riconosci quando sostanze più semplici si combinano formando un nuovo composto.",
+      it: 'Riconosci quando sostanze più semplici si combinano formando un nuovo composto.',
       zh: '识别较简单的物质结合形成新化合物的情况。',
       hi: 'पहचानें कि सरल पदार्थ मिलकर नया यौगिक कब बनाते हैं।',
       es: 'Reconoce cuándo sustancias sencillas se combinan para formar un compuesto nuevo.',

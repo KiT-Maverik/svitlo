@@ -7,7 +7,7 @@ export const acidBaseFundamentals_SkillGroup_Data = defineSkillGroup({
   id: '375c4757-1f94-4267-a037-d93385e3c3cd',
   name: {
     en: 'Acid–Base Fundamentals',
-    it: "Fondamenti di chimica acido-base",
+    it: 'Fondamenti di chimica acido-base',
     zh: '酸碱基础',
     hi: 'अम्ल–क्षार की मूल बातें',
     es: 'Fundamentos ácido-base',

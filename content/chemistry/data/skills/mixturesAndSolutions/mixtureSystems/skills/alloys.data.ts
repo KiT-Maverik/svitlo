@@ -5,7 +5,7 @@ export const alloys_Skill_Data = defineSkill({
   id: 'c5620ed3-0777-4da4-8da2-5df379d6789d',
   name: {
     en: 'Alloys',
-    it: "Leghe",
+    it: 'Leghe',
     zh: '合金',
     hi: 'मिश्रधातुएँ',
     es: 'Aleaciones',
@@ -40,7 +40,7 @@ export const alloys_Skill_Data = defineSkill({
       'Interpret metallic mixtures or solid solutions without assuming every alloy has a fixed compound formula.',
     frontend: {
       en: 'Understand how metals combine to form alloys without always making a new compound.',
-      it: "Comprendi come i metalli formano leghe senza produrre necessariamente un nuovo composto.",
+      it: 'Comprendi come i metalli formano leghe senza produrre necessariamente un nuovo composto.',
       zh: '理解金属如何结合形成合金，而不一定生成新的化合物。',
       hi: 'समझें कि धातुएँ नया यौगिक बनाए बिना भी मिश्रधातु कैसे बना सकती हैं।',
       es: 'Comprende cómo se combinan los metales para formar aleaciones sin crear siempre un compuesto nuevo.',

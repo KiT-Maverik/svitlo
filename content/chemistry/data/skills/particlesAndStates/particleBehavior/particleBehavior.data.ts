@@ -17,7 +17,7 @@ export const particleBehavior_SkillGroup_Data = defineSkillGroup({
   id: '0315ca26-35d1-45e8-8efd-bd940b5e71d6',
   name: {
     en: 'Particle Behavior',
-    it: "Comportamento delle particelle",
+    it: 'Comportamento delle particelle',
     zh: '粒子的行为',
     hi: 'कणों का व्यवहार',
     es: 'Comportamiento de las partículas',
@@ -76,7 +76,7 @@ export const particleBehavior_SkillGroup_Data = defineSkillGroup({
       'Models of matter distinguish constituent particles, the spaces between them and their collective motion.',
     frontend: {
       en: 'Discover how tiny particles move, interact and make up the materials around us.',
-      it: "Scopri come si muovono e interagiscono le minuscole particelle che compongono i materiali.",
+      it: 'Scopri come si muovono e interagiscono le minuscole particelle che compongono i materiali.',
       zh: '了解微小粒子如何运动、相互作用并构成周围的物质。',
       hi: 'जानें कि सूक्ष्म कण कैसे चलते, परस्पर क्रिया करते और हमारे आसपास की वस्तुएँ बनाते हैं।',
       es: 'Descubre cómo se mueven e interactúan las partículas diminutas que forman los materiales.',

@@ -5,7 +5,7 @@ export const evidenceBasedChemicalConclusions_Skill_Data = defineSkill({
   id: 'b85b22fc-a1cb-45ad-8b6b-cb4d9b2e42f8',
   name: {
     en: 'Evidence-Based Chemical Conclusions',
-    it: "Conclusioni chimiche basate sulle prove",
+    it: 'Conclusioni chimiche basate sulle prove',
     zh: '基于证据的化学结论',
     hi: 'प्रमाण-आधारित रासायनिक निष्कर्ष',
     es: 'Conclusiones químicas basadas en pruebas',
@@ -40,7 +40,7 @@ export const evidenceBasedChemicalConclusions_Skill_Data = defineSkill({
       'Evaluate whether observations justify a claim about composition or reaction, including alternative explanations.',
     frontend: {
       en: 'Decide whether chemical observations really support a proposed explanation.',
-      it: "Valuta se le osservazioni chimiche sostengono davvero una spiegazione proposta.",
+      it: 'Valuta se le osservazioni chimiche sostengono davvero una spiegazione proposta.',
       zh: '判断化学观察结果是否真正支持所提出的解释。',
       hi: 'तय करें कि रासायनिक अवलोकन प्रस्तावित व्याख्या का वास्तव में समर्थन करते हैं या नहीं।',
       es: 'Decide si las observaciones químicas respaldan realmente una explicación propuesta.',

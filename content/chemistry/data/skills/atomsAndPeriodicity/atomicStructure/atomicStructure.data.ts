@@ -12,7 +12,7 @@ export const atomicStructure_SkillGroup_Data = defineSkillGroup({
   id: '1af2e5a2-0b7d-40b2-a822-b0aee201a4c5',
   name: {
     en: 'Atomic Structure',
-    it: "Struttura atomica",
+    it: 'Struttura atomica',
     zh: '原子结构',
     hi: 'परमाणु संरचना',
     es: 'Estructura atómica',

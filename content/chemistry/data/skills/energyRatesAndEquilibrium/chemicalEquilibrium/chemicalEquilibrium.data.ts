@@ -13,7 +13,7 @@ export const chemicalEquilibrium_SkillGroup_Data = defineSkillGroup({
   id: '4e5a9f8e-754b-4988-8ad8-108ff06fc370',
   name: {
     en: 'Chemical Equilibrium',
-    it: "Equilibrio chimico",
+    it: 'Equilibrio chimico',
     zh: '化学平衡',
     hi: 'रासायनिक साम्य',
     es: 'Equilibrio químico',

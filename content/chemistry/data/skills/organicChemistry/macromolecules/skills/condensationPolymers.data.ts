@@ -5,7 +5,7 @@ export const condensationPolymers_Skill_Data = defineSkill({
   id: '936426a1-8c5c-4456-8c6d-e87973fb7356',
   name: {
     en: 'Condensation Polymers',
-    it: "Polimeri di condensazione",
+    it: 'Polimeri di condensazione',
     zh: '缩合聚合物',
     hi: 'संघनन बहुलक',
     es: 'Polímeros de condensación',
@@ -39,7 +39,7 @@ export const condensationPolymers_Skill_Data = defineSkill({
     methodological: 'Recognize repeat-unit formation with elimination of small molecules.',
     frontend: {
       en: 'Recognize polymers made through reactions that release small molecules.',
-      it: "Riconosci i polimeri prodotti da reazioni che liberano piccole molecole.",
+      it: 'Riconosci i polimeri prodotti da reazioni che liberano piccole molecole.',
       zh: '识别在形成过程中会释放小分子的聚合物。',
       hi: 'ऐसे बहुलक पहचानें जो छोटे अणु निकलने वाली अभिक्रियाओं से बनते हैं।',
       es: 'Reconoce polímeros formados mediante reacciones que liberan moléculas pequeñas.',
