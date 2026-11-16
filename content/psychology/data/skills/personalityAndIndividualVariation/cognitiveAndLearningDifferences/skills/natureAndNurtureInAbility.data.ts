@@ -5,6 +5,7 @@ export const natureAndNurtureInAbility_Skill_Data = defineSkill({
   id: 'fa46f27b-9242-40c6-943a-d1a3f46eacc6',
   name: {
     en: 'Nature and Nurture in Ability',
+    it: 'Ereditarietà e ambiente nelle capacità',
     zh: '先天与后天对能力的影响',
     hi: 'क्षमता में आनुवंशिकता और परिवेश',
     es: 'Herencia y ambiente en las capacidades',
@@ -39,6 +40,7 @@ export const natureAndNurtureInAbility_Skill_Data = defineSkill({
       'Analyze interplay among heredity, learning opportunities, and environmental conditions in measured performance.',
     frontend: {
       en: 'Explore how inherited traits and environments influence abilities together.',
+      it: 'Esplora come caratteristiche ereditarie e ambienti influenzino insieme le capacità.',
       zh: '探索遗传特征与环境如何共同影响能力。',
       hi: 'जानें कि विरासत में मिले गुण और वातावरण मिलकर क्षमताओं को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo los rasgos heredados y los ambientes influyen juntos en las capacidades.',

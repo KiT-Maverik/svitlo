@@ -13,6 +13,7 @@ export const goalPursuitAndSelfControl_SkillGroup_Data = defineSkillGroup({
   id: '81716eb9-7d4f-4895-a0ba-ffc107468b36',
   name: {
     en: 'Goal Pursuit and Self-Control',
+    it: 'Perseguimento degli obiettivi e autocontrollo',
     zh: '目标追求与自我控制',
     hi: 'लक्ष्य प्राप्ति और आत्म-नियंत्रण',
     es: 'Persecución de metas y autocontrol',
@@ -63,6 +64,7 @@ export const goalPursuitAndSelfControl_SkillGroup_Data = defineSkillGroup({
       'Persistent action requires monitoring progress, choosing responses, and adapting goals to changing conditions.',
     frontend: {
       en: 'Learn how people set goals, stay on course and adapt when circumstances change.',
+      it: 'Scopri come le persone stabiliscano obiettivi, mantengano la direzione e si adattino ai cambiamenti.',
       zh: '了解人们如何设定目标、坚持行动并适应变化。',
       hi: 'जानें कि लोग लक्ष्य कैसे तय करते, टिके रहते और बदलाव के अनुसार ढलते हैं।',
       es: 'Aprende cómo fijamos metas, persistimos y nos adaptamos a los cambios.',

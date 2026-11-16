@@ -5,6 +5,7 @@ export const cognitiveBehavioralInterventions_Skill_Data = defineSkill({
   id: 'ddbc49c4-d2e5-4ab3-af75-ce4ec5cf85bb',
   name: {
     en: 'Cognitive Behavioral Interventions',
+    it: 'Interventi cognitivo-comportamentali',
     zh: '认知行为干预',
     hi: 'संज्ञानात्मक-व्यवहारिक हस्तक्षेप',
     es: 'Intervenciones cognitivo-conductuales',
@@ -39,6 +40,7 @@ export const cognitiveBehavioralInterventions_Skill_Data = defineSkill({
       'Explain how changing learned response patterns and examining interpretations can support psychological treatment without treating the explanation as therapy training.',
     frontend: {
       en: 'Understand the principles behind cognitive and behavioral treatment approaches.',
+      it: 'Comprendi i principi su cui si basano i trattamenti cognitivi e comportamentali.',
       zh: '理解认知与行为治疗方法背后的基本原则。',
       hi: 'संज्ञानात्मक और व्यवहारिक उपचार पद्धतियों के पीछे के सिद्धांत समझें।',
       es: 'Comprende los principios de los enfoques terapéuticos cognitivos y conductuales.',

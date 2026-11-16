@@ -14,6 +14,7 @@ export const respondentConditioning_SkillGroup_Data = defineSkillGroup({
   id: '6e513523-15a7-4b60-adab-682df24ecd4a',
   name: {
     en: 'Respondent Conditioning',
+    it: 'Condizionamento rispondente',
     zh: '应答性条件作用',
     hi: 'प्रत्युत्तर अनुबंधन',
     es: 'Condicionamiento respondiente',
@@ -66,6 +67,7 @@ export const respondentConditioning_SkillGroup_Data = defineSkillGroup({
       'Previously neutral cues can acquire the capacity to elicit responses through repeated relationships with consequential events.',
     frontend: {
       en: 'Discover how associations between stimuli can produce learned responses.',
+      it: 'Scopri come le associazioni tra stimoli possano produrre risposte apprese.',
       zh: '了解刺激之间的联系如何产生习得性反应。',
       hi: 'जानें कि उद्दीपकों के बीच संबंध सीखी हुई प्रतिक्रियाएँ कैसे उत्पन्न करते हैं।',
       es: 'Descubre cómo las asociaciones entre estímulos pueden generar respuestas aprendidas.',

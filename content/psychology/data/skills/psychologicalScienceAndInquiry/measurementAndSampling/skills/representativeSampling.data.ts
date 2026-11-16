@@ -5,6 +5,7 @@ export const representativeSampling_Skill_Data = defineSkill({
   id: '25272b74-9670-4592-acd6-8b0f712775ad',
   name: {
     en: 'Representative Sampling',
+    it: 'Campionamento rappresentativo',
     zh: '代表性抽样',
     hi: 'प्रतिनिधि नमूनाकरण',
     es: 'Muestreo representativo',
@@ -38,6 +39,7 @@ export const representativeSampling_Skill_Data = defineSkill({
     methodological: 'Explain how sampling, recruitment, and nonresponse affect the generalizability of findings.',
     frontend: {
       en: 'Recognize how recruiting a sample limits conclusions about a population.',
+      it: 'Riconosci come il reclutamento di un campione limiti le conclusioni su una popolazione.',
       zh: '认识样本招募方式如何限制对总体得出的结论。',
       hi: 'पहचानें कि नमूना चुनने का तरीका पूरी आबादी के बारे में निष्कर्षों को कैसे सीमित करता है।',
       es: 'Reconoce cómo la selección de una muestra limita las conclusiones sobre una población.',

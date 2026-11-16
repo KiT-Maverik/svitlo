@@ -5,6 +5,7 @@ export const peerInfluenceInAdolescence_Skill_Data = defineSkill({
   id: '0e13e8c9-36c4-4dfb-9543-4f6a032086da',
   name: {
     en: 'Peer Influence in Adolescence',
+    it: 'Influenza dei pari nell\'adolescenza',
     zh: '青春期的同伴影响',
     hi: 'किशोरावस्था में साथियों का प्रभाव',
     es: 'Influencia de los pares en la adolescencia',
@@ -39,6 +40,7 @@ export const peerInfluenceInAdolescence_Skill_Data = defineSkill({
       'Analyze how peers affect preferences and behavior, considering protective as well as risky social effects.',
     frontend: {
       en: 'Recognize how peers can influence adolescent decisions and behavior.',
+      it: 'Riconosci come i coetanei possano influenzare le decisioni e i comportamenti degli adolescenti.',
       zh: '识别同伴如何影响青少年的决定与行为。',
       hi: 'समझें कि हमउम्र साथी किशोरों के फैसलों और व्यवहार को कैसे प्रभावित कर सकते हैं।',
       es: 'Reconoce cómo los compañeros pueden influir en las decisiones y conductas de los adolescentes.',

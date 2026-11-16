@@ -5,6 +5,7 @@ export const blindingInResearch_Skill_Data = defineSkill({
   id: '92b16089-6ac5-4ec8-aa8e-0ae5c77920ab',
   name: {
     en: 'Blinding in Research',
+    it: 'Mascheramento negli studi di ricerca',
     zh: '研究中的盲法',
     hi: 'अनुसंधान में ब्लाइंडिंग',
     es: 'Enmascaramiento en investigación',
@@ -39,6 +40,7 @@ export const blindingInResearch_Skill_Data = defineSkill({
       'Explain how keeping condition assignments unknown to participants or evaluators can reduce some sources of bias, and why blinding is not universally possible.',
     frontend: {
       en: 'Explain how blinding participants or evaluators can reduce certain biases.',
+      it: 'Spiega come non rivelare a partecipanti o valutatori l\'assegnazione ai gruppi possa ridurre alcune distorsioni.',
       zh: '解释为何不让参与者或评估者知晓分组信息能够减少某些偏差。',
       hi: 'समझाएँ कि प्रतिभागियों या मूल्यांकनकर्ताओं से समूह की जानकारी छिपाने से कुछ पूर्वाग्रह कैसे घटते हैं।',
       es: 'Explica cómo ocultar la asignación a participantes o evaluadores puede reducir ciertos sesgos.',

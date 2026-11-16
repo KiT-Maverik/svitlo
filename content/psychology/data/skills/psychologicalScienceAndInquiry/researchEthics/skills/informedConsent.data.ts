@@ -5,6 +5,7 @@ export const informedConsent_Skill_Data = defineSkill({
   id: '34b406e3-7443-449b-b98f-58e7cc16355e',
   name: {
     en: 'Informed Consent',
+    it: 'Consenso informato',
     zh: '知情同意',
     hi: 'सूचित सहमति',
     es: 'Consentimiento informado',
@@ -39,6 +40,7 @@ export const informedConsent_Skill_Data = defineSkill({
       'Identify the information required for a voluntary decision to participate, including procedures, foreseeable risks, and withdrawal.',
     frontend: {
       en: 'Recognize what participants should know before agreeing to join a study.',
+      it: 'Riconosci che cosa i partecipanti dovrebbero sapere prima di accettare di prendere parte a uno studio.',
       zh: '认识参与者在同意参加研究前应该了解哪些信息。',
       hi: 'पहचानें कि अध्ययन में शामिल होने की सहमति से पहले प्रतिभागियों को क्या जानना चाहिए।',
       es: 'Reconoce qué deben saber las personas antes de aceptar participar en un estudio.',

@@ -5,6 +5,7 @@ export const neuroimagingInference_Skill_Data = defineSkill({
   id: '95ee8740-08c9-4372-a8b5-238cfda5dd53',
   name: {
     en: 'Neuroimaging Inference',
+    it: 'Inferenze dalla neuroimmagine',
     zh: '神经影像推断',
     hi: 'न्यूरोइमेजिंग से निष्कर्ष',
     es: 'Inferencias a partir de neuroimágenes',
@@ -39,6 +40,7 @@ export const neuroimagingInference_Skill_Data = defineSkill({
       'Distinguish an imaged physiological signal from an inferred thought and identify the limits of reverse inference.',
     frontend: {
       en: 'Understand why brain activity images cannot directly reveal particular thoughts.',
+      it: 'Comprendi perché le immagini dell\'attività cerebrale non possano rivelare direttamente pensieri specifici.',
       zh: '理解为什么脑活动图像不能直接揭示具体想法。',
       hi: 'समझें कि मस्तिष्क गतिविधि की तस्वीरें किसी विशिष्ट विचार को सीधे क्यों नहीं दिखातीं।',
       es: 'Comprende por qué las imágenes de actividad cerebral no revelan directamente pensamientos específicos.',

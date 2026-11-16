@@ -5,6 +5,7 @@ export const soundLocalization_Skill_Data = defineSkill({
   id: 'cc43be38-3097-4727-a322-cf2b2a5dd534',
   name: {
     en: 'Sound Localization',
+    it: 'Localizzazione dei suoni',
     zh: '声音定位',
     hi: 'ध्वनि का स्थान निर्धारण',
     es: 'Localización del sonido',
@@ -38,6 +39,7 @@ export const soundLocalization_Skill_Data = defineSkill({
     methodological: 'Explain how timing and level differences between ears contribute to perceived sound direction.',
     frontend: {
       en: 'Understand how differences between ears help locate a sound.',
+      it: 'Comprendi come le differenze tra le due orecchie aiutino a individuare la provenienza di un suono.',
       zh: '了解双耳之间的差异如何帮助判断声音来源。',
       hi: 'समझें कि दोनों कानों के बीच का अंतर आवाज़ की दिशा पहचानने में कैसे मदद करता है।',
       es: 'Comprende cómo las diferencias entre ambos oídos ayudan a localizar un sonido.',

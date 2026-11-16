@@ -5,6 +5,7 @@ export const memoryConfidenceAndAccuracy_Skill_Data = defineSkill({
   id: '652eaa8a-dfe0-49b1-baa3-580319ea213f',
   name: {
     en: 'Memory Confidence and Accuracy',
+    it: 'Sicurezza e accuratezza dei ricordi',
     zh: '记忆的确信度与准确性',
     hi: 'स्मृति पर भरोसा और सटीकता',
     es: 'Confianza y precisión de la memoria',
@@ -38,6 +39,7 @@ export const memoryConfidenceAndAccuracy_Skill_Data = defineSkill({
     methodological: 'Explain why vivid or confident recollection does not always predict correctness.',
     frontend: {
       en: 'Understand why feeling certain about a memory does not guarantee accuracy.',
+      it: 'Comprendi perché essere certi di un ricordo non ne garantisca l\'accuratezza.',
       zh: '理解对某段记忆非常确信并不等于它一定准确。',
       hi: 'समझें कि किसी याद पर पूरा भरोसा होने से उसका सही होना सुनिश्चित नहीं होता।',
       es: 'Comprende por qué estar seguro de un recuerdo no garantiza que sea exacto.',

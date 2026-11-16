@@ -5,6 +5,7 @@ export const illusionsOfLearning_Skill_Data = defineSkill({
   id: 'b2d5cb25-5ebb-4f78-967f-90132015baeb',
   name: {
     en: 'Illusions of Learning',
+    it: 'Illusioni di apprendimento',
     zh: '学习错觉',
     hi: 'सीखने का भ्रम',
     es: 'Ilusiones de aprendizaje',
@@ -38,6 +39,7 @@ export const illusionsOfLearning_Skill_Data = defineSkill({
     methodological: 'Identify how fluent rereading or immediate performance may be confused with durable mastery.',
     frontend: {
       en: 'Recognize when familiar-looking material creates a false sense of mastery.',
+      it: 'Riconosci quando un materiale che sembra familiare crea una falsa sensazione di padronanza.',
       zh: '识别材料看起来熟悉却让人误以为已经掌握的情况。',
       hi: 'पहचानें कि परिचित सामग्री सीख लेने का झूठा भरोसा कब पैदा करती है।',
       es: 'Reconoce cuándo un material familiar crea una falsa sensación de dominio.',

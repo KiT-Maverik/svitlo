@@ -12,6 +12,7 @@ export const illusionsAndMultisensoryPerception_SkillGroup_Data = defineSkillGro
   id: 'aedf27d5-0c7a-43d3-8a94-8e1361e93155',
   name: {
     en: 'Illusions and Multisensory Perception',
+    it: 'Illusioni e percezione multisensoriale',
     zh: '错觉与多感官知觉',
     hi: 'भ्रम और बहुसंवेदी प्रत्यक्षण',
     es: 'Ilusiones y percepción multisensorial',
@@ -55,6 +56,7 @@ export const illusionsAndMultisensoryPerception_SkillGroup_Data = defineSkillGro
       'Systematic distortions and interactions across senses reveal how perception infers likely causes of stimulation.',
     frontend: {
       en: 'Discover what sensory illusions reveal about how perception works.',
+      it: 'Scopri che cosa le illusioni sensoriali rivelino sul funzionamento della percezione.',
       zh: '探索感官错觉揭示了知觉运作的哪些特点。',
       hi: 'जानें कि इंद्रियों के भ्रम हमें प्रत्यक्षण के काम करने के बारे में क्या बताते हैं।',
       es: 'Descubre qué revelan las ilusiones sensoriales sobre el funcionamiento de la percepción.',

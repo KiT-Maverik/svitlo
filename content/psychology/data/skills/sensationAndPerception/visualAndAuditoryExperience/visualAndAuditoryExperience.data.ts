@@ -12,6 +12,7 @@ export const visualAndAuditoryExperience_SkillGroup_Data = defineSkillGroup({
   id: '19eae296-470e-4fdd-b5e1-7a28b17d5d7b',
   name: {
     en: 'Visual and Auditory Experience',
+    it: 'Esperienza visiva e uditiva',
     zh: '视觉与听觉体验',
     hi: 'दृश्य और श्रवण अनुभव',
     es: 'Experiencia visual y auditiva',
@@ -55,6 +56,7 @@ export const visualAndAuditoryExperience_SkillGroup_Data = defineSkillGroup({
       'Spatial, chromatic, and speech experiences emerge from interpreting patterns of visual or acoustic information.',
     frontend: {
       en: 'Discover how we interpret visual and auditory patterns.',
+      it: 'Scopri come interpretiamo le configurazioni visive e uditive.',
       zh: '了解我们如何解释视觉和听觉中的模式。',
       hi: 'जानें कि हम देखे और सुने गए पैटर्न का अर्थ कैसे समझते हैं।',
       es: 'Descubre cómo interpretamos patrones visuales y auditivos.',

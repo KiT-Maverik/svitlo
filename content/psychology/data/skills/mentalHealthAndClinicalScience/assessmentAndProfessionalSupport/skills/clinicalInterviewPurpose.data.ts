@@ -5,6 +5,7 @@ export const clinicalInterviewPurpose_Skill_Data = defineSkill({
   id: '2b83a753-7158-40c8-b881-d0ec6084232c',
   name: {
     en: 'Clinical Interview Purpose',
+    it: 'Scopo del colloquio clinico',
     zh: '临床访谈的目的',
     hi: 'नैदानिक साक्षात्कार का उद्देश्य',
     es: 'Propósito de la entrevista clínica',
@@ -39,6 +40,7 @@ export const clinicalInterviewPurpose_Skill_Data = defineSkill({
       "Explain what a structured history can contribute to understanding a person's reported difficulties and context.",
     frontend: {
       en: "Explore what a clinical interview can reveal about a person's experiences and context.",
+      it: 'Esplora che cosa un colloquio clinico possa rivelare sulle esperienze e sul contesto di una persona.',
       zh: '探索临床访谈可以揭示哪些个人经历与背景信息。',
       hi: 'जानें कि विशेषज्ञ साक्षात्कार से किसी व्यक्ति के अनुभव और परिस्थितियों के बारे में क्या पता चल सकता है।',
       es: 'Explora lo que una entrevista clínica permite conocer sobre las experiencias y el contexto de alguien.',

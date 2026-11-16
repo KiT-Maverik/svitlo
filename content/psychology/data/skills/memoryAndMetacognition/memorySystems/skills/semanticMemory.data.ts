@@ -5,6 +5,7 @@ export const semanticMemory_Skill_Data = defineSkill({
   id: 'b6719f54-fe10-4e60-81f4-a11b89aa3f50',
   name: {
     en: 'Semantic Memory',
+    it: 'Memoria semantica',
     zh: '语义记忆',
     hi: 'अर्थात्मक स्मृति',
     es: 'Memoria semántica',
@@ -39,6 +40,7 @@ export const semanticMemory_Skill_Data = defineSkill({
       'Explain access to acquired concepts, facts, and meanings without needing to mentally relive a specific event.',
     frontend: {
       en: 'Recognize memory for facts, concepts and meanings.',
+      it: 'Riconosci la memoria dei fatti, dei concetti e dei significati.',
       zh: '识别关于事实、概念和意义的记忆。',
       hi: 'तथ्यों, अवधारणाओं और अर्थों की स्मृति को पहचानें।',
       es: 'Reconoce la memoria de hechos, conceptos y significados.',

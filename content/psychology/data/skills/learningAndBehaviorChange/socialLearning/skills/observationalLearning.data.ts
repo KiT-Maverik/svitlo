@@ -5,6 +5,7 @@ export const observationalLearning_Skill_Data = defineSkill({
   id: '95c9b67e-0526-4f09-9140-60262f55d0ad',
   name: {
     en: 'Observational Learning',
+    it: 'Apprendimento osservativo',
     zh: '观察学习',
     hi: 'प्रेक्षण द्वारा सीखना',
     es: 'Aprendizaje por observación',
@@ -38,6 +39,7 @@ export const observationalLearning_Skill_Data = defineSkill({
     methodological: 'Analyze roles of attention, retention, opportunity, and motivation in learning from others.',
     frontend: {
       en: 'Explain how people can learn behavior by watching others.',
+      it: 'Spiega come le persone possano apprendere comportamenti osservando gli altri.',
       zh: '解释人如何通过观察他人的行为来学习。',
       hi: 'समझाएँ कि लोग दूसरों का व्यवहार देखकर कैसे सीख सकते हैं।',
       es: 'Explica cómo las personas aprenden conductas observando a otras.',

@@ -5,6 +5,7 @@ export const culturalVariationInBehavior_Skill_Data = defineSkill({
   id: '2ed4b4b8-e511-45a1-acf2-59e423728973',
   name: {
     en: 'Cultural Variation in Behavior',
+    it: 'Variabilità culturale del comportamento',
     zh: '行为中的文化差异',
     hi: 'व्यवहार में सांस्कृतिक भिन्नता',
     es: 'Variación cultural del comportamiento',
@@ -39,6 +40,7 @@ export const culturalVariationInBehavior_Skill_Data = defineSkill({
       'Explain how norms and practices shape psychological expression without assuming uniformity within any culture.',
     frontend: {
       en: 'Recognize that behavior can vary with cultural norms and circumstances.',
+      it: 'Riconosci che il comportamento può variare in base alle norme culturali e alle circostanze.',
       zh: '认识行为可能因文化规范和具体环境而变化。',
       hi: 'समझें कि व्यवहार सांस्कृतिक मानदंडों और परिस्थितियों के साथ बदल सकता है।',
       es: 'Reconoce que el comportamiento puede variar según las normas culturales y las circunstancias.',

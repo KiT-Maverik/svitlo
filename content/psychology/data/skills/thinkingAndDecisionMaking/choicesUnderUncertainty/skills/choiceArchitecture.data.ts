@@ -5,6 +5,7 @@ export const choiceArchitecture_Skill_Data = defineSkill({
   id: 'abbc4e05-bcbd-42bb-9f67-6aa351a914f2',
   name: {
     en: 'Choice Architecture',
+    it: 'Architettura delle scelte',
     zh: '选择架构',
     hi: 'विकल्पों की संरचना',
     es: 'Arquitectura de elección',
@@ -39,6 +40,7 @@ export const choiceArchitecture_Skill_Data = defineSkill({
       'Identify how defaults, option ordering, and information load shift behavior without assuming every nudge is harmless.',
     frontend: {
       en: 'See how defaults and arrangement of options can influence decisions.',
+      it: 'Osserva come le opzioni predefinite e la disposizione delle alternative possano influenzare le decisioni.',
       zh: '了解默认选项与选项排列方式如何影响决策。',
       hi: 'जानें कि डिफ़ॉल्ट विकल्प और विकल्पों का क्रम निर्णयों को कैसे प्रभावित कर सकते हैं।',
       es: 'Observa cómo las opciones predeterminadas y el orden de las alternativas influyen en las decisiones.',

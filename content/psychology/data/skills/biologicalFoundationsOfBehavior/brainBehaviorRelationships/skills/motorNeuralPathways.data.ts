@@ -5,6 +5,7 @@ export const motorNeuralPathways_Skill_Data = defineSkill({
   id: 'dfe20d50-c666-463b-ab15-0be7d6392291',
   name: {
     en: 'Motor Neural Pathways',
+    it: 'Vie nervose motorie',
     zh: '运动神经通路',
     hi: 'प्रेरक तंत्रिका मार्ग',
     es: 'Vías nerviosas motoras',
@@ -38,6 +39,7 @@ export const motorNeuralPathways_Skill_Data = defineSkill({
     methodological: 'Relate commands from central nervous processing to coordinated bodily movement and action.',
     frontend: {
       en: 'Explain how the nervous system helps coordinate movement.',
+      it: 'Spiega come il sistema nervoso contribuisca a coordinare i movimenti.',
       zh: '解释神经系统如何帮助协调身体运动。',
       hi: 'समझाएँ कि तंत्रिका तंत्र शरीर की गतिविधियों में समन्वय कैसे करता है।',
       es: 'Explica cómo el sistema nervioso ayuda a coordinar el movimiento.',

@@ -10,6 +10,7 @@ export const biologicalFoundationsOfBehavior_SkillDomain_Data = defineSkillDomai
   id: 'af39e6eb-3289-4411-bd44-077f8169ecba',
   title: {
     en: 'Biological Foundations of Behavior',
+    it: 'Fondamenti biologici del comportamento',
     zh: '行为的生物学基础',
     hi: 'व्यवहार के जैविक आधार',
     es: 'Bases biológicas de la conducta',
@@ -58,6 +59,7 @@ export const biologicalFoundationsOfBehavior_SkillDomain_Data = defineSkillDomai
       'Neural, endocrine, genetic, and evolved processes influence experience and action through interaction with environments. This field emphasizes explanatory mechanisms rather than rote anatomical detail or biological determinism.',
     frontend: {
       en: 'Explore how brains, hormones, inherited traits and environments influence behavior.',
+      it: 'Esplora come cervello, ormoni, caratteristiche ereditarie e ambienti influenzino il comportamento.',
       zh: '探索大脑、激素、遗传特征与环境如何共同影响行为。',
       hi: 'जानें कि मस्तिष्क, हार्मोन, वंशानुगत गुण और पर्यावरण मिलकर व्यवहार को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo el cerebro, las hormonas, los rasgos heredados y el entorno influyen en la conducta.',

@@ -5,6 +5,7 @@ export const physiologyOfEmotion_Skill_Data = defineSkill({
   id: 'ac18cf4a-fbfb-46f5-87a9-14abde266b23',
   name: {
     en: 'Physiology of Emotion',
+    it: 'Fisiologia delle emozioni',
     zh: '情绪的生理机制',
     hi: 'भावनाओं का शरीर विज्ञान',
     es: 'Fisiología de las emociones',
@@ -39,6 +40,7 @@ export const physiologyOfEmotion_Skill_Data = defineSkill({
       'Relate changes in arousal and bodily responses to experienced emotion without assuming a unique bodily signature for each state.',
     frontend: {
       en: 'Recognize bodily changes that can accompany different emotional states.',
+      it: 'Riconosci i cambiamenti corporei che possono accompagnare diversi stati emotivi.',
       zh: '识别不同情绪状态可能伴随的身体变化。',
       hi: 'अलग भावनात्मक अवस्थाओं के साथ होने वाले शारीरिक बदलाव पहचानें।',
       es: 'Reconoce los cambios corporales que pueden acompañar distintos estados emocionales.',

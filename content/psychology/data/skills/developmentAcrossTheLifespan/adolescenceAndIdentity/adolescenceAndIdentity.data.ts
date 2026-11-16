@@ -12,6 +12,7 @@ export const adolescenceAndIdentity_SkillGroup_Data = defineSkillGroup({
   id: 'bd3daaec-35d9-4b78-83ea-d98ab4166494',
   name: {
     en: 'Adolescence and Identity',
+    it: 'Adolescenza e identità',
     zh: '青春期与身份认同',
     hi: 'किशोरावस्था और पहचान',
     es: 'Adolescencia e identidad',
@@ -55,6 +56,7 @@ export const adolescenceAndIdentity_SkillGroup_Data = defineSkillGroup({
       'Developing autonomy, identity, peer relationships, and cognitive control interact with social expectations and opportunities.',
     frontend: {
       en: 'Explore changes in identity, relationships and autonomy during adolescence.',
+      it: 'Esplora i cambiamenti nell\'identità, nelle relazioni e nell\'autonomia durante l\'adolescenza.',
       zh: '探索青春期身份认同、人际关系和自主性的变化。',
       hi: 'किशोरावस्था में पहचान, रिश्तों और स्वायत्तता में आने वाले बदलावों को जानें।',
       es: 'Explora los cambios de identidad, relaciones y autonomía durante la adolescencia.',

@@ -5,6 +5,7 @@ export const riskBenefitAssessment_Skill_Data = defineSkill({
   id: '10b22acd-8598-43b8-9a24-204f23216128',
   name: {
     en: 'Risk–Benefit Assessment',
+    it: 'Valutazione di rischi e benefici',
     zh: '风险与收益评估',
     hi: 'जोखिम–लाभ मूल्यांकन',
     es: 'Evaluación de riesgos y beneficios',
@@ -39,6 +40,7 @@ export const riskBenefitAssessment_Skill_Data = defineSkill({
       'Identify possible distress, coercion, stigma, and privacy harms and consider less intrusive alternatives.',
     frontend: {
       en: 'Compare potential research benefits with risks of distress, harm or coercion.',
+      it: 'Confronta i potenziali benefici della ricerca con i rischi di disagio, danno o coercizione.',
       zh: '权衡研究的潜在收益与痛苦、伤害或胁迫的风险。',
       hi: 'असुविधा, नुकसान या दबाव के जोखिमों की तुलना संभावित शोध लाभों से करें।',
       es: 'Compara los posibles beneficios de investigar con los riesgos de malestar, daño o coacción.',

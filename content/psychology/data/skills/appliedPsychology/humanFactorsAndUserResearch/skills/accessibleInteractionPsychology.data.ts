@@ -5,6 +5,7 @@ export const accessibleInteractionPsychology_Skill_Data = defineSkill({
   id: 'f6e021dc-5b16-49c2-8119-1a402536510f',
   name: {
     en: 'Accessible Interaction Psychology',
+    it: 'Psicologia delle interazioni accessibili',
     zh: '无障碍交互心理学',
     hi: 'सुलभ अंतःक्रिया का मनोविज्ञान',
     es: 'Psicología de la interacción accesible',
@@ -39,6 +40,7 @@ export const accessibleInteractionPsychology_Skill_Data = defineSkill({
       'Explain why sensory, cognitive, and motor variation must inform the interpretation of user research and design constraints.',
     frontend: {
       en: 'Understand why user research must include different abilities and ways of interacting.',
+      it: 'Comprendi perché la ricerca sugli utenti deve includere persone con abilità e modalità di interazione diverse.',
       zh: '理解为什么用户研究必须涵盖不同能力和交互方式。',
       hi: 'समझें कि उपयोगकर्ता शोध में अलग क्षमताओं और बातचीत के तरीकों को शामिल करना क्यों जरूरी है।',
       es: 'Comprende por qué la investigación con usuarios debe incluir distintas capacidades y formas de interacción.',

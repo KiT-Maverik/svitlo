@@ -12,6 +12,7 @@ export const sleepAndDailyRhythms_SkillGroup_Data = defineSkillGroup({
   id: '3fce520d-43ba-4158-aeef-48c54372bbb5',
   name: {
     en: 'Sleep and Daily Rhythms',
+    it: 'Sonno e ritmi quotidiani',
     zh: '睡眠与昼夜节律',
     hi: 'नींद और दैनिक लय',
     es: 'Sueño y ritmos diarios',
@@ -55,6 +56,7 @@ export const sleepAndDailyRhythms_SkillGroup_Data = defineSkillGroup({
       'Circadian timing and sleep states influence subsequent cognitive functioning, distinct from clinical sleep diagnosis.',
     frontend: {
       en: 'Discover how daily biological rhythms and sleep affect mental performance.',
+      it: 'Scopri come i ritmi biologici quotidiani e il sonno influenzino le prestazioni mentali.',
       zh: '探索每日生物节律和睡眠如何影响心理表现。',
       hi: 'जानें कि रोज़ की जैविक लय और नींद मानसिक प्रदर्शन पर कैसे असर डालते हैं।',
       es: 'Descubre cómo los ritmos biológicos diarios y el sueño influyen en el rendimiento mental.',

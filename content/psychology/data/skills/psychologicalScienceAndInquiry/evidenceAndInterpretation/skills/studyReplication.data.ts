@@ -5,6 +5,7 @@ export const studyReplication_Skill_Data = defineSkill({
   id: 'eedb03e6-836f-4989-8a7c-36cb025b670b',
   name: {
     en: 'Study Replication',
+    it: 'Replicazione degli studi',
     zh: '研究重复验证',
     hi: 'अध्ययन की पुनरावृत्ति',
     es: 'Replicación de estudios',
@@ -39,6 +40,7 @@ export const studyReplication_Skill_Data = defineSkill({
       'Explain why repeating a psychological investigation with new observations helps assess the robustness and generality of a result.',
     frontend: {
       en: 'Understand why repeating a study helps test whether a finding is robust.',
+      it: 'Comprendi perché ripetere uno studio aiuti a verificare la solidità di un risultato.',
       zh: '了解重复开展研究为何有助于检验发现是否可靠。',
       hi: 'जानें कि अध्ययन दोहराने से किसी निष्कर्ष की मजबूती की जाँच कैसे होती है।',
       es: 'Comprende por qué repetir un estudio ayuda a comprobar si un hallazgo es sólido.',

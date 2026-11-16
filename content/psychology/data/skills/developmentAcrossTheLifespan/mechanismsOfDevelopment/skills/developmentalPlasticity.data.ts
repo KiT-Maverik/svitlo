@@ -5,6 +5,7 @@ export const developmentalPlasticity_Skill_Data = defineSkill({
   id: '2301a8f8-d58c-4a30-9701-2a569d51bb36',
   name: {
     en: 'Developmental Plasticity',
+    it: 'Plasticità dello sviluppo',
     zh: '发展的可塑性',
     hi: 'विकासात्मक लचीलापन',
     es: 'Plasticidad del desarrollo',
@@ -39,6 +40,7 @@ export const developmentalPlasticity_Skill_Data = defineSkill({
       'Explain why abilities may change with experience across life while acknowledging sensitive periods and contextual constraints.',
     frontend: {
       en: 'Understand how development remains adaptable to experience over time.',
+      it: 'Comprendi come lo sviluppo rimanga capace di adattarsi alle esperienze nel tempo.',
       zh: '理解发展如何随着时间推移继续受到经历的影响并发生调整。',
       hi: 'समझें कि अनुभव जीवन भर विकास की दिशा को कैसे बदल सकते हैं।',
       es: 'Comprende cómo el desarrollo sigue siendo adaptable a la experiencia con el tiempo.',

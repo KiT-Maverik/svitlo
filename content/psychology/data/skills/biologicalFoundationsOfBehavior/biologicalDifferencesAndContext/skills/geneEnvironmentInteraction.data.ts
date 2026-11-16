@@ -5,6 +5,7 @@ export const geneEnvironmentInteraction_Skill_Data = defineSkill({
   id: 'dd2aa7ba-e999-4e07-adf0-268a41b87d36',
   name: {
     en: 'Gene–Environment Interaction',
+    it: 'Interazione tra geni e ambiente',
     zh: '基因与环境的交互作用',
     hi: 'जीन–पर्यावरण अंतःक्रिया',
     es: 'Interacción entre genes y ambiente',
@@ -39,6 +40,7 @@ export const geneEnvironmentInteraction_Skill_Data = defineSkill({
       'Explain why an inherited predisposition can have different behavioral consequences in different surroundings.',
     frontend: {
       en: 'Explore why genetic predispositions can have different outcomes in different settings.',
+      it: 'Esplora perché le predisposizioni genetiche possano produrre esiti diversi in contesti diversi.',
       zh: '探索为什么遗传倾向在不同环境中可能产生不同结果。',
       hi: 'जानें कि आनुवंशिक प्रवृत्तियों के परिणाम अलग-अलग परिस्थितियों में अलग क्यों हो सकते हैं।',
       es: 'Explora por qué las predisposiciones genéticas pueden tener resultados distintos según el entorno.',

@@ -5,6 +5,7 @@ export const habitDisruption_Skill_Data = defineSkill({
   id: '1a6fbe5c-4e6b-4d40-a6ec-fd25d21eec5e',
   name: {
     en: 'Habit Disruption',
+    it: 'Interruzione delle abitudini',
     zh: '习惯中断',
     hi: 'आदत में बाधा डालना',
     es: 'Interrupción de hábitos',
@@ -38,6 +39,7 @@ export const habitDisruption_Skill_Data = defineSkill({
     methodological: 'Explain how changed surroundings or interruption of familiar cues can alter routine behavior.',
     frontend: {
       en: 'Understand how changing cues can interrupt an established habit.',
+      it: 'Comprendi come cambiare i segnali possa interrompere un\'abitudine consolidata.',
       zh: '理解改变触发线索如何打断已有习惯。',
       hi: 'समझें कि संकेत बदलने से पुरानी आदत कैसे टूट सकती है।',
       es: 'Comprende cómo cambiar las señales puede interrumpir una costumbre establecida.',

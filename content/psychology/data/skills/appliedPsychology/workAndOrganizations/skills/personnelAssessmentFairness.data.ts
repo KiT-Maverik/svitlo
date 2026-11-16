@@ -5,6 +5,7 @@ export const personnelAssessmentFairness_Skill_Data = defineSkill({
   id: '7ce2da13-889c-4afb-886d-d29ed2f5b7ed',
   name: {
     en: 'Personnel Assessment Fairness',
+    it: 'Equità nella valutazione del personale',
     zh: '人员评估的公平性',
     hi: 'कर्मचारी मूल्यांकन में निष्पक्षता',
     es: 'Equidad en la evaluación de personal',
@@ -38,6 +39,7 @@ export const personnelAssessmentFairness_Skill_Data = defineSkill({
     methodological: 'Evaluate reliability, job relevance, and discriminatory risk in employment selection measures.',
     frontend: {
       en: 'Evaluate whether employee assessments are reliable, relevant and fair.',
+      it: 'Valuta se le valutazioni dei dipendenti siano attendibili, pertinenti ed eque.',
       zh: '评估员工测评是否可靠、与工作相关且公平。',
       hi: 'जाँचें कि कर्मचारियों का आकलन विश्वसनीय, काम से संबंधित और निष्पक्ष है या नहीं।',
       es: 'Evalúa si las evaluaciones del personal son fiables, relevantes y justas.',

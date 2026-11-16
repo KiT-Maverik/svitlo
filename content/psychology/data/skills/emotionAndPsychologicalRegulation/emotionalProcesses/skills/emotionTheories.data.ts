@@ -5,6 +5,7 @@ export const emotionTheories_Skill_Data = defineSkill({
   id: 'ed10d2a5-3f5a-4504-b93c-347e00bf8215',
   name: {
     en: 'Emotion Theories',
+    it: 'Teorie delle emozioni',
     zh: '情绪理论',
     hi: 'भावनाओं के सिद्धांत',
     es: 'Teorías de las emociones',
@@ -39,6 +40,7 @@ export const emotionTheories_Skill_Data = defineSkill({
       'Compare explanatory accounts of the relationship among bodily changes, appraisal, and conscious experience.',
     frontend: {
       en: 'Compare theories describing how feelings and bodily responses relate.',
+      it: 'Confronta le teorie che descrivono il rapporto tra sentimenti e risposte corporee.',
       zh: '比较解释情感与身体反应之间关系的不同理论。',
       hi: 'भावनाओं और शारीरिक प्रतिक्रियाओं के संबंध बताने वाले सिद्धांतों की तुलना करें।',
       es: 'Compara teorías sobre la relación entre sentimientos y respuestas corporales.',

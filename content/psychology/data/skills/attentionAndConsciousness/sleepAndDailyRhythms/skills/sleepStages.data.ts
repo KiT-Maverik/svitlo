@@ -5,6 +5,7 @@ export const sleepStages_Skill_Data = defineSkill({
   id: '3834fafb-d14f-48f2-890e-e51c33f28a2b',
   name: {
     en: 'Sleep Stages',
+    it: 'Fasi del sonno',
     zh: '睡眠阶段',
     hi: 'नींद की अवस्थाएँ',
     es: 'Etapas del sueño',
@@ -39,6 +40,7 @@ export const sleepStages_Skill_Data = defineSkill({
       'Differentiate REM and non-REM sleep in terms of characteristic patterns without attributing a single exclusive purpose to each.',
     frontend: {
       en: 'Distinguish REM from non-REM sleep without assigning exclusive functions.',
+      it: 'Distingui il sonno REM dal sonno non REM senza attribuire funzioni esclusive a ciascuno.',
       zh: '区分快速眼动睡眠与非快速眼动睡眠，但不要认为各自只有一种功能。',
       hi: 'REM और गैर-REM नींद में अंतर करें, बिना यह माने कि प्रत्येक का केवल एक ही कार्य है।',
       es: 'Distingue el sueño REM del no REM sin atribuir a cada uno una función exclusiva.',

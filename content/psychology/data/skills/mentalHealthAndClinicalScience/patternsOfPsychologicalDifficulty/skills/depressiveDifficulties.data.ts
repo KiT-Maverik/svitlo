@@ -5,6 +5,7 @@ export const depressiveDifficulties_Skill_Data = defineSkill({
   id: '964050f3-855e-4310-8cf1-707803d20de2',
   name: {
     en: 'Depressive Difficulties',
+    it: 'Difficoltà depressive',
     zh: '抑郁相关困难',
     hi: 'अवसाद से जुड़ी कठिनाइयाँ',
     es: 'Dificultades depresivas',
@@ -39,6 +40,7 @@ export const depressiveDifficulties_Skill_Data = defineSkill({
       'Describe persistent changes in mood, interest, or functioning without confusing an episode of sadness with a diagnosis.',
     frontend: {
       en: 'Understand why lasting depressive difficulties differ from a temporary sad mood.',
+      it: 'Comprendi perché difficoltà depressive persistenti siano diverse da uno stato d\'animo triste temporaneo.',
       zh: '理解持续的抑郁困难为何不同于暂时的悲伤情绪。',
       hi: 'समझें कि लंबे समय तक रहने वाली अवसादग्रस्त कठिनाइयाँ क्षणिक उदासी से कैसे अलग हैं।',
       es: 'Comprende por qué las dificultades depresivas persistentes no son lo mismo que la tristeza pasajera.',

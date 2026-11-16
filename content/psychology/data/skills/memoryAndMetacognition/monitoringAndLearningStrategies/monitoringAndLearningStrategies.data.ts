@@ -13,6 +13,7 @@ export const monitoringAndLearningStrategies_SkillGroup_Data = defineSkillGroup(
   id: '65dfe854-60d7-4fda-a6b4-eaa44425fe68',
   name: {
     en: 'Monitoring and Learning Strategies',
+    it: 'Monitoraggio e strategie di apprendimento',
     zh: '监控与学习策略',
     hi: 'निगरानी और अध्ययन रणनीतियाँ',
     es: 'Supervisión y estrategias de aprendizaje',
@@ -63,6 +64,7 @@ export const monitoringAndLearningStrategies_SkillGroup_Data = defineSkillGroup(
       'Monitoring performance and choosing strategies require evidence beyond feelings of fluency or familiarity.',
     frontend: {
       en: 'Learn to choose and check effective study strategies.',
+      it: 'Impara a scegliere strategie di studio efficaci e a verificarne i risultati.',
       zh: '学习如何选择有效的学习策略并检验其效果。',
       hi: 'प्रभावी अध्ययन रणनीतियाँ चुनना और उनकी जाँच करना सीखें।',
       es: 'Aprende a elegir estrategias de estudio eficaces y comprobar sus resultados.',

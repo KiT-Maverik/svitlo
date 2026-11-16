@@ -5,6 +5,7 @@ export const elaborativeEncoding_Skill_Data = defineSkill({
   id: '9414a493-45c3-47bf-b2fc-d6467e71b1b0',
   name: {
     en: 'Elaborative Encoding',
+    it: 'Codifica elaborativa',
     zh: '精细加工编码',
     hi: 'विस्तृत कूटबद्धन',
     es: 'Codificación elaborativa',
@@ -39,6 +40,7 @@ export const elaborativeEncoding_Skill_Data = defineSkill({
       'Explain how connections to existing knowledge improve the accessibility of newly learned material.',
     frontend: {
       en: 'Connect new information with meaningful prior knowledge.',
+      it: 'Collega le nuove informazioni a conoscenze precedenti significative.',
       zh: '将新信息与已有的有意义知识联系起来。',
       hi: 'नई जानकारी को पहले से मौजूद सार्थक ज्ञान से जोड़ें।',
       es: 'Relaciona información nueva con conocimientos previos significativos.',

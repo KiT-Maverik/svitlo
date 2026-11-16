@@ -15,6 +15,7 @@ export const retrievalAndDistortion_SkillGroup_Data = defineSkillGroup({
   id: 'c9433305-42d1-413e-ac6a-481662936b44',
   name: {
     en: 'Retrieval and Distortion',
+    it: 'Recupero e distorsione dei ricordi',
     zh: '提取与记忆失真',
     hi: 'स्मृति पुनर्प्राप्ति और विकृति',
     es: 'Recuperación y distorsión de la memoria',
@@ -69,6 +70,7 @@ export const retrievalAndDistortion_SkillGroup_Data = defineSkillGroup({
       'Access is cue-dependent and reconstructive; incorrect recollection does not automatically imply deliberate deception.',
     frontend: {
       en: 'Explore why remembering involves retrieval and sometimes distortion.',
+      it: 'Esplora perché ricordare comporti il recupero delle informazioni e, talvolta, la loro distorsione.',
       zh: '探索为什么回忆需要提取信息，而且有时会产生失真。',
       hi: 'जानें कि याद करने में जानकारी पुनः प्राप्त करना क्यों ज़रूरी है और उसमें विकृति कैसे आ सकती है।',
       es: 'Explora por qué recordar exige recuperar información y a veces genera distorsiones.',

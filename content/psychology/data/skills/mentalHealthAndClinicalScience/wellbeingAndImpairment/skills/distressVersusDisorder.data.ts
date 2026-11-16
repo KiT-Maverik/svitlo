@@ -5,6 +5,7 @@ export const distressVersusDisorder_Skill_Data = defineSkill({
   id: '8efc37de-0187-4970-9ccf-9aa13d12f769',
   name: {
     en: 'Distress versus Disorder',
+    it: 'Sofferenza psicologica e disturbo',
     zh: '痛苦与心理障碍的区别',
     hi: 'परेशानी और विकार का अंतर',
     es: 'Malestar frente a trastorno',
@@ -39,6 +40,7 @@ export const distressVersusDisorder_Skill_Data = defineSkill({
       'Distinguish common emotional responses from patterns involving persistence, severity, and functional impairment.',
     frontend: {
       en: 'Distinguish ordinary distress from persistent difficulties affecting daily functioning.',
+      it: 'Distingui la comune sofferenza emotiva dalle difficoltà persistenti che compromettono il funzionamento quotidiano.',
       zh: '区分常见的心理痛苦与持续影响日常功能的困难。',
       hi: 'सामान्य परेशानी और रोजमर्रा के कामों को प्रभावित करने वाली लगातार कठिनाइयों में फर्क करें।',
       es: 'Distingue el malestar cotidiano de dificultades persistentes que afectan la vida diaria.',

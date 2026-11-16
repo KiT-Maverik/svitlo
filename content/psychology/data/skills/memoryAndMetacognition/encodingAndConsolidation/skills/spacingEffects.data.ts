@@ -5,6 +5,7 @@ export const spacingEffects_Skill_Data = defineSkill({
   id: 'c23c49e3-dc52-41e9-b8ba-fcaa6c50b8a4',
   name: {
     en: 'Spacing Effects',
+    it: 'Effetti della pratica distribuita',
     zh: '间隔效应',
     hi: 'अंतराल प्रभाव',
     es: 'Efectos del aprendizaje espaciado',
@@ -39,6 +40,7 @@ export const spacingEffects_Skill_Data = defineSkill({
       'Interpret why appropriately distributed study episodes often support longer-lasting recall than massed review.',
     frontend: {
       en: 'Understand why spreading practice over time can improve retention.',
+      it: 'Comprendi perché distribuire la pratica nel tempo possa migliorare la ritenzione.',
       zh: '理解为什么把练习分散到不同时间能提高记忆保持。',
       hi: 'समझें कि अभ्यास को समय के अंतराल में बाँटने से जानकारी अधिक समय तक क्यों याद रहती है।',
       es: 'Comprende por qué distribuir la práctica en el tiempo puede mejorar la retención.',

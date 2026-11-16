@@ -5,6 +5,7 @@ export const teamCoordination_Skill_Data = defineSkill({
   id: '7c01cccd-25bd-4d48-9329-85af8111faa2',
   name: {
     en: 'Team Coordination',
+    it: 'Coordinamento del gruppo di lavoro',
     zh: '团队协作协调',
     hi: 'टीम का समन्वय',
     es: 'Coordinación de equipos',
@@ -39,6 +40,7 @@ export const teamCoordination_Skill_Data = defineSkill({
       'Explain how shared expectations, information exchange, and role clarity affect collective performance.',
     frontend: {
       en: 'Understand how shared roles and information help teams work effectively.',
+      it: 'Comprendi come ruoli e informazioni condivisi aiutino i gruppi a lavorare efficacemente.',
       zh: '理解明确的分工与信息共享如何帮助团队有效工作。',
       hi: 'समझें कि साझा भूमिकाएँ और जानकारी टीम को प्रभावी ढंग से काम करने में कैसे मदद करती हैं।',
       es: 'Comprende cómo los roles compartidos y la información ayudan a los equipos a trabajar eficazmente.',

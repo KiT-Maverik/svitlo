@@ -5,6 +5,7 @@ export const behaviorChangeInterventions_Skill_Data = defineSkill({
   id: 'f7575ea5-8317-4b84-9901-e930d9fca620',
   name: {
     en: 'Behavior Change Interventions',
+    it: 'Interventi per modificare i comportamenti',
     zh: '行为改变干预',
     hi: 'व्यवहार बदलने के उपाय',
     es: 'Intervenciones para cambiar conductas',
@@ -39,6 +40,7 @@ export const behaviorChangeInterventions_Skill_Data = defineSkill({
       'Evaluate psychological mechanisms behind reminders, planning, feedback, and social support for behavior change.',
     frontend: {
       en: 'Examine how reminders, planning and feedback can support behavior change.',
+      it: 'Esamina come promemoria, pianificazione e riscontri possano sostenere il cambiamento dei comportamenti.',
       zh: '研究提醒、计划和反馈如何支持行为改变。',
       hi: 'जाँचें कि याद दिलाना, योजना बनाना और प्रतिक्रिया व्यवहार परिवर्तन में कैसे मदद करते हैं।',
       es: 'Examina cómo los recordatorios, la planificación y la retroalimentación apoyan cambios de conducta.',

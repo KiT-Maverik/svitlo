@@ -5,6 +5,7 @@ export const avoidingPsychologicalEssentialism_Skill_Data = defineSkill({
   id: '84ebf855-858a-44d9-80ed-c5b9a10cf696',
   name: {
     en: 'Avoiding Psychological Essentialism',
+    it: 'Evitare l\'essenzialismo psicologico',
     zh: '避免心理本质主义',
     hi: 'मनोवैज्ञानिक सारवाद से बचना',
     es: 'Evitar el esencialismo psicológico',
@@ -39,6 +40,7 @@ export const avoidingPsychologicalEssentialism_Skill_Data = defineSkill({
       'Challenge explanations that attribute complex traits to immutable characteristics of a social group.',
     frontend: {
       en: 'Avoid treating group averages as fixed psychological qualities of each individual.',
+      it: 'Evita di trattare le medie di gruppo come qualità psicologiche immutabili di ogni singola persona.',
       zh: '不要把群体平均特征当成每个成员固定不变的心理品质。',
       hi: 'किसी समूह के औसत को हर व्यक्ति का स्थायी मनोवैज्ञानिक गुण न मानें।',
       es: 'Evita tratar los promedios de un grupo como cualidades psicológicas fijas de cada individuo.',

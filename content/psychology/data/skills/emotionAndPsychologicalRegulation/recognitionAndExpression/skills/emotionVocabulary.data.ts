@@ -5,6 +5,7 @@ export const emotionVocabulary_Skill_Data = defineSkill({
   id: 'dc992ff0-f3ac-4037-a438-2c3340b23960',
   name: {
     en: 'Emotion Vocabulary',
+    it: 'Vocabolario delle emozioni',
     zh: '情绪词汇',
     hi: 'भावनाओं की शब्दावली',
     es: 'Vocabulario emocional',
@@ -39,6 +40,7 @@ export const emotionVocabulary_Skill_Data = defineSkill({
       'Differentiate related affective states to communicate distinctions in intensity, quality, or cause.',
     frontend: {
       en: 'Use words that describe emotional experiences precisely.',
+      it: 'Usa parole che descrivano con precisione le esperienze emotive.',
       zh: '准确使用描述情绪体验的词语。',
       hi: 'भावनात्मक अनुभवों को ठीक तरह से व्यक्त करने वाले शब्द प्रयोग करें।',
       es: 'Usa palabras que describan con precisión las experiencias emocionales.',

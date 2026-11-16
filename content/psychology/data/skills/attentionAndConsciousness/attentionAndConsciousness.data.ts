@@ -9,6 +9,7 @@ export const attentionAndConsciousness_SkillDomain_Data = defineSkillDomain({
   id: '1e13a491-7d19-4972-a19d-d7d1aa0a43d7',
   title: {
     en: 'Attention and Consciousness',
+    it: 'Attenzione e coscienza',
     zh: '注意与意识',
     hi: 'ध्यान और चेतना',
     es: 'Atención y conciencia',
@@ -51,6 +52,7 @@ export const attentionAndConsciousness_SkillDomain_Data = defineSkillDomain({
       'Not all available information receives equal processing or enters reportable awareness. Focus, automaticity, waking states, and sleep have related but distinct psychological mechanisms.',
     frontend: {
       en: 'Explore how attention, awareness and sleep affect mental processing.',
+      it: 'Esplora come attenzione, consapevolezza e sonno influenzino i processi mentali.',
       zh: '探索注意、意识和睡眠如何影响心理信息加工。',
       hi: 'जानें कि ध्यान, जागरूकता और नींद मानसिक प्रक्रियाओं को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo la atención, la conciencia y el sueño influyen en el procesamiento mental.',

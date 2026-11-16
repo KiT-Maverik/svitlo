@@ -5,6 +5,7 @@ export const lifelongAdaptation_Skill_Data = defineSkill({
   id: '24f53ddf-7ef1-4a3e-b98b-ecd60618a797',
   name: {
     en: 'Lifelong Adaptation',
+    it: 'Adattamento lungo tutto l\'arco della vita',
     zh: '终身适应',
     hi: 'जीवन भर अनुकूलन',
     es: 'Adaptación a lo largo de la vida',
@@ -38,6 +39,7 @@ export const lifelongAdaptation_Skill_Data = defineSkill({
     methodological: 'Evaluate how learning, context, and support influence functioning at different adult life stages.',
     frontend: {
       en: 'Explore how people continue to learn and adapt throughout life.',
+      it: 'Esplora come le persone continuino a imparare e ad adattarsi durante tutta la vita.',
       zh: '探索人们如何在一生中持续学习与适应。',
       hi: 'जानें कि लोग जीवन भर कैसे सीखते और बदलती परिस्थितियों से तालमेल बिठाते हैं।',
       es: 'Explora cómo las personas siguen aprendiendo y adaptándose durante toda la vida.',

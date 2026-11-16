@@ -5,6 +5,7 @@ export const crossModalIntegration_Skill_Data = defineSkill({
   id: '9d5b3c9a-9a9e-4e15-9818-26878d1f67ff',
   name: {
     en: 'Cross-Modal Integration',
+    it: 'Integrazione tra modalità sensoriali',
     zh: '跨模态整合',
     hi: 'विभिन्न इंद्रियों का एकीकरण',
     es: 'Integración entre modalidades sensoriales',
@@ -38,6 +39,7 @@ export const crossModalIntegration_Skill_Data = defineSkill({
     methodological: 'Explain how combined sensory cues can modify a percept compared with cues considered separately.',
     frontend: {
       en: 'Explore how cues from different senses change the same experience.',
+      it: 'Esplora come gli indizi provenienti da sensi diversi modifichino la stessa esperienza.',
       zh: '探索来自不同感官的线索如何改变同一种体验。',
       hi: 'जानें कि अलग-अलग इंद्रियों के संकेत एक ही अनुभव को कैसे बदल सकते हैं।',
       es: 'Explora cómo las pistas de distintos sentidos pueden cambiar una misma experiencia.',

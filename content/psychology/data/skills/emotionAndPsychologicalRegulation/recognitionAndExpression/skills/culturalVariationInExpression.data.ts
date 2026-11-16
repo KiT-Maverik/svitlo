@@ -5,6 +5,7 @@ export const culturalVariationInExpression_Skill_Data = defineSkill({
   id: 'ba54a612-7f95-4eea-b3ce-08666feccf5c',
   name: {
     en: 'Cultural Variation in Expression',
+    it: 'Variabilità culturale nell\'espressione',
     zh: '情绪表达的文化差异',
     hi: 'भावनात्मक अभिव्यक्ति में सांस्कृतिक भिन्नता',
     es: 'Variación cultural en la expresión',
@@ -38,6 +39,7 @@ export const culturalVariationInExpression_Skill_Data = defineSkill({
     methodological: 'Explain how social norms can influence whether and how feelings are displayed.',
     frontend: {
       en: 'Recognize how social and cultural rules affect emotional expression.',
+      it: 'Riconosci come le regole sociali e culturali influenzino l\'espressione delle emozioni.',
       zh: '认识社会和文化规范如何影响情绪表达。',
       hi: 'समझें कि सामाजिक और सांस्कृतिक नियम भावनाएँ व्यक्त करने को कैसे प्रभावित करते हैं।',
       es: 'Reconoce cómo las normas sociales y culturales influyen en expresar emociones.',

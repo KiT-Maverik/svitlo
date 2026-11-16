@@ -5,6 +5,7 @@ export const stimulusGeneralization_Skill_Data = defineSkill({
   id: '072f31df-6e50-43b4-9199-b1e89c009610',
   name: {
     en: 'Stimulus Generalization',
+    it: 'Generalizzazione dello stimolo',
     zh: '刺激泛化',
     hi: 'उद्दीपक सामान्यीकरण',
     es: 'Generalización de estímulos',
@@ -38,6 +39,7 @@ export const stimulusGeneralization_Skill_Data = defineSkill({
     methodological: 'Explain why a response acquired for one cue may also occur with similar but untrained cues.',
     frontend: {
       en: 'Explain why similar signals can trigger a learned response.',
+      it: 'Spiega perché segnali simili possano provocare una risposta appresa.',
       zh: '解释相似的信号为什么也可能引发习得性反应。',
       hi: 'समझाएँ कि मिलते-जुलते संकेत भी सीखी हुई प्रतिक्रिया क्यों उत्पन्न कर सकते हैं।',
       es: 'Explica por qué señales parecidas pueden desencadenar una respuesta aprendida.',

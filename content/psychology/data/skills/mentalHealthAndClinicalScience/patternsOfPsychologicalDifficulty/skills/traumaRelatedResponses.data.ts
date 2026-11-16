@@ -5,6 +5,7 @@ export const traumaRelatedResponses_Skill_Data = defineSkill({
   id: '4236ede0-7e5e-40b9-89c2-d1dc299ca58d',
   name: {
     en: 'Trauma-Related Responses',
+    it: 'Risposte legate al trauma',
     zh: '创伤相关反应',
     hi: 'आघात से जुड़ी प्रतिक्रियाएँ',
     es: 'Respuestas relacionadas con el trauma',
@@ -39,6 +40,7 @@ export const traumaRelatedResponses_Skill_Data = defineSkill({
       'Explain how exposure to threatening events can affect memory, arousal, and avoidance, with outcomes varying across people.',
     frontend: {
       en: 'Explore how responses to threatening experiences vary among individuals.',
+      it: 'Esplora come le risposte a esperienze minacciose varino tra le persone.',
       zh: '探索不同的人面对威胁性经历时为何会有不同反应。',
       hi: 'जानें कि डरावने अनुभवों पर लोगों की प्रतिक्रियाएँ कैसे अलग-अलग हो सकती हैं।',
       es: 'Explora cómo varían las respuestas de las personas ante experiencias amenazantes.',

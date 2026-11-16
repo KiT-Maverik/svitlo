@@ -5,6 +5,7 @@ export const motivationalClimate_Skill_Data = defineSkill({
   id: 'b0a49ffc-08d5-44e8-9aff-ee8ea0a0cfe5',
   name: {
     en: 'Motivational Climate',
+    it: 'Clima motivazionale',
     zh: '动机氛围',
     hi: 'प्रेरणादायक वातावरण',
     es: 'Clima motivacional',
@@ -38,6 +39,7 @@ export const motivationalClimate_Skill_Data = defineSkill({
     methodological: 'Explain how autonomy, belonging, and evaluation pressures influence learner engagement.',
     frontend: {
       en: 'Explore how autonomy, belonging and pressure affect motivation to learn.',
+      it: 'Esplora come autonomia, senso di appartenenza e pressione influenzino la motivazione ad apprendere.',
       zh: '探索自主性、归属感和压力如何影响学习动机。',
       hi: 'जानें कि स्वतंत्रता, अपनापन और दबाव सीखने की प्रेरणा को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo la autonomía, la pertenencia y la presión afectan la motivación para aprender.',

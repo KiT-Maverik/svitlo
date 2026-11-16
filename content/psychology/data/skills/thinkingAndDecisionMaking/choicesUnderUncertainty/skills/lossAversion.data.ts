@@ -5,6 +5,7 @@ export const lossAversion_Skill_Data = defineSkill({
   id: '118b4858-163c-4b16-9d61-52824d37a9bc',
   name: {
     en: 'Loss Aversion',
+    it: 'Avversione alle perdite',
     zh: '损失厌恶',
     hi: 'हानि से बचने की प्रवृत्ति',
     es: 'Aversión a las pérdidas',
@@ -39,6 +40,7 @@ export const lossAversion_Skill_Data = defineSkill({
       'Explain why a loss relative to a reference point may carry greater subjective weight than an equivalent gain.',
     frontend: {
       en: 'Understand why losses can feel more significant than equivalent gains.',
+      it: 'Comprendi perché le perdite possano sembrare più importanti di guadagni equivalenti.',
       zh: '理解为什么损失带来的感受可能比等量收益更强烈。',
       hi: 'समझें कि बराबर लाभ की तुलना में हानि अधिक महत्वपूर्ण क्यों महसूस हो सकती है।',
       es: 'Comprende por qué las pérdidas pueden sentirse más importantes que ganancias equivalentes.',

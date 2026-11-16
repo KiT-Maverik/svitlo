@@ -5,6 +5,7 @@ export const neurotransmitterAction_Skill_Data = defineSkill({
   id: 'a830ce95-8098-41c2-b6eb-5c3501107456',
   name: {
     en: 'Neurotransmitter Action',
+    it: 'Azione dei neurotrasmettitori',
     zh: '神经递质的作用',
     hi: 'न्यूरोट्रांसमीटर की क्रिया',
     es: 'Acción de los neurotransmisores',
@@ -39,6 +40,7 @@ export const neurotransmitterAction_Skill_Data = defineSkill({
       'Explain modulatory chemical signaling without the misleading claim that a single neurotransmitter directly causes one emotion.',
     frontend: {
       en: 'Recognize why one neurotransmitter does not determine a single emotion.',
+      it: 'Riconosci perché un singolo neurotrasmettitore non determini una specifica emozione.',
       zh: '认识为什么单一神经递质不能决定某一种情绪。',
       hi: 'पहचानें कि एक न्यूरोट्रांसमीटर किसी एक भावना को निर्धारित क्यों नहीं करता।',
       es: 'Reconoce por qué un solo neurotransmisor no determina una emoción concreta.',

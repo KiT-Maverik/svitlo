@@ -13,6 +13,7 @@ export const earlyAndMiddleChildhood_SkillGroup_Data = defineSkillGroup({
   id: '6811ff45-43a1-4f05-8bb1-3003c57a2975',
   name: {
     en: 'Early and Middle Childhood',
+    it: 'Prima e media infanzia',
     zh: '幼儿期与童年中期',
     hi: 'प्रारंभिक और मध्य बाल्यावस्था',
     es: 'Primera y segunda infancia',
@@ -63,6 +64,7 @@ export const earlyAndMiddleChildhood_SkillGroup_Data = defineSkillGroup({
       'Rapid changes in attention, symbolic representation, relationships, and self-regulation create different opportunities for learning.',
     frontend: {
       en: 'Explore how young children develop relationships, reasoning and self-control.',
+      it: 'Esplora come i bambini sviluppino relazioni, ragionamento e autocontrollo.',
       zh: '探索儿童如何发展人际关系、推理能力和自我控制。',
       hi: 'जानें कि बच्चे रिश्ते, सोचने की क्षमता और आत्मनियंत्रण कैसे विकसित करते हैं।',
       es: 'Explora cómo los niños desarrollan relaciones, razonamiento y autocontrol.',

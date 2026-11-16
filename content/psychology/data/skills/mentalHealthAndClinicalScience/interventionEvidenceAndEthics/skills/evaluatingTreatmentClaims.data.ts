@@ -5,6 +5,7 @@ export const evaluatingTreatmentClaims_Skill_Data = defineSkill({
   id: '50269daa-7c88-43b3-9c8f-ea50b94ae7de',
   name: {
     en: 'Evaluating Treatment Claims',
+    it: 'Valutare le affermazioni sui trattamenti',
     zh: '评估治疗效果的主张',
     hi: 'उपचार के दावों का मूल्यांकन',
     es: 'Evaluación de afirmaciones sobre tratamientos',
@@ -39,6 +40,7 @@ export const evaluatingTreatmentClaims_Skill_Data = defineSkill({
       'Assess evidence from controlled studies, meaningful outcomes, adverse effects, and follow-up rather than testimonials or guaranteed-cure marketing.',
     frontend: {
       en: 'Evaluate treatment claims using studies and outcomes rather than testimonials.',
+      it: 'Valuta le affermazioni sui trattamenti attraverso studi e risultati, anziché basarti sulle testimonianze.',
       zh: '根据研究和实际结果而不是个人证言评估治疗主张。',
       hi: 'व्यक्तिगत प्रशंसापत्र के बजाय शोध और परिणामों से उपचार के दावों की जाँच करें।',
       es: 'Evalúa las afirmaciones de tratamiento con estudios y resultados, no solo testimonios.',

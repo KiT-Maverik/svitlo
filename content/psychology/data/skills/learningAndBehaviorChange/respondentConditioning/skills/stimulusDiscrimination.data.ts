@@ -5,6 +5,7 @@ export const stimulusDiscrimination_Skill_Data = defineSkill({
   id: '4b24a928-0a8a-4215-9f16-e8e0be88fb6c',
   name: {
     en: 'Stimulus Discrimination',
+    it: 'Discriminazione degli stimoli',
     zh: '刺激辨别',
     hi: 'उद्दीपक विभेदन',
     es: 'Discriminación de estímulos',
@@ -38,6 +39,7 @@ export const stimulusDiscrimination_Skill_Data = defineSkill({
     methodological: 'Explain learning to respond differently when distinct cues predict different outcomes.',
     frontend: {
       en: 'Learn how people distinguish a learned signal from other stimuli.',
+      it: 'Scopri come le persone distinguano un segnale appreso dagli altri stimoli.',
       zh: '学习人如何区分习得的信号与其他刺激。',
       hi: 'जानें कि लोग सीखे हुए संकेत को अन्य उद्दीपकों से कैसे अलग पहचानते हैं।',
       es: 'Aprende cómo distinguimos una señal aprendida de otros estímulos.',

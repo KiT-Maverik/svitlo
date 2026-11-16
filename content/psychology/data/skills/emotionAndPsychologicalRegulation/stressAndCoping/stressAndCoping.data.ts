@@ -13,6 +13,7 @@ export const stressAndCoping_SkillGroup_Data = defineSkillGroup({
   id: 'e7a36c94-1542-4777-98fe-57feb03de94b',
   name: {
     en: 'Stress and Coping',
+    it: 'Stress e strategie di coping',
     zh: '压力与应对',
     hi: 'तनाव और उससे निपटना',
     es: 'Estrés y afrontamiento',
@@ -57,6 +58,7 @@ export const stressAndCoping_SkillGroup_Data = defineSkillGroup({
       'Stress is shaped by demands and perceived resources, with psychological consequences depending partly on duration and opportunities for recovery.',
     frontend: {
       en: 'Discover how people appraise, experience and cope with stress.',
+      it: 'Scopri come le persone valutano, vivono e affrontano lo stress.',
       zh: '了解人们如何评价、经历和应对压力。',
       hi: 'समझें कि लोग तनाव का मूल्यांकन, अनुभव और सामना कैसे करते हैं।',
       es: 'Descubre cómo las personas evalúan, viven y afrontan el estrés.',

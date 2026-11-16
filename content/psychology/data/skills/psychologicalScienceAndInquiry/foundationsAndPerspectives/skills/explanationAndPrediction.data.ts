@@ -5,6 +5,7 @@ export const explanationAndPrediction_Skill_Data = defineSkill({
   id: '3df569d5-ec86-45a5-b49a-ad4e87aba234',
   name: {
     en: 'Explanation and Prediction',
+    it: 'Spiegazione e previsione',
     zh: '解释与预测',
     hi: 'व्याख्या और पूर्वानुमान',
     es: 'Explicación y predicción',
@@ -39,6 +40,7 @@ export const explanationAndPrediction_Skill_Data = defineSkill({
       'Separate a description of observed behavior, a forecast about future behavior, and a proposed mechanism responsible for it.',
     frontend: {
       en: 'Separate describing behavior from predicting or explaining its causes.',
+      it: 'Distingui la descrizione del comportamento dalla previsione o dalla spiegazione delle sue cause.',
       zh: '区分对行为的描述、对行为的预测以及对其原因的解释。',
       hi: 'व्यवहार का वर्णन करने, उसका पूर्वानुमान लगाने और उसके कारण समझाने में अंतर पहचानें।',
       es: 'Distingue entre describir una conducta, predecirla y explicar sus causas.',

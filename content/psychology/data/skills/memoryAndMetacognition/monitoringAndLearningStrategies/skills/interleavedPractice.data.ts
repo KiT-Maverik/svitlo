@@ -5,6 +5,7 @@ export const interleavedPractice_Skill_Data = defineSkill({
   id: 'ab9e259d-6da5-42e4-bd4f-bee322b40529',
   name: {
     en: 'Interleaved Practice',
+    it: 'Pratica intercalata',
     zh: '交错练习',
     hi: 'मिश्रित अभ्यास',
     es: 'Práctica intercalada',
@@ -39,6 +40,7 @@ export const interleavedPractice_Skill_Data = defineSkill({
       'Evaluate when alternating related task types supports discrimination and when it raises unnecessary difficulty.',
     frontend: {
       en: 'Understand why mixing related kinds of practice can improve discrimination.',
+      it: 'Comprendi perché alternare tipi di esercizi correlati possa migliorare la capacità di distinguerli.',
       zh: '理解为什么交替练习相关类型的问题有助于分辨它们。',
       hi: 'समझें कि जुड़े हुए अभ्यास-प्रकारों को मिलाकर करने से उनमें फर्क समझना क्यों आसान हो सकता है।',
       es: 'Comprende por qué alternar tipos de ejercicios relacionados puede mejorar su diferenciación.',

@@ -5,6 +5,7 @@ export const developmentalResearchDesigns_Skill_Data = defineSkill({
   id: '08f97e8e-b413-4eb3-8d25-abffb0c5ba20',
   name: {
     en: 'Developmental Research Designs',
+    it: 'Disegni di ricerca sullo sviluppo',
     zh: '发展研究设计',
     hi: 'विकास-अनुसंधान की रूपरेखाएँ',
     es: 'Diseños de investigación del desarrollo',
@@ -39,6 +40,7 @@ export const developmentalResearchDesigns_Skill_Data = defineSkill({
       'Compare cross-sectional and longitudinal evidence, including age, cohort, and attrition limitations.',
     frontend: {
       en: 'Compare research methods for studying change at different ages.',
+      it: 'Confronta i metodi di ricerca utilizzati per studiare i cambiamenti nelle diverse età.',
       zh: '比较研究不同年龄阶段变化的研究方法。',
       hi: 'अलग-अलग आयु में होने वाले बदलावों का अध्ययन करने की शोध विधियों की तुलना करें।',
       es: 'Compara métodos de investigación para estudiar cambios en distintas edades.',

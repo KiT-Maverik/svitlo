@@ -5,6 +5,7 @@ export const meansEndsAnalysis_Skill_Data = defineSkill({
   id: 'ee8545ed-3a9a-4a40-9bda-21589e1f8020',
   name: {
     en: 'Means–Ends Analysis',
+    it: 'Analisi mezzi-fini',
     zh: '手段—目的分析',
     hi: 'साधन–लक्ष्य विश्लेषण',
     es: 'Análisis de medios y fines',
@@ -39,6 +40,7 @@ export const meansEndsAnalysis_Skill_Data = defineSkill({
       'Describe selecting intermediate actions that reduce a discrepancy between a current state and a goal.',
     frontend: {
       en: 'Break the gap between the current state and a goal into manageable steps.',
+      it: 'Suddividi la distanza tra la situazione attuale e un obiettivo in passaggi gestibili.',
       zh: '将现状与目标之间的差距分解为可执行的小步骤。',
       hi: 'वर्तमान स्थिति और लक्ष्य के बीच की दूरी को छोटे, संभालने योग्य चरणों में बाँटें।',
       es: 'Divide la distancia entre el estado actual y la meta en pasos manejables.',

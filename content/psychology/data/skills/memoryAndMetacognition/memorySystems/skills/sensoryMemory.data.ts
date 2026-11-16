@@ -5,6 +5,7 @@ export const sensoryMemory_Skill_Data = defineSkill({
   id: 'b0c56c84-e799-4874-8e31-247c5eba0c04',
   name: {
     en: 'Sensory Memory',
+    it: 'Memoria sensoriale',
     zh: '感觉记忆',
     hi: 'संवेदी स्मृति',
     es: 'Memoria sensorial',
@@ -38,6 +39,7 @@ export const sensoryMemory_Skill_Data = defineSkill({
     methodological: 'Explain short-lived persistence of sensory traces beyond the immediate stimulation.',
     frontend: {
       en: 'Understand how sensory information is briefly retained after stimulation.',
+      it: 'Comprendi come le informazioni sensoriali vengano conservate brevemente dopo uno stimolo.',
       zh: '理解外界刺激结束后感觉信息如何短暂保留。',
       hi: 'समझें कि उत्तेजना समाप्त होने के बाद संवेदी जानकारी कुछ क्षण कैसे बनी रहती है।',
       es: 'Comprende cómo la información sensorial permanece brevemente tras desaparecer el estímulo.',

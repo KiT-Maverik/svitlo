@@ -5,6 +5,7 @@ export const prototypeBasedCategorization_Skill_Data = defineSkill({
   id: '29c5055c-fd0e-42da-8ad5-c7306e220d38',
   name: {
     en: 'Prototype-Based Categorization',
+    it: 'Categorizzazione basata sui prototipi',
     zh: '基于原型的分类',
     hi: 'प्रोटोटाइप आधारित वर्गीकरण',
     es: 'Categorización basada en prototipos',
@@ -39,6 +40,7 @@ export const prototypeBasedCategorization_Skill_Data = defineSkill({
       'Explain how classification can rely on resemblance to a typical or averaged category representation.',
     frontend: {
       en: 'Understand how typical examples can guide category decisions.',
+      it: 'Comprendi come gli esempi tipici possano guidare le decisioni di categorizzazione.',
       zh: '理解典型例子如何引导人们作出类别判断。',
       hi: 'समझें कि किसी श्रेणी के सामान्य उदाहरण वर्गीकरण के निर्णय को कैसे दिशा देते हैं।',
       es: 'Comprende cómo los ejemplos típicos orientan las decisiones de clasificación.',

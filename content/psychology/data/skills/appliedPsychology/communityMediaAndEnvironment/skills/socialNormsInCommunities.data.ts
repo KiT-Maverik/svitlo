@@ -5,6 +5,7 @@ export const socialNormsInCommunities_Skill_Data = defineSkill({
   id: '97d9f4e4-69ca-4a7c-b68e-11d93882d465',
   name: {
     en: 'Social Norms in Communities',
+    it: 'Norme sociali nelle comunità',
     zh: '社区中的社会规范',
     hi: 'समुदायों में सामाजिक मानदंड',
     es: 'Normas sociales en comunidades',
@@ -38,6 +39,7 @@ export const socialNormsInCommunities_Skill_Data = defineSkill({
     methodological: 'Explain how descriptive and injunctive norms can shape behavior in shared settings.',
     frontend: {
       en: 'Distinguish what people commonly do from what others expect them to do.',
+      it: 'Distingui ciò che le persone fanno abitualmente da ciò che gli altri si aspettano che facciano.',
       zh: '区分人们通常会做什么与他人期望他们做什么。',
       hi: 'लोग आम तौर पर क्या करते हैं और दूसरे उनसे क्या करने की उम्मीद रखते हैं, इसका अंतर समझें।',
       es: 'Distingue lo que la gente suele hacer de lo que otros esperan que haga.',

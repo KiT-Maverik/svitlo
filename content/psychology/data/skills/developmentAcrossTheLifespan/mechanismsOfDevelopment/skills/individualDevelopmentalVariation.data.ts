@@ -5,6 +5,7 @@ export const individualDevelopmentalVariation_Skill_Data = defineSkill({
   id: '9e8c6437-2220-4093-866d-c00d9960bb49',
   name: {
     en: 'Individual Developmental Variation',
+    it: 'Variabilità individuale dello sviluppo',
     zh: '个体发展差异',
     hi: 'व्यक्तिगत विकास में भिन्नता',
     es: 'Variación individual del desarrollo',
@@ -38,6 +39,7 @@ export const individualDevelopmentalVariation_Skill_Data = defineSkill({
     methodological: 'Interpret population patterns without treating a different pace or pathway as proof of disorder.',
     frontend: {
       en: 'Recognize normal variation between individual developmental pathways.',
+      it: 'Riconosci la normale variabilità tra i percorsi di sviluppo individuali.',
       zh: '认识不同个体发展路径之间存在的正常差异。',
       hi: 'समझें कि अलग-अलग लोगों के विकास के रास्तों में सामान्य भिन्नताएँ होती हैं।',
       es: 'Reconoce la variación normal entre las trayectorias de desarrollo de distintas personas.',

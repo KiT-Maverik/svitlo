@@ -5,6 +5,7 @@ export const effortfulAndAutomaticProcessing_Skill_Data = defineSkill({
   id: '91d3c262-3a56-460a-9ac4-1c2be19de1f5',
   name: {
     en: 'Effortful and Automatic Processing',
+    it: 'Elaborazione controllata e automatica',
     zh: '费力加工与自动加工',
     hi: 'प्रयासपूर्ण और स्वचालित प्रसंस्करण',
     es: 'Procesamiento controlado y automático',
@@ -39,6 +40,7 @@ export const effortfulAndAutomaticProcessing_Skill_Data = defineSkill({
       'Compare deliberately controlled thought with processing that occurs with reduced attentional demand.',
     frontend: {
       en: 'Compare consciously controlled thinking with actions that need less attention.',
+      it: 'Confronta il pensiero controllato consapevolmente con azioni che richiedono meno attenzione.',
       zh: '比较有意识控制的思考与需要较少注意力的行动。',
       hi: 'सचेत नियंत्रण वाली सोच और कम ध्यान माँगने वाली क्रियाओं की तुलना करें।',
       es: 'Compara el pensamiento controlado conscientemente con las acciones que requieren menos atención.',

@@ -5,6 +5,7 @@ export const identityAndSocialContext_Skill_Data = defineSkill({
   id: 'a3dc3bdc-bfb5-429d-a0a8-9c49e5c79732',
   name: {
     en: 'Identity and Social Context',
+    it: 'Identità e contesto sociale',
     zh: '身份认同与社会环境',
     hi: 'पहचान और सामाजिक संदर्भ',
     es: 'Identidad y contexto social',
@@ -38,6 +39,7 @@ export const identityAndSocialContext_Skill_Data = defineSkill({
     methodological: 'Analyze how roles, belonging, and social expectations shape self-descriptions.',
     frontend: {
       en: 'Explore how personal identity is shaped by relationships and social settings.',
+      it: 'Esplora come l\'identità personale sia plasmata dalle relazioni e dagli ambienti sociali.',
       zh: '探索人际关系和社会环境如何塑造个人身份认同。',
       hi: 'जानें कि रिश्ते और सामाजिक स्थितियाँ व्यक्तिगत पहचान को कैसे आकार देती हैं।',
       es: 'Explora cómo las relaciones y los entornos sociales moldean la identidad personal.',

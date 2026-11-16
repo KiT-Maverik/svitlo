@@ -5,6 +5,7 @@ export const historicalPsychologicalApproaches_Skill_Data = defineSkill({
   id: '1e24a222-a42b-4093-a16a-2ac70050b743',
   name: {
     en: 'Historical Psychological Approaches',
+    it: 'Approcci psicologici storici',
     zh: '历史上的心理学流派',
     hi: 'ऐतिहासिक मनोवैज्ञानिक दृष्टिकोण',
     es: 'Enfoques históricos de la psicología',
@@ -39,6 +40,7 @@ export const historicalPsychologicalApproaches_Skill_Data = defineSkill({
       'Evaluate foundational schools of thought in their historical context and assess why some claims have been revised by later evidence.',
     frontend: {
       en: 'Explore how early psychological theories evolved as evidence improved.',
+      it: 'Esplora come le prime teorie psicologiche si siano evolute con il miglioramento delle evidenze.',
       zh: '探索早期心理学理论如何随着证据的积累而发展。',
       hi: 'जानें कि नए प्रमाण मिलने पर शुरुआती मनोवैज्ञानिक सिद्धांत कैसे बदले।',
       es: 'Explora cómo evolucionaron las primeras teorías psicológicas a medida que mejoraron las pruebas.',

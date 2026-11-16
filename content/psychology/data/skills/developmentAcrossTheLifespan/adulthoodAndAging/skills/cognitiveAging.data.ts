@@ -5,6 +5,7 @@ export const cognitiveAging_Skill_Data = defineSkill({
   id: '600d2dae-6242-4f95-94fa-97a4226551fb',
   name: {
     en: 'Cognitive Aging',
+    it: 'Invecchiamento cognitivo',
     zh: '认知老化',
     hi: 'उम्र के साथ संज्ञानात्मक बदलाव',
     es: 'Envejecimiento cognitivo',
@@ -39,6 +40,7 @@ export const cognitiveAging_Skill_Data = defineSkill({
       'Distinguish average age-related changes in some processing abilities from preserved or improved knowledge and variation among people.',
     frontend: {
       en: 'Recognize different patterns of cognitive change with age.',
+      it: 'Riconosci i diversi andamenti dei cambiamenti cognitivi associati all\'età.',
       zh: '认识随年龄增长而出现的不同认知变化模式。',
       hi: 'उम्र बढ़ने पर सोचने-समझने की क्षमताओं में बदलाव के अलग-अलग रूप पहचानें।',
       es: 'Reconoce distintos patrones de cambio cognitivo con la edad.',

@@ -5,6 +5,7 @@ export const languageProduction_Skill_Data = defineSkill({
   id: 'd0b46850-0f5d-4a1a-9fcc-2bf1956488bf',
   name: {
     en: 'Language Production',
+    it: 'Produzione del linguaggio',
     zh: '语言产生',
     hi: 'भाषा का उत्पादन',
     es: 'Producción del lenguaje',
@@ -38,6 +39,7 @@ export const languageProduction_Skill_Data = defineSkill({
     methodological: 'Explain planning and word selection in speaking, including what errors reveal about processing.',
     frontend: {
       en: 'Explore how people plan and produce spoken or written language.',
+      it: 'Esplora come le persone pianifichino e producano il linguaggio parlato o scritto.',
       zh: '探索人们如何规划并生成口头或书面语言。',
       hi: 'जानें कि लोग बोलने या लिखने के लिए भाषा की योजना कैसे बनाते और उसे कैसे व्यक्त करते हैं।',
       es: 'Explora cómo las personas planifican y producen lenguaje oral o escrito.',

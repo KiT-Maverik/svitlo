@@ -5,6 +5,7 @@ export const expectationEffects_Skill_Data = defineSkill({
   id: 'd5f4c818-c0e1-4cee-ab50-92d660d40ebb',
   name: {
     en: 'Expectation Effects',
+    it: 'Effetti delle aspettative',
     zh: '期望效应',
     hi: 'अपेक्षा प्रभाव',
     es: 'Efectos de las expectativas',
@@ -39,6 +40,7 @@ export const expectationEffects_Skill_Data = defineSkill({
       'Explain how beliefs about an intervention or condition can change reported experience or behavior independently of its specific mechanism.',
     frontend: {
       en: 'Recognize how expectations can influence behavior or reported experience.',
+      it: 'Riconosci come le aspettative possano influenzare il comportamento o le esperienze riferite.',
       zh: '认识期望如何影响行为或个人报告的体验。',
       hi: 'पहचानें कि अपेक्षाएँ व्यवहार या बताए गए अनुभव को कैसे प्रभावित कर सकती हैं।',
       es: 'Reconoce cómo las expectativas pueden influir en la conducta o en las experiencias declaradas.',

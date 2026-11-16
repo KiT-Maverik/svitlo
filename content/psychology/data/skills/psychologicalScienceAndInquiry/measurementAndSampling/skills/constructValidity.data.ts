@@ -5,6 +5,7 @@ export const constructValidity_Skill_Data = defineSkill({
   id: '13c4d6a4-20b2-4055-b327-f1b4c9c19fd6',
   name: {
     en: 'Construct Validity',
+    it: 'Validità di costrutto',
     zh: '构念效度',
     hi: 'निर्मिति वैधता',
     es: 'Validez de constructo',
@@ -39,6 +40,7 @@ export const constructValidity_Skill_Data = defineSkill({
       'Assess whether a test actually captures the intended psychological attribute rather than a convenient proxy.',
     frontend: {
       en: 'Evaluate whether a test captures the concept it claims to measure.',
+      it: 'Valuta se un test rilevi davvero il concetto che dichiara di misurare.',
       zh: '评估一项测试是否真正测量了它声称测量的概念。',
       hi: 'आकलन करें कि कोई परीक्षण सचमुच वही अवधारणा मापता है जिसका वह दावा करता है।',
       es: 'Evalúa si una prueba mide realmente el concepto que afirma medir.',

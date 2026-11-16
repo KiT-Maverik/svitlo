@@ -12,6 +12,7 @@ export const healthBehavior_SkillGroup_Data = defineSkillGroup({
   id: '40836ce8-1c93-445d-820b-fb6dea325518',
   name: {
     en: 'Health Behavior',
+    it: 'Comportamenti legati alla salute',
     zh: '健康行为',
     hi: 'स्वास्थ्य संबंधी व्यवहार',
     es: 'Conductas de salud',
@@ -55,6 +56,7 @@ export const healthBehavior_SkillGroup_Data = defineSkillGroup({
       'Health psychology examines how beliefs, routines, social surroundings, and perceived barriers affect health-related decisions, without replacing medical guidance.',
     frontend: {
       en: 'Discover how beliefs and social settings influence health-related choices.',
+      it: 'Scopri come le convinzioni e i contesti sociali influenzano le scelte relative alla salute.',
       zh: '了解信念和社会环境如何影响健康相关的选择。',
       hi: 'जानें कि विश्वास और सामाजिक वातावरण स्वास्थ्य संबंधी चुनावों को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo las creencias y los entornos sociales influyen en las decisiones sobre salud.',

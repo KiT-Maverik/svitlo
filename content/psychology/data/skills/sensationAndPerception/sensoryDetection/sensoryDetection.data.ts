@@ -13,6 +13,7 @@ export const sensoryDetection_SkillGroup_Data = defineSkillGroup({
   id: '0776705e-3db8-489d-9fdc-009e46b6596e',
   name: {
     en: 'Sensory Detection',
+    it: 'Rilevazione sensoriale',
     zh: '感觉检测',
     hi: 'संवेदी पहचान',
     es: 'Detección sensorial',
@@ -63,6 +64,7 @@ export const sensoryDetection_SkillGroup_Data = defineSkillGroup({
       'Sensitivity depends on stimulus intensity, adaptation, and detection conditions rather than a perfectly fixed threshold.',
     frontend: {
       en: 'Explore how the strength and conditions of stimulation affect detection.',
+      it: 'Esplora come intensità e condizioni della stimolazione influenzino la rilevazione.',
       zh: '探索刺激的强度和条件如何影响我们能否察觉它。',
       hi: 'जानें कि उत्तेजना की तीव्रता और परिस्थितियाँ उसे पहचानने को कैसे प्रभावित करती हैं।',
       es: 'Explora cómo la intensidad y las condiciones de un estímulo afectan su detección.',

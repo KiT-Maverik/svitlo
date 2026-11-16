@@ -13,6 +13,7 @@ export const mentalRepresentation_SkillGroup_Data = defineSkillGroup({
   id: '767b7958-8278-458d-8cae-00543381b861',
   name: {
     en: 'Mental Representation',
+    it: 'Rappresentazione mentale',
     zh: '心理表征',
     hi: 'मानसिक निरूपण',
     es: 'Representación mental',
@@ -63,6 +64,7 @@ export const mentalRepresentation_SkillGroup_Data = defineSkillGroup({
       'Categories, schemas, and internal models compress information, enabling predictions while sometimes concealing important differences.',
     frontend: {
       en: 'Discover how mental concepts and representations organize information.',
+      it: 'Scopri come i concetti e le rappresentazioni mentali organizzino le informazioni.',
       zh: '探索心理概念和内部表征如何组织信息。',
       hi: 'जानें कि मानसिक अवधारणाएँ और निरूपण जानकारी को कैसे व्यवस्थित करते हैं।',
       es: 'Descubre cómo los conceptos y representaciones mentales organizan la información.',

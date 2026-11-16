@@ -5,6 +5,7 @@ export const positiveReinforcement_Skill_Data = defineSkill({
   id: '32fd8364-71c2-4e4d-9fe7-e0e8976b02ad',
   name: {
     en: 'Positive Reinforcement',
+    it: 'Rinforzo positivo',
     zh: '正强化',
     hi: 'सकारात्मक प्रबलन',
     es: 'Refuerzo positivo',
@@ -39,6 +40,7 @@ export const positiveReinforcement_Skill_Data = defineSkill({
       'Identify a consequence added after a behavior that increases its future occurrence under the relevant conditions.',
     frontend: {
       en: 'Recognize when adding a desirable consequence makes behavior more likely.',
+      it: 'Riconosci quando aggiungere una conseguenza desiderabile aumenta la probabilità di un comportamento.',
       zh: '识别增加令人向往的后果何时会提高行为发生的可能性。',
       hi: 'पहचानें कि मनचाहा परिणाम जोड़ने से व्यवहार की संभावना कब बढ़ती है।',
       es: 'Reconoce cuándo añadir una consecuencia deseable hace más probable una conducta.',

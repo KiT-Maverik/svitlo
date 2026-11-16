@@ -5,6 +5,7 @@ export const dividedAttention_Skill_Data = defineSkill({
   id: '9c8c4df0-7298-439d-9fa9-bffbb6f792b8',
   name: {
     en: 'Divided Attention',
+    it: 'Attenzione divisa',
     zh: '分配性注意',
     hi: 'विभाजित ध्यान',
     es: 'Atención dividida',
@@ -38,6 +39,7 @@ export const dividedAttention_Skill_Data = defineSkill({
     methodological: 'Analyze performance costs when simultaneous activities compete for limited processing resources.',
     frontend: {
       en: 'Recognize why doing two demanding tasks at once can reduce performance.',
+      it: 'Riconosci perché svolgere contemporaneamente due compiti impegnativi può ridurre le prestazioni.',
       zh: '了解为什么同时做两项需要集中精力的任务会降低表现。',
       hi: 'समझें कि दो कठिन काम एक साथ करने से कार्यक्षमता क्यों घट सकती है।',
       es: 'Reconoce por qué realizar dos tareas exigentes a la vez puede reducir el rendimiento.',

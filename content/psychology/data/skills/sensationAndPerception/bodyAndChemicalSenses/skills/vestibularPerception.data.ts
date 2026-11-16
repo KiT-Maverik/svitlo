@@ -5,6 +5,7 @@ export const vestibularPerception_Skill_Data = defineSkill({
   id: '8bf16c45-90ce-412b-baac-9718c698e5ba',
   name: {
     en: 'Vestibular Perception',
+    it: 'Percezione vestibolare',
     zh: '前庭知觉',
     hi: 'संतुलन संबंधी प्रत्यक्षण',
     es: 'Percepción vestibular',
@@ -39,6 +40,7 @@ export const vestibularPerception_Skill_Data = defineSkill({
       'Explain how sensed head motion and orientation contribute to balance and spatial perception, including interactions with vision and proprioception.',
     frontend: {
       en: 'Explain how head movement and orientation help maintain balance.',
+      it: 'Spiega come il movimento e l\'orientamento della testa aiutino a mantenere l\'equilibrio.',
       zh: '解释头部运动和朝向如何帮助维持平衡。',
       hi: 'समझाएँ कि सिर की गति और दिशा संतुलन बनाए रखने में कैसे मदद करती हैं।',
       es: 'Explica cómo los movimientos y la orientación de la cabeza ayudan a mantener el equilibrio.',

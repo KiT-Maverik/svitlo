@@ -5,6 +5,7 @@ export const analyticalReproducibility_Skill_Data = defineSkill({
   id: '830be238-a34b-4b1b-9e25-d54ef805211b',
   name: {
     en: 'Analytical Reproducibility',
+    it: 'Riproducibilità delle analisi',
     zh: '分析的可重复性',
     hi: 'विश्लेषण की पुनरुत्पादकता',
     es: 'Reproducibilidad analítica',
@@ -39,6 +40,7 @@ export const analyticalReproducibility_Skill_Data = defineSkill({
       'Explain why access to reported methods, data, and analytic decisions allows independent verification of a result.',
     frontend: {
       en: 'Recognize why clear methods and analysis choices allow independent checking.',
+      it: 'Riconosci perché metodi e scelte analitiche chiari permettano verifiche indipendenti.',
       zh: '认识清晰的方法和分析选择为何有助于独立核查。',
       hi: 'समझें कि स्पष्ट पद्धतियाँ और विश्लेषण के विकल्प स्वतंत्र जाँच को कैसे संभव बनाते हैं।',
       es: 'Reconoce por qué los métodos claros y las decisiones de análisis permiten comprobaciones independientes.',

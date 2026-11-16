@@ -5,6 +5,7 @@ export const framingEffects_Skill_Data = defineSkill({
   id: 'e1a4f2ce-1c93-4b42-a5a5-77e1d86e61f3',
   name: {
     en: 'Framing Effects',
+    it: 'Effetti di incorniciamento',
     zh: '框架效应',
     hi: 'प्रस्तुतीकरण के प्रभाव',
     es: 'Efectos de encuadre',
@@ -38,6 +39,7 @@ export const framingEffects_Skill_Data = defineSkill({
     methodological: 'Assess how equivalent choices described differently can produce different judgments.',
     frontend: {
       en: 'Explore why describing equivalent choices differently can change decisions.',
+      it: 'Esplora perché presentare in modi diversi scelte equivalenti possa cambiare le decisioni.',
       zh: '探索为什么以不同方式描述同等的选择会改变决定。',
       hi: 'जानें कि समान विकल्पों को अलग ढंग से प्रस्तुत करने से निर्णय कैसे बदल सकते हैं।',
       es: 'Explora por qué describir opciones equivalentes de distinta manera puede cambiar decisiones.',

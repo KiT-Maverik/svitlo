@@ -5,6 +5,7 @@ export const delayDiscounting_Skill_Data = defineSkill({
   id: '0f4ac143-245e-4d8a-a35f-5defa2a51c28',
   name: {
     en: 'Delay Discounting',
+    it: 'Svalutazione delle ricompense differite',
     zh: '延迟折扣',
     hi: 'विलंब के साथ मूल्य में कमी',
     es: 'Descuento por demora',
@@ -38,6 +39,7 @@ export const delayDiscounting_Skill_Data = defineSkill({
     methodological: 'Explain changing subjective value of an outcome as its delivery becomes more distant.',
     frontend: {
       en: 'Explore why distant rewards can be valued less than immediate ones.',
+      it: 'Esplora perché le ricompense lontane nel tempo possano essere valutate meno di quelle immediate.',
       zh: '探索为什么人们可能更重视眼前的奖励而低估未来的奖励。',
       hi: 'जानें कि दूर भविष्य के पुरस्कार का मूल्य तत्काल पुरस्कार से कम क्यों आँका जा सकता है।',
       es: 'Explora por qué las recompensas lejanas pueden valorarse menos que las inmediatas.',

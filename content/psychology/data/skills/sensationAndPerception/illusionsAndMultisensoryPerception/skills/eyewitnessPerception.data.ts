@@ -5,6 +5,7 @@ export const eyewitnessPerception_Skill_Data = defineSkill({
   id: '2367ffd8-e9d3-4641-87c0-fc971b05212c',
   name: {
     en: 'Eyewitness Perception',
+    it: 'Percezione dei testimoni oculari',
     zh: '目击者知觉',
     hi: 'प्रत्यक्षदर्शी का प्रत्यक्षण',
     es: 'Percepción de testigos presenciales',
@@ -39,6 +40,7 @@ export const eyewitnessPerception_Skill_Data = defineSkill({
       'Assess the effects of attention, conditions, and later interpretation on the reliability of witnessed events.',
     frontend: {
       en: 'Consider the limits of eyewitness observations under distracting conditions.',
+      it: 'Considera i limiti delle osservazioni dei testimoni oculari in condizioni ricche di distrazioni.',
       zh: '思考分心等条件下目击者观察的局限性。',
       hi: 'ध्यान भटकने जैसी परिस्थितियों में प्रत्यक्षदर्शी के अवलोकन की सीमाएँ समझें।',
       es: 'Considera los límites de las observaciones de testigos en condiciones de distracción.',

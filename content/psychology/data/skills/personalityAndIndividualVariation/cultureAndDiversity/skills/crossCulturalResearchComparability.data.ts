@@ -5,6 +5,7 @@ export const crossCulturalResearchComparability_Skill_Data = defineSkill({
   id: 'e329b8fb-ba1e-4d64-908e-9f85f5550ed0',
   name: {
     en: 'Cross-Cultural Research Comparability',
+    it: 'Comparabilità della ricerca interculturale',
     zh: '跨文化研究的可比性',
     hi: 'अंतर-सांस्कृतिक शोध की तुलनीयता',
     es: 'Comparabilidad de investigaciones interculturales',
@@ -38,6 +39,7 @@ export const crossCulturalResearchComparability_Skill_Data = defineSkill({
     methodological: 'Evaluate whether tasks and concepts carry comparable meaning across studied populations.',
     frontend: {
       en: 'Compare psychological studies across cultures without assuming measures are identical.',
+      it: 'Confronta studi psicologici condotti in culture diverse senza presumere che le misure siano identiche.',
       zh: '比较不同文化中的心理研究，不要假定测量方法完全相同。',
       hi: 'यह माने बिना कि माप एक समान हैं, अलग संस्कृतियों के मनोवैज्ञानिक अध्ययनों की तुलना करें।',
       es: 'Compara estudios psicológicos entre culturas sin asumir que las medidas son idénticas.',

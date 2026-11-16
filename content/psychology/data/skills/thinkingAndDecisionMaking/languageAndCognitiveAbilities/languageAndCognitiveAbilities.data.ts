@@ -12,6 +12,7 @@ export const languageAndCognitiveAbilities_SkillGroup_Data = defineSkillGroup({
   id: '6b3cbfeb-e4d6-42e6-bc88-e3d6325bf183',
   name: {
     en: 'Language and Cognitive Abilities',
+    it: 'Linguaggio e capacità cognitive',
     zh: '语言与认知能力',
     hi: 'भाषा और संज्ञानात्मक क्षमताएँ',
     es: 'Lenguaje y capacidades cognitivas',
@@ -55,6 +56,7 @@ export const languageAndCognitiveAbilities_SkillGroup_Data = defineSkillGroup({
       'Psychological research investigates language processing and performance differences rather than literary quality or innate worth.',
     frontend: {
       en: 'Explore how people process language and how cognitive abilities are measured.',
+      it: 'Esplora come le persone elaborino il linguaggio e come vengano misurate le capacità cognitive.',
       zh: '探索人们如何处理语言，以及怎样测量认知能力。',
       hi: 'जानें कि लोग भाषा को कैसे समझते और उपयोग करते हैं तथा संज्ञानात्मक क्षमताओं को कैसे मापा जाता है।',
       es: 'Explora cómo procesamos el lenguaje y cómo se miden las capacidades cognitivas.',

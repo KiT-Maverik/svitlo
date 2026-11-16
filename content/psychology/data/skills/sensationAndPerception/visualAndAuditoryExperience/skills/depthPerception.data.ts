@@ -5,6 +5,7 @@ export const depthPerception_Skill_Data = defineSkill({
   id: '41cf6a20-88f5-475e-afbc-ab9bbc5589f6',
   name: {
     en: 'Depth Perception',
+    it: 'Percezione della profondità',
     zh: '深度知觉',
     hi: 'गहराई का प्रत्यक्षण',
     es: 'Percepción de la profundidad',
@@ -38,6 +39,7 @@ export const depthPerception_Skill_Data = defineSkill({
     methodological: 'Explain the contributions of binocular and monocular cues to estimating distance.',
     frontend: {
       en: 'Identify visual cues that help us judge how far away something is.',
+      it: 'Individua gli indizi visivi che aiutano a stimare la distanza degli oggetti.',
       zh: '识别帮助我们判断物体距离的视觉线索。',
       hi: 'ऐसे दृश्य संकेत पहचानें जो दूरी का अनुमान लगाने में मदद करते हैं।',
       es: 'Identifica pistas visuales que ayudan a calcular la distancia de los objetos.',

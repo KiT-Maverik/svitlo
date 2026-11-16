@@ -5,6 +5,7 @@ export const smellPerception_Skill_Data = defineSkill({
   id: '0049d58d-9be4-4cc1-a3c8-a347a8daf37f',
   name: {
     en: 'Smell Perception',
+    it: 'Percezione degli odori',
     zh: '嗅觉知觉',
     hi: 'गंध का प्रत्यक्षण',
     es: 'Percepción del olfato',
@@ -39,6 +40,7 @@ export const smellPerception_Skill_Data = defineSkill({
       'Describe how patterns of odorant stimulation contribute to identifying smells and why learning, adaptation, and context can alter odor judgments.',
     frontend: {
       en: 'Recognize how prior experience and context affect identifying smells.',
+      it: 'Riconosci come le esperienze precedenti e il contesto influenzino il riconoscimento degli odori.',
       zh: '认识以往经历和环境如何影响气味识别。',
       hi: 'पहचानें कि पिछले अनुभव और संदर्भ गंध पहचानने को कैसे प्रभावित करते हैं।',
       es: 'Reconoce cómo las experiencias previas y el contexto influyen en identificar olores.',

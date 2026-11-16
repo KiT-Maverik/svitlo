@@ -5,6 +5,7 @@ export const learningEnvironmentDesign_Skill_Data = defineSkill({
   id: '5020dd06-9798-4699-8472-1d8c2e3fe514',
   name: {
     en: 'Learning Environment Design',
+    it: 'Progettazione degli ambienti di apprendimento',
     zh: '学习环境设计',
     hi: 'सीखने का वातावरण तैयार करना',
     es: 'Diseño de entornos de aprendizaje',
@@ -38,6 +39,7 @@ export const learningEnvironmentDesign_Skill_Data = defineSkill({
     methodological: 'Analyze how distraction, task demands, and instructional supports affect opportunities to learn.',
     frontend: {
       en: 'Consider how distractions, supports and task demands shape a learning setting.',
+      it: 'Considera come distrazioni, risorse di supporto e richieste dei compiti influenzino un ambiente di apprendimento.',
       zh: '考虑干扰、支持措施和任务要求如何塑造学习环境。',
       hi: 'सोचें कि विकर्षण, सहायता और कार्य की माँगें सीखने के माहौल को कैसे बनाती हैं।',
       es: 'Considera cómo las distracciones, los apoyos y las exigencias de las tareas configuran un entorno de aprendizaje.',

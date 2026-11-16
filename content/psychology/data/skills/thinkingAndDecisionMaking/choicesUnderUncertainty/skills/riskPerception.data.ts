@@ -5,6 +5,7 @@ export const riskPerception_Skill_Data = defineSkill({
   id: '5fdcee3e-fa42-45b6-ae62-fc6ecb9fcd54',
   name: {
     en: 'Risk Perception',
+    it: 'Percezione del rischio',
     zh: '风险感知',
     hi: 'जोखिम की धारणा',
     es: 'Percepción del riesgo',
@@ -38,6 +39,7 @@ export const riskPerception_Skill_Data = defineSkill({
     methodological: 'Analyze why vividness, familiarity, controllability, and dread affect judgments of risk.',
     frontend: {
       en: 'Recognize that perceived danger depends on more than statistical odds.',
+      it: 'Riconosci che il pericolo percepito dipende da più delle sole probabilità statistiche.',
       zh: '认识人们感受到的危险不仅取决于统计概率。',
       hi: 'पहचानें कि खतरे की अनुभूति केवल सांख्यिकीय संभावना पर निर्भर नहीं होती।',
       es: 'Reconoce que el peligro percibido depende de algo más que las probabilidades estadísticas.',

@@ -5,6 +5,7 @@ export const sustainedAttention_Skill_Data = defineSkill({
   id: '24ea9e21-204e-4f62-946a-6e941522edad',
   name: {
     en: 'Sustained Attention',
+    it: 'Attenzione sostenuta',
     zh: '持续性注意',
     hi: 'सतत ध्यान',
     es: 'Atención sostenida',
@@ -38,6 +39,7 @@ export const sustainedAttention_Skill_Data = defineSkill({
     methodological: 'Explain changes in vigilance over extended periods of cognitive effort.',
     frontend: {
       en: 'Explore how concentration and alertness change during prolonged tasks.',
+      it: 'Esplora come concentrazione e vigilanza cambino durante compiti prolungati.',
       zh: '探索长时间执行任务时专注力和警觉性会如何变化。',
       hi: 'जानें कि लंबे समय तक काम करने पर एकाग्रता और सतर्कता कैसे बदलती हैं।',
       es: 'Explora cómo cambian la concentración y el estado de alerta durante tareas prolongadas.',

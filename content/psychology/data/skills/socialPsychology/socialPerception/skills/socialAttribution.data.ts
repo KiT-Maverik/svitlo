@@ -5,6 +5,7 @@ export const socialAttribution_Skill_Data = defineSkill({
   id: 'b9c4da19-5703-42ee-adc8-20d454b98563',
   name: {
     en: 'Social Attribution',
+    it: 'Attribuzione sociale',
     zh: '社会归因',
     hi: 'सामाजिक कारण-आरोपण',
     es: 'Atribución social',
@@ -39,6 +40,7 @@ export const socialAttribution_Skill_Data = defineSkill({
       "Distinguish explanations invoking a person's dispositions from those emphasizing circumstances and available choices.",
     frontend: {
       en: "Understand how people infer causes of others' behavior.",
+      it: 'Comprendi come le persone deducano le cause dei comportamenti altrui.',
       zh: '理解人们如何推断他人行为的原因。',
       hi: 'समझें कि लोग दूसरों के व्यवहार के कारण कैसे अनुमान लगाते हैं।',
       es: 'Comprende cómo las personas deducen las causas del comportamiento ajeno.',

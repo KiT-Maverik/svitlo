@@ -5,6 +5,7 @@ export const fairnessInCognitiveAssessment_Skill_Data = defineSkill({
   id: '59f147b2-7c2f-47af-8818-cea3097d15ea',
   name: {
     en: 'Fairness in Cognitive Assessment',
+    it: 'Equità nella valutazione cognitiva',
     zh: '认知评估的公平性',
     hi: 'संज्ञानात्मक आकलन में निष्पक्षता',
     es: 'Equidad en la evaluación cognitiva',
@@ -39,6 +40,7 @@ export const fairnessInCognitiveAssessment_Skill_Data = defineSkill({
       'Identify language, cultural, disability, and resource factors that can undermine an interpretation.',
     frontend: {
       en: 'Recognize how cognitive tests may be unfair across different contexts.',
+      it: 'Riconosci come i test cognitivi possano risultare iniqui in contesti differenti.',
       zh: '识别认知测试在不同情境中可能不公平的原因。',
       hi: 'पहचानें कि अलग परिस्थितियों में संज्ञानात्मक परीक्षण कैसे अनुचित हो सकते हैं।',
       es: 'Reconoce cómo las pruebas cognitivas pueden ser injustas en distintos contextos.',

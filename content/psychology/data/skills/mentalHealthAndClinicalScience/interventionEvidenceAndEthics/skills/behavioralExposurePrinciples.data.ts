@@ -5,6 +5,7 @@ export const behavioralExposurePrinciples_Skill_Data = defineSkill({
   id: '9496aa0c-8921-42d5-8f93-4a7b03790ae9',
   name: {
     en: 'Behavioral Exposure Principles',
+    it: 'Principi dell\'esposizione comportamentale',
     zh: '行为暴露疗法的原则',
     hi: 'व्यवहारिक एक्सपोज़र के सिद्धांत',
     es: 'Principios de exposición conductual',
@@ -39,6 +40,7 @@ export const behavioralExposurePrinciples_Skill_Data = defineSkill({
       'Explain the rationale of supported, appropriately supervised exposure approaches while avoiding instructions for unsupervised self-treatment.',
     frontend: {
       en: 'Learn why supported exposure approaches require suitable professional oversight.',
+      it: 'Scopri perché gli approcci di esposizione assistita richiedano un\'adeguata supervisione professionale.',
       zh: '了解为什么有支持的暴露方法需要适当的专业监督。',
       hi: 'समझें कि सहायता-समर्थित एक्सपोज़र तरीकों के लिए उचित विशेषज्ञ निगरानी क्यों जरूरी है।',
       es: 'Aprende por qué los enfoques de exposición con apoyo requieren supervisión profesional adecuada.',

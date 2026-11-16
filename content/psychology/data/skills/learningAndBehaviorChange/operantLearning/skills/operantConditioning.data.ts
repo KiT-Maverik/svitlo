@@ -5,6 +5,7 @@ export const operantConditioning_Skill_Data = defineSkill({
   id: '8df16c39-5f0d-47fa-9585-e25fb9db3e1e',
   name: {
     en: 'Operant Conditioning',
+    it: 'Condizionamento operante',
     zh: '操作性条件作用',
     hi: 'क्रियाप्रसूत अनुबंधन',
     es: 'Condicionamiento operante',
@@ -38,6 +39,7 @@ export const operantConditioning_Skill_Data = defineSkill({
     methodological: 'Identify behavior–consequence contingencies that alter future responding.',
     frontend: {
       en: 'Explain how actions change according to their consequences.',
+      it: 'Spiega come le azioni cambino in funzione delle loro conseguenze.',
       zh: '解释行为的后果如何影响之后采取该行动的可能性。',
       hi: 'समझाएँ कि किसी क्रिया के परिणाम भविष्य में उसके होने की संभावना कैसे बदलते हैं।',
       es: 'Explica cómo las consecuencias de una acción cambian la probabilidad de repetirla.',

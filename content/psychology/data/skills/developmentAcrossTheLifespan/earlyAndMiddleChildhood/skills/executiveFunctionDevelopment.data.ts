@@ -5,6 +5,7 @@ export const executiveFunctionDevelopment_Skill_Data = defineSkill({
   id: '4178c665-14fd-4b6c-931f-6921d55be103',
   name: {
     en: 'Executive Function Development',
+    it: 'Sviluppo delle funzioni esecutive',
     zh: '执行功能的发展',
     hi: 'कार्यकारी कार्यों का विकास',
     es: 'Desarrollo de las funciones ejecutivas',
@@ -38,6 +39,7 @@ export const executiveFunctionDevelopment_Skill_Data = defineSkill({
     methodological: 'Explain changes in inhibitory control, updating, and flexible rule use during childhood.',
     frontend: {
       en: 'Understand the development of attention, planning and impulse regulation.',
+      it: 'Comprendi come si sviluppino attenzione, pianificazione e regolazione degli impulsi.',
       zh: '了解注意力、计划能力和冲动调节如何发展。',
       hi: 'समझें कि ध्यान, योजना बनाने और आवेग नियंत्रित करने की क्षमताएँ कैसे विकसित होती हैं।',
       es: 'Comprende cómo se desarrollan la atención, la planificación y el control de impulsos.',

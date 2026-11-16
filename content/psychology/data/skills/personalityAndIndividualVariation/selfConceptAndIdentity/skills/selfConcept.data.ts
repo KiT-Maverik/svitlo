@@ -5,6 +5,7 @@ export const selfConcept_Skill_Data = defineSkill({
   id: 'b5050074-7351-41fe-a60e-a15c91bb0a6c',
   name: {
     en: 'Self-Concept',
+    it: 'Concetto di sé',
     zh: '自我概念',
     hi: 'आत्म-अवधारणा',
     es: 'Autoconcepto',
@@ -38,6 +39,7 @@ export const selfConcept_Skill_Data = defineSkill({
     methodological: 'Explain how people organize beliefs about their characteristics, roles, and competencies.',
     frontend: {
       en: "Understand the ideas and characteristics that form someone's self-concept.",
+      it: 'Comprendi le idee e le caratteristiche che formano il concetto di sé di una persona.',
       zh: '理解构成一个人自我概念的想法与特征。',
       hi: 'समझें कि कौन से विचार और विशेषताएँ व्यक्ति की आत्म-अवधारणा बनाते हैं।',
       es: 'Comprende las ideas y características que forman el autoconcepto de una persona.',

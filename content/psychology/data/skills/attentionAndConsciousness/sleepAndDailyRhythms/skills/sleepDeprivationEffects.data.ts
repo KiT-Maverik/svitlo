@@ -5,6 +5,7 @@ export const sleepDeprivationEffects_Skill_Data = defineSkill({
   id: 'ff525623-040a-49b8-b0e4-b3555375e564',
   name: {
     en: 'Sleep Deprivation Effects',
+    it: 'Effetti della privazione di sonno',
     zh: '睡眠不足的影响',
     hi: 'नींद की कमी के प्रभाव',
     es: 'Efectos de la privación de sueño',
@@ -38,6 +39,7 @@ export const sleepDeprivationEffects_Skill_Data = defineSkill({
     methodological: 'Identify psychological consequences of insufficient sleep for attention, mood, and judgment.',
     frontend: {
       en: 'Recognize how insufficient sleep can affect focus, mood and judgment.',
+      it: 'Riconosci come un sonno insufficiente possa influire su concentrazione, umore e capacità di giudizio.',
       zh: '识别睡眠不足如何影响注意力、情绪和判断。',
       hi: 'पहचानें कि अपर्याप्त नींद ध्यान, मनोदशा और निर्णय क्षमता को कैसे प्रभावित करती है।',
       es: 'Reconoce cómo dormir poco puede afectar la concentración, el estado de ánimo y el juicio.',

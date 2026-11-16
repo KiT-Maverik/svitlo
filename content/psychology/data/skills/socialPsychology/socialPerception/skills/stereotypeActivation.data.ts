@@ -5,6 +5,7 @@ export const stereotypeActivation_Skill_Data = defineSkill({
   id: 'fcf96811-fb82-409a-b1d1-8b0a32d648ff',
   name: {
     en: 'Stereotype Activation',
+    it: 'Attivazione degli stereotipi',
     zh: '刻板印象激活',
     hi: 'रूढ़िबद्ध धारणाओं की सक्रियता',
     es: 'Activación de estereotipos',
@@ -39,6 +40,7 @@ export const stereotypeActivation_Skill_Data = defineSkill({
       'Analyze how culturally available categories affect social perception without treating stereotypes as reliable descriptions.',
     frontend: {
       en: 'Explore how stereotypes can influence judgments before conscious reflection.',
+      it: 'Esplora come gli stereotipi possano influenzare i giudizi prima di una riflessione consapevole.',
       zh: '探索刻板印象如何在有意识思考之前影响判断。',
       hi: 'जानें कि सचेत सोच से पहले रूढ़ियाँ निर्णयों को कैसे प्रभावित कर सकती हैं।',
       es: 'Explora cómo los estereotipos influyen en los juicios antes de pensar conscientemente.',
