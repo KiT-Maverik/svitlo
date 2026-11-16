@@ -438,6 +438,3 @@ test('Quest editor schema projects every named Stage/Task child without physical
     assert(JSON.stringify(schema).includes('"quest"'), kind + ': missing Quest Config tree');
   }
 });
-
-// Temporary diagnostic for regenerating the editor schema; removed before review.
-console.log('SVITLO_CONTENT_BLOCK_SCHEMA=' + JSON.stringify(JSON.parse(yamlJsonSchemaDocuments()['contentBlock.schema.json'])));
