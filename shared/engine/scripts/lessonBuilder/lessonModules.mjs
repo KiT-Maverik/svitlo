@@ -296,6 +296,19 @@ export function renderLessonModules(lesson, language, options = {}) {
    */
   function fileBackedNode(node, context, directory) {
     if (context !== 'block' && context !== 'slide') return node;
+    if (localMediaTypes.has(node.type)) {
+      const locale = record(node.locale) ? node.locale : {};
+      const fields = node.type === 'video' ? ['fileName', 'posterFileName'] : ['fileName'];
+      for (const field of fields) {
+        if (Object.hasOwn(locale, field)) {
+          throw new Error('lesson.yaml: media ' + field + ' belongs in generated TypeScript, not technical YAML: ' + directory);
+        }
+      }
+      return {
+        ...node,
+        locale: { ...locale, ...Object.fromEntries(fields.map(field => [field, null])) },
+      };
+    }
     if (node.type === 'markdown' && record(node.locale) && node.locale.value !== undefined) {
       const source = node.locale.value;
       const authored = { ...node, locale: { ...node.locale } };
@@ -495,8 +508,8 @@ export function renderLessonModules(lesson, language, options = {}) {
           }
           const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, field + '.' + key);
           const pendingComment = child === null && nextContext.startsWith('pendingMedia:')
-            ? indent(depth + 1) + '// TODO(asset): Auto-generated unresolved media placeholder; no physical asset exists.\\n' +
-              indent(depth + 1) + '// Replace with actual UUID.extension before production.\\n'
+            ? indent(depth + 1) + '// TODO(asset): Auto-generated unresolved media placeholder; no physical asset exists.\n' +
+              indent(depth + 1) + '// Replace with actual UUID.extension before production.\n'
             : '';
           return (
             pendingComment + indent(depth + 1) +

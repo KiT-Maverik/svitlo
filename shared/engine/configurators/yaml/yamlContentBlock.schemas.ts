@@ -26,11 +26,21 @@ import { youtube_Config_Schema } from '../contentBlocks/defineYoutube/defineYout
  * Each variant retains the concrete Engine Config schema's params, locale,
  * identity and discriminating type; only the opaque child fields are replaced.
  */
-/** YAML and Engine share the strict, non-null UUID filename Config contract. */
-export const yamlAudio_Schema = audio_Config_Schema;
-export const yamlImage_Schema = image_Config_Schema;
-export const yamlVideo_Schema = video_Config_Schema;
-export const yamlSubtitles_Schema = subtitles_Config_Schema;
+/** Draft YAML intentionally excludes physical media references.
+ * Complete TypeScript Engine Config still requires validated filenames.
+ */
+export const yamlAudio_Schema = audio_Config_Schema.extend({
+  locale: audio_Config_Schema.shape.locale.omit({ fileName: true }).strict(),
+});
+export const yamlImage_Schema = image_Config_Schema.safeExtend({
+  locale: image_Config_Schema.shape.locale.omit({ fileName: true }).strict(),
+});
+export const yamlVideo_Schema = video_Config_Schema.extend({
+  locale: video_Config_Schema.shape.locale.omit({ fileName: true, posterFileName: true }).strict(),
+});
+export const yamlSubtitles_Schema = subtitles_Config_Schema.extend({
+  locale: subtitles_Config_Schema.shape.locale.omit({ fileName: true }).strict(),
+});
 
 export const yamlCarousel_Schema = carousel_Config_Schema.extend({
   slides: carousel_Config_Schema.shape.slides.extend({
