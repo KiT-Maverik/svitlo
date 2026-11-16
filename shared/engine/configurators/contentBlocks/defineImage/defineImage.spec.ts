@@ -24,6 +24,15 @@ describe('Configurators', () => {
         assert.deepEqual(resource.locale, { uk: { locale: { src: 'https://example.org/uk.png' } } });
       });
 
+      test('defers invalid authored Config until either Build path and retains its snapshot', () => {
+        const input = { ...config(), params: { width: 0, height: 480 } };
+        const image = defineImage<'diagram', ['en', 'uk']>(input);
+        assert.equal(image.slug, 'diagram');
+        input.params.width = 640;
+        assert.throws(() => image.build.props(scope), /positive|greater|too_small/i);
+        assert.throws(() => image.build.overrides({}, scope), /Invalid Image overrides/);
+      });
+
       test('checks dimension constraints after sparse overrides', () => {
         const image = defineImage<'diagram', ['en', 'uk']>(config());
         assert.throws(() => image.build.overrides({ params: { fill: true } }, scope), /Invalid Image overrides/);
