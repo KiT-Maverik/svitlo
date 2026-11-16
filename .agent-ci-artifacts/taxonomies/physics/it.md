@@ -508,7 +508,7 @@ Groups: 4 · Skills: 15
 
 **Methodological description (English):** Water and air transmit pressure, flow, resist bodies' motion, and can provide buoyancy. Familiar containers, floating objects, and airflow make these phenomena accessible.
 
-**User-friendly description (it):** Esplora come liquidi e gas scorrono, esercitano pressione e sostengono i corpi in movimento.
+**User-friendly description (it):** Esplora come liquidi e gas scorrono, esercitano pressione e producono spinte sui corpi immersi.
 
 #### Aerodinamica
 
@@ -568,7 +568,7 @@ Skills: 5
 
 **Methodological description (English):** Under the relevant conditions, the buoyant force equals the weight of the volume of liquid or gas displaced by the body.
 
-**User-friendly description (it):** Usa il principio di Archimede per collegare la spinta al fluido spostato.
+**User-friendly description (it):** Collega la spinta di Archimede al peso del fluido spostato.
 
 ##### Spiegare la spinta di galleggiamento
 
@@ -618,7 +618,7 @@ Skills: 3
 
 **Methodological description (English):** For steady flow without leakage, a change in a channel's cross-sectional area is associated with a change in fluid speed.
 
-**User-friendly description (it):** Collega le variazioni della larghezza di un condotto alla velocità di un flusso stazionario incomprimibile.
+**User-friendly description (it):** Collega le variazioni dell'area della sezione di un condotto alla velocità di un flusso stazionario incomprimibile.
 
 ##### Spiegare il flusso d'acqua tra recipienti a livelli diversi
 
@@ -712,7 +712,7 @@ Skills: 5
 
 **Methodological description (English):** The direction of the net force relative to velocity determines whether motion speeds up, slows down, or changes direction.
 
-**User-friendly description (it):** Prevedi come la direzione di una forza influisce sull'accelerazione, sul rallentamento o sulla svolta.
+**User-friendly description (it):** Prevedi come la direzione della forza risultante influisce sull'accelerazione, sul rallentamento o sul cambiamento di direzione del moto.
 
 ##### Riconoscere le forze di trazione
 
@@ -1094,7 +1094,7 @@ Skills: 4
 
 **Methodological description (English):** The distribution of mass relative to an axis affects how rotation changes, even when the total mass is the same.
 
-**User-friendly description (it):** Riconosci come una massa più distante dall'asse modifica la resistenza alla rotazione.
+**User-friendly description (it):** Riconosci come la distribuzione della massa rispetto all'asse influisce sulla resistenza a cambiare il moto rotatorio.
 
 ##### Spiegare il momento di una forza
 
@@ -1296,7 +1296,7 @@ Skills: 5
 
 **Methodological description (English):** The relative rates of clocks can depend on gravitational potential and observation conditions; this is a physical effect of general relativity.
 
-**User-friendly description (it):** Esplora come la gravità può modificare la velocità relativa con cui procedono gli orologi.
+**User-friendly description (it):** Esplora come la gravità possa modificare il ritmo con cui gli orologi misurano il trascorrere del tempo.
 
 ##### Spiegare la deviazione gravitazionale della luce
 
@@ -1494,7 +1494,7 @@ Skills: 2
 
 **Methodological description (English):** According to the law of reflection, the angle between the ray and the surface normal is the same for incident and reflected rays.
 
-**User-friendly description (it):** Prevedi gli angoli di riflessione rispetto alla normale alla superficie.
+**User-friendly description (it):** Prevedi la direzione del raggio riflesso usando l'uguaglianza tra gli angoli di incidenza e di riflessione, misurati rispetto alla normale.
 
 ##### Riconoscere la riflessione della luce
 
@@ -1528,7 +1528,7 @@ Skills: 3
 
 **Methodological description (English):** Recognize a body that emits light and one that reflects it.
 
-**User-friendly description (it):** Distingui qualcosa che emette luce da qualcosa che riceve la luce emessa.
+**User-friendly description (it):** Distingui una sorgente che emette luce da un corpo illuminato che la riflette.
 
 ##### Spiegare la condizione perché un oggetto sia visibile
 
@@ -1572,7 +1572,7 @@ Skills: 1
 
 **Methodological description (English):** Transparency characterizes the transmission, absorption, and scattering of visible light by a material and its ability to transmit an image.
 
-**User-friendly description (it):** Impara come i materiali differiscono per quantità e nitidezza della luce che trasmettono.
+**User-friendly description (it):** Scopri come i materiali differiscono per la quantità di luce trasmessa e per la nitidezza delle immagini viste attraverso di essi.
 
 ##### Classificare i materiali secondo la trasparenza
 
@@ -1980,7 +1980,7 @@ Skills: 5
 
 **Methodological description (English):** Superposed waves may reinforce or weaken the resulting disturbance depending on their phases.
 
-**User-friendly description (it):** Riconosci quando onde sovrapposte si rafforzano o si annullano a vicenda.
+**User-friendly description (it):** Riconosci quando onde sovrapposte si rafforzano o si attenuano a vicenda.
 
 ##### Spiegare la riflessione delle onde
 
@@ -2054,5 +2054,5 @@ Skills: 6
 
 **Methodological description (English):** Wavelength is the distance between adjacent points at the same phase of the disturbance, such as two successive crests.
 
-**User-friendly description (it):** Individua la lunghezza d'onda come distanza tra punti corrispondenti di un'onda.
+**User-friendly description (it):** Individua la lunghezza d'onda come distanza tra due punti consecutivi in fase, per esempio due creste successive.
 
