@@ -1047,6 +1047,61 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
   }
 });
 
+test('groups generated Lesson imports by package, alias and relative dependencies', () =>
+  fixture(f => {
+    const files = renderLessonModules(f.config, 'uk');
+    const alias = `#lessonsData/${lessonId.at(-1)}/${lessonId}/constants`;
+
+    const section = files.get('sections/intro/index.ts');
+    assert.ok(
+      section.startsWith(
+        [
+          "import { defineContentSection } from '@svitlo/engine/build';",
+          '',
+          `import type { LessonLanguages } from "${alias}";`,
+          '',
+          'import { check } from "./check";',
+          'import { gallery } from "./gallery";',
+          'import { prompt } from "./prompt";',
+          '',
+          'const content =',
+        ].join('\n'),
+      ),
+      section,
+    );
+
+    const leaf = files.get('sections/intro/prompt/index.ts');
+    assert.ok(
+      leaf.startsWith(
+        [
+          "import { defineText } from '@svitlo/engine/build';",
+          '',
+          `import type { LessonLanguages } from "${alias}";`,
+          '',
+          'export const prompt =',
+        ].join('\n'),
+      ),
+      leaf,
+    );
+
+    const root = files.get('index.ts');
+    assert.ok(
+      root.startsWith(
+        [
+          "import { defineLesson } from '@svitlo/engine/build';",
+          '',
+          'import { section } from "./sections";',
+          "import { languages } from './constants';",
+          "import type { LessonLanguages } from './constants';",
+          '',
+          'export const lightLesson_Lesson =',
+        ].join('\n'),
+      ),
+      root,
+    );
+    assertTypeScriptSyntax(files);
+  }));
+
 test('module rendering is deterministic and retains only source-language authoring', () =>
   fixture(f => {
     const first = renderLessonModules(f.config, 'uk');
