@@ -86,6 +86,7 @@ if (hasScenes && pkg.scripts?.['content:check:scenes']) {
 
 // Before modifying generated content or the distribution, validate every
 // effective Lesson/Course media reference in the requested package.
+try {
 const mediaMode = process.env.SVITLO_MEDIA_MODE === 'draft' ? 'draft' : 'production';
 for (const [source, generator] of [
   ['data/lessons', 'shared/engine/scripts/generateLessonProps/generateLessonProps.mjs'],
@@ -134,7 +135,6 @@ const common = {
     '.woff2': 'file',
   },
 };
-try {
 const metadata = await build({ ...common, entryPoints: { 'textbook/index': 'textbook.ts' } });
 let sceneResult;
 if (hasScenes) {
