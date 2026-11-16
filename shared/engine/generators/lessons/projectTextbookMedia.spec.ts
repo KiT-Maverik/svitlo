@@ -58,7 +58,7 @@ test('resolves invariant and localized media in nested Carousel and video poster
   };
   const { result, diagnostics } = publish(root, source);
   assert.deepEqual(diagnostics, []);
-  const published = result as typeof source;
+  const published = JSON.parse(JSON.stringify(result));
   assert.equal(published.base.section[0].content[0].locale.slides[0].locale.src, '/textbooks/math/assets/images/' + image);
   assert.equal(published.base.section[0].content[0].locale.slides[1].locale.src, '/textbooks/math/assets/images/' + image);
   assert.equal(published.base.section[0].content[1].locale.poster, '/textbooks/math/assets/images/' + poster);
@@ -73,7 +73,7 @@ test('allows Draft missing media, warns without inventing assets, and rejects Pr
   const { result, diagnostics } = publish(root, source, 'draft');
   assert.equal(diagnostics.length, 2);
   assert(diagnostics.every(d => d.reason === 'file is missing'));
-  assert.equal((result as typeof source).base.section[0].locale.src, '/textbooks/math/assets/images/' + image);
+  assert.equal(JSON.parse(JSON.stringify(result)).base.section[0].locale.src, '/textbooks/math/assets/images/' + image);
   assert.doesNotThrow(() => assertMediaPublicationReady(diagnostics, 'draft'));
   assert.throws(() => assertMediaPublicationReady(diagnostics, 'production'), /image-id[\s\S]*audio-id/);
 }));
