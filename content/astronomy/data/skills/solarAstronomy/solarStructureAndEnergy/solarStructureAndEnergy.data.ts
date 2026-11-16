@@ -56,7 +56,7 @@ export const solarStructureAndEnergy_SkillGroup_Data = defineSkillGroup({
       'Solar radiation originates from processes in the interior and travels outward through distinct plasma and atmospheric regions.',
     frontend: {
       en: 'Learn how energy moves from deep inside the Sun to the space around it.',
-      it: 'Scopri come l\'energia si trasferisce dalle profondità del Sole allo spazio circostante.',
+      it: "Scopri come l'energia si trasferisce dalle profondità del Sole allo spazio circostante.",
       qm: 'Energiya Küneşniñ içinden etrafındaki fezağa nasıl keçkenini ögreniñiz.',
       bn: 'সূর্যের গভীর ভেতর থেকে চারপাশের মহাকাশে শক্তি কীভাবে পৌঁছায়, তা জানো।',
       ur: 'جانیں کہ توانائی سورج کی گہرائیوں سے نکل کر آس پاس کی خلا تک کیسے پہنچتی ہے۔',

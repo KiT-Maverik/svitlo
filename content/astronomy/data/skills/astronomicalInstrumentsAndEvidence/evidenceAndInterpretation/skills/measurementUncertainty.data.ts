@@ -40,7 +40,7 @@ export const measurementUncertainty_Skill_Data = defineSkill({
       'Evaluate how instrument limits, measurement error and model assumptions affect the confidence of an astronomical inference.',
     frontend: {
       en: 'Recognize how errors and assumptions affect confidence in astronomical measurements.',
-      it: 'Riconosci come errori e ipotesi influenzano l\'affidabilità delle misurazioni astronomiche.',
+      it: "Riconosci come errori e ipotesi influenzano l'affidabilità delle misurazioni astronomiche.",
       qm: 'Ölçüv hataları ve farazlar astronomik ölçüvlerge işançqa nasıl tesir etkenini tanıñız.',
       bn: 'ত্রুটি ও অনুমান কীভাবে জ্যোতির্বৈজ্ঞানিক পরিমাপের ওপর আস্থাকে প্রভাবিত করে তা বোঝো।',
       ur: 'سمجھیں کہ غلطیاں اور مفروضے فلکیاتی پیمائشوں پر اعتماد کو کیسے متاثر کرتے ہیں۔',

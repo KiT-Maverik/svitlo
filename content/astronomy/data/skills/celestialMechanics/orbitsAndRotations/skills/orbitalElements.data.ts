@@ -40,7 +40,7 @@ export const orbitalElements_Skill_Data = defineSkill({
       'Interpret inclination, eccentricity and other orbital descriptors when comparing celestial trajectories.',
     frontend: {
       en: "Read the parameters that describe an orbit's shape and orientation.",
-      it: 'Leggi i parametri che descrivono la forma e l\'orientamento di un\'orbita.',
+      it: "Leggi i parametri che descrivono la forma e l'orientamento di un'orbita.",
       zh: '解读描述轨道形状和空间方向的参数。',
       hi: 'कक्षा के आकार और अंतरिक्ष में उसकी दिशा को बताने वाले मापदंडों को समझें।',
       es: 'Interpreta los parámetros que describen la forma y orientación de una órbita.',

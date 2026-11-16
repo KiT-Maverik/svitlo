@@ -56,7 +56,7 @@ export const conditionsForLife_SkillGroup_Data = defineSkillGroup({
       'Evaluating environments for life requires explicit biological and geochemical assumptions; familiar Earth conditions are useful evidence, not universal proof.',
     frontend: {
       en: 'Consider the environments and chemistry that might allow life to exist.',
-      it: 'Considera gli ambienti e i processi chimici che potrebbero permettere l\'esistenza della vita.',
+      it: "Considera gli ambienti e i processi chimici che potrebbero permettere l'esistenza della vita.",
       qm: 'Yaşayışqa uyğun olğan müitlerni ve kimyeviy şartlarnı tetqiq etiñiz.',
       bn: 'কোন পরিবেশ ও রাসায়নিক প্রক্রিয়া জীবনকে সম্ভব করতে পারে, তা বিবেচনা করো।',
       ur: 'غور کریں کہ کون سے ماحول اور کیمیائی عمل زندگی کو ممکن بنا سکتے ہیں۔',

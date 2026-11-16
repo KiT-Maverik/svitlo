@@ -40,7 +40,7 @@ export const cosmologicalRedshift_Skill_Data = defineSkill({
       'Explain wavelength stretching associated with the expansion of space, distinguishing it from local Doppler motion.',
     frontend: {
       en: 'Understand how expanding space stretches the wavelengths of travelling light.',
-      it: 'Comprendi come l\'espansione dello spazio allunga le lunghezze d\'onda della luce che viaggia.',
+      it: "Comprendi come l'espansione dello spazio allunga le lunghezze d'onda della luce che viaggia.",
       qm: 'Keñeygen fezada yol alğan yarıq dalğalarınıñ uzunlığı nasıl artqanını añlañız.',
       zh: '理解膨胀的空间如何拉长传播中光的波长。',
       hi: 'समझें कि फैलता अंतरिक्ष यात्रा करती रोशनी की तरंगदैर्घ्य कैसे बढ़ाता है।',

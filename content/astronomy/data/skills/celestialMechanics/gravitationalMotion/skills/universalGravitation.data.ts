@@ -40,7 +40,7 @@ export const universalGravitation_Skill_Data = defineSkill({
       'Apply the dependence of gravitational attraction on interacting masses and separation to astronomical situations.',
     frontend: {
       en: 'Use the masses and distances of objects to reason about gravitational attraction.',
-      it: 'Ragiona sull\'attrazione gravitazionale considerando le masse e le distanze tra gli oggetti.',
+      it: "Ragiona sull'attrazione gravitazionale considerando le masse e le distanze tra gli oggetti.",
       zh: '利用天体的质量和彼此之间的距离，分析它们之间的引力。',
       hi: 'पिंडों के द्रव्यमान और उनके बीच की दूरी से गुरुत्वाकर्षण बल के बारे में तर्क करें।',
       es: 'Usa las masas de los objetos y las distancias entre ellos para razonar sobre su atracción gravitatoria.',

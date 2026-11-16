@@ -5,7 +5,7 @@ export const surfaceAgeEstimation_Skill_Data = defineSkill({
   id: '832be903-d031-4b3b-89a0-f2473316891c',
   name: {
     en: 'Surface Age Estimation',
-    it: 'Stima dell\'età delle superfici',
+    it: "Stima dell'età delle superfici",
     zh: '表面年龄估计',
     hi: 'सतह की आयु का अनुमान',
     es: 'Estimación de la edad de una superficie',

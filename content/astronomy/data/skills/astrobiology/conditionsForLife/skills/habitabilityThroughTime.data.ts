@@ -5,7 +5,7 @@ export const habitabilityThroughTime_Skill_Data = defineSkill({
   id: 'ece84c77-7c2a-472b-ae33-a07ffbd9ad55',
   name: {
     en: 'Habitability Through Time',
-    it: 'Evoluzione dell\'abitabilità nel tempo',
+    it: "Evoluzione dell'abitabilità nel tempo",
     qm: 'Zaman boyunca yaşayışqa uyğunlıq',
     bn: 'সময়ের সঙ্গে বাসযোগ্যতার পরিবর্তন',
     ur: 'وقت کے ساتھ زندگی کے لیے موزونیت',

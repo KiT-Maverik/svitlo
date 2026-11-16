@@ -40,7 +40,7 @@ export const darkMatterEvidence_Skill_Data = defineSkill({
       'Interpret dynamical, lensing and cosmological evidence for unseen gravitating mass while recognizing remaining theoretical alternatives.',
     frontend: {
       en: 'Explore why astronomers infer unseen matter from gravitational evidence.',
-      it: 'Esplora perché gli astronomi deducono l\'esistenza di materia invisibile dalle prove gravitazionali.',
+      it: "Esplora perché gli astronomi deducono l'esistenza di materia invisibile dalle prove gravitazionali.",
       qm: 'Astronomlar cazibe quveti delillerine esaslanıp körünmegen madde bar dep ne içün netice çıqarğanlarını araştırıñız.',
       zh: '探索天文学家为何根据引力证据推断存在不可见的物质。',
       hi: 'जानें कि गुरुत्वाकर्षण के प्रमाणों से खगोलविद अदृश्य पदार्थ का अनुमान क्यों लगाते हैं।',

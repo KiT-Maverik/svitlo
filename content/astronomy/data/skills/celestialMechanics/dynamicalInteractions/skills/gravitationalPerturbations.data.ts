@@ -39,7 +39,7 @@ export const gravitationalPerturbations_Skill_Data = defineSkill({
     methodological: 'Interpret departures from a simple two-body orbit caused by additional gravitational influences.',
     frontend: {
       en: 'Explain how extra gravitational forces change an otherwise simple orbit.',
-      it: 'Spiega come ulteriori forze gravitazionali modificano un\'orbita altrimenti semplice.',
+      it: "Spiega come ulteriori forze gravitazionali modificano un'orbita altrimenti semplice.",
       zh: '解释额外的引力如何改变原本简单的运行轨道。',
       hi: 'समझाएँ कि अतिरिक्त गुरुत्वीय प्रभाव किसी सरल कक्षा को कैसे बदल देते हैं।',
       es: 'Explica cómo las influencias gravitatorias adicionales modifican una órbita que de otro modo sería simple.',

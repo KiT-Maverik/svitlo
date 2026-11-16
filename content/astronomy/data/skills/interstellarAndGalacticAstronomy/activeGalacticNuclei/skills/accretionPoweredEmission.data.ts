@@ -5,7 +5,7 @@ export const accretionPoweredEmission_Skill_Data = defineSkill({
   id: '9c5e3fce-a8a8-4d6f-b111-0b9bbeb3fed2',
   name: {
     en: 'Accretion-Powered Emission',
-    it: 'Emissione alimentata dall\'accrescimento',
+    it: "Emissione alimentata dall'accrescimento",
     qm: 'Madde tüşüvinden peyda olğan şavle',
     zh: '吸积驱动的辐射',
     hi: 'अभिवृद्धि से उत्पन्न विकिरण',

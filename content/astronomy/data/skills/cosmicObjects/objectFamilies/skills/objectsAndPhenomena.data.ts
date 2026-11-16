@@ -40,7 +40,7 @@ export const objectsAndPhenomena_Skill_Data = defineSkill({
       'Distinguish enduring physical objects and systems from observed events or effects such as eclipses, meteors, flares and transient brightenings, even when both occur in object catalogs.',
     frontend: {
       en: 'Tell the difference between a lasting celestial object and an event such as an eclipse or flare.',
-      it: 'Distingui un oggetto celeste duraturo da un evento come un\'eclissi o un brillamento.',
+      it: "Distingui un oggetto celeste duraturo da un evento come un'eclissi o un brillamento.",
       zh: '区分持续存在的天体和日食、耀斑等短暂事件。',
       hi: 'स्थायी खगोलीय पिंड और ग्रहण या सौर ज्वाला जैसी घटना के बीच अंतर पहचानें।',
       es: 'Distingue un objeto celeste duradero de un suceso como un eclipse o una erupción.',

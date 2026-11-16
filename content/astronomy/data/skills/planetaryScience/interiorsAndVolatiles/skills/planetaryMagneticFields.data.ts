@@ -40,7 +40,7 @@ export const planetaryMagneticFields_Skill_Data = defineSkill({
       'Explain the conditions under which internal conductive flows can generate global or regional magnetic fields.',
     frontend: {
       en: 'Explain how moving conductive material inside a planet can create a magnetic field.',
-      it: 'Spiega come il movimento di materiali conduttori all\'interno di un pianeta possa generare un campo magnetico.',
+      it: "Spiega come il movimento di materiali conduttori all'interno di un pianeta possa generare un campo magnetico.",
       zh: '解释行星内部流动的导电物质如何产生磁场。',
       hi: 'समझाएँ कि ग्रह के भीतर गति करता विद्युत चालक पदार्थ चुंबकीय क्षेत्र कैसे बना सकता है।',
       es: 'Explica cómo el material conductor en movimiento dentro de un planeta puede generar un campo magnético.',

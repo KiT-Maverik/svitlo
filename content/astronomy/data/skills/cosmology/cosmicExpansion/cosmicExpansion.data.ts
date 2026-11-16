@@ -56,7 +56,7 @@ export const cosmicExpansion_SkillGroup_Data = defineSkillGroup({
       'Large-scale redshift patterns support an evolving cosmic geometry, not an ordinary explosion into pre-existing empty space.',
     frontend: {
       en: 'Learn what observations reveal about the expansion of the Universe.',
-      it: 'Scopri cosa rivelano le osservazioni sull\'espansione dell\'universo.',
+      it: "Scopri cosa rivelano le osservazioni sull'espansione dell'universo.",
       qm: 'Közetüvler Kâinatnıñ keñeyüvi aqqında neler bildirgenini ögreniñiz.',
       zh: '了解观测结果向我们揭示的宇宙膨胀现象。',
       hi: 'जानें कि अवलोकन ब्रह्मांड के विस्तार के बारे में क्या बताते हैं।',
