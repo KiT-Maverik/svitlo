@@ -40,7 +40,7 @@ export const analyzeTheRuleOfLaw_Skill_Data = defineSkill({
       'Examine principles such as generality, accessibility, prospectivity, consistent application, and constraints on arbitrary power as grounds for evaluating a legal order.',
     frontend: {
       en: 'Explore principles that keep laws public, predictable and free from arbitrary power.',
-      it: 'Esplora i principi che rendono le leggi pubbliche e prevedibili e le proteggono dall\'arbitrio del potere.',
+      it: 'Esamina come regole generali, accessibili e applicate coerentemente possano limitare l\'arbitrio del potere.',
       zh: '探索使法律公开、可预见并限制专断权力的原则。',
       hi: 'उन सिद्धांतों को जानो जो कानून को सार्वजनिक, अनुमान योग्य और मनमानी सत्ता से मुक्त रखते हैं।',
       es: 'Explora los principios que hacen las leyes públicas, previsibles y libres del poder arbitrario.',
