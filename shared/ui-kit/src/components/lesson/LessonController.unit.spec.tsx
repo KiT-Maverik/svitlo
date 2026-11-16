@@ -6,6 +6,9 @@ import type {
   ContentBlock_Text_Props,
   ContentBlock_Checkpoint_Props,
   QuizSection_Props,
+  AssessmentResourceLoader,
+  Flashcard_Props,
+  FlashcardsSection_Props,
 } from '@svitlo/engine/runtime';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
@@ -70,8 +73,6 @@ function fixture(required: boolean, allowNavigation = true): Lesson_Props {
         content: [text(14, 'Second section content')],
       },
     ],
-    questions: {},
-    flashcards: [],
   };
 }
 
@@ -100,7 +101,7 @@ function TestLayout({ messages, ...props }: LessonLearningLayoutProps) {
     </>
   );
 }
-function showLesson(response = fixture(true), editableSectionParams: readonly 'allowNavigation'[] = []) {
+function showLesson(response = fixture(true), editableSectionParams: readonly 'allowNavigation'[] = [], assessmentLoader?: AssessmentResourceLoader) {
   observed.length = 0;
   received.length = 0;
   releaseBlocker = undefined;
@@ -112,6 +113,7 @@ function showLesson(response = fixture(true), editableSectionParams: readonly 'a
       layout={TestLayout}
       messages={enUiKitMessages}
       editableSectionParams={editableSectionParams}
+      assessmentLoader={assessmentLoader}
     />,
   );
 }
@@ -208,6 +210,45 @@ describe('Engine Props Lesson Controller', () => {
     expect(screen.getByRole('slider', { name: 'Volume' })).toHaveAttribute('aria-valuenow', '100');
   });
 
+  it('loads only the selected Flashcard UUID and reveals the separate response on demand', async () => {
+    const response = fixture(false);
+    const card: Flashcard_Props = {
+      id: uuid(90),
+      slug: 'lightCard',
+      type: 'flashcard',
+      parameters: { tags: [], flags: [] },
+      content: {
+        front: [text(91, 'What travels in a straight line?')],
+        back: [text(92, 'Light does.')],
+      },
+    };
+    const recall: FlashcardsSection_Props = {
+      id: uuid(93),
+      slug: 'recall',
+      type: 'flashcards',
+      params: { selection: { flashcardIds: [card.id] } },
+      locale: { title: 'Recall', navigationLabel: 'Flashcards' },
+      content: [],
+    };
+    response.section = [recall, response.section[1]];
+    const requests: string[][] = [];
+    const loader: AssessmentResourceLoader = {
+      loadQuestions: async () => [],
+      loadFlashcards: async ({ lessonId, language, ids }) => {
+        expect(lessonId).toBe(response.id);
+        expect(language).toBe('en');
+        requests.push([...ids]);
+        return [card];
+      },
+    };
+    showLesson(response, [], loader);
+    expect(screen.queryByText('Light does.')).toBeNull();
+    expect(await screen.findByText('What travels in a straight line?')).toBeVisible();
+    expect(requests).toEqual([[card.id]]);
+    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.flashcard.flashcard.actions.reveal }));
+    expect(screen.getByText('Light does.')).toBeVisible();
+  });
+
   it('completes a blocking Engine Quiz after a Question attempt', async () => {
     const response = fixture(false);
     const question = {
@@ -231,7 +272,7 @@ describe('Engine Props Lesson Controller', () => {
       type: 'quiz',
       params: {
         isBlocker: true,
-        selection: { mode: 'all', questionSlugs: ['whatIsLight'] },
+        selection: { mode: 'all', questionIds: [question.id] },
         layout: { mode: 'stack' },
         feedbackMode: 'immediate',
         interaction: {
@@ -250,11 +291,19 @@ describe('Engine Props Lesson Controller', () => {
       content: [],
     };
     // Published Question Props arrive as JSON, without source-only TypeScript metadata.
-    response.questions = { selectOneAnswer: [JSON.parse(JSON.stringify(question))] };
     response.section = [quiz, response.section[1]];
-    showLesson(response);
+    const loader: AssessmentResourceLoader = {
+      loadQuestions: async ({ lessonId, language, ids }) => {
+        expect(lessonId).toBe(response.id);
+        expect(language).toBe('en');
+        expect(ids).toEqual([question.id]);
+        return [JSON.parse(JSON.stringify(question))] as never;
+      },
+      loadFlashcards: async () => [],
+    };
+    showLesson(response, [], loader);
     expect(navigationButton('next')).toBeDisabled();
-    fireEvent.click(screen.getByRole('radio', { name: /Radiation/i }));
+    fireEvent.click(await screen.findByRole('radio', { name: /Radiation/i }));
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
     await waitFor(() => expect(navigationButton('next')).toBeEnabled());
     expect(received).toContain('quizCompleted');

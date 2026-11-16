@@ -256,9 +256,9 @@ test('Lesson/Course draft envelopes document source language, import coordinates
   const overrides = JSON.parse(docs['courseOverrides.schema.json']);
   assert(lesson.required.includes('documentLanguage'));
   assert(lesson.required.includes('type'));
-  assert(lesson.required.includes('flashcards')); // Required structure is never silently relaxed.
+  assert(!lesson.required.includes('flashcards'), 'A Lesson without Flashcards must remain authorable');
   assert.equal(course.properties.documentLanguage.type, 'string');
-  for (const field of ['id', 'slug', 'type', 'skills', 'params', 'locale', 'section', 'flashcards']) {
+  for (const field of ['id', 'slug', 'type', 'skills', 'params', 'locale', 'section']) {
     assert(lesson.required.includes(field), 'Missing Lesson required field: ' + field);
   }
   for (const field of ['id', 'slug', 'type', 'params', 'locale', 'content']) {
@@ -268,7 +268,12 @@ test('Lesson/Course draft envelopes document source language, import coordinates
   assert.equal(overrides.additionalProperties, false);
   assert.deepEqual(Object.keys(overrides.properties).sort(), ['content', 'locale', 'params']);
   assert.equal(overrides.properties.content.properties.items.type, 'object');
-  assert.equal(overrides.$defs.buildPatch.properties.questions.type, 'object');
+  assert.equal(Object.hasOwn(overrides.$defs.buildPatch.properties, 'questions'), false);
+  assert.equal(Object.hasOwn(overrides.$defs.buildPatch.properties, 'flashcards'), false);
+  const courseScaffold = JSON.parse(docs['course.scaffold.schema.json']);
+  const nested = courseScaffold.$defs.__overrides.$defs.buildPatch.properties;
+  assert.equal(Object.hasOwn(nested, 'questions'), false);
+  assert.equal(Object.hasOwn(nested, 'flashcards'), false);
   assert(!Object.hasOwn(overrides.properties, 'operations'));
   assert(JSON.stringify(course).includes('"source"'));
 });

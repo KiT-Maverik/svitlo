@@ -14,6 +14,7 @@ import { renderReviewDraft } from './reviewTemplate.mjs';
 
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const safeSlug = /^[a-z][A-Za-z0-9]*$/;
+const sceneSlug = /^[A-Za-z][A-Za-z0-9]*$/;
 const identifier = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
 const factoryContexts = new Set([
   'lesson',
@@ -210,7 +211,7 @@ const javascriptKeywords = new Set([
 // before using posix.join, which would otherwise normalize ../ traversal.
 const join = (...parts) => {
   for (const segment of parts.slice(1)) {
-    if (segment !== 'index.ts' && !safeSlug.test(segment))
+    if (segment !== 'index.ts' && !sceneSlug.test(segment))
       throw new Error('Unsafe Lesson source path segment: ' + JSON.stringify(segment));
   }
   return path.posix.join(...parts);
@@ -283,7 +284,12 @@ export function renderLessonModules(lesson, language, options = {}) {
   const factories = options.factories ?? loadFactoryRegistry();
   const filtered = sourceAuthoringCopy(lesson, language);
   if (!record(filtered) || filtered.type !== 'lesson')
-    throw new Error('config.yaml:config.type: expected lesson type for the Lesson entrypoint');
+    throw new Error('lesson.yaml:config.type: expected lesson type for the Lesson entrypoint');
+  for (const field of ['questions', 'flashcards']) {
+    if (Object.hasOwn(filtered, field))
+      throw new Error('lesson.yaml:config.' + field +
+        ': embedded banks are no longer supported; author ' + field + '.yaml at the Lesson root');
+  }
   const files = new Map();
   const nodeLocations = options.nodeLocations;
 
@@ -378,12 +384,17 @@ export function renderLessonModules(lesson, language, options = {}) {
     languageValues.length > 0 &&
     languageValues.every(value => typeof value === 'string');
   const languagesType = hasLanguages ? 'LessonLanguages' : null;
+  const constantsSpecifier = '#lessonsData/' + filtered.id?.at(-1) + '/' + filtered.id + '/constants';
   if (hasLanguages) {
     files.set(
       'constants.ts',
       "import type { LanguageCode } from '@svitlo/engine/build';\n\n" +
-        'export const languages = ' +
+        '// Restore the complete language set when translations are ready:\n' +
+        '// export const languages = ' +
         JSON.stringify(languageValues) +
+        ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n\n' +
+        'export const languages = ' +
+        JSON.stringify([language]) +
         ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n' +
         'export type LessonLanguages = typeof languages;\n',
     );
@@ -407,18 +418,8 @@ export function renderLessonModules(lesson, language, options = {}) {
       output.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
     }
     if (needsLanguages && languagesType) {
-      const constantImport = relativeImport(directory, '');
-      output.push(
-        'import type { LessonLanguages } from ' +
-          JSON.stringify(constantImport + (constantImport.endsWith('/') ? '' : '/') + 'constants') +
-          ';',
-      );
-      if (languageValue)
-        output.push(
-          'import { languages } from ' +
-            JSON.stringify(constantImport + (constantImport.endsWith('/') ? '' : '/') + 'constants') +
-            ';',
-        );
+      output.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
+      if (languageValue) output.push('import { languages } from ' + JSON.stringify(constantsSpecifier) + ';');
     }
     return output.join('\n') + '\n\n';
   }
@@ -438,14 +439,14 @@ export function renderLessonModules(lesson, language, options = {}) {
     if (factoryContexts.has(context)) {
       if (!record(value) || typeof value.type !== 'string')
         throw new Error(
-          'config.yaml:' + field + '.type: missing type discriminator for ' + context + ' factory dispatch',
+          'lesson.yaml:' + field + '.type: missing type discriminator for ' + context + ' factory dispatch',
         );
       if (context === 'slide' && !['image', 'scene'].includes(value.type))
-        throw new Error('config.yaml:' + field + '.type: Carousel slides must be image or scene');
+        throw new Error('lesson.yaml:' + field + '.type: Carousel slides must be image or scene');
       if (!factories[value.type])
-        throw new Error('config.yaml:' + field + '.type: unknown type "' + value.type + '"; no Engine define* factory');
-      if (typeof value.slug !== 'string' || !safeSlug.test(value.slug))
-        throw new Error('config.yaml:' + field + '.slug: unsafe or missing camelCase slug');
+        throw new Error('lesson.yaml:' + field + '.type: unknown type "' + value.type + '"; no Engine define* factory');
+      if (typeof value.slug !== 'string' || !(value.type === 'scene' ? sceneSlug : safeSlug).test(value.slug))
+        throw new Error('lesson.yaml:' + field + '.slug: unsafe or missing camelCase slug');
       const symbol = symbolFor(value, context);
       // The mandatory Text question and the Answer Configurator have fixed
       // semantic role paths. Their own authored slugs still live in Config.
@@ -492,7 +493,7 @@ export function renderLessonModules(lesson, language, options = {}) {
           return JSON.stringify(value) + ' as const';
         return JSON.stringify(value);
       }
-      throw new Error('config.yaml:' + field + ': unsupported YAML value');
+      throw new Error('lesson.yaml:' + field + ': unsupported YAML value');
     }
     const entries = Object.entries(value);
     if (!entries.length) return '{}';
@@ -519,6 +520,12 @@ export function renderLessonModules(lesson, language, options = {}) {
             (context === 'slot' && key === 'correctAnswer')
           )
             nextDirectory = join(ownerDirectory, key);
+          if (context === 'flashcardContent' && ['front', 'back', 'hint'].includes(key)) {
+            if (!record(child)) throw new Error('lesson.yaml:' + field + '.' + key + ': expected Flashcard side');
+            emitFlashcardSide(key, child, nextDirectory);
+            imported.set(key, { symbol: key, location: nextDirectory });
+            return indent(depth + 1) + key;
+          }
           const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, field + '.' + key);
           return (
             indent(depth + 1) + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered)
@@ -535,7 +542,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     const stem = value.slug;
     if (context === 'stage') return 'stage_' + stem;
     if (context === 'task') return 'task_' + stem;
-    if (context === 'question') return value.type + '_' + stem;
+    if (value.type === 'scene') return stem[0].toUpperCase() + stem.slice(1) + 'Config';
     return reserved.has(stem) || javascriptKeywords.has(stem) ? 'item_' + stem : stem;
   }
 
@@ -615,6 +622,36 @@ export function renderLessonModules(lesson, language, options = {}) {
     return '<' + [slug, languagesType].join(', ') + '>';
   }
 
+  // Flashcard sides have no UUID. The role-local barrel owns the ordered block map.
+  function emitFlashcardSide(role, side, directory) {
+    const reservedImports = new Set([role, 'sideItems', 'defineFlashcardSide', 'LessonLanguages']);
+    const imports = new Map(
+      [...reservedImports].map(name => [name, { symbol: name, location: '__reserved__' }]),
+    );
+    const sideItems = render(side.items, 'blockItems', directory, imports, 0, '$.content.' + role + '.items');
+    const fields = Object.entries(side).map(([key, value]) =>
+      key === 'items'
+        ? '  items: sideItems'
+        : '  ' + asProperty(key) + ': ' + render(value, 'plain', directory, imports, 1, '$.content.' + role + '.' + key),
+    );
+    const importsHead = ["import { defineFlashcardSide } from '@svitlo/engine/build';"];
+    for (const [alias, { symbol, location }] of [...imports.entries()]
+      .filter(([, entry]) => entry.location !== '__reserved__')
+      .sort((a, b) => a[0].localeCompare(b[0]))) {
+      const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
+      importsHead.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
+    }
+    if (languagesType) importsHead.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
+    put(
+      join(directory, 'index.ts'),
+      importsHead.join('\n') + '\n\n' +
+        'const sideItems = ' + sideItems + ';\n\n' +
+        'export const ' + role + ' = defineFlashcardSide<' +
+        (languagesType ? 'typeof sideItems, LessonLanguages' : 'typeof sideItems') +
+        '>({\n' + fields.join(',\n') + '\n});\n',
+    );
+  }
+
   function emitNode(node, context, directory) {
     if (nodeLocations && (node.type === 'scene' || localMediaTypes.has(node.type))) {
       if (nodeLocations.has(node.id) && nodeLocations.get(node.id) !== directory)
@@ -623,7 +660,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     }
     const authored = fileBackedNode(node, context, directory);
     const factory = factories[node.type];
-    if (!factory) throw new Error('config.yaml: unknown factory for ' + node.type);
+    if (!factory) throw new Error('lesson.yaml: unknown factory for ' + node.type);
     const imports = new Map();
     const bindings = generateParameters(authored, context, directory, imports);
     // All bound children are rendered with real source names but are never
@@ -683,15 +720,9 @@ export function renderLessonModules(lesson, language, options = {}) {
   }
 
   emitCollection('section', 'sectionCollection', 'sections');
-  emitCollection('flashcards', 'flashcardCollection', 'flashcards');
-  emitCollection('questions', 'questionBank', 'questions');
 
   const rootImports = ["import { defineLesson } from '@svitlo/engine/build';"];
-  for (const [field, directory] of [
-    ['section', 'sections'],
-    ['flashcards', 'flashcards'],
-    ['questions', 'questions'],
-  ]) {
+  for (const [field, directory] of [['section', 'sections']]) {
     if (Object.hasOwn(filtered, field))
       rootImports.push('import { ' + field + ' } from ' + JSON.stringify('./' + directory) + ';');
   }
@@ -721,7 +752,7 @@ export function renderLessonModules(lesson, language, options = {}) {
       rootFields.push('  skills: [' + value.map(id => skills.get(id).symbol + '.id').join(', ') + ']');
       continue;
     }
-    if (['section', 'flashcards', 'questions'].includes(key)) {
+    if (key === 'section') {
       rootFields.push('  ' + key);
       continue;
     }
@@ -755,8 +786,6 @@ export function renderLessonModules(lesson, language, options = {}) {
         JSON.stringify(filtered.slug),
         'LessonLanguages',
         Object.hasOwn(filtered, 'section') ? 'typeof section.items' : '{}',
-        Object.hasOwn(filtered, 'flashcards') ? 'typeof flashcards.items' : '{}',
-        Object.hasOwn(filtered, 'questions') ? 'typeof questions' : '{}',
       ].join(', ') +
       '>'
     : '';

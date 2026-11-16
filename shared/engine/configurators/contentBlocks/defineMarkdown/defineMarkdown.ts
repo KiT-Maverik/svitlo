@@ -198,6 +198,10 @@ const mergeMarkdownForValidation = (
 /**
  * Define localized Markdown with optional Code-style replacement variables.
  *
+ * Supports inline LaTeX formulas (`$...$`) and display formulas (`$$...$$`)
+ * in Markdown source. UI Kit renders them with KaTeX; Engine stores the original
+ * Markdown unchanged. Escape literal dollar signs as `\$`.
+ *
  * @remarks
  * Store translations as `locale/<language>.md` beside the definition and
  * pass `files: { moduleUrl: import.meta.url, languages }`. For invariant
@@ -232,10 +236,10 @@ export const defineMarkdown = <
     params: config.params,
     locale,
   };
-  const authored = structuredClone(parseAndValidate(resolved));
+  const authored: ContentBlock_Markdown_Config = structuredClone(resolved);
   const { id, type } = authored;
   const slug = config.slug;
-  const copyAuthored = () => markdown_Config_Schema.parse(structuredClone(authored));
+  const copyAuthored = () => structuredClone(authored);
   const base = {
     id,
     type,

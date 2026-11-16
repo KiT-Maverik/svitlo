@@ -169,7 +169,7 @@ describe('QuestionRenderer — published Engine Props', () => {
 });
 
 const quizSettings = (layout: 'stack' | 'stepper', timeLimitSeconds?: number): QuizSection_Props['params'] => ({
-  selection: { mode: 'all' },
+  selection: { mode: 'all', questionIds: [one.id] },
   layout: { mode: layout, showProgress: true },
   feedbackMode: 'immediate',
   interaction: {

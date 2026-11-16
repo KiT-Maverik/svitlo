@@ -71,6 +71,38 @@ test('Lesson publication swaps the complete tree, removes stale files, and prese
   }
 });
 
+test('independent assessment JSON publishes under the owning Lesson without changing its Props', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-assessment-publish-'));
+  const owner = 'c/' + lessonId;
+  const id = 'a4f1e4aa-3831-5e3f-aece-1df57f757d82';
+  const manifest = owner + '/assessment-manifest.json';
+  const base = owner + '/questions/' + id + '/base.json';
+  const locale = owner + '/questions/' + id + '/uk.json';
+  const files = new Map([
+    [manifest, '{"lessonId":"' + lessonId + '","entries":{}}\\n'],
+    [base, '{"type":"selectOneAnswer","id":"' + id + '"}\\n'],
+    [locale, '{"locale":{"title":"Питання"}}\\n'],
+  ]);
+  try {
+    publishLessonProps(directory, new Map([[owner + '/base.json', '{"type":"lesson"}\\n']]));
+    const assessmentRoot = path.join(directory, 'assessment');
+    publishLessonProps(assessmentRoot, files);
+    assert.doesNotThrow(() => check(assessmentRoot, files));
+    assert.equal(fs.existsSync(path.join(directory, owner, 'questions', id, 'base.json')), false);
+    assert.equal(fs.readFileSync(path.join(directory, owner, 'base.json'), 'utf8'), '{"type":"lesson"}\\n');
+    for (const bad of [
+      'b/' + lessonId + '/assessment-manifest.json',
+      owner + '/questions/../../secrets.json',
+      owner + '/questions/INVALID/base.json',
+    ]) {
+      assert.throws(() => publishLessonProps(assessmentRoot, new Map([[bad, '{}']])), /Invalid generated Lesson path/);
+    }
+    assert.doesNotThrow(() => check(assessmentRoot, files), 'invalid publication must leave previous files intact');
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
 test('Lesson publisher rejects traversal, incorrect UUID buckets, and invalid file bodies before writing', () => {
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lessons-paths-'));
   const root = path.join(home, 'lessons');

@@ -41,7 +41,6 @@ describe('Configurators', () => {
           },
           locale: { title: 'Lesson' },
           section: { items: { intro: section }, order: ['intro'] },
-          flashcards: { items: {}, order: [] },
         });
         const resource = lesson.build.props({ languages: ['uk'] });
         assert.deepEqual(

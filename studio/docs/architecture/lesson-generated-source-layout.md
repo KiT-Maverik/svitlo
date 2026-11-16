@@ -7,7 +7,7 @@
 ## Reproducible baseline and edited prototype
 
 Canonical source:
-`content/math/data/lessons/0/92177be3-97a1-5ca4-b21a-07f0dac27f50/config.yaml`
+`content/math/data/lessons/0/92177be3-97a1-5ca4-b21a-07f0dac27f50/lesson.yaml`
 (`equalsMeansSameValue`).
 
 The [machine-readable snapshot inventory](../../../shared/engine/scripts/lessonBuilder/fixtures/pr557-lesson-layout.snapshots.json) pins **Git commit SHAs and blob SHAs** for every added file in two historical snapshots:
@@ -17,11 +17,11 @@ The [machine-readable snapshot inventory](../../../shared/engine/scripts/lessonB
 | Original Lesson Builder output | [`a3735dff24be4445c36fedd38997165732c67bfd`](https://github.com/KiT-Maverik/svitlo/commit/a3735dff24be4445c36fedd38997165732c67bfd) |          14 | One `equalsMeansSameValue.data.ts`, methodology and UUID-addressed `specification.md` handoffs              |
 | User-edited prototype          | [`9e500e1f521e6eebf86f0e556f93f5f673e212f3`](https://github.com/KiT-Maverik/svitlo/commit/9e500e1f521e6eebf86f0e556f93f5f673e212f3) |          51 | `index.ts`, `constants.ts`, `review.ts`, modular Sections/blocks, localized Markdown and illustrative media |
 
-These are **historical inventories, not runnable generated trees**: `config.yaml` existed before the first commit; the prototype deliberately contains TODO expressions, potentially invalid imports, illustrative assets and the temporary `demonstrationalSection`. The **later structure in this document**, not the prototype's literal paths, is the intended generator contract. In particular, the prototype still has type groupings (`texts/`, `scenes/`, `audio/`, etc.) that the user subsequently rejected. Do not copy them into the final generated layout. Do not mistake the 51-file snapshot for an exact future-output count.
+These are **historical inventories, not runnable generated trees**: the technical input was named `config.yaml` at the time of those historical commits; the current working tree uses `lesson.yaml`. the prototype deliberately contains TODO expressions, potentially invalid imports, illustrative assets and the temporary `demonstrationalSection`. The **later structure in this document**, not the prototype's literal paths, is the intended generator contract. In particular, the prototype still has type groupings (`texts/`, `scenes/`, `audio/`, etc.) that the user subsequently rejected. Do not copy them into the final generated layout. Do not mistake the 51-file snapshot for an exact future-output count.
 
 ## Source-of-truth and scope
 
-1. **Input:** one technical `config.yaml` with paired `config` and optional `production` at every Configurator node. `config.id` is the permanent ID; `production.documentLanguage` is source-language provenance. This is unchanged.
+1. **Input:** one technical `lesson.yaml` with paired `config` and optional `production` at every Configurator node. `config.id` is the permanent ID; `production.documentLanguage` is source-language provenance. This is the current Lesson-only contract; Course `config.yaml` is unchanged.
 2. **Mechanical output:** reproducible, statically typed `define*` **source drafts**, source-relative content files and explicit specialist handoffs. The scaffolder must not infer educational semantics, approve content, translate, fabricate assets or call `build.props()`.
 3. **Publication:** a separate Engine Props generator validates completed configurators, and textbook tooling stages JSON and media. Engine `runtime` must never import authoring source, Node file readers or `@svitlo/engine/build`.
 4. **Safety:** existing authored work is immutable by default; maintain creation-only / `SKIP` behavior until a separately designed overwrite/migration contract replaces it.
@@ -32,7 +32,9 @@ This contract is a target for future follow-up PRs. Current behavior is describe
 
 ```text
 content/<book>/data/lessons/<last-uuid-digit>/<lesson-uuid>/
-  config.yaml                   # immutable authored technical source
+  lesson.yaml                   # Lesson-only authored technical source
+  questions.yaml                # independent editorial bank; created only when approved
+  flashcards.yaml               # independent editorial bank; created only when approved
   index.ts                      # exports the Lesson configurator
   constants.ts                  # supported languages tuple and derived types
   review.ts                     # intentionally unfinished typed Review register; no exports
@@ -58,11 +60,19 @@ The examples in one directory describe **alternative entity-specific cases**, no
 
 **Names vs identity:** the generator preserves the source YAML's permanent UUIDs and authored slug values. Semantic renaming (`text1` → `sameValueExplanation`) is **upstream editorial work** on the YAML. A deterministic builder must not guess a new name, change an ID, or silently renumber keys. Normalize folder paths according to source slugs and explicit hierarchy.
 
-**TypeScript style:** use bare valid identifier property keys (`id`, `slug`, `locale`, `en`, `items`, `order`) instead of `JSON.stringify(key)` on every property. Quote only keys requiring string-literal syntax; quoted _values_ are unaffected. Keep the ordered `{ items, order }` contract; do not reintroduce authored arrays for maps. Emit the actual `define*` generic arguments: literal slug, child-map type, and derived Lesson languages type according to each current signature.
+**TypeScript style:** use bare valid identifier property keys (`id`, `slug`, `locale`, `en`, `items`, `order`) instead of `JSON.stringify(key)` on every property. Quote only keys requiring string-literal syntax; quoted _values_ are unaffected. Use ordered `{ items, order }` collections where the sequence is meaningful (Sections, ContentBlocks within a Flashcard side). Question and Flashcard bank collections are not Lesson Config fields; their future source generation is independent. Do not reintroduce authored positional arrays. Emit the actual `define*` generic arguments: literal slug, child-map type, and derived Lesson languages type according to each current signature.
 
 **Languages:** generate a readonly `LanguageCode`-checked tuple in `constants.ts`, with a derived type shared by nested configurators. Keep `params.languages` exactly as authored in YAML; no fabricated locale values. The example requires `en`, `pl`, `uk`, `qm`, while the initial source-locale-only draft is intentionally incomplete.
 
 **Skills:** resolve YAML Skill UUIDs against existing textbook Skill definitions and import their exported symbols at build time, e.g. `skills: [equalityMeaning_Skill_Data.id]`; never guess a Skill or replace an unresolved UUID with an invented reference. Immutable IDs remain in YAML and published JSON. This must be verified against actual export paths and compiled TypeScript in the later generator PR.
+
+## Separate Question and Flashcard source generation (future work)
+
+Approved editorial sources `questions.yaml` and `flashcards.yaml` are flat sibling
+files beside `lesson.yaml`, not inside `questions/` or `flashcards/` directories.
+The Lesson Builder neither creates those folders nor generates bank TypeScript.
+A later independent bank generator may create slug-organized `questions/` and
+`flashcards/` module trees without changing the Lesson root `index.ts`.
 
 ## File-backed source content and media
 
@@ -106,7 +116,7 @@ The **Stage 3 contract changes the historical Markdown file-mode folder from `lo
 
 **Stage 6 implementation:** the Lesson YAML scaffolder creates a non-exported `review.ts` beside `index.ts`, importing the strict Engine `LessonReview` type. Its variable identifier and required PR/language expressions are intentionally **missing**, so the generated Draft fails TypeScript parsing until actual completed Lesson Props and review evidence exist. Never fabricate a temporary successful identifier, placeholder PR numbers or approvals.
 
-The general `Review` type requires `ai.locales` (one integrated AI localization-review PR) and `human.acceptance` (owner-authorized PR) plus a required `human.locales` map (individual optional language→human review PRs). `human.scientific` is optional with `{ pr: number; language: LanguageCode }`. `LessonReview` adds mandatory `ai.stages` entries keyed by the exact Lesson Production stage slugs. Every stage entry stores `{ pr: number; language: LanguageCode }`. These are **Lesson Production**, never Quest, stages. The staged review file initially provides all required property keys with missing mandatory values, but does not write the optional scientific record.
+The general `Review` type requires `ai.locales` (one integrated AI localization-review PR) and `human.acceptance` (owner-authorized PR) plus a required `human.locales` map (individual optional language→human review PRs). `human.scientific` is optional with `{ pr: number; language: LanguageCode }`. `LessonReview` adds mandatory direct `ai.<camelCaseStage>` properties using the same canonical identifiers as the Lesson Production Issue tracker. Every stage entry stores `{ pr: number; language: LanguageCode }`. These are **Lesson Production**, never Quest, stages. The staged review file initially provides all required property keys with missing mandatory values, but does not write the optional scientific record.
 
 When a finished Lesson can actually produce `lesson.build.props({ languages })` for **all supported languages**, use the Build-only Engine function `hashLessonReviewProps` on that complete assembled structure. Canonically serialize JSON keys while retaining array order, compute SHA-256 and take the first 20 lowercase hex digits. This is a digest of **assembled Lesson Props**, **not** the intermediary YAML Config nor its production specifications. It includes all ordered nested Lesson content and localized Props. Bind that revision to the local `review.ts` variable, using **only** the digest as its identifier; prepend `_` if the first character is a digit, as TypeScript requires. Use `lessonReviewIdentifier` for the syntax-safe representation. The record itself is not part of Props. No separate review digest for every child is needed.
 
@@ -139,8 +149,7 @@ Next implementation stages: (2) source modules, imports and TypeScript types; (3
 ## Stage 2 implementation notes (Draft PR)
 
 The Stage 2 follow-up builds **one TypeScript `index.ts` per Configurator**, plus
-`sections/index.ts`, `flashcards/index.ts` and `questions/index.ts`
-collection modules, a root `index.ts`, and `constants.ts` when the YAML
+`sections/index.ts` collection module, a root `index.ts`, and `constants.ts` when the YAML
 provides a nonempty language tuple. It uses correctly ordered generics
 from the existing Engine factories and resolves Skill IDs to real authored
 Skill imports where possible; unresolved Skill dependencies are reported

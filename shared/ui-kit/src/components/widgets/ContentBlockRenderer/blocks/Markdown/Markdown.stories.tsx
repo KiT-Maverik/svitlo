@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Renders a localized Markdown response directly, including sanitized authored HTML, links, lists, and code. Supports RTL languages.',
+          'Renders localized Markdown with sanitized HTML, links, lists, code and inline/display LaTeX formulas. Supports RTL languages.',
       },
     },
   },
@@ -43,6 +43,14 @@ export const RichFormatting: Story = {
     locale: {
       value:
         '## Markdown elements\n\nA paragraph with *emphasis*, **bold text**, and `inline code`.\n\n> A short quotation.\n\n1. First item\n2. Second item\n\n```typescript\nconst lightSpeed = 299_792_458;\n```',
+    },
+  },
+};
+
+export const MathematicalNotation: Story = {
+  args: {
+    locale: {
+      value: 'A circle has area $S = \\pi r^2$.\n\n$$\nE = mc^2\n$$',
     },
   },
 };

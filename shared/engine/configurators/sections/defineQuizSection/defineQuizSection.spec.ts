@@ -18,7 +18,7 @@ describe('Configurators', () => {
         locale: { value: { en: 'Read', uk: 'Читай' } },
       });
       const quizParams = {
-        selection: { mode: 'sample' as const, count: 3 },
+        selection: { mode: 'sample' as const, questionIds: [id('c2'), id('c3'), id('c4')], count: 3 },
         layout: { mode: 'stepper' as const, showProgress: true },
         feedbackMode: 'after-completion' as const,
         interaction: {
@@ -72,7 +72,7 @@ describe('Configurators', () => {
               items: { prompt: prompt.config.base },
               order: ['prompt'],
             },
-          }),
+          }).build.props({ languages: ['en'] }),
         );
       });
 
@@ -147,8 +147,37 @@ describe('Configurators', () => {
               params: { ...quizParams, screen: { starting: { content: ['notPresent'] } } },
               locale: { title: 'Quiz', navigationLabel: 'Q' },
               content: { items: { prompt }, order: ['prompt'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /unknown ContentBlock/,
+        );
+      });
+
+      test('Quiz requires stable explicit unique Question UUIDs and valid sample bounds', () => {
+        const quiz = makeQuiz();
+        assert.deepEqual(quiz.build.props({ languages: ['en'] }).base.params.selection.questionIds, [
+          id('c2'),
+          id('c3'),
+          id('c4'),
+        ]);
+        assert.throws(
+          () => quiz.build.overrides({ params: { selection: { questionIds: [] } } }, { languages: ['en'] }),
+          /nonempty|too_small|Invalid|array/i,
+        );
+        assert.throws(
+          () =>
+            quiz.build.overrides(
+              { params: { selection: { questionIds: [id('c2'), id('c2')] } } },
+              { languages: ['en'] },
+            ),
+          /unique|Duplicate|Invalid/,
+        );
+        assert.throws(
+          () => quiz.build.overrides({ params: { selection: { count: 4 } } }, { languages: ['en'] }),
+          /sample count/,
+        );
+        assert.throws(
+          () => quiz.build.overrides({ params: { selection: { questionIds: ['not-a-uuid'] } } }, { languages: ['en'] }),
+          /uuid|Invalid/,
         );
       });
 
@@ -172,16 +201,21 @@ describe('Configurators', () => {
           params: { disabled: true },
           locale: { value: 'Unavailable' },
         });
+        const deferredQuiz = defineQuizSection<'badDisabledQuiz', { prompt: typeof disabledPrompt }, ['en', 'uk']>({
+          type: 'quiz',
+          id: id('b8'),
+          slug: 'badDisabledQuiz',
+          params: quizParams,
+          locale: { title: 'Quiz', navigationLabel: 'Q' },
+          content: { items: { prompt: disabledPrompt }, order: ['prompt'] },
+        });
+        assert.equal(deferredQuiz.slug, 'badDisabledQuiz');
         assert.throws(
-          () =>
-            defineQuizSection<'badDisabledQuiz', { prompt: typeof disabledPrompt }, ['en', 'uk']>({
-              type: 'quiz',
-              id: id('b8'),
-              slug: 'badDisabledQuiz',
-              params: quizParams,
-              locale: { title: 'Quiz', navigationLabel: 'Q' },
-              content: { items: { prompt: disabledPrompt }, order: ['prompt'] },
-            }),
+          () => deferredQuiz.build.props({ languages: ['en', 'uk'] }),
+          /screen starting references disabled ContentBlock: prompt/,
+        );
+        assert.throws(
+          () => deferredQuiz.build.overrides({}, { languages: ['en', 'uk'] }),
           /screen starting references disabled ContentBlock: prompt/,
         );
 
