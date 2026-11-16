@@ -39,7 +39,7 @@ export const amides_Skill_Data = defineSkill({
     methodological: 'Recognize carbonyl–nitrogen connectivity and distinguish amides from amines.',
     frontend: {
       en: 'Identify amides and distinguish their carbonyl–nitrogen linkages from amines.',
-      it: "Identifica le ammidi e distingui il loro legame tra carbonile e azoto da quello delle ammine.",
+      it: "Identifica le ammidi dal gruppo carbonilico legato all'azoto e distinguile dalle ammine.",
       zh: '识别酰胺，并区分其羰基—氮连接方式与胺。',
       hi: 'ऐमाइड पहचानें और उनके कार्बोनिल–नाइट्रोजन बंध को ऐमीन से अलग करें।',
       es: 'Identifica las amidas y distingue su enlace carbonilo-nitrógeno del de las aminas.',
