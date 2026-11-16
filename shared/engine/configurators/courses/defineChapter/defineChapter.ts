@@ -165,7 +165,7 @@ export const defineChapter = <
 ): Chapter_Configurator<Slug, Items, Languages> => {
   const metadataSchema = chapter_Config_Schema.omit({ content: true });
   const { content: _content, ...metadataInput } = config;
-  const authored = structuredClone(metadataInput);
+  const authored: Omit<Chapter_Config, 'content'> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
@@ -246,17 +246,13 @@ export const defineChapter = <
     return { base, locale };
   };
 
-  const readBase = (): ChapterConfigBase => {
-    const source = copyAuthored();
-    return {
+  const base: ChapterConfigBase = {
     id,
     slug,
     type,
-    params: structuredClone(source.params),
-    locale: onlyStrings(source.locale),
-    };
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
   };
-  let cachedBase: ChapterConfigBase | undefined;
 
   const props = (options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterPropsBase> => {
     const languages = resolvePublicationLanguages(options);
@@ -406,7 +402,7 @@ export const defineChapter = <
     validate,
     build: { props, overrides },
     config: {
-      get base() { return cachedBase ??= readBase(); },
+      base,
       locales: (): { locale: DeepPartial<Chapter_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),

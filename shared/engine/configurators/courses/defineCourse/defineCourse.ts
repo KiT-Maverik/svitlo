@@ -178,7 +178,7 @@ export const defineCourse = <
 ): Course_Configurator<Slug, Items, Languages> => {
   const metadataSchema = course_Config_Schema.omit({ content: true });
   const { content: _content, ...metadataInput } = config;
-  const authored = structuredClone(metadataInput);
+  const authored: Omit<Course_Config, 'content'> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
@@ -259,17 +259,13 @@ export const defineCourse = <
     return { base, locale };
   };
 
-  const readBase = (): CourseConfigBase => {
-    const source = copyAuthored();
-    return {
+  const base: CourseConfigBase = {
     id,
     slug,
     type,
-    params: structuredClone(source.params),
-    locale: onlyStrings(source.locale),
-    };
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
   };
-  let cachedBase: CourseConfigBase | undefined;
 
   const props = (options: PublicationLanguageOptions<Languages>): CoursePublication<CoursePropsBase> => {
     const languages = resolvePublicationLanguages(options);
@@ -429,7 +425,7 @@ export const defineCourse = <
     validate,
     build: { props, overrides },
     config: {
-      get base() { return cachedBase ??= readBase(); },
+      base,
       locales: (): { locale: DeepPartial<Course_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),
