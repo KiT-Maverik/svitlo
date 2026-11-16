@@ -5,7 +5,7 @@ export const substitutionReactions_Skill_Data = defineSkill({
   id: '2a5c6f0f-5197-45de-b318-e45c8740b78c',
   name: {
     en: 'Substitution Reactions',
-    it: "Reazioni di sostituzione",
+    it: 'Reazioni di sostituzione',
     zh: '取代反应',
     hi: 'प्रतिस्थापन अभिक्रियाएँ',
     es: 'Reacciones de sustitución',

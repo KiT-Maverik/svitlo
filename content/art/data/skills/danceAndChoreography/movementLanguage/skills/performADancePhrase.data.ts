@@ -5,7 +5,7 @@ export const performADancePhrase_Skill_Data = defineSkill({
   id: '0b784cb9-1d2e-44f0-b891-382bc93c6e23',
   name: {
     en: 'Perform a Dance Phrase',
-    it: "Eseguire una frase di danza",
+    it: 'Eseguire una frase di danza',
     zh: '表演一段舞蹈动作',
     hi: 'नृत्य का एक खंड प्रस्तुत करें',
     es: 'Interpretar una frase de danza',
@@ -39,7 +39,7 @@ export const performADancePhrase_Skill_Data = defineSkill({
     methodological: 'Connect movements into a coherent phrase with expressive continuity.',
     frontend: {
       en: 'Join movements into a phrase that feels connected and purposeful.',
-      it: "Unisci i movimenti in una sequenza fluida e intenzionale.",
+      it: 'Unisci i movimenti in una sequenza fluida e intenzionale.',
       zh: '将动作连接成连贯且有明确意图的动作短句。',
       hi: 'गतियों को जोड़कर एक सुसंगत और उद्देश्यपूर्ण क्रम बनाएँ।',
       es: 'Une movimientos en una frase coherente y con intención.',

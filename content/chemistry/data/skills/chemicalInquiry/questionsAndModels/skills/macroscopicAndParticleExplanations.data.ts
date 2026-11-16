@@ -5,7 +5,7 @@ export const macroscopicAndParticleExplanations_Skill_Data = defineSkill({
   id: '156ddb4c-a96c-4d78-860f-0921460718a2',
   name: {
     en: 'Macroscopic and Particle Explanations',
-    it: "Spiegazioni macroscopiche e particellari",
+    it: 'Spiegazioni macroscopiche e particellari',
     zh: '宏观现象与粒子层面的解释',
     hi: 'स्थूल और कण-स्तरीय व्याख्याएँ',
     es: 'Explicaciones macroscópicas y de partículas',
@@ -40,7 +40,7 @@ export const macroscopicAndParticleExplanations_Skill_Data = defineSkill({
       'Relate an observable change, such as dissolving or gas formation, to a possible account of particles without confusing the model with direct observation.',
     frontend: {
       en: 'Connect visible chemical changes with possible explanations about particles.',
-      it: "Collega i cambiamenti chimici osservabili a possibili spiegazioni basate sulle particelle.",
+      it: 'Collega i cambiamenti chimici osservabili a possibili spiegazioni basate sulle particelle.',
       zh: '将可见的化学变化与可能的粒子层面解释联系起来。',
       hi: 'दिखाई देने वाले रासायनिक परिवर्तनों को कणों के बारे में संभावित व्याख्याओं से जोड़ें।',
       es: 'Relaciona los cambios químicos visibles con posibles explicaciones sobre las partículas.',

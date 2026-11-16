@@ -40,7 +40,7 @@ export const goalSpecificity_Skill_Data = defineSkill({
       'Explain how a clearly defined target can guide action and progress monitoring differently from a vague intention.',
     frontend: {
       en: 'Understand how clear, specific goals can guide action.',
-      it: 'Comprendi come obiettivi chiari e specifici possano guidare l\'azione.',
+      it: "Comprendi come obiettivi chiari e specifici possano guidare l'azione.",
       zh: '理解清晰而具体的目标如何指导行动。',
       hi: 'समझें कि स्पष्ट और विशेष लक्ष्य व्यवहार को कैसे दिशा देते हैं।',
       es: 'Comprende cómo unas metas claras y específicas guían la acción.',

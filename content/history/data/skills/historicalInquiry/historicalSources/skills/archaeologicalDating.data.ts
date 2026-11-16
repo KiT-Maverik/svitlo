@@ -5,7 +5,7 @@ export const archaeologicalDating_Skill_Data = defineSkill({
   id: 'a8c022ff-5bf3-44ff-bd36-21c78f985895',
   name: {
     en: 'Archaeological Dating',
-    it: "Datazione archeologica",
+    it: 'Datazione archeologica',
     zh: '考古年代测定',
     hi: 'पुरातात्त्विक काल निर्धारण',
     es: 'Datación arqueológica',

@@ -5,7 +5,7 @@ export const analyzeAPhilosophicalArgumentFromALatinAmericanTradition_Skill_Data
   id: 'ecaf1943-4ab0-445a-890d-82301fc72f4d',
   name: {
     en: 'Analyze a philosophical argument from a Latin American tradition',
-    it: 'Analizzare un\'argomentazione filosofica di una tradizione latinoamericana',
+    it: "Analizzare un'argomentazione filosofica di una tradizione latinoamericana",
     zh: '分析拉丁美洲传统中的哲学论证',
     hi: 'लातिन अमेरिकी परंपरा के दार्शनिक तर्क का विश्लेषण',
     es: 'Analizar un argumento de una tradición latinoamericana',

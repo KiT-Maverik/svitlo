@@ -11,7 +11,7 @@ export const atomsAndPeriodicity_SkillDomain_Data = defineSkillDomain({
   id: '21257e92-4a8b-4ca2-a38a-ec1d1ff31110',
   title: {
     en: 'Atoms and Periodicity',
-    it: "Atomi e periodicità",
+    it: 'Atomi e periodicità',
     zh: '原子与周期性',
     hi: 'परमाणु और आवर्तिता',
     es: 'Átomos y periodicidad',
@@ -56,7 +56,7 @@ export const atomsAndPeriodicity_SkillDomain_Data = defineSkillDomain({
       'The organization and electronic structure of atoms underpin elemental identity, isotopes, ions and recurring chemical behavior. This domain describes atomic constituents and trends; bond formation is treated separately.',
     frontend: {
       en: 'Explore the particles inside atoms and the patterns connecting chemical elements.',
-      it: "Esplora le particelle che compongono gli atomi e le regolarità tra gli elementi chimici.",
+      it: 'Esplora le particelle che compongono gli atomi e le regolarità tra gli elementi chimici.',
       zh: '探索原子内部的粒子，以及化学元素之间呈现的周期性规律。',
       hi: 'परमाणुओं के भीतर के कणों और रासायनिक तत्वों को जोड़ने वाले आवर्ती पैटर्न का अध्ययन करें।',
       es: 'Explora las partículas que componen los átomos y los patrones que relacionan los elementos químicos.',

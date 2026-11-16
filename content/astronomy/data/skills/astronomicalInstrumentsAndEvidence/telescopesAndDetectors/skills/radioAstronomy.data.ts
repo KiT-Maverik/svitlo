@@ -40,7 +40,7 @@ export const radioAstronomy_Skill_Data = defineSkill({
       'Interpret observations at radio wavelengths, including the kinds of astronomical sources and atmospheric or detector limitations relevant to these measurements.',
     frontend: {
       en: 'Discover what radio signals reveal about the universe.',
-      it: 'Scopri cosa rivelano i segnali radio sull\'universo.',
+      it: "Scopri cosa rivelano i segnali radio sull'universo.",
       qm: 'Kâinattan kelgen radio signallarınıñ neler bildirgenini ögreniñiz.',
       bn: 'বেতার সংকেত মহাবিশ্ব সম্পর্কে কী জানায়, তা আবিষ্কার করো।',
       ur: 'دریافت کریں کہ ریڈیو اشارے کائنات کے بارے میں کیا بتاتے ہیں۔',

@@ -5,7 +5,7 @@ export const explainEnergyTransformationInAPhysicalProcess_Skill_Data = defineSk
   id: 'b2b12218-243e-46ad-be8a-c1a4cbcb628a',
   name: {
     en: 'Explain energy transformation in a physical process',
-    it: 'Spiegare la trasformazione dell\'energia in un processo fisico',
+    it: "Spiegare la trasformazione dell'energia in un processo fisico",
     zh: '解释物理过程中的能量转化',
     hi: 'भौतिक प्रक्रिया में ऊर्जा रूपांतरण समझाना',
     es: 'Explicar la transformación de energía en un proceso físico',
@@ -40,7 +40,7 @@ export const explainEnergyTransformationInAPhysicalProcess_Skill_Data = defineSk
       'Energy changes form during physical processes, for example when energy shifts between motion and position; the total energy of an isolated system is conserved.',
     frontend: {
       en: 'Trace an energy transformation while accounting for conservation.',
-      it: 'Segui una trasformazione energetica tenendo conto della conservazione dell\'energia.',
+      it: "Segui una trasformazione energetica tenendo conto della conservazione dell'energia.",
       zh: '追踪能量的形式变化，同时考虑能量守恒。',
       hi: 'ऊर्जा के रूपांतरण का पता लगाएँ और संरक्षण का ध्यान रखें।',
       es: 'Sigue una transformación de energía teniendo en cuenta la conservación.',

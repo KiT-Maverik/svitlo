@@ -50,7 +50,7 @@ export const hydraulicInfrastructure_SkillGroup_Data = defineSkillGroup({
       'Flow and water levels can be regulated by built chambers, gates and channels that connect transport or supply routes.',
     frontend: {
       en: 'Discover how canals, locks and valves manage moving water.',
-      it: 'Scopri come canali, chiuse e valvole gestiscono l\'acqua in movimento.',
+      it: "Scopri come canali, chiuse e valvole gestiscono l'acqua in movimento.",
       zh: '探索运河、船闸和阀门如何管理流动的水。',
       hi: 'जानें कि नहरें, जलपोत लॉक और वाल्व बहते पानी को कैसे नियंत्रित करते हैं।',
       es: 'Explora cómo canales, esclusas y válvulas gestionan el agua en movimiento.',

@@ -70,7 +70,7 @@ export const researchEthics_SkillGroup_Data = defineSkillGroup({
       'Studies involving people must respect autonomy, dignity, safety, and confidentiality, including additional safeguards for vulnerable participants.',
     frontend: {
       en: "Discover how research can respect people's autonomy, dignity and safety.",
-      it: 'Scopri come la ricerca possa rispettare l\'autonomia, la dignità e la sicurezza delle persone.',
+      it: "Scopri come la ricerca possa rispettare l'autonomia, la dignità e la sicurezza delle persone.",
       zh: '了解研究如何尊重人们的自主权、尊严和安全。',
       hi: 'जानें कि शोध लोगों की स्वायत्तता, गरिमा और सुरक्षा का सम्मान कैसे कर सकता है।',
       es: 'Descubre cómo investigar respetando la autonomía, la dignidad y la seguridad de las personas.',

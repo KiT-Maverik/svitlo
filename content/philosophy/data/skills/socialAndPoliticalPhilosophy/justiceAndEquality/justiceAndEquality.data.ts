@@ -61,7 +61,7 @@ export const justiceAndEquality_SkillGroup_Data = defineSkillGroup({
       'Claims of fairness depend on what is distributed, who qualifies for consideration, and which differences are morally relevant.',
     frontend: {
       en: 'Explore how different concepts of fairness shape social arrangements.',
-      it: 'Esplora come diverse idee di equità influenzino l\'organizzazione della società.',
+      it: "Esplora come diverse idee di equità influenzino l'organizzazione della società.",
       zh: '探索不同的公平观念如何影响社会安排。',
       hi: 'जानो कि निष्पक्षता की अलग-अलग धारणाएँ सामाजिक व्यवस्थाओं को कैसे आकार देती हैं।',
       es: 'Explora cómo distintas ideas de justicia influyen en la organización de la sociedad.',

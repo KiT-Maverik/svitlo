@@ -5,7 +5,7 @@ export const spectroscopicEvidence_Skill_Data = defineSkill({
   id: 'a333c03f-a973-4f75-bb3e-34bf38289e86',
   name: {
     en: 'Spectroscopic Evidence',
-    it: "Prove spettroscopiche",
+    it: 'Prove spettroscopiche',
     zh: '光谱证据',
     hi: 'स्पेक्ट्रोस्कोपिक प्रमाण',
     es: 'Pruebas espectroscópicas',

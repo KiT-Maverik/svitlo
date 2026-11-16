@@ -14,7 +14,7 @@ export const ancientSoutheastAsia_SkillGroup_Data = defineSkillGroup({
   id: 'ee7d8586-eba9-48a9-84d7-d46a4a4b987a',
   name: {
     en: 'Southeast Asia',
-    it: "Asia sudorientale",
+    it: 'Asia sudorientale',
     zh: '古代东南亚',
     hi: 'प्राचीन दक्षिण-पूर्व एशिया',
     es: 'Sudeste Asiático antiguo',

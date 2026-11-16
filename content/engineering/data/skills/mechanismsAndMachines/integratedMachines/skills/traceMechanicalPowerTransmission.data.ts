@@ -39,7 +39,7 @@ export const traceMechanicalPowerTransmission_Skill_Data = defineSkill({
     methodological: 'Follow useful motion and energy from a prime mover to the working component.',
     frontend: {
       en: "Trace energy and motion from the drive to a machine's working component.",
-      it: 'Segui l\'energia e il movimento dall\'azionamento all\'organo di lavoro di una macchina.',
+      it: "Segui l'energia e il movimento dall'azionamento all'organo di lavoro di una macchina.",
       zh: '追踪从驱动装置到机器工作部件的能量和运动。',
       hi: 'ड्राइव से मशीन के काम करने वाले हिस्से तक ऊर्जा और गति का रास्ता देखें।',
       es: 'Sigue la energía y el movimiento desde el accionamiento hasta la parte activa de la máquina.',

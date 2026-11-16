@@ -5,7 +5,7 @@ export const hanDynasty_Skill_Data = defineSkill({
   id: '9707c11a-9878-461b-91ac-13bb1038d684',
   name: {
     en: 'Han Dynasty',
-    it: "Dinastia Han",
+    it: 'Dinastia Han',
     zh: '汉朝',
     hi: 'हान राजवंश',
     es: 'Dinastía Han',

@@ -5,7 +5,7 @@ export const fallOfHanAndSuccessorStates_Skill_Data = defineSkill({
   id: 'b6ef2317-4aba-4c54-936f-aca7b544cdd7',
   name: {
     en: 'Fall of the Han Dynasty and Successor States',
-    it: "Caduta della dinastia Han e Stati successori",
+    it: 'Caduta della dinastia Han e Stati successori',
     zh: '汉朝衰落及其后继政权',
     hi: 'हान पतन और उत्तरवर्ती राज्य',
     es: 'Caída de los Han y Estados sucesores',

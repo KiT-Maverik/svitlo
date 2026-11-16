@@ -5,7 +5,7 @@ export const explainArtisticDecisions_Skill_Data = defineSkill({
   id: '99cb8606-3805-4c89-8461-0252e2bb3d19',
   name: {
     en: 'Explain Artistic Decisions',
-    it: "Spiegare le scelte artistiche",
+    it: 'Spiegare le scelte artistiche',
     zh: '解释艺术决策',
     hi: 'कलात्मक निर्णयों की व्याख्या करें',
     es: 'Explicar las decisiones artísticas',
@@ -39,7 +39,7 @@ export const explainArtisticDecisions_Skill_Data = defineSkill({
     methodological: 'Relate material and expressive choices to intention and actual constraints.',
     frontend: {
       en: 'Explain why you chose particular materials, forms or artistic approaches.',
-      it: "Spiega perché hai scelto determinati materiali, forme o approcci artistici.",
+      it: 'Spiega perché hai scelto determinati materiali, forme o approcci artistici.',
       zh: '解释选择特定材料、形式或艺术方法的原因。',
       hi: 'समझाएँ कि आपने विशेष सामग्री, रूप या कलात्मक तरीका क्यों चुना।',
       es: 'Explica por qué elegiste determinados materiales, formas o enfoques artísticos.',

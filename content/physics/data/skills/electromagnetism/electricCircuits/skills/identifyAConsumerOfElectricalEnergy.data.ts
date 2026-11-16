@@ -40,7 +40,7 @@ export const identifyAConsumerOfElectricalEnergy_Skill_Data = defineSkill({
       'An electrical load converts received electrical energy into thermal, mechanical, light, or other forms, rather than merely "using current."',
     frontend: {
       en: 'Recognize loads that transform electrical energy into other forms.',
-      it: 'Riconosci i carichi che trasformano l\'energia elettrica in altre forme.',
+      it: "Riconosci i carichi che trasformano l'energia elettrica in altre forme.",
       qm: 'Elektrik energiyasını sıcaqlıq, yarıq ya da areket energiyasına çevirgen sarf eticilerni tanı.',
       zh: '识别能将电能转化为其他形式能量的负载。',
       hi: 'ऐसे उपकरण पहचानें जो विद्युत ऊर्जा को अन्य रूपों में बदलते हैं।',

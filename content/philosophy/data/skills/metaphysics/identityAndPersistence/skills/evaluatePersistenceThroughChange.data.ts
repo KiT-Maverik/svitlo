@@ -40,7 +40,7 @@ export const evaluatePersistenceThroughChange_Skill_Data = defineSkill({
       'Assess competing criteria for when an object remains the same despite replacement, growth, or alteration.',
     frontend: {
       en: 'Consider whether replacing parts changes the identity of an object.',
-      it: 'Rifletti se la sostituzione delle parti cambi l\'identità di un oggetto.',
+      it: "Rifletti se la sostituzione delle parti cambi l'identità di un oggetto.",
       zh: '考虑更换零件是否会改变物体的同一性。',
       hi: 'विचार करें कि पुर्जे बदलने से वस्तु की पहचान बदलती है या नहीं।',
       es: 'Considera si reemplazar piezas cambia la identidad de un objeto.',

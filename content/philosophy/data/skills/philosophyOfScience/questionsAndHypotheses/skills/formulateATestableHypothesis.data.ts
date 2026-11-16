@@ -5,7 +5,7 @@ export const formulateATestableHypothesis_Skill_Data = defineSkill({
   id: '3c558899-7d5b-45eb-a0e8-bfa02feb479f',
   name: {
     en: 'Formulate a testable hypothesis',
-    it: 'Formulare un\'ipotesi verificabile',
+    it: "Formulare un'ipotesi verificabile",
     zh: '提出可检验的假设',
     hi: 'परीक्षण योग्य परिकल्पना तैयार करें',
     es: 'Formular una hipótesis comprobable',

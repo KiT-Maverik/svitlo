@@ -5,7 +5,7 @@ export const pureSubstances_Skill_Data = defineSkill({
   id: 'd903f13e-b3ed-488e-887d-e8857583e2b0',
   name: {
     en: 'Pure Substances',
-    it: "Sostanze pure",
+    it: 'Sostanze pure',
     zh: '纯净物',
     hi: 'शुद्ध पदार्थ',
     es: 'Sustancias puras',
@@ -40,7 +40,7 @@ export const pureSubstances_Skill_Data = defineSkill({
       'Distinguish a chemically defined substance from a sample containing additional components, even when the sample appears uniform.',
     frontend: {
       en: 'Recognize when a sample is one pure substance rather than a mixture.',
-      it: "Riconosci quando un campione contiene una sola sostanza pura anziché una miscela.",
+      it: 'Riconosci quando un campione contiene una sola sostanza pura anziché una miscela.',
       zh: '判断样品是单一纯净物还是混合物。',
       hi: 'पहचानें कि नमूना एक शुद्ध पदार्थ है या मिश्रण।',
       es: 'Reconoce cuándo una muestra es una sustancia pura y no una mezcla.',

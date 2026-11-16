@@ -40,7 +40,7 @@ export const cosmologicalModels_Skill_Data = defineSkill({
       'Compare the predictions and assumptions of simplified expanding-Universe models against observations.',
     frontend: {
       en: 'Compare models of cosmic expansion with their assumptions and predictions.',
-      it: 'Confronta i modelli dell\'espansione cosmica esaminandone ipotesi e previsioni.',
+      it: "Confronta i modelli dell'espansione cosmica esaminandone ipotesi e previsioni.",
       qm: 'Kâinatnıñ keñeyüvi modellerini olarnıñ farazları ve qabaqtan aytqan neticeleri ile teñeştiriñiz.',
       zh: '比较不同宇宙膨胀模型的假设和预测。',
       hi: 'ब्रह्मांड के विस्तार के मॉडल और उनकी धारणाओं तथा भविष्यवाणियों की तुलना करें।',

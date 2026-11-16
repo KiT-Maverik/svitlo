@@ -13,7 +13,7 @@ export const creativeDevelopment_SkillGroup_Data = defineSkillGroup({
   id: 'ede2b917-513d-42a9-adb8-a22bc76dcb81',
   name: {
     en: 'Creative Development',
-    it: "Sviluppo creativo",
+    it: 'Sviluppo creativo',
     zh: '创意发展',
     hi: 'रचनात्मक विकास',
     es: 'Desarrollo creativo',

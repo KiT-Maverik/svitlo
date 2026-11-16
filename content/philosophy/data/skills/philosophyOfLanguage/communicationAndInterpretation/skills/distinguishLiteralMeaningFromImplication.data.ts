@@ -40,7 +40,7 @@ export const distinguishLiteralMeaningFromImplication_Skill_Data = defineSkill({
       'Identify content explicitly expressed versus a reasonable conversational inference that could be cancelled or revised.',
     frontend: {
       en: 'Distinguish the literal meaning of a statement from what it suggests.',
-      it: 'Distingui ciò che un\'affermazione dice letteralmente da ciò che lascia intendere nel contesto.',
+      it: "Distingui ciò che un'affermazione dice letteralmente da ciò che lascia intendere nel contesto.",
       zh: '区分一句话直接表达的意思与它暗示的内容。',
       hi: 'कथन के सीधे अर्थ और उससे निकलने वाले संकेत में अंतर करो।',
       es: 'Distingue el sentido literal de una afirmación de lo que sugiere.',

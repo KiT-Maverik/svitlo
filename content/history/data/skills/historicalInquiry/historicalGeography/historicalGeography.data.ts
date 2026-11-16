@@ -11,7 +11,7 @@ export const historicalGeography_SkillGroup_Data = defineSkillGroup({
   id: 'ddced799-3043-44f5-8045-9ddc8c0374dc',
   name: {
     en: 'Geography of the Past',
-    it: "Geografia del passato",
+    it: 'Geografia del passato',
     zh: '历史地理',
     hi: 'ऐतिहासिक भूगोल',
     es: 'Geografía histórica',
@@ -54,7 +54,7 @@ export const historicalGeography_SkillGroup_Data = defineSkillGroup({
       'Landscapes, climate, distances, and routes inform reconstructions of settlement and exchange without assuming geography determines history.',
     frontend: {
       en: 'Explore how places and routes shaped past societies without deciding their fate.',
-      it: "Esplora come i luoghi e le rotte influenzavano le società del passato senza determinarne il destino.",
+      it: 'Esplora come i luoghi e le rotte influenzavano le società del passato senza determinarne il destino.',
       zh: '探索地点与路线如何影响过去的社会，而不是决定它们的命运。',
       hi: 'जानें कि स्थानों और मार्गों ने पुराने समाजों को कैसे प्रभावित किया, पर उनका भविष्य तय नहीं किया।',
       es: 'Explora cómo los lugares y las rutas influyeron en las sociedades del pasado sin determinar su destino.',

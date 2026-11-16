@@ -5,7 +5,7 @@ export const chooseAVisualEncoding_Skill_Data = defineSkill({
   id: '4e13ce3e-5c6f-4376-8c4f-343b73014ba3',
   name: {
     en: 'Choose a Visual Encoding',
-    it: "Scegliere una codifica visiva",
+    it: 'Scegliere una codifica visiva',
 
     zh: '选择视觉编码方式',
     hi: 'दृश्य निरूपण चुनें',
@@ -40,7 +40,7 @@ export const chooseAVisualEncoding_Skill_Data = defineSkill({
     methodological: 'Match a category, quantity or relationship to an appropriate graphic representation.',
     frontend: {
       en: 'Choose a visual form that suits the kind of information you want to show.',
-      it: "Scegli una rappresentazione visiva adatta al tipo di informazioni che vuoi mostrare.",
+      it: 'Scegli una rappresentazione visiva adatta al tipo di informazioni che vuoi mostrare.',
 
       zh: '选择适合所要展示信息类型的视觉形式。',
       hi: 'जिस प्रकार की जानकारी दिखानी है, उसके अनुकूल दृश्य रूप चुनें।',

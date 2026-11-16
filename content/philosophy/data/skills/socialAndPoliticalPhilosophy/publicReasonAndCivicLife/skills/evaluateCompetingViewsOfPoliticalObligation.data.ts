@@ -5,7 +5,7 @@ export const evaluateCompetingViewsOfPoliticalObligation_Skill_Data = defineSkil
   id: '86bf44b3-b2fb-461f-816a-e46de6798be6',
   name: {
     en: 'Evaluate competing views of political obligation',
-    it: 'Valutare concezioni contrastanti dell\'obbligo politico',
+    it: "Valutare concezioni contrastanti dell'obbligo politico",
     zh: '评估政治义务的不同观点',
     hi: 'राजनीतिक दायित्व पर मतों का मूल्यांकन',
     es: 'Evaluar visiones del deber político',

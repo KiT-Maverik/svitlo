@@ -5,7 +5,7 @@ export const oxides_Skill_Data = defineSkill({
   id: 'bd5676b5-6131-48fa-8d4d-513f9e60b8f6',
   name: {
     en: 'Oxides',
-    it: "Ossidi",
+    it: 'Ossidi',
     zh: '氧化物',
     hi: 'ऑक्साइड',
     es: 'Óxidos',
@@ -39,7 +39,7 @@ export const oxides_Skill_Data = defineSkill({
     methodological: 'Distinguish oxide composition and broad acidic, basic or amphoteric chemical behavior.',
     frontend: {
       en: 'Explore the different types and chemical behavior of oxides.',
-      it: "Esplora i diversi tipi di ossidi e il loro comportamento chimico.",
+      it: 'Esplora i diversi tipi di ossidi e il loro comportamento chimico.',
       zh: '探索氧化物的不同类型及其化学行为。',
       hi: 'ऑक्साइडों की अलग-अलग श्रेणियों और उनके रासायनिक व्यवहार का अध्ययन करें।',
       es: 'Explora los distintos tipos de óxidos y su comportamiento químico.',

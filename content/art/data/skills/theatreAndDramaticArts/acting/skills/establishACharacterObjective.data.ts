@@ -5,7 +5,7 @@ export const establishACharacterObjective_Skill_Data = defineSkill({
   id: 'd146aff5-0b04-4b95-a7d5-7f8501b7661d',
   name: {
     en: 'Establish a Character Objective',
-    it: 'Definire l\'obiettivo di un personaggio',
+    it: "Definire l'obiettivo di un personaggio",
     zh: '确立角色目标',
     hi: 'पात्र का उद्देश्य तय करें',
     es: 'Establecer el objetivo de un personaje',

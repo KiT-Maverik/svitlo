@@ -9,7 +9,7 @@ export const energyRatesAndEquilibrium_SkillDomain_Data = defineSkillDomain({
   id: '9a267d93-82af-48cb-a1f7-1c9637c04826',
   title: {
     en: 'Energy, Rates and Equilibrium',
-    it: "Energia, velocità ed equilibrio",
+    it: 'Energia, velocità ed equilibrio',
     zh: '能量、反应速率与平衡',
     hi: 'ऊर्जा, अभिक्रिया दर और साम्य',
     es: 'Energía, velocidad y equilibrio',

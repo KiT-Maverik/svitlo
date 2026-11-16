@@ -39,7 +39,7 @@ export const prepareForPhysicalExertion_Skill_Data = defineSkill({
     methodological: 'Use context-appropriate warm-up, equipment, environment checks, and gradual increases in demand.',
     frontend: {
       en: 'Prepare equipment and surroundings before physical exertion.',
-      it: 'Prepara l\'attrezzatura e l\'ambiente circostante prima di uno sforzo fisico.',
+      it: "Prepara l'attrezzatura e l'ambiente circostante prima di uno sforzo fisico.",
       zh: '在体力活动前检查装备和周围环境。',
       hi: 'शारीरिक मेहनत से पहले उपकरण और आसपास की जगह जाँचें।',
       es: 'Prepara el equipo y revisa el entorno antes de hacer esfuerzo físico.',

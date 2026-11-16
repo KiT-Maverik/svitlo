@@ -40,7 +40,7 @@ export const milkyWayStructure_Skill_Data = defineSkill({
       'Interpret the disk, spiral structure, bulge and halo and explain how they are inferred from our position within the galaxy.',
     frontend: {
       en: 'Identify the disk, central bulge and halo of our galaxy.',
-      it: 'Identifica il disco, il rigonfiamento centrale e l\'alone della nostra galassia.',
+      it: "Identifica il disco, il rigonfiamento centrale e l'alone della nostra galassia.",
       qm: 'Galaktikamıznıñ diskini, merkezdeki qabarıq bölgesini ve tışqı halosını tanıñız.',
       zh: '辨认银河系的盘、中央核球和晕。',
       hi: 'हमारी आकाशगंगा की चकती, केंद्रीय उभार और प्रभामंडल पहचानें।',

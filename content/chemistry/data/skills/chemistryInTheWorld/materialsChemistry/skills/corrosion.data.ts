@@ -5,7 +5,7 @@ export const corrosion_Skill_Data = defineSkill({
   id: '033cd50c-2adc-43e0-b5a4-1ac3938c4d5a',
   name: {
     en: 'Corrosion',
-    it: "Corrosione",
+    it: 'Corrosione',
     zh: '腐蚀',
     hi: 'संक्षारण',
     es: 'Corrosión',
@@ -39,7 +39,7 @@ export const corrosion_Skill_Data = defineSkill({
     methodological: 'Explain electrochemical deterioration and the chemical basis of common protective principles.',
     frontend: {
       en: 'Explain how electrochemical reactions cause corrosion and how protection works.',
-      it: "Spiega come le reazioni elettrochimiche causano la corrosione e come funziona la protezione.",
+      it: 'Spiega come le reazioni elettrochimiche causano la corrosione e come funziona la protezione.',
       zh: '解释电化学反应如何导致腐蚀，以及防护措施如何发挥作用。',
       hi: 'समझाएँ कि विद्युत् रासायनिक अभिक्रियाएँ संक्षारण कैसे करती हैं और उससे बचाव कैसे होता है।',
       es: 'Explica cómo las reacciones electroquímicas causan corrosión y cómo funcionan las medidas de protección.',

@@ -5,7 +5,7 @@ export const chemicalHazardSymbols_Skill_Data = defineSkill({
   id: 'd238cafe-5ba0-410d-97b0-1ace06517c95',
   name: {
     en: 'Chemical Hazard Symbols',
-    it: "Simboli di pericolo chimico",
+    it: 'Simboli di pericolo chimico',
     zh: '化学危险象形图',
     hi: 'रासायनिक खतरे के चिह्न',
     es: 'Símbolos de peligro químico',

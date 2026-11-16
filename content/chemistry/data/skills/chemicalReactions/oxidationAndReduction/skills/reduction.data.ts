@@ -5,7 +5,7 @@ export const reduction_Skill_Data = defineSkill({
   id: '03368a7e-bfb8-4ff7-8ac4-65f6fe424cfe',
   name: {
     en: 'Reduction',
-    it: "Riduzione",
+    it: 'Riduzione',
     zh: '还原',
     hi: 'अपचयन',
     es: 'Reducción',

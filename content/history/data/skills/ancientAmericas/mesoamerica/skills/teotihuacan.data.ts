@@ -5,7 +5,7 @@ export const teotihuacan_Skill_Data = defineSkill({
   id: 'a3f6267e-418d-4059-8620-5e239e93514c',
   name: {
     en: 'Teotihuacan',
-    it: "Teotihuacan",
+    it: 'Teotihuacan',
     zh: '特奥蒂瓦坎',
     hi: 'तेओतिहुआकान',
     es: 'Teotihuacán',

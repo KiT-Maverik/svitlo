@@ -12,7 +12,7 @@ export const observationPractice_SkillGroup_Data = defineSkillGroup({
   id: '6b5700fb-8ba9-4483-9b1b-5c6a28347e12',
   name: {
     en: 'Observation Practice',
-    it: 'Pratica dell\'osservazione',
+    it: "Pratica dell'osservazione",
     qm: 'Közetüv ameliyatı',
     zh: '观测实践',
     hi: 'अवलोकन का अभ्यास',

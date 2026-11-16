@@ -40,7 +40,7 @@ export const emotionalAppraisal_Skill_Data = defineSkill({
       'Analyze how interpretations of an event influence feelings when the physical event is otherwise unchanged.',
     frontend: {
       en: 'Explore how interpreting a situation influences emotional response.',
-      it: 'Esplora come l\'interpretazione di una situazione influenzi la risposta emotiva.',
+      it: "Esplora come l'interpretazione di una situazione influenzi la risposta emotiva.",
       zh: '探索如何理解情境会影响情绪反应。',
       hi: 'जानें कि परिस्थिति को समझने का तरीका भावनात्मक प्रतिक्रिया कैसे बदलता है।',
       es: 'Explora cómo la interpretación de una situación influye en la respuesta emocional.',

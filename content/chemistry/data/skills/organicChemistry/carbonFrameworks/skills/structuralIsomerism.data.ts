@@ -5,7 +5,7 @@ export const structuralIsomerism_Skill_Data = defineSkill({
   id: 'af2d8291-cfea-40ac-acfe-63c8dc152292',
   name: {
     en: 'Structural Isomerism',
-    it: "Isomeria strutturale",
+    it: 'Isomeria strutturale',
     zh: '结构异构',
     hi: 'संरचनात्मक समावयवता',
     es: 'Isomería estructural',
@@ -39,7 +39,7 @@ export const structuralIsomerism_Skill_Data = defineSkill({
     methodological: 'Recognize compounds with the same molecular formula but different atomic connectivity.',
     frontend: {
       en: 'Understand how compounds with the same formula can have different connections.',
-      it: "Comprendi come composti con la stessa formula possano avere collegamenti diversi tra gli atomi.",
+      it: 'Comprendi come composti con la stessa formula possano avere collegamenti diversi tra gli atomi.',
       zh: '理解分子式相同的化合物如何具有不同的原子连接方式。',
       hi: 'समझें कि समान आणविक सूत्र वाले यौगिकों में परमाणुओं के जुड़ाव कैसे अलग हो सकते हैं।',
       es: 'Comprende cómo compuestos con la misma fórmula pueden tener conexiones entre átomos diferentes.',

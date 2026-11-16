@@ -40,7 +40,7 @@ export const evaluateEvidenceBehindAHeadline_Skill_Data = defineSkill({
       'Compare a summary with the underlying article or evidence and identify claims that exceed what is documented.',
     frontend: {
       en: "Compare a headline's promise with evidence provided in the underlying report.",
-      it: 'Confronta ciò che promette un titolo con le prove contenute nell\'articolo originale.',
+      it: "Confronta ciò che promette un titolo con le prove contenute nell'articolo originale.",
       zh: '将标题的承诺与报道实际提供的证据进行比较。',
       hi: 'सुर्खी के दावे की तुलना पूरी रिपोर्ट में दिए गए प्रमाण से करें।',
       es: 'Compara lo que promete un titular con las pruebas que aporta el informe completo.',

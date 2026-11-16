@@ -5,7 +5,7 @@ export const metallicBonding_Skill_Data = defineSkill({
   id: '79ef19d6-c8aa-46d1-ad2b-d7387cd893f3',
   name: {
     en: 'Metallic Bonding',
-    it: "Legame metallico",
+    it: 'Legame metallico',
     zh: '金属键',
     hi: 'धात्विक बंध',
     es: 'Enlace metálico',
@@ -39,7 +39,7 @@ export const metallicBonding_Skill_Data = defineSkill({
     methodological: 'Relate delocalized electrons and ordered metal atoms to common metallic properties.',
     frontend: {
       en: 'Connect mobile electrons in metals with their characteristic properties.',
-      it: "Collega la mobilità degli elettroni nei metalli alle loro proprietà caratteristiche.",
+      it: 'Collega la mobilità degli elettroni nei metalli alle loro proprietà caratteristiche.',
       zh: '将金属中可移动的电子与金属的典型性质联系起来。',
       hi: 'धातुओं में चलायमान इलेक्ट्रॉनों को उनके विशेष गुणों से जोड़कर समझें।',
       es: 'Relaciona los electrones móviles de los metales con sus propiedades características.',

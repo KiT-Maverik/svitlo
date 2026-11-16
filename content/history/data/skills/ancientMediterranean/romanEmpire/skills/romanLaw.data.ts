@@ -5,7 +5,7 @@ export const romanLaw_Skill_Data = defineSkill({
   id: '2a1215ab-2132-4e89-968d-f5e84d5bd987',
   name: {
     en: 'Roman Law',
-    it: "Diritto romano",
+    it: 'Diritto romano',
     zh: '罗马法',
     hi: 'रोमन क़ानून',
     es: 'Derecho romano',

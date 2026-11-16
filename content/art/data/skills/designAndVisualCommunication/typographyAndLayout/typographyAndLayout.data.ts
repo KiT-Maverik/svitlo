@@ -12,7 +12,7 @@ export const typographyAndLayout_SkillGroup_Data = defineSkillGroup({
   id: '907d7702-6970-46a4-9801-22056e87b65c',
   name: {
     en: 'Typography and Layout',
-    it: "Tipografia e impaginazione",
+    it: 'Tipografia e impaginazione',
 
     zh: '排版与字体设计',
     hi: 'टाइपोग्राफी और लेआउट',

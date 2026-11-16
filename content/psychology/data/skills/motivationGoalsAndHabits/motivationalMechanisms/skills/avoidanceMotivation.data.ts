@@ -5,7 +5,7 @@ export const avoidanceMotivation_Skill_Data = defineSkill({
   id: 'bbb4d156-c719-4972-8af2-a2b380e84c46',
   name: {
     en: 'Avoidance Motivation',
-    it: 'Motivazione all\'evitamento',
+    it: "Motivazione all'evitamento",
     zh: '回避动机',
     hi: 'बचाव की प्रेरणा',
     es: 'Motivación de evitación',

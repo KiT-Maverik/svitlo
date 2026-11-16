@@ -62,7 +62,7 @@ export const firstAidAndImmediateResponse_SkillDomain_Data = defineSkillDomain({
       'Immediate assistance aims to recognize danger, activate professional help, and provide appropriate basic interventions within training and scene safety. Clinical treatment and invasive procedures are not implied by inclusion in the taxonomy.',
     frontend: {
       en: 'Learn to recognize urgent danger, call for help and give appropriate basic assistance.',
-      it: 'Impara a riconoscere i pericoli urgenti, chiamare aiuto e prestare un\'assistenza di base adeguata.',
+      it: "Impara a riconoscere i pericoli urgenti, chiamare aiuto e prestare un'assistenza di base adeguata.",
       zh: '学会识别紧急危险、呼叫援助并提供适当的基本帮助。',
       hi: 'आपात खतरे को पहचानना, सहायता बुलाना और उचित बुनियादी मदद देना सीखो।',
       es: 'Aprende a reconocer peligros urgentes, pedir ayuda y prestar asistencia básica adecuada.',

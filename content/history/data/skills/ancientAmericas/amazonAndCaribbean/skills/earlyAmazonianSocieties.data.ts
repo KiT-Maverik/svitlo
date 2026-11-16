@@ -5,7 +5,7 @@ export const earlyAmazonianSocieties_Skill_Data = defineSkill({
   id: 'de7648cd-4174-489e-8d09-17108d6f2ade',
   name: {
     en: 'Early Amazonian Societies',
-    it: "Prime società amazzoniche",
+    it: 'Prime società amazzoniche',
     zh: '早期亚马孙社会',
     hi: 'प्रारंभिक अमेज़न समाज',
     es: 'Sociedades amazónicas tempranas',
@@ -39,7 +39,7 @@ export const earlyAmazonianSocieties_Skill_Data = defineSkill({
     methodological: 'Use archaeology of settlements, managed landscapes, and local cultivation in tropical forests.',
     frontend: {
       en: 'Explore evidence of early settlements within the Amazon.',
-      it: "Esplora le testimonianze dei primi insediamenti in Amazzonia.",
+      it: 'Esplora le testimonianze dei primi insediamenti in Amazzonia.',
       zh: '探索亚马孙地区早期定居点留下的证据。',
       hi: 'अमेज़न क्षेत्र की शुरुआती बस्तियों के प्रमाणों को जानें।',
       es: 'Explora las pruebas de los primeros asentamientos en la Amazonía.',

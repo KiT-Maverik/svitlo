@@ -12,7 +12,7 @@ export const ancientIranianStates_SkillGroup_Data = defineSkillGroup({
   id: '4694dad0-424a-4770-b50f-81694bb1a79d',
   name: {
     en: 'Iranian States',
-    it: "Stati iranici",
+    it: 'Stati iranici',
     zh: '古代伊朗诸国',
     hi: 'प्राचीन ईरानी राज्य',
     es: 'Estados iranios antiguos',

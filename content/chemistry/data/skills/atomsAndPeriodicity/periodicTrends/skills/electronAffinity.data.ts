@@ -5,7 +5,7 @@ export const electronAffinity_Skill_Data = defineSkill({
   id: '8dc70854-2343-4d99-b1bb-a93cc39b6de6',
   name: {
     en: 'Electron Affinity',
-    it: "Affinità elettronica",
+    it: 'Affinità elettronica',
     zh: '电子亲和能',
     hi: 'इलेक्ट्रॉन बंधुता',
     es: 'Afinidad electrónica',

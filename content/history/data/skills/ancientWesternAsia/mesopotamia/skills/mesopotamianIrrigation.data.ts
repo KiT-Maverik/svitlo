@@ -5,7 +5,7 @@ export const mesopotamianIrrigation_Skill_Data = defineSkill({
   id: '71e1ee98-234d-400f-9984-cfabb6e3756d',
   name: {
     en: 'Mesopotamian Irrigation',
-    it: "Irrigazione mesopotamica",
+    it: 'Irrigazione mesopotamica',
     zh: '美索不达米亚灌溉',
     hi: 'मेसोपोटामिया में सिंचाई',
     es: 'Riego mesopotámico',

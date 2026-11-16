@@ -5,7 +5,7 @@ export const entropy_Skill_Data = defineSkill({
   id: '14cc2bc0-729e-4a43-a42c-49c13cd0ad3d',
   name: {
     en: 'Entropy',
-    it: "Entropia",
+    it: 'Entropia',
     zh: '熵',
     hi: 'एंट्रॉपी',
     es: 'Entropía',

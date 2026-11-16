@@ -5,7 +5,7 @@ export const draftGarmentPatterns_Skill_Data = defineSkill({
   id: 'a112c0da-49bb-4add-a5ec-8e4ad9753b6f',
   name: {
     en: 'Draft Garment Patterns',
-    it: "Disegnare cartamodelli",
+    it: 'Disegnare cartamodelli',
 
     zh: '绘制服装纸样',
     hi: 'परिधान के पैटर्न तैयार करें',

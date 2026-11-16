@@ -5,7 +5,7 @@ export const sublimation_Skill_Data = defineSkill({
   id: '2fed2c03-1117-465a-a66f-773c1ce95a43',
   name: {
     en: 'Sublimation',
-    it: "Sublimazione",
+    it: 'Sublimazione',
     zh: '升华',
     hi: 'उर्ध्वपातन',
     es: 'Sublimación',
@@ -39,7 +39,7 @@ export const sublimation_Skill_Data = defineSkill({
     methodological: 'Explain direct conversion from solid to vapor without passage through a bulk liquid phase.',
     frontend: {
       en: 'Explain how some solids change directly into vapor.',
-      it: "Spiega come alcuni solidi passano direttamente allo stato di vapore.",
+      it: 'Spiega come alcuni solidi passano direttamente allo stato di vapore.',
       zh: '解释某些固体如何不经过液态而直接变成蒸气。',
       hi: 'समझाएँ कि कुछ ठोस द्रव बने बिना सीधे वाष्प में कैसे बदलते हैं।',
       es: 'Explica cómo algunos sólidos pasan directamente a vapor sin convertirse antes en líquido.',

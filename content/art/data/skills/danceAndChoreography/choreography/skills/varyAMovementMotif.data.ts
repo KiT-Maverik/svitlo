@@ -5,7 +5,7 @@ export const varyAMovementMotif_Skill_Data = defineSkill({
   id: '402e502d-dcd6-43b9-bb57-3584cd0610c3',
   name: {
     en: 'Vary a Movement Motif',
-    it: "Variare un motivo di movimento",
+    it: 'Variare un motivo di movimento',
     zh: '变换动作主题',
     hi: 'गतिशील रूप में बदलाव करें',
     es: 'Variar un motivo de movimiento',

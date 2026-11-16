@@ -5,7 +5,7 @@ export const testPhysicalProductUsability_Skill_Data = defineSkill({
   id: '9711cd92-d232-4cce-82ab-91b7f62dbc34',
   name: {
     en: 'Test physical product usability',
-    it: 'Verificare l\'usabilità di un prodotto fisico',
+    it: "Verificare l'usabilità di un prodotto fisico",
     zh: '测试实体产品的易用性',
     hi: 'भौतिक उत्पाद की उपयोगिता जाँचना',
     es: 'Probar la usabilidad de un producto físico',

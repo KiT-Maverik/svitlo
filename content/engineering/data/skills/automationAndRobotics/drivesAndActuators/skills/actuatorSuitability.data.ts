@@ -5,7 +5,7 @@ export const actuatorSuitability_Skill_Data = defineSkill({
   id: '4f0e0455-8ed3-443c-ad1d-bf7b23f5ebe5',
   name: {
     en: 'Actuator suitability',
-    it: 'Scelta dell\'attuatore adatto',
+    it: "Scelta dell'attuatore adatto",
     zh: '执行器适用性',
     hi: 'प्रवर्तक की उपयुक्तता',
     es: 'Idoneidad de actuadores',

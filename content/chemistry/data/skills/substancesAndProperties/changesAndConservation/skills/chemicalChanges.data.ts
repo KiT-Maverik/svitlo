@@ -5,7 +5,7 @@ export const chemicalChanges_Skill_Data = defineSkill({
   id: '2eb50fcd-ac6f-45f5-a014-7ca67f3173f4',
   name: {
     en: 'Chemical Changes',
-    it: "Trasformazioni chimiche",
+    it: 'Trasformazioni chimiche',
     zh: '化学变化',
     hi: 'रासायनिक परिवर्तन',
     es: 'Cambios químicos',
@@ -40,7 +40,7 @@ export const chemicalChanges_Skill_Data = defineSkill({
       'Recognize the formation of new substances, distinguishing reaction evidence from suggestive but inconclusive visual signs.',
     frontend: {
       en: 'Use appropriate evidence to decide whether a chemical reaction occurred.',
-      it: "Usa prove appropriate per stabilire se è avvenuta una reazione chimica.",
+      it: 'Usa prove appropriate per stabilire se è avvenuta una reazione chimica.',
       zh: '利用恰当的证据判断是否发生了化学反应。',
       hi: 'उचित प्रमाणों से तय करें कि रासायनिक अभिक्रिया हुई या नहीं।',
       es: 'Utiliza pruebas adecuadas para decidir si se produjo una reacción química.',

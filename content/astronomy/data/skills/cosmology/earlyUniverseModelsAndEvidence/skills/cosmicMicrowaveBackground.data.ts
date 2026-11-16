@@ -40,7 +40,7 @@ export const cosmicMicrowaveBackground_Skill_Data = defineSkill({
       'Interpret relic microwave radiation and its spatial variations as evidence about the early Universe.',
     frontend: {
       en: 'Investigate the faint microwave glow left from the early Universe.',
-      it: 'Indaga la debole radiazione a microonde rimasta dall\'universo primordiale.',
+      it: "Indaga la debole radiazione a microonde rimasta dall'universo primordiale.",
       qm: 'Erte Kâinattan qalğan zayıf mikrodalğa şavlesini araştırıñız.',
       zh: '研究早期宇宙留下的微弱微波辐射。',
       hi: 'आरंभिक ब्रह्मांड से बची मंद सूक्ष्मतरंग चमक का अध्ययन करें।',

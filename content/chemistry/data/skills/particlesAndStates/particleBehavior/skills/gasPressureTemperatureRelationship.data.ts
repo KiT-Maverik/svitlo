@@ -5,7 +5,7 @@ export const gasPressureTemperatureRelationship_Skill_Data = defineSkill({
   id: '8d87d160-91cc-44a5-ae36-fcd021c18897',
   name: {
     en: 'Gas Pressure–Temperature Relationship',
-    it: "Relazione tra pressione e temperatura dei gas",
+    it: 'Relazione tra pressione e temperatura dei gas',
     zh: '气体压强与温度的关系',
     hi: 'गैस के दाब और तापमान का संबंध',
     es: 'Relación presión–temperatura de los gases',
@@ -40,7 +40,7 @@ export const gasPressureTemperatureRelationship_Skill_Data = defineSkill({
       'Relate gas pressure to absolute temperature when volume and gas amount remain fixed under appropriate conditions.',
     frontend: {
       en: 'Explore how heating a confined gas changes its pressure.',
-      it: "Esplora come il riscaldamento di un gas confinato ne modifica la pressione.",
+      it: 'Esplora come il riscaldamento di un gas confinato ne modifica la pressione.',
       zh: '探索加热密闭容器中的气体如何改变其压强。',
       hi: 'जानें कि स्थिर आयतन में गैस को गर्म करने से उसका दाब कैसे बदलता है।',
       es: 'Explora cómo calentar un gas en un recipiente cerrado y rígido cambia su presión.',

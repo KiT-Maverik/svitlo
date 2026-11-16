@@ -5,7 +5,7 @@ export const athenianDemocracy_Skill_Data = defineSkill({
   id: '1ff65806-e699-4d38-854f-0efe97005c0b',
   name: {
     en: 'Athenian Democracy',
-    it: "Democrazia ateniese",
+    it: 'Democrazia ateniese',
     zh: '雅典民主制',
     hi: 'एथेंस का लोकतंत्र',
     es: 'Democracia ateniense',
@@ -40,7 +40,7 @@ export const athenianDemocracy_Skill_Data = defineSkill({
       "Study citizens' assemblies and courts while recognizing the political exclusion of women, enslaved people, and metics.",
     frontend: {
       en: 'Explore who could participate in Athenian democracy and who could not.',
-      it: "Esplora chi poteva partecipare alla democrazia ateniese e chi ne era escluso.",
+      it: 'Esplora chi poteva partecipare alla democrazia ateniese e chi ne era escluso.',
       zh: '探索谁能参与雅典民主制，谁被排除在外。',
       hi: 'जानें कि एथेंस के लोकतंत्र में कौन भाग ले सकता था और कौन नहीं।',
       es: 'Explora quién podía participar en la democracia ateniense y quién quedaba excluido.',

@@ -12,7 +12,7 @@ export const periodicTrends_SkillGroup_Data = defineSkillGroup({
   id: '83b84a45-c52f-45b3-bec0-76dec24f3599',
   name: {
     en: 'Periodic Trends',
-    it: "Andamenti periodici",
+    it: 'Andamenti periodici',
     zh: '周期性趋势',
     hi: 'आवर्त प्रवृत्तियाँ',
     es: 'Tendencias periódicas',

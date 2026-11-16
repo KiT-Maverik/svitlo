@@ -13,7 +13,7 @@ export const hunterGathererSocieties_SkillGroup_Data = defineSkillGroup({
   id: '76a6db8b-eb77-431d-91a3-6d30fc104bf7',
   name: {
     en: 'Hunter-Gatherer Societies',
-    it: "Società di cacciatori-raccoglitori",
+    it: 'Società di cacciatori-raccoglitori',
     zh: '狩猎采集社会',
     hi: 'शिकारी-संग्रहकर्ता समाज',
     es: 'Sociedades cazadoras-recolectoras',
@@ -64,7 +64,7 @@ export const hunterGathererSocieties_SkillGroup_Data = defineSkillGroup({
       'Mobile and semi-sedentary societies used varied ecological niches, tools, and social arrangements.',
     frontend: {
       en: 'Explore life in communities that hunted, fished and gathered food.',
-      it: "Esplora la vita delle comunità che cacciavano, pescavano e raccoglievano cibo.",
+      it: 'Esplora la vita delle comunità che cacciavano, pescavano e raccoglievano cibo.',
       zh: '探索通过狩猎、捕鱼和采集获取食物的社群生活。',
       hi: 'शिकार, मछली पकड़ने और खाद्य संग्रह करने वाले समुदायों के जीवन को जानें।',
       es: 'Explora la vida de comunidades que cazaban, pescaban y recolectaban alimentos.',

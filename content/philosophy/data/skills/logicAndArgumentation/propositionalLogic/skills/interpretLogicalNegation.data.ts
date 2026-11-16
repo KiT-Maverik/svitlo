@@ -40,7 +40,7 @@ export const interpretLogicalNegation_Skill_Data = defineSkill({
       'Determine when the denial of a proposition is true and distinguish negation from a stronger contrary statement.',
     frontend: {
       en: 'Understand how negating a claim changes its truth conditions.',
-      it: 'Comprendi come negare un\'affermazione ne modifichi le condizioni di verità.',
+      it: "Comprendi come negare un'affermazione ne modifichi le condizioni di verità.",
       zh: '了解否定某个主张如何改变其真假条件。',
       hi: 'समझें कि किसी कथन का निषेध उसकी सत्य-शर्तें कैसे बदलता है।',
       es: 'Comprende cómo negar una afirmación cambia sus condiciones de verdad.',

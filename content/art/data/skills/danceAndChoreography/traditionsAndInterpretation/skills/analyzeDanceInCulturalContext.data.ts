@@ -5,7 +5,7 @@ export const analyzeDanceInCulturalContext_Skill_Data = defineSkill({
   id: '7f9792c7-6eec-46d1-8c91-249370cb342f',
   name: {
     en: 'Analyze Dance in Cultural Context',
-    it: "Analizzare la danza nel contesto culturale",
+    it: 'Analizzare la danza nel contesto culturale',
     zh: '在文化背景中分析舞蹈',
     hi: 'सांस्कृतिक संदर्भ में नृत्य का विश्लेषण करें',
     es: 'Analizar la danza en su contexto cultural',

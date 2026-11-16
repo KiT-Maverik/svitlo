@@ -5,7 +5,7 @@ export const ionicBonding_Skill_Data = defineSkill({
   id: 'a71de25f-4159-4c32-a67c-42442ad9cc3b',
   name: {
     en: 'Ionic Bonding',
-    it: "Legame ionico",
+    it: 'Legame ionico',
     zh: '离子键',
     hi: 'आयनिक बंध',
     es: 'Enlace iónico',
@@ -40,7 +40,7 @@ export const ionicBonding_Skill_Data = defineSkill({
       'Explain electrostatic attraction in extended ionic structures after electron transfer is represented conceptually.',
     frontend: {
       en: 'Explain how opposite charges hold ions together in ionic structures.',
-      it: "Spiega come le cariche opposte tengono uniti gli ioni nelle strutture ioniche.",
+      it: 'Spiega come le cariche opposte tengono uniti gli ioni nelle strutture ioniche.',
       zh: '解释异种电荷的吸引力如何将离子结合在离子结构中。',
       hi: 'समझाएँ कि विपरीत आवेश आयनिक संरचनाओं में आयनों को कैसे बाँधते हैं।',
       es: 'Explica cómo las cargas opuestas mantienen unidos los iones en estructuras iónicas.',

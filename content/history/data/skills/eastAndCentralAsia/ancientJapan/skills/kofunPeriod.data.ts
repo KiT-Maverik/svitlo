@@ -5,7 +5,7 @@ export const kofunPeriod_Skill_Data = defineSkill({
   id: 'fa1376e3-1f86-468a-8e88-3ea531017114',
   name: {
     en: 'Kofun Period',
-    it: "Periodo Kofun",
+    it: 'Periodo Kofun',
     zh: '古坟时代',
     hi: 'कोफुन काल',
     es: 'Período Kofun',
@@ -39,7 +39,7 @@ export const kofunPeriod_Skill_Data = defineSkill({
     methodological: 'Study monumental tombs and early Yamato political coalitions.',
     frontend: {
       en: 'Discover what Kofun burial mounds reveal about early authority.',
-      it: "Scopri che cosa rivelano i tumuli funerari Kofun sulle prime forme di autorità.",
+      it: 'Scopri che cosa rivelano i tumuli funerari Kofun sulle prime forme di autorità.',
       zh: '了解古坟的墓冢如何揭示早期的政治权威。',
       hi: 'जानें कि कोफुन दफ़न टीले प्रारंभिक सत्ता के बारे में क्या बताते हैं।',
       es: 'Descubre qué revelan los túmulos funerarios Kofun sobre la autoridad temprana.',

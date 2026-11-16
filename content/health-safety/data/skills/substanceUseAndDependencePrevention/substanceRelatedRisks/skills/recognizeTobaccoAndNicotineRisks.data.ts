@@ -40,7 +40,7 @@ export const recognizeTobaccoAndNicotineRisks_Skill_Data = defineSkill({
       'Connect smoking, vaping, and other nicotine exposure with dependence and health harm, including second-hand exposure.',
     frontend: {
       en: 'Understand risks from smoking, vaping and nicotine exposure.',
-      it: 'Comprendi i rischi del fumo, delle sigarette elettroniche e dell\'esposizione alla nicotina.',
+      it: "Comprendi i rischi del fumo, delle sigarette elettroniche e dell'esposizione alla nicotina.",
       zh: '了解吸烟、电子烟及尼古丁暴露带来的风险。',
       hi: 'धूम्रपान, वेपिंग और निकोटीन के संपर्क के जोखिम समझें।',
       es: 'Comprende los riesgos de fumar, vapear y exponerse a la nicotina.',

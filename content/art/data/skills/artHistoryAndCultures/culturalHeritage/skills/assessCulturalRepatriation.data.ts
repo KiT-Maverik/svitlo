@@ -5,7 +5,7 @@ export const assessCulturalRepatriation_Skill_Data = defineSkill({
   id: '23f7808e-54cc-4ea0-a586-3fc79c473f3f',
   name: {
     en: 'Assess Cultural Repatriation',
-    it: "Valutare la restituzione dei beni culturali",
+    it: 'Valutare la restituzione dei beni culturali',
     zh: '评估文化遗产归还',
     hi: 'सांस्कृतिक प्रत्यावर्तन का आकलन करें',
     es: 'Evaluar la repatriación cultural',
@@ -40,7 +40,7 @@ export const assessCulturalRepatriation_Skill_Data = defineSkill({
       'Consider acquisition circumstances and community claims when discussing return of cultural objects.',
     frontend: {
       en: "Explore community claims and acquisition histories when discussing an object's return.",
-      it: "Esamina le richieste delle comunità e le vicende di acquisizione quando si discute della restituzione di un oggetto.",
+      it: 'Esamina le richieste delle comunità e le vicende di acquisizione quando si discute della restituzione di un oggetto.',
       zh: '讨论物品归还时，了解社区诉求及其获取历史。',
       hi: 'किसी वस्तु की वापसी पर चर्चा करते समय समुदायों के दावों और अधिग्रहण के इतिहास को समझें।',
       es: 'Explora las reclamaciones de las comunidades y la historia de adquisición al debatir la devolución de un objeto.',

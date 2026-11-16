@@ -40,7 +40,7 @@ export const explainNuclearFusion_Skill_Data = defineSkill({
       'Light nuclei can combine under suitable conditions, and changes in binding energy can lead to energy release.',
     frontend: {
       en: 'Explain how combining light nuclei can release energy.',
-      it: 'Spiega come l\'unione di nuclei leggeri possa liberare energia.',
+      it: "Spiega come l'unione di nuclei leggeri possa liberare energia.",
       zh: '解释轻原子核在适当条件下聚合时，为什么可能释放能量。',
       hi: 'समझाओ कि हल्के नाभिकों के मिलने से ऊर्जा कैसे निकल सकती है।',
       es: 'Explica cómo la unión de núcleos ligeros puede liberar energía.',

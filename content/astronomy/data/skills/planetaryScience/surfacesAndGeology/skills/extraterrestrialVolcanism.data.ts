@@ -39,7 +39,7 @@ export const extraterrestrialVolcanism_Skill_Data = defineSkill({
     methodological: 'Interpret evidence of past or current volcanic processes on planets and moons.',
     frontend: {
       en: 'Look for signs of volcanoes on worlds beyond Earth.',
-      it: 'Cerca i segni dell\'attività vulcanica su mondi diversi dalla Terra.',
+      it: "Cerca i segni dell'attività vulcanica su mondi diversi dalla Terra.",
       zh: '寻找地球以外天体上存在火山的迹象。',
       hi: 'पृथ्वी के अलावा अन्य खगोलीय पिंडों पर ज्वालामुखियों के संकेत खोजें।',
       es: 'Busca señales de volcanes en mundos más allá de la Tierra.',

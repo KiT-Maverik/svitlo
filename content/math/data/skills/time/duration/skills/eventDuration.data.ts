@@ -40,7 +40,7 @@ export const eventDuration_Skill_Data = defineSkill({
       "Duration is the interval between an event's start and finish, not either individual clock reading. It is found by consistently subtracting time instants and, where needed, accounting for hour, day, or calendar boundaries.",
     frontend: {
       en: 'You can calculate how long an event lasted from its start and finish times, including when it crosses an hour or midnight.',
-      it: 'Puoi calcolare quanto è durato un evento conoscendo l\'ora di inizio e quella di fine, anche quando si supera un\'ora esatta o la mezzanotte.',
+      it: "Puoi calcolare quanto è durato un evento conoscendo l'ora di inizio e quella di fine, anche quando si supera un'ora esatta o la mezzanotte.",
       qm: 'Vaqianıñ başlanğıç ve bitiş saatlarına köre ne qadar devam etkenini, saat ya da gece yarısı sıñırından keçse bile, esaplay bilesiñ.',
       zh: '你能根据开始和结束时刻算出一件事持续了多久，包括跨整点或跨午夜的情况。',
       hi: 'आप शुरू और समाप्त होने के समय से किसी घटना की अवधि निकाल सकते हैं, चाहे वह अगले घंटे या आधी रात तक जाए।',

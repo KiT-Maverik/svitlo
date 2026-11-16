@@ -5,7 +5,7 @@ export const colligativeProperties_Skill_Data = defineSkill({
   id: 'e5729430-f619-4da6-b398-d6ea791d9a8e',
   name: {
     en: 'Colligative Properties',
-    it: "Proprietà colligative",
+    it: 'Proprietà colligative',
     zh: '依数性',
     hi: 'अणुसंख्य गुणधर्म',
     es: 'Propiedades coligativas',

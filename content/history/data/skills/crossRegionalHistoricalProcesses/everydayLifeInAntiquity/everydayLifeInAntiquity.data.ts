@@ -67,7 +67,7 @@ export const everydayLifeInAntiquity_SkillGroup_Data = defineSkillGroup({
       'Compare dwellings, objects, texts, and images to reconstruct family relations and daily practices across regions.',
     frontend: {
       en: 'Discover what ordinary people did in ancient daily life.',
-      it: "Scopri che cosa facevano le persone comuni nella vita quotidiana antica.",
+      it: 'Scopri che cosa facevano le persone comuni nella vita quotidiana antica.',
       zh: '认识古代普通人的日常活动。',
       hi: 'जानें कि प्राचीन समय में आम लोग रोज़ क्या करते थे।',
       es: 'Descubre qué hacían las personas comunes en su vida diaria antigua.',

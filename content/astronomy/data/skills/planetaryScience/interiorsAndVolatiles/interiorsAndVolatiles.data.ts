@@ -64,7 +64,7 @@ export const interiorsAndVolatiles_SkillGroup_Data = defineSkillGroup({
       'Indirect observations of magnetic fields, heat and fluid materials constrain unseen layers and possible activity beneath planetary surfaces.',
     frontend: {
       en: 'Investigate hidden planetary layers, magnetic fields, water and ice.',
-      it: 'Indaga gli strati nascosti dei pianeti, i campi magnetici, l\'acqua e il ghiaccio.',
+      it: "Indaga gli strati nascosti dei pianeti, i campi magnetici, l'acqua e il ghiaccio.",
       zh: '探索行星隐藏的内部层次、磁场，以及水和冰。',
       hi: 'ग्रहों की छिपी हुई परतों, चुंबकीय क्षेत्रों, पानी और बर्फ का अध्ययन करें।',
       es: 'Investiga las capas internas ocultas, los campos magnéticos, el agua y el hielo de los mundos planetarios.',

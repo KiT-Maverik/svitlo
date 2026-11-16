@@ -5,7 +5,7 @@ export const evaluateReligiousExperienceAsEvidence_Skill_Data = defineSkill({
   id: '3b9b0ac8-5b51-48d3-9cf7-3f58f93f4353',
   name: {
     en: 'Evaluate religious experience as evidence',
-    it: 'Valutare l\'esperienza religiosa come prova',
+    it: "Valutare l'esperienza religiosa come prova",
     zh: '评估宗教体验能否作为证据',
     hi: 'धार्मिक अनुभव का प्रमाण के रूप में मूल्यांकन करना',
     es: 'Evaluar la experiencia religiosa como prueba',
@@ -40,7 +40,7 @@ export const evaluateReligiousExperienceAsEvidence_Skill_Data = defineSkill({
       'Assess the possible warrant of reported transcendent experience, distinguishing the fact of having an experience from the explanation proposed for it.',
     frontend: {
       en: 'Explore whether a personal religious experience supports a wider claim.',
-      it: 'Esplora se un\'esperienza religiosa personale sostenga un\'affermazione più generale.',
+      it: "Esplora se un'esperienza religiosa personale sostenga un'affermazione più generale.",
       zh: '探讨个人宗教体验是否足以支持更广泛的主张。',
       hi: 'विचार करें कि क्या व्यक्तिगत धार्मिक अनुभव किसी व्यापक दावे का समर्थन करता है।',
       es: 'Explora si una experiencia religiosa personal respalda una afirmación más amplia.',

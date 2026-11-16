@@ -5,7 +5,7 @@ export const read24HourClock_Skill_Data = defineSkill({
   id: '28e5088d-f39c-4481-a4c7-ac9e09eb6133',
   name: {
     en: 'Reading 24-hour time',
-    it: 'Leggere l\'ora nel formato a 24 ore',
+    it: "Leggere l'ora nel formato a 24 ore",
     qm: '24 saatlıq vaqıt yazılışını oqumaq',
     lt: 'Laiko skaitymas 24 valandų formatu',
     lv: '24 stundu laika lasīšana',
@@ -40,7 +40,7 @@ export const read24HourClock_Skill_Data = defineSkill({
       'The 24-hour format identifies the hour within a day without AM or PM; 00:00 denotes the start of the day and 12:00 denotes noon. Clock time must be distinguished from duration, and conventions for expressing the end of a day must be considered.',
     frontend: {
       en: 'You can read 24-hour clock times, knowing that 00:00 starts a day and 12:00 is noon, without confusing a time of day with a duration.',
-      it: 'Puoi leggere le ore nel formato a 24 ore, sapendo che le 00:00 iniziano una giornata e le 12:00 indicano mezzogiorno, senza confondere l\'ora del giorno con una durata.',
+      it: "Puoi leggere le ore nel formato a 24 ore, sapendo che le 00:00 iniziano una giornata e le 12:00 indicano mezzogiorno, senza confondere l'ora del giorno con una durata.",
       qm: '24 saatlıq saatta vaqıtnı oquy bilesiñ: 00:00 yañı künniñ başlanğıcı, 12:00 ise üyle vaqıtıdır. Künniñ saatını vaqıt devamlılığınen qarıştırma.',
       zh: '你能读懂24小时制，知道00:00是一天的开始、12:00是正午，并区分时刻与持续时间。',
       hi: 'आप 24-घंटे वाली घड़ी पढ़ सकते हैं और समझ सकते हैं कि 00:00 दिन की शुरुआत और 12:00 दोपहर है, समय-बिंदु को अवधि से अलग रखते हुए।',

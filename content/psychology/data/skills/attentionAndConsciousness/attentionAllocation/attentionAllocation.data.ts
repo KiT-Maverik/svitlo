@@ -13,7 +13,7 @@ export const attentionAllocation_SkillGroup_Data = defineSkillGroup({
   id: '48a9aac7-c689-4749-b81b-80db948d3ae8',
   name: {
     en: 'Attention Allocation',
-    it: 'Distribuzione dell\'attenzione',
+    it: "Distribuzione dell'attenzione",
     zh: '注意资源分配',
     hi: 'ध्यान का आवंटन',
     es: 'Distribución de la atención',
@@ -63,7 +63,7 @@ export const attentionAllocation_SkillGroup_Data = defineSkillGroup({
     methodological: 'Competing demands determine which inputs or tasks are prioritized and when performance degrades.',
     frontend: {
       en: 'Discover how attention prioritizes some information over competing demands.',
-      it: 'Scopri come l\'attenzione dia priorità ad alcune informazioni tra richieste concorrenti.',
+      it: "Scopri come l'attenzione dia priorità ad alcune informazioni tra richieste concorrenti.",
       zh: '探索注意力如何在相互竞争的信息需求之间进行优先分配。',
       hi: 'जानें कि ध्यान प्रतिस्पर्धी मांगों के बीच कुछ सूचनाओं को प्राथमिकता कैसे देता है।',
       es: 'Descubre cómo la atención prioriza cierta información entre demandas que compiten.',

@@ -5,7 +5,7 @@ export const obedienceToAuthority_Skill_Data = defineSkill({
   id: '619fb442-9f9f-46c3-a771-7fa45648228a',
   name: {
     en: 'Obedience to Authority',
-    it: 'Obbedienza all\'autorità',
+    it: "Obbedienza all'autorità",
     zh: '服从权威',
     hi: 'अधिकार के प्रति आज्ञाकारिता',
     es: 'Obediencia a la autoridad',
@@ -40,7 +40,7 @@ export const obedienceToAuthority_Skill_Data = defineSkill({
       'Analyze how authority cues and situational pressures influence compliance, including ethical limits of classic research.',
     frontend: {
       en: 'Explore why authority can influence decisions without guaranteeing correctness.',
-      it: 'Esplora perché l\'autorità possa influenzare le decisioni senza garantirne la correttezza.',
+      it: "Esplora perché l'autorità possa influenzare le decisioni senza garantirne la correttezza.",
       zh: '探索权威为何会影响决定，但不意味着权威总是正确。',
       hi: 'जानें कि अधिकार निर्णय बदल सकता है, लेकिन इससे सही होना तय नहीं होता।',
       es: 'Explora por qué la autoridad influye en las decisiones sin garantizar que sean correctas.',

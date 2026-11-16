@@ -5,7 +5,7 @@ export const analyzeBoychukism_Skill_Data = defineSkill({
   id: '1a9e1d25-aad2-4d56-949f-aea5227a7f29',
   name: {
     en: 'Analyze Boychukism',
-    it: "Analizzare il boičukismo",
+    it: 'Analizzare il boičukismo',
     zh: '分析博伊丘克主义',
     hi: 'बोयचुकवाद का विश्लेषण करें',
     es: 'Analizar el boychukismo',

@@ -73,7 +73,7 @@ export const addition_SkillGroup_Data = defineSkillGroup({
       'Combining quantities, properties of sums, place-value regrouping, and methods for calculating and checking results.',
     frontend: {
       en: 'Explore how addition combines or increases quantities, and how its rules and place values help you calculate and check sums.',
-      it: 'Scopri come l\'addizione unisce o aumenta le quantità e come le sue proprietà e il valore posizionale delle cifre aiutano a calcolare e controllare le somme.',
+      it: "Scopri come l'addizione unisce o aumenta le quantità e come le sue proprietà e il valore posizionale delle cifre aiutano a calcolare e controllare le somme.",
       qm: 'Qoşuvnıñ miqdarlarnı nasıl birleştirgenini ya da arttırğanını araştır. Onıñ qaide ve razryad qıymetleri toplamlar esaplavğa ve neticelerni teşkere etmege nasıl yardım etkenini ögren.',
       zh: '了解加法怎样合并或增加数量，以及加法的规律和数位怎样帮助你计算并检查结果。',
       hi: 'समझो कि जोड़ मात्राओं को कैसे मिलाता या बढ़ाता है, और उसके नियम तथा स्थान-मूल्य जोड़ निकालने और जाँचने में कैसे मदद करते हैं।',

@@ -39,7 +39,7 @@ export const assessBreathing_Skill_Data = defineSkill({
     methodological: 'Recognize absent or abnormal breathing as a medical emergency without delaying the call for help.',
     frontend: {
       en: 'Recognize abnormal or absent breathing that needs emergency action.',
-      it: 'Riconosci una respirazione anomala o assente che richiede un intervento d\'emergenza.',
+      it: "Riconosci una respirazione anomala o assente che richiede un intervento d'emergenza.",
       zh: '识别需要紧急行动的异常或停止呼吸情况。',
       hi: 'असामान्य या बंद साँस पहचानो जिसके लिए तुरंत कार्रवाई ज़रूरी है।',
       es: 'Reconoce respiración anormal o ausente que requiere acción de emergencia.',

@@ -40,7 +40,7 @@ export const biomedicalMeasurementReliability_Skill_Data = defineSkill({
       'Assess calibration, interference, patient-contact conditions and signal reliability limits relevant to measurements by a medical device.',
     frontend: {
       en: 'Recognize the limits and uncertainty of biomedical measurements.',
-      it: 'Riconosci i limiti e l\'incertezza delle misurazioni biomediche.',
+      it: "Riconosci i limiti e l'incertezza delle misurazioni biomediche.",
       zh: '识别生物医学测量的局限性和不确定性。',
       hi: 'जैवचिकित्सीय माप की सीमाएँ और अनिश्चितता पहचानें।',
       es: 'Reconoce los límites y la incertidumbre de las mediciones biomédicas.',

@@ -54,7 +54,7 @@ export const ergonomicsAndSensoryCare_SkillGroup_Data = defineSkillGroup({
       'Workspaces and devices can be adapted to reduce strain, fatigue, and exposure rather than enforcing a single rigid body position.',
     frontend: {
       en: 'Learn how workspaces and devices can reduce strain on the senses and body.',
-      it: 'Impara come gli spazi di lavoro e i dispositivi possono ridurre l\'affaticamento dei sensi e del corpo.',
+      it: "Impara come gli spazi di lavoro e i dispositivi possono ridurre l'affaticamento dei sensi e del corpo.",
       zh: '了解如何通过调整工作空间和设备来减少身体与感官的负担。',
       hi: 'जानें कि कार्यस्थल और उपकरण बदलकर शरीर और इंद्रियों पर तनाव कैसे घटाएँ।',
       es: 'Aprende cómo adaptar el espacio de trabajo y los dispositivos para reducir la tensión corporal y sensorial.',

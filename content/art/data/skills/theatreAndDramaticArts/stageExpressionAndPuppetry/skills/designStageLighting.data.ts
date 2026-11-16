@@ -5,7 +5,7 @@ export const designStageLighting_Skill_Data = defineSkill({
   id: 'b1a58abc-a8fd-4c66-b6a7-4a0cf1a94589',
   name: {
     en: 'Design Stage Lighting',
-    it: 'Progettare l\'illuminazione scenica',
+    it: "Progettare l'illuminazione scenica",
     zh: '设计舞台灯光',
     hi: 'मंच प्रकाश व्यवस्था डिज़ाइन करें',
     es: 'Diseñar la iluminación escénica',
@@ -39,7 +39,7 @@ export const designStageLighting_Skill_Data = defineSkill({
     methodological: 'Use light placement, intensity and color to focus attention or express mood.',
     frontend: {
       en: 'Use stage lighting to direct attention and create atmosphere.',
-      it: 'Usa le luci di scena per guidare l\'attenzione e creare un\'atmosfera.',
+      it: "Usa le luci di scena per guidare l'attenzione e creare un'atmosfera.",
       zh: '利用舞台灯光引导观众注意力并营造氛围。',
       hi: 'दर्शकों का ध्यान निर्देशित करने और वातावरण बनाने के लिए मंच प्रकाश का उपयोग करें।',
       es: 'Usa la iluminación escénica para dirigir la atención y crear ambiente.',

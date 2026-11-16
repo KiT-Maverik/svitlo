@@ -5,7 +5,7 @@ export const anxietyRelatedDifficulties_Skill_Data = defineSkill({
   id: 'f03d8011-b586-4049-9f02-c4496e251d3c',
   name: {
     en: 'Anxiety-Related Difficulties',
-    it: 'Difficoltà legate all\'ansia',
+    it: "Difficoltà legate all'ansia",
     zh: '焦虑相关困难',
     hi: 'चिंता से जुड़ी कठिनाइयाँ',
     es: 'Dificultades relacionadas con la ansiedad',

@@ -65,7 +65,7 @@ export const socialAndPoliticalPhilosophy_SkillDomain_Data = defineSkillDomain({
       'Political and social philosophy examines the justification of collective rules, institutions, authority, rights, and distributions of benefits and burdens. It asks normative questions rather than describing the chronology of regimes or the mechanics of markets.',
     frontend: {
       en: 'Examine the moral foundations of laws, rights, authority and shared social decisions.',
-      it: 'Esamina i fondamenti morali delle leggi, dei diritti, dell\'autorità e delle decisioni prese collettivamente.',
+      it: "Esamina i fondamenti morali delle leggi, dei diritti, dell'autorità e delle decisioni prese collettivamente.",
       zh: '探究法律、权利、权威和社会共同决策的道德基础。',
       hi: 'कानूनों, अधिकारों, सत्ता और साझा सामाजिक निर्णयों के नैतिक आधारों की जाँच करो।',
       es: 'Examina los fundamentos morales de las leyes, los derechos, la autoridad y las decisiones sociales compartidas.',

@@ -14,7 +14,7 @@ export const romanEmpire_SkillGroup_Data = defineSkillGroup({
   id: '5e804ce3-42b3-46bf-b092-f045cae2add1',
   name: {
     en: 'Roman Empire',
-    it: "Impero romano",
+    it: 'Impero romano',
     zh: '罗马帝国',
     hi: 'रोमन साम्राज्य',
     es: 'Imperio romano',

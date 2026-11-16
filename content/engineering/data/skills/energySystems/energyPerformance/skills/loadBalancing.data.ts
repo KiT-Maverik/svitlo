@@ -39,7 +39,7 @@ export const loadBalancing_Skill_Data = defineSkill({
     methodological: 'Recognize why generation, storage and demand must be coordinated across time.',
     frontend: {
       en: 'Understand how balancing supply and demand helps power systems operate.',
-      it: 'Comprendi come l\'equilibrio tra offerta e domanda aiuta il funzionamento dei sistemi elettrici.',
+      it: "Comprendi come l'equilibrio tra offerta e domanda aiuta il funzionamento dei sistemi elettrici.",
       zh: '理解平衡供需如何帮助电力系统运行。',
       hi: 'समझें कि आपूर्ति और माँग का संतुलन बिजली प्रणाली चलाने में कैसे मदद करता है।',
       es: 'Comprende cómo equilibrar oferta y demanda ayuda a los sistemas eléctricos.',

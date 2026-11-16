@@ -5,7 +5,7 @@ export const distinguishReasonsForActionFromCausesOfBehavior_Skill_Data = define
   id: 'b0e4da87-0e24-49ee-8dc4-95c76d75ea99',
   name: {
     en: 'Distinguish reasons for action from causes of behavior',
-    it: 'Distinguere le ragioni di un\'azione dalle cause di un comportamento',
+    it: "Distinguere le ragioni di un'azione dalle cause di un comportamento",
     zh: '区分行动理由与行为原因',
     hi: 'कर्म के औचित्य और व्यवहार के कारणों में अंतर करना',
     es: 'Distinguir razones para actuar de causas del comportamiento',
@@ -40,7 +40,7 @@ export const distinguishReasonsForActionFromCausesOfBehavior_Skill_Data = define
       'Separate justifying considerations from causal explanations, recognizing that the two may be related.',
     frontend: {
       en: 'Separate reasons that justify acting from causes that explain behavior.',
-      it: 'Separa le ragioni che giustificano un\'azione dalle cause che spiegano un comportamento.',
+      it: "Separa le ragioni che giustificano un'azione dalle cause che spiegano un comportamento.",
       zh: '区分能证明行动正当的理由与解释行为如何发生的原因。',
       hi: 'कार्य को उचित ठहराने वाले कारणों और व्यवहार की व्याख्या करने वाले कारकों में अंतर करें।',
       es: 'Distingue las razones que justifican actuar de las causas que explican el comportamiento.',

@@ -39,7 +39,7 @@ export const socioemotionalSelectivity_Skill_Data = defineSkill({
     methodological: 'Explain how perceived time horizons may affect prioritization of goals and close relationships.',
     frontend: {
       en: 'Understand how priorities in relationships may shift across adulthood.',
-      it: 'Comprendi come le priorità nelle relazioni possano cambiare nel corso dell\'età adulta.',
+      it: "Comprendi come le priorità nelle relazioni possano cambiare nel corso dell'età adulta.",
       zh: '理解成年期人际关系中的优先事项可能如何变化。',
       hi: 'समझें कि वयस्कता में संबंधों की प्राथमिकताएँ कैसे बदल सकती हैं।',
       es: 'Comprende cómo pueden cambiar las prioridades de las relaciones durante la edad adulta.',

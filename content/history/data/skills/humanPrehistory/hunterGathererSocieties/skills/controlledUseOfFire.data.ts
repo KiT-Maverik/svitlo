@@ -5,7 +5,7 @@ export const controlledUseOfFire_Skill_Data = defineSkill({
   id: '722b860a-ae3a-43f5-a68e-d3fc79e9bcc0',
   name: {
     en: 'Controlled Use of Fire',
-    it: "Uso controllato del fuoco",
+    it: 'Uso controllato del fuoco',
     zh: '有控制地使用火',
     hi: 'आग का नियंत्रित उपयोग',
     es: 'Uso controlado del fuego',
@@ -40,7 +40,7 @@ export const controlledUseOfFire_Skill_Data = defineSkill({
       'Explain the contribution of controlled fire to cooking, protection, materials, and environmental expansion.',
     frontend: {
       en: 'Explore how controlled fire changed everyday life.',
-      it: "Esplora come il controllo del fuoco cambiò la vita quotidiana.",
+      it: 'Esplora come il controllo del fuoco cambiò la vita quotidiana.',
       zh: '探索掌握火的使用如何改变日常生活。',
       hi: 'जानें कि आग के नियंत्रित उपयोग ने रोज़मर्रा का जीवन कैसे बदला।',
       es: 'Explora cómo el dominio del fuego cambió la vida cotidiana.',

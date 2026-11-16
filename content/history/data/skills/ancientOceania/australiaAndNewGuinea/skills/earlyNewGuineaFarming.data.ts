@@ -5,7 +5,7 @@ export const earlyNewGuineaFarming_Skill_Data = defineSkill({
   id: 'c0614b7c-7639-4799-b1c8-f55264b9b515',
   name: {
     en: 'Early New Guinea Farming',
-    it: "Prime forme di agricoltura in Nuova Guinea",
+    it: 'Prime forme di agricoltura in Nuova Guinea',
     zh: '新几内亚早期农业',
     hi: 'न्यू गिनी की प्रारंभिक खेती',
     es: 'Agricultura temprana en Nueva Guinea',
@@ -39,7 +39,7 @@ export const earlyNewGuineaFarming_Skill_Data = defineSkill({
     methodological: 'Study indigenous highland cultivation and its independent historical trajectory.',
     frontend: {
       en: "Discover early farming systems in New Guinea's highlands.",
-      it: "Scopri i primi sistemi agricoli sugli altopiani della Nuova Guinea.",
+      it: 'Scopri i primi sistemi agricoli sugli altopiani della Nuova Guinea.',
       zh: '探索新几内亚高地的早期农业体系。',
       hi: 'न्यू गिनी के ऊँचे क्षेत्रों की शुरुआती खेती प्रणालियों को जानें।',
       es: 'Explora los primeros sistemas agrícolas de las tierras altas de Nueva Guinea.',

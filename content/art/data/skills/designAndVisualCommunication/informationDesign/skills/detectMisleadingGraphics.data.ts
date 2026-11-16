@@ -5,7 +5,7 @@ export const detectMisleadingGraphics_Skill_Data = defineSkill({
   id: '23ada7db-8ce7-453a-80a2-6661dda98483',
   name: {
     en: 'Detect Misleading Graphics',
-    it: "Individuare grafici fuorvianti",
+    it: 'Individuare grafici fuorvianti',
 
     zh: '识别误导性图形',
     hi: 'भ्रामक ग्राफ़िक्स पहचानें',

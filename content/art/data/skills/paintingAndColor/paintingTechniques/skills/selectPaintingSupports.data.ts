@@ -39,7 +39,7 @@ export const selectPaintingSupports_Skill_Data = defineSkill({
     methodological: 'Match the properties of paper, canvas or board to adhesion, texture and expressive needs.',
     frontend: {
       en: 'Choose paper, canvas or another surface that suits your painting materials.',
-      it: 'Scegli carta, tela o un\'altra superficie adatta ai materiali con cui dipingi.',
+      it: "Scegli carta, tela o un'altra superficie adatta ai materiali con cui dipingi.",
       zh: '选择与所用绘画材料相适配的纸张、画布或其他表面。',
       hi: 'अपने चित्रकारी के माध्यमों के अनुकूल कागज़, कैनवास या कोई अन्य सतह चुनें।',
       es: 'Elige papel, lienzo u otra superficie adecuada para tus materiales de pintura.',

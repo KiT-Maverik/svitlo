@@ -11,7 +11,7 @@ export const amazonAndCaribbean_SkillGroup_Data = defineSkillGroup({
   id: 'b71fa763-19d5-423f-b785-85046c9dbf4f',
   name: {
     en: 'Amazonia and the Caribbean',
-    it: "Amazzonia e Caraibi",
+    it: 'Amazzonia e Caraibi',
     zh: '亚马孙地区与加勒比海地区',
     hi: 'अमेज़न और कैरेबियाई क्षेत्र',
     es: 'Amazonía y el Caribe',

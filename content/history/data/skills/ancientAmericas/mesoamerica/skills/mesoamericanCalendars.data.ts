@@ -5,7 +5,7 @@ export const mesoamericanCalendars_Skill_Data = defineSkill({
   id: '7f049c25-e0f6-4f81-a00f-129f98fcae14',
   name: {
     en: 'Mesoamerican Calendars',
-    it: "Calendari mesoamericani",
+    it: 'Calendari mesoamericani',
     zh: '中美洲古代历法',
     hi: 'मेसोअमेरिकी पंचांग',
     es: 'Calendarios mesoamericanos',
@@ -39,7 +39,7 @@ export const mesoamericanCalendars_Skill_Data = defineSkill({
     methodological: 'Distinguish different cyclical time-reckoning systems and their historical functions.',
     frontend: {
       en: 'Explore how Mesoamerican calendars measured time.',
-      it: "Esplora come i calendari mesoamericani misuravano il tempo.",
+      it: 'Esplora come i calendari mesoamericani misuravano il tempo.',
       zh: '探索中美洲古代文明区的人们如何利用历法计算时间。',
       hi: 'जानें कि मेसोअमेरिका के पंचांग समय कैसे मापते थे।',
       es: 'Explora cómo los calendarios mesoamericanos medían el tiempo.',

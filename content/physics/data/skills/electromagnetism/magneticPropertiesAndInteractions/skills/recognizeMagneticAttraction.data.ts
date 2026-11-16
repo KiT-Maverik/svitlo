@@ -5,7 +5,7 @@ export const recognizeMagneticAttraction_Skill_Data = defineSkill({
   id: '05e7b8cf-78b7-4fdb-839d-1626efd3d66f',
   name: {
     en: 'Recognize magnetic attraction',
-    it: 'Riconoscere l\'attrazione magnetica',
+    it: "Riconoscere l'attrazione magnetica",
     qm: 'Magnit tartıluvını tanımaq',
     zh: '识别磁吸引',
     hi: 'चुंबकीय आकर्षण पहचानना',

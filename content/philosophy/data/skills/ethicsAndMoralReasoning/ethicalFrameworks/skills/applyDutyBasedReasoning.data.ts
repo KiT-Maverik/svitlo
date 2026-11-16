@@ -40,7 +40,7 @@ export const applyDutyBasedReasoning_Skill_Data = defineSkill({
       "Assess whether an act respects a rule, obligation, or person's standing even when violating it might have beneficial effects.",
     frontend: {
       en: 'Judge an action in light of duties and rights as well as its consequences.',
-      it: 'Valuta un\'azione alla luce dei doveri e dei diritti, oltre che delle sue conseguenze.',
+      it: "Valuta un'azione alla luce dei doveri e dei diritti, oltre che delle sue conseguenze.",
       zh: '评判行动时同时考虑义务、权利及其后果。',
       hi: 'किसी कार्य का मूल्यांकन कर्तव्यों, अधिकारों और उसके परिणामों के संदर्भ में करें।',
       es: 'Juzga una acción teniendo en cuenta los deberes y derechos además de sus consecuencias.',

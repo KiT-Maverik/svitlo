@@ -40,7 +40,7 @@ export const distinguishWaveEnergyTransferFromMatterTransport_Skill_Data = defin
       'A wave carries energy without necessarily transporting the entire medium over the corresponding distance.',
     frontend: {
       en: 'Explain how waves transfer energy without transporting an entire medium.',
-      it: 'Spiega come le onde trasferiscono energia senza trasportare l\'intero mezzo.',
+      it: "Spiega come le onde trasferiscono energia senza trasportare l'intero mezzo.",
       zh: '解释波如何传递能量而不搬运整个介质。',
       hi: 'समझाएँ कि पूरी माध्यम सामग्री को ले जाए बिना तरंगें ऊर्जा कैसे स्थानांतरित करती हैं।',
       es: 'Explica cómo las ondas transfieren energía sin transportar todo el medio.',

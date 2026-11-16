@@ -5,7 +5,7 @@ export const dynamicEquilibrium_Skill_Data = defineSkill({
   id: '61d38235-8ee4-467f-aa68-322a251f40bb',
   name: {
     en: 'Dynamic Equilibrium',
-    it: "Equilibrio dinamico",
+    it: 'Equilibrio dinamico',
     zh: '动态平衡',
     hi: 'गतिशील साम्य',
     es: 'Equilibrio dinámico',

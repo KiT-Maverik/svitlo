@@ -40,7 +40,7 @@ export const skillAutomaticity_Skill_Data = defineSkill({
       'Explain how repeated practice changes processing effort while not eliminating every possible error.',
     frontend: {
       en: 'Understand how practice can make a task feel more automatic.',
-      it: 'Comprendi come la pratica possa rendere l\'esecuzione di un compito più automatica.',
+      it: "Comprendi come la pratica possa rendere l'esecuzione di un compito più automatica.",
       zh: '了解练习如何让一项任务逐渐变得更加自动化。',
       hi: 'जानें कि अभ्यास से कोई काम धीरे-धीरे अधिक स्वचालित कैसे लगने लगता है।',
       es: 'Comprende cómo la práctica puede hacer que una tarea se vuelva más automática.',

@@ -39,7 +39,7 @@ export const ancientWorkAndOccupations_Skill_Data = defineSkill({
     methodological: 'Examine agriculture, crafts, exchange, household work, and forms of dependent labor.',
     frontend: {
       en: 'Explore the many kinds of work done in the ancient world.',
-      it: "Esplora i numerosi tipi di lavoro svolti nel mondo antico.",
+      it: 'Esplora i numerosi tipi di lavoro svolti nel mondo antico.',
       zh: '探索古代世界的各种劳动形式。',
       hi: 'प्राचीन दुनिया में किए जाने वाले तरह-तरह के कामों को जानें।',
       es: 'Explora los distintos tipos de trabajo del mundo antiguo.',

@@ -39,7 +39,7 @@ export const cameraHardware_Skill_Data = defineSkill({
     methodological: 'Trace light through an optical path onto an image sensor, apart from software image processing.',
     frontend: {
       en: "Trace how a camera's optics and sensor produce an image.",
-      it: 'Segui come l\'ottica e il sensore di una fotocamera producono un\'immagine.',
+      it: "Segui come l'ottica e il sensore di una fotocamera producono un'immagine.",
       zh: '追踪相机的光学系统和传感器如何形成图像。',
       hi: 'जानें कि कैमरे के प्रकाशिकी घटक और सेंसर से चित्र कैसे बनता है।',
       es: 'Sigue cómo la óptica y el sensor de una cámara producen una imagen.',

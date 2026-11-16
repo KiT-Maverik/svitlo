@@ -5,7 +5,7 @@ export const designGarmentSurfaceDetails_Skill_Data = defineSkill({
   id: 'd4a441aa-a47a-4e12-9541-f3143b8accbc',
   name: {
     en: 'Design Garment Surface Details',
-    it: "Progettare i dettagli decorativi dei capi",
+    it: 'Progettare i dettagli decorativi dei capi',
 
     zh: '设计服装表面细节',
     hi: 'परिधान की सतही बारीकियाँ डिज़ाइन करें',
@@ -41,7 +41,7 @@ export const designGarmentSurfaceDetails_Skill_Data = defineSkill({
       'Place trims, motifs or decorative features in relation to garment shape, seams and movement rather than designing an isolated textile repeat.',
     frontend: {
       en: "Place decorative details where they work with a garment's shape and movement.",
-      it: "Disponi i dettagli decorativi in modo che si armonizzino con la forma e il movimento di un indumento.",
+      it: 'Disponi i dettagli decorativi in modo che si armonizzino con la forma e il movimento di un indumento.',
 
       zh: '将装饰细节放置在与服装形状和运动相协调的位置。',
       hi: 'सजावटी विवरण वहाँ रखें जहाँ वे परिधान के आकार और गति के साथ मेल खाते हों।',

@@ -40,7 +40,7 @@ export const identifyRelevantMaterialProperties_Skill_Data = defineSkill({
       'Determine whether toughness, strength, stiffness, conductivity, transparency or mass matters in a specified application.',
     frontend: {
       en: 'Choose the material properties that matter for a specific application.',
-      it: 'Scegli le proprietà dei materiali importanti per un\'applicazione specifica.',
+      it: "Scegli le proprietà dei materiali importanti per un'applicazione specifica.",
       zh: '针对具体用途选择需要关注的材料性质。',
       hi: 'विशिष्ट उपयोग के लिए ज़रूरी सामग्री गुण चुनें।',
       es: 'Elige las propiedades del material que importan para un uso concreto.',

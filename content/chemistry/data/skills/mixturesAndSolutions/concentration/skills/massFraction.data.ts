@@ -5,7 +5,7 @@ export const massFraction_Skill_Data = defineSkill({
   id: '2fc283e4-1452-456b-b79a-bbd4034315d3',
   name: {
     en: 'Mass Fraction',
-    it: "Frazione massica",
+    it: 'Frazione massica',
     zh: '质量分数',
     hi: 'द्रव्यमान अंश',
     es: 'Fracción másica',

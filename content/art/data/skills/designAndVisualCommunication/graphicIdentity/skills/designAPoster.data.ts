@@ -5,7 +5,7 @@ export const designAPoster_Skill_Data = defineSkill({
   id: '91915017-0c79-48ac-9433-c630a482620e',
   name: {
     en: 'Design a Poster',
-    it: "Progettare un manifesto",
+    it: 'Progettare un manifesto',
 
     zh: '设计海报',
     hi: 'पोस्टर डिज़ाइन करें',

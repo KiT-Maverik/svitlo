@@ -5,7 +5,7 @@ export const earlyBantuSpeakingDispersals_Skill_Data = defineSkill({
   id: 'd3a37314-64c0-4cf3-acb4-c5bbd5f81c9f',
   name: {
     en: 'Early Dispersals of Bantu-Speaking Communities',
-    it: "Prime migrazioni delle comunità di lingua bantu",
+    it: 'Prime migrazioni delle comunità di lingua bantu',
     zh: '班图语社群的早期扩散',
     hi: 'बांटू-भाषी समुदायों का प्रारंभिक प्रसार',
     es: 'Primeras dispersiones de pueblos de lenguas bantúes',

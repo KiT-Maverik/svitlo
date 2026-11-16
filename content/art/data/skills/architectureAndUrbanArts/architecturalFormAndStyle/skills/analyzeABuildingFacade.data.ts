@@ -5,7 +5,7 @@ export const analyzeABuildingFacade_Skill_Data = defineSkill({
   id: '18ca2346-51e2-4899-a8e6-8c08e270ac11',
   name: {
     en: 'Analyze a Building Facade',
-    it: "Analizzare la facciata di un edificio",
+    it: 'Analizzare la facciata di un edificio',
     zh: '分析建筑立面',
     hi: 'इमारत के मुखभाग का विश्लेषण करें',
     es: 'Analizar la fachada de un edificio',
@@ -39,7 +39,7 @@ export const analyzeABuildingFacade_Skill_Data = defineSkill({
     methodological: 'Explain the organization of solids, openings and repeated exterior features.',
     frontend: {
       en: "Read the visual pattern of walls, windows and openings on a building's exterior.",
-      it: "Osserva lo schema visivo di pareti, finestre e aperture sulla facciata di un edificio.",
+      it: 'Osserva lo schema visivo di pareti, finestre e aperture sulla facciata di un edificio.',
       zh: '观察建筑外墙上墙面、窗户和开口形成的视觉图案。',
       hi: 'इमारत के बाहरी हिस्से में दीवारों, खिड़कियों और खुलावों के दृश्य पैटर्न को समझें।',
       es: 'Interpreta el patrón visual de muros, ventanas y aberturas en el exterior de un edificio.',

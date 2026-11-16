@@ -40,7 +40,7 @@ export const qualitativeAnalyteIdentification_Skill_Data = defineSkill({
       'Use selective reactions or instrumental signatures to identify a target chemical species in a sample, recognizing that shared responses may prevent a unique identification.',
     frontend: {
       en: 'Use chemical tests or instrument signals to identify a substance in a mixture.',
-      it: "Usa prove chimiche o segnali strumentali per identificare una sostanza in una miscela.",
+      it: 'Usa prove chimiche o segnali strumentali per identificare una sostanza in una miscela.',
       zh: '利用化学检验或仪器信号识别混合物中的目标物质。',
       hi: 'किसी मिश्रण में लक्ष्य पदार्थ पहचानने के लिए रासायनिक परीक्षण या यंत्र के संकेतों का उपयोग करें।',
       es: 'Usa pruebas químicas o señales instrumentales para identificar una sustancia en una mezcla.',

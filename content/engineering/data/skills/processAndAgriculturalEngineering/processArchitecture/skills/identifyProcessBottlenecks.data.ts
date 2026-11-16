@@ -40,7 +40,7 @@ export const identifyProcessBottlenecks_Skill_Data = defineSkill({
       'Recognize how limited capacity or interruptions at one processing stage affect the output of a connected plant.',
     frontend: {
       en: 'Identify which process stage limits the output of the whole system.',
-      it: 'Individua la fase del processo che limita la produzione dell\'intero sistema.',
+      it: "Individua la fase del processo che limita la produzione dell'intero sistema.",
       zh: '找出限制整个系统产出的工艺阶段。',
       hi: 'पता लगाएँ कि प्रक्रिया का कौन-सा चरण पूरे तंत्र के उत्पादन को सीमित करता है।',
       es: 'Identifica qué etapa limita la producción de todo el sistema.',

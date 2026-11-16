@@ -5,7 +5,7 @@ export const historicalComparison_Skill_Data = defineSkill({
   id: '2e244706-ed4d-4c26-a6c6-7faf00c15442',
   name: {
     en: 'Historical Comparison',
-    it: "Confronto storico",
+    it: 'Confronto storico',
     zh: '历史比较',
     hi: 'ऐतिहासिक तुलना',
     es: 'Comparación histórica',
@@ -40,7 +40,7 @@ export const historicalComparison_Skill_Data = defineSkill({
       'Compare societies by explicit criteria without ranking entire peoples as inherently advanced or backward.',
     frontend: {
       en: 'Compare societies respectfully using meaningful evidence.',
-      it: "Confronta le società con rispetto, usando testimonianze significative.",
+      it: 'Confronta le società con rispetto, usando testimonianze significative.',
       zh: '运用有意义的证据，以尊重的态度比较不同社会。',
       hi: 'उपयुक्त साक्ष्यों के आधार पर समाजों की सम्मानपूर्वक तुलना करें।',
       es: 'Compara sociedades con respeto y mediante pruebas pertinentes.',

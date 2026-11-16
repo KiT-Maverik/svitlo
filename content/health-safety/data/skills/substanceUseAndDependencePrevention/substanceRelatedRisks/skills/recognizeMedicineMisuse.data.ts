@@ -5,7 +5,7 @@ export const recognizeMedicineMisuse_Skill_Data = defineSkill({
   id: 'a2031607-e217-475c-832b-9d95884145f6',
   name: {
     en: 'Recognize medicine misuse',
-    it: 'Riconoscere l\'uso improprio dei medicinali',
+    it: "Riconoscere l'uso improprio dei medicinali",
     zh: '识别药物滥用',
     hi: 'दवाओं का गलत उपयोग पहचानें',
     es: 'Reconocer el uso indebido de medicamentos',

@@ -39,7 +39,7 @@ export const atmosphericCirculation_Skill_Data = defineSkill({
     methodological: 'Relate global winds and thermal patterns to solar input, rotation and atmospheric structure.',
     frontend: {
       en: "Understand how a planet's rotation and heating shape large-scale air movement.",
-      it: 'Comprendi come la rotazione e il riscaldamento di un pianeta determinano i grandi movimenti dell\'aria.',
+      it: "Comprendi come la rotazione e il riscaldamento di un pianeta determinano i grandi movimenti dell'aria.",
       zh: '理解行星的自转和受热情况如何影响大范围的空气运动。',
       hi: 'समझें कि किसी ग्रह का घूर्णन और ताप ग्रह के बड़े पैमाने पर वायु प्रवाह को कैसे प्रभावित करते हैं।',
       es: 'Comprende cómo la rotación y el calentamiento de un planeta dan forma a los movimientos del aire a gran escala.',

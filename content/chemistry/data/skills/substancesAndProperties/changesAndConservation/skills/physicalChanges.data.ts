@@ -5,7 +5,7 @@ export const physicalChanges_Skill_Data = defineSkill({
   id: '5ceeaf43-5f78-4d38-9ad4-dab91753da43',
   name: {
     en: 'Physical Changes',
-    it: "Trasformazioni fisiche",
+    it: 'Trasformazioni fisiche',
     zh: '物理变化',
     hi: 'भौतिक परिवर्तन',
     es: 'Cambios físicos',

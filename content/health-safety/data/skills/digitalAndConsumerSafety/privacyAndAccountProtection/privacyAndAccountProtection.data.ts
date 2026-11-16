@@ -54,7 +54,7 @@ export const privacyAndAccountProtection_SkillGroup_Data = defineSkillGroup({
       'Limiting disclosure and protecting access reduces vulnerabilities even when platforms or other people behave unpredictably.',
     frontend: {
       en: 'Explore sensible choices for privacy and access to digital accounts.',
-      it: 'Esplora scelte consapevoli per proteggere la privacy e l\'accesso agli account digitali.',
+      it: "Esplora scelte consapevoli per proteggere la privacy e l'accesso agli account digitali.",
       zh: '探索保护隐私和管理数字账户访问权限的合理方式。',
       hi: 'निजता और डिजिटल खातों तक पहुँच को सुरक्षित रखने के समझदार तरीके जानो।',
       es: 'Explora decisiones sensatas para la privacidad y el acceso a cuentas digitales.',

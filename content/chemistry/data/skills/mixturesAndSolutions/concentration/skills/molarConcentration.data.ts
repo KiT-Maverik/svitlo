@@ -5,7 +5,7 @@ export const molarConcentration_Skill_Data = defineSkill({
   id: 'cfd53008-a7cd-44de-88a4-47fc65767880',
   name: {
     en: 'Molar Concentration',
-    it: "Concentrazione molare",
+    it: 'Concentrazione molare',
     zh: '物质的量浓度',
     hi: 'मोलर सांद्रता',
     es: 'Concentración molar',
@@ -39,7 +39,7 @@ export const molarConcentration_Skill_Data = defineSkill({
     methodological: 'Relate dissolved amount of substance to solution volume and suitable units.',
     frontend: {
       en: 'Use moles per volume to describe the concentration of dissolved substances.',
-      it: "Usa le moli per unità di volume per esprimere la concentrazione delle sostanze disciolte.",
+      it: 'Usa le moli per unità di volume per esprimere la concentrazione delle sostanze disciolte.',
       zh: '用单位体积中的物质的量（摩尔数）描述溶质浓度。',
       hi: 'प्रति आयतन मोलों की संख्या से घुले पदार्थ की सांद्रता बताएँ।',
       es: 'Expresa la concentración de sustancias disueltas en moles por unidad de volumen.',

@@ -39,7 +39,7 @@ export const contextDependentLearning_Skill_Data = defineSkill({
     methodological: 'Explain why a response learned in one setting may not transfer unchanged to another.',
     frontend: {
       en: 'Recognize when learning depends strongly on the setting where it occurred.',
-      it: 'Riconosci quando l\'apprendimento dipende fortemente dall\'ambiente in cui è avvenuto.',
+      it: "Riconosci quando l'apprendimento dipende fortemente dall'ambiente in cui è avvenuto.",
       zh: '识别学习何时强烈依赖于最初发生的环境。',
       hi: 'पहचानें कि सीखना कब उस परिवेश पर अधिक निर्भर होता है जहाँ वह हुआ था।',
       es: 'Reconoce cuándo lo aprendido depende mucho del entorno donde se adquirió.',

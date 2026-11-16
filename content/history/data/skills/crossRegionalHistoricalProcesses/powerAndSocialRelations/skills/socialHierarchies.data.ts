@@ -5,7 +5,7 @@ export const socialHierarchies_Skill_Data = defineSkill({
   id: '4485a1d7-f66d-467b-996e-1986c2ca6aa2',
   name: {
     en: 'Social Hierarchies',
-    it: "Gerarchie sociali",
+    it: 'Gerarchie sociali',
     zh: '社会等级制度',
     hi: 'सामाजिक पदानुक्रम',
     es: 'Jerarquías sociales',
@@ -40,7 +40,7 @@ export const socialHierarchies_Skill_Data = defineSkill({
       'Compare hereditary standing, wealth, dependency, and prestige across societies with differing arrangements.',
     frontend: {
       en: 'Explore how status and social divisions varied across ancient societies.',
-      it: "Esplora come lo status e le divisioni sociali variavano tra le società antiche.",
+      it: 'Esplora come lo status e le divisioni sociali variavano tra le società antiche.',
       zh: '探索古代不同社会的身份地位和社会分层有何差异。',
       hi: 'जानें कि विभिन्न प्राचीन समाजों में सामाजिक दर्जे और विभाजन कैसे अलग थे।',
       es: 'Explora cómo variaban el estatus y las divisiones sociales entre distintas sociedades antiguas.',

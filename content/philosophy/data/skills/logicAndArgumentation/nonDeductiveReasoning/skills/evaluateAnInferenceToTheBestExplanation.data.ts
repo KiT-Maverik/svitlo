@@ -5,7 +5,7 @@ export const evaluateAnInferenceToTheBestExplanation_Skill_Data = defineSkill({
   id: 'f5072be7-5672-40e9-815f-6c5fa8654a6a',
   name: {
     en: 'Evaluate an inference to the best explanation',
-    it: 'Valutare un\'inferenza alla spiegazione migliore',
+    it: "Valutare un'inferenza alla spiegazione migliore",
     zh: '评估最佳解释推论',
     hi: 'सर्वश्रेष्ठ व्याख्या की ओर अनुमान का मूल्यांकन',
     es: 'Evaluar la inferencia a la mejor explicación',

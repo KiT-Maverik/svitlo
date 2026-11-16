@@ -12,7 +12,7 @@ export const ancientAndes_SkillGroup_Data = defineSkillGroup({
   id: '80ecf86d-411d-45ad-a562-3147d4346bac',
   name: {
     en: 'Andes',
-    it: "Ande",
+    it: 'Ande',
     zh: '安第斯地区',
     hi: 'एंडीज़',
     es: 'Los Andes',
@@ -55,7 +55,7 @@ export const ancientAndes_SkillGroup_Data = defineSkillGroup({
     methodological: 'Coastal valleys and highlands supported diverse farming, cities, and social coordination.',
     frontend: {
       en: 'Discover the societies that developed in the Andes.',
-      it: "Scopri le società che si svilupparono sulle Ande.",
+      it: 'Scopri le società che si svilupparono sulle Ande.',
       zh: '认识安第斯山脉地区发展起来的古代社会。',
       hi: 'एंडीज़ में विकसित हुए प्राचीन समाजों के बारे में जानें।',
       es: 'Descubre las sociedades que se desarrollaron en los Andes.',

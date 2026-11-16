@@ -5,7 +5,7 @@ export const selectTextilesForGarments_Skill_Data = defineSkill({
   id: 'e15a2259-d06f-4534-bb82-9ad745591904',
   name: {
     en: 'Select Textiles for Garments',
-    it: "Selezionare i tessuti per i capi",
+    it: 'Selezionare i tessuti per i capi',
 
     zh: '为服装选择纺织面料',
     hi: 'परिधानों के लिए वस्त्र चुनें',

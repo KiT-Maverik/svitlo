@@ -8,7 +8,7 @@ export const ancientOceania_SkillDomain_Data = defineSkillDomain({
   id: '83bcaecb-a01b-450c-9e1e-540a4c4f5b12',
   title: {
     en: 'Oceania',
-    it: "Oceania",
+    it: 'Oceania',
     zh: '大洋洲',
     hi: 'ओशिनिया',
     es: 'Oceanía',

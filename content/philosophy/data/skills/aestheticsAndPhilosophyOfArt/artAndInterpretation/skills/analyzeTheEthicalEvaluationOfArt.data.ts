@@ -5,7 +5,7 @@ export const analyzeTheEthicalEvaluationOfArt_Skill_Data = defineSkill({
   id: 'd0b1ea09-2871-47b7-afdb-1bfdab8014ab',
   name: {
     en: 'Analyze the ethical evaluation of art',
-    it: 'Analizzare la valutazione etica dell\'arte',
+    it: "Analizzare la valutazione etica dell'arte",
     zh: '分析艺术的伦理评价',
     hi: 'कला के नैतिक मूल्यांकन का विश्लेषण',
     es: 'Analizar la valoración ética del arte',

@@ -8,7 +8,7 @@ export const acidBaseChemistry_SkillDomain_Data = defineSkillDomain({
   id: 'a526a484-6c73-4807-a92e-7a2c0446081e',
   title: {
     en: 'Acid–Base Chemistry',
-    it: "Chimica acido-base",
+    it: 'Chimica acido-base',
     zh: '酸碱化学',
     hi: 'अम्ल–क्षार रसायन',
     es: 'Química ácido-base',

@@ -13,7 +13,7 @@ export const interpretationAndEvaluation_SkillGroup_Data = defineSkillGroup({
   id: '4dd3052d-eefd-4b00-b051-abc1c585973f',
   name: {
     en: 'Interpretation and Evaluation',
-    it: "Interpretazione e valutazione",
+    it: 'Interpretazione e valutazione',
     zh: '阐释与评价',
     hi: 'व्याख्या और मूल्यांकन',
     es: 'Interpretación y evaluación',

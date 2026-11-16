@@ -5,7 +5,7 @@ export const additionReactions_Skill_Data = defineSkill({
   id: '5372d50b-bc8d-46e4-bfa8-ae20895a09db',
   name: {
     en: 'Addition Reactions',
-    it: "Reazioni di addizione",
+    it: 'Reazioni di addizione',
     zh: '加成反应',
     hi: 'योगात्मक अभिक्रियाएँ',
     es: 'Reacciones de adición',
@@ -39,7 +39,7 @@ export const additionReactions_Skill_Data = defineSkill({
     methodological: 'Reason about new bonds forming across unsaturated sites.',
     frontend: {
       en: 'Recognize when a reaction adds atoms across an unsaturated bond.',
-      it: "Riconosci quando una reazione aggiunge atomi attraverso un legame insaturo.",
+      it: 'Riconosci quando una reazione aggiunge atomi attraverso un legame insaturo.',
       zh: '识别原子跨越不饱和键连接的反应。',
       hi: 'ऐसी अभिक्रियाएँ पहचानें जिनमें असंतृप्त बंध के दोनों ओर परमाणु जुड़ते हैं।',
       es: 'Reconoce cuándo una reacción agrega átomos a través de un enlace insaturado.',

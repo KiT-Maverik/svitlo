@@ -12,7 +12,7 @@ export const innerAsia_SkillGroup_Data = defineSkillGroup({
   id: '7aa11b7a-047f-4c39-968d-9f18b9e16e5e',
   name: {
     en: 'Inner Asia',
-    it: "Asia interna",
+    it: 'Asia interna',
     zh: '内亚',
     hi: 'आंतरिक एशिया',
     es: 'Asia interior',

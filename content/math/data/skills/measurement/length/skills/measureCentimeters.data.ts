@@ -40,7 +40,7 @@ export const measureCentimeters_Skill_Data = defineSkill({
       "Determine the length of an existing straight segment in centimeters by aligning a ruler's zero mark with one endpoint and reading the other endpoint. Count intervals rather than printed labels; drawing a new segment is a separate competency.",
     frontend: {
       en: 'You can measure an existing straight segment in centimeters by placing its first endpoint at zero on a ruler and reading the mark at the other endpoint.',
-      it: 'Puoi misurare un segmento rettilineo in centimetri ponendo il primo estremo sullo zero del righello e leggendo la tacca corrispondente all\'altro estremo.',
+      it: "Puoi misurare un segmento rettilineo in centimetri ponendo il primo estremo sullo zero del righello e leggendo la tacca corrispondente all'altro estremo.",
       qm: 'Doğru kesikniñ bir uç noqtasını cetvelniñ sıfırına qoyıp, diger uç noqtasınıñ belgisine baqaraq uzunlığını santimetrlerde ölçe bilesiñ.',
       zh: '你能将一条已有线段的一端对准直尺的零刻度，读出另一端的刻度，测出它的厘米长度。',
       hi: 'तुम किसी पहले से बने सीधे रेखाखंड के एक सिरे को पैमाने के शून्य पर रखकर दूसरे सिरे का निशान पढ़ते हुए उसकी लंबाई सेंटीमीटर में माप सकते हो।',

@@ -5,7 +5,7 @@ export const distinguishAnArgumentFromAnExplanation_Skill_Data = defineSkill({
   id: 'e94789cd-a8ee-4a87-a123-24e560ec25d5',
   name: {
     en: 'Distinguish an argument from an explanation',
-    it: 'Distinguere un\'argomentazione da una spiegazione',
+    it: "Distinguere un'argomentazione da una spiegazione",
     zh: '区分论证与解释',
     hi: 'तर्क और व्याख्या में अंतर करना',
     es: 'Distinguir un argumento de una explicación',

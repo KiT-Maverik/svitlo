@@ -40,7 +40,7 @@ export const manageADigitalFootprint_Skill_Data = defineSkill({
       'Consider persistence, redistribution, and audience of posted information, including the limits of deleting content after sharing.',
     frontend: {
       en: 'Understand that shared digital information can persist after deletion.',
-      it: 'Comprendi che le informazioni condivise online possono rimanere accessibili anche dopo l\'eliminazione.',
+      it: "Comprendi che le informazioni condivise online possono rimanere accessibili anche dopo l'eliminazione.",
       zh: '理解已分享的数字信息在删除后仍可能长期留存。',
       hi: 'समझो कि साझा की गई डिजिटल जानकारी हटाने के बाद भी बनी रह सकती है।',
       es: 'Comprende que la información compartida puede permanecer incluso después de eliminarla.',

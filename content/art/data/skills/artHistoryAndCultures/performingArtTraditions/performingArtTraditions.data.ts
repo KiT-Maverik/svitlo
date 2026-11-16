@@ -13,7 +13,7 @@ export const performingArtTraditions_SkillGroup_Data = defineSkillGroup({
   id: '2503890a-e64f-476c-aa0d-80f18d4e91b8',
   name: {
     en: 'Performing Art Traditions',
-    it: "Tradizioni delle arti performative",
+    it: 'Tradizioni delle arti performative',
     zh: '表演艺术传统',
     hi: 'प्रदर्शन कलाओं की परंपराएँ',
     es: 'Tradiciones de las artes escénicas',
@@ -64,7 +64,7 @@ export const performingArtTraditions_SkillGroup_Data = defineSkillGroup({
       'Historical traditions in theatre, dance and music are interpreted through the characteristics and cultural roles of their performances, not by requiring a pupil to reproduce their techniques.',
     frontend: {
       en: 'Explore how theatre, dance and music traditions develop within their cultural settings.',
-      it: "Esplora come le tradizioni del teatro, della danza e della musica si sviluppano nei rispettivi contesti culturali.",
+      it: 'Esplora come le tradizioni del teatro, della danza e della musica si sviluppano nei rispettivi contesti culturali.',
       zh: '探索戏剧、舞蹈和音乐传统如何在各自的文化环境中发展。',
       hi: 'जानें कि नाटक, नृत्य और संगीत की परंपराएँ अपने सांस्कृतिक परिवेश में कैसे विकसित होती हैं।',
       es: 'Explora cómo las tradiciones teatrales, de danza y musicales se desarrollan en sus contextos culturales.',

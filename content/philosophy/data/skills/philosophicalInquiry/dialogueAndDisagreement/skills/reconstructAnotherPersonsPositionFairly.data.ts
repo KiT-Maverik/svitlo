@@ -40,7 +40,7 @@ export const reconstructAnotherPersonsPositionFairly_Skill_Data = defineSkill({
       "Restate an interlocutor's strongest contextually plausible position accurately and charitably, rather than attacking a weaker caricature; fair reconstruction does not require overlooking genuine contradictions or unsupported claims.",
     frontend: {
       en: "Restate someone else's position accurately before criticizing it.",
-      it: 'Riformula con precisione la posizione di un\'altra persona prima di criticarla.',
+      it: "Riformula con precisione la posizione di un'altra persona prima di criticarla.",
       zh: '在批评别人的立场前，先准确复述其观点。',
       hi: 'आलोचना करने से पहले किसी दूसरे व्यक्ति की स्थिति को सही रूप में दोहराएँ।',
       es: 'Expón con precisión la postura de otra persona antes de criticarla.',

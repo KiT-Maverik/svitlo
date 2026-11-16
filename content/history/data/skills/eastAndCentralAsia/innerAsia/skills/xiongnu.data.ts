@@ -5,7 +5,7 @@ export const xiongnu_Skill_Data = defineSkill({
   id: '02bd7c0b-da3e-47b4-8f71-2d786b482209',
   name: {
     en: 'Xiongnu',
-    it: "Xiongnu",
+    it: 'Xiongnu',
     zh: '匈奴',
     hi: 'शियोंगनू',
     es: 'Xiongnu',

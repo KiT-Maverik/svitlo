@@ -64,7 +64,7 @@ export const musicalSoundAndTexture_SkillGroup_Data = defineSkillGroup({
       'Timbre, sound sources and simultaneous parts provide perceptual distinctions beyond the height or intensity of a note.',
     frontend: {
       en: 'Discover the sounds and layers that make musical performances recognizable.',
-      it: 'Scopri i suoni e i diversi livelli sonori che rendono riconoscibile un\'esecuzione musicale.',
+      it: "Scopri i suoni e i diversi livelli sonori che rendono riconoscibile un'esecuzione musicale.",
       zh: '探索让音乐表演具有辨识度的声音和层次。',
       hi: 'उन ध्वनियों और परतों को जानें जो संगीत प्रस्तुति को पहचानने योग्य बनाती हैं।',
       es: 'Descubre los sonidos y las capas que hacen reconocibles las interpretaciones musicales.',

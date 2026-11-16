@@ -10,7 +10,7 @@ export const organicChemistry_SkillDomain_Data = defineSkillDomain({
   id: 'cffb6d73-9d15-4add-85f2-ce68a70cd249',
   title: {
     en: 'Organic Chemistry',
-    it: "Chimica organica",
+    it: 'Chimica organica',
     zh: '有机化学',
     hi: 'कार्बनिक रसायन विज्ञान',
     es: 'Química orgánica',
@@ -54,7 +54,7 @@ export const organicChemistry_SkillDomain_Data = defineSkillDomain({
       'Carbon compounds are organized by connectivity, functional groups and reaction pathways. This domain focuses on chemical structure and transformations, distinct from physiological roles discussed in biology.',
     frontend: {
       en: 'Explore how carbon compounds are structured, classified and transformed.',
-      it: "Esplora come sono strutturati, classificati e trasformati i composti del carbonio.",
+      it: 'Esplora come sono strutturati, classificati e trasformati i composti del carbonio.',
       zh: '探索碳化合物的结构、分类和转化方式。',
       hi: 'जानें कि कार्बन यौगिकों की संरचना, वर्गीकरण और परिवर्तन कैसे होते हैं।',
       es: 'Explora cómo se estructuran, clasifican y transforman los compuestos de carbono.',

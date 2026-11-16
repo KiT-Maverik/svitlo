@@ -5,7 +5,7 @@ export const earlyHinduTraditions_Skill_Data = defineSkill({
   id: '0cc39976-d667-4b4b-a105-9763ff2ea7ff',
   name: {
     en: 'Early Hindu Traditions',
-    it: "Prime tradizioni induiste",
+    it: 'Prime tradizioni induiste',
     zh: '早期印度教传统',
     hi: 'प्रारंभिक हिंदू परंपराएँ',
     es: 'Primeras tradiciones hindúes',

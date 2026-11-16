@@ -5,7 +5,7 @@ export const measurementUncertainty_Skill_Data = defineSkill({
   id: 'a24fcfe5-91bd-4c96-a7dd-e04c21517ecb',
   name: {
     en: 'Measurement Uncertainty',
-    it: "Incertezza di misura",
+    it: 'Incertezza di misura',
     zh: '测量不确定度',
     hi: 'मापन की अनिश्चितता',
     es: 'Incertidumbre de medición',

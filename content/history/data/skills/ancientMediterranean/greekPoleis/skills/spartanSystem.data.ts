@@ -5,7 +5,7 @@ export const spartanSystem_Skill_Data = defineSkill({
   id: '4ad0d126-aaab-4b8b-b912-2a31e6a979b0',
   name: {
     en: 'Spartan System',
-    it: "Sistema spartano",
+    it: 'Sistema spartano',
     zh: '斯巴达制度',
     hi: 'स्पार्टा की व्यवस्था',
     es: 'Sistema espartano',

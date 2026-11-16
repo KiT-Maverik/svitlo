@@ -40,7 +40,7 @@ export const distinguishAPhysicalQuantityFromItsUnitOfMeasurement_Skill_Data = d
       'A physical quantity describes a property of a body or phenomenon, whereas a unit establishes an agreed scale for expressing it numerically; length and centimeter serve different roles.',
     frontend: {
       en: 'Distinguish the property being measured from the unit used to express it.',
-      it: 'Distingui la proprietà misurata dall\'unità usata per esprimerla.',
+      it: "Distingui la proprietà misurata dall'unità usata per esprimerla.",
       zh: '区分被测量的性质与表示其数值所用的单位。',
       hi: 'मापे जाने वाले गुण और उसे व्यक्त करने की इकाई में अंतर करें।',
       es: 'Distingue la propiedad medida de la unidad utilizada para expresarla.',

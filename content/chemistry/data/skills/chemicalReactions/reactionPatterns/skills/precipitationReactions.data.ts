@@ -5,7 +5,7 @@ export const precipitationReactions_Skill_Data = defineSkill({
   id: 'cad239d7-3bc4-4787-b07f-5a6d5d529dac',
   name: {
     en: 'Precipitation Reactions',
-    it: "Reazioni di precipitazione",
+    it: 'Reazioni di precipitazione',
     zh: '沉淀反应',
     hi: 'अवक्षेपण अभिक्रियाएँ',
     es: 'Reacciones de precipitación',
@@ -39,7 +39,7 @@ export const precipitationReactions_Skill_Data = defineSkill({
     methodological: 'Explain the formation of an insoluble product from reacting dissolved species.',
     frontend: {
       en: 'Explain why a reaction can produce an insoluble solid from dissolved substances.',
-      it: "Spiega perché una reazione può produrre un solido insolubile a partire da sostanze disciolte.",
+      it: 'Spiega perché una reazione può produrre un solido insolubile a partire da sostanze disciolte.',
       zh: '解释为什么溶解的物质反应后会形成不溶性固体。',
       hi: 'समझाएँ कि घुले पदार्थों की अभिक्रिया से अघुलनशील ठोस कैसे बनता है।',
       es: 'Explica por qué sustancias disueltas pueden formar un sólido insoluble al reaccionar.',

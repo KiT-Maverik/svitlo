@@ -40,7 +40,7 @@ export const distinguishBeliefFromKnowledge_Skill_Data = defineSkill({
       'Recognize that sincerely accepting a proposition does not by itself establish that it is known, even when the speaker is confident.',
     frontend: {
       en: 'Understand why believing a claim sincerely does not automatically make it knowledge.',
-      it: 'Comprendi perché credere sinceramente a un\'affermazione non significa necessariamente conoscerne la verità.',
+      it: "Comprendi perché credere sinceramente a un'affermazione non significa necessariamente conoscerne la verità.",
       zh: '理解为什么真诚地相信某个说法并不自动意味着知道它。',
       hi: 'समझें कि किसी कथन पर सच्चे मन से विश्वास करना अपने आप में ज्ञान नहीं है।',
       es: 'Comprende por qué creer sinceramente una afirmación no significa necesariamente saber que es cierta.',

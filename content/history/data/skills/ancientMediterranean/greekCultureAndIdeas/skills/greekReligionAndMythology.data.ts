@@ -5,7 +5,7 @@ export const greekReligionAndMythology_Skill_Data = defineSkill({
   id: 'd6db5f74-df93-4858-8a3e-7b5b14816de9',
   name: {
     en: 'Greek Religion and Mythology',
-    it: "Religione e mitologia greche",
+    it: 'Religione e mitologia greche',
     zh: '古希腊宗教与神话',
     hi: 'यूनानी धर्म और मिथक',
     es: 'Religión y mitología griegas',
@@ -40,7 +40,7 @@ export const greekReligionAndMythology_Skill_Data = defineSkill({
       'Study myths, cults, festivals, and sanctuaries without treating mythological accounts as literal chronicles.',
     frontend: {
       en: 'Understand how myths and religious practices shaped Greek community life.',
-      it: "Comprendi come i miti e le pratiche religiose plasmavano la vita delle comunità greche.",
+      it: 'Comprendi come i miti e le pratiche religiose plasmavano la vita delle comunità greche.',
       zh: '理解神话和宗教实践如何塑造希腊共同体生活。',
       hi: 'समझें कि मिथकों और धार्मिक प्रथाओं ने यूनानी सामुदायिक जीवन को कैसे प्रभावित किया।',
       es: 'Comprende cómo los mitos y las prácticas religiosas moldeaban la vida comunitaria griega.',

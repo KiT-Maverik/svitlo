@@ -40,7 +40,7 @@ export const neuroimagingInference_Skill_Data = defineSkill({
       'Distinguish an imaged physiological signal from an inferred thought and identify the limits of reverse inference.',
     frontend: {
       en: 'Understand why brain activity images cannot directly reveal particular thoughts.',
-      it: 'Comprendi perché le immagini dell\'attività cerebrale non possano rivelare direttamente pensieri specifici.',
+      it: "Comprendi perché le immagini dell'attività cerebrale non possano rivelare direttamente pensieri specifici.",
       zh: '理解为什么脑活动图像不能直接揭示具体想法。',
       hi: 'समझें कि मस्तिष्क गतिविधि की तस्वीरें किसी विशिष्ट विचार को सीधे क्यों नहीं दिखातीं।',
       es: 'Comprende por qué las imágenes de actividad cerebral no revelan directamente pensamientos específicos.',

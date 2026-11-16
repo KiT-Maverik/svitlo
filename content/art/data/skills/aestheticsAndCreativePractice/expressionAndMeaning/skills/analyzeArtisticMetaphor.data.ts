@@ -5,7 +5,7 @@ export const analyzeArtisticMetaphor_Skill_Data = defineSkill({
   id: '578f26db-2e1d-4325-939a-2752e177b352',
   name: {
     en: 'Analyze Artistic Metaphor',
-    it: "Analizzare la metafora artistica",
+    it: 'Analizzare la metafora artistica',
     zh: '分析艺术隐喻',
     hi: 'कलात्मक रूपक का विश्लेषण करें',
     es: 'Analizar la metáfora artística',

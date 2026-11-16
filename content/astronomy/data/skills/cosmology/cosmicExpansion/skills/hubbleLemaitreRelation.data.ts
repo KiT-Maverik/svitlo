@@ -40,7 +40,7 @@ export const hubbleLemaitreRelation_Skill_Data = defineSkill({
       'Relate galaxy recession measurements and distance to empirical evidence for expansion within its domain of applicability.',
     frontend: {
       en: 'Relate measured galaxy distances and redshifts to evidence for cosmic expansion.',
-      it: 'Collega le distanze misurate delle galassie e i loro spostamenti verso il rosso alle prove dell\'espansione cosmica.',
+      it: "Collega le distanze misurate delle galassie e i loro spostamenti verso il rosso alle prove dell'espansione cosmica.",
       qm: 'Galaktikalarnıñ ölçengen uzaqlığı ve qırmızığa tayuvını kosmik keñeyüv delilleri ile bağlañız.',
       zh: '联系星系的测量距离与红移，理解宇宙膨胀的证据。',
       hi: 'आकाशगंगाओं की मापी गई दूरियों और लाल विस्थापनों को विस्तार के प्रमाणों से जोड़ें।',

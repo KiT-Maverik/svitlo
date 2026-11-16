@@ -5,7 +5,7 @@ export const visualHistoricalSources_Skill_Data = defineSkill({
   id: '30caa1fe-1fe9-4f45-873c-86a609826108',
   name: {
     en: 'Visual Historical Sources',
-    it: "Fonti storiche visive",
+    it: 'Fonti storiche visive',
     zh: '历史图像资料',
     hi: 'दृश्य ऐतिहासिक स्रोत',
     es: 'Fuentes históricas visuales',
@@ -40,7 +40,7 @@ export const visualHistoricalSources_Skill_Data = defineSkill({
       'Treat historical pictures as evidence of practices and ideas rather than literal photographic accounts of events.',
     frontend: {
       en: 'Understand what historical images can and cannot prove.',
-      it: "Comprendi che cosa possono e non possono dimostrare le immagini storiche.",
+      it: 'Comprendi che cosa possono e non possono dimostrare le immagini storiche.',
       zh: '理解历史图像能够证明什么、不能证明什么。',
       hi: 'समझें कि ऐतिहासिक चित्र क्या सिद्ध कर सकते हैं और क्या नहीं।',
       es: 'Comprende qué pueden demostrar las imágenes históricas y qué no.',

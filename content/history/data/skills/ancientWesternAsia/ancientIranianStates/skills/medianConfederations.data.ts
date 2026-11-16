@@ -5,7 +5,7 @@ export const medianConfederations_Skill_Data = defineSkill({
   id: 'a8e5cbe9-257f-41a1-b2e7-3abead672e6e',
   name: {
     en: 'Median Confederations',
-    it: "Confederazioni dei Medi",
+    it: 'Confederazioni dei Medi',
     zh: '米底人联盟',
     hi: 'मादी संघ',
     es: 'Confederaciones medas',
@@ -40,7 +40,7 @@ export const medianConfederations_Skill_Data = defineSkill({
       'Explain the role of Median communities in shifting Western Asian power while acknowledging limited sources.',
     frontend: {
       en: 'Learn what historians can infer about the Medes.',
-      it: "Scopri che cosa gli storici possono dedurre sui Medi.",
+      it: 'Scopri che cosa gli storici possono dedurre sui Medi.',
       zh: '了解历史学家能从有限证据推断出米底人的哪些情况。',
       hi: 'जानें कि इतिहासकार मादी लोगों के बारे में क्या निष्कर्ष निकाल सकते हैं।',
       es: 'Aprende qué pueden inferir los historiadores acerca de los medos.',

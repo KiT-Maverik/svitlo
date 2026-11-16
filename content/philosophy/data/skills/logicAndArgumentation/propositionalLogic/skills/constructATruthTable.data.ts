@@ -40,7 +40,7 @@ export const constructATruthTable_Skill_Data = defineSkill({
       'Enumerate truth-value combinations for atomic propositions and systematically compute outcomes of logical expressions.',
     frontend: {
       en: 'Construct a table of possible truth assignments for a logical expression.',
-      it: 'Costruisci una tabella di tutte le possibili assegnazioni di verità a un\'espressione logica.',
+      it: "Costruisci una tabella di tutte le possibili assegnazioni di verità a un'espressione logica.",
       zh: '列出逻辑表达式所有可能的真假赋值，构建真值表。',
       hi: 'तार्किक व्यंजक के लिए सभी संभावित सत्य-असत्य मानों की सारणी बनाएँ।',
       es: 'Construye una tabla de las posibles asignaciones de verdad de una expresión lógica.',

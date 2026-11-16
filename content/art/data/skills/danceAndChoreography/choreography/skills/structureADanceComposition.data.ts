@@ -5,7 +5,7 @@ export const structureADanceComposition_Skill_Data = defineSkill({
   id: '93746845-7d93-40b6-8934-8bd2c3b2f16e',
   name: {
     en: 'Structure a Dance Composition',
-    it: "Strutturare una composizione coreografica",
+    it: 'Strutturare una composizione coreografica',
     zh: '组织舞蹈作品结构',
     hi: 'नृत्य रचना को संरचित करें',
     es: 'Estructurar una composición de danza',
@@ -39,7 +39,7 @@ export const structureADanceComposition_Skill_Data = defineSkill({
     methodological: 'Combine phrases through development, repetition and contrast across a complete work.',
     frontend: {
       en: 'Arrange dance phrases using repetition, contrast and development.',
-      it: "Organizza le sequenze di danza usando ripetizione, contrasto e sviluppo.",
+      it: 'Organizza le sequenze di danza usando ripetizione, contrasto e sviluppo.',
       zh: '运用重复、对比和发展来编排舞蹈段落。',
       hi: 'दोहराव, विरोधाभास और विकास के माध्यम से नृत्य खंडों को व्यवस्थित करें।',
       es: 'Organiza frases de danza mediante repetición, contraste y desarrollo.',

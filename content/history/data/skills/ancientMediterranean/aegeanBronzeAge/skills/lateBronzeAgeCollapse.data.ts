@@ -5,7 +5,7 @@ export const lateBronzeAgeCollapse_Skill_Data = defineSkill({
   id: 'b5fc72e9-66ff-406a-a89b-f03d70cc6a75',
   name: {
     en: 'Late Bronze Age Collapse',
-    it: "Collasso della tarda età del bronzo",
+    it: 'Collasso della tarda età del bronzo',
     zh: '青铜时代晚期崩溃',
     hi: 'उत्तर कांस्य युग का पतन',
     es: 'Colapso del Bronce Final',

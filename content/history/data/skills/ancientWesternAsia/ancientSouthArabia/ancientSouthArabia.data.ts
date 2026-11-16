@@ -7,7 +7,7 @@ export const ancientSouthArabia_SkillGroup_Data = defineSkillGroup({
   id: '8e230639-c72e-4e01-899e-f96e92c075aa',
   name: {
     en: 'South Arabia',
-    it: "Arabia meridionale",
+    it: 'Arabia meridionale',
     zh: '古代南阿拉伯',
     hi: 'प्राचीन दक्षिण अरब',
     es: 'Arabia meridional antigua',

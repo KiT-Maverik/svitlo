@@ -5,7 +5,7 @@ export const limitsOfIntrospection_Skill_Data = defineSkill({
   id: 'aa38156e-a59c-48c3-9c30-cf96bf533ee6',
   name: {
     en: 'Limits of Introspection',
-    it: 'Limiti dell\'introspezione',
+    it: "Limiti dell'introspezione",
     zh: '内省的局限',
     hi: 'आत्मनिरीक्षण की सीमाएँ',
     es: 'Límites de la introspección',

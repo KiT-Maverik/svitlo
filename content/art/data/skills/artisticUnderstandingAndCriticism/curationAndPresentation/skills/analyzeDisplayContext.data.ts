@@ -5,7 +5,7 @@ export const analyzeDisplayContext_Skill_Data = defineSkill({
   id: '4765dc0e-020b-4ce2-91ff-934674bd285e',
   name: {
     en: 'Analyze Display Context',
-    it: "Analizzare il contesto espositivo",
+    it: 'Analizzare il contesto espositivo',
     zh: '分析展示语境',
     hi: 'प्रदर्शन के संदर्भ का विश्लेषण करें',
     es: 'Analizar el contexto de exhibición',

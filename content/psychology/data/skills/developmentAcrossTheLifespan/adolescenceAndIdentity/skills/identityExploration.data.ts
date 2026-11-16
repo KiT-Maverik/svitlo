@@ -5,7 +5,7 @@ export const identityExploration_Skill_Data = defineSkill({
   id: 'e973f557-353c-4cb3-bf01-0b41d5eae89d',
   name: {
     en: 'Identity Exploration',
-    it: 'Esplorazione dell\'identità',
+    it: "Esplorazione dell'identità",
     zh: '身份认同的探索',
     hi: 'पहचान की खोज',
     es: 'Exploración de la identidad',

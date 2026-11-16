@@ -5,7 +5,7 @@ export const performDramaticInteraction_Skill_Data = defineSkill({
   id: '9b6b65af-0ce6-4061-a70e-7c731204fd61',
   name: {
     en: 'Perform Dramatic Interaction',
-    it: 'Interpretare un\'interazione drammatica',
+    it: "Interpretare un'interazione drammatica",
     zh: '表演戏剧情境互动',
     hi: 'नाटकीय संवाद प्रस्तुत करें',
     es: 'Interpretar una interacción dramática',

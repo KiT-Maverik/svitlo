@@ -5,7 +5,7 @@ export const urartu_Skill_Data = defineSkill({
   id: 'ae591195-0752-4242-a58a-ad45ddd2366b',
   name: {
     en: 'Urartu',
-    it: "Urartu",
+    it: 'Urartu',
     zh: '乌拉尔图',
     hi: 'उरार्तु',
     es: 'Urartu',
@@ -40,7 +40,7 @@ export const urartu_Skill_Data = defineSkill({
       'Examine fortifications, administration, and water-management projects of the Armenian Highland state.',
     frontend: {
       en: 'Discover the forts and engineering works of Urartu.',
-      it: "Scopri le fortezze e le opere di ingegneria di Urartu.",
+      it: 'Scopri le fortezze e le opere di ingegneria di Urartu.',
       zh: '探索乌拉尔图的堡垒与工程设施。',
       hi: 'उरार्तु के किलों और इंजीनियरिंग निर्माणों के बारे में जानें।',
       es: 'Descubre las fortalezas y las obras de ingeniería de Urartu.',

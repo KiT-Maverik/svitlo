@@ -40,7 +40,7 @@ export const primordialNucleosynthesis_Skill_Data = defineSkill({
       'Explain the predicted formation of light nuclei and why their observed abundances test early-Universe models.',
     frontend: {
       en: 'See how early-universe models predict the amounts of light elements.',
-      it: 'Scopri come i modelli dell\'universo primordiale prevedono le quantità degli elementi leggeri.',
+      it: "Scopri come i modelli dell'universo primordiale prevedono le quantità degli elementi leggeri.",
       qm: 'Erte Kâinat modelleriniñ yeñil elementlerniñ miqdarını nasıl qabaqtan aytqanını ögreniñiz.',
       zh: '了解早期宇宙模型如何预测轻元素的丰度。',
       hi: 'जानें कि आरंभिक ब्रह्मांड के मॉडल हल्के तत्वों की मात्रा का अनुमान कैसे लगाते हैं।',

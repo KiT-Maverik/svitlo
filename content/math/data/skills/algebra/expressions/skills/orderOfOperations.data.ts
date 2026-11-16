@@ -5,7 +5,7 @@ export const orderOfOperations_Skill_Data = defineSkill({
   id: '87cd08bd-e276-4a36-88de-77dd23028abf',
   name: {
     en: 'Applying the order of operations',
-    it: 'Applicare l\'ordine delle operazioni',
+    it: "Applicare l'ordine delle operazioni",
     qm: 'Amellerniñ tertibine riayet etmek',
     lt: 'Veiksmų atlikimo tvarkos taikymas',
     lv: 'Darbību secības ievērošana',

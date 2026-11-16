@@ -49,7 +49,7 @@ export const oceaniaArtisticTraditions_SkillGroup_Data = defineSkillGroup({
       'Material practices in Aotearoa New Zealand and northern Australia are treated as distinct cultural traditions, not as interchangeable decorative vocabularies.',
     frontend: {
       en: 'Study distinct artistic traditions of Māori communities and Yolŋu peoples.',
-      it: "Studia le diverse tradizioni artistiche delle comunità māori e dei popoli yolŋu.",
+      it: 'Studia le diverse tradizioni artistiche delle comunità māori e dei popoli yolŋu.',
       zh: '学习毛利社群与约卢族群各自独特的艺术传统。',
       hi: 'माओरी समुदायों और योलŋु लोगों की विशिष्ट कलात्मक परंपराओं का अध्ययन करें।',
       es: 'Estudia las tradiciones artísticas propias de las comunidades maoríes y los pueblos Yolŋu.',

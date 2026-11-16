@@ -40,7 +40,7 @@ export const variableValue_Skill_Data = defineSkill({
       'A letter in an expression may represent a variable assigned a value under given conditions. Substituting that value and performing operations evaluates the expression; symbolic notation does not establish a different arithmetic law.',
     frontend: {
       en: 'When a letter stands for a number, you can replace it with a given value and calculate the expression.',
-      it: 'Quando una lettera rappresenta un numero, puoi sostituirla con un valore dato e calcolare l\'espressione.',
+      it: "Quando una lettera rappresenta un numero, puoi sostituirla con un valore dato e calcolare l'espressione.",
       qm: 'Bir arif sayını bildirgende, onı berilgen qıymetnen deñiştirip ifadeniñ neticesini esaplay bilesiñ.',
       zh: '当字母代表一个数时，你能代入给定的值并计算表达式。',
       hi: 'जब कोई अक्षर संख्या को दर्शाता है, तब उसका दिया गया मान रखकर व्यंजक का मान निकाल सकते हो।',

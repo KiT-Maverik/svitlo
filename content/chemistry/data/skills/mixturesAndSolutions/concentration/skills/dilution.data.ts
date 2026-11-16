@@ -5,7 +5,7 @@ export const dilution_Skill_Data = defineSkill({
   id: 'bf01c541-bd4e-4de9-9e52-81e3b17aa689',
   name: {
     en: 'Dilution',
-    it: "Diluizione",
+    it: 'Diluizione',
     zh: '稀释',
     hi: 'तनुकरण',
     es: 'Dilución',

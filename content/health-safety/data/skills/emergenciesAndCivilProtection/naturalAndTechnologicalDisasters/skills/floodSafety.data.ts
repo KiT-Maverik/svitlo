@@ -40,7 +40,7 @@ export const floodSafety_Skill_Data = defineSkill({
       'Avoid floodwater and unstable crossings, recognize sudden changes in water levels, and follow verified evacuation guidance.',
     frontend: {
       en: 'Avoid floodwater and follow reliable instructions about dangerous rising water.',
-      it: 'Evita l\'acqua delle alluvioni e segui indicazioni affidabili sull\'innalzamento pericoloso del livello dell\'acqua.',
+      it: "Evita l'acqua delle alluvioni e segui indicazioni affidabili sull'innalzamento pericoloso del livello dell'acqua.",
       zh: '远离洪水，遵循有关水位上涨危险的可靠指示。',
       hi: 'बाढ़ के पानी से दूर रहें और बढ़ते जलस्तर की विश्वसनीय चेतावनियाँ मानें।',
       es: 'Evita el agua de inundación y sigue indicaciones fiables sobre niveles peligrosos.',

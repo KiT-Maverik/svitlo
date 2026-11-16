@@ -40,7 +40,7 @@ export const readASimpleMeasuringInstrument_Skill_Data = defineSkill({
       'Correctly relate the measured quantity to the position of a pointer on a scale, its units, and the zero reference; a reading has physical meaning only under the relevant measurement conditions.',
     frontend: {
       en: "Read an instrument's pointer, scale, unit and zero reference correctly.",
-      it: 'Leggi correttamente l\'indicatore, la scala, l\'unità e lo zero di riferimento di uno strumento.',
+      it: "Leggi correttamente l'indicatore, la scala, l'unità e lo zero di riferimento di uno strumento.",
       zh: '正确读取仪器的指针、刻度、单位和零点。',
       hi: 'यंत्र का संकेतक, पैमाना, इकाई और शून्य संदर्भ सही ढंग से पढ़ें।',
       es: 'Lee correctamente la aguja, la escala, la unidad y la referencia cero de un instrumento.',

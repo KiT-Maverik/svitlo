@@ -40,7 +40,7 @@ export const childhoodAndEducationInAntiquity_Skill_Data = defineSkill({
       'Study varied childhood experiences, socialization, craft learning, and access to formal instruction.',
     frontend: {
       en: 'Explore how children learned and grew in ancient societies.',
-      it: "Esplora come i bambini imparavano e crescevano nelle società antiche.",
+      it: 'Esplora come i bambini imparavano e crescevano nelle società antiche.',
       zh: '探索古代社会的儿童如何成长和学习。',
       hi: 'जानें कि प्राचीन समाजों में बच्चे कैसे बड़े होते और सीखते थे।',
       es: 'Explora cómo crecían y aprendían los niños en sociedades antiguas.',

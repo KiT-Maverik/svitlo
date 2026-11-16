@@ -5,7 +5,7 @@ export const environmentOfAncientSocieties_Skill_Data = defineSkill({
   id: '0fd7bb70-c12e-43d5-936a-07a10a33f865',
   name: {
     en: 'Natural Environment of Ancient Societies',
-    it: "Ambiente naturale delle società antiche",
+    it: 'Ambiente naturale delle società antiche',
     zh: '古代社会的自然环境',
     hi: 'प्राचीन समाजों का प्राकृतिक पर्यावरण',
     es: 'Entorno natural de las sociedades antiguas',

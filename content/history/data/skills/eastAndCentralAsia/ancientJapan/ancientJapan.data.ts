@@ -7,7 +7,7 @@ export const ancientJapan_SkillGroup_Data = defineSkillGroup({
   id: 'db7670ec-8b18-41b9-b78d-47b961434f18',
   name: {
     en: 'Japan',
-    it: "Giappone",
+    it: 'Giappone',
     zh: '古代日本',
     hi: 'प्राचीन जापान',
     es: 'Japón antiguo',

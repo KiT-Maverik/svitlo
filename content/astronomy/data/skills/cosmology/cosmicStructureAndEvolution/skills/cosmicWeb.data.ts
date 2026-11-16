@@ -39,7 +39,7 @@ export const cosmicWeb_Skill_Data = defineSkill({
     methodological: 'Describe how filaments, clusters and voids trace the large-scale distribution of matter.',
     frontend: {
       en: 'Explore the vast network of galactic filaments, clusters and empty regions.',
-      it: 'Esplora l\'immensa rete di filamenti galattici, ammassi e regioni vuote.',
+      it: "Esplora l'immensa rete di filamenti galattici, ammassi e regioni vuote.",
       qm: 'Galaktika ipleri, toplulıqları ve boş bölgelerden ibaret büyük kosmik ağnı araştırıñız.',
       zh: '探索由星系丝状结构、星系团和巨大空洞组成的庞大网络。',
       hi: 'आकाशगंगाओं के तंतुओं, गुच्छों और खाली क्षेत्रों के विशाल जाल को जानें।',

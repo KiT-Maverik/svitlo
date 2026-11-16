@@ -40,7 +40,7 @@ export const evaluateAReportedMiracleClaim_Skill_Data = defineSkill({
       'Weigh testimony, background assumptions, and plausible alternative explanations when assessing an extraordinary event claim without prejudging its truth.',
     frontend: {
       en: 'Evaluate an extraordinary event claim by weighing testimony and alternatives.',
-      it: 'Valuta l\'affermazione di un evento straordinario soppesando testimonianze e spiegazioni alternative.',
+      it: "Valuta l'affermazione di un evento straordinario soppesando testimonianze e spiegazioni alternative.",
       zh: '权衡证人证言和其他解释，评估关于非凡事件的主张。',
       hi: 'गवाही और वैकल्पिक व्याख्याओं को तौलकर असाधारण घटना के दावे का मूल्यांकन करें।',
       es: 'Evalúa la afirmación sobre un hecho extraordinario sopesando testimonios y explicaciones alternativas.',

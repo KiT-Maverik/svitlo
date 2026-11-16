@@ -52,7 +52,7 @@ export const inertiaAndChangesInMotion_SkillGroup_Data = defineSkillGroup({
       'A body may continue moving after an applied action ceases, while changes in motion are associated with interaction; accessible models do not require equations of motion.',
     frontend: {
       en: 'Discover inertia and how it relates to changes in motion.',
-      it: 'Scopri l\'inerzia e il suo rapporto con le variazioni del moto.',
+      it: "Scopri l'inerzia e il suo rapporto con le variazioni del moto.",
       zh: '探索惯性以及它与运动变化之间的关系。',
       hi: 'जड़त्व और गति में बदलाव से उसके संबंध को समझें।',
       es: 'Descubre la inercia y cómo se relaciona con los cambios de movimiento.',

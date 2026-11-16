@@ -5,7 +5,7 @@ export const irrigationEngineering_Skill_Data = defineSkill({
   id: '25e625a3-4b72-4d61-931e-32128feedaed',
   name: {
     en: 'Irrigation engineering',
-    it: 'Ingegneria dell\'irrigazione',
+    it: "Ingegneria dell'irrigazione",
     zh: '灌溉工程',
     hi: 'सिंचाई अभियांत्रिकी',
     es: 'Ingeniería de riego',

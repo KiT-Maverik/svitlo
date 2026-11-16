@@ -39,7 +39,7 @@ export const protectiveSurfaceTreatments_Skill_Data = defineSkill({
     methodological: 'Relate coatings or treatments to corrosion, wear, wetting or other surface properties.',
     frontend: {
       en: 'Choose coatings that protect a surface against wear or corrosion.',
-      it: 'Scegli rivestimenti che proteggano una superficie dall\'usura o dalla corrosione.',
+      it: "Scegli rivestimenti che proteggano una superficie dall'usura o dalla corrosione.",
       zh: '选择能防止表面磨损或腐蚀的涂层。',
       hi: 'सतह को घिसाव या जंग से बचाने वाली परतें चुनें।',
       es: 'Elige recubrimientos que protejan una superficie del desgaste o la corrosión.',

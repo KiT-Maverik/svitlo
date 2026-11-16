@@ -5,7 +5,7 @@ export const analyzeHumanAutonomyInTechnologicalSystems_Skill_Data = defineSkill
   id: 'dfb7bf17-89af-462b-b47b-9db218de5cc9',
   name: {
     en: 'Analyze human autonomy in technological systems',
-    it: 'Analizzare l\'autonomia umana nei sistemi tecnologici',
+    it: "Analizzare l'autonomia umana nei sistemi tecnologici",
     zh: '分析技术系统中的人的自主性',
     hi: 'तकनीकी प्रणालियों में मानवीय स्वायत्तता का विश्लेषण',
     es: 'Analizar la autonomía humana en sistemas tecnológicos',

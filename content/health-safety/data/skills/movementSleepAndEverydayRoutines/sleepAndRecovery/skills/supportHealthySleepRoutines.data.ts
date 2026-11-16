@@ -40,7 +40,7 @@ export const supportHealthySleepRoutines_Skill_Data = defineSkill({
       'Identify modifiable factors such as light, noise, stimulants, and schedule regularity that can affect sleep.',
     frontend: {
       en: 'Adjust routines and surroundings to support better sleep.',
-      it: 'Adatta le abitudini e l\'ambiente circostante per favorire un sonno migliore.',
+      it: "Adatta le abitudini e l'ambiente circostante per favorire un sonno migliore.",
       zh: '调整日常安排和周围环境，改善睡眠。',
       hi: 'बेहतर नींद के लिए आदतें और आसपास का वातावरण बदलें।',
       es: 'Adapta tus hábitos y el entorno para dormir mejor.',

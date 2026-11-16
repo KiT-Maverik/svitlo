@@ -40,7 +40,7 @@ export const unknownAddend_Skill_Data = defineSkill({
       'Find an unknown addend by subtracting the known addend from the sum in the relevant number domain. Substitution into the original equation verifies the part-whole relationship.',
     frontend: {
       en: 'You can find a missing addend by subtracting the known addend from the sum, then check by adding.',
-      it: 'Puoi trovare l\'addendo mancante sottraendo l\'addendo noto dalla somma, poi verificare con un\'addizione.',
+      it: "Puoi trovare l'addendo mancante sottraendo l'addendo noto dalla somma, poi verificare con un'addizione.",
       qm: 'Toplamdan belli olğan qoşulıcını çıqarıp, eksik qoşulıcını tapa bilesiñ. Soñra qoşuvnen teşkere et.',
       zh: '你能用和减去已知加数来求出未知加数，再用加法验算。',
       hi: 'तुम योग में से ज्ञात जोड़ने वाली संख्या घटाकर अज्ञात संख्या निकाल सकते हो और जोड़कर जाँच सकते हो।',

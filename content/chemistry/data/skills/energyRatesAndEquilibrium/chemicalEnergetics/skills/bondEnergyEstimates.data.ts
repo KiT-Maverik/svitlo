@@ -5,7 +5,7 @@ export const bondEnergyEstimates_Skill_Data = defineSkill({
   id: '23452c58-5aa2-4aad-b152-8633f315a70b',
   name: {
     en: 'Bond Energy Estimates',
-    it: "Stime delle energie di legame",
+    it: 'Stime delle energie di legame',
     zh: '键能估算',
     hi: 'बंध ऊर्जा से अनुमान',
     es: 'Estimaciones con energías de enlace',

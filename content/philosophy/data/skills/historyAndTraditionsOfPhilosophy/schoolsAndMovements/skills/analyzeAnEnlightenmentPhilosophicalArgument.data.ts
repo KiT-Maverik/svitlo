@@ -5,7 +5,7 @@ export const analyzeAnEnlightenmentPhilosophicalArgument_Skill_Data = defineSkil
   id: '1b686b99-2a9c-40ab-99a7-7316f5f6f8db',
   name: {
     en: 'Analyze an Enlightenment philosophical argument',
-    it: 'Analizzare un\'argomentazione filosofica dell\'Illuminismo',
+    it: "Analizzare un'argomentazione filosofica dell'Illuminismo",
     zh: '分析启蒙运动的哲学论证',
     hi: 'प्रबोधन युग के दार्शनिक तर्क का विश्लेषण',
     es: 'Analizar un argumento filosófico de la Ilustración',
@@ -40,7 +40,7 @@ export const analyzeAnEnlightenmentPhilosophicalArgument_Skill_Data = defineSkil
       'Place a claim about reason, liberty, or authority in its intellectual context while acknowledging diverse and conflicting Enlightenment positions.',
     frontend: {
       en: 'Explore Enlightenment arguments about reason, authority and freedom.',
-      it: 'Esplora le argomentazioni illuministiche sulla ragione, sull\'autorità e sulla libertà.',
+      it: "Esplora le argomentazioni illuministiche sulla ragione, sull'autorità e sulla libertà.",
       zh: '探索启蒙思想关于理性、权威和自由的论证。',
       hi: 'बुद्धि, सत्ता और स्वतंत्रता पर प्रबोधन युग के तर्क समझो।',
       es: 'Explora argumentos ilustrados sobre razón, autoridad y libertad.',

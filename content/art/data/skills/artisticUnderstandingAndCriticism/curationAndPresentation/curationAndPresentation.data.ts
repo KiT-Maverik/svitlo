@@ -12,7 +12,7 @@ export const curationAndPresentation_SkillGroup_Data = defineSkillGroup({
   id: '17fba333-c8a4-48c7-b81a-31d7f7c3b0de',
   name: {
     en: 'Curation and Presentation',
-    it: "Curatela e presentazione",
+    it: 'Curatela e presentazione',
     zh: '策展与展示',
     hi: 'क्यूरेशन और प्रस्तुति',
     es: 'Comisariado y presentación',

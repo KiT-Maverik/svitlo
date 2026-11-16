@@ -40,7 +40,7 @@ export const compareObservationalAndExperimentalResearch_Skill_Data = defineSkil
       'Distinguish observing variation as it occurs from deliberately manipulating an explanatory factor.',
     frontend: {
       en: 'Distinguish watching natural variation from deliberately changing a factor.',
-      it: 'Distingui l\'osservazione delle variazioni naturali dalla modifica deliberata di un fattore.',
+      it: "Distingui l'osservazione delle variazioni naturali dalla modifica deliberata di un fattore.",
       zh: '区分观察自然变化与有意改变某一因素。',
       hi: 'स्वाभाविक बदलाव देखने और जानबूझकर किसी कारक को बदलने में अंतर करें।',
       es: 'Distingue observar variaciones naturales de modificar deliberadamente un factor.',

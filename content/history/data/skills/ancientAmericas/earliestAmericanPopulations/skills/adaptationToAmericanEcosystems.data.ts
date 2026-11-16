@@ -5,7 +5,7 @@ export const adaptationToAmericanEcosystems_Skill_Data = defineSkill({
   id: '6148308a-7616-4842-b204-fcfef34ebb29',
   name: {
     en: 'Adaptation to American Ecosystems',
-    it: "Adattamento agli ecosistemi americani",
+    it: 'Adattamento agli ecosistemi americani',
     zh: '适应美洲生态系统',
     hi: 'अमेरिकी पारितंत्रों के अनुसार ढलना',
     es: 'Adaptación a los ecosistemas americanos',
@@ -39,7 +39,7 @@ export const adaptationToAmericanEcosystems_Skill_Data = defineSkill({
     methodological: 'Trace livelihoods from Arctic and tropical environments to highlands.',
     frontend: {
       en: 'See how early Americans adapted to varied ecosystems.',
-      it: "Scopri come i primi abitanti delle Americhe si adattarono a ecosistemi diversi.",
+      it: 'Scopri come i primi abitanti delle Americhe si adattarono a ecosistemi diversi.',
       zh: '观察早期美洲居民如何适应多种生态环境。',
       hi: 'देखें कि शुरुआती अमेरिकी निवासी विभिन्न पारितंत्रों के अनुरूप कैसे ढले।',
       es: 'Observa cómo las primeras poblaciones americanas se adaptaron a diversos ecosistemas.',

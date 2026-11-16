@@ -39,7 +39,7 @@ export const feedbackControlLoops_Skill_Data = defineSkill({
     methodological: 'Locate setpoint, sensor, controller, actuator and physical plant in a working system.',
     frontend: {
       en: 'Trace how measured output feeds back into a controller.',
-      it: 'Segui come l\'uscita misurata viene riportata al controllore.',
+      it: "Segui come l'uscita misurata viene riportata al controllore.",
       zh: '追踪测得的输出如何返回控制器。',
       hi: 'समझें कि मापा गया आउटपुट नियंत्रक तक वापस कैसे पहुँचता है।',
       es: 'Sigue cómo la salida medida vuelve al controlador.',

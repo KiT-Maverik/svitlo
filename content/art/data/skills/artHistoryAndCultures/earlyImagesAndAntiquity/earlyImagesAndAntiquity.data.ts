@@ -13,7 +13,7 @@ export const earlyImagesAndAntiquity_SkillGroup_Data = defineSkillGroup({
   id: 'eccab0e6-bbf1-44c9-a3ba-2d3cf4a429e7',
   name: {
     en: 'Early Images and Antiquity',
-    it: "Prime immagini e arte antica",
+    it: 'Prime immagini e arte antica',
     zh: '早期图像与古代艺术',
     hi: 'प्रारंभिक चित्र और प्राचीन कला',
     es: 'Imágenes tempranas y Antigüedad',

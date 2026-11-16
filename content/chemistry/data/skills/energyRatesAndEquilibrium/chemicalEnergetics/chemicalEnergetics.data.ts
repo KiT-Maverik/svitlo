@@ -16,7 +16,7 @@ export const chemicalEnergetics_SkillGroup_Data = defineSkillGroup({
   id: 'b1f1c17b-f136-4bb8-ad70-84521202cf3f',
   name: {
     en: 'Chemical Energetics',
-    it: "Energetica chimica",
+    it: 'Energetica chimica',
     zh: '化学能量学',
     hi: 'रासायनिक ऊर्जिकी',
     es: 'Energética química',

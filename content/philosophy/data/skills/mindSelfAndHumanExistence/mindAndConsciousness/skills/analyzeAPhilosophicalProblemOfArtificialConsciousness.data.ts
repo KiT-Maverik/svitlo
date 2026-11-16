@@ -40,7 +40,7 @@ export const analyzeAPhilosophicalProblemOfArtificialConsciousness_Skill_Data = 
       'Assess what would and would not count as evidence of experience in an artificial system, without claiming a settled test exists.',
     frontend: {
       en: 'Consider what evidence could support a claim about artificial consciousness.',
-      it: 'Considera quali prove potrebbero sostenere un\'affermazione sulla coscienza artificiale.',
+      it: "Considera quali prove potrebbero sostenere un'affermazione sulla coscienza artificiale.",
       zh: '思考什么样的证据能够支持关于人工意识的主张。',
       hi: 'विचार करें कि कृत्रिम चेतना के दावे का समर्थन कौन-सा प्रमाण कर सकता है।',
       es: 'Considera qué pruebas podrían respaldar una afirmación sobre conciencia artificial.',

@@ -62,7 +62,7 @@ export const appliedPsychology_SkillDomain_Data = defineSkillDomain({
       'Psychological knowledge informs educational, occupational, health, design, and community settings. Applications translate evidence about people into context-sensitive decisions without claiming that a single intervention suits everyone.',
     frontend: {
       en: 'Explore how psychological evidence informs education, workplaces, health and communities.',
-      it: 'Scopri come le evidenze psicologiche contribuiscono all\'istruzione, al lavoro, alla salute e alla vita delle comunità.',
+      it: "Scopri come le evidenze psicologiche contribuiscono all'istruzione, al lavoro, alla salute e alla vita delle comunità.",
       zh: '探索心理学证据如何为教育、职场、健康和社区提供参考。',
       hi: 'जानें कि मनोवैज्ञानिक साक्ष्य शिक्षा, काम, स्वास्थ्य और समुदायों को कैसे दिशा देते हैं।',
       es: 'Explora cómo los hallazgos de la investigación psicológica orientan la educación, el trabajo, la salud y las comunidades.',

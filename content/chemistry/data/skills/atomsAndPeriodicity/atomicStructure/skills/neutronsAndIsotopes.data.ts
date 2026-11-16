@@ -5,7 +5,7 @@ export const neutronsAndIsotopes_Skill_Data = defineSkill({
   id: '2446d557-cab8-4d22-a08d-4ac4f057431a',
   name: {
     en: 'Neutrons and Isotopes',
-    it: "Neutroni e isotopi",
+    it: 'Neutroni e isotopi',
     zh: '中子与同位素',
     hi: 'न्यूट्रॉन और समस्थानिक',
     es: 'Neutrones e isótopos',
@@ -39,7 +39,7 @@ export const neutronsAndIsotopes_Skill_Data = defineSkill({
     methodological: 'Relate neutron count to isotopic identity without treating isotopes as different elements.',
     frontend: {
       en: 'Understand why isotopes of an element have different neutron numbers.',
-      it: "Comprendi perché gli isotopi dello stesso elemento hanno numeri diversi di neutroni.",
+      it: 'Comprendi perché gli isotopi dello stesso elemento hanno numeri diversi di neutroni.',
       zh: '了解为什么同一种元素的不同同位素含有不同数量的中子。',
       hi: 'समझें कि एक ही तत्व के समस्थानिकों में न्यूट्रॉन की संख्या अलग क्यों होती है।',
       es: 'Comprende por qué los isótopos de un mismo elemento tienen distinto número de neutrones.',

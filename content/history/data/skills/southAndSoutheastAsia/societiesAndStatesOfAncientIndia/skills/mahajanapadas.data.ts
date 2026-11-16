@@ -5,7 +5,7 @@ export const mahajanapadas_Skill_Data = defineSkill({
   id: 'f1bc9555-0e94-43a0-b7c5-754c36ab66e1',
   name: {
     en: 'Mahajanapadas',
-    it: "Mahajanapada",
+    it: 'Mahajanapada',
     zh: '十六大国',
     hi: 'महाजनपद',
     es: 'Mahajanapadas',
@@ -39,7 +39,7 @@ export const mahajanapadas_Skill_Data = defineSkill({
     methodological: 'Trace major monarchies, republican polities, and renewed urbanization in the Ganges valley.',
     frontend: {
       en: 'Explore the states that emerged in the Ganges region.',
-      it: "Esplora gli Stati che sorsero nella regione del Gange.",
+      it: 'Esplora gli Stati che sorsero nella regione del Gange.',
       zh: '探索恒河流域兴起的诸国家。',
       hi: 'गंगा क्षेत्र में उभरे राज्यों के बारे में जानें।',
       es: 'Explora los estados surgidos en la región del Ganges.',

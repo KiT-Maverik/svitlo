@@ -5,7 +5,7 @@ export const pH_Skill_Data = defineSkill({
   id: '002fd049-95b6-4798-998e-9b647d0d8667',
   name: {
     en: 'pH',
-    it: "pH",
+    it: 'pH',
     zh: 'pH 值',
     hi: 'पीएच',
     es: 'pH',

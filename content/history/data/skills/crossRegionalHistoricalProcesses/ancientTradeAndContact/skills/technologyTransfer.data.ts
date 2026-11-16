@@ -5,7 +5,7 @@ export const technologyTransfer_Skill_Data = defineSkill({
   id: '2a047815-6d19-4840-8e31-4e17e5163e8a',
   name: {
     en: 'Technology Transfer',
-    it: "Trasferimento delle tecnologie",
+    it: 'Trasferimento delle tecnologie',
     zh: '技术传播与借鉴',
     hi: 'प्रौद्योगिकी का प्रसार और अपनाना',
     es: 'Transferencia de tecnología',
@@ -39,7 +39,7 @@ export const technologyTransfer_Skill_Data = defineSkill({
     methodological: 'Explain how techniques spread between societies and were adapted to new functions or practices.',
     frontend: {
       en: 'Recognize how communities learned and changed technologies from others.',
-      it: "Riconosci come le comunità apprendevano da altri e modificavano le tecnologie.",
+      it: 'Riconosci come le comunità apprendevano da altri e modificavano le tecnologie.',
       zh: '认识社群如何从他人那里学习技术，并加以改造。',
       hi: 'जानें कि समुदाय अन्य लोगों से तकनीकें सीखकर उनमें बदलाव कैसे करते थे।',
       es: 'Reconoce cómo las comunidades aprendían tecnologías de otras y las modificaban.',

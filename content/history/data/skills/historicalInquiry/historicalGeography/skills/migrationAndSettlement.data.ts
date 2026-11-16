@@ -5,7 +5,7 @@ export const migrationAndSettlement_Skill_Data = defineSkill({
   id: 'febba0ca-7258-4818-b573-b548fa15b027',
   name: {
     en: 'Migration and Settlement',
-    it: "Migrazioni e insediamenti",
+    it: 'Migrazioni e insediamenti',
     zh: '迁徙与定居',
     hi: 'प्रवास और बसावट',
     es: 'Migración y asentamiento',
@@ -40,7 +40,7 @@ export const migrationAndSettlement_Skill_Data = defineSkill({
       'Reconstruct movements using combined archaeological, linguistic, genetic, and environmental evidence.',
     frontend: {
       en: 'Trace where people moved using several kinds of historical clues.',
-      it: "Ricostruisci gli spostamenti delle popolazioni usando diversi tipi di indizi storici.",
+      it: 'Ricostruisci gli spostamenti delle popolazioni usando diversi tipi di indizi storici.',
       zh: '利用多种历史线索追踪人群迁徙的地点。',
       hi: 'विभिन्न ऐतिहासिक संकेतों की मदद से लोगों के स्थानांतरण का पता लगाएँ।',
       es: 'Rastrea los desplazamientos humanos con distintos tipos de indicios históricos.',

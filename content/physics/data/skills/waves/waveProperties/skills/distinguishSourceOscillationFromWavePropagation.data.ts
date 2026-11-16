@@ -5,7 +5,7 @@ export const distinguishSourceOscillationFromWavePropagation_Skill_Data = define
   id: '19c06485-1d79-436d-a240-33e612e70fa5',
   name: {
     en: 'Distinguish source oscillation from wave propagation',
-    it: 'Distinguere l\'oscillazione della sorgente dalla propagazione dell\'onda',
+    it: "Distinguere l'oscillazione della sorgente dalla propagazione dell'onda",
     zh: '区分波源振动与波的传播',
     hi: 'स्रोत के कंपन और तरंग प्रसार में अंतर करना',
     es: 'Distinguir la oscilación de la fuente de la propagación de la onda',

@@ -40,7 +40,7 @@ export const selectAMaterialForMaintainingTemperature_Skill_Data = defineSkill({
       "Choose an insulator for a simple everyday task and justify the choice using the material's properties.",
     frontend: {
       en: 'Choose an insulating material for a practical temperature-control need.',
-      it: 'Scegli un materiale isolante adatto a un\'esigenza pratica di controllo della temperatura.',
+      it: "Scegli un materiale isolante adatto a un'esigenza pratica di controllo della temperatura.",
       qm: 'Temperaturanı saqlamaq içün ameliy ihtiyacğa yarağan izolâtsiya malzemesini sayla.',
       zh: '为实际保温或隔热需求选择合适的材料。',
       hi: 'किसी व्यावहारिक ताप नियंत्रण आवश्यकता के लिए ऊष्मारोधक पदार्थ चुनें।',

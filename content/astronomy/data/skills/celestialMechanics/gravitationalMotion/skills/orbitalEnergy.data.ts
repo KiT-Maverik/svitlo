@@ -39,7 +39,7 @@ export const orbitalEnergy_Skill_Data = defineSkill({
     methodological: 'Relate gravitational potential and kinetic energy to bound and unbound orbital trajectories.',
     frontend: {
       en: 'Explore how energy determines whether an orbit remains bound or escapes.',
-      it: 'Esplora come l\'energia determina se un\'orbita rimane legata o permette la fuga.',
+      it: "Esplora come l'energia determina se un'orbita rimane legata o permette la fuga.",
       zh: '探索能量如何决定天体是保持引力束缚的轨道，还是能够逃离。',
       hi: 'जानें कि ऊर्जा कैसे तय करती है कि कोई पिंड कक्षा में बँधा रहेगा या उससे निकल जाएगा।',
       es: 'Explora cómo la energía determina si una órbita permanece ligada por la gravedad o permite escapar.',

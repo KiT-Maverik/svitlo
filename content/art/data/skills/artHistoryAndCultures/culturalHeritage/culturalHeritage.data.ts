@@ -12,7 +12,7 @@ export const culturalHeritage_SkillGroup_Data = defineSkillGroup({
   id: '286a3455-8dc6-4593-937c-8ccfd09c7605',
   name: {
     en: 'Cultural Heritage',
-    it: "Patrimonio culturale",
+    it: 'Patrimonio culturale',
     zh: '文化遗产',
     hi: 'सांस्कृतिक विरासत',
     es: 'Patrimonio cultural',

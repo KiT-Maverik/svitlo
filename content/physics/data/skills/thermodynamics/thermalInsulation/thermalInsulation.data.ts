@@ -52,7 +52,7 @@ export const thermalInsulation_SkillGroup_Data = defineSkillGroup({
       'Insulating materials slow down energy transfer but do not create energy themselves; this differs from describing the three mechanisms of heat exchange.',
     frontend: {
       en: 'Explore how insulation slows the transfer of heat.',
-      it: 'Esplora come l\'isolamento rallenta il trasferimento di calore.',
+      it: "Esplora come l'isolamento rallenta il trasferimento di calore.",
       qm: 'İzolâtsiya sıcaqlıqnıñ berilüvini nasıl yavaşlatqanını araştır.',
       zh: '探索隔热材料如何减缓热量传递。',
       hi: 'जानें कि ऊष्मा रोधन से ऊष्मा का स्थानांतरण धीमा कैसे होता है।',

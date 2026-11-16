@@ -5,7 +5,7 @@ export const historicalCausality_Skill_Data = defineSkill({
   id: '9a10ab0f-d3dc-44cf-ad58-3e449b80293d',
   name: {
     en: 'Historical Causality',
-    it: "Causalità storica",
+    it: 'Causalità storica',
     zh: '历史因果关系',
     hi: 'ऐतिहासिक कारण-कार्य संबंध',
     es: 'Causalidad histórica',
@@ -40,7 +40,7 @@ export const historicalCausality_Skill_Data = defineSkill({
       'Separate immediate triggers from long-term conditions and consider multiple causes of a historical change.',
     frontend: {
       en: 'Explore why historical events usually have more than one cause.',
-      it: "Esplora perché gli eventi storici hanno di solito più di una causa.",
+      it: 'Esplora perché gli eventi storici hanno di solito più di una causa.',
       zh: '探究历史事件通常为什么不只有一个原因。',
       hi: 'जानें कि ऐतिहासिक घटनाओं के अक्सर एक से अधिक कारण क्यों होते हैं।',
       es: 'Explora por qué los acontecimientos históricos suelen tener más de una causa.',

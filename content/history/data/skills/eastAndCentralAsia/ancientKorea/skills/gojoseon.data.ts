@@ -5,7 +5,7 @@ export const gojoseon_Skill_Data = defineSkill({
   id: '6789e2ed-aa6a-437c-88d9-f806e925ed8b',
   name: {
     en: 'Gojoseon (Old Joseon)',
-    it: "Gojoseon (Antico Joseon)",
+    it: 'Gojoseon (Antico Joseon)',
     zh: '古朝鲜',
     hi: 'गोजोसोन (प्राचीन जोसोन)',
     es: 'Gojoseon (Antiguo Joseon)',
@@ -40,7 +40,7 @@ export const gojoseon_Skill_Data = defineSkill({
       'Interpret archaeological and written evidence about early Gojoseon without treating legendary founding dates as proven.',
     frontend: {
       en: 'Discover what historians know and debate about Gojoseon.',
-      it: "Scopri che cosa gli storici conoscono e discutono riguardo a Gojoseon.",
+      it: 'Scopri che cosa gli storici conoscono e discutono riguardo a Gojoseon.',
       zh: '了解历史学家对古朝鲜的认识以及仍有争议的问题。',
       hi: 'जानें कि गोजोसोन के बारे में इतिहासकार क्या जानते हैं और किन बातों पर बहस होती है।',
       es: 'Descubre qué saben y qué debaten los historiadores sobre Gojoseon.',

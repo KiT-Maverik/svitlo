@@ -5,7 +5,7 @@ export const analyzeGothicCathedralSculpture_Skill_Data = defineSkill({
   id: 'ff5fd9b8-9ff7-4bc7-86af-2d65e48084a8',
   name: {
     en: 'Analyze Gothic Cathedral Sculpture',
-    it: "Analizzare la scultura delle cattedrali gotiche",
+    it: 'Analizzare la scultura delle cattedrali gotiche',
     zh: '分析哥特式大教堂雕塑',
     hi: 'गोथिक गिरजाघर की मूर्तिकला का विश्लेषण करें',
     es: 'Analizar la escultura de las catedrales góticas',

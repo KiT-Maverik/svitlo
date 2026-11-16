@@ -5,7 +5,7 @@ export const structurePropertyRelationships_Skill_Data = defineSkill({
   id: '1d31dee4-691c-408a-be8e-d1bdd6e684d2',
   name: {
     en: 'Structure–Property Relationships',
-    it: "Relazioni tra struttura e proprietà",
+    it: 'Relazioni tra struttura e proprietà',
     zh: '结构与性质的关系',
     hi: 'संरचना और गुणों का संबंध',
     es: 'Relaciones entre estructura y propiedades',
@@ -40,7 +40,7 @@ export const structurePropertyRelationships_Skill_Data = defineSkill({
       'Use bonding and intermolecular interactions jointly to explain contrasting boiling points, hardness or conductivity.',
     frontend: {
       en: 'Use bonds and particle interactions to explain differences between materials.',
-      it: "Usa legami e interazioni tra particelle per spiegare le differenze tra materiali.",
+      it: 'Usa legami e interazioni tra particelle per spiegare le differenze tra materiali.',
       zh: '用化学键和粒子间相互作用解释不同材料的性质差异。',
       hi: 'बंधों और कणों की अंतःक्रियाओं से पदार्थों के गुणों में अंतर समझाएँ।',
       es: 'Usa enlaces e interacciones entre partículas para explicar diferencias entre materiales.',

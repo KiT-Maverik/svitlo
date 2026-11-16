@@ -5,7 +5,7 @@ export const greenChemistryPrinciples_Skill_Data = defineSkill({
   id: 'c9265b7c-91f0-4908-b068-9f4aa8de6e03',
   name: {
     en: 'Green Chemistry Principles',
-    it: "Principi della chimica verde",
+    it: 'Principi della chimica verde',
     zh: '绿色化学原则',
     hi: 'हरित रसायन के सिद्धांत',
     es: 'Principios de química verde',

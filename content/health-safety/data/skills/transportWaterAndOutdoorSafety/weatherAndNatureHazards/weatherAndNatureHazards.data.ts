@@ -67,7 +67,7 @@ export const weatherAndNatureHazards_SkillGroup_Data = defineSkillGroup({
       'Outdoor risks vary with temperature, sunlight, storms, terrain, and wildlife; adaptation depends on current conditions and local alerts.',
     frontend: {
       en: 'Recognize how changing weather and terrain affect outdoor safety.',
-      it: 'Riconosci come i cambiamenti del tempo e del terreno influiscono sulla sicurezza all\'aperto.',
+      it: "Riconosci come i cambiamenti del tempo e del terreno influiscono sulla sicurezza all'aperto.",
       zh: '认识变化的天气和地形如何影响户外安全。',
       hi: 'समझें कि बदलता मौसम और भूभाग बाहर की सुरक्षा को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo el clima cambiante y el terreno afectan la seguridad al aire libre.',

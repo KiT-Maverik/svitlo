@@ -9,7 +9,7 @@ export const inorganicChemistry_SkillDomain_Data = defineSkillDomain({
   id: 'ad77a99a-a6b3-4db6-8d2a-4a5c870d3a81',
   title: {
     en: 'Inorganic Chemistry',
-    it: "Chimica inorganica",
+    it: 'Chimica inorganica',
     zh: '无机化学',
     hi: 'अकार्बनिक रसायन विज्ञान',
     es: 'Química inorgánica',
@@ -52,7 +52,7 @@ export const inorganicChemistry_SkillDomain_Data = defineSkillDomain({
       'The chemistry of elements and non-carbon-centered substance families provides a systematic account of familiar materials and dissolved ions. Organic chemistry handles carbon-based families in greater detail.',
     frontend: {
       en: 'Explore the properties and behavior of elements, inorganic compounds and dissolved ions.',
-      it: "Esplora le proprietà e il comportamento di elementi, composti inorganici e ioni disciolti.",
+      it: 'Esplora le proprietà e il comportamento di elementi, composti inorganici e ioni disciolti.',
       zh: '探索元素、无机化合物和溶解离子的性质与行为。',
       hi: 'तत्वों, अकार्बनिक यौगिकों और घुले हुए आयनों के गुणों और व्यवहार का अध्ययन करें।',
       es: 'Explora las propiedades y el comportamiento de los elementos, los compuestos inorgánicos y los iones disueltos.',

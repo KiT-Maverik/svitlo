@@ -5,7 +5,7 @@ export const metalsNonmetalsAndMetalloids_Skill_Data = defineSkill({
   id: 'ed3b1f6c-9131-45a2-9389-58ddcb77527c',
   name: {
     en: 'Metals, Nonmetals and Metalloids',
-    it: "Metalli, non metalli e semimetalli",
+    it: 'Metalli, non metalli e semimetalli',
     zh: '金属、非金属与类金属',
     hi: 'धातु, अधातु और उपधातु',
     es: 'Metales, no metales y metaloides',
@@ -40,7 +40,7 @@ export const metalsNonmetalsAndMetalloids_Skill_Data = defineSkill({
       'Use the broad distinctions and their limitations to infer plausible chemical and physical behavior.',
     frontend: {
       en: 'Distinguish metals, nonmetals and metalloids while allowing for exceptions.',
-      it: "Distingui metalli, non metalli e semimetalli, tenendo conto delle eccezioni.",
+      it: 'Distingui metalli, non metalli e semimetalli, tenendo conto delle eccezioni.',
       zh: '区分金属、非金属和类金属，同时认识它们的例外情况。',
       hi: 'धातुओं, अधातुओं और उपधातुओं में अंतर समझें और अपवादों को भी ध्यान में रखें।',
       es: 'Distingue metales, no metales y metaloides, teniendo en cuenta las excepciones.',

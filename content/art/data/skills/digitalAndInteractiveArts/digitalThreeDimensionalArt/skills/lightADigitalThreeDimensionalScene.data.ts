@@ -40,7 +40,7 @@ export const lightADigitalThreeDimensionalScene_Skill_Data = defineSkill({
       'Arrange illumination and shadows to establish form, mood and intended visual emphasis in a three-dimensional composition.',
     frontend: {
       en: 'Use digital lighting and shadows to create mood and reveal form.',
-      it: 'Usa luci e ombre digitali per creare un\'atmosfera e mettere in risalto le forme.',
+      it: "Usa luci e ombre digitali per creare un'atmosfera e mettere in risalto le forme.",
       zh: '运用数字灯光和阴影营造氛围并呈现形体。',
       hi: 'माहौल बनाने और रूप उभारने के लिए डिजिटल प्रकाश और छाया का उपयोग करें।',
       es: 'Usa luces y sombras digitales para crear ambiente y revelar las formas.',

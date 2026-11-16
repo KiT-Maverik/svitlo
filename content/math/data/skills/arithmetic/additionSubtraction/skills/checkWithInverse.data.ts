@@ -40,7 +40,7 @@ export const checkWithInverse_Skill_Data = defineSkill({
       'The result of 63 - 28 can be checked by adding 28 back to the computed difference. A disagreement indicates an error and illustrates inverse operations as a verification method.',
     frontend: {
       en: 'You can check addition by subtracting and subtraction by adding, using the inverse operation to spot mistakes.',
-      it: 'Puoi controllare un\'addizione con una sottrazione e una sottrazione con un\'addizione, usando l\'operazione inversa per individuare gli errori.',
+      it: "Puoi controllare un'addizione con una sottrazione e una sottrazione con un'addizione, usando l'operazione inversa per individuare gli errori.",
       qm: 'Qoşuv neticesini çıqaruvnen, çıqaruv neticesini ise qoşuvnen teşkere etip, ters amel yardımınen yañlışlarnı tapa bilesiñ.',
       zh: '你能用减法检查加法、用加法检查减法，利用互逆运算发现错误。',
       hi: 'तुम घटाव से जोड़ की और जोड़ से घटाव की जाँच कर सकते हो तथा उलटी संक्रिया से गलतियाँ पकड़ सकते हो।',

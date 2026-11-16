@@ -40,7 +40,7 @@ export const distinguishElasticFromInelasticCollisions_Skill_Data = defineSkill(
       "In an elastic collision, the system's kinetic energy is conserved; in an inelastic collision, some becomes internal energy and deformation. Momentum remains conserved in an isolated system.",
     frontend: {
       en: 'Compare elastic and inelastic collisions without confusing energy with momentum conservation.',
-      it: 'Confronta gli urti elastici e anelastici senza confondere la conservazione dell\'energia con quella della quantità di moto.',
+      it: "Confronta gli urti elastici e anelastici senza confondere la conservazione dell'energia con quella della quantità di moto.",
       zh: '比较弹性和非弹性碰撞，不要混淆能量守恒与动量守恒。',
       hi: 'ऊर्जा संरक्षण और संवेग संरक्षण को अलग रखते हुए दोनों प्रकार की टक्करों की तुलना करें।',
       es: 'Compara colisiones elásticas e inelásticas sin confundir la conservación de la energía con la del momento lineal.',

@@ -5,7 +5,7 @@ export const applyCareEthicalReasoning_Skill_Data = defineSkill({
   id: 'bd38ae59-cb42-4391-b43b-9bf665e4cf55',
   name: {
     en: 'Apply care-ethical reasoning',
-    it: 'Applicare il ragionamento dell\'etica della cura',
+    it: "Applicare il ragionamento dell'etica della cura",
     zh: '运用关怀伦理推理',
     hi: 'देखभाल-आधारित नैतिक तर्क लागू करना',
     es: 'Aplicar razonamiento de ética del cuidado',

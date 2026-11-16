@@ -40,7 +40,7 @@ export const useAThoughtExperimentToExamineAConcept_Skill_Data = defineSkill({
       'Vary features of an imagined situation to isolate a philosophical principle; make clear which assumptions are stipulated rather than observed.',
     frontend: {
       en: 'Use an imagined scenario to test an idea while keeping its assumptions clear.',
-      it: 'Usa uno scenario immaginario per mettere alla prova un\'idea, mantenendo espliciti i suoi presupposti.',
+      it: "Usa uno scenario immaginario per mettere alla prova un'idea, mantenendo espliciti i suoi presupposti.",
       zh: '用假想情境检验一种观点，同时明确其中的假设。',
       hi: 'काल्पनिक स्थिति के सहारे किसी विचार की जाँच करें और उसकी मान्यताओं को स्पष्ट रखें।',
       es: 'Usa una situación imaginaria para examinar una idea dejando claros sus supuestos.',

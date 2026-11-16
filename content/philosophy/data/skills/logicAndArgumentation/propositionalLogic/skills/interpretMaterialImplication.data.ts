@@ -5,7 +5,7 @@ export const interpretMaterialImplication_Skill_Data = defineSkill({
   id: 'e181747d-0f10-49b7-91f0-5f398290d2d8',
   name: {
     en: 'Interpret material implication',
-    it: 'Interpretare l\'implicazione materiale',
+    it: "Interpretare l'implicazione materiale",
     zh: '理解实质蕴含',
     hi: 'भौतिक निहितार्थ की व्याख्या',
     es: 'Interpretar la implicación material',

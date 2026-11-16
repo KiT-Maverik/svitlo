@@ -5,7 +5,7 @@ export const particleNatureOfMatter_Skill_Data = defineSkill({
   id: 'ef1cf2d0-1bb8-41b9-8bb6-7a1e09f13e04',
   name: {
     en: 'Particle Nature of Matter',
-    it: "Natura particellare della materia",
+    it: 'Natura particellare della materia',
     zh: '物质的粒子本质',
     hi: 'पदार्थ की कणीय प्रकृति',
     es: 'Naturaleza particulada de la materia',
@@ -40,7 +40,7 @@ export const particleNatureOfMatter_Skill_Data = defineSkill({
       'Explain how an enormous number of microscopic constituents can account for a continuous-looking sample.',
     frontend: {
       en: 'Explain why a sample that looks continuous is made of many tiny particles.',
-      it: "Spiega perché un campione apparentemente continuo è formato da moltissime particelle.",
+      it: 'Spiega perché un campione apparentemente continuo è formato da moltissime particelle.',
       zh: '解释为什么看似连续的样品实际由大量微小粒子组成。',
       hi: 'समझाएँ कि लगातार दिखने वाला नमूना भी अनेक सूक्ष्म कणों से क्यों बना होता है।',
       es: 'Explica por qué una muestra que parece continua está formada por muchas partículas diminutas.',

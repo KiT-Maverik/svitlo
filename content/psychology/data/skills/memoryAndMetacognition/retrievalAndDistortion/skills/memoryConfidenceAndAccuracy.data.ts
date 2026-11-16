@@ -39,7 +39,7 @@ export const memoryConfidenceAndAccuracy_Skill_Data = defineSkill({
     methodological: 'Explain why vivid or confident recollection does not always predict correctness.',
     frontend: {
       en: 'Understand why feeling certain about a memory does not guarantee accuracy.',
-      it: 'Comprendi perché essere certi di un ricordo non ne garantisca l\'accuratezza.',
+      it: "Comprendi perché essere certi di un ricordo non ne garantisca l'accuratezza.",
       zh: '理解对某段记忆非常确信并不等于它一定准确。',
       hi: 'समझें कि किसी याद पर पूरा भरोसा होने से उसका सही होना सुनिश्चित नहीं होता।',
       es: 'Comprende por qué estar seguro de un recuerdo no garantiza que sea exacto.',

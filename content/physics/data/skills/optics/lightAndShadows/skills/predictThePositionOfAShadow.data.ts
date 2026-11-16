@@ -5,7 +5,7 @@ export const predictThePositionOfAShadow_Skill_Data = defineSkill({
   id: '4d683f07-929e-484b-8382-11636191a431',
   name: {
     en: 'Predict the position of a shadow',
-    it: 'Prevedere la posizione di un\'ombra',
+    it: "Prevedere la posizione di un'ombra",
     zh: '预测阴影的位置',
     hi: 'छाया की स्थिति का अनुमान लगाना',
     es: 'Predecir la posición de una sombra',
@@ -39,7 +39,7 @@ export const predictThePositionOfAShadow_Skill_Data = defineSkill({
     methodological: 'Predict where a shadow forms given the positions of the source and object.',
     frontend: {
       en: 'Predict which side of an object a shadow will appear on.',
-      it: 'Prevedi da quale lato di un oggetto apparirà l\'ombra.',
+      it: "Prevedi da quale lato di un oggetto apparirà l'ombra.",
       zh: '预测阴影将出现在物体的哪一侧。',
       hi: 'अनुमान लगाओ कि वस्तु के किस तरफ छाया पड़ेगी।',
       es: 'Predice a qué lado de un objeto aparecerá su sombra.',

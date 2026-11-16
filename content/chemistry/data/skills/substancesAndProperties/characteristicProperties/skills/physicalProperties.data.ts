@@ -5,7 +5,7 @@ export const physicalProperties_Skill_Data = defineSkill({
   id: 'ad17514c-76be-4c42-a4bf-02a0d07b1dae',
   name: {
     en: 'Physical Properties',
-    it: "Proprietà fisiche",
+    it: 'Proprietà fisiche',
     zh: '物理性质',
     hi: 'भौतिक गुण',
     es: 'Propiedades físicas',

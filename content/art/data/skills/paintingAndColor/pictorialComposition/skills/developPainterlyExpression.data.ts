@@ -5,7 +5,7 @@ export const developPainterlyExpression_Skill_Data = defineSkill({
   id: '39609ada-f607-49b0-a7c9-342ab92a6ddd',
   name: {
     en: 'Develop Painterly Expression',
-    it: 'Sviluppare un\'espressione pittorica',
+    it: "Sviluppare un'espressione pittorica",
     zh: '发展绘画表现力',
     hi: 'चित्रकारी की अभिव्यक्ति विकसित करें',
     es: 'Desarrollar la expresión pictórica',
@@ -39,7 +39,7 @@ export const developPainterlyExpression_Skill_Data = defineSkill({
     methodological: 'Relate brushwork and application texture to a deliberate expressive character.',
     frontend: {
       en: 'Use the character of brushstrokes and paint texture to express an idea.',
-      it: 'Usa il carattere delle pennellate e la consistenza del colore per esprimere un\'idea.',
+      it: "Usa il carattere delle pennellate e la consistenza del colore per esprimere un'idea.",
       zh: '运用笔触特点和颜料质感来表达想法。',
       hi: 'किसी विचार को व्यक्त करने के लिए ब्रश-स्ट्रोक और रंग की बनावट का उपयोग करें।',
       es: 'Utiliza el carácter de las pinceladas y la textura de la pintura para expresar una idea.',

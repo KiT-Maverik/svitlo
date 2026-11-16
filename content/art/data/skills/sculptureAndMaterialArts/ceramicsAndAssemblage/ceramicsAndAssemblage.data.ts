@@ -56,7 +56,7 @@ export const ceramicsAndAssemblage_SkillGroup_Data = defineSkillGroup({
       'Clay manipulation and found-object combination produce expressive material choices not reducible to sculptural mass alone.',
     frontend: {
       en: 'Explore how clay and everyday objects can become expressive artworks.',
-      it: 'Esplora come l\'argilla e gli oggetti di tutti i giorni possano diventare opere d\'arte espressive.',
+      it: "Esplora come l'argilla e gli oggetti di tutti i giorni possano diventare opere d'arte espressive.",
       zh: '探索黏土和日常物品如何转化为富有表现力的艺术作品。',
       hi: 'जानें कि मिट्टी और रोज़मर्रा की वस्तुएँ अभिव्यंजक कलाकृतियाँ कैसे बन सकती हैं।',
       es: 'Explora cómo la arcilla y los objetos cotidianos pueden convertirse en obras de arte expresivas.',

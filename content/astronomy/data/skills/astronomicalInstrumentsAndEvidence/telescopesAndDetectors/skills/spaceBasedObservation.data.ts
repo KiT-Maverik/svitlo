@@ -40,7 +40,7 @@ export const spaceBasedObservation_Skill_Data = defineSkill({
       "Compare observations above and below Earth's atmosphere in terms of accessible wavelengths and atmospheric interference.",
     frontend: {
       en: "Compare observations from space with those made through Earth's atmosphere.",
-      it: 'Confronta le osservazioni effettuate nello spazio con quelle eseguite attraverso l\'atmosfera terrestre.',
+      it: "Confronta le osservazioni effettuate nello spazio con quelle eseguite attraverso l'atmosfera terrestre.",
       qm: 'Fezadan yapılğan közetüvlerni Yer atmosferası arqalı yapılğan közetüvlernen teñeştiriñiz.',
       bn: 'মহাকাশ থেকে করা পর্যবেক্ষণের সঙ্গে পৃথিবীর বায়ুমণ্ডল ভেদ করে করা পর্যবেক্ষণের তুলনা করো।',
       ur: 'خلا سے کیے گئے مشاہدات کا موازنہ زمین کے کرۂ ہوائی کے پار سے کیے گئے مشاہدات سے کریں۔',

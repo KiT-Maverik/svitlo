@@ -5,7 +5,7 @@ export const acidBaseIndicators_Skill_Data = defineSkill({
   id: 'ad88b504-88e0-43c8-bcab-799519d63484',
   name: {
     en: 'Acid–Base Indicators',
-    it: "Indicatori acido-base",
+    it: 'Indicatori acido-base',
     zh: '酸碱指示剂',
     hi: 'अम्ल–क्षार सूचक',
     es: 'Indicadores ácido-base',

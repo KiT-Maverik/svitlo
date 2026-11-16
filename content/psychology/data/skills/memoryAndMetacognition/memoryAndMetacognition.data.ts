@@ -54,7 +54,7 @@ export const memoryAndMetacognition_SkillDomain_Data = defineSkillDomain({
       'Remembering involves encoding, retention, retrieval, reconstruction, and monitoring. Memory science explains why familiar material can be difficult to recall and why subjective confidence may mislead.',
     frontend: {
       en: 'Discover how memories form, change and can be monitored during learning.',
-      it: 'Scopri come si formano e cambiano i ricordi e come monitorare la propria memoria durante l\'apprendimento.',
+      it: "Scopri come si formano e cambiano i ricordi e come monitorare la propria memoria durante l'apprendimento.",
       zh: '探索记忆如何形成、变化，以及如何在学习中监测记忆。',
       hi: 'जानें कि यादें कैसे बनती और बदलती हैं तथा सीखते समय अपनी याददाश्त का आकलन कैसे किया जा सकता है।',
       es: 'Descubre cómo se forman y cambian los recuerdos y cómo podemos supervisarlos al aprender.',

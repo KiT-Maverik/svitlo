@@ -5,7 +5,7 @@ export const refuteTheIdeaThatEnergyDisappears_Skill_Data = defineSkill({
   id: '7d53ef13-ba5f-4e7c-98a7-c0d2d5b46b11',
   name: {
     en: 'Refute the idea that energy disappears',
-    it: 'Confutare l\'idea che l\'energia scompaia',
+    it: "Confutare l'idea che l'energia scompaia",
     zh: '反驳能量消失的观点',
     hi: 'ऊर्जा के गायब होने की धारणा का खंडन करना',
     es: 'Refutar la idea de que la energía desaparece',
@@ -40,7 +40,7 @@ export const refuteTheIdeaThatEnergyDisappears_Skill_Data = defineSkill({
       "Identify unaccounted energy transfers and transformations instead of attributing a system's change of state to energy disappearing.",
     frontend: {
       en: 'Find where energy goes instead of assuming it simply vanishes.',
-      it: 'Individua dove si trasferisce l\'energia invece di supporre che svanisca.',
+      it: "Individua dove si trasferisce l'energia invece di supporre che svanisca.",
       zh: '追踪能量的去向，而不是认为它凭空消失。',
       hi: 'यह मानने के बजाय कि ऊर्जा गायब हो जाती है, उसका स्थान पता लगाएँ।',
       es: 'Busca adónde va la energía en vez de suponer que simplemente desaparece.',

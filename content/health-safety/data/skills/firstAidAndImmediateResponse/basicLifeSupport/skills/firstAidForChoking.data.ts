@@ -40,7 +40,7 @@ export const firstAidForChoking_Skill_Data = defineSkill({
       'Distinguish effective coughing from severe airway obstruction and follow appropriate age-specific first-aid guidance rather than improvising.',
     frontend: {
       en: 'Recognize choking emergencies and appropriate age-specific response.',
-      it: 'Riconosci le emergenze da ostruzione delle vie aeree e gli interventi appropriati in base all\'età.',
+      it: "Riconosci le emergenze da ostruzione delle vie aeree e gli interventi appropriati in base all'età.",
       zh: '识别气道异物梗阻的紧急情况及适合不同年龄的应对方式。',
       hi: 'साँस की नली रुकने की आपात स्थिति और उम्र के अनुसार उचित उपाय पहचानो।',
       es: 'Reconoce emergencias por obstrucción de la vía aérea y la respuesta adecuada según la edad.',

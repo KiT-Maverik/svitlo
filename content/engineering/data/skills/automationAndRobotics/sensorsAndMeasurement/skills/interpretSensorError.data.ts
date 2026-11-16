@@ -5,7 +5,7 @@ export const interpretSensorError_Skill_Data = defineSkill({
   id: 'd9c78d44-c402-4f7c-bca4-ee2cd339efbd',
   name: {
     en: 'Interpret sensor error',
-    it: 'Interpretare l\'errore di un sensore',
+    it: "Interpretare l'errore di un sensore",
     zh: '解读传感器误差',
     hi: 'संवेदक त्रुटि की व्याख्या',
     es: 'Interpretar errores de sensores',
@@ -39,7 +39,7 @@ export const interpretSensorError_Skill_Data = defineSkill({
     methodological: 'Distinguish real changes from drift, limited resolution and random noise.',
     frontend: {
       en: 'Recognize how sensor error can affect a control decision.',
-      it: 'Riconosci come l\'errore di un sensore può influenzare una decisione di controllo.',
+      it: "Riconosci come l'errore di un sensore può influenzare una decisione di controllo.",
       zh: '理解传感器误差如何影响控制系统的决策。',
       hi: 'संवेदक मापन में यादृच्छिक त्रुटि और व्यवस्थित विचलन को अलग पहचानें।',
       es: 'Distingue errores aleatorios y sesgos sistemáticos en las mediciones del sensor.',

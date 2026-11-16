@@ -40,7 +40,7 @@ export const balancedDietaryPatterns_Skill_Data = defineSkill({
       'Consider variety, food groups, nutrient adequacy, and individual needs without assuming one fixed menu fits everyone.',
     frontend: {
       en: 'Build a varied eating pattern suited to individual needs.',
-      it: 'Costruisci un\'alimentazione varia e adatta alle esigenze individuali.',
+      it: "Costruisci un'alimentazione varia e adatta alle esigenze individuali.",
       zh: '根据个人需要建立多样化的饮食习惯。',
       hi: 'अपनी ज़रूरतों के अनुरूप विविध भोजन की आदतें बनाएँ।',
       es: 'Construye una alimentación variada acorde con tus necesidades.',

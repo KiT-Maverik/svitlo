@@ -5,7 +5,7 @@ export const explainHowSoundPitchDependsOnOscillationFrequency_Skill_Data = defi
   id: '635c153a-5166-4981-90f5-885bdeb82b81',
   name: {
     en: 'Explain how sound pitch depends on oscillation frequency',
-    it: 'Spiegare come l\'altezza del suono dipende dalla frequenza delle oscillazioni',
+    it: "Spiegare come l'altezza del suono dipende dalla frequenza delle oscillazioni",
     zh: '解释声音的音高如何取决于振动频率',
     hi: 'ध्वनि का तारत्व कंपन आवृत्ति पर निर्भर होना समझाना',
     es: 'Explicar cómo el tono depende de la frecuencia de oscilación',

@@ -5,7 +5,7 @@ export const manageVisualStrain_Skill_Data = defineSkill({
   id: '5afdb479-d5ca-4052-ad66-981e00da4437',
   name: {
     en: 'Manage visual strain',
-    it: 'Gestire l\'affaticamento visivo',
+    it: "Gestire l'affaticamento visivo",
     zh: '缓解视觉疲劳',
     hi: 'आँखों का तनाव कम करना',
     es: 'Reducir la fatiga visual',
@@ -40,7 +40,7 @@ export const manageVisualStrain_Skill_Data = defineSkill({
       'Use suitable lighting, viewing distance, breaks, and symptom awareness during sustained near or screen work.',
     frontend: {
       en: 'Reduce eye strain during extended reading and screen work.',
-      it: 'Riduci l\'affaticamento degli occhi durante la lettura prolungata e l\'uso degli schermi.',
+      it: "Riduci l'affaticamento degli occhi durante la lettura prolungata e l'uso degli schermi.",
       zh: '在长时间阅读或看屏幕时减少眼睛疲劳。',
       hi: 'लंबे समय तक पढ़ते या स्क्रीन देखते समय आँखों का तनाव घटाएँ।',
       es: 'Reduce la fatiga ocular durante lecturas prolongadas o el uso de pantallas.',

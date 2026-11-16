@@ -12,7 +12,7 @@ export const landscapeAndPublicArt_SkillGroup_Data = defineSkillGroup({
   id: '118f4346-b897-418f-bcb7-02d754fc8df8',
   name: {
     en: 'Landscape and Public Art',
-    it: "Paesaggio e arte pubblica",
+    it: 'Paesaggio e arte pubblica',
     zh: '景观与公共艺术',
     hi: 'परिदृश्य और सार्वजनिक कला',
     es: 'Paisaje y arte público',

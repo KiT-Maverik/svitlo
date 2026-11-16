@@ -5,7 +5,7 @@ export const elementSymbols_Skill_Data = defineSkill({
   id: '06361f55-ea07-4766-9ab0-c0d87c4727bb',
   name: {
     en: 'Element Symbols',
-    it: "Simboli degli elementi",
+    it: 'Simboli degli elementi',
     zh: '元素符号',
     hi: 'तत्त्वों के प्रतीक',
     es: 'Símbolos de los elementos',
@@ -40,7 +40,7 @@ export const elementSymbols_Skill_Data = defineSkill({
       'Interpret standard element symbols and distinguish capitalization changes that create different meanings.',
     frontend: {
       en: 'Read element symbols correctly, including important differences in capitalization.',
-      it: "Leggi correttamente i simboli degli elementi, rispettando le differenze tra maiuscole e minuscole.",
+      it: 'Leggi correttamente i simboli degli elementi, rispettando le differenze tra maiuscole e minuscole.',
       zh: '正确识读元素符号，注意大小写的区别。',
       hi: 'तत्त्व प्रतीक सही पढ़ें और बड़े-छोटे अक्षरों का अंतर समझें।',
       es: 'Lee correctamente los símbolos químicos y distingue las mayúsculas de las minúsculas.',

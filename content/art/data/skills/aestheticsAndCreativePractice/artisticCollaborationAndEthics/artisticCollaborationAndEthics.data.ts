@@ -14,7 +14,7 @@ export const artisticCollaborationAndEthics_SkillGroup_Data = defineSkillGroup({
   id: 'd36c709b-bc41-442b-9841-b21ee379ff6d',
   name: {
     en: 'Artistic Collaboration and Ethics',
-    it: "Collaborazione artistica ed etica",
+    it: 'Collaborazione artistica ed etica',
     zh: '艺术协作与伦理',
     hi: 'कलात्मक सहयोग और नैतिकता',
     es: 'Colaboración artística y ética',
@@ -67,7 +67,7 @@ export const artisticCollaborationAndEthics_SkillGroup_Data = defineSkillGroup({
       "Making and sharing art also demands communication, credit and respect for the rights and meanings of others' creative work.",
     frontend: {
       en: 'Make and share art thoughtfully while respecting collaborators, creators and communities.',
-      it: "Crea e condividi arte in modo consapevole, rispettando collaboratori, autori e comunità.",
+      it: 'Crea e condividi arte in modo consapevole, rispettando collaboratori, autori e comunità.',
       zh: '在尊重合作者、创作者和社群的同时，认真地创作与分享艺术。',
       hi: 'सहयोगियों, रचनाकारों और समुदायों का सम्मान करते हुए सोच-समझकर कला बनाएँ और साझा करें।',
       es: 'Crea y comparte arte con consideración, respetando a colaboradores, creadores y comunidades.',

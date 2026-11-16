@@ -40,7 +40,7 @@ export const drawCircle_Skill_Data = defineSkill({
       'When constructing a circle, a compass point establishes its center and a fixed opening establishes its radius. Changing the opening changes the radius; the principle is independent of a particular compass design.',
     frontend: {
       en: 'Use a compass to draw a circle with a chosen center and radius. The compass opening sets its size.',
-      it: 'Usa un compasso per tracciare una circonferenza con centro e raggio scelti. L\'apertura del compasso ne determina la dimensione.',
+      it: "Usa un compasso per tracciare una circonferenza con centro e raggio scelti. L'apertura del compasso ne determina la dimensione.",
       qm: 'Saylanğan merkez ve radiusnen çember çizmek içün sirkulni qullan. Sirkulniñ açılış genişligi çemberniñ ölçüsini belgiley.',
       zh: '用圆规按选定的圆心和半径画圆。圆规张开的大小决定半径。',
       hi: 'परकार से तय केंद्र और त्रिज्या वाला वृत्त बनाएँ। परकार का फैलाव उसका आकार तय करता है।',

@@ -5,7 +5,7 @@ export const metalsInUse_Skill_Data = defineSkill({
   id: '78e26042-8487-4c5f-a46e-085f6bbe62f3',
   name: {
     en: 'Metals in Use',
-    it: "Metalli nelle applicazioni",
+    it: 'Metalli nelle applicazioni',
     zh: '金属的应用',
     hi: 'उपयोग में धातुएँ',
     es: 'Metales en uso',

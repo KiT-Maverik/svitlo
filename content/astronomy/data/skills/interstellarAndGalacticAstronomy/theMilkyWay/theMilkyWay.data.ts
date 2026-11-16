@@ -56,7 +56,7 @@ export const theMilkyWay_SkillGroup_Data = defineSkillGroup({
       'Our galaxy is mapped from an interior viewpoint by combining stellar distributions, gas, motions and distance measurements.',
     frontend: {
       en: 'Learn how astronomers map the Milky Way from inside it.',
-      it: 'Scopri come gli astronomi mappano la Via Lattea osservandola dall\'interno.',
+      it: "Scopri come gli astronomi mappano la Via Lattea osservandola dall'interno.",
       qm: 'Kâbe yolunıñ içinde turıp astronomlar onı nasıl haritağa tüşürgenlerini ögreniñiz.',
       zh: '了解天文学家如何从银河系内部绘制它的地图。',
       hi: 'जानें कि खगोलविद हमारी आकाशगंगा के अंदर से उसका मानचित्र कैसे बनाते हैं।',

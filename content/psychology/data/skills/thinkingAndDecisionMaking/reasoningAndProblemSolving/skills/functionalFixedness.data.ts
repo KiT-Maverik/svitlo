@@ -39,7 +39,7 @@ export const functionalFixedness_Skill_Data = defineSkill({
     methodological: 'Identify how familiar uses of an object can inhibit a different effective use.',
     frontend: {
       en: "Recognize when an object's familiar use blocks a new solution.",
-      it: 'Riconosci quando l\'uso abituale di un oggetto ostacola una nuova soluzione.',
+      it: "Riconosci quando l'uso abituale di un oggetto ostacola una nuova soluzione.",
       zh: '识别物品的常见用途何时妨碍人们想到新的解决办法。',
       hi: 'पहचानें कि किसी वस्तु का परिचित उपयोग कब नया समाधान सोचने में बाधा बनता है।',
       es: 'Reconoce cuándo el uso habitual de un objeto impide encontrar una solución nueva.',

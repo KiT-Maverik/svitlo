@@ -39,7 +39,7 @@ export const stressAppraisal_Skill_Data = defineSkill({
     methodological: "Explain how a person's interpretation of demands and resources shapes experienced strain.",
     frontend: {
       en: 'Recognize how interpreting demands influences stress responses.',
-      it: 'Riconosci come l\'interpretazione delle richieste influenzi le risposte allo stress.',
+      it: "Riconosci come l'interpretazione delle richieste influenzi le risposte allo stress.",
       zh: '认识对要求的解释如何影响压力反应。',
       hi: 'पहचानें कि माँगों को समझने का तरीका तनाव की प्रतिक्रिया बदलता है।',
       es: 'Reconoce cómo interpretar las exigencias influye en la respuesta al estrés.',

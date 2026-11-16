@@ -5,7 +5,7 @@ export const explainImpulse_Skill_Data = defineSkill({
   id: 'fb50ca43-45b4-404f-92af-e139fb0d6348',
   name: {
     en: 'Explain impulse',
-    it: 'Spiegare l\'impulso',
+    it: "Spiegare l'impulso",
     zh: '解释冲量',
     hi: 'आवेग समझाना',
     es: 'Explicar el impulso de una fuerza',

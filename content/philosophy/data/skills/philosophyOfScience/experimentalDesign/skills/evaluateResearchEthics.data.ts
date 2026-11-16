@@ -5,7 +5,7 @@ export const evaluateResearchEthics_Skill_Data = defineSkill({
   id: '8dd89c03-8e93-4ce4-bc3c-e11af0808216',
   name: {
     en: 'Evaluate research ethics',
-    it: 'Valutare l\'etica della ricerca',
+    it: "Valutare l'etica della ricerca",
     zh: '评估研究伦理',
     hi: 'अनुसंधान नैतिकता का मूल्यांकन',
     es: 'Evaluar la ética de la investigación',

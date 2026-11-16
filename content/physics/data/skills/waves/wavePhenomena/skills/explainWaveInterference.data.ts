@@ -5,7 +5,7 @@ export const explainWaveInterference_Skill_Data = defineSkill({
   id: '43ac1661-d431-4c5b-9d57-b0bcea31e389',
   name: {
     en: 'Explain wave interference',
-    it: 'Spiegare l\'interferenza delle onde',
+    it: "Spiegare l'interferenza delle onde",
     zh: '解释波的干涉',
     hi: 'तरंग व्यतिकरण समझाना',
     es: 'Explicar la interferencia de ondas',

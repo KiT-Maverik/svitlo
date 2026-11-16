@@ -5,7 +5,7 @@ export const wordEquations_Skill_Data = defineSkill({
   id: '35476b4c-cf5e-485c-ad15-8cf957824f93',
   name: {
     en: 'Word Equations',
-    it: "Equazioni di reazione in parole",
+    it: 'Equazioni di reazione in parole',
     zh: '文字反应方程式',
     hi: 'शब्द समीकरण',
     es: 'Ecuaciones con palabras',
@@ -39,7 +39,7 @@ export const wordEquations_Skill_Data = defineSkill({
     methodological: 'Represent a described change by naming initial and resulting substances.',
     frontend: {
       en: 'Describe a reaction using the names of its starting substances and products.',
-      it: "Descrivi una reazione usando i nomi delle sostanze iniziali e dei prodotti.",
+      it: 'Descrivi una reazione usando i nomi delle sostanze iniziali e dei prodotti.',
       zh: '用反应物和生成物的名称描述化学反应。',
       hi: 'शुरुआती पदार्थों और उत्पादों के नामों से अभिक्रिया का वर्णन करें।',
       es: 'Describe una reacción nombrando las sustancias iniciales y los productos.',

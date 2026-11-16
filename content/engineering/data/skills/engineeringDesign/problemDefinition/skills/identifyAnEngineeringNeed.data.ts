@@ -5,7 +5,7 @@ export const identifyAnEngineeringNeed_Skill_Data = defineSkill({
   id: '7781fdc5-a5b0-411d-bb3d-16bf4be0d9ac',
   name: {
     en: 'Identify an engineering need',
-    it: 'Individuare un\'esigenza ingegneristica',
+    it: "Individuare un'esigenza ingegneristica",
     zh: '识别工程需求',
     hi: 'अभियांत्रिकी आवश्यकता पहचानना',
     es: 'Identificar una necesidad de ingeniería',
@@ -40,7 +40,7 @@ export const identifyAnEngineeringNeed_Skill_Data = defineSkill({
       'Recognize a practical problem or unmet function in a physical product or environment rather than assuming a particular invention is necessary.',
     frontend: {
       en: 'Identify a real need that engineering could help address.',
-      it: 'Individua un\'esigenza reale alla quale l\'ingegneria potrebbe rispondere.',
+      it: "Individua un'esigenza reale alla quale l'ingegneria potrebbe rispondere.",
       zh: '识别工程技术有可能解决的实际需求。',
       hi: 'ऐसी वास्तविक ज़रूरत पहचानें जिसे अभियांत्रिकी से पूरा किया जा सके।',
       es: 'Identifica una necesidad real que la ingeniería podría ayudar a resolver.',

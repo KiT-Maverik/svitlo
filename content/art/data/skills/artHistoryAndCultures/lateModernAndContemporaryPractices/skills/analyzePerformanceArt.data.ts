@@ -5,7 +5,7 @@ export const analyzePerformanceArt_Skill_Data = defineSkill({
   id: 'b510ac5a-a674-4bfb-9f51-7392ea090932',
   name: {
     en: 'Analyze Performance Art',
-    it: "Analizzare la performance artistica",
+    it: 'Analizzare la performance artistica',
     zh: '分析行为艺术',
     hi: 'प्रदर्शन कला का विश्लेषण करें',
     es: 'Analizar el arte de performance',

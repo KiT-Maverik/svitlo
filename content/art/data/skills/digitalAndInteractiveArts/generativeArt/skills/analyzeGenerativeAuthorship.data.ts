@@ -5,7 +5,7 @@ export const analyzeGenerativeAuthorship_Skill_Data = defineSkill({
   id: '55e9f579-7a2b-40ca-9c68-aadff5f43b31',
   name: {
     en: 'Analyze Generative Authorship',
-    it: 'Analizzare l\'autorialità nell\'arte generativa',
+    it: "Analizzare l'autorialità nell'arte generativa",
     zh: '分析生成艺术的作者身份',
     hi: 'जनरेटिव कला के लेखकत्व का विश्लेषण करें',
     es: 'Analizar la autoría en el arte generativo',
@@ -39,7 +39,7 @@ export const analyzeGenerativeAuthorship_Skill_Data = defineSkill({
     methodological: 'Distinguish contributions from source material, tools, rule choices and human curation.',
     frontend: {
       en: 'Explore how artists, tools, source material and rules contribute to generated art.',
-      it: 'Esplora il contributo di artisti, strumenti, materiali di partenza e regole alla creazione dell\'arte generativa.',
+      it: "Esplora il contributo di artisti, strumenti, materiali di partenza e regole alla creazione dell'arte generativa.",
       zh: '探索艺术家、工具、源材料和规则如何共同参与生成艺术。',
       hi: 'जानें कि कलाकार, उपकरण, स्रोत सामग्री और नियम मिलकर जनरेटिव कला में कैसे योगदान देते हैं।',
       es: 'Explora cómo contribuyen a la creación generativa los artistas, las herramientas, el material de origen y las reglas.',

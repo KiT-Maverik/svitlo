@@ -40,7 +40,7 @@ export const goalRevisionAndDisengagement_Skill_Data = defineSkill({
       'Evaluate when adjusting or abandoning an unattainable objective may be more adaptive than persisting.',
     frontend: {
       en: 'Understand when changing or abandoning a goal can be adaptive.',
-      it: 'Comprendi quando modificare o abbandonare un obiettivo possa favorire l\'adattamento.',
+      it: "Comprendi quando modificare o abbandonare un obiettivo possa favorire l'adattamento.",
       zh: '理解何时改变或放弃目标有助于适应现实。',
       hi: 'समझें कि लक्ष्य बदलना या छोड़ना कब परिस्थितियों के अनुरूप होता है।',
       es: 'Comprende cuándo cambiar o dejar una meta puede ser una adaptación saludable.',

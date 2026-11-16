@@ -40,7 +40,7 @@ export const motivationalCrowding_Skill_Data = defineSkill({
       'Evaluate circumstances in which external incentives change an existing interest rather than simply adding more motivation.',
     frontend: {
       en: 'Explore why external rewards can sometimes weaken intrinsic interest.',
-      it: 'Esplora perché le ricompense esterne possano talvolta indebolire l\'interesse intrinseco.',
+      it: "Esplora perché le ricompense esterne possano talvolta indebolire l'interesse intrinseco.",
       zh: '探索为何外部奖励有时会削弱内在兴趣。',
       hi: 'जानें कि बाहरी पुरस्कार कभी-कभी भीतर की रुचि क्यों घटा देते हैं।',
       es: 'Explora por qué las recompensas externas a veces debilitan el interés intrínseco.',

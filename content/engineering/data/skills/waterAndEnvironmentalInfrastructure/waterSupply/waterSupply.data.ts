@@ -56,7 +56,7 @@ export const waterSupply_SkillGroup_Data = defineSkillGroup({
       'Safe, reliable distribution requires treatment and controlled hydraulic delivery from sources to users.',
     frontend: {
       en: 'Discover how water reaches homes and other places safely.',
-      it: 'Scopri come l\'acqua raggiunge in sicurezza le abitazioni e gli altri luoghi.',
+      it: "Scopri come l'acqua raggiunge in sicurezza le abitazioni e gli altri luoghi.",
       zh: '探索水如何安全地到达家庭和其他场所。',
       hi: 'जानें कि पानी घरों और अन्य स्थानों तक सुरक्षित कैसे पहुँचता है।',
       es: 'Descubre cómo llega el agua de forma segura a hogares y otros lugares.',

@@ -5,7 +5,7 @@ export const bottomUpAndTopDownProcessing_Skill_Data = defineSkill({
   id: '6547fe73-0c2a-40ba-9a03-5a122a8c748d',
   name: {
     en: 'Bottom-Up and Top-Down Processing',
-    it: 'Elaborazione dal basso verso l\'alto e dall\'alto verso il basso',
+    it: "Elaborazione dal basso verso l'alto e dall'alto verso il basso",
     zh: '自下而上与自上而下的加工',
     hi: 'नीचे से ऊपर और ऊपर से नीचे प्रसंस्करण',
     es: 'Procesamiento ascendente y descendente',

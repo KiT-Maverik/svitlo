@@ -40,7 +40,7 @@ export const secureEverydayAccounts_Skill_Data = defineSkill({
       'Apply unique credentials, available multifactor authentication, and safe recovery practices without requiring implementation of security systems.',
     frontend: {
       en: 'Use strong credentials and account recovery practices to protect access.',
-      it: 'Usa credenziali robuste e procedure di recupero dell\'account per proteggerne l\'accesso.',
+      it: "Usa credenziali robuste e procedure di recupero dell'account per proteggerne l'accesso.",
       zh: '使用强密码和账户恢复措施来保护访问权限。',
       hi: 'मज़बूत पासवर्ड और खाता पुनर्प्राप्ति उपायों से पहुँच सुरक्षित रखो।',
       es: 'Utiliza credenciales robustas y opciones de recuperación para proteger el acceso.',

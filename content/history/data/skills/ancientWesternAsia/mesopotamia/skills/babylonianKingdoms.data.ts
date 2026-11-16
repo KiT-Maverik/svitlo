@@ -5,7 +5,7 @@ export const babylonianKingdoms_Skill_Data = defineSkill({
   id: '8c3a30bf-ec11-4251-b8b4-59b723ff807d',
   name: {
     en: 'Babylonian Kingdoms',
-    it: "Regni babilonesi",
+    it: 'Regni babilonesi',
     zh: '巴比伦诸王国',
     hi: 'बेबीलोनियाई राज्य',
     es: 'Reinos babilónicos',

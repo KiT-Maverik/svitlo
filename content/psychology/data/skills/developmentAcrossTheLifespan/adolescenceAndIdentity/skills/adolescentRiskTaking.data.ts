@@ -5,7 +5,7 @@ export const adolescentRiskTaking_Skill_Data = defineSkill({
   id: '808db5af-31be-47b1-97cc-efdd0cfacacc',
   name: {
     en: 'Adolescent Risk Taking',
-    it: 'Assunzione di rischi nell\'adolescenza',
+    it: "Assunzione di rischi nell'adolescenza",
     zh: '青少年的冒险行为',
     hi: 'किशोरों का जोखिम उठाना',
     es: 'Asunción de riesgos en la adolescencia',

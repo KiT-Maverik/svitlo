@@ -5,7 +5,7 @@ export const electronsAndCharge_Skill_Data = defineSkill({
   id: '1f8346b2-1a3d-41c8-9684-5a17a5e47ec8',
   name: {
     en: 'Electrons and Charge',
-    it: "Elettroni e carica elettrica",
+    it: 'Elettroni e carica elettrica',
     zh: '电子与电荷',
     hi: 'इलेक्ट्रॉन और आवेश',
     es: 'Electrones y carga eléctrica',

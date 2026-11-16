@@ -5,7 +5,7 @@ export const autonomyDevelopment_Skill_Data = defineSkill({
   id: '18ca82bf-1fc2-4aa9-b106-19cd4094405e',
   name: {
     en: 'Autonomy Development',
-    it: 'Sviluppo dell\'autonomia',
+    it: "Sviluppo dell'autonomia",
     zh: '自主性的发展',
     hi: 'स्वायत्तता का विकास',
     es: 'Desarrollo de la autonomía',
@@ -40,7 +40,7 @@ export const autonomyDevelopment_Skill_Data = defineSkill({
       'Describe changes in independent decision-making and negotiated responsibilities across relationships.',
     frontend: {
       en: 'Understand how independence and decision-making abilities develop.',
-      it: 'Comprendi come si sviluppino l\'indipendenza e le capacità decisionali.',
+      it: "Comprendi come si sviluppino l'indipendenza e le capacità decisionali.",
       zh: '理解独立性和决策能力如何逐步发展。',
       hi: 'समझें कि स्वतंत्रता और निर्णय लेने की क्षमताएँ कैसे विकसित होती हैं।',
       es: 'Comprende cómo se desarrollan la independencia y la capacidad de tomar decisiones.',

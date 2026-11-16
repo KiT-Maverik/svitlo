@@ -5,7 +5,7 @@ export const electrolysis_Skill_Data = defineSkill({
   id: '6ba82660-4883-45ec-9ce2-f07cf2cde3a9',
   name: {
     en: 'Electrolysis',
-    it: "Elettrolisi",
+    it: 'Elettrolisi',
     zh: '电解',
     hi: 'विद्युत अपघटन',
     es: 'Electrólisis',

@@ -5,7 +5,7 @@ export const evaporativeSeparation_Skill_Data = defineSkill({
   id: 'bad25d40-8d5a-4f63-a9d2-48f7a62f3392',
   name: {
     en: 'Evaporative Separation',
-    it: "Separazione per evaporazione",
+    it: 'Separazione per evaporazione',
     zh: '蒸发分离',
     hi: 'वाष्पीकरण द्वारा पृथक्करण',
     es: 'Separación por evaporación',
@@ -40,7 +40,7 @@ export const evaporativeSeparation_Skill_Data = defineSkill({
       'Recover nonvolatile dissolved material by removing a volatile solvent, accounting for possible sample loss or decomposition.',
     frontend: {
       en: 'Recover dissolved solids by removing a solvent through evaporation.',
-      it: "Recupera i solidi disciolti eliminando il solvente per evaporazione.",
+      it: 'Recupera i solidi disciolti eliminando il solvente per evaporazione.',
       zh: '通过蒸发除去溶剂，从溶液中回收溶解的固体。',
       hi: 'विलायक को वाष्पित करके घुले हुए ठोस पदार्थ को पुनः प्राप्त करें।',
       es: 'Recupera sólidos disueltos eliminando el disolvente mediante evaporación.',

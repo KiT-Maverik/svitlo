@@ -5,7 +5,7 @@ export const analyzeTextureAndSurface_Skill_Data = defineSkill({
   id: 'd3ab05e8-4344-473d-a0b8-abbc0411b1d4',
   name: {
     en: 'Analyze Texture and Surface',
-    it: "Analizzare texture e superfici",
+    it: 'Analizzare texture e superfici',
     zh: '分析肌理与表面',
     hi: 'बनावट और सतह का विश्लेषण करें',
     es: 'Analizar la textura y la superficie',

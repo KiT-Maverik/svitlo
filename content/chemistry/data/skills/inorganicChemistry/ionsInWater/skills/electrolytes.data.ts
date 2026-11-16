@@ -5,7 +5,7 @@ export const electrolytes_Skill_Data = defineSkill({
   id: 'a9213658-6b18-4da9-af8e-ba806a95a44b',
   name: {
     en: 'Electrolytes',
-    it: "Elettroliti",
+    it: 'Elettroliti',
     zh: '电解质',
     hi: 'विद्युत् अपघट्य',
     es: 'Electrolitos',
@@ -39,7 +39,7 @@ export const electrolytes_Skill_Data = defineSkill({
     methodological: 'Distinguish strong, weak and nonelectrolyte behavior in solution.',
     frontend: {
       en: 'Distinguish strong, weak and nonelectrolytes by their behavior in solution.',
-      it: "Distingui elettroliti forti, deboli e non elettroliti dal loro comportamento in soluzione.",
+      it: 'Distingui elettroliti forti, deboli e non elettroliti dal loro comportamento in soluzione.',
       zh: '根据物质在溶液中的行为区分强、弱电解质和非电解质。',
       hi: 'विलयन में उनके व्यवहार के आधार पर प्रबल, दुर्बल और गैर-विद्युत् अपघट्य में अंतर करें।',
       es: 'Distingue electrolitos fuertes, débiles y no electrolitos según su comportamiento en disolución.',

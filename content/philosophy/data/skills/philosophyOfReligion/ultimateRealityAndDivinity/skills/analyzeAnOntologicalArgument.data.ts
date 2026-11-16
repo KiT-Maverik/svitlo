@@ -40,7 +40,7 @@ export const analyzeAnOntologicalArgument_Skill_Data = defineSkill({
       'Evaluate an a priori argument that moves from a proposed concept of God or maximal greatness toward existence, examining whether its logical premises and modal assumptions warrant the conclusion.',
     frontend: {
       en: 'Explore arguments that attempt to derive divine existence from a definition.',
-      it: 'Esplora le argomentazioni che tentano di dedurre l\'esistenza divina da una definizione.',
+      it: "Esplora le argomentazioni che tentano di dedurre l'esistenza divina da una definizione.",
       zh: '探讨试图从概念定义推导出神性存在的论证。',
       hi: 'उन तर्कों को समझें जो किसी परिभाषा से ईश्वरीय अस्तित्व सिद्ध करने का प्रयास करते हैं।',
       es: 'Explora argumentos que intentan deducir la existencia divina a partir de una definición.',

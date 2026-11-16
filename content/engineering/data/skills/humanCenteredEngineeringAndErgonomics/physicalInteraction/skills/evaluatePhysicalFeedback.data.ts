@@ -39,7 +39,7 @@ export const evaluatePhysicalFeedback_Skill_Data = defineSkill({
     methodological: 'Determine whether resistance, movement or another signal communicates that an action occurred.',
     frontend: {
       en: 'Check whether a product clearly communicates what its controls have done.',
-      it: 'Verifica se un prodotto comunica chiaramente gli effetti dell\'uso dei suoi comandi.',
+      it: "Verifica se un prodotto comunica chiaramente gli effetti dell'uso dei suoi comandi.",
       zh: '检查产品能否清楚地告知控制操作产生的结果。',
       hi: 'देखें कि उत्पाद स्पष्ट बताता है या नहीं कि उसके नियंत्रणों ने क्या किया है।',
       es: 'Comprueba si un producto comunica claramente el resultado de accionar sus controles.',

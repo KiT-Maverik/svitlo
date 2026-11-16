@@ -5,7 +5,7 @@ export const explainKineticEnergyAsEnergyOfMotion_Skill_Data = defineSkill({
   id: '116459c6-85be-4f2f-a7be-2b171eaa9101',
   name: {
     en: 'Explain kinetic energy as energy of motion',
-    it: 'Spiegare l\'energia cinetica come energia del moto',
+    it: "Spiegare l'energia cinetica come energia del moto",
     zh: '将动能解释为运动的能量',
     hi: 'गतिज ऊर्जा को गति की ऊर्जा के रूप में समझाना',
     es: 'Explicar la energía cinética como energía del movimiento',

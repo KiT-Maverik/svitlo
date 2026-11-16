@@ -13,7 +13,7 @@ export const aestheticPerception_SkillGroup_Data = defineSkillGroup({
   id: '7b4b3464-c383-4a38-b5a3-80942fa21937',
   name: {
     en: 'Aesthetic Perception',
-    it: "Percezione estetica",
+    it: 'Percezione estetica',
     zh: '审美感知',
     hi: 'सौंदर्यबोध',
     es: 'Percepción estética',

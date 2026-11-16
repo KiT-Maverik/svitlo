@@ -5,7 +5,7 @@ export const recognizeManifestationsOfInertiaInMotion_Skill_Data = defineSkill({
   id: '83f61d3b-a2a9-452d-9b9a-5a2235fa7dc0',
   name: {
     en: 'Recognize manifestations of inertia in motion',
-    it: 'Riconoscere le manifestazioni dell\'inerzia nel moto',
+    it: "Riconoscere le manifestazioni dell'inerzia nel moto",
     zh: '识别运动中的惯性表现',
     hi: 'गति में जड़त्व के प्रभाव पहचानना',
     es: 'Reconocer manifestaciones de la inercia en el movimiento',

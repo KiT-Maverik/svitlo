@@ -5,7 +5,7 @@ export const selectAUnitForAFamiliarPhysicalQuantity_Skill_Data = defineSkill({
   id: '8d55cdc8-7c97-4574-91e2-77e596b0db24',
   name: {
     en: 'Select a unit for a familiar physical quantity',
-    it: 'Scegliere un\'unità per una grandezza fisica familiare',
+    it: "Scegliere un'unità per una grandezza fisica familiare",
     zh: '为常见物理量选择单位',
     hi: 'परिचित भौतिक राशि के लिए इकाई चुनना',
     es: 'Elegir una unidad para una magnitud física conocida',

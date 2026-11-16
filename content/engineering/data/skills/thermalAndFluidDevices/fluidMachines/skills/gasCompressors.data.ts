@@ -39,7 +39,7 @@ export const gasCompressors_Skill_Data = defineSkill({
     methodological: 'Distinguish increasing gas pressure from merely circulating air.',
     frontend: {
       en: 'Distinguish compressing gas from simply moving air.',
-      it: 'Distingui la compressione di un gas dal semplice movimento dell\'aria.',
+      it: "Distingui la compressione di un gas dal semplice movimento dell'aria.",
       zh: '区分压缩气体与仅仅移动空气。',
       hi: 'गैस को संपीड़ित करने और केवल हवा को चलाने में अंतर समझें।',
       es: 'Distingue comprimir un gas de simplemente mover aire.',

@@ -39,7 +39,7 @@ export const evaluateMaterialDurability_Skill_Data = defineSkill({
     methodological: 'Connect wear, corrosion, fatigue or exposure to the expected lifetime of a part.',
     frontend: {
       en: 'Compare materials by how well they survive wear and environmental exposure.',
-      it: 'Confronta i materiali in base alla loro resistenza all\'usura e all\'esposizione ambientale.',
+      it: "Confronta i materiali in base alla loro resistenza all'usura e all'esposizione ambientale.",
       zh: '根据材料抵抗磨损和环境影响的能力进行比较。',
       hi: 'घिसाव और पर्यावरणीय प्रभाव सहने की क्षमता से सामग्री की तुलना करें।',
       es: 'Compara materiales según cómo resisten el desgaste y la exposición ambiental.',

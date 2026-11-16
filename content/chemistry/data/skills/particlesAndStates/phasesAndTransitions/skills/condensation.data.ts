@@ -5,7 +5,7 @@ export const condensation_Skill_Data = defineSkill({
   id: '795f7b42-da16-4a4a-8e8e-d5ebd19b73c2',
   name: {
     en: 'Condensation',
-    it: "Condensazione",
+    it: 'Condensazione',
     zh: '凝结',
     hi: 'संघनन',
     es: 'Condensación',
@@ -40,7 +40,7 @@ export const condensation_Skill_Data = defineSkill({
       'Explain formation of liquid from vapor as conditions favor a more closely associated particle arrangement.',
     frontend: {
       en: 'Understand why vapor can turn back into liquid droplets.',
-      it: "Comprendi perché il vapore può tornare a formare goccioline liquide.",
+      it: 'Comprendi perché il vapore può tornare a formare goccioline liquide.',
       zh: '了解为什么蒸气可以重新变成液滴。',
       hi: 'समझें कि वाष्प फिर से द्रव की बूँदों में क्यों बदल सकती है।',
       es: 'Comprende por qué el vapor puede volver a convertirse en gotas de líquido.',

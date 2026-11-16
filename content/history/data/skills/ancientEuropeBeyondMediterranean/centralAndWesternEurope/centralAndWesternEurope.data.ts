@@ -12,7 +12,7 @@ export const centralAndWesternEurope_SkillGroup_Data = defineSkillGroup({
   id: '0fbaa949-a1c8-44cd-8f95-a40687821dc1',
   name: {
     en: 'Central and Western Europe',
-    it: "Europa centrale e occidentale",
+    it: 'Europa centrale e occidentale',
     zh: '中欧和西欧',
     hi: 'मध्य और पश्चिमी यूरोप',
     es: 'Europa central y occidental',

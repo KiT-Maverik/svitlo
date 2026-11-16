@@ -5,7 +5,7 @@ export const respectCreativeRights_Skill_Data = defineSkill({
   id: 'cecf4513-eb92-4159-bae8-bdbec53c9960',
   name: {
     en: 'Respect Creative Rights',
-    it: "Rispettare i diritti degli autori",
+    it: 'Rispettare i diritti degli autori',
     zh: '尊重创作权利',
     hi: 'रचनात्मक अधिकारों का सम्मान करें',
     es: 'Respetar los derechos creativos',

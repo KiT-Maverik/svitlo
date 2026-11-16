@@ -5,7 +5,7 @@ export const austronesianExpansion_Skill_Data = defineSkill({
   id: '40f41c66-906c-4d51-ae6d-ef330d584617',
   name: {
     en: 'Austronesian Expansion',
-    it: "Espansione austronesiana",
+    it: 'Espansione austronesiana',
     zh: '南岛语族的扩散',
     hi: 'ऑस्ट्रोनेशियाई विस्तार',
     es: 'Expansión austronesia',
@@ -40,7 +40,7 @@ export const austronesianExpansion_Skill_Data = defineSkill({
       'Trace the dispersal of Austronesian languages and seafaring cultures across Island Southeast Asia and the Pacific.',
     frontend: {
       en: 'Follow how Austronesian-speaking communities spread across islands.',
-      it: "Segui la diffusione delle comunità di lingua austronesiana tra le isole.",
+      it: 'Segui la diffusione delle comunità di lingua austronesiana tra le isole.',
       zh: '追踪南岛语系社群如何在岛屿间扩散。',
       hi: 'जानें कि ऑस्ट्रोनेशियाई भाषाएँ बोलने वाले समुदाय द्वीपों में कैसे फैले।',
       es: 'Sigue cómo las comunidades de lenguas austronesias se extendieron por las islas.',

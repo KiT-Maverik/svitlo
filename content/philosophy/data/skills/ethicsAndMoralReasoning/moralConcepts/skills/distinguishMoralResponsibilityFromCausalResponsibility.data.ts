@@ -40,7 +40,7 @@ export const distinguishMoralResponsibilityFromCausalResponsibility_Skill_Data =
       'Separate causing an outcome from being appropriately accountable for it under relevant knowledge and control conditions.',
     frontend: {
       en: 'Distinguish responsibility for causing something from deserving moral blame.',
-      it: 'Distingui l\'aver causato un evento dall\'esserne moralmente responsabili, considerando conoscenza e controllo.',
+      it: "Distingui l'aver causato un evento dall'esserne moralmente responsabili, considerando conoscenza e controllo.",
       zh: '区分造成某事的责任与应受道德责备的责任。',
       hi: 'किसी घटना का कारण बनने और नैतिक दोष का पात्र होने में अंतर करें।',
       es: 'Distingue entre causar algo y merecer un reproche moral.',

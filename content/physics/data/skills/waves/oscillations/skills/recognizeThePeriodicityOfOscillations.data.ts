@@ -40,7 +40,7 @@ export const recognizeThePeriodicityOfOscillations_Skill_Data = defineSkill({
       'A periodic oscillation repeats a physical state at equal time intervals; not every motion that changes direction is periodic.',
     frontend: {
       en: 'Recognize an oscillation that repeats at regular intervals.',
-      it: 'Riconosci un\'oscillazione che si ripete a intervalli regolari.',
+      it: "Riconosci un'oscillazione che si ripete a intervalli regolari.",
       zh: '识别按固定时间间隔重复的振荡。',
       hi: 'नियमित समय अंतराल पर दोहराए जाने वाले दोलन पहचानें।',
       es: 'Reconoce una oscilación que se repite a intervalos regulares.',

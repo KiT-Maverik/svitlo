@@ -5,7 +5,7 @@ export const massConservation_Skill_Data = defineSkill({
   id: '9e2bdcf3-a181-44e5-bde5-a6c8cfd1218e',
   name: {
     en: 'Mass Conservation',
-    it: "Conservazione della massa",
+    it: 'Conservazione della massa',
     zh: '质量守恒',
     hi: 'द्रव्यमान संरक्षण',
     es: 'Conservación de la masa',
@@ -40,7 +40,7 @@ export const massConservation_Skill_Data = defineSkill({
       'Account for matter in physical and chemical processes, including gases that cross an open-system boundary.',
     frontend: {
       en: 'Explain how matter is conserved even when gases enter or leave a container.',
-      it: "Spiega come la materia si conserva anche quando i gas entrano o escono da un contenitore.",
+      it: 'Spiega come la materia si conserva anche quando i gas entrano o escono da un contenitore.',
       zh: '将进出开放体系的气体质量也计入，解释质量守恒。',
       hi: 'समझाएँ कि गैसों के पात्र में आने-जाने पर भी पदार्थ का संरक्षण कैसे होता है।',
       es: 'Explica cómo se conserva la materia aunque los gases entren o salgan de un recipiente.',

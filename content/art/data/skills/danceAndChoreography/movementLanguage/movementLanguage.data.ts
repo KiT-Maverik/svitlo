@@ -13,7 +13,7 @@ export const movementLanguage_SkillGroup_Data = defineSkillGroup({
   id: '1cb3cffe-4c1a-4998-95f1-3ac523ed77c0',
   name: {
     en: 'Movement Language',
-    it: "Linguaggio del movimento",
+    it: 'Linguaggio del movimento',
     zh: '动作语言',
     hi: 'गतिशील भाषा',
     es: 'Lenguaje del movimiento',

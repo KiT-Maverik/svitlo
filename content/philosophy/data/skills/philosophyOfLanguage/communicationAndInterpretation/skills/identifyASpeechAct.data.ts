@@ -40,7 +40,7 @@ export const identifyASpeechAct_Skill_Data = defineSkill({
       'Recognize how an utterance functions as a promise, request, warning, or assertion beyond its sentence structure.',
     frontend: {
       en: 'Recognize when saying something performs an action such as promising or requesting.',
-      it: 'Riconosci quando dire qualcosa equivale a compiere un\'azione, come promettere o fare una richiesta.',
+      it: "Riconosci quando dire qualcosa equivale a compiere un'azione, come promettere o fare una richiesta.",
       zh: '认识说话本身如何成为承诺或请求等行动。',
       hi: 'पहचानो कि कुछ कहना वादा करने या अनुरोध करने जैसा कार्य भी हो सकता है।',
       es: 'Reconoce cuándo decir algo constituye una acción, como prometer o pedir.',

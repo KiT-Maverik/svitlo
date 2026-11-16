@@ -40,7 +40,7 @@ export const interpretLogicalDisjunction_Skill_Data = defineSkill({
       "Apply the truth conditions of inclusive 'or' and distinguish these from interpretations that require exactly one alternative.",
     frontend: {
       en: 'Interpret inclusive OR without assuming only one option can be true.',
-      it: 'Interpreta l\'«O» inclusivo senza supporre che possa essere vera una sola alternativa.',
+      it: "Interpreta l'«O» inclusivo senza supporre che possa essere vera una sola alternativa.",
       zh: '理解包含性“或”：两个选项可以同时为真。',
       hi: "समावेशी 'या' को समझें: दोनों विकल्प एक साथ सत्य हो सकते हैं।",
       es: 'Interpreta el O inclusivo sin suponer que solo una opción puede ser verdadera.',

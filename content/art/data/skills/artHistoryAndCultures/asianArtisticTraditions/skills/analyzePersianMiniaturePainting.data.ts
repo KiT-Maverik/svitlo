@@ -5,7 +5,7 @@ export const analyzePersianMiniaturePainting_Skill_Data = defineSkill({
   id: '1f06d215-b9ad-4824-8a08-3fb51a467d3c',
   name: {
     en: 'Analyze Persian Miniature Painting',
-    it: "Analizzare la miniatura persiana",
+    it: 'Analizzare la miniatura persiana',
     zh: '分析波斯细密画',
     hi: 'फ़ारसी लघुचित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura en miniatura persa',
@@ -40,7 +40,7 @@ export const analyzePersianMiniaturePainting_Skill_Data = defineSkill({
       'Relate stylized space, color and narrative detail to specific Persian manuscript or album-painting contexts.',
     frontend: {
       en: 'Explore how Persian miniature paintings tell stories through color and stylized space.',
-      it: "Esplora come le miniature persiane raccontano storie attraverso il colore e uno spazio stilizzato.",
+      it: 'Esplora come le miniature persiane raccontano storie attraverso il colore e uno spazio stilizzato.',
       zh: '探索波斯细密画如何通过色彩和程式化空间讲述故事。',
       hi: 'जानें कि फ़ारसी लघुचित्र रंगों और शैलीबद्ध स्थान के माध्यम से कहानियाँ कैसे प्रस्तुत करते हैं।',
       es: 'Explora cómo las miniaturas persas narran historias mediante el color y el espacio estilizado.',

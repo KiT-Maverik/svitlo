@@ -5,7 +5,7 @@ export const compareTheLoudnessOfSounds_Skill_Data = defineSkill({
   id: '04932a66-6008-472f-aee7-089f1ac64f77',
   name: {
     en: 'Compare the loudness of sounds',
-    it: 'Confrontare l\'intensità percepita dei suoni',
+    it: "Confrontare l'intensità percepita dei suoni",
     zh: '比较声音的响度',
     hi: 'ध्वनियों की तेज़ी की तुलना करना',
     es: 'Comparar la sonoridad de los sonidos',
@@ -40,7 +40,7 @@ export const compareTheLoudnessOfSounds_Skill_Data = defineSkill({
       'Loudness is the perception of sound intensity and also depends on frequency and hearing sensitivity; compare it independently of pitch.',
     frontend: {
       en: 'Compare how loud sounds seem without confusing volume with pitch.',
-      it: 'Confronta quanto forti sembrano i suoni senza confondere l\'intensità percepita con l\'altezza.',
+      it: "Confronta quanto forti sembrano i suoni senza confondere l'intensità percepita con l'altezza.",
       zh: '比较听起来声音有多响，不要将响度与音高混淆。',
       hi: 'ध्वनि कितनी तेज़ लगती है इसकी तुलना करें, तेज़ी को तारत्व से न मिलाएँ।',
       es: 'Compara lo fuertes que parecen los sonidos sin confundir sonoridad y tono.',

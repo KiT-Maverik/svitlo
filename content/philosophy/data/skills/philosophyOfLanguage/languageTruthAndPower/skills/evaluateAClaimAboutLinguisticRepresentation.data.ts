@@ -5,7 +5,7 @@ export const evaluateAClaimAboutLinguisticRepresentation_Skill_Data = defineSkil
   id: '319a1143-b0fb-49f0-995d-768e4ce89db6',
   name: {
     en: 'Evaluate a claim about linguistic representation',
-    it: 'Valutare un\'affermazione sulla rappresentazione linguistica',
+    it: "Valutare un'affermazione sulla rappresentazione linguistica",
     zh: '评估语言表述的主张',
     hi: 'भाषाई प्रस्तुति के दावे का मूल्यांकन',
     es: 'Evaluar una afirmación sobre representación lingüística',

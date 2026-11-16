@@ -5,7 +5,7 @@ export const calculateGravitationalPotentialEnergy_Skill_Data = defineSkill({
   id: '44abbee0-6cd7-4044-9a2b-47d9b1d9832e',
   name: {
     en: 'Calculate gravitational potential energy',
-    it: 'Calcolare l\'energia potenziale gravitazionale',
+    it: "Calcolare l'energia potenziale gravitazionale",
     zh: '计算重力势能',
     hi: 'गुरुत्वीय स्थितिज ऊर्जा की गणना करना',
     es: 'Calcular la energía potencial gravitatoria',

@@ -5,7 +5,7 @@ export const evaluateACounterfactualClaim_Skill_Data = defineSkill({
   id: '06b88a4b-f514-4fbc-9bba-80c1feb82b81',
   name: {
     en: 'Evaluate a counterfactual claim',
-    it: 'Valutare un\'affermazione controfattuale',
+    it: "Valutare un'affermazione controfattuale",
     zh: '评估反事实主张',
     hi: 'प्रतिवास्तविक दावे का मूल्यांकन',
     es: 'Evaluar una afirmación contrafáctica',

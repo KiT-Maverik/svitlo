@@ -5,7 +5,7 @@ export const evaluateTheLegitimacyOfPoliticalAuthority_Skill_Data = defineSkill(
   id: 'd30c45bb-40b1-4398-b9ec-c3828d79fc0e',
   name: {
     en: 'Evaluate the legitimacy of political authority',
-    it: 'Valutare la legittimità dell\'autorità politica',
+    it: "Valutare la legittimità dell'autorità politica",
     zh: '评估政治权威的正当性',
     hi: 'राजनीतिक सत्ता की वैधता का मूल्यांकन',
     es: 'Evaluar la legitimidad de la autoridad política',

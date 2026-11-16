@@ -40,7 +40,7 @@ export const evaluateASkepticalChallenge_Skill_Data = defineSkill({
       'Assess whether a proposed possibility of error undermines a specific knowledge claim or sets an unrealistically absolute standard.',
     frontend: {
       en: 'Evaluate whether a skeptical objection genuinely challenges a particular claim.',
-      it: 'Valuta se un\'obiezione scettica metta davvero in discussione una determinata affermazione.',
+      it: "Valuta se un'obiezione scettica metta davvero in discussione una determinata affermazione.",
       zh: '判断怀疑式反驳是否真正挑战了某项具体主张。',
       hi: 'जाँचें कि संशयवादी आपत्ति वास्तव में किसी विशेष दावे को चुनौती देती है या नहीं।',
       es: 'Evalúa si una objeción escéptica realmente cuestiona una afirmación concreta.',

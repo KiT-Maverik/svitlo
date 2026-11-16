@@ -5,7 +5,7 @@ export const analyzeBaroquePainting_Skill_Data = defineSkill({
   id: 'cdbad49d-6a1b-4c8e-ad1c-4ad14a0d2d04',
   name: {
     en: 'Analyze Baroque Painting',
-    it: "Analizzare la pittura barocca",
+    it: 'Analizzare la pittura barocca',
     zh: '分析巴洛克绘画',
     hi: 'बारोक चित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura barroca',
@@ -40,7 +40,7 @@ export const analyzeBaroquePainting_Skill_Data = defineSkill({
       'Explain how selected painters used dramatic light, movement and theatrical composition within particular seventeenth-century religious or secular settings.',
     frontend: {
       en: 'Explore how Baroque painters used dramatic light, action and composition.',
-      it: "Esplora come i pittori barocchi usavano luci drammatiche, azione e composizione.",
+      it: 'Esplora come i pittori barocchi usavano luci drammatiche, azione e composizione.',
       zh: '了解巴洛克画家如何运用戏剧性的光线、动作和构图。',
       hi: 'जानें कि बारोक चित्रकारों ने नाटकीय प्रकाश, गति और संयोजन का उपयोग कैसे किया।',
       es: 'Explora cómo los pintores barrocos usaron la luz dramática, la acción y la composición.',

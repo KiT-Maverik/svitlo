@@ -13,7 +13,7 @@ export const airAndWater_SkillGroup_Data = defineSkillGroup({
   id: '10df20fa-e7a4-4b8f-9509-35ed6266c32f',
   name: {
     en: 'Air and Water',
-    it: "Aria e acqua",
+    it: 'Aria e acqua',
     zh: '空气与水',
     hi: 'वायु और जल',
     es: 'Aire y agua',

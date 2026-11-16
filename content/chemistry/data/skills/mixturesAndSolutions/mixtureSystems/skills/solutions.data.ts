@@ -5,7 +5,7 @@ export const solutions_Skill_Data = defineSkill({
   id: '843fc4ad-de16-4657-8034-49dc56af7af1',
   name: {
     en: 'Solutions',
-    it: "Soluzioni",
+    it: 'Soluzioni',
     zh: '溶液',
     hi: 'विलयन',
     es: 'Disoluciones',
@@ -39,7 +39,7 @@ export const solutions_Skill_Data = defineSkill({
     methodological: 'Recognize a homogeneous mixture in which solute is distributed within a solvent.',
     frontend: {
       en: 'Identify a solution where dissolved material is evenly distributed.',
-      it: "Identifica una soluzione in cui il materiale disciolto è distribuito uniformemente.",
+      it: 'Identifica una soluzione in cui il materiale disciolto è distribuito uniformemente.',
       zh: '识别溶质均匀分布的溶液。',
       hi: 'ऐसे विलयन पहचानें जिनमें घुला पदार्थ समान रूप से वितरित होता है।',
       es: 'Identifica las disoluciones en las que el soluto está distribuido uniformemente.',

@@ -27,7 +27,10 @@ describe('Engine Italian locale registration', () => {
     } as const;
 
     assert.deepEqual(languageDefinition_Schema.parse(definition), definition);
-    assert.deepEqual(DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === 'it'), definition);
+    assert.deepEqual(
+      DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === 'it'),
+      definition,
+    );
     assert.equal(allLocales.filter(locale => locale === 'it-IT').length, 1);
     assert.equal(allLanguageCodes.filter(code => code === 'it').length, 1);
 

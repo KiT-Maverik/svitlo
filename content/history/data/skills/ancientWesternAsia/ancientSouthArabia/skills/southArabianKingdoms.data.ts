@@ -39,7 +39,7 @@ export const southArabianKingdoms_Skill_Data = defineSkill({
     methodological: 'Examine Saba and other kingdoms through local farming, social organization, and trade.',
     frontend: {
       en: 'Learn about the kingdoms of Saba and its neighbors.',
-      it: "Scopri i regni di Saba e dei territori vicini.",
+      it: 'Scopri i regni di Saba e dei territori vicini.',
       zh: '了解示巴王国及其邻近王国。',
       hi: 'सबा और उसके पड़ोसी राज्यों के बारे में जानें।',
       es: 'Aprende sobre los reinos de Saba y sus vecinos.',

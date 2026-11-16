@@ -5,7 +5,7 @@ export const vedicSocieties_Skill_Data = defineSkill({
   id: 'a3707296-1f32-434a-a36e-074fd1f85349',
   name: {
     en: 'Vedic Societies',
-    it: "Società vediche",
+    it: 'Società vediche',
     zh: '吠陀时代的社会',
     hi: 'वैदिक समाज',
     es: 'Sociedades védicas',

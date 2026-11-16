@@ -39,7 +39,7 @@ export const explainTheConditionForAnObjectToBeVisible_Skill_Data = defineSkill(
     methodological: 'Identify the need for light from an object to reach the eye.',
     frontend: {
       en: 'Explain why we see an object only when light from it reaches the eye.',
-      it: 'Spiega perché vediamo un oggetto solo quando la luce proveniente da esso raggiunge l\'occhio.',
+      it: "Spiega perché vediamo un oggetto solo quando la luce proveniente da esso raggiunge l'occhio.",
       zh: '解释为什么只有物体发出或反射的光到达眼睛时，我们才能看见它。',
       hi: 'समझाओ कि कोई वस्तु तभी दिखती है जब उससे आने वाला प्रकाश आँखों तक पहुँचता है।',
       es: 'Explica por qué solo vemos un objeto cuando la luz que proviene de él llega al ojo.',

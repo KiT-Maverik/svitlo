@@ -11,7 +11,7 @@ export const latinAmericanArtMovements_SkillGroup_Data = defineSkillGroup({
   id: '7954e614-55ec-4d5e-9468-bd961ba21149',
   name: {
     en: 'Latin American Art Movements',
-    it: "Movimenti artistici latinoamericani",
+    it: 'Movimenti artistici latinoamericani',
     zh: '拉丁美洲艺术运动',
     hi: 'लैटिन अमेरिकी कला आंदोलन',
     es: 'Movimientos artísticos latinoamericanos',
@@ -54,7 +54,7 @@ export const latinAmericanArtMovements_SkillGroup_Data = defineSkillGroup({
       'These movements reflect different engagements with Indigenous heritage, colonial institutions, modernism and public expression in specified places.',
     frontend: {
       en: 'Explore distinct Latin American art movements through their specific settings and aims.',
-      it: "Esplora diversi movimenti artistici latinoamericani nei loro specifici contesti e obiettivi.",
+      it: 'Esplora diversi movimenti artistici latinoamericani nei loro specifici contesti e obiettivi.',
       zh: '通过具体背景与目标探索不同的拉丁美洲艺术运动。',
       hi: 'विशिष्ट संदर्भों और उद्देश्यों के माध्यम से लैटिन अमेरिकी कला आंदोलनों को जानें।',
       es: 'Explora distintos movimientos artísticos latinoamericanos según sus contextos y objetivos.',

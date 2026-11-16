@@ -40,7 +40,7 @@ export const neuralInhibition_Skill_Data = defineSkill({
       'Explain how inhibitory signals reduce or regulate activation within a circuit without implying that inhibition means absence of information processing.',
     frontend: {
       en: 'Explain how inhibitory signals help regulate neural activity.',
-      it: 'Spiega come i segnali inibitori contribuiscano a regolare l\'attività neurale.',
+      it: "Spiega come i segnali inibitori contribuiscano a regolare l'attività neurale.",
       zh: '解释抑制性信号如何帮助调节神经活动。',
       hi: 'समझाएँ कि अवरोधक संकेत तंत्रिका गतिविधि को नियंत्रित करने में कैसे मदद करते हैं।',
       es: 'Explica cómo las señales inhibidoras ayudan a regular la actividad neuronal.',

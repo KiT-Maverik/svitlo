@@ -39,7 +39,7 @@ export const lunarMotion_Skill_Data = defineSkill({
     methodological: "Trace the Moon's changing position against background stars across successive nights.",
     frontend: {
       en: 'Track how the Moon changes position against the stars from night to night.',
-      it: 'Segui come cambia la posizione della Luna rispetto alle stelle da una notte all\'altra.',
+      it: "Segui come cambia la posizione della Luna rispetto alle stelle da una notte all'altra.",
       zh: '追踪月球相对于恒星的位置如何一夜一夜地变化。',
       hi: 'पता लगाएँ कि चंद्रमा की स्थिति पृष्ठभूमि के तारों की तुलना में हर रात कैसे बदलती है।',
       es: 'Sigue cómo cambia la posición de la Luna respecto a las estrellas de una noche a otra.',

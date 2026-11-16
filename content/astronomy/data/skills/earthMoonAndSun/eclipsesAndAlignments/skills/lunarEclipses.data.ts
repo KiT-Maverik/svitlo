@@ -39,7 +39,7 @@ export const lunarEclipses_Skill_Data = defineSkill({
     methodological: "Explain the conditions and stages of a lunar eclipse as the Moon encounters Earth's shadow.",
     frontend: {
       en: 'Understand how Earth casts its shadow on the Moon during a lunar eclipse.',
-      it: 'Comprendi come, durante un\'eclissi lunare, la Terra proietta la propria ombra sulla Luna.',
+      it: "Comprendi come, durante un'eclissi lunare, la Terra proietta la propria ombra sulla Luna.",
       zh: '了解月食发生时地球如何将阴影投射到月球上。',
       hi: 'समझें कि चंद्र ग्रहण के दौरान पृथ्वी की छाया चंद्रमा पर कैसे पड़ती है।',
       es: 'Comprende cómo la Tierra proyecta su sombra sobre la Luna durante un eclipse lunar.',

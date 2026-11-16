@@ -5,7 +5,7 @@ export const analyzeProceduralFairness_Skill_Data = defineSkill({
   id: 'c7a245c5-d9ef-4f83-bad0-e739d6166bf8',
   name: {
     en: 'Analyze procedural fairness',
-    it: 'Analizzare l\'equità procedurale',
+    it: "Analizzare l'equità procedurale",
     zh: '分析程序公正',
     hi: 'प्रक्रियात्मक निष्पक्षता का विश्लेषण',
     es: 'Analizar la justicia procedimental',

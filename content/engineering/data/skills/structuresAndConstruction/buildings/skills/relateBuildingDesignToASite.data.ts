@@ -5,7 +5,7 @@ export const relateBuildingDesignToASite_Skill_Data = defineSkill({
   id: '79c41104-bc62-4bc8-8db8-2af5550863a3',
   name: {
     en: 'Relate building design to a site',
-    it: 'Adattare la progettazione dell\'edificio al sito',
+    it: "Adattare la progettazione dell'edificio al sito",
     zh: '将建筑设计与场地相结合',
     hi: 'भवन डिजाइन को स्थल से जोड़ें',
     es: 'Relacionar el diseño de un edificio con su emplazamiento',

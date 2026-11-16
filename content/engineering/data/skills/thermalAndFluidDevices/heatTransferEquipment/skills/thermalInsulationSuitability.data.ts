@@ -5,7 +5,7 @@ export const thermalInsulationSuitability_Skill_Data = defineSkill({
   id: '40d0db59-d8fc-4e20-89fc-8439e34a5295',
   name: {
     en: 'Thermal insulation suitability',
-    it: 'Idoneità dell\'isolamento termico',
+    it: "Idoneità dell'isolamento termico",
     zh: '隔热适用性',
     hi: 'ऊष्मीय इन्सुलेशन की उपयुक्तता',
     es: 'Idoneidad del aislamiento térmico',

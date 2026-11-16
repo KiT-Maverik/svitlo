@@ -5,7 +5,7 @@ export const objectPermanence_Skill_Data = defineSkill({
   id: '3e0455f7-5d5c-43dc-90a4-6b36e5725f33',
   name: {
     en: 'Object Permanence',
-    it: 'Permanenza dell\'oggetto',
+    it: "Permanenza dell'oggetto",
     zh: '客体永久性',
     hi: 'वस्तु स्थायित्व',
     es: 'Permanencia del objeto',

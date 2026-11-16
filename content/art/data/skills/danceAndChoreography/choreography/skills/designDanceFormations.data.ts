@@ -5,7 +5,7 @@ export const designDanceFormations_Skill_Data = defineSkill({
   id: 'db1fb988-03e1-4fe8-a423-9b3e9f989cf5',
   name: {
     en: 'Design Dance Formations',
-    it: "Progettare formazioni di danza",
+    it: 'Progettare formazioni di danza',
     zh: '设计舞蹈队形',
     hi: 'नृत्य की संरचनाएँ तय करें',
     es: 'Diseñar formaciones de danza',
@@ -39,7 +39,7 @@ export const designDanceFormations_Skill_Data = defineSkill({
     methodological: "Coordinate dancers' positions and changing distances to establish purposeful spatial patterns.",
     frontend: {
       en: 'Plan how dancers move together and form patterns in space.',
-      it: "Pianifica come i danzatori si muovono insieme e creano figure nello spazio.",
+      it: 'Pianifica come i danzatori si muovono insieme e creano figure nello spazio.',
       zh: '规划舞者如何协同移动并在空间中形成队形。',
       hi: 'योजना बनाएँ कि नर्तक साथ कैसे चलेंगे और स्थान में आकृतियाँ बनाएँगे।',
       es: 'Planifica cómo se mueven los bailarines y forman figuras en el espacio.',

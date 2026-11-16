@@ -40,7 +40,7 @@ export const correlationAndCausation_Skill_Data = defineSkill({
       'Consider reversed direction and third-variable explanations when two psychological measures vary together.',
     frontend: {
       en: 'Distinguish association from evidence that one psychological factor causes another.',
-      it: 'Distingui un\'associazione dalle prove che un fattore psicologico causi un altro.',
+      it: "Distingui un'associazione dalle prove che un fattore psicologico causi un altro.",
       zh: '区分变量之间的关联与一个心理因素导致另一个因素的证据。',
       hi: 'दो कारकों के संबंध और एक मनोवैज्ञानिक कारक द्वारा दूसरे को उत्पन्न करने के प्रमाण में अंतर करें।',
       es: 'Distingue una asociación de la evidencia de que un factor psicológico causa otro.',

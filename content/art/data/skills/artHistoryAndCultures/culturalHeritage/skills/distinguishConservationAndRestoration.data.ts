@@ -5,7 +5,7 @@ export const distinguishConservationAndRestoration_Skill_Data = defineSkill({
   id: 'b01359eb-7246-43da-83de-03591aa32b1b',
   name: {
     en: 'Distinguish Conservation and Restoration',
-    it: "Distinguere conservazione e restauro",
+    it: 'Distinguere conservazione e restauro',
     zh: '区分保护与修复',
     hi: 'संरक्षण और पुनर्स्थापन में अंतर करें',
     es: 'Distinguir conservación y restauración',
@@ -40,7 +40,7 @@ export const distinguishConservationAndRestoration_Skill_Data = defineSkill({
       'Explain stabilization of surviving material versus interventions to recreate an earlier appearance.',
     frontend: {
       en: 'Understand how preserving original material differs from recreating lost features.',
-      it: "Comprendi la differenza tra preservare il materiale originale e ricreare elementi perduti.",
+      it: 'Comprendi la differenza tra preservare il materiale originale e ricreare elementi perduti.',
       zh: '了解保存原始材料与重现已失去特征之间的区别。',
       hi: 'समझें कि मूल सामग्री को सुरक्षित रखना खोई हुई विशेषताओं को फिर से बनाने से कैसे अलग है।',
       es: 'Comprende en qué se diferencia conservar el material original de recrear elementos perdidos.',

@@ -40,7 +40,7 @@ export const analyzeAncientEgyptianFuneraryImagery_Skill_Data = defineSkill({
       'Explain how conventions of profile, scale, attributes and prescribed scenes relate to religious beliefs and burial contexts in a specified Egyptian period.',
     frontend: {
       en: 'See how ancient Egyptian burial images use symbols, figures and carefully chosen scenes.',
-      it: "Osserva come le immagini funerarie egizie usano simboli, figure e scene scelte con cura.",
+      it: 'Osserva come le immagini funerarie egizie usano simboli, figure e scene scelte con cura.',
       zh: '了解古埃及墓葬图像如何运用象征、人物和精心安排的场景。',
       hi: 'जानें कि प्राचीन मिस्री समाधि-चित्रों में प्रतीकों, आकृतियों और सोच-समझकर चुने गए दृश्यों का उपयोग कैसे होता था।',
       es: 'Descubre cómo las imágenes funerarias del antiguo Egipto emplean símbolos, figuras y escenas cuidadosamente elegidas.',

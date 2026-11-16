@@ -5,7 +5,7 @@ export const carboxylicAcids_Skill_Data = defineSkill({
   id: '156f06c4-4bcd-462e-816b-660e916d72bc',
   name: {
     en: 'Carboxylic Acids',
-    it: "Acidi carbossilici",
+    it: 'Acidi carbossilici',
     zh: '羧酸',
     hi: 'कार्बोक्सिलिक अम्ल',
     es: 'Ácidos carboxílicos',
@@ -39,7 +39,7 @@ export const carboxylicAcids_Skill_Data = defineSkill({
     methodological: 'Interpret carboxyl-group acidity and derivative formation.',
     frontend: {
       en: 'Explore how the carboxyl group gives carboxylic acids their characteristic behavior.',
-      it: "Esplora come il gruppo carbossilico conferisce agli acidi carbossilici il comportamento caratteristico.",
+      it: 'Esplora come il gruppo carbossilico conferisce agli acidi carbossilici il comportamento caratteristico.',
       zh: '探索羧基如何赋予羧酸特有的化学行为。',
       hi: 'समझें कि कार्बोक्सिल समूह कार्बोक्सिलिक अम्लों का विशिष्ट व्यवहार कैसे तय करता है।',
       es: 'Explora cómo el grupo carboxilo determina el comportamiento característico de los ácidos carboxílicos.',

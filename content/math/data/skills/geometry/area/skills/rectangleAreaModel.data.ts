@@ -5,7 +5,7 @@ export const rectangleAreaModel_Skill_Data = defineSkill({
   id: '18927cbb-05bf-4f99-9d85-aaf60512417f',
   name: {
     en: 'Relating rectangle area to side-length multiplication',
-    it: 'Collegare l\'area del rettangolo alla moltiplicazione dei lati',
+    it: "Collegare l'area del rettangolo alla moltiplicazione dei lati",
     qm: 'Dik dörtkenarnıñ meydanını taraflar uzunlığını arttıruvnen bağlamaq',
     lt: 'Stačiakampio ploto siejimas su kraštinių sandauga',
     lv: 'Taisnstūra laukuma saistīšana ar malu garumu reizinājumu',
@@ -40,7 +40,7 @@ export const rectangleAreaModel_Skill_Data = defineSkill({
       'The area of a rectangle is the product of adjacent side lengths expressed in a common length unit. A grid of congruent unit squares explains the formula through row and column counts.',
     frontend: {
       en: 'Find a rectangle’s area by multiplying its length and width. Rows and columns of equal squares show why this works.',
-      it: 'Trova l\'area di un rettangolo moltiplicando lunghezza e larghezza. Righe e colonne di quadrati uguali mostrano perché funziona.',
+      it: "Trova l'area di un rettangolo moltiplicando lunghezza e larghezza. Righe e colonne di quadrati uguali mostrano perché funziona.",
       qm: 'Dik dörtkenarnıñ uzunlığı ve enini arttırıp meydanını tap. Teñ kvadratlarnıñ satır ve sütunları bu usulnıñ ne içün işlegenini köstere.',
       zh: '长方形面积等于长乘宽。相同大小的单位正方形排成的行和列说明原因。',
       hi: 'आयत का क्षेत्रफल लंबाई और चौड़ाई का गुणनफल है। समान वर्गों की कतारें व स्तंभ वजह समझाते हैं।',

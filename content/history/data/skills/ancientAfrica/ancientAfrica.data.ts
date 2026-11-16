@@ -11,7 +11,7 @@ export const ancientAfrica_SkillDomain_Data = defineSkillDomain({
   id: 'c73e038b-1bfd-421b-adb5-b75dd00cebb0',
   title: {
     en: 'Africa',
-    it: "Africa",
+    it: 'Africa',
     zh: '非洲',
     hi: 'अफ्रीका',
     es: 'África',

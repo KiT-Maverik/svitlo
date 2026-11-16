@@ -5,7 +5,7 @@ export const recognizePhishingAndImpersonation_Skill_Data = defineSkill({
   id: 'cb5a3fcf-85a6-4a72-9277-f3e4608c71ec',
   name: {
     en: 'Recognize phishing and impersonation',
-    it: 'Riconoscere phishing e furto d\'identità',
+    it: "Riconoscere phishing e furto d'identità",
     zh: '识别网络钓鱼与身份冒充',
     hi: 'फ़िशिंग और पहचान की नकल पहचानना',
     es: 'Reconocer phishing y suplantación de identidad',

@@ -40,7 +40,7 @@ export const expansionVersusBoundSystems_Skill_Data = defineSkill({
       'Explain why the expansion of the Universe does not automatically enlarge gravitationally bound local systems.',
     frontend: {
       en: 'See why expanding space does not simply stretch planets, stars or galaxies apart.',
-      it: 'Scopri perché l\'espansione dello spazio non allontana semplicemente tra loro pianeti, stelle o galassie.',
+      it: "Scopri perché l'espansione dello spazio non allontana semplicemente tra loro pianeti, stelle o galassie.",
       qm: 'Fezanıñ keñeyüvi planetalarnı, yıldızlarnı ve galaktikalarnı ne içün öz-özünden ayırmağanını ögreniñiz.',
       zh: '理解为什么空间膨胀不会直接拉开行星、恒星或星系。',
       hi: 'समझें कि अंतरिक्ष के विस्तार से ग्रह, तारे या आकाशगंगाएँ सीधे खिंचकर अलग क्यों नहीं होतीं।',

@@ -5,7 +5,7 @@ export const animalDomestication_Skill_Data = defineSkill({
   id: 'f8135b68-0ce4-45d0-9394-bec327682954',
   name: {
     en: 'Animal Domestication',
-    it: "Domesticazione degli animali",
+    it: 'Domesticazione degli animali',
     zh: '动物驯化',
     hi: 'पशुओं का पालतूकरण',
     es: 'Domesticación de animales',
@@ -40,7 +40,7 @@ export const animalDomestication_Skill_Data = defineSkill({
       'Explain changing relationships with animal populations and consequences for food, work, and mobility.',
     frontend: {
       en: 'Explore how humans began raising domesticated animals.',
-      it: "Esplora come gli esseri umani iniziarono ad allevare animali domestici.",
+      it: 'Esplora come gli esseri umani iniziarono ad allevare animali domestici.',
       zh: '探索人类如何开始饲养驯化的动物。',
       hi: 'जानें कि मनुष्यों ने पालतू पशुओं को पालना कैसे शुरू किया।',
       es: 'Explora cómo los seres humanos comenzaron a criar animales domesticados.',

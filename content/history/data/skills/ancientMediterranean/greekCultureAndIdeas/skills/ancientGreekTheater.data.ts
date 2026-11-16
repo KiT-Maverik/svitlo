@@ -5,7 +5,7 @@ export const ancientGreekTheater_Skill_Data = defineSkill({
   id: '43d96de7-6f56-492e-a3bc-0a55b6dff6b3',
   name: {
     en: 'Ancient Greek Theater',
-    it: "Teatro greco antico",
+    it: 'Teatro greco antico',
     zh: '古希腊戏剧',
     hi: 'प्राचीन यूनानी रंगमंच',
     es: 'Teatro griego antiguo',
@@ -39,7 +39,7 @@ export const ancientGreekTheater_Skill_Data = defineSkill({
     methodological: 'Study tragedy, comedy, and public performance in relation to festivals and civic life.',
     frontend: {
       en: 'Discover why theater mattered in ancient Greek cities.',
-      it: "Scopri perché il teatro era importante nelle antiche città greche.",
+      it: 'Scopri perché il teatro era importante nelle antiche città greche.',
       zh: '了解戏剧为何在古希腊城市中如此重要。',
       hi: 'जानें कि प्राचीन यूनानी नगरों में रंगमंच क्यों महत्वपूर्ण था।',
       es: 'Descubre por qué el teatro era importante en las ciudades griegas antiguas.',

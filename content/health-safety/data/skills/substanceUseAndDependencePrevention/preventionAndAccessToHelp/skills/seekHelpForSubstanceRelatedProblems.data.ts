@@ -40,7 +40,7 @@ export const seekHelpForSubstanceRelatedProblems_Skill_Data = defineSkill({
       'Identify trusted people and health or addiction services, including urgent assistance for suspected poisoning or overdose.',
     frontend: {
       en: 'Know when to ask for support or urgent help for substance-related harm.',
-      it: 'Comprendi quando chiedere sostegno o aiuto urgente per danni legati all\'uso di sostanze.',
+      it: "Comprendi quando chiedere sostegno o aiuto urgente per danni legati all'uso di sostanze.",
       zh: '知道何时因物质相关伤害寻求支持或紧急援助。',
       hi: 'जानें कि पदार्थों से होने वाले नुकसान पर सहायता या आपात मदद कब माँगनी चाहिए।',
       es: 'Reconoce cuándo pedir apoyo o ayuda urgente por daños relacionados con sustancias.',

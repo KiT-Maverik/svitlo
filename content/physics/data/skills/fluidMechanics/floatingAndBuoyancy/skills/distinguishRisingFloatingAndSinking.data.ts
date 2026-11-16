@@ -39,7 +39,7 @@ export const distinguishRisingFloatingAndSinking_Skill_Data = defineSkill({
     methodological: 'Identify three possible behaviors of safe objects in water through observation or simulation.',
     frontend: {
       en: 'Distinguish an object rising, remaining afloat or sinking in water.',
-      it: 'Distingui un oggetto che risale, rimane a galla o affonda nell\'acqua.',
+      it: "Distingui un oggetto che risale, rimane a galla o affonda nell'acqua.",
       zh: '区分物体在水中上升、保持漂浮或下沉。',
       hi: 'पानी में वस्तु के ऊपर उठने, तैरते रहने या डूबने में अंतर करें।',
       es: 'Distingue cuándo un objeto sube, permanece a flote o se hunde en el agua.',

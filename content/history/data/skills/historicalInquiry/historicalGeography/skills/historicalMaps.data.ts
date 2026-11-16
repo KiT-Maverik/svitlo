@@ -5,7 +5,7 @@ export const historicalMaps_Skill_Data = defineSkill({
   id: '998413be-fe59-4ffd-a154-649de752df36',
   name: {
     en: 'Historical Maps',
-    it: "Carte storiche",
+    it: 'Carte storiche',
     zh: '历史地图',
     hi: 'ऐतिहासिक मानचित्र',
     es: 'Mapas históricos',

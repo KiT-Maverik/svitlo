@@ -12,7 +12,7 @@ export const religiousAndIntellectualTraditions_SkillGroup_Data = defineSkillGro
   id: '306a08df-08ba-470b-88da-fdab77bf1904',
   name: {
     en: 'Religious and Intellectual Traditions',
-    it: "Tradizioni religiose e intellettuali",
+    it: 'Tradizioni religiose e intellettuali',
     zh: '宗教与思想传统',
     hi: 'धार्मिक और बौद्धिक परंपराएँ',
     es: 'Tradiciones religiosas e intelectuales',

@@ -40,7 +40,7 @@ export const feedbackAndSkillAcquisition_Skill_Data = defineSkill({
       'Explain how informative outcome feedback changes later performance differently from simple repetition.',
     frontend: {
       en: 'Understand how informative feedback helps people improve a skill.',
-      it: 'Comprendi come riscontri informativi aiutino le persone a migliorare un\'abilità.',
+      it: "Comprendi come riscontri informativi aiutino le persone a migliorare un'abilità.",
       zh: '理解有信息量的反馈如何帮助人改进技能。',
       hi: 'समझें कि जानकारीपूर्ण प्रतिक्रिया से कौशल बेहतर बनाने में कैसे मदद मिलती है।',
       es: 'Comprende cómo la retroalimentación informativa ayuda a mejorar una habilidad.',

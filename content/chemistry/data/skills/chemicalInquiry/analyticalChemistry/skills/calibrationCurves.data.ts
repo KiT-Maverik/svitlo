@@ -5,7 +5,7 @@ export const calibrationCurves_Skill_Data = defineSkill({
   id: '7ea3082d-a96d-488b-b1b3-df3fdc9cba84',
   name: {
     en: 'Calibration Curves',
-    it: "Curve di taratura",
+    it: 'Curve di taratura',
     zh: '校准曲线',
     hi: 'अंशांकन वक्र',
     es: 'Curvas de calibración',
@@ -40,7 +40,7 @@ export const calibrationCurves_Skill_Data = defineSkill({
       'Relate an instrument signal to known standards while recognizing background response, limited range and uncertainty.',
     frontend: {
       en: 'Read a calibration curve to connect instrument signals with known concentrations.',
-      it: "Leggi una curva di taratura per collegare i segnali strumentali a concentrazioni note.",
+      it: 'Leggi una curva di taratura per collegare i segnali strumentali a concentrazioni note.',
       zh: '读取校准曲线，理解仪器信号与已知浓度之间的关系。',
       hi: 'अंशांकन वक्र पढ़कर यंत्र के संकेतों और ज्ञात सांद्रताओं का संबंध समझें।',
       es: 'Lee una curva de calibración para relacionar señales instrumentales con concentraciones conocidas.',

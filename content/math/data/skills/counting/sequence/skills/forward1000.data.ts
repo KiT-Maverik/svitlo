@@ -40,7 +40,7 @@ export const forward1000_Skill_Data = defineSkill({
       'Recover missing or subsequent consecutive natural numbers using adjacency and a step of one. Crossing tens and hundreds does not change the rule; this differs from discovering an arbitrary pattern.',
     frontend: {
       en: 'Find the next or missing consecutive number within 1,000, including when crossing tens or hundreds. The step is always one.',
-      it: 'Trova il numero successivo o mancante in una sequenza di numeri consecutivi fino a 1000, anche al passaggio tra decine o centinaia. Ogni passo è di un\'unità.',
+      it: "Trova il numero successivo o mancante in una sequenza di numeri consecutivi fino a 1000, anche al passaggio tra decine o centinaia. Ogni passo è di un'unità.",
       qm: '1000 içinde ketme-ket kelgen sayılarnıñ soñrakisini ya da eksik olğanını tap. Onluq ya da yüzlüq sıñırından keçkende de, adım er vaqıt birge teñ.',
       zh: '找出1000以内连续数列的下一个数或缺少的数，跨过整十、整百时也是每次相差一。',
       hi: '1,000 के भीतर लगातार संख्याओं में अगली या छूटी संख्या खोजें, दहाई या सैकड़ा पार करते समय भी। हर कदम एक का है।',

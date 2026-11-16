@@ -40,7 +40,7 @@ export const understandSleepNeeds_Skill_Data = defineSkill({
       'Relate sufficient sleep and regular timing to functioning while accounting for differences across life stages and circumstances.',
     frontend: {
       en: 'Recognize how sleep needs change with age and circumstances.',
-      it: 'Riconosci come il fabbisogno di sonno cambia con l\'età e le circostanze.',
+      it: "Riconosci come il fabbisogno di sonno cambia con l'età e le circostanze.",
       zh: '识别睡眠需求如何随着年龄和生活情况变化。',
       hi: 'जानें कि उम्र और परिस्थितियों के साथ नींद की ज़रूरतें कैसे बदलती हैं।',
       es: 'Reconoce cómo cambian las necesidades de sueño con la edad y las circunstancias.',

@@ -5,7 +5,7 @@ export const distinguishEnergyFromItsSource_Skill_Data = defineSkill({
   id: '314f7d31-aef5-49bf-970e-b536aa41d19f',
   name: {
     en: 'Distinguish energy from its source',
-    it: 'Distinguere l\'energia dalla sua fonte',
+    it: "Distinguere l'energia dalla sua fonte",
     zh: '区分能量与能量来源',
     hi: 'ऊर्जा और उसके स्रोत में अंतर करना',
     es: 'Distinguir la energía de su fuente',
@@ -40,7 +40,7 @@ export const distinguishEnergyFromItsSource_Skill_Data = defineSkill({
       'Energy characterizes the state and changes of a system, whereas a source is a body or process from which energy is transferred to another system; the source does not create it from nothing.',
     frontend: {
       en: 'Separate the energy of a system from the source transferring it.',
-      it: 'Distingui l\'energia di un sistema dalla fonte che gliela trasferisce.',
+      it: "Distingui l'energia di un sistema dalla fonte che gliela trasferisce.",
       zh: '区分系统的能量和向它传递能量的来源。',
       hi: 'प्रणाली की ऊर्जा को उसे ऊर्जा देने वाले स्रोत से अलग समझें।',
       es: 'Separa la energía de un sistema de la fuente que se la transfiere.',

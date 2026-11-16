@@ -5,7 +5,7 @@ export const originsOfHomo_Skill_Data = defineSkill({
   id: 'b74458c9-95a2-41e5-9a36-1f67923d4837',
   name: {
     en: 'Origins of the Genus Homo',
-    it: "Origini del genere Homo",
+    it: 'Origini del genere Homo',
     zh: '人属的起源',
     hi: 'होमो वंश की उत्पत्ति',
     es: 'Orígenes del género Homo',

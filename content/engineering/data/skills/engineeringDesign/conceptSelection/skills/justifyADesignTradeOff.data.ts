@@ -39,7 +39,7 @@ export const justifyADesignTradeOff_Skill_Data = defineSkill({
     methodological: 'Explain an accepted sacrifice, such as extra mass in exchange for greater strength.',
     frontend: {
       en: 'Explain why improving one feature may require sacrificing another.',
-      it: 'Spiega perché migliorare una caratteristica può richiedere di sacrificarne un\'altra.',
+      it: "Spiega perché migliorare una caratteristica può richiedere di sacrificarne un'altra.",
       zh: '解释为什么改善一项特性可能需要牺牲另一项。',
       hi: 'समझाएँ कि एक गुण सुधारने के लिए दूसरा गुण क्यों कम करना पड़ सकता है।',
       es: 'Explica por qué mejorar una característica puede obligar a sacrificar otra.',

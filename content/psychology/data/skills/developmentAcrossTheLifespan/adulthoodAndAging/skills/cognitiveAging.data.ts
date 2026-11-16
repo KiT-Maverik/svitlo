@@ -40,7 +40,7 @@ export const cognitiveAging_Skill_Data = defineSkill({
       'Distinguish average age-related changes in some processing abilities from preserved or improved knowledge and variation among people.',
     frontend: {
       en: 'Recognize different patterns of cognitive change with age.',
-      it: 'Riconosci i diversi andamenti dei cambiamenti cognitivi associati all\'età.',
+      it: "Riconosci i diversi andamenti dei cambiamenti cognitivi associati all'età.",
       zh: '认识随年龄增长而出现的不同认知变化模式。',
       hi: 'उम्र बढ़ने पर सोचने-समझने की क्षमताओं में बदलाव के अलग-अलग रूप पहचानें।',
       es: 'Reconoce distintos patrones de cambio cognitivo con la edad.',

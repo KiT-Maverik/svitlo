@@ -5,7 +5,7 @@ export const multiwavelengthObservation_Skill_Data = defineSkill({
   id: '5e2bd763-fd57-423f-b7c4-f8a82e94bcc8',
   name: {
     en: 'Multiwavelength Observation',
-    it: 'Osservazione a più lunghezze d\'onda',
+    it: "Osservazione a più lunghezze d'onda",
     qm: 'Çeşit dalğa uzunlıqlarında közetüv',
     bn: 'বহু-তরঙ্গদৈর্ঘ্য পর্যবেক্ষণ',
     ur: 'کئی طولِ موجوں پر مشاہدہ',

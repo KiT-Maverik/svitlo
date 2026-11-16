@@ -5,7 +5,7 @@ export const generateArtisticIdeas_Skill_Data = defineSkill({
   id: 'f3fecd9b-1db8-4fee-af67-5df3077f128d',
   name: {
     en: 'Generate Artistic Ideas',
-    it: "Generare idee artistiche",
+    it: 'Generare idee artistiche',
     zh: '生成艺术创意',
     hi: 'कलात्मक विचार उत्पन्न करें',
     es: 'Generar ideas artísticas',

@@ -5,7 +5,7 @@ export const analyzeTheRoleOfContextInAestheticExperience_Skill_Data = defineSki
   id: 'd18d056e-5265-4059-be20-e90f55dab9ab',
   name: {
     en: 'Analyze the role of context in aesthetic experience',
-    it: 'Analizzare il ruolo del contesto nell\'esperienza estetica',
+    it: "Analizzare il ruolo del contesto nell'esperienza estetica",
     zh: '分析语境在审美体验中的作用',
     hi: 'सौंदर्य अनुभव में संदर्भ की भूमिका का विश्लेषण',
     es: 'Analizar el papel del contexto en la experiencia estética',
@@ -40,7 +40,7 @@ export const analyzeTheRoleOfContextInAestheticExperience_Skill_Data = defineSki
       'Explain how setting, background knowledge, and cultural conventions can alter interpretation while the object remains unchanged.',
     frontend: {
       en: 'Explore how context or background knowledge changes an aesthetic experience.',
-      it: 'Esplora come il contesto o le conoscenze pregresse possano cambiare un\'esperienza estetica.',
+      it: "Esplora come il contesto o le conoscenze pregresse possano cambiare un'esperienza estetica.",
       zh: '探索环境和背景知识如何改变审美体验。',
       hi: 'जानो कि परिस्थिति और पहले का ज्ञान सौंदर्य अनुभव को कैसे बदल सकते हैं।',
       es: 'Explora cómo el contexto y los conocimientos previos transforman una experiencia estética.',

@@ -10,7 +10,7 @@ export const chemistryInTheWorld_SkillDomain_Data = defineSkillDomain({
   id: 'fceb8307-d2a3-4c45-b3d5-dd51f4d31bad',
   title: {
     en: 'Chemistry in the World',
-    it: "La chimica nel mondo",
+    it: 'La chimica nel mondo',
     zh: '生活中的化学',
     hi: 'हमारी दुनिया में रसायन',
     es: 'La química en el mundo',

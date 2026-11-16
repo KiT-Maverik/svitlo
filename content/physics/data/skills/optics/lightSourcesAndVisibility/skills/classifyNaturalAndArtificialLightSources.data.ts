@@ -39,7 +39,7 @@ export const classifyNaturalAndArtificialLightSources_Skill_Data = defineSkill({
     methodological: 'Group light sources according to their origin.',
     frontend: {
       en: 'Recognize natural and human-made sources of light.',
-      it: 'Riconosci le sorgenti luminose naturali e quelle create dall\'essere umano.',
+      it: "Riconosci le sorgenti luminose naturali e quelle create dall'essere umano.",
       zh: '识别自然界中的光源和人类制造的光源。',
       hi: 'प्राकृतिक तथा मनुष्य द्वारा बनाए गए प्रकाश स्रोतों को पहचानो।',
       es: 'Reconoce fuentes de luz naturales y creadas por las personas.',

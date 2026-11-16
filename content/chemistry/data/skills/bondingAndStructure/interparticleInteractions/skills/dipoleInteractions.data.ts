@@ -5,7 +5,7 @@ export const dipoleInteractions_Skill_Data = defineSkill({
   id: '7249f214-e786-4e99-9128-287f721add3e',
   name: {
     en: 'Dipole Interactions',
-    it: "Interazioni dipolari",
+    it: 'Interazioni dipolari',
     zh: '偶极相互作用',
     hi: 'द्विध्रुवीय अंतःक्रियाएँ',
     es: 'Interacciones dipolares',
@@ -39,7 +39,7 @@ export const dipoleInteractions_Skill_Data = defineSkill({
     methodological: 'Relate permanent molecular polarity to orientation-dependent attractions between molecules.',
     frontend: {
       en: 'Understand how polar molecules attract one another according to their orientation.',
-      it: "Comprendi come le molecole polari si attraggono in funzione del loro orientamento.",
+      it: 'Comprendi come le molecole polari si attraggono in funzione del loro orientamento.',
       zh: '了解极性分子如何随取向不同而相互吸引。',
       hi: 'समझें कि ध्रुवीय अणु अपनी दिशा के अनुसार एक-दूसरे को कैसे आकर्षित करते हैं।',
       es: 'Comprende cómo se atraen las moléculas polares según su orientación.',

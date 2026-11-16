@@ -10,7 +10,7 @@ export const chemicalInquiry_SkillDomain_Data = defineSkillDomain({
   id: 'f8ccde78-00a5-4247-a7c2-28021b0b40a4',
   title: {
     en: 'Chemical Inquiry',
-    it: "Indagine chimica",
+    it: 'Indagine chimica',
     zh: '化学探究',
     hi: 'रासायनिक अन्वेषण',
     es: 'Investigación química',
@@ -54,7 +54,7 @@ export const chemicalInquiry_SkillDomain_Data = defineSkillDomain({
       'Chemical knowledge connects observations of substances with explanations, testable models and reliable evidence. This domain covers chemistry-specific investigation and communication; general research methodology remains a cross-disciplinary concern.',
     frontend: {
       en: 'Explore how chemists investigate substances, test explanations and use trustworthy evidence.',
-      it: "Esplora come i chimici studiano le sostanze, verificano le spiegazioni e si basano su prove affidabili.",
+      it: 'Esplora come i chimici studiano le sostanze, verificano le spiegazioni e si basano su prove affidabili.',
       zh: '探索化学家如何研究物质、检验解释并运用可靠的证据。',
       hi: 'जानें कि रसायनज्ञ पदार्थों का अध्ययन कैसे करते हैं, व्याख्याओं को कैसे जाँचते हैं और विश्वसनीय प्रमाणों का उपयोग कैसे करते हैं।',
       es: 'Explora cómo los químicos estudian sustancias, comprueban explicaciones y utilizan pruebas fiables.',

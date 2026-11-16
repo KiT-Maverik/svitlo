@@ -5,7 +5,7 @@ export const periodicity_Skill_Data = defineSkill({
   id: 'c66a601d-d31e-4400-aa88-7e5c72d14580',
   name: {
     en: 'Periodicity',
-    it: "Periodicità",
+    it: 'Periodicità',
     zh: '周期性',
     hi: 'आवर्तिता',
     es: 'Periodicidad',
@@ -39,7 +39,7 @@ export const periodicity_Skill_Data = defineSkill({
     methodological: 'Explain why some element properties recur as atomic number increases.',
     frontend: {
       en: 'Explain why certain element properties repeat across the periodic table.',
-      it: "Spiega perché alcune proprietà degli elementi si ripetono lungo la tavola periodica.",
+      it: 'Spiega perché alcune proprietà degli elementi si ripetono lungo la tavola periodica.',
       zh: '解释为什么元素的某些性质会在周期表中周期性重复。',
       hi: 'समझाएँ कि कुछ तत्व गुण आवर्त सारणी में बार-बार क्यों दिखाई देते हैं।',
       es: 'Explica por qué ciertas propiedades de los elementos se repiten en la tabla periódica.',

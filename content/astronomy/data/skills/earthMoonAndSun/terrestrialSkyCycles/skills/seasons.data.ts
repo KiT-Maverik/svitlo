@@ -40,7 +40,7 @@ export const seasons_Skill_Data = defineSkill({
       "Explain seasonal solar illumination using Earth's axial tilt and orbital revolution rather than changes in Earth–Sun distance alone.",
     frontend: {
       en: "Discover how Earth's tilted axis produces the seasons.",
-      it: 'Scopri come l\'inclinazione dell\'asse terrestre produce le stagioni.',
+      it: "Scopri come l'inclinazione dell'asse terrestre produce le stagioni.",
       zh: '探索地轴的倾斜如何形成四季。',
       hi: 'जानें कि पृथ्वी की धुरी का झुकाव ऋतुओं के बनने में कैसे भूमिका निभाता है।',
       es: 'Descubre cómo la inclinación del eje terrestre da lugar a las estaciones.',
