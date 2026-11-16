@@ -287,8 +287,13 @@ export function renderLessonModules(lesson, language, options = {}) {
     throw new Error('lesson.yaml:config.type: expected lesson type for the Lesson entrypoint');
   for (const field of ['questions', 'flashcards']) {
     if (Object.hasOwn(filtered, field))
-      throw new Error('lesson.yaml:config.' + field +
-        ': embedded banks are no longer supported; author ' + field + '.yaml at the Lesson root');
+      throw new Error(
+        'lesson.yaml:config.' +
+          field +
+          ': embedded banks are no longer supported; author ' +
+          field +
+          '.yaml at the Lesson root',
+      );
   }
   const files = new Map();
   const nodeLocations = options.nodeLocations;
@@ -450,7 +455,8 @@ export function renderLessonModules(lesson, language, options = {}) {
       const symbol = symbolFor(value, context);
       // The mandatory Text question and the Answer Configurator have fixed
       // semantic role paths. Their own authored slugs still live in Config.
-      const roleRoot = (context === 'checkpointAnswer' && field === '$.answer') ||
+      const roleRoot =
+        (context === 'checkpointAnswer' && field === '$.answer') ||
         (context === 'block' && field === '$.question' && ownerDirectory.endsWith('/question'));
       const childDirectory = roleRoot ? ownerDirectory : join(ownerDirectory, value.slug);
       emitNode(value, context, childDirectory);
@@ -559,15 +565,15 @@ export function renderLessonModules(lesson, language, options = {}) {
               ? ['question', 'answer']
               : context === 'checkpointAnswer'
                 ? ['content']
-              : context === 'question'
-                ? ['content']
-                : context === 'flashcard'
-                  ? ['content', 'parameters']
-                  : context === 'stage'
-                    ? ['content']
-                    : context === 'task'
-                      ? ['scene']
-                      : [];
+                : context === 'question'
+                  ? ['content']
+                  : context === 'flashcard'
+                    ? ['content', 'parameters']
+                    : context === 'stage'
+                      ? ['content']
+                      : context === 'task'
+                        ? ['scene']
+                        : [];
     for (const key of uses) {
       if (!Object.hasOwn(node, key)) continue;
       const owner =
@@ -597,8 +603,7 @@ export function renderLessonModules(lesson, language, options = {}) {
       );
     if (context === 'checkpointItem')
       return '<' + [slug, typeOf('answer'), typeOf('question'), languagesType].join(', ') + '>';
-    if (context === 'checkpointAnswer')
-      return '<' + [slug, 'typeof content.items', languagesType].join(', ') + '>';
+    if (context === 'checkpointAnswer') return '<' + [slug, 'typeof content.items', languagesType].join(', ') + '>';
     if (context === 'question') return '<' + [slug, typeOf('content'), languagesType].join(', ') + '>';
     if (context === 'flashcard') {
       const content = name =>
@@ -625,14 +630,15 @@ export function renderLessonModules(lesson, language, options = {}) {
   // Flashcard sides have no UUID. The role-local barrel owns the ordered block map.
   function emitFlashcardSide(role, side, directory) {
     const reservedImports = new Set([role, 'sideItems', 'defineFlashcardSide', 'LessonLanguages']);
-    const imports = new Map(
-      [...reservedImports].map(name => [name, { symbol: name, location: '__reserved__' }]),
-    );
+    const imports = new Map([...reservedImports].map(name => [name, { symbol: name, location: '__reserved__' }]));
     const sideItems = render(side.items, 'blockItems', directory, imports, 0, '$.content.' + role + '.items');
     const fields = Object.entries(side).map(([key, value]) =>
       key === 'items'
         ? '  items: sideItems'
-        : '  ' + asProperty(key) + ': ' + render(value, 'plain', directory, imports, 1, '$.content.' + role + '.' + key),
+        : '  ' +
+          asProperty(key) +
+          ': ' +
+          render(value, 'plain', directory, imports, 1, '$.content.' + role + '.' + key),
     );
     const importsHead = ["import { defineFlashcardSide } from '@svitlo/engine/build';"];
     for (const [alias, { symbol, location }] of [...imports.entries()]
@@ -641,14 +647,22 @@ export function renderLessonModules(lesson, language, options = {}) {
       const binding = symbol === alias ? symbol : symbol + ' as ' + alias;
       importsHead.push('import { ' + binding + ' } from ' + JSON.stringify(relativeImport(directory, location)) + ';');
     }
-    if (languagesType) importsHead.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
+    if (languagesType)
+      importsHead.push('import type { LessonLanguages } from ' + JSON.stringify(constantsSpecifier) + ';');
     put(
       join(directory, 'index.ts'),
-      importsHead.join('\n') + '\n\n' +
-        'const sideItems = ' + sideItems + ';\n\n' +
-        'export const ' + role + ' = defineFlashcardSide<' +
+      importsHead.join('\n') +
+        '\n\n' +
+        'const sideItems = ' +
+        sideItems +
+        ';\n\n' +
+        'export const ' +
+        role +
+        ' = defineFlashcardSide<' +
         (languagesType ? 'typeof sideItems, LessonLanguages' : 'typeof sideItems') +
-        '>({\n' + fields.join(',\n') + '\n});\n',
+        '>({\n' +
+        fields.join(',\n') +
+        '\n});\n',
     );
   }
 
