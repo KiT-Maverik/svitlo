@@ -5,6 +5,7 @@ export const idealGasModel_Skill_Data = defineSkill({
   id: 'b5cc0247-5c5d-4884-a9f3-44ac9876ac8b',
   name: {
     en: 'Ideal Gas Model',
+    it: "Modello del gas ideale",
     zh: '理想气体模型',
     hi: 'आदर्श गैस मॉडल',
     es: 'Modelo de gas ideal',
@@ -39,6 +40,7 @@ export const idealGasModel_Skill_Data = defineSkill({
       'Use the ideal-gas equation as an approximation and identify conditions in which real gases deviate.',
     frontend: {
       en: 'Use the ideal-gas model while recognizing when it becomes inaccurate.',
+      it: "Usa il modello del gas ideale riconoscendo le condizioni in cui diventa impreciso.",
       zh: '使用理想气体模型，同时认识它在哪些条件下不够准确。',
       hi: 'आदर्श गैस मॉडल का उपयोग करें, साथ ही जानें कि वह कब गलत परिणाम दे सकता है।',
       es: 'Utiliza el modelo de gas ideal reconociendo cuándo deja de ser preciso.',

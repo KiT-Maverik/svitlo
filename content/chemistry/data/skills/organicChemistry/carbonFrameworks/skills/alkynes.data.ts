@@ -5,6 +5,7 @@ export const alkynes_Skill_Data = defineSkill({
   id: 'a3ab1861-9e4c-4ef8-9254-91bc5122d564',
   name: {
     en: 'Alkynes',
+    it: "Alchini",
     zh: '炔烃',
     hi: 'ऐल्काइन',
     es: 'Alquinos',
@@ -38,6 +39,7 @@ export const alkynes_Skill_Data = defineSkill({
     methodological: 'Relate carbon–carbon triple bonds to structure and chemical behavior.',
     frontend: {
       en: 'Identify alkynes by their carbon–carbon triple bonds.',
+      it: "Identifica gli alchini in base ai loro tripli legami carbonio-carbonio.",
       zh: '通过碳碳三键识别炔烃。',
       hi: 'कार्बन–कार्बन त्रिबंध के आधार पर ऐल्काइन पहचानें।',
       es: 'Identifica los alquinos por sus enlaces triples carbono-carbono.',

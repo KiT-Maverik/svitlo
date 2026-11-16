@@ -5,6 +5,7 @@ export const decantation_Skill_Data = defineSkill({
   id: '8f76aa2e-003c-4799-a7b1-b548a1ee7886',
   name: {
     en: 'Decantation',
+    it: "Decantazione",
     zh: '倾析',
     hi: 'निथारना',
     es: 'Decantación',
@@ -39,6 +40,7 @@ export const decantation_Skill_Data = defineSkill({
       'Separate layers or sediment by pouring off a liquid after gravitational settling without claiming complete purification.',
     frontend: {
       en: 'Separate settled solids or liquid layers by carefully pouring off a layer.',
+      it: "Separa i solidi sedimentati o strati di liquidi versando con cura uno strato.",
       zh: '小心地倒出上层液体，以分离沉降的固体或互不相溶的液层。',
       hi: 'जमे हुए ठोस या अलग तरल परतों को सावधानी से ऊपरी परत उड़ेलकर अलग करें।',
       es: 'Separa sólidos sedimentados o capas líquidas vertiendo con cuidado una de las capas.',

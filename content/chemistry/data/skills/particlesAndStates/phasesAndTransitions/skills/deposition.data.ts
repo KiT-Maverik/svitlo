@@ -5,6 +5,7 @@ export const deposition_Skill_Data = defineSkill({
   id: '1aee82d1-eb02-41eb-bc31-4def4e699e3b',
   name: {
     en: 'Deposition',
+    it: "Brinamento",
     zh: '凝华',
     hi: 'निक्षेपण',
     es: 'Deposición',
@@ -38,6 +39,7 @@ export const deposition_Skill_Data = defineSkill({
     methodological: 'Explain direct formation of a solid from a vapor without passage through a bulk liquid phase.',
     frontend: {
       en: 'Explain how vapor can form a solid without becoming liquid first.',
+      it: "Spiega come un vapore può diventare solido senza passare prima per lo stato liquido.",
       zh: '解释蒸气如何不先变成液体就直接形成固体。',
       hi: 'समझाएँ कि वाष्प द्रव बने बिना सीधे ठोस में कैसे बदल सकती है।',
       es: 'Explica cómo el vapor forma directamente un sólido sin pasar primero por el estado líquido.',

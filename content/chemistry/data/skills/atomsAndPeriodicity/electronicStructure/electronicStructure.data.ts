@@ -13,6 +13,7 @@ export const electronicStructure_SkillGroup_Data = defineSkillGroup({
   id: 'a2603683-b48f-439e-bf47-d93316f85130',
   name: {
     en: 'Electronic Structure',
+    it: "Struttura elettronica",
     zh: '电子结构',
     hi: 'इलेक्ट्रॉनिक संरचना',
     es: 'Estructura electrónica',
@@ -57,6 +58,7 @@ export const electronicStructure_SkillGroup_Data = defineSkillGroup({
       'Electron occupancy and energetic organization help explain reactivity and the behavior of valence electrons.',
     frontend: {
       en: 'Learn how electrons are arranged and why that affects chemical behavior.',
+      it: "Impara come si dispongono gli elettroni e perché questo influisce sul comportamento chimico.",
       zh: '了解电子如何排布，以及这种排布为何会影响化学性质。',
       hi: 'जानें कि इलेक्ट्रॉन कैसे व्यवस्थित होते हैं और इससे रासायनिक व्यवहार कैसे प्रभावित होता है।',
       es: 'Aprende cómo se distribuyen los electrones y por qué eso influye en el comportamiento químico.',

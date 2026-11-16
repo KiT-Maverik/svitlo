@@ -5,6 +5,7 @@ export const physicalChanges_Skill_Data = defineSkill({
   id: '5ceeaf43-5f78-4d38-9ad4-dab91753da43',
   name: {
     en: 'Physical Changes',
+    it: "Trasformazioni fisiche",
     zh: '物理变化',
     hi: 'भौतिक परिवर्तन',
     es: 'Cambios físicos',
@@ -39,6 +40,7 @@ export const physicalChanges_Skill_Data = defineSkill({
       'Recognize changes in form or phase that do not by themselves establish a different chemical identity.',
     frontend: {
       en: 'Recognize melting, cutting and other changes that preserve chemical identity.',
+      it: "Riconosci la fusione, il taglio e altri cambiamenti che non modificano l'identità chimica.",
       zh: '识别熔化、切割等不改变物质化学身份的变化。',
       hi: 'पिघलने, काटने और अन्य ऐसे बदलाव पहचानें जिनमें रासायनिक पहचान बनी रहती है।',
       es: 'Reconoce la fusión, el corte y otros cambios que conservan la identidad química.',

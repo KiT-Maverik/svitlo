@@ -5,6 +5,7 @@ export const temperatureAndSolubility_Skill_Data = defineSkill({
   id: '2bc58c08-28f4-4d45-b7db-bcc7b981a18e',
   name: {
     en: 'Temperature and Solubility',
+    it: "Temperatura e solubilità",
     zh: '温度与溶解度',
     hi: 'तापमान और विलेयता',
     es: 'Temperatura y solubilidad',
@@ -39,6 +40,7 @@ export const temperatureAndSolubility_Skill_Data = defineSkill({
       'Recognize that temperature affects dissolution equilibria differently for different solute–solvent systems.',
     frontend: {
       en: 'Explore why temperature can change how much of a substance dissolves.',
+      it: "Esplora perché la temperatura può modificare la quantità di sostanza che si scioglie.",
       zh: '探索温度变化为何会改变物质的溶解量。',
       hi: 'जानें कि तापमान बदलने से किसी पदार्थ की घुलने की मात्रा कैसे बदल सकती है।',
       es: 'Explora por qué la temperatura puede cambiar la cantidad de sustancia que se disuelve.',

@@ -5,6 +5,7 @@ export const concentrationComparisons_Skill_Data = defineSkill({
   id: 'f1f8bba5-0a4d-47d8-ab21-4f7aaa777480',
   name: {
     en: 'Concentration Comparisons',
+    it: "Confronto tra concentrazioni",
     zh: '浓度比较',
     hi: 'सांद्रता की तुलना',
     es: 'Comparación de concentraciones',
@@ -39,6 +40,7 @@ export const concentrationComparisons_Skill_Data = defineSkill({
       'Compare dilute and concentrated samples without confusing concentration with solubility or toxicity.',
     frontend: {
       en: 'Compare concentration levels without equating them with safety or solubility.',
+      it: "Confronta diverse concentrazioni senza confonderle con la sicurezza o la solubilità.",
       zh: '比较浓度高低，不要把浓度直接等同于安全性或溶解度。',
       hi: 'सांद्रता के स्तरों की तुलना करें, पर उन्हें सुरक्षा या विलेयता के समान न मानें।',
       es: 'Compara concentraciones sin confundirlas con seguridad o solubilidad.',

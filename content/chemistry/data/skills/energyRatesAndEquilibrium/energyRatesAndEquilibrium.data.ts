@@ -9,6 +9,7 @@ export const energyRatesAndEquilibrium_SkillDomain_Data = defineSkillDomain({
   id: '9a267d93-82af-48cb-a1f7-1c9637c04826',
   title: {
     en: 'Energy, Rates and Equilibrium',
+    it: "Energia, velocità ed equilibrio",
     zh: '能量、反应速率与平衡',
     hi: 'ऊर्जा, अभिक्रिया दर और साम्य',
     es: 'Energía, velocidad y equilibrio',
@@ -51,6 +52,7 @@ export const energyRatesAndEquilibrium_SkillDomain_Data = defineSkillDomain({
       'Chemical systems exchange energy, evolve at finite rates and may approach dynamic equilibrium. These are related but distinct questions: whether change is favorable, how quickly it occurs and what composition persists.',
     frontend: {
       en: 'Explore energy changes, reaction speeds and the balance between forward and reverse reactions.',
+      it: "Esplora i cambiamenti di energia, la velocità delle reazioni e l'equilibrio tra reazioni dirette e inverse.",
       zh: '探索能量变化、反应速度及正逆反应之间的平衡。',
       hi: 'ऊर्जा परिवर्तन, अभिक्रिया की गति तथा अग्र और विपरीत अभिक्रियाओं का संतुलन जानें।',
       es: 'Explora los cambios de energía, la rapidez de reacción y el equilibrio entre reacciones directa e inversa.',

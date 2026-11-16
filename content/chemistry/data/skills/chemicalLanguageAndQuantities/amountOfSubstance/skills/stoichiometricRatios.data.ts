@@ -5,6 +5,7 @@ export const stoichiometricRatios_Skill_Data = defineSkill({
   id: '050ebfa5-4ea4-4848-a223-d0cd5deb91ea',
   name: {
     en: 'Stoichiometric Ratios',
+    it: "Rapporti stechiometrici",
     zh: '化学计量比',
     hi: 'स्टॉइकियोमितीय अनुपात',
     es: 'Relaciones estequiométricas',
@@ -38,6 +39,7 @@ export const stoichiometricRatios_Skill_Data = defineSkill({
     methodological: 'Use balanced coefficients to relate amounts of reactants and products.',
     frontend: {
       en: 'Use a balanced equation to compare amounts of reactants and products.',
+      it: "Usa un'equazione bilanciata per confrontare le quantità di reagenti e prodotti.",
       zh: '依据配平的反应方程式比较反应物和生成物的量。',
       hi: 'संतुलित समीकरण से अभिकारकों और उत्पादों की मात्राओं की तुलना करें।',
       es: 'Usa una ecuación ajustada para comparar las cantidades de reactivos y productos.',

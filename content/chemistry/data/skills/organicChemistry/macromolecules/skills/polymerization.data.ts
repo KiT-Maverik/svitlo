@@ -5,6 +5,7 @@ export const polymerization_Skill_Data = defineSkill({
   id: '4b5ec885-cc62-4956-8200-3d6470cb315f',
   name: {
     en: 'Polymerization',
+    it: "Polimerizzazione",
     zh: '聚合反应',
     hi: 'बहुलकीकरण',
     es: 'Polimerización',
@@ -38,6 +39,7 @@ export const polymerization_Skill_Data = defineSkill({
     methodological: 'Relate monomers and repeated units to formation of macromolecules.',
     frontend: {
       en: 'Explore how small monomers combine into long polymer molecules.',
+      it: "Esplora come piccoli monomeri si uniscono formando lunghe molecole polimeriche.",
       zh: '探索小单体如何连接形成长链聚合物分子。',
       hi: 'जानें कि छोटे एकलक मिलकर लंबी बहुलक शृंखलाएँ कैसे बनाते हैं।',
       es: 'Explora cómo pequeños monómeros se unen para formar largas moléculas poliméricas.',

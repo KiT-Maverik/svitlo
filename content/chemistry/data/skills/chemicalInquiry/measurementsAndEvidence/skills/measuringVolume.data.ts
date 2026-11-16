@@ -5,6 +5,7 @@ export const measuringVolume_Skill_Data = defineSkill({
   id: '5ac0f153-c62e-483f-b37c-04b6c63329ce',
   name: {
     en: 'Measuring Volume',
+    it: "Misurare il volume",
     zh: '测量体积',
     hi: 'आयतन का मापन',
     es: 'Medición del volumen',
@@ -39,6 +40,7 @@ export const measuringVolume_Skill_Data = defineSkill({
       'Determine liquid or gas volume with suitable measurement conventions and acknowledge instrument limitations.',
     frontend: {
       en: 'Measure liquid or gas volumes and recognize the limits of the instruments.',
+      it: "Misura il volume di liquidi o gas e riconosci i limiti degli strumenti.",
       zh: '测量液体或气体的体积，并认识仪器的局限。',
       hi: 'द्रव या गैस का आयतन मापें और यंत्रों की सीमाएँ पहचानें।',
       es: 'Mide volúmenes de líquidos o gases y reconoce los límites de los instrumentos.',

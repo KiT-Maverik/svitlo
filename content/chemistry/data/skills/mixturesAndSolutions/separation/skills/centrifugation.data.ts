@@ -5,6 +5,7 @@ export const centrifugation_Skill_Data = defineSkill({
   id: '2111bc41-dbd2-473d-a2f7-f14817afcd0e',
   name: {
     en: 'Centrifugation',
+    it: "Centrifugazione",
     zh: '离心分离',
     hi: 'अपकेंद्रीकरण',
     es: 'Centrifugación',
@@ -39,6 +40,7 @@ export const centrifugation_Skill_Data = defineSkill({
       'Explain how accelerated sedimentation separates components with different effective buoyant densities.',
     frontend: {
       en: 'Explore how spinning a mixture speeds the separation of particles.',
+      it: "Esplora come la rotazione di una miscela accelera la separazione delle particelle.",
       zh: '探索旋转混合物如何加快颗粒的分离。',
       hi: 'जानें कि मिश्रण को घुमाने से कणों का पृथक्करण कैसे तेज होता है।',
       es: 'Explora cómo el giro de una mezcla acelera la separación de sus partículas.',

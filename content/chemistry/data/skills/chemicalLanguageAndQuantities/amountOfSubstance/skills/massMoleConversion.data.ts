@@ -5,6 +5,7 @@ export const massMoleConversion_Skill_Data = defineSkill({
   id: 'ac269a6d-7b25-4506-a6e7-0f1b805ff2ae',
   name: {
     en: 'Mass–Mole Conversion',
+    it: "Conversione tra massa e moli",
     zh: '质量与摩尔的换算',
     hi: 'द्रव्यमान–मोल रूपांतरण',
     es: 'Conversión entre masa y moles',
@@ -38,6 +39,7 @@ export const massMoleConversion_Skill_Data = defineSkill({
     methodological: 'Convert between measured mass and amount of substance for a specified chemical entity.',
     frontend: {
       en: 'Convert between the mass of a substance and its amount in moles.',
+      it: "Converti la massa di una sostanza nella quantità di sostanza in moli e viceversa.",
       zh: '在物质的质量与摩尔数之间进行换算。',
       hi: 'पदार्थ के द्रव्यमान और मोल में उसकी मात्रा के बीच रूपांतरण करें।',
       es: 'Convierte la masa de una sustancia en cantidad de moles y viceversa.',

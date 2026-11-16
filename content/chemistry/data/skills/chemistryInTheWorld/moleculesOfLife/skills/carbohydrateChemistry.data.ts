@@ -5,6 +5,7 @@ export const carbohydrateChemistry_Skill_Data = defineSkill({
   id: 'cbdb653e-9371-4121-8d61-3f7848af4301',
   name: {
     en: 'Carbohydrate Chemistry',
+    it: "Chimica dei carboidrati",
     zh: '碳水化合物的化学',
     hi: 'कार्बोहाइड्रेट का रसायन',
     es: 'Química de los carbohidratos',
@@ -39,6 +40,7 @@ export const carbohydrateChemistry_Skill_Data = defineSkill({
       'Relate sugar units, glycosidic connections and chemical properties in small and polymeric carbohydrates.',
     frontend: {
       en: 'Recognize how sugars join together to form different carbohydrates.',
+      it: "Riconosci come gli zuccheri si uniscono formando carboidrati diversi.",
       zh: '认识糖分子如何连接，形成不同的碳水化合物。',
       hi: 'जानें कि शर्करा की इकाइयाँ मिलकर विभिन्न कार्बोहाइड्रेट कैसे बनाती हैं।',
       es: 'Reconoce cómo los azúcares se enlazan para formar diferentes carbohidratos.',

@@ -5,6 +5,7 @@ export const hydrogenBonding_Skill_Data = defineSkill({
   id: 'd71c7207-3548-4aa2-a833-6d9e804ffed9',
   name: {
     en: 'Hydrogen Bonding',
+    it: "Legame a idrogeno",
     zh: '氢键',
     hi: 'हाइड्रोजन बंध',
     es: 'Puentes de hidrógeno',
@@ -39,6 +40,7 @@ export const hydrogenBonding_Skill_Data = defineSkill({
       'Recognize the conditions for stronger directional interactions involving hydrogen bound to suitable electronegative atoms.',
     frontend: {
       en: 'Recognize when molecular structures can form hydrogen bonds.',
+      it: "Riconosci quali strutture molecolari possono formare legami a idrogeno.",
       zh: '识别哪些分子结构能够形成氢键。',
       hi: 'पहचानें कि किन आणविक संरचनाओं में हाइड्रोजन बंध बन सकते हैं।',
       es: 'Reconoce qué estructuras moleculares pueden formar puentes de hidrógeno.',

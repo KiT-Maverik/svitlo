@@ -5,6 +5,7 @@ export const hydroxides_Skill_Data = defineSkill({
   id: '7c006ca6-54f0-42e4-ac8f-1016fc9c5f8f',
   name: {
     en: 'Hydroxides',
+    it: "Idrossidi",
     zh: '氢氧化物',
     hi: 'हाइड्रॉक्साइड',
     es: 'Hidróxidos',
@@ -38,6 +39,7 @@ export const hydroxides_Skill_Data = defineSkill({
     methodological: 'Interpret hydroxide-containing substances and their dissociation or reactivity in context.',
     frontend: {
       en: 'Recognize hydroxide compounds and how they behave in chemical reactions.',
+      it: "Riconosci gli idrossidi e il loro comportamento nelle reazioni chimiche.",
       zh: '识别氢氧化物及其在化学反应中的行为。',
       hi: 'हाइड्रॉक्साइड यौगिकों और उनकी रासायनिक अभिक्रियाओं को पहचानें।',
       es: 'Reconoce los compuestos hidróxidos y cómo se comportan en las reacciones químicas.',

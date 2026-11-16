@@ -15,6 +15,7 @@ export const carbonFrameworks_SkillGroup_Data = defineSkillGroup({
   id: '9af143a7-8353-4c3f-911d-5714cd3d84e1',
   name: {
     en: 'Carbon Frameworks',
+    it: "Scheletri carboniosi",
     zh: '碳骨架',
     hi: 'कार्बन ढाँचे',
     es: 'Esqueletos de carbono',
@@ -69,6 +70,7 @@ export const carbonFrameworks_SkillGroup_Data = defineSkillGroup({
       "Carbon's bonding versatility permits chains, rings and varied structural representations for compounds containing carbon.",
     frontend: {
       en: 'Understand how carbon forms chains, rings and varied molecular structures.',
+      it: "Comprendi come il carbonio forma catene, anelli e strutture molecolari diverse.",
       zh: '理解碳如何形成链、环和多样的分子结构。',
       hi: 'समझें कि कार्बन कैसे शृंखलाएँ, वलय और अलग-अलग आणविक संरचनाएँ बनाता है।',
       es: 'Comprende cómo el carbono forma cadenas, anillos y diversas estructuras moleculares.',

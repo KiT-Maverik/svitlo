@@ -5,6 +5,7 @@ export const atomicMass_Skill_Data = defineSkill({
   id: 'd736184c-47f1-4ecf-95c2-3abbe4954d6f',
   name: {
     en: 'Atomic Mass',
+    it: "Massa atomica",
     zh: '原子质量',
     hi: 'परमाणु द्रव्यमान',
     es: 'Masa atómica',
@@ -39,6 +40,7 @@ export const atomicMass_Skill_Data = defineSkill({
       'Interpret atomic mass and relative atomic mass, including why a tabulated average may not be a whole number.',
     frontend: {
       en: 'Explore why average atomic masses are not always whole numbers.',
+      it: "Scopri perché le masse atomiche medie non sono sempre numeri interi.",
       zh: '探索为什么元素的平均原子质量并不总是整数。',
       hi: 'जानें कि औसत परमाणु द्रव्यमान हमेशा पूर्णांक क्यों नहीं होता।',
       es: 'Explora por qué la masa atómica media no siempre es un número entero.',

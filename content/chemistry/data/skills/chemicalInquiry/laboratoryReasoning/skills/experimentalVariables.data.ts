@@ -5,6 +5,7 @@ export const experimentalVariables_Skill_Data = defineSkill({
   id: 'a695f60b-e728-4cfb-b843-575f82f4a330',
   name: {
     en: 'Experimental Variables',
+    it: "Variabili sperimentali",
     zh: '实验变量',
     hi: 'प्रयोगात्मक चर',
     es: 'Variables experimentales',
@@ -39,6 +40,7 @@ export const experimentalVariables_Skill_Data = defineSkill({
       'Distinguish the manipulated chemical condition, observed response and controlled conditions in an investigation.',
     frontend: {
       en: 'Identify which chemical condition changes and what is measured in a fair investigation.',
+      it: "Individua quale condizione chimica cambia e quale grandezza viene misurata in un'indagine corretta.",
       zh: '在控制变量的实验中，找出主动改变的化学条件、测量的结果以及保持不变的条件。',
       hi: 'निष्पक्ष जाँच में पहचानें कि कौन सी रासायनिक स्थिति बदलती है और क्या मापा जाता है।',
       es: 'Identifica qué condición química cambia y qué se mide en una investigación controlada.',

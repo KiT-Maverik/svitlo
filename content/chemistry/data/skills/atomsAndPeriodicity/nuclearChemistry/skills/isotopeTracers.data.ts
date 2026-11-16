@@ -5,6 +5,7 @@ export const isotopeTracers_Skill_Data = defineSkill({
   id: '4efef25f-e181-4103-ba83-1226c37e3cc5',
   name: {
     en: 'Isotope Tracers',
+    it: "Traccianti isotopici",
     zh: '同位素示踪剂',
     hi: 'समस्थानिक अनुरेखक',
     es: 'Trazadores isotópicos',
@@ -39,6 +40,7 @@ export const isotopeTracers_Skill_Data = defineSkill({
       'Explain how detectable isotopic signatures can trace material pathways or provide chemical analytical evidence.',
     frontend: {
       en: 'Discover how isotopes can help trace materials through chemical processes.',
+      it: "Scopri come gli isotopi permettono di seguire i materiali durante i processi chimici.",
       zh: '了解如何利用同位素追踪物质在化学过程中的去向。',
       hi: 'जानें कि समस्थानिकों से रासायनिक प्रक्रियाओं में पदार्थ का रास्ता कैसे पता चलता है।',
       es: 'Descubre cómo los isótopos permiten seguir materiales a través de procesos químicos.',

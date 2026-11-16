@@ -17,6 +17,7 @@ export const phasesAndTransitions_SkillGroup_Data = defineSkillGroup({
   id: '51cc7e1f-3937-449c-89e2-a3ed4d10cf28',
   name: {
     en: 'Phases and Transitions',
+    it: "Stati e passaggi di stato",
     zh: '物相与相变',
     hi: 'अवस्थाएँ और अवस्था परिवर्तन',
     es: 'Fases y transiciones',
@@ -75,6 +76,7 @@ export const phasesAndTransitions_SkillGroup_Data = defineSkillGroup({
       'The balance of particle interactions and thermal motion changes whether matter forms a solid, liquid or gas.',
     frontend: {
       en: 'Discover what happens to particles when matter changes between solid, liquid and gas.',
+      it: "Scopri che cosa accade alle particelle quando la materia passa da solido a liquido o gas e viceversa.",
       zh: '了解物质在固态、液态和气态之间转变时，粒子会发生什么变化。',
       hi: 'जानें कि पदार्थ के ठोस, द्रव और गैस में बदलने पर कणों के साथ क्या होता है।',
       es: 'Descubre qué sucede con las partículas cuando la materia cambia entre sólido, líquido y gas.',

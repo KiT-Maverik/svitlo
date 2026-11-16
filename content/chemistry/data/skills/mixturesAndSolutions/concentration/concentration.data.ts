@@ -13,6 +13,7 @@ export const concentration_SkillGroup_Data = defineSkillGroup({
   id: '79942f4b-8faa-4f03-a35d-41bbc7b10d7e',
   name: {
     en: 'Concentration',
+    it: "Concentrazione",
     zh: '浓度',
     hi: 'सांद्रता',
     es: 'Concentración',
@@ -57,6 +58,7 @@ export const concentration_SkillGroup_Data = defineSkillGroup({
       "A solution's composition can be represented in several quantitatively distinct ways, each with an appropriate denominator.",
     frontend: {
       en: 'Learn different ways to describe how much material a solution contains.',
+      it: "Impara diversi modi per esprimere la quantità di sostanza contenuta in una soluzione.",
       zh: '了解描述溶液中含有多少物质的不同方式。',
       hi: 'जानें कि विलयन में पदार्थ की मात्रा बताने के अलग-अलग तरीके क्या हैं।',
       es: 'Aprende distintas maneras de expresar cuánto soluto contiene una disolución.',

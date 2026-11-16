@@ -5,6 +5,7 @@ export const equationStateSymbols_Skill_Data = defineSkill({
   id: 'cc97d7e8-2b46-477d-82c0-15afbd433c3e',
   name: {
     en: 'Equation State Symbols',
+    it: "Simboli di stato nelle equazioni",
     zh: '方程式中的物态符号',
     hi: 'समीकरण में अवस्था संकेत',
     es: 'Símbolos de estado en ecuaciones',
@@ -39,6 +40,7 @@ export const equationStateSymbols_Skill_Data = defineSkill({
       'Interpret notation for solid, liquid, gas and aqueous species as information about conditions or phases.',
     frontend: {
       en: 'Read symbols showing whether reaction components are solid, liquid, gas or dissolved.',
+      it: "Interpreta i simboli che indicano se una sostanza è solida, liquida, gassosa o disciolta.",
       zh: '识别反应成分是固体、液体、气体还是溶于水的符号。',
       hi: 'पदार्थ ठोस, द्रव, गैस या जलीय विलयन में है, यह बताने वाले संकेत पढ़ें।',
       es: 'Lee los símbolos que indican estado sólido, líquido, gaseoso o disuelto.',

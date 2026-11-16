@@ -5,6 +5,7 @@ export const lipidChemistry_Skill_Data = defineSkill({
   id: 'a3c5c5c5-b49e-40a8-aa06-d0b939ce312b',
   name: {
     en: 'Lipid Chemistry',
+    it: "Chimica dei lipidi",
     zh: '脂质化学',
     hi: 'लिपिड का रसायन',
     es: 'Química de los lípidos',
@@ -39,6 +40,7 @@ export const lipidChemistry_Skill_Data = defineSkill({
       'Recognize characteristic structures and intermolecular behavior of fats, oils and other lipid families.',
     frontend: {
       en: 'Compare the structures and chemical behavior of fats, oils and other lipids.',
+      it: "Confronta le strutture e il comportamento chimico di grassi, oli e altri lipidi.",
       zh: '比较脂肪、油和其他脂质的结构及化学行为。',
       hi: 'वसा, तेल और अन्य लिपिड की संरचनाओं और रासायनिक व्यवहार की तुलना करें।',
       es: 'Compara las estructuras y el comportamiento químico de grasas, aceites y otros lípidos.',

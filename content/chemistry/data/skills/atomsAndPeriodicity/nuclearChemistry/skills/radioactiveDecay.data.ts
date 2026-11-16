@@ -5,6 +5,7 @@ export const radioactiveDecay_Skill_Data = defineSkill({
   id: '9ed79c8e-6676-460d-9f83-12f4aaca57ee',
   name: {
     en: 'Radioactive Decay',
+    it: "Decadimento radioattivo",
     zh: '放射性衰变',
     hi: 'रेडियोधर्मी क्षय',
     es: 'Desintegración radiactiva',
@@ -39,6 +40,7 @@ export const radioactiveDecay_Skill_Data = defineSkill({
       'Distinguish spontaneous nuclear transformation from chemical reaction, including emissions and daughter nuclides.',
     frontend: {
       en: 'Identify radioactive changes that transform one nuclide into another.',
+      it: "Identifica i cambiamenti radioattivi che trasformano un nuclide in un altro.",
       zh: '识别使一种核素转变为另一种核素的放射性变化。',
       hi: 'उन रेडियोधर्मी परिवर्तनों की पहचान करें जो एक नाभिकीय समस्थानिक को दूसरे में बदलते हैं।',
       es: 'Identifica cambios radiactivos que transforman un núclido en otro.',

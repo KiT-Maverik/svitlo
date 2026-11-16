@@ -5,6 +5,7 @@ export const chemicalFormulas_Skill_Data = defineSkill({
   id: '3dea936b-ee98-4a01-947c-66aeff4df8ad',
   name: {
     en: 'Chemical Formulas',
+    it: "Formule chimiche",
     zh: '化学式',
     hi: 'रासायनिक सूत्र',
     es: 'Fórmulas químicas',
@@ -38,6 +39,7 @@ export const chemicalFormulas_Skill_Data = defineSkill({
     methodological: 'Read subscripts as composition information rather than reaction coefficients.',
     frontend: {
       en: 'Understand how formula subscripts indicate the proportions of different atoms.',
+      it: "Comprendi come gli indici nelle formule indicano le proporzioni dei diversi atomi.",
       zh: '理解化学式中的下标如何表示各种原子的比例。',
       hi: 'समझें कि सूत्र के अधोलिखित अंक विभिन्न परमाणुओं का अनुपात कैसे बताते हैं।',
       es: 'Comprende cómo los subíndices muestran las proporciones entre átomos.',

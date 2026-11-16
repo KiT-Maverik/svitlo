@@ -5,6 +5,7 @@ export const physicalProperties_Skill_Data = defineSkill({
   id: 'ad17514c-76be-4c42-a4bf-02a0d07b1dae',
   name: {
     en: 'Physical Properties',
+    it: "Proprietà fisiche",
     zh: '物理性质',
     hi: 'भौतिक गुण',
     es: 'Propiedades físicas',
@@ -39,6 +40,7 @@ export const physicalProperties_Skill_Data = defineSkill({
       'Use density, conductivity, hardness, melting point or other properties that do not require changing chemical identity.',
     frontend: {
       en: "Identify properties that can be measured without changing a substance's identity.",
+      it: "Individua le proprietà misurabili senza modificare l'identità chimica della sostanza.",
       zh: '识别无需改变物质化学身份就能测量的性质。',
       hi: 'ऐसे गुण पहचानें जिन्हें पदार्थ की रासायनिक पहचान बदले बिना मापा जा सकता है।',
       es: 'Identifica propiedades que se miden sin cambiar la identidad química de una sustancia.',

@@ -5,6 +5,7 @@ export const covalentBonding_Skill_Data = defineSkill({
   id: 'a3339cb6-b5eb-4e5f-9f75-c9a616d930d8',
   name: {
     en: 'Covalent Bonding',
+    it: "Legame covalente",
     zh: '共价键',
     hi: 'सहसंयोजक बंध',
     es: 'Enlace covalente',
@@ -39,6 +40,7 @@ export const covalentBonding_Skill_Data = defineSkill({
       'Explain electron sharing in bonds between atoms, including differences between single and multiple bonds.',
     frontend: {
       en: 'Understand how atoms share electrons in single and multiple covalent bonds.',
+      it: "Comprendi come gli atomi condividono elettroni in legami covalenti semplici e multipli.",
       zh: '理解原子如何通过共享电子形成单键和多重共价键。',
       hi: 'समझें कि परमाणु इलेक्ट्रॉन साझा करके एकल और बहु सहसंयोजक बंध कैसे बनाते हैं।',
       es: 'Comprende cómo los átomos comparten electrones en enlaces covalentes simples y múltiples.',

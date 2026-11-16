@@ -7,6 +7,7 @@ export const recognizingReactions_SkillGroup_Data = defineSkillGroup({
   id: '1df643cc-b4df-4406-a2c4-171a6e71a12b',
   name: {
     en: 'Recognizing Reactions',
+    it: "Riconoscere le reazioni",
     zh: '识别化学反应',
     hi: 'अभिक्रियाओं की पहचान',
     es: 'Reconocer reacciones',
@@ -48,6 +49,7 @@ export const recognizingReactions_SkillGroup_Data = defineSkillGroup({
       'Recognizing chemical change requires identifying initial and resulting chemical species and examining observations critically rather than treating any visible sign as proof.',
     frontend: {
       en: 'Learn how observations can support a conclusion that a reaction occurred.',
+      it: "Impara come le osservazioni possono sostenere la conclusione che sia avvenuta una reazione chimica.",
       zh: '学习如何用观察结果判断是否发生了反应。',
       hi: 'सीखें कि अवलोकन किसी अभिक्रिया के होने के निष्कर्ष को कैसे समर्थन देते हैं।',
       es: 'Aprende cómo las observaciones pueden respaldar que ocurrió una reacción.',

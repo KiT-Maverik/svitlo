@@ -9,6 +9,7 @@ export const bondingAndStructure_SkillDomain_Data = defineSkillDomain({
   id: 'd2cd6136-612f-4c9a-8f63-0581db4243ac',
   title: {
     en: 'Bonding and Structure',
+    it: "Legami e struttura",
     zh: '化学键与结构',
     hi: 'रासायनिक बंध और संरचना',
     es: 'Enlaces y estructura',
@@ -51,6 +52,7 @@ export const bondingAndStructure_SkillDomain_Data = defineSkillDomain({
       'Chemical properties arise partly from how atoms and ions are connected and how neighboring particles interact. This domain distinguishes intraparticle bonds from interactions between particles and from bulk structural arrangements.',
     frontend: {
       en: 'Discover how chemical bonds and attractions between particles shape material properties.',
+      it: "Scopri come i legami chimici e le attrazioni tra particelle influenzano le proprietà dei materiali.",
       zh: '了解化学键及粒子间的吸引作用如何影响材料的性质。',
       hi: 'जानें कि रासायनिक बंध और कणों के बीच आकर्षण पदार्थ के गुण कैसे तय करते हैं।',
       es: 'Descubre cómo los enlaces químicos y las atracciones entre partículas influyen en las propiedades de los materiales.',

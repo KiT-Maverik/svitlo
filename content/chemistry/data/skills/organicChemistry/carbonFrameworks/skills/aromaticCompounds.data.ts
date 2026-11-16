@@ -5,6 +5,7 @@ export const aromaticCompounds_Skill_Data = defineSkill({
   id: '54e81cbc-e802-4fad-9003-77181e5d19a6',
   name: {
     en: 'Aromatic Compounds',
+    it: "Composti aromatici",
     zh: '芳香族化合物',
     hi: 'ऐरोमैटिक यौगिक',
     es: 'Compuestos aromáticos',
@@ -38,6 +39,7 @@ export const aromaticCompounds_Skill_Data = defineSkill({
     methodological: 'Distinguish aromatic conjugated ring systems from any molecule that merely has a ring.',
     frontend: {
       en: 'Distinguish aromatic molecular structures from ordinary carbon rings.',
+      it: "Distingui le strutture molecolari aromatiche dai comuni anelli di carbonio.",
       zh: '区分芳香族分子结构与普通的含碳环结构。',
       hi: 'ऐरोमैटिक आणविक संरचनाओं को सामान्य कार्बन वलयों से अलग पहचानें।',
       es: 'Distingue las estructuras moleculares aromáticas de los anillos de carbono corrientes.',

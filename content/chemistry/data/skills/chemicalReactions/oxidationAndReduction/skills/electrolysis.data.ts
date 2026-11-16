@@ -5,6 +5,7 @@ export const electrolysis_Skill_Data = defineSkill({
   id: '6ba82660-4883-45ec-9ce2-f07cf2cde3a9',
   name: {
     en: 'Electrolysis',
+    it: "Elettrolisi",
     zh: '电解',
     hi: 'विद्युत अपघटन',
     es: 'Electrólisis',
@@ -39,6 +40,7 @@ export const electrolysis_Skill_Data = defineSkill({
       'Explain how externally supplied electrical energy drives non-spontaneous redox reactions at electrodes, including transformations such as electroplating.',
     frontend: {
       en: 'Understand how electricity can drive reactions that would not occur spontaneously.',
+      it: "Comprendi come l'energia elettrica può far avvenire reazioni che non procederebbero spontaneamente.",
       zh: '理解电能如何驱动本不会自发进行的反应。',
       hi: 'समझें कि बिजली से अस्वतः होने वाली अभिक्रियाएँ कैसे कराई जा सकती हैं।',
       es: 'Comprende cómo la electricidad impulsa reacciones que no ocurrirían espontáneamente.',

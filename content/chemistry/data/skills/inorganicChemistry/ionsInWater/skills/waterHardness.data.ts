@@ -5,6 +5,7 @@ export const waterHardness_Skill_Data = defineSkill({
   id: '62226ddd-9c1b-4935-8a60-2ab1db9e7eb4',
   name: {
     en: 'Water Hardness',
+    it: "Durezza dell'acqua",
     zh: '水的硬度',
     hi: 'जल की कठोरता',
     es: 'Dureza del agua',
@@ -38,6 +39,7 @@ export const waterHardness_Skill_Data = defineSkill({
     methodological: 'Relate dissolved calcium and magnesium species to characteristic reactions and practical effects.',
     frontend: {
       en: 'Explain how dissolved calcium and magnesium contribute to water hardness.',
+      it: "Spiega come il calcio e il magnesio disciolti contribuiscono alla durezza dell'acqua.",
       zh: '解释水中溶解的钙和镁如何导致水的硬度。',
       hi: 'समझाएँ कि पानी में घुले कैल्शियम और मैग्नीशियम से पानी कठोर क्यों होता है।',
       es: 'Explica cómo el calcio y el magnesio disueltos contribuyen a la dureza del agua.',

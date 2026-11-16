@@ -12,6 +12,7 @@ export const nuclearChemistry_SkillGroup_Data = defineSkillGroup({
   id: 'e5b6cc5e-243a-4ec3-98b1-718ffde76688',
   name: {
     en: 'Nuclear Chemistry',
+    it: "Chimica nucleare",
     zh: '核化学',
     hi: 'नाभिकीय रसायन',
     es: 'Química nuclear',
@@ -55,6 +56,7 @@ export const nuclearChemistry_SkillGroup_Data = defineSkillGroup({
       'Changes within atomic nuclei alter nuclide identities rather than ordinary electron bonding. The chemical emphasis is isotopic substances, decay and analytical applications; general nuclear-force physics belongs to Physics.',
     frontend: {
       en: 'Explore how changes to atomic nuclei differ from ordinary chemical reactions.',
+      it: "Esplora come le trasformazioni dei nuclei atomici differiscono dalle comuni reazioni chimiche.",
       zh: '探索原子核发生的变化与普通化学反应有何不同。',
       hi: 'जानें कि परमाणु नाभिक में परिवर्तन सामान्य रासायनिक अभिक्रियाओं से कैसे अलग हैं।',
       es: 'Explora cómo los cambios de los núcleos atómicos difieren de las reacciones químicas habituales.',

@@ -5,6 +5,7 @@ export const ionicCompoundFormulas_Skill_Data = defineSkill({
   id: '45c0fbfa-c404-4044-a632-861c2363e038',
   name: {
     en: 'Ionic Compound Formulas',
+    it: "Formule dei composti ionici",
     zh: '离子化合物的化学式',
     hi: 'आयनिक यौगिकों के सूत्र',
     es: 'Fórmulas de compuestos iónicos',
@@ -38,6 +39,7 @@ export const ionicCompoundFormulas_Skill_Data = defineSkill({
     methodological: 'Use ion charges to derive electrically neutral formula units.',
     frontend: {
       en: 'Use ion charges to write formulas for electrically neutral ionic compounds.',
+      it: "Usa le cariche degli ioni per scrivere formule di composti ionici elettricamente neutri.",
       zh: '利用离子电荷写出电中性的离子化合物化学式。',
       hi: 'आयन आवेशों से विद्युत उदासीन आयनिक यौगिकों के सूत्र लिखें।',
       es: 'Utiliza las cargas de los iones para escribir fórmulas eléctricamente neutras.',

@@ -5,6 +5,7 @@ export const nuclearTransmutation_Skill_Data = defineSkill({
   id: '4930cc7e-d278-4f5b-9277-8a686c230632',
   name: {
     en: 'Nuclear Transmutation',
+    it: "Trasmutazione nucleare",
     zh: '核嬗变',
     hi: 'नाभिकीय रूपांतरण',
     es: 'Transmutación nuclear',
@@ -38,6 +39,7 @@ export const nuclearTransmutation_Skill_Data = defineSkill({
     methodological: 'Account for changes in proton and nucleon number across nuclear reactions and decays.',
     frontend: {
       en: 'Track changes in proton and nucleon counts during nuclear transformations.',
+      it: "Segui come cambiano il numero di protoni e di nucleoni nelle trasformazioni nucleari.",
       zh: '追踪核变化过程中质子数和核子数的改变。',
       hi: 'नाभिकीय परिवर्तनों में प्रोटॉन और न्यूक्लियॉन की संख्या में बदलाव पहचानें।',
       es: 'Sigue los cambios en la cantidad de protones y nucleones durante transformaciones nucleares.',
