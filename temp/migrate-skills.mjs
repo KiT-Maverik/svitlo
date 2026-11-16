@@ -371,4 +371,4 @@ if (write) {
   }
 }
 console.log(JSON.stringify({ mode: write ? 'write' : 'dry-run', books: plans.length, written, removed, report: summary }, null, 2));
-if (!write) console.log('Dry-run only. Re-run with --write after reviewing this report and updating Engine.');
+if (!write) console.error('Dry-run only. Re-run with --write after reviewing this report and updating Engine.');
