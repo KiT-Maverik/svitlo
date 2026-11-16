@@ -12,18 +12,18 @@ export function fixture() {
   const video = (slug: 'medium' | 'small', suffix: string) => defineVideo<typeof slug, ['uk']>({
     id: id(suffix), slug, type: 'video', params: {},
     locale: {
-      fileLocation: 'https://example.org/' + slug + '.mp4',
-      poster: 'https://example.org/poster.jpg',
+      fileName: 'https://example.org/' + slug + '.mp4',
+      posterFileName: 'https://example.org/poster.jpg',
       label: { uk: 'Відеосцена' },
     },
   });
   const audio = defineAudio<'narration', ['uk']>({
     id: id('13'), slug: 'narration', type: 'audio', params: {},
-    locale: { fileLocation: { uk: 'https://example.org/uk.mp3' }, title: { uk: 'Опис подій' } },
+    locale: { fileName: { uk: 'https://example.org/uk.mp3' }, title: { uk: 'Опис подій' } },
   });
   const image = defineImage<'still', ['uk']>({
     id: id('14'), slug: 'still', type: 'image', params: { width: 960, height: 540 },
-    locale: { src: 'https://example.org/still.png', alt: { uk: 'Піца на столі' } },
+    locale: { fileName: 'https://example.org/still.png', alt: { uk: 'Піца на столі' } },
   });
   const subtitles = defineSubtitles<'captions', ['uk']>({
     id: id('15'), slug: 'captions', type: 'subtitles', params: {},
