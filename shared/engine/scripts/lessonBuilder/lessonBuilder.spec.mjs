@@ -52,7 +52,7 @@ function lessonConfig() {
                 slug: 'first',
                 type: 'image',
                 params: { fill: true, aspectRatio: 1.5 },
-                locale: { src: { uk: '/example.svg', en: '/never.svg' }, alt: { uk: 'Опис' } },
+                locale: { fileName: { uk: '550e8400-e29b-41d4-a716-446655440050.svg', en: '550e8400-e29b-41d4-a716-446655440051.svg' }, alt: { uk: 'Опис' } },
               },
             }),
           },
@@ -198,7 +198,7 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
 test('Carousel Image and Scene children are independently scaffolded below their authored slugs', () =>
   fixture(f => {
     const slides = f.config.section.items.intro.content.items.gallery.slides;
-    slides.items.first.locale.src = { uk: null, en: '/external-image.svg' };
+    slides.items.first.locale.fileName = { uk: '550e8400-e29b-41d4-a716-446655440052.svg', en: 'https://example.org/external-image.svg' };
     slides.items.first.__production = { prompt: 'Draw a picture showing equal groups' };
     slides.items.activity = {
       id: id(91),
@@ -215,7 +215,7 @@ test('Carousel Image and Scene children are independently scaffolded below their
     const scene = fs.readFileSync(f.generated('sections/intro/gallery/activity/index.ts'), 'utf8');
     const carousel = fs.readFileSync(f.generated('sections/intro/gallery/index.ts'), 'utf8');
     assert.match(image, /defineImage<"first", LessonLanguages>/);
-    assert.match(image, /resolveLessonMedia\(import\.meta\.url, "image", "source", "uk"\)/);
+    assert.match(image, /fileName: \{\\s*uk: "550e8400\-e29b\-41d4\-a716\-446655440052.svg"/);
     assert.doesNotMatch(image, /Not a translation/);
     assert.match(scene, /defineScene<"activity", LessonLanguages>/);
     assert.match(scene, /Обери групу/);
@@ -495,7 +495,7 @@ test('co-locates Scene/media production handoffs with their slug modules', () =>
       id: imageId,
       slug: 'visualImage',
       type: 'image',
-      locale: { src: null },
+      locale: { fileName: '550e8400-e29b-41d4-a716-446655440053.webp' },
       __production: { purpose: 'Show equality', prompt: 'Two groups of counters.' },
     };
     f.save();
@@ -508,13 +508,13 @@ test('co-locates Scene/media production handoffs with their slug modules', () =>
     assert(!fs.existsSync(path.join(f.workspace, 'scenes', sceneId.at(-1), sceneId, 'specification.md')));
     assert(!fs.existsSync(path.join(f.workspace, 'data/assets', imageId.at(-1), imageId, 'specification.md')));
     const imageModule = fs.readFileSync(f.generated('sections/intro/visualImage/index.ts'), 'utf8');
-    assert.match(imageModule, /import \{ defineImage, resolveLessonMedia \} from '@svitlo\/engine\/build'/);
-    assert.match(imageModule, /src: resolveLessonMedia\(import\.meta\.url, "image", "source"\)/);
+    assert.match(imageModule, /import \{ defineImage \} from '@svitlo\/engine\/build'/);
+    assert.match(imageModule, /fileName: "550e8400-e29b-41d4-a716-446655440053.webp"/);
     assert.match(fs.readFileSync(f.generated('methodology.md'), 'utf8'), /Lesson method/);
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
   }));
 
-test('local video, poster, subtitles and localized images use role-aware source readers', () =>
+test('local video, poster, subtitles and localized images preserve UUID filename references', () =>
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
     items.videoExplanation = {
@@ -523,8 +523,8 @@ test('local video, poster, subtitles and localized images use role-aware source 
       type: 'video',
       params: {},
       locale: {
-        fileLocation: { uk: null, en: '/external/video.mp4' },
-        poster: null,
+        fileName: { uk: '550e8400-e29b-41d4-a716-446655440054.mp4', en: 'https://example.org/external/video.mp4' },
+        posterFileName: '550e8400-e29b-41d4-a716-446655440055.webp',
         label: { uk: 'Відеопояснення' },
       },
       __production: { purpose: 'Visual guidance', script: 'Two groups' },
@@ -534,35 +534,35 @@ test('local video, poster, subtitles and localized images use role-aware source 
       slug: 'localAudio',
       type: 'audio',
       params: {},
-      locale: { fileLocation: null, title: { uk: 'Звук' } },
+      locale: { fileName: '550e8400-e29b-41d4-a716-446655440056.mp3', title: { uk: 'Звук' } },
     };
     items.localCaptions = {
       id: id(83),
       slug: 'localCaptions',
       type: 'subtitles',
       params: {},
-      locale: { fileLocation: { uk: null } },
+      locale: { fileName: { uk: '550e8400-e29b-41d4-a716-446655440057.vtt' } },
     };
     items.localPicture = {
       id: id(84),
       slug: 'localPicture',
       type: 'image',
       params: { fill: true, aspectRatio: 1.5 },
-      locale: { src: { uk: null, en: '/external/picture.svg' }, alt: { uk: 'Картинка' } },
+      locale: { fileName: { uk: '550e8400-e29b-41d4-a716-446655440058.svg', en: 'https://example.org/external/picture.svg' }, alt: { uk: 'Картинка' } },
     };
     f.config.section.items.intro.content.order.push('videoExplanation', 'localAudio', 'localCaptions', 'localPicture');
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const video = fs.readFileSync(f.generated('sections/intro/videoExplanation/index.ts'), 'utf8');
-    assert.match(video, /fileLocation: \{\s*uk: resolveLessonMedia\(import\.meta\.url, "video", "source", "uk"\)/);
-    assert.match(video, /poster: resolveLessonMedia\(import\.meta\.url, "video", "poster"\)/);
-    assert.doesNotMatch(video, /\/external\/video\.mp4/);
+    assert.match(video, /fileName: \\{\\s*uk: "550e8400-e29b-41d4-a716-446655440054.mp4"/);
+    assert.match(video, /posterFileName: "550e8400-e29b-41d4-a716-446655440055.webp"/);
+    assert.doesNotMatch(video, /external\\/video\\.mp4/);
     const audio = fs.readFileSync(f.generated('sections/intro/localAudio/index.ts'), 'utf8');
-    assert.match(audio, /fileLocation: resolveLessonMedia\(import\.meta\.url, "audio", "source"\)/);
+    assert.match(audio, /fileName: "550e8400-e29b-41d4-a716-446655440056.mp3"/);
     const captions = fs.readFileSync(f.generated('sections/intro/localCaptions/index.ts'), 'utf8');
-    assert.match(captions, /"subtitles", "source", "uk"/);
+    assert.match(captions, /fileName: \\{\\s*uk: "550e8400-e29b-41d4-a716-446655440057.vtt"/);
     const image = fs.readFileSync(f.generated('sections/intro/localPicture/index.ts'), 'utf8');
-    assert.match(image, /"image", "source", "uk"/);
+    assert.match(image, /fileName: \\{\\s*uk: "550e8400-e29b-41d4-a716-446655440058.svg"/);
     assertTypeScriptSyntax(readAll(f.lesson));
     assert(fs.existsSync(f.generated('sections/intro/videoExplanation/specification.md')));
   }));
