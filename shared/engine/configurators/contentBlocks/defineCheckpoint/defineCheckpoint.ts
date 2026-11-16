@@ -143,7 +143,7 @@ export const defineCheckpoint = <
   // Snapshot only serializable metadata. Children are immutable configurator references.
   const metadataSchema = checkpoint_Config_Schema.omit({ content: true });
   const { content: _content, ...metadataInput } = config;
-  const authored = structuredClone(metadataInput);
+  const authored: Omit<ContentBlock_Checkpoint_Config, 'content'> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
@@ -152,17 +152,13 @@ export const defineCheckpoint = <
   // Transitional read-only-by-convention access for existing authoring consumers.
   const content = { items: { ...initialItems }, order: [...initialOrder] };
 
-  const readBase = () => {
-    const source = copyAuthored();
-    return {
+  const base = {
     id,
     slug,
     type,
-    params: structuredClone(source.params),
-    locale: onlyStrings(source.locale),
-    } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
-  };
-  let cachedBase: ReturnType<typeof readBase> | undefined;
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
+  } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
 
   const splitOwnLocale = (input: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) => {
     const { base: invariant, locale } = splitLocalizedFields(input);
@@ -381,7 +377,7 @@ export const defineCheckpoint = <
     validate,
     build: { props, overrides },
     config: {
-      get base() { return cachedBase ??= readBase(); },
+      base,
       locales: (): { locale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),

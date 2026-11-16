@@ -121,24 +121,20 @@ export const defineFlashcardsSection = <
   // Metadata is copied; children hold independent, immutable authoring snapshots.
   const metadataSchema = flashcardsSection_Config_Schema.omit({ content: true });
   const { content: _content, ...metadataInput } = config;
-  const authored = structuredClone(metadataInput);
+  const authored: Omit<FlashcardsSection_Config, 'content'> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type, slug } = authored;
   const initialItems: Items = { ...config.content.items };
   const initialOrder = [...config.content.order];
   const content = { items: { ...initialItems }, order: [...initialOrder] };
 
-  const readBase = () => {
-    const source = copyAuthored();
-    return {
+  const base = {
     id,
     slug,
     type,
-    params: structuredClone(source.params),
-    locale: onlyStrings(source.locale),
-    } satisfies DeepPartial<FlashcardsSection_Config>;
-  };
-  let cachedBase: ReturnType<typeof readBase> | undefined;
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
+  } satisfies DeepPartial<FlashcardsSection_Config>;
 
   const ownLocale = (input: DeepPartial<FlashcardsSection_Locale<'config'>>) => {
     const split = splitLocalizedFields(input);
@@ -331,7 +327,7 @@ export const defineFlashcardsSection = <
     validate,
     build: { props, overrides },
     config: {
-      get base() { return cachedBase ??= readBase(); },
+      base,
       locales: (): { locale: DeepPartial<FlashcardsSection_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),

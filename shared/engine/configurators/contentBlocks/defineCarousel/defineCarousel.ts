@@ -106,7 +106,7 @@ export const defineCarousel = <
 ) => {
   const metadataSchema = carousel_Config_Schema.omit({ slides: true });
   const { slides: _slides, ...metadataInput } = config;
-  const authored = structuredClone(metadataInput);
+  const authored: Omit<ContentBlock_Carousel_Config, 'slides'> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
@@ -188,17 +188,13 @@ export const defineCarousel = <
     return { base: parsedInvariant.success ? parsedInvariant.data : undefined, locale: localized };
   };
 
-  const readBase = () => {
-    const source = copyAuthored();
-    return {
+  const base = {
     id,
-    type,
     slug,
-    params: structuredClone(source.params),
-    locale: onlyStrings(source.locale),
-    } satisfies DeepPartial<ContentBlock_Carousel_Config>;
-  };
-  let cachedBase: ReturnType<typeof readBase> | undefined;
+    type,
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
+  } satisfies DeepPartial<ContentBlock_Carousel_Config>;
 
   const props = (
     options: PublicationLanguageOptions<Languages>,
@@ -368,7 +364,7 @@ export const defineCarousel = <
     validate,
     build: { props, overrides },
     config: {
-      get base() { return cachedBase ??= readBase(); },
+      base,
       locales: (): { locale: DeepPartial<ContentBlock_Carousel_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),
