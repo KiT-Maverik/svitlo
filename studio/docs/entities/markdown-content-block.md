@@ -7,7 +7,7 @@
 - **Inline:** use `$S = \pi r^2$` inside a sentence.
 - **Display:** put `$$` on separate lines around the equation.
 - **Literal currency:** escape `$` as `\$`.
-- **Authoring source:** use `locale/<language>.md`, invariant `text.md`, or `defineMarkdown` `locale.value`; no extra `Formula` block or Engine params are needed.
+- **Authoring source:** use sibling `<language>.md` files with `readMarkdown(import.meta.url, languages)`, invariant `markdown.md` with `readMarkdown(import.meta.url)`, or inline `defineMarkdown` `locale.value`; no extra `Formula` block or Engine params are needed.
 
 ```markdown
 Circle area: $S = \pi r^2$.

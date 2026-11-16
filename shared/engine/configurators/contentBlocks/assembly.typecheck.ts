@@ -5,6 +5,7 @@ import {
   defineCode,
   defineImage,
   defineMarkdown,
+  readMarkdown,
   defineScene,
   defineVideo,
   defineYoutube,
@@ -66,6 +67,20 @@ const markdown = defineMarkdown<'markdown', ['en']>({
   params: {},
   locale: { value: { en: 'Hello' } },
 });
+// The source-language reader cannot satisfy a Lesson after its language tuple expands.
+const incompleteMarkdown = () =>
+  defineMarkdown<'incompleteMarkdown', ['en', 'uk']>({
+    id,
+    slug: 'incompleteMarkdown',
+    type: 'markdown',
+    params: {},
+    locale: {
+      // @ts-expect-error The Markdown reader returned only en; uk is required.
+      value: readMarkdown(import.meta.url, ['en'] as const),
+    },
+  });
+void incompleteMarkdown;
+
 const scene = defineScene<'scene', ['en']>({
   id,
   slug: 'scene',

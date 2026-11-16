@@ -118,14 +118,15 @@ authored source-locale dictionaries and never invents translations.
   strictly against the textbook's `data/skills/**/*.data.ts` exported `defineSkill`
   definitions; missing/ambiguous references are explicit diagnostics.
 - **Stage 3 file-backed source (creation-only):**
-  - Authored Markdown with an invariant `locale.value` string is materialized
-    exactly as written into `<slug>/text.md`. A localized
-    `locale.value.<documentLanguage>` becomes
-    `<slug>/locale/<documentLanguage>.md`. No `default` or translated
-    fallback file is fabricated. Its generated `defineMarkdown` uses
-    `files: { moduleUrl: import.meta.url }` or
-    `files: { moduleUrl: import.meta.url, languages: ['en'] }` for the
-    authored locale and retains other locale metadata such as variables.
+  - Authored Markdown with invariant `locale.value` string is materialized
+    exactly as written into `<slug>/markdown.md`. A localized
+    `locale.value.<documentLanguage>` becomes `<slug>/<documentLanguage>.md`.
+    No default or translated fallback is fabricated. Generated `defineMarkdown`
+    receives `locale: { value: readMarkdown(import.meta.url) }` for invariant
+    text, or `locale: { value: readMarkdown(import.meta.url, ['en']) }`
+    with the actual `production.documentLanguage` for localized text. The
+    read helper requires every requested file to exist and be nonempty,
+    and preserves other locale metadata such as replacement variables.
   - Authored `params.codeAsText` moves into `<slug>/code.<extension>` using a
     deterministic supported extension map (for example `python` → `.py`,
     `typescript` → `.ts`). Generated `params.codeAsText` reads
@@ -135,9 +136,9 @@ authored source-locale dictionaries and never invents translations.
     placeholders. The technical YAML must contain the real source-language
     learner text/code before scaffolding, authored through the approved
     editorial workflow. A production specification is not a replacement.
-  - Existing Playground Markdown sources were migrated from
-    `locales/<language>.md` to `locale/<language>.md` with byte-for-byte
-    identical Git blobs. The old folder shape is no longer supported.
+  - Existing Playground Markdown source files retain their established `locale/`
+    subdirectories and pass those source directories explicitly to `readMarkdown`;
+    newly scaffolded modules use sibling `<language>.md` files.
   - `check` compares exact bytes of the extracted sources; `generate`
     never changes existing author-edited source files or a Lesson that already
     has a root entrypoint. Pending/missing Config is not filled with fake

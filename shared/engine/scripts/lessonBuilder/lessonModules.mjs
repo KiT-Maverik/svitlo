@@ -321,8 +321,8 @@ export function renderLessonModules(lesson, language, options = {}) {
       const authored = { ...node, locale: { ...node.locale } };
       if (typeof source === 'string') {
         if (!source.trim()) throw new Error('Empty authored Markdown source: ' + directory);
-        put(path.posix.join(directory, 'text.md'), source);
-        authored.files = { moduleUrl: expression('import.meta.url') };
+        put(path.posix.join(directory, 'markdown.md'), source);
+        authored.locale.value = expression('readMarkdown(import.meta.url)');
       } else if (record(source)) {
         const languages = Object.keys(source);
         if (languages.length === 0) throw new Error('Empty localized Markdown source: ' + directory);
@@ -333,13 +333,12 @@ export function renderLessonModules(lesson, language, options = {}) {
             !source[language].trim()
           )
             throw new Error('Invalid authored Markdown locale ' + JSON.stringify(language) + ': ' + directory);
-          put(path.posix.join(directory, 'locale', language + '.md'), source[language]);
+          put(path.posix.join(directory, language + '.md'), source[language]);
         }
-        authored.files = { moduleUrl: expression('import.meta.url'), languages };
+        authored.locale.value = expression('readMarkdown(import.meta.url, ' + JSON.stringify([language]) + ')');
       } else {
         throw new Error('Invalid authored Markdown value: ' + directory);
       }
-      delete authored.locale.value;
       return authored;
     }
     if (node.type === 'code' && record(node.params) && node.params.codeAsText !== undefined) {
@@ -399,7 +398,10 @@ export function renderLessonModules(lesson, language, options = {}) {
       .join('\n\n') + '\n\n';
 
   function moduleImports(directory, names, factory, needsLanguages, languageValue = false) {
-    const factoryImports = [factory, ...(factory === 'defineCode' ? ['readCodeSource'] : [])].join(', ');
+    const factoryImports = [
+      factory,
+      ...(factory === 'defineCode' ? ['readCodeSource'] : factory === 'defineMarkdown' ? ['readMarkdown'] : []),
+    ].join(', ');
     const packageImports = ['import { ' + factoryImports + " } from '@svitlo/engine/build';"];
     const aliasImports = [];
     const localImports = [];

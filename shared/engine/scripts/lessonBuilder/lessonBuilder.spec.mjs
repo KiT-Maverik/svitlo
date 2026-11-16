@@ -690,7 +690,7 @@ test('reserved JavaScript keywords remain safe as authored ContentBlock slugs', 
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
 
-test('materializes invariant Markdown in text.md and Code in code.py beside their definitions', () =>
+test('materializes invariant Markdown in markdown.md and Code in code.py beside their definitions', () =>
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
     items.equalityRule = {
@@ -712,15 +712,16 @@ test('materializes invariant Markdown in text.md and Code in code.py beside thei
     f.config.section.items.intro.content.order.push('equalityRule', 'pythonExample');
     f.save();
     const result = runOne(f.lesson, 'generate', f.root);
-    const markdown = 'sections/intro/equalityRule/text.md';
+    const markdown = 'sections/intro/equalityRule/markdown.md';
     const code = 'sections/intro/pythonExample/code.py';
     assert(result.files.includes(markdown));
     assert(result.files.includes(code));
     assert.equal(fs.readFileSync(f.generated(markdown), 'utf8'), '# Equal values\n\n**2 + 3 = 5**.\n');
     assert.equal(fs.readFileSync(f.generated(code), 'utf8'), 'print(2 + 3 == 5)\n');
     const markdownModule = fs.readFileSync(f.generated('sections/intro/equalityRule/index.ts'), 'utf8');
-    assert.match(markdownModule, /files: \{\s*moduleUrl: import\.meta\.url/);
-    assert.doesNotMatch(markdownModule, /locale: \{\s*value:/);
+    assert.match(markdownModule, /locale: \{\s*value: readMarkdown\(import\.meta\.url\)/);
+    assert.match(markdownModule, /import \{ defineMarkdown, readMarkdown \} from '@svitlo\/engine\/build'/);
+    assert.doesNotMatch(markdownModule, /files:/);
     const codeModule = fs.readFileSync(f.generated('sections/intro/pythonExample/index.ts'), 'utf8');
     assert.match(codeModule, /import \{ defineCode, readCodeSource \} from '@svitlo\/engine\/build'/);
     assert.match(codeModule, /codeAsText: readCodeSource\(import\.meta\.url, "py"\)/);
@@ -731,7 +732,7 @@ test('materializes invariant Markdown in text.md and Code in code.py beside thei
     assert(!result.files.some(name => name.endsWith('specification.md') && /equalityRule|pythonExample/.test(name)));
   }));
 
-test('localized Markdown creates only source-language locale/uk.md, without a default fallback', () =>
+test('localized Markdown creates only source-language uk.md beside its module, without a fallback', () =>
   fixture(f => {
     const items = f.config.section.items.intro.content.items;
     items.sourceExplanation = {
@@ -745,11 +746,12 @@ test('localized Markdown creates only source-language locale/uk.md, without a de
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const base = 'sections/intro/sourceExplanation/';
-    assert.equal(fs.readFileSync(f.generated(base + 'locale/uk.md'), 'utf8'), '# Значення рівні\n');
-    assert(!fs.existsSync(f.generated(base + 'locale/en.md')));
-    assert(!fs.existsSync(f.generated(base + 'text.md')));
+    assert.equal(fs.readFileSync(f.generated(base + 'uk.md'), 'utf8'), '# Значення рівні\n');
+    assert(!fs.existsSync(f.generated(base + 'en.md')));
+    assert(!fs.existsSync(f.generated(base + 'markdown.md')));
     const rendered = fs.readFileSync(f.generated(base + 'index.ts'), 'utf8');
-    assert.match(rendered, /files: \{\s*moduleUrl: import\.meta\.url,\s*languages: \[\s*"uk"\s*\]/);
+    assert.match(rendered, /value: readMarkdown\(import\.meta\.url, \["uk"\]\)/);
+    assert.doesNotMatch(rendered, /files:/);
     assert.doesNotMatch(rendered, /# Значення рівні|# Equal values/);
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
@@ -767,7 +769,7 @@ test('read-only checks reject modified Markdown/Code while generate skips existi
     f.config.section.items.intro.content.order.push('explanation');
     f.save();
     runOne(f.lesson, 'generate', f.root);
-    const file = f.generated('sections/intro/explanation/text.md');
+    const file = f.generated('sections/intro/explanation/markdown.md');
     fs.writeFileSync(file, '# Human revision\n');
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
     assert.equal(fs.readFileSync(file, 'utf8'), '# Human revision\n');
@@ -786,7 +788,7 @@ test('existing Markdown source blocks all new TS writes instead of being overwri
     };
     f.config.section.items.intro.content.order.push('explanation');
     f.save();
-    const sourceFile = f.generated('sections/intro/explanation/text.md');
+    const sourceFile = f.generated('sections/intro/explanation/markdown.md');
     fs.mkdirSync(path.dirname(sourceFile), { recursive: true });
     fs.writeFileSync(sourceFile, '# Previously edited by a human\n');
     assert.throws(
@@ -1020,7 +1022,7 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
 
     assert(![...modules.keys()].some(name => /\/(?:texts|images|scenes|slides)\//.test(name)));
     assert.equal(
-      fs.readFileSync(path.join(output, 'sections/exploreEquality/explainWithMarkdown/locale/en.md'), 'utf8'),
+      fs.readFileSync(path.join(output, 'sections/exploreEquality/explainWithMarkdown/en.md'), 'utf8'),
       '## Compare both sides\n\n**3 + 2 = 4 + 1**, because both sides equal **5**.',
     );
     assert.match(
