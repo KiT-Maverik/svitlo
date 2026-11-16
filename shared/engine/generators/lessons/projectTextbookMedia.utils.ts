@@ -5,6 +5,7 @@ import {
   audioFileName_Schema,
   videoFileName_Schema,
   subtitlesFileName_Schema,
+  UNRESOLVED_RESOURCE_UUID,
 } from '../../schemas/media.schemas';
 
 type Folder = 'images' | 'audio' | 'video' | 'subtitles';
@@ -83,6 +84,11 @@ export function projectTextbookMedia<T>(publication: T, options: MediaPublicatio
       report(location, blockId, kind, value, 'malformed or incompatible UUID filename');
       return value;
     }
+    // The Nil UUID is a draft sentinel, not an asset, even if a file exists.
+    if (value.startsWith(UNRESOLVED_RESOURCE_UUID + '.')) {
+      report(location, blockId, kind, value, 'unresolved resource placeholder');
+      return '/textbooks/' + options.textbookId + '/assets/' + kind + '/' + value;
+    }
     const asset = join(root, 'assets', kind, value);
     for (const part of [join(root, 'assets'), join(root, 'assets', kind), asset]) {
       if (existsSync(part) && lstatSync(part).isSymbolicLink()) {
@@ -124,7 +130,7 @@ export function projectTextbookMedia<T>(publication: T, options: MediaPublicatio
 
 /** Production is all-or-nothing: report every missing/unsafe referenced file. */
 export function assertMediaPublicationReady(diagnostics: readonly MediaDiagnostic[], mode: MediaPublicationMode) {
-  const fatal = mode === 'production' ? diagnostics : diagnostics.filter(item => item.reason !== 'file is missing');
+  const fatal = mode === 'production' ? diagnostics : diagnostics.filter(item => !['file is missing', 'unresolved resource placeholder'].includes(item.reason));
   if (!fatal.length) return;
   throw new Error(
     'Textbook media publication failed (' + fatal.length + ' reference(s)):\n' +

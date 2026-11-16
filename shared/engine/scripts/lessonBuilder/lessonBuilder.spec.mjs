@@ -231,6 +231,36 @@ test('Carousel Image and Scene children are independently scaffolded below their
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
 
+test('pending YAML media null emits a stable Nil UUID and TODO(asset) without changing YAML', () =>
+  fixture(f => {
+    const media = f.config.section.items.intro.content.items;
+    media.gallery.slides.items.first.locale.fileName = { uk: null, en: '550e8400-e29b-41d4-a716-446655440051.svg' };
+    media.sound = { id: id(80), slug: 'sound', type: 'audio', params: {},
+      locale: { fileName: null, title: { uk: 'Аудіо' } } };
+    media.movie = { id: id(81), slug: 'movie', type: 'video', params: {},
+      locale: { fileName: null, posterFileName: null, label: { uk: 'Відео' } } };
+    media.captions = { id: id(82), slug: 'captions', type: 'subtitles', params: {},
+      locale: { fileName: { uk: null } } };
+    media.order.push('sound', 'movie', 'captions');
+    f.save();
+    const before = fs.readFileSync(f.generated('lesson.yaml'), 'utf8');
+    runOne(f.lesson, 'generate', f.root);
+    const modules = [
+      'sections/intro/gallery/first/index.ts',
+      'sections/intro/sound/index.ts',
+      'sections/intro/movie/index.ts',
+      'sections/intro/captions/index.ts',
+    ].map(name => fs.readFileSync(f.generated(name), 'utf8'));
+    for (const [index, ext] of ['webp', 'mp3', 'mp4', 'vtt'].entries()) {
+      assert.match(modules[index], new RegExp('00000000-0000-0000-0000-000000000000\\\\.' + ext));
+      assert.match(modules[index], /TODO\\(asset\\)/);
+    }
+    assert.match(modules[2], /posterFileName: "00000000-0000-0000-0000-000000000000.webp"/);
+    assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), before);
+    assertTypeScriptSyntax(readAll(f.lesson));
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+  }));
+
 test('Carousel draft rejects unsupported children without writing anything', () =>
   fixture(f => {
     f.config.section.items.intro.content.items.gallery.slides.items.first.type = 'text';

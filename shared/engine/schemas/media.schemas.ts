@@ -11,11 +11,15 @@ export type AudioExtension = (typeof audioExtensions)[number];
 export type VideoExtension = (typeof videoExtensions)[number];
 export type SubtitlesExtension = (typeof subtitlesExtensions)[number];
 
-/** Filename schemas preserve their UUID and extension constraints in JSON Schema. */
-export const imageFileName_Schema = z.templateLiteral([z.uuid(), '.', z.enum(imageExtensions)]);
-export const audioFileName_Schema = z.templateLiteral([z.uuid(), '.', z.enum(audioExtensions)]);
-export const videoFileName_Schema = z.templateLiteral([z.uuid(), '.', z.enum(videoExtensions)]);
-export const subtitlesFileName_Schema = z.templateLiteral([z.uuid(), '.', z.enum(subtitlesExtensions)]);
+/** Reserved unresolved filename identity used by YAML -> TypeScript scaffolding only. */
+export const UNRESOLVED_RESOURCE_UUID = '00000000-0000-0000-0000-000000000000' as const;
+const mediaUuid_Schema = z.union([z.uuid(), z.literal(UNRESOLVED_RESOURCE_UUID)]);
+
+/** Filename schemas preserve UUID and extension constraints in generated JSON Schema. */
+export const imageFileName_Schema = z.templateLiteral([mediaUuid_Schema, '.', z.enum(imageExtensions)]);
+export const audioFileName_Schema = z.templateLiteral([mediaUuid_Schema, '.', z.enum(audioExtensions)]);
+export const videoFileName_Schema = z.templateLiteral([mediaUuid_Schema, '.', z.enum(videoExtensions)]);
+export const subtitlesFileName_Schema = z.templateLiteral([mediaUuid_Schema, '.', z.enum(subtitlesExtensions)]);
 
 /** Remote media are not local filenames and are never checked on disk. */
 export const externalMediaUrl_Schema = z.url({ protocol: /^https?$/ });

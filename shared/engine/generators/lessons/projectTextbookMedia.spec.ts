@@ -97,3 +97,16 @@ test('refuses symlinked assets even in Draft', () => fixture((root, save) => {
   assert.equal(diagnostics[0]?.reason, 'unsafe symbolic link');
   assert.throws(() => assertMediaPublicationReady(diagnostics, 'draft'), /unsafe symbolic link/);
 }));
+
+test('Nil UUID media remains a Draft placeholder and always blocks Production even when the file exists', () => fixture((root, save) => {
+  const nilImage = '00000000-0000-0000-0000-000000000000.webp';
+  save('images', nilImage);
+  const source = { base: { id: 'image-id', type: 'image', locale: { src: nilImage } } };
+  const { result, diagnostics } = publish(root, source, 'draft');
+  assert.equal(diagnostics.length, 1);
+  assert.equal(diagnostics[0]?.reason, 'unresolved resource placeholder');
+  assert.equal(JSON.parse(JSON.stringify(result)).base.locale.src,
+    '/textbooks/math/assets/images/' + nilImage);
+  assert.doesNotThrow(() => assertMediaPublicationReady(diagnostics, 'draft'));
+  assert.throws(() => assertMediaPublicationReady(diagnostics, 'production'), /unresolved resource placeholder/);
+}));

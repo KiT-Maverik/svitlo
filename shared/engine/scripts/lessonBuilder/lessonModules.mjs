@@ -31,6 +31,9 @@ const factoryContexts = new Set([
 const sectionTypes = new Set(['content', 'quiz', 'practice', 'learningFlow', 'codingTask', 'flashcards']);
 const compositeTypes = new Set(['carousel', 'checkpoint']);
 const localMediaTypes = new Set(['image', 'video', 'audio', 'subtitles']);
+// Reserved pending identity; never allocate physical resource UUIDs while scaffolding.
+const UNRESOLVED_RESOURCE_UUID = '00000000-0000-0000-0000-000000000000';
+const pendingMediaExtensions = { image: 'webp', audio: 'mp3', video: 'mp4', subtitles: 'vtt' };
 const reserved = new Set([
   'content',
   'slides',
@@ -389,6 +392,10 @@ export function renderLessonModules(lesson, language, options = {}) {
   // child module. Its containing object's ordinary metadata remains untouched.
   function render(value, context, ownerDirectory, imported, depth = 0, field = '$') {
     if (value && typeof value === 'object' && value[rawExpression]) return value[rawExpression];
+    if (value === null && context.startsWith('pendingMedia:')) {
+      const kind = context.slice('pendingMedia:'.length);
+      return JSON.stringify(UNRESOLVED_RESOURCE_UUID + '.' + pendingMediaExtensions[kind]);
+    }
     if (context === 'nullableBlock') {
       return value === null ? 'null' : render(value, 'block', ownerDirectory, imported, depth, field);
     }
@@ -457,7 +464,11 @@ export function renderLessonModules(lesson, language, options = {}) {
       '{\n' +
       entries
         .map(([key, child]) => {
-          const nextContext = childContext(context, key, value);
+          const nextContext = context.startsWith('pendingMedia:')
+            ? context
+            : context.startsWith('mediaLocale:') && (key === 'fileName' || key === 'posterFileName')
+              ? 'pendingMedia:' + (key === 'posterFileName' ? 'image' : context.slice('mediaLocale:'.length))
+              : childContext(context, key, value);
           let nextDirectory = ownerDirectory;
           if (context === 'questionBank') nextDirectory = join(ownerDirectory, key);
           if (context === 'flashcardContent' && ['front', 'back', 'hint'].includes(key))
@@ -483,8 +494,13 @@ export function renderLessonModules(lesson, language, options = {}) {
             return indent(depth + 1) + key;
           }
           const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, field + '.' + key);
+          const pendingComment = child === null && nextContext.startsWith('pendingMedia:')
+            ? indent(depth + 1) + '// TODO(asset): Auto-generated unresolved media placeholder; no physical asset exists.\\n' +
+              indent(depth + 1) + '// Replace with actual UUID.extension before production.\\n'
+            : '';
           return (
-            indent(depth + 1) + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered)
+            pendingComment + indent(depth + 1) +
+            (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered)
           );
         })
         .join(',\n') +
@@ -633,7 +649,11 @@ export function renderLessonModules(lesson, language, options = {}) {
     for (const [key, value] of Object.entries(authored)) {
       let rendered;
       if (bindings.has(key)) rendered = key;
-      else rendered = render(value, childContext(context, key, authored), directory, imports, 1, '$.' + key);
+      else rendered = render(value,
+        key === 'locale' && localMediaTypes.has(authored.type)
+          ? 'mediaLocale:' + authored.type
+          : childContext(context, key, authored),
+        directory, imports, 1, '$.' + key);
       fields.push('  ' + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered));
     }
     const content = fields.length ? '{\n' + fields.join(',\n') + '\n}' : '{}';
