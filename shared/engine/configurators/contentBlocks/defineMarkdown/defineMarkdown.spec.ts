@@ -62,15 +62,15 @@ describe('Configurators', () => {
       test('readMarkdown rejects missing, empty, repeated, invalid and non-regular language files', () => {
         withMarkdownFiles((moduleUrl, directory) => {
           writeFileSync(join(directory, 'en.md'), 'Hello');
-          assert.throws(() => readMarkdown(moduleUrl, ['en', 'uk']), /Missing or invalid Markdown file: .*uk\\.md/);
+          assert.throws(() => readMarkdown(moduleUrl, ['en', 'uk']), /Missing or invalid Markdown file: .*uk\.md/);
           writeFileSync(join(directory, 'uk.md'), ' \n ');
-          assert.throws(() => readMarkdown(moduleUrl, ['en', 'uk']), /Empty Markdown file: .*uk\\.md/);
+          assert.throws(() => readMarkdown(moduleUrl, ['en', 'uk']), /Empty Markdown file: .*uk\.md/);
           writeFileSync(join(directory, 'uk.md'), 'Привіт');
           assert.throws(() => readMarkdown(moduleUrl, ['en', 'en']), /without duplicates/);
           assert.throws(() => readMarkdown(moduleUrl, [] as unknown as ['en']), /non-empty/);
           assert.throws(() => readMarkdown(moduleUrl, ['../unsafe' as 'en']), /Invalid Markdown language code/);
           mkdirSync(join(directory, 'fr.md'));
-          assert.throws(() => readMarkdown(moduleUrl, ['fr']), /Missing or invalid Markdown file: .*fr\\.md/);
+          assert.throws(() => readMarkdown(moduleUrl, ['fr']), /Missing or invalid Markdown file: .*fr\.md/);
           assert.deepEqual(readMarkdown(moduleUrl, ['en', 'uk']), { en: 'Hello', uk: 'Привіт' });
         });
       });
@@ -91,9 +91,9 @@ describe('Configurators', () => {
 
       test('readMarkdown rejects missing or empty markdown.md without fallback', () => {
         withMarkdownFiles((moduleUrl, directory) => {
-          assert.throws(() => readMarkdown(moduleUrl), /Missing or invalid Markdown file: .*markdown\\.md/);
+          assert.throws(() => readMarkdown(moduleUrl), /Missing or invalid Markdown file: .*markdown\.md/);
           writeFileSync(join(directory, 'markdown.md'), '  \n ');
-          assert.throws(() => readMarkdown(moduleUrl), /Empty Markdown file: .*markdown\\.md/);
+          assert.throws(() => readMarkdown(moduleUrl), /Empty Markdown file: .*markdown\.md/);
         });
       });
 
