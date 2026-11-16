@@ -178,7 +178,9 @@ export const defineCourse = <
 ): Course_Configurator<Slug, Items, Languages> => {
   const metadataSchema = course_Config_Schema.omit({ content: true });
   const { content: _content, ...metadataInput } = config;
-  const authored: Omit<Course_Config, 'content'> = structuredClone(metadataInput);
+  const authored: Omit<Course_Config, 'content' | 'params'> & {
+    params: Omit<Course_Config['params'], 'languages'> & { languages: readonly LanguageCode[] };
+  } = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
@@ -263,7 +265,7 @@ export const defineCourse = <
     id,
     slug,
     type,
-    params: structuredClone(authored.params),
+    params: { ...structuredClone(authored.params), languages: [...authored.params.languages] },
     locale: onlyStrings(authored.locale),
   };
 
