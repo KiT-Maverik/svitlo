@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "48cc02800a329df917b828d6c0522bea91e7090c",
+  "sourceCommit": "63aff781d40bfaf8561c6081037b9f68718819c4",
   "scope": {
     "kind": "skills",
     "package": "content/health-safety",

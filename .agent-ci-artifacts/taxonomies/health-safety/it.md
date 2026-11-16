@@ -1850,7 +1850,7 @@ Skills: 3
 
 **Methodological description (English):** Call for help and use safe reach-or-throw assistance where appropriate without putting an untrained rescuer into the water.
 
-**User-friendly description (it):** Chiedi aiuto e presta assistenza sicura senza entrare in acqua a una persona in pericolo.
+**User-friendly description (it):** Chiedi aiuto e presta soccorso in sicurezza a una persona in pericolo, senza entrare in acqua.
 
 ##### Applicare misure di sicurezza in acqua
 
