@@ -163,15 +163,7 @@ function readAssessmentMethodDefinitions(root, languages, allowMissing = false) 
     } else {
       assertExactKeys(config.title, languages, 'Assessment Method titles for ' + key);
     }
-    if (allowMissing) {
-      const unexpectedDescriptions = Object.keys(config.description).filter(code => !languages.includes(code));
-      if (unexpectedDescriptions.length) {
-        throw new Error('Unexpected Assessment Method description language(s): ' + unexpectedDescriptions.join(', '));
-      }
-    } else {
-      assertExactKeys(config.description, languages, 'Assessment Method descriptions for ' + key);
-    }
-    definitions[key] = { id: config.id, description, descriptions: config.description, title: config.title };
+    definitions[key] = { id: config.id, description, title: config.title };
   }
   return definitions;
 }
@@ -195,37 +187,15 @@ export function readAssessmentMethodsReference({ root = repoRoot, locale, allowM
   const methods = keys.map(key => {
     const definition = definitions[key];
     const title = definition.title[locale];
-    const localizedDescription = definition.descriptions[locale];
-    const missingTitle = typeof title !== 'string' || !title.trim();
-    const missingDescription = typeof localizedDescription !== 'string' || !localizedDescription.trim();
-    if (missingTitle && (!allowMissing || locale === 'en')) {
+    const missing = typeof title !== 'string' || !title.trim();
+    if (missing && (!allowMissing || locale === 'en')) {
       throw new Error('Missing Assessment Method title for ' + key + ' (' + locale + ')');
     }
-    if (missingDescription && (!allowMissing || locale === 'en')) {
-      throw new Error('Missing Assessment Method description for ' + key + ' (' + locale + ')');
-    }
-    if (!missingTitle && title === '%%MISSING%%') throw new Error('Reserved marker in Assessment Method title: ' + key);
-    if (!missingDescription && localizedDescription === '%%MISSING%%') {
-      throw new Error('Reserved marker in Assessment Method description: ' + key);
-    }
-    if (!missingTitle && /[\r\n]/.test(title)) throw new Error('Multiline Assessment Method title for ' + key + ' (' + locale + ')');
-    if (!missingDescription && /[\r\n]/.test(localizedDescription)) {
-      throw new Error('Multiline Assessment Method description for ' + key + ' (' + locale + ')');
-    }
-    return {
-      key,
-      id: definition.id,
-      title: missingTitle ? '%%MISSING%%' : title,
-      localizedDescription: missingDescription ? '%%MISSING%%' : localizedDescription,
-      description: definition.description.trim(),
-    };
+    if (!missing && title === '%%MISSING%%') throw new Error('Reserved marker in Assessment Method title: ' + key);
+    if (!missing && /[\r\n]/.test(title)) throw new Error('Multiline Assessment Method title for ' + key + ' (' + locale + ')');
+    return { key, id: definition.id, title: missing ? '%%MISSING%%' : title, description: definition.description.trim() };
   });
-  return {
-    locale,
-    methods,
-    missing: methods.reduce((count, method) =>
-      count + Number(method.title === '%%MISSING%%') + Number(method.localizedDescription === '%%MISSING%%'), 0),
-  };
+  return { locale, methods, missing: methods.filter(method => method.title === '%%MISSING%%').length };
 }
 
 function escapeMarkdown(text) {
@@ -233,7 +203,7 @@ function escapeMarkdown(text) {
 }
 
 export function renderAssessmentMethodsReference(options) {
-  const { locale, methods, missing } = readAssessmentMethodsReference(options);
+  const { locale, methods } = readAssessmentMethodsReference(options);
   const links = {
     descriptions: '../../' + sourcePaths.descriptions,
   };
@@ -241,7 +211,7 @@ export function renderAssessmentMethodsReference(options) {
     '<!-- GENERATED FROM CODE; DO NOT EDIT. -->',
     '# Assessment Methods — ' + locale,
     '',
-    'Localized titles and descriptions: ' + tick + locale + tick + '. English methodological source is shown for review.',
+    'Frontend title language: ' + tick + locale + tick + '. Methodological descriptions: **English only**.',
     '',
     'An **Assessment Method** specifies the cognitive operation a learner must demonstrate and the evidence a task should elicit. ' +
       'A **Question type** specifies how the learner supplies a response (such as selecting, matching or entering text). ' +
@@ -259,8 +229,8 @@ export function renderAssessmentMethodsReference(options) {
       ').',
     '',
     'Methods: ' + methods.length,
-    ...(options.allowMissing ? ['Missing translations: ' + missing,
-      ...(missing > 0
+    ...(options.allowMissing ? ['Missing translations: ' + methods.filter(method => method.title === '%%MISSING%%').length,
+      ...(methods.some(method => method.title === '%%MISSING%%')
         ? ['', '> DRAFT REFERENCE: missing localized fields; not approved for independent review.'] : [])] : []),
     '',
   ];
@@ -270,7 +240,6 @@ export function renderAssessmentMethodsReference(options) {
       '',
       '- **UUID:** ' + tick + method.id + tick,
       '- **Frontend title (' + locale + '):** ' + escapeMarkdown(method.title),
-      '- **Localized description (' + locale + '):** ' + escapeMarkdown(method.localizedDescription),
       '- **Methodological description (English):** ' + escapeMarkdown(method.description),
       '- **Canonical definitions:** [definition and methodology](' + links.descriptions + '/' + method.key + '.ts)',
       '',
