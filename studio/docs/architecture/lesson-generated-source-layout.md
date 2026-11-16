@@ -1,6 +1,6 @@
 # Lesson source layout: Stage 1 contract and reference fixture
 
-**Status:** Stage 1 target contract; Stages 2–3 modular source and Markdown/Code are implemented. Textbook-wide media identity and packaging are addressed by PR #615, independent of the experimental colocated media layout. Review and full end-to-end acceptance remain planned.  
+**Status:** Historical Stage 1 design/reference fixture, with later implemented Lesson source modules, Markdown/Code, and textbook-wide UUID media packaging in PR #615. Historical snapshots and initial open questions below are retained for traceability; current source and publication contracts are defined by the linked live Engine/Builder documentation.  
 **Scope:** YAML-to-TypeScript **Lesson draft scaffolder** and downstream source/asset handoffs, using [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557) as experimental evidence.  
 **Out of scope:** changing the generator, implementing media/Scenes, publishing Lesson Props, changing existing Lesson Configs, migrating all mathematics lessons, translating content, or granting review approvals.
 
@@ -48,15 +48,14 @@ content/<book>/data/lessons/<last-uuid-digit>/<lesson-uuid>/
         specification.md        # only for Scene or pending media, when required
         text.md                 # invariant Markdown (alternative to locale/)
         code.<extension>        # Code source (when this block is Code)
-        <blockSlug>.<extension>  # invariant media file, when produced
+        # Binary media is not placed in this module directory.
         locale/
           <language>.md         # localized Markdown (alternative to text.md)
-          <language>.<extension> # localized media, when produced
         <nestedSlug>/
           index.ts              # recursively nested entities
 ```
 
-The examples in one directory describe **alternative entity-specific cases**, not a requirement to emit all files for every block. `<blockSlug>` directories replace `<type>/<slug>` grouping. Direct siblings in the same collection have distinct, safe camelCase slugs. `sections/index.ts` assembles the ordered section collection, and the Lesson imports it with `section` property shorthand. At further nesting boundaries, emit appropriately named local `index.ts`/barrel exports and use shorthand items when it preserves type safety and clarity.
+The historical prototype included colocated binary media; the current contract uses textbook-wide `assets/{images,audio,video,subtitles}/UUID.extension` files instead. The examples in one directory describe **alternative entity-specific cases**, not a requirement to emit all files for every block. `<blockSlug>` directories replace `<type>/<slug>` grouping. Direct siblings in the same collection have distinct, safe camelCase slugs. `sections/index.ts` assembles the ordered section collection, and the Lesson imports it with `section` property shorthand. At further nesting boundaries, emit appropriately named local `index.ts`/barrel exports and use shorthand items when it preserves type safety and clarity.
 
 **Names vs identity:** the generator preserves the source YAML's permanent UUIDs and authored slug values. Semantic renaming (`text1` → `sameValueExplanation`) is **upstream editorial work** on the YAML. A deterministic builder must not guess a new name, change an ID, or silently renumber keys. Normalize folder paths according to source slugs and explicit hierarchy.
 
@@ -106,9 +105,7 @@ The **Stage 3 contract changes the historical Markdown file-mode folder from `lo
 
 **Checkpoint:** organize each nested Item, Question, Answer and allowed ContentBlock recursively in its parent's slug directory. Collection order stays explicit. Avoid central folders of blocks by type.
 
-**Carousel:** the prototype still uses `defineCarouselSlide`. Replacing Slides with arbitrary `defineImage` or Scene children is **not approved as already supported**: current Engine Carousel Config/Props and UI Kit renderer must be redesigned and tested before that change. Treat polymorphic slides as an explicit follow-up decision, not Stage 1 implementation.
-
-**Follow-up in PR #575:** the preceding paragraph describes the historical Stage 1 baseline. The approved [Carousel Image/Scene design](./carousel-image-scene-slides.md) supersedes that baseline: `defineCarouselSlide` is retired in the Draft implementation, children now use typed Image/Scene configurators, and the builder places each child directly under its Carousel slug. This is **not** evidence of production readiness until the schema, build, CI and accessibility gates in #575 pass.
+**Carousel:** the original #557 prototype used `defineCarouselSlide`. That is historical: the implemented [Carousel Image/Scene contract](./carousel-image-scene-slides.md) uses typed `defineImage` / `defineScene` children and puts each child's TypeScript module immediately below its Carousel slug. Physical image resources are textbook-wide UUID-named files under `assets/images/`, not colocated binaries.
 
 **Quest:** Stage/Task are special nested configurators with their own required structure, not generic `{ items, order }` collections. Source layout should support their actual typed hierarchy without inventing a second order field. Quest runtime support remains separate.
 
@@ -126,11 +123,11 @@ Changes to external Scene implementation files or actual binary media may not ch
 
 | Current component                                                   | Observed behavior                                                                         | Stage 2+ obligation                                                                                              |
 | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `shared/engine/scripts/lessonBuilder/lessonBuilder.mjs`             | One `<slug>.data.ts` and UUID-addressed specialist handoffs; no validation/Props          | Generate modular source without changing the draft-only and creation-only semantics                              |
+| `shared/engine/scripts/lessonBuilder/lessonBuilder.mjs`             | Modular nested `index.ts`, source-only file-backed Markdown/Code, and colocated specifications; no Props | Preserve creation-only SKIP and the draft-only boundary |
 | `shared/engine/scripts/generateLessonProps/generateLessonProps.mjs` | Finds one `*.data.ts`, falling back to `index.ts`; requires a real `build.props()` Lesson | Ensure new root entrypoint can be discovered and loaded; fail on ambiguity; do not publish incomplete drafts     |
-| `scripts/textbook-tooling/buildTextbook/build.mjs`                  | `authored('data/lessons')` recognizes only `*.data.ts`                                    | Update detection for canonical `index.ts` Lesson entrypoints so compiled text books do not silently omit Lessons |
-| `shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs`   | Emits Scene and media handoffs to UUID-addressed folders                                  | Change output ownership and non-destructive write/skip/check behavior together with layout                       |
-| Engine media Config and textbook assets packaging                  | UUID `fileName` Config and typed URL publication in PR #615 | Verify runtime consumer URLs, Draft/Production diagnostics and manifest integration |
+| `scripts/textbook-tooling/buildTextbook/build.mjs`                  | Recognizes canonical root `index.ts` and `*.data.ts`; packages textbook-wide assets | Preserve generated JSON and asset manifest coverage |
+| `shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs`   | Lesson media and Scene specifications are emitted alongside nested source modules | Keep handoff paths stable without overwriting specialist work |
+| Engine media Config and textbook assets packaging                  | UUID `fileName` Config, typed runtime URL projection and entire `assets/` packaging in PR #615 | Preserve category-specific references, Draft/Production behavior and portable manifest |
 | Current Carousel and Quest schemas                                  | Specialized child kinds/shape                                                             | Do not force generic block recursion where schemas intentionally restrict children                               |
 
 **Non-goals and safeguards:** no mass rewriting of other Math lessons in Stage 1; no schema loosenings or fake success from TypeScript suppression; no execution of generated incomplete samples as trusted code; no single-stage migration of Scenes, asset packaging, review types and production workflow. Update README/JSDoc/tests and affected architecture references in the _implementing_ PR, not by pretending they already implement this document.
@@ -170,10 +167,10 @@ is silently omitted. Mixing the legacy `*.data.ts` entrypoint with
 
 ## Open decisions (not silently implemented)
 
-1. Carousel child polymorphism and precise Scene registration boundary.
-2. Media format/extension and multi-role naming; source-local vs published asset addresses; missing-asset behavior.
-3. Exact pathless build-time file-reading API and bundler integration.
-4. Review shape, permissible PR value types, canonical stage slugs, hashing length and review invalidation policy.
-5. Semantic slug normalization **upstream** and mapping existing scoped names to meaningful ones without changing IDs.
+1. **Resolved since Stage 1:** Carousel now accepts Image/Scene children; Scene runtime registry remains a separate concern.
+2. **Resolved in PR #615:** binary assets live under textbook-wide `assets/<category>/UUID.extension`; media Config filenames are converted to Runtime URLs at publication. The old module-relative media lookup is retired.
+3. **Resolved since Stage 1:** Markdown/Code use module-local build-time source readers, separately from binary media.
+4. **Resolved in later review work:** use current `LessonReview` and its digest utilities; this historical document is not the current review contract.
+5. **Still editorial:** semantic slug normalization happens upstream without changing immutable UUIDs.
 
 Record any decision against the appropriate current Engine code, schema, tests and Studio source before implementing the corresponding stage.
