@@ -67,12 +67,29 @@ real binary assets.
 **Status: approved implementation requirement, not yet implemented.** The Lesson
 YAML `config.params.languages` remains the complete planned language set.
 The draft scaffolder should generate `constants.ts` with the **single existing**
-export `languages`: an active tuple containing only
-`production.documentLanguage`, and the complete YAML language tuple kept as
-a commented-out alternative using the **same export name**. The derived
-`LessonLanguages` type and all nested configurators continue to use this one
-export. This allows source-language-only Lesson preview/publication without
-invented translations or weakened Zod/TypeScript localization contracts.
+export `languages`, whose value is **replaced by a new, one-element tuple
+created directly from `production.documentLanguage`** (not by slicing,
+filtering or otherwise shortening `config.params.languages`). Keep the
+complete, untouched `config.params.languages` tuple as a **commented-out
+alternative declaration with the same `languages` name** for manual
+restoration after translations are ready.
+
+For example, when `production.documentLanguage: en` and
+`config.params.languages: [en, uk, pl, qm]`, generate:
+
+```ts
+import type { LanguageCode } from '@svitlo/engine/build';
+
+// Restore when all planned translations are complete:
+// export const languages = ['en', 'uk', 'pl', 'qm'] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+export const languages = ['en'] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+export type LessonLanguages = typeof languages;
+```
+
+The derived `LessonLanguages` type and all nested configurators continue to
+use this one active export. This enables source-language-only Lesson
+preview/publication without invented translations or weakened Zod/TypeScript
+localization contracts.
 An author can manually switch to the full tuple when translations are ready.
 Preserve existing creation-only/no-overwrite behavior.
 
