@@ -384,14 +384,13 @@ describe('Configurators', () => {
           locale: { title: { en: 'Quiz required', uk: 'Квіз обов’язковий' } },
         };
 
-        assert.throws(
-          () =>
-            defineLesson({
-              ...lessonInput,
-              section: { items: { intro: section }, order: ['intro'] },
-            }).build.props({ languages: ['en'] }),
-          /at least one enabled Quiz/,
-        );
+        const deferred = defineLesson({
+          ...lessonInput,
+          section: { items: { intro: section }, order: ['intro'] },
+        });
+        assert.equal(deferred.slug, 'quizRequiredLesson');
+        assert.throws(() => deferred.build.props({ languages: ['en', 'uk'] }), /at least one enabled Quiz/);
+        assert.throws(() => deferred.build.overrides({}, { languages: ['en', 'uk'] }), /at least one enabled Quiz/);
 
         const quiz = defineQuizSection<'knowledgeQuiz', {}, ['en', 'uk']>({
           id: id('08'),

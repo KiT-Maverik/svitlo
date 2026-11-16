@@ -193,16 +193,21 @@ describe('Configurators', () => {
           params: { disabled: true },
           locale: { value: 'Unavailable' },
         });
+        const deferredQuiz = defineQuizSection<'badDisabledQuiz', { prompt: typeof disabledPrompt }, ['en', 'uk']>({
+          type: 'quiz',
+          id: id('b8'),
+          slug: 'badDisabledQuiz',
+          params: quizParams,
+          locale: { title: 'Quiz', navigationLabel: 'Q' },
+          content: { items: { prompt: disabledPrompt }, order: ['prompt'] },
+        });
+        assert.equal(deferredQuiz.slug, 'badDisabledQuiz');
         assert.throws(
-          () =>
-            defineQuizSection<'badDisabledQuiz', { prompt: typeof disabledPrompt }, ['en', 'uk']>({
-              type: 'quiz',
-              id: id('b8'),
-              slug: 'badDisabledQuiz',
-              params: quizParams,
-              locale: { title: 'Quiz', navigationLabel: 'Q' },
-              content: { items: { prompt: disabledPrompt }, order: ['prompt'] },
-            }).build.props({ languages: ['en'] }),
+          () => deferredQuiz.build.props({ languages: ['en', 'uk'] }),
+          /screen starting references disabled ContentBlock: prompt/,
+        );
+        assert.throws(
+          () => deferredQuiz.build.overrides({}, { languages: ['en', 'uk'] }),
           /screen starting references disabled ContentBlock: prompt/,
         );
 
