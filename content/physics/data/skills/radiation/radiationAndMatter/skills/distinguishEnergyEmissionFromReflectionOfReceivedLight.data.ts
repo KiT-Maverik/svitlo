@@ -5,7 +5,7 @@ export const distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data =
   id: 'ea99f42a-31b9-4204-abe2-b8d6dd0738ad',
   name: {
     en: 'Distinguish energy emission from reflection of received light',
-    it: 'Distinguere l\'emissione di energia dalla riflessione della luce ricevuta',
+    it: "Distinguere l'emissione di energia dalla riflessione della luce ricevuta",
     zh: '区分能量发射与入射光反射',
     hi: 'ऊर्जा उत्सर्जन और प्राप्त प्रकाश के परावर्तन में अंतर करना',
     es: 'Distinguir la emisión de energía de la reflexión de luz recibida',

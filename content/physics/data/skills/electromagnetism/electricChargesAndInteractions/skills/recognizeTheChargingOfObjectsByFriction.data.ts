@@ -5,7 +5,7 @@ export const recognizeTheChargingOfObjectsByFriction_Skill_Data = defineSkill({
   id: 'c7613716-b41a-4512-a9ef-8133de8fab9e',
   name: {
     en: 'Recognize the charging of objects by friction',
-    it: 'Riconoscere l\'elettrizzazione per strofinio',
+    it: "Riconoscere l'elettrizzazione per strofinio",
     qm: 'Sürtünüvnen cisimlerniñ elektrik yükü almasını tanımaq',
     zh: '识别摩擦起电',
     hi: 'रगड़ से वस्तुओं का आवेशित होना पहचानना',

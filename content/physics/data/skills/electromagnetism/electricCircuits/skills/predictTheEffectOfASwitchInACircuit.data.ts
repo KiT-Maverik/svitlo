@@ -5,7 +5,7 @@ export const predictTheEffectOfASwitchInACircuit_Skill_Data = defineSkill({
   id: 'e3b3291c-f917-4fb9-a52c-75998ca04469',
   name: {
     en: 'Predict the effect of a switch in a circuit',
-    it: 'Prevedere l\'effetto di un interruttore in un circuito',
+    it: "Prevedere l'effetto di un interruttore in un circuito",
     qm: 'Elektrik devresinde açqıçnıñ tesirini evelden bilmek',
     zh: '预测开关对电路的影响',
     hi: 'परिपथ में स्विच का प्रभाव अनुमान लगाना',

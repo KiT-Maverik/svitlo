@@ -11,7 +11,7 @@ export const conservationOfEnergy_SkillGroup_Data = defineSkillGroup({
   id: 'c7b7e7ed-800d-419b-8d90-6c664746ccbf',
   name: {
     en: 'Conservation of Energy',
-    it: 'Conservazione dell\'energia',
+    it: "Conservazione dell'energia",
     zh: '能量守恒',
     hi: 'ऊर्जा संरक्षण',
     es: 'Conservación de la energía',
@@ -54,7 +54,7 @@ export const conservationOfEnergy_SkillGroup_Data = defineSkillGroup({
       'The total energy of an isolated system is conserved even as its form or distribution among bodies changes. A decrease in energy available for useful work is not its disappearance; for an open system, exchange with the surroundings must be considered.',
     frontend: {
       en: 'Understand why the total energy of an isolated system is conserved.',
-      it: 'Comprendi perché l\'energia totale di un sistema isolato si conserva.',
+      it: "Comprendi perché l'energia totale di un sistema isolato si conserva.",
       zh: '理解为什么孤立系统的总能量守恒。',
       hi: 'समझें कि पृथक प्रणाली की कुल ऊर्जा संरक्षित क्यों रहती है।',
       es: 'Comprende por qué la energía total de un sistema aislado se conserva.',

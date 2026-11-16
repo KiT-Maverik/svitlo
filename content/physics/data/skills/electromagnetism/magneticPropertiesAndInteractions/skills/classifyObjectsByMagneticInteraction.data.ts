@@ -5,7 +5,7 @@ export const classifyObjectsByMagneticInteraction_Skill_Data = defineSkill({
   id: 'f3d98b94-9e23-4976-a795-f92092c70edc',
   name: {
     en: 'Classify objects by magnetic interaction',
-    it: 'Classificare gli oggetti secondo l\'interazione magnetica',
+    it: "Classificare gli oggetti secondo l'interazione magnetica",
     qm: 'Cisimlerni magnit tesirleşüvine köre tasnif etmek',
     zh: '根据磁相互作用对物体分类',
     hi: 'चुंबकीय अंतःक्रिया के आधार पर वस्तुओं का वर्गीकरण करना',

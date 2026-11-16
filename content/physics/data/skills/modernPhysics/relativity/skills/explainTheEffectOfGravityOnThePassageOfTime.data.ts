@@ -5,7 +5,7 @@ export const explainTheEffectOfGravityOnThePassageOfTime_Skill_Data = defineSkil
   id: '5098662d-76bc-4cc9-beaa-43829cf9ba52',
   name: {
     en: 'Explain the effect of gravity on the passage of time',
-    it: 'Spiegare l\'effetto della gravità sul trascorrere del tempo',
+    it: "Spiegare l'effetto della gravità sul trascorrere del tempo",
     zh: '解释引力对时间流逝的影响',
     hi: 'समय के बीतने पर गुरुत्वाकर्षण का प्रभाव समझाना',
     es: 'Explicar el efecto de la gravedad en el transcurso del tiempo',

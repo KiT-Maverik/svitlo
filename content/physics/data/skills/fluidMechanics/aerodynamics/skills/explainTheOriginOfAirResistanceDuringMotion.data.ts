@@ -5,7 +5,7 @@ export const explainTheOriginOfAirResistanceDuringMotion_Skill_Data = defineSkil
   id: '97ed08b8-acd2-4e67-ad84-771b4625cfcb',
   name: {
     en: 'Explain the origin of air resistance during motion',
-    it: 'Spiegare l\'origine della resistenza dell\'aria durante il moto',
+    it: "Spiegare l'origine della resistenza dell'aria durante il moto",
     zh: '解释运动时空气阻力的来源',
     hi: 'गति के दौरान वायु प्रतिरोध का कारण समझाना',
     es: 'Explicar el origen de la resistencia del aire al moverse',
@@ -40,7 +40,7 @@ export const explainTheOriginOfAirResistanceDuringMotion_Skill_Data = defineSkil
       "Using a paper sheet or ball, connect drag to the body's interaction with air; do not claim that drag arises only from an unsuitable shape.",
     frontend: {
       en: 'Explain why moving through air causes resistance.',
-      it: 'Spiega perché il movimento attraverso l\'aria incontra resistenza.',
+      it: "Spiega perché il movimento attraverso l'aria incontra resistenza.",
       zh: '解释为什么物体穿过空气运动会受到阻力。',
       hi: 'समझाएँ कि हवा में गति करने से प्रतिरोध क्यों होता है।',
       es: 'Explica por qué el movimiento a través del aire produce resistencia.',

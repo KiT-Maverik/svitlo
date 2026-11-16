@@ -54,7 +54,7 @@ export const energy_SkillDomain_Data = defineSkillDomain({
       'Energy is a quantity that helps describe physical changes and connect phenomena involving motion, heating, light, and electricity. The emphasis is on energy transfer, transformation, and conservation rather than arithmetic formulas.',
     frontend: {
       en: 'Explore how energy is stored, transferred, transformed and conserved in physical systems.',
-      it: 'Esplora come l\'energia viene immagazzinata, trasferita, trasformata e conservata nei sistemi fisici.',
+      it: "Esplora come l'energia viene immagazzinata, trasferita, trasformata e conservata nei sistemi fisici.",
       zh: '探索物理系统中的能量如何储存、传递、转化和守恒。',
       hi: 'जानें कि भौतिक प्रणालियों में ऊर्जा कैसे संग्रहित, स्थानांतरित, रूपांतरित और संरक्षित होती है।',
       es: 'Explora cómo la energía se almacena, transfiere, transforma y conserva en sistemas físicos.',

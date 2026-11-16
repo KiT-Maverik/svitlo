@@ -5,7 +5,7 @@ export const explainTheMagneticEffectOfElectricCurrent_Skill_Data = defineSkill(
   id: 'd8198103-4001-4552-8e9a-aa8682152624',
   name: {
     en: 'Explain the magnetic effect of electric current',
-    it: 'Spiegare l\'effetto magnetico della corrente elettrica',
+    it: "Spiegare l'effetto magnetico della corrente elettrica",
     qm: 'Elektrik aqımınıñ magnit tesirini añlatmaq',
     zh: '解释电流的磁效应',
     hi: 'विद्युत धारा का चुंबकीय प्रभाव समझाना',

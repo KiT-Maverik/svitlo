@@ -5,7 +5,7 @@ export const explainSoundAttenuationWithDistance_Skill_Data = defineSkill({
   id: '1bc9b549-4b42-45a5-a5cc-b7e6431165f6',
   name: {
     en: 'Explain sound attenuation with distance',
-    it: 'Spiegare l\'attenuazione del suono con la distanza',
+    it: "Spiegare l'attenuazione del suono con la distanza",
     zh: '解释声音随距离衰减',
     hi: 'दूरी के साथ ध्वनि का कम होना समझाना',
     es: 'Explicar la atenuación del sonido con la distancia',

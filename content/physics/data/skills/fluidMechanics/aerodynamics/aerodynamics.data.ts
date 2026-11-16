@@ -58,7 +58,7 @@ export const aerodynamics_SkillGroup_Data = defineSkillGroup({
       'Air exerts drag on moving bodies; shape and relative speed affect the interaction. Building aircraft or designing hulls are Engineering applications.',
     frontend: {
       en: 'Discover how air influences bodies moving through it.',
-      it: 'Scopri come l\'aria influisce sui corpi che si muovono al suo interno.',
+      it: "Scopri come l'aria influisce sui corpi che si muovono al suo interno.",
       zh: '了解空气如何影响在其中运动的物体。',
       hi: 'जानें कि हवा उसमें चलने वाली वस्तुओं को कैसे प्रभावित करती है।',
       es: 'Descubre cómo el aire influye en los cuerpos que se mueven a través de él.',

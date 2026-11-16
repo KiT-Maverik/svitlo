@@ -40,7 +40,7 @@ export const explainAerodynamicLift_Skill_Data = defineSkill({
       'Airflow interacting with a body can produce a force perpendicular to the flow; it should not be explained solely by differences in air-path length.',
     frontend: {
       en: 'Explore how airflow can produce lift without relying on a false equal-path explanation.',
-      it: 'Esplora come il flusso d\'aria può generare portanza senza ricorrere alla falsa spiegazione dei percorsi di uguale durata.',
+      it: "Esplora come il flusso d'aria può generare portanza senza ricorrere alla falsa spiegazione dei percorsi di uguale durata.",
       zh: '探索气流如何产生升力，而不依赖错误的等路径解释。',
       hi: 'जाँचें कि समान पथ की गलत व्याख्या के बिना वायुप्रवाह कैसे उत्थापन उत्पन्न करता है।',
       es: 'Explora cómo el flujo de aire produce sustentación sin recurrir a la falsa explicación de trayectorias iguales.',

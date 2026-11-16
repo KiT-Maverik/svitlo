@@ -5,7 +5,7 @@ export const explainLightEmissionByAnExcitedAtom_Skill_Data = defineSkill({
   id: '6491e9fd-5b7a-44a2-b2f9-f9219b344fb5',
   name: {
     en: 'Explain light emission by an excited atom',
-    it: 'Spiegare l\'emissione di luce da parte di un atomo eccitato',
+    it: "Spiegare l'emissione di luce da parte di un atomo eccitato",
     zh: '解释激发态原子的发光',
     hi: 'उत्तेजित परमाणु द्वारा प्रकाश उत्सर्जन समझाना',
     es: 'Explicar la emisión de luz por un átomo excitado',

@@ -40,7 +40,7 @@ export const explainBuoyantForce_Skill_Data = defineSkill({
       'The pressure difference exerted by a liquid or gas on a submerged body produces a net upward force.',
     frontend: {
       en: 'Explain how pressure differences create an upward buoyant force.',
-      it: 'Spiega come le differenze di pressione generano una spinta diretta verso l\'alto.',
+      it: "Spiega come le differenze di pressione generano una spinta diretta verso l'alto.",
       zh: '解释压强差如何产生向上的浮力。',
       hi: 'समझाएँ कि दाब का अंतर ऊपर की ओर उत्प्लावन बल कैसे पैदा करता है।',
       es: 'Explica cómo las diferencias de presión producen una fuerza de empuje hacia arriba.',

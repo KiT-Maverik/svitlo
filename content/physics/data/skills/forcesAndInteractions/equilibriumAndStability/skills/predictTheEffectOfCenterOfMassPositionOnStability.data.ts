@@ -5,7 +5,7 @@ export const predictTheEffectOfCenterOfMassPositionOnStability_Skill_Data = defi
   id: '6213d294-8d95-4def-85e7-2e29d9be0bda',
   name: {
     en: 'Predict the effect of center-of-mass position on stability',
-    it: 'Prevedere l\'effetto del baricentro sulla stabilità',
+    it: "Prevedere l'effetto del baricentro sulla stabilità",
     zh: '预测质心位置对稳定性的影响',
     hi: 'द्रव्यमान केंद्र की स्थिति का स्थिरता पर असर अनुमानित करना',
     es: 'Predecir el efecto de la posición del centro de masa en la estabilidad',

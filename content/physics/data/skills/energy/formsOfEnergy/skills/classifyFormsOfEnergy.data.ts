@@ -40,7 +40,7 @@ export const classifyFormsOfEnergy_Skill_Data = defineSkill({
       "Distinguish energy of motion, energy related to bodies' positions, elastic deformation energy, and internal energy based on the physical properties of a system.",
     frontend: {
       en: 'Distinguish energy of motion, position, deformation and internal state.',
-      it: 'Distingui l\'energia legata al moto, alla posizione, alla deformazione e allo stato interno.',
+      it: "Distingui l'energia legata al moto, alla posizione, alla deformazione e allo stato interno.",
       zh: '区分运动、位置、形变及内部状态对应的能量。',
       hi: 'गति, स्थिति, विकृति और आंतरिक अवस्था की ऊर्जा में अंतर करें।',
       es: 'Distingue la energía asociada al movimiento, la posición, la deformación y el estado interno.',

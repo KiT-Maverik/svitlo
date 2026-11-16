@@ -5,7 +5,7 @@ export const explainMagneticActionWithoutContact_Skill_Data = defineSkill({
   id: '202c5889-61e9-4f27-8104-bb1161388d2e',
   name: {
     en: 'Explain magnetic action without contact',
-    it: 'Spiegare l\'azione magnetica a distanza',
+    it: "Spiegare l'azione magnetica a distanza",
     qm: 'Toqunmadan magnit tesirini añlatmaq',
     zh: '解释非接触磁力',
     hi: 'बिना संपर्क के चुंबकीय बल समझाना',

@@ -39,7 +39,7 @@ export const explainElectricalPower_Skill_Data = defineSkill({
     methodological: 'Electrical power describes the rate of electrical energy transfer or transformation.',
     frontend: {
       en: 'Understand electrical power as the rate of energy transfer.',
-      it: 'Comprendi la potenza elettrica come quantità di energia trasferita nell\'unità di tempo.',
+      it: "Comprendi la potenza elettrica come quantità di energia trasferita nell'unità di tempo.",
       qm: 'Elektrik quveti energiyanıñ vaqıt birliginde berilüv süratini köstergenini añla.',
       zh: '理解电功率是能量传递的速率。',
       hi: 'समझें कि विद्युत शक्ति ऊर्जा के स्थानांतरण की दर है।',

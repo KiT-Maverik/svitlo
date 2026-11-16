@@ -40,7 +40,7 @@ export const explainTheLossOfUsefulEnergy_Skill_Data = defineSkill({
       "Dissipation into forms of energy less suitable for a particular task reduces a process's usefulness but does not violate conservation of total energy.",
     frontend: {
       en: 'Recognize why energy spread into less useful forms has not disappeared.',
-      it: 'Riconosci perché l\'energia dispersa in forme meno utilizzabili non è scomparsa.',
+      it: "Riconosci perché l'energia dispersa in forme meno utilizzabili non è scomparsa.",
       zh: '认识到能量变成较难利用的形式时并未消失。',
       hi: 'समझें कि कम उपयोगी रूपों में फैल गई ऊर्जा नष्ट नहीं हुई है।',
       es: 'Reconoce que la energía dispersada en formas menos útiles no ha desaparecido.',
