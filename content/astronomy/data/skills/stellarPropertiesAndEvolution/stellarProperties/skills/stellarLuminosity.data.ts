@@ -40,7 +40,7 @@ export const stellarLuminosity_Skill_Data = defineSkill({
       'Distinguish total emitted power from the light received by an observer and infer luminosity from suitable measurements.',
     frontend: {
       en: 'Distinguish how much energy a star emits from how bright it looks from Earth.',
-      it: 'Distingui la quantità di energia emessa da una stella da quanto luminosa appare dalla Terra.',
+      it: 'Distingui la potenza totale irradiata da una stella dalla sua luminosità apparente vista dalla Terra.',
       zh: '区分恒星实际发出的能量与从地球上看到的亮度。',
       hi: 'तारा कुल कितनी ऊर्जा उत्सर्जित करता है और पृथ्वी से कितना चमकीला दिखता है, इनमें अंतर करें।',
       es: 'Distingue la energía que emite una estrella de lo brillante que se ve desde la Tierra.',
