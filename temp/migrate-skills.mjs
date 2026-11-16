@@ -177,10 +177,15 @@ function discover(root) {
     domains.push(domain);entities.push(domain, ...groups, ...direct);
   }
   assert(domains.length > 0, `${rel(root)}: no Domains`);
-  const slugs = new Set(), ids = new Set();
+  // UUIDs are global identities, while slugs are keys within their owning collection.
+  // Existing curricula intentionally reuse e.g. by2 under multiply and divide.
+  const ids = new Set(), scopedSlugs = new Set();
   for (const e of entities) {
-    assert(!slugs.has(e.slug) && !ids.has(e.id), `${rel(root)}: duplicate slug/UUID ${e.slug} ${e.id}`);
-    slugs.add(e.slug);ids.add(e.id);
+    assert(!ids.has(e.id), `${rel(root)}: duplicate UUID ${e.id}`);
+    ids.add(e.id);
+    const scopedKey = `${e.parent ?? '<root>'}/${e.slug}`;
+    assert(!scopedSlugs.has(scopedKey), `${rel(root)}: duplicate sibling slug ${scopedKey}`);
+    scopedSlugs.add(scopedKey);
   }
   for (const e of entities.filter(x => x.kind !== 'Skill')) {
     for (const [field, expected] of Object.entries(e.children)) {

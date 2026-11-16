@@ -40,9 +40,13 @@ jobs:
       - name: Validate codemod syntax
         run: node --check temp/migrate-skills.mjs
       - name: Run all-textbooks dry-run (no writes)
-        run: node temp/migrate-skills.mjs --all | tee "$RUNNER_TEMP/skills-migration-dry-run.json"
+        run: |
+          set -o pipefail
+          node temp/migrate-skills.mjs --all | tee "$RUNNER_TEMP/skills-migration-dry-run.json"
       - name: Run checked migration
-        run: node temp/migrate-skills.mjs --all --write | tee "$RUNNER_TEMP/skills-migration-write.json"
+        run: |
+          set -o pipefail
+          node temp/migrate-skills.mjs --all --write | tee "$RUNNER_TEMP/skills-migration-write.json"
       - name: Check codemod idempotence
         run: |
           node temp/migrate-skills.mjs --all > "$RUNNER_TEMP/skills-migration-after.json"
