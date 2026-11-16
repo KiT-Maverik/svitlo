@@ -5,6 +5,7 @@ export const identifySatelliteSubsystems_Skill_Data = defineSkill({
   id: 'd220fcea-9c61-457f-a592-d66be8cea5f5',
   name: {
     en: 'Identify satellite subsystems',
+    it: 'Individuare i sottosistemi di un satellite',
     zh: '识别卫星子系统',
     hi: 'उपग्रह उपप्रणालियों की पहचान',
     es: 'Identificar subsistemas de un satélite',
@@ -38,6 +39,7 @@ export const identifySatelliteSubsystems_Skill_Data = defineSkill({
     methodological: 'Distinguish payload, power, communications, thermal and attitude-control equipment.',
     frontend: {
       en: 'Identify power, communication, structure and control subsystems on a satellite.',
+      it: 'Identifica i sottosistemi di alimentazione, comunicazione, struttura e controllo di un satellite.',
       zh: '识别卫星的供电、通信、结构和控制子系统。',
       hi: 'उपग्रह में बिजली, संचार, संरचना और नियंत्रण उपप्रणालियाँ पहचानें।',
       es: 'Identifica los subsistemas de energía, comunicaciones, estructura y control de un satélite.',

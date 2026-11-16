@@ -5,6 +5,7 @@ export const evaluateSocialImpactsOfADesign_Skill_Data = defineSkill({
   id: '24d8c6c0-a3b6-44de-868c-d5b3d5f77086',
   name: {
     en: 'Evaluate social impacts of a design',
+    it: 'Valutare gli impatti sociali di un progetto',
     zh: '评估设计的社会影响',
     hi: 'डिज़ाइन के सामाजिक प्रभावों का मूल्यांकन',
     es: 'Evaluar los impactos sociales de un diseño',
@@ -39,6 +40,7 @@ export const evaluateSocialImpactsOfADesign_Skill_Data = defineSkill({
       'Consider foreseeable distribution of access, inconvenience, displacement or other effects on people beyond direct purchasers.',
     frontend: {
       en: "Evaluate how a technical product may affect people's lives and opportunities.",
+      it: 'Valuta come un prodotto tecnico può influire sulla vita e sulle opportunità delle persone.',
       zh: '评估技术产品可能如何影响人们的生活和机会。',
       hi: 'मूल्यांकन करें कि तकनीकी उत्पाद लोगों के जीवन और अवसरों को कैसे प्रभावित कर सकता है।',
       es: 'Evalúa cómo un producto técnico puede afectar la vida y las oportunidades de las personas.',

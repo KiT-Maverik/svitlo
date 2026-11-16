@@ -12,6 +12,7 @@ export const wastewaterAndDrainage_SkillGroup_Data = defineSkillGroup({
   id: '548774f2-1fa8-4313-ae4c-77a9c2946222',
   name: {
     en: 'Wastewater and Drainage',
+    it: 'Acque reflue e drenaggio',
     zh: '污水与排水',
     hi: 'अपशिष्ट जल और जल निकासी',
     es: 'Aguas residuales y drenaje',
@@ -55,6 +56,7 @@ export const wastewaterAndDrainage_SkillGroup_Data = defineSkillGroup({
       'Sewage, storm runoff and treated discharge have different handling requirements; networks must account for capacity and contamination.',
     frontend: {
       en: 'Explore how wastewater and rainwater are collected and managed.',
+      it: 'Esplora come vengono raccolte e gestite le acque reflue e quelle piovane.',
       zh: '探索污水和雨水如何被收集及管理。',
       hi: 'जानें कि गंदा पानी और वर्षा जल कैसे जमा और प्रबंधित किए जाते हैं।',
       es: 'Explora cómo se recogen y gestionan las aguas residuales y pluviales.',

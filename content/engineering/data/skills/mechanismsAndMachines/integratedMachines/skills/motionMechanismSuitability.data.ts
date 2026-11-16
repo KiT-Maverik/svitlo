@@ -5,6 +5,7 @@ export const motionMechanismSuitability_Skill_Data = defineSkill({
   id: 'd3c1b15e-f25e-4c12-bc4b-e6b3ef5805dc',
   name: {
     en: 'Motion-mechanism suitability',
+    it: 'Idoneità dei meccanismi di movimento',
     zh: '选择合适的运动机构',
     hi: 'उपयुक्त गति तंत्र चुनना',
     es: 'Elegir mecanismos de movimiento adecuados',
@@ -39,6 +40,7 @@ export const motionMechanismSuitability_Skill_Data = defineSkill({
       'Relate the output direction, movement pattern, displacement and force needs to feasible mechanisms and their operating limits.',
     frontend: {
       en: 'Select mechanisms suited to a required direction and pattern of movement.',
+      it: 'Seleziona i meccanismi adatti alla direzione e alla modalità di movimento richieste.',
       zh: '选择能满足所需运动方向和方式的机构。',
       hi: 'ज़रूरी दिशा और गति के प्रकार के अनुसार तंत्र चुनें।',
       es: 'Selecciona mecanismos adecuados para la dirección y el patrón de movimiento requeridos.',

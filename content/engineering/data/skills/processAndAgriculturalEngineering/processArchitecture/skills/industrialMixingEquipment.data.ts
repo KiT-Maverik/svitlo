@@ -5,6 +5,7 @@ export const industrialMixingEquipment_Skill_Data = defineSkill({
   id: '7d1bb7cd-88bf-4e68-89be-f63096a1d505',
   name: {
     en: 'Industrial mixing equipment',
+    it: 'Apparecchiature di miscelazione industriale',
     zh: '工业混合设备',
     hi: 'औद्योगिक मिश्रण उपकरण',
     es: 'Equipos de mezcla industrial',
@@ -39,6 +40,7 @@ export const industrialMixingEquipment_Skill_Data = defineSkill({
       'Identify agitation or flow arrangements used to distribute multiple ingredients to a required degree of uniformity.',
     frontend: {
       en: 'Understand how industrial equipment mixes substances.',
+      it: 'Comprendi come le apparecchiature industriali mescolano le sostanze.',
       zh: '了解工业设备如何混合不同物质。',
       hi: 'समझें कि औद्योगिक उपकरण पदार्थों को कैसे मिलाते हैं।',
       es: 'Comprende cómo los equipos industriales mezclan sustancias.',

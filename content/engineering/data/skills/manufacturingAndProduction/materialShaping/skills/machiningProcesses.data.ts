@@ -5,6 +5,7 @@ export const machiningProcesses_Skill_Data = defineSkill({
   id: '9d2e8e0b-b7a4-4139-b8f0-c9989d45a3e8',
   name: {
     en: 'Machining processes',
+    it: 'Lavorazioni per asportazione di materiale',
     zh: '切削加工工艺',
     hi: 'मशीनिंग प्रक्रियाएँ',
     es: 'Procesos de mecanizado',
@@ -39,6 +40,7 @@ export const machiningProcesses_Skill_Data = defineSkill({
       'Describe controlled material removal by tools, such as drilling, milling or turning, and the consequences for accuracy, tool access and waste.',
     frontend: {
       en: 'Recognize when material is cut away to make a component.',
+      it: 'Riconosci quando si rimuove materiale per realizzare un componente.',
       zh: '认识何时通过切除材料来制造零部件。',
       hi: 'पहचानें कि किसी घटक को बनाने के लिए सामग्री कब काटकर हटाई जाती है।',
       es: 'Reconoce cuándo se retira material mediante corte para fabricar una pieza.',

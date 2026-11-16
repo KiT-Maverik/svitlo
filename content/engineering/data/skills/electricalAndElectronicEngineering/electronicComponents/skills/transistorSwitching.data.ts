@@ -5,6 +5,7 @@ export const transistorSwitching_Skill_Data = defineSkill({
   id: '3b41d2c6-3ec6-4112-8a03-e1180d65a8a1',
   name: {
     en: 'Transistor switching',
+    it: 'Commutazione con transistor',
     zh: '晶体管开关',
     hi: 'ट्रांजिस्टर स्विचिंग',
     es: 'Conmutación con transistores',
@@ -38,6 +39,7 @@ export const transistorSwitching_Skill_Data = defineSkill({
     methodological: 'Trace how a relatively small control input governs another electrical path.',
     frontend: {
       en: 'Use a transistor as an electronically controlled switch.',
+      it: 'Utilizza un transistor come interruttore controllato elettronicamente.',
       zh: '使用晶体管作为受电子信号控制的开关。',
       hi: 'ट्रांजिस्टर को इलेक्ट्रॉनिक रूप से नियंत्रित स्विच की तरह उपयोग करें।',
       es: 'Usa un transistor como interruptor controlado electrónicamente.',

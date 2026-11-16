@@ -5,6 +5,7 @@ export const joiningMethodSuitability_Skill_Data = defineSkill({
   id: '6395ec68-5406-40f8-b957-bacefb83099f',
   name: {
     en: 'Joining-method suitability',
+    it: 'Idoneità dei metodi di giunzione',
     zh: '连接方法适用性',
     hi: 'जोड़ने की विधि की उपयुक्तता',
     es: 'Idoneidad de métodos de unión',
@@ -39,6 +40,7 @@ export const joiningMethodSuitability_Skill_Data = defineSkill({
       'Assess whether detachable, bonded, welded or magnetic joints can transfer loads, provide access and support maintenance. Choosing one particular screw or glue is a task variant.',
     frontend: {
       en: 'Compare joining methods by strength, accessibility and maintenance.',
+      it: 'Confronta i metodi di giunzione in base a resistenza, accessibilità e manutenzione.',
       zh: '根据强度、可接近性和维护要求比较连接方法。',
       hi: 'मज़बूती, पहुँच और देखभाल की ज़रूरतों से जोड़ने के तरीकों की तुलना करें।',
       es: 'Compara métodos de unión según resistencia, accesibilidad y mantenimiento.',

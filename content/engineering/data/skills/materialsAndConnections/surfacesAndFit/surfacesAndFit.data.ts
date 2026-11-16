@@ -11,6 +11,7 @@ export const surfacesAndFit_SkillGroup_Data = defineSkillGroup({
   id: '435296b5-31e9-46f8-a590-ccc538eba4ab',
   name: {
     en: 'Surfaces and Fit',
+    it: 'Superfici e accoppiamenti',
     zh: '表面与配合',
     hi: 'सतहें और फिट',
     es: 'Superficies y ajustes',
@@ -52,6 +53,7 @@ export const surfacesAndFit_SkillGroup_Data = defineSkillGroup({
     methodological: 'Small variations at contacting surfaces affect motion, grip, sealing, protection and assembly.',
     frontend: {
       en: 'Explore how surface properties and small gaps affect mechanical connections.',
+      it: 'Esplora come le proprietà superficiali e i piccoli giochi influiscono sui collegamenti meccanici.',
       zh: '了解表面性质和微小间隙如何影响机械连接。',
       hi: 'समझें कि सतह के गुण और छोटे अंतराल यांत्रिक जोड़ को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las propiedades superficiales y las pequeñas holguras afectan a las uniones mecánicas.',

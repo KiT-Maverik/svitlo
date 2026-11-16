@@ -5,6 +5,7 @@ export const evaluateFrictionAtAnInterface_Skill_Data = defineSkill({
   id: '4fd97aa7-9626-47dd-8f67-aa3f148cefe4',
   name: {
     en: 'Evaluate friction at an interface',
+    it: 'Valutare l\'attrito tra superfici di contatto',
     zh: '评估接触面摩擦',
     hi: 'संपर्क सतह पर घर्षण का मूल्यांकन',
     es: 'Evaluar la fricción en una interfaz',
@@ -38,6 +39,7 @@ export const evaluateFrictionAtAnInterface_Skill_Data = defineSkill({
     methodological: 'Distinguish contacts that need reliable grip from those requiring easy sliding.',
     frontend: {
       en: 'Recognize where friction should provide grip and where it should be reduced.',
+      it: 'Riconosci dove l\'attrito deve garantire aderenza e dove invece va ridotto.',
       zh: '识别哪些地方需要摩擦提供抓力，哪些地方需要降低摩擦。',
       hi: 'पहचानें कि कहाँ पकड़ के लिए घर्षण ज़रूरी है और कहाँ उसे कम करना चाहिए।',
       es: 'Reconoce dónde la fricción debe dar agarre y dónde conviene reducirla.',

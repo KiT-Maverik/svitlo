@@ -5,6 +5,7 @@ export const prostheticDeviceFunctions_Skill_Data = defineSkill({
   id: '6dd2f145-758b-4718-8a77-a526e6d609db',
   name: {
     en: 'Prosthetic device functions',
+    it: 'Funzioni dei dispositivi protesici',
     zh: '假肢装置的功能',
     hi: 'कृत्रिम अंग उपकरणों के कार्य',
     es: 'Funciones de los dispositivos protésicos',
@@ -38,6 +39,7 @@ export const prostheticDeviceFunctions_Skill_Data = defineSkill({
     methodological: 'Identify attachment, structural support, alignment and intended functional replacement.',
     frontend: {
       en: 'Explain how a prosthetic device can replace or support a physical function.',
+      it: 'Spiega come una protesi può sostituire o sostenere una funzione fisica.',
       zh: '说明假肢如何替代或辅助身体功能。',
       hi: 'समझाएँ कि कृत्रिम अंग किसी शारीरिक कार्य को कैसे बदल या सहारा दे सकता है।',
       es: 'Explica cómo una prótesis puede sustituir o apoyar una función física.',

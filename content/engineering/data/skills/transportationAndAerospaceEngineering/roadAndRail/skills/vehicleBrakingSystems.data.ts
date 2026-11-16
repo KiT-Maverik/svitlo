@@ -5,6 +5,7 @@ export const vehicleBrakingSystems_Skill_Data = defineSkill({
   id: '74d7c698-df9c-4c09-9f2e-08f5510095d4',
   name: {
     en: 'Vehicle braking systems',
+    it: 'Sistemi frenanti dei veicoli',
     zh: '车辆制动系统',
     hi: 'वाहन ब्रेक प्रणालियाँ',
     es: 'Sistemas de frenado de vehículos',
@@ -38,6 +39,7 @@ export const vehicleBrakingSystems_Skill_Data = defineSkill({
     methodological: 'Trace control input to braking torque and recognize traction limitations.',
     frontend: {
       en: 'Understand how braking systems slow or stop vehicles.',
+      it: 'Comprendi come i sistemi frenanti rallentano o fermano i veicoli.',
       zh: '理解制动系统如何降低车速或使车辆停止。',
       hi: 'समझें कि ब्रेक प्रणालियाँ वाहन को कैसे धीमा करती या रोकती हैं।',
       es: 'Comprende cómo los frenos reducen la velocidad o detienen vehículos.',

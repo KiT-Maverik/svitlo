@@ -5,6 +5,7 @@ export const identifyDesignConstraints_Skill_Data = defineSkill({
   id: '6ce0de4c-1a05-466f-83d9-ecfb3037ec2c',
   name: {
     en: 'Identify design constraints',
+    it: 'Individuare i vincoli progettuali',
     zh: '识别设计约束',
     hi: 'डिज़ाइन की सीमाएँ पहचानना',
     es: 'Identificar restricciones de diseño',
@@ -38,6 +39,7 @@ export const identifyDesignConstraints_Skill_Data = defineSkill({
     methodological: 'Recognize limits imposed by cost, materials, dimensions, time, safety and operating environment.',
     frontend: {
       en: 'Identify limits such as cost, available materials, space and safety.',
+      it: 'Individua limiti come costi, materiali disponibili, spazio e sicurezza.',
       zh: '识别成本、材料、空间和安全等方面的限制。',
       hi: 'लागत, उपलब्ध सामग्री, जगह और सुरक्षा जैसी सीमाएँ पहचानें।',
       es: 'Identifica límites como costes, materiales disponibles, espacio y seguridad.',

@@ -5,6 +5,7 @@ export const canalLocks_Skill_Data = defineSkill({
   id: '45bcc88b-2136-4556-b691-cc9da2996d6f',
   name: {
     en: 'Canal locks',
+    it: 'Chiuse dei canali',
     zh: '运河船闸',
     hi: 'नहर के जलपोत लॉक',
     es: 'Esclusas de canal',
@@ -38,6 +39,7 @@ export const canalLocks_Skill_Data = defineSkill({
     methodological: 'Trace chamber filling, gates and valves used to move a vessel between levels.',
     frontend: {
       en: 'Explain how a canal lock raises or lowers a vessel between water levels.',
+      it: 'Spiega come una chiusa solleva o abbassa un\'imbarcazione tra diversi livelli dell\'acqua.',
       zh: '解释船闸如何使船只在不同水位之间升降。',
       hi: 'समझाएँ कि लॉक नाव को दो जलस्तरों के बीच कैसे ऊपर या नीचे ले जाता है।',
       es: 'Explica cómo una esclusa sube o baja una embarcación entre niveles de agua.',

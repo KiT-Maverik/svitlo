@@ -5,6 +5,7 @@ export const evaluateMedicalDeviceDesignConstraints_Skill_Data = defineSkill({
   id: 'f45bd107-6529-410b-85d9-bb6bfa442296',
   name: {
     en: 'Evaluate medical-device design constraints',
+    it: 'Valutare i vincoli di progettazione dei dispositivi medici',
     zh: '评估医疗器械设计约束',
     hi: 'चिकित्सा उपकरण के डिज़ाइन प्रतिबंधों का मूल्यांकन',
     es: 'Evaluar las restricciones de diseño de dispositivos médicos',
@@ -38,6 +39,7 @@ export const evaluateMedicalDeviceDesignConstraints_Skill_Data = defineSkill({
     methodological: 'Recognize hygiene, safe contact, reliable operation, usability and failure consequences.',
     frontend: {
       en: 'Identify safety, reliability and user requirements for medical equipment.',
+      it: 'Individua i requisiti di sicurezza, affidabilità e utilizzo delle apparecchiature mediche.',
       zh: '识别医疗设备的安全性、可靠性和使用者需求。',
       hi: 'चिकित्सा उपकरणों की सुरक्षा, विश्वसनीयता और उपयोगकर्ता आवश्यकताएँ पहचानें।',
       es: 'Identifica los requisitos de seguridad, fiabilidad y uso de los equipos médicos.',

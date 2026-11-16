@@ -5,6 +5,7 @@ export const pneumaticActuators_Skill_Data = defineSkill({
   id: '82046101-ef89-43d8-ab97-956d9115b1e4',
   name: {
     en: 'Pneumatic actuators',
+    it: 'Attuatori pneumatici',
     zh: '气动执行器',
     hi: 'वायवीय प्रवर्तक',
     es: 'Actuadores neumáticos',
@@ -38,6 +39,7 @@ export const pneumaticActuators_Skill_Data = defineSkill({
     methodological: 'Identify how compressed gas and control valves drive an output mechanism.',
     frontend: {
       en: 'Explain how compressed air can move a pneumatic actuator.',
+      it: 'Spiega come l\'aria compressa può muovere un attuatore pneumatico.',
       zh: '解释压缩空气如何推动气动执行器。',
       hi: 'समझाएँ कि संपीड़ित हवा वायवीय प्रवर्तक को कैसे चलाती है।',
       es: 'Explica cómo el aire comprimido puede mover un actuador neumático.',

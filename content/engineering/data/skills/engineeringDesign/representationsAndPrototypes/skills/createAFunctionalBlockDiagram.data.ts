@@ -5,6 +5,7 @@ export const createAFunctionalBlockDiagram_Skill_Data = defineSkill({
   id: '5d8f52ac-fc8c-45e1-bbb1-f4f1327d7cfd',
   name: {
     en: 'Create a functional block diagram',
+    it: 'Creare uno schema a blocchi funzionale',
     zh: '绘制功能框图',
     hi: 'कार्यात्मक ब्लॉक आरेख बनाना',
     es: 'Crear un diagrama de bloques funcional',
@@ -38,6 +39,7 @@ export const createAFunctionalBlockDiagram_Skill_Data = defineSkill({
     methodological: 'Show key units and the direction of energy, material or signal flow between them.',
     frontend: {
       en: 'Create a diagram showing parts and flows of energy, materials or signals.',
+      it: 'Crea uno schema che mostri i componenti e i flussi di energia, materiali o segnali.',
       zh: '绘制图示，表示部件以及能量、材料或信号的流动。',
       hi: 'ऐसा आरेख बनाएँ जिसमें हिस्से और ऊर्जा, सामग्री या संकेतों के प्रवाह दिखें।',
       es: 'Dibuja un esquema con piezas y flujos de energía, materiales o señales.',

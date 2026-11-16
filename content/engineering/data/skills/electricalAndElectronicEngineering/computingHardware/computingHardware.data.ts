@@ -17,6 +17,7 @@ export const computingHardware_SkillGroup_Data = defineSkillGroup({
   id: '69c54fbe-8982-4bff-881a-a5aa8ac00b26',
   name: {
     en: 'Computing Hardware',
+    it: 'Hardware informatico',
     zh: '计算机硬件',
     hi: 'संगणक हार्डवेयर',
     es: 'Hardware informático',
@@ -75,6 +76,7 @@ export const computingHardware_SkillGroup_Data = defineSkillGroup({
       'Computer hardware combines execution, working memory, persistent storage, electrical interconnects, human input/output and power and thermal management. It is distinct from programming, operating systems and software data structures.',
     frontend: {
       en: 'Explore the physical components of computing devices.',
+      it: 'Esplora i componenti fisici dei dispositivi di elaborazione.',
       zh: '探索计算设备的物理组成部分。',
       hi: 'संगणन उपकरणों के भौतिक घटकों को जानें।',
       es: 'Explora los componentes físicos de los dispositivos informáticos.',

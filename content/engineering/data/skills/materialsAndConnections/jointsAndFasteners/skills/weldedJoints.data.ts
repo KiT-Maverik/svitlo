@@ -5,6 +5,7 @@ export const weldedJoints_Skill_Data = defineSkill({
   id: 'def54f22-c156-44eb-beaf-38d0f6e5de86',
   name: {
     en: 'Welded joints',
+    it: 'Giunzioni saldate',
     zh: '焊接接头',
     hi: 'वेल्ड किए हुए जोड़',
     es: 'Uniones soldadas',
@@ -38,6 +39,7 @@ export const weldedJoints_Skill_Data = defineSkill({
     methodological: 'Distinguish a joined material interface from detachable mechanical fasteners.',
     frontend: {
       en: 'Recognize why welding differs from removable fasteners.',
+      it: 'Riconosci perché la saldatura è diversa dai sistemi di fissaggio rimovibili.',
       zh: '识别焊接与可拆卸紧固件的不同之处。',
       hi: 'समझें कि वेल्डिंग खोलने योग्य जोड़ से कैसे अलग है।',
       es: 'Reconoce cómo la soldadura se diferencia de las fijaciones desmontables.',

@@ -12,6 +12,7 @@ export const productErgonomics_SkillGroup_Data = defineSkillGroup({
   id: '8139c128-a900-473e-98ce-af68bc8d9dab',
   name: {
     en: 'Product Ergonomics',
+    it: 'Ergonomia dei prodotti',
     zh: '产品人体工学',
     hi: 'उत्पाद एर्गोनॉमिक्स',
     es: 'Ergonomía del producto',
@@ -60,6 +61,7 @@ export const productErgonomics_SkillGroup_Data = defineSkillGroup({
       'Geometry, loads and posture influence whether a device can be operated comfortably and dependably.',
     frontend: {
       en: 'Explore how body dimensions, grip and posture affect product usability.',
+      it: 'Esplora come dimensioni corporee, presa e postura influiscono sull\'usabilità dei prodotti.',
       zh: '探索身体尺寸、抓握方式和姿势如何影响产品的易用性。',
       hi: 'जानें कि शरीर का आकार, पकड़ और मुद्रा किसी उत्पाद के उपयोग को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las dimensiones corporales, el agarre y la postura afectan la facilidad de uso de un producto.',

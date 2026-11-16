@@ -5,6 +5,7 @@ export const processContainment_Skill_Data = defineSkill({
   id: 'ee2818b5-7673-4944-9dc8-7a0ba5ea6df1',
   name: {
     en: 'Process containment',
+    it: 'Contenimento dei materiali di processo',
     zh: '工艺物料密闭控制',
     hi: 'प्रक्रिया पदार्थों का सुरक्षित सीमांकन',
     es: 'Contención de procesos',
@@ -39,6 +40,7 @@ export const processContainment_Skill_Data = defineSkill({
       'Relate sealed vessels, piping, ventilation and pressure controls to keeping working materials within suitable operating boundaries.',
     frontend: {
       en: 'Explain why containers and seals must prevent uncontrolled releases.',
+      it: 'Spiega perché contenitori e tenute devono impedire rilasci incontrollati.',
       zh: '解释为什么容器和密封装置必须防止物料失控泄漏。',
       hi: 'बताएँ कि पात्रों और सीलों से अनियंत्रित रिसाव रोकना क्यों ज़रूरी है।',
       es: 'Explica por qué los recipientes y sellos deben evitar fugas no controladas.',

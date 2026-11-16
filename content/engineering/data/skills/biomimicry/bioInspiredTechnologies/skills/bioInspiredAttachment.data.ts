@@ -5,6 +5,7 @@ export const bioInspiredAttachment_Skill_Data = defineSkill({
   id: 'aad7e3e1-a31e-4cdf-bab2-3e5799c219f6',
   name: {
     en: 'Bio-inspired attachment',
+    it: 'Sistemi di adesione bioispirati',
     zh: '仿生附着机制',
     hi: 'जैव-प्रेरित चिपकाव',
     es: 'Adhesión bioinspirada',
@@ -38,6 +39,7 @@ export const bioInspiredAttachment_Skill_Data = defineSkill({
     methodological: 'Relate hooks or structured surfaces to engineered removable fasteners or adhesion.',
     frontend: {
       en: 'Explore attachment mechanisms inspired by organisms.',
+      it: 'Esplora i meccanismi di adesione ispirati agli organismi viventi.',
       zh: '探索受生物体启发的附着装置。',
       hi: 'जीवों से प्रेरित जुड़ने और चिपकने के तंत्रों का अध्ययन करें।',
       es: 'Explora mecanismos de fijación inspirados en organismos.',

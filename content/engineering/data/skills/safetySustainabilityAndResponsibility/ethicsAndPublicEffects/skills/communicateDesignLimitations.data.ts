@@ -5,6 +5,7 @@ export const communicateDesignLimitations_Skill_Data = defineSkill({
   id: '3807f9fd-f470-4d89-825e-bece47dad37c',
   name: {
     en: 'Communicate design limitations',
+    it: 'Comunicare i limiti di un progetto',
     zh: '说明设计的局限性',
     hi: 'डिज़ाइन की सीमाएँ बताना',
     es: 'Comunicar las limitaciones del diseño',
@@ -38,6 +39,7 @@ export const communicateDesignLimitations_Skill_Data = defineSkill({
     methodological: 'State assumptions and unverified safety claims instead of generalizing from limited tests.',
     frontend: {
       en: 'State what a technical solution cannot safely or reliably do.',
+      it: 'Indica ciò che una soluzione tecnica non può fare in modo sicuro o affidabile.',
       zh: '明确说明技术方案无法安全或可靠地完成什么。',
       hi: 'बताएँ कि तकनीकी समाधान सुरक्षित या भरोसेमंद ढंग से क्या नहीं कर सकता।',
       es: 'Explica qué no puede hacer un sistema técnico de forma segura o fiable.',

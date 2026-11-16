@@ -5,6 +5,7 @@ export const processorHardware_Skill_Data = defineSkill({
   id: '79b27f78-1818-4403-baa8-46f233c3f936',
   name: {
     en: 'Processor hardware',
+    it: 'Hardware del processore',
     zh: '处理器硬件',
     hi: 'प्रोसेसर हार्डवेयर',
     es: 'Hardware del procesador',
@@ -39,6 +40,7 @@ export const processorHardware_Skill_Data = defineSkill({
       'Identify the functions of processing units, registers and internal interfaces in executing machine operations without confusing hardware architecture with the algorithms it runs.',
     frontend: {
       en: 'Recognize how processor circuitry performs computing operations.',
+      it: 'Riconosci come i circuiti del processore eseguono operazioni di elaborazione.',
       zh: '了解处理器执行指令时使用的物理部件。',
       hi: 'प्रोसेसर निर्देशों को चलाने के लिए किन भौतिक घटकों का उपयोग करता है, जानें।',
       es: 'Conoce los componentes físicos que usa un procesador para ejecutar instrucciones.',

@@ -5,6 +5,7 @@ export const spacecraftAttitudeControl_Skill_Data = defineSkill({
   id: '68725c0e-b188-406a-a89c-38fb5503bf61',
   name: {
     en: 'Spacecraft attitude control',
+    it: 'Controllo dell\'assetto dei veicoli spaziali',
     zh: '航天器姿态控制',
     hi: 'अंतरिक्ष यान अभिविन्यास नियंत्रण',
     es: 'Control de actitud de naves espaciales',
@@ -38,6 +39,7 @@ export const spacecraftAttitudeControl_Skill_Data = defineSkill({
     methodological: 'Relate sensors and actuators to changing orientation rather than simply changing orbit.',
     frontend: {
       en: 'Understand how spacecraft control orientation in space.',
+      it: 'Comprendi come i veicoli spaziali controllano il proprio orientamento nello spazio.',
       zh: '理解航天器如何在太空中控制自身方向。',
       hi: 'समझें कि अंतरिक्ष यान अंतरिक्ष में अपना अभिविन्यास कैसे नियंत्रित करता है।',
       es: 'Comprende cómo las naves espaciales controlan su orientación en el espacio.',

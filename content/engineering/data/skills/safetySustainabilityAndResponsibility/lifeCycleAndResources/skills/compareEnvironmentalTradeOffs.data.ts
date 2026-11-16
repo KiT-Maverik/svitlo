@@ -5,6 +5,7 @@ export const compareEnvironmentalTradeOffs_Skill_Data = defineSkill({
   id: 'a23ff2a1-f702-4a60-87e8-b56adbb57ca8',
   name: {
     en: 'Compare environmental trade-offs',
+    it: 'Confrontare i compromessi ambientali',
     zh: '比较环境影响的权衡',
     hi: 'पर्यावरणीय समझौतों की तुलना',
     es: 'Comparar compromisos ambientales',
@@ -38,6 +39,7 @@ export const compareEnvironmentalTradeOffs_Skill_Data = defineSkill({
     methodological: 'Judge alternatives over a stated service life rather than a single operational measure.',
     frontend: {
       en: 'Compare environmental benefits and harms of alternative technical designs.',
+      it: 'Confronta vantaggi e danni ambientali di progetti tecnici alternativi.',
       zh: '比较不同技术设计带来的环境益处和损害。',
       hi: 'वैकल्पिक तकनीकी डिज़ाइनों के पर्यावरणीय लाभ और नुकसान की तुलना करें।',
       es: 'Compara los beneficios y perjuicios ambientales de diseños técnicos alternativos.',

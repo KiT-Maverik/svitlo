@@ -5,6 +5,7 @@ export const traceInputsAndOutputs_Skill_Data = defineSkill({
   id: '3f4da01a-1762-4564-86b8-c7ffb7e0b0b5',
   name: {
     en: 'Trace inputs and outputs',
+    it: 'Seguire ingressi e uscite',
     zh: '追踪输入与输出',
     hi: 'इनपुट और आउटपुट का मार्ग समझना',
     es: 'Seguir entradas y salidas',
@@ -39,6 +40,7 @@ export const traceInputsAndOutputs_Skill_Data = defineSkill({
       'Follow energy, materials or signals entering and leaving an operating system, including losses or by-products.',
     frontend: {
       en: 'Trace materials, energy or information entering and leaving a system.',
+      it: 'Segui i flussi di materiali, energia o informazioni in ingresso e in uscita da un sistema.',
       zh: '追踪进入和离开系统的物质、能量或信息。',
       hi: 'प्रणाली में आने-जाने वाले पदार्थ, ऊर्जा या सूचना का मार्ग देखें।',
       es: 'Sigue los materiales, la energía o la información que entran y salen de un sistema.',

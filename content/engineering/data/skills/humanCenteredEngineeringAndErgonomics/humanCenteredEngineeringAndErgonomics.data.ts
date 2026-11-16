@@ -10,6 +10,7 @@ export const humanCenteredEngineeringAndErgonomics_SkillDomain_Data = defineSkil
   id: 'ab2a8472-a7b8-4635-bd64-81026d7b037d',
   title: {
     en: 'Human-Centered Engineering and Ergonomics',
+    it: 'Ingegneria centrata sulla persona ed ergonomia',
     zh: '以人为本的工程与人体工学',
     hi: 'मानव-केंद्रित अभियांत्रिकी और एर्गोनॉमिक्स',
     es: 'Ingeniería centrada en las personas y ergonomía',
@@ -53,6 +54,7 @@ export const humanCenteredEngineeringAndErgonomics_SkillDomain_Data = defineSkil
       'Physical controls and built environments must suit real human capabilities. Engineering UX concerns shape, reach, grip, affordance, safe handling and access; digital navigation and software feedback are separate Informatics competencies.',
     frontend: {
       en: 'Discover how physical products and spaces can work for people with different needs.',
+      it: 'Scopri come prodotti fisici e spazi possono rispondere alle diverse esigenze delle persone.',
       zh: '探索如何让实体产品和空间适合不同需求的人。',
       hi: 'जानें कि भौतिक उत्पाद और स्थान अलग-अलग ज़रूरतों वाले लोगों के लिए कैसे उपयोगी बन सकते हैं।',
       es: 'Descubre cómo los productos físicos y los espacios pueden servir a personas con distintas necesidades.',

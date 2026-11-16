@@ -5,6 +5,7 @@ export const decomposeADesignProblem_Skill_Data = defineSkill({
   id: 'b26ea429-2f74-47c7-b5de-295c30722fd5',
   name: {
     en: 'Decompose a design problem',
+    it: 'Scomporre un problema di progettazione',
     zh: '分解设计问题',
     hi: 'डिज़ाइन समस्या को भागों में बाँटना',
     es: 'Descomponer un problema de diseño',
@@ -38,6 +39,7 @@ export const decomposeADesignProblem_Skill_Data = defineSkill({
     methodological: 'Separate a large objective into subsystems or functions with defined interactions.',
     frontend: {
       en: 'Divide a complex design into smaller connected functions.',
+      it: 'Suddividi un progetto complesso in funzioni più piccole e collegate.',
       zh: '把复杂设计分解成相互关联的小功能。',
       hi: 'जटिल डिज़ाइन को छोटे परस्पर जुड़े कार्यों में बाँटें।',
       es: 'Divide un diseño complejo en funciones menores conectadas entre sí.',

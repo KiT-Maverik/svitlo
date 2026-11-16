@@ -5,6 +5,7 @@ export const additiveManufacturing_Skill_Data = defineSkill({
   id: 'fd8ac188-af63-42ac-bf10-316fd3af65bd',
   name: {
     en: 'Additive manufacturing',
+    it: 'Fabbricazione additiva',
     zh: '增材制造',
     hi: 'योगात्मक विनिर्माण',
     es: 'Fabricación aditiva',
@@ -38,6 +39,7 @@ export const additiveManufacturing_Skill_Data = defineSkill({
     methodological: 'Describe incremental material placement or fusion used to produce three-dimensional parts.',
     frontend: {
       en: 'Understand how additive processes build components in layers.',
+      it: 'Comprendi come i processi additivi costruiscono componenti strato dopo strato.',
       zh: '了解增材工艺如何逐层构建零部件。',
       hi: 'समझें कि योगात्मक प्रक्रियाएँ परत-दर-परत घटक कैसे बनाती हैं।',
       es: 'Comprende cómo los procesos aditivos construyen componentes capa por capa.',

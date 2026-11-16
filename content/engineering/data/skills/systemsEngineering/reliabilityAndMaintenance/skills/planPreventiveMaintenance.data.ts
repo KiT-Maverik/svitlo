@@ -5,6 +5,7 @@ export const planPreventiveMaintenance_Skill_Data = defineSkill({
   id: '4b23838e-ae7a-4c6f-9a99-f63ad1352910',
   name: {
     en: 'Plan preventive maintenance',
+    it: 'Pianificare la manutenzione preventiva',
     zh: '规划预防性维护',
     hi: 'निवारक रखरखाव की योजना',
     es: 'Planificar mantenimiento preventivo',
@@ -39,6 +40,7 @@ export const planPreventiveMaintenance_Skill_Data = defineSkill({
       'Identify inspections, cleaning, adjustments or replacements justified by wear and operating conditions.',
     frontend: {
       en: 'Plan inspections and maintenance to reduce predictable failures.',
+      it: 'Pianifica controlli e interventi di manutenzione per ridurre i guasti prevedibili.',
       zh: '规划检查和维护，以减少可预见的故障。',
       hi: 'संभावित खराबियाँ कम करने के लिए जाँच और रखरखाव की योजना बनाएँ।',
       es: 'Planifica inspecciones y mantenimiento para reducir fallos previsibles.',

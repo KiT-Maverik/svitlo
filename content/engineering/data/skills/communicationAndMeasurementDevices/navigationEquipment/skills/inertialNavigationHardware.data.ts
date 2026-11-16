@@ -5,6 +5,7 @@ export const inertialNavigationHardware_Skill_Data = defineSkill({
   id: '8e46a326-8d85-4b6d-833a-f6786854253d',
   name: {
     en: 'Inertial navigation hardware',
+    it: 'Dispositivi di navigazione inerziale',
     zh: '惯性导航硬件',
     hi: 'जड़त्वीय नौवहन उपकरण',
     es: 'Hardware de navegación inercial',
@@ -38,6 +39,7 @@ export const inertialNavigationHardware_Skill_Data = defineSkill({
     methodological: 'Identify accelerometers and gyroscopes and the accumulation of estimation error.',
     frontend: {
       en: 'Recognize how inertial sensors estimate changing movement and orientation.',
+      it: 'Riconosci come i sensori inerziali stimano le variazioni del movimento e dell\'orientamento.',
       zh: '认识惯性传感器如何估计运动和方向的变化。',
       hi: 'जानें कि जड़त्वीय सेंसर गति और दिशा में परिवर्तन का अनुमान कैसे लगाते हैं।',
       es: 'Reconoce cómo los sensores inerciales estiman cambios de movimiento y orientación.',

@@ -13,6 +13,7 @@ export const problemDefinition_SkillGroup_Data = defineSkillGroup({
   id: '46cb574c-7fea-4737-b7d9-7f8105e5752f',
   name: {
     en: 'Problem Definition',
+    it: 'Definizione del problema',
     zh: '问题定义',
     hi: 'समस्या की परिभाषा',
     es: 'Definición del problema',
@@ -63,6 +64,7 @@ export const problemDefinition_SkillGroup_Data = defineSkillGroup({
       'A clear brief distinguishes what needs to change, how success will be measured and which resources or conditions constrain possible solutions.',
     frontend: {
       en: 'Discover how clear requirements begin a successful design.',
+      it: 'Scopri come requisiti chiari costituiscono il punto di partenza per una progettazione efficace.',
       zh: '了解明确的要求如何成为成功设计的起点。',
       hi: 'जानें कि स्पष्ट आवश्यकताएँ सफल डिज़ाइन की शुरुआत कैसे बनती हैं।',
       es: 'Descubre cómo los requisitos claros son el punto de partida de un diseño exitoso.',

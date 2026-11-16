@@ -5,6 +5,7 @@ export const refrigerationEquipment_Skill_Data = defineSkill({
   id: 'f8e7fae3-243b-446e-950f-559d9c23008e',
   name: {
     en: 'Refrigeration equipment',
+    it: 'Apparecchiature frigorifere',
     zh: '制冷设备',
     hi: 'प्रशीतन उपकरण',
     es: 'Equipos de refrigeración',
@@ -38,6 +39,7 @@ export const refrigerationEquipment_Skill_Data = defineSkill({
     methodological: 'Trace compressor, condenser, expansion device and evaporator in a cooling cycle.',
     frontend: {
       en: 'Trace the main stages of a refrigeration cycle.',
+      it: 'Segui le fasi principali di un ciclo frigorifero.',
       zh: '追踪制冷循环的主要阶段。',
       hi: 'प्रशीतन चक्र के मुख्य चरणों का क्रम समझें।',
       es: 'Sigue las etapas principales de un ciclo de refrigeración.',

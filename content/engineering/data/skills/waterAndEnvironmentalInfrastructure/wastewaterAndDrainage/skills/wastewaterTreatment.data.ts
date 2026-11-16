@@ -5,6 +5,7 @@ export const wastewaterTreatment_Skill_Data = defineSkill({
   id: '0c78ca88-7a15-4ac2-ba82-ec9437c0f937',
   name: {
     en: 'Wastewater treatment',
+    it: 'Trattamento delle acque reflue',
     zh: '污水处理',
     hi: 'अपशिष्ट जल शोधन',
     es: 'Tratamiento de aguas residuales',
@@ -38,6 +39,7 @@ export const wastewaterTreatment_Skill_Data = defineSkill({
     methodological: 'Identify the different purposes of physical and biological treatment processes.',
     frontend: {
       en: 'Recognize the different roles of physical and biological processes in treating wastewater.',
+      it: 'Riconosci i diversi ruoli dei processi fisici e biologici nel trattamento delle acque reflue.',
       zh: '了解物理处理和生物处理在污水净化中的不同作用。',
       hi: 'गंदे पानी को साफ करने में भौतिक और जैविक प्रक्रियाओं की अलग-अलग भूमिकाएँ पहचानें।',
       es: 'Reconoce las distintas funciones de los procesos físicos y biológicos en el tratamiento de aguas residuales.',

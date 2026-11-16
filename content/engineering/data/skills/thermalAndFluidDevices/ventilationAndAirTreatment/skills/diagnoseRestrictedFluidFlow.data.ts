@@ -5,6 +5,7 @@ export const diagnoseRestrictedFluidFlow_Skill_Data = defineSkill({
   id: 'b192aa31-4ba9-40f4-96c1-4ab5949fd356',
   name: {
     en: 'Diagnose restricted fluid flow',
+    it: 'Diagnosticare una portata ridotta del fluido',
     zh: '诊断流体流动受阻',
     hi: 'अवरुद्ध द्रव प्रवाह का निदान',
     es: 'Diagnosticar una restricción del flujo',
@@ -38,6 +39,7 @@ export const diagnoseRestrictedFluidFlow_Skill_Data = defineSkill({
     methodological: 'Relate blocked filters, closed valves or narrow passages to delivery problems.',
     frontend: {
       en: 'Diagnose weak flow caused by filters, valves or narrow passages.',
+      it: 'Diagnostica le cause di una portata debole dovuta a filtri, valvole o passaggi stretti.',
       zh: '分析过滤器、阀门或狭窄通道造成的流量不足。',
       hi: 'फिल्टर, वाल्व या संकरे मार्गों से घटे प्रवाह का कारण खोजें।',
       es: 'Diagnostica un flujo débil causado por filtros obstruidos, válvulas cerradas o conductos estrechos.',

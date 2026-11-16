@@ -10,6 +10,7 @@ export const structuresAndConstruction_SkillDomain_Data = defineSkillDomain({
   id: '80389a13-4d86-40a2-b177-43a2b21c4741',
   title: {
     en: 'Structures and Construction',
+    it: 'Strutture e costruzioni',
     zh: '结构与建筑工程',
     hi: 'संरचनाएँ और निर्माण',
     es: 'Estructuras y construcción',
@@ -53,6 +54,7 @@ export const structuresAndConstruction_SkillDomain_Data = defineSkillDomain({
       'Load-bearing works transfer applied actions into suitable supports while satisfying functional, environmental and construction constraints. This domain treats the built solution rather than architectural style.',
     frontend: {
       en: 'Explore how buildings, bridges and civil works safely carry loads.',
+      it: 'Esplora come edifici, ponti e opere civili sostengono i carichi in sicurezza.',
       zh: '探索建筑、桥梁和土木工程如何安全承载。',
       hi: 'जानें कि भवन, पुल और सिविल निर्माण सुरक्षित रूप से भार कैसे उठाते हैं।',
       es: 'Explora cómo los edificios, puentes y obras civiles soportan cargas con seguridad.',

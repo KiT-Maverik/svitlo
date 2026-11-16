@@ -5,6 +5,7 @@ export const qualityInspection_Skill_Data = defineSkill({
   id: 'd29ff2a0-e58a-4769-a4a4-5617015ef9b3',
   name: {
     en: 'Quality inspection',
+    it: 'Controllo qualità',
     zh: '质量检验',
     hi: 'गुणवत्ता निरीक्षण',
     es: 'Inspección de calidad',
@@ -38,6 +39,7 @@ export const qualityInspection_Skill_Data = defineSkill({
     methodological: 'Compare specified product attributes with actual measurements instead of relying on appearance.',
     frontend: {
       en: 'Check a produced part against measurable quality requirements.',
+      it: 'Verifica che un componente prodotto rispetti requisiti di qualità misurabili.',
       zh: '根据可测量的质量要求检查制成的零件。',
       hi: 'बने हुए पुर्जे को मापने योग्य गुणवत्ता मानकों के अनुसार जाँचें।',
       es: 'Comprueba una pieza fabricada según requisitos de calidad medibles.',

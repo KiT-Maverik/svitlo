@@ -5,6 +5,7 @@ export const interpretCircuitDiagrams_Skill_Data = defineSkill({
   id: '118862b4-e777-43b3-8cdd-be4f3428a12f',
   name: {
     en: 'Interpret circuit diagrams',
+    it: 'Interpretare gli schemi elettrici',
     zh: '解读电路图',
     hi: 'परिपथ आरेख समझना',
     es: 'Interpretar diagramas de circuitos',
@@ -39,6 +40,7 @@ export const interpretCircuitDiagrams_Skill_Data = defineSkill({
       'Read the symbols, electrical junctions and conductive paths specific to circuit diagrams, including when apparent crossing wires are not electrically connected. This is more specialized than reading general technical schematics.',
     frontend: {
       en: 'Read component symbols and connections in electrical drawings.',
+      it: 'Leggi i simboli dei componenti e i collegamenti negli schemi elettrici.',
       zh: '阅读电气图纸上的元件符号和连接关系。',
       hi: 'विद्युत आरेख में घटकों के संकेत और उनके जोड़ पढ़ें।',
       es: 'Lee símbolos de componentes y conexiones en esquemas eléctricos.',

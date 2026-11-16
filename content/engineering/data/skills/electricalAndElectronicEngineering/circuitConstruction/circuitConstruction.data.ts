@@ -13,6 +13,7 @@ export const circuitConstruction_SkillGroup_Data = defineSkillGroup({
   id: 'ce9141c8-327c-4521-9e43-4d0d7a489c82',
   name: {
     en: 'Circuit Construction',
+    it: 'Realizzazione di circuiti',
     zh: '电路构建',
     hi: 'परिपथ निर्माण',
     es: 'Construcción de circuitos',
@@ -63,6 +64,7 @@ export const circuitConstruction_SkillGroup_Data = defineSkillGroup({
       'A functioning assembly requires compatible sources, loads and connections, including means of switching and independent distribution.',
     frontend: {
       en: 'Discover how diagrams guide the construction of practical electrical circuits.',
+      it: 'Scopri come gli schemi guidano la realizzazione di circuiti elettrici pratici.',
       zh: '了解如何根据电路图搭建实际电路。',
       hi: 'जानें कि परिपथ आरेख वास्तविक विद्युत परिपथ बनाने में कैसे मदद करते हैं।',
       es: 'Descubre cómo los diagramas guían la construcción de circuitos reales.',

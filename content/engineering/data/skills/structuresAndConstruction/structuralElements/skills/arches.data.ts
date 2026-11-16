@@ -5,6 +5,7 @@ export const arches_Skill_Data = defineSkill({
   id: '8fb63773-7037-4389-a933-322aa36a0c2f',
   name: {
     en: 'Arches',
+    it: 'Archi',
     zh: '拱结构',
     hi: 'मेहराब',
     es: 'Arcos',
@@ -38,6 +39,7 @@ export const arches_Skill_Data = defineSkill({
     methodological: 'Show how a curved compression path transfers loads and may produce support thrust.',
     frontend: {
       en: 'Trace forces through an arch and into its supports.',
+      it: 'Segui le forze attraverso un arco fino ai suoi appoggi.',
       zh: '追踪力如何沿拱传递到支座。',
       hi: 'समझें कि मेहराब के रास्ते बल सहारों तक कैसे पहुँचते हैं।',
       es: 'Sigue cómo las fuerzas recorren un arco hasta sus apoyos.',

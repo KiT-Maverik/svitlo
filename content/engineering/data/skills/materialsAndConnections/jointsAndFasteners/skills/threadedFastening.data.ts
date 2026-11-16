@@ -5,6 +5,7 @@ export const threadedFastening_Skill_Data = defineSkill({
   id: 'cb320aeb-a64f-4eee-a3bf-0e02dd051e9d',
   name: {
     en: 'Threaded fastening',
+    it: 'Fissaggio filettato',
     zh: '螺纹紧固',
     hi: 'पेंचदार जोड़',
     es: 'Uniones roscadas',
@@ -38,6 +39,7 @@ export const threadedFastening_Skill_Data = defineSkill({
     methodological: 'Describe how a bolt or screw retains connected parts and permits suitable disassembly.',
     frontend: {
       en: 'Understand how threaded connections hold parts and allow disassembly.',
+      it: 'Comprendi come i collegamenti filettati tengono insieme i componenti e ne consentono lo smontaggio.',
       zh: '了解螺纹连接如何固定部件并允许拆卸。',
       hi: 'समझें कि पेंचदार जोड़ हिस्सों को कैसे थामते और खोलने देते हैं।',
       es: 'Comprende cómo las uniones roscadas sujetan piezas y permiten desmontarlas.',

@@ -5,6 +5,7 @@ export const compareBatchAndContinuousProduction_Skill_Data = defineSkill({
   id: '11b2af66-42c3-49a4-ab43-628ad5b06c75',
   name: {
     en: 'Compare batch and continuous production',
+    it: 'Confrontare produzione a lotti e continua',
     zh: '比较批量生产与连续生产',
     hi: 'बैच और निरंतर उत्पादन की तुलना',
     es: 'Comparar producción por lotes y continua',
@@ -38,6 +39,7 @@ export const compareBatchAndContinuousProduction_Skill_Data = defineSkill({
     methodological: 'Distinguish discrete runs from ongoing manufacture and their changeover implications.',
     frontend: {
       en: 'Compare making products in batches with continuous production.',
+      it: 'Confronta la fabbricazione di prodotti a lotti con la produzione continua.',
       zh: '比较分批制造产品和持续生产产品的方式。',
       hi: 'उत्पादों को बैच में बनाने और लगातार उत्पादन करने की तुलना करें।',
       es: 'Compara la fabricación de productos en lotes con la producción continua.',

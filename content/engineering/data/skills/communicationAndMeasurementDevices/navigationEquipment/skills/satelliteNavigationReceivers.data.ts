@@ -5,6 +5,7 @@ export const satelliteNavigationReceivers_Skill_Data = defineSkill({
   id: 'dd16e1c9-aa6e-4d4a-aaf1-a353ba196156',
   name: {
     en: 'Satellite-navigation receivers',
+    it: 'Ricevitori di navigazione satellitare',
     zh: '卫星导航接收机',
     hi: 'उपग्रह नौवहन रिसीवर',
     es: 'Receptores de navegación por satélite',
@@ -38,6 +39,7 @@ export const satelliteNavigationReceivers_Skill_Data = defineSkill({
     methodological: 'Recognize how timing signals from multiple satellites support location and time estimates.',
     frontend: {
       en: 'Understand how satellite navigation receivers use transmitted signals.',
+      it: 'Comprendi come i ricevitori di navigazione satellitare utilizzano i segnali trasmessi.',
       zh: '理解卫星导航接收机如何使用传输来的信号。',
       hi: 'समझें कि उपग्रह नौवहन रिसीवर प्रसारित संकेतों का उपयोग कैसे करते हैं।',
       es: 'Comprende cómo los receptores de navegación satelital utilizan las señales transmitidas.',

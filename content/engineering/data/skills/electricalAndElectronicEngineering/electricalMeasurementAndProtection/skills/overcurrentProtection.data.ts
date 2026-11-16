@@ -5,6 +5,7 @@ export const overcurrentProtection_Skill_Data = defineSkill({
   id: 'b9c511ba-ae70-42f9-a0b4-dfeadc65c520',
   name: {
     en: 'Overcurrent protection',
+    it: 'Protezione dalle sovracorrenti',
     zh: '过电流保护',
     hi: 'अधिक धारा से संरक्षण',
     es: 'Protección contra sobrecorriente',
@@ -38,6 +39,7 @@ export const overcurrentProtection_Skill_Data = defineSkill({
     methodological: 'Recognize how properly rated fuses or breakers interrupt damaging excessive current.',
     frontend: {
       en: 'Explain how fuses and circuit breakers interrupt dangerous overcurrent by opening a circuit.',
+      it: 'Spiega come fusibili e interruttori automatici interrompono le sovracorrenti pericolose aprendo il circuito.',
       zh: '解释熔断器和断路器如何通过断开电路来切断危险的过大电流。',
       hi: 'समझाएँ कि फ्यूज़ और सर्किट ब्रेकर परिपथ को खोलकर खतरनाक अधिक धारा को कैसे रोकते हैं।',
       es: 'Explica cómo los fusibles y los interruptores automáticos interrumpen una corriente excesiva al abrir el circuito.',

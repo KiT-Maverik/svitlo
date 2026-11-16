@@ -5,6 +5,7 @@ export const airFiltrationEquipment_Skill_Data = defineSkill({
   id: '362724ca-6ed5-43a3-8770-ba7f04cb6316',
   name: {
     en: 'Air-filtration equipment',
+    it: 'Apparecchiature di filtrazione dell\'aria',
     zh: '空气过滤设备',
     hi: 'वायु निस्पंदन उपकरण',
     es: 'Equipos de filtración de aire',
@@ -39,6 +40,7 @@ export const airFiltrationEquipment_Skill_Data = defineSkill({
       'Trace air through collection, filter media and discharge components while recognizing the importance of particle size and maintenance.',
     frontend: {
       en: 'Recognize how air filters capture unwanted particles.',
+      it: 'Riconosci come i filtri dell\'aria catturano le particelle indesiderate.',
       zh: '理解空气过滤器如何捕获不需要的颗粒。',
       hi: 'जानें कि एयर फ़िल्टर अवांछित कणों को कैसे पकड़ते हैं।',
       es: 'Reconoce cómo los filtros de aire capturan partículas no deseadas.',

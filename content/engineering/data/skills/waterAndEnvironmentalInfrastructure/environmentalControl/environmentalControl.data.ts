@@ -12,6 +12,7 @@ export const environmentalControl_SkillGroup_Data = defineSkillGroup({
   id: 'd47a7ce9-4a6e-45d8-ae84-d6d132245266',
   name: {
     en: 'Environmental Control',
+    it: 'Controllo ambientale',
     zh: '环境污染控制',
     hi: 'पर्यावरणीय नियंत्रण',
     es: 'Control ambiental',
@@ -60,6 +61,7 @@ export const environmentalControl_SkillGroup_Data = defineSkillGroup({
       'Public environmental infrastructure also treats polluted air and solid waste. The engineering problem is selecting and integrating collection, containment and treatment equipment rather than merely recognizing that pollution exists.',
     frontend: {
       en: 'Learn how engineering systems reduce emissions and manage waste.',
+      it: 'Scopri come i sistemi ingegneristici riducono le emissioni e gestiscono i rifiuti.',
       zh: '了解工程系统如何减少排放并管理废物。',
       hi: 'जानें कि इंजीनियरिंग प्रणालियाँ उत्सर्जन घटाती और कचरे का प्रबंधन कैसे करती हैं।',
       es: 'Aprende cómo los sistemas técnicos reducen emisiones y gestionan residuos.',

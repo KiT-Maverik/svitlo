@@ -5,6 +5,7 @@ export const interpretAProcessFlowDiagram_Skill_Data = defineSkill({
   id: '7df4e618-4953-4f21-9801-e320b1e2c7f6',
   name: {
     en: 'Interpret a process flow diagram',
+    it: 'Interpretare un diagramma di flusso di processo',
     zh: '解读工艺流程图',
     hi: 'प्रक्रिया प्रवाह आरेख को समझना',
     es: 'Interpretar un diagrama de flujo de proceso',
@@ -39,6 +40,7 @@ export const interpretAProcessFlowDiagram_Skill_Data = defineSkill({
       'Trace named material streams and equipment blocks to determine the order and purpose of operations in a production process.',
     frontend: {
       en: 'Read a diagram showing how a production process connects its equipment.',
+      it: 'Leggi uno schema che mostra come le apparecchiature sono collegate in un processo produttivo.',
       zh: '读懂展示生产设备连接关系的流程图。',
       hi: 'ऐसा चित्र पढ़ें जो दिखाता है कि उत्पादन प्रक्रिया में उपकरण कैसे जुड़े हैं।',
       es: 'Lee un diagrama que muestra cómo están conectados los equipos de un proceso productivo.',

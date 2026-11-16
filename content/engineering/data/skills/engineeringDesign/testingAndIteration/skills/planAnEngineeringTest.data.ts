@@ -5,6 +5,7 @@ export const planAnEngineeringTest_Skill_Data = defineSkill({
   id: '25fe4149-a445-444b-9903-135e9826e75d',
   name: {
     en: 'Plan an engineering test',
+    it: 'Pianificare una prova ingegneristica',
     zh: '规划工程试验',
     hi: 'अभियांत्रिकी परीक्षण की योजना बनाना',
     es: 'Planificar una prueba de ingeniería',
@@ -38,6 +39,7 @@ export const planAnEngineeringTest_Skill_Data = defineSkill({
     methodological: 'Define the operating conditions, measurement and pass criterion that will evaluate a requirement.',
     frontend: {
       en: 'Plan a test with clear operating conditions and a measurable result.',
+      it: 'Pianifica una prova con condizioni operative chiare e un risultato misurabile.',
       zh: '规划包含明确工作条件和可测量结果的测试。',
       hi: 'स्पष्ट कार्य परिस्थितियों और मापने योग्य परिणाम वाला परीक्षण तैयार करें।',
       es: 'Prepara una prueba con condiciones de funcionamiento claras y un resultado medible.',

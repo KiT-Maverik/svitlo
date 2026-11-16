@@ -5,6 +5,7 @@ export const estimateEnergyDemand_Skill_Data = defineSkill({
   id: '33dc12c6-17b5-42cb-b831-836151d582d0',
   name: {
     en: 'Estimate energy demand',
+    it: 'Stimare il fabbisogno energetico',
     zh: '估算能源需求',
     hi: 'ऊर्जा की माँग का अनुमान',
     es: 'Estimar la demanda de energía',
@@ -38,6 +39,7 @@ export const estimateEnergyDemand_Skill_Data = defineSkill({
     methodological: 'Combine device power and operating duration to assess required supply or storage.',
     frontend: {
       en: 'Estimate how much energy a device or system needs to operate.',
+      it: 'Stima quanta energia serve per far funzionare un dispositivo o un sistema.',
       zh: '估计设备或系统运行所需的能源量。',
       hi: 'अनुमान लगाएँ कि कोई उपकरण या प्रणाली चलने के लिए कितनी ऊर्जा चाहती है।',
       es: 'Estima cuánta energía necesita un dispositivo o sistema para funcionar.',

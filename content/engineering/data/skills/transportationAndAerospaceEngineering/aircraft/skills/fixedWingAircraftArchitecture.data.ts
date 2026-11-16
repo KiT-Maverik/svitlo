@@ -5,6 +5,7 @@ export const fixedWingAircraftArchitecture_Skill_Data = defineSkill({
   id: 'ade2b664-ca83-4f82-ba43-109665792228',
   name: {
     en: 'Fixed-wing aircraft architecture',
+    it: 'Struttura degli aeromobili ad ala fissa',
     zh: '固定翼飞机的结构',
     hi: 'स्थिर-पंख विमान की संरचना',
     es: 'Arquitectura de aeronaves de ala fija',
@@ -38,6 +39,7 @@ export const fixedWingAircraftArchitecture_Skill_Data = defineSkill({
     methodological: 'Identify the functions of wing, fuselage, tail, propulsion and landing gear.',
     frontend: {
       en: 'Recognize the wing, structure, propulsion and control parts of a fixed-wing aircraft.',
+      it: 'Riconosci ala, struttura, propulsione e organi di controllo di un aeromobile ad ala fissa.',
       zh: '识别固定翼飞机的机翼、机体、推进与控制部件。',
       hi: 'स्थिर-पंख विमान के पंख, ढाँचे, प्रणोदन और नियंत्रण भाग पहचानें।',
       es: 'Identifica alas, estructura, propulsión y controles de un avión de ala fija.',

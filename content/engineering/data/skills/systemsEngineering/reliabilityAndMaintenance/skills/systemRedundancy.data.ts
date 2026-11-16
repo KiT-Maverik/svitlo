@@ -5,6 +5,7 @@ export const systemRedundancy_Skill_Data = defineSkill({
   id: '209e2d5f-3fe3-46c7-9fe0-bb778a31e03b',
   name: {
     en: 'System redundancy',
+    it: 'Ridondanza dei sistemi',
     zh: '系统冗余',
     hi: 'प्रणाली में स्वतंत्र आरक्षित व्यवस्था',
     es: 'Redundancia del sistema',
@@ -39,6 +40,7 @@ export const systemRedundancy_Skill_Data = defineSkill({
       'Recognize how independent backup paths can preserve a critical function during a component failure.',
     frontend: {
       en: 'Understand how backup paths can keep important functions working.',
+      it: 'Comprendi come i percorsi di riserva mantengono attive le funzioni importanti.',
       zh: '了解备用路径如何使重要功能继续运行。',
       hi: 'समझें कि वैकल्पिक रास्ते महत्वपूर्ण कार्य चालू कैसे रखते हैं।',
       es: 'Comprende cómo las vías de respaldo mantienen en marcha funciones importantes.',

@@ -5,6 +5,7 @@ export const buildAFunctionalPrototype_Skill_Data = defineSkill({
   id: '626bee2f-490f-4b65-b195-fdd8a3c4ddb5',
   name: {
     en: 'Build a functional prototype',
+    it: 'Costruire un prototipo funzionale',
     zh: '制作功能原型',
     hi: 'कार्यात्मक नमूना बनाना',
     es: 'Construir un prototipo funcional',
@@ -39,6 +40,7 @@ export const buildAFunctionalPrototype_Skill_Data = defineSkill({
       'Make a physical or computational representation that can demonstrate or investigate a specified design feature.',
     frontend: {
       en: 'Build a model that tests or demonstrates a particular design idea.',
+      it: 'Costruisci un modello che verifichi o dimostri un\'idea progettuale specifica.',
       zh: '制作能够测试或展示某个具体设计构想的模型。',
       hi: 'ऐसा नमूना बनाएँ जो किसी खास डिज़ाइन विचार की जाँच या प्रदर्शन करे।',
       es: 'Construye un modelo que ponga a prueba o demuestre una idea concreta de diseño.',

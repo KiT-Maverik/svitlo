@@ -10,6 +10,7 @@ export const engineeringDesign_SkillDomain_Data = defineSkillDomain({
   id: 'cf069b94-4637-47c7-ae74-b0de20cd0998',
   title: {
     en: 'Engineering Design',
+    it: 'Progettazione ingegneristica',
     zh: '工程设计',
     hi: 'अभियांत्रिकी डिज़ाइन',
     es: 'Diseño de ingeniería',
@@ -53,6 +54,7 @@ export const engineeringDesign_SkillDomain_Data = defineSkillDomain({
       'A design must respond to an actual need, not merely demonstrate a technology. This domain concerns converting uncertain problems into requirements, selecting feasible concepts, communicating designs and improving them using evidence.',
     frontend: {
       en: 'Learn to develop, test and improve technical solutions to practical needs.',
+      it: 'Impara a sviluppare, verificare e migliorare soluzioni tecniche per esigenze pratiche.',
       zh: '学习开发、测试和改进满足实际需求的技术方案。',
       hi: 'वास्तविक ज़रूरतों के लिए तकनीकी समाधान विकसित करना, जाँचना और सुधारना सीखें।',
       es: 'Aprende a desarrollar, probar y mejorar soluciones técnicas para necesidades reales.',

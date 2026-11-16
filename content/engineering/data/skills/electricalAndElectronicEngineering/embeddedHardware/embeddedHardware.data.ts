@@ -12,6 +12,7 @@ export const embeddedHardware_SkillGroup_Data = defineSkillGroup({
   id: '202be020-95eb-4cdc-8821-b5d7685462bc',
   name: {
     en: 'Embedded Hardware',
+    it: 'Hardware dei sistemi embedded',
     zh: '嵌入式硬件',
     hi: 'अंतःस्थापित हार्डवेयर',
     es: 'Hardware integrado',
@@ -60,6 +61,7 @@ export const embeddedHardware_SkillGroup_Data = defineSkillGroup({
       'Controllers communicate with sensors and actuators through real physical interfaces; programming concepts are treated separately in Informatics.',
     frontend: {
       en: 'Discover the hardware connections used in embedded control devices.',
+      it: 'Scopri i collegamenti hardware utilizzati nei dispositivi di controllo integrati.',
       zh: '探索嵌入式控制装置中使用的硬件连接方式。',
       hi: 'अंतःस्थापित नियंत्रक उपकरणों में प्रयुक्त हार्डवेयर संयोजन जानें।',
       es: 'Descubre las conexiones físicas empleadas en dispositivos de control integrados.',

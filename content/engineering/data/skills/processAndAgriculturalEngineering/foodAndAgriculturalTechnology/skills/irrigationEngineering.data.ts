@@ -5,6 +5,7 @@ export const irrigationEngineering_Skill_Data = defineSkill({
   id: '25e625a3-4b72-4d61-931e-32128feedaed',
   name: {
     en: 'Irrigation engineering',
+    it: 'Ingegneria dell\'irrigazione',
     zh: '灌溉工程',
     hi: 'सिंचाई अभियांत्रिकी',
     es: 'Ingeniería de riego',
@@ -39,6 +40,7 @@ export const irrigationEngineering_Skill_Data = defineSkill({
       'Relate water sources, delivery methods and flow control to plant water needs and resource constraints.',
     frontend: {
       en: 'Trace how engineered systems deliver water to crops.',
+      it: 'Segui come i sistemi progettati distribuiscono acqua alle colture.',
       zh: '追踪工程系统如何向农作物输送水。',
       hi: 'पता लगाएँ कि इंजीनियरिंग प्रणालियाँ फसलों तक पानी कैसे पहुँचाती हैं।',
       es: 'Sigue cómo los sistemas diseñados llevan agua a los cultivos.',

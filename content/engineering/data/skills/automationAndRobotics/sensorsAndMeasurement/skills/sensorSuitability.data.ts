@@ -5,6 +5,7 @@ export const sensorSuitability_Skill_Data = defineSkill({
   id: '098eff63-53c5-4236-8144-01be410ef93a',
   name: {
     en: 'Sensor suitability',
+    it: 'Scelta del sensore adatto',
     zh: '传感器适用性',
     hi: 'संवेदक की उपयुक्तता',
     es: 'Idoneidad de sensores',
@@ -39,6 +40,7 @@ export const sensorSuitability_Skill_Data = defineSkill({
       'Assess the range, measurement principle, response and environmental limitations against a desired physical measurement. Choosing a catalog item is an assessment task, not a distinct Skill.',
     frontend: {
       en: 'Choose a sensor that measures the physical condition a system needs.',
+      it: 'Scegli un sensore in grado di misurare la grandezza fisica di cui il sistema ha bisogno.',
       zh: '为特定测量任务选择合适的传感器。',
       hi: 'विशिष्ट मापन के लिए उपयुक्त संवेदक चुनें।',
       es: 'Elige un sensor adecuado para una tarea de medición concreta.',

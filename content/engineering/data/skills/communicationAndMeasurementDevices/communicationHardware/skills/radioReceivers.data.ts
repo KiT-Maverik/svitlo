@@ -5,6 +5,7 @@ export const radioReceivers_Skill_Data = defineSkill({
   id: '065536cf-4ad4-4b0b-8b4f-3c2ddd3298bc',
   name: {
     en: 'Radio receivers',
+    it: 'Ricevitori radio',
     zh: '无线电接收机',
     hi: 'रेडियो रिसीवर',
     es: 'Receptores de radio',
@@ -39,6 +40,7 @@ export const radioReceivers_Skill_Data = defineSkill({
       'Trace how an antenna and receiving electronics select and recover useful information from a received signal.',
     frontend: {
       en: 'Recognize how a receiver selects and interprets radio signals.',
+      it: 'Riconosci come un ricevitore seleziona e interpreta i segnali radio.',
       zh: '认识接收机如何选择并解读无线电信号。',
       hi: 'जानें कि रिसीवर रेडियो संकेतों को कैसे चुनता और समझता है।',
       es: 'Reconoce cómo un receptor selecciona e interpreta señales de radio.',

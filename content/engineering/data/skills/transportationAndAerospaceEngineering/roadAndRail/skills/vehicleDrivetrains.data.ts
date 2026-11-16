@@ -5,6 +5,7 @@ export const vehicleDrivetrains_Skill_Data = defineSkill({
   id: 'efc24286-bc34-4561-b5b8-98426bfead54',
   name: {
     en: 'Vehicle drivetrains',
+    it: 'Trasmissioni dei veicoli',
     zh: '车辆传动系统',
     hi: 'वाहन पावरट्रेन',
     es: 'Sistemas de transmisión de vehículos',
@@ -38,6 +39,7 @@ export const vehicleDrivetrains_Skill_Data = defineSkill({
     methodological: 'Trace prime-mover output through transmissions to driven wheels.',
     frontend: {
       en: 'Trace how a drivetrain transfers power to vehicle wheels.',
+      it: 'Segui come la trasmissione trasferisce potenza alle ruote di un veicolo.',
       zh: '追踪传动系统如何把动力传递到车轮。',
       hi: 'समझें कि पावरट्रेन शक्ति को वाहन के पहियों तक कैसे पहुँचाता है।',
       es: 'Sigue cómo la transmisión lleva la potencia a las ruedas de un vehículo.',

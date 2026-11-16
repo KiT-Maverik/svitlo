@@ -5,6 +5,7 @@ export const diagnoseManufacturingDefects_Skill_Data = defineSkill({
   id: 'a9bbc822-047d-4a3b-a89b-f20fbe8fea79',
   name: {
     en: 'Diagnose manufacturing defects',
+    it: 'Diagnosticare difetti di fabbricazione',
     zh: '诊断制造缺陷',
     hi: 'विनिर्माण दोषों का निदान',
     es: 'Diagnosticar defectos de fabricación',
@@ -38,6 +39,7 @@ export const diagnoseManufacturingDefects_Skill_Data = defineSkill({
     methodological: 'Relate observed nonconformity to possible processing or assembly causes.',
     frontend: {
       en: 'Identify likely causes of defects in a manufacturing process.',
+      it: 'Individua le probabili cause dei difetti in un processo produttivo.',
       zh: '找出制造过程中出现缺陷的可能原因。',
       hi: 'विनिर्माण प्रक्रिया में दोषों के संभावित कारण पहचानें।',
       es: 'Identifica las causas probables de los defectos en un proceso de fabricación.',

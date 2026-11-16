@@ -5,6 +5,7 @@ export const traceAnOperatingSequence_Skill_Data = defineSkill({
   id: '31e4a562-9672-4145-afba-6462233624e8',
   name: {
     en: 'Trace an operating sequence',
+    it: 'Seguire una sequenza operativa',
     zh: '追踪操作顺序',
     hi: 'कामकाज का क्रम समझना',
     es: 'Seguir una secuencia de funcionamiento',
@@ -38,6 +39,7 @@ export const traceAnOperatingSequence_Skill_Data = defineSkill({
     methodological: 'Describe the causal order of events through startup, normal operation or shutdown.',
     frontend: {
       en: 'Follow the events involved in starting, using and stopping a system.',
+      it: 'Segui gli eventi coinvolti nell\'avvio, nell\'utilizzo e nell\'arresto di un sistema.',
       zh: '跟随系统启动、使用和停止时发生的各个步骤。',
       hi: 'प्रणाली शुरू करने, चलाने और बंद करने की घटनाओं का क्रम देखें।',
       es: 'Sigue los pasos al poner en marcha, utilizar y detener un sistema.',

@@ -5,6 +5,7 @@ export const hydropowerInstallations_Skill_Data = defineSkill({
   id: '7b240546-e73f-4e42-b696-9703fe326322',
   name: {
     en: 'Hydropower installations',
+    it: 'Impianti idroelettrici',
     zh: '水力发电设施',
     hi: 'जलविद्युत संयंत्र',
     es: 'Instalaciones hidroeléctricas',
@@ -38,6 +39,7 @@ export const hydropowerInstallations_Skill_Data = defineSkill({
     methodological: 'Follow water through a turbine and generator toward discharge.',
     frontend: {
       en: 'Understand how flowing water drives a hydroelectric installation.',
+      it: 'Comprendi come l\'acqua in movimento aziona un impianto idroelettrico.',
       zh: '理解流动的水如何驱动水力发电设备。',
       hi: 'समझें कि बहता पानी जलविद्युत संयंत्र को कैसे चलाता है।',
       es: 'Comprende cómo el agua en movimiento impulsa una instalación hidroeléctrica.',
