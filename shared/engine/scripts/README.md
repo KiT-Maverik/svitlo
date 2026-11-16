@@ -9,3 +9,7 @@ The named Lesson and Course CLIs are in `generateLessonProps/` and `generateCour
 See [sceneScaffolding](./sceneScaffolding/README.md) for a separate, opted-in
 React Scene draft generator. It never changes the Lesson Builder's Config
 emission or auto-registers incomplete Scene components.
+
+## Unused media audit
+
+The read-only [auditTextbookMedia](./auditTextbookMedia/README.md) CLI reports possible unused textbook-wide media files without running a Lesson/Course build. It compares assets with literal UUID filename references in authored textbook source and does not delete files or fail on unused candidates.
