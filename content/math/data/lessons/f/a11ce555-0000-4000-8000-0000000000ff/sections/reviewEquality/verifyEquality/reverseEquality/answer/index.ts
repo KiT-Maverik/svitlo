@@ -1,6 +1,8 @@
 import { defineCheckpointAnswer } from '@svitlo/engine/build';
-import { reverseAnswer } from "./reverseAnswer";
+
 import type { LessonLanguages } from "#lessonsData/f/a11ce555-0000-4000-8000-0000000000ff/constants";
+
+import { reverseAnswer } from "./reverseAnswer";
 
 const content = {
   items: {
