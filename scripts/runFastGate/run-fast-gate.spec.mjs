@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chooseChecks } from './run-fast-gate.mjs';
+import { chooseChecks, requiresWebBuild } from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
@@ -10,6 +10,25 @@ const packages = [
   { path: 'content/math', name: '@svitlo/math' },
   { path: 'content/biology', name: '@svitlo/biology' },
 ];
+
+test('Markdown and KaTeX styles trigger the consuming Web production build', () => {
+  const withHosts = [
+    ...packages,
+    { path: 'shared/ui-kit', name: '@svitlo/ui-kit' },
+    { path: 'apps/web', name: '@svitlo/web' },
+  ];
+  const changes = [
+    'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/Markdown.tsx',
+    'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/Markdown.module.css',
+  ];
+  const plan = chooseChecks(changes, withHosts);
+  assert.deepEqual([...plan.affected].sort(), ['@svitlo/ui-kit', '@svitlo/web']);
+  assert.equal(requiresWebBuild(changes), true);
+
+  const unrelated = ['shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Text/Text.module.css'];
+  assert.deepEqual([...chooseChecks(unrelated, withHosts).affected], ['@svitlo/ui-kit']);
+  assert.equal(requiresWebBuild(unrelated), false);
+});
 
 test('Math authored data gets ordinary workspace checks, not taxonomy checks in FastGate', () => {
   const p = chooseChecks(['content/math/data/skills/algebra/algebra.data.ts'], packages);
