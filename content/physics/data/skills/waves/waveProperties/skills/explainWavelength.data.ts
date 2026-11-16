@@ -40,7 +40,7 @@ export const explainWavelength_Skill_Data = defineSkill({
       'Wavelength is the distance between adjacent points at the same phase of the disturbance, such as two successive crests.',
     frontend: {
       en: 'Identify wavelength as the spacing between matching points in a wave.',
-      it: 'Individua la lunghezza d\'onda come distanza tra punti corrispondenti di un\'onda.',
+      it: 'Individua la lunghezza d\'onda come distanza tra due punti consecutivi in fase, per esempio due creste successive.',
       zh: '将波长识别为波上相同相位点之间的距离。',
       hi: 'तरंगदैर्घ्य को तरंग के समान अवस्था वाले बिंदुओं के बीच दूरी के रूप में पहचानें।',
       es: 'Identifica la longitud de onda como la distancia entre puntos equivalentes de una onda.',
