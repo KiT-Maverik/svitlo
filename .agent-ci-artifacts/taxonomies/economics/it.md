@@ -266,7 +266,7 @@ Skills: 4
 
 **User-friendly description (it):** Osserva come le opzioni predefinite e la disposizione delle alternative possono orientare una decisione.
 
-##### Effetto di incorniciamento
+##### Effetto di inquadramento
 
 [framingEffect.data.ts](../../../content/economics/data/skills/consumerBehavior/behavioralFactorsInChoice/skills/framingEffect.data.ts)
 
@@ -972,7 +972,7 @@ Skills: 4
 
 **Methodological description (English):** Identify the costs of searching, negotiating, verifying, and enforcing an agreement beyond the price of the good itself.
 
-**User-friendly description (it):** Riconosci il tempo e gli sforzi necessari per realizzare uno scambio.
+**User-friendly description (it):** Riconosci i costi per cercare informazioni, negoziare e far rispettare un accordo, oltre al prezzo del bene.
 
 #### Incentivi e decisioni
 
@@ -1154,13 +1154,13 @@ Skills: 4
 
 **User-friendly description (it):** Valuta se un progetto ambientale offre benefici che giustificano i suoi costi.
 
-##### Scambio di permessi di emissione
+##### Scambio di quote di emissione
 
 [emissionsPermitTrading.data.ts](../../../content/economics/data/skills/environmentalAndResourceEconomics/environmentalIncentivesAndPolicy/skills/emissionsPermitTrading.data.ts)
 
 **Methodological description (English):** Explain limits on total emissions and transfers of allowances among participants.
 
-**User-friendly description (it):** Scopri come funziona lo scambio di permessi di inquinamento entro un limite massimo di emissioni.
+**User-friendly description (it):** Scopri come funzionano le quote di emissione scambiabili entro un limite complessivo alle emissioni.
 
 ##### Imposte ambientali
 
@@ -1202,7 +1202,7 @@ Skills: 2
 
 **Methodological description (English):** Evaluate how benefits and harms from current decisions are distributed among future generations.
 
-**User-friendly description (it):** Considera chi trae vantaggio o subisce perdite dalle decisioni tra generazioni.
+**User-friendly description (it):** Valuta come le scelte di oggi distribuiscono benefici e danni tra le generazioni future.
 
 ### Stato e politica economica
 
@@ -1882,7 +1882,7 @@ Skills: 6
 
 **Methodological description (English):** Distinguish a sustained increase or decrease in the general price level from a price change for one product.
 
-**User-friendly description (it):** Distingui l'inflazione dall'aumento del prezzo di un solo prodotto.
+**User-friendly description (it):** Distingui l'aumento o la diminuzione persistente del livello generale dei prezzi dalle variazioni del prezzo di un singolo prodotto.
 
 ##### Tasso di partecipazione alla forza lavoro
 
@@ -2272,7 +2272,7 @@ Skills: 4
 
 **Methodological description (English):** Quantity responses to changes in price or income vary across products and time horizons.
 
-**User-friendly description (it):** Scopri perché acquirenti e venditori reagiscono diversamente alle variazioni dei prezzi.
+**User-friendly description (it):** Scopri come la domanda reagisce a variazioni di prezzo o reddito e come l'offerta reagisce alle variazioni di prezzo.
 
 ##### Elasticità incrociata della domanda
 
@@ -2280,7 +2280,7 @@ Skills: 4
 
 **Methodological description (English):** Determine how demand for one good responds to another good's price, interpreting possible substitution or complementarity.
 
-**User-friendly description (it):** Scopri se due prodotti sono sostituti o complementari.
+**User-friendly description (it):** Misura come la domanda di un bene cambia al variare del prezzo di un altro, distinguendo beni sostituti e complementari.
 
 ##### Elasticità della domanda rispetto al reddito
 
@@ -2304,7 +2304,7 @@ Skills: 4
 
 **Methodological description (English):** Evaluate how much producers can change quantities offered when prices change, taking time constraints into account.
 
-**User-friendly description (it):** Esplora quanto rapidamente e intensamente i produttori reagiscono a prezzi più alti.
+**User-friendly description (it):** Valuta quanto varia la quantità offerta quando il prezzo aumenta o diminuisce, tenendo conto dei tempi di adattamento.
 
 #### Equilibrio di mercato
 
@@ -2322,7 +2322,7 @@ Skills: 4
 
 **Methodological description (English):** Predict the direction of changes in equilibrium price and quantity after a demand shift under stated supply conditions.
 
-**User-friendly description (it):** Prevedi che cosa accade al prezzo quando la domanda aumenta o diminuisce.
+**User-friendly description (it):** Prevedi come cambiano il prezzo e la quantità di equilibrio quando la domanda aumenta o diminuisce.
 
 ##### Effetti delle variazioni dell'offerta
 
@@ -2398,7 +2398,7 @@ Skills: 3
 
 **Methodological description (English):** Identify movement along an unchanged supply curve caused by the good's own price, other factors fixed; quantity supplied is what sellers are willing and able to offer, not necessarily actual sales.
 
-**User-friendly description (it):** Distingui la disponibilità a offrire un prodotto dalla quantità effettivamente venduta.
+**User-friendly description (it):** Riconosci il movimento lungo la curva di offerta quando cambia il prezzo, distinguendo la quantità offerta dalle vendite effettive.
 
 ##### Legge dell'offerta
 
@@ -2492,7 +2492,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret the cost of using money over time and distinguish nominal from real interest rates.
 
-**User-friendly description (it):** Esplora come i tassi di interesse influiscono su prestiti e risparmio.
+**User-friendly description (it):** Interpreta il costo del denaro nel tempo e distingui i tassi nominali da quelli reali.
 
 ##### Azioni
 
