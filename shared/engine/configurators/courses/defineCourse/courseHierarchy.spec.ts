@@ -176,7 +176,11 @@ describe('Configurators', () => {
 
       test('Course, Module and Chapter reject wrong child types and duplicate slugs', () => {
         assert.throws(
-          () => defineCourse({ ...courseInput, content: { items: { wrongKey: chapterModule }, order: ['wrongKey'] } }).build.props({ languages: ['en'] }),
+          () =>
+            defineCourse({
+              ...courseInput,
+              content: { items: { wrongKey: chapterModule }, order: ['wrongKey'] },
+            }).build.props({ languages: ['en'] }),
           /does not match configurator slug/,
         );
         assert.throws(
@@ -204,7 +208,11 @@ describe('Configurators', () => {
           /Unsupported Chapter child type/,
         );
         assert.throws(
-          () => defineCourse({ ...courseInput, params: { languages: ['en', 'en'] as unknown as typeof languages } }).build.props({ languages: ['en'] }),
+          () =>
+            defineCourse({
+              ...courseInput,
+              params: { languages: ['en', 'en'] as unknown as typeof languages },
+            }).build.props({ languages: ['en'] }),
           /unique/,
         );
         const duplicate = defineChapter<'copy', {}, typeof languages>({

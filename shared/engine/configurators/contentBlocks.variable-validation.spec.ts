@@ -199,7 +199,11 @@ describe('Configurators', () => {
           /variable "UNDECLARED" is not declared/,
         );
         assert.throws(
-          () => defineCode<'exampleCode', ['en']>({ ...codeConfig, params: { ...codeConfig.params, codeAsText: '' } }).build.props({ languages: ['en'] }),
+          () =>
+            defineCode<'exampleCode', ['en']>({
+              ...codeConfig,
+              params: { ...codeConfig.params, codeAsText: '' },
+            }).build.props({ languages: ['en'] }),
           /Too small|expected string|String must contain/i,
         );
         assert.doesNotThrow(() => defineCode<'exampleCode', ['en']>(codeConfig));

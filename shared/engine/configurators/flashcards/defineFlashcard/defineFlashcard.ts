@@ -261,8 +261,7 @@ export function defineFlashcard<
   const buildSide = <Items extends Record<string, Block>>(
     side: FlashcardSide_Configurator<Items, Languages>,
     languages: readonly LanguageCode[],
-  ): SidePublication =>
-    (side.build.props as (options: PublicationLanguageOptions) => SidePublication)({ languages });
+  ): SidePublication => (side.build.props as (options: PublicationLanguageOptions) => SidePublication)({ languages });
 
   const buildFlags = (flags: Flashcard_Config['parameters']['flags'], languages: readonly LanguageCode[]) => {
     const entries = flags.order.map(key => splitLocalizedFields(flags.items[key]));
@@ -462,10 +461,9 @@ export function defineFlashcard<
         // Optional hint can be introduced through additionalItems without
         // inventing a separate side UUID or changing the authored card.
         const current = initialContent[side] ?? defineFlashcardSide({ items: {}, order: [] });
-        const built = (current.build.overrides as (
-          patch: never,
-          options: PublicationLanguageOptions,
-        ) => SidePublication)(change as never, { languages });
+        const built = (
+          current.build.overrides as (patch: never, options: PublicationLanguageOptions) => SidePublication
+        )(change as never, { languages });
         if (side !== 'hint' && built.base.length === 0) {
           throw new Error('At least one item is required in Flashcard content.' + side);
         }

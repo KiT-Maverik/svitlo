@@ -27,7 +27,8 @@ describe('Configurators', () => {
         const compositeIdSuffix = { first: 'a', second: 'b', later: 'c' }[slug as 'first' | 'second' | 'later'];
         const answerConfigurator = defineCheckpointAnswer<'answer', { answer: typeof answer }, ['en', 'uk']>({
           id: 'b775647f-203d-481a-a1c7-4d331c779d6' + compositeIdSuffix,
-          slug: 'answer', type: 'checkpointAnswer',
+          slug: 'answer',
+          type: 'checkpointAnswer',
           content: { items: configuratorArrayToSlugMap([answer]), order: ['answer'] },
         });
         return defineCheckpointItem<Slug, typeof answerConfigurator, typeof question, ['en', 'uk']>({

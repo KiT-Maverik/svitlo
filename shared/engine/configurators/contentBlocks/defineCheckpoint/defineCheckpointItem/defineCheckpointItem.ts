@@ -1,17 +1,30 @@
 import type { ConfiguratorChild } from '../../../../types/configuratorChild';
-import type { DeepPartial, LanguageScope, ChildSupporting, ChildrenSupporting, PublicationLanguageOptions } from '#types';
+import type {
+  DeepPartial,
+  LanguageScope,
+  ChildSupporting,
+  ChildrenSupporting,
+  PublicationLanguageOptions,
+} from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import { resolvePublicationLanguages, validateRequestedPublication } from '../../../_shared__configurators';
-import type { ContentBlock_CheckpointAnswer_Configurator, Checkpoint_Allowed_Configurator } from '../defineCheckpointAnswer';
+import type {
+  ContentBlock_CheckpointAnswer_Configurator,
+  Checkpoint_Allowed_Configurator,
+} from '../defineCheckpointAnswer';
 import {
-  checkpointItem_Config_Schema, checkpointItem_Props_Schema,
-  type CheckpointItem_Overrides, type ContentBlock_CheckpointItem_Config,
+  checkpointItem_Config_Schema,
+  checkpointItem_Props_Schema,
+  type CheckpointItem_Overrides,
+  type ContentBlock_CheckpointItem_Config,
   type ContentBlock_CheckpointItem_Props,
 } from './defineCheckpointItem.schemas';
 
 export type CheckpointItemValidationIssue = { check: string; path: string; message: string };
 export type CheckpointItemValidationResult = {
-  success: boolean; subject: { id?: string; slug?: string; type?: string }; errors: CheckpointItemValidationIssue[];
+  success: boolean;
+  subject: { id?: string; slug?: string; type?: string };
+  errors: CheckpointItemValidationIssue[];
 };
 export class CheckpointItemValidationError extends Error {
   constructor(readonly result: CheckpointItemValidationResult) {
@@ -34,25 +47,36 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
   };
   const metadata = checkpointItem_Config_Schema.safeParse(config);
   if (!metadata.success)
-    for (const issue of metadata.error.issues)
-      fail('metadata', issue.path.join('.'), issue.message);
+    for (const issue of metadata.error.issues) fail('metadata', issue.path.join('.'), issue.message);
   const question = config?.question;
-  if (!isObject(question) || question.type !== 'text' ||
-      !isObject(question.config) || !isObject(question.config.base) ||
-      question.config.base.type !== 'text' || question.config.base.slug !== question.slug ||
-      !isObject(question.build) || typeof question.build.props !== 'function' ||
-      typeof question.build.overrides !== 'function')
+  if (
+    !isObject(question) ||
+    question.type !== 'text' ||
+    !isObject(question.config) ||
+    !isObject(question.config.base) ||
+    question.config.base.type !== 'text' ||
+    question.config.base.slug !== question.slug ||
+    !isObject(question.build) ||
+    typeof question.build.props !== 'function' ||
+    typeof question.build.overrides !== 'function'
+  )
     fail('question', 'question', 'Question must be a Text configurator');
   else if (isObject(question.config.base.params) && question.config.base.params.disabled === true)
     fail('question', 'question', 'Question must remain enabled');
 
   const answer = config?.answer;
-  if (!isObject(answer) || answer.type !== 'checkpointAnswer' ||
-      !isObject(answer.config) || !isObject(answer.config.base) ||
-      answer.config.base.type !== 'checkpointAnswer' ||
-      answer.config.base.id !== answer.id || answer.config.base.slug !== answer.slug ||
-      !isObject(answer.build) || typeof answer.build.props !== 'function' ||
-      typeof answer.build.overrides !== 'function')
+  if (
+    !isObject(answer) ||
+    answer.type !== 'checkpointAnswer' ||
+    !isObject(answer.config) ||
+    !isObject(answer.config.base) ||
+    answer.config.base.type !== 'checkpointAnswer' ||
+    answer.config.base.id !== answer.id ||
+    answer.config.base.slug !== answer.slug ||
+    !isObject(answer.build) ||
+    typeof answer.build.props !== 'function' ||
+    typeof answer.build.overrides !== 'function'
+  )
     fail('answer', 'answer', 'Answer must be a defineCheckpointAnswer configurator');
 
   result.success = result.errors.length === 0;
@@ -119,7 +143,8 @@ export const defineCheckpointItem = <
   const overrides = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
     patch: CheckpointItem_Overrides<Answer, Added> & {
       answer?: { content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> } };
-    }, options: PublicationLanguageOptions<Languages>,
+    },
+    options: PublicationLanguageOptions<Languages>,
   ): ItemPublication<ItemOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
@@ -130,7 +155,8 @@ export const defineCheckpointItem = <
           throw new Error('Unknown Checkpoint Item override field: ' + key);
       if (patch.check !== undefined) checkpointItem_Config_Schema.shape.check.parse(patch.check);
       const output: ItemPublication<ItemOverrideBase> = {
-        base: patch.check !== undefined ? { check: patch.check } : {}, locale: undefined,
+        base: patch.check !== undefined ? { check: patch.check } : {},
+        locale: undefined,
       };
       const locale: ItemFiles = {};
       if (patch.question !== undefined) {
@@ -143,9 +169,10 @@ export const defineCheckpointItem = <
           (locale[language as LanguageCode] ??= {}).question = fields;
       }
       if (patch.answer !== undefined) {
-        const built = (answer.build.overrides as (
-          patch: never, options: PublicationLanguageOptions,
-        ) => AnswerOverride)(patch.answer as never, { languages });
+        const built = (answer.build.overrides as (patch: never, options: PublicationLanguageOptions) => AnswerOverride)(
+          patch.answer as never,
+          { languages },
+        );
         if (built.base.content) output.base.answer = built.base.content;
         for (const [language, fields] of Object.entries(built.locale ?? {}))
           (locale[language as LanguageCode] ??= {}).answer = fields.content;
@@ -155,14 +182,20 @@ export const defineCheckpointItem = <
       return output;
     } catch (error) {
       throw new Error(
-        'Invalid Checkpoint Item overrides for ' + id + ': ' +
-        (error instanceof Error ? error.message : String(error)), { cause: error },
+        'Invalid Checkpoint Item overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
+        { cause: error },
       );
     }
   };
   const result = {
-    id, slug, type, question, answer, ...(check !== undefined ? { check } : {}),
-    validate, build: { props, overrides },
+    id,
+    slug,
+    type,
+    question,
+    answer,
+    ...(check !== undefined ? { check } : {}),
+    validate,
+    build: { props, overrides },
     config: { base, locales: () => ({ locale: {} }), validate },
   } as const;
   return result as typeof result & LanguageScope<Languages>;

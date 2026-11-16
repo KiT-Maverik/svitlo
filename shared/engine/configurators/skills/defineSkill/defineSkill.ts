@@ -123,7 +123,11 @@ export function defineSkill<
     validate,
     build: { props, overrides },
     config: {
-      base: { id: id as Skill_Config['id'], slug, ...project({ name: authored.name, description: authored.description }).base },
+      base: {
+        id: id as Skill_Config['id'],
+        slug,
+        ...project({ name: authored.name, description: authored.description }).base,
+      },
       validate,
       locales: (): DeepPartial<Skill_Config> => {
         const current = copyAuthored();

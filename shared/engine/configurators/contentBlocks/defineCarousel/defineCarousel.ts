@@ -137,28 +137,28 @@ export const defineCarousel = <
     base: ContentBlock_Carousel_SlideProps[] | undefined;
     locale: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideProps[]>>;
   } => {
-    const entries = order.map(key => {
-      const slide = items[key];
-      const resource = slide.build.props({ languages });
-      const patch = Object.hasOwn(patches, key)
-        ? (slide.build.overrides as (patch: never, options: PublicationLanguageOptions) => SlidePatch)(
-            patches[key] as never,
-            { languages },
-          )
-        : undefined;
-      return { resource, patch };
-    }).filter(({ resource, patch }) => {
-      // Disabled children are absent from resolved Carousel Props, like other nested
-      // ContentBlocks. Preserve the authored collection and its order unchanged.
-      const effective = mergeForValidation(resource.base, patch?.base ?? {});
-      return effective.params.disabled !== true;
-    });
+    const entries = order
+      .map(key => {
+        const slide = items[key];
+        const resource = slide.build.props({ languages });
+        const patch = Object.hasOwn(patches, key)
+          ? (slide.build.overrides as (patch: never, options: PublicationLanguageOptions) => SlidePatch)(
+              patches[key] as never,
+              { languages },
+            )
+          : undefined;
+        return { resource, patch };
+      })
+      .filter(({ resource, patch }) => {
+        // Disabled children are absent from resolved Carousel Props, like other nested
+        // ContentBlocks. Preserve the authored collection and its order unchanged.
+        const effective = mergeForValidation(resource.base, patch?.base ?? {});
+        return effective.params.disabled !== true;
+      });
     if (!entries.length) throw new Error('At least one active Carousel slide is required');
 
     const arraySchema = z.array(carousel_Slide_Props_Schema).min(1);
-    const invariant = entries.map(({ resource, patch }) =>
-      mergeForValidation(resource.base, patch?.base ?? {}),
-    );
+    const invariant = entries.map(({ resource, patch }) => mergeForValidation(resource.base, patch?.base ?? {}));
     const parsedInvariant = arraySchema.safeParse(invariant);
 
     const translatedLanguages = languages.filter(language =>

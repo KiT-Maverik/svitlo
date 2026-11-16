@@ -133,23 +133,28 @@ describe('Configurators', () => {
         });
         assert.equal(withQuiz.build.props({ languages: ['en'] }).base.section[1]?.type, 'quiz');
         assert.equal(withRecall.build.props({ languages: ['en'] }).base.section[1]?.type, 'flashcards');
+        assert.deepEqual(quiz.build.props({ languages: ['en'] }).base.params.selection, {
+          mode: 'all',
+          questionIds: [id('64')],
+        });
+        assert.deepEqual(recall.build.props({ languages: ['en'] }).base.params.selection, { flashcardIds: [id('65')] });
         assert.deepEqual(
-          quiz.build.props({ languages: ['en'] }).base.params.selection,
-          { mode: 'all', questionIds: [id('64')] },
-        );
-        assert.deepEqual(
-          recall.build.props({ languages: ['en'] }).base.params.selection,
-          { flashcardIds: [id('65')] },
-        );
-        assert.deepEqual(
-          lesson.build.overrides(
-            { section: { additionalItems: { banklessQuiz: quiz }, order: ['intro', 'banklessQuiz'] } },
-            { languages: ['en'] },
-          ).base.section?.map(item => item.slug),
+          lesson.build
+            .overrides(
+              { section: { additionalItems: { banklessQuiz: quiz }, order: ['intro', 'banklessQuiz'] } },
+              { languages: ['en'] },
+            )
+            .base.section?.map(item => item.slug),
           ['intro', 'banklessQuiz'],
         );
-        assert.throws(() => lesson.build.overrides({ questions: {} } as never, { languages: ['en'] }), /Unknown Lesson override field/);
-        assert.throws(() => lesson.build.overrides({ flashcards: {} } as never, { languages: ['en'] }), /Unknown Lesson override field/);
+        assert.throws(
+          () => lesson.build.overrides({ questions: {} } as never, { languages: ['en'] }),
+          /Unknown Lesson override field/,
+        );
+        assert.throws(
+          () => lesson.build.overrides({ flashcards: {} } as never, { languages: ['en'] }),
+          /Unknown Lesson override field/,
+        );
         assert.equal(
           lesson_Config_Schema.safeParse({ ...input, questions: {} }).success,
           false,

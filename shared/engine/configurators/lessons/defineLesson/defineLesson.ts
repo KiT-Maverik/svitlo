@@ -224,11 +224,7 @@ export function defineLesson<
     return { bases, locales };
   };
 
-  const addLocalizedArray = (
-    files: Files,
-    key: 'section',
-    values: ReturnType<typeof buildOrdered>['locales'],
-  ) => {
+  const addLocalizedArray = (files: Files, key: 'section', values: ReturnType<typeof buildOrdered>['locales']) => {
     for (const [code, children] of Object.entries(values)) {
       (files[code as LanguageCode] ??= {})[key] = children as never;
     }

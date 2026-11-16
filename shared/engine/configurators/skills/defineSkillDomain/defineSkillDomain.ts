@@ -220,7 +220,11 @@ export function defineSkillDomain<
     options: PublicationLanguageOptions<Languages>,
   ): SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }> => {
     const languages = resolvePublicationLanguages(options);
-    validate({ ...copyAuthored(), ...(skills ? { skills: { items: initialSkills, order: skillOrder } } : {}), ...(groups ? { groups: { items: initialGroups, order: groupOrder } } : {}) });
+    validate({
+      ...copyAuthored(),
+      ...(skills ? { skills: { items: initialSkills, order: skillOrder } } : {}),
+      ...(groups ? { groups: { items: initialGroups, order: groupOrder } } : {}),
+    });
     const current = copyAuthored();
     const own = splitOwn({ title: current.title, description: current.description });
     const files = selectPublicationLocales(own.locale, languages) ?? {};
@@ -257,7 +261,11 @@ export function defineSkillDomain<
   ): SkillDomainPublication<SkillDomainOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
-      validate({ ...copyAuthored(), ...(skills ? { skills: { items: initialSkills, order: skillOrder } } : {}), ...(groups ? { groups: { items: initialGroups, order: groupOrder } } : {}) });
+      validate({
+        ...copyAuthored(),
+        ...(skills ? { skills: { items: initialSkills, order: skillOrder } } : {}),
+        ...(groups ? { groups: { items: initialGroups, order: groupOrder } } : {}),
+      });
       if (!isRecord(patch)) throw new Error('Expected SkillDomain overrides object');
       for (const key of Object.keys(patch)) {
         if (!['title', 'description', 'skills', 'groups'].includes(key)) {

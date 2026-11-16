@@ -154,13 +154,21 @@ describe('Configurators', () => {
 
       test('Quiz requires stable explicit unique Question UUIDs and valid sample bounds', () => {
         const quiz = makeQuiz();
-        assert.deepEqual(quiz.build.props({ languages: ['en'] }).base.params.selection.questionIds, [id('c2'), id('c3'), id('c4')]);
+        assert.deepEqual(quiz.build.props({ languages: ['en'] }).base.params.selection.questionIds, [
+          id('c2'),
+          id('c3'),
+          id('c4'),
+        ]);
         assert.throws(
           () => quiz.build.overrides({ params: { selection: { questionIds: [] } } }, { languages: ['en'] }),
           /nonempty|too_small|Invalid|array/i,
         );
         assert.throws(
-          () => quiz.build.overrides({ params: { selection: { questionIds: [id('c2'), id('c2')] } } }, { languages: ['en'] }),
+          () =>
+            quiz.build.overrides(
+              { params: { selection: { questionIds: [id('c2'), id('c2')] } } },
+              { languages: ['en'] },
+            ),
           /unique|Duplicate|Invalid/,
         );
         assert.throws(
