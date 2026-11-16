@@ -94,7 +94,6 @@ for (const [source, generator] of [
   if (!authored(source)) continue;
   run(process.execPath, [generator, '--package', packageDirectory, '--preflight', ...(mediaMode === 'draft' ? ['--draft'] : [])]);
 }
-try {
 mkdirSync(resources, { recursive: true });
 const common = {
   absWorkingDir: root,
@@ -135,6 +134,7 @@ const common = {
     '.woff2': 'file',
   },
 };
+try {
 const metadata = await build({ ...common, entryPoints: { 'textbook/index': 'textbook.ts' } });
 let sceneResult;
 if (hasScenes) {

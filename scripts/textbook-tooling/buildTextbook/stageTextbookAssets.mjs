@@ -30,11 +30,24 @@ export function stageTextbookAssets({ textbookRoot, textbookId, staticRoot }) {
     }
   };
   visit(source);
-  for (const name of files.sort()) {
-    const destination = path.join(staticRoot, 'textbooks', textbookId, 'assets', ...name.split('/'));
+  // Validate every destination before writing the first file.
+  const targets = files.sort().map(name => ({
+    name,
+    from: path.join(source, ...name.split('/')),
+    destination: path.join(staticRoot, 'textbooks', textbookId, 'assets', ...name.split('/')),
+  }));
+  for (const { name, destination } of targets) {
     if (fs.existsSync(destination)) throw new Error('Duplicate textbook assets publication: ' + name);
+    let cursor = staticRoot;
+    for (const segment of path.relative(staticRoot, path.dirname(destination)).split(path.sep)) {
+      cursor = path.join(cursor, segment);
+      if (fs.existsSync(cursor) && fs.lstatSync(cursor).isSymbolicLink())
+        throw new Error('Symlink in textbook asset destination: ' + cursor);
+    }
+  }
+  for (const { from, destination } of targets) {
     fs.mkdirSync(path.dirname(destination), { recursive: true });
-    fs.copyFileSync(path.join(source, ...name.split('/')), destination);
+    fs.copyFileSync(from, destination);
   }
   return files.length;
 }
