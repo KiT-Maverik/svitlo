@@ -15,7 +15,7 @@ const back = defineText({
   locale: { value: { en: 'Fixture answer', uk: 'Тестова відповідь' } },
 });
 
-export const sampleFlashcard = defineFlashcard({
+const sampleFlashcard = defineFlashcard({
   id: '00000000-0000-4000-8000-000000000002',
   slug: 'sampleFlashcard',
   type: 'flashcard',
