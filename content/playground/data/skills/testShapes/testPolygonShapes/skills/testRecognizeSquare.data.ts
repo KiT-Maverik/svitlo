@@ -6,6 +6,7 @@ export const testRecognizeSquare_Skill_Data = defineSkill({
   id: '00000000-0000-4000-8000-000000000012',
   name: {
     en: '[TEST en] Recognize a square',
+    it: '[TEST it] Riconoscere un quadrato',
     zh: '[TEST zh] Recognize a square',
     hi: '[TEST hi] Recognize a square',
     es: '[TEST es] Recognize a square',
@@ -40,6 +41,7 @@ export const testRecognizeSquare_Skill_Data = defineSkill({
       'Synthetic fixture skill for recognize a square; it exists solely to exercise the Playground Skill Data graph.',
     frontend: {
       en: '[TEST en] Recognize a square in a simple visual example.',
+      it: '[TEST it] Riconoscere un quadrato in un semplice esempio visivo.',
       zh: '[TEST zh] Recognize a square in a simple visual example.',
       hi: '[TEST hi] Recognize a square in a simple visual example.',
       es: '[TEST es] Recognize a square in a simple visual example.',
