@@ -338,7 +338,7 @@ Skills: 4
 
 **User-friendly description (it):** Scopri cosa rivelano i segnali delle onde gravitazionali sui sistemi massicci in rapido cambiamento.
 
-##### Prove multimessaggero
+##### Prove multimessaggere
 
 [multimessengerEvidence.data.ts](../../../content/astronomy/data/skills/astronomicalInstrumentsAndEvidence/gravitationalAndParticleProbes/skills/multimessengerEvidence.data.ts)
 
@@ -1910,7 +1910,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret the Sun's total radiant output and its relationship to illumination received at different distances.
 
-**User-friendly description (it):** Comprendi l'energia totale emessa dal Sole e come la luce ricevuta varia con la distanza.
+**User-friendly description (it):** Comprendi la potenza totale irradiata dal Sole e come la luce ricevuta varia con la distanza.
 
 ##### Fusione nucleare solare
 
@@ -1946,7 +1946,7 @@ Skills: 5
 
 **Methodological description (English):** Interpret radiometric and meteoritic evidence used to constrain the time of Solar System formation.
 
-**User-friendly description (it):** Scopri come meteoriti e datazione radioattiva aiutano a stimare l'età del Sistema solare.
+**User-friendly description (it):** Scopri come i meteoriti e la datazione radiometrica aiutano a stimare l'età del Sistema solare.
 
 ##### Differenziazione primordiale
 
@@ -2248,7 +2248,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish total emitted power from the light received by an observer and infer luminosity from suitable measurements.
 
-**User-friendly description (it):** Distingui la quantità di energia emessa da una stella da quanto luminosa appare dalla Terra.
+**User-friendly description (it):** Distingui la potenza totale irradiata da una stella dalla sua luminosità apparente vista dalla Terra.
 
 ##### Massa stellare
 
