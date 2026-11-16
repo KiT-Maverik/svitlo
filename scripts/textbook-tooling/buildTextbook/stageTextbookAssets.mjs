@@ -9,7 +9,7 @@ import path from 'node:path';
 const categories = new Set(['images', 'audio', 'video', 'subtitles']);
 
 export function stageTextbookAssets({ textbookRoot, textbookId, staticRoot }) {
-  if (!/^[a-z][a-z-]*$/.test(textbookId)) throw new Error('Invalid textbook ID');
+  if (!/^[a-z][a-z0-9-]*$/.test(textbookId)) throw new Error('Invalid textbook ID');
   const source = path.join(textbookRoot, 'assets');
   if (!fs.existsSync(source)) return 0;
   if (!fs.lstatSync(source).isDirectory() || fs.lstatSync(source).isSymbolicLink()) {

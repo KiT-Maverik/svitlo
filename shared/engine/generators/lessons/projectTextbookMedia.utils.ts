@@ -61,7 +61,7 @@ function inferredFolder(field: string, value: unknown): Folder | undefined {
  */
 export function projectTextbookMedia<T>(publication: T, options: MediaPublicationOptions): T {
   const root = resolve(options.textbookRoot);
-  const validId = /^[a-z][a-z-]*$/.test(options.textbookId);
+  const validId = /^[a-z][a-z0-9-]*$/.test(options.textbookId);
   if (!validId) throw new Error('Invalid textbook ID for media publication');
   const report = (location: string, blockId: string | undefined, kind: Folder, fileName: string, reason: string) => {
     options.diagnostics.push({
