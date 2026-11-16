@@ -3,7 +3,7 @@
  * Filename values remain unresolved until textbook publication.
  */
 export function runtimeMediaLocale<T extends object>(source: T, primary: 'src' | 'fileLocation') {
-  const projected: Record<string, unknown> = { ...source };
+  const projected: Record<string, unknown> = Object.fromEntries(Object.entries(source));
   if (Object.hasOwn(projected, 'fileName')) {
     projected[primary] = projected.fileName;
     delete projected.fileName;

@@ -556,7 +556,7 @@ test('local video, poster, subtitles and localized images preserve UUID filename
     const video = fs.readFileSync(f.generated('sections/intro/videoExplanation/index.ts'), 'utf8');
     assert.match(video, /fileName: \\{\s*uk: "550e8400-e29b-41d4-a716-446655440054.mp4"/);
     assert.match(video, /posterFileName: "550e8400-e29b-41d4-a716-446655440055.webp"/);
-    assert.doesNotMatch(video, /external\\/video\\.mp4/);
+    assert.doesNotMatch(video, /external\/video\.mp4/);
     const audio = fs.readFileSync(f.generated('sections/intro/localAudio/index.ts'), 'utf8');
     assert.match(audio, /fileName: "550e8400-e29b-41d4-a716-446655440056.mp3"/);
     const captions = fs.readFileSync(f.generated('sections/intro/localCaptions/index.ts'), 'utf8');

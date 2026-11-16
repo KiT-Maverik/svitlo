@@ -27,7 +27,7 @@ export function fixture() {
   });
   const subtitles = defineSubtitles<'captions', ['uk']>({
     id: id('15'), slug: 'captions', type: 'subtitles', params: {},
-    locale: { fileLocation: { uk: 'https://example.org/uk.vtt' } },
+    locale: { fileName: { uk: 'https://example.org/uk.vtt' } },
   });
   const stage = defineStage<'start', ['uk']>({
     id: id('16'), slug: 'start', type: 'questStage',
