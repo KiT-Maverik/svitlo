@@ -33,7 +33,7 @@ produce a real error rather than a misleading completeness claim.
 
 ## Limitations
 
-This is a *static heuristic*, not a definitive dependency graph. It may
+This is a _static heuristic_, not a definitive dependency graph. It may
 under-report usage when a Scene dynamically constructs filenames, when an asset
 is referenced by code outside the selected textbook, or when a newer build
 provides references not present in authored sources. Conversely, literal

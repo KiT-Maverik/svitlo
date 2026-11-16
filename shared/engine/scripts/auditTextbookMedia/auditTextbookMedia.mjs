@@ -28,12 +28,7 @@ const ignoredDirectories = new Set([
   '__tests__',
   'fixtures',
 ]);
-const ignoredSourceNames = new Set([
-  'readme.md',
-  'specification.md',
-  'methodology.md',
-  'review.md',
-]);
+const ignoredSourceNames = new Set(['readme.md', 'specification.md', 'methodology.md', 'review.md']);
 const sourceExtensions = new Set([
   '.ts',
   '.tsx',
