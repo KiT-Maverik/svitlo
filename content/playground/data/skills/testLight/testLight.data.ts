@@ -7,7 +7,7 @@ export const testLight_SkillDomain_Data = defineSkillDomain({
   slug: 'testLight',
   title: {
     en: '[TEST en] Light',
-    it: "[TEST it] Luce",
+    it: '[TEST it] Luce',
     zh: '[TEST zh] Light',
     hi: '[TEST hi] Light',
     es: '[TEST es] Light',
@@ -42,7 +42,7 @@ export const testLight_SkillDomain_Data = defineSkillDomain({
     methodological: 'Synthetic Playground fixture for testLight; testing only, not curricular content.',
     frontend: {
       en: '[TEST en] Synthetic testLight fixture.',
-      it: "[TEST it] Fixture sintetica per testLight.",
+      it: '[TEST it] Fixture sintetica per testLight.',
       zh: '[TEST zh] Synthetic testLight fixture.',
       hi: '[TEST hi] Synthetic testLight fixture.',
       es: '[TEST es] Synthetic testLight fixture.',

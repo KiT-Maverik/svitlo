@@ -8,7 +8,7 @@ export const testColors_SkillDomain_Data = defineSkillDomain({
   id: '00000000-0000-4000-8000-000000000007',
   title: {
     en: '[TEST en] Color recognition',
-    it: "[TEST it] Riconoscimento dei colori",
+    it: '[TEST it] Riconoscimento dei colori',
     zh: '[TEST zh] Color recognition',
     hi: '[TEST hi] Color recognition',
     es: '[TEST es] Color recognition',
@@ -46,7 +46,7 @@ export const testColors_SkillDomain_Data = defineSkillDomain({
     methodological: 'Synthetic Playground fixture for testColors; testing only, not curricular content.',
     frontend: {
       en: '[TEST en] Synthetic testColors fixture.',
-      it: "[TEST it] Fixture sintetica per testColors.",
+      it: '[TEST it] Fixture sintetica per testColors.',
       zh: '[TEST zh] Synthetic testColors fixture.',
       hi: '[TEST hi] Synthetic testColors fixture.',
       es: '[TEST es] Synthetic testColors fixture.',

@@ -7,7 +7,7 @@ export const testLightPropagation_SkillGroup_Data = defineSkillGroup({
   slug: 'testLightPropagation',
   name: {
     en: '[TEST en] Light propagation',
-    it: "[TEST it] Propagazione della luce",
+    it: '[TEST it] Propagazione della luce',
     zh: '[TEST zh] Light propagation',
     hi: '[TEST hi] Light propagation',
     es: '[TEST es] Light propagation',
@@ -42,7 +42,7 @@ export const testLightPropagation_SkillGroup_Data = defineSkillGroup({
     methodological: 'Synthetic Playground fixture for testLightPropagation; testing only, not curricular content.',
     frontend: {
       en: '[TEST en] Synthetic testLightPropagation fixture.',
-      it: "[TEST it] Fixture sintetica per testLightPropagation.",
+      it: '[TEST it] Fixture sintetica per testLightPropagation.',
       zh: '[TEST zh] Synthetic testLightPropagation fixture.',
       hi: '[TEST hi] Synthetic testLightPropagation fixture.',
       es: '[TEST es] Synthetic testLightPropagation fixture.',
