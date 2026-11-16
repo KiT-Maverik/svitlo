@@ -976,7 +976,7 @@ Skills: 5
 
 **Methodological description (English):** Recover missing or subsequent consecutive natural numbers using adjacency and a step of one. Crossing tens and hundreds does not change the rule; this differs from discovering an arbitrary pattern.
 
-**User-friendly description (it):** Trova il numero consecutivo successivo o mancante entro il 1000, anche passando da una decina o centinaia all'altra. Il passo è sempre uno.
+**User-friendly description (it):** Trova il numero successivo o mancante in una sequenza di numeri consecutivi fino a 1000, anche al passaggio tra decine o centinaia. Ogni passo è di un'unità.
 
 ##### Contare in avanti entro il 20
 
@@ -1232,7 +1232,7 @@ Skills: 3
 
 **Methodological description (English):** Given the same positive numerator and unit whole, a larger denominator means smaller equal parts and therefore a smaller fraction. Comparing parts of different wholes by notation alone is invalid without a common unit.
 
-**User-friendly description (it):** A parità di numeratore, un denominatore positivo maggiore indica parti più piccole e quindi una frazione minore dello stesso intero.
+**User-friendly description (it):** Se due frazioni hanno lo stesso numeratore positivo, quella con il denominatore positivo maggiore rappresenta una frazione minore dello stesso intero.
 
 ##### Confrontare frazioni unitarie dello stesso intero
 
@@ -1316,7 +1316,7 @@ Skills: 12
 
 **Methodological description (English):** The fraction a/b combines a selected count a of unit parts with their size 1/b for nonzero b. All parts refer to the same whole, and the numerator may equal or exceed the denominator.
 
-**User-friendly description (it):** Unisci più parti uguali dello stesso intero per rappresentare una frazione come 3/4. Il numero di parti può raggiungere o superare un intero.
+**User-friendly description (it):** Rappresenta una frazione come 3/4 unendo parti uguali dello stesso intero. Le parti considerate possono formare un intero completo o anche più di un intero.
 
 ##### Collocare frazioni tra 0 e 1 su una retta numerica
 
@@ -2830,7 +2830,7 @@ Skills: 5
 
 **Methodological description (English):** Each numbered hour interval on a standard twelve-hour clock face represents five minutes. Reading the time combines the minute scale with the hour hand's position, without confusing an hour numeral with a minute count.
 
-**User-friendly description (it):** Puoi leggere l'ora a intervalli di cinque minuti su un orologio contando le tacche della lancetta dei minuti e controllando quella delle ore.
+**User-friendly description (it):** Puoi leggere l'ora a intervalli di cinque minuti usando le tacche del quadrante indicate dalla lancetta dei minuti e controllando la posizione della lancetta delle ore.
 
 ##### Leggere le mezze ore e i quarti d'ora
 
