@@ -198,8 +198,6 @@ export function courseOverridesSchema(course) {
   delete params.required;
   const locale = structuredClone(course.properties.locale);
   delete locale.required;
-  const questions = structuredClone(collection);
-  delete questions.properties.order; // Question Bank groups have no ordering API.
   return {
     $schema: 'https://json-schema.org/draft/2020-12/schema',
     $id: 'https://svitlo.dev/engine/yaml-schemas/courseOverrides.schema.json',
@@ -218,8 +216,6 @@ export function courseOverridesSchema(course) {
           locale: { type: 'object' },
           content: { $ref: '#/$defs/patchCollection' },
           section: { $ref: '#/$defs/patchCollection' },
-          flashcards: { $ref: '#/$defs/patchCollection' },
-          questions: { type: 'object', additionalProperties: questions },
         },
         additionalProperties: false,
       },

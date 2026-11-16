@@ -1,12 +1,12 @@
 # Lesson YAML → TypeScript draft scaffolder
 
-This Engine-owned script converts **one technical `config.yaml` file** into a named,
+This Engine-owned script converts **one technical `lesson.yaml` file** into a named,
 nested `define*` TypeScript **draft**, plus optional production handoff Markdown.
 It is not a validator, translator, resource producer or Props publisher.
 
 ## One source per Lesson
 
-Input: a `config.yaml` inside the textbook package. The canonical source is `content/<book>/data/lessons/<last-uuid-hex>/<uuid>/config.yaml`; for new work, `--source` may instead point directly to a staged `config.yaml` anywhere within the owning textbook. The generated Lesson UUID directory is computed from the single `config.id`.
+Input: a `lesson.yaml` inside the textbook package. The canonical source is `content/<book>/data/lessons/<last-uuid-hex>/<uuid>/lesson.yaml`; for new work, `--source` may instead point directly to a staged `lesson.yaml` anywhere within the owning textbook. The generated Lesson UUID directory is computed from the single `config.id`.
 
 Each entity node has **exactly one identity**, inside its `config` object.
 Its optional sibling `production` contains authoring instructions and never
@@ -24,7 +24,6 @@ config:
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true }
   locale:
     title: { en: Equality }
-  flashcards: { items: {} }
   section:
     items:
       introduction:
@@ -69,13 +68,13 @@ metadata. `lesson.scaffold.schema.json` combines the two for editor guidance.
 The script retains only its authored source-locale dictionaries; it does not
 change `params.languages` or invent translations.
 
+**Independent editorial sidecars:** `questions.yaml` and `flashcards.yaml` may be authored directly next to `lesson.yaml` when their separate stages are approved. No `questions/` or `flashcards/` directory is required at YAML creation time. This builder never reads either sidecar, creates bank TS modules, or overwrites existing bank source directories. Embedded `config.questions` / `config.flashcards` cause an explicit error.
+
 ## Generated handoffs
 
-- `index.ts` inside the canonical Lesson UUID directory: one `defineLesson` call, referencing
-  named `section`, `flashcards`, and `questions` collections assembled by adjacent
-  `sections/index.ts`, `flashcards/index.ts`, and `questions/index.ts`. Each nested
-  Section, ContentBlock, Question, Flashcard, Checkpoint Item, Carousel Image/Scene slide,
-  Quest Stage and Quest Task lives in its own `<slug>/index.ts` module. Generic
+- `index.ts` inside the canonical Lesson UUID directory: one `defineLesson` call, referencing the `section` collection assembled by
+  `sections/index.ts`. Each nested Section, ContentBlock, Checkpoint Item,
+  Carousel Image/Scene slide, Quest Stage and Quest Task lives in its own `<slug>/index.ts` module. Generic
   arguments are based on the actual Engine Configurator signature.
 - `review.ts`: non-exported `LessonReview` skeleton with mandatory direct
   `ai.<camelCaseStage>` fields (PR + review language), matching the same
@@ -187,8 +186,7 @@ This is **Stage 2** of the [Lesson source-layout rollout](../../../../studio/doc
 It changes the **TypeScript module tree only**. Markdown/Code file loading,
 co-located Scene/media specifications, optional Carousel child polymorphism,
 Review creation and asset publication are intentionally unchanged and belong
-to later stages. Quest `stages/` and `tasks/`, Checkpoint Item `question/` and `answer/`, and Question/Flashcard
-`front/`, `back/`, `correct/` and `incorrect/` role directories remain
+to later stages. Quest `stages/` and `tasks/` and Checkpoint Item `question/` and `answer/` role directories remain
 where sibling slug collisions would otherwise occur. Ordinary Section
 ContentBlocks do **not** have type-grouped directories.
 
@@ -202,12 +200,12 @@ entrypoints.
 
 ```sh
 node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate --source content/<book>/data/lessons/<bucket>/<uuid>
-node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate --source content/<book>/staging/config.yaml
+node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate --source content/<book>/staging/lesson.yaml
 node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check --source content/<book>/data/lessons/<bucket>/<uuid>
 npm run test:unit:lesson-builder
 ```
 
-Without `--source`, discovers canonical Lesson directories containing `config.yaml`. A direct file source derives its output path from `config.id` without requiring the staging folder name to repeat the UUID.
+Without `--source`, discovers canonical Lesson directories containing `lesson.yaml`. A direct file source derives its output path from `config.id` without requiring the staging folder name to repeat the UUID.
 `generate` **skips the entire Lesson before parsing YAML if any `*.data.ts`
 or root `index.ts` exists in a canonical source UUID directory**, retaining the
 creation-only safeguard from PR #531. Staged input derives the target from
@@ -219,7 +217,7 @@ without writes. Unsafe symlinks remain forbidden.
 
 Studio's legacy `content.md`, `methodologist-brief.md` and role-owned
 editorial artifacts remain valuable input references for migration. The new
-technical `config.yaml` is authored explicitly from reviewed sources: this
+technical `lesson.yaml` is authored explicitly from reviewed sources: this
 scaffolder does not silently perform pedagogical migrations.
 
 **Never run TypeScript validation as a scaffolder acceptance test.** Tests
@@ -241,4 +239,4 @@ registry entry; a draft specification is not a working Scene.
 
 New TypeScript drafts have no injected scaffold banner or per-file SHA comment. `check` compares generated bytes to detect stale or manually edited drafts; `generate` retains create-only SKIP and never rewrites an existing Lesson entrypoint. Authored comments, unresolved review TODOs and production handoffs are not stripped.
 
-Nested Configurator modules import `LessonLanguages` through the textbook-owned native `#lessonsData/<bucket>/<uuid>/constants` specifier. Question exports use authored slugs independently of their Question type; ambiguous sibling imports are aliased deterministically. Flashcard role barrels `front/index.ts`, `back/index.ts` and optional `hint/index.ts` call `defineFlashcardSide` with their ordered ContentBlocks. The Lesson-level bank holds only `{ items }` without `order`. PascalCase Scene Configurator symbols end in `Config`, distinct from the separately scaffolded React component.
+Nested Configurator modules import `LessonLanguages` through the textbook-owned native `#lessonsData/<bucket>/<uuid>/constants` specifier. PascalCase Scene Configurator symbols end in `Config`, distinct from the separately scaffolded React component. The Lesson-only builder does not create or import Question/Flashcard banks.

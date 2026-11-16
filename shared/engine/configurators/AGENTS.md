@@ -33,7 +33,7 @@
 
 ## Publication contract
 
-1. Validate authored input and take an independent snapshot.
+1. Capture an independent authored snapshot in `define*()` without automatically running the full Config validator. Each `build.props()` and `build.overrides()` must validate the captured original Config before publishing or resolving children; overrides additionally validate the effective candidate and completed Props. Retain explicit `validate()` and the minimum safe construction-time guards required to capture identity and child references.
 2. `build.props({ languages })` yields `{ base, locale }` for the authored resource in the selected publication scope: invariant identity/parameters in `base`, optional invariant text in `base.locale`, and requested language-specific values under language keys in `locale`.
 3. Every language payload is already a Props-shaped fragment: for Text, `locale.en = { locale: { value: 'Hello' } }`. Nested children preserve their own Props paths without any further `locale` wrapping. Never add an extra wrapper around an already composed child fragment.
 4. `build.overrides(patch, { languages })` yields the same publication partition but only for fields actually supplied and validated, in the selected scope. No inherited parameters, translations, or identity fields may leak into a patch.

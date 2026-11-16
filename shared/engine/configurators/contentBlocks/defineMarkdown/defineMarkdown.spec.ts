@@ -168,16 +168,16 @@ describe('Configurators', () => {
         const variables = { NAME: 'Ada' };
         for (const value of ['%_%NAME', '%_%name%_%', '%_%id: name; value: Ada%_%']) {
           assert.throws(
-            () => defineMarkdown({ ...base, locale: { value, variables } }),
+            () => defineMarkdown({ ...base, locale: { value, variables } }).build.props({ languages: ['en'] }),
             /Markdown variables validation failed/,
           );
         }
         assert.throws(
-          () => defineMarkdown({ ...base, locale: { value: 'Hello', variables } }),
+          () => defineMarkdown({ ...base, locale: { value: 'Hello', variables } }).build.props({ languages: ['en'] }),
           /missing configured variable "NAME"/,
         );
         assert.throws(
-          () => defineMarkdown({ ...base, locale: { value: '%_%UNKNOWN%_%' } }),
+          () => defineMarkdown({ ...base, locale: { value: '%_%UNKNOWN%_%' } }).build.props({ languages: ['en'] }),
           /variable "UNKNOWN" is not declared/,
         );
         assert.doesNotThrow(() =>

@@ -7,3 +7,10 @@ export {
 
 // Source-relative media discovery is Build-only; never export via runtime.ts.
 export { resolveLessonMedia } from './utils/generators/resolveLessonMedia/resolveLessonMedia.utils';
+
+// Independent authored Question/Flashcard bank publisher (build only).
+export { renderAssessmentResourceFiles } from './generators/assessments/renderAssessmentResourceFiles.utils';
+export type { AssessmentPublicationEntry, AssessmentPublicationFiles } from './generators/assessments/renderAssessmentResourceFiles.utils';
+
+// Merge metadata-only manifests from independent Question and Flashcard production stages.
+export { mergeAssessmentResourceFiles } from './generators/assessments/renderAssessmentResourceFiles.utils';

@@ -6,11 +6,11 @@
 
 For each authorized Lesson, write or revise exactly one source-language editorial bank:
 
-`content/<textbook>/data/lessons/<last-hex-digit>/<lesson-uuid>/flashcards/flashcards.yaml`
+`content/<textbook>/data/lessons/<last-hex-digit>/<lesson-uuid>/flashcards.yaml`
 
 Use the actual resolved Lesson UUID path, not a guessed slug. The YAML describes cards and upstream references; it is **not** published runtime JSON or actual TypeScript. Validate it against [Lesson Flashcards schema](./lesson-flashcards.schema.json) and additional semantic gates. Do not overwrite existing Questions, methodology, Screenwriter content, or generated data.
 
-**HARD QUESTION-FIRST BLOCKER:** This skill must not run as an independent authoring stage until the **approved Question bank has been completed for this exact Lesson**. Verify `questions/questions.yaml` or the corresponding approved canonical Question artifact and its stable slugs, version and source-language alignment. “We intend to write questions”, an unreviewed draft, a list of Quiz briefs, or an empty placeholder do not satisfy this prerequisite. Even when `assessmentPlan.quizRequired: false`, the Question bank remains required by this workflow; stop and escalate if the upstream plan contradicts that requirement. Continue other independently ready Lessons rather than bypassing the gate.
+**HARD QUESTION-FIRST BLOCKER:** This skill must not run as an independent authoring stage until the **approved Question bank has been completed for this exact Lesson**. Verify `questions.yaml` or the corresponding approved canonical Question artifact and its stable slugs, version and source-language alignment. “We intend to write questions”, an unreviewed draft, a list of Quiz briefs, or an empty placeholder do not satisfy this prerequisite. Even when `assessmentPlan.quizRequired: false`, the Question bank remains required by this workflow; stop and escalate if the upstream plan contradicts that requirement. Continue other independently ready Lessons rather than bypassing the gate.
 
 **Code-generation gate:** if a card references Question fields, actual typed `*_Question_Data` exports must exist before creating the card's final TypeScript. The YAML can describe verified approved Question bank references before those exports exist, but generator work stays blocked until the imports can be resolved.
 
@@ -148,7 +148,7 @@ supportedLanguages: [en, uk]
 sources:
   methodology: { path: ../methodology.md }
   content: { path: ../content.yaml }
-  questions: { path: ../questions/questions.yaml, revision: verified-commit-or-blob }
+  questions: { path: questions.yaml, revision: verified-commit-or-blob }
 flashcards:
   - slug: light-recall
     isDefault: true

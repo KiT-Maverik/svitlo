@@ -107,8 +107,6 @@ describe('Configurators', () => {
         },
         locale: { title: { uk: 'Урок', en: 'Lesson' } },
         section: { items: { intro: introduction }, order: ['intro'] },
-        flashcards: { items: { card } },
-        questions: { answerWithNumber: { numeric } },
       });
       const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['uk', 'en']>({
         id: id('09'),
@@ -135,7 +133,7 @@ describe('Configurators', () => {
         content: { items: { module: courseModule }, order: ['module'] },
       });
 
-      test('Course → Module → Chapter → Lesson → Section → ContentBlock and Lesson banks share one publication scope', () => {
+      test('Course → Module → Chapter → Lesson → Section → ContentBlock omit independent assessment banks', () => {
         const resource = course.build.props(uk);
         const json = JSON.stringify(resource);
         assert.deepEqual(Object.keys(resource.locale ?? {}), ['uk']);
@@ -144,8 +142,8 @@ describe('Configurators', () => {
         assert.equal(json.includes('How many?'), false);
         assert.equal(json.includes('Introduction'), false);
         assert.ok(json.includes('Привіт'));
-        assert.ok(json.includes('Скільки?'), 'Question Bank must be built within Lesson');
-        assert.ok(json.includes('Відповідь'), 'Flashcard must be built within Lesson');
+        assert.equal(json.includes('Скільки?'), false, 'Question Bank must remain independent of Lesson');
+        assert.equal(json.includes('Відповідь'), false, 'Flashcard Bank must remain independent of Lesson');
         assert.equal(json.includes('"additionalItems"'), false);
         assert.equal(json.includes('"order"'), false);
         assert.equal(json.includes('"build"'), false);
@@ -221,26 +219,14 @@ describe('Configurators', () => {
         assert.deepEqual(lesson_Props_Schema.parse(lessonResult).section, []);
       });
 
-      test('Lesson → Question Bank applies nested question patch for only the requested language', () => {
-        const patch = lesson.build.overrides(
-          {
-            questions: {
-              answerWithNumber: {
-                items: {
-                  numeric: {
-                    content: {
-                      question: { items: { questionPrompt: { locale: { value: { uk: 'Скільки тепер?' } } } } },
-                    },
-                  },
-                },
-              },
-            },
-          },
-          uk,
-        );
-        assert.ok(JSON.stringify(patch.locale?.uk?.questions).includes('Скільки тепер?'));
-        assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
-        assert.equal(JSON.stringify(lesson.build.props(uk)).includes('Скільки тепер?'), false);
+      test('Independent Question and Flashcard configurators publish without serializing banks into Lesson', () => {
+        const questionResource = numeric.build.props(uk);
+        const flashcardResource = card.build.props(uk);
+        assert.ok(JSON.stringify(questionResource).includes('Скільки?'));
+        assert.ok(JSON.stringify(flashcardResource).includes('Відповідь'));
+        assert.equal(JSON.stringify(lesson.build.props(uk)).includes('Скільки?'), false);
+        assert.equal(JSON.stringify(lesson.build.props(uk)).includes('Відповідь'), false);
+        assert.equal(JSON.stringify(course.build.props(uk)).includes('Відповідь'), false);
       });
 
       test('SkillDomain → SkillGroup → Skill validates resolved multilingual nested overrides', () => {

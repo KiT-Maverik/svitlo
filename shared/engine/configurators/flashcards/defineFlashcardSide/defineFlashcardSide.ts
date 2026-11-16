@@ -57,11 +57,13 @@ const validateSide = (config: FlashcardSide_Config, requireNonEmpty = false): vo
   }
 };
 
-const validatePublication = (resource: SidePublication, languages: readonly LanguageCode[], patch?: SidePublication) => {
+const validatePublication = (
+  resource: SidePublication,
+  languages: readonly LanguageCode[],
+  patch?: SidePublication,
+) => {
   for (const language of languages) {
-    const effective = patch
-      ? patch.locale?.[language] ?? patch.base
-      : resource.locale?.[language] ?? resource.base;
+    const effective = patch ? (patch.locale?.[language] ?? patch.base) : (resource.locale?.[language] ?? resource.base);
     try {
       z.array(contentBlockResolved_Schema).parse(effective);
     } catch (error) {
@@ -85,7 +87,6 @@ export function defineFlashcardSide<
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(config: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] }) {
-  validateSide(config);
   const initialItems: Items = { ...config.items };
   const initialOrder = [...config.order];
   const items = { ...initialItems };
@@ -113,9 +114,12 @@ export function defineFlashcardSide<
     ) as SideProps;
     const locale: SideFiles = {};
     for (const code of languages) {
-      if (!entries.some(({ resource, patch }) =>
-        resource.locale?.[code] !== undefined || patch?.locale?.[code] !== undefined
-      )) continue;
+      if (
+        !entries.some(
+          ({ resource, patch }) => resource.locale?.[code] !== undefined || patch?.locale?.[code] !== undefined,
+        )
+      )
+        continue;
       locale[code] = entries.map(({ resource, patch }) => {
         const original = mergeForValidation(
           resource.base,
@@ -130,6 +134,7 @@ export function defineFlashcardSide<
 
   const props = (options: PublicationLanguageOptions<Languages>): SidePublication => {
     const languages = resolvePublicationLanguages(options);
+    validateSide({ items: initialItems, order: initialOrder });
     const result = structuredClone(buildContent(initialItems, initialOrder, languages));
     validatePublication(result, languages);
     return result;
@@ -142,6 +147,7 @@ export function defineFlashcardSide<
     options: PublicationLanguageOptions<Languages>,
   ): SidePublication => {
     const languages = resolvePublicationLanguages(options);
+    validateSide({ items: initialItems, order: initialOrder });
     if (!isRecord(patch)) throw new Error('Expected a Flashcard side override object');
     for (const key of Object.keys(patch)) {
       if (!['items', 'additionalItems', 'order'].includes(key))
@@ -149,8 +155,7 @@ export function defineFlashcardSide<
     }
     const changes = patch.items ?? {};
     const additions = patch.additionalItems ?? {};
-    if (!isRecord(changes) || !isRecord(additions))
-      throw new Error('Flashcard side requires slug-keyed patch maps');
+    if (!isRecord(changes) || !isRecord(additions)) throw new Error('Flashcard side requires slug-keyed patch maps');
     const enabled: Record<string, Block | false> = { ...initialItems };
     const childPatches: Record<string, unknown> = {};
     let structural = Object.keys(additions).length > 0;
@@ -159,8 +164,7 @@ export function defineFlashcardSide<
       enabled[key] = child as Block;
     }
     for (const [key, change] of Object.entries(changes)) {
-      if (!Object.hasOwn(initialItems, key))
-        throw new Error('Unknown existing Flashcard ContentBlock: ' + key);
+      if (!Object.hasOwn(initialItems, key)) throw new Error('Unknown existing Flashcard ContentBlock: ' + key);
       if (change === false) {
         enabled[key] = false;
         structural = true;
@@ -196,4 +200,3 @@ export type FlashcardSide_Configurator<
   Items extends Record<string, Block> = Record<string, Block>,
   Languages extends readonly LanguageCode[] = AllLanguageCodes,
 > = ReturnType<typeof defineFlashcardSide<Items, Languages>>;
-

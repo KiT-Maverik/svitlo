@@ -1,6 +1,6 @@
 # Deterministic Lesson YAML → TypeScript draft scaffolder
 
-**Current input:** one `config.yaml` per Lesson UUID directory, with
+**Current input:** one `lesson.yaml` per Lesson UUID directory, with
 `{ config, production? }` at every nested entity node. See the
 [unified YAML authoring handoff](./yaml-config-scaffolding.md) and
 [actual Lesson Builder README](../../../shared/engine/scripts/lessonBuilder/README.md).
@@ -11,10 +11,9 @@ The Engine-owned `shared/engine/scripts/lessonBuilder/lessonBuilder.mjs`
 selects `define*` factories through
 `shared/engine/configurators/yaml/yamlFactoryByType.ts`, unwraps only
 `config`, and mechanically emits an `index.ts` Lesson draft, a typed
-`constants.ts` language tuple, and recursively nested `sections/`,
-`flashcards/`, and `questions/` module trees. Source-relative content is
+`constants.ts` language tuple, and recursively nested `sections/` module trees. Question and Flashcard resources belong to independent authoring/build stages. Source-relative content is
 organized by slug; role-specific subfolders are retained where distinct
-Quest/Question/Flashcard roles would otherwise collide. See the
+Quest/Checkpoint roles would otherwise collide. See the
 [Stage 1 layout contract](./lesson-generated-source-layout.md).
 
 `production` is a **separate typed authoring concern inside the same YAML
@@ -26,8 +25,8 @@ scaffolding retains UUID-addressed specification handoffs. The separate register
 implementation remains UUID-addressed under the textbook's `scenes/`.
 One identity comes from each node's `config.id`; no `sceneSpecKey`.
 
-The technical `config.yaml` is created from independently reviewed
-Methodologist/Screenwriter/Assessment/Flashcard sources when applicable.
+The technical `lesson.yaml` is created from independently reviewed
+Methodologist/Screenwriter sources when applicable.
 Migrating legacy `content.md` and `methodologist-brief.md` is explicitly
 authorized editorial work, never an automatic side effect of this builder.
 For new authoring, methodology text can live once in the YAML production
@@ -98,7 +97,7 @@ the actual script.
 The Lesson Builder owns only the nested `defineScene` source module and its
 colocated `specification.md`. The opted-in
 [Scene Scaffolding workflow](../../../shared/engine/scripts/sceneScaffolding/README.md)
-independently reads the same technical `config.yaml` production specifications
+independently reads the same technical `lesson.yaml` production specifications
 and creates an **executable React draft** under the textbook's UUID-addressed
 `scenes/<bucket>/<scene-uuid>/`, only in already Scene-capable packages.
 Generation is creation-only and never registers unfinished components.

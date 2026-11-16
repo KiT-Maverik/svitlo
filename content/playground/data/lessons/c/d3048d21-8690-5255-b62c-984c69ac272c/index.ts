@@ -1,7 +1,5 @@
 import { defineLesson } from '@svitlo/engine/build';
 import { howLightMoves_languages } from './constants';
-import { howLightMovesFlashcards } from './flashcards';
-import { howLightMovesQuestions } from './questions';
 import { testExplainLightTravel_Skill_Data } from '../../../skills/testLight/testLightPropagation/skills';
 import { contentSection } from './sections/content';
 import { practiceSection } from './sections/practice';
@@ -54,8 +52,6 @@ export const howLightMoves = defineLesson({
     },
   },
   locale: { title: howLightMovesTitle },
-  flashcards: howLightMovesFlashcards,
-  questions: howLightMovesQuestions,
   section: {
     items: { content: contentSection, practice: practiceSection, quiz: quizSection },
     order: ['content', 'practice', 'quiz'],

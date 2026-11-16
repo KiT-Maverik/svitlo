@@ -231,9 +231,9 @@ export function defineFlashcard<
     };
   },
 ) {
-  validate(config);
   const metadataSchema = flashcard_Config_Schema.omit({ content: true });
-  const authored = structuredClone(metadataSchema.parse(config));
+  const { content: _content, ...metadataInput } = config;
+  const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type, slug } = authored;
   const initialContent = {
@@ -261,8 +261,7 @@ export function defineFlashcard<
   const buildSide = <Items extends Record<string, Block>>(
     side: FlashcardSide_Configurator<Items, Languages>,
     languages: readonly LanguageCode[],
-  ): SidePublication =>
-    (side.build.props as (options: PublicationLanguageOptions) => SidePublication)({ languages });
+  ): SidePublication => (side.build.props as (options: PublicationLanguageOptions) => SidePublication)({ languages });
 
   const buildFlags = (flags: Flashcard_Config['parameters']['flags'], languages: readonly LanguageCode[]) => {
     const entries = flags.order.map(key => splitLocalizedFields(flags.items[key]));
@@ -293,6 +292,7 @@ export function defineFlashcard<
 
   const props = (options: PublicationLanguageOptions<Languages>): Publication<Flashcard_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyAuthored(), content: initialContent });
     const source = copyAuthored();
     const files: Files = {};
     const front = buildSide(initialContent.front, languages);
@@ -361,6 +361,7 @@ export function defineFlashcard<
   ): Publication<OverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyAuthored(), content: initialContent });
       if (!isRecord(patch)) throw new Error('Expected a Flashcard overrides object');
       for (const key of Object.keys(patch)) {
         if (!['parameters', 'content'].includes(key)) throw new Error('Unknown Flashcard override field: ' + key);
@@ -460,10 +461,9 @@ export function defineFlashcard<
         // Optional hint can be introduced through additionalItems without
         // inventing a separate side UUID or changing the authored card.
         const current = initialContent[side] ?? defineFlashcardSide({ items: {}, order: [] });
-        const built = (current.build.overrides as (
-          patch: never,
-          options: PublicationLanguageOptions,
-        ) => SidePublication)(change as never, { languages });
+        const built = (
+          current.build.overrides as (patch: never, options: PublicationLanguageOptions) => SidePublication
+        )(change as never, { languages });
         if (side !== 'hint' && built.base.length === 0) {
           throw new Error('At least one item is required in Flashcard content.' + side);
         }
