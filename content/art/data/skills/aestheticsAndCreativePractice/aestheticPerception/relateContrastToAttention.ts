@@ -1,6 +1,6 @@
 import { defineSkill } from '@svitlo/engine/build';
 
-export const relateContrastToAttention_Skill_Data = defineSkill({
+export const relateContrastToAttention = defineSkill({
   slug: 'relateContrastToAttention',
   id: '5c9fc599-02a5-4516-aeba-39119c1e5c64',
   name: {
@@ -65,7 +65,6 @@ export const relateContrastToAttention_Skill_Data = defineSkill({
       be: 'Паглядзіце, як выразныя адрозненні колеру, формы ці гуку прыцягваюць увагу.',
       ka: 'ნახეთ, როგორ იპყრობს ყურადღებას ფერის, ფორმისა თუ ხმის მკვეთრი განსხვავება.',
       kk: 'Түс, пішін немесе дыбыстағы айқын айырмашылықтар назарды қалай аударатынын байқаңыз.',
-
       qm: 'Tüs, şekil ya da ses arasındaki küçlü farqlarniñ diqqetni nasıl çekkenini körüñiz.',
     },
   },

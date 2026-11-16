@@ -1,6 +1,6 @@
 import { defineSkill } from '@svitlo/engine/build';
 
-export const describeAnAestheticExperience_Skill_Data = defineSkill({
+export const describeAnAestheticExperience = defineSkill({
   slug: 'describeAnAestheticExperience',
   id: 'bcf94c6e-f4e6-433f-b4fd-b3742eeab413',
   name: {

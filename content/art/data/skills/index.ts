@@ -1,4 +1,4 @@
-export { aestheticsAndCreativePractice_SkillDomain_Data } from './aestheticsAndCreativePractice/aestheticsAndCreativePractice.data';
+export { aestheticsAndCreativePractice } from './aestheticsAndCreativePractice';
 export { architectureAndUrbanArts_SkillDomain_Data } from './architectureAndUrbanArts/architectureAndUrbanArts.data';
 export { artHistoryAndCultures_SkillDomain_Data } from './artHistoryAndCultures/artHistoryAndCultures.data';
 export { artisticUnderstandingAndCriticism_SkillDomain_Data } from './artisticUnderstandingAndCriticism/artisticUnderstandingAndCriticism.data';

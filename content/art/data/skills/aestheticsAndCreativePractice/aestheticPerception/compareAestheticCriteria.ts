@@ -1,6 +1,6 @@
 import { defineSkill } from '@svitlo/engine/build';
 
-export const compareAestheticCriteria_Skill_Data = defineSkill({
+export const compareAestheticCriteria = defineSkill({
   slug: 'compareAestheticCriteria',
   id: 'd32b867b-413e-4b9d-80ac-f5de4c15ab3c',
   name: {

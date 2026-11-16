@@ -1,11 +1,11 @@
 import { defineSkillDomain } from '@svitlo/engine/build';
 
-import { aestheticPerception_SkillGroup_Data } from './aestheticPerception/aestheticPerception.data';
+import { aestheticPerception } from './aestheticPerception';
 import { artisticCollaborationAndEthics_SkillGroup_Data } from './artisticCollaborationAndEthics/artisticCollaborationAndEthics.data';
 import { creativeDevelopment_SkillGroup_Data } from './creativeDevelopment/creativeDevelopment.data';
 import { expressionAndMeaning_SkillGroup_Data } from './expressionAndMeaning/expressionAndMeaning.data';
 
-export const aestheticsAndCreativePractice_SkillDomain_Data = defineSkillDomain({
+export const aestheticsAndCreativePractice = defineSkillDomain({
   slug: 'aestheticsAndCreativePractice',
   id: '013a7a2a-8e50-4424-9c32-32915b51cd45',
   title: {
@@ -41,7 +41,7 @@ export const aestheticsAndCreativePractice_SkillDomain_Data = defineSkillDomain(
   },
   groups: {
     items: {
-      aestheticPerception: aestheticPerception_SkillGroup_Data,
+      aestheticPerception,
       artisticCollaborationAndEthics: artisticCollaborationAndEthics_SkillGroup_Data,
       creativeDevelopment: creativeDevelopment_SkillGroup_Data,
       expressionAndMeaning: expressionAndMeaning_SkillGroup_Data,

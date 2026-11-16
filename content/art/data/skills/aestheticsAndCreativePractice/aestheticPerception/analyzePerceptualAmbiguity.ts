@@ -1,6 +1,6 @@
 import { defineSkill } from '@svitlo/engine/build';
 
-export const analyzePerceptualAmbiguity_Skill_Data = defineSkill({
+export const analyzePerceptualAmbiguity = defineSkill({
   slug: 'analyzePerceptualAmbiguity',
   id: 'cb6e249e-37cc-4241-83a0-91760639c1a2',
   name: {

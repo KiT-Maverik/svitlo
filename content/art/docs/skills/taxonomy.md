@@ -4013,7 +4013,7 @@ Status: implemented
 
 Groups: 4 · Skills: 20
 
-[aestheticsAndCreativePractice.data.ts](../../data/skills/aestheticsAndCreativePractice/aestheticsAndCreativePractice.data.ts)
+[index.ts](../../data/skills/aestheticsAndCreativePractice/index.ts)
 
 Methodological description: Artistic experience, imagination, revision and ethical decisions cross individual media. This domain avoids prescribing a universal theory of beauty or one compulsory creative workflow.
 User-friendly description: Explore how art affects us, communicates meaning and grows through creative choices.
@@ -4026,7 +4026,7 @@ Status: implemented
 
 Skills: 5
 
-[aestheticPerception.data.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/aestheticPerception.data.ts)
+[index.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/index.ts)
 
 Methodological description: Responses to art involve attentive perception, prior expectations and variable values without establishing universal audience reactions.
 User-friendly description: Notice how different experiences and expectations shape our responses to art.
@@ -4037,7 +4037,7 @@ Slug: describeAnAestheticExperience
 Action: create
 Status: implemented
 
-[describeAnAestheticExperience.data.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/skills/describeAnAestheticExperience.data.ts)
+[describeAnAestheticExperience.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/skills/describeAnAestheticExperience.ts)
 
 Methodological description: Articulate a response while separating felt qualities from unsupported assertions about the work.
 User-friendly description: Describe how an artwork feels to you while distinguishing feelings from observations.
@@ -4048,7 +4048,7 @@ Slug: analyzePerceptualAmbiguity
 Action: create
 Status: implemented
 
-[analyzePerceptualAmbiguity.data.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/skills/analyzePerceptualAmbiguity.data.ts)
+[analyzePerceptualAmbiguity.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/skills/analyzePerceptualAmbiguity.ts)
 
 Methodological description: Explain how one artistic configuration supports different perceptual organizations.
 User-friendly description: Explore why the same picture or form can be perceived in different ways.
@@ -4059,7 +4059,7 @@ Slug: relateContrastToAttention
 Action: create
 Status: implemented
 
-[relateContrastToAttention.data.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/skills/relateContrastToAttention.data.ts)
+[relateContrastToAttention.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/skills/relateContrastToAttention.ts)
 
 Methodological description: Explain how salient differences draw attention to parts of an artwork.
 User-friendly description: See how strong differences in color, shape or sound attract attention.
@@ -4070,7 +4070,7 @@ Slug: compareAestheticCriteria
 Action: create
 Status: implemented
 
-[compareAestheticCriteria.data.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/skills/compareAestheticCriteria.data.ts)
+[compareAestheticCriteria.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/skills/compareAestheticCriteria.ts)
 
 Methodological description: Examine how harmony, novelty or expressiveness matter differently across traditions.
 User-friendly description: Compare what different artistic traditions value in an artwork.
@@ -4081,7 +4081,7 @@ Slug: distinguishBeautyAndArtisticValue
 Action: create
 Status: implemented
 
-[distinguishBeautyAndArtisticValue.data.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/skills/distinguishBeautyAndArtisticValue.data.ts)
+[distinguishBeautyAndArtisticValue.ts](../../data/skills/aestheticsAndCreativePractice/aestheticPerception/skills/distinguishBeautyAndArtisticValue.ts)
 
 Methodological description: Explain how significant art can challenge conventional ideals of visual attractiveness.
 User-friendly description: Discover why an important artwork does not always aim to look beautiful.
