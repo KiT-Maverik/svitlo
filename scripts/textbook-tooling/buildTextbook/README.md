@@ -1,36 +1,22 @@
-# Portable Lesson media staging
+# Textbook-wide UUID media packaging
 
-Textbook builds stage **actual**, source-local Lesson media under their
-existing `/textbooks/<book>/` namespace, without changing runtime Config/Props
-schemas. This helper is called by `build.mjs` after existing `public/` and
-`static/` copies, before writing `dist/manifest.json`.
+Every textbook stores physical files under `assets/images`, `assets/audio`,
+`assets/video` or `assets/subtitles`, using a stable `UUID.extension`.
+ContentBlocks reference these files by `locale.fileName` (or
+`locale.posterFileName` for a Video poster), independently of the consuming
+block's UUID. Runtime Props retain `src`, `fileLocation` and `poster` URLs.
 
-Sources must be in the authored module's directory under
-`data/lessons/<bucket>/<uuid>/sections|flashcards|questions/.../<slug>/`:
+`build.mjs` runs production media preflight before replacing outputs, and
+copies the entire textbook `assets/` tree to
+`dist/static/textbooks/<textbook>/assets/`. Missing referenced media makes
+Production fail with aggregated diagnostics, without replacing an earlier
+distribution. `SVITLO_MEDIA_MODE=draft` permits missing physical media with
+warnings for preview, but not invalid Config or malformed UUID filenames.
+`dist/manifest.json` includes staged files; the existing portable publisher
+owns cleanup of stale published paths.
 
-- Invariant primary: `<slug>.<ext>`
-- Localized primary: `locale/<language>.<ext>`
-- Video poster: `poster.<ext>`
-- Localized video poster: `locale/<language>.poster.<ext>`
-
-Allowed formats: image `svg/png/jpg/jpeg/webp/gif/avif`, video
-`mp4/webm`, audio `mp3/wav/ogg/m4a/flac`, captions `vtt/srt`.
-An adjacent `index.ts` is required. Only these files are copied to
-`dist/static/textbooks/<book>/lessons/<bucket>/<uuid>/<module>/<file>`.
-All URLs used in Lesson Props are determined by the build-only
-`resolveLessonMedia(import.meta.url, kind, role, language?)` helper.
-
-The existing `public/` and `static/` locations are still supported and
-take precedence as owned resources: collisions fail instead of overwriting.
-Pending media specifications, YAML, TS files, Markdown and Code source are
-never staged as media. No downloads, fake assets or implicit translations.
-
-Validation:
-
-```sh
-node --test scripts/textbook-tooling/buildTextbook/stageLessonMedia.spec.mjs
-npm run package:build --workspace @svitlo/playground
-```
+Source-local `data/lessons/.../<slug>.<extension>` staging is retired.
+Markdown, Code and executable Scenes remain separate.
 
 ## Textbook-local authored Lesson imports
 

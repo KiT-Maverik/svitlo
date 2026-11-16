@@ -2,12 +2,12 @@
 # Local media are intentionally pending; generated TS must preserve unresolved dependencies.
 # This fixture is permanent test input, not a real published Lesson.
 config:
-  id: "a11ce555-0000-4000-8000-0000000000ff"
-  slug: "equalityGeneratorCoverage"
-  type: "lesson"
-  skills: ["a11ce555-0000-4000-8000-0000000000ef"]
+  id: 'a11ce555-0000-4000-8000-0000000000ff'
+  slug: 'equalityGeneratorCoverage'
+  type: 'lesson'
+  skills: ['a11ce555-0000-4000-8000-0000000000ef']
   params:
-    languages: ["en"]
+    languages: ['en']
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -15,121 +15,120 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "Equality: temporary generator fixture"
+      en: 'Equality: temporary generator fixture'
   section:
     items:
       exploreEquality:
         config:
-          id: "a11ce555-0000-4000-8000-000000000020"
-          slug: "exploreEquality"
-          type: "content"
+          id: 'a11ce555-0000-4000-8000-000000000020'
+          slug: 'exploreEquality'
+          type: 'content'
           params:
             skippable: false
           locale:
             title:
-              en: "Explore equality"
+              en: 'Explore equality'
             navigationLabel:
-              en: "Explore equality"
+              en: 'Explore equality'
           content:
             items:
               meaningOfEquality:
                 config:
-                  id: "a11ce555-0000-4000-8000-000000000012"
-                  slug: "meaningOfEquality"
-                  type: "text"
+                  id: 'a11ce555-0000-4000-8000-000000000012'
+                  slug: 'meaningOfEquality'
+                  type: 'text'
                   params:
                     wrap:
                       enabled: true
                       typographyProps:
-                        component: "p"
+                        component: 'p'
                   locale:
                     value:
-                      en: "The equals sign shows two expressions with the same numerical value."
+                      en: 'The equals sign shows two expressions with the same numerical value.'
               explainWithMarkdown:
                 config:
-                  id: "a11ce555-0000-4000-8000-000000000013"
-                  slug: "explainWithMarkdown"
-                  type: "markdown"
+                  id: 'a11ce555-0000-4000-8000-000000000013'
+                  slug: 'explainWithMarkdown'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "## Compare both sides\n\n**3 + 2 = 4 + 1**, because both sides equal **5**."
               compareValuesCode:
                 config:
-                  id: "a11ce555-0000-4000-8000-000000000005"
-                  slug: "compareValuesCode"
-                  type: "code"
+                  id: 'a11ce555-0000-4000-8000-000000000005'
+                  slug: 'compareValuesCode'
+                  type: 'code'
                   params:
-                    language: "typescript"
+                    language: 'typescript'
                     codeAsText: "const left = 3 + 2;\nconst right = 4 + 1;\nconsole.log(left === right);\n"
                   locale:
                     title:
-                      en: "Verify equality with TypeScript"
+                      en: 'Verify equality with TypeScript'
               counterGroupsImage:
                 config:
-                  id: "a11ce555-0000-4000-8000-000000000014"
-                  slug: "counterGroupsImage"
-                  type: "image"
+                  id: 'a11ce555-0000-4000-8000-000000000014'
+                  slug: 'counterGroupsImage'
+                  type: 'image'
                   params:
                     fill: true
                     aspectRatio: 1.5
-                    objectFit: "contain"
-                    sizes: "100vw"
+                    objectFit: 'contain'
+                    sizes: '100vw'
                     unoptimized: true
                   locale:
-                    src: null
                     alt:
-                      en: "Three plus two objects on one side, five on the other."
+                      en: 'Three plus two objects on one side, five on the other.'
                     caption:
-                      en: "Both sides represent five."
+                      en: 'Both sides represent five.'
                     fallback:
                       offline:
-                        en: "Image unavailable offline."
+                        en: 'Image unavailable offline.'
                       unavailable:
-                        en: "Image pending production."
+                        en: 'Image pending production.'
                       retry:
-                        en: "Try again."
+                        en: 'Try again.'
                 production:
-                  purpose: "Accessible visual comparison of equal totals."
-                  prompt: "Show two groups 3+2 and 5 with numeric labels, not color-only cues."
+                  purpose: 'Accessible visual comparison of equal totals.'
+                  prompt: 'Show two groups 3+2 and 5 with numeric labels, not color-only cues.'
               compareGroupsScene:
                 config:
-                  id: "a11ce555-0000-4000-8000-000000000004"
-                  slug: "compareGroupsScene"
-                  type: "scene"
+                  id: 'a11ce555-0000-4000-8000-000000000004'
+                  slug: 'compareGroupsScene'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       instruction:
-                        en: "Compare both sides."
+                        en: 'Compare both sides.'
                       left:
                         label:
-                          en: "Left"
-                        value: "3 + 2"
+                          en: 'Left'
+                        value: '3 + 2'
                       right:
                         label:
-                          en: "Right"
-                        value: "5"
+                          en: 'Right'
+                        value: '5'
                       feedback:
                         correct:
-                          en: "Both sides are five."
+                          en: 'Both sides are five.'
                         incorrect:
-                          en: "Count again."
+                          en: 'Count again.'
                 production:
-                  purpose: "Guided comparison of two equal totals."
+                  purpose: 'Guided comparison of two equal totals.'
                   specification: "# Equal-groups Scene\n\nLearner counts 3+2 and five and judges equality. Implement keyboard, screen reader, non-color cues, RTL and reduced motion; the Scene is intentionally pending."
               counterArrangementsCarousel:
                 config:
-                  id: "a11ce555-0000-4000-8000-000000000003"
-                  slug: "counterArrangementsCarousel"
-                  type: "carousel"
+                  id: 'a11ce555-0000-4000-8000-000000000003'
+                  slug: 'counterArrangementsCarousel'
+                  type: 'carousel'
                   params:
                     aspectRatio: 1.5
-                    objectFit: "contain"
+                    objectFit: 'contain'
                     loop: true
                     autoplay: false
                     autoplayIntervalMs: 5000
-                    transition: "fade"
+                    transition: 'fade'
                     transitionDurationMs: 350
                     showArrows: true
                     showIndicators: true
@@ -139,292 +138,298 @@ config:
                     pauseOnHover: true
                   locale:
                     title:
-                      en: "Arrangements of five objects"
+                      en: 'Arrangements of five objects'
                   slides:
                     items:
                       fiveCountersSlide:
                         config:
-                          id: "a11ce555-0000-4000-8000-000000000001"
-                          slug: "fiveCountersSlide"
-                          type: "image"
+                          id: 'a11ce555-0000-4000-8000-000000000001'
+                          slug: 'fiveCountersSlide'
+                          type: 'image'
                           params:
                             fill: true
                             aspectRatio: 1.5
-                            objectFit: "contain"
+                            objectFit: 'contain'
                           locale:
-                            src: null
                             alt:
-                              en: "Five counters in one row."
+                              en: 'Five counters in one row.'
                             caption:
-                              en: "Five counters."
+                              en: 'Five counters.'
                         production:
-                          purpose: "Illustrate five counters in one row."
-                          specification: "SVG with five counted and labeled objects."
+                          purpose: 'Illustrate five counters in one row.'
+                          specification: 'SVG with five counted and labeled objects.'
                       threePlusTwoSlide:
                         config:
-                          id: "a11ce555-0000-4000-8000-000000000002"
-                          slug: "threePlusTwoSlide"
-                          type: "scene"
+                          id: 'a11ce555-0000-4000-8000-000000000002'
+                          slug: 'threePlusTwoSlide'
+                          type: 'scene'
                           params: {}
                           locale:
                             value:
                               instruction:
-                                en: "Arrange three counters and two more to show five."
+                                en: 'Arrange three counters and two more to show five.'
                               feedback:
                                 correct:
-                                  en: "Three plus two equals five."
+                                  en: 'Three plus two equals five.'
                                 incorrect:
-                                  en: "Count the groups and try again."
+                                  en: 'Count the groups and try again.'
                         production:
-                          purpose: "Let learners interactively demonstrate 3 + 2 = 5."
-                          specification: "An accessible counting Scene for arranging 3 and 2 counters into five; support keyboard, screen reader, non-color cues, RTL, and reduced motion."
-                    order: ["fiveCountersSlide", "threePlusTwoSlide"]
-            order: ["meaningOfEquality", "explainWithMarkdown", "compareValuesCode", "counterGroupsImage", "compareGroupsScene", "counterArrangementsCarousel"]
+                          purpose: 'Let learners interactively demonstrate 3 + 2 = 5.'
+                          specification: 'An accessible counting Scene for arranging 3 and 2 counters into five; support keyboard, screen reader, non-color cues, RTL, and reduced motion.'
+                    order: ['fiveCountersSlide', 'threePlusTwoSlide']
+            order:
+              [
+                'meaningOfEquality',
+                'explainWithMarkdown',
+                'compareValuesCode',
+                'counterGroupsImage',
+                'compareGroupsScene',
+                'counterArrangementsCarousel',
+              ]
         production:
-          purpose: "Temporary generator coverage."
-          pedagogicalIntent: "Know that equal signs compare numerical values."
+          purpose: 'Temporary generator coverage.'
+          pedagogicalIntent: 'Know that equal signs compare numerical values.'
       reviewEquality:
         config:
-          id: "a11ce555-0000-4000-8000-000000000021"
-          slug: "reviewEquality"
-          type: "content"
+          id: 'a11ce555-0000-4000-8000-000000000021'
+          slug: 'reviewEquality'
+          type: 'content'
           params:
             skippable: false
           locale:
             title:
-              en: "Review equality"
+              en: 'Review equality'
             navigationLabel:
-              en: "Review equality"
+              en: 'Review equality'
           content:
             items:
               separateCountersImage:
                 config:
-                  id: "a11ce555-0000-4000-8000-000000000015"
-                  slug: "separateCountersImage"
-                  type: "image"
+                  id: 'a11ce555-0000-4000-8000-000000000015'
+                  slug: 'separateCountersImage'
+                  type: 'image'
                   params:
                     width: 640
                     height: 360
-                    objectFit: "contain"
+                    objectFit: 'contain'
                     unoptimized: true
                   locale:
-                    src:
-                      en: null
                     alt:
-                      en: "Three plus two objects on one side, five on the other."
+                      en: 'Three plus two objects on one side, five on the other.'
                     caption:
-                      en: "Both sides represent five."
+                      en: 'Both sides represent five.'
                     fallback:
                       offline:
-                        en: "Image unavailable offline."
+                        en: 'Image unavailable offline.'
                       unavailable:
-                        en: "Image pending production."
+                        en: 'Image pending production.'
                       retry:
-                        en: "Try again."
+                        en: 'Try again.'
                 production:
-                  purpose: "Accessible visual comparison of equal totals."
-                  prompt: "Show two groups 3+2 and 5 with numeric labels, not color-only cues."
+                  purpose: 'Accessible visual comparison of equal totals.'
+                  prompt: 'Show two groups 3+2 and 5 with numeric labels, not color-only cues.'
               spokenExplanation:
                 config:
-                  id: "a11ce555-0000-4000-8000-00000000000e"
-                  slug: "spokenExplanation"
-                  type: "audio"
+                  id: 'a11ce555-0000-4000-8000-00000000000e'
+                  slug: 'spokenExplanation'
+                  type: 'audio'
                   params: {}
                   locale:
-                    fileLocation: null
                     title:
-                      en: "Listen: both sides are five"
+                      en: 'Listen: both sides are five'
                     description:
-                      en: "A spoken explanation of the equals sign."
+                      en: 'A spoken explanation of the equals sign.'
                     fallback:
                       offline:
-                        en: "Audio is not offline."
+                        en: 'Audio is not offline.'
                       unavailable:
-                        en: "Audio pending production."
+                        en: 'Audio pending production.'
                       playbackError:
-                        en: "Playback failed."
+                        en: 'Playback failed.'
                       retry:
-                        en: "Try again."
+                        en: 'Try again.'
                 production:
-                  purpose: "Accessible explanation of equality."
-                  script: "Three plus two and four plus one are equal because both sides have five."
+                  purpose: 'Accessible explanation of equality.'
+                  script: 'Three plus two and four plus one are equal because both sides have five.'
               equalGroupsVideo:
                 config:
-                  id: "a11ce555-0000-4000-8000-00000000000f"
-                  slug: "equalGroupsVideo"
-                  type: "video"
+                  id: 'a11ce555-0000-4000-8000-00000000000f'
+                  slug: 'equalGroupsVideo'
+                  type: 'video'
                   params: {}
                   locale:
-                    fileLocation:
-                      en: null
-                    poster: null
                     title:
-                      en: "Compare two groups"
+                      en: 'Compare two groups'
                     label:
-                      en: "Video: both sides equal five"
+                      en: 'Video: both sides equal five'
                     fallback:
                       offline:
-                        en: "Video not offline."
+                        en: 'Video not offline.'
                       unavailable:
-                        en: "Video pending production."
+                        en: 'Video pending production.'
                       playbackError:
-                        en: "Playback failed."
+                        en: 'Playback failed.'
                       retry:
-                        en: "Try again."
+                        en: 'Try again.'
                 production:
-                  purpose: "Visual worked example."
-                  storyboard: "Count 3+2 and 4+1 objects, label each total, show equality, include captions."
+                  purpose: 'Visual worked example.'
+                  storyboard: 'Count 3+2 and 4+1 objects, label each total, show equality, include captions.'
               equalGroupsCaptions:
                 config:
-                  id: "a11ce555-0000-4000-8000-000000000010"
-                  slug: "equalGroupsCaptions"
-                  type: "subtitles"
+                  id: 'a11ce555-0000-4000-8000-000000000010'
+                  slug: 'equalGroupsCaptions'
+                  type: 'subtitles'
                   params: {}
                   locale:
-                    fileLocation:
-                      en: null
+
                 production:
-                  purpose: "Caption the worked equality video."
+                  purpose: 'Caption the worked equality video.'
                   script: "WEBVTT\n\n00:00:00.000 --> 00:00:03.000\nThree plus two is five.\n"
-                  specification: "Sync the captions to equalGroupsVideo."
+                  specification: 'Sync the captions to equalGroupsVideo.'
               relatedEqualityVideos:
                 config:
-                  id: "a11ce555-0000-4000-8000-000000000011"
-                  slug: "relatedEqualityVideos"
-                  type: "youtube"
+                  id: 'a11ce555-0000-4000-8000-000000000011'
+                  slug: 'relatedEqualityVideos'
+                  type: 'youtube'
                   params:
-                    mode: "link"
+                    mode: 'link'
                   locale:
-                    href: "https://www.youtube.com/results?search_query=equal+sign+same+value"
+                    href: 'https://www.youtube.com/results?search_query=equal+sign+same+value'
                     title:
-                      en: "Learn more about equality"
+                      en: 'Learn more about equality'
                     label:
-                      en: "Find equality explanations on YouTube"
+                      en: 'Find equality explanations on YouTube'
                     fallback:
                       offline:
-                        en: "External videos need internet."
+                        en: 'External videos need internet.'
                       unavailable:
-                        en: "Page unavailable."
+                        en: 'Page unavailable.'
                       retry:
-                        en: "Try opening again."
+                        en: 'Try opening again.'
               verifyEquality:
                 config:
-                  id: "a11ce555-0000-4000-8000-00000000000d"
-                  slug: "verifyEquality"
-                  type: "checkpoint"
+                  id: 'a11ce555-0000-4000-8000-00000000000d'
+                  slug: 'verifyEquality'
+                  type: 'checkpoint'
                   params:
                     headingLevel: 3
                     showIndices: true
                     showChevron: true
                     showIcon: true
-                    indexPosition: "left"
-                    iconPosition: "right"
-                    chevronPosition: "right"
+                    indexPosition: 'left'
+                    iconPosition: 'right'
+                    chevronPosition: 'right'
                     enableChecks: true
                     requireCompletion: false
                     renderAsGroup: true
                   locale:
                     title:
-                      en: "Check your understanding"
+                      en: 'Check your understanding'
                   content:
                     items:
                       compareFive:
                         config:
-                          id: "a11ce555-0000-4000-8000-000000000009"
-                          slug: "compareFive"
-                          type: "checkpointItem"
+                          id: 'a11ce555-0000-4000-8000-000000000009'
+                          slug: 'compareFive'
+                          type: 'checkpointItem'
                           check: true
                           question:
                             config:
-                              id: "a11ce555-0000-4000-8000-000000000006"
-                              slug: "compareFiveQuestion"
-                              type: "text"
+                              id: 'a11ce555-0000-4000-8000-000000000006'
+                              slug: 'compareFiveQuestion'
+                              type: 'text'
                               params: {}
                               locale:
                                 value:
-                                  en: "Do 3 + 2 and 4 + 1 have the same value?"
+                                  en: 'Do 3 + 2 and 4 + 1 have the same value?'
                           answer:
                             config:
-                              id: "a11ce555-0000-4000-8000-000000000031"
-                              slug: "answer"
-                              type: "checkpointAnswer"
+                              id: 'a11ce555-0000-4000-8000-000000000031'
+                              slug: 'answer'
+                              type: 'checkpointAnswer'
                               content:
                                 items:
                                   whyFiveMatches:
                                     config:
-                                      id: "a11ce555-0000-4000-8000-000000000007"
-                                      slug: "whyFiveMatches"
-                                      type: "markdown"
+                                      id: 'a11ce555-0000-4000-8000-000000000007'
+                                      slug: 'whyFiveMatches'
+                                      type: 'markdown'
                                       params: {}
                                       locale:
-                                        value: "Yes. **3 + 2 = 4 + 1 = 5**."
+                                        value: 'Yes. **3 + 2 = 4 + 1 = 5**.'
                                   answerDiagram:
                                     config:
-                                      id: "a11ce555-0000-4000-8000-000000000008"
-                                      slug: "answerDiagram"
-                                      type: "image"
+                                      id: 'a11ce555-0000-4000-8000-000000000008'
+                                      slug: 'answerDiagram'
+                                      type: 'image'
                                       params:
                                         fill: true
                                         aspectRatio: 1.7
-                                        objectFit: "contain"
+                                        objectFit: 'contain'
                                       locale:
-                                        src:
-                                          en: null
                                         alt:
-                                          en: "Three plus two objects on one side, five on the other."
+                                          en: 'Three plus two objects on one side, five on the other.'
                                         caption:
-                                          en: "Both sides represent five."
+                                          en: 'Both sides represent five.'
                                         fallback:
                                           offline:
-                                            en: "Image unavailable offline."
+                                            en: 'Image unavailable offline.'
                                           unavailable:
-                                            en: "Image pending production."
+                                            en: 'Image pending production.'
                                           retry:
-                                            en: "Try again."
+                                            en: 'Try again.'
                                     production:
-                                      purpose: "Accessible visual comparison of equal totals."
-                                      prompt: "Show two groups 3+2 and 5 with numeric labels, not color-only cues."
-                                order: ["whyFiveMatches", "answerDiagram"]
+                                      purpose: 'Accessible visual comparison of equal totals.'
+                                      prompt: 'Show two groups 3+2 and 5 with numeric labels, not color-only cues.'
+                                order: ['whyFiveMatches', 'answerDiagram']
                       reverseEquality:
                         config:
-                          id: "a11ce555-0000-4000-8000-00000000000c"
-                          slug: "reverseEquality"
-                          type: "checkpointItem"
+                          id: 'a11ce555-0000-4000-8000-00000000000c'
+                          slug: 'reverseEquality'
+                          type: 'checkpointItem'
                           check: true
                           question:
                             config:
-                              id: "a11ce555-0000-4000-8000-00000000000a"
-                              slug: "reverseEqualityQuestion"
-                              type: "text"
+                              id: 'a11ce555-0000-4000-8000-00000000000a'
+                              slug: 'reverseEqualityQuestion'
+                              type: 'text'
                               params: {}
                               locale:
                                 value:
-                                  en: "Is 5 = 2 + 3 correct?"
+                                  en: 'Is 5 = 2 + 3 correct?'
                           answer:
                             config:
-                              id: "a11ce555-0000-4000-8000-000000000032"
-                              slug: "answer"
-                              type: "checkpointAnswer"
+                              id: 'a11ce555-0000-4000-8000-000000000032'
+                              slug: 'answer'
+                              type: 'checkpointAnswer'
                               content:
                                 items:
                                   reverseAnswer:
                                     config:
-                                      id: "a11ce555-0000-4000-8000-00000000000b"
-                                      slug: "reverseAnswer"
-                                      type: "text"
+                                      id: 'a11ce555-0000-4000-8000-00000000000b'
+                                      slug: 'reverseAnswer'
+                                      type: 'text'
                                       params: {}
                                       locale:
                                         value:
-                                          en: "Yes. Both sides equal five; the order does not change equality."
-                                order: ["reverseAnswer"]
-                    order: ["compareFive", "reverseEquality"]
-            order: ["separateCountersImage", "spokenExplanation", "equalGroupsVideo", "equalGroupsCaptions", "relatedEqualityVideos", "verifyEquality"]
+                                          en: 'Yes. Both sides equal five; the order does not change equality.'
+                                order: ['reverseAnswer']
+                    order: ['compareFive', 'reverseEquality']
+            order:
+              [
+                'separateCountersImage',
+                'spokenExplanation',
+                'equalGroupsVideo',
+                'equalGroupsCaptions',
+                'relatedEqualityVideos',
+                'verifyEquality',
+              ]
         production:
-          purpose: "Temporary generator coverage."
-          pedagogicalIntent: "Know that equal signs compare numerical values."
-    order: ["exploreEquality", "reviewEquality"]
+          purpose: 'Temporary generator coverage.'
+          pedagogicalIntent: 'Know that equal signs compare numerical values.'
+    order: ['exploreEquality', 'reviewEquality']
 production:
-  documentLanguage: "en"
-  purpose: "Temporary Lesson Builder structural acceptance fixture."
-  audience: "Internal QA; not student-facing."
-  productionNotes: "Keep this permanent fixture for regression tests; remove only the superseded textbook staging copy through #577."
+  documentLanguage: 'en'
+  purpose: 'Temporary Lesson Builder structural acceptance fixture.'
+  audience: 'Internal QA; not student-facing.'
+  productionNotes: 'Keep this permanent fixture for regression tests; remove only the superseded textbook staging copy through #577.'

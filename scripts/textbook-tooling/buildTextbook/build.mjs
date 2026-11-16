@@ -13,12 +13,15 @@ import {
   cpSync,
   writeFileSync,
   chmodSync,
+  mkdtempSync,
+  renameSync,
 } from 'node:fs';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
-import { stageLessonMedia } from './stageLessonMedia.mjs';
+import { stageTextbookAssets } from './stageTextbookAssets.mjs';
+import { randomUUID } from 'node:crypto';
 
 const root = resolve(process.cwd());
 const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
@@ -32,7 +35,8 @@ if (pkg.name !== '@svitlo/' + id) throw new Error('Textbook workspace identity m
 const hasScenes = Boolean(pkg.exports?.['./scenes']);
 const hasStyles = Boolean(pkg.exports?.['./styles']);
 if (hasStyles && !hasScenes) throw new Error('Scene styles require a Scene export');
-const dist = join(root, 'dist');
+const finalDist = join(root, 'dist');
+const dist = mkdtempSync(join(root, '.textbook-build-staging-'));
 const resources = join(dist, 'static');
 
 function run(program, args, cwd = repo) {
@@ -80,183 +84,230 @@ if (hasScenes && pkg.scripts?.['content:check:scenes']) {
   run(process.execPath, [join(repo, 'scripts/textbook-tooling/generateScenes/generate-scenes.mjs'), '--check'], root);
 }
 
-rmSync(dist, { recursive: true, force: true });
-mkdirSync(resources, { recursive: true });
-const common = {
-  absWorkingDir: root,
-  outdir: dist,
-  bundle: true,
-  platform: 'browser',
-  format: 'esm',
-  target: ['es2020'],
-  packages: 'external',
-  jsx: 'automatic',
-  tsconfig: join(root, 'tsconfig.json'),
-  entryNames: '[dir]/[name]',
-  chunkNames: 'chunks/[name]-[hash]',
-  assetNames: 'assets/[name]-[hash]',
-  metafile: true,
-  logLevel: 'warning',
-  plugins: hasStyles
-    ? [
-        {
-          name: 'textbook-css-modules',
-          setup(builder) {
-            builder.onLoad({ filter: /\.module\.css$/ }, async args => ({
-              contents: readFileSync(args.path, 'utf8'),
-              resolveDir: dirname(args.path),
-              loader: 'local-css',
-            }));
-          },
-        },
-      ]
-    : [],
-  loader: {
-    '.svg': 'file',
-    '.png': 'file',
-    '.jpg': 'file',
-    '.jpeg': 'file',
-    '.webp': 'file',
-    '.gif': 'file',
-    '.woff2': 'file',
-  },
-};
-const metadata = await build({ ...common, entryPoints: { 'textbook/index': 'textbook.ts' } });
-let sceneResult;
-if (hasScenes) {
-  if (!existsSync(join(root, 'scenes/index.ts'))) throw new Error('Missing authored Scene entrypoint');
-  sceneResult = await build({
-    ...common,
-    splitting: hasStyles,
-    entryPoints: { 'scenes/index': 'scenes/index.ts' },
-    banner: { js: '"use client";' },
-  });
-}
-if (hasStyles) {
-  const css = filesUnder(dist).filter(name => name.endsWith('.css'));
-  writeFileSync(join(dist, 'styles.css'), css.map(name => '@import "./' + name + '";').join('\n') + '\n');
-}
-
-run('npx', ['tsc', '-p', packageDirectory + '/tsconfig.declarations.json']);
-for (const [from, to] of [
-  ['textbook.d.ts', 'textbook/index.d.ts'],
-  ...(hasScenes
-    ? [
-        ['scenes/index.d.ts', 'scenes/index.d.ts'],
-        ['scenes/sceneLoader.d.ts', 'scenes/sceneLoader.d.ts'],
-      ]
-    : []),
-]) {
-  const input = join(dist, '.declarations', from);
-  if (!existsSync(input)) throw new Error('Missing compiled declaration: ' + from);
-  mkdirSync(dirname(join(dist, to)), { recursive: true });
-  copyFileSync(input, join(dist, to));
-}
-rmSync(join(dist, '.declarations'), { recursive: true, force: true });
-
-// Build authored content once into textbook-owned generated/, then stage
-// the already-published JSON to the portable package's public URL layout.
-for (const [source, generator, staged, target] of [
-  ['data/skills', 'shared/engine/scripts/generateSkills/generateSkills.mjs', 'skills', 'data/skills'],
-  ['data/lessons', 'shared/engine/scripts/generateLessonProps/generateLessonProps.mjs', 'lessons', 'data/lessons'],
-  ['data/courses', 'shared/engine/scripts/generateCourseProps/generateCourseProps.mjs', 'courses', 'data/courses'],
-]) {
-  if (!authored(source)) continue;
-  run(process.execPath, [generator, '--package', packageDirectory, '--write']);
-  const generatedRoot = join(root, 'generated', staged);
-  if (!existsSync(generatedRoot)) throw new Error('Generator did not produce ' + generatedRoot);
-  const destination = join(resources, target);
-  mkdirSync(dirname(destination), { recursive: true });
-  cpSync(generatedRoot, destination, { recursive: true });
-}
-// Stage independently authored Question/Flashcard resources beside (never inside)
-// Lesson Props. The static manifest and Publish CLI own their portable URLs.
 const assessmentBank = filesUnder(join(root, 'data/lessons')).some(name =>
   /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/(?:questions|flashcards)\/index\.ts$/.test(name),
 );
-if (assessmentBank) {
-  run(process.execPath, [
-    'shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.mjs',
-    '--package',
-    packageDirectory,
-    '--kind',
-    'all',
-    '--write',
-  ]);
-  const generatedAssessmentRoot = join(root, 'generated/assessments');
-  const destination = join(resources, 'data/lessons');
-  for (const name of filesUnder(generatedAssessmentRoot)) {
-    const target = join(destination, name);
-    if (existsSync(target)) throw new Error('Duplicate Assessment resource publication: ' + name);
-    mkdirSync(dirname(target), { recursive: true });
-    copyFileSync(join(generatedAssessmentRoot, name), target);
+// Before modifying generated content or the distribution, validate every
+// effective Lesson/Course media reference in the requested package.
+try {
+  const mediaMode = process.env.SVITLO_MEDIA_MODE === 'draft' ? 'draft' : 'production';
+  for (const [source, generator] of [
+    ['data/lessons', 'shared/engine/scripts/generateLessonProps/generateLessonProps.mjs'],
+    ['data/courses', 'shared/engine/scripts/generateCourseProps/generateCourseProps.mjs'],
+  ]) {
+    if (!authored(source)) continue;
+    run(process.execPath, [
+      generator,
+      '--package',
+      packageDirectory,
+      '--preflight',
+      ...(mediaMode === 'draft' ? ['--draft'] : []),
+    ]);
   }
-}
-
-const sourcePublic = join(root, 'public');
-if (existsSync(sourcePublic)) {
-  cpSync(sourcePublic, join(resources, 'textbooks', id), {
-    recursive: true,
-    filter(source) {
-      return !['data', 'flags'].includes(relative(sourcePublic, source).split(sep)[0]);
+  if (assessmentBank) {
+    run(process.execPath, [
+      'shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.mjs',
+      '--package',
+      packageDirectory,
+      '--kind',
+      'all',
+      '--preflight',
+      ...(mediaMode === 'draft' ? ['--draft'] : []),
+    ]);
+  }
+  mkdirSync(resources, { recursive: true });
+  const common = {
+    absWorkingDir: root,
+    outdir: dist,
+    bundle: true,
+    platform: 'browser',
+    format: 'esm',
+    target: ['es2020'],
+    packages: 'external',
+    jsx: 'automatic',
+    tsconfig: join(root, 'tsconfig.json'),
+    entryNames: '[dir]/[name]',
+    chunkNames: 'chunks/[name]-[hash]',
+    assetNames: 'assets/[name]-[hash]',
+    metafile: true,
+    logLevel: 'warning',
+    plugins: hasStyles
+      ? [
+          {
+            name: 'textbook-css-modules',
+            setup(builder) {
+              builder.onLoad({ filter: /\.module\.css$/ }, async args => ({
+                contents: readFileSync(args.path, 'utf8'),
+                resolveDir: dirname(args.path),
+                loader: 'local-css',
+              }));
+            },
+          },
+        ]
+      : [],
+    loader: {
+      '.svg': 'file',
+      '.png': 'file',
+      '.jpg': 'file',
+      '.jpeg': 'file',
+      '.webp': 'file',
+      '.gif': 'file',
+      '.woff2': 'file',
     },
-  });
-}
-// Keep textbook-owned static media in the same namespace as public assets.
-// Unlike host resources, these files belong to the compiled textbook package.
-for (const name of filesUnder(join(root, 'static'))) {
-  const destination = join(resources, 'textbooks', id, name);
-  if (existsSync(destination)) {
-    throw new Error('Duplicate textbook media path in public/ and static/: ' + name);
+  };
+  const metadata = await build({ ...common, entryPoints: { 'textbook/index': 'textbook.ts' } });
+  let sceneResult;
+  if (hasScenes) {
+    if (!existsSync(join(root, 'scenes/index.ts'))) throw new Error('Missing authored Scene entrypoint');
+    sceneResult = await build({
+      ...common,
+      splitting: hasStyles,
+      entryPoints: { 'scenes/index': 'scenes/index.ts' },
+      banner: { js: '"use client";' },
+    });
   }
-  mkdirSync(dirname(destination), { recursive: true });
-  copyFileSync(join(root, 'static', name), destination);
-}
-// Stage source-local Lesson media after public/static copying so an
-// identical URL cannot silently replace a pre-existing textbook resource.
-const stagedLessonMedia = stageLessonMedia({
-  textbookRoot: root,
-  textbookId: id,
-  staticRoot: resources,
-  files: filesUnder(join(root, 'data/lessons')),
-});
-if (stagedLessonMedia) console.log('Staged ' + stagedLessonMedia + ' colocated Lesson media file(s)');
-const published = filesUnder(resources);
-for (const [source, prefix] of [
-  ['data/lessons', 'data/lessons/'],
-  ['data/skills', 'data/skills/'],
-  ['data/courses', 'data/courses/'],
-]) {
-  if (authored(source) && !published.some(name => name.startsWith(prefix) && name.endsWith('.json'))) {
-    throw new Error('Authored ' + source + ' did not produce published JSON for ' + id);
+  if (hasStyles) {
+    const css = filesUnder(dist).filter(name => name.endsWith('.css'));
+    writeFileSync(join(dist, 'styles.css'), css.map(name => '@import "./' + name + '";').join('\n') + '\n');
   }
-}
-writeFileSync(
-  join(dist, 'manifest.json'),
-  JSON.stringify({ version: 1, textbook: id, files: published }, null, 2) + '\n',
-);
 
-for (const name of filesUnder(dist).filter(name => name.endsWith('.js'))) {
-  const js = readFileSync(join(dist, name), 'utf8');
-  if (
-    /from\s*['"]@\//.test(js) ||
-    /import\s*\(\s*['"]@\//.test(js) ||
-    /import\s+['"][^'"]*\.data\.ts['"]/.test(js) ||
-    /from\s*['"]next\//.test(js)
-  ) {
-    throw new Error('Non-portable runtime import in dist/' + name);
+  run('npx', ['tsc', '-p', packageDirectory + '/tsconfig.declarations.json', '--outDir', join(dist, '.declarations')]);
+  for (const [from, to] of [
+    ['textbook.d.ts', 'textbook/index.d.ts'],
+    ...(hasScenes
+      ? [
+          ['scenes/index.d.ts', 'scenes/index.d.ts'],
+          ['scenes/sceneLoader.d.ts', 'scenes/sceneLoader.d.ts'],
+        ]
+      : []),
+  ]) {
+    const input = join(dist, '.declarations', from);
+    if (!existsSync(input)) throw new Error('Missing compiled declaration: ' + from);
+    mkdirSync(dirname(join(dist, to)), { recursive: true });
+    copyFileSync(input, join(dist, to));
   }
+  rmSync(join(dist, '.declarations'), { recursive: true, force: true });
+
+  // Build authored content once into textbook-owned generated/, then stage
+  // the already-published JSON to the portable package's public URL layout.
+  for (const [source, generator, staged, target] of [
+    ['data/skills', 'shared/engine/scripts/generateSkills/generateSkills.mjs', 'skills', 'data/skills'],
+    ['data/lessons', 'shared/engine/scripts/generateLessonProps/generateLessonProps.mjs', 'lessons', 'data/lessons'],
+    ['data/courses', 'shared/engine/scripts/generateCourseProps/generateCourseProps.mjs', 'courses', 'data/courses'],
+  ]) {
+    if (!authored(source)) continue;
+    run(process.execPath, [
+      generator,
+      '--package',
+      packageDirectory,
+      '--write',
+      ...(mediaMode === 'draft' && (staged === 'lessons' || staged === 'courses') ? ['--draft'] : []),
+    ]);
+    const generatedRoot = join(root, 'generated', staged);
+    if (!existsSync(generatedRoot)) throw new Error('Generator did not produce ' + generatedRoot);
+    const destination = join(resources, target);
+    mkdirSync(dirname(destination), { recursive: true });
+    cpSync(generatedRoot, destination, { recursive: true });
+  }
+  // Stage independently authored Question/Flashcard resources beside (never inside)
+  // Lesson Props. The static manifest and Publish CLI own their portable URLs.
+  if (assessmentBank) {
+    run(process.execPath, [
+      'shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.mjs',
+      '--package',
+      packageDirectory,
+      '--kind',
+      'all',
+      '--write',
+      ...(mediaMode === 'draft' ? ['--draft'] : []),
+    ]);
+    const generatedAssessmentRoot = join(root, 'generated/assessments');
+    const destination = join(resources, 'data/lessons');
+    for (const name of filesUnder(generatedAssessmentRoot)) {
+      const target = join(destination, name);
+      if (existsSync(target)) throw new Error('Duplicate Assessment resource publication: ' + name);
+      mkdirSync(dirname(target), { recursive: true });
+      copyFileSync(join(generatedAssessmentRoot, name), target);
+    }
+  }
+
+  const sourcePublic = join(root, 'public');
+  if (existsSync(sourcePublic)) {
+    cpSync(sourcePublic, join(resources, 'textbooks', id), {
+      recursive: true,
+      filter(source) {
+        return !['data', 'flags'].includes(relative(sourcePublic, source).split(sep)[0]);
+      },
+    });
+  }
+  // Keep textbook-owned static media in the same namespace as public assets.
+  // Unlike host resources, these files belong to the compiled textbook package.
+  for (const name of filesUnder(join(root, 'static'))) {
+    const destination = join(resources, 'textbooks', id, name);
+    if (existsSync(destination)) {
+      throw new Error('Duplicate textbook media path in public/ and static/: ' + name);
+    }
+    mkdirSync(dirname(destination), { recursive: true });
+    copyFileSync(join(root, 'static', name), destination);
+  }
+  // Stage the entire reusable textbook assets tree, not individual block files.
+  const stagedTextbookAssets = stageTextbookAssets({ textbookRoot: root, textbookId: id, staticRoot: resources });
+  if (stagedTextbookAssets) console.log('Staged ' + stagedTextbookAssets + ' textbook media file(s)');
+  const published = filesUnder(resources);
+  for (const [source, prefix] of [
+    ['data/lessons', 'data/lessons/'],
+    ['data/skills', 'data/skills/'],
+    ['data/courses', 'data/courses/'],
+  ]) {
+    if (authored(source) && !published.some(name => name.startsWith(prefix) && name.endsWith('.json'))) {
+      throw new Error('Authored ' + source + ' did not produce published JSON for ' + id);
+    }
+  }
+  writeFileSync(
+    join(dist, 'manifest.json'),
+    JSON.stringify({ version: 1, textbook: id, files: published }, null, 2) + '\n',
+  );
+
+  for (const name of filesUnder(dist).filter(name => name.endsWith('.js'))) {
+    const js = readFileSync(join(dist, name), 'utf8');
+    if (
+      /from\s*['"]@\//.test(js) ||
+      /import\s*\(\s*['"]@\//.test(js) ||
+      /import\s+['"][^'"]*\.data\.ts['"]/.test(js) ||
+      /from\s*['"]next\//.test(js)
+    ) {
+      throw new Error('Non-portable runtime import in dist/' + name);
+    }
+  }
+  // Self-contained CLI is copied into the package, not imported from the monorepo.
+  copyFileSync(join(repo, 'scripts/textbook-tooling/publishTextbook/publish.mjs'), join(dist, 'publish.mjs'));
+  chmodSync(join(dist, 'publish.mjs'), 0o755);
+  console.log(
+    'Compiled ' +
+      id +
+      ': ' +
+      published.length +
+      ' static resources; ' +
+      (Object.keys(metadata.metafile.outputs).length +
+        (sceneResult ? Object.keys(sceneResult.metafile.outputs).length : 0)) +
+      ' ESM outputs',
+  );
+
+  // Switch the finished portable package only after all build and content checks
+  // have succeeded. Preserve the prior dist if the final rename fails.
+  const backupDist = join(root, '.textbook-build-backup-' + randomUUID());
+  let movedPrevious = false;
+  try {
+    if (existsSync(finalDist)) {
+      renameSync(finalDist, backupDist);
+      movedPrevious = true;
+    }
+    renameSync(dist, finalDist);
+    if (movedPrevious) rmSync(backupDist, { recursive: true, force: true });
+  } catch (error) {
+    if (movedPrevious) renameSync(backupDist, finalDist);
+    throw error;
+  }
+} finally {
+  if (existsSync(dist)) rmSync(dist, { recursive: true, force: true });
 }
-// Self-contained CLI is copied into the package, not imported from the monorepo.
-copyFileSync(join(repo, 'scripts/textbook-tooling/publishTextbook/publish.mjs'), join(dist, 'publish.mjs'));
-chmodSync(join(dist, 'publish.mjs'), 0o755);
-console.log(
-  'Compiled ' +
-    id +
-    ': ' +
-    published.length +
-    ' static resources; ' +
-    (Object.keys(metadata.metafile.outputs).length +
-      (sceneResult ? Object.keys(sceneResult.metafile.outputs).length : 0)) +
-    ' ESM outputs',
-);

@@ -10,13 +10,20 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadLessonData, renderLessonPropsFiles, resolveEntityPath } from '@svitlo/engine/build';
+import {
+  loadLessonData,
+  renderLessonPropsFiles,
+  resolveEntityPath,
+  projectTextbookMedia,
+  assertMediaPublicationReady,
+} from '@svitlo/engine/build';
 import { assertSafeDirectoryPath, checkLessonProps, publishLessonProps } from './publishLessonProps.mjs';
 
 export { checkLessonProps as check } from './publishLessonProps.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
-const usage = 'Usage: --package content/<textbook> [--output <repo-relative-dir>] --write|--check';
+const usage =
+  'Usage: --package content/<textbook> [--output <repo-relative-dir>] [--draft] --write|--check|--preflight';
 
 const directories = directory =>
   fs.existsSync(directory)
@@ -71,7 +78,9 @@ function lessonSource(directory) {
   return fs.existsSync(index) ? index : undefined;
 }
 
-async function render(packageDirectory) {
+async function render(packageDirectory, mode) {
+  const diagnostics = [];
+  const textbookId = path.basename(packageDirectory);
   const entries = [];
   for (const { id, directory } of lessonDirectories(packageDirectory)) {
     const source = lessonSource(directory);
@@ -96,10 +105,24 @@ async function render(packageDirectory) {
     if (publication?.base?.id !== id) {
       throw new Error('Built Lesson ID differs from authored ID: ' + source);
     }
-    entries.push({ source: path.relative(repoRoot, source), publication });
+    const relativeSource = path.relative(repoRoot, source);
+    entries.push({
+      source: relativeSource,
+      publication: projectTextbookMedia(publication, {
+        textbookRoot: packageDirectory,
+        textbookId,
+        source: relativeSource,
+        mode,
+        diagnostics,
+      }),
+    });
   }
   if (entries.length === 0) {
     throw new Error('No authored Lesson configurators found; refusing to replace generated output');
+  }
+  assertMediaPublicationReady(diagnostics, mode);
+  for (const item of diagnostics) {
+    console.warn('Missing draft media: ' + JSON.stringify(item));
   }
   return renderLessonPropsFiles(entries);
 }
@@ -108,10 +131,12 @@ export async function main(args) {
   let packageName;
   let outputName;
   let action;
+  let mode = 'production';
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--package' && !packageName) packageName = args[++i];
     else if (args[i] === '--output' && !outputName) outputName = args[++i];
-    else if (['--write', '--check'].includes(args[i]) && !action) action = args[i];
+    else if (args[i] === '--draft') mode = 'draft';
+    else if (['--write', '--check', '--preflight'].includes(args[i]) && !action) action = args[i];
     else throw new Error(usage);
   }
   if (!packageName || !action) throw new Error(usage);
@@ -130,7 +155,11 @@ export async function main(args) {
   assertSafeDirectoryPath(packageDirectory);
   assertSafeDirectoryPath(output);
   assertRepositoryLessonIdsUnique();
-  const files = await render(packageDirectory);
+  const files = await render(packageDirectory, mode);
+  if (action === '--preflight') {
+    console.log('Validated ' + files.size + ' Lesson files without writing output');
+    return;
+  }
   if (action === '--write') {
     publishLessonProps(output, files);
     console.log('Published ' + files.size + ' Props-shaped Lesson files in ' + output);

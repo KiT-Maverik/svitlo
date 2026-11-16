@@ -15,7 +15,7 @@ describe('Configurators', () => {
         slug: Slug,
         id: string,
         locale: {
-          src: string | Record<'en' | 'uk', string>;
+          fileName: string | Record<'en' | 'uk', string>;
           alt: string | Record<'en' | 'uk', string>;
           caption?: string | Record<'en' | 'uk', string>;
         },
@@ -30,10 +30,10 @@ describe('Configurators', () => {
 
       const example = () => {
         const first = image('first', ids[1], {
-          src: { en: 'https://example.com/en-a.png', uk: 'https://example.com/uk-a.png' },
+          fileName: { en: 'https://example.com/en-a.png', uk: 'https://example.com/uk-a.png' },
           alt: 'First',
         });
-        const second = image('second', ids[2], { src: 'https://example.com/b.png', alt: 'Second' });
+        const second = image('second', ids[2], { fileName: 'https://example.com/b.png', alt: 'Second' });
         const carousel = defineCarousel<'gallery', { first: typeof first; second: typeof second }, ['en', 'uk']>({
           id: ids[0],
           slug: 'gallery',
@@ -86,7 +86,7 @@ describe('Configurators', () => {
       });
 
       test('publishes Image and Scene discriminants, including localized Scene data', () => {
-        const picture = image('picture', ids[1], { src: 'https://example.com/p.png', alt: 'Picture' });
+        const picture = image('picture', ids[1], { fileName: 'https://example.com/p.png', alt: 'Picture' });
         const activity = defineScene<'activity', ['en', 'uk']>({
           id: ids[4],
           slug: 'activity',
@@ -122,7 +122,7 @@ describe('Configurators', () => {
       });
 
       test('keeps invariant children in base without redundant translated slide arrays', () => {
-        const first = image('first', ids[1], { src: 'https://example.com/base.png', alt: 'Base' });
+        const first = image('first', ids[1], { fileName: 'https://example.com/base.png', alt: 'Base' });
         const carousel = defineCarousel<'gallery', { first: typeof first }, ['en', 'uk']>({
           id: ids[0],
           slug: 'gallery',
