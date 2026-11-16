@@ -40,7 +40,7 @@ export const solarLuminosity_Skill_Data = defineSkill({
       "Interpret the Sun's total radiant output and its relationship to illumination received at different distances.",
     frontend: {
       en: "Understand the Sun's total energy output and how received light changes with distance.",
-      it: 'Comprendi l\'energia totale emessa dal Sole e come la luce ricevuta varia con la distanza.',
+      it: 'Comprendi la potenza totale irradiata dal Sole e come la luce ricevuta varia con la distanza.',
       qm: 'Küneşniñ topyekûn energiya çıqaruvını ve mesafe artqanda alınğan yarıqnıñ nasıl deñişkenini añlañız.',
       bn: 'সূর্য মোট কত শক্তি বিকিরণ করে এবং দূরত্ব বাড়লে প্রাপ্ত আলোর পরিমাণ কীভাবে বদলায়, তা বোঝো।',
       ur: 'سمجھیں کہ سورج ہر سیکنڈ میں کتنی توانائی خارج کرتا ہے اور فاصلے کے ساتھ موصول ہونے والی روشنی کیسے بدلتی ہے۔',
