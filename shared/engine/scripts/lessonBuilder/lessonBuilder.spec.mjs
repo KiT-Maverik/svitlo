@@ -215,7 +215,7 @@ test('Carousel Image and Scene children are independently scaffolded below their
     const scene = fs.readFileSync(f.generated('sections/intro/gallery/activity/index.ts'), 'utf8');
     const carousel = fs.readFileSync(f.generated('sections/intro/gallery/index.ts'), 'utf8');
     assert.match(image, /defineImage<"first", LessonLanguages>/);
-    assert.match(image, /fileName: \{\\s*uk: "550e8400\-e29b\-41d4\-a716\-446655440052.svg"/);
+    assert.match(image, /fileName: \{\s*uk: "550e8400\-e29b\-41d4\-a716\-446655440052.svg"/);
     assert.doesNotMatch(image, /Not a translation/);
     assert.match(scene, /defineScene<"activity", LessonLanguages>/);
     assert.match(scene, /Обери групу/);
@@ -554,15 +554,15 @@ test('local video, poster, subtitles and localized images preserve UUID filename
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const video = fs.readFileSync(f.generated('sections/intro/videoExplanation/index.ts'), 'utf8');
-    assert.match(video, /fileName: \\{\\s*uk: "550e8400-e29b-41d4-a716-446655440054.mp4"/);
+    assert.match(video, /fileName: \\{\s*uk: "550e8400-e29b-41d4-a716-446655440054.mp4"/);
     assert.match(video, /posterFileName: "550e8400-e29b-41d4-a716-446655440055.webp"/);
     assert.doesNotMatch(video, /external\\/video\\.mp4/);
     const audio = fs.readFileSync(f.generated('sections/intro/localAudio/index.ts'), 'utf8');
     assert.match(audio, /fileName: "550e8400-e29b-41d4-a716-446655440056.mp3"/);
     const captions = fs.readFileSync(f.generated('sections/intro/localCaptions/index.ts'), 'utf8');
-    assert.match(captions, /fileName: \\{\\s*uk: "550e8400-e29b-41d4-a716-446655440057.vtt"/);
+    assert.match(captions, /fileName: \\{\s*uk: "550e8400-e29b-41d4-a716-446655440057.vtt"/);
     const image = fs.readFileSync(f.generated('sections/intro/localPicture/index.ts'), 'utf8');
-    assert.match(image, /fileName: \\{\\s*uk: "550e8400-e29b-41d4-a716-446655440058.svg"/);
+    assert.match(image, /fileName: \\{\s*uk: "550e8400-e29b-41d4-a716-446655440058.svg"/);
     assertTypeScriptSyntax(readAll(f.lesson));
     assert(fs.existsSync(f.generated('sections/intro/videoExplanation/specification.md')));
   }));
@@ -904,7 +904,7 @@ test('Engine-owned coverage Lesson stays reproducible across YAML, nested module
     const imageSlide = modules.get(carouselRoot + '/fiveCountersSlide/index.ts');
     const sceneSlide = modules.get(carouselRoot + '/threePlusTwoSlide/index.ts');
     assert.match(imageSlide, /defineImage<"fiveCountersSlide", LessonLanguages>/);
-    assert.match(imageSlide, /resolveLessonMedia\(import\.meta\.url, "image", "source"\)/);
+    assert.match(imageSlide, /fileName: "550e8400-e29b-41d4-a716-446655440002.webp"/);
     assert.match(sceneSlide, /defineScene<"threePlusTwoSlide", LessonLanguages>/);
     assert.match(sceneSlide, /Arrange three counters and two more to show five/);
     const authoredSlides = lesson.section.items.exploreEquality.config.content.items.counterArrangementsCarousel.config.slides;
