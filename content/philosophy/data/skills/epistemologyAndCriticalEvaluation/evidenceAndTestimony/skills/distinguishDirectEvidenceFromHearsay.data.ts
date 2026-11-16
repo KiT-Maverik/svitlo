@@ -40,7 +40,7 @@ export const distinguishDirectEvidenceFromHearsay_Skill_Data = defineSkill({
       "Recognize what a record or witness directly establishes and what depends on another person's retelling.",
     frontend: {
       en: 'Distinguish firsthand records from claims repeated through others.',
-      it: 'Distingui le testimonianze di prima mano dalle affermazioni riportate da altre persone.',
+      it: 'Distingui le prove dirette dalle informazioni riferite da altri, valutando che cosa ciascuna fonte attesti.',
       zh: '区分第一手记录与经他人转述的主张。',
       hi: 'प्रत्यक्ष अभिलेखों को दूसरों की बताई बातों से अलग पहचानें।',
       es: 'Distingue los registros de primera mano de afirmaciones repetidas por otros.',
