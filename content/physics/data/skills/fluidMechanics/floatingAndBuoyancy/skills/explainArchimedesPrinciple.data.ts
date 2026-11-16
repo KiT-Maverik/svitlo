@@ -40,7 +40,7 @@ export const explainArchimedesPrinciple_Skill_Data = defineSkill({
       'Under the relevant conditions, the buoyant force equals the weight of the volume of liquid or gas displaced by the body.',
     frontend: {
       en: "Use Archimedes' principle to relate buoyant force to displaced fluid.",
-      it: 'Usa il principio di Archimede per collegare la spinta al fluido spostato.',
+      it: 'Collega la spinta di Archimede al peso del fluido spostato.',
       zh: '利用阿基米德原理将浮力与排开的流体联系起来。',
       hi: 'आर्किमिडीज़ के सिद्धांत से उत्प्लावन बल को विस्थापित द्रव से जोड़ें।',
       es: 'Utiliza el principio de Arquímedes para relacionar el empuje con el fluido desplazado.',
