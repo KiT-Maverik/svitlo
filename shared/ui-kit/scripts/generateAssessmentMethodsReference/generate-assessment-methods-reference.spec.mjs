@@ -246,17 +246,22 @@ test('PR-artifact manifest records success, failures and only allowed temporary 
 
 test('Italian draft reference marks missing titles while strict generation rejects them', () =>
   withFixture(root => {
-    const registry = sources[0];
-    replaceFile(root, registry, source =>
-      source.replace(
-        'export const DEFAULT_SUPPORTED_LANGUAGES = [',
-        "export const DEFAULT_SUPPORTED_LANGUAGES = [\n  { locale: 'it-IT', language: 'it' },",
-      ),
-    );
+    assert.ok(supportedAssessmentMethodLocales(root).includes('it'));
+    for (const file of sources.slice(1)) {
+      replaceFile(root, file, source => {
+        const italianEntries = source.match(/^    it: [^\n]*\n/gm) ?? [];
+        assert.equal(italianEntries.length, 2, 'Expected Italian title and description in ' + file);
+        return source.replace(/^    it: [^\n]*\n/gm, '');
+      });
+    }
     assert.throws(() => readAssessmentMethodsReference({ root, locale: 'it' }), /missing \[it\]/);
     const draft = readAssessmentMethodsReference({ root, locale: 'it', allowMissing: true });
     assert.equal(draft.missing, 32);
-    assert.ok(draft.methods.every(method => method.title === '%%MISSING%%'));
+    assert.ok(
+      draft.methods.every(
+        method => method.title === '%%MISSING%%' && method.localizedDescription === '%%MISSING%%',
+      ),
+    );
     const markdown = renderAssessmentMethodsReference({ root, locale: 'it', allowMissing: true });
     assert.match(markdown, /Missing translations: 32/);
     assert.match(markdown, /%%MISSING%%/);
