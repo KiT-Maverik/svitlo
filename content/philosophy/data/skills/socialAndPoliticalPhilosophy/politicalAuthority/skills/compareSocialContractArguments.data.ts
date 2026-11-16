@@ -40,7 +40,7 @@ export const compareSocialContractArguments_Skill_Data = defineSkill({
       'Explain how alternative accounts use consent, cooperation, security, or fairness to justify political obligations.',
     frontend: {
       en: "Evaluate the reasons offered for public institutions' authority to make rules.",
-      it: 'Valuta le ragioni addotte per giustificare l\'autorità delle istituzioni pubbliche di stabilire norme.',
+      it: 'Confronta come le teorie del contratto sociale giustifichino gli obblighi politici tramite consenso, cooperazione, sicurezza o equità.',
       zh: '评价为公共机构制定规则的权威提出的理由。',
       hi: 'सार्वजनिक संस्थाओं को नियम बनाने का अधिकार क्यों दिया जाए, इसके तर्कों का मूल्यांकन करो।',
       es: 'Evalúa las razones que justifican la autoridad de las instituciones públicas para establecer normas.',
