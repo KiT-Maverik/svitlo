@@ -75,7 +75,6 @@ config:
                   params: { fill: true, aspectRatio: 1.5 }
                   locale:
                     alt: { en: Two groups of five counters }
-                    src: null # Pending asset, deliberately invalid in completed Engine Config
                 production:
                   purpose: Explain equality by visual comparison
                   prompt: Two groups of five counters arranged differently
@@ -89,9 +88,11 @@ production:
 ```
 
 Real inputs must use correct Skill UUIDs, immutable entity UUIDs and all
-required Engine Config fields. Only the explicit pending media `null` values
-violate final Config typing; missing translations and Scene implementations
-are separate downstream work.
+required **non-media** Engine Config fields. Technical Lesson YAML intentionally
+omits `fileName` and `posterFileName`: its editor schema rejects these fields,
+including `null`. The Lesson Builder generates required Nil UUID placeholders
+with adjacent `TODO(asset)` comments in TypeScript. Missing translations and
+Scene implementations remain separate downstream work.
 
 ### Quest Section nested Config authoring (draft only)
 
@@ -122,14 +123,14 @@ id: 00000000-0000-4000-8000-000000000103
 slug: medium
 type: video
 params: {}
-locale: { fileLocation: null, poster: null, label: { uk: Показ прикладу } }
+locale: { label: { uk: Показ прикладу } }
 small:
 config:
 id: 00000000-0000-4000-8000-000000000104
 slug: small
 type: video
 params: {}
-locale: { fileLocation: null, poster: null, label: { uk: Показ прикладу } }
+locale: { label: { uk: Показ прикладу } }
 audio:
 dialogue: null
 narration:
@@ -138,7 +139,7 @@ id: 00000000-0000-4000-8000-000000000105
 slug: narration
 type: audio
 params: {}
-locale: { fileLocation: null, title: { uk: Аудіоопис } }
+locale: { title: { uk: Аудіоопис } }
 background: null
 image:
 config:
@@ -146,14 +147,14 @@ id: 00000000-0000-4000-8000-000000000106
 slug: image
 type: image
 params: { fill: true, aspectRatio: 1.5 }
-locale: { src: null, alt: { uk: Схема прикладу } }
+locale: { alt: { uk: Схема прикладу } }
 subtitles:
 config:
 id: 00000000-0000-4000-8000-000000000107
 slug: subtitles
 type: subtitles
 params: {}
-locale: { fileLocation: null } # Additional named Stages may be added without an order array.
+locale: {} # Additional named Stages may be added without an order array.
 tasks:
 start:
 config:
@@ -174,7 +175,7 @@ Implement an accessible guided-practice Scene with retries,
 meaningful feedback and keyboard/screen-reader equivalents.
 \`\`\`
 
-The YAML editor schema composes these nested \`config\` and optional \`production\` envelopes from Engine Zod. The Lesson/Course scaffolders create \`defineQuestSection\`, \`defineStage\`, \`defineTask\` and media/Scene TypeScript **drafts**; pending \`null\` means real assets remain unproduced. \`defineLesson\`/\`defineEpisode\` do **not** yet accept Quest as a runtime-publishable Section, nor does a Quest player exist. Quest guided practice never automatically satisfies an approved Quiz assessment requirement.
+The YAML editor schema composes these nested \`config\` and optional \`production\` envelopes from Engine Zod. The Lesson/Course scaffolders create \`defineQuestSection\`, \`defineStage\`, \`defineTask\` and media/Scene TypeScript **drafts**; omitted media filenames are unresolved production dependencies, not authored `null` values. \`defineLesson\`/\`defineEpisode\` do **not** yet accept Quest as a runtime-publishable Section, nor does a Quest player exist. Quest guided practice never automatically satisfies an approved Quiz assessment requirement.
 
 ### Course and Build overrides
 
@@ -208,18 +209,34 @@ provided, scaffolders create:
   migrated. Executable Scene code continues to live under the UUID-addressed
   registered `scenes/` subtree.
 
-A Scene implementer and media specialist receive those generated files and
-the original Lesson `lesson.yaml` (or Course `config.yaml`); they supply real components/assets later.
-`image.config.locale.alt` is authored now. In **Lesson** draft modules,
-`src: null`, `fileLocation: null` and `poster: null` become Build-only
-`resolveLessonMedia(import.meta.url, kind, role, language?)` calls that
-require an actual file beside the Config. Unavailable assets throw during
-publication instead of receiving fabricated URLs. The textbook package
-stages named media under `/textbooks/<book>/lessons/...` and keeps only URL
-strings in published Props. No generator invents translations or runtime
-capabilities. Existing `*.data.ts` causes a whole-entity SKIP without any write; for modular Lesson drafts, an existing root `index.ts` does the same. When the input is an existing canonical UUID directory, it is skipped **before** parsing stale YAML (PR #531); when it is a staged single-ID YAML file, its ID is parsed first to derive the output path. Existing or manually changed specification files cannot
-be clobbered. `check` remains read-only and strict.
+A Scene implementer and media specialist receive the generated handoff files and
+the original technical YAML. For **Lesson drafts**, authored YAML contains no
+media filename fields; `lessonBuilder` generates `locale.fileName` and, for
+Video, `locale.posterFileName` with category-specific reserved Nil UUID
+placeholders and `TODO(asset)` comments in generated TypeScript.
+The media specialist supplies real `UUID.extension` assets under
+`content/<book>/assets/{images,audio,video,subtitles}/` and replaces the
+placeholders in TypeScript Config. The YAML source is left unchanged.
 
+The Lesson Props publisher checks known media references against the textbook
+assets tree, warns for missing/unresolved media in Draft, rejects these in
+Production, and projects filenames to portable
+`/textbooks/<book>/assets/<category>/<filename>` URLs in existing Runtime
+`src`, `fileLocation` and `poster` fields. The textbook build packages
+the complete assets tree. Neither Lesson Builder nor `build.props()` creates
+media binaries or copies assets. The retired module-relative
+`resolveLessonMedia(import.meta.url, ...)` API is **not** used for media.
+
+**Course Builder is separate and not yet refactored**: the Course editor
+JSON Schemas omit media filenames, but this does not establish the Lesson
+Builder's Nil-placeholder behavior for Course TypeScript emission. Address
+Course-specific media authoring and publishing in its own implementation.
+
+Existing `*.data.ts` causes a whole-entity `SKIP` without writes; for
+modular Lesson drafts, an existing root `index.ts` does the same. A canonical
+UUID directory is skipped before stale YAML is parsed; staged single-ID
+YAML is parsed only to derive the destination ID. Existing user-edited
+`specification.md` files remain protected; `check` is read-only and strict.
 ## Scope versus the specialist editorial workflow
 
 Historical independent `methodologist-brief.md`, `content.md`,
