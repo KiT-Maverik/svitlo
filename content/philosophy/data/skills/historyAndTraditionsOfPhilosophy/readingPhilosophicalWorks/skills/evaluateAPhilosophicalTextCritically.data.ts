@@ -40,7 +40,7 @@ export const evaluateAPhilosophicalTextCritically_Skill_Data = defineSkill({
       "Assess reasons offered in a source rather than accepting or rejecting a view solely because of the author's reputation.",
     frontend: {
       en: "Evaluate the reasons in a classic philosophical text, not just its author's reputation.",
-      it: 'Valuta le ragioni presentate in un testo filosofico classico, non soltanto la reputazione del suo autore.',
+      it: 'Valuta le ragioni presentate in un testo filosofico, non soltanto la reputazione del suo autore.',
       zh: '评估经典哲学文本中的理由，而不只看作者的声望。',
       hi: 'किसी क्लासिक दार्शनिक पाठ के तर्क जाँचो, केवल लेखक की प्रसिद्धि नहीं।',
       es: 'Evalúa las razones de un texto clásico, no solo la reputación del autor.',
