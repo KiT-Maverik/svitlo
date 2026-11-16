@@ -40,7 +40,7 @@ export const explainThePrincipleOfGeneticModification_Skill_Data = defineSkill({
       'Define genetic modification as the intentional alteration of genetic material by biotechnological methods. Distinguish changing DNA from simply selecting organisms by traits without assuming that every genetic change automatically brings benefits or harm.',
     frontend: {
       en: 'Explain how genetic modification changes DNA, unlike choosing parents for breeding.',
-      it: 'Spiega come la modificazione genetica cambia il DNA, a differenza della selezione degli organismi genitori per la riproduzione.',
+      it: 'Spiega come la modificazione genetica cambia il DNA, mentre nella selezione artificiale si scelgono gli organismi da far riprodurre.',
       zh: '解释基因改造如何改变 DNA，以及它与为育种选择亲本有何不同。',
       hi: 'समझाएँ कि आनुवंशिक संशोधन डीएनए में कैसे बदलाव करता है, जबकि चयनात्मक प्रजनन में वांछित गुणों वाले जनक जीव चुने जाते हैं।',
       es: 'Explica cómo la modificación genética cambia el ADN, a diferencia de elegir progenitores para la cría.',
