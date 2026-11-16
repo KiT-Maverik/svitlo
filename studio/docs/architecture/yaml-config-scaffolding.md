@@ -7,7 +7,7 @@ replace independent specialist review or publish Lessons/Courses.
 
 ## One technical source, one entity identity
 
-Each technical Lesson or Course has one `config.yaml`. The canonical entity directory is immutable under `data/{lessons,courses}/<last-uuid-hex>/<uuid>/`. A new source may be prepared in a textbook staging directory; the scaffolder reads its single `config.id` and writes only into the canonical UUID directory. Neither entity directory names nor extra CLI ID parameters are independent sources of identity. At the root
+A technical Lesson has one `lesson.yaml`; a Course retains `config.yaml`. The canonical entity directory is immutable under `data/{lessons,courses}/<last-uuid-hex>/<uuid>/`. A new source may be prepared in a textbook staging directory; the scaffolder reads its single `config.id` and writes only into the canonical UUID directory. Neither entity directory names nor extra CLI ID parameters are independent sources of identity. At the root
 **and at each nested Configurator node**:
 
 - `config`: current, Engine-derived Zod Config, using the existing
@@ -23,10 +23,10 @@ The generated Config-only schemas under
 derived from live Engine Zod. The independently **hand-maintained**
 `production.schema.json` defines per-kind requirements. The generator
 combines them into `lesson.scaffold.schema.json` and
-`course.scaffold.schema.json` to guide authors editing `config.yaml`.
+`course.scaffold.schema.json` to guide authors editing the respective technical YAML.
 The scaffolder does **not** use these schemas to validate YAML.
 
-### Illustrative single-file Lesson draft
+### Illustrative Lesson-only `lesson.yaml` draft
 
 ```yaml
 config:
@@ -40,7 +40,6 @@ config:
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true }
   locale:
     title: { en: Equality }
-  flashcards: { items: {}, order: [] }
   section:
     items:
       introduction:
@@ -210,7 +209,7 @@ provided, scaffolders create:
   registered `scenes/` subtree.
 
 A Scene implementer and media specialist receive those generated files and
-the original `config.yaml`; they supply real components/assets later.
+the original Lesson `lesson.yaml` (or Course `config.yaml`); they supply real components/assets later.
 `image.config.locale.alt` is authored now. In **Lesson** draft modules,
 `src: null`, `fileLocation: null` and `poster: null` become Build-only
 `resolveLessonMedia(import.meta.url, kind, role, language?)` calls that
@@ -230,16 +229,14 @@ new authoring source must be explicitly authorized**, with the approved
 meaning and source revisions preserved. An agent does not silently declare
 a Draft editorial document approved or fabricate Quiz requirements.
 
-The new technical `config.yaml` may carry the approved methodology passport
+The technical Lesson `lesson.yaml` (or Course `config.yaml`) may carry the approved methodology passport
 under `production.methodology` for a **newly authored** entity; its
 `methodology.md` output is then derivative, not a second independently
 editable authoring source. For existing independently edited Methodology
 documents, keep the original authoritative and avoid creating a competing
 YAML copy until an explicit editorial migration is authorized.
 
-Lesson `questions` and `flashcards` remain owned by their respective
-specialists; if represented in the technical YAML they still require real,
-approved content. A Quiz is a Section, not a ContentBlock. Only the authoring
+Lesson `questions.yaml` and `flashcards.yaml` live in the same Lesson UUID root as `lesson.yaml` but remain independently owned and reviewed. Neither is embedded in the Lesson technical YAML, and their future TypeScript directories need not exist when these files are written. A Quiz is a Section, not a ContentBlock. Only the authoring
 source locale is present in the draft, even if planned languages include more.
 
 ## Non-goals and verification

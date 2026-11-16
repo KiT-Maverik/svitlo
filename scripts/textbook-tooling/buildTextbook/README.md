@@ -71,3 +71,7 @@ unchanged. The regression test
 isolated temporary copy of **each** discovered textbook manifest and verifies
 TypeScript, native Node ESM resolution, Engine-style Node/CJS bundling, and
 textbook-style browser/ESM bundling. It does not generate or publish drafts.
+
+## Independent assessment resource publication
+
+When authored Lesson directories contain a `questions/index.ts` or `flashcards/index.ts`, the textbook build runs the Engine's independent `generateAssessmentResources` pipeline with `--kind all --write`. It copies the metadata-only manifest and individual localized Question/Flashcard JSON into `dist/static/data/lessons/<bucket>/<lessonId>/`, beside but separate from the Lesson's own `base.json` and language files. Every resource is included in `dist/manifest.json`, so the existing portable publish CLI can install/remove it without additional host paths. No resource is generated for a textbook without authored banks; copied paths are checked for collisions. Editorial YAML-to-TypeScript conversion is a separate unresolved stage.

@@ -216,8 +216,27 @@
                       },
                       "skippable": {
                         "type": "boolean"
+                      },
+                      "selection": {
+                        "type": "object",
+                        "properties": {
+                          "flashcardIds": {
+                            "minItems": 1,
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/$defs/__schema22"
+                            }
+                          }
+                        },
+                        "required": [
+                          "flashcardIds"
+                        ],
+                        "additionalProperties": false
                       }
                     },
+                    "required": [
+                      "selection"
+                    ],
                     "additionalProperties": false
                   },
                   "locale": {
@@ -455,31 +474,6 @@
                         "type": "object",
                         "properties": {
                           "start": {
-                            "$ref": "#/$defs/__schema22"
-                          }
-                        },
-                        "required": [
-                          "start"
-                        ],
-                        "additionalProperties": false
-                      },
-                      {
-                        "type": "object",
-                        "propertyNames": {
-                          "$ref": "#/$defs/__schema1"
-                        },
-                        "additionalProperties": {
-                          "$ref": "#/$defs/__schema22"
-                        }
-                      }
-                    ]
-                  },
-                  "tasks": {
-                    "allOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "start": {
                             "$ref": "#/$defs/__schema23"
                           }
                         },
@@ -495,6 +489,31 @@
                         },
                         "additionalProperties": {
                           "$ref": "#/$defs/__schema23"
+                        }
+                      }
+                    ]
+                  },
+                  "tasks": {
+                    "allOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "start": {
+                            "$ref": "#/$defs/__schema24"
+                          }
+                        },
+                        "required": [
+                          "start"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "propertyNames": {
+                          "$ref": "#/$defs/__schema1"
+                        },
+                        "additionalProperties": {
+                          "$ref": "#/$defs/__schema24"
                         }
                       }
                     ]
@@ -550,10 +569,11 @@
                               "sample"
                             ]
                           },
-                          "questionSlugs": {
+                          "questionIds": {
+                            "minItems": 1,
                             "type": "array",
                             "items": {
-                              "$ref": "#/$defs/__schema1"
+                              "$ref": "#/$defs/__schema25"
                             }
                           },
                           "count": {
@@ -569,7 +589,8 @@
                           }
                         },
                         "required": [
-                          "mode"
+                          "mode",
+                          "questionIds"
                         ],
                         "additionalProperties": false
                       },
@@ -713,19 +734,19 @@
                         "type": "object",
                         "properties": {
                           "starting": {
-                            "$ref": "#/$defs/__schema24"
+                            "$ref": "#/$defs/__schema26"
                           },
                           "ending": {
                             "type": "object",
                             "properties": {
                               "success": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema26"
                               },
                               "fail": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema26"
                               },
                               "retry": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema26"
                               }
                             },
                             "required": [
@@ -815,7 +836,7 @@
         "type": "string"
       },
       "additionalProperties": {
-        "$ref": "#/$defs/__schema25"
+        "$ref": "#/$defs/__schema27"
       }
     }
   },
@@ -1939,6 +1960,11 @@
       "additionalProperties": false
     },
     "__schema22": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    },
+    "__schema23": {
       "type": "object",
       "properties": {
         "id": {
@@ -2035,7 +2061,7 @@
       ],
       "additionalProperties": false
     },
-    "__schema23": {
+    "__schema24": {
       "type": "object",
       "properties": {
         "id": {
@@ -2060,7 +2086,12 @@
       ],
       "additionalProperties": false
     },
-    "__schema24": {
+    "__schema25": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    },
+    "__schema26": {
       "type": "object",
       "properties": {
         "showDefaultContent": {
@@ -2075,7 +2106,7 @@
       },
       "additionalProperties": false
     },
-    "__schema25": {
+    "__schema27": {
       "anyOf": [
         {
           "type": "string"
@@ -2092,7 +2123,7 @@
         {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/__schema25"
+            "$ref": "#/$defs/__schema27"
           }
         },
         {
@@ -2101,7 +2132,7 @@
             "type": "string"
           },
           "additionalProperties": {
-            "$ref": "#/$defs/__schema25"
+            "$ref": "#/$defs/__schema27"
           }
         }
       ]

@@ -16,16 +16,13 @@ export type PublishedLessonPropsResource = {
 
 /**
  * Published overrides never replace Lesson identity or language scope.
- * Nested section/flashcard/question arrays are complete atomic Props values,
- * not recursively partial entries. Avoid recursively expanding all Question
- * variants through DeepPartial in public assembler contracts.
+ * Nested Section arrays are complete atomic Props values, not recursively
+ * partial entries. Question/Flashcard resources are published independently.
  */
 export type LessonOverrideFragment = {
   params?: DeepPartial<Omit<Lesson_Props['params'], 'languages'>>;
   locale?: DeepPartial<Lesson_Props['locale']>;
   section?: Lesson_PropsBase['section'];
-  flashcards?: Lesson_PropsBase['flashcards'];
-  questions?: Lesson_PropsBase['questions'];
   events?: Lesson_Props['events'];
 };
 

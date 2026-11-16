@@ -18,7 +18,7 @@ describe('Configurators', () => {
         locale: { value: { en: 'Read', uk: 'Читай' } },
       });
       const quizParams = {
-        selection: { mode: 'sample' as const, count: 3 },
+        selection: { mode: 'sample' as const, questionIds: [id('c2'), id('c3'), id('c4')], count: 3 },
         layout: { mode: 'stepper' as const, showProgress: true },
         feedbackMode: 'after-completion' as const,
         interaction: {
@@ -149,6 +149,27 @@ describe('Configurators', () => {
               content: { items: { prompt }, order: ['prompt'] },
             }),
           /unknown ContentBlock/,
+        );
+      });
+
+      test('Quiz requires stable explicit unique Question UUIDs and valid sample bounds', () => {
+        const quiz = makeQuiz();
+        assert.deepEqual(quiz.build.props({ languages: ['en'] }).base.params.selection.questionIds, [id('c2'), id('c3'), id('c4')]);
+        assert.throws(
+          () => quiz.build.overrides({ params: { selection: { questionIds: [] } } }, { languages: ['en'] }),
+          /nonempty|too_small|Invalid|array/i,
+        );
+        assert.throws(
+          () => quiz.build.overrides({ params: { selection: { questionIds: [id('c2'), id('c2')] } } }, { languages: ['en'] }),
+          /unique|Duplicate|Invalid/,
+        );
+        assert.throws(
+          () => quiz.build.overrides({ params: { selection: { count: 4 } } }, { languages: ['en'] }),
+          /sample count/,
+        );
+        assert.throws(
+          () => quiz.build.overrides({ params: { selection: { questionIds: ['not-a-uuid'] } } }, { languages: ['en'] }),
+          /uuid|Invalid/,
         );
       });
 

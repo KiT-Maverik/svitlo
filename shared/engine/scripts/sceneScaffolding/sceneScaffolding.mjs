@@ -39,13 +39,13 @@ function noSymlinks(location) {
 function resolveSource(source, repo) {
   const location = path.resolve(repo, source);
   noSymlinks(location);
-  const file = fs.statSync(location).isDirectory() ? path.join(location, 'config.yaml') : location;
-  if (path.basename(file) !== 'config.yaml') throw new Error('Expected a Lesson config.yaml');
+  const file = fs.statSync(location).isDirectory() ? path.join(location, 'lesson.yaml') : location;
+  if (path.basename(file) !== 'lesson.yaml') throw new Error('Expected a Lesson lesson.yaml');
   noSymlinks(file);
-  if (!fs.statSync(file).isFile()) throw new Error('Expected a regular config.yaml');
+  if (!fs.statSync(file).isFile()) throw new Error('Expected a regular lesson.yaml');
   const relative = path.relative(repo, file).split(path.sep).join('/');
-  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/.+\/config\.yaml$/.exec(relative);
-  if (!match) throw new Error('Lesson config.yaml must be inside content/<book>/');
+  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/.+\/lesson\.yaml$/.exec(relative);
+  if (!match) throw new Error('Lesson lesson.yaml must be inside content/<book>/');
   const bookRoot = path.join(repo, 'content', match[1]);
   return { file, bookRoot };
 }
@@ -96,11 +96,11 @@ function readScenes(file) {
   const document = yaml.parseDocument(fs.readFileSync(file, 'utf8'), {
     strict: true, uniqueKeys: true, version: '1.2',
   });
-  if (document.errors.length) throw new Error('config.yaml: ' + document.errors.map(x => x.message).join('; '));
+  if (document.errors.length) throw new Error('lesson.yaml: ' + document.errors.map(x => x.message).join('; '));
   const { config, documentLanguage, tasks } = splitScaffoldDocument(document.toJS({ maxAliasCount: 0 }));
-  if (config.type !== 'lesson') throw new Error('config.yaml: expected a Lesson root');
+  if (config.type !== 'lesson') throw new Error('lesson.yaml: expected a Lesson root');
   if (typeof documentLanguage !== 'string' || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(documentLanguage))
-    throw new Error('config.yaml: production.documentLanguage is required');
+    throw new Error('lesson.yaml: production.documentLanguage is required');
   const specs = new Map();
   for (const task of tasks) {
     if (task.type !== 'scene') continue;
@@ -262,9 +262,9 @@ export function main(args = process.argv.slice(2), repo = repoRoot) {
     if (rest[i] === '--source' && rest[i + 1] && source === undefined) source = rest[i + 1];
     else if (rest[i] === '--scene-id' && rest[i + 1] && selectedSceneId === undefined)
       selectedSceneId = rest[i + 1];
-    else throw new Error('Usage: sceneScaffolding.mjs generate|check --source content/<book>/.../config.yaml [--scene-id UUID]');
+    else throw new Error('Usage: sceneScaffolding.mjs generate|check --source content/<book>/.../lesson.yaml [--scene-id UUID]');
   }
-  if (!source) throw new Error('Scene scaffolding needs an explicit --source Lesson config.yaml');
+  if (!source) throw new Error('Scene scaffolding needs an explicit --source Lesson lesson.yaml');
   const results = runOne(source, mode, repo, selectedSceneId);
   for (const result of results)
     console.log(result.skipped

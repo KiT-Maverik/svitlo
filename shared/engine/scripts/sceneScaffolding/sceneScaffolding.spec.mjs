@@ -50,7 +50,7 @@ function fixture(t) {
     },
     production: { documentLanguage: 'uk' },
   };
-  const save = () => fs.writeFileSync(path.join(source, 'config.yaml'), yaml.stringify(config));
+  const save = () => fs.writeFileSync(path.join(source, 'lesson.yaml'), yaml.stringify(config));
   save();
   const folder = id => path.join(book, 'scenes', id.at(-1), id);
   return { repo, book, source, config, save, folder, scene };
@@ -161,7 +161,7 @@ test('rejects invalid textbook setup, symlinks, malformed YAML, and unsafe input
   fs.writeFileSync(manifest, JSON.stringify({ name: '@svitlo/playground' }));
   assert.throws(() => runOne(f.source, 'generate', f.repo), /not Scene-ready/);
   fs.writeFileSync(manifest, old);
-  fs.writeFileSync(path.join(f.source, 'config.yaml'), 'config: [bad\n');
+  fs.writeFileSync(path.join(f.source, 'lesson.yaml'), 'config: [bad\n');
   assert.throws(() => runOne(f.source, 'generate', f.repo));
   f.save();
   const output = f.folder(sceneId);
@@ -190,11 +190,11 @@ test('CLI only acts on an explicit source and select option', t => {
 
 test('rendered files are deterministic and no Scene scaffolding edits Lesson data', t => {
   const f = fixture(t);
-  const configBefore = fs.readFileSync(path.join(f.source, 'config.yaml'), 'utf8');
+  const configBefore = fs.readFileSync(path.join(f.source, 'lesson.yaml'), 'utf8');
   const scene = { id: sceneId, component: 'DemoScene', specification: 'Spec', documentLanguage: 'qm' };
   const rendered = renderSceneFiles(scene);
   assert.deepEqual([...rendered], [...renderSceneFiles(scene)]);
   assert.deepEqual(runOne(f.source, 'generate', f.repo)[0].changed, 7);
-  assert.equal(fs.readFileSync(path.join(f.source, 'config.yaml'), 'utf8'), configBefore);
-  assert.deepEqual(fs.readdirSync(f.source), ['config.yaml']);
+  assert.equal(fs.readFileSync(path.join(f.source, 'lesson.yaml'), 'utf8'), configBefore);
+  assert.deepEqual(fs.readdirSync(f.source), ['lesson.yaml']);
 });
