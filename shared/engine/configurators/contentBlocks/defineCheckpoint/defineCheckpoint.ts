@@ -140,10 +140,10 @@ export const defineCheckpoint = <
     content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
   } & ConfigWithLanguages<ContentBlock_Checkpoint_Config, Languages>,
 ) => {
-  validate(config);
   // Snapshot only serializable metadata. Children are immutable configurator references.
   const metadataSchema = checkpoint_Config_Schema.omit({ content: true });
-  const authored = metadataSchema.parse(config);
+  const { content: _content, ...metadataInput } = config;
+  const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
@@ -232,6 +232,7 @@ export const defineCheckpoint = <
     options: PublicationLanguageOptions<Languages>,
   ): CheckpointPublication<ContentBlock_Checkpoint_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);
     const built = buildContent(initialItems, initialOrder, languages);
@@ -262,6 +263,7 @@ export const defineCheckpoint = <
   ): CheckpointPublication<CheckpointOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
       if (!isObject(patch)) throw new Error('Expected an overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'content'].includes(key)) {

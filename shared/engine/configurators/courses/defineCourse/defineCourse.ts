@@ -176,9 +176,9 @@ export const defineCourse = <
     params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
   },
 ): Course_Configurator<Slug, Items, Languages> => {
-  validate(config as unknown as Course_Config);
   const metadataSchema = course_Config_Schema.omit({ content: true });
-  const authored = metadataSchema.parse(config);
+  const { content: _content, ...metadataInput } = config;
+  const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
@@ -269,6 +269,7 @@ export const defineCourse = <
 
   const props = (options: PublicationLanguageOptions<Languages>): CoursePublication<CoursePropsBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     for (const language of languages) {
       if (!metadata.params.languages.includes(language)) {
@@ -313,6 +314,7 @@ export const defineCourse = <
   ): CoursePublication<CourseOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
       for (const language of languages) {
         if (!authored.params.languages.includes(language)) {
           throw new Error('Course does not support publication language: ' + language);

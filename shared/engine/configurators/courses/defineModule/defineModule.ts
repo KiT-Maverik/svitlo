@@ -169,9 +169,9 @@ export const defineModule = <
     locale: RequireLanguages<Module_Config['locale'], Languages>;
   },
 ): Module_Configurator<Slug, Items, Languages> => {
-  validate(config);
   const metadataSchema = module_Config_Schema.omit({ content: true });
-  const authored = metadataSchema.parse(config);
+  const { content: _content, ...metadataInput } = config;
+  const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
@@ -262,6 +262,7 @@ export const defineModule = <
 
   const props = (options: PublicationLanguageOptions<Languages>): ModulePublication<ModulePropsBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);
     const children = buildContent(initialItems, initialOrder, languages);
@@ -301,6 +302,7 @@ export const defineModule = <
   ): ModulePublication<ModuleOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
       if (!isRecord(patch)) throw new Error('Expected Module overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'content'].includes(key)) throw new Error('Unknown Module override field: ' + key);
