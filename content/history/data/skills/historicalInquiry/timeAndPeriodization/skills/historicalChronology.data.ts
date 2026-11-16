@@ -5,6 +5,7 @@ export const historicalChronology_Skill_Data = defineSkill({
   id: '731b09d8-2c26-4b6b-b7a5-234dd9908b35',
   name: {
     en: 'Historical Chronology',
+    it: "Cronologia storica",
     zh: '历史年代顺序',
     hi: 'ऐतिहासिक कालक्रम',
     es: 'Cronología histórica',
@@ -39,6 +40,7 @@ export const historicalChronology_Skill_Data = defineSkill({
       'Establish the sequence, duration, and simultaneity of events without assuming temporal order alone establishes causation.',
     frontend: {
       en: 'Place events in order and recognize when they happened together.',
+      it: "Disponi gli eventi in ordine e riconosci quando si verificarono contemporaneamente.",
       zh: '将事件按顺序排列，并识别哪些事件同时发生。',
       hi: 'घटनाओं को क्रम में रखें और पहचानें कि कौन-सी एक ही समय में हुईं।',
       es: 'Ordena los acontecimientos e identifica cuáles ocurrieron al mismo tiempo.',

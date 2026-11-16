@@ -5,6 +5,7 @@ export const egyptianIntermediatePeriods_Skill_Data = defineSkill({
   id: '1d5fde05-c710-40bf-b3e5-4ed57fe8132d',
   name: {
     en: 'Egyptian Intermediate Periods',
+    it: "Periodi intermedi dell'Egitto",
     zh: '埃及各中间期',
     hi: 'मिस्र के मध्यवर्ती काल',
     es: 'Períodos intermedios de Egipto',
@@ -39,6 +40,7 @@ export const egyptianIntermediatePeriods_Skill_Data = defineSkill({
       'Explain varied changes of dynasty and decentralization between centralized eras without treating them as total collapse.',
     frontend: {
       en: 'Understand why Egyptian rule was sometimes divided among competing powers.',
+      it: "Comprendi perché il potere in Egitto fu talvolta diviso tra autorità rivali.",
       zh: '理解为何埃及统治有时分散于相互竞争的势力之间。',
       hi: 'समझें कि मिस्र की सत्ता कभी-कभी प्रतिस्पर्धी शक्तियों में क्यों बँटी थी।',
       es: 'Comprende por qué el gobierno egipcio a veces se repartía entre poderes rivales.',

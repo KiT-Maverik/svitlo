@@ -13,6 +13,7 @@ export const saharaAndSubSaharanAfrica_SkillGroup_Data = defineSkillGroup({
   id: '2050434f-3ac0-4400-8563-828fd54ff8b8',
   name: {
     en: 'Sahara and Sub-Saharan Africa',
+    it: "Sahara e Africa subsahariana",
     zh: '撒哈拉及撒哈拉以南非洲',
     hi: 'सहारा और उप-सहारा अफ्रीका',
     es: 'Sáhara y África subsahariana',
@@ -63,6 +64,7 @@ export const saharaAndSubSaharanAfrica_SkillGroup_Data = defineSkillGroup({
       'Environmental change, diverse livelihoods, and local technologies shaped societies beyond the Nile states.',
     frontend: {
       en: 'Explore early African cultures across the Sahara and farther south.',
+      it: "Esplora le prime culture africane nel Sahara e nelle regioni più a sud.",
       zh: '探索撒哈拉及更南方的早期非洲文化。',
       hi: 'सहारा तथा उससे दक्षिण की प्रारंभिक अफ्रीकी संस्कृतियों को जानें।',
       es: 'Explora culturas africanas tempranas en el Sáhara y más al sur.',

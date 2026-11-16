@@ -5,6 +5,7 @@ export const mayaWriting_Skill_Data = defineSkill({
   id: '4de1f105-27c1-4513-9345-76470c9a9264',
   name: {
     en: 'Maya Writing',
+    it: "Scrittura maya",
     zh: '玛雅文字',
     hi: 'माया लिपि',
     es: 'Escritura maya',
@@ -38,6 +39,7 @@ export const mayaWriting_Skill_Data = defineSkill({
     methodological: 'Explain logosyllabic writing in political texts and calendar records.',
     frontend: {
       en: 'Understand how Maya writing recorded language and dates.',
+      it: "Comprendi come la scrittura maya registrava la lingua e le date.",
       zh: '了解玛雅文字如何记录语言和日期。',
       hi: 'जानें कि माया लिपि भाषा और तिथियाँ कैसे दर्ज करती थी।',
       es: 'Comprende cómo la escritura maya registraba el lenguaje y las fechas.',

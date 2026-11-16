@@ -13,6 +13,7 @@ export const mesoamerica_SkillGroup_Data = defineSkillGroup({
   id: 'dd189fec-807f-47ae-b575-3c8dfa34ae53',
   name: {
     en: 'Mesoamerica',
+    it: "Mesoamerica",
     zh: '中美洲古代文明区',
     hi: 'मेसोअमेरिका',
     es: 'Mesoamérica',
@@ -57,6 +58,7 @@ export const mesoamerica_SkillGroup_Data = defineSkillGroup({
       'Independent urban centers, monumental ritual spaces, writing, and polities developed before European colonization.',
     frontend: {
       en: 'Explore the ancient cities and cultures of Mesoamerica.',
+      it: "Esplora le antiche città e culture della Mesoamerica.",
       zh: '探索中美洲古代文明区的城市与文化。',
       hi: 'मेसोअमेरिका के प्राचीन नगरों और संस्कृतियों के बारे में जानें।',
       es: 'Explora las ciudades y culturas antiguas de Mesoamérica.',

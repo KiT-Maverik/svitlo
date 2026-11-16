@@ -12,6 +12,7 @@ export const greekCultureAndIdeas_SkillGroup_Data = defineSkillGroup({
   id: 'f5e5caa8-dff9-4db1-ad33-7d6fcb46f407',
   name: {
     en: 'Greek Culture and Intellectual Traditions',
+    it: "Cultura greca e tradizioni intellettuali",
     zh: '古希腊文化与思想传统',
     hi: 'यूनानी संस्कृति और बौद्धिक परंपराएँ',
     es: 'Cultura e ideas de la Grecia antigua',
@@ -55,6 +56,7 @@ export const greekCultureAndIdeas_SkillGroup_Data = defineSkillGroup({
       'Greek religion, philosophy, and art varied across communities and periods rather than forming one fixed culture.',
     frontend: {
       en: 'Discover the diversity of ancient Greek beliefs, thought and art.',
+      it: "Scopri la diversità delle credenze, del pensiero e dell'arte nell'antica Grecia.",
       zh: '了解古希腊信仰、思想与艺术的多样性。',
       hi: 'प्राचीन यूनानी मान्यताओं, चिंतन और कला की विविधता जानें।',
       es: 'Descubre la diversidad de creencias, pensamiento y arte de la Grecia antigua.',

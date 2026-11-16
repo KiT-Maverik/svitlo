@@ -12,6 +12,7 @@ export const nubiaAndKush_SkillGroup_Data = defineSkillGroup({
   id: '17daa14b-d8b4-40b9-af0b-b37ed9037d3b',
   name: {
     en: 'Nubia and Kush',
+    it: "Nubia e Kush",
     zh: '努比亚与库施',
     hi: 'नूबिया और कुश',
     es: 'Nubia y Kush',
@@ -55,6 +56,7 @@ export const nubiaAndKush_SkillGroup_Data = defineSkillGroup({
       'Middle Nile societies formed independent political and cultural centers with complex relations to Egypt.',
     frontend: {
       en: 'Discover the independent societies of ancient Nubia and Kush.',
+      it: "Scopri le società indipendenti dell'antica Nubia e di Kush.",
       zh: '了解古代努比亚和库施的独立社会。',
       hi: 'प्राचीन नूबिया और कुश के स्वतंत्र समाजों को जानें।',
       es: 'Descubre las sociedades independientes de la antigua Nubia y Kush.',

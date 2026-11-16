@@ -5,6 +5,7 @@ export const greekCitiesOfBlackSea_Skill_Data = defineSkill({
   id: '50852105-81fb-4d81-9dcd-a1284247c102',
   name: {
     en: 'Greek Cities of the Black Sea',
+    it: "Città greche del Mar Nero",
     zh: '黑海沿岸的希腊城市',
     hi: 'काला सागर तट के यूनानी नगर',
     es: 'Ciudades griegas del mar Negro',
@@ -39,6 +40,7 @@ export const greekCitiesOfBlackSea_Skill_Data = defineSkill({
       'Study civic life and trade at Olbia, Chersonesus, and Panticapaeum and interaction with nearby peoples.',
     frontend: {
       en: 'Explore Greek cities along the northern Black Sea coast.',
+      it: "Esplora le città greche lungo la costa settentrionale del Mar Nero.",
       zh: '探索黑海北岸的希腊城市。',
       hi: 'काला सागर के उत्तरी तट पर बसे यूनानी नगरों का अध्ययन करें।',
       es: 'Explora las ciudades griegas de la costa septentrional del mar Negro.',

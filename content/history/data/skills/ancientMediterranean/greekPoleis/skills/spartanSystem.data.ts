@@ -5,6 +5,7 @@ export const spartanSystem_Skill_Data = defineSkill({
   id: '4ad0d126-aaab-4b8b-b912-2a31e6a979b0',
   name: {
     en: 'Spartan System',
+    it: "Sistema spartano",
     zh: '斯巴达制度',
     hi: 'स्पार्टा की व्यवस्था',
     es: 'Sistema espartano',
@@ -39,6 +40,7 @@ export const spartanSystem_Skill_Data = defineSkill({
       "Analyze distinctive Spartan political and educational institutions and dependent labor's role in its economy.",
     frontend: {
       en: 'Discover how Sparta organized government, training and labor.',
+      it: "Scopri come Sparta organizzava il governo, l'addestramento e il lavoro.",
       zh: '了解斯巴达如何组织政府、训练与劳动。',
       hi: 'जानें कि स्पार्टा में शासन, प्रशिक्षण और श्रम कैसे संगठित थे।',
       es: 'Descubre cómo Esparta organizaba el gobierno, la formación y el trabajo.',

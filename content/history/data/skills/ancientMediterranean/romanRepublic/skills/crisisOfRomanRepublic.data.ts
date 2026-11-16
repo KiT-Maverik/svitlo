@@ -5,6 +5,7 @@ export const crisisOfRomanRepublic_Skill_Data = defineSkill({
   id: '74f4d5db-3b0a-4dfd-8aae-becf79e3934a',
   name: {
     en: 'Crisis of the Roman Republic',
+    it: "Crisi della Repubblica romana",
     zh: '罗马共和国危机',
     hi: 'रोमन गणराज्य का संकट',
     es: 'Crisis de la República romana',
@@ -38,6 +39,7 @@ export const crisisOfRomanRepublic_Skill_Data = defineSkill({
     methodological: 'Connect expansion, personal armies, and civil wars with the weakening of republican governance.',
     frontend: {
       en: 'Understand why Roman republican government became unstable.',
+      it: "Comprendi perché il governo repubblicano romano divenne instabile.",
       zh: '理解罗马共和政体为何逐渐变得不稳定。',
       hi: 'समझें कि रोमन गणराज्य की शासन-व्यवस्था अस्थिर क्यों हो गई।',
       es: 'Comprende por qué se volvió inestable el gobierno republicano de Roma.',

@@ -11,6 +11,7 @@ export const ancientAfrica_SkillDomain_Data = defineSkillDomain({
   id: 'c73e038b-1bfd-421b-adb5-b75dd00cebb0',
   title: {
     en: 'Africa',
+    it: "Africa",
     zh: '非洲',
     hi: 'अफ्रीका',
     es: 'África',
@@ -55,6 +56,7 @@ export const ancientAfrica_SkillDomain_Data = defineSkillDomain({
       "Africa's ancient history extends beyond the Nile through independent political traditions, migrations, crafts, trade, and adaptation to varied environments.",
     frontend: {
       en: 'Explore the varied societies and cultures of ancient Africa.',
+      it: "Esplora le diverse società e culture dell'Africa antica.",
       zh: '探索古代非洲多样的社会与文化。',
       hi: 'प्राचीन अफ्रीका के विविध समाजों और संस्कृतियों के बारे में जानें।',
       es: 'Explora las diversas sociedades y culturas del África antigua.',

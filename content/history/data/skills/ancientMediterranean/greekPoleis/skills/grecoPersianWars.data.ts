@@ -5,6 +5,7 @@ export const grecoPersianWars_Skill_Data = defineSkill({
   id: '9d3601dc-9908-460c-bc66-07c4d1da51b3',
   name: {
     en: 'Greco-Persian Wars',
+    it: "Guerre greco-persiane",
     zh: '希波战争',
     hi: 'यूनानी-फ़ारसी युद्ध',
     es: 'Guerras médicas',
@@ -39,6 +40,7 @@ export const grecoPersianWars_Skill_Data = defineSkill({
       'Trace major conflicts between Achaemenid Persia and coalitions of Greek poleis and changes in regional power.',
     frontend: {
       en: 'Understand the wars between Greek city-states and Persia.',
+      it: "Comprendi le guerre tra le città-Stato greche e la Persia.",
       zh: '了解希腊城邦与波斯之间的战争。',
       hi: 'यूनानी नगर-राज्यों और फ़ारस के बीच हुए युद्धों को समझें।',
       es: 'Comprende las guerras entre las ciudades-Estado griegas y Persia.',

@@ -14,6 +14,7 @@ export const greekPoleis_SkillGroup_Data = defineSkillGroup({
   id: '1e05f5d6-12d6-4c51-bb52-8e99b0cf3bfe',
   name: {
     en: 'Greek Poleis',
+    it: "Poleis greche",
     zh: '希腊城邦',
     hi: 'यूनानी नगर-राज्य',
     es: 'Ciudades-Estado griegas',
@@ -66,6 +67,7 @@ export const greekPoleis_SkillGroup_Data = defineSkillGroup({
       'Self-governing citizen communities varied in political institutions, warfare, and who possessed political rights.',
     frontend: {
       en: 'Compare how different Greek city-states were governed.',
+      it: "Confronta i modi in cui erano governate le diverse città-Stato greche.",
       zh: '比较不同希腊城邦的治理方式。',
       hi: 'तुलना करें कि अलग-अलग यूनानी नगर-राज्य कैसे शासित थे।',
       es: 'Compara cómo se gobernaban las distintas ciudades-Estado griegas.',

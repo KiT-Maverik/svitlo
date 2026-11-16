@@ -5,6 +5,7 @@ export const warringStatesPeriod_Skill_Data = defineSkill({
   id: '7a900550-760b-45c2-97c9-1205f29d8494',
   name: {
     en: 'Warring States Period',
+    it: "Periodo degli Stati Combattenti",
     zh: '战国时期',
     hi: 'युद्धरत राज्यों का काल',
     es: 'Período de los Reinos Combatientes',
@@ -38,6 +39,7 @@ export const warringStatesPeriod_Skill_Data = defineSkill({
     methodological: "Examine military and administrative reforms before China's political unification.",
     frontend: {
       en: 'Discover how Warring States governments competed and reformed.',
+      it: "Scopri come i governi degli Stati Combattenti si sfidavano e attuavano riforme.",
       zh: '了解战国时代各国政府如何竞争并进行改革。',
       hi: 'जानें कि युद्धरत राज्यों की सरकारों ने कैसे प्रतिस्पर्धा की और सुधार किए।',
       es: 'Descubre cómo los gobiernos de los Reinos Combatientes compitieron y se reformaron.',

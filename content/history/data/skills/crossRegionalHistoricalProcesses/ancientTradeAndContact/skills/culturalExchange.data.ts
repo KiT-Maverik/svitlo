@@ -5,6 +5,7 @@ export const culturalExchange_Skill_Data = defineSkill({
   id: '36b9a1f5-8271-4fcc-8370-ee03344feb42',
   name: {
     en: 'Cultural Exchange',
+    it: "Scambi culturali",
     zh: '文化交流与相互影响',
     hi: 'सांस्कृतिक आदान-प्रदान',
     es: 'Intercambio cultural',
@@ -39,6 +40,7 @@ export const culturalExchange_Skill_Data = defineSkill({
       'Distinguish contact, imitation, and deliberate local reinterpretation of religious, artistic, and political practices.',
     frontend: {
       en: 'Discover how people adapted cultural ideas through exchange.',
+      it: "Scopri come le persone adattavano idee culturali attraverso gli scambi.",
       zh: '了解人们如何通过交流吸收并改变文化观念。',
       hi: 'जानें कि लोग संपर्क के माध्यम से सांस्कृतिक विचार अपनाकर उन्हें कैसे बदलते थे।',
       es: 'Descubre cómo las personas adaptaban ideas culturales mediante el intercambio.',

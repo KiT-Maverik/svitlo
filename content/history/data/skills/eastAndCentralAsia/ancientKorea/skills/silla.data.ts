@@ -5,6 +5,7 @@ export const silla_Skill_Data = defineSkill({
   id: '06470589-cc59-44df-9cc2-a57c0889b464',
   name: {
     en: 'Silla',
+    it: "Silla",
     zh: '新罗',
     hi: 'शिल्ला',
     es: 'Silla',
@@ -38,6 +39,7 @@ export const silla_Skill_Data = defineSkill({
     methodological: 'Trace gradual state formation in southeastern Korea and development of institutions.',
     frontend: {
       en: 'Explore how Silla developed from regional communities.',
+      it: "Esplora come Silla si sviluppò a partire da comunità regionali.",
       zh: '探索新罗如何从地方社群发展起来。',
       hi: 'जानें कि शिल्ला क्षेत्रीय समुदायों से कैसे विकसित हुआ।',
       es: 'Explora cómo Silla se desarrolló a partir de comunidades regionales.',

@@ -13,6 +13,7 @@ export const ancientTradeAndContact_SkillGroup_Data = defineSkillGroup({
   id: '3f9f087a-f429-4c2e-8b62-d3a2d18a405a',
   name: {
     en: 'Ancient Trade and Contact',
+    it: "Commerci e contatti nell'antichità",
     zh: '古代贸易与交流',
     hi: 'प्राचीन व्यापार और संपर्क',
     es: 'Comercio y contactos antiguos',
@@ -63,6 +64,7 @@ export const ancientTradeAndContact_SkillGroup_Data = defineSkillGroup({
       'Exchange networks involved intermediaries; the spread of objects does not necessarily mean the migration of their makers.',
     frontend: {
       en: 'Discover how goods and ideas moved between distant communities.',
+      it: "Scopri come merci e idee circolavano tra comunità lontane.",
       zh: '认识商品与观念如何在相距遥远的社群之间传播。',
       hi: 'जानें कि वस्तुएँ और विचार दूर-दूर के समुदायों के बीच कैसे पहुँचे।',
       es: 'Descubre cómo circularon bienes e ideas entre comunidades lejanas.',

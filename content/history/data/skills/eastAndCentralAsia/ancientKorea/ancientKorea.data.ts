@@ -7,6 +7,7 @@ export const ancientKorea_SkillGroup_Data = defineSkillGroup({
   id: '84333876-0c5b-4758-94f2-5c28e374ec9c',
   name: {
     en: 'Korea',
+    it: "Corea",
     zh: '古代朝鲜半岛',
     hi: 'प्राचीन कोरिया',
     es: 'Corea antigua',
@@ -50,6 +51,7 @@ export const ancientKorea_SkillGroup_Data = defineSkillGroup({
       'Study early Korean and Manchurian polities through texts and archaeology that do not always corroborate traditional founding dates.',
     frontend: {
       en: 'Explore the early kingdoms of the Korean peninsula.',
+      it: "Esplora i primi regni della penisola coreana.",
       zh: '探索朝鲜半岛早期的王国。',
       hi: 'कोरियाई प्रायद्वीप के प्रारंभिक राज्यों के बारे में जानें।',
       es: 'Explora los primeros reinos de la península de Corea.',

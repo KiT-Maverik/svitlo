@@ -5,6 +5,7 @@ export const ancientIranianReligions_Skill_Data = defineSkill({
   id: '463e790e-bd52-4bf1-9c4b-3aacc577ab51',
   name: {
     en: 'Ancient Iranian Religious Beliefs',
+    it: "Credenze religiose dell'Iran antico",
     zh: '古代伊朗宗教观念',
     hi: 'प्राचीन ईरानी धार्मिक मान्यताएँ',
     es: 'Religiones del antiguo Irán',
@@ -39,6 +40,7 @@ export const ancientIranianReligions_Skill_Data = defineSkill({
       'Study ancient Iranian religious diversity and uncertainty about when Zoroastrian traditions developed.',
     frontend: {
       en: 'Explore the diverse beliefs of ancient Iran.',
+      it: "Esplora le diverse credenze dell'Iran antico.",
       zh: '探索古代伊朗多样的信仰。',
       hi: 'प्राचीन ईरान की विविध धार्मिक मान्यताओं को जानें।',
       es: 'Explora la diversidad de creencias del Irán antiguo.',

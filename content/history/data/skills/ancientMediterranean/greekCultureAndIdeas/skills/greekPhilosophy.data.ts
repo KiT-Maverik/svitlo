@@ -5,6 +5,7 @@ export const greekPhilosophy_Skill_Data = defineSkill({
   id: '97f10304-8abf-49c0-bf85-74ee40cbc24f',
   name: {
     en: 'Greek Philosophy',
+    it: "Filosofia greca",
     zh: '古希腊哲学',
     hi: 'यूनानी दर्शन',
     es: 'Filosofía griega',
@@ -39,6 +40,7 @@ export const greekPhilosophy_Skill_Data = defineSkill({
       'Trace rational inquiry into nature, ethics, and politics across different ancient philosophical schools.',
     frontend: {
       en: 'Explore questions asked by ancient Greek philosophers.',
+      it: "Esplora le domande poste dai filosofi dell'antica Grecia.",
       zh: '探索古希腊哲学家提出的各种问题。',
       hi: 'प्राचीन यूनानी दार्शनिकों द्वारा पूछे गए प्रश्नों का अध्ययन करें।',
       es: 'Explora las preguntas planteadas por los filósofos de la Grecia antigua.',

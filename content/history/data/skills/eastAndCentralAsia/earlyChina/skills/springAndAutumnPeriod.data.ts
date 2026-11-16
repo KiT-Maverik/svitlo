@@ -5,6 +5,7 @@ export const springAndAutumnPeriod_Skill_Data = defineSkill({
   id: 'b8e1ee01-28ee-4d35-9094-4ba7707f5b03',
   name: {
     en: 'Spring and Autumn Period',
+    it: "Periodo delle Primavere e degli Autunni",
     zh: '春秋时期',
     hi: 'वसंत और शरद काल',
     es: 'Período de las Primaveras y los Otoños',
@@ -38,6 +39,7 @@ export const springAndAutumnPeriod_Skill_Data = defineSkill({
     methodological: 'Analyze rivalry among states and changing political ties during the weakening of Zhou power.',
     frontend: {
       en: "Explore competing states in China's Spring and Autumn era.",
+      it: "Esplora gli Stati rivali della Cina durante il periodo delle Primavere e degli Autunni.",
       zh: '探索中国春秋时期相互竞争的诸侯国。',
       hi: 'चीन के वसंत और शरद युग में प्रतिस्पर्धी राज्यों का अध्ययन करें।',
       es: 'Explora los Estados rivales de China durante las Primaveras y los Otoños.',

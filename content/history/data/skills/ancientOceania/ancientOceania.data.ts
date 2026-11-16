@@ -8,6 +8,7 @@ export const ancientOceania_SkillDomain_Data = defineSkillDomain({
   id: '83bcaecb-a01b-450c-9e1e-540a4c4f5b12',
   title: {
     en: 'Oceania',
+    it: "Oceania",
     zh: '大洋洲',
     hi: 'ओशिनिया',
     es: 'Oceanía',
@@ -49,6 +50,7 @@ export const ancientOceania_SkillDomain_Data = defineSkillDomain({
       'The settlement of Australia and Pacific islands occurred through successive waves over a long period and required extensive environmental and navigation knowledge.',
     frontend: {
       en: 'Explore how ancient people reached and lived across Oceania.',
+      it: "Esplora come le popolazioni antiche raggiunsero le diverse regioni dell'Oceania e vi abitarono.",
       zh: '探索古代人们如何到达大洋洲各地并在那里生活。',
       hi: 'जानें कि प्राचीन लोग ओशिनिया कैसे पहुँचे और वहाँ कैसे रहे।',
       es: 'Explora cómo llegaron y vivieron las poblaciones antiguas en Oceanía.',

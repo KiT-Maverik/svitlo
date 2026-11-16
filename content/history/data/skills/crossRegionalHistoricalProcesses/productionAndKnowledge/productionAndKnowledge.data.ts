@@ -15,6 +15,7 @@ export const productionAndKnowledge_SkillGroup_Data = defineSkillGroup({
   id: '742b4358-b545-4895-9856-453f918343d0',
   name: {
     en: 'Production and Knowledge',
+    it: "Produzione e conoscenza",
     zh: '生产与知识',
     hi: 'उत्पादन और ज्ञान',
     es: 'Producción y conocimiento',
@@ -69,6 +70,7 @@ export const productionAndKnowledge_SkillGroup_Data = defineSkillGroup({
       'Evaluate material inventions and systems of information transmission by function, spread, and historical context rather than claims of being first.',
     frontend: {
       en: 'Explore how ancient societies made things and shared knowledge.',
+      it: "Esplora come le società antiche producevano beni e condividevano conoscenze.",
       zh: '探索古代社会如何制造物品与分享知识。',
       hi: 'जानें कि प्राचीन समाज वस्तुएँ कैसे बनाते और ज्ञान कैसे बाँटते थे।',
       es: 'Explora cómo las sociedades antiguas fabricaban objetos y compartían conocimientos.',

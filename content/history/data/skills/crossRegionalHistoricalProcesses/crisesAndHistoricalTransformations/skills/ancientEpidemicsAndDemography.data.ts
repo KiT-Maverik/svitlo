@@ -5,6 +5,7 @@ export const ancientEpidemicsAndDemography_Skill_Data = defineSkill({
   id: '52ac19c6-3abd-4366-a611-a7ee346c9702',
   name: {
     en: 'Ancient Epidemics and Demography',
+    it: "Epidemie e demografia nell'antichità",
     zh: '古代流行病与人口变化',
     hi: 'प्राचीन महामारी और जनसांख्यिकी',
     es: 'Epidemias antiguas y demografía',
@@ -39,6 +40,7 @@ export const ancientEpidemicsAndDemography_Skill_Data = defineSkill({
       'Assess possible effects of disease, movement, and population change while recognizing limited evidence.',
     frontend: {
       en: 'Explore what historians can learn about ancient epidemics.',
+      it: "Esplora che cosa possono apprendere gli storici sulle epidemie antiche.",
       zh: '探索历史学家能从古代流行病中了解到什么。',
       hi: 'जानें कि इतिहासकार प्राचीन महामारियों के बारे में क्या पता लगा सकते हैं।',
       es: 'Explora qué pueden averiguar los historiadores sobre las epidemias antiguas.',

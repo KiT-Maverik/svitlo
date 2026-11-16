@@ -5,6 +5,7 @@ export const arabianTradeRoutes_Skill_Data = defineSkill({
   id: '712b06da-067a-44c2-832a-ab908c8d3d66',
   name: {
     en: 'Arabian Trade Routes',
+    it: "Rotte commerciali arabe",
     zh: '阿拉伯贸易路线',
     hi: 'अरब व्यापार मार्ग',
     es: 'Rutas comerciales de Arabia',
@@ -38,6 +39,7 @@ export const arabianTradeRoutes_Skill_Data = defineSkill({
     methodological: 'Trace incense and other goods across Arabia, the Red Sea, Africa, and the Mediterranean.',
     frontend: {
       en: 'Follow ancient trade routes carrying incense and other products.',
+      it: "Segui le antiche rotte commerciali lungo le quali viaggiavano incenso e altri prodotti.",
       zh: '追踪运送乳香等商品的古代贸易路线。',
       hi: 'धूप और अन्य वस्तुएँ ले जाने वाले प्राचीन व्यापार मार्गों का पता लगाएँ।',
       es: 'Sigue antiguas rutas comerciales que transportaban incienso y otros productos.',

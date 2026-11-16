@@ -5,6 +5,7 @@ export const steppePastoralism_Skill_Data = defineSkill({
   id: 'cf23c273-e419-4b84-83e1-e1ba9526ac9e',
   name: {
     en: 'Steppe Pastoralism',
+    it: "Pastorizia nelle steppe",
     zh: '草原畜牧业',
     hi: 'स्तेपी पशुपालन',
     es: 'Pastoreo de las estepas',
@@ -38,6 +39,7 @@ export const steppePastoralism_Skill_Data = defineSkill({
     methodological: 'Examine seasonal mobility, ecology, social relations, and mixed herding and trade economies.',
     frontend: {
       en: 'Discover why steppe communities moved with their livestock.',
+      it: "Scopri perché le comunità delle steppe si spostavano con il bestiame.",
       zh: '了解草原社群为何随牲畜迁移。',
       hi: 'जानें कि स्तेपी समुदाय अपने पशुओं के साथ क्यों घूमते थे।',
       es: 'Descubre por qué las comunidades de las estepas se desplazaban con su ganado.',

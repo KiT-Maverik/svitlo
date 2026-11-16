@@ -5,6 +5,7 @@ export const emergenceOfUrbanCenters_Skill_Data = defineSkill({
   id: '4dad3ccf-d73a-4f94-a89d-15857aa8584a',
   name: {
     en: 'Emergence of Urban Centers',
+    it: "Nascita dei centri urbani",
     zh: '早期城市中心的出现',
     hi: 'शहरी केंद्रों का उद्भव',
     es: 'Surgimiento de los centros urbanos',
@@ -39,6 +40,7 @@ export const emergenceOfUrbanCenters_Skill_Data = defineSkill({
       'Assess concentrations of people, craft, power, and exchange and distinguish a city by functions rather than size alone.',
     frontend: {
       en: 'Explore how the first urban centers differed from large villages.',
+      it: "Esplora in che cosa i primi centri urbani differivano dai grandi villaggi.",
       zh: '探索最早的城市中心与大型村庄有何不同。',
       hi: 'जानें कि शुरुआती शहरी केंद्र बड़े गाँवों से किस तरह अलग थे।',
       es: 'Explora en qué se diferenciaban los primeros centros urbanos de las aldeas grandes.',

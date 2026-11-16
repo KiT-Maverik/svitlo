@@ -5,6 +5,7 @@ export const ancientWorkAndOccupations_Skill_Data = defineSkill({
   id: '646c325c-aa48-48fe-9789-4a5ac486edd5',
   name: {
     en: 'Ancient Work and Occupations',
+    it: "Lavori e mestieri nell'antichità",
     zh: '古代劳动与职业',
     hi: 'प्राचीन श्रम और व्यवसाय',
     es: 'Trabajo y oficios en la Antigüedad',
@@ -38,6 +39,7 @@ export const ancientWorkAndOccupations_Skill_Data = defineSkill({
     methodological: 'Examine agriculture, crafts, exchange, household work, and forms of dependent labor.',
     frontend: {
       en: 'Explore the many kinds of work done in the ancient world.',
+      it: "Esplora i numerosi tipi di lavoro svolti nel mondo antico.",
       zh: '探索古代世界的各种劳动形式。',
       hi: 'प्राचीन दुनिया में किए जाने वाले तरह-तरह के कामों को जानें।',
       es: 'Explora los distintos tipos de trabajo del mundo antiguo.',

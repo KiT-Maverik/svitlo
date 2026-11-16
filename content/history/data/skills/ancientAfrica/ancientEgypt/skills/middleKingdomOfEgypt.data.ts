@@ -5,6 +5,7 @@ export const middleKingdomOfEgypt_Skill_Data = defineSkill({
   id: 'f767eadf-8fa8-4a2c-a19e-77e1f411c005',
   name: {
     en: 'Middle Kingdom of Egypt',
+    it: "Medio Regno d'Egitto",
     zh: '埃及中王国',
     hi: 'मिस्र का मध्य साम्राज्य',
     es: 'Imperio Medio de Egipto',
@@ -39,6 +40,7 @@ export const middleKingdomOfEgypt_Skill_Data = defineSkill({
       'Trace renewed centralization, administrative change, and interests in Nubia during Dynasties XI–XIII.',
     frontend: {
       en: 'Explore how the Middle Kingdom restored and expanded Egyptian power.',
+      it: "Esplora come il Medio Regno ristabilì e ampliò il potere dell'Egitto.",
       zh: '探索中王国如何恢复并扩大埃及的国力。',
       hi: 'जानें कि मध्य साम्राज्य ने मिस्र की शक्ति कैसे पुनर्स्थापित और विस्तारित की।',
       es: 'Explora cómo el Imperio Medio recuperó y amplió el poder egipcio.',

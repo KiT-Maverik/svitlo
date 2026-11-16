@@ -5,6 +5,7 @@ export const politicalDeclineAndContinuity_Skill_Data = defineSkill({
   id: '5986f95f-1b05-4363-b14b-5394bbf52366',
   name: {
     en: 'Political Decline and Continuity',
+    it: "Declino e continuità politica",
     zh: '政治衰落与社会延续',
     hi: 'राजनीतिक पतन और निरंतरता',
     es: 'Declive político y continuidad',
@@ -39,6 +40,7 @@ export const politicalDeclineAndContinuity_Skill_Data = defineSkill({
       'Distinguish the fall of a political institution from the persistence of communities, languages, and practices.',
     frontend: {
       en: "Understand why a state's collapse need not mean its people's disappearance.",
+      it: "Comprendi perché il crollo di uno Stato non implica necessariamente la scomparsa della sua popolazione.",
       zh: '理解国家政权崩溃并不意味着其人民消失。',
       hi: 'समझें कि राज्य के पतन का मतलब उसके लोगों का गायब हो जाना नहीं है।',
       es: 'Comprende por qué la caída de un Estado no significa que su población desaparezca.',

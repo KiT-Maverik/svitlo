@@ -5,6 +5,7 @@ export const earlySteppeCultures_Skill_Data = defineSkill({
   id: '661cde76-368e-4c59-857d-d6fe05b9f635',
   name: {
     en: 'Early Steppe Cultures',
+    it: "Prime culture delle steppe",
     zh: '早期草原文化',
     hi: 'प्रारंभिक स्तेपी संस्कृतियाँ',
     es: 'Primeras culturas de las estepas',
@@ -39,6 +40,7 @@ export const earlySteppeCultures_Skill_Data = defineSkill({
       'Use archaeological evidence of mobility, herding, and mound-burial traditions in the Black Sea steppe.',
     frontend: {
       en: 'Learn what ancient steppe burial mounds and settlements reveal.',
+      it: "Scopri che cosa rivelano i tumuli funerari e gli insediamenti antichi delle steppe.",
       zh: '了解古代草原墓冢和聚落向我们揭示了什么。',
       hi: 'जानें कि प्राचीन स्तेपी की दफ़न-टीलियाँ और बस्तियाँ क्या बताती हैं।',
       es: 'Descubre qué revelan los antiguos túmulos funerarios y asentamientos de las estepas.',

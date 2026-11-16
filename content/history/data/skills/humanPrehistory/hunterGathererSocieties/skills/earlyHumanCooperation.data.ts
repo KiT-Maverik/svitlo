@@ -5,6 +5,7 @@ export const earlyHumanCooperation_Skill_Data = defineSkill({
   id: '886602b5-0251-4e5e-9fd3-31483c8dec1b',
   name: {
     en: 'Social Interaction Among Early Humans',
+    it: "Interazione sociale tra i primi esseri umani",
     zh: '早期人类合作',
     hi: 'आरंभिक मानव सहयोग',
     es: 'Cooperación entre los primeros humanos',
@@ -39,6 +40,7 @@ export const earlyHumanCooperation_Skill_Data = defineSkill({
       'Reconstruct cooperation, knowledge transmission, and care without imposing modern institutions on prehistoric communities.',
     frontend: {
       en: 'Understand how early humans worked together and cared for others.',
+      it: "Comprendi come i primi esseri umani collaboravano e si prendevano cura degli altri.",
       zh: '了解早期人类如何共同工作并照顾他人。',
       hi: 'समझें कि शुरुआती मनुष्य कैसे मिलकर काम करते और दूसरों की देखभाल करते थे।',
       es: 'Comprende cómo los primeros humanos colaboraban y cuidaban de otros.',

@@ -5,6 +5,7 @@ export const ancientAstronomicalKnowledge_Skill_Data = defineSkill({
   id: '10a6923a-fecf-4581-afbc-453f2680f7e8',
   name: {
     en: 'Ancient Astronomical Knowledge',
+    it: "Conoscenze astronomiche antiche",
     zh: '古代天文学知识',
     hi: 'प्राचीन खगोलीय ज्ञान',
     es: 'Conocimientos astronómicos antiguos',
@@ -39,6 +40,7 @@ export const ancientAstronomicalKnowledge_Skill_Data = defineSkill({
       'Examine observations, calendars, navigation, and historical celestial models across civilizations.',
     frontend: {
       en: 'Explore how ancient people studied the sky.',
+      it: "Esplora come le popolazioni antiche studiavano il cielo.",
       zh: '探索古代人们如何观察和研究天空。',
       hi: 'जानें कि प्राचीन लोग आकाश का अध्ययन कैसे करते थे।',
       es: 'Explora cómo se estudiaba el cielo en la Antigüedad.',

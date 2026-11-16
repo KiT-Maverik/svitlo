@@ -5,6 +5,7 @@ export const balticAmberTrade_Skill_Data = defineSkill({
   id: '984029a3-a2cb-4b24-ac1e-b2fb2ab04603',
   name: {
     en: 'Baltic Amber Trade',
+    it: "Commercio dell'ambra baltica",
     zh: '波罗的海琥珀贸易',
     hi: 'बाल्टिक अंबर का व्यापार',
     es: 'Comercio del ámbar báltico',
@@ -38,6 +39,7 @@ export const balticAmberTrade_Skill_Data = defineSkill({
     methodological: 'Use amber as archaeological evidence of distant ancient exchange routes.',
     frontend: {
       en: 'Trace how Baltic amber traveled through ancient trade networks.',
+      it: "Segui i percorsi dell'ambra baltica nelle antiche reti commerciali.",
       zh: '追踪波罗的海琥珀如何沿古代贸易网络传播。',
       hi: 'जानें कि बाल्टिक अंबर प्राचीन व्यापारिक मार्गों से कैसे दूर तक पहुँचा।',
       es: 'Sigue el recorrido del ámbar báltico por las antiguas redes comerciales.',

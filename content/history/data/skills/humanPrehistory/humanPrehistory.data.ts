@@ -10,6 +10,7 @@ export const humanPrehistory_SkillDomain_Data = defineSkillDomain({
   id: '76421fa2-5fcb-4a89-abc2-55966aa5f2f7',
   title: {
     en: 'Human Prehistory',
+    it: "Preistoria umana",
     zh: '人类史前史',
     hi: 'मानव प्रागैतिहास',
     es: 'Prehistoria humana',
@@ -58,6 +59,7 @@ export const humanPrehistory_SkillDomain_Data = defineSkillDomain({
       'The long era before written states encompasses human evolution, global dispersal, varied subsistence, and uneven regional transitions toward settlements and metallurgy.',
     frontend: {
       en: 'Explore how early people lived and spread across the world.',
+      it: "Esplora come vivevano le prime popolazioni umane e come si diffusero nel mondo.",
       zh: '探索早期人类如何生活并迁徙到世界各地。',
       hi: 'जानें कि आरंभिक मनुष्य कैसे रहते थे और दुनिया भर में कैसे फैले।',
       es: 'Explora cómo vivían los primeros seres humanos y cómo se extendieron por el mundo.',

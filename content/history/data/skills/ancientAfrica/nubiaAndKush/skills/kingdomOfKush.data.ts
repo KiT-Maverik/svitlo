@@ -5,6 +5,7 @@ export const kingdomOfKush_Skill_Data = defineSkill({
   id: 'e8f95e20-080b-4e90-a409-48052aa78cf8',
   name: {
     en: 'Kingdom of Kush',
+    it: "Regno di Kush",
     zh: '库施王国',
     hi: 'कुश साम्राज्य',
     es: 'Reino de Kush',
@@ -38,6 +39,7 @@ export const kingdomOfKush_Skill_Data = defineSkill({
     methodological: 'Trace Kushite political history, including Napata and the Twenty-Fifth Dynasty in Egypt.',
     frontend: {
       en: 'Learn how Kushite kings ruled their own kingdom and Egypt.',
+      it: "Scopri come i sovrani kushiti governavano il proprio regno e l'Egitto.",
       zh: '了解库施国王如何统治自己的王国及埃及。',
       hi: 'जानें कि कुश के राजाओं ने अपने राज्य और मिस्र पर कैसे शासन किया।',
       es: 'Descubre cómo los reyes kushitas gobernaron su propio reino y Egipto.',

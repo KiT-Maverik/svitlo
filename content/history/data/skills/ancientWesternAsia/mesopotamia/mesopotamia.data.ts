@@ -14,6 +14,7 @@ export const mesopotamia_SkillGroup_Data = defineSkillGroup({
   id: '00e49671-064e-43da-85ae-e413fef5d01f',
   name: {
     en: 'Mesopotamia',
+    it: "Mesopotamia",
     zh: '美索不达米亚',
     hi: 'मेसोपोटामिया',
     es: 'Mesopotamia',
@@ -66,6 +67,7 @@ export const mesopotamia_SkillGroup_Data = defineSkillGroup({
       'The Tigris and Euphrates valleys supported cities, complex administration, writing, and successive supraregional states.',
     frontend: {
       en: 'Learn how river valleys supported Mesopotamian cities and states.',
+      it: "Scopri come le valli fluviali favorirono lo sviluppo delle città e degli Stati mesopotamici.",
       zh: '了解河谷如何支撑美索不达米亚的城市与国家。',
       hi: 'जानें कि नदी घाटियों ने मेसोपोटामिया के नगरों और राज्यों को कैसे सहारा दिया।',
       es: 'Aprende cómo los valles fluviales sustentaron las ciudades y los Estados mesopotámicos.',

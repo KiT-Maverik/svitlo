@@ -5,6 +5,7 @@ export const chavinCulture_Skill_Data = defineSkill({
   id: 'cebcc3f8-288f-4544-a173-ab78a14f0865',
   name: {
     en: 'Chavín Culture',
+    it: "Cultura Chavín",
     zh: '查文文化',
     hi: 'चाविन संस्कृति',
     es: 'Cultura chavín',
@@ -38,6 +39,7 @@ export const chavinCulture_Skill_Data = defineSkill({
     methodological: 'Study ritual centers and Andean artistic traditions of the first millennium BCE.',
     frontend: {
       en: 'Discover the beliefs and art of the Chavín culture.',
+      it: "Scopri le credenze e l'arte della cultura Chavín.",
       zh: '了解查文文化的信仰与艺术。',
       hi: 'चाविन संस्कृति की मान्यताओं और कला के बारे में जानें।',
       es: 'Descubre las creencias y el arte de la cultura chavín.',

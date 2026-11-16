@@ -5,6 +5,7 @@ export const povertyPoint_Skill_Data = defineSkill({
   id: '304d36df-4a14-48a8-a946-742b50b6378d',
   name: {
     en: 'Poverty Point',
+    it: "Poverty Point",
     zh: '波弗蒂角',
     hi: 'पॉवर्टी पॉइंट',
     es: 'Poverty Point',
@@ -38,6 +39,7 @@ export const povertyPoint_Skill_Data = defineSkill({
     methodological: 'Study monumental earthworks and interregional exchanges in Archaic-period North America.',
     frontend: {
       en: 'Explore the large earthworks built at Poverty Point.',
+      it: "Esplora le grandi opere in terra costruite a Poverty Point.",
       zh: '探索人们在波弗蒂角修建的大型土筑工程。',
       hi: 'पॉवर्टी पॉइंट में निर्मित विशाल मिट्टी के ढाँचों के बारे में जानें।',
       es: 'Explora las grandes construcciones de tierra levantadas en Poverty Point.',

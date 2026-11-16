@@ -5,6 +5,7 @@ export const carthage_Skill_Data = defineSkill({
   id: '8d5c6190-d1ac-436c-b9fd-645c4addd1b4',
   name: {
     en: 'Carthage',
+    it: "Cartagine",
     zh: '迦太基',
     hi: 'कार्थेज',
     es: 'Cartago',
@@ -39,6 +40,7 @@ export const carthage_Skill_Data = defineSkill({
       "Trace the Phoenician city's origins and development of trade, military, and state institutions in the western Mediterranean.",
     frontend: {
       en: 'Explore how Carthage became a major Mediterranean power.',
+      it: "Esplora come Cartagine divenne una grande potenza mediterranea.",
       zh: '探索迦太基如何成为地中海强国。',
       hi: 'जानें कि कार्थेज भूमध्यसागर की बड़ी शक्ति कैसे बना।',
       es: 'Explora cómo Cartago llegó a ser una gran potencia mediterránea.',

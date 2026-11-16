@@ -5,6 +5,7 @@ export const fallOfHanAndSuccessorStates_Skill_Data = defineSkill({
   id: 'b6ef2317-4aba-4c54-936f-aca7b544cdd7',
   name: {
     en: 'Fall of the Han Dynasty and Successor States',
+    it: "Caduta della dinastia Han e Stati successori",
     zh: '汉朝衰落及其后继政权',
     hi: 'हान पतन और उत्तरवर्ती राज्य',
     es: 'Caída de los Han y Estados sucesores',
@@ -38,6 +39,7 @@ export const fallOfHanAndSuccessorStates_Skill_Data = defineSkill({
     methodological: 'Analyze political decentralization and cultural changes at the end of the ancient Han era.',
     frontend: {
       en: 'Explore what happened after Han imperial rule weakened.',
+      it: "Esplora che cosa accadde dopo l'indebolimento del potere imperiale Han.",
       zh: '探索汉朝帝国统治削弱之后发生的变化。',
       hi: 'जानें कि हान साम्राज्य का शासन कमज़ोर होने के बाद क्या हुआ।',
       es: 'Explora qué ocurrió tras el debilitamiento del gobierno imperial Han.',

@@ -11,6 +11,7 @@ export const northAmericaBeyondMesoamerica_SkillGroup_Data = defineSkillGroup({
   id: '7594459d-1887-477f-9659-f02a0bd82e1a',
   name: {
     en: 'North America Beyond Mesoamerica',
+    it: "America settentrionale oltre la Mesoamerica",
     zh: '中美洲文明区以外的北美洲',
     hi: 'मेसोअमेरिका के बाहर उत्तरी अमेरिका',
     es: 'Norteamérica fuera de Mesoamérica',
@@ -53,6 +54,7 @@ export const northAmericaBeyondMesoamerica_SkillGroup_Data = defineSkillGroup({
       'River basins and arid regions had independent exchange networks, ritual spaces, and collective works.',
     frontend: {
       en: 'Discover ancient societies of North America beyond Mesoamerica.',
+      it: "Scopri le società antiche dell'America settentrionale al di fuori della Mesoamerica.",
       zh: '认识中美洲文明区以外北美洲的古代社会。',
       hi: 'मेसोअमेरिका से बाहर उत्तरी अमेरिका के प्राचीन समाजों को जानें।',
       es: 'Descubre las sociedades antiguas de Norteamérica fuera de Mesoamérica.',

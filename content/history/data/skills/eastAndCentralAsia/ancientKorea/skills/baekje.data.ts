@@ -5,6 +5,7 @@ export const baekje_Skill_Data = defineSkill({
   id: '0e98481f-0d8d-48f9-bddd-3b9f9eebef77',
   name: {
     en: 'Baekje',
+    it: "Baekje",
     zh: '百济',
     hi: 'बैक्जे',
     es: 'Baekje',
@@ -39,6 +40,7 @@ export const baekje_Skill_Data = defineSkill({
       'Examine early statehood in western and southwestern Korea, political alliances, and cultural contacts.',
     frontend: {
       en: "Discover Baekje's early rulers and connections.",
+      it: "Scopri i primi sovrani di Baekje e i loro rapporti con altre comunità.",
       zh: '了解百济早期统治者及其对外联系。',
       hi: 'बैक्जे के शुरुआती शासकों और उनके संबंधों का अध्ययन करें।',
       es: 'Conoce a los primeros gobernantes de Baekje y sus vínculos.',

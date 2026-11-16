@@ -5,6 +5,7 @@ export const achaemenidEmpire_Skill_Data = defineSkill({
   id: 'ec1fc96f-ce6c-401e-91bf-2c914ed23206',
   name: {
     en: 'Achaemenid Empire',
+    it: "Impero achemenide",
     zh: '阿契美尼德帝国',
     hi: 'हख़ामनी साम्राज्य',
     es: 'Imperio aqueménida',
@@ -39,6 +40,7 @@ export const achaemenidEmpire_Skill_Data = defineSkill({
       'Describe satrapies, royal power, roads, and local administrative traditions in a large multiethnic state.',
     frontend: {
       en: 'Discover how the Achaemenid Empire governed many peoples.',
+      it: "Scopri come l'Impero achemenide governava numerosi popoli.",
       zh: '了解阿契美尼德帝国如何统治众多民族。',
       hi: 'जानें कि हख़ामनी साम्राज्य ने अनेक जनसमूहों पर कैसे शासन किया।',
       es: 'Descubre cómo el Imperio aqueménida gobernó a numerosos pueblos.',

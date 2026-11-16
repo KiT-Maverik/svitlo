@@ -11,6 +11,7 @@ export const ancientAmericas_SkillDomain_Data = defineSkillDomain({
   id: 'b460f1a4-07a1-463a-8095-03f27708ad9e',
   title: {
     en: 'Americas',
+    it: "Americhe",
     zh: '美洲',
     hi: 'अमेरिकी महाद्वीप',
     es: 'Américas',
@@ -61,6 +62,7 @@ export const ancientAmericas_SkillDomain_Data = defineSkillDomain({
       'American history includes early peopling, independent agriculture, complex cities and states, and diverse societies without major cities.',
     frontend: {
       en: 'Explore the variety of ancient societies throughout the Americas.',
+      it: "Esplora la varietà delle società antiche in tutte le Americhe.",
       zh: '探索美洲各地古代社会的多样性。',
       hi: 'अमेरिकी महाद्वीपों में प्राचीन समाजों की विविधता जानें।',
       es: 'Explora la diversidad de las sociedades antiguas de las Américas.',

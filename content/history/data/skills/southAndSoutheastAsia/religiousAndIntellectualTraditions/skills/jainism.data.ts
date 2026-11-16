@@ -5,6 +5,7 @@ export const jainism_Skill_Data = defineSkill({
   id: 'd1ae509f-a14d-43fc-9eb0-4b40100eb7d5',
   name: {
     en: 'Jainism',
+    it: "Giainismo",
     zh: '耆那教',
     hi: 'जैन धर्म',
     es: 'Jainismo',
@@ -38,6 +39,7 @@ export const jainism_Skill_Data = defineSkill({
     methodological: 'Explain the ethical teachings and monastic traditions associated with Jain teachers.',
     frontend: {
       en: 'Discover the teachings and communities of Jainism.',
+      it: "Scopri gli insegnamenti e le comunità del giainismo.",
       zh: '了解耆那教的教义与信徒社群。',
       hi: 'जैन धर्म की शिक्षाओं और समुदायों को जानें।',
       es: 'Descubre las enseñanzas y comunidades del jainismo.',

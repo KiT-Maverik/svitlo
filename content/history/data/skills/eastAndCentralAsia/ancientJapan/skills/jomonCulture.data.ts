@@ -5,6 +5,7 @@ export const jomonCulture_Skill_Data = defineSkill({
   id: '35ab583a-3a28-4d12-8b22-4f5638bfc6f1',
   name: {
     en: 'Jōmon Culture',
+    it: "Cultura Jōmon",
     zh: '绳文文化',
     hi: 'जोमोन संस्कृति',
     es: 'Cultura Jōmon',
@@ -38,6 +39,7 @@ export const jomonCulture_Skill_Data = defineSkill({
     methodological: 'Study Jomon livelihoods and material culture, especially pottery traditions.',
     frontend: {
       en: 'Learn about the people and pottery of Jomon Japan.',
+      it: "Scopri le popolazioni e le ceramiche del Giappone Jōmon.",
       zh: '了解日本绳文时代的居民及其陶器。',
       hi: 'जोमोन काल के जापान के लोगों और मिट्टी के बर्तनों का अध्ययन करें।',
       es: 'Conoce a las personas y la cerámica del Japón Jōmon.',

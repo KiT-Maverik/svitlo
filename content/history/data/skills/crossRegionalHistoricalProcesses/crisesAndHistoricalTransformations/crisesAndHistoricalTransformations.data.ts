@@ -12,6 +12,7 @@ export const crisesAndHistoricalTransformations_SkillGroup_Data = defineSkillGro
   id: '8690c916-53b3-4bed-b5fb-066b597625cf',
   name: {
     en: 'Crises and Historical Transformations',
+    it: "Crisi e trasformazioni storiche",
     zh: '危机与历史变迁',
     hi: 'संकट और ऐतिहासिक परिवर्तन',
     es: 'Crisis y transformaciones históricas',
@@ -60,6 +61,7 @@ export const crisesAndHistoricalTransformations_SkillGroup_Data = defineSkillGro
       'Climate shifts, wars, disease, and economic reorganization interacted but produced different outcomes across regions.',
     frontend: {
       en: 'Explore why ancient societies experienced major changes and crises.',
+      it: "Esplora perché le società antiche attraversarono grandi cambiamenti e crisi.",
       zh: '探索古代社会为什么经历重大变化与危机。',
       hi: 'जानें कि प्राचीन समाजों में बड़े बदलाव और संकट क्यों आए।',
       es: 'Explora por qué las sociedades antiguas experimentaron grandes cambios y crisis.',

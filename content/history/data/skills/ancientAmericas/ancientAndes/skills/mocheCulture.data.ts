@@ -5,6 +5,7 @@ export const mocheCulture_Skill_Data = defineSkill({
   id: '83373e1c-d143-447a-bec8-aa1612d8de04',
   name: {
     en: 'Moche Culture',
+    it: "Cultura Moche",
     zh: '莫切文化',
     hi: 'मोचे संस्कृति',
     es: 'Cultura moche',
@@ -38,6 +39,7 @@ export const mocheCulture_Skill_Data = defineSkill({
     methodological: 'Study irrigation farming, crafts, and ancient political centers in northern Peru.',
     frontend: {
       en: 'Learn about Moche farmers, craftspeople and rulers.',
+      it: "Scopri gli agricoltori, gli artigiani e i governanti della cultura Moche.",
       zh: '了解莫切文化的农民、手工艺人与统治者。',
       hi: 'मोचे संस्कृति के किसानों, शिल्पकारों और शासकों के बारे में जानें।',
       es: 'Conoce a los agricultores, artesanos y gobernantes moche.',

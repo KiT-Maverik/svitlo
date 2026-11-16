@@ -5,6 +5,7 @@ export const exchangeBeforeStates_Skill_Data = defineSkill({
   id: 'f41d300b-be71-4d9e-9b2d-f98c6d5d63db',
   name: {
     en: 'Exchange Before States',
+    it: "Scambi prima della formazione degli Stati",
     zh: '国家形成前的交换',
     hi: 'राज्यों से पहले विनिमय',
     es: 'Intercambio antes de los Estados',
@@ -39,6 +40,7 @@ export const exchangeBeforeStates_Skill_Data = defineSkill({
       'Reconstruct long-distance connections from distributions of raw materials, products, and technical traditions.',
     frontend: {
       en: 'Trace trade and exchange between communities before states existed.',
+      it: "Ricostruisci commerci e scambi tra comunità prima della nascita degli Stati.",
       zh: '追踪国家出现之前社群间的贸易与交换。',
       hi: 'राज्यों के अस्तित्व से पहले समुदायों के बीच व्यापार और विनिमय का पता लगाएँ।',
       es: 'Rastrea el comercio y el intercambio entre comunidades antes de que existieran los Estados.',

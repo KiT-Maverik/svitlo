@@ -5,6 +5,7 @@ export const buddhismInAncientIndia_Skill_Data = defineSkill({
   id: 'fd97cdd5-dd85-4dfb-9aa2-e7cab2143ac1',
   name: {
     en: 'Buddhism in Ancient India',
+    it: "Buddhismo nell'India antica",
     zh: '古印度的佛教',
     hi: 'प्राचीन भारत में बौद्ध धर्म',
     es: 'Budismo en la India antigua',
@@ -38,6 +39,7 @@ export const buddhismInAncientIndia_Skill_Data = defineSkill({
     methodological: "Examine the Buddha's historical setting and the growth of Buddhist communities and schools.",
     frontend: {
       en: 'Explore how Buddhism arose and spread in ancient India.',
+      it: "Esplora come nacque e si diffuse il buddhismo nell'India antica.",
       zh: '探索佛教如何在古代印度兴起并传播。',
       hi: 'जानें कि प्राचीन भारत में बौद्ध धर्म कैसे उभरा और फैला।',
       es: 'Explora cómo surgió y se difundió el budismo en la India antigua.',

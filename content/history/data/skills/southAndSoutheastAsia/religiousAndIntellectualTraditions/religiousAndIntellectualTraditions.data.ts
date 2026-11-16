@@ -12,6 +12,7 @@ export const religiousAndIntellectualTraditions_SkillGroup_Data = defineSkillGro
   id: '306a08df-08ba-470b-88da-fdab77bf1904',
   name: {
     en: 'Religious and Intellectual Traditions',
+    it: "Tradizioni religiose e intellettuali",
     zh: '宗教与思想传统',
     hi: 'धार्मिक और बौद्धिक परंपराएँ',
     es: 'Tradiciones religiosas e intelectuales',
@@ -54,6 +55,7 @@ export const religiousAndIntellectualTraditions_SkillGroup_Data = defineSkillGro
     methodological: 'Teachings, texts, and schools evolved over centuries and spread far beyond the subcontinent.',
     frontend: {
       en: 'Explore how ancient South Asian religious and intellectual ideas developed.',
+      it: "Esplora come si svilupparono le idee religiose e intellettuali dell'Asia meridionale antica.",
       zh: '探索古代南亚宗教和思想观念的发展。',
       hi: 'जानें कि प्राचीन दक्षिण एशिया में धार्मिक और बौद्धिक विचार कैसे विकसित हुए।',
       es: 'Explora cómo se desarrollaron las ideas religiosas e intelectuales del sur de Asia antiguo.',

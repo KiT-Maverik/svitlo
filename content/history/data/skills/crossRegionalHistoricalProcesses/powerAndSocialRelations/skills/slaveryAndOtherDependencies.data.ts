@@ -5,6 +5,7 @@ export const slaveryAndOtherDependencies_Skill_Data = defineSkill({
   id: '3cc87d64-4ba2-4088-ac67-32ec27b0b2c3',
   name: {
     en: 'Slavery and Other Dependencies',
+    it: "Schiavitù e altre forme di dipendenza",
     zh: '奴隶制与其他依附形式',
     hi: 'दासता और निर्भरता के अन्य रूप',
     es: 'Esclavitud y otras formas de dependencia',
@@ -38,6 +39,7 @@ export const slaveryAndOtherDependencies_Skill_Data = defineSkill({
     methodological: 'Distinguish enslavement from other legal and economic conditions of restricted freedom.',
     frontend: {
       en: 'Recognize different kinds of unfreedom in ancient societies.',
+      it: "Riconosci le diverse forme di privazione della libertà nelle società antiche.",
       zh: '辨认古代社会中不同的失去自由或自由受限形式。',
       hi: 'प्राचीन समाजों में स्वतंत्रता से वंचित होने के विभिन्न रूप पहचानें।',
       es: 'Reconoce distintas formas de falta de libertad en las sociedades antiguas.',
