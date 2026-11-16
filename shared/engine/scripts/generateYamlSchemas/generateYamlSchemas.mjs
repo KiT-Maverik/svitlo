@@ -160,7 +160,7 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
     title: 'Svitlo ' + kind + ' unified config.yaml authoring draft',
     description:
       'Config is derived from Engine Zod; production references manually owned production.schema.json. ' +
-      'Complete Config structure may contain literal null for pending local media; ' +
+      'Complete Config uses validated UUID.ext filenames even when physical media is pending; ' +
       'TypeScript fails until the actual resources have been produced.',
     ...envelope,
     $defs: {

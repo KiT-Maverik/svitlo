@@ -108,124 +108,64 @@ test('Checkpoint Item YAML requires an authored Answer Configurator with its own
   assert(yamlJsonSchemaDocuments()['lesson.schema.json'].includes('checkpointAnswer'));
 });
 
-test('YAML media projections require null while Engine Config schemas require real paths', () => {
+test('YAML and Engine Configs require the same stable UUID filename contract', () => {
+  const filename = '550e8400-e29b-41d4-a716-446655440000';
   const variants = [
-    {
-      yaml: yamlImage_Schema,
-      engine: image_Config_Schema,
-      fields: ['src'],
-      config: {
-        id,
-        slug: 'picture',
-        type: 'image',
-        params: { fill: true, aspectRatio: 1.5 },
-        locale: { src: null, alt: { uk: 'Зображення' } },
-      },
-    },
-    {
-      yaml: yamlAudio_Schema,
-      engine: audio_Config_Schema,
-      fields: ['fileLocation'],
-      config: {
-        id,
-        slug: 'voice',
-        type: 'audio',
-        params: {},
-        locale: { fileLocation: null, title: { uk: 'Озвучення' } },
-      },
-    },
-    {
-      yaml: yamlVideo_Schema,
-      engine: video_Config_Schema,
-      fields: ['fileLocation', 'poster'],
-      config: {
-        id,
-        slug: 'film',
-        type: 'video',
-        params: {},
-        locale: { fileLocation: null, poster: null, label: { uk: 'Відео' } },
-      },
-    },
-    {
-      yaml: yamlSubtitles_Schema,
-      engine: subtitles_Config_Schema,
-      fields: ['fileLocation'],
-      config: { id, slug: 'captions', type: 'subtitles', params: {}, locale: { fileLocation: null } },
-    },
+    { yaml: yamlImage_Schema, engine: image_Config_Schema, kind: 'image',
+      params: { fill: true, aspectRatio: 1.5 },
+      locale: { fileName: filename + '.webp', alt: { uk: 'Зображення' } } },
+    { yaml: yamlAudio_Schema, engine: audio_Config_Schema, kind: 'audio',
+      params: {}, locale: { fileName: filename + '.mp3', title: { uk: 'Озвучення' } } },
+    { yaml: yamlVideo_Schema, engine: video_Config_Schema, kind: 'video',
+      params: {}, locale: { fileName: filename + '.mp4', posterFileName: filename + '.png', label: { uk: 'Відео' } } },
+    { yaml: yamlSubtitles_Schema, engine: subtitles_Config_Schema, kind: 'subtitles',
+      params: {}, locale: { fileName: { uk: filename + '.vtt' } } },
   ];
-  for (const { yaml, engine, fields, config } of variants) {
-    assert.equal(yaml.safeParse(config).success, true, config.type);
-    assert.equal(engine.safeParse(config).success, false, config.type + ': Engine must reject null');
-    for (const field of fields) {
-      const absent = structuredClone(config);
-      delete absent.locale[field];
-      assert.equal(yaml.safeParse(absent).success, false, config.type + '.' + field + ' must exist');
-      const filled = structuredClone(config);
-      filled.locale[field] = '/assets/real.png';
-      assert.equal(yaml.safeParse(filled).success, false, config.type + '.' + field + ' must be null');
+  const corrupt = [null, undefined, 'imaginary.webp', '../escape.webp', filename + '.png.extra',
+    filename.toUpperCase() + '.webp', filename + '.mp4'];
+  for (const { yaml, engine, kind, params, locale } of variants) {
+    const config = { id, slug: 'sample', type: kind, params, locale };
+    assert.equal(yaml.safeParse(config).success, true, kind);
+    assert.equal(engine.safeParse(config).success, true, kind);
+    assert.equal(yamlContentBlock_Schema.safeParse(config).success, true, kind);
+    for (const value of corrupt) {
+      if (kind === 'video' && value === filename + '.mp4') continue;
+      const changed = { ...config, locale: { ...locale, fileName: value } };
+      assert.equal(yaml.safeParse(changed).success, false, kind + ' rejects ' + String(value));
+      assert.equal(engine.safeParse(changed).success, false, kind + ' rejects ' + String(value));
     }
-    assert.equal(yamlContentBlock_Schema.safeParse(config).success, true, config.type + ': nested union');
   }
-  const picture = variants[0].config;
-  const activity = {
-    id, slug: 'activity', type: 'scene', params: {},
-    locale: { value: { instruction: { uk: 'Обери' } } },
-  };
-  const carousel = {
-    id,
-    slug: 'gallery',
-    type: 'carousel',
-    params: {},
-    locale: {},
-    slides: { items: { picture, activity }, order: ['picture', 'activity'] },
-  };
-  assert.equal(yamlContentBlock_Schema.safeParse(carousel).success, true);
-  assert.equal(yamlContentBlock_Schema.safeParse({
-    ...carousel, slides: { items: { picture: textBlock }, order: ['picture'] },
-  }).success, false);
-  assert.equal(
-    yamlContentBlock_Schema.safeParse({
-      ...carousel,
-      slides: {
-        items: { picture: { ...picture, locale: { ...picture.locale, src: 'ready.png' } }, activity },
-        order: ['picture', 'activity'],
-      },
-    }).success,
-    false,
-  );
 });
 
-test('JSON Schema retains required fields and literal null media even in nested Lessons/Courses', () => {
+test('generated editor JSON Schema preserves media filename and category constraints', () => {
+  const Ajv2020 = require('ajv/dist/2020.js');
+  const Ajv = Ajv2020.default ?? Ajv2020;
+  const ajv = new Ajv({ strict: false, validateFormats: false });
   const docs = yamlJsonSchemaDocuments();
-  for (const kind of ['contentBlock', 'lesson', 'course']) {
-    const schema = JSON.parse(docs[kind + '.schema.json']);
-    const media = new Map();
-    const visit = node => {
-      if (!node || typeof node !== 'object') return;
-      const type = node.properties?.type?.const;
-      if (typeof type === 'string' && node.properties?.locale) media.set(type, node);
-      for (const value of Object.values(node)) visit(value);
-    };
-    visit(schema);
-    for (const [kindOfMedia, fields] of Object.entries({
-      image: ['src'],
-      audio: ['fileLocation'],
-      video: ['fileLocation', 'poster'],
-      subtitles: ['fileLocation'],
-    })) {
-      const block = media.get(kindOfMedia);
-      assert(block, kind + ': missing ' + kindOfMedia);
-      assert(block.required.includes('locale'), kind + ': required locale for ' + kindOfMedia);
-      for (const field of fields) {
-        assert(block.properties.locale.required.includes(field), kind + ': required ' + field);
-        const value = block.properties.locale.properties[field];
-        assert.equal(value.type, 'null');
-        assert.equal(value.const, null);
-      }
+  const filename = '550e8400-e29b-41d4-a716-446655440000';
+  const tests = [
+    { type: 'image', locale: { fileName: filename + '.webp', alt: 'Chart' },
+      params: { fill: true, aspectRatio: 1.5 }, invalid: filename + '.mp4' },
+    { type: 'audio', locale: { fileName: filename + '.mp3', title: 'Voice' },
+      params: {}, invalid: filename + '.png' },
+    { type: 'video', locale: { fileName: filename + '.mp4', posterFileName: filename + '.webp', label: 'Video' },
+      params: {}, invalid: filename + '.vtt' },
+    { type: 'subtitles', locale: { fileName: filename + '.vtt' }, params: {}, invalid: filename + '.mp3' },
+  ];
+  for (const document of ['contentBlock.schema.json', 'lesson.schema.json', 'course.schema.json']) {
+    assert(docs[document].includes('fileName'), document);
+    assert(!docs[document].includes('"fileLocation": { "type": "null"'), document);
+  }
+  const validate = ajv.compile(JSON.parse(docs['contentBlock.schema.json']));
+  for (const sample of tests) {
+    const config = { id, slug: 'sample', type: sample.type, params: sample.params, locale: sample.locale };
+    assert.equal(validate(config), true, sample.type + ': valid filename: ' + JSON.stringify(validate.errors));
+    for (const invalid of [sample.invalid, 'imaginary.webp', '../escape.webp', filename + '.webp.extra']) {
+      assert.equal(validate({ ...config, locale: { ...config.locale, fileName: invalid } }), false,
+        sample.type + ': invalid ' + invalid);
     }
   }
 });
-
 test('Zod -> JSON Schema exports every root without opaque Configurator nodes', () => {
   const docs = yamlJsonSchemaDocuments();
   assert.deepEqual(Object.keys(docs).sort(), [
@@ -378,19 +318,19 @@ test('Quest editor schema projects every named Stage/Task child while retaining 
         content: {
           video: {
             medium: config('video', 'medium', 63, {
-              fileLocation: null,
-              poster: null,
+              fileName: '550e8400-e29b-41d4-a716-446655440000.mp4',
+              posterFileName: '550e8400-e29b-41d4-a716-446655440000.webp',
               label: { uk: 'Показ дії' },
             }),
             small: config('video', 'small', 64, {
-              fileLocation: null,
-              poster: null,
+              fileName: '550e8400-e29b-41d4-a716-446655440000.mp4',
+              posterFileName: '550e8400-e29b-41d4-a716-446655440000.webp',
               label: { uk: 'Показ дії' },
             }),
           },
           audio: {
             dialogue: config('audio', 'dialogue', 65, {
-              fileLocation: null,
+              fileName: '550e8400-e29b-41d4-a716-446655440000.mp3',
               title: { uk: 'Діалог' },
             }),
             narration: null,
@@ -400,13 +340,13 @@ test('Quest editor schema projects every named Stage/Task child while retaining 
             'image',
             'image',
             66,
-            { src: null, alt: { uk: 'Діаграма' } },
+            { fileName: '550e8400-e29b-41d4-a716-446655440000.webp', alt: { uk: 'Діаграма' } },
             {
               fill: true,
               aspectRatio: 1.5,
             },
           ),
-          subtitles: config('subtitles', 'subtitles', 67, { fileLocation: null }),
+          subtitles: config('subtitles', 'subtitles', 67, { fileName: '550e8400-e29b-41d4-a716-446655440000.vtt' }),
         },
       },
     },
