@@ -36,9 +36,11 @@ Other named workflows have their own contracts. Inspect their entrypoints and te
   type-specific. A combined `*.scaffold.schema.json` is generated for editing,
   **not validated during scaffolding**.
 - Use `production.documentLanguage` as source locale; YAML Config must
-  preserve every Engine-required field. Media references are stable, syntactically valid `UUID.extension` filenames in the
-  actual Config schemas, including unproduced binaries. The media UUID is an authored
-  resource identity, separate from its ContentBlock ID. Never use `null` for pending media.
+  preserve every Engine-required **non-media** field. Technical Lesson YAML must
+  omit `fileName` and `posterFileName` entirely, including nested media.
+  Lesson Builder inserts reserved Nil UUID filenames and TODO(asset) into
+  generated TypeScript. The specialist later replaces these placeholders with
+  actual stable UUID.extension filenames; Engine Config remains strict.
   Scene implementations, imports and untranslated locales remain separate
   downstream dependencies, not grounds to reject scaffolding.
 - For **modular Lesson** drafts, emit `specification.md` beside the Scene or
@@ -63,7 +65,7 @@ Other named workflows have their own contracts. Inspect their entrypoints and te
 
 ## Intentionally failing TypeScript is the expected draft handoff
 
-- **Generated TypeScript is expected to fail TypeScript checking until dependencies are resolved.** Required Config structure is complete; unfinished media has a stable valid UUID filename. Missing Scene implementations/imports, additional locales and unresolved references are work for the next AI agent, not scaffolder bugs.
+- **Generated TypeScript is expected to fail TypeScript checking until dependencies are resolved.** Required Config structure includes reserved Nil UUID media placeholders with adjacent TODO(asset), not assigned asset identities. Missing Scene implementations/imports, additional locales and unresolved references are work for the next AI agent, not scaffolder bugs.
 - The scaffolder's job is to emit a deterministic, syntactically well-formed, recognizable `define*` source draft and preserve its unresolved work. **Explicit exception:** the Lesson `review.ts` draft is intentionally syntactically invalid until its assembled Props hash becomes the const identifier and verified review PR/language values are supplied; all other generated source modules must parse. **Successful TypeScript compilation, Engine Config validation, Props generation, and publication are explicitly NOT acceptance conditions for a draft scaffolder.** The scaffolder run itself should succeed for otherwise supported incomplete draft inputs; it must not execute or gate on TypeScript checks.
 - **Do not "fix" draft TypeScript diagnostics inside a scaffolder** by inventing `src`, `fileLocation`, import targets, Scene components, other language strings, default educational content, or values that pretend a pending resource exists. Do not silence errors with `as any`, `@ts-ignore`, weakened Config types, or fictitious passing fixtures. Preserve explicit nulls for unavailable required media resources and make outstanding work clear to the finishing agent.
 - Preserve the distinction between **expected type errors** and **generator defects**. YAML syntax/dispatch failures, incorrectly emitted TypeScript syntax, lost authored data, wrong file placement, unintended overwrites, and incorrect factory selection remain defects. If a completely authored input happens to produce valid TypeScript, do not inject artificial errors merely to make it fail; the deliberate failure applies to incomplete drafts, not every possible input.

@@ -23,14 +23,14 @@ only internal `$ref` pointers, embedding both manual production definitions and
 the Course's direct Build overrides guide. Source language provenance is
 `production.documentLanguage`.
 
-YAML Zod projections preserve all Engine-required Config fields. Local media
-is specified as a valid, stable `UUID.extension` string, using the **same
-category-specific Config Zod schema** as TypeScript authoring: Image, Audio,
-Video, Subtitles and the Video `posterFileName`. No YAML-only `null`
-exception and no duplicate filename regex are permitted. Carousel and Quest
-nested media use the same Config schemas, including localized file names.
-Physical asset existence is validated by the textbook Props publication stage,
-not by this JSON Schema generator or the Lesson/Course draft scaffolders.
+Technical YAML deliberately omits `fileName` and `posterFileName` on Image,
+Audio, Video and Subtitles nodes, including nested Carousel and Quest media.
+The YAML Zod projections derive from their Engine Config schemas while
+excluding those fields; JSON Schema forbids supplying them (including `null`).
+Engine TypeScript Configs remain strict and require category-correct
+UUID filenames. The Lesson Builder inserts an unresolved Nil UUID plus
+`TODO(asset)` in TypeScript, preserving the source YAML without inventing a
+real asset. Draft vs Production checks belong to textbook publication.
 
 The existing Config-only editor schemas and direct
 `courseOverrides.schema.json` remain separately generated. This is editor
@@ -53,7 +53,7 @@ npm run content:check:yaml-schemas --workspace @svitlo/engine
 node --test shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.spec.mjs
 ```
 
-Quest is an authoring-only `type: quest` Section variant with named `stages` and `tasks` maps (both requiring `start` at configurator validation), not a positional collection. The Zod-to-JSON-Schema projection recursively expands Quest Stages into their required medium/small video, three nullable audio slots, image, Subtitles, and Tasks into one Scene each. Subtitles WebVTT references use valid UUID filenames in technical drafts. This schema and the two draft scaffolders do **not** enable Quest in the runtime Section union or provide playback.
+Quest is an authoring-only `type: quest` Section variant with named `stages` and `tasks` maps (both requiring `start` at configurator validation), not a positional collection. The Zod-to-JSON-Schema projection recursively expands Quest Stages into their required medium/small video, three nullable audio slots, image, Subtitles, and Tasks into one Scene each. Subtitles references are generated only in TypeScript drafts as unresolved Nil UUID placeholders. This schema and the two draft scaffolders do **not** enable Quest in the runtime Section union or provide playback.
 
 Generated, reviewable JSON Schemas are written to
 `shared/engine/yaml-schemas/{contentBlock,section,question,flashcard,lesson,episode,course,courseOverrides}.schema.json` plus `lesson.scaffold.schema.json` and `course.scaffold.schema.json`. Manual `production.schema.json` is not generated.
@@ -69,7 +69,7 @@ supersede methodology, assessment, screenwriting or review documents.
 - **Schema generator:** derives editor-facing JSON Schema from current Engine Zod Config
   compositions. Lesson/Course editor schemas include a small **draft YAML
   envelope**: `documentLanguage` (required for Lesson, optional for Course),
-  complete required Config fields, valid UUID filenames for pending media, and optional Course Lesson
+  all required non-media Config fields, omitted media filenames, and optional Course Lesson
   `source` import coordinates. These are **not** additions to Engine Config.
 - **`courseOverrides.schema.json`:** guides the sole supported Course-owned
   overrides document: the direct `course.build.overrides(patch, { languages })`

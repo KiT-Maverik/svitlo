@@ -45,7 +45,6 @@ config:
                   params: { fill: true, aspectRatio: 1.5 }
                   locale:
                     alt: { en: Two equal groups }
-                    fileName: 550e8400-e29b-41d4-a716-446655440000.webp # Stable UUID; asset may be produced later
                 production:
                   purpose: Show that equal quantities can look different
                   prompt: Two groups of five counters arranged differently
@@ -120,27 +119,29 @@ change `params.languages` or invent translations.
     content. These file readers run only at build time, and published Props
     contain the actual strings, not file paths.
 
-- Nested `define*` source preserves authored Config values and source-language
-  localization. Every local media reference uses a **stable, valid filename**
-  `UUID.extension`, even before the binary exists. The media UUID is separate
-  from its ContentBlock UUID. Missing physical media does not invalidate the
-  Config or prevent Draft Props generation; it is checked at textbook
-  publication (Draft warning, Production error). Generated draft modules can
-  still fail TypeScript for incomplete Scenes/imports/translations. The
-  intentionally incomplete `review.ts` requires separate manual completion.
+- Technical `lesson.yaml` deliberately **omits** `fileName` and
+  `posterFileName` from all media blocks, including nested Carousel and Quest
+  media. The Lesson Builder inserts a deterministic, reserved
+  `00000000-0000-0000-0000-000000000000` filename (with a type-correct
+  extension) and an adjacent `TODO(asset)` into each generated media Config.
+  This placeholder is **not** an assigned resource identity. A later media
+  specialist replaces it in TypeScript with the real textbook-wide UUID
+  filename. Draft Props can warn and preview unresolved media; Production
+  refuses Nil placeholders even if matching binary files are present.
+  The YAML source and create-only `SKIP` policy remain unchanged.
 - `methodology.md` in the Lesson UUID directory is generated only when
   `production.methodology` is authored and the destination is safe to create.
 - Scene and media production instructions are emitted as
   `specification.md` **beside the corresponding nested `<slug>/index.ts`**.
   These are specialist handoffs, not asset files. A Scene implementation and
   lazy registry still live under `scenes/<bucket>/<scene-id>/`.
-- The Lesson builder emits authoring `fileName` and `posterFileName`
-  values **verbatim**. It never inserts `resolveLessonMedia(import.meta.url)`,
-  guesses filenames, creates binaries or reads the textbook's `assets/` tree.
-  The canonical source assets live under `content/<textbook>/assets/` with
-  `images`, `audio`, `video` and `subtitles` categories. Localized values
-  are ordinary language-to-filename dictionaries; no locale folders exist
-  under `assets/`.
+- The Lesson builder inserts required `fileName` and (for Video)
+  `posterFileName` fields **only in generated TypeScript**, never in YAML.
+  It does not invent real resource identities, create binaries or read the
+  textbook's `assets/` directory. Physical media later lives under
+  `content/<textbook>/assets/{images,audio,video,subtitles}/`.
+  Finished TypeScript Configs may use invariant or localized filename
+  references; no locale folders exist under `assets/`.
 - Supported extensions: images `svg/png/jpg/jpeg/webp/gif/avif`;
   video `mp4/webm`; audio `mp3/wav/ogg/m4a/flac`; subtitles `vtt/srt`.
   The publication generator projects typed local references to Runtime
@@ -149,10 +150,10 @@ change `params.languages` or invent translations.
   malformed UUID names are rejected by the Engine Config schema.
 
 Generated colocated specifications are **handoffs, not implemented Scenes, images or
-audio/video files**. An AI specialist performs those later and resolves the
-expected TypeScript diagnostics. Do not add placeholders, `as any`,
-`@ts-ignore`, invented media paths or fabricated locale strings to make the
-draft compile.
+audio/video files**. The reserved Nil UUID and TODO(asset) are the **only**
+authorized temporary media placeholders. A media specialist replaces them with
+real files and validated references in TypeScript. Do not add `as any`,
+`@ts-ignore`, invented media paths or fabricated locale strings.
 
 
 ### Checkpoint Answer role modules
@@ -169,7 +170,7 @@ Each `checkpointItem` Config contains exactly one `question` Text and one identi
 
 The Answer's YAML must include `config: { id, slug, type: checkpointAnswer, content: { items, order } }`. Its ID is a permanent authored entity identity, never inferred by the builder; the previous bare `answer: { items, order }` shape is not accepted as an alternate API. The Question's original Text slug remains in Config despite the role-based file path. Scene and Markdown/Code sources stay module-relative; binary media references are textbook-wide UUID filenames. The builder is create-only and does not typecheck generated drafts.
 
-Quest Sections (`type: quest`) use named `stages` and `tasks` slug maps, each with a mandatory `start` entry. `questStage.content` contains two Video configurators (`video.medium`, `video.small`), nullable `audio.dialogue`/`narration`/`background`, one Image and one localized Subtitles configurator; `questTask.scene` contains exactly one Scene configurator. The builder emits `defineQuestSection`, `defineStage`, `defineTask`, and nested `define*` calls, without a Stage/Task `order` array. Media references retain their authored valid UUID filenames and Quest runtime playback remains **unsupported**; this is an authoring draft only.
+Quest Sections (`type: quest`) use named `stages` and `tasks` slug maps, each with a mandatory `start` entry. `questStage.content` contains two Video configurators (`video.medium`, `video.small`), nullable `audio.dialogue`/`narration`/`background`, one Image and one localized Subtitles configurator; `questTask.scene` contains exactly one Scene configurator. The builder emits `defineQuestSection`, `defineStage`, `defineTask`, and nested `define*` calls, without a Stage/Task `order` array. Media reference placeholders are generated in TypeScript, not authored in YAML; Quest runtime playback remains **unsupported**; this is an authoring draft only.
 
 The script selects factories only from
 `configurators/yaml/yamlFactoryByType.ts`. It does not evaluate any complete
@@ -225,7 +226,7 @@ Carousel accepts `defineImage` and `defineScene` children. The builder writes th
 `index.ts` directly into `<carouselSlug>/<childSlug>/`, without an intermediate
 `slides/` or kind-specific folder. Scene and media production specifications are colocated with the child
 module; physical Images are textbook-wide UUID-named assets. A pending Image
-keeps its authored `locale.fileName` even before the file is created. The builder rejects unsupported Carousel child kinds before
+receives a generated Nil UUID `locale.fileName` placeholder before the file is created. The builder rejects unsupported Carousel child kinds before
 creating files. Scenes still require a separately authored implementation and
 registry entry; a draft specification is not a working Scene.
 
