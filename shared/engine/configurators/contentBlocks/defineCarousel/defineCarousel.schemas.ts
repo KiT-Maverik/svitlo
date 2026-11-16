@@ -81,9 +81,9 @@ export type ContentBlock_Carousel_Overrides<
   };
 };
 
-export type ContentBlock_Carousel_PropsBase = z.infer<typeof carouselBase> & {
+export type ContentBlock_Carousel_PropsBase = Omit<z.infer<typeof carouselBase>, 'slug'> & {
   locale?: DeepPartial<ContentBlock_Carousel_Locale<'props'>>;
 };
 
-export const carousel_Props_Schema = carouselBase.extend(addUnifiedLocale(propsLocale));
+export const carousel_Props_Schema = carouselBase.omit({ slug: true }).extend(addUnifiedLocale(propsLocale));
 export type ContentBlock_Carousel_Props = z.infer<typeof carousel_Props_Schema>;

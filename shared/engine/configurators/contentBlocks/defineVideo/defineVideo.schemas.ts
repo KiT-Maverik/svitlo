@@ -47,9 +47,9 @@ export const video_Override_Config_Schema: z.ZodType<ContentBlock_Video_Override
   ),
 );
 
-export type ContentBlock_Video_PropsBase = z.infer<typeof videoBase> & {
+export type ContentBlock_Video_PropsBase = Omit<z.infer<typeof videoBase>, 'slug'> & {
   locale?: DeepPartial<ContentBlock_Video_Locale<'props'>>;
 };
 
-export const video_Props_Schema = videoBase.extend(addUnifiedLocale(locale('props')));
+export const video_Props_Schema = videoBase.omit({ slug: true }).extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Video_Props = z.infer<typeof video_Props_Schema>;

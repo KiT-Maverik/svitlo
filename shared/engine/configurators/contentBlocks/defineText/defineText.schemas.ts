@@ -50,9 +50,9 @@ export const text_Override_Config_Schema: z.ZodType<ContentBlock_Text_Overrides>
 );
 
 /** Published base is a Props fragment: translations are kept in separate locale files. */
-export type ContentBlock_Text_PropsBase = z.infer<typeof textBase> & {
+export type ContentBlock_Text_PropsBase = Omit<z.infer<typeof textBase>, 'slug'> & {
   locale?: Partial<ContentBlock_Text_Locale<'props'>>;
 };
 
-export const text_Props_Schema = textBase.extend(addUnifiedLocale(locale('props')));
+export const text_Props_Schema = textBase.omit({ slug: true }).extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Text_Props = z.infer<typeof text_Props_Schema>;

@@ -76,13 +76,13 @@ export type Checkpoint_Overrides<
   };
 };
 
-export type ContentBlock_Checkpoint_PropsBase = z.infer<typeof checkpointBase> & {
+export type ContentBlock_Checkpoint_PropsBase = Omit<z.infer<typeof checkpointBase>, 'slug'> & {
   locale?: DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>;
   content: ReturnType<ContentBlock_CheckpointItem_Configurator['build']['props']>['base'][];
 };
 
 /** Runtime Props contain the fully ordered collection, never authoring maps. */
-export const checkpoint_Props_Schema = checkpointBase.extend({
+export const checkpoint_Props_Schema = checkpointBase.omit({ slug: true }).extend({
   ...addUnifiedLocale(locale('props')),
   content: z.array(checkpointItem_Props_Schema).min(1),
 });

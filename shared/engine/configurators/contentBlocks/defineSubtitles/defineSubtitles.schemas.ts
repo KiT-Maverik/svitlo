@@ -7,7 +7,7 @@ const kind = createContentBlockBaseSchema('subtitles');
 export const subtitles_Config_Schema = kind.extend({
   ...addUnifiedLocale({ fileLocation: localizationSwitch.config }),
 }).strict();
-export const subtitles_Props_Schema = kind.extend({
+export const subtitles_Props_Schema = kind.omit({ slug: true }).extend({
   ...addUnifiedLocale({ fileLocation: localizationSwitch.props }),
 }).strict();
 export type ContentBlock_Subtitles_Config = z.infer<typeof subtitles_Config_Schema>;

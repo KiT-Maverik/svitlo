@@ -24,7 +24,6 @@ export const localizationSwitch = {
 export const contentBlockResolved_Schema = z
   .object({
     id: z.uuid(),
-    slug: z.string().min(1),
     type: z.enum(contentBlockTypes),
   })
   .catchall(z.unknown());

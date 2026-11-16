@@ -52,9 +52,9 @@ export const scene_Override_Config_Schema: z.ZodType<ContentBlock_Scene_Override
   ),
 );
 
-export type ContentBlock_Scene_PropsBase = z.infer<typeof sceneBase> & {
+export type ContentBlock_Scene_PropsBase = Omit<z.infer<typeof sceneBase>, 'slug'> & {
   locale?: DeepPartial<ContentBlock_Scene_Locale<'props'>>;
 };
 
-export const scene_Props_Schema = sceneBase.extend(addUnifiedLocale(locale('props')));
+export const scene_Props_Schema = sceneBase.omit({ slug: true }).extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Scene_Props = z.infer<typeof scene_Props_Schema>;

@@ -20,7 +20,7 @@ export const checkpointItem_Config_Schema = checkpointItemBase.extend({
 });
 export type ContentBlock_CheckpointItem_Config = z.infer<typeof checkpointItem_Config_Schema>;
 
-export const checkpointItem_Props_Schema = checkpointItemBase.extend({
+export const checkpointItem_Props_Schema = checkpointItemBase.omit({ slug: true }).extend({
   question: text_Props_Schema,
   answer: z.array(checkpointAnswer_Child_Props_Schema).min(1),
 });

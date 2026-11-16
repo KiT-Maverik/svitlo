@@ -34,9 +34,9 @@ export const markdown_Override_Config_Schema: z.ZodType<ContentBlock_Markdown_Ov
   ),
 );
 
-export type ContentBlock_Markdown_PropsBase = z.infer<typeof markdownBase> & {
+export type ContentBlock_Markdown_PropsBase = Omit<z.infer<typeof markdownBase>, 'slug'> & {
   locale?: DeepPartial<ContentBlock_Markdown_Locale<'props'>>;
 };
 
-export const markdown_Props_Schema = markdownBase.extend(addUnifiedLocale(locale('props')));
+export const markdown_Props_Schema = markdownBase.omit({ slug: true }).extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Markdown_Props = z.infer<typeof markdown_Props_Schema>;

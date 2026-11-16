@@ -53,7 +53,7 @@ export const checkpointAnswer_Child_Props_Schema = z.discriminatedUnion('type', 
   image_Props_Schema, markdown_Props_Schema, scene_Props_Schema,
   subtitles_Props_Schema, text_Props_Schema, video_Props_Schema, youtube_Props_Schema,
 ]);
-export const checkpointAnswer_Props_Schema = answerBase.extend({
+export const checkpointAnswer_Props_Schema = answerBase.omit({ slug: true }).extend({
   content: z.array(checkpointAnswer_Child_Props_Schema).min(1),
 });
 export type ContentBlock_CheckpointAnswer_Props = Omit<z.infer<typeof checkpointAnswer_Props_Schema>, 'content'> & {
