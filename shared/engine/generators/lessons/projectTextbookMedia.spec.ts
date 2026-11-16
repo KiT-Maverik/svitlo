@@ -95,4 +95,5 @@ test('refuses symlinked assets even in Draft', () => fixture((root, save) => {
   symlinkSync(from, dest);
   const { diagnostics } = publish(root, { base: { type: 'image', locale: { src: poster } } }, 'draft');
   assert.equal(diagnostics[0]?.reason, 'unsafe symbolic link');
+  assert.throws(() => assertMediaPublicationReady(diagnostics, 'draft'), /unsafe symbolic link/);
 }));

@@ -124,10 +124,11 @@ export function projectTextbookMedia<T>(publication: T, options: MediaPublicatio
 
 /** Production is all-or-nothing: report every missing/unsafe referenced file. */
 export function assertMediaPublicationReady(diagnostics: readonly MediaDiagnostic[], mode: MediaPublicationMode) {
-  if (mode !== 'production' || !diagnostics.length) return;
+  const fatal = mode === 'production' ? diagnostics : diagnostics.filter(item => item.reason !== 'file is missing');
+  if (!fatal.length) return;
   throw new Error(
-    'Textbook media publication failed (' + diagnostics.length + ' reference(s)):\n' +
-      diagnostics
+    'Textbook media publication failed (' + fatal.length + ' reference(s)):\n' +
+      fatal
         .map(d => [d.source, d.location, d.blockId ?? '-', d.kind, d.fileName, d.expectedPath, d.reason].join(' | '))
         .join('\n'),
   );
