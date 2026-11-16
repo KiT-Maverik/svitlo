@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 3,
+  "kind": "pr-scoped-agent-ci-artifacts",
+  "sourceCommit": "b38e37ca1a4f183041c3fecf3d381e5a7d04472e",
+  "scope": {
+    "kind": "skills",
+    "package": "content/biology",
+    "locale": "it",
+    "component": null,
+    "lesson": null
+  },
+  "packages": [
+    "content/biology"
+  ],
+  "locales": [
+    "it"
+  ],
+  "generated": [
+    {
+      "kind": "taxonomy",
+      "textbook": "content/biology",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/taxonomies/biology/it.md",
+      "domains": 11,
+      "groups": 26,
+      "skills": 147,
+      "missing": 0,
+      "reviewReady": true
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "documents": 1,
+    "failures": 0,
+    "missingTranslations": 0,
+    "incompleteDocuments": 0,
+    "taxonomyDocuments": 1,
+    "lessonDocuments": 0,
+    "assessmentMethodDocuments": 0,
+    "uiKitDocuments": 0,
+    "geographyHomeCopyDocuments": 0
+  }
+}
