@@ -82,7 +82,7 @@ import type { LanguageCode } from '@svitlo/engine/build';
 // Restore the complete language set when translations are ready:
 // export const languages = ["en","uk","pl","qm"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
 
-export const languages = ["en"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+export const languages = ['en'] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
 export type LessonLanguages = typeof languages;
 ```
 
@@ -110,12 +110,20 @@ The builder **does not transform a `production.specification` description into l
 
 ## TypeScript failure is intentional
 
-If a Lesson contains explicit pending media `null` values, untranslated
-locales, an unfinished Scene implementation or unresolved Question references,
-the scaffolded TypeScript **is expected to fail typechecking by design**.
-Required YAML Config fields must not be omitted. The next coding/media agent
-owns those errors and follows the recorded specifications. The scaffolder
-must not inject placeholders or suppress types to make CI green.
+Technical `lesson.yaml` **omits** `fileName` and `posterFileName` entirely
+for Image, Audio, Video, Subtitles and their nested Carousel/Quest variants;
+neither `null` nor a speculative UUID filename belongs in YAML. The
+Lesson Builder deliberately inserts a reserved Nil UUID with the required
+media extension and an adjacent `TODO(asset)` in generated TypeScript.
+This is an unresolved dependency, not a real resource identity. A later
+media specialist replaces these placeholders with validated physical
+`UUID.extension` asset names.
+
+Untranslated locales, incomplete Scenes, Review evidence and unresolved
+Question references may still prevent TypeScript compilation by design.
+**Non-media** YAML Config fields remain required. The scaffolder must not
+invent educational content, translations or real assets, and must not
+suppress TypeScript diagnostics to make CI green.
 
 The scaffolder must not run Zod/AJV, TS checks, editorial approvals,
 `build.props()`, Props generation or publication. It is a code-shaping

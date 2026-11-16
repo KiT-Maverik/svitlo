@@ -9,7 +9,7 @@ import {
   splitLocalizedFields,
   validateRequestedPublication,
 } from '../../_shared__configurators';
-import { validateLocalAssetPaths } from '../_shared__contentBlocks';
+import { runtimeMediaLocale } from '../_shared__contentBlocks';
 import {
   subtitles_Config_Schema,
   subtitles_Props_Schema,
@@ -29,7 +29,6 @@ export const defineSubtitles = <
 ) => {
   const parse = (value: ContentBlock_Subtitles_Config) => {
     const parsed = subtitles_Config_Schema.parse(value);
-    validateLocalAssetPaths(parsed.locale.fileLocation, 'locale.fileLocation');
     return parsed;
   };
   const authored = structuredClone(config);
@@ -38,7 +37,7 @@ export const defineSubtitles = <
     parse(value);
   };
   const files = (locale: DeepPartial<ContentBlock_Subtitles_Config['locale']>) => {
-    const split = splitLocalizedFields(locale);
+    const split = splitLocalizedFields(runtimeMediaLocale(locale, 'fileLocation'));
     return {
       base: Object.keys(split.base).length ? { locale: split.base } : {},
       locale:

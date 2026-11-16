@@ -1,127 +1,99 @@
-import { describe } from 'node:test';
+import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync, unlinkSync } from 'node:fs';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
-import test from 'node:test';
-
-import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
-import {
-  defineImage,
-  defineAudio,
-  defineVideo,
-  defineCarousel,
-  defineScene,
-} from './contentBlocks';
+import { defineImage, defineAudio, defineVideo, defineCarousel } from './contentBlocks';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
-    describe('asset validation', () => {
+    describe('media filename validation', () => {
       const id = '72d22bea-d787-4c6d-9a83-144830c6d325';
-      const url = (name: string) => '/textbooks/example/' + name;
+      const uuid = '550e8400-e29b-41d4-a716-446655440000';
+      test('valid local UUID filenames validate before physical media production', () => {
+        const picture = defineImage({
+          id,
+          slug: 'picture',
+          type: 'image',
+          params: { width: 10, height: 10 },
+          locale: { fileName: uuid + '.png', alt: 'Picture' },
+        });
+        const recording = defineAudio<'recording', ['en', 'uk']>({
+          id,
+          slug: 'recording',
+          type: 'audio',
+          params: {},
+          locale: { fileName: { en: uuid + '.wav', uk: uuid + '.wav' }, title: 'Audio' },
+        });
+        const movie = defineVideo({
+          id,
+          slug: 'movie',
+          type: 'video',
+          params: {},
+          locale: { fileName: uuid + '.mp4', posterFileName: uuid + '.jpg', label: 'Movie' },
+        });
+        const carousel = defineCarousel({
+          id,
+          slug: 'carousel',
+          type: 'carousel',
+          params: {},
+          locale: {},
+          slides: { items: { picture }, order: ['picture'] },
+        });
+        assert.doesNotThrow(() => picture.build.props({ languages: ['en'] }));
+        assert.doesNotThrow(() => recording.build.props({ languages: ['en', 'uk'] }));
+        assert.doesNotThrow(() => movie.build.props({ languages: ['en'] }));
+        assert.doesNotThrow(() => carousel.build.props({ languages: ['en'] }));
+        assert.equal(picture.build.props({ languages: ['en'] }).base.locale?.src, uuid + '.png');
+        assert.equal(movie.build.props({ languages: ['en'] }).base.locale?.poster, uuid + '.jpg');
+      });
 
-      test('ContentBlock validators check packaged Image, Audio, Video, Carousel and Scene files', () => {
-        const repo = mkdtempSync(join(tmpdir(), 'svitlo-block-assets-'));
-        const textbook = join(repo, 'content', 'example');
-        const media = join(textbook, 'static');
-        const scene = join(textbook, 'scenes', resolveEntityPath(id), 'index.ts');
-        const originals = process.cwd();
-        mkdirSync(join(repo, 'shared'), { recursive: true });
-        mkdirSync(media, { recursive: true });
-        mkdirSync(join(textbook, 'scenes', resolveEntityPath(id)), { recursive: true });
-        for (const file of ['photo.png', 'tone.wav', 'clip.mp4', 'poster.jpg'])
-          writeFileSync(join(media, file), 'fixture');
-        writeFileSync(scene, 'export default function Scene() {}');
-
-        try {
-          process.chdir(textbook);
-          const imageConfig = {
+      test('rejects incorrect media categories and paths, not missing physical files', () => {
+        const picture = defineImage({
+          id,
+          slug: 'picture',
+          type: 'image',
+          params: { width: 10, height: 10 },
+          locale: { fileName: uuid + '.png', alt: 'Picture' },
+        });
+        assert.throws(() =>
+          picture.config.validate({
             id,
-            slug: 'image',
-            type: 'image' as const,
-            params: { width: 10, height: 10 },
-            locale: { src: url('photo.png'), alt: 'Photo' },
-          };
-          const audioConfig = {
-            id,
-            slug: 'audio' as const,
-            type: 'audio' as const,
-            params: {},
-            locale: { fileLocation: { en: url('tone.wav'), uk: url('tone.wav') }, title: 'Tone' },
-          };
-          const videoConfig = {
-            id,
-            slug: 'video',
-            type: 'video' as const,
-            params: {},
-            locale: { fileLocation: url('clip.mp4'), poster: url('poster.jpg'), label: 'Video' },
-          };
-          const photoSlide = defineImage({
-            id,
-            slug: 'photo',
+            slug: 'picture',
             type: 'image',
-            params: { fill: true, aspectRatio: 1.5 },
-            locale: { src: url('photo.png'), alt: 'Photo' },
-          });
-          const carouselConfig = {
+            params: { width: 10, height: 10 },
+            locale: { fileName: uuid + '.mp4', alt: 'Picture' },
+          }),
+        );
+        assert.throws(() =>
+          picture.config.validate({
             id,
-            slug: 'carousel',
-            type: 'carousel' as const,
-            params: {},
-            locale: {},
-            slides: { items: { photo: photoSlide }, order: ['photo'] },
-          };
-          const sceneConfig = {
+            slug: 'picture',
+            type: 'image',
+            params: { width: 10, height: 10 },
+            locale: { fileName: '../escape.png', alt: 'Picture' },
+          }),
+        );
+        assert.doesNotThrow(() =>
+          picture.config.validate({
             id,
-            slug: 'scene',
-            type: 'scene' as const,
-            params: {},
-            locale: { value: { title: 'Demo Scene' } },
-          };
+            slug: 'picture',
+            type: 'image',
+            params: { width: 10, height: 10 },
+            locale: { fileName: '00000000-0000-0000-0000-000000000000.webp', alt: 'Pending' },
+          }),
+        );
+      });
 
-          const image = defineImage(imageConfig);
-          const audio = defineAudio<'audio', ['en', 'uk']>(audioConfig);
-          const video = defineVideo(videoConfig);
-          const carousel = defineCarousel(carouselConfig);
-          const sceneBlock = defineScene(sceneConfig);
-
-          assert.throws(
-            () => image.config.validate({ ...imageConfig, locale: { ...imageConfig.locale, src: url('missing.png') } }),
-            /Missing local media file at locale.src/,
-          );
-          assert.throws(
-            () =>
-              audio.config.validate({
-                ...audioConfig,
-                locale: { ...audioConfig.locale, fileLocation: { uk: url('missing.wav') } },
-              }),
-            /Missing local media file at locale.fileLocation.uk/,
-          );
-          assert.throws(
-            () =>
-              video.config.validate({ ...videoConfig, locale: { ...videoConfig.locale, poster: url('missing.jpg') } }),
-            /Missing local media file at locale.poster/,
-          );
-          assert.throws(
-            () =>
-              photoSlide.config.validate({
-                id,
-                slug: 'photo',
-                type: 'image',
-                params: { fill: true, aspectRatio: 1.5 },
-                locale: { src: url('missing.png'), alt: 'Photo' },
-              }),
-            /Missing local media file at locale.src/,
-          );
-
-          unlinkSync(join(media, 'clip.mp4'));
-          assert.throws(() => video.config.validate(videoConfig), /Missing local media file at locale.fileLocation/);
-          unlinkSync(scene);
-          assert.throws(() => sceneBlock.config.validate(sceneConfig), /Missing Scene entrypoint/);
-        } finally {
-          process.chdir(originals);
-          rmSync(repo, { recursive: true, force: true });
-        }
+      test('keeps valid external HTTP(S) sources separate from local filenames', () => {
+        const picture = defineImage({
+          id,
+          slug: 'remote',
+          type: 'image',
+          params: { width: 10, height: 10 },
+          locale: { fileName: 'https://example.com/media/image.png', alt: 'Remote' },
+        });
+        assert.equal(
+          picture.build.props({ languages: ['en'] }).base.locale?.src,
+          'https://example.com/media/image.png',
+        );
       });
     });
   });
