@@ -40,7 +40,7 @@ export const analyzeADesignArgument_Skill_Data = defineSkill({
       'Examine whether order or complexity supports an inference to a designer, considering the evidential relevance of natural alternatives.',
     frontend: {
       en: 'Consider whether complexity or order is evidence of intelligent design.',
-      it: 'Rifletti se la complessità o l\'ordine costituiscano prove di un progetto intelligente.',
+      it: "Rifletti se la complessità o l'ordine costituiscano prove di un progetto intelligente.",
       zh: '思考复杂性或秩序是否能够作为智慧设计的证据。',
       hi: 'विचार करें कि क्या जटिलता या व्यवस्था बुद्धिमान रचना का प्रमाण है।',
       es: 'Considera si la complejidad o el orden son pruebas de un diseño inteligente.',

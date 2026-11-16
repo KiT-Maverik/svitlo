@@ -40,7 +40,7 @@ export const explainSingleBlinding_Skill_Data = defineSkill({
       'Identify which party is kept unaware of assigned conditions and how that may reduce particular expectation-related effects.',
     frontend: {
       en: 'Understand why hiding assigned conditions from one group can limit expectations.',
-      it: 'Comprendi come nascondere l\'assegnazione alle condizioni sperimentali a una sola delle parti coinvolte possa ridurre gli effetti delle aspettative.',
+      it: "Comprendi come nascondere l'assegnazione alle condizioni sperimentali a una sola delle parti coinvolte possa ridurre gli effetti delle aspettative.",
       zh: '理解让一方不知道其分配条件为何能减少预期影响。',
       hi: 'समझें कि अध्ययन की शर्त की जानकारी किसी एक पक्ष से छिपाने पर अपेक्षाओं का प्रभाव कैसे कम होता है।',
       es: 'Comprende cómo ocultar la condición asignada a una parte puede limitar el efecto de las expectativas.',

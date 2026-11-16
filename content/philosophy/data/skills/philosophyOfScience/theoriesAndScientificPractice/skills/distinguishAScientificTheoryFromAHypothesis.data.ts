@@ -5,7 +5,7 @@ export const distinguishAScientificTheoryFromAHypothesis_Skill_Data = defineSkil
   id: 'b0f65d78-4c09-4db4-a1ce-3d58b278436f',
   name: {
     en: 'Distinguish a scientific theory from a hypothesis',
-    it: 'Distinguere una teoria scientifica da un\'ipotesi',
+    it: "Distinguere una teoria scientifica da un'ipotesi",
     zh: '区分科学理论与假设',
     hi: 'वैज्ञानिक सिद्धांत और परिकल्पना में अंतर',
     es: 'Distinguir una teoría científica de una hipótesis',

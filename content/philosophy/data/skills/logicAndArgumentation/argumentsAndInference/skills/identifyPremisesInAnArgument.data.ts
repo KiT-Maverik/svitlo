@@ -5,7 +5,7 @@ export const identifyPremisesInAnArgument_Skill_Data = defineSkill({
   id: '8208c00e-a65f-4115-b229-386545bb1927',
   name: {
     en: 'Identify premises in an argument',
-    it: 'Individuare le premesse di un\'argomentazione',
+    it: "Individuare le premesse di un'argomentazione",
     zh: '识别论证中的前提',
     hi: 'तर्क में आधार-वाक्यों की पहचान',
     es: 'Identificar premisas en un argumento',

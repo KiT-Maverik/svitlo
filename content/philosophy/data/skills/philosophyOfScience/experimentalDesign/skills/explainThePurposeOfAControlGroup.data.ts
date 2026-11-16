@@ -40,7 +40,7 @@ export const explainThePurposeOfAControlGroup_Skill_Data = defineSkill({
       "Identify the comparison condition needed to interpret an intervention's effect where a control group is appropriate.",
     frontend: {
       en: 'Understand why a control group can help isolate the effect of an intervention.',
-      it: 'Comprendi perché un gruppo di controllo possa aiutare a isolare l\'effetto di un intervento.',
+      it: "Comprendi perché un gruppo di controllo possa aiutare a isolare l'effetto di un intervento.",
       zh: '理解对照组为什么有助于隔离干预措施的效果。',
       hi: 'समझें कि नियंत्रण समूह किसी हस्तक्षेप का प्रभाव अलग से पहचानने में कैसे मदद करता है।',
       es: 'Comprende cómo un grupo de control ayuda a aislar el efecto de una intervención.',

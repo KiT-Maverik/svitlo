@@ -5,7 +5,7 @@ export const reconstructAPhilosophicalArgumentAboutDivinity_Skill_Data = defineS
   id: '986ee53c-2f08-4f41-939f-8f8c6f704c74',
   name: {
     en: 'Reconstruct a philosophical argument about divinity',
-    it: 'Ricostruire un\'argomentazione filosofica sulla divinità',
+    it: "Ricostruire un'argomentazione filosofica sulla divinità",
     zh: '重构关于神性的哲学论证',
     hi: 'दिव्यता के बारे में दार्शनिक तर्क का पुनर्निर्माण',
     es: 'Reconstruir un argumento filosófico sobre la divinidad',

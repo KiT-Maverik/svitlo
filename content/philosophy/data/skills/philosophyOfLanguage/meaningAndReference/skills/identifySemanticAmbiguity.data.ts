@@ -5,7 +5,7 @@ export const identifySemanticAmbiguity_Skill_Data = defineSkill({
   id: 'ec2e5bd8-cc62-411e-9b9b-c53dc4846d5f',
   name: {
     en: 'Identify semantic ambiguity',
-    it: 'Individuare un\'ambiguità semantica',
+    it: "Individuare un'ambiguità semantica",
     zh: '识别语义歧义',
     hi: 'अर्थगत अस्पष्टता की पहचान',
     es: 'Identificar ambigüedad semántica',

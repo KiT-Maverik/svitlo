@@ -61,7 +61,7 @@ export const identityAndPersistence_SkillGroup_Data = defineSkillGroup({
       'Questions about sameness arise when material, properties, or relations change over time. Numerical identity is different from merely sharing characteristics.',
     frontend: {
       en: 'Ask what makes something remain the same thing through change.',
-      it: 'Domandati che cosa permette a un\'entità di rimanere la stessa attraverso il cambiamento.',
+      it: "Domandati che cosa permette a un'entità di rimanere la stessa attraverso il cambiamento.",
       zh: '探讨事物在变化过程中保持同一的条件。',
       hi: 'पूछें कि बदलाव के बाद भी कोई वस्तु वही वस्तु कैसे बनी रहती है।',
       es: 'Pregunta qué hace que algo siga siendo lo mismo a través de los cambios.',

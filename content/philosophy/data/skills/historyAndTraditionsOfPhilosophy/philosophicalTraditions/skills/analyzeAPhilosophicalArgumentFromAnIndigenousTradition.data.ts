@@ -5,7 +5,7 @@ export const analyzeAPhilosophicalArgumentFromAnIndigenousTradition_Skill_Data =
   id: 'd4e58aca-2da5-4c5c-a3f4-571f14e02a84',
   name: {
     en: 'Analyze a philosophical argument from an Indigenous tradition',
-    it: 'Analizzare un\'argomentazione filosofica di una tradizione indigena',
+    it: "Analizzare un'argomentazione filosofica di una tradizione indigena",
     zh: '分析原住民哲学传统中的论证',
     hi: 'आदिवासी दार्शनिक परंपरा के तर्क का विश्लेषण',
     es: 'Analizar un argumento de una tradición filosófica indígena',

@@ -61,7 +61,7 @@ export const artAndInterpretation_SkillGroup_Data = defineSkillGroup({
       "A work can bear meanings and values that are not reducible to the creator's stated intent or a viewer's immediate reaction.",
     frontend: {
       en: 'Consider how artworks can communicate meanings beyond what their makers intended.',
-      it: 'Rifletti su come le opere d\'arte possano comunicare significati che vanno oltre le intenzioni di chi le ha create.',
+      it: "Rifletti su come le opere d'arte possano comunicare significati che vanno oltre le intenzioni di chi le ha create.",
       zh: '思考艺术作品如何传达创作者未曾预期的意义。',
       hi: 'सोचो कि कलाकृतियाँ कलाकार की मंशा से आगे भी अर्थ कैसे व्यक्त कर सकती हैं।',
       es: 'Considera cómo las obras de arte pueden transmitir significados más allá de lo que pretendían sus autores.',

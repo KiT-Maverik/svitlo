@@ -5,7 +5,7 @@ export const explainRandomAssignment_Skill_Data = defineSkill({
   id: 'b48d17a0-8bc2-4473-b726-c541c66c379c',
   name: {
     en: 'Explain random assignment',
-    it: 'Spiegare l\'assegnazione casuale',
+    it: "Spiegare l'assegnazione casuale",
     zh: '解释随机分配',
     hi: 'यादृच्छिक आवंटन समझाएँ',
     es: 'Explicar la asignación aleatoria',

@@ -40,7 +40,7 @@ export const distinguishNumericalFromQualitativeIdentity_Skill_Data = defineSkil
       'Identify the difference between being one and the same entity and being indistinguishable in specified properties.',
     frontend: {
       en: 'Distinguish being the same individual object from merely looking identical.',
-      it: 'Distingui l\'essere lo stesso oggetto individuale dal semplice apparire identici.',
+      it: "Distingui l'essere lo stesso oggetto individuale dal semplice apparire identici.",
       zh: '区分是同一个个体与只是看起来完全一样。',
       hi: 'वही एक वस्तु होने और सिर्फ एक जैसा दिखने में अंतर करें।',
       es: 'Distingue ser exactamente el mismo objeto de solo parecer idéntico.',

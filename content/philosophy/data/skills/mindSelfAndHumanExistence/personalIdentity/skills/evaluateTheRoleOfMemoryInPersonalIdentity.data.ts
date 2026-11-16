@@ -5,7 +5,7 @@ export const evaluateTheRoleOfMemoryInPersonalIdentity_Skill_Data = defineSkill(
   id: '61e09d7a-b381-4e8e-8ce7-b48136c47cc5',
   name: {
     en: 'Evaluate the role of memory in personal identity',
-    it: 'Valutare il ruolo della memoria nell\'identità personale',
+    it: "Valutare il ruolo della memoria nell'identità personale",
     zh: '评估记忆在个人同一性中的作用',
     hi: 'व्यक्तिगत पहचान में स्मृति की भूमिका का मूल्यांकन',
     es: 'Evaluar el papel de la memoria en la identidad personal',

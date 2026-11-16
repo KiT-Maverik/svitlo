@@ -5,7 +5,7 @@ export const evaluateAnAppealToAuthority_Skill_Data = defineSkill({
   id: '8a8c0589-bc2f-4930-bbee-9297972ff37e',
   name: {
     en: 'Evaluate an appeal to authority',
-    it: 'Valutare un appello all\'autorità',
+    it: "Valutare un appello all'autorità",
     zh: '评估诉诸权威的论证',
     hi: 'प्राधिकार की अपील का मूल्यांकन',
     es: 'Evaluar una apelación a la autoridad',

@@ -62,7 +62,7 @@ export const mindAndConsciousness_SkillGroup_Data = defineSkillGroup({
       'A first-person experience and a third-person physical description offer different perspectives on mental life. Philosophical theories disagree about how these perspectives relate.',
     frontend: {
       en: 'Discover different ways of understanding subjective experience and the mind.',
-      it: 'Scopri diversi modi di comprendere l\'esperienza soggettiva e la mente.',
+      it: "Scopri diversi modi di comprendere l'esperienza soggettiva e la mente.",
       zh: '探索理解主观体验和心灵的不同方式。',
       hi: 'व्यक्तिपरक अनुभव और मन को समझने के विभिन्न तरीकों को जानें।',
       es: 'Descubre distintas formas de comprender la experiencia subjetiva y la mente.',

@@ -5,7 +5,7 @@ export const identifyConflictsOfInterestInResearch_Skill_Data = defineSkill({
   id: 'ad0bd056-1366-4701-a5eb-4566e4d7a9a4',
   name: {
     en: 'Identify conflicts of interest in research',
-    it: 'Individuare conflitti d\'interesse nella ricerca',
+    it: "Individuare conflitti d'interesse nella ricerca",
     zh: '识别研究中的利益冲突',
     hi: 'अनुसंधान में हितों का टकराव पहचानें',
     es: 'Identificar conflictos de interés en la investigación',

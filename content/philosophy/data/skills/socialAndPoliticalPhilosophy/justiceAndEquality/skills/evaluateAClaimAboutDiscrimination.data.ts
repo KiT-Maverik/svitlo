@@ -5,7 +5,7 @@ export const evaluateAClaimAboutDiscrimination_Skill_Data = defineSkill({
   id: '28822b27-99ac-47f0-983f-0f52b114ab73',
   name: {
     en: 'Evaluate a claim about discrimination',
-    it: 'Valutare un\'affermazione sulla discriminazione',
+    it: "Valutare un'affermazione sulla discriminazione",
     zh: '评估关于歧视的主张',
     hi: 'भेदभाव के दावे का मूल्यांकन',
     es: 'Evaluar una afirmación sobre discriminación',

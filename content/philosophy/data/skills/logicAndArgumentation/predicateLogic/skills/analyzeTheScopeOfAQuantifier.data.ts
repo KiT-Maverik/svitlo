@@ -5,7 +5,7 @@ export const analyzeTheScopeOfAQuantifier_Skill_Data = defineSkill({
   id: '3638b49a-42a8-4de6-8ed9-76978b27e1a9',
   name: {
     en: 'Analyze the scope of a quantifier',
-    it: 'Analizzare il campo d\'azione di un quantificatore',
+    it: "Analizzare il campo d'azione di un quantificatore",
     zh: '分析量词的作用范围',
     hi: 'परिमाणक के कार्यक्षेत्र का विश्लेषण',
     es: 'Analizar el alcance de un cuantificador',

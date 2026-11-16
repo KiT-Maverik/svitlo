@@ -5,7 +5,7 @@ export const reconstructAnArgumentInStandardForm_Skill_Data = defineSkill({
   id: '5f586fce-6c27-435c-96a3-9a58e023a37b',
   name: {
     en: 'Reconstruct an argument in standard form',
-    it: 'Ricostruire un\'argomentazione in forma standard',
+    it: "Ricostruire un'argomentazione in forma standard",
     zh: '用标准形式重构论证',
     hi: 'तर्क को मानक रूप में पुनर्निर्मित करना',
     es: 'Reconstruir un argumento en forma estándar',
@@ -40,7 +40,7 @@ export const reconstructAnArgumentInStandardForm_Skill_Data = defineSkill({
       'Arrange its relevant premises and conclusion explicitly while preserving the original reasoning rather than improving it silently.',
     frontend: {
       en: 'Rewrite an argument as clear premises followed by its conclusion.',
-      it: 'Riscrivi un\'argomentazione presentando chiaramente le premesse, seguite dalla conclusione.',
+      it: "Riscrivi un'argomentazione presentando chiaramente le premesse, seguite dalla conclusione.",
       zh: '将论证改写为清晰列出的前提，后接结论。',
       hi: 'तर्क को स्पष्ट आधार-वाक्यों और उनके बाद निष्कर्ष के रूप में लिखें।',
       es: 'Reescribe un argumento con premisas claras seguidas de su conclusión.',

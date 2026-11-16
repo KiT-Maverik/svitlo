@@ -5,7 +5,7 @@ export const evaluateSamplingUncertainty_Skill_Data = defineSkill({
   id: 'e66dc35b-8873-4711-bda0-79fc527b3d0d',
   name: {
     en: 'Evaluate sampling uncertainty',
-    it: 'Valutare l\'incertezza campionaria',
+    it: "Valutare l'incertezza campionaria",
     zh: '评估抽样不确定性',
     hi: 'नमूना संबंधी अनिश्चितता का मूल्यांकन',
     es: 'Evaluar la incertidumbre del muestreo',

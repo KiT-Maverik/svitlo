@@ -5,7 +5,7 @@ export const evaluateAnInferenceWithQuantifiers_Skill_Data = defineSkill({
   id: '2b656dd4-44b4-448c-b106-d77f5f611ee7',
   name: {
     en: 'Evaluate an inference with quantifiers',
-    it: 'Valutare un\'inferenza con quantificatori',
+    it: "Valutare un'inferenza con quantificatori",
     zh: '评估含量词的推论',
     hi: 'परिमाणकों वाले अनुमान का मूल्यांकन',
     es: 'Evaluar una inferencia con cuantificadores',

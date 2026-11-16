@@ -5,7 +5,7 @@ export const analyzeAPhilosophicalArgumentFromAnIslamicTradition_Skill_Data = de
   id: 'e4e30d62-dabf-42d4-9d2a-f9ee631d44b9',
   name: {
     en: 'Analyze a philosophical argument from an Islamic tradition',
-    it: 'Analizzare un\'argomentazione filosofica di una tradizione islamica',
+    it: "Analizzare un'argomentazione filosofica di una tradizione islamica",
     zh: '分析伊斯兰哲学传统中的论证',
     hi: 'इस्लामी दर्शन के तर्क का विश्लेषण',
     es: 'Analizar un argumento de una tradición filosófica islámica',

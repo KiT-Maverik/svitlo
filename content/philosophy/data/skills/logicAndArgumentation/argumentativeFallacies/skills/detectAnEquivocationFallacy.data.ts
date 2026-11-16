@@ -40,7 +40,7 @@ export const detectAnEquivocationFallacy_Skill_Data = defineSkill({
       'Trace a shift between meanings of the same expression that makes an inference appear stronger than it is.',
     frontend: {
       en: 'Spot when the meaning of a word shifts within an argument.',
-      it: 'Individua quando il significato di una parola cambia nel corso di un\'argomentazione.',
+      it: "Individua quando il significato di una parola cambia nel corso di un'argomentazione.",
       zh: '识别同一个词在论证过程中悄悄改变含义的情况。',
       hi: 'पहचानें कि तर्क के दौरान किसी शब्द का अर्थ कब बदल जाता है।',
       es: 'Detecta cuando una palabra cambia de significado dentro de un argumento.',

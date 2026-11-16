@@ -5,7 +5,7 @@ export const analyzeAPhilosophicalArgumentFromAnAfricanTradition_Skill_Data = de
   id: 'aa711a2e-12a8-4d16-ab19-7d189c84e5dd',
   name: {
     en: 'Analyze a philosophical argument from an African tradition',
-    it: 'Analizzare un\'argomentazione filosofica di una tradizione africana',
+    it: "Analizzare un'argomentazione filosofica di una tradizione africana",
     zh: '分析非洲传统中的哲学论证',
     hi: 'अफ़्रीकी परंपरा के दार्शनिक तर्क का विश्लेषण',
     es: 'Analizar un argumento de una tradición africana',
@@ -40,7 +40,7 @@ export const analyzeAPhilosophicalArgumentFromAnAfricanTradition_Skill_Data = de
       'Examine a representative argument concerning persons, community, knowledge, or values while avoiding claims that Africa has a single philosophy.',
     frontend: {
       en: 'Analyze a philosophical argument from a particular African tradition.',
-      it: 'Analizza un\'argomentazione filosofica appartenente a una specifica tradizione africana.',
+      it: "Analizza un'argomentazione filosofica appartenente a una specifica tradizione africana.",
       zh: '分析某一特定非洲哲学传统中的论证。',
       hi: 'किसी विशेष अफ़्रीकी परंपरा के दार्शनिक तर्क का विश्लेषण करो।',
       es: 'Analiza un argumento filosófico de una tradición africana particular.',

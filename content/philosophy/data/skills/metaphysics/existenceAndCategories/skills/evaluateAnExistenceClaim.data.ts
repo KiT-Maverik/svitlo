@@ -5,7 +5,7 @@ export const evaluateAnExistenceClaim_Skill_Data = defineSkill({
   id: '4ac36bbb-6d7a-41ac-868e-d250a40d4a80',
   name: {
     en: 'Evaluate an existence claim',
-    it: 'Valutare un\'affermazione di esistenza',
+    it: "Valutare un'affermazione di esistenza",
     zh: '评估存在性主张',
     hi: 'अस्तित्व के दावे का मूल्यांकन',
     es: 'Evaluar una afirmación de existencia',
@@ -40,7 +40,7 @@ export const evaluateAnExistenceClaim_Skill_Data = defineSkill({
       'Examine the criteria by which something is said to exist rather than assuming that naming it settles its ontological status.',
     frontend: {
       en: 'Ask what evidence or reasoning supports saying that something exists.',
-      it: 'Domandati quali prove o ragionamenti sostengano l\'affermazione che qualcosa esiste.',
+      it: "Domandati quali prove o ragionamenti sostengano l'affermazione che qualcosa esiste.",
       zh: '询问哪些证据或推理支持某个事物存在的说法。',
       hi: 'पूछें कि किसी चीज़ के मौजूद होने का दावा किन प्रमाणों या तर्कों पर आधारित है।',
       es: 'Pregunta qué pruebas o razonamientos respaldan que algo existe.',

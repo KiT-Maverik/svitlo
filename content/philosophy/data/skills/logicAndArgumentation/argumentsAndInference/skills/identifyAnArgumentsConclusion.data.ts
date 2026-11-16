@@ -5,7 +5,7 @@ export const identifyAnArgumentsConclusion_Skill_Data = defineSkill({
   id: '09c4373a-75c0-4319-950a-ad93b395a9d8',
   name: {
     en: "Identify an argument's conclusion",
-    it: 'Individuare la conclusione di un\'argomentazione',
+    it: "Individuare la conclusione di un'argomentazione",
     zh: '识别论证的结论',
     hi: 'तर्क के निष्कर्ष की पहचान',
     es: 'Identificar la conclusión de un argumento',
@@ -40,7 +40,7 @@ export const identifyAnArgumentsConclusion_Skill_Data = defineSkill({
       'Determine which proposition is supposed to follow or gain support, regardless of its position in a passage.',
     frontend: {
       en: 'Identify the central claim an argument is trying to establish.',
-      it: 'Individua la tesi centrale che un\'argomentazione cerca di dimostrare.',
+      it: "Individua la tesi centrale che un'argomentazione cerca di dimostrare.",
       zh: '找出论证试图确立的核心主张。',
       hi: 'वह मुख्य दावा पहचानें जिसे तर्क सिद्ध करने का प्रयास करता है।',
       es: 'Identifica la afirmación central que un argumento intenta establecer.',

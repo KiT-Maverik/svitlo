@@ -5,7 +5,7 @@ export const analyzeEpistemicInjustice_Skill_Data = defineSkill({
   id: '2b43e1c8-3ef0-487c-b232-c60a4ea75fc0',
   name: {
     en: 'Analyze epistemic injustice',
-    it: 'Analizzare l\'ingiustizia epistemica',
+    it: "Analizzare l'ingiustizia epistemica",
     zh: '分析认识不公',
     hi: 'ज्ञान-संबंधी अन्याय का विश्लेषण',
     es: 'Analizar la injusticia epistémica',

@@ -5,7 +5,7 @@ export const detectAStrawManArgument_Skill_Data = defineSkill({
   id: '9ffb1b1c-5d0e-48bc-a6bd-3581025cf6a7',
   name: {
     en: 'Detect a straw-man argument',
-    it: 'Riconoscere l\'argomento dell\'uomo di paglia',
+    it: "Riconoscere l'argomento dell'uomo di paglia",
     zh: '识别稻草人论证',
     hi: 'पुतला-तर्क की पहचान',
     es: 'Detectar un argumento del hombre de paja',

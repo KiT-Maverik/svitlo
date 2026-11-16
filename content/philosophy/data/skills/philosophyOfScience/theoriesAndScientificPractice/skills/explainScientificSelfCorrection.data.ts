@@ -5,7 +5,7 @@ export const explainScientificSelfCorrection_Skill_Data = defineSkill({
   id: 'd22d7e13-e9d7-41c3-a8e6-5d9befd0fa15',
   name: {
     en: 'Explain scientific self-correction',
-    it: 'Spiegare l\'autocorrezione della scienza',
+    it: "Spiegare l'autocorrezione della scienza",
     zh: '解释科学的自我纠错',
     hi: 'विज्ञान में आत्म-सुधार समझाएँ',
     es: 'Explicar la autocorrección científica',

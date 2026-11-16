@@ -40,7 +40,7 @@ export const distinguishArtisticIntentionFromInterpretation_Skill_Data = defineS
       'Assess what a creator reportedly intended separately from meanings supported by the work and its reception.',
     frontend: {
       en: "Separate an artist's intentions from interpretations supported by the work.",
-      it: 'Separa le intenzioni dell\'artista dalle interpretazioni sostenute dall\'opera.',
+      it: "Separa le intenzioni dell'artista dalle interpretazioni sostenute dall'opera.",
       zh: '区分艺术家的创作意图与作品本身所支持的解读。',
       hi: 'कलाकार के इरादे को कलाकृति से समर्थित व्याख्याओं से अलग करो।',
       es: 'Separa las intenciones del artista de las lecturas respaldadas por la obra.',

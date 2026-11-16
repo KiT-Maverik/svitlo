@@ -54,7 +54,7 @@ export const metaphysics_SkillDomain_Data = defineSkillDomain({
       'Metaphysics examines the most general categories of reality, such as what exists, how things persist, and what makes events possible. Its conceptual questions differ from describing particular natural mechanisms in the sciences.',
     frontend: {
       en: 'Explore philosophical questions about existence, identity, reality, time and possibility.',
-      it: 'Esplora le domande filosofiche sull\'esistenza, sull\'identità, sulla realtà, sul tempo e sulla possibilità.',
+      it: "Esplora le domande filosofiche sull'esistenza, sull'identità, sulla realtà, sul tempo e sulla possibilità.",
       zh: '探索关于存在、同一性、现实、时间和可能性的哲学问题。',
       hi: 'अस्तित्व, पहचान, वास्तविकता, समय और संभावना से जुड़े दार्शनिक प्रश्न खोजें।',
       es: 'Explora cuestiones filosóficas sobre existencia, identidad, realidad, tiempo y posibilidad.',

@@ -40,7 +40,7 @@ export const reviseAPositionInLightOfReasons_Skill_Data = defineSkill({
       'Identify which premise or conclusion should change when a cogent objection defeats an earlier commitment.',
     frontend: {
       en: 'Change a belief or argument when a stronger reason shows it needs revision.',
-      it: 'Modifica una convinzione o un\'argomentazione quando ragioni più solide ne mostrano la necessità.',
+      it: "Modifica una convinzione o un'argomentazione quando ragioni più solide ne mostrano la necessità.",
       zh: '当更有说服力的理由表明原有观点需要修正时，改变信念或论证。',
       hi: 'जब कोई अधिक मजबूत तर्क सुधार की आवश्यकता दिखाए, तो अपना विश्वास या तर्क बदलें।',
       es: 'Cambia una creencia o argumento cuando una razón más sólida muestre que necesita revisión.',

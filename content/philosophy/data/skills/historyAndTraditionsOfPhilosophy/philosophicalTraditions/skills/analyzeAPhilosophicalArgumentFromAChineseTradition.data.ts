@@ -5,7 +5,7 @@ export const analyzeAPhilosophicalArgumentFromAChineseTradition_Skill_Data = def
   id: '2f7424e8-70cd-41e4-a613-4f852732e078',
   name: {
     en: 'Analyze a philosophical argument from a Chinese tradition',
-    it: 'Analizzare un\'argomentazione filosofica di una tradizione cinese',
+    it: "Analizzare un'argomentazione filosofica di una tradizione cinese",
     zh: '分析中国传统中的哲学论证',
     hi: 'चीनी परंपरा के दार्शनिक तर्क का विश्लेषण',
     es: 'Analizar un argumento de una tradición filosófica china',
