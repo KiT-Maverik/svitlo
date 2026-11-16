@@ -39,7 +39,7 @@ export const explainWaveInterference_Skill_Data = defineSkill({
     methodological: 'Superposed waves may reinforce or weaken the resulting disturbance depending on their phases.',
     frontend: {
       en: 'Recognize when overlapping waves reinforce or cancel one another.',
-      it: 'Riconosci quando onde sovrapposte si rafforzano o si annullano a vicenda.',
+      it: 'Riconosci quando onde sovrapposte si rafforzano o si attenuano a vicenda.',
       zh: '认识叠加的波如何相互增强或减弱。',
       hi: 'पहचानें कि मिलती हुई तरंगें कैसे एक-दूसरे को बढ़ाती या कम करती हैं।',
       es: 'Reconoce cuándo las ondas superpuestas se refuerzan o se debilitan.',
