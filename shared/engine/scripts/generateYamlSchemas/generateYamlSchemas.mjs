@@ -278,47 +278,6 @@ export function generateYamlSchemas(mode, outputRoot = yamlSchemaOutputRoot) {
     throw new Error('Expected --write or --check');
   }
   const documents = yamlJsonSchemaDocuments();
-  // TEMPORARY CI DIAGNOSTIC. Remove after synchronizing checked-in schemas.
-  if (mode === '--check' && process.env.GITHUB_ACTIONS) {
-    const changes = {};
-    const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-    const isObject = x => x && typeof x === 'object' && !Array.isArray(x);
-    function collect(before, after, at, operations) {
-      if (same(before, after)) return;
-      if (isObject(before) && isObject(after)) {
-        const left = Object.keys(before);
-        const right = Object.keys(after);
-        for (const key of left) if (!Object.hasOwn(after, key)) operations.push({ op: 'delete', at: [...at, key] });
-        for (const key of right) {
-          if (!Object.hasOwn(before, key)) operations.push({ op: 'set', at: [...at, key], value: after[key] });
-          else collect(before[key], after[key], [...at, key], operations);
-        }
-        if (!same(left, right)) operations.push({ op: 'order', at, keys: right });
-      } else if (Array.isArray(before) && Array.isArray(after) && before.length === after.length) {
-        for (let i = 0; i < after.length; i++) collect(before[i], after[i], [...at, i], operations);
-      } else operations.push({ op: 'set', at, value: after });
-    }
-    for (const [fileName, expectedText] of Object.entries(documents)) {
-      const target = path.join(outputRoot, fileName);
-      if (schemaMatches(target, expectedText)) continue;
-      const operations = [];
-      try {
-        const before = JSON.parse(fs.readFileSync(target, 'utf8'));
-        const after = JSON.parse(expectedText);
-        collect(before, after, [], operations);
-      } catch {
-        operations.push({ op: 'root', value: JSON.parse(expectedText) });
-      }
-      changes[fileName] = operations;
-    }
-    const payload = JSON.stringify(changes);
-    const chunkSize = 2800;
-    const count = Math.ceil(payload.length / chunkSize);
-    for (let i = 0; i < count; i++) {
-      console.error('SVITLO_SCHEMA_PATCH_PART ' + i + '/' + count + ' ' +
-        payload.slice(i * chunkSize, (i + 1) * chunkSize));
-    }
-  }
   if (mode === '--write') fs.mkdirSync(outputRoot, { recursive: true });
   for (const [filename, contents] of Object.entries(documents)) {
     const target = path.join(outputRoot, filename);
