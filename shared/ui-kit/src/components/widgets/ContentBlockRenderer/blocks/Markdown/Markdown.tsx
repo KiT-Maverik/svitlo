@@ -3,7 +3,6 @@ import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import remarkMath from 'remark-math';
-import 'katex/dist/katex.min.css';
 import type { ContentBlock_Markdown_Props } from '@svitlo/engine/runtime';
 
 import { localizedAttributes, resolveLocalizedRecord } from '../../utils';
