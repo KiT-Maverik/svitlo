@@ -14,10 +14,6 @@ import { engineTestPatterns } from './engineTestPatterns.mjs';
 
 const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const output = path.join(engineRoot, '.coverage-engine');
-// Temporary diagnostic: print the canonical schema from the built Engine.
-const { yamlJsonSchemaDocuments } = await import('../generateYamlSchemas/generateYamlSchemas.mjs');
-process.stdout.write('SVITLO_CONTENT_BLOCK_SCHEMA=' + JSON.stringify(JSON.parse(yamlJsonSchemaDocuments()['contentBlock.schema.json'])) + '\n');
-
 
 function run(executable, args) {
   const child = spawnSync(executable, args, { cwd: engineRoot, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 });
