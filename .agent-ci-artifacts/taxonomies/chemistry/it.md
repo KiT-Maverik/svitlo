@@ -624,7 +624,7 @@ Skills: 5
 
 **Methodological description (English):** Use age-appropriate, adult-led demonstrations or documented observations (for example, iron rusting or a cut apple browning) to identify visible evidence that a material can undergo a chemical change. Have learners describe what changed, distinguish observations from explanations, and connect the evidence to chemical behavior without expecting explanations of reaction mechanisms. Never ask children to taste, smell, heat, or mix unfamiliar substances.
 
-**User-friendly description (it):** Registra le proprietà osservabili senza confonderle con le cause dedotte.
+**User-friendly description (it):** Osserva indizi di trasformazioni chimiche, come il ferro che arrugginisce o una mela tagliata che imbrunisce.
 
 #### Domande e modelli
 
@@ -878,7 +878,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how externally supplied electrical energy drives non-spontaneous redox reactions at electrodes, including transformations such as electroplating.
 
-**User-friendly description (it):** Comprendi come l'elettricità può favorire reazioni che non avverrebbero spontaneamente.
+**User-friendly description (it):** Comprendi come l'energia elettrica può far avvenire reazioni che non procederebbero spontaneamente.
 
 ##### Pile galvaniche
 
@@ -1474,7 +1474,7 @@ Skills: 5
 
 **Methodological description (English):** Interpret hydroxide-containing substances and their dissociation or reactivity in context.
 
-**User-friendly description (it):** Riconosci i composti idrossidi e il loro comportamento nelle reazioni chimiche.
+**User-friendly description (it):** Riconosci gli idrossidi e il loro comportamento nelle reazioni chimiche.
 
 ##### Minerali
 
@@ -1550,7 +1550,7 @@ Groups: 4 · Skills: 22
 
 **Methodological description (English):** Components of mixtures retain their chemical identities while distribution, solubility and relative amounts determine useful properties. Separation methods exploit differences in physical behavior rather than requiring reaction.
 
-**User-friendly description (it):** Esplora come le sostanze si combinano nelle miscele, si dissolvono e possono essere separate.
+**User-friendly description (it):** Esplora come le sostanze si mescolano, si sciolgono e possono essere separate.
 
 #### Concentrazione
 
@@ -1876,7 +1876,7 @@ Skills: 7
 
 **Methodological description (English):** Recognize carbonyl–nitrogen connectivity and distinguish amides from amines.
 
-**User-friendly description (it):** Identifica le ammidi e distingui il loro legame tra carbonile e azoto da quello delle ammine.
+**User-friendly description (it):** Identifica le ammidi dal gruppo carbonilico legato all'azoto e distinguile dalle ammine.
 
 ##### Ammine
 
