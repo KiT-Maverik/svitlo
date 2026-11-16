@@ -5,7 +5,7 @@ export const protectAgainstHarmfulUVExposure_Skill_Data = defineSkill({
   id: '466006d1-8870-484f-97eb-bc6a0afeb422',
   name: {
     en: 'Protect against harmful UV exposure',
-    it: 'Proteggersi dall\'esposizione nociva ai raggi UV',
+    it: "Proteggersi dall'esposizione nociva ai raggi UV",
     zh: '防护有害紫外线',
     hi: 'हानिकारक पराबैंगनी किरणों से सुरक्षा',
     es: 'Protegerse de la radiación UV dañina',

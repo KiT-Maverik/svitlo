@@ -56,7 +56,7 @@ export const nutritionalFoundations_SkillGroup_Data = defineSkillGroup({
       'Food supplies energy and essential nutrients; dietary adequacy depends on patterns over time rather than judging a single meal as healthy or unhealthy.',
     frontend: {
       en: 'Explore nutrition as a pattern of choices rather than one perfect meal.',
-      it: 'Esplora l\'alimentazione come insieme di scelte, non come ricerca del singolo pasto perfetto.',
+      it: "Esplora l'alimentazione come insieme di scelte, non come ricerca del singolo pasto perfetto.",
       zh: '把营养看作长期的饮食选择，而不是某一顿完美的饭。',
       hi: 'पोषण को केवल एक आदर्श भोजन नहीं, लंबे समय की खाने की आदतों के रूप में देखें।',
       es: 'Comprende la nutrición como un patrón de decisiones, no una comida perfecta.',

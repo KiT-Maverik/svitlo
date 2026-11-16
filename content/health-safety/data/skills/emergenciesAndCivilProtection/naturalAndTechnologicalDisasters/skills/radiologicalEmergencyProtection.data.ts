@@ -5,7 +5,7 @@ export const radiologicalEmergencyProtection_Skill_Data = defineSkill({
   id: '2c71f2cc-1d6c-4cd8-9cc9-de6cea302cc2',
   name: {
     en: 'Radiological emergency protection',
-    it: 'Protezione durante un\'emergenza radiologica',
+    it: "Protezione durante un'emergenza radiologica",
     zh: '放射性紧急事件防护',
     hi: 'विकिरण आपातकालीन सुरक्षा',
     es: 'Protección en emergencia radiológica',
@@ -40,7 +40,7 @@ export const radiologicalEmergencyProtection_Skill_Data = defineSkill({
       'Distinguish external radiation exposure and contamination, following official instructions on shelter, movement, and decontamination.',
     frontend: {
       en: 'Recognize why radiological emergencies require guidance about exposure and contamination.',
-      it: 'Comprendi perché le emergenze radiologiche richiedono indicazioni sull\'esposizione e la contaminazione.',
+      it: "Comprendi perché le emergenze radiologiche richiedono indicazioni sull'esposizione e la contaminazione.",
       zh: '了解为何放射性紧急事件需要针对照射和污染的专业指导。',
       hi: 'समझें कि विकिरण आपातकाल में संपर्क और संदूषण पर विशेषज्ञ निर्देश क्यों आवश्यक हैं।',
       es: 'Comprende por qué una emergencia radiológica requiere indicaciones sobre exposición y contaminación.',

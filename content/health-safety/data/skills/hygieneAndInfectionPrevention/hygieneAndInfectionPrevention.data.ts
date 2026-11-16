@@ -52,7 +52,7 @@ export const hygieneAndInfectionPrevention_SkillDomain_Data = defineSkillDomain(
       'Disease prevention includes reducing contact with infectious agents and maintaining sanitary conditions. This domain concerns personal and environmental prevention, not microbiological taxonomy or clinical infection treatment.',
     frontend: {
       en: 'Explore practical ways to reduce infections through hygiene and safer environments.',
-      it: 'Esplora modi pratici per ridurre le infezioni attraverso l\'igiene e ambienti più sicuri.',
+      it: "Esplora modi pratici per ridurre le infezioni attraverso l'igiene e ambienti più sicuri.",
       zh: '探索如何通过卫生习惯和更安全的环境减少感染。',
       hi: 'स्वच्छ आदतों और सुरक्षित वातावरण से संक्रमण कम करने के तरीके जानें।',
       es: 'Explora cómo la higiene y los entornos seguros ayudan a reducir las infecciones.',

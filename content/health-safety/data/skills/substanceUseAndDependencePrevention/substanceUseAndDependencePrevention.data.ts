@@ -8,7 +8,7 @@ export const substanceUseAndDependencePrevention_SkillDomain_Data = defineSkillD
   id: '97980369-7459-4e14-b975-7a56bdc6e208',
   title: {
     en: 'Substance Use and Dependence Prevention',
-    it: 'Prevenzione dell\'uso di sostanze e delle dipendenze',
+    it: "Prevenzione dell'uso di sostanze e delle dipendenze",
     zh: '物质使用与依赖预防',
     hi: 'नशीले पदार्थों के उपयोग और निर्भरता की रोकथाम',
     es: 'Consumo de sustancias y prevención de la dependencia',

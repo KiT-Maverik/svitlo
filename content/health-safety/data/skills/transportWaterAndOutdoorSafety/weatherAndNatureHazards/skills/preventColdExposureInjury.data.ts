@@ -40,7 +40,7 @@ export const preventColdExposureInjury_Skill_Data = defineSkill({
       'Account for wet clothing, wind, duration, suitable insulation, and warning signs of harmful cooling.',
     frontend: {
       en: 'Reduce harmful cold exposure by managing wetness, wind and insulation.',
-      it: 'Riduci l\'esposizione dannosa al freddo gestendo umidità, vento e isolamento termico.',
+      it: "Riduci l'esposizione dannosa al freddo gestendo umidità, vento e isolamento termico.",
       zh: '通过保持干燥、防风与保暖，减少寒冷造成的伤害。',
       hi: 'गीलापन, हवा और गर्म कपड़ों का ध्यान रखकर ठंड का नुकसान कम करें।',
       es: 'Reduce daños por frío controlando humedad, viento y aislamiento térmico.',

@@ -12,7 +12,7 @@ export const preventionAndAccessToHelp_SkillGroup_Data = defineSkillGroup({
   id: 'b5f6b60d-c5c4-4e11-a2f3-85bd6dcf2810',
   name: {
     en: 'Prevention and Access to Help',
-    it: 'Prevenzione e accesso all\'aiuto',
+    it: "Prevenzione e accesso all'aiuto",
     zh: '预防与获得帮助',
     hi: 'रोकथाम और मदद तक पहुँच',
     es: 'Prevención y acceso a la ayuda',

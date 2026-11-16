@@ -5,7 +5,7 @@ export const followSafeEquipmentProcedures_Skill_Data = defineSkill({
   id: '45c2e8ec-b7c8-485b-9b60-d9b42cd9484e',
   name: {
     en: 'Follow safe equipment procedures',
-    it: 'Seguire procedure sicure per l\'uso delle attrezzature',
+    it: "Seguire procedure sicure per l'uso delle attrezzature",
     zh: '遵守设备安全操作程序',
     hi: 'उपकरणों की सुरक्षित प्रक्रियाओं का पालन',
     es: 'Seguir procedimientos seguros con equipos',

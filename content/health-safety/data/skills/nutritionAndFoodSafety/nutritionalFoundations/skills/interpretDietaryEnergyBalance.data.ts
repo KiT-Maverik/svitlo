@@ -40,7 +40,7 @@ export const interpretDietaryEnergyBalance_Skill_Data = defineSkill({
       "Relate energy intake to expenditure and changing individual needs while distinguishing energy balance from dietary quality and avoiding unsupported conclusions about a person's health from body size.",
     frontend: {
       en: 'Distinguish energy intake and expenditure from overall diet quality.',
-      it: 'Distingui l\'energia introdotta e consumata dalla qualità complessiva dell\'alimentazione.',
+      it: "Distingui l'energia introdotta e consumata dalla qualità complessiva dell'alimentazione.",
       zh: '区分摄入与消耗的能量和饮食的整体质量。',
       hi: 'ऊर्जा के सेवन और खर्च को पूरे आहार की गुणवत्ता से अलग समझें।',
       es: 'Distingue la energía que comes y gastas de la calidad general de tu dieta.',

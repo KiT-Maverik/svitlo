@@ -13,7 +13,7 @@ export const environmentalAndAcuteInjuries_SkillGroup_Data = defineSkillGroup({
   id: 'd7576a20-a73f-4949-9312-29ff843b80a3',
   name: {
     en: 'Environmental and Acute Injuries',
-    it: 'Lesioni acute e legate all\'ambiente',
+    it: "Lesioni acute e legate all'ambiente",
     zh: '环境因素与急性损伤',
     hi: 'पर्यावरणीय और अचानक चोटें',
     es: 'Lesiones ambientales y agudas',

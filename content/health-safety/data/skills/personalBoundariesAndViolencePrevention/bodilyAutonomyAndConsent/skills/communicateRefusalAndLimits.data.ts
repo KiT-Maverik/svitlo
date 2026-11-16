@@ -40,7 +40,7 @@ export const communicateRefusalAndLimits_Skill_Data = defineSkill({
       'State a boundary or leave an unsafe interaction in a way that prioritizes personal safety over politeness.',
     frontend: {
       en: 'Say no or leave unsafe contact without prioritizing politeness over safety.',
-      it: 'Di\' di no o allontanati da un contatto non sicuro senza mettere la cortesia prima della sicurezza.',
+      it: "Di' di no o allontanati da un contatto non sicuro senza mettere la cortesia prima della sicurezza.",
       zh: '在不安全的接触中说“不”或离开，不要把礼貌置于安全之上。',
       hi: 'असुरक्षित संपर्क से मना करें या दूर हटें; सुरक्षा से अधिक शिष्टाचार को न रखें।',
       es: 'Di no o aléjate de un contacto inseguro sin anteponer la cortesía a tu seguridad.',

@@ -5,7 +5,7 @@ export const planRegularPhysicalActivity_Skill_Data = defineSkill({
   id: 'ac729eb1-9050-4132-9925-a33d6ba2a20f',
   name: {
     en: 'Plan regular physical activity',
-    it: 'Pianificare un\'attività fisica regolare',
+    it: "Pianificare un'attività fisica regolare",
     zh: '规划规律身体活动',
     hi: 'नियमित शारीरिक गतिविधि की योजना बनाना',
     es: 'Planificar actividad física regular',

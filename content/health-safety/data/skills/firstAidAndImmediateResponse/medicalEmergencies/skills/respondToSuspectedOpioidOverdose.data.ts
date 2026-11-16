@@ -40,7 +40,7 @@ export const respondToSuspectedOpioidOverdose_Skill_Data = defineSkill({
       'Recognize dangerous respiratory depression or unresponsiveness following possible opioid exposure, activate emergency services and understand the role of naloxone and basic life support where available and within training.',
     frontend: {
       en: 'Recognize suspected opioid overdose and the need for emergency help and naloxone.',
-      it: 'Riconosci una possibile overdose di oppioidi e la necessità di soccorsi d\'emergenza e naloxone.',
+      it: "Riconosci una possibile overdose di oppioidi e la necessità di soccorsi d'emergenza e naloxone.",
       zh: '识别疑似阿片类药物过量以及急救和纳洛酮的必要性。',
       hi: 'ओपिओइड की अधिक मात्रा की आशंका और आपात मदद व नालोक्सोन की ज़रूरत पहचानो।',
       es: 'Reconoce una posible sobredosis y la necesidad de ayuda urgente y naloxona.',

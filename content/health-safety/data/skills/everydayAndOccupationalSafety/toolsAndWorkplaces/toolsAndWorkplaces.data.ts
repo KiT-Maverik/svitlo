@@ -54,7 +54,7 @@ export const toolsAndWorkplaces_SkillGroup_Data = defineSkillGroup({
       'Protective procedures depend on the activity, equipment, and conditions; professional work requires role-appropriate training.',
     frontend: {
       en: 'Learn to follow protective practices with tools and equipment.',
-      it: 'Impara a seguire pratiche protettive nell\'uso di utensili e attrezzature.',
+      it: "Impara a seguire pratiche protettive nell'uso di utensili e attrezzature.",
       zh: '学习使用工具与设备时遵守防护措施。',
       hi: 'औज़ारों और उपकरणों के साथ सुरक्षात्मक उपायों का पालन करना सीखें।',
       es: 'Aprende a seguir medidas de protección al usar herramientas y equipos.',

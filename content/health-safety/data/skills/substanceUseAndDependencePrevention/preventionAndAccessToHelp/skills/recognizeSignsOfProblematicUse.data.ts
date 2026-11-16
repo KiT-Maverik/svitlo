@@ -40,7 +40,7 @@ export const recognizeSignsOfProblematicUse_Skill_Data = defineSkill({
       'Notice loss of control, increasing harms, and neglected obligations as reasons for further assessment rather than a basis for labeling someone.',
     frontend: {
       en: 'Recognize when use causes growing harm or loss of control.',
-      it: 'Riconosci quando l\'uso provoca danni crescenti o perdita di controllo.',
+      it: "Riconosci quando l'uso provoca danni crescenti o perdita di controllo.",
       zh: '识别使用某种物质何时造成越来越大的伤害或失去控制。',
       hi: 'पहचानें कि उपयोग कब बढ़ता नुकसान या नियंत्रण खोने का कारण बनता है।',
       es: 'Reconoce cuándo el consumo causa daños crecientes o pérdida de control.',

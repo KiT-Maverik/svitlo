@@ -40,7 +40,7 @@ export const cleaningAndDisinfection_Skill_Data = defineSkill({
       'Distinguish routine removal of dirt from targeted disinfection and avoid unsafe mixing or misuse of cleaning chemicals.',
     frontend: {
       en: 'Distinguish everyday cleaning from targeted disinfection and chemical misuse.',
-      it: 'Distingui la pulizia quotidiana dalla disinfezione mirata e dall\'uso improprio delle sostanze chimiche.',
+      it: "Distingui la pulizia quotidiana dalla disinfezione mirata e dall'uso improprio delle sostanze chimiche.",
       zh: '区分日常清洁和针对性消毒，并避免错误使用化学品。',
       hi: 'रोज़ की सफाई और विशेष कीटाणुशोधन में फर्क करें तथा रसायनों का गलत उपयोग न करें।',
       es: 'Distingue limpieza habitual de desinfección específica y evita el mal uso de químicos.',

@@ -40,7 +40,7 @@ export const manageMenstrualHealth_Skill_Data = defineSkill({
       'Understand menstrual variation, choose appropriate hygiene and comfort measures, track relevant changes and recognize symptoms that merit clinical attention without shame or unsupported assumptions.',
     frontend: {
       en: 'Manage menstruation with suitable hygiene while noticing concerning symptoms.',
-      it: 'Gestisci le mestruazioni con un\'igiene adeguata, prestando attenzione ai sintomi preoccupanti.',
+      it: "Gestisci le mestruazioni con un'igiene adeguata, prestando attenzione ai sintomi preoccupanti.",
       zh: '使用适当的卫生方法管理月经，并留意令人担忧的症状。',
       hi: 'उचित स्वच्छता के साथ मासिक धर्म सँभालें और चिंताजनक लक्षणों पर ध्यान दें।',
       es: 'Maneja la menstruación con higiene adecuada y presta atención a síntomas preocupantes.',
