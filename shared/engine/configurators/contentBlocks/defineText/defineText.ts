@@ -133,7 +133,8 @@ export const defineText = <
   const { id, type } = authored;
   const slug = config.slug;
   const copyAuthored = () => structuredClone(authored);
-  const base = { ...buildTextProps(copyAuthored()).base, slug };
+  const readBase = () => ({ ...buildTextProps(parseAndValidate(copyAuthored())).base, slug });
+  let cachedBase: ReturnType<typeof readBase> | undefined;
 
   const props = (options: PublicationLanguageOptions<Languages>): TextPropsPublication<ContentBlock_Text_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
@@ -175,9 +176,9 @@ export const defineText = <
     build: { props, overrides },
     // Transitional compatibility for parents not migrated to assembly yet.
     config: {
-      base,
+      get base() { return cachedBase ??= readBase(); },
       locales: (): { locale: DeepPartial<ContentBlock_Text_Locale<'config'>> } => ({
-        locale: onlyLocales(copyAuthored().locale),
+        locale: onlyLocales(parseAndValidate(copyAuthored()).locale),
       }),
       validate,
     },

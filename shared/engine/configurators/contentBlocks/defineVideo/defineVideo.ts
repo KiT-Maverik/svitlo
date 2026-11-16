@@ -98,13 +98,17 @@ export const defineVideo = <
   const { id, type } = authored;
   const slug = config.slug;
   const copyAuthored = () => structuredClone(authored);
-  const base = {
-    id,
-    type,
-    slug,
-    params: structuredClone(authored.params),
-    locale: onlyStrings(authored.locale),
-  } satisfies DeepPartial<ContentBlock_Video_Config>;
+  const readBase = () => {
+    const source = parseAndValidate(copyAuthored());
+    return {
+      id,
+      type,
+      slug,
+      params: structuredClone(source.params),
+      locale: onlyStrings(source.locale),
+    } satisfies DeepPartial<ContentBlock_Video_Config>;
+  };
+  let cachedBase: ReturnType<typeof readBase> | undefined;
 
   const props = (
     options: PublicationLanguageOptions<Languages>,
@@ -142,9 +146,9 @@ export const defineVideo = <
     validate,
     build: { props, overrides },
     config: {
-      base,
+      get base() { return cachedBase ??= readBase(); },
       locales: (): { locale: DeepPartial<ContentBlock_Video_Locale<'config'>> } => ({
-        locale: onlyLocales(copyAuthored().locale),
+        locale: onlyLocales(parseAndValidate(copyAuthored()).locale),
       }),
       validate,
     },
