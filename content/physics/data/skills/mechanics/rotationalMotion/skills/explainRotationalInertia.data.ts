@@ -40,7 +40,7 @@ export const explainRotationalInertia_Skill_Data = defineSkill({
       'The distribution of mass relative to an axis affects how rotation changes, even when the total mass is the same.',
     frontend: {
       en: 'Recognize how mass farther from an axis changes resistance to rotation.',
-      it: 'Riconosci come una massa più distante dall\'asse modifica la resistenza alla rotazione.',
+      it: 'Riconosci come la distribuzione della massa rispetto all\'asse influisce sulla resistenza a cambiare il moto rotatorio.',
       zh: '识别质量离转轴越远，物体抵抗转动变化的能力如何改变。',
       hi: 'जानें कि अक्ष से दूर स्थित द्रव्यमान घूर्णन बदलने के प्रतिरोध को कैसे प्रभावित करता है।',
       es: 'Reconoce cómo la masa situada más lejos del eje modifica la resistencia a cambiar la rotación.',
