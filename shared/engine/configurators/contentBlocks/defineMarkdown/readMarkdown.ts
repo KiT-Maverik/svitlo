@@ -36,11 +36,13 @@ export function readMarkdown(
   languages?: readonly LanguageCode[],
 ): string | Partial<Record<LanguageCode, string>> {
   if (languages === undefined) return readMarkdownFile(moduleUrl, 'markdown.md');
-  if (!Array.isArray(languages) || !languages.length || new Set(languages).size !== languages.length) {
+  if (!Array.isArray(languages)) throw new Error('Markdown languages must be an array');
+  const requestedLanguages: readonly LanguageCode[] = languages;
+  if (!requestedLanguages.length || new Set(requestedLanguages).size !== requestedLanguages.length) {
     throw new Error('Markdown languages must be a non-empty list without duplicates');
   }
   const values: Partial<Record<LanguageCode, string>> = {};
-  for (const language of languages) {
+  for (const language of requestedLanguages) {
     if (!languageCode_Schema.safeParse(language).success) {
       throw new Error('Invalid Markdown language code: ' + String(language));
     }
