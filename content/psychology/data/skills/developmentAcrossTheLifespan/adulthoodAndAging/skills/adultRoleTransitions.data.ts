@@ -5,7 +5,7 @@ export const adultRoleTransitions_Skill_Data = defineSkill({
   id: '79cb3036-953c-41a1-bcd3-1f7e899e7efc',
   name: {
     en: 'Adult Role Transitions',
-    it: 'Transizioni di ruolo nell\'età adulta',
+    it: "Transizioni di ruolo nell'età adulta",
     zh: '成年人角色的转变',
     hi: 'वयस्क भूमिकाओं में बदलाव',
     es: 'Transiciones de roles en la adultez',

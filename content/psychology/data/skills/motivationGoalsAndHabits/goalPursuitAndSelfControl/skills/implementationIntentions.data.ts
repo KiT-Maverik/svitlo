@@ -39,7 +39,7 @@ export const implementationIntentions_Skill_Data = defineSkill({
     methodological: 'Explain how linking a situational cue to a planned response can bridge an intention–action gap.',
     frontend: {
       en: 'Use if-then plans to connect a situation with an intended action.',
-      it: 'Usa piani del tipo «se... allora...» per collegare una situazione a un\'azione prevista.',
+      it: "Usa piani del tipo «se... allora...» per collegare una situazione a un'azione prevista.",
       zh: '用“如果……那么……”的计划将情境与预定行动联系起来。',
       hi: 'यदि–तो योजना से स्थिति को तय की गई क्रिया से जोड़ें।',
       es: 'Usa planes «si ocurre esto, haré aquello» para asociar situaciones y acciones.',

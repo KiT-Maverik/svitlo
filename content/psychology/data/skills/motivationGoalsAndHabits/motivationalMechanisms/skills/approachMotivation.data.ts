@@ -5,7 +5,7 @@ export const approachMotivation_Skill_Data = defineSkill({
   id: 'd0f363c3-cbad-423d-9b28-765ca8a8fd57',
   name: {
     en: 'Approach Motivation',
-    it: 'Motivazione all\'avvicinamento',
+    it: "Motivazione all'avvicinamento",
     zh: '趋近动机',
     hi: 'सकारात्मक परिणाम की ओर प्रेरणा',
     es: 'Motivación de aproximación',

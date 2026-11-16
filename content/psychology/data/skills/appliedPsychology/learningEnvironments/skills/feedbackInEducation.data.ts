@@ -5,7 +5,7 @@ export const feedbackInEducation_Skill_Data = defineSkill({
   id: '5740806a-5b37-4648-88db-b23205ff1b29',
   name: {
     en: 'Feedback in Education',
-    it: 'Feedback nell\'istruzione',
+    it: "Feedback nell'istruzione",
     zh: '教育中的反馈',
     hi: 'शिक्षा में प्रतिक्रिया',
     es: 'Retroalimentación en la educación',

@@ -5,7 +5,7 @@ export const avoidingPsychologicalEssentialism_Skill_Data = defineSkill({
   id: '84ebf855-858a-44d9-80ed-c5b9a10cf696',
   name: {
     en: 'Avoiding Psychological Essentialism',
-    it: 'Evitare l\'essenzialismo psicologico',
+    it: "Evitare l'essenzialismo psicologico",
     zh: '避免心理本质主义',
     hi: 'मनोवैज्ञानिक सारवाद से बचना',
     es: 'Evitar el esencialismo psicológico',

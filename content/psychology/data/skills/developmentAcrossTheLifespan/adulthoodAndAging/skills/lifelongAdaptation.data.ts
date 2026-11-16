@@ -5,7 +5,7 @@ export const lifelongAdaptation_Skill_Data = defineSkill({
   id: '24f53ddf-7ef1-4a3e-b98b-ecd60618a797',
   name: {
     en: 'Lifelong Adaptation',
-    it: 'Adattamento lungo tutto l\'arco della vita',
+    it: "Adattamento lungo tutto l'arco della vita",
     zh: '终身适应',
     hi: 'जीवन भर अनुकूलन',
     es: 'Adaptación a lo largo de la vida',

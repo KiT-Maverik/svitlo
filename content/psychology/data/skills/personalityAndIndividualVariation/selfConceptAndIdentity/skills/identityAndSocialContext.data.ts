@@ -39,7 +39,7 @@ export const identityAndSocialContext_Skill_Data = defineSkill({
     methodological: 'Analyze how roles, belonging, and social expectations shape self-descriptions.',
     frontend: {
       en: 'Explore how personal identity is shaped by relationships and social settings.',
-      it: 'Esplora come l\'identità personale sia plasmata dalle relazioni e dagli ambienti sociali.',
+      it: "Esplora come l'identità personale sia plasmata dalle relazioni e dagli ambienti sociali.",
       zh: '探索人际关系和社会环境如何塑造个人身份认同。',
       hi: 'जानें कि रिश्ते और सामाजिक स्थितियाँ व्यक्तिगत पहचान को कैसे आकार देती हैं।',
       es: 'Explora cómo las relaciones y los entornos sociales moldean la identidad personal.',

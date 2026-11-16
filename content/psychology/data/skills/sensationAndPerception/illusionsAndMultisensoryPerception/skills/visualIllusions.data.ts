@@ -40,7 +40,7 @@ export const visualIllusions_Skill_Data = defineSkill({
       "Explain how contextual cues create reliable differences between an object's measured property and its appearance.",
     frontend: {
       en: 'Explain why a visual illusion can differ from a measured physical feature.',
-      it: 'Spiega perché un\'illusione visiva possa differire da una caratteristica fisica misurata.',
+      it: "Spiega perché un'illusione visiva possa differire da una caratteristica fisica misurata.",
       zh: '解释为什么视觉错觉会与实际测量的物理特征不同。',
       hi: 'समझाएँ कि दृश्य भ्रम किसी मापी गई भौतिक विशेषता से अलग क्यों दिख सकता है।',
       es: 'Explica por qué una ilusión visual puede diferir de una propiedad física medida.',

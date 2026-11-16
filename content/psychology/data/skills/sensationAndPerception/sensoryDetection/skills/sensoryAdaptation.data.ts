@@ -40,7 +40,7 @@ export const sensoryAdaptation_Skill_Data = defineSkill({
       'Describe changed sensitivity after sustained stimulation without mistaking it for change in the source.',
     frontend: {
       en: 'Explore how sensitivity can change after exposure to a constant stimulus.',
-      it: 'Esplora come la sensibilità possa cambiare dopo l\'esposizione a uno stimolo costante.',
+      it: "Esplora come la sensibilità possa cambiare dopo l'esposizione a uno stimolo costante.",
       zh: '探索持续接触相同刺激后敏感度如何变化。',
       hi: 'जानें कि लगातार एक ही उत्तेजना मिलने पर संवेदनशीलता कैसे बदल सकती है।',
       es: 'Explora cómo cambia la sensibilidad tras una exposición constante a un estímulo.',

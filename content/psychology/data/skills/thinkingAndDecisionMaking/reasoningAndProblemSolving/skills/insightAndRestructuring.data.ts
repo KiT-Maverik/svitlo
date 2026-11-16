@@ -40,7 +40,7 @@ export const insightAndRestructuring_Skill_Data = defineSkill({
       'Explain abrupt reinterpretation during problem solving without treating the feeling of insight as proof.',
     frontend: {
       en: "Understand how changing a problem's representation can produce an insight.",
-      it: 'Comprendi come cambiare la rappresentazione di un problema possa portare a un\'intuizione.',
+      it: "Comprendi come cambiare la rappresentazione di un problema possa portare a un'intuizione.",
       zh: '理解改变问题的心理表征如何带来顿悟。',
       hi: 'समझें कि समस्या की मानसिक प्रस्तुति बदलने से अचानक सूझ कैसे पैदा हो सकती है।',
       es: 'Comprende cómo cambiar la representación de un problema puede provocar una intuición repentina.',

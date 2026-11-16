@@ -40,7 +40,7 @@ export const perspectiveTaking_Skill_Data = defineSkill({
       "Explain inferring another person's possible viewpoint while recognizing that their actual experience remains uncertain.",
     frontend: {
       en: "Practice considering a situation from someone else's perspective.",
-      it: 'Esercitati a considerare una situazione dal punto di vista di un\'altra persona.',
+      it: "Esercitati a considerare una situazione dal punto di vista di un'altra persona.",
       zh: '练习从他人的视角考虑同一情境。',
       hi: 'किसी स्थिति को दूसरे व्यक्ति के नज़रिए से देखने का अभ्यास करें।',
       es: 'Practica considerar una situación desde el punto de vista de otra persona.',

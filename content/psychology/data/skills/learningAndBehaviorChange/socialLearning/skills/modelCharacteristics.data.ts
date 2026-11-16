@@ -39,7 +39,7 @@ export const modelCharacteristics_Skill_Data = defineSkill({
     methodological: 'Evaluate how perceived similarity, credibility, and context shape imitation.',
     frontend: {
       en: 'Explore which characteristics of a demonstrator affect learning.',
-      it: 'Esplora quali caratteristiche della persona che mostra un comportamento influenzino l\'apprendimento.',
+      it: "Esplora quali caratteristiche della persona che mostra un comportamento influenzino l'apprendimento.",
       zh: '探索演示者的哪些特征会影响观察者的学习。',
       hi: 'जानें कि उदाहरण दिखाने वाले व्यक्ति की कौन-सी विशेषताएँ सीखने को प्रभावित करती हैं।',
       es: 'Explora qué características de una persona que demuestra algo influyen en el aprendizaje.',

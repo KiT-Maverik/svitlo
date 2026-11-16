@@ -5,7 +5,7 @@ export const theoriesOfIntelligence_Skill_Data = defineSkill({
   id: 'b86cc735-4ecb-40ad-a20f-84eb8ed85b28',
   name: {
     en: 'Theories of Intelligence',
-    it: 'Teorie dell\'intelligenza',
+    it: "Teorie dell'intelligenza",
     zh: '智力理论',
     hi: 'बुद्धिमत्ता के सिद्धांत',
     es: 'Teorías de la inteligencia',
@@ -40,7 +40,7 @@ export const theoriesOfIntelligence_Skill_Data = defineSkill({
       'Compare broad and domain-specific models and evaluate how well measures predict relevant outcomes.',
     frontend: {
       en: 'Compare different scientific theories about intelligence and abilities.',
-      it: 'Confronta diverse teorie scientifiche sull\'intelligenza e sulle capacità.',
+      it: "Confronta diverse teorie scientifiche sull'intelligenza e sulle capacità.",
       zh: '比较关于智力及认知能力的不同科学理论。',
       hi: 'बुद्धिमत्ता और क्षमताओं के बारे में विभिन्न वैज्ञानिक सिद्धांतों की तुलना करें।',
       es: 'Compara distintas teorías científicas sobre la inteligencia y las capacidades.',

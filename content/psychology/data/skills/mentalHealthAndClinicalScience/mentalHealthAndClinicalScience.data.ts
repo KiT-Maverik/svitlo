@@ -59,7 +59,7 @@ export const mentalHealthAndClinicalScience_SkillDomain_Data = defineSkillDomain
       'Clinical psychology investigates distress, impaired functioning, and evidence-based assessment and intervention. Learning these concepts does not authorize students to diagnose themselves or others, deliver therapy, or replace qualified professional care.',
     frontend: {
       en: 'Explore psychological wellbeing, mental-health difficulties and professional care through evidence.',
-      it: 'Esplora il benessere psicologico, le difficoltà di salute mentale e l\'assistenza professionale attraverso le evidenze.',
+      it: "Esplora il benessere psicologico, le difficoltà di salute mentale e l'assistenza professionale attraverso le evidenze.",
       zh: '通过科学证据了解心理福祉、心理健康困难和专业照护。',
       hi: 'वैज्ञानिक साक्ष्यों से मानसिक कल्याण, कठिनाइयों और पेशेवर देखभाल को समझें।',
       es: 'Explora el bienestar psicológico, las dificultades de salud mental y la atención profesional mediante pruebas científicas.',

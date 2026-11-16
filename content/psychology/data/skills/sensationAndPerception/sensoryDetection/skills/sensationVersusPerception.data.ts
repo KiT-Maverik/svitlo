@@ -40,7 +40,7 @@ export const sensationVersusPerception_Skill_Data = defineSkill({
       'Distinguish sensory encoding of stimulation from the interpretation of what that stimulation represents.',
     frontend: {
       en: 'Distinguish detecting a stimulus from interpreting what it means.',
-      it: 'Distingui la rilevazione di uno stimolo dall\'interpretazione del suo significato.',
+      it: "Distingui la rilevazione di uno stimolo dall'interpretazione del suo significato.",
       zh: '区分检测刺激与解释刺激意味着什么。',
       hi: 'उत्तेजना का पता लगाने और उसका अर्थ समझने में अंतर करें।',
       es: 'Distingue entre detectar un estímulo e interpretar su significado.',

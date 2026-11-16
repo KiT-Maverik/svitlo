@@ -40,7 +40,7 @@ export const strategySelectionForLearning_Skill_Data = defineSkill({
       'Compare spacing, retrieval, elaboration, and organization for the demands of a given task rather than declaring a universal technique.',
     frontend: {
       en: 'Select learning strategies according to the skill, evidence and context.',
-      it: 'Scegli le strategie di apprendimento in base all\'abilità da acquisire, alle evidenze e al contesto.',
+      it: "Scegli le strategie di apprendimento in base all'abilità da acquisire, alle evidenze e al contesto.",
       zh: '根据要学的技能、证据和具体情境选择学习方法。',
       hi: 'सीखने वाले कौशल, प्रमाण और परिस्थिति के अनुसार अध्ययन का तरीका चुनें।',
       es: 'Elige estrategias según la habilidad, la evidencia y el contexto.',

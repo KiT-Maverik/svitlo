@@ -40,7 +40,7 @@ export const individualCognitiveProfiles_Skill_Data = defineSkill({
       'Interpret strengths and difficulties across different cognitive tasks without treating one performance as global ability.',
     frontend: {
       en: 'Recognize individual profiles of strengths rather than one fixed ability label.',
-      it: 'Riconosci i profili individuali dei punti di forza invece di ricorrere a un\'unica etichetta fissa delle capacità.',
+      it: "Riconosci i profili individuali dei punti di forza invece di ricorrere a un'unica etichetta fissa delle capacità.",
       zh: '认识个人的优势组合，而不是用单一能力标签概括所有人。',
       hi: 'एक ही क्षमता लेबल के बजाय किसी व्यक्ति की अलग-अलग ताकतों को पहचानें।',
       es: 'Reconoce los puntos fuertes de cada persona sin reducirlos a una etiqueta fija de capacidad.',

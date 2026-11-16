@@ -40,7 +40,7 @@ export const cognitiveLoadInInterfaces_Skill_Data = defineSkill({
       'Explain how limited working memory and divided attention influence task performance with complex controls.',
     frontend: {
       en: 'Explore how limited attention and memory affect the use of complex interfaces.',
-      it: 'Esplora come i limiti dell\'attenzione e della memoria incidano sull\'uso delle interfacce complesse.',
+      it: "Esplora come i limiti dell'attenzione e della memoria incidano sull'uso delle interfacce complesse.",
       zh: '探索有限的注意力和记忆如何影响复杂界面的使用。',
       hi: 'जानें कि सीमित ध्यान और स्मृति जटिल इंटरफ़ेस के उपयोग को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo la atención y la memoria limitadas afectan el uso de interfaces complejas.',

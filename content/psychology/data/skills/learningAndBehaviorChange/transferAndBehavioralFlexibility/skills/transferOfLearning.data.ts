@@ -5,7 +5,7 @@ export const transferOfLearning_Skill_Data = defineSkill({
   id: 'f3cb60cd-75bf-4093-9c3c-99407a8bb46f',
   name: {
     en: 'Transfer of Learning',
-    it: 'Trasferimento dell\'apprendimento',
+    it: "Trasferimento dell'apprendimento",
     zh: '学习迁移',
     hi: 'अधिगम का स्थानांतरण',
     es: 'Transferencia del aprendizaje',

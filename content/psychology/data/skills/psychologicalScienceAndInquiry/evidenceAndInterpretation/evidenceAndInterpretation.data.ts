@@ -67,7 +67,7 @@ export const evidenceAndInterpretation_SkillGroup_Data = defineSkillGroup({
       'Quantitative summaries and research transparency help discriminate robust patterns from noise and misleading causal stories.',
     frontend: {
       en: 'Learn how evidence and transparent analysis support research conclusions.',
-      it: 'Scopri come le evidenze e un\'analisi trasparente sostengano le conclusioni della ricerca.',
+      it: "Scopri come le evidenze e un'analisi trasparente sostengano le conclusioni della ricerca.",
       zh: '了解证据和透明的分析如何支持研究结论。',
       hi: 'जानें कि प्रमाण और पारदर्शी विश्लेषण अनुसंधान के निष्कर्षों को कैसे मजबूत बनाते हैं।',
       es: 'Aprende cómo la evidencia y los análisis transparentes respaldan las conclusiones de una investigación.',

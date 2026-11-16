@@ -5,7 +5,7 @@ export const peerInfluenceInAdolescence_Skill_Data = defineSkill({
   id: '0e13e8c9-36c4-4dfb-9543-4f6a032086da',
   name: {
     en: 'Peer Influence in Adolescence',
-    it: 'Influenza dei pari nell\'adolescenza',
+    it: "Influenza dei pari nell'adolescenza",
     zh: '青春期的同伴影响',
     hi: 'किशोरावस्था में साथियों का प्रभाव',
     es: 'Influencia de los pares en la adolescencia',

@@ -40,7 +40,7 @@ export const playAndLearning_Skill_Data = defineSkill({
       'Assess how different forms of play afford practice in imagination, cooperation, or problem solving without claiming all play has identical effects.',
     frontend: {
       en: 'Discover how play supports social, cognitive and emotional learning.',
-      it: 'Scopri come il gioco sostenga l\'apprendimento sociale, cognitivo ed emotivo.',
+      it: "Scopri come il gioco sostenga l'apprendimento sociale, cognitivo ed emotivo.",
       zh: '了解游戏如何支持社交、认知和情绪方面的学习。',
       hi: 'जानें कि खेल सामाजिक, संज्ञानात्मक और भावनात्मक सीखने में कैसे मदद करता है।',
       es: 'Descubre cómo el juego favorece el aprendizaje social, cognitivo y emocional.',
