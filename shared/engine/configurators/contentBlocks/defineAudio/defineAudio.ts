@@ -88,21 +88,17 @@ export const defineAudio = <
       Languages
     >,
 ) => {
-  const authored = structuredClone(config);
+  const authored: ContentBlock_Audio_Config = structuredClone(config);
   const { id, type } = authored;
   const slug = config.slug;
   const copyAuthored = () => structuredClone(authored);
-  const readBase = () => {
-    const source = parseAndValidate(copyAuthored());
-    return {
-      id,
-      type,
-      slug,
-      params: structuredClone(source.params),
-      locale: onlyStrings(source.locale),
-    } satisfies DeepPartial<ContentBlock_Audio_Config>;
-  };
-  let cachedBase: ReturnType<typeof readBase> | undefined;
+  const base = {
+    id,
+    type,
+    slug,
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
+  } satisfies DeepPartial<ContentBlock_Audio_Config>;
 
   const props = (
     options: PublicationLanguageOptions<Languages>,
@@ -140,9 +136,9 @@ export const defineAudio = <
     validate,
     build: { props, overrides },
     config: {
-      get base() { return cachedBase ??= readBase(); },
+      base,
       locales: (): { locale: DeepPartial<ContentBlock_Audio_Locale<'config'>> } => ({
-        locale: onlyLocales(parseAndValidate(copyAuthored()).locale),
+        locale: onlyLocales(copyAuthored().locale),
       }),
       validate,
     },
