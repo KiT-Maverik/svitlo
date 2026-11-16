@@ -39,7 +39,7 @@ export const arrangeMusicInASequencer_Skill_Data = defineSkill({
     methodological: 'Organize sound parts over time into sections, transitions and variations.',
     frontend: {
       en: 'Arrange recorded or electronic musical parts into sections over time.',
-      it: 'Disponi parti musicali registrate o elettroniche in sezioni lungo il tempo.',
+      it: 'Nel sequencer, organizza parti musicali registrate o elettroniche in sezioni, transizioni e variazioni.',
       zh: '将录制或电子音乐声部按时间编排成不同段落。',
       hi: 'रिकॉर्ड किए गए या इलेक्ट्रॉनिक संगीत भागों को समय के अनुसार खंडों में व्यवस्थित करें।',
       es: 'Organiza partes musicales grabadas o electrónicas en secciones a lo largo del tiempo.',
