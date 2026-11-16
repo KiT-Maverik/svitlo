@@ -111,8 +111,8 @@ export const defineMatchBlocks = <
       };
   } & ConfigWithLanguages<Question_MatchBlocks_Config, Languages>,
 ) => {
-  validate(config);
-  const authored = cloneJson(metadataSchema.parse(config));
+  const { content: _content, ...metadataInput } = config;
+  const authored = cloneJson(metadataInput);
   const copyMetadata = () => cloneJson(authored);
   const { id, type } = authored;
   const slug = config.slug;
@@ -144,6 +144,7 @@ export const defineMatchBlocks = <
     options: PublicationLanguageOptions<Languages>,
   ): QuestionResourcePublication<Question_MatchBlocks_Props> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyMetadata(), content: initialContent });
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale, languages);
     const common = resolveCommonContent(initialContent, languages);
@@ -174,6 +175,7 @@ export const defineMatchBlocks = <
   ): QuestionOverridePublication<Question_MatchBlocks_Props> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyMetadata(), content: initialContent });
       ensureQuestionPatchShape(patch);
       const metadataPatch = matchBlocks_Override_Config_Schema.parse({
         ...(patch.params !== undefined ? { params: patch.params } : {}),
