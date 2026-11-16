@@ -6,6 +6,8 @@ on:
     paths:
       - '**/*.ts'
       - '**/*.tsx'
+      # KaTeX styles can change without a JS/TS source change.
+      - 'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/**'
       - '**/*.mts'
       - '**/*.js'
       - '**/*.mjs'

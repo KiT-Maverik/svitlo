@@ -6,6 +6,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const markdownRendererPath = 'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/';
 function assert(ok, message) {
   if (!ok) throw new Error(message);
 }
@@ -71,10 +72,29 @@ export function chooseChecks(changed, workspaces) {
   if (indexdbRuntimeContractChanged && packages.has('@svitlo/indexdb')) {
     affected.add('@svitlo/indexdb');
   }
+  // Markdown/KaTeX CSS is bundled by the Web host, even when only UI Kit changes.
+  if (changed.some(file => file.startsWith(markdownRendererPath)) && packages.has('@svitlo/web')) {
+    affected.add('@svitlo/web');
+  }
   const jsFiles = changed.filter(f => /\.(?:mjs|cjs|js)$/.test(f) && fs.existsSync(path.join(repoRoot, f)));
   const jsonFiles = changed.filter(f => f.endsWith('.json') && fs.existsSync(path.join(repoRoot, f)));
   return { affected, jsFiles, jsonFiles };
 }
+/** A host production build catches CSS dependencies that UI Kit's TS tests cannot. */
+export function requiresWebBuild(changed) {
+  return changed.some(
+    file =>
+      file.startsWith('shared/adapters/nextjs/') ||
+      file.startsWith('shared/ui-kit/src/components/lesson/') ||
+      file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
+      file.startsWith(markdownRendererPath) ||
+      file.startsWith('content/playground/scenes/') ||
+      file.startsWith('content/playground/scripts/') ||
+      file === 'content/playground/package.json' ||
+      file.startsWith('apps/web/'),
+  );
+}
+
 function changedFiles(base, head) {
   assert(/^[a-f0-9]{40}$/.test(base) && /^[a-f0-9]{40}$/.test(head), 'Base and head must be 40-character commit SHAs');
   return execFileSync('git', ['diff', '--name-only', '-z', base, head], { cwd: repoRoot })
@@ -264,19 +284,7 @@ function runGate(changed) {
     }
     // A Lesson/App Router extraction needs a real Next.js production build, not
     // only TypeScript. Run it before unrelated textbook data checks can block CI.
-    if (
-      name === '@svitlo/web' &&
-      changed.some(
-        file =>
-          file.startsWith('shared/adapters/nextjs/') ||
-          file.startsWith('shared/ui-kit/src/components/lesson/') ||
-          file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
-          file.startsWith('content/playground/scenes/') ||
-          file.startsWith('content/playground/scripts/') ||
-          file === 'content/playground/package.json' ||
-          file.startsWith('apps/web/'),
-      )
-    ) {
+    if (name === '@svitlo/web' && requiresWebBuild(changed)) {
       exec('npm', ['run', 'app:build', '--workspace', name]);
       exec('npm', ['run', 'test:unit:selection', '--workspace', name]);
       exec('npm', ['run', 'test:components', '--workspace', name]);
