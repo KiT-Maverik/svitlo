@@ -134,11 +134,13 @@ function fixture(locale = 'uk') {
         slug: 'quiz',
         type: 'quiz',
         locale: { title: t('Quiz', 'Тест'), navigationLabel: t('Quiz', 'Тест') },
-        params: { selection: { mode: 'all', questionIds: ['00000000-0000-4000-8000-000000000001'] }, layout: { mode: 'stepper' } },
+        params: {
+          selection: { mode: 'all', questionIds: ['00000000-0000-4000-8000-000000000001'] },
+          layout: { mode: 'stepper' },
+        },
         content: [],
       },
     ],
-
   };
 }
 
@@ -266,7 +268,15 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     );
     assert.throws(
       () =>
-        parseArguments(['--package', 'content/engine-fixture', '--lesson', 'c/' + lessonId, '--locale', 'uk', '--stdout']),
+        parseArguments([
+          '--package',
+          'content/engine-fixture',
+          '--lesson',
+          'c/' + lessonId,
+          '--locale',
+          'uk',
+          '--stdout',
+        ]),
       /canonical UUID/,
     );
   });
@@ -335,7 +345,8 @@ it('requires an exact Lesson UUID for read-only language inventory', () => {
   assert.equal(args.listLocales, true);
   assert.throws(() => parseArguments(['--package', 'content/engine-fixture', '--list-locales']), /Usage/);
   assert.throws(
-    () => parseArguments(['--package', 'content/engine-fixture', '--lesson', lessonId, '--locale', 'it', '--list-locales']),
+    () =>
+      parseArguments(['--package', 'content/engine-fixture', '--lesson', lessonId, '--locale', 'it', '--list-locales']),
     /Usage/,
   );
 });

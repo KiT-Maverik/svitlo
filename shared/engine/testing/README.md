@@ -7,7 +7,7 @@ without reading `content/*` textbooks.
 
 The fixture intentionally supports **only `en` and `uk`**. Adding a language to
 the global Engine registry must not alter the fixture's published locales.
-`shared/engine/schemas/languages.schemas.ts` here is a minimal *test-only*
+`shared/engine/schemas/languages.schemas.ts` here is a minimal _test-only_
 registry for the read-only Lesson → Markdown generator (which accepts an
 explicit repository root), not a replacement for the production registry.
 
