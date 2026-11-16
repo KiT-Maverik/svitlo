@@ -16,10 +16,11 @@ export const defineTask = <
     task_Config_Schema.parse(value);
     assertQuestChild(value.scene, 'scene', 'scene');
   };
-  validate(config);
   const { id, slug, type, scene } = config;
+  const authored = { ...config };
   const props = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
+    validate(authored);
     const output = nestQuestPublication({ id, slug, type }, projectQuestTree({ scene }, languages), 'unused');
     const normalized = { base: { id, slug, type, scene: (output.base.unused as Record<string, unknown>).scene },
       locale: output.locale ? Object.fromEntries(Object.entries(output.locale).map(([lang, value]) =>
@@ -29,6 +30,7 @@ export const defineTask = <
   };
   const overrides = (patch: Task_Overrides, options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
+      validate(authored);
     if (!patch || typeof patch !== 'object' || Array.isArray(patch) ||
       Object.keys(patch).some(key => key !== 'scene')) throw new Error('Invalid QuestTask overrides');
     const output = projectQuestTree({ scene }, languages, patch);

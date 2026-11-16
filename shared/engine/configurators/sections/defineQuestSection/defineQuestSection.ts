@@ -49,13 +49,10 @@ export const defineQuestSection = <
     assertQuestMap(value.stages, 'questStage', 'stages');
     assertQuestMap(value.tasks, 'questTask', 'tasks');
   };
-  validate(config);
   const { id, slug, type } = config;
   const metadataSchema = questSection_Config_Schema.omit({ stages: true, tasks: true });
-  const metadata = structuredClone(metadataSchema.parse({
-    id: config.id, slug: config.slug, type: config.type,
-    params: config.params, locale: config.locale,
-  }));
+  const { stages: _stages, tasks: _tasks, ...metadataInput } = config;
+  const metadata = structuredClone(metadataInput);
   const stages = { ...config.stages };
   const tasks = { ...config.tasks };
   const ownLocale = (locale: DeepPartial<QuestSection_Config['locale']>) => {
@@ -69,6 +66,7 @@ export const defineQuestSection = <
   };
   const props = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...metadata, stages, tasks });
     const own = ownLocale(metadata.locale);
     const root = { id, slug, type, params: metadata.params, ...own.base };
     const withStages = nestQuestPublication(root, projectQuestTree(stages, languages), 'stages');
@@ -83,6 +81,7 @@ export const defineQuestSection = <
     options: PublicationLanguageOptions<Languages>,
   ) => {
     const languages = resolvePublicationLanguages(options);
+      validate({ ...metadata, stages, tasks });
     if (!patch || typeof patch !== 'object' || Array.isArray(patch) ||
         Object.keys(patch).some(key => !['params', 'locale', 'stages', 'tasks'].includes(key))) {
       throw new Error('Invalid QuestSection overrides');
