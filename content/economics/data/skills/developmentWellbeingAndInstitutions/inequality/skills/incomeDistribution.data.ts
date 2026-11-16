@@ -5,6 +5,7 @@ export const incomeDistribution_Skill_Data = defineSkill({
   id: 'f13a0fa1-568d-49d1-9a27-f114d68b0bef',
   name: {
     en: 'Розподіл доходів',
+    it: 'Distribuzione del reddito',
     zh: '收入分配',
     hi: 'आय वितरण',
     es: 'Distribución de ingresos',
@@ -38,6 +39,7 @@ export const incomeDistribution_Skill_Data = defineSkill({
     methodological: 'Interpret income shares of population groups and changes in their relative positions.',
     frontend: {
       en: 'Compare how income is distributed among groups.',
+      it: 'Confronta come il reddito è distribuito tra diversi gruppi.',
       zh: '比较不同群体之间的收入分配。',
       hi: 'तुलना करें कि अलग-अलग समूहों में आय कैसे बँटी है।',
       es: 'Compara cómo se distribuyen los ingresos entre distintos grupos.',

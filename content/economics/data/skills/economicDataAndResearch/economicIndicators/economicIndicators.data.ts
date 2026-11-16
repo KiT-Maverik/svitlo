@@ -12,6 +12,7 @@ export const economicIndicators_SkillGroup_Data = defineSkillGroup({
   id: 'c78a911b-7e92-4041-bfd5-709596e7b5ea',
   name: {
     en: 'Економічні показники',
+    it: 'Indicatori economici',
     zh: '经济指标',
     hi: 'आर्थिक संकेतक',
     es: 'Indicadores económicos',
@@ -55,6 +56,7 @@ export const economicIndicators_SkillGroup_Data = defineSkillGroup({
       'Numbers alone cannot explain economic circumstances without knowing the base, units, collection methods, and period.',
     frontend: {
       en: 'Learn how to interpret economic statistics in context.',
+      it: 'Impara a interpretare le statistiche economiche nel loro contesto.',
       zh: '学会结合背景解读经济统计数据。',
       hi: 'आर्थिक आँकड़ों का संदर्भ के साथ अर्थ समझना सीखें।',
       es: 'Aprende a interpretar estadísticas económicas teniendo en cuenta el contexto.',

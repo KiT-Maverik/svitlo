@@ -5,6 +5,7 @@ export const geographicLaborMobility_Skill_Data = defineSkill({
   id: '1291b185-0846-4e6b-a900-5e8f94fbbb0c',
   name: {
     en: 'Географічна трудова мобільність',
+    it: 'Mobilità geografica del lavoro',
     zh: '地域性劳动力流动',
     hi: 'भौगोलिक श्रम गतिशीलता',
     es: 'Movilidad laboral geográfica',
@@ -39,6 +40,7 @@ export const geographicLaborMobility_Skill_Data = defineSkill({
       'Analyze decisions to work in another region or country, considering relocation costs, pay, housing, and institutional limits.',
     frontend: {
       en: 'Compare the advantages and challenges of moving for work.',
+      it: 'Confronta vantaggi e difficoltà di trasferirsi per motivi di lavoro.',
       zh: '比较为工作迁居的好处与困难。',
       hi: 'काम के लिए स्थान बदलने के लाभ और चुनौतियों की तुलना करें।',
       es: 'Compara beneficios y dificultades de mudarse por trabajo.',

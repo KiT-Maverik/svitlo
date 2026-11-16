@@ -5,6 +5,7 @@ export const factorsOfProduction_Skill_Data = defineSkill({
   id: 'c1f67e84-8093-4829-9e50-11a7340b1548',
   name: {
     en: 'Factors of Production',
+    it: 'Fattori di produzione',
     zh: '生产要素',
     hi: 'उत्पादन के कारक',
     es: 'Factores de producción',
@@ -39,6 +40,7 @@ export const factorsOfProduction_Skill_Data = defineSkill({
       'Classify resources by their roles in creating goods and services without confusing financial capital with physical capital.',
     frontend: {
       en: 'Recognize the different resources needed to produce goods and services.',
+      it: 'Riconosci le diverse risorse necessarie per produrre beni e servizi.',
       zh: '识别生产商品和服务所需的不同资源。',
       hi: 'वस्तुएँ और सेवाएँ बनाने के लिए जरूरी विभिन्न संसाधन पहचानें।',
       es: 'Reconoce los distintos recursos necesarios para producir bienes y servicios.',

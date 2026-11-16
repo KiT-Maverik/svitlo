@@ -5,6 +5,7 @@ export const nominalExchangeRate_Skill_Data = defineSkill({
   id: '3bfc67bd-8972-4ada-bf78-ba1dacb5abd7',
   name: {
     en: 'Номінальний валютний курс',
+    it: 'Tasso di cambio nominale',
     zh: '名义汇率',
     hi: 'नाममात्र विनिमय दर',
     es: 'Tipo de cambio nominal',
@@ -39,6 +40,7 @@ export const nominalExchangeRate_Skill_Data = defineSkill({
       'Interpret the price of one currency in terms of another, accounting for the direction of the quoted rate.',
     frontend: {
       en: 'Read how much one currency is worth in another.',
+      it: "Leggi quanto vale una valuta espressa in un'altra.",
       zh: '理解一种货币相对于另一种货币的价值。',
       hi: 'समझें कि एक मुद्रा की कीमत दूसरी मुद्रा में कितनी है।',
       es: 'Interpreta cuánto vale una moneda expresada en otra.',

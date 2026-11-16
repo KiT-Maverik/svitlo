@@ -5,6 +5,7 @@ export const incomeElasticityOfDemand_Skill_Data = defineSkill({
   id: '7d1146d7-cec1-4a39-97bb-8a59414140ca',
   name: {
     en: 'Income Elasticity of Demand',
+    it: 'Elasticità della domanda rispetto al reddito',
     zh: '需求收入弹性',
     hi: 'माँग की आय लोच',
     es: 'Elasticidad ingreso de la demanda',
@@ -39,6 +40,7 @@ export const incomeElasticityOfDemand_Skill_Data = defineSkill({
       "Evaluate the response of demand to changes in buyers' income, distinguishing goods by the sign and size of the measure.",
     frontend: {
       en: "Explore how buying habits change as people's incomes change.",
+      it: 'Esplora come cambiano le abitudini di acquisto al variare del reddito delle persone.',
       zh: '探索收入变化时购买习惯如何改变。',
       hi: 'आय बदलने पर खरीदने की आदतें कैसे बदलती हैं, यह देखें।',
       es: 'Explora cómo cambian las compras cuando varían los ingresos.',

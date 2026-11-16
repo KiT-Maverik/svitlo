@@ -5,6 +5,7 @@ export const automationAndEmployment_Skill_Data = defineSkill({
   id: 'edd8625a-9051-47b3-8eb2-03f8922a27a4',
   name: {
     en: 'Автоматизація та зайнятість',
+    it: 'Automazione e occupazione',
     zh: '自动化与就业',
     hi: 'स्वचालन और रोजगार',
     es: 'Automatización y empleo',
@@ -39,6 +40,7 @@ export const automationAndEmployment_Skill_Data = defineSkill({
       'Evaluate how technology substitutes for or complements work tasks and how this may affect demand for skills.',
     frontend: {
       en: 'Explore how automation can replace some tasks and create demand for others.',
+      it: "Esplora come l'automazione può sostituire alcuni compiti e creare domanda per altri.",
       zh: '探索自动化如何替代某些任务，并带来其他工作需求。',
       hi: 'जानें कि स्वचालन कुछ कार्यों को कैसे बदल सकता है और नए काम की माँग कैसे पैदा कर सकता है।',
       es: 'Explora cómo la automatización puede sustituir tareas y crear demanda de otras.',

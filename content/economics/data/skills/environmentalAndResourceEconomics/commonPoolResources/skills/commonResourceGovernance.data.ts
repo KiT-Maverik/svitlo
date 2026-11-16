@@ -5,6 +5,7 @@ export const commonResourceGovernance_Skill_Data = defineSkill({
   id: 'a2295d3e-24bb-4a0c-9cc2-4857fb080e23',
   name: {
     en: 'Управління спільними ресурсами',
+    it: 'Gestione delle risorse comuni',
     zh: '共同资源治理',
     hi: 'साझा संसाधनों का प्रबंधन',
     es: 'Gestión de los recursos comunes',
@@ -39,6 +40,7 @@ export const commonResourceGovernance_Skill_Data = defineSkill({
       'Compare quotas, usage rights, local agreements, and monitoring as ways to align incentives for shared-resource management.',
     frontend: {
       en: 'Compare rules that can help communities protect shared resources.',
+      it: 'Confronta le regole che possono aiutare le comunità a proteggere le risorse condivise.',
       zh: '比较有助于社区保护共享资源的规则。',
       hi: 'ऐसे नियमों की तुलना करें जो समुदायों को साझा संसाधन बचाने में मदद कर सकें।',
       es: 'Compara reglas que ayudan a las comunidades a proteger los recursos compartidos.',

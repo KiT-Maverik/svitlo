@@ -5,6 +5,7 @@ export const internationalCapitalFlows_Skill_Data = defineSkill({
   id: '24c003f7-2f2b-4f79-a17d-cceaa7f3dcd1',
   name: {
     en: 'Міжнародні потоки капіталу',
+    it: 'Flussi internazionali di capitale',
     zh: '国际资本流动',
     hi: 'अंतरराष्ट्रीय पूँजी प्रवाह',
     es: 'Flujos internacionales de capital',
@@ -39,6 +40,7 @@ export const internationalCapitalFlows_Skill_Data = defineSkill({
       'Analyze how interest rates, expectations, and risks influence movements of financing between countries.',
     frontend: {
       en: 'Discover why investors move capital across borders.',
+      it: 'Scopri perché gli investitori spostano capitali oltre i confini nazionali.',
       zh: '了解投资者为何在国境之间转移资本。',
       hi: 'जानें कि निवेशक देशों के बीच पूँजी क्यों ले जाते हैं।',
       es: 'Descubre por qué los inversores mueven capital entre países.',

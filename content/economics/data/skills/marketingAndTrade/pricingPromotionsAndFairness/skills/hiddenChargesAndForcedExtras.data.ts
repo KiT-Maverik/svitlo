@@ -5,6 +5,7 @@ export const hiddenChargesAndForcedExtras_Skill_Data = defineSkill({
   id: '66aa7e7e-76d2-4b38-a2cf-db123c135aff',
   name: {
     en: 'Приховані витрати й нав’язані опції',
+    it: 'Costi nascosti e opzioni imposte',
     zh: '隐藏收费和强制附加项目',
     hi: 'छिपे शुल्क और जबरन अतिरिक्त विकल्प',
     es: 'Cargos ocultos y extras impuestos',
@@ -39,6 +40,7 @@ export const hiddenChargesAndForcedExtras_Skill_Data = defineSkill({
       'Identify fees disclosed only at payment, paid options selected by default, and add-ons that change total transaction costs; obstacles to canceling a completed subscription are a separate competency.',
     frontend: {
       en: 'Spot extra charges and add-ons that make an offer cost more than it first appears.',
+      it: "Individua spese aggiuntive e opzioni che rendono un'offerta più costosa di quanto sembri inizialmente.",
       zh: '识别让报价高于最初印象的额外费用和附加服务。',
       hi: 'ऐसे अतिरिक्त शुल्क पहचानें जिनसे प्रस्ताव पहले से महँगा पड़ता है।',
       es: 'Detecta cargos y añadidos que encarecen una oferta más de lo que parece.',

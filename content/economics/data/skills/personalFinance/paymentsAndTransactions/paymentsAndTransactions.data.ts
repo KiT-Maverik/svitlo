@@ -11,6 +11,7 @@ export const paymentsAndTransactions_SkillGroup_Data = defineSkillGroup({
   id: '34bda5b6-a98b-4e4f-996b-0c12c9258c35',
   name: {
     en: 'Розрахунки та платежі',
+    it: 'Pagamenti e transazioni',
     zh: '支付与交易',
     hi: 'भुगतान और लेनदेन',
     es: 'Pagos y transacciones',
@@ -52,6 +53,7 @@ export const paymentsAndTransactions_SkillGroup_Data = defineSkillGroup({
     methodological: 'Money transfers involve different instruments, fees, timing, risks, and documentary evidence.',
     frontend: {
       en: 'Discover how different payment methods work and what to check.',
+      it: 'Scopri come funzionano i diversi metodi di pagamento e che cosa controllare.',
       zh: '了解不同支付方式的运作原理以及要检查什么。',
       hi: 'जानें कि अलग-अलग भुगतान विधियाँ कैसे काम करती हैं और क्या जाँचना चाहिए।',
       es: 'Descubre cómo funcionan distintos medios de pago y qué verificar.',

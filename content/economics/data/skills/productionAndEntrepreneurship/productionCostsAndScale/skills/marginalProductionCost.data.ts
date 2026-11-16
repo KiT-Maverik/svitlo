@@ -5,6 +5,7 @@ export const marginalProductionCost_Skill_Data = defineSkill({
   id: 'bf902371-cd6a-421f-8d7c-d9f4fe01cbd0',
   name: {
     en: 'Marginal Production Cost',
+    it: 'Costo marginale di produzione',
     zh: '边际生产成本',
     hi: 'सीमांत उत्पादन लागत',
     es: 'Costo marginal de producción',
@@ -39,6 +40,7 @@ export const marginalProductionCost_Skill_Data = defineSkill({
       'Determine the additional cost of producing the next unit and use it to analyze production decisions.',
     frontend: {
       en: 'Estimate what it costs to make one additional unit.',
+      it: "Stima quanto costa produrre un'unità aggiuntiva.",
       zh: '估算再生产一单位产品的额外成本。',
       hi: 'एक अतिरिक्त इकाई बनाने की लागत का अनुमान लगाएँ।',
       es: 'Calcula cuánto cuesta producir una unidad adicional.',

@@ -11,6 +11,7 @@ export const empiricalConclusionsAndForecasts_SkillGroup_Data = defineSkillGroup
   id: '974326e9-0747-41a5-af31-2f2fc4b93eeb',
   name: {
     en: 'Емпіричні висновки та прогнози',
+    it: 'Conclusioni empiriche e previsioni',
     zh: '实证结论与预测',
     hi: 'अनुभवजन्य निष्कर्ष और पूर्वानुमान',
     es: 'Conclusiones empíricas y pronósticos',
@@ -53,6 +54,7 @@ export const empiricalConclusionsAndForecasts_SkillGroup_Data = defineSkillGroup
       'Policy evaluation and forecasting rely on evidence, explicit assumptions, and uncertainty assessment.',
     frontend: {
       en: 'Explore how economists draw conclusions and make uncertain forecasts.',
+      it: 'Esplora come gli economisti traggono conclusioni e formulano previsioni incerte.',
       zh: '探索经济学家如何得出结论并作出不确定的预测。',
       hi: 'जानें कि अर्थशास्त्री निष्कर्ष कैसे निकालते और अनिश्चित पूर्वानुमान कैसे बनाते हैं।',
       es: 'Explora cómo los economistas sacan conclusiones y hacen previsiones inciertas.',

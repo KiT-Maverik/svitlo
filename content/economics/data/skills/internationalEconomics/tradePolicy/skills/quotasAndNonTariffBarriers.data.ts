@@ -5,6 +5,7 @@ export const quotasAndNonTariffBarriers_Skill_Data = defineSkill({
   id: 'df68dd40-76bd-42b0-ba8c-191e9fcac829',
   name: {
     en: 'Квоти та нетарифні бар’єри',
+    it: 'Quote e barriere non tariffarie',
     zh: '配额与非关税壁垒',
     hi: 'कोटा और गैर-शुल्क बाधाएँ',
     es: 'Cuotas y barreras no arancelarias',
@@ -39,6 +40,7 @@ export const quotasAndNonTariffBarriers_Skill_Data = defineSkill({
       "Determine how quantitative restrictions and regulatory requirements affect goods' access to markets.",
     frontend: {
       en: 'Recognize how quotas and rules can limit international trade.',
+      it: 'Riconosci come quote e regole possono limitare il commercio internazionale.',
       zh: '认识配额和规则如何限制国际贸易。',
       hi: 'पहचानें कि कोटा और नियम अंतरराष्ट्रीय व्यापार कैसे सीमित करते हैं।',
       es: 'Reconoce cómo las cuotas y las normas limitan el comercio internacional.',

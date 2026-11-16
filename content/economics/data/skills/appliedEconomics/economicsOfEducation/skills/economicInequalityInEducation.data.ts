@@ -5,6 +5,7 @@ export const economicInequalityInEducation_Skill_Data = defineSkill({
   id: '0cff9ad0-fd4f-46b0-a3ba-f7841bfa5fc5',
   name: {
     en: 'Економічна нерівність в освіті',
+    it: "Disuguaglianza economica nell'istruzione",
     zh: '教育中的经济不平等',
     hi: 'शिक्षा में आर्थिक असमानता',
     es: 'Desigualdad económica en la educación',
@@ -39,6 +40,7 @@ export const economicInequalityInEducation_Skill_Data = defineSkill({
       'Analyze how household income, local resources, institutions, and information shape learning opportunities and later economic outcomes.',
     frontend: {
       en: 'Understand why families and communities face unequal educational opportunities.',
+      it: 'Comprendi perché famiglie e comunità hanno opportunità educative disuguali.',
       zh: '理解为什么家庭与社区获得的教育机会并不平等。',
       hi: 'समझें कि परिवारों और समुदायों को शिक्षा के समान अवसर क्यों नहीं मिलते।',
       es: 'Comprende por qué las familias y comunidades no tienen las mismas oportunidades educativas.',

@@ -5,6 +5,7 @@ export const budgetDeficitAndSurplus_Skill_Data = defineSkill({
   id: 'e5ed0944-24c9-4cba-b665-bbf0dd2ab75f',
   name: {
     en: 'Бюджетний дефіцит і профіцит',
+    it: 'Disavanzo e avanzo di bilancio',
     zh: '预算赤字与盈余',
     hi: 'बजट घाटा और अधिशेष',
     es: 'Déficit y superávit presupuestario',
@@ -39,6 +40,7 @@ export const budgetDeficitAndSurplus_Skill_Data = defineSkill({
       'Calculate the difference between revenue and expenditure over a period and distinguish that flow from accumulated government debt.',
     frontend: {
       en: 'Understand the difference between a yearly deficit and total public debt.',
+      it: 'Comprendi la differenza tra un disavanzo annuale e il debito pubblico complessivo.',
       zh: '理解年度财政赤字与政府债务总额的区别。',
       hi: 'सालाना बजट घाटे और कुल सरकारी ऋण का अंतर समझें।',
       es: 'Comprende la diferencia entre el déficit de un año y la deuda pública total.',

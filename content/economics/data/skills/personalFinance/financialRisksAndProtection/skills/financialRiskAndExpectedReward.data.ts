@@ -5,6 +5,7 @@ export const financialRiskAndExpectedReward_Skill_Data = defineSkill({
   id: 'a0c17b01-0cb7-4b84-be9b-3bfe1a097f7b',
   name: {
     en: 'Фінансовий ризик і очікувана винагорода',
+    it: 'Rischio finanziario e rendimento atteso',
     zh: '财务风险与预期回报',
     hi: 'वित्तीय जोखिम और संभावित लाभ',
     es: 'Riesgo financiero y recompensa esperada',
@@ -39,6 +40,7 @@ export const financialRiskAndExpectedReward_Skill_Data = defineSkill({
       'Evaluate uncertain benefits, possible losses, risk tolerance, and time horizons in personal financial choices without limiting analysis to a single market asset.',
     frontend: {
       en: 'Compare possible rewards with the risk of losing money.',
+      it: 'Confronta i possibili guadagni con il rischio di perdere denaro.',
       zh: '比较可能获得的收益与亏损风险。',
       hi: 'संभावित लाभ और पैसे खोने के जोखिम की तुलना करें।',
       es: 'Compara los beneficios posibles con el riesgo de perder dinero.',

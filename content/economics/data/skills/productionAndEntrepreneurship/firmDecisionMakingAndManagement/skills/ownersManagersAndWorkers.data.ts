@@ -5,6 +5,7 @@ export const ownersManagersAndWorkers_Skill_Data = defineSkill({
   id: '7565e257-b0e1-4e18-b595-743a527f1198',
   name: {
     en: 'Owners, Managers, and Workers',
+    it: 'Proprietari, dirigenti e lavoratori',
     zh: '所有者、经理与员工',
     hi: 'मालिक, प्रबंधक और कर्मचारी',
     es: 'Propietarios, gerentes y trabajadores',
@@ -39,6 +40,7 @@ export const ownersManagersAndWorkers_Skill_Data = defineSkill({
       'Analyze how decision rights and incentives are distributed among owners, managers, and workers whose goals and information may differ.',
     frontend: {
       en: 'Recognize how owners, managers, and workers can have different priorities.',
+      it: 'Riconosci come proprietari, dirigenti e lavoratori possano avere priorità diverse.',
       zh: '认识不同角色为何可能有不同的优先目标。',
       hi: 'पहचानें कि इन समूहों की प्राथमिकताएँ अलग हो सकती हैं।',
       es: 'Reconoce que estos grupos pueden tener prioridades diferentes.',

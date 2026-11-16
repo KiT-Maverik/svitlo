@@ -5,6 +5,7 @@ export const economiesOfScale_Skill_Data = defineSkill({
   id: 'a0ac4138-f3c6-4154-8fa0-547b9a7dd341',
   name: {
     en: 'Economies of Scale',
+    it: 'Economie di scala',
     zh: '规模经济',
     hi: 'पैमाने की अर्थव्यवस्थाएँ',
     es: 'Economías de escala',
@@ -38,6 +39,7 @@ export const economiesOfScale_Skill_Data = defineSkill({
     methodological: 'Determine how sustained increases in production scale may lower or raise average costs.',
     frontend: {
       en: 'Explore why producing on a larger scale can change costs per unit.',
+      it: 'Esplora perché produrre su scala maggiore può cambiare i costi per unità.',
       zh: '探索扩大生产规模为何会改变单位成本。',
       hi: 'जानें कि बड़े पैमाने पर उत्पादन से प्रति इकाई लागत कैसे बदलती है।',
       es: 'Explora cómo producir a mayor escala puede cambiar el costo unitario.',

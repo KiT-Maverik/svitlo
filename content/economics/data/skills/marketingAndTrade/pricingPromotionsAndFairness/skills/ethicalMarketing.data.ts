@@ -5,6 +5,7 @@ export const ethicalMarketing_Skill_Data = defineSkill({
   id: '98a7bdfc-ad64-4782-915e-6b6a86c708fa',
   name: {
     en: 'Етичний маркетинг',
+    it: 'Marketing etico',
     zh: '合乎道德的营销',
     hi: 'नैतिक विपणन',
     es: 'Marketing ético',
@@ -39,6 +40,7 @@ export const ethicalMarketing_Skill_Data = defineSkill({
       'Evaluate truthfulness, transparency, treatment of vulnerable groups, and freedom to decline in commercial practices.',
     frontend: {
       en: 'Judge whether a selling practice is honest and respects customer choice.',
+      it: 'Valuta se una pratica di vendita è onesta e rispetta le scelte dei clienti.',
       zh: '判断销售做法是否诚实并尊重顾客选择。',
       hi: 'जाँचें कि बिक्री का तरीका ईमानदार है और ग्राहक की पसंद का सम्मान करता है।',
       es: 'Juzga si una venta es honesta y respeta la elección del cliente.',

@@ -5,6 +5,7 @@ export const sectoralEconomicStructure_Skill_Data = defineSkill({
   id: '06845d15-d9bd-42d7-a1c4-9323dc0d24d9',
   name: {
     en: 'Секторальна структура економіки',
+    it: "Struttura settoriale dell'economia",
     zh: '经济的产业结构',
     hi: 'अर्थव्यवस्था की क्षेत्रीय संरचना',
     es: 'Estructura sectorial de la economía',
@@ -38,6 +39,7 @@ export const sectoralEconomicStructure_Skill_Data = defineSkill({
     methodological: 'Distinguish agriculture, industry, and services by their contributions to output and employment.',
     frontend: {
       en: 'Compare the economic roles of farming, industry, and services.',
+      it: "Confronta il ruolo economico dell'agricoltura, dell'industria e dei servizi.",
       zh: '比较农业、工业和服务业在经济中的作用。',
       hi: 'खेती, उद्योग और सेवाओं की आर्थिक भूमिकाओं की तुलना करें।',
       es: 'Compara las funciones económicas de agricultura, industria y servicios.',

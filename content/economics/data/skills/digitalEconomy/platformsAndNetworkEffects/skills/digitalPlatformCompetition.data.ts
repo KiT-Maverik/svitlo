@@ -5,6 +5,7 @@ export const digitalPlatformCompetition_Skill_Data = defineSkill({
   id: '588041b7-7bf4-4d23-bd30-78522a30adab',
   name: {
     en: 'Конкуренція цифрових платформ',
+    it: 'Concorrenza tra piattaforme digitali',
     zh: '数字平台竞争',
     hi: 'डिजिटल प्लेटफ़ॉर्म प्रतिस्पर्धा',
     es: 'Competencia entre plataformas digitales',
@@ -39,6 +40,7 @@ export const digitalPlatformCompetition_Skill_Data = defineSkill({
       'Evaluate the effects of switching costs, compatibility, multihoming, and accumulated data on market power.',
     frontend: {
       en: 'Understand why switching services or joining multiple platforms affects competition.',
+      it: 'Comprendi perché cambiare servizio o usare più piattaforme influisce sulla concorrenza.',
       zh: '理解更换服务或同时使用多个平台如何影响竞争。',
       hi: 'समझें कि सेवा बदलने या कई प्लेटफ़ॉर्म इस्तेमाल करने से प्रतिस्पर्धा कैसे प्रभावित होती है।',
       es: 'Comprende cómo cambiar de servicio o usar varias plataformas afecta la competencia.',

@@ -5,6 +5,7 @@ export const bonds_Skill_Data = defineSkill({
   id: 'f4c66844-1caa-4bb9-abbc-13810c9bb22f',
   name: {
     en: 'Облігації',
+    it: 'Obbligazioni',
     zh: '债券',
     hi: 'बॉन्ड',
     es: 'Bonos',
@@ -39,6 +40,7 @@ export const bonds_Skill_Data = defineSkill({
       'Interpret a debt obligation, coupon, maturity, and the relationship between market price and yield.',
     frontend: {
       en: 'Understand bonds as loans that can be bought and sold.',
+      it: 'Comprendi le obbligazioni come prestiti che possono essere comprati e venduti.',
       zh: '理解债券是可以交易的借款凭证。',
       hi: 'समझें कि बॉन्ड ऐसे ऋण हैं जिन्हें खरीदा-बेचा जा सकता है।',
       es: 'Comprende los bonos como préstamos que pueden comprarse y venderse.',

@@ -11,6 +11,7 @@ export const healthEconomics_SkillGroup_Data = defineSkillGroup({
   id: '20672d2a-fe53-466d-895f-9fc44aed5d2f',
   name: {
     en: 'Охорона здоров’я',
+    it: 'Economia sanitaria',
     zh: '卫生经济学',
     hi: 'स्वास्थ्य अर्थशास्त्र',
     es: 'Economía de la salud',
@@ -53,6 +54,7 @@ export const healthEconomics_SkillGroup_Data = defineSkillGroup({
       'Healthcare markets involve substantial information asymmetry, insurance arrangements, and external effects of population health.',
     frontend: {
       en: 'Discover why healthcare markets operate differently from ordinary product markets.',
+      it: 'Scopri perché i mercati dei servizi sanitari funzionano diversamente dai mercati dei prodotti comuni.',
       zh: '了解医疗服务市场为什么不同于普通商品市场。',
       hi: 'जानें कि स्वास्थ्य सेवाओं के बाज़ार सामान्य वस्तुओं के बाज़ारों से अलग क्यों होते हैं।',
       es: 'Descubre por qué los mercados de atención sanitaria funcionan de manera diferente a los mercados de productos habituales.',

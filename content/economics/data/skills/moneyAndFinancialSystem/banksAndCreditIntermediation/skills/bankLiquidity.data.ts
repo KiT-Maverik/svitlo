@@ -5,6 +5,7 @@ export const bankLiquidity_Skill_Data = defineSkill({
   id: '8799445a-8167-4528-9d94-9cdf5bff9a0b',
   name: {
     en: 'Банківська ліквідність',
+    it: 'Liquidità bancaria',
     zh: '银行流动性',
     hi: 'बैंक की तरलता',
     es: 'Liquidez bancaria',
@@ -39,6 +40,7 @@ export const bankLiquidity_Skill_Data = defineSkill({
       'Distinguish the ability to meet payments on time from long-run sufficiency of assets to cover obligations.',
     frontend: {
       en: 'Understand why a bank can face a cash shortage even if its assets have value.',
+      it: 'Comprendi perché una banca può avere carenza di liquidità anche se possiede attività di valore.',
       zh: '理解为什么银行即使资产有价值，也可能出现现金短缺。',
       hi: 'समझें कि मूल्यवान संपत्तियाँ होने के बावजूद बैंक के पास नकदी की कमी क्यों हो सकती है।',
       es: 'Comprende por qué un banco puede carecer de efectivo aunque sus activos tengan valor.',

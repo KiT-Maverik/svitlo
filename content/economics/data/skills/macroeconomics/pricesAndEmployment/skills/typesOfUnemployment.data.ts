@@ -5,6 +5,7 @@ export const typesOfUnemployment_Skill_Data = defineSkill({
   id: '94c9c582-27b8-4c1f-bf58-7bee0deda3ad',
   name: {
     en: 'Види безробіття',
+    it: 'Tipi di disoccupazione',
     zh: '失业类型',
     hi: 'बेरोज़गारी के प्रकार',
     es: 'Tipos de desempleo',
@@ -38,6 +39,7 @@ export const typesOfUnemployment_Skill_Data = defineSkill({
     methodological: 'Distinguish frictional, structural, and cyclical reasons for being out of work.',
     frontend: {
       en: 'Explore why unemployment can happen for different reasons.',
+      it: 'Esplora perché la disoccupazione può avere cause diverse.',
       zh: '探索失业为何会由不同原因造成。',
       hi: 'जानें कि बेरोज़गारी के अलग-अलग कारण क्यों हो सकते हैं।',
       es: 'Explora por qué el desempleo puede tener causas diferentes.',

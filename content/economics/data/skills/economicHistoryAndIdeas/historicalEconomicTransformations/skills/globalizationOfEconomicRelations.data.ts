@@ -5,6 +5,7 @@ export const globalizationOfEconomicRelations_Skill_Data = defineSkill({
   id: '0ef3e6d5-05f6-4a20-b7cc-cc6c46510139',
   name: {
     en: 'Глобалізація економічних зв’язків',
+    it: 'Globalizzazione delle relazioni economiche',
     zh: '经济关系全球化',
     hi: 'आर्थिक संबंधों का वैश्वीकरण',
     es: 'Globalización de las relaciones económicas',
@@ -39,6 +40,7 @@ export const globalizationOfEconomicRelations_Skill_Data = defineSkill({
       'Trace the historical expansion of trade and capital flows alongside unequal consequences and coercion.',
     frontend: {
       en: 'Explore how international economic connections expanded and affected people differently.',
+      it: 'Esplora come si sono ampliate le connessioni economiche internazionali, con effetti diversi sulle persone.',
       zh: '探索国际经济联系如何扩展，以及对不同人群的不同影响。',
       hi: 'जानें कि अंतरराष्ट्रीय आर्थिक संबंध कैसे बढ़े और लोगों पर अलग-अलग असर पड़ा।',
       es: 'Explora cómo crecieron las conexiones económicas internacionales y afectaron de forma distinta a las personas.',

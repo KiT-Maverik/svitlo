@@ -5,6 +5,7 @@ export const governmentRevenuesAndExpenditures_Skill_Data = defineSkill({
   id: '79cb3135-c2ae-4c95-a342-a013d99dc006',
   name: {
     en: 'Доходи й видатки бюджету',
+    it: 'Entrate e spese pubbliche',
     zh: '政府收入与支出',
     hi: 'सरकारी राजस्व और व्यय',
     es: 'Ingresos y gastos públicos',
@@ -38,6 +39,7 @@ export const governmentRevenuesAndExpenditures_Skill_Data = defineSkill({
     methodological: 'Classify major sources of public revenue and categories of government expenditure.',
     frontend: {
       en: 'Recognize where government money comes from and where it goes.',
+      it: 'Riconosci da dove provengono le risorse pubbliche e come vengono utilizzate.',
       zh: '认识政府资金从何而来，又用在何处。',
       hi: 'जानें कि सरकारी धन कहाँ से आता है और कहाँ खर्च होता है।',
       es: 'Reconoce de dónde obtiene el Estado el dinero y a dónde lo destina.',

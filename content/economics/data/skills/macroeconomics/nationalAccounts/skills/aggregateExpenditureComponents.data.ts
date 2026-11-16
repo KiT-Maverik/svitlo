@@ -5,6 +5,7 @@ export const aggregateExpenditureComponents_Skill_Data = defineSkill({
   id: '93c76543-1706-4bac-8545-f95f93bd377b',
   name: {
     en: 'Компоненти сукупних витрат',
+    it: 'Componenti della spesa aggregata',
     zh: '总支出的组成部分',
     hi: 'समग्र व्यय के घटक',
     es: 'Componentes del gasto agregado',
@@ -39,6 +40,7 @@ export const aggregateExpenditureComponents_Skill_Data = defineSkill({
       'Distinguish consumption, investment, government purchases, and net exports in macroeconomic accounting identities.',
     frontend: {
       en: 'Identify the main categories of spending in an economy.',
+      it: "Individua le principali categorie di spesa di un'economia.",
       zh: '认识经济活动中主要的支出类别。',
       hi: 'अर्थव्यवस्था में खर्च की मुख्य श्रेणियों को पहचानें।',
       es: 'Identifica las principales categorías de gasto en una economía.',

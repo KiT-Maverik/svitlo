@@ -10,6 +10,7 @@ export const macroeconomics_SkillDomain_Data = defineSkillDomain({
   id: '572a8336-64b9-4c0e-9636-0f10cd4ab653',
   title: {
     en: 'Макроекономіка',
+    it: 'Macroeconomia',
     zh: '宏观经济学',
     hi: 'समष्टि अर्थशास्त्र',
     es: 'Macroeconomía',
@@ -58,6 +59,7 @@ export const macroeconomics_SkillDomain_Data = defineSkillDomain({
       "Aggregate production, employment, inflation, and economic change describe economy-wide relationships; their measures and models are not the same as each individual's wellbeing.",
     frontend: {
       en: 'Explore how national output, prices, employment, and growth are connected.',
+      it: 'Esplora come produzione nazionale, prezzi, occupazione e crescita sono collegati.',
       zh: '探索国民产出、价格、就业和经济增长之间的联系。',
       hi: 'जानें कि राष्ट्रीय उत्पादन, कीमतें, रोज़गार और आर्थिक वृद्धि कैसे जुड़े हैं।',
       es: 'Explora cómo se relacionan la producción nacional, los precios, el empleo y el crecimiento.',

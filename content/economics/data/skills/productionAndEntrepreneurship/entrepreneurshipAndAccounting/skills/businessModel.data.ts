@@ -5,6 +5,7 @@ export const businessModel_Skill_Data = defineSkill({
   id: '08fcdf87-f0ad-409f-b71d-24203181d552',
   name: {
     en: 'Business Model',
+    it: 'Modello di business',
     zh: '商业模式',
     hi: 'व्यवसाय मॉडल',
     es: 'Modelo de negocio',
@@ -39,6 +40,7 @@ export const businessModel_Skill_Data = defineSkill({
       'Connect the value created, customers served, revenue streams, and main costs into a coherent account of how a business operates.',
     frontend: {
       en: 'Explain how a business creates value and earns revenue.',
+      it: "Spiega come un'impresa crea valore e genera ricavi.",
       zh: '解释企业如何创造价值并获得收入。',
       hi: 'समझाएँ कि व्यवसाय मूल्य कैसे बनाता और आय कैसे कमाता है।',
       es: 'Explica cómo una empresa crea valor y genera ingresos.',

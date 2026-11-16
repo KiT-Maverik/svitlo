@@ -5,6 +5,7 @@ export const purchasingPowerOfMoney_Skill_Data = defineSkill({
   id: 'aa1dccb0-eb8e-4caf-82ff-2a1f4d43491c',
   name: {
     en: 'Купівельна спроможність грошей',
+    it: "Potere d'acquisto della moneta",
     zh: '货币购买力',
     hi: 'मुद्रा की क्रय शक्ति',
     es: 'Poder adquisitivo del dinero',
@@ -38,6 +39,7 @@ export const purchasingPowerOfMoney_Skill_Data = defineSkill({
     methodological: 'Relate a sum of money to the amount of goods and services it can buy at a given price level.',
     frontend: {
       en: 'See how rising prices affect what your money can buy.',
+      it: "Scopri come l'aumento dei prezzi influisce su ciò che puoi acquistare con il tuo denaro.",
       zh: '观察物价上涨如何影响你的钱能买到什么。',
       hi: 'देखें कि बढ़ती कीमतें आपकी खरीदने की क्षमता को कैसे प्रभावित करती हैं।',
       es: 'Observa cómo el aumento de precios cambia lo que puedes comprar.',

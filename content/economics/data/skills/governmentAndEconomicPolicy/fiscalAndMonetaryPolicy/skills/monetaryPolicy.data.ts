@@ -5,6 +5,7 @@ export const monetaryPolicy_Skill_Data = defineSkill({
   id: '359be86f-3e1a-442f-ab93-9c730639f700',
   name: {
     en: 'Монетарна політика',
+    it: 'Politica monetaria',
     zh: '货币政策',
     hi: 'मौद्रिक नीति',
     es: 'Política monetaria',
@@ -39,6 +40,7 @@ export const monetaryPolicy_Skill_Data = defineSkill({
       'Analyze how central banks use interest rates and other instruments to influence credit, demand, and prices.',
     frontend: {
       en: 'Explore how a central bank can influence inflation and borrowing.',
+      it: "Esplora come una banca centrale può influenzare l'inflazione e il credito.",
       zh: '探索中央银行如何影响通货膨胀和借贷。',
       hi: 'जानें कि केंद्रीय बैंक मुद्रास्फीति और उधार को कैसे प्रभावित कर सकता है।',
       es: 'Explora cómo un banco central puede influir en la inflación y el crédito.',

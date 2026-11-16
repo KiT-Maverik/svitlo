@@ -5,6 +5,7 @@ export const agrarianEconomies_Skill_Data = defineSkill({
   id: 'fddde121-f84f-4a2c-9f52-c4a9d0297a3e',
   name: {
     en: 'Аграрні економіки',
+    it: 'Economie agrarie',
     zh: '农业经济',
     hi: 'कृषि प्रधान अर्थव्यवस्थाएँ',
     es: 'Economías agrarias',
@@ -39,6 +40,7 @@ export const agrarianEconomies_Skill_Data = defineSkill({
       'Analyze the roles of land, seasonality, ownership, and agricultural surplus in historical economic systems.',
     frontend: {
       en: 'Explore how land and farming shaped historical economies.',
+      it: "Esplora come la terra e l'agricoltura hanno plasmato le economie del passato.",
       zh: '探索土地与耕作如何塑造历史上的经济。',
       hi: 'जानें कि भूमि और खेती ने ऐतिहासिक अर्थव्यवस्थाओं को कैसे आकार दिया।',
       es: 'Explora cómo la tierra y la agricultura dieron forma a las economías históricas.',

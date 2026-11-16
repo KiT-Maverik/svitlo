@@ -5,6 +5,7 @@ export const boundedRationality_Skill_Data = defineSkill({
   id: 'c522f045-93ca-46a4-b213-2f86297325eb',
   name: {
     en: 'Bounded Rationality',
+    it: 'Razionalità limitata',
     zh: '有限理性',
     hi: 'सीमित तर्कसंगतता',
     es: 'Racionalidad limitada',
@@ -39,6 +40,7 @@ export const boundedRationality_Skill_Data = defineSkill({
       'Explain how limits of time, knowledge, or computational ability lead decision-makers to use simplified rules.',
     frontend: {
       en: 'See why people often use shortcuts rather than comparing every option.',
+      it: 'Scopri perché le persone spesso ricorrono a scorciatoie invece di confrontare tutte le alternative.',
       zh: '看看为什么人们常用简便办法，而不比较所有选项。',
       hi: 'देखें कि लोग हर विकल्प की तुलना के बजाय आसान उपाय क्यों अपनाते हैं।',
       es: 'Observa por qué solemos usar atajos en vez de comparar todas las opciones.',

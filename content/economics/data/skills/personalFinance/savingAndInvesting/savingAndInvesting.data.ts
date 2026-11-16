@@ -13,6 +13,7 @@ export const savingAndInvesting_SkillGroup_Data = defineSkillGroup({
   id: 'ffbe5d73-9743-4bcd-8b75-ea58ff5e71d2',
   name: {
     en: 'Заощадження й інвестування',
+    it: 'Risparmio e investimento',
     zh: '储蓄与投资',
     hi: 'बचत और निवेश',
     es: 'Ahorro e inversión',
@@ -56,6 +57,7 @@ export const savingAndInvesting_SkillGroup_Data = defineSkillGroup({
     methodological: 'Moving purchasing power into the future involves liquidity, returns, risk, and inflation.',
     frontend: {
       en: 'Explore why saving and investing involve different risks and benefits.',
+      it: 'Esplora perché risparmiare e investire comportano rischi e benefici differenti.',
       zh: '探索储蓄与投资为何具有不同的风险和收益。',
       hi: 'जानें कि बचत और निवेश में जोखिम और लाभ क्यों अलग होते हैं।',
       es: 'Explora por qué ahorrar e invertir tienen riesgos y beneficios distintos.',

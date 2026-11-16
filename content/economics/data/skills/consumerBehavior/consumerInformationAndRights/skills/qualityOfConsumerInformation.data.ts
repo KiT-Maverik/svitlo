@@ -5,6 +5,7 @@ export const qualityOfConsumerInformation_Skill_Data = defineSkill({
   id: '231c6709-ec35-44f2-a7d7-3c2ec1f9d53e',
   name: {
     en: 'Quality of Consumer Information',
+    it: 'Qualità delle informazioni per i consumatori',
     zh: '消费者信息质量',
     hi: 'उपभोक्ता जानकारी की गुणवत्ता',
     es: 'Calidad de la información al consumidor',
@@ -39,6 +40,7 @@ export const qualityOfConsumerInformation_Skill_Data = defineSkill({
       "Assess the origin, timeliness, and evidence supporting claims about goods and services, including review independence, rating representativeness, and sources' commercial interests.",
     frontend: {
       en: 'Check whether product claims, ratings, and reviews are reliable.',
+      it: 'Verifica se le affermazioni sui prodotti, le valutazioni e le recensioni sono attendibili.',
       zh: '核实商品宣传、评分和评价是否可靠。',
       hi: 'जाँचें कि उत्पाद के दावे, रेटिंग और समीक्षाएँ भरोसेमंद हैं या नहीं।',
       es: 'Comprueba si las afirmaciones, calificaciones y reseñas de productos son fiables.',

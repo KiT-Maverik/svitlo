@@ -5,6 +5,7 @@ export const borrowerAffordability_Skill_Data = defineSkill({
   id: '3a5a4148-1d72-4e0a-8e96-9a71621fc96f',
   name: {
     en: 'Платоспроможність позичальника',
+    it: 'Capacità di rimborso del debitore',
     zh: '借款人偿付能力',
     hi: 'उधारकर्ता की भुगतान क्षमता',
     es: 'Capacidad de pago del prestatario',
@@ -38,6 +39,7 @@ export const borrowerAffordability_Skill_Data = defineSkill({
     methodological: 'Compare debt payments, income stability, and other obligations under different scenarios.',
     frontend: {
       en: 'Explore whether expected income can support planned loan payments.',
+      it: 'Valuta se il reddito previsto permette di sostenere le rate di un prestito.',
       zh: '探索预期收入是否足以支付计划中的贷款还款。',
       hi: 'जाँचें कि अनुमानित आय से नियोजित किस्तें चुकाई जा सकती हैं या नहीं।',
       es: 'Explora si los ingresos previstos alcanzan para pagar las cuotas de un préstamo.',

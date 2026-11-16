@@ -5,6 +5,7 @@ export const balanceOfPayments_Skill_Data = defineSkill({
   id: '4e059b23-78df-4d22-9c90-1a46fb6a8128',
   name: {
     en: 'Платіжний баланс',
+    it: 'Bilancia dei pagamenti',
     zh: '国际收支平衡表',
     hi: 'भुगतान संतुलन',
     es: 'Balanza de pagos',
@@ -39,6 +40,7 @@ export const balanceOfPayments_Skill_Data = defineSkill({
       'Distinguish current and financial international transactions and the accounting principles that reconcile them.',
     frontend: {
       en: 'See how international payments and investments are recorded.',
+      it: 'Scopri come vengono registrati i pagamenti e gli investimenti internazionali.',
       zh: '了解国际支付和投资如何被记录。',
       hi: 'देखें कि अंतरराष्ट्रीय भुगतान और निवेश कैसे दर्ज किए जाते हैं।',
       es: 'Descubre cómo se registran los pagos y las inversiones internacionales.',

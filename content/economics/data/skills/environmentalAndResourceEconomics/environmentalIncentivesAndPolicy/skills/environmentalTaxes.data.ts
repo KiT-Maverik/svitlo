@@ -5,6 +5,7 @@ export const environmentalTaxes_Skill_Data = defineSkill({
   id: 'fe2e4d20-5a9c-487f-84e2-f1881b3fd045',
   name: {
     en: 'Екологічний податок',
+    it: 'Imposte ambientali',
     zh: '环境税',
     hi: 'पर्यावरणीय कर',
     es: 'Impuestos ambientales',
@@ -38,6 +39,7 @@ export const environmentalTaxes_Skill_Data = defineSkill({
     methodological: 'Analyze how a charge for pollution changes incentives to reduce emissions.',
     frontend: {
       en: 'See how charging for pollution can encourage cleaner choices.',
+      it: "Scopri come far pagare l'inquinamento può incoraggiare scelte meno inquinanti.",
       zh: '了解对污染收费如何鼓励更环保的选择。',
       hi: 'जानें कि प्रदूषण पर शुल्क लगाने से स्वच्छ विकल्प क्यों बढ़ते हैं।',
       es: 'Observa cómo cobrar por contaminar puede fomentar decisiones más limpias.',

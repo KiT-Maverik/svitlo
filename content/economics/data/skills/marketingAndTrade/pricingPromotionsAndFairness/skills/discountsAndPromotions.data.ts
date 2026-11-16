@@ -5,6 +5,7 @@ export const discountsAndPromotions_Skill_Data = defineSkill({
   id: '9081dd65-8482-4fff-b567-68d14a6e0068',
   name: {
     en: 'Знижки та акційні пропозиції',
+    it: 'Sconti e promozioni',
     zh: '折扣与促销',
     hi: 'छूट और प्रचार प्रस्ताव',
     es: 'Descuentos y promociones',
@@ -39,6 +40,7 @@ export const discountsAndPromotions_Skill_Data = defineSkill({
       'Calculate real savings against a verifiable reference price, quantity, and purchase conditions; interpret coupons, bundles, buy-one-get-one offers, and percentage discounts without assuming any discount makes a purchase necessary.',
     frontend: {
       en: 'Check whether a discount really saves money before buying.',
+      it: "Verifica prima dell'acquisto se uno sconto fa davvero risparmiare.",
       zh: '购买前检查折扣是否真的省钱。',
       hi: 'खरीदने से पहले जाँचें कि छूट से सचमुच बचत होती है या नहीं।',
       es: 'Comprueba si un descuento realmente ahorra dinero antes de comprar.',

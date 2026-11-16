@@ -12,6 +12,7 @@ export const marketEquilibrium_SkillGroup_Data = defineSkillGroup({
   id: '3b3df61b-cc8c-4c36-89f3-cc337283393d',
   name: {
     en: 'Market Equilibrium',
+    it: 'Equilibrio di mercato',
     zh: '市场均衡',
     hi: 'बाजार संतुलन',
     es: 'Equilibrio de mercado',
@@ -60,6 +61,7 @@ export const marketEquilibrium_SkillGroup_Data = defineSkillGroup({
       "The interaction of supply and demand coordinates participants' plans and explains what happens when they do not match.",
     frontend: {
       en: "Understand how buyers' and sellers' plans can reach a balance.",
+      it: 'Comprendi come i piani degli acquirenti e dei venditori possono raggiungere un equilibrio.',
       zh: '理解买方和卖方的计划如何达到平衡。',
       hi: 'समझें कि खरीदारों और विक्रेताओं की योजनाएँ कैसे संतुलित होती हैं।',
       es: 'Comprende cómo los planes de compradores y vendedores pueden equilibrarse.',

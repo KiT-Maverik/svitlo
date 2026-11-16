@@ -5,6 +5,7 @@ export const subscriptionCancellationBarriers_Skill_Data = defineSkill({
   id: 'fea8e895-0132-44c7-85d3-da7ab9973180',
   name: {
     en: 'Перешкоди скасуванню підписки',
+    it: 'Ostacoli alla disdetta degli abbonamenti',
     zh: '取消订阅的障碍',
     hi: 'सदस्यता रद्द करने में बाधाएँ',
     es: 'Barreras para cancelar suscripciones',
@@ -39,6 +40,7 @@ export const subscriptionCancellationBarriers_Skill_Data = defineSkill({
       'Identify burdensome cancellation steps, hidden automatic renewal, and imbalance between ease of signing up and canceling; distinguish these from transparent lawful renewal terms.',
     frontend: {
       en: 'Recognize when canceling a subscription is made unnecessarily difficult.',
+      it: 'Riconosci quando la cancellazione di un abbonamento viene resa inutilmente difficile.',
       zh: '识别取消订阅被人为设置不必要困难的情况。',
       hi: 'पहचानें कि सदस्यता रद्द करना कब बिना वजह कठिन बनाया जाता है।',
       es: 'Reconoce cuándo se dificulta innecesariamente cancelar una suscripción.',

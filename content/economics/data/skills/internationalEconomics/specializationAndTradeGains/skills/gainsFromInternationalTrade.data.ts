@@ -5,6 +5,7 @@ export const gainsFromInternationalTrade_Skill_Data = defineSkill({
   id: '97295a00-9159-49b7-8123-5eac24863de0',
   name: {
     en: 'Вигоди міжнародної торгівлі',
+    it: 'Benefici del commercio internazionale',
     zh: '国际贸易的收益',
     hi: 'अंतरराष्ट्रीय व्यापार के लाभ',
     es: 'Beneficios del comercio internacional',
@@ -39,6 +40,7 @@ export const gainsFromInternationalTrade_Skill_Data = defineSkill({
       'Evaluate expanded consumption possibilities alongside the unequal distribution of gains from trade.',
     frontend: {
       en: 'Explore how countries can gain from trade while some groups lose out.',
+      it: 'Esplora come i paesi possono trarre beneficio dagli scambi anche se alcuni gruppi ne risultano svantaggiati.',
       zh: '探索贸易如何让国家受益，同时可能使某些群体受损。',
       hi: 'जानें कि व्यापार से देशों को लाभ होते हुए भी कुछ समूहों को नुकसान क्यों हो सकता है।',
       es: 'Explora cómo los países pueden beneficiarse del comercio mientras algunos grupos pierden.',

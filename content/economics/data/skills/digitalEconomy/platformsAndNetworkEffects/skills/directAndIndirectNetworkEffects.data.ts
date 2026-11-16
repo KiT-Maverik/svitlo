@@ -5,6 +5,7 @@ export const directAndIndirectNetworkEffects_Skill_Data = defineSkill({
   id: '9431535c-b32d-4ffc-9b96-f17d60ebd3f9',
   name: {
     en: 'Прямі та непрямі мережеві ефекти',
+    it: 'Effetti di rete diretti e indiretti',
     zh: '直接与间接网络效应',
     hi: 'प्रत्यक्ष और अप्रत्यक्ष नेटवर्क प्रभाव',
     es: 'Efectos de red directos e indirectos',
@@ -39,6 +40,7 @@ export const directAndIndirectNetworkEffects_Skill_Data = defineSkill({
       'Distinguish benefits from more members of the same user group from benefits created by users on another side of a platform.',
     frontend: {
       en: 'Compare network effects within one group and across different groups.',
+      it: "Confronta gli effetti di rete all'interno di un gruppo e tra gruppi diversi.",
       zh: '比较同一群体内部与不同群体之间的网络效应。',
       hi: 'एक ही समूह के भीतर और अलग समूहों के बीच नेटवर्क प्रभावों की तुलना करें।',
       es: 'Compara los efectos de red dentro de un grupo y entre grupos diferentes.',

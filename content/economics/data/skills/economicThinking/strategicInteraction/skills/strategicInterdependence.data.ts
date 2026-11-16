@@ -5,6 +5,7 @@ export const strategicInterdependence_Skill_Data = defineSkill({
   id: 'ebbfcb9e-b4d9-45cc-a352-89f892f1d9a1',
   name: {
     en: 'Strategic Interdependence',
+    it: 'Interdipendenza strategica',
     zh: '策略相互依赖',
     hi: 'रणनीतिक परस्पर निर्भरता',
     es: 'Interdependencia estratégica',
@@ -39,6 +40,7 @@ export const strategicInterdependence_Skill_Data = defineSkill({
       "Analyze choices in which each participant's payoff changes according to the possible actions of other participants.",
     frontend: {
       en: "Explore decisions whose outcomes depend on other people's actions.",
+      it: 'Esplora decisioni il cui risultato dipende dalle azioni altrui.',
       zh: '探索结果取决于其他人行为的决策。',
       hi: 'ऐसे निर्णयों का अध्ययन करें जिनका परिणाम दूसरों के कार्यों पर निर्भर करता है।',
       es: 'Explora decisiones cuyos resultados dependen de las acciones de otras personas.',

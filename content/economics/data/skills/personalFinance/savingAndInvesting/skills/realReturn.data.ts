@@ -5,6 +5,7 @@ export const realReturn_Skill_Data = defineSkill({
   id: 'e6829863-69c9-4fa9-8f80-87b1209fb3d2',
   name: {
     en: 'Реальна дохідність',
+    it: 'Rendimento reale',
     zh: '实际收益率',
     hi: 'वास्तविक प्रतिफल',
     es: 'Rentabilidad real',
@@ -38,6 +39,7 @@ export const realReturn_Skill_Data = defineSkill({
     methodological: 'Distinguish nominal growth in money from changes in its purchasing power.',
     frontend: {
       en: 'Find out whether a financial return actually keeps up with inflation.',
+      it: "Scopri se un rendimento finanziario riesce davvero a tenere il passo con l'inflazione.",
       zh: '判断投资回报是否真正赶上通货膨胀。',
       hi: 'जानें कि वित्तीय प्रतिफल मुद्रास्फीति की भरपाई करता है या नहीं।',
       es: 'Comprueba si una rentabilidad financiera supera realmente la inflación.',

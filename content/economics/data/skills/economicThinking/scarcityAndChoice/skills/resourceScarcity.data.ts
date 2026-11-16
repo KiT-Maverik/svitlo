@@ -5,6 +5,7 @@ export const resourceScarcity_Skill_Data = defineSkill({
   id: '6f18f7e1-f15d-4307-a629-f7a58681a386',
   name: {
     en: 'Resource Scarcity',
+    it: 'Scarsità delle risorse',
     zh: '资源稀缺',
     hi: 'संसाधनों की कमी',
     es: 'Escasez de recursos',
@@ -39,6 +40,7 @@ export const resourceScarcity_Skill_Data = defineSkill({
       'Explain why time, natural resources, labor, and productive capacity have alternative uses, independently of how much money is available.',
     frontend: {
       en: 'Recognize that scarcity concerns more than simply having too little money.',
+      it: 'Riconosci che la scarsità non riguarda soltanto la mancanza di denaro.',
       zh: '理解稀缺性不只是钱不够。',
       hi: 'समझें कि कमी केवल पैसे कम होने का नाम नहीं है।',
       es: 'Reconoce que la escasez no significa simplemente tener poco dinero.',

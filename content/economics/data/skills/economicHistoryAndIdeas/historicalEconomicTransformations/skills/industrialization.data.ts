@@ -5,6 +5,7 @@ export const industrialization_Skill_Data = defineSkill({
   id: '0c78c153-0b93-48c7-9218-7f9d3d7c0fc3',
   name: {
     en: 'Індустріалізація',
+    it: 'Industrializzazione',
     zh: '工业化',
     hi: 'औद्योगिकीकरण',
     es: 'Industrialización',
@@ -39,6 +40,7 @@ export const industrialization_Skill_Data = defineSkill({
       'Connect mechanization, energy systems, factories, and urbanization with changes in productivity and employment.',
     frontend: {
       en: 'Understand how industrialization changed work and production.',
+      it: "Comprendi come l'industrializzazione ha trasformato il lavoro e la produzione.",
       zh: '理解工业化如何改变劳动和生产。',
       hi: 'समझें कि औद्योगिकीकरण ने काम और उत्पादन को कैसे बदला।',
       es: 'Comprende cómo la industrialización cambió el trabajo y la producción.',

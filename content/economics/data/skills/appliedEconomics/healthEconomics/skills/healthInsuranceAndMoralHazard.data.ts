@@ -5,6 +5,7 @@ export const healthInsuranceAndMoralHazard_Skill_Data = defineSkill({
   id: '53d1dbc5-261f-4c35-811b-4bc12321c0d0',
   name: {
     en: 'Медичне страхування та моральний ризик',
+    it: 'Assicurazione sanitaria e azzardo morale',
     zh: '医疗保险与道德风险',
     hi: 'स्वास्थ्य बीमा और नैतिक जोखिम',
     es: 'Seguro médico y riesgo moral',
@@ -39,6 +40,7 @@ export const healthInsuranceAndMoralHazard_Skill_Data = defineSkill({
       'Explain how insurance coverage changes the allocation of costs and incentives to use services without labeling all care-seeking as undesirable behavior.',
     frontend: {
       en: 'Understand how insurance can change both who pays and how services are used.',
+      it: "Comprendi come l'assicurazione possa cambiare sia chi sostiene le spese sia il modo in cui vengono utilizzati i servizi.",
       zh: '理解保险如何改变付款方，也可能改变医疗服务的使用方式。',
       hi: 'समझें कि बीमा भुगतान करने वाले व्यक्ति और सेवाओं के उपयोग दोनों को कैसे बदल सकता है।',
       es: 'Comprende cómo un seguro puede cambiar quién paga y cómo se utilizan los servicios.',

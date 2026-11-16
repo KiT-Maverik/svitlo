@@ -5,6 +5,7 @@ export const jobSearchAndMatching_Skill_Data = defineSkill({
   id: 'f1a1c11b-b5ff-4362-9496-ab26c34d0eea',
   name: {
     en: 'Пошук роботи та відповідність вакансії',
+    it: 'Ricerca di lavoro e incontro tra domanda e offerta',
     zh: '求职与岗位匹配',
     hi: 'नौकरी खोज और मिलान',
     es: 'Búsqueda de empleo y adecuación',
@@ -39,6 +40,7 @@ export const jobSearchAndMatching_Skill_Data = defineSkill({
       'Analyze how available information, job requirements, and search costs influence employment matches.',
     frontend: {
       en: 'Learn why finding a suitable vacancy can take time and information.',
+      it: "Scopri perché trovare un'offerta di lavoro adatta può richiedere tempo e informazioni.",
       zh: '了解找到合适职位为何需要时间与信息。',
       hi: 'जानें कि उपयुक्त रिक्त पद खोजने में समय और जानकारी क्यों लगती है।',
       es: 'Aprende por qué encontrar una vacante apropiada requiere tiempo e información.',

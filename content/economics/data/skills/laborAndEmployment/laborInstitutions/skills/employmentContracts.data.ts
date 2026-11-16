@@ -5,6 +5,7 @@ export const employmentContracts_Skill_Data = defineSkill({
   id: '2c5b4220-4096-4816-9793-e0442d849bcd',
   name: {
     en: 'Трудовий договір',
+    it: 'Contratti di lavoro',
     zh: '劳动合同',
     hi: 'रोजगार अनुबंध',
     es: 'Contratos laborales',
@@ -39,6 +40,7 @@ export const employmentContracts_Skill_Data = defineSkill({
       'Interpret the economic terms of hiring, wages, working hours, and termination within applicable law.',
     frontend: {
       en: 'Understand the key economic terms of an employment contract.',
+      it: 'Comprendi le principali condizioni economiche di un contratto di lavoro.',
       zh: '理解劳动合同中的主要经济条款。',
       hi: 'रोजगार अनुबंध की मुख्य आर्थिक शर्तें समझें।',
       es: 'Comprende los principales términos económicos de un contrato de trabajo.',

@@ -5,6 +5,7 @@ export const producerSurplus_Skill_Data = defineSkill({
   id: '79437d4f-589d-4496-8af5-94e39b6ca55c',
   name: {
     en: 'Producer Surplus',
+    it: 'Surplus del produttore',
     zh: '生产者剩余',
     hi: 'उत्पादक अधिशेष',
     es: 'Excedente del productor',
@@ -39,6 +40,7 @@ export const producerSurplus_Skill_Data = defineSkill({
       'Estimate benefits to sellers beyond the minimum compensation they would accept, distinguishing these from accounting profit.',
     frontend: {
       en: 'Explore the benefit sellers receive beyond their minimum acceptable price.',
+      it: 'Esplora il beneficio che i venditori ottengono oltre il prezzo minimo che sarebbero disposti ad accettare.',
       zh: '探索卖方得到的高于最低接受价格的收益。',
       hi: 'जानें कि विक्रेता अपनी न्यूनतम स्वीकार्य कीमत से अधिक मिलने पर क्या लाभ पाते हैं।',
       es: 'Explora el beneficio que obtienen los vendedores por encima de su precio mínimo.',

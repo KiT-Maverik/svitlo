@@ -5,6 +5,7 @@ export const cryptoassetsAndDigitalCurrencies_Skill_Data = defineSkill({
   id: '5f2cbb74-b282-4b1c-904c-cada0b470f18',
   name: {
     en: 'Криптоактиви та цифрові валюти',
+    it: 'Criptoattività e valute digitali',
     zh: '加密资产与数字货币',
     hi: 'क्रिप्टो परिसंपत्तियाँ और डिजिटल मुद्राएँ',
     es: 'Criptoactivos y monedas digitales',
@@ -39,6 +40,7 @@ export const cryptoassetsAndDigitalCurrencies_Skill_Data = defineSkill({
       'Distinguish privately issued cryptoassets, tokenized claims, and central bank digital currencies by their nature and risks.',
     frontend: {
       en: 'Recognize how cryptoassets differ from official digital currencies.',
+      it: 'Riconosci le differenze tra criptoattività e valute digitali ufficiali.',
       zh: '区分加密资产与官方数字货币。',
       hi: 'क्रिप्टो परिसंपत्तियों और आधिकारिक डिजिटल मुद्राओं में अंतर पहचानें।',
       es: 'Distingue los criptoactivos de las monedas digitales oficiales.',

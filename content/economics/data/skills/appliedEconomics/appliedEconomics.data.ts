@@ -12,6 +12,7 @@ export const appliedEconomics_SkillDomain_Data = defineSkillDomain({
   id: '260ae4e0-2cb0-473c-b241-bf6b0a1ca7a3',
   title: {
     en: 'Прикладна економіка',
+    it: 'Economia applicata',
     zh: '应用经济学',
     hi: 'अनुप्रयुक्त अर्थशास्त्र',
     es: 'Economía aplicada',
@@ -64,6 +65,7 @@ export const appliedEconomics_SkillDomain_Data = defineSkillDomain({
       'Specialized markets and institutional conditions in cities, housing, transport, education, healthcare, and agriculture create distinct economic mechanisms. This domain examines sector-specific choices and consequences without duplicating geographic, medical, educational, or agricultural competencies.',
     frontend: {
       en: 'Explore how economic principles apply to cities, housing, transport, education, healthcare, and farming.',
+      it: "Esplora come i principi economici si applicano alle città, agli alloggi, ai trasporti, all'istruzione, alla sanità e all'agricoltura.",
       zh: '探索经济学原理如何应用于城市、住房、交通、教育、医疗和农业。',
       hi: 'जानें कि आर्थिक सिद्धांत शहरों, आवास, परिवहन, शिक्षा, स्वास्थ्य और खेती में कैसे काम आते हैं।',
       es: 'Explora cómo se aplican los principios económicos a ciudades, vivienda, transporte, educación, salud y agricultura.',

@@ -5,6 +5,7 @@ export const collectiveActionProblem_Skill_Data = defineSkill({
   id: '249dc134-d9c3-4eef-8c7f-a297ab618e5e',
   name: {
     en: 'Collective Action Problem',
+    it: "Problema dell'azione collettiva",
     zh: '集体行动问题',
     hi: 'सामूहिक कार्रवाई की समस्या',
     es: 'Problema de acción colectiva',
@@ -39,6 +40,7 @@ export const collectiveActionProblem_Skill_Data = defineSkill({
       'Recognize circumstances in which individually attractive actions produce an undesirable collective outcome, and consider coordination mechanisms.',
     frontend: {
       en: 'Understand why individually sensible decisions can create problems for everyone.',
+      it: 'Comprendi perché decisioni sensate per i singoli possono creare problemi per tutti.',
       zh: '理解为什么个人看似合理的决定可能给所有人造成问题。',
       hi: 'समझें कि व्यक्तिगत रूप से समझदार फैसले सबके लिए समस्या कैसे बन सकते हैं।',
       es: 'Comprende por qué decisiones razonables para cada individuo pueden perjudicar a todos.',

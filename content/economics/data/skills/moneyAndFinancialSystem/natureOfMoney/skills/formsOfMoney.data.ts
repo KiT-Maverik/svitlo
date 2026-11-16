@@ -5,6 +5,7 @@ export const formsOfMoney_Skill_Data = defineSkill({
   id: 'b88a602c-675a-44ab-8fbc-5d6e235f38c1',
   name: {
     en: 'Форми грошей',
+    it: 'Forme di moneta',
     zh: '货币的形式',
     hi: 'मुद्रा के रूप',
     es: 'Formas del dinero',
@@ -39,6 +40,7 @@ export const formsOfMoney_Skill_Data = defineSkill({
       'Distinguish cash, bank deposits, and selected digital forms according to issuer, legal status, and risk.',
     frontend: {
       en: 'Compare cash, deposits, and digital money.',
+      it: 'Confronta contante, depositi e moneta digitale.',
       zh: '比较现金、存款和数字货币。',
       hi: 'नकद, बैंक जमा और डिजिटल मुद्रा की तुलना करें।',
       es: 'Compara efectivo, depósitos y dinero digital.',

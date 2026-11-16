@@ -5,6 +5,7 @@ export const publicDebtSustainability_Skill_Data = defineSkill({
   id: 'a6cf3f47-cd81-4a1b-a72e-348775365c8b',
   name: {
     en: 'Стійкість державного боргу',
+    it: 'Sostenibilità del debito pubblico',
     zh: '公共债务可持续性',
     hi: 'सार्वजनिक ऋण की स्थिरता',
     es: 'Sostenibilidad de la deuda pública',
@@ -38,6 +39,7 @@ export const publicDebtSustainability_Skill_Data = defineSkill({
     methodological: 'Evaluate how debt, servicing costs, economic growth, and financing capacity interact.',
     frontend: {
       en: "Explore what affects a government's ability to manage its debt.",
+      it: 'Esplora quali fattori influiscono sulla capacità di uno Stato di gestire il proprio debito.',
       zh: '探索影响政府管理债务能力的因素。',
       hi: 'जानें कि सरकार की ऋण सँभालने की क्षमता किन कारणों पर निर्भर करती है।',
       es: 'Explora los factores que influyen en la capacidad estatal para gestionar su deuda.',

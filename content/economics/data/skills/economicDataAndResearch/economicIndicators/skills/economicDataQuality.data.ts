@@ -5,6 +5,7 @@ export const economicDataQuality_Skill_Data = defineSkill({
   id: '60febcca-4187-4172-baae-58d4086cea21',
   name: {
     en: 'Якість економічних даних',
+    it: 'Qualità dei dati economici',
     zh: '经济数据质量',
     hi: 'आर्थिक आँकड़ों की गुणवत्ता',
     es: 'Calidad de los datos económicos',
@@ -38,6 +39,7 @@ export const economicDataQuality_Skill_Data = defineSkill({
     methodological: 'Check sources, samples, measurement methods, revisions, and limitations of comparisons.',
     frontend: {
       en: 'Judge whether economic figures come from reliable and comparable data.',
+      it: 'Valuta se i dati economici provengono da fonti affidabili e sono confrontabili.',
       zh: '判断经济数据是否可靠且可比较。',
       hi: 'जाँचें कि आर्थिक आँकड़े भरोसेमंद और तुलना योग्य हैं या नहीं।',
       es: 'Evalúa si las cifras económicas provienen de datos fiables y comparables.',

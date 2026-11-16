@@ -5,6 +5,7 @@ export const paymentFinancialTechnologies_Skill_Data = defineSkill({
   id: '009aa64b-a9e2-48f8-906a-68169caf4eee',
   name: {
     en: 'Платіжні фінансові технології',
+    it: 'Tecnologie di pagamento',
     zh: '数字支付金融技术',
     hi: 'डिजिटल भुगतान की वित्तीय तकनीकें',
     es: 'Tecnologías financieras de pago',
@@ -38,6 +39,7 @@ export const paymentFinancialTechnologies_Skill_Data = defineSkill({
     methodological: 'Analyze convenience, fees, intermediaries, and risks in digital financial services.',
     frontend: {
       en: 'Compare the costs and benefits of digital payment services.',
+      it: 'Confronta costi e benefici dei servizi di pagamento digitali.',
       zh: '比较数字支付服务的成本与收益。',
       hi: 'डिजिटल भुगतान सेवाओं की लागत और लाभ की तुलना करें।',
       es: 'Compara los costos y beneficios de los servicios de pago digitales.',

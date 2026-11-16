@@ -12,6 +12,7 @@ export const incomeAndBudgeting_SkillGroup_Data = defineSkillGroup({
   id: '3be00d44-63ce-44f3-b834-de556de97751',
   name: {
     en: 'Доходи та бюджет',
+    it: 'Reddito e bilancio familiare',
     zh: '收入与预算',
     hi: 'आय और बजट',
     es: 'Ingresos y presupuesto',
@@ -55,6 +56,7 @@ export const incomeAndBudgeting_SkillGroup_Data = defineSkillGroup({
       'Money planning begins by understanding sources of income, recurring obligations, and the limits of available spending.',
     frontend: {
       en: 'Explore how income and expenses shape a household budget.',
+      it: 'Esplora come entrate e spese determinano il bilancio di una famiglia.',
       zh: '探索收入和支出如何影响家庭预算。',
       hi: 'जानें कि आय और खर्च घरेलू बजट को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo los ingresos y los gastos forman el presupuesto familiar.',

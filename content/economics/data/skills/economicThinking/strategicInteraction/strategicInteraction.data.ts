@@ -11,6 +11,7 @@ export const strategicInteraction_SkillGroup_Data = defineSkillGroup({
   id: 'ec30f55d-327a-4dae-92a6-bf96746b685c',
   name: {
     en: 'Strategic Interaction',
+    it: 'Interazione strategica',
     zh: '策略互动',
     hi: 'रणनीतिक अंतःक्रिया',
     es: 'Interacción estratégica',
@@ -53,6 +54,7 @@ export const strategicInteraction_SkillGroup_Data = defineSkillGroup({
       "The consequences of one participant's decision may depend on others' choices, and individual incentives can diverge from collective interests.",
     frontend: {
       en: 'Discover why your best choice can depend on what others do.',
+      it: 'Scopri perché la scelta migliore per te può dipendere da ciò che fanno gli altri.',
       zh: '了解为什么你的最佳选择取决于他人的行动。',
       hi: 'जानें कि आपका सबसे अच्छा चुनाव दूसरों के कार्यों पर क्यों निर्भर करता है।',
       es: 'Descubre por qué tu mejor elección puede depender de lo que hagan otros.',

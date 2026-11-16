@@ -11,6 +11,7 @@ export const governmentAndEconomicPolicy_SkillDomain_Data = defineSkillDomain({
   id: '386336c3-eed2-476c-8b10-da1ee8c18593',
   title: {
     en: 'Держава та економічна політика',
+    it: 'Stato e politica economica',
     zh: '政府与经济政策',
     hi: 'सरकार और आर्थिक नीति',
     es: 'Gobierno y política económica',
@@ -61,6 +62,7 @@ export const governmentAndEconomicPolicy_SkillDomain_Data = defineSkillDomain({
       'The public sector changes incentives, finances shared needs, and redistributes resources. Policy instruments have benefits, costs, risks, and political trade-offs; no single approach is assumed universally correct.',
     frontend: {
       en: 'Explore how government decisions influence resources, incentives, and economic outcomes.',
+      it: 'Esplora come le decisioni pubbliche influiscono sulle risorse, sugli incentivi e sui risultati economici.',
       zh: '探索政府决策如何影响资源、激励与经济结果。',
       hi: 'जानें कि सरकारी निर्णय संसाधनों, प्रोत्साहनों और आर्थिक परिणामों को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las decisiones públicas influyen en recursos, incentivos y resultados económicos.',

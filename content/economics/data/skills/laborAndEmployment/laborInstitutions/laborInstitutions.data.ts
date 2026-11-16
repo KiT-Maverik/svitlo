@@ -7,6 +7,7 @@ export const laborInstitutions_SkillGroup_Data = defineSkillGroup({
   id: '3256784f-e258-4049-9ea3-41d886351fee',
   name: {
     en: 'Трудові інституції',
+    it: 'Istituzioni del lavoro',
     zh: '劳动制度',
     hi: 'श्रम संस्थाएँ',
     es: 'Instituciones laborales',
@@ -48,6 +49,7 @@ export const laborInstitutions_SkillGroup_Data = defineSkillGroup({
     methodological: 'Employment relationships operate under contracts, collective bargaining, and legal protections.',
     frontend: {
       en: 'Explore how contracts and labor rules shape working conditions.',
+      it: 'Esplora come i contratti e le norme del lavoro influiscono sulle condizioni lavorative.',
       zh: '探索合同和劳动规则如何影响工作条件。',
       hi: 'जानें कि अनुबंध और श्रम नियम काम की स्थितियों को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo los contratos y las normas laborales determinan las condiciones de trabajo.',

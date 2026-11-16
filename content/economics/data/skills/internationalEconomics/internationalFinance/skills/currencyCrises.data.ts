@@ -5,6 +5,7 @@ export const currencyCrises_Skill_Data = defineSkill({
   id: '1ffdcc33-7b57-460b-b4c9-27aaa2cd952f',
   name: {
     en: 'Валютні кризи',
+    it: 'Crisi valutarie',
     zh: '货币危机',
     hi: 'मुद्रा संकट',
     es: 'Crisis cambiarias',
@@ -39,6 +40,7 @@ export const currencyCrises_Skill_Data = defineSkill({
       'Analyze sudden loss of confidence in a currency, capital outflows, exchange-rate pressure, and the possibilities of intervention or policy adjustment.',
     frontend: {
       en: 'Explore how a currency crisis can develop.',
+      it: 'Esplora come può svilupparsi una crisi valutaria.',
       zh: '探索货币危机可能如何形成。',
       hi: 'जानें कि किसी मुद्रा का संकट कैसे विकसित हो सकता है।',
       es: 'Explora cómo puede surgir una crisis de una moneda.',

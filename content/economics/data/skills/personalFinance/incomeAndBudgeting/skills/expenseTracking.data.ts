@@ -5,6 +5,7 @@ export const expenseTracking_Skill_Data = defineSkill({
   id: '4201f3b0-12d8-47c2-b9bf-89ad2621c0fe',
   name: {
     en: 'Облік витрат',
+    it: 'Monitoraggio delle spese',
     zh: '支出记录',
     hi: 'खर्च का हिसाब',
     es: 'Registro de gastos',
@@ -38,6 +39,7 @@ export const expenseTracking_Skill_Data = defineSkill({
     methodological: 'Group and monitor actual expenditures to identify departures from a financial plan.',
     frontend: {
       en: 'Track where money goes and compare it with a budget.',
+      it: 'Tieni traccia di come spendi il denaro e confronta le uscite con il budget.',
       zh: '追踪钱花在哪里，并与预算比较。',
       hi: 'पैसा कहाँ जाता है दर्ज करें और बजट से तुलना करें।',
       es: 'Sigue a dónde va el dinero y compáralo con el presupuesto.',

@@ -5,6 +5,7 @@ export const shiftInSupply_Skill_Data = defineSkill({
   id: 'ede1469c-f3c0-4b47-a07d-7a23010766f3',
   name: {
     en: 'Shift in Supply',
+    it: 'Spostamento della curva di offerta',
     zh: '供给曲线移动',
     hi: 'आपूर्ति वक्र का खिसकना',
     es: 'Desplazamiento de la oferta',
@@ -39,6 +40,7 @@ export const shiftInSupply_Skill_Data = defineSkill({
       'Assess how technology, input costs, taxes, or supply disruptions change quantity supplied at each price.',
     frontend: {
       en: 'Identify events that shift the supply curve.',
+      it: 'Individua gli eventi che provocano uno spostamento della curva di offerta.',
       zh: '找出会使供给曲线移动的事件。',
       hi: 'उन घटनाओं को पहचानें जो आपूर्ति वक्र को खिसकाती हैं।',
       es: 'Identifica sucesos que desplazan la curva de oferta.',

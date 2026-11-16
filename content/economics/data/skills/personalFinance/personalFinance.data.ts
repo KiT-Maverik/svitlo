@@ -11,6 +11,7 @@ export const personalFinance_SkillDomain_Data = defineSkillDomain({
   id: '9e8a24f0-4fc5-40a4-9cf9-a259981fc157',
   title: {
     en: 'Особисті фінанси',
+    it: 'Finanza personale',
     zh: '个人理财',
     hi: 'व्यक्तिगत वित्त',
     es: 'Finanzas personales',
@@ -61,6 +62,7 @@ export const personalFinance_SkillDomain_Data = defineSkillDomain({
       'Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.',
     frontend: {
       en: 'Learn to plan money, understand borrowing, and manage everyday financial decisions.',
+      it: 'Impara a pianificare le tue finanze, comprendere i prestiti e gestire le decisioni finanziarie quotidiane.',
       zh: '学习规划资金、理解借款并管理日常财务决策。',
       hi: 'पैसे की योजना बनाना, उधार समझना और रोज़मर्रा के वित्तीय निर्णय लेना सीखें।',
       es: 'Aprende a planificar tu dinero, comprender los préstamos y tomar decisiones financieras cotidianas.',
