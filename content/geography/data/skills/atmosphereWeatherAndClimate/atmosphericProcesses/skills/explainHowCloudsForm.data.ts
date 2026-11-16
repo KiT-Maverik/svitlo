@@ -40,7 +40,7 @@ export const explainHowCloudsForm_Skill_Data = defineSkill({
       'Connect cooling moist air and condensation onto tiny particles with cloud formation, distinguishing suspended droplets or ice crystals from rainfall already reaching the ground.',
     frontend: {
       en: 'Explain how moisture condenses to form tiny cloud droplets or ice crystals.',
-      it: "Spiega come l'umidità condensa formando minuscole goccioline d'acqua o cristalli di ghiaccio nelle nuvole.",
+      it: "Spiega come l'aria umida, raffreddandosi, forma minuscole goccioline d'acqua o cristalli di ghiaccio nelle nuvole.",
       zh: '解释水汽凝结成微小水滴或冰晶形成云的过程。',
       hi: 'समझाएँ कि जलवाष्प संघनित होकर छोटी बूँदें या हिमकण कैसे बनाती है।',
       es: 'Explica cómo se condensa el vapor de agua en gotitas o cristales de hielo.',
