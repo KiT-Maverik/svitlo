@@ -5,18 +5,20 @@ import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { loadAuthoredConfigurators } from '../loadAuthoredConfigurators/loadAuthoredConfigurators.mjs';
+import { projectTextbookMedia, assertMediaPublicationReady } from '@svitlo/engine/build';
 import { renderCourseFiles } from '../../generators/courses/publishCourseData.mjs';
 import { assertSafeDirectoryPath } from '../../generators/safeGeneratedPath/assertSafeDirectoryPath.mjs';
 
 const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
-const usage = 'Usage: --package content/<textbook> [--output <generated-dir>] --write|--check';
+const usage = 'Usage: --package content/<textbook> [--output <generated-dir>] [--draft] --write|--check|--preflight';
 
 function options(argv) {
-  let name, output, action;
+  let name, output, action, mode = 'production';
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--package' && !name) name = argv[++i];
     else if (argv[i] === '--output' && !output) output = argv[++i];
-    else if (['--write', '--check'].includes(argv[i]) && !action) action = argv[i];
+    else if (argv[i] === '--draft') mode = 'draft';
+    else if (['--write', '--check', '--preflight'].includes(argv[i]) && !action) action = argv[i];
     else throw new Error(usage);
   }
   if (!name || !action) throw new Error(usage);
@@ -30,7 +32,7 @@ function options(argv) {
   }
   assertSafeDirectoryPath(pkg);
   assertSafeDirectoryPath(outputDirectory);
-  return { pkg, outputDirectory, action };
+  return { pkg, outputDirectory, action, mode };
 }
 
 export function readCurrent(root, prefix = '', files = new Map()) {
@@ -47,7 +49,9 @@ export function readCurrent(root, prefix = '', files = new Map()) {
   return files;
 }
 
-async function render(pkg) {
+async function render(pkg, mode) {
+  const diagnostics = [];
+  const textbookId = path.basename(pkg);
   const directory = path.join(pkg, 'data/courses');
   const files = new Map();
   if (!fs.existsSync(directory)) return files;
@@ -62,10 +66,17 @@ async function render(pkg) {
     const course = courses[0];
     if (ids.has(course.id)) throw new Error('Duplicate Course ID: ' + course.id);
     ids.add(course.id);
-    for (const [file, body] of renderCourseFiles(course)) {
+    for (const [file, body] of renderCourseFiles(course, {
+      projectMedia: (entry, language) => projectTextbookMedia(entry, {
+        textbookRoot: pkg, textbookId, source: path.relative(repo, source) + '/' + language,
+        mode, diagnostics,
+      }),
+    })) {
       files.set(course.id + '/' + file, body);
     }
   }
+  assertMediaPublicationReady(diagnostics, mode);
+  for (const item of diagnostics) console.warn('Missing draft media: ' + JSON.stringify(item));
   return files;
 }
 
@@ -106,8 +117,12 @@ export function publish(root, files) {
 }
 
 export async function main(argv) {
-  const { pkg, outputDirectory, action } = options(argv);
-  const files = await render(pkg);
+  const { pkg, outputDirectory, action, mode } = options(argv);
+  const files = await render(pkg, mode);
+  if (action === '--preflight') {
+    console.log('Validated ' + files.size + ' Course files without writing output');
+    return;
+  }
   if (action === '--write') {
     publish(outputDirectory, files);
     console.log('Generated ' + files.size + ' Course files in ' + outputDirectory);
