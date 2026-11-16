@@ -72,7 +72,7 @@ describe('Configurators', () => {
               items: { prompt: prompt.config.base },
               order: ['prompt'],
             },
-          }),
+          }).build.props({ languages: ['en'] }),
         );
       });
 
@@ -147,7 +147,7 @@ describe('Configurators', () => {
               params: { ...quizParams, screen: { starting: { content: ['notPresent'] } } },
               locale: { title: 'Quiz', navigationLabel: 'Q' },
               content: { items: { prompt }, order: ['prompt'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /unknown ContentBlock/,
         );
       });
@@ -202,7 +202,7 @@ describe('Configurators', () => {
               params: quizParams,
               locale: { title: 'Quiz', navigationLabel: 'Q' },
               content: { items: { prompt: disabledPrompt }, order: ['prompt'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /screen starting references disabled ContentBlock: prompt/,
         );
 
