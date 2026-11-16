@@ -39,7 +39,7 @@ export const pressureManagement_Skill_Data = defineSkill({
     methodological: 'Relate tanks, pumps and control devices to service pressure and continuity.',
     frontend: {
       en: 'Understand how supply systems maintain appropriate water pressure.',
-      it: 'Comprendi come le reti di approvvigionamento mantengono una pressione dell\'acqua adeguata.',
+      it: "Comprendi come le reti di approvvigionamento mantengono una pressione dell'acqua adeguata.",
       zh: '理解供水系统如何保持适当水压。',
       hi: 'समझें कि जल आपूर्ति प्रणालियाँ उपयुक्त दबाव कैसे बनाए रखती हैं।',
       es: 'Comprende cómo las redes de agua mantienen una presión adecuada.',

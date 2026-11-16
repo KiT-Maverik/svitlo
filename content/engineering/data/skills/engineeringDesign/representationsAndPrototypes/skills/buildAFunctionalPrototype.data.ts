@@ -40,7 +40,7 @@ export const buildAFunctionalPrototype_Skill_Data = defineSkill({
       'Make a physical or computational representation that can demonstrate or investigate a specified design feature.',
     frontend: {
       en: 'Build a model that tests or demonstrates a particular design idea.',
-      it: 'Costruisci un modello che verifichi o dimostri un\'idea progettuale specifica.',
+      it: "Costruisci un modello che verifichi o dimostri un'idea progettuale specifica.",
       zh: '制作能够测试或展示某个具体设计构想的模型。',
       hi: 'ऐसा नमूना बनाएँ जो किसी खास डिज़ाइन विचार की जाँच या प्रदर्शन करे।',
       es: 'Construye un modelo que ponga a prueba o demuestre una idea concreta de diseño.',

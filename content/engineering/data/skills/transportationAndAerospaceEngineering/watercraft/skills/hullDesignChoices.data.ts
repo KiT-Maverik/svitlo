@@ -39,7 +39,7 @@ export const hullDesignChoices_Skill_Data = defineSkill({
     methodological: 'Relate hull geometry and loading to displacement, stability and resistance.',
     frontend: {
       en: 'Compare hull arrangements according to stability and resistance.',
-      it: 'Confronta le configurazioni degli scafi in base alla stabilità e alla resistenza all\'avanzamento.',
+      it: "Confronta le configurazioni degli scafi in base alla stabilità e alla resistenza all'avanzamento.",
       zh: '比较船体布局在稳定性和阻力方面的差异。',
       hi: 'स्थिरता और प्रतिरोध के आधार पर जहाज़ के विभिन्न ढाँचों की तुलना करें।',
       es: 'Compara configuraciones del casco según estabilidad y resistencia.',

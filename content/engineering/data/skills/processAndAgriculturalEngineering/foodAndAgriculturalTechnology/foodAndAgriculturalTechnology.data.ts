@@ -61,7 +61,7 @@ export const foodAndAgriculturalTechnology_SkillGroup_Data = defineSkillGroup({
       'Food and field equipment must handle biological materials with variable properties and constraints involving spoilage, hygiene, water use and environmental conditions.',
     frontend: {
       en: 'Explore machines that store food and support modern agriculture.',
-      it: 'Esplora le macchine che conservano gli alimenti e sostengono l\'agricoltura moderna.',
+      it: "Esplora le macchine che conservano gli alimenti e sostengono l'agricoltura moderna.",
       zh: '探索用于储存食品和支持现代农业的机器。',
       hi: 'भोजन के भंडारण और आधुनिक खेती में मदद करने वाली मशीनें जानें।',
       es: 'Explora máquinas que almacenan alimentos y apoyan la agricultura moderna.',

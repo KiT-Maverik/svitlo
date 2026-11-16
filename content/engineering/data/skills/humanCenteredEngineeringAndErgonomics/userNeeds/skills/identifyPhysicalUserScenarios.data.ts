@@ -5,7 +5,7 @@ export const identifyPhysicalUserScenarios_Skill_Data = defineSkill({
   id: 'fbe4abda-186d-4ce6-882c-2896bf6bb44d',
   name: {
     en: 'Identify physical user scenarios',
-    it: 'Individuare scenari d\'uso fisico',
+    it: "Individuare scenari d'uso fisico",
     zh: '识别用户实体操作场景',
     hi: 'उपयोगकर्ता की भौतिक स्थितियाँ पहचानना',
     es: 'Identificar situaciones de uso físico',

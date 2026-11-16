@@ -39,7 +39,7 @@ export const observePhysicalUsabilityProblems_Skill_Data = defineSkill({
     methodological: 'Distinguish witnessed hesitation or failed handling from assumptions about users.',
     frontend: {
       en: "Observe where someone struggles with a product's physical operation.",
-      it: 'Osserva in quali situazioni una persona incontra difficoltà nell\'utilizzo fisico di un prodotto.',
+      it: "Osserva in quali situazioni una persona incontra difficoltà nell'utilizzo fisico di un prodotto.",
       zh: '观察人们在操作实体产品时遇到的困难。',
       hi: 'देखें कि किसी व्यक्ति को उत्पाद को भौतिक रूप से चलाने में कहाँ कठिनाई होती है।',
       es: 'Observa en qué momentos alguien tiene dificultades al manejar físicamente un producto.',

@@ -39,7 +39,7 @@ export const marineSteering_Skill_Data = defineSkill({
     methodological: 'Identify how rudders, steerable drives or differential thrust change course.',
     frontend: {
       en: "Explain how a rudder or another mechanism controls a vessel's heading.",
-      it: 'Spiega come un timone o un altro meccanismo controlla la rotta di un\'imbarcazione.',
+      it: "Spiega come un timone o un altro meccanismo controlla la rotta di un'imbarcazione.",
       zh: '解释舵或其他装置如何控制船只航向。',
       hi: 'समझाएँ कि पतवार या दूसरी व्यवस्था जहाज़ की दिशा कैसे नियंत्रित करती है।',
       es: 'Explica cómo el timón u otro mecanismo controla el rumbo de un barco.',

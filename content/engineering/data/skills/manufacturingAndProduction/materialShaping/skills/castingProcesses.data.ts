@@ -40,7 +40,7 @@ export const castingProcesses_Skill_Data = defineSkill({
       'Trace a poured molten or fluid material through filling a cavity, solidifying and removing a cast product.',
     frontend: {
       en: 'Recognize how liquid material solidifies in a casting form.',
-      it: 'Riconosci come un materiale liquido solidifica all\'interno di uno stampo di colata.',
+      it: "Riconosci come un materiale liquido solidifica all'interno di uno stampo di colata.",
       zh: '认识液态材料如何在铸型中凝固。',
       hi: 'पहचानें कि तरल पदार्थ साँचे में जमकर ठोस कैसे बनता है।',
       es: 'Reconoce cómo se solidifica un material líquido dentro de un molde de fundición.',

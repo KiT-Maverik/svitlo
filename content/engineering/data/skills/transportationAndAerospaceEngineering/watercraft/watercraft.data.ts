@@ -50,7 +50,7 @@ export const watercraft_SkillGroup_Data = defineSkillGroup({
       'Vessels need suitable hulls, propulsion and steering while managing stability and water resistance.',
     frontend: {
       en: 'Discover how vessel design and equipment affect travel through water.',
-      it: 'Scopri come la progettazione e le dotazioni di un\'imbarcazione influiscono sul movimento nell\'acqua.',
+      it: "Scopri come la progettazione e le dotazioni di un'imbarcazione influiscono sul movimento nell'acqua.",
       zh: '了解船体设计与设备如何影响水上航行。',
       hi: 'जानें कि जलयान का आकार और उपकरण पानी में यात्रा को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo el diseño del casco y el equipo influyen en el desplazamiento por agua.',

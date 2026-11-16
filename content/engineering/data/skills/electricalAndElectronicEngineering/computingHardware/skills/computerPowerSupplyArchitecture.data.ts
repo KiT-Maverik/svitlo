@@ -5,7 +5,7 @@ export const computerPowerSupplyArchitecture_Skill_Data = defineSkill({
   id: 'c9f2e7b1-c729-4126-9b36-d9d7e0862923',
   name: {
     en: 'Computer power supply architecture',
-    it: 'Architettura dell\'alimentazione del computer',
+    it: "Architettura dell'alimentazione del computer",
     zh: '计算机供电架构',
     hi: 'संगणक विद्युत आपूर्ति संरचना',
     es: 'Arquitectura de alimentación del ordenador',
@@ -40,7 +40,7 @@ export const computerPowerSupplyArchitecture_Skill_Data = defineSkill({
       'Trace conversion, regulation and distribution of the electrical supply to devices with differing voltage and current needs.',
     frontend: {
       en: 'Understand how a computer converts and distributes power.',
-      it: 'Comprendi come un computer converte e distribuisce l\'energia elettrica.',
+      it: "Comprendi come un computer converte e distribuisce l'energia elettrica.",
       zh: '了解计算机如何转换电能并向各部件分配电力。',
       hi: 'जानें कि विद्युत आपूर्ति कंप्यूटर के अलग-अलग भागों को ऊर्जा कैसे देती है।',
       es: 'Aprende cómo la fuente de alimentación suministra energía a los componentes.',

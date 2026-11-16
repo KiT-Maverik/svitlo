@@ -40,7 +40,7 @@ export const hazardControlMeasures_Skill_Data = defineSkill({
       'Distinguish elimination, guarding, isolation, automatic protection and warnings by the actual risks each addresses. Selecting a particular safeguard for an exercise is a task variant.',
     frontend: {
       en: 'Choose technical measures that reduce exposure to hazards.',
-      it: 'Scegli misure tecniche che riducano l\'esposizione ai pericoli.',
+      it: "Scegli misure tecniche che riducano l'esposizione ai pericoli.",
       zh: '选择能够减少接触危险的技术措施。',
       hi: 'ऐसे तकनीकी उपाय चुनें जो खतरों के संपर्क को घटाएँ।',
       es: 'Elige medidas técnicas que reduzcan la exposición a peligros.',

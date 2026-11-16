@@ -39,7 +39,7 @@ export const safetyMargins_Skill_Data = defineSkill({
     methodological: 'Relate uncertainty in loading, materials and use conditions to extra design capacity.',
     frontend: {
       en: 'Understand why safety factors account for uncertainty and unexpected loads.',
-      it: 'Comprendi perché i coefficienti di sicurezza tengono conto dell\'incertezza e dei carichi imprevisti.',
+      it: "Comprendi perché i coefficienti di sicurezza tengono conto dell'incertezza e dei carichi imprevisti.",
       zh: '理解安全系数为何要考虑不确定性和意外载荷。',
       hi: 'समझें कि सुरक्षा गुणांक अनिश्चितता और अप्रत्याशित भार का ध्यान क्यों रखते हैं।',
       es: 'Comprende por qué los factores de seguridad consideran la incertidumbre y las cargas imprevistas.',

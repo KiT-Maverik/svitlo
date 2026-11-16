@@ -39,7 +39,7 @@ export const compareChannelsAndPipes_Skill_Data = defineSkill({
     methodological: 'Distinguish free-surface and enclosed conveyance when choosing a route.',
     frontend: {
       en: 'Compare open channels and enclosed pipes for transporting water.',
-      it: 'Confronta canali aperti e condotte chiuse per il trasporto dell\'acqua.',
+      it: "Confronta canali aperti e condotte chiuse per il trasporto dell'acqua.",
       zh: '比较输水时开放水渠和封闭管道的特点。',
       hi: 'पानी ले जाने के लिए खुली नहरों और बंद पाइपों की तुलना करें।',
       es: 'Compara canales abiertos y conductos cerrados para transportar agua.',

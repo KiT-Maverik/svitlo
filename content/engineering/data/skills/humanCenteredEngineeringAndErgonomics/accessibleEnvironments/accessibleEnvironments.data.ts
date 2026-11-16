@@ -54,7 +54,7 @@ export const accessibleEnvironments_SkillGroup_Data = defineSkillGroup({
       'Inclusive infrastructure requires usable routes and fixtures as well as accessible individual devices.',
     frontend: {
       en: 'Explore how environments can support accessible movement and use.',
-      it: 'Esplora come gli ambienti possono favorire l\'accessibilità negli spostamenti e nell\'utilizzo.',
+      it: "Esplora come gli ambienti possono favorire l'accessibilità negli spostamenti e nell'utilizzo.",
       zh: '探索环境如何支持无障碍通行和使用。',
       hi: 'जानें कि स्थानों को ऐसा कैसे बनाया जाए कि लोग आसानी से चल सकें और उनका उपयोग कर सकें।',
       es: 'Explora cómo los espacios pueden facilitar el movimiento y el uso accesibles.',

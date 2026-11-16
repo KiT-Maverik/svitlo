@@ -5,7 +5,7 @@ export const evaluateOperatingPosture_Skill_Data = defineSkill({
   id: '16b12b57-49be-455c-8b88-4ea46a9241fc',
   name: {
     en: 'Evaluate operating posture',
-    it: 'Valutare la postura durante l\'uso',
+    it: "Valutare la postura durante l'uso",
     zh: '评估操作姿势',
     hi: 'कार्य करते समय मुद्रा का मूल्यांकन',
     es: 'Evaluar la postura de uso',
@@ -39,7 +39,7 @@ export const evaluateOperatingPosture_Skill_Data = defineSkill({
     methodological: 'Identify strain caused by working height, repeated movement or sustained position.',
     frontend: {
       en: 'Recognize postures that make a task uncomfortable or difficult.',
-      it: 'Riconosci le posture che rendono un\'attività scomoda o difficile.',
+      it: "Riconosci le posture che rendono un'attività scomoda o difficile.",
       zh: '识别使任务变得不舒适或难以完成的姿势。',
       hi: 'ऐसी मुद्राएँ पहचानें जो काम को असुविधाजनक या कठिन बनाती हैं।',
       es: 'Reconoce posturas que hacen una tarea incómoda o difícil.',

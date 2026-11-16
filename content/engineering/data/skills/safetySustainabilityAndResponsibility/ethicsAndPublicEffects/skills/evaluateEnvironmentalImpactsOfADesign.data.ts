@@ -40,7 +40,7 @@ export const evaluateEnvironmentalImpactsOfADesign_Skill_Data = defineSkill({
       'Consider pollution, habitat disruption and resource burdens beyond the immediate operation of the intended product.',
     frontend: {
       en: "Examine a design's possible effects on the surrounding environment.",
-      it: 'Esamina i possibili effetti di un progetto sull\'ambiente circostante.',
+      it: "Esamina i possibili effetti di un progetto sull'ambiente circostante.",
       zh: '检查设计可能对周围环境产生的影响。',
       hi: 'आसपास के पर्यावरण पर डिज़ाइन के संभावित प्रभाव जाँचें।',
       es: 'Examina los posibles efectos de un diseño en el entorno.',

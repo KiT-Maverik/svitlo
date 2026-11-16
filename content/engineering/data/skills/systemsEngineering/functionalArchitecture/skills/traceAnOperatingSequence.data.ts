@@ -39,7 +39,7 @@ export const traceAnOperatingSequence_Skill_Data = defineSkill({
     methodological: 'Describe the causal order of events through startup, normal operation or shutdown.',
     frontend: {
       en: 'Follow the events involved in starting, using and stopping a system.',
-      it: 'Segui gli eventi coinvolti nell\'avvio, nell\'utilizzo e nell\'arresto di un sistema.',
+      it: "Segui gli eventi coinvolti nell'avvio, nell'utilizzo e nell'arresto di un sistema.",
       zh: '跟随系统启动、使用和停止时发生的各个步骤。',
       hi: 'प्रणाली शुरू करने, चलाने और बंद करने की घटनाओं का क्रम देखें।',
       es: 'Sigue los pasos al poner en marcha, utilizar y detener un sistema.',

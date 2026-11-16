@@ -39,7 +39,7 @@ export const identifyDistributionLeakage_Skill_Data = defineSkill({
     methodological: 'Interpret pressure or flow irregularities as possible evidence of lost water.',
     frontend: {
       en: 'Identify signs of water leaks in distribution infrastructure.',
-      it: 'Individua i segnali di perdite d\'acqua nelle infrastrutture di distribuzione.',
+      it: "Individua i segnali di perdite d'acqua nelle infrastrutture di distribuzione.",
       zh: '查找供水设施中漏水的迹象。',
       hi: 'जल वितरण ढाँचे में पानी के रिसाव के संकेत पहचानें।',
       es: 'Detecta señales de fugas en las instalaciones de distribución de agua.',

@@ -5,7 +5,7 @@ export const precisionAgriculturalEquipment_Skill_Data = defineSkill({
   id: '2c393825-7461-430f-8a28-866ca1379438',
   name: {
     en: 'Precision agricultural equipment',
-    it: 'Attrezzature per l\'agricoltura di precisione',
+    it: "Attrezzature per l'agricoltura di precisione",
     zh: '精准农业设备',
     hi: 'सटीक कृषि उपकरण',
     es: 'Equipos de agricultura de precisión',

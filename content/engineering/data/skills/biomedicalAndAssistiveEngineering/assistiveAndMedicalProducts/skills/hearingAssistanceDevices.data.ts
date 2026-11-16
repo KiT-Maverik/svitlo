@@ -39,7 +39,7 @@ export const hearingAssistanceDevices_Skill_Data = defineSkill({
     methodological: 'Trace sound pickup, processing, amplification or other output and fitting.',
     frontend: {
       en: 'Recognize how hearing-assistance equipment processes or delivers sound.',
-      it: 'Riconosci come gli apparecchi per l\'assistenza uditiva elaborano o trasmettono il suono.',
+      it: "Riconosci come gli apparecchi per l'assistenza uditiva elaborano o trasmettono il suono.",
       zh: '了解听力辅助设备如何处理或传递声音。',
       hi: 'पहचानें कि श्रवण सहायक उपकरण ध्वनि को कैसे संसाधित या पहुँचाते हैं।',
       es: 'Reconoce cómo los equipos de asistencia auditiva procesan o transmiten sonido.',

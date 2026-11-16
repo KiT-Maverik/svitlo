@@ -39,7 +39,7 @@ export const anticipateFailureModes_Skill_Data = defineSkill({
     methodological: 'Predict credible ways a proposed arrangement might fail to deliver its intended function.',
     frontend: {
       en: 'Predict credible ways a design could fail in use.',
-      it: 'Prevedi i modi plausibili in cui un progetto potrebbe guastarsi durante l\'uso.',
+      it: "Prevedi i modi plausibili in cui un progetto potrebbe guastarsi durante l'uso.",
       zh: '预测设计在使用过程中可能出现的合理故障。',
       hi: 'अनुमान लगाएँ कि उपयोग में डिज़ाइन किन वास्तविक तरीकों से असफल हो सकता है।',
       es: 'Prevé formas plausibles en las que un diseño podría fallar al usarse.',

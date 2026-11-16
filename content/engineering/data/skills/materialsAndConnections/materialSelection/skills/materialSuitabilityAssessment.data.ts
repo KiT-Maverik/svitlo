@@ -5,7 +5,7 @@ export const materialSuitabilityAssessment_Skill_Data = defineSkill({
   id: 'e23fd916-70e4-400b-b8fc-0be4ef9ffb5a',
   name: {
     en: 'Material suitability assessment',
-    it: 'Valutare l\'idoneità di un materiale',
+    it: "Valutare l'idoneità di un materiale",
     zh: '评估材料适用性',
     hi: 'सामग्री की उपयुक्तता का आकलन',
     es: 'Evaluar la idoneidad de materiales',

@@ -39,7 +39,7 @@ export const electricalGridDistribution_Skill_Data = defineSkill({
     methodological: 'Trace energy from generation through substations and delivery networks to loads.',
     frontend: {
       en: 'Trace electricity from power stations through distribution networks.',
-      it: 'Segui il percorso dell\'elettricità dalle centrali attraverso le reti di distribuzione.',
+      it: "Segui il percorso dell'elettricità dalle centrali attraverso le reti di distribuzione.",
       zh: '追踪电力从发电厂经过配电网络的路径。',
       hi: 'विद्युत केंद्रों से वितरण जाल तक बिजली का रास्ता देखें।',
       es: 'Sigue la electricidad desde las centrales a través de las redes de distribución.',

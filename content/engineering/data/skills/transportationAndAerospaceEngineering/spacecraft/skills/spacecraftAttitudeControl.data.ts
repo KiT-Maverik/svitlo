@@ -5,7 +5,7 @@ export const spacecraftAttitudeControl_Skill_Data = defineSkill({
   id: '68725c0e-b188-406a-a89c-38fb5503bf61',
   name: {
     en: 'Spacecraft attitude control',
-    it: 'Controllo dell\'assetto dei veicoli spaziali',
+    it: "Controllo dell'assetto dei veicoli spaziali",
     zh: '航天器姿态控制',
     hi: 'अंतरिक्ष यान अभिविन्यास नियंत्रण',
     es: 'Control de actitud de naves espaciales',

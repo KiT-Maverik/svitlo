@@ -54,7 +54,7 @@ export const waterAndEnvironmentalInfrastructure_SkillDomain_Data = defineSkillD
       'Public services depend on connected intake, treatment, storage and collection systems. This domain concerns engineered infrastructure rather than natural water circulation or public-health instruction.',
     frontend: {
       en: 'Explore engineered systems for safe water, drainage and environmental protection.',
-      it: 'Esplora i sistemi ingegneristici per l\'acqua sicura, il drenaggio e la protezione dell\'ambiente.',
+      it: "Esplora i sistemi ingegneristici per l'acqua sicura, il drenaggio e la protezione dell'ambiente.",
       zh: '探索安全供水、排水和环境保护的工程系统。',
       hi: 'सुरक्षित जल आपूर्ति, जल निकासी और पर्यावरण संरक्षण की इंजीनियरिंग प्रणालियाँ जानें।',
       es: 'Explora sistemas diseñados para agua segura, drenaje y protección ambiental.',

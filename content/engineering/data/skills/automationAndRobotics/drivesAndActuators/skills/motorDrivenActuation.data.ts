@@ -39,7 +39,7 @@ export const motorDrivenActuation_Skill_Data = defineSkill({
     methodological: 'Trace electrical supply and drive control to a rotating mechanical output.',
     frontend: {
       en: 'Trace how a motor produces useful mechanical action.',
-      it: 'Segui il processo con cui un motore produce un\'azione meccanica utile.',
+      it: "Segui il processo con cui un motore produce un'azione meccanica utile.",
       zh: '追踪电机如何产生有用的机械运动。',
       hi: 'समझें कि मोटर उपयोगी यांत्रिक गति कैसे उत्पन्न करती है।',
       es: 'Sigue cómo un motor produce un movimiento mecánico útil.',

@@ -40,7 +40,7 @@ export const evaluateBiomimeticPerformance_Skill_Data = defineSkill({
       'Compare a resulting prototype with functional criteria and acknowledge limitations of the analogy.',
     frontend: {
       en: 'Test whether a nature-inspired design really meets its performance goal.',
-      it: 'Verifica se un progetto ispirato alla natura soddisfa davvero l\'obiettivo prestazionale.',
+      it: "Verifica se un progetto ispirato alla natura soddisfa davvero l'obiettivo prestazionale.",
       zh: '检验仿照自然原理的设计是否真正达到性能目标。',
       hi: 'जाँचें कि प्रकृति से प्रेरित डिज़ाइन सचमुच अपना प्रदर्शन लक्ष्य पूरा करता है या नहीं।',
       es: 'Comprueba si un diseño inspirado en la naturaleza cumple realmente su objetivo de rendimiento.',

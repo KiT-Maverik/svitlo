@@ -39,7 +39,7 @@ export const lubrication_Skill_Data = defineSkill({
     methodological: 'Relate a lubricant to reduced wear and heating at a moving interface.',
     frontend: {
       en: 'Explain why lubrication reduces friction and wear.',
-      it: 'Spiega perché la lubrificazione riduce l\'attrito e l\'usura.',
+      it: "Spiega perché la lubrificazione riduce l'attrito e l'usura.",
       zh: '解释润滑为何能减少摩擦和磨损。',
       hi: 'समझाएँ कि स्नेहन घर्षण और घिसाव क्यों घटाता है।',
       es: 'Explica por qué la lubricación reduce la fricción y el desgaste.',
