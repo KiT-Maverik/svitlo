@@ -5,6 +5,7 @@ export const classifyPlacesIntoRegionsUsingStatedCriteria_Skill_Data = defineSki
   id: 'f2cacbe6-45ef-4d7e-8852-efefb5631fc3',
   name: {
     en: 'Classify places into regions using stated criteria',
+    it: 'Raggruppare i luoghi in regioni secondo criteri espliciti',
     zh: '按明确标准将地点划分为区域',
     hi: 'स्पष्ट मानदंड से स्थानों को क्षेत्रों में बाँटना',
     es: 'Clasificar lugares en regiones mediante criterios explícitos',
@@ -39,6 +40,7 @@ export const classifyPlacesIntoRegionsUsingStatedCriteria_Skill_Data = defineSki
       'Apply an explicit property such as climate or relief consistently instead of sorting places by familiar names alone.',
     frontend: {
       en: 'Group places into regions using a clearly stated geographic criterion.',
+      it: 'Raggruppa i luoghi in regioni usando un criterio geografico chiaramente dichiarato.',
       zh: '根据清楚说明的地理标准，将地点归入不同区域。',
       hi: 'स्पष्ट बताए गए भौगोलिक मानदंड से स्थानों को क्षेत्रों में समूहित करें।',
       es: 'Agrupa lugares en regiones según un criterio geográfico claramente indicado.',

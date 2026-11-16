@@ -8,6 +8,7 @@ export const environmentAndSociety_SkillDomain_Data = defineSkillDomain({
   id: '2dba802b-84f8-48a6-90da-d115e9628407',
   title: {
     en: 'Environment and Society',
+    it: 'Ambiente e società',
     zh: '环境与社会',
     hi: 'पर्यावरण और समाज',
     es: 'Medio ambiente y sociedad',
@@ -49,6 +50,7 @@ export const environmentAndSociety_SkillDomain_Data = defineSkillDomain({
       'Natural resources, environmental constraints and human decisions influence one another across space. Geography examines rates of resource renewal, adaptation to local conditions, transformations of land and the travel of impacts between connected regions.',
     frontend: {
       en: 'Explore how natural resources, local conditions and human decisions affect one another.',
+      it: 'Esplora come le risorse naturali, le condizioni locali e le decisioni umane si influenzano a vicenda.',
       zh: '探索自然资源、当地环境条件和人类决策如何相互影响。',
       hi: 'जानें कि प्राकृतिक संसाधन, स्थानीय परिस्थितियाँ और मानव निर्णय एक-दूसरे को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo los recursos naturales, las condiciones locales y las decisiones humanas se influyen mutuamente.',

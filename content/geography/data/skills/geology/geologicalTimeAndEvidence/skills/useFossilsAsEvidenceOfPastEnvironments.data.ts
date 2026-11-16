@@ -5,6 +5,7 @@ export const useFossilsAsEvidenceOfPastEnvironments_Skill_Data = defineSkill({
   id: '28006c55-444d-407b-a473-7940a38bf018',
   name: {
     en: 'Use fossils as evidence of past environments',
+    it: 'Usare i fossili come prove degli ambienti del passato',
     zh: '利用化石研究过去的环境',
     hi: 'जीवाश्मों से पुराने पर्यावरण का प्रमाण जुटाना',
     es: 'Utilizar fósiles como indicios de ambientes antiguos',
@@ -39,6 +40,7 @@ export const useFossilsAsEvidenceOfPastEnvironments_Skill_Data = defineSkill({
       'Infer that marine fossils in rock now exposed on land may indicate earlier marine conditions; fossil evidence is not merely a list of ancient species.',
     frontend: {
       en: 'Use fossils to learn about environments that existed long ago.',
+      it: 'Usa i fossili per conoscere gli ambienti esistiti molto tempo fa.',
       zh: '利用化石了解遥远过去存在过的环境。',
       hi: 'जीवाश्मों की मदद से बहुत पहले के पर्यावरण के बारे में जानें।',
       es: 'Usa los fósiles para conocer ambientes que existieron hace mucho tiempo.',

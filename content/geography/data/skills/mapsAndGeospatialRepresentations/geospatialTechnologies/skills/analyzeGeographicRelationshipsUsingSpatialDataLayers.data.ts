@@ -5,6 +5,7 @@ export const analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data = d
   id: '44c8f87f-e148-446f-bf90-29775f1c042c',
   name: {
     en: 'Analyze geographic relationships using spatial data layers',
+    it: 'Analizzare le relazioni geografiche tramite livelli di dati spaziali',
     zh: '利用空间数据图层分析地理关系',
     hi: 'स्थानिक आँकड़ों की परतों से भौगोलिक संबंधों का विश्लेषण',
     es: 'Analizar relaciones geográficas mediante capas espaciales',
@@ -39,6 +40,7 @@ export const analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data = d
       'Combine separately mapped geographic properties to investigate co-occurrence, proximity or spatial variation, taking account of registration, resolution and the risk of mistaking correlation for causation. GIS is a possible tool rather than the definition of the Skill.',
     frontend: {
       en: 'Combine spatial data layers to study patterns without assuming correlation proves causation.',
+      it: 'Combina livelli di dati spaziali per studiare le distribuzioni senza supporre che una correlazione dimostri una causa.',
       zh: '叠加空间数据图层研究分布规律，同时不把相关性误认为因果关系。',
       hi: 'स्थानिक आँकड़ों की परतें जोड़कर प्रतिरूपों का अध्ययन करें, लेकिन सहसंबंध को कारण का प्रमाण न मानें।',
       es: 'Combina capas espaciales para estudiar patrones sin confundir correlación con causalidad.',

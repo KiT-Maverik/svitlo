@@ -5,6 +5,7 @@ export const interpretLongTermClimateTrends_Skill_Data = defineSkill({
   id: '1845dcb1-decd-473e-93a1-fcab4a7c5682',
   name: {
     en: 'Interpret long-term climate trends',
+    it: 'Interpretare le tendenze climatiche di lungo periodo',
     zh: '解读长期气候趋势',
     hi: 'दीर्घकालीन जलवायु रुझान समझना',
     es: 'Interpretar tendencias climáticas a largo plazo',
@@ -39,6 +40,7 @@ export const interpretLongTermClimateTrends_Skill_Data = defineSkill({
       'Distinguish persistent changes in climate indicators over long observation periods from short-term variability, considering trends, baselines and the geographic coverage of measurements.',
     frontend: {
       en: 'Identify long-term changes in climate measurements without confusing them with short events.',
+      it: 'Individua i cambiamenti di lungo periodo nelle misurazioni climatiche senza confonderli con eventi brevi.',
       zh: '识别气候测量值的长期变化，不将其与短期事件混淆。',
       hi: 'जलवायु माप में लंबे बदलाव पहचानें; इन्हें छोटी मौसम घटनाओं से न मिलाएँ।',
       es: 'Detecta cambios prolongados en el clima sin confundirlos con sucesos breves.',

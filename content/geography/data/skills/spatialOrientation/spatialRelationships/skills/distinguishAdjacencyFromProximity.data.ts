@@ -5,6 +5,7 @@ export const distinguishAdjacencyFromProximity_Skill_Data = defineSkill({
   id: '1c18013c-e48a-4fc6-801c-a69c6c8fd129',
   name: {
     en: 'Distinguish adjacency from proximity',
+    it: 'Distinguere adiacenza e prossimità',
     zh: '区分相邻与接近',
     hi: 'सटे होने और पास होने में अंतर करना',
     es: 'Distinguir contigüidad de proximidad',
@@ -39,6 +40,7 @@ export const distinguishAdjacencyFromProximity_Skill_Data = defineSkill({
       'Two territories may share a boundary without being close to the same external landmark; nearby places need not touch.',
     frontend: {
       en: 'Distinguish places that touch from places that are merely nearby.',
+      it: 'Distingui i luoghi che confinano da quelli semplicemente vicini.',
       zh: '区分彼此接壤的地点与仅仅距离较近的地点。',
       hi: 'उन स्थानों में अंतर करें जो एक-दूसरे से सटे हैं और जो केवल पास हैं।',
       es: 'Distingue lugares que comparten un límite de otros que solo están cerca.',

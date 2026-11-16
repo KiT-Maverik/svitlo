@@ -5,6 +5,7 @@ export const interpretAWeatherWarningAreaOnAMap_Skill_Data = defineSkill({
   id: '15799551-7e29-44b0-95da-1bf2e5305e85',
   name: {
     en: 'Interpret a weather warning area on a map',
+    it: "Interpretare su una carta un'area interessata da un'allerta meteo",
     zh: '解读地图上的天气预警区域',
     hi: 'नक्शे पर मौसम चेतावनी का क्षेत्र समझना',
     es: 'Interpretar un área de aviso meteorológico en un mapa',
@@ -39,6 +40,7 @@ export const interpretAWeatherWarningAreaOnAMap_Skill_Data = defineSkill({
       "Identify affected places and the warning's time scope without mistaking a forecast zone for an exact prediction at every point.",
     frontend: {
       en: 'Read a weather-warning map to identify affected areas and time periods.',
+      it: 'Leggi una carta delle allerte meteo per individuare le zone e i periodi interessati.',
       zh: '通过天气预警图找出受影响的区域和时间段。',
       hi: 'मौसम चेतावनी के नक्शे से चेतावनी के अंतर्गत आने वाले इलाके और उसकी अवधि पहचानें।',
       es: 'Lee el mapa de alertas meteorológicas para identificar las zonas y los períodos de vigencia de los avisos.',

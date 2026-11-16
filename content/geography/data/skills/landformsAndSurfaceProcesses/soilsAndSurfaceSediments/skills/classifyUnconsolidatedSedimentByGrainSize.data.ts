@@ -5,6 +5,7 @@ export const classifyUnconsolidatedSedimentByGrainSize_Skill_Data = defineSkill(
   id: '278fd5c5-393b-49f6-81b3-9f92055c9ed8',
   name: {
     en: 'Classify unconsolidated sediment by grain size',
+    it: 'Classificare i sedimenti sciolti in base alla granulometria',
     zh: '按颗粒大小分类松散沉积物',
     hi: 'असंगठित अवसाद को कण आकार के अनुसार वर्गीकृत करना',
     es: 'Clasificar sedimentos sueltos por tamaño de grano',
@@ -39,6 +40,7 @@ export const classifyUnconsolidatedSedimentByGrainSize_Skill_Data = defineSkill(
       'Distinguish coarser gravel and sand from finer silt and clay by relative particle size and observed texture, without treating soil categories as identical to rock types.',
     frontend: {
       en: 'Distinguish gravel, sand, silt and clay by particle size.',
+      it: 'Distingui ghiaia, sabbia, limo e argilla in base alla dimensione delle particelle.',
       zh: '根据颗粒大小区分砾石、沙、粉砂和黏土。',
       hi: 'कणों के आकार से बजरी, रेत, गाद और चिकनी मिट्टी में अंतर पहचानें।',
       es: 'Distingue grava, arena, limo y arcilla según el tamaño de sus partículas.',

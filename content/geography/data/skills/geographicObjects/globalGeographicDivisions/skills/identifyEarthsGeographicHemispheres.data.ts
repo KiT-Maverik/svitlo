@@ -5,6 +5,7 @@ export const identifyEarthsGeographicHemispheres_Skill_Data = defineSkill({
   id: '092c2a88-5988-4318-99cb-0162a1c0489a',
   name: {
     en: "Identify Earth's geographic hemispheres",
+    it: 'Individuare gli emisferi geografici della Terra',
     zh: '识别地球的地理半球',
     hi: 'पृथ्वी के भौगोलिक गोलार्ध पहचानना',
     es: 'Identificar los hemisferios geográficos terrestres',
@@ -39,6 +40,7 @@ export const identifyEarthsGeographicHemispheres_Skill_Data = defineSkill({
       'Use the Equator and a stated meridian division to identify northern, southern, eastern or western hemispheres, while recognizing that eastern/western boundaries depend on the chosen conventional meridian.',
     frontend: {
       en: "Identify Earth's hemispheres using the Equator and a stated meridian.",
+      it: "Individua gli emisferi terrestri usando l'Equatore e un meridiano indicato.",
       zh: '利用赤道和指定的经线识别地球的不同半球。',
       hi: 'भूमध्य रेखा और निर्दिष्ट मध्याह्न रेखा से पृथ्वी के गोलार्ध पहचानें।',
       es: 'Identifica los hemisferios de la Tierra usando el ecuador y un meridiano indicado.',

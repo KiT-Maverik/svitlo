@@ -5,6 +5,7 @@ export const explainHowMagmaReachesEarthsSurface_Skill_Data = defineSkill({
   id: '0a89c947-3f90-4b3f-a8f8-69bf874d3809',
   name: {
     en: "Explain how magma reaches Earth's surface",
+    it: 'Spiegare come il magma raggiunge la superficie terrestre',
     zh: '解释岩浆如何到达地表',
     hi: 'माग्मा पृथ्वी की सतह पर कैसे पहुँचता है, समझाना',
     es: 'Explicar cómo llega el magma a la superficie terrestre',
@@ -39,6 +40,7 @@ export const explainHowMagmaReachesEarthsSurface_Skill_Data = defineSkill({
       'Describe volcanic eruptions as magma ascending through fractures or vents and becoming lava when erupted, rather than assuming every volcano continually erupts.',
     frontend: {
       en: 'Describe how magma reaches the surface and becomes lava.',
+      it: 'Descrivi come il magma raggiunge la superficie e diventa lava.',
       zh: '描述岩浆如何到达地表并成为熔岩。',
       hi: 'बताएँ कि माग्मा सतह पर पहुँचकर लावा कैसे बनता है।',
       es: 'Describe cómo el magma llega a la superficie y se convierte en lava.',

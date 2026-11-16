@@ -11,6 +11,7 @@ export const environmentalGradients_SkillGroup_Data = defineSkillGroup({
   id: 'de686794-a73f-4d34-9866-3f4711e4bc44',
   name: {
     en: 'Environmental Gradients',
+    it: 'Gradienti ambientali',
     zh: '环境梯度',
     hi: 'पर्यावरणीय प्रवणताएँ',
     es: 'Gradientes ambientales',
@@ -58,6 +59,7 @@ export const environmentalGradients_SkillGroup_Data = defineSkillGroup({
       'Natural conditions often vary systematically with elevation, latitude, and proximity to water. Such gradients help explain patterns without implying that every place at the same latitude is identical.',
     frontend: {
       en: 'Explore how nature changes with latitude, height and proximity to water.',
+      it: "Esplora come le condizioni naturali cambiano con la latitudine, l'altitudine e la vicinanza all'acqua.",
       zh: '探索自然条件如何随纬度、海拔和距水体远近而变化。',
       hi: 'जानें कि अक्षांश, ऊँचाई और पानी से दूरी के साथ प्राकृतिक परिस्थितियाँ कैसे बदलती हैं।',
       es: 'Explora cómo cambia la naturaleza según la latitud, la altitud y la cercanía al agua.',

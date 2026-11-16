@@ -5,6 +5,7 @@ export const traceAnEnvironmentalImpactBeyondItsSource_Skill_Data = defineSkill(
   id: '9a18efed-79fd-4d27-909f-628b08711f2c',
   name: {
     en: 'Trace an environmental impact beyond its source',
+    it: "Seguire un impatto ambientale oltre il luogo d'origine",
     zh: '追踪超出源头范围的环境影响',
     hi: 'पर्यावरणीय प्रभाव का स्रोत से आगे तक पता लगाना',
     es: 'Seguir un impacto ambiental más allá de su origen',
@@ -39,6 +40,7 @@ export const traceAnEnvironmentalImpactBeyondItsSource_Skill_Data = defineSkill(
       'Recognize that air, water, transport, or shared ecosystems can carry effects into downstream or neighboring places.',
     frontend: {
       en: 'Trace how an environmental effect can travel beyond the place where it began.',
+      it: 'Ricostruisci come un effetto ambientale può estendersi oltre il luogo in cui ha avuto origine.',
       zh: '追踪环境影响如何传播到最初发生地以外。',
       hi: 'जानें कि पर्यावरणीय असर उस स्थान से आगे कैसे फैल सकता है जहाँ वह शुरू हुआ।',
       es: 'Sigue cómo un efecto ambiental puede extenderse más allá del lugar donde empezó.',

@@ -5,6 +5,7 @@ export const recognizeGeographicEvidenceOfPlateMotion_Skill_Data = defineSkill({
   id: 'b5fccb55-1434-4732-8e92-0b97183e0acc',
   name: {
     en: 'Recognize geographic evidence of plate motion',
+    it: 'Riconoscere prove geografiche del movimento delle placche',
     zh: '识别板块运动的地理证据',
     hi: 'प्लेट गति के भौगोलिक प्रमाणों की पहचान करना',
     es: 'Reconocer pruebas geográficas del movimiento de las placas',
@@ -39,6 +40,7 @@ export const recognizeGeographicEvidenceOfPlateMotion_Skill_Data = defineSkill({
       'Interpret the broad alignment of earthquakes, seafloor age patterns or matching geological features as evidence for moving plates rather than relying on isolated surface observations.',
     frontend: {
       en: 'Find geographic evidence that tectonic plates have moved.',
+      it: 'Trova prove geografiche che le placche tettoniche si sono spostate.',
       zh: '寻找构造板块曾经移动的地理证据。',
       hi: 'विवर्तनिक प्लेटों की गति के भौगोलिक प्रमाण खोजें।',
       es: 'Busca indicios geográficos de que las placas tectónicas se han movido.',

@@ -5,6 +5,7 @@ export const interpretAMapScaleAsADistanceRelationship_Skill_Data = defineSkill(
   id: 'e3f6966a-f524-40a5-98d3-1a021d69f6f9',
   name: {
     en: 'Interpret a map scale as a distance relationship',
+    it: 'Interpretare la scala di una carta come rapporto tra distanze',
     zh: '将地图比例尺理解为距离关系',
     hi: 'मानचित्र मापनी को दूरी के संबंध के रूप में समझना',
     es: 'Interpretar la escala de un mapa como relación de distancias',
@@ -39,6 +40,7 @@ export const interpretAMapScaleAsADistanceRelationship_Skill_Data = defineSkill(
       'Recognize that a short mark on paper or screen represents a larger distance on the ground and that the ratio changes with scale.',
     frontend: {
       en: 'Interpret how distances on a map relate to distances on the ground.',
+      it: 'Interpreta il rapporto tra le distanze misurate su una carta e quelle reali sul terreno.',
       zh: '解释地图上的距离与实地距离之间有什么关系。',
       hi: 'समझें कि मानचित्र की दूरी और धरातल की वास्तविक दूरी में क्या संबंध है।',
       es: 'Interpreta cómo se relacionan las distancias del mapa con las distancias reales.',

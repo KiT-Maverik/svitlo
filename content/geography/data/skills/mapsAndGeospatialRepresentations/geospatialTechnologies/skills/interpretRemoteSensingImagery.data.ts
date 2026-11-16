@@ -5,6 +5,7 @@ export const interpretRemoteSensingImagery_Skill_Data = defineSkill({
   id: 'e55f4186-858c-462d-91f7-adb25f70eab1',
   name: {
     en: 'Interpret remote-sensing imagery',
+    it: 'Interpretare immagini di telerilevamento',
     zh: '解读遥感影像',
     hi: 'सुदूर संवेदन चित्रों की व्याख्या',
     es: 'Interpretar imágenes de teledetección',
@@ -39,6 +40,7 @@ export const interpretRemoteSensingImagery_Skill_Data = defineSkill({
       'Use spatial patterns, scale, source limitations and visible characteristics in aerial or satellite observations to infer geographic features and land-cover change. Comparing two dated images is one application of this competence.',
     frontend: {
       en: 'Interpret aerial or satellite images to investigate geographic features and change.',
+      it: 'Interpreta immagini aeree o satellitari per studiare elementi geografici e cambiamenti.',
       zh: '通过解读航空或卫星影像调查地理要素及其变化。',
       hi: 'भौगोलिक विशेषताओं और परिवर्तनों को जानने के लिए हवाई या उपग्रह चित्रों की व्याख्या करें।',
       es: 'Interpreta imágenes aéreas o satelitales para investigar elementos geográficos y sus cambios.',

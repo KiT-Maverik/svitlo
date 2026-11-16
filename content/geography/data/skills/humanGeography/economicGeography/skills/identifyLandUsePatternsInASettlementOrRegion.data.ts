@@ -5,6 +5,7 @@ export const identifyLandUsePatternsInASettlementOrRegion_Skill_Data = defineSki
   id: '7923aea8-54a0-436e-bd24-a0f4fa73825a',
   name: {
     en: 'Identify land-use patterns in a settlement or region',
+    it: 'Individuare i modelli di uso del suolo in un insediamento o in una regione',
     zh: '识别聚落或地区的土地利用格局',
     hi: 'बस्ती या क्षेत्र में भूमि उपयोग के प्रतिरूप पहचानना',
     es: 'Identificar usos del suelo en un asentamiento o región',
@@ -39,6 +40,7 @@ export const identifyLandUsePatternsInASettlementOrRegion_Skill_Data = defineSki
       'Distinguish residential, agricultural, industrial, and service areas by their spatial functions rather than building appearance alone.',
     frontend: {
       en: 'Identify areas used for housing, farming, industry or services.',
+      it: 'Individua le aree destinate ad abitazioni, agricoltura, industria o servizi.',
       zh: '识别用于居住、耕作、工业或服务业的区域。',
       hi: 'आवास, खेती, उद्योग या सेवाओं में प्रयुक्त क्षेत्रों को पहचानें।',
       es: 'Identifica zonas destinadas a viviendas, agricultura, industria o servicios.',

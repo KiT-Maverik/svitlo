@@ -5,6 +5,7 @@ export const explainTheConceptOfWeather_Skill_Data = defineSkill({
   id: '85e7b560-e6d1-43c5-a131-0e5872890c2a',
   name: {
     en: 'Explain the concept of weather',
+    it: 'Spiegare il concetto di tempo meteorologico',
     zh: '解释天气的概念',
     hi: 'मौसम की अवधारणा समझाना',
     es: 'Explicar el concepto de tiempo atmosférico',
@@ -39,6 +40,7 @@ export const explainTheConceptOfWeather_Skill_Data = defineSkill({
       'Describe weather as the atmospheric conditions experienced at a particular place and time, including temperature, moisture, wind, cloud and precipitation. Individual observations can change rapidly and do not alone characterize a regional climate.',
     frontend: {
       en: 'Understand weather as the conditions of the atmosphere at a specific moment.',
+      it: "Comprendi il tempo meteorologico come l'insieme delle condizioni atmosferiche in un dato momento.",
       zh: '理解天气是某一时刻的大气状况。',
       hi: 'समझें कि मौसम किसी विशेष समय की वायुमंडलीय दशा है।',
       es: 'Comprende el tiempo como el estado de la atmósfera en un instante concreto.',

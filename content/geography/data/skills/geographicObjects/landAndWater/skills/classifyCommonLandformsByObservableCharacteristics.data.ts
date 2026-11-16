@@ -5,6 +5,7 @@ export const classifyCommonLandformsByObservableCharacteristics_Skill_Data = def
   id: '0af88bce-69a2-4989-84bd-a6e79de8a047',
   name: {
     en: 'Classify common landforms by observable characteristics',
+    it: 'Classificare le principali forme del rilievo in base alle caratteristiche osservabili',
     zh: '按可观察特征分类常见地形',
     hi: 'दिखने वाली विशेषताओं से सामान्य स्थलरूपों का वर्गीकरण',
     es: 'Clasificar formas del relieve por características observables',
@@ -39,6 +40,7 @@ export const classifyCommonLandformsByObservableCharacteristics_Skill_Data = def
       'Distinguish a valley, plain, plateau, and mountain using relief and shape instead of relying solely on place names.',
     frontend: {
       en: 'Distinguish valleys, plains, plateaus and mountains by their forms.',
+      it: 'Distingui valli, pianure, altopiani e montagne in base alla loro forma.',
       zh: '根据外形区分山谷、平原、高原和山地。',
       hi: 'आकार के आधार पर घाटियों, मैदानों, पठारों और पर्वतों में अंतर करें।',
       es: 'Distingue valles, llanuras, mesetas y montañas por sus formas.',

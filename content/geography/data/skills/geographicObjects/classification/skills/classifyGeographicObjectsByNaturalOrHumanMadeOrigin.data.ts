@@ -5,6 +5,7 @@ export const classifyGeographicObjectsByNaturalOrHumanMadeOrigin_Skill_Data = de
   id: '5bb7c6fb-fb9a-4531-b2b2-a6b53dfca33f',
   name: {
     en: 'Classify geographic objects by natural or human-made origin',
+    it: "Classificare gli elementi geografici secondo l'origine naturale o antropica",
     zh: '按自然或人为成因分类地理事物',
     hi: 'भौगोलिक वस्तुओं को प्राकृतिक या मानव निर्मित मूल से वर्गीकृत करना',
     es: 'Clasificar objetos geográficos según su origen natural o humano',
@@ -39,6 +40,7 @@ export const classifyGeographicObjectsByNaturalOrHumanMadeOrigin_Skill_Data = de
       'Use evidence about formation and function to decide whether a visible feature is natural or built or substantially modified by people, while recognizing that mixed cases such as managed rivers can require qualification.',
     frontend: {
       en: 'Distinguish natural features from constructed or heavily modified ones.',
+      it: "Distingui gli elementi naturali da quelli costruiti o profondamente modificati dall'essere umano.",
       zh: '区分自然形成的地物与人工建造或大幅改造的地物。',
       hi: 'प्राकृतिक वस्तुओं और मनुष्य द्वारा बनाई या बहुत बदली गई वस्तुओं में अंतर करें।',
       es: 'Distingue elementos naturales de los construidos o muy modificados por personas.',

@@ -5,6 +5,7 @@ export const explainTradeOffsOfAProposedSpatialDecision_Skill_Data = defineSkill
   id: '6def1165-2c4c-46a3-a733-24977db1ace9',
   name: {
     en: 'Explain trade-offs of a proposed spatial decision',
+    it: 'Spiegare i compromessi di una decisione relativa al territorio',
     zh: '解释拟议空间决策的取舍',
     hi: 'प्रस्तावित स्थानिक निर्णय के लाभ-हानि समझाना',
     es: 'Explicar las ventajas y desventajas de una decisión espacial propuesta',
@@ -39,6 +40,7 @@ export const explainTradeOffsOfAProposedSpatialDecision_Skill_Data = defineSkill
       'Show how a new road, park, settlement, or conservation area might benefit some needs while creating other costs.',
     frontend: {
       en: 'Explain benefits and costs of decisions about roads, parks or settlements.',
+      it: 'Spiega benefici e costi delle decisioni riguardanti strade, parchi o insediamenti.',
       zh: '解释修路、建公园或规划聚落等决策的收益与代价。',
       hi: 'सड़क, पार्क या बस्ती संबंधी निर्णयों के लाभ और लागत समझाएँ।',
       es: 'Explica beneficios y costos de decisiones sobre carreteras, parques o asentamientos.',

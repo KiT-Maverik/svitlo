@@ -5,6 +5,7 @@ export const explainHowGlaciersReshapeTerrain_Skill_Data = defineSkill({
   id: '7242750c-1082-48e6-93a6-a784f540226d',
   name: {
     en: 'Explain how glaciers reshape terrain',
+    it: 'Spiegare come i ghiacciai modellano il territorio',
     zh: '解释冰川如何改变地形',
     hi: 'हिमनद भूभाग कैसे बदलते हैं, समझाना',
     es: 'Explicar cómo los glaciares modelan el relieve',
@@ -39,6 +40,7 @@ export const explainHowGlaciersReshapeTerrain_Skill_Data = defineSkill({
       'Recognize broad erosional and depositional outcomes of moving land ice, such as glacial valleys, moraines and transported sediment, without treating all U-shaped valleys as proof of one event.',
     frontend: {
       en: 'Recognize landscape features carved or left behind by glaciers.',
+      it: 'Riconosci le forme del paesaggio scavate o lasciate dai ghiacciai.',
       zh: '识别冰川侵蚀或遗留下来的地貌。',
       hi: 'हिमनदों से कटे या पीछे छूटे भूआकार पहचानें।',
       es: 'Reconoce formas del terreno excavadas o dejadas por glaciares.',

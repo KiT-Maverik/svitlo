@@ -5,6 +5,7 @@ export const identifyGeographicConsequencesOfMineralExtraction_Skill_Data = defi
   id: 'c5b84516-6b14-478b-8171-b40e1f334f07',
   name: {
     en: 'Identify geographic consequences of mineral extraction',
+    it: "Individuare le conseguenze geografiche dell'estrazione mineraria",
     zh: '识别矿产开采的地理影响',
     hi: 'खनिज उत्खनन के भौगोलिक परिणामों की पहचान करना',
     es: 'Identificar consecuencias geográficas de la extracción mineral',
@@ -39,6 +40,7 @@ export const identifyGeographicConsequencesOfMineralExtraction_Skill_Data = defi
       'Recognize how mine sites, waste storage and transport infrastructure can change land cover or affect nearby water and settlements; detailed chemical pollution mechanisms belong to Chemistry.',
     frontend: {
       en: 'Recognize how mining can change land, water and nearby settlements.',
+      it: "Riconosci come l'attività estrattiva può modificare il territorio, le acque e gli insediamenti vicini.",
       zh: '识别采矿如何改变土地、水体和附近居民点。',
       hi: 'जानें कि खनन भूमि, पानी और आसपास की बस्तियों को कैसे बदल सकता है।',
       es: 'Reconoce cómo la minería puede modificar el suelo, el agua y los asentamientos cercanos.',

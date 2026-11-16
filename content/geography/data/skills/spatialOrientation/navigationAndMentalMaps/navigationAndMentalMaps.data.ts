@@ -12,6 +12,7 @@ export const navigationAndMentalMaps_SkillGroup_Data = defineSkillGroup({
   id: 'b5609f19-9ab3-4de6-bf20-0ce9ab8b5fad',
   name: {
     en: 'Navigation and Mental Maps',
+    it: 'Navigazione e mappe mentali',
     zh: '导航与心理地图',
     hi: 'मार्गदर्शन और मानसिक मानचित्र',
     es: 'Navegación y mapas mentales',
@@ -60,6 +61,7 @@ export const navigationAndMentalMaps_SkillGroup_Data = defineSkillGroup({
       'Moving between places relies on orientation, directional instructions, and sequences of turns. The focus is spatial navigation, not the mathematical calculation of distance.',
     frontend: {
       en: 'Learn to navigate using directions, landmarks and remembered spatial relationships.',
+      it: 'Impara a orientarti usando direzioni, punti di riferimento e relazioni spaziali ricordate.',
       zh: '学习借助方向、地标和记忆中的空间关系寻找路线。',
       hi: 'दिशाओं, पहचान वाले स्थलों और याद रखे स्थानिक संबंधों की मदद से रास्ता खोजना सीखें।',
       es: 'Aprende a orientarte con direcciones, puntos de referencia y relaciones espaciales que recuerdas.',

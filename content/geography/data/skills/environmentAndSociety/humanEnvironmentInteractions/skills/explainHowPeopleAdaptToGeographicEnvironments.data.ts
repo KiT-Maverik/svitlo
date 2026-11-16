@@ -5,6 +5,7 @@ export const explainHowPeopleAdaptToGeographicEnvironments_Skill_Data = defineSk
   id: 'c184d81a-a4d2-44d8-baab-0be30f2bceda',
   name: {
     en: 'Explain how people adapt to geographic environments',
+    it: 'Spiegare come le persone si adattano agli ambienti geografici',
     zh: '解释人们如何适应地理环境',
     hi: 'लोग भौगोलिक वातावरण के अनुरूप कैसे ढलते हैं, समझाना',
     es: 'Explicar cómo las personas se adaptan a los entornos geográficos',
@@ -39,6 +40,7 @@ export const explainHowPeopleAdaptToGeographicEnvironments_Skill_Data = defineSk
       'Connect practical geographic responses such as flood-aware settlement planning, water storage or regionally suited construction to environmental constraints without treating every adaptation as risk-free.',
     frontend: {
       en: 'Recognize ways communities respond to floods, water limits and local terrain.',
+      it: "Riconosci come le comunità reagiscono a inondazioni, scarsità d'acqua e caratteristiche del rilievo locale.",
       zh: '识别社区应对洪水、水资源限制和当地地形的方法。',
       hi: 'जानें कि समुदाय बाढ़, पानी की कमी और स्थानीय भूभाग की चुनौतियों का कैसे सामना करते हैं।',
       es: 'Reconoce formas en que las comunidades responden a inundaciones, escasez de agua y relieve local.',

@@ -9,6 +9,7 @@ export const naturalRegionsAndBiogeography_SkillDomain_Data = defineSkillDomain(
   id: 'adaee0e9-03d2-4164-bbb0-55486ad73346',
   title: {
     en: 'Natural Regions and Biogeography',
+    it: 'Regioni naturali e biogeografia',
     zh: '自然区域与生物地理学',
     hi: 'प्राकृतिक क्षेत्र और जैवभूगोल',
     es: 'Regiones naturales y biogeografía',
@@ -51,6 +52,7 @@ export const naturalRegionsAndBiogeography_SkillDomain_Data = defineSkillDomain(
       'Natural conditions create geographic variation in ecosystems, biodiversity and habitat patterns on land and in water. This field describes where ecological regions occur, how their distributions vary and how landscape changes affect them; organism physiology and detailed food-web mechanisms belong primarily to Biology.',
     frontend: {
       en: 'Explore how climate, terrain and water influence the geography of living systems.',
+      it: 'Esplora come clima, rilievo e acqua influenzano la distribuzione geografica dei sistemi viventi.',
       zh: '探索气候、地形和水如何影响生物系统的地理分布。',
       hi: 'जानें कि जलवायु, स्थलाकृति और पानी जीवित प्रणालियों के भौगोलिक वितरण को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo el clima, el relieve y el agua influyen en la distribución geográfica de los seres vivos.',

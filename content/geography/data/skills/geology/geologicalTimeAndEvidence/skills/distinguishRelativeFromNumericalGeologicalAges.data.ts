@@ -5,6 +5,7 @@ export const distinguishRelativeFromNumericalGeologicalAges_Skill_Data = defineS
   id: 'fa7ae4ae-9a83-47e8-a091-57119ce1a62b',
   name: {
     en: 'Distinguish relative from numerical geological ages',
+    it: "Distinguere l'età geologica relativa da quella numerica",
     zh: '区分相对地质年代与数值地质年龄',
     hi: 'सापेक्ष और संख्यात्मक भूवैज्ञानिक आयु में अंतर करना',
     es: 'Distinguir edades geológicas relativas y numéricas',
@@ -39,6 +40,7 @@ export const distinguishRelativeFromNumericalGeologicalAges_Skill_Data = defineS
       "Recognize that 'older than this layer' orders events, whereas an estimated age in years gives a measured time range; different evidence and uncertainty apply to each.",
     frontend: {
       en: 'Distinguish saying one rock is older from estimating its age in years.',
+      it: "Distingui l'affermazione che una roccia è più antica dalla stima della sua età in anni.",
       zh: '区分判断一块岩石较老与估计其具体年龄（年）。',
       hi: 'एक चट्टान के दूसरी से पुरानी होने और उसकी आयु वर्षों में अनुमानित करने में अंतर करें।',
       es: 'Distingue entre decir que una roca es más antigua y estimar su edad en años.',

@@ -5,6 +5,7 @@ export const distinguishLakesRiversAndWetlandsByWaterBehavior_Skill_Data = defin
   id: '8a7b984d-78c5-4772-81ed-f8ba2ec8b2d4',
   name: {
     en: 'Distinguish lakes, rivers, and wetlands by water behavior',
+    it: "Distinguere laghi, fiumi e zone umide dal comportamento dell'acqua",
     zh: '根据水体运动区分湖泊、河流和湿地',
     hi: 'जल की गति से झील, नदी और आर्द्रभूमि में अंतर करना',
     es: 'Distinguir lagos, ríos y humedales según el movimiento del agua',
@@ -39,6 +40,7 @@ export const distinguishLakesRiversAndWetlandsByWaterBehavior_Skill_Data = defin
       'Recognize characteristic movement and retention of water without treating all standing or shallow water as the same feature.',
     frontend: {
       en: 'Tell a lake from a river or wetland by how water moves and collects.',
+      it: "Distingui un lago da un fiume o da una zona umida osservando come l'acqua si muove e si raccoglie.",
       zh: '根据水如何流动和积聚，区分湖泊、河流与湿地。',
       hi: 'पानी के बहने और जमा होने के ढंग से झील, नदी और आर्द्रभूमि पहचानें।',
       es: 'Distingue un lago de un río o humedal por cómo se mueve y acumula el agua.',

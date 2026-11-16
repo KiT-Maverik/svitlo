@@ -13,6 +13,7 @@ export const economicGeography_SkillGroup_Data = defineSkillGroup({
   id: '58e41fda-ab15-42de-8115-91f32af27c50',
   name: {
     en: 'Economic Geography',
+    it: 'Geografia economica',
     zh: '经济地理学',
     hi: 'आर्थिक भूगोल',
     es: 'Geografía económica',
@@ -65,6 +66,7 @@ export const economicGeography_SkillGroup_Data = defineSkillGroup({
       'Production, services, resources, settlement demand and transport networks are unevenly distributed and connect places. Geographic specialization and cross-regional dependence describe spatial relationships rather than prices or financial accounting.',
     frontend: {
       en: 'Explore where economic activities happen and how places are linked through transport.',
+      it: 'Esplora dove si svolgono le attività economiche e come i luoghi sono collegati dai trasporti.',
       zh: '探索经济活动发生在哪里，以及各地如何通过交通联系起来。',
       hi: 'जानें कि आर्थिक गतिविधियाँ कहाँ होती हैं और परिवहन से स्थान कैसे जुड़ते हैं।',
       es: 'Explora dónde se realizan las actividades económicas y cómo se conectan los lugares mediante el transporte.',

@@ -5,6 +5,7 @@ export const distinguishPhysicalFeaturesFromPoliticalBoundaries_Skill_Data = def
   id: 'b50b79f8-23af-46d8-88b0-6ac18ca67568',
   name: {
     en: 'Distinguish physical features from political boundaries',
+    it: 'Distinguere elementi fisici e confini politici',
     zh: '区分自然地理要素与政治边界',
     hi: 'प्राकृतिक भू-आकृतियों और राजनीतिक सीमाओं में अंतर करना',
     es: 'Distinguir elementos físicos de límites políticos',
@@ -39,6 +40,7 @@ export const distinguishPhysicalFeaturesFromPoliticalBoundaries_Skill_Data = def
       'Recognize that a river or mountain is a land feature, while a state boundary is a social and legal line that may follow such a feature.',
     frontend: {
       en: 'Distinguish a natural river or mountain from a political boundary.',
+      it: 'Distingui un fiume o una montagna di origine naturale da un confine politico.',
       zh: '区分自然河流、山脉和人为划定的政治边界。',
       hi: 'प्राकृतिक नदी या पर्वत और राजनीतिक सीमा के बीच अंतर करें।',
       es: 'Distingue un río o una montaña naturales de una frontera política.',

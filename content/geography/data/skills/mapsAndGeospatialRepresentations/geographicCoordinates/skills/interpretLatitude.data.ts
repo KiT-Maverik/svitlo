@@ -5,6 +5,7 @@ export const interpretLatitude_Skill_Data = defineSkill({
   id: 'b7bfe83d-5dec-44cb-abc4-a52e29f84bcc',
   name: {
     en: 'Interpret latitude',
+    it: 'Interpretare la latitudine',
     zh: '解读纬度',
     hi: 'अक्षांश की व्याख्या करना',
     es: 'Interpretar la latitud',
@@ -38,6 +39,7 @@ export const interpretLatitude_Skill_Data = defineSkill({
     methodological: 'Recognize the Equator as zero latitude and compare how far a point lies toward either pole.',
     frontend: {
       en: 'Read latitude as a position north or south of the Equator.',
+      it: "Leggi la latitudine come posizione a nord o a sud dell'Equatore.",
       zh: '把纬度理解为相对赤道向北或向南的位置。',
       hi: 'अक्षांश को भूमध्य रेखा से उत्तर या दक्षिण की स्थिति के रूप में पढ़ें।',
       es: 'Lee la latitud como una posición al norte o al sur del ecuador.',

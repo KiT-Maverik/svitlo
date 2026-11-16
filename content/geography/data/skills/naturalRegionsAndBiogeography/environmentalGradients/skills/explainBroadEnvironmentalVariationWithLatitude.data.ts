@@ -5,6 +5,7 @@ export const explainBroadEnvironmentalVariationWithLatitude_Skill_Data = defineS
   id: 'a97c94f0-ee94-4335-98e0-c81c8781f205',
   name: {
     en: 'Explain broad environmental variation with latitude',
+    it: 'Spiegare le principali variazioni ambientali con la latitudine',
     zh: '解释随纬度变化的总体环境差异',
     hi: 'अक्षांश के साथ व्यापक पर्यावरणीय अंतर समझाना',
     es: 'Explicar las grandes variaciones ambientales según la latitud',
@@ -39,6 +40,7 @@ export const explainBroadEnvironmentalVariationWithLatitude_Skill_Data = defineS
       'Connect differences in solar input and circulation to large-scale environmental belts while allowing local exceptions.',
     frontend: {
       en: 'Connect latitude with broad differences in sunlight and natural conditions.',
+      it: "Collega la latitudine alle grandi differenze nell'irraggiamento solare e nelle condizioni naturali.",
       zh: '把纬度与日照和自然条件的大范围差异联系起来。',
       hi: 'अक्षांश को धूप और प्राकृतिक परिस्थितियों के बड़े अंतर से जोड़ें।',
       es: 'Relaciona la latitud con las diferencias generales de luz solar y condiciones naturales.',

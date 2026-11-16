@@ -5,6 +5,7 @@ export const relatePlateInteractionsToMajorGeologicalFeatures_Skill_Data = defin
   id: 'bff0abc3-9b3b-4c29-9ef1-bbd29603c29a',
   name: {
     en: 'Relate plate interactions to major geological features',
+    it: 'Collegare le interazioni tra placche alle principali strutture geologiche',
     zh: '将板块相互作用与主要地质特征联系起来',
     hi: 'प्लेटों की परस्पर क्रिया को प्रमुख भूवैज्ञानिक आकृतियों से जोड़ना',
     es: 'Relacionar interacciones de placas con grandes estructuras geológicas',
@@ -39,6 +40,7 @@ export const relatePlateInteractionsToMajorGeologicalFeatures_Skill_Data = defin
       'Connect plate collision, separation or lateral movement with broad patterns of mountain ranges, trenches, rifts and faults while allowing important exceptions.',
     frontend: {
       en: 'Connect plate movement with mountains, trenches, rifts and faults.',
+      it: 'Collega i movimenti delle placche a montagne, fosse oceaniche, rift e faglie.',
       zh: '将板块运动与山脉、海沟、裂谷和断层联系起来。',
       hi: 'प्लेट गति को पर्वतों, महासागरीय गर्तों, दरार घाटियों और भ्रंशों से जोड़ें।',
       es: 'Relaciona el movimiento de placas con montañas, fosas, valles de rift y fallas.',

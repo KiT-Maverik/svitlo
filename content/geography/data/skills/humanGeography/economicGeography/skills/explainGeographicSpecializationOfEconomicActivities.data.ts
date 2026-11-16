@@ -5,6 +5,7 @@ export const explainGeographicSpecializationOfEconomicActivities_Skill_Data = de
   id: '9a952782-450b-46a4-b00f-1fe433b67310',
   name: {
     en: 'Explain geographic specialization of economic activities',
+    it: 'Spiegare la specializzazione geografica delle attività economiche',
     zh: '解释经济活动的地理专业化',
     hi: 'आर्थिक गतिविधियों की भौगोलिक विशेषज्ञता को समझाना',
     es: 'Explicar la especialización geográfica de las actividades económicas',
@@ -39,6 +40,7 @@ export const explainGeographicSpecializationOfEconomicActivities_Skill_Data = de
       'Connect differences in resources, climate, expertise, access and infrastructure to the concentration of particular types of production or services in different places, without assuming economic specialization is permanent.',
     frontend: {
       en: 'Explore why different regions concentrate on different kinds of economic activity.',
+      it: 'Esplora perché regioni diverse concentrano attività economiche di tipi differenti.',
       zh: '探索为什么不同地区集中发展不同类型的经济活动。',
       hi: 'जानें कि अलग-अलग क्षेत्र अलग तरह की आर्थिक गतिविधियों पर क्यों केंद्रित होते हैं।',
       es: 'Explora por qué distintas regiones se concentran en diferentes tipos de actividad económica.',

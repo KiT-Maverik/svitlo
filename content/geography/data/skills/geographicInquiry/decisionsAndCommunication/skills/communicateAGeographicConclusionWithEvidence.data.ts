@@ -5,6 +5,7 @@ export const communicateAGeographicConclusionWithEvidence_Skill_Data = defineSki
   id: 'eb29f8ed-ce90-4ab4-a0d1-d72050df1a37',
   name: {
     en: 'Communicate a geographic conclusion with evidence',
+    it: 'Comunicare una conclusione geografica con prove',
     zh: '利用证据表达地理结论',
     hi: 'साक्ष्य के साथ भौगोलिक निष्कर्ष प्रस्तुत करना',
     es: 'Comunicar una conclusión geográfica con pruebas',
@@ -39,6 +40,7 @@ export const communicateAGeographicConclusionWithEvidence_Skill_Data = defineSki
       'Use an appropriately labeled map, comparison, or spatial description to support a claim and state material limitations.',
     frontend: {
       en: 'Support a geographic conclusion with an appropriate map or spatial evidence.',
+      it: 'Sostieni una conclusione geografica con una carta adeguata o con prove spaziali.',
       zh: '使用合适的地图或空间证据支持地理结论。',
       hi: 'उपयुक्त मानचित्र या स्थानिक साक्ष्य से भौगोलिक निष्कर्ष का समर्थन करें।',
       es: 'Respalda una conclusión geográfica con un mapa adecuado o pruebas espaciales.',

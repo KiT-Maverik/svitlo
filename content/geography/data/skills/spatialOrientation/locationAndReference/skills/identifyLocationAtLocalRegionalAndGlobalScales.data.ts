@@ -5,6 +5,7 @@ export const identifyLocationAtLocalRegionalAndGlobalScales_Skill_Data = defineS
   id: '383744f9-4f6c-4e3d-a7fb-b3e8ef22e824',
   name: {
     en: 'Identify location at local, regional, and global scales',
+    it: 'Individuare un luogo a scala locale, regionale e globale',
     zh: '从地方、区域和全球尺度确定位置',
     hi: 'स्थानीय, क्षेत्रीय और वैश्विक स्तरों पर स्थान पहचानना',
     es: 'Identificar un lugar a escala local, regional y mundial',
@@ -39,6 +40,7 @@ export const identifyLocationAtLocalRegionalAndGlobalScales_Skill_Data = defineS
       'Relate the same place to nested areas such as a neighborhood, country, and world region without confusing a change of scale with physical movement.',
     frontend: {
       en: 'Identify the same place at neighborhood, regional and world scales.',
+      it: 'Individua lo stesso luogo alla scala del quartiere, della regione e del mondo.',
       zh: '从街区、区域和世界三个尺度描述同一个地点的位置。',
       hi: 'एक ही स्थान को पड़ोस, क्षेत्र और विश्व स्तर पर पहचानें।',
       es: 'Identifica el mismo lugar a escala de barrio, región y mundo.',

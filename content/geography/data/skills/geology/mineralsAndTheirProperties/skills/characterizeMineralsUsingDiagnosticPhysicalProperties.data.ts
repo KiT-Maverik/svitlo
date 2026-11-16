@@ -5,6 +5,7 @@ export const characterizeMineralsUsingDiagnosticPhysicalProperties_Skill_Data = 
   id: '066f3c55-f17a-48e1-b914-a90e755c8847',
   name: {
     en: 'Characterize minerals using diagnostic physical properties',
+    it: 'Caratterizzare i minerali tramite proprietà fisiche diagnostiche',
     zh: '利用鉴别性物理性质描述矿物',
     hi: 'नैदानिक भौतिक गुणों से खनिजों का वर्णन करना',
     es: 'Caracterizar minerales por propiedades físicas diagnósticas',
@@ -39,6 +40,7 @@ export const characterizeMineralsUsingDiagnosticPhysicalProperties_Skill_Data = 
       'Observe and describe a mineral specimen using hardness, streak, luster and breakage patterns, distinguishing what each property reveals. Individual scratch, streak or cleavage demonstrations are variations of one broader characterization competency.',
     frontend: {
       en: 'Describe minerals using hardness, streak, luster and how they break.',
+      it: 'Descrivi i minerali usando durezza, colore della traccia, lucentezza e modalità di frattura.',
       zh: '利用硬度、条痕、光泽和断裂特征描述矿物。',
       hi: 'कठोरता, धारी का रंग, चमक और टूटने के ढंग से खनिजों का वर्णन करें।',
       es: 'Describe minerales por su dureza, raya, brillo y forma de fractura.',

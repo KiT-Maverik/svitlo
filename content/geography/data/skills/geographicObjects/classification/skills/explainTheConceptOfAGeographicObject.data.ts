@@ -5,6 +5,7 @@ export const explainTheConceptOfAGeographicObject_Skill_Data = defineSkill({
   id: 'f6024c5e-4b71-43ca-a6c5-2ed7afb29e74',
   name: {
     en: 'Explain the concept of a geographic object',
+    it: 'Spiegare il concetto di elemento geografico',
     zh: '解释地理事物的概念',
     hi: 'भौगोलिक वस्तु की अवधारणा समझाना',
     es: 'Explicar el concepto de objeto geográfico',
@@ -39,6 +40,7 @@ export const explainTheConceptOfAGeographicObject_Skill_Data = defineSkill({
       'Describe a distinguishable feature or place that can be identified spatially and characterized through location, form or function, without assuming that all objects are naturally occurring or have perfectly sharp borders.',
     frontend: {
       en: 'Explain what makes a place or feature a distinguishable geographic object.',
+      it: 'Spiega che cosa rende un luogo o un elemento riconoscibile come entità geografica distinta.',
       zh: '解释地点或地物具备什么特征，才可被视为独立的地理事物。',
       hi: 'समझाएँ कि किसी स्थान या विशेषता को अलग भौगोलिक वस्तु क्या बनाता है।',
       es: 'Explica qué hace que un lugar o elemento sea un objeto geográfico distinguible.',

@@ -5,6 +5,7 @@ export const delineateADrainageBasinFromTerrain_Skill_Data = defineSkill({
   id: 'e464d992-75f9-4edb-ae27-8538b0b78ecd',
   name: {
     en: 'Delineate a drainage basin from terrain',
+    it: 'Delimitare un bacino idrografico in base al rilievo',
     zh: '根据地形划定流域',
     hi: 'भूभाग से जलग्रहण क्षेत्र निर्धारित करना',
     es: 'Delimitar una cuenca a partir del relieve',
@@ -39,6 +40,7 @@ export const delineateADrainageBasinFromTerrain_Skill_Data = defineSkill({
       'Infer the land area contributing runoff to an outlet using divides and slopes rather than administrative borders.',
     frontend: {
       en: 'Identify the land that drains toward a particular river outlet.',
+      it: 'Individua il territorio le cui acque defluiscono verso una determinata sezione di un fiume.',
       zh: '找出流向某一河流出口的集水区域。',
       hi: 'उस भूमि को पहचानें जिसका पानी किसी नदी के निकास तक पहुँचता है।',
       es: 'Identifica el terreno cuyas aguas llegan a una salida fluvial determinada.',

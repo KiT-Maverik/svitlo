@@ -5,6 +5,7 @@ export const orderUndisturbedRockLayersByRelativeAge_Skill_Data = defineSkill({
   id: 'c22de2a5-b447-4971-bb8d-84410b80ecc6',
   name: {
     en: 'Order undisturbed rock layers by relative age',
+    it: 'Ordinare gli strati rocciosi indisturbati per età relativa',
     zh: '按相对年龄排列未扰动岩层',
     hi: 'अविचलित शैल परतों को सापेक्ष आयु के क्रम में रखना',
     es: 'Ordenar estratos no alterados por edad relativa',
@@ -39,6 +40,7 @@ export const orderUndisturbedRockLayersByRelativeAge_Skill_Data = defineSkill({
       'Infer that in an originally deposited, undisturbed sedimentary sequence lower layers are generally older than higher layers, and recognize that folding or faulting can complicate the pattern.',
     frontend: {
       en: 'Use rock-layer order to infer which layers are older in an undisturbed sequence.',
+      it: "Usa l'ordine degli strati rocciosi per dedurre quali siano più antichi in una successione indisturbata.",
       zh: '根据未扰动岩层的顺序推断哪些岩层更古老。',
       hi: 'अविचलित शैल परतों के क्रम से पता लगाएँ कि कौन-सी परतें पुरानी हैं।',
       es: 'Usa el orden de las capas no alteradas para inferir cuáles son más antiguas.',

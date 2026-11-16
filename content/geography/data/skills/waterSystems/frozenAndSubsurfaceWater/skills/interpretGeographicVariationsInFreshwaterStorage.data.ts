@@ -5,6 +5,7 @@ export const interpretGeographicVariationsInFreshwaterStorage_Skill_Data = defin
   id: '0ef8aadb-cdf2-4426-aa9a-69a60f62635a',
   name: {
     en: 'Interpret geographic variations in freshwater storage',
+    it: 'Interpretare le variazioni geografiche delle riserve di acqua dolce',
     zh: '解读淡水储量的地理差异',
     hi: 'मीठे पानी के भंडारण में भौगोलिक अंतर समझना',
     es: 'Interpretar diferencias regionales de almacenamiento de agua dulce',
@@ -39,6 +40,7 @@ export const interpretGeographicVariationsInFreshwaterStorage_Skill_Data = defin
       'Compare places in which ice, aquifers, lakes or rivers hold accessible freshwater, recognizing differences in replenishment, seasonal availability and extraction limits.',
     frontend: {
       en: 'Compare ice, aquifers, lakes and rivers as water stores in different regions.',
+      it: "Confronta ghiaccio, acquiferi, laghi e fiumi come riserve d'acqua in regioni diverse.",
       zh: '比较不同地区冰川、含水层、湖泊和河流储存的水。',
       hi: 'क्षेत्रों में हिम, जलभृत, झील और नदी के जलभंडारों की तुलना करें।',
       es: 'Compara el hielo, los acuíferos, lagos y ríos como depósitos de agua entre regiones.',

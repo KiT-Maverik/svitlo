@@ -5,6 +5,7 @@ export const formulateAQuestionAboutASpatialPattern_Skill_Data = defineSkill({
   id: 'e7763450-d775-4baa-93e8-21770b414cd6',
   name: {
     en: 'Formulate a question about a spatial pattern',
+    it: 'Formulare una domanda su una distribuzione spaziale',
     zh: '提出关于空间格局的问题',
     hi: 'किसी स्थानिक प्रतिरूप पर शोधयोग्य प्रश्न बनाना',
     es: 'Formular una pregunta sobre un patrón espacial',
@@ -39,6 +40,7 @@ export const formulateAQuestionAboutASpatialPattern_Skill_Data = defineSkill({
       'Ask a tractable question involving location, distribution, proximity, or change rather than a factual place-name quiz.',
     frontend: {
       en: 'Ask an investigable question about where something is or how its pattern changes.',
+      it: 'Formula una domanda verificabile su dove si trova un fenomeno o su come cambia la sua distribuzione.',
       zh: '提出一个可以调查的、有关事物位置或其分布变化的问题。',
       hi: 'इस बारे में जाँच करने योग्य प्रश्न पूछें कि कुछ कहाँ है या उसका वितरण कैसे बदल रहा है।',
       es: 'Plantea una pregunta investigable sobre dónde está algo o cómo cambia su distribución.',

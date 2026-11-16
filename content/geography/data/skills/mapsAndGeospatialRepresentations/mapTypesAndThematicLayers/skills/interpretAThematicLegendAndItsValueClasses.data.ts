@@ -5,6 +5,7 @@ export const interpretAThematicLegendAndItsValueClasses_Skill_Data = defineSkill
   id: 'b6984127-4f77-4912-80e0-a6a10a513aa3',
   name: {
     en: 'Interpret a thematic legend and its value classes',
+    it: 'Interpretare una legenda tematica e le sue classi di valori',
     zh: '解读专题图图例及其数值分级',
     hi: 'विषयगत संकेत सूची और मूल्य वर्ग समझना',
     es: 'Interpretar una leyenda temática y sus clases de valores',
@@ -39,6 +40,7 @@ export const interpretAThematicLegendAndItsValueClasses_Skill_Data = defineSkill
       'Relate mapped color ranges, symbol sizes, or categories to the underlying variable while respecting units and class boundaries.',
     frontend: {
       en: 'Use thematic legends to read mapped categories, ranges and values.',
+      it: 'Usa le legende tematiche per leggere categorie, intervalli e valori rappresentati su una carta.',
       zh: '借助专题图图例读取地图上的类别、数值范围和具体值。',
       hi: 'विषयगत संकेत सूची से मानचित्र की श्रेणियाँ, सीमाएँ और मान पढ़ें।',
       es: 'Usa leyendas temáticas para leer categorías, intervalos y valores del mapa.',
