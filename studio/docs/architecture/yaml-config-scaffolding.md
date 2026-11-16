@@ -96,87 +96,25 @@ Scene implementations remain separate downstream work.
 
 ### Quest Section nested Config authoring (draft only)
 
-A Quest is a Section in \`section.items\` of a standalone Lesson or Course-owned Episode. The **Section's parent collection** has an \`order\`, but **Quest's own \`stages\` and \`tasks\` do not**. They are camelCase slug maps, each with a mandatory \`start\`. Every Stage owns exactly two silent Video configurators (\`medium\` and \`small\`), three explicitly nullable Audio tracks, one Image and one localized Subtitles asset; every Task owns exactly one Scene. Do not emit a second nested \`content.items/order\` collection for a Quest Stage.
+Quest is a Section in a standalone Lesson or a Course-owned Episode. Its
+`stages` and `tasks` are camelCase slug maps with mandatory `start` keys;
+they are not `{ items, order }` collections. Each Stage has two Video
+configurators (`medium` and `small`), three independently nullable Audio
+slots, one Image and one Subtitles configurator; each Task has one Scene.
+See the [Quest entity contract](../entities/quest.md) for the complete
+typed structure and the [Lesson Builder README](../../../shared/engine/scripts/lessonBuilder/README.md)
+for the currently implemented draft handoff.
 
-The following is a **Quest node fragment** to place at a Section's \`items.guidedPractice\` key; UUIDs and source-language strings must be replaced with approved real content before publication:
+Technical Lesson YAML omits all physical media filename fields, including
+nested Quest media. The Lesson Builder inserts `fileName` and, for Video,
+`posterFileName` with reserved Nil UUIDs and adjacent `TODO(asset)`
+comments into generated TypeScript. The sole authored `null` values in
+this structure are optional absent Audio configurators, not required
+physical filename placeholders.
 
-\`\`\`yaml
-config:
-id: 00000000-0000-4000-8000-000000000101
-slug: guidedPractice
-type: quest
-params: { skippable: false }
-locale:
-title: { uk: Керована практика }
-navigationLabel: { uk: Практика }
-stages:
-start:
-config:
-id: 00000000-0000-4000-8000-000000000102
-slug: start
-type: questStage
-content:
-video:
-medium:
-config:
-id: 00000000-0000-4000-8000-000000000103
-slug: medium
-type: video
-params: {}
-locale: { label: { uk: Показ прикладу } }
-small:
-config:
-id: 00000000-0000-4000-8000-000000000104
-slug: small
-type: video
-params: {}
-locale: { label: { uk: Показ прикладу } }
-audio:
-dialogue: null
-narration:
-config:
-id: 00000000-0000-4000-8000-000000000105
-slug: narration
-type: audio
-params: {}
-locale: { title: { uk: Аудіоопис } }
-background: null
-image:
-config:
-id: 00000000-0000-4000-8000-000000000106
-slug: image
-type: image
-params: { fill: true, aspectRatio: 1.5 }
-locale: { alt: { uk: Схема прикладу } }
-subtitles:
-config:
-id: 00000000-0000-4000-8000-000000000107
-slug: subtitles
-type: subtitles
-params: {}
-locale: {} # Additional named Stages may be added without an order array.
-tasks:
-start:
-config:
-id: 00000000-0000-4000-8000-000000000108
-slug: start
-type: questTask
-scene:
-config:
-id: 00000000-0000-4000-8000-000000000109
-slug: taskScene
-type: scene
-params: {}
-locale:
-value: { instruction: { uk: Повтори самостійно } }
-production:
-specification: |
-Implement an accessible guided-practice Scene with retries,
-meaningful feedback and keyboard/screen-reader equivalents.
-\`\`\`
-
-The YAML editor schema composes these nested \`config\` and optional \`production\` envelopes from Engine Zod. The Lesson/Course scaffolders create \`defineQuestSection\`, \`defineStage\`, \`defineTask\` and media/Scene TypeScript **drafts**; omitted media filenames are unresolved production dependencies, not authored `null` values. \`defineLesson\`/\`defineEpisode\` do **not** yet accept Quest as a runtime-publishable Section, nor does a Quest player exist. Quest guided practice never automatically satisfies an approved Quiz assessment requirement.
-
+Quest remains **authoring/Build-only**. Neither Lesson/Episode runtime
+Section integration nor a Quest player is implemented by this contract;
+authoring a Quest must not be mistaken for a publishable activity.
 ### Course and Build overrides
 
 A Course uses the same `config.yaml` node form for Course, Module, Chapter,
