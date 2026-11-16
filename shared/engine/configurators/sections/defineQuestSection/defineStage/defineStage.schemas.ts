@@ -25,7 +25,7 @@ export const stage_Config_Schema = kind.extend({
     subtitles: z.custom<ContentBlock_Subtitles_Configurator>(),
   }),
 }).strict();
-export const stage_Props_Schema = kind.extend({
+export const stage_Props_Schema = kind.omit({ slug: true }).extend({
   content: z.strictObject({
     video: z.strictObject({ medium: video_Props_Schema, small: video_Props_Schema }),
     audio: z.strictObject({

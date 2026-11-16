@@ -34,7 +34,7 @@ export const practiceSection_Config_Schema = sectionBase.extend({
 });
 export type PracticeSection_Config = z.infer<typeof practiceSection_Config_Schema>;
 
-export const practiceSection_Props_Schema = sectionBase.extend({
+export const practiceSection_Props_Schema = sectionBase.omit({ slug: true }).extend({
   ...addUnifiedLocale(locale('props')),
   content: z.array(contentBlockResolved_Schema),
 });
@@ -43,7 +43,7 @@ export type PracticeSection_Props = Omit<z.infer<typeof practiceSection_Props_Sc
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type PracticeSection_PropsBase = Pick<PracticeSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export type PracticeSection_PropsBase = Pick<PracticeSection_Props, 'id' | 'type' | 'params'> & {
   locale?: DeepPartial<PracticeSection_Locale<'props'>>;
   content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
 };

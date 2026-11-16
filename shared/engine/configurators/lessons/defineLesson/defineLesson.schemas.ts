@@ -39,11 +39,10 @@ export type Lesson_Config = z.infer<typeof lesson_Config_Schema>;
 const sectionResolved = z
   .object({
     id: z.uuid(),
-    slug: z.string().min(1),
     type: z.enum(sectionTypes),
   })
   .catchall(z.unknown());
-export const lesson_Props_Schema = identity.extend({
+export const lesson_Props_Schema = identity.omit({ slug: true }).extend({
   ...addUnifiedLocale({ title: localizationSwitch.props }),
   section: z.array(sectionResolved),
   events: z.record(z.string(), z.json()).optional(),
@@ -51,7 +50,7 @@ export const lesson_Props_Schema = identity.extend({
 export type Lesson_Props = Omit<z.infer<typeof lesson_Props_Schema>, 'section'> & {
   section: Section_Props[];
 };
-export type Lesson_PropsBase = Pick<Lesson_Props, 'id' | 'slug' | 'type' | 'params' | 'skills'> & {
+export type Lesson_PropsBase = Pick<Lesson_Props, 'id' | 'type' | 'params' | 'skills'> & {
   locale?: { title?: string };
   section: ReturnType<Section_Configurator['build']['props']>['base'][];
   events?: Record<string, unknown>;

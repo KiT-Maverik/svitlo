@@ -37,7 +37,7 @@ export const flashcardsSection_Config_Schema = sectionBase.extend({
 });
 export type FlashcardsSection_Config = z.infer<typeof flashcardsSection_Config_Schema>;
 
-export const flashcardsSection_Props_Schema = sectionBase.extend({
+export const flashcardsSection_Props_Schema = sectionBase.omit({ slug: true }).extend({
   ...addUnifiedLocale(locale('props')),
   content: z.array(contentBlockResolved_Schema),
 });
@@ -46,7 +46,7 @@ export type FlashcardsSection_Props = Omit<z.infer<typeof flashcardsSection_Prop
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type FlashcardsSection_PropsBase = Pick<FlashcardsSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export type FlashcardsSection_PropsBase = Pick<FlashcardsSection_Props, 'id' | 'type' | 'params'> & {
   locale?: DeepPartial<FlashcardsSection_Locale<'props'>>;
   content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
 };

@@ -37,12 +37,11 @@ export type Episode_Config = z.infer<typeof episode_Config_Schema>;
 const sectionResolved = z
   .object({
     id: z.uuid(),
-    slug: z.string().min(1),
     type: z.enum(sectionTypes),
   })
   .catchall(z.unknown());
 
-export const episode_Props_Schema = identity
+export const episode_Props_Schema = identity.omit({ slug: true })
   .extend({
     ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
     section: z.array(sectionResolved),
@@ -52,7 +51,7 @@ export const episode_Props_Schema = identity
 export type Episode_Props = Omit<z.infer<typeof episode_Props_Schema>, 'section'> & {
   section: Section_Props[];
 };
-export type Episode_PropsBase = Pick<Episode_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export type Episode_PropsBase = Pick<Episode_Props, 'id' | 'type' | 'params'> & {
   locale?: { title?: string };
   section: ReturnType<Section_Configurator['build']['props']>['base'][];
   events?: Record<string, unknown>;

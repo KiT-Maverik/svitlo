@@ -17,7 +17,7 @@ export const questSection_Config_Schema = section.extend({
   stages: z.record(camelCase_Schema, z.custom<Stage_Configurator>()),
   tasks: z.record(camelCase_Schema, z.custom<Task_Configurator>()),
 }).strict();
-export const questSection_Props_Schema = section.extend({
+export const questSection_Props_Schema = section.omit({ slug: true }).extend({
   ...addUnifiedLocale({ title: localizationSwitch.props, navigationLabel: localizationSwitch.props }),
   stages: z.record(camelCase_Schema, stage_Props_Schema),
   tasks: z.record(camelCase_Schema, task_Props_Schema),

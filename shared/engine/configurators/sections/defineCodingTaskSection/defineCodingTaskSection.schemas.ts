@@ -34,7 +34,7 @@ export const codingTaskSection_Config_Schema = sectionBase.extend({
 });
 export type CodingTaskSection_Config = z.infer<typeof codingTaskSection_Config_Schema>;
 
-export const codingTaskSection_Props_Schema = sectionBase.extend({
+export const codingTaskSection_Props_Schema = sectionBase.omit({ slug: true }).extend({
   ...addUnifiedLocale(locale('props')),
   content: z.array(contentBlockResolved_Schema),
 });
@@ -43,7 +43,7 @@ export type CodingTaskSection_Props = Omit<z.infer<typeof codingTaskSection_Prop
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type CodingTaskSection_PropsBase = Pick<CodingTaskSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export type CodingTaskSection_PropsBase = Pick<CodingTaskSection_Props, 'id' | 'type' | 'params'> & {
   locale?: DeepPartial<CodingTaskSection_Locale<'props'>>;
   content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
 };
