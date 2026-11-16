@@ -1740,7 +1740,7 @@ Skills: 4
 
 **Methodological description (English):** Connect a shaped rotating profile with the timed displacement of a follower.
 
-**User-friendly description (it):** Comprendi come una camma rotante muove un elemento inseguitore.
+**User-friendly description (it):** Comprendi come una camma rotante mette in movimento il cedente.
 
 ##### Meccanismi biella-manovella e cursore
 
