@@ -130,10 +130,15 @@ export function projectTextbookMedia<T>(publication: T, options: MediaPublicatio
 
 /** Production is all-or-nothing: report every missing/unsafe referenced file. */
 export function assertMediaPublicationReady(diagnostics: readonly MediaDiagnostic[], mode: MediaPublicationMode) {
-  const fatal = mode === 'production' ? diagnostics : diagnostics.filter(item => !['file is missing', 'unresolved resource placeholder'].includes(item.reason));
+  const fatal =
+    mode === 'production'
+      ? diagnostics
+      : diagnostics.filter(item => !['file is missing', 'unresolved resource placeholder'].includes(item.reason));
   if (!fatal.length) return;
   throw new Error(
-    'Textbook media publication failed (' + fatal.length + ' reference(s)):\n' +
+    'Textbook media publication failed (' +
+      fatal.length +
+      ' reference(s)):\n' +
       fatal
         .map(d => [d.source, d.location, d.blockId ?? '-', d.kind, d.fileName, d.expectedPath, d.reason].join(' | '))
         .join('\n'),

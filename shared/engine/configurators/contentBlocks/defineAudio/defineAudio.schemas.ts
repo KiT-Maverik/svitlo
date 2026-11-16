@@ -16,23 +16,27 @@ const configLocale = {
   fileName: localizedMediaReference_Schema(audioMediaReference_Schema),
   title: localizationSwitch.config,
   description: localizationSwitch.config.optional(),
-  fallback: z.object({
-    offline: localizationSwitch.config.optional(),
-    unavailable: localizationSwitch.config.optional(),
-    playbackError: localizationSwitch.config.optional(),
-    retry: localizationSwitch.config.optional(),
-  }).optional(),
+  fallback: z
+    .object({
+      offline: localizationSwitch.config.optional(),
+      unavailable: localizationSwitch.config.optional(),
+      playbackError: localizationSwitch.config.optional(),
+      retry: localizationSwitch.config.optional(),
+    })
+    .optional(),
 };
 const propsLocale = {
   fileLocation: localizationSwitch.props,
   title: localizationSwitch.props,
   description: localizationSwitch.props.optional(),
-  fallback: z.object({
-    offline: localizationSwitch.props.optional(),
-    unavailable: localizationSwitch.props.optional(),
-    playbackError: localizationSwitch.props.optional(),
-    retry: localizationSwitch.props.optional(),
-  }).optional(),
+  fallback: z
+    .object({
+      offline: localizationSwitch.props.optional(),
+      unavailable: localizationSwitch.props.optional(),
+      playbackError: localizationSwitch.props.optional(),
+      retry: localizationSwitch.props.optional(),
+    })
+    .optional(),
 };
 export type ContentBlock_Audio_Locale<Mode extends Configurator_Mode> = z.infer<
   z.ZodObject<Mode extends 'config' ? typeof configLocale : typeof propsLocale>

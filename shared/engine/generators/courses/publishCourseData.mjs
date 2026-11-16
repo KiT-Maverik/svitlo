@@ -188,7 +188,10 @@ function assertSameCourseStructure(base, localized, location = 'course') {
  * `course.build.overrides(patch, { languages })`. When omitted, the Course
  * references standalone Lessons without any Course-specific changes.
  */
-export function renderCourseFiles(course, { languages = course?.config?.base?.params?.languages, overrides, projectMedia } = {}) {
+export function renderCourseFiles(
+  course,
+  { languages = course?.config?.base?.params?.languages, overrides, projectMedia } = {},
+) {
   if (course?.type !== 'course' || !uuid.test(course.id) || !course?.build?.props) {
     throw new Error('Expected a defineCourse configurator with a valid Course ID');
   }

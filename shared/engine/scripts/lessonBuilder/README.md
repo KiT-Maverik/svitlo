@@ -101,7 +101,7 @@ authored source-locale dictionaries and never invents translations.
   // Restore the complete language set when translations are ready:
   // export const languages = ["en","uk","pl","qm"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
 
-  export const languages = ["uk"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+  export const languages = ['uk'] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
   export type LessonLanguages = typeof languages;
   ```
 
@@ -113,6 +113,7 @@ authored source-locale dictionaries and never invents translations.
   TypeScript drafts are modified by subsequent scaffolder runs. Only the active
   source language is available for source-draft preview/publication; this is
   not a claim that the planned translations already exist.
+
 - Real Skill imports instead of hardcoded UUID string expressions, resolved
   strictly against the textbook's `data/skills/**/*.data.ts` exported `defineSkill`
   definitions; missing/ambiguous references are explicit diagnostics.
@@ -178,7 +179,6 @@ audio/video files**. The reserved Nil UUID and TODO(asset) are the **only**
 authorized temporary media placeholders. A media specialist replaces them with
 real files and validated references in TypeScript. Do not add `as any`,
 `@ts-ignore`, invented media paths or fabricated locale strings.
-
 
 ### Checkpoint Answer role modules
 

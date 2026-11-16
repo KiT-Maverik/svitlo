@@ -31,10 +31,9 @@ export const subtitlesMediaReference_Schema = z.union([subtitlesFileName_Schema,
 export function localizedMediaReference_Schema<Schema extends z.ZodType<string>>(schema: Schema) {
   return z.union([
     schema,
-    z.partialRecord(languageCode_Schema, schema).refine(
-      values => Object.keys(values).length > 0,
-      'At least one localized media reference is required',
-    ),
+    z
+      .partialRecord(languageCode_Schema, schema)
+      .refine(values => Object.keys(values).length > 0, 'At least one localized media reference is required'),
   ]);
 }
 

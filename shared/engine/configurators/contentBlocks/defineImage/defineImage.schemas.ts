@@ -24,21 +24,25 @@ const configLocale = {
   fileName: localizedMediaReference_Schema(imageMediaReference_Schema),
   alt: localizationSwitch.config,
   caption: localizationSwitch.config.optional(),
-  fallback: z.object({
-    offline: localizationSwitch.config.optional(),
-    unavailable: localizationSwitch.config.optional(),
-    retry: localizationSwitch.config.optional(),
-  }).optional(),
+  fallback: z
+    .object({
+      offline: localizationSwitch.config.optional(),
+      unavailable: localizationSwitch.config.optional(),
+      retry: localizationSwitch.config.optional(),
+    })
+    .optional(),
 };
 const propsLocale = {
   src: localizationSwitch.props,
   alt: localizationSwitch.props,
   caption: localizationSwitch.props.optional(),
-  fallback: z.object({
-    offline: localizationSwitch.props.optional(),
-    unavailable: localizationSwitch.props.optional(),
-    retry: localizationSwitch.props.optional(),
-  }).optional(),
+  fallback: z
+    .object({
+      offline: localizationSwitch.props.optional(),
+      unavailable: localizationSwitch.props.optional(),
+      retry: localizationSwitch.props.optional(),
+    })
+    .optional(),
 };
 export type ContentBlock_Image_Locale<Mode extends Configurator_Mode> = z.infer<
   z.ZodObject<Mode extends 'config' ? typeof configLocale : typeof propsLocale>

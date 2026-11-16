@@ -35,16 +35,18 @@ export const yamlAudio_Schema = audio_Config_Schema.extend({
 // Image Config has a cross-field dimension refinement. Reapply that invariant
 // after replacing its required locale schema; safeExtend rejects omission of
 // an originally required property.
-export const yamlImage_Schema = z.strictObject({
-  ...image_Config_Schema.shape,
-  locale: image_Config_Schema.shape.locale.omit({ fileName: true }).strict(),
-}).refine(
-  value =>
-    value.params.fill
-      ? value.params.aspectRatio !== undefined
-      : value.params.width !== undefined && value.params.height !== undefined,
-  { message: 'Image requires either fill/aspectRatio or width/height' },
-);
+export const yamlImage_Schema = z
+  .strictObject({
+    ...image_Config_Schema.shape,
+    locale: image_Config_Schema.shape.locale.omit({ fileName: true }).strict(),
+  })
+  .refine(
+    value =>
+      value.params.fill
+        ? value.params.aspectRatio !== undefined
+        : value.params.width !== undefined && value.params.height !== undefined,
+    { message: 'Image requires either fill/aspectRatio or width/height' },
+  );
 export const yamlVideo_Schema = video_Config_Schema.extend({
   locale: video_Config_Schema.shape.locale.omit({ fileName: true, posterFileName: true }).strict(),
 });

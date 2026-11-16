@@ -13,7 +13,10 @@ const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url))
 const usage = 'Usage: --package content/<textbook> [--output <generated-dir>] [--draft] --write|--check|--preflight';
 
 function options(argv) {
-  let name, output, action, mode = 'production';
+  let name,
+    output,
+    action,
+    mode = 'production';
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--package' && !name) name = argv[++i];
     else if (argv[i] === '--output' && !output) output = argv[++i];
@@ -67,10 +70,14 @@ async function render(pkg, mode) {
     if (ids.has(course.id)) throw new Error('Duplicate Course ID: ' + course.id);
     ids.add(course.id);
     for (const [file, body] of renderCourseFiles(course, {
-      projectMedia: (entry, language) => projectTextbookMedia(entry, {
-        textbookRoot: pkg, textbookId, source: path.relative(repo, source) + '/' + language,
-        mode, diagnostics,
-      }),
+      projectMedia: (entry, language) =>
+        projectTextbookMedia(entry, {
+          textbookRoot: pkg,
+          textbookId,
+          source: path.relative(repo, source) + '/' + language,
+          mode,
+          diagnostics,
+        }),
     })) {
       files.set(course.id + '/' + file, body);
     }

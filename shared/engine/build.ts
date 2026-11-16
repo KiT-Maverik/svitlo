@@ -7,10 +7,17 @@ export {
 
 // Independent authored Question/Flashcard bank publisher (build only).
 export { renderAssessmentResourceFiles } from './generators/assessments/renderAssessmentResourceFiles.utils';
-export type { AssessmentPublicationEntry, AssessmentPublicationFiles } from './generators/assessments/renderAssessmentResourceFiles.utils';
+export type {
+  AssessmentPublicationEntry,
+  AssessmentPublicationFiles,
+} from './generators/assessments/renderAssessmentResourceFiles.utils';
 
 // Merge metadata-only manifests from independent Question and Flashcard production stages.
 export { mergeAssessmentResourceFiles } from './generators/assessments/renderAssessmentResourceFiles.utils';
 
 export { projectTextbookMedia, assertMediaPublicationReady } from './generators/lessons/projectTextbookMedia.utils';
-export type { MediaDiagnostic, MediaPublicationMode, MediaPublicationOptions } from './generators/lessons/projectTextbookMedia.utils';
+export type {
+  MediaDiagnostic,
+  MediaPublicationMode,
+  MediaPublicationOptions,
+} from './generators/lessons/projectTextbookMedia.utils';

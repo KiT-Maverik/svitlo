@@ -1,6 +1,11 @@
 import { z } from 'zod';
 import type { DeepPartial } from '#types';
-import { deepStrict_Schema, imageMediaReference_Schema, videoMediaReference_Schema, localizedMediaReference_Schema } from '#schemas';
+import {
+  deepStrict_Schema,
+  imageMediaReference_Schema,
+  videoMediaReference_Schema,
+  localizedMediaReference_Schema,
+} from '#schemas';
 import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
 
 import type { Configurator_Mode } from '../../configurator.schemas';
@@ -17,24 +22,28 @@ const configLocale = {
   posterFileName: localizedMediaReference_Schema(imageMediaReference_Schema),
   title: localizationSwitch.config.optional(),
   label: localizationSwitch.config,
-  fallback: z.object({
-    offline: localizationSwitch.config.optional(),
-    unavailable: localizationSwitch.config.optional(),
-    playbackError: localizationSwitch.config.optional(),
-    retry: localizationSwitch.config.optional(),
-  }).optional(),
+  fallback: z
+    .object({
+      offline: localizationSwitch.config.optional(),
+      unavailable: localizationSwitch.config.optional(),
+      playbackError: localizationSwitch.config.optional(),
+      retry: localizationSwitch.config.optional(),
+    })
+    .optional(),
 };
 const propsLocale = {
   fileLocation: localizationSwitch.props,
   poster: localizationSwitch.props,
   title: localizationSwitch.props.optional(),
   label: localizationSwitch.props,
-  fallback: z.object({
-    offline: localizationSwitch.props.optional(),
-    unavailable: localizationSwitch.props.optional(),
-    playbackError: localizationSwitch.props.optional(),
-    retry: localizationSwitch.props.optional(),
-  }).optional(),
+  fallback: z
+    .object({
+      offline: localizationSwitch.props.optional(),
+      unavailable: localizationSwitch.props.optional(),
+      playbackError: localizationSwitch.props.optional(),
+      retry: localizationSwitch.props.optional(),
+    })
+    .optional(),
 };
 export type ContentBlock_Video_Locale<Mode extends Configurator_Mode> = z.infer<
   z.ZodObject<Mode extends 'config' ? typeof configLocale : typeof propsLocale>

@@ -75,15 +75,15 @@ A later independent bank generator may create slug-organized `questions/` and
 
 ## File-backed source content and media
 
-| Kind                     | Invariant source            | Localized source                                       | Specialist specification                                      |
-| ------------------------ | --------------------------- | ------------------------------------------------------ | ------------------------------------------------------------- |
-| Text                     | ordinary `defineText` data  | field-level `locale` config                            | **No** auto-generated specification for finished text         |
-| Markdown                 | `<slug>/text.md`            | `<slug>/locale/<language>.md`                          | **No** specification instead of real learner-facing Markdown  |
-| Code                     | `<slug>/code.<extension>`   | only if Code contract explicitly supports localization | **No** substitute for real code                               |
-| Scene                    | authored configurator       | Scene's actual typed localized data                    | `<slug>/specification.md` next to Scene definition, if needed |
-| Audio/Image/Video        | `assets/{audio,images,video}/UUID.ext` | Config `locale.fileName` is invariant or localized | `<slug>/specification.md` while pending |
-| Subtitles                | `assets/subtitles/UUID.ext` | Config `locale.fileName` is invariant or localized | caption authoring handoff if required |
-| External media (YouTube) | explicit authored URL       | per current Config schema                              | no local file resolution                                      |
+| Kind                     | Invariant source                       | Localized source                                       | Specialist specification                                      |
+| ------------------------ | -------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------- |
+| Text                     | ordinary `defineText` data             | field-level `locale` config                            | **No** auto-generated specification for finished text         |
+| Markdown                 | `<slug>/text.md`                       | `<slug>/locale/<language>.md`                          | **No** specification instead of real learner-facing Markdown  |
+| Code                     | `<slug>/code.<extension>`              | only if Code contract explicitly supports localization | **No** substitute for real code                               |
+| Scene                    | authored configurator                  | Scene's actual typed localized data                    | `<slug>/specification.md` next to Scene definition, if needed |
+| Audio/Image/Video        | `assets/{audio,images,video}/UUID.ext` | Config `locale.fileName` is invariant or localized     | `<slug>/specification.md` while pending                       |
+| Subtitles                | `assets/subtitles/UUID.ext`            | Config `locale.fileName` is invariant or localized     | caption authoring handoff if required                         |
+| External media (YouTube) | explicit authored URL                  | per current Config schema                              | no local file resolution                                      |
 
 - **Invariant is not fallback:** never generate a fake `default`/`fallback` language. A string-valued Markdown source maps to `text.md`; a language map maps to `locale/<language>.md`.
 - Markdown and Code source files retain a **deterministic module-local build-time reader** via `import.meta.url`. Binary media is textbook-wide and resolved by the Props publisher from the media category and full UUID filename, without paths in the Config or browser `fs`.
@@ -121,14 +121,14 @@ Changes to external Scene implementation files or actual binary media may not ch
 
 ## Existing implementation compatibility: mandatory follow-up checks
 
-| Current component                                                   | Observed behavior                                                                         | Stage 2+ obligation                                                                                              |
-| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `shared/engine/scripts/lessonBuilder/lessonBuilder.mjs`             | Modular nested `index.ts`, source-only file-backed Markdown/Code, and colocated specifications; no Props | Preserve creation-only SKIP and the draft-only boundary |
-| `shared/engine/scripts/generateLessonProps/generateLessonProps.mjs` | Finds one `*.data.ts`, falling back to `index.ts`; requires a real `build.props()` Lesson | Ensure new root entrypoint can be discovered and loaded; fail on ambiguity; do not publish incomplete drafts     |
-| `scripts/textbook-tooling/buildTextbook/build.mjs`                  | Recognizes canonical root `index.ts` and `*.data.ts`; packages textbook-wide assets | Preserve generated JSON and asset manifest coverage |
-| `shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs`   | Lesson media and Scene specifications are emitted alongside nested source modules | Keep handoff paths stable without overwriting specialist work |
-| Engine media Config and textbook assets packaging                  | UUID `fileName` Config, typed runtime URL projection and entire `assets/` packaging in PR #615 | Preserve category-specific references, Draft/Production behavior and portable manifest |
-| Current Carousel and Quest schemas                                  | Specialized child kinds/shape                                                             | Do not force generic block recursion where schemas intentionally restrict children                               |
+| Current component                                                   | Observed behavior                                                                                        | Stage 2+ obligation                                                                                          |
+| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `shared/engine/scripts/lessonBuilder/lessonBuilder.mjs`             | Modular nested `index.ts`, source-only file-backed Markdown/Code, and colocated specifications; no Props | Preserve creation-only SKIP and the draft-only boundary                                                      |
+| `shared/engine/scripts/generateLessonProps/generateLessonProps.mjs` | Finds one `*.data.ts`, falling back to `index.ts`; requires a real `build.props()` Lesson                | Ensure new root entrypoint can be discovered and loaded; fail on ambiguity; do not publish incomplete drafts |
+| `scripts/textbook-tooling/buildTextbook/build.mjs`                  | Recognizes canonical root `index.ts` and `*.data.ts`; packages textbook-wide assets                      | Preserve generated JSON and asset manifest coverage                                                          |
+| `shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs`   | Lesson media and Scene specifications are emitted alongside nested source modules                        | Keep handoff paths stable without overwriting specialist work                                                |
+| Engine media Config and textbook assets packaging                   | UUID `fileName` Config, typed runtime URL projection and entire `assets/` packaging in PR #615           | Preserve category-specific references, Draft/Production behavior and portable manifest                       |
+| Current Carousel and Quest schemas                                  | Specialized child kinds/shape                                                                            | Do not force generic block recursion where schemas intentionally restrict children                           |
 
 **Non-goals and safeguards:** no mass rewriting of other Math lessons in Stage 1; no schema loosenings or fake success from TypeScript suppression; no execution of generated incomplete samples as trusted code; no single-stage migration of Scenes, asset packaging, review types and production workflow. Update README/JSDoc/tests and affected architecture references in the _implementing_ PR, not by pretending they already implement this document.
 

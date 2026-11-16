@@ -115,6 +115,7 @@ physical filename placeholders.
 Quest remains **authoring/Build-only**. Neither Lesson/Episode runtime
 Section integration nor a Quest player is implemented by this contract;
 authoring a Quest must not be mistaken for a publishable activity.
+
 ### Course and Build overrides
 
 A Course uses the same `config.yaml` node form for Course, Module, Chapter,
@@ -175,6 +176,7 @@ modular Lesson drafts, an existing root `index.ts` does the same. A canonical
 UUID directory is skipped before stale YAML is parsed; staged single-ID
 YAML is parsed only to derive the destination ID. Existing user-edited
 `specification.md` files remain protected; `check` is read-only and strict.
+
 ## Scope versus the specialist editorial workflow
 
 Historical independent `methodologist-brief.md`, `content.md`,

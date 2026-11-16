@@ -99,27 +99,62 @@ test('Checkpoint Item YAML requires an authored Answer Configurator with its own
   assert.equal(yamlCheckpointAnswerConfigurator_Schema.safeParse(answer).success, true);
   assert.equal(yamlCheckpointItem_Schema.safeParse(item).success, true);
   assert.equal(yamlCheckpointItem_Schema.safeParse({ ...item, answer: answer.content }).success, false);
-  assert.equal(yamlCheckpointItem_Schema.safeParse({
-    ...item, answer: { ...answer, id: undefined },
-  }).success, false);
-  assert.equal(yamlCheckpointItem_Schema.safeParse({
-    ...item, answer: { ...answer, type: 'text' },
-  }).success, false);
+  assert.equal(
+    yamlCheckpointItem_Schema.safeParse({
+      ...item,
+      answer: { ...answer, id: undefined },
+    }).success,
+    false,
+  );
+  assert.equal(
+    yamlCheckpointItem_Schema.safeParse({
+      ...item,
+      answer: { ...answer, type: 'text' },
+    }).success,
+    false,
+  );
   assert(yamlJsonSchemaDocuments()['lesson.schema.json'].includes('checkpointAnswer'));
 });
 
 test('technical YAML excludes filenames while complete Engine Config still requires them', () => {
   const uuid = '550e8400-e29b-41d4-a716-446655440000';
   const cases = [
-    { yaml: yamlImage_Schema, engine: image_Config_Schema, type: 'image',
-      params: { fill: true, aspectRatio: 1.5 }, locale: { alt: { uk: 'Зображення' } }, files: { fileName: uuid + '.webp' }, wrong: uuid + '.mp4' },
-    { yaml: yamlAudio_Schema, engine: audio_Config_Schema, type: 'audio',
-      params: {}, locale: { title: { uk: 'Озвучення' } }, files: { fileName: uuid + '.mp3' }, wrong: uuid + '.webp' },
-    { yaml: yamlVideo_Schema, engine: video_Config_Schema, type: 'video',
-      params: {}, locale: { label: { uk: 'Відео' } },
-      files: { fileName: uuid + '.mp4', posterFileName: uuid + '.webp' }, wrong: uuid + '.mp3' },
-    { yaml: yamlSubtitles_Schema, engine: subtitles_Config_Schema, type: 'subtitles',
-      params: {}, locale: {}, files: { fileName: uuid + '.vtt' }, wrong: uuid + '.mp4' },
+    {
+      yaml: yamlImage_Schema,
+      engine: image_Config_Schema,
+      type: 'image',
+      params: { fill: true, aspectRatio: 1.5 },
+      locale: { alt: { uk: 'Зображення' } },
+      files: { fileName: uuid + '.webp' },
+      wrong: uuid + '.mp4',
+    },
+    {
+      yaml: yamlAudio_Schema,
+      engine: audio_Config_Schema,
+      type: 'audio',
+      params: {},
+      locale: { title: { uk: 'Озвучення' } },
+      files: { fileName: uuid + '.mp3' },
+      wrong: uuid + '.webp',
+    },
+    {
+      yaml: yamlVideo_Schema,
+      engine: video_Config_Schema,
+      type: 'video',
+      params: {},
+      locale: { label: { uk: 'Відео' } },
+      files: { fileName: uuid + '.mp4', posterFileName: uuid + '.webp' },
+      wrong: uuid + '.mp3',
+    },
+    {
+      yaml: yamlSubtitles_Schema,
+      engine: subtitles_Config_Schema,
+      type: 'subtitles',
+      params: {},
+      locale: {},
+      files: { fileName: uuid + '.vtt' },
+      wrong: uuid + '.mp4',
+    },
   ];
   for (const entry of cases) {
     const draft = { id, slug: 'sample', type: entry.type, params: entry.params, locale: entry.locale };
@@ -131,10 +166,21 @@ test('technical YAML excludes filenames while complete Engine Config still requi
     assert.equal(entry.yaml.safeParse(full).success, false, entry.type + ': YAML rejects file references');
     assert.equal(entry.yaml.safeParse({ ...draft, locale: { ...entry.locale, fileName: null } }).success, false);
     assert.equal(entry.engine.safeParse({ ...full, locale: { ...full.locale, fileName: entry.wrong } }).success, false);
-    assert.equal(entry.engine.safeParse({ ...full, locale: { ...full.locale, fileName: '../escape.webp' } }).success, false);
-    assert.equal(entry.engine.safeParse({ ...full, locale: {
-      ...full.locale, fileName: '00000000-0000-0000-0000-000000000000.' + entry.files.fileName.split('.').at(-1),
-    } }).success, true, entry.type + ': reserved Nil UUID');
+    assert.equal(
+      entry.engine.safeParse({ ...full, locale: { ...full.locale, fileName: '../escape.webp' } }).success,
+      false,
+    );
+    assert.equal(
+      entry.engine.safeParse({
+        ...full,
+        locale: {
+          ...full.locale,
+          fileName: '00000000-0000-0000-0000-000000000000.' + entry.files.fileName.split('.').at(-1),
+        },
+      }).success,
+      true,
+      entry.type + ': reserved Nil UUID',
+    );
   }
 });
 
@@ -149,8 +195,13 @@ test('generated JSON Schemas omit media filenames and preserve required learner 
     { type: 'video', params: {}, locale: { label: 'Video' } },
     { type: 'subtitles', params: {}, locale: {} },
   ];
-  for (const name of ['contentBlock.schema.json', 'lesson.schema.json', 'course.schema.json',
-    'lesson.scaffold.schema.json', 'course.scaffold.schema.json']) {
+  for (const name of [
+    'contentBlock.schema.json',
+    'lesson.schema.json',
+    'course.schema.json',
+    'lesson.scaffold.schema.json',
+    'course.scaffold.schema.json',
+  ]) {
     assert(!docs[name].includes('"fileName"'), name);
     assert(!docs[name].includes('"posterFileName"'), name);
   }
@@ -159,9 +210,12 @@ test('generated JSON Schemas omit media filenames and preserve required learner 
     const draft = { id, slug: 'sample', ...sample };
     assert.equal(validate(draft), true, sample.type + JSON.stringify(validate.errors));
     assert.equal(validate({ ...draft, locale: { ...draft.locale, fileName: null } }), false);
-    assert.equal(validate({ ...draft, locale: { ...draft.locale, fileName: '550e8400-e29b-41d4-a716-446655440000.webp' } }), false);
-    if (sample.type === 'video') assert.equal(
-      validate({ ...draft, locale: { ...draft.locale, posterFileName: 'poster.webp' } }), false);
+    assert.equal(
+      validate({ ...draft, locale: { ...draft.locale, fileName: '550e8400-e29b-41d4-a716-446655440000.webp' } }),
+      false,
+    );
+    if (sample.type === 'video')
+      assert.equal(validate({ ...draft, locale: { ...draft.locale, posterFileName: 'poster.webp' } }), false);
   }
 });
 

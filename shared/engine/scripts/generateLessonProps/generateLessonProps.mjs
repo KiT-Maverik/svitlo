@@ -10,13 +10,20 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadLessonData, renderLessonPropsFiles, resolveEntityPath, projectTextbookMedia, assertMediaPublicationReady } from '@svitlo/engine/build';
+import {
+  loadLessonData,
+  renderLessonPropsFiles,
+  resolveEntityPath,
+  projectTextbookMedia,
+  assertMediaPublicationReady,
+} from '@svitlo/engine/build';
 import { assertSafeDirectoryPath, checkLessonProps, publishLessonProps } from './publishLessonProps.mjs';
 
 export { checkLessonProps as check } from './publishLessonProps.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
-const usage = 'Usage: --package content/<textbook> [--output <repo-relative-dir>] [--draft] --write|--check|--preflight';
+const usage =
+  'Usage: --package content/<textbook> [--output <repo-relative-dir>] [--draft] --write|--check|--preflight';
 
 const directories = directory =>
   fs.existsSync(directory)
@@ -102,7 +109,11 @@ async function render(packageDirectory, mode) {
     entries.push({
       source: relativeSource,
       publication: projectTextbookMedia(publication, {
-        textbookRoot: packageDirectory, textbookId, source: relativeSource, mode, diagnostics,
+        textbookRoot: packageDirectory,
+        textbookId,
+        source: relativeSource,
+        mode,
+        diagnostics,
       }),
     });
   }
