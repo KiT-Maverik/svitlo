@@ -90,7 +90,7 @@ test('FastGate listens for Markdown-only CSS updates', () => {
     fileURLToPath(new URL('../../.github/workflows/fast-gate.yml', import.meta.url)),
     'utf8',
   );
-  assert.match(workflow, /shared\\/ui-kit\\/src\\/components\\/widgets\\/ContentBlockRenderer\\/blocks\\/Markdown\\/\\*\\*/);
+  assert.ok(workflow.includes("'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/**'"));
 });
 
 test('content builds have one dedicated workflow with scoped triggers', () => {
