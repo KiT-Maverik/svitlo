@@ -236,10 +236,10 @@ export const defineMarkdown = <
     params: config.params,
     locale,
   };
-  const authored = structuredClone(parseAndValidate(resolved));
+  const authored = structuredClone(resolved);
   const { id, type } = authored;
   const slug = config.slug;
-  const copyAuthored = () => markdown_Config_Schema.parse(structuredClone(authored));
+  const copyAuthored = () => structuredClone(authored);
   const base = {
     id,
     type,

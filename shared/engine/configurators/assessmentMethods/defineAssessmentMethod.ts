@@ -67,7 +67,7 @@ export function defineAssessmentMethod<
 >(
   config: Omit<AssessmentMethod_Config, 'slug'> & { slug: Slug } & RequireLanguages<AssessmentMethod_Config, Languages>,
 ): AssessmentMethod_Configurator<Slug, Languages> {
-  const authored = structuredClone(assessmentMethod_Config_Schema.parse(config));
+  const authored = structuredClone(config);
   const { id } = authored;
   const slug = config.slug;
   const copyAuthored = () => assessmentMethod_Config_Schema.parse(structuredClone(authored));

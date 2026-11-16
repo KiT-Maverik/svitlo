@@ -88,10 +88,10 @@ export const defineAudio = <
       Languages
     >,
 ) => {
-  const authored = structuredClone(parseAndValidate(config));
+  const authored = structuredClone(config);
   const { id, type } = authored;
   const slug = config.slug;
-  const copyAuthored = () => audio_Config_Schema.parse(structuredClone(authored));
+  const copyAuthored = () => structuredClone(authored);
   const base = {
     id,
     type,

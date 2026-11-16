@@ -67,7 +67,7 @@ export function defineSkill<
 >(
   config: Omit<Skill_Config, 'slug'> & { slug: Slug } & RequireLanguages<Skill_Config, Languages>,
 ): Skill_Configurator<Slug, Languages> {
-  const authored = structuredClone(skill_Config_Schema.parse(config));
+  const authored = structuredClone(config);
   const { id } = authored;
   const slug = config.slug;
   const copyAuthored = () => skill_Config_Schema.parse(structuredClone(authored));

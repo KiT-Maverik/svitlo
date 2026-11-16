@@ -16,7 +16,7 @@ export const defineSubtitles = <
     validateLocalAssetPaths(parsed.locale.fileLocation, 'locale.fileLocation');
     return parsed;
   };
-  const authored = structuredClone(parse(config));
+  const authored = structuredClone(config);
   const { id, slug, type } = authored;
   const validate = (value: ContentBlock_Subtitles_Config) => { parse(value); };
   const files = (locale: DeepPartial<ContentBlock_Subtitles_Config['locale']>) => {
@@ -30,7 +30,7 @@ export const defineSubtitles = <
   };
   const props = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
-    const resource = files(structuredClone(authored.locale));
+    const resource = files(parse(structuredClone(authored)).locale);
     const output = { base: { id, slug, type, params: authored.params, ...resource.base },
       locale: selectPublicationLocales(resource.locale, languages) };
     validateRequestedPublication(subtitles_Props_Schema, output, languages);

@@ -129,15 +129,15 @@ export const defineText = <
       Languages
     >,
 ) => {
-  const authored = structuredClone(parseAndValidate(config));
+  const authored = structuredClone(config);
   const { id, type } = authored;
   const slug = config.slug;
-  const copyAuthored = () => text_Config_Schema.parse(structuredClone(authored));
+  const copyAuthored = () => structuredClone(authored);
   const base = { ...buildTextProps(copyAuthored()).base, slug };
 
   const props = (options: PublicationLanguageOptions<Languages>): TextPropsPublication<ContentBlock_Text_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
-    const result = buildTextProps(copyAuthored());
+    const result = buildTextProps(parseAndValidate(copyAuthored()));
     result.locale = selectPublicationLocales(result.locale, languages);
     validateRequestedPublication(text_Props_Schema, result, languages);
     return result;
