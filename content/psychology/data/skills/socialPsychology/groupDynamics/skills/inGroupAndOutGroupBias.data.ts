@@ -5,7 +5,7 @@ export const inGroupAndOutGroupBias_Skill_Data = defineSkill({
   id: '5093dc6d-1357-4b93-bc7b-93c57dea1573',
   name: {
     en: 'In-Group and Out-Group Bias',
-    it: 'Pregiudizi verso il proprio gruppo e gli altri gruppi',
+    it: 'Favoritismo per il proprio gruppo e pregiudizi verso gli altri gruppi',
     zh: '内群体与外群体偏见',
     hi: 'अपने और दूसरे समूह के प्रति पक्षपात',
     es: 'Sesgo hacia el grupo propio y el ajeno',
