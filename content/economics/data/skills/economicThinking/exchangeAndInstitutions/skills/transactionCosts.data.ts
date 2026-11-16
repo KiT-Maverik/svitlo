@@ -40,7 +40,7 @@ export const transactionCosts_Skill_Data = defineSkill({
       'Identify the costs of searching, negotiating, verifying, and enforcing an agreement beyond the price of the good itself.',
     frontend: {
       en: 'Recognize the time and effort involved in making an exchange.',
-      it: 'Riconosci il tempo e gli sforzi necessari per realizzare uno scambio.',
+      it: 'Riconosci i costi per cercare informazioni, negoziare e far rispettare un accordo, oltre al prezzo del bene.',
       zh: '认识交换所需的时间和精力。',
       hi: 'विनिमय करने में लगने वाले समय और प्रयास को पहचानें।',
       es: 'Reconoce el tiempo y el esfuerzo necesarios para realizar un intercambio.',

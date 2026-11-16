@@ -5,7 +5,7 @@ export const framingEffect_Skill_Data = defineSkill({
   id: '4b682919-1ef4-4979-be79-c542ea4094bf',
   name: {
     en: 'Framing Effect',
-    it: 'Effetto di incorniciamento',
+    it: 'Effetto di inquadramento',
     zh: '框架效应',
     hi: 'फ्रेमिंग प्रभाव',
     es: 'Efecto de encuadre',

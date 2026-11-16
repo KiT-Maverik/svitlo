@@ -40,7 +40,7 @@ export const inflationAndDeflation_Skill_Data = defineSkill({
       'Distinguish a sustained increase or decrease in the general price level from a price change for one product.',
     frontend: {
       en: 'Tell the difference between inflation and a price rise for one item.',
-      it: "Distingui l'inflazione dall'aumento del prezzo di un solo prodotto.",
+      it: "Distingui l'aumento o la diminuzione persistente del livello generale dei prezzi dalle variazioni del prezzo di un singolo prodotto.",
       zh: '区分普遍通胀与单一商品价格上涨。',
       hi: 'सामान्य मुद्रास्फीति और किसी एक वस्तु की कीमत बढ़ने में अंतर पहचानें।',
       es: 'Distingue la inflación del aumento de precio de un solo producto.',

@@ -39,7 +39,7 @@ export const intergenerationalEconomicImpacts_Skill_Data = defineSkill({
     methodological: 'Evaluate how benefits and harms from current decisions are distributed among future generations.',
     frontend: {
       en: 'Consider who gains or loses from decisions across generations.',
-      it: 'Considera chi trae vantaggio o subisce perdite dalle decisioni tra generazioni.',
+      it: 'Valuta come le scelte di oggi distribuiscono benefici e danni tra le generazioni future.',
       zh: '思考一项决策会让哪些世代获益或受损。',
       hi: 'सोचें कि किसी फैसले से कौन-सी पीढ़ियों को लाभ या हानि होती है।',
       es: 'Considera qué generaciones ganan o pierden por una decisión.',
