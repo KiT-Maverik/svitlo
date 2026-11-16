@@ -40,7 +40,7 @@ export const insertAnElementIntoASequence_Skill_Data = defineSkill({
       'Add a new item at a specified position and predict how it affects the order of other items or links between nodes.',
     frontend: {
       en: 'Insert an item at the right place in an ordered sequence.',
-      it: 'Inserisci un elemento in una posizione indicata e osserva come cambiano l\'ordine o i collegamenti della sequenza.',
+      it: "Inserisci un elemento in una posizione indicata e osserva come cambiano l'ordine o i collegamenti della sequenza.",
       zh: '将元素插入有序序列中的正确位置。',
       hi: 'क्रमबद्ध अनुक्रम में तत्व को सही स्थान पर डालें।',
       es: 'Inserta un elemento en la posición adecuada de una secuencia ordenada.',
