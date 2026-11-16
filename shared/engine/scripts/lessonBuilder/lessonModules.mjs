@@ -389,8 +389,12 @@ export function renderLessonModules(lesson, language, options = {}) {
     files.set(
       'constants.ts',
       "import type { LanguageCode } from '@svitlo/engine/build';\n\n" +
-        'export const languages = ' +
+        '// Restore the complete language set when translations are ready:\n' +
+        '// export const languages = ' +
         JSON.stringify(languageValues) +
+        ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n\n' +
+        'export const languages = ' +
+        JSON.stringify([language]) +
         ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n' +
         'export type LessonLanguages = typeof languages;\n',
     );
