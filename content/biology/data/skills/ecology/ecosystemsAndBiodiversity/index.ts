@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { distinguishAnOrganismPopulationAndCommunity } from './distinguishAnOrganismPopulationAndCommunity';
+import { explainMatterCyclingInEcosystems } from './explainMatterCyclingInEcosystems';
+import { explainTheImportanceOfBiodiversity } from './explainTheImportanceOfBiodiversity';
+import { explainTheInterdependenceOfEcosystemComponents } from './explainTheInterdependenceOfEcosystemComponents';
+import { identifyThreatsToLocalSpecies } from './identifyThreatsToLocalSpecies';
+import { justifyProtectionOfSpeciesListedInRedDataBooks } from './justifyProtectionOfSpeciesListedInRedDataBooks';
+import { recognizeNaturalCommunitiesOfUkraine } from './recognizeNaturalCommunitiesOfUkraine';
+
+export const ecosystemsAndBiodiversity = defineSkillGroup({
+  slug: 'ecosystemsAndBiodiversity',
+  id: 'd97c7695-6316-42e8-9647-fdb9b3303bf4',
+  name: {
+    ar: 'النظم البيئية والتنوع الحيوي',
+    be: 'Экасыстэмы і біяразнастайнасьць',
+    bn: 'বাস্তুতন্ত্র ও জীববৈচিত্র্য',
+    de: 'Ökosysteme und Biodiversität',
+    en: 'Ecosystems and Biodiversity',
+    es: 'Ecosistemas y biodiversidad',
+    et: 'Ökosüsteemid ja elurikkus',
+    fr: 'Écosystèmes et biodiversité',
+    he: 'מערכות אקולוגיות ומגוון ביולוגי',
+    hi: 'पारितंत्र और जैव विविधता',
+    id: 'Ekosistem dan keanekaragaman hayati',
+    it: 'Ecosistemi e biodiversità',
+    ja: '生態系と生物多様性',
+    ka: 'ეკოსისტემები და ბიომრავალფეროვნება',
+    kk: 'Экожүйелер мен биоалуантүрлілік',
+    ko: '생태계와 생물다양성',
+    lt: 'Ekosistemos ir biologinė įvairovė',
+    lv: 'Ekosistēmas un bioloģiskā daudzveidība',
+    mr: 'परिसंस्था आणि जैवविविधता',
+    ms: 'Ekosistem dan biodiversiti',
+    pl: 'Ekosystemy i różnorodność biologiczna',
+    pt: 'Ecossistemas e biodiversidade',
+    qm: 'Ekosistemalar ve biologik çeşitlik',
+    ta: 'சூழலமைப்புகளும் உயிர்ப் பல்வகைமையும்',
+    te: 'పర్యావరణ వ్యవస్థలు, జీవవైవిధ్యం',
+    tr: 'Ekosistemler ve biyolojik çeşitlilik',
+    uk: 'Екосистеми та біорізноманіття',
+    ur: 'ماحولیاتی نظام اور حیاتیاتی تنوع',
+    vi: 'Hệ sinh thái và đa dạng sinh học',
+    zh: '生态系统与生物多样性',
+  },
+  skills: {
+    distinguishAnOrganismPopulationAndCommunity,
+    explainMatterCyclingInEcosystems,
+    explainTheImportanceOfBiodiversity,
+    explainTheInterdependenceOfEcosystemComponents,
+    identifyThreatsToLocalSpecies,
+    justifyProtectionOfSpeciesListedInRedDataBooks,
+    recognizeNaturalCommunitiesOfUkraine,
+  },
+  description: {
+    methodological:
+      'Individual organisms, populations, and communities interact with one another and with nonliving factors. Changes in species composition or resource availability can have indirect consequences for an entire ecosystem, making these relationships and the role of biodiversity important to understand.',
+    frontend: {
+      ar: 'افهم كيف تشكّل الجماعات والمجتمعات الحيوية والعوامل البيئية نظمًا بيئية.',
+      be: 'Зразумей, як папуляцыі, супольнасьці і чыньнікі асяродзьдзя ўтвараюць экасыстэмы.',
+      bn: 'জনসমষ্টি, জীবসম্প্রদায় ও পরিবেশগত উপাদান কীভাবে বাস্তুতন্ত্র গঠন করে, তা বোঝো।',
+      de: 'Verstehe, wie Populationen, Lebensgemeinschaften und Umweltfaktoren Ökosysteme bilden.',
+      en: 'Understand how populations, communities and environmental factors form ecosystems.',
+      es: 'Comprende cómo las poblaciones, las comunidades y los factores ambientales forman ecosistemas.',
+      et: 'Mõista, kuidas populatsioonid, kooslused ja keskkonnategurid moodustavad ökosüsteeme.',
+      fr: 'Comprends comment les populations, les communautés et les facteurs environnementaux forment des écosystèmes.',
+      he: 'הבינו כיצד אוכלוסיות, קהילות וגורמי סביבה יוצרים מערכות אקולוגיות.',
+      hi: 'समझें कि आबादियाँ, जीव समुदाय और पर्यावरणीय कारक मिलकर पारितंत्र कैसे बनाते हैं।',
+      id: 'Pahami bagaimana populasi, komunitas, dan faktor lingkungan membentuk ekosistem.',
+      it: 'Comprendi come popolazioni, comunità e fattori ambientali formano gli ecosistemi.',
+      ja: '個体群、生物群集、環境要因がどのように生態系を形づくるか理解しよう。',
+      ka: 'გაიგე, როგორ ქმნიან პოპულაციები, თანასაზოგადოებები და გარემო ფაქტორები ეკოსისტემებს.',
+      kk: 'Популяциялар, қауымдастықтар және орта факторлары экожүйелерді қалай құрайтынын түсін.',
+      ko: '개체군, 군집, 환경 요인이 생태계를 어떻게 구성하는지 이해해 보세요.',
+      lt: 'Suprask, kaip populiacijos, bendrijos ir aplinkos veiksniai sudaro ekosistemas.',
+      lv: 'Izproti, kā populācijas, kopienas un vides faktori veido ekosistēmas.',
+      mr: 'जीवसमूह, समुदाय आणि पर्यावरणीय घटक मिळून परिसंस्था कशी बनते ते समजून घ्या.',
+      ms: 'Fahami bagaimana populasi, komuniti dan faktor persekitaran membentuk ekosistem.',
+      pl: 'Zrozum, jak populacje, zespoły organizmów i czynniki środowiska tworzą ekosystemy.',
+      pt: 'Entenda como populações, comunidades e fatores ambientais formam ecossistemas.',
+      qm: 'Canlı toplulıqları, populyatsiyalar ve etraftaki müit şartları ekosistemalarnı nasıl teşkil etkenini ögreniñiz.',
+      ta: 'உயிரினக் கூட்டங்கள், சமூகங்கள் மற்றும் சுற்றுச்சூழல் காரணிகள் சேர்ந்து சூழலமைப்புகளை எவ்வாறு உருவாக்குகின்றன என்பதைப் புரிந்துகொள்ளுங்கள்.',
+      te: 'జనాభాలు, జీవ సముదాయాలు, పర్యావరణ కారకాలు కలిసి పర్యావరణ వ్యవస్థలను ఎలా ఏర్పరుస్తాయో అర్థం చేసుకోండి.',
+      tr: 'Popülasyonların, toplulukların ve çevresel etkenlerin ekosistemleri nasıl oluşturduğunu anla.',
+      uk: 'Зрозумій, як популяції, угруповання та чинники середовища формують екосистеми.',
+      ur: 'سمجھیں کہ آبادیاں، حیاتیاتی برادریاں اور ماحولیاتی عوامل مل کر ماحولیاتی نظام کیسے بناتے ہیں۔',
+      vi: 'Hiểu cách các quần thể, quần xã và yếu tố môi trường tạo thành hệ sinh thái.',
+      zh: '理解种群、生物群落和环境因素如何共同构成生态系统。',
+    },
+  },
+});

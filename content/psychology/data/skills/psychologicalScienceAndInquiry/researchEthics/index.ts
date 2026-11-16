@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { deceptionInResearch } from './deceptionInResearch';
+import { informedConsent } from './informedConsent';
+import { researchAnonymity } from './researchAnonymity';
+import { researchConfidentiality } from './researchConfidentiality';
+import { researchDebriefing } from './researchDebriefing';
+import { researchWithVulnerableParticipants } from './researchWithVulnerableParticipants';
+import { riskBenefitAssessment } from './riskBenefitAssessment';
+
+export const researchEthics = defineSkillGroup({
+  slug: 'researchEthics',
+  id: 'b9f967a3-7b58-457c-9603-ec79a8cc01eb',
+  name: {
+    ar: 'أخلاقيات البحث',
+    be: 'Этыка дасьледаваньняў',
+    bn: 'গবেষণার নৈতিকতা',
+    de: 'Forschungsethik',
+    en: 'Research Ethics',
+    es: 'Ética de la investigación',
+    et: 'Uurimiseetika',
+    fr: 'Éthique de la recherche',
+    he: 'אתיקה במחקר',
+    hi: 'अनुसंधान नैतिकता',
+    id: 'Etika Penelitian',
+    it: 'Etica della ricerca',
+    ja: '研究倫理',
+    ka: 'კვლევის ეთიკა',
+    kk: 'Зерттеу этикасы',
+    ko: '연구 윤리',
+    lt: 'Tyrimų etika',
+    lv: 'Pētniecības ētika',
+    mr: 'संशोधन नैतिकता',
+    ms: 'Etika Penyelidikan',
+    pl: 'Etyka badań',
+    pt: 'Ética em pesquisa',
+    qm: 'Tetqiqat ahlâqı',
+    ta: 'ஆராய்ச்சி நெறிமுறைகள்',
+    te: 'పరిశోధన నైతికత',
+    tr: 'Araştırma Etiği',
+    uk: 'Етика досліджень',
+    ur: 'تحقیق کی اخلاقیات',
+    vi: 'Đạo đức nghiên cứu',
+    zh: '研究伦理',
+  },
+  skills: {
+    deceptionInResearch,
+    informedConsent,
+    researchAnonymity,
+    researchConfidentiality,
+    researchDebriefing,
+    researchWithVulnerableParticipants,
+    riskBenefitAssessment,
+  },
+  description: {
+    methodological:
+      'Studies involving people must respect autonomy, dignity, safety, and confidentiality, including additional safeguards for vulnerable participants.',
+    frontend: {
+      ar: 'اكتشف كيف يمكن للبحث أن يحترم استقلال الناس وكرامتهم وسلامتهم.',
+      be: 'Даведайся, як дасьледаваньні могуць паважаць аўтаномію, годнасьць і бясьпеку людзей.',
+      bn: 'গবেষণায় মানুষের স্বাধীনতা, মর্যাদা ও নিরাপত্তা কীভাবে সম্মান করা যায়, তা জানো।',
+      de: 'Entdecke, wie Forschung die Selbstbestimmung, Würde und Sicherheit von Menschen achten kann.',
+      en: "Discover how research can respect people's autonomy, dignity and safety.",
+      es: 'Descubre cómo investigar respetando la autonomía, la dignidad y la seguridad de las personas.',
+      et: 'Õpi, kuidas uurimistöö saab austada inimeste autonoomiat, väärikust ja turvalisust.',
+      fr: 'Découvre comment la recherche peut respecter l’autonomie, la dignité et la sécurité des personnes.',
+      he: 'גלו כיצד מחקר יכול לכבד את האוטונומיה, הכבוד והבטיחות של אנשים.',
+      hi: 'जानें कि शोध लोगों की स्वायत्तता, गरिमा और सुरक्षा का सम्मान कैसे कर सकता है।',
+      id: 'Kenali cara penelitian menghormati otonomi, martabat, dan keselamatan manusia.',
+      it: "Scopri come la ricerca possa rispettare l'autonomia, la dignità e la sicurezza delle persone.",
+      ja: '研究が人々の自己決定、尊厳、安全をどう尊重できるか学ぼう。',
+      ka: 'გაიგე, როგორ უნდა სცეს კვლევამ პატივი ადამიანების ავტონომიას, ღირსებასა და უსაფრთხოებას.',
+      kk: 'Зерттеулер адамдардың дербестігін, қадір-қасиетін және қауіпсіздігін қалай құрметтей алатынын біл.',
+      ko: '연구에서 사람들의 자율성, 존엄성, 안전을 존중하는 방법을 알아보세요.',
+      lt: 'Sužinok, kaip tyrimai gali gerbti žmonių autonomiją, orumą ir saugumą.',
+      lv: 'Uzzini, kā pētījumos ievērot cilvēku autonomiju, cieņu un drošību.',
+      mr: 'संशोधनातून लोकांच्या स्वायत्ततेचा, सन्मानाचा आणि सुरक्षिततेचा आदर कसा करता येतो ते जाणून घ्या.',
+      ms: 'Terokai bagaimana penyelidikan menghormati autonomi, maruah dan keselamatan manusia.',
+      pl: 'Odkryj, jak badania mogą szanować autonomię, godność i bezpieczeństwo ludzi.',
+      pt: 'Descubra como a pesquisa pode respeitar a autonomia, a dignidade e a segurança das pessoas.',
+      qm: 'Tetqiqat adamlarnıñ serbestligini, qıymetini ve emniyetini nasıl ürmet etkenini ögren.',
+      ta: 'ஆராய்ச்சி மனிதர்களின் சுயாட்சியையும் கண்ணியத்தையும் பாதுகாப்பையும் எவ்வாறு மதிக்க முடியும் என்பதை அறிந்துகொள்ளுங்கள்.',
+      te: 'పరిశోధన మనుషుల స్వయంప్రతిపత్తి, గౌరవం, భద్రతను ఎలా గౌరవించగలదో తెలుసుకోండి.',
+      tr: 'Araştırmanın insanların özerkliğine, onuruna ve güvenliğine nasıl saygı gösterebileceğini keşfet.',
+      uk: 'Дізнайся, як дослідження можуть поважати автономію, гідність і безпеку людей.',
+      ur: 'جانیے کہ تحقیق لوگوں کے اختیار، وقار اور سلامتی کا احترام کیسے کر سکتی ہے۔',
+      vi: 'Khám phá cách nghiên cứu tôn trọng quyền tự chủ, phẩm giá và sự an toàn của con người.',
+      zh: '了解研究如何尊重人们的自主权、尊严和安全。',
+    },
+  },
+});

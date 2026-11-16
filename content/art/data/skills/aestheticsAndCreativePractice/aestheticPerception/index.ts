@@ -1,10 +1,10 @@
 import { defineSkillGroup } from '@svitlo/engine/build';
 
-import {analyzePerceptualAmbiguity} from "./analyzePerceptualAmbiguity";
-import {compareAestheticCriteria} from "./compareAestheticCriteria";
-import {describeAnAestheticExperience} from "./describeAnAestheticExperience";
-import {distinguishBeautyAndArtisticValue} from "./distinguishBeautyAndArtisticValue";
-import {relateContrastToAttention} from "./relateContrastToAttention";
+import { analyzePerceptualAmbiguity } from './analyzePerceptualAmbiguity';
+import { compareAestheticCriteria } from './compareAestheticCriteria';
+import { describeAnAestheticExperience } from './describeAnAestheticExperience';
+import { distinguishBeautyAndArtisticValue } from './distinguishBeautyAndArtisticValue';
+import { relateContrastToAttention } from './relateContrastToAttention';
 
 export const aestheticPerception = defineSkillGroup({
   slug: 'aestheticPerception',
@@ -42,11 +42,11 @@ export const aestheticPerception = defineSkillGroup({
     zh: '审美感知',
   },
   skills: {
-      analyzePerceptualAmbiguity,
-      compareAestheticCriteria,
-      describeAnAestheticExperience,
-      distinguishBeautyAndArtisticValue,
-      relateContrastToAttention,
+    analyzePerceptualAmbiguity,
+    compareAestheticCriteria,
+    describeAnAestheticExperience,
+    distinguishBeautyAndArtisticValue,
+    relateContrastToAttention,
   },
   description: {
     methodological:
