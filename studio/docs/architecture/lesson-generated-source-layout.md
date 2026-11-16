@@ -1,6 +1,6 @@
 # Lesson source layout: Stage 1 contract and reference fixture
 
-**Status:** Stage 1 target contract; Stages 2–3 modular source and Markdown/Code plus Stage 4 colocated Scene/media handoffs and URL staging are implemented on dependent Draft PR branches. Review and full end-to-end acceptance remain planned.  
+**Status:** Stage 1 target contract; Stages 2–3 modular source and Markdown/Code are implemented. Textbook-wide media identity and packaging are addressed by PR #615, independent of the experimental colocated media layout. Review and full end-to-end acceptance remain planned.  
 **Scope:** YAML-to-TypeScript **Lesson draft scaffolder** and downstream source/asset handoffs, using [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557) as experimental evidence.  
 **Out of scope:** changing the generator, implementing media/Scenes, publishing Lesson Props, changing existing Lesson Configs, migrating all mathematics lessons, translating content, or granting review approvals.
 
@@ -82,17 +82,17 @@ A later independent bank generator may create slug-organized `questions/` and
 | Markdown                 | `<slug>/text.md`            | `<slug>/locale/<language>.md`                          | **No** specification instead of real learner-facing Markdown  |
 | Code                     | `<slug>/code.<extension>`   | only if Code contract explicitly supports localization | **No** substitute for real code                               |
 | Scene                    | authored configurator       | Scene's actual typed localized data                    | `<slug>/specification.md` next to Scene definition, if needed |
-| Audio/Image/Video        | `<slug>/<slug>.<extension>` | `<slug>/locale/<language>.<extension>`                 | `<slug>/specification.md` while pending                       |
-| Subtitles                | `<slug>/<slug>.<extension>` | `<slug>/locale/<language>.<extension>`                 | if production needs a separate caption authoring handoff      |
+| Audio/Image/Video        | `assets/{audio,images,video}/UUID.ext` | Config `locale.fileName` is invariant or localized | `<slug>/specification.md` while pending |
+| Subtitles                | `assets/subtitles/UUID.ext` | Config `locale.fileName` is invariant or localized | caption authoring handoff if required |
 | External media (YouTube) | explicit authored URL       | per current Config schema                              | no local file resolution                                      |
 
 - **Invariant is not fallback:** never generate a fake `default`/`fallback` language. A string-valued Markdown source maps to `text.md`; a language map maps to `locale/<language>.md`.
-- Source files should be read by a **deterministic build-time, module-local mechanism**. Generated callers should not manually repeat paths; however, a plain imported function cannot reliably discover its caller's source folder or YAML property key on its own. Choose a source-bound wrapper, generated `import.meta.url` binding or explicit compilation transform in the implementation PR. Do not use stack-trace inspection or browser runtime `fs`.
+- Markdown and Code source files retain a **deterministic module-local build-time reader** via `import.meta.url`. Binary media is textbook-wide and resolved by the Props publisher from the media category and full UUID filename, without paths in the Config or browser `fs`.
 - `code.<extension>` uses an explicit/supported source-language and extension convention; `codeAsText` remains the final Engine Config value after resolving the authored file.
-- No fictional binary assets, placeholder URL values, or manually embedded filesystem paths in runtime Props. The authoring contract and publication contract are **distinct**: existing Engine `src`/`fileLocation` requirements can only be removed from generated _authoring source_ once a separate resolver reliably populates valid public resource paths for publication.
-- Multiple media roles (main video, poster, captions, carousel images) require unambiguous naming and collision checks. Exact supported extensions, multi-role rules, and locale completeness checks remain open until the relevant Engine/UI Kit contracts are audited.
+- Authoring Config uses valid, persistent `UUID.extension` filenames, even for unproduced media; do not fabricate binary assets. The Props publisher resolves these into the existing Runtime `src`, `fileLocation` and `poster` fields. Draft allows missing files with warnings, Production rejects them.
+- Main Video media, `posterFileName`, Subtitles and Carousel Image children select category-specific UUID filenames. A single asset may be reused across blocks, Lessons and locales. Publisher validates category, missing files, symlinks, collisions and effective overrides.
 - User-facing Markdown must be _finished content before technical scaffolding_. A technical builder cannot turn a Scene-like specification for Markdown into good instructional copy. Fix the upstream Lesson Production handoff instead.
-- Media and Scene specifications are _authoring instructions_, not runtime copy. Their new co-located addresses conflict with current UUID-addressed Scene/asset handoff rules: the responsible workflows, lazy Scene registry expectations and eventual packaged media paths must be updated together. Do not silently discard UUID identity or unrelated real assets.
+- Media and Scene `specification.md` files remain specialist handoffs beside source modules. Physical media lives only in the textbook `assets/` folder; executable Scenes use their separate registry and module delivery.
 
 ## Stage 3 implemented source handoff (dependent Draft branch)
 
@@ -130,7 +130,7 @@ Changes to external Scene implementation files or actual binary media may not ch
 | `shared/engine/scripts/generateLessonProps/generateLessonProps.mjs` | Finds one `*.data.ts`, falling back to `index.ts`; requires a real `build.props()` Lesson | Ensure new root entrypoint can be discovered and loaded; fail on ambiguity; do not publish incomplete drafts     |
 | `scripts/textbook-tooling/buildTextbook/build.mjs`                  | `authored('data/lessons')` recognizes only `*.data.ts`                                    | Update detection for canonical `index.ts` Lesson entrypoints so compiled text books do not silently omit Lessons |
 | `shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs`   | Emits Scene and media handoffs to UUID-addressed folders                                  | Change output ownership and non-destructive write/skip/check behavior together with layout                       |
-| Current Engine media schemas and textbook static packaging          | Expects explicit resolved file paths and packaged static resources                        | Preserve Props and runtime URLs until the new build-time resolver and manifest pipeline are verified             |
+| Engine media Config and textbook assets packaging                  | UUID `fileName` Config and typed URL publication in PR #615 | Verify runtime consumer URLs, Draft/Production diagnostics and manifest integration |
 | Current Carousel and Quest schemas                                  | Specialized child kinds/shape                                                             | Do not force generic block recursion where schemas intentionally restrict children                               |
 
 **Non-goals and safeguards:** no mass rewriting of other Math lessons in Stage 1; no schema loosenings or fake success from TypeScript suppression; no execution of generated incomplete samples as trusted code; no single-stage migration of Scenes, asset packaging, review types and production workflow. Update README/JSDoc/tests and affected architecture references in the _implementing_ PR, not by pretending they already implement this document.
