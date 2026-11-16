@@ -40,7 +40,7 @@ export const crossPriceElasticityOfDemand_Skill_Data = defineSkill({
       "Determine how demand for one good responds to another good's price, interpreting possible substitution or complementarity.",
     frontend: {
       en: 'Find out whether two products are substitutes or complements.',
-      it: 'Scopri se due prodotti sono sostituti o complementari.',
+      it: 'Misura come la domanda di un bene cambia al variare del prezzo di un altro, distinguendo beni sostituti e complementari.',
       zh: '判断两种商品是替代品还是互补品。',
       hi: 'पता लगाएँ कि दो वस्तुएँ विकल्प हैं या पूरक।',
       es: 'Averigua si dos productos son sustitutos o complementarios.',

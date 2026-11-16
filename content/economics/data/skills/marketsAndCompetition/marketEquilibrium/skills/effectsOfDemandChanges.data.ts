@@ -40,7 +40,7 @@ export const effectsOfDemandChanges_Skill_Data = defineSkill({
       'Predict the direction of changes in equilibrium price and quantity after a demand shift under stated supply conditions.',
     frontend: {
       en: 'Predict what happens to price when demand rises or falls.',
-      it: 'Prevedi che cosa accade al prezzo quando la domanda aumenta o diminuisce.',
+      it: 'Prevedi come cambiano il prezzo e la quantità di equilibrio quando la domanda aumenta o diminuisce.',
       zh: '预测需求上升或下降时价格会怎样变化。',
       hi: 'अनुमान लगाएँ कि माँग बढ़ने या घटने पर कीमत का क्या होगा।',
       es: 'Predice qué sucede con el precio cuando sube o baja la demanda.',

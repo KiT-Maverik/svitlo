@@ -39,7 +39,7 @@ export const interestRates_Skill_Data = defineSkill({
     methodological: 'Interpret the cost of using money over time and distinguish nominal from real interest rates.',
     frontend: {
       en: 'Explore how interest rates affect borrowing and saving.',
-      it: 'Esplora come i tassi di interesse influiscono su prestiti e risparmio.',
+      it: 'Interpreta il costo del denaro nel tempo e distingui i tassi nominali da quelli reali.',
       zh: '探索利率如何影响借款和储蓄。',
       hi: 'जानें कि ब्याज दरें उधार लेने और बचत को कैसे प्रभावित करती हैं।',
       es: 'Explora cómo los intereses afectan los préstamos y el ahorro.',
