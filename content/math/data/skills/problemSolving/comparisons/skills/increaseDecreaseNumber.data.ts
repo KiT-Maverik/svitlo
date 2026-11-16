@@ -40,7 +40,7 @@ export const increaseDecreaseNumber_Skill_Data = defineSkill({
       "Changing a quantity additively by a specified amount is represented by addition or subtraction according to the direction of change. An absolute increase must be distinguished from a multiplicative 'times as much' change.",
     frontend: {
       en: 'You can increase or decrease a quantity by a given amount using addition or subtraction, without confusing this with a change by a factor.',
-      it: 'Puoi aumentare o diminuire una quantità di un valore dato con l\'addizione o la sottrazione, senza confondere questa variazione con un cambiamento di fattore.',
+      it: "Puoi aumentare o diminuire una quantità di un valore dato con l'addizione o la sottrazione, senza confondere questa variazione con un cambiamento di fattore.",
       qm: 'Qoşuv ya da çıqaruv yardımınen miqdarnı berilgen miqdarğa arttıra ya da azlata bilesiñ. Belli qatqa deñiştirüvnen qarıştırma.',
       zh: '你能用加法或减法让数量增加或减少指定的数值，不把它与按倍数变化混淆。',
       hi: 'आप जोड़ या घटाव से मात्रा में तय संख्या की वृद्धि या कमी कर सकते हैं और इसे कई गुना परिवर्तन से अलग समझ सकते हैं।',

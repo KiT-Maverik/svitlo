@@ -40,7 +40,7 @@ export const commutative_Skill_Data = defineSkill({
       'Multiplication is commutative: a × b = b × a. Reorienting a rectangular array or establishing another one-to-one mapping can show why exchanging factors does not change the product.',
     frontend: {
       en: 'You can change the order of numbers being multiplied without changing their product.',
-      it: 'Puoi cambiare l\'ordine dei fattori senza cambiare il prodotto.',
+      it: "Puoi cambiare l'ordine dei fattori senza cambiare il prodotto.",
       qm: 'Arttırılğan sayılarnıñ yerlerini deñiştirseñ de, arttıruv neticesi deñişmey.',
       zh: '你能交换两个因数的位置，而乘积不变。',
       hi: 'तुम गुणा की संख्याओं का क्रम बदल सकते हो, लेकिन गुणनफल वही रहता है।',

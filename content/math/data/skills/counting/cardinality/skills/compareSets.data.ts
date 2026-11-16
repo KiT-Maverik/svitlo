@@ -40,7 +40,7 @@ export const compareSets_Skill_Data = defineSkill({
       'Compare set cardinalities through one-to-one matching or by counting each set. Object size, shape, and spatial position do not determine which set has more members.',
     frontend: {
       en: "Find which collection has more, fewer, or the same number of objects by matching or counting. The objects' size and appearance do not determine the total.",
-      it: 'Scopri quale insieme contiene più oggetti, meno oggetti o lo stesso numero abbinandoli uno a uno o contandoli. La dimensione e l\'aspetto degli oggetti non determinano il totale.',
+      it: "Scopri quale insieme contiene più oggetti, meno oggetti o lo stesso numero abbinandoli uno a uno o contandoli. La dimensione e l'aspetto degli oggetti non determinano il totale.",
       qm: 'Eşyalarnı eşleştirip ya da sayıp, qaysı toplumda daa çoq, daa az ya da aynı sayıda eşya olğanını tap. Eşyalarnıñ ölçüsi ve körünişi umumiy sayını belgilemey.',
       zh: '通过一一配对或计数，判断哪组物品更多、更少或一样多。物品的大小和外观不决定数量。',
       hi: 'वस्तुओं को एक-एक करके मिलाकर या गिनकर जानें कि किस समूह में अधिक, कम या बराबर वस्तुएँ हैं। उनका आकार मायने नहीं रखता।',

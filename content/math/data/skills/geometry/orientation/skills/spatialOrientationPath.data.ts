@@ -40,7 +40,7 @@ export const spatialOrientationPath_Skill_Data = defineSkill({
       'A route is an ordered sequence of moves and turns relative to a fixed initial orientation. Changing command order or starting direction may change the destination even if the set of steps stays the same.',
     frontend: {
       en: 'Give or follow directions in the right order. Changing where you face or the order of turns may lead somewhere else.',
-      it: 'Fornisci o segui indicazioni nell\'ordine corretto. Cambiare orientamento o l\'ordine delle svolte può condurre altrove.',
+      it: "Fornisci o segui indicazioni nell'ordine corretto. Cambiare orientamento o l'ordine delle svolte può condurre altrove.",
       qm: 'Yol tarifini doğru tertipte ber ya da yerine ketir. Qayda baqqanıñnı ya da buruluvlar tertibini deñiştirseñ, başqa yerge barıp çıqa bilesiñ.',
       zh: '按正确顺序给出或执行路线指令。改变面朝方向或转弯顺序，终点可能不同。',
       hi: 'सही क्रम में रास्ते के निर्देश दें या मानें। दिशा या मोड़ों का क्रम बदलने से मंज़िल बदल सकती है।',

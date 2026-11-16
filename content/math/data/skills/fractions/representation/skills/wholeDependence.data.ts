@@ -5,7 +5,7 @@ export const wholeDependence_Skill_Data = defineSkill({
   id: 'ff4e8348-80c0-49dd-8f49-191c9673b3e4',
   name: {
     en: 'Explaining how part size depends on the whole',
-    it: 'Spiegare come la dimensione di una parte dipende dall\'intero',
+    it: "Spiegare come la dimensione di una parte dipende dall'intero",
     qm: 'Parçanıñ ölçüsi bütünden bağlı olğanını añlatmaq',
     lt: 'Dalies dydžio priklausomybės nuo visumos aiškinimas',
     lv: 'Daļas lieluma atkarības no veseluma skaidrošana',

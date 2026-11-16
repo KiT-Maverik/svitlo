@@ -13,7 +13,7 @@ export const clock_SkillGroup_Data = defineSkillGroup({
   id: '03f5c155-b4e6-4e8f-8ee4-81141018984d',
   name: {
     en: 'Reading clocks',
-    it: 'Leggere l\'orologio',
+    it: "Leggere l'orologio",
     qm: 'Saatnı oqumaq',
     lt: 'Laikrodžio skaitymas',
     lv: 'Pulksteņa lasīšana',

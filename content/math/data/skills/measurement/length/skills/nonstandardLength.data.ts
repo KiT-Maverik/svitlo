@@ -40,7 +40,7 @@ export const nonstandardLength_Skill_Data = defineSkill({
       'Measuring length means counting consecutive equal unit intervals along an object without gaps or overlaps. The numerical result depends on the unit, but the physical length does not.',
     frontend: {
       en: 'You can measure length by laying identical units end to end with no gaps or overlaps, knowing that different unit sizes give different counts.',
-      it: 'Puoi misurare una lunghezza disponendo unità identiche una dopo l\'altra senza spazi o sovrapposizioni, sapendo che unità di dimensioni diverse danno conteggi diversi.',
+      it: "Puoi misurare una lunghezza disponendo unità identiche una dopo l'altra senza spazi o sovrapposizioni, sapendo che unità di dimensioni diverse danno conteggi diversi.",
       qm: 'Bir türlü birliklerni aralarında boşluq qaldırmadan ve üst-üstke qoymadan bir-biriniñ ardına yerleştirerek uzunlıqnı ölçe bilesiñ. Birlik ölçüsi deñişse, sayı da deñişe.',
       zh: '你能把相同的长度单位一个接一个排好，不留空隙也不重叠来测量长度，并知道单位大小不同，数值也会不同。',
       hi: 'आप बिना खाली जगह या दोहराव के बराबर माप-इकाइयाँ सिरों से जोड़कर लंबाई माप सकते हैं और समझ सकते हैं कि इकाई बदलने से गिनती बदलती है।',

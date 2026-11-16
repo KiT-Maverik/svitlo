@@ -40,7 +40,7 @@ export const numberBonds10_Skill_Data = defineSkill({
       'Ten can be decomposed into multiple ordered or unordered pairs of nonnegative addends whose sum is ten. Increasing one part determines a corresponding decrease in the other while the whole stays fixed.',
     frontend: {
       en: 'You can find different pairs of numbers that add up to ten and see how changing one part affects the other.',
-      it: 'Puoi trovare diverse coppie di numeri la cui somma è dieci e osservare come la variazione di una parte influisce sull\'altra.',
+      it: "Puoi trovare diverse coppie di numeri la cui somma è dieci e osservare come la variazione di una parte influisce sull'altra.",
       qm: 'Toplamı 10 olğan türlü sayı çiftlerini tapa ve bir parça deñişkende diger parçanıñ nasıl deñişkenini köre bilesiñ.',
       zh: '你能找出相加等于十的不同数对，并理解其中一个数变化时另一个怎样变化。',
       hi: 'तुम ऐसे अलग-अलग संख्या-युग्म खोज सकते हो जिनका योग दस हो और समझ सकते हो कि एक भाग बदलने पर दूसरा कैसे बदलता है।',

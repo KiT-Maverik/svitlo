@@ -40,7 +40,7 @@ export const createProblem_Skill_Data = defineSkill({
       'A constructed word problem must match the given mathematical model in its quantities, operations, known information, and unknowns. One expression can support several suitable story contexts, but each must preserve the underlying mathematical structure.',
     frontend: {
       en: 'You can write a word problem that matches a picture, table, or expression, keeping the same quantities and mathematical relationships.',
-      it: 'Puoi scrivere un problema che corrisponda a un disegno, una tabella o un\'espressione, mantenendo le stesse quantità e relazioni matematiche.',
+      it: "Puoi scrivere un problema che corrisponda a un disegno, una tabella o un'espressione, mantenendo le stesse quantità e relazioni matematiche.",
       qm: 'Resim, cedvel ya da ifadege uyğun sözlü mesele yaz. Aynı miqdarlar ve matematik bağlılıqlarnı saqla.',
       zh: '你能根据图画、表格或算式编写应用题，同时保持数量和数学关系不变。',
       hi: 'आप किसी चित्र, तालिका या व्यंजक के अनुरूप शब्द-समस्या बना सकते हैं, जिसमें मात्राएँ और गणितीय संबंध वही रहें।',

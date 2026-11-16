@@ -40,7 +40,7 @@ export const basicOrdinal_Skill_Data = defineSkill({
       "An ordinal number gives an object's position in an ordered sequence relative to a specified direction. It does not give the set's cardinality: changing the order can change positions without changing the total.",
     frontend: {
       en: "Find an object's position in an ordered sequence and its direction, such as third from the left. Changing the order can change the position without changing the total.",
-      it: 'Trova la posizione di un oggetto in una sequenza ordinata e la direzione del conteggio, per esempio terzo da sinistra. Cambiare l\'ordine può modificare la posizione senza cambiare il totale.',
+      it: "Trova la posizione di un oggetto in una sequenza ordinata e la direzione del conteggio, per esempio terzo da sinistra. Cambiare l'ordine può modificare la posizione senza cambiare il totale.",
       qm: 'Tertipke qoyulğan eşyalardan biriniñ yerini ve sanav yönüni tap, meselâ soldan üçünci. Tertip deñişse, umumiy sayı deñişmeyip, eşyanıñ yeri deñişebilir.',
       zh: '根据指定方向找出物品在队列中的位置，例如从左数第三个。改变排列顺序可能改变位置，但不会改变总数。',
       hi: 'तय दिशा से क्रम में वस्तु का स्थान खोजें, जैसे बाएँ से तीसरा। क्रम बदलने पर स्थान बदल सकता है, लेकिन कुल संख्या नहीं।',

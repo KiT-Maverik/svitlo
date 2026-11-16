@@ -5,7 +5,7 @@ export const formulateInvestigationQuestion_Skill_Data = defineSkill({
   id: '9977837d-7e8b-4a51-8a83-89d51242aa8a',
   name: {
     en: 'Formulating a data investigation question',
-    it: 'Formulare una domanda per un\'indagine statistica',
+    it: "Formulare una domanda per un'indagine statistica",
     qm: 'Malümat araştırması içün sual tüzmek',
     lt: 'Duomenų tyrimo klausimo formulavimas',
     lv: 'Datu pētījuma jautājuma formulēšana',

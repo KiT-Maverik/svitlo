@@ -5,7 +5,7 @@ export const compositeArea_Skill_Data = defineSkill({
   id: '8dedc81b-faae-489e-9d3c-14331920224e',
   name: {
     en: 'Finding the area of a composite rectilinear figure',
-    it: 'Calcolare l\'area di una figura rettilinea composta',
+    it: "Calcolare l'area di una figura rettilinea composta",
     qm: 'Dik dörtkenarlardan tüzülgen murakkep şekilniñ meydanını tapmaq',
     lt: 'Sudėtinės stačiakampės figūros ploto radimas',
     lv: 'Saliktas taisnleņķa figūras laukuma atrašana',

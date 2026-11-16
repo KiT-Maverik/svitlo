@@ -40,7 +40,7 @@ export const turnsQuarters_Skill_Data = defineSkill({
       'Quarter, half, and three-quarter turns equal 90, 180, and 270 degrees. Rotation direction affects final orientation, though some final positions admit more than one equivalent description of the turn.',
     frontend: {
       en: 'Use quarter turns, half turns, and three-quarter turns, clockwise or counterclockwise, to change a shape’s direction.',
-      it: 'Usa rotazioni di un quarto, metà e tre quarti di giro, in senso orario o antiorario, per cambiare l\'orientamento di una figura.',
+      it: "Usa rotazioni di un quarto, metà e tre quarti di giro, in senso orario o antiorario, per cambiare l'orientamento di una figura.",
       qm: 'Şekilniñ yönüni deñiştirmek içün saat tili yönünde ya da tersine çeyrek, yarım ve üç çeyrek buruluvlarnı qullan.',
       zh: '用四分之一圈、半圈和四分之三圈的顺时针或逆时针旋转改变图形的方向。',
       hi: 'दक्षिणावर्त या वामावर्त चौथाई, आधा और तीन-चौथाई घुमाकर आकृति की दिशा बदलें।',

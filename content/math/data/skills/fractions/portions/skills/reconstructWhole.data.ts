@@ -5,7 +5,7 @@ export const reconstructWhole_Skill_Data = defineSkill({
   id: '187884f4-b528-4f66-aed8-ccd4b5fe5b74',
   name: {
     en: 'Finding the whole from a known unit fraction',
-    it: 'Ricostruire l\'intero da una frazione unitaria nota',
+    it: "Ricostruire l'intero da una frazione unitaria nota",
     qm: 'Belli birlik kesirden bütüni tapmaq',
     lt: 'Visumos radimas žinant vienetinę dalį',
     lv: 'Veseluma atrašana pēc zināmas vienības daļas',

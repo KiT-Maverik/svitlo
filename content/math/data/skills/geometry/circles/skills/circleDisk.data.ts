@@ -40,7 +40,7 @@ export const circleDisk_Skill_Data = defineSkill({
       "A circle is the set of points in a plane at a fixed distance from a center; a disk includes those points and its enclosed region. Distinguish boundary from filled area, and circumference from the disk's area.",
     frontend: {
       en: 'Tell the curved boundary of a circle from the filled disk inside it. The boundary is not the area.',
-      it: 'Distingui il contorno curvo della circonferenza dalla superficie del cerchio al suo interno. Il contorno non è l\'area.',
+      it: "Distingui il contorno curvo della circonferenza dalla superficie del cerchio al suo interno. Il contorno non è l'area.",
       qm: 'Çemberniñ egri sıñırını onıñ içindeki tolu daireden ayır. Sıñır meydan degil.',
       zh: '区分圆的曲线边界和它包围的实心圆盘。边界不是圆盘的面积。',
       hi: 'वृत्त की गोल सीमा और उसके भीतर भरे क्षेत्र को अलग पहचानें। सीमा क्षेत्रफल नहीं है।',
