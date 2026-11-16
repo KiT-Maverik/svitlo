@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import path from 'node:path';
 import { collectAssessmentConfigurators, render } from './generateAssessmentResources.mjs';
 import { loadLessonData, assembleLessonProps, selectQuizQuestionIds, validateAssessmentReferences } from '@svitlo/engine/build';
+import { textbook, lessonEntry, lessonId, questionId, flashcardId, lessonRelativePath } from '../../testing/fixtures.mjs';
 
 const id = index => '00000000-0000-4000-8000-' + String(index).padStart(12, '0');
 const question = (key, number, type = 'selectOneAnswer') => ({
@@ -50,18 +50,19 @@ test('assessment stages reject wrong kinds, duplicate UUIDs, stale slugs, malfor
   assert.throws(() => collectAssessmentConfigurators({}, 'flashcard'), /Empty authored/);
 });
 
-test('real Playground independently publishes full locale bodies while manifest contains metadata only', async () => {
-  const textbook = path.resolve(import.meta.dirname, '../../../../content/playground');
-  const owner = 'c/d3048d21-8690-5255-b62c-984c69ac272c';
+test('Engine fixture independently publishes localized Question and Flashcard bodies with metadata-only manifest', async () => {
+  const owner = lessonRelativePath;
   const files = await render(textbook, 'all');
   const manifest = JSON.parse(files.get(owner + '/assessment-manifest.json'));
   const entries = Object.entries(manifest.entries);
-  assert.equal(manifest.lessonId, 'd3048d21-8690-5255-b62c-984c69ac272c');
-  assert.equal(entries.filter(([, value]) => value.kind === 'question').length, 6);
-  assert.equal(entries.filter(([, value]) => value.kind === 'flashcard').length, 3);
+  assert.equal(manifest.lessonId, lessonId);
+  assert.deepEqual(entries.map(([uuid]) => uuid).sort(), [questionId, flashcardId].sort());
+  assert.equal(entries.filter(([, value]) => value.kind === 'question').length, 1);
+  assert.equal(entries.filter(([, value]) => value.kind === 'flashcard').length, 1);
   assert.deepEqual(Object.keys(manifest).sort(), ['entries', 'lessonId']);
+
   for (const [, entry] of entries) {
-    assert.equal(Object.hasOwn(entry, 'content'), false, 'the manifest must never contain assessment bodies');
+    assert.equal(Object.hasOwn(entry, 'content'), false, 'manifest must not contain assessment bodies');
     assert.equal(Object.hasOwn(entry, 'answers'), false, 'no answer data in metadata');
   }
   for (const [uuid, entry] of entries) {
@@ -70,12 +71,14 @@ test('real Playground independently publishes full locale bodies while manifest 
     assert.equal(base.id, uuid);
     assert.equal(typeof entry.contentHash, 'string');
     assert.equal(entry.contentHash.length, 64);
-    assert(entry.languages.includes('uk'));
-    assert(entry.localeFiles.includes('uk'));
-    assert.equal(typeof JSON.parse(files.get(prefix + '/uk.json')), 'object');
-    assert(!('questions' in base), 'independent resource must not embed a whole Lesson bank');
+    assert.deepEqual(entry.languages, ['en', 'uk']);
+    assert.deepEqual(entry.localeFiles, ['en', 'uk']);
+    for (const locale of ['en', 'uk']) {
+      assert.equal(typeof JSON.parse(files.get(prefix + '/' + locale + '.json')), 'object');
+    }
+    assert(!('questions' in base), 'individual resource must not embed a whole Lesson bank');
   }
-  assert.equal(files.size, 271, 'all six Questions and three Flashcards have complete localized publication');
+  assert.equal(files.size, 7, 'two assessments each publish base, en, uk plus one manifest');
   const onlyQuestions = await render(textbook, 'question');
   const onlyCards = await render(textbook, 'flashcard');
   assert(onlyQuestions.has(owner + '/assessment-manifest.json'));
@@ -84,19 +87,17 @@ test('real Playground independently publishes full locale bodies while manifest 
   assert([...onlyCards.keys()].every(key => !key.includes('/questions/')));
 });
 
-test('actual Playground Quiz UUID references resolve against the independent Question manifest', async () => {
-  const textbook = path.resolve(import.meta.dirname, '../../../../content/playground');
-  const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
-  const owner = 'c/' + lessonId;
-  const entry = path.join(textbook, 'data/lessons', owner, 'index.ts');
-  const lesson = await loadLessonData(entry);
+test('Engine fixture Quiz UUID references resolve against its independent Question manifest', async () => {
+  const owner = lessonRelativePath;
+  const lesson = await loadLessonData(lessonEntry);
   const published = lesson.build.props({ languages: ['uk'] });
   const response = assembleLessonProps(published, 'uk');
   assert.equal(Object.hasOwn(response, 'questions'), false);
   assert.equal(Object.hasOwn(response, 'flashcards'), false);
   const quiz = response.section.find(item => item.type === 'quiz');
-  assert(quiz, 'canonical Lesson requires a Quiz Section');
+  assert(quiz, 'fixture Lesson requires a Quiz Section');
   const candidates = selectQuizQuestionIds(quiz.params.selection, quiz.id);
+  assert.deepEqual(candidates, [questionId]);
   const files = await render(textbook, 'question');
   const manifest = JSON.parse(files.get(owner + '/assessment-manifest.json'));
   const selected = validateAssessmentReferences(manifest, {
@@ -110,7 +111,7 @@ test('actual Playground Quiz UUID references resolve against the independent Que
   assert.deepEqual(
     candidates,
     Object.values(quiz.params.selection.questionIds).slice(0, candidates.length),
-    'all-mode selection should preserve the curated Question order',
+    'all-mode selection preserves the curated Question order',
   );
   assert.throws(() => validateAssessmentReferences(manifest, {
     lessonId,
