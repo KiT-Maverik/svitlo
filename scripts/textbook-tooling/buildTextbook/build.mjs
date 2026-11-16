@@ -85,7 +85,7 @@ if (hasScenes && pkg.scripts?.['content:check:scenes']) {
 }
 
 const assessmentBank = filesUnder(join(root, 'data/lessons')).some(name =>
-  /^[0-9a-f]\\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\\/(?:questions|flashcards)\\/index\\.ts$/.test(name),
+  /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/(?:questions|flashcards)\/index\.ts$/.test(name),
 );
 // Before modifying generated content or the distribution, validate every
 // effective Lesson/Course media reference in the requested package.
