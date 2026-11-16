@@ -203,7 +203,7 @@ describe('Configurators', () => {
             defineCheckpoint<string, { first: typeof first; second: typeof second }, ['en', 'uk']>({
               ...base,
               content: { items: configuratorArrayToSlugMap([first, second]), order: ['first'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /Missing slug/,
         );
         assert.throws(
@@ -211,7 +211,7 @@ describe('Configurators', () => {
             defineCheckpoint<string, { first: typeof first }, ['en', 'uk']>({
               ...base,
               content: { items: { first }, order: [] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /At least one active Checkpoint item/,
         );
         const original = checkpoint.build.props({ languages: ['en', 'uk'] });

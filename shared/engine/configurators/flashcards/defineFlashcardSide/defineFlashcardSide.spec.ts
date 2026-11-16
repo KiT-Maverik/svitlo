@@ -76,10 +76,10 @@ describe('Configurators', () => {
           side.build.overrides({ items: { first: false }, order: ['first'] }, { languages: ['en'] }),
         );
         assert.throws(() =>
-          defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({ items: { first }, order: ['missing'] }),
+          defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({ items: { first }, order: ['missing'] }).build.props({ languages: ['en'] }),
         );
         assert.throws(() =>
-          defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({ items: { first: first.config.base } as never, order: ['first'] }),
+          defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({ items: { first: first.config.base } as never, order: ['first'] }).build.props({ languages: ['en'] }),
         );
       });
 

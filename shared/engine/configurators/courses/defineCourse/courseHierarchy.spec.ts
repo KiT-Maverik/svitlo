@@ -176,7 +176,7 @@ describe('Configurators', () => {
 
       test('Course, Module and Chapter reject wrong child types and duplicate slugs', () => {
         assert.throws(
-          () => defineCourse({ ...courseInput, content: { items: { wrongKey: chapterModule }, order: ['wrongKey'] } }),
+          () => defineCourse({ ...courseInput, content: { items: { wrongKey: chapterModule }, order: ['wrongKey'] } }).build.props({ languages: ['en'] }),
           /does not match configurator slug/,
         );
         assert.throws(
@@ -188,7 +188,7 @@ describe('Configurators', () => {
               params: {},
               locale: { title: 'Invalid' },
               content: { items: { module: chapterModule }, order: ['module'] },
-            } as never),
+            } as never).build.props({ languages: ['en'] }),
           /Unsupported Module child type/,
         );
         assert.throws(
@@ -200,11 +200,11 @@ describe('Configurators', () => {
               params: {},
               locale: { title: 'Invalid' },
               content: { items: { chapter }, order: ['chapter'] },
-            } as never),
+            } as never).build.props({ languages: ['en'] }),
           /Unsupported Chapter child type/,
         );
         assert.throws(
-          () => defineCourse({ ...courseInput, params: { languages: ['en', 'en'] as unknown as typeof languages } }),
+          () => defineCourse({ ...courseInput, params: { languages: ['en', 'en'] as unknown as typeof languages } }).build.props({ languages: ['en'] }),
           /unique/,
         );
         const duplicate = defineChapter<'copy', {}, typeof languages>({
@@ -220,7 +220,7 @@ describe('Configurators', () => {
             defineCourse({
               ...courseInput,
               content: { items: { module: chapterModule, copy: duplicate }, order: ['module', 'copy'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /duplicate Course child ID/,
         );
       });

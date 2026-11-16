@@ -140,7 +140,7 @@ describe('Configurators', () => {
               locale: { title: 'Invalid' },
               section: { items: {}, order: [] },
               skills: [],
-            } as never),
+            } as never).build.props({ languages: ['en'] }),
           /skills/,
         );
       });

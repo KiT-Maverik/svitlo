@@ -45,7 +45,7 @@ describe('Configurators', () => {
         ]) {
           assert.throws(() => defineCheckpointAnswer({
             id: id('74'), slug: 'bad', type: 'checkpointAnswer', content,
-          } as never));
+          } as never).build.props({ languages: ['en'] }));
         }
       });
 

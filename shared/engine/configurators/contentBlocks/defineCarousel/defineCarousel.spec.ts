@@ -144,7 +144,7 @@ describe('Configurators', () => {
         assert.throws(() => defineCarousel({
           id: ids[0], slug: 'bad', type: 'carousel', params: {}, locale: {},
           slides: { items: { text: text as never }, order: ['text'] },
-        }), /expected.*image|expected.*scene|Unsupported.*type|Invalid Carousel slides|must be/i);
+        }).build.props({ languages: ['en'] }), /expected.*image|expected.*scene|Unsupported.*type|Invalid Carousel slides|must be/i);
       });
 
       test('excludes disabled Image/Scene children and rejects an empty active Carousel', () => {
@@ -173,7 +173,7 @@ describe('Configurators', () => {
         assert.throws(() => defineCarousel<'invalid', { different: typeof first }, ['en', 'uk']>({
           id: ids[0], slug: 'invalid', type: 'carousel', params: {}, locale: {},
           slides: { items: { different: first }, order: ['different'] },
-        }), /key does not match configurator slug/);
+        }).build.props({ languages: ['en'] }), /key does not match configurator slug/);
         const before = carousel.build.props(scope);
         carousel.slides.order.reverse();
         const exposed = carousel.slides as { items: Record<string, unknown>; order: string[] };

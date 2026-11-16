@@ -345,7 +345,7 @@ describe('Configurators', () => {
               programId: id('04'),
               locale: { title: 'Legacy' },
               section: { items: { intro: section }, order: ['intro'] },
-            } as never),
+            } as never).build.props({ languages: ['en'] }),
           /programId/,
         );
       });
@@ -365,7 +365,7 @@ describe('Configurators', () => {
               },
               locale: { title: 'Wrong' },
               section: { items: { wrongKey: section }, order: ['wrongKey'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /matching .* configurator/,
         );
       });
@@ -389,7 +389,7 @@ describe('Configurators', () => {
             defineLesson({
               ...lessonInput,
               section: { items: { intro: section }, order: ['intro'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /at least one enabled Quiz/,
         );
 
@@ -465,7 +465,7 @@ describe('Configurators', () => {
             defineLesson({
               ...lessonInput,
               section: { items: { disabledQuiz }, order: ['disabledQuiz'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /at least one enabled Quiz/,
         );
       });
