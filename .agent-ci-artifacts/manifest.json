@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 3,
+  "kind": "pr-scoped-agent-ci-artifacts",
+  "sourceCommit": "f16b3c2383972ed12687b6ce80c8a2c72768c411",
+  "scope": {
+    "kind": "skills",
+    "package": "content/history",
+    "locale": "it",
+    "component": null,
+    "lesson": null
+  },
+  "packages": [
+    "content/history"
+  ],
+  "locales": [
+    "it"
+  ],
+  "generated": [
+    {
+      "kind": "taxonomy",
+      "textbook": "content/history",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/taxonomies/history/it.md",
+      "domains": 11,
+      "groups": 50,
+      "skills": 216,
+      "missing": 0,
+      "reviewReady": true
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "documents": 1,
+    "failures": 0,
+    "missingTranslations": 0,
+    "incompleteDocuments": 0,
+    "taxonomyDocuments": 1,
+    "lessonDocuments": 0,
+    "assessmentMethodDocuments": 0,
+    "uiKitDocuments": 0,
+    "geographyHomeCopyDocuments": 0
+  }
+}
